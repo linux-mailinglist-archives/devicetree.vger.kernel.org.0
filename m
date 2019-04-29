@@ -2,225 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C0789DFCD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 11:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 777CFE025
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 12:04:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727514AbfD2JwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 05:52:02 -0400
-Received: from regular1.263xmail.com ([211.150.70.205]:34328 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727673AbfD2JwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 05:52:01 -0400
-Received: from zhangqing?rock-chips.com (unknown [192.168.167.236])
-        by regular1.263xmail.com (Postfix) with ESMTP id 3281A4A6;
-        Mon, 29 Apr 2019 17:51:35 +0800 (CST)
-X-263anti-spam: KSV:0;BIG:0;
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-KSVirus-check: 0
-X-ADDR-CHECKED4: 1
-X-ABS-CHECKED: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.236] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P420T140005497153280S1556531492608937_;
-        Mon, 29 Apr 2019 17:51:34 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <7e1d8f2b177a105ff24d92cf140eb7b4>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: huangtao@rock-chips.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-Subject: Re: [PATCH v2 1/3] thermal: rockchip: fix up the tsadc pinctrl
- setting error
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>, heiko@sntech.de
-Cc:     rui.zhang@intel.com, edubezval@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        xxx@rock-chips.com, xf@rock-chips.com, huangtao@rock-chips.com
-References: <1556187154-22632-1-git-send-email-zhangqing@rock-chips.com>
- <1556187154-22632-2-git-send-email-zhangqing@rock-chips.com>
- <be0170d7-64dc-896d-b847-5be192304791@linaro.org>
-From:   "elaine.zhang" <zhangqing@rock-chips.com>
-Organization: rockchip
-Message-ID: <8d41ea98-e0e8-60c8-3237-ade5d0d169bf@rock-chips.com>
-Date:   Mon, 29 Apr 2019 17:51:32 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <be0170d7-64dc-896d-b847-5be192304791@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1727560AbfD2KEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 06:04:00 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:16434 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727740AbfD2KD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 06:03:59 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x3TA1rtx011137;
+        Mon, 29 Apr 2019 12:03:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : content-type : content-transfer-encoding :
+ mime-version; s=STMicroelectronics;
+ bh=DpoTfHz7/K/KSDDjaslQS/haOcbJqcn4nklrvjzyMCE=;
+ b=XKdesF5tx4cpKu6iU1fsZTX2rUos7yD0vbnx5yWoKHBav1DrBlLZq85/XIDwezqJ5N9H
+ 1GOjiC91KbxA0plkTaypZLWBolijKDGKClmo4UrqybHRXviHFSszTbpQ4yrTb+eGwLwz
+ j+KEDkiY4ICEQVGODJ6nz3xOZxWg8e86MpS5kwV48QAatpj2BWp0EZfhmvWYDys7mbHg
+ 5KKk1k+MVO3weR3zAK39VK4Ur+Ii/4TaqwgfLnLW+ucLuQOkZK4vrcnK0l+yqgZcxUQS
+ u3VBBU47L3hu+N234byZvN1uOqz4k/wUPi1nIIfCN+w6YFbnx8nrjvTgRYWmPPWgIlYP xg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2s4cj0bfpw-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Mon, 29 Apr 2019 12:03:29 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BFB2A31;
+        Mon, 29 Apr 2019 10:03:27 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 803A51516;
+        Mon, 29 Apr 2019 10:03:27 +0000 (GMT)
+Received: from SFHDAG5NODE1.st.com (10.75.127.13) by SFHDAG3NODE3.st.com
+ (10.75.127.9) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 29 Apr
+ 2019 12:03:27 +0200
+Received: from SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6]) by
+ SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6%20]) with mapi id
+ 15.00.1347.000; Mon, 29 Apr 2019 12:03:27 +0200
+From:   Gerald BAEZA <gerald.baeza@st.com>
+To:     "will.deacon@arm.com" <will.deacon@arm.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "horms+renesas@verge.net.au" <horms+renesas@verge.net.au>,
+        "arnd@arndb.de" <arnd@arndb.de>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        Gerald BAEZA <gerald.baeza@st.com>
+Subject: [PATCH 0/5] stm32-ddr-pmu driver creation
+Thread-Topic: [PATCH 0/5] stm32-ddr-pmu driver creation
+Thread-Index: AQHU/nLKF7OhsIWL502SfbL6GLT5iw==
+Date:   Mon, 29 Apr 2019 10:03:27 +0000
+Message-ID: <1556532194-27904-1-git-send-email-gerald.baeza@st.com>
+Accept-Language: fr-FR, en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.51]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-04-29_05:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi,
+The DDRPERFM is the DDR Performance Monitor embedded in STM32MP1 SOC.
 
-在 2019/4/28 下午8:45, Daniel Lezcano 写道:
-> On 25/04/2019 12:12, Elaine Zhang wrote:
->> Explicitly use the pinctrl to set/unset the right mode
->> instead of relying on the pinctrl init mode.
->> And it requires setting the tshut polarity before select pinctrl.
->>
->> When the temperature sensor mode is set to 0, it will automatically
->> reset the board via the Clock-Reset-Unit (CRU) if the over temperature
->> threshold is reached. However, when the pinctrl initializes, it does a
->> transition to "otp_out" which may lead the SoC restart all the time.
->>
->> "otp_out" IO may be connected to the RESET circuit on the hardware.
->> If the IO is in the wrong state, it will trigger RESET.
->> (similar to the effect of pressing the RESET button)
->> which will cause the soc to restart all the time.
->>
->> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->> ---
->>   drivers/thermal/rockchip_thermal.c | 37 ++++++++++++++++++++++++++++++++++---
->>   1 file changed, 34 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
->> index 9c7643d62ed7..03ff494f2864 100644
->> --- a/drivers/thermal/rockchip_thermal.c
->> +++ b/drivers/thermal/rockchip_thermal.c
->> @@ -172,6 +172,9 @@ struct rockchip_thermal_data {
->>   	int tshut_temp;
->>   	enum tshut_mode tshut_mode;
->>   	enum tshut_polarity tshut_polarity;
->> +	struct pinctrl *pinctrl;
->> +	struct pinctrl_state *gpio_state;
->> +	struct pinctrl_state *otp_state;
->>   };
->>   
->>   /**
->> @@ -1242,6 +1245,8 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
->>   		return error;
->>   	}
->>   
->> +	thermal->chip->control(thermal->regs, false);
->> +
->>   	error = clk_prepare_enable(thermal->clk);
->>   	if (error) {
->>   		dev_err(&pdev->dev, "failed to enable converter clock: %d\n",
->> @@ -1267,6 +1272,31 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
->>   	thermal->chip->initialize(thermal->grf, thermal->regs,
->>   				  thermal->tshut_polarity);
->>   
->> +	if (thermal->tshut_mode == TSHUT_MODE_GPIO) {
->> +		thermal->pinctrl = devm_pinctrl_get(&pdev->dev);
->> +		if (IS_ERR(thermal->pinctrl)) {
->> +			dev_err(&pdev->dev, "failed to find thermal pinctrl\n");
->> +			panic("panic_on_find thermal pinctrl...\n");
-> I realize my comment was confusing. I was not saying to add a panic()
-> call here but that the code was accessing a NULL pointer. Please remove
-> the panic.
-OK, I'll fixed it.
->
->> +			return PTR_ERR(thermal->pinctrl);
->> +		}
->> +
->> +		thermal->gpio_state = pinctrl_lookup_state(thermal->pinctrl,
->> +							   "gpio");
->> +		if (IS_ERR_OR_NULL(thermal->gpio_state)) {
->> +			dev_err(&pdev->dev, "failed to find thermal gpio state\n");
->> +			return -EINVAL;
->> +		}
->> +
->> +		thermal->otp_state = pinctrl_lookup_state(thermal->pinctrl,
->> +							  "otpout");
->> +		if (IS_ERR_OR_NULL(thermal->otp_state)) {
->> +			dev_err(&pdev->dev, "failed to find thermal otpout state\n");
->> +			return -EINVAL;
->> +		}
->> +
->> +		pinctrl_select_state(thermal->pinctrl, thermal->otp_state);
-> I don't understand this portion of code. The test above says tshut_mode
-> is TSHUT_MODE_GPIO. Why acting on thermal->otp_state then ?
->
->
-> In my previous comment, I was suggesting the following:
->
-> Two more fields instead of three:
->
-> 	struct rockchip_thermal_data {
->    		int tshut_temp;
-> 	  	enum tshut_mode tshut_mode;
->    		enum tshut_polarity tshut_polarity;
-> 	 	struct pinctrl *pinctrl;
-> 		struct pinctrl_state *pinctrl_state;
-> 	};
->
-> 	[ ... ]
->
-> 	thermal->pinctrl = devm_pinctrl_get(&pdev->dev);
-> 	if (IS_ERR(thermal->pinctrl)) {
-> 		dev_err("...");
-> 		return PTR_ERR(thermal->pinctrl);
-> 	}
->
-> 	thermal->pinctrl_state = pinctrl_lookup_state(thermal->pinctrl,
-> 		thermal->tshut_mode == TSHUT_MODE_GPIO ? "gpio" :
-> 							"otpout";
->
-> 	if (IS_ERR_OR_NULL(thermal->pinctrl_state) {
-> 		dev_err("...");
-> 		return PTR_ERR(thermal->pinctrl_state);
-> 	}
->
->   	pinctrl_select_state(thermal->pinctrl, thermal->pinctrl_state);
->
->
-> 	[ ... ]
->
-> Is it wrong ?
->
->
->> +	}
->> +
->>   	for (i = 0; i < thermal->chip->chn_num; i++) {
->>   		error = rockchip_thermal_register_sensor(pdev, thermal,
->>   						&thermal->sensors[i],
->> @@ -1337,8 +1367,8 @@ static int __maybe_unused rockchip_thermal_suspend(struct device *dev)
->>   
->>   	clk_disable(thermal->pclk);
->>   	clk_disable(thermal->clk);
->> -
->> -	pinctrl_pm_select_sleep_state(dev);
->> +	if (thermal->tshut_mode == TSHUT_MODE_GPIO)
->> +		pinctrl_select_state(thermal->pinctrl, thermal->gpio_state);
-> And then:
-> 	 pinctrl_select_state(thermal->pinctrl, thermal->pinctrl_state);
+This series adds support for the DDRPERFM via a new stm32-ddr-pmu driver,
+registered into the perf framework.
 
-pinctrl select to gpio mode when tsadc suspend and shutdown.
+This driver is inspired from arch/arm/mm/cache-l2x0-pmu.c
 
-When suspend, tsadc is disabled, the otp_pin should revert to the 
-default gpio state.
+This series depends on the "clk: stm32mp1: Add ddrperfm clock" patch,
+sent separately.
 
->
->>   
->>   	return 0;
->>   }
->> @@ -1383,7 +1413,8 @@ static int __maybe_unused rockchip_thermal_resume(struct device *dev)
->>   	for (i = 0; i < thermal->chip->chn_num; i++)
->>   		rockchip_thermal_toggle_sensor(&thermal->sensors[i], true);
->>   
->> -	pinctrl_pm_select_default_state(dev);
->> +	if (thermal->tshut_mode == TSHUT_MODE_GPIO)
->> +		pinctrl_select_state(thermal->pinctrl, thermal->otp_state);
-> And then
-> 	pinctrl_select_state(thermal->pinctrl, thermal->pinctrl_state);
+Gerald Baeza (5):
+  Documentation: perf: stm32: ddrperfm support
+  dt-bindings: perf: stm32: ddrperfm support
+  perf: stm32: ddrperfm driver creation
+  ARM: configs: enable STM32_DDR_PMU
+  ARM: dts: stm32: add ddrperfm on stm32mp157c
 
-pinctrl select to otp mode when tsadc resume.
+ .../devicetree/bindings/perf/stm32-ddr-pmu.txt     |  18 +
+ Documentation/perf/stm32-ddr-pmu.txt               |  41 ++
+ arch/arm/boot/dts/stm32mp157c.dtsi                 |   9 +
+ arch/arm/configs/multi_v7_defconfig                |   1 +
+ drivers/perf/Kconfig                               |   6 +
+ drivers/perf/Makefile                              |   1 +
+ drivers/perf/stm32_ddr_pmu.c                       | 502 +++++++++++++++++=
+++++
+ 7 files changed, 578 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/stm32-ddr-pmu.tx=
+t
+ create mode 100644 Documentation/perf/stm32-ddr-pmu.txt
+ create mode 100644 drivers/perf/stm32_ddr_pmu.c
 
->
->>   	return 0;
->>   }
->>
->
-
-
+--=20
+2.7.4
