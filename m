@@ -2,74 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D9CE63D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 17:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 190E6E657
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 17:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728522AbfD2PY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 11:24:27 -0400
-Received: from foss.arm.com ([217.140.101.70]:60394 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728430AbfD2PY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 11:24:27 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E4AD80D;
-        Mon, 29 Apr 2019 08:24:27 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 596AC3F5C1;
-        Mon, 29 Apr 2019 08:24:25 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 16:24:22 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     David Woodhouse <dwmw2@infradead.org>
-Cc:     Srinath Mannam <srinath.mannam@broadcom.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Pramod Kumar <pramod.kumar@broadcom.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH 3/3] thermal: broadcom: Add Stingray thermal driver
-Message-ID: <20190429152422.GC17516@e107155-lin>
-References: <1527486084-4636-1-git-send-email-srinath.mannam@broadcom.com>
- <1527486084-4636-4-git-send-email-srinath.mannam@broadcom.com>
- <da76e12f246c3f10bfed28d8b91a3575dc73f243.camel@infradead.org>
+        id S1728214AbfD2P13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 11:27:29 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:46549 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728428AbfD2P13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 11:27:29 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hL8Bg-0005bK-1n; Mon, 29 Apr 2019 17:27:24 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hL8Bf-00046t-0a; Mon, 29 Apr 2019 17:27:23 +0200
+Date:   Mon, 29 Apr 2019 17:27:22 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sachin Ghadi <sachin.ghadi@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>
+Subject: Re: [PATCH v11 0/2] PWM support for HiFive Unleashed
+Message-ID: <20190429152722.xw5bcocu2t77wb4u@pengutronix.de>
+References: <1553508779-9685-1-git-send-email-yash.shah@sifive.com>
+ <CAJ2_jOF8RsLWHkcCJzwfpeMN0+G0oqbHto=nBBnpZDNfuQMKOw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <da76e12f246c3f10bfed28d8b91a3575dc73f243.camel@infradead.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJ2_jOF8RsLWHkcCJzwfpeMN0+G0oqbHto=nBBnpZDNfuQMKOw@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 29, 2019 at 06:07:12PM +0300, David Woodhouse wrote:
-> On Mon, 2018-05-28 at 11:11 +0530, Srinath Mannam wrote:
-> > From: Pramod Kumar <pramod.kumar@broadcom.com>
-> >
-> > This commit adds stingray thermal driver to monitor six
-> > thermal zones temperature and trips at critical temperature.
->
-> This matches an ACPI "BRCM0500" device but then calls
-> devm_thermal_zone_of_sensor_register(), which AFAICT is going to fail
-> on an ACPI system because the first thing that does is call
-> of_find_node_by_name(NULL, "thermal-zones") which isn't going to find a
-> match.
->
+On Mon, Apr 15, 2019 at 11:36:51AM +0530, Yash Shah wrote:
+> Hi,
+> 
+> Any comments on this patch series?
+> Any more changes are needed or it looks good to be merged upstream?
 
-Thanks David for bringing this up. I hadn't noticed that this driver is
-cheekily trying to do thermal management in ACPI using crafty
-acpi_device_id match. ACPI thermal objects/methods must be used in the
-firmware to do thermal management.
+In my eyes it would be great if Andreas Schwab was able to resolve the
+problems he pointed out in this thread.
 
-Pramod, can you remove the ACPI support or I can go ahead and post the
-patch to do the same ?
+Best regards
+Uwe
 
-> How does this work in the ACPI case?
-
-It can't and shouldn't work if one can make it happen :)
-
---
-Regards,
-Sudeep
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
