@@ -2,69 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A735E08B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 12:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9DE8E075
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 12:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727648AbfD2KaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 06:30:01 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:45250 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727560AbfD2KaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 06:30:01 -0400
-X-IronPort-AV: E=Sophos;i="5.60,409,1549897200"; 
-   d="scan'208";a="14357472"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 29 Apr 2019 19:29:59 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 12CB4401E4FA;
-        Mon, 29 Apr 2019 19:29:56 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1727749AbfD2KYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 06:24:54 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:34982 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727428AbfD2KYx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 06:24:53 -0400
+Received: by mail-ua1-f68.google.com with SMTP id g16so626262uad.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 03:24:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gPCG35Z0sQWoCgRDLwq42tnfmX+wifRoA3FWD5hwxvc=;
+        b=tLB4/F4wex0McW37xwqLzfYZqBfhM+Bg+Pvur+3g8qDeYazjWIQy/lz5m0zk/FCQVQ
+         XmOtG+UkXnucGqOpekVmieTSCQDorVC/eeJo4j7pRneQgx/AAWdFucmgRQomE6QmtBKC
+         I8ddOlX8EfNwRcQOh4KXqy9HVAFzvv46Mu/YDmYD5GazbztlELwz2tEZxc7huSZj/8F1
+         lH3mIhuq7CJVwV1LlCzLCJ1f6adSoUq7d212wKYvvqeBRXvpswVN/3dkL0jKxw11MVHl
+         j8fUCB5zAQbbieIR089A55ltNxZ8UixUQ3weKX76eUudDUTdTm0Yin/Q8GaFLAM7myjb
+         RI8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gPCG35Z0sQWoCgRDLwq42tnfmX+wifRoA3FWD5hwxvc=;
+        b=q5gIULWtzxbk0I51itiwgsCaii5saVo5zw3wZSI+vJnAwnzM+eN6wIu5T1eh2LMztq
+         tz46yF97vcQLCAo7v52zuxJAO109yR50oX/x0uSsMny+rNJN6Zk0Jqm9jZnM7+BMpOyU
+         JTfyucCrrt3+KDBdAwRSNccJiQ0dsFN5LFIKuNqzjKZ6/yIMqc4EcY1Z/4d7mdAeZKA2
+         YmIGwzU0U7e9ZpKvDPA2R43YGAF/hPXtLNvWzXG9kt1nuYAHSdFSb4t+Qlyi/N+8EIfY
+         F2gyLdGOpPHzyJDAvFDpPDN+mvM3w2MxNWSHnW0O+QzbsHptz1qdbJRvYUwbBNT+HdlE
+         JTwA==
+X-Gm-Message-State: APjAAAXDKYmpLu94cQ+J1t+X5pAriOr2RDnlh+SPJbTrmcWLkzKY0moj
+        DOF9T3xQefyX+O+prBvyfDI6cCe4aooQNhSglq7/eg==
+X-Google-Smtp-Source: APXvYqxF1WTtM1rV78s3KnjLyCxrofhMMER4xv6KhDMnpmQc+hYEaAbnXgGlRozcA1Fl3/o8EkKoGfFL2x0giENTDUE=
+X-Received: by 2002:ab0:2b13:: with SMTP id e19mr5482164uar.15.1556533492970;
+ Mon, 29 Apr 2019 03:24:52 -0700 (PDT)
+MIME-Version: 1.0
+References: <1556244392-15822-1-git-send-email-orito.takao@socionext.com>
+In-Reply-To: <1556244392-15822-1-git-send-email-orito.takao@socionext.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 29 Apr 2019 12:24:16 +0200
+Message-ID: <CAPDyKFouv1MDJXwDryqhC=X4mLycoAigB3x6Xee09U+QNGTa-Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: add DT bindings for Milbeaut SD controller
+To:     Takao Orito <orito.takao@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Biju Das <biju.das@bp.renesas.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH RESEND] dt-bindings: usb: renesas_usbhs: Add support for r8a77470
-Date:   Mon, 29 Apr 2019 11:22:57 +0100
-Message-Id: <1556533377-8116-1-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jaswinder Singh <jaswinder.singh@linaro.org>,
+        sugaya.taichi@socionext.com, kasai.kazuhiro@socionext.com,
+        kanematsu.shinji@socionext.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for RZ/G1C (R8A77470) SoC.
+On Fri, 26 Apr 2019 at 04:04, Takao Orito <orito.takao@socionext.com> wrote:
+>
+> Signed-off-by: Takao Orito <orito.takao@socionext.com>
+> ---
+>  .../devicetree/bindings/mmc/sdhci-milbeaut.txt     | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt b/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
+> new file mode 100644
+> index 0000000..7008462
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
+> @@ -0,0 +1,35 @@
+> +* SOCIONEXT SDHCI controller
+> +
+> +This file documents differences between the core properties in mmc.txt
+> +and the properties used by the sdhci_milbeaut driver.
+> +
+> +Required properties:
+> +- compatible: "socionext,milbeaut-m10v-sdhci-3.0"
+> +- clocks: Must contain an entry for each entry in clock-names. It is a
+> +  list of phandles and clock-specifier pairs.
+> +  See ../clocks/clock-bindings.txt for details.
+> +- clock-names: Should contain the following two entries:
+> +       "iface" - clock used for sdhci interface
+> +       "core"  - core clock for sdhci controller
+> +
+> +Optional properties:
+> +- vqmmc-supply: phandle to the regulator device tree node, mentioned
+> +  as the VCCQ/VDD_IO supply in the eMMC/SD specs.
+> +- fujitsu,cmd-dat-delay-select: boolean property indicating that this host
+> +  requires the CMD_DAT_DELAY control to be enabled.
+> +- sni,mmc-power-gpio: set property indicating that power on or off needs
+> +  control of gpios.
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- This patch is based on usb-next.
+Please use a vmmc-supply instead of "power-gpio" (which means you need
+to model this as a fixed GPIO regulator).
 
- * Resending the patch to Greg and linux-usb@vger.kernel.org
- (Ref: https://patchwork.kernel.org/patch/10894125/)
----
- Documentation/devicetree/bindings/usb/renesas_usbhs.txt | 1 +
- 1 file changed, 1 insertion(+)
+> +
+> +Example:
+> +       sdhci3: mmc@1b010000 {
+> +               compatible = "socionext,milbeaut-m10v-sdhci-3.0";
+> +               reg = <0x1b010000 0x10000>;
+> +               interrupts = <0 265 0x4>;
+> +               voltage-ranges = <3300 3300>;
+> +               bus-width = <4>;
+> +               clocks = <&clk 7>, <&ahb_clk>;
+> +               clock-names = "core", "iface";
+> +               cap-sdio-irq;
+> +               sni,mmc-power-gpio = <&pinctrl 53 GPIO_ACTIVE_HIGH>;
+> +                       fujitsu,cmd-dat-delay-select;
+> +       };
+> --
+> 1.9.1
+>
+>
 
-diff --git a/Documentation/devicetree/bindings/usb/renesas_usbhs.txt b/Documentation/devicetree/bindings/usb/renesas_usbhs.txt
-index d93b6a1..b8acc2a 100644
---- a/Documentation/devicetree/bindings/usb/renesas_usbhs.txt
-+++ b/Documentation/devicetree/bindings/usb/renesas_usbhs.txt
-@@ -6,6 +6,7 @@ Required properties:
- 	- "renesas,usbhs-r8a7743" for r8a7743 (RZ/G1M) compatible device
- 	- "renesas,usbhs-r8a7744" for r8a7744 (RZ/G1N) compatible device
- 	- "renesas,usbhs-r8a7745" for r8a7745 (RZ/G1E) compatible device
-+	- "renesas,usbhs-r8a77470" for r8a77470 (RZ/G1C) compatible device
- 	- "renesas,usbhs-r8a774a1" for r8a774a1 (RZ/G2M) compatible device
- 	- "renesas,usbhs-r8a774c0" for r8a774c0 (RZ/G2E) compatible device
- 	- "renesas,usbhs-r8a7790" for r8a7790 (R-Car H2) compatible device
--- 
-2.7.4
-
+Kind regards
+Uffe
