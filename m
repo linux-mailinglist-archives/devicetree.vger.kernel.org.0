@@ -2,130 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3315AE7FA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 18:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA246E800
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 18:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728663AbfD2Qny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 12:43:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35378 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728520AbfD2Qny (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 12:43:54 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8ACBE216F4;
-        Mon, 29 Apr 2019 16:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556556230;
-        bh=FTkncIZbvmo+q4fzVAyRGdQAopbIMIOz0iSDBCOQ89k=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HGhohh5inSlyBklzyp/DveWB/sMf95ISDdNnu83TfGnaRqTQxMFq64xwEEYzUtKp/
-         pAfk1XO+OIhlMrBS3cqFZqo89HnrVjRmZHuk8OwKqtRCB9kD0MdLgfQDIwDg05exCN
-         IqIoEBUEknO8co16OeNZ5XWgmCJcEeiCAciSXIag=
-Received: by mail-qt1-f174.google.com with SMTP id p20so12667595qtc.9;
-        Mon, 29 Apr 2019 09:43:50 -0700 (PDT)
-X-Gm-Message-State: APjAAAX+tr/hEdkGF6xc1rbhkCkTsEJqC75g8u0mCYxN0Y+KaaPEFpYe
-        enFj8Z5YlPamG9GuiUemlqC30LenV3ggWODcoA==
-X-Google-Smtp-Source: APXvYqzxGpqPUApkLr4tQOYZ40b33qqDT7vQFegDDDM/wN2fR4nE3DrASAaTlh9eyLchuOxZXj9xKQh4FvsDV4q+jYI=
-X-Received: by 2002:a0c:9066:: with SMTP id o93mr10205357qvo.246.1556556229764;
- Mon, 29 Apr 2019 09:43:49 -0700 (PDT)
+        id S1728696AbfD2Qok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 12:44:40 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:36417 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728629AbfD2Qok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 12:44:40 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hL9OJ-0004ea-Em; Mon, 29 Apr 2019 18:44:31 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hL9OG-0006mR-0q; Mon, 29 Apr 2019 18:44:28 +0200
+Date:   Mon, 29 Apr 2019 18:44:28 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        Ian Arkver <ian.arkver.dev@gmail.com>, hans.verkuil@cisco.com,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        mchehab@kernel.org, graphics@pengutronix.de,
+        linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH 1/3] media: dt-bindings: add bindings for Toshiba TC358746
+Message-ID: <20190429164427.naz6fqbbnqi5gqum@pengutronix.de>
+References: <20190218100333.qvptfllrd4pyhsyb@paasikivi.fi.intel.com>
+ <20190301105235.a23jwiwmxejuv2yf@pengutronix.de>
+ <a51ecc47-df19-a48b-3d82-01b21d03972c@gmail.com>
+ <20190301130118.jy57g5wcsn7mqclk@pengutronix.de>
+ <20190304123621.l3ocvdiya5z5wzal@paasikivi.fi.intel.com>
+ <20190304165528.n4sqxjhfsplmt5km@pengutronix.de>
+ <20190304181747.ax7nvbvhdul4vtna@kekkonen.localdomain>
+ <20190305084902.vzaqr53q77oy2o7r@uno.localdomain>
+ <20190305181419.kqdaqnjte3v7663f@pengutronix.de>
+ <20190416104550.htexnpzgypuuubo4@pengutronix.de>
 MIME-Version: 1.0
-References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
- <CGME20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc@eucas1p1.samsung.com>
- <1555683568-20882-7-git-send-email-l.luba@partner.samsung.com>
- <20190425195750.GA26031@bogus> <e4613d6e-0893-8163-32ef-8137c40d2b24@partner.samsung.com>
-In-Reply-To: <e4613d6e-0893-8163-32ef-8137c40d2b24@partner.samsung.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 29 Apr 2019 11:43:38 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+bJtjO8xbpnCRHmcyCB=b8DMr73GWKEz+xMXVZag0FrQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+bJtjO8xbpnCRHmcyCB=b8DMr73GWKEz+xMXVZag0FrQ@mail.gmail.com>
-Subject: Re: [PATCH v6 06/10] dt-bindings: memory-controllers: add Exynos5422
- DMC device description
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Joerg Roedel <jroedel@suse.de>,
-        Thierry Reding <treding@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>, willy.mh.wolff.ml@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190416104550.htexnpzgypuuubo4@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 18:41:26 up 100 days, 21:23, 80 users,  load average: 0.21, 0.08,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 29, 2019 at 7:14 AM Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
+Hi Rob,
+
+sorry instead of adding you to To you was on Cc.
+Do you have any preferences about the below discussion?
+
+Regards,
+  Marco
+
+On 19-04-16 12:45, Marco Felsch wrote:
 > Hi Rob,
->
-> On 4/25/19 9:57 PM, Rob Herring wrote:
-> > On Fri, Apr 19, 2019 at 04:19:24PM +0200, Lukasz Luba wrote:
-> >> The patch adds description for DT binding for a new Exynos5422 Dynamic
-> >> Memory Controller device.
-> >>
-> >> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> >> ---
-> >>   .../bindings/memory-controllers/exynos5422-dmc.txt | 73 ++++++++++++++++++++++
-> >>   1 file changed, 73 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> >> new file mode 100644
-> >> index 0000000..133b3cc
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> >> @@ -0,0 +1,73 @@
-> >> +* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
-> >> +
-> >> +The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
-> >> +memory chips are connected. The driver is to monitor the controller in runtime
-> >> +and switch frequency and voltage. To monitor the usage of the controller in
-> >> +runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
-> >> +is able to measure the current load of the memory.
-> >> +When 'userspace' governor is used for the driver, an application is able to
-> >> +switch the DMC and memory frequency.
-> >> +
-> >> +Required properties for DMC device for Exynos5422:
-> >> +- compatible: Should be "samsung,exynos5422-bus".
-> >> +- clock-names : the name of clock used by the bus, "bus".
-> >> +- clocks : phandles for clock specified in "clock-names" property.
-> >> +- devfreq-events : phandles for PPMU devices connected to this DMC.
-> >> +- vdd-supply : phandle for voltage regulator which is connected.
-> >> +- reg : registers of two CDREX controllers, chip information, clocks subsystem.
-> >> +- operating-points-v2 : phandle for OPPs described in v2 definition.
-> >> +- device-handle : phandle of the connected DRAM memory device. For more
-> >> +    information please refer to Documentation
-> >
-> > The memory node(s) should be a child of the memory controller IMO.
-> I have followed the TI code for LPDDR2. They use 'device-handle'
-> probably because the memory controller can be moved into the common
-> .dtsi and taken by reference in .dts in a proper board file.
+> 
+> gentle ping.
+> 
+> Regards,
+>   Marco
+> 
+> On 19-03-05 19:14, Marco Felsch wrote:
+> > Hi Rob,
+> > 
+> > I think you didn't followed the discussion in detail so I will ask you
+> > personal. In short the tc358746 can act as parallel-in -> csi-out or as
+> > csi->in -> parallel-out device. The phyiscal pins are always the same
+> > only the internal timings are different. So we have two ports with two
+> > endpoints.
+> > 
+> > Now the question is how we determine the mode. We have two approaches:
+> > 1)
+> >   port@0 -> input port
+> >   port@1 -> output port
+> > 
+> >   pro:
+> >   + no extra vendor specific binding is needed to determine the mode
+> > 
+> >   con:
+> >   - input/output endpoint can be parallel or mipi-csi2.
+> > 
+> > 2)
+> >   port@0 -> parallel port
+> >   port@1 -> mipi-csi2 port
+> > 
+> >   pro:
+> >   + input/output endpoint are fixed to parallel or mipi
+> > 
+> >   con:
+> >   - vendor specific binding is needed to determine the mode
+> > 
+> > Thanks for your comments :)
+> > 
+> > Regards,
+> > Marco
+> > 
+> > On 19-03-05 09:49, Jacopo Mondi wrote:
+> > > Hi Sakari, Marco,
+> > > 
+> > > On Mon, Mar 04, 2019 at 08:17:48PM +0200, Sakari Ailus wrote:
+> > > > Hi Marco,
+> > > >
+> > > > On Mon, Mar 04, 2019 at 05:55:28PM +0100, Marco Felsch wrote:
+> > > > > > > (more device specific)
+> > > > > > > tc358746,default-mode = <CSI-Tx> /* Parallel-in -> CSI-out */
+> > > > > > > tc358746,default-mode = <CSI-Rx> /* CSI-in -> Parallel-out */
+> > > > > > >
+> > > > > > > or
+> > > > > > >
+> > > > > > > (more generic)
+> > > > > > > tc358746,default-dir = <PARALLEL_TO_CSI2>
+> > > > > > > tc358746,default-dir = <CSI2_TO_PARALLEL>
+> > > > > >
+> > > > > > The prefix for Toshiba is "toshiba". What would you think of
+> > > > > > "toshiba,csi2-direction" with values of either "rx" or "tx"? Or
+> > > > > > "toshiba,csi2-mode" with either "master" or "slave", which would be a
+> > > > > > little bit more generic, but could be slightly more probable to get wrong
+> > > > > > as well.
+> > > > >
+> > > > > You're right mixed the prefix with the device.. If we need to introduce
+> > > > > a property I would prefer the "toshiba,csi2-direction" one. I said if
+> > > > > because as Jacopo mentioned we can avoid the property by define port@0
+> > > > > as input and port@1 as output. I tink that's the best solution, since we
+> > > > > can avoid device specific bindings and it's common to use the last port
+> > > > > as output (e.g. video-mux).
+> > > >
+> > > > The ports represent hardware and I think I would avoid reordering them. I
+> > > > wonder what would the DT folks prefer.
+> > > >
+> > > 
+> > > I might have missed why you mention re-ordering? :)
+> > > 
+> > > > The device specific property is to the point at least: it describes an
+> > > > orthogonal part of the device configuration. That's why I'd pick that if I
+> > > > were to choose. But I'll let Rob to comment on this.
+> > > 
+> > > That's true indeed. Let's wait for inputs from DT people, I'm fine
+> > > with both approaches.
+> > > 
+> > > Thanks
+> > >    j
+> > > 
+> > > >
+> > > > --
+> > > > Regards,
+> > > >
+> > > > Sakari Ailus
+> > > > sakari.ailus@linux.intel.com
+> > 
+> > 
+> > 
+> > -- 
+> > Pengutronix e.K.                           |                             |
+> > Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+> > Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> > 
+> > 
+> 
+> -- 
+> Pengutronix e.K.                           |                             |
+> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+> 
 
-You'd still have to have the ctrlr node in the board file to add the
-'device-handle' property.
-
-> The board .dts files might specify different DRAM chips and timings.
-> In Exynos case we will also have such situation: one memory controller
-> and a few different DRAM chips.
-
-You mean as in the case where there are multiple options and one chip
-gets populated on the board? So 'device-handle' is selecting which
-chip to use.
-
-You can actually do both here. Keep 'device-handle' to select which
-DRAM chip and have the chips as child nodes. But if you really don't
-want to have them as child nodes, that's fine.
-
-Rob
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
