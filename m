@@ -2,114 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D81DE65
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 10:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 646B8DE7C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 10:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727554AbfD2IxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 04:53:10 -0400
-Received: from mail-eopbgr1410139.outbound.protection.outlook.com ([40.107.141.139]:6073
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        id S1727534AbfD2Izb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 04:55:31 -0400
+Received: from mail-eopbgr150045.outbound.protection.outlook.com ([40.107.15.45]:63808
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727525AbfD2IxJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 04:53:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-bp-renesas-com;
+        id S1727525AbfD2Izb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 04:55:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FWf25qS5sIMQxcS2Y1rNk5DL5VNT5JQoL7u1RNT7RtE=;
- b=N26u611UTExDwVVgfpLxo8NdZzULCYbJJOp+dvrMgF2HlA/sL1AwtOvCxbpEa+VBOEJLMVR1E5y8Jn4FowFyUGirI1b7yRqxAjy+JdIHvhyZb2z/0X4Sq48CQeAVZrmwMFjS/F5KEQSgLsOqnyimqAewk4WI4jRqemIpnNywFQU=
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
- TY1PR01MB1722.jpnprd01.prod.outlook.com (52.133.160.151) with Microsoft SMTP
+ bh=AZzW2Q76vsPSOu4uK3Gmk8Pq8UaaZYl2gRdxV5J8Ido=;
+ b=ZX3AckyTfwDqkY7/HCdRXKyRn1rX0lJYAehNRGLeMqtsaIV17cn9BeZUFQcZZlN+FKSZwtRjSu2dmM04sPs6g8pNz5dpiCye2S8rc6sc0qleRO1JQ/5cgmHAyiT02heEWQGDv6CQZ0f+cK5DANlBfUGaeTqvOBt5a7baY93IrQY=
+Received: from VI1PR04MB5040.eurprd04.prod.outlook.com (20.177.50.97) by
+ VI1PR04MB4991.eurprd04.prod.outlook.com (20.177.49.220) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1835.13; Mon, 29 Apr 2019 08:53:00 +0000
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::60bb:89e4:1a58:e901]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::60bb:89e4:1a58:e901%2]) with mapi id 15.20.1835.018; Mon, 29 Apr 2019
- 08:53:00 +0000
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Simon Horman <horms@verge.net.au>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "mathias.nyman@intel.com" <mathias.nyman@intel.com>
-Subject: RE: [PATCH] dt-bindings: usb-xhci: Add r8a774c0 support
-Thread-Topic: [PATCH] dt-bindings: usb-xhci: Add r8a774c0 support
-Thread-Index: AQHUkyFpi/45UrthxEeTw5QuFUj6AaX3HGuggABRjACAAAQ+0IBTOpfggAYeGACAAuB4IA==
-Date:   Mon, 29 Apr 2019 08:53:00 +0000
-Message-ID: <TY1PR01MB177019CA89AC165803270945C0390@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-References: <1544732471-6730-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <TYXPR01MB1775A4A3AF86097F284C4A08C0760@TYXPR01MB1775.jpnprd01.prod.outlook.com>
- <20190301161624.GA19937@kroah.com>
- <TYXPR01MB17756DBAF2FD7A1F2A9B82B0C0760@TYXPR01MB1775.jpnprd01.prod.outlook.com>
- <TY1PR01MB1770DB45DCD263C6933B9210C0230@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190427125606.GA25493@kroah.com>
-In-Reply-To: <20190427125606.GA25493@kroah.com>
-Accept-Language: en-GB, en-US
+ 15.20.1835.13; Mon, 29 Apr 2019 08:55:27 +0000
+Received: from VI1PR04MB5040.eurprd04.prod.outlook.com
+ ([fe80::4d83:33f7:38e7:70ec]) by VI1PR04MB5040.eurprd04.prod.outlook.com
+ ([fe80::4d83:33f7:38e7:70ec%4]) with mapi id 15.20.1835.018; Mon, 29 Apr 2019
+ 08:55:27 +0000
+From:   BOUGH CHEN <haibo.chen@nxp.com>
+To:     "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/3] Add struct esdhc_soc_data for i.MX7ULP
+Thread-Topic: [PATCH v2 0/3] Add struct esdhc_soc_data for i.MX7ULP
+Thread-Index: AQHU/mlKF2J+KKyqY0ud1tbHDO+Psw==
+Date:   Mon, 29 Apr 2019 08:55:27 +0000
+Message-ID: <20190429090310.25484-1-haibo.chen@nxp.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.17.1
+x-clientproxiedby: HK0PR03CA0023.apcprd03.prod.outlook.com
+ (2603:1096:203:2e::35) To VI1PR04MB5040.eurprd04.prod.outlook.com
+ (2603:10a6:803:59::33)
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
+ smtp.mailfrom=haibo.chen@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.71]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2010adf1-20bf-4311-80be-08d6cc801590
+x-ms-office365-filtering-correlation-id: 051220d0-7bc0-403a-9685-08d6cc806c62
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1722;
-x-ms-traffictypediagnostic: TY1PR01MB1722:
-x-microsoft-antispam-prvs: <TY1PR01MB1722AC7E674DB3385F33B2A9C0390@TY1PR01MB1722.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4991;
+x-ms-traffictypediagnostic: VI1PR04MB4991:
+x-microsoft-antispam-prvs: <VI1PR04MB499132353A3E883C07D8C5B190390@VI1PR04MB4991.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
 x-forefront-prvs: 0022134A87
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(39850400004)(136003)(346002)(376002)(366004)(199004)(189003)(7416002)(305945005)(8936002)(316002)(26005)(66066001)(7696005)(229853002)(486006)(81156014)(81166006)(4744005)(76176011)(93886005)(14454004)(8676002)(7736002)(33656002)(6506007)(53546011)(54906003)(102836004)(4326008)(446003)(11346002)(9686003)(476003)(6116002)(3846002)(97736004)(25786009)(6916009)(68736007)(53936002)(5660300002)(478600001)(86362001)(52536014)(71200400001)(99286004)(2906002)(6246003)(71190400001)(6436002)(186003)(256004)(55016002)(66446008)(64756008)(66476007)(66556008)(74316002)(44832011)(66946007)(76116006)(73956011);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1722;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(366004)(376002)(136003)(346002)(396003)(199004)(189003)(316002)(53936002)(99286004)(6436002)(110136005)(54906003)(36756003)(4744005)(81156014)(81166006)(2501003)(6512007)(6486002)(8676002)(97736004)(14454004)(50226002)(25786009)(478600001)(4326008)(6116002)(66556008)(3846002)(66476007)(64756008)(7736002)(66946007)(305945005)(71200400001)(71190400001)(66446008)(5660300002)(68736007)(73956011)(66066001)(52116002)(2906002)(14444005)(86362001)(256004)(102836004)(6506007)(386003)(8936002)(26005)(186003)(2616005)(476003)(53346004)(486006)(1076003)(2201001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4991;H:VI1PR04MB5040.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 9FygqFRgUD7y7lwCd43MaWVPzzKrIPUeNQShsPrsXIS+tBYitEIaXe2u1/Kr9GgO9MZs7lzPowqlaYJY4wFxktQZGsUuYrGotG1O0615pTZnfYpjFN3Oj592H2AtwkIh8ye2xXwJEJq84oDA0GEmtVZ6+NXFQIWzzkTEMofoVA9KyR5ohkmk+j8uPIrBWUUBQ7jfzR+CQRiC6/4bDXe0JTLQ2PKNnrLLPg3wMpmQgmjT9G4eoVDnwdoVWc4JMEcN373DbH0m9CPBABJ6IKV1Uk0jB+l+8QpYYvuiB+sD4bJMTlGMy/LB9SrEgjJ1K2oLnQ49ugeXV43kepBmrsogRs+EPHBmHcDTl6y7wb5DTbyNrRIk31NhSdiqLejPHd2xv9MLSEyHzpyh0IfBHBLlK7byYR0KFhFGwSbmSXyb9OI=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-microsoft-antispam-message-info: mldd02kkbemUBFOWa9jpT9TvxYLXHPJdhHf99GUqMph0jU6AiTJxZ72f9AnuOFltfXTqiusw9kqtWWV95GhMIOl6FBqShOLDoGgLJnSyjY68VyxW5HLA0qsksx6u3oWN1YX/aTGaFYi68IPxpDkD77l4hjVRxRxMXHO5GOcYUB9agYsTx8L97NKCDQscatk4BCARNBps0VDmqA+R4ybHdWazquDng3ilR68Yipo20fAUrLOkC/VYDtp4661KonbQy54xmNlB+O/vWxxUYiDt8p1UO21kRgKKkQFF++Pr3ZLW9ReTbvqRxikanG4J4VbIbG+9EMuSa7BwzZufKyIOcy3f/S6D/dsOKYpgyAnQ71pKlNQYZXyJQkCtOJZZXgzcSIqRQFJWcUI5aqoYWN3LaHeOUhsko30BvAaNgvrKOf0=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2010adf1-20bf-4311-80be-08d6cc801590
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2019 08:53:00.8135
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 051220d0-7bc0-403a-9685-08d6cc806c62
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2019 08:55:27.0577
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1722
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4991
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Sent: 27 April 2019 13:56
-> Subject: Re: [PATCH] dt-bindings: usb-xhci: Add r8a774c0 support
->=20
-> On Tue, Apr 23, 2019 at 03:32:59PM +0000, Fabrizio Castro wrote:
-> > Hello Simon,
-> >
-> > I know you don't normally take this type of patches, but this one has
-> > been around for more than 4 months now, and I am losing hope here...
-> >
-> > Do you think you can this patch?
->=20
-> I think this got dropped somehow, sorry about that.
->=20
-> Can you resend it, with the acks that have been given to it, and I will
-> be glad to queue it up.
-
-Thank you Greg, I have sent it now.
-
-BR,
-Fab
-
->=20
-> thanks,
->=20
-> greg k-h
+LS0tDQpDaGFuZ2VzIGZvciBWMjoNCi1yZW1vdmUgdGhlIHJlcXVlc3Qgb24gdGhlIHN1YnNlcXVl
+bnQgZXJyb3IgcGF0aHMgaW4gcG1fcnVudGltZV9yZXN1bWUNCg0KSGFpYm8gQ2hlbiAoMyk6DQog
+IGR0LWJpbmRpbmdzOiBtbWM6IGZzbC1pbXgtZXNkaGM6IGFkZCBpbXg3dWxwIGNvbXBhdGlibGUg
+c3RyaW5nDQogIG1tYzogc2RoY2ktZXNkaGMtaW14OiBhZGQgcG1fcW9zIHRvIGludGVyYWN0IHdp
+dGggY3B1aWRsZQ0KICBtbWM6IGFkZCBIUzQwMCBzdXBwb3J0IGZvciBpTVg3VUxQDQoNCiAuLi4v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvZnNsLWlteC1lc2RoYy50eHQgfCAgMSArDQogZHJpdmVy
+cy9tbWMvaG9zdC9zZGhjaS1lc2RoYy1pbXguYyAgICAgICAgICAgIHwgNDEgKysrKysrKysrKysr
+KysrKystLQ0KIDIgZmlsZXMgY2hhbmdlZCwgMzkgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMo
+LSkNCg0KLS0gDQoyLjE3LjENCg0K
