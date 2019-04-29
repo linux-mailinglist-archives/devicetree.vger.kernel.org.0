@@ -2,102 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FAE4E5ED
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 17:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D9CE63D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 17:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728438AbfD2PRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 11:17:01 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:38312 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728431AbfD2PRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 11:17:01 -0400
-Received: by mail-io1-f65.google.com with SMTP id y6so9274547ior.5;
-        Mon, 29 Apr 2019 08:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eG/LJFcnFIeMvEc4NiVulsT3hs2bq4D8LBXeVGHg9Vc=;
-        b=PEOpD+Y6h802ikNpfNFdgVMVgFdb32ihBGzQ2h9+IatXRt4/Bp69TuK984AhPSepGD
-         XTrHjYObJOC2wY3Pbbmhw4oLdAXAPx16MtYrIHpJH6BijcMLGVEqNE5qPvC2Jd0Z/hSo
-         xXaFfTGu5Xgg22kx1+vD2fDBac0+VkVK2QG7C71kKzUBXi4KzRWlkl5JoyFPNnLDZ1dQ
-         DtKZ4/b++Sprpqw/1w9NaEblZHNd+1EQZKigkmOqL7cjwurAv+Zoswoo9w3bjQH/rB6Y
-         n+J3eUdj7R6cG6ux3gp1y51ZHomejr8KvwW3A1ikmeaQFYLx4um/OYWQo297yGEBDXCh
-         cBxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eG/LJFcnFIeMvEc4NiVulsT3hs2bq4D8LBXeVGHg9Vc=;
-        b=U83QXW5Ih7j2v3MeEhq8eY+nTKVbXZcpncHBk2FTyNMNLEOdxbfXLQDCtJ31Y7pb0U
-         t8Dy4FlsXBDuVqHbSjq4oESMY0AwWUNlCGW8RyfehQAaEN1s2+AngVzaFXnzgYNIUqd8
-         rD1eV5fOlhMO19yDtXhNUM6P4yl2TMxNWfDeWuEd7SlLg7MLP4PowL4GuO/QSisd9yAk
-         Pcj0o3/Rp94+hWavC7cB/vcQkpy2gItAlqvUaU4nkg6jml3zpd90WR6xaEfGV/nS8GIY
-         GXSI9NzMCzZxS5JDAC6z0ASfxsYholjBFJ4leHYDEEzcsU2BR6npnrh/A7k7WA1QGXiF
-         Xvgw==
-X-Gm-Message-State: APjAAAXG04R9bAeHxqpBYxg11sdIycr8c+rRto6gewbk+lEb+wA/MQ9T
-        3Qmfp0kBIgUv9qWNeLd/7aDaxpme8F5M9vzmqJRy5w==
-X-Google-Smtp-Source: APXvYqy5cYf6zFE2DLDGSznIaowj/24wI72Tmg6kzBejCH9QUEgxmz+ekdIHkQAcq0KLCUUZMj5cfM/u7zhQHyZsjCI=
-X-Received: by 2002:a5e:d611:: with SMTP id w17mr27273404iom.277.1556551020433;
- Mon, 29 Apr 2019 08:17:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190415160915.16324-1-jeffrey.l.hugo@gmail.com>
- <20190415161115.16466-1-jeffrey.l.hugo@gmail.com> <20190427044245.GD3137@builder>
-In-Reply-To: <20190427044245.GD3137@builder>
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Date:   Mon, 29 Apr 2019 09:16:49 -0600
-Message-ID: <CAOCk7Nqa_nXkOJeoOg2n2UMrkdYfT6jEBpVcPh2zTE+NJLe8FA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: Add Lenovo Miix 630
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1728522AbfD2PY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 11:24:27 -0400
+Received: from foss.arm.com ([217.140.101.70]:60394 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728430AbfD2PY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 11:24:27 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E4AD80D;
+        Mon, 29 Apr 2019 08:24:27 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 596AC3F5C1;
+        Mon, 29 Apr 2019 08:24:25 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 16:24:22 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     David Woodhouse <dwmw2@infradead.org>
+Cc:     Srinath Mannam <srinath.mannam@broadcom.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Pramod Kumar <pramod.kumar@broadcom.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH 3/3] thermal: broadcom: Add Stingray thermal driver
+Message-ID: <20190429152422.GC17516@e107155-lin>
+References: <1527486084-4636-1-git-send-email-srinath.mannam@broadcom.com>
+ <1527486084-4636-4-git-send-email-srinath.mannam@broadcom.com>
+ <da76e12f246c3f10bfed28d8b91a3575dc73f243.camel@infradead.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <da76e12f246c3f10bfed28d8b91a3575dc73f243.camel@infradead.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 26, 2019 at 10:42 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
+On Mon, Apr 29, 2019 at 06:07:12PM +0300, David Woodhouse wrote:
+> On Mon, 2018-05-28 at 11:11 +0530, Srinath Mannam wrote:
+> > From: Pramod Kumar <pramod.kumar@broadcom.com>
+> >
+> > This commit adds stingray thermal driver to monitor six
+> > thermal zones temperature and trips at critical temperature.
 >
-> On Mon 15 Apr 09:11 PDT 2019, Jeffrey Hugo wrote:
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi b/arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi
-> [..]
-> > +     thermal-zones {
-> > +             battery-thermal {
-> > +                     polling-delay-passive = <250>;
-> > +                     polling-delay = <1000>;
-> > +
-> > +                     thermal-sensors = <&tsens0 0>;
+> This matches an ACPI "BRCM0500" device but then calls
+> devm_thermal_zone_of_sensor_register(), which AFAICT is going to fail
+> on an ACPI system because the first thing that does is call
+> of_find_node_by_name(NULL, "thermal-zones") which isn't going to find a
+> match.
 >
-> I guess you inherited the battery and skin thermal nodes from my MTP
-> dts. Unfortunately after talking to Amit I think I got these wrong, and
-> they should be &pmi8998_adc 0 and 5 instead.
->
-> Can you confirm this?
 
-Yeah, I pulled thermal from the MTP.  Someone pointed this out on the
-v4 series.  I haven't circled back to it yet.
+Thanks David for bringing this up. I hadn't noticed that this driver is
+cheekily trying to do thermal management in ACPI using crafty
+acpi_device_id match. ACPI thermal objects/methods must be used in the
+firmware to do thermal management.
 
->
-> > +
-> > +                     trips {
-> > +                             battery_crit: trip0 {
-> > +                                     temperature = <60000>;
-> > +                                     hysteresis = <2000>;
-> > +                                     type = "critical";
-> > +                             };
-> > +                     };
-> > +             };
->
-> Regards,
-> Bjorn
+Pramod, can you remove the ACPI support or I can go ahead and post the
+patch to do the same ?
+
+> How does this work in the ACPI case?
+
+It can't and shouldn't work if one can make it happen :)
+
+--
+Regards,
+Sudeep
