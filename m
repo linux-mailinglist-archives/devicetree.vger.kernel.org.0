@@ -2,176 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C039E359
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 15:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BB4E37E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 15:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726442AbfD2NLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 09:11:44 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:56482 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725838AbfD2NLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 09:11:44 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D313EA78;
-        Mon, 29 Apr 2019 06:11:43 -0700 (PDT)
-Received: from [10.1.196.92] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E1063F71A;
-        Mon, 29 Apr 2019 06:11:41 -0700 (PDT)
-Subject: Re: [PATCH v7 11/14] irqchip: ti-sci-inta: Add support for Interrupt
- Aggregator driver
-To:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        tglx@linutronix.de, jason@lakedaemon.net
-Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
-        linus.walleij@linaro.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190420100950.7997-1-lokeshvutla@ti.com>
- <20190420100950.7997-12-lokeshvutla@ti.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- mQINBE6Jf0UBEADLCxpix34Ch3kQKA9SNlVQroj9aHAEzzl0+V8jrvT9a9GkK+FjBOIQz4KE
- g+3p+lqgJH4NfwPm9H5I5e3wa+Scz9wAqWLTT772Rqb6hf6kx0kKd0P2jGv79qXSmwru28vJ
- t9NNsmIhEYwS5eTfCbsZZDCnR31J6qxozsDHpCGLHlYym/VbC199Uq/pN5gH+5JHZyhyZiNW
- ozUCjMqC4eNW42nYVKZQfbj/k4W9xFfudFaFEhAf/Vb1r6F05eBP1uopuzNkAN7vqS8XcgQH
- qXI357YC4ToCbmqLue4HK9+2mtf7MTdHZYGZ939OfTlOGuxFW+bhtPQzsHiW7eNe0ew0+LaL
- 3wdNzT5abPBscqXWVGsZWCAzBmrZato+Pd2bSCDPLInZV0j+rjt7MWiSxEAEowue3IcZA++7
- ifTDIscQdpeKT8hcL+9eHLgoSDH62SlubO/y8bB1hV8JjLW/jQpLnae0oz25h39ij4ijcp8N
- t5slf5DNRi1NLz5+iaaLg4gaM3ywVK2VEKdBTg+JTg3dfrb3DH7ctTQquyKun9IVY8AsxMc6
- lxl4HxrpLX7HgF10685GG5fFla7R1RUnW5svgQhz6YVU33yJjk5lIIrrxKI/wLlhn066mtu1
- DoD9TEAjwOmpa6ofV6rHeBPehUwMZEsLqlKfLsl0PpsJwov8TQARAQABtCNNYXJjIFp5bmdp
- ZXIgPG1hcmMuenluZ2llckBhcm0uY29tPokCOwQTAQIAJQIbAwYLCQgHAwIGFQgCCQoLBBYC
- AwECHgECF4AFAk6NvYYCGQEACgkQI9DQutE9ekObww/+NcUATWXOcnoPflpYG43GZ0XjQLng
- LQFjBZL+CJV5+1XMDfz4ATH37cR+8gMO1UwmWPv5tOMKLHhw6uLxGG4upPAm0qxjRA/SE3LC
- 22kBjWiSMrkQgv5FDcwdhAcj8A+gKgcXBeyXsGBXLjo5UQOGvPTQXcqNXB9A3ZZN9vS6QUYN
- TXFjnUnzCJd+PVI/4jORz9EUVw1q/+kZgmA8/GhfPH3xNetTGLyJCJcQ86acom2liLZZX4+1
- 6Hda2x3hxpoQo7pTu+XA2YC4XyUstNDYIsE4F4NVHGi88a3N8yWE+Z7cBI2HjGvpfNxZnmKX
- 6bws6RQ4LHDPhy0yzWFowJXGTqM/e79c1UeqOVxKGFF3VhJJu1nMlh+5hnW4glXOoy/WmDEM
- UMbl9KbJUfo+GgIQGMp8mwgW0vK4HrSmevlDeMcrLdfbbFbcZLNeFFBn6KqxFZaTd+LpylIH
- bOPN6fy1Dxf7UZscogYw5Pt0JscgpciuO3DAZo3eXz6ffj2NrWchnbj+SpPBiH4srfFmHY+Y
- LBemIIOmSqIsjoSRjNEZeEObkshDVG5NncJzbAQY+V3Q3yo9og/8ZiaulVWDbcpKyUpzt7pv
- cdnY3baDE8ate/cymFP5jGJK++QCeA6u6JzBp7HnKbngqWa6g8qDSjPXBPCLmmRWbc5j0lvA
- 6ilrF8m5Ag0ETol/RQEQAM/2pdLYCWmf3rtIiP8Wj5NwyjSL6/UrChXtoX9wlY8a4h3EX6E3
- 64snIJVMLbyr4bwdmPKULlny7T/R8dx/mCOWu/DztrVNQiXWOTKJnd/2iQblBT+W5W8ep/nS
- w3qUIckKwKdplQtzSKeE+PJ+GMS+DoNDDkcrVjUnsoCEr0aK3cO6g5hLGu8IBbC1CJYSpple
- VVb/sADnWF3SfUvJ/l4K8Uk4B4+X90KpA7U9MhvDTCy5mJGaTsFqDLpnqp/yqaT2P7kyMG2E
- w+eqtVIqwwweZA0S+tuqput5xdNAcsj2PugVx9tlw/LJo39nh8NrMxAhv5aQ+JJ2I8UTiHLX
- QvoC0Yc/jZX/JRB5r4x4IhK34Mv5TiH/gFfZbwxd287Y1jOaD9lhnke1SX5MXF7eCT3cgyB+
- hgSu42w+2xYl3+rzIhQqxXhaP232t/b3ilJO00ZZ19d4KICGcakeiL6ZBtD8TrtkRiewI3v0
- o8rUBWtjcDRgg3tWx/PcJvZnw1twbmRdaNvsvnlapD2Y9Js3woRLIjSAGOijwzFXSJyC2HU1
- AAuR9uo4/QkeIrQVHIxP7TJZdJ9sGEWdeGPzzPlKLHwIX2HzfbdtPejPSXm5LJ026qdtJHgz
- BAb3NygZG6BH6EC1NPDQ6O53EXorXS1tsSAgp5ZDSFEBklpRVT3E0NrDABEBAAGJAh8EGAEC
- AAkFAk6Jf0UCGwwACgkQI9DQutE9ekMLBQ//U+Mt9DtFpzMCIHFPE9nNlsCm75j22lNiw6mX
- mx3cUA3pl+uRGQr/zQC5inQNtjFUmwGkHqrAw+SmG5gsgnM4pSdYvraWaCWOZCQCx1lpaCOl
- MotrNcwMJTJLQGc4BjJyOeSH59HQDitKfKMu/yjRhzT8CXhys6R0kYMrEN0tbe1cFOJkxSbV
- 0GgRTDF4PKyLT+RncoKxQe8lGxuk5614aRpBQa0LPafkirwqkUtxsPnarkPUEfkBlnIhAR8L
- kmneYLu0AvbWjfJCUH7qfpyS/FRrQCoBq9QIEcf2v1f0AIpA27f9KCEv5MZSHXGCdNcbjKw1
- 39YxYZhmXaHFKDSZIC29YhQJeXWlfDEDq6nIhvurZy3mSh2OMQgaIoFexPCsBBOclH8QUtMk
- a3jW/qYyrV+qUq9Wf3SKPrXf7B3xB332jFCETbyZQXqmowV+2b3rJFRWn5hK5B+xwvuxKyGq
- qDOGjof2dKl2zBIxbFgOclV7wqCVkhxSJi/QaOj2zBqSNPXga5DWtX3ekRnJLa1+ijXxmdjz
- hApihi08gwvP5G9fNGKQyRETePEtEAWt0b7dOqMzYBYGRVr7uS4uT6WP7fzOwAJC4lU7ZYWZ
- yVshCa0IvTtp1085RtT3qhh9mobkcZ+7cQOY+Tx2RGXS9WeOh2jZjdoWUv6CevXNQyOUXMM=
-Organization: ARM Ltd
-Message-ID: <36b8bc62-fff2-c015-8140-cda625efdabc@arm.com>
-Date:   Mon, 29 Apr 2019 14:11:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190420100950.7997-12-lokeshvutla@ti.com>
-Content-Type: text/plain; charset=utf-8
+        id S1728199AbfD2NOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 09:14:53 -0400
+Received: from mail-eopbgr1410097.outbound.protection.outlook.com ([40.107.141.97]:14467
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725838AbfD2NOw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 09:14:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QP2n1i19/SsImnJVzVhLTA2L7uBNCx5q3TTJj3POarY=;
+ b=TySbTLLQJb5qc+3Jj4oIepBW8Wp+UerfVv3PvgdaAuQWUrbsZmMwd799fvVORxjUKp/CM6mVtH+iZIyWlLima7U1171in+GvwRQuJfrfwYgUKw5c2xzWWp8dYxapbY9ZyYpokNRShz9WrNQNSCHsbC7NavGPBkcH80K0jFXmEt4=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY1PR01MB1788.jpnprd01.prod.outlook.com (52.133.160.150) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1835.13; Mon, 29 Apr 2019 13:14:47 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1835.018; Mon, 29 Apr 2019
+ 13:14:47 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 0/5] ARM: rskrza1: Add RZ/A1 IRQC and input switches
+Thread-Topic: [PATCH 0/5] ARM: rskrza1: Add RZ/A1 IRQC and input switches
+Thread-Index: AQHU/m8QhsbWkw/8AEW0pGxxlBRO8aZTCh5ggAAM4gCAAAQO0A==
+Date:   Mon, 29 Apr 2019 13:14:46 +0000
+Message-ID: <TY1PR01MB156221290E3CF7835CBAEEE28A390@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190429093631.10799-1-geert+renesas@glider.be>
+ <TY1PR01MB15620A5958E5A9211518E0C48A390@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+ <CAMuHMdUasEO1VLX1h5ZL8F2VjLXnSbrVOm6KdO6yuzkw9RWAfA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUasEO1VLX1h5ZL8F2VjLXnSbrVOm6KdO6yuzkw9RWAfA@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7711ceaf-e991-48ff-73d4-08d6cca4a72b
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1788;
+x-ms-traffictypediagnostic: TY1PR01MB1788:
+x-microsoft-antispam-prvs: <TY1PR01MB17884A61B49C549980C36DA78A390@TY1PR01MB1788.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0022134A87
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(136003)(346002)(366004)(39860400002)(376002)(199004)(189003)(4326008)(3846002)(6246003)(6506007)(25786009)(53936002)(7416002)(74316002)(2906002)(305945005)(7736002)(97736004)(6116002)(52536014)(186003)(6916009)(102836004)(5660300002)(26005)(53546011)(316002)(54906003)(11346002)(446003)(6436002)(476003)(55016002)(229853002)(33656002)(486006)(8676002)(81166006)(81156014)(8936002)(66066001)(9686003)(256004)(71190400001)(66446008)(64756008)(66476007)(66556008)(66946007)(71200400001)(72206003)(73956011)(478600001)(76116006)(86362001)(68736007)(14454004)(7696005)(99286004)(76176011);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1788;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: rE2/bC4apupJ55+sKR45Iy6mnVoYtcnLIq3myggLORAf64htdhrxr5r7vZ4QXB87I8q7uegjVKnwzCJDWH2kEIZtTZfgr48i0YoemurNMvxm9im4v+35QvzX7KNwMfwD7b4HlfjLqHFsGbrabF2w0k+1gVVXovCL/GRfzt8maG0UvvV1awm9EuPWEY2N8V7lra0KStfkftZeF1TEj+7ePGGl0Dgp6wZXPrWPccBA+LzseFq63LE/CvgS7tKk7egsfy/uMmwRkbAV45u694GpO8HyBZ+zFpPamp6HloohiD3+IPco6SMmMi3V8qY5Gr4fZRLoKhHQ42eOHiyXqKKolgWPM94bc2IoxcAU6NkUJQSsgCbrHZARWiqfQ+20Y0HyiFpcez+RMEQCYKqnnpGtNSvIiNLMuIOB1HsVTFx8Gj4=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7711ceaf-e991-48ff-73d4-08d6cca4a72b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2019 13:14:46.9038
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1788
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2019 11:09, Lokesh Vutla wrote:
-> Texas Instruments' K3 generation SoCs has an IP Interrupt Aggregator
-> which is an interrupt controller that does the following:
-> - Converts events to interrupts that can be understood by
->   an interrupt router.
-> - Allows for multiplexing of events to interrupts.
-> 
-> Configuration of the interrupt aggregator registers can only be done by
-> a system co-processor and the driver needs to send a message to this
-> co processor over TISCI protocol. This patch adds support for Interrupt
-> Aggregator irqdomain.
-> 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> ---
-> Changes since v6:
-> - Updated commit message.
-> - Arranged header files in alphabetical order
-> - Included vint_bit in struct ti_sci_inta_event_desc
-> - With the above change now the chip_data is event_desc instead of vint_desc
-> - No loops are used in atomic contexts.
-> - Fixed locking issue while freeing parent virq
-> - Fixed few other cosmetic changes.
-> 
->  MAINTAINERS                       |   1 +
->  drivers/irqchip/Kconfig           |  11 +
->  drivers/irqchip/Makefile          |   1 +
->  drivers/irqchip/irq-ti-sci-inta.c | 589 ++++++++++++++++++++++++++++++
->  4 files changed, 602 insertions(+)
->  create mode 100644 drivers/irqchip/irq-ti-sci-inta.c
-> 
-
-[...]
-
-> +/**
-> + * ti_sci_inta_alloc_irq() -  Allocate an irq within INTA domain
-> + * @domain:	irq_domain pointer corresponding to INTA
-> + * @hwirq:	hwirq of the input event
-> + *
-> + * Note: Allocation happens in the following manner:
-> + *	- Find a free bit available in any of the vints available in the list.
-> + *	- If not found, allocate a vint from the vint pool
-> + *	- Attach the free bit to input hwirq.
-> + * Return event_desc if all went ok else appropriate error value.
-> + */
-> +static struct ti_sci_inta_event_desc *ti_sci_inta_alloc_irq(struct irq_domain *domain,
-> +							    u32 hwirq)
-> +{
-> +	struct ti_sci_inta_irq_domain *inta = domain->host_data;
-> +	struct ti_sci_inta_vint_desc *vint_desc = NULL;
-> +	u16 free_bit;
-> +
-> +	mutex_lock(&inta->vint_mutex);
-> +	list_for_each_entry(vint_desc, &inta->vint_list, list) {
-> +		mutex_lock(&vint_desc->event_mutex);
-> +		free_bit = find_first_zero_bit(vint_desc->event_map,
-> +					       MAX_EVENTS_PER_VINT);
-> +		if (free_bit != MAX_EVENTS_PER_VINT) {
-> +			set_bit(free_bit, vint_desc->event_map);
-> +			mutex_unlock(&vint_desc->event_mutex);
-> +			mutex_unlock(&inta->vint_mutex);
-> +			goto alloc_event;
-> +		}
-> +		mutex_unlock(&vint_desc->event_mutex);
-> +	}
-> +	mutex_unlock(&inta->vint_mutex);
-> +
-> +	/* No free bits available. Allocate a new vint */
-> +	vint_desc = ti_sci_inta_alloc_parent_irq(domain);
-> +	if (IS_ERR(vint_desc))
-> +		return ERR_PTR(PTR_ERR(vint_desc));
-> +
-> +	mutex_lock(&vint_desc->event_mutex);
-> +	free_bit = find_first_zero_bit(vint_desc->event_map,
-> +				       MAX_EVENTS_PER_VINT);
-> +	set_bit(free_bit, vint_desc->event_map);
-> +	mutex_unlock(&vint_desc->event_mutex);
-
-This code is still quite racy: you can have two parallel allocations
-failing to get a free bit in any of the already allocated vint_desc, and
-then both allocating a new vint_desc. If there was only one left, one of
-the allocation will fail despite having at least 63 free interrupts.
-
-	M.
--- 
-Jazz is not dead. It just smells funny...
+SGkgR2VlcnQsDQoNCk9uIE1vbiwgQXByIDI5LCAyMDE5LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
+dGU6DQo+IE9uIE1vbiwgQXByIDI5LCAyMDE5IGF0IDI6MjEgUE0gQ2hyaXMgQnJhbmR0IDxDaHJp
+cy5CcmFuZHRAcmVuZXNhcy5jb20+DQo+IHdyb3RlOg0KPiA+IEkndmUgYmVlbiBoYWNraW5nIHRo
+aXMgc3VwcG9ydCBpbnRvIHRoZSBzdGFuZGFyZCBHSUMgZHJpdmVyIGluIG91ciBCU1BzDQo+ID4g
+Zm9yIHllYXJzIG5vdy4gOm8NCj4gDQo+IFllYWgsIGFuZCBoYXZpbmcgdGhhdCBwYXRjaCBpbiB5
+b3VyIHRyZWUgYnJlYWtzIGFsbCBvdGhlciBHSUNzLCBhcw0KPiBJIGZvdW5kIG91dCB0aGUgaGFy
+ZCB3YXkgOy0pDQoNCkkgbmV2ZXIgc2FpZCBpdCB3YXMgYSBnb29kIGhhY2sgOikNCg0KDQo+IFNv
+IGZvciBSWi9BMiwgSSB0aGluayBpdCdzIGJlc3QgdG8gdXNlDQo+IA0KPiAgICAgY29tcGF0aWJs
+ZSA9ICJyZW5lc2FzLHI3czkyMTAtaXJxYyIsICJyZW5lc2FzLHJ6YTEtaXJxYyI7DQo+ICAgICBy
+ZW5lc2FzLGdpYy1zcGktYmFzZSA9IDw0PjsNCg0KVGhhdCBzZWVtcyB0byBtYWtlIHNlbnNlLiBJ
+dCdzIHNwZWNpZmljIHRvIHI3czkyMTAgKFJaL0EyKSwgYnV0IA0KY29tcGF0aWJsZSB3aXRoIHRo
+ZSBvcmlnaW5hbCB2ZXJzaW9uIHdoaWNoIHdhcyBmb3IgcnphMS4gSXQgZXhwbGFpbnMgdGhlDQpo
+aXN0b3J5Lg0KDQoNCj4gPiBTaWRlIG5vdGUsIEkndmUgc2VlbiB0aGlzIGludGVycnVwdCBwaW4g
+SFcgaW4gc29tZSBvbGRlciBTSDRBIGRldmljZXMNCj4gPiAobGlrZSBTSDc3MjQgYW5kIFNINzc1
+NykuIFNvIGl0J3MgYmVlbiBhcm91bmQgZm9yIGEgd2hpbGUuDQo+IA0KPiBSaWdodDoNCj4gDQo+
+ICAgICBhcmNoL3NoL2tlcm5lbC9jcHUvc2g0YS9zZXR1cC1zaDczNDMuYzogeyAweGE0MTQwMDI0
+LCAwLCA4LCAvKg0KPiBJTlRSRVEwMCAqLw0KPiAgICAgYXJjaC9zaC9rZXJuZWwvY3B1L3NoNGEv
+c2V0dXAtc2g3MzY2LmM6IHsgMHhhNDE0MDAyNCwgMCwgOCwgLyoNCj4gSU5UUkVRMDAgKi8NCj4g
+ICAgIGFyY2gvc2gva2VybmVsL2NwdS9zaDRhL3NldHVwLXNoNzcyMi5jOiB7IDB4YTQxNDAwMjQs
+IDAsIDgsIC8qDQo+IElOVFJFUTAwICovDQo+ICAgICBhcmNoL3NoL2tlcm5lbC9jcHUvc2g0YS9z
+ZXR1cC1zaDc3MjMuYzogeyAweGE0MTQwMDI0LCAwLCA4LCAvKg0KPiBJTlRSRVEwMCAqLw0KPiAg
+ICAgYXJjaC9zaC9rZXJuZWwvY3B1L3NoNGEvc2V0dXAtc2g3NzI0LmM6IHsgMHhhNDE0MDAyNCwg
+MCwgOCwgLyoNCj4gSU5UUkVRMDAgKi8NCj4gDQo+IEhvd2V2ZXIsIGFjY29yZGluZyB0byB0aGUg
+c2g3NzI0IGRvY3VtZW50YXRpb24sIHRoZSByZWdpc3RlciBzZXQgaXMNCj4gc2xpZ2h0bHkgZGlm
+ZmVyZW50LCBhcyBpcyBpdHMgc2Vuc2UgY29uZmlndXJhdGlvbiAobm8gc3VwcG9ydCBmb3IgYm90
+aA0KPiBlZGdlcywgYnV0IHN1cHBvcnQgZm9yIGhpZ2gtbGV2ZWwgaW50ZXJydXB0cykuDQoNCklm
+IEkgcmVtZW1iZXIgY29ycmVjdGx5LCBJIHRoaW5rIHRoZSBkZXNpZ24gZW5naW5lZXJzIGNhbiBj
+aG9vc2UgdGhlIA0Kc2Vuc2UgYXMgdGhleSB3aXJlIGl0IHVwIGludGVybmFsbHkuIFRoZSBvbmVz
+IGluIHRoZSBTSDc3NTcgd2VyZSBjaG9zZW4gDQpiYXNlZCBvbiBhIHNwZWNpZmljIHVzZSBjYXNl
+LiBTbyBmYXIsIHRoZSBvbmVzIGNob3NlbiBmb3IgdGhlIFJaL0ExIHNlZW0gdG8NCm1ha2UgZXZl
+cnlvbmUgaGFwcHksIHNvIEkgYXNzdW1lIHdlJ2xsIGtlZXAgdGhlbSB0aGF0IHdheS4NCg0KDQpD
+aHJpcw0K
