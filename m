@@ -2,125 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A87ECA5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 00:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F72BECBA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 00:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729482AbfD2WQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 18:16:58 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:41986 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728105AbfD2WQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 18:16:58 -0400
-Received: by mail-oi1-f193.google.com with SMTP id k9so6647688oig.9;
-        Mon, 29 Apr 2019 15:16:57 -0700 (PDT)
+        id S1729645AbfD2W0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 18:26:49 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:34796 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729453AbfD2W0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 18:26:48 -0400
+Received: by mail-ot1-f67.google.com with SMTP id n15so4109461ota.1;
+        Mon, 29 Apr 2019 15:26:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LLSomgcidVOLTe6rCarJcZL8h/0AxpVsGlwcNcgeIZc=;
-        b=GplGoXfyHoTS1OA2KkHJwgAxUwRTMZ0mm76vDcIc9zn/55cpVVeSbDMN36ZcLEkduS
-         1BfSZ2pskPu+Kv1WST0Z39+e45U/48zoou2N3TtWMn/K5DFsFow+CDFAeHYJRbLsclmE
-         hxdiZNxuvuRPcYnbJ8tM9pxWeJ0lyfarrxlxVL/I+SvNadBZRRddsDcX9s4Hn/7hoe2I
-         zUSrzm1UdC5R6LbmD+P6sUlSrYaVOKI2bF3OVSmAasMHgJIivy6yK97EBguLbDBcE/JO
-         AWJntVCF0UrBITU0IahPkrSvpSF3l7fPv7C7tSHfdlBGiT13ubGVJ0oLnc0pSIDTstJC
-         8R7A==
-X-Gm-Message-State: APjAAAXB+yUJquQ5HmrWi0rWdNq1Eibf4lpdTEWUCUGwyrpU6laRmPif
-        2wO5/VrUcgMyxn43OMxl0w==
-X-Google-Smtp-Source: APXvYqwkOCIJLujhskobK/4m5vnwo3g+MH+dz03BglSEDJoU5hZlsyrMbfcO44Jj7KSt5Se3+VX4cA==
-X-Received: by 2002:a54:4f15:: with SMTP id e21mr980418oiy.122.1556576217427;
-        Mon, 29 Apr 2019 15:16:57 -0700 (PDT)
+        bh=oRenui5Af25LDBg0th7gwZb/BUZtc0JZI0y66saQTqM=;
+        b=cdtYlixFfz6J9BgtQGBuXZoDzzh1CyHGUkw5yuMN/+ZNzwbLSCjO3atYHJhzPu1YZS
+         aJedC01nHbLmzlFc/2T7yGyCgsj48LLFi5+21J2sUU5BdkEIJtSXAnjkenBy1iUsBGoz
+         cAjKYfewbBaNf41j990n1+e9BR5mezn6SwlmG6mLggef72/cAeShUMtS2Iaq68Mr3+bC
+         9UsQo81M4k0aeLlLPAjd76YnYbuvk9DTvcHuqGKJiqMh7yNwMXA0laNOWGFhAgvXsQA/
+         8TJonX4V3ve4lblLBmo+F2ssTmOqjEai4h8GTQehm1eLhxxPifM8WU5BysHbjEulIfNV
+         9Dvw==
+X-Gm-Message-State: APjAAAURspMKLIOo1/m1WxHDkZj1Aya0hzmXUianXJ8k43ImTVlCtiPQ
+        DstyzEUFVXDrUHtMbuOqwJMeRsQ=
+X-Google-Smtp-Source: APXvYqwld5ffy3XYYJumXMPmkKQz5Gc5XST2UIO1EEhtfK4zl1hJZzjNCevWVUbeRLAFuTl7ew5iqw==
+X-Received: by 2002:a9d:6397:: with SMTP id w23mr274180otk.332.1556576807861;
+        Mon, 29 Apr 2019 15:26:47 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 2sm13926206ots.22.2019.04.29.15.16.56
+        by smtp.gmail.com with ESMTPSA id j82sm14504482oih.31.2019.04.29.15.26.46
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 15:16:56 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 17:16:56 -0500
+        Mon, 29 Apr 2019 15:26:46 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 17:26:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org, evgreen@chromium.org,
-        daidavid1@codeaurora.org, linux-pm@vger.kernel.org,
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Pawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        Kumar Gala <galak@codeaurora.org>, linux-pwm@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: interconnect: Add Qualcomm QCS404 DT
- bindings
-Message-ID: <20190429221656.GA1843@bogus>
-References: <20190415104357.5305-1-georgi.djakov@linaro.org>
- <20190415104357.5305-2-georgi.djakov@linaro.org>
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Sascha Hauer <kernel@pengutronix.de>,
+        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
+        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
+        ck.hu@mediatek.com, stonea168@163.com
+Subject: Re: [v2 1/3] dt-bindings: display: mediatek: update dsi supported
+ chips
+Message-ID: <20190429222646.GA20752@bogus>
+References: <20190416054217.75387-1-jitao.shi@mediatek.com>
+ <20190416054217.75387-2-jitao.shi@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190415104357.5305-2-georgi.djakov@linaro.org>
+In-Reply-To: <20190416054217.75387-2-jitao.shi@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 15, 2019 at 01:43:54PM +0300, Georgi Djakov wrote:
-> The Qualcomm QCS404 platform has several buses that could be controlled
-> and tuned according to the bandwidth demand.
+On Tue, Apr 16, 2019 at 01:42:15PM +0800, Jitao Shi wrote:
+> Update device tree binding documentation for the dsi for
+> Mediatek MT8183 SoCs.
 > 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > ---
+>  .../devicetree/bindings/display/mediatek/mediatek,dsi.txt       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> v2:
-> - No changes.
-> 
->  .../bindings/interconnect/qcom,qcs404.txt     | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> new file mode 100644
-> index 000000000000..9befcd14a5b5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs404.txt
-> @@ -0,0 +1,45 @@
-> +Qualcomm QCS404 Network-On-Chip interconnect driver binding
-> +-----------------------------------------------------------
-> +
-> +Required properties :
-> +- compatible : shall contain only one of the following:
-> +			"qcom,qcs404-bimc"
-> +			"qcom,qcs404-pcnoc"
-> +			"qcom,qcs404-snoc"
-> +- #interconnect-cells : should contain 1
-> +
-> +Optional properties :
-> +clocks : list of phandles and specifiers to all interconnect bus clocks
-> +clock-names : clock names should include both "bus_clk" and "bus_a_clk"
-> +
-> +Example:
-> +
-> +rpm-glink {
-> +	...
-> +	rpm_requests: glink-channel {
-> +		...
-> +		bimc: interconnect@0 {
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> index fadf327c7cdf..bd68195458b9 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> @@ -26,7 +26,7 @@ The MIPI TX configuration module controls the MIPI D-PHY.
+>  
+>  Required properties:
+>  - compatible: "mediatek,<chip>-mipi-tx"
+> -  the supported chips are mt2701 and mt8173.
+> +  the supported chips are mt2701 , mt8173 and mt8183.
 
-Unit-address needs a 'reg' property. dtc should give you a warning 
-(maybe W=1 is still needed).
+drop the space                     ^
 
-> +			compatible = "qcom,qcs404-bimc";
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus_clk", "bus_a_clk";
-> +			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-> +				<&rpmcc RPM_SMD_BIMC_A_CLK>;
-> +		};
-> +
-> +		pnoc: interconnect@1 {
-> +			compatible = "qcom,qcs404-pcnoc";
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus_clk", "bus_a_clk";
-> +			clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
-> +				<&rpmcc RPM_SMD_PNOC_A_CLK>;
-> +		};
-> +
-> +		snoc: interconnect@2 {
-> +			compatible = "qcom,qcs404-snoc";
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus_clk", "bus_a_clk";
-> +			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-> +				<&rpmcc RPM_SMD_SNOC_A_CLK>;
-> +		};
-> +	};
-> +};
+With that,
+
+Acked-by: Rob Herring <robh@kernel.org>
