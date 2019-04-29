@@ -2,98 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47587E282
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 14:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5290BE2AA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 14:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728068AbfD2MZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 08:25:16 -0400
-Received: from mail-eopbgr1410093.outbound.protection.outlook.com ([40.107.141.93]:43232
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728005AbfD2MZQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 08:25:16 -0400
+        id S1727956AbfD2McA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 08:32:00 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:41251 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728006AbfD2McA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 08:32:00 -0400
+Received: by mail-wr1-f68.google.com with SMTP id c12so15749421wrt.8
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 05:31:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KXi0PzQBcTaVfb4Te06wM7Ri9eVVQFSQqsrolYwXmnA=;
- b=lw8aZnacT5lqnK927PFTmTmsrAV0SaZ38iHmCgJOfKe6ZyB8qdwyI96Z7D6iinxvdgrDgki+zaJ4Jw4Zwf7ojBCvdy1ZG7KOUA+P7QQsHOFYJSeWGFE6fxV4qG5O7VuBQ0XdqvrxKo4pg5BjVsonwDZKdhfFr7o3mXvWQcMe1k4=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1676.jpnprd01.prod.outlook.com (52.133.163.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1835.12; Mon, 29 Apr 2019 12:25:11 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1835.018; Mon, 29 Apr 2019
- 12:25:11 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Marc Zyngier <marc.zyngier@arm.com>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 2/5] irqchip: Add Renesas RZ/A1 Interrupt Controller
- driver
-Thread-Topic: [PATCH 2/5] irqchip: Add Renesas RZ/A1 Interrupt Controller
- driver
-Thread-Index: AQHU/m8PB9wkGP0JyE6XlHkrtJGBYaZS6auAgAAU5ICAABDeMA==
-Date:   Mon, 29 Apr 2019 12:25:11 +0000
-Message-ID: <TY1PR01MB1562E95253A89499124CC6978A390@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190429093631.10799-1-geert+renesas@glider.be>
- <20190429093631.10799-3-geert+renesas@glider.be>
- <f9310d4c-8f9e-a837-3ed3-4d7c294efd3f@arm.com>
- <CAMuHMdU3i7vqs9hd7rfvYH8QtqvwUB5vgsa_fwo5L4E3DQ_d1Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdU3i7vqs9hd7rfvYH8QtqvwUB5vgsa_fwo5L4E3DQ_d1Q@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8c16a221-4348-4b8e-63b8-08d6cc9db9b2
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1676;
-x-ms-traffictypediagnostic: TY1PR01MB1676:
-x-microsoft-antispam-prvs: <TY1PR01MB16766E638159CC99599726A88A390@TY1PR01MB1676.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0022134A87
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(136003)(396003)(346002)(366004)(376002)(189003)(199004)(8676002)(81156014)(8936002)(81166006)(93886005)(486006)(476003)(33656002)(11346002)(97736004)(446003)(478600001)(72206003)(4744005)(66066001)(14454004)(71190400001)(256004)(5660300002)(71200400001)(52536014)(99286004)(86362001)(4326008)(186003)(25786009)(54906003)(316002)(110136005)(305945005)(68736007)(7736002)(74316002)(102836004)(7416002)(9686003)(76176011)(26005)(3846002)(6116002)(6506007)(55016002)(53936002)(2906002)(6436002)(7696005)(6246003)(229853002)(76116006)(66556008)(66476007)(66946007)(64756008)(73956011)(66446008);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1676;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: BINyxRntme5yBXnSMxDvwapodzVx3jPxaqhZzWtLdKfCKIU/esNfasd86T2TSrucvIoDh9uUWKdqmbCG2to2unbIxupZex/V109zoKrCjb3thD+eRse0Js6KrfPtoYqBxNWOpkSdkZKCk1AkIdR7/I6IN+AsVfk0Pf0C19qy3jo0zySvSBPyIFgsgK3BYBkxBakptykK669KjEXiFZrK4a911pG09kP+FxwIxMEUE/oLJSpjtCpJaMjElh2Ou+wAemftC1RnKKlhoZOzUpKmunr+kvZkRvaJ/ZS5pUWNP0a0VKk+zZtTeF6OYzhsskPSR59LNO4g33CnGvHNaqn+qu0WepE9SxI3zZRjM7R8kxm1uZh1QSq/Wl4pdcQMj/muvTt/bTQCxyw7WxnpJJRL+J5HlwU9xztU68ZHiHPyewA=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=J+R3ULFuivqCroDmyHdR6QeN5i6XybMa9wYXAD9HdoI=;
+        b=FhjN1q4D9xSQdKRvKqLb6bXiE4x8oKWApJ29y4vHLBKgXmgz/mvifY8jTyLX9LKKOK
+         FFpa8rkgEQ1oXBrAb/K59Q/0KVoNsLIftYHqK7KxMhWKW2CKe6eEcCKdA1okcKsd7EUl
+         rvKEnvGKtF8H+fRnT6Phc80jJj0a6hs02LBsJKgBLWET6tCQE37IKZL3spAPNTXqBO88
+         TeEwb2BSHa5CN1ciFqzdaZdhDt9VzyqaJTE4bROGhFwz+rXDtKMc08DrZKde+/FOWgiC
+         AdsvmfHZrsHWCfXQiX6B3eLWz1+30BdOmaSgoGg2+udivvgyGrsYfT9OhzKvSIsgivBh
+         R8PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=J+R3ULFuivqCroDmyHdR6QeN5i6XybMa9wYXAD9HdoI=;
+        b=KPwu21QVmu7lJCMOEHB48J58IB6iLe8dnTXQXxFrmd/0aq0L0uW216QIP7IgoqJjLL
+         skW/NAwpKyDo+khsaOyWxFNGqf9ZnsdCi4p4pCTQcJJckONvSek4Td2et43UpXmQ1+32
+         AtZgnx5M8UheMaAW3aC5PG1YXN3cEkjnI9L/DqCBx9che3mGmfcpQRNt/vtSaSrYuZ0E
+         eI6WLf+Uu16JVFhq/oELXdLcIe/opKt4nhIxh/M7dr3DTbZw8RJBjP29pRqS9Pjhf860
+         8vZl1gc6PH70YyMnplc8ksgdBTRqOILmNCIyrCGtAqqZCKqAODi8o6VkNXlLBagpkIgq
+         pDgA==
+X-Gm-Message-State: APjAAAWfEWh/mzR/l1wv18sgth5wrkT5xijX1KbGBaZpbz8p9kccS1ZE
+        S9EmGfw4ZHrejqGAFxpZXUdF2A==
+X-Google-Smtp-Source: APXvYqzJTCXEuZ49M7Ut3ACdg7WkhG5ySWXB30Pkc5rXI9tabDQxJUF/Ps+PvdWhhZ9XTwdMl0EnaA==
+X-Received: by 2002:a05:6000:c2:: with SMTP id q2mr3339535wrx.324.1556541118263;
+        Mon, 29 Apr 2019 05:31:58 -0700 (PDT)
+Received: from [192.168.1.2] (200.red-83-34-200.dynamicip.rima-tde.net. [83.34.200.200])
+        by smtp.gmail.com with ESMTPSA id j13sm24846129wrd.88.2019.04.29.05.31.56
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Apr 2019 05:31:57 -0700 (PDT)
+Subject: Re: [PATCH 2/3] drivers: regulator: qcom: add PMS405 SPMI regulator
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
+        niklas.cassel@linaro.org, khasim.mohammed@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+References: <1548675904-18324-1-git-send-email-jorge.ramirez-ortiz@linaro.org>
+ <1548675904-18324-3-git-send-email-jorge.ramirez-ortiz@linaro.org>
+ <20190204090301.GC23441@sirena.org.uk>
+ <95276ca0-6896-a595-867a-184a518fa31f@linaro.org>
+ <20190425183736.GF23183@sirena.org.uk>
+ <022b3c6a-e356-3c5a-3c46-c6edcf4f8cd5@linaro.org>
+ <20190427182113.GL14916@sirena.org.uk>
+From:   Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Message-ID: <a3c281d5-d30e-294f-71ab-957decde2ba0@linaro.org>
+Date:   Mon, 29 Apr 2019 14:31:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c16a221-4348-4b8e-63b8-08d6cc9db9b2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2019 12:25:11.4319
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1676
+In-Reply-To: <20190427182113.GL14916@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNCk9uIE1vbiwgQXByIDI5LCAyMDE5LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
-dGU6DQo+ID4gSXQgb3RoZXJ3aXNlIGxvb2tzIGdvb2QgdG8gbWUuIElmIHlvdSByZXNwaW4gaXQg
-cXVpY2tseSBlbm91Z2gsIEknbQ0KPiA+IGhhcHB5IHRvIHRha2UgaXQgZm9yIDUuMi4NCj4gDQo+
-IFRoYW5rcywgd2lsbCBkbyB0b21vcnJvdywgc28gQ2hyaXMgKGluIE5DLlVTOyBsZXQncyBob3Bl
-IGhlIGRvZXNuJ3QNCj4gY2VsZWJyYXRlIEdvbGRlbiBXZWVrKSBoYXMgYSBjaGFuY2UgdG8gY29t
-bWVudC4uLg0KDQpObyBHb2xkZW4gV2VlayBmb3IgbWUuDQoNCkV4Y2VwdCwgSSBnZXQgMSB3ZWVr
-IGEgeWVhciB3aGVuIEkgd2FrZSB1cCBpbiB0aGUgbW9ybmluZyBhbmQgbXkgaW5ib3ggDQppcyBu
-b3QgYWxyZWFkeSBmdWxsLi4uc28gaXQgaXMgYSBnb2xkZW4gd2VlayBmb3IgbWUuIDopDQoNCkkn
-bSBnb2luZyB0byB0cnkgdGhlc2UgcGF0Y2hlcyBvdXQgb24gUlovQTEgYW5kIFJaL0EyIHRvZGF5
-Lg0KDQoNCkNocmlzDQo=
+On 4/27/19 20:21, Mark Brown wrote:
+> On Thu, Apr 25, 2019 at 09:44:00PM +0200, Jorge Ramirez wrote:
+> 
+>> the way I see it, if I follow your suggestion and since we are not
+>> allowed to extend spmi_regulator_find_range(), the only options are:
+> 
+>> 1) duplicate verbatim this whole function
+>> (spmi_regulator_select_voltage_same_range) with a minor change (this
+>> amount of code duplication in the kernel seems rather unnecessary to me)
+> 
+>> 2) modify the struct spmi_regulator definition with a new operation that
+>> calls a different implementation of find range (seems a massive overkill)
+> 
+> Since the point of this change is AFAICT that this regulator only has a
+> single linear range it seems like it should just be able to use the
+> existing generic functions shouldn't it?  
+
+yes that would have been ideal but it does not seem to be the case for
+this hardware.
+
+The register that stores the voltage range for all other SPMI regulators
+(SPMI_COMMON_REG_VOLTAGE_RANGE 0x40) is used by something else in the
+HFS430: SPMI_HFS430_REG_VOLTAGE_LB 0x40 stores the voltage level in two
+bytes 0x40 and 0x41;
+
+This overlap really what is creating the pain: HFS430 cant use 0x40 to
+store the range (even if it is only one)
+
+so yeah, most of the changes in the patch are working around this fact.
+
+enum spmi_common_regulator_registers {
+	SPMI_COMMON_REG_DIG_MAJOR_REV		= 0x01,
+	SPMI_COMMON_REG_TYPE			= 0x04,
+	SPMI_COMMON_REG_SUBTYPE			= 0x05,
+	SPMI_COMMON_REG_VOLTAGE_RANGE		= 0x40, ******
+	SPMI_COMMON_REG_VOLTAGE_SET		= 0x41,
+	SPMI_COMMON_REG_MODE			= 0x45,
+	SPMI_COMMON_REG_ENABLE			= 0x46,
+	SPMI_COMMON_REG_PULL_DOWN		= 0x48,
+	SPMI_COMMON_REG_SOFT_START		= 0x4c,
+	SPMI_COMMON_REG_STEP_CTRL		= 0x61,
+};
+
+enum spmi_hfs430_registers {
+	SPMI_HFS430_REG_VOLTAGE_LB		= 0x40, *******
+	SPMI_HFS430_REG_VOLTAGE_VALID_LB	= 0x42,
+	SPMI_HFS430_REG_MODE			= 0x45,
+};
+
+It just needs it's own
+> set/get_voltage_sel() operations.  As far as I can see the main thing
+> the driver is doing with the custom stuff is handling the fact that
+> there's multiple ranges but that's not an issue for this regulator.
+> It's possible I'm missing something there but that was the main thing
+> (and we do have some generic support for multiple linear ranges in the
+> helper code already, can't remember why this driver isn't using that -
+> the ranges overlap IIRC?).
+> 
+> TBH looking at the uses of find_range() I'm not sure they're 100%
+> sensible as they are - the existing _time_sel() is assuming we only need
+> to work out the ramp time between voltages in the same range which is
+> going to have trouble.
+> 
+
