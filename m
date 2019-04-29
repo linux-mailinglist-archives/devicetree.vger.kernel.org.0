@@ -2,276 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC25E16C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 13:37:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F446E1DD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 14:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728057AbfD2Lgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 07:36:52 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:54388 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727895AbfD2Lgw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 07:36:52 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 968B5A78;
-        Mon, 29 Apr 2019 04:36:51 -0700 (PDT)
-Received: from [10.1.196.92] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 77AF23F5AF;
-        Mon, 29 Apr 2019 04:36:49 -0700 (PDT)
-Subject: Re: [PATCH 2/5] irqchip: Add Renesas RZ/A1 Interrupt Controller
- driver
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20190429093631.10799-1-geert+renesas@glider.be>
- <20190429093631.10799-3-geert+renesas@glider.be>
- <f9310d4c-8f9e-a837-3ed3-4d7c294efd3f@arm.com>
- <CAMuHMdU3i7vqs9hd7rfvYH8QtqvwUB5vgsa_fwo5L4E3DQ_d1Q@mail.gmail.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
-Organization: ARM Ltd
-Message-ID: <e6c6dfe7-f67d-90a9-eee5-d30b94c7c978@arm.com>
-Date:   Mon, 29 Apr 2019 12:36:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727956AbfD2MFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 08:05:08 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:38533 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727986AbfD2MFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 08:05:03 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190429120500euoutp022c9f6e1c6246827dc6ffc2d9513dc84f~Z8G263zO70317803178euoutp02V
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 12:05:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190429120500euoutp022c9f6e1c6246827dc6ffc2d9513dc84f~Z8G263zO70317803178euoutp02V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1556539500;
+        bh=eGHEdyu2IGU4/fzxUVhTY3K3XmlUBeVys301lxmNEUA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=u8LR/qZKFbX9Kq1XnrDWwDcBVrBFwkXOPd+a2tJBkwAxCmDmAyZeRC6cEFDgOKIEv
+         YyVt+P9eRXCcg6GuyTbiSktWIr61ocotDJopJJJwWWJ1V3qOw4ng8GNfw8fbgyhaFI
+         J+yKtJbKg1SkkHDehJp94HOryySQ/K36gPUk9JhE=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190429120459eucas1p12fb8e69c7bf48beeed80fdb4dc233367~Z8G2G3OMh1885618856eucas1p1s;
+        Mon, 29 Apr 2019 12:04:59 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 69.C2.04298.B68E6CC5; Mon, 29
+        Apr 2019 13:04:59 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190429120458eucas1p1a0a10e7b555c43f57c32f81d6070f158~Z8G1P_izv1868218682eucas1p1u;
+        Mon, 29 Apr 2019 12:04:58 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190429120458eusmtrp1a2f35b0e59ba70654f4aa0c1811c56b9~Z8G1BuBR82838928389eusmtrp1C;
+        Mon, 29 Apr 2019 12:04:58 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-21-5cc6e86bab8f
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id FD.BA.04146.A68E6CC5; Mon, 29
+        Apr 2019 13:04:58 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190429120457eusmtip2fa23297e0a26cb891a05e0c809bc8a3a~Z8G0P6gS-0631606316eusmtip2j;
+        Mon, 29 Apr 2019 12:04:57 +0000 (GMT)
+Subject: Re: [PATCH v6 04/10] Documentation: dt: device tree bindings for
+ LPDDR3 memories
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        cw00.choi@samsung.com, kyungmin.park@samsung.com,
+        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+        myungjoo.ham@samsung.com, keescook@chromium.org, tony@atomide.com,
+        jroedel@suse.de, treding@nvidia.com, digetx@gmail.com,
+        willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <86715dda-c1b0-5354-17d2-419f8137cb91@partner.samsung.com>
+Date:   Mon, 29 Apr 2019 14:04:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdU3i7vqs9hd7rfvYH8QtqvwUB5vgsa_fwo5L4E3DQ_d1Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190425195156.GA31128@bogus>
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0gUURTGuzszO6O4MruanjIrNwpL0pYkLiRSEDEZUn8URAa15WCia7bj
+        IzVqtVB7qJVUuhmrBiVbofnKrIxc2y0tddMwNLPUHvjqsWYthuU0Sv73u9/5Dt85h8sQqjFq
+        IRMdl8Dr47SxarkrWWt1tq6O+Wzds8Y0wuA7BeUU7hr/RGFTUyuFb34bQDi/+aoMPz+jw3kD
+        wwRua6ug8YuMERp31BfJsSOnCeGCtgYZvt3US+Oe9DI5/vOgjsaWkSwKP+oMwz2T7njiaT/a
+        4MFN/LhAclcMdpK7Z+yluUrzKTmXc2JMzuVWmxFX1ZLGOSoXb2d2u4ZE8rHRSbw+KHSf68Hc
+        CjL+jObI2/TrMgPqWHEauTDABkNTzSuZyCq2DEFVYfBp5DrN4whKmo2U9HAg6Ct/I5vtsNvr
+        kVS4gaCtNG/GNYqgtf0lLbo82AgYyu2kRPZk/WAy89I/E8E+JMAx+H66nWHkbCDUmQ+LHgW7
+        GTK+mOQik+xyyC0t+Jc2n90FfdYKSvIo4VnhICm2urABcLHYU5QJ1hu6B00yiZfA3dEiQowC
+        tpAB4/3HtDT1JqiytlASe8CQrXpGXwQt+WdJiQUw5JQgiY/CQN7VGc96sNjslJhLsCuhvD5I
+        kjdCt7VMLsrAusPrUaU0gjtcqL1MSLICsjNVktsfqs+2z5zQC27cukSfQ2rjnL2Mc5YxzlnG
+        +D+3GJFm5M0nCrooXtDE8cmBglYnJMZFBR44pKtE07+wZcr2vQ79eLm/EbEMUrsplg492aOi
+        tElCiq4RAUOoPRWcbVpSRGpTUnn9ob36xFheaEQ+DKn2VqTNexehYqO0CXwMz8fz+tmqjHFZ
+        aECM5qvZvi7AaWr3v96c6OtTUaMdjfaNoVIXHMuezHBmJceGRh6mLX7hP5XOLSeHCkN2+H5M
+        ph228z6EYf41ZbU1PMy587ixa15pZZ//h/bozeFemrURdreGAMuvrwVbty2eEoZ3TsS4oWWO
+        W3+KLNmG36dwfp5Hf1oNfnzC+7ZMTQoHtZpVhF7Q/gUzNr/6gQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmleLIzCtJLcpLzFFi42I5/e/4Pd2sF8diDK638VpsnLGe1eL6l+es
+        FvOPnGO1WP3xMaPF5FNzmSzOdOda9D9+zWxx/vwGdouzTW/YLS7vmsNm8bn3CKPFjPP7mCzW
+        HrnLbnG7cQWbxf89O9gtDr9pZ7XYf8XL4vZvPotvJx4xOgh7fPs6icVjdsNFFo+ds+6ye2xa
+        1cnm0dv8js2jb8sqRo/Np6s9Pm+SC+CI0rMpyi8tSVXIyC8usVWKNrQw0jO0tNAzMrHUMzQ2
+        j7UyMlXSt7NJSc3JLEst0rdL0Mvo28BS0G1Yca9xGVMD42W1LkZODgkBE4mLF3cxdjFycQgJ
+        LGWUmLDwEiNEQkxi0r7t7BC2sMSfa11sEEWvGSV+fZ7LCpIQFoiWeNV3BcwWEVCU+N02jRWk
+        iFlgL7PE+l1zoToamCROH3sIlOHgYBPQk9ixqhCkgVfATaLp/Xw2EJtFQFWib9EMJhBbVCBC
+        4sz7FSwQNYISJ2c+YQFp5RTQlpi6QAQkzCxgJjFv80NmCFtc4taT+UwQtrzE9rdzmCcwCs1C
+        0j0LScssJC2zkLQsYGRZxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJEZgAth37uXkH46WNwYcY
+        BTgYlXh4FV4djRFiTSwrrsw9xCjBwawkwutxHCjEm5JYWZValB9fVJqTWnyI0RTot4nMUqLJ
+        +cDklFcSb2hqaG5haWhubG5sZqEkztshcDBGSCA9sSQ1OzW1ILUIpo+Jg1OqgdF5/qGZv9rs
+        ZH/NVzO6Z2LM+MZzZsMOZr6PB7/aXHF5Kc6z03zTbAXtx4XeLVdeN+zofKzPy92jcmSm+NW3
+        vQXtXTvSNNt8LQ9H/ghkTGuY+3+RDXO0zPT3Zby5EpZvVN/pVO6Q/Lx260ofLaGa2nc5fkdP
+        7rIV3PzErCZ1kSyLonWY747ciUosxRmJhlrMRcWJAAlgemkWAwAA
+X-CMS-MailID: 20190429120458eucas1p1a0a10e7b555c43f57c32f81d6070f158
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190419141945eucas1p1c95d65f261f82da5c856c0f2fcf1ce87
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190419141945eucas1p1c95d65f261f82da5c856c0f2fcf1ce87
+References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190419141945eucas1p1c95d65f261f82da5c856c0f2fcf1ce87@eucas1p1.samsung.com>
+        <1555683568-20882-5-git-send-email-l.luba@partner.samsung.com>
+        <20190425195156.GA31128@bogus>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2019 12:21, Geert Uytterhoeven wrote:
-> Hi Marc,
-> 
-> On Mon, Apr 29, 2019 at 12:07 PM Marc Zyngier <marc.zyngier@arm.com> wrote:
->> On 29/04/2019 10:36, Geert Uytterhoeven wrote:
->>> Add a driver for the Renesas RZ/A1 Interrupt Controller.
->>>
->>> This supports using up to 8 external interrupts on RZ/A1, with
->>> configurable sense select.
->>>
->>> NMI edge select is not yet supported.
->>>
->>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
->>> --- /dev/null
->>> +++ b/drivers/irqchip/irq-renesas-rza1.c
-> 
->>> +static void rza1_irqc_eoi(struct irq_data *d)
->>> +{
->>> +     struct rza1_irqc_priv *priv = irq_data_to_priv(d);
->>> +     unsigned int bit = BIT(irqd_to_hwirq(d));
+Hi Rob,
+
+On 4/25/19 9:51 PM, Rob Herring wrote:
+> On Fri, Apr 19, 2019 at 04:19:22PM +0200, Lukasz Luba wrote:
+>> The device tree bindings for LPDDR3 SDRAM memories.
 >>
->> Please use u32 instead of "unsigned int" for something that operates on
->> HW registers.
-> 
-> Even for 16-bit registers?
-
-Ah, I'm so used to see 32bit accessors everywhere that I missed the fact
-that this is a 16bit MMIO. How bizarre! ;-)
-
-In general, try to have types that do match the actual size of the MMIO
-access. There are a few exceptions to this rule (using an unsigned long
-to be able to use bitmap operations, for example), but that's the
-general idea.
-
-> 
->>> +     u16 tmp;
->>> +
->>> +     tmp = readw(priv->base + IRQRR);
+>> For specifying the AC timing parameters of the memory device
+>> the 'lpddr3' binding uses binding 'lpddr2-timings'.
 >>
->> Same thing here. It's less confusing to use a u32 and mask out the top
->> bits if needed rather than having this implicit cast (applies all over
->> the code).
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   .../devicetree/bindings/lpddr3/lpddr3-timings.txt  | 57 +++++++++++++
+>>   .../devicetree/bindings/lpddr3/lpddr3.txt          | 93 ++++++++++++++++++++++
 > 
-> ... so yes.
-
-To sum it up:
-
-readw/writew -> u16
-readl/writel -> u32
-
+> Please rename the lpddr2 directory to 'ddr' and add these to it.
+OK, I will rename it in the nex patch set.
 > 
+> Maybe whatever properties are common should be put in a common doc.
+There are maybe a few common properties, but I would not dare to merge
+lpddr2 and lpddr3 before consulting it with TI engineers who made
+LPDDR2 support.
+Could we work on a common file after the patch set got merged?
+> 
+>>   2 files changed, 150 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt
+>>   create mode 100644 Documentation/devicetree/bindings/lpddr3/lpddr3.txt
 >>
->>> +     if (tmp & bit)
->>> +             writew(GENMASK(IRQC_NUM_IRQ - 1, 0) & ~bit, priv->base + IRQRR);
+>> diff --git a/Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt b/Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt
+>> new file mode 100644
+>> index 0000000..ebf3e00
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt
+>> @@ -0,0 +1,57 @@
+>> +* AC timing parameters of LPDDR3 memories for a given speed-bin.
+>> +* The structures are based on LPDDR2 and extended where needed.
+>> +
+>> +Required properties:
+>> +- compatible : Should be "jedec,lpddr3-timings"
+>> +- min-freq : minimum DDR clock frequency for the speed-bin. Type is <u32>
+>> +- max-freq : maximum DDR clock frequency for the speed-bin. Type is <u32>
+>> +
+>> +Optional properties:
+>> +
+>> +The following properties represent AC timing parameters from the memory
+>> +data-sheet of the device for a given speed-bin. All these properties are
+>> +of type <u32> and the default unit is ps (pico seconds).
+>> +- tRFC
+>> +- tRRD
+>> +- tRPab
+>> +- tRPpb
+>> +- tRCD
+>> +- tRC
+>> +- tRAS
+>> +- tWTR
+>> +- tWR
+>> +- tRTP
+>> +- tW2W-C2C
+>> +- tR2R-C2C
+>> +- tFAW
+>> +- tXSR
+>> +- tXP
+>> +- tCKE
+>> +- tCKESR
+>> +- tMRD
+>> +
+>> +Example:
+>> +
+>> +timings_samsung_K3QF2F20DB_800mhz: lpddr3-timings@0 {
+> 
+> Since the lpddr2 version was written, we've gotten stricter about
+> allowing unit-address without reg property. Perhaps 'reg' should be the
+> max-freq instead.
+OK, so I will rename 'max-freq' to 'reg' and add a comment with:
+'/* workaround: it shows max-freq */
+Does it make sense?
+> 
+>> +	compatible	= "jedec,lpddr3-timings";
+>> +	min-freq	= <100000000>;
+>> +	max-freq	= <800000000>;
+>> +	tRFC		= <65000>;
+>> +	tRRD		= <6000>;
+>> +	tRPab		= <12000>;
+>> +	tRPpb		= <12000>;
+>> +	tRCD		= <10000>;
+>> +	tRC		= <33750>;
+>> +	tRAS		= <23000>;
+>> +	tWTR		= <3750>;
+>> +	tWR		= <7500>;
+>> +	tRTP		= <3750>;
+>> +	tW2W-C2C	= <0>;
+>> +	tR2R-C2C	= <0>;
+>> +	tFAW		= <25000>;
+>> +	tXSR		= <70000>;
+>> +	tXP		= <3750>;
+>> +	tCKE		= <3750>;
+>> +	tCKESR		= <3750>;
+>> +	tMRD		= <7000>;
+>> +};
+>> diff --git a/Documentation/devicetree/bindings/lpddr3/lpddr3.txt b/Documentation/devicetree/bindings/lpddr3/lpddr3.txt
+>> new file mode 100644
+>> index 0000000..fc7875c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/lpddr3/lpddr3.txt
+>> @@ -0,0 +1,93 @@
+>> +* LPDDR3 SDRAM memories compliant to JEDEC JESD209-2
+> 
+> That's an LPDDR2 spec.
+Right, should be JESD209-3C.
+
+Thank you for the review.
+
+Regards,
+Lukasz
+> 
+>> +
+>> +Required properties:
+>> +- compatible : Should be  - "jedec,lpddr3"
+>> +- density  : <u32> representing density in Mb (Mega bits)
+>> +- io-width : <u32> representing bus width. Possible values are 8, 16, 32, 64
+>> +
+>> +Optional properties:
+>> +
+>> +The following optional properties represent the minimum value of some AC
+>> +timing parameters of the DDR device in terms of number of clock cycles.
+>> +These values shall be obtained from the device data-sheet.
+>> +- tRFC-min-tck
+>> +- tRRD-min-tck
+>> +- tRPab-min-tck
+>> +- tRPpb-min-tck
+>> +- tRCD-min-tck
+>> +- tRC-min-tck
+>> +- tRAS-min-tck
+>> +- tWTR-min-tck
+>> +- tWR-min-tck
+>> +- tRTP-min-tck
+>> +- tW2W-C2C-min-tck
+>> +- tR2R-C2C-min-tck
+>> +- tWL-min-tck
+>> +- tDQSCK-min-tck
+>> +- tRL-min-tck
+>> +- tFAW-min-tck
+>> +- tXSR-min-tck
+>> +- tXP-min-tck
+>> +- tCKE-min-tck
+>> +- tCKESR-min-tck
+>> +- tMRD-min-tck
+>> +
+>> +Child nodes:
+>> +- The lpddr3 node may have one or more child nodes of type "lpddr3-timings".
+>> +  "lpddr3-timings" provides AC timing parameters of the device for
+>> +  a given speed-bin. Please see Documentation/devicetree/
+>> +  bindings/lpddr3/lpddr3-timings.txt for more information on "lpddr3-timings"
+>> +
+>> +Example:
+>> +
+>> +samsung_K3QF2F20DB: lpddr3 {
+>> +	compatible	= "Samsung,K3QF2F20DB","jedec,lpddr3";
+>> +	density		= <16384>;
+>> +	io-width	= <32>;
+>> +
+>> +	tRFC-min-tck		= <17>;
+>> +	tRRD-min-tck		= <2>;
+>> +	tRPab-min-tck		= <2>;
+>> +	tRPpb-min-tck		= <2>;
+>> +	tRCD-min-tck		= <3>;
+>> +	tRC-min-tck		= <6>;
+>> +	tRAS-min-tck		= <5>;
+>> +	tWTR-min-tck		= <2>;
+>> +	tWR-min-tck		= <7>;
+>> +	tRTP-min-tck		= <2>;
+>> +	tW2W-C2C-min-tck	= <0>;
+>> +	tR2R-C2C-min-tck	= <0>;
+>> +	tWL-min-tck		= <8>;
+>> +	tDQSCK-min-tck		= <5>;
+>> +	tRL-min-tck		= <14>;
+>> +	tFAW-min-tck		= <5>;
+>> +	tXSR-min-tck		= <12>;
+>> +	tXP-min-tck		= <2>;
+>> +	tCKE-min-tck		= <2>;
+>> +	tCKESR-min-tck		= <2>;
+>> +	tMRD-min-tck		= <5>;
+>> +
+>> +	timings_samsung_K3QF2F20DB_800mhz: lpddr3-timings@0 {
+>> +		compatible	= "jedec,lpddr3-timings";
+>> +		min-freq	= <100000000>;
+>> +		max-freq	= <800000000>;
+>> +		tRFC		= <65000>;
+>> +		tRRD		= <6000>;
+>> +		tRPab		= <12000>;
+>> +		tRPpb		= <12000>;
+>> +		tRCD		= <10000>;
+>> +		tRC		= <33750>;
+>> +		tRAS		= <23000>;
+>> +		tWTR		= <3750>;
+>> +		tWR		= <7500>;
+>> +		tRTP		= <3750>;
+>> +		tW2W-C2C	= <0>;
+>> +		tR2R-C2C	= <0>;
+>> +		tFAW		= <25000>;
+>> +		tXSR		= <70000>;
+>> +		tXP		= <3750>;
+>> +		tCKE		= <3750>;
+>> +		tCKESR		= <3750>;
+>> +		tMRD		= <7000>;
+>> +	};
+>> +}
+>> -- 
+>> 2.7.4
 >>
->> Please use the _relaxed accessors all over the driver, you really do not
->> need a DSB on each of these accesses.
 > 
-> OK.
 > 
->>> +static int rza1_irqc_set_type(struct irq_data *d, unsigned int type)
->>> +{
->>> +     struct rza1_irqc_priv *priv = irq_data_to_priv(d);
->>> +     unsigned int hw_irq = irqd_to_hwirq(d);
->>> +     u16 sense, tmp;
->>> +
->>> +     switch (type & IRQ_TYPE_SENSE_MASK) {
->>> +     case IRQ_TYPE_LEVEL_LOW:
->>> +             sense = ICR1_IRQS_LEVEL_LOW;
->>> +             break;
->>> +
->>> +     case IRQ_TYPE_EDGE_FALLING:
->>> +             sense = ICR1_IRQS_EDGE_FALLING;
->>> +             break;
->>> +
->>> +     case IRQ_TYPE_EDGE_RISING:
->>> +             sense = ICR1_IRQS_EDGE_RISING;
->>> +             break;
->>> +
->>> +     case IRQ_TYPE_EDGE_BOTH:
->>> +             sense = ICR1_IRQS_EDGE_BOTH;
->>> +             break;
->>> +
->>> +     default:
->>> +             return -EINVAL;
->>> +     }
->>> +
->>> +     tmp = readw(priv->base + ICR1);
->>> +     tmp &= ~ICR1_IRQS_MASK(hw_irq);
->>> +     tmp |= ICR1_IRQS(hw_irq, sense);
->>> +     writew(tmp, priv->base + ICR1);
->>> +     return 0;
->>
->> Don't you need to propagate the trigger configuration to the parent irqchip?
-> 
-> No, the line to the parent GIC is always configured for high-level.
-> 
->>> +static int rza1_irqc_alloc(struct irq_domain *domain, unsigned int virq,
->>> +                        unsigned int nr_irqs, void *arg)
->>> +{
->>> +     struct rza1_irqc_priv *priv = domain->host_data;
->>> +     struct irq_fwspec *fwspec = arg;
->>> +     struct irq_fwspec spec;
->>> +     int ret;
->>> +
->>> +     ret = irq_domain_set_hwirq_and_chip(domain, virq, fwspec->param[0],
->>> +                                         &priv->chip, priv);
->>> +     if (ret)
->>> +             return ret;
->>> +
->>> +     spec.fwnode = &priv->dev->of_node->fwnode;
->>> +     spec.param_count = 3;
->>> +     spec.param[0] = GIC_SPI;
->>> +     spec.param[1] = priv->gic_spi_base + fwspec->param[0];
->>> +     spec.param[2] = IRQ_TYPE_LEVEL_HIGH;
->>
->> This is related to my earlier question: Does this block turn everything
->> into level interrupts?
-> 
-> That is my understanding of the hardware:
->   - Low-level interrupts are cleared when input becomes high again,
->   - Rising/falling/both edge interrupts are cleared by reading+writing IRQRR.
-> 
-> FTR, the Hardware User Manual is available from
-> https://www.renesas.com/eu/en/products/microcontrollers-microprocessors/rz/rza/rza1h.html#documents
-> (Section 7. Interrupt Controller).
-
-OK, thanks for the detailed explanation.
-
-> 
->>> +static int rza1_irqc_probe(struct platform_device *pdev)
->>> +{
-> 
->>> +     priv->chip.name = dev_name(dev);
->>
->> name should normally be used to identify the overall "class" of
-> 
-> OK, replacing by "rza1-irqc".
-> 
->> interrupt. .device is what should be used for the device itself.
-> 
-> You mean .parent_device?
-> Been there, done that: if I fill that in with "dev", it fails with
-> 
->     gpio-keys keyboard: Unable to claim irq 41; error -13
->     gpio-keys: probe of keyboard failed with error -13
-> 
-> due to the call to pm_runtime_get_sync() in irq_chip_pm_get() failing.
-> This driver doesn't have (and doesn't need) Runtime PM.
-
-OK, fair enough. Who needs PM anyway? ;-)
-
-> 
->>> +struct rza1_irqc_info rza1_irqc_info = {
->>> +     .gic_spi_base = 0,
->>> +};
->>
->> To answer your question in the cover letter, I'd rather this came from
->> DT. And otherwise, it should be be static.
-> 
-> (Oops, forget the "static const")
-> 
-> Using a custom property, or derived from 8 interrupt specifiers in the
-> interrupts property?
-
-A custom property is fine by me (everybody does that anyway).
-
-> 
->> It otherwise looks good to me. If you respin it quickly enough, I'm
->> happy to take it for 5.2.
-> 
-> Thanks, will do tomorrow, so Chris (in NC.US; let's hope he doesn't
-> celebrate Golden Week) has a chance to comment...
-
-Thanks,
-
-	M.
--- 
-Jazz is not dead. It just smells funny...
