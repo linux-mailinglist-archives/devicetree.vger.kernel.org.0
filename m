@@ -2,102 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10CD5EAFD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 21:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498A8EB43
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 22:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729185AbfD2TmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 15:42:10 -0400
-Received: from mail-it1-f196.google.com ([209.85.166.196]:39519 "EHLO
-        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729174AbfD2TmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 15:42:09 -0400
-Received: by mail-it1-f196.google.com with SMTP id t200so950983itf.4
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 12:42:09 -0700 (PDT)
+        id S1729268AbfD2UBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 16:01:24 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35093 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729237AbfD2UBX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 16:01:23 -0400
+Received: by mail-pl1-f195.google.com with SMTP id w24so5601507plp.2;
+        Mon, 29 Apr 2019 13:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=OfSXGm/ZOpE/A5OPPtROuilo3cIAMJykM1qQwH2z66U=;
-        b=gPhueT4Rp4VegY21P3pKS9Ih/RR/nUEkk7jhKA1RfbY03ZnKHvyqL2Wk4lzdTDTHew
-         xJvCjJt/zV14JZ8yo42NKhZo1GXXGsru7NvXarkjF84DA6TNMB0w/Seaco92ZgKmPQAp
-         Wbmk1wofnz4d/0bHdBOMpivJ+knKJjh1QZ7Sblvpy6eEa9kQNKKbpWlvgzqushvBRdZT
-         BChOhN2sliOuqFf7iD2f5CS7krUZ8wCqwo4bSX0iceJ8QK+Xyd80HiWowfUqUXWe5IYG
-         EYZokboxA+1ZIybHhTM6idYhaLVjhpX7E7dKPr4P4x3DWqzMfOmYg5DxRkKClQzrKnhM
-         F6nA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Fjs/QlJccPdiIzSXEBVK27qZZaOYBQoAnxJi1UWQC3c=;
+        b=hSld9bPgi0+ZmNCHh9hnHGpNMcDXCftcytcMT1RzD2U1rt0bU172xGf7bgK5faVFn8
+         rqF98o+Eo4O0NXgCIcjuKW4NnBDG8jSuQXzRs8Gq+vHThFW4AAkK/VS92htnAOg2adFe
+         HXFHF2jGt08vwpZK+QBIcMUkPW8/SNtJbuB3PalIawRRyaQHyqR4c0E0UxaATRynTdgE
+         rLfXMgCcuyPqJC3Du2Nu7nwWWEhaiowJOqDTpMGxfftE6WjXqUuhGlfo8nC8WXTEOiuR
+         u/XsS8iMM6+l/1czLCulk/9VLEKnarf3qPwrJHxC6rVdDkoPRKKjgBbSKUUDx1RPJZk1
+         fEhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=OfSXGm/ZOpE/A5OPPtROuilo3cIAMJykM1qQwH2z66U=;
-        b=p+63GyzO7v/9irp56QK3tQThpJMuAW6RLIMlkWzGQaZDxKw3IAhxHm5xzL+x/g5Iem
-         6GsJLB5rp19giGZkXnymaxtD2YcM8JHahsI6C5ux85mnWDPE/jDWCRUJYp1IuI/qUPzn
-         dPIcAy3S6V4oN2v1wP+RBg5v2fkKzDcbi+33rUeKrEQ9A0LlICDdxxUCTKLR1xJ6v1Is
-         rEXSr71NByq7S+sgfkM8y8MPbvvU0i+6EoXwcE0E7ewuaq4KFpR64akhfE4oTVD0nnqL
-         9zPVCvrLHJyDSQd1T4RA+8tjigCp0k8lOkjGjlUvPkKXcJNK4xPxm0eJSkfwrxEsrKpW
-         APkQ==
-X-Gm-Message-State: APjAAAWPZ7FkMhkz54oYWnBOkmuQVmexpEB5JoEPFPPaw4AGMzGQ1jZZ
-        5SECJ5Pz+YkJrg9e6VTbToIgDw==
-X-Google-Smtp-Source: APXvYqyLjolJDasdvL/lXithdtFoxBopxLY0mM3Qb0W7s1HdM9MPrXYGgLBx7TSF2DI2OVcQaX56KA==
-X-Received: by 2002:a24:4d85:: with SMTP id l127mr658460itb.53.1556566928783;
-        Mon, 29 Apr 2019 12:42:08 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id t24sm7949990ioc.1.2019.04.29.12.42.07
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Fjs/QlJccPdiIzSXEBVK27qZZaOYBQoAnxJi1UWQC3c=;
+        b=UNfFb+4sGRNY0CvYAxpSq4euQhB6AZCe0fmQn7mVhGIn3aoL8j4nOBbdpovHkbrKpd
+         ANwx6GsILVLXxQoTzhKlw3sk/mPPcjmC5AP7jhyTK1Wj0VvEYn+nCbXVUObWCvsw2hFg
+         TUF9nVbCzljLe38Cb2ym/1QZ81GrribsrflUO1MsYfP58B4l6NjiJegC68eXItUIQvil
+         a9CRiYFIHiGkhPkrcyOJ+7eApk9bqrEnupIXQ8SoQIoN/kkf0ism/JCqp5BQwp8lZr2W
+         7QP5QJthpat0j7zYwqB7cwXgo3IROYq61MEwM1Py4L7jGNJbBtrak7bsy72B6xkbRjW7
+         B1iQ==
+X-Gm-Message-State: APjAAAXg1dOkB3zQQ4LYNOc0b1F9Rn3rRQYKJTg05iQ5D/ft3k8SWeuV
+        dNf/f1Or9D1q+APTWwc3LCupF5qFpk8=
+X-Google-Smtp-Source: APXvYqxZjfcO2EalYj0Q7+j0oedHQQMbWISZdRRv5eS3XyyL99Z1PQQIx0oTARKAYgrEEpWaB5jlyw==
+X-Received: by 2002:a17:902:968c:: with SMTP id n12mr18925998plp.105.1556567641492;
+        Mon, 29 Apr 2019 12:54:01 -0700 (PDT)
+Received: from squirtle.lan (c-24-22-235-96.hsd1.wa.comcast.net. [24.22.235.96])
+        by smtp.gmail.com with ESMTPSA id l2sm39841783pgl.2.2019.04.29.12.53.59
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 12:42:07 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 12:42:07 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-cc:     Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Paul Walmsley <paul@pwsan.com>,
-        Wesley Terpstra <wesley@sifive.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Megan Wachs <megan@sifive.com>
-Subject: Re: [PATCH v3 1/3] clk: analogbits: add Wide-Range PLL library
-In-Reply-To: <alpine.DEB.2.21.9999.1904262031510.10713@viisi.sifive.com>
-Message-ID: <alpine.DEB.2.21.9999.1904291141340.7063@viisi.sifive.com>
-References: <20190411082733.3736-2-paul.walmsley@sifive.com> <155632691100.168659.14460051101205812433@swboyd.mtv.corp.google.com> <alpine.DEB.2.21.9999.1904262031510.10713@viisi.sifive.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        Mon, 29 Apr 2019 12:54:00 -0700 (PDT)
+From:   Andrey Smirnov <andrew.smirnov@gmail.com>
+To:     linux-pm@vger.kernel.org
+Cc:     Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Enric Balletbo Serra <enric.balletbo@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 3/3] dt-bindings: power: supply: Add bindings for Microchip UCS1002
+Date:   Mon, 29 Apr 2019 12:53:49 -0700
+Message-Id: <20190429195349.20335-4-andrew.smirnov@gmail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190429195349.20335-1-andrew.smirnov@gmail.com>
+References: <20190429195349.20335-1-andrew.smirnov@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Add bindings for Microchip UCS1002 Programmable USB Port Power
+Controller with Charger Emulation.
 
-On Fri, 26 Apr 2019, Paul Walmsley wrote:
+Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+Cc: Enric Balletbo Serra <enric.balletbo@collabora.com>
+Cc: Chris Healy <cphealy@gmail.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Fabio Estevam <fabio.estevam@nxp.com>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: Sebastian Reichel <sre@kernel.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+---
+ .../power/supply/microchip,ucs1002.txt        | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
 
-> On Fri, 26 Apr 2019, Stephen Boyd wrote:
-> 
-> > Quoting Paul Walmsley (2019-04-11 01:27:32)
-> > > Add common library code for the Analog Bits Wide-Range PLL (WRPLL) IP
-> > > block, as implemented in TSMC CLN28HPC.
-> > 
-> > I haven't deeply reviewed at all, but I already get two problems when
-> > compile testing these patches. I can fix them up if nothing else needs
-> > fixing.
-> > 
-> > drivers/clk/analogbits/wrpll-cln28hpc.c:165 __wrpll_calc_divq() warn: should 'target_rate << divq' be a 64 bit type?
-> > drivers/clk/sifive/fu540-prci.c:214:16: error: return expression in void function
-> 
-> Hmm, that's odd.  I will definitely take a look and repost.
+diff --git a/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt b/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+new file mode 100644
+index 000000000000..021fd7aba75e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+@@ -0,0 +1,27 @@
++Microchip UCS1002 USB Port Power Controller
++
++Required properties:
++- compatible		: Should be "microchip,ucs1002";
++- reg			: I2C slave address
++
++Optional properties:
++- interrupts-extended	: A list of interrupts lines present (could be either
++			  corresponding to A_DET# pin, ALERT# pin, or both)
++- interrupt-names	: A list of interrupt names. Should contain (if
++			  present):
++			  - "a_det" for line connected to A_DET# pin
++			  - "alert" for line connected to ALERT# pin
++			  Both are expected to be IRQ_TYPE_EDGE_BOTH
++Example:
++
++&i2c3 {
++	charger@32 {
++		compatible = "microchip,ucs1002";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_ucs1002_pins>;
++		reg = <0x32>;
++		interrupts-extended = <&gpio5 2 IRQ_TYPE_EDGE_BOTH>,
++				      <&gpio3 21 IRQ_TYPE_EDGE_BOTH>;
++		interrupt-names = "a_det", "alert";
++	};
++};
+-- 
+2.20.1
 
-I'm not able to reproduce these problems.  The configs tried here were:
-
-- 64-bit RISC-V defconfig w/ PRCI driver enabled (gcc 8.2.0 built with 
-  crosstool-NG 1.24.0)
-
-- 32-bit ARM defconfig w/ PRCI driver enabled (gcc 8.3.0 built with 
-  crosstool-NG 1.24.0)
-
-- 32-bit i386 defconfig w/ PRCI driver enabled (gcc 
-  5.4.0-6ubuntu1~16.04.11)
-
-Could you post the toolchain and kernel config you're using?
-
-
-- Paul
