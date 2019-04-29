@@ -2,93 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68377E8BA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 19:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17248E903
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 19:28:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728816AbfD2RXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 13:23:40 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45242 "EHLO
+        id S1729029AbfD2R17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 13:27:59 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:44643 "EHLO
         mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728798AbfD2RXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 13:23:40 -0400
-Received: by mail-oi1-f195.google.com with SMTP id t189so5923652oih.12;
-        Mon, 29 Apr 2019 10:23:39 -0700 (PDT)
+        with ESMTP id S1728997AbfD2R17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 13:27:59 -0400
+Received: by mail-oi1-f195.google.com with SMTP id t184so6449431oie.11;
+        Mon, 29 Apr 2019 10:27:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=A0I+WeeWwMxjNXSYH+7ynj45eY9o+5Gg1/EFwuWtM7U=;
-        b=MOyXQMkheITZ/VUqShgL3Yf6Cdvd2eT5MZeBNBBFljmqvS+MSQcDoOEhvRdiaNO9mw
-         SFiQsUBCa6slWso83FbkHHuRyd8xwt1VvIfSx5OGacGExg8ru1dO0+Gx992q8rLgh9De
-         1RW7MwJfWKlQkeRCM6isIlQYunZibwoTy6Qvlr5g/hoDNNSkzhtzTyX80t3fXRq4a9KW
-         URhLn3MyhTy2rrJDbmfBmYef5d+7AzWM7UQP4Q8dwImEf1fQemXhi33E0qLOb0mFnzkD
-         8I5/Ep/jMpymU7sBv/0TD2mapf65Pizg4Jm4gUxfnlY7f9OEYsKMYHGn/bsbgENSH9kR
-         Sv4g==
-X-Gm-Message-State: APjAAAWz416ukYBor4+pOwz7cY+MGiq7Nbu8VcqISmZ72VQH8FswxPAk
-        n4daLGvYKshuzmb4tMValYUriJQ=
-X-Google-Smtp-Source: APXvYqwJbkFnAP9SY9gK21fN7QNbYRGokvHTqwXkjjG2EwAueI58HKRICiwEd5IDm2D8dlODxUiijw==
-X-Received: by 2002:aca:cdc9:: with SMTP id d192mr124199oig.134.1556558619041;
-        Mon, 29 Apr 2019 10:23:39 -0700 (PDT)
+        bh=lTqzq9hf+Gl0VGUp28DMpfMmMtzIgbFsNlr+xXKeUYk=;
+        b=LHdJmysK1crFCrbn0zzO61akPkTaBYfg+UfftfGmCVE3p50BZOHgt6jdaFgp1bC1EX
+         yCX9gTY29SyVDt0F/3WHPxFxXwsBmYJ550OxbC4/mpHHN52RYTaAHHN7nECfpRP7srEQ
+         4SOC9ZKuU+pRGoNmbVACe/CgzCt13+pLfBGkcEqHsVn5u2gBwx30Ireqt6Z5Yi51i4zq
+         v1JkQ0ltXd2nE0jQ+bMOIAcfChQV8kt2wm75cHTbgSyccXM1jcD8VMX61T0IbJBP1hEV
+         Rf3AxNIjFEnMX++5AsbT3xjzr8cHTCb4LILxkWd2/riqZLvzP1DvOwO0/fAhqkt1Ywy0
+         T/XQ==
+X-Gm-Message-State: APjAAAWgNERHYuc+WcrNn8ilgAgNNlRm6T6Vks+TiwCqwzjwXgL0mxbS
+        xWqAF/eKrMrkgNGQjPdEYA==
+X-Google-Smtp-Source: APXvYqzXSgF/c7kSEHBDaDU9mWHoTED/PKxAU/BIXyhy6IEOlSRWZJqsGNtigpquzLZZqkqhlM+RVw==
+X-Received: by 2002:aca:1e17:: with SMTP id m23mr130799oic.102.1556558878729;
+        Mon, 29 Apr 2019 10:27:58 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q26sm672522ota.35.2019.04.29.10.23.37
+        by smtp.gmail.com with ESMTPSA id y9sm13636043otk.20.2019.04.29.10.27.57
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 10:23:38 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 12:23:37 -0500
+        Mon, 29 Apr 2019 10:27:57 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 12:27:57 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     krzk@kernel.org, kgene@kernel.org, mark.rutland@arm.com,
-        cw00.choi@samsung.com, myungjoo.ham@samsung.com,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        pankaj.dubey@samsung.com, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com
-Subject: Re: [PATCH RFC 3/8] dt-bindings: exynos: Add ASV tables binding
- documentation
-Message-ID: <20190429172337.GA30032@bogus>
-References: <20190404171735.12815-1-s.nawrocki@samsung.com>
- <CGME20190404172234epcas1p37667ec0996000aff9297f13639908dfc@epcas1p3.samsung.com>
- <20190404171735.12815-4-s.nawrocki@samsung.com>
+To:     Cao Van Dong <cv-dong@jinso.co.jp>
+Cc:     broonie@kernel.org, geert+renesas@glider.be,
+        horms+renesas@verge.net.au, devicetree@vger.kernel.org,
+        yoshihiro.shimoda.uh@renesas.com, kuninori.morimoto.gx@renesas.com,
+        linux-renesas-soc@vger.kernel.org, h-inayoshi@jinso.co.jp,
+        nv-dung@jinso.co.jp, na-hoan@jinso.co.jp
+Subject: Re: [PATCH 4/4] dt-bindings: timer: renesas, cmt: Document
+ r8a779{5|65|90} CMT support
+Message-ID: <20190429172757.GA22159@bogus>
+References: <1554443049-25127-1-git-send-email-cv-dong@jinso.co.jp>
+ <1554443049-25127-5-git-send-email-cv-dong@jinso.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190404171735.12815-4-s.nawrocki@samsung.com>
+In-Reply-To: <1554443049-25127-5-git-send-email-cv-dong@jinso.co.jp>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 04, 2019 at 07:17:30PM +0200, Sylwester Nawrocki wrote:
-> This patch adds documentation of the Exynos ASV (Adaptive Voltage Supply)
-> tables DT binding.
+On Fri,  5 Apr 2019 14:44:09 +0900, Cao Van Dong wrote:
+> Document SoC specific bindings for R-Car H3/M3-N/E3 SoCs.
 > 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> Signed-off-by: Cao Van Dong <cv-dong@jinso.co.jp>
 > ---
->  .../devicetree/bindings/arm/samsung/asv.txt   | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/samsung/asv.txt
+>  Documentation/devicetree/bindings/timer/renesas,cmt.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/samsung/asv.txt b/Documentation/devicetree/bindings/arm/samsung/asv.txt
-> new file mode 100644
-> index 000000000000..0db907263a91
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/samsung/asv.txt
-> @@ -0,0 +1,76 @@
-> +Exynos Adaptive Supply Voltage (ASV) tables
-> +-------------------------------------------
-> +
-> +The Adaptive Supply Voltage (ASV) on Exynos SoCs is a technique of adjusting
-> +operating points, i.e. the power supply voltage for given clock frequency,
-> +in order to better match actual capabilities of the hardware and optimize power
-> +consumption.  This applies to subsystem of the SoC like: CPU clusters, GPU,
-> +the memory controller or camera ISP.  During production process the SoC chip
-> +is assigned to one of several bins (ASV groups) and the group information
-> +is encoded in the SoC CHIPID block registers and/or OTP memory. This information
-> +is then used by the OS to select more finely matching operating points for
-> +devices.
 
-We already have OPP tables defined for QCom CPUs to do speed bining, and 
-I just reviewed something from Allwinner for similar purposes. We can't 
-have each vendor doing their own thing here.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
