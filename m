@@ -2,88 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1479FDDBA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 10:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB96DE40
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 10:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727687AbfD2I2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 04:28:02 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:34512 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727670AbfD2I2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 04:28:02 -0400
-Received: by mail-qt1-f193.google.com with SMTP id j6so11011211qtq.1;
-        Mon, 29 Apr 2019 01:28:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pIjwi9Pdwq2tpQOmRVLR8AJ+RfItycNgwKBPS/FfFwQ=;
-        b=KCepw7VGzHhTmEryB3hPHprLKpgV2QymJ2RW0SjTSFDdpK0ktwAMBDSJ1ITy+XDh60
-         DoPTY09BntxLpOu+kCo5BVMGZNy/qjM3Zj6aUXL1PUv1mNwY/Viwx9hmyBnY3bpuaeNI
-         XKNVhhBOR2MP/AIpyjpQxeKiRYyJ8JIVSDDJA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pIjwi9Pdwq2tpQOmRVLR8AJ+RfItycNgwKBPS/FfFwQ=;
-        b=fIgnEwo3TbJB87+l7paOWYyVRYYH0s+MLJxDvMWUOtbXnPOudnEdjc+5bBIDbl3813
-         UsySk2ntAnGyB0Bdd/WEcDXRidKZNn25ynOHJuc5YgV3aK7Vjx7YQyhvAL7B+9rbv2yX
-         7Nzj1yCCGxKQrEQC3Cc+d/5/FsIFlYGw2X/qmYaJiUD9l3CVqelaEx30l6nwcGmo5XYP
-         wOTbNSBrsUD1IxtBWQHMBinXrtLfIwhtgSvNplnY8NjL8mk1fsBYwWTaJkO0yMRZKrF3
-         1BLxva6Frk/0yxxLBKLT6Vsc64p3V2N//q5i3qpbRCjsgPK2VJUQRC2BQqkhXavNONCz
-         wyEg==
-X-Gm-Message-State: APjAAAUmcegzrRW3XHJyqDgnibbHFAGU4MAyBFScw0Jq3wVIBPyuoyNu
-        3pHf2B33Rx/yMatcZJYxNbO8btojC1d6tXAFhtA=
-X-Google-Smtp-Source: APXvYqyIzM18/pZaeSSVKfrsxmgXogVAee5aa7XHdKeT4Kr5aRXtgQ89YiVr3LiG7FMcDqt23jMOQnz29AtcwPe8azo=
-X-Received: by 2002:a0c:ac83:: with SMTP id m3mr47431723qvc.85.1556526481157;
- Mon, 29 Apr 2019 01:28:01 -0700 (PDT)
+        id S1727534AbfD2IsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 04:48:01 -0400
+Received: from foss.arm.com ([217.140.101.70]:50478 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727480AbfD2IsB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 04:48:01 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AF52F80D;
+        Mon, 29 Apr 2019 01:48:00 -0700 (PDT)
+Received: from [10.1.196.92] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 10A243F71A;
+        Mon, 29 Apr 2019 01:47:57 -0700 (PDT)
+Subject: Re: [PATCH v7 11/14] irqchip: ti-sci-inta: Add support for Interrupt
+ Aggregator driver
+To:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        tglx@linutronix.de, jason@lakedaemon.net
+Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
+        linus.walleij@linaro.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+References: <20190420100950.7997-1-lokeshvutla@ti.com>
+ <20190420100950.7997-12-lokeshvutla@ti.com>
+ <bb768bc0-e18b-3794-8083-1612da10b0c1@ti.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+Organization: ARM Ltd
+Message-ID: <79b34c45-023b-2df4-26f4-e151e74a46ac@arm.com>
+Date:   Mon, 29 Apr 2019 09:47:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190416162150.150154-1-venture@google.com>
-In-Reply-To: <20190416162150.150154-1-venture@google.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 29 Apr 2019 08:27:49 +0000
-Message-ID: <CACPK8XeTOhcdKPsKgsBJXAYeMDeHRLOSLRF5XO0oT-5XUhghMQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] update aspeed-bmc-opp-zaius device-tree
-To:     Patrick Venture <venture@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <bb768bc0-e18b-3794-8083-1612da10b0c1@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Apr 2019 at 16:22, Patrick Venture <venture@google.com> wrote:
->
-> Hi,
->
-> This series contains three updates to the Zaius ASPEED device-tree to
-> add voltrage regulators, and update addresses and aliases.  The Infineon
-> and Intersil drivers are staged on hwmon-next, and the trivial device
-> dt-bindings changed are up for review.
+On 23/04/2019 11:00, Lokesh Vutla wrote:
+> Hi Marc,
 
-Applied to the aspeed SoC tree, thanks Patrick.
+[...]
 
-Cheers,
+>> +/**
+>> + * ti_sci_inta_set_type() - Update the trigger type of the irq.
+>> + * @data:	Pointer to corresponding irq_data
+>> + * @type:	Trigger type as specified by user
+>> + *
+>> + * Note: This updates the handle_irq callback for level msi.
+>> + *
+>> + * Return 0 if all went well else appropriate error.
+>> + */
+>> +static int ti_sci_inta_set_type(struct irq_data *data, unsigned int type)
+>> +{
+>> +	struct irq_desc *desc = irq_to_desc(data->irq);
+>> +
+>> +	/*
+>> +	 * .alloc default sets handle_edge_irq. But if the user specifies
+>> +	 * that IRQ is level MSI, then update the handle to handle_level_irq
+>> +	 */
+>> +	if (type & IRQF_TRIGGER_HIGH)
+>> +		desc->handle_irq = handle_level_irq;
+>> +
+>> +	return 0;
+> 
+> 
+> Returning error value is causing request_irq to fail, so still returning 0. Do
+> you suggest any other method to handle this?
 
-Joel
+But that is the very point, isn't it? If you pass the wrong triggering
+type to request_irq, it *must* fail. What you should have is something like:
 
->
-> Maxim Sloyko (1):
->   ARM: dts: aspeed: zaius: add Infineon and Intersil regulators
->
-> Robert Lippert (2):
->   ARM: dts: aspeed: zaius: update 12V brick I2C address
->   ARM: dts: aspeed: zaius: fixed I2C bus numbers for pcie slots
->
->  arch/arm/boot/dts/aspeed-bmc-opp-zaius.dts | 121 +++++++++++++++++++--
->  1 file changed, 113 insertions(+), 8 deletions(-)
->
-> --
-> 2.21.0.392.gf8f6787159e-goog
->
+switch (type & IRQ_TYPE_SENSE_MASK) {
+case IRQF_TRIGGER_HIGH:
+	desc->handle_irq = handle_level_irq;
+	return 0;
+case IRQ_TYPE_EDGE_RISING:
+	return 0;
+default:
+	return -EINVAL;
+}
+
+(adjust as necessary).
+
+What's wrong with this?
+
+Thanks,
+
+	M.
+-- 
+Jazz is not dead. It just smells funny...
