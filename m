@@ -2,73 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ABA7DD32
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 09:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16B20DD3D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 09:55:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727528AbfD2HyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 03:54:06 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:34007 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727498AbfD2HyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 03:54:06 -0400
-Received: by mail-qt1-f193.google.com with SMTP id j6so10935809qtq.1;
-        Mon, 29 Apr 2019 00:54:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KWgCkKPfgLe0gODXDRVabcCo8RdveLj5EodL4BepQwo=;
-        b=QBxjZ6/oxpq6tExNEmdlt5qqmHZSVRrvHDTc+7z7QFME9MlAxao2y0Mf3fgL3QOvUn
-         3ojdnuE2FRclx7G+rgsgtX3VxxZKTU8/OUyHqQ7s87OLiGU3feI17TVpZJSZHtNF6M/Y
-         OPlvuHIJCVasxqLTvKkkAhRm+bN9gyfTk/0hk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KWgCkKPfgLe0gODXDRVabcCo8RdveLj5EodL4BepQwo=;
-        b=Jf+jmkLp4pqTDnsTfuwx18ayUZtZZpjtC52hyTFCcAHe19et5UEY3ewyuNXRuZO1+E
-         kQvqlkcVTERvCm6cmInOpVyHysaqwHhH4IY4JsdFZ4fxJz6Sm1/a/7ZlG9LeoUKSDcrD
-         3sL4dReBPjPfwIyhQivcqO4jLhG6orDQ81fEYcf5cPjltrb6kYYASazdK2ghdktCr8o5
-         2JHF5DpAO4v0yYvCMHXaD6NWqaz9hJoL8roGLfbtcdfuihRLm7ZibADaV3D1G30W/3RW
-         59WwKbkZt+M7OrxwUPDJ4G66ZzomFnR+5qlFY5GUf4Iko1DtL+hsVXPtoX6f76eHNqbn
-         5Q/A==
-X-Gm-Message-State: APjAAAVZSLkj/ifAXQGMH+FwHDiZRTK4Ov8UJbewt1c8RVljd1ZFJLYS
-        ceeuFMx14yb6MT6mzou19OhYbke1ZHUS5EHPZ0E=
-X-Google-Smtp-Source: APXvYqzuweVqEIbGAUxpYzmfY5Jlihfnu2PP5Rq/2cEC87hGr9WIb/S7SiEJVR+p6CHs6sv5l0jiC6+WCcgT8ud376E=
-X-Received: by 2002:ac8:2565:: with SMTP id 34mr49117430qtn.37.1556524445302;
- Mon, 29 Apr 2019 00:54:05 -0700 (PDT)
+        id S1727499AbfD2HzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 03:55:19 -0400
+Received: from smtp-out.xnet.cz ([178.217.244.18]:47746 "EHLO smtp-out.xnet.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727409AbfD2HzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 03:55:19 -0400
+Received: from meh.true.cz (meh.true.cz [108.61.167.218])
+        (Authenticated sender: petr@true.cz)
+        by smtp-out.xnet.cz (Postfix) with ESMTPSA id 170E057D9;
+        Mon, 29 Apr 2019 09:55:16 +0200 (CEST)
+Received: from localhost (meh.true.cz [local])
+        by meh.true.cz (OpenSMTPD) with ESMTPA id efaae547;
+        Mon, 29 Apr 2019 09:55:14 +0200 (CEST)
+Date:   Mon, 29 Apr 2019 09:55:14 +0200
+From:   Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Alban Bedel <albeu@free.fr>
+Subject: Re: [PATCH v2 3/4] net: macb: Drop nvmem_get_mac_address usage
+Message-ID: <20190429075514.GB346@meh.true.cz>
+Reply-To: Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
+References: <1556456002-13430-1-git-send-email-ynezz@true.cz>
+ <1556456002-13430-4-git-send-email-ynezz@true.cz>
+ <20190428165637.GJ23059@lunn.ch>
+ <20190428210814.GA346@meh.true.cz>
+ <20190428213640.GB10772@lunn.ch>
 MIME-Version: 1.0
-References: <20190425194853.140617-1-venture@google.com>
-In-Reply-To: <20190425194853.140617-1-venture@google.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 29 Apr 2019 07:53:53 +0000
-Message-ID: <CACPK8XchRsfJkB_p07g6LOyakaq8XH9yM3ve9annfNTTkGY4rg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: aspeed: Add aspeed-p2a-ctrl node
-To:     Patrick Venture <venture@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        arm <arm@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190428213640.GB10772@lunn.ch>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Apr 2019 at 19:48, Patrick Venture <venture@google.com> wrote:
->
-> Add a node for the aspeed-p2a-ctrl module.  This node, when enabled will
-> disable the PCI-to-AHB bridge and then allow control of this bridge via
-> ioctls, and access via mmap.
->
-> Signed-off-by: Patrick Venture <venture@google.com>
+Andrew Lunn <andrew@lunn.ch> [2019-04-28 23:36:40]:
 
-Applied to the aspeed SoC tree.
+Hi Andrew,
 
-Cheers,
+> > so if I understand this correctly, it probably means, that this approach with
+> > modified of_get_mac_address is dead end as current of_get_mac_address users
+> > don't expect and handle possible -EPROBE_DEFER error, so I would need to
+> > change all the current users, which is nonsense.
+> 
+> I would not say it is dead, it just needs a bit more work.
 
-Joel
+ok, that's good news, I've probably just misunderstood your concern about the
+random MAC address in case when platform/nvmem subsystem returns -EPROBE_DEFER.
+
+> The current users should always be checking for a NULL pointer.  You
+> just need to change that to !IS_ERR(). You can then return
+> ERR_PTR(-PROBE_DEFER) from the NVMEM operation.
+
+I'm more then happy to address this in v3, but I'm still curious, what is it
+going to change in the current state of the tree. 
+
+My understanding of -PROBE_DEFER is, that it needs to be propagated back from
+the driver's probe callback/hook to the upper device/driver subsystem in order
+to be moved to the list of pending drivers and considered for probe later
+again. This is not going to happen in any of the current drivers, thus it will
+probably still always result in random MAC address in case of -EPROBE_DEFER
+error from the nvmem subsystem.
+
+-- ynezz
