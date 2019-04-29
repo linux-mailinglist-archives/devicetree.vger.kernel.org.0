@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66485E93D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 19:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A09DE972
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 19:46:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728950AbfD2Rfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 13:35:46 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34181 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728839AbfD2Rfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 13:35:45 -0400
-Received: by mail-oi1-f195.google.com with SMTP id v10so9013949oib.1;
-        Mon, 29 Apr 2019 10:35:45 -0700 (PDT)
+        id S1728972AbfD2Rp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 13:45:58 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:41334 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728748AbfD2Rp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 13:45:58 -0400
+Received: by mail-ot1-f67.google.com with SMTP id g8so8415762otl.8;
+        Mon, 29 Apr 2019 10:45:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5my8Cn6Y2HODVuVBQINEOeT+yTibXOX7mtG9Sio7Q0E=;
-        b=LfSBNr0/70Av5NAeTEn3aOdnp0WdBklm01BymQi1imk7RivX15OEXlMtuJcsaE423+
-         GwXnOV2yx81a/QTcGGKXWWx/OTs3oTTFMOgRbqH5p6zspV+/A9bKG/rI7Amt0vGnWw4C
-         KMrU3PVBSj98wDG+piD9QnW7HPumplWZw4d0p8iC/dh/2IZwy/XVdNCmz8o4d7TXnCae
-         olw5oraqah1MmbG4xdt6jv6PtNaGPiLm32FTxr6etSBPUW0xPy1ADOnv+85xgmrMEvMG
-         yaMYzClxQwaSMMuKFB1E7ADhCFwg5U//rHc7mwSYWyyc2/DHf3jphVq0EL7hBvMPEFY0
-         87lA==
-X-Gm-Message-State: APjAAAXOh3JLlMnF1+BB64M9Ha9b9tS75SYj850G8H+Y8QuMPdhE09lD
-        owu1mdUICVy06WMEl6qOgQ==
-X-Google-Smtp-Source: APXvYqwObFMf5MsBWU0lmxv2jIpKllIDnzZvko6iCmt8LLZUNAsA23aXPX+A4t6zBy6L1b1EpsGZbw==
-X-Received: by 2002:aca:b944:: with SMTP id j65mr178617oif.58.1556559344792;
-        Mon, 29 Apr 2019 10:35:44 -0700 (PDT)
+        bh=jAzJmF2TDQHSyudozQ8MRP+x53QYDHzdtWrUcOyie5o=;
+        b=g+R92KDFW0x6NHaON6tGIwOzwahJ1uY0f2uFCkM4ehSXaRpBAy18WwSJwtH24yiNe8
+         Dg6R8os/+N3ERC8WIGnbGzbVmntXuD3l6v60G+bWPUzFAUYTgXamkoM8+k0Hygiag358
+         GhJSY0zjzqtA+iVigi21JwYab0ZHSptzDZa3GUb+5ElgDPZSLLDfbjpAHCd+XoXNw3W1
+         fUo9gVCXk3klCJArpYi8zt+LC0xiTwZp08rGBvCJaPEVcuBd7S06+vaQ0G9Ii2T0Ol6N
+         +wb+8004MAeSHDVZQJI9zLO9mqyT9QTIsihnsVlEJRJYudAGAISx7wr+ryHl4Xk4q3WW
+         3lAA==
+X-Gm-Message-State: APjAAAXP/1pUa26HJGkf/eXsNAxq4jxGUKPhrIqtba3Po3E4Tvs+/7yL
+        Wu+pL+cVudy8UBa+4r+JhGhHMoc=
+X-Google-Smtp-Source: APXvYqyDmhrZrBxVsjETXa+G0jMSBEdawMchYDvBe7bdT/A54hBJgsvfF2vIblFu+/8+xxw3vWkkFw==
+X-Received: by 2002:a9d:7f89:: with SMTP id t9mr23252837otp.169.1556559413449;
+        Mon, 29 Apr 2019 10:36:53 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u127sm641756oif.14.2019.04.29.10.35.44
+        by smtp.gmail.com with ESMTPSA id s26sm13741338otk.24.2019.04.29.10.36.52
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 10:35:44 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 12:35:43 -0500
+        Mon, 29 Apr 2019 10:36:52 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 12:36:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Otavio Salvador <otavio@ossystems.com.br>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Otavio Salvador <otavio@ossystems.com.br>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?utf-8?B?Vm9rw6HEjQ==?= Michal <Michal.Vokac@ysoft.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add support for
- imx6ul-pico-dwarf
-Message-ID: <20190429173543.GA4192@bogus>
-References: <20190407193723.3351-1-otavio@ossystems.com.br>
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH 2/6] dt-bindings: media: sun6i-csi: Add compatible string
+ for A83T variant
+Message-ID: <20190429173651.GA6551@bogus>
+References: <20190408165744.11672-1-wens@kernel.org>
+ <20190408165744.11672-3-wens@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190407193723.3351-1-otavio@ossystems.com.br>
+In-Reply-To: <20190408165744.11672-3-wens@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun,  7 Apr 2019 16:37:22 -0300, Otavio Salvador wrote:
-> From: Fabio Estevam <festevam@gmail.com>
+On Tue,  9 Apr 2019 00:57:40 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Add support for TechNexion's imx6ul-pico-dwarf board.
+> The A83T SoC has a camera sensor interface (known as CSI in Allwinner
+> lingo), which is similar to the one found on the A64 and H3. The only
+> difference seems to be that support of MIPI CSI through a connected
+> MIPI CSI-2 bridge.
 > 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+> Add a compatible string for this variant.
+> 
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 > ---
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  Documentation/devicetree/bindings/media/sun6i-csi.txt | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
