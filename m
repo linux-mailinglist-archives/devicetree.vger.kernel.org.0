@@ -2,66 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44CF0E9C9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 20:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66B83E9CA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 20:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728952AbfD2SNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 14:13:24 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38196 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728748AbfD2SNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 14:13:23 -0400
-Received: by mail-oi1-f196.google.com with SMTP id t70so3531626oif.5;
-        Mon, 29 Apr 2019 11:13:23 -0700 (PDT)
+        id S1728903AbfD2SNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 14:13:42 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:35547 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728844AbfD2SNm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 14:13:42 -0400
+Received: by mail-it1-f195.google.com with SMTP id w15so534646itc.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 11:13:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=2QB4RJLb+6FEgLy4+w2DfbmeovqCpuAG21kyMkfP7XA=;
+        b=hYcWBuwZg/dYju1jvYpCEc4yGVpKLo1p/FuOY+cVj7+/Jpy0Mw80hE6psm76KVf1i8
+         KpY9I0ahMAcReeV47+0bPMixh6yQufRO1oQxGQhrHNh+I5hVIm4HgefeyLcBEY0YZgvP
+         6MJfEAAII4GbchxZO26JIPCDmjhXoZhVrk7P8sslat8s+/XGBgvkTts89RxtQLZ7SOXW
+         GMgg/3L9Zui9809LZAVhciqSjpqx6kR70O2XurbBlYHPM0LV6TOjDPFk9+HkyTOKrSe7
+         c7AmKwacwdZSG93o7MNnmcUwdAxTf7BpA8HeiroNIqIk+H9PUWgntk2lQSor4Y57Y50l
+         bixA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=2yJIp+wKfF6D2azLlpnnQq6LwUEChuaNxyxk16ryYDI=;
-        b=m6IdKAAQFdCRRThSo56yKjCZoh70AzFaEVtjdJTvnrg1T8cSHRHVzUAp4MoGQEjnWJ
-         7WkV2J++2J8h8epn3MikeZjJYjdbq6SlTJBCVpag/oDroH9LTuYVm4wIGYLfi6lx25q8
-         YEIktqNbDqGxFvJn1Qw7N3PbRPNeFA5OJQzA8l5CBVrEKPX4ac16irV4xEP8Cughdd5A
-         RrhTHs931a0xuIRiUqTRJZPx7OgSo1BnDG114hV85ghNr16NaIxwHDhcnu73F+aeHk2j
-         +G24R/POh7Az9kC17mQXs4zTenCVBWDtpRJw+RtvDb9SYys0OsHfY2t7Nu4yNp1v3cld
-         XBtA==
-X-Gm-Message-State: APjAAAXz2DafGq4/p7tCcbbEx+p2/QFCTkxuEmj24XT3q3BLw3jULHLU
-        Z3IKWyH5VJ6iT5TbWMN9JQ==
-X-Google-Smtp-Source: APXvYqz9b40VqbrX7kX0FUjzkjH2lmhVUpYjf06BckfNOK7wqQ5vew2gsC+yMkKMkAKXerqDmMYF0A==
-X-Received: by 2002:aca:5256:: with SMTP id g83mr276496oib.61.1556561603068;
-        Mon, 29 Apr 2019 11:13:23 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w10sm14305916oiw.48.2019.04.29.11.13.21
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=2QB4RJLb+6FEgLy4+w2DfbmeovqCpuAG21kyMkfP7XA=;
+        b=FEUxN7op1W/J7UctCA6guP526K+DDvEhBUGiPNJEZIC/fMKdxksi3klvaQKtA8J9zk
+         9J9eomFeXaIupEoh1x1HXshljcZC4yOmmrhsIwjvBUo8RWjTbSVoptqJqp1NRU1B+qu3
+         srVaKsuBJtaOssEMf7HhXJ6NOZ+jtv6klfRHRIIWib3xP50cP/WHcsD70YDcpECApEWc
+         778C/sTpCv5Jf2BGVGO2+9/tjItl+BxnqZecprRp2m1EUt3kWLBTFJoJdhbP+1CDnaHp
+         cIHOufBYzsX/Bu/Co+3oWWvDhe8jetGeFdGEiDE41R6GdSWvO1goHs19aqHIxjMZxM5f
+         md+A==
+X-Gm-Message-State: APjAAAVfkE/pfqGYjHwtUD7M/MBY6DZUQ28RO6FEDq5o2IfSTT3JWKRy
+        pVXOoLZE7LCuk/N0syNjtcBprg==
+X-Google-Smtp-Source: APXvYqx4XUXqAY+TWlfS929HupQJSdXoLFiGxqPYvRrbV+KHeRkcNZnCuY/p2CVCrXYNGOGlQp8gEw==
+X-Received: by 2002:a24:5309:: with SMTP id n9mr329796itb.11.1556561621668;
+        Mon, 29 Apr 2019 11:13:41 -0700 (PDT)
+Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
+        by smtp.gmail.com with ESMTPSA id k203sm175872itb.0.2019.04.29.11.13.40
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 11:13:21 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 13:13:21 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        paul.burton@mips.com, robh+dt@kernel.org,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: Add vendor prefix for loongson
-Message-ID: <20190429181321.GA6862@bogus>
-References: <20190312091520.8863-2-jiaxun.yang@flygoat.com>
- <20190411121915.8040-1-jiaxun.yang@flygoat.com>
- <20190411121915.8040-5-jiaxun.yang@flygoat.com>
+        Mon, 29 Apr 2019 11:13:40 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 11:13:40 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Rob Herring <robh@kernel.org>
+cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, Paul Walmsley <paul@pwsan.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH 2/6] dt-bindings: riscv: sifive: add YAML documentation
+ for the SiFive FU540
+In-Reply-To: <20190429180846.GA26021@bogus>
+Message-ID: <alpine.DEB.2.21.9999.1904291113140.10713@viisi.sifive.com>
+References: <20190411084304.5072-2-paul.walmsley@sifive.com> <20190411084304.5072-3-paul.walmsley@sifive.com> <20190429180846.GA26021@bogus>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190411121915.8040-5-jiaxun.yang@flygoat.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Apr 2019 20:19:13 +0800, Jiaxun Yang wrote:
-> Add vendor prefix for loongson, known as
-> Loongson Technology Corporation Limited, a CPUs & IP Cores vendor.
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Mon, 29 Apr 2019, Rob Herring wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> On Thu, Apr 11, 2019 at 01:43:00AM -0700, Paul Walmsley wrote:
+> > Add YAML DT binding documentation for the SiFive FU540 SoC.  This
+> > SoC is documented at:
+> > 
+> >     https://static.dev.sifive.com/FU540-C000-v1.0.pdf
+> > 
+> > Passes dt-doc-validate, as of yaml-bindings commit 4c79d42e9216.
+
+...
+
+> > ---
+> >  .../devicetree/bindings/riscv/sifive.yaml     | 26 +++++++++++++++++++
+> >  MAINTAINERS                                   |  9 +++++++
+> >  2 files changed, 35 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/riscv/sifive.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/riscv/sifive.yaml b/Documentation/devicetree/bindings/riscv/sifive.yaml
+> > new file mode 100644
+> > index 000000000000..d2808d8d79bb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/riscv/sifive.yaml
+> > @@ -0,0 +1,26 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/riscv/sifive/sifive.yaml#
+> 
+> The path here should match the file path. IOW, drop 'sifive/'.
+
+Thanks, will do.
+
+- Paul
+
