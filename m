@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8EBEE959
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 19:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BB3E95D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 19:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728844AbfD2Rjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 13:39:32 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:39540 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728798AbfD2Rjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 13:39:32 -0400
-Received: by mail-oi1-f194.google.com with SMTP id n187so8991204oih.6;
-        Mon, 29 Apr 2019 10:39:32 -0700 (PDT)
+        id S1728855AbfD2RlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 13:41:00 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38902 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728748AbfD2RlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 13:41:00 -0400
+Received: by mail-ot1-f68.google.com with SMTP id t20so9417567otl.5;
+        Mon, 29 Apr 2019 10:41:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7oQF0Ow5NvfcIZT8v2Y1XPltRGNq4bwG9X6rczwxJZo=;
-        b=mBJkrRwjwnkOlbT7LDozrVhUKWTJdWv6kPY5t+JcMYb1jYh4g9ko7+k6SpOAML/SZu
-         12yk8EjezxraQhgs3v/bjy2nibEUh/MX09+stLEKCv934fSQNTp1HLZjzEK1xVqy4zKX
-         ouL0mrT4yv7vQ3sAx419Jt1eGLmkONOXf2ZPGZRLgVJkwlDWQFYUC+/qh0vEMtUxTgS0
-         Xc95Ha+l99DgIj7rT65+4vWUlkZULYs5nICE8Ed47ckeBYg9xk0eH1NnanMGrGWNMH6H
-         fk/HLw4xIbTxCOCKykAlwZXOfhLtyg0hLoWyOppmZNcoqGI46vChq6wcuNxuTfSFAitL
-         kFbg==
-X-Gm-Message-State: APjAAAXzut8xqJecyPCtKcIeM4IRV8H/sExq9MiB+wa38UIw2VPa/llr
-        e2g31M+IAkHH3vfqa/0nVN0MZQ8=
-X-Google-Smtp-Source: APXvYqwSc4oXqoFOkpxHHg/zKQLj1+50eBpDWqLOcAaw1ZRIXoX8wtbXrnmnVvm8tvs8AKPbQIoL0w==
-X-Received: by 2002:aca:57d8:: with SMTP id l207mr183569oib.44.1556559571571;
-        Mon, 29 Apr 2019 10:39:31 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=7IAkFL1JXbZxNJHIArZ/p7tWmdMrEZfFKxFB5D31v3Y=;
+        b=VmQFGNP/nKKOhIUzJ6tcKCvl4vYB0joCjFX7IZetchwivtU3Y6Cx36a4LOOHERgQCi
+         ZyL746Mm8gmpwWJanVyKlG2DljbQpvnPTpiU+kc2tx2IY2hhaRS6N0JsrDais1q2osC/
+         6qmPa87EMRtsiW6j2cEi8bjvFjsA5NyHKeXd9j7UMHICCdZ+V3mOwx17AKbg8xfaCHDc
+         Yr34h70JcbsffAeGVXtOkWTAFqDyGNX19FpYqgTTnM2VEnEszVrQMHv/CfCHKimppxC8
+         0ID6jFw9BSzDc6wCGlRwkWoYdBicOF+bSQJwIq69m443vE1TszyrNfMwTX7MrXSFsnIX
+         aJ/A==
+X-Gm-Message-State: APjAAAUfchWPbMBiIiDdCvfH5MFTDiyLv3a7hqdOlBg8z1tFE1/4Xv5L
+        ANoYQSnKQwbqApxImdCmLA==
+X-Google-Smtp-Source: APXvYqw/imxgz09DG6zdb1MmzjQVdBUe8PLv9+NKHbFUlUVCLnjIkMVGwh0dmC1m3Zg49hHRfgn0uw==
+X-Received: by 2002:a9d:4909:: with SMTP id e9mr8198002otf.160.1556559659685;
+        Mon, 29 Apr 2019 10:40:59 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 3sm9041240oti.45.2019.04.29.10.39.30
+        by smtp.gmail.com with ESMTPSA id i22sm1689418otj.34.2019.04.29.10.40.58
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 10:39:30 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 12:39:30 -0500
+        Mon, 29 Apr 2019 10:40:58 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 12:40:58 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sean Nyekjaer <sean@geanix.com>
-Cc:     netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        mkl@pengutronix.de, robh+dt@kernel.org,
-        Sean Nyekjaer <sean@geanix.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: can: flexcan: add can wakeup property
-Message-ID: <20190429173930.GA11283@bogus>
-References: <20190409083949.27917-1-sean@geanix.com>
- <20190409083949.27917-2-sean@geanix.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: mfd: axp20x: Add fallback for axp805
+Message-ID: <20190429174058.GA11425@bogus>
+References: <20190409160550.1086-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190409083949.27917-2-sean@geanix.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190409160550.1086-1-peron.clem@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  9 Apr 2019 10:39:49 +0200, Sean Nyekjaer wrote:
-> add wakeup-source boolean property.
+On Tue, Apr 09, 2019 at 06:05:50PM +0200, Clément Péron wrote:
+> axp805 is actually compatible and used with axp806 as fallback.
+> But it's actually undocumented and trig a warning with checkpatch.
 > 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> DT compatible string "x-powers,axp805" appears un-documented.
+> 
+> Add this compatible in the dt-bindings documentation.
+> 
+> Signed-off-by: Clément Péron <peron.clem@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/can/fsl-flexcan.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+>  Documentation/devicetree/bindings/mfd/axp20x.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
+
+Rob
