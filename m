@@ -2,79 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17AB3DDA1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 10:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1479FDDBA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 10:28:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727487AbfD2IWX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Apr 2019 04:22:23 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:36095 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727480AbfD2IWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 04:22:22 -0400
-X-Originating-IP: 90.88.147.33
-Received: from xps13 (aaubervilliers-681-1-27-33.w90-88.abo.wanadoo.fr [90.88.147.33])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 4BCAEFF81D;
-        Mon, 29 Apr 2019 08:22:17 +0000 (UTC)
-Date:   Mon, 29 Apr 2019 10:22:16 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?UTF-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>
-Cc:     kyungmin.park@samsung.com, bbrezillon@kernel.org, richard@nod.at,
-        dwmw2@infradead.org, computersforpeace@gmail.com,
-        marek.vasut@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Tomasz Figa <tomasz.figa@gmail.com>
-Subject: Re: [PATCH 5/5] mtd: onenand/samsung: Set name field of mtd_info
- struct
-Message-ID: <20190429102216.3235c48c@xps13>
-In-Reply-To: <20190426164224.11327-6-pawel.mikolaj.chmiel@gmail.com>
-References: <20190426164224.11327-1-pawel.mikolaj.chmiel@gmail.com>
-        <20190426164224.11327-6-pawel.mikolaj.chmiel@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1727687AbfD2I2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 04:28:02 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:34512 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727670AbfD2I2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 04:28:02 -0400
+Received: by mail-qt1-f193.google.com with SMTP id j6so11011211qtq.1;
+        Mon, 29 Apr 2019 01:28:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pIjwi9Pdwq2tpQOmRVLR8AJ+RfItycNgwKBPS/FfFwQ=;
+        b=KCepw7VGzHhTmEryB3hPHprLKpgV2QymJ2RW0SjTSFDdpK0ktwAMBDSJ1ITy+XDh60
+         DoPTY09BntxLpOu+kCo5BVMGZNy/qjM3Zj6aUXL1PUv1mNwY/Viwx9hmyBnY3bpuaeNI
+         XKNVhhBOR2MP/AIpyjpQxeKiRYyJ8JIVSDDJA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pIjwi9Pdwq2tpQOmRVLR8AJ+RfItycNgwKBPS/FfFwQ=;
+        b=fIgnEwo3TbJB87+l7paOWYyVRYYH0s+MLJxDvMWUOtbXnPOudnEdjc+5bBIDbl3813
+         UsySk2ntAnGyB0Bdd/WEcDXRidKZNn25ynOHJuc5YgV3aK7Vjx7YQyhvAL7B+9rbv2yX
+         7Nzj1yCCGxKQrEQC3Cc+d/5/FsIFlYGw2X/qmYaJiUD9l3CVqelaEx30l6nwcGmo5XYP
+         wOTbNSBrsUD1IxtBWQHMBinXrtLfIwhtgSvNplnY8NjL8mk1fsBYwWTaJkO0yMRZKrF3
+         1BLxva6Frk/0yxxLBKLT6Vsc64p3V2N//q5i3qpbRCjsgPK2VJUQRC2BQqkhXavNONCz
+         wyEg==
+X-Gm-Message-State: APjAAAUmcegzrRW3XHJyqDgnibbHFAGU4MAyBFScw0Jq3wVIBPyuoyNu
+        3pHf2B33Rx/yMatcZJYxNbO8btojC1d6tXAFhtA=
+X-Google-Smtp-Source: APXvYqyIzM18/pZaeSSVKfrsxmgXogVAee5aa7XHdKeT4Kr5aRXtgQ89YiVr3LiG7FMcDqt23jMOQnz29AtcwPe8azo=
+X-Received: by 2002:a0c:ac83:: with SMTP id m3mr47431723qvc.85.1556526481157;
+ Mon, 29 Apr 2019 01:28:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <20190416162150.150154-1-venture@google.com>
+In-Reply-To: <20190416162150.150154-1-venture@google.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 29 Apr 2019 08:27:49 +0000
+Message-ID: <CACPK8XeTOhcdKPsKgsBJXAYeMDeHRLOSLRF5XO0oT-5XUhghMQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] update aspeed-bmc-opp-zaius device-tree
+To:     Patrick Venture <venture@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paweł,
+On Tue, 16 Apr 2019 at 16:22, Patrick Venture <venture@google.com> wrote:
+>
+> Hi,
+>
+> This series contains three updates to the Zaius ASPEED device-tree to
+> add voltrage regulators, and update addresses and aliases.  The Infineon
+> and Intersil drivers are staged on hwmon-next, and the trivial device
+> dt-bindings changed are up for review.
 
-Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com> wrote on Fri, 26 Apr 2019
-18:42:24 +0200:
+Applied to the aspeed SoC tree, thanks Patrick.
 
-> From: Tomasz Figa <tomasz.figa@gmail.com>
-> 
-> This patch adds initialization of .name field of mtd_info struct to
-> avoid printing "(null)" in kernel log messages, such as:
-> 
-> [    1.942519] 1 ofpart partitions found on MTD device (null)
-> [    1.949708] Creating 1 MTD partitions on "(null)":
-> 
-> Signed-off-by: Tomasz Figa <tomasz.figa@gmail.com>
-> Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
-> ---
->  drivers/mtd/nand/onenand/samsung.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/mtd/nand/onenand/samsung.c b/drivers/mtd/nand/onenand/samsung.c
-> index 0f450604412f..1fda1f324cc6 100644
-> --- a/drivers/mtd/nand/onenand/samsung.c
-> +++ b/drivers/mtd/nand/onenand/samsung.c
-> @@ -886,6 +886,7 @@ static int s3c_onenand_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  
->  	this = (struct onenand_chip *) &mtd[1];
-> +	mtd->name = dev_name(&pdev->dev);
->  	mtd->priv = this;
->  	mtd->dev.of_node = np;
->  	mtd->dev.parent = &pdev->dev;
+Cheers,
 
+Joel
 
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
-
-Thanks,
-Miquèl
+>
+> Maxim Sloyko (1):
+>   ARM: dts: aspeed: zaius: add Infineon and Intersil regulators
+>
+> Robert Lippert (2):
+>   ARM: dts: aspeed: zaius: update 12V brick I2C address
+>   ARM: dts: aspeed: zaius: fixed I2C bus numbers for pcie slots
+>
+>  arch/arm/boot/dts/aspeed-bmc-opp-zaius.dts | 121 +++++++++++++++++++--
+>  1 file changed, 113 insertions(+), 8 deletions(-)
+>
+> --
+> 2.21.0.392.gf8f6787159e-goog
+>
