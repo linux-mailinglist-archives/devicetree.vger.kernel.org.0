@@ -2,157 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F325EE058
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 12:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A735E08B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 12:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727817AbfD2KNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 06:13:08 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:52572 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727428AbfD2KNI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 06:13:08 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 652D680D;
-        Mon, 29 Apr 2019 03:13:07 -0700 (PDT)
-Received: from [10.1.196.92] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E13DA3F5AF;
-        Mon, 29 Apr 2019 03:13:04 -0700 (PDT)
-Subject: Re: [PATCH v7 11/14] irqchip: ti-sci-inta: Add support for Interrupt
- Aggregator driver
-To:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        tglx@linutronix.de, jason@lakedaemon.net
-Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
-        linus.walleij@linaro.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190420100950.7997-1-lokeshvutla@ti.com>
- <20190420100950.7997-12-lokeshvutla@ti.com>
- <bb768bc0-e18b-3794-8083-1612da10b0c1@ti.com>
- <79b34c45-023b-2df4-26f4-e151e74a46ac@arm.com>
- <7d012633-e540-df8f-7c21-07702447cb8a@ti.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
-Organization: ARM Ltd
-Message-ID: <3723e553-4e04-4ce4-080b-01f1a9843ea8@arm.com>
-Date:   Mon, 29 Apr 2019 11:13:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <7d012633-e540-df8f-7c21-07702447cb8a@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1727648AbfD2KaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 06:30:01 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:45250 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727560AbfD2KaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 06:30:01 -0400
+X-IronPort-AV: E=Sophos;i="5.60,409,1549897200"; 
+   d="scan'208";a="14357472"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 29 Apr 2019 19:29:59 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 12CB4401E4FA;
+        Mon, 29 Apr 2019 19:29:56 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Biju Das <biju.das@bp.renesas.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH RESEND] dt-bindings: usb: renesas_usbhs: Add support for r8a77470
+Date:   Mon, 29 Apr 2019 11:22:57 +0100
+Message-Id: <1556533377-8116-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2019 09:59, Lokesh Vutla wrote:
-> 
-> 
-> On 29/04/19 2:17 PM, Marc Zyngier wrote:
->> On 23/04/2019 11:00, Lokesh Vutla wrote:
->>> Hi Marc,
->>
->> [...]
->>
->>>> +/**
->>>> + * ti_sci_inta_set_type() - Update the trigger type of the irq.
->>>> + * @data:	Pointer to corresponding irq_data
->>>> + * @type:	Trigger type as specified by user
->>>> + *
->>>> + * Note: This updates the handle_irq callback for level msi.
->>>> + *
->>>> + * Return 0 if all went well else appropriate error.
->>>> + */
->>>> +static int ti_sci_inta_set_type(struct irq_data *data, unsigned int type)
->>>> +{
->>>> +	struct irq_desc *desc = irq_to_desc(data->irq);
->>>> +
->>>> +	/*
->>>> +	 * .alloc default sets handle_edge_irq. But if the user specifies
->>>> +	 * that IRQ is level MSI, then update the handle to handle_level_irq
->>>> +	 */
->>>> +	if (type & IRQF_TRIGGER_HIGH)
->>>> +		desc->handle_irq = handle_level_irq;
->>>> +
->>>> +	return 0;
->>>
->>>
->>> Returning error value is causing request_irq to fail, so still returning 0. Do
->>> you suggest any other method to handle this?
->>
->> But that is the very point, isn't it? If you pass the wrong triggering
->> type to request_irq, it *must* fail. What you should have is something like:
->>
->> switch (type & IRQ_TYPE_SENSE_MASK) {
->> case IRQF_TRIGGER_HIGH:
->> 	desc->handle_irq = handle_level_irq;
->> 	return 0;
->> case IRQ_TYPE_EDGE_RISING:
->> 	return 0;
->> default:
->> 	return -EINVAL;
->> }
->>
->> (adjust as necessary).
->>
->> What's wrong with this?
-> 
-> I get it. Will fix it in next version. I also got the firmware update as well.
-> If you are okay with rest of the series, I want to post the next version with
-> the firmware update.
-Then post it now, and I'll review that. I'd rather look at the latest
-than providing feedback on something that has already changed.
+Document support for RZ/G1C (R8A77470) SoC.
 
-Thanks,
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+---
+ This patch is based on usb-next.
 
-	M.
+ * Resending the patch to Greg and linux-usb@vger.kernel.org
+ (Ref: https://patchwork.kernel.org/patch/10894125/)
+---
+ Documentation/devicetree/bindings/usb/renesas_usbhs.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/usb/renesas_usbhs.txt b/Documentation/devicetree/bindings/usb/renesas_usbhs.txt
+index d93b6a1..b8acc2a 100644
+--- a/Documentation/devicetree/bindings/usb/renesas_usbhs.txt
++++ b/Documentation/devicetree/bindings/usb/renesas_usbhs.txt
+@@ -6,6 +6,7 @@ Required properties:
+ 	- "renesas,usbhs-r8a7743" for r8a7743 (RZ/G1M) compatible device
+ 	- "renesas,usbhs-r8a7744" for r8a7744 (RZ/G1N) compatible device
+ 	- "renesas,usbhs-r8a7745" for r8a7745 (RZ/G1E) compatible device
++	- "renesas,usbhs-r8a77470" for r8a77470 (RZ/G1C) compatible device
+ 	- "renesas,usbhs-r8a774a1" for r8a774a1 (RZ/G2M) compatible device
+ 	- "renesas,usbhs-r8a774c0" for r8a774c0 (RZ/G2E) compatible device
+ 	- "renesas,usbhs-r8a7790" for r8a7790 (R-Car H2) compatible device
 -- 
-Jazz is not dead. It just smells funny...
+2.7.4
+
