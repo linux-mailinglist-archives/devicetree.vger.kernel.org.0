@@ -2,85 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9062EEA33
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 20:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B28EAC9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 21:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728962AbfD2Sd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 14:33:56 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:36750 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728844AbfD2Sd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 14:33:56 -0400
-Received: by mail-oi1-f193.google.com with SMTP id l203so9166930oia.3;
-        Mon, 29 Apr 2019 11:33:56 -0700 (PDT)
+        id S1729191AbfD2TT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 15:19:58 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:40543 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729171AbfD2TT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 15:19:58 -0400
+Received: by mail-wr1-f68.google.com with SMTP id h4so17665466wre.7
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 12:19:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=o99xvhRC5sFnq6ftH7UC6NOUl2mc2F/JHhODAhGJmOI=;
+        b=j4Q5Hgg/pCWearQ9tNJdFKlIxNWXnA6VxAE6KZm5OKrvP3gX5PC7sXVA5OXNSxSAPA
+         JfwKDfUYySqqmZByUh55GXaUq5RZ57lsty2Tjny/b/+5C5ERKA8raqBc/WuJ57ANtFnc
+         m8espR+RY2lztpXSY1nTpQlqFiqZDuXIP9T3VZ/aSIikIKh0dlLqETf+cZldoCejkQv3
+         Oq++XXVNkYPGJFPj6AHRlXRjeAMUFm2vKIZ3R+psEgjITF8A3xa2EFCeWZ3TE6vsDS8B
+         2TYJ5P98wMFyraYxFHJigGr2MskC0DCNDNQRmryXw7idPHKFaWgpMSU4pJPFTEDKg8UU
+         ifug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KJFu8dTPT6iuvNmfV3Wh3Rzk/IF0n/PBhWFcc8TY2TA=;
-        b=iLSEjXFzYOBpkGrpQkla7Jz76o0XB/MaqbKFBXx4Fvo/jyRJn1lvsYAM7aFHfsOAEt
-         fhINmEkmkSlN7Yj/iMEK7U1v0vLTiW0aQMbsxh0DFCcfpj4aXL91bBlZdYEBSsdkz/EP
-         lxMqjUCT+skA6KacCPjvINGPVMB93wTZhJRh2w0rDpFjgWjhAtY7H9QJNgQON2FhWLEi
-         xPVByuJT2DuOx3fF8bHHt6fM1zlE69C8G5TLaB4FqCfOzpSMdfJ+1O3/ssddJGUwD8Od
-         mf9cKuJ4B7twPg+V4N4cTklZ/vaCB/caionKpEwPt/rmGLWrlXEP81xvU5OmXKPMjs0N
-         sVJQ==
-X-Gm-Message-State: APjAAAVcxbYSpFUCV2QG4Nj13QQIyglEB62LqcTxzTSq2B1LCvIHC935
-        UfAuUHg7DRzVm2bm4o5wXg==
-X-Google-Smtp-Source: APXvYqzPIhElNEZuiQQVniG7rQupF2EIia+0z66Gb6MUydRNqzefBooqBOuTphKj7MvrW3USyNhXbA==
-X-Received: by 2002:aca:ecd5:: with SMTP id k204mr363249oih.38.1556562835563;
-        Mon, 29 Apr 2019 11:33:55 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j82sm14275095oih.31.2019.04.29.11.33.54
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=o99xvhRC5sFnq6ftH7UC6NOUl2mc2F/JHhODAhGJmOI=;
+        b=jj6M/MYiHuTuLc8YOVAVtD1MNvjEuGvC9Myc2TKEx1wRbnJWYZUxrZm9+9qMtQQFAn
+         AtVhFZsf8/Qw70WtT0IH1r6BwU8Wda0psHcO3dxfXEcrqR0ppouFww8NWhd0W3sJDALF
+         hYNJ2Mo+dOV4SUpKALqjpjXq76/MeNjS95hzwLopd73zWJ/Qy8X+p+aghnaeyomIBKhL
+         Qiu4/ujUlzZeIAhRgMTDokG/Nww4Era7pfvRUmDfgBhmwa1LNvQ5X8fL0i1kOmrXDsRG
+         cKGUfYCClR6oTFrWS89+jOE3T5bnNkGHWb9A+bCA9HbJQXwFa8stXhAxr5lXzr9ra6y9
+         +znQ==
+X-Gm-Message-State: APjAAAULsw3M+UJjkv7HTDeUfK1ouoYlADZgk9OdW4k9o1+lTdF8PWK8
+        2gG7GpXr/xYblLuUpQGQlE7UGg==
+X-Google-Smtp-Source: APXvYqwEXr8OYIPTGri/6F9PHbn5e5LQun9eok/Rf+idtRLZMn4WX5GSh+J0vBLZTxGXNwVeC+JJnw==
+X-Received: by 2002:a5d:5343:: with SMTP id t3mr5278260wrv.262.1556565596087;
+        Mon, 29 Apr 2019 12:19:56 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:f580:39a4:9be7:1974])
+        by smtp.googlemail.com with ESMTPSA id d10sm551143wmb.15.2019.04.29.12.19.53
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 11:33:54 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 13:33:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
-        mark.rutland@arm.com, jonathanh@nvidia.com,
-        lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 28/30] dt-bindings: pci: tegra: Document nvidia,rst-gpio
- optional prop
-Message-ID: <20190429183354.GA9331@bogus>
-References: <20190411170355.6882-1-mmaddireddy@nvidia.com>
- <20190411170355.6882-29-mmaddireddy@nvidia.com>
- <20190415142012.GB29254@ulmo>
+        Mon, 29 Apr 2019 12:19:55 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Guillaume La Roque <glaroque@baylibre.com>,
+        linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: add a 'drive-strength-uA' property
+In-Reply-To: <20190418124758.24022-2-glaroque@baylibre.com>
+References: <20190418124758.24022-1-glaroque@baylibre.com> <20190418124758.24022-2-glaroque@baylibre.com>
+Date:   Mon, 29 Apr 2019 12:19:48 -0700
+Message-ID: <7hk1fcr54b.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190415142012.GB29254@ulmo>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 15, 2019 at 04:20:12PM +0200, Thierry Reding wrote:
-> On Thu, Apr 11, 2019 at 10:33:53PM +0530, Manikanta Maddireddy wrote:
-> > Document "nvidia,rst-gpio" optional property which supports GPIO based
-> > PERST# signal.
-> > 
-> > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> > ---
-> >  Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt b/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> > index dca8393b86d1..23928fd59538 100644
-> > --- a/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> > @@ -75,6 +75,8 @@ Optional properties:
-> >    Pass pinctrl phandle to allow driver bring PCIe IO out of DPD state.
-> >  - nvidia,plat-gpios: A list of platform specific gpios which controls
-> >    endpoint's internal regulator or PCIe logic.
-> > +- nvidia,rst-gpio: If GPIO is used as PERST# signal instead of available
-> > +  SFIO, add this property with phandle to GPIO controller and GPIO number.
-> 
-> GPIO properties are pretty much standardized, so this should really be
-> called just "reset-gpio".
+Rob,
 
-"reset-gpios" actually.
+Guillaume La Roque <glaroque@baylibre.com> writes:
 
-Rob
+> This property allow drive-strength parameter in uA instead of mA.
+>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> index cef2b5855d60..fc7018459aa2 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> @@ -258,6 +258,7 @@ drive-push-pull		- drive actively high and low
+>  drive-open-drain	- drive with open drain
+>  drive-open-source	- drive with open source
+>  drive-strength		- sink or source at most X mA
+> +drive-strength-uA	- sink or source at most X uA
+>  input-enable		- enable input on pin (no effect on output, such as
+>  			  enabling an input buffer)
+>  input-disable		- disable input on pin (no effect on output, such as
+> @@ -326,6 +327,8 @@ arguments are described below.
+>  
+>  - drive-strength takes as argument the target strength in mA.
+>  
+> +- drive-strength-uA takes as argument the target strength in uA.
+> +
+>  - input-debounce takes the debounce time in usec as argument
+>    or 0 to disable debouncing
+
+Can we get your input on this?
+
+Linus W. is OK with this[1], but wants opinion/approval from DT
+maintainers first.
+
+Thanks,
+
+Kevin
+
+[1] https://lore.kernel.org/lkml/CACRpkdZ2dPzrtJQkxmN7V=f6+qYZAvrF+b0J77cN9hoRAgFqrw@mail.gmail.com/T/#u
