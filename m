@@ -2,225 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B35E208
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 14:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 447C1E227
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 14:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728003AbfD2MOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 08:14:39 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:58367 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727956AbfD2MOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 08:14:39 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190429121437euoutp01fee6063db88787f703864d1eb1a8bec4~Z8PQeHJ0z0049000490euoutp01e
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 12:14:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190429121437euoutp01fee6063db88787f703864d1eb1a8bec4~Z8PQeHJ0z0049000490euoutp01e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1556540077;
-        bh=8WtmNbCiuXOlZdfikeBW8O+Q3p5gVptpLFlSyy03NGg=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=TeatuW+qhmL6kCQYo7NGVyphd+bFyzWWIW5M3CVoRw4kydBL5ufe/pIsFdOyVe6Vo
-         9HSD8Q2lmijya1b7TrvJR1QJv2+ebhTPStKvPGzX0eby0DigTvf8jtTtHdT0KXo59x
-         HrJOXWRy7NmcMp59RotzuQbjhBxi9VFxax4MYlWQ=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190429121436eucas1p208aa5083d4906f1d25f97f87ba03880a~Z8PPqmQtX1716017160eucas1p2t;
-        Mon, 29 Apr 2019 12:14:36 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 9A.61.04377.CAAE6CC5; Mon, 29
-        Apr 2019 13:14:36 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190429121435eucas1p1b5e6d225be2d61b0aecb4a6b726bfbfe~Z8PO3Q3F51185811858eucas1p1J;
-        Mon, 29 Apr 2019 12:14:35 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190429121435eusmtrp271a7206da39948596b662145c2c96e95~Z8POpDVs10433504335eusmtrp2H;
-        Mon, 29 Apr 2019 12:14:35 +0000 (GMT)
-X-AuditID: cbfec7f4-12dff70000001119-38-5cc6eaac5ed7
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 2E.0C.04146.BAAE6CC5; Mon, 29
-        Apr 2019 13:14:35 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190429121434eusmtip1724902234849d147d30d670fa7811939~Z8PN1Mrly1687616876eusmtip1t;
-        Mon, 29 Apr 2019 12:14:34 +0000 (GMT)
-Subject: Re: [PATCH v6 06/10] dt-bindings: memory-controllers: add
- Exynos5422 DMC device description
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        cw00.choi@samsung.com, kyungmin.park@samsung.com,
-        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
-        myungjoo.ham@samsung.com, keescook@chromium.org, tony@atomide.com,
-        jroedel@suse.de, treding@nvidia.com, digetx@gmail.com,
-        willy.mh.wolff.ml@gmail.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <e4613d6e-0893-8163-32ef-8137c40d2b24@partner.samsung.com>
-Date:   Mon, 29 Apr 2019 14:14:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190425195750.GA26031@bogus>
+        id S1728088AbfD2MVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 08:21:55 -0400
+Received: from mail-eopbgr1400112.outbound.protection.outlook.com ([40.107.140.112]:6073
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727956AbfD2MVy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 08:21:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ju9TECRAVBKK2ILhSj3cwBNS7xPBvY1zH31utTFbUfY=;
+ b=Mm5rM8ilivDnGbAv5GUgNa9/sdb4QGYse2qsce8oVqklDPxHEABfRe3qufP6rv9a6fd5JKPLvudeNIFEXzxrZ5wkCXG3IhR9pjz1TBDnYt+yV9by4iL2tHSYlHEAJaNGUIAiLD+LMOcHu49nrF3q32rgAE/++//ZlgvYOH7rKpM=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY1PR01MB1628.jpnprd01.prod.outlook.com (52.133.161.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1835.16; Mon, 29 Apr 2019 12:21:51 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1835.018; Mon, 29 Apr 2019
+ 12:21:51 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 0/5] ARM: rskrza1: Add RZ/A1 IRQC and input switches
+Thread-Topic: [PATCH 0/5] ARM: rskrza1: Add RZ/A1 IRQC and input switches
+Thread-Index: AQHU/m8QhsbWkw/8AEW0pGxxlBRO8aZTCh5g
+Date:   Mon, 29 Apr 2019 12:21:50 +0000
+Message-ID: <TY1PR01MB15620A5958E5A9211518E0C48A390@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190429093631.10799-1-geert+renesas@glider.be>
+In-Reply-To: <20190429093631.10799-1-geert+renesas@glider.be>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUzMYRz33O/1jsvTJX2X5uXMqCg1s8cyw8x+sxljNtHGqZ8yd1fuJyQv
-        52WoVIqFI/FXLdGLVlcTU+lwuJqXIuWlaKUXXLLyku5+mf77fD7fz+f5Pp9nD09p+hhffodx
-        t2gy6vRaVkWX1Q065hV01UXMr3rsRYovFDKksb+DITm1Txly/WsbImcfZSvI4xQDSW/7TBGH
-        o4gjT452c+RZ5WWWOFNrEbnguKMgN2pbONJ8JI8lw7etHKnpPsmQu89XkeafHmTgwQe01EsY
-        +J5JC5fMDbRQYWnhhJL8JFZIPdbLCmml+Ui4ZU8UnCVT1/KbVIujRP2OPaIpeMlWVUzS0Ds2
-        7szMfdZ7bxRmVO6XjJQ84AVwJaWJSkYqXoPzEHws/z1K+kfI22JaJk4Egx+tTDLi3ZE/DQdd
-        aQ3ORdD5MkD29CCoaq3nXAMvvB0sn8oULjwJz4CfJ7IYl4nCVRQ4298j10EsDgJr/i6XR41X
-        wreOH6wL03gWNJVY3VlvvBHe1hUxsscTHl5sp11YiQPhyw+7W6ewD7xuz1HIeBqU91x2NwCc
-        zUNGfx8j91wB15LzOBl7QZetdBT7wXCFHAYsgTn1GpLxAWhLzx71hEGNrcFdnsL+UFgZLMvL
-        oLP+HCu/iQc09XjKV/CAzLLzlCyr4dQJjeyeA6Wn60cXTYbcgizuDNJaxhSzjCljGVPG8n/v
-        VUTnIx8xXjJEi1KoUdwbJOkMUrwxOigy1lCCRr6h/Y+t34oqf22rRphH2gnq6V33IzSMbo+U
-        YKhGwFPaSWrBNiKpo3QJ+0VT7BZTvF6UqtEUntb6qBPHvduswdG63eJOUYwTTf+mCl7pa0an
-        FjZ3Fs6ZGNnonRbJNax5WfzKIyutZcPRczGRYdXHW537QhflNv4KD+1bHTi3yG/gYoGDv2nc
-        6P/1c+XWZvv6qIUdJ0PaH3y3H8o5EnbYMS1IrxnfuzhknTKhPOVw3ftw77jY88PHkG1IM7s3
-        Y0i5P9y37apZv+Tbi57l2YNGpIqYrqWlGF1IAGWSdH8BU3vuA4IDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphleLIzCtJLcpLzFFi42I5/e/4Xd3Vr47FGFw9LmmxccZ6VovrX56z
-        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
-        e+Quu8XtxhVsFv/37GC3OPymndVi/xUvi9u/+Sy+nXjE6CDs8e3rJBaP2Q0XWTx2zrrL7rFp
-        VSebR2/zOzaPvi2rGD02n672+LxJLoAjSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DY
-        PNbKyFRJ384mJTUnsyy1SN8uQS+j89cDtoIJyhU7Dt5hamDcLtPFyMEhIWAi8e9ibRcjF4eQ
-        wFJGiUdnV7B2MXICxcUkJu3bzg5hC0v8udbFBlH0mlHi54uZbCAJYYE0ictXn7GA2CICihK/
-        26axghQxC+xllli/ay5URwOTxOGLjWwg69gE9CR2rCoEaeAVcJP49Pw72CAWAVWJG5t2MIHY
-        ogIREmfer2CBqBGUODnzCZjNKaAt8eH7abDrmAXMJOZtfsgMYYtL3HoynwnClpfY/nYO8wRG
-        oVlI2mchaZmFpGUWkpYFjCyrGEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAlPAtmM/N+9gvLQx
-        +BCjAAejEg+vwqujMUKsiWXFlbmHGCU4mJVEeD2OA4V4UxIrq1KL8uOLSnNSiw8xmgI9N5FZ
-        SjQ5H5ie8kriDU0NzS0sDc2NzY3NLJTEeTsEDsYICaQnlqRmp6YWpBbB9DFxcEo1MOZNmSQh
-        0rZUfpmpvktt27oytq72wh27Y1cvX2s9RSF47xbVJpvVLL9CfkkEHZ/7c3XGIo5AdqbpvM+2
-        aPzcz5a9ILP47+Z2ES4e4a4WhzPpixjiPv8NEKlekFHc3f799624//ck7q24FPmGwz7lm9lG
-        09qOvdrrU2t3ltrZZsz4lFgi9uxmgRJLcUaioRZzUXEiAKeaLWEXAwAA
-X-CMS-MailID: 20190429121435eucas1p1b5e6d225be2d61b0aecb4a6b726bfbfe
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
-References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc@eucas1p1.samsung.com>
-        <1555683568-20882-7-git-send-email-l.luba@partner.samsung.com>
-        <20190425195750.GA26031@bogus>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e03789ae-3df5-4320-31f8-08d6cc9d421f
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1628;
+x-ms-traffictypediagnostic: TY1PR01MB1628:
+x-microsoft-antispam-prvs: <TY1PR01MB16282CD60ED6F3D2DDFBBAD58A390@TY1PR01MB1628.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0022134A87
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(366004)(376002)(396003)(39850400004)(136003)(199004)(189003)(26005)(102836004)(99286004)(33656002)(2906002)(68736007)(97736004)(6506007)(9686003)(55016002)(229853002)(256004)(53936002)(52536014)(6246003)(5660300002)(8676002)(71200400001)(81156014)(81166006)(66556008)(66446008)(64756008)(305945005)(73956011)(74316002)(66946007)(76116006)(7736002)(4744005)(7416002)(76176011)(11346002)(25786009)(54906003)(186003)(110136005)(4326008)(6436002)(6116002)(86362001)(3846002)(478600001)(316002)(66066001)(14454004)(486006)(476003)(7696005)(71190400001)(8936002)(72206003)(446003)(66476007);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1628;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ThJ7lBOX+TJs9IMBV/eI5WZtHjw4hmuj3ANJPVKQ297/0z4CFOY8154bHkq+EAQo212nMJOCDvCVSu5f3W1EhVNZoEGbIquPJVDPwHdc2PUFQ4ML+eguYbKey83FMLpbSVD2dd+HbXj4ldTMmSAsL+kYggn3zpcGoFmhPUtWHoKQaKAmPrnRU5m+mu6hktB0t6uXhWF5t8k1gb2nMBRDY4F5B4bpPBlIiC4O6FFSqzE9KuUbK95fgQ+BnehM4Cs7iKNC7yXgmiXt+IE7zRf8eMduSxIDdOUK2ZbbEvJqPDH5zA7rVrr0WI6Yt4Eo8eJyQf6k/IKSSGOCbIGnr+9mivBSs7ZvoBcwoF1xaCtZNdq/SJHekaXk5Lv0ELpzA3rAS3X6x3w1mq7hgG7th9LCvawSWr7zLZUsXBxihF0s59g=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e03789ae-3df5-4320-31f8-08d6cc9d421f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2019 12:21:50.8454
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1628
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Geert,
 
-On 4/25/19 9:57 PM, Rob Herring wrote:
-> On Fri, Apr 19, 2019 at 04:19:24PM +0200, Lukasz Luba wrote:
->> The patch adds description for DT binding for a new Exynos5422 Dynamic
->> Memory Controller device.
->>
->> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->> ---
->>   .../bindings/memory-controllers/exynos5422-dmc.txt | 73 ++++++++++++++++++++++
->>   1 file changed, 73 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->> new file mode 100644
->> index 0000000..133b3cc
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->> @@ -0,0 +1,73 @@
->> +* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
->> +
->> +The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
->> +memory chips are connected. The driver is to monitor the controller in runtime
->> +and switch frequency and voltage. To monitor the usage of the controller in
->> +runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
->> +is able to measure the current load of the memory.
->> +When 'userspace' governor is used for the driver, an application is able to
->> +switch the DMC and memory frequency.
->> +
->> +Required properties for DMC device for Exynos5422:
->> +- compatible: Should be "samsung,exynos5422-bus".
->> +- clock-names : the name of clock used by the bus, "bus".
->> +- clocks : phandles for clock specified in "clock-names" property.
->> +- devfreq-events : phandles for PPMU devices connected to this DMC.
->> +- vdd-supply : phandle for voltage regulator which is connected.
->> +- reg : registers of two CDREX controllers, chip information, clocks subsystem.
->> +- operating-points-v2 : phandle for OPPs described in v2 definition.
->> +- device-handle : phandle of the connected DRAM memory device. For more
->> +	information please refer to Documentation
-> 
-> The memory node(s) should be a child of the memory controller IMO.
-I have followed the TI code for LPDDR2. They use 'device-handle'
-probably because the memory controller can be moved into the common
-.dtsi and taken by reference in .dts in a proper board file.
-The board .dts files might specify different DRAM chips and timings.
-In Exynos case we will also have such situation: one memory controller
-and a few different DRAM chips.
+Thanks for this patch!
 
-> 
->> +- devfreq-events : phandles of the PPMU events used by the controller.
->> +
->> +Example:
->> +
->> +	ppmu_dmc0_0: ppmu@10d00000 {
->> +		compatible = "samsung,exynos-ppmu";
->> +		reg = <0x10d00000 0x2000>;
->> +		clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
->> +		clock-names = "ppmu";
->> +		status = "okay";
-> 
-> Don't show 'status' in examples.
-Thank you, I accidentally copied it from dt file.
+I've been hacking this support into the standard GIC driver in our BSPs=20
+for years now. :o
 
-Regards,
-Lukasz
-> 
->> +		events {
->> +			ppmu_event_dmc0_0: ppmu-event3-dmc0_0 {
->> +				event-name = "ppmu-event3-dmc0_0";
->> +			};
->> +		};
->> +	};
->> +
->> +	dmc: memory-controller@10c20000 {
->> +		compatible = "samsung,exynos5422-dmc";
->> +		reg = <0x10c20000 0x10000>, <0x10c30000 0x10000>,
->> +			<0x10000000 0x1000>, <0x10030000 0x1000>;
->> +		clocks = 	<&clock CLK_FOUT_SPLL>,
->> +				<&clock CLK_MOUT_SCLK_SPLL>,
->> +				<&clock CLK_FF_DOUT_SPLL2>,
->> +				<&clock CLK_FOUT_BPLL>,
->> +				<&clock CLK_MOUT_BPLL>,
->> +				<&clock CLK_SCLK_BPLL>,
->> +				<&clock CLK_MOUT_MX_MSPLL_CCORE>,
->> +				<&clock CLK_MOUT_MX_MSPLL_CCORE_PHY>,
->> +				<&clock CLK_MOUT_MCLK_CDREX>,
->> +				<&clock CLK_DOUT_CLK2X_PHY0>,
->> +				<&clock CLK_CLKM_PHY0>,
->> +				<&clock CLK_CLKM_PHY1>;
->> +		clock-names =	"fout_spll",
->> +				"mout_sclk_spll",
->> +				"ff_dout_spll2",
->> +				"fout_bpll",
->> +				"mout_bpll",
->> +				"sclk_bpll",
->> +				"mout_mx_mspll_ccore",
->> +				"mout_mx_mspll_ccore_phy",
->> +				"mout_mclk_cdrex",
->> +				"dout_clk2x_phy0",
->> +				"clkm_phy0",
->> +			        "clkm_phy1";
->> +		status = "okay";
->> +		operating-points-v2 = <&dmc_opp_table>;
->> +		devfreq-events = <&ppmu_event3_dmc0_0>,	<&ppmu_event3_dmc0_1>,
->> +				<&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
->> +		operating-points-v2 = <&dmc_opp_table>;
->> +		device-handle = <&samsung_K3QF2F20DB>;
->> +		vdd-supply = <&buck1_reg>;
->> +	};
->> -- 
->> 2.7.4
->>
-> 
-> 
+On Mon, Apr 29, 2019, Geert Uytterhoeven wrote:
+> I expect this driver to be reusable for RZ/A2, after adding a match
+> entry with .gic_spi_base =3D 4.
+
+Yes, the same IP block is in RZ/A2.
+
+So with that said, should we call this driver irq-renesas-rza1.c or just
+irq-renesas-rza.c?
+It doesn't really matter to me.
+For an RZ/A3, we might just use the same IP again.
+
+Side note, I've seen this interrupt pin HW in some older SH4A devices=20
+(like SH7724 and SH7757). So it's been around for a while.
+
+
+Chris
+
