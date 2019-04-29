@@ -2,75 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B31EC6D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 00:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7856DEC9D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 00:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729507AbfD2WFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 18:05:45 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:45530 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729437AbfD2WFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 18:05:45 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t189so6622846oih.12;
-        Mon, 29 Apr 2019 15:05:44 -0700 (PDT)
+        id S1729605AbfD2WN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 18:13:56 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33995 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729418AbfD2WN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 18:13:56 -0400
+Received: by mail-oi1-f194.google.com with SMTP id v10so9690823oib.1;
+        Mon, 29 Apr 2019 15:13:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NqqUvI8ozIYLQ4d/GuKEHP8sALx3PYdlLGZJSzshmEI=;
-        b=bUV1rczi22taJVws3Otr0g1aVfzPan9fh9yjWj1LUC8X95H4PeUTCjeTAJk7AstwQg
-         4hijvEXujAjnU7D9meuXJvks/PlQkF3cAgSTaqali2Hj0xtno9kkCnGJcmsQWb/ww7wl
-         2ieQu6ac5PhTipygTjKyhMycOqe0YsEErteyAiBSegaLsIujT/VAn0bYUaZHSWyWEho+
-         DHFlFMjzxgCsdc2EXr9n/+72E5pOrOonjZfw7o/q4QJfOdp6YsoaVYY8NH3fTKLbHqKo
-         z48lBLBFDdCuA8+SfO5FWILnEp3KglnDOMdKVg/YKwGH55LTffYIceGq2V2wciWri4vy
-         fqYA==
-X-Gm-Message-State: APjAAAX4pY4bILeEK5jaMN1Q7lNt5kA9xIKy8Ya7PequKXi+5eDLuFjt
-        TaHzPGSvv/KnaxAdGsQ5dw==
-X-Google-Smtp-Source: APXvYqyUgr9Px81sKHtSP+7CZcQbfQ7hAfxA751GonSFy+nyurN+Oj7Tr+NkXDAyDlFf3zO54kzuNg==
-X-Received: by 2002:aca:c4c3:: with SMTP id u186mr986160oif.82.1556575544019;
-        Mon, 29 Apr 2019 15:05:44 -0700 (PDT)
+        bh=m4+1WtfCWcUUeWzzaEWxRWw2TZvNITlNmy6F8RQ/rdw=;
+        b=KXZyjTZ52r4ijyvmLBB9YxMNoxRodB1tMbFAl2xSR6Rmawc2UhIaiyVNn3h/yy0+eG
+         AyQ7hbLDqaTaui8mIdw2gMCulUzTRcge4bOVUiPJzO+RXuqRBUGB46993s3g6Uk7FcRN
+         BffSvqjPd+Rv5WhUFUFkZblTJPDZ1M6XdwMYkEZdmMlTeKsVMEFqAQUae5XQG85JenS0
+         E7qTcw+4CuB0cftWrtJMp4hnXpGVxJQocIRPFpwV7+qPGDdeaAZ6XW7LialdZ76d67cL
+         VS418nwi+v01OIKTmqqTlVbjbaUhld0GYPblSCOXXBZL1KzGAbKCwDQ7F5iKiuJj+jso
+         SZ3w==
+X-Gm-Message-State: APjAAAVqvDN3PybuGaz9qybxDhKeItCcALx3lUbsqU5daNF14eS0Swvo
+        ixbTx6TELJUX4F0Mvp/KKxrlFso=
+X-Google-Smtp-Source: APXvYqyHtudepiGHnk8jmspB8YE7X7Z8AuRjDoRWm2vUgAeBzx34BJxAuulUTEO+NLO70TVzjbC5Xw==
+X-Received: by 2002:aca:cf8e:: with SMTP id f136mr891742oig.118.1556576035146;
+        Mon, 29 Apr 2019 15:13:55 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j7sm13873345otr.50.2019.04.29.15.05.43
+        by smtp.gmail.com with ESMTPSA id n185sm12090613oif.8.2019.04.29.15.13.54
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 15:05:43 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 17:05:42 -0500
+        Mon, 29 Apr 2019 15:13:54 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 17:13:53 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Joseph Lo <josephl@nvidia.com>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: memory: Add binding for NVIDIA
- Tegra30 External Memory Controller
-Message-ID: <20190429220542.GA17924@bogus>
-References: <20190414202009.31268-1-digetx@gmail.com>
- <20190414202009.31268-3-digetx@gmail.com>
+To:     Matheus Castello <matheus@castello.eng.br>
+Cc:     sre@kernel.org, krzk@kernel.org, mark.rutland@arm.com,
+        cw00.choi@samsung.com, b.zolnierkie@samsung.com,
+        lee.jones@linaro.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: Max17040: Add low
+ level SOC alert threshold
+Message-ID: <20190429221353.GA25837@bogus>
+References: <CAJKOXPfvs=uETF0-xpwCWc5khSpWjpz2zz354Jcx1bVjm9cG2A@mail.gmail.com>
+ <20190415012635.6369-1-matheus@castello.eng.br>
+ <20190415012635.6369-3-matheus@castello.eng.br>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190414202009.31268-3-digetx@gmail.com>
+In-Reply-To: <20190415012635.6369-3-matheus@castello.eng.br>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 14, 2019 at 11:20:07PM +0300, Dmitry Osipenko wrote:
-> Add device-tree binding for NVIDIA Tegra30 External Memory Controller.
-> The binding is based on the Tegra124 EMC binding since hardware is
-> similar, although there are couple significant differences.
-
-My comments on Tegra124 binding apply here.
-
+On Sun, Apr 14, 2019 at 10:26:33PM -0300, Matheus Castello wrote:
+> For configure low level state of charge threshold alert signaled from
+> max17040 we add "maxim,alert-soc-level" property.
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
 > ---
->  .../memory-controllers/nvidia,tegra30-emc.txt | 257 ++++++++++++++++++
->  1 file changed, 257 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.txt
+>  .../power/supply/max17040_battery.txt         | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/max17040_battery.txt b/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+> new file mode 100644
+> index 000000000000..9b2cc67d556f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+> @@ -0,0 +1,24 @@
+> +max17040_battery
+> +~~~~~~~~~~~~~~~~
+> +
+> +Required properties :
+> + - compatible : "maxim,max17040" or "maxim,max77836-battery"
+
+This is really a charger, not a battery.
+
+> +
+> +Optional properties :
+> +- maxim,alert-soc-level :	The alert threshold that sets the state of
+> + 				charge level where an interrupt is generated.
+> +                          	Can be configured from 1 up to 32. If skipped
+> +				the power up default value of 4 will be used.
+
+Units? This is a low or high alert? Does a common property make sense 
+here?
+
+> +- interrupt-parent : 		The GPIO bank from the interrupt line.
+
+Drop this. interrupt-parent is implied.
+
+> +- interrupts : 			Interrupt line see Documentation/devicetree/
+> +				bindings/interrupt-controller/interrupts.txt
+> +
+> +Example:
+> +
+> +	battery-charger@36 {
+> +		compatible = "maxim,max17040";
+> +		reg = <0x36>;
+> +		maxim,alert-soc-level = <10>;
+> +		interrupt-parent = <&gpio7>;
+> +		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+
+Usually there are battery properties that need to be described too...
+
+> +	};
+> -- 
+> 2.17.0
+> 
