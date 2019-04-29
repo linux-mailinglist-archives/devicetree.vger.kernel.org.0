@@ -2,75 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C78CFEBFD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 23:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2EEDEC1C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Apr 2019 23:37:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729371AbfD2VPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 17:15:45 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:40725 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728928AbfD2VPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 17:15:45 -0400
-Received: by mail-oi1-f196.google.com with SMTP id y64so4010898oia.7;
-        Mon, 29 Apr 2019 14:15:45 -0700 (PDT)
+        id S1729378AbfD2Vhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 17:37:43 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33861 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729370AbfD2Vhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 17:37:43 -0400
+Received: by mail-ot1-f68.google.com with SMTP id n15so4003163ota.1;
+        Mon, 29 Apr 2019 14:37:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=koMqFVq+sZtTFE9lQzOVI0CiiGelX/b7gktI+eHUpmg=;
-        b=PEOQQ8GZBjzkgi252/hzzp7aa9ZVl8honj6FKMl0FBHbv4bM+sMVSLSskMdfXp9ZC+
-         wUI00YNVevAakayykq/qJ6md6IglnYkeEcA3jKj9g31PzXxlTNk53GrEkDtFKUNYWWqJ
-         tEuh2XTm/mMawEJMjlPvK3e/IXHVGX/Bs5TJCcZaXs0Zjx4KiuuHcYvtXKBym0edTsoo
-         1gw5gmrOdzgzX43rkC01ncrGYU7jCZxwfPkodmod66PxTQu+rAUsKjv/PPXryFedrOES
-         UveO1/9VRBm+OQhvvwmvrscD2J8dizofx9LFYonp/IcD0W9dgFL/ERTRjLPaTSelpcWx
-         7RBw==
-X-Gm-Message-State: APjAAAWqK/0A/N6N2s46r6L4cgZ8/ygBwiLDRoIjQ7XM5Ppe1QfYrk/Y
-        l8eAsGwB6l7lh3y9d3hWyA==
-X-Google-Smtp-Source: APXvYqz2TEK23uu2UtgA9T+1nPA3Aim10UWLnbz8RQmwt+Rwp7nNsetW4zP+Fj0IQs/Sa89YglGUrQ==
-X-Received: by 2002:aca:c7c5:: with SMTP id x188mr806556oif.48.1556572543997;
-        Mon, 29 Apr 2019 14:15:43 -0700 (PDT)
+        bh=oRIzLTrSx8sr8Z69AM2UYd9a4FXBrnnXDJEnqjx6bRs=;
+        b=J5mhtTpvKGEXHtJUtASn0KqGsmAoIZFMI0Pp7IZI8ZDewIujHrlgdVWTotOJVbYnRC
+         qFEX4JNTw6uG8wt+LGRjmNs2+ItzICy6knmZAyRVuflwHq/WDGHVRvyYuL3JRhecThAL
+         aZa4gjwhCZcobAaJ1bwHQV3esmQL8VXCLz8xpIYt03I4TR/tC48fxfgXoiSETu/4d0+d
+         KtWSR3pHOqA3BnA4yy3U4P+NyKMVuf8Rkj3S4JihyMB4sWBfKgG9EPGPdqyFkXdSHJ69
+         Vk72qp5xByzw4j91qeMM2NDwIlzZtHZEhQPWc8AwxybwsPdgHJb1xvFijhMxmH6Tq2uG
+         9wLw==
+X-Gm-Message-State: APjAAAWFaRbQTce+JS7vnZUsUhy++Xnp9JnbpiuBqiP5sQeXY+NpEc7g
+        UA99LbpuZxA77YgZS8aWXw==
+X-Google-Smtp-Source: APXvYqxeGATGcJAobyxm9pqykSGskpXvjmXcXQZgSiDA+KW4LYFL0/aUikQVn3uyjbcKZnNFg9l4ZQ==
+X-Received: by 2002:a9d:6d84:: with SMTP id x4mr3812433otp.337.1556573862454;
+        Mon, 29 Apr 2019 14:37:42 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g25sm13852036otl.7.2019.04.29.14.15.42
+        by smtp.gmail.com with ESMTPSA id w10sm14496733oiw.48.2019.04.29.14.37.40
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 14:15:43 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 16:15:42 -0500
+        Mon, 29 Apr 2019 14:37:41 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 16:37:40 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     robh+dt@kernel.org, jacek.anaszewski@gmail.com, pavel@ucw.cz,
-        marek.behun@nic.cz, rdunlap@infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Dan Murphy <dmurphy@ti.com>
-Subject: Re: [PATCH v2 6/7] dt: bindings: lp50xx: Introduce the lp50xx family
- of RGB drivers
-Message-ID: <20190429211542.GA28956@bogus>
-References: <20190411193848.23140-1-dmurphy@ti.com>
- <20190411193848.23140-7-dmurphy@ti.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     broonie@kernel.org, mark.rutland@arm.com,
+        Hamish Martin <hamish.martin@alliedtelesis.co.nz>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Add spi-mux-gpio
+Message-ID: <20190429213740.GA29098@bogus>
+References: <20190412050213.17698-1-chris.packham@alliedtelesis.co.nz>
+ <20190412050213.17698-2-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190411193848.23140-7-dmurphy@ti.com>
+In-Reply-To: <20190412050213.17698-2-chris.packham@alliedtelesis.co.nz>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Apr 2019 14:38:47 -0500, Dan Murphy wrote:
-> Introduce the bindings for the Texas Instruments LP5036, LP5030, LP5024 and the LP5018
-> RGB LED device driver.  The LP5036/3024/18 can control RGB LEDs individually
-> or as part of a control bank group.  These devices have the ability
-> to adjust the mixing control for the RGB LEDs to obtain different colors
-> independent of the overall brightness of the LED grouping.
+On Fri, Apr 12, 2019 at 05:02:11PM +1200, Chris Packham wrote:
+> Add binding documentation for spi-mux-gpio which is a slightly more
+> complicated hardware implementation of using gpios to steer SPI chip
+> selects.
 > 
-> Datasheet:
-> http://www.ti.com/lit/ds/symlink/lp5024.pdf
-> http://www.ti.com/lit/ds/symlink/lp5036.pdf
-> 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  .../devicetree/bindings/leds/leds-lp50xx.txt  | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-lp50xx.txt
+>  .../devicetree/bindings/spi/spi-mux-gpio.txt  | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/spi-mux-gpio.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-mux-gpio.txt b/Documentation/devicetree/bindings/spi/spi-mux-gpio.txt
+> new file mode 100644
+> index 000000000000..a32f25321d37
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/spi-mux-gpio.txt
+> @@ -0,0 +1,45 @@
+> +SPI bus gpio multiplexer
+> +
+> +The SPI bus gpio multiplexer can be used to implement more complicated access
+> +logic than can be supported with the cs-gpios property of a SPI bus.
+> +
+> +In the example below we have a SoC with a single SPI CS that is gated by the
+> +state of a gpio to select the desired SPI device.
+> +
+> +     +----------+  CS    +-----+ CS0  +----+
+> +     |          |--------|     |------|    |
+> +     |          |        | \ / |      +----+
+> +     |   SoC    |        |  +  |
+> +     |          |  GPIO  | / \ | CS1  +----+
+> +     |          |--------|     |------|    |
+> +     +----------+        +-----+      +----+
+> +
+> +Required properties:
+> +- compatible	- must be "spi-mux-gpio"
+> +- gpios		- gpios used to implement the multiplexing logic
+> +- spi-parent-bus - parent spi bus to use
+> +
+> +Optional properties:
+> +- spi-parent-cs - chip select on parent bus to use. Defaults to 0 if not
+> +                  specified.
+> +
+> +Example for a multiplexer with a single gpio:
+> +
+> +	spi-mux {
+> +		compatible = "spi-mux-gpio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		gpios = <&gpio0 1 0>;
+> +		spi-parent-bus = <&spi0>;
+> +		spi-parent-cs = <0>;
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Why is this out of band? We can do something similar to I2C and use the 
+mux-control binding:
+
+spi {
+	mux@0 {
+		compatible = "spi-mux";
+		reg "0"; 
+		mux-controls = ...;
+
+		spi-dev@0 {};
+		spi-dev@1 {};
+	};
+
+	spi-dev@1 {};
+
+};
+
+Rob
