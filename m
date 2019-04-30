@@ -2,120 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5567CEE3A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 03:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4487EE41
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 03:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729745AbfD3BQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 21:16:21 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43049 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728997AbfD3BQV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 21:16:21 -0400
-Received: by mail-ot1-f67.google.com with SMTP id u15so10425227otq.10;
-        Mon, 29 Apr 2019 18:16:21 -0700 (PDT)
+        id S1729745AbfD3BRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 21:17:11 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:43308 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728997AbfD3BRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 21:17:11 -0400
+Received: by mail-oi1-f194.google.com with SMTP id t81so9926858oig.10;
+        Mon, 29 Apr 2019 18:17:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SQZxWQDZW8/QOAQDuwFNwl//qikn1cHVqQ6ue/TM68k=;
-        b=l+ArXMZi2Lu82FEyXXDdcwQ3jx7dNKCnNAfkctvxz1NOQGdjzjhOsH9FmxRTXE8uoh
-         xVipLHSUYNoEdy9DVdJ6gaA0/t4RV0oHR+s10uJShnbXxsCdqCgWjiEwrx/zIn3gVFpI
-         U491Nofj2Wi2Mut70kdk6ozkpyo4P/oItkzm2ke1FXAe3EIsjhn5BKHl53vz/qQj3PwU
-         eSy7jAYRYc+io20qeYyAggiXeeVrvPN3w0CwvanGlYSqawEwopQdrdsvMhpwyohNYJGP
-         405BCLE/oY2dFtY5PStq2Tg1oQtRk3EX7ACmBvlN7rt0D5jd7EaAUecDn08mPT5YWkh+
-         03jg==
-X-Gm-Message-State: APjAAAUEEYhexd+PIbldO2qB/owkZfnzRFqtvXf4yFdzqkJWeJI2Bm/q
-        N+ROgfUur+VBEd1Mo39e0Q==
-X-Google-Smtp-Source: APXvYqxSqUjuRyMgW1bUn+uBZ/b9Nz+CnOlelgEI3LlYald3OCQLZm1tFowOlbDv5zDh0+v4cWxXUg==
-X-Received: by 2002:a05:6830:1248:: with SMTP id s8mr89131otp.234.1556586980916;
-        Mon, 29 Apr 2019 18:16:20 -0700 (PDT)
+        bh=xaOdfxdw1hMtS7qaFsh00GiMGk+CxCyglGrKYxmtdsI=;
+        b=gzddVTImpUmKqYtwZiF3ohNm6dIRWs6kJ/zmPfjU9LZMZp1kHvu7MCmupZuLApp/D8
+         6TeDGY/VR434qdrWTPSub7jSaO4XQH/f952LqGiyseIbZSK37MM6LFbCLad7CHqmLOyc
+         H0+dxU5k2U5CKrYgUm9QVmouBP0UbKHRNmoNF9mbSBO37lIQ6N8UNJnOY5ioQiYpx1fE
+         98iA9mIBFI1jpTj8cRP/J4HOrQCxU7fkewXymp+72skm9t+Z7w2qsswGJgrB1eEfYHxL
+         TmXhcN5JtAR69nf2hUtKfCzvl4+DOkrByfdB/akkP8Uh8Xi0tppPLO4GtpA3dKnZ/Er3
+         oWCQ==
+X-Gm-Message-State: APjAAAVba51vhU04CETnYVbpZ0/PhHsbsvRz9J7sRl2/wX5iL3Z6oiE8
+        GiSthYwI9usxrDRxY2fAMw==
+X-Google-Smtp-Source: APXvYqw6ntRhc/wbwykwNmMjNvveQySGSHN3ekx1kQx8S+cMQcTxyL7XbYzZewnuRIN19hQXVUioAw==
+X-Received: by 2002:aca:ba82:: with SMTP id k124mr1493234oif.110.1556587030763;
+        Mon, 29 Apr 2019 18:17:10 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h23sm16727340oic.10.2019.04.29.18.16.20
+        by smtp.gmail.com with ESMTPSA id e23sm13995060otl.61.2019.04.29.18.17.09
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 18:16:20 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 20:16:19 -0500
+        Mon, 29 Apr 2019 18:17:10 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 20:17:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Frederic Chen <frederic.chen@mediatek.com>
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
-        yuzhao@chromium.org, zwisler@chromium.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        holmes.chiou@mediatek.com, Jerry-ch.Chen@mediatek.com,
-        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
-        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, shik@chromium.org,
-        suleiman@chromium.org
-Subject: Re: [RFC PATCH V1 3/6] dt-bindings: mt8183: Added DIP dt-bindings
-Message-ID: <20190430011619.GA22170@bogus>
-References: <20190417104511.21514-1-frederic.chen@mediatek.com>
- <20190417104511.21514-4-frederic.chen@mediatek.com>
+To:     Florent TOMASIN <tomasin.florent@gmail.com>
+Cc:     tomasin.florent@gmail.com,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: Add CDTech S050WV43-CT5 panel bindings
+Message-ID: <20190430011709.GA25451@bogus>
+References: <20190417233846.11880-1-tomasin.florent@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190417104511.21514-4-frederic.chen@mediatek.com>
+In-Reply-To: <20190417233846.11880-1-tomasin.florent@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 17, 2019 at 06:45:08PM +0800, Frederic Chen wrote:
-> This patch adds DT binding documentation for the Digital Image
-> Processing (DIP) unit of camera ISP system on Mediatek's SoCs.
+On Thu, 18 Apr 2019 00:38:44 +0100, Florent TOMASIN wrote:
+> Add documentation for S050WV43-CT5 panel
 > 
-> Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
+> Signed-off-by: Florent TOMASIN <tomasin.florent@gmail.com>
 > ---
->  .../bindings/media/mediatek,mt8183-dip.txt    | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-dip.txt
+>  .../bindings/display/panel/cdtech,s050wv43-ct5.txt   | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/cdtech,s050wv43-ct5.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8183-dip.txt b/Documentation/devicetree/bindings/media/mediatek,mt8183-dip.txt
-> new file mode 100644
-> index 000000000000..0e1994bf82f0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8183-dip.txt
-> @@ -0,0 +1,35 @@
-> +* Mediatek Digital Image Processor (DIP)
-> +
-> +Digital Image Processor (DIP) unit in Mediatek ISP system is responsible for
-> +image content adjustment according to the tuning parameters. DIP can process
-> +the image form memory buffer and output the processed image to multiple output
-> +buffers. Furthermore, it can support demosaicing and noise reduction on the
-> +images.
-> +
-> +Required properties:
-> +- compatible: "mediatek,mt8183-dip"
-> +- reg: Physical base address and length of the function block register space
-> +- interrupts: interrupt number to the cpu
-> +- iommus: should point to the respective IOMMU block with master port as
-> +  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
-> +  for details.
-> +- mediatek,larb: must contain the local arbiters in the current Socs, see
-> +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
-> +  for details.
-> +- clocks: must contain the local arbiters 5 (LARB5) and DIP clock
-> +- clock-names: must contain DIP_CG_IMG_LARB5 and DIP_CG_IMG_DIP
-> +
-> +Example:
-> +	dip: dip@15022000 {
-> +		compatible = "mediatek,mt8183-dip";
-> +		mediatek,larb = <&larb5>;
 
-> +		mediatek,mdp3 = <&mdp_rdma0>;
-> +		mediatek,vpu = <&vpu>;
-
-Not documented.
-
-> +		iommus = <&iommu M4U_PORT_CAM_IMGI>;
-> +		reg = <0 0x15022000 0 0x6000>;
-> +		interrupts = <GIC_SPI 268 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&imgsys CLK_IMG_LARB5>,
-> +			 <&imgsys CLK_IMG_DIP>;
-> +		clock-names = "DIP_CG_IMG_LARB5",
-> +			      "DIP_CG_IMG_DIP";
-> +	};
-> -- 
-> 2.18.0
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
