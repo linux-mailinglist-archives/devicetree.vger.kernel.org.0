@@ -2,122 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F389710074
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 21:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9861008A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbfD3Twu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 15:52:50 -0400
-Received: from mail-eopbgr60118.outbound.protection.outlook.com ([40.107.6.118]:47920
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726024AbfD3Twp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 15:52:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pVCHVuSuR0rO1GkDmFLA8qjJiamLMTFUTWrGy20or20=;
- b=aduzLSkv3TMWm4RqkwiHIW8bETPd4cxR67uEvn09eFHEegUwL/Nn1/3zzF+aKjTESQMxGoBZFmJnSq7KhoDLpy1IkW+mZmWz4MtXrTTBK2CkyjH9dowD5Ql/77mFLMtqHyR0mGfeZd4DEbIATat2hgLG8kMFXrenn6H2hUSQ1/o=
-Received: from AM0PR02MB4563.eurprd02.prod.outlook.com (20.178.17.97) by
- AM0PR02MB4609.eurprd02.prod.outlook.com (20.178.17.214) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1835.13; Tue, 30 Apr 2019 19:52:41 +0000
-Received: from AM0PR02MB4563.eurprd02.prod.outlook.com
- ([fe80::e80e:1cbb:5e37:b8c7]) by AM0PR02MB4563.eurprd02.prod.outlook.com
- ([fe80::e80e:1cbb:5e37:b8c7%2]) with mapi id 15.20.1835.018; Tue, 30 Apr 2019
- 19:52:41 +0000
-From:   Peter Rosin <peda@axentia.se>
-To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Pankaj Bansal <pankaj.bansal@nxp.com>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH 2/2] mux: mmio: add generic regmap bitfield-based multiplexer
-Thread-Topic: [PATCH 2/2] mux: mmio: add generic regmap bitfield-based
- multiplexer
-Thread-Index: AQHU/45FnbJXIZlBdEqEUQLa8q8aWg==
-Date:   Tue, 30 Apr 2019 19:52:41 +0000
-Message-ID: <20190430195226.8965-3-peda@axentia.se>
-References: <20190430195226.8965-1-peda@axentia.se>
-In-Reply-To: <20190430195226.8965-1-peda@axentia.se>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.11.0
-x-originating-ip: [213.112.138.100]
-x-clientproxiedby: HE1P189CA0028.EURP189.PROD.OUTLOOK.COM (2603:10a6:7:53::41)
- To AM0PR02MB4563.eurprd02.prod.outlook.com (2603:10a6:208:ec::33)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peda@axentia.se; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 73688d8c-42a6-4e6e-040e-08d6cda567b4
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:AM0PR02MB4609;
-x-ms-traffictypediagnostic: AM0PR02MB4609:
-x-microsoft-antispam-prvs: <AM0PR02MB460994AABEFB71CFC0BF462ABC3A0@AM0PR02MB4609.eurprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-forefront-prvs: 00235A1EEF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39830400003)(346002)(376002)(366004)(396003)(136003)(189003)(199004)(25786009)(66946007)(73956011)(81166006)(81156014)(66446008)(64756008)(66556008)(66476007)(8676002)(4326008)(97736004)(2906002)(68736007)(53936002)(74482002)(6116002)(8936002)(6512007)(3846002)(36756003)(50226002)(6486002)(2501003)(6436002)(2351001)(5640700003)(26005)(316002)(186003)(7736002)(305945005)(52116002)(76176011)(99286004)(102836004)(5660300002)(386003)(6506007)(54906003)(508600001)(486006)(86362001)(11346002)(1076003)(256004)(6916009)(2616005)(476003)(66066001)(14454004)(71200400001)(71190400001)(446003)(41533002);DIR:OUT;SFP:1102;SCL:1;SRVR:AM0PR02MB4609;H:AM0PR02MB4563.eurprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: axentia.se does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: vFKmpoBHk8lCvBrKm+76pwShMe/59LKVt+j+MXwYMOxnVRg83xOhHmk6ikJTTKOB9ytRP9ersvlU+Rv+tQwUAkKk+96zUS57Lw6bXK1TW1iCuvrBCnIlANXCOTH4h0FIuNWmZ7NyTJ7qIQGDDTdQJvtnOgbePKhOkSXpQzwnTmXwyLD2C/DudQrN3iSzF/K9Nh/ZhtIz8Tr0A59ercKP5e8X7umuOD0goTWafK2nQnqHSuCz93pVasMAmNKy6Y35qQwY5AMOMAyM5DG1gpBZaAVXNsr92GWs9X1GA2eE0nyKCyb0v8Vg4mxC6/mZKy3YDIk9xb1PRqFUUnxVx2Nkb6O2Owj2rh+vzjvdQDhkH34F8cLFUdBMHgcHr539zPqvnGw/oNR8QVJL38/bMt66y//rhAE2qWdZNr3TAyCDJ18=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726198AbfD3UEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 16:04:39 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:43756 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725996AbfD3UEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 16:04:38 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190430200437euoutp028710e69a83a5410b0dc703e1fdc3a701~aWS5nhjCC2169621696euoutp02C
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 20:04:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190430200437euoutp028710e69a83a5410b0dc703e1fdc3a701~aWS5nhjCC2169621696euoutp02C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1556654677;
+        bh=Gpy8BLya4g2MHxARJxwy2Jm4W95tw290iv7EKrZLDV8=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=KISzi5OKkCl1BAoQPlogjigM3qKs+Rx1iQDG5cfcRiFtcP1TrWSIWrwyDhSb9WAox
+         6082RJpmA6YFkvXfAMDdRHct3+4arjl2zfFfVukkPddjKFmSLy5piT/wCKxoMJiIo7
+         D9BGx5TLRBdkvtnLzh+phnjjvvumIwV39cK7ON1w=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190430200435eucas1p15920c8ae72064a01a4a7225d354561c4~aWS4TUu_Q3239632396eucas1p1V;
+        Tue, 30 Apr 2019 20:04:35 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id AC.B4.04325.35AA8CC5; Tue, 30
+        Apr 2019 21:04:35 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190430200434eucas1p2efc6bb09f7af8ec07a7fdb55d0cb8f96~aWS22uWm12356923569eucas1p2_;
+        Tue, 30 Apr 2019 20:04:34 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190430200433eusmtrp1cad2d4fcd586e20f5eb8655faab30509~aWS2nE0Dj1284412844eusmtrp1Z;
+        Tue, 30 Apr 2019 20:04:33 +0000 (GMT)
+X-AuditID: cbfec7f5-b8fff700000010e5-3c-5cc8aa5331f7
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id AC.93.04146.15AA8CC5; Tue, 30
+        Apr 2019 21:04:33 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190430200432eusmtip14784aaba9aafcbbd8a66b7df6e497250~aWS1mADMd0208402084eusmtip1r;
+        Tue, 30 Apr 2019 20:04:32 +0000 (GMT)
+Subject: Re: [PATCH v6 04/10] Documentation: dt: device tree bindings for
+ LPDDR3 memories
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Thierry Reding <treding@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <cb929f1d-409c-ad06-e9b2-83ce104664fd@partner.samsung.com>
+Date:   Tue, 30 Apr 2019 22:04:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73688d8c-42a6-4e6e-040e-08d6cda567b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2019 19:52:41.4623
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR02MB4609
+In-Reply-To: <CAL_JsqJUNw_aDKjWf4TkJWQFhhLCrGYWbTtWpz5jkyeONRcpQw@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0yMcRzHfe95nrun49rTVfqsWrjNpE1YxteyZDMemY1hMxqOnlXTVe5R
+        5MeUFEVlleiUq82PXIgkJ4ST7tJv+bXox2Rl6Th1FRVx92T67/V9f97fz+fz/u5LE/JvlDsd
+        HrmPU0cqIxRiKVle/bNx3kadKXjByFNnfPt8CYXfWnsorK1qoHDx9y6Es17ki3DdKRXO6PpC
+        4MbGWxJcf6xPglsq8sR4IK0K4fONlSJ8o6pNgt8nFInx+EO9BD/rO0Hhx6+C8PtRRzxk+ogC
+        ndmhwUySvRDfTLL3NW0StlSXImbTEr+K2fQyHWLv1B5iB0q91tNbpctCuIjwWE49P2CnNOzz
+        cD8Vfd/9QFLfEyIe6V1TkQMNzCJIuJZI2FjOFCHIMwalIulftiKwpNSIhcMAgg+dN6lURNtv
+        jFuWCvpVBMbmSxMmM4JU0whpa+XMbIPe9FeUjV2YWTCanEPZTAQzSEHy9Wxk6yRmfEGv22vz
+        yJhVYBnIta9BMrOhX9tu7+PKbIGO6luU4HGCmtxPdt2B2QDawkRkY4Jxg9ZPWpHAM+CeOY+w
+        zQLmMg3tD5IIIedKONtqRgI7Q6+xTCKwJ9RmnSYF5iE+rXDCcxi6MvInPP7wzNhsT08wc6Gk
+        Yr4gr4DW6iKx8CiO8M7sJKzgCJnl5whBlsHJZLng9oay000igafD1es5kjNIoZkUTDMpjGZS
+        GM3/uQWI1CE3LoZXhXK8XyS335dXqviYyFDf3VGqUvT3G9b+Ng7qUeXYLgNiaKSYJvNeYwqW
+        U8pYPk5lQEATChcZa3weLJeFKOMOcuqoHeqYCI43IA+aVLjJDk3p3CZnQpX7uD0cF82p/1VF
+        tIN7PPKO2O55JHv0wVdLce4c/6xYq2HBYa3qrL47p7c2M8Cn33p3+ErIY+vikqPH52xucdNX
+        eUnbwhreLLm5f8zv8ryxd931HzZ51K19WfCdf3RpXQCnbgpsMwSuKumo7M71nhk7WPG7MLDP
+        tKXHvPpX71Qf/a+O0pRlU73GXl+0/Fje86aoXEHyYcqFPoSaV/4BouTD24IDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmleLIzCtJLcpLzFFi42I5/e/4Xd3AVSdiDC71ylpsnLGe1eL6l+es
+        FvOPnGO1WP3xMaPF5FNzmSzOdOda9D9+zWxx/vwGdouzTW/YLS7vmsNm8bn3CKPFjPP7mCzW
+        HrnLbnG7cQWbxf89O9gtDr9pZ7XYf8XL4vZvPotvJx4xOgh7fPs6icVjdsNFFo+ds+6ye2xa
+        1cnm0dv8js2jb8sqRo/Np6s9Pm+SC+CI0rMpyi8tSVXIyC8usVWKNrQw0jO0tNAzMrHUMzQ2
+        j7UyMlXSt7NJSc3JLEst0rdL0Mt48f0Ta8FOqYrWNweYGxh3iHYxcnBICJhI/P9g2cXIxSEk
+        sJRRYuaHTyxdjJxAcTGJSfu2s0PYwhJ/rnWxgdhCAq8ZJf7f4wOxhQWiJV71XWEFsUUEFCV+
+        t01jBRnELPCTVeLMoSZGiKktzBIn9r1mAdnGJqAnsWNVIUgDr4CbxIfPM5lBbBYBVYlP8++B
+        LRYViJA4834FC0SNoMTJmU/AbE6BQIn5C5sZQWxmATOJeZsfMkPY4hK3nsxngrDlJba/ncM8
+        gVFoFpL2WUhaZiFpmYWkZQEjyypGkdTS4tz03GJDveLE3OLSvHS95PzcTYzABLDt2M/NOxgv
+        bQw+xCjAwajEw3vB7USMEGtiWXFl7iFGCQ5mJRFej+NHY4R4UxIrq1KL8uOLSnNSiw8xmgI9
+        N5FZSjQ5H5ic8kriDU0NzS0sDc2NzY3NLJTEeTsEDsYICaQnlqRmp6YWpBbB9DFxcEo1MCqK
+        2M7d9uL+kf8/Fin9OPFcT47hq5Ho3PWZHz9pv5lgUxzVpnre/aXLMs4tj74+OKKpeC/dTFX/
+        HtdXyTrmSTwn86Y7nusO2Cz/TkL/HefRJLuyJbJBzqfVTX/uDJzz+HGq9Y6Dlg29z/mSJsye
+        0nVLPqxe7KKkxFr5ua7+vgUfYqfNdXjnLKzEUpyRaKjFXFScCACy877cFgMAAA==
+X-CMS-MailID: 20190430200434eucas1p2efc6bb09f7af8ec07a7fdb55d0cb8f96
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190419141945eucas1p1c95d65f261f82da5c856c0f2fcf1ce87
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190419141945eucas1p1c95d65f261f82da5c856c0f2fcf1ce87
+References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190419141945eucas1p1c95d65f261f82da5c856c0f2fcf1ce87@eucas1p1.samsung.com>
+        <1555683568-20882-5-git-send-email-l.luba@partner.samsung.com>
+        <20190425195156.GA31128@bogus>
+        <86715dda-c1b0-5354-17d2-419f8137cb91@partner.samsung.com>
+        <CAL_JsqJUNw_aDKjWf4TkJWQFhhLCrGYWbTtWpz5jkyeONRcpQw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogUGFua2FqIEJhbnNhbCA8cGFua2FqLmJhbnNhbEBueHAuY29tPg0KDQpHZW5lcmljIHJl
-Z2lzdGVyIGJpdGZpZWxkLWJhc2VkIG11bHRpcGxleGVyIHRoYXQgY29udHJvbHMgdGhlIG11bHRp
-cGxleGVyDQpwcm9kdWNlciBkZWZpbmVkIHVuZGVyIGEgcGFyZW50IG5vZGUuDQpUaGUgZHJpdmVy
-IGNvcnJlc3BvbmRpbmcgdG8gcGFyZW50IG5vZGUgcHJvdmlkZXMgcmVnaXN0ZXIgcmVhZC93cml0
-ZQ0KY2FwYWJpbGl0aWVzLg0KDQpTaWduZWQtb2ZmLWJ5OiBQYW5rYWogQmFuc2FsIDxwYW5rYWou
-YmFuc2FsQG54cC5jb20+DQpTaWduZWQtb2ZmLWJ5OiBQZXRlciBSb3NpbiA8cGVkYUBheGVudGlh
-LnNlPg0KLS0tDQogZHJpdmVycy9tdXgvS2NvbmZpZyB8IDEyICsrKysrKy0tLS0tLQ0KIGRyaXZl
-cnMvbXV4L21taW8uYyAgfCAgNiArKysrKy0NCiAyIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlv
-bnMoKyksIDcgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL211eC9LY29uZmln
-IGIvZHJpdmVycy9tdXgvS2NvbmZpZw0KaW5kZXggNzY1OWQ2YzVmNzE4Li5lNWM1NzFmZDIzMmMg
-MTAwNjQ0DQotLS0gYS9kcml2ZXJzL211eC9LY29uZmlnDQorKysgYi9kcml2ZXJzL211eC9LY29u
-ZmlnDQpAQCAtNDYsMTQgKzQ2LDE0IEBAIGNvbmZpZyBNVVhfR1BJTw0KIAkgIGJlIGNhbGxlZCBt
-dXgtZ3Bpby4NCiANCiBjb25maWcgTVVYX01NSU8NCi0JdHJpc3RhdGUgIk1NSU8gcmVnaXN0ZXIg
-Yml0ZmllbGQtY29udHJvbGxlZCBNdWx0aXBsZXhlciINCi0JZGVwZW5kcyBvbiAoT0YgJiYgTUZE
-X1NZU0NPTikgfHwgQ09NUElMRV9URVNUDQorCXRyaXN0YXRlICJNTUlPL1JlZ21hcCByZWdpc3Rl
-ciBiaXRmaWVsZC1jb250cm9sbGVkIE11bHRpcGxleGVyIg0KKwlkZXBlbmRzIG9uIE9GIHx8IENP
-TVBJTEVfVEVTVA0KIAloZWxwDQotCSAgTU1JTyByZWdpc3RlciBiaXRmaWVsZC1jb250cm9sbGVk
-IE11bHRpcGxleGVyIGNvbnRyb2xsZXIuDQorCSAgTU1JTy9SZWdtYXAgcmVnaXN0ZXIgYml0Zmll
-bGQtY29udHJvbGxlZCBNdWx0aXBsZXhlciBjb250cm9sbGVyLg0KIA0KLQkgIFRoZSBkcml2ZXIg
-YnVpbGRzIG11bHRpcGxleGVyIGNvbnRyb2xsZXJzIGZvciBiaXRmaWVsZHMgaW4gYSBzeXNjb24N
-Ci0JICByZWdpc3Rlci4gRm9yIE4gYml0IHdpZGUgYml0ZmllbGRzLCB0aGVyZSB3aWxsIGJlIDJe
-TiBwb3NzaWJsZQ0KLQkgIG11bHRpcGxleGVyIHN0YXRlcy4NCisJICBUaGUgZHJpdmVyIGJ1aWxk
-cyBtdWx0aXBsZXhlciBjb250cm9sbGVycyBmb3IgYml0ZmllbGRzIGluIGVpdGhlcg0KKwkgIGEg
-c3lzY29uIHJlZ2lzdGVyIG9yIGEgZHJpdmVyIHJlZ21hcCByZWdpc3Rlci4gRm9yIE4gYml0IHdp
-ZGUNCisJICBiaXRmaWVsZHMsIHRoZXJlIHdpbGwgYmUgMl5OIHBvc3NpYmxlIG11bHRpcGxleGVy
-IHN0YXRlcy4NCiANCiAJICBUbyBjb21waWxlIHRoZSBkcml2ZXIgYXMgYSBtb2R1bGUsIGNob29z
-ZSBNIGhlcmU6IHRoZSBtb2R1bGUgd2lsbA0KIAkgIGJlIGNhbGxlZCBtdXgtbW1pby4NCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL211eC9tbWlvLmMgYi9kcml2ZXJzL211eC9tbWlvLmMNCmluZGV4IDkz
-NWFjNDRhYTIwOS4uNDRhN2EwZTg4NWI4IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9tdXgvbW1pby5j
-DQorKysgYi9kcml2ZXJzL211eC9tbWlvLmMNCkBAIC0yOCw2ICsyOCw3IEBAIHN0YXRpYyBjb25z
-dCBzdHJ1Y3QgbXV4X2NvbnRyb2xfb3BzIG11eF9tbWlvX29wcyA9IHsNCiANCiBzdGF0aWMgY29u
-c3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdXhfbW1pb19kdF9pZHNbXSA9IHsNCiAJeyAuY29tcGF0
-aWJsZSA9ICJtbWlvLW11eCIsIH0sDQorCXsgLmNvbXBhdGlibGUgPSAicmVnLW11eCIsIH0sDQog
-CXsgLyogc2VudGluZWwgKi8gfQ0KIH07DQogTU9EVUxFX0RFVklDRV9UQUJMRShvZiwgbXV4X21t
-aW9fZHRfaWRzKTsNCkBAIC00Myw3ICs0NCwxMCBAQCBzdGF0aWMgaW50IG11eF9tbWlvX3Byb2Jl
-KHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQogCWludCByZXQ7DQogCWludCBpOw0KIA0K
-LQlyZWdtYXAgPSBzeXNjb25fbm9kZV90b19yZWdtYXAobnAtPnBhcmVudCk7DQorCWlmIChvZl9k
-ZXZpY2VfaXNfY29tcGF0aWJsZShucCwgIm1taW8tbXV4IikpDQorCQlyZWdtYXAgPSBzeXNjb25f
-bm9kZV90b19yZWdtYXAobnAtPnBhcmVudCk7DQorCWVsc2UNCisJCXJlZ21hcCA9IGRldl9nZXRf
-cmVnbWFwKGRldi0+cGFyZW50LCBOVUxMKSA/OiBFUlJfUFRSKC1FTk9ERVYpOw0KIAlpZiAoSVNf
-RVJSKHJlZ21hcCkpIHsNCiAJCXJldCA9IFBUUl9FUlIocmVnbWFwKTsNCiAJCWRldl9lcnIoZGV2
-LCAiZmFpbGVkIHRvIGdldCByZWdtYXA6ICVkXG4iLCByZXQpOw0KLS0gDQoyLjExLjANCg0K
+Hi Rob,
+
+On 4/29/19 6:36 PM, Rob Herring wrote:
+> On Mon, Apr 29, 2019 at 7:05 AM Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 4/25/19 9:51 PM, Rob Herring wrote:
+>>> On Fri, Apr 19, 2019 at 04:19:22PM +0200, Lukasz Luba wrote:
+>>>> The device tree bindings for LPDDR3 SDRAM memories.
+>>>>
+>>>> For specifying the AC timing parameters of the memory device
+>>>> the 'lpddr3' binding uses binding 'lpddr2-timings'.
+>>>>
+>>>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>>>> ---
+>>>>    .../devicetree/bindings/lpddr3/lpddr3-timings.txt  | 57 +++++++++++++
+>>>>    .../devicetree/bindings/lpddr3/lpddr3.txt          | 93 ++++++++++++++++++++++
+>>>
+>>> Please rename the lpddr2 directory to 'ddr' and add these to it.
+>> OK, I will rename it in the nex patch set.
+>>>
+>>> Maybe whatever properties are common should be put in a common doc.
+>> There are maybe a few common properties, but I would not dare to merge
+>> lpddr2 and lpddr3 before consulting it with TI engineers who made
+>> LPDDR2 support.
+> 
+> Why not. You aren't changing anything. Just rearranging.
+True.
+> 
+>> Could we work on a common file after the patch set got merged?
+> 
+> Yes, but please still move everything to a common directory.
+OK, I am currently working on it and moving these lpddr* files into
+Documentation/devicetree/bindings/ddr/
+Then after acceptance I will find the common stuff and do the merge.
+> 
+>>>
+>>>>    2 files changed, 150 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt
+>>>>    create mode 100644 Documentation/devicetree/bindings/lpddr3/lpddr3.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt b/Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt
+>>>> new file mode 100644
+>>>> index 0000000..ebf3e00
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/lpddr3/lpddr3-timings.txt
+>>>> @@ -0,0 +1,57 @@
+>>>> +* AC timing parameters of LPDDR3 memories for a given speed-bin.
+>>>> +* The structures are based on LPDDR2 and extended where needed.
+>>>> +
+>>>> +Required properties:
+>>>> +- compatible : Should be "jedec,lpddr3-timings"
+>>>> +- min-freq : minimum DDR clock frequency for the speed-bin. Type is <u32>
+>>>> +- max-freq : maximum DDR clock frequency for the speed-bin. Type is <u32>
+>>>> +
+>>>> +Optional properties:
+>>>> +
+>>>> +The following properties represent AC timing parameters from the memory
+>>>> +data-sheet of the device for a given speed-bin. All these properties are
+>>>> +of type <u32> and the default unit is ps (pico seconds).
+>>>> +- tRFC
+>>>> +- tRRD
+>>>> +- tRPab
+>>>> +- tRPpb
+>>>> +- tRCD
+>>>> +- tRC
+>>>> +- tRAS
+>>>> +- tWTR
+>>>> +- tWR
+>>>> +- tRTP
+>>>> +- tW2W-C2C
+>>>> +- tR2R-C2C
+>>>> +- tFAW
+>>>> +- tXSR
+>>>> +- tXP
+>>>> +- tCKE
+>>>> +- tCKESR
+>>>> +- tMRD
+>>>> +
+>>>> +Example:
+>>>> +
+>>>> +timings_samsung_K3QF2F20DB_800mhz: lpddr3-timings@0 {
+>>>
+>>> Since the lpddr2 version was written, we've gotten stricter about
+>>> allowing unit-address without reg property. Perhaps 'reg' should be the
+>>> max-freq instead.
+>> OK, so I will rename 'max-freq' to 'reg' and add a comment with:
+>> '/* workaround: it shows max-freq */
+>> Does it make sense?
+> 
+> Sure.
+OK. Thank you.
+
+Regards,
+Lukasz
+> 
+> Rob
+> 
+> 
