@@ -2,124 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A721F325
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 11:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B35FF340
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 11:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726165AbfD3Jhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 05:37:53 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:38642 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726129AbfD3Jhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 05:37:53 -0400
-Received: by mail-ed1-f67.google.com with SMTP id w11so4958085edl.5;
-        Tue, 30 Apr 2019 02:37:52 -0700 (PDT)
+        id S1726872AbfD3Jox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 05:44:53 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:35426 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726852AbfD3Jox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 05:44:53 -0400
+Received: by mail-wm1-f66.google.com with SMTP id y197so3115525wmd.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 02:44:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=drPZ7KoEDZSmxCF+WsAn2EdRoQpZ9ONUXMxh/61qnOY=;
-        b=aNvxekfqNqjBjZximPsvLr2kRZDfj/FaSXo2W0BuDi4PI/n49Kro/yAVpAiSkjA/FZ
-         A9a+2mgS4KR9OzuZ4iXOvlxEo6SIj6bzEhvj/D5/H7k5vHAVzl1xhrf4Q19MKJWUDLLJ
-         5zeQXrWaF+EriPjmiSI+gUwvpmVyLTyvaeM82WVoxD8gcxFHZIhwLXjnHKvynrYddBmk
-         B/K0BAM5Ab38A8OJxcjoRVnLjmgJ693xcuH0pV5M7o6n7AScB2Koq6b7gpwCczJ6rAWF
-         LLJAJop8kY82YlMTv+xkXrl2tlnqBT2iWYl7Y5s/pNF3OoF8wnPZITJMgfAD+cml01Wb
-         nOww==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=looTlcqCIB3TJbyTND6k3EZ0RBWBOUlYZpKYaCAdqKk=;
+        b=k1uR299Yxm7EYSAONf0f2K3YOAM0GjiFXsqYolyfZZLTPyI1gj/cbv4DyO9ZJMMo9V
+         zaplBDtNX/iDfN7xaX2w1QFDFgjXVj/d5jAZ+h88IUQDUubQWZtxaRXTMD6XOyVdGCcy
+         PA8KZrF+CCn51wYuRpN3z978NEy4BUA0y5XChjhrGM3V9n4QCoq3AYP2efD/U13xsVsX
+         apuLMtSTLVH5zqkNoSSStkleNMmWoRppX04Wm32W6zOAMsv9N+zXPGE3QQ2a+Xx+s5Ni
+         0NwQhN2rC+YABt5EWFekssoF+dpWSarQBwAXZzOztlay5fsAmT8xixoblGjJWBWE8II9
+         4pYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=drPZ7KoEDZSmxCF+WsAn2EdRoQpZ9ONUXMxh/61qnOY=;
-        b=OOv4RKndLkrFvJpe6Kc9v7bklElA8x5EmNW1C6xuduN9cWlmYETCmgq9zlKvP9gKMV
-         kpSAqGWLKhVTGtQoMWPkr1E80qxbTOehz/8Od9+t4fTdgNC0L9OAWqLY1cfHcoLnaiyL
-         8jo5FEN1FNgO9j8ZDOay/mbqdjORWVuKpnXvdiTR0Ra0ZxfnV5fd2i1ZWmMz6RTXjo4Q
-         Y+lh5/MkYoc4moxTs7LkpXMeNFY7ciYEGZpsF0JbGoo3pD3JSIy7TeUpzzefM7+ogf8N
-         /48N1Wq2hUjXRLKmCOvBomYibIp2EdRXxiRnW/c2gh4u3UoPmTXn/QI28KavSeCAFFqw
-         hS2Q==
-X-Gm-Message-State: APjAAAU4ckIAlXOUqWvEnmTjELmHZq2olPG1mKMQMtzxHSbk78lqLe4+
-        YP4pT2qL3uQuq+7e1FPP/oc=
-X-Google-Smtp-Source: APXvYqzCLE+57MgejEVLrV4lXRIfrhIdN91f5tmUH6A98tC/stesp++PZAFiDzr4K2t7wXcpwZKXlw==
-X-Received: by 2002:a17:906:3e91:: with SMTP id a17mr33572986ejj.73.1556617071923;
-        Tue, 30 Apr 2019 02:37:51 -0700 (PDT)
-Received: from archlinux-i9 ([2a01:4f9:2b:2b84::2])
-        by smtp.gmail.com with ESMTPSA id o62sm8745742eda.42.2019.04.30.02.37.50
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 30 Apr 2019 02:37:50 -0700 (PDT)
-Date:   Tue, 30 Apr 2019 02:37:49 -0700
-From:   Nathan Chancellor <natechancellor@gmail.com>
-To:     Phong Tran <tranmanphong@gmail.com>
-Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
-        pantelis.antoniou@konsulko.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        clang-built-linux@googlegroups.com
-Subject: Re: [PATCH] of: replace be32_to_cpu to be32_to_cpup
-Message-ID: <20190430093749.GA29126@archlinux-i9>
-References: <20190430090044.16345-1-tranmanphong@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=looTlcqCIB3TJbyTND6k3EZ0RBWBOUlYZpKYaCAdqKk=;
+        b=hjzmqjHIzf8DbzjXtOAbKjGKjfrv1aWlVeg5jsKd1g7jszNi2wHuifYLYWr+fyBNA1
+         ob5YKzkvWZtNwHaKiXnnsxLRdSIpnHvPV19XZIo/nUFyjh4gPR6FhB/88FAoX1+o3Rj9
+         obiKlJpsCoVYURj6qj7xWPDezHWgmBuVm7cYF3tVg/WA8IfubtgUQF+WUmKCZWFWWmkl
+         BdBCK0fyY6QN9LhnD5m0MQk9SGBnbgPGkotEoWck6o9aKLncAMDfKwsz2D77aSJO7WIz
+         VFlEFv1+EAJDnUg6Z122/P7g4WtDvEkvp+HZEI4V+xEpDtMWbw1SVy2yjd/67BdnKkRX
+         mMsg==
+X-Gm-Message-State: APjAAAX47NuGXWjPSust3JQJ7YQLnYPLmtZ+MiDBSYQChzgrnCtfBpNX
+        +jEQKWGpgc76QcxBlgpZctbUjQ==
+X-Google-Smtp-Source: APXvYqxDIo8nKc9Sp0C52XkXJ0RFa5uPzJ7miTrrLAzJ8p8qvVwZQM2Aq2xKA/IZYjIkM1ZaW930hQ==
+X-Received: by 2002:a1c:4b03:: with SMTP id y3mr2522912wma.113.1556617491604;
+        Tue, 30 Apr 2019 02:44:51 -0700 (PDT)
+Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
+        by smtp.googlemail.com with ESMTPSA id e10sm24031411wra.52.2019.04.30.02.44.50
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Apr 2019 02:44:50 -0700 (PDT)
+Subject: Re: [PATCH v2 1/3] thermal: rockchip: fix up the tsadc pinctrl
+ setting error
+To:     "elaine.zhang" <zhangqing@rock-chips.com>, heiko@sntech.de
+Cc:     rui.zhang@intel.com, edubezval@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        xxx@rock-chips.com, xf@rock-chips.com, huangtao@rock-chips.com
+References: <1556187154-22632-1-git-send-email-zhangqing@rock-chips.com>
+ <1556187154-22632-2-git-send-email-zhangqing@rock-chips.com>
+ <be0170d7-64dc-896d-b847-5be192304791@linaro.org>
+ <8d41ea98-e0e8-60c8-3237-ade5d0d169bf@rock-chips.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <70cc3a91-8f5d-da48-a815-eaf2670f9a93@linaro.org>
+Date:   Tue, 30 Apr 2019 11:44:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190430090044.16345-1-tranmanphong@gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <8d41ea98-e0e8-60c8-3237-ade5d0d169bf@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Nick and the list
+On 29/04/2019 11:51, elaine.zhang wrote:
 
-On Tue, Apr 30, 2019 at 04:00:44PM +0700, Phong Tran wrote:
-> The cell is a pointer to __be32.
-> with the be32_to_cpu a lot of clang warning show that:
+[ ... ]
+
+> pinctrl select to gpio mode when tsadc suspend and shutdown.
 > 
-> ./include/linux/of.h:238:37: warning: multiple unsequenced modifications
-> to 'cell' [-Wunsequenced]
->                 r = (r << 32) | be32_to_cpu(*(cell++));
->                                                   ^~
-> ./include/linux/byteorder/generic.h:95:21: note: expanded from macro
-> 'be32_to_cpu'
->                     ^
-> ./include/uapi/linux/byteorder/little_endian.h:40:59: note: expanded
-> from macro '__be32_to_cpu'
->                                                           ^
-> ./include/uapi/linux/swab.h:118:21: note: expanded from macro '__swab32'
->         ___constant_swab32(x) :                 \
->                            ^
-> ./include/uapi/linux/swab.h:18:12: note: expanded from macro
-> '___constant_swab32'
->         (((__u32)(x) & (__u32)0x000000ffUL) << 24) |            \
->                   ^
+> When suspend, tsadc is disabled, the otp_pin should revert to the
+> default gpio state.
 > 
-> Signed-off-by: Phong Tran <tranmanphong@gmail.com>
-> ---
->  include/linux/of.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>>>         return 0;
+>>>   }
+>>> @@ -1383,7 +1413,8 @@ static int __maybe_unused
+>>> rockchip_thermal_resume(struct device *dev)
+>>>       for (i = 0; i < thermal->chip->chn_num; i++)
+>>>           rockchip_thermal_toggle_sensor(&thermal->sensors[i], true);
+>>>   -    pinctrl_pm_select_default_state(dev);
+>>> +    if (thermal->tshut_mode == TSHUT_MODE_GPIO)
+>>> +        pinctrl_select_state(thermal->pinctrl, thermal->otp_state);
+>> And then
+>>     pinctrl_select_state(thermal->pinctrl, thermal->pinctrl_state);
 > 
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index e240992e5cb6..1c35fc8f19b0 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -235,7 +235,7 @@ static inline u64 of_read_number(const __be32 *cell, int size)
->  {
->  	u64 r = 0;
->  	while (size--)
-> -		r = (r << 32) | be32_to_cpu(*(cell++));
-> +		r = (r << 32) | be32_to_cpup(cell++);
->  	return r;
->  }
->  
-> -- 
-> 2.21.0
-> 
+> pinctrl select to otp mode when tsadc resume.
 
-While the patch does remove the warning, I am not convinced that this
-isn't a clang bug based on my brief analysis here:
+Ok, thanks for clarifying.
 
-https://github.com/ClangBuiltLinux/linux/issues/460#issuecomment-487808008
+  -- Daniel
 
-However, I'm waiting for people smarter than I am to comment on whether
-that sounds correct or not.
 
-I am not familiar with the various different big/little endian functions
-enough to review this but thank you for the patch!
 
-Nathan
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
