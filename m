@@ -2,104 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D55AFC18
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 17:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DB20FC88
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 17:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726048AbfD3PDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 11:03:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33086 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725976AbfD3PDI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 11:03:08 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E46072173E;
-        Tue, 30 Apr 2019 15:03:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556636587;
-        bh=8MpnfmbxbWON+YaQJhPpIxR+u+gi4GYsXY//k2+p4jk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=j5aHZ1SGuXp2YjXyEJ74IOk5NLAO2taCwCmaV3hmKnRHPi3ch84NkoCHNZgA8anZY
-         Tx84mxFlpdbdOHeHRIY0A6pIy8jeGPo889AVNL0126rEoLQMIyNecOsgiytnvEHIBR
-         Bg2vJyJ8JdsyDbYcNSwfbF42g9/i2tN7Yfx4pc6Y=
-Received: by mail-qt1-f171.google.com with SMTP id e2so15750156qtb.4;
-        Tue, 30 Apr 2019 08:03:06 -0700 (PDT)
-X-Gm-Message-State: APjAAAXyhhFg8sttnalh1ibSTR+VcDII/1/IH7l/qXAghmOSM5mRfns8
-        /Tdz2VQ4qgcC4TVwp9bt3u+a2d2uvGaxxtnVfQ==
-X-Google-Smtp-Source: APXvYqylk98wBAwLu1LD8MCtWw20sYmJ/f29BlQrMHENBok32t1FLmdUTxXI1XStyAjsNRySLw4QDnVWsWVC1SCXmfM=
-X-Received: by 2002:ac8:641:: with SMTP id e1mr17661759qth.76.1556636586095;
- Tue, 30 Apr 2019 08:03:06 -0700 (PDT)
+        id S1726015AbfD3PMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 11:12:50 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:35156 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbfD3PMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 11:12:50 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w197so11545449oia.2;
+        Tue, 30 Apr 2019 08:12:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7aahexJfH3+ZCWyzwJ4HVTibyUsm/U8CQ+avun/lb8w=;
+        b=M5GbafMPEw1FpUNuPjUwms7Cxan/YhI0LBNBnJ1NgEifzyephSGFy7trreF1QLuWZN
+         9phJCGSBD9crQT60BJWkeBZS7Be36B4Qpht0y9svV1UC5W42Cwi2JFbAx5R7+fTaWhc6
+         ZUJAvGzg5l3HA/3dODChYMIBwoNJKnT2U9yDXYmeTivpKtHxLK98B9Q7jwvqn+sltgUx
+         rZYXQUDQUAB0IrO52LJKGp4vmQKYrPwYHgUq7tv2g/5LHZzTBJ5HIjUG0pxyY+ULMkp+
+         +PlJ+eUK5NJGibNv0vYV9DkaLrR/mOHxWuoGJZ/0tsm392BWIEIU1stUlXu4ahSz0eHq
+         xbXg==
+X-Gm-Message-State: APjAAAXGD74hm5RcB9NSOHchEisoAEiBDMOg2gzHg5RjR3IcBeYpu+fv
+        ia4I9xI92hsFSxJlr3r+tHCCh9I=
+X-Google-Smtp-Source: APXvYqw+7CtQGpDl9egPhX/Ibog5Hs4VhoUaMkukQMspgHXvHnYdx7igDWd16RY8bjIjwyxtwGAzZQ==
+X-Received: by 2002:aca:55c1:: with SMTP id j184mr3206627oib.119.1556637164785;
+        Tue, 30 Apr 2019 08:12:44 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o1sm16620919otj.11.2019.04.30.08.12.43
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 30 Apr 2019 08:12:43 -0700 (PDT)
+Date:   Tue, 30 Apr 2019 10:12:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     linus.walleij@linaro.org, mark.rutland@arm.com,
+        khilman@baylibre.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: add a 'drive-strength-uA'
+ property
+Message-ID: <20190430151243.GA6879@bogus>
+References: <20190418124758.24022-1-glaroque@baylibre.com>
+ <20190418124758.24022-2-glaroque@baylibre.com>
 MIME-Version: 1.0
-References: <20190430121254.3737-1-geert+renesas@glider.be> <20190430121254.3737-2-geert+renesas@glider.be>
-In-Reply-To: <20190430121254.3737-2-geert+renesas@glider.be>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 30 Apr 2019 10:02:54 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+KwOLqd=ZqT-bdM5mp8jfPHu=XingBb6kBsUqHvO=m+g@mail.gmail.com>
-Message-ID: <CAL_Jsq+KwOLqd=ZqT-bdM5mp8jfPHu=XingBb6kBsUqHvO=m+g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Add Renesas
- RZ/A1 Interrupt Controller
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190418124758.24022-2-glaroque@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 7:13 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Add DT bindings for the Renesas RZ/A1 Interrupt Controller.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Thu, Apr 18, 2019 at 02:47:55PM +0200, Guillaume La Roque wrote:
+> This property allow drive-strength parameter in uA instead of mA.
+> 
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
-> v2:
->   - Add "renesas,gic-spi-base",
->   - Document RZ/A2M.
-> ---
->  .../renesas,rza1-irqc.txt                     | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt b/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
-> new file mode 100644
-> index 0000000000000000..ea8ddb6955338ccd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
-> @@ -0,0 +1,30 @@
-> +DT bindings for the Renesas RZ/A1 Interrupt Controller
+>  Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> index cef2b5855d60..fc7018459aa2 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> @@ -258,6 +258,7 @@ drive-push-pull		- drive actively high and low
+>  drive-open-drain	- drive with open drain
+>  drive-open-source	- drive with open source
+>  drive-strength		- sink or source at most X mA
+> +drive-strength-uA	- sink or source at most X uA
+>  input-enable		- enable input on pin (no effect on output, such as
+>  			  enabling an input buffer)
+>  input-disable		- disable input on pin (no effect on output, such as
+> @@ -326,6 +327,8 @@ arguments are described below.
+>  
+>  - drive-strength takes as argument the target strength in mA.
+>  
+> +- drive-strength-uA takes as argument the target strength in uA.
 > +
-> +The RZ/A1 Interrupt Controller is a front-end for the GIC found on Renesas
-> +RZ/A1 and RZ/A2 SoCs:
-> +  - IRQ sense select for 8 external interrupts, 1:1-mapped to 8 GIC SPI
-> +    interrupts,
-> +  - NMI edge select.
-> +
-> +Required properties:
-> +  - compatible: Must be "renesas,<soctype>-irqc", and "renesas,rza1-irqc" as
-> +               fallback.
-> +               Examples with soctypes are:
-> +                 - "renesas,r7s72100-irqc" (RZ/A1H)
-> +                 - "renesas,r7s9210-irqc" (RZ/A2M)
-> +  - #interrupt-cells: Must be 2 (an interrupt index and flags, as defined
-> +                                in interrupts.txt in this directory)
-> +  - interrupt-controller: Marks the device as an interrupt controller
-> +  - reg: Base address and length of the memory resource used by the interrupt
-> +         controller
-> +  - renesas,gic-spi-base: Lowest GIC SPI interrupt number this block maps to.
 
-Why isn't this just an 'interrupts' property? Plus, without
-'interrupts' walking the hierarchy is broken.
+We have standard unit suffixes defined in bindings/property-units.txt. 
+Use them please.
 
 Rob
