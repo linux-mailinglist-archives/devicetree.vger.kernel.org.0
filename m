@@ -2,139 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7C2EE32
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 03:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B83A6EE36
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 03:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729726AbfD3BPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 21:15:09 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:44013 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729626AbfD3BPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 21:15:08 -0400
-Received: by mail-ot1-f67.google.com with SMTP id u15so10423214otq.10;
-        Mon, 29 Apr 2019 18:15:08 -0700 (PDT)
+        id S1729758AbfD3BPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 21:15:33 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:41867 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729238AbfD3BPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 21:15:32 -0400
+Received: by mail-pg1-f193.google.com with SMTP id f6so6016453pgs.8;
+        Mon, 29 Apr 2019 18:15:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SJR2bqkaxTTZSrKOHpSh+1p44wBNtrD7UfXsdGZTi18=;
+        b=Beo9N4BnADPEIi1HCq2wYdn1zIeVDJ3/QVI/sXM9MMdHg3gbLEcbjGN5TkdrROcUjp
+         2k6eD077b1qkMhFqNmXw9W///FgszQerwO0FdCGil81+Hq+3NPWRAbSwpl442P1grv7B
+         zkEZ1dyXBmPOQ/uUZJNlXyl46YgLZ6yQ+dWE41Wy2j6wzBVmUF5A53rGKsow5TZ4SuMj
+         NEg7txBctaUiZccU+Ws+MrlVVDjBfL+d6SEA9L5ZxakCLCct2HLEVVpwQanIWwe1vCnV
+         kMOONxVns9HwJbJuW1m3X9tyDBVtSktUD3I8GZEMi1YlVNn7efCJP/6XuAu4uQ5sWA7Q
+         M4Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NeVwMYlomqJ0FeYvQcVMOgeUQOrj8gToq74sIwHDDfs=;
-        b=WsE/LpvykVUFXrXmXxpAJilJqADtnP9MVunwzlnVRDx2oYAMiDWV7rGzl37Fho9/DC
-         s2xyjoFy4av9XwR149xwt4MAa+3AwCqUi4e0Chto7ihZ2wnJO1PhY6Combr3VJQS/gjn
-         IEFwHu8tsaeKoxfHGpJJyeMG60ahQNLPRhPWbWF2z8vlIpS5ciS2PmcSn0Ra8Sq1JG1X
-         1LUYznMXC8JUSgnHo2yb4tVlDw9sgcYZq6rZud89Q38xPRx+9L8fdvbTH8m2XCaOt56X
-         OnzPtBeMvgxq3buSgceiFWhdQxQeQwS3aVjEqxiKY4DdvxhGZGAlry68FZSgIg01erPJ
-         j+uQ==
-X-Gm-Message-State: APjAAAW/PrHwgr7xIQzTvyJ1J6bBUIa+ge62YIUe0vp6bBFnLtHZR5b/
-        Z9ikrO+j6dtbsgfHN+TMBQ==
-X-Google-Smtp-Source: APXvYqze9aYwnpsa/3SpoyY5RkNLINJC4nPMtI/5aHOuoiOQeBQWrG1+vcVxyqtcshxblezJVf+InA==
-X-Received: by 2002:a9d:2237:: with SMTP id o52mr1406933ota.272.1556586908019;
-        Mon, 29 Apr 2019 18:15:08 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z2sm17168652ota.56.2019.04.29.18.15.06
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 18:15:06 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 20:15:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Frederic Chen <frederic.chen@mediatek.com>
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
-        yuzhao@chromium.org, zwisler@chromium.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        holmes.chiou@mediatek.com, Jerry-ch.Chen@mediatek.com,
-        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
-        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, shik@chromium.org,
-        suleiman@chromium.org
-Subject: Re: [RFC PATCH V1 1/6] dt-bindings: mt8183: Add binding for DIP
- shared memory
-Message-ID: <20190430011506.GA8514@bogus>
-References: <20190417104511.21514-1-frederic.chen@mediatek.com>
- <20190417104511.21514-2-frederic.chen@mediatek.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SJR2bqkaxTTZSrKOHpSh+1p44wBNtrD7UfXsdGZTi18=;
+        b=W9TkX9AQW4jh4oTSilB7Z3LqN/YelBK3tVPaK3VDE+HISn5yJ6XA4OlVdV2qziUIAR
+         NhgYyQ3NiAcgixCHKsUYilhJoe0nI1HWZ2SKhBg9Q5hkOGCqr8+3QwUmxBHt5FptktMv
+         xtpQVzX7HB4de8il1pqjiJkv0VyV1IfxHCfvZxrkcvbiTz7GIHIEg0pytTZ5kUe+5grE
+         PDmRxQV+g4duQApk/kUhaEWnpWtRvRKTdQB6D7xZbkMsDZYcUMBYsZdG7OCiGlfFmo8e
+         NX5XYhLs7JMecpajuIBa4W1p0oHuTFzn8+7iKdHcx8Bkyq/Ynw6mFKniCDaNJsdZsPul
+         tgpQ==
+X-Gm-Message-State: APjAAAXjW1PvcBz3GJHsacyPqJfTC4anBKrUA7vmwfsRFoAAVjQjgMU4
+        eGpFeF4gwoQF7/fMpLVFi6s=
+X-Google-Smtp-Source: APXvYqw2SGm3BTsHdsLohh4J1ZBkW4UbLNOORIYOQLS5NYLqdt5q+xmynXGiVI/jcMkGrP88+BivMg==
+X-Received: by 2002:aa7:8b4c:: with SMTP id i12mr14401909pfd.189.1556586932334;
+        Mon, 29 Apr 2019 18:15:32 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id q80sm64336468pfa.66.2019.04.29.18.15.31
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Apr 2019 18:15:31 -0700 (PDT)
+Subject: Re: [PATCH] of_net: add mtd-mac-address support to
+ of_get_mac_address()
+To:     Rob Herring <robh@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?Q?Petr_=c5=a0tetiar?= <ynezz@true.cz>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
+References: <1555445100-30936-1-git-send-email-ynezz@true.cz>
+ <d29bcf08-9299-8f2c-00bc-791b60658581@gmail.com>
+ <93770c6a-5f99-38f6-276b-316c00176cac@gmail.com>
+ <20190430004845.GA29722@bogus>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <91fc37e6-aacd-cb67-cf7e-2415a59375a4@gmail.com>
+Date:   Mon, 29 Apr 2019 18:15:30 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190417104511.21514-2-frederic.chen@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190430004845.GA29722@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 17, 2019 at 06:45:06PM +0800, Frederic Chen wrote:
-> This patch adds the binding for describing the shared memory
-> used to exchange configuration and tuning data between the
-> co-processor and Digital Image Processing (DIP) unit of the
-> camera ISP system on Mediatek SoCs.
+On 4/29/19 5:48 PM, Rob Herring wrote:
+> On Tue, Apr 16, 2019 at 08:01:56PM -0700, Frank Rowand wrote:
+>> Hi Rob,
+>>
+>> On 4/16/19 5:29 PM, Florian Fainelli wrote:
+>>>
+>>>
+>>> On 16/04/2019 13:05, Petr Štetiar wrote:
+>>>> From: John Crispin <john@phrozen.org>
+>>>>
+>>>> Many embedded devices have information such as MAC addresses stored
+>>>> inside MTD devices. This patch allows us to add a property inside a node
+>>>> describing a network interface. The new property points at a MTD
+>>>> partition with an offset where the MAC address can be found.
+>>>>
+>>>> This patch has originated in OpenWrt some time ago, so in order to
+>>>> consider usefulness of this patch, here are some real-world numbers
+>>>> which hopefully speak for themselves:
+>>>>
+>>>>   * mtd-mac-address                used 497 times in 357 device tree files
+>>>>   * mtd-mac-address-increment      used  74 times in  58 device tree files
+>>>>   * mtd-mac-address-increment-byte used   1 time  in   1 device tree file
+>>>>
+>>>> Signed-off-by: John Crispin <john@phrozen.org>
+>>>> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+>>>> [cleanup of the patch for upstream submission]
+>>>> Signed-off-by: Petr Štetiar <ynezz@true.cz>
+>>>> ---
+>>>
+>>> [snip]
+>>>
+>>>> +static const void *of_get_mac_address_mtd(struct device_node *np)
+>>>> +{
+>>>> +#ifdef CONFIG_MTD
+>>>> +    void *addr;
+>>>> +    size_t retlen;
+>>>> +    int size, ret;
+>>>> +    u8 mac[ETH_ALEN];
+>>>> +    phandle phandle;
+>>>> +    const char *part;
+>>>> +    const __be32 *list;
+>>>> +    struct mtd_info *mtd;
+>>>> +    struct property *prop;
+>>>> +    u32 mac_inc = 0;
+>>>> +    u32 inc_idx = ETH_ALEN-1;
+>>>> +    struct device_node *mtd_np = NULL;
+>>>
+>>> Reverse christmas tree would look a bit nicer here.
+>>
+>> Do we a variable declaration format preference for drivers/of/*?
 > 
-> Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-> ---
->  .../mediatek,reserve-memory-dip_smem.txt      | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
+> We'd better get one. It's all the rage.
 > 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> new file mode 100644
-> index 000000000000..64c001b476b9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> @@ -0,0 +1,45 @@
-> +Mediatek DIP Shared Memory binding
-> +
-> +This binding describes the shared memory, which serves the purpose of
-> +describing the shared memory region used to exchange data between Digital
-> +Image Processing (DIP) and co-processor in Mediatek SoCs.
-> +
-> +The co-processor doesn't have the iommu so we need to use the physical
-> +address to access the shared buffer in the firmware.
-> +
-> +The Digital Image Processing (DIP) can access memory through mt8183 IOMMU so
-> +it can use dma address to access the memory region.
-> +(See iommu/mediatek,iommu.txt for the detailed description of Mediatek IOMMU)
-> +
-> +
-> +Required properties:
-> +
-> +- compatible: must be "mediatek,reserve-memory-dip_smem"
-
-Don't use '_'.
-
-> +
-> +- reg: required for static allocation (see reserved-memory.txt for
-> +  the detailed usage)
-> +
-> +- alloc-range: required for dynamic allocation. The range must
-> +  between 0x00000400 and 0x100000000 due to the co-processer's
-> +  addressing limitation
-
-Generally, you should pick either static or dynamic allocation for a 
-given binding. Static if there's some address restriction or sharing, 
-dynamic if not.
-
-Sounds like static in this case.
-
-> +
-> +- size: required for dynamic allocation. The unit is bytes.
-> +  If you want to enable the full feature of Digital Processing Unit,
-> +  you need 20 MB at least.
-> +
-> +
-> +Example:
-> +
-> +The following example shows the DIP shared memory setup for MT8183.
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		reserve-memory-dip_smem {
-> +			compatible = "mediatek,reserve-memory-dip_smem";
-> +			size = <0 0x1400000>;
-> +			alignment = <0 0x1000>;
-> +			alloc-ranges = <0 0x40000000 0 0x50000000>;
-> +		};
-> +	};
-> -- 
-> 2.18.0
+> How about fallen Christmas tree:
 > 
+> 	int a;
+> 	bool fallen;
+> 	char christmas_tree;
+> 	int for_our;
+> 	int dt;
+
+Nice!  That is actually the most aesthetically pleasing method I have
+seen.  :-)
+
+In the future I will tell people to ignore devicetree review comments
+that espouse a declaration religion.  As long as the declarations are
+within reason (and sort of follow whatever style is present elsewhere
+in the same file).
+
+> 
+> Rob
+> 
+
