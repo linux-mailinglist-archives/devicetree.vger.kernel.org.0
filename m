@@ -2,113 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D21F9F028
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 07:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3DDEF02E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 08:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726198AbfD3F5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 01:57:17 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34824 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725938AbfD3F5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 01:57:17 -0400
-Received: by mail-io1-f66.google.com with SMTP id r18so11174153ioh.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 22:57:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=hWKX2lq33x/bqH4d/le0jFr8W3N+Bkvqbw8w1QPkiFM=;
-        b=Ov+Pp32oKqWJj+v2leV694xGyb6S9up7lYYPQ7oPHjhx3oukgMTTT/m041MXK0SWuF
-         8jCINE18h1zeq+ydDj0F62gr20ryYRJ85Dm5sTjO6KyiirqCrKrdtYGIjQhM59z6EAhL
-         Wr1VtvCw1+jJAlFWtUgxPPCN51CN8gFH4tVTW/7mLD+fI1slgsPknuRb+Wb1gri/ycRv
-         cnrc/bLP3jqEHaGqNnt3532193nrUmQbCJHp2CDs8DGxqFZBZpzu8r6BBCIyizEuq2sG
-         B7P8TtttCHzh03mza9oh3/iZgqbqAEOa3zMUkHLnGB1p7+BxfihpKzCW4KeiWYkWqwO4
-         HT/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=hWKX2lq33x/bqH4d/le0jFr8W3N+Bkvqbw8w1QPkiFM=;
-        b=rnGraeJ7rHGKmQ+VYIuFCPTewKCyKQUw23l8wF16REtaKX9Ny0uOrfr0klXPhVerFg
-         evabXUyhl0ZWSpupfxWNgo7SM9/WFwexYOSIHRPwBVIufsn9PGya9c/sagO/MmU4HE3w
-         T2Gc2Hcq5bOHeAbF3jJFn1vi79k9DNBkXoCDrpI5imggay25T1GXLv4PRUjnXldC7Oip
-         Q7w4qG8J9jotPfPEKIsrGTdqLWlA7u8NrEl+4iYTSKnwHYANkjt02uGPu4ybnPV341AD
-         k5YYUX2fhBRtOhT2ZhBZrBSIagD4dP6mQYgsXcMFAGDI0Qz+sRr7hu2N4CU5he/gHRBY
-         3Wiw==
-X-Gm-Message-State: APjAAAWNv34FcrM1itR4LZ1bWWgMnyw02YEqglyzw0a+VNPZYyXOa77k
-        l7ivaKQ9f9JmwFZX3VxwVctZ2Q==
-X-Google-Smtp-Source: APXvYqzAC8eAlzqjeLLMoD/UHDZ5ijbGvpg1RDOoBrDKbcOzIOLLnUjbc9ho0YTyKwMXMw2TI+tDcg==
-X-Received: by 2002:a5e:d702:: with SMTP id v2mr3816669iom.236.1556603836719;
-        Mon, 29 Apr 2019 22:57:16 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id a124sm926073itc.18.2019.04.29.22.57.15
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 22:57:16 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 22:57:15 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Stephen Boyd <sboyd@kernel.org>
-cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul@pwsan.com>,
-        Wesley Terpstra <wesley@sifive.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Megan Wachs <megan@sifive.com>
-Subject: Re: [PATCH v3 1/3] clk: analogbits: add Wide-Range PLL library
-In-Reply-To: <155657878993.168659.6676692672888882237@swboyd.mtv.corp.google.com>
-Message-ID: <alpine.DEB.2.21.9999.1904292252120.7063@viisi.sifive.com>
-References: <20190411082733.3736-2-paul.walmsley@sifive.com> <155632691100.168659.14460051101205812433@swboyd.mtv.corp.google.com> <alpine.DEB.2.21.9999.1904262031510.10713@viisi.sifive.com> <alpine.DEB.2.21.9999.1904291141340.7063@viisi.sifive.com>
- <155657878993.168659.6676692672888882237@swboyd.mtv.corp.google.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1725769AbfD3GCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 02:02:06 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:33354 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725554AbfD3GCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 02:02:05 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3U61j2f112083;
+        Tue, 30 Apr 2019 01:01:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1556604105;
+        bh=h3OKh0wANVTGMFN5PFdzxOS0UbeQzuBh9Z/vJt4Q8OE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JknLuScocmlMZa3NftVvv+fcaflDJhWeGQKYtmLQkknkgNfY1p3ALmeb+JeWw3xqt
+         ype2/yFjp3zQIdC4jBpk2pXnYw51V3AG7ACtNp0kK8muyCFnL7KEWSS94iMMJ56t65
+         osbvDVC25229nsTRoxG9+OV7VVo+rmuHBtI8ia8g=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3U61j13070786
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Apr 2019 01:01:45 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 30
+ Apr 2019 01:01:44 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 30 Apr 2019 01:01:45 -0500
+Received: from [172.24.190.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3U61dx9006088;
+        Tue, 30 Apr 2019 01:01:41 -0500
+Subject: Re: [PATCH v7 11/14] irqchip: ti-sci-inta: Add support for Interrupt
+ Aggregator driver
+To:     Marc Zyngier <marc.zyngier@arm.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
+        <linus.walleij@linaro.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+References: <20190420100950.7997-1-lokeshvutla@ti.com>
+ <20190420100950.7997-12-lokeshvutla@ti.com>
+ <36b8bc62-fff2-c015-8140-cda625efdabc@arm.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <a0f2a359-7139-18b3-6cb7-3e6445705bbd@ti.com>
+Date:   Tue, 30 Apr 2019 11:31:13 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <36b8bc62-fff2-c015-8140-cda625efdabc@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Apr 2019, Stephen Boyd wrote:
 
-> Quoting Paul Walmsley (2019-04-29 12:42:07)
-> > On Fri, 26 Apr 2019, Paul Walmsley wrote:
-> > > On Fri, 26 Apr 2019, Stephen Boyd wrote:
-> > > 
-> > > > Quoting Paul Walmsley (2019-04-11 01:27:32)
-> > > > > Add common library code for the Analog Bits Wide-Range PLL (WRPLL) IP
-> > > > > block, as implemented in TSMC CLN28HPC.
-> > > > 
-> > > > I haven't deeply reviewed at all, but I already get two problems when
-> > > > compile testing these patches. I can fix them up if nothing else needs
-> > > > fixing.
-> > > > 
-> > > > drivers/clk/analogbits/wrpll-cln28hpc.c:165 __wrpll_calc_divq() warn: should 'target_rate << divq' be a 64 bit type?
-> > > > drivers/clk/sifive/fu540-prci.c:214:16: error: return expression in void function
-> > > 
-> > > Hmm, that's odd.  I will definitely take a look and repost.
-> > 
-> > I'm not able to reproduce these problems.  The configs tried here were:
-> > 
-> > - 64-bit RISC-V defconfig w/ PRCI driver enabled (gcc 8.2.0 built with 
-> >   crosstool-NG 1.24.0)
-> > 
-> > - 32-bit ARM defconfig w/ PRCI driver enabled (gcc 8.3.0 built with 
-> >   crosstool-NG 1.24.0)
-> > 
-> > - 32-bit i386 defconfig w/ PRCI driver enabled (gcc 
-> >   5.4.0-6ubuntu1~16.04.11)
-> > 
-> > Could you post the toolchain and kernel config you're using?
-> > 
+
+On 29/04/19 6:41 PM, Marc Zyngier wrote:
+> On 20/04/2019 11:09, Lokesh Vutla wrote:
+>> Texas Instruments' K3 generation SoCs has an IP Interrupt Aggregator
+>> which is an interrupt controller that does the following:
+>> - Converts events to interrupts that can be understood by
+>>   an interrupt router.
+>> - Allows for multiplexing of events to interrupts.
+>>
+>> Configuration of the interrupt aggregator registers can only be done by
+>> a system co-processor and the driver needs to send a message to this
+>> co processor over TISCI protocol. This patch adds support for Interrupt
+>> Aggregator irqdomain.
+>>
+>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+>> ---
+>> Changes since v6:
+>> - Updated commit message.
+>> - Arranged header files in alphabetical order
+>> - Included vint_bit in struct ti_sci_inta_event_desc
+>> - With the above change now the chip_data is event_desc instead of vint_desc
+>> - No loops are used in atomic contexts.
+>> - Fixed locking issue while freeing parent virq
+>> - Fixed few other cosmetic changes.
+>>
+>>  MAINTAINERS                       |   1 +
+>>  drivers/irqchip/Kconfig           |  11 +
+>>  drivers/irqchip/Makefile          |   1 +
+>>  drivers/irqchip/irq-ti-sci-inta.c | 589 ++++++++++++++++++++++++++++++
+>>  4 files changed, 602 insertions(+)
+>>  create mode 100644 drivers/irqchip/irq-ti-sci-inta.c
+>>
 > 
-> I'm running sparse and smatch too.
+> [...]
+> 
+>> +/**
+>> + * ti_sci_inta_alloc_irq() -  Allocate an irq within INTA domain
+>> + * @domain:	irq_domain pointer corresponding to INTA
+>> + * @hwirq:	hwirq of the input event
+>> + *
+>> + * Note: Allocation happens in the following manner:
+>> + *	- Find a free bit available in any of the vints available in the list.
+>> + *	- If not found, allocate a vint from the vint pool
+>> + *	- Attach the free bit to input hwirq.
+>> + * Return event_desc if all went ok else appropriate error value.
+>> + */
+>> +static struct ti_sci_inta_event_desc *ti_sci_inta_alloc_irq(struct irq_domain *domain,
+>> +							    u32 hwirq)
+>> +{
+>> +	struct ti_sci_inta_irq_domain *inta = domain->host_data;
+>> +	struct ti_sci_inta_vint_desc *vint_desc = NULL;
+>> +	u16 free_bit;
+>> +
+>> +	mutex_lock(&inta->vint_mutex);
+>> +	list_for_each_entry(vint_desc, &inta->vint_list, list) {
+>> +		mutex_lock(&vint_desc->event_mutex);
+>> +		free_bit = find_first_zero_bit(vint_desc->event_map,
+>> +					       MAX_EVENTS_PER_VINT);
+>> +		if (free_bit != MAX_EVENTS_PER_VINT) {
+>> +			set_bit(free_bit, vint_desc->event_map);
+>> +			mutex_unlock(&vint_desc->event_mutex);
+>> +			mutex_unlock(&inta->vint_mutex);
+>> +			goto alloc_event;
+>> +		}
+>> +		mutex_unlock(&vint_desc->event_mutex);
+>> +	}
+>> +	mutex_unlock(&inta->vint_mutex);
+>> +
+>> +	/* No free bits available. Allocate a new vint */
+>> +	vint_desc = ti_sci_inta_alloc_parent_irq(domain);
+>> +	if (IS_ERR(vint_desc))
+>> +		return ERR_PTR(PTR_ERR(vint_desc));
+>> +
+>> +	mutex_lock(&vint_desc->event_mutex);
+>> +	free_bit = find_first_zero_bit(vint_desc->event_map,
+>> +				       MAX_EVENTS_PER_VINT);
+>> +	set_bit(free_bit, vint_desc->event_map);
+>> +	mutex_unlock(&vint_desc->event_mutex);
+> 
+> This code is still quite racy: you can have two parallel allocations
+> failing to get a free bit in any of the already allocated vint_desc, and
+> then both allocating a new vint_desc. If there was only one left, one of
+> the allocation will fail despite having at least 63 free interrupts.
 
-OK.  I was able to reproduce the __wrpll_calc_divq() warning.  It's been 
-resolved in the upcoming revision.  
+Good point. After thinking a bit more, I saw similar issue when two parallel
+frees happens on a vint with only 2 bits allocated. First free when freeing
+parent_irq might see all the bits cleared and does kfree(vint). Then second free
+will crash when freeing parent irq.
 
-But I don't see the second error with either sparse or smatch.  (This is 
-with sparse at commit 2b96cd804dc7 and smatch at commit f0092daff69d.)
+Ill guard the entire allocation and freeing with vint_mutex and drop the
+event_mutex altogether.
 
+Thanks and regards,
+Lokesh
 
-- Paul
+> 
+> 	M.
+> 
