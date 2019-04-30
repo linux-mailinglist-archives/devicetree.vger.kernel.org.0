@@ -2,115 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B64C4FAD4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 15:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432F8FB20
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 16:10:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbfD3Nv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 09:51:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726105AbfD3Nv6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 09:51:58 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 699B4217D4;
-        Tue, 30 Apr 2019 13:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556632316;
-        bh=FK7HvOl0jhVPsMklvQn4u+qk2YgkQYXDQ9T+ToRvAXA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R3Eq5UQpEL1ulohhuEsrUMBN4yHKbGSE7eO2Aq5wIH53jMAkaDaUoTMiGUdGhJCfo
-         WFhwmfPa6Mrtcx1/G4u31gKPjxJ6BYpGPQdVcYXQ1Q/02mGIz/C3dfMquL9S1tZz6S
-         qK033DJlKnFFTeKQbT8FT5KXlVEifZYTDv2KtKUw=
-Received: by mail-qt1-f171.google.com with SMTP id g7so16210459qtc.0;
-        Tue, 30 Apr 2019 06:51:56 -0700 (PDT)
-X-Gm-Message-State: APjAAAXV1whIOfQDJx8iOBBUMFWmuoyk7+9/IaTu489PX4E9kKDp8sxQ
-        cDS+4ZpQyyQe+qo56ZnPQdKpjBXzePwSd+FiVw==
-X-Google-Smtp-Source: APXvYqysWBnERRiggEZsMb3Mmr6NNKePq261OyqR1iKPSacnJ82Idt1QSfZ2Dzyk1tH321Fn4H2E6up6IIy0+QNvHz4=
-X-Received: by 2002:aed:3f6b:: with SMTP id q40mr14911616qtf.26.1556632315591;
- Tue, 30 Apr 2019 06:51:55 -0700 (PDT)
+        id S1727330AbfD3OKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 10:10:44 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:41672 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726758AbfD3OKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 10:10:43 -0400
+Received: by mail-ua1-f66.google.com with SMTP id s30so1564033uas.8;
+        Tue, 30 Apr 2019 07:10:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=is2MtEzfqe3NopmKzPvB7kAsyJ90xw92BJ3XiahsHzQ=;
+        b=ghnCqoic2NR+MeAk3FMuP65rEfC/r0VaUitEJJ0IQTtLX5Lbhl0EJ/V97DtcJe6DSK
+         IQNAoriRZt8RhSv38B0EyZOwb1U7P8YZayQ8PoXkA36lsTxqVSPS4a3DJ9KOcRn9Z4qA
+         XrFqwYIscUq2q1KQTtznu9BbKwgaFlihogoiQFu+Wk/J5PY6LVZHu0dZEtB6VEgirv1Z
+         YHA33Dwahhq+FByLvtSmHB9Pn3LHgTOUsy+RlTkBQpifNTL2eKKyN/jYa0yp2TsZsVAY
+         S7+1uqpbx+d8uno8shzeB9sebAQhncZznuePZ46+XUo4s5x6nR7PNSWm9w+MoUpiZ+0Y
+         i2Ww==
+X-Gm-Message-State: APjAAAUBxrP5/Dgk1tOJvixrSBk4P/wIYsh+0frf2R4mmn99YBpg9N+Y
+        l6CdzsKloCMn6WBmmLBsFVyPqYDL9een8fPjct8=
+X-Google-Smtp-Source: APXvYqzqrcgkWgGIpETv+ZHwtImkGnC4V+K19HPeRGvUOFWTlGAiCkUEFOGWEUlOjEUvsnz4hxJ6znYNY3eqBhhaGHM=
+X-Received: by 2002:ab0:7797:: with SMTP id x23mr3807866uar.28.1556633442203;
+ Tue, 30 Apr 2019 07:10:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190416215351.242246-1-dianders@chromium.org>
- <20190416215351.242246-2-dianders@chromium.org> <20190430005357.GA13695@bogus>
- <CAD=FV=V3_NcBHdg5A8LvGMoVd_eLN0q=pXo_3f2GCdi5u2GP-Q@mail.gmail.com>
-In-Reply-To: <CAD=FV=V3_NcBHdg5A8LvGMoVd_eLN0q=pXo_3f2GCdi5u2GP-Q@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 30 Apr 2019 08:51:43 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJGMBhqRw0D9ehsV=A7cQ4cPah=Ot335npraBdGm1Yhag@mail.gmail.com>
-Message-ID: <CAL_JsqJGMBhqRw0D9ehsV=A7cQ4cPah=Ot335npraBdGm1Yhag@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc2: Document quirk to reset
- PHY upon wakeup
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Randy Li <ayaka@soulik.info>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>
+References: <1555428717-18376-1-git-send-email-biju.das@bp.renesas.com> <1555428717-18376-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1555428717-18376-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 30 Apr 2019 16:10:30 +0200
+Message-ID: <CAMuHMdV4PiVjYotbR-LF-2BNkpY61Q7XsxKFKDk56dvA_0iibA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: r8a774a1: Add VSP instances
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 12:29 AM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Mon, Apr 29, 2019 at 5:54 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, Apr 16, 2019 at 02:53:48PM -0700, Douglas Anderson wrote:
-> > > On Rockchip rk3288 there's a hardware quirk where we need to assert
-> > > the reset signal to the PHY when we get a remote wakeup on one of the
-> > > two ports.  Document this quirk in the bindings.
-> > >
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> > > ---
-> > >
-> > > Changes in v2: None
-> > >
-> > >  Documentation/devicetree/bindings/usb/dwc2.txt | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/dwc2.txt b/Documentation/devicetree/bindings/usb/dwc2.txt
-> > > index 6dc3c4a34483..f70f3aee4bfc 100644
-> > > --- a/Documentation/devicetree/bindings/usb/dwc2.txt
-> > > +++ b/Documentation/devicetree/bindings/usb/dwc2.txt
-> > > @@ -37,6 +37,8 @@ Refer to phy/phy-bindings.txt for generic phy consumer properties
-> > >  - g-rx-fifo-size: size of rx fifo size in gadget mode.
-> > >  - g-np-tx-fifo-size: size of non-periodic tx fifo size in gadget mode.
-> > >  - g-tx-fifo-size: size of periodic tx fifo per endpoint (except ep0) in gadget mode.
-> > > +- snps,reset-phy-on-wake: If present indicates that we need to reset the PHY when
-> > > +                          we detect a wakeup.  This is due to a hardware errata.
-> >
-> > Synopsys or Rockchip errata?
-> >
-> > Ideally, this should be implied by the controller or phy compatible.
->
-> I have no idea.  The errata was described to me by Rockchip but I
-> don't know if it's common to more than one board.
->
-> You're right that we could do it on the controller compatible, but we
-> have to be careful.  The two ports on rk3288 currently have the same
-> compatible string but the errata only applies to one of them.  ...so
-> I'd have to cue on not just the compatible string but also detect
-> whether we're on the "OTG" port of the "host only" port.  That's not
-> too hard, though since it is probe-able.
->
-> I'm happy to spin this but I'll wait to hear from Felipe.  This is
-> already in his testing tree, so presumably I should do a follow-up
-> patch.  ...but if he wants me to re-post I can do that too.
+Hi Biju,
 
-Okay, I guess it is fine as-is.
+On Tue, Apr 16, 2019 at 5:38 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> The r8a774a1 soc has 5 VSP instances similar to r8a7796.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-Rob
+> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> @@ -1877,6 +1877,61 @@
+>                         iommus = <&ipmmu_vc0 19>;
+>                 };
+>
+> +               vspb: vsp@fe960000 {
+> +                       compatible = "renesas,vsp2";
+> +                       reg = <0 0xfe960000 0 0x8000>;
+> +                       interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&cpg CPG_MOD 626>;
+> +                       power-domains = <&sysc R8A774A1_PD_A3VC>;
+
+I have my doubts about vspb (and fcpvb0) being part of the A3VC power
+domain (also on R-Car M3-W).
+
+
+> +                       resets = <&cpg 626>;
+> +
+> +                       renesas,fcp = <&fcpvb0>;
+> +               };
+
+Apart from that:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
