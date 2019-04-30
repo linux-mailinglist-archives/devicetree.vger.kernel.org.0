@@ -2,87 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB20FC88
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 17:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF36FCAB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 17:22:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726015AbfD3PMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 11:12:50 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:35156 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725976AbfD3PMu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 11:12:50 -0400
-Received: by mail-oi1-f193.google.com with SMTP id w197so11545449oia.2;
-        Tue, 30 Apr 2019 08:12:50 -0700 (PDT)
+        id S1726015AbfD3PWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 11:22:10 -0400
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:44966 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725906AbfD3PWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 11:22:10 -0400
+Received: by mail-vs1-f66.google.com with SMTP id j184so8188949vsd.11;
+        Tue, 30 Apr 2019 08:22:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7aahexJfH3+ZCWyzwJ4HVTibyUsm/U8CQ+avun/lb8w=;
-        b=M5GbafMPEw1FpUNuPjUwms7Cxan/YhI0LBNBnJ1NgEifzyephSGFy7trreF1QLuWZN
-         9phJCGSBD9crQT60BJWkeBZS7Be36B4Qpht0y9svV1UC5W42Cwi2JFbAx5R7+fTaWhc6
-         ZUJAvGzg5l3HA/3dODChYMIBwoNJKnT2U9yDXYmeTivpKtHxLK98B9Q7jwvqn+sltgUx
-         rZYXQUDQUAB0IrO52LJKGp4vmQKYrPwYHgUq7tv2g/5LHZzTBJ5HIjUG0pxyY+ULMkp+
-         +PlJ+eUK5NJGibNv0vYV9DkaLrR/mOHxWuoGJZ/0tsm392BWIEIU1stUlXu4ahSz0eHq
-         xbXg==
-X-Gm-Message-State: APjAAAXGD74hm5RcB9NSOHchEisoAEiBDMOg2gzHg5RjR3IcBeYpu+fv
-        ia4I9xI92hsFSxJlr3r+tHCCh9I=
-X-Google-Smtp-Source: APXvYqw+7CtQGpDl9egPhX/Ibog5Hs4VhoUaMkukQMspgHXvHnYdx7igDWd16RY8bjIjwyxtwGAzZQ==
-X-Received: by 2002:aca:55c1:: with SMTP id j184mr3206627oib.119.1556637164785;
-        Tue, 30 Apr 2019 08:12:44 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o1sm16620919otj.11.2019.04.30.08.12.43
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 30 Apr 2019 08:12:43 -0700 (PDT)
-Date:   Tue, 30 Apr 2019 10:12:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     linus.walleij@linaro.org, mark.rutland@arm.com,
-        khilman@baylibre.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: add a 'drive-strength-uA'
- property
-Message-ID: <20190430151243.GA6879@bogus>
-References: <20190418124758.24022-1-glaroque@baylibre.com>
- <20190418124758.24022-2-glaroque@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=R2svcNMtHHNUl5TnbjQhyWeAeujJoUOh21meiL4jUDk=;
+        b=ieWy6vjERj+fT4MVZ6h+LYnBbOg+jeJKUDjQagNEF6qAg8D3uiXafCsjA1Q4S0r+8D
+         c/xc69Amvm2dtJnXuGRTPyupt5V3OQFvQC7Rsi/5NjmVtRJS+e6bbfQ3ScO4YuuiA5DG
+         pAAoni9ltUilxb2Bit6KRJNHgCc7z25iQ004t4hpuh1gN8wUMebG0MpuWrF1MD5zYnVw
+         Gx6Ns9hvv7nCf5UwPLUEzDG7DRBo6JbY3gYiSzEj9XidcO15e9NokI/UqS+6zZN3UKPz
+         A3BcuPYxLm+mHZ22OxeY3bjw9aDAZFuK2dNlAIK2Dj6nUXFOeKbwVOfwLyhJRoa51QTi
+         dE0A==
+X-Gm-Message-State: APjAAAUkATzEKVefNM1pZR+zYYlBy+tzmDXJlzUpXrzFQZlNAMWqRQjZ
+        EdXvvJZ06PEXyl/v+PaRBfQEPFGNN0Gj68Le2WY=
+X-Google-Smtp-Source: APXvYqycXJCO1qpyG1TRYg64mS4XPWpfu87kuLjylx9qIE9m6qABJUJRWshJoHBNSshdedCHIIp22ogarKfu6mjneAo=
+X-Received: by 2002:a67:ba07:: with SMTP id l7mr8481280vsn.11.1556637728763;
+ Tue, 30 Apr 2019 08:22:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190418124758.24022-2-glaroque@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190430132309.12473-1-chris.brandt@renesas.com> <20190430132309.12473-7-chris.brandt@renesas.com>
+In-Reply-To: <20190430132309.12473-7-chris.brandt@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 30 Apr 2019 17:21:57 +0200
+Message-ID: <CAMuHMdWzN_1XmO8w_otDseJ+bxk+AKNouk-ycPPyM2XWMWritQ@mail.gmail.com>
+Subject: Re: [PATCH 6/7] ARM: dts: r7s9210-rza2mevb: Add Ethernet support
+To:     Chris Brandt <chris.brandt@renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 18, 2019 at 02:47:55PM +0200, Guillaume La Roque wrote:
-> This property allow drive-strength parameter in uA instead of mA.
-> 
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> index cef2b5855d60..fc7018459aa2 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> @@ -258,6 +258,7 @@ drive-push-pull		- drive actively high and low
->  drive-open-drain	- drive with open drain
->  drive-open-source	- drive with open source
->  drive-strength		- sink or source at most X mA
-> +drive-strength-uA	- sink or source at most X uA
->  input-enable		- enable input on pin (no effect on output, such as
->  			  enabling an input buffer)
->  input-disable		- disable input on pin (no effect on output, such as
-> @@ -326,6 +327,8 @@ arguments are described below.
->  
->  - drive-strength takes as argument the target strength in mA.
->  
-> +- drive-strength-uA takes as argument the target strength in uA.
-> +
+Hi Chris,
 
-We have standard unit suffixes defined in bindings/property-units.txt. 
-Use them please.
+On Tue, Apr 30, 2019 at 3:33 PM Chris Brandt <chris.brandt@renesas.com> wrote:
+> The RZ/A2M EVB sub board has 2 Ethernet jacks on it.
+>
+> Set switch SW6_4        to ON to use Ethernet Ch-0
+> Set switch SW6_5        to ON to use Ethernet Ch-1
+>
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
 
-Rob
+Thanks for your patch!
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> --- a/arch/arm/boot/dts/r7s9210-rza2mevb.dts
+> +++ b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
+
+Perhaps you want to add an "ethernet0" alias, so U-Boot can find the
+device-node and add an appropriate "local-mac-address" property?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
