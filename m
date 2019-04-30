@@ -2,142 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0456FF3B3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 12:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B0C9F3DC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 12:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727073AbfD3KJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 06:09:57 -0400
-Received: from regular1.263xmail.com ([211.150.70.195]:38048 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726646AbfD3KJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 06:09:57 -0400
-Received: from zhangqing?rock-chips.com (unknown [192.168.167.190])
-        by regular1.263xmail.com (Postfix) with ESMTP id 3CA569C2;
-        Tue, 30 Apr 2019 18:09:53 +0800 (CST)
-X-263anti-spam: KSV:0;BIG:0;
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-KSVirus-check: 0
-X-ADDR-CHECKED4: 1
-X-ABS-CHECKED: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P7395T139736951809792S1556618984950678_;
-        Tue, 30 Apr 2019 18:09:52 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <cf5845e1d8890c57b2f732eafc9012fa>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-From:   Elaine Zhang <zhangqing@rock-chips.com>
-To:     heiko@sntech.de
-Cc:     rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        xxx@rock-chips.com, xf@rock-chips.com, huangtao@rock-chips.com,
-        Elaine Zhang <zhangqing@rock-chips.com>
-Subject: [PATCH v3 3/3] thermal: rockchip: Support the PX30 SoC in thermal driver
-Date:   Tue, 30 Apr 2019 18:09:46 +0800
-Message-Id: <1556618986-18923-4-git-send-email-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1556618986-18923-1-git-send-email-zhangqing@rock-chips.com>
-References: <1556618986-18923-1-git-send-email-zhangqing@rock-chips.com>
+        id S1726436AbfD3KNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 06:13:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47070 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726145AbfD3KNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 06:13:32 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3UAD54w034208;
+        Tue, 30 Apr 2019 05:13:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1556619185;
+        bh=lj99c65Da/Jf+z2EsozGwmYf331/fL+O/DEZJe0EDl8=;
+        h=From:To:CC:Subject:Date;
+        b=KukPfzddVddOfei1kbcr8zMnCnlx6u2y3+qHJbq1yZes63ujcBRmsgU8+RjOS1WLr
+         rjlNosR6+3zt82TXZtRK2irNT0WzgnBVoObG4BfyHHftJcKknxTXmoWc1WVoShKu6s
+         Hi3r9kN7zMq50XK4i8JDAWblPhyT23gtTCvG5e/M=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3UAD5mq125571
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Apr 2019 05:13:05 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 30
+ Apr 2019 05:13:05 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 30 Apr 2019 05:13:05 -0500
+Received: from uda0131933.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3UAD0Y2085082;
+        Tue, 30 Apr 2019 05:13:01 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Marc Zyngier <marc.zyngier@arm.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
+        <linus.walleij@linaro.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: [PATCH v8 00/14] Add support for TISCI Interrupt controller drivers
+Date:   Tue, 30 Apr 2019 15:42:16 +0530
+Message-ID: <20190430101230.21794-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PX30 SOC has two Temperature Sensors for CPU and GPU.
+TI AM65x SoC based on K3 architecture introduced support for Events
+which are message based interrupts with minimal latency. These events
+are not compatible with regular interrupts and are valid only through
+an event transport lane. An Interrupt Aggregator(INTA) is introduced
+to convert these events to interrupts. INTA can also group 64 events
+into a single interrupt. Now the SoC has many peripherals and a large
+number of event sources (time sync or DMA), the use of events is
+completely dependent on a user's specific application, which drives a
+need for maximum flexibility in which event sources are used in the
+system. It is also completely up to software control as to how the
+events are serviced.
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
----
- drivers/thermal/rockchip_thermal.c | 38 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Because of the huge flexibility there are certain standard peripherals
+(like GPIO etc)where all interrupts cannot be directly corrected to host
+interrupt controller. For this purpose, Interrupt Router(INTR) is
+introduced in the SoC. INTR just does a classic interrupt redirection.
 
-diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
-index 6dc7fc516abf..bda1ca199abd 100644
---- a/drivers/thermal/rockchip_thermal.c
-+++ b/drivers/thermal/rockchip_thermal.c
-@@ -225,11 +225,15 @@ struct rockchip_thermal_data {
- #define GRF_TSADC_TESTBIT_L			0x0e648
- #define GRF_TSADC_TESTBIT_H			0x0e64c
- 
-+#define PX30_GRF_SOC_CON2			0x0408
-+
- #define GRF_SARADC_TESTBIT_ON			(0x10001 << 2)
- #define GRF_TSADC_TESTBIT_H_ON			(0x10001 << 2)
- #define GRF_TSADC_VCM_EN_L			(0x10001 << 7)
- #define GRF_TSADC_VCM_EN_H			(0x10001 << 7)
- 
-+#define GRF_CON_TSADC_CH_INV			(0x10001 << 1)
-+
- /**
-  * struct tsadc_table - code to temperature conversion table
-  * @code: the value of adc channel
-@@ -692,6 +696,13 @@ static void rk_tsadcv3_initialize(struct regmap *grf, void __iomem *regs,
- 			       regs + TSADCV2_AUTO_CON);
- }
- 
-+static void rk_tsadcv4_initialize(struct regmap *grf, void __iomem *regs,
-+				  enum tshut_polarity tshut_polarity)
-+{
-+	rk_tsadcv2_initialize(grf, regs, tshut_polarity);
-+	regmap_write(grf, PX30_GRF_SOC_CON2, GRF_CON_TSADC_CH_INV);
-+}
-+
- static void rk_tsadcv2_irq_ack(void __iomem *regs)
- {
- 	u32 val;
-@@ -821,6 +832,30 @@ static void rk_tsadcv2_tshut_mode(int chn, void __iomem *regs,
- 	writel_relaxed(val, regs + TSADCV2_INT_EN);
- }
- 
-+static const struct rockchip_tsadc_chip px30_tsadc_data = {
-+	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
-+	.chn_id[SENSOR_GPU] = 1, /* gpu sensor is channel 1 */
-+	.chn_num = 2, /* 2 channels for tsadc */
-+
-+	.tshut_mode = TSHUT_MODE_CRU, /* default TSHUT via CRU */
-+	.tshut_temp = 95000,
-+
-+	.initialize = rk_tsadcv4_initialize,
-+	.irq_ack = rk_tsadcv3_irq_ack,
-+	.control = rk_tsadcv3_control,
-+	.get_temp = rk_tsadcv2_get_temp,
-+	.set_alarm_temp = rk_tsadcv2_alarm_temp,
-+	.set_tshut_temp = rk_tsadcv2_tshut_temp,
-+	.set_tshut_mode = rk_tsadcv2_tshut_mode,
-+
-+	.table = {
-+		.id = rk3328_code_table,
-+		.length = ARRAY_SIZE(rk3328_code_table),
-+		.data_mask = TSADCV2_DATA_MASK,
-+		.mode = ADC_INCREMENT,
-+	},
-+};
-+
- static const struct rockchip_tsadc_chip rv1108_tsadc_data = {
- 	.chn_id[SENSOR_CPU] = 0, /* cpu sensor is channel 0 */
- 	.chn_num = 1, /* one channel for tsadc */
-@@ -993,6 +1028,9 @@ static void rk_tsadcv2_tshut_mode(int chn, void __iomem *regs,
- };
- 
- static const struct of_device_id of_rockchip_thermal_match[] = {
-+	{	.compatible = "rockchip,px30-tsadc",
-+		.data = (void *)&px30_tsadc_data,
-+	},
- 	{
- 		.compatible = "rockchip,rv1108-tsadc",
- 		.data = (void *)&rv1108_tsadc_data,
+So the SoC has 3 types of interrupt controllers:
+- GIC500
+- Interrupt Router
+- Interrupt Aggregator
+
+Below is a diagrammatic view of how SoC integration of these interrupt
+controllers:(https://pastebin.ubuntu.com/p/9ngV3jdGj2/)
+
+Device Index-x               Device Index-y
+           |                         |
+           |                         |
+                      ....
+            \                       /
+             \                     /
+              \  (global events)  /
+          +---------------------------+   +---------+
+          |                           |   |         |
+          |             INTA          |   |  GPIO   |
+          |                           |   |         |
+          +---------------------------+   +---------+
+                         |   (vint)            |
+                         |                     |
+                        \|/                    |
+          +---------------------------+        |
+          |                           |<-------+
+          |           INTR            |
+          |                           |
+          +---------------------------+
+                         |
+                         |
+                        \|/ (gic irq)
+          +---------------------------+
+          |                           |
+          |             GIC           |
+          |                           |
+          +---------------------------+
+
+While at it, TISCI abstracts the handling of all above IRQ routes where
+interrupt sources are not directly connected to host interrupt controller.
+That would be configuration of Interrupt Aggregator and Interrupt Router.
+
+This series adds support for:
+- TISCI commands needed for IRQ configuration
+- Interrupt Router(INTR) driver.
+- Interrupt Aggregator(INTA) driver.
+- Interrupt Aggregator MSI bus layer.
+
+Marc,
+	As discussed offline, the firmware changes are going to come within
+	a day or so. These changes are tested against local binary which is
+	bound to release.
+
+Boot Log: https://pastebin.ubuntu.com/p/YwprMKXdg4/
+
+Changes since v7:
+- Rebased on top of latest master.
+- Each patch has respective changes mentioned.
+
+Grygorii Strashko (1):
+  firmware: ti_sci: Add support to get TISCI handle using of_phandle
+
+Lokesh Vutla (12):
+  firmware: ti_sci: Add support for RM core ops
+  firmware: ti_sci: Add support for IRQ management
+  firmware: ti_sci: Add helper apis to manage resources
+  genirq: Introduce irq_chip_{request,release}_resource_parent() apis
+  gpio: thunderx: Use the default parent apis for
+    {request,release}_resources
+  dt-bindings: irqchip: Introduce TISCI Interrupt router bindings
+  irqchip: ti-sci-intr: Add support for Interrupt Router driver
+  dt-bindings: irqchip: Introduce TISCI Interrupt Aggregator bindings
+  irqchip: ti-sci-inta: Add support for Interrupt Aggregator driver
+  soc: ti: Add MSI domain bus support for Interrupt Aggregator
+  irqchip: ti-sci-inta: Add msi domain support
+  arm64: arch_k3: Enable interrupt controller drivers
+
+Peter Ujfalusi (1):
+  firmware: ti_sci: Add RM mapping table for am654
+
+ .../bindings/arm/keystone/ti,sci.txt          |   3 +-
+ .../interrupt-controller/ti,sci-inta.txt      |  66 ++
+ .../interrupt-controller/ti,sci-intr.txt      |  82 +++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/Kconfig.platforms                  |   5 +
+ drivers/firmware/ti_sci.c                     | 651 ++++++++++++++++++
+ drivers/firmware/ti_sci.h                     | 102 +++
+ drivers/gpio/gpio-thunderx.c                  |  16 +-
+ drivers/irqchip/Kconfig                       |  23 +
+ drivers/irqchip/Makefile                      |   2 +
+ drivers/irqchip/irq-ti-sci-inta.c             | 615 +++++++++++++++++
+ drivers/irqchip/irq-ti-sci-intr.c             | 275 ++++++++
+ drivers/soc/ti/Kconfig                        |   6 +
+ drivers/soc/ti/Makefile                       |   1 +
+ drivers/soc/ti/ti_sci_inta_msi.c              | 146 ++++
+ include/linux/irq.h                           |   2 +
+ include/linux/irqdomain.h                     |   1 +
+ include/linux/msi.h                           |  10 +
+ include/linux/soc/ti/ti_sci_inta_msi.h        |  23 +
+ include/linux/soc/ti/ti_sci_protocol.h        | 124 ++++
+ kernel/irq/chip.c                             |  27 +
+ 21 files changed, 2173 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+ create mode 100644 drivers/irqchip/irq-ti-sci-inta.c
+ create mode 100644 drivers/irqchip/irq-ti-sci-intr.c
+ create mode 100644 drivers/soc/ti/ti_sci_inta_msi.c
+ create mode 100644 include/linux/soc/ti/ti_sci_inta_msi.h
+
 -- 
-1.9.1
-
-
+2.21.0
 
