@@ -2,149 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDE2F0C2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 08:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F599F0D3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 09:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725996AbfD3G5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 02:57:44 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:8461 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725554AbfD3G5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 02:57:44 -0400
-X-UUID: 2d217474e79a4b76987e911cdbe6e632-20190430
-X-UUID: 2d217474e79a4b76987e911cdbe6e632-20190430
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1809240108; Tue, 30 Apr 2019 14:57:39 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 30 Apr
- 2019 14:57:37 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 30 Apr 2019 14:57:37 +0800
-Message-ID: <1556607457.10179.259.camel@mhfsdcap03>
-Subject: Re: [PATCH v4 3/6] dt-bindings: usb: mtu3: add properties about USB
- Role Switch
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        "Badhri Jagan Sridharan" <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Linux USB List" <linux-usb@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "Biju Das" <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 30 Apr 2019 14:57:37 +0800
-In-Reply-To: <CAL_JsqKXKRetoy4u_yAMgS+RA0vaRhzjR0zpLjKMtgRvFHXn7A@mail.gmail.com>
-References: <1556261237-13823-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1556261237-13823-4-git-send-email-chunfeng.yun@mediatek.com>
-         <20190426204906.GB15074@bogus> <1556453788.10179.224.camel@mhfsdcap03>
-         <CAL_JsqKXKRetoy4u_yAMgS+RA0vaRhzjR0zpLjKMtgRvFHXn7A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1725790AbfD3HBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 03:01:42 -0400
+Received: from esa4.hgst.iphmx.com ([216.71.154.42]:16122 "EHLO
+        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725554AbfD3HBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 03:01:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1556607702; x=1588143702;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=8n6EaeW48PrrWrI6O68nRWKHHFqtIgZH5h/jIZE2emA=;
+  b=jrPz5vGNw7hmJ6AcOtUOnTqcTX3tnS/LqU7CiXxB2imH+bad4eecxwQm
+   VjE9oCo1dY92dQQYrlpw7m0xFxBQf1jwNon+wMeDbLRB6gOylxYjgKz1F
+   PzmeNJ+YHRj+uokiBaa02G86mjiowqzRRA8EhyragTMcPIp7XLP5+H8iv
+   /kbdcgbPC7yMrXs+1pW0G7VD4v+88EOO/Vk8kKXBP/gfXz8hS7q3m92I7
+   qOO19qsvsqwJgXY2pahE99ot+YVqupmzVvohjsPyl85Gz7Z5YeDckPaGg
+   Bg4VUwOcBIOq8jSz2XEEvrcuapGf0SAJ4KSvGghKF0LYrCVFehFpiY0B+
+   g==;
+X-IronPort-AV: E=Sophos;i="5.60,412,1549900800"; 
+   d="scan'208";a="107145493"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 30 Apr 2019 15:01:42 +0800
+IronPort-SDR: bruMh6I6csUkEXfbQIX4ByDBVCcXqcYIgJFYD8hNRfD5ONENELPfeOoemW7N8cbhekGex0vUIL
+ pL+WNTdAAkf5EkBBwE36sC4o17r34OveMiXA5PyLIFyMhWqVReq9iJ6V5qbsEn904UuFbpG3w3
+ aQNf56ly3FxOG+n2wMIGbwxrHwReXlb0Y+V17I89tLBAc7p4U/uSYeOAN8MCTGx1oVeEW17Br7
+ T/Jbl/EKvXYqAviQHsmdJZHK6KRrVWCENTOtoTpPNl8V5ZsfipIlH7dva7t1vp2HTwlYsDwBNz
+ ow2pml8bjbl0MNxUoxI9eLcH
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP; 29 Apr 2019 23:40:11 -0700
+IronPort-SDR: V8FpbIILrmZlEWNywzIIeFQ6p3eKpRlWYNxEzYReZWV47Wtf3woyAd35c375i1ie32Y5Z6Qcnx
+ Q1dfbi/+PngtaitPYuYIcAVPrRNhXuBHYMvZD8R6ie0fFh4jo8hJd5IlJk8QkI10eAkph3MELg
+ kmi6oF4sMx6rNn1Tj5pRNWwXqHSEJEhRHUjcKhjk/JEz0ydelWS7hhkZOiOqk0R2IyFkW6HpYt
+ XV4NbsSbbdewTu1FvOHFupBDCe68lDQTAMaax0CVsvI3a5w0LYtNNBB5T+31zE0GcbutkfZ8lK
+ PJI=
+Received: from ind005306.ad.shared (HELO [10.86.55.35]) ([10.86.55.35])
+  by uls-op-cesaip02.wdc.com with ESMTP; 30 Apr 2019 00:01:41 -0700
+Subject: Re: [PATCH v3 3/3] clk: sifive: add a driver for the SiFive FU540
+ PRCI IP block
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Paul Walmsley <paul@pwsan.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Wesley W . Terpstra" <wesley@sifive.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Megan Wachs <megan@sifive.com>
+References: <20190411082733.3736-2-paul.walmsley@sifive.com>
+ <20190411082733.3736-4-paul.walmsley@sifive.com>
+ <256b9312-4740-e7b1-84ac-c0cc1ff4bc77@wdc.com>
+ <alpine.DEB.2.21.9999.1904292258000.7063@viisi.sifive.com>
+From:   Atish Patra <atish.patra@wdc.com>
+Message-ID: <67a4a4b6-e0d7-efc2-c318-a1138cddc9c7@wdc.com>
+Date:   Tue, 30 Apr 2019 00:01:40 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.6.1
 MIME-Version: 1.0
-X-MTK:  N
+In-Reply-To: <alpine.DEB.2.21.9999.1904292258000.7063@viisi.sifive.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-04-29 at 11:25 -0500, Rob Herring wrote:
-> On Sun, Apr 28, 2019 at 7:16 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> >
-> > On Fri, 2019-04-26 at 15:49 -0500, Rob Herring wrote:
-> > > On Fri, Apr 26, 2019 at 02:47:14PM +0800, Chunfeng Yun wrote:
-> > > > Now the USB Role Switch is supported, so add properties about it
-> > > >
-> > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > > ---
-> > > > v4: no changes
-> > > > v3: no changes
-> > > >
-> > > > v2 changes:
-> > > >   1. fix typo
-> > > >   2. refer new binding about connector property
-> > > > ---
-> > > >  .../devicetree/bindings/usb/mediatek,mtu3.txt          | 10 ++++++++--
-> > > >  1 file changed, 8 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-> > > > index 3382b5cb471d..6e004c4a89af 100644
-> > > > --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-> > > > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-> > > > @@ -27,7 +27,9 @@ Optional properties:
-> > > >   - ranges : allows valid 1:1 translation between child's address space and
-> > > >     parent's address space
-> > > >   - extcon : external connector for vbus and idpin changes detection, needed
-> > > > -   when supports dual-role mode.
-> > > > +   when supports dual-role mode; it's consiedered valid for compatibility
-> > > > +   reasons, and not allowed for new bindings, use the property
-> > > > +   usb-role-switch instead.
-> > > >   - vbus-supply : reference to the VBUS regulator, needed when supports
-> > > >     dual-role mode.
-> > > >   - pinctrl-names : a pinctrl state named "default" is optional, and need be
-> > > > @@ -36,7 +38,8 @@ Optional properties:
-> > > >     is not set.
-> > > >   - pinctrl-0 : pin control group
-> > > >     See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> > > > -
-> > > > + - usb-role-switch : use USB Role Switch to support dual-role switch, but
-> > > > +   not extcon
-> > >
-> > > Coordinate with the Renesas and HiSilicon folks implementing the same
-> > > thing and put this in a common spot.
-> > I'll prepare a patch for it, and CC Biju and Yu
-> >
-> > > However, I think this should not
-> > > even be needed as knowing the controller capabilities (based on the
-> > > compatible) and knowing the type of connector should be enough
-> > > information to tell you if dual role is supported or not.
-> > Some Dual-Role controller drivers already used extcon framework to
-> > handle role switch, if try to support the new USB Role Switch framework,
-> > the driver may want to know which way will be used.
+On 4/29/19 11:20 PM, Paul Walmsley wrote:
+> Hi Atish,
 > 
-> Wouldn't it know by presence of 'extcon' property or not?
-
-non-presence of 'extcon' doesn't mean the driver need USB Role Switch,
-e.g. support manual role switch decided by user, of course, we can check
-some cases and then decide whether need USB Role Switch or not, maybe
-provide a property will make it easier.
-
+> On Sat, 27 Apr 2019, Atish Patra wrote:
 > 
-> > Sometimes users also want to use dual-role even use the type-A, such as
-> > use sys interface to handle role switch, so only knowing the connector
-> > type can't tell driver which way to use
+>> On 4/11/19 1:28 AM, Paul Walmsley wrote:
+>>> Add driver code for the SiFive FU540 PRCI IP block.  This IP block
+>>> handles reset and clock control for the SiFive FU540 device and
+>>> implements SoC-level clock tree controls and dividers.
 > 
-> That use case doesn't sound like something that should be in DT
-> though. That would be possible for any controller that supports
-> dual-role. 
-I give manual role switch by sysfs interface a higher priority than
-other ways, if manual switch is enabled, e.g. 'extcon' will be ignored.
-this may be different from other USB dual-role controller drivers.
-
-> Though perhaps that requires some specific Vbus wiring? Or
-> a cable with Vbus disconnected. 
-Yes, some projects use PMIC or Charger to detect Vbus, but some don't
-have Vbus detection circuit, and some even don't provide vbus pin
-
-> Either way, doesn't sound USB compliant.
-Yes, it's more related with customer usage, or cost down, anyway, it's
-better to support cases as many as possible.
-
+> [...]
 > 
-> Rob
+>>> +static const struct of_device_id sifive_fu540_prci_of_match[] = {
+>>> +	{ .compatible = "sifive,fu540-c000-prci", },
+>>
+>> All the existing unleashed devices have prci clock compatible string as
+>> "sifive,aloeprci0" or "sifive,ux00prci0". Should it be added to maintain
+>> backward compatibility?
+> 
+> As you note, just adding the old (unreviewed) compatible string isn't
+> enough.
+> 
+>> Even after adding the compatible string (just for my testing purpose), I get
+>> this while booting.
+>>
+>> [    0.104571] sifive-fu540-prci 10000000.prci: expected only two parent
+>> clocks, found 1
+>> [    0.112460] sifive-fu540-prci 10000000.prci: could not register clocks: -22
+>> [    0.119499] sifive-fu540-prci: probe of 10000000.prci failed with error -22
+>>
+>> Looking at the DT entries, your DT patch has
+>>
+>> +		prci: clock-controller@10000000 {
+>> +			compatible = "sifive,fu540-c000-prci";
+>> +			reg = <0x0 0x10000000 0x0 0x1000>;
+>> +			clocks = <&hfclk>, <&rtcclk>;
+>> +			#clock-cells = <1>;
+>> +		};
+>>
+>>
+>> while current DT from FSBL
+>> (https://github.com/sifive/freedom-u540-c000-bootloader/blob/master/fsbl/ux00_fsbl.dts)
+>>
+>> prci: prci@10000000 {
+>> 			compatible = "sifive,aloeprci0", "sifive,ux00prci0";
+>> 			reg = <0x0 0x10000000 0x0 0x1000>;
+>> 			reg-names = "control";
+>> 			clocks = <&refclk>;
+>> 			#clock-cells = <1>;
+>> 		};
+>>
+>> This seems to be the cause of error. It looks like this patch needs a complete
+>> different DT (your DT patch) than FSBL provides.
+> 
+> That's right.  That old data was completely out of tree and unreviewed.
+> It's part of the reason why we're going through the process of posting DT
+> data to the kernel and devicetree lists and getting that data reviewed:
+> 
+> https://lore.kernel.org/linux-riscv/20190411084242.4999-1-paul.walmsley@sifive.com/
+> 
+>> This means everybody must upgrade the FSBL to use your DT patch in their
+>> boards once this driver is merged. Is this okay?
+> 
+> People can continue to use the out-of-tree DT data if they want.  They'll
+> just have to continue to patch their kernels to add out-of-tree drivers,
+> as they do now.
+> 
 
+There were some concerns about the breaking the existing setup in the past.
+
+> Otherwise, if people want to use the upstream PRCI driver in the upstream
+> kernel, then it's necessary to use DT data that aligns with what's in the
+> upstream binding documentation.
+> 
+
+Personally, it makes sense to me. I am okay with upgrading FSBL to 
+update the DT once the patches are in mainline. In fact, I used to do 
+that for topology patch series. This will help to add any new DT entry 
+in future as well.
+
+However, if SiFive can share a prebuilt FSBL image for everybody to 
+upgrade, that would be very helpful.
+
+Regards,
+Atish
+> 
+> - Paul
+> 
 
