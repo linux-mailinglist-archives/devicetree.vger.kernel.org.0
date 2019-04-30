@@ -2,253 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CF0E100C7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:28:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 526AD100D3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726612AbfD3U2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 16:28:34 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45846 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726030AbfD3U2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 16:28:34 -0400
-Received: by mail-ot1-f65.google.com with SMTP id a10so4356319otl.12;
-        Tue, 30 Apr 2019 13:28:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LhInCogW5fBN1UHGCn0VnHVOLp8cw5J2wKFD/2/FOA8=;
-        b=QvNJON2chOzSTZmGccuzYeu5JQYAhI4s0kdnVPb9w0kZLtf7LxQRuuqtSuQFZ4hcXG
-         tcREbMpgxGM/bKenRs/w2EhtORzpv6Fr2cevIzLFgMfxh052Sm6tI9lIWvRspZRzalaS
-         cN+kCQHJZgBKwPZyJx+EbAlJA1cLAlZX1Y+cJ40WVoG6YstZvrZxg2AX06VItUvOs+Lo
-         /RW4DvrxlBYCptbb96QlR8ogOcjmPf1Fe5/oT7pPYWMiWx/kKbQhO3CjGZcm3QjVrqTk
-         simg79SdfhJEkwDDmFg1GVqt9Gm/bk7Dd1n65vBHjE9+KBBL9EpTGDhDlwHMDG3vEROp
-         7Atw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LhInCogW5fBN1UHGCn0VnHVOLp8cw5J2wKFD/2/FOA8=;
-        b=EZpJ68GOeMJ8S5LGAT2/GVjzDT8ZxscJqmrumxKY2zSpT0APRPetodrE2zy6v6Nnml
-         wi4FCooau+eDAPU5IgxT621sLUigjViYgE9Xpkqu6sgrkLPjuoIM4+73kEM4eqfYSm3Q
-         Gqg7vxX86Ti8kYpJ/RvtTcCeeQ70FBMOsJzUUp899NfJUmkfaRY43vA/AOm8lqYgsFmv
-         xkwRgwfD/gsxYKAt3TDjnxWF+d3z09k4jXiyonsUvNCrN+GxlE2844qapSgxRZ1D2TEN
-         s5UYaIib48/3g0InK1RDbdGqKjzttrP8f5R+ApKT1z2UXXlRWIlaS8eId7Uvhlhgt/91
-         idSQ==
-X-Gm-Message-State: APjAAAXNy+mR8+nIHlPIb/AysBObl3w92uv7R1vnFteqDUM+4AoAE7+7
-        2FL+H4xx840CVWfAsDWLiRNQrBLqZZhSkZdzDJ0=
-X-Google-Smtp-Source: APXvYqwUYcK0/Yn0Z5c+2bMLGN2AUl5c7FkbHw2gEtNtiwmgRFTQ9ONp4xPpqu5I3e5KyyGgG9FCiyfosgRfiBcirfA=
-X-Received: by 2002:a9d:5e90:: with SMTP id f16mr1989710otl.86.1556656112966;
- Tue, 30 Apr 2019 13:28:32 -0700 (PDT)
+        id S1726729AbfD3Uay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 16:30:54 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:46197 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726723AbfD3Uax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 16:30:53 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190430203052euoutp023ea44794702fe8efa2d71cea50b046fe~aWp0zmXAH2593125931euoutp020
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 20:30:52 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190430203052euoutp023ea44794702fe8efa2d71cea50b046fe~aWp0zmXAH2593125931euoutp020
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1556656252;
+        bh=s+7+0gQzuRVGQ1sYQI/FifyUVy/Ukm0vhqlGoNpZbE4=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=YMMIJsKCbP0vF19vuLaq0NHYh21rati0x/tYSmH7anc8CIBRHwDFnOKs9XXi3bjJE
+         NSZyWQOflab515o+AGA6hogO7iq+3pZ3nsxovPUFuZbSR1hNm1za0epedR+ruZeV+0
+         /eZxUt26pEXL4P/B1FcwmTI462MMpn0KfpxPHtbc=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190430203050eucas1p279447fcc4b49c05c978bc862818319de~aWpzVdJuA0592805928eucas1p2a;
+        Tue, 30 Apr 2019 20:30:50 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 96.25.04298.A70B8CC5; Tue, 30
+        Apr 2019 21:30:50 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190430203049eucas1p1e6237ff703eff18318df0d1682887e90~aWpyUWA5s2711627116eucas1p1U;
+        Tue, 30 Apr 2019 20:30:49 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190430203049eusmtrp15aa61a999c04915f627bcb2f796f0b46~aWpyEqoWC2495524955eusmtrp1C;
+        Tue, 30 Apr 2019 20:30:49 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-d6-5cc8b07a65c6
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 3F.D3.04146.970B8CC5; Tue, 30
+        Apr 2019 21:30:49 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190430203048eusmtip241ffce23a4d58e91492c2727321b3036~aWpxV4I-J3151231512eusmtip2U;
+        Tue, 30 Apr 2019 20:30:48 +0000 (GMT)
+Subject: Re: [PATCH v6 06/10] dt-bindings: memory-controllers: add
+ Exynos5422 DMC device description
+To:     Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <32dfc887-5f67-3d61-08c9-0397d6852811@partner.samsung.com>
+Date:   Tue, 30 Apr 2019 22:30:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190418124758.24022-1-glaroque@baylibre.com> <20190418124758.24022-5-glaroque@baylibre.com>
- <CAFBinCDNz1txJ7_aQU8MwjpeVFC6BgyG_gkg-jJRnnerSjbP9A@mail.gmail.com> <163fa4df-1017-d230-b264-51ea71236df9@baylibre.com>
-In-Reply-To: <163fa4df-1017-d230-b264-51ea71236df9@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 30 Apr 2019 22:28:21 +0200
-Message-ID: <CAFBinCBemJT5p7F0b3Qy+wwmaW4hTgs0jgKrLVd1ciugCGc48w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] pinctrl: meson: add support of drive-strength-uA
-To:     guillaume La Roque <glaroque@baylibre.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        khilman@baylibre.com, linux-gpio@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <babae08b-3ea6-30f4-6a46-85dea0eacd86@samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUxNYRz2nnPuOafWbadb9FsZuqbFKOZj76YJ83Hwj7EZqnHpKKubuqek
+        j82tNpGSj5uPGyKs75XkqlSo24eKWypMklWLFKYvWh+4nUz/Pc/ze37v73m2lyUV/TIH9mhg
+        iKAJVAUoaUvKUD36cllEfq3X8qcNC/D9q3ky/GbokwynGl/KcPaPLoQv1d0gcMNZNU7q6iOx
+        yZTP4Bcx/QxuLrlO48FEI8JXTeUEzjW2M7gtOoPGlf1xMvykZTtuG7PGI7WdaL2CHxm+SPEp
+        2iaKL9a3M3xB1hmaT4z9RvPnCrMQ/6A+kh8smLeT3W/p7iMEHD0uaNzWHbT0e2A0kEGJTidu
+        1pUQWtTtEI8sWOBWQUJZgSweWbIKLgPBxLPPhESGELx/9oiSyCCCXz9zyH8rrUmlpDRIR1Ca
+        NklL5CuCmMxSxuyy5Y6Avscw9ZYddwdBcubYFCG5bALGh3P/nmRZmnOFoqxg84Kc2wK/i9to
+        M6a4RVBn+E6Y8WxuL3RU58skjw08v9ZNmVctOA/o/e1olknOHt51pxISng+xD1Om0gF3jYUn
+        FwyUFHsT3HukIyRsC19qChkJz4X6SwnTHhG0ibeRhKOgK+nGtGctVNY0TUUmucWQV+ImyRug
+        t1FHm2XgrOHtVxspgjVcNFwhJVkOp08pJLcLFCY0TgeYA+k5l5nzSKmf0Us/o4x+Rhn9/7u3
+        EJWF7IVQUe0riCsChTBXUaUWQwN9XQ8fUxegv3+wfrJmoAgNvzpUgTgWKa3kLttqvRQy1XEx
+        XF2BgCWVdnK+pspLIfdRhUcImmMHNKEBgliBHFlKaS+PnPXRU8H5qkIEf0EIEjT/pgRr4aBF
+        +6oa7g2kNZffdYr86OvWVN1ueB600mp+l1wX0RO9O+x1mv+7FvvNzm3+cQPOjMnonrpV8aHR
+        w9u9EzGtj8s3Lp+YjHX0a1Eln3dZ2JFj5TRwcHyrTru6LL5yTVG8zZ7R9r5dO3Thcd67GoM9
+        nTcuXXqzw2ST8T7qZDSfhqt2/EiepaREP9WKJaRGVP0BD7uVcn8DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPIsWRmVeSWpSXmKPExsVy+t/xe7qVG07EGJz8KGmxccZ6VovrX56z
+        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
+        e+Quu8XtxhVsFofftLNa7L/iZXH7N5/FtxOPGB2EPL59ncTiMbvhIovHzll32T02repk8+ht
+        fsfm0bdlFaPH5tPVHp83yQVwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq
+        6dvZpKTmZJalFunbJehlbD6yjbmgV7Fi3qldTA2MT6S6GDk5JARMJK7272HuYuTiEBJYyihx
+        +sEqFoiEmMSkfdvZIWxhiT/Xutggil4zSjzffI4JJCEskCZx+eozsAYRgcWMEl9bq0GKmAVW
+        M0lM+rgFqmMKk8SKFy2sXYwcHGwCehI7VhWCNPAKuEn833mbDcRmEVCVOLXtPdhQUYEIiTPv
+        V7BA1AhKnJz5hAWklVPAXuLlf2mQMLOAmcS8zQ+ZIWxxiVtP5jNB2PISzVtnM09gFJqFpHsW
+        kpZZSFpmIWlZwMiyilEktbQ4Nz232FCvODG3uDQvXS85P3cTIzDytx37uXkH46WNwYcYBTgY
+        lXh4L7idiBFiTSwrrsw9xCjBwawkwutx/GiMEG9KYmVValF+fFFpTmrxIUZToN8mMkuJJucD
+        k1JeSbyhqaG5haWhubG5sZmFkjhvh8DBGCGB9MSS1OzU1ILUIpg+Jg5OqQZGjb4zLzxmztk0
+        N+lD6gq9VNG6TZknvK4FrPS9reGxW+BLc0vM2+5Tehu+1h90YJOdvnOeofmNjc+naApIHTTw
+        r8/o2aZaeLFjl++361sMJNgknybujd+0cVq2q+qd9/OTktk6w5ofWDer2Vf3hH9Mq2ff/+3L
+        mojd3uxHK5Wkmrbe6DeZNumVEktxRqKhFnNRcSIAS6+04xIDAAA=
+X-CMS-MailID: 20190430203049eucas1p1e6237ff703eff18318df0d1682887e90
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
+References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc@eucas1p1.samsung.com>
+        <1555683568-20882-7-git-send-email-l.luba@partner.samsung.com>
+        <babae08b-3ea6-30f4-6a46-85dea0eacd86@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guillaume,
+Hi Chanwoo,
 
-On Tue, Apr 30, 2019 at 9:20 AM guillaume La Roque
-<glaroque@baylibre.com> wrote:
->
-> Hi Martin,
->
->
-> thanks for your feedback.
->
->
-> On 4/27/19 9:44 PM, Martin Blumenstingl wrote:
-> > Hi Guillaume,
-> >
-> > On Thu, Apr 18, 2019 at 2:48 PM Guillaume La Roque
-> > <glaroque@baylibre.com> wrote:
-> >> drive-strength-uA is a new feature needed for G12A SoC.
-> >> the default DS setting after boot is usually 500uA and it is not enough for
-> >> many functions. We need to be able to set the drive strength to reliably
-> >> enable things like MMC, I2C, etc ...
-> >>
-> >> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> > I gave this a go on Meson8m2 (meaning I applied all four patches from
-> > this series and booted the result on my board):
-> > [Meson8m2 doesn't support drive strength and still boots without any
-> > crashes or obvious regressions]
-> > Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >
-> >> ---
-> >>  drivers/pinctrl/meson/pinctrl-meson-g12a.c |  36 ++---
-> >>  drivers/pinctrl/meson/pinctrl-meson.c      | 166 ++++++++++++++++-----
-> >>  drivers/pinctrl/meson/pinctrl-meson.h      |  20 ++-
-> > personally I would have split this into two separate patches:
-> > - one for the generic pinctrl-meson part which adds drive-strength-uA support
-> > - another patch for enabling this on G12A
-> >
-> > if nobody else wants you to split this then it's fine for me as well
->
->
-> why not if i send new series i will do.
-great, thank you
+On 4/30/19 6:46 AM, Chanwoo Choi wrote:
+> On 19. 4. 19. 오후 11:19, Lukasz Luba wrote:
+>> The patch adds description for DT binding for a new Exynos5422 Dynamic
+>> Memory Controller device.
+>>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   .../bindings/memory-controllers/exynos5422-dmc.txt | 73 ++++++++++++++++++++++
+>>   1 file changed, 73 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> new file mode 100644
+>> index 0000000..133b3cc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> @@ -0,0 +1,73 @@
+>> +* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
+>> +
+>> +The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
+>> +memory chips are connected. The driver is to monitor the controller in runtime
+>> +and switch frequency and voltage. To monitor the usage of the controller in
+>> +runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
+>> +is able to measure the current load of the memory.
+>> +When 'userspace' governor is used for the driver, an application is able to
+>> +switch the DMC and memory frequency.
+>> +
+>> +Required properties for DMC device for Exynos5422:
+>> +- compatible: Should be "samsung,exynos5422-bus".
+> 
+> As I already mentioned on many times, it is not fixed.
+> You have to fix it as following:
+> - exynos5422-bus -> exynos5422-dmc
+I don't know how I missed it on my list. My apologies.
+> 
+>> +- clock-names : the name of clock used by the bus, "bus".
+> 
+> The below examples doesn't contain the 'bus' clock name.
+True. Thank you for pointing this out. I will it.
 
-[...]
-> > additionally the function arguments are not consistent with
-> > meson_pinconf_get_drive_strength():
-> > - here you pass the pinctrl subsystem specific parameters (enum
-> > pin_config_param conf)
-> > - in meson_pinconf_get_drive_strength the conversion for pinctrl
-> > subsystem specific values (pinconf_to_config_argument) is part of
-> > meson_pinconf_set
->
->
-> for param i'm not sure i understand what you want, if you talk about difference between set_bias and set_drive arg , it's difficult to align it.
->
-> if it's about diff between get_bias and get_drive i think i can return drive stength value instead of using an u16 arg input param.
-let me use an example to better explain what I mean.
-
-meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
-unsigned long *configs, unsigned num_configs)
--> this uses parameters from the pinctrl subsystem only (struct
-pinctrl_dev, configs/pinconf_to_config_argument)
-
-meson_pinconf_get_pull(struct meson_pinctrl *pc, unsigned int pin)
-meson_pinconf_set_drive_strength(struct meson_pinctrl *pc, unsigned
-int pin, u16 drive_strength_ua)
--> these use hardware-specific parameters only (struct meson_pinctrl,
-[drive strength in uA])
-
-meson_pinconf_set_bias(struct meson_pinctrl *pc, unsigned int pin,
-enum pin_config_param conf)
--> this mixes hardware-specific parameters (struct meson_pinctrl) with
-parameters from the pinctrl subsystem (enum pin_config_param conf)
-
-> > I'm wondering whether two separate functions
-> > (meson_pinconf_disable_bias and meson_pinconf_enable_bias) would make
-> > things easier to read. I haven't tried whether this would really make
-> > things better, so I'd like to hear your opinion on this Guillaume!
->
->
-> no special opinion on this, if you think it's better for understanding i can separate  set_bias function.
-this goes with the mixed parameters from my previous comment: if we
-stick to the way these "private" functions are defined the "set bias"
-function parameters should be hardware/driver specific (in other
-words: don't use enum pin_config_param conf)
-so my initial idea was to keep the switch/case for enum
-pin_config_param in meson_pinconf_set and to have these function
-declarations:
-- meson_pinconf_disable_bias(struct meson_pinctrl *pc, unsigned int pin)
-- meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int
-pin, bool pull_up)
-
-and to make it clear: I haven't tested whether this *really* looks
-better when fully implemented.
-let me know what you think - I'm happy with anything that others will
-understand in the end (to make easy to catch potential breakage in a
-code-review ;))
-
->
-> >
-> > [...]
-> >> +static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
-> >> +                                           unsigned int pin, u16 arg)
-> >>  {
-> >> -       struct meson_pinctrl *pc = pinctrl_dev_get_drvdata(pcdev);
-> >>         struct meson_bank *bank;
-> >> -       enum pin_config_param param;
-> >>         unsigned int reg, bit;
-> >> -       int i, ret;
-> >> +       unsigned int ds_val;
-> >> +       int ret;
-> >> +
-> >> +       if (!pc->reg_ds) {
-> >> +               dev_err(pc->dev, "drive-strength not supported\n");
-> >> +               return -ENOTSUPP;
-> > in meson_pinconf_set() we don't complain (with a dev_err) for this case.
-> > I'm not sure what the best-practice is for the pinctrl subsystem,
-> > maybe Linus can comment on this
-> >
->
-> this check is to be sure it's possible to set drive stength,
->
-> if no register bank is setting in DT but drive-stength properties are setting on pins i need to generate an error
->
-> because something is wrong.
-OK, I see, there are two different use-cases:
-- meson_pinconf_set returns -ENOTSUPP in the "default" case if the
-pin_config_param is not supported but no error message
-- we don't differentiate between SoCs PIN_CONFIG_DRIVE_STRENGTH_UA is
-always delegated from meson_pinconf_set() to
-meson_pinconf_set_drive_strength(). you also return -ENOTSUPP and
-print an error message
-
-what I meant with my original comment is that there are two different
-"-ENOTSUPP" cases but only one prints an error.
-I don't know if there are any rules in the pinctrl subsystem how these
-cases should be implemented, maybe Linus W. can give his feedback on
-this topic.
-
->
-> >> +       }
-> >>
-> >>         ret = meson_get_bank(pc, pin, &bank);
-> >>         if (ret)
-> >>                 return ret;
-> >>
-> >> +       meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-> >> +       bit = bit << 1;
-> >> +
-> >> +       if (arg <= 500) {
-> >> +               ds_val = MESON_PINCONF_DRV_500UA;
-> >> +       } else if (arg <= 2500) {
-> >> +               ds_val = MESON_PINCONF_DRV_2500UA;
-> >> +       } else if (arg <= 3000) {
-> >> +               ds_val = MESON_PINCONF_DRV_3000UA;
-> >> +       } else if (arg <= 4000) {
-> >> +               ds_val = MESON_PINCONF_DRV_4000UA;
-> >> +       } else {
-> >> +               dev_warn_once(pc->dev,
-> >> +                             "pin %u: invalid drive-strength : %d , default to 4mA\n",
-> >> +                             pin, arg);
-> >> +               ds_val = MESON_PINCONF_DRV_4000UA;
-> > why not return -EINVAL here? (my assumption is that the pinctrl
-> > subsystem would like to have -EINVAL instead of drivers doing
-> > fallbacks if the values are out-of-range, but I'm not 100% sure about
-> > this)
-> >
-> > [...]
->
->
-> i choose to set a default value instead of generating an error,
->
-> in this case it's only if you ask a value upper than 4000uA so it's not really a risk to set 4000uA by default.
-in that case I'm fine with it if Linus W. is happy as well (I'm not
-sure if there are any rules about "fallback values" in the pinctrl
-subsystem)
-
->
-> >> +static int meson_pinconf_get_drive_strength(struct meson_pinctrl *pc,
-> >> +                                           unsigned int pin, u16 *arg)
-> >> +{
-> >> +       struct meson_bank *bank;
-> >> +       unsigned int reg, bit;
-> >> +       unsigned int val;
-> >> +       int ret;
-> >> +
-> > do you need to return -ENOTSUPP here if pc->reg_ds is NULL, similar to
-> > what you already have in meson_pinconf_set_drive_strength()?
->
-> depending of linux comment on your feedback on meson_pinconf_set_drive_strength
-great, thank you!
-
-
-Martin
+Regards,
+Lukasz
+> 
+>> +- clocks : phandles for clock specified in "clock-names" property.
+>> +- devfreq-events : phandles for PPMU devices connected to this DMC.
+>> +- vdd-supply : phandle for voltage regulator which is connected.
+>> +- reg : registers of two CDREX controllers, chip information, clocks subsystem.
+>> +- operating-points-v2 : phandle for OPPs described in v2 definition.
+>> +- device-handle : phandle of the connected DRAM memory device. For more
+>> +	information please refer to Documentation
+>> +- devfreq-events : phandles of the PPMU events used by the controller.
+>> +
+>> +Example:
+>> +
+>> +	ppmu_dmc0_0: ppmu@10d00000 {
+>> +		compatible = "samsung,exynos-ppmu";
+>> +		reg = <0x10d00000 0x2000>;
+>> +		clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
+>> +		clock-names = "ppmu";
+>> +		status = "okay";
+>> +		events {
+>> +			ppmu_event_dmc0_0: ppmu-event3-dmc0_0 {
+>> +				event-name = "ppmu-event3-dmc0_0";
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	dmc: memory-controller@10c20000 {
+>> +		compatible = "samsung,exynos5422-dmc";
+>> +		reg = <0x10c20000 0x10000>, <0x10c30000 0x10000>,
+>> +			<0x10000000 0x1000>, <0x10030000 0x1000>;
+>> +		clocks = 	<&clock CLK_FOUT_SPLL>,
+>> +				<&clock CLK_MOUT_SCLK_SPLL>,
+>> +				<&clock CLK_FF_DOUT_SPLL2>,
+>> +				<&clock CLK_FOUT_BPLL>,
+>> +				<&clock CLK_MOUT_BPLL>,
+>> +				<&clock CLK_SCLK_BPLL>,
+>> +				<&clock CLK_MOUT_MX_MSPLL_CCORE>,
+>> +				<&clock CLK_MOUT_MX_MSPLL_CCORE_PHY>,
+>> +				<&clock CLK_MOUT_MCLK_CDREX>,
+>> +				<&clock CLK_DOUT_CLK2X_PHY0>,
+>> +				<&clock CLK_CLKM_PHY0>,
+>> +				<&clock CLK_CLKM_PHY1>;
+>> +		clock-names =	"fout_spll",
+>> +				"mout_sclk_spll",
+>> +				"ff_dout_spll2",
+>> +				"fout_bpll",
+>> +				"mout_bpll",
+>> +				"sclk_bpll",
+>> +				"mout_mx_mspll_ccore",
+>> +				"mout_mx_mspll_ccore_phy",
+>> +				"mout_mclk_cdrex",
+>> +				"dout_clk2x_phy0",
+>> +				"clkm_phy0",
+>> +			        "clkm_phy1";
+>> +		status = "okay";
+>> +		operating-points-v2 = <&dmc_opp_table>;
+>> +		devfreq-events = <&ppmu_event3_dmc0_0>,	<&ppmu_event3_dmc0_1>,
+>> +				<&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
+>> +		operating-points-v2 = <&dmc_opp_table>;
+>> +		device-handle = <&samsung_K3QF2F20DB>;
+>> +		vdd-supply = <&buck1_reg>;
+>> +	};
+>>
+> 
+> 
