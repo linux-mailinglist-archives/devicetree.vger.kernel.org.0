@@ -2,204 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2116F05E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 08:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCAA3F06C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 08:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726225AbfD3GOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 02:14:55 -0400
-Received: from mailout2.samsung.com ([203.254.224.25]:34677 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726165AbfD3GOy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 02:14:54 -0400
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20190430061451epoutp02cf001d49ee30229a8e0dafde88b5df7d~aK_bTEIWz3128331283epoutp02N
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 06:14:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20190430061451epoutp02cf001d49ee30229a8e0dafde88b5df7d~aK_bTEIWz3128331283epoutp02N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1556604891;
-        bh=WJb+Cvmknz8hSilXK5stDWt6Ffwo/cFmz3E+umI80Lw=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=BP7nn9vtNH+sG9dASYJfuE/jNf0Z2g4CyNpdbL6IXjzU4h4+/pIBr/PgNjwFFhKLw
-         n5HZ66/tKBuS2C2HHygX5MChCcVVcxxZLTZtqKVUeDbI3gNx9+613DWoKkZpDDdynz
-         B11NmqYsCJ+4v42Fz5BI6VLuuyNQPDLgOqiUk8IA=
-Received: from epsmges1p2.samsung.com (unknown [182.195.40.153]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190430061450epcas1p13807d3828b1819dfd48b9bdaf73ac0fa~aK_Z15ws03071130711epcas1p16;
-        Tue, 30 Apr 2019 06:14:50 +0000 (GMT)
-Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
-        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        70.35.04142.9D7E7CC5; Tue, 30 Apr 2019 15:14:49 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190430061449epcas1p2ec80e66533f22b069220106f5bebbf63~aK_Zmq7xn1333613336epcas1p2-;
-        Tue, 30 Apr 2019 06:14:49 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190430061449epsmtrp12160b23b169e2d774048dd51bfe7dfc0~aK_ZlwQF80891208912epsmtrp1-;
-        Tue, 30 Apr 2019 06:14:49 +0000 (GMT)
-X-AuditID: b6c32a36-cf9ff7000000102e-31-5cc7e7d9b248
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        61.63.03662.9D7E7CC5; Tue, 30 Apr 2019 15:14:49 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190430061449epsmtip2a1fc43e97f636a9b7801fe6e4444257f~aK_ZQPIkw2206222062epsmtip2j;
-        Tue, 30 Apr 2019 06:14:49 +0000 (GMT)
-Subject: Re: [PATCH v3 3/4] Documentation: devicetree: add PPMU events
- description
-To:     Lukasz Luba <l.luba@partner.samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, kyungmin.park@samsung.com,
-        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
-        myungjoo.ham@samsung.com, kgene@kernel.org,
-        willy.mh.wolff.ml@gmail.com
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <52204c4b-80fa-1a87-2e00-1cfb774478f6@samsung.com>
-Date:   Tue, 30 Apr 2019 15:16:04 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
+        id S1726359AbfD3GU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 02:20:28 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:38410 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726285AbfD3GU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 02:20:28 -0400
+Received: by mail-it1-f195.google.com with SMTP id q19so2917263itk.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 23:20:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=AV9ZTDDQcqZfQOAe4qT7E6y4JoSwEYhZS+A0aSnML+s=;
+        b=ZV5D5lv7eg1gyd5O6CJUMoMHBVvq2u/J+sCgxVwj6ybz2prZuez6tDOWXyJvseqqkr
+         rk8o/IZDvwanTWSyqZJzkmRHFdO3SxjxNOYlC03qHde8Dytq4GaJWkoTiBd3mNxxLjVC
+         fbhU25q+UCIxArF7Ul6wjlFrFJLHoiXWpSO6WLmP3JY3I+L7HVx4Vf++usyiXWWqKSdX
+         kzSQUxn1Mln3B+Hh4t9Dtxzk35DOM/lJzAKzkAtqgdJTrgfuVv6CvbiJQYlGv/kTKYCz
+         cSedb2oBBkwXyqS1e3uop4Kx0YnI0HnjikQUbMXUB92QCMiOG6ugiB3w88DjZZ7nvcOZ
+         UuTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=AV9ZTDDQcqZfQOAe4qT7E6y4JoSwEYhZS+A0aSnML+s=;
+        b=PiDHxy5Dh6/z6zGS+tuN0fqB02sXFIAH2+wc2FNVQ2kovE3AoNbxOdyA/kaOSciBsS
+         nJNzf+J0gZ484npkttTZa2tCRjJ5FLhCSNG4KRE4A7qpYc31dVKDJW2CEWPQO5tsQQJ2
+         tuWrZdFi/NpnauStGj4Kh5tV49W/TE6BfpCzGd9GY5+Lgn2b0JaQ5V7SoW0Zbr41OPF1
+         Yo4vh/QvOPiPz4IxXSbIjV+4QtCHinrnOfOKlhIzPUwE+/OuQh8b0RUq/YX1xMJyKyRr
+         NH0kZet8cKikOvW8Zu/kAWd7XI01DqAseY/xV29kiif90RAavGUBs4yQPjqBcR5VGJ8L
+         WP2Q==
+X-Gm-Message-State: APjAAAWkCgTA1uIqnUSouTz3YRThOw96eH8nOY8sT6hXEyV8lRkLjTTg
+        X9JdYL+MiLJFhlHhw4R+wlB9YQ==
+X-Google-Smtp-Source: APXvYqzH1CSf//UWvt+BdmDERbKBSmcenZ2fnx2isCJPie+haSmfsZdhwXMx57NQC5bbn4rBB4DslQ==
+X-Received: by 2002:a24:d003:: with SMTP id m3mr2198104itg.132.1556605227707;
+        Mon, 29 Apr 2019 23:20:27 -0700 (PDT)
+Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
+        by smtp.gmail.com with ESMTPSA id e4sm7828414iof.62.2019.04.29.23.20.26
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 29 Apr 2019 23:20:26 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 23:20:26 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Atish Patra <atish.patra@wdc.com>
+cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Paul Walmsley <paul@pwsan.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Wesley W . Terpstra" <wesley@sifive.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Megan Wachs <megan@sifive.com>
+Subject: Re: [PATCH v3 3/3] clk: sifive: add a driver for the SiFive FU540
+ PRCI IP block
+In-Reply-To: <256b9312-4740-e7b1-84ac-c0cc1ff4bc77@wdc.com>
+Message-ID: <alpine.DEB.2.21.9999.1904292258000.7063@viisi.sifive.com>
+References: <20190411082733.3736-2-paul.walmsley@sifive.com> <20190411082733.3736-4-paul.walmsley@sifive.com> <256b9312-4740-e7b1-84ac-c0cc1ff4bc77@wdc.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-In-Reply-To: <1555681688-19643-4-git-send-email-l.luba@partner.samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLJsWRmVeSWpSXmKPExsWy7bCmvu7N58djDM49t7HYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vF2aY37Ba3GmQsNj2+xmpxedccNovPvUcYLWac38dksfbIXXaLpdcvMlnc
-        blzBZtG69wi7xeE37awW3048YnQQ8Fgzbw2jx85Zd9k9Nq3qZPPYvKTe4+C7PUwefVtWMXp8
-        3iQXwB6VbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkD
-        dLuSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CyQK84Mbe4NC9dLzk/18rQwMDI
-        FKgwITtjXs8j1oJpshWPPr1lbGCcJdbFyMkhIWAi8a1lB3MXIxeHkMAORolJs5cyQTifGCUe
-        fD8I5XxjlJj66jgLTMvl1s2sEIm9jBJrulYyQjjvGSWWrDwEViUsECKx7t41dpCEiMBZoFlN
-        29hAHGaBz4wSJx9cYwWpYhPQktj/4gYbiM0voChx9cdjRhCbV8BO4uCPx2CTWARUJRoaboHZ
-        ogIREvePbWCFqBGUODnzCVicU8Bb4vbeK2BzmAXEJW49mc8EYctLNG+dDfaehMAhdolNl1uY
-        IJ5wkVjc3MIMYQtLvDq+hR3ClpJ42d8GZVdLrDx5hA2iuYNRYsv+C6wQCWOJ/UsnAw3iANqg
-        KbF+lz7EMj6Jd197WEHCEgK8Eh1tQhDVyhKXH9yFWispsbi9kw3C9pCYMvknywRGxVlI3pmF
-        5IVZSF6YhbBsASPLKkax1ILi3PTUYsMCI+QI38QITtpaZjsYF53zOcQowMGoxMPr8e5YjBBr
-        YllxZe4hRgkOZiURXo/jR2OEeFMSK6tSi/Lji0pzUosPMZoCQ3sis5Rocj4wo+SVxBuaGhkb
-        G1uYGJqZGhoqifOud3COERJITyxJzU5NLUgtgulj4uCUamCckMzw1EBi9ZQ1Nw/yXmCzvVrV
-        Zrjyru3lCp44y3CrrAdOgo/9OLU/PZ6xmN1L522mlv3KV1efnjjWZe6Q9rKRz+9l6eOEAMPN
-        k47Kuitwz1r51Va3IbMt/N33qvWRC052nS3Mfp4o8vQpw1Wzg1eN+UQ9nzl+23c03W6l+teq
-        pQyx6V3Ht+9XYinOSDTUYi4qTgQAi2ypK/ADAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOIsWRmVeSWpSXmKPExsWy7bCSvO7N58djDHbvUrfYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vF2aY37Ba3GmQsNj2+xmpxedccNovPvUcYLWac38dksfbIXXaLpdcvMlnc
-        blzBZtG69wi7xeE37awW3048YnQQ8Fgzbw2jx85Zd9k9Nq3qZPPYvKTe4+C7PUwefVtWMXp8
-        3iQXwB7FZZOSmpNZllqkb5fAlTGv5xFrwTTZikef3jI2MM4S62Lk5JAQMJG43LqZtYuRi0NI
-        YDejxOEdrSwQCUmJaRePMncxcgDZwhKHDxdD1LxllNj7eQkbSI2wQIjEunvX2EESIgJnGSUW
-        TVoA5jALfGaUmL7mMjNEy31GiaubZoKNZRPQktj/4gZYO7+AosTVH48ZQWxeATuJgz8eg9Ww
-        CKhKNDTcArNFBSIkzrxfwQJRIyhxcuYTMJtTwFvi9t4rYHOYBdQl/sy7xAxhi0vcejKfCcKW
-        l2jeOpt5AqPwLCTts5C0zELSMgtJywJGllWMkqkFxbnpucWGBUZ5qeV6xYm5xaV56XrJ+bmb
-        GMHRq6W1g/HEifhDjAIcjEo8vB7vjsUIsSaWFVfmHmKU4GBWEuH1OH40Rog3JbGyKrUoP76o
-        NCe1+BCjNAeLkjivfP6xSCGB9MSS1OzU1ILUIpgsEwenVAOjvF1yb8Pmhw0p98rOnbq7aEP7
-        oo87xDd+yNyrGzRj85yQnG035L8bC2xW2vFNs8nG9cpFO29pEe/i9yVORrYBAUEfvq0//ct0
-        Uc7UD2sk9jrnv1hxW4uFYePf1jIVLZvdnDe32i76yVmccnLnT+cQTcOs6PaKE4wrJRjcHzME
-        fOjR288zKcBKiaU4I9FQi7moOBEAXHzNeNoCAAA=
-X-CMS-MailID: 20190430061449epcas1p2ec80e66533f22b069220106f5bebbf63
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0
-References: <1555681688-19643-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0@eucas1p2.samsung.com>
-        <1555681688-19643-4-git-send-email-l.luba@partner.samsung.com>
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukasz,
+Hi Atish,
 
-On 19. 4. 19. 오후 10:48, Lukasz Luba wrote:
-> Extend the documenation by events description with new 'event-data-type'
-> field. Add example how the event might be defined in DT.
+On Sat, 27 Apr 2019, Atish Patra wrote:
+
+> On 4/11/19 1:28 AM, Paul Walmsley wrote:
+> > Add driver code for the SiFive FU540 PRCI IP block.  This IP block
+> > handles reset and clock control for the SiFive FU540 device and
+> > implements SoC-level clock tree controls and dividers.
+
+[...]
+
+> > +static const struct of_device_id sifive_fu540_prci_of_match[] = {
+> > +	{ .compatible = "sifive,fu540-c000-prci", },
 > 
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  .../devicetree/bindings/devfreq/event/exynos-ppmu.txt  | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> All the existing unleashed devices have prci clock compatible string as
+> "sifive,aloeprci0" or "sifive,ux00prci0". Should it be added to maintain
+> backward compatibility?
+
+As you note, just adding the old (unreviewed) compatible string isn't 
+enough.
+
+> Even after adding the compatible string (just for my testing purpose), I get
+> this while booting.
 > 
-> diff --git a/Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt b/Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
-> index 3e36c1d..47feb5f 100644
-> --- a/Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
-> +++ b/Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
-> @@ -145,3 +145,21 @@ Example3 : PPMUv2 nodes in exynos5433.dtsi are listed below.
->  			reg = <0x104d0000 0x2000>;
->  			status = "disabled";
->  		};
-> +
-> +The 'event' type specified in the PPMU node defines 'event-name'
-> +which also contains 'id' number and optionally 'event-data-type'.
-> +
-> +Example:
-> +
-> +		events {
-> +			ppmu_leftbus_0: ppmu-event0-leftbus {
-> +				event-name = "ppmu-event0-leftbus";
-> +				event-data-type = <PPMU_RO_DATA_CNT>;
-> +			};
+> [    0.104571] sifive-fu540-prci 10000000.prci: expected only two parent
+> clocks, found 1
+> [    0.112460] sifive-fu540-prci 10000000.prci: could not register clocks: -22
+> [    0.119499] sifive-fu540-prci: probe of 10000000.prci failed with error -22
+> 
+> Looking at the DT entries, your DT patch has
+> 
+> +		prci: clock-controller@10000000 {
+> +			compatible = "sifive,fu540-c000-prci";
+> +			reg = <0x0 0x10000000 0x0 0x1000>;
+> +			clocks = <&hfclk>, <&rtcclk>;
+> +			#clock-cells = <1>;
 > +		};
-> +
-> +The 'event-data-type' defines the type of data which shell be counted
-> +by the counter. You can check include/dt-bindings/pmu/exynos_ppmu.h for
-> +all possible type, i.e. count read requests, count write data in bytes,
-> +etc. This field is optional and when it is missing, the driver code will
-> +use default data type.
 > 
+> 
+> while current DT from FSBL
+> (https://github.com/sifive/freedom-u540-c000-bootloader/blob/master/fsbl/ux00_fsbl.dts)
+> 
+> prci: prci@10000000 {
+> 			compatible = "sifive,aloeprci0", "sifive,ux00prci0";
+> 			reg = <0x0 0x10000000 0x0 0x1000>;
+> 			reg-names = "control";
+> 			clocks = <&refclk>;
+> 			#clock-cells = <1>;
+> 		};
+> 
+> This seems to be the cause of error. It looks like this patch needs a complete
+> different DT (your DT patch) than FSBL provides.
 
-How about editing it as following?
+That's right.  That old data was completely out of tree and unreviewed.  
+It's part of the reason why we're going through the process of posting DT 
+data to the kernel and devicetree lists and getting that data reviewed:
 
---- a/Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
-+++ b/Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
-@@ -10,14 +10,23 @@ The Exynos PPMU driver uses the devfreq-event class to provide event data
- to various devfreq devices. The devfreq devices would use the event data when
- derterming the current state of each IP.
- 
--Required properties:
-+Required properties for PPMU device:
- - compatible: Should be "samsung,exynos-ppmu" or "samsung,exynos-ppmu-v2.
- - reg: physical base address of each PPMU and length of memory mapped region.
- 
--Optional properties:
-+Optional properties for PPMU device:
- - clock-names : the name of clock used by the PPMU, "ppmu"
- - clocks : phandles for clock specified in "clock-names" property
- 
-+Required properties for 'events' child node of PPMU device:
-+- event-name : the unique event name among PPMU device
-+Optional properties for 'events' child node of PPMU device:
-+- event-data-type : Define the type of data which shell be counted
-+by the counter. You can check include/dt-bindings/pmu/exynos_ppmu.h for
-+all possible type, i.e. count read requests, count write data in bytes,
-+etc. This field is optional and when it is missing, the driver code
-+will use default data type.
-+
- Example1 : PPMUv1 nodes in exynos3250.dtsi are listed below.
- 
-                ppmu_dmc0: ppmu_dmc0@106a0000 {
-@@ -145,3 +154,16 @@ Example3 : PPMUv2 nodes in exynos5433.dtsi are listed below.
-                        reg = <0x104d0000 0x2000>;
-                        status = "disabled";
-                };
-+
-+Example4 : 'event-data-type' in exynos4412-ppmu-common.dtsi are listed below.
-+
-+       &ppmu_dmc0 {
-+               status = "okay";
-+               events {
-+                       ppmu_dmc0_3: ppmu-event3-dmc0 {
-+                               event-name = "ppmu-event3-dmc0";
-+                               event-data-type = <(PPMU_RO_DATA_CNT |
-+                                               PPMU_WO_DATA_CNT)>;
-+                       };
-+               };
-+       };
+https://lore.kernel.org/linux-riscv/20190411084242.4999-1-paul.walmsley@sifive.com/
+
+> This means everybody must upgrade the FSBL to use your DT patch in their
+> boards once this driver is merged. Is this okay?
+
+People can continue to use the out-of-tree DT data if they want.  They'll 
+just have to continue to patch their kernels to add out-of-tree drivers, 
+as they do now.
+
+Otherwise, if people want to use the upstream PRCI driver in the upstream 
+kernel, then it's necessary to use DT data that aligns with what's in the 
+upstream binding documentation.
 
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+- Paul
