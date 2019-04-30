@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8573B10209
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 23:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432EA1024D
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 00:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726166AbfD3VsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 17:48:20 -0400
-Received: from p3plsmtpa07-08.prod.phx3.secureserver.net ([173.201.192.237]:58589
-        "EHLO p3plsmtpa07-08.prod.phx3.secureserver.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726056AbfD3VsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 17:48:20 -0400
-Received: from labundy.com ([136.49.227.119])
-        by :SMTPAUTH: with ESMTPSA
-        id Labqhju8S3EbKLabrhjAnw; Tue, 30 Apr 2019 14:48:20 -0700
-Date:   Tue, 30 Apr 2019 16:48:18 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        rydberg@bitmath.org, robh+dt@kernel.org, mark.rutland@arm.com
-Subject: Re: [PATCH v10 1/2] dt-bindings: input: touchscreen: iqs5xx: Add
- bindings
-Message-ID: <20190430214818.GA4181@labundy.com>
-References: <1556540652-7616-1-git-send-email-jeff@labundy.com>
- <20190430074924.GB148015@dtor-ws>
+        id S1727230AbfD3WYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 18:24:42 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:37628 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726056AbfD3WYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 18:24:41 -0400
+Received: by mail-oi1-f195.google.com with SMTP id k6so12639378oic.4;
+        Tue, 30 Apr 2019 15:24:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MyOJCP+P9cbGTkqaQ+gM72dvr3UEtLfUje9xWwcxdRM=;
+        b=CGV5kuurp7iW7xSLeMFchoktCVAbxCErutMQrGn1RmV6TY2yGVbO70DOdHq+AsHdhY
+         DzlsMhg+YWdDgNwZtNlv3bj1ClA6hVbrAMv7ZR1hMa1XSO6JZkwvWhGFYIbgez5oZ1CD
+         8mPTfs62pdxdZOg1fw4VWLY2VhxdPhWmBr66OCHHtDiActLZZOvdoT8/2z8Q6Fiv4g5s
+         R41rNGyYyx+INTq2QAcHeBSF/8ZnjeEeJ8/LdIedmiYkjKQqDWQCwQwkgmiHqvMAr1Uh
+         Oxot4a8SNfNHEfXoMlh8q3gBus56ZhHKVr7D2tD81g2cX+LylkIMRwMkgWRMzIZHdVbl
+         ol0Q==
+X-Gm-Message-State: APjAAAUc+ntsjZV4NczB+3xabSqGicLN8mGmKeIR+jOKKWruQDwiY7UP
+        Mm37tY8MEQhmFngAHSmFoQ==
+X-Google-Smtp-Source: APXvYqw4JhJjcmKbH1sQuC0lBNbYVFG1NpxdTXInzLvoWK38OT5etr7o7ik3qtuYPr0A5OmNK5lWtA==
+X-Received: by 2002:aca:eb11:: with SMTP id j17mr4718250oih.67.1556663080990;
+        Tue, 30 Apr 2019 15:24:40 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u127sm2204372oif.14.2019.04.30.15.24.39
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 30 Apr 2019 15:24:40 -0700 (PDT)
+Date:   Tue, 30 Apr 2019 17:24:39 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+Cc:     Marc Zyngier <marc.zyngier@arm.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, tglx@linutronix.de,
+        jason@lakedaemon.net,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
+        linus.walleij@linaro.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v8 08/14] dt-bindings: irqchip: Introduce TISCI Interrupt
+ router bindings
+Message-ID: <20190430222439.GA7845@bogus>
+References: <20190430101230.21794-1-lokeshvutla@ti.com>
+ <20190430101230.21794-9-lokeshvutla@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190430074924.GB148015@dtor-ws>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-CMAE-Envelope: MS4wfHhXj3btyxoNn/yUnt6f9z3Mf4Ih1KHwoT9dKV3pr/eT5l4T6RA9icMMqPztJwmOFlVzGRBddWtBLM3wnp1wPSl+vuo0WDGagLoc1gZDdR4pwOnKiGba
- RX2zwuDXUXkbjZXLaP7eDjs1GGr3S7Mq9R+c1q3x0BAkYR3Y+7w+RWEoOhMmSv3IOXHAnCxNCwGTg62FEY00/xySN+87HXMS5jcWlym74xHitRW6JrXVuPCy
- FpdwwtrlBDmdygBBqK+m81sXpwMRSR7+0ct1w9T1fKxjiBnnMy/0JMfBrcxO1LSo73sO3zm5twf3iXIklLYARGigK5rtl9bnH8aSJNKA0yJFtIx798bVf+4b
- DK5jd8mV
+In-Reply-To: <20190430101230.21794-9-lokeshvutla@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Tue, 30 Apr 2019 15:42:24 +0530, Lokesh Vutla wrote:
+> Add the DT binding documentation for Interrupt router driver.
+> 
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> ---
+> Changes since v7:
+> - Changes interrupt cells to 2.
+> 
+>  .../interrupt-controller/ti,sci-intr.txt      | 82 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+> 
 
-Many thanks for your support; your changes look great to me. I'll use
-the same indentation style for future patches.
-
-Thanks,
-Jeff L.
-
-On Tue, Apr 30, 2019 at 12:49:24AM -0700, Dmitry Torokhov wrote:
-> Hi Jeff,
-> 
-> On Mon, Apr 29, 2019 at 07:24:11AM -0500, Jeff LaBundy wrote:
-> > This patch adds binding documentation for the Azoteq IQS550/572/525
-> > family of trackpad/touchscreen controllers.
-> > 
-> > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> > ---
-> > Changes in v10:
-> >   - None
-> > 
-> > Changes in v9:
-> >   - Corrected the polarity of the reset GPIO in the example node to match that
-> >     of the device's active-low NRST pin
-> >   - Removed previous Reviewed-by trailer as this file has since changed
-> 
-> Applied with minor formatting changes. I restored Rob's reviewed-by
-> since he was happy with the binding.
-> 
-> Thanks.
-> 
-> -- 
-> Dmitry
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
