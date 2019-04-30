@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A14102E8
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 00:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A80F810329
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 01:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727426AbfD3WzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 18:55:07 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:40669 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726102AbfD3WzG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 18:55:06 -0400
-Received: by mail-ot1-f66.google.com with SMTP id w6so13495725otl.7;
-        Tue, 30 Apr 2019 15:55:06 -0700 (PDT)
+        id S1726102AbfD3XMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 19:12:18 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:34884 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726086AbfD3XMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 19:12:18 -0400
+Received: by mail-oi1-f195.google.com with SMTP id w197so12717625oia.2;
+        Tue, 30 Apr 2019 16:12:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=PlWRnvoNeGSRNiJdO+rj0X41rOIxvI08504/rjFNJko=;
-        b=nwRhYS9/n/aLxTohiuYNbu9KvPc2dGmvVus9AqlCc35o1Jtibs927aQ2OufBxM2SAV
-         q4TKq2vcrPMXUjY9+XdZL0v04b3JDyGmgiW1E8N1t5Qh5K6nR3erEOUL/Qs8NlsD7tbh
-         MlB211WTB/2RHr3GtxT4UZpO4ZggUFjbL5mvRIIH3rAqG5y+Mop+W8rpPkSxi5QzSnwg
-         zBpdoVPHSHEQbzfHrx51Gk2sCjAcDF5dmqOqiBYUd98xMy1TOJ6uDDBZAZ3V+qMEYV4m
-         jmL+yIOsGH7uvkeapt3rd2xBME5HQzCL9VXyJdgLnHKyiYP6VSeTnJLFeuPK2igw8RQs
-         sz/Q==
-X-Gm-Message-State: APjAAAVcb8k4FiYv6wJ7TuE900IXokTNCiRzuCHBv9dAtPlvgXRmLKS0
-        zkAM+zznhmNGOyso47vQ6w==
-X-Google-Smtp-Source: APXvYqyIFTwoGmBY/KtB3oMGtf5E54aGT5YMyl6jv5MMXbn3oykKcqG1y7OLSDTNFdZVtXegYuj+jw==
-X-Received: by 2002:a9d:6d8e:: with SMTP id x14mr1020773otp.251.1556664905932;
-        Tue, 30 Apr 2019 15:55:05 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k14sm7980382otl.72.2019.04.30.15.55.04
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 30 Apr 2019 15:55:04 -0700 (PDT)
-Date:   Tue, 30 Apr 2019 17:55:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Mallikarjun Kasoju <mkasoju@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] dt-bindings: mfd: max77620: Add
- maxim,system-power-controller property
-Message-ID: <20190430225504.GA19387@bogus>
-References: <20190424224900.8018-1-digetx@gmail.com>
- <20190424224900.8018-6-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8Kaz0HzSce5UNE/bdT7lOJbyMWjOGQSNQhXNQdmqdS0=;
+        b=cQ5IywG2uJhiQCfZqVl1eYsmJJItNOjy9Dqoz5hB5W1qlOwglUCYXp7ZEiV+fxg6Qi
+         3qN7Q5GPv1zFuhuBrA58BvPCak6tr1qsYO9S9aL2qz3ooU/z4N4zwvRP3kgrnRbn0L2A
+         0thuzqHRY6ewMzet2ivXajl1UrrF43Oo4T/C4RnIRsVcnSnXXtybJr0dFavzeVWzGL9m
+         W+mejUJSIZ4PC8fio4ShzdrBw4SPVxDFJ/yJl7sUvQv0ZYaDHqOtcCGjJXcKuzFpa4To
+         xZOdgdhk5mx3OSFsAFIcSb4j8/p1oAJpvqRWAqXWD/vDrAirGsuF4eD1W+XUc8NU7qZF
+         rpvQ==
+X-Gm-Message-State: APjAAAVzssXweaZvLvy5skCpRK9/UEOG7wVlQk0/4Zd+u0MOr0PrCSYI
+        r9C15YpjU16tBxVbjkdeM1qic0QTAzk=
+X-Google-Smtp-Source: APXvYqzmU7J8Jyis0/HpmPawqrY+cd6LELrQPuOHWXXTQ7fuZCaHzNCH9tMw56lzVdYSKIKHoo0hEA==
+X-Received: by 2002:aca:f4cf:: with SMTP id s198mr4598529oih.153.1556665937217;
+        Tue, 30 Apr 2019 16:12:17 -0700 (PDT)
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com. [209.85.167.182])
+        by smtp.gmail.com with ESMTPSA id p8sm17018925oib.9.2019.04.30.16.12.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Apr 2019 16:12:16 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id y64so7167440oia.7;
+        Tue, 30 Apr 2019 16:12:16 -0700 (PDT)
+X-Received: by 2002:aca:4e83:: with SMTP id c125mr4539473oib.13.1556665936485;
+ Tue, 30 Apr 2019 16:12:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190424224900.8018-6-digetx@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190430051723.31345-1-yinbo.zhu@nxp.com>
+In-Reply-To: <20190430051723.31345-1-yinbo.zhu@nxp.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Tue, 30 Apr 2019 18:12:05 -0500
+X-Gmail-Original-Message-ID: <CADRPPNQ4RYhe5n_ZA_xrhG8VARsvV3cwVgnuinedb2VHKkDzbQ@mail.gmail.com>
+Message-ID: <CADRPPNQ4RYhe5n_ZA_xrhG8VARsvV3cwVgnuinedb2VHKkDzbQ@mail.gmail.com>
+Subject: Re: [PATCH v1] mmc: dt: add DT bindings for ls1028a eSDHC host controller
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Xiaobo Xie <xiaobo.xie@nxp.com>, "Y.b. Lu" <yangbo.lu@nxp.com>,
+        Jiafei Pan <jiafei.pan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 25, 2019 at 01:48:59AM +0300, Dmitry Osipenko wrote:
-> Add new property that designates the PMIC as the system's power
-> controller.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+On Tue, Apr 30, 2019 at 12:16 AM Yinbo Zhu <yinbo.zhu@nxp.com> wrote:
+>
+> From: Yinbo Zhu <yinbo.zhu@nxp.com>
+
+The patch title better to be "dt-bindings: mmc: ..."
+>
+> Add "fsl,ls1028a-esdhc" bindings for ls1028a eSDHC host controller
+>
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
 > ---
->  Documentation/devicetree/bindings/mfd/max77620.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/max77620.txt b/Documentation/devicetree/bindings/mfd/max77620.txt
-> index 9058499051e0..dda6d158b170 100644
-> --- a/Documentation/devicetree/bindings/mfd/max77620.txt
-> +++ b/Documentation/devicetree/bindings/mfd/max77620.txt
-> @@ -18,6 +18,9 @@ Optional properties:
->  			IRQ numbers for different interrupt source of MAX77620
->  			are defined at dt-bindings/mfd/max77620.h.
->  
-> +- maxim,system-power-controller: Indicates that this PMIC is controlling the
-> +				 system power.
+>  .../devicetree/bindings/mmc/fsl-esdhc.txt          |    1 +
+>  1 files changed, 1 insertions(+), 0 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-esdhc.txt b/Documentation/devicetree/bindings/mmc/fsl-esdhc.txt
+> index 99c5cf8..a7250b9 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-esdhc.txt
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-esdhc.txt
+> @@ -21,6 +21,7 @@ Required properties:
+>         "fsl,ls1043a-esdhc"
+>         "fsl,ls1046a-esdhc"
+>         "fsl,ls2080a-esdhc"
+> +       "fsl,ls1028a-esdhc"
 
-Drop the 'maxim'. We have a standard property for this.
+Better to be alphabetical order.
 
-> +
->  Optional subnodes and their properties:
->  =======================================
->  
-> -- 
-> 2.21.0
-> 
+>    - clock-frequency : specifies eSDHC base clock frequency.
+>
+>  Optional properties:
+> --
+> 1.7.1
+>
