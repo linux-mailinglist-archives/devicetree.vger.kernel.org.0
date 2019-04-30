@@ -2,100 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3C3EF77A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 14:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20903F844
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 14:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729628AbfD3LqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 07:46:23 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56384 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728087AbfD3LqV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 07:46:21 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3UBk69L053322;
-        Tue, 30 Apr 2019 06:46:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1556624766;
-        bh=MS/ebHHo25Z4rkEAJDu2R8iPbpujs41yXsTmY3TMBOA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=sW33nvnrlbzw36Q4MkQmmsvf19y3+NPrU9FVMx7iRGTb7/LachkvqCEcAo6iDGxIJ
-         eU/E+o03rJW0lfKBTB4mvRocn4rxI0/7II7IB7gBxZggatIKDbbOrVIhKICm+Ic9Vn
-         B3rNp2bCx7SHRHlIPBlkx0ANi9AA68n3tI0SytWQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3UBk60j120491
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Apr 2019 06:46:06 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 30
- Apr 2019 06:46:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 30 Apr 2019 06:46:06 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3UBk6BU042431;
-        Tue, 30 Apr 2019 06:46:06 -0500
-Date:   Tue, 30 Apr 2019 06:45:12 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Marc Zyngier <marc.zyngier@arm.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
-        <linus.walleij@linaro.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v8 00/14] Add support for TISCI Interrupt controller
- drivers
-Message-ID: <20190430114512.pde3uuh5e3qwve3m@kahuna>
-References: <20190430101230.21794-1-lokeshvutla@ti.com>
+        id S1728746AbfD3MG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 08:06:59 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:51322 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727948AbfD3MG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Apr 2019 08:06:58 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x3UBv3l2016156;
+        Tue, 30 Apr 2019 14:06:47 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=0TJCqpAByJcnuLJ0JtSeGC0DKLxILjaYjgU3/kNbuek=;
+ b=NmBhW31fR9zLCaqeXjHXtkG5/BQARi8G719yE+lA8MT+RIjgdhnjtI1rVcuizf7yT2ha
+ fjDWIVwaVZSlTvU+BQ5dakHKoI4uCLaihfSydWw9ymEnQMIQw/okuMvLQsvrMGWXKxXZ
+ GvMl+PTikZK8q0t2qdIM6Wp0qCLDy9SPY+96JOdYQJcfWmBAHr/aaxtWiOTacXyqWHrf
+ OhfzASaUV7E5u14LxjwzJJcXL1ttxOO+/P3p/A2fZvY4GtqzZxcfIFzrtwOb5hAL8VqO
+ AezCbzmDnt4DyRPwqmw/Ndi+MwL2iff+nGvUwXGhPOUAN1SdbLZ9QxNc/dxu4MPizXjI 7Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2s61q8dqy5-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 30 Apr 2019 14:06:47 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 082673A;
+        Tue, 30 Apr 2019 12:06:47 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D06F22516;
+        Tue, 30 Apr 2019 12:06:46 +0000 (GMT)
+Received: from [10.48.0.237] (10.75.127.48) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 30 Apr
+ 2019 14:06:46 +0200
+Subject: Re: [PATCH V2 0/5] mmc: mmci: add busy detect for stm32 sdmmc variant
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <1556264798-18540-1-git-send-email-ludovic.Barre@st.com>
+ <CAPDyKFqbn=UcbwoH_z+yjrjvHQZaMtmsD=n0yrBV7DAK5VRJEQ@mail.gmail.com>
+From:   Ludovic BARRE <ludovic.barre@st.com>
+Message-ID: <74b91eb4-e5a3-38b2-f732-29cdd058eb6a@st.com>
+Date:   Tue, 30 Apr 2019 14:06:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190430101230.21794-1-lokeshvutla@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAPDyKFqbn=UcbwoH_z+yjrjvHQZaMtmsD=n0yrBV7DAK5VRJEQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-04-30_05:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:42-20190430, Lokesh Vutla wrote:
-[...]
-> Changes since v7:
-> - Rebased on top of latest master.
-> - Each patch has respective changes mentioned.
-> 
-> Grygorii Strashko (1):
->   firmware: ti_sci: Add support to get TISCI handle using of_phandle
-> 
-> Lokesh Vutla (12):
->   firmware: ti_sci: Add support for RM core ops
->   firmware: ti_sci: Add support for IRQ management
->   firmware: ti_sci: Add helper apis to manage resources
->   genirq: Introduce irq_chip_{request,release}_resource_parent() apis
->   gpio: thunderx: Use the default parent apis for
->     {request,release}_resources
->   dt-bindings: irqchip: Introduce TISCI Interrupt router bindings
->   irqchip: ti-sci-intr: Add support for Interrupt Router driver
->   dt-bindings: irqchip: Introduce TISCI Interrupt Aggregator bindings
->   irqchip: ti-sci-inta: Add support for Interrupt Aggregator driver
->   soc: ti: Add MSI domain bus support for Interrupt Aggregator
->   irqchip: ti-sci-inta: Add msi domain support
->   arm64: arch_k3: Enable interrupt controller drivers
-> 
-> Peter Ujfalusi (1):
->   firmware: ti_sci: Add RM mapping table for am654
-> 
 
-For patches 1..5 (Firmware patches):
 
-Acked-by: Nishanth Menon <nm@ti.com>
+On 4/30/19 1:13 PM, Ulf Hansson wrote:
+> On Fri, 26 Apr 2019 at 09:46, Ludovic Barre <ludovic.Barre@st.com> wrote:
+>>
+>> From: Ludovic Barre <ludovic.barre@st.com>
+>>
+>> This patch series adds busy detect for stm32 sdmmc variant.
+>> Some adaptations are required:
+>> -Avoid to check and poll busy status when is not expected.
+>> -Clear busy status bit if busy_detect_flag and busy_detect_mask are
+>>   different.
+>> -Add hardware busy timeout with MMCIDATATIMER register.
+>>
+>> V2:
+>> -mmci_cmd_irq cleanup in separate patch.
+>> -simplify the busy_detect_flag exclude
+>> -replace sdmmc specific comment in
+>> "mmc: mmci: avoid fake busy polling in mmci_irq"
+>> to focus on common behavior
+>>
+>> Ludovic Barre (5):
+>>    mmc: mmci: cleanup mmci_cmd_irq for busy detect feature
+>>    mmc: mmci: avoid fake busy polling in mmci_irq
+>>    mmc: mmci: fix clear of busy detect status
+>>    mmc: mmci: add hardware busy timeout feature
+>>    mmc: mmci: add busy detect for stm32 sdmmc variant
+>>
+>>   drivers/mmc/host/mmci.c | 61 ++++++++++++++++++++++++++++++++++++++-----------
+>>   drivers/mmc/host/mmci.h |  3 +++
+>>   2 files changed, 51 insertions(+), 13 deletions(-)
+>>
+>> --
+>> 2.7.4
+>>
+> 
+> Ludovic, just wanted to let you know that I am reviewing and testing
+> this series.
+> 
+> However, while running some tests on Ux500 for validating the busy
+> detection code, even without your series applied, I encounter some odd
+> behaviors. I am looking into the problem to understand better and will
+> let you know as soon as I have some more data to share.
 
--- 
-Regards,
-Nishanth Menon
+Oops, don't hesitate to share your status, if I could help.
+
+> 
+> Kind regards
+> Uffe
+> 
