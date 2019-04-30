@@ -2,90 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A795F09D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 08:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F35B3F0AE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 08:46:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726521AbfD3Gie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 02:38:34 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:60513 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbfD3Gid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 02:38:33 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hLMPK-00082m-6Z; Tue, 30 Apr 2019 08:38:26 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hLMPG-0001N4-Gz; Tue, 30 Apr 2019 08:38:22 +0200
-Date:   Tue, 30 Apr 2019 08:38:22 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Chuanhua Han <chuanhua.han@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, leoyang.li@nxp.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com,
-        wsa+renesas@sang-engineering.com, eha@deif.com,
-        linux@rempel-privat.de, sumit.batra@nxp.com,
-        l.stach@pengutronix.de, peda@axentia.se
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: add optional mul-value property to
- binding
-Message-ID: <20190430063822.dk5nerqa2m36ua6x@pengutronix.de>
-References: <20190430043242.29687-1-chuanhua.han@nxp.com>
+        id S1726412AbfD3GqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 02:46:19 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:37415 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726396AbfD3GqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 02:46:19 -0400
+Received: by mail-pl1-f194.google.com with SMTP id z8so6287440pln.4;
+        Mon, 29 Apr 2019 23:46:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Fjs/QlJccPdiIzSXEBVK27qZZaOYBQoAnxJi1UWQC3c=;
+        b=Pa2jzaEEN+Bapthi2w1tlr699nA1as/teMTVtxXU19Gp41NZgTC+ZPicF6OjpQNEws
+         SJF4k+/6p8THylT3a+Gn5Plq9uzDjvxHFVGJmDCENK+TG3+0TEg/v7qmRiAy+WoRs7tT
+         nqbKY9rArwX9iwiv41zP+T2FZv2lBNnmwUY63WF39LgeH6Iem9KpEKj3I0pG3DZH6lI8
+         yGL6rKQzjpDzPAaCCPEIqya5ywTXtP2KwWRzoxZvFOHxBJPcUyInQ+h2kPhzVuUuEMCN
+         Wl8ydpDDukpj98Qh3xPLiJLm+oqvsvfimnm7rXYD2+plolOGqD0kmMNeSquLUyWlNZTv
+         wcxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Fjs/QlJccPdiIzSXEBVK27qZZaOYBQoAnxJi1UWQC3c=;
+        b=k+fJx4cYpavOge1oOExB/qNnZcPYt1+foekuOmShJVD9Ti9moGzli4YJ6KQhP0GOF9
+         mo6sI8JlVbAX8lACqby6Ri0nvK0wooIGasta7bZozeJLdhwVzp9DxYOmR0huG70vv/J+
+         dly5OmMAIy+coMAcDC2VzZP6rqif5rUVSgqo3kzezz9Wsm4JtPAG/ffDArCc9k8sLhFC
+         wVL7m1avFWwvZ47XPGkhVofSOCZfBbUyHO47MYLLYvzQvrw3CLujc9EUUCNqMVsoOs15
+         T7uBPsifXkXXpoUhbA6ik9WfDoaqlJqqPYQfR2s7F6YFLF68IXqT+R4gu6exIDsz+P2f
+         RDMA==
+X-Gm-Message-State: APjAAAW4fq/8KHvZh7HvQdPKWy1xfs6ZgIoy1MX1XAM3K8Lew825N7gd
+        u06okQ1fmIi12aCdgvG+3U7ayepzXEo=
+X-Google-Smtp-Source: APXvYqx9NdgAT7vJ+A6VAcnGARG8Y/LxF90+Qrdv9Cb+womMd0QpIFbTyYw8+iOGP2GTo4rNz6DuRQ==
+X-Received: by 2002:a17:902:7590:: with SMTP id j16mr5736546pll.296.1556606778138;
+        Mon, 29 Apr 2019 23:46:18 -0700 (PDT)
+Received: from squirtle.lan (c-24-22-235-96.hsd1.wa.comcast.net. [24.22.235.96])
+        by smtp.gmail.com with ESMTPSA id a9sm47336010pfo.17.2019.04.29.23.46.16
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 29 Apr 2019 23:46:16 -0700 (PDT)
+From:   Andrey Smirnov <andrew.smirnov@gmail.com>
+To:     linux-pm@vger.kernel.org
+Cc:     Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Enric Balletbo Serra <enric.balletbo@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 3/3] dt-bindings: power: supply: Add bindings for Microchip UCS1002
+Date:   Mon, 29 Apr 2019 23:45:57 -0700
+Message-Id: <20190430064557.28469-4-andrew.smirnov@gmail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190430064557.28469-1-andrew.smirnov@gmail.com>
+References: <20190430064557.28469-1-andrew.smirnov@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190430043242.29687-1-chuanhua.han@nxp.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 12:32:40PM +0800, Chuanhua Han wrote:
-> NXP Layerscape SoC have up to three MUL options available for all
-> divider values, we choice of MUL determines the internal monitor rate
-> of the I2C bus (SCL and SDA signals):
-> A lower MUL value results in a higher sampling rate of the I2C signals.
-> A higher MUL value results in a lower sampling rate of the I2C signals.
-> 
-> So in Optional properties we added our custom mul-value property in the
-> binding to select which mul option for the device tree i2c controller
-> node.
-> 
-> Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-imx.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.txt b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
-> index b967544590e8..ba8e7b7b3fa8 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-imx.txt
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
-> @@ -18,6 +18,9 @@ Optional properties:
->  - sda-gpios: specify the gpio related to SDA pin
->  - pinctrl: add extra pinctrl to configure i2c pins to gpio function for i2c
->    bus recovery, call it "gpio" state
-> +- mul-value: NXP Layerscape SoC have up to three MUL options available for
-> +all I2C divider values, it describes which MUL we choose to use for the driver,
-> +the values should be 1,2,4.
+Add bindings for Microchip UCS1002 Programmable USB Port Power
+Controller with Charger Emulation.
 
-Indention is broken.
+Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+Cc: Enric Balletbo Serra <enric.balletbo@collabora.com>
+Cc: Chris Healy <cphealy@gmail.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Fabio Estevam <fabio.estevam@nxp.com>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: Sebastian Reichel <sre@kernel.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+---
+ .../power/supply/microchip,ucs1002.txt        | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
 
-I wonder why this needs to be configurable on a per-machine/device
-level. What is the trade-off?
-
-Best regards
-Uwe
-
+diff --git a/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt b/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+new file mode 100644
+index 000000000000..021fd7aba75e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+@@ -0,0 +1,27 @@
++Microchip UCS1002 USB Port Power Controller
++
++Required properties:
++- compatible		: Should be "microchip,ucs1002";
++- reg			: I2C slave address
++
++Optional properties:
++- interrupts-extended	: A list of interrupts lines present (could be either
++			  corresponding to A_DET# pin, ALERT# pin, or both)
++- interrupt-names	: A list of interrupt names. Should contain (if
++			  present):
++			  - "a_det" for line connected to A_DET# pin
++			  - "alert" for line connected to ALERT# pin
++			  Both are expected to be IRQ_TYPE_EDGE_BOTH
++Example:
++
++&i2c3 {
++	charger@32 {
++		compatible = "microchip,ucs1002";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_ucs1002_pins>;
++		reg = <0x32>;
++		interrupts-extended = <&gpio5 2 IRQ_TYPE_EDGE_BOTH>,
++				      <&gpio3 21 IRQ_TYPE_EDGE_BOTH>;
++		interrupt-names = "a_det", "alert";
++	};
++};
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+2.20.1
+
