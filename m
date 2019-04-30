@@ -2,103 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0C8FA7F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 15:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2EF2FA73
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 15:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727534AbfD3Ndi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 09:33:38 -0400
-Received: from pbmsgap02.intersil.com ([192.157.179.202]:40590 "EHLO
-        pbmsgap02.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726229AbfD3Ndh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 09:33:37 -0400
-Received: from pps.filterd (pbmsgap02.intersil.com [127.0.0.1])
-        by pbmsgap02.intersil.com (8.16.0.27/8.16.0.27) with SMTP id x3UDNIa3032147;
-        Tue, 30 Apr 2019 09:23:28 -0400
-Received: from pbmxdp03.intersil.corp (pbmxdp03.pb.intersil.com [132.158.200.224])
-        by pbmsgap02.intersil.com with ESMTP id 2s4h8d2csq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 30 Apr 2019 09:23:28 -0400
-Received: from pbmxdp03.intersil.corp (132.158.200.224) by
- pbmxdp03.intersil.corp (132.158.200.224) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.1531.3; Tue, 30 Apr 2019 09:23:27 -0400
-Received: from localhost.localdomain (132.158.202.108) by
- pbmxdp03.intersil.corp (132.158.200.224) with Microsoft SMTP Server id
- 15.1.1531.3 via Frontend Transport; Tue, 30 Apr 2019 09:23:26 -0400
-From:   Chris Brandt <chris.brandt@renesas.com>
-To:     Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>
-Subject: [PATCH 7/7] ARM: dts: r7s9210-rza2mevb: Add SDHI support
-Date:   Tue, 30 Apr 2019 08:23:09 -0500
-Message-ID: <20190430132309.12473-8-chris.brandt@renesas.com>
-X-Mailer: git-send-email 2.16.1
-In-Reply-To: <20190430132309.12473-1-chris.brandt@renesas.com>
-References: <20190430132309.12473-1-chris.brandt@renesas.com>
+        id S1727400AbfD3Ncf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 09:32:35 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:34736 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725838AbfD3Nce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 09:32:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=nMPoH35x5bq7483H+91AkH1RJePV4Du6v5zOXvqkvu8=; b=P7uEODNtZUFXsXvCEiyD2XZcA
+        m+3iOXQkVYLCUmow1Fhe1Hug/sDPFGPVB5l6l+A5qTz1t/cgwg3tFyGiAsQ/sTZ/KUZfaWr/RCpyF
+        f1N5k5LKqJiScJYPZvCSkQfQeoFag1jypQvLF8Krl8dWaqfKVkaiT4VolA5WAi/dPRJT/7I3Szai3
+        2BsfMhTpk5ethQuxzjaaeDm+hjoYflyP+97qgJp3bnltos7VS8W+xQof4wjvCQNnGo2EFw0zwHkDO
+        nMgn+V1O7R76Fan6dyyReWQLrg6UdDv8nSjV485CTX+nEUr2p49hSXHC7iHC75F5wj5uGKnWcr+UG
+        ytj/77oiA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hLSs3-0008Qf-SI; Tue, 30 Apr 2019 13:32:31 +0000
+Date:   Tue, 30 Apr 2019 06:32:31 -0700
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Phong Tran <tranmanphong@gmail.com>
+Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
+        pantelis.antoniou@konsulko.com, natechancellor@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: replace be32_to_cpu to be32_to_cpup
+Message-ID: <20190430133231.GA5646@infradead.org>
+References: <20190430090044.16345-1-tranmanphong@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-04-30_06:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=782
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1904300086
-X-Proofpoint-Spam-Reason: mlx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190430090044.16345-1-tranmanphong@gmail.com>
+User-Agent: Mutt/1.9.2 (2017-12-15)
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/A2M EVB supports 2 SD card slots. A micro SD slot on the CPU
-board, and a full SD card slot on the sub board.
+On Tue, Apr 30, 2019 at 04:00:44PM +0700, Phong Tran wrote:
+> 
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index e240992e5cb6..1c35fc8f19b0 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -235,7 +235,7 @@ static inline u64 of_read_number(const __be32 *cell, int size)
+>  {
+>  	u64 r = 0;
+>  	while (size--)
+> -		r = (r << 32) | be32_to_cpu(*(cell++));
+> +		r = (r << 32) | be32_to_cpup(cell++);
+>  	return r;
 
-Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
----
- arch/arm/boot/dts/r7s9210-rza2mevb.dts | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+This whole function looks odd.  It could simply be replaced with
+calls to get_unaligned_be64 / get_unaligned_be32.  Given that we have a
+lot of callers we can't easily do that, but at least we could try
+something like
 
-diff --git a/arch/arm/boot/dts/r7s9210-rza2mevb.dts b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-index df69746244fe..1eba37db7cdc 100644
---- a/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-+++ b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-@@ -90,6 +90,16 @@
- 			 <RZA2_PINMUX(PORT3, 4, 1)>, /* ET1_MDIO */
- 			 <RZA2_PINMUX(PORTL, 1, 5)>; /* IRQ5 */
- 	};
-+
-+	sdhi0_pins: sdhi0 {
-+		pinmux = <RZA2_PINMUX(PORT5, 0, 3)>,	/* SD0_CD */
-+			 <RZA2_PINMUX(PORT5, 1, 3)>;	/* SD0_WP */
-+	};
-+
-+	sdhi1_pins: sdhi1 {
-+		pinmux = <RZA2_PINMUX(PORT5, 4, 3)>,	/* SD1_CD */
-+			 <RZA2_PINMUX(PORT5, 5, 3)>;	/* SD1_WP */
-+	};
- };
- 
- /* High resolution System tick timers */
-@@ -130,3 +140,17 @@
- 		reg = <0>;
- 	};
- };
-+
-+&sdhi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdhi0_pins>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&sdhi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdhi1_pins>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
--- 
-2.16.1
+static inline u64 of_read_number(const __be32 *cell, int size)
+{
+	WARN_ON_ONCE(size < 1);
+	WARN_ON_ONCE(size > 2);
 
+	if (size == 1)
+		return get_unaligned_be32(cell);
+	return get_unaligned_be64(cell);
+}
