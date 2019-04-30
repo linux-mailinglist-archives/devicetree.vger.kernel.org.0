@@ -2,90 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D222BFD65
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 18:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B142AFD9A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 18:15:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726056AbfD3QDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 12:03:43 -0400
-Received: from mail-eopbgr1400121.outbound.protection.outlook.com ([40.107.140.121]:2272
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726048AbfD3QDn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 12:03:43 -0400
+        id S1726006AbfD3QPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 12:15:45 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:36568 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725950AbfD3QPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 12:15:44 -0400
+Received: by mail-pf1-f196.google.com with SMTP id v80so2704641pfa.3;
+        Tue, 30 Apr 2019 09:15:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WL910Zm3vbAVF4hEiB9Gn9Auqa/HBef4dYo8tgno/h0=;
- b=NAKsiPdl7XAGlMJLzQYfjRzY7WHjUibfXE756k4JeagvFS7iZOqijvKwiLPdfNg5v5Vf6fZOQp08T3nyT+66x1wVfGKJrMmcHfGcmh3A81QJI5EmvU9Sd4aABYhq8/U+mr4lVssO3uCt8eQQ6JnMfX2iEfmI/8feUSv780JqLZ0=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1738.jpnprd01.prod.outlook.com (52.133.162.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1835.12; Tue, 30 Apr 2019 16:03:39 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1835.018; Tue, 30 Apr 2019
- 16:03:39 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 6/7] ARM: dts: r7s9210-rza2mevb: Add Ethernet support
-Thread-Topic: [PATCH 6/7] ARM: dts: r7s9210-rza2mevb: Add Ethernet support
-Thread-Index: AQHU/1fmL3U0ISDuWUqmKHJ9vTOOFKZU0jaAgAAI7RA=
-Date:   Tue, 30 Apr 2019 16:03:39 +0000
-Message-ID: <TY1PR01MB156277831BBAD3BF0E0EE52D8A3A0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190430132309.12473-1-chris.brandt@renesas.com>
- <20190430132309.12473-7-chris.brandt@renesas.com>
- <CAMuHMdWzN_1XmO8w_otDseJ+bxk+AKNouk-ycPPyM2XWMWritQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWzN_1XmO8w_otDseJ+bxk+AKNouk-ycPPyM2XWMWritQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2b73dc88-d31b-4dda-6bba-08d6cd85691c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1738;
-x-ms-traffictypediagnostic: TY1PR01MB1738:
-x-microsoft-antispam-prvs: <TY1PR01MB1738A5433FFEA7C9C50BEC038A3A0@TY1PR01MB1738.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 00235A1EEF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(39860400002)(346002)(136003)(376002)(396003)(189003)(199004)(6246003)(7696005)(102836004)(14454004)(229853002)(55016002)(68736007)(9686003)(3846002)(6506007)(305945005)(8676002)(72206003)(6116002)(4744005)(53936002)(4326008)(7736002)(25786009)(2906002)(52536014)(316002)(54906003)(33656002)(26005)(6916009)(81156014)(8936002)(11346002)(446003)(73956011)(66066001)(478600001)(66946007)(76116006)(76176011)(66556008)(71200400001)(256004)(66476007)(64756008)(66446008)(99286004)(6436002)(486006)(186003)(74316002)(5660300002)(81166006)(476003)(71190400001)(97736004)(86362001);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1738;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: tU37aG7YWDXoA7U0ZCvi+VQ1w5539fF7xLzbKf4vHYHmOyeWwzsi6j5GKlq64HLt4i93GycMJsnTZO7wmDDcyNQBadxRnoms0jpKx4laKBIF8kyO/FNcr7OGLzAhG61sxo3nPyjGkx2dmRoG1ShxmcEjJchHQYzSAIRkJHO9HeB/yudF0BSS7aVaWZvCB3zpFZ9SZR8FeSW+IvAWNvT13sh35X15eqFeM4H3iDu2FieGkeiPUrREHIpjM9nj3GiC8+SS6NggcbR4kUy2e5SQ85DWLADqvBIvQ/FBde7gRUMU9q1vNFOb0my5rv1yDFBEKft3TkXq0DZ8XukH0FHRM0qsJdlp8jyNsTc9Cm8YsgN/ZwrN/5vwBjPajcUZ7J3BtFoP68MfgZYudPbwkHHmsmCDwusYSzxzi9UgGzca5mU=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=To53eP64nDHV0qyky0yhP+wHrXWci3jOJ+vTaEuHq/0=;
+        b=XbQthZPkZqvXjghxbDEcY5YIseGnGzfsKHZyboFhSvRLNdL0xpPhdXwvMicpw/nBpx
+         cF/1XauxMpco0kUxuRvEdA9dqA+UFx5QhDElv28iN9u8mb49m5NJ8pEzdZBshrB9lCIK
+         GpFeDFaKWbP2HR7IZwv+nEvxMn57Mt3ZwW3smIZXthZb7Pwuu2J46CTaGCksl7RJetBO
+         wPnfzt2hrqZHFMkEShir35mzRHTbu5q0JW7+cd8xRtog/JSdGLAPTtpFot3xgQx+IAw7
+         jyC4crFr9jt7ojulM+s2jhr6Hg0Q4DY+Wuw3PfLjRnyHbP1yFwFBZSko+sCkq0ggLa4S
+         pP+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=To53eP64nDHV0qyky0yhP+wHrXWci3jOJ+vTaEuHq/0=;
+        b=RZdnx3537WqXnVVlEtQJL9Y3IJSW+GJcljHsFtKdDHKricSX1WcwrskEon+VwO3pcY
+         liSqar2BpTnlSzXkEuYqjhLas68cJr1JJ3vwEKQ5eQfXt0LpD3vwB5d4Avjy1qjkuDjJ
+         KEozP/gEtoMfbdevBWixNfBUp1ibqGwIfwMW+K5sUmwbWt1qHS+LeB9vmIaM8MrwatcO
+         t4nL+I3N2WjODnavHwgT+HDLb5G8HSidgmurGFZwrgqmox2hZjf/cOaeYTrO9NjjkRPC
+         npVPEPqJI27VDk/pbMLE/KLxm3+X5jMv169TZP+p5xhF1adiW32gUinyZEla5ug8I5m1
+         mR1A==
+X-Gm-Message-State: APjAAAXZzNGOzOPDwdw4aiOTSJ4if1WUKqynMl1r78XtRV4ljpSpPjEG
+        FHJ41IK98pwuoVAJrrPMcek=
+X-Google-Smtp-Source: APXvYqyoF5fxCgwsOl/SkTT9wJUlJSVagV4me5hVlPz9N0VAatBssu6WvukGULT917FSx2PKdRqZTw==
+X-Received: by 2002:a63:360c:: with SMTP id d12mr66418796pga.404.1556640944114;
+        Tue, 30 Apr 2019 09:15:44 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id g79sm33164193pfd.144.2019.04.30.09.15.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Apr 2019 09:15:43 -0700 (PDT)
+Date:   Tue, 30 Apr 2019 09:15:42 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Andrey Smirnov <andrew.smirnov@gmail.com>
+Cc:     linux-pm@vger.kernel.org,
+        Enric Balletbo Serra <enric.balletbo@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: power: supply: Add bindings for
+ Microchip UCS1002
+Message-ID: <20190430161542.GB731@roeck-us.net>
+References: <20190430064557.28469-1-andrew.smirnov@gmail.com>
+ <20190430064557.28469-4-andrew.smirnov@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b73dc88-d31b-4dda-6bba-08d6cd85691c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2019 16:03:39.5197
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1738
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190430064557.28469-4-andrew.smirnov@gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNCk9uIFR1ZSwgQXByIDMwLCAyMDE5IDEsIEdlZXJ0IFV5dHRlcmhvZXZlbiB3
-cm90ZToNCj4gUGVyaGFwcyB5b3Ugd2FudCB0byBhZGQgYW4gImV0aGVybmV0MCIgYWxpYXMsIHNv
-IFUtQm9vdCBjYW4gZmluZCB0aGUNCj4gZGV2aWNlLW5vZGUgYW5kIGFkZCBhbiBhcHByb3ByaWF0
-ZSAibG9jYWwtbWFjLWFkZHJlc3MiIHByb3BlcnR5Pw0KDQpTaW5jZSBJIGhhdmUgMiBFdGhlcm5l
-dHMsIHdvdWxkIHlvdXIgcmVjb21tZW5kYXRpb24gYmUgSSBhZGQgYW4gYWxpYXMgZm9yDQplYWNo
-Pw0KDQpIb25lc3RseSwgSSd2ZSBuZXZlciBkb25lIGl0IHRoYXQgd2F5LiBJdCBoYXMgYWx3YXlz
-IGJlZW4gdGhhdCB1LWJvb3QgDQpwcmVsb2FkcyB0aGUgTUFDIGFkZHJlc3MgcmVnaXN0ZXJzIGFu
-ZCB0aGVuIHRoZSBzaF9ldGggZHJpdmVyIGp1c3QgdXNlcyANCndoYXQncyBhbHJlYWR5IGxvYWRl
-ZC4NCkJ1dCwgaWYgdXNpbmcgRFQgaXMgdGhlIG1vcmUgcmVjb21tZW5kZWQgbWV0aG9kLCBJIGNh
-biBtaWdyYXRlIHRvd2FyZHMNCnRoYXQuDQoNClRoYW5rcywNCkNocmlzDQoNCg==
+On Mon, Apr 29, 2019 at 11:45:57PM -0700, Andrey Smirnov wrote:
+> Add bindings for Microchip UCS1002 Programmable USB Port Power
+> Controller with Charger Emulation.
+> 
+> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+> Cc: Enric Balletbo Serra <enric.balletbo@collabora.com>
+> Cc: Chris Healy <cphealy@gmail.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Fabio Estevam <fabio.estevam@nxp.com>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> ---
+>  .../power/supply/microchip,ucs1002.txt        | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt b/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+> new file mode 100644
+> index 000000000000..021fd7aba75e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/microchip,ucs1002.txt
+> @@ -0,0 +1,27 @@
+> +Microchip UCS1002 USB Port Power Controller
+> +
+> +Required properties:
+> +- compatible		: Should be "microchip,ucs1002";
+> +- reg			: I2C slave address
+> +
+> +Optional properties:
+> +- interrupts-extended	: A list of interrupts lines present (could be either
+> +			  corresponding to A_DET# pin, ALERT# pin, or both)
+> +- interrupt-names	: A list of interrupt names. Should contain (if
+> +			  present):
+> +			  - "a_det" for line connected to A_DET# pin
+> +			  - "alert" for line connected to ALERT# pin
+> +			  Both are expected to be IRQ_TYPE_EDGE_BOTH
+> +Example:
+> +
+> +&i2c3 {
+> +	charger@32 {
+> +		compatible = "microchip,ucs1002";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_ucs1002_pins>;
+
+Document the above ? Or is that optional ?
+
+[ I am not a DT expert, so feel free to ignore. ]
+
+Guenter
+
+> +		reg = <0x32>;
+> +		interrupts-extended = <&gpio5 2 IRQ_TYPE_EDGE_BOTH>,
+> +				      <&gpio3 21 IRQ_TYPE_EDGE_BOTH>;
+> +		interrupt-names = "a_det", "alert";
+> +	};
+> +};
+> -- 
+> 2.20.1
+> 
