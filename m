@@ -2,165 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25643F8F8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 14:36:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1030F941
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 14:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727534AbfD3Mgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 08:36:40 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:51495 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727469AbfD3Mgj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 08:36:39 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190430123637euoutp02c3b5a30d028bccb2941f4c32ff95141e~aQLwW858X2966829668euoutp02A
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 12:36:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190430123637euoutp02c3b5a30d028bccb2941f4c32ff95141e~aQLwW858X2966829668euoutp02A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1556627797;
-        bh=X7YzOGNdDkST8oqsRp5UiPvT7RSLwxnDlcKCn95vBoE=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=g/MDhkaAiVSXpiGeXmzf+poIHXO+OS+dg/Yrf3BV+QfE5nGp5K5OqQq/ghZVkW7+Y
-         jfzzQyS94lZBcdgZ6RDmdS7rHZBysib/9d5fKXIdj1APZJPl7ljUmlPTYCm7tY0jmg
-         7ieEKAtsZyI/asB/Gjcyg7wmVBVcliSBFXdrBtlk=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190430123636eucas1p23a83aeb652f4957f2a9a878d7bd2b0a4~aQLviOEEb2285722857eucas1p2m;
-        Tue, 30 Apr 2019 12:36:36 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id C1.00.04298.45148CC5; Tue, 30
-        Apr 2019 13:36:36 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190430123635eucas1p28c2161b465569c46f941e76fd7c9c63b~aQLuiqyie2344423444eucas1p2Z;
-        Tue, 30 Apr 2019 12:36:35 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190430123635eusmtrp1a769c1af2c8e7eb5ae012d538ed32d44~aQLuTB59_0421804218eusmtrp1P;
-        Tue, 30 Apr 2019 12:36:35 +0000 (GMT)
-X-AuditID: cbfec7f2-f13ff700000010ca-36-5cc841543dff
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id F9.12.04146.35148CC5; Tue, 30
-        Apr 2019 13:36:35 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190430123634eusmtip2007e1d3560b4714296da1244959e2a28~aQLtjzC6A0081400814eusmtip2b;
-        Tue, 30 Apr 2019 12:36:34 +0000 (GMT)
-Subject: Re: [PATCH v6 01/10] clk: samsung: add needed IDs for DMC clocks in
- Exynos5420
-To:     Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <345488e4-ba7e-1f34-e166-cb340d7f7dab@partner.samsung.com>
-Date:   Tue, 30 Apr 2019 14:36:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
+        id S1727773AbfD3Mu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 08:50:57 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:33819 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727670AbfD3Mu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 08:50:56 -0400
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <sha@pengutronix.de>)
+        id 1hLSDe-00022T-2M; Tue, 30 Apr 2019 14:50:46 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <sha@pengutronix.de>)
+        id 1hLSDb-0001O9-43; Tue, 30 Apr 2019 14:50:43 +0200
+Date:   Tue, 30 Apr 2019 14:50:43 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Chuanhua Han <chuanhua.han@nxp.com>
+Cc:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
+        wsa+renesas@sang-engineering.com, u.kleine-koenig@pengutronix.de,
+        eha@deif.com, linux@rempel-privat.de, l.stach@pengutronix.de,
+        peda@axentia.se, sumit.batra@nxp.com
+Subject: Re: [PATCH 1/2] i2c: imx: I2C Driver doesn't consider I2C_IPGCLK_SEL
+ RCW bit when using ls1046a SoC
+Message-ID: <20190430125043.weqwzim4gpsvtkfe@pengutronix.de>
+References: <20190430044719.30720-1-chuanhua.han@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <9eb04a57-3e80-b0ba-334a-927493deb969@samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLKsWRmVeSWpSXmKPExsWy7djPc7ohjidiDH7fV7LYOGM9q8X1L89Z
-        LeYfOcdqsfrjY0aLyafmMlmc6c616H/8mtni/PkN7BZnm96wW1zeNYfN4nPvEUaLGef3MVms
-        PXKX3eJ24wo2i8Nv2lkt9l/xsrj9m8/i24lHjA5CHt++TmLxmN1wkcVj56y77B6bVnWyefQ2
-        v2Pz6NuyitFj8+lqj8+b5AI4orhsUlJzMstSi/TtErgynjVdYylYxFsxuauTuYHxI1cXIyeH
-        hICJxJ1V19i6GLk4hARWMEq8WdPPDOF8YZS429sN5XxmlJi79hoTTMunKW+gWpYzSny+ex2q
-        6i2jxI/181lBqoQFIiVWvp7CBJIQEVjMKDF15W8wh1lgNZPEn69rgao4ONgE9CR2rCoEaeAV
-        cJOY+66THcRmEVCV2LDvAdg6UYEIifvHNrBC1AhKnJz5hAXE5hSwl5jz4R0biM0sIC5x68l8
-        JghbXqJ562ywiyQEpnJIvJmygRHibheJGz3b2SFsYYlXx7dA2TISpyf3sEDYxRINvQuh6msk
-        HvfPhaqxljh8/CLYzcwCmhLrd+lDhB0lNkzayQYSlhDgk7jxVhDiBD6JSdumM0OEeSU62oQg
-        qjUktvRcgAaimMTyNdPYJzAqzULy2Cwkz8xC8swshL0LGFlWMYqnlhbnpqcWG+allusVJ+YW
-        l+al6yXn525iBCbC0/+Of9rB+PVS0iFGAQ5GJR5ej3fHYoRYE8uKK3MPMUpwMCuJ8HocPxoj
-        xJuSWFmVWpQfX1Sak1p8iFGag0VJnLea4UG0kEB6YklqdmpqQWoRTJaJg1OqgbGxPGzn/JV+
-        lx94uluJL259KsRgYXWn6a7I3oSXppVin2Tn/5DheiD5JFpJhM9I4f7/nctuXz/HqX+26cAC
-        TfEG8VBlDbmHbcbXvQT6MhL+PvKrnHe8X+jQ1aOqEYHBgY/YPJPMWtOTfm980csQ/HaGg3MA
-        2xvl9/YhLYUTL8pPXv/7+K0DD5VYijMSDbWYi4oTAaGkKVqAAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42I5/e/4Pd1gxxMxBncWKVhsnLGe1eL6l+es
-        FvOPnGO1WP3xMaPF5FNzmSzOdOda9D9+zWxx/vwGdouzTW/YLS7vmsNm8bn3CKPFjPP7mCzW
-        HrnLbnG7cQWbxeE37awW+694Wdz+zWfx7cQjRgchj29fJ7F4zG64yOKxc9Zddo9NqzrZPHqb
-        37F59G1Zxeix+XS1x+dNcgEcUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK
-        +nY2Kak5mWWpRfp2CXoZz5qusRQs4q2Y3NXJ3MD4kauLkZNDQsBE4tOUN2xdjFwcQgJLGSVO
-        3DrPDpEQk5i0bzuULSzx51oXVNFrRokzExeygCSEBSIlVr6ewgRiiwgsZpT42loNUsQssJpJ
-        YtLHLVAdU5gkdp95BlTFwcEmoCexY1UhSAOvgJvE3HedYBtYBFQlNux7ADZIVCBC4sz7FSwQ
-        NYISJ2c+AbM5Bewl5nx4xwZiMwuYSczb/JAZwhaXuPVkPhOELS/RvHU28wRGoVlI2mchaZmF
-        pGUWkpYFjCyrGEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAmN/27Gfm3cwXtoYfIhRgINRiYfX
-        492xGCHWxLLiytxDjBIczEoivB7Hj8YI8aYkVlalFuXHF5XmpBYfYjQFem4is5Rocj4wLeWV
-        xBuaGppbWBqaG5sbm1koifN2CByMERJITyxJzU5NLUgtgulj4uCUamBUdStnW3JUOLW6kklY
-        NV56XsFGo2chvobmrpveMHoYhKxx33fqZrGzXcCbKbujEgPuNzLpmv0XD79/2euu0gOnuopV
-        t1a/X/glperZjezXFwqnCz84WRtuxLvkYu0nq+tedh6pV6ZsX69ns6WLv2jV3UtFM1zZmF6J
-        f7239zNXtd2FoNS33nZKLMUZiYZazEXFiQDILCoDEwMAAA==
-X-CMS-MailID: 20190430123635eucas1p28c2161b465569c46f941e76fd7c9c63b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190419141940eucas1p295a1130863cf2e69476ca0ba11a8a102
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190419141940eucas1p295a1130863cf2e69476ca0ba11a8a102
-References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419141940eucas1p295a1130863cf2e69476ca0ba11a8a102@eucas1p2.samsung.com>
-        <1555683568-20882-2-git-send-email-l.luba@partner.samsung.com>
-        <9eb04a57-3e80-b0ba-334a-927493deb969@samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190430044719.30720-1-chuanhua.han@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:47:42 up 42 days, 23:58, 86 users,  load average: 1.11, 1.13,
+ 1.10
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chanwoo,
+On Tue, Apr 30, 2019 at 12:47:18PM +0800, Chuanhua Han wrote:
+> The current kernel driver does not consider I2C_IPGCLK_SEL (424 bit
+> of RCW) in deciding  i2c_clk_rate in function i2c_imx_set_clk()
+> { 0 Platform clock/4, 1 Platform clock/2}.
+> 
+> When using ls1046a SoC, this populates incorrect value in IBFD register
+> if I2C_IPGCLK_SEL = 0, which generates half of the desired Clock.
+> 
+> Therefore, if ls1046a SoC is used, we need to set the i2c clock
+> according to the corresponding RCW.
 
-On 4/30/19 6:47 AM, Chanwoo Choi wrote:
-> Hi,
-> 
-> On 19. 4. 19. 오후 11:19, Lukasz Luba wrote:
->> Define new IDs for clocks used by Dynamic Memory Controller in
->> Exynos5422 SoC.
->>
->> Acked-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->> ---
->>   include/dt-bindings/clock/exynos5420.h | 18 +++++++++++++++++-
->>   1 file changed, 17 insertions(+), 1 deletion(-)
->>
->> diff --git a/include/dt-bindings/clock/exynos5420.h b/include/dt-bindings/clock/exynos5420.h
->> index 355f469..abb1842 100644
->> --- a/include/dt-bindings/clock/exynos5420.h
->> +++ b/include/dt-bindings/clock/exynos5420.h
->> @@ -60,6 +60,7 @@
->>   #define CLK_MAU_EPLL		159
->>   #define CLK_SCLK_HSIC_12M	160
->>   #define CLK_SCLK_MPHY_IXTAL24	161
->> +#define CLK_SCLK_BPLL		162
->>   
->>   /* gate clocks */
->>   #define CLK_UART0		257
->> @@ -195,6 +196,18 @@
->>   #define CLK_ACLK432_CAM		518
->>   #define CLK_ACLK_FL1550_CAM	519
->>   #define CLK_ACLK550_CAM		520
->> +#define CLK_CLKM_PHY0		521
->> +#define CLK_CLKM_PHY1		522
->> +#define CLK_ACLK_PPMU_DREX0_0	523
->> +#define CLK_ACLK_PPMU_DREX0_1	524
->> +#define CLK_ACLK_PPMU_DREX1_0	525
->> +#define CLK_ACLK_PPMU_DREX1_1	526
->> +#define CLK_PCLK_PPMU_DREX0_0	527
->> +#define CLK_PCLK_PPMU_DREX0_1	528
->> +#define CLK_PCLK_PPMU_DREX1_0	529
->> +#define CLK_PCLK_PPMU_DREX1_1	530
->> +#define CLK_CDREX_PAUSE		531
->> +#define CLK_CDREX_TIMING_SET	532
-> 
-> I cannot find the usage code of both CLK_CDREX_PAUSE
-> and CLK_CDREX_TIMING_SET in these patchset.
-Thank you for this catch. I will remove them.
+So the clock driver reports the wrong clock. Please fix the clock driver
+then.
 
-Regards,
-Lukasz
-> 
-> Please remove them.
-> 
-> (snip)
-> 
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
