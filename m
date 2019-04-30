@@ -2,121 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2E810295
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 00:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59CAE102C9
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 00:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726105AbfD3Wre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 18:47:34 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43381 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726086AbfD3Wre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 18:47:34 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t81so12647826oig.10;
-        Tue, 30 Apr 2019 15:47:33 -0700 (PDT)
+        id S1728023AbfD3Wvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 18:51:33 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:35149 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727770AbfD3Wvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 18:51:33 -0400
+Received: by mail-ot1-f67.google.com with SMTP id g24so8900781otq.2;
+        Tue, 30 Apr 2019 15:51:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Zc49vgyaf9Osgfs8bngxx3hqZVIwFkS67qrO5tobMu8=;
-        b=Kh2EjRvWganiGjsA99znT7hqTil54qLx7Wlxqd5TGOyHhWVdL32qMI0R+dYt3UNQjB
-         t3oRqMWcFB0P1SXvg5VZBk1PK4Jpqs685+OT88A4W546F7d+8AXEEqeffOYfDyCjlok8
-         Tf+pFuC6PiB+Crta6Y7YUAPRrqipm/v7eIXXYicWCyTuvbeEqjWHkCX5yIuCrXeXB1oA
-         g2/QXwkjQaQr8nz56yvFaGeiUtml49B0aEOL4UBmuwL/aU+0C9aJCaBpt/sNHube6aR0
-         Oi9aDEwC9B1bf/d8bkx9EQZesrfGIM/Bfs3EGa2mE+Zmy4QsJ8DYdUouX84L+ZaARkuQ
-         /PAA==
-X-Gm-Message-State: APjAAAVASC+c6kKGVGPgqWaNyMzbTXm4sxFXXMZmsnVMQr85ugxJcYsQ
-        +HzpfMG78jKCInJl6Z79GzX38EY=
-X-Google-Smtp-Source: APXvYqxRBfZe+g/1V1bsotp53DMeISnhsnzhoDAMbomw9KTHuXHnSxTIZlWNWwVV6xiZl/kLflPebQ==
-X-Received: by 2002:aca:378a:: with SMTP id e132mr4349653oia.171.1556664453373;
-        Tue, 30 Apr 2019 15:47:33 -0700 (PDT)
+        bh=3hmHPTgV/bi1eZA1TKy2C+Ms5iNmeogSof6Y1DoOt64=;
+        b=ftCh8Kjiu4WSchjQKeW/SwicMc/oqBMKKJbbhnYPJ+8EZqB1YETPl9x6VPpmZwqRi3
+         DPeNdCffBnPw3Wk0UZtlxyeTaJu6OX6WbwMNKR6m1j/MiFfHwJGvLhps3A2PBHDcmdrn
+         dRzUxqgx2fZLHQ0crg2N/ss7MwxkNAgHOvYXloS8GuRDDMroMMFRS32UO31fhfLYzGg6
+         xkZppSYQKgkZJPb1XiRcbG3nZxAc2j1pyo/Iu8dSSIsUA8mleYU0jS2A7SCDBaYI+xPQ
+         F8xuJXRbDyiZUgPgAeHuD5hOWygi1fXGP3JOnepP/YTgLTVywjYmIQiyhXRFrv8/3IUT
+         XMCw==
+X-Gm-Message-State: APjAAAVDaYPDNwXqBwoKhIWf0kt99t10bUJQdNkLlW6jRW98icfeQPY3
+        w4KvpDvz25Ds7aU2rk2waw==
+X-Google-Smtp-Source: APXvYqzCvqmsBL7hdv+MANoijnliQcs7gcB/JlqgrpY74V90wibJ6XokQDyfNO5RXAHNGjOAnjvGmQ==
+X-Received: by 2002:a05:6830:2106:: with SMTP id i6mr1714548otc.146.1556664691778;
+        Tue, 30 Apr 2019 15:51:31 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u11sm15635046otb.66.2019.04.30.15.47.32
+        by smtp.gmail.com with ESMTPSA id 3sm10756189oti.45.2019.04.30.15.51.30
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 30 Apr 2019 15:47:32 -0700 (PDT)
-Date:   Tue, 30 Apr 2019 17:47:31 -0500
+        Tue, 30 Apr 2019 15:51:30 -0700 (PDT)
+Date:   Tue, 30 Apr 2019 17:51:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Han Nandor <nandor.han@vaisala.com>
-Cc:     "sre@kernel.org" <sre@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: power: reset: add document for NVMEM
- based reboot-mode
-Message-ID: <20190430224731.GA31760@bogus>
-References: <fc60b885f1b447ce55950184c7921cfc1c96ade6>
- <20190421190913.1478-3-nandor.han@vaisala.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Chris Snook <chris.snook@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Felix Fietkau <nbd@nbd.name>, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: add qca,ar71xx.txt documentation
+Message-ID: <20190430225130.GA10771@bogus>
+References: <20190422064046.2822-1-o.rempel@pengutronix.de>
+ <20190422064046.2822-2-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190421190913.1478-3-nandor.han@vaisala.com>
+In-Reply-To: <20190422064046.2822-2-o.rempel@pengutronix.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 21, 2019 at 07:09:30PM +0000, Han Nandor wrote:
-> Add the device tree bindings document for the NVMEM based reboot-mode
-> driver.
+On Mon, Apr 22, 2019 at 08:40:44AM +0200, Oleksij Rempel wrote:
+> Add binding documentation for Atheros/QCA networking IP core used
+> in many routers.
 > 
-> Signed-off-by: Nandor Han <nandor.han@vaisala.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  .../power/reset/nvmem-reboot-mode.txt         | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.txt
+>  .../devicetree/bindings/net/qca,ar71xx.txt    | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/qca,ar71xx.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.txt b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.txt
+> diff --git a/Documentation/devicetree/bindings/net/qca,ar71xx.txt b/Documentation/devicetree/bindings/net/qca,ar71xx.txt
 > new file mode 100644
-> index 000000000000..2e1b86c31cb3
+> index 000000000000..56abf224de2c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.txt
-> @@ -0,0 +1,32 @@
-> +NVMEM reboot mode driver
-> +
-> +This driver gets reboot mode magic value from reboot-mode driver
-> +and stores it in a NVMEM cell named "reboot-mode". Then the bootloader
-> +can read it and take different action according to the magic
-> +value stored.
+> +++ b/Documentation/devicetree/bindings/net/qca,ar71xx.txt
+> @@ -0,0 +1,44 @@
 
-This is also assuming the nvmem is writeable which is more often not the 
-case.
+Needs some title and info about what this h/w is.
 
-Is your usecase a platform that supports pstore? Adding on to that 
-binding might be a better fit.
-
-> +
-> +This DT node should be represented as a sub-node of a "simple-mfd"
-> +node.
-> +
 > +Required properties:
-> +- compatible: should be "nvmem-reboot-mode".
-> +- nvmem-cells: A phandle to the reboot mode provided by a nvmem device.
-> +- nvmem-cell-names: Should be "reboot-mode".
+> +- compatible:	Should be "qca,<soc>-eth". Currently support compatibles are:
+> +		qca,ar7100-eth - Atheros AR7100
+> +		qca,ar7240-eth - Atheros AR7240
+> +		qca,ar7241-eth - Atheros AR7241
+> +		qca,ar7242-eth - Atheros AR7242
+> +		qca,ar9130-eth - Atheros AR9130
+> +		qca,ar9330-eth - Atheros AR9330
+> +		qca,ar9340-eth - Atheros AR9340
+> +		qca,qca9530-eth - Qualcomm Atheros QCA9530
+> +		qca,qca9550-eth - Qualcomm Atheros QCA9550
+> +		qca,qca9560-eth - Qualcomm Atheros QCA9560
 > +
-> +The rest of the properties should follow the generic reboot-mode description
-> +found in reboot-mode.txt
+> +- reg : Address and length of the register set for the device
+> +- interrupts : Should contain eth interrupt
+> +- phy-mode : See ethernet.txt file in the same directory
+
+Is there a subset of valid modes?
+
+> +- clocks: the clock used by the core
+> +- clock-names: the names of the clock listed in the clocks property. These are
+> +	"mdio".
+
+Seems strange that's the only clock.
+
+> +- resets: Should contain phandles to the reset signals
+> +- reset-names: Should contain the names of reset signal listed in the resets
+> +		property. These are "mac" and "mdio"
+> +
+> +Optional properties:
+> +- phy-handle : phandle to the PHY device connected to this device.
+> +- fixed-link : Assume a fixed link. See fixed-link.txt in the same directory.
+> +  Use instead of phy-handle.
+> +
+> +Optional subnodes:
+> +- mdio : specifies the mdio bus, used as a container for phy nodes
+> +  according to phy.txt in the same directory
 > +
 > +Example:
-> +	reboot-mode-nvmem@0 {
-
-What's this node for?
-
-> +		compatible = "simple-mfd";
-
-I only see 1 function.
-
-> +		reboot-mode {
-> +			compatible = "nvmem-reboot-mode";
-> +			nvmem-cells = <&reboot_mode>;
-> +			nvmem-cell-names = "reboot-mode";
 > +
-> +			mode-normal     = <0xAAAA5501>;
-> +			mode-bootloader = <0xBBBB5500>;
-> +			mode-recovery   = <0xCCCC5502>;
-> +			mode-test       = <0xDDDD5503>;
-> +		};
-> +	};
+> +ethernet@1a000000 {
+> +	compatible = "qca,ar9330-eth";
+> +	reg = <0x1a000000 0x200>;
+> +	interrupts = <5>;
+> +	resets = <&rst 13>, <&rst 23>;
+> +	reset-names = "mac", "mdio";
+> +	clocks = <&pll ATH79_CLK_MDIO>;
+> +	clock-names = "mdio";
+> +	phy-mode = "gmii";
+> +};
 > -- 
-> 2.17.2
+> 2.20.1
 > 
