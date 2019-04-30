@@ -2,117 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A7C9FEA5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 19:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB9EFEEB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 19:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726006AbfD3RRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 13:17:01 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:48971 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725942AbfD3RRA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 13:17:00 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 66E3CFB03;
-        Tue, 30 Apr 2019 19:16:58 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id mwgHcBd5cvLL; Tue, 30 Apr 2019 19:16:57 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 1B80D4027E; Tue, 30 Apr 2019 19:16:57 +0200 (CEST)
-Date:   Tue, 30 Apr 2019 19:16:57 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mq: Add a node for irqsteer
-Message-ID: <20190430171657.GA1513@bogon.m.sigxcpu.org>
-References: <a08a0a2fdd2090f4f42fe50d8ed70ee08b2fbcaf.1556631673.git.agx@sigxcpu.org>
- <1556632204.2560.20.camel@pengutronix.de>
+        id S1726048AbfD3Rf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 13:35:28 -0400
+Received: from mail-eopbgr00043.outbound.protection.outlook.com ([40.107.0.43]:40256
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725950AbfD3Rf2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Apr 2019 13:35:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=408jCAjXoqXLUOrJsVVQLEpwt2PSYNkkcoApMrwjfgs=;
+ b=Ldm9ZR8stLcKwdqQnEtDQk7wS7PfYbbAV29KrBVMs0g7U4NI6XxFq2vN9aW08wu7YWB+X6bVElruzICLrtiCsjqFXIM7QRwv7FLQ2FygVyCh28+Iys3r385QXCaq8rxjC1ByWoLi2SDb99Q5hZogKViThQmotrDZONUfPRq9He4=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB4995.eurprd04.prod.outlook.com (20.176.215.152) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1835.18; Tue, 30 Apr 2019 17:35:24 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::8cda:4e52:8e87:8f0e]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::8cda:4e52:8e87:8f0e%2]) with mapi id 15.20.1835.018; Tue, 30 Apr 2019
+ 17:35:24 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+Subject: [PATCH V2 0/2] clk: imx: scu: add parsing clocks from device tree
+ support
+Thread-Topic: [PATCH V2 0/2] clk: imx: scu: add parsing clocks from device
+ tree support
+Thread-Index: AQHU/3sXAchBbqvng0+oy01651OLQg==
+Date:   Tue, 30 Apr 2019 17:35:24 +0000
+Message-ID: <1556645270-20648-1-git-send-email-aisheng.dong@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK2P15301CA0007.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::17) To AM0PR04MB4211.eurprd04.prod.outlook.com
+ (2603:10a6:208:5b::30)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 839da188-9cc3-40bc-679e-08d6cd923a09
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4995;
+x-ms-traffictypediagnostic: AM0PR04MB4995:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <AM0PR04MB4995435E90796BDA9DE92C1F803A0@AM0PR04MB4995.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 00235A1EEF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(346002)(39860400002)(376002)(136003)(396003)(199004)(189003)(54534003)(6506007)(5660300002)(36756003)(386003)(102836004)(186003)(256004)(26005)(4326008)(68736007)(71190400001)(71200400001)(25786009)(2501003)(6486002)(6436002)(8936002)(6512007)(50226002)(8676002)(81166006)(81156014)(6306002)(53936002)(54906003)(66066001)(2906002)(110136005)(966005)(66556008)(99286004)(73956011)(66446008)(316002)(66946007)(66476007)(64756008)(52116002)(2616005)(44832011)(476003)(486006)(97736004)(7736002)(86362001)(478600001)(14454004)(6116002)(3846002)(305945005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4995;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: r0CYGi4JtszwxgwXT6dCBmygfOAG+HwsO+PhUVfuYMtvaNsP+4U0oTV64smFLumK1X77gZNya/pDrYG54dQFVz/aZnZ+DWGg/tqSWwhpQkuq8HniQZEqOh+gZ++vVRNShRUae9Ye3zC+TBmNd3vbnX2+hOH7Rz90iQ2KfhysVu5tB0/Ua26qTDD4oakAubHylEWgpHCHBYaBiyz/8LaPFVZz+oCFK+SPxJ8zc0SAmHH51IgflzG8AReTOjbpTzWw/vbS71aF7vgwvQLByAZtXrfzTF/OthFMlILzDGAX9dMmzyETjuGjEAeEKJRKPzz/y1x0w7Ikd9dYD0ojhyHcI6j1Ux/APVunX3m1tNUvlG90ZJPWWkMHVpiIe03up7B1mJYV2dnrf/RicVm+2lq05+f+Ga/ezitrRYs2GdZWdww=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1556632204.2560.20.camel@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 839da188-9cc3-40bc-679e-08d6cd923a09
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2019 17:35:24.5040
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4995
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
-On Tue, Apr 30, 2019 at 03:50:04PM +0200, Lucas Stach wrote:
-> Am Dienstag, den 30.04.2019, 15:41 +0200 schrieb Guido Günther:
-> > Add a node for the irqsteer interrupt controller found on the iMX8MQ
-> > SoC.
-> > 
-> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 21 +++++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > index 2cc939cfbd75..ce0e137ec8ee 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > @@ -798,6 +798,27 @@
-> >  			};
-> >  		};
-> >  
-> > +		bus@32c00000 { /* AIPS4 */
-> > +			compatible = "fsl,imx8mq-aips-bus", "simple-bus";
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +			ranges = <0x32c00000 0x32c00000 0x400000>;
-> > +
-> > +			irqsteer: interrupt-controller@32e2d000 {
-> > +				compatible = "fsl,imx8m-irqsteer",
-> > +					     "fsl,imx-irqsteer";
-> 
-> This fits on a single line, right?
-
-It went past the 80 char limit but it seems the dts is not super picky
-about that so I changed that in v2.
-
-> 
-> > +				reg = <0x32e2d000 0x1000>;
-> > +				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>;
-> > +				clock-names = "ipg";
-> > +				fsl,channel = <0>;
-> > +				fsl,num-irqs = <64>;
-> > +				interrupt-controller;
-> > +				interrupt-parent = <&gic>;
-> 
-> This is wrong, the irqsteer upstream IRQ is routed through the GPC like
-> all the other peripheral interrupts. You can just drop this property.
-
-Fixed in v2. Thanks,
- -- Guido
-
-> 
-> With this fixed:
-> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-> 
-> Regards,
-> Lucas
-> 
-> > +				#interrupt-cells = <1>;
-> > +			};
-> > +		};
-> > +
-> >  		gpu: gpu@38000000 {
-> >  			compatible = "vivante,gc";
-> >  			reg = <0x38000000 0x40000>;
-> 
+VGhpcyBpcyBhIGZvbGxvdyB1cCBvZiB0aGUgcGF0Y2ggdGhyZWFkLg0KaHR0cHM6Ly93d3cuc3Bp
+bmljcy5uZXQvbGlzdHMvZGV2aWNldHJlZS9tc2cyODM2NzUuaHRtbA0KDQpUaGlzIHBhdGNoIHNl
+cmllcyBpcyBhIHByZXBhcmF0aW9uIGZvciB0aGUgTVg4IEFyY2hpdGVjdHVyZSBpbXByb3ZlbWVu
+dC4NCkFzIGZvciBJTVggU0NVIGJhc2VkIHBsYXRmb3JtcyBsaWtlIE1YOFFNIGFuZCBNWDhRWFAs
+IHRoZXkgYXJlIGNvbXByaXNlZA0Kb2YgYSBjb3VwbGUgb2YgU1MoU3Vic3lzdGVtcykgd2hpbGUg
+bW9zdCBvZiB0aGVtIHdpdGhpbiB0aGUgc2FtZSBTUw0KY2FuIGJlIHNoYXJlZC4gZS5nLiBDbG9j
+a3MsIERldmljZXMgYW5kIGV0Yy4NCg0KSG93ZXZlciwgY3VycmVudCBkZXZpY2UgdHJlZSBpcyBo
+ZWF2aWx5IGRlcGVuZHMgb24gQ2xvY2tzIElEcyBkZWZpbmVkIHdoaWNoDQpjYXVzZSBzb21lIHRy
+b3VibGVzIGluIHdyaXRpbmcgdGhlIGNvbW1vbiA8c29jPi1zcy14eC5kdHNpIGZpbGUuDQoNClRo
+aXMgcGF0Y2ggc2VyaWVzIGFkZHMgYSBuZXcgYmluZGluZyB0byBzdXBwb3J0IHBhcnNpbmcgY2xv
+Y2tzIGZyb20gZGV2aWNlIHRyZWUNCndoaWNoIGNhbiBmdWxseSBkZWNvdXBsZSB0aGUgZGVwZW5k
+ZW5jeSBvZiBDbG9jayBJRHMgaW4gZGV2aWNlIHRyZWUgYW5kIG1ha2UNCnVzIGJlIGFibGUgdG8g
+d3JpdGUgYSBmdWxseSBnZW5lcmljIGNsb2NrIGRyaXZlciBmb3IgU0NVIGJhc2VkIFNvQ3MuDQpB
+bmQgaXQgY2FuIG1ha2UgdGhlIGRyaXZlciBtdWNoIGVhc2lseSB0byBiZSBtYWludGFpbmVkIGlu
+IHRoZSBmdXR1cmUgYW5kDQphdm9pZCB3cml0aW5nIGEgbG90IG9mIGR1cGxpY2F0ZWQgY29kZXMu
+DQoNCkNoYW5nZUxvZzoNCnYxLT52MjoNCiAqIFNDVSBjbG9jayBjaGFuZ2VkIHRvIG9uZSBjZWxs
+IGNsb2NrIGJpbmRpbmcgaW5zcGlyZWQgYnkgYXJtLHNjcGkudHh0DQogICBEb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FybSxzY3BpLnR4dA0KICogQWRkIHJlcXVpcmVkIHBv
+d2VyIGRvbWFpbiBwcm9wZXJ0eQ0KICogRHJvcHBlZCBQQVRDSCAzJjQgZmlyc3QsIHdpbGwgc2Vu
+ZCB0aGUgdXBkYXRlZCB2ZXJzaW9uIGFjY29yZGluZ2x5DQogICBhZnRlciB0aGUgYmluZGluZyBp
+cyBmaW5hbGx5IGRldGVybWluZWQsDQoNCkRvbmcgQWlzaGVuZyAoMik6DQogIGR0LWJpbmRpbmdz
+OiBmaXJtd2FyZTogaW14LXNjdTogbmV3IGJpbmRpbmcgdG8gcGFyc2UgY2xvY2tzIGZyb20NCiAg
+ICBkZXZpY2UgdHJlZQ0KICBkdC1iaW5kaW5nczogY2xvY2s6IGlteC1scGNnOiBhZGQgc3VwcG9y
+dCB0byBwYXJzZSBjbG9ja3MgZnJvbSBkZXZpY2UNCiAgICB0cmVlDQoNCiAuLi4vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxlL2ZzbCxzY3UudHh0ICB8IDQ1ICsrKysrKysrKysrKysr
+KysrKy0tLS0NCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9pbXg4cXhwLWxwY2cudHh0
+ICAgICB8IDM0ICsrKysrKysrKysrKystLS0NCiBpbmNsdWRlL2R0LWJpbmRpbmdzL2Zpcm13YXJl
+L2lteC9yc3JjLmggICAgICAgICAgICB8IDE3ICsrKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCA4
+MiBpbnNlcnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkNCg0KLS0gDQoyLjcuNA0KDQo=
