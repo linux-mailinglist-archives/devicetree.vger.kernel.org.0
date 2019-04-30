@@ -2,134 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59CAE102C9
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 00:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A0C0102DD
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 00:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728023AbfD3Wvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 18:51:33 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35149 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727770AbfD3Wvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 18:51:33 -0400
-Received: by mail-ot1-f67.google.com with SMTP id g24so8900781otq.2;
-        Tue, 30 Apr 2019 15:51:32 -0700 (PDT)
+        id S1727459AbfD3Wxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 18:53:52 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:36024 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727341AbfD3Wxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 18:53:52 -0400
+Received: by mail-ot1-f65.google.com with SMTP id b18so4499619otq.3;
+        Tue, 30 Apr 2019 15:53:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3hmHPTgV/bi1eZA1TKy2C+Ms5iNmeogSof6Y1DoOt64=;
-        b=ftCh8Kjiu4WSchjQKeW/SwicMc/oqBMKKJbbhnYPJ+8EZqB1YETPl9x6VPpmZwqRi3
-         DPeNdCffBnPw3Wk0UZtlxyeTaJu6OX6WbwMNKR6m1j/MiFfHwJGvLhps3A2PBHDcmdrn
-         dRzUxqgx2fZLHQ0crg2N/ss7MwxkNAgHOvYXloS8GuRDDMroMMFRS32UO31fhfLYzGg6
-         xkZppSYQKgkZJPb1XiRcbG3nZxAc2j1pyo/Iu8dSSIsUA8mleYU0jS2A7SCDBaYI+xPQ
-         F8xuJXRbDyiZUgPgAeHuD5hOWygi1fXGP3JOnepP/YTgLTVywjYmIQiyhXRFrv8/3IUT
-         XMCw==
-X-Gm-Message-State: APjAAAVDaYPDNwXqBwoKhIWf0kt99t10bUJQdNkLlW6jRW98icfeQPY3
-        w4KvpDvz25Ds7aU2rk2waw==
-X-Google-Smtp-Source: APXvYqzCvqmsBL7hdv+MANoijnliQcs7gcB/JlqgrpY74V90wibJ6XokQDyfNO5RXAHNGjOAnjvGmQ==
-X-Received: by 2002:a05:6830:2106:: with SMTP id i6mr1714548otc.146.1556664691778;
-        Tue, 30 Apr 2019 15:51:31 -0700 (PDT)
+        bh=hKiey70LO2aPy29X2HHhJKQjoC6uafr27EEww9xTnQQ=;
+        b=DPITdYUFSqnw/Dl3BEW508tAtkf5oA/tAfmdGsVLXYJUz544/ycUMJFqpXiqxRMy+v
+         vWHuumRNx8r0qX/dlwgQmDRWlhBW20dDqDjvQNjRwMHK/aZKifqw79GccClsbxtuwWlx
+         LO4DP47uklPzXZ2trRVJI4Aa8TMHtQoQXfO232t0hVG69XROa7HBDTQbc4Gd1G16Ko34
+         Qy+yHZaYHkL5izZ3FJ/d/PzggiQZjTU2juJpC6QgsAN3bgRGapqr1Qv9xq6sfJB7uDy5
+         j/Zp57rhF7lbCaifETblYxKZZiKLR+/UBrwK0gDZ5V1JJ9m3aTtvAGbYYAwnNMMxR1rj
+         XZKg==
+X-Gm-Message-State: APjAAAVx1sh70oDc3+6w3Zr67SltcTpdDag3vnKyvVyMQdAe77LpFaa4
+        oTnh9ivM52EYrJ4qsw+EaA==
+X-Google-Smtp-Source: APXvYqwm8s9yTTWau00rsSlH1LATdDmLgmJDFQHW/dPJ230jgkEmBEBx3+IKMZBTGjR7pxAEoeLC0g==
+X-Received: by 2002:a9d:73cb:: with SMTP id m11mr13838348otk.223.1556664831165;
+        Tue, 30 Apr 2019 15:53:51 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 3sm10756189oti.45.2019.04.30.15.51.30
+        by smtp.gmail.com with ESMTPSA id d63sm16464627oia.55.2019.04.30.15.53.50
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 30 Apr 2019 15:51:30 -0700 (PDT)
-Date:   Tue, 30 Apr 2019 17:51:30 -0500
+        Tue, 30 Apr 2019 15:53:50 -0700 (PDT)
+Date:   Tue, 30 Apr 2019 17:53:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Felix Fietkau <nbd@nbd.name>, netdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: add qca,ar71xx.txt documentation
-Message-ID: <20190430225130.GA10771@bogus>
-References: <20190422064046.2822-1-o.rempel@pengutronix.de>
- <20190422064046.2822-2-o.rempel@pengutronix.de>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Mallikarjun Kasoju <mkasoju@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/6] dt-bindings: mfd: max77620: Add compatible for
+ Maxim 77663
+Message-ID: <20190430225349.GA15733@bogus>
+References: <20190424224900.8018-1-digetx@gmail.com>
+ <20190424224900.8018-5-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190422064046.2822-2-o.rempel@pengutronix.de>
+In-Reply-To: <20190424224900.8018-5-digetx@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 22, 2019 at 08:40:44AM +0200, Oleksij Rempel wrote:
-> Add binding documentation for Atheros/QCA networking IP core used
-> in many routers.
+On Thu, Apr 25, 2019 at 01:48:58AM +0300, Dmitry Osipenko wrote:
+> Maxim 77663 has a few minor differences in regards to hardware interface
+> and available capabilities by comparing it with 77620 and 20024 models,
+> hence re-use 77620 device-tree binding for the 77663.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  .../devicetree/bindings/net/qca,ar71xx.txt    | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/qca,ar71xx.txt
+>  Documentation/devicetree/bindings/mfd/max77620.txt | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/qca,ar71xx.txt b/Documentation/devicetree/bindings/net/qca,ar71xx.txt
-> new file mode 100644
-> index 000000000000..56abf224de2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qca,ar71xx.txt
-> @@ -0,0 +1,44 @@
+> diff --git a/Documentation/devicetree/bindings/mfd/max77620.txt b/Documentation/devicetree/bindings/mfd/max77620.txt
+> index 9c16d51cc15b..9058499051e0 100644
+> --- a/Documentation/devicetree/bindings/mfd/max77620.txt
+> +++ b/Documentation/devicetree/bindings/mfd/max77620.txt
+> @@ -4,7 +4,8 @@ Required properties:
+>  -------------------
+>  - compatible: Must be one of
+>  		"maxim,max77620"
+> -		"maxim,max20024".
+> +		"maxim,max20024"
+> +		"maxim,max77663".
 
-Needs some title and info about what this h/w is.
+Drop the period so we don't have to remove it on the next addition.
 
-> +Required properties:
-> +- compatible:	Should be "qca,<soc>-eth". Currently support compatibles are:
-> +		qca,ar7100-eth - Atheros AR7100
-> +		qca,ar7240-eth - Atheros AR7240
-> +		qca,ar7241-eth - Atheros AR7241
-> +		qca,ar7242-eth - Atheros AR7242
-> +		qca,ar9130-eth - Atheros AR9130
-> +		qca,ar9330-eth - Atheros AR9330
-> +		qca,ar9340-eth - Atheros AR9340
-> +		qca,qca9530-eth - Qualcomm Atheros QCA9530
-> +		qca,qca9550-eth - Qualcomm Atheros QCA9550
-> +		qca,qca9560-eth - Qualcomm Atheros QCA9560
-> +
-> +- reg : Address and length of the register set for the device
-> +- interrupts : Should contain eth interrupt
-> +- phy-mode : See ethernet.txt file in the same directory
+With that,
 
-Is there a subset of valid modes?
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> +- clocks: the clock used by the core
-> +- clock-names: the names of the clock listed in the clocks property. These are
-> +	"mdio".
-
-Seems strange that's the only clock.
-
-> +- resets: Should contain phandles to the reset signals
-> +- reset-names: Should contain the names of reset signal listed in the resets
-> +		property. These are "mac" and "mdio"
-> +
-> +Optional properties:
-> +- phy-handle : phandle to the PHY device connected to this device.
-> +- fixed-link : Assume a fixed link. See fixed-link.txt in the same directory.
-> +  Use instead of phy-handle.
-> +
-> +Optional subnodes:
-> +- mdio : specifies the mdio bus, used as a container for phy nodes
-> +  according to phy.txt in the same directory
-> +
-> +Example:
-> +
-> +ethernet@1a000000 {
-> +	compatible = "qca,ar9330-eth";
-> +	reg = <0x1a000000 0x200>;
-> +	interrupts = <5>;
-> +	resets = <&rst 13>, <&rst 23>;
-> +	reset-names = "mac", "mdio";
-> +	clocks = <&pll ATH79_CLK_MDIO>;
-> +	clock-names = "mdio";
-> +	phy-mode = "gmii";
-> +};
+>  - reg: I2C device address.
+>  
+>  Optional properties:
+> @@ -105,6 +106,7 @@ Optional properties:
+>  Here supported time periods by device in microseconds are as follows:
+>  MAX77620 supports 40, 80, 160, 320, 640, 1280, 2560 and 5120 microseconds.
+>  MAX20024 supports 20, 40, 80, 160, 320, 640, 1280 and 2540 microseconds.
+> +MAX77663 supports 20, 40, 80, 160, 320, 640, 1280 and 2540 microseconds.
+>  
+>  -maxim,power-ok-control: configure map power ok bit
+>  			1: Enables POK(Power OK) to control nRST_IO and GPIO1
 > -- 
-> 2.20.1
+> 2.21.0
 > 
