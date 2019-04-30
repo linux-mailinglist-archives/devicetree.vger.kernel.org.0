@@ -2,260 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B232EED9A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 02:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24049EDA2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 02:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729200AbfD3ARK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 20:17:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35554 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729083AbfD3ARK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Apr 2019 20:17:10 -0400
-Received: from localhost (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C5A1821670;
-        Tue, 30 Apr 2019 00:17:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556583428;
-        bh=QT6S6NiqLDuf6uLxFZ4ko7gd/kGE9Fl2HUC1VAVYb6E=;
-        h=In-Reply-To:References:From:Subject:To:Cc:Date:From;
-        b=q9mfYrxSE6XIRr6nkfMOsuR/ivTvyB5vdyb8iDXMzuQV+QiURH7xfFjHbFbG3DCa6
-         HDcmWeCPzGGaSJaHFVEPT296DkPBKATOIsoOiI7uBF5yDv41hke/D/CqNaaA7HnvXz
-         3e5PUKXOmFFhvmLfkewjJ2rg2OAgSInUeMNmTGXk=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <cd52a35b-d289-24e1-70db-9d63fd9f6448@topic.nl>
-References: <20190424090216.18417-1-mike.looijmans@topic.nl> <155623344648.15276.18213024444708122458@swboyd.mtv.corp.google.com> <3ea2d720-f49b-586c-e402-07db289b39a8@topic.nl> <155632584222.168659.9675557812377718927@swboyd.mtv.corp.google.com> <cd52a35b-d289-24e1-70db-9d63fd9f6448@topic.nl>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Add silabs,si5341
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        id S1729238AbfD3AXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 20:23:53 -0400
+Received: from mail-eopbgr10080.outbound.protection.outlook.com ([40.107.1.80]:5890
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729214AbfD3AXw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Apr 2019 20:23:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Us9/e3YEtHABk7roSqw7P05HelM2MqxP+2Ld8XPe1fY=;
+ b=ULzAIfL1J4XAb8LG92ZyRNCSLhlu+ER5ckuMLMEd9HUBraL/HOgWvwVpXLHVSCY6NczX1AlvGrIywY1nTjHv18gXHQfOkiyGkjEyJn8bIGPQhEjasmY3gAf4/iEIxnD3xu9txZfnFMqurxkiJjR/7efi6C6rjkgAUhgp/tBAmCA=
+Received: from AM6PR04MB5781.eurprd04.prod.outlook.com (20.179.3.19) by
+ AM6PR04MB6296.eurprd04.prod.outlook.com (20.179.18.75) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Tue, 30 Apr 2019 00:23:47 +0000
+Received: from AM6PR04MB5781.eurprd04.prod.outlook.com
+ ([fe80::f9db:ed86:614e:460]) by AM6PR04MB5781.eurprd04.prod.outlook.com
+ ([fe80::f9db:ed86:614e:460%4]) with mapi id 15.20.1835.018; Tue, 30 Apr 2019
+ 00:23:47 +0000
+From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Message-ID: <155658342800.168659.4922821141203707564@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.8
-Date:   Mon, 29 Apr 2019 17:17:08 -0700
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>
+Subject: RE: [EXT] Re: [PATCHv5 1/6] PCI: mobiveil: Refactor Mobiveil PCIe
+ Host Bridge IP driver
+Thread-Topic: [EXT] Re: [PATCHv5 1/6] PCI: mobiveil: Refactor Mobiveil PCIe
+ Host Bridge IP driver
+Thread-Index: AQHU8RVxwCgqbmUIs0+mzKQDP7R+kqY4mNcAgBtWwnA=
+Date:   Tue, 30 Apr 2019 00:23:47 +0000
+Message-ID: <AM6PR04MB578139AB491ED01B1E8B8E2B843A0@AM6PR04MB5781.eurprd04.prod.outlook.com>
+References: <20190412095332.41370-1-Zhiqiang.Hou@nxp.com>
+ <20190412095332.41370-2-Zhiqiang.Hou@nxp.com>
+ <CAK8P3a38F=y92ECU-iB-D=OqmuY5ANAwDw2NDPOTFmhUZQTovA@mail.gmail.com>
+In-Reply-To: <CAK8P3a38F=y92ECU-iB-D=OqmuY5ANAwDw2NDPOTFmhUZQTovA@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=zhiqiang.hou@nxp.com; 
+x-originating-ip: [119.31.174.68]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 76b8b8c7-6efa-418a-997e-08d6cd021cc1
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB6296;
+x-ms-traffictypediagnostic: AM6PR04MB6296:
+x-microsoft-antispam-prvs: <AM6PR04MB629649772504254CD1A9BC27843A0@AM6PR04MB6296.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 00235A1EEF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(39860400002)(376002)(136003)(346002)(396003)(189003)(199004)(13464003)(2906002)(14454004)(3846002)(186003)(6116002)(66556008)(64756008)(66446008)(66476007)(71200400001)(71190400001)(76116006)(97736004)(66946007)(73956011)(6246003)(81156014)(53936002)(25786009)(33656002)(55016002)(9686003)(4326008)(8676002)(8936002)(81166006)(256004)(5024004)(14444005)(316002)(486006)(478600001)(7416002)(68736007)(11346002)(76176011)(305945005)(53546011)(86362001)(74316002)(102836004)(6436002)(5660300002)(476003)(7736002)(66066001)(99286004)(6506007)(52536014)(229853002)(446003)(26005)(6916009)(7696005)(54906003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB6296;H:AM6PR04MB5781.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Ec+IobIlPblM32BDiObQ2+1jRm6kL6j/F4neizIATSkyMZ04pgRH2lsJMUkSjCKcKxEA28XzzR9qfb5RCl8QtaXWTvgxq2haQ3Q5Gk/rXFCsorWeJHJjjXr4xjsfTBIWwcWyVsSXgLQXOxxlC693ayQsfgaaqSq315U/phDv4CCzD3PxqBWXkXN4FkaWIJ7K9OVhhVDk7APAHPUEeJycTcWuotvuCnhg0JvODsLKbzvte5Y0wG/RJ2Ctv/dVHAjw3soue4F5P/4RavylShVzZQX3oevzbKW9utUq5EuEwPc+YxPrLPBP9gxY0yfxpjItKWsY1ZShZRe9PJK/IsDSOKO0RG/1jHNpy9C8h2JVQ1A0ZRCf+CEwaa9QatTTBlLyDVU85KROIrxy21jCj5Pxm4jedI+q13q/CM+oRGibiUk=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 76b8b8c7-6efa-418a-997e-08d6cd021cc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2019 00:23:47.4591
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6296
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Mike Looijmans (2019-04-27 02:42:56)
-> On 27-04-19 02:44, Stephen Boyd wrote:
-> > Quoting Mike Looijmans (2019-04-25 23:51:15)
-> >> On 26-04-19 01:04, Stephen Boyd wrote:
-> >>>> +
-> >>>> +Optional properties:
-> >>>> +- silabs,pll-m-num, silabs,pll-m-den: Numerator and denominator for=
- PLL
-> >>>> +  feedback divider. Must be such that the PLL output is in the vali=
-d range. For
-> >>>> +  example, to create 14GHz from a 48MHz xtal, use m-num=3D14000 and=
- m-den=3D48. Only
-> >>>> +  the fraction matters, using 3500 and 12 will deliver the exact sa=
-me result.
-> >>>> +  If these are not specified, and the PLL is not yet programmed whe=
-n the driver
-> >>>> +  probes, the PLL will be set to 14GHz.
-> >>>
-> >>> Can this be done via assigned-clock-rates? Possibly with a table in t=
-he
-> >>> clk driver to tell us how to generate those rates.
-> >>
-> >> The PLL frequency choice determines who'll get jitter and who won't. I=
-t's
-> >> ridiculously accurate too.
-> >>
-> >> For example, if you need a 26 MHz and a 100 MHz output, there's no sol=
-ution
-> >> for the PLL that makes both clocks an integer divider (SI is vague abo=
-ut it,
-> >> but apparently integer dividers have less jitter on output). Only the =
-enduser
-> >> can say which clock will get the better quality.
-
-Right. So maybe we make tables of rates and put it in the driver and
-keep adding code in there? I'm worried about having these properties in
-DT and then having to work around them later on by "fixing" the DT. If
-it's only in the driver then we're able to tweak the values to get
-better jitter numbers, etc.
-
-> >>
-> >>>
-> >>>> +- silabs,reprogram: When present, the driver will always assume the=
- device must
-> >>>> +  be initialized, and always performs the soft-reset routine. Since=
- this will
-> >>>> +  temporarily stop all output clocks, don't do this if the chip is =
-generating
-> >>>> +  the CPU clock for example.
-> >>>
-> >>> Could this be done with the reset framework? It almost sounds like if
-> >>> the clk is a CLK_IS_CRITICAL then we shouldn't do the reset, otherwise
-> >>> we probably should reset the chip when the driver probes. If we don't
-> >>> have a case where it's going to be supplying a critical clk for a long
-> >>> time then perhaps we shouldn't even consider this topic until later.
-> >>
-> >> The driver can sort of see that the chips is already configured. This =
-tells
-> >> the driver whether that's expected or just coincidence.
-> >>
-> >> Maybe it'd be clearer if I reversed the logic and name this
-> >> "silabs,preprogrammed", which will skip the driver's initialization ro=
-utine?
-> >>
-> >=20
-> > Maybe? Is there any way to look at some register to figure out for sure
-> > if it's been pre-programmed or not? Could TOOL_VERSION be used or
-> > ACTIVE_NVM_BANK or DESIGN_ID0-7?
->=20
-> I've experimentally determined that TOOL_VERSION and DESIGN_IDx=20
-> apparently get filled with zeroes by the clockbuilder anyway.
->=20
-> ACTIVE_NVM_BANK works reliably for self-programmed chips.
->=20
-> The flag is about "is this chip under full kernel control, or is it=20
-> generating clocks the kernel doesn't know about (e.g. for realtime cores =
-
-> or FPGA logic)".
->=20
-
-Alright.
-
->=20
->=20
-> >>>> +=3D=3DChild nodes=3D=3D
-> >>>> +
-> >>>> +Each of the clock outputs can be overwritten individually by
-> >>>> +using a child node to the I2C device node. If a child node for a cl=
-ock
-> >>>> +output is not set, the configuration remains unchanged.
-> >>>> +
-> >>>> +Required child node properties:
-> >>>> +- reg: number of clock output.
-> >>>> +
-> >>>> +Optional child node properties:
-> >>>> +- silabs,format: Output format, see [1], 1=3Ddifferential, 2=3Dlow-=
-power, 4=3DLVCMOS
-> >>>> +- silabs,common-mode: Output common mode, depends on standard.
-> >>>> +- silabs,amplitude: Output amplitude, depends on standard.
-> >>>> +- silabs,synth-source: Select which multisynth to use for this outp=
-ut
-> >>>> +- silabs,synth-frequency: Sets the frequency for the multisynth con=
-nected to
-> >>>> +  this output. This will affect other outputs connected to this mul=
-tisynth. The
-> >>>> +  setting is applied before silabs,synth-master and clock-frequency.
-> >>>> +- silabs,synth-master: If present, this output is allowed to change=
- the
-> >>>> +  multisynth frequency dynamically.
-> >>>
-> >>> These above properties look like highly detailed configuration data to
-> >>> let the driver configure the clk output exactly how it's supposed to =
-be
-> >>> configured. Can these properties be rewritten in more high-level terms
-> >>> that a system integrator would understand? Ideally, I shouldn't have =
-to
-> >>> read the datasheet and the driver and then figure out what DT propert=
-ies
-> >>> need the values from the datasheet in them so that the driver writes
-> >>> them to a particular register. I don't know if that's possible here,
-> >>> because I haven't read the driver or the datasheet too closely yet, b=
-ut
-> >>> that should be the goal.
-> >>
-> >> The datasheet is not very helpful in this regard. Silabs just assumes =
-you'll
-> >> use their clockbuilder software for writing these values, which is how=
- we got
-> >> to the "LVDS 3v3" values.
-> >=20
-> > I hope that can be determined by looking at vdd<N>-supply voltages?
->=20
-> Not really, and when asked for a bit more detail, Silabs just says to=20
-> use the excellent developer friendly clockbuilder software that almost=20
-> runs on almost any platform.
->=20
-> >> I could put in a table of "common" values, so that you can say:
-> >>
-> >> silabs,output-standard =3D "lvds";
-> >>
-> >> And then use the "raw" properties to expand or override on that.
-> >>
-> >> Extra defines might help, e.g.:
-> >>
-> >> silabs,format =3D <SI5341_FORMAT_DIFFERENTIAL>;
-> >=20
-> > I suppose you'll need to reverse engineer the clock builder software to
-> > figure out why a SI5341_FORMAT_DIFFERENTIAL would be specified instead
-> > of some other value. Ideally we don't need any of these vendor specific
-> > properties and the drivers using these clks can ask the clk framework to
-> > configure these properties, or we need to look at making more properties
-> > like 'assigned-clock-parents' that lets us configure things generically.
->=20
-> These properties are about how you soldered things together, but yeah,=20
-> if the clock outputs go to expansion slots, some driver or devicetree=20
-> fragment control would be desirable, so you can switch the clock mode=20
-> from differential to single ended for example.
-
-Hmm.. Perhaps we need a clk_set_mode() API? Possibly be an internal API
-that lets the DT configure the mode to be differential or single ended?
-Nobody has required this so far so it's very rare, but I'd like to see
-the properties become standard instead of vendor specific if possible.
-
->=20
->=20
-> >>>> +- always-on: Immediately and permanently enable this output. Partic=
-ulary
-> >>>> +  useful when combined with assigned-clocks, since that does not pr=
-epare clocks.
-> >>>
-> >>> Looks like you want CLK_IS_CRITICAL in DT. We've had that discussion
-> >>> before but maybe we should revisit it here and add a way to indicate
-> >>> that some clk should never be turned off instead of assuming that we
-> >>> can do this from C code all the time.
-> >>
-> >> My issue was that assigned-clocks does not call clk_prepare. If the cl=
-ock is
-> >> not running, assigned-clocks will not turn it on (at least, that is th=
-e case
-> >> on the 4.14 kernel I tested this on), it apparently only prevents it f=
-rom
-> >> being turned off by marking it as "in use". This just provides a way t=
-o use
-> >> assigned-clocks.
-> >>
-> > Do you want the clks to always be prepared and enabled? What use-case is
-> > this? It still looks like CLK_IS_CRITICAL flag needs to be expressed in
-> > DT here.
->=20
-> The use case is pretty simple, it's just to enable the clock. Or in this =
-
-> case, "prepare" it, because the I2C client needs to be able to sleep and =
-
-> all actions must be done in the prepare part.
->=20
-> Suppose I use the si5341 to generate a 26MHz clock that would normally=20
-> be provides by a hardware oscillator. The driver itself doesn't have any =
-
-> clock properties to set. Then I'd put into that device's devicetree node =
-
-> the following:
->=20
-> assigned-clocks =3D <&si5341 2>;
-> assigned-clock-rates =3D <26000000>;
->=20
-> When the system boots, the clock framework indeed calls=20
-> "set_rate(26000000)" before that driver probes, but it never calls=20
-> "clk_prepare", so the clock's frequency is set okay but the clock won't=20
-> be running and the device won't function.
-
-Why can't that driver call clk_prepare_enable()? Is there some sort of
-assumption that this clk will always be enabled and not have a driver
-that configures the rate and gates/ungates it?
-
+SGkgQXJuZCwNCg0KVGhhbmtzIGEgbG90IGZvciB5b3VyIGNvbW1lbnRzIQ0KDQo+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEFybmQgQmVyZ21hbm4gW21haWx0bzphcm5kQGFy
+bmRiLmRlXQ0KPiBTZW50OiAyMDE55bm0NOaciDEy5pelIDIyOjM5DQo+IFRvOiBaLnEuIEhvdSA8
+emhpcWlhbmcuaG91QG54cC5jb20+DQo+IENjOiBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOyBs
+aW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5r
+ZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBiaGVsZ2Fhc0Bnb29n
+bGUuY29tOyByb2JoK2R0QGtlcm5lbC5vcmc7IG1hcmsucnV0bGFuZEBhcm0uY29tOw0KPiBsLnN1
+YnJhaG1hbnlhQG1vYml2ZWlsLmNvLmluOyBzaGF3bmd1b0BrZXJuZWwub3JnOyBMZW8gTGkNCj4g
+PGxlb3lhbmcubGlAbnhwLmNvbT47IGxvcmVuem8ucGllcmFsaXNpQGFybS5jb207DQo+IGNhdGFs
+aW4ubWFyaW5hc0Bhcm0uY29tOyB3aWxsLmRlYWNvbkBhcm0uY29tOyBNLmguIExpYW4NCj4gPG1p
+bmdodWFuLmxpYW5AbnhwLmNvbT47IFhpYW93ZWkgQmFvIDx4aWFvd2VpLmJhb0BueHAuY29tPjsg
+TWluZ2thaQ0KPiBIdSA8bWluZ2thaS5odUBueHAuY29tPg0KPiBTdWJqZWN0OiBbRVhUXSBSZTog
+W1BBVENIdjUgMS82XSBQQ0k6IG1vYml2ZWlsOiBSZWZhY3RvciBNb2JpdmVpbCBQQ0llIEhvc3QN
+Cj4gQnJpZGdlIElQIGRyaXZlcg0KPiANCj4gV0FSTklORzogVGhpcyBlbWFpbCB3YXMgY3JlYXRl
+ZCBvdXRzaWRlIG9mIE5YUC4gRE8gTk9UIENMSUNLIGxpbmtzIG9yDQo+IGF0dGFjaG1lbnRzIHVu
+bGVzcyB5b3UgcmVjb2duaXplIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2Fm
+ZS4NCj4gDQo+IA0KPiANCj4gT24gRnJpLCBBcHIgMTIsIDIwMTkgYXQgMTE6NTMgQU0gWi5xLiBI
+b3UgPHpoaXFpYW5nLmhvdUBueHAuY29tPiB3cm90ZToNCj4gDQo+ID4gK2ludCBtb2JpdmVpbF9w
+Y2llX2hvc3RfcHJvYmUoc3RydWN0IG1vYml2ZWlsX3BjaWUgKnBjaWUpDQo+ID4gIHsNCj4gPiAt
+ICAgICAgIHN0cnVjdCBtb2JpdmVpbF9wY2llICpwY2llOw0KPiA+ICAgICAgICAgc3RydWN0IHBj
+aV9idXMgKmJ1czsNCj4gPiAgICAgICAgIHN0cnVjdCBwY2lfYnVzICpjaGlsZDsNCj4gPiAgICAg
+ICAgIHN0cnVjdCBwY2lfaG9zdF9icmlkZ2UgKmJyaWRnZTsNCj4gPiAtICAgICAgIHN0cnVjdCBk
+ZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQo+ID4gKyAgICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYg
+PSAmcGNpZS0+cGRldi0+ZGV2Ow0KPiA+ICAgICAgICAgcmVzb3VyY2Vfc2l6ZV90IGlvYmFzZTsN
+Cj4gPiAgICAgICAgIGludCByZXQ7DQo+ID4NCj4gPiAtICAgICAgIC8qIGFsbG9jYXRlIHRoZSBQ
+Q0llIHBvcnQgKi8NCj4gPiAtICAgICAgIGJyaWRnZSA9IGRldm1fcGNpX2FsbG9jX2hvc3RfYnJp
+ZGdlKGRldiwgc2l6ZW9mKCpwY2llKSk7DQo+ID4gLSAgICAgICBpZiAoIWJyaWRnZSkNCj4gPiAt
+ICAgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07DQo+ID4gLQ0KPiA+IC0gICAgICAgcGNpZSA9
+IHBjaV9ob3N0X2JyaWRnZV9wcml2KGJyaWRnZSk7DQo+ID4gLQ0KPiA+IC0gICAgICAgcGNpZS0+
+cGRldiA9IHBkZXY7DQo+ID4gKyAgICAgICBJTklUX0xJU1RfSEVBRCgmcGNpZS0+cmVzb3VyY2Vz
+KTsNCj4gPg0KPiA+ICAgICAgICAgcmV0ID0gbW9iaXZlaWxfcGNpZV9wYXJzZV9kdChwY2llKTsN
+Cj4gPiAgICAgICAgIGlmIChyZXQpIHsNCj4gPiBAQCAtOTI4LDcgKzU2MCwxMCBAQCBzdGF0aWMg
+aW50IG1vYml2ZWlsX3BjaWVfcHJvYmUoc3RydWN0DQo+IHBsYXRmb3JtX2RldmljZSAqcGRldikN
+Cj4gPiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiAgICAgICAgIH0NCj4gPg0KPiA+
+IC0gICAgICAgSU5JVF9MSVNUX0hFQUQoJnBjaWUtPnJlc291cmNlcyk7DQo+ID4gKyAgICAgICAv
+KiBhbGxvY2F0ZSB0aGUgUENJZSBwb3J0ICovDQo+ID4gKyAgICAgICBicmlkZ2UgPSBkZXZtX3Bj
+aV9hbGxvY19ob3N0X2JyaWRnZShkZXYsIDApOw0KPiA+ICsgICAgICAgaWYgKCFicmlkZ2UpDQo+
+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOw0KPiA+DQo+IA0KPiA+ICtzdGF0aWMg
+aW50IG1vYml2ZWlsX3BjaWVfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikgew0K
+PiA+ICsgICAgICAgc3RydWN0IG1vYml2ZWlsX3BjaWUgKnBjaWU7DQo+ID4gKyAgICAgICBzdHJ1
+Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Ow0KPiA+ICsNCj4gPiArICAgICAgIHBjaWUgPSBk
+ZXZtX2t6YWxsb2MoZGV2LCBzaXplb2YoKnBjaWUpLCBHRlBfS0VSTkVMKTsNCj4gPiArICAgICAg
+IGlmICghcGNpZSkNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07DQo+ID4gKw0K
+PiA+ICsgICAgICAgcGNpZS0+cGRldiA9IHBkZXY7DQo+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJu
+IG1vYml2ZWlsX3BjaWVfaG9zdF9wcm9iZShwY2llKTsgfQ0KPiANCj4gSSB0aGluayB5b3UgbmVl
+ZCB0byBwdWxsIHRoZSBhbGxvY2F0aW9uIG9mIHRoZSBob3N0IHN0cnVjdHVyZSBvdXQgaW50byB0
+aGUgbWFpbg0KPiBkcml2ZXIgaGVyZSwgdG8ga2VlcCBib3RoIGFsbG9jYXRpb25zIHRvZ2V0aGVy
+LCBvdGhlcndpc2UgdGhlIHJlbGVhc2UgZnVuY3Rpb24NCj4gd2lsbCBmcmVlIHRoZSBtb2JpdmVp
+bF9wY2llIHN0cnVjdHVyZSBiZWZvcmUgZnJlZWluZyB0aGUgcGNpX2hvc3RfYnJpZGdlIGlmIHRo
+YXQNCj4gaXMgc3RpbGwgaW4gdXNlLg0KDQpZZXMsIHRoYXQgd2lsbCBiZSBhcnJhbmdlZCBpbiB2
+Ni4NCg0KPiANCj4gPiArDQo+ID4gK3N0cnVjdCBtb2JpdmVpbF9wY2llIHsNCj4gPiArICAgICAg
+IHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXY7DQo+ID4gKyAgICAgICBzdHJ1Y3QgbGlzdF9o
+ZWFkIHJlc291cmNlczsNCj4gDQo+IFRoZXNlIHR3byBzaG91bGQgbm90IGJlIG5lZWRlZCBoZXJl
+LCBhcyB0aGV5IGFyZSBhbHJlYWR5IHBhcnQgb2YgdGhlDQo+IHBjaV9ob3N0X2JyaWRnZSBzdHJ1
+Y3R1cmUuDQoNClRoZSByZXNvdXJjZXMgbGlzdCBzdHJ1Y3R1cmUgaGFzIGJlZW4gY2hhbmdlZCB0
+byBhIHBvaW50ZXIgdG8gdGhlIGJyaWRnZS0+d2luZG93cy4NCkl0IGlzIGJldHRlciB0byBrZWVw
+IHRoZXNlIDIgcG9pbnRlcnMgaW4gdGhlIHByaXZhdGUgc3RydWN0dXJlIHRvIG1ha2UgaXQgZWFz
+eSB0byB1c2UgdGhlbQ0KaW4gdGhlIFBDSWUgY29udHJvbGxlciBkcml2ZXIuDQoNCj4gDQo+ICAg
+ICAgQXJuZA0KDQpSZWdhcmRzLA0KWmhpcWlhbmcNCg==
