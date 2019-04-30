@@ -2,121 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20903F844
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 14:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 149DAF886
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 14:13:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728746AbfD3MG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 08:06:59 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:51322 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727948AbfD3MG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Apr 2019 08:06:58 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x3UBv3l2016156;
-        Tue, 30 Apr 2019 14:06:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=0TJCqpAByJcnuLJ0JtSeGC0DKLxILjaYjgU3/kNbuek=;
- b=NmBhW31fR9zLCaqeXjHXtkG5/BQARi8G719yE+lA8MT+RIjgdhnjtI1rVcuizf7yT2ha
- fjDWIVwaVZSlTvU+BQ5dakHKoI4uCLaihfSydWw9ymEnQMIQw/okuMvLQsvrMGWXKxXZ
- GvMl+PTikZK8q0t2qdIM6Wp0qCLDy9SPY+96JOdYQJcfWmBAHr/aaxtWiOTacXyqWHrf
- OhfzASaUV7E5u14LxjwzJJcXL1ttxOO+/P3p/A2fZvY4GtqzZxcfIFzrtwOb5hAL8VqO
- AezCbzmDnt4DyRPwqmw/Ndi+MwL2iff+nGvUwXGhPOUAN1SdbLZ9QxNc/dxu4MPizXjI 7Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2s61q8dqy5-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Tue, 30 Apr 2019 14:06:47 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 082673A;
-        Tue, 30 Apr 2019 12:06:47 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D06F22516;
-        Tue, 30 Apr 2019 12:06:46 +0000 (GMT)
-Received: from [10.48.0.237] (10.75.127.48) by SFHDAG6NODE1.st.com
- (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 30 Apr
- 2019 14:06:46 +0200
-Subject: Re: [PATCH V2 0/5] mmc: mmci: add busy detect for stm32 sdmmc variant
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1556264798-18540-1-git-send-email-ludovic.Barre@st.com>
- <CAPDyKFqbn=UcbwoH_z+yjrjvHQZaMtmsD=n0yrBV7DAK5VRJEQ@mail.gmail.com>
-From:   Ludovic BARRE <ludovic.barre@st.com>
-Message-ID: <74b91eb4-e5a3-38b2-f732-29cdd058eb6a@st.com>
-Date:   Tue, 30 Apr 2019 14:06:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <CAPDyKFqbn=UcbwoH_z+yjrjvHQZaMtmsD=n0yrBV7DAK5VRJEQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-04-30_05:,,
- signatures=0
+        id S1727298AbfD3MNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 08:13:06 -0400
+Received: from michel.telenet-ops.be ([195.130.137.88]:59302 "EHLO
+        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727365AbfD3MNF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 08:13:05 -0400
+Received: from ramsan ([84.194.111.163])
+        by michel.telenet-ops.be with bizsmtp
+        id 6cCz2000f3XaVaC06cCzUi; Tue, 30 Apr 2019 14:13:04 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1hLRd5-00086U-N3; Tue, 30 Apr 2019 14:12:59 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1hLRd5-0000z9-JX; Tue, 30 Apr 2019 14:12:59 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Brandt <chris.brandt@renesas.com>
+Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 0/5] ARM: rskrza1: Add RZ/A1 IRQC and input switches
+Date:   Tue, 30 Apr 2019 14:12:49 +0200
+Message-Id: <20190430121254.3737-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+	Hi all,
 
+Unlike on most other Renesas SoCs, the GPIO controller block on RZ/A1
+and RZ/A2 SoCs lack interrupt functionality.  While the GPIOs can be
+routed to the GIC as pin interrupts, this is of limited use, as the
+PL390 or GIC-400 supports rising edge and high-level interrupts only.
 
-On 4/30/19 1:13 PM, Ulf Hansson wrote:
-> On Fri, 26 Apr 2019 at 09:46, Ludovic Barre <ludovic.Barre@st.com> wrote:
->>
->> From: Ludovic Barre <ludovic.barre@st.com>
->>
->> This patch series adds busy detect for stm32 sdmmc variant.
->> Some adaptations are required:
->> -Avoid to check and poll busy status when is not expected.
->> -Clear busy status bit if busy_detect_flag and busy_detect_mask are
->>   different.
->> -Add hardware busy timeout with MMCIDATATIMER register.
->>
->> V2:
->> -mmci_cmd_irq cleanup in separate patch.
->> -simplify the busy_detect_flag exclude
->> -replace sdmmc specific comment in
->> "mmc: mmci: avoid fake busy polling in mmci_irq"
->> to focus on common behavior
->>
->> Ludovic Barre (5):
->>    mmc: mmci: cleanup mmci_cmd_irq for busy detect feature
->>    mmc: mmci: avoid fake busy polling in mmci_irq
->>    mmc: mmci: fix clear of busy detect status
->>    mmc: mmci: add hardware busy timeout feature
->>    mmc: mmci: add busy detect for stm32 sdmmc variant
->>
->>   drivers/mmc/host/mmci.c | 61 ++++++++++++++++++++++++++++++++++++++-----------
->>   drivers/mmc/host/mmci.h |  3 +++
->>   2 files changed, 51 insertions(+), 13 deletions(-)
->>
->> --
->> 2.7.4
->>
-> 
-> Ludovic, just wanted to let you know that I am reviewing and testing
-> this series.
-> 
-> However, while running some tests on Ux500 for validating the busy
-> detection code, even without your series applied, I encounter some odd
-> behaviors. I am looking into the problem to understand better and will
-> let you know as soon as I have some more data to share.
+Fortunately RZ/A1 and RZ/A2 SoCs contain a small front-end for the GIC,
+allowing to use up to 8 external interrupts, with configurable sense
+select.
 
-Oops, don't hesitate to share your status, if I could help.
+Hence this patch series adds DT bindings and a driver for this
+front-end, adds a device node for it in the RZ/A1H DTS, and uses it to
+enable support for the 3 input switches on the Renesas RSK+RZA1
+development board.
 
-> 
-> Kind regards
-> Uffe
-> 
+Changes compared to v1:
+  - Add Reviewed-by,
+  - Replace gic_spi_base in OF match data by renesas,gic-spi-base in DT,
+  - Document RZ/A2M,
+  - Use u16 for register values,
+  - Use relaxed I/O accessors,
+  - Use "rza1-irqc" as irq_chip class name,
+  - Enable driver on RZ/A2M.
+
+Dependencies:
+  - Patch 3 depends on patch 2,
+  - Patch 4 can be applied as soon as the DT bindings in patch 1 have
+    been accepted,
+  - Patch 5 depends on patch 4.
+
+Upstream strategy:
+  - Patches 1-2 are intended to be applied to the irqchip tree,
+  - Patches 3-5 are meant for the Renesas tree.
+
+This has been tested on RSK+RZA1 with evtest and s2ram wake-up.
+I have verified proper operation of low-level and rising/falling sense
+select, too.
+
+Thanks!
+
+Geert Uytterhoeven (5):
+  dt-bindings: interrupt-controller: Add Renesas RZ/A1 Interrupt
+    Controller
+  irqchip: Add Renesas RZ/A1 Interrupt Controller driver
+  soc: renesas: Enable RZ/A1 IRQC on RZ/A1H and RZ/A2M
+  ARM: dts: r7s72100: Add IRQC device node
+  ARM: dts: rskrza1: Add input switches
+
+ .../renesas,rza1-irqc.txt                     |  30 +++
+ arch/arm/boot/dts/r7s72100-rskrza1.dts        |  38 +++
+ arch/arm/boot/dts/r7s72100.dtsi               |   9 +
+ drivers/irqchip/Kconfig                       |   4 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-renesas-rza1.c            | 235 ++++++++++++++++++
+ drivers/soc/renesas/Kconfig                   |   4 +-
+ 7 files changed, 320 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
+ create mode 100644 drivers/irqchip/irq-renesas-rza1.c
+
+-- 
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
