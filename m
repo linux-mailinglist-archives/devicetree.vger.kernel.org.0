@@ -2,795 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A374710090
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A557100A7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726086AbfD3UIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 16:08:14 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:34027 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726024AbfD3UIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 16:08:14 -0400
-Received: by mail-pl1-f195.google.com with SMTP id ck18so2949626plb.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 13:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qJhpTBkZYomQLzgGmcPLJC9oUP0I54QESGDsKKm1IOo=;
-        b=uIk/e782p5jcY7N1p0EOr6AnKoS9qJdjpy/aoPgZGW1ngvcWGB2eTeMeuYb6UbHYWZ
-         mS4Soa+yoCqtXfZpVUvsOdXJ9vUgbkI04vHy+mp26CTcTRuAMroS3x20qZRJC7bYlW+9
-         LcAtXv7WSWsPWLLc6jgjYA0BFbgzENImqASPZGPYaKeqSmmLosLU281F5TxqHraDsttI
-         hnqLN+9zGBcfHLX8OYjJO3LuMDxGB7oC8gxe7++oHWrXu2btCeEj/axTi/M6ycVmSG1a
-         kMDaiXCaljzkWMCs2+S2BBgiX//oa4pUoLXOBsAJDaar/3CCdbL3vyCJ9Q9J1V9k0HhC
-         i3aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qJhpTBkZYomQLzgGmcPLJC9oUP0I54QESGDsKKm1IOo=;
-        b=Z19gaG2aKaQamPYcVz7wiau/CjA2/8NG+qqAVlGd2JpQdfmjr8K20206q2PC/uakLN
-         tUG60E2I/g/9B53pa09L9I9xFF92z4MZGav3rbvpSByqHs2aNxBB6dBo/q2IfPnCwpWC
-         0mfsnMmzoepmkJh0uCgQWS/5JRkuxfvbPoldwS9hIR8JHarZvRneIYCB+foakQuEMJ9R
-         UYsvPaW4M1LPijyigXZfGQPFFB2ebSDmhR65dQR0mA53/6p2ug96VWL+OCTM4BwEnJw2
-         NOt+82QX+IUE9BvwfwjryavJmKIZBSMxuzlgzOl57DR/fsBwz8UV3aPr3sLdDMwgJAUl
-         9U3g==
-X-Gm-Message-State: APjAAAU6bMvOwXCcZQJON+FZjJkuuhseZ3rBoiGOvXyD5rs3zN5t8ain
-        0w+BtoUOf+zorpU3O4MN946BtgE/FasGkyn4Vuo=
-X-Google-Smtp-Source: APXvYqzX6MJqkKmj5SVCFGqZ/8/28lUrj1/kbxDaPhEzvuwPC9VK9zEk52VU+mO3K+qoxQJvmi3qJ6x7A4Lub/CCXbw=
-X-Received: by 2002:a17:902:4a0c:: with SMTP id w12mr55789654pld.52.1556654892596;
- Tue, 30 Apr 2019 13:08:12 -0700 (PDT)
+        id S1726086AbfD3UP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 16:15:57 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:33187 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726015AbfD3UP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 16:15:57 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190430201555euoutp013d8c6eec9ce62333387701268047207f~aWcxIPcKS1569415694euoutp01W
+        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 20:15:55 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190430201555euoutp013d8c6eec9ce62333387701268047207f~aWcxIPcKS1569415694euoutp01W
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1556655355;
+        bh=mn7t1uuvg68BUUAH/Tn9zR4of3JANp39h4iNEwxbGP4=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=tUfR82Y2KEPUr6qeHvVxbG2AqVFG8l9nITOUBBNTn7k4imqJmggGK+AYgVtil1mVP
+         ry/iYoEy7EYw+zP9sPefk3mVMaG/LjwfTvwYzWEQl/xRquO6xcaJYl7bQFiEUokob2
+         jxXqnbRwdx6MXv5NYPjMxomqHgZgm/8PJKRpUjMY=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190430201553eucas1p16c8ec34f4c03c140ce5d385e98fccde8~aWcv7s8ke3098530985eucas1p1G;
+        Tue, 30 Apr 2019 20:15:53 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id F7.F3.04377.9FCA8CC5; Tue, 30
+        Apr 2019 21:15:53 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190430201552eucas1p20e6654bf0e5f922312977bd8180e9be0~aWcuRMGx11156111561eucas1p28;
+        Tue, 30 Apr 2019 20:15:52 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190430201551eusmtrp220f9624dc288508cce91c124c6d1dd4e~aWcuBL1QP0508705087eusmtrp2_;
+        Tue, 30 Apr 2019 20:15:51 +0000 (GMT)
+X-AuditID: cbfec7f4-113ff70000001119-d8-5cc8acf9efce
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 5D.B2.04140.7FCA8CC5; Tue, 30
+        Apr 2019 21:15:51 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190430201550eusmtip1d4a86f3d0c2d00bcfb858fe60607a6d4~aWcs_ylEU0208402084eusmtip1g;
+        Tue, 30 Apr 2019 20:15:50 +0000 (GMT)
+Subject: Re: [PATCH v6 06/10] dt-bindings: memory-controllers: add
+ Exynos5422 DMC device description
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Thierry Reding <treding@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <8f488d35-d576-a710-c24b-18514c6c0f34@partner.samsung.com>
+Date:   Tue, 30 Apr 2019 22:15:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <1556556252-22868-2-git-send-email-Frank.Li@nxp.com> <20190430185903.30661-1-andrew.smirnov@gmail.com>
-In-Reply-To: <20190430185903.30661-1-andrew.smirnov@gmail.com>
-From:   Zhi Li <lznuaa@gmail.com>
-Date:   Tue, 30 Apr 2019 15:08:01 -0500
-Message-ID: <CAHrpEqTCUY4_nT_N3PLehtAjpw6ipOkr8Cc53RPkzU=5un8Czg@mail.gmail.com>
-Subject: Re: [PATCH V9 2/4] drivers/perf: imx_ddr: Add ddr performance counter
-To:     Andrey Smirnov <andrew.smirnov@gmail.com>
-Cc:     Frank Li <frank.li@nxp.com>, Aisheng Dong <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Will Deacon <will.deacon@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_Jsq+bJtjO8xbpnCRHmcyCB=b8DMr73GWKEz+xMXVZag0FrQ@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTYRTHe3Zfdh1tPE7LU1nRKjIhtRfpCcUKQi5FkdKHSiFveTPJme2q
+        ZfVhKVhaZqhYLc38kqKWabJ8Q2NZrqzcyF5QhpFmpa4SX0CKrOtd5Lf/Oed3+P8PHI7S/2AW
+        c4nJqaIpWUgysBra+nS6e910jT02xGZdSuqu1zLk3cRnhpR1vGJI9dgAIoXPS1XkxSUjyR8Y
+        oUh39301eZk5qiavm0tYMp7Xgcj17jYVudvhUpO+85UsmWltVJPHoxcY0t6zk/T91JEp+0e0
+        zYefmiyg+ZtmJ803WVxqvr4qh+Xzsr6x/JWGKsQ/6DrLj9cv28sd1ITHi0mJ6aIpOCJOc+xG
+        MUl55H/anuNGZtTil4u8OMCboCfLinKRhtPjSgS9nx+olGICgWu4hVaKcQSZ71z0v5WsyXuM
+        MqhAUNd031O4EVRkO5FM+eCjYBmyqmTti1fAz+ziWYjCkwxk1xT9hTiOxUHQWHVSZrQ4Er5c
+        qZzlabwaSm6OsrJegPdD/1PZQGa84dmNwdkUXjgKpsztallT2A96B8tUil4OD90llOwFuJSD
+        tnK7Wom9A2rtTo/2geHOBo/2h5kmZRmwBOa8cqToczCQX+phwuBxp5ORM1N4LdQ2Byvt7fDV
+        UcTKbcA6eO/2ViLooMB6jVLaWriYrVfoAGi47PAYLYSKmmL1VWSwzDnMMucYy5xjLP99byO6
+        CvmJaZIxQZQ2JIungiTBKKUlJwQdOWGsR3//sOt350Qjav512IYwhwzztY5Ie6yeEdKlDKMN
+        AUcZfLV855NYvTZeyDgjmk4cMqUliZINLeFog5/27LwPMXqcIKSKx0UxRTT9m6o4r8VmdMsS
+        MhLRFZ1+VBU9mn/c5c4prB9aeOdtdcS+soL0SaFgviUmbPequJz96Bwuar23xFEe3q/bMhQP
+        a55vDo1xeEcZ4sMHxoSuUiOrmgkLaf5kYtyZe968WKRzD9UsGtwY+nv3LscBm3lqemXA1qge
+        aOAr66KcPdYPmu+htYFjOwy0dExYH0iZJOEPxxW6MoMDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphleLIzCtJLcpLzFFi42I5/e/4Xd3va07EGDz5K2mxccZ6VovrX56z
+        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
+        e+Quu8XtxhVsFv/37GC3OPymndVi/xUvi9u/+Sy+nXjE6CDs8e3rJBaP2Q0XWTx2zrrL7rFp
+        VSebR2/zOzaPvi2rGD02n672+LxJLoAjSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DY
+        PNbKyFRJ384mJTUnsyy1SN8uQS9j5jSLggMyFSc63zI2MO4W72Lk5JAQMJFo/rqOtYuRi0NI
+        YCmjxNeTJ9ggEmISk/ZtZ4ewhSX+XOtigyh6zShx8tViJpCEsECaxOWrz1hAbBEBRYnfbdPA
+        JjEL/GSVOHOoiRGio4VZYteXDiCHg4NNQE9ix6pCkAZeATeJF30rwAaxCKhKzJn9BmyzqECE
+        xJn3K1ggagQlTs58AmZzCgRKfGvYD3YRs4CZxLzND5khbHGJW0/mM0HY8hLb385hnsAoNAtJ
+        +ywkLbOQtMxC0rKAkWUVo0hqaXFuem6xkV5xYm5xaV66XnJ+7iZGYArYduznlh2MXe+CDzEK
+        cDAq8fBqeJ6IEWJNLCuuzD3EKMHBrCTC63H8aIwQb0piZVVqUX58UWlOavEhRlOg5yYyS4km
+        5wPTU15JvKGpobmFpaG5sbmxmYWSOG+HwMEYIYH0xJLU7NTUgtQimD4mDk6pBsa9BrWFh1uV
+        uqy/KrBdnfq9WeXTrMyklcKzF4jvuXXmMiPH+nK7ZLMj+987NMux663v+VD371X0VM3goLiU
+        6bn2rrc1bj3Wupcxe7n3Bnlf3bdnFk9Yl+fRFZPfz3/6xu9rWvHFQf/muJVlZc32rvn07OIO
+        VcPCzebTWLhPMr+QFOU+Y8WvI6zEUpyRaKjFXFScCADu9m08FwMAAA==
+X-CMS-MailID: 20190430201552eucas1p20e6654bf0e5f922312977bd8180e9be0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
+References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc@eucas1p1.samsung.com>
+        <1555683568-20882-7-git-send-email-l.luba@partner.samsung.com>
+        <20190425195750.GA26031@bogus>
+        <e4613d6e-0893-8163-32ef-8137c40d2b24@partner.samsung.com>
+        <CAL_Jsq+bJtjO8xbpnCRHmcyCB=b8DMr73GWKEz+xMXVZag0FrQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 1:59 PM Andrey Smirnov <andrew.smirnov@gmail.com> wrote:
->
-> > Add ddr performance monitor support for iMX8QXP
->
-> > There are 4 counters for ddr perfomance events.
-> > counter 0 is dedicated for cycles.
-> > you choose any up to 3 no cycles events.
->
-> > for example:
->
-> > perf stat -a -e ddr0/read-cycles/,ddr0/write-cycles/,ddr0/precharge/ ls
-> > perf stat -a -e ddr0/cycles/,ddr0/read-access/,ddr0/write-access/ ls
->
-> > Support below events.
->
-> >   ddr0/activate/                                     [Kernel PMU event]
-> >   ddr0/axid-read/                                    [Kernel PMU event]
-> >   ddr0/axid-write/                                   [Kernel PMU event]
-> >   ddr0/cycles/                                       [Kernel PMU event]
-> >   ddr0/hp-read-credit-cnt/                           [Kernel PMU event]
-> >   ddr0/hp-read/                                      [Kernel PMU event]
-> >   ddr0/hp-req-nodcredit/                             [Kernel PMU event]
-> >   ddr0/hp-xact-credit/                               [Kernel PMU event]
-> >   ddr0/load-mode/                                    [Kernel PMU event]
-> >   ddr0/lp-read-credit-cnt/                           [Kernel PMU event]
-> >   ddr0/lp-req-nocredit/                              [Kernel PMU event]
-> >   ddr0/lp-xact-credit/                               [Kernel PMU event]
-> >   ddr0/mwr/                                          [Kernel PMU event]
-> >   ddr0/precharge/                                    [Kernel PMU event]
-> >   ddr0/raw-hazard/                                   [Kernel PMU event]
-> >   ddr0/read-access/                                  [Kernel PMU event]
-> >   ddr0/read-activate/                                [Kernel PMU event]
-> >   ddr0/read-command/                                 [Kernel PMU event]
-> >   ddr0/read-cycles/                                  [Kernel PMU event]
-> >   ddr0/read-modify-write-command/                    [Kernel PMU event]
-> >   ddr0/read-queue-depth/                             [Kernel PMU event]
-> >   ddr0/read-write-transition/                        [Kernel PMU event]
-> >   ddr0/read/                                         [Kernel PMU event]
-> >   ddr0/refresh/                                      [Kernel PMU event]
-> >   ddr0/selfresh/                                     [Kernel PMU event]
-> >   ddr0/wr-xact-credit/                               [Kernel PMU event]
-> >   ddr0/write-access/                                 [Kernel PMU event]
-> >   ddr0/write-command/                                [Kernel PMU event]
-> >   ddr0/write-credit-cnt/                             [Kernel PMU event]
-> >   ddr0/write-cycles/                                 [Kernel PMU event]
-> >   ddr0/write-queue-depth/                            [Kernel PMU event]
-> >   ddr0/write/
->
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > No change from V8 to V9
->
-> > Change from v7 to v8
-> >  * remove unused define
-> >  * change total_events to active_events, change active_events to events
-> >  * remove flags,
-> >  * fix multi line comments code sytle
-> >  * add pmu_enable\disable function
-> >  * disable event at irq handle
-> >  * remove counter check at ddr_perf_free_counter
-> >  * remove pmu->irq check
-> >  * add group check
->
-> > Change from v6 to v7
-> >  * added irq affinity handle, ref arm-ccn.c
-> >  * added IRQF_NOBALANCING | IRQF_NO_THREAD
-> >  * added ida_simple_remove at failure path
->
-> > Change from v5 to v6
-> >  * fix insmod\rmmod problem
-> >  * remove randunt register read at irq handle
-> >  * change u32 irq to int
-> >  * devm_request_irq use default flags.
->
-> > Change from v4 to v5
-> >  * Remove AXI ID filter function
->
-> > Change from v3 to v4
-> >  * Change FSL_IMX8_DDR_PERF to FSL_IMX8_DDR_PMU
-> >  * sort include
-> >  * remove struct fsl_ddr_devtype_data
-> >  * Added comment need disable control first
-> >  * Added comment about must enable cycle counter
-> >  * Added macro for EVENT_AXI_READ, remove hardcode 0x41 and 0x42
-> >  * Added comment about cycle counter is fastest one
->
-> > Change from v2 to v3
-> >  * remove kfree
->
-> > Change from V1 to V2
-> >  * update Kconfig by use i.MX8 instead of i.MX8 QXP
-> >  * remove gpl statememnt since SPDX tag
-> >  * use dev_kzalloc
-> >  * use dev_err
-> >  * commit message show axi_read 0x41\axi_write 0x42
-> >  * commit message show cycles must be enabled
-> >  * Irq only issue at cycles overflow
-> >  * use NUM_COUNTER
-> >  * use devm_request_irq
-> >  * add hotplug callback to handle context migration
->
-> Hey Frank,
->
-> I missed your effort to upstream this and ended up spening some time
-> working on the same thing in parallel, so I have some comments below.
->
-> > +PMU_EVENT_ATTR_STRING(cycles, ddr_perf_cycles, "event=0x00");
-> > +PMU_EVENT_ATTR_STRING(selfresh, ddr_perf_selfresh, "event=0x01");
-> > +PMU_EVENT_ATTR_STRING(read-access, ddr_perf_read_accesses, "event=0x04");
-> > +PMU_EVENT_ATTR_STRING(write-access, ddr_perf_write_accesses, "event=0x05");
-> > +PMU_EVENT_ATTR_STRING(read-queue-depth, ddr_perf_read_queue_depth,
-> > +                     "event=0x08");
-> > +PMU_EVENT_ATTR_STRING(write-queue-depth, ddr_perf_write_queue_depth,
-> > +                     "event=0x09");
-> > +PMU_EVENT_ATTR_STRING(lp-read-credit-cnt, ddr_perf_lp_read_credit_cnt,
-> > +                     "event=0x10");
-> > +PMU_EVENT_ATTR_STRING(hp-read-credit-cnt, ddr_perf_hp_read_credit_cnt,
-> > +                     "event=0x11");
-> > +PMU_EVENT_ATTR_STRING(write-credit-cnt, ddr_perf_write_credit_cnt,
-> > +                     "event=0x12");
-> > +PMU_EVENT_ATTR_STRING(read-command, ddr_perf_read_command, "event=0x20");
-> > +PMU_EVENT_ATTR_STRING(write-command, ddr_perf_write_command, "event=0x21");
-> > +PMU_EVENT_ATTR_STRING(read-modify-write-command,
-> > +             ddr_perf_read_modify_write_command, "event=0x22");
-> > +PMU_EVENT_ATTR_STRING(hp-read, ddr_perf_hp_read, "event=0x23");
-> > +PMU_EVENT_ATTR_STRING(hp-req-nodcredit, ddr_perf_hp_req_nocredit, "event=0x24");
-> > +PMU_EVENT_ATTR_STRING(hp-xact-credit, ddr_perf_hp_xact_credit, "event=0x25");
-> > +PMU_EVENT_ATTR_STRING(lp-req-nocredit, ddr_perf_lp_req_nocredit, "event=0x26");
-> > +PMU_EVENT_ATTR_STRING(lp-xact-credit, ddr_perf_lp_xact_credit, "event=0x27");
-> > +PMU_EVENT_ATTR_STRING(wr-xact-credit, ddr_perf_wr_xact_credit, "event=0x29");
-> > +PMU_EVENT_ATTR_STRING(read-cycles, ddr_perf_read_cycles, "event=0x2a");
-> > +PMU_EVENT_ATTR_STRING(write-cycles, ddr_perf_write_cycles, "event=0x2b");
-> > +PMU_EVENT_ATTR_STRING(read-write-transition, ddr_perf_read_write_transition,
-> > +                     "event=0x30");
-> > +PMU_EVENT_ATTR_STRING(precharge, ddr_perf_precharge, "event=0x31");
-> > +PMU_EVENT_ATTR_STRING(activate, ddr_perf_activate, "event=0x32");
-> > +PMU_EVENT_ATTR_STRING(load-mode, ddr_perf_load_mode, "event=0x33");
-> > +PMU_EVENT_ATTR_STRING(mwr, ddr_perf_mwr, "event=0x34");
-> > +PMU_EVENT_ATTR_STRING(read, ddr_perf_read, "event=0x35");
-> > +PMU_EVENT_ATTR_STRING(read-activate, ddr_perf_read_activate, "event=0x36");
-> > +PMU_EVENT_ATTR_STRING(refresh, ddr_perf_refresh, "event=0x37");
-> > +PMU_EVENT_ATTR_STRING(write, ddr_perf_write, "event=0x38");
-> > +PMU_EVENT_ATTR_STRING(raw-hazard, ddr_perf_raw_hazard, "event=0x39");
->
-> You can really save quite a bit of boilerplate if you define those
-> inplace with a custom macro and a custom show function:
->
-> static ssize_t
-> ddr_pmu_event_show(struct device *dev, struct device_attribute *attr,
->                    char *page)
-> {
->         struct perf_pmu_events_attr *pmu_attr;
->
->         pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
->         return sprintf(page, "event=0x%02llx\n", pmu_attr->id);
-> }
->
-> #define IMX8_DDR_PMU_EVENT_ATTR(_name, _id)                             \
->         (&((struct perf_pmu_events_attr[]) {                            \
->                 { .attr = __ATTR(_name, 0444, ddr_pmu_event_show, NULL), \
->                   .id = _id, }                                          \
->         })[0].attr.attr)
->
-> static struct attribute *ddr_pmu_events_attrs[] = {
->         IMX8_DDR_PMU_EVENT_ATTR(cycles,              CYCLES_EVENT_ID),
->         IMX8_DDR_PMU_EVENT_ATTR(selfresh,                       0x01),
->         IMX8_DDR_PMU_EVENT_ATTR(read-access,                    0x04),
->         IMX8_DDR_PMU_EVENT_ATTR(write-access,                   0x05),
->         IMX8_DDR_PMU_EVENT_ATTR(read-queue-depth,               0x08),
->
 
-I don't think it make any difference.
+On 4/29/19 6:43 PM, Rob Herring wrote:
+> On Mon, Apr 29, 2019 at 7:14 AM Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 4/25/19 9:57 PM, Rob Herring wrote:
+>>> On Fri, Apr 19, 2019 at 04:19:24PM +0200, Lukasz Luba wrote:
+>>>> The patch adds description for DT binding for a new Exynos5422 Dynamic
+>>>> Memory Controller device.
+>>>>
+>>>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>>>> ---
+>>>>    .../bindings/memory-controllers/exynos5422-dmc.txt | 73 ++++++++++++++++++++++
+>>>>    1 file changed, 73 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>>>> new file mode 100644
+>>>> index 0000000..133b3cc
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>>>> @@ -0,0 +1,73 @@
+>>>> +* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
+>>>> +
+>>>> +The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
+>>>> +memory chips are connected. The driver is to monitor the controller in runtime
+>>>> +and switch frequency and voltage. To monitor the usage of the controller in
+>>>> +runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
+>>>> +is able to measure the current load of the memory.
+>>>> +When 'userspace' governor is used for the driver, an application is able to
+>>>> +switch the DMC and memory frequency.
+>>>> +
+>>>> +Required properties for DMC device for Exynos5422:
+>>>> +- compatible: Should be "samsung,exynos5422-bus".
+>>>> +- clock-names : the name of clock used by the bus, "bus".
+>>>> +- clocks : phandles for clock specified in "clock-names" property.
+>>>> +- devfreq-events : phandles for PPMU devices connected to this DMC.
+>>>> +- vdd-supply : phandle for voltage regulator which is connected.
+>>>> +- reg : registers of two CDREX controllers, chip information, clocks subsystem.
+>>>> +- operating-points-v2 : phandle for OPPs described in v2 definition.
+>>>> +- device-handle : phandle of the connected DRAM memory device. For more
+>>>> +    information please refer to Documentation
+>>>
+>>> The memory node(s) should be a child of the memory controller IMO.
+>> I have followed the TI code for LPDDR2. They use 'device-handle'
+>> probably because the memory controller can be moved into the common
+>> .dtsi and taken by reference in .dts in a proper board file.
+> 
+> You'd still have to have the ctrlr node in the board file to add the
+> 'device-handle' property.
+> 
+>> The board .dts files might specify different DRAM chips and timings.
+>> In Exynos case we will also have such situation: one memory controller
+>> and a few different DRAM chips.
+> 
+> You mean as in the case where there are multiple options and one chip
+> gets populated on the board? So 'device-handle' is selecting which
+> chip to use.
+Yes. The 'device-handle' will point to different memories depending on
+the board/SoCs. There are boards with Exynos 5420, 5422, 5800 which are
+'almost' the same, but with different memories glued on top (the PoP
+LPDDR3).
+> 
+> You can actually do both here. Keep 'device-handle' to select which
+> DRAM chip and have the chips as child nodes. But if you really don't
+> want to have them as child nodes, that's fine.
+For now, I would like to keep it like this (if Krzysztof also agrees
+with the implementation).
 
-best regards
-Frank Li
-
-> ...
->
-> > +
-> > +struct ddr_pmu {
-> > +     struct pmu pmu;
-> > +     void __iomem *base;
-> > +     unsigned int cpu;
-> > +     struct  hlist_node node;
-> > +     struct  device *dev;
->
-> This device pointer is used only once in ddr_perf_event_init() and
-> even in that function not all error cases get a dedicated kernel
-> message. I'd consider just dropping it and the message it is used in.
->
-> > +     struct perf_event *events[NUM_COUNTERS];
-> > +     int active_events;
->
-> I'd very strongly encourage you to convert the driver to use a proper
-> bitmask instead of this counter. E.g:
->
-> DECLARE_BITMAP(active_mask, NUM_COUNTERS);
-
-I don't think it has big difference at these case.
-
-best regards
-Frank Li
-
->
-> I'll comment more on that below.
->
-> > +     enum cpuhp_state cpuhp_state;
-> > +     int irq;
-> > +     int id;
-> > +};
->
-> > +static struct attribute_group ddr_perf_events_attr_group = {
-> > +     .name = "events",
-> > +     .attrs = ddr_perf_events_attrs,
-> > +};
-> > +
-> > +PMU_FORMAT_ATTR(event, "config:0-63");
-> > +
->
-> Event ID is really only 8-bits wide, AFAIK. Is there any reason to
-> reserve all 64 for it in config?
->
-> > +static struct attribute *ddr_perf_format_attrs[] = {
-> > +     &format_attr_event.attr,
-> > +     NULL,
-> > +};
-> > +
-> > +static struct attribute_group ddr_perf_format_attr_group = {
-> > +     .name = "format",
-> > +     .attrs = ddr_perf_format_attrs,
-> > +};
-> > +
-> > +static const struct attribute_group *attr_groups[] = {
-> > +     &ddr_perf_events_attr_group,
-> > +     &ddr_perf_format_attr_group,
-> > +     &ddr_perf_cpumask_attr_group,
-> > +     NULL,
-> > +};
-> > +
-> > +static u32 ddr_perf_alloc_counter(struct ddr_pmu *pmu, int event)
-> > +{
-> > +     int i;
-> > +
-> > +     /*
-> > +      * Always map cycle event to counter 0
-> > +      * Cycles counter is dedicated for cycle event
-> > +      * can't used for the other events
-> > +      */
-> > +     if (event == EVENT_CYCLES_ID) {
-> > +             if (pmu->events[EVENT_CYCLES_COUNTER] == NULL)
-> > +                     return EVENT_CYCLES_COUNTER;
-> > +             else
-> > +                     return -ENOENT;
-> > +     }
-> > +
-> > +     for (i = 1; i < NUM_COUNTERS; i++) {
-> > +             if (pmu->events[i] == NULL)
-> > +                     return i;
-> > +     }
->
-> This is the first place where using a bitmap would simplify the
-> driver. Here all you'd need to do is:
->
->
-> if (event == CYCLES_EVENT_ID) {
->    ...
-> } else {
->   i =  find_next_zero_bit(pmu->active_mask, NUM_COUNTERS,
->                           EVENT_CYCLES_COUNTER + 1);
->   if (i == NUM_COUNTERS)
->         return -EAGAIN;
->
-> }
->
-> set_bit(i, pmu->active_mask);
->
-> ...
->
-> > +
-> > +     return -ENOENT;
-> > +}
-> > +
-> > +static u32 ddr_perf_free_counter(struct ddr_pmu *pmu, int counter)
-> > +{
-> > +     pmu->events[counter] = NULL;
-> > +
-> > +     return 0;
-> > +}
->
-> Is this function even necessary? It is used only once in the code and
-> it's return value is ignored
-
-It help improve code read. Generally allocate and free always a pair.
-I change change to void.
-
-best regards
-Frank Li
-
->
-> > +
-> > +static u32 ddr_perf_read_counter(struct ddr_pmu *pmu, int counter)
-> > +{
-> > +     return readl(pmu->base + COUNTER_READ + counter * 4);
-> > +}
->
-> Would using readl_relaxed() be beneficial here?
-
-Maybe. But only few register read when run perf.
-
-best regards
-Frank Li
-
->
-> > +
-> > +static int ddr_perf_event_init(struct perf_event *event)
-> > +{
-> > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
-> > +     struct hw_perf_event *hwc = &event->hw;
-> > +     struct perf_event *sibling;
-> > +
-> > +     if (event->attr.type != event->pmu->type)
-> > +             return -ENOENT;
-> > +
-> > +     if (is_sampling_event(event) || event->attach_state & PERF_ATTACH_TASK)
-> > +             return -EOPNOTSUPP;
-> > +
-> > +     if (event->cpu < 0) {
-> > +             dev_warn(pmu->dev, "Can't provide per-task data!\n");
-> > +             return -EOPNOTSUPP;
-> > +     }
-> > +
-> > +     if (event->attr.exclude_user        ||
-> > +         event->attr.exclude_kernel      ||
-> > +         event->attr.exclude_hv          ||
-> > +         event->attr.exclude_idle        ||
-> > +         event->attr.exclude_host        ||
-> > +         event->attr.exclude_guest       ||
->
-> You don't need any of the above if you pass:
->
-> .capabilities = PERF_PMU_CAP_NO_EXCLUDE
->
-> in your struct pmu initialization
->
-> > +         event->attr.sample_period)
-> > +             return -EINVAL;
-> > +
-> > +     /*
-> > +      * We must NOT create groups containing mixed PMUs, although software
-> > +      * events are acceptable (for example to create a CCN group
-> > +      * periodically read when a hrtimer aka cpu-clock leader triggers).
-> > +      */
-> > +     if (event->group_leader->pmu != event->pmu &&
-> > +                     !is_software_event(event->group_leader))
-> > +             return -EINVAL;
-> > +
-> > +     for_each_sibling_event(sibling, event->group_leader) {
-> > +             if (sibling->pmu != event->pmu &&
-> > +                             !is_software_event(sibling))
-> > +                     return -EINVAL;
-> > +     }
-> > +
-> > +     event->cpu = pmu->cpu;
-> > +     hwc->idx = -1;
-> > +
-> > +     return 0;
-> > +}
->
-> > +
-> > +static void ddr_perf_event_enable(struct ddr_pmu *pmu, int config,
-> > +                               int counter, bool enable)
-> > +{
->
-> This function doesn't really have anything to do with events (unlike,
-> for example, ddr_perf_event_start() below). Maybe it would be better
-> to rename it to ddr_perf_counter_enable()?
->
-> > +     u8 reg = counter * 4 + COUNTER_CNTL;
-> > +     int val;
-> > +
-> > +     if (enable) {
-> > +             /*
-> > +              * must disable first, then enable again
-> > +              * otherwise, cycle counter will not work
-> > +              * if previous state is enabled.
-> > +              */
-> > +             writel(0, pmu->base + reg);
-> > +             val = CNTL_EN | CNTL_CLEAR;
-> > +             val |= (config << CNTL_CSV_SHIFT) & CNTL_CSV_MASK;
->
-> You can simplify the above with FIELD_PREP(CNTL_CSV_MASK, config)
->
-> > +     } else {
-> > +             /* Disable counter */
-> > +             val = readl(pmu->base + reg) & CNTL_EN_MASK;
->
-> This register will be blown away by the code in the other if branch
-> next time the counter is enabled. What's the point of doing
-> read-modify-write and trying to preserve all but EN bits as they were here?
->
-> Why not just do:
->
-> writel(CNTL_CLEAR, pmu->base + reg);
->
-> ?
->
-> > +     }
-> > +
-> > +     writel(val, pmu->base + reg);
-> > +}
-> > +
-> > +static void ddr_perf_event_start(struct perf_event *event, int flags)
-> > +{
-> > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
-> > +     struct hw_perf_event *hwc = &event->hw;
-> > +     int counter = hwc->idx;
-> > +
-> > +     local64_set(&hwc->prev_count, 0);
-> > +
-> > +     ddr_perf_event_enable(pmu, event->attr.config, counter, true);
-> > +}
-> > +
-> > +static int ddr_perf_event_add(struct perf_event *event, int flags)
-> > +{
-> > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
-> > +     struct hw_perf_event *hwc = &event->hw;
-> > +     int counter;
-> > +     int cfg = event->attr.config;
-> > +
-> > +     counter = ddr_perf_alloc_counter(pmu, cfg);
-> > +     if (counter < 0) {
-> > +             dev_dbg(pmu->dev, "There are not enough counters\n");
-> > +             return -EOPNOTSUPP;
-> > +     }
-> > +
-> > +     pmu->events[counter] = event;
-> > +     pmu->active_events++;
-> > +     hwc->idx = counter;
->
-> What about hw->state?
->
-> > +
-> > +     if (flags & PERF_EF_START)
-> > +             ddr_perf_event_start(event, flags);
-> > +
-> > +     local64_set(&hwc->prev_count, ddr_perf_read_counter(pmu, counter));
->
-> What's this local64_set() for? You already clear prev_counter and HW
-> counter when event is started. This just seems redundant.
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void ddr_perf_event_stop(struct perf_event *event, int flags)
-> > +{
-> > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
-> > +     struct hw_perf_event *hwc = &event->hw;
-> > +     int counter = hwc->idx;
-> > +
-> > +     ddr_perf_event_enable(pmu, event->attr.config, counter, false);
-> > +     ddr_perf_event_update(event);
->
-> hw->state isn't updated here either? I'm no expert on perf subsystem,
-> so maybe it's OK, but most of the other drivers in this category do
->
-> hw->state |= PERF_HES_STOPPED | PERF_HES_UPTODATE;
->
-> > +}
-> > +
-> > +static void ddr_perf_event_del(struct perf_event *event, int flags)
-> > +{
-> > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
-> > +     struct hw_perf_event *hwc = &event->hw;
-> > +     int counter = hwc->idx;
-> > +
-> > +     ddr_perf_event_stop(event, PERF_EF_UPDATE);
-> > +
-> > +     ddr_perf_free_counter(pmu, counter);
-> > +     pmu->active_events--;
-> > +     hwc->idx = -1;
-> > +}
-> > +
-> > +static void ddr_perf_pmu_enable(struct pmu *pmu)
-> > +{
-> > +     struct ddr_pmu *ddr_pmu = to_ddr_pmu(pmu);
-> > +
-> > +     /* enable cycle counter if cycle is not active event list */
-> > +     if (ddr_pmu->events[EVENT_CYCLES_COUNTER] == NULL)
-> > +             ddr_perf_event_enable(ddr_pmu,
-> > +                                   EVENT_CYCLES_ID,
-> > +                                   EVENT_CYCLES_COUNTER,
-> > +                                   true);
-> > +}
-> > +
-> > +static void ddr_perf_pmu_disable(struct pmu *pmu)
-> > +{
-> > +     struct ddr_pmu *ddr_pmu = to_ddr_pmu(pmu);
-> > +
-> > +     if (ddr_pmu->events[EVENT_CYCLES_COUNTER] == NULL)
-> > +             ddr_perf_event_enable(ddr_pmu,
-> > +                                   EVENT_CYCLES_ID,
-> > +                                   EVENT_CYCLES_COUNTER,
-> > +                                   false);
-> > +}
->
-> It seems that both of those functions will enable/disable cycles
-> counter multiple times if "perf" is called with a list specifying
-> multiple events but not cycles counter. Not sure if this is
-> intentional, in case it is not, using a bitmask would allow you to
-> avoid this by using bitmap_weight(), e.g:
->
-> if (bitmap_weight(pmu->active_mask, NUM_COUNTERS) == 1 &&
->     ...
->
-> > +
-> > +static irqreturn_t ddr_perf_irq_handler(int irq, void *p)
-> > +{
-> > +     int i;
-> > +     struct ddr_pmu *pmu = (struct ddr_pmu *) p;
-> > +     struct perf_event *event, *cycle_event = NULL;
-> > +
-> > +     /* all counter will stop if cycle counter disabled */
-> > +     ddr_perf_event_enable(pmu,
-> > +                           EVENT_CYCLES_ID,
-> > +                           EVENT_CYCLES_COUNTER,
-> > +                           false);
->
-> The comment below says that IRQ is only raised when cycles counter
-> overflow and when that happens all of the counters are stopped. What's
-> the goal of the code disabling cycles counter above then?
-
-Mark suggest disable PMU at irq beginning.  The below is V7 review comments.
-
-"That's true (and I had forgotten this), but there's still a potential
-problem depending on IRQ latency.
-
-For example, an overflow might occur just before we do some other
-programming of the PMU (while the CPU has IRQs disabled) where we
-restart the cycle counter (and the IRQ is de-asserted).
-
-Depending on when the interrupt controller samples the state of that
-IRQ, and when the CPU takes a resulting interrupt, we may be able to end
-up in the IRQ handler with the cycle counter enabled. Explicitly
-disabling the cycle counter avoids that possibility.
-
-Regardless, we'll want to move the enable of the cycle counter last to
-ensure that groups aren't skewed.
-"
-best regards
-Frank Li
-
->
-> > +     /*
-> > +      * When the cycle counter overflows, all counters are stopped,
-> > +      * and an IRQ is raised. If any other counter overflows, it
-> > +      * continues counting, and no IRQ is raised.
-> > +      *
-> > +      * Cycles occur at least 4 times as often as other events, so we
-> > +      * can update all events on a cycle counter overflow and not
-> > +      * lose events.
-> > +      *
-> > +      */
-> > +     for (i = 0; i < NUM_COUNTERS; i++) {
-> > +
-> > +             if (!pmu->events[i])
-> > +                     continue;
-> > +
-> > +             event = pmu->events[i];
-> > +
-> > +             ddr_perf_event_update(event);
->
-> If you already reading this counter out, why not clear its value to 0
-> to avoid having it overflow while at it?
-
-Clear counter need additional lock to make sure previous value is the
-same as hardware one.
-At this time, only cycle counter over flow, the other counter is not over flow.
-
-Overflow bit only work on cycle counter,  the other counter is free running.
-
-best regards
-Frank Li
-
->
-> > +
-> > +             if (event->hw.idx == EVENT_CYCLES_COUNTER)
-> > +                     cycle_event = event;
-> > +     }
-> > +
-> > +     ddr_perf_event_enable(pmu,
-> > +                           EVENT_CYCLES_ID,
-> > +                           EVENT_CYCLES_COUNTER,
-> > +                           true);
-> > +     if (cycle_event)
-> > +             ddr_perf_event_update(cycle_event);
->
-> Using a bitmaks would allow you to simplify the above to:
->
-> i = EVENT_CYCLES_COUNTER + 1;
-> for_each_set_bit_from(i, pmu->active_mask, NUM_COUNTERS)
->    ddr_perf_event_update(pmu->active_events[i]);
->
-> ddr_perf_event_enable(pmu,
->                       EVENT_CYCLES_ID,
->                       EVENT_CYCLES_COUNTER,
->                       true);
->
-> if (test_bit(EVENT_CYCLES_COUNTER, pmu->active_mask))
->     ddr_perf_event_update(pmu->active_events[EVENT_CYCLES_COUNTER]);
->
-> > +
-> > +     return IRQ_HANDLED;
-> > +}
->
-> > +
-> > +static int ddr_perf_probe(struct platform_device *pdev)
-> > +{
-> > +     struct ddr_pmu *pmu;
-> > +     struct device_node *np;
-> > +     void __iomem *base;
-> > +     struct resource *iomem;
-> > +     char *name;
-> > +     char *hpname;
-> > +     int num;
-> > +     int ret;
-> > +     int irq;
-> > +
-> > +     iomem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +     base = devm_ioremap_resource(&pdev->dev, iomem);
-> > +     if (IS_ERR(base))
-> > +             return PTR_ERR(base);
-> > +
-> > +     np = pdev->dev.of_node;
-> > +
-> > +     pmu = devm_kzalloc(&pdev->dev, sizeof(*pmu), GFP_KERNEL);
-> > +     if (!pmu)
-> > +             return -ENOMEM;
-> > +
-> > +     num = ddr_perf_init(pmu, base, &pdev->dev);
->
-> There's already a unique ID availible - IP block's physical address
-> (iomem->start). Why not use that instead of setting up an IDA?
-
-We want to use 0 based sequence for ddr controller.
-like ddr0/xxx, ddr1/xxxx
-
-If physical address, some user space test script have to update for
-difference chips.
-
-best regards
-Frank Li
-
->
-> > +
-> > +     platform_set_drvdata(pdev, pmu);
-> > +
-> > +     name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "ddr%d", num);
-> > +     if (!name)
-> > +             return -ENOMEM;
-> > +
-> > +     hpname = devm_kasprintf(&pdev->dev, GFP_KERNEL,
-> > +                             "perf/imx/ddr%d:online", num);
-> > +     if (!hpname)
-> > +             return -ENOMEM;
-> > +
-> > +     pmu->cpu = raw_smp_processor_id();
-> > +     ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN, hpname, NULL,
-> > +                                      ddr_perf_offline_cpu);
-> > +
-> > +     if (ret < 0) {
-> > +             dev_err(&pdev->dev, "cpuhp_setup_state_multi failed\n");
-> > +             goto ddr_perf_err;
-> > +     }
-> > +
-> > +     pmu->cpuhp_state = ret;
-> > +
-> > +     /* Register the pmu instance for cpu hotplug */
-> > +     cpuhp_state_add_instance_nocalls(pmu->cpuhp_state, &pmu->node);
-> > +
-> > +     ret = perf_pmu_register(&pmu->pmu, name, -1);
-> > +     if (ret)
-> > +             goto ddr_perf_err;
->
-> Can these two be done after IRQ registration to simplify error
-> handling?
->
-> > +
-> > +     /* Request irq */
-> > +     irq = of_irq_get(np, 0);
-> > +     if (irq < 0) {
-> > +             dev_err(&pdev->dev, "Failed to get irq: %d", irq);
-> > +             ret = irq;
-> > +             goto ddr_perf_irq_err;
-> > +     }
-> > +
-> > +     ret = devm_request_irq(&pdev->dev, irq,
-> > +                                     ddr_perf_irq_handler,
-> > +                                     IRQF_NOBALANCING | IRQF_NO_THREAD,
-> > +                                     DDR_PERF_DEV_NAME,
-> > +                                     pmu);
-> > +     if (ret < 0) {
-> > +             dev_err(&pdev->dev, "Request irq failed: %d", ret);
-> > +             goto ddr_perf_irq_err;
-> > +     }
-> > +
-> > +     pmu->irq = irq;
-> > +     ret = irq_set_affinity_hint(pmu->irq, cpumask_of(pmu->cpu));
-> > +     if (ret) {
-> > +             dev_err(pmu->dev, "Failed to set interrupt affinity!\n");
-> > +             goto ddr_perf_irq_err;
-> > +     }
-> > +
-> > +     return 0;
-> > +
-> > +ddr_perf_irq_err:
-> > +     perf_pmu_unregister(&(pmu->pmu));
-> > +
-> > +ddr_perf_err:
-> > +     if (pmu->cpuhp_state)
-> > +             cpuhp_state_remove_instance_nocalls(pmu->cpuhp_state, &pmu->node);
-> > +
-> > +     ida_simple_remove(&ddr_ida, pmu->id);
-> > +     dev_warn(&pdev->dev, "i.MX8 DDR Perf PMU failed (%d), disabled\n", ret);
-> > +     return ret;
-> > +}
->
->
-> Thanks,
-> Andrey Smirnov
+Regards,
+Lukasz
+> 
+> Rob
+> 
+> 
