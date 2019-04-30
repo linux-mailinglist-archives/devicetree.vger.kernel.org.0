@@ -2,107 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1A5F535
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 13:14:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C98F565
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 13:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727138AbfD3LOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 07:14:35 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:43578 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727343AbfD3LOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 07:14:35 -0400
-Received: by mail-vs1-f66.google.com with SMTP id y196so1619517vsc.10
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 04:14:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+apvPOK9hOKuyGFcfXqjcVJRX/KMiOheouDto7GSYrU=;
-        b=OlG3x6DSEKoTSrHDdX3ybp6fgR+JxEYnOW6sgWdoouyfjOMZfIZE834Z0i1m4d147e
-         yh01OWpa7Edvr5/DLSw4qqB8LMCNiX6xfb3u9ldeB5liaei3o+eamVJpoz15S4Di9YII
-         N6OoTOfeYCULR2C/P3lYgfImFJYDCIrkgWUkZczpN1A48fy5NIuyoJS3kmm+qXRQDaW7
-         fQTR+sko1QYp8Y9xuuWEQmS/WEufRgOb11yfjRtsiozp+zLSS624cIH40INcfhqvWQzF
-         5/ZF1BLNue1OMHom1HohEH3No7Eg1JyIyx+xodFErGChH//VZmOfMLRkNZCuTkzjv/Ks
-         d+VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+apvPOK9hOKuyGFcfXqjcVJRX/KMiOheouDto7GSYrU=;
-        b=A7N7KtGLhVXOCSbEekBekmaq2c5ty85SFdUCX2NnpMsRNtBN42IVicq+r2iT3T4sQ1
-         ouDsfIp5aw11hY22SzLB2C1gp6jsszTKZIzr5GkOO85Frv4TzHadc+2l1CNwEI0Eq8Lw
-         9ESNCrRUT8v2ykUo8XyM/4LA8J++lU0A8fxh4V6gKVOSmF0STa8FQJJyQU0XeEb3dIX+
-         dANcb6LimCyCyQrKSaM6QyxbI/Yoj+DzmF5Kh/sDj71FjVCzLOmiIs0TVq27nTONQKvR
-         KMJvb+cvsxgulE9tfndbIwYMFCGVD7MBPYICM7Q+tF7p0Wu+jVW1A0qD862xK9YGhpn3
-         dHQw==
-X-Gm-Message-State: APjAAAUw1izxnVSMXM7+WOYxVV3SqZbaXVmHHbCw4vCwsT2hJy5p3M6U
-        EIQjFxySnMrQiNzwSAyWKNfAugYlRQnolLJZLDOMpQ==
-X-Google-Smtp-Source: APXvYqyAUnACtUpQ/7yb1Sl1GxiGdH/gfNEqoAuzPz1Lm3B7D3UA4Nrusr1PmU9LKsLBG5dbHrkeoO4MOXsyUmN5ypY=
-X-Received: by 2002:a67:c987:: with SMTP id y7mr310439vsk.35.1556622874058;
- Tue, 30 Apr 2019 04:14:34 -0700 (PDT)
+        id S1727685AbfD3LVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 07:21:43 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:63519 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726129AbfD3LVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 07:21:42 -0400
+X-UUID: 076e88ce46a54436ad26c26934cb3b97-20190430
+X-UUID: 076e88ce46a54436ad26c26934cb3b97-20190430
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 7084615; Tue, 30 Apr 2019 19:21:30 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 30 Apr 2019 19:21:29 +0800
+Received: from mtkslt207.mediatek.inc (10.21.15.94) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 30 Apr 2019 19:21:29 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>
+CC:     Mark Rutland <mark.rutland@arm.com>, Nishanth Menon <nm@ti.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Roger Lu <roger.lu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: PM / AVS: SVS: Introduce SVS engine
+Date:   Tue, 30 Apr 2019 19:20:09 +0800
+Message-ID: <20190430112012.4514-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <1556264798-18540-1-git-send-email-ludovic.Barre@st.com>
-In-Reply-To: <1556264798-18540-1-git-send-email-ludovic.Barre@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 30 Apr 2019 13:13:57 +0200
-Message-ID: <CAPDyKFqbn=UcbwoH_z+yjrjvHQZaMtmsD=n0yrBV7DAK5VRJEQ@mail.gmail.com>
-Subject: Re: [PATCH V2 0/5] mmc: mmci: add busy detect for stm32 sdmmc variant
-To:     Ludovic Barre <ludovic.Barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Apr 2019 at 09:46, Ludovic Barre <ludovic.Barre@st.com> wrote:
->
-> From: Ludovic Barre <ludovic.barre@st.com>
->
-> This patch series adds busy detect for stm32 sdmmc variant.
-> Some adaptations are required:
-> -Avoid to check and poll busy status when is not expected.
-> -Clear busy status bit if busy_detect_flag and busy_detect_mask are
->  different.
-> -Add hardware busy timeout with MMCIDATATIMER register.
->
-> V2:
-> -mmci_cmd_irq cleanup in separate patch.
-> -simplify the busy_detect_flag exclude
-> -replace sdmmc specific comment in
-> "mmc: mmci: avoid fake busy polling in mmci_irq"
-> to focus on common behavior
->
-> Ludovic Barre (5):
->   mmc: mmci: cleanup mmci_cmd_irq for busy detect feature
->   mmc: mmci: avoid fake busy polling in mmci_irq
->   mmc: mmci: fix clear of busy detect status
->   mmc: mmci: add hardware busy timeout feature
->   mmc: mmci: add busy detect for stm32 sdmmc variant
->
->  drivers/mmc/host/mmci.c | 61 ++++++++++++++++++++++++++++++++++++++-----------
->  drivers/mmc/host/mmci.h |  3 +++
->  2 files changed, 51 insertions(+), 13 deletions(-)
->
-> --
-> 2.7.4
->
+The SVS (Smart Voltage Scaling) engine is a piece of hardware which is
+used to calculate optimized voltage values of several power domains, e.g.
+CPU/GPU/CCI, according to chip process corner, temperatures, and other
+factors. Then DVFS driver could apply those optimized voltage values to
+reduce power consumption.
 
-Ludovic, just wanted to let you know that I am reviewing and testing
-this series.
+Roger Lu (3):
+  dt-bindings: soc: add mtk svs dt-bindings
+  arm64: dts: mt8183: add svs device information
+  PM / AVS: SVS: Introduce SVS engine
 
-However, while running some tests on Ux500 for validating the busy
-detection code, even without your series applied, I encounter some odd
-behaviors. I am looking into the problem to understand better and will
-let you know as soon as I have some more data to share.
+ .../devicetree/bindings/power/mtk-svs.txt     |   70 +
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   16 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   46 +
+ drivers/power/avs/Kconfig                     |   10 +
+ drivers/power/avs/Makefile                    |    1 +
+ drivers/power/avs/mtk_svs.c                   | 2084 +++++++++++++++++
+ include/linux/power/mtk_svs.h                 |   23 +
+ 7 files changed, 2250 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/mtk-svs.txt
+ create mode 100644 drivers/power/avs/mtk_svs.c
+ create mode 100644 include/linux/power/mtk_svs.h
 
-Kind regards
-Uffe
+--
+2.18.0
+
+
