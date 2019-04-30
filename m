@@ -2,100 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D82DFBC6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 16:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC12FFBD9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 16:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726309AbfD3Ood (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 10:44:33 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39350 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726053AbfD3Ood (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 10:44:33 -0400
-Received: by mail-wm1-f65.google.com with SMTP id n25so4134522wmk.4;
-        Tue, 30 Apr 2019 07:44:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pOCCixSugNLHcLoYqitg1TZT4uv7ya5+Gsj2edpM8YY=;
-        b=l7ywDKvUKy37DfKA1bXXREOj6NG4j43dDLqOVaD17pSX0GS3yxJo1WDDwqMvGF4uRU
-         Q2p6DEjedQx7aHk9TsKN/90J6lampcqYrlG6ZQktl4AnPs6IhekPtFq0Ll3wlwjlsC57
-         2thAMZVP9Glegaji2BsJDT3eLaLFbOinu93nvQVdwELwYXABHrt5ZGgmBzM5/ZT5d/Sw
-         Ul0nKl07ZUmhYiX2vAYs7eqfjSYwjk8fWfY7o9WHUTbM6ZN7/N8nhoJRf3/rZY4I+6UN
-         XlTNb42gXkEOAHI8qzwpQzZow6YXG+fy95VkKjYb05/Z+lZ2HVXDn0BgWfIiy5lwjUf2
-         7d6g==
+        id S1727001AbfD3Oro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 10:47:44 -0400
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:46027 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726053AbfD3Oro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 10:47:44 -0400
+Received: by mail-vs1-f66.google.com with SMTP id o10so8111211vsp.12;
+        Tue, 30 Apr 2019 07:47:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=pOCCixSugNLHcLoYqitg1TZT4uv7ya5+Gsj2edpM8YY=;
-        b=RuEsRHK1J03fo0NFcKpFjPz05y3KdT6Yn0pdoXJhtptggqlnePgiSmDW4FLthafIiy
-         DfeqMzcqg1urX5OhkFDvqNfsb5NX2G8mweyEinNe+QX2k9TMxFA0T90Lzgrj440uIhaL
-         RQS3EUalwVAfTRIM2hXbnbwgMZS3BV0OJwnpVFcWZon9t19M5aiOUmfj79Jlc5oWXgth
-         SdhzL1y+mI+HeBlF3KYc8gkoXrA6mtqNvfWUX/iSnIm/tf5xrGSNAn2CNKcxd1Hi/byQ
-         PRZUM6Hdau3cfky2okzQgqIhRIcEtqu2AvfQ5rCLy4TclmKSS/UZ67opcAbBs3QyAh3z
-         V1wA==
-X-Gm-Message-State: APjAAAWjUT/dqhQ+yvd9ZIhtnxigFvf7so0qrqZK6ry24vyrY6rH9krS
-        Qktjwc7ndo1a4EGmt75VlCgKhN1cKEEhZtR5UqU=
-X-Google-Smtp-Source: APXvYqxUPAnuO8hPP5iTe+wT+Y5GHV2cPdDfd/xk32hSaJ17FvPDy3axyPrC/Q8JjIcm4Zr99hnAIn+DTSGrxUUMD9o=
-X-Received: by 2002:a7b:ce06:: with SMTP id m6mr3284490wmc.62.1556635471068;
- Tue, 30 Apr 2019 07:44:31 -0700 (PDT)
+        bh=rMB63wjBg+k1LrffiqyB4JnI8JxbLRbVLLOtKUHKkqo=;
+        b=pbSPYej+2ClR0mQVGIUPq8O2oWujMV4qzYQkmlvIclrl0DuzN5/WK6u/i8F11Ta/3S
+         7X7+APurpJl7C2zvOElRmFSxLYat0DxmrBvY8SABrFI4ICSJDDOt5seVuATARDaX6v7l
+         sEp5mdsxJ/gYgThI0cm4G1ryoyQQv41fWRy+xnCAfWsNx1kFQSnTnoHf5yi0YNHTBSjQ
+         mNdW9fcX2fwPHZj5zklfcU6DUrTzRMymYuxIm63oh1xEqo61kQ5QmZhpxuKFNobUog6u
+         ng+72DMhMSktNPlk2SDg+GyUOIsQ1Ch/IXb4+2Z7C8GytPTqE3b/tQJrQKrcwUFBOCrp
+         N2fA==
+X-Gm-Message-State: APjAAAXnPkh3T2q4ubV6WLVpuntgtsmYYAevykevbFYBDbLESPhCXvHn
+        ZokQ80YvXluxGiVljCONHImJiW/JUywtI+gtdR0=
+X-Google-Smtp-Source: APXvYqxciOSdUuyBEy0XUSKjRqlBDiaJU4FCSNyEJr1u0c2PFoRMLrZ/thKBE/iPeevOcMh4JpZo9O9pAniUG+zHoA8=
+X-Received: by 2002:a05:6102:113:: with SMTP id z19mr5550873vsq.166.1556635663426;
+ Tue, 30 Apr 2019 07:47:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190430090044.16345-1-tranmanphong@gmail.com> <20190430133231.GA5646@infradead.org>
-In-Reply-To: <20190430133231.GA5646@infradead.org>
-From:   Phong Tran <tranmanphong@gmail.com>
-Date:   Tue, 30 Apr 2019 21:44:19 +0700
-Message-ID: <CAD3AR6EU53O_KDR=k6B6Ubrn4Cvec7Gn5xQVQssCA-KFb=uBRg@mail.gmail.com>
-Subject: Re: [PATCH] of: replace be32_to_cpu to be32_to_cpup
-To:     Christoph Hellwig <hch@infradead.org>
-Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        natechancellor@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        clang-built-linux@googlegroups.com
+References: <20190430132309.12473-1-chris.brandt@renesas.com> <20190430132309.12473-5-chris.brandt@renesas.com>
+In-Reply-To: <20190430132309.12473-5-chris.brandt@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 30 Apr 2019 16:47:30 +0200
+Message-ID: <CAMuHMdURvgz+WEoqV++mFB8arkmEv73E8PaBo6L_oDVXgKJGVQ@mail.gmail.com>
+Subject: Re: [PATCH 4/7] ARM: dts: r7s9210: Add RIIC support
+To:     Chris Brandt <chris.brandt@renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 8:32 PM Christoph Hellwig <hch@infradead.org> wrote:
+On Tue, Apr 30, 2019 at 3:42 PM Chris Brandt <chris.brandt@renesas.com> wrote:
+> Add I2C support for the R7S9210 (RZ/A2) SoC.
 >
-> On Tue, Apr 30, 2019 at 04:00:44PM +0700, Phong Tran wrote:
-> >
-> > diff --git a/include/linux/of.h b/include/linux/of.h
-> > index e240992e5cb6..1c35fc8f19b0 100644
-> > --- a/include/linux/of.h
-> > +++ b/include/linux/of.h
-> > @@ -235,7 +235,7 @@ static inline u64 of_read_number(const __be32 *cell, int size)
-> >  {
-> >       u64 r = 0;
-> >       while (size--)
-> > -             r = (r << 32) | be32_to_cpu(*(cell++));
-> > +             r = (r << 32) | be32_to_cpup(cell++);
-> >       return r;
->
-> This whole function looks odd.  It could simply be replaced with
-> calls to get_unaligned_be64 / get_unaligned_be32.  Given that we have a
-> lot of callers we can't easily do that, but at least we could try
-> something like
->
-It's risky. there are many callers of of_read_number().
-There is suggestion from David
-(https://lore.kernel.org/lkml/46b3e8edf27e4c8f98697f9e7f2117d6@AcuMS.aculab.com/)
-only changing the loop.
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
 
-> static inline u64 of_read_number(const __be32 *cell, int size)
-> {
->         WARN_ON_ONCE(size < 1);
->         WARN_ON_ONCE(size > 2);
->
->         if (size == 1)
->                 return get_unaligned_be32(cell);
->         return get_unaligned_be64(cell);
-> }
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Thank you for your support.
+Gr{oetje,eeting}s,
 
-Phong.
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
