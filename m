@@ -2,198 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A557100A7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF508100B7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 22:22:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726086AbfD3UP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 16:15:57 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:33187 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726015AbfD3UP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 16:15:57 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190430201555euoutp013d8c6eec9ce62333387701268047207f~aWcxIPcKS1569415694euoutp01W
-        for <devicetree@vger.kernel.org>; Tue, 30 Apr 2019 20:15:55 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190430201555euoutp013d8c6eec9ce62333387701268047207f~aWcxIPcKS1569415694euoutp01W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1556655355;
-        bh=mn7t1uuvg68BUUAH/Tn9zR4of3JANp39h4iNEwxbGP4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=tUfR82Y2KEPUr6qeHvVxbG2AqVFG8l9nITOUBBNTn7k4imqJmggGK+AYgVtil1mVP
-         ry/iYoEy7EYw+zP9sPefk3mVMaG/LjwfTvwYzWEQl/xRquO6xcaJYl7bQFiEUokob2
-         jxXqnbRwdx6MXv5NYPjMxomqHgZgm/8PJKRpUjMY=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190430201553eucas1p16c8ec34f4c03c140ce5d385e98fccde8~aWcv7s8ke3098530985eucas1p1G;
-        Tue, 30 Apr 2019 20:15:53 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id F7.F3.04377.9FCA8CC5; Tue, 30
-        Apr 2019 21:15:53 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190430201552eucas1p20e6654bf0e5f922312977bd8180e9be0~aWcuRMGx11156111561eucas1p28;
-        Tue, 30 Apr 2019 20:15:52 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190430201551eusmtrp220f9624dc288508cce91c124c6d1dd4e~aWcuBL1QP0508705087eusmtrp2_;
-        Tue, 30 Apr 2019 20:15:51 +0000 (GMT)
-X-AuditID: cbfec7f4-113ff70000001119-d8-5cc8acf9efce
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 5D.B2.04140.7FCA8CC5; Tue, 30
-        Apr 2019 21:15:51 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190430201550eusmtip1d4a86f3d0c2d00bcfb858fe60607a6d4~aWcs_ylEU0208402084eusmtip1g;
-        Tue, 30 Apr 2019 20:15:50 +0000 (GMT)
-Subject: Re: [PATCH v6 06/10] dt-bindings: memory-controllers: add
- Exynos5422 DMC device description
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Joerg Roedel <jroedel@suse.de>,
-        Thierry Reding <treding@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>, willy.mh.wolff.ml@gmail.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <8f488d35-d576-a710-c24b-18514c6c0f34@partner.samsung.com>
-Date:   Tue, 30 Apr 2019 22:15:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+bJtjO8xbpnCRHmcyCB=b8DMr73GWKEz+xMXVZag0FrQ@mail.gmail.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTYRTHe3Zfdh1tPE7LU1nRKjIhtRfpCcUKQi5FkdKHSiFveTPJme2q
-        ZfVhKVhaZqhYLc38kqKWabJ8Q2NZrqzcyF5QhpFmpa4SX0CKrOtd5Lf/Oed3+P8PHI7S/2AW
-        c4nJqaIpWUgysBra+nS6e910jT02xGZdSuqu1zLk3cRnhpR1vGJI9dgAIoXPS1XkxSUjyR8Y
-        oUh39301eZk5qiavm0tYMp7Xgcj17jYVudvhUpO+85UsmWltVJPHoxcY0t6zk/T91JEp+0e0
-        zYefmiyg+ZtmJ803WVxqvr4qh+Xzsr6x/JWGKsQ/6DrLj9cv28sd1ITHi0mJ6aIpOCJOc+xG
-        MUl55H/anuNGZtTil4u8OMCboCfLinKRhtPjSgS9nx+olGICgWu4hVaKcQSZ71z0v5WsyXuM
-        MqhAUNd031O4EVRkO5FM+eCjYBmyqmTti1fAz+ziWYjCkwxk1xT9hTiOxUHQWHVSZrQ4Er5c
-        qZzlabwaSm6OsrJegPdD/1PZQGa84dmNwdkUXjgKpsztallT2A96B8tUil4OD90llOwFuJSD
-        tnK7Wom9A2rtTo/2geHOBo/2h5kmZRmwBOa8cqToczCQX+phwuBxp5ORM1N4LdQ2Byvt7fDV
-        UcTKbcA6eO/2ViLooMB6jVLaWriYrVfoAGi47PAYLYSKmmL1VWSwzDnMMucYy5xjLP99byO6
-        CvmJaZIxQZQ2JIungiTBKKUlJwQdOWGsR3//sOt350Qjav512IYwhwzztY5Ie6yeEdKlDKMN
-        AUcZfLV855NYvTZeyDgjmk4cMqUliZINLeFog5/27LwPMXqcIKSKx0UxRTT9m6o4r8VmdMsS
-        MhLRFZ1+VBU9mn/c5c4prB9aeOdtdcS+soL0SaFgviUmbPequJz96Bwuar23xFEe3q/bMhQP
-        a55vDo1xeEcZ4sMHxoSuUiOrmgkLaf5kYtyZe968WKRzD9UsGtwY+nv3LscBm3lqemXA1qge
-        aOAr66KcPdYPmu+htYFjOwy0dExYH0iZJOEPxxW6MoMDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphleLIzCtJLcpLzFFi42I5/e/4Xd3va07EGDz5K2mxccZ6VovrX56z
-        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
-        e+Quu8XtxhVsFv/37GC3OPymndVi/xUvi9u/+Sy+nXjE6CDs8e3rJBaP2Q0XWTx2zrrL7rFp
-        VSebR2/zOzaPvi2rGD02n672+LxJLoAjSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DY
-        PNbKyFRJ384mJTUnsyy1SN8uQS9j5jSLggMyFSc63zI2MO4W72Lk5JAQMJFo/rqOtYuRi0NI
-        YCmjxNeTJ9ggEmISk/ZtZ4ewhSX+XOtigyh6zShx8tViJpCEsECaxOWrz1hAbBEBRYnfbdPA
-        JjEL/GSVOHOoiRGio4VZYteXDiCHg4NNQE9ix6pCkAZeATeJF30rwAaxCKhKzJn9BmyzqECE
-        xJn3K1ggagQlTs58AmZzCgRKfGvYD3YRs4CZxLzND5khbHGJW0/mM0HY8hLb385hnsAoNAtJ
-        +ywkLbOQtMxC0rKAkWUVo0hqaXFuem6xkV5xYm5xaV66XnJ+7iZGYArYduznlh2MXe+CDzEK
-        cDAq8fBqeJ6IEWJNLCuuzD3EKMHBrCTC63H8aIwQb0piZVVqUX58UWlOavEhRlOg5yYyS4km
-        5wPTU15JvKGpobmFpaG5sbmxmYWSOG+HwMEYIYH0xJLU7NTUgtQimD4mDk6pBsa9BrWFh1uV
-        uqy/KrBdnfq9WeXTrMyklcKzF4jvuXXmMiPH+nK7ZLMj+987NMux663v+VD371X0VM3goLiU
-        6bn2rrc1bj3Wupcxe7n3Bnlf3bdnFk9Yl+fRFZPfz3/6xu9rWvHFQf/muJVlZc32rvn07OIO
-        VcPCzebTWLhPMr+QFOU+Y8WvI6zEUpyRaKjFXFScCADu9m08FwMAAA==
-X-CMS-MailID: 20190430201552eucas1p20e6654bf0e5f922312977bd8180e9be0
-X-Msg-Generator: CA
+        id S1726028AbfD3UWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 16:22:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726006AbfD3UWq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Apr 2019 16:22:46 -0400
+Received: from localhost (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B76632087B;
+        Tue, 30 Apr 2019 20:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556655764;
+        bh=Kv35gbOtGUQkDfxOeQBvLR2bGLEYXN6clOrVIU0lC1s=;
+        h=In-Reply-To:References:From:Subject:To:Cc:Date:From;
+        b=fePt9ZRbemBNqPP3fkd7BgqIGS4kI8msSLWCybbFG40jToYR6zcCV3e1wmg5VSqXs
+         V86nT4D1vCZhFWqangwzpie4ZpOuQGkFeMoLPnKBZ5sHe8+2IWooEtkcrf9nKpuf6U
+         KN3PCrCVMr5mu/EEXkgsl02RTv8UWjAFr39PD8yM=
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc
-References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419141947eucas1p13a27605e04169ab528ef5bfb385eddbc@eucas1p1.samsung.com>
-        <1555683568-20882-7-git-send-email-l.luba@partner.samsung.com>
-        <20190425195750.GA26031@bogus>
-        <e4613d6e-0893-8163-32ef-8137c40d2b24@partner.samsung.com>
-        <CAL_Jsq+bJtjO8xbpnCRHmcyCB=b8DMr73GWKEz+xMXVZag0FrQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <alpine.DEB.2.21.9999.1904291506060.7063@viisi.sifive.com>
+References: <20190411082733.3736-2-paul.walmsley@sifive.com> <155656941055.168659.18136739282359756367@swboyd.mtv.corp.google.com> <alpine.DEB.2.21.9999.1904291506060.7063@viisi.sifive.com>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 1/3] clk: analogbits: add Wide-Range PLL library
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul@pwsan.com>,
+        Wesley Terpstra <wesley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Megan Wachs <megan@sifive.com>
+Message-ID: <155665576397.168659.15988829291472885637@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.8
+Date:   Tue, 30 Apr 2019 13:22:43 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Paul Walmsley (2019-04-29 18:14:14)
+> On Mon, 29 Apr 2019, Stephen Boyd wrote:
+> >=20
+> > Nitpick: This might be easier to read with a switch statement:
+> >=20
+> >       switch (post_divr_freq) {
+> >       case 0 ... 11000000:
+> >               return 1;
+> >       case 11000001 ... 18000000:
+> >               return 2;
+> >       case 18000001 ... 30000000:
+> >               return 3;
+> >       case 30000001 ... 50000000:
+> >               return 4;
+> >       case 50000000 ... 80000000:
+> >               return 5;
+> >       case 80000001 ... 130000000:
+> >               return 6;
+> >       }
+> >=20
+> >       return 7;
+>=20
+> To be equivalent to the original code, we'd need to write:
+>=20
+>        switch (post_divr_freq) {
+>        case 0 ... 10999999:
+>                return 1;
+>        case 11000000 ... 17999999:
+>                return 2;
+> (etc.)
+>=20
+> In any case, it's been changed to use the gcc case range operator.
 
-On 4/29/19 6:43 PM, Rob Herring wrote:
-> On Mon, Apr 29, 2019 at 7:14 AM Lukasz Luba <l.luba@partner.samsung.com> wrote:
->>
->> Hi Rob,
->>
->> On 4/25/19 9:57 PM, Rob Herring wrote:
->>> On Fri, Apr 19, 2019 at 04:19:24PM +0200, Lukasz Luba wrote:
->>>> The patch adds description for DT binding for a new Exynos5422 Dynamic
->>>> Memory Controller device.
->>>>
->>>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->>>> ---
->>>>    .../bindings/memory-controllers/exynos5422-dmc.txt | 73 ++++++++++++++++++++++
->>>>    1 file changed, 73 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->>>> new file mode 100644
->>>> index 0000000..133b3cc
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
->>>> @@ -0,0 +1,73 @@
->>>> +* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
->>>> +
->>>> +The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
->>>> +memory chips are connected. The driver is to monitor the controller in runtime
->>>> +and switch frequency and voltage. To monitor the usage of the controller in
->>>> +runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
->>>> +is able to measure the current load of the memory.
->>>> +When 'userspace' governor is used for the driver, an application is able to
->>>> +switch the DMC and memory frequency.
->>>> +
->>>> +Required properties for DMC device for Exynos5422:
->>>> +- compatible: Should be "samsung,exynos5422-bus".
->>>> +- clock-names : the name of clock used by the bus, "bus".
->>>> +- clocks : phandles for clock specified in "clock-names" property.
->>>> +- devfreq-events : phandles for PPMU devices connected to this DMC.
->>>> +- vdd-supply : phandle for voltage regulator which is connected.
->>>> +- reg : registers of two CDREX controllers, chip information, clocks subsystem.
->>>> +- operating-points-v2 : phandle for OPPs described in v2 definition.
->>>> +- device-handle : phandle of the connected DRAM memory device. For more
->>>> +    information please refer to Documentation
->>>
->>> The memory node(s) should be a child of the memory controller IMO.
->> I have followed the TI code for LPDDR2. They use 'device-handle'
->> probably because the memory controller can be moved into the common
->> .dtsi and taken by reference in .dts in a proper board file.
-> 
-> You'd still have to have the ctrlr node in the board file to add the
-> 'device-handle' property.
-> 
->> The board .dts files might specify different DRAM chips and timings.
->> In Exynos case we will also have such situation: one memory controller
->> and a few different DRAM chips.
-> 
-> You mean as in the case where there are multiple options and one chip
-> gets populated on the board? So 'device-handle' is selecting which
-> chip to use.
-Yes. The 'device-handle' will point to different memories depending on
-the board/SoCs. There are boards with Exynos 5420, 5422, 5800 which are
-'almost' the same, but with different memories glued on top (the PoP
-LPDDR3).
-> 
-> You can actually do both here. Keep 'device-handle' to select which
-> DRAM chip and have the chips as child nodes. But if you really don't
-> want to have them as child nodes, that's fine.
-For now, I would like to keep it like this (if Krzysztof also agrees
-with the implementation).
+Ah right, thanks!
 
-Regards,
-Lukasz
-> 
-> Rob
-> 
-> 
+> > > +{
+> > > +       return (c->flags & WRPLL_FLAGS_INT_FEEDBACK_MASK) ? 2 : 1;
+> > > +}
+> > > +
+> > > +/**
+> > > + * __wrpll_calc_divq() - determine DIVQ based on target PLL output c=
+lock rate
+> > > + * @target_rate: target PLL output clock rate
+> > > + * @vco_rate: pointer to a u64 to store the computed VCO rate into
+> > > + *
+> > > + * Determine a reasonable value for the PLL Q post-divider, based on=
+ the
+> > > + * target output rate @target_rate for the PLL.  Along with returnin=
+g the
+> > > + * computed Q divider value as the return value, this function store=
+s the
+> > > + * desired target VCO rate into the variable pointed to by @vco_rate.
+> > > + *
+> > > + * Context: Any context.  Caller must protect the memory pointed to =
+by
+> > > + *          @vco_rate from simultaneous access or modification.
+> > > + *
+> > > + * Return: a positive integer DIVQ value to be programmed into the h=
+ardware
+> > > + *         upon success, or 0 upon error (since 0 is an invalid DIVQ=
+ value)
+> >=20
+> > Why are we doing that? Can't we return a normal error code and test for
+> > it being negative and then consider the number if its greater than 0 to
+> > be valid?
+>=20
+> One motivation here is that this function returns a divisor value.  So a =
+
+> zero represents a divide by zero, which is intrinsically an error for a=20
+> function that returns a divisor.  The other motivation is that the curren=
+t=20
+> return value directly maps to what the hardware expects to see.
+> =20
+> Let me know if you want me to change this anyway.
+
+Ok, sounds fine.
+
+>  =20
+> > > + */
+> > > +static u8 __wrpll_calc_divq(u32 target_rate, u64 *vco_rate)
+> >=20
+> > Why does target_rate need to be u32?=20
+>=20
+> I don't think there's any specific requirement for it to be a u32.
+
+Ok.
+
+>=20
+> > Can it be unsigned long?
+>=20
+> There are two basic principles motivating this:
+>=20
+> 1. Use the shortest type that fits what will be contained in the variable.
+>    This increases the chance that static analysis will catch any=20
+>    inadvertent overflows (for example, via gcc -Woverflow).
+>=20
+> 2. Use fixed-width types for hardware-constrained values that are=20
+>    unrelated to the CPU's native word length.  This is a general design=20
+>    practice, both to avoid confusion as to whether the variable's range=20
+>    does in fact depend on the compiler's implementation, and to avoid API=
+=20
+>    problems if the width does change.  Although this last case doesn't=20
+>    apply here, the general application of this practice avoids problems=20
+>    like the longstanding API problem we've had with clk_set_rate(), which=
+=20
+>    can't take a 64 bit clock rate argument if the kernel is built with a =
+
+>    compiler that uses 32 bit longs.
+>=20
+
+Sure, makes sense.
+
+>=20
+> > > +
+> > > +       if (parent_rate > MAX_INPUT_FREQ || parent_rate < MIN_POST_DI=
+VR_FREQ)
+> > > +               return -1;
+> > > +
+> > > +       c->parent_rate =3D parent_rate;
+> > > +       max_r_for_parent =3D div_u64(parent_rate, MIN_POST_DIVR_FREQ);
+> > > +       c->max_r =3D min_t(u8, MAX_DIVR_DIVISOR, max_r_for_parent);
+> >=20
+> > Then this min_t can be min() which is simpler to reason about.
+>=20
+> To me they have the same meaning - min_t doesn't seem too obscure:
+>=20
+> $ fgrep -Ir min_t\( linux/ | wc -l
+> 3320
+> $=20
+>=20
+> and using it means we don't have to use a type that's needlessly large fo=
+r=20
+> the range of values that the variable will contain.  However, if getting =
+
+> rid of min_t() is more important to you than that principle, it can=20
+> of course be changed.  Do you feel strongly about it?
+
+It's not about obscurity. min_t() is an indicator that we have to coerce
+type for comparison with casting. It's nice to avoid casts if possible
+and use native types for the comparison.  assignment. It's good that you
+aren't using min() with a cast though, so this look fine to me and I'm
+not going to stay worried about this.
+
+> > > + * mutually exclusive.  If both bits are set, or both are zero, the =
+struct
+> > > + * analogbits_wrpll_cfg record is uninitialized or corrupt.
+> > > + */
+> > > +#define WRPLL_FLAGS_BYPASS_SHIFT               0
+> > > +#define WRPLL_FLAGS_BYPASS_MASK                BIT(WRPLL_FLAGS_BYPAS=
+S_SHIFT)
+> > > +#define WRPLL_FLAGS_RESET_SHIFT                1
+> > > +#define WRPLL_FLAGS_RESET_MASK         BIT(WRPLL_FLAGS_RESET_SHIFT)
+> > > +#define WRPLL_FLAGS_INT_FEEDBACK_SHIFT 2
+> > > +#define WRPLL_FLAGS_INT_FEEDBACK_MASK  BIT(WRPLL_FLAGS_INT_FEEDBACK_=
+SHIFT)
+> > > +#define WRPLL_FLAGS_EXT_FEEDBACK_SHIFT 3
+> > > +#define WRPLL_FLAGS_EXT_FEEDBACK_MASK  BIT(WRPLL_FLAGS_EXT_FEEDBACK_=
+SHIFT)
+> >=20
+> > Maybe you can use FIELD_GET/FIELD_SET?
+>=20
+> To me BIT() is clearer and more concise.  However, please let me know if =
+
+> the use of the FIELD_*() macros is important to you, and I will change it.
+
+I'm not strong on it so up to you.
+
+> > > + */
+> > > +struct analogbits_wrpll_cfg {
+> > > +       u8 divr;
+> > > +       u8 divq;
+> > > +       u8 range;
+> > > +       u8 flags;
+> > > +       u16 divf;
+> > > +/* private: */
+> > > +       u32 output_rate_cache[DIVQ_VALUES];
+> > > +       unsigned long parent_rate;
+> > > +       u8 max_r;
+> > > +       u8 init_r;
+> > > +};
+> > > +
+> > > +int analogbits_wrpll_configure_for_rate(struct analogbits_wrpll_cfg =
+*c,
+> > > +                                       u32 target_rate,
+> > > +                                       unsigned long parent_rate);
+> > > +
+> > > +unsigned int analogbits_wrpll_calc_max_lock_us(struct analogbits_wrp=
+ll_cfg *c);
+> > > +
+> > > +unsigned long analogbits_wrpll_calc_output_rate(struct analogbits_wr=
+pll_cfg *c,
+> > > +                                               unsigned long parent_=
+rate);
+> >=20
+> > I wonder if it may be better to remove analogbits_ from all these
+> > exported functions. I suspect that it wouldn't conflict if it was
+> > prefixed with wrpll_ and it's shorter this way. Up to you.
+>=20
+> I don't have a strong preference either way.  I've changed it to remove=20
+> the analogbits prefix as you request.
+>=20
+
+Alright sounds good!
+
