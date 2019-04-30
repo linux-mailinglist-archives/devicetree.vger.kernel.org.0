@@ -2,160 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F20FBEF5E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 06:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA4FEF9E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 06:31:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726068AbfD3EVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 00:21:24 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:40809 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725268AbfD3EVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 00:21:24 -0400
-Received: by mail-lj1-f193.google.com with SMTP id t10so10384685ljg.7
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 21:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8t58pyvZxW1Md6PX1g2Ns+VeO6t+qdcIVL3s1azo1PA=;
-        b=BKJ/oB49fE/XRK+Gh8TN/iWBL1nKOjQ+kW/y7SPwIp8O0ur5ZqCpBg2KebAc8tEjp5
-         1DFxABlW/D3hIquSYlN0XsJIdXvdlIlPgHgcctMTv2rltVqQhv/QKVbNOS71B+FNtPaY
-         vgqM84YW0qKTBXqO8/e7JbBQKE79/FRH1QoqUdyfzasCIFBUTMPyOXWiZy3Sqj7+MuHf
-         2aiSxx3hTZ65PvE0SPp82BcS80Zuq2fglWZ3R83rAlu8w+dVaYN1vleF2cRwvksV6qwS
-         kl8PKsVWSFnLTA71uFJQo8Nz66wBTmsC6pg+ZAzjw61P9fyfSlG/mdkVHp9fr8DzjspI
-         XXJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8t58pyvZxW1Md6PX1g2Ns+VeO6t+qdcIVL3s1azo1PA=;
-        b=t3gFSt0+S723V/00jgy5psEtYdMhC/RYvsmkzy0KQG9r01VDUqq8OnmStzfYmoLZtP
-         nz2DpPgZa36zr0DHAevNj5BoEPb2rse+Chnr9ZPlUDU3F97WE+RwXO4KENK3jUlAMXAy
-         cVXgKMsoOhX484VsijOPjAHEZaOkuAz9CWYOTd/7UbwwIlnTClUTCwfmvSEBEHH0k3W4
-         3soC8CqIpna3arW3k8u5EUtuTBrVQBVE58oYH7j2e7EWX0/LEtIUGm/JYQnXeycw9iyd
-         LxiG1l/KyIxz2j2qQHRkrSO0W/FpUyBXKrS6yPeYjb66sKs77iaHHYMhdWVW0y+zKsV9
-         byDg==
-X-Gm-Message-State: APjAAAWTkcGi5viEo9486lOqMqoeV48pF1mcEkb/iPzYyvzaOQk3bmIi
-        32LoLQmONC6RN2C0dx/6lm5Iir7u9WnIbwxChBuWOw==
-X-Google-Smtp-Source: APXvYqzkQQWeXalbI6bQvrte/IcR7hF54ikPQKnx35AOhJAFG3ySKNN1bIXiA6KbwMDF6/hcnNfUD2MhHS2jZCl9Ysk=
-X-Received: by 2002:a2e:9855:: with SMTP id e21mr470763ljj.180.1556598082317;
- Mon, 29 Apr 2019 21:21:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <1556171696-7741-1-git-send-email-yash.shah@sifive.com>
- <1556171696-7741-2-git-send-email-yash.shah@sifive.com> <20190425101318.GA8469@e107155-lin>
- <CAJ2_jOEBqBnorz9PcQp72Jjju9RX_P8mU=Gq+0xCCcWsBiJksw@mail.gmail.com> <20190426093358.GA28309@e107155-lin>
-In-Reply-To: <20190426093358.GA28309@e107155-lin>
-From:   Yash Shah <yash.shah@sifive.com>
-Date:   Tue, 30 Apr 2019 09:50:45 +0530
-Message-ID: <CAJ2_jOEoD=Njp+L+H=jG59mA-j9SnwzyNmz7ECogWmbvei_f5Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] RISC-V: Add DT documentation for SiFive L2 Cache Controller
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        Sachin Ghadi <sachin.ghadi@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1725799AbfD3Eb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 00:31:29 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:51448 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725268AbfD3Eb3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Apr 2019 00:31:29 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A713E1A0014;
+        Tue, 30 Apr 2019 06:31:26 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id ACEDA1A0013;
+        Tue, 30 Apr 2019 06:31:17 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C57A5402D9;
+        Tue, 30 Apr 2019 12:31:06 +0800 (SGT)
+From:   Chuanhua Han <chuanhua.han@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, leoyang.li@nxp.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com,
+        wsa+renesas@sang-engineering.com, u.kleine-koenig@pengutronix.de,
+        eha@deif.com, linux@rempel-privat.de, sumit.batra@nxp.com,
+        l.stach@pengutronix.de, peda@axentia.se,
+        Chuanhua Han <chuanhua.han@nxp.com>
+Subject: [PATCH 1/3] dt-bindings: i2c: add optional mul-value property to binding
+Date:   Tue, 30 Apr 2019 12:32:40 +0800
+Message-Id: <20190430043242.29687-1-chuanhua.han@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 26, 2019 at 3:04 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Fri, Apr 26, 2019 at 11:20:17AM +0530, Yash Shah wrote:
-> > On Thu, Apr 25, 2019 at 3:43 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > On Thu, Apr 25, 2019 at 11:24:55AM +0530, Yash Shah wrote:
-> > > > Add device tree bindings for SiFive FU540 L2 cache controller driver
-> > > >
-> > > > Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> > > > ---
-> > > >  .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 53 ++++++++++++++++++++++
-> > > >  1 file changed, 53 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
-> > > > new file mode 100644
-> > > > index 0000000..15132e2
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
-> > > > @@ -0,0 +1,53 @@
-> > > > +SiFive L2 Cache Controller
-> > > > +--------------------------
-> > > > +The SiFive Level 2 Cache Controller is used to provide access to fast copies
-> > > > +of memory for masters in a Core Complex. The Level 2 Cache Controller also
-> > > > +acts as directory-based coherency manager.
-> > > > +
-> > > > +Required Properties:
-> > > > +--------------------
-> > > > +- compatible: Should be "sifive,fu540-c000-ccache"
-> > > > +
-> > > > +- cache-block-size: Specifies the block size in bytes of the cache
-> > > > +
-> > > > +- cache-level: Should be set to 2 for a level 2 cache
-> > > > +
-> > > > +- cache-sets: Specifies the number of associativity sets of the cache
-> > > > +
-> > > > +- cache-size: Specifies the size in bytes of the cache
-> > > > +
-> > > > +- cache-unified: Specifies the cache is a unified cache
-> > > > +
-> > > > +- interrupt-parent: Must be core interrupt controller
-> > > > +
-> > > > +- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
-> > > > +
-> > > > +- reg: Physical base address and size of L2 cache controller registers map
-> > > > +
-> > > > +- reg-names: Should be "control"
-> > > > +
-> > >
-> > > It would be good if you mark the properties that are present in DT
-> > > specification and those that are added for sifive,fu540-c000-ccache
-> >
-> > I believe there isn't any property which is added explicitly for
-> > sifive,fu540-c000-ccache.
-> >
->
-> reg and interrupts are generally optional for normal cache and may be
-> required for cache controller like this. DT specification[1] covers
-> only caches and not cache controllers.
+NXP Layerscape SoC have up to three MUL options available for all
+divider values, we choice of MUL determines the internal monitor rate
+of the I2C bus (SCL and SDA signals):
+A lower MUL value results in a higher sampling rate of the I2C signals.
+A higher MUL value results in a lower sampling rate of the I2C signals.
 
-Are you suggesting something like this:
+So in Optional properties we added our custom mul-value property in the
+binding to select which mul option for the device tree i2c controller
+node.
 
-Required Properties:
---------------------
-Standard Properties:
-- compatible: Should be "sifive,<chip>-ccache"
-  Supported compatible strings are:
-  "sifive,fu540-c000-ccache" and "sifive,fu740-c000-ccache"
+Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
+---
+ Documentation/devicetree/bindings/i2c/i2c-imx.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-- cache-block-size: Specifies the block size in bytes of the cache
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.txt b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+index b967544590e8..ba8e7b7b3fa8 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-imx.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+@@ -18,6 +18,9 @@ Optional properties:
+ - sda-gpios: specify the gpio related to SDA pin
+ - pinctrl: add extra pinctrl to configure i2c pins to gpio function for i2c
+   bus recovery, call it "gpio" state
++- mul-value: NXP Layerscape SoC have up to three MUL options available for
++all I2C divider values, it describes which MUL we choose to use for the driver,
++the values should be 1,2,4.
+ 
+ Examples:
+ 
+-- 
+2.17.1
 
-- cache-level: Should be set to 2 for a level 2 cache
-
-- cache-sets: Specifies the number of associativity sets of the cache
-
-- cache-size: Specifies the size in bytes of the cache
-
-- cache-unified: Specifies the cache is a unified cache
-
-Non-Standard Properties:
-- interrupt-parent: Must be core interrupt controller
-
-- interrupts: Must contain 3 entries for FU540 (DirError, DataError and
-  DataFail signals) or 4 entries for other chips (DirError, DirFail, DataError,
-  DataFail signals)
-
-- reg: Physical base address and size of L2 cache controller registers map
-
-- reg-names: Should be "control"
-
-- Yash
->
-> --
-> Regards,
-> Sudeep
->
-> [1] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.2/devicetree-specification-v0.2.pdf
