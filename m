@@ -2,126 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80586F002
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 07:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D21F9F028
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 07:57:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725554AbfD3FfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 01:35:22 -0400
-Received: from mail-vk1-f194.google.com ([209.85.221.194]:44051 "EHLO
-        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbfD3FfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 01:35:22 -0400
-Received: by mail-vk1-f194.google.com with SMTP id q189so2822633vkq.11
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 22:35:21 -0700 (PDT)
+        id S1726198AbfD3F5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 01:57:17 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:34824 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725938AbfD3F5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 01:57:17 -0400
+Received: by mail-io1-f66.google.com with SMTP id r18so11174153ioh.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 22:57:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oI6/mbFrFRIlv6U0u6swyj6hDvHAkiQ0dv4jYaZhLCk=;
-        b=ck+wpiOtoHFncK/l3p2502NKVY3mfQ215NIogmFrEWBa6w1fEQdMgG1MU88zbsZqih
-         m9bKZLCFITPnSS3fJ0EsRU0OIV7/QON22ZmROKou6SXtgBzULdEg5LGSeko8kTvukeI3
-         p+qusiDWOsdxykgPSZpQiwM5hGHYA5olAXU30=
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=hWKX2lq33x/bqH4d/le0jFr8W3N+Bkvqbw8w1QPkiFM=;
+        b=Ov+Pp32oKqWJj+v2leV694xGyb6S9up7lYYPQ7oPHjhx3oukgMTTT/m041MXK0SWuF
+         8jCINE18h1zeq+ydDj0F62gr20ryYRJ85Dm5sTjO6KyiirqCrKrdtYGIjQhM59z6EAhL
+         Wr1VtvCw1+jJAlFWtUgxPPCN51CN8gFH4tVTW/7mLD+fI1slgsPknuRb+Wb1gri/ycRv
+         cnrc/bLP3jqEHaGqNnt3532193nrUmQbCJHp2CDs8DGxqFZBZpzu8r6BBCIyizEuq2sG
+         B7P8TtttCHzh03mza9oh3/iZgqbqAEOa3zMUkHLnGB1p7+BxfihpKzCW4KeiWYkWqwO4
+         HT/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oI6/mbFrFRIlv6U0u6swyj6hDvHAkiQ0dv4jYaZhLCk=;
-        b=e6B/pQukroipAKrVJJ9b262rQp4bVCQo5G/Q+EX5MwVwiv7jN59VVRtfd5mOzHc7QC
-         mY2oEaVBMWN3Z0ABDQnIAcOyduQjZnD2jJeYirU9j/LnJkoDtz8iWtzSuLtwpIUTXM+h
-         QlAZFmgpLO00PQ1Ws4z/tizkVvnUpF+eYnFxj4X2xL4Bsp7hDsJnNQlBzpkhKaKMzHIV
-         Y77jwegBbMQfAy/XWixGgEPecw/E1pMM6cKD361FIzqzCHqj+1q/ghlJQ7DDTnWFCpO9
-         ASH4pFe+mf7Yz26ipBk3urCSA48hc/z0i2xtKYH76AlSE7GPTXYyqm6r8zmtWmVu0/xu
-         iuhQ==
-X-Gm-Message-State: APjAAAUOKtsyC2Bx6Z6nurcHVnQoh9c4DDdwPALid3ctG826cyC8guUK
-        FuutT+cZ7JRkCQONR+9oZsw6FX4VlmM=
-X-Google-Smtp-Source: APXvYqzs/XS6/ih7U3e+yhKhrfKK5oqxrf5evJtztHbJQVCfpOdAKzM5bDLEE70tOw+yKGBNkG0AYA==
-X-Received: by 2002:a1f:6d46:: with SMTP id i67mr21814234vkc.50.1556602521153;
-        Mon, 29 Apr 2019 22:35:21 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id p44sm6063435uae.7.2019.04.29.22.35.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Apr 2019 22:35:21 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id p13so4327028uaa.11
-        for <devicetree@vger.kernel.org>; Mon, 29 Apr 2019 22:35:20 -0700 (PDT)
-X-Received: by 2002:ab0:2692:: with SMTP id t18mr1729807uao.106.1556602187963;
- Mon, 29 Apr 2019 22:29:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=hWKX2lq33x/bqH4d/le0jFr8W3N+Bkvqbw8w1QPkiFM=;
+        b=rnGraeJ7rHGKmQ+VYIuFCPTewKCyKQUw23l8wF16REtaKX9Ny0uOrfr0klXPhVerFg
+         evabXUyhl0ZWSpupfxWNgo7SM9/WFwexYOSIHRPwBVIufsn9PGya9c/sagO/MmU4HE3w
+         T2Gc2Hcq5bOHeAbF3jJFn1vi79k9DNBkXoCDrpI5imggay25T1GXLv4PRUjnXldC7Oip
+         Q7w4qG8J9jotPfPEKIsrGTdqLWlA7u8NrEl+4iYTSKnwHYANkjt02uGPu4ybnPV341AD
+         k5YYUX2fhBRtOhT2ZhBZrBSIagD4dP6mQYgsXcMFAGDI0Qz+sRr7hu2N4CU5he/gHRBY
+         3Wiw==
+X-Gm-Message-State: APjAAAWNv34FcrM1itR4LZ1bWWgMnyw02YEqglyzw0a+VNPZYyXOa77k
+        l7ivaKQ9f9JmwFZX3VxwVctZ2Q==
+X-Google-Smtp-Source: APXvYqzAC8eAlzqjeLLMoD/UHDZ5ijbGvpg1RDOoBrDKbcOzIOLLnUjbc9ho0YTyKwMXMw2TI+tDcg==
+X-Received: by 2002:a5e:d702:: with SMTP id v2mr3816669iom.236.1556603836719;
+        Mon, 29 Apr 2019 22:57:16 -0700 (PDT)
+Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
+        by smtp.gmail.com with ESMTPSA id a124sm926073itc.18.2019.04.29.22.57.15
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 29 Apr 2019 22:57:16 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 22:57:15 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Stephen Boyd <sboyd@kernel.org>
+cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul@pwsan.com>,
+        Wesley Terpstra <wesley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Megan Wachs <megan@sifive.com>
+Subject: Re: [PATCH v3 1/3] clk: analogbits: add Wide-Range PLL library
+In-Reply-To: <155657878993.168659.6676692672888882237@swboyd.mtv.corp.google.com>
+Message-ID: <alpine.DEB.2.21.9999.1904292252120.7063@viisi.sifive.com>
+References: <20190411082733.3736-2-paul.walmsley@sifive.com> <155632691100.168659.14460051101205812433@swboyd.mtv.corp.google.com> <alpine.DEB.2.21.9999.1904262031510.10713@viisi.sifive.com> <alpine.DEB.2.21.9999.1904291141340.7063@viisi.sifive.com>
+ <155657878993.168659.6676692672888882237@swboyd.mtv.corp.google.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-References: <20190416215351.242246-1-dianders@chromium.org>
- <20190416215351.242246-2-dianders@chromium.org> <20190430005357.GA13695@bogus>
-In-Reply-To: <20190430005357.GA13695@bogus>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 29 Apr 2019 22:29:44 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V3_NcBHdg5A8LvGMoVd_eLN0q=pXo_3f2GCdi5u2GP-Q@mail.gmail.com>
-Message-ID: <CAD=FV=V3_NcBHdg5A8LvGMoVd_eLN0q=pXo_3f2GCdi5u2GP-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc2: Document quirk to reset
- PHY upon wakeup
-To:     Rob Herring <robh@kernel.org>
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-usb@vger.kernel.org, Randy Li <ayaka@soulik.info>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 29 Apr 2019, Stephen Boyd wrote:
 
-On Mon, Apr 29, 2019 at 5:54 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Apr 16, 2019 at 02:53:48PM -0700, Douglas Anderson wrote:
-> > On Rockchip rk3288 there's a hardware quirk where we need to assert
-> > the reset signal to the PHY when we get a remote wakeup on one of the
-> > two ports.  Document this quirk in the bindings.
-> >
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> >
-> > Changes in v2: None
-> >
-> >  Documentation/devicetree/bindings/usb/dwc2.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/dwc2.txt b/Documentation/devicetree/bindings/usb/dwc2.txt
-> > index 6dc3c4a34483..f70f3aee4bfc 100644
-> > --- a/Documentation/devicetree/bindings/usb/dwc2.txt
-> > +++ b/Documentation/devicetree/bindings/usb/dwc2.txt
-> > @@ -37,6 +37,8 @@ Refer to phy/phy-bindings.txt for generic phy consumer properties
-> >  - g-rx-fifo-size: size of rx fifo size in gadget mode.
-> >  - g-np-tx-fifo-size: size of non-periodic tx fifo size in gadget mode.
-> >  - g-tx-fifo-size: size of periodic tx fifo per endpoint (except ep0) in gadget mode.
-> > +- snps,reset-phy-on-wake: If present indicates that we need to reset the PHY when
-> > +                          we detect a wakeup.  This is due to a hardware errata.
->
-> Synopsys or Rockchip errata?
->
-> Ideally, this should be implied by the controller or phy compatible.
+> Quoting Paul Walmsley (2019-04-29 12:42:07)
+> > On Fri, 26 Apr 2019, Paul Walmsley wrote:
+> > > On Fri, 26 Apr 2019, Stephen Boyd wrote:
+> > > 
+> > > > Quoting Paul Walmsley (2019-04-11 01:27:32)
+> > > > > Add common library code for the Analog Bits Wide-Range PLL (WRPLL) IP
+> > > > > block, as implemented in TSMC CLN28HPC.
+> > > > 
+> > > > I haven't deeply reviewed at all, but I already get two problems when
+> > > > compile testing these patches. I can fix them up if nothing else needs
+> > > > fixing.
+> > > > 
+> > > > drivers/clk/analogbits/wrpll-cln28hpc.c:165 __wrpll_calc_divq() warn: should 'target_rate << divq' be a 64 bit type?
+> > > > drivers/clk/sifive/fu540-prci.c:214:16: error: return expression in void function
+> > > 
+> > > Hmm, that's odd.  I will definitely take a look and repost.
+> > 
+> > I'm not able to reproduce these problems.  The configs tried here were:
+> > 
+> > - 64-bit RISC-V defconfig w/ PRCI driver enabled (gcc 8.2.0 built with 
+> >   crosstool-NG 1.24.0)
+> > 
+> > - 32-bit ARM defconfig w/ PRCI driver enabled (gcc 8.3.0 built with 
+> >   crosstool-NG 1.24.0)
+> > 
+> > - 32-bit i386 defconfig w/ PRCI driver enabled (gcc 
+> >   5.4.0-6ubuntu1~16.04.11)
+> > 
+> > Could you post the toolchain and kernel config you're using?
+> > 
+> 
+> I'm running sparse and smatch too.
 
-I have no idea.  The errata was described to me by Rockchip but I
-don't know if it's common to more than one board.
+OK.  I was able to reproduce the __wrpll_calc_divq() warning.  It's been 
+resolved in the upcoming revision.  
 
-You're right that we could do it on the controller compatible, but we
-have to be careful.  The two ports on rk3288 currently have the same
-compatible string but the errata only applies to one of them.  ...so
-I'd have to cue on not just the compatible string but also detect
-whether we're on the "OTG" port of the "host only" port.  That's not
-too hard, though since it is probe-able.
-
-I'm happy to spin this but I'll wait to hear from Felipe.  This is
-already in his testing tree, so presumably I should do a follow-up
-patch.  ...but if he wants me to re-post I can do that too.
+But I don't see the second error with either sparse or smatch.  (This is 
+with sparse at commit 2b96cd804dc7 and smatch at commit f0092daff69d.)
 
 
--Doug
+- Paul
