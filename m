@@ -2,68 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4487EE41
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 03:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E08EEE58
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 03:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729745AbfD3BRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Apr 2019 21:17:11 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:43308 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728997AbfD3BRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 21:17:11 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t81so9926858oig.10;
-        Mon, 29 Apr 2019 18:17:11 -0700 (PDT)
+        id S1729859AbfD3BXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Apr 2019 21:23:31 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:42495 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729801AbfD3BXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Apr 2019 21:23:31 -0400
+Received: by mail-ot1-f65.google.com with SMTP id f23so10438638otl.9;
+        Mon, 29 Apr 2019 18:23:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xaOdfxdw1hMtS7qaFsh00GiMGk+CxCyglGrKYxmtdsI=;
-        b=gzddVTImpUmKqYtwZiF3ohNm6dIRWs6kJ/zmPfjU9LZMZp1kHvu7MCmupZuLApp/D8
-         6TeDGY/VR434qdrWTPSub7jSaO4XQH/f952LqGiyseIbZSK37MM6LFbCLad7CHqmLOyc
-         H0+dxU5k2U5CKrYgUm9QVmouBP0UbKHRNmoNF9mbSBO37lIQ6N8UNJnOY5ioQiYpx1fE
-         98iA9mIBFI1jpTj8cRP/J4HOrQCxU7fkewXymp+72skm9t+Z7w2qsswGJgrB1eEfYHxL
-         TmXhcN5JtAR69nf2hUtKfCzvl4+DOkrByfdB/akkP8Uh8Xi0tppPLO4GtpA3dKnZ/Er3
-         oWCQ==
-X-Gm-Message-State: APjAAAVba51vhU04CETnYVbpZ0/PhHsbsvRz9J7sRl2/wX5iL3Z6oiE8
-        GiSthYwI9usxrDRxY2fAMw==
-X-Google-Smtp-Source: APXvYqw6ntRhc/wbwykwNmMjNvveQySGSHN3ekx1kQx8S+cMQcTxyL7XbYzZewnuRIN19hQXVUioAw==
-X-Received: by 2002:aca:ba82:: with SMTP id k124mr1493234oif.110.1556587030763;
-        Mon, 29 Apr 2019 18:17:10 -0700 (PDT)
+        bh=fLCNptbAqgGLbxmiV5m9esJWTcO9d7PGiLKbWNbQI4Y=;
+        b=pyInkl149oIz0fINvWOVMsdn8AcUZzZMsqlSa7v85gg4KE35r4uck69xNm/ho+Knq4
+         IzzSs7aMjmL5Eaj+6oFFGMJWvwrQoIb3956nOZPBgl3FX6H5fMKhpHk4dISx6fGnCukc
+         zWcgPF4nwZgI4lIXvZOm/tg7YfbuPlwiXFtfB2h/uxfRlZpdfJ/8UyWyA+fnAe3Ff7OC
+         QROaB0oudBdvbMfvRBtSD+tbC8do0lojlFgN9sX8VFKXonOOnxrqrUmwEr5RLCjdVOMu
+         BDIasEacD+4LbgEW4TtTbCw8lBLG5F3IVAHSYy+J1fDNCrHxwhSklxul5vl/eleUX3uo
+         4SXg==
+X-Gm-Message-State: APjAAAVREX0ePY2/L7rj+HhgwSdB4P5sCe+xd3U7Q/FVfRHH8h9196zA
+        u1H5Svz8POQS9r/0gW369Q==
+X-Google-Smtp-Source: APXvYqxr8Cm+FM9VThpkbETtAkluspE6CKnCHzDXX3Pa3YrGOQn38oLZRa/gk3PUp+5WlkzbxZyFuQ==
+X-Received: by 2002:a9d:6153:: with SMTP id c19mr5171001otk.110.1556587410598;
+        Mon, 29 Apr 2019 18:23:30 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e23sm13995060otl.61.2019.04.29.18.17.09
+        by smtp.gmail.com with ESMTPSA id w13sm922030otl.26.2019.04.29.18.23.29
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 29 Apr 2019 18:17:10 -0700 (PDT)
-Date:   Mon, 29 Apr 2019 20:17:09 -0500
+        Mon, 29 Apr 2019 18:23:29 -0700 (PDT)
+Date:   Mon, 29 Apr 2019 20:23:28 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Florent TOMASIN <tomasin.florent@gmail.com>
-Cc:     tomasin.florent@gmail.com,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: Add CDTech S050WV43-CT5 panel bindings
-Message-ID: <20190430011709.GA25451@bogus>
-References: <20190417233846.11880-1-tomasin.florent@gmail.com>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Minas Harutyunyan <hminas@synopsys.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>, heiko@sntech.de,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Artur Petrosyan <Arthur.Petrosyan@synopsys.com>,
+        amstan@chromium.org, linux-rockchip@lists.infradead.org,
+        William Wu <william.wu@rock-chips.com>,
+        linux-usb@vger.kernel.org, Stefan Wahren <stefan.wahren@i2se.com>,
+        Randy Li <ayaka@soulik.info>, zyw@rock-chips.com,
+        mka@chromium.org, ryandcase@chromium.org,
+        Amelie Delaunay <amelie.delaunay@st.com>, jwerner@chromium.org,
+        dinguyen@opensource.altera.com,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v2 3/5] Documentation: dt-bindings: Add
+ snps,need-phy-for-wake for dwc2 USB
+Message-ID: <20190430012328.GA25660@bogus>
+References: <20190418001356.124334-1-dianders@chromium.org>
+ <20190418001356.124334-4-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190417233846.11880-1-tomasin.florent@gmail.com>
+In-Reply-To: <20190418001356.124334-4-dianders@chromium.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Apr 2019 00:38:44 +0100, Florent TOMASIN wrote:
-> Add documentation for S050WV43-CT5 panel
+On Wed, Apr 17, 2019 at 05:13:54PM -0700, Douglas Anderson wrote:
+> Some SoCs with a dwc2 USB controller may need to keep the PHY on to
+> support remote wakeup.  Allow specifying this as a device tree
+> property.
 > 
-> Signed-off-by: Florent TOMASIN <tomasin.florent@gmail.com>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  .../bindings/display/panel/cdtech,s050wv43-ct5.txt   | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/cdtech,s050wv43-ct5.txt
+> For relevant prior discussion on this patch, see:
 > 
+> https://lkml.kernel.org/r/1435017144-2971-3-git-send-email-dianders@chromium.org
+> 
+> I didn't make any changes from the prior version since I never found
+> out what Rob thought of my previous arguments.  If folks want a
+> change, perhaps they could choose from these options:
+> 
+> 1. Assume that all dwc2 hosts would like to keep their PHY on for
+>    suspend if there's a USB wakeup enabled, thus we totally drop this
+>    binding.  This doesn't seem super great to me since I'd bet that
+>    many devices that use dwc2 weren't designed for USB wakeup (they
+>    may not keep enough clocks or rails on) so we might be wasting
+>    power for nothing.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+1b. Use SoC specific compatible strings to enable/disable remote 
+wake-up. We can debate what the default is I guess.
+
+> 2. Rename this property to "snps,wakeup-from-suspend-with-phy" to make
+>    it more obvious that this property is intended both to document
+>    that wakeup from suspend is possible and that we need the PHY for
+>    said wakeup.
+> 3. Rename this property to "snps,can-wakeup-from-suspend" and assume
+>    it's implicit that if we can wakeup from suspend that we need to
+>    keep the PHY on.  If/when someone shows that a device exists using
+>    dwc2 where we can wakeup from suspend without the PHY they can add
+>    a new property.
+> 
+> Changes in v2: None
+> 
+>  Documentation/devicetree/bindings/usb/dwc2.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
