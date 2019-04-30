@@ -2,68 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE01FBE8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 16:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 469C1FBFB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Apr 2019 16:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726563AbfD3Ox3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Apr 2019 10:53:29 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:41185 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726053AbfD3Ox3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 10:53:29 -0400
-Received: by mail-ua1-f66.google.com with SMTP id s30so1620727uas.8;
-        Tue, 30 Apr 2019 07:53:28 -0700 (PDT)
+        id S1726053AbfD3O6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Apr 2019 10:58:43 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:44265 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbfD3O6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Apr 2019 10:58:43 -0400
+Received: by mail-pl1-f196.google.com with SMTP id l2so4083089plt.11;
+        Tue, 30 Apr 2019 07:58:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=TlQh7TuHnwgDKn+cKJqDNJnLA4TH+HrHgME+WMuJCQ8=;
+        b=iMo4NruzSXdZLDvRy1SULFuYbkHUqToq3CpWLKDDse9ce/N5xyHJZhwIPl4yQ6mnOu
+         qtPuzvt37+rccDpw+GQydZUw0AbPAexMeq9GMuqHyayFij3ZsMZCKDCgLt3v3c9MaupF
+         /7h6FfaMqNym/DxVuNWSaY/yQoA4BrKfzIcU35EewLwI9rrRZcXah2pq4Yp6IAEDBDBr
+         mfb30ztiAjmMEn/4Dj77V6X/17nkbEg4OyJIiLLrs6m+toLCuTD/UQik9kTUSz9S86yt
+         Ny7SlWtFQHunplzgc/Eyil0TfeE6hBDMvCGCKCGIwyZkykCTK5pFM5Lme/6Cvi1VSFQE
+         HKWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pTLeDmf40HKyuygAD04IjYkWSGll1fsdZzZH9HwXX+w=;
-        b=g2UWEuLiOrM+pijkQRVZo9+nkREwNOSluuEV3GQ6mH/MYCGGiyLevyXCmYptmxxhT/
-         sSZAVzBydEF/lSgsbxmej97lowHXMTHkiwo+OVJzN3JtuCPXYRkaVfa7rLwUfAm25zBm
-         S3EUOnDTsEH1Pna/mvKLQQ26CywKqAzILoDDaUmQsBXm5zt3x8dzEHPxXPfRJfssr2CR
-         yIvs9L9RXNIaJ0LA6FZRKXQ9Tsfgh/S/6zCx5vGhs3ihrPuV4Us3/qpVfd5HHZy0mexQ
-         f/2ZLKGCc8c8hCfdHUwLrVg7U7EyCHPtr6sWX0Qe2h79/QUuUtwui2wbmZEh36g/qFdZ
-         gscg==
-X-Gm-Message-State: APjAAAUqt7TNsKBt0O5RhIXa8ihIqPHGhwED0/+9cDb7MpGvBHFDt3Fk
-        w2gvErnEcHaXnBkzxKhgc9uoNeHKnCt6QcoAzaI=
-X-Google-Smtp-Source: APXvYqwF0Zbtifq6u8tBBo2RW3XLYNv7pCPith08+k0vO8l3qrEdgc5Ka0pNcs3HfC21rFBjLCYphaQSO9o1caCaH5o=
-X-Received: by 2002:a9f:352a:: with SMTP id o39mr6828806uao.78.1556636008367;
- Tue, 30 Apr 2019 07:53:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=TlQh7TuHnwgDKn+cKJqDNJnLA4TH+HrHgME+WMuJCQ8=;
+        b=D9nGUUIqs11of3OAbArrjr6rCdZxKQFxQ0Ye/+m8knxWTbH0Maz5j/OTESmFiSmiTU
+         0MJXeZuh4CQpl2vnoVP12oqVUWhIq8On4dEN186+JE7/2QMi+OKML4lRUqs+zlN+/aJf
+         NFKcWaO28SI19+uI5UvHf241Hr17mczBy2kRX0lVN36kOYHQi/mA7y3Gxdh4ZANGlC9d
+         fb854wUIZ0nFrtwyk1S9XR0NHiApnSZeGEQuJc0KmoPa4PqJ50t3m/B+mI2H4zsvS+BE
+         rQeUcQitBdjupn9S3mSIUjarkUvFPwKOhzWyMthD2g6m4E6aV7JR0+7HXD6Ceu2XfTre
+         VyRA==
+X-Gm-Message-State: APjAAAWRx1lDd7wH4JlkRW3TDBUEWdmqwB6BlcqU4PMVJSlS5l7Pr7WE
+        +F/kcqNoPBLvi7EK43R64LKcC2KEFRUWDQ==
+X-Google-Smtp-Source: APXvYqzClbZ318/jZlabqQbsSCtg10ds86Zfqg1MOh3hs10FHdjl8t6O0NBWwfMiUHTsv2gmGRMRHQ==
+X-Received: by 2002:a17:902:b948:: with SMTP id h8mr70229857pls.39.1556636322642;
+        Tue, 30 Apr 2019 07:58:42 -0700 (PDT)
+Received: from debian.net.fpt ([42.114.18.133])
+        by smtp.gmail.com with ESMTPSA id n67sm4570723pfn.22.2019.04.30.07.58.39
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Apr 2019 07:58:41 -0700 (PDT)
+From:   Phong Tran <tranmanphong@gmail.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com,
+        pantelis.antoniou@konsulko.com
+Cc:     David.Laight@ACULAB.COM, hch@infradead.org,
+        ndesaulniers@google.com, natechancellor@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        clang-built-linux@googlegroups.com,
+        Phong Tran <tranmanphong@gmail.com>
+Subject: [PATCH V2] of: fix clang -Wunsequenced for be32_to_cpu()
+Date:   Tue, 30 Apr 2019 21:56:24 +0700
+Message-Id: <20190430145624.30470-1-tranmanphong@gmail.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <46b3e8edf27e4c8f98697f9e7f2117d6@AcuMS.aculab.com>
+References: <46b3e8edf27e4c8f98697f9e7f2117d6@AcuMS.aculab.com>
 MIME-Version: 1.0
-References: <20190430132309.12473-1-chris.brandt@renesas.com> <20190430132309.12473-6-chris.brandt@renesas.com>
-In-Reply-To: <20190430132309.12473-6-chris.brandt@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 30 Apr 2019 16:53:17 +0200
-Message-ID: <CAMuHMdXYfemNCfzci9fAcPWpdHOeKJNkTirrrB+97t5Aj2Bzxg@mail.gmail.com>
-Subject: Re: [PATCH 5/7] ARM: dts: r7s9210: Add SDHI support
-To:     Chris Brandt <chris.brandt@renesas.com>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 3:33 PM Chris Brandt <chris.brandt@renesas.com> wrote:
-> Add SDHI support for the R7S9210 (RZ/A2) SoC.
->
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+Now, make the loop explicit to avoid clang warning.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+./include/linux/of.h:238:37: warning: multiple unsequenced modifications
+to 'cell' [-Wunsequenced]
+                r = (r << 32) | be32_to_cpu(*(cell++));
+                                                  ^~
+./include/linux/byteorder/generic.h:95:21: note: expanded from macro
+'be32_to_cpu'
+                    ^
+./include/uapi/linux/byteorder/little_endian.h:40:59: note: expanded
+from macro '__be32_to_cpu'
+                                                          ^
+./include/uapi/linux/swab.h:118:21: note: expanded from macro '__swab32'
+        ___constant_swab32(x) :                 \
+                           ^
+./include/uapi/linux/swab.h:18:12: note: expanded from macro
+'___constant_swab32'
+        (((__u32)(x) & (__u32)0x000000ffUL) << 24) |            \
+                  ^
 
-Gr{oetje,eeting}s,
+Signed-off-by: Phong Tran <tranmanphong@gmail.com>
+---
+ include/linux/of.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-                        Geert
-
+diff --git a/include/linux/of.h b/include/linux/of.h
+index e240992e5cb6..71ca25ac01f6 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -234,8 +234,8 @@ extern struct device_node *of_find_all_nodes(struct device_node *prev);
+ static inline u64 of_read_number(const __be32 *cell, int size)
+ {
+ 	u64 r = 0;
+-	while (size--)
+-		r = (r << 32) | be32_to_cpu(*(cell++));
++	for(; size--; cell++)
++		r = (r << 32) | be32_to_cpu(*cell);
+ 	return r;
+ }
+ 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.21.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
