@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA74A10DEE
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 22:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F04AC10DF4
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 22:26:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbfEAUZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 16:25:08 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45806 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726077AbfEAUZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 16:25:07 -0400
-Received: by mail-ot1-f65.google.com with SMTP id a10so85770otl.12;
-        Wed, 01 May 2019 13:25:07 -0700 (PDT)
+        id S1726133AbfEAU0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 16:26:34 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:40047 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726077AbfEAU0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 16:26:33 -0400
+Received: by mail-ot1-f68.google.com with SMTP id w6so115522otl.7;
+        Wed, 01 May 2019 13:26:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NYns9XpnphK6szv5SEMiVX6iTl8gQljiQwlent8Rn9A=;
-        b=WQ1Gbxrk12R+S4U7V+0TKf10LuTtJIDuBROIDY5Ni9YKYcS8ONSO5uhp0LLuNKwZLV
-         IX6yaUPnoXySc/vFp8urBzorBF/CVXVRCYFTtaz6RmgPTCLfQDajc3Ll291d1j4RpM09
-         Wm/sHPMeRK4EBk/D0w62XEvNoRnOYviN15vnvZZQoiTWhQykUa51hvcfa3AkgJ2s8gss
-         fepBcbTc9axLL68RlLDFDdbsu4Uljh1rwfL/NS7j3pbJIjqBPIpZrwbrQDH6f/b+TBLu
-         wkw1Ja5tmeKzqgZvEHcDB1VE+lcpbpZPQkKd/mfa0YHI5I2tMNXfOcrQnQe7b13xnqXL
-         hlOA==
-X-Gm-Message-State: APjAAAWNam9bqWieoVp56fczcZJ/Q/AHa1vrIH1vMJ6vPsf4hM0b+wBq
-        uILL60jsgfW57NJ4BZyvog==
-X-Google-Smtp-Source: APXvYqwMZKRtssUNrD1zPRVi56HIIK9LZgJvd6s1ukd98Qq60sSI31JlavCo1HrpyN3esU/uMK3vrw==
-X-Received: by 2002:a9d:6f8f:: with SMTP id h15mr3972863otq.216.1556742306623;
-        Wed, 01 May 2019 13:25:06 -0700 (PDT)
+        bh=i4BcmLTt3qSO7ebRuLnsFYshyO5n3Uthw1CjDsmT+WQ=;
+        b=NkLw7wG1S4B5F50ogDFhkA1C6jD6Cp8nzmrZazSC78Yp9xMrHuc19HETGhfAlKWO3P
+         mt/yvwwT+Ga1KlhBjMeNIV8F2mw/Bshf5PA3TOl+ntvwB3kT01ClwSQ2H3B3R6rh3hg5
+         iJu9rwViPRg2ZICX5MwObBoie9htiOcVdnAfpccOyC9F6JiopYqRq2WvxBlN66r4qsw/
+         a64njSlJQjXUQS/HjekyJ5a6Mj0Wz/lDgzC2Dp/ekCPgK4MAEYEjfvEmGl13TYXqCAq9
+         OBfbl7wQylSFk2uQ4TvwMwkwLy3sKv3HFBjx5I1sVgQHd3Osk9VJfzH7JFDJ0rNQKish
+         3QtA==
+X-Gm-Message-State: APjAAAWkcOh3nxAzeEj2RSVJSQmVwryzc4vkMzezwGGMPK96KBYR68bi
+        s88OMYOroIwVEem4ga9xJA==
+X-Google-Smtp-Source: APXvYqyvGU61UGP21sWZd1plEHAvhFnejz8U8UyYK+r4AbW/b/4XFJAPlAw38GlaTScboSWrdAblAg==
+X-Received: by 2002:a9d:6f0f:: with SMTP id n15mr12164732otq.194.1556742392971;
+        Wed, 01 May 2019 13:26:32 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 189sm16943760oid.35.2019.05.01.13.25.05
+        by smtp.gmail.com with ESMTPSA id r25sm15928842otk.37.2019.05.01.13.26.31
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 13:25:05 -0700 (PDT)
-Date:   Wed, 1 May 2019 15:25:04 -0500
+        Wed, 01 May 2019 13:26:31 -0700 (PDT)
+Date:   Wed, 1 May 2019 15:26:31 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Henry Chen <henryc.chen@mediatek.com>
 Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
@@ -48,30 +48,27 @@ Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         Henry Chen <henryc.chen@mediatek.com>
-Subject: Re: [RFC V2 01/11] dt-bindings: soc: Add dvfsrc driver bindings
-Message-ID: <20190501202504.GA32615@bogus>
+Subject: Re: [RFC V2 02/11] dt-bindings: soc: Add opp table on scpsys bindings
+Message-ID: <20190501202631.GA2677@bogus>
 References: <1556614265-12745-1-git-send-email-henryc.chen@mediatek.com>
- <1556614265-12745-2-git-send-email-henryc.chen@mediatek.com>
+ <1556614265-12745-3-git-send-email-henryc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1556614265-12745-2-git-send-email-henryc.chen@mediatek.com>
+In-Reply-To: <1556614265-12745-3-git-send-email-henryc.chen@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Apr 2019 16:50:55 +0800, Henry Chen wrote:
-> Document the binding for enabling dvfsrc on MediaTek SoC.
+On Tue, 30 Apr 2019 16:50:56 +0800, Henry Chen wrote:
+> Add opp table on scpsys dt-bindings for Mediatek SoC.
 > 
 > Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
 > ---
->  .../devicetree/bindings/soc/mediatek/dvfsrc.txt    | 23 ++++++++++++++++++++++
->  include/dt-bindings/soc/mtk,dvfsrc.h               | 14 +++++++++++++
->  2 files changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
->  create mode 100644 include/dt-bindings/soc/mtk,dvfsrc.h
+>  .../devicetree/bindings/soc/mediatek/scpsys.txt    | 42 ++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
