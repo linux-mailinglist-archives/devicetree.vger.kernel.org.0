@@ -2,122 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD38810F49
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 00:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 262BE10F6B
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 00:57:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726283AbfEAWqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 18:46:50 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:46726 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726145AbfEAWqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 18:46:50 -0400
-Received: by mail-ot1-f66.google.com with SMTP id 77so349170otu.13;
-        Wed, 01 May 2019 15:46:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=hTyewxaqn7LAiT2SH+DZREdfXU1PNz3ufBiht/yAAn0=;
-        b=VIqXHF2MuCxwKGRl5V3NDhAeB154K64JaNdFk1o53vjLMZGT6+zoZmCmh7o/ZhCdmV
-         NS9c4fCa15n6iDxX0FVf9ZuWBlZjDLROLtFZe2mzcrLJkrSsdqFfGOX0DquFD1xph7Dp
-         Z2DLV9TZNiCbxPK1FCFX1mdKgZv0ETLobpmxx0eHXrSHftoWjAoIg3ZWw3U3elhQEr7W
-         4QhOsxzBQEqBsea4ohumrfGKcRZ26023NJScIT+Kyv5b1osVBpw7EbD3r4oVfqeaNLdH
-         9+HXwvFQlVd8NLAAQTMr5ljGj8+uIHDfDptSm0+HMlDBeIOiBQkzGBGtWIJewmHG+SDD
-         lFgg==
-X-Gm-Message-State: APjAAAUZNzQS80A0ANyabto8QoXlEeLMljYnVNKAWi81EGCGSd39uP76
-        zOp9HCz6R9gjSVInUv8eGXmf1l2yhA==
-X-Google-Smtp-Source: APXvYqxx6FkC5f0arUAphcB6iggn1JI8NSGZcl25tCDEnnaao5v/3Yw/L/PJSTrJwGTYqIcAZWMyPg==
-X-Received: by 2002:a9d:615a:: with SMTP id c26mr342832otk.76.1556750809579;
-        Wed, 01 May 2019 15:46:49 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q124sm17147876oia.13.2019.05.01.15.46.48
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 15:46:48 -0700 (PDT)
-Date:   Wed, 1 May 2019 17:46:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jerry-ch Chen <Jerry-Ch.chen@mediatek.com>
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
-        yuzhao@chromium.org, zwisler@chromium.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        holmes.chiou@mediatek.com, frederic.chen@mediatek.com,
-        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
-        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, shik@chromium.org,
-        suleiman@chromium.org
-Subject: Re: [RFC PATCH V1 3/6] dt-bindings: mt8183: Added FD dt-bindings
-Message-ID: <20190501224647.GA12044@bogus>
-References: <20190423104505.38778-1-Jerry-Ch.chen@mediatek.com>
- <20190423104505.38778-4-Jerry-Ch.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190423104505.38778-4-Jerry-Ch.chen@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726137AbfEAW53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 18:57:29 -0400
+Received: from node.akkea.ca ([192.155.83.177]:38768 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726126AbfEAW53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 May 2019 18:57:29 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by node.akkea.ca (Postfix) with ESMTP id 068524E2050;
+        Wed,  1 May 2019 22:57:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1556751448; bh=87SETz9I8gVQlR+3xH3Kd2u5LAaaIkJnVBbPxK4CLlY=;
+        h=From:To:Cc:Subject:Date;
+        b=m2Kz+qSYaDJz5RNwnYiv8YseqSpwgBbPe6kYQxQ5PCnaKZvLHn0AcqAB/IV+b2l1w
+         ZT/uMUFDmrSGgvjdVtlRKhb81HdQZIeGh3r45GbcTD582fKCqiApZCzDNamyZv3ADD
+         dKgyhIOtieaCPKoM+QC6EtrewDSTIUK6rgvBO+fA=
+X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
+Received: from node.akkea.ca ([127.0.0.1])
+        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id oTmigFlXg-cN; Wed,  1 May 2019 22:57:27 +0000 (UTC)
+Received: from localhost.localdomain (198-48-167-13.cpe.pppoe.ca [198.48.167.13])
+        by node.akkea.ca (Postfix) with ESMTPSA id E31F94E204B;
+        Wed,  1 May 2019 22:57:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1556751447; bh=87SETz9I8gVQlR+3xH3Kd2u5LAaaIkJnVBbPxK4CLlY=;
+        h=From:To:Cc:Subject:Date;
+        b=dt4gROCKQoFh1xXyIleLnM368fcxkOXynGt6vucREcSkLeQJe+Nn5GunAjddbHwXq
+         vv7/QVBlCjUyunNdB9Tb/w9ornZjP6qvHKmvC3QssxlDhfo4bfstggdjMhNYd9+Jwq
+         mWzKuIDbm/yc19nVbtdYUteHD07eNWG+DhFwquYQ=
+From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v8 0/3] Add support for the Purism Librem5 devkit
+Date:   Wed,  1 May 2019 16:57:16 -0600
+Message-Id: <20190501225719.3257-1-angus@akkea.ca>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 23, 2019 at 06:45:02PM +0800, Jerry-ch Chen wrote:
-> From: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-> 
-> This patch adds DT binding documentation for the Face Detection (FD)
-> unit of the camera system on Mediatek's SoCs.
-> 
-> Signed-off-by: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-> ---
->  .../bindings/media/mediatek,mt8183-fd.txt     | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt b/Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
-> new file mode 100644
-> index 000000000000..97c12fd93e7e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
-> @@ -0,0 +1,34 @@
-> +* Mediatek Face Detection Unit (FD)
-> +
-> +Face Detection (FD) unit is a typical memory-to-memory HW device.
-> +It provides hardware accelerated face detection function, and it
-> +is able to detect different poses of faces. FD will writre result
-> +of detected face into memory as output.
-> +
-> +Required properties:
-> +- compatible: "mediatek,mt8183-fd"
-> +- reg: Physical base address and length of the function block register space
-> +- interrupts: interrupt number to the cpu.
-> +- iommus: should point to the respective IOMMU block with master port as
-> +  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
-> +  for details.
+The Librem5 devkit is based on the imx8mq from NXP. This is a default
+devicetree to boot the board to a command prompt.
 
-How many entries? Looks like 3 from the example.
+Changes since v7:
 
-> +- mediatek,larb: must contain the local arbiters in the current Socs, see
-> +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
-> +  for details.
-> +- clocks : must contain the FDVT clock
-> +- clock-names: must contain FD_CLK_IMG_FD
-> +
-> +Example:
-> +	fd:fd@1502b000 {
-           ^ space needed
+More regulators always on for USB.
+Add vbus regulator.
+Drop vbat regulator.
+Replace legacy "gpio-key,wakeup" with "wakeup-source".
+Add vbus-supply to get rid of warning
+imx8mq-usb-phy 382f0040.usb-phy: 382f0040.usb-phy supply vbus not found, using dummy regulator
 
-> +		compatible = "mediatek,mt8183-fd";
-> +		mediatek,larb = <&larb5>;
-> +		mediatek,scp = <&scp>;
-> +		iommus = <&iommu M4U_PORT_CAM_FDVT_RP>,
-> +			 <&iommu M4U_PORT_CAM_FDVT_WR>,
-> +			 <&iommu M4U_PORT_CAM_FDVT_RB>;
-> +		reg = <0 0x1502b000 0 0x1000>;
-> +		interrupts = <GIC_SPI 269 IRQ_TYPE_LEVEL_LOW>;
-> +		clocks = <&imgsys CLK_IMG_FDVT>;
-> +		clock-names = "FD_CLK_IMG_FD";
-> +	};
-> +
-> -- 
-> 2.18.0
-> 
+Changes since v6:
+
+Dropped unused regulators.
+Fix regulator phandles case.
+Dropped extra whitespace.
+
+Changes since v5:
+
+Added reviewed-by tags.
+Moved USB port links to USB controller node.
+
+Changes since v4:
+
+Compiled against linux-next next-20190415.
+Added imx8mq to the arm yaml file.
+Re-arrange regulator nodes to drop undefined supplies.
+Additional ordering for aesthetics.
+Split some long lines.
+Added lots of blank lines.
+Moved pinctl muxes to where they are used.
+Cleaned out reg defintions from regulator nodes.
+
+Changes since v3:
+
+Freshly sorted and pressed nodes.
+Change the backlight to an interpolated scale.
+Dropped i2c2.
+Dropped devkit version number to match debian MR.
+
+Changes since v2:
+
+Fixed incorrect phy-supply for the fsl-fec.
+Dropped unused regulator property.
+Fixup Makefile for linux-next.
+
+Changes since v1:
+
+Dropped config file.
+Updated the board compatible label.
+Changed node names to follow naming conventions.
+Added a more complete regulator hierachy.
+Removed unused nodes.
+Removed unknown devices.
+Fixed comment style.
+Dropped undocumented properties.
+
+Angus Ainslie (Purism) (3):
+  arm64: dts: fsl: librem5: Add a device tree for the Librem5 devkit
+  dt-bindings: Add an entry for Purism SPC
+  dt-bindings: arm: fsl: Add the imx8mq boards
+
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ .../devicetree/bindings/vendor-prefixes.txt   |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mq-librem5-devkit.dts   | 823 ++++++++++++++++++
+ 4 files changed, 832 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+
+-- 
+2.17.1
+
