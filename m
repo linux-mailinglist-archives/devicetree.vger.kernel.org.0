@@ -2,112 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B21106EF
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 12:24:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC45710762
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 13:13:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726124AbfEAKYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 06:24:00 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:57300 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725959AbfEAKYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 06:24:00 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x41AJX1q000629;
-        Wed, 1 May 2019 05:23:55 -0500
-Authentication-Results: ppops.net;
-        spf=none smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from mail2.cirrus.com (mail2.cirrus.com [141.131.128.20])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2s6xhv0wsv-1;
-        Wed, 01 May 2019 05:23:54 -0500
-Received: from EDIEX02.ad.cirrus.com (unknown [198.61.84.81])
-        by mail2.cirrus.com (Postfix) with ESMTP id 2A86E605A687;
-        Wed,  1 May 2019 05:23:54 -0500 (CDT)
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 1 May
- 2019 11:23:50 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Wed, 1 May 2019 11:23:50 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id AA9412A1;
-        Wed,  1 May 2019 11:23:50 +0100 (BST)
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: [PATCH] mfd: lochnagar: Add links to binding docs for sound and hwmon
-Date:   Wed, 1 May 2019 11:23:50 +0100
-Message-ID: <20190501102350.3520-1-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.11.0
+        id S1726052AbfEALNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 07:13:50 -0400
+Received: from foss.arm.com ([217.140.101.70]:58170 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725838AbfEALNu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 May 2019 07:13:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA9B280D;
+        Wed,  1 May 2019 04:13:49 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 071153F5C1;
+        Wed,  1 May 2019 04:13:47 -0700 (PDT)
+Date:   Wed, 1 May 2019 12:13:45 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Manikanta Maddireddy <mmaddireddy@nvidia.com>, bhelgaas@google.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        vidyas@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 00/28] Enable Tegra PCIe root port features
+Message-ID: <20190501111345.GB3100@e121166-lin.cambridge.arm.com>
+References: <20190423092825.759-1-mmaddireddy@nvidia.com>
+ <20190426132219.GE16228@ulmo>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=1 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=907 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1905010069
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190426132219.GE16228@ulmo>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lochnagar is an evaluation and development board for Cirrus
-Logic Smart CODEC and Amp devices. It allows the connection of
-most Cirrus Logic devices on mini-cards, as well as allowing
-connection of various application processor systems to provide a
-full evaluation platform. This driver supports the board
-controller chip on the Lochnagar board.
+On Fri, Apr 26, 2019 at 03:22:19PM +0200, Thierry Reding wrote:
+> On Tue, Apr 23, 2019 at 02:57:57PM +0530, Manikanta Maddireddy wrote:
+> > This series of patches adds,
+> > - Tegra root port features like Gen2, AER, etc
+> > - Power and perf optimizations
+> > - Fixes like "power up sequence", "dev_err prints", etc
+> > 
+> > This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
+> > based Jetson-TX1 and T124 based Jetson-TK1 platforms.
+> > 
+> > TODO: I don't have T20 and T30 platforms to verify this series.
+> > Thierry has kindly agreed to verify this series on T20 and T30.
+> 
+> I tested this on TrimSlice and Beaver. next-20190426 boots via NFS on
+> both of those boards. Applying this series on top of next-20190426 works
+> on Beaver but does not work on TrimSlice. I'll see if I can bisect which
+> exact commit breaks this, but it seems like PCI accesses do work, since
+> I see the RTL8169 device being detected. But when the kernel tries to
+> send out DHCP requests, the packet transmission is never completed using
+> an interrupt, so maybe something interrupt related is broken.
 
-Add links to the binding documents for the new sound and hardware
-monitor parts of the driver.
+I have marked this series as "deferred" in patchwork, more testing
+needed from what you are reporting.
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
- .../devicetree/bindings/mfd/cirrus,lochnagar.txt        | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Thanks,
+Lorenzo
 
-diff --git a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.txt b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.txt
-index 004b0158cf4d7..3bf92ad37fa1b 100644
---- a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.txt
-+++ b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.txt
-@@ -19,6 +19,8 @@ And these documents for the required sub-node binding details:
-   [4] Clock: ../clock/cirrus,lochnagar.txt
-   [5] Pinctrl: ../pinctrl/cirrus,lochnagar.txt
-   [6] Regulator: ../regulator/cirrus,lochnagar.txt
-+  [7] Sound: ../sound/cirrus,lochnagar.txt
-+  [8] Hardware Monitor: ../hwmon/cirrus,lochnagar.txt
- 
- Required properties:
- 
-@@ -41,6 +43,11 @@ Optional sub-nodes:
-   - Bindings for the regulator components, see [6]. Only available on
-     Lochnagar 2.
- 
-+  - lochnagar-sc : Binding for the sound card components, see [7].
-+                   Only available on Lochnagar 2.
-+  - lochnagar-hwmon : Binding for the hardware monitor components, see [8].
-+                      Only available on Lochnagar 2.
-+
- Optional properties:
- 
-   - present-gpios : Host present line, indicating the presence of a
-@@ -65,4 +72,14 @@ lochnagar: lochnagar@22 {
- 		compatible = "cirrus,lochnagar-pinctrl";
- 		...
- 	};
-+
-+	lochnagar-sc {
-+		compatible = "cirrus,lochnagar2-soundcard";
-+		...
-+	};
-+
-+	lochnagar-hwmon {
-+		compatible = "cirrus,lochnagar2-hwmon";
-+		...
-+	};
- };
--- 
-2.11.0
+> Thierry
+> 
+> > V2 takes care of comments from Bjorn and Thierry.
+> > 
+> > Manikanta Maddireddy (28):
+> >   soc/tegra: pmc: Export tegra_powergate_power_on()
+> >   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
+> >   PCI: tegra: Rearrange Tegra PCIe driver functions
+> >   PCI: tegra: Disable PCIe interrupts in runtime suspend
+> >   PCI: tegra: Fix PCIe host power up sequence
+> >   PCI: tegra: Add PCIe Gen2 link speed support
+> >   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
+> >   PCI: tegra: Program UPHY electrical settings for Tegra210
+> >   PCI: tegra: Enable opportunistic UpdateFC and ACK
+> >   PCI: tegra: Disable AFI dynamic clock gating
+> >   PCI: tegra: Process pending DLL transactions before entering L1 or L2
+> >   PCI: tegra: Enable PCIe xclk clock clamping
+> >   PCI: tegra: Increase the deskew retry time
+> >   PCI: tegra: Add SW fixup for RAW violations
+> >   PCI: tegra: Update flow control timer frequency in Tegra210
+> >   PCI: tegra: Set target speed as Gen1 before starting LTSSM
+> >   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
+> >   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
+> >   PCI: tegra: Change PRSNT_SENSE irq log to debug
+> >   PCI: tegra: Use legacy irq for port service drivers
+> >   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
+> >   PCI: tegra: Access endpoint config only if PCIe link is up
+> >   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
+> >   arm64: tegra: Add PEX DPD states as pinctrl properties
+> >   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
+> >   dt-bindings: pci: tegra: Document reset-gpio optional prop
+> >   PCI: tegra: Add support for GPIO based PCIe reset
+> >   PCI: tegra: Change link retry log level to info
+> > 
+> >  .../bindings/pci/nvidia,tegra20-pcie.txt      |  13 +
+> >  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
+> >  drivers/pci/controller/pci-tegra.c            | 605 +++++++++++++++---
+> >  drivers/soc/tegra/pmc.c                       |   1 +
+> >  4 files changed, 558 insertions(+), 80 deletions(-)
+> > 
+> > -- 
+> > 2.17.1
+> > 
+
 
