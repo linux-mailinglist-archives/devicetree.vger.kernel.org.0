@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F33D710DEB
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 22:23:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA74A10DEE
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 22:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726096AbfEAUX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 16:23:56 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:44890 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726077AbfEAUX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 16:23:56 -0400
-Received: by mail-ot1-f66.google.com with SMTP id d24so87991otl.11;
-        Wed, 01 May 2019 13:23:55 -0700 (PDT)
+        id S1726196AbfEAUZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 16:25:08 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45806 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726077AbfEAUZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 16:25:07 -0400
+Received: by mail-ot1-f65.google.com with SMTP id a10so85770otl.12;
+        Wed, 01 May 2019 13:25:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xhwLDL0FaJ2M5yj/J//1qH/Ga5dzDW6zM+tv/2cUHl4=;
-        b=K7fGlVIkS6s8qHkjOW4fiwGGOXULqTZIXEwqBykpDaIk3oLOTUaWa3HbNsq3K8rqvq
-         cA58PIXIvk3jf9qBT+gLBv5F/at3Ptx47bp5srzI4oJ+sFX829sSeL4Sa4ai/wKIkv9x
-         barn2S5YRHLq3+GeGqiRDnEZCGK8UHX0AO5YCEKm6JqwP1Gs6h5suYcauNXnzaTYtoiH
-         4l3FBc4wgoIwrkEwfX4TkkhxUyQLNjaLmLMqoHTZqsrB/0MTuri1AHpbqsXONzXs9WC+
-         Z/1gS1Svpk3iWLYQ2jtBjjlvv9qF4+6ZCp+HA3A2yKFj3VB/Mp0MeRsUBg7Q0dM8KTji
-         RPzQ==
-X-Gm-Message-State: APjAAAUaMwOCjdMwvA8GlApUdwF/hoe+tBIV0g0aEu0dpVhmTl55nBAD
-        VQWEvkZ62qV+1XseVgDMCQ==
-X-Google-Smtp-Source: APXvYqzRrVnMMrtwYHb/m+DSgs+Iezq+Hs9Pa13nIrzLLcmIFRrIkCn1jnCS2r3MsWWWva727WESxw==
-X-Received: by 2002:a9d:4c8a:: with SMTP id m10mr3902957otf.322.1556742235456;
-        Wed, 01 May 2019 13:23:55 -0700 (PDT)
+        bh=NYns9XpnphK6szv5SEMiVX6iTl8gQljiQwlent8Rn9A=;
+        b=WQ1Gbxrk12R+S4U7V+0TKf10LuTtJIDuBROIDY5Ni9YKYcS8ONSO5uhp0LLuNKwZLV
+         IX6yaUPnoXySc/vFp8urBzorBF/CVXVRCYFTtaz6RmgPTCLfQDajc3Ll291d1j4RpM09
+         Wm/sHPMeRK4EBk/D0w62XEvNoRnOYviN15vnvZZQoiTWhQykUa51hvcfa3AkgJ2s8gss
+         fepBcbTc9axLL68RlLDFDdbsu4Uljh1rwfL/NS7j3pbJIjqBPIpZrwbrQDH6f/b+TBLu
+         wkw1Ja5tmeKzqgZvEHcDB1VE+lcpbpZPQkKd/mfa0YHI5I2tMNXfOcrQnQe7b13xnqXL
+         hlOA==
+X-Gm-Message-State: APjAAAWNam9bqWieoVp56fczcZJ/Q/AHa1vrIH1vMJ6vPsf4hM0b+wBq
+        uILL60jsgfW57NJ4BZyvog==
+X-Google-Smtp-Source: APXvYqwMZKRtssUNrD1zPRVi56HIIK9LZgJvd6s1ukd98Qq60sSI31JlavCo1HrpyN3esU/uMK3vrw==
+X-Received: by 2002:a9d:6f8f:: with SMTP id h15mr3972863otq.216.1556742306623;
+        Wed, 01 May 2019 13:25:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d5sm2485913otl.68.2019.05.01.13.23.54
+        by smtp.gmail.com with ESMTPSA id 189sm16943760oid.35.2019.05.01.13.25.05
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 13:23:54 -0700 (PDT)
-Date:   Wed, 1 May 2019 15:23:53 -0500
+        Wed, 01 May 2019 13:25:05 -0700 (PDT)
+Date:   Wed, 1 May 2019 15:25:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     BOUGH CHEN <haibo.chen@nxp.com>
-Cc:     "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: fsl-imx-esdhc: add imx7ulp
-  compatible string
-Message-ID: <20190501202353.GA30853@bogus>
-References: <20190429090310.25484-1-haibo.chen@nxp.com>
- <20190429090310.25484-2-haibo.chen@nxp.com>
+To:     Henry Chen <henryc.chen@mediatek.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Henry Chen <henryc.chen@mediatek.com>
+Subject: Re: [RFC V2 01/11] dt-bindings: soc: Add dvfsrc driver bindings
+Message-ID: <20190501202504.GA32615@bogus>
+References: <1556614265-12745-1-git-send-email-henryc.chen@mediatek.com>
+ <1556614265-12745-2-git-send-email-henryc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190429090310.25484-2-haibo.chen@nxp.com>
+In-Reply-To: <1556614265-12745-2-git-send-email-henryc.chen@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Apr 2019 08:55:32 +0000, BOUGH CHEN wrote:
-> Add imx7ulp compatible string.
+On Tue, 30 Apr 2019 16:50:55 +0800, Henry Chen wrote:
+> Document the binding for enabling dvfsrc on MediaTek SoC.
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/soc/mediatek/dvfsrc.txt    | 23 ++++++++++++++++++++++
+>  include/dt-bindings/soc/mtk,dvfsrc.h               | 14 +++++++++++++
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+>  create mode 100644 include/dt-bindings/soc/mtk,dvfsrc.h
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
