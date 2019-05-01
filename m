@@ -2,92 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B56107DD
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 14:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D87D10805
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 14:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726083AbfEAMTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 08:19:05 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:58058 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725923AbfEAMTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 08:19:05 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x41CInFW030028;
-        Wed, 1 May 2019 07:18:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1556713129;
-        bh=9aQOi45c/EGVag76udV6doM0PRwWmZo9EP9zOsTY0/k=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=eLlCOI2gErzAP1SeQMBk3RLC8bHUw3IqTNbW7qY1aCEy6pK/EspZStjcFEV/8hlTj
-         9MmJn6ftIpzYuNa6jhRILkZRkVrg5phmQwqRYCZyyWRtcmOMkcUYiX4r58Uv+T37Qr
-         XOVNJracOfkqDKbYB/ZNLiQplBY6IzhY389B1/XY=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x41CIngO040408
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 1 May 2019 07:18:49 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 1 May
- 2019 07:18:49 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 1 May 2019 07:18:48 -0500
-Received: from [10.250.90.63] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x41CImd7003631;
-        Wed, 1 May 2019 07:18:48 -0500
-Subject: Re: [PATCH v3 3/3] backlight: lm3630a: add firmware node support
-To:     Pavel Machek <pavel@ucw.cz>
-CC:     Brian Masney <masneyb@onstation.org>, <lee.jones@linaro.org>,
-        <daniel.thompson@linaro.org>, <jingoohan1@gmail.com>,
-        <robh+dt@kernel.org>, <jacek.anaszewski@gmail.com>,
-        <mark.rutland@arm.com>, <b.zolnierkie@samsung.com>,
-        <dri-devel@lists.freedesktop.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-fbdev@vger.kernel.org>, <jonathan@marek.ca>
-References: <20190415072905.2861-1-masneyb@onstation.org>
- <20190415072905.2861-4-masneyb@onstation.org>
- <0e5e26ba-cf98-913e-8e76-e988a86dc0d1@ti.com> <20190501082627.GA2971@amd>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <fbf41c1b-21c7-a997-f88c-3d29ccd1b42a@ti.com>
-Date:   Wed, 1 May 2019 07:18:52 -0500
+        id S1726423AbfEAMrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 08:47:49 -0400
+Received: from foss.arm.com ([217.140.101.70]:58906 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725971AbfEAMrt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 May 2019 08:47:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F190780D;
+        Wed,  1 May 2019 05:47:48 -0700 (PDT)
+Received: from [10.1.196.75] (e110467-lin.cambridge.arm.com [10.1.196.75])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D26B3F5C1;
+        Wed,  1 May 2019 05:47:47 -0700 (PDT)
+Subject: Re: [DO NOT MERGE] [PATCH 2/2] arm64: rockchip: rk3399: nanopc-t4:
+ Enable FriendlyELEC HD702E eDP panel
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20190501121448.3812-1-jagan@amarulasolutions.com>
+ <20190501121448.3812-2-jagan@amarulasolutions.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <cc16498b-71f8-04ce-44d1-25417fd64757@arm.com>
+Date:   Wed, 1 May 2019 13:47:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190501082627.GA2971@amd>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
+In-Reply-To: <20190501121448.3812-2-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel
-
-On 5/1/19 3:26 AM, Pavel Machek wrote:
-> Hi!
+On 01/05/2019 13:14, Jagan Teki wrote:
+> FriendlyELEC HD702E is one of optional LCD panel for
+> NanoPC T4 eDP interface.
 > 
->>> @@ -396,13 +506,20 @@ static int lm3630a_probe(struct i2c_client *client,
->>>  				     GFP_KERNEL);
->>>  		if (pdata == NULL)
->>>  			return -ENOMEM;
->>> +
->>>  		/* default values */
->>> -		pdata->leda_ctrl = LM3630A_LEDA_ENABLE;
->>> -		pdata->ledb_ctrl = LM3630A_LEDB_ENABLE;
->>> +		pdata->leda_ctrl = LM3630A_LEDA_DISABLE;
->>> +		pdata->ledb_ctrl = LM3630A_LEDB_DISABLE;
->>
->> This is not needed since default is disabled and kzalloc will set these to 0
+> It features 800x1280 resolutions, with built in GT9271 captive
+> touchscreen and adjustable backlight via PWM.
 > 
-> Let compiler do this kind of optimalizations. Code makes sense as-is.
+> eDP panel connections are:
+> - VCC3V3_SYS: 3.3V panel power supply
+> - GPIO4_C2: PWM0_BL pin
+> - GPIO4_D5_LCD_BL_EN: Backlight enable pin
+> - VCC12V0_SYS: 12V backlight power supply
+> - Touchscreen connected via I2C4
+> - GPIO1_C4_TP_INT: touchscreen interrupt pin
+> - GPIO1_B5_TP_RST: touchscreen reset pin
 > 
+> Add support for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Note: we need to disable hdmi-cec pinctrl to work with
+> edp-hpd since both share same pin, otherwise we can
+> encounter below error during bootup
+> [    1.047726] rockchip-pinctrl pinctrl: pin gpio4-23 already requested by ff940000.hdmi; cannot claim for ff970000.edp
+> [    1.048655] rockchip-pinctrl pinctrl: pin-151 (ff970000.edp) status -22
+> [    1.049235] rockchip-pinctrl pinctrl: could not request pin 151 (gpio4-23) from group edp-hpd  on device rockchip-pinctrl
+> [    1.050191] rockchip-dp ff970000.edp: Error applying setting, reverse things back
+> [    1.050867] rockchip-dp: probe of ff970000.edp failed with error -22
 
-Yes the code makes sense but it is unnecessary.
+Hmm, AFAICS that pin is exclusively wired to the HDMI connector and not 
+used for the eDP interface, so really it's the fault of rk3399.dtsi for 
+trying to claim it unconditionally. Ideally we'd pull those pinctrl 
+properties out into the board DTs which do actually need them, but the 
+quick and easy approach would be to add some "/delete-property/ ..." 
+workarounds to the &edp node here.
 
-Dan
+>   .../boot/dts/rockchip/rk3399-nanopc-t4.dts    | 82 +++++++++++++++++++
+>   1 file changed, 82 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+> index 931c3dbf1b7d..b652d960946f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+> @@ -46,6 +46,48 @@
+>   		};
+>   	};
+>   
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		brightness-levels = <
+> +			  0   1   2   3   4   5   6   7
+> +			  8   9  10  11  12  13  14  15
+> +			 16  17  18  19  20  21  22  23
+> +			 24  25  26  27  28  29  30  31
+> +			 32  33  34  35  36  37  38  39
+> +			 40  41  42  43  44  45  46  47
+> +			 48  49  50  51  52  53  54  55
+> +			 56  57  58  59  60  61  62  63
+> +			 64  65  66  67  68  69  70  71
+> +			 72  73  74  75  76  77  78  79
+> +			 80  81  82  83  84  85  86  87
+> +			 88  89  90  91  92  93  94  95
+> +			 96  97  98  99 100 101 102 103
+> +			104 105 106 107 108 109 110 111
+> +			112 113 114 115 116 117 118 119
+> +			120 121 122 123 124 125 126 127
+> +			128 129 130 131 132 133 134 135
+> +			136 137 138 139 140 141 142 143
+> +			144 145 146 147 148 149 150 151
+> +			152 153 154 155 156 157 158 159
+> +			160 161 162 163 164 165 166 167
+> +			168 169 170 171 172 173 174 175
+> +			176 177 178 179 180 181 182 183
+> +			184 185 186 187 188 189 190 191
+> +			192 193 194 195 196 197 198 199
+> +			200 201 202 203 204 205 206 207
+> +			208 209 210 211 212 213 214 215
+> +			216 217 218 219 220 221 222 223
+> +			224 225 226 227 228 229 230 231
+> +			232 233 234 235 236 237 238 239
+> +			240 241 242 243 244 245 246 247
+> +			248 249 250 251 252 253 254 255>;
 
-> 									Pavel
+This looks trivial enough that I wonder whether it might still work to 
+just omit it? Not that I know anything about backlights, but I had the 
+impression (from mailing list traffic, I guess) that the driver gained 
+the ability to provide a reasonable default behaviour at some point.
+
+Robin.
+
+> +		default-brightness-level = <200>;
+> +		enable-gpios = <&gpio4 RK_PD5 GPIO_ACTIVE_HIGH>;	/* GPIO4_D5_LCD_BL_EN */
+> +		pwms = <&pwm0 0 25000 0>;
+> +		power-supply = <&vcc12v0_sys>;
+> +		status = "okay";
+> +	};
+> +
+>   	ir-receiver {
+>   		compatible = "gpio-ir-receiver";
+>   		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
+> @@ -64,6 +106,18 @@
+>   		fan-supply = <&vcc12v0_sys>;
+>   		pwms = <&pwm1 0 50000 0>;
+>   	};
+> +
+> +	panel {
+> +		compatible ="friendlyarm,hd702e";
+> +		backlight = <&backlight>;
+> +		power-supply = <&vcc3v3_sys>;
+> +
+> +		port {
+> +			panel_in_edp: endpoint {
+> +				remote-endpoint = <&edp_out_panel>;
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &cpu_thermal {
+> @@ -94,6 +148,23 @@
+>   	};
+>   };
+>   
+> +&edp {
+> +	status = "okay";
+> +
+> +	ports {
+> +		edp_out: port@1 {
+> +			reg = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			edp_out_panel: endpoint@0 {
+> +				reg = <0>;
+> +				remote-endpoint = <&panel_in_edp>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>   &gpu_thermal {
+>   	trips {
+>   		gpu_warm: gpu_warm {
+> @@ -130,6 +201,17 @@
+>   	};
+>   };
+>   
+> +&i2c4 {
+> +	touchscreen@5d {
+> +		compatible = "goodix,gt911";
+> +		reg = <0x5d>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <RK_PC4 IRQ_TYPE_EDGE_FALLING>;
+> +		irq-gpio = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;	/* GPIO1_C4_TP_INT */
+> +		reset-gpio = <&gpio1 RK_PB5 GPIO_ACTIVE_LOW>;	/* GPIO1_B5_TP_RST */
+> +	};
+> +};
+> +
+>   &sdhci {
+>   	mmc-hs400-1_8v;
+>   	mmc-hs400-enhanced-strobe;
 > 
