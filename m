@@ -2,147 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 280A71078D
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 13:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38D7107AC
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 13:58:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbfEALnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 07:43:52 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:7099 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726145AbfEALnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 07:43:52 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cc9867e0000>; Wed, 01 May 2019 04:43:58 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 01 May 2019 04:43:51 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 01 May 2019 04:43:51 -0700
-Received: from [10.24.71.111] (10.124.1.5) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 1 May
- 2019 11:43:47 +0000
-Subject: Re: [PATCH V2 00/28] Enable Tegra PCIe root port features
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <bhelgaas@google.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
-        <vidyas@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20190423092825.759-1-mmaddireddy@nvidia.com>
- <20190426132219.GE16228@ulmo>
- <20190501111345.GB3100@e121166-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <30378299-cebf-146f-e207-91a2cd58419f@nvidia.com>
-Date:   Wed, 1 May 2019 17:13:29 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+        id S1726243AbfEAL6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 07:58:49 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:58568 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726165AbfEAL6s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 May 2019 07:58:48 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9F2E080D;
+        Wed,  1 May 2019 04:58:47 -0700 (PDT)
+Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A67D3F5C1;
+        Wed,  1 May 2019 04:58:45 -0700 (PDT)
+Subject: Re: [PATCH v8 00/14] Add support for TISCI Interrupt controller
+ drivers
+To:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        tglx@linutronix.de, jason@lakedaemon.net
+Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
+        linus.walleij@linaro.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+References: <20190430101230.21794-1-lokeshvutla@ti.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+Organization: ARM Ltd
+Message-ID: <30f5c877-a4dc-8ad9-0ad0-c172a60dc853@arm.com>
+Date:   Wed, 1 May 2019 12:58:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190501111345.GB3100@e121166-lin.cambridge.arm.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL101.nvidia.com (172.20.187.10)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20190430101230.21794-1-lokeshvutla@ti.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1556711038; bh=Trs7cRcdpLTIKoapd0tLrUGA85+c5Ct0IH0Ox9FXEfs=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=hlKjqUQ6JMlvL1dSQGWEqZW7/yHE1qTpGPSNzg7gHstX7zR4Fvjc9LyzJjRBCZ6r+
-         rEZgEjv6+dfA//u9an7LCaLsgOYao2dnx3QrH6QZqMYMBHeQrPN78+vm1GkbMkDo5g
-         pgSnaCwnuKU5NEYxHMWihKZoo4h7wj8kK7rn2UKnRWQlU+QOdB/msmYPkSgotfuRdu
-         +tTxzy6iln6fqTKZoQ3prqc0jNJptn8ojLx3V0jpgXRUHC9QmfXA/NAhjuE1l6UDzo
-         ul62Cm024XD2rfjwGazpVQhLRrdvyp012g/Wu9SHfWjTfyYjr+EjpVF2ZT5CvN9Kkv
-         I6/UByMOTNl9A==
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/04/2019 11:12, Lokesh Vutla wrote:
+> TI AM65x SoC based on K3 architecture introduced support for Events
+> which are message based interrupts with minimal latency. These events
+> are not compatible with regular interrupts and are valid only through
+> an event transport lane. An Interrupt Aggregator(INTA) is introduced
+> to convert these events to interrupts. INTA can also group 64 events
+> into a single interrupt. Now the SoC has many peripherals and a large
+> number of event sources (time sync or DMA), the use of events is
+> completely dependent on a user's specific application, which drives a
+> need for maximum flexibility in which event sources are used in the
+> system. It is also completely up to software control as to how the
+> events are serviced.
+> 
+> Because of the huge flexibility there are certain standard peripherals
+> (like GPIO etc)where all interrupts cannot be directly corrected to host
+> interrupt controller. For this purpose, Interrupt Router(INTR) is
+> introduced in the SoC. INTR just does a classic interrupt redirection.
+> 
+> So the SoC has 3 types of interrupt controllers:
+> - GIC500
+> - Interrupt Router
+> - Interrupt Aggregator
+> 
+> Below is a diagrammatic view of how SoC integration of these interrupt
+> controllers:(https://pastebin.ubuntu.com/p/9ngV3jdGj2/)
+> 
+> Device Index-x               Device Index-y
+>            |                         |
+>            |                         |
+>                       ....
+>             \                       /
+>              \                     /
+>               \  (global events)  /
+>           +---------------------------+   +---------+
+>           |                           |   |         |
+>           |             INTA          |   |  GPIO   |
+>           |                           |   |         |
+>           +---------------------------+   +---------+
+>                          |   (vint)            |
+>                          |                     |
+>                         \|/                    |
+>           +---------------------------+        |
+>           |                           |<-------+
+>           |           INTR            |
+>           |                           |
+>           +---------------------------+
+>                          |
+>                          |
+>                         \|/ (gic irq)
+>           +---------------------------+
+>           |                           |
+>           |             GIC           |
+>           |                           |
+>           +---------------------------+
+> 
+> While at it, TISCI abstracts the handling of all above IRQ routes where
+> interrupt sources are not directly connected to host interrupt controller.
+> That would be configuration of Interrupt Aggregator and Interrupt Router.
+> 
+> This series adds support for:
+> - TISCI commands needed for IRQ configuration
+> - Interrupt Router(INTR) driver.
+> - Interrupt Aggregator(INTA) driver.
+> - Interrupt Aggregator MSI bus layer.
+> 
+> Marc,
+> 	As discussed offline, the firmware changes are going to come within
+> 	a day or so. These changes are tested against local binary which is
+> 	bound to release.
+> 
+> Boot Log: https://pastebin.ubuntu.com/p/YwprMKXdg4/
+> 
+> Changes since v7:
+> - Rebased on top of latest master.
+> - Each patch has respective changes mentioned.
+> 
+> Grygorii Strashko (1):
+>   firmware: ti_sci: Add support to get TISCI handle using of_phandle
+> 
+> Lokesh Vutla (12):
+>   firmware: ti_sci: Add support for RM core ops
+>   firmware: ti_sci: Add support for IRQ management
+>   firmware: ti_sci: Add helper apis to manage resources
+>   genirq: Introduce irq_chip_{request,release}_resource_parent() apis
+>   gpio: thunderx: Use the default parent apis for
+>     {request,release}_resources
+>   dt-bindings: irqchip: Introduce TISCI Interrupt router bindings
+>   irqchip: ti-sci-intr: Add support for Interrupt Router driver
+>   dt-bindings: irqchip: Introduce TISCI Interrupt Aggregator bindings
+>   irqchip: ti-sci-inta: Add support for Interrupt Aggregator driver
+>   soc: ti: Add MSI domain bus support for Interrupt Aggregator
+>   irqchip: ti-sci-inta: Add msi domain support
+>   arm64: arch_k3: Enable interrupt controller drivers
+> 
+> Peter Ujfalusi (1):
+>   firmware: ti_sci: Add RM mapping table for am654
+> 
+>  .../bindings/arm/keystone/ti,sci.txt          |   3 +-
+>  .../interrupt-controller/ti,sci-inta.txt      |  66 ++
+>  .../interrupt-controller/ti,sci-intr.txt      |  82 +++
+>  MAINTAINERS                                   |   6 +
+>  arch/arm64/Kconfig.platforms                  |   5 +
+>  drivers/firmware/ti_sci.c                     | 651 ++++++++++++++++++
+>  drivers/firmware/ti_sci.h                     | 102 +++
+>  drivers/gpio/gpio-thunderx.c                  |  16 +-
+>  drivers/irqchip/Kconfig                       |  23 +
+>  drivers/irqchip/Makefile                      |   2 +
+>  drivers/irqchip/irq-ti-sci-inta.c             | 615 +++++++++++++++++
+>  drivers/irqchip/irq-ti-sci-intr.c             | 275 ++++++++
+>  drivers/soc/ti/Kconfig                        |   6 +
+>  drivers/soc/ti/Makefile                       |   1 +
+>  drivers/soc/ti/ti_sci_inta_msi.c              | 146 ++++
+>  include/linux/irq.h                           |   2 +
+>  include/linux/irqdomain.h                     |   1 +
+>  include/linux/msi.h                           |  10 +
+>  include/linux/soc/ti/ti_sci_inta_msi.h        |  23 +
+>  include/linux/soc/ti/ti_sci_protocol.h        | 124 ++++
+>  kernel/irq/chip.c                             |  27 +
+>  21 files changed, 2173 insertions(+), 13 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
+>  create mode 100644 drivers/irqchip/irq-ti-sci-inta.c
+>  create mode 100644 drivers/irqchip/irq-ti-sci-intr.c
+>  create mode 100644 drivers/soc/ti/ti_sci_inta_msi.c
+>  create mode 100644 include/linux/soc/ti/ti_sci_inta_msi.h
 
+Lokesh,
 
-On 01-May-19 4:43 PM, Lorenzo Pieralisi wrote:
-> On Fri, Apr 26, 2019 at 03:22:19PM +0200, Thierry Reding wrote:
->> On Tue, Apr 23, 2019 at 02:57:57PM +0530, Manikanta Maddireddy wrote:
->>> This series of patches adds,
->>> - Tegra root port features like Gen2, AER, etc
->>> - Power and perf optimizations
->>> - Fixes like "power up sequence", "dev_err prints", etc
->>>
->>> This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
->>> based Jetson-TX1 and T124 based Jetson-TK1 platforms.
->>>
->>> TODO: I don't have T20 and T30 platforms to verify this series.
->>> Thierry has kindly agreed to verify this series on T20 and T30.
->> I tested this on TrimSlice and Beaver. next-20190426 boots via NFS on
->> both of those boards. Applying this series on top of next-20190426 works
->> on Beaver but does not work on TrimSlice. I'll see if I can bisect which
->> exact commit breaks this, but it seems like PCI accesses do work, since
->> I see the RTL8169 device being detected. But when the kernel tries to
->> send out DHCP requests, the packet transmission is never completed using
->> an interrupt, so maybe something interrupt related is broken.
-> I have marked this series as "deferred" in patchwork, more testing
-> needed from what you are reporting.
->
-> Thanks,
-> Lorenzo
+Thanks for having respun this quickly.
 
-Hi Lorenzo,
+I've applied the first 13 patches to irqchip-next (after tidying up some
+of the commit messages). I've left the last patch for armsoc to take,
+unless you guys insist on me taking it.
 
-Thierry found out that missing soc flag set in 18/28 patch caused the issue.
-He gave the simple patch to squash on top of 18/28.
-I am waiting for review on other patches, so please mark them New.
-If you prefer new version for the review, I can publish new version with the
-fix.
+If nothing horrible appears in -next tomorrow, I'll send the 5.2 PR with
+this series.
+
+Hopefully we won't see more of this madness any time soon... :-/
 
 Thanks,
-Manikanta
 
->> Thierry
->>
->>> V2 takes care of comments from Bjorn and Thierry.
->>>
->>> Manikanta Maddireddy (28):
->>>   soc/tegra: pmc: Export tegra_powergate_power_on()
->>>   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
->>>   PCI: tegra: Rearrange Tegra PCIe driver functions
->>>   PCI: tegra: Disable PCIe interrupts in runtime suspend
->>>   PCI: tegra: Fix PCIe host power up sequence
->>>   PCI: tegra: Add PCIe Gen2 link speed support
->>>   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
->>>   PCI: tegra: Program UPHY electrical settings for Tegra210
->>>   PCI: tegra: Enable opportunistic UpdateFC and ACK
->>>   PCI: tegra: Disable AFI dynamic clock gating
->>>   PCI: tegra: Process pending DLL transactions before entering L1 or L2
->>>   PCI: tegra: Enable PCIe xclk clock clamping
->>>   PCI: tegra: Increase the deskew retry time
->>>   PCI: tegra: Add SW fixup for RAW violations
->>>   PCI: tegra: Update flow control timer frequency in Tegra210
->>>   PCI: tegra: Set target speed as Gen1 before starting LTSSM
->>>   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
->>>   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
->>>   PCI: tegra: Change PRSNT_SENSE irq log to debug
->>>   PCI: tegra: Use legacy irq for port service drivers
->>>   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
->>>   PCI: tegra: Access endpoint config only if PCIe link is up
->>>   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
->>>   arm64: tegra: Add PEX DPD states as pinctrl properties
->>>   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
->>>   dt-bindings: pci: tegra: Document reset-gpio optional prop
->>>   PCI: tegra: Add support for GPIO based PCIe reset
->>>   PCI: tegra: Change link retry log level to info
->>>
->>>  .../bindings/pci/nvidia,tegra20-pcie.txt      |  13 +
->>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
->>>  drivers/pci/controller/pci-tegra.c            | 605 +++++++++++++++---
->>>  drivers/soc/tegra/pmc.c                       |   1 +
->>>  4 files changed, 558 insertions(+), 80 deletions(-)
->>>
->>> -- 
->>> 2.17.1
->>>
->
-
+	M.
+-- 
+Jazz is not dead. It just smells funny...
