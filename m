@@ -2,77 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38A9F10CA8
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 20:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A5410CC2
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 20:38:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726079AbfEASXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 14:23:37 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36568 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726004AbfEASXh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 14:23:37 -0400
-Received: by mail-oi1-f194.google.com with SMTP id l203so14483727oia.3;
-        Wed, 01 May 2019 11:23:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Pv0IhTFTSijdFF5H0HVxVYUnzdKwUwaNHWOJX4VCglE=;
-        b=Li4BCscnvgDtdTK6M7nE7tsP7WouSAAWwuBzxr/bRZas7gtI6phgwJA8ki+O0vYbot
-         NDru+DQLF6pSeyIrbGf2qF089JXa0r+JdHwsV3bSMVn6+LqjbrbKoDX4FB3X2HsrlhOK
-         Mun2k2gD8x3SUh/q7wdpTfvJvEcvEzvCHKLxvu22HlBJ00cnWywelIjsXivVOAgxMvmB
-         XuBKYN/X1qVdrkwMkURV72x9tX6bP6yXtjlLn4AfD1l8/MmVD9BmrqQ49F4CozuyXaKl
-         JgQqMswK0IB+AGSiOdnl5yc7eFL24+kJAkRBSuUiNfZqQI4Cmt7QdZEdWA7qNoqUUttD
-         QP1g==
-X-Gm-Message-State: APjAAAXIgUdn6hbP34HxjqPPDPyRR2SV58f6gICoLypARKtKiaW+W1sT
-        /0dO2BhB+lSdPQ1ezWD+4VrP3do=
-X-Google-Smtp-Source: APXvYqxoCvQozMaslittCvrP9R6qGIuhiVa/yQSoadZzV5EOzdUkqgb6pP0GUZ2zxFyFYSyzkAqaXg==
-X-Received: by 2002:aca:643:: with SMTP id 64mr5718968oig.29.1556735015177;
-        Wed, 01 May 2019 11:23:35 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id c17sm8533508otm.71.2019.05.01.11.23.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 01 May 2019 11:23:33 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-        maxime.ripard@bootlin.com, grant.likely@arm.com
-Subject: [PATCH] dt-bindings: Update schema project location to devicetree.org github group
-Date:   Wed,  1 May 2019 13:23:32 -0500
-Message-Id: <20190501182332.29094-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1726069AbfEASiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 14:38:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54822 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726077AbfEASiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 May 2019 14:38:23 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2B40D2085A;
+        Wed,  1 May 2019 18:38:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556735902;
+        bh=v72lZ0mNNyG4uZ5ndNBI1kcDK5K/AMuSayYUTPc3KmY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IAL62/s0AAB91djQRkfxl70b/gOmJnv3jihZ1jK0iyjVPntL2b24zn1mzkEMsVTvu
+         FW7FaNNXrHKxQaWphgz44g+oqLXJ6x07Xm7gHMgZ6NAaby7oxzl1OMCBnfaltWubc3
+         vt7IQggy57Xrq/zwJk1AZHejYtMAoJtsFQd87dHg=
+Received: by mail-qt1-f180.google.com with SMTP id j6so21010267qtq.1;
+        Wed, 01 May 2019 11:38:22 -0700 (PDT)
+X-Gm-Message-State: APjAAAViZ39gX1OXbRbgQKWwIX6i9tf/xq0vQsb4kCJslfKMjVOuzwn0
+        38ZHlgnU/ayqa8YX443ngt0fUTtkD9LRTaZPUg==
+X-Google-Smtp-Source: APXvYqzv1teS15/DSUMuFzoBJjdr3g1ZKU5TuoEQs8UKcGWGgtMpNz17lIOdTkhgDQOXQk//a7aRWJfXCsqoDUinmbw=
+X-Received: by 2002:ac8:610f:: with SMTP id a15mr51742092qtm.257.1556735901386;
+ Wed, 01 May 2019 11:38:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190428024847.5046-1-peter.chen@nxp.com> <20190428024847.5046-7-peter.chen@nxp.com>
+In-Reply-To: <20190428024847.5046-7-peter.chen@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 1 May 2019 13:38:09 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLPK8kuYTT7ekZbAzywp2kr9xKA0_X3BAqVn5hShbPM+w@mail.gmail.com>
+Message-ID: <CAL_JsqLPK8kuYTT7ekZbAzywp2kr9xKA0_X3BAqVn5hShbPM+w@mail.gmail.com>
+Subject: Re: [PATCH 6/7] ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+To:     Peter Chen <peter.chen@nxp.com>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT schema tools are moving from my personal GH repo to the
-devicetree.org group on GH. The new location is here:
+On Sat, Apr 27, 2019 at 9:51 PM Peter Chen <peter.chen@nxp.com> wrote:
+>
+> Add imx7ulp USBOTG1 support.
+>
+> Signed-off-by: Peter Chen <peter.chen@nxp.com>
+> ---
+>  arch/arm/boot/dts/imx7ulp.dtsi | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
+> index fca6e50f37c8..e2944f98eac6 100644
+> --- a/arch/arm/boot/dts/imx7ulp.dtsi
+> +++ b/arch/arm/boot/dts/imx7ulp.dtsi
+> @@ -30,6 +30,7 @@
+>                 serial1 = &lpuart5;
+>                 serial2 = &lpuart6;
+>                 serial3 = &lpuart7;
+> +               usbphy0 = &usbphy1;
 
-https://github.com/devicetree-org/dt-schema.git
+Drop this. You shouldn't need an alias.
 
-The old repo will be kept as a mirror.
+>         };
+>
+>         cpus {
+> @@ -133,6 +134,35 @@
+>                         clock-names = "ipg", "per";
+>                 };
+>
+> +               usbotg1: usb@40330000 {
+> +                       compatible = "fsl,imx7ulp-usb", "fsl,imx6ul-usb",
+> +                               "fsl,imx27-usb";
+> +                       reg = <0x40330000 0x200>;
+> +                       interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&pcc2 IMX7ULP_CLK_USB0>;
+> +                       fsl,usbphy = <&usbphy1>;
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/writing-schema.md | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Don't use this for new users. Use the phy binding instead.
 
-diff --git a/Documentation/devicetree/writing-schema.md b/Documentation/devicetree/writing-schema.md
-index a3652d33a48f..dc032db36262 100644
---- a/Documentation/devicetree/writing-schema.md
-+++ b/Documentation/devicetree/writing-schema.md
-@@ -97,7 +97,7 @@ The DT schema project must be installed in order to validate the DT schema
- binding documents and validate DTS files using the DT schema. The DT schema
- project can be installed with pip:
- 
--`pip3 install git+https://github.com/robherring/yaml-bindings.git@master`
-+`pip3 install git+https://github.com/devicetree-org/dt-schema.git@master`
- 
- dtc must also be built with YAML output support enabled. This requires that
- libyaml and its headers be installed on the host system.
--- 
-2.20.1
-
+> +                       fsl,usbmisc = <&usbmisc1 0>;
+> +                       ahb-burst-config = <0x0>;
+> +                       tx-burst-size-dword = <0x8>;
+> +                       rx-burst-size-dword = <0x8>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               usbmisc1: usbmisc@40330200 {
+> +                       #index-cells = <1>;
+> +                       compatible = "fsl,imx7ulp-usbmisc", "fsl,imx7d-usbmisc",
+> +                               "fsl,imx6q-usbmisc";
+> +                       reg = <0x40330200 0x200>;
+> +               };
+> +
+> +               usbphy1: usbphy@0x40350000 {
+> +                       compatible = "fsl,imx7ulp-usbphy",
+> +                               "fsl,imx6ul-usbphy", "fsl,imx23-usbphy";
+> +                       reg = <0x40350000 0x1000>;
+> +                       interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&pcc2 IMX7ULP_CLK_USB_PHY>;
+> +               };
+> +
+>                 usdhc0: mmc@40370000 {
+>                         compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
+>                         reg = <0x40370000 0x10000>;
+> --
+> 2.14.1
+>
