@@ -2,82 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD2A10F0B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 00:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D1DE10F15
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 00:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726166AbfEAWiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 18:38:13 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:36625 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbfEAWiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 18:38:13 -0400
-Received: by mail-oi1-f193.google.com with SMTP id l203so245441oia.3
-        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 15:38:13 -0700 (PDT)
+        id S1726145AbfEAWpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 18:45:15 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40902 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726126AbfEAWpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 18:45:15 -0400
+Received: by mail-ot1-f67.google.com with SMTP id w6so379957otl.7;
+        Wed, 01 May 2019 15:45:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=992HzkidJ9UT5O+EyL89oV2jOGJAbAa3bn9k5IbT7BM=;
-        b=H6gMgnU5sVVywoC9QFj/4TSTLBg5q/mR77pjbzAPHVRKxQI/4oiuiYF8t+o4/ZBeGd
-         4RSFG3mkeNhcc/3KdwrsH+JOY+mBjrB6lHITo12LWosyGfKpS/kfCU/5p+kdyo89IN5p
-         EGMWHDrCKFyvk2Y1IU7fMXpSJI03Q5H6khOWKkrSh/oFL9GZT6vzjKxF2FnVx9qeqfYT
-         dfiF8D0EEwHXm5kNzsu3YoCs8VBjOaZtbYo29n1pIjq+U5Z43IGRaU8gBYzaVVWpImsX
-         cbvwa69eTU+FDo2HnYaMkT1qbI5ZOm0N8aJobWTlpHwVUq7pyqqUI+VTahxI7cq6hXVJ
-         TVWA==
-X-Gm-Message-State: APjAAAWmGvO/HIFy/sxgE+YPshfHfxSbzpd9YNOjcS3nV3P3CNFwOg0T
-        2aSizsPoFT4Qz7wzARbGFhHL91U=
-X-Google-Smtp-Source: APXvYqzvStnPWlItGMyoBEFPrjacCp0Rn+gtv9gZjUkZ8LAwtao74bZCb7GwRtyDAr5RdwgghsyzOg==
-X-Received: by 2002:aca:580a:: with SMTP id m10mr495607oib.16.1556750292775;
-        Wed, 01 May 2019 15:38:12 -0700 (PDT)
+        bh=b4eTdXWrNh3DXxF20Y/xFu+EwX4anaVGTC9t/+J/+Ag=;
+        b=mzlWIHz6kQ1fcbhhf1MuI1972wKcFJzu/wlxm76ZqqCtHDXyHPZggFI0mnYoqAxYMw
+         0CoHHdzXo8Nvoc9m6kJdQgceXqv9xPBFqboW3K2eIRGYCz/DwfDYBsNdwWF7tk5NpBFx
+         wFOHX0a2BHYEfwSRe7REis/+aWc79qd3Aro9bcFpyv3jXrlFS27SfG2876uBwvoQ/zB0
+         cNZYXZRUlmzPVuzk+QPbjNlJRntX+Sv/+ed/YjWWVlnpHFEfo5xeLI2U9upbC4ve2atk
+         cNxUZaDNFjhfMtNKxDI3u2NecDQECV5ecX9Lb0nZIiQYNl32HLqj5Bdu/Zi2x9kptnKK
+         i2kw==
+X-Gm-Message-State: APjAAAXu1BolCLGHa40dHZBVWE63Q0j+Ysl0EMTFog6KaXf7hEaC+n5o
+        ZoIxJvft5hRx9f4L75oWqg==
+X-Google-Smtp-Source: APXvYqx5w+AQiMs8ivRbF7xmZwHoV0ksJWr+KP9nlrArRn0R40gUkAg8crBaRaZ0pNk6tcRrvUCV1A==
+X-Received: by 2002:a9d:7401:: with SMTP id n1mr329353otk.226.1556750714180;
+        Wed, 01 May 2019 15:45:14 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n70sm6251064ota.65.2019.05.01.15.38.11
+        by smtp.gmail.com with ESMTPSA id w5sm10599530oib.6.2019.05.01.15.45.12
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 15:38:11 -0700 (PDT)
-Date:   Wed, 1 May 2019 17:38:11 -0500
+        Wed, 01 May 2019 15:45:13 -0700 (PDT)
+Date:   Wed, 1 May 2019 17:45:12 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
-        Wen He <wen.he_1@nxp.com>
-Subject: Re: [v4] arm64: dts: ls1028a: Add properties for Mali DP500 node
-Message-ID: <20190501223811.GA14221@bogus>
-References: <20190422101941.11335-1-wen.he_1@nxp.com>
+To:     Jerry-ch Chen <Jerry-Ch.chen@mediatek.com>
+Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
+        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
+        sj.huang@mediatek.com, christie.yu@mediatek.com,
+        holmes.chiou@mediatek.com, frederic.chen@mediatek.com,
+        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
+        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, shik@chromium.org,
+        suleiman@chromium.org
+Subject: Re: [RFC PATCH V1 1/6] dt-bindings: mt8183: Add binding for FD
+ shared memory
+Message-ID: <20190501224512.GA4287@bogus>
+References: <20190423104505.38778-1-Jerry-Ch.chen@mediatek.com>
+ <20190423104505.38778-2-Jerry-Ch.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190422101941.11335-1-wen.he_1@nxp.com>
+In-Reply-To: <20190423104505.38778-2-Jerry-Ch.chen@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Apr 2019 10:18:10 +0000, Wen He wrote:
-> The LS1028A has a LCD controller and Displayport interface that
-> connects to eDP and Displayport connectors on the LS1028A board.
+On Tue, Apr 23, 2019 at 06:45:00PM +0800, Jerry-ch Chen wrote:
+> From: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
 > 
-> This patch enables the LCD controller driver on the LS1028A.
+> This patch adds the binding for describing the shared memory
+> used to exchange meta data between the co-processor and Face
+> Detection (FD) unit of the camera system on Mediatek SoCs.
 > 
-> Signed-off-by: Alison Wang <alison.wang@nxp.com>
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
-> Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+> Signed-off-by: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
 > ---
-> change in v4:
->         - using 'malidp0:display' instead of the node name
->         'display0:malidp'.
-> change in v3:
->         - using 'display0' instead of node name 'display-0' to
->         fixed syntax error.
+>  .../mediatek,reserve-memory-fd_smem.txt       | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-fd_smem.txt
 > 
-> change in v2:
->         - renamed node name 'dp0' to be generic name 'display-0'.
->         - replace clk name 'xxclk' to 'clock-xx'.
->         - add newline between properties and child node.
-> 
->  .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-fd_smem.txt b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-fd_smem.txt
+> new file mode 100644
+> index 000000000000..52ae5071e238
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-fd_smem.txt
+> @@ -0,0 +1,44 @@
+> +Mediatek FD Shared Memory binding
+> +
+> +This binding describes the shared memory, which serves the purpose of
+> +describing the shared memory region used to exchange data between Face
+> +Detection hardware (FD) and co-processor in Mediatek SoCs.
+> +
+> +The co-processor doesn't have the iommu so we need to use the physical
+> +address to access the shared buffer in the firmware.
+> +
+> +The Face Detection hardware (FD) can access memory through mt8183 IOMMU so
+> +it can use dma address to access the memory region.
+> +(See iommu/mediatek,iommu.txt for the detailed description of Mediatek IOMMU)
+> +
+> +
+> +Required properties:
+> +
+> +- compatible: must be "mediatek,reserve-memory-fd_smem"
+> +
+> +- reg: required for static allocation (see reserved-memory.txt for
+> +  the detailed usage)
+> +
+> +- alloc-range: required for dynamic allocation. The range must
+> +  between 0x00000400 and 0x100000000 due to the co-processer's
+> +  addressing limitation
+> +
+> +- size: required for dynamic allocation. The unit is bytes.
+> +  for Face Detection Unit, you need 1 MB at least.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+What's the most?
+
+I don't think you really need reserved memory here if you don't need a 
+fixed address. The size is not that big that a contiguous allocation 
+shouldn't be a problem (though with IOMMU you don't even need that). 
+'dma-ranges' can be used to set the kernel's dma mask and ensure a 
+range below 0x10000000.
+
+Rob
