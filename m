@@ -2,234 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B38D7107AC
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 13:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F239107CD
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 14:15:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726243AbfEAL6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 07:58:49 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:58568 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726165AbfEAL6s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 May 2019 07:58:48 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9F2E080D;
-        Wed,  1 May 2019 04:58:47 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A67D3F5C1;
-        Wed,  1 May 2019 04:58:45 -0700 (PDT)
-Subject: Re: [PATCH v8 00/14] Add support for TISCI Interrupt controller
- drivers
-To:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        tglx@linutronix.de, jason@lakedaemon.net
-Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, Tony Lindgren <tony@atomide.com>,
-        linus.walleij@linaro.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190430101230.21794-1-lokeshvutla@ti.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
-Organization: ARM Ltd
-Message-ID: <30f5c877-a4dc-8ad9-0ad0-c172a60dc853@arm.com>
-Date:   Wed, 1 May 2019 12:58:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726083AbfEAMPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 08:15:17 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:35597 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725971AbfEAMPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 08:15:17 -0400
+Received: by mail-pf1-f196.google.com with SMTP id t21so8543178pfh.2
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 05:15:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ImxxJmJZjyprEUOS1cjM4Ta2GXS4CI4CNxI78EJ27HQ=;
+        b=BwOW8AiQot0lzdxqOFplQZcvP1cnjIsyBA+ciOZuAAZqCqvmuxA+r809VDSoc6Nxm+
+         DgK9efe9hfbxEWRzzK61cZ9vBwUIZxJFiII9DwHZIJ8QD4wL5C+d0hZd/e6PY3TO6BS0
+         kItv6s2QKpCPJF6QwRzs5Xaf0efnBpPc2hlNc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ImxxJmJZjyprEUOS1cjM4Ta2GXS4CI4CNxI78EJ27HQ=;
+        b=Tp4+fLlfomMg50GFb4B0WZtu8N5CiIEtIuREzeUTOQTATGAbZT//c3JGcmu/0kVB7S
+         95BUAL+bv+qKEG88U1kuQZfAG02tR40ucHo3HmuP5uQqUk5NRWL0jSm2wGoRVALUr/B0
+         E0oPhDLkdc/a3w8K/Fg0WXdxDTGqbqtlWLT8flmvwR8tUNWxNaO5XPD6oBeBb6JgBi5N
+         e3m5DRBmL2sxSydtvbZQg+8aETSSDxkNaeaN9JdgtWtNROPI+QZoXPC/UaowtYra1ygv
+         m5iudp1TSXCjOQf2OFlURMmDRPtkcQoNM7g7v5bB/dIaD0JX+6iHkmNb4N0bVuOJOGdn
+         aHVg==
+X-Gm-Message-State: APjAAAU0mlHJYje5m+syJASkbxPq8jAhYlcGoWkM327TJZvKpx6JghTr
+        wOYYZwfCKAc8h78skFj+lTBrTg==
+X-Google-Smtp-Source: APXvYqyNB0l+GQo7QXQib2EIHiEhvT+0vDtje0/2NwWvm1V+uu1x/xfQ0ZhL3ZmGNupLIEaeNg+Zcw==
+X-Received: by 2002:a63:dd58:: with SMTP id g24mr44137179pgj.161.1556712916601;
+        Wed, 01 May 2019 05:15:16 -0700 (PDT)
+Received: from localhost.localdomain ([183.82.229.33])
+        by smtp.gmail.com with ESMTPSA id e193sm71082978pgc.53.2019.05.01.05.15.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 May 2019 05:15:15 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/panel: simple: Add FriendlyELEC HD702E 800x1280 LCD panel
+Date:   Wed,  1 May 2019 17:44:47 +0530
+Message-Id: <20190501121448.3812-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 MIME-Version: 1.0
-In-Reply-To: <20190430101230.21794-1-lokeshvutla@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/04/2019 11:12, Lokesh Vutla wrote:
-> TI AM65x SoC based on K3 architecture introduced support for Events
-> which are message based interrupts with minimal latency. These events
-> are not compatible with regular interrupts and are valid only through
-> an event transport lane. An Interrupt Aggregator(INTA) is introduced
-> to convert these events to interrupts. INTA can also group 64 events
-> into a single interrupt. Now the SoC has many peripherals and a large
-> number of event sources (time sync or DMA), the use of events is
-> completely dependent on a user's specific application, which drives a
-> need for maximum flexibility in which event sources are used in the
-> system. It is also completely up to software control as to how the
-> events are serviced.
-> 
-> Because of the huge flexibility there are certain standard peripherals
-> (like GPIO etc)where all interrupts cannot be directly corrected to host
-> interrupt controller. For this purpose, Interrupt Router(INTR) is
-> introduced in the SoC. INTR just does a classic interrupt redirection.
-> 
-> So the SoC has 3 types of interrupt controllers:
-> - GIC500
-> - Interrupt Router
-> - Interrupt Aggregator
-> 
-> Below is a diagrammatic view of how SoC integration of these interrupt
-> controllers:(https://pastebin.ubuntu.com/p/9ngV3jdGj2/)
-> 
-> Device Index-x               Device Index-y
->            |                         |
->            |                         |
->                       ....
->             \                       /
->              \                     /
->               \  (global events)  /
->           +---------------------------+   +---------+
->           |                           |   |         |
->           |             INTA          |   |  GPIO   |
->           |                           |   |         |
->           +---------------------------+   +---------+
->                          |   (vint)            |
->                          |                     |
->                         \|/                    |
->           +---------------------------+        |
->           |                           |<-------+
->           |           INTR            |
->           |                           |
->           +---------------------------+
->                          |
->                          |
->                         \|/ (gic irq)
->           +---------------------------+
->           |                           |
->           |             GIC           |
->           |                           |
->           +---------------------------+
-> 
-> While at it, TISCI abstracts the handling of all above IRQ routes where
-> interrupt sources are not directly connected to host interrupt controller.
-> That would be configuration of Interrupt Aggregator and Interrupt Router.
-> 
-> This series adds support for:
-> - TISCI commands needed for IRQ configuration
-> - Interrupt Router(INTR) driver.
-> - Interrupt Aggregator(INTA) driver.
-> - Interrupt Aggregator MSI bus layer.
-> 
-> Marc,
-> 	As discussed offline, the firmware changes are going to come within
-> 	a day or so. These changes are tested against local binary which is
-> 	bound to release.
-> 
-> Boot Log: https://pastebin.ubuntu.com/p/YwprMKXdg4/
-> 
-> Changes since v7:
-> - Rebased on top of latest master.
-> - Each patch has respective changes mentioned.
-> 
-> Grygorii Strashko (1):
->   firmware: ti_sci: Add support to get TISCI handle using of_phandle
-> 
-> Lokesh Vutla (12):
->   firmware: ti_sci: Add support for RM core ops
->   firmware: ti_sci: Add support for IRQ management
->   firmware: ti_sci: Add helper apis to manage resources
->   genirq: Introduce irq_chip_{request,release}_resource_parent() apis
->   gpio: thunderx: Use the default parent apis for
->     {request,release}_resources
->   dt-bindings: irqchip: Introduce TISCI Interrupt router bindings
->   irqchip: ti-sci-intr: Add support for Interrupt Router driver
->   dt-bindings: irqchip: Introduce TISCI Interrupt Aggregator bindings
->   irqchip: ti-sci-inta: Add support for Interrupt Aggregator driver
->   soc: ti: Add MSI domain bus support for Interrupt Aggregator
->   irqchip: ti-sci-inta: Add msi domain support
->   arm64: arch_k3: Enable interrupt controller drivers
-> 
-> Peter Ujfalusi (1):
->   firmware: ti_sci: Add RM mapping table for am654
-> 
->  .../bindings/arm/keystone/ti,sci.txt          |   3 +-
->  .../interrupt-controller/ti,sci-inta.txt      |  66 ++
->  .../interrupt-controller/ti,sci-intr.txt      |  82 +++
->  MAINTAINERS                                   |   6 +
->  arch/arm64/Kconfig.platforms                  |   5 +
->  drivers/firmware/ti_sci.c                     | 651 ++++++++++++++++++
->  drivers/firmware/ti_sci.h                     | 102 +++
->  drivers/gpio/gpio-thunderx.c                  |  16 +-
->  drivers/irqchip/Kconfig                       |  23 +
->  drivers/irqchip/Makefile                      |   2 +
->  drivers/irqchip/irq-ti-sci-inta.c             | 615 +++++++++++++++++
->  drivers/irqchip/irq-ti-sci-intr.c             | 275 ++++++++
->  drivers/soc/ti/Kconfig                        |   6 +
->  drivers/soc/ti/Makefile                       |   1 +
->  drivers/soc/ti/ti_sci_inta_msi.c              | 146 ++++
->  include/linux/irq.h                           |   2 +
->  include/linux/irqdomain.h                     |   1 +
->  include/linux/msi.h                           |  10 +
->  include/linux/soc/ti/ti_sci_inta_msi.h        |  23 +
->  include/linux/soc/ti/ti_sci_protocol.h        | 124 ++++
->  kernel/irq/chip.c                             |  27 +
->  21 files changed, 2173 insertions(+), 13 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.txt
->  create mode 100644 drivers/irqchip/irq-ti-sci-inta.c
->  create mode 100644 drivers/irqchip/irq-ti-sci-intr.c
->  create mode 100644 drivers/soc/ti/ti_sci_inta_msi.c
->  create mode 100644 include/linux/soc/ti/ti_sci_inta_msi.h
+HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
+resolution. It has built in Goodix, GT9271 captive touchscreen
+with backlight adjustable via PWM.
 
-Lokesh,
+Add support for it.
 
-Thanks for having respun this quickly.
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ .../display/panel/friendlyarm,hd702e.txt      | 29 +++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          | 26 +++++++++++++++++
+ 2 files changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
 
-I've applied the first 13 patches to irqchip-next (after tidying up some
-of the commit messages). I've left the last patch for armsoc to take,
-unless you guys insist on me taking it.
-
-If nothing horrible appears in -next tomorrow, I'll send the 5.2 PR with
-this series.
-
-Hopefully we won't see more of this madness any time soon... :-/
-
-Thanks,
-
-	M.
+diff --git a/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
+new file mode 100644
+index 000000000000..67349d7f79be
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
+@@ -0,0 +1,29 @@
++FriendlyELEC HD702E 800x1280 LCD panel
++
++HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
++resolution. It has built in Goodix, GT9271 captive touchscreen
++with backlight adjustable via PWM.
++
++Required properties:
++- compatible: should be "friendlyarm,hd702e"
++- power-supply: regulator to provide the supply voltage
++
++Optional properties:
++- backlight: phandle of the backlight device attached to the panel
++
++Optional nodes:
++- Video port for LCD panel input.
++
++Example:
++
++	panel {
++		compatible ="friendlyarm,hd702e";
++		backlight = <&backlight>;
++		power-supply = <&vcc3v3_sys>;
++
++		port {
++			panel_in_edp: endpoint {
++				remote-endpoint = <&edp_out_panel>;
++			};
++		};
++	};
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 9e8218f6a3f2..9db3c0c65ef2 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -1184,6 +1184,29 @@ static const struct panel_desc foxlink_fl500wvr00_a0t = {
+ 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+ };
+ 
++static const struct drm_display_mode friendlyarm_hd702e_mode = {
++	.clock		= 67185,
++	.hdisplay	= 800,
++	.hsync_start	= 800 + 20,
++	.hsync_end	= 800 + 20 + 24,
++	.htotal		= 800 + 20 + 24 + 20,
++	.vdisplay	= 1280,
++	.vsync_start	= 1280 + 4,
++	.vsync_end	= 1280 + 4 + 8,
++	.vtotal		= 1280 + 4 + 8 + 4,
++	.vrefresh	= 60,
++	.flags 		= DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
++};
++
++static const struct panel_desc friendlyarm_hd702e = {
++	.modes = &friendlyarm_hd702e_mode,
++	.num_modes = 1,
++	.size = {
++		.width	= 94,
++		.height	= 151,
++	},
++};
++
+ static const struct drm_display_mode giantplus_gpg482739qs5_mode = {
+ 	.clock = 9000,
+ 	.hdisplay = 480,
+@@ -2634,6 +2657,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "edt,etm0700g0edh6",
+ 		.data = &edt_etm0700g0bdh6,
++	}, {
++		.compatible = "friendlyarm,hd702e",
++		.data = &friendlyarm_hd702e,
+ 	}, {
+ 		.compatible = "foxlink,fl500wvr00-a0t",
+ 		.data = &foxlink_fl500wvr00_a0t,
 -- 
-Jazz is not dead. It just smells funny...
+2.18.0.321.gffc6fa0e3
+
