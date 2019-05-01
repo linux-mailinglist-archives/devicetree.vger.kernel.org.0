@@ -2,86 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0454210D9B
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 21:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E132F10DA0
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 22:01:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726124AbfEAT6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 15:58:07 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:40258 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbfEAT6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 15:58:06 -0400
-Received: by mail-ot1-f67.google.com with SMTP id w6so48804otl.7;
-        Wed, 01 May 2019 12:58:06 -0700 (PDT)
+        id S1726004AbfEAUBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 16:01:07 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34441 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726106AbfEAUBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 16:01:07 -0400
+Received: by mail-ot1-f66.google.com with SMTP id n15so83211ota.1;
+        Wed, 01 May 2019 13:01:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KVYxrZh/5jWsZtB/YPLSce7+yNxAb7jrvHpWZlGvrBA=;
-        b=p1VdhKn9XfX5Qz3vmfSGK2kmmnywg+RfRh8f+DHh62K2rXnzFCoPFkR515BQMnpCIT
-         9tk9B39OlxJ0ULoYUWo9wm3e9vv/qe77Q6SSHoXd/KimDUVgddx4ZpHPz7EgNxCXrwFu
-         iZb9sVOhJg0o4EwsNedsnDw6z4TcjJRM889qIh8aQmsFs2i1YI1uh6tUkrRXLRkUztbx
-         5grKFIPORFY2aiZAXwrTK9m4mVCtb8+VLNmXTvmmWmAQ82lh1VD1bTql09niHfRmvB08
-         JSUNrNFxtbmW4Uh6Ph5iL5Bx2wb4Ek7g6NKWI9OTIqaK2qFNq6pn1e6pkih1/sswl9QK
-         B8jw==
-X-Gm-Message-State: APjAAAV4deMlN0PDMYZvbHxIRak/f/e0KNQs1w+Y1tlUMoPy/3W9e6Bu
-        bF5ohcNQSJhTMxq1F/C2qw==
-X-Google-Smtp-Source: APXvYqyIhkEs42x21W9EtsXuim9fVAX29ijHpLJgaUrpTWnngVUjHvnzV7+kw2+N6rASSbJkdawZMA==
-X-Received: by 2002:a05:6830:2092:: with SMTP id y18mr992445otq.319.1556740685958;
-        Wed, 01 May 2019 12:58:05 -0700 (PDT)
+        bh=HxbNQi9DeZ2IJLgdIUVTw8HAwd2FcPK6Vz/jlq7BRoc=;
+        b=qWYrQxsnaeocSKQFVcRphBkA+vycl3wfxbMvcbh6w51iBZqqrzHsnlfDrmXw4HeUlP
+         gdNWtOFltDo27ymGE0JLiSKjMG2Lim8qYypZUbCbjAeh9MblDhIyb/rTep0D7526Tys/
+         iICmLFmBS9dJYCHZ3L9lB0DMHCwfQsrBafFdqrNzMG/WZS1zCaN7vdFp8yHq/lcw6vh4
+         2afxJkJeVtUQ+fV3UVd1UpEt6lRzSOzfU6u+kwAq5rqKhDIn4qWpNp8dnNcehjmY06bg
+         9+OpjtWXx6gI9R90su2E3HYTJMy/RDVteapxetfzpYYFFmmVGCCUa2sE4SkBnsFaVlDf
+         4uAg==
+X-Gm-Message-State: APjAAAUdrXzVuW576feo8uN1wa3bf0EnyYgEvoTMZmY+G7tNDfRgXIIn
+        6HQD9Ai7oga6j+FXKgGdfg==
+X-Google-Smtp-Source: APXvYqzcF2UnIXneOHc3vVzJEv6m01JtjNnKY2BTBLXgguBiPwEBqQ+LDGuHzLgGqqLZG3bvV/MztA==
+X-Received: by 2002:a9d:2066:: with SMTP id n93mr14060248ota.193.1556740866212;
+        Wed, 01 May 2019 13:01:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i11sm16004943otl.27.2019.05.01.12.58.05
+        by smtp.gmail.com with ESMTPSA id r4sm16901646oia.2.2019.05.01.13.01.04
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 12:58:05 -0700 (PDT)
-Date:   Wed, 1 May 2019 14:58:04 -0500
+        Wed, 01 May 2019 13:01:04 -0700 (PDT)
+Date:   Wed, 1 May 2019 15:01:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     thierry.reding@gmail.com, bhelgaas@google.com,
-        mark.rutland@arm.com, jonathanh@nvidia.com,
-        lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 26/28] dt-bindings: pci: tegra: Document reset-gpio
- optional prop
-Message-ID: <20190501195804.GA16435@bogus>
-References: <20190423092825.759-1-mmaddireddy@nvidia.com>
- <20190423092825.759-27-mmaddireddy@nvidia.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        baylibre-upstreaming@groups.io,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-pwm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: Update bindings for the Meson
+ G12A Family
+Message-ID: <20190501200104.GA29281@bogus>
+References: <20190423133646.5705-1-narmstrong@baylibre.com>
+ <20190423133646.5705-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190423092825.759-27-mmaddireddy@nvidia.com>
+In-Reply-To: <20190423133646.5705-2-narmstrong@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 23, 2019 at 02:58:23PM +0530, Manikanta Maddireddy wrote:
-> Document "reset-gpio" optional property which supports GPIO based PERST#
-> signal.
+On Tue, 23 Apr 2019 15:36:44 +0200, Neil Armstrong wrote:
+> Update the doc to explicitly support Meson G12A Family.
+> The 2 first (A & B) AO PWM uses different clock source than the last 2
+> (C & D) AO PWM modules, thus we need to differentiate them.
 > 
-> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> V2: Using standard "reset-gpio" property
+>  Documentation/devicetree/bindings/pwm/pwm-meson.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
->  .../devicetree/bindings/pci/nvidia,tegra20-pcie.txt          | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt b/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> index 7939bca47861..4e75e017f660 100644
-> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> @@ -162,6 +162,10 @@ Required properties:
->    - Root port 0 uses 4 lanes, root port 1 is unused.
->    - Both root ports use 2 lanes.
->  
-> +Optional properties:
-> +- reset-gpio: If GPIO is used as PERST# signal instead of available
-> +  SFIO, add this property with phandle to GPIO controller and GPIO number.
 
-'reset-gpios' is the preferred form.
-
-This is already defined in several other drivers. Perhaps document in a 
-common location and also parse the property in common code.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
