@@ -2,167 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDD010B4A
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 18:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1B710BA0
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 18:54:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfEAQ1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 12:27:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726388AbfEAQ1P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 May 2019 12:27:15 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D2CA520835;
-        Wed,  1 May 2019 16:27:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556728034;
-        bh=QNpnCPkV3/b0tnrMUodSGF1+h/20QEARntDWcAUOpKM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sqp5SVDa4nhuGj8W5aMwN2LXkCdkQZqPMRHJ0VE6EbJWrWjaF0XZGB7QCW274ngeN
-         zt8SRq8ojVn1IhRh/oZ3E0Wy07Izd3E5uDkZWFr/uBGJsx4yPe5DgRGTm9sOupSDwM
-         ntW4IqK7hZ0hGVZgH9EWQzCtWQeGNe8R7Kt7YyZc=
-Received: by mail-qk1-f169.google.com with SMTP id d5so10443998qko.12;
-        Wed, 01 May 2019 09:27:13 -0700 (PDT)
-X-Gm-Message-State: APjAAAW4DateloU5ER4cMe3XJxfJjHjGZTmVwvD/o38ts8iLpVZFsGff
-        T4iT3mnuLUigZU3lOHwcg0JPUoolr1VqZA+U3Q==
-X-Google-Smtp-Source: APXvYqyCXQr3u7uAxcUVOILBuMuhFCX+sPtcLyuqXIgJyVLjwYMn8i16UWe/OA76g5f5zMY/VN+/wMpT65IW9JfEWjg=
-X-Received: by 2002:a37:4711:: with SMTP id u17mr19046164qka.326.1556728033039;
- Wed, 01 May 2019 09:27:13 -0700 (PDT)
+        id S1726533AbfEAQyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 12:54:07 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:42202 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbfEAQyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 12:54:06 -0400
+Received: by mail-pf1-f193.google.com with SMTP id w25so8838875pfi.9
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 09:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xONlzx3IaXMZ6M2dIMHdENsla+SllYiw67kc5eZCItg=;
+        b=mdmHe26OBi9kOgFFLbKVTkeFrr/oF7ylBvU855Q+odT/xOzuTNul9rItz3QAEJD0Oe
+         IYQEGUcYenG1Hvwks5L36dSwARhC5uiRVulTqgCNAuiBvmJ86HlXK9xxNZ4mc3xI/TOh
+         m0ZYdFFI2iGNENCIsW+jnZIjhpRhyBOyXL9R9qgx/iPr0MgejOrJwkZQ9z/jPOATBchZ
+         ljykq3BK8ezWbsX2WJVG9i/qDXnwLuQ8wIzuFbKOqMIO5F1BJK3ocgrKxgeZKags1cWH
+         Uo6z0T7WEKDsgyiLA92M+r8PxjRC65a8GzXoV0Nix+j780MTA95B4UEScAdGlBv6WSAh
+         +1sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xONlzx3IaXMZ6M2dIMHdENsla+SllYiw67kc5eZCItg=;
+        b=g+ZIUxUAd19mtvyMKWdKKvxK+7cGjEd5ynwoXzLIMl6yKsM9vgMP+L2mlKZ/E8kjrT
+         i9j22mfttcOeyRx14b7pL9IwPvuXllpOw6NGk+1ClPXLAiErGQ8PO0wB6oWXwt/OPxqk
+         jmoC91wsFdzGfI6NVgdvEYvZ6uIiwKYXY1VdNHGBB0hrIbJgHK69qVUSmT6DAd5RQSMT
+         LpZPSmwD2sDYUkTayQmDRqdDxvxcocHHND+OAdlBsgOK01qOfYmVGnec9vA85mYeZgBp
+         IeG37JG/tI6bNA3VZuLbe5WcQUBj9fmKMxaq8LoPf1xw8MfoWBi5IqE4+Ub04U2LqT3b
+         Brew==
+X-Gm-Message-State: APjAAAU80rOW5U8uHgeazMQuaa7esQXjJS2DwrKmQ7fygt1on34S/fB4
+        0lzH1hr1UGiv7i77KZVqtAkLEQ==
+X-Google-Smtp-Source: APXvYqzfb2xrwvHBji0xFCXOTmqgNI8ofWQ4r1hEacPKpw22h+6vWrHSlazGTj5++rju1N8fNQ4TEg==
+X-Received: by 2002:aa7:8e14:: with SMTP id c20mr47798607pfr.14.1556729645920;
+        Wed, 01 May 2019 09:54:05 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id 4sm4316877pfd.55.2019.05.01.09.54.04
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 01 May 2019 09:54:04 -0700 (PDT)
+Date:   Wed, 1 May 2019 09:54:06 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jeffrey Hugo <jhugo@codeaurora.org>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, agross@kernel.org,
+        marc.w.gonzalez@free.fr, david.brown@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 5/6] clk: qcom: Add MSM8998 Multimedia Clock
+ Controller (MMCC) driver
+Message-ID: <20190501165406.GI2938@tuxbook-pro>
+References: <1556677404-29194-1-git-send-email-jhugo@codeaurora.org>
+ <1556677642-29428-1-git-send-email-jhugo@codeaurora.org>
+ <20190501034314.GE2938@tuxbook-pro>
+ <0513163c-5088-6168-64fb-04fa51f711fa@codeaurora.org>
 MIME-Version: 1.0
-References: <20190420064019.57522-1-chenyu56@huawei.com> <20190420064019.57522-3-chenyu56@huawei.com>
- <20190425213532.GA32028@bogus> <f925304a-17ef-1574-b671-77d4ad0331d8@huawei.com>
-In-Reply-To: <f925304a-17ef-1574-b671-77d4ad0331d8@huawei.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 1 May 2019 11:27:01 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Xf===cii0me0pwjZ2mcxXmYXDjNH7UpOftUphHCxd1w@mail.gmail.com>
-Message-ID: <CAL_Jsq+Xf===cii0me0pwjZ2mcxXmYXDjNH7UpOftUphHCxd1w@mail.gmail.com>
-Subject: Re: [PATCH v6 02/13] dt-bindings: misc: Add bindings for HiSilicon
- usb hub and data role switch functionality on HiKey960
-To:     Chen Yu <chenyu56@huawei.com>
-Cc:     liuyu712@hisilicon.com, Linux USB List <linux-usb@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Suzhuangluan <suzhuangluan@hisilicon.com>, kongfei@hisilicon.com,
-        wanghu17@hisilicon.com, butao@hisilicon.com, chenyao11@huawei.com,
-        fangshengzhou@hisilicon.com,
-        Li Pengcheng <lipengcheng8@huawei.com>,
-        Song Xiaowei <songxiaowei@hisilicon.com>,
-        Yiping Xu <xuyiping@hisilicon.com>, xuyoujun4@huawei.com,
-        yudongbin@hisilicon.com, zangleigang <zangleigang@hisilicon.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0513163c-5088-6168-64fb-04fa51f711fa@codeaurora.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 1:08 AM Chen Yu <chenyu56@huawei.com> wrote:
->
-> Hi Rob,
->
-> On 2019/4/26 5:35, Rob Herring wrote:
-> > On Sat, Apr 20, 2019 at 02:40:08PM +0800, Yu Chen wrote:
-> >> This patch adds binding documentation to support usb hub and usb
-> >> data role switch of Hisilicon HiKey960 Board.
-> >
-> > Sorry I've been slow to really review this, but I needed to look at the
-> > schematics to see what exactly is going on here.
-> >
-> > I think this needs some changes to better reflect the h/w and utilize
-> > existing bindings. It should really be designed ignoring the muxing to
-> > start with. Define the binding for the TypeC connector and then the host
-> > hub and make sure they can coexist. Then overlay what you need to switch
-> > between the 2 modes which AFAICT is just a single GPIO.
-> >
-> >>
-> >> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> >> Cc: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-> >> Cc: Rob Herring <robh+dt@kernel.org>
-> >> Cc: Mark Rutland <mark.rutland@arm.com>
-> >> Cc: John Stultz <john.stultz@linaro.org>
-> >> Cc: Binghui Wang <wangbinghui@hisilicon.com>
-> >> Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> >> ---
-> >> v1:
-> >> * Fix some format errors as suggested by Sergei.
-> >> * Modify gpio description to use gpiod API.
-> >> v2:
-> >> * Remove information about Hikey.
-> >> * Fix gpio description.
-> >> * Remove device_type of endpoint.
-> >> v3:
-> >> * Remove property typec-vbus-enable-val.
-> >> * Add description of pinctrl-names.
-> >> * Add example for "hisilicon,gpio-hubv1"
-> >> * Add flag in gpiod properties.
-> >> ---
-> >> ---
-> >>  .../bindings/misc/hisilicon-hikey-usb.txt          | 52 ++++++++++++++++++++++
-> >>  1 file changed, 52 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt b/Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
-> >> new file mode 100644
-> >> index 000000000000..422e844df719
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
-> >> @@ -0,0 +1,52 @@
-> >> +Support usb hub and usb data role switch of Hisilicon HiKey960 Board.
-> >> +
-> >> +-----------------------------
-> >> +
-> >> +Required properties:
-> >> +- compatible: "hisilicon,gpio-hubv1","hisilicon,hikey960-usb"
-> >> +- typec-vbus-gpios: gpio to control the vbus of typeC port
-> >
-> > This should be a gpio regulator and then connected to 'vbus-supply' in a
-> > usb-connector node (see .../bindings/connectors/usb-connector.txt).
-> Currently usb-connector node has no "vbus-supply" property and
-> I do not find process that handles vbus-supply in RT1711H TypeC driver.
+On Wed 01 May 07:25 PDT 2019, Jeffrey Hugo wrote:
 
-The patch[1] adding that is posted to the list and may not have landed yet.
+> On 4/30/2019 9:43 PM, Bjorn Andersson wrote:
+> > On Tue 30 Apr 19:27 PDT 2019, Jeffrey Hugo wrote:
+> > > +static const struct of_device_id mmcc_msm8998_match_table[] = {
+> > > +	{ .compatible = "qcom,mmcc-msm8998" },
+> > > +	{ }
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, mmcc_msm8998_match_table);
+> > > +
+> > > +static int mmcc_msm8998_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct regmap *regmap;
+> > > +
+> > 
+> > Don't you want to wait for "xo" here as well?
+> 
+> No, I don't want to.  As far as I recall, Stephen would like to make a clear
+> divide between clock providers, and clock consumers.  Since we have the uart
+> issue in gcc, and gcc is pretty critical to the entire SoC, it seems like
+> there is a reason (not sure I'd call it "good") to wait for xo there.
+> 
+> Here, I'm less confident in the reasoning.  mmcc is not really critical to
+> the SoC, and everything it services is "optional".  If you have a headless
+> system with no display output, you won't even need it.  On system where
+> there is a display, I expect the realistic driver ordering to be that
+> everything which consumes a mmcc clock to come up well after xo is
+> available.
+> 
+> In short, seems like a bit of a kludge to maybe avoid an issue which doesn't
+> seem like would happen.
+> 
 
-Whether the RT1711H TypeC driver handles it or not is not a binding problem.
+Okay, cool.
 
-> > Then you also need the RT1711HWSC TypeC controller in DT. That is
-> > typically the parent device of the connector node.
-> >
-> >> +- otg-switch-gpios: gpio to switch DP & DM between the hub and typeC port
-> >
-> > This probably belongs in USB controller node.
-> >
-> The otg-switch-gpios controls a mux like fsusb30mux. It is related to
-> the board design of HiKey960. And the state of the mux is decided by
-> the typeC port state. So I think it is not so good to make it belongs
-> in USB controller node.
+> > 
+> > > +	regmap = qcom_cc_map(pdev, &mmcc_msm8998_desc);
+> > > +	if (IS_ERR(regmap))
+> > > +		return PTR_ERR(regmap);
+> > > +
+> > > +	return qcom_cc_really_probe(pdev, &mmcc_msm8998_desc, regmap);
+> > > +}
+> > [..]
+> > > +MODULE_DESCRIPTION("QCOM MMCC MSM8998 Driver");
+> > > +MODULE_LICENSE("GPL v2");
+> > > +MODULE_ALIAS("platform:mmcc-msm8998");
+> > 
+> > MODULE_DEVICE_TABLE() will provide the alias for module auto loading, so
+> > drop this.
+> 
+> Huh.  I did not know that.  Will put on the list to fixup.
+> 
 
-Let me put it this way. The gpio property belongs wherever the mux is
-represented. In this case, I would expect the graph port representing
-the HS port to have 2 endpoints representing the 2 mux outputs. We
-don't generally put properties in the endpoint or port nodes, but the
-parent nodes.
+With this dropped (and your objection above) I think the patch looks
+good.
 
-> >> +- hub-vdd33-en-gpios: gpio to enable the power of hub
-> >
-> > This too should be a gpio regulator and then in a hub node. We have 2
-> > ways to represent hubs. Either as an I2C device or as a child of the
-> > host controller. The latter is preferred, but I'm not too sure how the
-> > OF graph connection linking the controller to the TypeC connector will
-> > work with the usb bus binding.
-> >
-> There is no particular code except the power control for the hub.
-> The i2c on the hub is not used. So it can not be an I2C device.
-> Is there such an example that make the hub as a child of the host controller
-> and control its power?
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Yes, bindings/usb/usb-device.txt.
+Regards,
+Bjorn
 
-Rob
-
-[1] https://www.spinics.net/lists/kernel/msg3089136.html
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> 
+> 
+> -- 
+> Jeffrey Hugo
+> Qualcomm Datacenter Technologies as an affiliate of Qualcomm Technologies,
+> Inc.
+> Qualcomm Technologies, Inc. is a member of the
+> Code Aurora Forum, a Linux Foundation Collaborative Project.
