@@ -2,87 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 674F610E4F
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 23:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233BF10E6F
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 23:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726116AbfEAVAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 17:00:52 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:33617 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726088AbfEAVAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 17:00:52 -0400
-Received: by mail-oi1-f194.google.com with SMTP id l1so100517oib.0;
-        Wed, 01 May 2019 14:00:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Fhyjh+pEfTmxGVzs4D2NxCU9BjdUSsUEryv2fL7NV2Q=;
-        b=aJ27kwJKE1bHITPpYzgGDnZvwKlGN6k5VpQDiDet08cxGP9h+A04A0X0IrOVGFsHOK
-         fq6dXT6D+mBZ6k+PMDLngx8UFdXEdKWdHnIfLA3VUuvb8yvc/dyiBoxDA+I27iTfXIFJ
-         AccRIrDPye+28jjp650/n8qY91jKPQN4QHrawqYAGJPacZ1yqypu2zfJ0xmWrA2Ly6nC
-         y0qlutIHwoNalFwY4NJQP0d3aVK9XGmNjOxfK5nhCIvYq8XqDwjuhv0u01yeR3Fx551F
-         NvFwj2WhSpdfqYS2FK6ZepkfVhl/X2bna6ALLsgun1FtqfX/wpUD6+3XKRaTWHgDFU/W
-         msuQ==
-X-Gm-Message-State: APjAAAVHyUmwVzSvSbSBz5J4IzNRM6FpZwN4SXL8rYB3WQiLBonMELM/
-        Z7AwX/45hLbJKQIHS/TtWw==
-X-Google-Smtp-Source: APXvYqyNVKjPoji2SxJxP3ylggeCueF4E0E33rMuGH1+fipTxjK6PYV0QFeg1sxueHl1rXk5rOqFqA==
-X-Received: by 2002:aca:fd52:: with SMTP id b79mr241015oii.34.1556744451588;
-        Wed, 01 May 2019 14:00:51 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m206sm17199824oif.50.2019.05.01.14.00.48
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 14:00:49 -0700 (PDT)
-Date:   Wed, 1 May 2019 16:00:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Scott Wood <oss@buserror.net>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>
-Subject: Re: [PATCH v2 4/6] dt-bindings: soc/fsl: qe: document new
- fsl,qe-snums  binding
-Message-ID: <20190501210048.GA20658@bogus>
-References: <20190430133615.25721-1-rasmus.villemoes@prevas.dk>
- <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
- <20190501092841.9026-5-rasmus.villemoes@prevas.dk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190501092841.9026-5-rasmus.villemoes@prevas.dk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726120AbfEAVRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 17:17:41 -0400
+Received: from da1vs04.rockwellcollins.com ([205.175.227.52]:13920 "EHLO
+        da1vs04.rockwellcollins.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726088AbfEAVRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 17:17:40 -0400
+Received: from ofwda1n02.rockwellcollins.com (HELO crulimr01.rockwellcollins.com) ([205.175.227.14])
+  by da1vs04.rockwellcollins.com with ESMTP; 01 May 2019 16:17:39 -0500
+X-Received: from righttwix.rockwellcollins.com (righttwix.rockwellcollins.com [192.168.141.218])
+        by crulimr01.rockwellcollins.com (Postfix) with ESMTP id 93D75600D0;
+        Wed,  1 May 2019 16:17:39 -0500 (CDT)
+From:   Adam Michaelis <adam.michaelis@rockwellcollins.com>
+To:     linux-iio@vger.kernel.org
+Cc:     lars@metafoo.de, michael.hennerich@analog.com, jic23@kernel.org,
+        knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
+        mark.rutland@arm.com, charles-antoine.couret@essensium.com,
+        devicetree@vger.kernel.org, brandon.maier@rockwellcollins.com,
+        clayton.shotwell@rockwellcollins.com,
+        Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Subject: [PATCH 1/6] iio: ad7949: Support internal Vref
+Date:   Wed,  1 May 2019 16:16:58 -0500
+Message-Id: <1556745423-11368-1-git-send-email-adam.michaelis@rockwellcollins.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 May 2019 09:29:08 +0000, Rasmus Villemoes wrote:
-> Reading table 4-30, and its footnotes, of the QUICC Engine Block
-> Reference Manual shows that the set of snum _values_ is not
-> necessarily just a function of the _number_ of snums, as given in the
-> fsl,qe-num-snums property.
-> 
-> As an alternative, to make it easier to add support for other variants
-> of the QUICC engine IP, this introduces a new binding fsl,qe-snums,
-> which automatically encodes both the number of snums and the actual
-> values to use.
-> 
-> For example, for the MPC8309, one would specify the property as
-> 
->                fsl,qe-snums = /bits/ 8 <
->                        0x88 0x89 0x98 0x99 0xa8 0xa9 0xb8 0xb9
->                        0xc8 0xc9 0xd8 0xd9 0xe8 0xe9>;
-> 
-> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-> ---
->  Documentation/devicetree/bindings/soc/fsl/cpm_qe/qe.txt | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
+Adding configurable (via device tree) options to select either an external
+reference voltage (default, original implementation) or one of the two
+internal reference voltages provided by the AD7949 part family.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+---
+ drivers/iio/adc/ad7949.c | 84 +++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 66 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+index ac0ffff6c5ae..1c49eed298d8 100644
+--- a/drivers/iio/adc/ad7949.c
++++ b/drivers/iio/adc/ad7949.c
+@@ -11,6 +11,7 @@
+ #include <linux/module.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/spi/spi.h>
++#include <linux/of.h>
+ 
+ #define AD7949_MASK_CHANNEL_SEL		GENMASK(9, 7)
+ #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+@@ -24,6 +25,18 @@ enum {
+ 	ID_AD7689,
+ };
+ 
++enum ad7949_ref_sel {
++	AD7949_REF_2V5 = 0, /* 2.5V internal ref + temp sensor */
++	AD7949_REF_4V0, /* 4.096V internal ref + temp sensor */
++	AD7949_REF_EXT_TEMP, /* External ref + temp sensor, no buffer */
++	AD7949_REF_EXT_TEMP_BUF, /* External ref + temp sensor + buffer */
++	AD7949_REF_RSRV_4,
++	AD7949_REF_RSRV_5,
++	AD7949_REF_EXT, /* External ref, no temp, no buffer */
++	AD7949_REF_EXT_BUF, /* External ref + buffer, no temp */
++	AD7949_REF_MAX,
++};
++
+ struct ad7949_adc_spec {
+ 	u8 num_channels;
+ 	u8 resolution;
+@@ -41,6 +54,7 @@ struct ad7949_adc_spec {
+  * @vref: regulator generating Vref
+  * @iio_dev: reference to iio structure
+  * @spi: reference to spi structure
++ * @ref_sel: selected reference voltage source
+  * @resolution: resolution of the chip
+  * @cfg: copy of the configuration register
+  * @current_channel: current channel in use
+@@ -51,6 +65,7 @@ struct ad7949_adc_chip {
+ 	struct regulator *vref;
+ 	struct iio_dev *indio_dev;
+ 	struct spi_device *spi;
++	enum ad7949_ref_sel ref_sel;
+ 	u8 resolution;
+ 	u16 cfg;
+ 	unsigned int current_channel;
+@@ -187,11 +202,20 @@ static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
+ 		return IIO_VAL_INT;
+ 
+ 	case IIO_CHAN_INFO_SCALE:
+-		ret = regulator_get_voltage(ad7949_adc->vref);
+-		if (ret < 0)
+-			return ret;
++		if (ad7949_adc->vref) {
++			ret = regulator_get_voltage(ad7949_adc->vref);
++			if (ret < 0)
++				return ret;
++
++			*val = ret / 5000;
++		} else if (ad7949_adc->ref_sel == AD7949_REF_2V5) {
++			*val = 2500;
++		} else if (ad7949_adc->ref_sel == AD7949_REF_4V0) {
++			*val = 4096;
++		} else {
++			return -EINVAL;
++		}
+ 
+-		*val = ret / 5000;
+ 		return IIO_VAL_INT;
+ 	}
+ 
+@@ -223,10 +247,18 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+ {
+ 	int ret;
+ 	int val;
++	u16 adc_config = 0;
+ 
+-	/* Sequencer disabled, CFG readback disabled, IN0 as default channel */
+ 	ad7949_adc->current_channel = 0;
+-	ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
++	ad7949_adc->cfg = 0;
++
++	adc_config = (0x3c << 8);
++	adc_config |= ((ad7949_adc->current_channel & 0x07) << 7);
++	adc_config |= (1 << 6);
++	adc_config |= (ad7949_adc->ref_sel << 3);
++	adc_config |= 1;
++
++	ret = ad7949_spi_write_cfg(ad7949_adc, adc_config, AD7949_MASK_TOTAL);
+ 
+ 	/*
+ 	 * Do two dummy conversions to apply the first configuration setting.
+@@ -245,6 +277,7 @@ static int ad7949_spi_probe(struct spi_device *spi)
+ 	struct ad7949_adc_chip *ad7949_adc;
+ 	struct iio_dev *indio_dev;
+ 	int ret;
++	u32 temp;
+ 
+ 	indio_dev = devm_iio_device_alloc(dev, sizeof(*ad7949_adc));
+ 	if (!indio_dev) {
+@@ -263,21 +296,34 @@ static int ad7949_spi_probe(struct spi_device *spi)
+ 	ad7949_adc = iio_priv(indio_dev);
+ 	ad7949_adc->indio_dev = indio_dev;
+ 	ad7949_adc->spi = spi;
++	ad7949_adc->vref = NULL;
+ 
+ 	spec = &ad7949_adc_spec[spi_get_device_id(spi)->driver_data];
+ 	indio_dev->num_channels = spec->num_channels;
+ 	ad7949_adc->resolution = spec->resolution;
+ 
+-	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+-	if (IS_ERR(ad7949_adc->vref)) {
+-		dev_err(dev, "fail to request regulator\n");
+-		return PTR_ERR(ad7949_adc->vref);
+-	}
+-
+-	ret = regulator_enable(ad7949_adc->vref);
+-	if (ret < 0) {
+-		dev_err(dev, "fail to enable regulator\n");
+-		return ret;
++	ret = of_property_read_u32(ad7949_adc->indio_dev->dev.of_node,
++			"adi,reference-select",
++			&temp);
++	if ((ret == 0) && (temp < AD7949_REF_MAX))
++		ad7949_adc->ref_sel = (enum ad7949_ref_sel)temp;
++	else
++		ad7949_adc->ref_sel = AD7949_REF_EXT_BUF;
++
++	/* Check whether using external Vref */
++	if ((ad7949_adc->ref_sel != AD7949_REF_2V5) &&
++			(ad7949_adc->ref_sel != AD7949_REF_4V0)) {
++		ad7949_adc->vref = devm_regulator_get(dev, "vref");
++		if (IS_ERR(ad7949_adc->vref)) {
++			dev_err(dev, "fail to request regulator\n");
++			return PTR_ERR(ad7949_adc->vref);
++		}
++
++		ret = regulator_enable(ad7949_adc->vref);
++		if (ret < 0) {
++			dev_err(dev, "fail to enable regulator\n");
++			return ret;
++		}
+ 	}
+ 
+ 	mutex_init(&ad7949_adc->lock);
+@@ -298,7 +344,8 @@ static int ad7949_spi_probe(struct spi_device *spi)
+ 
+ err:
+ 	mutex_destroy(&ad7949_adc->lock);
+-	regulator_disable(ad7949_adc->vref);
++	if (ad7949_adc->vref)
++		regulator_disable(ad7949_adc->vref);
+ 
+ 	return ret;
+ }
+@@ -310,7 +357,8 @@ static int ad7949_spi_remove(struct spi_device *spi)
+ 
+ 	iio_device_unregister(indio_dev);
+ 	mutex_destroy(&ad7949_adc->lock);
+-	regulator_disable(ad7949_adc->vref);
++	if (ad7949_adc->vref)
++		regulator_disable(ad7949_adc->vref);
+ 
+ 	return 0;
+ }
+-- 
+1.9.1
+
