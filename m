@@ -2,84 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3302D10613
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 10:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E56DD1064B
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 11:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726124AbfEAI0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 04:26:30 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:44174 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbfEAI03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 04:26:29 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 5CE3A80555; Wed,  1 May 2019 10:26:18 +0200 (CEST)
-Date:   Wed, 1 May 2019 10:26:27 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     Brian Masney <masneyb@onstation.org>, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com,
-        robh+dt@kernel.org, jacek.anaszewski@gmail.com,
-        mark.rutland@arm.com, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, jonathan@marek.ca
-Subject: Re: [PATCH v3 3/3] backlight: lm3630a: add firmware node support
-Message-ID: <20190501082627.GA2971@amd>
-References: <20190415072905.2861-1-masneyb@onstation.org>
- <20190415072905.2861-4-masneyb@onstation.org>
- <0e5e26ba-cf98-913e-8e76-e988a86dc0d1@ti.com>
+        id S1726121AbfEAJ3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 05:29:07 -0400
+Received: from mail-eopbgr20106.outbound.protection.outlook.com ([40.107.2.106]:43822
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726014AbfEAJ3G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 May 2019 05:29:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.se;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oEHOss+tChlyXXqJGO0y71EE80c9sJqiMhQ3L42wg/E=;
+ b=ICMnzefBkqPEe1WQ1oDKxGJLNa49EFVdRve5P9kLhJJKgKtOoIRP/BjgLY+dxtkmne0OS5mvcI0hxUUJeOLLqtzxOnKEwHjbGEXoAgdPTE6N/3qB77b7+x3nVaNQuWWrxkq88APcOPLNZAyeJ4f+tnUf+Kywm8W/+1XmPjXbeH0=
+Received: from VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM (20.178.126.212) by
+ VI1PR10MB2143.EURPRD10.PROD.OUTLOOK.COM (20.177.60.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1835.14; Wed, 1 May 2019 09:29:02 +0000
+Received: from VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::48b8:9cff:182:f3d8]) by VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::48b8:9cff:182:f3d8%2]) with mapi id 15.20.1856.008; Wed, 1 May 2019
+ 09:29:02 +0000
+From:   Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>
+CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Scott Wood <oss@buserror.net>,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>
+Subject: [PATCH v2 0/6] soc/fsl/qe: cleanups and new DT binding
+Thread-Topic: [PATCH v2 0/6] soc/fsl/qe: cleanups and new DT binding
+Thread-Index: AQHVAABPKUiIhooNmUW5rKx1Bivkwg==
+Date:   Wed, 1 May 2019 09:29:01 +0000
+Message-ID: <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
+References: <20190430133615.25721-1-rasmus.villemoes@prevas.dk>
+In-Reply-To: <20190430133615.25721-1-rasmus.villemoes@prevas.dk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HE1PR0102CA0052.eurprd01.prod.exchangelabs.com
+ (2603:10a6:7:7d::29) To VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:803:e3::20)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Rasmus.Villemoes@prevas.se; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.20.1
+x-originating-ip: [81.216.59.226]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f816a075-9126-4083-d6bc-08d6ce1771db
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:VI1PR10MB2143;
+x-ms-traffictypediagnostic: VI1PR10MB2143:
+x-microsoft-antispam-prvs: <VI1PR10MB214388D2EA8446B203679CF18A3B0@VI1PR10MB2143.EURPRD10.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 00246AB517
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(979002)(376002)(136003)(39850400004)(346002)(396003)(366004)(189003)(199004)(14454004)(81166006)(110136005)(54906003)(26005)(68736007)(8676002)(6512007)(4326008)(8976002)(486006)(74482002)(71200400001)(2906002)(7416002)(6486002)(72206003)(186003)(316002)(478600001)(2501003)(36756003)(6436002)(71190400001)(25786009)(1076003)(6506007)(2616005)(305945005)(3846002)(44832011)(256004)(11346002)(6116002)(5660300002)(8936002)(14444005)(446003)(476003)(50226002)(76176011)(42882007)(7736002)(99286004)(66446008)(64756008)(53936002)(52116002)(107886003)(386003)(66066001)(66946007)(66476007)(102836004)(66556008)(81156014)(73956011)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR10MB2143;H:VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: prevas.se does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: YQmxWf/qj7b+Ws9BfLs0RRpmC1F41s5yP5TXw9h2GKXqYXM/DIbb3RHgmoXyx3dC/luIAGLQQg6hgV/NorahWeKQxI8Dzs2zy9/u7mWlvu9d6dUEhNHzVEUj31lRHDc1UPaBTA/P+K7N6DJ+SBMXPlDY2VMecEIHaKe9dYBfYcN+kA88rF58z7L+snjE9gv8stfgFsocGu/IJl9Cr9eWHWjEl5pvGF9g+bUZum82Ru//ITSOCcA21b7RkszLUBVAuZZSsci1EFw+bwL2zRMyXqARHVmkHR7QNpZRjNbI2DaSLFKnUi/rXFUfSjo6ApaXfMgdtiTjGKBbvsBJgYJFP9kML3RSiuxvzXugsYp+HDywKDR2cGcTjMmdQsHIIKONNRbn3krvUp4TYP6Ct1NKqJAFQgruyEHPaRTm6r0H80I=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="6TrnltStXW4iwmi0"
-Content-Disposition: inline
-In-Reply-To: <0e5e26ba-cf98-913e-8e76-e988a86dc0d1@ti.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+X-OriginatorOrg: prevas.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: f816a075-9126-4083-d6bc-08d6ce1771db
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2019 09:29:01.9393
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d350cf71-778d-4780-88f5-071a4cb1ed61
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB2143
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---6TrnltStXW4iwmi0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> > @@ -396,13 +506,20 @@ static int lm3630a_probe(struct i2c_client *clien=
-t,
-> >  				     GFP_KERNEL);
-> >  		if (pdata =3D=3D NULL)
-> >  			return -ENOMEM;
-> > +
-> >  		/* default values */
-> > -		pdata->leda_ctrl =3D LM3630A_LEDA_ENABLE;
-> > -		pdata->ledb_ctrl =3D LM3630A_LEDB_ENABLE;
-> > +		pdata->leda_ctrl =3D LM3630A_LEDA_DISABLE;
-> > +		pdata->ledb_ctrl =3D LM3630A_LEDB_DISABLE;
->=20
-> This is not needed since default is disabled and kzalloc will set these t=
-o 0
-
-Let compiler do this kind of optimalizations. Code makes sense as-is.
-
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---6TrnltStXW4iwmi0
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlzJWDMACgkQMOfwapXb+vK/6QCguYAgoaGIpYPAGtybTC9vIfZi
-p4UAn2Haq8zwV7EpVgAkDZlkZ4x+gZWb
-=7kTY
------END PGP SIGNATURE-----
-
---6TrnltStXW4iwmi0--
+VGhpcyBzbWFsbCBzZXJpZXMgY29uc2lzdHMgb2Ygc29tZSBzbWFsbCBjbGVhbnVwcyBhbmQgc2lt
+cGxpZmljYXRpb25zDQpvZiB0aGUgUVVJQ0MgZW5naW5lIGRyaXZlciwgYW5kIGludHJvZHVjZXMg
+YSBuZXcgRFQgYmluZGluZyB0aGF0IG1ha2VzDQppdCBtdWNoIGVhc2llciB0byBzdXBwb3J0IG90
+aGVyIHZhcmlhbnRzIG9mIHRoZSBRVUlDQyBlbmdpbmUgSVAgYmxvY2sNCnRoYXQgYXBwZWFycyBp
+biB0aGUgd2lsZDogVGhlcmUncyBubyByZWFzb24gdG8gZXhwZWN0IGluIGdlbmVyYWwgdGhhdA0K
+dGhlIG51bWJlciBvZiB2YWxpZCBTTlVNcyB1bmlxdWVseSBkZXRlcm1pbmVzIHRoZSBzZXQgb2Yg
+c3VjaCwgc28gaXQncw0KYmV0dGVyIHRvIHNpbXBseSBsZXQgdGhlIGRldmljZSB0cmVlIHNwZWNp
+ZnkgdGhlIHZhbHVlcyAoYW5kLA0KaW1wbGljaXRseSB2aWEgdGhlIGFycmF5IGxlbmd0aCwgYWxz
+byB0aGUgY291bnQpLg0KDQp2MjoNCi0gQWRkcmVzcyBjb21tZW50cyBmcm9tIENocmlzdG9waGUg
+TGVyb3kNCi0gQWRkIGhpcyBSZXZpZXdlZC1ieSB0byAxLzYgYW5kIDMvNg0KLSBTcGxpdCBEVCBi
+aW5kaW5nIHVwZGF0ZSB0byBzZXBhcmF0ZSBwYXRjaCBhcyBwZXINCiAgRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL3N1Ym1pdHRpbmctcGF0Y2hlcy50eHQNCg0KDQpSYXNtdXMgVmls
+bGVtb2VzICg2KToNCiAgc29jL2ZzbC9xZTogcWUuYzogZHJvcCB1c2VsZXNzIHN0YXRpYyBxdWFs
+aWZpZXINCiAgc29jL2ZzbC9xZTogcWUuYzogcmVkdWNlIHN0YXRpYyBtZW1vcnkgZm9vdHByaW50
+IGJ5IDEuN0sNCiAgc29jL2ZzbC9xZTogcWUuYzogaW50cm9kdWNlIHFlX2dldF9kZXZpY2Vfbm9k
+ZSBoZWxwZXINCiAgZHQtYmluZGluZ3M6IHNvYy9mc2w6IHFlOiBkb2N1bWVudCBuZXcgZnNsLHFl
+LXNudW1zIGJpbmRpbmcNCiAgc29jL2ZzbC9xZTogcWUuYzogc3VwcG9ydCBmc2wscWUtc251bXMg
+cHJvcGVydHkNCiAgc29jL2ZzbC9xZTogcWUuYzogZm9sZCBxZV9nZXRfbnVtX29mX3NudW1zIGlu
+dG8gcWVfc251bXNfaW5pdA0KDQogLi4uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL2ZzbC9jcG1f
+cWUvcWUudHh0IHwgICA4ICstDQogZHJpdmVycy9zb2MvZnNsL3FlL3FlLmMgICAgICAgICAgICAg
+ICAgICAgICAgIHwgMTY0ICsrKysrKystLS0tLS0tLS0tLQ0KIDIgZmlsZXMgY2hhbmdlZCwgNzIg
+aW5zZXJ0aW9ucygrKSwgMTAwIGRlbGV0aW9ucygtKQ0KDQotLSANCjIuMjAuMQ0KDQo=
