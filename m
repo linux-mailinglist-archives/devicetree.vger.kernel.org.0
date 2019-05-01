@@ -2,119 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F24F110CDB
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 20:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB8110D51
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 21:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726077AbfEASrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 14:47:17 -0400
-Received: from mail-eopbgr00092.outbound.protection.outlook.com ([40.107.0.92]:57886
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726004AbfEASrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 May 2019 14:47:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.se;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oKp2dNvnG+drs/A6ljFelvF7IrEFVsHdJHmyoRpez/Y=;
- b=O5lpYGU1TRe3XwHUzG3nkOzLAOXGPVGtaD2jjjzC32ilHwYYno4rR5Y8g7cnezJvuj1Xzl5xRtlpgK8fSrGEewUn9xegvlEeblc8ecmEsisJnrqzRH/34JRG3csVjuajSul4p/H8m7cbkLWBjP7Wz3sXy7CyjELI4O8lbjjNwBA=
-Received: from VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM (20.178.126.212) by
- VI1PR10MB1805.EURPRD10.PROD.OUTLOOK.COM (10.165.194.158) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Wed, 1 May 2019 18:47:11 +0000
-Received: from VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::48b8:9cff:182:f3d8]) by VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::48b8:9cff:182:f3d8%2]) with mapi id 15.20.1856.008; Wed, 1 May 2019
- 18:47:11 +0000
-From:   Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-To:     Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
-        "qiang.zhao@nxp.com" <qiang.zhao@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "oss@buserror.net" <oss@buserror.net>,
-        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 4/6] dt-bindings: soc/fsl: qe: document new
- fsl,qe-snums binding
-Thread-Topic: [PATCH v2 4/6] dt-bindings: soc/fsl: qe: document new
- fsl,qe-snums binding
-Thread-Index: AQHVAABTBBh/pLqBQEiPEhE0F8Qaj6ZWYLAAgAA73IA=
-Date:   Wed, 1 May 2019 18:47:10 +0000
-Message-ID: <12a4abf5-2a56-c5d3-dc43-59b1473c0829@prevas.dk>
-References: <20190430133615.25721-1-rasmus.villemoes@prevas.dk>
- <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
- <20190501092841.9026-5-rasmus.villemoes@prevas.dk>
- <4c3aef881393398ca18efac99b1f76e7dbd19acf.camel@infinera.com>
-In-Reply-To: <4c3aef881393398ca18efac99b1f76e7dbd19acf.camel@infinera.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HE1PR08CA0071.eurprd08.prod.outlook.com
- (2603:10a6:7:2a::42) To VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:803:e3::20)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Rasmus.Villemoes@prevas.se; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [5.186.118.63]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dcc6a1b8-c38b-4e5f-4370-08d6ce656b50
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:VI1PR10MB1805;
-x-ms-traffictypediagnostic: VI1PR10MB1805:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <VI1PR10MB1805211FBA12C94BA0DC11198A3B0@VI1PR10MB1805.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 00246AB517
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(376002)(396003)(366004)(136003)(39850400004)(199004)(189003)(72206003)(7736002)(36756003)(305945005)(478600001)(5660300002)(966005)(66066001)(256004)(110136005)(5024004)(54906003)(71200400001)(71190400001)(68736007)(2906002)(31696002)(71446004)(74482002)(6486002)(6436002)(2201001)(6506007)(386003)(316002)(25786009)(186003)(52116002)(486006)(11346002)(76176011)(8936002)(2616005)(476003)(99286004)(26005)(81156014)(81166006)(8676002)(229853002)(31686004)(6116002)(53936002)(6306002)(6512007)(66946007)(14454004)(73956011)(66476007)(64756008)(66556008)(44832011)(66446008)(2501003)(4326008)(3846002)(6246003)(446003)(42882007)(8976002)(102836004)(7416002)(142933001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR10MB1805;H:VI1PR10MB2672.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: prevas.se does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 04Bgu7zXkfJErxHd0qWYxM06+wopIhFAB5HyWoRI33FZD+Mv86mBMFLRvZaMGY7aTxW3AeG0USvQllpUKfnwKlmMTQERzpqf4JuP+GWSXF+LvaSeoF9xNwQL1ssZKN18cosniEMq+HEQqgZoRyda1Ryvm8dG7c8reIHmj/zxwjxEazxlikkEZI1WNhK4ILVzYJwb/F7/344UmuV3umlpxAeFmVmepUYoP1qtIDE/O3rIclhHNhjrKHDx5ZmNBAZa6BHNVR5L08r3qnaFYJVwFH6yX5PxUQQ8xXdhSRtIBAVjJ1hjt1fbeSSbXpxwwLaqM6VjWgbP96FQ+AidUgq/IINsRkAbSL8WWOLZV1Ipmyd4RVqQrvbEMRbMGDzd2gnROOjNyZMApsQL4bRDdbT7xiBTa2fDku2QhwiZuThwT7w=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <8D3C3DDBAB3D4847BB37F9D538B0407B@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        id S1726077AbfEATjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 15:39:54 -0400
+Received: from da1vs01.rockwellcollins.com ([205.175.227.27]:49270 "EHLO
+        da1vs01.rockwellcollins.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726004AbfEATjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 15:39:54 -0400
+X-Greylist: delayed 566 seconds by postgrey-1.27 at vger.kernel.org; Wed, 01 May 2019 15:39:53 EDT
+X-RC-All-From: , 205.175.227.20, No hostname, adam.michaelis@rockwellcollins.com,
+ Adam Michaelis <adam.michaelis@rockwellcollins.com>, , 
+X-RC-Attachments: , ,
+X-RC-RemoteIP: 205.175.227.20
+X-RC-RemoteHost: No hostname
+X-RC-IP-Hostname: da1ip01.rockwellcollins.com
+X-RC-IP-MID: 122784627
+X-RC-IP-Group: GOOGLE_RELAYED
+X-RC-IP-Policy: $GOOGLE_RELAYED
+X-RC-IP-SBRS: None
+Received: from unknown (HELO mail-ot1-f69.google.com) ([205.175.227.20])
+  by da1vs01.rockwellcollins.com with ESMTP/TLS/AES128-GCM-SHA256; 01 May 2019 14:30:27 -0500
+Received: by mail-ot1-f69.google.com with SMTP id 94so24170ots.14
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 12:30:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=F4PFKivrCCt8E/bjYsH5ykIrQ9bNtH2T/uQxJDWTUxk=;
+        b=tZ7uJwJQJncVT2ure9Sk5iapr5+tZjfHZtNRfEBvlOLx9ZvHd8QHa6KDu9g/hFRPch
+         e2BihTgxUQpv6Uoxx+XBaEABh6dCFyDEwz3yiiMGWlJwOUw1STnsMnHzawmkjLd5wRHv
+         4lWKNWGCFDbeg1cGy9Ezd2g/kXVkAjBZvba6vOmIoJrLihAO+saPCTAUTmueLsmMN7VD
+         UCYuGGau5GzllCsoteijPu6HSpR3c6G6wsMZC/8hDZGJ/Dplbo6MGUCKDHv0FKK3k1W/
+         HWvx+VWoqd3LXzwXjj+BrUWS+YN4CpTPGqJK8bFHI0drjaXRSa0u4Vi4co4OKExlpD1X
+         VfiQ==
+X-Gm-Message-State: APjAAAWj+/+1rr9llGBSIDCSHUWWNH51dmddgem/3Vt4hlFqFZZ3pvH1
+        8Rpizr7FkZWP7PNV8r4TWSHNstFKyHQJWXBvOhp2rPmIjECIz5WK96CgpxDRaans1+Qkby1tSMe
+        Ad4v5eKl9wpe4DcUH1EeJ6YWlp302ynN6YaNrc2AHIvfCER5oxCj0E5an
+X-Received: by 2002:aca:c246:: with SMTP id s67mr7812466oif.159.1556739027174;
+        Wed, 01 May 2019 12:30:27 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqzwl9jaLwlQF3bo/hxPu7ykO2nZUNUL3iGGE/m6q02Ansh3+g/noBeDiTGYKszlPtmb9P02rIBb3GTVamr8Acs=
+X-Received: by 2002:aca:c246:: with SMTP id s67mr7812457oif.159.1556739026959;
+ Wed, 01 May 2019 12:30:26 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: prevas.dk
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcc6a1b8-c38b-4e5f-4370-08d6ce656b50
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2019 18:47:11.0077
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d350cf71-778d-4780-88f5-071a4cb1ed61
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB1805
+From:   Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Date:   Wed, 1 May 2019 14:30:16 -0500
+Message-ID: <CALMrGWUsr4+E3bYSj8hGvxDhZRZ1xiwVtd-x4RnOf3En6xMq5Q@mail.gmail.com>
+Subject: [PATCH 2/6] dt-bindings: iio: ad7949: Add adi,reference-select
+To:     lars@metafoo.de, michael.hennerich@analog.com, jic23@kernel.org,
+        knaack.h@gmx.de, pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, charles-antoine.couret@essensium.com,
+        devicetree@vger.kernel.org
+Cc:     Clayton Shotwell <clayton.shotwell@rockwellcollins.com>,
+        Brandon Maier <brandon.maier@rockwellcollins.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDEvMDUvMjAxOSAxNy4xMiwgSm9ha2ltIFRqZXJubHVuZCB3cm90ZToNCj4gT24gV2VkLCAy
-MDE5LTA1LTAxIGF0IDA5OjI5ICswMDAwLCBSYXNtdXMgVmlsbGVtb2VzIHdyb3RlOg0KPj4gQ0FV
-VElPTjogVGhpcyBlbWFpbCBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSBvZiB0aGUgb3JnYW5pemF0
-aW9uLiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IHJl
-Y29nbml6ZSB0aGUgc2VuZGVyIGFuZCBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+Pg0KPj4N
-Cj4+IFJlYWRpbmcgdGFibGUgNC0zMCwgYW5kIGl0cyBmb290bm90ZXMsIG9mIHRoZSBRVUlDQyBF
-bmdpbmUgQmxvY2sNCj4+IFJlZmVyZW5jZSBNYW51YWwgc2hvd3MgdGhhdCB0aGUgc2V0IG9mIHNu
-dW0gX3ZhbHVlc18gaXMgbm90DQo+PiBuZWNlc3NhcmlseSBqdXN0IGEgZnVuY3Rpb24gb2YgdGhl
-IF9udW1iZXJfIG9mIHNudW1zLCBhcyBnaXZlbiBpbiB0aGUNCj4+IGZzbCxxZS1udW0tc251bXMg
-cHJvcGVydHkuDQo+Pg0KPj4gQXMgYW4gYWx0ZXJuYXRpdmUsIHRvIG1ha2UgaXQgZWFzaWVyIHRv
-IGFkZCBzdXBwb3J0IGZvciBvdGhlciB2YXJpYW50cw0KPj4gb2YgdGhlIFFVSUNDIGVuZ2luZSBJ
-UCwgdGhpcyBpbnRyb2R1Y2VzIGEgbmV3IGJpbmRpbmcgZnNsLHFlLXNudW1zLA0KPj4gd2hpY2gg
-YXV0b21hdGljYWxseSBlbmNvZGVzIGJvdGggdGhlIG51bWJlciBvZiBzbnVtcyBhbmQgdGhlIGFj
-dHVhbA0KPj4gdmFsdWVzIHRvIHVzZS4NCj4+DQo+PiBGb3IgZXhhbXBsZSwgZm9yIHRoZSBNUEM4
-MzA5LCBvbmUgd291bGQgc3BlY2lmeSB0aGUgcHJvcGVydHkgYXMNCj4+DQo+PiAgICAgICAgICAg
-ICAgICBmc2wscWUtc251bXMgPSAvYml0cy8gOCA8DQo+PiAgICAgICAgICAgICAgICAgICAgICAg
-IDB4ODggMHg4OSAweDk4IDB4OTkgMHhhOCAweGE5IDB4YjggMHhiOQ0KPj4gICAgICAgICAgICAg
-ICAgICAgICAgICAweGM4IDB4YzkgMHhkOCAweGQ5IDB4ZTggMHhlOT47DQo+IA0KPiBJIHRoaW5r
-IHlvdSBuZWVkIGFkZCB0aGlzIGV4YW1wbGUgdG8gdGhlIHFlLnR4dCBkb2MgaXRzZWxmdC4NCg0K
-U3VyZSwgY2FuIGRvLg0KDQo+IEJUVywgd2hhdCBpcyAvYml0cy8gPw0KDQpUaGF0IGluZGljYXRl
-cyB0aGF0IHRoZSBudW1iZXJzIHNob3VsZCBiZSBzdG9yZWQgYXMgYW4gYXJyYXkgb2YgdTgsIGFu
-ZA0Kbm90IGFzIGJ5IGRlZmF1bHQgYW4gYXJyYXkgb2YgKGJpZy1lbmRpYW4pIDMyLWJpdCBudW1i
-ZXJzLiBTZWUNCg0KaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL3V0aWxzL2R0Yy9kdGMu
-Z2l0L3RyZWUvRG9jdW1lbnRhdGlvbi9kdHMtZm9ybWF0LnR4dCNuNDYNCg0KVGhpcyBpcyBhbHJl
-YWR5IHVzZWQgaW4gc29tZSBiaW5kaW5ncyBhbmQgZXhpc3RpbmcgLmR0cyAoZS5nLg0KaHdtb24v
-YXNwZWVkLXB3bS10YWNoby50eHQsIGJ1dCBnaXQgZ3JlcCBzaG93cyBtYW55IG1vcmUpLg0KDQpS
-YXNtdXMNCg==
+From d228a1a119e33aff91f481fb8ab301a027b5a4ac Mon Sep 17 00:00:00 2001
+From: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Date: Thu, 25 Apr 2019 15:22:00 -0500
+Subject: [PATCH 2/6] dt-bindings: iio: ad7949: Add adi,reference-select
+
+Adding optional parameter to AD7949 to specify the source for the
+reference voltage signal. Default value is maintaned with option '6' to
+match previous version of driver.
+
+Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+---
+Sorry about the re-sends - GMail inserted HTML on me and it bounced from vger.
+---
+ .../devicetree/bindings/iio/adc/ad7949.txt         | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ad7949.txt
+b/Documentation/devicetree/bindings/iio/adc/ad7949.txt
+index c7f5057356b1..14ee9a2cb2a5 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ad7949.txt
++++ b/Documentation/devicetree/bindings/iio/adc/ad7949.txt
+@@ -6,11 +6,29 @@ Required properties:
+  * "adi,ad7682"
+  * "adi,ad7689"
+  - reg: spi chip select number for the device
+- - vref-supply: The regulator supply for ADC reference voltage
+
+-Example:
++Optional properties:
++ - adi,reference-select: Select the reference voltage source to use
++ when converting the input voltages. Valid values are:
++   0: Internal 2.5V reference; temperature sensor enabled
++   1: Internal 4.096V reference; temperature sensor enabled
++   2: External reference, temperature sensor enabled, no buffer
++   3: External reference, temperature sensor enabled, buffer enabled
++   6: External reference, temperature sensor disabled, no buffer
++   7: External reference, temperature sensor disabled, buffer enabled
++ - vref-supply: The regulator supply for ADC reference voltage. Required
++ if external reference selected by 'adi,reference-select'.
++
++Examples:
+ adc@0 {
+  compatible = "adi,ad7949";
+  reg = <0>;
++ adi,reference-select = <2>;
+  vref-supply = <&vdd_supply>;
+ };
++
++adc@0 {
++ compatible = "adi,ad7949";
++ reg = <0>;
++ adi,reference-select = <0>;
++};
+-- 
+1.9.1
