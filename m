@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D8E10D7B
-	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 21:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 931A510D7E
+	for <lists+devicetree@lfdr.de>; Wed,  1 May 2019 21:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726133AbfEATuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 15:50:22 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:35760 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726004AbfEATuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 15:50:21 -0400
-Received: by mail-ot1-f66.google.com with SMTP id g24so54692otq.2;
-        Wed, 01 May 2019 12:50:21 -0700 (PDT)
+        id S1726116AbfEATwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 15:52:07 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:41780 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726004AbfEATwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 15:52:07 -0400
+Received: by mail-ot1-f65.google.com with SMTP id g8so29561otl.8;
+        Wed, 01 May 2019 12:52:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=4aS2uE1D91mkrl/gYeWQtzT+PKkraqjyORTXhMdPTWc=;
-        b=CLsCrl92AN4eW8Drf5Lp07Aqira5qR87/PwV8rJqrq4Mv+X+4/2yAXjnWrlxhSZOXu
-         3pbpbQyQpNSYLpbaoJDHTCUcwv1WH3drYUEH+UnNCxSFx4ZPbJxVQ2WaRB24k8yAwz93
-         xHKRmMTivetJuU1wYMy1gZblOH6q7DjeLBdUmIxnVohfLhWUmbtUyE/65TKnj4bI0tV8
-         n0unMCLHZx3UiDMiJ2BXqm/EVCP+ICtknU+mdN9ARxThuhIRLOsKdJRjDMW8N4v0AUpn
-         FlPux9OMpqqj6Oj8GwjAIUaRLnA5bo23GAMGKMNJPMqz8ZxOvRRQtjxgGY8zZy0OPTa1
-         ENcQ==
-X-Gm-Message-State: APjAAAXBYxx7BOaNCg0ElxTg+ERo4fAFBhxoKfdkwHZNc9PY5m/Xav/E
-        6XYzGlfy5Qw3LIDzZGyApg==
-X-Google-Smtp-Source: APXvYqwGNT8oOeMnhcZ+vSGs9Gi6hU6lT2YIKllylFBKjcxVlXfqb2L6uc1z343lFHswKPCjvxaXXA==
-X-Received: by 2002:a9d:6344:: with SMTP id y4mr20118098otk.11.1556740221087;
-        Wed, 01 May 2019 12:50:21 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9NsoR2Ks/W073QysE5yiIgEpVwfiWFp5562O18X26QE=;
+        b=RpCYv/IKgMrHt3bK+CcPrSTugRf2q1z/VL8Bnxd5yWXp4ISONJzH/4/B3GQpAMcQ1i
+         Heu/OKRGb941Zdm1BwywzB11Stn0KOfTHZvWelDwf44KgGE3/ZILO0LhEl0ElFFoaR8o
+         Bp6/18g9WZoa6ac8Z1NJyjFqJBdQtmnLsd5G5hlRt0Rr3Grfrxu5q2k/ya7ofLukDFTV
+         xbAxXkQ8T5GKwodaop0pHJx9/KmRlcyRsgmkz9e/7/1qCIO3Sj6DZq3K+KQcZE7troBz
+         Jf1hj+qyxyh8XF6Fx/guyYWE/i7UxJR65E/sZ3ex7jtEbL9M9UU/knWCIHDJTc1wnTzF
+         bS8Q==
+X-Gm-Message-State: APjAAAUrunYLa8zAkCO7Aj2iAaun4gi1PyOQwLgrh37lKNTmOE+Y8sXi
+        5CGTwzkm00gO/8exnw5gqg==
+X-Google-Smtp-Source: APXvYqwy8SA0ZY6TS2WSuhSqkpoE//XrYc9gQ9DbySPebHLRUVxHj7ufxND2egI0VpUD0DrkS21ywA==
+X-Received: by 2002:a9d:7408:: with SMTP id n8mr3916248otk.256.1556740326696;
+        Wed, 01 May 2019 12:52:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m124sm16994766oia.3.2019.05.01.12.50.20
+        by smtp.gmail.com with ESMTPSA id i203sm8590198oif.32.2019.05.01.12.52.05
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 01 May 2019 12:50:20 -0700 (PDT)
-Date:   Wed, 1 May 2019 14:50:19 -0500
+        Wed, 01 May 2019 12:52:06 -0700 (PDT)
+Date:   Wed, 1 May 2019 14:52:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com,
-        =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: sound: sun4i-spdif: Add Allwinner H6
- compatible
-Message-ID: <20190501195019.GA13211@bogus>
-References: <20190419191730.9437-1-peron.clem@gmail.com>
- <20190419191730.9437-2-peron.clem@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     thierry.reding@gmail.com, bhelgaas@google.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, jonathanh@nvidia.com,
+        lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Subject: Re: [PATCH V2 23/28] dt-bindings: pci: tegra: Document PCIe DPD
+ pinctrl optional prop
+Message-ID: <20190501195205.GA16256@bogus>
+References: <20190423092825.759-1-mmaddireddy@nvidia.com>
+ <20190423092825.759-24-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190419191730.9437-2-peron.clem@gmail.com>
+In-Reply-To: <20190423092825.759-24-mmaddireddy@nvidia.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Apr 2019 21:17:26 +0200, =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= wrote:
-> Allwinner H6 has a SPDIF controller with an increase of the fifo
-> size and a sligher difference in memory mapping compare which
-> make it not compatible with the previous generation H3/A64.
+On Tue, 23 Apr 2019 14:58:20 +0530, Manikanta Maddireddy wrote:
+> Document PCIe DPD pinctrl optional property to put PEX clk & BIAS pads
+> in low power mode.
 > 
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> V2: Using standard pinctrl names, default and idle
+> 
+>  .../devicetree/bindings/pci/nvidia,tegra20-pcie.txt       | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
