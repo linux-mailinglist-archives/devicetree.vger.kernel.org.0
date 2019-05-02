@@ -2,220 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3C51161C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 11:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E414B11626
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 11:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726266AbfEBJHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 05:07:49 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:57140 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726321AbfEBJHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 05:07:49 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190502090747euoutp01ad7b202a054ac73ff50f74648be8a0fb~a0n_7kL4p0763507635euoutp017
-        for <devicetree@vger.kernel.org>; Thu,  2 May 2019 09:07:47 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190502090747euoutp01ad7b202a054ac73ff50f74648be8a0fb~a0n_7kL4p0763507635euoutp017
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1556788067;
-        bh=7y6pfwZd2kl1NIeu3yktOUDRjdOM1tIbsD/dhVmUFg4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Un35zlu0clDc23xVDMVXdifRCgA7wlF35FjwmtybuYOBEWOenJJ19faV5C0n1VdLI
-         MGwn2V29TZ0kN3472bVfIRW237a4QnK20DFqBoIBViZXDGWo8sYcPUTO+GU1b5i6rT
-         6ryfHjPFsDPUbs9by5pFcGcwJTJnyK7yqKRQylIU=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190502090746eucas1p27d534a5b51bc17d1c6c85dfd981a26fe~a0n_N938v0868708687eucas1p2z;
-        Thu,  2 May 2019 09:07:46 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id D8.AB.04325.263BACC5; Thu,  2
-        May 2019 10:07:46 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190502090745eucas1p1cc1da597aca7dbdf5524e2368a45accc~a0n9bSL741494314943eucas1p1B;
-        Thu,  2 May 2019 09:07:45 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190502090745eusmtrp146287be8f56d7b57e00a90a41952b226~a0n9NIs3A2320523205eusmtrp1H;
-        Thu,  2 May 2019 09:07:45 +0000 (GMT)
-X-AuditID: cbfec7f5-b8fff700000010e5-da-5ccab362ba50
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id C5.4F.04146.163BACC5; Thu,  2
-        May 2019 10:07:45 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190502090744eusmtip13ce7d7f7dc8e4f82cb2f0b7d0160ce9b~a0n8USKY83225432254eusmtip1T;
-        Thu,  2 May 2019 09:07:44 +0000 (GMT)
-Subject: Re: [PATCH v3 2/4] drivers: devfreq: events: extend events by type
- of counted data
-To:     Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, kyungmin.park@samsung.com,
-        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
-        myungjoo.ham@samsung.com, kgene@kernel.org,
-        willy.mh.wolff.ml@gmail.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <4cd7b7a3-7458-2166-a784-1a94830f5507@partner.samsung.com>
-Date:   Thu, 2 May 2019 11:07:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
+        id S1726297AbfEBJKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 05:10:50 -0400
+Received: from foss.arm.com ([217.140.101.70]:42536 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726196AbfEBJKt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 05:10:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D42CB374;
+        Thu,  2 May 2019 02:10:48 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 00C993F5AF;
+        Thu,  2 May 2019 02:10:46 -0700 (PDT)
+Date:   Thu, 2 May 2019 10:10:44 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        mark.rutland@arm.com, Sachin Ghadi <sachin.ghadi@sifive.com>
+Subject: Re: [PATCH 1/2] RISC-V: Add DT documentation for SiFive L2 Cache
+ Controller
+Message-ID: <20190502091044.GD12498@e107155-lin>
+References: <1556171696-7741-1-git-send-email-yash.shah@sifive.com>
+ <1556171696-7741-2-git-send-email-yash.shah@sifive.com>
+ <20190425101318.GA8469@e107155-lin>
+ <CAJ2_jOEBqBnorz9PcQp72Jjju9RX_P8mU=Gq+0xCCcWsBiJksw@mail.gmail.com>
+ <20190426093358.GA28309@e107155-lin>
+ <CAJ2_jOEoD=Njp+L+H=jG59mA-j9SnwzyNmz7ECogWmbvei_f5Q@mail.gmail.com>
+ <20190502004130.GA20802@bogus>
+ <CAJ2_jOETZa_oC-xSwfQVw-9Q6OivRG2R0rKMhwCk1knbxWJQVw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <be9dfa71-b6fd-ebe3-e8be-a7ea28765225@samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrNKsWRmVeSWpSXmKPExsWy7djPc7pJm0/FGMz5wmOxccZ6VovrX56z
-        Wsw/co7Vov/xa2aL8+c3sFucbXrDbrHp8TVWi8u75rBZfO49wmgx4/w+Jou1R+6yWyy9fpHJ
-        4nbjCjaL1r1H2C0Ov2lntfh24hGjg4DHmnlrGD12zrrL7rFpVSebx+Yl9R59W1YxenzeJBfA
-        FsVlk5Kak1mWWqRvl8CV0Tj7NVPBZMWK9qclDYxzpLoYOTkkBEwkdl/dwtrFyMUhJLCCUeLf
-        /i1sEM4XRon7e6dBOZ8ZJe593scO0zJt3iVmiMRyRom9My+xQzhvgVqmzGUCqRIWiJW4NWEa
-        2GARgZOMEr2Nd8EcZpBZJx9cA3I4ONgE9CR2rCoEaeAVcJO4d2Q2M4jNIqAisWhHGxuILSoQ
-        IXH/2AZWiBpBiZMzn7CA2JwC9hLf1+wAs5kFxCVuPZnPBGHLSzRvnQ12noTAX3aJ7es+sUDc
-        7SLR9qObGcIWlnh1fAvUPzISpyf3QNUUSzT0LmSEsGskHvfPhaqxljh8/CLYzcwCmhLrd+lD
-        hB0l3q7/wQQSlhDgk7jxVhDiBD6JSdumM0OEeSU62oQgqjUktvRcYIKwxSSWr5nGPoFRaRaS
-        x2YheWYWkmdmIexdwMiyilE8tbQ4Nz212DgvtVyvODG3uDQvXS85P3cTIzDJnf53/OsOxn1/
-        kg4xCnAwKvHw/ph6MkaINbGsuDL3EKMEB7OSCO+tPUAh3pTEyqrUovz4otKc1OJDjNIcLEri
-        vNUMD6KFBNITS1KzU1MLUotgskwcnFINjCfjZ/9cdfl9VprbI+dIMXHP+uC6lA3aT4L4tcW+
-        TfWauWTSd88Vn9J/sxz82BP44e9Gxt3vBM1WMv96aTh3AUdM7bxv0gbzvLzmzPzq7sOnl768
-        WXRK3AFWt0nijooeDWqTvLLEW3r3G8YeaZRp7/HNNfRf0h9xz7qbWfa/3cVD7yWjeP3nKbEU
-        ZyQaajEXFScCAPmPPGhuAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRmVeSWpSXmKPExsVy+t/xu7qJm0/FGGyaI2qxccZ6VovrX56z
-        Wsw/co7Vov/xa2aL8+c3sFucbXrDbrHp8TVWi8u75rBZfO49wmgx4/w+Jou1R+6yWyy9fpHJ
-        4nbjCjaL1r1H2C0Ov2lntfh24hGjg4DHmnlrGD12zrrL7rFpVSebx+Yl9R59W1YxenzeJBfA
-        FqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRvl6CX0Tj7
-        NVPBZMWK9qclDYxzpLoYOTkkBEwkps27xNzFyMUhJLCUUWLa/ouMEAkxiUn7trND2MISf651
-        sUEUvWaU+NM6jRUkISwQKzF/8T5GkISIwElGidkT/jKBOMwCnxklpq+5DDW3jVni+8NrQLM4
-        ONgE9CR2rCoE6eYVcJO4d2Q2M4jNIqAisWhHGxuILSoQIXHm/QoWiBpBiZMzn4DZnAL2Et/X
-        7ACzmQXMJOZtfsgMYYtL3HoynwnClpdo3jqbeQKj0Cwk7bOQtMxC0jILScsCRpZVjCKppcW5
-        6bnFhnrFibnFpXnpesn5uZsYgZG97djPzTsYL20MPsQowMGoxMP7Y+rJGCHWxLLiytxDjBIc
-        zEoivLf2AIV4UxIrq1KL8uOLSnNSiw8xmgI9N5FZSjQ5H5h08kriDU0NzS0sDc2NzY3NLJTE
-        eTsEDsYICaQnlqRmp6YWpBbB9DFxcEo1MM70qs1dyV36czWDkqROw5pXlx1OyIrPFGfIyF8c
-        UlUf51nyyZ7fXrw9Wq2kffGRvXn3xDMiNwi6fLb9eVhgXu2PiW/NjPQVfwkmrvR9/D3j7LYt
-        Ov+W5cYG38j6ERnyOySsxvG/1suQ304/9e7s8v4td65awe96mpnJlCvHKjem1TlJ589qUGIp
-        zkg01GIuKk4EADO1N9gCAwAA
-X-CMS-MailID: 20190502090745eucas1p1cc1da597aca7dbdf5524e2368a45accc
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190419134821eucas1p2461a27e28387ff2b87c149f09582d2a0
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190419134821eucas1p2461a27e28387ff2b87c149f09582d2a0
-References: <1555681688-19643-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419134821eucas1p2461a27e28387ff2b87c149f09582d2a0@eucas1p2.samsung.com>
-        <1555681688-19643-3-git-send-email-l.luba@partner.samsung.com>
-        <3557d507-0463-89de-4025-fbeaaef78bed@samsung.com>
-        <adb6e86a-880e-f9b7-76b2-777a531895d2@partner.samsung.com>
-        <be9dfa71-b6fd-ebe3-e8be-a7ea28765225@samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ2_jOETZa_oC-xSwfQVw-9Q6OivRG2R0rKMhwCk1knbxWJQVw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 02, 2019 at 10:50:12AM +0530, Yash Shah wrote:
+> On Thu, May 2, 2019 at 6:11 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Apr 30, 2019 at 09:50:45AM +0530, Yash Shah wrote:
+> > > On Fri, Apr 26, 2019 at 3:04 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > >
+> > > > On Fri, Apr 26, 2019 at 11:20:17AM +0530, Yash Shah wrote:
+> > > > > On Thu, Apr 25, 2019 at 3:43 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > > > >
+> > > > > > On Thu, Apr 25, 2019 at 11:24:55AM +0530, Yash Shah wrote:
+> > > > > > > Add device tree bindings for SiFive FU540 L2 cache controller driver
+> > > > > > >
+> > > > > > > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > > > > > > ---
+> > > > > > >  .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 53 ++++++++++++++++++++++
+> > > > > > >  1 file changed, 53 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > > > > > new file mode 100644
+> > > > > > > index 0000000..15132e2
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > > > > > @@ -0,0 +1,53 @@
+> > > > > > > +SiFive L2 Cache Controller
+> > > > > > > +--------------------------
+> > > > > > > +The SiFive Level 2 Cache Controller is used to provide access to fast copies
+> > > > > > > +of memory for masters in a Core Complex. The Level 2 Cache Controller also
+> > > > > > > +acts as directory-based coherency manager.
+> > > > > > > +
+> > > > > > > +Required Properties:
+> > > > > > > +--------------------
+> > > > > > > +- compatible: Should be "sifive,fu540-c000-ccache"
+> > > > > > > +
+> > > > > > > +- cache-block-size: Specifies the block size in bytes of the cache
+> > > > > > > +
+> > > > > > > +- cache-level: Should be set to 2 for a level 2 cache
+> > > > > > > +
+> > > > > > > +- cache-sets: Specifies the number of associativity sets of the cache
+> > > > > > > +
+> > > > > > > +- cache-size: Specifies the size in bytes of the cache
+> > > > > > > +
+> > > > > > > +- cache-unified: Specifies the cache is a unified cache
+> > > > > > > +
+> > > > > > > +- interrupt-parent: Must be core interrupt controller
+> > > > > > > +
+> > > > > > > +- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
+> > > > > > > +
+> > > > > > > +- reg: Physical base address and size of L2 cache controller registers map
+> > > > > > > +
+> > > > > > > +- reg-names: Should be "control"
+> > > > > > > +
+> > > > > >
+> > > > > > It would be good if you mark the properties that are present in DT
+> > > > > > specification and those that are added for sifive,fu540-c000-ccache
+> > > > >
+> > > > > I believe there isn't any property which is added explicitly for
+> > > > > sifive,fu540-c000-ccache.
+> > > > >
+> > > >
+> > > > reg and interrupts are generally optional for normal cache and may be
+> > > > required for cache controller like this. DT specification[1] covers
+> > > > only caches and not cache controllers.
+> > >
+> > > Are you suggesting something like this:
+> > >
+> > > Required Properties:
+> > > --------------------
+> > > Standard Properties:
+> >
+> > I don't think we need this separation.
+>
+> Ok. Won't include this "Standard/Non-standard properties" separation
+> in the next revision of this patch.
+>
 
+Sorry if I created confusion. I just wanted a note saying all the properties
+in ePAPR/DeviceTree specification applies for this platform. That would
+help me check if the standard cacheinfo infrastruction works as is or not.
 
-On 5/2/19 3:25 AM, Chanwoo Choi wrote:
-> Hi Lukasz,
-> 
-> On 19. 5. 1. 오전 6:19, Lukasz Luba wrote:
->> Hi Chanwoo,
->>
->> On 4/30/19 9:34 AM, Chanwoo Choi wrote:
->>> Hi Lukasz,
->>>
->>> On 19. 4. 19. 오후 10:48, Lukasz Luba wrote:
->>>> This patch adds posibility to choose what type of data should be counted
->>>> by the PPMU counter. Now the type comes from DT where the event has been
->>>> defined. When there is no 'event-data-type' the default value is used,
->>>> which is 'read data in bytes'.
->>>> It is needed when you want to know not only read+write data bytes but
->>>> i.e. only write data in byte, or number of read requests, etc.
->>>>
->>>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->>>> ---
->>>>    drivers/devfreq/event/exynos-ppmu.c | 61 +++++++++++++++++++++++++------------
->>>>    include/linux/devfreq-event.h       |  6 ++++
->>>>    2 files changed, 48 insertions(+), 19 deletions(-)
->>>>
->>>> diff --git a/drivers/devfreq/event/exynos-ppmu.c b/drivers/devfreq/event/exynos-ppmu.c
->>>> index c61de0b..073bf2c 100644
->>>> --- a/drivers/devfreq/event/exynos-ppmu.c
->>>> +++ b/drivers/devfreq/event/exynos-ppmu.c
->>>> @@ -154,9 +154,9 @@ static int exynos_ppmu_set_event(struct devfreq_event_dev *edev)
->>>>    	if (ret < 0)
->>>>    		return ret;
->>>>    
->>>> -	/* Set the event of Read/Write data count  */
->>>> +	/* Set the event of proper data type monitoring */
->>>>    	ret = regmap_write(info->regmap, PPMU_BEVTxSEL(id),
->>>> -				PPMU_RO_DATA_CNT | PPMU_WO_DATA_CNT);
->>>> +			   edev->desc->data_type);
->>>>    	if (ret < 0)
->>>>    		return ret;
->>>>    
->>>> @@ -368,23 +368,11 @@ static int exynos_ppmu_v2_set_event(struct devfreq_event_dev *edev)
->>>>    	if (ret < 0)
->>>>    		return ret;
->>>>    
->>>> -	/* Set the event of Read/Write data count  */
->>>> -	switch (id) {
->>>> -	case PPMU_PMNCNT0:
->>>> -	case PPMU_PMNCNT1:
->>>> -	case PPMU_PMNCNT2:
->>>> -		ret = regmap_write(info->regmap, PPMU_V2_CH_EVx_TYPE(id),
->>>> -				PPMU_V2_RO_DATA_CNT | PPMU_V2_WO_DATA_CNT);
->>>> -		if (ret < 0)
->>>> -			return ret;
->>>> -		break;
->>>> -	case PPMU_PMNCNT3:
->>>> -		ret = regmap_write(info->regmap, PPMU_V2_CH_EVx_TYPE(id),
->>>> -				PPMU_V2_EVT3_RW_DATA_CNT);
->>>> -		if (ret < 0)
->>>> -			return ret;
->>>> -		break;
->>>> -	}
->>>> +	/* Set the event of proper data type monitoring */
->>>> +	ret = regmap_write(info->regmap, PPMU_V2_CH_EVx_TYPE(id),
->>>> +			   edev->desc->data_type);
->>>> +	if (ret < 0)
->>>> +		return ret;
->>>>    
->>>>    	/* Reset cycle counter/performance counter and enable PPMU */
->>>>    	ret = regmap_read(info->regmap, PPMU_V2_PMNC, &pmnc);
->>>> @@ -508,6 +496,7 @@ static int of_get_devfreq_events(struct device_node *np,
->>>>    	struct device *dev = info->dev;
->>>>    	struct device_node *events_np, *node;
->>>>    	int i, j, count;
->>>> +	int ret;
->>>>    
->>>>    	events_np = of_get_child_by_name(np, "events");
->>>>    	if (!events_np) {
->>>> @@ -544,6 +533,40 @@ static int of_get_devfreq_events(struct device_node *np,
->>>>    		desc[j].driver_data = info;
->>>>    
->>>>    		of_property_read_string(node, "event-name", &desc[j].name);
->>>> +		ret = of_property_read_u32(node, "event-data-type",
->>>> +					   &desc[j].data_type);
->>>> +		if (ret) {
->>>> +			/* Set the event of proper data type counting.
->>>> +			 * Check if the data type has been defined in DT,
->>>> +			 * use default if not.
->>>> +			 */
->>>> +			if (of_device_is_compatible(np,
->>>> +					"samsung,exynos-ppmu-v2")) {
->>>
->>> It is not proper to compare the compatible string again
->>> in the device driver. Instead, you can define the ppmu device type
->>> as following and then use 'struct of_device_id' in order to
->>> identify the device type.
->> I have been thinking about modifying the code in similar fashion as you
->> did. Good to see similar approach. I'll take your changes with a small
->> additional code, which sets the 'info->ppmu_type' before the for
->> loop, as an additional patch. Would it be OK if I add you as an author
->> and add Sign-off-by: Chanwoo Choi <cw00.choi@samsung.com>?
-> 
-> If you agree, just add the my signed-off-by on second line.
-OK
-
+--
 Regards,
-Lukasz
+Sudeep
