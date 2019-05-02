@@ -2,103 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EFA51113A
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 04:19:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 643D311184
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 04:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726723AbfEBCTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 22:19:25 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57236 "EHLO
+        id S1726191AbfEBCd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 22:33:26 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52582 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726711AbfEBCTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 22:19:24 -0400
+        with ESMTP id S1726183AbfEBCd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 22:33:26 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=MS1QOIzunXomYID48sunfBjS80NfFtkOyiO7X8198WQ=; b=hmeOarK2EAp+
-        OrRY0LIZ1San+orD97cOS0mkWrykbTDCwIm3C0m6V/kbRkD5LiOtnGtCW0OedzN245qlKnloW6C61
-        1AJ0OHH7V1gBDDqQSTAD5EydATm55hK7tIvdpRpMAtyynHVS1oH08J4apHVJO5E/M617S+oFZwfqa
-        fBSLI=;
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=FFKovFdQTg5OJY5i063qAtTB6erYm+spnUt2RsGxwCU=; b=JTkOOzkpa2AgLB/H1z7i9Ta29
+        nwuy3p6YYaIv61JcB04usEfZ2SvkIkfhKVp0gLyrbdUN01vpGILYrgak3mgt4utJWdlNibX/lIbUz
+        Pkml9MzPnZQ82WH7285KddG+ZKYuTLlVS3A0LNMDBzEYLkKZQmYQr5o2ZPWC8qus5iExc=;
 Received: from [211.55.52.15] (helo=finisterre.ee.mobilebroadband)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hM1JW-0005wV-W3; Thu, 02 May 2019 02:19:11 +0000
+        id 1hM1XE-0005zR-0e; Thu, 02 May 2019 02:33:20 +0000
 Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
-        id C4AF8441D3D; Thu,  2 May 2019 03:19:07 +0100 (BST)
+        id DD91A441D3C; Thu,  2 May 2019 03:33:16 +0100 (BST)
+Date:   Thu, 2 May 2019 11:33:16 +0900
 From:   Mark Brown <broonie@kernel.org>
-To:     Leilk Liu <leilk.liu@mediatek.com>
-Cc:     devicetree@vger.kernel.org, fparent@baylibre.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Applied "dt-bindings: spi: spi-mt65xx: add support for MT8516" to the spi tree
-In-Reply-To:  <1555490836-13382-1-git-send-email-leilk.liu@mediatek.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190502021907.C4AF8441D3D@finisterre.ee.mobilebroadband>
-Date:   Thu,  2 May 2019 03:19:07 +0100 (BST)
+To:     Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
+        niklas.cassel@linaro.org, khasim.mohammed@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/3] drivers: regulator: qcom: add PMS405 SPMI regulator
+Message-ID: <20190502023316.GS14916@sirena.org.uk>
+References: <a3c281d5-d30e-294f-71ab-957decde2ba0@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7WENQHN97/U9vH7R"
+Content-Disposition: inline
+In-Reply-To: <a3c281d5-d30e-294f-71ab-957decde2ba0@linaro.org>
+X-Cookie: -- I have seen the FUN --
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
 
-   dt-bindings: spi: spi-mt65xx: add support for MT8516
+--7WENQHN97/U9vH7R
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-has been applied to the spi tree at
+On Mon, Apr 29, 2019 at 02:31:55PM +0200, Jorge Ramirez wrote:
+> On 4/27/19 20:21, Mark Brown wrote:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git 
+> > Since the point of this change is AFAICT that this regulator only has a
+> > single linear range it seems like it should just be able to use the
+> > existing generic functions shouldn't it? =20
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+> yes that would have been ideal but it does not seem to be the case for
+> this hardware.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> The register that stores the voltage range for all other SPMI regulators
+> (SPMI_COMMON_REG_VOLTAGE_RANGE 0x40) is used by something else in the
+> HFS430: SPMI_HFS430_REG_VOLTAGE_LB 0x40 stores the voltage level in two
+> bytes 0x40 and 0x41;
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> This overlap really what is creating the pain: HFS430 cant use 0x40 to
+> store the range (even if it is only one)
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> so yeah, most of the changes in the patch are working around this fact.
 
-Thanks,
-Mark
+I'm not sure I follow here, sorry - I can see that the driver needs a
+custom get/set selector operation but shouldn't it be able to use the
+standard list and map operations for linear ranges?
 
-From bf6e839657598b77e40eb18225f8660c4778cb19 Mon Sep 17 00:00:00 2001
-From: Leilk Liu <leilk.liu@mediatek.com>
-Date: Wed, 17 Apr 2019 16:47:16 +0800
-Subject: [PATCH] dt-bindings: spi: spi-mt65xx: add support for MT8516
+>=20
+> enum spmi_common_regulator_registers {
+> 	SPMI_COMMON_REG_DIG_MAJOR_REV		=3D 0x01,
+> 	SPMI_COMMON_REG_TYPE			=3D 0x04,
+> 	SPMI_COMMON_REG_SUBTYPE			=3D 0x05,
+> 	SPMI_COMMON_REG_VOLTAGE_RANGE		=3D 0x40, ******
+> 	SPMI_COMMON_REG_VOLTAGE_SET		=3D 0x41,
+> 	SPMI_COMMON_REG_MODE			=3D 0x45,
+> 	SPMI_COMMON_REG_ENABLE			=3D 0x46,
+> 	SPMI_COMMON_REG_PULL_DOWN		=3D 0x48,
+> 	SPMI_COMMON_REG_SOFT_START		=3D 0x4c,
+> 	SPMI_COMMON_REG_STEP_CTRL		=3D 0x61,
+> };
+>=20
+> enum spmi_hfs430_registers {
+> 	SPMI_HFS430_REG_VOLTAGE_LB		=3D 0x40, *******
+> 	SPMI_HFS430_REG_VOLTAGE_VALID_LB	=3D 0x42,
+> 	SPMI_HFS430_REG_MODE			=3D 0x45,
+> };
+>=20
+> It just needs it's own
+> > set/get_voltage_sel() operations.  As far as I can see the main thing
+> > the driver is doing with the custom stuff is handling the fact that
+> > there's multiple ranges but that's not an issue for this regulator.
+> > It's possible I'm missing something there but that was the main thing
+> > (and we do have some generic support for multiple linear ranges in the
+> > helper code already, can't remember why this driver isn't using that -
+> > the ranges overlap IIRC?).
+> >=20
+> > TBH looking at the uses of find_range() I'm not sure they're 100%
+> > sensible as they are - the existing _time_sel() is assuming we only need
+> > to work out the ramp time between voltages in the same range which is
+> > going to have trouble.
+> >=20
+>=20
 
-Add binding documentation of spi-mt65xx for MT8516 SOC.
+--7WENQHN97/U9vH7R
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/spi/spi-mt65xx.txt | 1 +
- 1 file changed, 1 insertion(+)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-mt65xx.txt b/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
-index 69c356767cf8..c0f6c8ecfa2e 100644
---- a/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
-@@ -10,6 +10,7 @@ Required properties:
-     - mediatek,mt8135-spi: for mt8135 platforms
-     - mediatek,mt8173-spi: for mt8173 platforms
-     - mediatek,mt8183-spi: for mt8183 platforms
-+    - "mediatek,mt8516-spi", "mediatek,mt2712-spi": for mt8516 platforms
- 
- - #address-cells: should be 1.
- 
--- 
-2.20.1
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzKVuwACgkQJNaLcl1U
+h9DtBAf/fJs9R87cXNcFsxrNNksszOWu5ND0JxSJzxsn6F/SqOtvQqIWwvNkZFnn
+xAnvKxojILHRP1HP1bAZTpeH0tQumGjDYWgXWOiexYkar6+TZbQjftk+WEOvuXnE
+H/Z8H6ZU+7dNneX7vyyM2cWjjngayoM2GWHdEE531uMUnRGhyvjPbiBTP9109Pnx
+nN6FG8+ENYurZpOKSJS+0AvzdoEz22WMYo+fKENqtRP/yi0ERtabto5NOWkN7qub
+OVcNIA3zR+5YxFGoXlA/0v3Y4ado+0sC+9kRpmE9eZ/oIQ/uKSXX0UzN1+WmDGIy
+qv/iLyyNvpa1F18cw9aNNCfQSUL5QA==
+=1c2Q
+-----END PGP SIGNATURE-----
 
+--7WENQHN97/U9vH7R--
