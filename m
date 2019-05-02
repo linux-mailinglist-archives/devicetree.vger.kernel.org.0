@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA427113A1
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 09:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD4A113FC
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 09:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbfEBG76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 02:59:58 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:42103 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725795AbfEBG75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 02:59:57 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hM5gz-0008TR-Au; Thu, 02 May 2019 08:59:41 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hM5gx-0007lH-EQ; Thu, 02 May 2019 08:59:39 +0200
-Date:   Thu, 2 May 2019 08:59:39 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Robin Gong <yibin.gong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "broonie@kernel.org" <broonie@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "plyatov@gmail.com" <plyatov@gmail.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v2 08/15] dt-bindings: spi: imx: add i.mx6ul to state
- errata fixed
-Message-ID: <20190502065939.nyejomrsowhy6xox@pengutronix.de>
-References: <1556265512-9130-1-git-send-email-yibin.gong@nxp.com>
- <1556265512-9130-9-git-send-email-yibin.gong@nxp.com>
+        id S1726338AbfEBHP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 03:15:26 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:57247 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726242AbfEBHP0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 03:15:26 -0400
+X-Originating-IP: 90.88.149.145
+Received: from localhost (aaubervilliers-681-1-29-145.w90-88.abo.wanadoo.fr [90.88.149.145])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id A896520003;
+        Thu,  2 May 2019 07:15:21 +0000 (UTC)
+Date:   Thu, 2 May 2019 09:15:21 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v4 1/3] arm64: dts: allwinner: a64: Move I2C pinctrl to
+ dtsi
+Message-ID: <20190502071521.7ekih3bgjth54sry@flea>
+References: <20190418174720.17230-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="l3fjic7vuxbz5vss"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1556265512-9130-9-git-send-email-yibin.gong@nxp.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20190418174720.17230-1-jagan@amarulasolutions.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 26, 2019 at 08:05:51AM +0000, Robin Gong wrote:
-> ERR009165 fixed from i.mx6ul, add it to show the errata fixed.
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> ---
->  Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
-> index 2d32641..32c4263d 100644
-> --- a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
-> +++ b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
-> @@ -10,6 +10,8 @@ Required properties:
->    - "fsl,imx35-cspi" for SPI compatible with the one integrated on i.MX35
->    - "fsl,imx51-ecspi" for SPI compatible with the one integrated on i.MX51
->    - "fsl,imx53-ecspi" for SPI compatible with the one integrated on i.MX53 and later Soc
-> +  - "fsl,imx6ul-ecspi" ERR009165 fixed on i.MX6UL and later Soc
-> +    (https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf)
 
-I wouldn't mention this errata in the binding documentation. Just state
-that fsl,imx6ul-ecspi is designed to be used on i.MX6UL. And that it
-might also be used on later SoCs as a "fallback compatible" is a detail
-that is so common that I would expect it not being worth mentioning. So
-for me it would also be OK to drop "fsl,imx53-ecspi" from the list as
-this is only used like:
+--l3fjic7vuxbz5vss
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-	compatible = "fsl,imx53-ecspi", "fsl,imx51-ecspi";
+Hi,
 
-(But note that I have no authority here.)
+On Thu, Apr 18, 2019 at 11:17:18PM +0530, Jagan Teki wrote:
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
+> index f4e78531f639..bef4abf6fa25 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
+> @@ -121,8 +121,6 @@
+>
+>  /* i2c1 connected with gpio headers like pine64, bananapi */
+>  &i2c1 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&i2c1_pins>;
+>  	status = "disabled";
+>  };
 
-Best regards
-Uwe
+That node can be removed entirely
 
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+It looks fine otherwise.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--l3fjic7vuxbz5vss
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXMqZCQAKCRDj7w1vZxhR
+xU9OAQDxTAEtGhuPzyZjpKPIGQXLaALohb8tDqQ5pCkcRraUIQEAvx/AzS8BBrHq
+CikCMIi3e4lw8EMelHNzyKK0j78UpQc=
+=gnAK
+-----END PGP SIGNATURE-----
+
+--l3fjic7vuxbz5vss--
