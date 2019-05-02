@@ -2,204 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF4F11396
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 08:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA427113A1
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 09:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726186AbfEBG6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 02:58:36 -0400
-Received: from mail-it1-f195.google.com ([209.85.166.195]:53056 "EHLO
-        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726111AbfEBG6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 02:58:36 -0400
-Received: by mail-it1-f195.google.com with SMTP id q65so59781itg.2;
-        Wed, 01 May 2019 23:58:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=EnR/15GUzu6OTQgIg7gqJkufZbbnK4uQAt2gU+Gztq8=;
-        b=Te96iaoUhdYXTuqFtiB8ysa5TLrj0t5fKBni1++y5Eod1/Ooah8G+r/UA3yaKUMJ2i
-         snPVnHhahoRol0awHyaVb9504oJPwQx4IW0k3Fly3rm8PsVT4Q7Z5SjUJghmO9RWWizH
-         S61GTBmB7+4UVFiYn68GXjwwGiU+WphtPZhQ5uLZRZxBkVVEvUG0u2FK5xXjE6Mrd5fl
-         EPwxcFCDRnOoxbDXbIBqHZGCGiOVGI+B7gYQQ2HXk+GCd04/Ya5xzfBDVhMTPgV+oKBB
-         r4G3ntyM8yvpej6uurUnF/9fjmAyMNrxDzWzo6Tht9rjoIfBMdrW0h150oxbxNjCCqmL
-         vIfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=EnR/15GUzu6OTQgIg7gqJkufZbbnK4uQAt2gU+Gztq8=;
-        b=pjAjy6ifJx//XsXHK3Rx0uRr3nuYXVU8BCkszvDL0zOzJAcURIs/yXjnQbTjg8rw4B
-         21cHo7N49l4SlqTgkNPG9768CqvYUZIzItejAB1w8VQvHgdAUhhGC49rxkrtDSwSUdq2
-         B93ZzPTYEgSWZgb48SyqLKffQQMzkxs1laJnPMXeoUGXIpZZdw/HXZZ9Mq8/18iXYSSx
-         OZs2jtuXbnstE7cuapFopIwY4BRt3iptpgu60EPQs4bQ4zKdG7DSxXZ4mDahQdiZCKXC
-         6J4c8Apq6+y5SbjYd0VKdtRz8wpfWxuMLRLErRBPkdYYKwlx2HO2xekysRjfDtMvBGKR
-         k4ZQ==
-X-Gm-Message-State: APjAAAX5qsKKj++guR7j2Dgcl3bupKSSGAlr09eZQPgl2XlGij1snRfh
-        EKPBZ58ntXw4mpPq5dbMhDreydds1twbECaUTcttCZ4E
-X-Google-Smtp-Source: APXvYqxGbhVpVlFc8rov0FPctiHE03qgmpZ2PnNy5V+tKo+Vs9IhUeDL3rzXZ63FEcFpgxRBxgyqean9YdwuFqY1AFU=
-X-Received: by 2002:a24:c488:: with SMTP id v130mr1356394itf.96.1556780314685;
- Wed, 01 May 2019 23:58:34 -0700 (PDT)
+        id S1726386AbfEBG76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 02:59:58 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:42103 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725795AbfEBG75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 02:59:57 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hM5gz-0008TR-Au; Thu, 02 May 2019 08:59:41 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hM5gx-0007lH-EQ; Thu, 02 May 2019 08:59:39 +0200
+Date:   Thu, 2 May 2019 08:59:39 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Robin Gong <yibin.gong@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "broonie@kernel.org" <broonie@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "plyatov@gmail.com" <plyatov@gmail.com>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 08/15] dt-bindings: spi: imx: add i.mx6ul to state
+ errata fixed
+Message-ID: <20190502065939.nyejomrsowhy6xox@pengutronix.de>
+References: <1556265512-9130-1-git-send-email-yibin.gong@nxp.com>
+ <1556265512-9130-9-git-send-email-yibin.gong@nxp.com>
 MIME-Version: 1.0
-References: <20190426164224.11327-1-pawel.mikolaj.chmiel@gmail.com>
- <20190426164224.11327-5-pawel.mikolaj.chmiel@gmail.com> <20190502015408.GA11612@bogus>
- <CA+Ln22HLqnbbY37FG6CwjZvZH7G35Z+0kNq7XFU4WtZyk_EqZQ@mail.gmail.com>
- <20190502083632.0ec0fb4e@collabora.com> <CA+Ln22H4ua9Zuh4eKaWfHtqh8DieyiS=5s7wS6-TbmA5Dsop4A@mail.gmail.com>
- <20190502085518.5d248167@collabora.com>
-In-Reply-To: <20190502085518.5d248167@collabora.com>
-From:   Tomasz Figa <tomasz.figa@gmail.com>
-Date:   Thu, 2 May 2019 15:58:24 +0900
-Message-ID: <CA+Ln22EJ3G9ez4XZ3ysZBt6thsqDYDtik8fw-gfExR9Y7wFN9A@mail.gmail.com>
-Subject: Re: [PATCH 4/5] dt-binding: mtd: onenand/samsung: Add device tree support
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        bbrezillon@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
-        David Woodhouse <dwmw2@infradead.org>,
-        computersforpeace@gmail.com, marek.vasut@gmail.com,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-mtd@lists.infradead.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1556265512-9130-9-git-send-email-yibin.gong@nxp.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-2019=E5=B9=B45=E6=9C=882=E6=97=A5(=E6=9C=A8) 15:55 Boris Brezillon <boris.b=
-rezillon@collabora.com>:
->
-> On Thu, 2 May 2019 15:42:59 +0900
-> Tomasz Figa <tomasz.figa@gmail.com> wrote:
->
-> > 2019=E5=B9=B45=E6=9C=882=E6=97=A5(=E6=9C=A8) 15:36 Boris Brezillon <bor=
-is.brezillon@collabora.com>:
-> > >
-> > > Hi Tomasz,
-> > >
-> > > On Thu, 2 May 2019 15:23:33 +0900
-> > > Tomasz Figa <tomasz.figa@gmail.com> wrote:
-> > >
-> > > > 2019=E5=B9=B45=E6=9C=882=E6=97=A5(=E6=9C=A8) 10:54 Rob Herring <rob=
-h@kernel.org>:
-> > > > >
-> > > > > On Fri, Apr 26, 2019 at 06:42:23PM +0200, Pawe=C5=82 Chmiel wrote=
-:
-> > > > > > From: Tomasz Figa <tomasz.figa@gmail.com>
-> > > > > >
-> > > > > > This patch adds dt-bindings for Samsung OneNAND driver.
-> > > > > >
-> > > > > > Signed-off-by: Tomasz Figa <tomasz.figa@gmail.com>
-> > > > > > Signed-off-by: Pawe=C5=82 Chmiel <pawel.mikolaj.chmiel@gmail.co=
-m>
-> > > > > > ---
-> > > > > >  .../bindings/mtd/samsung-onenand.txt          | 46 +++++++++++=
-++++++++
-> > > > > >  1 file changed, 46 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/samsu=
-ng-onenand.txt
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/mtd/samsung-onen=
-and.txt b/Documentation/devicetree/bindings/mtd/samsung-onenand.txt
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..341d97cc1513
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/mtd/samsung-onenand.txt
-> > > > > > @@ -0,0 +1,46 @@
-> > > > > > +Device tree bindings for Samsung SoC OneNAND controller
-> > > > > > +
-> > > > > > +Required properties:
-> > > > > > + - compatible : value should be either of the following.
-> > > > > > +   (a) "samsung,s3c6400-onenand" - for onenand controller comp=
-atible with
-> > > > > > +       S3C6400 SoC,
-> > > > > > +   (b) "samsung,s3c6410-onenand" - for onenand controller comp=
-atible with
-> > > > > > +       S3C6410 SoC,
-> > > > > > +   (c) "samsung,s5pc100-onenand" - for onenand controller comp=
-atible with
-> > > > > > +       S5PC100 SoC,
-> > > > > > +   (d) "samsung,s5pv210-onenand" - for onenand controller comp=
-atible with
-> > > > > > +       S5PC110/S5PV210 SoCs.
-> > > > > > +
-> > > > > > + - reg : two memory mapped register regions:
-> > > > > > +   - first entry: control registers.
-> > > > > > +   - second and next entries: memory windows of particular One=
-NAND chips;
-> > > > > > +     for variants a), b) and c) only one is allowed, in case o=
-f d) up to
-> > > > > > +     two chips can be supported.
-> > > > > > +
-> > > > > > + - interrupt-parent : phandle of interrupt controller to which=
- the OneNAND
-> > > > > > +   controller is wired,
-> > > > >
-> > > > > This is implied and can be removed.
-> > > > >
-> > > > > > + - interrupts : specifier of interrupt signal to which the One=
-NAND controller
-> > > > > > +   is wired; should contain just one entry.
-> > > > > > + - clock-names : should contain two entries:
-> > > > > > +   - "bus" - bus clock of the controller,
-> > > > > > +   - "onenand" - clock supplied to OneNAND memory.
-> > > > >
-> > > > > If the clock just goes to the OneNAND device, then it should be i=
-n the
-> > > > > nand device node rather than the controller node.
-> > > > >
-> > > >
-> > > > (Trying hard to recall the details about this hardware.)
-> > > > AFAIR the clock goes to the controller and the controller then feed=
-s
-> > > > it to the memory chips.
-> > > >
-> > > > Also I don't think we should have any nand device nodes here, since
-> > > > the memory itself is only exposed via the controller, which offers
-> > > > various queries to probe the memory at runtime, so there is no need=
- to
-> > > > describe it in DT.
-> > >
-> > > It's probably true, though not providing this controller/device
-> > > separation for NAND controller/devices has proven to be a mistake for
-> > > raw NAND controllers (some props apply to the controllers and others =
-to
-> > > the NAND device, not to mention that some controllers support
-> > > interacting with several chips), so, if that's a new binding, I'd
-> > > recommend having this separation even if it's not strictly required.
-> > >
-> >
-> > Note that OneNAND is a totally different thing than the typical NAND
-> > memory with NAND interface. OneNAND chips have a NOR-like interface,
-> > with internal controller and buffers inside, so technically they can
-> > be even used without any special controller on the SoC, via a generic
-> > parallel host interface and possibly some regular DMA engine for CPU
-> > offload.
->
-> Yes, I know that.
->
-> >
-> > The controller design of the SoCs in question further abstracts the
-> > OneNAND's programming interface into a number of high level operations
-> > and attempts to hide the details of the underlying memory, so I don't
-> > see the point of describing the memory in DT here, it would actually
-> > defeat the purpose of this controller.
->
-> I don't see how having a subnode for the NAND chip would change
-> anything on how the controller interacts with the NAND device. My point
-> is, if we ever need to add props that apply to the device rather than
-> the controller itself, having a single node to represent both elements
-> is not that great.
+On Fri, Apr 26, 2019 at 08:05:51AM +0000, Robin Gong wrote:
+> ERR009165 fixed from i.mx6ul, add it to show the errata fixed.
+> 
+> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+> index 2d32641..32c4263d 100644
+> --- a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+> +++ b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+> @@ -10,6 +10,8 @@ Required properties:
+>    - "fsl,imx35-cspi" for SPI compatible with the one integrated on i.MX35
+>    - "fsl,imx51-ecspi" for SPI compatible with the one integrated on i.MX51
+>    - "fsl,imx53-ecspi" for SPI compatible with the one integrated on i.MX53 and later Soc
+> +  - "fsl,imx6ul-ecspi" ERR009165 fixed on i.MX6UL and later Soc
+> +    (https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf)
 
-You mean, just having a very generic onenand@0 node that doesn't
-really include any information, except maybe the partition table? I
-guess that wouldn't have any negative side effects indeed.
+I wouldn't mention this errata in the binding documentation. Just state
+that fsl,imx6ul-ecspi is designed to be used on i.MX6UL. And that it
+might also be used on later SoCs as a "fallback compatible" is a detail
+that is so common that I would expect it not being worth mentioning. So
+for me it would also be OK to drop "fsl,imx53-ecspi" from the list as
+this is only used like:
 
-My point was that we don't want to put things like chip vendor, size,
-etc. in DT, since that's enumerable.
+	compatible = "fsl,imx53-ecspi", "fsl,imx51-ecspi";
 
-Best regards,
-Tomasz
+(But note that I have no authority here.)
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
