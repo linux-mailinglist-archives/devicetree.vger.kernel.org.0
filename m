@@ -2,107 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF791178B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 12:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B41AC117A0
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 12:51:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726266AbfEBKqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 06:46:48 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:38366 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbfEBKqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 06:46:48 -0400
-Received: by mail-wm1-f67.google.com with SMTP id w15so1984708wmc.3
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 03:46:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=upr4s3UIqgMfOrxzX8hhRFt6bzy1u9Hfi57/Qn9/txc=;
-        b=ONa1Kh3MkmzE3M+vKHgiL4PwCW7ge1VCjQn6DkjkKRFwkrOiHF5j2fYLMdPH4Rztwh
-         frXJi5Ac0BfSXIcwW2euSoiS1uDBKY0IJpY7Jyd3aX5ErqYvHEWT3Eu3eFzN3hSy+fWJ
-         xELWO3+47dApN8Evpzl5hFryTd4WopsbAivnKmbX8r7oiEXlaO6rVfvEsn81LBtm5WE4
-         l38NRQQUPmeOTieKupNNQ0ztW+qbYYsO+0PZ3v2w1nP5hqpfkzqLWBVzAS7D7iKsx2fe
-         h4gicOY03ITDlRaXt2umQf4RCP3fAPxpJZEBUxcaisPKIAho8tEnpPa2GfyFTvT7p4wx
-         miew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=upr4s3UIqgMfOrxzX8hhRFt6bzy1u9Hfi57/Qn9/txc=;
-        b=WphKasoEgbboMJOn6/DVKAHIS2MUhaB7a9MyGMDiwDDfAE/7vqIe+gHtLcDtnxyCIC
-         ZTgpRpdF8gnJTjNky549mafC1yO5K/yrIyg4my/Xn6xOccoCdKMzDKT1Q/GpwJj06/i7
-         2XeYlAknalKTk2UOhqM/sNQIqLAq73Ok0Zf8y8uJB9tD8jYx2D4Y7JJdSXJodCKhew4K
-         CRIkx9W6b8wAfmEGfo0hXuI5e4oarv/23wJU3cf+Y81GtBQMsRr4YxyLDeJgpK7D/Iaz
-         argkiTfmpS+S4cCpRUyHvWSztTBk+B1PTpotgotd1zpX54LXpIoIbnVdHyiCfOfa8/bo
-         k0bA==
-X-Gm-Message-State: APjAAAUT6VN/H6DsGCXiMJE0UogawZ3Vv3MJ3hYTmGmaJAfCOjUwHb89
-        1qnSE/moxMFpLNTYipCGM4q76lasVIUNKw==
-X-Google-Smtp-Source: APXvYqz8ljUpeAkWeR0JjC3hksspS6xNuZxWwhyiG3PhQ+JauGvsPlF8u6dmrVg+yH7KYtohRo/pYg==
-X-Received: by 2002:a1c:e708:: with SMTP id e8mr1866607wmh.73.1556794006806;
-        Thu, 02 May 2019 03:46:46 -0700 (PDT)
-Received: from holly.lan (static-84-9-17-116.vodafonexdsl.co.uk. [84.9.17.116])
-        by smtp.gmail.com with ESMTPSA id z16sm23205477wrt.26.2019.05.02.03.46.45
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 02 May 2019 03:46:46 -0700 (PDT)
-Date:   Thu, 2 May 2019 11:46:44 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     lee.jones@linaro.org, jingoohan1@gmail.com, robh+dt@kernel.org,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
-        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dmurphy@ti.com, jonathan@marek.ca,
-        Daniel Thompson <daniel@redfelineninja.org.uk>
-Subject: Re: [PATCH v6 1/3] backlight: lm3630a: return 0 on success in
- update_status functions
-Message-ID: <20190502104644.e3eth2cdebuz2mpk@holly.lan>
-References: <20190424092505.6578-1-masneyb@onstation.org>
- <20190424092505.6578-2-masneyb@onstation.org>
- <864c1ddc-1008-0041-1559-e491ca0186ef@linaro.org>
- <20190502104239.GA24563@basecamp>
+        id S1726448AbfEBKu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 06:50:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46836 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726439AbfEBKu4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 06:50:56 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 862482075E;
+        Thu,  2 May 2019 10:50:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556794256;
+        bh=Ayblsy3jHDm2CChtokJ923ivXLZjfyjL6uNubfrhVOA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QXN7qfD9kVZ8X14uPJyJaEtMH+8kKfNVIsH6ibUWlQkRylnV/zLp9rQ6le2tunE78
+         SSJF7dmrJsP0QsUsoC9j31We0mjmXawkaN8LppVzAyCBUPD5b9pzAyl6ekchbNAzFq
+         btjAwtKByeIBqfun6usLtq6HFfVq7lLUJLvG54Zg=
+Date:   Thu, 2 May 2019 12:50:53 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     frowand.list@gmail.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, richard@nod.at, rientjes@google.com,
+        rostedt@goodmis.org, wfg@linux.intel.com
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190502105053.GA12416@kroah.com>
+References: <20190501230126.229218-1-brendanhiggins@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190502104239.GA24563@basecamp>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190501230126.229218-1-brendanhiggins@google.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 02, 2019 at 06:42:39AM -0400, Brian Masney wrote:
-> On Thu, May 02, 2019 at 11:07:51AM +0100, Daniel Thompson wrote:
-> > On 24/04/2019 10:25, Brian Masney wrote:
-> > > lm3630a_bank_a_update_status() and lm3630a_bank_b_update_status()
-> > > both return the brightness value if the brightness was successfully
-> > > updated. Writing to these attributes via sysfs would cause a 'Bad
-> > > address' error to be returned. These functions should return 0 on
-> > > success, so let's change it to correct that error.
-> > > 
-> > > Signed-off-by: Brian Masney <masneyb@onstation.org>
-> > > Fixes: 28e64a68a2ef ("backlight: lm3630: apply chip revision")
-> > > Acked-by: Pavel Machek <pavel@ucw.cz>
-> > 
-> > Hi Brian, sorry for the delay. For some reason your mails are being dumped
-> > before they reach me so I only discovered these patches when I paid proper
-> > attention to the replies and fetched them from patchwork.
-> > 
-> > Hi Lee, is the same thing happening for you? ;-)
+On Wed, May 01, 2019 at 04:01:09PM -0700, Brendan Higgins wrote:
+> ## TLDR
 > 
-> Huh, that's odd. I haven't ran into that issue when working with people
-> from Linaro in other subsystems.
-> 
-> As a sanity check, I used 'git send-email' to send this patch to
-> check-auth@verifier.port25.com and it verified that I still have SPF,
-> DKIM, reverse DNS, etc. all setup properly on this domain.
-> 
-> hotmail.com addresses are the only ones I've had issues with in the
-> past, but I doubt you're forwarding your email there. :)
+> I rebased the last patchset on 5.1-rc7 in hopes that we can get this in
+> 5.2.
 
-No... and strangely enough your recent e-mail sailed through just fine.
-Let's wait and see what is happening for Lee (which I suspect may not be
-until well into next week).
+That might be rushing it, normally trees are already closed now for
+5.2-rc1 if 5.1-final comes out this Sunday.
 
+> Shuah, I think you, Greg KH, and myself talked off thread, and we agreed
+> we would merge through your tree when the time came? Am I remembering
+> correctly?
 
-Daniel.
+No objection from me.
+
+Let me go review the latest round of patches now.
+
+thanks,
+
+greg k-h
