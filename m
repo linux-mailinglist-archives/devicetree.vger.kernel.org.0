@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC76A111B8
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 04:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A163111FF
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 06:01:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726183AbfEBCpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 22:45:46 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45128 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbfEBCpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 22:45:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=aNhvX/Q8oZJ4/XJ3D47vwJgCQyOxntjtayZOPxGIk4I=; b=lQ/mfkYWf/Cm15lXSr9bc3bPC
-        vU/4/jANVvYHM4KagxLuaxHAzzPT7nMSz5M/BTVrj+HsCYOy9Qhf36RH4s3Y22trd8zw9WFfoJ41M
-        bssOL7yIQj7Fe7gVIkaBxsLnJup4fbjDUfb6N82h0PudXI/82l0VGzXDqzYrD2l1VB02E=;
-Received: from [211.55.52.15] (helo=finisterre.ee.mobilebroadband)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hM1j2-000611-OW; Thu, 02 May 2019 02:45:33 +0000
-Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
-        id C099A441D3C; Thu,  2 May 2019 03:45:24 +0100 (BST)
-Date:   Thu, 2 May 2019 11:45:24 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Hamish Martin <Hamish.Martin@alliedtelesis.co.nz>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "tthayer@opensource.altera.com" <tthayer@opensource.altera.com>
-Subject: Re: [PATCH 0/3] spi: SPI bus multiplexer
-Message-ID: <20190502024524.GV14916@sirena.org.uk>
-References: <20190412050213.17698-1-chris.packham@alliedtelesis.co.nz>
- <20190412082913.GA6909@sirena.org.uk>
- <d91ab2261a1f4069bc48e090bd4ec702@svr-chch-ex1.atlnz.lc>
+        id S1725613AbfEBEBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 00:01:55 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:43845 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725497AbfEBEBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 00:01:54 -0400
+Received: by mail-lf1-f68.google.com with SMTP id u27so526868lfg.10
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 21:01:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wFt7883PSp3sr8375jT8hC/v5fI/cu96gfKmIMdklMc=;
+        b=NL31EuKphJharQ7ownjb9GhREqWgylPR8oRdfySKPZMDjNrY2iEQE+rRHxT4ngNhdt
+         S3dsJVBIj5WOjo2zeN5xhW4Q0JGirUI/rk/HumUBXGZPyY6c/J1IBbu6PR9T1NV5Y0wo
+         oq3rJA7JQDfBlz0eBBDCFI0gPZ23MuCxEtssLK3CzJPda4c/lvmt5xJUeEVYEz/6IAfQ
+         OOx1LWqEaZ/C69l5OxSAB7ViB3GfHPgoJiLsWv49NTYer+IitWd4Skkxi65dDWAJtav6
+         B/w2l2m0I9Wxe+wHEDFd2VXNqAkEstJoKby3kTKWhlMthCaJHtP8Y62rrHurhz+U9nD4
+         F9Zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wFt7883PSp3sr8375jT8hC/v5fI/cu96gfKmIMdklMc=;
+        b=DJuBfm0t2dFBLKJ/lJzCQAppLnQFOcM3TrEB5yXSP8iWWaYS08dfQIlpEUZ3hk7miw
+         6kwU8GCSTIMCulb0Y8F013FBmHOrSSu6oURq5WBnbRKfGOa43OLS9PgFBeSrKky7+uwn
+         nXgYZqCtLG6kaGYd+gdDxR+NuhpQ8uBrhpbfiXlR2CKQMI3pw7LTiPKKRVi6/DNnoaIU
+         NLLnG1EW/b2q5kuKP9NelGeRrT9TThNRYfFExX/5vgMnS+MYkud157gXLzBLaMfHpPC/
+         5TbyHlzMGfK5CDDwUZJew+zCjFnNN3+vGXEA9sjEM+1q7VObTtLYsUezSTvONaR5bvOX
+         MeTg==
+X-Gm-Message-State: APjAAAVVLDjaIFmbPvoRDSmlFs3/CvQ3EOJatzhoGcPyUHGnSMes9Qu2
+        0LyU/hRGklBl7KKXgoyU0uJTXeV/erQhxMjRKHEFDw==
+X-Google-Smtp-Source: APXvYqxzdvzK/rjINuA4zAT9PeOdoZuUwGQBTyS9ONY/hM54JNu3Te4R4w/vTFUvuR1Nv624R8L3skIAT6evE9QmbPY=
+X-Received: by 2002:a19:81d4:: with SMTP id c203mr672545lfd.160.1556769713184;
+ Wed, 01 May 2019 21:01:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="worL9B4ITIAQZ1FS"
-Content-Disposition: inline
-In-Reply-To: <d91ab2261a1f4069bc48e090bd4ec702@svr-chch-ex1.atlnz.lc>
-X-Cookie: -- I have seen the FUN --
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1553508779-9685-1-git-send-email-yash.shah@sifive.com>
+ <mvmbm1zueya.fsf@suse.de> <mvmpnqcsn6u.fsf@suse.de>
+In-Reply-To: <mvmpnqcsn6u.fsf@suse.de>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Thu, 2 May 2019 09:31:16 +0530
+Message-ID: <CAJ2_jOFu-yCZV_A4B48_fLq7h7UA6LUWhgpxr0uuh7vhW9Q8pA@mail.gmail.com>
+Subject: Re: [PATCH v11 0/2] PWM support for HiFive Unleashed
+To:     Andreas Schwab <schwab@suse.de>
+Cc:     Palmer Dabbelt <palmer@sifive.com>, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sachin Ghadi <sachin.ghadi@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andreas,
 
---worL9B4ITIAQZ1FS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Mar 27, 2019 at 2:34 PM Andreas Schwab <schwab@suse.de> wrote:
+>
+> I have now found out that the ledtrig modules don't load automatically.
+> I would have expected that the linux,default-trigger entries would cause
+> the load of the corresponding ledtrig modules.
+>
+> But there is another problem, that the leds are on by default.
+> Shouldn't they be off by default?
 
-On Sun, Apr 28, 2019 at 10:28:16PM +0000, Chris Packham wrote:
+The PWM default output state is high (When duty cycle is 0), So I
+guess leds will remain on by default.
 
-> One other problem that I encounter is the interaction between cs-gpio=20
-> and SPI_MASTER_GPIO_SS. Having cs-gpio automatically sets SPI_CS_HIGH=20
-> which has the undesired side-effect that now my real chip select is=20
-> inverted. I actually wonder if this change breaks commit 8eee6b9dd30d=20
-> ("spi: Add Flag to Enable Slave Select with GPIO Chip Select.") since=20
-> now there is an extra inversion on the CS enable.
+Are you able to test the PWM driver at your end? or you still facing
+some issues?
 
-That sounds like a framework bug which should just be fixed - we
-shouldn't be disrupting users of real chip selects when using a GPIO
-chip select.  Depending on the hardware we might need a chip select
-assigned that isn't connected to anything for use while the GPIOs are
-doing the real work but otherwise we shouldn't be breaking things.
-
---worL9B4ITIAQZ1FS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzKWcQACgkQJNaLcl1U
-h9A8mgf+NUGeTId/vCKU5fgsyKAKgLFNNREzR640DJheAW8jSR+tFvdWIcS+Xzui
-wHoMW2SYbEQ9jOoDzhPQKNU9PM4q03Pz3NlbFRkHub9Mz76XQgLzV89K/FvBfOkf
-xhh7repFxc81GLG9gTot2SHBOrsHIPz5LkpXK7FgRQJFiemZEdrDpDn6hmZuiK+v
-kcU4mVpd7rza0fXLRoOcTCSnwjUU7+leF6zx4VsEqSWZ5Sl8oUy2LlvRqfziRKSg
-uvCeyZAn7dYif/78KcjBs5fex/Eb3ac49T85SFAo1GhHPuyQtYJfe2ZxEtz4qrVB
-czstXt8yaIV2diO5m+pXnum3mzstaQ==
-=ou6s
------END PGP SIGNATURE-----
-
---worL9B4ITIAQZ1FS--
+>
+> Andreas.
+>
+> --
+> Andreas Schwab, SUSE Labs, schwab@suse.de
+> GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
+> "And now for something completely different."
