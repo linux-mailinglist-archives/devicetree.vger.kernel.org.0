@@ -2,207 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E13F31216C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 19:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3204F121AB
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 20:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726546AbfEBR6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 13:58:38 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:41930 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726511AbfEBR6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 13:58:34 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: gportay)
-        with ESMTPSA id A95F328348F
-From:   =?UTF-8?q?Ga=C3=ABl=20PORTAY?= <gael.portay@collabora.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Lin Huang <hl@rock-chips.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        Derek Basehore <dbasehore@chromium.org>,
-        Randy Li <ayaka@soulik.info>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Cc:     Mark Rutland <mark.rutland@arm.com>, kernel@collabora.com,
-        =?utf-8?q?Ga=C3=ABl=20PORTAY?= <gael.portay@collabora.com>
-Subject: [PATCH v5 6/6] dt-bindings: devfreq: rk3399_dmc: Remove references of unexistant defines
-Date:   Thu,  2 May 2019 13:58:20 -0400
-Message-Id: <20190502175820.25382-7-gael.portay@collabora.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190502175820.25382-1-gael.portay@collabora.com>
-References: <20190502175820.25382-1-gael.portay@collabora.com>
+        id S1726473AbfEBSIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 14:08:23 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33152 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726321AbfEBSIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 14:08:23 -0400
+Received: by mail-ot1-f65.google.com with SMTP id s11so2976381otp.0
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 11:08:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=79fGKeHlH9FAaVSR1O2RxcfKwTsSnTq5QCRHjsEaUQU=;
+        b=p6+GkF2pa0r8kIFWr3Ue5xSJ4hl91lXS3nyMKkOj5gQv9nBUeqd4BeLUxnZv1anIlK
+         lg1rsW/DG5+gG35Q6B+ZLV3xvGi60oYqbQR6qqrpeA01srJDWSHy+u56ea2PsXrn8x+q
+         dAZDe0q27TZ76u7UainpJzKpuJcdKWXXDrVVYsacHOUkrblZnv39zmUQ3mgKo/PyMxtj
+         cBGYHB2uWwE8NxbLX7q9WWmg2lFe3RBeI4j2lZBmhh5c2j8csXxGrExgKmjwwY08DAy9
+         PMxuPc1keMhPOI13z500WCy1D+qUSgNiYEXKQhnXWgZ+09G9ndEGtieagtsVwWkzEqOt
+         uIWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=79fGKeHlH9FAaVSR1O2RxcfKwTsSnTq5QCRHjsEaUQU=;
+        b=S+wKAZhG6Olw4ilDGwLb6Ua8cgPtnMEQsn187lZC5SnWZdkBiA+tt0x25GMxMovxbB
+         dT+HnheLw+8Y64fQMKGDOpXFQyk4kl3WQXt6XAvvoGqrUpoIPMZQFWSG5lC5DMOxXQkC
+         gsAp+skd5TCsdPntZp1x0xUH6NgueRMNdXMgOMzjqxRBP4I+r3RgEIOs1wMYVPrCFGV6
+         8qFjLi2ZhjQqmFsaYiMK/gowFlhqD7HScrIVV2fqyYfSOz6SDUuX9sQUpO+7IO9rKgJe
+         z22OJ+1Zw+JAQCLjN3MMdqfv2a3ofg8nwIileSanyw3Ieqy8tYBKRqh3ER2g3ITPtbD4
+         SoJA==
+X-Gm-Message-State: APjAAAXvqn6PhHkbupVat3ePzVr++HJUrCgb9D+B2usHP5z53WCE+qzK
+        M527+1xYkGPszV4TUmeHSb6KUI4hujsI/0crFbvBxQ==
+X-Google-Smtp-Source: APXvYqw/nI7b+z83V0GIDl0oQazXtqsfs+CMRGbHgYqDLdBGzPB7zXqfHkbXMcNZ2dozl9lGwjO1NMDSJQAOJdRu1uE=
+X-Received: by 2002:a9d:3621:: with SMTP id w30mr3409606otb.98.1556820502021;
+ Thu, 02 May 2019 11:08:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-13-brendanhiggins@google.com> <20190502110220.GD12416@kroah.com>
+In-Reply-To: <20190502110220.GD12416@kroah.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Thu, 2 May 2019 11:07:57 -0700
+Message-ID: <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
+Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
+ KUnit tests
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-kselftest@vger.kernel.org,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Those DDR related defines do not exist. Replace their references with
-their numerical constant.
+On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+>
+> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
+> > From: Felix Guo <felixguoxiuping@gmail.com>
+> >
+> > The ultimate goal is to create minimal isolated test binaries; in the
+> > meantime we are using UML to provide the infrastructure to run tests, so
+> > define an abstract way to configure and run tests that allow us to
+> > change the context in which tests are built without affecting the user.
+> > This also makes pretty and dynamic error reporting, and a lot of other
+> > nice features easier.
+> >
+> > kunit_config.py:
+> >   - parse .config and Kconfig files.
+> >
+> > kunit_kernel.py: provides helper functions to:
+> >   - configure the kernel using kunitconfig.
+> >   - build the kernel with the appropriate configuration.
+> >   - provide function to invoke the kernel and stream the output back.
+> >
+> > Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
+> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+>
+> Ah, here's probably my answer to my previous logging format question,
+> right?  What's the chance that these wrappers output stuff in a standard
+> format that test-framework-tools can already parse?  :)
 
-Signed-off-by: Gaël PORTAY <gael.portay@collabora.com>
----
+It should be pretty easy to do. I had some patches that pack up the
+results into a serialized format for a presubmit service; it should be
+pretty straightforward to take the same logic and just change the
+output format.
 
-Changes in v5: New
-
- .../bindings/devfreq/rk3399_dmc.txt           | 73 +++++++++----------
- 1 file changed, 34 insertions(+), 39 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-index 951789c0cdd6..3ea856970e46 100644
---- a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-+++ b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
-@@ -77,24 +77,23 @@ Following properties relate to DDR timing:
- 
- - rockchip,ddr3_drv :		  When the DRAM type is DDR3, this parameter defines
- 				  the DRAM side driver strength in ohms. Default
--				  value is DDR3_DS_40ohm.
-+				  value is 40.
- 
- - rockchip,ddr3_odt :		  When the DRAM type is DDR3, this parameter defines
- 				  the DRAM side ODT strength in ohms. Default value
--				  is DDR3_ODT_120ohm.
-+				  is 120.
- 
- - rockchip,phy_ddr3_ca_drv :	  When the DRAM type is DDR3, this parameter defines
- 				  the phy side CA line (incluing command line,
- 				  address line and clock line) driver strength.
--				  Default value is PHY_DRV_ODT_40.
-+				  Default value is 40.
- 
- - rockchip,phy_ddr3_dq_drv :	  When the DRAM type is DDR3, this parameter defines
- 				  the PHY side DQ line (including DQS/DQ/DM line)
--				  driver strength. Default value is PHY_DRV_ODT_40.
-+				  driver strength. Default value is 40.
- 
- - rockchip,phy_ddr3_odt : 	  When the DRAM type is DDR3, this parameter defines
--				  the PHY side ODT strength. Default value is
--				  PHY_DRV_ODT_240.
-+				  the PHY side ODT strength. Default value is 240.
- 
- - rockchip,lpddr3_odt_dis_freq : When the DRAM type is LPDDR3, this parameter defines
- 				  then ODT disable frequency in MHz (Mega Hz).
-@@ -104,25 +103,23 @@ Following properties relate to DDR timing:
- 
- - rockchip,lpddr3_drv :		  When the DRAM type is LPDDR3, this parameter defines
- 				  the DRAM side driver strength in ohms. Default
--				  value is LP3_DS_34ohm.
-+				  value is 34.
- 
- - rockchip,lpddr3_odt :		  When the DRAM type is LPDDR3, this parameter defines
- 				  the DRAM side ODT strength in ohms. Default value
--				  is LP3_ODT_240ohm.
-+				  is 240.
- 
- - rockchip,phy_lpddr3_ca_drv :	  When the DRAM type is LPDDR3, this parameter defines
- 				  the PHY side CA line (including command line,
- 				  address line and clock line) driver strength.
--				  Default value is PHY_DRV_ODT_40.
-+				  Default value is 40.
- 
- - rockchip,phy_lpddr3_dq_drv :	  When the DRAM type is LPDDR3, this parameter defines
- 				  the PHY side DQ line (including DQS/DQ/DM line)
--				  driver strength. Default value is
--				  PHY_DRV_ODT_40.
-+				  driver strength. Default value is 40.
- 
- - rockchip,phy_lpddr3_odt : 	  When dram type is LPDDR3, this parameter define
--				  the phy side odt strength, default value is
--				  PHY_DRV_ODT_240.
-+				  the phy side odt strength, default value is 240.
- 
- - rockchip,lpddr4_odt_dis_freq : When the DRAM type is LPDDR4, this parameter
- 				  defines the ODT disable frequency in
-@@ -132,32 +129,30 @@ Following properties relate to DDR timing:
- 
- - rockchip,lpddr4_drv :		  When the DRAM type is LPDDR4, this parameter defines
- 				  the DRAM side driver strength in ohms. Default
--				  value is LP4_PDDS_60ohm.
-+				  value is 60.
- 
- - rockchip,lpddr4_dq_odt : 	  When the DRAM type is LPDDR4, this parameter defines
- 				  the DRAM side ODT on DQS/DQ line strength in ohms.
--				  Default value is LP4_DQ_ODT_40ohm.
-+				  Default value is 40.
- 
- - rockchip,lpddr4_ca_odt :	  When the DRAM type is LPDDR4, this parameter defines
- 				  the DRAM side ODT on CA line strength in ohms.
--				  Default value is LP4_CA_ODT_40ohm.
-+				  Default value is 40.
- 
- - rockchip,phy_lpddr4_ca_drv :	  When the DRAM type is LPDDR4, this parameter defines
- 				  the PHY side CA line (including command address
--				  line) driver strength. Default value is
--				  PHY_DRV_ODT_40.
-+				  line) driver strength. Default value is 40.
- 
- - rockchip,phy_lpddr4_ck_cs_drv : When the DRAM type is LPDDR4, this parameter defines
- 				  the PHY side clock line and CS line driver
--				  strength. Default value is PHY_DRV_ODT_80.
-+				  strength. Default value is 80.
- 
- - rockchip,phy_lpddr4_dq_drv :	  When the DRAM type is LPDDR4, this parameter defines
- 				  the PHY side DQ line (including DQS/DQ/DM line)
--				  driver strength. Default value is PHY_DRV_ODT_80.
-+				  driver strength. Default value is 80.
- 
- - rockchip,phy_lpddr4_odt :	  When the DRAM type is LPDDR4, this parameter defines
--				  the PHY side ODT strength. Default value is
--				  PHY_DRV_ODT_60.
-+				  the PHY side ODT strength. Default value is 60.  
- 
- Example:
- 	dmc_opp_table: dmc_opp_table {
-@@ -193,23 +188,23 @@ Example:
- 		rockchip,phy_dll_dis_freq = <125>;
- 		rockchip,auto_pd_dis_freq = <666>;
- 		rockchip,ddr3_odt_dis_freq = <333>;
--		rockchip,ddr3_drv = <DDR3_DS_40ohm>;
--		rockchip,ddr3_odt = <DDR3_ODT_120ohm>;
--		rockchip,phy_ddr3_ca_drv = <PHY_DRV_ODT_40>;
--		rockchip,phy_ddr3_dq_drv = <PHY_DRV_ODT_40>;
--		rockchip,phy_ddr3_odt = <PHY_DRV_ODT_240>;
-+		rockchip,ddr3_drv = <40>;
-+		rockchip,ddr3_odt = <120>;
-+		rockchip,phy_ddr3_ca_drv = <40>;
-+		rockchip,phy_ddr3_dq_drv = <40>;
-+		rockchip,phy_ddr3_odt = <240>;
- 		rockchip,lpddr3_odt_dis_freq = <333>;
--		rockchip,lpddr3_drv = <LP3_DS_34ohm>;
--		rockchip,lpddr3_odt = <LP3_ODT_240ohm>;
--		rockchip,phy_lpddr3_ca_drv = <PHY_DRV_ODT_40>;
--		rockchip,phy_lpddr3_dq_drv = <PHY_DRV_ODT_40>;
--		rockchip,phy_lpddr3_odt = <PHY_DRV_ODT_240>;
-+		rockchip,lpddr3_drv = <34>;
-+		rockchip,lpddr3_odt = <240>;
-+		rockchip,phy_lpddr3_ca_drv = <40>;
-+		rockchip,phy_lpddr3_dq_drv = <40>;
-+		rockchip,phy_lpddr3_odt = <240>;
- 		rockchip,lpddr4_odt_dis_freq = <333>;
--		rockchip,lpddr4_drv = <LP4_PDDS_60ohm>;
--		rockchip,lpddr4_dq_odt = <LP4_DQ_ODT_40ohm>;
--		rockchip,lpddr4_ca_odt = <LP4_CA_ODT_40ohm>;
--		rockchip,phy_lpddr4_ca_drv = <PHY_DRV_ODT_40>;
--		rockchip,phy_lpddr4_ck_cs_drv = <PHY_DRV_ODT_80>;
--		rockchip,phy_lpddr4_dq_drv = <PHY_DRV_ODT_80>;
--		rockchip,phy_lpddr4_odt = <PHY_DRV_ODT_60>;
-+		rockchip,lpddr4_drv = <60>;
-+		rockchip,lpddr4_dq_odt = <40>;
-+		rockchip,lpddr4_ca_odt = <40>;
-+		rockchip,phy_lpddr4_ca_drv = <40>;
-+		rockchip,phy_lpddr4_ck_cs_drv = <80>;
-+		rockchip,phy_lpddr4_dq_drv = <80>;
-+		rockchip,phy_lpddr4_odt = <60>;
- 	};
--- 
-2.21.0
-
+Cheers
