@@ -2,38 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2872118C8
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EACC118D6
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726320AbfEBMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 08:13:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46074 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726302AbfEBMN4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 May 2019 08:13:56 -0400
-Received: from localhost.localdomain (unknown [171.76.113.243])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 174F920B7C;
-        Thu,  2 May 2019 12:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556799235;
-        bh=Po9aWhrhF8+W5QReF1J9FZhfqwWCvr4V2vgw29ulq6o=;
-        h=From:To:Cc:Subject:Date:From;
-        b=F8nVrFEzL9jsS/nsrDGMmDfvBoA6zNx6ZScxHw8Ks/Vx8y0xfIofuMig2fGpRW+5H
-         Zoi9TCvDopG9S+hcJpuYKzmkHZ1qwMECjFWBh5IJZWDizkoEwWo+Gdi2j9tLuuH0af
-         H5sybsgvvwbAgwUX+Whc31B/8xEgsHk2lrKSovzQ=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: qcs404-evb: Fix typo
-Date:   Thu,  2 May 2019 17:43:06 +0530
-Message-Id: <20190502121306.3374-1-vkoul@kernel.org>
+        id S1726329AbfEBMSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 08:18:48 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:46357 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726285AbfEBMSs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 08:18:48 -0400
+Received: by mail-wr1-f65.google.com with SMTP id r7so2997655wrr.13
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 05:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8yhaNFcdvOpPcpBYXUdsomaKk+La2YImNQmSmSh3PjY=;
+        b=SZbstBAyWZbN8X23/VP/9UhABke/igJxDJHJXB7ekMR7k3qBy+2f19eHpUZX5I08QV
+         tTytHe/uhg8qsFMTNfklzN5ZSg0BYys58sh/b8IzQsJD0Pmf2KDRJehfrtPzev/RDOh3
+         AU6e7dc/yW6EjebbghR2bq7+ekr2NGzHd3s8cVdxDQ5/mIJb8wS9oY+9QkU/vBeot2cZ
+         uWxEAgGCDwUHnTeWuqWBshvrUNEp/bxUcbDDF7nDG79Z6VJrfTvtRaLd/h6aZIpHU0y1
+         GIRP3mlVC5fW5U0Ce8rwO9h6nHKBOVxrNleoF0o4rauPZyFM8bEPPNJ9CvmL5vcQosnR
+         yJlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8yhaNFcdvOpPcpBYXUdsomaKk+La2YImNQmSmSh3PjY=;
+        b=UH53zlRED2Y61v9Fn1vGwbwbLItu2HvGQWxVqUgM6GDKRVXCQxEOmNVUeoylMnsOcd
+         VlbCPAezShn7owvU1HdtGy/SHxxeM10N8o651B1NMIwc+3cdk+xe+FxA2G1zUa12X/KR
+         UMZ3LD10sH9aZfzmSyBSuyZ+PJL6TXW7OgDrfL2t1U7+hO6Rf6bEUD6Mv98a5fhLsdd5
+         6vPYZch/2JwCeZVB0F7ld5UV2dP+2a1L4A+jr9yQrOZBF5YJNlVtETmE52VWGgoTZN/T
+         FE4MExwJXF7t694c8Gnfu4/oKZgIFWA5vD4HyrNIN3VI1f+hBEVKLvIAvPdsjeaLjKGp
+         0mug==
+X-Gm-Message-State: APjAAAUO4/9qgPnLM1jF2mLIjvWCJ1MvOtVv+nF/4x+QTE3ee1vJfhVg
+        WhXVVoVh6oIXe6EY9GLQacZYUg==
+X-Google-Smtp-Source: APXvYqybnz8QnbpKmcrmKh2L8LuuDVThIoXDaPzBG94Oj9LaHY0YI2yFN/HK2nR6zlXFItMIhB9G0w==
+X-Received: by 2002:adf:e70a:: with SMTP id c10mr1268627wrm.278.1556799526486;
+        Thu, 02 May 2019 05:18:46 -0700 (PDT)
+Received: from localhost.localdomain (aputeaux-684-1-8-187.w90-86.abo.wanadoo.fr. [90.86.125.187])
+        by smtp.gmail.com with ESMTPSA id f6sm4392842wmh.13.2019.05.02.05.18.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 02 May 2019 05:18:45 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, mturquette@baylibre.com,
+        sboyd@kernel.org, matthias.bgg@gmail.com, wenzhen.yu@mediatek.com,
+        sean.wang@mediatek.com, ryder.lee@mediatek.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH 1/2] dt-bindings: mediatek: audsys: add support for MT8516
+Date:   Thu,  2 May 2019 14:18:42 +0200
+Message-Id: <20190502121843.14493-1-fparent@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -42,36 +63,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the typo "dreive-strength" and use correct property drive-strength
+Add AUDSYS device tree bindings documentation for MediaTek MT8516 SoC.
 
-Fixes: 7241ab944da3 ("arm64: dts: qcom: qcs404: Add sdcc1 node")
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/arm/mediatek/mediatek,audsys.txt   |  1 +
+ include/dt-bindings/clock/mt8516-clk.h          | 17 +++++++++++++++++
+ 2 files changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 2c3127167e3c..7cc0b7842ac2 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -200,7 +200,7 @@
- 		data {
- 			pins = "sdc1_data";
- 			bias-pull-up;
--			dreive-strength = <10>;
-+			drive-strength = <10>;
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+index d1606b2c3e63..a4d07108bd4c 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
+@@ -9,6 +9,7 @@ Required Properties:
+ 	- "mediatek,mt2701-audsys", "syscon"
+ 	- "mediatek,mt7622-audsys", "syscon"
+ 	- "mediatek,mt7623-audsys", "mediatek,mt2701-audsys", "syscon"
++	- "mediatek,mt8516-audsys", "syscon"
+ - #clock-cells: Must be 1
  
- 		rclk {
-@@ -225,7 +225,7 @@
- 		data {
- 			pins = "sdc1_data";
- 			bias-pull-up;
--			dreive-strength = <2>;
-+			drive-strength = <2>;
- 		};
+ The AUDSYS controller uses the common clk binding from
+diff --git a/include/dt-bindings/clock/mt8516-clk.h b/include/dt-bindings/clock/mt8516-clk.h
+index 9cfca53cd78d..816447b98edd 100644
+--- a/include/dt-bindings/clock/mt8516-clk.h
++++ b/include/dt-bindings/clock/mt8516-clk.h
+@@ -208,4 +208,21 @@
+ #define CLK_TOP_MSDC2_INFRA		176
+ #define CLK_TOP_NR_CLK			177
  
- 		rclk {
++/* AUDSYS */
++
++#define CLK_AUD_AFE			0
++#define CLK_AUD_I2S			1
++#define CLK_AUD_22M			2
++#define CLK_AUD_24M			3
++#define CLK_AUD_INTDIR			4
++#define CLK_AUD_APLL2_TUNER		5
++#define CLK_AUD_APLL_TUNER		6
++#define CLK_AUD_HDMI			7
++#define CLK_AUD_SPDF			8
++#define CLK_AUD_ADC			9
++#define CLK_AUD_DAC			10
++#define CLK_AUD_DAC_PREDIS		11
++#define CLK_AUD_TML			12
++#define CLK_AUD_NR_CLK			13
++
+ #endif /* _DT_BINDINGS_CLK_MT8516_H */
 -- 
 2.20.1
 
