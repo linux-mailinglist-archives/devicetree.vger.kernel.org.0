@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 540AD11892
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E11211897
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbfEBL6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 07:58:41 -0400
-Received: from smtp3.ono.com ([62.42.230.163]:8312 "EHLO smtp3.ono.com"
+        id S1726278AbfEBL7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 07:59:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35430 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726278AbfEBL6k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 May 2019 07:58:40 -0400
-X-Junkmail-Premium-Raw: score=16/50,refid=2.7.2:2019.5.2.103916:17:16.798,ip=62.42.230.131,rules=__HAS_MSGID,
- __SANE_MSGID, MSGID_JMAIL_DEFAULT, INVALID_MSGID_NO_FQDN, __HAS_FROM,
- __HAS_REPLYTO, __FRAUD_WEBMAIL_REPLYTO, __SUBJ_ALPHA_START,
- __PHISH_SPEAR_SUBJ_ALERT, __SUBJ_ALPHA_END, __MIME_VERSION, __CT,
- __CT_TEXT_PLAIN, __CTE, MISSING_HEADERS, __CP_NAME_BODY,
- __FRAUD_INYOURCOUNTRY, __STOCK_PHRASE_7, __STOCK_PHRASE_8,
- __FRAUD_MONEY_GENERIC, __FRAUD_MONEY_BIG_COIN_DIG, __OEM_PRICE,
- __FRAUD_MONEY_CURRENCY_DOLLAR, __NO_HTML_TAG_RAW, BODY_SIZE_700_799,
- BODYTEXTP_SIZE_3000_LESS, __MIME_TEXT_P1, __MIME_TEXT_ONLY, HTML_00_01,
- HTML_00_10, __FRAUD_MONEY_CURRENCY, __FRAUD_MONEY_BIG_COIN,
- __FRAUD_MONEY_VALUE, __FRAUD_MONEY, FRAUD_X3, BODY_SIZE_5000_LESS,
- __FRAUD_WEBMAIL, WEBMAIL_REPLYTO_NOT_FROM, FRAUD_WEBMAIL_R_NOT_F,
- __FRAUD_COMMON, __MIME_TEXT_P, NO_URI_FOUND, NO_CTA_URI_FOUND,
- __PHISH_SPEAR_STRUCTURE_1, BODY_SIZE_1000_LESS, BODY_SIZE_2000_LESS,
- __PHISH_SPEAR_STRUCTURE_2, REPLYTO_FROM_DIFF_ADDY, NO_URI_HTTPS,
- BODY_SIZE_7000_LESS, TO_MALFORMED
-Received: from resprs01 (62.42.230.131) by smtp3.ono.com (9.0.019.09-1)
-        id 5CC0A28F0060A6C4; Thu, 2 May 2019 13:58:26 +0200
-Received: from (149.126.78.18) by webmailcpr01n.ono.com;  Thu, 2 May 2019 13:58:23 +0200
-Message-ID: <29508010.365301556798303689.JavaMail.defaultUser@defaultHost>
-Date:   Thu, 2 May 2019 13:58:23 +0200 (CEST)
-From:   Aysha Gadafi <alosax@ono.com>
-Reply-To: mgaddafi034@gmail.com
-Subject: hello dear
+        id S1726197AbfEBL7r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 07:59:47 -0400
+Received: from localhost (unknown [171.76.113.243])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A70F62085A;
+        Thu,  2 May 2019 11:59:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556798386;
+        bh=c8o1OkCph6/tf8iLMptciKCWXwjvams7ygUNKDoT1iI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CMQGnPgl/Qee90Ge320UlOsYNBgWK7S7CTj9/+9vxHyWZWpzXc90AXoY8CJh4Kebl
+         DEKUal3ZQ28eSsk6JPyobRD3I5avMwe94nVNNGD8Jr/OxKhk0B2yNWXyp2/yVgwO/G
+         aooW1XFrxVdTxUTiV6T+Xlyg0Om761yI0BcyHwtM=
+Date:   Thu, 2 May 2019 17:29:37 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] PCI: qcom: Add QCS404 PCIe controller support
+Message-ID: <20190502115937.GO3845@vkoul-mobl.Dlink>
+References: <20190502001955.10575-1-bjorn.andersson@linaro.org>
+ <20190502001955.10575-4-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain;charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190502001955.10575-4-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
+On 01-05-19, 17:19, Bjorn Andersson wrote:
+> The QCS404 platform contains a PCIe controller of version 2.4.0 and a
+> Qualcomm PCIe2 PHY. The driver already supports version 2.4.0, for the
+> IPQ4019, but this support touches clocks and resets related to the PHY
+> as well, and there's no upstream driver for the PHY.
+> 
+> On QCS404 we must initialize the PHY, so a separate PHY driver is
+> implemented to take care of this and the controller driver is updated to
+> not require the PHY related resources. This is done by relying on the
+> fact that operations in both the clock and reset framework are nops when
+> passed NULL, so we can isolate this change to only the get_resource
+> function.
+> 
+> For QCS404 we also need to enable the AHB (iface) clock, in order to
+> access the register space of the controller, but as this is not part of
+> the IPQ4019 DT binding this is only added for new users of the 2.4.0
+> controller.
 
-hello dear
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-I came across your contact during my private search. Mrs Aisha Al-
-Qaddafi is my name, the only daughter of late Libyan president, am a 
-single Mother and a Widow with three Children.I have funds the sum of 
-$27.5 million USD for, investment, I am interested in you for 
-investment project assistance in your country,because of my current 
-refugee status, i shall compensate you 30% of the total sum after the 
-funds are transfer into your account,I am willing to, negotiate 
-investment/business profit sharing ratio with you base on the future 
-investment earning profits.
-
-Reply me urgent for more details
-
-Mrs Aisha Al-Qaddafi
-
-
-
-
-
-
-
-
-
+-- 
+~Vinod
