@@ -2,87 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A163111FF
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 06:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C3CD11255
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 06:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725613AbfEBEBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 00:01:55 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:43845 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725497AbfEBEBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 00:01:54 -0400
-Received: by mail-lf1-f68.google.com with SMTP id u27so526868lfg.10
-        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 21:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wFt7883PSp3sr8375jT8hC/v5fI/cu96gfKmIMdklMc=;
-        b=NL31EuKphJharQ7ownjb9GhREqWgylPR8oRdfySKPZMDjNrY2iEQE+rRHxT4ngNhdt
-         S3dsJVBIj5WOjo2zeN5xhW4Q0JGirUI/rk/HumUBXGZPyY6c/J1IBbu6PR9T1NV5Y0wo
-         oq3rJA7JQDfBlz0eBBDCFI0gPZ23MuCxEtssLK3CzJPda4c/lvmt5xJUeEVYEz/6IAfQ
-         OOx1LWqEaZ/C69l5OxSAB7ViB3GfHPgoJiLsWv49NTYer+IitWd4Skkxi65dDWAJtav6
-         B/w2l2m0I9Wxe+wHEDFd2VXNqAkEstJoKby3kTKWhlMthCaJHtP8Y62rrHurhz+U9nD4
-         F9Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wFt7883PSp3sr8375jT8hC/v5fI/cu96gfKmIMdklMc=;
-        b=DJuBfm0t2dFBLKJ/lJzCQAppLnQFOcM3TrEB5yXSP8iWWaYS08dfQIlpEUZ3hk7miw
-         6kwU8GCSTIMCulb0Y8F013FBmHOrSSu6oURq5WBnbRKfGOa43OLS9PgFBeSrKky7+uwn
-         nXgYZqCtLG6kaGYd+gdDxR+NuhpQ8uBrhpbfiXlR2CKQMI3pw7LTiPKKRVi6/DNnoaIU
-         NLLnG1EW/b2q5kuKP9NelGeRrT9TThNRYfFExX/5vgMnS+MYkud157gXLzBLaMfHpPC/
-         5TbyHlzMGfK5CDDwUZJew+zCjFnNN3+vGXEA9sjEM+1q7VObTtLYsUezSTvONaR5bvOX
-         MeTg==
-X-Gm-Message-State: APjAAAVVLDjaIFmbPvoRDSmlFs3/CvQ3EOJatzhoGcPyUHGnSMes9Qu2
-        0LyU/hRGklBl7KKXgoyU0uJTXeV/erQhxMjRKHEFDw==
-X-Google-Smtp-Source: APXvYqxzdvzK/rjINuA4zAT9PeOdoZuUwGQBTyS9ONY/hM54JNu3Te4R4w/vTFUvuR1Nv624R8L3skIAT6evE9QmbPY=
-X-Received: by 2002:a19:81d4:: with SMTP id c203mr672545lfd.160.1556769713184;
- Wed, 01 May 2019 21:01:53 -0700 (PDT)
+        id S1725497AbfEBEvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 00:51:40 -0400
+Received: from pegase1.c-s.fr ([93.17.236.30]:17908 "EHLO pegase1.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725372AbfEBEvk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 00:51:40 -0400
+Received: from localhost (mailhub1-int [192.168.12.234])
+        by localhost (Postfix) with ESMTP id 44vjXT3tPVz9v0dC;
+        Thu,  2 May 2019 06:51:37 +0200 (CEST)
+Authentication-Results: localhost; dkim=pass
+        reason="1024-bit key; insecure key"
+        header.d=c-s.fr header.i=@c-s.fr header.b=RRbCPbxn; dkim-adsp=pass;
+        dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
+        with ESMTP id 3NqOSpeVpOTg; Thu,  2 May 2019 06:51:37 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase1.c-s.fr (Postfix) with ESMTP id 44vjXT2pDFz9v0dB;
+        Thu,  2 May 2019 06:51:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
+        t=1556772697; bh=bKp40p29ww5rWYWudCtNM/eqZO3Koty1E3gHLJJDIRc=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=RRbCPbxnLgXWlaX1rtHvlgQTduiVbrwYwYfPRqWoCouk04XpiXQ4Oit7TlcLBvUqI
+         IORSjyEt82psaGWuAiiWAVwdpQWgiDy+eFb5WNCfasy8kTeLF6pIzHcB/cNJXU0Gtr
+         XCbWeCzkzjM0zp7Lc2jdnYlhWjFqR3hVxBy/aKww=
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 305578B84C;
+        Thu,  2 May 2019 06:51:38 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id pErdMFLohumg; Thu,  2 May 2019 06:51:38 +0200 (CEST)
+Received: from PO15451 (unknown [192.168.4.90])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 894618B74C;
+        Thu,  2 May 2019 06:51:37 +0200 (CEST)
+Subject: Re: [PATCH v2 2/6] soc/fsl/qe: qe.c: reduce static memory footprint
+ by 1.7K
+To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>
+Cc:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Scott Wood <oss@buserror.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>
+References: <20190430133615.25721-1-rasmus.villemoes@prevas.dk>
+ <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
+ <20190501092841.9026-3-rasmus.villemoes@prevas.dk>
+From:   Christophe Leroy <christophe.leroy@c-s.fr>
+Message-ID: <cae22a68-40f3-5993-22a0-222134e76def@c-s.fr>
+Date:   Thu, 2 May 2019 06:51:37 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <1553508779-9685-1-git-send-email-yash.shah@sifive.com>
- <mvmbm1zueya.fsf@suse.de> <mvmpnqcsn6u.fsf@suse.de>
-In-Reply-To: <mvmpnqcsn6u.fsf@suse.de>
-From:   Yash Shah <yash.shah@sifive.com>
-Date:   Thu, 2 May 2019 09:31:16 +0530
-Message-ID: <CAJ2_jOFu-yCZV_A4B48_fLq7h7UA6LUWhgpxr0uuh7vhW9Q8pA@mail.gmail.com>
-Subject: Re: [PATCH v11 0/2] PWM support for HiFive Unleashed
-To:     Andreas Schwab <schwab@suse.de>
-Cc:     Palmer Dabbelt <palmer@sifive.com>, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Thierry Reding <thierry.reding@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sachin Ghadi <sachin.ghadi@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190501092841.9026-3-rasmus.villemoes@prevas.dk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
 
-On Wed, Mar 27, 2019 at 2:34 PM Andreas Schwab <schwab@suse.de> wrote:
->
-> I have now found out that the ledtrig modules don't load automatically.
-> I would have expected that the linux,default-trigger entries would cause
-> the load of the corresponding ledtrig modules.
->
-> But there is another problem, that the leds are on by default.
-> Shouldn't they be off by default?
 
-The PWM default output state is high (When duty cycle is 0), So I
-guess leds will remain on by default.
+Le 01/05/2019 à 11:29, Rasmus Villemoes a écrit :
+> The current array of struct qe_snum use 256*4 bytes for just keeping
+> track of the free/used state of each index, and the struct layout
+> means there's another 768 bytes of padding. If we just unzip that
+> structure, the array of snum values just use 256 bytes, while the
+> free/inuse state can be tracked in a 32 byte bitmap.
+> 
+> So this reduces the .data footprint by 1760 bytes. It also serves as
+> preparation for introducing another DT binding for specifying the snum
+> values.
+> 
+> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
 
-Are you able to test the PWM driver at your end? or you still facing
-some issues?
+Reviewed-by: Christophe Leroy <christophe.leroy@c-s.fr>
 
->
-> Andreas.
->
-> --
-> Andreas Schwab, SUSE Labs, schwab@suse.de
-> GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
-> "And now for something completely different."
+Trivial comment below
+
+> ---
+>   drivers/soc/fsl/qe/qe.c | 43 ++++++++++++-----------------------------
+>   1 file changed, 12 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/soc/fsl/qe/qe.c b/drivers/soc/fsl/qe/qe.c
+> index 855373deb746..303aa29cb27d 100644
+> --- a/drivers/soc/fsl/qe/qe.c
+> +++ b/drivers/soc/fsl/qe/qe.c
+> @@ -14,6 +14,7 @@
+>    * Free Software Foundation;  either version 2 of the  License, or (at your
+>    * option) any later version.
+>    */
+> +#include <linux/bitmap.h>
+>   #include <linux/errno.h>
+>   #include <linux/sched.h>
+>   #include <linux/kernel.h>
+> @@ -43,25 +44,14 @@ static DEFINE_SPINLOCK(qe_lock);
+>   DEFINE_SPINLOCK(cmxgcr_lock);
+>   EXPORT_SYMBOL(cmxgcr_lock);
+>   
+> -/* QE snum state */
+> -enum qe_snum_state {
+> -	QE_SNUM_STATE_USED,
+> -	QE_SNUM_STATE_FREE
+> -};
+> -
+> -/* QE snum */
+> -struct qe_snum {
+> -	u8 num;
+> -	enum qe_snum_state state;
+> -};
+> -
+>   /* We allocate this here because it is used almost exclusively for
+>    * the communication processor devices.
+>    */
+>   struct qe_immap __iomem *qe_immr;
+>   EXPORT_SYMBOL(qe_immr);
+>   
+> -static struct qe_snum snums[QE_NUM_OF_SNUM];	/* Dynamically allocated SNUMs */
+> +static u8 snums[QE_NUM_OF_SNUM];	/* Dynamically allocated SNUMs */
+> +static DECLARE_BITMAP(snum_state, QE_NUM_OF_SNUM);
+>   static unsigned int qe_num_of_snum;
+>   
+>   static phys_addr_t qebase = -1;
+> @@ -315,10 +305,8 @@ static void qe_snums_init(void)
+>   	else
+>   		snum_init = snum_init_46;
+>   
+> -	for (i = 0; i < qe_num_of_snum; i++) {
+> -		snums[i].num = snum_init[i];
+> -		snums[i].state = QE_SNUM_STATE_FREE;
+> -	}
+> +	bitmap_zero(snum_state, QE_NUM_OF_SNUM);
+> +	memcpy(snums, snum_init, qe_num_of_snum);
+>   }
+>   
+>   int qe_get_snum(void)
+> @@ -328,12 +316,10 @@ int qe_get_snum(void)
+>   	int i;
+>   
+>   	spin_lock_irqsave(&qe_lock, flags);
+> -	for (i = 0; i < qe_num_of_snum; i++) {
+> -		if (snums[i].state == QE_SNUM_STATE_FREE) {
+> -			snums[i].state = QE_SNUM_STATE_USED;
+> -			snum = snums[i].num;
+> -			break;
+> -		}
+> +	i = find_first_zero_bit(snum_state, qe_num_of_snum);
+> +	if (i < qe_num_of_snum) {
+> +		set_bit(i, snum_state);
+> +		snum = snums[i];
+>   	}
+>   	spin_unlock_irqrestore(&qe_lock, flags);
+>   
+> @@ -343,14 +329,9 @@ EXPORT_SYMBOL(qe_get_snum);
+>   
+>   void qe_put_snum(u8 snum)
+>   {
+> -	int i;
+> -
+> -	for (i = 0; i < qe_num_of_snum; i++) {
+> -		if (snums[i].num == snum) {
+> -			snums[i].state = QE_SNUM_STATE_FREE;
+> -			break;
+> -		}
+> -	}
+> +	const u8 *p = memchr(snums, snum, qe_num_of_snum);
+
+A blank line is expected here.
+
+Christophe
+
+> +	if (p)
+> +		clear_bit(p - snums, snum_state);
+>   }
+>   EXPORT_SYMBOL(qe_put_snum);
+>   
+> 
