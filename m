@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D71571144B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 09:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B4D1144E
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 09:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725795AbfEBHiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 03:38:18 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:40357 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726220AbfEBHiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 03:38:18 -0400
-X-Originating-IP: 90.88.149.145
+        id S1726203AbfEBHjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 03:39:08 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:45815 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726186AbfEBHjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 03:39:08 -0400
 Received: from localhost (aaubervilliers-681-1-29-145.w90-88.abo.wanadoo.fr [90.88.149.145])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 8C4956001E;
-        Thu,  2 May 2019 07:38:15 +0000 (UTC)
-Date:   Thu, 2 May 2019 09:38:15 +0200
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 0FF03100019;
+        Thu,  2 May 2019 07:39:04 +0000 (UTC)
+Date:   Thu, 2 May 2019 09:39:04 +0200
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
 To:     Pablo Greco <pgreco@centosproject.org>
 Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/7] ARM: dts: sun8i: v40: bananapi-m2-berry: Add GPIO
- pin-bank regulator supplies
-Message-ID: <20190502073815.56ktbpiieviqr4ss@flea>
+Subject: Re: [PATCH v5 3/7] ARM: dts: sun8i: v40: bananapi-m2-berry: Enable
+ GMAC ethernet controller
+Message-ID: <20190502073904.yng5dz5kwgulw6ha@flea>
 References: <1556040365-10913-1-git-send-email-pgreco@centosproject.org>
- <1556040365-10913-3-git-send-email-pgreco@centosproject.org>
+ <1556040365-10913-4-git-send-email-pgreco@centosproject.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mozzdkjp5mxfsgi7"
+        protocol="application/pgp-signature"; boundary="d2v4zsdy3ohit6tk"
 Content-Disposition: inline
-In-Reply-To: <1556040365-10913-3-git-send-email-pgreco@centosproject.org>
+In-Reply-To: <1556040365-10913-4-git-send-email-pgreco@centosproject.org>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -40,34 +39,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---mozzdkjp5mxfsgi7
+--d2v4zsdy3ohit6tk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Apr 23, 2019 at 02:25:59PM -0300, Pablo Greco wrote:
-> The bananapi-m2-berry has the PMIC providing voltage to all the pin-bank
-> supply rails from its various regulator outputs, tie them to the pio
-> node.
+On Tue, Apr 23, 2019 at 02:26:00PM -0300, Pablo Greco wrote:
+> Just like the Bananapi M2 Ultra, the Bananapi M2 Berry has a Realtek
+> RTL8211E RGMII PHY tied to the GMAC.
+> The PMIC's DC1SW output provides power for the PHY, while the ALDO2
+> output provides I/O voltages on both sides.
 >
 > Signed-off-by: Pablo Greco <pgreco@centosproject.org>
 > ---
->  arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts | 29 +++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 >
 > diff --git a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
-> index f05cabd..2cb2ce0 100644
+> index 2cb2ce0..561319b 100644
 > --- a/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
 > +++ b/arch/arm/boot/dts/sun8i-v40-bananapi-m2-berry.dts
-> @@ -123,6 +123,16 @@
+> @@ -50,6 +50,7 @@
+>  	compatible = "sinovoip,bpi-m2-berry", "allwinner,sun8i-r40";
+>
+>  	aliases {
+> +		ethernet0 = &gmac;
+>  		serial0 = &uart0;
+>  	};
+>
+> @@ -92,6 +93,22 @@
 >  	status = "okay";
 >  };
 >
-> +&pio {
+> +&gmac {
 > +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac_rgmii_pins>;
+> +	phy-handle = <&phy1>;
+> +	phy-mode = "rgmii";
+> +	phy-supply = <&reg_dc1sw>;
+> +	status = "okay";
+> +};
+> +
+> +&gmac_mdio {
+> +	phy1: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <1>;
+> +	};
+> +};
+> +
+>  &i2c0 {
+>  	status = "okay";
+>
+> @@ -133,6 +150,12 @@
+>  	vcc-pg-supply = <&reg_dldo1>;
+>  };
+>
+> +&reg_aldo2 {
+> +	regulator-min-microvolt = <2500000>;
+> +	regulator-max-microvolt = <2500000>;
+> +	regulator-name = "vcc-pa";
+> +};
+> +
 
-A pinctrl-names property without any other one?
+Shouldn't this one be added to the patch 2?
 
-Looks good otherwise, thanks
+Thanks
 Maxime
 
 --
@@ -75,15 +110,15 @@ Maxime Ripard, Bootlin
 Embedded Linux and Kernel engineering
 https://bootlin.com
 
---mozzdkjp5mxfsgi7
+--d2v4zsdy3ohit6tk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXMqeZwAKCRDj7w1vZxhR
-xWAvAP9Ube1a6eth4D4yO+TbxAcvXYXN57IBWySHefw23mH/NwEA7cS4mkoOqVEY
-MSC2Gv+N0fevxktj4+Em9DYbiI+s6wo=
-=FDPL
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXMqemAAKCRDj7w1vZxhR
+xWdzAQC0mZNlKnsyMWKmAzQSzgvolqPbKRG2zRXlpGrUZP2jHgD9HRhKdaeZ7Bxj
+Qwd2WYC/jYyLYVYxMKb8LMUjXnhUIQM=
+=Kqmg
 -----END PGP SIGNATURE-----
 
---mozzdkjp5mxfsgi7--
+--d2v4zsdy3ohit6tk--
