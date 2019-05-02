@@ -2,115 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E02B11E5C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 17:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23DBA11DFD
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 17:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728314AbfEBP2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 11:28:55 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:40161 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728305AbfEBP2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 11:28:54 -0400
-Received: by mail-lf1-f68.google.com with SMTP id o16so2194143lfl.7;
-        Thu, 02 May 2019 08:28:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=prm1fyhXs0jWTAHPn6CLV/HtaSlxTqydNTX71G2xSCs=;
-        b=r0Ah6TDQTHwK7cH76U0v6wgZe6avx5iEHW7ZyZtQeMWJ0BM96xdA5Cl0z7TybVCWq2
-         GdJs4hBIjaMk2+bN1HDaTf6zOqe5hO2sgp6ZtwfTS5/fgwSJDtrNJWjCDsbNjpl3/Sa4
-         pymiyFG6nYLpfuMR0Z6lMg2u0eUJ4y2Q7N2OfhBsIvVvaOFxPAvTamFXL7Nc7D/v6Wfu
-         IAjQPZdRp88rdrNlYeCMsQUlqoccabRM797x4zAWUFICHLLBwyerZdw7uU9+/LxV2+Cf
-         JPDpJOTOT9fun6uCI1IgogwQHc91rbibBlm3/21cJycV86XiKrFcKaWknQV1nMlUbn7F
-         S9lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=prm1fyhXs0jWTAHPn6CLV/HtaSlxTqydNTX71G2xSCs=;
-        b=da7XReLoTdCycnQ2Jbl/0iF4haiP5uF7YMWetEv/mlynALo1sON1DqkLzlp+KpL35p
-         NbSN1tZ781FacuMU9QCa5SgC8Vy2GqEKzpqbi+zwO6d6CNVm6PmsIAbnRZmVHgAEuueB
-         0Z4Y2/6LiwEk02FiwwTQn2UcQyZctJRle/lDIdteQSUGg/awodmE0rX42xNPxBXxYAA2
-         0EHI2nB+Q31dmngcLqvT348X3mfBUJZSiv+JRxUiQCeY8v1sChSHWqDG8dWP3fzYY37V
-         qkgSeC8x0YikSVxT43/ddoaajmkXJl7BH1VLtxXotFw18+7e5Ve7cIqt36S2vlJ3P7EE
-         gLkQ==
-X-Gm-Message-State: APjAAAXfHWs61zcOWrSXzrVx6WgavmHMaGmrAZXaXtilHl242T/6sCRw
-        ojA4g93aLpQE0PHiIJcBbVdbr729ATcqKuXD+9s=
-X-Google-Smtp-Source: APXvYqzMcVGIejleD+/wKh8TcnzqGnJxMNAmrH86SrHVOreuURuClXNb7c4WEX+3sFRf5peisBBVvSR/1IhjXSA4LuM=
-X-Received: by 2002:a19:f001:: with SMTP id p1mr2498539lfc.27.1556810932481;
- Thu, 02 May 2019 08:28:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190430074730.8236-1-sebastien.szymanski@armadeus.com>
-In-Reply-To: <20190430074730.8236-1-sebastien.szymanski@armadeus.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 2 May 2019 12:28:46 -0300
-Message-ID: <CAOMZO5D=BHWgOieLfz4bxL8v4bDmNOutUUnYSzW89KNtYn=Z9g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: imx6ul: Add csi node
-To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        Rui Miguel Silva <rui.silva@linaro.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
+        id S1727188AbfEBPgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 11:36:32 -0400
+Received: from mx2.suse.de ([195.135.220.15]:41706 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727175AbfEBPgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 11:36:31 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id E6DF5AB91;
+        Thu,  2 May 2019 15:36:28 +0000 (UTC)
+Subject: Re: [PATCH v9 2/2] phy: Add driver for mixel mipi dphy found on NXP's
+ i.MX8 SoCs
+To:     =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Robert Chiras <robert.chiras@nxp.com>
+References: <cover.1556633413.git.agx@sigxcpu.org>
+ <b999b07673e59c676d2e43a786b635beb056e9bf.1556633413.git.agx@sigxcpu.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Hovold <johan@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Openpgp: preference=signencrypt
+Organization: SUSE Linux GmbH
+Message-ID: <4ce62b78-64ac-ca84-733f-bc4d10a67c54@suse.de>
+Date:   Thu, 2 May 2019 17:36:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <b999b07673e59c676d2e43a786b635beb056e9bf.1556633413.git.agx@sigxcpu.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Adding Rui]
+Am 30.04.19 um 16:40 schrieb Guido Günther:
+> This adds support for the Mixel DPHY as found on i.MX8 CPUs but since
+> this is an IP core it will likely be found on others in the future. So
+> instead of adding this to the nwl host driver make it a generic PHY
+> driver.
+> 
+> The driver supports the i.MX8MQ. Support for i.MX8QM and i.MX8QXP can be
+> added once the necessary system controller bits are in via
+> mixel_dphy_devdata.
+> 
+> Co-authored-by: Robert Chiras <robert.chiras@nxp.com>
 
-On Tue, Apr 30, 2019 at 4:47 AM S=C3=A9bastien Szymanski
-<sebastien.szymanski@armadeus.com> wrote:
->
-> Add csi node for i.MX6UL SoC.
->
-> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
->
-> ---
->  arch/arm/boot/dts/imx6ul.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dts=
-i
-> index 62ed30c781ed..af322bc58333 100644
-> --- a/arch/arm/boot/dts/imx6ul.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> @@ -951,6 +951,17 @@
->                                 };
->                         };
->
-> +                       csi: csi@21c4000 {
-> +                               compatible =3D "fsl,imx6ul-csi", "fsl,imx=
-7-csi";
-> +                               reg =3D <0x021c4000 0x4000>;
-> +                               interrupts =3D <GIC_SPI 7 IRQ_TYPE_LEVEL_=
-HIGH>;
-> +                               clocks =3D <&clks IMX6UL_CLK_DUMMY>,
-> +                                        <&clks IMX6UL_CLK_CSI>,
-> +                                        <&clks IMX6UL_CLK_DUMMY>;
-> +                               clock-names =3D "axi", "mclk", "dcic";
+This should be Co-developed-by and is lacking a Signed-off-by from that
+author. Robert, can you please provide one?
 
-Also, I understand you followed
-Documentation/devicetree/bindings/media/imx7-csi.txt and passed these
-three clocks, but looking at the i.MX7D and i.MX6UL/ULL Reference
-Manuals, I don't find the  the descriptions for the "axi" and "dcic"
-CSI clocks.
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
 
-It looks like that only "mclk" is what we really need here.
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+Thanks,
+Andreas
 
-Should we change the bindings and the imx7-csi driver to not request
-"axi" and "dcic" clocks?
-
-Rui, what do you think? If you agree I can send a fix for this.
-
-Thanks
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer, Mary Higgins, Sri Rasiah
+HRB 21284 (AG Nürnberg)
