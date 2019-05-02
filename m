@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 126E3124C2
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 00:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58AD7124D2
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 00:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726114AbfEBWyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 18:54:25 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:39342 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726053AbfEBWyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 18:54:24 -0400
-Received: by mail-pf1-f193.google.com with SMTP id z26so1854411pfg.6
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 15:54:24 -0700 (PDT)
+        id S1726324AbfEBWy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 18:54:29 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:40777 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726297AbfEBWy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 18:54:27 -0400
+Received: by mail-pl1-f194.google.com with SMTP id b3so1702631plr.7
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 15:54:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U2bbAFLYHg7BbnCqa8Z/3P6ZnGKzIwrgxFqmU0u6MtQ=;
-        b=nvDXTTBkx6gM2GY6hocJXtXsnawL+o/xemGlJje4+eusDN2A0o97J9U5hlrR6RCeYY
-         IaJiOv66CzjRFRG/86f/hhXlcSZ+ENN1Ls1spzYSyWL9Pe4VRgvlST5J0rYjN+wmNlBC
-         i7F+im4W83ea6FPef3xVPExFEFv7Pdt/bcRcQ=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=BCfT3guVZby54KoAuU06+BY6v/qUrN3VwEkT+0PJiPM=;
+        b=myoH4NG/U3H7QRfzmXh4KXBkwHqlnBXLuw+YtDbLUP16dgiGTtAys0/bk3SYGDdI70
+         6K+XsQzwdrj70SZjh8KM5efvveW/76bJR9i09nnkUlZn/ZFw1ZqUNUvi7N6yAStsPwSx
+         uiRq7YcNI6KCMxbDCNVDo5hZeJamSb50B5Czo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U2bbAFLYHg7BbnCqa8Z/3P6ZnGKzIwrgxFqmU0u6MtQ=;
-        b=ahnmwWynfPv3QH4UKAGmBzTWwsyBoomxsosw/QX/HP1ZQ50jYsBCFL110XUvZfGm2K
-         +HJmJKgAYqjsWpCQ+nP5IBLduA54ITAXVgmzkkNp9l3ShjawhO1/M6QLzo2W11YD//EY
-         Oz3TEgJLpy1+hm7zjjsXwtET3Gst4DxCrdMIu3Tj00dXLDQfOFXxPqmpRWhI5aIuIp+T
-         LdsEzJkrxl0RhbGRHbZPeJOAvZKw7UQKTU9FXR6KdNPjrMLyHlfJfaC/uiIWyVSsrajG
-         Lnl8na41lhuyn0mQQt627EjmC7dHVHv0F53WBxyWGJqH9kEw4LjhZvwgvpb58VyUMDi5
-         4tQw==
-X-Gm-Message-State: APjAAAV43HWsbuLSCFWHXVR8CAZ8oddGXOdjsmxwSNZbi41u4tiSAMGI
-        F4x916a+jYx6GmV8eEAYT5hy2g==
-X-Google-Smtp-Source: APXvYqwTNwDX8rXg0Agwu8rSnUQ7+u0qFbATbHXFLNSH3EgUqxCM+Vs9APjZJjt0fwjZRPzV6nerSA==
-X-Received: by 2002:a65:6688:: with SMTP id b8mr6519822pgw.81.1556837664123;
-        Thu, 02 May 2019 15:54:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=BCfT3guVZby54KoAuU06+BY6v/qUrN3VwEkT+0PJiPM=;
+        b=MolTbvjON3bApWzbeS45N4MNmn58frD1k0tA2w93992w5zhy7FNiO5eT16DAQVQRBx
+         tLkoxzXML+6XDJqv1jaFG3B196QZK8o7RDryjoaRUzMXOSKohmS99gf4XD9UOreQTjgu
+         mT13SaLxiqrNH67VkG33J56AHPGFJWvYHkHU0A1TVJSRKoSTW6vFZkS0un6G3u1v7nx2
+         gEyc7AjuxThIEkI+ieMIEX503dPItns4772zjq35cuHCuBGua11DCqjPWYTPE2S3b74f
+         B1PALC/othmuSuDb+qMeP0/MVAG4iH4mhSZrzxkrX8pwgSMNq/iwO6aPF+9Tit7F3XPR
+         iUBw==
+X-Gm-Message-State: APjAAAVGs71kmAlKEd8H6hX0+towfq0DSG9TJc2pnCNGL9y2Fk7z7B2e
+        duzmc6dE6OjlAwFXX+DY8O0qNQ==
+X-Google-Smtp-Source: APXvYqw7cw2KkNl8Nu4qGTRrZSO9BSZbc8Jug59xzytFinnS0nDNEMXcfMRtFwgbTp5rGb5QpsTCQQ==
+X-Received: by 2002:a17:902:1602:: with SMTP id g2mr6499886plg.325.1556837666467;
+        Thu, 02 May 2019 15:54:26 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id v15sm264736pff.105.2019.05.02.15.54.22
+        by smtp.gmail.com with ESMTPSA id v15sm264736pff.105.2019.05.02.15.54.25
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 15:54:23 -0700 (PDT)
+        Thu, 02 May 2019 15:54:25 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
         Andrzej Hajda <a.hajda@samsung.com>,
@@ -52,13 +52,13 @@ Cc:     linux-rockchip@lists.infradead.org,
         Sean Paul <seanpaul@chromium.org>,
         Douglas Anderson <dianders@chromium.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH 1/5] dt-bindings: drm/bridge/synopsys: dw-hdmi: Add "unwedge" for ddc bus
-Date:   Thu,  2 May 2019 15:53:32 -0700
-Message-Id: <20190502225336.206885-1-dianders@chromium.org>
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 3/5] ARM: dts: rockchip: Switch to builtin HDMI DDC bus on rk3288-veyron
+Date:   Thu,  2 May 2019 15:53:34 -0700
+Message-Id: <20190502225336.206885-3-dianders@chromium.org>
 X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
+In-Reply-To: <20190502225336.206885-1-dianders@chromium.org>
+References: <20190502225336.206885-1-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,40 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In certain situations it was seen that we could wedge up the DDC bus
-on the HDMI adapter on rk3288.  The only way to unwedge was to mux one
-of the pins over to GPIO output-driven-low temporarily and then
-quickly mux back.  Full details can be found in the patch
-("drm/bridge/synopsys: dw-hdmi: Add "unwedge" for ddc bus").
+Downstream Chrome OS kernels use the builtin DDC bus from dw_hdmi on
+veyron.  This is the only way to get them to negotiate HDCP.
 
-Since unwedge requires remuxing the pins, we first need to add to the
-bindings so that we can specify what state the pins should be in for
-unwedging.
+Although HDCP isn't currently all supported upstream, it still seems
+like it makes sense to use dw_hdmi's builtin I2C.  Maybe eventually we
+can get HDCP negotiation working.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- .../bindings/display/rockchip/dw_hdmi-rockchip.txt         | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm/boot/dts/rk3288-veyron.dtsi | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-index 39143424a474..8346bac81f1c 100644
---- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-+++ b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-@@ -38,6 +38,13 @@ Optional properties
- - phys: from general PHY binding: the phandle for the PHY device.
- - phy-names: Should be "hdmi" if phys references an external phy.
+diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
+index 1252522392c7..e1bee663d2c5 100644
+--- a/arch/arm/boot/dts/rk3288-veyron.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
+@@ -163,7 +163,8 @@
+ };
  
-+Optional pinctrl entry:
-+- If you have both a "unwedge" and "default" pinctrl entry, dw_hdmi
-+  will switch to the unwedge pinctrl state for 10ms if it ever gets an
-+  i2c timeout.  It's intended that this unwedge pinctrl entry will
-+  cause the SDA line to be driven low to work around a hardware
-+  errata.
-+
- Example:
+ &hdmi {
+-	ddc-i2c-bus = <&i2c5>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&hdmi_ddc>;
+ 	status = "okay";
+ };
  
- hdmi: hdmi@ff980000 {
+@@ -334,14 +335,6 @@
+ 	i2c-scl-rising-time-ns = <300>;		/* 225ns measured */
+ };
+ 
+-&i2c5 {
+-	status = "okay";
+-
+-	clock-frequency = <100000>;
+-	i2c-scl-falling-time-ns = <300>;
+-	i2c-scl-rising-time-ns = <1000>;
+-};
+-
+ &io_domains {
+ 	status = "okay";
+ 
 -- 
 2.21.0.1020.gf2820cf01a-goog
 
