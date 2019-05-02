@@ -2,151 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F078F1221C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 20:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF36F12231
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 20:55:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726396AbfEBSp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 14:45:56 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:39846 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726120AbfEBSpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 14:45:55 -0400
-Received: by mail-oi1-f193.google.com with SMTP id w130so2124603oie.6
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 11:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=17OVt5sF62dgswwCTgJsxP7RAt3WsAf5VJ4Ut9AHOnQ=;
-        b=P9mmkEctGFviK6NgZSHwMcUWXoaX/YoeIAK9bJMcE3Lx9wj9ioBeHG7azUaTRvfMEz
-         TY2RHOx0ThWPnz2RyK/JeVea8tpHo/vQkabwSgIPQaucOPCDrRgdtpJvHIeyfXSXZIdh
-         EEpMDUWFYZWhjIh9jDc8FJvMTlSL8vQ8VfgY4koM+if0RzgjLUM+G7N96Iar9oJO2RWW
-         y2bZo1FvLirTsbvZcF5UvfSKsfdjWdxyGHNZOdT8DOFyQvGPVysWQaUTlUo3hkMnOD0e
-         RSC2W/FJE39vCVMCViynhllAgBlnR6+D6q04cTiRfgx2IG0+4k0zkzJ9Spq984jh3G9l
-         lWjw==
+        id S1726120AbfEBSzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 14:55:50 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:39242 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfEBSzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 14:55:49 -0400
+Received: by mail-vs1-f68.google.com with SMTP id g127so2034759vsd.6;
+        Thu, 02 May 2019 11:55:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=17OVt5sF62dgswwCTgJsxP7RAt3WsAf5VJ4Ut9AHOnQ=;
-        b=CZmDwAhIvKS9zhGRWbAJQw2yNd8l+xLOVSLuG2NZWd+J15CvQW5onCbrNIrrXs221X
-         da2srI+Ss0n5QqHqkFcKNROYlSHpqca3asaZkqbg0Xx47cnuTIVFSf8vtSkOOsmT+BnW
-         fD+MpsL//LBQ4Ty7l0xXQw1kK7iQ6J8p6srLExaYFxSXGMFIawNgxeHYWV2/krIi5+Rk
-         6D42YS8zHm8pKSph2dbiGV6uXp4IJ4x/MqHqn5fQwFB6i9yGsr5lmK5ULaUlXEPFJcX9
-         xzK10C6ImLlXBfdcEFlYnQSB8OjVykvciKtA9QfDHVvMv07qanyTYl/d0BJtcF3ov2Or
-         tMhA==
-X-Gm-Message-State: APjAAAUEcH+lOK84/YIdwP5jMk88LKnhUznD5fHGlINJwMjYeS0b71LQ
-        z9x5TgvhHEAPhzROpW4BJ5khMFpmAAnoV+9xaXFmCQ==
-X-Google-Smtp-Source: APXvYqzC6lEhFzCwba9WNGtoNJlN2/sxNxsRqKIHnQJUgSQQ4oc4XCI9kW3OGRwazcEXau+lGinuQZlka+T3d8xNOxI=
-X-Received: by 2002:aca:4586:: with SMTP id s128mr3264542oia.148.1556822754511;
- Thu, 02 May 2019 11:45:54 -0700 (PDT)
+        bh=WmD4PgCYl619x3ZYqch9Kmzg00YqLC0a6bSnDc6AjN8=;
+        b=ppimA8WFgKdayLSqlxCABH26/ZAxmWJJLDWlHjJHUvSRTb4simCE24QEVdk6lba0ce
+         I1dlms3XhDvPriSd5urIKl+NVA0fEffSGPx1QnXdZ3VLNFnKHZabnlQv3Z+uWWcIvNJR
+         Fb2mrYlIpHNFEiuGS5rTvPn7uOa62haOKzP2P5pqEaRUttcuJQrcdKPcJ2BiHCMr2kZ5
+         UyAgZ13ry8HV0poBjOJbRPPU/2s43T1xvVYFnZDel4N5jHHGdTZtGvsyxkEsNLdOymWg
+         zwmYHZ8KsY6oMtT++4jERm3//hROgwuyax4rEzclwNggsNi1QtZSv4JZLgXpES4F9pFt
+         BUnQ==
+X-Gm-Message-State: APjAAAUzIXmc9r00Jik8DzVnl4RA+oxOb313O2VEtPsY7j3at6eYYB0i
+        sS6LM9H2UyiLhFuAkSFkFS3rklom8uTRZbArKHY9Cw==
+X-Google-Smtp-Source: APXvYqx9XQeuVpeKByH0IYo2EX6QAv/F4h+VKho/bh6UQFFeYA8GSMeemSyFKqKXBfcgbXnN6vLjblyPjNWKIAlkKv4=
+X-Received: by 2002:a67:8e03:: with SMTP id q3mr2996820vsd.152.1556823348683;
+ Thu, 02 May 2019 11:55:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-17-brendanhiggins@google.com> <20190502110347.GE12416@kroah.com>
- <ECADFF3FD767C149AD96A924E7EA6EAF9770A3A0@USCULXMSG01.am.sony.com>
-In-Reply-To: <ECADFF3FD767C149AD96A924E7EA6EAF9770A3A0@USCULXMSG01.am.sony.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 2 May 2019 11:45:43 -0700
-Message-ID: <CAFd5g471Wawu6g14p0AO3aY8VPBKLA0mjHSdfR1qStFGzp3iGQ@mail.gmail.com>
-Subject: Re: [PATCH v2 16/17] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
-To:     "Bird, Timothy" <Tim.Bird@sony.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Iurii Zaikin <yzaikin@google.com>
+References: <20190430121254.3737-1-geert+renesas@glider.be>
+ <20190430121254.3737-2-geert+renesas@glider.be> <CAL_Jsq+KwOLqd=ZqT-bdM5mp8jfPHu=XingBb6kBsUqHvO=m+g@mail.gmail.com>
+ <29e95406-b9fb-fbb6-9240-c3914d885e88@arm.com> <CAL_Jsq+FJDdka9BMcXvGveBHiUf=YUU=3gz3e2wxjtXZ+K+NEA@mail.gmail.com>
+ <CAMuHMdWgrcfABOVZti+BYn6ujcYjUHNL7oeyJLgaxB8uPp5hwg@mail.gmail.com>
+ <CAL_JsqKq0KP9H4DumyxJTjD=7rqwgOM=+5jHhkUxQqamrA3h7g@mail.gmail.com>
+ <CAMuHMdVWG4LDAAht-6Rendt8L96vW+VEJK4tGnOCMJ38pRDybA@mail.gmail.com> <CAL_JsqJ34-0T_XjmRaXc3YTp4OHhptUaO3F+yygAy6L0iaNhdg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ34-0T_XjmRaXc3YTp4OHhptUaO3F+yygAy6L0iaNhdg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 2 May 2019 20:55:36 +0200
+Message-ID: <CAMuHMdV+ee3fEHvt2dv14s1nYK1JH3yi0RnJ3Xqtarn9MrZ7jA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Add Renesas
+ RZ/A1 Interrupt Controller
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Marc Zyngier <marc.zyngier@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 11:15 AM <Tim.Bird@sony.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Greg KH
+Hi Rob,
+
+On Thu, May 2, 2019 at 6:51 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Thu, May 2, 2019 at 5:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Wed, May 1, 2019 at 9:38 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > On Wed, May 1, 2019 at 2:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > On Tue, Apr 30, 2019 at 10:26 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > > 'interrupt-map' would avoid that problem I think.
+> > > >
+> > > > "interrupt-map" seems to be meant for translation on a bus?
+> > > > What to do with the child and parent unit addresses fields?
+> > > > The parent unit address size depends on the #address-cells of the parent
+> > > > interrupt-controller (i.e. GIC, so it's zero).
+> > > > But the child unit address size depends on the #address-cells of the bus node
+> > > > on which the child is located, so that's a (non-zero) bus #address-cells
+> > > > (from the root node), not an interrupt-controller #address-cells.
+> > >
+> > > The #address-cells is always retrieved from the interrupt-parent node
+> > > (or its parent). The interrupt-parent can implicitly be the child's
+> > > parent, but that is rarely used in modern systems.
 > >
-> > On Wed, May 01, 2019 at 04:01:25PM -0700, Brendan Higgins wrote:
-> > > From: Iurii Zaikin <yzaikin@google.com>
-> > >
-> > > KUnit tests for initialized data behavior of proc_dointvec that is
-> > > explicitly checked in the code. Includes basic parsing tests including
-> > > int min/max overflow.
-> > >
-> > > Signed-off-by: Iurii Zaikin <yzaikin@google.com>
-> > > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > > ---
-> > >  kernel/Makefile      |   2 +
-> > >  kernel/sysctl-test.c | 292
-> > +++++++++++++++++++++++++++++++++++++++++++
-> > >  lib/Kconfig.debug    |   6 +
-> > >  3 files changed, 300 insertions(+)
-> > >  create mode 100644 kernel/sysctl-test.c
-> > >
-> > > diff --git a/kernel/Makefile b/kernel/Makefile
-> > > index 6c57e78817dad..c81a8976b6a4b 100644
-> > > --- a/kernel/Makefile
-> > > +++ b/kernel/Makefile
-> > > @@ -112,6 +112,8 @@ obj-$(CONFIG_HAS_IOMEM) += iomem.o
-> > >  obj-$(CONFIG_ZONE_DEVICE) += memremap.o
-> > >  obj-$(CONFIG_RSEQ) += rseq.o
-> > >
-> > > +obj-$(CONFIG_SYSCTL_KUNIT_TEST) += sysctl-test.o
+> > That's not what Devicetree Specification, Release v0.2 says:
 > >
-> > You are going to have to have a "standard" naming scheme for test
-> > modules, are you going to recommend "foo-test" over "test-foo"?  If so,
-> > that's fine, we should just be consistant and document it somewhere.
+> >     child unit address The unit address of the child node being mapped.
+> >     The number of 32-bit cells required to specify this is described by
+> >     the #address-cells property of the bus node on which the child is
+> >     located.
 > >
-> > Personally, I'd prefer "test-foo", but that's just me, naming is hard...
+> > 2.4.4 Interrupt Mapping Example (for PCI) says the bus node is the PCI
+> > bridge, with #address-cells = <3>.
 >
-> My preference would be "test-foo" as well.  Just my 2 cents.
+> PCI is more inline with the spec wording, but systems evolved where
+> the interrupt hierarchy doesn't match the bus hierarchy.
 
-I definitely agree we should be consistent. My personal bias
-(unsurprisingly) is "foo-test," but this is just because that is the
-convention I am used to in other projects I have worked on.
+OK.
 
-On an unbiased note, we are currently almost evenly split between the
-two conventions with *slight* preference for "foo-test": I ran the two
-following grep commands on v5.1-rc7:
+> > But in the RZ/A1 case the child unit address is irrelevant, as its an
+> > external interrupt input not related to a specific bus.  It could be
+> > used by a device without unit address (e.g. gpio-keys), or some device
+> > on an external local bus (root #adress-cells is <1> on 32-bit without
+> > LPAE, but this block could be reused in a future LPAE or arm64 SoCs),
+> > or on e.g. an SPI or i2c bus, with its own #adress-cells value
+> > (coincidentally <1>, too).
+> >
+> > I see of_irq_parse_raw() does use the address-cells of the parent
+> > interrupt controller (which is usually 0) when iterating its way up,
+> > following interrupt-map.
+> >
+> > So the child unit address does have two different meanings?
+>
+> Indeed. That's why you'll see interrupt-controller nodes with the odd
+> '#address-cells = <0>;' in them. It's often omitted because it only
+> matters if there's an interrupt-map. We should clarify the spec.
 
-grep -Hrn --exclude-dir="build" -e "config [a-zA-Z_0-9]\+_TEST$" | wc -l
-grep -Hrn --exclude-dir="build" -e "config TEST_[a-zA-Z_0-9]\+" | wc -l
+Yeah, I had noticed that, but didn't want to dive too deep into that
+(at that time).  I always assumed it was some silly mistake, combined
+with dtsi cargo cult copying.  Thanks, now I know better....
 
-"foo-test" has 36 occurrences.
-"test-foo" has 33 occurrences.
+BTW, the GIC bindings don't help that much: #address-cells can be
+0, 1, or 2, #size-cells can be 1 or 2. No explanation why...
 
-The things I am more concerned about is how this would affect file
-naming. If we have a unit test for foo.c, I think foo_test.c is more
-consistent with our namespacing conventions. The other thing, is if we
-already have a Kconfig symbol called FOO_TEST (or TEST_FOO) what
-should we name the KUnit test in this case? FOO_UNIT_TEST?
-FOO_KUNIT_TEST, like I did above?
+Gr{oetje,eeting}s,
 
-Cheers
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
