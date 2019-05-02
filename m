@@ -2,174 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEF5118D8
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12D3A118E4
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbfEBMSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 08:18:51 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:44754 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726338AbfEBMSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 08:18:50 -0400
-Received: by mail-wr1-f65.google.com with SMTP id c5so3023297wrs.11
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 05:18:48 -0700 (PDT)
+        id S1726270AbfEBMVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 08:21:15 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:35909 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726268AbfEBMVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 08:21:15 -0400
+Received: by mail-lf1-f68.google.com with SMTP id u17so1727399lfi.3;
+        Thu, 02 May 2019 05:21:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GgusURE/W8WQalA33cEWfpRjVdXD5wgJb44vpMIQJIA=;
-        b=WjOwbub2CHS1lEAR4PJpFWurl6WPeh5AUPx3XVhxTlB6Hx86nhqpr263GBgcxcM371
-         oyHujRiVkACMN1FmTMuu7oidpncrUfL4EK/riYLsKOaYPbYTy7/nFKhRrjFoP/zJraWF
-         bz57mAh+V/aGF9idDq1WN/BXsmcjYfS0wLI7EZsoUxJxQ7u7dK9fBCELS9QnTvftpObc
-         eLlBZDIVmoH4/Fvi11y80wkptE+q88nT8V6Se+GdtbVr9lw063HhUsOSSShj+cts5QCA
-         CtveCcOCx65P9jYCKjp0ajcbpQSbVCyJyRTj04XI4KH8fGKae6luNAC+Wye4E/SmHYsi
-         ZLaA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=YoRzopPLw6P5ilGOLkCCwo6ncg+nRGCaqA3qJdWLPkk=;
+        b=pOtaltYCjij+nwgRjIdtwgj9znTc9Rk3LcgVKAbP4FdMpQNoR+PQmyu3tG86uIJDJd
+         /XSjQ1WAq1cPH/U3LeAPAPTg+5lei9AopWETGpHqzFzDjn56gB9IkqBrR6sL0pHTTxxM
+         2h3GwE5cRxD82OJAtLDkyFxGjM8YGwwSdIv9UVdC0nvxzinS6Vv2gKseB53tf1rQL3Dl
+         pin8IOhpRJ93QII/OEtxdqjh0TKcKv153cc1xQhuaKFfLvnG9z9fQOXozQUdAG5bLmvA
+         lX4bY/InhTH5oo+J31LjWsmXqcVRb8oQeD12FlDI0uGst880z1QS0Noeu7iRjOrNKQEM
+         2eGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GgusURE/W8WQalA33cEWfpRjVdXD5wgJb44vpMIQJIA=;
-        b=HMlatNqHf6fw2KZX2EEOZPU16/DMEywf4WY/i5U5lXl2sLxOlRoZF8QaWg9+7tUUlg
-         Q/q9ungG7/yjiXpja8nhWKE6py0P3GEeUE0Y32ImKBV9EA4afeuQ7wCytAalc0bR3OCJ
-         IF3KpuEalZYOeF25edLlmsCm4lLg1tfp0L7jF5Luq2wmwebWs2xU0Ig+k3VIU/PGNEm3
-         7V2f3r28YFKQSse7fZCTf8JmURdWlWxRzF0rOZQUot1xyZAZqx0sV4Hc8MUO0bxYHNS4
-         lMyaRI1QmEFfv9q0Os2kNxBXBKEtEACFU6csEnXniSTsQWKVVv5j8rxDqIkTZ7TzRA1C
-         ppVw==
-X-Gm-Message-State: APjAAAVOdZ2MEOutLoNFHbX7zAIWeAmXfDJXvbsKu1EGyKbnTdtYC/3w
-        FxYHWcVw/F5COT8AgcWvtLXgFw==
-X-Google-Smtp-Source: APXvYqzI3XtuiIeyOUfzg89EuKrmLgDXyD/nCaZXAAQHkUUw4+T5rfoLd5ak94G/nvhN2sm24ARLVw==
-X-Received: by 2002:a5d:55cc:: with SMTP id i12mr2560960wrw.179.1556799527780;
-        Thu, 02 May 2019 05:18:47 -0700 (PDT)
-Received: from localhost.localdomain (aputeaux-684-1-8-187.w90-86.abo.wanadoo.fr. [90.86.125.187])
-        by smtp.gmail.com with ESMTPSA id f6sm4392842wmh.13.2019.05.02.05.18.46
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 05:18:47 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, mturquette@baylibre.com,
-        sboyd@kernel.org, matthias.bgg@gmail.com, wenzhen.yu@mediatek.com,
-        sean.wang@mediatek.com, ryder.lee@mediatek.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH 2/2] clk: mediatek: add audsys clock driver for MT8516
-Date:   Thu,  2 May 2019 14:18:43 +0200
-Message-Id: <20190502121843.14493-2-fparent@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190502121843.14493-1-fparent@baylibre.com>
-References: <20190502121843.14493-1-fparent@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=YoRzopPLw6P5ilGOLkCCwo6ncg+nRGCaqA3qJdWLPkk=;
+        b=HuB/w0O2KyENHRceoX8q60wWO4a/gGYebnXYEim6c+W0ktWHyWpp6YZmz6rdY89j1p
+         kQM0/VzTECvdkUmaMStQSAkNOnW9bd2qvxRTyXhqvWl2pv4ym5b1zL1kTWKX6EnASpyQ
+         PgXOOGo5el2/nLr8NfgNEnUOcQpGH+ROPGLmgBYxUEiRrTUoekHQy/dm1qddUrMuZjlm
+         BkmLk+GVgAYRTilF8WdC7ijocnf2V3AS0UbmaQ55/YrihlUFGU/06HIJe9Up9K8vEqiW
+         SImtf//UkBdfz0UqemstuFyFVi+Za5J9lQObkPjQNrX95Hppc3t4CosnnHSGKgSWzU4R
+         0WcQ==
+X-Gm-Message-State: APjAAAXwxzfmWSk2LcKBm8PslDO0zhHYUkOjex6tvfub60nmi6ft6aOc
+        OUckfZgJ8ywnaPjr+t9LONEl0Ih1fovd8A9HYI4=
+X-Google-Smtp-Source: APXvYqyqBIGxYazeIZ6OVG3oD6l17c7c09dmf9ZVSVOxS3YSB4C1RHmrYVvtN7ivy/b4hZFSt817dsEZ1InDgfl70fc=
+X-Received: by 2002:a19:f001:: with SMTP id p1mr1972072lfc.27.1556799673301;
+ Thu, 02 May 2019 05:21:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190430074730.8236-1-sebastien.szymanski@armadeus.com>
+In-Reply-To: <20190430074730.8236-1-sebastien.szymanski@armadeus.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 2 May 2019 09:21:08 -0300
+Message-ID: <CAOMZO5DTAvdxbb8UQufDTNWgkCj55OzXn=SZFXRocUOnkMY55Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: imx6ul: Add csi node
+To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add audsys clock driver for MediaTek MT8516 SoC.
+Hi S=C3=A9bastien,
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- drivers/clk/mediatek/Kconfig          |  6 +++
- drivers/clk/mediatek/Makefile         |  1 +
- drivers/clk/mediatek/clk-mt8516-aud.c | 65 +++++++++++++++++++++++++++
- 3 files changed, 72 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt8516-aud.c
+On Tue, Apr 30, 2019 at 4:47 AM S=C3=A9bastien Szymanski
+<sebastien.szymanski@armadeus.com> wrote:
 
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index 1e951ae49982..f9cd45e7760a 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -225,4 +225,10 @@ config COMMON_CLK_MT8516
- 	help
- 	  This driver supports MediaTek MT8516 clocks.
- 
-+config COMMON_CLK_MT8516_AUDSYS
-+	bool "Clock driver for MediaTek MT8516 audsys"
-+	depends on COMMON_CLK_MT8516
-+	help
-+	  This driver supports MediaTek MT8516 audsys clocks.
-+
- endmenu
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index c4f413ef5aad..a2557b0c9273 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -32,3 +32,4 @@ obj-$(CONFIG_COMMON_CLK_MT7629_HIFSYS) += clk-mt7629-hif.o
- obj-$(CONFIG_COMMON_CLK_MT8135) += clk-mt8135.o
- obj-$(CONFIG_COMMON_CLK_MT8173) += clk-mt8173.o
- obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
-+obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt8516-aud.c b/drivers/clk/mediatek/clk-mt8516-aud.c
-new file mode 100644
-index 000000000000..6ab3a06dc9d5
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8516-aud.c
-@@ -0,0 +1,65 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ * Author: James Liao <jamesjj.liao@mediatek.com>
-+ *         Fabien Parent <fparent@baylibre.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+#include <dt-bindings/clock/mt8516-clk.h>
-+
-+static const struct mtk_gate_regs aud_cg_regs = {
-+	.set_ofs = 0x0,
-+	.clr_ofs = 0x0,
-+	.sta_ofs = 0x0,
-+};
-+
-+#define GATE_AUD(_id, _name, _parent, _shift) {	\
-+		.id = _id,			\
-+		.name = _name,			\
-+		.parent_name = _parent,		\
-+		.regs = &aud_cg_regs,		\
-+		.shift = _shift,		\
-+		.ops = &mtk_clk_gate_ops_no_setclr,		\
-+	}
-+
-+static const struct mtk_gate aud_clks[] __initconst = {
-+	GATE_AUD(CLK_AUD_AFE, "aud_afe", "clk26m_ck", 2),
-+	GATE_AUD(CLK_AUD_I2S, "aud_i2s", "i2s_infra_bck", 6),
-+	GATE_AUD(CLK_AUD_22M, "aud_22m", "rg_aud_engen1", 8),
-+	GATE_AUD(CLK_AUD_24M, "aud_24m", "rg_aud_engen2", 9),
-+	GATE_AUD(CLK_AUD_INTDIR, "aud_intdir", "rg_aud_spdif_in", 15),
-+	GATE_AUD(CLK_AUD_APLL2_TUNER, "aud_apll2_tuner", "rg_aud_engen2", 18),
-+	GATE_AUD(CLK_AUD_APLL_TUNER, "aud_apll_tuner", "rg_aud_engen1", 19),
-+	GATE_AUD(CLK_AUD_HDMI, "aud_hdmi", "apll12_div4", 20),
-+	GATE_AUD(CLK_AUD_SPDF, "aud_spdf", "apll12_div6", 21),
-+	GATE_AUD(CLK_AUD_ADC, "aud_adc", "aud_afe", 24),
-+	GATE_AUD(CLK_AUD_DAC, "aud_dac", "aud_afe", 25),
-+	GATE_AUD(CLK_AUD_DAC_PREDIS, "aud_dac_predis", "aud_afe", 26),
-+	GATE_AUD(CLK_AUD_TML, "aud_tml", "aud_afe", 27),
-+};
-+
-+static void __init mtk_audsys_init(struct device_node *node)
-+{
-+	struct clk_onecell_data *clk_data;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(CLK_AUD_NR_CLK);
-+
-+	mtk_clk_register_gates(node, aud_clks, ARRAY_SIZE(aud_clks), clk_data);
-+
-+	r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-+	if (r)
-+		pr_err("%s(): could not register clock provider: %d\n",
-+			__func__, r);
-+
-+}
-+CLK_OF_DECLARE(mtk_audsys, "mediatek,mt8516-audsys", mtk_audsys_init);
--- 
-2.20.1
+> +                       csi: csi@21c4000 {
+> +                               compatible =3D "fsl,imx6ul-csi", "fsl,imx=
+7-csi";
 
+After adding "fsl,imx6ul-csi" to
+Documentation/devicetree/bindings/media/imx7-csi.txt:
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
