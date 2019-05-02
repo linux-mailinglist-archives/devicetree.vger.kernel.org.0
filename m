@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B42412424
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 23:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD6901242E
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 23:36:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726022AbfEBVcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 17:32:20 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36964 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725962AbfEBVcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 17:32:19 -0400
-Received: by mail-ot1-f67.google.com with SMTP id r20so3518306otg.4;
-        Thu, 02 May 2019 14:32:19 -0700 (PDT)
+        id S1726053AbfEBVgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 17:36:07 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:40787 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfEBVgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 17:36:07 -0400
+Received: by mail-ot1-f65.google.com with SMTP id w6so3517215otl.7;
+        Thu, 02 May 2019 14:36:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=orS40jFtqb35Wbp7JodVtiOmNi03+OR+s9mWL3M/pTo=;
-        b=D/JCcWotYNLyZKfL2bzhRp1xd6g+p2AZ7Qsxcwf/EK6f6BfP7MgsEN5kdnRPGl1+v0
-         WK2PTt2azvJe4QZyaI0B532X+X3/Q3pAjhPJyVXpMg93h9Nu9EaxtbMVAZqegXnrdw4v
-         tH4rElbYTNkNHY6EMf4V4NOBxRFPdf5nbNKh3GeMNFOtnuQYpNjYJHuElSHilbbOTu8D
-         z/fk+L8hVSUQ+YhEmOUH9siiP0rl8gBKwfIXjeMB1adJutHd25MAJENMEywKQ7W+jNLV
-         UStCysll/cZxYwmq0r58DI4amO9onvgZktW6nCQkLbmkM/Au+zfDbKNCD06G+uNLwu7P
-         vJJQ==
-X-Gm-Message-State: APjAAAWRwCoGnqfEneRb8zAGp7bOvEBUUjy+CtG8IJjycTwGeNY1YjaH
-        y6rpZbM19iFHbr1P2CSBBQ==
-X-Google-Smtp-Source: APXvYqycgFFoT6XyDRCj95MK86JH5d0iSJKNsTW2unTnGgy0mZGyLggORq55HQkw5az2wxF69nEyYQ==
-X-Received: by 2002:a9d:66a:: with SMTP id 97mr4150543otn.234.1556832739089;
-        Thu, 02 May 2019 14:32:19 -0700 (PDT)
+        bh=QOVychIUmtDG8Tll/ecV8whoYD0pZhfgpjrLj+GI7lA=;
+        b=P61jLT5/FAYMIFhaieyqRt/Q1QotErIkYPZe/eCAJbfA0wkTQdN/8DdU4rDgH7I1zq
+         cj/21HRsz2Gl0YagOn6iUk4WZLO/76cXiOxiis5Xa2pMWzgiCZ4I+mXFn4CDaYU1chm7
+         ylG7V4v4nQVyaxp5fT/1BzLFrDqgqp/mfIVNgS7679pJO0PYr6U4ufqksHDHo97jMIIb
+         W9uhIWYE9jOqCCVVA3X4f5nFxECZsZL4X07N1RZMRyCnafBl/3wmXHEmNm7xg1WuJlrD
+         2dpC5wMZP2CVj2IsVuEcQOGGai9fJ//F5q/BF4bR1pjM2htxRLLbhhnoS27xIcw2l59C
+         qQkg==
+X-Gm-Message-State: APjAAAXE5zMJbDTzBW7zhmpOTtTje4u+KP9eqe6bBm/Gx2pnKjS6a0PI
+        ertlLbIJW4wph4BjdXlQeg==
+X-Google-Smtp-Source: APXvYqzIKpF2SpUiGqboXp/KmEVvROVVZj0uRCj2SNazB/0BEXuociHSUGYQnO9Q7HpLJFsgEabH2g==
+X-Received: by 2002:a9d:7d06:: with SMTP id v6mr4009955otn.187.1556832966725;
+        Thu, 02 May 2019 14:36:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 38sm92068otg.10.2019.05.02.14.32.17
+        by smtp.gmail.com with ESMTPSA id n185sm213641oif.8.2019.05.02.14.36.05
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 02 May 2019 14:32:17 -0700 (PDT)
-Date:   Thu, 2 May 2019 16:32:17 -0500
+        Thu, 02 May 2019 14:36:06 -0700 (PDT)
+Date:   Thu, 2 May 2019 16:36:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     linux-kernel@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] Input: edt-ft5x06 - add support for polled
- configuration
-Message-ID: <20190502213217.GA14901@bogus>
-References: <20190430185859.24015-1-nsaenzjulienne@suse.de>
- <20190430185859.24015-2-nsaenzjulienne@suse.de>
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/panel: simple: Add FriendlyELEC HD702E 800x1280
+ LCD panel
+Message-ID: <20190502213605.GA20606@bogus>
+References: <20190501121448.3812-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190430185859.24015-2-nsaenzjulienne@suse.de>
+In-Reply-To: <20190501121448.3812-1-jagan@amarulasolutions.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Apr 2019 20:58:59 +0200, Nicolas Saenz Julienne wrote:
-> Some devices might not provide an interrupt line for the touchscreen.
-> In that case the driver defaults to using a polled interface.
+On Wed,  1 May 2019 17:44:47 +0530, Jagan Teki wrote:
+> HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
+> resolution. It has built in Goodix, GT9271 captive touchscreen
+> with backlight adjustable via PWM.
 > 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Add support for it.
+> 
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > ---
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt  | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  .../display/panel/friendlyarm,hd702e.txt      | 29 +++++++++++++++++++
+>  drivers/gpu/drm/panel/panel-simple.c          | 26 +++++++++++++++++
+>  2 files changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
