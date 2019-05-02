@@ -2,61 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE1A51115C
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 04:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 373F811151
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 04:20:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfEBCTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 May 2019 22:19:06 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:56602 "EHLO
+        id S1726371AbfEBCUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 May 2019 22:20:06 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:56908 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbfEBCTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 22:19:06 -0400
+        with ESMTP id S1726640AbfEBCTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 May 2019 22:19:15 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
         Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=JSlPcUnFqX1tN5EF+WG+3VLibdvupztBzoEMjhd4pBY=; b=g7HBSZHxEi41
-        FbJOFo6XXTQJJ4jd7ljgytbHAlajKmV+/HndsXkAQtOvo+vHj106e0vJhsG1vuijAWw29aiNl3EzG
-        l/oQinOz18TveSp+rV+4A6u9ko4jCwW9hCw7RotfC5h/NLZMi2ntyWQSGKNgQlD9a849ZiCNpPHal
-        mCKTk=;
+        List-Archive; bh=qn5Pu9SeCeSm13Dg3lR1i9rI9Ck3sTa0tClj1YYd9FA=; b=rVFtzOs+yibi
+        yC7njH5GNfpJZL6ue9Jd3Ia7FawklWHoZF8FaQ0ppYH6k1f9XJgQLSdTWL+nidFrDHqbbHtV2iHo8
+        lHGxBafow7NluMN1IzYz+8qROIdA5ygo2BfLKh/S68YLVB+elYviDydiQrK6JM+9Kf0cfvpzkn1/F
+        twogM=;
 Received: from [211.55.52.15] (helo=finisterre.ee.mobilebroadband)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hM1IX-0005qB-G5; Thu, 02 May 2019 02:18:09 +0000
+        id 1hM1JV-0005wN-NU; Thu, 02 May 2019 02:19:10 +0000
 Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
-        id 39C17441D3C; Thu,  2 May 2019 03:18:06 +0100 (BST)
+        id C1260441D3C; Thu,  2 May 2019 03:19:05 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Viorel Suman <viorel.suman@nxp.com>
-Cc:     alsa-devel@alsa-project.org,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Julia Lawall <Julia.Lawall@lip6.fr>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Timur Tabi <timur@kernel.org>,
-        Viorel Suman <viorel.suman@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>
-Subject: Applied "ASoC: fsl_audmix: cache pdev->dev pointer" to the asoc tree
-In-Reply-To:  <1554894380-25153-5-git-send-email-viorel.suman@nxp.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        jonathanh@nvidia.com, kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        mark.rutland@arm.com, robh+dt@kernel.org, skomatineni@nvidia.com,
+        talho@nvidia.com, thierry.reding@gmail.com
+Subject: Applied "spi: expand mode support" to the spi tree
+In-Reply-To:  <1555363834-32155-3-git-send-email-skomatineni@nvidia.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190502021806.39C17441D3C@finisterre.ee.mobilebroadband>
-Date:   Thu,  2 May 2019 03:18:06 +0100 (BST)
+Message-Id: <20190502021905.C1260441D3C@finisterre.ee.mobilebroadband>
+Date:   Thu,  2 May 2019 03:19:05 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -64,11 +48,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: fsl_audmix: cache pdev->dev pointer
+   spi: expand mode support
 
-has been applied to the asoc tree at
+has been applied to the spi tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git 
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
@@ -89,99 +73,51 @@ to this mail.
 Thanks,
 Mark
 
-From 62be484f7ad8443c393293a415392fbf3190c864 Mon Sep 17 00:00:00 2001
-From: Viorel Suman <viorel.suman@nxp.com>
-Date: Wed, 10 Apr 2019 11:06:39 +0000
-Subject: [PATCH] ASoC: fsl_audmix: cache pdev->dev pointer
+From 937e6d756422637eeb212c645ded69569a67fabc Mon Sep 17 00:00:00 2001
+From: Sowjanya Komatineni <skomatineni@nvidia.com>
+Date: Mon, 15 Apr 2019 14:30:27 -0700
+Subject: [PATCH] spi: expand mode support
 
-There should be no trouble to understand dev = pdev->dev.
-This can save some space to have more print info or save
-some wrapped lines.
+This patch changes mode and mode_bits from u16 to u32 to allow more
+mode configurations.
 
-Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-Suggested-by: Nicolin Chen <nicoleotsuka@gmail.com>
+Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/fsl/fsl_audmix.c | 27 +++++++++++++--------------
- 1 file changed, 13 insertions(+), 14 deletions(-)
+ include/linux/spi/spi.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/sound/soc/fsl/fsl_audmix.c b/sound/soc/fsl/fsl_audmix.c
-index dc802d5c4ccd..3897a54a11fe 100644
---- a/sound/soc/fsl/fsl_audmix.c
-+++ b/sound/soc/fsl/fsl_audmix.c
-@@ -456,6 +456,7 @@ MODULE_DEVICE_TABLE(of, fsl_audmix_ids);
+diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+index 589f9dc9ac2b..053abd22ad31 100644
+--- a/include/linux/spi/spi.h
++++ b/include/linux/spi/spi.h
+@@ -143,7 +143,7 @@ struct spi_device {
+ 	u32			max_speed_hz;
+ 	u8			chip_select;
+ 	u8			bits_per_word;
+-	u16			mode;
++	u32			mode;
+ #define	SPI_CPHA	0x01			/* clock phase */
+ #define	SPI_CPOL	0x02			/* clock polarity */
+ #define	SPI_MODE_0	(0|0)			/* (original MicroWire) */
+@@ -443,7 +443,7 @@ struct spi_controller {
+ 	u16			dma_alignment;
  
- static int fsl_audmix_probe(struct platform_device *pdev)
- {
-+	struct device *dev = &pdev->dev;
- 	struct fsl_audmix *priv;
- 	struct resource *res;
- 	const char *mdrv;
-@@ -463,52 +464,50 @@ static int fsl_audmix_probe(struct platform_device *pdev)
- 	void __iomem *regs;
- 	int ret;
+ 	/* spi_device.mode flags understood by this controller driver */
+-	u16			mode_bits;
++	u32			mode_bits;
  
--	of_id = of_match_device(fsl_audmix_ids, &pdev->dev);
-+	of_id = of_match_device(fsl_audmix_ids, dev);
- 	if (!of_id || !of_id->data)
- 		return -EINVAL;
+ 	/* bitmask of supported bits_per_word for transfers */
+ 	u32			bits_per_word_mask;
+@@ -1291,7 +1291,7 @@ struct spi_board_info {
+ 	/* mode becomes spi_device.mode, and is essential for chips
+ 	 * where the default of SPI_CS_HIGH = 0 is wrong.
+ 	 */
+-	u16		mode;
++	u32		mode;
  
- 	mdrv = of_id->data;
- 
--	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 
- 	/* Get the addresses */
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	regs = devm_ioremap_resource(&pdev->dev, res);
-+	regs = devm_ioremap_resource(dev, res);
- 	if (IS_ERR(regs))
- 		return PTR_ERR(regs);
- 
--	priv->regmap = devm_regmap_init_mmio_clk(&pdev->dev, "ipg", regs,
-+	priv->regmap = devm_regmap_init_mmio_clk(dev, "ipg", regs,
- 						 &fsl_audmix_regmap_config);
- 	if (IS_ERR(priv->regmap)) {
--		dev_err(&pdev->dev, "failed to init regmap\n");
-+		dev_err(dev, "failed to init regmap\n");
- 		return PTR_ERR(priv->regmap);
- 	}
- 
--	priv->ipg_clk = devm_clk_get(&pdev->dev, "ipg");
-+	priv->ipg_clk = devm_clk_get(dev, "ipg");
- 	if (IS_ERR(priv->ipg_clk)) {
--		dev_err(&pdev->dev, "failed to get ipg clock\n");
-+		dev_err(dev, "failed to get ipg clock\n");
- 		return PTR_ERR(priv->ipg_clk);
- 	}
- 
- 	platform_set_drvdata(pdev, priv);
--	pm_runtime_enable(&pdev->dev);
-+	pm_runtime_enable(dev);
- 
--	ret = devm_snd_soc_register_component(&pdev->dev, &fsl_audmix_component,
-+	ret = devm_snd_soc_register_component(dev, &fsl_audmix_component,
- 					      fsl_audmix_dai,
- 					      ARRAY_SIZE(fsl_audmix_dai));
- 	if (ret) {
--		dev_err(&pdev->dev, "failed to register ASoC DAI\n");
-+		dev_err(dev, "failed to register ASoC DAI\n");
- 		return ret;
- 	}
- 
--	priv->pdev = platform_device_register_data(&pdev->dev, mdrv, 0, NULL,
--						   0);
-+	priv->pdev = platform_device_register_data(dev, mdrv, 0, NULL, 0);
- 	if (IS_ERR(priv->pdev)) {
- 		ret = PTR_ERR(priv->pdev);
--		dev_err(&pdev->dev, "failed to register platform %s: %d\n",
--			mdrv, ret);
-+		dev_err(dev, "failed to register platform %s: %d\n", mdrv, ret);
- 	}
- 
- 	return ret;
+ 	/* ... may need additional spi_device chip config data here.
+ 	 * avoid stuff protocol drivers can set; but include stuff
 -- 
 2.20.1
 
