@@ -2,63 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB92118BD
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2872118C8
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 14:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726429AbfEBMLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 08:11:11 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38555 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726428AbfEBMLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 08:11:01 -0400
-Received: by mail-wr1-f65.google.com with SMTP id k16so3013692wrn.5
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 05:11:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oCtO7F4iCfswKyRGi7bOSLphK4gIn4iJZV2uNp5ivzs=;
-        b=Gn8SvsLQMxKlYfYvb5wfkMqO5ckj8c3meyR1C3aEF7HNubkJ1NYdrJV78Fn4DIcTc2
-         750uPQfLMl89SFZVsmnEJSvaPPNSwxsgI9dXKjMCp1D61Qha+89LL/J4SCUdIsk/J0dX
-         sFXO4IQo2P0IQtqgww6Tm2hVB0yxjd55TI6Ed3Y9xvMGF5PWOSlwCZlFLC5IS7WPB+sO
-         Y0fjL8vgivscCL6P0QoLWuwI5Wsl2E2ihgRT9AewjeuhAB3aMlikCoxqnbCC4x5upxwp
-         DFnouu0WnTTIOg6TR60OvVdUtOQULErUwESdhxKc24p93FG6V2sFDU1c8uHzJNKS89oI
-         ieBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oCtO7F4iCfswKyRGi7bOSLphK4gIn4iJZV2uNp5ivzs=;
-        b=TRPJVP1C5mswuErNMR26PZhXinhVjQNpdDUEwYgPyT7UmCP0aHwFPP2GtbJ1bQYk6e
-         vmXTH1qxG33wgiSsx8J6ZsIA0d2NUyaX4rmaWEJe9VYSRGAAybGXo4Yir2tQKRL/4Ewn
-         MrL+bYL5/odA7utMUCtoZs72Ed5GW/dpZ1RK9XWbd7nSyS6bTofMaxUGYunwoPgOGHYd
-         OPNWtxY4xKlkbPT5/x1LnqWYrnOTlHgFWYQtfsjqe27oPyw80EsH+mTLjaJuGZXbJYam
-         4gsPM3/J6nxiiJ8Swl9vLKTnPC2KZGk4uqtoeOLqU497BFDXIiPktMgsn3BWMnHletZc
-         S5Pg==
-X-Gm-Message-State: APjAAAXmRHn27EUhSXUaALSbTSyVFVrt8udOXKaMVaTVxidBrJUYIDOW
-        TGuKpW8M7qbNVQiYwbTSlD1JZA==
-X-Google-Smtp-Source: APXvYqwiOYJrXyeXMjSrke5vRgXR13G0kZTQzgHmDuQOjoYmPdNvfpQ6nGVxnTDki5cdAAvppT14Iw==
-X-Received: by 2002:adf:e984:: with SMTP id h4mr2580423wrm.32.1556799059924;
-        Thu, 02 May 2019 05:10:59 -0700 (PDT)
-Received: from localhost.localdomain (aputeaux-684-1-8-187.w90-86.abo.wanadoo.fr. [90.86.125.187])
-        by smtp.gmail.com with ESMTPSA id u9sm3648348wmd.14.2019.05.02.05.10.58
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 05:10:59 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, matthias.bgg@gmail.com, perex@perex.cz,
-        tiwai@suse.com, kaichieh.chuang@mediatek.com,
-        shunli.wang@mediatek.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH 5/5] ASoC: mediatek: mt8516: register ADDA DAI
-Date:   Thu,  2 May 2019 14:10:41 +0200
-Message-Id: <20190502121041.8045-6-fparent@baylibre.com>
+        id S1726320AbfEBMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 08:13:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46074 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726302AbfEBMN4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 08:13:56 -0400
+Received: from localhost.localdomain (unknown [171.76.113.243])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 174F920B7C;
+        Thu,  2 May 2019 12:13:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556799235;
+        bh=Po9aWhrhF8+W5QReF1J9FZhfqwWCvr4V2vgw29ulq6o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=F8nVrFEzL9jsS/nsrDGMmDfvBoA6zNx6ZScxHw8Ks/Vx8y0xfIofuMig2fGpRW+5H
+         Zoi9TCvDopG9S+hcJpuYKzmkHZ1qwMECjFWBh5IJZWDizkoEwWo+Gdi2j9tLuuH0af
+         H5sybsgvvwbAgwUX+Whc31B/8xEgsHk2lrKSovzQ=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Andy Gross <agross@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qcs404-evb: Fix typo
+Date:   Thu,  2 May 2019 17:43:06 +0530
+Message-Id: <20190502121306.3374-1-vkoul@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190502121041.8045-1-fparent@baylibre.com>
-References: <20190502121041.8045-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,33 +42,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register the ADDA DAI driver into the MT8516 PCM driver.
+Fix the typo "dreive-strength" and use correct property drive-strength
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Fixes: 7241ab944da3 ("arm64: dts: qcom: qcs404: Add sdcc1 node")
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
 ---
- sound/soc/mediatek/mt8516/mt8516-afe-pcm.c | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/mediatek/mt8516/mt8516-afe-pcm.c b/sound/soc/mediatek/mt8516/mt8516-afe-pcm.c
-index 84fbb5dbbd14..e1fd9290dd8f 100644
---- a/sound/soc/mediatek/mt8516/mt8516-afe-pcm.c
-+++ b/sound/soc/mediatek/mt8516/mt8516-afe-pcm.c
-@@ -10,6 +10,7 @@
- #include <linux/module.h>
- #include <linux/of.h>
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+index 2c3127167e3c..7cc0b7842ac2 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+@@ -200,7 +200,7 @@
+ 		data {
+ 			pins = "sdc1_data";
+ 			bias-pull-up;
+-			dreive-strength = <10>;
++			drive-strength = <10>;
+ 		};
  
-+#include "mt8516-afe-common.h"
- #include "mt8516-afe-regs.h"
+ 		rclk {
+@@ -225,7 +225,7 @@
+ 		data {
+ 			pins = "sdc1_data";
+ 			bias-pull-up;
+-			dreive-strength = <2>;
++			drive-strength = <2>;
+ 		};
  
- #include "../common/mtk-afe-platform-driver.h"
-@@ -670,6 +671,7 @@ static int mt8516_dai_memif_register(struct mtk_base_afe *afe)
- typedef int (*dai_register_cb)(struct mtk_base_afe *);
- static const dai_register_cb dai_register_cbs[] = {
- 	mt8516_dai_memif_register,
-+	mt8516_dai_adda_register,
- };
- 
- static int mt8516_afe_component_probe(struct snd_soc_component *component)
+ 		rclk {
 -- 
 2.20.1
 
