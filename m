@@ -2,58 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D855A1188B
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7A3C11891
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726300AbfEBLzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 07:55:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34636 "EHLO mail.kernel.org"
+        id S1726285AbfEBL6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 07:58:40 -0400
+Received: from smtp3.ono.com ([62.42.230.163]:24342 "EHLO smtp3.ono.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726189AbfEBLzH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 May 2019 07:55:07 -0400
-Received: from localhost (unknown [171.76.113.243])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 37BCD2085A;
-        Thu,  2 May 2019 11:55:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556798107;
-        bh=rcRZADAMk1NDQb4CS7gOqylZXPqf5N0/iGva+EtY/ko=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mr3j0OVPbNiwaoxX9Gz6+1fjIknElyjIHzY+2Kw9gG0hgNLyy44vLOETLUKb0i1cq
-         c8qqZw/DcFJ9zbkffisUMdS9BqKfcoEf0bGQFvEzpeKVA802vCR6E60G5xgB0DvLU8
-         gfI5HbPHN6MYPFaha5VYu9J5G+p7n3FHmBxCkupk=
-Date:   Thu, 2 May 2019 17:24:57 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: PCI: qcom: Add QCS404 to the binding
-Message-ID: <20190502115457.GN3845@vkoul-mobl.Dlink>
-References: <20190502001955.10575-1-bjorn.andersson@linaro.org>
- <20190502001955.10575-3-bjorn.andersson@linaro.org>
+        id S1726189AbfEBL6k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 07:58:40 -0400
+X-Junkmail-Premium-Raw: score=16/50,refid=2.7.2:2019.5.2.103916:17:16.798,ip=62.42.230.131,rules=__HAS_MSGID,
+ __SANE_MSGID, MSGID_JMAIL_DEFAULT, INVALID_MSGID_NO_FQDN, __HAS_FROM,
+ __HAS_REPLYTO, __FRAUD_WEBMAIL_REPLYTO, __SUBJ_ALPHA_START,
+ __PHISH_SPEAR_SUBJ_ALERT, __SUBJ_ALPHA_END, __MIME_VERSION, __CT,
+ __CT_TEXT_PLAIN, __CTE, MISSING_HEADERS, __CP_NAME_BODY,
+ __FRAUD_INYOURCOUNTRY, __STOCK_PHRASE_7, __STOCK_PHRASE_8,
+ __FRAUD_MONEY_GENERIC, __FRAUD_MONEY_BIG_COIN_DIG, __OEM_PRICE,
+ __FRAUD_MONEY_CURRENCY_DOLLAR, __NO_HTML_TAG_RAW, BODY_SIZE_700_799,
+ BODYTEXTP_SIZE_3000_LESS, __MIME_TEXT_P1, __MIME_TEXT_ONLY, HTML_00_01,
+ HTML_00_10, __FRAUD_MONEY_CURRENCY, __FRAUD_MONEY_BIG_COIN,
+ __FRAUD_MONEY_VALUE, __FRAUD_MONEY, FRAUD_X3, BODY_SIZE_5000_LESS,
+ __FRAUD_WEBMAIL, WEBMAIL_REPLYTO_NOT_FROM, FRAUD_WEBMAIL_R_NOT_F,
+ __FRAUD_COMMON, __MIME_TEXT_P, NO_URI_FOUND, NO_CTA_URI_FOUND,
+ __PHISH_SPEAR_STRUCTURE_1, BODY_SIZE_1000_LESS, BODY_SIZE_2000_LESS,
+ __PHISH_SPEAR_STRUCTURE_2, REPLYTO_FROM_DIFF_ADDY, NO_URI_HTTPS,
+ BODY_SIZE_7000_LESS, TO_MALFORMED
+Received: from resprs01 (62.42.230.131) by smtp3.ono.com (9.0.019.09-1)
+        id 5CC0A28F0060A6C5; Thu, 2 May 2019 13:58:26 +0200
+Received: from (149.126.78.18) by webmailcpr01n.ono.com;  Thu, 2 May 2019 13:58:23 +0200
+Message-ID: <20308361.365321556798303847.JavaMail.defaultUser@defaultHost>
+Date:   Thu, 2 May 2019 13:58:23 +0200 (CEST)
+From:   Aysha Gadafi <alosax@ono.com>
+Reply-To: mgaddafi034@gmail.com
+Subject: hello dear
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190502001955.10575-3-bjorn.andersson@linaro.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Type: text/plain;charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-05-19, 17:19, Bjorn Andersson wrote:
-> The Qualcomm QCS404 platform contains a PCIe controller, add this to the
-> Qualcomm PCI binding document. The controller is the same version as the
-> one used in IPQ4019, but the PHY part is described separately, hence the
-> difference in clocks and resets.
+Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+hello dear
 
--- 
-~Vinod
+I came across your contact during my private search. Mrs Aisha Al-
+Qaddafi is my name, the only daughter of late Libyan president, am a 
+single Mother and a Widow with three Children.I have funds the sum of 
+$27.5 million USD for, investment, I am interested in you for 
+investment project assistance in your country,because of my current 
+refugee status, i shall compensate you 30% of the total sum after the 
+funds are transfer into your account,I am willing to, negotiate 
+investment/business profit sharing ratio with you base on the future 
+investment earning profits.
+
+Reply me urgent for more details
+
+Mrs Aisha Al-Qaddafi
+
+
+
+
+
+
+
+
+
