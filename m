@@ -2,108 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1059D123A5
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 22:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FB6D123C2
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 22:59:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726405AbfEBUv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 16:51:27 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:37355 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfEBUv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 16:51:27 -0400
-Received: by mail-oi1-f194.google.com with SMTP id 143so2848629oii.4;
-        Thu, 02 May 2019 13:51:26 -0700 (PDT)
+        id S1726218AbfEBU7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 16:59:04 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:43851 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfEBU7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 16:59:04 -0400
+Received: by mail-ot1-f65.google.com with SMTP id e108so3409234ote.10;
+        Thu, 02 May 2019 13:59:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=W0M/s2a9tlTFv/FTWip3G2NKE0kpp0LnOAR85a1p4R0=;
-        b=D8pVa0GjAotJ4c5N5fkYKH1jrYMnsR/I2wAZQHo/s2NfYdSlSITwuZg29YSajEZHau
-         /g8uGJT6+rZkHIhIpJAekennYU/buoTfVnsq6YHgTwMzXBxmuQi4zAN1eP1D2nwctaQj
-         1f2qGO1ZVzW2cfGAIC3SRL4Whw3diW+AkIPvMMnGr/ZD1yuc/A0+lCStttQG0o7UzmyE
-         o9Vz07pQpZM9fHN9fDpW/zwuFxC9HSlpc5lR5O/8hrAtnka8L+KYJukrF68JKyR4J36p
-         XXlI0TQGTC8VsM7nOSTkvo3S5LkF8uV/5SZS2gm4Uo7Zenpwcr+mm4M0/o8uZyLdvtEK
-         B15Q==
-X-Gm-Message-State: APjAAAU4rEzFbSmJFlENufR+4CP2EjNmRrfqntouYAZ/OWixXhPB7wRo
-        RKgUraeoClW3ZkkZMuuZyw==
-X-Google-Smtp-Source: APXvYqzDbdYwgPCIEAr+hiFN60T0e7ZJougtcItHrR9eZtQEVRkQfvLf64qmrsDMjgQaRmbSto/j/w==
-X-Received: by 2002:a54:4698:: with SMTP id k24mr3819905oic.104.1556830286202;
-        Thu, 02 May 2019 13:51:26 -0700 (PDT)
+        bh=Ek4e6lQQ8IdAaOrNfkdfcyOxoi7Phm/pJmbpKGyfvy8=;
+        b=VryFFgmzepF+e03te7jR4pFvLB4xU8BoKRy1H0XVJw+f3Nc6xl0nMI2D5o+3E9CxJT
+         Rn+pj4bupoRWXpOPLZHuXsioMZNjVFLJYSVemivWuqnXL3zarcU5fi5xYYj8HOcHGO2g
+         sMfuv7dGOjypo7IDkji9B/T6Jf02tnonPbVtOiM8wlzdjzLuzWW21MrJr0OlwKLX9LIh
+         3xWxh7/7ySJWB2vhjSbqswCxc1zJeTM1pKMy6+IPCgLPqss5CndUOz7aMTAHU+aGU+y2
+         uh5okYKMo5ZnRoMtGORpF/4SMrYBYcLFrUhl2NTPCCdpKfAKc5nPXk9Vy101kLITxJtE
+         hwAQ==
+X-Gm-Message-State: APjAAAVeTu0dyKqVwwQXRqVjcI0v22NEsHu+YeWH68cZoACEVbqfKwi7
+        GtH2DjFy+m7emApUoMEoPQ==
+X-Google-Smtp-Source: APXvYqyb+W0LF2urvrVH+CnR4Gxihh+0ucEOZSP/69wdKuINEJLDCa9oqekneXLyTMa5VpRVNUsUVg==
+X-Received: by 2002:a9d:5e02:: with SMTP id d2mr3965264oti.222.1556830743357;
+        Thu, 02 May 2019 13:59:03 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w5sm21290otg.34.2019.05.02.13.51.24
+        by smtp.gmail.com with ESMTPSA id k65sm184077oia.16.2019.05.02.13.59.02
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 02 May 2019 13:51:24 -0700 (PDT)
-Date:   Thu, 2 May 2019 15:51:24 -0500
+        Thu, 02 May 2019 13:59:02 -0700 (PDT)
+Date:   Thu, 2 May 2019 15:59:01 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Gerald BAEZA <gerald.baeza@st.com>
-Cc:     "will.deacon@arm.com" <will.deacon@arm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "horms+renesas@verge.net.au" <horms+renesas@verge.net.au>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: perf: stm32: ddrperfm support
-Message-ID: <20190502205124.GA17384@bogus>
-References: <1556532194-27904-1-git-send-email-gerald.baeza@st.com>
- <1556532194-27904-3-git-send-email-gerald.baeza@st.com>
+To:     Chuanhua Han <chuanhua.han@nxp.com>
+Cc:     mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        leoyang.li@nxp.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-i2c@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, festevam@gmail.com,
+        wsa+renesas@sang-engineering.com, u.kleine-koenig@pengutronix.de,
+        eha@deif.com, linux@rempel-privat.de, sumit.batra@nxp.com,
+        l.stach@pengutronix.de, peda@axentia.se
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: add optional mul-value property to
+ binding
+Message-ID: <20190502205901.GA24224@bogus>
+References: <20190430043242.29687-1-chuanhua.han@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1556532194-27904-3-git-send-email-gerald.baeza@st.com>
+In-Reply-To: <20190430043242.29687-1-chuanhua.han@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 29, 2019 at 10:03:37AM +0000, Gerald BAEZA wrote:
-> The DDRPERFM is the DDR Performance Monitor embedded in STM32MP1 SOC.
+On Tue, Apr 30, 2019 at 12:32:40PM +0800, Chuanhua Han wrote:
+> NXP Layerscape SoC have up to three MUL options available for all
+> divider values, we choice of MUL determines the internal monitor rate
+> of the I2C bus (SCL and SDA signals):
+> A lower MUL value results in a higher sampling rate of the I2C signals.
+> A higher MUL value results in a lower sampling rate of the I2C signals.
 > 
-> This documentation indicates how to enable stm32-ddr-pmu driver on
-> DDRPERFM peripheral, via the device tree.
+> So in Optional properties we added our custom mul-value property in the
+> binding to select which mul option for the device tree i2c controller
+> node.
 > 
-> Signed-off-by: Gerald Baeza <gerald.baeza@st.com>
+> Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
 > ---
->  .../devicetree/bindings/perf/stm32-ddr-pmu.txt         | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/stm32-ddr-pmu.txt
+>  Documentation/devicetree/bindings/i2c/i2c-imx.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/perf/stm32-ddr-pmu.txt b/Documentation/devicetree/bindings/perf/stm32-ddr-pmu.txt
-> new file mode 100644
-> index 0000000..dabc4c7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/stm32-ddr-pmu.txt
-> @@ -0,0 +1,18 @@
-> +* STM32 DDR Performance Monitor (DDRPERFM)
-> +
-> +Required properties:
-> +- compatible: must be "st,stm32-ddr-pmu".
-> +- reg: physical address and length of the registers set.
-> +- clocks: list of phandles and specifiers to all input clocks listed in
-> +	  clock-names property.
-> +- clock-names: "bus" corresponds to the DDRPERFM bus clock and "ddr" to
-> +	       the DDR frequency.
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.txt b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+> index b967544590e8..ba8e7b7b3fa8 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+> @@ -18,6 +18,9 @@ Optional properties:
+>  - sda-gpios: specify the gpio related to SDA pin
+>  - pinctrl: add extra pinctrl to configure i2c pins to gpio function for i2c
+>    bus recovery, call it "gpio" state
+> +- mul-value: NXP Layerscape SoC have up to three MUL options available for
+> +all I2C divider values, it describes which MUL we choose to use for the driver,
+> +the values should be 1,2,4.
 
-You have 'resets' in the dts.
+Needs a vendor prefix. I don't find 'value' to add anything nor do I 
+understand what MUL is.
 
-> +
-> +Example:
-> +	ddrperfm: perf@5a007000 {
-> +		compatible = "st,stm32-ddr-pmu";
-> +		reg = <0x5a007000 0x400>;
-> +		clocks = <&rcc DDRPERFM>, <&rcc PLL2_R>;
-> +		clock-names = "bus", "ddr";
-> +	};
-> +
-> -- 
-> 2.7.4
+If it is determined by SoC rather than board, then it should perhaps be 
+implied by compatible.
+
+Rob
