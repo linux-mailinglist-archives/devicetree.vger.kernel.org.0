@@ -2,73 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B021122B1
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 21:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38518122C0
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 21:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726472AbfEBTqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 15:46:47 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:38906 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725962AbfEBTqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 15:46:47 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t70so2702400oif.5;
-        Thu, 02 May 2019 12:46:46 -0700 (PDT)
+        id S1726489AbfEBTtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 15:49:08 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:40512 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726209AbfEBTtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 15:49:08 -0400
+Received: by mail-ot1-f66.google.com with SMTP id w6so3238598otl.7;
+        Thu, 02 May 2019 12:49:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ukaD/e1wsPHZwUHYPs4ExgkkIgYCdRZ6nP5LebCyPy8=;
-        b=DQND3BzHwLBNbmP5T3WL+7CW+Pf8jCTPHE7eNl2GNmfYBEdjM8wEycHLp80J04vWFB
-         uOv6vQvVZ7WNRIePs+E7Ut6YCtNONZ2XU0IqsmT1/4BuF3W/3cdt/3QGFKevXFT0IkYI
-         uFTFosKf7/msqBGG5CXRw8Yq78nHz2zcMm8RgPj3icjruYHh3P43/aJ3ouZmMaZ30jIw
-         NDlCG+s+YQBCkbKgOFNO7P3v1P1M7W1wt8FLw0CI+b3VXGKhq+XjLcQ7Cp8X+yXCOKP/
-         yhVrPrrUBj/q8IzDo8T6AXgmkCUqqFJ0/z2v8Tq8gQ1t9K2+DKSQSkI+Y8cCYsvSL13O
-         Cmuw==
-X-Gm-Message-State: APjAAAU2crEBGzNvd6SHZL9Gi7HCvQVtl4FFLhro3FZrHTIWkBgF02vX
-        d/QAGe+V8Nbzt6xdaf1EQA==
-X-Google-Smtp-Source: APXvYqzTtIOd2V14edKEnwXIDHP7nUB9TRcwqMxGmBTCC92ozeHhdBjGJlpAXqibAAn3eR5CtlYwIQ==
-X-Received: by 2002:aca:5809:: with SMTP id m9mr3685987oib.88.1556826406198;
-        Thu, 02 May 2019 12:46:46 -0700 (PDT)
+        bh=FGfxNsDw3M/Z12wiu2wAdnzAwwHu4M4I58DLCLbAH48=;
+        b=QQwHmsK8omy42O3otCY1DyojaqYe7wwKILP4sIpJpkug6TsiKo41S9vkcxVuMx3DNp
+         pU/7YjlwEUm15wLams8mSotUrYv8GT6MMhctiGx+qGOsFxbRaCbCZptmYmKDO5EwT8sW
+         qHiocKoAh7ejM9fYnAze+pslc3ne4tNElDfE7Ut0Pbwd9RgwbHKuYQYnIk04nxKW9yRr
+         fQxW5xFiPhXKYSMmnbDAY5XtCr+N7IAHEBRt/0rPnLM8FPNIMBR0kKDkKsACVufC3782
+         iAX1E5uXxyb+P8ooEGmOlNUybjfwxofWbYJWkdVUvatqX0i6MH4gYZWeNVaCgLH0vhZf
+         s/KA==
+X-Gm-Message-State: APjAAAUf3K+vUIO8dtx/wt5q6GVxI9wzUmMf/ugMtIn0Lioi3zBMcupL
+        5vRF01JBBNMS+Y4xSlhfFw==
+X-Google-Smtp-Source: APXvYqzYJ9AupEd9Umw0x6xgTlB7dtQUdfi0f3hYSCZGFwwsr29XCXUyJ7qIx36e0LDiOwYhqSkwBQ==
+X-Received: by 2002:a9d:73d9:: with SMTP id m25mr3984524otk.356.1556826546929;
+        Thu, 02 May 2019 12:49:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r65sm85515oif.47.2019.05.02.12.46.44
+        by smtp.gmail.com with ESMTPSA id 189sm89076oid.35.2019.05.02.12.49.05
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 02 May 2019 12:46:45 -0700 (PDT)
-Date:   Thu, 2 May 2019 14:46:44 -0500
+        Thu, 02 May 2019 12:49:05 -0700 (PDT)
+Date:   Thu, 2 May 2019 14:49:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH 4/7] doc: dt-binding: usbmisc-imx: add compatible string
- for  imx7ulp
-Message-ID: <20190502194644.GA20807@bogus>
-References: <20190428024847.5046-1-peter.chen@nxp.com>
- <20190428024847.5046-5-peter.chen@nxp.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Min Guo <min.guo@mediatek.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>
+Subject: Re: [PATCH] dt-binding: usb: add usb-role-switch property
+Message-ID: <20190502194905.GA22144@bogus>
+References: <5756e05930f5e6a3940ad9d019399c8e63d24f18.1556454324.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190428024847.5046-5-peter.chen@nxp.com>
+In-Reply-To: <5756e05930f5e6a3940ad9d019399c8e63d24f18.1556454324.git.chunfeng.yun@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Apr 2019 02:51:23 +0000, Peter Chen wrote:
-> Add compatible string for imx7ulp
+On Sun, Apr 28, 2019 at 08:27:46PM +0800, Chunfeng Yun wrote:
+> Add a property usb-role-switch to tell Dual-Role controller driver
+> that use USB Role Switch framework to handle the role switch between
+> host mode and device mode, it's useful when the driver has already
+> supported other ways, such as extcon framework etc.
 > 
-> Signed-off-by: Peter Chen <peter.chen@nxp.com>
+> Cc: Biju Das <biju.das@bp.renesas.com>
+> Cc: Yu Chen <chenyu56@huawei.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/usb/usbmisc-imx.txt | 1 +
->  1 file changed, 1 insertion(+)
+> v1:
+> the property is discussed in:
+> [v2,2/7] dt-bindings: usb: renesas_usb3: add usb-role-switch property
+> https://patchwork.kernel.org/patch/10852497/
 > 
+> Mediatek and Hisilicon also try to use it:
+> [v4,3/6] dt-bindings: usb: mtu3: add properties about USB Role Switch
+> https://patchwork.kernel.org/patch/10918385/
+> [v4,6/6] usb: mtu3: register a USB Role Switch for dual role mode
+> https://patchwork.kernel.org/patch/10918367/
+> 
+> [v6,10/13] usb: dwc3: Registering a role switch in the DRD code
+> https://patchwork.kernel.org/patch/10909981/
+> ---
+>  Documentation/devicetree/bindings/usb/generic.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
+> index 0a74ab8dfdc2..c73950b72513 100644
+> --- a/Documentation/devicetree/bindings/usb/generic.txt
+> +++ b/Documentation/devicetree/bindings/usb/generic.txt
+> @@ -30,6 +30,9 @@ Optional properties:
+>  			optional for OTG device.
+>   - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
+>  			optional for OTG device.
+> + - usb-role-switch: tells Dual-Role USB controller driver that we want to use
+> +			USB Role Switch framework to handle the role switch
+> +			between host mode and device mode.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please describe this in terms of h/w functionality, not drivers and 
+Linux things.
+
+Rob
