@@ -2,136 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7499121FE
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 20:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F078F1221C
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 20:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726249AbfEBSgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 14:36:22 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:36184 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726336AbfEBSgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 14:36:22 -0400
-Received: by mail-vs1-f68.google.com with SMTP id x78so2004512vsc.3
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 11:36:21 -0700 (PDT)
+        id S1726396AbfEBSp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 14:45:56 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:39846 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726120AbfEBSpz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 14:45:55 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w130so2124603oie.6
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 11:45:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=rep+RFn3BdJQf0oo+RGjYfMB+zeAYnLgZKuY9nUKCQA=;
-        b=k4niFnqgC6uT+WkOQ6wgsJcYaNgMLnTL7lVhPfpNfF/fWu3Z/FxIjhBpaj3wtHigDP
-         oknx0uZtfuzo6ralUpJB0Vr5FJRCJ1w1O59dD+RG6do4ZDLCDZyWqsCtlvlAScWcCJFJ
-         NlsBZybNdO639hEBLlKY4YqWfytlkksQKfBpM=
+        bh=17OVt5sF62dgswwCTgJsxP7RAt3WsAf5VJ4Ut9AHOnQ=;
+        b=P9mmkEctGFviK6NgZSHwMcUWXoaX/YoeIAK9bJMcE3Lx9wj9ioBeHG7azUaTRvfMEz
+         TY2RHOx0ThWPnz2RyK/JeVea8tpHo/vQkabwSgIPQaucOPCDrRgdtpJvHIeyfXSXZIdh
+         EEpMDUWFYZWhjIh9jDc8FJvMTlSL8vQ8VfgY4koM+if0RzgjLUM+G7N96Iar9oJO2RWW
+         y2bZo1FvLirTsbvZcF5UvfSKsfdjWdxyGHNZOdT8DOFyQvGPVysWQaUTlUo3hkMnOD0e
+         RSC2W/FJE39vCVMCViynhllAgBlnR6+D6q04cTiRfgx2IG0+4k0zkzJ9Spq984jh3G9l
+         lWjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rep+RFn3BdJQf0oo+RGjYfMB+zeAYnLgZKuY9nUKCQA=;
-        b=sgFQZIPLHUkeJx/D72fYVx4BiXLeme8G6l+nZz9Xte8mKTvNS2B1/IsSEuR7y0SEVc
-         yYGxysDiqZywAVjEwkTFxeIpqdqYpQXnZvU24GBY0Pyo1+/XVV2hM3X5gSIg/9J7m+k1
-         NMaVmKniuVkQcMyJjXVtgc0FWP+zX5h4O49LAojeHcG2JnCD1IcyB2xnqcj8cdKmrSzj
-         tjYKa0rBBtv4ZlXQa6W/p+E9QVncvwdVtBBdKo4xL0TM7Grj2VyaOJI46BVn95hxeOUt
-         Ef7ilEm5CJITDelZ2nTaDHGsw/2IgWbxPcix/p1kQ55ijIdk5LPvbSSIfmjJfg/LR0aJ
-         II/g==
-X-Gm-Message-State: APjAAAXslW5W1fVDlZ/s/+/YMObNCxOIR+yp5+4+0/nML73XkhcSLAEL
-        GoAx492CJsFzu+PfmtJwRWZHhWkD9bs=
-X-Google-Smtp-Source: APXvYqyuz90RTbHu353oEWNBqx/RqVsmrDntFkeY1Hai5f5Xq6MqjXRNIw3c5w9zXIL6WENkZiUe6A==
-X-Received: by 2002:a67:ed44:: with SMTP id m4mr3074797vsp.112.1556822180936;
-        Thu, 02 May 2019 11:36:20 -0700 (PDT)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id u10sm21178493vku.34.2019.05.02.11.36.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 11:36:16 -0700 (PDT)
-Received: by mail-vs1-f42.google.com with SMTP id z145so2012751vsc.0
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 11:36:15 -0700 (PDT)
-X-Received: by 2002:a67:7cd1:: with SMTP id x200mr3103185vsc.144.1556822175074;
- Thu, 02 May 2019 11:36:15 -0700 (PDT)
+        bh=17OVt5sF62dgswwCTgJsxP7RAt3WsAf5VJ4Ut9AHOnQ=;
+        b=CZmDwAhIvKS9zhGRWbAJQw2yNd8l+xLOVSLuG2NZWd+J15CvQW5onCbrNIrrXs221X
+         da2srI+Ss0n5QqHqkFcKNROYlSHpqca3asaZkqbg0Xx47cnuTIVFSf8vtSkOOsmT+BnW
+         fD+MpsL//LBQ4Ty7l0xXQw1kK7iQ6J8p6srLExaYFxSXGMFIawNgxeHYWV2/krIi5+Rk
+         6D42YS8zHm8pKSph2dbiGV6uXp4IJ4x/MqHqn5fQwFB6i9yGsr5lmK5ULaUlXEPFJcX9
+         xzK10C6ImLlXBfdcEFlYnQSB8OjVykvciKtA9QfDHVvMv07qanyTYl/d0BJtcF3ov2Or
+         tMhA==
+X-Gm-Message-State: APjAAAUEcH+lOK84/YIdwP5jMk88LKnhUznD5fHGlINJwMjYeS0b71LQ
+        z9x5TgvhHEAPhzROpW4BJ5khMFpmAAnoV+9xaXFmCQ==
+X-Google-Smtp-Source: APXvYqzC6lEhFzCwba9WNGtoNJlN2/sxNxsRqKIHnQJUgSQQ4oc4XCI9kW3OGRwazcEXau+lGinuQZlka+T3d8xNOxI=
+X-Received: by 2002:aca:4586:: with SMTP id s128mr3264542oia.148.1556822754511;
+ Thu, 02 May 2019 11:45:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190418001356.124334-1-dianders@chromium.org>
- <20190418001356.124334-4-dianders@chromium.org> <87pnpas1fx.fsf@linux.intel.com>
-In-Reply-To: <87pnpas1fx.fsf@linux.intel.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 2 May 2019 11:36:01 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XTBgKnnswhfoQH3qWjpbp831e1L1+j+QCjxx2h=aQoog@mail.gmail.com>
-Message-ID: <CAD=FV=XTBgKnnswhfoQH3qWjpbp831e1L1+j+QCjxx2h=aQoog@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] Documentation: dt-bindings: Add
- snps,need-phy-for-wake for dwc2 USB
-To:     Felipe Balbi <felipe.balbi@linux.intel.com>
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Artur Petrosyan <Arthur.Petrosyan@synopsys.com>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        William Wu <william.wu@rock-chips.com>,
-        linux-usb@vger.kernel.org, Stefan Wahren <stefan.wahren@i2se.com>,
-        Randy Li <ayaka@soulik.info>, Chris <zyw@rock-chips.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>,
-        Amelie Delaunay <amelie.delaunay@st.com>,
-        Julius Werner <jwerner@chromium.org>,
-        Dinh Nguyen <dinguyen@opensource.altera.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-17-brendanhiggins@google.com> <20190502110347.GE12416@kroah.com>
+ <ECADFF3FD767C149AD96A924E7EA6EAF9770A3A0@USCULXMSG01.am.sony.com>
+In-Reply-To: <ECADFF3FD767C149AD96A924E7EA6EAF9770A3A0@USCULXMSG01.am.sony.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Thu, 2 May 2019 11:45:43 -0700
+Message-ID: <CAFd5g471Wawu6g14p0AO3aY8VPBKLA0mjHSdfR1qStFGzp3iGQ@mail.gmail.com>
+Subject: Re: [PATCH v2 16/17] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
+To:     "Bird, Timothy" <Tim.Bird@sony.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-kselftest@vger.kernel.org,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Iurii Zaikin <yzaikin@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Apr 25, 2019 at 5:40 AM Felipe Balbi
-<felipe.balbi@linux.intel.com> wrote:
+On Thu, May 2, 2019 at 11:15 AM <Tim.Bird@sony.com> wrote:
 >
-> Douglas Anderson <dianders@chromium.org> writes:
 >
-> > Some SoCs with a dwc2 USB controller may need to keep the PHY on to
-> > support remote wakeup.  Allow specifying this as a device tree
-> > property.
-> >
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> > For relevant prior discussion on this patch, see:
-> >
-> > https://lkml.kernel.org/r/1435017144-2971-3-git-send-email-dianders@chromium.org
-> >
-> > I didn't make any changes from the prior version since I never found
-> > out what Rob thought of my previous arguments.  If folks want a
-> > change, perhaps they could choose from these options:
-> >
-> > 1. Assume that all dwc2 hosts would like to keep their PHY on for
-> >    suspend if there's a USB wakeup enabled, thus we totally drop this
-> >    binding.  This doesn't seem super great to me since I'd bet that
-> >    many devices that use dwc2 weren't designed for USB wakeup (they
-> >    may not keep enough clocks or rails on) so we might be wasting
-> >    power for nothing.
-> > 2. Rename this property to "snps,wakeup-from-suspend-with-phy" to make
-> >    it more obvious that this property is intended both to document
-> >    that wakeup from suspend is possible and that we need the PHY for
-> >    said wakeup.
-> > 3. Rename this property to "snps,can-wakeup-from-suspend" and assume
-> >    it's implicit that if we can wakeup from suspend that we need to
-> >    keep the PHY on.  If/when someone shows that a device exists using
-> >    dwc2 where we can wakeup from suspend without the PHY they can add
-> >    a new property.
-> >
-> > Changes in v2: None
-> >
-> >  Documentation/devicetree/bindings/usb/dwc2.txt | 3 +++
-> >  1 file changed, 3 insertions(+)
 >
-> checking file Documentation/devicetree/bindings/usb/dwc2.txt
-> Hunk #1 FAILED at 37.
-> Hunk #2 succeeded at 52 (offset -1 lines).
-> 1 out of 2 hunks FAILED
+> > -----Original Message-----
+> > From: Greg KH
+> >
+> > On Wed, May 01, 2019 at 04:01:25PM -0700, Brendan Higgins wrote:
+> > > From: Iurii Zaikin <yzaikin@google.com>
+> > >
+> > > KUnit tests for initialized data behavior of proc_dointvec that is
+> > > explicitly checked in the code. Includes basic parsing tests including
+> > > int min/max overflow.
+> > >
+> > > Signed-off-by: Iurii Zaikin <yzaikin@google.com>
+> > > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> > > ---
+> > >  kernel/Makefile      |   2 +
+> > >  kernel/sysctl-test.c | 292
+> > +++++++++++++++++++++++++++++++++++++++++++
+> > >  lib/Kconfig.debug    |   6 +
+> > >  3 files changed, 300 insertions(+)
+> > >  create mode 100644 kernel/sysctl-test.c
+> > >
+> > > diff --git a/kernel/Makefile b/kernel/Makefile
+> > > index 6c57e78817dad..c81a8976b6a4b 100644
+> > > --- a/kernel/Makefile
+> > > +++ b/kernel/Makefile
+> > > @@ -112,6 +112,8 @@ obj-$(CONFIG_HAS_IOMEM) += iomem.o
+> > >  obj-$(CONFIG_ZONE_DEVICE) += memremap.o
+> > >  obj-$(CONFIG_RSEQ) += rseq.o
+> > >
+> > > +obj-$(CONFIG_SYSCTL_KUNIT_TEST) += sysctl-test.o
+> >
+> > You are going to have to have a "standard" naming scheme for test
+> > modules, are you going to recommend "foo-test" over "test-foo"?  If so,
+> > that's fine, we should just be consistant and document it somewhere.
+> >
+> > Personally, I'd prefer "test-foo", but that's just me, naming is hard...
+>
+> My preference would be "test-foo" as well.  Just my 2 cents.
 
-Can you try applying this and the next two patches again?  ...or let
-me know that you'd like me to repost?
+I definitely agree we should be consistent. My personal bias
+(unsurprisingly) is "foo-test," but this is just because that is the
+convention I am used to in other projects I have worked on.
 
-Thanks!
+On an unbiased note, we are currently almost evenly split between the
+two conventions with *slight* preference for "foo-test": I ran the two
+following grep commands on v5.1-rc7:
 
--Doug
+grep -Hrn --exclude-dir="build" -e "config [a-zA-Z_0-9]\+_TEST$" | wc -l
+grep -Hrn --exclude-dir="build" -e "config TEST_[a-zA-Z_0-9]\+" | wc -l
+
+"foo-test" has 36 occurrences.
+"test-foo" has 33 occurrences.
+
+The things I am more concerned about is how this would affect file
+naming. If we have a unit test for foo.c, I think foo_test.c is more
+consistent with our namespacing conventions. The other thing, is if we
+already have a Kconfig symbol called FOO_TEST (or TEST_FOO) what
+should we name the KUnit test in this case? FOO_UNIT_TEST?
+FOO_KUNIT_TEST, like I did above?
+
+Cheers
