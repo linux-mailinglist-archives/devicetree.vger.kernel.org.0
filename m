@@ -2,102 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FED31135E
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 08:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0A2B1136B
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 08:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726127AbfEBGa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 02:30:57 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:46788 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726055AbfEBGa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 02:30:57 -0400
-Received: by mail-ed1-f68.google.com with SMTP id f37so1049333edb.13
-        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 23:30:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=essensium-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=XifxbheY5ZJMcIjK1Dcna4ZV4VxhYdswgXuoHoN07ds=;
-        b=W5Vi6C4PALXYi9bntNvSqVcq+/UxvMKNNQKeCYfXtVU7JKlp4CJa8ZE9p/ZyV0L1EI
-         u36NkKV0n2EyaAIsRxMZcAoIbmDNa22UuFVxhwHzZvGHNAkiBWTvXGfO1xMaStYTbiiO
-         1ygs9UiNA6h4aVrx7Qz2LABuy4WsmKnthewxz4Hbu7Ln9WOwfj0nhIYtJHlKunxBStgo
-         3PCf1wBDOfPzFxSjwdbac/75+Ve2gkcIvIGIOQkw7aUzbRIHEVtBprgompOg4L6J7wrO
-         jUsKrjkv+bVEQn6y+spUiwI5iLntSNZGNYmDicVjIg3Fe6fpxpunUk2JyV8ybu67oTac
-         3KNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=XifxbheY5ZJMcIjK1Dcna4ZV4VxhYdswgXuoHoN07ds=;
-        b=TKmZr2RvRnqUepe8Vught57k51jwPILEH1/UIivd4K+B9c2dTNr25X3uIqu9grZPVo
-         lsuhndviAsB9AxandOxEjXpuzFgW0NFHjWIQMtfd93M3TEqo6BfULYGw6/OnI8be8R0A
-         teedksNvC0+MP9VwKTeuv09SvpjgXLQFII0LCodeZClpvvT5t2ozuaYb7aoYwboHZ5Dg
-         3ng4asifL0f59osFp96A8YFg27rfSMCKQd6Hmq93kXUMSJ//PlPdReCJ9EARBxxWPlwv
-         S26LQd36Tbol5C34dW+VNWBJDk81J51fO5U1kLsOPeCnxOJnC5pBXTn9u1n5Ps9wK6WO
-         UFBg==
-X-Gm-Message-State: APjAAAWSyNbkYN6ijX2xrfW2BDZstOxuKoTIBkrgyqQAL8VUGKwVyGcn
-        qZ8G1hge+kOU1Wluify8mtkDLA==
-X-Google-Smtp-Source: APXvYqzCXqzBmV7CbIi+qzTwlBRjN6AtrUKhicdLtIjZhkphBOm2hAcbWT7moAEIfqLspoDjt+YedQ==
-X-Received: by 2002:a50:8c03:: with SMTP id p3mr1271439edp.267.1556778655182;
-        Wed, 01 May 2019 23:30:55 -0700 (PDT)
-Received: from ?IPv6:2a02:a03f:4485:9200:4176:609:b67e:249a? ([2a02:a03f:4485:9200:4176:609:b67e:249a])
-        by smtp.gmail.com with ESMTPSA id b23sm4066266ede.75.2019.05.01.23.30.54
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 01 May 2019 23:30:54 -0700 (PDT)
-Subject: Re: [PATCH 1/6] iio: ad7949: Support internal Vref
-To:     Adam Michaelis <adam.michaelis@rockwellcollins.com>,
-        linux-iio@vger.kernel.org
-Cc:     lars@metafoo.de, michael.hennerich@analog.com, jic23@kernel.org,
-        knaack.h@gmx.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        brandon.maier@rockwellcollins.com,
-        clayton.shotwell@rockwellcollins.com
-References: <1556745423-11368-1-git-send-email-adam.michaelis@rockwellcollins.com>
-From:   Couret Charles-Antoine <charles-antoine.couret@essensium.com>
-Message-ID: <4f674e6a-2346-4ca3-4043-205e54473dbd@essensium.com>
-Date:   Thu, 2 May 2019 08:30:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1725772AbfEBGgh convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 2 May 2019 02:36:37 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:38560 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725764AbfEBGgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 02:36:37 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 604792607B5;
+        Thu,  2 May 2019 07:36:35 +0100 (BST)
+Date:   Thu, 2 May 2019 08:36:32 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Tomasz Figa <tomasz.figa@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        bbrezillon@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
+        David Woodhouse <dwmw2@infradead.org>,
+        computersforpeace@gmail.com, marek.vasut@gmail.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-mtd@lists.infradead.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/5] dt-binding: mtd: onenand/samsung: Add device tree
+ support
+Message-ID: <20190502083632.0ec0fb4e@collabora.com>
+In-Reply-To: <CA+Ln22HLqnbbY37FG6CwjZvZH7G35Z+0kNq7XFU4WtZyk_EqZQ@mail.gmail.com>
+References: <20190426164224.11327-1-pawel.mikolaj.chmiel@gmail.com>
+        <20190426164224.11327-5-pawel.mikolaj.chmiel@gmail.com>
+        <20190502015408.GA11612@bogus>
+        <CA+Ln22HLqnbbY37FG6CwjZvZH7G35Z+0kNq7XFU4WtZyk_EqZQ@mail.gmail.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <1556745423-11368-1-git-send-email-adam.michaelis@rockwellcollins.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-GB
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-I read your patch series and it seems really good. Thank you for the 
-improvements. :)
-But I have one comment about it there:
+Hi Tomasz,
 
-Le 01/05/2019 à 23:16, Adam Michaelis a écrit :
-> @@ -223,10 +247,18 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
->   {
->   	int ret;
->   	int val;
-> +	u16 adc_config = 0;
->   
-> -	/* Sequencer disabled, CFG readback disabled, IN0 as default channel */
->   	ad7949_adc->current_channel = 0;
-> -	ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
-> +	ad7949_adc->cfg = 0;
-> +
-> +	adc_config = (0x3c << 8);
-> +	adc_config |= ((ad7949_adc->current_channel & 0x07) << 7);
-> +	adc_config |= (1 << 6);
-> +	adc_config |= (ad7949_adc->ref_sel << 3);
-> +	adc_config |= 1;
-> +
-> +	ret = ad7949_spi_write_cfg(ad7949_adc, adc_config, AD7949_MASK_TOTAL);
+On Thu, 2 May 2019 15:23:33 +0900
+Tomasz Figa <tomasz.figa@gmail.com> wrote:
 
-That should be great to replace some _magic constants_ by a more 
-explicit name, shouldn't it? Especially (0x3c << 8) and (1 << 6 parts).
+> 2019年5月2日(木) 10:54 Rob Herring <robh@kernel.org>:
+> >
+> > On Fri, Apr 26, 2019 at 06:42:23PM +0200, Paweł Chmiel wrote:  
+> > > From: Tomasz Figa <tomasz.figa@gmail.com>
+> > >
+> > > This patch adds dt-bindings for Samsung OneNAND driver.
+> > >
+> > > Signed-off-by: Tomasz Figa <tomasz.figa@gmail.com>
+> > > Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+> > > ---
+> > >  .../bindings/mtd/samsung-onenand.txt          | 46 +++++++++++++++++++
+> > >  1 file changed, 46 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mtd/samsung-onenand.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mtd/samsung-onenand.txt b/Documentation/devicetree/bindings/mtd/samsung-onenand.txt
+> > > new file mode 100644
+> > > index 000000000000..341d97cc1513
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mtd/samsung-onenand.txt
+> > > @@ -0,0 +1,46 @@
+> > > +Device tree bindings for Samsung SoC OneNAND controller
+> > > +
+> > > +Required properties:
+> > > + - compatible : value should be either of the following.
+> > > +   (a) "samsung,s3c6400-onenand" - for onenand controller compatible with
+> > > +       S3C6400 SoC,
+> > > +   (b) "samsung,s3c6410-onenand" - for onenand controller compatible with
+> > > +       S3C6410 SoC,
+> > > +   (c) "samsung,s5pc100-onenand" - for onenand controller compatible with
+> > > +       S5PC100 SoC,
+> > > +   (d) "samsung,s5pv210-onenand" - for onenand controller compatible with
+> > > +       S5PC110/S5PV210 SoCs.
+> > > +
+> > > + - reg : two memory mapped register regions:
+> > > +   - first entry: control registers.
+> > > +   - second and next entries: memory windows of particular OneNAND chips;
+> > > +     for variants a), b) and c) only one is allowed, in case of d) up to
+> > > +     two chips can be supported.
+> > > +
+> > > + - interrupt-parent : phandle of interrupt controller to which the OneNAND
+> > > +   controller is wired,  
+> >
+> > This is implied and can be removed.
+> >  
+> > > + - interrupts : specifier of interrupt signal to which the OneNAND controller
+> > > +   is wired; should contain just one entry.
+> > > + - clock-names : should contain two entries:
+> > > +   - "bus" - bus clock of the controller,
+> > > +   - "onenand" - clock supplied to OneNAND memory.  
+> >
+> > If the clock just goes to the OneNAND device, then it should be in the
+> > nand device node rather than the controller node.
+> >  
+> 
+> (Trying hard to recall the details about this hardware.)
+> AFAIR the clock goes to the controller and the controller then feeds
+> it to the memory chips.
+> 
+> Also I don't think we should have any nand device nodes here, since
+> the memory itself is only exposed via the controller, which offers
+> various queries to probe the memory at runtime, so there is no need to
+> describe it in DT.
+
+It's probably true, though not providing this controller/device
+separation for NAND controller/devices has proven to be a mistake for
+raw NAND controllers (some props apply to the controllers and others to
+the NAND device, not to mention that some controllers support
+interacting with several chips), so, if that's a new binding, I'd
+recommend having this separation even if it's not strictly required.
+
+> 
+> > > + - clock: should contain list of phandles and specifiers for all clocks listed
+> > > +   in clock-names property.
+> > > + - #address-cells : must be 1,
+> > > + - #size-cells : must be 1.  
+> >
+> > This implies some child nodes. What are the child nodes?
+> >  
+> 
+> I can't recall the reason for this unfortunately.
+
+Defining partitions I guess, but we ask people to use the new
+representation with a 'partitions' sub-node now, so this should
+probably be dropped.
 
 Regards,
 
-Charles-Antoine Couret
-
+Boris
