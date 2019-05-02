@@ -2,80 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19FF3122EE
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 21:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E08112309
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 22:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbfEBTzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 15:55:49 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33474 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbfEBTzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 15:55:48 -0400
-Received: by mail-ot1-f68.google.com with SMTP id s11so3284001otp.0;
-        Thu, 02 May 2019 12:55:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=dfR3x3hstUPTqdrAbnZLIHv3xXGIWPlsZu8Q4UGru+0=;
-        b=lQGePnslo5AsBbp4Ke12zFlgQWJ4FbEYf05DZ86J2wo5pyBP9mwBHfaZF6/TBZqSP9
-         +SBQL9hyNXRBxRiw9gDHDIXcelKUz6Vz4ib10tesDou3wyIiNLtkgi7W/vbca0/MqqFu
-         x+y1mGhs4WGYgLT6EN1nKTYDrLed2jzcP+Xi1fLGvv35PRtd75wbaU+CokH1hyiY06bM
-         Aw9lNIuQQ6eFmZ1o/Am2eER946hudoM1VIB7QNhfWoAbebWG5KP5Wpa7z00CuHYYBsil
-         ToOT+KmJQWGHVcWeT470NQMYBI3j2F32VHlGCZcqzf24kNSk8AzkmmXInfVgWmJeoZ7W
-         u1FQ==
-X-Gm-Message-State: APjAAAXAMDgXFdQFSgwYz9oNfTr2BeSXH6PDFZRON/qrTsQrIciAUN3s
-        56UjUdlRpp/yu4ZB5x96J4UoW5w=
-X-Google-Smtp-Source: APXvYqyJ46V/sup1mO2TC0Nk8Rr1keP20TQdh2EDygYMpUGVsCUg35clCqSiDOMw/AQC+4zVwSHhtQ==
-X-Received: by 2002:a05:6830:12:: with SMTP id c18mr4135762otp.26.1556826947997;
-        Thu, 02 May 2019 12:55:47 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n11sm2499369otk.4.2019.05.02.12.55.46
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 02 May 2019 12:55:47 -0700 (PDT)
-Date:   Thu, 2 May 2019 14:55:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: Fix spelling of bias-pull-up
-Message-ID: <20190502195546.GA24769@bogus>
-References: <20190428150822.13935-1-j.neuschaefer@gmx.net>
- <2683948.V7X3pFLLSZ@debian64>
+        id S1726022AbfEBUPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 16:15:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47652 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725962AbfEBUPs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 16:15:48 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8252D2087F;
+        Thu,  2 May 2019 20:15:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556828146;
+        bh=zRxoyURQKaIiT7crP80AuPIZsgXFZ/JEMXTtFf2j0Rg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HgR9EGv2AamK+gZAJYsuOyK66VNso2+jrjJ0znjMqgHbUMH8Ya9aP+6ogolNBc1Ox
+         OSHm2fsO77nAjn8ZJyeU3ZleOn0vAoYQ/g60xHR8m7rwSlnZ0+VfshIkm9c7x/Aa5o
+         n/3FhxDFr+mjjqONXDAaHgy9qIMaVdFDko8SgnLY=
+Received: by mail-qk1-f181.google.com with SMTP id a132so2311217qkb.13;
+        Thu, 02 May 2019 13:15:46 -0700 (PDT)
+X-Gm-Message-State: APjAAAWCGCK9fV1sBzHyZ+ZFYU1pumGFDVbr9Q9tnu26vobO0kM1SbT/
+        r+OHeLRlpydtsGvxwN4PZiCjyWuFHcH2rVZ1tw==
+X-Google-Smtp-Source: APXvYqw5GzLdFMOydWWcI7Vtz2kWP9mL44UCoBhvg9xM001jIZ9hNWRsOoc9oDvi/bnDFT/mrU5onhhUYKrYHAhsiI8=
+X-Received: by 2002:a37:ad14:: with SMTP id f20mr4646875qkm.147.1556828145727;
+ Thu, 02 May 2019 13:15:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2683948.V7X3pFLLSZ@debian64>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-2-git-send-email-dragan.cvetic@xilinx.com>
+ <20190501194738.GA1441@bogus> <BL0PR02MB56815DFC139D65D46D5DFF50CB340@BL0PR02MB5681.namprd02.prod.outlook.com>
+In-Reply-To: <BL0PR02MB56815DFC139D65D46D5DFF50CB340@BL0PR02MB5681.namprd02.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 2 May 2019 15:15:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLhmtqUdUd8OPdx-390imegzouAJ43JOhYr16w87afS-Q@mail.gmail.com>
+Message-ID: <CAL_JsqLhmtqUdUd8OPdx-390imegzouAJ43JOhYr16w87afS-Q@mail.gmail.com>
+Subject: Re: [PATCH V3 01/12] dt-bindings: xilinx-sdfec: Add SDFEC binding
+To:     Dragan Cvetic <draganc@xilinx.com>
+Cc:     "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 30, 2019 at 11:32:17PM +0200, Christian Lamparter wrote:
-> On Sunday, April 28, 2019 5:08:22 PM CEST Jonathan Neuschäfer wrote:
-> > The property is spelled 'bias-pull-up', as documented in
-> > pinctrl-bindings.txt.
-> > 
-> 
-> I also sent out a patch for that... back in 2017:
-> 
-> https://patchwork.ozlabs.org/patch/763151/
-> 
-> It's marked Accepted and Archived.
-> 
-> @rob ?
+On Thu, May 2, 2019 at 6:04 AM Dragan Cvetic <draganc@xilinx.com> wrote:
+>
+> Hi Rob,
+>
+> Please find my inline comments below
+>
+> Thank you
+> Dragan
+>
+> > -----Original Message-----
+> > From: Rob Herring [mailto:robh@kernel.org]
+> > Sent: Wednesday 1 May 2019 20:48
+> > To: Dragan Cvetic <draganc@xilinx.com>
+> > Cc: arnd@arndb.de; gregkh@linuxfoundation.org; Michal Simek <michals@xilinx.com>; linux-arm-kernel@lists.infradead.org;
+> > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > Subject: Re: [PATCH V3 01/12] dt-bindings: xilinx-sdfec: Add SDFEC binding
+> >
+> > On Sat, Apr 27, 2019 at 11:04:55PM +0100, Dragan Cvetic wrote:
+> > > Add the Soft Decision Forward Error Correction (SDFEC) Engine
+> > > bindings which is available for the Zynq UltraScale+ RFSoC
+> > > FPGA's.
+> > >
+> > > Signed-off-by: Dragan Cvetic <dragan.cvetic@xilinx.com>
+> > > Signed-off-by: Derek Kiernan <derek.kiernan@xilinx.com>
+> > > ---
+> > >  .../devicetree/bindings/misc/xlnx,sd-fec.txt       | 58 ++++++++++++++++++++++
+> > >  1 file changed, 58 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+> > > new file mode 100644
+> > > index 0000000..425b6a6
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+> > > @@ -0,0 +1,58 @@
+> > > +* Xilinx SDFEC(16nm) IP *
+> > > +
+> > > +The Soft Decision Forward Error Correction (SDFEC) Engine is a Hard IP block
+> > > +which provides high-throughput LDPC and Turbo Code implementations.
+> > > +The LDPC decode & encode functionality is capable of covering a range of
+> > > +customer specified Quasi-cyclic (QC) codes. The Turbo decode functionality
+> > > +principally covers codes used by LTE. The FEC Engine offers significant
+> > > +power and area savings versus implementations done in the FPGA fabric.
+> > > +
+> > > +
+> > > +Required properties:
+> > > +- compatible: Must be "xlnx,sd-fec-1.1"
+> > > +- clock-names : List of input clock names from the following:
+> > > +    - "core_clk", Main processing clock for processing core (required)
+> > > +    - "s_axi_aclk", AXI4-Lite memory-mapped slave interface clock (required)
+> > > +    - "s_axis_din_aclk", DIN AXI4-Stream Slave interface clock (optional)
+> > > +    - "s_axis_din_words-aclk", DIN_WORDS AXI4-Stream Slave interface clock (optional)
+> > > +    - "s_axis_ctrl_aclk",  Control input AXI4-Stream Slave interface clock (optional)
+> > > +    - "m_axis_dout_aclk", DOUT AXI4-Stream Master interface clock (optional)
+> > > +    - "m_axis_dout_words_aclk", DOUT_WORDS AXI4-Stream Master interface clock (optional)
+> > > +    - "m_axis_status_aclk", Status output AXI4-Stream Master interface clock (optional)
+> > > +- clocks : Clock phandles (see clock_bindings.txt for details).
+> > > +- reg: Should contain Xilinx SDFEC 16nm Hardened IP block registers
+> > > +  location and length.
+> > > +- xlnx,sdfec-code : Should contain "ldpc" or "turbo" to describe the codes
+> > > +  being used.
+> > > +- xlnx,sdfec-din-words : A value 0 indicates that the DIN_WORDS interface is
+> > > +  driven with a fixed value and is not present on the device, a value of 1
+> > > +  configures the DIN_WORDS to be block based, while a value of 2 configures the
+> > > +  DIN_WORDS input to be supplied for each AXI transaction.
+> > > +- xlnx,sdfec-din-width : Configures the DIN AXI stream where a value of 1
+> > > +  configures a width of "1x128b", 2 a width of "2x128b" and 4 configures a width
+> > > +  of "4x128b".
+> >
+> > Perhaps append with '-bits' and make the values 0, 128, 256, 512.
+> >
+>
+>
+> The suggested will require the extra code for converting from 128,256,512  to 1,2,4, as HW is configured with 1, 2 and 4.
 
-No idea what happened besides a problem between the screen and keyboard.
+A simple divide by 128.
 
-Let me try again...
+We generally prefer DT to use real units rather than register values.
 
 Rob
