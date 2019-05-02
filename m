@@ -2,188 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4974D11283
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 07:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C423D1128A
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 07:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726055AbfEBFOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 01:14:45 -0400
-Received: from mailout3.samsung.com ([203.254.224.33]:44421 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725791AbfEBFOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 01:14:45 -0400
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20190502051442epoutp030eadfbba4891a0ec449e6d0b7f516310~axcezJnfp1920319203epoutp03D
-        for <devicetree@vger.kernel.org>; Thu,  2 May 2019 05:14:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20190502051442epoutp030eadfbba4891a0ec449e6d0b7f516310~axcezJnfp1920319203epoutp03D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1556774082;
-        bh=XLV5tk/LWS1F7CKYRYZhM+g9pIWwdU+llTi5XmZU/PA=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=tzF7wPw4YIhQnWIo7q+2WHw+c+uVD5aJqQqgf8G3m8mFSjVZFGMdoL5CmloQu6J/n
-         oq2F+8pxyr5H1nh3uD23dKMotWqXINIKNge4uE/QQxO8bEPswdSGF2dxEtRS38oEue
-         lomfqdqrHLY8dqsbrVajeXh+p8len4pAkmhTcXyo=
-Received: from epsmges1p3.samsung.com (unknown [182.195.40.152]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190502051439epcas1p19684e29355ffd9313a8c98a9d0db47fb~axccJ6NvN1771017710epcas1p1L;
-        Thu,  2 May 2019 05:14:39 +0000 (GMT)
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-        epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B5.F4.04143.FBC7ACC5; Thu,  2 May 2019 14:14:39 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190502051439epcas1p2a6894ac4ccfe59d87388fa949d6ef7e3~axcbvID3i0842208422epcas1p2q;
-        Thu,  2 May 2019 05:14:39 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190502051439epsmtrp141fd018dbbe33a58dfb424b6652788f0~axcbuFVsZ2560525605epsmtrp15;
-        Thu,  2 May 2019 05:14:39 +0000 (GMT)
-X-AuditID: b6c32a37-f31ff7000000102f-b2-5cca7cbf70f7
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E2.DC.03662.FBC7ACC5; Thu,  2 May 2019 14:14:39 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190502051439epsmtip2241f85ad7a40881b2e0a68a46e7dc486~axcbcjc_q1959519595epsmtip2Q;
-        Thu,  2 May 2019 05:14:39 +0000 (GMT)
-Subject: Re: [PATCH v6 03/10] clk: samsung: add BPLL rate table for Exynos
- 5422 SoC
-To:     Lukasz Luba <l.luba@partner.samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <62f85c18-d3ac-3425-8ee3-538f8c677603@samsung.com>
-Date:   Thu, 2 May 2019 14:15:57 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
+        id S1725763AbfEBFUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 01:20:52 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:39550 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725681AbfEBFUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 01:20:52 -0400
+Received: by mail-lf1-f67.google.com with SMTP id d12so899021lfk.6
+        for <devicetree@vger.kernel.org>; Wed, 01 May 2019 22:20:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZIi/hOFHGvpdd8ZxHC2xGumiE5Qm52H/+YsyA0Mp3wc=;
+        b=Pp94zrZbK8g3TalKL/jsZNRTt4pXPht0+i7KnoqIMY9/CC4a0DOOp60lnG4VzQdpXF
+         hVZxgfHMGyg3FMIAbiJq8apr5Rz/rGk4gH+RXUOU6jcsVkUpxt15xJbHkWIOIUJOdcFB
+         bmzSzgOHdBlw3iYDI1J312zA29wxcay3MlZEpJDOPSpFeF1GIeWIxmx2Due3K1zH7cjm
+         6EFPcChVg2PlyIadjhmY31ovtv3rj2w1oVl8L1SSxMSg5qFmSJ1paDXBolf0DE6bmly4
+         AfdA6ti/fUfFvktiqUW06QgHrPC1cfZFi7IGK9YjSSUNSy49agm0LRhuHLDuZZJrPh67
+         +43Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZIi/hOFHGvpdd8ZxHC2xGumiE5Qm52H/+YsyA0Mp3wc=;
+        b=i/QwYyP2J6/2ibL6ATxwGRrA2fnbc+jeerqyan7YlKXpPkMDD6m8EPWU8jY76feh7R
+         Q/mEOBWbB5mFZeo2ZqSfnrUfOMU/+aVXe/noeS1A6K9tecoy4ncwgA7IaDyWTHm8eWVG
+         msMryvmYLvnKNKmZDLQjLaHkuKQhRAtBTJ2VTUoWs7c370M7FmlHJKhGXJyVJlKaxZ8E
+         wEt1sZUN3xTuyn5maxtT9XjZGqIMgbROiOvERoxgq3k9+LhnCChUtwKLENkqmMUSLGPs
+         6/aPMWGUCfo+TtgXT81JgkOAyLCaWsVh+eBkq2svz8rO0Ay74XyLvxKy895Hb0B/Agh5
+         MaKQ==
+X-Gm-Message-State: APjAAAWpVa0aPrdiFLDnfpnxCzMUweryWPyNrQ7WzPzq3IVSCcg09w46
+        Uww2fYDzvf6/D5hCZ6vIoXp4QRZZWUAYLPFhYycA5IZ6
+X-Google-Smtp-Source: APXvYqyUKgaXM4W3YewgggLouSmykoq3FIjWnoOWlifWkKdw/pR1z5cvvAGH8YKyQ4juApeiaTeRw96w/nvv+ylB6dQ=
+X-Received: by 2002:a19:1dc3:: with SMTP id d186mr455221lfd.101.1556774449622;
+ Wed, 01 May 2019 22:20:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1555683568-20882-4-git-send-email-l.luba@partner.samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrNJsWRmVeSWpSXmKPExsWy7bCmge7+mlMxBtefG1psnLGe1WL+kXOs
-        Fqs/Pma0mHxqLpPFme5ci/7Hr5ktzp/fwG5xtukNu8WtBhmLy7vmsFl87j3CaDHj/D4mi7VH
-        7rJb3G5cwWZx+E07q8X+K14Wt3/zWXw78YjRQcjj29dJLB6zGy6yeOycdZfdY9OqTjaP3uZ3
-        bB4H3+1h8ujbsorRY/Ppao/Pm+QCOKOybTJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0t
-        LcyVFPISc1NtlVx8AnTdMnOAnlFSKEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFFgW
-        6BUn5haX5qXrJefnWhkaGBiZAhUmZGfMmfScreCiVMWkRXfYGxivinYxcnBICJhIfPlT0MXI
-        xSEksINRYvPRE4wQzidGiZONS9kgnG+MEqv3PGXvYuQE6zg4eRUjiC0ksJdRYmUnH0TReyB7
-        92NmkISwQKhE69zjTCAJEYHljBL7pt4Fm8sssJpJ4s/XtawgVWwCWhL7X9xgA7H5BRQlrv54
-        DDaWV8BOYsrLJWA1LAIqEvs33WMCsUUFIiTuH9vAClEjKHFy5hMWEJtTwFvi27plYOcxC4hL
-        3HoynwnClpdo3jqbGWSxhMA9dond7Q8YIb52kVjyzhviHWGJV8e3QL0mJfGyvw3KrpZYefII
-        G0RvB6PElv0XWCESxhL7l05mApnDLKApsX6XPsQuPol3X3tYIcbzSnS0CUFUK0tcfnCXCcKW
-        lFjc3skGYXtIPD76ln0Co+IsJN/MQvLBLCQfzEJYtoCRZRWjWGpBcW56arFhgTFybG9iBCd0
-        LfMdjBvO+RxiFOBgVOLh/TH1ZIwQa2JZcWXuIUYJDmYlEd5be4BCvCmJlVWpRfnxRaU5qcWH
-        GE2BgT2RWUo0OR+YbfJK4g1NjYyNjS1MDM1MDQ2VxHnXOzjHCAmkJ5akZqemFqQWwfQxcXBK
-        NTDqd25Ypnl/V5+VK8eEb4vOLt21qLg4+pnztoDZDaxFKy+daHh9MSoo6M9K13k+z68e2xE+
-        c9fe15W6EwOeu0h9Y2s72PEhfvZP7xNLt9yad71YyfPhldwP6/O6bXkmJBgluXIY+17cdfeh
-        bcFW3Sl/v1/OOPVX53CBv7KNnz3n9j9v7/DmOHibKrEUZyQaajEXFScCADDQNpv+AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBIsWRmVeSWpSXmKPExsWy7bCSvO7+mlMxBpNmC1lsnLGe1WL+kXOs
-        Fqs/Pma0mHxqLpPFme5ci/7Hr5ktzp/fwG5xtukNu8WtBhmLy7vmsFl87j3CaDHj/D4mi7VH
-        7rJb3G5cwWZx+E07q8X+K14Wt3/zWXw78YjRQcjj29dJLB6zGy6yeOycdZfdY9OqTjaP3uZ3
-        bB4H3+1h8ujbsorRY/Ppao/Pm+QCOKO4bFJSczLLUov07RK4MuZMes5WcFGqYtKiO+wNjFdF
-        uxg5OSQETCQOTl7F2MXIxSEksJtR4t/vbcwQCUmJaRePAtkcQLawxOHDxRA1bxkl7j04yAJS
-        IywQKtE69zgTSEJEYDmjxNy/S1lAHGaB1UwSkz5uYYNouc8ocfXaC1aQFjYBLYn9L26wgdj8
-        AooSV388ZgSxeQXsJKa8XAJWwyKgIrF/0z0mEFtUIELizPsVLBA1ghInZz4BszkFvCW+rVvG
-        DmIzC6hL/Jl3iRnCFpe49WQ+E4QtL9G8dTbzBEbhWUjaZyFpmYWkZRaSlgWMLKsYJVMLinPT
-        c4sNC4zyUsv1ihNzi0vz0vWS83M3MYLjW0trB+OJE/GHGAU4GJV4eH9MPRkjxJpYVlyZe4hR
-        goNZSYT31h6gEG9KYmVValF+fFFpTmrxIUZpDhYlcV75/GORQgLpiSWp2ampBalFMFkmDk6p
-        BsZq3zRpyZc13BnnHNLirDv2H9zEWyYvLsV5dZHwfNOO6Qk3c2Tmeild3OTrrBh4Zs7pmTeE
-        fZ6s/nBDtPrKegsTrQ3yi69Ln7mesCJLfPJX/gvWj+7MzMs8/aJ0SomPVXO+YZzQt/MzV3e+
-        8HO7v9iyb8E39f+7zpb+XHi2/KGznHIX3zx2MT0lluKMREMt5qLiRABQQiCD6wIAAA==
-X-CMS-MailID: 20190502051439epcas1p2a6894ac4ccfe59d87388fa949d6ef7e3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20190419141943eucas1p220d77bacfc4fcba8ec6a10f540e1a27d
-References: <1555683568-20882-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419141943eucas1p220d77bacfc4fcba8ec6a10f540e1a27d@eucas1p2.samsung.com>
-        <1555683568-20882-4-git-send-email-l.luba@partner.samsung.com>
+References: <1556171696-7741-1-git-send-email-yash.shah@sifive.com>
+ <1556171696-7741-2-git-send-email-yash.shah@sifive.com> <20190425101318.GA8469@e107155-lin>
+ <CAJ2_jOEBqBnorz9PcQp72Jjju9RX_P8mU=Gq+0xCCcWsBiJksw@mail.gmail.com>
+ <20190426093358.GA28309@e107155-lin> <CAJ2_jOEoD=Njp+L+H=jG59mA-j9SnwzyNmz7ECogWmbvei_f5Q@mail.gmail.com>
+ <20190502004130.GA20802@bogus>
+In-Reply-To: <20190502004130.GA20802@bogus>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Thu, 2 May 2019 10:50:12 +0530
+Message-ID: <CAJ2_jOETZa_oC-xSwfQVw-9Q6OivRG2R0rKMhwCk1knbxWJQVw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] RISC-V: Add DT documentation for SiFive L2 Cache Controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        mark.rutland@arm.com, Sachin Ghadi <sachin.ghadi@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukasz,
+On Thu, May 2, 2019 at 6:11 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Apr 30, 2019 at 09:50:45AM +0530, Yash Shah wrote:
+> > On Fri, Apr 26, 2019 at 3:04 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > >
+> > > On Fri, Apr 26, 2019 at 11:20:17AM +0530, Yash Shah wrote:
+> > > > On Thu, Apr 25, 2019 at 3:43 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > > >
+> > > > > On Thu, Apr 25, 2019 at 11:24:55AM +0530, Yash Shah wrote:
+> > > > > > Add device tree bindings for SiFive FU540 L2 cache controller driver
+> > > > > >
+> > > > > > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 53 ++++++++++++++++++++++
+> > > > > >  1 file changed, 53 insertions(+)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > > > > new file mode 100644
+> > > > > > index 0000000..15132e2
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > > > > @@ -0,0 +1,53 @@
+> > > > > > +SiFive L2 Cache Controller
+> > > > > > +--------------------------
+> > > > > > +The SiFive Level 2 Cache Controller is used to provide access to fast copies
+> > > > > > +of memory for masters in a Core Complex. The Level 2 Cache Controller also
+> > > > > > +acts as directory-based coherency manager.
+> > > > > > +
+> > > > > > +Required Properties:
+> > > > > > +--------------------
+> > > > > > +- compatible: Should be "sifive,fu540-c000-ccache"
+> > > > > > +
+> > > > > > +- cache-block-size: Specifies the block size in bytes of the cache
+> > > > > > +
+> > > > > > +- cache-level: Should be set to 2 for a level 2 cache
+> > > > > > +
+> > > > > > +- cache-sets: Specifies the number of associativity sets of the cache
+> > > > > > +
+> > > > > > +- cache-size: Specifies the size in bytes of the cache
+> > > > > > +
+> > > > > > +- cache-unified: Specifies the cache is a unified cache
+> > > > > > +
+> > > > > > +- interrupt-parent: Must be core interrupt controller
+> > > > > > +
+> > > > > > +- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
+> > > > > > +
+> > > > > > +- reg: Physical base address and size of L2 cache controller registers map
+> > > > > > +
+> > > > > > +- reg-names: Should be "control"
+> > > > > > +
+> > > > >
+> > > > > It would be good if you mark the properties that are present in DT
+> > > > > specification and those that are added for sifive,fu540-c000-ccache
+> > > >
+> > > > I believe there isn't any property which is added explicitly for
+> > > > sifive,fu540-c000-ccache.
+> > > >
+> > >
+> > > reg and interrupts are generally optional for normal cache and may be
+> > > required for cache controller like this. DT specification[1] covers
+> > > only caches and not cache controllers.
+> >
+> > Are you suggesting something like this:
+> >
+> > Required Properties:
+> > --------------------
+> > Standard Properties:
+>
+> I don't think we need this separation.
 
-On 19. 4. 19. 오후 11:19, Lukasz Luba wrote:
-> Add new table rate for BPLL for Exynos5422 SoC supporting Dynamic Memory
-> Controller frequencies for driver's DRAM timings.
-> 
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  drivers/clk/samsung/clk-exynos5420.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/samsung/clk-exynos5420.c b/drivers/clk/samsung/clk-exynos5420.c
-> index d9e6653..ddee8bd 100644
-> --- a/drivers/clk/samsung/clk-exynos5420.c
-> +++ b/drivers/clk/samsung/clk-exynos5420.c
-> @@ -1323,6 +1323,17 @@ static const struct samsung_pll_rate_table exynos5420_pll2550x_24mhz_tbl[] __ini
->  	PLL_35XX_RATE(24 * MHZ, 200000000,  200, 3, 3),
->  };
->  
-> +static const struct samsung_pll_rate_table exynos5422_bpll_rate_table[] = {
-> +	PLL_35XX_RATE(24 * MHZ, 825000000, 275, 4, 1),
-> +	PLL_35XX_RATE(24 * MHZ, 728000000, 182, 3, 1),
-> +	PLL_35XX_RATE(24 * MHZ, 633000000, 211, 4, 1),
-> +	PLL_35XX_RATE(24 * MHZ, 543000000, 181, 2, 2),
-> +	PLL_35XX_RATE(24 * MHZ, 413000000, 413, 6, 2),
-> +	PLL_35XX_RATE(24 * MHZ, 275000000, 275, 3, 3),
-> +	PLL_35XX_RATE(24 * MHZ, 206000000, 206, 3, 3),
-> +	PLL_35XX_RATE(24 * MHZ, 165000000, 110, 2, 3),
-> +};
-> +
->  static const struct samsung_pll_rate_table exynos5420_epll_24mhz_tbl[] = {
->  	PLL_36XX_RATE(24 * MHZ, 600000000U, 100, 2, 1, 0),
->  	PLL_36XX_RATE(24 * MHZ, 400000000U, 200, 3, 2, 0),
-> @@ -1465,7 +1476,7 @@ static void __init exynos5x_clk_init(struct device_node *np,
->  		exynos5x_plls[apll].rate_table = exynos5420_pll2550x_24mhz_tbl;
->  		exynos5x_plls[epll].rate_table = exynos5420_epll_24mhz_tbl;
->  		exynos5x_plls[kpll].rate_table = exynos5420_pll2550x_24mhz_tbl;
-> -		exynos5x_plls[bpll].rate_table = exynos5420_pll2550x_24mhz_tbl;
-> +		exynos5x_plls[bpll].rate_table = exynos5422_bpll_rate_table;
+Ok. Won't include this "Standard/Non-standard properties" separation
+in the next revision of this patch.
 
-According to your previous reply, the released odroid-xu3 board by hardkernel
-might be only CONFIG_SOC_EXYNOS5422_REV_0. Because the kernel configurattion
-from hardkernel has 'CONFIG_SOC_EXYNOS5422_REV_0=y'. I'm ok about adding bpll rate_table.
+>
+> > - cache-block-size: Specifies the block size in bytes of the cache
+> >
+> > - cache-level: Should be set to 2 for a level 2 cache
+> >
+> > - cache-sets: Specifies the number of associativity sets of the cache
+> >
+> > - cache-size: Specifies the size in bytes of the cache
+>
+> What are the possible valid values for these? That's what's important.
+> What the properties mean are already defined in the spec.
 
-But, just I have one question. I think that this bpll rate_table is for
-only Exynos5422 series. Because the kernel of hardkernel used
-driver/clk/samsung/clk-exynos5422.c instead of clk-exynos5420.c commonn driver.
-It means that the clk-exynos5422.c of hardkernel's kernel support only Exynos5422
-without any considering the Exynos5420 series. 
+Sure, will mention the valid values for these properties.
 
-I think that it might need to check the soc version to use
-bpll rate_table as following:
+>
+> >
+> > - cache-unified: Specifies the cache is a unified cache
+> >
+> > Non-Standard Properties:
+>
+> I wouldn't call these non-standard.
+>
+> > - interrupt-parent: Must be core interrupt controller
+>
+> This is implied.
 
---- a/drivers/clk/samsung/clk-exynos5420.c
-+++ b/drivers/clk/samsung/clk-exynos5420.c
-@@ -1438,7 +1438,10 @@ static void __init exynos5x_clk_init(struct device_node *np,
-                exynos5x_plls[apll].rate_table = exynos5420_pll2550x_24mhz_tbl;
-                exynos5x_plls[epll].rate_table = exynos5420_epll_24mhz_tbl;
-                exynos5x_plls[kpll].rate_table = exynos5420_pll2550x_24mhz_tbl;
--               exynos5x_plls[bpll].rate_table = exynos5422_bpll_rate_table;
-+
-+               if (soc == EXYNOS5800)
-+                       exynos5x_plls[bpll].rate_table
-+                               = exynos5422_bpll_rate_table;
-        }
+Will remove this redundant description.
 
+>
+> > - reg: Physical base address and size of L2 cache controller registers map
+> >
+> > - reg-names: Should be "control"
+>
+> -names is not really needed when there is only 1 entry.
 
->  	}
->  
->  	samsung_clk_register_pll(ctx, exynos5x_plls, ARRAY_SIZE(exynos5x_plls),
-> 
+Will remove this property.
 
-
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+>
+> >
+> > - Yash
+> > >
+> > > --
+> > > Regards,
+> > > Sudeep
+> > >
+> > > [1] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.2/devicetree-specification-v0.2.pdf
