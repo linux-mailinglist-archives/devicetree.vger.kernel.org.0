@@ -2,94 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 376CA124D4
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 00:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14DB912534
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 01:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726416AbfEBWyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 18:54:54 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:40600 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726357AbfEBWy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 18:54:29 -0400
-Received: by mail-pf1-f194.google.com with SMTP id u17so1852690pfn.7
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 15:54:29 -0700 (PDT)
+        id S1726321AbfEBXpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 19:45:42 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41796 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726120AbfEBXpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 19:45:42 -0400
+Received: by mail-oi1-f196.google.com with SMTP id v23so3141697oif.8
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 16:45:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CT2YSqm9uY9lqkZxGu6xlzES7pBl2nIZjVIbCk84sRc=;
-        b=VgR98wkKNANONfnbGrr9lcgFpOWUbpb8QW082Rc0rd/NK6ECJCvh6hOqvAFNGLwSuu
-         a8kF9gsAk1gebx8VNGwe5TlF2czJn/t03cJrXt1krC8478dvOLahHngkZ6ZhXYl2ShXg
-         ySGidUHXGZuJTt2LfafwCVBx7w9d6c5+uFKhw=
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ylV5gAlOXI2nFNZnhMPfqqvANEP1/evAl3taiRkcInQ=;
+        b=OrjlPAypoDuLTmMWabsyH76U4J0Mgjkpr3DQnHBX1C/sWw9dQWGJZqdGNPLs+jVmSg
+         c3bYyd65ExNrwdSzAF9/C3j2TwsTXUxo6mYRYKux2ifXavoN2kS9n00OiZWShZJ2VN9E
+         Jey0nYLCGUng4+ySvL4+XGzNZ7sYP4XCUNcymRLj9xf6jLOnFx+3mvowrkn0pYKwRyZg
+         3M2fA5czV+OipZELphNhEy5iD2t61ukDrrNzVoHA9OjKJNH0VGnLzAHCbuiCf9QjtvzN
+         IDmzum+SPe0jeiAShs/g76LnFAxiI2OcVPBTp+1OnYkCXtTKkvmMFQSC+CcJJLS2aj7L
+         YRtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CT2YSqm9uY9lqkZxGu6xlzES7pBl2nIZjVIbCk84sRc=;
-        b=CgrqWCD+tnsLePI6umGdKGnCOX2xr1KRKFtYrKQKP/AvmIX8eX/2SJ5PHepgNAh6XD
-         1dyBxlaFPT+UAE1MRf2pXeEMsdpE+GNqEDM5J0R14UtSeVTskqLlZcH6gPbSx2c2nTw2
-         9+JqPWIGJbKk4E9quwpUstGtrHxexi6bV5snwz5yN5PPLOahlUcS8u5HdpA4WkppgtNy
-         D2VF1wG3L3m6vvwUDyVOSw34V0xjd7VsHdDvk/7yAjo9K2jpyqFXXNjV6rSERIXyTRou
-         u2msujMx6T0Hdmn42ATA5HaHRz9gHjGKmCIIJjdyxj0ZtoWfoOG25WbTAIqWEykXKRkn
-         db7w==
-X-Gm-Message-State: APjAAAWA4shTEs9jusTXr3Pz3fljDA6NJne6G86HPGaupEEkA/kowKNA
-        hVw5+V1Nob9Ve1L0Chc2wY4XJepx4UM=
-X-Google-Smtp-Source: APXvYqzTiOjbZQBE1y3q6em7X3hoV/eO9e264Ryqoxbr49JQ0+yN737erpxGaSnUtNHQVlpHiZsYFQ==
-X-Received: by 2002:a62:164f:: with SMTP id 76mr7040966pfw.172.1556837668900;
-        Thu, 02 May 2019 15:54:28 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id v15sm264736pff.105.2019.05.02.15.54.27
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 15:54:28 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>, mka@chromium.org,
-        Sean Paul <seanpaul@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] ARM: dts: rockchip: Add HDMI i2c unwedging for rk3288-veyron
-Date:   Thu,  2 May 2019 15:53:36 -0700
-Message-Id: <20190502225336.206885-5-dianders@chromium.org>
-X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
-In-Reply-To: <20190502225336.206885-1-dianders@chromium.org>
-References: <20190502225336.206885-1-dianders@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ylV5gAlOXI2nFNZnhMPfqqvANEP1/evAl3taiRkcInQ=;
+        b=S7P2KHDWpfTMll68KGwix05DIizRJxJ3PJHoR6AFFK1U53SXxo4iH8U7VfY3AzFlbN
+         VPrhuwp29dv4E6KWWLFk3WIE6hprVnDsUXzOFxR5f1aN6hNeUD4xIxROgQw0yrHeVcO1
+         gCASDaRJDV8E4mGr5iJuLtJSB3Fd1ejFzlZkVYZGBpiQ9Wv4eoadjojVENGhnVsyDDOw
+         9ixCQ7CVXQGafiQa79T/wCKcamc3w0GoXzgAQ9glUy4ntPObCDO0eFElIVEjv+0PkKnt
+         m8wAuLdwHeFbTZryHXAQWYVXk+KY2LQ666BjRT5dhmWJBLqtFSYg7XMVX4ozLmKD4Y8M
+         J/uw==
+X-Gm-Message-State: APjAAAVHpRk1uRdFIEDuaQdl2YdIoSSOCjxLiGPG4eGLob/9p4RiIL8o
+        L+yX9xCIcoP8w4osweUvcGnkWQtQOXO+UxaeXCi3sQ==
+X-Google-Smtp-Source: APXvYqza1ahwn/TDeWwW8NfzPMf/2RsvBcbxrAIWRnpkKGe/w6LvErCEtGQm7aaUbxq8tyCdcrjFzojfQN03A2rWnss=
+X-Received: by 2002:aca:57d8:: with SMTP id l207mr4208582oib.44.1556840740661;
+ Thu, 02 May 2019 16:45:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-13-brendanhiggins@google.com> <20190502110220.GD12416@kroah.com>
+ <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com> <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
+In-Reply-To: <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Thu, 2 May 2019 16:45:29 -0700
+Message-ID: <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
+Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
+ KUnit tests
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-kselftest@vger.kernel.org,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Veyron uses the builtin i2c controller that's part of dw-hdmi.  Hook
-up the unwedging feature.
+On Thu, May 2, 2019 at 2:16 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 5/2/19 11:07 AM, Brendan Higgins wrote:
+> > On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> >>
+> >> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
+> >>> From: Felix Guo <felixguoxiuping@gmail.com>
+> >>>
+> >>> The ultimate goal is to create minimal isolated test binaries; in the
+> >>> meantime we are using UML to provide the infrastructure to run tests, so
+> >>> define an abstract way to configure and run tests that allow us to
+> >>> change the context in which tests are built without affecting the user.
+> >>> This also makes pretty and dynamic error reporting, and a lot of other
+> >>> nice features easier.
+> >>>
+> >>> kunit_config.py:
+> >>>   - parse .config and Kconfig files.
+> >>>
+> >>> kunit_kernel.py: provides helper functions to:
+> >>>   - configure the kernel using kunitconfig.
+> >>>   - build the kernel with the appropriate configuration.
+> >>>   - provide function to invoke the kernel and stream the output back.
+> >>>
+> >>> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
+> >>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> >>
+> >> Ah, here's probably my answer to my previous logging format question,
+> >> right?  What's the chance that these wrappers output stuff in a standard
+> >> format that test-framework-tools can already parse?  :)
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+To be clear, the test-framework-tools format we are talking about is
+TAP13[1], correct?
 
- arch/arm/boot/dts/rk3288-veyron.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+My understanding is that is what kselftest is being converted to use.
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index e1bee663d2c5..340b276b6333 100644
---- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -163,8 +163,9 @@
- };
- 
- &hdmi {
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "unwedge";
- 	pinctrl-0 = <&hdmi_ddc>;
-+	pinctrl-1 = <&hdmi_ddc_unwedge>;
- 	status = "okay";
- };
- 
--- 
-2.21.0.1020.gf2820cf01a-goog
+> >
+> > It should be pretty easy to do. I had some patches that pack up the
+> > results into a serialized format for a presubmit service; it should be
+> > pretty straightforward to take the same logic and just change the
+> > output format.
+>
+> When examining and trying out the previous versions of the patch I found
+> the wrappers useful to provide information about how to control and use
+> the tests, but I had no interest in using the scripts as they do not
+> fit in with my personal environment and workflow.
+>
+> In the previous versions of the patch, these helper scripts are optional,
+> which is good for my use case.  If the helper scripts are required to
 
+They are still optional.
+
+> get the data into the proper format then the scripts are not quite so
+> optional, they become the expected environment.  I think the proper
+> format should exist without the helper scripts.
+
+That's a good point. A couple things,
+
+First off, supporting TAP13, either in the kernel or the wrapper
+script is not hard, but I don't think that is the real issue that you
+raise.
+
+If your only concern is that you will always be able to have human
+readable KUnit results printed to the kernel log, that is a guarantee
+I feel comfortable making. Beyond that, I think it is going to take a
+long while before I would feel comfortable guaranteeing anything about
+how will KUnit work, what kind of data it will want to expose, and how
+it will be organized. I think the wrapper script provides a nice
+facade that I can maintain, can mediate between the implementation
+details and the user, and can mediate between the implementation
+details and other pieces of software that might want to consume
+results.
+
+[1] https://testanything.org/tap-version-13-specification.html
