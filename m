@@ -2,120 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9221147D
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 09:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 054F41150B
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 10:12:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbfEBHrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 03:47:00 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:60553 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726191AbfEBHrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 03:47:00 -0400
-Received: from localhost (aaubervilliers-681-1-29-145.w90-88.abo.wanadoo.fr [90.88.149.145])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id E68E810000D;
-        Thu,  2 May 2019 07:46:56 +0000 (UTC)
-Date:   Thu, 2 May 2019 09:46:56 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726264AbfEBIKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 04:10:38 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:46796 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725951AbfEBIKg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 04:10:36 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x42862RU006167;
+        Thu, 2 May 2019 10:10:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=R4ti5gteNcBki+KcCZxNtPlE39G37YfOCdhQ1hFnO/4=;
+ b=eNxlwstRAn08phkcWqAvf2F8iKl3xDJ4Y6ZI1feZB7HPwNdaDWwHjMAEl8yeTeYUpd8F
+ CGa44tuNVPHxgZ+znx0PIhUe5Qd3dVAxFnnqhTuFiApyCkjCY6RB7oc3H+dpovlyINFp
+ Wzx3KkaRmwFg1LrewL98IKgwSWd6ABVRygSeZ50VA68/g/Yiu9hdRXorkcACQ0x7qa3D
+ Ew2FNDonBa/kSg9tP+eLzYF1Yiz9GfFvjsj+NGmY1TCfm2yzKo8W38Zg0mMf3CvkiT0Y
+ 4dIBwsnezr0oZTy2M9PLgfWxqTTbIGWztwOmxJKTxbbEJcl6i+8vITrbAAvSwengrrV+ Hg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2s6xgcq48t-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Thu, 02 May 2019 10:10:16 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 216373F;
+        Thu,  2 May 2019 08:10:14 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas23.st.com [10.75.90.46])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C3FCA12E0;
+        Thu,  2 May 2019 08:10:13 +0000 (GMT)
+Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by SAFEX1HUBCAS23.st.com
+ (10.75.90.46) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 2 May 2019
+ 10:10:13 +0200
+Received: from localhost (10.129.4.86) by Webmail-ga.st.com (10.75.90.48) with
+ Microsoft SMTP Server (TLS) id 14.3.361.1; Thu, 2 May 2019 10:10:13 +0200
+From:   Fabien Dessenne <fabien.dessenne@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, info@olimex.com,
-        Mark Brown <broonie@kernel.org>, ibu@radempa.de,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC] arm64: dts: allwinner: a64: teres-i: Enable audio
-Message-ID: <20190502074656.5tw62ngvjxabrw4o@flea>
-References: <20190212100929.iqsxu443qrkl6myf@flea>
- <E1gtds8-0000NB-Re@stardust.g4.wien.funkfeuer.at>
- <20190213094442.da2dy6d5bb527nft@flea>
- <E1gtsx9-0000RP-08@stardust.g4.wien.funkfeuer.at>
- <20190213155311.ovkpim3lxwyvuhhj@flea>
- <E1gu4dx-0000Sy-2B@stardust.g4.wien.funkfeuer.at>
- <20190215142029.GB32618@lst.de>
- <E1gv6rh-0000Km-U8@stardust.g4.wien.funkfeuer.at>
- <20190218102442.l3br2h3oqfe2atdv@flea>
- <20190430133232.GA18808@lst.de>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>
+CC:     Fabien Dessenne <fabien.dessenne@st.com>,
+        Loic Pallardy <loic.pallardy@st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        "Ludovic Barre" <ludovic.barre@st.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH v3 0/8] stm32 m4 remoteproc on STM32MP157c
+Date:   Thu, 2 May 2019 10:09:58 +0200
+Message-ID: <1556784606-3016-1-git-send-email-fabien.dessenne@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ogjf4ravo7ykhs3c"
-Content-Disposition: inline
-In-Reply-To: <20190430133232.GA18808@lst.de>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-Originating-IP: [10.129.4.86]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-02_03:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+STMicrolectronics STM32MP157 MPU are based on a Dual Arm Cortex-A7 core and a
+Cortex-M4.
+This patchset adds the support of the stm32_rproc driver allowing to control
+the M4 remote processor.
 
---ogjf4ravo7ykhs3c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes since v2:
+- Clarified "reg" description
+- Change m4 unit adress to 38000000
+- Renamed "auto_boot" in "st,auto-boot"
+Changes since v1:
+- Gave details about the memory mapping (in bindings).
+- Used 'dma-ranges' instead of 'ranges'.
+- Updated the 'compatible' property.
+- Remove the 'recovery', 'reset-names' and 'interrupt-names' properties.
+- Clarified why / when mailboxes are optional.
 
-On Tue, Apr 30, 2019 at 03:32:32PM +0200, Torsten Duwe wrote:
-> On Mon, Feb 18, 2019 at 11:24:42AM +0100, Maxime Ripard wrote:
-> > On Sat, Feb 16, 2019 at 09:47:13PM +0100, Harald Geyer wrote:
-> > >
-> > > > Would you care to submit a patch version without that GPIO handled?
-> > > > I think it's very useful and has the potential to be agreed upon.
-> > >
-> > > That would enable audio from the internal speakers but select debug
-> > > output on the HP jack by default. I would be okay with that, despite
-> > > still thinking that audio on the head phones should be the default.
-> > >
-> > > Maxime and Wens are the maintainers, so it's their call in the end.
-> >
-> > At this point, I'm not really convinced by the solution in that patch,
-> > but I don't have really good ideas either. I think it would be good to
-> > discuss this with Mark and Linus Walleij, they will probably have way
-> > better solutions than what I can come up with.
->
-> Once more my plead to *please* apply the unchallenged parts of this patch!
->
-> For reference:
-> https://patchwork.kernel.org/patch/10792589/
->
->
-> Just leave out the line
->
-> +	hpvcc-supply = <&reg_eldo1>; /* TODO: Use only one of these */
-> (as clarified by ChenYu)
->
-> and the
->
-> @@ -131,6 +151,14 @@
->  	status = "okay";
->  };
->
-> +&r_pio {
-> +	r_debug_select_pin: debug-select {
-> [...]
->
-> hunk, which the discussion was about. The patch is of good value
-> even without it.
->
-> IMHO it's a shame this didn't make it into 5.1
->
-> Acked-by: Torsten Duwe <duwe@suse.de>
+Fabien Dessenne (8):
+  dt-bindings: stm32: add bindings for ML-AHB interconnect
+  dt-bindings: remoteproc: add bindings for stm32 remote processor
+    driver
+  remoteproc: stm32: add an ST stm32_rproc driver
+  ARM: dts: stm32: add m4 remoteproc support on STM32MP157c
+  ARM: dts: stm32: declare copro reserved memories on STM32MP157c-ed1
+  ARM: dts: stm32: enable m4 coprocessor support on STM32MP157c-ed1
+  ARM: dts: stm32: declare copro reserved memories on STM32MP157a-dk1
+  ARM: dts: stm32: enable m4 coprocessor support on STM32MP157a-dk1
 
-Please resend that patch
+ .../devicetree/bindings/arm/stm32/mlahb.txt        |  37 ++
+ .../devicetree/bindings/remoteproc/stm32-rproc.txt |  63 +++
+ arch/arm/boot/dts/stm32mp157a-dk1.dts              |  52 ++
+ arch/arm/boot/dts/stm32mp157c-ed1.dts              |  52 ++
+ arch/arm/boot/dts/stm32mp157c.dtsi                 |  20 +
+ drivers/remoteproc/Kconfig                         |  15 +
+ drivers/remoteproc/Makefile                        |   1 +
+ drivers/remoteproc/stm32_rproc.c                   | 628 +++++++++++++++++++++
+ 8 files changed, 868 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/stm32/mlahb.txt
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
+ create mode 100644 drivers/remoteproc/stm32_rproc.c
 
-Maxime
+-- 
+2.7.4
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---ogjf4ravo7ykhs3c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXMqgcAAKCRDj7w1vZxhR
-xUkWAP432UpRG05M57jNudXsgptVGodfkKNSF8GCePGGa381ugD+I4nvdzZdYqOA
-sTKkTdR+ULGdkJncmivGKljgsi9Y7AA=
-=6Eua
------END PGP SIGNATURE-----
-
---ogjf4ravo7ykhs3c--
