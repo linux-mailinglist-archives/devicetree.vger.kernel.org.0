@@ -2,14 +2,14 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7A3C11891
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 540AD11892
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726285AbfEBL6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 07:58:40 -0400
-Received: from smtp3.ono.com ([62.42.230.163]:24342 "EHLO smtp3.ono.com"
+        id S1726189AbfEBL6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 07:58:41 -0400
+Received: from smtp3.ono.com ([62.42.230.163]:8312 "EHLO smtp3.ono.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726189AbfEBL6k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1726278AbfEBL6k (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Thu, 2 May 2019 07:58:40 -0400
 X-Junkmail-Premium-Raw: score=16/50,refid=2.7.2:2019.5.2.103916:17:16.798,ip=62.42.230.131,rules=__HAS_MSGID,
  __SANE_MSGID, MSGID_JMAIL_DEFAULT, INVALID_MSGID_NO_FQDN, __HAS_FROM,
@@ -28,9 +28,9 @@ X-Junkmail-Premium-Raw: score=16/50,refid=2.7.2:2019.5.2.103916:17:16.798,ip=62.
  __PHISH_SPEAR_STRUCTURE_2, REPLYTO_FROM_DIFF_ADDY, NO_URI_HTTPS,
  BODY_SIZE_7000_LESS, TO_MALFORMED
 Received: from resprs01 (62.42.230.131) by smtp3.ono.com (9.0.019.09-1)
-        id 5CC0A28F0060A6C5; Thu, 2 May 2019 13:58:26 +0200
+        id 5CC0A28F0060A6C4; Thu, 2 May 2019 13:58:26 +0200
 Received: from (149.126.78.18) by webmailcpr01n.ono.com;  Thu, 2 May 2019 13:58:23 +0200
-Message-ID: <20308361.365321556798303847.JavaMail.defaultUser@defaultHost>
+Message-ID: <29508010.365301556798303689.JavaMail.defaultUser@defaultHost>
 Date:   Thu, 2 May 2019 13:58:23 +0200 (CEST)
 From:   Aysha Gadafi <alosax@ono.com>
 Reply-To: mgaddafi034@gmail.com
