@@ -2,82 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 652C5117E8
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129F611826
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 13:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726356AbfEBLFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 07:05:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50982 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726242AbfEBLFQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 May 2019 07:05:16 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4391720656;
-        Thu,  2 May 2019 11:05:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556795115;
-        bh=g52VJv58ny9inOghbRxttm2JEOFg/YzNJiIi1xgevz0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=srcuUUfJlFr42/9IsMaL5I/QT1gc7U4FMTE1sI3n6k8wik0XOQdtZ3s/SmQvEj2j3
-         nem5uAwCIgmlBdJqoOCKPYyD7+0J7m4Es/11yPHJKGUPXjz6aLsDABY2+K1HZTiH2j
-         NwAGsAXg2Nr8uriB/0jqHcN2lzmFJtLPXJT3z5pc=
-Date:   Thu, 2 May 2019 13:05:13 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     frowand.list@gmail.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, richard@nod.at, rientjes@google.com,
-        rostedt@goodmis.org, wfg@linux.intel.com
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190502110513.GF12416@kroah.com>
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190502105053.GA12416@kroah.com>
+        id S1726349AbfEBLaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 07:30:52 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:38737 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726270AbfEBLav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 07:30:51 -0400
+Received: by mail-wr1-f68.google.com with SMTP id k16so2843799wrn.5
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 04:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=DXweF0jQ0QB/k/rGJN+kfbonyACUsE7waASKG6bvRoQ=;
+        b=bbEOY3UBWHA9nrQiL1gJZ2/gGVMCmQ6IF+6rrt9NByakcOnI7qfP0GyEywuponu8xB
+         Dv2Bb3Jc64sYLe+fXZr2qbenmUgi8hnFHldZqseiduLJ2q/YlmgBNbXjTURjAkHNn3Ou
+         pa1yF34FYttPcROYRQITT0SEDMbW+CZAzXOI/p89sIqxq5rKvuW+VXXOxJ66KwyR+Qn+
+         M1ynLwYzCUjoYIHrm2VcbjzjSyM1NRBx8z49mmDG7tTys2sFTZL1nL8QX5xPGWDR427+
+         uq5L3RbwTSfeZVFJ9fWZOpBY7qyLSOJIVHGVM7VPRC0Z7yd1BZH8a9qefylcyFkJST8K
+         KBVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DXweF0jQ0QB/k/rGJN+kfbonyACUsE7waASKG6bvRoQ=;
+        b=KO0+OiH9wk3YgDRWBH9HtVQVtDBgnwXvVc0wGW1tMce8p0GWYfPElD3NV5fVjO5u89
+         IMM3YQ8lXdgDbO4wiw7wQNko3eQGdY9RrPZJQY48YnXwnV8qkChhllr8P7c/1Bh/cFeh
+         b9ZT0pMt//vaBgpEC44tl+gT2QisCiQMbSay912DAh9rVBT6sRX3vXiEnb9wwa/YHCPU
+         l37EvBJoFLom5/3gcl9DWr7qXzDvBJfeF2UHLr+A+GcgB5t655HzYNHuUAZOGfM37dWO
+         BK3mMEtCbkB9xHqIqwND7DXuKlxCCY9VbBqle/Imjr0tiqhNCHkcahSnREZvLQJIwqG7
+         dOgA==
+X-Gm-Message-State: APjAAAUQP3vQEBN7w/tU5zycYAWMOj/nIBd4R+EeWEeMtTr+BqZK8LHp
+        iR/mM0DWkUTiarBEZ1z1IW+47A==
+X-Google-Smtp-Source: APXvYqxu8aql4ZZQg5YXmNj8g7st+xGNdi3S5rbgFkkYK/EFDweHigpikBPQV/f0CEJTqIh4taQtQA==
+X-Received: by 2002:adf:c748:: with SMTP id b8mr2404630wrh.292.1556796650078;
+        Thu, 02 May 2019 04:30:50 -0700 (PDT)
+Received: from [192.168.1.2] (200.red-83-34-200.dynamicip.rima-tde.net. [83.34.200.200])
+        by smtp.gmail.com with ESMTPSA id k16sm844785wrd.17.2019.05.02.04.30.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 02 May 2019 04:30:49 -0700 (PDT)
+Subject: Re: [PATCH 2/3] drivers: regulator: qcom: add PMS405 SPMI regulator
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
+        niklas.cassel@linaro.org, khasim.mohammed@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+References: <a3c281d5-d30e-294f-71ab-957decde2ba0@linaro.org>
+ <20190502023316.GS14916@sirena.org.uk>
+From:   Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Message-ID: <dd15d784-f2a1-78c6-3543-69bbcc1143c4@linaro.org>
+Date:   Thu, 2 May 2019 13:30:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190502105053.GA12416@kroah.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <20190502023316.GS14916@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 02, 2019 at 12:50:53PM +0200, Greg KH wrote:
-> On Wed, May 01, 2019 at 04:01:09PM -0700, Brendan Higgins wrote:
-> > ## TLDR
-> > 
-> > I rebased the last patchset on 5.1-rc7 in hopes that we can get this in
-> > 5.2.
+On 5/2/19 04:33, Mark Brown wrote:
+> On Mon, Apr 29, 2019 at 02:31:55PM +0200, Jorge Ramirez wrote:
+>> On 4/27/19 20:21, Mark Brown wrote:
 > 
-> That might be rushing it, normally trees are already closed now for
-> 5.2-rc1 if 5.1-final comes out this Sunday.
+>>> Since the point of this change is AFAICT that this regulator only has a
+>>> single linear range it seems like it should just be able to use the
+>>> existing generic functions shouldn't it?  
 > 
-> > Shuah, I think you, Greg KH, and myself talked off thread, and we agreed
-> > we would merge through your tree when the time came? Am I remembering
-> > correctly?
+>> yes that would have been ideal but it does not seem to be the case for
+>> this hardware.
 > 
-> No objection from me.
+>> The register that stores the voltage range for all other SPMI regulators
+>> (SPMI_COMMON_REG_VOLTAGE_RANGE 0x40) is used by something else in the
+>> HFS430: SPMI_HFS430_REG_VOLTAGE_LB 0x40 stores the voltage level in two
+>> bytes 0x40 and 0x41;
 > 
-> Let me go review the latest round of patches now.
+>> This overlap really what is creating the pain: HFS430 cant use 0x40 to
+>> store the range (even if it is only one)
+> 
+>> so yeah, most of the changes in the patch are working around this fact.
+> 
+> I'm not sure I follow here, sorry - I can see that the driver needs a
+> custom get/set selector operation but shouldn't it be able to use the
+> standard list and map operations for linear ranges?
 
-Overall, looks good to me, and provides a framework we can build on.
-I'm a bit annoyed at the reliance on uml at the moment, but we can work
-on that in the future :)
+I agree it should, but unfortunately that is not the case; when I first
+posted the patch I was concerned that for a regulator to be supported by
+this driver it should obey to the driver's internals (ie: comply with
+all of the spmi_common_regulator_registers definitions).
 
-Thanks for sticking with this, now the real work begins...
+However, since there was just a single range to support, the
+modifications I had to do to support this SPMI regulator were minimal -
+hence why I opted for the changes under discussion instead of writing a
+new driver (which IMO it is an overkill).
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+what do you think?
+
+> 
+>>
+>> enum spmi_common_regulator_registers {
+>> 	SPMI_COMMON_REG_DIG_MAJOR_REV		= 0x01,
+>> 	SPMI_COMMON_REG_TYPE			= 0x04,
+>> 	SPMI_COMMON_REG_SUBTYPE			= 0x05,
+>> 	SPMI_COMMON_REG_VOLTAGE_RANGE		= 0x40, ******
+>> 	SPMI_COMMON_REG_VOLTAGE_SET		= 0x41,
+>> 	SPMI_COMMON_REG_MODE			= 0x45,
+>> 	SPMI_COMMON_REG_ENABLE			= 0x46,
+>> 	SPMI_COMMON_REG_PULL_DOWN		= 0x48,
+>> 	SPMI_COMMON_REG_SOFT_START		= 0x4c,
+>> 	SPMI_COMMON_REG_STEP_CTRL		= 0x61,
+>> };
+>>
+>> enum spmi_hfs430_registers {
+>> 	SPMI_HFS430_REG_VOLTAGE_LB		= 0x40, *******
+>> 	SPMI_HFS430_REG_VOLTAGE_VALID_LB	= 0x42,
+
+ah, this definition I can remove and use the common one above. I'll do that.
+>> 	SPMI_HFS430_REG_MODE			= 0x45,
+
+
+>> };
+>>
+>> It just needs it's own
+>>> set/get_voltage_sel() operations.  As far as I can see the main thing
+>>> the driver is doing with the custom stuff is handling the fact that
+>>> there's multiple ranges but that's not an issue for this regulator.
+>>> It's possible I'm missing something there but that was the main thing
+>>> (and we do have some generic support for multiple linear ranges in the
+>>> helper code already, can't remember why this driver isn't using that -
+>>> the ranges overlap IIRC?).
+>>>
+>>> TBH looking at the uses of find_range() I'm not sure they're 100%
+>>> sensible as they are - the existing _time_sel() is assuming we only need
+>>> to work out the ramp time between voltages in the same range which is
+>>> going to have trouble.
+>>>
+>>
+
