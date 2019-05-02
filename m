@@ -2,77 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93BED11C53
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 17:12:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E02B11E5C
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 17:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726303AbfEBPMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 11:12:41 -0400
-Received: from smtprelay-out1.synopsys.com ([198.182.47.102]:32990 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726203AbfEBPMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 11:12:41 -0400
-Received: from mailhost.synopsys.com (dc2-mailhost2.synopsys.com [10.12.135.162])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 1DF77C01F1;
-        Thu,  2 May 2019 15:12:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1556809962; bh=nbxnvC5IsjfFaLonIOAbwjN79asF92ckV1yrBYSaHus=;
-        h=From:To:Cc:Subject:Date:From;
-        b=j1pLWpADLhsfNTWATom9WObhnk570vMXr7kPhUx+D390jR7MkcziBiqgQx7mSPLZj
-         dl5F0VQIBjCaMZG3EZPtDykg4PQ8P9/q3ps53NVvB13xOJKHw6dLXVO7TPoaOkYe5Q
-         7XtYLmsvMIW3Wm8l871apSCNuXZaPWQbJiJpKQZbdOSxIicrZpQlIVWRDDAb45yvB7
-         pnFHdOr8ns4MtCc2nfapPZTmQbt892/ggvK/9uC8GzU+vsOXcayuMgJBC88cfth8mw
-         7iGHzdhGdAEHrH31y2tM134FTIF300YpmR3HO9hwpqJ49ctTOHChZHTcnH6UL+sYyG
-         yI6JmLg+cEtQA==
-Received: from de02.synopsys.com (germany.internal.synopsys.com [10.225.17.21])
-        by mailhost.synopsys.com (Postfix) with ESMTP id CB4D0A0256;
-        Thu,  2 May 2019 15:12:34 +0000 (UTC)
-Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
-        by de02.synopsys.com (Postfix) with ESMTP id D9C103F475;
-        Thu,  2 May 2019 17:12:33 +0200 (CEST)
-From:   Jose Abreu <Jose.Abreu@synopsys.com>
-To:     devicetree@vger.kernel.org, linux-snps-arc@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jose Abreu <Jose.Abreu@synopsys.com>,
-        Joao Pinto <Joao.Pinto@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728314AbfEBP2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 11:28:55 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:40161 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728305AbfEBP2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 11:28:54 -0400
+Received: by mail-lf1-f68.google.com with SMTP id o16so2194143lfl.7;
+        Thu, 02 May 2019 08:28:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=prm1fyhXs0jWTAHPn6CLV/HtaSlxTqydNTX71G2xSCs=;
+        b=r0Ah6TDQTHwK7cH76U0v6wgZe6avx5iEHW7ZyZtQeMWJ0BM96xdA5Cl0z7TybVCWq2
+         GdJs4hBIjaMk2+bN1HDaTf6zOqe5hO2sgp6ZtwfTS5/fgwSJDtrNJWjCDsbNjpl3/Sa4
+         pymiyFG6nYLpfuMR0Z6lMg2u0eUJ4y2Q7N2OfhBsIvVvaOFxPAvTamFXL7Nc7D/v6Wfu
+         IAjQPZdRp88rdrNlYeCMsQUlqoccabRM797x4zAWUFICHLLBwyerZdw7uU9+/LxV2+Cf
+         JPDpJOTOT9fun6uCI1IgogwQHc91rbibBlm3/21cJycV86XiKrFcKaWknQV1nMlUbn7F
+         S9lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=prm1fyhXs0jWTAHPn6CLV/HtaSlxTqydNTX71G2xSCs=;
+        b=da7XReLoTdCycnQ2Jbl/0iF4haiP5uF7YMWetEv/mlynALo1sON1DqkLzlp+KpL35p
+         NbSN1tZ781FacuMU9QCa5SgC8Vy2GqEKzpqbi+zwO6d6CNVm6PmsIAbnRZmVHgAEuueB
+         0Z4Y2/6LiwEk02FiwwTQn2UcQyZctJRle/lDIdteQSUGg/awodmE0rX42xNPxBXxYAA2
+         0EHI2nB+Q31dmngcLqvT348X3mfBUJZSiv+JRxUiQCeY8v1sChSHWqDG8dWP3fzYY37V
+         qkgSeC8x0YikSVxT43/ddoaajmkXJl7BH1VLtxXotFw18+7e5Ve7cIqt36S2vlJ3P7EE
+         gLkQ==
+X-Gm-Message-State: APjAAAXfHWs61zcOWrSXzrVx6WgavmHMaGmrAZXaXtilHl242T/6sCRw
+        ojA4g93aLpQE0PHiIJcBbVdbr729ATcqKuXD+9s=
+X-Google-Smtp-Source: APXvYqzMcVGIejleD+/wKh8TcnzqGnJxMNAmrH86SrHVOreuURuClXNb7c4WEX+3sFRf5peisBBVvSR/1IhjXSA4LuM=
+X-Received: by 2002:a19:f001:: with SMTP id p1mr2498539lfc.27.1556810932481;
+ Thu, 02 May 2019 08:28:52 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190430074730.8236-1-sebastien.szymanski@armadeus.com>
+In-Reply-To: <20190430074730.8236-1-sebastien.szymanski@armadeus.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 2 May 2019 12:28:46 -0300
+Message-ID: <CAOMZO5D=BHWgOieLfz4bxL8v4bDmNOutUUnYSzW89KNtYn=Z9g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: imx6ul: Add csi node
+To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>,
+        Rui Miguel Silva <rui.silva@linaro.org>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Vineet Gupta <Vineet.Gupta1@synopsys.com>
-Subject: [PATCH] ARC: [plat-hsdk]: Add missing multicast filter bins number to GMAC node
-Date:   Thu,  2 May 2019 17:12:32 +0200
-Message-Id: <7f36bbadc0df4c93c396690dab59f34775de3874.1556788240.git.joabreu@synopsys.com>
-X-Mailer: git-send-email 2.7.4
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GMAC controller on HSDK boards supports 256 Hash Table size so we need to
-add the multicast filter bins property. This allows for the Hash filter
-to work properly using stmmac driver.
+[Adding Rui]
 
-Signed-off-by: Jose Abreu <joabreu@synopsys.com>
-Cc: Joao Pinto <jpinto@synopsys.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Vineet Gupta <vgupta@synopsys.com>
----
- arch/arc/boot/dts/hsdk.dts | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, Apr 30, 2019 at 4:47 AM S=C3=A9bastien Szymanski
+<sebastien.szymanski@armadeus.com> wrote:
+>
+> Add csi node for i.MX6UL SoC.
+>
+> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
+>
+> ---
+>  arch/arm/boot/dts/imx6ul.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dts=
+i
+> index 62ed30c781ed..af322bc58333 100644
+> --- a/arch/arm/boot/dts/imx6ul.dtsi
+> +++ b/arch/arm/boot/dts/imx6ul.dtsi
+> @@ -951,6 +951,17 @@
+>                                 };
+>                         };
+>
+> +                       csi: csi@21c4000 {
+> +                               compatible =3D "fsl,imx6ul-csi", "fsl,imx=
+7-csi";
+> +                               reg =3D <0x021c4000 0x4000>;
+> +                               interrupts =3D <GIC_SPI 7 IRQ_TYPE_LEVEL_=
+HIGH>;
+> +                               clocks =3D <&clks IMX6UL_CLK_DUMMY>,
+> +                                        <&clks IMX6UL_CLK_CSI>,
+> +                                        <&clks IMX6UL_CLK_DUMMY>;
+> +                               clock-names =3D "axi", "mclk", "dcic";
 
-diff --git a/arch/arc/boot/dts/hsdk.dts b/arch/arc/boot/dts/hsdk.dts
-index 69bc1c9e8e50..b0f059377ab0 100644
---- a/arch/arc/boot/dts/hsdk.dts
-+++ b/arch/arc/boot/dts/hsdk.dts
-@@ -187,6 +187,7 @@
- 			interrupt-names = "macirq";
- 			phy-mode = "rgmii";
- 			snps,pbl = <32>;
-+			snps,multicast-filter-bins = <256>;
- 			clocks = <&gmacclk>;
- 			clock-names = "stmmaceth";
- 			phy-handle = <&phy0>;
--- 
-2.7.4
+Also, I understand you followed
+Documentation/devicetree/bindings/media/imx7-csi.txt and passed these
+three clocks, but looking at the i.MX7D and i.MX6UL/ULL Reference
+Manuals, I don't find the  the descriptions for the "axi" and "dcic"
+CSI clocks.
 
+It looks like that only "mclk" is what we really need here.
+
+Should we change the bindings and the imx7-csi driver to not request
+"axi" and "dcic" clocks?
+
+Rui, what do you think? If you agree I can send a fix for this.
+
+Thanks
