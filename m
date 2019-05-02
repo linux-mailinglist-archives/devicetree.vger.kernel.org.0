@@ -2,179 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5258116D1
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 12:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77777116E2
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 12:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfEBKBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 06:01:42 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:37692 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726268AbfEBKBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 06:01:41 -0400
-Received: by mail-vs1-f65.google.com with SMTP id w13so1016122vsc.4;
-        Thu, 02 May 2019 03:01:40 -0700 (PDT)
+        id S1726321AbfEBKHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 06:07:55 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:34347 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726376AbfEBKHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 06:07:55 -0400
+Received: by mail-wr1-f65.google.com with SMTP id e9so2527045wrc.1
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 03:07:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Ln8lwyZu4d/pYnNZvNPmH5kvFZK/dwi+Vdw+/DDqqUM=;
+        b=SjF5Jc829R673WB+uMlg9Gl5Kqt2vyeeJMJN6YGyamTtIwyOVO6IFzWM4hxrLbiiaU
+         HWU5wXARUjWgTD6Mp0hN5OOGjzWJ7Cb9+BsPQsZSzKg59KQAehyH5sGvnnufdtHKHoqe
+         4/H7avUgSyUolKRLZ1aGByHldQSrQYqpDU5hmbu57Vb8oP7ZBY//cpsldNrd+ru+y6gT
+         DBD31XtjGaoeHMjwgHNaJFz1bBLhWk0I7UwPfKkeSXTUxXi41t7OPdenwX/GlUgdbxF/
+         n9feAgCpyWmfwV9UMZFZ36sBpGV9V8//grybcYgOOene6239oM4lbuhfzND4hLgyw/J2
+         93rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lY4wqimi6KIXhDTp2FMcmT5sWThlsbCODtZxfIHA9lc=;
-        b=iR1rXZJMI2CEfKPWalFIjgoE0c5H54etWT/l40e4O/nfET5rPe+9nn+yY4Z37dujSe
-         nVCH4nQ8uNL3TSVasoK26HIwa/vkJnNvx8AZ6yd5oXvBfDAyAAJW/w2OxmETXLTnH6Mi
-         QM2RwmW5fyH+CUDaxPX5+LqHDGgVsdUyqHXfu+pcqPQTsi37g8KRHva91/tb21LSuyni
-         I8gl59iO6E9iGn8/Yajw6p0HOY1EATl8nWeBIcqFK/tsDwIcXP5ylL+tBA5wYx9MX0wd
-         3InIUzo1nR/rofyzproUfDer6y2am/Txe7B4xFHkDy9AvH5V4PUgaNA8AeiipLOkLPuY
-         qHwg==
-X-Gm-Message-State: APjAAAXJBEyHTE/rB4uInCeOSTpkEB3TiujmF8icolbEJKg7NcigLuxd
-        BYfAYa2gIzH2A4m1NZwnmeNLNtCAAAFoe2ua6EE=
-X-Google-Smtp-Source: APXvYqwdUxeifpdKXX2YgxZlWqXfwu1RGJmGof+iP52hIj3a7jIVA7vCJgbOEQ5ZhF1zWSsjZwt7ANfUh43DSiG9wDw=
-X-Received: by 2002:a67:83cf:: with SMTP id f198mr1349911vsd.63.1556791299969;
- Thu, 02 May 2019 03:01:39 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Ln8lwyZu4d/pYnNZvNPmH5kvFZK/dwi+Vdw+/DDqqUM=;
+        b=EsSFbWZTLHxj9A8/3KlK/DXwonUtJTXS3uSFD9QHimZwEIX92XdH5Idybm5ongcORq
+         YaRa2DUGAsOh+Ojb0nila80V1G9Qg/nmOTi5pCCfpCqwgSSdQMjjjh7S/BUBXhEuD3WU
+         f+Ak+IWzBDnfXyyQexJjDHV7wdLJt1NjHKZ14q88bYUEo/K7u59tcQ6EV2LJ1mv7zFaS
+         R9i7Kc8QNpf9Fx4XjjVHTzfpFoiWH7COC8jUD0p6fZh5+xh4+TOP4slnPY+37nGDaYU6
+         68H1GR9YGOWJtqlQfOTISFKmQcNASnxNIK4KsTV+VJyLt1PeyGsgivgmbtreRWo3SngL
+         CSOQ==
+X-Gm-Message-State: APjAAAX9iXkyNMUR4g2+KfMygezN2l/l2VvkzlB+9W8+PkiJb4BX3wHm
+        9wn3x60l+8yIjxNFQM9hodkppw==
+X-Google-Smtp-Source: APXvYqxCUpDRSYjyDsro/neuM3zU2yetyNE7BWDvtaVkr0uL7P4Jw8IIuS/ufxGiG+KidXro3bPrPQ==
+X-Received: by 2002:adf:dd86:: with SMTP id x6mr2038651wrl.308.1556791673662;
+        Thu, 02 May 2019 03:07:53 -0700 (PDT)
+Received: from holly.lan (static-84-9-17-116.vodafonexdsl.co.uk. [84.9.17.116])
+        by smtp.googlemail.com with ESMTPSA id f1sm11063325wrc.93.2019.05.02.03.07.52
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Thu, 02 May 2019 03:07:52 -0700 (PDT)
+Subject: Re: [PATCH v6 1/3] backlight: lm3630a: return 0 on success in
+ update_status functions
+To:     Brian Masney <masneyb@onstation.org>, lee.jones@linaro.org,
+        jingoohan1@gmail.com, robh+dt@kernel.org
+Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
+        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        dmurphy@ti.com, jonathan@marek.ca,
+        Daniel Thompson <daniel@redfelineninja.org.uk>
+References: <20190424092505.6578-1-masneyb@onstation.org>
+ <20190424092505.6578-2-masneyb@onstation.org>
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+Message-ID: <864c1ddc-1008-0041-1559-e491ca0186ef@linaro.org>
+Date:   Thu, 2 May 2019 11:07:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190430121254.3737-1-geert+renesas@glider.be>
- <20190430121254.3737-2-geert+renesas@glider.be> <CAL_Jsq+KwOLqd=ZqT-bdM5mp8jfPHu=XingBb6kBsUqHvO=m+g@mail.gmail.com>
- <29e95406-b9fb-fbb6-9240-c3914d885e88@arm.com> <CAL_Jsq+FJDdka9BMcXvGveBHiUf=YUU=3gz3e2wxjtXZ+K+NEA@mail.gmail.com>
- <CAMuHMdWgrcfABOVZti+BYn6ujcYjUHNL7oeyJLgaxB8uPp5hwg@mail.gmail.com> <CAL_JsqKq0KP9H4DumyxJTjD=7rqwgOM=+5jHhkUxQqamrA3h7g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKq0KP9H4DumyxJTjD=7rqwgOM=+5jHhkUxQqamrA3h7g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 2 May 2019 12:01:27 +0200
-Message-ID: <CAMuHMdVWG4LDAAht-6Rendt8L96vW+VEJK4tGnOCMJ38pRDybA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Add Renesas
- RZ/A1 Interrupt Controller
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Marc Zyngier <marc.zyngier@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190424092505.6578-2-masneyb@onstation.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 24/04/2019 10:25, Brian Masney wrote:
+> lm3630a_bank_a_update_status() and lm3630a_bank_b_update_status()
+> both return the brightness value if the brightness was successfully
+> updated. Writing to these attributes via sysfs would cause a 'Bad
+> address' error to be returned. These functions should return 0 on
+> success, so let's change it to correct that error.
+> 
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
+> Fixes: 28e64a68a2ef ("backlight: lm3630: apply chip revision")
+> Acked-by: Pavel Machek <pavel@ucw.cz>
 
-On Wed, May 1, 2019 at 9:38 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Wed, May 1, 2019 at 2:16 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Tue, Apr 30, 2019 at 10:26 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > On Tue, Apr 30, 2019 at 10:34 AM Marc Zyngier <marc.zyngier@arm.com> wrote:
-> > > > On 30/04/2019 16:02, Rob Herring wrote:
-> > > > > On Tue, Apr 30, 2019 at 7:13 AM Geert Uytterhoeven
-> > > > > <geert+renesas@glider.be> wrote:
-> > > > >>
-> > > > >> Add DT bindings for the Renesas RZ/A1 Interrupt Controller.
-> > > > >>
-> > > > >> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > >> ---
-> > > > >> v2:
-> > > > >>   - Add "renesas,gic-spi-base",
-> > > > >>   - Document RZ/A2M.
-> > > > >> ---
-> > > > >>  .../renesas,rza1-irqc.txt                     | 30 +++++++++++++++++++
-> > > > >>  1 file changed, 30 insertions(+)
-> > > > >>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
-> > > > >>
-> > > > >> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt b/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
-> > > > >> new file mode 100644
-> > > > >> index 0000000000000000..ea8ddb6955338ccd
-> > > > >> --- /dev/null
-> > > > >> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
-> > > > >> @@ -0,0 +1,30 @@
-> > > > >> +DT bindings for the Renesas RZ/A1 Interrupt Controller
-> > > > >> +
-> > > > >> +The RZ/A1 Interrupt Controller is a front-end for the GIC found on Renesas
-> > > > >> +RZ/A1 and RZ/A2 SoCs:
-> > > > >> +  - IRQ sense select for 8 external interrupts, 1:1-mapped to 8 GIC SPI
-> > > > >> +    interrupts,
-> > > > >> +  - NMI edge select.
-> > > > >> +
-> > > > >> +Required properties:
-> > > > >> +  - compatible: Must be "renesas,<soctype>-irqc", and "renesas,rza1-irqc" as
-> > > > >> +               fallback.
-> > > > >> +               Examples with soctypes are:
-> > > > >> +                 - "renesas,r7s72100-irqc" (RZ/A1H)
-> > > > >> +                 - "renesas,r7s9210-irqc" (RZ/A2M)
-> > > > >> +  - #interrupt-cells: Must be 2 (an interrupt index and flags, as defined
-> > > > >> +                                in interrupts.txt in this directory)
-> > > > >> +  - interrupt-controller: Marks the device as an interrupt controller
-> > > > >> +  - reg: Base address and length of the memory resource used by the interrupt
-> > > > >> +         controller
-> > > > >> +  - renesas,gic-spi-base: Lowest GIC SPI interrupt number this block maps to.
-> > > > >
-> > > > > Why isn't this just an 'interrupts' property?
-> > > >
-> > > > That's likely because of kernel limitations. The DT code does an
-> > > > of_populate() on any device that it finds, parse the "interrupts"
-> > > > propertiy, resulting in the irq_descs being populated.
-> > > >
-> > > > That creates havoc, as these interrupts are not for this device, but for
-> > > > something that is connected to it. This is merely a bridge of some sort.
-> > >
-> > > 'interrupt-map' would avoid that problem I think.
-> >
-> > "interrupt-map" seems to be meant for translation on a bus?
-> > What to do with the child and parent unit addresses fields?
-> > The parent unit address size depends on the #address-cells of the parent
-> > interrupt-controller (i.e. GIC, so it's zero).
-> > But the child unit address size depends on the #address-cells of the bus node
-> > on which the child is located, so that's a (non-zero) bus #address-cells
-> > (from the root node), not an interrupt-controller #address-cells.
->
-> The #address-cells is always retrieved from the interrupt-parent node
-> (or its parent). The interrupt-parent can implicitly be the child's
-> parent, but that is rarely used in modern systems.
+Hi Brian, sorry for the delay. For some reason your mails are being 
+dumped before they reach me so I only discovered these patches when I 
+paid proper attention to the replies and fetched them from patchwork.
 
-That's not what Devicetree Specification, Release v0.2 says:
+Hi Lee, is the same thing happening for you? ;-)
 
-    child unit address The unit address of the child node being mapped.
-    The number of 32-bit cells required to specify this is described by
-    the #address-cells property of the bus node on which the child is
-    located.
-
-2.4.4 Interrupt Mapping Example (for PCI) says the bus node is the PCI
-bridge, with #address-cells = <3>.
-
-But in the RZ/A1 case the child unit address is irrelevant, as its an
-external interrupt input not related to a specific bus.  It could be
-used by a device without unit address (e.g. gpio-keys), or some device
-on an external local bus (root #adress-cells is <1> on 32-bit without
-LPAE, but this block could be reused in a future LPAE or arm64 SoCs),
-or on e.g. an SPI or i2c bus, with its own #adress-cells value
-(coincidentally <1>, too).
-
-I see of_irq_parse_raw() does use the address-cells of the parent
-interrupt controller (which is usually 0) when iterating its way up,
-following interrupt-map.
-
-So the child unit address does have two different meanings?
-
-> > Each line in an interrupt-map also contains a child interrupt specifier.
-> > As the RZ/A1 IRQC supports 8 interrupt inputs with 4 sense types,
-> > that would mean 32 lines? Or should I just ignore the senses here,
-> > and specify 0?
->
-> You can ignore parts of the child cells with interrupt-map-mask, so
-> you should just need 8 entries.
-
-Right, thanks.
+Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
 
 
+> ---
+> No changes since v2 when this patch was originally introduced.
+> 
+>   drivers/video/backlight/lm3630a_bl.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/video/backlight/lm3630a_bl.c b/drivers/video/backlight/lm3630a_bl.c
+> index 2030a6b77a09..ef2553f452ca 100644
+> --- a/drivers/video/backlight/lm3630a_bl.c
+> +++ b/drivers/video/backlight/lm3630a_bl.c
+> @@ -201,7 +201,7 @@ static int lm3630a_bank_a_update_status(struct backlight_device *bl)
+>   				      LM3630A_LEDA_ENABLE, LM3630A_LEDA_ENABLE);
+>   	if (ret < 0)
+>   		goto out_i2c_err;
+> -	return bl->props.brightness;
+> +	return 0;
+>   
+>   out_i2c_err:
+>   	dev_err(pchip->dev, "i2c failed to access\n");
+> @@ -278,7 +278,7 @@ static int lm3630a_bank_b_update_status(struct backlight_device *bl)
+>   				      LM3630A_LEDB_ENABLE, LM3630A_LEDB_ENABLE);
+>   	if (ret < 0)
+>   		goto out_i2c_err;
+> -	return bl->props.brightness;
+> +	return 0;
+>   
+>   out_i2c_err:
+>   	dev_err(pchip->dev, "i2c failed to access REG_CTRL\n");
+> 
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
