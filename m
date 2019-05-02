@@ -2,122 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 504D612400
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 23:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B42412424
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 23:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726053AbfEBVS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 17:18:58 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:44989 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725995AbfEBVS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 17:18:57 -0400
-Received: by mail-pf1-f195.google.com with SMTP id y13so1738499pfm.11;
-        Thu, 02 May 2019 14:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=IMDXeiJnZScTm/Z2fnilFyDCMvT/so814pMi9HZOjlE=;
-        b=F6aEAFFTMEY1A2qy1v4j/PN2GP6GkE/6G2UBiv6QtH3csxGy/tWQz9UyALBQT0H1TD
-         MeqU6hM9umqY0cg0Apce+C6xD7p/xobhUeh9MvWiRshhDTYwjMCFPRJXDlmB1nI2J9BP
-         OzIBfpWyS6JYvMDV31/EOZgJHoSWDTYYtNA+I4V1u8ppBrJn22kX8LSoN6iqCo9WhEY7
-         d+Gb6Xl5Xs5otxILTZsg9XkKBj+kf5e2zhHYN3mehnTBbPBGx+Rmo9Huu3e7g+KZRBMy
-         FLtK+ZKMR1Bm1xie5Eekig7pGAK9pe7NuFPMeA4bw49W6KmIoFN+i8IYZC8Mr/CFaKXa
-         I9Cg==
+        id S1726022AbfEBVcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 17:32:20 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36964 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbfEBVcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 17:32:19 -0400
+Received: by mail-ot1-f67.google.com with SMTP id r20so3518306otg.4;
+        Thu, 02 May 2019 14:32:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=IMDXeiJnZScTm/Z2fnilFyDCMvT/so814pMi9HZOjlE=;
-        b=hDDN271P8NcMcvALdq2P5oOss1i/8EkzQNfhiYOq9TDxmhwIbkUswQ9nggKntqUBbZ
-         uHejWkd4ExzGsZg5FKf5x85Iw/MtoCQLinOqq51GQNYKZ5sJMnvYDc67vx/5KJXmfWBw
-         IeteT6r0VdqaiVo67CpfPrnuVzfo67JBGnwyW9PSPaZnTmWGFMDRmMmePjRXb5bPSW2v
-         HFWW9t08ynkAryy34hvkMSH8+wXHe+iPSbEJ3E0O3kwuoZHSVdB7J1DdyUkeq5Rb7uc8
-         IwWyTKrHno2KlydOK39cbpKSpOR3YFKhXyT/aL1qWj7t5LfZlk0SWIdW06pWdg3I8t2m
-         Ep+w==
-X-Gm-Message-State: APjAAAWzlhg9+Fslm+jgPdxOwzs5uJB73aLecIUreuApi2JPPLA2yOkB
-        gnKVcsaAeAMKGopqX15eNh8=
-X-Google-Smtp-Source: APXvYqyX3j/ct3IijwmpxxuiCJMGeDGeHP5eVJgN3Sl6Ovmj2WM37sI+ZAhRzZjNxXrFUHk4WRTuBA==
-X-Received: by 2002:a65:5089:: with SMTP id r9mr6248599pgp.14.1556831937028;
-        Thu, 02 May 2019 14:18:57 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id l1sm232976pgp.9.2019.05.02.14.18.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 14:18:56 -0700 (PDT)
-Subject: Re: [PATCH v2 04/17] kunit: test: add kunit_stream a std::stream like
- logger
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        Greg KH <gregkh@linuxfoundation.org>
-Cc:     Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-5-brendanhiggins@google.com>
- <20190502110008.GC12416@kroah.com>
- <CAFd5g47ssM7RQZxQsUJ86UigcF-Uz+Kwv2yvKN_gZK-TtW89bA@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <6fcf1218-a026-fd7b-236f-ea95f6312e1d@gmail.com>
-Date:   Thu, 2 May 2019 14:18:53 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=orS40jFtqb35Wbp7JodVtiOmNi03+OR+s9mWL3M/pTo=;
+        b=D/JCcWotYNLyZKfL2bzhRp1xd6g+p2AZ7Qsxcwf/EK6f6BfP7MgsEN5kdnRPGl1+v0
+         WK2PTt2azvJe4QZyaI0B532X+X3/Q3pAjhPJyVXpMg93h9Nu9EaxtbMVAZqegXnrdw4v
+         tH4rElbYTNkNHY6EMf4V4NOBxRFPdf5nbNKh3GeMNFOtnuQYpNjYJHuElSHilbbOTu8D
+         z/fk+L8hVSUQ+YhEmOUH9siiP0rl8gBKwfIXjeMB1adJutHd25MAJENMEywKQ7W+jNLV
+         UStCysll/cZxYwmq0r58DI4amO9onvgZktW6nCQkLbmkM/Au+zfDbKNCD06G+uNLwu7P
+         vJJQ==
+X-Gm-Message-State: APjAAAWRwCoGnqfEneRb8zAGp7bOvEBUUjy+CtG8IJjycTwGeNY1YjaH
+        y6rpZbM19iFHbr1P2CSBBQ==
+X-Google-Smtp-Source: APXvYqycgFFoT6XyDRCj95MK86JH5d0iSJKNsTW2unTnGgy0mZGyLggORq55HQkw5az2wxF69nEyYQ==
+X-Received: by 2002:a9d:66a:: with SMTP id 97mr4150543otn.234.1556832739089;
+        Thu, 02 May 2019 14:32:19 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 38sm92068otg.10.2019.05.02.14.32.17
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 02 May 2019 14:32:17 -0700 (PDT)
+Date:   Thu, 2 May 2019 16:32:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     linux-kernel@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] Input: edt-ft5x06 - add support for polled
+ configuration
+Message-ID: <20190502213217.GA14901@bogus>
+References: <20190430185859.24015-1-nsaenzjulienne@suse.de>
+ <20190430185859.24015-2-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <CAFd5g47ssM7RQZxQsUJ86UigcF-Uz+Kwv2yvKN_gZK-TtW89bA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190430185859.24015-2-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/19 1:25 PM, Brendan Higgins wrote:
-> On Thu, May 2, 2019 at 4:00 AM Greg KH <gregkh@linuxfoundation.org> wrote:
->>
->> On Wed, May 01, 2019 at 04:01:13PM -0700, Brendan Higgins wrote:
->>> A lot of the expectation and assertion infrastructure prints out fairly
->>> complicated test failure messages, so add a C++ style log library for
->>> for logging test results.
->>
->> Ideally we would always use a standard logging format, like the
->> kselftest tests all are aiming to do.  That way the output can be easily
->> parsed by tools to see if the tests succeed/fail easily.
->>
->> Any chance of having this logging framework enforcing that format as
->> well?
+On Tue, 30 Apr 2019 20:58:59 +0200, Nicolas Saenz Julienne wrote:
+> Some devices might not provide an interrupt line for the touchscreen.
+> In that case the driver defaults to using a polled interface.
 > 
-> I agree with your comment on the later patch that we should handle
-> this at the wrapper script layer (KUnit tool).
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> ---
+>  .../devicetree/bindings/input/touchscreen/edt-ft5x06.txt  | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
 
-This discussion is a little confusing, because it is spread across two
-patches.
-
-I do not agree that this should be handled in the wrapper script, as
-noted in my reply to patch 12, so not repeating it here.
-
--Frank
+Reviewed-by: Rob Herring <robh@kernel.org>
