@@ -2,320 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C65F111A5F
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 15:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4720D11AAD
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 16:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbfEBNhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 09:37:12 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56178 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726268AbfEBNhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 09:37:12 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x42Db0Me053306;
-        Thu, 2 May 2019 08:37:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1556804220;
-        bh=w0xhuSvWo6AdH0kUHQMj7h/c5ozWGAeD8dqkj3K/spQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=hpzKwRXBv8rV5ZrHmOBenSiPLatGUQBQDBpZMh91RlGx7XX8p2HHJnDhCruEBj5zY
-         qeiFDYTVXTz5e+Vxp4zMns94H7Yfhs2BfQeRvCrOTmAFDISF71u9mAbAd3QHpi/d7S
-         bwGbHr8wvWGhvbmUBuynzd9t+wge1HYcTeBFGxIc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x42Db0Hf070226
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 May 2019 08:37:00 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 2 May
- 2019 08:36:59 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 2 May 2019 08:36:59 -0500
-Received: from [10.250.67.168] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x42DaxOW078864;
-        Thu, 2 May 2019 08:36:59 -0500
-Subject: Re: [PATCH v2 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller
- driver for SiFive SoCs
-To:     Yash Shah <yash.shah@sifive.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <palmer@sifive.com>
-CC:     <paul.walmsley@sifive.com>, <linux-kernel@vger.kernel.org>,
-        <aou@eecs.berkeley.edu>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <sachin.ghadi@sifive.com>
-References: <1556793293-21019-1-git-send-email-yash.shah@sifive.com>
- <1556793293-21019-3-git-send-email-yash.shah@sifive.com>
-From:   "Andrew F. Davis" <afd@ti.com>
-Message-ID: <a92e356d-aadc-2c4f-8b23-3d732e7aa58a@ti.com>
-Date:   Thu, 2 May 2019 09:36:59 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        id S1726400AbfEBOCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 10:02:11 -0400
+Received: from foss.arm.com ([217.140.101.70]:46278 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbfEBOCK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 10:02:10 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61D84374;
+        Thu,  2 May 2019 07:02:10 -0700 (PDT)
+Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7849C3F220;
+        Thu,  2 May 2019 07:02:08 -0700 (PDT)
+Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Add Renesas
+ RZ/A1 Interrupt Controller
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        devicetree@vger.kernel.org,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190430121254.3737-1-geert+renesas@glider.be>
+ <20190430121254.3737-2-geert+renesas@glider.be>
+ <CAL_Jsq+KwOLqd=ZqT-bdM5mp8jfPHu=XingBb6kBsUqHvO=m+g@mail.gmail.com>
+ <29e95406-b9fb-fbb6-9240-c3914d885e88@arm.com>
+ <CAL_Jsq+FJDdka9BMcXvGveBHiUf=YUU=3gz3e2wxjtXZ+K+NEA@mail.gmail.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
+ mQINBE6Jf0UBEADLCxpix34Ch3kQKA9SNlVQroj9aHAEzzl0+V8jrvT9a9GkK+FjBOIQz4KE
+ g+3p+lqgJH4NfwPm9H5I5e3wa+Scz9wAqWLTT772Rqb6hf6kx0kKd0P2jGv79qXSmwru28vJ
+ t9NNsmIhEYwS5eTfCbsZZDCnR31J6qxozsDHpCGLHlYym/VbC199Uq/pN5gH+5JHZyhyZiNW
+ ozUCjMqC4eNW42nYVKZQfbj/k4W9xFfudFaFEhAf/Vb1r6F05eBP1uopuzNkAN7vqS8XcgQH
+ qXI357YC4ToCbmqLue4HK9+2mtf7MTdHZYGZ939OfTlOGuxFW+bhtPQzsHiW7eNe0ew0+LaL
+ 3wdNzT5abPBscqXWVGsZWCAzBmrZato+Pd2bSCDPLInZV0j+rjt7MWiSxEAEowue3IcZA++7
+ ifTDIscQdpeKT8hcL+9eHLgoSDH62SlubO/y8bB1hV8JjLW/jQpLnae0oz25h39ij4ijcp8N
+ t5slf5DNRi1NLz5+iaaLg4gaM3ywVK2VEKdBTg+JTg3dfrb3DH7ctTQquyKun9IVY8AsxMc6
+ lxl4HxrpLX7HgF10685GG5fFla7R1RUnW5svgQhz6YVU33yJjk5lIIrrxKI/wLlhn066mtu1
+ DoD9TEAjwOmpa6ofV6rHeBPehUwMZEsLqlKfLsl0PpsJwov8TQARAQABtCNNYXJjIFp5bmdp
+ ZXIgPG1hcmMuenluZ2llckBhcm0uY29tPokCOwQTAQIAJQIbAwYLCQgHAwIGFQgCCQoLBBYC
+ AwECHgECF4AFAk6NvYYCGQEACgkQI9DQutE9ekObww/+NcUATWXOcnoPflpYG43GZ0XjQLng
+ LQFjBZL+CJV5+1XMDfz4ATH37cR+8gMO1UwmWPv5tOMKLHhw6uLxGG4upPAm0qxjRA/SE3LC
+ 22kBjWiSMrkQgv5FDcwdhAcj8A+gKgcXBeyXsGBXLjo5UQOGvPTQXcqNXB9A3ZZN9vS6QUYN
+ TXFjnUnzCJd+PVI/4jORz9EUVw1q/+kZgmA8/GhfPH3xNetTGLyJCJcQ86acom2liLZZX4+1
+ 6Hda2x3hxpoQo7pTu+XA2YC4XyUstNDYIsE4F4NVHGi88a3N8yWE+Z7cBI2HjGvpfNxZnmKX
+ 6bws6RQ4LHDPhy0yzWFowJXGTqM/e79c1UeqOVxKGFF3VhJJu1nMlh+5hnW4glXOoy/WmDEM
+ UMbl9KbJUfo+GgIQGMp8mwgW0vK4HrSmevlDeMcrLdfbbFbcZLNeFFBn6KqxFZaTd+LpylIH
+ bOPN6fy1Dxf7UZscogYw5Pt0JscgpciuO3DAZo3eXz6ffj2NrWchnbj+SpPBiH4srfFmHY+Y
+ LBemIIOmSqIsjoSRjNEZeEObkshDVG5NncJzbAQY+V3Q3yo9og/8ZiaulVWDbcpKyUpzt7pv
+ cdnY3baDE8ate/cymFP5jGJK++QCeA6u6JzBp7HnKbngqWa6g8qDSjPXBPCLmmRWbc5j0lvA
+ 6ilrF8m5Ag0ETol/RQEQAM/2pdLYCWmf3rtIiP8Wj5NwyjSL6/UrChXtoX9wlY8a4h3EX6E3
+ 64snIJVMLbyr4bwdmPKULlny7T/R8dx/mCOWu/DztrVNQiXWOTKJnd/2iQblBT+W5W8ep/nS
+ w3qUIckKwKdplQtzSKeE+PJ+GMS+DoNDDkcrVjUnsoCEr0aK3cO6g5hLGu8IBbC1CJYSpple
+ VVb/sADnWF3SfUvJ/l4K8Uk4B4+X90KpA7U9MhvDTCy5mJGaTsFqDLpnqp/yqaT2P7kyMG2E
+ w+eqtVIqwwweZA0S+tuqput5xdNAcsj2PugVx9tlw/LJo39nh8NrMxAhv5aQ+JJ2I8UTiHLX
+ QvoC0Yc/jZX/JRB5r4x4IhK34Mv5TiH/gFfZbwxd287Y1jOaD9lhnke1SX5MXF7eCT3cgyB+
+ hgSu42w+2xYl3+rzIhQqxXhaP232t/b3ilJO00ZZ19d4KICGcakeiL6ZBtD8TrtkRiewI3v0
+ o8rUBWtjcDRgg3tWx/PcJvZnw1twbmRdaNvsvnlapD2Y9Js3woRLIjSAGOijwzFXSJyC2HU1
+ AAuR9uo4/QkeIrQVHIxP7TJZdJ9sGEWdeGPzzPlKLHwIX2HzfbdtPejPSXm5LJ026qdtJHgz
+ BAb3NygZG6BH6EC1NPDQ6O53EXorXS1tsSAgp5ZDSFEBklpRVT3E0NrDABEBAAGJAh8EGAEC
+ AAkFAk6Jf0UCGwwACgkQI9DQutE9ekMLBQ//U+Mt9DtFpzMCIHFPE9nNlsCm75j22lNiw6mX
+ mx3cUA3pl+uRGQr/zQC5inQNtjFUmwGkHqrAw+SmG5gsgnM4pSdYvraWaCWOZCQCx1lpaCOl
+ MotrNcwMJTJLQGc4BjJyOeSH59HQDitKfKMu/yjRhzT8CXhys6R0kYMrEN0tbe1cFOJkxSbV
+ 0GgRTDF4PKyLT+RncoKxQe8lGxuk5614aRpBQa0LPafkirwqkUtxsPnarkPUEfkBlnIhAR8L
+ kmneYLu0AvbWjfJCUH7qfpyS/FRrQCoBq9QIEcf2v1f0AIpA27f9KCEv5MZSHXGCdNcbjKw1
+ 39YxYZhmXaHFKDSZIC29YhQJeXWlfDEDq6nIhvurZy3mSh2OMQgaIoFexPCsBBOclH8QUtMk
+ a3jW/qYyrV+qUq9Wf3SKPrXf7B3xB332jFCETbyZQXqmowV+2b3rJFRWn5hK5B+xwvuxKyGq
+ qDOGjof2dKl2zBIxbFgOclV7wqCVkhxSJi/QaOj2zBqSNPXga5DWtX3ekRnJLa1+ijXxmdjz
+ hApihi08gwvP5G9fNGKQyRETePEtEAWt0b7dOqMzYBYGRVr7uS4uT6WP7fzOwAJC4lU7ZYWZ
+ yVshCa0IvTtp1085RtT3qhh9mobkcZ+7cQOY+Tx2RGXS9WeOh2jZjdoWUv6CevXNQyOUXMM=
+Organization: ARM Ltd
+Message-ID: <506a3763-62c4-6381-c0d2-d5c5ecacd333@arm.com>
+Date:   Thu, 2 May 2019 15:02:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <1556793293-21019-3-git-send-email-yash.shah@sifive.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <CAL_Jsq+FJDdka9BMcXvGveBHiUf=YUU=3gz3e2wxjtXZ+K+NEA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/19 6:34 AM, Yash Shah wrote:
-> The driver currently supports only SiFive FU540-C000 platform.
+On 30/04/2019 21:25, Rob Herring wrote:
+> On Tue, Apr 30, 2019 at 10:34 AM Marc Zyngier <marc.zyngier@arm.com> wrote:
+>>
+>> On 30/04/2019 16:02, Rob Herring wrote:
+>>> On Tue, Apr 30, 2019 at 7:13 AM Geert Uytterhoeven
+>>> <geert+renesas@glider.be> wrote:
+>>>>
+>>>> Add DT bindings for the Renesas RZ/A1 Interrupt Controller.
+>>>>
+>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>>> ---
+>>>> v2:
+>>>>   - Add "renesas,gic-spi-base",
+>>>>   - Document RZ/A2M.
+>>>> ---
+>>>>  .../renesas,rza1-irqc.txt                     | 30 +++++++++++++++++++
+>>>>  1 file changed, 30 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt b/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
+>>>> new file mode 100644
+>>>> index 0000000000000000..ea8ddb6955338ccd
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
+>>>> @@ -0,0 +1,30 @@
+>>>> +DT bindings for the Renesas RZ/A1 Interrupt Controller
+>>>> +
+>>>> +The RZ/A1 Interrupt Controller is a front-end for the GIC found on Renesas
+>>>> +RZ/A1 and RZ/A2 SoCs:
+>>>> +  - IRQ sense select for 8 external interrupts, 1:1-mapped to 8 GIC SPI
+>>>> +    interrupts,
+>>>> +  - NMI edge select.
+>>>> +
+>>>> +Required properties:
+>>>> +  - compatible: Must be "renesas,<soctype>-irqc", and "renesas,rza1-irqc" as
+>>>> +               fallback.
+>>>> +               Examples with soctypes are:
+>>>> +                 - "renesas,r7s72100-irqc" (RZ/A1H)
+>>>> +                 - "renesas,r7s9210-irqc" (RZ/A2M)
+>>>> +  - #interrupt-cells: Must be 2 (an interrupt index and flags, as defined
+>>>> +                                in interrupts.txt in this directory)
+>>>> +  - interrupt-controller: Marks the device as an interrupt controller
+>>>> +  - reg: Base address and length of the memory resource used by the interrupt
+>>>> +         controller
+>>>> +  - renesas,gic-spi-base: Lowest GIC SPI interrupt number this block maps to.
+>>>
+>>> Why isn't this just an 'interrupts' property?
+>>
+>> That's likely because of kernel limitations. The DT code does an
+>> of_populate() on any device that it finds, parse the "interrupts"
+>> propertiy, resulting in the irq_descs being populated.
+>>
+>> That creates havoc, as these interrupts are not for this device, but for
+>> something that is connected to it. This is merely a bridge of some sort.
 > 
-> The initial version of L2 cache controller driver includes:
-> - Initial configuration reporting at boot up.
-> - Support for ECC related functionality.
-> 
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> ---
->  arch/riscv/mm/Makefile          |   1 +
->  arch/riscv/mm/sifive_l2_cache.c | 221 ++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 222 insertions(+)
->  create mode 100644 arch/riscv/mm/sifive_l2_cache.c
-> 
-> diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
-> index eb22ab4..1523ee5 100644
-> --- a/arch/riscv/mm/Makefile
-> +++ b/arch/riscv/mm/Makefile
-> @@ -3,3 +3,4 @@ obj-y += fault.o
->  obj-y += extable.o
->  obj-y += ioremap.o
->  obj-y += cacheflush.o
-> +obj-y += sifive_l2_cache.o
-> diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
-> new file mode 100644
-> index 0000000..923ab34
-> --- /dev/null
-> +++ b/arch/riscv/mm/sifive_l2_cache.c
-> @@ -0,0 +1,221 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SiFive L2 cache controller Driver
-> + *
-> + * Copyright (C) 2018-2019 SiFive, Inc.
-> + *
-> + */
-> +#include <linux/debugfs.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_address.h>
-> +
-> +#define SIFIVE_L2_DIRECCFIX_LOW 0x100
-> +#define SIFIVE_L2_DIRECCFIX_HIGH 0x104
-> +#define SIFIVE_L2_DIRECCFIX_COUNT 0x108
-> +
-> +#define SIFIVE_L2_DATECCFIX_LOW 0x140
-> +#define SIFIVE_L2_DATECCFIX_HIGH 0x144
-> +#define SIFIVE_L2_DATECCFIX_COUNT 0x148
-> +
-> +#define SIFIVE_L2_DATECCFAIL_LOW 0x160
-> +#define SIFIVE_L2_DATECCFAIL_HIGH 0x164
-> +#define SIFIVE_L2_DATECCFAIL_COUNT 0x168
-> +
-> +#define SIFIVE_L2_CONFIG 0x00
-> +#define SIFIVE_L2_WAYENABLE 0x08
-> +#define SIFIVE_L2_ECCINJECTERR 0x40
-> +
-> +#define SIFIVE_L2_ERR_TYPE_CE 0
-> +#define SIFIVE_L2_ERR_TYPE_UE 1
-> +#define SIFIVE_L2_MAX_ECCINTR 3
-> +
-> +static void __iomem *l2_base;
-> +static int g_irq[SIFIVE_L2_MAX_ECCINTR];
-> +
-> +enum {
-> +	DIR_CORR = 0,
-> +	DATA_CORR,
-> +	DATA_UNCORR,
-> +};
-> +
-> +static unsigned int l2_dirfix_addr_high(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DIRECCFIX_HIGH);
-> +}
-> +
-> +static unsigned int l2_dirfix_addr_low(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DIRECCFIX_LOW);
-> +}
-> +
-> +static unsigned int l2_dirfix_count(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DIRECCFIX_COUNT);
-> +}
-> +
-> +static unsigned int l2_datfix_addr_high(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DATECCFIX_HIGH);
-> +}
-> +
-> +static unsigned int l2_datfix_addr_low(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DATECCFIX_LOW);
-> +}
-> +
-> +static unsigned int l2_datfix_count(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DATECCFIX_COUNT);
-> +}
-> +
-> +static unsigned int l2_datfail_addr_high(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DATECCFAIL_HIGH);
-> +}
-> +
-> +static unsigned int l2_datfail_addr_low(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DATECCFAIL_LOW);
-> +}
-> +
-> +static unsigned int l2_datfail_count(void)
-> +{
-> +	return readl(l2_base + SIFIVE_L2_DATECCFAIL_COUNT);
-> +}
+> 'interrupt-map' would avoid that problem I think.
 
-Do you really need all these single line functions? Below in several
-spots you use the readl directly, just do that everywhere.
+I'm afraid it doesn't scale at all. Case in point, the GICv3 ITS. Up to
+32bit worth of IDs. How do you represent that using an interrupt-map?
+Agreed, that's the extreme case, but representing more than a handful of
+interrupts using an interrupt-map is a pain.
 
-Andrew
-
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +static struct dentry *sifive_test;
-> +
-> +static ssize_t l2_write(struct file *file, const char __user *data,
-> +			size_t count, loff_t *ppos)
-> +{
-> +	unsigned int val;
-> +
-> +	if (kstrtouint_from_user(data, count, 0, &val))
-> +		return -EINVAL;
-> +	if ((val >= 0 && val < 0xFF) || (val >= 0x10000 && val < 0x100FF))
-> +		writel(val, l2_base + SIFIVE_L2_ECCINJECTERR);
-> +	else
-> +		return -EINVAL;
-> +	return count;
-> +}
-> +
-> +static const struct file_operations l2_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = simple_open,
-> +	.write = l2_write
-> +};
-> +
-> +static void setup_sifive_debug(void)
-> +{
-> +	sifive_test = debugfs_create_dir("sifive_l2_cache", NULL);
-> +
-> +	debugfs_create_file("sifive_debug_inject_error", 0200,
-> +			    sifive_test, NULL, &l2_fops);
-> +}
-> +#endif
-> +
-> +static void l2_config_read(void)
-> +{
-> +	u32 regval, val;
-> +
-> +	regval = readl(l2_base + SIFIVE_L2_CONFIG);
-> +	val = regval & 0xFF;
-> +	pr_info("L2CACHE: No. of Banks in the cache: %d\n", val);
-> +	val = (regval & 0xFF00) >> 8;
-> +	pr_info("L2CACHE: No. of ways per bank: %d\n", val);
-> +	val = (regval & 0xFF0000) >> 16;
-> +	pr_info("L2CACHE: Sets per bank: %llu\n", (uint64_t)1 << val);
-> +	val = (regval & 0xFF000000) >> 24;
-> +	pr_info("L2CACHE: Bytes per cache block: %llu\n", (uint64_t)1 << val);
-> +
-> +	regval = readl(l2_base + SIFIVE_L2_WAYENABLE);
-> +	pr_info("L2CACHE: Index of the largest way enabled: %d\n", regval);
-> +}
-> +
-> +static const struct of_device_id sifive_l2_ids[] = {
-> +	{ .compatible = "sifive,fu540-c000-ccache" },
-> +	{ /* end of table */ },
-> +};
-> +
-> +static ATOMIC_NOTIFIER_HEAD(l2_err_chain);
-> +
-> +int register_sifive_l2_error_notifier(struct notifier_block *nb)
-> +{
-> +	return atomic_notifier_chain_register(&l2_err_chain, nb);
-> +}
-> +EXPORT_SYMBOL_GPL(register_sifive_l2_error_notifier);
-> +
-> +int unregister_sifive_l2_error_notifier(struct notifier_block *nb)
-> +{
-> +	return atomic_notifier_chain_unregister(&l2_err_chain, nb);
-> +}
-> +EXPORT_SYMBOL_GPL(unregister_sifive_l2_error_notifier);
-> +
-> +static irqreturn_t l2_int_handler(int irq, void *device)
-> +{
-> +	unsigned int regval, add_h, add_l;
-> +
-> +	if (irq == g_irq[DIR_CORR]) {
-> +		add_h = l2_dirfix_addr_high();
-> +		add_l = l2_dirfix_addr_low();
-> +		pr_err("L2CACHE: DirError @ 0x%08X.%08X\n", add_h, add_l);
-> +		regval = l2_dirfix_count();
-> +		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_CE,
-> +					   "DirECCFix");
-> +	}
-> +	if (irq == g_irq[DATA_CORR]) {
-> +		add_h = l2_datfix_addr_high();
-> +		add_l = l2_datfix_addr_low();
-> +		pr_err("L2CACHE: DataError @ 0x%08X.%08X\n", add_h, add_l);
-> +		regval = l2_datfix_count();
-> +		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_CE,
-> +					   "DatECCFix");
-> +	}
-> +	if (irq == g_irq[DATA_UNCORR]) {
-> +		add_h = l2_datfail_addr_high();
-> +		add_l = l2_datfail_addr_low();
-> +		pr_err("L2CACHE: DataFail @ 0x%08X.%08X\n", add_h, add_l);
-> +		regval = l2_datfail_count();
-> +		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_UE,
-> +					   "DatECCFail");
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +int __init sifive_l2_init(void)
-> +{
-> +	struct device_node *np;
-> +	struct resource res;
-> +	int i, rc;
-> +
-> +	np = of_find_matching_node(NULL, sifive_l2_ids);
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	if (of_address_to_resource(np, 0, &res))
-> +		return -ENODEV;
-> +
-> +	l2_base = ioremap(res.start, resource_size(&res));
-> +	if (!l2_base)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < SIFIVE_L2_MAX_ECCINTR; i++) {
-> +		g_irq[i] = irq_of_parse_and_map(np, i);
-> +		rc = request_irq(g_irq[i], l2_int_handler, 0, "l2_ecc", NULL);
-> +		if (rc) {
-> +			pr_err("L2CACHE: Could not request IRQ %d\n", g_irq[i]);
-> +			return rc;
-> +		}
-> +	}
-> +
-> +	l2_config_read();
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +	setup_sifive_debug();
-> +#endif
-> +	return 0;
-> +}
-> +device_initcall(sifive_l2_init);
 > 
+>> Furthermore, this is a rather long established practice: gic-v2m,
+>> gic-v3-mbi, mediatek,sysirq, mediatek,cirq... All the bits of glue that
+>> for one reason or another plug onto the GIC use the same method.
+> 
+> All handling the mapping to the parent in their own way...
+
+Yes, and that's the problem. We need a scalable way to describe ranges
+of interrupts that are "forwarded" (for the lack of a better term), but
+now "owned" by the the interrupt controller.
+
+Thanks,
+
+	M.
+-- 
+Jazz is not dead. It just smells funny...
