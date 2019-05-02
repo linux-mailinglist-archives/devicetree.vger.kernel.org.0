@@ -2,94 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F50111745
-	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 12:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A78411748
+	for <lists+devicetree@lfdr.de>; Thu,  2 May 2019 12:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726270AbfEBKfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 06:35:15 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:39520 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726455AbfEBKfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 06:35:11 -0400
-Received: by mail-pg1-f194.google.com with SMTP id l18so859093pgj.6
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 03:35:11 -0700 (PDT)
+        id S1726512AbfEBKfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 06:35:19 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:42004 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726268AbfEBKfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 06:35:18 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 13so591742pfw.9
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 03:35:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=wZru5L4BwlMPJIzUrAzcCZvzKe2NTmlwt/CFToiy7Vs=;
-        b=mX9KMI93SFhiHFZmRrSsQkw0yfoNOZT/f3xuRGJIUlEe4sgZGellOCd6jb7ZIfjpOF
-         8ISyT58zUe1pShow8tMD1VF3snDw8geJ+PVIMjeF+do/3flqK42ioDxBE2Wlu6p5+eym
-         19d4unsAjG54qqhfbbXfsikKv4gFLho8iMv+CaEO4tZE2GEqR4DO9xZtpJ+sh/+HC/5y
-         /pQWz0ejLdonONRlEjWq4825blVVvGfGp6UU7XXuI8kx/gRovHn6Erb+CfdPjNGWCMf/
-         NgNXUhNXwIgiBSuBre/hUSZBIX7rqdNFQWymugF9C9mXqOIIzg/UPED10GjBtc2/H9Ck
-         N8Pg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=y8299RwRcUp2oS13ZRZK7TA/HszNxbKnoI7RGJSnP08=;
+        b=VW6x9cF7vcuTuR6WhIa79BZi8nH6IZ0iIoc/Yt98Tp5SavOySYwFfLmiTSz3F8atNk
+         Bx4GfARB5YL+R9Vz4bqE4AyZDgYmzEqcnlUhpQZt0Amuggr7SWzBQ0f8/WxPFQA89DsJ
+         0RcBTPwyj+qPPKvFMViolH2KdmkZUb/FcScCWtQpJRa9oneM7UK/Pjj7irmmr2+NErPH
+         Tyyw8NY8IjSECx2rbjv0Tlai46ION1VZydHHiVG8Wli7agAI3cmf+9S25eGj/RqnzGaL
+         BzvA6z1VktO/XuulHBXMsmfGTV8fWhkkMZIBVM1FByMxL9Al4TdwGwJtE6bCWQakW3M1
+         ZOhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=wZru5L4BwlMPJIzUrAzcCZvzKe2NTmlwt/CFToiy7Vs=;
-        b=rTqMsHZMZPoohVcmMxdYFXP5kQ7NadffHgU71ZOwN16SprCP4Y+oliPikEH+LiqlIW
-         kdZT8Tftbx4xmPU9f911AQKFmvNvQNySTHga9bP6CTtJ529DgFh1BEQ2GQiXXd9zFZ/p
-         9Hj/4tIso29ieV9CD8zUIla4NruQKZv3a7hiMqR3DPx/M09o2GkrrMQEdR86shakIRIq
-         m/khNzeEdHHW1LRoiLPJ+R45h/WiqRiliEHHMKkF/E3WzZaw6lxk5Nl4q0VxIuexZqVh
-         QNn77fcsgcBfySdeBXBx3ukO+J3o7Y3rcRo1XFpAZownPA6wmmJeI+XQMr7KMKqRxt2F
-         eRKQ==
-X-Gm-Message-State: APjAAAU3q/3S9XquIu76GsdWAgk5MX3FW2Mzx2MHB1OzYV7ga+BtpfPb
-        cCyt9Na8Z1uzgtJN7589ZPCeUQ==
-X-Google-Smtp-Source: APXvYqwhlRnOQWCW7OXs/Fj/+cKri7DVuTQHAbVswxgM3+H54vt4x285HDiFeTDUBiPVFAJHrPZ9ZA==
-X-Received: by 2002:a63:4c24:: with SMTP id z36mr1290196pga.130.1556793310922;
-        Thu, 02 May 2019 03:35:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=y8299RwRcUp2oS13ZRZK7TA/HszNxbKnoI7RGJSnP08=;
+        b=UD+xzgbzSyEwD9rlDeAfphtT3GNg7z2AL1SKe1vymQSXsfZz9vy5AM8c1a1RRxrUxE
+         PZ97z9+lTfXpoiLCVMZ2pDWfvghUPbFxPOqxnZG3AXURjwIE1kLV046gOmsFWH7Mkfb1
+         dGpLSqgFo+5xpbn4Ytuy/iEVaAejuLS9mTtwisfn6Q4+OUtf3MpG3RqDyxR5t8vU2IWo
+         O5mwy2XQ2ESLswV3RDHF3OYgp1KUdCEfO51ZVVC+PnLTkdnlBaRW5cOIXnNbwOsGyPJc
+         fFnco0z5NBL3ZzN30//8/mmYUTCKAAGO5TLUHCYCEgg9QAR50C2VWwq1BKRuEbp7sta+
+         QP5A==
+X-Gm-Message-State: APjAAAWnnW8cC1FrOLOPbqurtadvCQa+IGENZwkq2bI3KeDmqctWEEEG
+        +N/LcnQNSzKtIMcs2I6lEqlG7g==
+X-Google-Smtp-Source: APXvYqzQU1/MMFsvo7NWB+bEk3YJ2XCTwbT4XUtAR/cCVn6WJzMQQXtcEBR1FnqzrGAkeeuesPlU6A==
+X-Received: by 2002:aa7:8212:: with SMTP id k18mr3355979pfi.50.1556793317446;
+        Thu, 02 May 2019 03:35:17 -0700 (PDT)
 Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id h187sm69141133pfc.52.2019.05.02.03.35.06
+        by smtp.googlemail.com with ESMTPSA id h187sm69141133pfc.52.2019.05.02.03.35.13
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 02 May 2019 03:35:09 -0700 (PDT)
+        Thu, 02 May 2019 03:35:16 -0700 (PDT)
 From:   Yash Shah <yash.shah@sifive.com>
 To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         palmer@sifive.com
 Cc:     paul.walmsley@sifive.com, linux-kernel@vger.kernel.org,
         aou@eecs.berkeley.edu, mark.rutland@arm.com, robh+dt@kernel.org,
         sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH v2 0/2] L2 cache controller support for SiFive FU540
-Date:   Thu,  2 May 2019 16:04:51 +0530
-Message-Id: <1556793293-21019-1-git-send-email-yash.shah@sifive.com>
+Subject: [PATCH v2 1/2] RISC-V: Add DT documentation for SiFive L2 Cache Controller
+Date:   Thu,  2 May 2019 16:04:52 +0530
+Message-Id: <1556793293-21019-2-git-send-email-yash.shah@sifive.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1556793293-21019-1-git-send-email-yash.shah@sifive.com>
+References: <1556793293-21019-1-git-send-email-yash.shah@sifive.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series adds an L2 cache controller driver with DT documentation
-for SiFive FU540-C000.
+Add device tree bindings for SiFive FU540 L2 cache controller driver
 
-These two patches were initially part of the patch series:
-'L2 cache controller and EDAC support for SiFive SoCs'
-https://lkml.org/lkml/2019/4/15/320
-In order to merge L2 cache controller driver without any dependency on EDAC,
-the L2 cache controller patches are re-posted separately in this series.
-
-The patchset is based on Linux 5.1-rc2 and tested on HiFive Unleashed
-board with additional board related patches needed for testing can be
-found at dev/yashs/L2_cache_controller branch of:
-https://github.com/yashshah7/riscv-linux.git
-
-Change history:
-v2
-- Mention the valid values for cache properties in DT documentation
-- Remove the unnecessary property 'reg-names'
-- Add "cache" to supported compatible string property
-- Remove conditional checks from debugfs functions in sifive_l2_cache.c
-
-Yash Shah (2):
-  RISC-V: Add DT documentation for SiFive L2 Cache Controller
-  RISC-V: sifive_l2_cache: Add L2 cache controller driver for SiFive
-    SoCs
-
- .../devicetree/bindings/riscv/sifive-l2-cache.txt  |  51 +++++
- arch/riscv/mm/Makefile                             |   1 +
- arch/riscv/mm/sifive_l2_cache.c                    | 221 +++++++++++++++++++++
- 3 files changed, 273 insertions(+)
+Signed-off-by: Yash Shah <yash.shah@sifive.com>
+---
+ .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 51 ++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
- create mode 100644 arch/riscv/mm/sifive_l2_cache.c
 
+diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+new file mode 100644
+index 0000000..73d8f19
+--- /dev/null
++++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+@@ -0,0 +1,51 @@
++SiFive L2 Cache Controller
++--------------------------
++The SiFive Level 2 Cache Controller is used to provide access to fast copies
++of memory for masters in a Core Complex. The Level 2 Cache Controller also
++acts as directory-based coherency manager.
++All the properties in ePAPR/DeviceTree specification applies for this platform
++
++Required Properties:
++--------------------
++- compatible: Should be "sifive,fu540-c000-ccache" and "cache"
++
++- cache-block-size: Specifies the block size in bytes of the cache.
++  Should be 64
++
++- cache-level: Should be set to 2 for a level 2 cache
++
++- cache-sets: Specifies the number of associativity sets of the cache.
++  Should be 1024
++
++- cache-size: Specifies the size in bytes of the cache. Should be 2097152
++
++- cache-unified: Specifies the cache is a unified cache
++
++- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
++
++- reg: Physical base address and size of L2 cache controller registers map
++
++Optional Properties:
++--------------------
++- next-level-cache: phandle to the next level cache if present.
++
++- memory-region: reference to the reserved-memory for the L2 Loosely Integrated
++  Memory region. The reserved memory node should be defined as per the bindings
++  in reserved-memory.txt
++
++
++Example:
++
++	cache-controller@2010000 {
++		compatible = "sifive,fu540-c000-ccache", "cache";
++		cache-block-size = <64>;
++		cache-level = <2>;
++		cache-sets = <1024>;
++		cache-size = <2097152>;
++		cache-unified;
++		interrupt-parent = <&plic0>;
++		interrupts = <1 2 3>;
++		reg = <0x0 0x2010000 0x0 0x1000>;
++		next-level-cache = <&L25 &L40 &L36>;
++		memory-region = <&l2_lim>;
++	};
 -- 
 1.9.1
 
