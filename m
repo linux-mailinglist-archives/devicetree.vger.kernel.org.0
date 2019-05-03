@@ -2,314 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EA001360B
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 01:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 850F41361E
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 01:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726600AbfECXPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 19:15:02 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:37473 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726451AbfECXPC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 19:15:02 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 143so5689393oii.4
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 16:15:01 -0700 (PDT)
+        id S1726059AbfECXYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 19:24:46 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:46514 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726404AbfECXYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 19:24:46 -0400
+Received: by mail-pf1-f193.google.com with SMTP id j11so3602062pff.13
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 16:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YiBKDqzegd04O+PzAcr7R/FeGobNFYgVSfswMBcZCZU=;
-        b=SXAm3yjCa0nibHXK4ceAAGFs6uCwaUpLsdyCU1o2lKOvlI3rqheWTpKnj2wyShZ7lu
-         TPJifTqWsstn9qWG7fCugTMkSy8sDN1Wk1HhrgYmZcpapX1zR4GB6osSwq4oYO68ERug
-         m0zSS0SWlzMDnDTsEAVvAyt86c9z8vzc3wqoXGPWKAEB7EiOd+Kh78da/TO1uS4+hvXu
-         KHDx+3hb12TUOvvVeISvhVNnosdHc8Tl78soob4D9ge86intpqwkzZ5hweRv3v6ENiSu
-         1rA6a30tpPPT6VjU3M1ZMvAEXkExGqUONafw5xmmYaV8aTHBJJADG16CXD8P/IByq2ER
-         s7rQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=/RkezotWe0qKz9gHI76Sx6wtXQAllpgle4h0JP9cnd8=;
+        b=ugtyN4aWkbZ/xhfEWgsJkOc+gWDbNF9B9D+Yyui7dkiGipwGkMFmNn0NwPZ52HzZfj
+         Mg6H4LQOaoYV4qmeIr70TuVEcdZGQ+v3HadDR5FRIx3adlE3HG98hjGJ1iY4icxXpEsr
+         rQ0kH2jFKRG6LQiQ7NehMf0mFbJiOqH7Doi8qpGk8LarR3nzIdNmGIUg7hVhAZqk2Y7z
+         +g6FSZJGjEoFz64pJthDkOT/zPNsCtm7Fe7wjSvfgCOdbdImiF9sx/T4PYAeHn9lWPIm
+         YmuRaQzBsqw7pxw2YuwCHv/1nOIBhJtayWqA0cpleSnDk34iMh1TTNCTDZ+FU6PsBFgx
+         UXlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YiBKDqzegd04O+PzAcr7R/FeGobNFYgVSfswMBcZCZU=;
-        b=JeXM1/lmBhJyOOJL+F1ZV4mr23kUgx66EH8//mV7DDyfckt3hxVK9Yy3KgyXfLZY+p
-         TD36LQd1MK9Hy9QRapTkqcJMUTToa8BuUm8wlp9zCpSplCZULZOodKrOmpVaccvuBm/p
-         hIlfV9oH1phE7Jp07nb79h4/ysYKPKyg4iJoKjk63j3PYynZxYWJj8LzfJ6+6XrK4zD7
-         2AYv8HW74fC6VS/ec4L5ZH++tYDL7Dm8QRgZh1nEETVs7b07awJMhTCfc/Sy8752Icjj
-         XhMTQt7RIopOXV8KGjsPGPnICwrnujy3p3VETHDtnFFnA1xYxS0jUIyGnxwU0xfFcjoY
-         BoWQ==
-X-Gm-Message-State: APjAAAVa72oPNvu8ZeFtpeJ9OAF/buB0uzhGm1gGjtCFCsfcvoRLeQKR
-        UL9rWJtoqygIhwLoBB9EiXJf2Cu/G4BHSrVz1FX0Yg==
-X-Google-Smtp-Source: APXvYqy8jY7gfDI7WH+mEtQuPQSGdDFLmcOn9yaaI5FbZz82XQ12EIWD3sphcpnXXnG85dXFQdhExQpRbCPKPfTjxbk=
-X-Received: by 2002:aca:43d5:: with SMTP id q204mr880835oia.100.1556925301033;
- Fri, 03 May 2019 16:15:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-13-brendanhiggins@google.com> <20190502110220.GD12416@kroah.com>
- <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
- <a49c5088-a821-210c-66de-f422536f5b01@gmail.com> <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
- <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com> <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
- <052fa196-4ea9-8384-79b7-fe6bacc0ee82@gmail.com>
-In-Reply-To: <052fa196-4ea9-8384-79b7-fe6bacc0ee82@gmail.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Fri, 3 May 2019 16:14:49 -0700
-Message-ID: <CAFd5g47aY-CL+d7DfiyTidY4aAVY+eg1TM1UJ4nYqKSfHOi-0w@mail.gmail.com>
-Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/RkezotWe0qKz9gHI76Sx6wtXQAllpgle4h0JP9cnd8=;
+        b=psjJGHAQbsjsY7eiU1QIX+kELOJxRQbh41kBgvlXmpUpt4Ab2xiuSZfGguYCMI4zhc
+         fGxpkvvzOgbSlyqgFHZqR+9wWfKtMz0/7XV/zksLa2wGBJMX/IBcc37liDA1/j5+kTOP
+         X4RNn9tNwVmQOWJKnoxyJiZ5+A2tKyeFX8u9xxFyUWWN2TIJz6OTyPD8PFnC13ts5Qmb
+         yVuCtSNbGzVObgWPNT5YzI1fJJxjhYnE8+pOanjT765hAvgDFqGfzDmuGC0dsg+WInin
+         +CafFAKF89zoLxGPffqV7CF4jhIZmAdPknJMMkKkFL3yX1AtqGE/US+i4iDXNt0zprDl
+         0Oig==
+X-Gm-Message-State: APjAAAWx2uJyHXXBlU9BVv2M7zPOQ7plQ5f9jAHZjglekRxa8kBaXjOU
+        Z7LCJq5OYjVSBDB7LytwF9U1TA==
+X-Google-Smtp-Source: APXvYqy2094pPqrRw5vcRArh29lDQGBGEffB4m2Hn2aAzXW9yXtO3zUgfgWhWfcozfRDjin+8YwDCA==
+X-Received: by 2002:aa7:86c3:: with SMTP id h3mr14402079pfo.169.1556925885301;
+        Fri, 03 May 2019 16:24:45 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id e184sm9381071pfc.102.2019.05.03.16.24.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 16:24:44 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8996: Stop using legacy clock names
+Date:   Fri,  3 May 2019 16:24:42 -0700
+Message-Id: <20190503232442.1530-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 5/2/19 10:36 PM, Brendan Higgins wrote:
-> > On Thu, May 2, 2019 at 6:45 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>
-> >> On 5/2/19 4:45 PM, Brendan Higgins wrote:
-> >>> On Thu, May 2, 2019 at 2:16 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>>>
-> >>>> On 5/2/19 11:07 AM, Brendan Higgins wrote:
-> >>>>> On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
-> >>>>>>
-> >>>>>> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
-> >>>>>>> From: Felix Guo <felixguoxiuping@gmail.com>
-> >>>>>>>
-> >>>>>>> The ultimate goal is to create minimal isolated test binaries; in the
-> >>>>>>> meantime we are using UML to provide the infrastructure to run tests, so
-> >>>>>>> define an abstract way to configure and run tests that allow us to
-> >>>>>>> change the context in which tests are built without affecting the user.
-> >>>>>>> This also makes pretty and dynamic error reporting, and a lot of other
-> >>>>>>> nice features easier.
-> >>>>>>>
-> >>>>>>> kunit_config.py:
-> >>>>>>>   - parse .config and Kconfig files.
-> >>>>>>>
-> >>>>>>> kunit_kernel.py: provides helper functions to:
-> >>>>>>>   - configure the kernel using kunitconfig.
-> >>>>>>>   - build the kernel with the appropriate configuration.
-> >>>>>>>   - provide function to invoke the kernel and stream the output back.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
-> >>>>>>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> >>>>>>
-> >>>>>> Ah, here's probably my answer to my previous logging format question,
-> >>>>>> right?  What's the chance that these wrappers output stuff in a standard
-> >>>>>> format that test-framework-tools can already parse?  :)
-> >>>
-> >>> To be clear, the test-framework-tools format we are talking about is
-> >>> TAP13[1], correct?
-> >>
-> >> I'm not sure what the test community prefers for a format.  I'll let them
-> >> jump in and debate that question.
-> >>
-> >>
-> >>>
-> >>> My understanding is that is what kselftest is being converted to use.
-> >>>
-> >>>>>
-> >>>>> It should be pretty easy to do. I had some patches that pack up the
-> >>>>> results into a serialized format for a presubmit service; it should be
-> >>>>> pretty straightforward to take the same logic and just change the
-> >>>>> output format.
-> >>>>
-> >>>> When examining and trying out the previous versions of the patch I found
-> >>>> the wrappers useful to provide information about how to control and use
-> >>>> the tests, but I had no interest in using the scripts as they do not
-> >>>> fit in with my personal environment and workflow.
-> >>>>
-> >>>> In the previous versions of the patch, these helper scripts are optional,
-> >>>> which is good for my use case.  If the helper scripts are required to
-> >>>
-> >>> They are still optional.
-> >>>
-> >>>> get the data into the proper format then the scripts are not quite so
-> >>>> optional, they become the expected environment.  I think the proper
-> >>>> format should exist without the helper scripts.
-> >>>
-> >>> That's a good point. A couple things,
-> >>>
-> >>> First off, supporting TAP13, either in the kernel or the wrapper
-> >>> script is not hard, but I don't think that is the real issue that you
-> >>> raise.
-> >>>
-> >>> If your only concern is that you will always be able to have human
-> >>> readable KUnit results printed to the kernel log, that is a guarantee
-> >>> I feel comfortable making. Beyond that, I think it is going to take a
-> >>> long while before I would feel comfortable guaranteeing anything about
-> >>> how will KUnit work, what kind of data it will want to expose, and how
-> >>> it will be organized. I think the wrapper script provides a nice
-> >>> facade that I can maintain, can mediate between the implementation
-> >>> details and the user, and can mediate between the implementation
-> >>> details and other pieces of software that might want to consume
-> >>> results.
-> >>>
-> >>> [1] https://testanything.org/tap-version-13-specification.html
-> >>
-> >> My concern is based on a focus on my little part of the world
-> >> (which in _previous_ versions of the patch series was the devicetree
-> >> unittest.c tests being converted to use the kunit infrastructure).
-> >> If I step back and think of the entire kernel globally I may end
-> >> up with a different conclusion - but I'm going to remain myopic
-> >> for this email.
-> >>
-> >> I want the test results to be usable by me and my fellow
-> >> developers.  I prefer that the test results be easily accessible
-> >> (current printk() implementation means that kunit messages are
-> >> just as accessible as the current unittest.c printk() output).
-> >> If the printk() output needs to be filtered through a script
-> >> to generate the actual test results then that is sub-optimal
-> >> to me.  It is one more step added to my workflow.  And
-> >> potentially with an embedded target a major pain to get a
-> >> data file (the kernel log file) transferred from a target
-> >> to my development host.
-> >
-> > That's fair. If that is indeed your only concern, then I don't think
-> > the wrapper script will ever be an issue for you. You will always be
-> > able to execute a given test the old fashioned/manual way, and the
-> > wrapper script only summarizes results, it does not change the
-> > contents.
-> >
-> >>
-> >> I want a reported test failure to be easy to trace back to the
-> >> point in the source where the failure is reported.  With printk()
-> >> the search is a simple grep for the failure message.  If the
-> >> failure message has been processed by a script, and then the
-> >> failure reported to me in an email, then I may have to look
-> >> at the script to reverse engineer how the original failure
-> >> message was transformed into the message that was reported
-> >> to me in the email.  Then I search for the point in the
-> >> source where the failure is reported.  So a basic task has
-> >> just become more difficult and time consuming.
-> >
-> > That seems to be a valid concern. I would reiterate that you shouldn't
-> > be concerned by any processing done by the wrapper script itself, but
-> > the reality is that depending on what happens with automated
-> > testing/presubmit/CI other people might end up parsing and
-> > transforming test results - it might happen, it might not.
->
-> You seem to be missing my point.
->
-> Greg asked that the output be in a standard format.
->
-> You replied that the standard format could be created by the wrapper script.
+MDSS and its friends complain about the DTS is using legacy clock names,
+update these to silence the warnings.
 
-I thought Greg originally meant that that is how it could be done when
-he first commented on this patch, so I was agreeing and elaborating.
-Nevertheless, it seems you and Greg are now in agreement on this
-point, so I won't argue it further.
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
 
->
-> Now you say that "it might happen, it might not".  In other words the output
-> may or may not end up in the standard format.
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index a988edabe474..3d861f1d836c 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1678,7 +1678,7 @@
+ 			#interrupt-cells = <1>;
+ 
+ 			clocks = <&mmcc MDSS_AHB_CLK>;
+-			clock-names = "iface_clk";
++			clock-names = "iface";
+ 
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+@@ -1697,11 +1697,11 @@
+ 					 <&mmcc MDSS_MDP_CLK>,
+ 					 <&mmcc SMMU_MDP_AXI_CLK>,
+ 					 <&mmcc MDSS_VSYNC_CLK>;
+-				clock-names = "iface_clk",
+-					      "bus_clk",
+-					      "core_clk",
+-					      "iommu_clk",
+-					      "vsync_clk";
++				clock-names = "iface",
++					      "bus",
++					      "core",
++					      "iommu",
++					      "vsync";
+ 
+ 				iommus = <&mdp_smmu 0>;
+ 
+@@ -1736,11 +1736,11 @@
+ 					 <&mmcc MDSS_HDMI_AHB_CLK>,
+ 					 <&mmcc MDSS_EXTPCLK_CLK>;
+ 				clock-names =
+-					"mdp_core_clk",
+-					"iface_clk",
+-					"core_clk",
+-					"alt_iface_clk",
+-					"extp_clk";
++					"mdp_core",
++					"iface",
++					"core",
++					"alt_iface",
++					"extp";
+ 
+ 				phys = <&hdmi_phy>;
+ 				phy-names = "hdmi_phy";
+@@ -1777,8 +1777,8 @@
+ 
+ 				clocks = <&mmcc MDSS_AHB_CLK>,
+ 					 <&gcc GCC_HDMI_CLKREF_CLK>;
+-				clock-names = "iface_clk",
+-					      "ref_clk";
++				clock-names = "iface",
++					      "ref";
+ 			};
+ 		};
+ 	};
+-- 
+2.18.0
 
-Sorry, that was in reference to your concern about getting an email in
-a different format than what the tool that you use generates. It
-wasn't a statement about what I was or wasn't going to do in regards
-to supporting a standard format.
-
->
-> As Greg points out in comments to patch 12:
->
->   "The core of kunit should also log the messages in this format as well,
->   and not rely on the helper scripts as Frank points out, not everyone
->   will use/want them.  Might as well make it easy for everyone to always
->   do the right thing and not force it to always be added in later."
->
-> I am requesting that the original message be in the standard format.  Of
-> course anyone is free to transform the messages in later processing, no
-> big deal.
-
-My mistake, I thought that was a concern of yours.
-
-In any case, it sounds like you and Greg are in agreement on the core
-libraries generating the output in TAP13, so I won't argue that point
-further.
-
-## Analysis of using TAP13
-
-One of my earlier concerns was that TAP13 is a bit over constrained
-for what I would like to output from the KUnit core. It only allows
-data to be output as either:
- - test number
- - ok/not ok with single line description
- - directive
- - diagnostics
- - YAML block
-
-The test number must become before a set of ok/not ok lines, and does
-not contain any additional information. One annoying thing about this
-is it doesn't provide any kind of nesting or grouping.
-
-There is one ok/not ok line per test and it may have a short
-description of the test immediately after 'ok' or 'not ok'; this is
-problematic because it wants the first thing you say about a test to
-be after you know whether it passes or not.
-
-Directives are just a way to specify skipped tests and TODOs.
-
-Diagnostics seem useful, it looks like you can put whatever
-information in them and print them out at anytime. It looks like a lot
-of kselftests emit a lot of data this way.
-
-The YAML block seems to be the way that they prefer users to emit data
-beyond number of tests run and whether a test passed or failed. I
-could express most things I want to express in terms of YAML, but it
-is not the nicest format for displaying a lot of data like
-expectations, missed function calls, and other things which have a
-natural concise representation. Nevertheless, YAML readability is
-mostly a problem who won't be using the wrapper scripts. My biggest
-problem with the YAML block is that you can only have one, and TAP
-specifies that it must come after the corresponding ok/not ok line,
-which again has the issue that you have to hold on to a lot of
-diagnostic data longer than you ideally would. Another downside is
-that I now have to write a YAML serializer for the kernel.
-
-## Here is what I propose for this patchset:
-
- - Print out test number range at the beginning of each test suite.
- - Print out log lines as soon as they happen as diagnostics.
- - Print out the lines that state whether a test passes or fails as a
-ok/not ok line.
-
-This would be technically conforming with TAP13 and is consistent with
-what some kselftests have done.
-
-## To be done in a future patchset:
-
-Add a YAML serializer and print out some logs containing structured
-data (like expectation failures, unexpected function calls, etc) in
-YAML blocks.
-
-Does this sound reasonable? I will go ahead and start working on this,
-but feel free to give me feedback on the overall idea in the meantime.
-
-Cheers
