@@ -2,154 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC53E130C5
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52497130F1
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 17:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728002AbfECOz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 10:55:26 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38395 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726992AbfECOzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 10:55:25 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1hMZas-0004fv-2J; Fri, 03 May 2019 16:55:22 +0200
-Message-ID: <1556895321.3046.3.camel@pengutronix.de>
-Subject: Re: [PATCH 3/3] reset: Add reset controller support for BM1880 SoC
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        haitao.suo@bitmain.com, darren.tsao@bitmain.com
-Date:   Fri, 03 May 2019 16:55:21 +0200
-In-Reply-To: <20190425125508.5965-4-manivannan.sadhasivam@linaro.org>
-References: <20190425125508.5965-1-manivannan.sadhasivam@linaro.org>
-         <20190425125508.5965-4-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726992AbfECPLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 11:11:54 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:35444 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726514AbfECPLy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 11:11:54 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BECA7374;
+        Fri,  3 May 2019 08:11:53 -0700 (PDT)
+Received: from [10.1.196.93] (en101.cambridge.arm.com [10.1.196.93])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 33D903F557;
+        Fri,  3 May 2019 08:11:52 -0700 (PDT)
+Subject: Re: [PATCH v5 4/4] coresight: funnel: Support static funnel
+To:     leo.yan@linaro.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, alexander.shishkin@linux.intel.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     shiwanglai@hisilicon.com
+References: <20190412102738.12679-1-leo.yan@linaro.org>
+ <20190412102738.12679-5-leo.yan@linaro.org>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <16ae9127-b282-e6b8-3a6c-5165c8618bb4@arm.com>
+Date:   Fri, 3 May 2019 16:11:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190412102738.12679-5-leo.yan@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
+Leo,
 
-thank you for the patch. A few issues below:
 
-On Thu, 2019-04-25 at 18:25 +0530, Manivannan Sadhasivam wrote:
-> Add reset controller support for Bitmain BM1880 SoC reusing the
-> reset-simple driver. While we are at it, this driver has also been
-> modified to make use of the SPDX license identifier.
+On 12/04/2019 11:27, Leo Yan wrote:
+> Since CoreSight hardware topology can use a 'hidden' funnel in the
+> trace data path, this kind funnel doesn't have register for accessing
+> and is used by default from hardware design perspective.  Below is an
+> example for related hardware topology:
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/reset/Kconfig        |  3 ++-
->  drivers/reset/Makefile       |  1 +
->  drivers/reset/reset-simple.c | 16 +++++++++++-----
->  3 files changed, 14 insertions(+), 6 deletions(-)
+>    +------+  +------+
+>    | cpu0 |->| ETM  |-\
+>    +------+  +------+  \-> +--------+  +-----+
+>     ......                 | Funnel |->| ETF |-\    Hidden funnel
+>    +------+  +------+  /-> +--------+  +-----+  \        |
+>    | cpu3 |->| ETM  |-/                          \       V
+>    +------+  +------+                             \-> +--------+
+>                                                       | Funnel |-> ...
+>    +------+  +------+                             /-> +--------+
+>    | cpu4 |->| ETM  |-\                          /
+>    +------+  +------+  \-> +--------+  +-----+  /
+>     ......                 | Funnel |->| ETF |-/
+>    +------+  +------+  /-> +--------+  +-----+
+>    | cpu7 |->| ETM  |-/
+>    +------+  +------+
 > 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 2c8c23db92fb..b25e8d139f0d 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -117,7 +117,7 @@ config RESET_QCOM_PDC
->  
->  config RESET_SIMPLE
->  	bool "Simple Reset Controller Driver" if COMPILE_TEST
-> -	default ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARCH_ASPEED
-> +	default ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARCH_ASPEED || ARCH_BITMAIN
->  	help
->  	  This enables a simple reset controller driver for reset lines that
->  	  that can be asserted and deasserted by toggling bits in a contiguous,
-> @@ -129,6 +129,7 @@ config RESET_SIMPLE
->  	   - RCC reset controller in STM32 MCUs
->  	   - Allwinner SoCs
->  	   - ZTE's zx2967 family
-> +	   - Bitmain BM1880 SoC
->  
->  config RESET_STM32MP157
->  	bool "STM32MP157 Reset Driver" if COMPILE_TEST
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 61456b8f659c..b87968771166 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -7,6 +7,7 @@ obj-$(CONFIG_RESET_A10SR) += reset-a10sr.o
->  obj-$(CONFIG_RESET_ATH79) += reset-ath79.o
->  obj-$(CONFIG_RESET_AXS10X) += reset-axs10x.o
->  obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
-> +#obj-$(CONFIG_RESET_BM1880) += reset-bm1880.o
+> The CoreSight funnel driver only supports dynamic funnel with
+> registration register resource, thus it cannot support for the static
+> funnel case and it's impossible to create trace data path for this case.
+> 
+> This patch is to extend CoreSight funnel driver to support both for
+> static funnel and dynamic funnel.  For the dynamic funnel it reuses the
+> code existed in the driver, for static funnel the driver will support
+> device probe if without providing register resource and the driver skips
+> registers accessing when detect the register base is NULL.
+> 
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Cc: Wanglai Shi <shiwanglai@hisilicon.com>
+> Suggested-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Leo Yan <leo.yan@linaro.org>
+> Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 
-Leftover from a previous patch version? You can remove this.
-
->  obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
->  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
->  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
-> diff --git a/drivers/reset/reset-simple.c b/drivers/reset/reset-simple.c
-> index 77fbba3100c8..fd1fa4984d76 100644
-> --- a/drivers/reset/reset-simple.c
-> +++ b/drivers/reset/reset-simple.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0+
->  /*
->   * Simple Reset Controller Driver
->   *
-> @@ -8,11 +9,6 @@
->   * Copyright 2013 Maxime Ripard
->   *
->   * Maxime Ripard <maxime.ripard@free-electrons.com>
-> - *
-> - * This program is free software; you can redistribute it and/or modify
-> - * it under the terms of the GNU General Public License as published by
-> - * the Free Software Foundation; either version 2 of the License, or
-> - * (at your option) any later version.
->   */
-
-Please split this change into a separate patch and add Maxime to Cc:
- 
->  #include <linux/device.h>
-> @@ -119,6 +115,14 @@ static const struct reset_simple_devdata reset_simple_active_low = {
->  	.status_active_low = true,
->  };
->  
-> +#define BM1880_NR_BANKS		2
+>   
+> +	if (of_device_is_compatible(np, "arm,coresight-funnel"))
+> +		pr_warn_once("Uses OBSOLETE CoreSight funnel binding\n");
 > +
-> +static const struct reset_simple_devdata reset_simple_bm1880 = {
-> +	.nr_resets = BM1880_NR_BANKS * 32,
 
-This is not necessary, given your device tree changes, the
+Given that we now warn about OBSOLETE bindings, please could you fix
+the existing DTS in the kernel source tree to use the new binding ?
+Similarly for the replicator.
 
-        data->rcdev.nr_resets = resource_size(res) * BITS_PER_BYTE;
-
-in reset_simple_probe should already do the right thing.
-You can remove the .nr_resets from reset_simple_bm1880 and the
-BM1880_NR_BANKS #define.
-
-> +	.active_low = true,
-> +	.status_active_low = true,
-> +};
-> +
->  static const struct of_device_id reset_simple_dt_ids[] = {
->  	{ .compatible = "altr,stratix10-rst-mgr",
->  		.data = &reset_simple_socfpga },
-> @@ -129,6 +133,8 @@ static const struct of_device_id reset_simple_dt_ids[] = {
->  		.data = &reset_simple_active_low },
->  	{ .compatible = "aspeed,ast2400-lpc-reset" },
->  	{ .compatible = "aspeed,ast2500-lpc-reset" },
-> +	{ .compatible = "bitmain,bm1880-reset",
-> +		.data = &reset_simple_bm1880 },
->  	{ /* sentinel */ },
->  };
-
-With these changes,
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-for both parts. 
-
-regards
-Philipp
+Suzuki
