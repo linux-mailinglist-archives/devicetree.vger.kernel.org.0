@@ -2,126 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3202129E6
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB711129FD
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726041AbfECI3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 04:29:46 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:54384 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725768AbfECI3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 04:29:46 -0400
-Received: by mail-wm1-f68.google.com with SMTP id b10so6035731wmj.4
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 01:29:45 -0700 (PDT)
+        id S1726514AbfECIpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 04:45:08 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:34440 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726138AbfECIpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 04:45:08 -0400
+Received: by mail-lf1-f65.google.com with SMTP id v18so1666571lfi.1
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 01:45:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9BWo4wrOMB7S6ZNUaQSd5jSdL7ORd90HoRUjKXASCiQ=;
-        b=HHKoFlguUqMrYs86X0mAjpTHbiYUGjBZBnQY2FzIfEE8KKRzBWHZ8eb57oRe4+Bfp8
-         yFXtFxpH7T9X0bXnNj6+VYMnbGFBJ+4kxQmuf9ONuGaS/9yK2/vEzUQPPu8dYC21rhr4
-         jdAvNAqaDu5WTi2WjZnyXaDS1H1aQ40jn8LY/rfrD27yN2DWrmsUSaTOXMeE6ioKxmtr
-         S4WT3GtCL6xcU7/RgBWqRVN/VdlcdySBgBvnKbzSEIY7pyPXuHbjlgWdX627m1slu3ma
-         7GZaoBTOsBUMqkvmPxY/XA93MIZHMWOviSdD8ui/CJX7qRwAudIKteETxeZxnLVntxmo
-         26eQ==
+        bh=0zaRsn/g4+Scrvd9QffeeQZcCaOKO0r6yp/twndpRhM=;
+        b=J29qlBrRDMBWZUJdNN5p12YGrIys/NsojzcLa1n1TYLAUB518riMbaBuJQO5+mDEJK
+         L2htaevZM1u1JKo0IzFcQJ+sA6EHz2fcvoFO0my6fdQIeXl5cvKpH7uhuXu4dBjCrTgA
+         /u60oBNQ1uLuPDvz87mMX77P2G1fJeSt/AUabcTFhCz0X+kP8pY5GBhuL7rJxYI7D7ei
+         0/IHjmhgyReOcnaGEXru+yo4GVYidglu2WIpgkc2KFXGjF8/z98fqMnmKjxH1xu9RGKy
+         Xv/9z2Ag934kKZPwMfNdaHOELa35GigKKUAC/0JRFbIS9l6Mklp8/6nH8ZzboTicnxiV
+         75qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=9BWo4wrOMB7S6ZNUaQSd5jSdL7ORd90HoRUjKXASCiQ=;
-        b=WeTj2VdkMf8Uge5ffBRrRQ65lv3M31HSCk8euUQgF2RwMh/Oq05lFTAiMjG1QIUAa1
-         uV/93YmstuHwdxIRaKq7DCy8SX3nGp7kTgGe46EyBMyVzCIlUrs4Tx6WSsc/CkkLsuBG
-         b/MfUH7iGKkW2DRvhX3vmyh45ORI7mmwvVkNY2C6GE8iwtBP0/Jpbyrgm1BUNXKdIv9e
-         vYmVcbbuPecff1YMfVAGobo75GqujGDR8K3rgHNaMyG29tpQcW9DYe/HH8NDRGwaDeRD
-         2BuE0Kub111dxqQ+XwZPYrAA8LNYoaWcS6NGIpNxkwaRBSU4XYw3THEgEob2NBSaQeSq
-         fQsw==
-X-Gm-Message-State: APjAAAVrgs5yEoyhYty/pssWhbNN3kAwy1SPXg45/9A8p0ydbkHVDlFz
-        t5kFRPncroHp2rzr8RhC+ktP0w==
-X-Google-Smtp-Source: APXvYqyVCwBwURKCdJNbafReM5dEKW0CL0LzHWCrcu7tg33cbbP2AxeFXU3xXgXEccvg/l0jXNBytw==
-X-Received: by 2002:a1c:ce:: with SMTP id 197mr5168760wma.105.1556872184621;
-        Fri, 03 May 2019 01:29:44 -0700 (PDT)
-Received: from [192.168.1.2] (200.red-83-34-200.dynamicip.rima-tde.net. [83.34.200.200])
-        by smtp.gmail.com with ESMTPSA id n4sm1714792wmk.24.2019.05.03.01.29.43
+        bh=0zaRsn/g4+Scrvd9QffeeQZcCaOKO0r6yp/twndpRhM=;
+        b=iRVg8cHO8j3LN7GZWm7J2m6LyupYVptinQL/gVMVGZYaNEuqBzgC3+h/7qL9zYRrxS
+         friob3oFg3zRo3bkCdkh4j2/J+KtA+rJMFQNv4K8MhutBD6jcJsl1lMV5PLbixxfUdY1
+         ycR3JZ0cjdab75Y1BHD3z0Dx/7LChY5tFKAp4CWYLEJOoZ3RRueDHjoBmTultNHQpWDQ
+         7DYY/W5OIUdl+LcXg/3eGsgNm2zFcfRq2FQfOLDD0sdcpU8YcQ4g00TIR94yOxWtEreC
+         GX7at45SRpieptGJyAvKkpC6Ss9PT9j5XXC1TbgjVC8yrsBRzSJLgGhsvJcr04gLJS84
+         tyjA==
+X-Gm-Message-State: APjAAAV3kReW0abb+Ht6y8EMMqeK2OuTTK5Zk6xqttPretGZjRU8LLUE
+        tG7Y/NBl2NrBfENtaFbuBkpk/A==
+X-Google-Smtp-Source: APXvYqyqfYigHLJVXnG7jnnuj50dTMyohCgOVYg1Pu5wNkO5Y4cooG5oT/xf8nz76WLGS04Xse2DPA==
+X-Received: by 2002:ac2:4ac2:: with SMTP id m2mr4490084lfp.154.1556873106562;
+        Fri, 03 May 2019 01:45:06 -0700 (PDT)
+Received: from [10.114.8.178] ([5.182.27.10])
+        by smtp.gmail.com with ESMTPSA id g21sm274007ljj.2.2019.05.03.01.45.04
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 03 May 2019 01:29:43 -0700 (PDT)
-Subject: Re: [PATCH 2/3] drivers: regulator: qcom: add PMS405 SPMI regulator
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
-        niklas.cassel@linaro.org, khasim.mohammed@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-References: <a3c281d5-d30e-294f-71ab-957decde2ba0@linaro.org>
- <20190502023316.GS14916@sirena.org.uk>
- <dd15d784-f2a1-78c6-3543-69bbcc1143c4@linaro.org>
- <20190503062626.GE14916@sirena.org.uk>
-From:   Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
-Message-ID: <229823c4-f5d4-4821-ded1-cc046dd0bd20@linaro.org>
-Date:   Fri, 3 May 2019 10:29:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+        Fri, 03 May 2019 01:45:05 -0700 (PDT)
+Subject: Re: [PATCH v3 01/10] of_net: add NVMEM support to of_get_mac_address
+To:     =?UTF-8?Q?Petr_=c5=a0tetiar?= <ynezz@true.cz>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Alban Bedel <albeu@free.fr>, Felix Fietkau <nbd@nbd.name>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+References: <1556870168-26864-1-git-send-email-ynezz@true.cz>
+ <1556870168-26864-2-git-send-email-ynezz@true.cz>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <2a5fcdec-c661-6dc5-6741-7d6675457b9b@cogentembedded.com>
+Date:   Fri, 3 May 2019 11:44:54 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190503062626.GE14916@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252
+In-Reply-To: <1556870168-26864-2-git-send-email-ynezz@true.cz>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/3/19 08:26, Mark Brown wrote:
-> On Thu, May 02, 2019 at 01:30:48PM +0200, Jorge Ramirez wrote:
->> On 5/2/19 04:33, Mark Brown wrote:
+Hello!
+
+On 03.05.2019 10:55, Petr Štetiar wrote:
+
+> Many embedded devices have information such as MAC addresses stored
+> inside NVMEMs like EEPROMs and so on. Currently there are only two
+> drivers in the tree which benefit from NVMEM bindings.
 > 
->>> I'm not sure I follow here, sorry - I can see that the driver needs a
->>> custom get/set selector operation but shouldn't it be able to use the
->>> standard list and map operations for linear ranges?
+> Adding support for NVMEM into every other driver would mean adding a lot
+> of repetitive code. This patch allows us to configure MAC addresses in
+> various devices like ethernet and wireless adapters directly from
+> of_get_mac_address, which is already used by almost every driver in the
+> tree.
 > 
->> I agree it should, but unfortunately that is not the case; when I first
->> posted the patch I was concerned that for a regulator to be supported by
->> this driver it should obey to the driver's internals (ie: comply with
->> all of the spmi_common_regulator_registers definitions).
+> Predecessor of this patch which used directly MTD layer has originated
+> in OpenWrt some time ago and supports already about 497 use cases in 357
+> device tree files.
 > 
-> That's not a requirement that I'd particularly expect - it's not unusual
-> for devices to have multiple different styles of regulators in a single
-> chip (eg, DCDCs often have quite different register maps to LDOs).
+> Cc: Alban Bedel <albeu@free.fr>
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+> Signed-off-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Petr Štetiar <ynezz@true.cz>
+> ---
 > 
->> However, since there was just a single range to support, the
->> modifications I had to do to support this SPMI regulator were minimal -
->> hence why I opted for the changes under discussion instead of writing a
->> new driver (which IMO it is an overkill).
+>   Changes since v1:
 > 
->> what do you think?
+>    * moved handling of nvmem after mac-address and local-mac-address properties
 > 
-> It seems a bit of a jump to add a new driver - it's just another
-> descriptor and ops structure isn't it?  Though as ever with the Qualcomm
-> stuff this driver is pretty baroque which doesn't entirely help though I
-> think it's just another regulator type which there's already some
-> handling for.
+>   Changes since v2:
 > 
+>    * moved of_get_mac_addr_nvmem after of_get_mac_addr(np, "address") call
+>    * replaced kzalloc, kmemdup and kfree with it's devm variants
+>    * introduced of_has_nvmem_mac_addr helper which checks if DT node has nvmem
+>      cell with `mac-address`
+>    * of_get_mac_address now returns ERR_PTR encoded error value
+> 
+>   drivers/of/of_net.c | 65 ++++++++++++++++++++++++++++++++++++++++++++++++++---
+>   1 file changed, 62 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
+> index d820f3e..258ceb8 100644
+> --- a/drivers/of/of_net.c
+> +++ b/drivers/of/of_net.c
+[...]
+> @@ -64,6 +113,9 @@ static const void *of_get_mac_addr(struct device_node *np, const char *name)
+>    * addresses.  Some older U-Boots only initialized 'local-mac-address'.  In
+>    * this case, the real MAC is in 'local-mac-address', and 'mac-address' exists
+>    * but is all zeros.
+> + *
+> + * Return: Will be a valid pointer on success, NULL in case there wasn't
+> + *         'mac-address' nvmem cell node found, and ERR_PTR in case of error.
 
-So how do we move this forward?
+    Returning both NULL and error codes on failure is usually a sign of a 
+misdesigned API. Why not always return an error code?
 
-To sum up his regulator needs to be able to bypass accesses to
-SPMI_COMMON_REG_VOLTAGE_RANGE and provide the range in some other way
-hence the change below
+[...]
 
-I can't find a simpler solution than this since the function does now
-what is supposed to do for all the regulator types supported in the driver
-
- @@ -653,6 +708,10 @@ spmi_regulator_find_range(struct spmi_regulator *vreg)
-  	range = vreg->set_points->range;
-  	end = range + vreg->set_points->count;
-
- +	/* we know we only have one range for this type */
- +	if (vreg->logical_type == SPMI_REGULATOR_LOGICAL_TYPE_HFS430)
- +		return range;
- +
-  	spmi_vreg_read(vreg, SPMI_COMMON_REG_VOLTAGE_RANGE, &range_sel, 1);
-
-  	for (; range < end; range++)
-
-
-
+MBR, Sergei
