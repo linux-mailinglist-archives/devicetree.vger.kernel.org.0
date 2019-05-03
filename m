@@ -2,86 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD6813250
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 18:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD18D1325C
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 18:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbfECQhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 12:37:00 -0400
-Received: from mail-ua1-f65.google.com ([209.85.222.65]:44769 "EHLO
-        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727243AbfECQg7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 12:36:59 -0400
-Received: by mail-ua1-f65.google.com with SMTP id p13so2212077uaa.11
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 09:36:59 -0700 (PDT)
+        id S1728464AbfECQl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 12:41:26 -0400
+Received: from mail-eopbgr730048.outbound.protection.outlook.com ([40.107.73.48]:59104
+        "EHLO NAM05-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726719AbfECQl0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 12:41:26 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JOhXxqwrhrqi22CbeLJVIpblT7qOBEHSnL9239pOuZY=;
-        b=hOY8pzUaHTFuXrA+1GcYiD2vIu/TX9Uyerw59T3XF2I09wNu5QJfIvNktWMCZiqkP9
-         eAuOJfcWhkz2MqPKHMkTvbGNTyknpN03CvNwJzFt8HlFn1BDeznvyCUz1vqNjkU6KQUI
-         7szujSOmYYBp7g6jss/M8tE4YH/Z0/ysTfU0VmC9Au/JSYrf4n4NguzvZN7KSxSFi6fb
-         6JENSoDdorpK7uvuGuhXQn00TwlJWx5nvx4uKpmTlm62aZyZDJM3PZJTIb47/i0kdH1r
-         VO+BFTBF4EtL1U5M0ffixvcuwpjXgBXDCBPJs6XHDD+ZxV61JE/jf33kk3rYTbdBVAYS
-         rA+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JOhXxqwrhrqi22CbeLJVIpblT7qOBEHSnL9239pOuZY=;
-        b=fPu0OVY36PNRVGuPz6z+XKf+YO0/Gh4q7TEHW4NTCVr7q5tNiVyG5aBEBznjq+6Qsi
-         u7fNHhioIHtgV+pvs63BrN+V/JTtNCyqoBEO6i0Ubv8QrBYRJAePmvinMjWw460HPnvG
-         Yo13EVQLD8NLtCF1MIwcF7RrbLCuyQrKPdh4mhz7pJon0TCvx7ocfi/EnmxUNJGNZzXG
-         z1ogYk6Go6Ilk3QIuLFROo3hZYPExKjLiXf58d1wTJQ1nqNUCeH12/09sN7/Nf0L8JWk
-         a10V+M9ip+A9uIDJMPGbZU4BmbIzmZcpMCon6NjF9ATyiziSMcoP4jAOi5jKAZ4sH8zq
-         x+6A==
-X-Gm-Message-State: APjAAAWtMqGlXgqkS/n9KM+eibwX3nczpsYWOuhAMx+ON5NijW2/Ywse
-        KRq5HytKHLV+Ct8ocJ0GIxn1RubKtaS8B+0Dj93rwnDx
-X-Google-Smtp-Source: APXvYqydNZ2JP4JT7mM9TAHxudYFShSRlDbh3hZ/Q8pAlpJwTXTuZ7DQou+9NHKF/WYJcr9VzSF6aFEylNuHOXZs8rQ=
-X-Received: by 2002:ab0:2399:: with SMTP id b25mr2711177uan.129.1556901418729;
- Fri, 03 May 2019 09:36:58 -0700 (PDT)
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/FFXXP1GaK1ON9h27xOe8RrwNYt8sjfSvo1Mwn/29ME=;
+ b=4oGpEXFef2G8MaR36iL4WPPuM3Q3AudgFfsfCkfL7cx+rP8Pm02AKAtwJg4EWvWDExv3K1/ZXNiHLdGSmG4FHImR215EgQvd2tRRnduPdP6vo4VdI1XFBvC+CExJ07mq+CQplTb2XTH5Kjs9tniNXAsW1FS47XKN8ixbZdb+xIQ=
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
+ BL0PR02MB3764.namprd02.prod.outlook.com (52.132.8.149) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Fri, 3 May 2019 16:41:22 +0000
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Fri, 3 May 2019
+ 16:41:22 +0000
+From:   Dragan Cvetic <draganc@xilinx.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: RE: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Thread-Topic: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Thread-Index: AQHU/UVOyBvhwX5Hf0mi9G9IHzQgRKZYHAiAgAGBAEA=
+Date:   Fri, 3 May 2019 16:41:21 +0000
+Message-ID: <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172007.GA1874@kroah.com>
+In-Reply-To: <20190502172007.GA1874@kroah.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=draganc@xilinx.com; 
+x-originating-ip: [149.199.80.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 20ecc15a-232a-480b-d330-08d6cfe62cc5
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB3764;
+x-ms-traffictypediagnostic: BL0PR02MB3764:
+x-microsoft-antispam-prvs: <BL0PR02MB376404865825B146C29A02E5CB350@BL0PR02MB3764.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0026334A56
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(39860400002)(136003)(376002)(366004)(346002)(199004)(189003)(13464003)(54906003)(107886003)(4326008)(25786009)(66556008)(66446008)(316002)(7736002)(52536014)(76116006)(73956011)(6246003)(66946007)(186003)(6436002)(9686003)(71200400001)(71190400001)(26005)(3846002)(6116002)(55016002)(53936002)(14454004)(68736007)(478600001)(14444005)(256004)(229853002)(5660300002)(11346002)(2906002)(305945005)(66476007)(86362001)(6506007)(53546011)(64756008)(446003)(486006)(99286004)(74316002)(102836004)(6916009)(8936002)(8676002)(476003)(33656002)(7696005)(76176011)(81166006)(81156014)(66066001);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB3764;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: V4esCaVumuYM+hZPb1IuVRCBY7Ao+W9KKk+9xuXJnw4KnbNgaBYLF3IzdthqP0VOTgjtaY0LKQsxZihVasBlbn3oOSVhnXUVAY1rlZONgskikrlhgMdr5cucfJ042g0T/8rGSfFLCFgv7bl163T7gpMArgAP23YILwCjc6WuOUYGATXXfUdRXK9xZuZu3tZ1jSAqwmvcOowxXk62LJfyW0pWXfn7whihitZgYkhMrCah/OJ9GcjVz6qQ991w4JsfDISW2K/30dd03k/Q9kwkum37M/sd2xuY7vXmoGoWUYOXBjt8HQqNz7ezGu6jQlIY4EAWyJNYM1l+MpGeb77QXFhhhfV6JCpQA1tKMRCfy/KqsM5Dow3JLZTPuG6FM/jgnAm7fcNUYgL1DDubjXVrfbQ3w1427ffKestg055HitU=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20190323211612.860-1-fparent@baylibre.com> <20190323211612.860-9-fparent@baylibre.com>
- <CAPDyKFrAxmBv+1i3qJpD=M1Wq33U2PMfQv_99xDm9MLhLxSWYg@mail.gmail.com> <CAOwMV_z8RrmoK+bfEqgwOv97uJarnuTCUo7aczZz=gyvg8CDzQ@mail.gmail.com>
-In-Reply-To: <CAOwMV_z8RrmoK+bfEqgwOv97uJarnuTCUo7aczZz=gyvg8CDzQ@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 3 May 2019 18:36:22 +0200
-Message-ID: <CAPDyKFocSqRLC7eGVBY7J-WkBy0i9fxX5GNivMNQEfgqhcrb9w@mail.gmail.com>
-Subject: Re: [PATCH 08/24] dt-bindings: mmc: mtk-sd: add mtk-sd support for MT8516
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20ecc15a-232a-480b-d330-08d6cfe62cc5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2019 16:41:21.8774
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB3764
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 May 2019 at 17:12, Fabien Parent <fparent@baylibre.com> wrote:
->
-> Hi Ulf,
->
-> On Mon, Mar 25, 2019 at 2:27 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> >
-> > - trimmed cc list
-> >
-> > On Sat, 23 Mar 2019 at 22:17, Fabien Parent <fparent@baylibre.com> wrote:
-> > >
-> > > Add binding documentation of mtk-sd for MT8516 SoCs.
-> > >
-> > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> >
-> > Applied for next, thanks!
->
-> I think this patch got lost since I cannot see it in your tree.
+Hi Greg,
 
-Thanks for telling me. I have picked it up (again?) and applied it for next.
+Please find my inline comments below,
 
-[...]
+Regards
+Dragan
 
-Kind regards
-Uffe
+> -----Original Message-----
+> From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> Sent: Thursday 2 May 2019 18:20
+> To: Dragan Cvetic <draganc@xilinx.com>
+> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
+sts.infradead.org; robh+dt@kernel.org;
+> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
+l.org; Derek Kiernan <dkiernan@xilinx.com>
+> Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+>=20
+> On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic wrote:
+> > +#define DRIVER_NAME "xilinx_sdfec"
+> > +#define DRIVER_VERSION "0.3"
+>=20
+> Version means nothing with the driver in the kernel tree, please remove
+> it.
+
+Will be removed. Thank you.
+
+>=20
+> > +#define DRIVER_MAX_DEV BIT(MINORBITS)
+>=20
+> Why this number?  Why limit yourself to any number?
+>=20
+
+There can be max 8 devices for this driver. I'll change to 8.
+
+> > +
+> > +static struct class *xsdfec_class;
+>=20
+> Do you really need your own class?
+
+When writing a character device driver, my goal is to create and register a=
+n instance
+of that structure associated with a struct file_operations, exposing a set =
+of operations
+to the user-space. One of the steps to make this goal is Create a class for=
+ a devices,
+visible in /sys/class/.
+
+>=20
+> > +static atomic_t xsdfec_ndevs =3D ATOMIC_INIT(0);
+>=20
+> Why?
+
+At the end this become a minor number.=20
+It is not needed, will be removed. Thanks.
+
+>=20
+> > +static dev_t xsdfec_devt;
+>=20
+> Why?
+>=20
+> Why not use misc_device for this?  Why do you need your own major with a
+> bunch of minor devices reserved ahead of time?  Why not just create a
+> new misc device for every individual device that happens to be found in
+> the system?  That will make the code a lot simpler and smaller and
+> easier.
+>
+>=20
+>=20
+> > +
+> > +/**
+> > + * struct xsdfec_dev - Driver data for SDFEC
+> > + * @regs: device physical base address
+> > + * @dev: pointer to device struct
+> > + * @config: Configuration of the SDFEC device
+> > + * @open_count: Count of char device being opened
+> > + * @xsdfec_cdev: Character device handle
+> > + * @irq_lock: Driver spinlock
+> > + *
+> > + * This structure contains necessary state for SDFEC driver to operate
+> > + */
+> > +struct xsdfec_dev {
+> > +	void __iomem *regs;
+> > +	struct device *dev;
+> > +	struct xsdfec_config config;
+> > +	atomic_t open_count;
+> > +	struct cdev xsdfec_cdev;
+> > +	/* Spinlock to protect state_updated and stats_updated */
+> > +	spinlock_t irq_lock;
+> > +};
+> > +
+> > +static const struct file_operations xsdfec_fops =3D {
+> > +	.owner =3D THIS_MODULE,
+> > +};
+>=20
+> No operations at all?  That's an easy driver :)
+
+
+The operations are implemented in the later patches.
+
+
+>=20
+> thanks,
+>=20
+> greg k-h
