@@ -2,248 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D56112F7B
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 15:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90EC312FDB
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726690AbfECNtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 09:49:05 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:14822 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726463AbfECNtF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 09:49:05 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x43DaSE4009467;
-        Fri, 3 May 2019 15:48:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=RqUYsKyNXRA85AH1hilpcenk+kZtsbRK4CMzRm1fwpM=;
- b=rMg/WcxtS8lWYCj53X4cPoUsHijOyIrL4tCziVlpEL/0SiOMMA7xHBu7pzQB+h9CGaFY
- rCr2zlyOwCaFdt0VNlwVNrYivEuqWJ+wlkPmMkcybRWD+5JKU/8dG2CUDBWi202tUiPA
- fxpkar4pivwAbUIJ+3s9fPr3Bl74C3ooPIhYTsYXA3Ccqabckn3eIrcVkLb6peXlv6jH
- csjo6CpscZzFUahc9Nwd+FCRLoN4/iW1l5NFyjYpWRBJbgubjtyVKrVV9PmVxtUoGVl6
- PI/cg3JGusXbvdSwt4qboFEZgqIbWD90h7yPXvncLNQMV7gzZmco9X4PDjU7vVY3kFG4 4Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2s6xhbpj6e-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 03 May 2019 15:48:32 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4067434;
-        Fri,  3 May 2019 13:48:31 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0E29227A4;
-        Fri,  3 May 2019 13:48:31 +0000 (GMT)
-Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.361.1; Fri, 3 May 2019
- 15:48:31 +0200
-Received: from lmecxl0923.lme.st.com (10.48.0.237) by webmail-ga.st.com
- (10.75.90.48) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 3 May 2019
- 15:48:30 +0200
-From:   Ludovic Barre <ludovic.Barre@st.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-watchdog@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Ludovic Barre <ludovic.barre@st.com>
-Subject: [PATCH V3] watchdog: stm32: add dynamic prescaler support
-Date:   Fri, 3 May 2019 15:48:26 +0200
-Message-ID: <1556891306-4218-1-git-send-email-ludovic.Barre@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1727584AbfECONK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 10:13:10 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:44779 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727397AbfECONK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 10:13:10 -0400
+Received: by mail-wr1-f65.google.com with SMTP id c5so8056732wrs.11;
+        Fri, 03 May 2019 07:13:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:openpgp:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/WgYbCKE2WHmEu4CJzMjz8r9bF+PC2uNvvqT2nxvljU=;
+        b=f4+A6pUUh4b1EpMQn5QcG8YGsXNl/i6t1dRn6GvCmXwLUYfD6vW82SSD1oLfN53QC2
+         LDYQYQKcFcbA2ZPw5ffllqtyr73j4WSE4BETRHzArcTO7tV800sxeOKGV9WVkd4kUtdy
+         Z5hU/Jn/O91OdS7wPTokX2xdTZ+OFwm9e27BoX9ABz/DjF/iguaJbqc/AWoBhwBj289m
+         xTSlxfhv3yo3dIyMW9z+IIrUDPVQ2sqLEt1nWNtS9/QlXOqBV1VnyUIcMf4+MnX4EX1m
+         MR592zcDrRBtBiI3RKlkv/9CTfjYEyI4PBtMu39d6qnBrLtmVsOeiS8ja7CqxeukrHdZ
+         v28w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:openpgp
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=/WgYbCKE2WHmEu4CJzMjz8r9bF+PC2uNvvqT2nxvljU=;
+        b=axpuBx+KP9nCSVI6MhVz9rbVDJNli+bkKYhYrbHNG4dJUHVt1JCviRCznixsHy47Ty
+         D+mWywKEMv9mwy56k7fADXkGIoDxk13o+TPyxmuQ5+aySB0REyNzV5UZ68/0kymHFkoN
+         t+e4JEfRQN+JnN5rEtEOZ/3ekiV+4t2DUYwX2+vYk41k1UiXnNH1tok/D2TBsnAPJp6V
+         usgtEfnQkrgQ4mgunm2edQ/RWsMD/NEsBvsb3NhpkGya5p4uBF0xCWLvt5R3k2QQBi+Q
+         24mLQILd5pteMwEe5vFh8ctfT1CWGiaPLPx5io9tcajXKVtchL4GpRUAXtJqKD36vzLA
+         WvHg==
+X-Gm-Message-State: APjAAAWw7wWU14XG8NqxzJHINqVRyhycxW/5SwRWI91DD87S8qRUg07Q
+        BHOqnCY1kyRZdv3/z5uqU+8=
+X-Google-Smtp-Source: APXvYqwXeAYzjzfsJE1irjCmCsPKO6J3HFWMsQCcRoJPGEUoT6BCZR4LXtx6GXMWwgW/s4EmH+aRkg==
+X-Received: by 2002:adf:e8c4:: with SMTP id k4mr7553656wrn.9.1556892788449;
+        Fri, 03 May 2019 07:13:08 -0700 (PDT)
+Received: from [192.168.1.33] (193.red-88-21-103.staticip.rima-tde.net. [88.21.103.193])
+        by smtp.gmail.com with ESMTPSA id z6sm2432874wrw.87.2019.05.03.07.13.06
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 07:13:07 -0700 (PDT)
+Subject: Re: [PATCH 2/3] clk: add BCM63XX gated clock controller driver
+To:     Jonas Gorski <jonas.gorski@gmail.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Kevin Cernekee <cernekee@gmail.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>
+References: <20190502122657.15577-1-jonas.gorski@gmail.com>
+ <20190502122657.15577-3-jonas.gorski@gmail.com>
+From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <f4bug@amsat.org>
+Openpgp: url=http://pgp.mit.edu/pks/lookup?op=get&search=0xE3E32C2CDEADC0DE
+Message-ID: <a8e757f2-c8e8-8aff-0d88-ef86b8241be7@amsat.org>
+Date:   Fri, 3 May 2019 16:13:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.237]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-03_07:,,
- signatures=0
+In-Reply-To: <20190502122657.15577-3-jonas.gorski@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ludovic Barre <ludovic.barre@st.com>
+On 5/2/19 2:26 PM, Jonas Gorski wrote:
+> Add a driver for the gated clock controller found on MIPS based BCM63XX
+> SoCs.
+> 
+> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
 
-This patch allows to define the max prescaler by compatible.
-To set a large range of timeout, the prescaler should be set
-dynamically (from the timeout request) to improve the resolution
-in order to have a timeout close to the expected value.
-
-Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
----
- drivers/watchdog/stm32_iwdg.c | 84 ++++++++++++++++++++++++-------------------
- 1 file changed, 47 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/watchdog/stm32_iwdg.c b/drivers/watchdog/stm32_iwdg.c
-index 6f7c2bc..d569a36 100644
---- a/drivers/watchdog/stm32_iwdg.c
-+++ b/drivers/watchdog/stm32_iwdg.c
-@@ -34,36 +34,44 @@
- #define KR_KEY_EWA	0x5555 /* write access enable */
- #define KR_KEY_DWA	0x0000 /* write access disable */
- 
--/* IWDG_PR register bit values */
--#define PR_4		0x00 /* prescaler set to 4 */
--#define PR_8		0x01 /* prescaler set to 8 */
--#define PR_16		0x02 /* prescaler set to 16 */
--#define PR_32		0x03 /* prescaler set to 32 */
--#define PR_64		0x04 /* prescaler set to 64 */
--#define PR_128		0x05 /* prescaler set to 128 */
--#define PR_256		0x06 /* prescaler set to 256 */
-+/* IWDG_PR register */
-+#define PR_SHIFT	2
-+#define PR_MIN		BIT(PR_SHIFT)
- 
- /* IWDG_RLR register values */
--#define RLR_MIN		0x07C /* min value supported by reload register */
--#define RLR_MAX		0xFFF /* max value supported by reload register */
-+#define RLR_MIN		0x2		/* min value recommended */
-+#define RLR_MAX		GENMASK(11, 0)	/* max value of reload register */
- 
- /* IWDG_SR register bit mask */
--#define FLAG_PVU	BIT(0) /* Watchdog prescaler value update */
--#define FLAG_RVU	BIT(1) /* Watchdog counter reload value update */
-+#define SR_PVU	BIT(0) /* Watchdog prescaler value update */
-+#define SR_RVU	BIT(1) /* Watchdog counter reload value update */
- 
- /* set timeout to 100000 us */
- #define TIMEOUT_US	100000
- #define SLEEP_US	1000
- 
--#define HAS_PCLK	true
-+struct stm32_iwdg_data {
-+	bool has_pclk;
-+	u32 max_prescaler;
-+};
-+
-+static const struct stm32_iwdg_data stm32_iwdg_data = {
-+	.has_pclk = false,
-+	.max_prescaler = 256,
-+};
-+
-+static const struct stm32_iwdg_data stm32mp1_iwdg_data = {
-+	.has_pclk = true,
-+	.max_prescaler = 1024,
-+};
- 
- struct stm32_iwdg {
- 	struct watchdog_device	wdd;
-+	const struct stm32_iwdg_data *data;
- 	void __iomem		*regs;
- 	struct clk		*clk_lsi;
- 	struct clk		*clk_pclk;
- 	unsigned int		rate;
--	bool			has_pclk;
- };
- 
- static inline u32 reg_read(void __iomem *base, u32 reg)
-@@ -79,31 +87,35 @@ static inline void reg_write(void __iomem *base, u32 reg, u32 val)
- static int stm32_iwdg_start(struct watchdog_device *wdd)
- {
- 	struct stm32_iwdg *wdt = watchdog_get_drvdata(wdd);
--	u32 val = FLAG_PVU | FLAG_RVU;
--	u32 reload;
-+	u32 tout, presc, iwdg_rlr, iwdg_pr, iwdg_sr;
- 	int ret;
- 
- 	dev_dbg(wdd->parent, "%s\n", __func__);
- 
--	/* prescaler fixed to 256 */
--	reload = clamp_t(unsigned int, ((wdd->timeout * wdt->rate) / 256) - 1,
--			 RLR_MIN, RLR_MAX);
-+	tout = clamp_t(unsigned int, wdd->timeout,
-+		       wdd->min_timeout, wdd->max_hw_heartbeat_ms / 1000);
-+
-+	presc = DIV_ROUND_UP(tout * wdt->rate, RLR_MAX + 1);
-+
-+	/* The prescaler is align on power of 2 and start at 2 ^ PR_SHIFT. */
-+	presc = roundup_pow_of_two(presc);
-+	iwdg_pr = presc <= 1 << PR_SHIFT ? 0 : ilog2(presc) - PR_SHIFT;
-+	iwdg_rlr = ((tout * wdt->rate) / presc) - 1;
- 
- 	/* enable write access */
- 	reg_write(wdt->regs, IWDG_KR, KR_KEY_EWA);
- 
- 	/* set prescaler & reload registers */
--	reg_write(wdt->regs, IWDG_PR, PR_256); /* prescaler fix to 256 */
--	reg_write(wdt->regs, IWDG_RLR, reload);
-+	reg_write(wdt->regs, IWDG_PR, iwdg_pr);
-+	reg_write(wdt->regs, IWDG_RLR, iwdg_rlr);
- 	reg_write(wdt->regs, IWDG_KR, KR_KEY_ENABLE);
- 
- 	/* wait for the registers to be updated (max 100ms) */
--	ret = readl_relaxed_poll_timeout(wdt->regs + IWDG_SR, val,
--					 !(val & (FLAG_PVU | FLAG_RVU)),
-+	ret = readl_relaxed_poll_timeout(wdt->regs + IWDG_SR, iwdg_sr,
-+					 !(iwdg_sr & (SR_PVU | SR_RVU)),
- 					 SLEEP_US, TIMEOUT_US);
- 	if (ret) {
--		dev_err(wdd->parent,
--			"Fail to set prescaler or reload registers\n");
-+		dev_err(wdd->parent, "Fail to set prescaler, reload regs\n");
- 		return ret;
- 	}
- 
-@@ -156,7 +168,7 @@ static int stm32_iwdg_clk_init(struct platform_device *pdev,
- 	}
- 
- 	/* optional peripheral clock */
--	if (wdt->has_pclk) {
-+	if (wdt->data->has_pclk) {
- 		wdt->clk_pclk = devm_clk_get(dev, "pclk");
- 		if (IS_ERR(wdt->clk_pclk)) {
- 			dev_err(dev, "Unable to get pclk clock\n");
-@@ -205,8 +217,8 @@ static const struct watchdog_ops stm32_iwdg_ops = {
- };
- 
- static const struct of_device_id stm32_iwdg_of_match[] = {
--	{ .compatible = "st,stm32-iwdg", .data = (void *)!HAS_PCLK },
--	{ .compatible = "st,stm32mp1-iwdg", .data = (void *)HAS_PCLK },
-+	{ .compatible = "st,stm32-iwdg", .data = &stm32_iwdg_data },
-+	{ .compatible = "st,stm32mp1-iwdg", .data = &stm32mp1_iwdg_data },
- 	{ /* end node */ }
- };
- MODULE_DEVICE_TABLE(of, stm32_iwdg_of_match);
-@@ -215,19 +227,16 @@ static int stm32_iwdg_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct watchdog_device *wdd;
--	const struct of_device_id *match;
- 	struct stm32_iwdg *wdt;
- 	int ret;
- 
--	match = of_match_device(stm32_iwdg_of_match, dev);
--	if (!match)
--		return -ENODEV;
--
- 	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
- 	if (!wdt)
- 		return -ENOMEM;
- 
--	wdt->has_pclk = match->data;
-+	wdt->data = of_device_get_match_data(&pdev->dev);
-+	if (!wdt->data)
-+		return -ENODEV;
- 
- 	/* This is the timer base. */
- 	wdt->regs = devm_platform_ioremap_resource(pdev, 0);
-@@ -242,11 +251,12 @@ static int stm32_iwdg_probe(struct platform_device *pdev)
- 
- 	/* Initialize struct watchdog_device. */
- 	wdd = &wdt->wdd;
-+	wdd->parent = dev;
- 	wdd->info = &stm32_iwdg_info;
- 	wdd->ops = &stm32_iwdg_ops;
--	wdd->min_timeout = ((RLR_MIN + 1) * 256) / wdt->rate;
--	wdd->max_hw_heartbeat_ms = ((RLR_MAX + 1) * 256 * 1000) / wdt->rate;
--	wdd->parent = dev;
-+	wdd->min_timeout = DIV_ROUND_UP((RLR_MIN + 1) * PR_MIN, wdt->rate);
-+	wdd->max_hw_heartbeat_ms = ((RLR_MAX + 1) * wdt->data->max_prescaler *
-+				    1000) / wdt->rate;
- 
- 	watchdog_set_drvdata(wdd, wdt);
- 	watchdog_set_nowayout(wdd, WATCHDOG_NOWAYOUT);
--- 
-2.7.4
-
+Reviewed-by: Philippe Mathieu-Daudé <f4bug@amsat.org>
