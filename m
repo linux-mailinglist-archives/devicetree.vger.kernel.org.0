@@ -2,161 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14DB912534
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 01:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9516212589
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 02:35:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726321AbfEBXpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 19:45:42 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:41796 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726120AbfEBXpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 19:45:42 -0400
-Received: by mail-oi1-f196.google.com with SMTP id v23so3141697oif.8
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 16:45:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ylV5gAlOXI2nFNZnhMPfqqvANEP1/evAl3taiRkcInQ=;
-        b=OrjlPAypoDuLTmMWabsyH76U4J0Mgjkpr3DQnHBX1C/sWw9dQWGJZqdGNPLs+jVmSg
-         c3bYyd65ExNrwdSzAF9/C3j2TwsTXUxo6mYRYKux2ifXavoN2kS9n00OiZWShZJ2VN9E
-         Jey0nYLCGUng4+ySvL4+XGzNZ7sYP4XCUNcymRLj9xf6jLOnFx+3mvowrkn0pYKwRyZg
-         3M2fA5czV+OipZELphNhEy5iD2t61ukDrrNzVoHA9OjKJNH0VGnLzAHCbuiCf9QjtvzN
-         IDmzum+SPe0jeiAShs/g76LnFAxiI2OcVPBTp+1OnYkCXtTKkvmMFQSC+CcJJLS2aj7L
-         YRtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ylV5gAlOXI2nFNZnhMPfqqvANEP1/evAl3taiRkcInQ=;
-        b=S7P2KHDWpfTMll68KGwix05DIizRJxJ3PJHoR6AFFK1U53SXxo4iH8U7VfY3AzFlbN
-         VPrhuwp29dv4E6KWWLFk3WIE6hprVnDsUXzOFxR5f1aN6hNeUD4xIxROgQw0yrHeVcO1
-         gCASDaRJDV8E4mGr5iJuLtJSB3Fd1ejFzlZkVYZGBpiQ9Wv4eoadjojVENGhnVsyDDOw
-         9ixCQ7CVXQGafiQa79T/wCKcamc3w0GoXzgAQ9glUy4ntPObCDO0eFElIVEjv+0PkKnt
-         m8wAuLdwHeFbTZryHXAQWYVXk+KY2LQ666BjRT5dhmWJBLqtFSYg7XMVX4ozLmKD4Y8M
-         J/uw==
-X-Gm-Message-State: APjAAAVHpRk1uRdFIEDuaQdl2YdIoSSOCjxLiGPG4eGLob/9p4RiIL8o
-        L+yX9xCIcoP8w4osweUvcGnkWQtQOXO+UxaeXCi3sQ==
-X-Google-Smtp-Source: APXvYqza1ahwn/TDeWwW8NfzPMf/2RsvBcbxrAIWRnpkKGe/w6LvErCEtGQm7aaUbxq8tyCdcrjFzojfQN03A2rWnss=
-X-Received: by 2002:aca:57d8:: with SMTP id l207mr4208582oib.44.1556840740661;
- Thu, 02 May 2019 16:45:40 -0700 (PDT)
+        id S1726396AbfECAfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 20:35:33 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:36587 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726327AbfECAfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 20:35:32 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20190503003530epoutp04bc4eb4c76e7f3900314836014640185f~bBR-Y-Q980441604416epoutp04S
+        for <devicetree@vger.kernel.org>; Fri,  3 May 2019 00:35:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20190503003530epoutp04bc4eb4c76e7f3900314836014640185f~bBR-Y-Q980441604416epoutp04S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1556843730;
+        bh=cDQEru1Tw2z50+9t//LrLBZsWuKsegv3LHRxivmR64o=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=dd7Cf36r3IntTas7/on7JysY/MmLMIxMY6s4CrnRvAIfjtiKARH/hiqaJYORZjg1P
+         CuB7Yay+CogQJoszmJGGdoNIipIigKpaoqmxD2dQI/NU7XGsG6VgOENOpM2dbd9Gx9
+         5KuXu4yqWOM61McZL40j+Mbe4VFmoOj3UwrAsVWI=
+Received: from epsmges1p1.samsung.com (unknown [182.195.40.156]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
+        20190503003526epcas1p4008bb96b5e6415e24524e6da35425c6a~bBR71WaWe2374923749epcas1p4o;
+        Fri,  3 May 2019 00:35:26 +0000 (GMT)
+Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        30.5C.04139.ECC8BCC5; Fri,  3 May 2019 09:35:26 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190503003526epcas1p2d654d5c22d134d92a12fb920fcdfb74e~bBR7LnBA42529225292epcas1p2a;
+        Fri,  3 May 2019 00:35:26 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190503003525epsmtrp1c2cc8c3e9ce3eb6673d8a5d7c8352ee8~bBR7KYy6H0451104511epsmtrp1C;
+        Fri,  3 May 2019 00:35:25 +0000 (GMT)
+X-AuditID: b6c32a35-98bff7000000102b-cc-5ccb8ccefce9
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2C.C6.03662.DCC8BCC5; Fri,  3 May 2019 09:35:25 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190503003525epsmtip1b9fbc6243bc8cc7fc0726d76f3f3443c~bBR63FE4f1682516825epsmtip1S;
+        Fri,  3 May 2019 00:35:25 +0000 (GMT)
+Subject: Re: [PATCH v5 1/6] devfreq: rockchip-dfi: Move GRF definitions to a
+ common place.
+To:     =?UTF-8?Q?Ga=c3=abl_PORTAY?= <gael.portay@collabora.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Lin Huang <hl@rock-chips.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        Derek Basehore <dbasehore@chromium.org>,
+        Randy Li <ayaka@soulik.info>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Mark Rutland <mark.rutland@arm.com>, kernel@collabora.com
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <1f5cbebb-811d-d181-6d7f-83be6954514f@samsung.com>
+Date:   Fri, 3 May 2019 09:36:44 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-13-brendanhiggins@google.com> <20190502110220.GD12416@kroah.com>
- <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com> <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
-In-Reply-To: <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 2 May 2019 16:45:29 -0700
-Message-ID: <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
-Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190502175820.25382-2-gael.portay@collabora.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xTdxTH8+t99ILrdimCZ2zZ8O6RQIJwwcKPRdCkztxkbGNZsmyEjF3h
+        piX0ZW8xuieIOmTgdLKwFaZDYDpkwNrOIUq6leoGahUb0eDKiDKDQKZAMG5qXMuFjP8+5/s7
+        39855/dgCO1DOoEptTgku0U0cXQ0ebw/KTUlUHu2MK2zPglPhv5F2DVzm8KT7lM0PuQPUPj8
+        d7/SuOOaD+HW3mkaP7o+ReF73YMEdgdqKTx/4IgKn98xrcauG8MUDvY20Xiuzo/w7NgjArdd
+        GVLha5VHabyrz6/eECt0HOxAQmPFECn0hFqR4GrfQwvu1k+Eh04vKez1tCPh5+GDhFAVaqCE
+        H653k8Kc65n8FQVl64ySWCLZEyVLsbWk1GLI4V55s0hfpMtM41P4bJzFJVpEs5TDbczLT9lU
+        agrPxyVuFU3lYSlflGUuNXed3VrukBKNVtmRw0m2EpMt27ZGFs1yucWwpthqfolPS0vXhRPf
+        KzNOdLaQth3cttE7HnUFmnuqBkUxwK6FMdccUYOiGS3bg8D3zzlKCWYRjAVHSCW4i2Dfrfvk
+        kqX65ChSFvoQ/FIxtOi/jaCpyh8OGCaWLYT+OykRfSV7hIJjl3pRxE2wOVD5431VhGk2GbwT
+        V+kIP8Guhsv3bizkaNhcaG/uV0X2IdnnIeDbFpHj2LfhzzPdlJISAwNfjy80FMWuh77Jpe1X
+        wcj4IZXCz0LVT42E0vS8Gjr3Riu8ER5cdFIKx8Lkbx61wglw6/Pdi/wBfD/gpyP9A1uNwOO9
+        uGjIAG/bgYXeCDYJunpTlVqPw9/ztVREBlYD1bu1SvZzEBwLqRR+Elo+3UMrLECo7ktqH1rt
+        XDaNc9kEzmUTOP8v9i0i21G8ZJPNBknmbfzyy3ahhaefrOtB9YE8H2IZxD2mgdHBQi0lbpW3
+        m30IGIJbqXl3JixpSsTt70t2a5G93CTJPqQLn/V+IiGu2Br+SBZHEa9Lz8jIwGv5TB3Pc6s0
+        XRv0hVrWIDqkMkmySfYln4qJSqhALxcUwPxgne5k5Udxo5m73tn0V9OxLc03N+u55t8/nHDz
+        8Zs/fnG4tCM+9/iZYNbrMacvzMa92nlly4On6zUt2fqb5m+G968vqBkIXjKcxhPuqS8+o8an
+        2w43CC9k3fVP+T0zh6O8huq39K/F/GFMf2NnV2Vj/UhD/FcnDEdVxXk7nZYAR8pGkU8m7LL4
+        H5+3en8QBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBIsWRmVeSWpSXmKPExsWy7bCSnO7ZntMxBm0Nphav7v5itNj08T2r
+        xavNe9gs5h85x2pxdtlBNos1tw8xWizZ9YbN4v+j16wWPzacYrbYfK6H1eLr5OVMFmeb3rBb
+        bHp8jdXi8q45bBafe48wWnx68J/ZYun1i0wWtxtXsFm07j3C7iDssWbeGkaP2Q0XWTx23F3C
+        6LFpVSebx+Yl9R5/Z+1n8ejbsorRY/u1ecwezXens3qsfbSBxePzJrkA7igum5TUnMyy1CJ9
+        uwSujBfrFrMUNClV3Puwhb2B8bN0FyMnh4SAiUTH7nuMXYxcHEICuxklPj29ww6RkJSYdvEo
+        cxcjB5AtLHH4cDFEzVtGia7ta9hA4sICMRKHP+iCxEUEVrJKTJ21FqyXWcBWonHjbyaIhuOM
+        EovnrmMGSbAJaEnsf3GDDcTmF1CUuPrjMSOIzStgJ7Fq4WEmkKEsAioS5w5VgIRFBSIkzrxf
+        wQJRIihxcuYTMJtTwF5i76tdjBC71CX+zLvEDGGLS9x6Mp8JwpaXaN46m3kCo/AsJO2zkLTM
+        QtIyC0nLAkaWVYySqQXFuem5xYYFRnmp5XrFibnFpXnpesn5uZsYwfGvpbWD8cSJ+EOMAhyM
+        Sjy8EvdOxQixJpYVV+YeYpTgYFYS4Y37CBTiTUmsrEotyo8vKs1JLT7EKM3BoiTOK59/LFJI
+        ID2xJDU7NbUgtQgmy8TBKdXA2NY4dbKW8m/eR8f3vTweVltxVN8v5dg15pKZDLuCVt0M4ms+
+        NsVvtYL/yiIF6f7G6Re+5rq2KR32Egy+srLEq9RFYP+dY9XGL8wN0+Kn/lribzrnZPTkIJb4
+        F7sbl153PzjFZXt4VX2B5haHd4tepD1/cU931504pgrZ1Q13pQs+Xn5Y6DaVT4mlOCPRUIu5
+        qDgRABZ8luf7AgAA
+X-CMS-MailID: 20190503003526epcas1p2d654d5c22d134d92a12fb920fcdfb74e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20190502175826epcas1p43c82151e13a9d7708d46ad78c113ba76
+References: <20190502175820.25382-1-gael.portay@collabora.com>
+        <CGME20190502175826epcas1p43c82151e13a9d7708d46ad78c113ba76@epcas1p4.samsung.com>
+        <20190502175820.25382-2-gael.portay@collabora.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 2:16 PM Frank Rowand <frowand.list@gmail.com> wrote:
->
-> On 5/2/19 11:07 AM, Brendan Higgins wrote:
-> > On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
-> >>
-> >> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
-> >>> From: Felix Guo <felixguoxiuping@gmail.com>
-> >>>
-> >>> The ultimate goal is to create minimal isolated test binaries; in the
-> >>> meantime we are using UML to provide the infrastructure to run tests, so
-> >>> define an abstract way to configure and run tests that allow us to
-> >>> change the context in which tests are built without affecting the user.
-> >>> This also makes pretty and dynamic error reporting, and a lot of other
-> >>> nice features easier.
-> >>>
-> >>> kunit_config.py:
-> >>>   - parse .config and Kconfig files.
-> >>>
-> >>> kunit_kernel.py: provides helper functions to:
-> >>>   - configure the kernel using kunitconfig.
-> >>>   - build the kernel with the appropriate configuration.
-> >>>   - provide function to invoke the kernel and stream the output back.
-> >>>
-> >>> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
-> >>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> >>
-> >> Ah, here's probably my answer to my previous logging format question,
-> >> right?  What's the chance that these wrappers output stuff in a standard
-> >> format that test-framework-tools can already parse?  :)
+Hi Gaël,
 
-To be clear, the test-framework-tools format we are talking about is
-TAP13[1], correct?
+The patch1 was already applied to devfreq.git
+and then it was applied to linux-pm.git through
+pull request of devfreq.
 
-My understanding is that is what kselftest is being converted to use.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=bleeding-edge&id=adfe3b76608ffe547af5a74415f15499b798f32a
 
-> >
-> > It should be pretty easy to do. I had some patches that pack up the
-> > results into a serialized format for a presubmit service; it should be
-> > pretty straightforward to take the same logic and just change the
-> > output format.
->
-> When examining and trying out the previous versions of the patch I found
-> the wrappers useful to provide information about how to control and use
-> the tests, but I had no interest in using the scripts as they do not
-> fit in with my personal environment and workflow.
->
-> In the previous versions of the patch, these helper scripts are optional,
-> which is good for my use case.  If the helper scripts are required to
+On 19. 5. 3. 오전 2:58, Gaël PORTAY wrote:
+> From: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> 
+> Some rk3399 GRF (Generic Register Files) definitions can be used for
+> different drivers. Move these definitions to a common include so we
+> don't need to duplicate these definitions.
+> 
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> Signed-off-by: Gaël PORTAY <gael.portay@collabora.com>
+> Acked-by: MyungJoo Ham <myungjoo.ham@samsung.com>
+> ---
+> 
+> Changes in v5: None
+> 
+> Changes in v4:
+> - [PATCH v3 1/5] Add Acked-by: MyungJoo Ham <myungjoo.ham@samsung.com>.
+> 
+> Changes in v3:
+> - [PATCH v2 1/5] Add Signed-off-by: Gaël PORTAY <gael.portay@collabora.com>.
+> 
+> Changes in v2:
+> - [PATCH 1/8] Really add Acked-by: Chanwoo Choi <cw00.choi@samsung.com>.
+> 
+> Changes in v1:
+> - [RFC 1/10] Add Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> - [RFC 1/10] s/Generic/General/ (Robin Murphy)
+> - [RFC 4/10] Removed from the series. I did not found a use case where not holding the mutex causes the issue.
+> - [RFC 7/10] Removed from the series. I did not found a use case where this matters.
+> 
+>  drivers/devfreq/event/rockchip-dfi.c | 23 +++++++----------------
+>  include/soc/rockchip/rk3399_grf.h    | 21 +++++++++++++++++++++
+>  2 files changed, 28 insertions(+), 16 deletions(-)
+>  create mode 100644 include/soc/rockchip/rk3399_grf.h
+> 
+> diff --git a/drivers/devfreq/event/rockchip-dfi.c b/drivers/devfreq/event/rockchip-dfi.c
+> index 22b113363ffc..2fbbcbeb644f 100644
+> --- a/drivers/devfreq/event/rockchip-dfi.c
+> +++ b/drivers/devfreq/event/rockchip-dfi.c
+> @@ -26,6 +26,8 @@
+>  #include <linux/list.h>
+>  #include <linux/of.h>
+>  
+> +#include <soc/rockchip/rk3399_grf.h>
+> +
+>  #define RK3399_DMC_NUM_CH	2
+>  
+>  /* DDRMON_CTRL */
+> @@ -43,18 +45,6 @@
+>  #define DDRMON_CH1_COUNT_NUM		0x3c
+>  #define DDRMON_CH1_DFI_ACCESS_NUM	0x40
+>  
+> -/* pmu grf */
+> -#define PMUGRF_OS_REG2	0x308
+> -#define DDRTYPE_SHIFT	13
+> -#define DDRTYPE_MASK	7
+> -
+> -enum {
+> -	DDR3 = 3,
+> -	LPDDR3 = 6,
+> -	LPDDR4 = 7,
+> -	UNUSED = 0xFF
+> -};
+> -
+>  struct dmc_usage {
+>  	u32 access;
+>  	u32 total;
+> @@ -83,16 +73,17 @@ static void rockchip_dfi_start_hardware_counter(struct devfreq_event_dev *edev)
+>  	u32 ddr_type;
+>  
+>  	/* get ddr type */
+> -	regmap_read(info->regmap_pmu, PMUGRF_OS_REG2, &val);
+> -	ddr_type = (val >> DDRTYPE_SHIFT) & DDRTYPE_MASK;
+> +	regmap_read(info->regmap_pmu, RK3399_PMUGRF_OS_REG2, &val);
+> +	ddr_type = (val >> RK3399_PMUGRF_DDRTYPE_SHIFT) &
+> +		    RK3399_PMUGRF_DDRTYPE_MASK;
+>  
+>  	/* clear DDRMON_CTRL setting */
+>  	writel_relaxed(CLR_DDRMON_CTRL, dfi_regs + DDRMON_CTRL);
+>  
+>  	/* set ddr type to dfi */
+> -	if (ddr_type == LPDDR3)
+> +	if (ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR3)
+>  		writel_relaxed(LPDDR3_EN, dfi_regs + DDRMON_CTRL);
+> -	else if (ddr_type == LPDDR4)
+> +	else if (ddr_type == RK3399_PMUGRF_DDRTYPE_LPDDR4)
+>  		writel_relaxed(LPDDR4_EN, dfi_regs + DDRMON_CTRL);
+>  
+>  	/* enable count, use software mode */
+> diff --git a/include/soc/rockchip/rk3399_grf.h b/include/soc/rockchip/rk3399_grf.h
+> new file mode 100644
+> index 000000000000..3eebabcb2812
+> --- /dev/null
+> +++ b/include/soc/rockchip/rk3399_grf.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/*
+> + * Rockchip General Register Files definitions
+> + *
+> + * Copyright (c) 2018, Collabora Ltd.
+> + * Author: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> + */
+> +
+> +#ifndef __SOC_RK3399_GRF_H
+> +#define __SOC_RK3399_GRF_H
+> +
+> +/* PMU GRF Registers */
+> +#define RK3399_PMUGRF_OS_REG2		0x308
+> +#define RK3399_PMUGRF_DDRTYPE_SHIFT	13
+> +#define RK3399_PMUGRF_DDRTYPE_MASK	7
+> +#define RK3399_PMUGRF_DDRTYPE_DDR3	3
+> +#define RK3399_PMUGRF_DDRTYPE_LPDDR2	5
+> +#define RK3399_PMUGRF_DDRTYPE_LPDDR3	6
+> +#define RK3399_PMUGRF_DDRTYPE_LPDDR4	7
+> +
+> +#endif
+> 
 
-They are still optional.
 
-> get the data into the proper format then the scripts are not quite so
-> optional, they become the expected environment.  I think the proper
-> format should exist without the helper scripts.
-
-That's a good point. A couple things,
-
-First off, supporting TAP13, either in the kernel or the wrapper
-script is not hard, but I don't think that is the real issue that you
-raise.
-
-If your only concern is that you will always be able to have human
-readable KUnit results printed to the kernel log, that is a guarantee
-I feel comfortable making. Beyond that, I think it is going to take a
-long while before I would feel comfortable guaranteeing anything about
-how will KUnit work, what kind of data it will want to expose, and how
-it will be organized. I think the wrapper script provides a nice
-facade that I can maintain, can mediate between the implementation
-details and the user, and can mediate between the implementation
-details and other pieces of software that might want to consume
-results.
-
-[1] https://testanything.org/tap-version-13-specification.html
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
