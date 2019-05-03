@@ -2,89 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B55D812660
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 05:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1DC12668
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 05:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726128AbfECDKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 23:10:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60592 "EHLO mail.kernel.org"
+        id S1726401AbfECDPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 23:15:19 -0400
+Received: from ale.deltatee.com ([207.54.116.67]:38140 "EHLO ale.deltatee.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726114AbfECDKd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 May 2019 23:10:33 -0400
-Received: from localhost (unknown [171.76.113.243])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 13CAB2070B;
-        Fri,  3 May 2019 03:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556853032;
-        bh=+1g2xXHLzB+wlup4fZihm+HP4DcA3/0YblOv/pUVDGY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WRX9apE4PPVTr9nB5HkiKaTV24wRHaLUf8DBRr/RoMzNgUn9CrZpRhvBVSA+8jdoN
-         h5BQhLLyk46B8n6ioOcJrlBHyqHLfL97Uta+M01RDSTS/nbe1rmKBToozJCyvmY/Zm
-         QVbLlennYlP7B4QZnFUuMNyqEYHnWDlxvGyNXF2w=
-Date:   Fri, 3 May 2019 08:40:20 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] PCI: qcom: Use clk_bulk API for 2.4.0 controllers
-Message-ID: <20190503031020.GV3845@vkoul-mobl.Dlink>
-References: <20190502001955.10575-1-bjorn.andersson@linaro.org>
- <20190502001955.10575-2-bjorn.andersson@linaro.org>
- <20190502115351.GM3845@vkoul-mobl.Dlink>
- <20190502150006.GL2938@tuxbook-pro>
+        id S1726114AbfECDPS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 23:15:18 -0400
+Received: from adsl-173-228-226-134.prtc.net ([173.228.226.134] helo=[172.20.29.49])
+        by ale.deltatee.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <logang@deltatee.com>)
+        id 1hMOef-0006md-Tg; Thu, 02 May 2019 21:14:35 -0600
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, mpe@ellerman.id.au, pmladek@suse.com,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-9-brendanhiggins@google.com>
+From:   Logan Gunthorpe <logang@deltatee.com>
+Message-ID: <0a605543-477a-1854-eb35-6e586606889b@deltatee.com>
+Date:   Thu, 2 May 2019 21:14:08 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190502150006.GL2938@tuxbook-pro>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <20190501230126.229218-9-brendanhiggins@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 173.228.226.134
+X-SA-Exim-Rcpt-To: wfg@linux.intel.com, rostedt@goodmis.org, rientjes@google.com, richard@nod.at, pmladek@suse.com, mpe@ellerman.id.au, knut.omang@oracle.com, khilman@baylibre.com, julia.lawall@lip6.fr, joel@jms.id.au, jdike@addtoit.com, daniel@ffwll.ch, dan.j.williams@intel.com, dan.carpenter@oracle.com, amir73il@gmail.com, Tim.Bird@sony.com, Alexander.Levin@microsoft.com, linux-um@lists.infradead.org, linux-nvdimm@lists.01.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-doc@vger.kernel.org, kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, shuah@kernel.org, sboyd@kernel.org, robh@kernel.org, mcgrof@kernel.org, kieran.bingham@ideasonboard.com, keescook@google.com, gregkh@linuxfoundation.org, frowand.list@gmail.com, brendanhiggins@google.com
+X-SA-Exim-Mail-From: logang@deltatee.com
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ale.deltatee.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-6.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=ham autolearn_force=no version=3.4.2
+Subject: Re: [PATCH v2 08/17] kunit: test: add support for test abort
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: Yes (on ale.deltatee.com)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-05-19, 08:00, Bjorn Andersson wrote:
-> On Thu 02 May 04:53 PDT 2019, Vinod Koul wrote:
-> > On 01-05-19, 17:19, Bjorn Andersson wrote:
-> [..]
-> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > index 0ed235d560e3..d740cbe0e56d 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > @@ -112,10 +112,10 @@ struct qcom_pcie_resources_2_3_2 {
-> > >  	struct regulator_bulk_data supplies[QCOM_PCIE_2_3_2_MAX_SUPPLY];
-> > >  };
-> > >  
-> > > +#define QCOM_PCIE_2_4_0_MAX_CLOCKS	3
-> > 
-> > empty line after the define please
-> > 
-> 
-> This follows the style of QCOM_PCIE_2_3_2_MAX_SUPPLY one block up, so
-> I think this is the way we want it.
 
-Okay sounds fine to me
 
-> 
-> > >  struct qcom_pcie_resources_2_4_0 {
-> [..]
-> > 
-> > 
-> > rest lgtm:
-> > 
-> > Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> > 
-> 
-> Thanks!
-> 
-> Regards,
-> Bjorn
+On 2019-05-01 5:01 p.m., Brendan Higgins wrote:
+> +/*
+> + * struct kunit_try_catch - provides a generic way to run code which might fail.
+> + * @context: used to pass user data to the try and catch functions.
+> + *
+> + * kunit_try_catch provides a generic, architecture independent way to execute
+> + * an arbitrary function of type kunit_try_catch_func_t which may bail out by
+> + * calling kunit_try_catch_throw(). If kunit_try_catch_throw() is called, @try
+> + * is stopped at the site of invocation and @catch is catch is called.
 
--- 
-~Vinod
+I found some of the C++ comparisons in this series a bit distasteful but
+wasn't going to say anything until I saw the try catch.... But looking
+into the implementation it's just a thread that can exit early which
+seems fine to me. Just a poor choice of name I guess...
+
+[snip]
+
+> +static void __noreturn kunit_abort(struct kunit *test)
+> +{
+> +	kunit_set_death_test(test, true);
+> +
+> +	kunit_try_catch_throw(&test->try_catch);
+> +
+> +	/*
+> +	 * Throw could not abort from test.
+> +	 *
+> +	 * XXX: we should never reach this line! As kunit_try_catch_throw is
+> +	 * marked __noreturn.
+> +	 */
+> +	WARN_ONCE(true, "Throw could not abort from test!\n");
+> +}
+> +
+>  int kunit_init_test(struct kunit *test, const char *name)
+>  {
+>  	spin_lock_init(&test->lock);
+> @@ -77,6 +103,7 @@ int kunit_init_test(struct kunit *test, const char *name)
+>  	test->name = name;
+>  	test->vprintk = kunit_vprintk;
+>  	test->fail = kunit_fail;
+> +	test->abort = kunit_abort;
+
+There are a number of these function pointers which seem to be pointless
+to me as you only ever set them to one function. Just call the function
+directly. As it is, it is an unnecessary indirection for someone reading
+the code. If and when you have multiple implementations of the function
+then add the pointer. Don't assume you're going to need it later on and
+add all this maintenance burden if you never use it..
+
+[snip]
+
+> +void kunit_generic_try_catch_init(struct kunit_try_catch *try_catch)
+> +{
+> +	try_catch->run = kunit_generic_run_try_catch;
+> +	try_catch->throw = kunit_generic_throw;
+> +}
+
+Same here. There's only one implementation of try_catch and I can't
+really see any sensible justification for another implementation. Even
+if there is, add the indirection when the second implementation is
+added. This isn't C++ and we don't need to make everything a "method".
+
+Thanks,
+
+Logan
