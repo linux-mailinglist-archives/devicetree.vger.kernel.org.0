@@ -2,75 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E554913050
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B037C13075
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727397AbfECOeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 10:34:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56600 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726377AbfECOen (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 May 2019 10:34:43 -0400
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 25143205ED;
-        Fri,  3 May 2019 14:34:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556894083;
-        bh=/MHif5okGldV0zJQO9uwxXPuEkzcX3tjHeme2xBr56I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=NQY37OjiDkyluGn7wp+DEOQ/rusC2ZYGlS4OkQ7N+lGvPlx4i/cOygGh1BvxNcmx4
-         rY1AGyNGOTnMTv1qPj+ls8/RXFBM4ovpE9ABphx0LXCOgriZ0pfU6jiokQXi8WZYPY
-         1sBgomiACkkAoeaTjbiQILVPV80zL82ux9sv8C8Q=
-Subject: Re: [PATCH v2 11/17] kunit: test: add test managed resource tests
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, richard@nod.at, rientjes@google.com,
-        rostedt@goodmis.org, wfg@linux.intel.com,
-        Avinash Kondareddy <akndr41@gmail.com>,
-        shuah <shuah@kernel.org>
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-12-brendanhiggins@google.com>
-From:   shuah <shuah@kernel.org>
-Message-ID: <8c37fd20-859c-9c34-4465-8adfcfdaab09@kernel.org>
-Date:   Fri, 3 May 2019 08:34:40 -0600
+        id S1728321AbfECOgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 10:36:22 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:40142 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728315AbfECOgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 10:36:21 -0400
+Received: by mail-wr1-f65.google.com with SMTP id h4so8174884wre.7;
+        Fri, 03 May 2019 07:36:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:openpgp:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Gm/cdaSgtRnAlBRNt3auiLB75Wo4JXolxnlA9E+Cylc=;
+        b=Kd5O6ob0i/ZsgsPwyVaHeKSDdSuKIFlPPDqLYVy1/xJi3BxJLkIdSmkTcYRgo10igN
+         mfGVNnmcTvdnmqIJMNq9UAj2OyeLNL8LTdAszLulghyj4MqlHEJb2kMvtJfFvdxclyK8
+         KwH5o1D+Hh1ZN76UxE9E+tWbh0vB4YSzkMIchZ/0hD+SdLxEj2Ua6qM4wywQzKIowG0O
+         xxvON8xVdw3222ED7DON6CrWdhbSGRg8iVRODA7U0OQyOKjy6AYD9pOEm9rOX8WBrJaO
+         ci1oFB1edqhBpKHgWivZ3/S8nQOi58RoX+kD9pUCYfXhZ3XJxQn3SXjBSwlkByMo/YRh
+         Gm3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:openpgp
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Gm/cdaSgtRnAlBRNt3auiLB75Wo4JXolxnlA9E+Cylc=;
+        b=c2CeQeP63eu+JwpAmttRDJ3OcjXongjZagVKBzH9kWfk+Qdk6rxe7+s9flw45kXVNc
+         B5+wmlggNnLyKqd2TxlovbV7nhNDwVmN6gq9KDBSLsFqsoIbZ8EfZi7b3wqrnTqsjfZb
+         7aZaT9fw1iA06uGx76ZiE2bcj6bDClsdPCdGZyyvyyr6O5wHOPAlMmcYc4JdeU4wGfKx
+         pNNDS2mFOs/iK/fEcNExqTe/b+9ifjhdy/oPsTZFnW1bTYflcBLPOeDPaS0Xiltfot/9
+         bfC134URl+QFznuyMY5/VoGYQNoYLwQ2IE2/pY9LPQMPReTj8GocGBLWbMIPlX0EiyXx
+         otvw==
+X-Gm-Message-State: APjAAAVbIJnqWV5h6rt6VYyy9tfOQJDB6Z7izrsxCfrlA+Y7trZ6Rk2x
+        HOjS+Nhi/5jq4LMa5CucDcU=
+X-Google-Smtp-Source: APXvYqyqZi4/oQ6j9TTt5g6ndRNCQ8AzTSmq2XqbUl6gaptlziGURfsdQjqzFU4osgF6j06NoHvqlg==
+X-Received: by 2002:a5d:4445:: with SMTP id x5mr7005084wrr.120.1556894179433;
+        Fri, 03 May 2019 07:36:19 -0700 (PDT)
+Received: from [192.168.1.33] (193.red-88-21-103.staticip.rima-tde.net. [88.21.103.193])
+        by smtp.gmail.com with ESMTPSA id b184sm3279274wmh.17.2019.05.03.07.36.17
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 07:36:18 -0700 (PDT)
+Subject: Re: [PATCH 1/3] devicetree: document the BCM63XX gated clock bindings
+To:     Jonas Gorski <jonas.gorski@gmail.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Kevin Cernekee <cernekee@gmail.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>
+References: <20190502122657.15577-1-jonas.gorski@gmail.com>
+ <20190502122657.15577-2-jonas.gorski@gmail.com>
+From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <f4bug@amsat.org>
+Openpgp: url=http://pgp.mit.edu/pks/lookup?op=get&search=0xE3E32C2CDEADC0DE
+Message-ID: <11dc70cb-114b-fb40-1b5e-fd71b8ced1af@amsat.org>
+Date:   Fri, 3 May 2019 16:36:16 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190501230126.229218-12-brendanhiggins@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20190502122657.15577-2-jonas.gorski@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/1/19 5:01 PM, Brendan Higgins wrote:
-> From: Avinash Kondareddy <akndr41@gmail.com>
+Hi Jonas,
+
+On 5/2/19 2:26 PM, Jonas Gorski wrote:
+> Add binding documentation for the gated clock controller found on MIPS
+> based BCM63XX SoCs.
+
+I'd have ordered this patch after the #2 of this series, or eventually
+squashed both together. It is weird to document an unexistant feature
+then implement it, while the opposite looks more natural.
+(If you agree, maybe Paul can invert those when applying this series).
+
+Anyway:
+Reviewed-by: Philippe Mathieu-Daudé <f4bug@amsat.org>
+
 > 
-> Tests how tests interact with test managed resources in their lifetime.
-> 
-> Signed-off-by: Avinash Kondareddy <akndr41@gmail.com>
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
 > ---
-
-I think this change log could use more details. It is vague on what it
-does.
-
-thanks,
--- Shuah
-
+>  .../bindings/clock/brcm,bcm63xx-clocks.txt         | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm63xx-clocks.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm63xx-clocks.txt b/Documentation/devicetree/bindings/clock/brcm,bcm63xx-clocks.txt
+> new file mode 100644
+> index 000000000000..3041657e2f96
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/brcm,bcm63xx-clocks.txt
+> @@ -0,0 +1,22 @@
+> +Gated Clock Controller Bindings for MIPS based BCM63XX SoCs
+> +
+> +Required properties:
+> +- compatible: must be one of:
+> +	 "brcm,bcm3368-clocks"
+> +	 "brcm,bcm6328-clocks"
+> +	 "brcm,bcm6358-clocks"
+> +	 "brcm,bcm6362-clocks"
+> +	 "brcm,bcm6368-clocks"
+> +	 "brcm,bcm63268-clocks"
+> +
+> +- reg: Address and length of the register set
+> +- #clock-cells: must be <1>
+> +
+> +
+> +Example:
+> +
+> +clkctl: clock-controller@10000004 {
+> +	compatible = "brcm,bcm6328-clocks";
+> +	reg = <0x10000004 0x4>;
+> +	#clock-cells = <1>;
+> +};
+> 
