@@ -2,161 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1D8130A7
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C54B130B9
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbfECOq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 10:46:56 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:52713 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726480AbfECOq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 10:46:56 -0400
-X-Originating-IP: 90.88.149.145
-Received: from localhost (aaubervilliers-681-1-29-145.w90-88.abo.wanadoo.fr [90.88.149.145])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 2C69420008;
-        Fri,  3 May 2019 14:46:51 +0000 (UTC)
-Date:   Fri, 3 May 2019 16:46:51 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2] arm64: allwinner: h6: orangepi-one-plus: Add Ethernet
- support
-Message-ID: <20190503144651.ttqfha656dykqjzo@flea>
-References: <20190503115928.27662-1-jagan@amarulasolutions.com>
+        id S1726480AbfECOxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 10:53:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35390 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726289AbfECOxb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 10:53:31 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6D0512089E
+        for <devicetree@vger.kernel.org>; Fri,  3 May 2019 14:53:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556895209;
+        bh=en2GsVq2euCsilbTPasnYSKRswlFlsf899ZurKSRmRU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vecQNyz0sdsbnc22RGd9YNNF0nVPslHaN+2o44GcXqGvuiB45M9zqSAkFZq+rkqlo
+         8HvbY/YykqqvhmZlRL5w8hbcPaCfsapolbz7lLc1dckkZVGPuTyhEo3CtDwvgmqVCC
+         joaO0IH3lrsRxrHcJGzESjyV0iUNtVK6YsTlC1Jo=
+Received: by mail-qt1-f181.google.com with SMTP id k24so3201039qtq.7
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 07:53:29 -0700 (PDT)
+X-Gm-Message-State: APjAAAUt9Gu6Cysffphsh+vijK0Rs/siknCpTw26B78Oz3o4qsKqARF1
+        OKzSdKg3KHQ5bqOHtU6zSt2aD7eiWQKC2337hA==
+X-Google-Smtp-Source: APXvYqzFcs0abauSAGDvtKuTSB+NGIiAJnyXCerwsEBJLS63BBEzFbp2UTM5epRvFcBVB/TSm/I5003SUGUY/nSbI+o=
+X-Received: by 2002:ac8:610f:: with SMTP id a15mr8443089qtm.257.1556895208631;
+ Fri, 03 May 2019 07:53:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2rmkjhbiz7qfnwvn"
-Content-Disposition: inline
-In-Reply-To: <20190503115928.27662-1-jagan@amarulasolutions.com>
-User-Agent: NeoMutt/20180716
+References: <1556846821-8581-1-git-send-email-aisheng.dong@nxp.com> <1556846821-8581-2-git-send-email-aisheng.dong@nxp.com>
+In-Reply-To: <1556846821-8581-2-git-send-email-aisheng.dong@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 3 May 2019 09:53:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLJ+Lc_3huQizy4BVFgVV94Yg8KsOOgXLv4dQU8H=WfWw@mail.gmail.com>
+Message-ID: <CAL_JsqLJ+Lc_3huQizy4BVFgVV94Yg8KsOOgXLv4dQU8H=WfWw@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
+ parse clocks from device tree
+To:     Aisheng Dong <aisheng.dong@nxp.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---2rmkjhbiz7qfnwvn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, May 03, 2019 at 05:29:28PM +0530, Jagan Teki wrote:
-> Add Ethernet support for orangepi-one-plus board,
+On Thu, May 2, 2019 at 8:34 PM Aisheng Dong <aisheng.dong@nxp.com> wrote:
 >
-> - Ethernet port connected via RTL8211E PHY
-> - PHY suppiled with
->   GMAC-2V5, fixed regulator with GMAC_EN pin via PD6
->   GMAC-3V, which is supplied by VCC3V3-MAC via aldo2
-> - RGMII-RESET pin connected via PD14
+> There's a few limitations on the original one cell clock binding
+> (#clock-cells = <1>) that we have to define all clock IDs for device
+> tree to reference. This may cause troubles if we want to use common
+> clock IDs for multi platforms support when the clock of those platforms
+> are mostly the same.
+> e.g. Current clock IDs name are defined with SS prefix.
 >
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-
-Your commit log should be improved. We can get those informations from
-the patch itself...
-
+> However the device may reside in different SS across CPUs, that means the
+> SS prefix may not valid anymore for a new SoC. Furthermore, the device
+> availability of those clocks may also vary a bit.
+>
+> For such situation, We formerly planned to add all new IDs for each SS
+> and dynamically check availability for different SoC in driver. That can
+> be done but that may involve a lot effort and may result in more changes
+> and duplicated code in driver, also make device tree upstreaming hard which
+> depends on Clock IDs.
+>
+> To relief this situation, we want to move the clock definition into
+> device tree which can fully decouple the dependency of Clock ID definition
+> from device tree. This can make us write a full generic clock driver
+> for SCU based SoCs. No more frequent changes needed in clock driver
+> any more.
+>
+> In the meanwhile, we can also use the existence of clock nodes in device
+> tree to address the device and clock availability differences across
+> different SoCs.
+>
+> For SCU clocks, only two params required. The first one is resource id
+> which is encoded in reg property and the second is clock type index
+> which is encoded in generic clock-indices property they're not continuously.
+>
+> And as we also want to support clock set parent function, 'clocks' property
+> is also used to pass all the possible input parents.
+>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <kernel@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 > ---
-> Changes for v2:
-> - emac changes on top of https://patchwork.kernel.org/cover/10899529/
->   series
+> ChangeLog:
+> v1->v2:
+>  * changed to one cell binding inspired by arm,scpi.txt
+>    Documentation/devicetree/bindings/arm/arm,scpi.txt
+>    Resource ID is encoded in 'reg' property.
+>    Clock type is encoded in generic clock-indices property.
+>    Then we don't have to search all the DT nodes to fetch
+>    those two value to construct clocks which is relatively
+>    low efficiency.
+>  * Add required power-domain property as well.
+> ---
+>  .../devicetree/bindings/arm/freescale/fsl,scu.txt  | 45 ++++++++++++++++++----
+>  include/dt-bindings/firmware/imx/rsrc.h            | 17 ++++++++
+>  2 files changed, 54 insertions(+), 8 deletions(-)
 >
->  .../allwinner/sun50i-h6-orangepi-one-plus.dts |  8 ++++
->  .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 42 +++++++++++++++++++
->  2 files changed, 50 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> index 5d7dbab..2f46e89 100644
+> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> @@ -89,6 +89,27 @@ Required properties:
+>                           "fsl,imx8qm-clock"
+>                           "fsl,imx8qxp-clock"
+>                         followed by "fsl,scu-clk"
+> +- #address-cells:      Should be 1.
+> +- #size-cells:         Should be 0.
+> +
+> +Sub nodes are required to represent all available SCU clocks within this
+> +hardware subsystem and the following properties are needed:
+> +
+> +- reg:                 Should contain the Resource ID of this SCU clock.
+> +- #clock-cells:                Should be 1.
+> +- clock-indices:       Index of all clock types supported by this SCU clock.
+> +                       The order should match the clock-output-names array.
+> +                       Refer to <include/dt-bindings/firmware/imx/rsrc.h> for
+> +                       available clock types supported by SCU.
+
+I would have expected the clock cell to contain the Resource ID.
+
+Also, this still has one clock per node which you should avoid unless
+there's only a small number of clocks (say ~20). Move this all to a
+single node with the list of clock IDs in clock-indices and other
+properties like power-domains can match up with clock-indices. IOW,
+both should have the same length (in elements).
+
+For the clock type, perhaps combine that in the clock cell with the
+resource ID such as using the upper 8-bits.
+
+> +- clock-output-names:  Shall be the corresponding names of the outputs.
+> +- power-domains:       Should contain the power domain used by this SCU clock.
+> +
+> +Optional properties:
+> +- clocks:              Shall be the input parent clock(s) phandle for the clock.
+> +                       For multiplexed clocks, the list order must match the hardware
+> +                       programming order.
+> +
+> +Legacy Clock binding (No sub-nodes which is DEPRECATED):
+>  - #clock-cells:                Should be 1. Contains the Clock ID value.
+>  - clocks:              List of clock specifiers, must contain an entry for
+>                         each required entry in clock-names
+> @@ -144,6 +165,21 @@ lsio_mu1: mailbox@5d1c0000 {
+>         #mbox-cells = <2>;
+>  };
 >
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> index 12e17567ab56..9e8ed1053715 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> @@ -9,4 +9,12 @@
->  / {
->  	model = "OrangePi One Plus";
->  	compatible = "xunlong,orangepi-one-plus", "allwinner,sun50i-h6";
+> +conn-scu-clock-controller {
+> +       compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
 > +
-> +	aliases {
-> +		ethernet0 = &emac;
-> +	};
-> +};
+> +       uart0_clk: clock-scu@57 {
+> +               reg = <57>;
+> +               #clock-cells = <1>;
+> +               clock-indices = <IMX_SC_PM_CLK_PER>;
+> +               clock-output-names = "uart0_clk";
+> +               power-domains = <&pd IMX_SC_R_UART_0>;
+> +       };
+> +       ...
+> +}
 > +
-> +&emac {
-> +	status = "okay";
+>  firmware {
+>         scu {
+>                 compatible = "fsl,imx-scu";
+> @@ -160,11 +196,6 @@ firmware {
+>                           &lsio_mu1 1 3
+>                           &lsio_mu1 3 3>;
+>
+> -               clk: clk {
+> -                       compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+> -                       #clock-cells = <1>;
+> -               };
+> -
+>                 iomuxc {
+>                         compatible = "fsl,imx8qxp-iomuxc";
+>
+> @@ -192,8 +223,6 @@ serial@5a060000 {
+>         ...
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_lpuart0>;
+> -       clocks = <&clk IMX8QXP_UART0_CLK>,
+> -                <&clk IMX8QXP_UART0_IPG_CLK>;
+> -       clock-names = "per", "ipg";
+> +       clocks = <&uart0_clk IMX_SC_PM_CLK_PER>;
+>         power-domains = <&pd IMX_SC_R_UART_0>;
 >  };
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> index 62e27948a3fa..c48e24acaf8a 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> @@ -45,6 +45,48 @@
->  		regulator-max-microvolt = <5000000>;
->  		regulator-always-on;
->  	};
-> +
-> +	/*
-> +	 * The board uses 2.5V RGMII signalling. Power sequence to enable
-> +	 * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-> +	 * at the same time and to wait 100ms.
-> +	 */
-> +	reg_gmac_2v5: gmac-2v5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "gmac-2v5";
-> +		regulator-min-microvolt = <2500000>;
-> +		regulator-max-microvolt = <2500000>;
-> +		startup-delay-us = <100000>;
-> +		enable-active-high;
-> +		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* GMAC_EN: PD6 */
-> +
-> +		/* The real parent of gmac-2v5 is reg_vcc5v, but we need to
-> +		 * enable two regulators to power the phy. This is one way
-> +		 * to achieve that.
-> +		 */
-> +		vin-supply = <&reg_aldo2>; /* VCC3V3-MAC: GMAC-3V */
-> +	};
-> +};
-> +
-> +&emac {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&ext_rgmii_pins>;
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&ext_rgmii_phy>;
-> +	phy-supply = <&reg_gmac_2v5>;
-> +	allwinner,rx-delay-ps = <1500>;
-> +	allwinner,tx-delay-ps = <700>;
-> +};
-> +
-> +&mdio {
-> +	ext_rgmii_phy: ethernet-phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <1>;
-> +
-> +		reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* RGMII-RESET: PD14 */
-> +		reset-assert-us = <15000>;
-> +		reset-deassert-us = <40000>;
-> +	};
->  };
+> diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
+> index 4e61f64..fbeaca7 100644
+> --- a/include/dt-bindings/firmware/imx/rsrc.h
+> +++ b/include/dt-bindings/firmware/imx/rsrc.h
+> @@ -547,4 +547,21 @@
+>  #define IMX_SC_R_ATTESTATION           545
+>  #define IMX_SC_R_LAST                  546
+>
+> +/*
+> + * Defines for SC PM CLK
+> + */
+> +#define IMX_SC_PM_CLK_SLV_BUS          0       /* Slave bus clock */
+> +#define IMX_SC_PM_CLK_MST_BUS          1       /* Master bus clock */
+> +#define IMX_SC_PM_CLK_PER              2       /* Peripheral clock */
+> +#define IMX_SC_PM_CLK_PHY              3       /* Phy clock */
+> +#define IMX_SC_PM_CLK_MISC             4       /* Misc clock */
+> +#define IMX_SC_PM_CLK_MISC0            0       /* Misc 0 clock */
+> +#define IMX_SC_PM_CLK_MISC1            1       /* Misc 1 clock */
+> +#define IMX_SC_PM_CLK_MISC2            2       /* Misc 2 clock */
+> +#define IMX_SC_PM_CLK_MISC3            3       /* Misc 3 clock */
+> +#define IMX_SC_PM_CLK_MISC4            4       /* Misc 4 clock */
+> +#define IMX_SC_PM_CLK_CPU              2       /* CPU clock */
+> +#define IMX_SC_PM_CLK_PLL              4       /* PLL */
+> +#define IMX_SC_PM_CLK_BYPASS           4       /* Bypass clock */
 
-... however, at no point in time you explain why you made that switch,
-and while most of the definition of the EMAC nodes is in the DTSI, you
-only enable it in one DTS.
+I don't understand how these work with overlapping numbers.
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---2rmkjhbiz7qfnwvn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXMxUWwAKCRDj7w1vZxhR
-xRfCAQDVy0LVhlnpOdbjD47WRofRerK8UUI9OFy/pcKdkOrHHwD9GqdywGWCgKB+
-W2rCZhn4ntKVt7j9hzPYI7c9zdztUAM=
-=I+i9
------END PGP SIGNATURE-----
-
---2rmkjhbiz7qfnwvn--
+Rob
