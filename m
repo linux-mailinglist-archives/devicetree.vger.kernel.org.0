@@ -2,172 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2173F132CE
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 19:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02908133C7
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 20:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726720AbfECREX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 13:04:23 -0400
-Received: from mail-eopbgr820084.outbound.protection.outlook.com ([40.107.82.84]:33330
-        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726585AbfECREW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 May 2019 13:04:22 -0400
+        id S1726779AbfECS7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 14:59:37 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:39673 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726776AbfECS7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 14:59:37 -0400
+Received: by mail-pl1-f194.google.com with SMTP id e92so3110555plb.6;
+        Fri, 03 May 2019 11:59:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QI4SwQR5RQkVqW+Q0jY+s+NyNw8aiN9otNV5LN2xGz8=;
- b=UN6Sl/a7WcUYGZNXU4PHAHHBv7XMuJ83fkXbNMg0eUS4x31amOeD4CmWUcHE1OKhrAI3SJfugTJD76YryPzmfPghsiulV0DkHEQbaaorL09jSWBH4O2KzpaQb37cddjhlpWjY5vHFeKUM364viGUMMVnfw7Gpn0KNAHOtMAUn8E=
-Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
- BL0PR02MB4289.namprd02.prod.outlook.com (10.167.172.74) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.10; Fri, 3 May 2019 17:04:17 +0000
-Received: from BL0PR02MB5681.namprd02.prod.outlook.com
- ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
- ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Fri, 3 May 2019
- 17:04:17 +0000
-From:   Dragan Cvetic <draganc@xilinx.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <dkiernan@xilinx.com>
-Subject: RE: [PATCH V3 01/12] dt-bindings: xilinx-sdfec: Add SDFEC binding
-Thread-Topic: [PATCH V3 01/12] dt-bindings: xilinx-sdfec: Add SDFEC binding
-Thread-Index: AQHU/UVMESM8TKHZf0mZ8yysxzDRXaZWsusAgAD9BPCAAJ0dgIABWLzg
-Date:   Fri, 3 May 2019 17:04:17 +0000
-Message-ID: <BL0PR02MB5681ECF087DF6672F1611A1BCB350@BL0PR02MB5681.namprd02.prod.outlook.com>
-References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
- <1556402706-176271-2-git-send-email-dragan.cvetic@xilinx.com>
- <20190501194738.GA1441@bogus>
- <BL0PR02MB56815DFC139D65D46D5DFF50CB340@BL0PR02MB5681.namprd02.prod.outlook.com>
- <CAL_JsqLhmtqUdUd8OPdx-390imegzouAJ43JOhYr16w87afS-Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqLhmtqUdUd8OPdx-390imegzouAJ43JOhYr16w87afS-Q@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=draganc@xilinx.com; 
-x-originating-ip: [149.199.80.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 20505d24-e144-425a-b980-08d6cfe960df
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB4289;
-x-ms-traffictypediagnostic: BL0PR02MB4289:
-x-microsoft-antispam-prvs: <BL0PR02MB428974C526DCE3186FF100BECB350@BL0PR02MB4289.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1775;
-x-forefront-prvs: 0026334A56
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(39860400002)(366004)(396003)(376002)(136003)(13464003)(189003)(199004)(6436002)(256004)(6506007)(316002)(53546011)(6116002)(52536014)(74316002)(54906003)(478600001)(25786009)(68736007)(64756008)(6916009)(102836004)(2906002)(99286004)(71200400001)(66446008)(66946007)(73956011)(71190400001)(8936002)(66556008)(8676002)(229853002)(81156014)(81166006)(3846002)(14454004)(76116006)(33656002)(305945005)(86362001)(9686003)(7736002)(66476007)(186003)(66066001)(107886003)(6246003)(53936002)(76176011)(476003)(11346002)(55016002)(5660300002)(4326008)(486006)(7696005)(26005)(446003);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4289;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: xilinx.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: vwY8WFbufxbrIxH9DIyoxxTDqRmMw7RZD+B/wYaiBBtOpT6ungKOKiB6sanxA5qY5AUnhgbp04TJyR6uP9vx3K7NhmAPCfeBAULbJ/wmQXjTy+0hkhzyqx9zcjwruKCTsR4KgcMmRJ3UP4cXK/Ogd5w6HtRPZsySViSd9es0JV4elg2PHvSM0oA4BhZR0P48xSPLDg29K3r9wx6foxoDNof3RDtad9XxiUVlZtSgn5G2uOy+xNKAVZu/Ns6bBfwy2akZ0GST0s1skac7lZEGPOXAVlSw0EdCCqoBtI+by/na5g9yeTfpys7W8sONhDbneTJgNbeD0ZjHVpZAj14kLOiWsqmnV9DhjxjYEVzVwl2Hl9TMyABUtK8rKKchV6FP/JNtIXXLaTRQDc2q5DjKenJnqnvWXbuKH2IjnAfTQLo=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ADpdDwLHxFyfFWAX1if0+NpffCsUFbkjDEInr1QTSC4=;
+        b=VrvZIthSvvpLa9ofdi1TVHc0CvLr2VIODR9OjnFm+Up9we0zDAZUBWMLlTbOSItHKo
+         Pbam23b4EY+ccSifRG/ZxjMcIQVAiXiA3KyIi8wmckJ7RJLpCpUuffuKoF64akwkaZ+a
+         3QcFYyfiYX8VkGbLXp+59LQq0XggiQTSFvsoJX1JIXyAy+67nRdTPeZZes4fPGEw0SNJ
+         /9swLP5EtM7Jh7wPv9iAEyde8+QQDQGJVMKmJBfXFZRut96aOVsFH2VBxXFKDhAr7gl6
+         0FaZZo8MGkaVEpcuBTPxzyLi+qG9bWgEYJF7h83gR5avy0pM2sQoY06ujQlTV4yL6n8q
+         BstA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ADpdDwLHxFyfFWAX1if0+NpffCsUFbkjDEInr1QTSC4=;
+        b=nNO3Uy8nfTx7DcFJUhocsCye11Py6t+73V2kfxLXrNOiKjUCs47u/VaFUFCiKm19bv
+         rGwbXJQcOU6qtBuVG6QYdRIIjaZzwtASEMBxeuwCallv2FJMukmmM3lfieJ8fT9RvdXh
+         tgDA06s06sDhCiQFtgGHjBHXj5BY9c6NgI1C5DbP9og/37RsUUOPvT3cZvtsxbx2oFdh
+         ZRgxlfiOYTeLp5ufkZODr8aRBvSBjMO9WgaQkoNxbxd5zCZk4OOkkqPNOSUbAfHwzbFz
+         QnEEt1pQvizsFjqGra4/FS3vHFs5BsV2kzRvfwAPbELQKLe5IRS7cTZW9BkttxIbr7O5
+         UhPQ==
+X-Gm-Message-State: APjAAAVl8YIA4n/Q9++ZFkFjokvrluZmu6GGWoN6mciGnGl/vR9TfCVu
+        7LtL+isNyLbRPMkQyCp0LhA=
+X-Google-Smtp-Source: APXvYqxqbfGXr3FDXhDmUCd7JmX5osXVjgyq86nBDxgo3T0uzvTwYN2tw6/OWvrILTq7mQlibweAAw==
+X-Received: by 2002:a17:902:bf44:: with SMTP id u4mr12529409pls.171.1556909976558;
+        Fri, 03 May 2019 11:59:36 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id l2sm3517136pgl.2.2019.05.03.11.59.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 11:59:35 -0700 (PDT)
+Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
+ KUnit tests
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-kselftest@vger.kernel.org,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-13-brendanhiggins@google.com>
+ <20190502110220.GD12416@kroah.com>
+ <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
+ <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
+ <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
+ <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com>
+ <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <052fa196-4ea9-8384-79b7-fe6bacc0ee82@gmail.com>
+Date:   Fri, 3 May 2019 11:59:33 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20505d24-e144-425a-b980-08d6cfe960df
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2019 17:04:17.7848
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4289
+In-Reply-To: <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQpQbGVhc2UgZmluZCBpbmxpbmUgY29tbWVudHMgYmVsb3cNCg0KUmVnYXJkcw0K
-RHJhZ2FuDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUm9iIEhlcnJp
-bmcgW21haWx0bzpyb2JoQGtlcm5lbC5vcmddDQo+IFNlbnQ6IFRodXJzZGF5IDIgTWF5IDIwMTkg
-MjE6MTYNCj4gVG86IERyYWdhbiBDdmV0aWMgPGRyYWdhbmNAeGlsaW54LmNvbT4NCj4gQ2M6IGFy
-bmRAYXJuZGIuZGU7IGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnOyBNaWNoYWwgU2ltZWsgPG1p
-Y2hhbHNAeGlsaW54LmNvbT47IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsN
-Cj4gbWFyay5ydXRsYW5kQGFybS5jb207IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51
-eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBEZXJlayBLaWVybmFuIDxka2llcm5hbkB4aWxpbngu
-Y29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIFYzIDAxLzEyXSBkdC1iaW5kaW5nczogeGlsaW54
-LXNkZmVjOiBBZGQgU0RGRUMgYmluZGluZw0KPiANCj4gT24gVGh1LCBNYXkgMiwgMjAxOSBhdCA2
-OjA0IEFNIERyYWdhbiBDdmV0aWMgPGRyYWdhbmNAeGlsaW54LmNvbT4gd3JvdGU6DQo+ID4NCj4g
-PiBIaSBSb2IsDQo+ID4NCj4gPiBQbGVhc2UgZmluZCBteSBpbmxpbmUgY29tbWVudHMgYmVsb3cN
-Cj4gPg0KPiA+IFRoYW5rIHlvdQ0KPiA+IERyYWdhbg0KPiA+DQo+ID4gPiAtLS0tLU9yaWdpbmFs
-IE1lc3NhZ2UtLS0tLQ0KPiA+ID4gRnJvbTogUm9iIEhlcnJpbmcgW21haWx0bzpyb2JoQGtlcm5l
-bC5vcmddDQo+ID4gPiBTZW50OiBXZWRuZXNkYXkgMSBNYXkgMjAxOSAyMDo0OA0KPiA+ID4gVG86
-IERyYWdhbiBDdmV0aWMgPGRyYWdhbmNAeGlsaW54LmNvbT4NCj4gPiA+IENjOiBhcm5kQGFybmRi
-LmRlOyBncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZzsgTWljaGFsIFNpbWVrIDxtaWNoYWxzQHhp
-bGlueC5jb20+OyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+ID4gPiBt
-YXJrLnJ1dGxhbmRAYXJtLmNvbTsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtl
-cm5lbEB2Z2VyLmtlcm5lbC5vcmc7IERlcmVrIEtpZXJuYW4gPGRraWVybmFuQHhpbGlueC5jb20+
-DQo+ID4gPiBTdWJqZWN0OiBSZTogW1BBVENIIFYzIDAxLzEyXSBkdC1iaW5kaW5nczogeGlsaW54
-LXNkZmVjOiBBZGQgU0RGRUMgYmluZGluZw0KPiA+ID4NCj4gPiA+IE9uIFNhdCwgQXByIDI3LCAy
-MDE5IGF0IDExOjA0OjU1UE0gKzAxMDAsIERyYWdhbiBDdmV0aWMgd3JvdGU6DQo+ID4gPiA+IEFk
-ZCB0aGUgU29mdCBEZWNpc2lvbiBGb3J3YXJkIEVycm9yIENvcnJlY3Rpb24gKFNERkVDKSBFbmdp
-bmUNCj4gPiA+ID4gYmluZGluZ3Mgd2hpY2ggaXMgYXZhaWxhYmxlIGZvciB0aGUgWnlucSBVbHRy
-YVNjYWxlKyBSRlNvQw0KPiA+ID4gPiBGUEdBJ3MuDQo+ID4gPiA+DQo+ID4gPiA+IFNpZ25lZC1v
-ZmYtYnk6IERyYWdhbiBDdmV0aWMgPGRyYWdhbi5jdmV0aWNAeGlsaW54LmNvbT4NCj4gPiA+ID4g
-U2lnbmVkLW9mZi1ieTogRGVyZWsgS2llcm5hbiA8ZGVyZWsua2llcm5hbkB4aWxpbnguY29tPg0K
-PiA+ID4gPiAtLS0NCj4gPiA+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21pc2MveGxueCxz
-ZC1mZWMudHh0ICAgICAgIHwgNTggKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ID4gPiAgMSBm
-aWxlIGNoYW5nZWQsIDU4IGluc2VydGlvbnMoKykNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0
-NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWlzYy94bG54LHNkLWZlYy50eHQN
-Cj4gPiA+ID4NCj4gPiA+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9taXNjL3hsbngsc2QtZmVjLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9taXNjL3hsbngsc2QtDQo+IGZlYy50eHQNCj4gPiA+ID4gbmV3IGZpbGUgbW9kZSAx
-MDA2NDQNCj4gPiA+ID4gaW5kZXggMDAwMDAwMC4uNDI1YjZhNg0KPiA+ID4gPiAtLS0gL2Rldi9u
-dWxsDQo+ID4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9taXNj
-L3hsbngsc2QtZmVjLnR4dA0KPiA+ID4gPiBAQCAtMCwwICsxLDU4IEBADQo+ID4gPiA+ICsqIFhp
-bGlueCBTREZFQygxNm5tKSBJUCAqDQo+ID4gPiA+ICsNCj4gPiA+ID4gK1RoZSBTb2Z0IERlY2lz
-aW9uIEZvcndhcmQgRXJyb3IgQ29ycmVjdGlvbiAoU0RGRUMpIEVuZ2luZSBpcyBhIEhhcmQgSVAg
-YmxvY2sNCj4gPiA+ID4gK3doaWNoIHByb3ZpZGVzIGhpZ2gtdGhyb3VnaHB1dCBMRFBDIGFuZCBU
-dXJibyBDb2RlIGltcGxlbWVudGF0aW9ucy4NCj4gPiA+ID4gK1RoZSBMRFBDIGRlY29kZSAmIGVu
-Y29kZSBmdW5jdGlvbmFsaXR5IGlzIGNhcGFibGUgb2YgY292ZXJpbmcgYSByYW5nZSBvZg0KPiA+
-ID4gPiArY3VzdG9tZXIgc3BlY2lmaWVkIFF1YXNpLWN5Y2xpYyAoUUMpIGNvZGVzLiBUaGUgVHVy
-Ym8gZGVjb2RlIGZ1bmN0aW9uYWxpdHkNCj4gPiA+ID4gK3ByaW5jaXBhbGx5IGNvdmVycyBjb2Rl
-cyB1c2VkIGJ5IExURS4gVGhlIEZFQyBFbmdpbmUgb2ZmZXJzIHNpZ25pZmljYW50DQo+ID4gPiA+
-ICtwb3dlciBhbmQgYXJlYSBzYXZpbmdzIHZlcnN1cyBpbXBsZW1lbnRhdGlvbnMgZG9uZSBpbiB0
-aGUgRlBHQSBmYWJyaWMuDQo+ID4gPiA+ICsNCj4gPiA+ID4gKw0KPiA+ID4gPiArUmVxdWlyZWQg
-cHJvcGVydGllczoNCj4gPiA+ID4gKy0gY29tcGF0aWJsZTogTXVzdCBiZSAieGxueCxzZC1mZWMt
-MS4xIg0KPiA+ID4gPiArLSBjbG9jay1uYW1lcyA6IExpc3Qgb2YgaW5wdXQgY2xvY2sgbmFtZXMg
-ZnJvbSB0aGUgZm9sbG93aW5nOg0KPiA+ID4gPiArICAgIC0gImNvcmVfY2xrIiwgTWFpbiBwcm9j
-ZXNzaW5nIGNsb2NrIGZvciBwcm9jZXNzaW5nIGNvcmUgKHJlcXVpcmVkKQ0KPiA+ID4gPiArICAg
-IC0gInNfYXhpX2FjbGsiLCBBWEk0LUxpdGUgbWVtb3J5LW1hcHBlZCBzbGF2ZSBpbnRlcmZhY2Ug
-Y2xvY2sgKHJlcXVpcmVkKQ0KPiA+ID4gPiArICAgIC0gInNfYXhpc19kaW5fYWNsayIsIERJTiBB
-WEk0LVN0cmVhbSBTbGF2ZSBpbnRlcmZhY2UgY2xvY2sgKG9wdGlvbmFsKQ0KPiA+ID4gPiArICAg
-IC0gInNfYXhpc19kaW5fd29yZHMtYWNsayIsIERJTl9XT1JEUyBBWEk0LVN0cmVhbSBTbGF2ZSBp
-bnRlcmZhY2UgY2xvY2sgKG9wdGlvbmFsKQ0KPiA+ID4gPiArICAgIC0gInNfYXhpc19jdHJsX2Fj
-bGsiLCAgQ29udHJvbCBpbnB1dCBBWEk0LVN0cmVhbSBTbGF2ZSBpbnRlcmZhY2UgY2xvY2sgKG9w
-dGlvbmFsKQ0KPiA+ID4gPiArICAgIC0gIm1fYXhpc19kb3V0X2FjbGsiLCBET1VUIEFYSTQtU3Ry
-ZWFtIE1hc3RlciBpbnRlcmZhY2UgY2xvY2sgKG9wdGlvbmFsKQ0KPiA+ID4gPiArICAgIC0gIm1f
-YXhpc19kb3V0X3dvcmRzX2FjbGsiLCBET1VUX1dPUkRTIEFYSTQtU3RyZWFtIE1hc3RlciBpbnRl
-cmZhY2UgY2xvY2sgKG9wdGlvbmFsKQ0KPiA+ID4gPiArICAgIC0gIm1fYXhpc19zdGF0dXNfYWNs
-ayIsIFN0YXR1cyBvdXRwdXQgQVhJNC1TdHJlYW0gTWFzdGVyIGludGVyZmFjZSBjbG9jayAob3B0
-aW9uYWwpDQo+ID4gPiA+ICstIGNsb2NrcyA6IENsb2NrIHBoYW5kbGVzIChzZWUgY2xvY2tfYmlu
-ZGluZ3MudHh0IGZvciBkZXRhaWxzKS4NCj4gPiA+ID4gKy0gcmVnOiBTaG91bGQgY29udGFpbiBY
-aWxpbnggU0RGRUMgMTZubSBIYXJkZW5lZCBJUCBibG9jayByZWdpc3RlcnMNCj4gPiA+ID4gKyAg
-bG9jYXRpb24gYW5kIGxlbmd0aC4NCj4gPiA+ID4gKy0geGxueCxzZGZlYy1jb2RlIDogU2hvdWxk
-IGNvbnRhaW4gImxkcGMiIG9yICJ0dXJibyIgdG8gZGVzY3JpYmUgdGhlIGNvZGVzDQo+ID4gPiA+
-ICsgIGJlaW5nIHVzZWQuDQo+ID4gPiA+ICstIHhsbngsc2RmZWMtZGluLXdvcmRzIDogQSB2YWx1
-ZSAwIGluZGljYXRlcyB0aGF0IHRoZSBESU5fV09SRFMgaW50ZXJmYWNlIGlzDQo+ID4gPiA+ICsg
-IGRyaXZlbiB3aXRoIGEgZml4ZWQgdmFsdWUgYW5kIGlzIG5vdCBwcmVzZW50IG9uIHRoZSBkZXZp
-Y2UsIGEgdmFsdWUgb2YgMQ0KPiA+ID4gPiArICBjb25maWd1cmVzIHRoZSBESU5fV09SRFMgdG8g
-YmUgYmxvY2sgYmFzZWQsIHdoaWxlIGEgdmFsdWUgb2YgMiBjb25maWd1cmVzIHRoZQ0KPiA+ID4g
-PiArICBESU5fV09SRFMgaW5wdXQgdG8gYmUgc3VwcGxpZWQgZm9yIGVhY2ggQVhJIHRyYW5zYWN0
-aW9uLg0KPiA+ID4gPiArLSB4bG54LHNkZmVjLWRpbi13aWR0aCA6IENvbmZpZ3VyZXMgdGhlIERJ
-TiBBWEkgc3RyZWFtIHdoZXJlIGEgdmFsdWUgb2YgMQ0KPiA+ID4gPiArICBjb25maWd1cmVzIGEg
-d2lkdGggb2YgIjF4MTI4YiIsIDIgYSB3aWR0aCBvZiAiMngxMjhiIiBhbmQgNCBjb25maWd1cmVz
-IGEgd2lkdGgNCj4gPiA+ID4gKyAgb2YgIjR4MTI4YiIuDQo+ID4gPg0KPiA+ID4gUGVyaGFwcyBh
-cHBlbmQgd2l0aCAnLWJpdHMnIGFuZCBtYWtlIHRoZSB2YWx1ZXMgMCwgMTI4LCAyNTYsIDUxMi4N
-Cj4gPiA+DQo+ID4NCj4gPg0KPiA+IFRoZSBzdWdnZXN0ZWQgd2lsbCByZXF1aXJlIHRoZSBleHRy
-YSBjb2RlIGZvciBjb252ZXJ0aW5nIGZyb20gMTI4LDI1Niw1MTIgIHRvIDEsMiw0LCBhcyBIVyBp
-cyBjb25maWd1cmVkIHdpdGggMSwgMiBhbmQgNC4NCj4gDQo+IEEgc2ltcGxlIGRpdmlkZSBieSAx
-MjguDQo+IA0KPiBXZSBnZW5lcmFsbHkgcHJlZmVyIERUIHRvIHVzZSByZWFsIHVuaXRzIHJhdGhl
-ciB0aGFuIHJlZ2lzdGVyIHZhbHVlcy4NCg0KVGhlIGRhdGEgZW50ZXJzL2V4aXRzIFNERkVDIGlu
-IDEyOCBiaXRzIHdvcmQgdW5pdHMgKF9faW50MTI4KS4NCjEsMiw0IGFyZSBub3QgYSByZWdpc3Rl
-ciB2YWx1ZXMgb25seSwgdGhleSByZXByZXNlbnQgYSBudW1iZXINCm9mIHVuaXRzIHdoaWNoIGFy
-ZSB1c2VkIGluIFNERkVDIGNvbW11bmljYXRpb24uDQoNCj4gDQo+IFJvYg0K
+On 5/2/19 10:36 PM, Brendan Higgins wrote:
+> On Thu, May 2, 2019 at 6:45 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 5/2/19 4:45 PM, Brendan Higgins wrote:
+>>> On Thu, May 2, 2019 at 2:16 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>>>
+>>>> On 5/2/19 11:07 AM, Brendan Higgins wrote:
+>>>>> On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+>>>>>>
+>>>>>> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
+>>>>>>> From: Felix Guo <felixguoxiuping@gmail.com>
+>>>>>>>
+>>>>>>> The ultimate goal is to create minimal isolated test binaries; in the
+>>>>>>> meantime we are using UML to provide the infrastructure to run tests, so
+>>>>>>> define an abstract way to configure and run tests that allow us to
+>>>>>>> change the context in which tests are built without affecting the user.
+>>>>>>> This also makes pretty and dynamic error reporting, and a lot of other
+>>>>>>> nice features easier.
+>>>>>>>
+>>>>>>> kunit_config.py:
+>>>>>>>   - parse .config and Kconfig files.
+>>>>>>>
+>>>>>>> kunit_kernel.py: provides helper functions to:
+>>>>>>>   - configure the kernel using kunitconfig.
+>>>>>>>   - build the kernel with the appropriate configuration.
+>>>>>>>   - provide function to invoke the kernel and stream the output back.
+>>>>>>>
+>>>>>>> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
+>>>>>>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+>>>>>>
+>>>>>> Ah, here's probably my answer to my previous logging format question,
+>>>>>> right?  What's the chance that these wrappers output stuff in a standard
+>>>>>> format that test-framework-tools can already parse?  :)
+>>>
+>>> To be clear, the test-framework-tools format we are talking about is
+>>> TAP13[1], correct?
+>>
+>> I'm not sure what the test community prefers for a format.  I'll let them
+>> jump in and debate that question.
+>>
+>>
+>>>
+>>> My understanding is that is what kselftest is being converted to use.
+>>>
+>>>>>
+>>>>> It should be pretty easy to do. I had some patches that pack up the
+>>>>> results into a serialized format for a presubmit service; it should be
+>>>>> pretty straightforward to take the same logic and just change the
+>>>>> output format.
+>>>>
+>>>> When examining and trying out the previous versions of the patch I found
+>>>> the wrappers useful to provide information about how to control and use
+>>>> the tests, but I had no interest in using the scripts as they do not
+>>>> fit in with my personal environment and workflow.
+>>>>
+>>>> In the previous versions of the patch, these helper scripts are optional,
+>>>> which is good for my use case.  If the helper scripts are required to
+>>>
+>>> They are still optional.
+>>>
+>>>> get the data into the proper format then the scripts are not quite so
+>>>> optional, they become the expected environment.  I think the proper
+>>>> format should exist without the helper scripts.
+>>>
+>>> That's a good point. A couple things,
+>>>
+>>> First off, supporting TAP13, either in the kernel or the wrapper
+>>> script is not hard, but I don't think that is the real issue that you
+>>> raise.
+>>>
+>>> If your only concern is that you will always be able to have human
+>>> readable KUnit results printed to the kernel log, that is a guarantee
+>>> I feel comfortable making. Beyond that, I think it is going to take a
+>>> long while before I would feel comfortable guaranteeing anything about
+>>> how will KUnit work, what kind of data it will want to expose, and how
+>>> it will be organized. I think the wrapper script provides a nice
+>>> facade that I can maintain, can mediate between the implementation
+>>> details and the user, and can mediate between the implementation
+>>> details and other pieces of software that might want to consume
+>>> results.
+>>>
+>>> [1] https://testanything.org/tap-version-13-specification.html
+>>
+>> My concern is based on a focus on my little part of the world
+>> (which in _previous_ versions of the patch series was the devicetree
+>> unittest.c tests being converted to use the kunit infrastructure).
+>> If I step back and think of the entire kernel globally I may end
+>> up with a different conclusion - but I'm going to remain myopic
+>> for this email.
+>>
+>> I want the test results to be usable by me and my fellow
+>> developers.  I prefer that the test results be easily accessible
+>> (current printk() implementation means that kunit messages are
+>> just as accessible as the current unittest.c printk() output).
+>> If the printk() output needs to be filtered through a script
+>> to generate the actual test results then that is sub-optimal
+>> to me.  It is one more step added to my workflow.  And
+>> potentially with an embedded target a major pain to get a
+>> data file (the kernel log file) transferred from a target
+>> to my development host.
+> 
+> That's fair. If that is indeed your only concern, then I don't think
+> the wrapper script will ever be an issue for you. You will always be
+> able to execute a given test the old fashioned/manual way, and the
+> wrapper script only summarizes results, it does not change the
+> contents.
+> 
+>>
+>> I want a reported test failure to be easy to trace back to the
+>> point in the source where the failure is reported.  With printk()
+>> the search is a simple grep for the failure message.  If the
+>> failure message has been processed by a script, and then the
+>> failure reported to me in an email, then I may have to look
+>> at the script to reverse engineer how the original failure
+>> message was transformed into the message that was reported
+>> to me in the email.  Then I search for the point in the
+>> source where the failure is reported.  So a basic task has
+>> just become more difficult and time consuming.
+> 
+> That seems to be a valid concern. I would reiterate that you shouldn't
+> be concerned by any processing done by the wrapper script itself, but
+> the reality is that depending on what happens with automated
+> testing/presubmit/CI other people might end up parsing and
+> transforming test results - it might happen, it might not.
+
+You seem to be missing my point.
+
+Greg asked that the output be in a standard format.
+
+You replied that the standard format could be created by the wrapper script.
+
+Now you say that "it might happen, it might not".  In other words the output
+may or may not end up in the standard format.
+
+As Greg points out in comments to patch 12:
+
+  "The core of kunit should also log the messages in this format as well,
+  and not rely on the helper scripts as Frank points out, not everyone
+  will use/want them.  Might as well make it easy for everyone to always
+  do the right thing and not force it to always be added in later."
+
+I am requesting that the original message be in the standard format.  Of
+course anyone is free to transform the messages in later processing, no
+big deal.
+
+
+> I currently
+> have a CI system set up for KUnit on my public repo that I don't think
+> you would be offended by, but I don't know what we are going to do
+> when it comes time to integrate with existing upstream CI systems.
+> 
+> In anycase, I don't think that either sticking with or doing away with
+> the wrapper script is going to have any long term bearing on what
+> happens in this regard.
+> 
+> Cheers
+> 
+
