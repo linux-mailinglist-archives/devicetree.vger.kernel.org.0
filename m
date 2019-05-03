@@ -2,124 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6611273C
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 07:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102E312762
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 07:59:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726470AbfECFsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 01:48:31 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38566 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726475AbfECFsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 01:48:31 -0400
-Received: by mail-ot1-f65.google.com with SMTP id b1so4319570otp.5
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 22:48:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yJk8vxgxnyREeORp3ZGYiUe4W63+mvTYx011g+D2w9I=;
-        b=gVy2A/3xGfxoPlL5Ko9/iS3jo2EDVupQVAr70qs6RZrFHNgUtzEok56tjyUqT06FB0
-         N61EUVCJQSGnIGYHynH3drr29YDViWxqPU9Sza34pLTsoxVh0uUM8E5CV1L0C/mIM9w0
-         WGa5tKq18lnS81IMo5BcR1Ykh3Nl7b9ExnnVx27s6jE5lyDFV5nm2p2xr1/VPFBW2Ah2
-         kgZSCZQGbf96we5F6/cwHf89KEU3jBrsGd1WH/gd1lUYccvZTH42q4V6uaQ3GXtHhroy
-         5qgEL+EjcYwXRo906ivSwsvihl3a7m9bzISXOlTNYJMfYhl7JWVTEbNxfJuRwSUQRKBU
-         kRfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yJk8vxgxnyREeORp3ZGYiUe4W63+mvTYx011g+D2w9I=;
-        b=pyZ8hp+ET1RL2zKgSZritqo2+EzHYBwrXCj/YTSJZc3sbL+Dg1ZgRmkwr8qrSQYczX
-         9/DvMk8Kt7EBUvj9st+O9xqUp9SxwsWWWf1fYOVjLRo7r8j8vaBlApZM61Hsx6mW2KrQ
-         0oQXVVYW+lrM6YJ+4KMQ1238sYlO2B8SuA6C2+mQNuVjOMCOB+AzuPX3/k2HdHTQi3y6
-         nHtBYE7DU3VLpojjsIhLqxb1xhc77edt+0H62ughErZr98d3vHATzHq/FdGt0hQXuzgq
-         k76yZwecO6m0qp8EMpemQmIdcJpCIbsYTldqIs7ykjwmHbgSk1sIzydHgnQsQ8haqlQo
-         ey1A==
-X-Gm-Message-State: APjAAAVbeOSrHh2NUexG+YBzHgO3EbFxbp4Yr9BztQ+AOFceDRamJf+T
-        O1Cr3ZcaSffvB/kI0wcKjoD++9IgnXjtWuRaXBdKzQ==
-X-Google-Smtp-Source: APXvYqwsEAlSz/eNFlgajgo4Kt8DHISJN+MfNVQqCm9syohvOOWU5/fOAXzlAO0OoVTlNR0j/l6/cH2CfoUTavBQdJA=
-X-Received: by 2002:a9d:3621:: with SMTP id w30mr5187084otb.98.1556862507760;
- Thu, 02 May 2019 22:48:27 -0700 (PDT)
+        id S1726451AbfECF7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 01:59:02 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:47472 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725775AbfECF7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 01:59:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=4ib6EGiqGZs0cx0BP5zTIwv4T+gNe/EmI7hgleO5jVI=; b=GmdTJXgmhkiSwrhI+2N0wdBW3
+        lmN0w63R8X5+GF0Pux4dkFSH32I1em1FTXPK3FSta2RRt6nsLtmOcSpU5Wh0dCWpG+3SAdq0MEVMB
+        +9ow8z2J5AEg6xGyXOQNSeyaPcWmYrkyktmYr8NxvkRxgfsejJc0NXTf8JG1IahkzMSpM=;
+Received: from [42.29.24.106] (helo=finisterre.ee.mobilebroadband)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hMRDA-0000R4-I5; Fri, 03 May 2019 05:58:21 +0000
+Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
+        id 204C2441D3C; Fri,  3 May 2019 06:58:09 +0100 (BST)
+Date:   Fri, 3 May 2019 14:58:09 +0900
+From:   Mark Brown <broonie@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
+        kaichieh.chuang@mediatek.com, shunli.wang@mediatek.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] ASoC: mediatek: Add MT8516 PCM driver
+Message-ID: <20190503055809.GC14916@sirena.org.uk>
+References: <20190502121041.8045-1-fparent@baylibre.com>
+ <20190502121041.8045-4-fparent@baylibre.com>
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-5-brendanhiggins@google.com> <ead23600-eecd-cf74-bdd1-94a6964e29b2@kernel.org>
-In-Reply-To: <ead23600-eecd-cf74-bdd1-94a6964e29b2@kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 2 May 2019 22:48:16 -0700
-Message-ID: <CAFd5g463PQGn3618Vo2Spu81zzL40jM6Skr1gSWtJqMx7Faj5A@mail.gmail.com>
-Subject: Re: [PATCH v2 04/17] kunit: test: add kunit_stream a std::stream like logger
-To:     shuah <shuah@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="e7WmlSfQJTtHfSol"
+Content-Disposition: inline
+In-Reply-To: <20190502121041.8045-4-fparent@baylibre.com>
+X-Cookie: -- I have seen the FUN --
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 6:50 PM shuah <shuah@kernel.org> wrote:
->
-> On 5/1/19 5:01 PM, Brendan Higgins wrote:
 
-< snip >
+--e7WmlSfQJTtHfSol
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > diff --git a/kunit/kunit-stream.c b/kunit/kunit-stream.c
-> > new file mode 100644
-> > index 0000000000000..93c14eec03844
-> > --- /dev/null
-> > +++ b/kunit/kunit-stream.c
-> > @@ -0,0 +1,149 @@
+On Thu, May 02, 2019 at 02:10:39PM +0200, Fabien Parent wrote:
 
-< snip >
+> +static irqreturn_t mt8516_afe_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct mtk_base_afe *afe = dev_id;
+> +	unsigned int reg_value;
+> +	unsigned int memif_status;
+> +	int i, ret;
+> +
+> +	ret = regmap_read(afe->regmap, AFE_IRQ_STATUS, &reg_value);
+> +	if (ret) {
+> +		reg_value = AFE_IRQ_STATUS_BITS;
+> +		goto exit_irq;
+> +	}
 
-> > +static int kunit_stream_init(struct kunit_resource *res, void *context)
-> > +{
-> > +     struct kunit *test = context;
-> > +     struct kunit_stream *stream;
-> > +
-> > +     stream = kzalloc(sizeof(*stream), GFP_KERNEL);
-> > +     if (!stream)
-> > +             return -ENOMEM;
-> > +     res->allocation = stream;
-> > +     stream->test = test;
-> > +     spin_lock_init(&stream->lock);
-> > +     stream->internal_stream = new_string_stream();
-> > +
-> > +     if (!stream->internal_stream)
-> > +             return -ENOMEM;
->
-> What happens to stream? Don't you want to free that?
+...
 
-Good catch. Will fix in next revision.
+> +exit_irq:
+> +	regmap_write(afe->regmap, AFE_IRQ_CLR, reg_value & AFE_IRQ_STATUS_BITS);
+> +
+> +	return IRQ_HANDLED;
+> +}
 
-< snip >
+This unconditionally says it handled an interrupt regardless of what
+happened.  This means that the interrupt line can't be shared and that
+the error handling code in the generic interrupt subsystem can't tell if
+something goes wrong and the interrupt gets stuck.
 
-Cheers
+> +	ret = devm_request_irq(afe->dev, irq_id, mt8516_afe_irq_handler,
+> +			       0, "Afe_ISR_Handle", (void *)afe);
+> +	if (ret) {
+> +		dev_err(afe->dev, "could not request_irq\n");
+> +		return ret;
+> +	}
+
+Are you sure the interrupt handler can safely use managed resources,
+especially given...
+
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	afe->base_addr = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(afe->base_addr))
+> +		return PTR_ERR(afe->base_addr);
+> +
+> +	afe->regmap = devm_regmap_init_mmio(&pdev->dev, afe->base_addr,
+> +		&mt8516_afe_regmap_config);
+> +	if (IS_ERR(afe->regmap))
+> +		return PTR_ERR(afe->regmap);
+
+...that things like the register map and the I/O resources for the chip
+are allocated after and therefore freed before before the interrupt is
+freed.  Normally the interrupt should be one of the last things to be
+allocated.
+
+> +static int mt8516_afe_pcm_dev_remove(struct platform_device *pdev)
+> +{
+> +	return 0;
+> +}
+
+In general if functions can legitimately be empty they should just be
+omitted, if they are required that usually means they have to do
+something.
+
+--e7WmlSfQJTtHfSol
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzL2HAACgkQJNaLcl1U
+h9CyAwf9G6RLyjC0l1jZ7PuvlyUWgPa0meffYGQwZm5IRVLUCEfYjhxodTO5hKh2
+fFN64GvyEDq68fgDpF1ILhSFWZFRBLkdFwJ2/e2tknzzQ3QWpWA3mvzrzEzyZlOB
+Z0ocR20bgbYxO+OAas//SnwCaY+Hm14Dho0oQooGlWHWGfQtxF7OcKKVTYnf1uij
+GHYwqmasG50ldZZ+Lwu8tgueOohnt53QpM5L8wx33IBSYmmAdpCw6C6raql8bQAe
+9dyCLUtxkI+dUhvn9cemnDD6VTPhPvj7AGL+L8Xp2/3T8GQQkYTyskjPWt/3nCan
+5wADxvamyeOpeEhFqke6O33PxGD2jA==
+=0nPV
+-----END PGP SIGNATURE-----
+
+--e7WmlSfQJTtHfSol--
