@@ -2,226 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C54B130B9
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D83130BE
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726480AbfECOxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 10:53:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35390 "EHLO mail.kernel.org"
+        id S1726468AbfECOxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 10:53:46 -0400
+Received: from sauhun.de ([88.99.104.3]:34356 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726289AbfECOxb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 May 2019 10:53:31 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D0512089E
-        for <devicetree@vger.kernel.org>; Fri,  3 May 2019 14:53:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556895209;
-        bh=en2GsVq2euCsilbTPasnYSKRswlFlsf899ZurKSRmRU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vecQNyz0sdsbnc22RGd9YNNF0nVPslHaN+2o44GcXqGvuiB45M9zqSAkFZq+rkqlo
-         8HvbY/YykqqvhmZlRL5w8hbcPaCfsapolbz7lLc1dckkZVGPuTyhEo3CtDwvgmqVCC
-         joaO0IH3lrsRxrHcJGzESjyV0iUNtVK6YsTlC1Jo=
-Received: by mail-qt1-f181.google.com with SMTP id k24so3201039qtq.7
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 07:53:29 -0700 (PDT)
-X-Gm-Message-State: APjAAAUt9Gu6Cysffphsh+vijK0Rs/siknCpTw26B78Oz3o4qsKqARF1
-        OKzSdKg3KHQ5bqOHtU6zSt2aD7eiWQKC2337hA==
-X-Google-Smtp-Source: APXvYqzFcs0abauSAGDvtKuTSB+NGIiAJnyXCerwsEBJLS63BBEzFbp2UTM5epRvFcBVB/TSm/I5003SUGUY/nSbI+o=
-X-Received: by 2002:ac8:610f:: with SMTP id a15mr8443089qtm.257.1556895208631;
- Fri, 03 May 2019 07:53:28 -0700 (PDT)
+        id S1726267AbfECOxp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 10:53:45 -0400
+Received: from localhost (p54B33153.dip0.t-ipconnect.de [84.179.49.83])
+        by pokefinder.org (Postfix) with ESMTPSA id 09DE54A1428;
+        Fri,  3 May 2019 16:53:44 +0200 (CEST)
+Date:   Fri, 3 May 2019 16:53:43 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Chris Brandt <chris.brandt@renesas.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 3/7] dt-bindings: i2c: riic: document r7s9210 support
+Message-ID: <20190503145343.GF24385@kunai>
+References: <20190430132309.12473-1-chris.brandt@renesas.com>
+ <20190430132309.12473-4-chris.brandt@renesas.com>
 MIME-Version: 1.0
-References: <1556846821-8581-1-git-send-email-aisheng.dong@nxp.com> <1556846821-8581-2-git-send-email-aisheng.dong@nxp.com>
-In-Reply-To: <1556846821-8581-2-git-send-email-aisheng.dong@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 3 May 2019 09:53:16 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLJ+Lc_3huQizy4BVFgVV94Yg8KsOOgXLv4dQU8H=WfWw@mail.gmail.com>
-Message-ID: <CAL_JsqLJ+Lc_3huQizy4BVFgVV94Yg8KsOOgXLv4dQU8H=WfWw@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
- parse clocks from device tree
-To:     Aisheng Dong <aisheng.dong@nxp.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hK8Uo4Yp55NZU70L"
+Content-Disposition: inline
+In-Reply-To: <20190430132309.12473-4-chris.brandt@renesas.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 8:34 PM Aisheng Dong <aisheng.dong@nxp.com> wrote:
->
-> There's a few limitations on the original one cell clock binding
-> (#clock-cells = <1>) that we have to define all clock IDs for device
-> tree to reference. This may cause troubles if we want to use common
-> clock IDs for multi platforms support when the clock of those platforms
-> are mostly the same.
-> e.g. Current clock IDs name are defined with SS prefix.
->
-> However the device may reside in different SS across CPUs, that means the
-> SS prefix may not valid anymore for a new SoC. Furthermore, the device
-> availability of those clocks may also vary a bit.
->
-> For such situation, We formerly planned to add all new IDs for each SS
-> and dynamically check availability for different SoC in driver. That can
-> be done but that may involve a lot effort and may result in more changes
-> and duplicated code in driver, also make device tree upstreaming hard which
-> depends on Clock IDs.
->
-> To relief this situation, we want to move the clock definition into
-> device tree which can fully decouple the dependency of Clock ID definition
-> from device tree. This can make us write a full generic clock driver
-> for SCU based SoCs. No more frequent changes needed in clock driver
-> any more.
->
-> In the meanwhile, we can also use the existence of clock nodes in device
-> tree to address the device and clock availability differences across
-> different SoCs.
->
-> For SCU clocks, only two params required. The first one is resource id
-> which is encoded in reg property and the second is clock type index
-> which is encoded in generic clock-indices property they're not continuously.
->
-> And as we also want to support clock set parent function, 'clocks' property
-> is also used to pass all the possible input parents.
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <kernel@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
-> ChangeLog:
-> v1->v2:
->  * changed to one cell binding inspired by arm,scpi.txt
->    Documentation/devicetree/bindings/arm/arm,scpi.txt
->    Resource ID is encoded in 'reg' property.
->    Clock type is encoded in generic clock-indices property.
->    Then we don't have to search all the DT nodes to fetch
->    those two value to construct clocks which is relatively
->    low efficiency.
->  * Add required power-domain property as well.
-> ---
->  .../devicetree/bindings/arm/freescale/fsl,scu.txt  | 45 ++++++++++++++++++----
->  include/dt-bindings/firmware/imx/rsrc.h            | 17 ++++++++
->  2 files changed, 54 insertions(+), 8 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> index 5d7dbab..2f46e89 100644
-> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> @@ -89,6 +89,27 @@ Required properties:
->                           "fsl,imx8qm-clock"
->                           "fsl,imx8qxp-clock"
->                         followed by "fsl,scu-clk"
-> +- #address-cells:      Should be 1.
-> +- #size-cells:         Should be 0.
-> +
-> +Sub nodes are required to represent all available SCU clocks within this
-> +hardware subsystem and the following properties are needed:
-> +
-> +- reg:                 Should contain the Resource ID of this SCU clock.
-> +- #clock-cells:                Should be 1.
-> +- clock-indices:       Index of all clock types supported by this SCU clock.
-> +                       The order should match the clock-output-names array.
-> +                       Refer to <include/dt-bindings/firmware/imx/rsrc.h> for
-> +                       available clock types supported by SCU.
 
-I would have expected the clock cell to contain the Resource ID.
+--hK8Uo4Yp55NZU70L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also, this still has one clock per node which you should avoid unless
-there's only a small number of clocks (say ~20). Move this all to a
-single node with the list of clock IDs in clock-indices and other
-properties like power-domains can match up with clock-indices. IOW,
-both should have the same length (in elements).
+On Tue, Apr 30, 2019 at 08:23:05AM -0500, Chris Brandt wrote:
+> Document support for the R7S9210 (RZ/A2) SoC. Also explicitly document
+> bindings for the R7S72100 (RZ/A1) SoC.
+>=20
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
 
-For the clock type, perhaps combine that in the clock cell with the
-resource ID such as using the upper 8-bits.
+Applied to for-next, thanks!
 
-> +- clock-output-names:  Shall be the corresponding names of the outputs.
-> +- power-domains:       Should contain the power domain used by this SCU clock.
-> +
-> +Optional properties:
-> +- clocks:              Shall be the input parent clock(s) phandle for the clock.
-> +                       For multiplexed clocks, the list order must match the hardware
-> +                       programming order.
-> +
-> +Legacy Clock binding (No sub-nodes which is DEPRECATED):
->  - #clock-cells:                Should be 1. Contains the Clock ID value.
->  - clocks:              List of clock specifiers, must contain an entry for
->                         each required entry in clock-names
-> @@ -144,6 +165,21 @@ lsio_mu1: mailbox@5d1c0000 {
->         #mbox-cells = <2>;
->  };
->
-> +conn-scu-clock-controller {
-> +       compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       uart0_clk: clock-scu@57 {
-> +               reg = <57>;
-> +               #clock-cells = <1>;
-> +               clock-indices = <IMX_SC_PM_CLK_PER>;
-> +               clock-output-names = "uart0_clk";
-> +               power-domains = <&pd IMX_SC_R_UART_0>;
-> +       };
-> +       ...
-> +}
-> +
->  firmware {
->         scu {
->                 compatible = "fsl,imx-scu";
-> @@ -160,11 +196,6 @@ firmware {
->                           &lsio_mu1 1 3
->                           &lsio_mu1 3 3>;
->
-> -               clk: clk {
-> -                       compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
-> -                       #clock-cells = <1>;
-> -               };
-> -
->                 iomuxc {
->                         compatible = "fsl,imx8qxp-iomuxc";
->
-> @@ -192,8 +223,6 @@ serial@5a060000 {
->         ...
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_lpuart0>;
-> -       clocks = <&clk IMX8QXP_UART0_CLK>,
-> -                <&clk IMX8QXP_UART0_IPG_CLK>;
-> -       clock-names = "per", "ipg";
-> +       clocks = <&uart0_clk IMX_SC_PM_CLK_PER>;
->         power-domains = <&pd IMX_SC_R_UART_0>;
->  };
-> diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
-> index 4e61f64..fbeaca7 100644
-> --- a/include/dt-bindings/firmware/imx/rsrc.h
-> +++ b/include/dt-bindings/firmware/imx/rsrc.h
-> @@ -547,4 +547,21 @@
->  #define IMX_SC_R_ATTESTATION           545
->  #define IMX_SC_R_LAST                  546
->
-> +/*
-> + * Defines for SC PM CLK
-> + */
-> +#define IMX_SC_PM_CLK_SLV_BUS          0       /* Slave bus clock */
-> +#define IMX_SC_PM_CLK_MST_BUS          1       /* Master bus clock */
-> +#define IMX_SC_PM_CLK_PER              2       /* Peripheral clock */
-> +#define IMX_SC_PM_CLK_PHY              3       /* Phy clock */
-> +#define IMX_SC_PM_CLK_MISC             4       /* Misc clock */
-> +#define IMX_SC_PM_CLK_MISC0            0       /* Misc 0 clock */
-> +#define IMX_SC_PM_CLK_MISC1            1       /* Misc 1 clock */
-> +#define IMX_SC_PM_CLK_MISC2            2       /* Misc 2 clock */
-> +#define IMX_SC_PM_CLK_MISC3            3       /* Misc 3 clock */
-> +#define IMX_SC_PM_CLK_MISC4            4       /* Misc 4 clock */
-> +#define IMX_SC_PM_CLK_CPU              2       /* CPU clock */
-> +#define IMX_SC_PM_CLK_PLL              4       /* PLL */
-> +#define IMX_SC_PM_CLK_BYPASS           4       /* Bypass clock */
 
-I don't understand how these work with overlapping numbers.
+--hK8Uo4Yp55NZU70L
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Rob
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlzMVfcACgkQFA3kzBSg
+Kbat+A/9HYjbx6Aq6tJ3Oo4NN0UU6Et6HxsROxT3fNzcUGiHJNWY7wEc+hGavCFr
+lO51Fme0Jj04hF2KGXy6/zMRzO99t72fEfhMlTNtmp8CJ/CNXjVKCnhdEC7U2ZIP
+ClaD7vzfymhJeYUWhJj94Zs2P0xKFqZoU92vkjceK73juLWQz9whPW7dLbv+ijFx
+Uau4Z6g8IQapAvxzYg2vBk1EbLjC7CPCHAXgUqDM9WYxKEjLbjoZbdXk2DPfA2a+
+iIfNdO/CJvI+0pq0jrIbEjTYVgP0U0nvBIMxsOlEMcleFm2s9+oqtqsgXKAtLMrA
+Mb1ULNxTSO5xJ43uaBo8zeyiiECs/STXrl2giC73XVVzUGYLKRCYPd6DUv9H2eTT
+Cym8sip9lyUpiQSZEhf2MgdDRb7EqXuZuUOHA1iZH3SPeEFEwMY1gmK7WKOWWGku
+FXK+Ytp/FlBBPnU1r3MrPh7QPTlVoocQTqW8p4hJy6oIYwcds2Ixqs2ynfGecGzM
+569IgHIQKhvQXoHmYTD1mbkrG2Snei+0Aw736BANLXjUb0iPMNkcTvEA/5wZGzTx
+0CNSdHa0biUlXRhzFiVAa86SNB9b9f/CTFupcrTJzYuvBhnIGKnMCoGoyDNua24Y
+DGZ2oBWjJOIMQsXGPkZq7h7vF4prLKZyQXwcm7qNw0yWmDW1M8A=
+=8+kg
+-----END PGP SIGNATURE-----
+
+--hK8Uo4Yp55NZU70L--
