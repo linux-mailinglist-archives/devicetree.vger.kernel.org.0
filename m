@@ -2,93 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52497130F1
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 17:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E757130F7
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 17:12:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726992AbfECPLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 11:11:54 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:35444 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726514AbfECPLy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 May 2019 11:11:54 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BECA7374;
-        Fri,  3 May 2019 08:11:53 -0700 (PDT)
-Received: from [10.1.196.93] (en101.cambridge.arm.com [10.1.196.93])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 33D903F557;
-        Fri,  3 May 2019 08:11:52 -0700 (PDT)
-Subject: Re: [PATCH v5 4/4] coresight: funnel: Support static funnel
-To:     leo.yan@linaro.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, alexander.shishkin@linux.intel.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     shiwanglai@hisilicon.com
-References: <20190412102738.12679-1-leo.yan@linaro.org>
- <20190412102738.12679-5-leo.yan@linaro.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <16ae9127-b282-e6b8-3a6c-5165c8618bb4@arm.com>
-Date:   Fri, 3 May 2019 16:11:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726514AbfECPMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 11:12:46 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:37923 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726468AbfECPMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 11:12:46 -0400
+Received: by mail-it1-f195.google.com with SMTP id q19so9522237itk.3
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 08:12:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h0gqP9UfAhrcVQ0B7jx45OW9tzcGMjRGZERkH/amQd8=;
+        b=fc39lvNrtLQ+PPYtosoIsxvEQNSCEyLIoC+tTlsPyHSyB86C/K2Ksa2rV2eZSMGM6e
+         8kWCQ8JFZdBwoDoLSdnbcM7+rOSwHi+7dCOOWVM01wEl2NceqOGu3KrH1YoREi7GDUl2
+         Hs6YesgZxH8N1Qx3JSRTYZrdwVBWxYTOIE08vZAZ0oSQnxRTTAhbZjIwk7xkxMXTKK/N
+         /l1nnVGX7L0dWh2Sq29F2WDwdvQWJId7/BMmu69ruuNp9wRHrIP523awi2Ppcz9k4WIU
+         Az6uS9ExDKAlCoJ4pM0oPjzBJ4w5KN97FZyN2GUl1ykw+DPgsJJayFbSqWSqizMpmfmt
+         K3jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h0gqP9UfAhrcVQ0B7jx45OW9tzcGMjRGZERkH/amQd8=;
+        b=n8KvTxjV7nolQ7qqUGM8KdVDz9N09JSdSVIGq7yPYdq1LXO2ijqKhD+hBw3QCfFy9c
+         0fRFQObr9eaxXTg765ztZX44GXIc+no8sbdbOIGYVgQgh/kbtlC/A+BrbFEstPekK56s
+         1riuc6IxvOLSODFpKSnOQMR0L+5qtQ/qyJa+CRx4fuof/WSajcjynhufIVNKQo+9Y5tY
+         98b691pkjO5Beh9vKv8F6U4UgpbP6KgP2q0TsPZAzOHEKIfm1koQqYGiN5vMwDTK6QmM
+         FaROG7AQfoF6rc25bAffeaySoT1IPFfLE73K1ObKWwq796/e2pd/u2M8g2b8qsNslWhN
+         XGyg==
+X-Gm-Message-State: APjAAAXpzQBkkUg4dS+REx9P1mJsChrW23Qe4napOvPVqZD1l79Y++nn
+        8jt+Boul0VZHDDq7Iau8J99aD3gdb5/c1d76FwH7vw==
+X-Google-Smtp-Source: APXvYqylRqk8vy/C0ENyupfDoZQ0z4e1EDdlHqQ1vxzioimJlizkmjvHen1pYQGiwpvSjAY735JShzGgeVvSLnohe6E=
+X-Received: by 2002:a02:4482:: with SMTP id o124mr7550142jaa.121.1556896365345;
+ Fri, 03 May 2019 08:12:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190412102738.12679-5-leo.yan@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190323211612.860-1-fparent@baylibre.com> <20190323211612.860-9-fparent@baylibre.com>
+ <CAPDyKFrAxmBv+1i3qJpD=M1Wq33U2PMfQv_99xDm9MLhLxSWYg@mail.gmail.com>
+In-Reply-To: <CAPDyKFrAxmBv+1i3qJpD=M1Wq33U2PMfQv_99xDm9MLhLxSWYg@mail.gmail.com>
+From:   Fabien Parent <fparent@baylibre.com>
+Date:   Fri, 3 May 2019 17:12:34 +0200
+Message-ID: <CAOwMV_z8RrmoK+bfEqgwOv97uJarnuTCUo7aczZz=gyvg8CDzQ@mail.gmail.com>
+Subject: Re: [PATCH 08/24] dt-bindings: mmc: mtk-sd: add mtk-sd support for MT8516
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Leo,
+Hi Ulf,
 
+On Mon, Mar 25, 2019 at 2:27 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> - trimmed cc list
+>
+> On Sat, 23 Mar 2019 at 22:17, Fabien Parent <fparent@baylibre.com> wrote:
+> >
+> > Add binding documentation of mtk-sd for MT8516 SoCs.
+> >
+> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>
+> Applied for next, thanks!
 
-On 12/04/2019 11:27, Leo Yan wrote:
-> Since CoreSight hardware topology can use a 'hidden' funnel in the
-> trace data path, this kind funnel doesn't have register for accessing
-> and is used by default from hardware design perspective.  Below is an
-> example for related hardware topology:
-> 
->    +------+  +------+
->    | cpu0 |->| ETM  |-\
->    +------+  +------+  \-> +--------+  +-----+
->     ......                 | Funnel |->| ETF |-\    Hidden funnel
->    +------+  +------+  /-> +--------+  +-----+  \        |
->    | cpu3 |->| ETM  |-/                          \       V
->    +------+  +------+                             \-> +--------+
->                                                       | Funnel |-> ...
->    +------+  +------+                             /-> +--------+
->    | cpu4 |->| ETM  |-\                          /
->    +------+  +------+  \-> +--------+  +-----+  /
->     ......                 | Funnel |->| ETF |-/
->    +------+  +------+  /-> +--------+  +-----+
->    | cpu7 |->| ETM  |-/
->    +------+  +------+
-> 
-> The CoreSight funnel driver only supports dynamic funnel with
-> registration register resource, thus it cannot support for the static
-> funnel case and it's impossible to create trace data path for this case.
-> 
-> This patch is to extend CoreSight funnel driver to support both for
-> static funnel and dynamic funnel.  For the dynamic funnel it reuses the
-> code existed in the driver, for static funnel the driver will support
-> device probe if without providing register resource and the driver skips
-> registers accessing when detect the register base is NULL.
-> 
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Cc: Wanglai Shi <shiwanglai@hisilicon.com>
-> Suggested-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Leo Yan <leo.yan@linaro.org>
-> Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+I think this patch got lost since I cannot see it in your tree.
 
->   
-> +	if (of_device_is_compatible(np, "arm,coresight-funnel"))
-> +		pr_warn_once("Uses OBSOLETE CoreSight funnel binding\n");
-> +
+Thanks,
+Fabien
 
-Given that we now warn about OBSOLETE bindings, please could you fix
-the existing DTS in the kernel source tree to use the new binding ?
-Similarly for the replicator.
-
-Suzuki
+>
+> Kind regards
+> Uffe
+>
+>
+> > ---
+> >  Documentation/devicetree/bindings/mmc/mtk-sd.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.txt b/Documentation/devicetree/bindings/mmc/mtk-sd.txt
+> > index f5bcda3980cc..91a2ec59e497 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.txt
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.txt
+> > @@ -11,6 +11,7 @@ Required properties:
+> >         "mediatek,mt8135-mmc": for mmc host ip compatible with mt8135
+> >         "mediatek,mt8173-mmc": for mmc host ip compatible with mt8173
+> >         "mediatek,mt8183-mmc": for mmc host ip compatible with mt8183
+> > +       "mediatek,mt8516-mmc": for mmc host ip compatible with mt8516
+> >         "mediatek,mt2701-mmc": for mmc host ip compatible with mt2701
+> >         "mediatek,mt2712-mmc": for mmc host ip compatible with mt2712
+> >         "mediatek,mt7622-mmc": for MT7622 SoC
+> > --
+> > 2.20.1
+> >
