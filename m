@@ -2,318 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E5A12C7D
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5010112D03
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:59:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726997AbfECLgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 07:36:03 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:55565 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726476AbfECLgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:36:02 -0400
-Received: by mail-wm1-f66.google.com with SMTP id y2so6390662wmi.5;
-        Fri, 03 May 2019 04:36:00 -0700 (PDT)
+        id S1727682AbfECL7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 07:59:05 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:36856 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727639AbfECL7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:59:05 -0400
+Received: by mail-it1-f193.google.com with SMTP id v143so8587625itc.1
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 04:59:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=W//ALEE5VT6SBWnqaiaie62yFCMzK6hStFCDj6BgZ+c=;
-        b=Y5QXW7rdtmdCm/sv2xrJnik0hiFh3yTAI+zx/xqTEQ5Fw2Yau+LZa1tdLABiaicFjE
-         vyZi6/nzsDSn1bkb5g7OneLHhaolmCsu/w8ZoFPEcyBGMtIOIB6717REq7tKc1zqrzbX
-         XEFJrFVxKKMXe6EhBKKE7L+0Ge72VW2sBdzlsU1/kbagADvJ9zDYjVbWjeydiBJx8jcX
-         Olwh73aUM4VrnIWi7PvMxMj76T2BdNxOpBTYWEkjZucXhnGaBZ595P5EhtttFlPkiZVc
-         12mfWPMtkQcRE7O3RZPUF6FOj2lyPuaHk2lrDbyJJMdRbp2iJ5UUeSg/ZO5cE2MrLWFL
-         Suwg==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vDgYOPNAs5a7jn6rrh+mqlUAcW/QL6gqLTt3pqvnNY8=;
+        b=Y6srGshKU+8ofVAzr5oXPRlANIBEkdOrCHKBPiE3tUswNgNowbNADcWMckRUE5gkSL
+         9ukukehth9mBJJ/QJCpdkUMMW2+iAg10JbBAKpi7BjWy2OQ+HfalsNh4xdNDSsHWnKVY
+         6bANvGQZzE11Hw3Y7RiWx/Sk3RaGiUf3o+mJs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=W//ALEE5VT6SBWnqaiaie62yFCMzK6hStFCDj6BgZ+c=;
-        b=GFS9kQUI8azDHGIC7t10Qx/hJRyuPMxY6OSSVTE3u4QTn68oWiivmH5ujwaUIpe9bS
-         WskQ4u99+6+XEqlC8306hgMB8PEzTUUfVUOCajnnYkcj/Hv4IIV+6fLuR3jk35y8cXps
-         nKBEvHahS0MUP8GFoiWF3x/vEwhQOGIVbFm9VKQzyznzJWNP/9mnBOYfMXMdGxMWEA1g
-         KiC2c+9ThMgqNYoX1jVr3KgoTmXB6SwFZ2XJfUW7pwE1nOMCbWKyp4at5jQme5eDiflf
-         /wt/0m5dvlY95/0uQnZ0wexuhz3YwKN1WjLGxsvW9zH+uJlTOBT5U2pp4BuDw4lS13rZ
-         aGIQ==
-X-Gm-Message-State: APjAAAX3jSQaypwibvM7wd0fj3fvieiVlNk3mZq1zVbMQaXoAJhX2Tc+
-        XJWmSpgVO9gNfnZ9hnG6OFI=
-X-Google-Smtp-Source: APXvYqxfIJHgYWHj9BmMQFTrkyOZ9fncFwNHZ9iKptLt7AvkzvbZGfD3e/UN2lbhDj0IRdNJTwnuJA==
-X-Received: by 2002:a7b:c762:: with SMTP id x2mr6150087wmk.50.1556883360061;
-        Fri, 03 May 2019 04:36:00 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id u22sm1446349wmc.12.2019.05.03.04.35.58
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 03 May 2019 04:35:59 -0700 (PDT)
-Date:   Fri, 3 May 2019 13:35:58 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V5 14/16] phy: tegra: Add PCIe PIPE2UPHY support
-Message-ID: <20190503113558.GH32400@ulmo>
-References: <20190424052004.6270-1-vidyas@nvidia.com>
- <20190424052004.6270-15-vidyas@nvidia.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vDgYOPNAs5a7jn6rrh+mqlUAcW/QL6gqLTt3pqvnNY8=;
+        b=OiEaLFOxO0qcc+haXmVudBtJgzzNOxLxpD5dSxDiWLKHu1tDNrY5IIwPEJVXMUH1BN
+         lIJdC1ioChzOy0caJM5yde30KkVsTyus/Orc7HQw+7lD7+kwSK79LPy8tVBU6cyErO3k
+         kyodx96AfP38cp0v2P2Xh2GzoRXt1/LcjEhDhNhfbi3qhxHgHrwjvUQHt0OB4oeO7wyJ
+         G9wUt4vIyq0TcEuoNTUIR78NI6WbQ9qfZOvJzaGPhgO4s3cztMSRAgJIX19j7Fbke/Ra
+         fmxf3Rk9bPiRTMHO3KBFCw7arpd52DTZ9Z94ww3F8d86ELSFWnXQBTN3Zke6B5pYX/5I
+         87IQ==
+X-Gm-Message-State: APjAAAVfvNty2ef/E+TrgPAeeELZIboPChxPuU5liGF7s4t50s2UR8in
+        SG0tO4FkNOsG8x890ktkxzPhbsXeT4ozGT8dTmzU/Q==
+X-Google-Smtp-Source: APXvYqxogbylovsed3LC9Wji6QY3Bj1N0GsCs2SPDNY1RvVGOuqXHQj+rfQkbvVmWscSed3alM3kokBhRmxHN3Y8JlY=
+X-Received: by 2002:a24:70d5:: with SMTP id f204mr6307014itc.32.1556884744596;
+ Fri, 03 May 2019 04:59:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="lrvsYIebpInmECXG"
-Content-Disposition: inline
-In-Reply-To: <20190424052004.6270-15-vidyas@nvidia.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190413165418.27880-1-megous@megous.com> <20190413165418.27880-6-megous@megous.com>
+In-Reply-To: <20190413165418.27880-6-megous@megous.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Fri, 3 May 2019 17:28:53 +0530
+Message-ID: <CAMty3ZDx6NXyYhQehYT9geeGwAk2PZidiVMwVw1nnZJa3zwyOg@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v4 5/9] arm64: dts: allwinner: orange-pi-3:
+ Enable ethernet
+To:     megous@megous.com
+Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---lrvsYIebpInmECXG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Apr 24, 2019 at 10:50:02AM +0530, Vidya Sagar wrote:
-> Synopsys DesignWare core based PCIe controllers in Tegra 194 SoC interface
-> with Universal PHY (UPHY) module through a PIPE2UPHY (P2U) module.
-> For each PCIe lane of a controller, there is a P2U unit instantiated at
-> hardware level. This driver provides support for the programming required
-> for each P2U that is going to be used for a PCIe controller.
->=20
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+On Sat, Apr 13, 2019 at 10:24 PM megous via linux-sunxi
+<linux-sunxi@googlegroups.com> wrote:
+>
+> From: Ondrej Jirman <megous@megous.com>
+>
+> Orange Pi 3 has two regulators that power the Realtek RTL8211E. According
+> to the phy datasheet, both regulators need to be enabled at the same time,
+> but we can only specify a single phy-supply in the DT.
+>
+> This can be achieved by making one regulator depedning on the other via
+> vin-supply. While it's not a technically correct description of the
+> hardware, it achieves the purpose.
+>
+> All values of RX/TX delay were tested exhaustively and a middle one of the
+> working values was chosen.
+>
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
 > ---
-> Changes since [v4]:
-> * None
->=20
-> Changes since [v3]:
-> * Rebased on top of linux-next top of the tree
->=20
-> Changes since [v2]:
-> * Replaced spaces with tabs in Kconfig file
-> * Sorted header file inclusion alphabetically
->=20
-> Changes since [v1]:
-> * Added COMPILE_TEST in Kconfig
-> * Removed empty phy_ops implementations
-> * Modified code according to DT documentation file modifications
->=20
->  drivers/phy/tegra/Kconfig             |   7 ++
->  drivers/phy/tegra/Makefile            |   1 +
->  drivers/phy/tegra/pcie-p2u-tegra194.c | 120 ++++++++++++++++++++++++++
->  3 files changed, 128 insertions(+)
->  create mode 100644 drivers/phy/tegra/pcie-p2u-tegra194.c
->=20
-> diff --git a/drivers/phy/tegra/Kconfig b/drivers/phy/tegra/Kconfig
-> index a3b1de953fb7..06d423fa85b4 100644
-> --- a/drivers/phy/tegra/Kconfig
-> +++ b/drivers/phy/tegra/Kconfig
-> @@ -6,3 +6,10 @@ config PHY_TEGRA_XUSB
-> =20
->  	  To compile this driver as a module, choose M here: the module will
->  	  be called phy-tegra-xusb.
+>  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+> index 17d496990108..6d6b1f66796d 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+> @@ -15,6 +15,7 @@
+>
+>         aliases {
+>                 serial0 = &uart0;
+> +               ethernet0 = &emac;
+>         };
+>
+>         chosen {
+> @@ -44,6 +45,27 @@
+>                 regulator-max-microvolt = <5000000>;
+>                 regulator-always-on;
+>         };
 > +
-> +config PHY_TEGRA194_PCIE_P2U
-> +	tristate "NVIDIA Tegra P2U PHY Driver"
-> +	depends on ARCH_TEGRA || COMPILE_TEST
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support the P2U (PIPE to UPHY) that is part of Tegra 1=
-9x SOCs.
-> diff --git a/drivers/phy/tegra/Makefile b/drivers/phy/tegra/Makefile
-> index a93cd9a499b2..1aaca794f40c 100644
-> --- a/drivers/phy/tegra/Makefile
-> +++ b/drivers/phy/tegra/Makefile
-> @@ -5,3 +5,4 @@ phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_124_SOC) +=3D xusb-teg=
-ra124.o
->  phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_132_SOC) +=3D xusb-tegra124.o
->  phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_210_SOC) +=3D xusb-tegra210.o
->  phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_186_SOC) +=3D xusb-tegra186.o
-> +obj-$(CONFIG_PHY_TEGRA194_PCIE_P2U) +=3D pcie-p2u-tegra194.o
-> diff --git a/drivers/phy/tegra/pcie-p2u-tegra194.c b/drivers/phy/tegra/pc=
-ie-p2u-tegra194.c
-> new file mode 100644
-> index 000000000000..a5d85e411088
-> --- /dev/null
-> +++ b/drivers/phy/tegra/pcie-p2u-tegra194.c
-> @@ -0,0 +1,120 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * P2U (PIPE to UPHY) driver for Tegra T194 SoC
-> + *
-> + * Copyright (C) 2019 NVIDIA Corporation.
-> + *
-> + * Author: Vidya Sagar <vidyas@nvidia.com>
-> + */
+> +       /*
+> +        * The board uses 2.5V RGMII signalling. Power sequence to enable
+> +        * the phy is to enable GMAC-2V5 and GMAC-3V3 (aldo2) power rails
+> +        * at the same time and to wait 100ms.
+> +        */
+> +       reg_gmac_2v5: gmac-2v5 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "gmac-2v5";
+> +               regulator-min-microvolt = <2500000>;
+> +               regulator-max-microvolt = <2500000>;
+> +               startup-delay-us = <100000>;
+> +               enable-active-high;
+> +               gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
 > +
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <soc/tegra/bpmp-abi.h>
+> +               /* The real parent of gmac-2v5 is reg_vcc5v, but we need to
+> +                * enable two regulators to power the phy. This is one way
+> +                * to achieve that.
+> +                */
+> +               vin-supply = <&reg_aldo2>; /* GMAC-3V3 */
 
-Looks to me like not all of the above are actually needed. I don't see
-anything from delay.h used, and you certainly aren't using anything from
-soc/tegra/bpmp-abi.h either.
-
-> +
-> +#define P2U_PERIODIC_EQ_CTRL_GEN3	0xc0
-> +#define P2U_PERIODIC_EQ_CTRL_GEN3_PERIODIC_EQ_EN		BIT(0)
-> +#define P2U_PERIODIC_EQ_CTRL_GEN3_INIT_PRESET_EQ_TRAIN_EN	BIT(1)
-> +#define P2U_PERIODIC_EQ_CTRL_GEN4	0xc4
-> +#define P2U_PERIODIC_EQ_CTRL_GEN4_INIT_PRESET_EQ_TRAIN_EN	BIT(1)
-> +
-> +#define P2U_RX_DEBOUNCE_TIME				0xa4
-> +#define P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_MASK	0xffff
-> +#define P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_VAL		160
-> +
-> +struct tegra_p2u {
-> +	void __iomem *base;
-> +};
-> +
-> +static int tegra_p2u_power_on(struct phy *x)
-> +{
-> +	struct tegra_p2u *phy =3D phy_get_drvdata(x);
-> +	u32 val;
-> +
-> +	val =3D readl(phy->base + P2U_PERIODIC_EQ_CTRL_GEN3);
-> +	val &=3D ~P2U_PERIODIC_EQ_CTRL_GEN3_PERIODIC_EQ_EN;
-> +	val |=3D P2U_PERIODIC_EQ_CTRL_GEN3_INIT_PRESET_EQ_TRAIN_EN;
-> +	writel(val, phy->base + P2U_PERIODIC_EQ_CTRL_GEN3);
-> +
-> +	val =3D readl(phy->base + P2U_PERIODIC_EQ_CTRL_GEN4);
-> +	val |=3D P2U_PERIODIC_EQ_CTRL_GEN4_INIT_PRESET_EQ_TRAIN_EN;
-> +	writel(val, phy->base + P2U_PERIODIC_EQ_CTRL_GEN4);
-> +
-> +	val =3D readl(phy->base + P2U_RX_DEBOUNCE_TIME);
-> +	val &=3D ~P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_MASK;
-> +	val |=3D P2U_RX_DEBOUNCE_TIME_DEBOUNCE_TIMER_VAL;
-> +	writel(val, phy->base + P2U_RX_DEBOUNCE_TIME);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops ops =3D {
-> +	.power_on	=3D tegra_p2u_power_on,
-> +	.owner		=3D THIS_MODULE,
-
-I think it's perhaps best to just stick with single spaces around the =3D
-instead of trying to arbitrarily align these. See below for why I think
-so.
-
-> +};
-> +
-> +static int tegra_p2u_probe(struct platform_device *pdev)
-> +{
-> +	struct phy_provider *phy_provider;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct phy *generic_phy;
-> +	struct tegra_p2u *phy;
-> +	struct resource *res;
-> +
-> +	phy =3D devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "ctl");
-> +	phy->base =3D devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(phy->base))
-> +		return PTR_ERR_OR_ZERO(phy->base);
-> +
-> +	platform_set_drvdata(pdev, phy);
-
-You could use dev_set_drvdata() here since you already use dev (instead
-of pdev) everywhere else.
-
-> +
-> +	generic_phy =3D devm_phy_create(dev, NULL, &ops);
-> +	if (IS_ERR(generic_phy))
-> +		return PTR_ERR_OR_ZERO(generic_phy);
-> +
-> +	phy_set_drvdata(generic_phy, phy);
-> +
-> +	phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate=
-);
-> +	if (IS_ERR(phy_provider))
-> +		return PTR_ERR_OR_ZERO(phy_provider);
-> +
-> +	return 0;
-> +}
-> +
-> +static int tegra_p2u_remove(struct platform_device *pdev)
-> +{
-> +	return 0;
-> +}
-
-I thought it had already been mentioned that you don't need to implement
-this if it's empty?
-
-> +
-> +static const struct of_device_id tegra_p2u_id_table[] =3D {
-> +	{
-> +		.compatible =3D "nvidia,tegra194-p2u",
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, tegra_p2u_id_table);
-> +
-> +static struct platform_driver tegra_p2u_driver =3D {
-> +	.probe		=3D tegra_p2u_probe,
-> +	.remove		=3D tegra_p2u_remove,
-> +	.driver		=3D {
-> +		.name	=3D "tegra194-p2u",
-> +		.of_match_table =3D tegra_p2u_id_table,
-
-Again, I don't think the artificial padding does this any good. For
-example, the .driver.name's assignment operator is padded to the same
-column as members of the parent structure, so that's confusing to read.
-Also, .of_match_table is not padded at all, so it's inconsistent. Just
-use single spaces around =3D. That's easy to keep consistent and really
-doesn't read that bad.
-
-> +	},
-> +};
-> +
-> +module_platform_driver(tegra_p2u_driver);
-
-It's customary to have no blank line between the closing "};" and the
-module_platform_driver() macro.
-
-Thierry
-
-> +
-> +MODULE_AUTHOR("Vidya Sagar <vidyas@nvidia.com>");
-> +MODULE_DESCRIPTION("NVIDIA Tegra PIPE2UPHY PHY driver");
-> +MODULE_LICENSE("GPL v2");
-> --=20
-> 2.17.1
->=20
-
---lrvsYIebpInmECXG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzMJ54ACgkQ3SOs138+
-s6FHRw//QSQE5n5EBmd2QXhQm9HCcPNiLPcqZ9zoT97qtU/IOaBbQm5pjW2UMvrp
-jdq3ArQqHkQ7Xg4Xv0dzjAeKNwI2Q9PMGMmOY6SDs/f3HtSfgOIRWly79T2SQMLS
-EnYVG9+Ay6t7noWu1rKqIlmc3AiEMqw0LgC+ymabUyrdzTdZZic+Q8C3WqO4YNzc
-ouphnrxkhJcfRWHo5awWiwuI6hGtkMj0mw/5rBzQlvj3q+c8v9QH7ib8XRvmBQkx
-RRvNVtOy644FrswGT+I2s3LYXd/YE9e6I7GIlipxlanimLs8XGXmHsd1QLIGBExh
-b9lnOpEJPJbucA3MekPK/vzlJ0OGKE6TEhiEs9CAHGns1Y3TnXMSD9GG0bkw0XY2
-oEPPZElmM1IcAFe9+uABzIif/FOmsR9a5gS10sYiiVGvev2DLHHn6BQP3s8yRD2t
-hGth+8RRbYNMnjqeSCLNIgQbMBd4DHxk8B34W/y7rMB79/pcI5UwP0td7C+q2q0B
-yXZddybe7FtAI69nuDBr7CD5bE2ejc1bItYUq+GCq67dOrPJBQFxGPUx9KdkPCrg
-2zGp426JLQiM3rZHveWeZltswCsUolmp6zvc/cg8dSRBsm7tjdgLFPH+0i6DDltP
-MEyKiVMslB0YUDBp/S+VMXm94Y3fnQHt0CxgqFN/EsjEhvdZXNU=
-=wCXA
------END PGP SIGNATURE-----
-
---lrvsYIebpInmECXG--
+The actual output supply pin name is GMAC-3V which has an input of
+VCC3V3-MAC (ie aldo2), if we compatible to schematics better to use
+the same, IMHO.
