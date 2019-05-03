@@ -2,106 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A1F13416
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 21:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C86E813457
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 22:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726845AbfECTkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 15:40:53 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:49652 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726444AbfECTkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 15:40:53 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x43JYGAQ072123;
-        Fri, 3 May 2019 19:40:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=corp-2018-07-02;
- bh=zFFPkeKwSl9qs1Gf/nl1E27H+7M/jhvO857WLR2q3z8=;
- b=DpzPTdixPg6Pvz4oxVTvXpjKc9fMHYkTYdnN/3EvhgQl9oc7m7+7zwpvacbG2Pvt9Gqp
- wbsiOQFJ+dGnW2iAlZkAmnr/SnJCy47E0fG3+koASSJTXJb1tecoiA7Q8qHVebMExiAV
- 01GSQyjKN1QVJSSeiZj7gDWDmuyNOPVMnJfLmwpr1sr2B9YxHhq8ewd/pMvtzfxngigL
- EWvJ5huXM/tztCh99qYfnZNGjDi6jS0lmrnwY/We66Jn4+wGsF8kEsbAQSPu5rUt1Ak3
- DeHo0E1e3j6KAvOlB8hxyW2IfNGW8hV9h2JDOUhOLNRCyDMFdDYXokdP1JQ1oXMQbYrw RQ== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by userp2130.oracle.com with ESMTP id 2s6xhyrv9g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 03 May 2019 19:40:25 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x43JcoHT142847;
-        Fri, 3 May 2019 19:40:25 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by aserp3030.oracle.com with ESMTP id 2s7rtcfb6c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 03 May 2019 19:40:24 +0000
-Received: from abhmp0009.oracle.com (abhmp0009.oracle.com [141.146.116.15])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x43JeCdp003869;
-        Fri, 3 May 2019 19:40:14 GMT
-Received: from kadam (/196.104.111.181)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Fri, 03 May 2019 12:40:12 -0700
-Date:   Fri, 3 May 2019 22:40:01 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devel@driverdev.osuosl.org, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v3 08/10] staging: octeon-ethernet: support
- of_get_mac_address new ERR_PTR error
-Message-ID: <20190503194001.GP2239@kadam>
-References: <1556870168-26864-1-git-send-email-ynezz@true.cz>
- <1556870168-26864-9-git-send-email-ynezz@true.cz>
- <20190503103456.GF2269@kadam>
- <20190503190730.GH71477@meh.true.cz>
+        id S1726512AbfECUQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 16:16:45 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:38521 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726302AbfECUQo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 16:16:44 -0400
+Received: by mail-pg1-f195.google.com with SMTP id j26so3233192pgl.5;
+        Fri, 03 May 2019 13:16:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=dnNbKvHsidFS/IJnHzry+Usp2qkSf2LthVV16BD6/IY=;
+        b=VZ2Xz/saOr7kC5ASXeRM6ZDX68bFEpfbrI7KO4U+xmZBn+wW2XFhnVB8oirHEJb1zO
+         eplXpfJ3fIwkE1cdbM77WT5hiZ0Jom/6lAz9ZRwMw1sbiCQ+bFEH1rlwiyivAFg7yGwo
+         Ma169OWfuImfilE6v0rTcS9JugD066YpeNwHU8ThYwUdWxSiFWUqRzo+R2RIUuyWzOoX
+         CgRz6J5oJdAIvJbhRMf+JHkKnUQHvrNzPxn6a71QEsLJlC/7da+Fgj8eHmniciDrhCFm
+         8QZrLnaMocBn8p2HBHIL7YBQfASP1dV7QoMst9cOeQory/gtjuMLjy3CjbauOnZh19im
+         uXig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=dnNbKvHsidFS/IJnHzry+Usp2qkSf2LthVV16BD6/IY=;
+        b=h09pPtTO34EwuhqGpgsa0pT8xT8TVPSgY0VqqJQoeLgK9j7SoPUnbzExnS0GyCu0e0
+         0YlIGjO9NZHTYXdnG1A7GvI6ySOISax+7pvnAxsoNgVgrN5ofDigMqJmfUdQZZwY4ZBh
+         CpKBJeR3RLNwEmITnXUiWJeH3K8h4BTBOweLdnk1E/DLk+HhXf6hNlsc8Zieic3YkVV7
+         ygtoImOIMYV+WNoSiaPUz/2IFBn4geqJ9jQ9aGD15LWBWVo7aVz5s9O+DaUmigDOJKzZ
+         Q7nYdUHQNZrmL+/cFuud77eYc0njamT7nF983u1SQ4tVC/Lj1g6dkKvxek/zh8zlr196
+         yg+Q==
+X-Gm-Message-State: APjAAAWFHuUTt9UUj8ziT6qJ8ETKPilDxxL4ZvTUEkw8wIqL69OPkpQi
+        r531CmTabQHAQemTX75Lg5Z31tX+
+X-Google-Smtp-Source: APXvYqwcXHhqhN62afFCaanGnU/T3qE8YdMQ4zNriOLX5MwCCHvU6S5UJkgVyep6BMMxDFu7BXp0Rw==
+X-Received: by 2002:a63:ff26:: with SMTP id k38mr13086261pgi.123.1556914603913;
+        Fri, 03 May 2019 13:16:43 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id y68sm4227436pfy.28.2019.05.03.13.16.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 13:16:42 -0700 (PDT)
+Date:   Fri, 3 May 2019 13:16:41 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Iker Perez <iker.perez@codethink.co.uk>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Support for TMP75B temperature sensor
+Message-ID: <20190503201641.GA11065@roeck-us.net>
+References: <20190503161501.29489-1-iker.perez@codethink.co.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190503190730.GH71477@meh.true.cz>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9245 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905030128
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9245 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1905030128
+In-Reply-To: <20190503161501.29489-1-iker.perez@codethink.co.uk>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 03, 2019 at 09:07:30PM +0200, Petr Štetiar wrote:
-> Dan Carpenter <dan.carpenter@oracle.com> [2019-05-03 13:34:56]:
+On Fri, May 03, 2019 at 05:14:59PM +0100, Iker Perez wrote:
+> From: Iker Perez del Palomar Sustatxa <iker.perez@codethink.co.uk>
 > 
-> Hi,
+> This patch series adds support for the TMP75 temperature sensor to the 
+> lm75.c driver. Although the TMP75B has a configurable conversion rate,
+> this series just sets it to the default rate of 37Hz. Sample rate is set 
+> close to this.           
+>                                                                                  
+> In the future, I want to develop a function that allows the user choose        
+> the preferred conversion rate from user-land. 
 > 
-> > On Fri, May 03, 2019 at 09:56:05AM +0200, Petr Štetiar wrote:
-> > > There was NVMEM support added to of_get_mac_address, so it could now
-> > > return NULL and ERR_PTR encoded error values, so we need to adjust all
-> > > current users of of_get_mac_address to this new fact.
-> > 
-> > Which commit added NVMEM support?  It hasn't hit net-next or linux-next
-> > yet...  Very strange.
 > 
-> this patch is a part of the patch series[1], where the 1st patch[2] adds this
-> NVMEM support to of_get_mac_address and follow-up patches are adjusting
-> current of_get_mac_address users to the new ERR_PTR return value.
+> Iker Perez del Palomar Sustatxa (2):
+>   hwmon: (lm75) Add support for TMP75B
+>   dt-bindings: hwmon: Add tmp75b to lm75.txt
+> 
+Series applied to hwmon-next.
 
-Basically all the patches need to be folded together otherwise you're
-breaking git bisectibility.  Imagine that we just apply patch #1 right?
-Then all the callers will be broken.  It's not allowed.
-
-regards,
-dan carpenter
-
+Thanks,
+Guenter
