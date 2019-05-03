@@ -2,137 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9031012962
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E171296D
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725777AbfECH7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 03:59:03 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:31868 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725775AbfECH7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:59:03 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x437wN7I012786;
-        Fri, 3 May 2019 09:58:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=t609rofuUjW2NaRBXFT3b4myx0XAd7PIRxpvzFY38QQ=;
- b=DVHzpus37rY9JnLDJSXa/PljnopKkvOOCeWw6Quita8INxNmef1CzUgFEqXWnlT3uiis
- CB93ldPnYWNUARNN5GQnw8QEwTHKUcpR7HEqpx2jbC9W8VR7WddSEVW8ogweLzgqxu5F
- KKM7sAlBEvByGX0cJz2fRssR7ydbq+iPz1hvCzbRrsk4Bj7fv7gpk6FOJjMdZS5CxW4c
- dLxVQOxaSCo+5kbKP0J0g9NUXDN4IZCT3oqiAU4RDATlsSinClsIravJHEi6kNShKnHt
- Q8rZ9p7FrN95/uEdTSbnyu+DjIv/x6e7dufFvkRupdP4TumB5nNXoEoairloIAV6OhXi Ng== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2s6xhbn0v7-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 03 May 2019 09:58:34 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3810231;
-        Fri,  3 May 2019 07:58:33 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0BD3D142E;
-        Fri,  3 May 2019 07:58:33 +0000 (GMT)
-Received: from [10.48.0.237] (10.75.127.47) by SFHDAG6NODE1.st.com
- (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 3 May
- 2019 09:58:32 +0200
-Subject: Re: [PATCH V2 1/3] watchdog: stm32: update to
- devm_watchdog_register_device
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-watchdog@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1556806126-15890-1-git-send-email-ludovic.Barre@st.com>
- <1556806126-15890-2-git-send-email-ludovic.Barre@st.com>
- <20190502202122.GA27894@roeck-us.net>
-From:   Ludovic BARRE <ludovic.barre@st.com>
-Message-ID: <f649441e-b3fe-134d-9dea-ac7140fb2d9d@st.com>
-Date:   Fri, 3 May 2019 09:58:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1725777AbfECIEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 04:04:11 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:47095 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725793AbfECIEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 04:04:11 -0400
+Received: by mail-qt1-f196.google.com with SMTP id i31so5680060qti.13
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 01:04:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QyYnh8hGNxo4y79JyoBAvnyJOsqV/eKCHgC2055Dj70=;
+        b=TFsaDfJktcepJhaSVkSy9jmcH5WklitGZ2BBIrKTkDmfye484EI32NBvqAF18RhDM4
+         icz2jBCDxSTj6qmQVp0LN0YlkJPVgxnXUunfIEesZ1FOAC5727DnzDgNJ++yI7ZM9nil
+         K47/JWKZTYl0cyTlCD15zHWhm1WvSpjJECOdY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QyYnh8hGNxo4y79JyoBAvnyJOsqV/eKCHgC2055Dj70=;
+        b=bOcHOLWtJyFRTMuEbDlHnk+Tajz5EWiZPGqu5hdwOPlnrIN5jJ8lIN4lfPGvjRfNCL
+         RxylgqiZxf3GS7ii5qKm2scHJwSrDFqiltPMmWVjvR0ASBM/g0qzBdzoW9W2OP9iwhMy
+         NWdSMeXdpRUCht2Fti3f4ZtMzRAU08bg2xrbCOCpilTzmFUW9WP4XaXDYoZwKO35oWlZ
+         EdAADocm3aMWzrZhEbhPi+70/d/lNWgcXgoJ8wVonus6DTMWTz+/mXYknMhQYZ7sqHxs
+         7m/ptE7ISe+AEtV+HNBmcRhmK2Y+npON2+inUj7gKWmqCEBXcZfA4dzCW5tXw4levVif
+         BFCA==
+X-Gm-Message-State: APjAAAXc2vUVoH/qTNI728m6hl/wOew9/jgWkOBEkU+a3XmbTD0aqJ69
+        6meyCBCQyHK2hO4eazvZbGteUfDusHiHYVSwIMxzXA==
+X-Google-Smtp-Source: APXvYqwK9NYfQA/9uIkz+E3ZSXoSVmvGacXxJP1bm9lZj8RtDGEHaMjRHL1WIrVFMhk5ZLbA20X7lzzIyVAj/Hr6Db0=
+X-Received: by 2002:ac8:3822:: with SMTP id q31mr7331051qtb.0.1556870649914;
+ Fri, 03 May 2019 01:04:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190502202122.GA27894@roeck-us.net>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-03_03:,,
- signatures=0
+References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com> <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
+In-Reply-To: <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 3 May 2019 16:03:58 +0800
+Message-ID: <CAJMQK-isJf6f+OubbCdoXs8L2cup=rm3Z8Mr7Q26QshMP-0wxA@mail.gmail.com>
+Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
+To:     "michael.kao" <michael.kao@mediatek.com>
+Cc:     fan.chen@mediatek.com, jamesjj.liao@mediatek.com,
+        dawei.chien@mediatek.com, louis.yu@mediatek.com,
+        roger.lu@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Guenter
+On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
+>
+> Add thermal zone node to Mediatek MT8183 dts file.
+>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 926df75..b92116f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -334,6 +334,67 @@
+>                         status = "disabled";
+>                 };
+>
+> +               thermal: thermal@1100b000 {
+> +                       #thermal-sensor-cells = <1>;
+> +                       compatible = "mediatek,mt8183-thermal";
+> +                       reg = <0 0x1100b000 0 0x1000>;
+> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+> +                       clocks = <&infracfg CLK_INFRA_THERM>,
+> +                                <&infracfg CLK_INFRA_AUXADC>;
+> +                       clock-names = "therm", "auxadc";
+> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+> +                       mediatek,auxadc = <&auxadc>;
+> +                       mediatek,apmixedsys = <&apmixedsys>;
+> +                       mediatek,hw-reset-temp = <117000>;
+> +                       nvmem-cells = <&thermal_calibration>;
+> +                       nvmem-cell-names = "calibration-data";
+> +               };
+> +
+> +               thermal-zones {
+> +                       cpu_thermal: cpu_thermal {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +
+> +                               thermal-sensors = <&thermal 0>;
+> +                               sustainable-power = <1500>;
+> +                       };
+> +
+> +                       tzts1: tzts1 {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +                               thermal-sensors = <&thermal 1>;
+Is sustainable-power required for tzts? Though it's an optional
+property, kernel would have warning:
+[    0.631556] thermal thermal_zone1: power_allocator:
+sustainable_power will be estimated
+[    0.639586] thermal thermal_zone2: power_allocator:
+sustainable_power will be estimated
+[    0.647611] thermal thermal_zone3: power_allocator:
+sustainable_power will be estimated
+[    0.655635] thermal thermal_zone4: power_allocator:
+sustainable_power will be estimated
+[    0.663658] thermal thermal_zone5: power_allocator:
+sustainable_power will be estimated
+if no sustainable-power assigned.
 
-On 5/2/19 10:21 PM, Guenter Roeck wrote:
-> On Thu, May 02, 2019 at 04:08:44PM +0200, Ludovic Barre wrote:
->> From: Ludovic Barre <ludovic.barre@st.com>
->>
->> This patch updates to devm_watchdog_register_device interface
->>
-> Not that easy. See below.
-> 
-> A more complete solution is at
-> https://patchwork.kernel.org/patch/10894355
-> 
-> I have a total of three patches for this driver pending for
-> the next kernel release. Maybe it would make sense to (re-)
-> start this series from there after the next commit window
-> closes.
-> 
-
-I used the repository defined in MAINTAINERS file
-git://www.linux-watchdog.org/linux-watchdog.git
-but there is no next branch.
-
-Today, I see your kernel.org repository
-https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git/
-
-And I see your next branch, so I will use it.
-
-Regards,
-Ludo
-
-> Guenter
-> 
->> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
->> ---
->>   drivers/watchdog/stm32_iwdg.c | 3 +--
->>   1 file changed, 1 insertion(+), 2 deletions(-)
->>
->> diff --git a/drivers/watchdog/stm32_iwdg.c b/drivers/watchdog/stm32_iwdg.c
->> index e00e3b3..e191bd8 100644
->> --- a/drivers/watchdog/stm32_iwdg.c
->> +++ b/drivers/watchdog/stm32_iwdg.c
->> @@ -243,7 +243,7 @@ static int stm32_iwdg_probe(struct platform_device *pdev)
->>   		dev_warn(&pdev->dev,
->>   			 "unable to set timeout value, using default\n");
->>   
->> -	ret = watchdog_register_device(wdd);
->> +	ret = devm_watchdog_register_device(&pdev->dev, wdd);
->>   	if (ret) {
->>   		dev_err(&pdev->dev, "failed to register watchdog device\n");
->>   		goto err;
->> @@ -263,7 +263,6 @@ static int stm32_iwdg_remove(struct platform_device *pdev)
->>   {
->>   	struct stm32_iwdg *wdt = platform_get_drvdata(pdev);
->>   
->> -	watchdog_unregister_device(&wdt->wdd);
->>   	clk_disable_unprepare(wdt->clk_lsi);
->>   	clk_disable_unprepare(wdt->clk_pclk);
-> 
-> This disables the clock while the watchdog is still registered
-> and running. That is not a good idea.
-> 
->>   
->> -- 
->> 2.7.4
->>
+> +                       };
+> +
+> +                       tzts2: tzts2 {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +                               thermal-sensors = <&thermal 2>;
+> +                       };
+> +
+> +                       tzts3: tzts3 {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +                               thermal-sensors = <&thermal 3>;
+> +                       };
+> +
+> +                       tzts4: tzts4 {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +                               thermal-sensors = <&thermal 4>;
+> +                       };
+> +
+> +                       tzts5: tzts5 {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +                               thermal-sensors = <&thermal 5>;
+> +                       };
+> +
+> +                       tztsABB: tztsABB {
+> +                               polling-delay-passive = <1000>;
+> +                               polling-delay = <1000>;
+> +                               thermal-sensors = <&thermal 6>;
+> +                       };
+> +               };
+>                 audiosys: syscon@11220000 {
+>                         compatible = "mediatek,mt8183-audiosys", "syscon";
+>                         reg = <0 0x11220000 0 0x1000>;
+> @@ -368,6 +429,9 @@
+>                         compatible = "mediatek,mt8183-efuse",
+>                                      "mediatek,efuse";
+>                         reg = <0 0x11f10000 0 0x1000>;
+> +                       thermal_calibration: calib@180 {
+> +                               reg = <0x180 0xc>;
+> +                       };
+>                 };
+>
+>                 mfgcfg: syscon@13000000 {
