@@ -2,152 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 34AC41288D
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A411128BC
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:28:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfECHQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 03:16:41 -0400
-Received: from mail-qt1-f194.google.com ([209.85.160.194]:45695 "EHLO
-        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725768AbfECHQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:16:41 -0400
-Received: by mail-qt1-f194.google.com with SMTP id t1so4905004qtc.12
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 00:16:40 -0700 (PDT)
+        id S1726270AbfECH2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 03:28:21 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:38521 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726041AbfECH2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:28:20 -0400
+Received: by mail-pf1-f194.google.com with SMTP id 10so2468885pfo.5;
+        Fri, 03 May 2019 00:28:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KlnuPNTSqAOsReFStbtqUTb18X37z9g45qyDj7kddRA=;
-        b=hEJ22Rh6lnEcmSMaMMuUlZdfXJ7KCYTX3AM2srreiE8Sf6OAnRXfVnZRnjcSn4jHPY
-         3p24HRD5HVSh44RxdFmCpqu/1sYnULlRTl0XRo2uF6K5RVegrPF0550505OwkW0+qT+m
-         5FmONnZuEwLBqfg9dGyH0yJSkdmST31cbhVaE=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=xG3BXzoSNSy7tAxX5sR0WHhb5RCNXLJmoOdev9tDivc=;
+        b=pUDYAZth1/cN7IFBdUvzoPxGI7x2IfzE1oP4oWYaHFPAgsXF/UEur45b310L3vBqnA
+         qbaTAce2XBZqHM8z7Vx+3Ej0UGZxnllvyiua0VvQJ5c9eyV3NurumZFJ6EIIaOtQCHuf
+         1ttWNOkwk1OATCzTt2tHIAdWr33QR05MIjiEQ3DAFlbdyFUyGC5ln0N2JiEPclqTIdm3
+         hSgkY+B4edwSmhQM4E4/63tRN+YPkchz1k63n1Xwe0dIEh3m/zxhCHWlC3mmLll5Z9vG
+         tRZhLnT0El0UuGckeZBJx1O1k5RO4A5z1CSjJVLrwR/bmHZuQnRWCbgSLNFS+my+4tUV
+         6KMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KlnuPNTSqAOsReFStbtqUTb18X37z9g45qyDj7kddRA=;
-        b=PFFTY/aXBeYRuenX96Z4cL3bRIdDKjMAPVQ3rE+b6bctchO8TI5XAcfEFuIpWTmQLF
-         fG9OOIIhxQkfqXIBUId7gmymMG1AKY3I46rj/a3pEe+XrUQyHWCxy9ldrwHPDAw93ADv
-         r0HKr+4p1K87JhX8Mz1V8dxhBtoQvq1bPXbU2A9P/tnaC90Fn9Ei27EXdZw+mI3DomPj
-         c6PjkLIa68lzvl/wTgnrDgLcwyOlpoyOCT6KkscgH1sSziSoes8XgGeyNKnddUcV82kS
-         KQnU2VikiF1IZx/szWAGgE6mgQk1Z7uifC5hNgoXKrUBkLcaiP1vO/N7utMGW2a1SfhM
-         YKDQ==
-X-Gm-Message-State: APjAAAVlyHVX8WW0PK5/Dk1iVOkeP8rM384D9ipKBWh2mQxbhoYAnYeU
-        PRWdSOl3s9Mua1BWlgK4PjO3XeObjAnZJy/30yNOuA==
-X-Google-Smtp-Source: APXvYqwhRV3TvOuByNuwZ+DDBwx1hJ5Ye6qvgO/XvXATKgGv9cIvbe0igodjrM3jyeRk2df7QWBovKlHBg7m9FObZ4Q=
-X-Received: by 2002:ad4:534b:: with SMTP id v11mr6824906qvs.31.1556867800383;
- Fri, 03 May 2019 00:16:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com> <1556793795-25204-3-git-send-email-michael.kao@mediatek.com>
-In-Reply-To: <1556793795-25204-3-git-send-email-michael.kao@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 3 May 2019 15:16:29 +0800
-Message-ID: <CAJMQK-jujDXt18M8610G4GpHdrikTD0ZZG_=C2YTt63UfxuHuQ@mail.gmail.com>
-Subject: Re: [PATCH 2/8] arm64: dts: mt8183: add/update dynamic power coefficients
-To:     "michael.kao" <michael.kao@mediatek.com>
-Cc:     fan.chen@mediatek.com, jamesjj.liao@mediatek.com,
-        dawei.chien@mediatek.com, louis.yu@mediatek.com,
-        roger.lu@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=xG3BXzoSNSy7tAxX5sR0WHhb5RCNXLJmoOdev9tDivc=;
+        b=jeQoV7QK65jh8LRk/3xjAwshMa5flq+hnfnCKE3wXrB6+aFV/S/lCvDrRl+LiXE/BM
+         tyZIgEK3EOAwIFAfGiulvNoiq2HzhuLiPLRrJq9qfsXUsMmEfbJUmYRaSeuukYNIHmMP
+         Rr+ZbnHjwY5ZWyNUPzQpjWHef/e1xKQE3A4xrSsr1BpVZdEPfS3egzo/6sGVwKFyJ+Vr
+         qqunPBivbz/TxrraDi4kOXJHLFsytEGErLsT7vMZDtsfYxX1Gvga5ftJZu2KPQUGs/JS
+         cMMas5mqAZ/fRSCbHfV2EfmuSdqQ1E/sIYAph7fNOOsSwHoQEiaXPgEozndWdncU9k60
+         lFbg==
+X-Gm-Message-State: APjAAAVSFDRnKGpkFWvbiC0RRsHB8OuVGYOVXu1ingCputP0hYdOXuzo
+        kVtjwXEJdcCdhi/+cKlYolA=
+X-Google-Smtp-Source: APXvYqwkix/U4Pl8qw1a/oiCfdrTNq3/mjtlSb174nAEyztOcuN7A4BP+EWtep/RCQWpK8mbpBmvDg==
+X-Received: by 2002:a62:5ec4:: with SMTP id s187mr4998560pfb.185.1556868499995;
+        Fri, 03 May 2019 00:28:19 -0700 (PDT)
+Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
+        by smtp.gmail.com with ESMTPSA id g10sm2944183pfg.153.2019.05.03.00.28.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 03 May 2019 00:28:19 -0700 (PDT)
+From:   Yangtao Li <tiny.windzz@gmail.com>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        maxime.ripard@bootlin.com, wens@csie.org, jic23@kernel.org,
+        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Yangtao Li <tiny.windzz@gmail.com>
+Subject: [PATCH 0/7] Add support for H6 thermal sensor
+Date:   Fri,  3 May 2019 03:28:06 -0400
+Message-Id: <20190503072813.2719-1-tiny.windzz@gmail.com>
+X-Mailer: git-send-email 2.17.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
->
-> Add dynamic power coefficients for all cores and update those of
-> CPU0 and CPU4.
->
-> Signed-off-by: Michael.Kao <michael.kao@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index b92116f..5668fb8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -58,6 +58,8 @@
->                         compatible = "arm,cortex-a53";
->                         reg = <0x000>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <84>;
-> +                       #cooling-cells = <2>;
-Should this line be in [3/8] arm64: dts: mt8183: Add #cooling-cells to
-CPU nodes?
+This patchset adds support for the H6 ths sensor.
 
->                 };
->
->                 cpu1: cpu@1 {
-> @@ -65,6 +67,8 @@
->                         compatible = "arm,cortex-a53";
->                         reg = <0x001>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <84>;
-> +                       #cooling-cells = <2>;
->                 };
->
->                 cpu2: cpu@2 {
-> @@ -72,6 +76,8 @@
->                         compatible = "arm,cortex-a53";
->                         reg = <0x002>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <84>;
-> +                       #cooling-cells = <2>;
->                 };
->
->                 cpu3: cpu@3 {
-> @@ -79,6 +85,8 @@
->                         compatible = "arm,cortex-a53";
->                         reg = <0x003>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <84>;
-> +                       #cooling-cells = <2>;
->                 };
->
->                 cpu4: cpu@100 {
-> @@ -86,6 +94,8 @@
->                         compatible = "arm,cortex-a73";
->                         reg = <0x100>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <211>;
-> +                       #cooling-cells = <2>;
->                 };
->
->                 cpu5: cpu@101 {
-> @@ -93,6 +103,8 @@
->                         compatible = "arm,cortex-a73";
->                         reg = <0x101>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <211>;
-> +                       #cooling-cells = <2>;
->                 };
->
->                 cpu6: cpu@102 {
-> @@ -100,6 +112,8 @@
->                         compatible = "arm,cortex-a73";
->                         reg = <0x102>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <211>;
-> +                       #cooling-cells = <2>;
->                 };
->
->                 cpu7: cpu@103 {
-> @@ -107,6 +121,8 @@
->                         compatible = "arm,cortex-a73";
->                         reg = <0x103>;
->                         enable-method = "psci";
-> +                       dynamic-power-coefficient = <211>;
-> +                       #cooling-cells = <2>;
->                 };
->         };
->
+Based on IIO-based thermal sensor driver for Allwinner H3 and A83T SoC,
+thx to Philipp Rossak's work.
+
+TODO: calibrate thermal sensor by using information from sid.
+
+Yangtao Li (7):
+  iio: adc: sun4i-gpadc: rework for support multiple thermal sensor
+  iio: adc: sun4i-gpadc: introduce temp_data in gpadc_data
+  iio: adc: sun4i-gpadc: introduce gpadc_enable and gpadc_disable in
+    gpadc_data
+  iio: adc: sun4i-gpadc-iio: support clocks and reset
+  dt-bindings: mfd: Add H6 GPADC binding
+  iio: adc: sun4i-gpadc-iio: add support for H6 thermal sensor
+  iio: adc: sun4i-gpadc-iio convert to SPDX license tags
+
+ .../devicetree/bindings/mfd/sun4i-gpadc.txt   |  27 ++-
+ drivers/iio/adc/sun4i-gpadc-iio.c             | 208 +++++++++++++++---
+ include/linux/mfd/sun4i-gpadc.h               |   9 +
+ 3 files changed, 213 insertions(+), 31 deletions(-)
+
+-- 
+2.17.1
+
