@@ -2,175 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B59AC12881
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AC41288D
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725806AbfECHNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 03:13:45 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:21940 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725775AbfECHNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:13:45 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4376qPM027874;
-        Fri, 3 May 2019 09:13:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=/6Z2KyQOPl3FSVk+uXWK41nlphShPXx7ZFPnixJ5kcs=;
- b=peg63AqFBuEHUy4meGtp7rX6Zkxkj5W5NN48lDRZtgWC8KWm9W8Kko4/cdvJkNg9g9Jn
- Ti3t67EocyLA1WkmQNdI0sjQFkdmgs372W5vA95a3MSaqY9O4xpNZZIm5j54T18pqy13
- 4xG1xRW3EFxhLSH87K08UAX+FwGAalrf+TNQGYXmyvof0d11hAkQ7I7nlBww1Fp6u0Nl
- wC4/7i6JO9i+CcPvVVdEUUsAM6gRfSEWaBf+yn+/FBBSE6RPOjltbw4dzuEQKZb3Ld9H
- Z56LS6H3KvZwaaVh/fOh2lLR/tWwSGwYHA/PswUGOeda2GBukhK4Xxq+y+IR4GiZUTMq 2Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2s6xgrvhe9-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 03 May 2019 09:13:29 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 06F9331;
-        Fri,  3 May 2019 07:13:29 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D3EF11318;
-        Fri,  3 May 2019 07:13:28 +0000 (GMT)
-Received: from [10.48.0.204] (10.75.127.50) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 3 May
- 2019 09:13:28 +0200
-Subject: Re: [PATCH 2/3] ARM: dts: stm32mp157: Add missing pinctrl definitions
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <mcoquelin.stm32@gmail.com>, <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <loic.pallardy@st.com>
-References: <20190503053123.6828-1-manivannan.sadhasivam@linaro.org>
- <20190503053123.6828-3-manivannan.sadhasivam@linaro.org>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <369b2593-71b6-0b00-b72c-041967ffba73@st.com>
-Date:   Fri, 3 May 2019 09:13:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726579AbfECHQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 03:16:41 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:45695 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725768AbfECHQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:16:41 -0400
+Received: by mail-qt1-f194.google.com with SMTP id t1so4905004qtc.12
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 00:16:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KlnuPNTSqAOsReFStbtqUTb18X37z9g45qyDj7kddRA=;
+        b=hEJ22Rh6lnEcmSMaMMuUlZdfXJ7KCYTX3AM2srreiE8Sf6OAnRXfVnZRnjcSn4jHPY
+         3p24HRD5HVSh44RxdFmCpqu/1sYnULlRTl0XRo2uF6K5RVegrPF0550505OwkW0+qT+m
+         5FmONnZuEwLBqfg9dGyH0yJSkdmST31cbhVaE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KlnuPNTSqAOsReFStbtqUTb18X37z9g45qyDj7kddRA=;
+        b=PFFTY/aXBeYRuenX96Z4cL3bRIdDKjMAPVQ3rE+b6bctchO8TI5XAcfEFuIpWTmQLF
+         fG9OOIIhxQkfqXIBUId7gmymMG1AKY3I46rj/a3pEe+XrUQyHWCxy9ldrwHPDAw93ADv
+         r0HKr+4p1K87JhX8Mz1V8dxhBtoQvq1bPXbU2A9P/tnaC90Fn9Ei27EXdZw+mI3DomPj
+         c6PjkLIa68lzvl/wTgnrDgLcwyOlpoyOCT6KkscgH1sSziSoes8XgGeyNKnddUcV82kS
+         KQnU2VikiF1IZx/szWAGgE6mgQk1Z7uifC5hNgoXKrUBkLcaiP1vO/N7utMGW2a1SfhM
+         YKDQ==
+X-Gm-Message-State: APjAAAVlyHVX8WW0PK5/Dk1iVOkeP8rM384D9ipKBWh2mQxbhoYAnYeU
+        PRWdSOl3s9Mua1BWlgK4PjO3XeObjAnZJy/30yNOuA==
+X-Google-Smtp-Source: APXvYqwhRV3TvOuByNuwZ+DDBwx1hJ5Ye6qvgO/XvXATKgGv9cIvbe0igodjrM3jyeRk2df7QWBovKlHBg7m9FObZ4Q=
+X-Received: by 2002:ad4:534b:: with SMTP id v11mr6824906qvs.31.1556867800383;
+ Fri, 03 May 2019 00:16:40 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190503053123.6828-3-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG6NODE3.st.com (10.75.127.18) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-03_02:,,
- signatures=0
+References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com> <1556793795-25204-3-git-send-email-michael.kao@mediatek.com>
+In-Reply-To: <1556793795-25204-3-git-send-email-michael.kao@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 3 May 2019 15:16:29 +0800
+Message-ID: <CAJMQK-jujDXt18M8610G4GpHdrikTD0ZZG_=C2YTt63UfxuHuQ@mail.gmail.com>
+Subject: Re: [PATCH 2/8] arm64: dts: mt8183: add/update dynamic power coefficients
+To:     "michael.kao" <michael.kao@mediatek.com>
+Cc:     fan.chen@mediatek.com, jamesjj.liao@mediatek.com,
+        dawei.chien@mediatek.com, louis.yu@mediatek.com,
+        roger.lu@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani
-
-On 5/3/19 7:31 AM, Manivannan Sadhasivam wrote:
-> Add missing pinctrl definitions for STM32MP157 MPU.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
+>
+> Add dynamic power coefficients for all cores and update those of
+> CPU0 and CPU4.
+>
+> Signed-off-by: Michael.Kao <michael.kao@mediatek.com>
 > ---
->   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 62 +++++++++++++++++++++++
->   1 file changed, 62 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-> index 85c417d9983b..0b5bcf6a7c97 100644
-> --- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-> @@ -241,6 +241,23 @@
->   				};
->   			};
->   
-> +			i2c1_pins_b: i2c1-2 {
-> +				pins {
-> +					pinmux = <STM32_PINMUX('F', 14, AF5)>, /* I2C1_SCL */
-> +						 <STM32_PINMUX('F', 15, AF5)>; /* I2C1_SDA */
-> +					bias-disable;
-> +					drive-open-drain;
-> +					slew-rate = <0>;
-> +				};
-> +			};
-> +
-> +			i2c1_pins_sleep_b: i2c1-3 {
-> +				pins {
-> +					pinmux = <STM32_PINMUX('F', 14, ANALOG)>, /* I2C1_SCL */
-> +						 <STM32_PINMUX('F', 15, ANALOG)>; /* I2C1_SDA */
-> +				};
-> +			};
-> +
->   			i2c2_pins_a: i2c2-0 {
->   				pins {
->   					pinmux = <STM32_PINMUX('H', 4, AF4)>, /* I2C2_SCL */
-> @@ -258,6 +275,23 @@
->   				};
->   			};
->   
-> +			i2c2_pins_b: i2c2-2 {
-> +				pins {
-> +					pinmux = <STM32_PINMUX('Z', 0, AF3)>, /* I2C2_SCL */
-> +						 <STM32_PINMUX('H', 5, AF4)>; /* I2C2_SDA */
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index b92116f..5668fb8 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -58,6 +58,8 @@
+>                         compatible = "arm,cortex-a53";
+>                         reg = <0x000>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <84>;
+> +                       #cooling-cells = <2>;
+Should this line be in [3/8] arm64: dts: mt8183: Add #cooling-cells to
+CPU nodes?
 
-You can't do that. <STM32_PINMUX('Z', 0, AF3)> has to be declared in 
-pincontroller-z. So in your case, you have to define 2 groups for i2C2 
-for your default state (the same for the sleep state).
-
-regards
-Alex
-
-
-
-
-> +					bias-disable;
-> +					drive-open-drain;
-> +					slew-rate = <0>;
-> +				};
-> +			};
-> +
-> +			i2c2_pins_sleep_b: i2c2-3 {
-> +				pins {
-> +					pinmux = <STM32_PINMUX('Z', 0, ANALOG)>, /* I2C2_SCL */
-> +						 <STM32_PINMUX('H', 5, ANALOG)>; /* I2C2_SDA */
-> +				};
-> +			};
-> +
->   			i2c5_pins_a: i2c5-0 {
->   				pins {
->   					pinmux = <STM32_PINMUX('A', 11, AF4)>, /* I2C5_SCL */
-> @@ -599,6 +633,34 @@
->   					bias-disable;
->   				};
->   			};
-> +
-> +			uart4_pins_b: uart4-1 {
-> +				pins1 {
-> +					pinmux = <STM32_PINMUX('D', 1, AF8)>; /* UART4_TX */
-> +					bias-disable;
-> +					drive-push-pull;
-> +					slew-rate = <0>;
-> +				};
-> +				pins2 {
-> +					pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
-> +					bias-disable;
-> +				};
-> +			};
-> +
-> +			uart7_pins_a: uart7-0 {
-> +				pins1 {
-> +					pinmux = <STM32_PINMUX('E', 8, AF7)>; /* UART4_TX */
-> +					bias-disable;
-> +					drive-push-pull;
-> +					slew-rate = <0>;
-> +				};
-> +				pins2 {
-> +					pinmux = <STM32_PINMUX('E', 7, AF7)>, /* UART4_RX */
-> +						 <STM32_PINMUX('E', 10, AF7)>, /* UART4_CTS */
-> +						 <STM32_PINMUX('E', 9, AF7)>; /* UART4_RTS */
-> +					bias-disable;
-> +				};
-> +			};
->   		};
->   
->   		pinctrl_z: pin-controller-z@54004000 {
-> 
+>                 };
+>
+>                 cpu1: cpu@1 {
+> @@ -65,6 +67,8 @@
+>                         compatible = "arm,cortex-a53";
+>                         reg = <0x001>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <84>;
+> +                       #cooling-cells = <2>;
+>                 };
+>
+>                 cpu2: cpu@2 {
+> @@ -72,6 +76,8 @@
+>                         compatible = "arm,cortex-a53";
+>                         reg = <0x002>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <84>;
+> +                       #cooling-cells = <2>;
+>                 };
+>
+>                 cpu3: cpu@3 {
+> @@ -79,6 +85,8 @@
+>                         compatible = "arm,cortex-a53";
+>                         reg = <0x003>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <84>;
+> +                       #cooling-cells = <2>;
+>                 };
+>
+>                 cpu4: cpu@100 {
+> @@ -86,6 +94,8 @@
+>                         compatible = "arm,cortex-a73";
+>                         reg = <0x100>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <211>;
+> +                       #cooling-cells = <2>;
+>                 };
+>
+>                 cpu5: cpu@101 {
+> @@ -93,6 +103,8 @@
+>                         compatible = "arm,cortex-a73";
+>                         reg = <0x101>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <211>;
+> +                       #cooling-cells = <2>;
+>                 };
+>
+>                 cpu6: cpu@102 {
+> @@ -100,6 +112,8 @@
+>                         compatible = "arm,cortex-a73";
+>                         reg = <0x102>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <211>;
+> +                       #cooling-cells = <2>;
+>                 };
+>
+>                 cpu7: cpu@103 {
+> @@ -107,6 +121,8 @@
+>                         compatible = "arm,cortex-a73";
+>                         reg = <0x103>;
+>                         enable-method = "psci";
+> +                       dynamic-power-coefficient = <211>;
+> +                       #cooling-cells = <2>;
+>                 };
+>         };
+>
