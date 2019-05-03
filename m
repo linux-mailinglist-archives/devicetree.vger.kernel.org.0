@@ -2,433 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0B71272B
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 07:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BBF12736
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 07:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726156AbfECFcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 01:32:04 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:42317 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726553AbfECFbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 01:31:55 -0400
-Received: by mail-pl1-f193.google.com with SMTP id x15so2149657pln.9
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 22:31:54 -0700 (PDT)
+        id S1725806AbfECFgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 01:36:21 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:37571 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725793AbfECFgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 01:36:16 -0400
+Received: by mail-oi1-f193.google.com with SMTP id 143so3578655oii.4
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 22:36:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=y8BtJow7voUwfY9At50jOfdNgv8L8p+8jcwNWNRAWOg=;
-        b=xzcxAbIUDMuo78qorrWEp8WcWi9QmNDFkU2Fc6zoi8n6RY0mAja6mzrNDkWJzpW7ug
-         IsZE4S+6wSp1gFrLrkMI645e7o4qcU+s1lK0U4dJh9JxJJFNFay8p5tQ3LzCO0fNJLnN
-         xBfRZI4we4Y9xPv+RIcueAS16KKN9gY4r4JLTSV+Zy/SmmoBCky5/UErvefX2ACbpPoA
-         YWp+ZF4ID3swdwrwfMboDsZELByIlmCZvSHEfzXuA2Q8jj7wRJ0AWt8kCU8SbhOLW3K9
-         3fuO89ko+gXKTesljQXj2GoMRC9DSpEUxZ7OZWII2g8Zm2Xr1iXD8kBHdGf+Nx7xtSup
-         Yg2g==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kZWOLSmvOPvmN0LeT+tozEpaTTHy3QTyz4qZIAIbmM0=;
+        b=N7EFpotFYGg4C2sBd5zzI2avRwh3PPTx3fD4+H7oEJe8ZfsOy0kgGpfPxkA4zmoBx2
+         jJNqMAkUJ8FNDn54/se4qXPA6zQHWWw/V/DPcF5SExi470sZ3c8qBLiDASkBwv7VdzOj
+         SIqPwQSNWmticSh9jNC2HhIJfL5ALhPh6L2T+GBBW/bRLFZagZUXqj/PNkxkLIxfW03w
+         8JzD9/K8cjzuKxhXhpNfz0za/Y8NKzXa71tNWqgRxrVxR+QCApC61zPI5B6tTTYCJtpa
+         TLr3KchoBTwIZnnrkZI2Ja4yZyY/3yr3UmYGVA3EV+h8Wvpgczoumb123yy7Tncadwh5
+         ZKZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=y8BtJow7voUwfY9At50jOfdNgv8L8p+8jcwNWNRAWOg=;
-        b=YyZ7PT7DWdHQlqKQtrJTF/Yc/DrSPiIruSP8XlA3TD/sIIn6XD6PeNSUNWyClLmOSA
-         s5gwRhZZ0Ti64xLQUqz8l2uQkAsmhceli5lpV0W/a/8otC8/5BX5CAOCkBb8x/UE/ibU
-         rgpfXdTDLzWbV+mz6WlCB951gNbZC6HXOkrkgh+B4ASFKrb8TbiwdlMyiEDLDI8u6XWq
-         HWD3OS3vE8SeLg+6qUp6L7i7kSjLdloGxEuVskm83tYwIZlXlXXHA8dzJJYhKf1uyZLI
-         2m1BAlxiYdNA+71djDXr/1Kof2bQftNs12a9g/9VLrLlaniS/gBJHapKOVNhW+wQ7BxY
-         +9/w==
-X-Gm-Message-State: APjAAAUbQ7oTwbnHMx2lrAdIes+8u2ZLU/tl7tEhFBNK5wyxDeTeukNS
-        xY+WqfJSLw2DM0vU3+AhT2ou
-X-Google-Smtp-Source: APXvYqwLn+Wff9OQ0tKyvgbKUOFK41uC1owu0gywXMO9P+4aVqlLdbLlaBB+w/DvdFYC4j5TYQt0lg==
-X-Received: by 2002:a17:902:54f:: with SMTP id 73mr3492734plf.140.1556861514315;
-        Thu, 02 May 2019 22:31:54 -0700 (PDT)
-Received: from localhost.localdomain ([2405:204:72c7:3835:31df:f367:f70b:ed86])
-        by smtp.gmail.com with ESMTPSA id l15sm1152226pgb.71.2019.05.02.22.31.48
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 22:31:53 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
-        robh+dt@kernel.org
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loic.pallardy@st.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 3/3] ARM: dts: Add Avenger96 devicetree support based on STM32MP157A
-Date:   Fri,  3 May 2019 11:01:23 +0530
-Message-Id: <20190503053123.6828-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190503053123.6828-1-manivannan.sadhasivam@linaro.org>
-References: <20190503053123.6828-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kZWOLSmvOPvmN0LeT+tozEpaTTHy3QTyz4qZIAIbmM0=;
+        b=sU6iNFdA6+ND7fC8E49NI/B2rwCvTDyirJKN/VB2k8D+m2CGyT3KZKxkYHS+nvlp9m
+         XcJJoGUO4uo7zmw5rK4kfp3dLNGVHi3gMoNPSH1wEQpgtHxe3hlSHbSNCwLFSErzireX
+         OTdR0kwFqnV0O9tooRq4QTpfrjH5mzU+aNdS0497ZN/QWFqcvjMaE1X7L9Cj/Q3H2jir
+         9Tf1PU8BPtMfba8FpXUC7dTmOYNYh0q+7iqeStBiq4Lyv1clBhf7XnrOg7Gy1A8bSkZQ
+         aBesfXi32qiU4E/o1JBMgn3DHBFhawM49BnuDv41/AXe6XYYNCZ95LKMNHeHsFEVC7Li
+         upow==
+X-Gm-Message-State: APjAAAVUAiAzH+h7c3ut03JwzBfr5VkIlkMXdUnN+CmUJPULss/lqh4A
+        jAdvGRkQsQwYOciiapVec5U+ZD/wUsbYASvX3XS5Ow==
+X-Google-Smtp-Source: APXvYqzgI0MWh9qumhQ+Pt83byN9EbBZESn1gMYXecxqoFA0hw4aqXCw172gMFrw0qdID+M5pziE3w/mJY/ioNSsiHk=
+X-Received: by 2002:aca:4586:: with SMTP id s128mr4643568oia.148.1556861774441;
+ Thu, 02 May 2019 22:36:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-13-brendanhiggins@google.com> <20190502110220.GD12416@kroah.com>
+ <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
+ <a49c5088-a821-210c-66de-f422536f5b01@gmail.com> <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
+ <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com>
+In-Reply-To: <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Thu, 2 May 2019 22:36:03 -0700
+Message-ID: <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
+Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
+ KUnit tests
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-kselftest@vger.kernel.org,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree support for Avenger96 board based on STM32MP157A MPU
-from ST Micro. This board is one of the 96Boards Consumer Edition board
-from Arrow Electronics and has the following features:
+On Thu, May 2, 2019 at 6:45 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 5/2/19 4:45 PM, Brendan Higgins wrote:
+> > On Thu, May 2, 2019 at 2:16 PM Frank Rowand <frowand.list@gmail.com> wrote:
+> >>
+> >> On 5/2/19 11:07 AM, Brendan Higgins wrote:
+> >>> On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> >>>>
+> >>>> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
+> >>>>> From: Felix Guo <felixguoxiuping@gmail.com>
+> >>>>>
+> >>>>> The ultimate goal is to create minimal isolated test binaries; in the
+> >>>>> meantime we are using UML to provide the infrastructure to run tests, so
+> >>>>> define an abstract way to configure and run tests that allow us to
+> >>>>> change the context in which tests are built without affecting the user.
+> >>>>> This also makes pretty and dynamic error reporting, and a lot of other
+> >>>>> nice features easier.
+> >>>>>
+> >>>>> kunit_config.py:
+> >>>>>   - parse .config and Kconfig files.
+> >>>>>
+> >>>>> kunit_kernel.py: provides helper functions to:
+> >>>>>   - configure the kernel using kunitconfig.
+> >>>>>   - build the kernel with the appropriate configuration.
+> >>>>>   - provide function to invoke the kernel and stream the output back.
+> >>>>>
+> >>>>> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
+> >>>>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> >>>>
+> >>>> Ah, here's probably my answer to my previous logging format question,
+> >>>> right?  What's the chance that these wrappers output stuff in a standard
+> >>>> format that test-framework-tools can already parse?  :)
+> >
+> > To be clear, the test-framework-tools format we are talking about is
+> > TAP13[1], correct?
+>
+> I'm not sure what the test community prefers for a format.  I'll let them
+> jump in and debate that question.
+>
+>
+> >
+> > My understanding is that is what kselftest is being converted to use.
+> >
+> >>>
+> >>> It should be pretty easy to do. I had some patches that pack up the
+> >>> results into a serialized format for a presubmit service; it should be
+> >>> pretty straightforward to take the same logic and just change the
+> >>> output format.
+> >>
+> >> When examining and trying out the previous versions of the patch I found
+> >> the wrappers useful to provide information about how to control and use
+> >> the tests, but I had no interest in using the scripts as they do not
+> >> fit in with my personal environment and workflow.
+> >>
+> >> In the previous versions of the patch, these helper scripts are optional,
+> >> which is good for my use case.  If the helper scripts are required to
+> >
+> > They are still optional.
+> >
+> >> get the data into the proper format then the scripts are not quite so
+> >> optional, they become the expected environment.  I think the proper
+> >> format should exist without the helper scripts.
+> >
+> > That's a good point. A couple things,
+> >
+> > First off, supporting TAP13, either in the kernel or the wrapper
+> > script is not hard, but I don't think that is the real issue that you
+> > raise.
+> >
+> > If your only concern is that you will always be able to have human
+> > readable KUnit results printed to the kernel log, that is a guarantee
+> > I feel comfortable making. Beyond that, I think it is going to take a
+> > long while before I would feel comfortable guaranteeing anything about
+> > how will KUnit work, what kind of data it will want to expose, and how
+> > it will be organized. I think the wrapper script provides a nice
+> > facade that I can maintain, can mediate between the implementation
+> > details and the user, and can mediate between the implementation
+> > details and other pieces of software that might want to consume
+> > results.
+> >
+> > [1] https://testanything.org/tap-version-13-specification.html
+>
+> My concern is based on a focus on my little part of the world
+> (which in _previous_ versions of the patch series was the devicetree
+> unittest.c tests being converted to use the kunit infrastructure).
+> If I step back and think of the entire kernel globally I may end
+> up with a different conclusion - but I'm going to remain myopic
+> for this email.
+>
+> I want the test results to be usable by me and my fellow
+> developers.  I prefer that the test results be easily accessible
+> (current printk() implementation means that kunit messages are
+> just as accessible as the current unittest.c printk() output).
+> If the printk() output needs to be filtered through a script
+> to generate the actual test results then that is sub-optimal
+> to me.  It is one more step added to my workflow.  And
+> potentially with an embedded target a major pain to get a
+> data file (the kernel log file) transferred from a target
+> to my development host.
 
-SoC: STM32MP157AAC
-PMIC: STPMIC1A
-RAM: 1024 Mbyte @ 533MHz
-Storage: eMMC v4.51: 8 Gbyte
-         microSD Socket: UHS-1 v3.01
-Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
-Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
-          Bluetooth®v4.2 (BR/EDR/BLE)
-USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
-Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
-LED: 4x User LED, 1x WiFi LED, 1x BT LED
+That's fair. If that is indeed your only concern, then I don't think
+the wrapper script will ever be an issue for you. You will always be
+able to execute a given test the old fashioned/manual way, and the
+wrapper script only summarizes results, it does not change the
+contents.
 
-More information about this board can be found in 96Boards website:
-https://www.96boards.org/product/avenger96/
+>
+> I want a reported test failure to be easy to trace back to the
+> point in the source where the failure is reported.  With printk()
+> the search is a simple grep for the failure message.  If the
+> failure message has been processed by a script, and then the
+> failure reported to me in an email, then I may have to look
+> at the script to reverse engineer how the original failure
+> message was transformed into the message that was reported
+> to me in the email.  Then I search for the point in the
+> source where the failure is reported.  So a basic task has
+> just become more difficult and time consuming.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm/boot/dts/Makefile                  |   1 +
- arch/arm/boot/dts/stm32mp157a-avenger96.dts | 320 ++++++++++++++++++++
- 2 files changed, 321 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157a-avenger96.dts
+That seems to be a valid concern. I would reiterate that you shouldn't
+be concerned by any processing done by the wrapper script itself, but
+the reality is that depending on what happens with automated
+testing/presubmit/CI other people might end up parsing and
+transforming test results - it might happen, it might not. I currently
+have a CI system set up for KUnit on my public repo that I don't think
+you would be offended by, but I don't know what we are going to do
+when it comes time to integrate with existing upstream CI systems.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8a1d0b3f55dd..f1d2f0bfa7c2 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -965,6 +965,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32h743i-eval.dtb \
- 	stm32h743i-disco.dtb \
- 	stm32mp157a-dk1.dtb \
-+	stm32mp157a-avenger96.dtb \
- 	stm32mp157c-dk2.dtb \
- 	stm32mp157c-ed1.dtb \
- 	stm32mp157c-ev1.dtb
-diff --git a/arch/arm/boot/dts/stm32mp157a-avenger96.dts b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-new file mode 100644
-index 000000000000..a3b8af82ac70
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-@@ -0,0 +1,320 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Linaro Ltd 2019 - All Rights Reserved
-+ * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp157c.dtsi"
-+#include "stm32mp157-pinctrl.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/mfd/st,stpmic1.h>
-+
-+/ {
-+	model = "Arrow Electronics STM32MP157A Avenger96 board";
-+	compatible = "arrow,stm32mp157a-avenger96", "st,stm32mp157";
-+
-+	aliases {
-+		ethernet0 = &ethernet0;
-+		mmc0 = &sdmmc1;
-+		serial0 = &uart4;
-+		serial1 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@c0000000 {
-+		reg = <0xc0000000 0x40000000>;
-+	};
-+
-+	led {
-+		compatible = "gpio-leds";
-+		led1 {
-+			label = "green:user1";
-+			gpios = <&gpioz 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "off";
-+		};
-+
-+		led2 {
-+			label = "green:user2";
-+			gpios = <&gpiof 3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc0";
-+			default-state = "off";
-+		};
-+
-+		led3 {
-+			label = "green:user3";
-+			gpios = <&gpiog 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc1";
-+			default-state = "off";
-+		};
-+
-+		led4 {
-+			label = "green:user3";
-+			gpios = <&gpiog 1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+			default-state = "off";
-+			panic-indicator;
-+		};
-+
-+		led5 {
-+			label = "yellow:wifi";
-+			gpios = <&gpioz 3 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+
-+		led6 {
-+			label = "blue:bt";
-+			gpios = <&gpioz 6 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "bluetooth-power";
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&ethernet0 {
-+	status = "okay";
-+	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-+	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
-+	pinctrl-names = "default", "sleep";
-+	phy-mode = "rgmii";
-+	max-speed = <1000>;
-+	phy-handle = <&phy0>;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0: ethernet-phy@7 {
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins_b>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+};
-+
-+&i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins_b>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4_pins_a>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	pmic: stpmic@33 {
-+		compatible = "st,stpmic1";
-+		reg = <0x33>;
-+		interrupts-extended = <&exti 55 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		status = "okay";
-+
-+		st,main-control-register = <0x04>;
-+		st,vin-control-register = <0xc0>;
-+		st,usb-control-register = <0x30>;
-+
-+		regulators {
-+			compatible = "st,stpmic1-regulators";
-+
-+			ldo1-supply = <&v3v3>;
-+			ldo2-supply = <&v3v3>;
-+			ldo3-supply = <&vdd_ddr>;
-+			ldo5-supply = <&v3v3>;
-+			ldo6-supply = <&v3v3>;
-+			pwr_sw1-supply = <&bst_out>;
-+			pwr_sw2-supply = <&bst_out>;
-+
-+			vddcore: buck1 {
-+				regulator-name = "vddcore";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd_ddr: buck2 {
-+				regulator-name = "vdd_ddr";
-+				regulator-min-microvolt = <1350000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd: buck3 {
-+				regulator-name = "vdd";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				st,mask_reset;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			v3v3: buck4 {
-+				regulator-name = "v3v3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+				regulator-initial-mode = <0>;
-+			};
-+
-+			vdda: ldo1 {
-+				regulator-name = "vdda";
-+				regulator-min-microvolt = <2900000>;
-+				regulator-max-microvolt = <2900000>;
-+				interrupts = <IT_CURLIM_LDO1 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			v2v8: ldo2 {
-+				regulator-name = "v2v8";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				interrupts = <IT_CURLIM_LDO2 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			vtt_ddr: ldo3 {
-+				regulator-name = "vtt_ddr";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd_usb: ldo4 {
-+				regulator-name = "vdd_usb";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				interrupts = <IT_CURLIM_LDO4 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			vdd_sd: ldo5 {
-+				regulator-name = "vdd_sd";
-+				regulator-min-microvolt = <2900000>;
-+				regulator-max-microvolt = <2900000>;
-+				interrupts = <IT_CURLIM_LDO5 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-boot-on;
-+			};
-+
-+			v1v8: ldo6 {
-+				regulator-name = "v1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				interrupts = <IT_CURLIM_LDO6 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-enable-ramp-delay = <300000>;
-+			};
-+
-+			vref_ddr: vref_ddr {
-+				regulator-name = "vref_ddr";
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+			};
-+
-+			bst_out: boost {
-+				regulator-name = "bst_out";
-+				interrupts = <IT_OCP_BOOST 0>;
-+				interrupt-parent = <&pmic>;
-+			};
-+
-+			vbus_otg: pwr_sw1 {
-+				regulator-name = "vbus_otg";
-+				interrupts = <IT_OCP_OTG 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-active-discharge;
-+			};
-+
-+			vbus_sw: pwr_sw2 {
-+				regulator-name = "vbus_sw";
-+				interrupts = <IT_OCP_SWOUT 0>;
-+				interrupt-parent = <&pmic>;
-+				regulator-active-discharge;
-+			};
-+		};
-+
-+		onkey {
-+			compatible = "st,stpmic1-onkey";
-+			interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 1>;
-+			interrupt-names = "onkey-falling", "onkey-rising";
-+			status = "okay";
-+		};
-+
-+		watchdog {
-+			compatible = "st,stpmic1-wdt";
-+			status = "disabled";
-+		};
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&rng1 {
-+	status = "okay";
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_dir_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	broken-cd;
-+	st,sig-dir;
-+	st,neg-edge;
-+	st,use-ckin;
-+	bus-width = <4>;
-+	vmmc-supply = <&vdd_sd>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	/* On Low speed expansion header */
-+	label = "LS-UART1";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart4_pins_b>;
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	/* On Low speed expansion header */
-+	label = "LS-UART0";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart7_pins_a>;
-+	status = "okay";
-+};
--- 
-2.17.1
+In anycase, I don't think that either sticking with or doing away with
+the wrapper script is going to have any long term bearing on what
+happens in this regard.
 
+Cheers
