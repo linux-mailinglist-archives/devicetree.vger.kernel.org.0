@@ -2,132 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5010112D03
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E525112D0E
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727682AbfECL7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 07:59:05 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:36856 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727639AbfECL7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:59:05 -0400
-Received: by mail-it1-f193.google.com with SMTP id v143so8587625itc.1
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 04:59:05 -0700 (PDT)
+        id S1727550AbfECL7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 07:59:48 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:41946 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727231AbfECL7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:59:48 -0400
+Received: by mail-pf1-f193.google.com with SMTP id 188so2791568pfd.8
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 04:59:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vDgYOPNAs5a7jn6rrh+mqlUAcW/QL6gqLTt3pqvnNY8=;
-        b=Y6srGshKU+8ofVAzr5oXPRlANIBEkdOrCHKBPiE3tUswNgNowbNADcWMckRUE5gkSL
-         9ukukehth9mBJJ/QJCpdkUMMW2+iAg10JbBAKpi7BjWy2OQ+HfalsNh4xdNDSsHWnKVY
-         6bANvGQZzE11Hw3Y7RiWx/Sk3RaGiUf3o+mJs=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vJmfFw0q35lTjOMKi7JKfHPrHE1C5yCWa/soMCMhwUs=;
+        b=I7fOhnOZJa+A0py26DsoUKzEdhCQ1Na8LcD3krdUX08liXV16VPm+vpVVvESTUGXqb
+         raRABPxt/2QfdgUMAnAmMAZLdEoKSABgxP23+lYRierkNQgvlukHAOs1btvDIbNaZgzy
+         dqWrouzbFseyrMB0cLM1C1o38DY6+iQEYa98Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vDgYOPNAs5a7jn6rrh+mqlUAcW/QL6gqLTt3pqvnNY8=;
-        b=OiEaLFOxO0qcc+haXmVudBtJgzzNOxLxpD5dSxDiWLKHu1tDNrY5IIwPEJVXMUH1BN
-         lIJdC1ioChzOy0caJM5yde30KkVsTyus/Orc7HQw+7lD7+kwSK79LPy8tVBU6cyErO3k
-         kyodx96AfP38cp0v2P2Xh2GzoRXt1/LcjEhDhNhfbi3qhxHgHrwjvUQHt0OB4oeO7wyJ
-         G9wUt4vIyq0TcEuoNTUIR78NI6WbQ9qfZOvJzaGPhgO4s3cztMSRAgJIX19j7Fbke/Ra
-         fmxf3Rk9bPiRTMHO3KBFCw7arpd52DTZ9Z94ww3F8d86ELSFWnXQBTN3Zke6B5pYX/5I
-         87IQ==
-X-Gm-Message-State: APjAAAVfvNty2ef/E+TrgPAeeELZIboPChxPuU5liGF7s4t50s2UR8in
-        SG0tO4FkNOsG8x890ktkxzPhbsXeT4ozGT8dTmzU/Q==
-X-Google-Smtp-Source: APXvYqxogbylovsed3LC9Wji6QY3Bj1N0GsCs2SPDNY1RvVGOuqXHQj+rfQkbvVmWscSed3alM3kokBhRmxHN3Y8JlY=
-X-Received: by 2002:a24:70d5:: with SMTP id f204mr6307014itc.32.1556884744596;
- Fri, 03 May 2019 04:59:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190413165418.27880-1-megous@megous.com> <20190413165418.27880-6-megous@megous.com>
-In-Reply-To: <20190413165418.27880-6-megous@megous.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vJmfFw0q35lTjOMKi7JKfHPrHE1C5yCWa/soMCMhwUs=;
+        b=NYHexw2bIMkpQwvdkLagDrVY1ATx7eXGSHt2r2jF/K446Dr3KixohagaFs44t9OSaq
+         6gRi/JZ9zMxGKEvNvbONxAfSY5B5+ytKGS0XwcimM4fw+RItKjJTKGhwtLK/2qS1IEik
+         JBy7HWmRoQLqlhi/qVnAZp72XRWLNjUcfpwCMNa4YoYdkIdhLw1XeDIIiM8Ea1XTEZ9p
+         LI/StQ8z1Mi+Sa6Bo8+f9X8UNMutD/csxL8S7h8sMmeE5QqzZoZ+WMkH3JRj80GM5mlG
+         JYyJE/GkhJMLCL8RPDrYU71xam3gLzrbbrvukOIQwKztxD+nCIfvwE+UCiVv7uRwnSuW
+         nU+w==
+X-Gm-Message-State: APjAAAXIKaA5Oeh4gU2OGaM/I6ti5T4Fw++cIPmqje2QBQOak4GG979D
+        t142VK9Hh/HW8ZmV814XNZTwtQ==
+X-Google-Smtp-Source: APXvYqw45KysPDN37fptBttFYc0YSEKsnoAUh7GJerGfOPX/+DYNbUqT6l2ZfOY6T9cbIlI5Yeeltg==
+X-Received: by 2002:a63:1604:: with SMTP id w4mr9850811pgl.148.1556884787760;
+        Fri, 03 May 2019 04:59:47 -0700 (PDT)
+Received: from localhost.localdomain ([49.206.203.165])
+        by smtp.gmail.com with ESMTPSA id f5sm2235940pgo.75.2019.05.03.04.59.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 04:59:47 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Fri, 3 May 2019 17:28:53 +0530
-Message-ID: <CAMty3ZDx6NXyYhQehYT9geeGwAk2PZidiVMwVw1nnZJa3zwyOg@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v4 5/9] arm64: dts: allwinner: orange-pi-3:
- Enable ethernet
-To:     megous@megous.com
-Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
         Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        linux-sunxi@googlegroups.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v2] arm64: allwinner: h6: orangepi-one-plus: Add Ethernet support
+Date:   Fri,  3 May 2019 17:29:28 +0530
+Message-Id: <20190503115928.27662-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 13, 2019 at 10:24 PM megous via linux-sunxi
-<linux-sunxi@googlegroups.com> wrote:
->
-> From: Ondrej Jirman <megous@megous.com>
->
-> Orange Pi 3 has two regulators that power the Realtek RTL8211E. According
-> to the phy datasheet, both regulators need to be enabled at the same time,
-> but we can only specify a single phy-supply in the DT.
->
-> This can be achieved by making one regulator depedning on the other via
-> vin-supply. While it's not a technically correct description of the
-> hardware, it achieves the purpose.
->
-> All values of RX/TX delay were tested exhaustively and a middle one of the
-> working values was chosen.
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> index 17d496990108..6d6b1f66796d 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> @@ -15,6 +15,7 @@
->
->         aliases {
->                 serial0 = &uart0;
-> +               ethernet0 = &emac;
->         };
->
->         chosen {
-> @@ -44,6 +45,27 @@
->                 regulator-max-microvolt = <5000000>;
->                 regulator-always-on;
->         };
-> +
-> +       /*
-> +        * The board uses 2.5V RGMII signalling. Power sequence to enable
-> +        * the phy is to enable GMAC-2V5 and GMAC-3V3 (aldo2) power rails
-> +        * at the same time and to wait 100ms.
-> +        */
-> +       reg_gmac_2v5: gmac-2v5 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "gmac-2v5";
-> +               regulator-min-microvolt = <2500000>;
-> +               regulator-max-microvolt = <2500000>;
-> +               startup-delay-us = <100000>;
-> +               enable-active-high;
-> +               gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-> +
-> +               /* The real parent of gmac-2v5 is reg_vcc5v, but we need to
-> +                * enable two regulators to power the phy. This is one way
-> +                * to achieve that.
-> +                */
-> +               vin-supply = <&reg_aldo2>; /* GMAC-3V3 */
+Add Ethernet support for orangepi-one-plus board,
 
-The actual output supply pin name is GMAC-3V which has an input of
-VCC3V3-MAC (ie aldo2), if we compatible to schematics better to use
-the same, IMHO.
+- Ethernet port connected via RTL8211E PHY
+- PHY suppiled with
+  GMAC-2V5, fixed regulator with GMAC_EN pin via PD6
+  GMAC-3V, which is supplied by VCC3V3-MAC via aldo2
+- RGMII-RESET pin connected via PD14
+
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+Changes for v2:
+- emac changes on top of https://patchwork.kernel.org/cover/10899529/
+  series
+
+ .../allwinner/sun50i-h6-orangepi-one-plus.dts |  8 ++++
+ .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 42 +++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
+index 12e17567ab56..9e8ed1053715 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
+@@ -9,4 +9,12 @@
+ / {
+ 	model = "OrangePi One Plus";
+ 	compatible = "xunlong,orangepi-one-plus", "allwinner,sun50i-h6";
++
++	aliases {
++		ethernet0 = &emac;
++	};
++};
++
++&emac {
++	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
+index 62e27948a3fa..c48e24acaf8a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
+@@ -45,6 +45,48 @@
+ 		regulator-max-microvolt = <5000000>;
+ 		regulator-always-on;
+ 	};
++
++	/*
++	 * The board uses 2.5V RGMII signalling. Power sequence to enable
++	 * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
++	 * at the same time and to wait 100ms.
++	 */
++	reg_gmac_2v5: gmac-2v5 {
++		compatible = "regulator-fixed";
++		regulator-name = "gmac-2v5";
++		regulator-min-microvolt = <2500000>;
++		regulator-max-microvolt = <2500000>;
++		startup-delay-us = <100000>;
++		enable-active-high;
++		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* GMAC_EN: PD6 */
++
++		/* The real parent of gmac-2v5 is reg_vcc5v, but we need to
++		 * enable two regulators to power the phy. This is one way
++		 * to achieve that.
++		 */
++		vin-supply = <&reg_aldo2>; /* VCC3V3-MAC: GMAC-3V */
++	};
++};
++
++&emac {
++	pinctrl-names = "default";
++	pinctrl-0 = <&ext_rgmii_pins>;
++	phy-mode = "rgmii";
++	phy-handle = <&ext_rgmii_phy>;
++	phy-supply = <&reg_gmac_2v5>;
++	allwinner,rx-delay-ps = <1500>;
++	allwinner,tx-delay-ps = <700>;
++};
++
++&mdio {
++	ext_rgmii_phy: ethernet-phy@1 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <1>;
++
++		reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* RGMII-RESET: PD14 */
++		reset-assert-us = <15000>;
++		reset-deassert-us = <40000>;
++	};
+ };
+ 
+ &ehci0 {
+-- 
+2.18.0.321.gffc6fa0e3
+
