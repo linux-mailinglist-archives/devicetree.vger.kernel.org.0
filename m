@@ -2,168 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E171296D
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 714F012993
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725777AbfECIEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 04:04:11 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:47095 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725793AbfECIEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 04:04:11 -0400
-Received: by mail-qt1-f196.google.com with SMTP id i31so5680060qti.13
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 01:04:10 -0700 (PDT)
+        id S1725798AbfECIL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 04:11:57 -0400
+Received: from mail-it1-f196.google.com ([209.85.166.196]:39227 "EHLO
+        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725775AbfECIL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 04:11:57 -0400
+Received: by mail-it1-f196.google.com with SMTP id t200so7789681itf.4
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 01:11:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QyYnh8hGNxo4y79JyoBAvnyJOsqV/eKCHgC2055Dj70=;
-        b=TFsaDfJktcepJhaSVkSy9jmcH5WklitGZ2BBIrKTkDmfye484EI32NBvqAF18RhDM4
-         icz2jBCDxSTj6qmQVp0LN0YlkJPVgxnXUunfIEesZ1FOAC5727DnzDgNJ++yI7ZM9nil
-         K47/JWKZTYl0cyTlCD15zHWhm1WvSpjJECOdY=
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=y7cIzG0PVrRis126czyvwHkkalaXGhnWuRZIJrhxFOU=;
+        b=crEzrjUdCDUUO/fp0v7rywUkOdOB9zud9DTJG+N5/frasqGqRXtiq3r0EZPOjETYCQ
+         xWD5CljxNJcgFEIQue/cj7LGky9lj1TaertIGaySTs0NY7EDKCiEVyoPAQOaE26OS3V3
+         bHzK7btw3TVp6N4hzJv171upvDZkpGqkv4jqVwuSWrzRlhoD+XrxbLz+BJnfD+Z3iHYT
+         bfIP9CGKvS3QLxzHADfNjvUauSE3mNK0UBvDeUOfbNSa9hJI/x/qH5pcEx9+YT6anl8A
+         wHT2reQAmKOyOZYB+DMYVgrHlSdoHVmGpNftYEvex/pJUzPQrNsUUgPP4BYl5dVVjNwq
+         4j8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QyYnh8hGNxo4y79JyoBAvnyJOsqV/eKCHgC2055Dj70=;
-        b=bOcHOLWtJyFRTMuEbDlHnk+Tajz5EWiZPGqu5hdwOPlnrIN5jJ8lIN4lfPGvjRfNCL
-         RxylgqiZxf3GS7ii5qKm2scHJwSrDFqiltPMmWVjvR0ASBM/g0qzBdzoW9W2OP9iwhMy
-         NWdSMeXdpRUCht2Fti3f4ZtMzRAU08bg2xrbCOCpilTzmFUW9WP4XaXDYoZwKO35oWlZ
-         EdAADocm3aMWzrZhEbhPi+70/d/lNWgcXgoJ8wVonus6DTMWTz+/mXYknMhQYZ7sqHxs
-         7m/ptE7ISe+AEtV+HNBmcRhmK2Y+npON2+inUj7gKWmqCEBXcZfA4dzCW5tXw4levVif
-         BFCA==
-X-Gm-Message-State: APjAAAXc2vUVoH/qTNI728m6hl/wOew9/jgWkOBEkU+a3XmbTD0aqJ69
-        6meyCBCQyHK2hO4eazvZbGteUfDusHiHYVSwIMxzXA==
-X-Google-Smtp-Source: APXvYqwK9NYfQA/9uIkz+E3ZSXoSVmvGacXxJP1bm9lZj8RtDGEHaMjRHL1WIrVFMhk5ZLbA20X7lzzIyVAj/Hr6Db0=
-X-Received: by 2002:ac8:3822:: with SMTP id q31mr7331051qtb.0.1556870649914;
- Fri, 03 May 2019 01:04:09 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=y7cIzG0PVrRis126czyvwHkkalaXGhnWuRZIJrhxFOU=;
+        b=UUapddilQxvvNSi+Wje2ewecMth2oHgJt8LDCYxFkpSjT2yYH3WRc4py5RYQr1jsiy
+         3GfWkLvVzzBGMHk6zr7kKIO2CDIm2vCHi8wv+Nl0J1mBxPubEL4jrB/XQAApM6OAEwD2
+         eizavSPpI6gO5z5sTassF7cYJGRvb9A16E0v4X7MSXJOQaQXjIZvcnfOozgA26kptEzr
+         Mxe8mruLDFUVcOyXFnjellHO3JwRvbVOUwETpd4+ar7ZOZqQf0GiF009qFRFraSesMAE
+         BxtkQPPDUgAJHz6l+C0plj3ExJNkptapWQrrWsghgXrCYYZNm51td4ORy+MdfB8KOiNS
+         uVkw==
+X-Gm-Message-State: APjAAAXR62c28X972Iqj1viBcf0/1U1LZiAWZJaPVtXuvMiuXC/Jre1T
+        7qeRjE9u6YKrN15slGJ+w17XltEDPjlNv7tysdw=
+X-Google-Smtp-Source: APXvYqw+BZ7pavR2NVGarS8GkuV7YAGpojjj8UYRUmEyg/Ska9WGbAtCenSrIpoCZORlfBT+HtGNORxN4XmRtnWVUsM=
+X-Received: by 2002:a24:1c0b:: with SMTP id c11mr5772191itc.67.1556871116722;
+ Fri, 03 May 2019 01:11:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com> <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
-In-Reply-To: <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 3 May 2019 16:03:58 +0800
-Message-ID: <CAJMQK-isJf6f+OubbCdoXs8L2cup=rm3Z8Mr7Q26QshMP-0wxA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
-To:     "michael.kao" <michael.kao@mediatek.com>
-Cc:     fan.chen@mediatek.com, jamesjj.liao@mediatek.com,
-        dawei.chien@mediatek.com, louis.yu@mediatek.com,
-        roger.lu@mediatek.com, Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
+Received: by 2002:a02:a99a:0:0:0:0:0 with HTTP; Fri, 3 May 2019 01:11:56 -0700 (PDT)
+Reply-To: ayishagddafio@mail.com
+From:   AISHA GADDAFI <mrstevesolomonbf212@gmail.com>
+Date:   Fri, 3 May 2019 01:11:56 -0700
+Message-ID: <CAF3wdO2M9OTE+vQC9wgBf=8fbj2zJuTWgudMx2m-M2RR=prsPg@mail.gmail.com>
+Subject: Dear Friend (Assalamu Alaikum),
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
->
-> Add thermal zone node to Mediatek MT8183 dts file.
->
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 926df75..b92116f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -334,6 +334,67 @@
->                         status = "disabled";
->                 };
->
-> +               thermal: thermal@1100b000 {
-> +                       #thermal-sensor-cells = <1>;
-> +                       compatible = "mediatek,mt8183-thermal";
-> +                       reg = <0 0x1100b000 0 0x1000>;
-> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
-> +                       clocks = <&infracfg CLK_INFRA_THERM>,
-> +                                <&infracfg CLK_INFRA_AUXADC>;
-> +                       clock-names = "therm", "auxadc";
-> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
-> +                       mediatek,auxadc = <&auxadc>;
-> +                       mediatek,apmixedsys = <&apmixedsys>;
-> +                       mediatek,hw-reset-temp = <117000>;
-> +                       nvmem-cells = <&thermal_calibration>;
-> +                       nvmem-cell-names = "calibration-data";
-> +               };
-> +
-> +               thermal-zones {
-> +                       cpu_thermal: cpu_thermal {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +
-> +                               thermal-sensors = <&thermal 0>;
-> +                               sustainable-power = <1500>;
-> +                       };
-> +
-> +                       tzts1: tzts1 {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +                               thermal-sensors = <&thermal 1>;
-Is sustainable-power required for tzts? Though it's an optional
-property, kernel would have warning:
-[    0.631556] thermal thermal_zone1: power_allocator:
-sustainable_power will be estimated
-[    0.639586] thermal thermal_zone2: power_allocator:
-sustainable_power will be estimated
-[    0.647611] thermal thermal_zone3: power_allocator:
-sustainable_power will be estimated
-[    0.655635] thermal thermal_zone4: power_allocator:
-sustainable_power will be estimated
-[    0.663658] thermal thermal_zone5: power_allocator:
-sustainable_power will be estimated
-if no sustainable-power assigned.
+-- 
+Dear Friend (Assalamu Alaikum),
 
-> +                       };
-> +
-> +                       tzts2: tzts2 {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +                               thermal-sensors = <&thermal 2>;
-> +                       };
-> +
-> +                       tzts3: tzts3 {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +                               thermal-sensors = <&thermal 3>;
-> +                       };
-> +
-> +                       tzts4: tzts4 {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +                               thermal-sensors = <&thermal 4>;
-> +                       };
-> +
-> +                       tzts5: tzts5 {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +                               thermal-sensors = <&thermal 5>;
-> +                       };
-> +
-> +                       tztsABB: tztsABB {
-> +                               polling-delay-passive = <1000>;
-> +                               polling-delay = <1000>;
-> +                               thermal-sensors = <&thermal 6>;
-> +                       };
-> +               };
->                 audiosys: syscon@11220000 {
->                         compatible = "mediatek,mt8183-audiosys", "syscon";
->                         reg = <0 0x11220000 0 0x1000>;
-> @@ -368,6 +429,9 @@
->                         compatible = "mediatek,mt8183-efuse",
->                                      "mediatek,efuse";
->                         reg = <0 0x11f10000 0 0x1000>;
-> +                       thermal_calibration: calib@180 {
-> +                               reg = <0x180 0xc>;
-> +                       };
->                 };
->
->                 mfgcfg: syscon@13000000 {
+I came across your e-mail contact prior a private search while in need of
+your assistance. My name is Aisha  Al-Qaddafi a single Mother and a Widow
+with three Children. I am the only biological Daughter of late Libyan
+President (Late Colonel Muammar Gaddafi).
+
+I have investment funds worth Twenty Seven Million Five Hundred Thousand
+United State Dollar ($27.500.000.00 ) and i need a trusted investment
+Manager/Partner because of my current refugee status, however, I am
+interested in you for investment project assistance in your country, may be
+from there, we can build business relationship in the nearest future.
+
+I am willing to negotiate investment/business profit sharing ratio with you
+base on the future investment earning profits.
+
+If you are willing to handle this project on my behalf kindly reply urgent
+to enable me provide you more information about the investment funds.
+
+Your Urgent Reply Will Be Appreciated. write me at this email address(
+ayishagddafio@mail.com ) for further discussion.
+
+Best Regards
+Mrs Aisha Al-Qaddafi
+Reply to: ayishagddafio@mail.com
