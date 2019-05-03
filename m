@@ -2,161 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5688613271
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 18:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 040B61327B
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 18:49:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728548AbfECQqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 12:46:54 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:34372 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726468AbfECQqy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 12:46:54 -0400
-Received: by mail-pl1-f196.google.com with SMTP id ck18so2965388plb.1
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 09:46:53 -0700 (PDT)
+        id S1728010AbfECQtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 12:49:23 -0400
+Received: from mail-eopbgr710057.outbound.protection.outlook.com ([40.107.71.57]:34919
+        "EHLO NAM05-BY2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725809AbfECQtW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 12:49:22 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=I6Kj7J5O6mOYwdObKv7gUJ8XCyM1RwJ3zMEkMb1FKIA=;
-        b=CyQ4K5S6LZCPez3P3h4Yxxkjx5MBxsP5BHCmBIL6WSY0qUlz3mMC4lIpY2Vhriry6a
-         oXx9z7VzntcU6eC6xQcsSIzOqmACQmL8DeTBYaE8HymEL4qWrTlVSAmi/F6yKSegpaUY
-         yzTiLzZgcSRyaY8DoLKKDvUdX+If3vo60mwTg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=I6Kj7J5O6mOYwdObKv7gUJ8XCyM1RwJ3zMEkMb1FKIA=;
-        b=qasaTcCh9QZZ91jxdm5keIrRcKc9+I90+xm/GZTMQUA4gyv7iMed/zy44WKRT16KOA
-         7Vs6qM5BcVgzbJvNqRst1kbgHenedZspr8pCp3zjeMlh95k0yL/op1OnJ14Ss2pylqn8
-         3n6DT8pzWfcru0qoyxxSIHyp2HuqTH/P7DGdFm/WhlxpVpnmK7Ch2vRa0DeDK3tIIIIp
-         KWapFq0U6HnPv156i2NxX806NNZYU/sxZ+SV+Xj5QRpWP9qF2AQuJ0PT13aodcigCcjW
-         r/YsMwcUjsiZyf7lOC66A/zQ0dyt+GfNyyP78R7x7wVykMuhwR/YcGflkMCHccQGlZWb
-         SO6w==
-X-Gm-Message-State: APjAAAU+GKcbdB/Cw7UQy1WzdOdqUADuDHjKS9wn33J9c6EXokNfeUuM
-        RuiplwcIgTCfhOYSbiIID3aMDw==
-X-Google-Smtp-Source: APXvYqxWg5BvQCMW5sbTPT2MdGAVLNcxxY3llDZ9nW22Kb9AR5oS4k2LVUS2tXpLJVTQ1tgp8Uwwrg==
-X-Received: by 2002:a17:902:1c1:: with SMTP id b59mr11866780plb.182.1556902013175;
-        Fri, 03 May 2019 09:46:53 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id f21sm3394538pfn.30.2019.05.03.09.46.52
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 03 May 2019 09:46:52 -0700 (PDT)
-Date:   Fri, 3 May 2019 09:46:51 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "michael.kao" <michael.kao@mediatek.com>, fan.chen@mediatek.com,
-        jamesjj.liao@mediatek.com, dawei.chien@mediatek.com,
-        louis.yu@mediatek.com, roger.lu@mediatek.com,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
-Message-ID: <20190503164651.GB40515@google.com>
-References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com>
- <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
- <CAJMQK-isJf6f+OubbCdoXs8L2cup=rm3Z8Mr7Q26QshMP-0wxA@mail.gmail.com>
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nwWAfMhRk3TfVww9pLUC/U7seE6HUj8w8mFr2/Aswag=;
+ b=spbiCAnFxTSnLoDSKGE5Kzt3QsSPSAJBcttuMl5V24rTs7/nZAQHnNjdLDLN4uGNSTn9qHzYklu6r3ivxioOSbXOkg0Fa1s2QWEIGTDYDlAERLB5kxMTjAAlv8JMgKYAKXUR63J+rJEObgtlg2iU1xQiTz8lqHHzbDwg8Clvm4g=
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
+ BL0PR02MB5412.namprd02.prod.outlook.com (20.177.240.203) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Fri, 3 May 2019 16:49:19 +0000
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Fri, 3 May 2019
+ 16:49:19 +0000
+From:   Dragan Cvetic <draganc@xilinx.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: RE: [PATCH V3 07/12] misc: xilinx_sdfec: Add ability to configure
+ LDPC
+Thread-Topic: [PATCH V3 07/12] misc: xilinx_sdfec: Add ability to configure
+ LDPC
+Thread-Index: AQHU/UVPnT63WxPZjkKYaNOUADJ+zqZYHgSAgAGG/0A=
+Date:   Fri, 3 May 2019 16:49:19 +0000
+Message-ID: <BL0PR02MB5681D386363988CB2CA4D040CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-8-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172713.GD1874@kroah.com>
+In-Reply-To: <20190502172713.GD1874@kroah.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=draganc@xilinx.com; 
+x-originating-ip: [149.199.80.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9d7b0bf3-1c86-4547-abc5-08d6cfe74937
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB5412;
+x-ms-traffictypediagnostic: BL0PR02MB5412:
+x-microsoft-antispam-prvs: <BL0PR02MB5412C25FE7D1D400B65F825ACB350@BL0PR02MB5412.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0026334A56
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(376002)(39860400002)(346002)(136003)(366004)(13464003)(189003)(199004)(99286004)(76176011)(71190400001)(8936002)(66066001)(71200400001)(25786009)(3846002)(81156014)(81166006)(305945005)(6116002)(107886003)(53936002)(2906002)(316002)(4326008)(8676002)(6246003)(68736007)(102836004)(7736002)(11346002)(476003)(446003)(7696005)(9686003)(6506007)(55016002)(14454004)(86362001)(73956011)(66946007)(478600001)(26005)(76116006)(52536014)(53546011)(6436002)(64756008)(66446008)(66476007)(66556008)(54906003)(486006)(6916009)(33656002)(186003)(74316002)(5660300002)(229853002)(256004);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB5412;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: qo+gsKJzxC6o7eckHF0QCjN0zBgZbwxLSyAQl8oIeRm8m8/RQYP1xRXRlJyJGpUOCA59WTc28BfkYD+5h/7rkZ4Fj1rtHtTzZS1vkPw+Uaz8AooFcGlEWyahI5akJMCToDV5q0Lgb24WizkTLINMwm196kJLIQ6dEZwX5no6OdkPVd+ZPEzJFi28XCy176y6l52j7lN8v9lkeFx23yYxD4C6DPpl1UETbYwNO7Fo77FY6Va92kBg0LeXLPjHjOCYzoGp4QmPKKqE7YzVRnIWCc6ucUjCKpO9rScoHsncpC+zEeAgQ+zR4B6cXgNqyDhNk2RBBTJtIQMpusybE4QtmlmcgYpWjW+joKb5nW+mdPJFWtxtlcw8B+ytBD7tO2ysO9w7cnhf1gAhE5HCCsh0cbnYMai78hMwhKmjUG73j0c=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAJMQK-isJf6f+OubbCdoXs8L2cup=rm3Z8Mr7Q26QshMP-0wxA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d7b0bf3-1c86-4547-abc5-08d6cfe74937
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2019 16:49:19.0395
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB5412
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Greg,
 
-On Fri, May 03, 2019 at 04:03:58PM +0800, Hsin-Yi Wang wrote:
-> On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
-> >
-> > Add thermal zone node to Mediatek MT8183 dts file.
-> >
-> > Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
-> >  1 file changed, 64 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 926df75..b92116f 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -334,6 +334,67 @@
-> >                         status = "disabled";
-> >                 };
-> >
-> > +               thermal: thermal@1100b000 {
-> > +                       #thermal-sensor-cells = <1>;
-> > +                       compatible = "mediatek,mt8183-thermal";
-> > +                       reg = <0 0x1100b000 0 0x1000>;
-> > +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
-> > +                       clocks = <&infracfg CLK_INFRA_THERM>,
-> > +                                <&infracfg CLK_INFRA_AUXADC>;
-> > +                       clock-names = "therm", "auxadc";
-> > +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
-> > +                       mediatek,auxadc = <&auxadc>;
-> > +                       mediatek,apmixedsys = <&apmixedsys>;
-> > +                       mediatek,hw-reset-temp = <117000>;
-> > +                       nvmem-cells = <&thermal_calibration>;
-> > +                       nvmem-cell-names = "calibration-data";
-> > +               };
-> > +
-> > +               thermal-zones {
-> > +                       cpu_thermal: cpu_thermal {
-> > +                               polling-delay-passive = <1000>;
-> > +                               polling-delay = <1000>;
-> > +
-> > +                               thermal-sensors = <&thermal 0>;
-> > +                               sustainable-power = <1500>;
-> > +                       };
-> > +
-> > +                       tzts1: tzts1 {
-> > +                               polling-delay-passive = <1000>;
-> > +                               polling-delay = <1000>;
-> > +                               thermal-sensors = <&thermal 1>;
-> Is sustainable-power required for tzts? Though it's an optional
-> property, kernel would have warning:
-> [    0.631556] thermal thermal_zone1: power_allocator:
-> sustainable_power will be estimated
-> [    0.639586] thermal thermal_zone2: power_allocator:
-> sustainable_power will be estimated
-> [    0.647611] thermal thermal_zone3: power_allocator:
-> sustainable_power will be estimated
-> [    0.655635] thermal thermal_zone4: power_allocator:
-> sustainable_power will be estimated
-> [    0.663658] thermal thermal_zone5: power_allocator:
-> sustainable_power will be estimated
-> if no sustainable-power assigned.
+Please find inline comments below.
 
-The property is indeed optional, if it isn't specified IPA will use
-the sum of the minimum power of all 'power actors' of the zone as
-estimate (see estimate_sustainable_power()). This may lead to overly
-agressive throttling, since the nominal sustainable power will always
-be <= the requested power.
+Regards
+Dragan
 
-In my understanding the sustainable power may varies between devices,
-even for the same SoC. One could have all the hardware crammed into a
-tiny plastic enclosure (e.g. ASUS Chromebit), another might have a
-laptop form factor and a metal enclosure (e.g. ASUS C201). Both
-examples are based on an Rockchip rk3288, but they have completely
-different thermal behavior, and would likely have different values for
-'sustainable-power'.
 
-In this sense I tend to consider 'sustainable-power' more a device,
-than a SoC property. You could specify a 'reasonable' value as a
-starting point, but it will likely not be optimal for all or even most
-devices. The warning might even be useful for device makers by
-indicating them that there is room for tweaking.
+> -----Original Message-----
+> From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> Sent: Thursday 2 May 2019 18:27
+> To: Dragan Cvetic <draganc@xilinx.com>
+> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
+sts.infradead.org; robh+dt@kernel.org;
+> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
+l.org; Derek Kiernan <dkiernan@xilinx.com>
+> Subject: Re: [PATCH V3 07/12] misc: xilinx_sdfec: Add ability to configur=
+e LDPC
+>=20
+> On Sat, Apr 27, 2019 at 11:05:01PM +0100, Dragan Cvetic wrote:
+> > --- a/include/uapi/misc/xilinx_sdfec.h
+> > +++ b/include/uapi/misc/xilinx_sdfec.h
+>=20
+> <snip>
+>=20
+> > +/**
+> > + * xsdfec_calculate_shared_ldpc_table_entry_size - Calculates shared c=
+ode
+> > + * table sizes.
+> > + * @ldpc: Pointer to the LPDC Code Parameters
+> > + * @table_sizes: Pointer to structure containing the calculated table =
+sizes
+> > + *
+> > + * Calculates the size of shared LDPC code tables used for a specified=
+ LPDC code
+> > + * parameters.
+> > + */
+> > +inline void
+> > +xsdfec_calculate_shared_ldpc_table_entry_size(struct xsdfec_ldpc_param=
+s *ldpc,
+> > +	struct xsdfec_ldpc_param_table_sizes *table_sizes)
+> > +{
+> > +	/* Calculate the sc_size in 32 bit words */
+> > +	table_sizes->sc_size =3D (ldpc->nlayers + 3) >> 2;
+> > +	/* Calculate the la_size in 256 bit words */
+> > +	table_sizes->la_size =3D ((ldpc->nlayers << 2) + 15) >> 4;
+> > +	/* Calculate the qc_size in 256 bit words */
+> > +	table_sizes->qc_size =3D ((ldpc->nqc << 2) + 15) >> 4;
+> > +}
+>=20
+> Why do you have an inline function in a user api .h file?  That's really
+> not a good idea.
 
-I'm not an expert in the matter though, just happend to look into this
-recently :)
+This is just a Helper function for users aligning the calculations.
+Please advise, is this acceptable?
 
-Cheers
-
-Matthias
+>=20
+> thanks,
+>=20
+> greg k-h
