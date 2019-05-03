@@ -2,89 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71299128C8
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04D1412959
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:58:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726953AbfECH2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 03:28:46 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:37355 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726961AbfECH2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:28:41 -0400
-Received: by mail-pg1-f193.google.com with SMTP id e6so2318895pgc.4;
-        Fri, 03 May 2019 00:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=iV91r0hSgx47A83AU5LfJSSAdebNF8xkPCOvty2B81w=;
-        b=f0kMsjpx0hReZbqS9A/IXDD04OeHrLmjwND+PaKZnv0lNFwIvz1+8f/D0fcaBpcjIr
-         3THia+s7KlQAPC75y6kfAM5tFbhKhcK34VvYtG4SXXajH/prr3rBdObYEUimYeMrLHAM
-         W9stvHHEUJWhi/4TWXlJBqWsT9hZSZP2hS/A+mhwG5KMLY0Nh0oFW2fr+lFayywX4In0
-         iEQuIFu8AXL/SFXCBXSjZJiu/68s0Vcvab2mgf6lLgypQd+wNuiqu6e7aGeAz40vry7K
-         0QXiQC5eQDPBGYe90V+j2Vs6Ek4/nQiUNNjl0nkv+uApUE6juP602HM41dGAu2IDWZsd
-         3cWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=iV91r0hSgx47A83AU5LfJSSAdebNF8xkPCOvty2B81w=;
-        b=a5cln8kXhHIN0AaGE5AtBWG0poSpip+nGNHrhKjcxdTaXMPAATp5+98zaWaQY6RSqh
-         opX7mUzTQa4JhEA50H7WjgLAdefVUfPxOpmn9Dnc6pI8YE2olhBLRt4GgjW0TjMYQQ87
-         9n+xLhvj2Yb6L8pkM7lEMy93x9Vywfh9+zS/vC5ksMLhSQaCWepsLO969cyeKul5+84T
-         07os/Mx2X3f9Tjc1S6eRox2nJeOLisC4SbTevUz5jHNiV21EUZdZEEpabg4Lblv8hkYB
-         VY6BxvyLVcxhW5x/qAMwJRp2aqItBgFWEvgK4qBRkuvB88kRzk90LTemcEHsQ23p6/7B
-         nqog==
-X-Gm-Message-State: APjAAAU7kTRXGLGZBNC0V1y+/P1dx00BoAqaV7+fUUVc+u6JakIKLapz
-        ei7hgG5QMK1tmIYSuibh85k=
-X-Google-Smtp-Source: APXvYqx3mHSYhYaU9e7dYSrcNlJV0QAsUNqmUsZfT1vnGpilYcYIfUsnBG2kbbtSGDGI8szlCy5aNg==
-X-Received: by 2002:a63:534f:: with SMTP id t15mr8595106pgl.445.1556868521022;
-        Fri, 03 May 2019 00:28:41 -0700 (PDT)
-Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
-        by smtp.gmail.com with ESMTPSA id c18sm2318243pfc.0.2019.05.03.00.28.40
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 03 May 2019 00:28:40 -0700 (PDT)
-From:   Yangtao Li <tiny.windzz@gmail.com>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        maxime.ripard@bootlin.com, wens@csie.org, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Yangtao Li <tiny.windzz@gmail.com>
-Subject: [PATCH 7/7] iio: adc: sun4i-gpadc-iio convert to SPDX license tags
-Date:   Fri,  3 May 2019 03:28:13 -0400
-Message-Id: <20190503072813.2719-8-tiny.windzz@gmail.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <20190503072813.2719-1-tiny.windzz@gmail.com>
-References: <20190503072813.2719-1-tiny.windzz@gmail.com>
+        id S1727130AbfECH4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 03:56:34 -0400
+Received: from smtp-out.xnet.cz ([178.217.244.18]:44171 "EHLO smtp-out.xnet.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727127AbfECH4d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 03:56:33 -0400
+Received: from meh.true.cz (meh.true.cz [108.61.167.218])
+        (Authenticated sender: petr@true.cz)
+        by smtp-out.xnet.cz (Postfix) with ESMTPSA id 73F1A3576;
+        Fri,  3 May 2019 09:56:30 +0200 (CEST)
+Received: by meh.true.cz (OpenSMTPD) with ESMTP id 6d818a11;
+        Fri, 3 May 2019 09:56:28 +0200 (CEST)
+From:   =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>
+To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 00/10] of_net: Add NVMEM support to of_get_mac_address
+Date:   Fri,  3 May 2019 09:55:57 +0200
+Message-Id: <1556870168-26864-1-git-send-email-ynezz@true.cz>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Updates license to use SPDX-License-Identifier.
+Hi,
 
-Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
----
- drivers/iio/adc/sun4i-gpadc-iio.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+this patch series is a continuation of my previous attempt[1], where I've
+tried to wire MTD layer into of_get_mac_address, so it would be possible to
+load MAC addresses from various NVMEMs as EEPROMs etc.
 
-diff --git a/drivers/iio/adc/sun4i-gpadc-iio.c b/drivers/iio/adc/sun4i-gpadc-iio.c
-index 9b6fc592f54c..cf2bf3ab3342 100644
---- a/drivers/iio/adc/sun4i-gpadc-iio.c
-+++ b/drivers/iio/adc/sun4i-gpadc-iio.c
-@@ -1,11 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0+
- /* ADC driver for sunxi platforms' (A10, A13 and A31) GPADC
-  *
-  * Copyright (c) 2016 Quentin Schulz <quentin.schulz@free-electrons.com>
-  *
-- * This program is free software; you can redistribute it and/or modify it under
-- * the terms of the GNU General Public License version 2 as published by the
-- * Free Software Foundation.
-- *
-  * The Allwinner SoCs all have an ADC that can also act as a touchscreen
-  * controller and a thermal sensor.
-  * The thermal sensor works only when the ADC acts as a touchscreen controller
+Predecessor of this patch which used directly MTD layer has originated in
+OpenWrt some time ago and supports already about 497 use cases in 357
+device tree files.
+
+During the review process of my 1st attempt I was told, that I shouldn't be
+using MTD directly, but that I should rather use new NVMEM subsystem and
+durring the review proccess of v2 I was told, that I should handle
+EPROBE_DEFFER error as well, so this v3 patch series tries to accommodate
+all this remarks.
+
+First patch is wiring NVMEM support directly into of_get_mac_address as
+it's obvious, that adding support for NVMEM into every other driver would
+mean adding a lot of repetitive code. This patch allows us to configure MAC
+addresses in various devices like ethernet and wireless adapters directly
+from of_get_mac_address, which is used by quite a lot of drivers in the
+tree already.
+
+Second patch is simply updating documentation with NVMEM bits, and cleaning
+up all current binding documentation referencing any of the MAC address
+related properties.
+
+Third and fourth patches are simply removing duplicate NVMEM code which is
+no longer needed as the first patch has wired NVMEM support directly into
+of_get_mac_address.
+
+Patches 5-10 are converting all current users of of_get_mac_address to the
+new ERR_PTR encoded error value, as of_get_mac_address could now return
+valid pointer, NULL and ERR_PTR.
+
+Just for a better picture, this patch series and one simple patch[2] on top
+of it, allows me to configure 8Devices Carambola2 board's MAC addresses
+with following DTS (simplified):
+
+ &spi {
+ 	flash@0 {
+ 		partitions {
+			art: partition@ff0000 {
+				label = "art";
+				reg = <0xff0000 0x010000>;
+				read-only;
+
+				nvmem-cells {
+					compatible = "nvmem-cells";
+					#address-cells = <1>;
+					#size-cells = <1>;
+
+					eth0_addr: eth-mac-addr@0 {
+						reg = <0x0 0x6>;
+					};
+
+					eth1_addr: eth-mac-addr@6 {
+						reg = <0x6 0x6>;
+					};
+
+					wmac_addr: wifi-mac-addr@1002 {
+						reg = <0x1002 0x6>;
+					};
+				};
+			};
+		};
+	};
+ };
+
+ &eth0 {
+	nvmem-cells = <&eth0_addr>;
+	nvmem-cell-names = "mac-address";
+ };
+
+ &eth1 {
+	nvmem-cells = <&eth1_addr>;
+	nvmem-cell-names = "mac-address";
+ };
+
+ &wmac {
+	nvmem-cells = <&wmac_addr>;
+	nvmem-cell-names = "mac-address";
+ };
+
+
+1. https://patchwork.ozlabs.org/patch/1086628/
+2. https://patchwork.ozlabs.org/patch/890738/
+
+-- ynezz
+
+Petr Štetiar (10):
+  of_net: add NVMEM support to of_get_mac_address
+  dt-bindings: doc: reflect new NVMEM of_get_mac_address behaviour
+  net: macb: support of_get_mac_address new ERR_PTR error
+  net: davinci: support of_get_mac_address new ERR_PTR error
+  net: ethernet: support of_get_mac_address new ERR_PTR error
+  net: usb: support of_get_mac_address new ERR_PTR error
+  net: wireless: support of_get_mac_address new ERR_PTR error
+  staging: octeon-ethernet: support of_get_mac_address new ERR_PTR error
+  ARM: Kirkwood: support of_get_mac_address new ERR_PTR error
+  powerpc: tsi108: support of_get_mac_address new ERR_PTR error
+
+ .../devicetree/bindings/net/altera_tse.txt         |  5 +-
+ Documentation/devicetree/bindings/net/amd-xgbe.txt |  5 +-
+ .../devicetree/bindings/net/brcm,amac.txt          |  4 +-
+ Documentation/devicetree/bindings/net/cpsw.txt     |  4 +-
+ .../devicetree/bindings/net/davinci_emac.txt       |  5 +-
+ Documentation/devicetree/bindings/net/dsa/dsa.txt  |  5 +-
+ Documentation/devicetree/bindings/net/ethernet.txt |  6 +-
+ .../devicetree/bindings/net/hisilicon-femac.txt    |  4 +-
+ .../bindings/net/hisilicon-hix5hd2-gmac.txt        |  4 +-
+ .../devicetree/bindings/net/keystone-netcp.txt     | 10 ++--
+ Documentation/devicetree/bindings/net/macb.txt     |  5 +-
+ .../devicetree/bindings/net/marvell-pxa168.txt     |  4 +-
+ .../devicetree/bindings/net/microchip,enc28j60.txt |  3 +-
+ .../devicetree/bindings/net/microchip,lan78xx.txt  |  5 +-
+ .../devicetree/bindings/net/qca,qca7000.txt        |  4 +-
+ .../devicetree/bindings/net/samsung-sxgbe.txt      |  4 +-
+ .../bindings/net/snps,dwc-qos-ethernet.txt         |  5 +-
+ .../bindings/net/socionext,uniphier-ave4.txt       |  4 +-
+ .../devicetree/bindings/net/socionext-netsec.txt   |  5 +-
+ .../bindings/net/wireless/mediatek,mt76.txt        |  5 +-
+ .../devicetree/bindings/net/wireless/qca,ath9k.txt |  4 +-
+ arch/arm/mach-mvebu/kirkwood.c                     |  3 +-
+ arch/powerpc/sysdev/tsi108_dev.c                   |  2 +-
+ drivers/net/ethernet/aeroflex/greth.c              |  2 +-
+ drivers/net/ethernet/allwinner/sun4i-emac.c        |  2 +-
+ drivers/net/ethernet/altera/altera_tse_main.c      |  2 +-
+ drivers/net/ethernet/arc/emac_main.c               |  2 +-
+ drivers/net/ethernet/aurora/nb8800.c               |  2 +-
+ drivers/net/ethernet/broadcom/bcmsysport.c         |  2 +-
+ drivers/net/ethernet/broadcom/bgmac-bcma.c         |  2 +-
+ drivers/net/ethernet/broadcom/bgmac-platform.c     |  2 +-
+ drivers/net/ethernet/broadcom/genet/bcmgenet.c     |  2 +-
+ drivers/net/ethernet/cadence/macb_main.c           | 12 ++--
+ drivers/net/ethernet/cavium/octeon/octeon_mgmt.c   |  2 +-
+ drivers/net/ethernet/cavium/thunder/thunder_bgx.c  |  2 +-
+ drivers/net/ethernet/davicom/dm9000.c              |  2 +-
+ drivers/net/ethernet/ethoc.c                       |  2 +-
+ drivers/net/ethernet/ezchip/nps_enet.c             |  2 +-
+ drivers/net/ethernet/freescale/fec_main.c          |  2 +-
+ drivers/net/ethernet/freescale/fec_mpc52xx.c       |  2 +-
+ drivers/net/ethernet/freescale/fman/mac.c          |  2 +-
+ .../net/ethernet/freescale/fs_enet/fs_enet-main.c  |  2 +-
+ drivers/net/ethernet/freescale/gianfar.c           |  2 +-
+ drivers/net/ethernet/freescale/ucc_geth.c          |  2 +-
+ drivers/net/ethernet/hisilicon/hisi_femac.c        |  2 +-
+ drivers/net/ethernet/hisilicon/hix5hd2_gmac.c      |  2 +-
+ drivers/net/ethernet/lantiq_xrx200.c               |  2 +-
+ drivers/net/ethernet/marvell/mv643xx_eth.c         |  2 +-
+ drivers/net/ethernet/marvell/mvneta.c              |  2 +-
+ drivers/net/ethernet/marvell/pxa168_eth.c          |  2 +-
+ drivers/net/ethernet/marvell/sky2.c                |  2 +-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c        |  2 +-
+ drivers/net/ethernet/micrel/ks8851.c               |  2 +-
+ drivers/net/ethernet/micrel/ks8851_mll.c           |  2 +-
+ drivers/net/ethernet/microchip/enc28j60.c          |  2 +-
+ drivers/net/ethernet/nxp/lpc_eth.c                 |  2 +-
+ drivers/net/ethernet/qualcomm/qca_spi.c            |  2 +-
+ drivers/net/ethernet/qualcomm/qca_uart.c           |  2 +-
+ drivers/net/ethernet/renesas/ravb_main.c           |  2 +-
+ drivers/net/ethernet/renesas/sh_eth.c              |  2 +-
+ .../net/ethernet/samsung/sxgbe/sxgbe_platform.c    |  2 +-
+ drivers/net/ethernet/socionext/sni_ave.c           |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  |  2 +-
+ drivers/net/ethernet/ti/cpsw.c                     |  2 +-
+ drivers/net/ethernet/ti/davinci_emac.c             | 16 ++----
+ drivers/net/ethernet/ti/netcp_core.c               |  2 +-
+ drivers/net/ethernet/wiznet/w5100.c                |  2 +-
+ drivers/net/ethernet/xilinx/ll_temac_main.c        |  2 +-
+ drivers/net/ethernet/xilinx/xilinx_axienet_main.c  |  2 +-
+ drivers/net/ethernet/xilinx/xilinx_emaclite.c      |  2 +-
+ drivers/net/usb/smsc75xx.c                         |  2 +-
+ drivers/net/usb/smsc95xx.c                         |  2 +-
+ drivers/net/wireless/ath/ath9k/init.c              |  2 +-
+ drivers/net/wireless/mediatek/mt76/eeprom.c        |  2 +-
+ drivers/net/wireless/ralink/rt2x00/rt2x00dev.c     |  2 +-
+ drivers/of/of_net.c                                | 65 +++++++++++++++++++++-
+ drivers/staging/octeon/ethernet.c                  |  2 +-
+ net/ethernet/eth.c                                 |  2 +-
+ 78 files changed, 186 insertions(+), 116 deletions(-)
+
 -- 
-2.17.1
+1.9.1
 
