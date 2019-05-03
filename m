@@ -2,191 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6763412C29
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 296AC12C43
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:23:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727640AbfECLT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 07:19:28 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:35626 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726396AbfECLT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:19:28 -0400
-Received: by mail-wr1-f68.google.com with SMTP id h15so1689209wrb.2;
-        Fri, 03 May 2019 04:19:26 -0700 (PDT)
+        id S1726887AbfECLXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 07:23:25 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:41600 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726372AbfECLXZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:23:25 -0400
+Received: by mail-lf1-f66.google.com with SMTP id d8so4141729lfb.8
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 04:23:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=kznYLKi373KSnxJXDEYDyqZTWv2DWOlCYoAQA1dKIN4=;
-        b=FU+THmY/gcswXh6kfdRTql4G69DBYAoMINIRi9/isJM3rQT42NHCyGWxBOFB7XPOil
-         PQQA3NgsBdaDERC8fw/2t1Q40vBV8SsxjOW47eKwhfCG4G0DyOnpmC3jDKyiHMUFTWPl
-         y/RS+rURUlziaMzPVf+478gxzmAy7/Y0+tu79je1cyE5DYC2TaGJsI1HlgWf7ur01Srr
-         tb4TcHZJygypX5g8GHCiUWlq2CVxcgq2grDLC6HPFlauh1pWCjoZTMlrP1UCa9qgO9l8
-         yP3ZShn4FRYzvpUu3WwVThp5XbXBDiNRBUzyoH9KOnu4CQlBO3PZm0Z6vHl/0scv0Gu0
-         E3yQ==
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FcmHPfvEkgCRhs8MwoURUl12UTs7GZp3rUDQq2z45EE=;
+        b=aXCH1J6xY+/I0fRBC5l2TkylR8ncaSqF0iH9iRdZifa30uW4FbL+VAmirt/NHu6BQq
+         d527HighZnr4tXz0jSTC3xXYTXIB6vN0ud+aUEW1qqrVJqLzUgYMqaL4/uJdMBZggtKw
+         4sdy6zGXHwMMGB1hA7qBBtJUeo7AfS8X8g/hg+L2RpKPHRMfehAoUYU0BbRd6usYRO9A
+         fqKrjy//b+ku/HRJc2ZWXQSCmc6QEpl89ATotIsRO7rUK+V8fuH5f4n76TcLPkJL/lcW
+         igcFDxUCnBLDYfE0uTd2ZJ2q0ZEnpUvSvQw9Q+syZhIjM4NQQ8/avuy7eKts80CRI9Ni
+         M5ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=kznYLKi373KSnxJXDEYDyqZTWv2DWOlCYoAQA1dKIN4=;
-        b=ecHXq0JTUU7zm45K9MqCpAlNFdBzY8EMUjb23GFLKfc1E1ZFRX5Pq+sfHPnqHox1FW
-         pC+vNRHAUDQAzTKPbvn9deJUM6QsT9rpmm42YI0yG1DhzOfBwopMOHlmuJhjT2nPL7z8
-         u1bt35B5ZUgyhH8mpxP1c3f2HPAos2aQ3B2erX5A02/r8Zz1x7rwtPa17QGehApSPnlR
-         aRKjpUh1IhmPSEbUrMtfKS1D/ndpth3nkfhsWds9OrUIE3Zblf46qV2nI0x+lMSO948s
-         oQsDi+ZuowmwMqJ4nbZ3aOXAvuGxs7BqxXm0wjhMwPy2RKq8jlLnEHC63YHK8sopCoCO
-         lmsg==
-X-Gm-Message-State: APjAAAX/0YkJNdKrbx+04VgGro15yHJ0dyDlLtFRiRtgd8zh1LyjLW20
-        MMDnlSCUacIwECpXYVZ5zZk=
-X-Google-Smtp-Source: APXvYqxFMF7YNkHtXxqIFuqEy8MLdwT3LvZrCohDAJJRUH1Z2se9pof/X+KXX22J76siKQpKpsS8QQ==
-X-Received: by 2002:a5d:52ce:: with SMTP id r14mr6909008wrv.224.1556882365330;
-        Fri, 03 May 2019 04:19:25 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id s7sm1895613wrn.84.2019.05.03.04.19.24
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 03 May 2019 04:19:24 -0700 (PDT)
-Date:   Fri, 3 May 2019 13:19:23 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V5 10/16] dt-bindings: PCI: tegra: Add device tree
- support for T194
-Message-ID: <20190503111923.GE32400@ulmo>
-References: <20190424052004.6270-1-vidyas@nvidia.com>
- <20190424052004.6270-11-vidyas@nvidia.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FcmHPfvEkgCRhs8MwoURUl12UTs7GZp3rUDQq2z45EE=;
+        b=Cp0xHMud4oyLb3nGvT5AsyUkK+Exxz2+dbupGoTNGWR5Uo7kPnzEMDx9U2Z+DGJEPF
+         hzhuxokAiHxK8Dntwz9ioOG1nR0MnoMPdDddxLhQCZ0sD2mrET5vGZ4c+dOmOlwPMwEP
+         9kkLyy+7CHVCJMgDkryrmeTwIy0PqiR3NB8TmoqlsoXzlA+PXWj/XuNY5bwCrtHCDkbV
+         OPSlGVOfyZu0qyHq/RBs4c7vxl3hfElo+xlZvPryev5dI7tuA1PsxBhKDO9dqQ3GDGJ7
+         mb7bF9JcI4dj8ivcF0mDmoM1SjAC0I6NPo2jjtIcUj0sigseAx0LAjH2+pQRkFzB/H8z
+         D9YQ==
+X-Gm-Message-State: APjAAAVzt4UP2yLS9kiyF/GkqF/alDZWIcFcsj9CH2WyJtZxC/3GS00d
+        1vb65oq4bT04Sm4W/LLBqkn9IEUm0SOCNc/g1aXi4g==
+X-Google-Smtp-Source: APXvYqyXKDOaZl5gMrFAmM7l9HtHHujY7b3HVhWKSjCAqLiTX2MO5kn5v/977JIG5Y2u0JLrhJzi0ShM6hTwtf55OsY=
+X-Received: by 2002:a19:f001:: with SMTP id p1mr5110685lfc.27.1556882603201;
+ Fri, 03 May 2019 04:23:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gMR3gsNFwZpnI/Ts"
-Content-Disposition: inline
-In-Reply-To: <20190424052004.6270-11-vidyas@nvidia.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <1556793293-21019-1-git-send-email-yash.shah@sifive.com>
+ <1556793293-21019-3-git-send-email-yash.shah@sifive.com> <a92e356d-aadc-2c4f-8b23-3d732e7aa58a@ti.com>
+In-Reply-To: <a92e356d-aadc-2c4f-8b23-3d732e7aa58a@ti.com>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Fri, 3 May 2019 16:52:46 +0530
+Message-ID: <CAJ2_jOEBDyG_7THdbGzny3gAmijGSQGV7eUO8MBwQaTgqKdN5g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller
+ driver for SiFive SoCs
+To:     "Andrew F. Davis" <afd@ti.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 2, 2019 at 7:07 PM Andrew F. Davis <afd@ti.com> wrote:
+>
+> On 5/2/19 6:34 AM, Yash Shah wrote:
+> > The driver currently supports only SiFive FU540-C000 platform.
+> >
+> > The initial version of L2 cache controller driver includes:
+> > - Initial configuration reporting at boot up.
+> > - Support for ECC related functionality.
+> >
+> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > ---
+> >  arch/riscv/mm/Makefile          |   1 +
+> >  arch/riscv/mm/sifive_l2_cache.c | 221 ++++++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 222 insertions(+)
+> >  create mode 100644 arch/riscv/mm/sifive_l2_cache.c
+> >
+> > diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+> > index eb22ab4..1523ee5 100644
+> > --- a/arch/riscv/mm/Makefile
+> > +++ b/arch/riscv/mm/Makefile
+> > @@ -3,3 +3,4 @@ obj-y += fault.o
+> >  obj-y += extable.o
+> >  obj-y += ioremap.o
+> >  obj-y += cacheflush.o
+> > +obj-y += sifive_l2_cache.o
+> > diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
+> > new file mode 100644
+> > index 0000000..923ab34
+> > --- /dev/null
+> > +++ b/arch/riscv/mm/sifive_l2_cache.c
+> > @@ -0,0 +1,221 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * SiFive L2 cache controller Driver
+> > + *
+> > + * Copyright (C) 2018-2019 SiFive, Inc.
+> > + *
+> > + */
 
---gMR3gsNFwZpnI/Ts
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Wed, Apr 24, 2019 at 10:49:58AM +0530, Vidya Sagar wrote:
-> Add support for Tegra194 PCIe controllers. These controllers are based
-> on Synopsys DesignWare core IP.
->=20
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> Changes since [v4]:
-> * None
->=20
-> Changes since [v3]:
-> * None
->=20
-> Changes since [v2]:
-> * Using only 'Cx' (x-being controller number) format to represent a contr=
-oller
-> * Changed to 'value: description' format where applicable
-> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
-> * Provided more documentation for 'nvidia,init-link-speed' property
-> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
->=20
-> Changes since [v1]:
-> * Added documentation for 'power-domains' property
-> * Removed 'window1' and 'window2' properties
-> * Removed '_clk' and '_rst' from clock and reset names
-> * Dropped 'pcie' from phy-names
-> * Added entry for BPMP-FW handle
-> * Removed offsets for some of the registers and added them in code and wo=
-uld be pickedup based on
->   controller ID
-> * Changed 'nvidia,max-speed' to 'max-link-speed' and is made as an option=
-al
-> * Changed 'nvidia,disable-clock-request' to 'supports-clkreq' with invert=
-ed operation
-> * Added more documentation for 'nvidia,update-fc-fixup' property
-> * Removed 'nvidia,enable-power-down' and 'nvidia,plat-gpios' properties
-> * Added '-us' to all properties that represent time in microseconds
-> * Moved P2U documentation to a separate file
->=20
->  .../bindings/pci/nvidia,tegra194-pcie.txt     | 187 ++++++++++++++++++
->  1 file changed, 187 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194=
--pcie.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.t=
-xt b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> new file mode 100644
-> index 000000000000..208dff126108
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> @@ -0,0 +1,187 @@
-> +NVIDIA Tegra PCIe controller (Synopsys DesignWare Core based)
-> +
-> +This PCIe host controller is based on the Synopsis Designware PCIe IP
-> +and thus inherits all the common properties defined in designware-pcie.t=
-xt.
-> +
-> +Required properties:
-> +- compatible: For Tegra19x, must contain "nvidia,tegra194-pcie".
-> +- device_type: Must be "pci"
-> +- power-domains: A phandle to the node that controls power to the respec=
-tive
-> +  PCIe controller and a specifier name for the PCIe controller. Followin=
-g are
-> +  the specifiers for the different PCIe controllers
-> +    TEGRA194_POWER_DOMAIN_PCIEX8B: C0
-> +    TEGRA194_POWER_DOMAIN_PCIEX1A: C1
-> +    TEGRA194_POWER_DOMAIN_PCIEX1A: C2
-> +    TEGRA194_POWER_DOMAIN_PCIEX1A: C3
-> +    TEGRA194_POWER_DOMAIN_PCIEX4A: C4
-> +    TEGRA194_POWER_DOMAIN_PCIEX8A: C5
-> +  these specifiers are defined in
-> +  "include/dt-bindings/power/tegra194-powergate.h" file.
-> +- reg: A list of physical base address and length for each set of contro=
-ller
+> > +static unsigned int l2_datfail_count(void)
+> > +{
+> > +     return readl(l2_base + SIFIVE_L2_DATECCFAIL_COUNT);
+> > +}
+>
+> Do you really need all these single line functions? Below in several
+> spots you use the readl directly, just do that everywhere.
 
-Perhaps "list of physical base address and length pairs".
+Ok. Will remove these single line functions.
+Thanks for your comments.
 
-> +  registers. Must contain an entry for each entry in the reg-names prope=
-rty.
-> +- reg-names: Must include the following entries:
-> +  "appl": Controller's application logic registers
-> +  "config": As per the definition in designware-pcie.txt
-> +  "atu_dma": iATU and DMA registers. This is where the iATU (internal Ad=
-dress
-> +             Translation Unit) registers of the PCIe core are made avail=
-able
-> +             fow SW access.
+- Yash
 
-s/fow/for/
-
-Thierry
-
---gMR3gsNFwZpnI/Ts
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzMI7sACgkQ3SOs138+
-s6EIIQ/+JneyIE1QInUy25Ht9TxH6uK1NfNwHzcE3w7WQOHSFZ6cCm60usW9tX7y
-5bVqKGD/Qk/van6DX4OJbVWqUXSU4kKpCvL6e9ImuJn50qtt+SZCvzn2ITB1RrMY
-cx9g/qtQjrRgv9lnezcEBGFGFk0Mr828WkPfzZSIIT2xqJ7Hn+Irp5gvU+6LoDhv
-7J3FiCWf08MsSP/GmoTROtgkEl72UkltbhPUNb+YtL/AZd858eXm7ao/zP3mUIO2
-f67wTlzzqC1kYJYLERm4DOVlrpPehlz+fp+4QXbKsBovY4qkkRJCW4FM9F9d7Qe9
-z5wGlqk7SRZQPNDAVGhZ4XWRjpyiMss72Mqv4FjHU+FQiuney9b/NVu60XtJ0JqA
-LMo+JVI8w+5Pqq/n5+5mN9aM/dmmumTyaPZiQ/AASYX7iU8dXe6aKIcgZo+a10LW
-X4fezVQ/BlzdHQ72ADFg66g1UkONCAYFaLemAf60OYJQQPKLTy4dAaemtleMoLsF
-hbKQng3PJSkG8L33JiMlvGg4N0cIaWx+1ugkMLrjbgrx8z8qceHyc3nrGvBPUyTU
-X9srLQMC7WsiahwlWUZPqMewXYPPXFKDg1+ExlLkQi/vSt88iJcu4X+ljt693WmR
-GOIY4OkOtmYrcJZEdJLmxCjqTNMkxCRrKjSpv3OEHCigvugwYeo=
-=pPtB
------END PGP SIGNATURE-----
-
---gMR3gsNFwZpnI/Ts--
+>
+> Andrew
+>
