@@ -2,95 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0281212621
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 03:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28BD91262C
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 03:46:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726416AbfECBpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 21:45:49 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:32988 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726220AbfECBpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 21:45:49 -0400
-Received: by mail-pf1-f193.google.com with SMTP id z28so2066537pfk.0;
-        Thu, 02 May 2019 18:45:48 -0700 (PDT)
+        id S1726488AbfECBq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 21:46:27 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:38458 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726220AbfECBq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 21:46:26 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 10so2056380pfo.5
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 18:46:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZI6V/3n9+pa4S0kSap/rsqYeZseF3YXwwsnTTpOXHxI=;
-        b=IzHws9INfv0Wab3PqWryc8nXLCUGl4Ak0ErN4UWGz/oa5Q3bx6Ym7vUbFg2Dqx16VW
-         oWE14P70+9bC1kEcyxNogt4I3P4HndkNs5RErp+blOBqwXOoN+sRvrDOyunNPFAxApZ5
-         GWxjJ458WsmG94/7XtkxgO5qMOVf/y0XY4UKG2ctayvfs5F5tkmBrAfFfxXWLQNmhozQ
-         FgGdqQvM57obG+wUH3nrNRoNeYxwOGWCGFCKwlnl1UPR6OSjdtuSR+1SF1yttamHwiuF
-         tHVqZdYB3J/J9HrwSMl4npzfzK/jusV2Hy+t88avqIGeQLvbQa2sXZZ+CQyhzOUMI8Al
-         H3bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=ZI6V/3n9+pa4S0kSap/rsqYeZseF3YXwwsnTTpOXHxI=;
-        b=NZgFkNN/0Dw3XAaRCr1kJHWDWC+wr4iJs4h0obwFbmOVzcYJOBCpouUA4vVzfIXrYC
-         arKrMj46McVL86VbbVSPpTyCBnbQv+jwRCIw3lQTIrLvfML4GpPEixOy3QmpbCNUe3f9
-         ZKmZjxAphEK4mh7lpPbW9JU6reT6lphY3uWhsEV8gCVPbGp+YwyGJT1v3Lciaar5sXCY
-         SvEvPRDrDUx9emY5fSIviO+fw3gaI6Z/o3sUL+q/hA44JjITu6srhvYCEfkvdeBKE+0x
-         LSVb0zKWEnQCZnvAJKoKjbLI9iX2DyGf3nVcgN5fTc6tljExV8BG3yI/kEUJsDUvFdz+
-         XqCA==
-X-Gm-Message-State: APjAAAXKHgHLPA8cZXZIkXA3XASSASKIiqTjOPWs5ldqr5tsTWTAkT3z
-        XAKNswy4KufAzA2ClZak+Gs=
-X-Google-Smtp-Source: APXvYqwLxZ+uFuQZMF4YJqc7fAzpwsWGuH9RLKcLO+fHr/MYoaYjH8+9zszylWu8LEhaolJS2L6VrQ==
-X-Received: by 2002:a63:5907:: with SMTP id n7mr7320611pgb.416.1556847948068;
-        Thu, 02 May 2019 18:45:48 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id n7sm553500pff.45.2019.05.02.18.45.45
+        bh=7IcrDcCdcuZcDXckMZ4mzmoblhXXA7yCampfX25DkOs=;
+        b=g6zo6iKSOwZQoKnPyw8M9dJ+9ZwDYu6+kz2+4DutMyIkPNxnlQ749b2Hi8wbAY4R/7
+         9hI9BL574RuQiR5dwYViN0L5jV70IVHJEf/4LZJIr//3xPWNJFchYDfrAgoDUbp+ji5q
+         ycc5IXACMBRevSHmc29TBmIq10EmLf1ST7qGo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=7IcrDcCdcuZcDXckMZ4mzmoblhXXA7yCampfX25DkOs=;
+        b=fkET8elc8/qC4Qa1OMwZDA2bcBr9VfSVhndexHcOLK1hPYtl0OJI1B9UxvIogL1VTP
+         WfKcq9YnDmk1ovxjMMuoJ5NBzJXP+dXsx/FsFe7eKNwhPnn0boTCceaXOtdXYHnLnYS2
+         e0oqV7+FSZ1xkJL9hTufE4JKKzAdLqXro1kKDYkhD1XE0f8E6/zsDheVRVZxmCms8pQz
+         TPwgn26N7X95CkKx/ifZWczhEw6EsT92y0XNALul8/pxddyD/553zpk22/sY4MqvWI9Z
+         kWqXWKqDLMA2H3kq6He4Jmk+fSqfSFZyVJDUDt8H5TTNeo9QX+yR7Hqt+t9aC7mIAfqz
+         XW6Q==
+X-Gm-Message-State: APjAAAWNDeKni0bsZ6uN7+anXXP6sIEzB7T/99NfpAtrFOfoggHUf00U
+        0rtT5jFDDbODDRccdsjVQaylVA==
+X-Google-Smtp-Source: APXvYqyRKJT1o3/DSyunuhNp7NR75CoUtaG2ZHSbgM6SoAvaQV9ddwjGdyH0snDsnZurKNugM4d3Yw==
+X-Received: by 2002:aa7:80d0:: with SMTP id a16mr7811325pfn.206.1556847985785;
+        Thu, 02 May 2019 18:46:25 -0700 (PDT)
+Received: from [10.230.28.107] ([192.19.223.250])
+        by smtp.gmail.com with ESMTPSA id 4sm546489pfd.55.2019.05.02.18.46.20
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 May 2019 18:45:47 -0700 (PDT)
-Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-13-brendanhiggins@google.com>
- <20190502110220.GD12416@kroah.com>
- <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
- <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
- <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com>
-Date:   Thu, 2 May 2019 18:45:44 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thu, 02 May 2019 18:46:24 -0700 (PDT)
+Subject: Re: [PATCH 2/3] clk: add BCM63XX gated clock controller driver
+To:     Jonas Gorski <jonas.gorski@gmail.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Kevin Cernekee <cernekee@gmail.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>
+References: <20190502122657.15577-1-jonas.gorski@gmail.com>
+ <20190502122657.15577-3-jonas.gorski@gmail.com>
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ mQENBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAG0MEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPokB
+ xAQQAQIArgUCW382iBcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFrZXktdXNh
+ Z2UtbWFza0BwZ3AuY29tjjAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2RpbmdAcGdw
+ LmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29tLmNvbQUb
+ AwAAAAMWAgEFHgEAAAAEFQgJCgAKCRCBMbXEKbxmoFYGB/9qN5VL6f/88+qtDaDhUKvwBgF8
+ koryGCH/gw6FBW5h5hwW0m6946WnsBnqKnZ8OYr8qsCgeJewCh0BEN9rIg8SC5oU7WdcmNg5
+ KTv4/V1CmBo6dQaSHA8yQoeHsrw0gQ9HK4EYjhAU60RYXxX7/LFAy0rJMLf0qGKdWW2f5EkN
+ dS5GwWOrTp477WL2g+R0khhP57qpejxlMN+Mtvin52UjbAcr1PAx8Zt2rXpFIZsXVWADpZDd
+ qIb6PZPdcP/lD1v5it4sTN7D27FgjvbvAgj/D3NmyOjIUsbN9ZDJDfgv431RsJ9LOd6ySaNr
+ yuje7L0dbiYrcOi3CN6S+zE1UJsLuQENBFPAG8EBCACsa+9aKnvtPjGAnO1mn1hHKUBxVML2
+ C3HQaDp5iT8Q8A0ab1OS4akj75P8iXYfZOMVA0Lt65taiFtiPT7pOZ/yc/5WbKhsPE9dwysr
+ vHjHL2gP4q5vZV/RJduwzx8v9KrMZsVZlKbvcvUvgZmjG9gjPSLssTFhJfa7lhUtowFof0fA
+ q3Zy+vsy5OtEe1xs5kiahdPb2DZSegXW7DFg15GFlj+VG9WSRjSUOKk+4PCDdKl8cy0LJs+r
+ W4CzBB2ARsfNGwRfAJHU4Xeki4a3gje1ISEf+TVxqqLQGWqNsZQ6SS7jjELaB/VlTbrsUEGR
+ 1XfIn/sqeskSeQwJiFLeQgj3ABEBAAGJAkEEGAECASsFAlPAG8IFGwwAAADAXSAEGQEIAAYF
+ AlPAG8EACgkQk2AGqJgvD1UNFQgAlpN5/qGxQARKeUYOkL7KYvZFl3MAnH2VeNTiGFoVzKHO
+ e7LIwmp3eZ6GYvGyoNG8cOKrIPvXDYGdzzfwxVnDSnAE92dv+H05yanSUv/2HBIZa/LhrPmV
+ hXKgD27XhQjOHRg0a7qOvSKx38skBsderAnBZazfLw9OukSnrxXqW/5pe3mBHTeUkQC8hHUD
+ Cngkn95nnLXaBAhKnRfzFqX1iGENYRH3Zgtis7ZvodzZLfWUC6nN8LDyWZmw/U9HPUaYX8qY
+ MP0n039vwh6GFZCqsFCMyOfYrZeS83vkecAwcoVh8dlHdke0rnZk/VytXtMe1u2uc9dUOr68
+ 7hA+Z0L5IQAKCRCBMbXEKbxmoLoHCACXeRGHuijOmOkbyOk7x6fkIG1OXcb46kokr2ptDLN0
+ Ky4nQrWp7XBk9ls/9j5W2apKCcTEHONK2312uMUEryWI9BlqWnawyVL1LtyxLLpwwsXVq5m5
+ sBkSqma2ldqBu2BHXZg6jntF5vzcXkqG3DCJZ2hOldFPH+czRwe2OOsiY42E/w7NUyaN6b8H
+ rw1j77+q3QXldOw/bON361EusWHdbhcRwu3WWFiY2ZslH+Xr69VtYAoMC1xtDxIvZ96ps9ZX
+ pUPJUqHJr8QSrTG1/zioQH7j/4iMJ07MMPeQNkmj4kGQOdTcsFfDhYLDdCE5dj5WeE6fYRxE
+ Q3up0ArDSP1L
+Message-ID: <c37d43a0-27ba-d4aa-cb55-3fcf349d2d16@broadcom.com>
+Date:   Thu, 2 May 2019 18:46:19 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
+In-Reply-To: <20190502122657.15577-3-jonas.gorski@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -99,113 +106,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/2/19 4:45 PM, Brendan Higgins wrote:
-> On Thu, May 2, 2019 at 2:16 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> On 5/2/19 11:07 AM, Brendan Higgins wrote:
->>> On Thu, May 2, 2019 at 4:02 AM Greg KH <gregkh@linuxfoundation.org> wrote:
->>>>
->>>> On Wed, May 01, 2019 at 04:01:21PM -0700, Brendan Higgins wrote:
->>>>> From: Felix Guo <felixguoxiuping@gmail.com>
->>>>>
->>>>> The ultimate goal is to create minimal isolated test binaries; in the
->>>>> meantime we are using UML to provide the infrastructure to run tests, so
->>>>> define an abstract way to configure and run tests that allow us to
->>>>> change the context in which tests are built without affecting the user.
->>>>> This also makes pretty and dynamic error reporting, and a lot of other
->>>>> nice features easier.
->>>>>
->>>>> kunit_config.py:
->>>>>   - parse .config and Kconfig files.
->>>>>
->>>>> kunit_kernel.py: provides helper functions to:
->>>>>   - configure the kernel using kunitconfig.
->>>>>   - build the kernel with the appropriate configuration.
->>>>>   - provide function to invoke the kernel and stream the output back.
->>>>>
->>>>> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
->>>>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
->>>>
->>>> Ah, here's probably my answer to my previous logging format question,
->>>> right?  What's the chance that these wrappers output stuff in a standard
->>>> format that test-framework-tools can already parse?  :)
-> 
-> To be clear, the test-framework-tools format we are talking about is
-> TAP13[1], correct?
-
-I'm not sure what the test community prefers for a format.  I'll let them
-jump in and debate that question.
 
 
+On 5/2/2019 5:26 AM, Jonas Gorski wrote:
+> Add a driver for the gated clock controller found on MIPS based BCM63XX
+> SoCs.
 > 
-> My understanding is that is what kselftest is being converted to use.
-> 
->>>
->>> It should be pretty easy to do. I had some patches that pack up the
->>> results into a serialized format for a presubmit service; it should be
->>> pretty straightforward to take the same logic and just change the
->>> output format.
->>
->> When examining and trying out the previous versions of the patch I found
->> the wrappers useful to provide information about how to control and use
->> the tests, but I had no interest in using the scripts as they do not
->> fit in with my personal environment and workflow.
->>
->> In the previous versions of the patch, these helper scripts are optional,
->> which is good for my use case.  If the helper scripts are required to
-> 
-> They are still optional.
-> 
->> get the data into the proper format then the scripts are not quite so
->> optional, they become the expected environment.  I think the proper
->> format should exist without the helper scripts.
-> 
-> That's a good point. A couple things,
-> 
-> First off, supporting TAP13, either in the kernel or the wrapper
-> script is not hard, but I don't think that is the real issue that you
-> raise.
-> 
-> If your only concern is that you will always be able to have human
-> readable KUnit results printed to the kernel log, that is a guarantee
-> I feel comfortable making. Beyond that, I think it is going to take a
-> long while before I would feel comfortable guaranteeing anything about
-> how will KUnit work, what kind of data it will want to expose, and how
-> it will be organized. I think the wrapper script provides a nice
-> facade that I can maintain, can mediate between the implementation
-> details and the user, and can mediate between the implementation
-> details and other pieces of software that might want to consume
-> results.
-> 
-> [1] https://testanything.org/tap-version-13-specification.html
+> Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
 
-My concern is based on a focus on my little part of the world
-(which in _previous_ versions of the patch series was the devicetree
-unittest.c tests being converted to use the kunit infrastructure).
-If I step back and think of the entire kernel globally I may end
-up with a different conclusion - but I'm going to remain myopic
-for this email.
-
-I want the test results to be usable by me and my fellow
-developers.  I prefer that the test results be easily accessible
-(current printk() implementation means that kunit messages are
-just as accessible as the current unittest.c printk() output).
-If the printk() output needs to be filtered through a script
-to generate the actual test results then that is sub-optimal
-to me.  It is one more step added to my workflow.  And
-potentially with an embedded target a major pain to get a
-data file (the kernel log file) transferred from a target
-to my development host.
-
-I want a reported test failure to be easy to trace back to the
-point in the source where the failure is reported.  With printk()
-the search is a simple grep for the failure message.  If the
-failure message has been processed by a script, and then the
-failure reported to me in an email, then I may have to look
-at the script to reverse engineer how the original failure
-message was transformed into the message that was reported
-to me in the email.  Then I search for the point in the
-source where the failure is reported.  So a basic task has
-just become more difficult and time consuming.
-
--Frank
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
