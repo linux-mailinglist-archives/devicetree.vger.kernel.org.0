@@ -2,174 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92915127FB
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 08:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD1712817
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 08:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726953AbfECGsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 02:48:43 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37946 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726939AbfECGsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 02:48:43 -0400
-Received: by mail-ot1-f67.google.com with SMTP id b1so4418076otp.5
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 23:48:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=B/vgrL6mFJjbubEtdk9xy4dCVOTfDfNigFjtHMJz6Hg=;
-        b=BWFlXcxdKPCg7HeydPM9nymqdJaKu5v0FhgYXNSsx2wC9FgZ6BWl9owIL4tp34RHzV
-         0O2CI2x3Gf2dd6TLPVl+UCJIuR6ugbJgNiJ5ahKuIYIQ+IA6TXvM7s76WSfiT5u9UOjU
-         BAmfjJWmXXmLvLfanifCHtnmcT9eQgxYIv2/nMEQ/h+Jh7SQ4Wq8KAXXS2vmQSRvUjv3
-         lY5jQIBJ2XBRYHgExTQbP6djFMEjOYOf+5XNpdQj+/aplIkBZPZ/tX1ygb8a9ZyYzeEG
-         YiV5A2XgkK4p5mdxg0WTkGqiAuXfNRl77gHQcoJRclt/bqm0TtNUGFDJL3udF8SKeGs/
-         dUEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=B/vgrL6mFJjbubEtdk9xy4dCVOTfDfNigFjtHMJz6Hg=;
-        b=iO3XOPtA524/XUql+ItS6gQUIPqQ5bFWVG377H/HctZHiK/Naw2LKY6/zi7E9rnAk4
-         SeFe0jM6T809Bl13CNmZTZEnF80CPKE5vMnS2cBNUf17yiVCbku0E/WWt0NU+xRhB5qd
-         VRYMPTjHIUOQH4XcqmsM2/6NRd85gBY870F2V37zs2qxaVuObIFAgGUeJrKmnYjbyyIz
-         tB307sjUOQAi3uFKMru+hgzVhnziuxoBmLgyewdPZ3sPkNfk7gApAxPRPk7JggLdiJYu
-         57zioBYxx6MiQ8RQXRouF8hKy7J2bqVNceMq52rn8KXIy8c44/xH1raSyEtyB7WRdJGm
-         X1sw==
-X-Gm-Message-State: APjAAAWkqff1mRjvhRXios0esYvotukkCmFg0eR/9/UlImdQdXfVsaMi
-        BfgqR5nHti2kEQJWCIPwwBKrthVgqMQigo+DVvvs5A==
-X-Google-Smtp-Source: APXvYqyPne+GcGg5xCp23Lwb83V334Sd3k9K4ces08vt/qj/xTxzgyMfUgwlwCqUT5AUGkcD/SfnjL8zKAwKDrfcpHY=
-X-Received: by 2002:a9d:5cc3:: with SMTP id r3mr5382470oti.338.1556866121691;
- Thu, 02 May 2019 23:48:41 -0700 (PDT)
+        id S1726762AbfECGya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 02:54:30 -0400
+Received: from mga17.intel.com ([192.55.52.151]:61164 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726182AbfECGya (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 May 2019 02:54:30 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 May 2019 23:54:29 -0700
+X-ExtLoop1: 1
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.198]) ([10.237.72.198])
+  by orsmga002.jf.intel.com with ESMTP; 02 May 2019 23:54:26 -0700
+Subject: Re: [PATCH v2 2/3] mmc: sdhci-esdhc-imx: add pm_qos to interact with
+ cpuidle
+To:     BOUGH CHEN <haibo.chen@nxp.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20190429090310.25484-1-haibo.chen@nxp.com>
+ <20190429090310.25484-3-haibo.chen@nxp.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <5ceb72f5-3dca-d2b4-5cd1-0d1c1d5db0ef@intel.com>
+Date:   Fri, 3 May 2019 09:53:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-9-brendanhiggins@google.com> <0a605543-477a-1854-eb35-6e586606889b@deltatee.com>
-In-Reply-To: <0a605543-477a-1854-eb35-6e586606889b@deltatee.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 2 May 2019 23:48:30 -0700
-Message-ID: <CAFd5g47hxAd=+72xbPJbWPdZCXRXmtLpsGhUh=zc7MSwfcaGJQ@mail.gmail.com>
-Subject: Re: [PATCH v2 08/17] kunit: test: add support for test abort
-To:     Logan Gunthorpe <logang@deltatee.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah@kernel.org, devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190429090310.25484-3-haibo.chen@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 8:15 PM Logan Gunthorpe <logang@deltatee.com> wrote:
->
->
->
-> On 2019-05-01 5:01 p.m., Brendan Higgins wrote:
-> > +/*
-> > + * struct kunit_try_catch - provides a generic way to run code which might fail.
-> > + * @context: used to pass user data to the try and catch functions.
-> > + *
-> > + * kunit_try_catch provides a generic, architecture independent way to execute
-> > + * an arbitrary function of type kunit_try_catch_func_t which may bail out by
-> > + * calling kunit_try_catch_throw(). If kunit_try_catch_throw() is called, @try
-> > + * is stopped at the site of invocation and @catch is catch is called.
->
-> I found some of the C++ comparisons in this series a bit distasteful but
-> wasn't going to say anything until I saw the try catch.... But looking
-> into the implementation it's just a thread that can exit early which
-> seems fine to me. Just a poor choice of name I guess...
+On 29/04/19 11:55 AM, BOUGH CHEN wrote:
+> On some SoCs such as i.MX7ULP, there is no busfreq
+> driver, but cpuidle has some levels which may disable
+> system/bus clocks, so need to add pm_qos to prevent
+> cpuidle from entering low level idles and make sure
+> system/bus clocks are enabled when usdhc is active.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 
-Guilty as charged (I have a long history with C++, sorry). Would you
-prefer I changed the name? I just figured that try-catch is a commonly
-understood pattern that describes exactly what I am doing.
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
 
->
-> [snip]
->
-> > +static void __noreturn kunit_abort(struct kunit *test)
-> > +{
-> > +     kunit_set_death_test(test, true);
-> > +
-> > +     kunit_try_catch_throw(&test->try_catch);
-> > +
-> > +     /*
-> > +      * Throw could not abort from test.
-> > +      *
-> > +      * XXX: we should never reach this line! As kunit_try_catch_throw is
-> > +      * marked __noreturn.
-> > +      */
-> > +     WARN_ONCE(true, "Throw could not abort from test!\n");
-> > +}
-> > +
-> >  int kunit_init_test(struct kunit *test, const char *name)
-> >  {
-> >       spin_lock_init(&test->lock);
-> > @@ -77,6 +103,7 @@ int kunit_init_test(struct kunit *test, const char *name)
-> >       test->name = name;
-> >       test->vprintk = kunit_vprintk;
-> >       test->fail = kunit_fail;
-> > +     test->abort = kunit_abort;
->
-> There are a number of these function pointers which seem to be pointless
-> to me as you only ever set them to one function. Just call the function
-> directly. As it is, it is an unnecessary indirection for someone reading
-> the code. If and when you have multiple implementations of the function
-> then add the pointer. Don't assume you're going to need it later on and
-> add all this maintenance burden if you never use it..
+> ---
+>  drivers/mmc/host/sdhci-esdhc-imx.c | 32 +++++++++++++++++++++++++++++-
+>  1 file changed, 31 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
+> index 8dbbc1f62b70..053e8586d557 100644
+> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
+> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/module.h>
+>  #include <linux/slab.h>
+> +#include <linux/pm_qos.h>
+>  #include <linux/mmc/host.h>
+>  #include <linux/mmc/mmc.h>
+>  #include <linux/mmc/sdio.h>
+> @@ -156,6 +157,8 @@
+>  #define ESDHC_FLAG_HS400_ES		BIT(11)
+>  /* The IP has Host Controller Interface for Command Queuing */
+>  #define ESDHC_FLAG_CQHCI		BIT(12)
+> +/* need request pmqos during low power */
+> +#define ESDHC_FLAG_PMQOS		BIT(13)
+>  
+>  struct esdhc_soc_data {
+>  	u32 flags;
+> @@ -204,6 +207,12 @@ static const struct esdhc_soc_data usdhc_imx7d_data = {
+>  			| ESDHC_FLAG_HS400,
+>  };
+>  
+> +static struct esdhc_soc_data usdhc_imx7ulp_data = {
+> +	.flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+> +			| ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_HS200
+> +			| ESDHC_FLAG_PMQOS,
+> +};
+> +
+>  static struct esdhc_soc_data usdhc_imx8qxp_data = {
+>  	.flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+>  			| ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_HS200
+> @@ -229,6 +238,7 @@ struct pltfm_imx_data {
+>  		WAIT_FOR_INT,        /* sent CMD12, waiting for response INT */
+>  	} multiblock_status;
+>  	u32 is_ddr;
+> +	struct pm_qos_request pm_qos_req;
+>  };
+>  
+>  static const struct platform_device_id imx_esdhc_devtype[] = {
+> @@ -257,6 +267,7 @@ static const struct of_device_id imx_esdhc_dt_ids[] = {
+>  	{ .compatible = "fsl,imx6q-usdhc", .data = &usdhc_imx6q_data, },
+>  	{ .compatible = "fsl,imx6ull-usdhc", .data = &usdhc_imx6ull_data, },
+>  	{ .compatible = "fsl,imx7d-usdhc", .data = &usdhc_imx7d_data, },
+> +	{ .compatible = "fsl,imx7ulp-usdhc", .data = &usdhc_imx7ulp_data, },
+>  	{ .compatible = "fsl,imx8qxp-usdhc", .data = &usdhc_imx8qxp_data, },
+>  	{ /* sentinel */ }
+>  };
+> @@ -1436,6 +1447,10 @@ static int sdhci_esdhc_imx_probe(struct platform_device *pdev)
+>  	imx_data->socdata = of_id ? of_id->data : (struct esdhc_soc_data *)
+>  						  pdev->id_entry->driver_data;
+>  
+> +	if (imx_data->socdata->flags & ESDHC_FLAG_PMQOS)
+> +		pm_qos_add_request(&imx_data->pm_qos_req,
+> +			PM_QOS_CPU_DMA_LATENCY, 0);
+> +
+>  	imx_data->clk_ipg = devm_clk_get(&pdev->dev, "ipg");
+>  	if (IS_ERR(imx_data->clk_ipg)) {
+>  		err = PTR_ERR(imx_data->clk_ipg);
+> @@ -1557,6 +1572,8 @@ static int sdhci_esdhc_imx_probe(struct platform_device *pdev)
+>  disable_per_clk:
+>  	clk_disable_unprepare(imx_data->clk_per);
+>  free_sdhci:
+> +	if (imx_data->socdata->flags & ESDHC_FLAG_PMQOS)
+> +		pm_qos_remove_request(&imx_data->pm_qos_req);
+>  	sdhci_pltfm_free(pdev);
+>  	return err;
+>  }
+> @@ -1578,6 +1595,9 @@ static int sdhci_esdhc_imx_remove(struct platform_device *pdev)
+>  	clk_disable_unprepare(imx_data->clk_ipg);
+>  	clk_disable_unprepare(imx_data->clk_ahb);
+>  
+> +	if (imx_data->socdata->flags & ESDHC_FLAG_PMQOS)
+> +		pm_qos_remove_request(&imx_data->pm_qos_req);
+> +
+>  	sdhci_pltfm_free(pdev);
+>  
+>  	return 0;
+> @@ -1649,6 +1669,9 @@ static int sdhci_esdhc_runtime_suspend(struct device *dev)
+>  	}
+>  	clk_disable_unprepare(imx_data->clk_ahb);
+>  
+> +	if (imx_data->socdata->flags & ESDHC_FLAG_PMQOS)
+> +		pm_qos_remove_request(&imx_data->pm_qos_req);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -1659,9 +1682,13 @@ static int sdhci_esdhc_runtime_resume(struct device *dev)
+>  	struct pltfm_imx_data *imx_data = sdhci_pltfm_priv(pltfm_host);
+>  	int err;
+>  
+> +	if (imx_data->socdata->flags & ESDHC_FLAG_PMQOS)
+> +		pm_qos_add_request(&imx_data->pm_qos_req,
+> +			PM_QOS_CPU_DMA_LATENCY, 0);
+> +
+>  	err = clk_prepare_enable(imx_data->clk_ahb);
+>  	if (err)
+> -		return err;
+> +		goto remove_pm_qos_request;
+>  
+>  	if (!sdhci_sdio_irq_enabled(host)) {
+>  		err = clk_prepare_enable(imx_data->clk_per);
+> @@ -1690,6 +1717,9 @@ static int sdhci_esdhc_runtime_resume(struct device *dev)
+>  		clk_disable_unprepare(imx_data->clk_per);
+>  disable_ahb_clk:
+>  	clk_disable_unprepare(imx_data->clk_ahb);
+> +remove_pm_qos_request:
+> +	if (imx_data->socdata->flags & ESDHC_FLAG_PMQOS)
+> +		pm_qos_remove_request(&imx_data->pm_qos_req);
+>  	return err;
+>  }
+>  #endif
+> 
 
-Ah, yes, Frank (and probably others) previously asked me to remove
-unnecessary method pointers; I removed all the totally unused ones. As
-for these, I don't use them in this patchset, but I use them in my
-patchsets that will follow up this one. These in particular are
-present so that they can be mocked out for testing.
-
->
-> [snip]
->
-> > +void kunit_generic_try_catch_init(struct kunit_try_catch *try_catch)
-> > +{
-> > +     try_catch->run = kunit_generic_run_try_catch;
-> > +     try_catch->throw = kunit_generic_throw;
-> > +}
->
-> Same here. There's only one implementation of try_catch and I can't
-> really see any sensible justification for another implementation. Even
-> if there is, add the indirection when the second implementation is
-> added. This isn't C++ and we don't need to make everything a "method".
-
-These methods are for a UML specific implementation in a follow up
-patchset, which is needed for some features like crash recovery, death
-tests, and removes dependence on kthreads.
-
-I know this probably sounds like premature complexity. Arguably it is
-in hindsight, but I wrote those features before I pulled out these
-interfaces (they were actually both originally in this patchset, but I
-dropped them to make this patchset easier to review). I can remove
-these methods and add them back in when I actually use them in the
-follow up patchsets if you prefer.
-
-Thanks!
