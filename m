@@ -2,274 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9919D1260C
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 03:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20A201260F
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 03:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726638AbfECB1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 21:27:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726265AbfECB1G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 May 2019 21:27:06 -0400
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 460E42087F;
-        Fri,  3 May 2019 01:27:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556846825;
-        bh=dAK2Yt3qD5zmHe8mgMxIoRaAMTlU3x5G2+ZN52E6vSA=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=2ZG9iWIOocrV7hcyVglaDnCJiz8k4RbmB3/LRyEHNma4V4IwEoNjKwD08ekcqRYdU
-         g2GcPdNXrVGy6v3DdWBSgrkFqmYHp///VcR62QeEanyeEDG2SEbQ9/zt8M12/Pj1yF
-         3Kzg8A3TvxXZgIHVppO615sf2GPaT+5qfLbHzp04=
-Subject: Re: [PATCH v2 07/17] kunit: test: add initial tests
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, richard@nod.at, rientjes@google.com,
-        rostedt@goodmis.org, wfg@linux.intel.com, skhan@linuxfoundation.org
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-8-brendanhiggins@google.com>
-From:   shuah <shuah@kernel.org>
-Message-ID: <d4934565-9b41-880e-3bbe-984224b50fac@kernel.org>
-Date:   Thu, 2 May 2019 19:27:02 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190501230126.229218-8-brendanhiggins@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1726022AbfECBd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 21:33:26 -0400
+Received: from mail-eopbgr00070.outbound.protection.outlook.com ([40.107.0.70]:45118
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725995AbfECBd0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 21:33:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9rwejN7Mf09aKc7fDLTTXWqvzXGJIsNZlQLq7GIbOk4=;
+ b=tz+kJVAGGXhCkiBp4i32c0VXTWf1Un1PlsvhA/Cbwhr2iy95p6eFJskQ6rCNNzM/FxoWgqjA+XrfYAGr0pfJwB6AJR0ndqfCYloX1QPwNbko+L4Xn9O4Lgqkg6axlDI1UuGZQWP+rktQ9WdcVvv83lwjhPSa3uFfO3CqXHqygOY=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB6580.eurprd04.prod.outlook.com (20.179.254.221) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Fri, 3 May 2019 01:33:22 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13%6]) with mapi id 15.20.1856.008; Fri, 3 May 2019
+ 01:33:22 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     "aiseng.dong@nxp.com" <aiseng.dong@nxp.com>
+CC:     Aisheng Dong <aisheng.dong@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to parse
+ clocks from device tree
+Thread-Topic: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
+ parse clocks from device tree
+Thread-Index: AQHVAVAxAhYGkgNqlUa8myNLk/IMsA==
+Date:   Fri, 3 May 2019 01:33:22 +0000
+Message-ID: <1556846746-8535-2-git-send-email-aisheng.dong@nxp.com>
+References: <1556846746-8535-1-git-send-email-aisheng.dong@nxp.com>
+In-Reply-To: <1556846746-8535-1-git-send-email-aisheng.dong@nxp.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK2PR04CA0047.apcprd04.prod.outlook.com
+ (2603:1096:202:14::15) To AM0PR04MB4211.eurprd04.prod.outlook.com
+ (2603:10a6:208:5b::30)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d56d86fb-9fd8-40fe-57ab-08d6cf675409
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6580;
+x-ms-traffictypediagnostic: AM0PR04MB6580:
+x-microsoft-antispam-prvs: <AM0PR04MB6580BCDC172ED9E35CAED4A680350@AM0PR04MB6580.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0026334A56
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(39860400002)(396003)(376002)(346002)(366004)(54534003)(199004)(189003)(478600001)(2351001)(316002)(8676002)(81156014)(305945005)(5660300002)(81166006)(53936002)(99286004)(7736002)(66446008)(36756003)(86362001)(2906002)(37006003)(66946007)(66476007)(66556008)(64756008)(73956011)(8936002)(5640700003)(66066001)(4326008)(186003)(54906003)(85306007)(76176011)(71190400001)(6486002)(256004)(14444005)(11346002)(26005)(2616005)(6506007)(2501003)(68736007)(6862004)(6636002)(25786009)(446003)(44832011)(6512007)(14454004)(102836004)(476003)(3846002)(486006)(6436002)(6116002)(50226002)(386003)(71200400001)(52116002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6580;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: KBKCiLfbvbJCQaKCkO6mtsajhZaLCHv9swQn9+ElxK3o7tBrcPDbAsDchm9iE4Yu+NrgnQp24edT/ZGffzF22QxEKtIpb/tvOzMKG60OXWOIhvFOcJGpOeTr8CqtAXwSA+TKO7WaKMuwodst1WT5Fhe01ZSI7SwYiJiMbAZ/Zt8LkucbYz1sM0UiPidSfr3h5IrZUQDuUuWx32CPxWkzGGjzwHzwVhIKVRLCUFPsmPnlq92q4t2gYYIVrXW/UcwXbQr7PcItbhCNrgQpzrIaslRda5q85/+6TzXICa74sAGKSE++F30+w6mSFMIUk/k14z3PVvx18LuutNPoROxdQQ+AucQvnt4LG2BgU8YEomwPmvMBZLIy+ADXFmtZdBATH3N+rMXvBFEeoBbiqMcoi8cSeO0JtkQXQirXPFt5noI=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d56d86fb-9fd8-40fe-57ab-08d6cf675409
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2019 01:33:22.0901
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6580
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/1/19 5:01 PM, Brendan Higgins wrote:
-> Add a test for string stream along with a simpler example.
-> 
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> ---
->   kunit/Kconfig              | 12 ++++++
->   kunit/Makefile             |  4 ++
->   kunit/example-test.c       | 88 ++++++++++++++++++++++++++++++++++++++
->   kunit/string-stream-test.c | 61 ++++++++++++++++++++++++++
->   4 files changed, 165 insertions(+)
->   create mode 100644 kunit/example-test.c
->   create mode 100644 kunit/string-stream-test.c
-> 
-> diff --git a/kunit/Kconfig b/kunit/Kconfig
-> index 64480092b2c24..5cb500355c873 100644
-> --- a/kunit/Kconfig
-> +++ b/kunit/Kconfig
-> @@ -13,4 +13,16 @@ config KUNIT
->   	  special hardware. For more information, please see
->   	  Documentation/kunit/
->   
-> +config KUNIT_TEST
-> +	bool "KUnit test for KUnit"
-> +	depends on KUNIT
-> +	help
-> +	  Enables KUnit test to test KUnit.
-> +
-
-Please add a bit more information on what this config option
-does. Why should user care to enable it?
-
-> +config KUNIT_EXAMPLE_TEST
-> +	bool "Example test for KUnit"
-> +	depends on KUNIT
-> +	help
-> +	  Enables example KUnit test to demo features of KUnit.
-> +
-
-Same here.
-
->   endmenu
-> diff --git a/kunit/Makefile b/kunit/Makefile
-> index 6ddc622ee6b1c..60a9ea6cb4697 100644
-> --- a/kunit/Makefile
-> +++ b/kunit/Makefile
-> @@ -1,3 +1,7 @@
->   obj-$(CONFIG_KUNIT) +=			test.o \
->   					string-stream.o \
->   					kunit-stream.o
-> +
-> +obj-$(CONFIG_KUNIT_TEST) +=		string-stream-test.o
-> +
-> +obj-$(CONFIG_KUNIT_EXAMPLE_TEST) +=	example-test.o
-> diff --git a/kunit/example-test.c b/kunit/example-test.c
-> new file mode 100644
-> index 0000000000000..3947dd7c8f922
-> --- /dev/null
-> +++ b/kunit/example-test.c
-> @@ -0,0 +1,88 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Example KUnit test to show how to use KUnit.
-> + *
-> + * Copyright (C) 2019, Google LLC.
-> + * Author: Brendan Higgins <brendanhiggins@google.com>
-> + */
-> +
-> +#include <kunit/test.h>
-> +
-> +/*
-> + * This is the most fundamental element of KUnit, the test case. A test case
-> + * makes a set EXPECTATIONs and ASSERTIONs about the behavior of some code; if
-> + * any expectations or assertions are not met, the test fails; otherwise, the
-> + * test passes.
-> + *
-> + * In KUnit, a test case is just a function with the signature
-> + * `void (*)(struct kunit *)`. `struct kunit` is a context object that stores
-> + * information about the current test.
-> + */
-> +static void example_simple_test(struct kunit *test)
-> +{
-> +	/*
-> +	 * This is an EXPECTATION; it is how KUnit tests things. When you want
-> +	 * to test a piece of code, you set some expectations about what the
-> +	 * code should do. KUnit then runs the test and verifies that the code's
-> +	 * behavior matched what was expected.
-> +	 */
-> +	KUNIT_EXPECT_EQ(test, 1 + 1, 2);
-> +}
-> +
-> +/*
-> + * This is run once before each test case, see the comment on
-> + * example_test_module for more information.
-> + */
-> +static int example_test_init(struct kunit *test)
-> +{
-> +	kunit_info(test, "initializing\n");
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Here we make a list of all the test cases we want to add to the test module
-> + * below.
-> + */
-> +static struct kunit_case example_test_cases[] = {
-> +	/*
-> +	 * This is a helper to create a test case object from a test case
-> +	 * function; its exact function is not important to understand how to
-> +	 * use KUnit, just know that this is how you associate test cases with a
-> +	 * test module.
-> +	 */
-> +	KUNIT_CASE(example_simple_test),
-> +	{},
-> +};
-> +
-> +/*
-> + * This defines a suite or grouping of tests.
-> + *
-> + * Test cases are defined as belonging to the suite by adding them to
-> + * `kunit_cases`.
-> + *
-> + * Often it is desirable to run some function which will set up things which
-> + * will be used by every test; this is accomplished with an `init` function
-> + * which runs before each test case is invoked. Similarly, an `exit` function
-> + * may be specified which runs after every test case and can be used to for
-> + * cleanup. For clarity, running tests in a test module would behave as follows:
-> + *
-> + * module.init(test);
-> + * module.test_case[0](test);
-> + * module.exit(test);
-> + * module.init(test);
-> + * module.test_case[1](test);
-> + * module.exit(test);
-> + * ...;
-> + */
-> +static struct kunit_module example_test_module = {
-> +	.name = "example",
-> +	.init = example_test_init,
-> +	.test_cases = example_test_cases,
-> +};
-> +
-> +/*
-> + * This registers the above test module telling KUnit that this is a suite of
-> + * tests that need to be run.
-> + */
-> +module_test(example_test_module);
-> diff --git a/kunit/string-stream-test.c b/kunit/string-stream-test.c
-> new file mode 100644
-> index 0000000000000..b2a98576797c9
-> --- /dev/null
-> +++ b/kunit/string-stream-test.c
-> @@ -0,0 +1,61 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * KUnit test for struct string_stream.
-> + *
-> + * Copyright (C) 2019, Google LLC.
-> + * Author: Brendan Higgins <brendanhiggins@google.com>
-> + */
-> +
-> +#include <linux/slab.h>
-> +#include <kunit/test.h>
-> +#include <kunit/string-stream.h>
-> +
-> +static void string_stream_test_get_string(struct kunit *test)
-> +{
-> +	struct string_stream *stream = new_string_stream();
-> +	char *output;
-> +
-> +	string_stream_add(stream, "Foo");
-> +	string_stream_add(stream, " %s", "bar");
-> +
-> +	output = string_stream_get_string(stream);
-> +	KUNIT_EXPECT_STREQ(test, output, "Foo bar");
-> +	kfree(output);
-> +	destroy_string_stream(stream);
-> +}
-> +
-> +static void string_stream_test_add_and_clear(struct kunit *test)
-> +{
-> +	struct string_stream *stream = new_string_stream();
-> +	char *output;
-> +	int i;
-> +
-> +	for (i = 0; i < 10; i++)
-> +		string_stream_add(stream, "A");
-> +
-> +	output = string_stream_get_string(stream);
-> +	KUNIT_EXPECT_STREQ(test, output, "AAAAAAAAAA");
-> +	KUNIT_EXPECT_EQ(test, stream->length, 10);
-> +	KUNIT_EXPECT_FALSE(test, string_stream_is_empty(stream));
-> +	kfree(output);
-> +
-> +	string_stream_clear(stream);
-> +
-> +	output = string_stream_get_string(stream);
-> +	KUNIT_EXPECT_STREQ(test, output, "");
-> +	KUNIT_EXPECT_TRUE(test, string_stream_is_empty(stream));
-> +	destroy_string_stream(stream);
-> +}
-> +
-> +static struct kunit_case string_stream_test_cases[] = {
-> +	KUNIT_CASE(string_stream_test_get_string),
-> +	KUNIT_CASE(string_stream_test_add_and_clear),
-> +	{}
-> +};
-> +
-> +static struct kunit_module string_stream_test_module = {
-> +	.name = "string-stream-test",
-> +	.test_cases = string_stream_test_cases
-> +};
-> +module_test(string_stream_test_module);
-> +
-> 
-
+VGhlcmUncyBhIGZldyBsaW1pdGF0aW9ucyBvbiB0aGUgb3JpZ2luYWwgb25lIGNlbGwgY2xvY2sg
+YmluZGluZw0KKCNjbG9jay1jZWxscyA9IDwxPikgdGhhdCB3ZSBoYXZlIHRvIGRlZmluZSBhbGwg
+Y2xvY2sgSURzIGZvciBkZXZpY2UNCnRyZWUgdG8gcmVmZXJlbmNlLiBUaGlzIG1heSBjYXVzZSB0
+cm91YmxlcyBpZiB3ZSB3YW50IHRvIHVzZSBjb21tb24NCmNsb2NrIElEcyBmb3IgbXVsdGkgcGxh
+dGZvcm1zIHN1cHBvcnQgd2hlbiB0aGUgY2xvY2sgb2YgdGhvc2UgcGxhdGZvcm1zDQphcmUgbW9z
+dGx5IHRoZSBzYW1lLg0KZS5nLiBDdXJyZW50IGNsb2NrIElEcyBuYW1lIGFyZSBkZWZpbmVkIHdp
+dGggU1MgcHJlZml4Lg0KDQpIb3dldmVyIHRoZSBkZXZpY2UgbWF5IHJlc2lkZSBpbiBkaWZmZXJl
+bnQgU1MgYWNyb3NzIENQVXMsIHRoYXQgbWVhbnMgdGhlDQpTUyBwcmVmaXggbWF5IG5vdCB2YWxp
+ZCBhbnltb3JlIGZvciBhIG5ldyBTb0MuIEZ1cnRoZXJtb3JlLCB0aGUgZGV2aWNlDQphdmFpbGFi
+aWxpdHkgb2YgdGhvc2UgY2xvY2tzIG1heSBhbHNvIHZhcnkgYSBiaXQuDQoNCkZvciBzdWNoIHNp
+dHVhdGlvbiwgV2UgZm9ybWVybHkgcGxhbm5lZCB0byBhZGQgYWxsIG5ldyBJRHMgZm9yIGVhY2gg
+U1MNCmFuZCBkeW5hbWljYWxseSBjaGVjayBhdmFpbGFiaWxpdHkgZm9yIGRpZmZlcmVudCBTb0Mg
+aW4gZHJpdmVyLiBUaGF0IGNhbg0KYmUgZG9uZSBidXQgdGhhdCBtYXkgaW52b2x2ZSBhIGxvdCBl
+ZmZvcnQgYW5kIG1heSByZXN1bHQgaW4gbW9yZSBjaGFuZ2VzDQphbmQgZHVwbGljYXRlZCBjb2Rl
+IGluIGRyaXZlciwgYWxzbyBtYWtlIGRldmljZSB0cmVlIHVwc3RyZWFtaW5nIGhhcmQgd2hpY2gN
+CmRlcGVuZHMgb24gQ2xvY2sgSURzLg0KDQpUbyByZWxpZWYgdGhpcyBzaXR1YXRpb24sIHdlIHdh
+bnQgdG8gbW92ZSB0aGUgY2xvY2sgZGVmaW5pdGlvbiBpbnRvDQpkZXZpY2UgdHJlZSB3aGljaCBj
+YW4gZnVsbHkgZGVjb3VwbGUgdGhlIGRlcGVuZGVuY3kgb2YgQ2xvY2sgSUQgZGVmaW5pdGlvbg0K
+ZnJvbSBkZXZpY2UgdHJlZS4gVGhpcyBjYW4gbWFrZSB1cyB3cml0ZSBhIGZ1bGwgZ2VuZXJpYyBj
+bG9jayBkcml2ZXINCmZvciBTQ1UgYmFzZWQgU29Dcy4gTm8gbW9yZSBmcmVxdWVudCBjaGFuZ2Vz
+IG5lZWRlZCBpbiBjbG9jayBkcml2ZXINCmFueSBtb3JlLg0KDQpJbiB0aGUgbWVhbndoaWxlLCB3
+ZSBjYW4gYWxzbyB1c2UgdGhlIGV4aXN0ZW5jZSBvZiBjbG9jayBub2RlcyBpbiBkZXZpY2UNCnRy
+ZWUgdG8gYWRkcmVzcyB0aGUgZGV2aWNlIGFuZCBjbG9jayBhdmFpbGFiaWxpdHkgZGlmZmVyZW5j
+ZXMgYWNyb3NzDQpkaWZmZXJlbnQgU29Dcy4NCg0KRm9yIFNDVSBjbG9ja3MsIG9ubHkgdHdvIHBh
+cmFtcyByZXF1aXJlZC4gVGhlIGZpcnN0IG9uZSBpcyByZXNvdXJjZSBpZA0Kd2hpY2ggaXMgZW5j
+b2RlZCBpbiByZWcgcHJvcGVydHkgYW5kIHRoZSBzZWNvbmQgaXMgY2xvY2sgdHlwZSBpbmRleA0K
+d2hpY2ggaXMgZW5jb2RlZCBpbiBnZW5lcmljIGNsb2NrLWluZGljZXMgcHJvcGVydHkgdGhleSdy
+ZSBub3QgY29udGludW91c2x5Lg0KDQpBbmQgYXMgd2UgYWxzbyB3YW50IHRvIHN1cHBvcnQgY2xv
+Y2sgc2V0IHBhcmVudCBmdW5jdGlvbiwgJ2Nsb2NrcycgcHJvcGVydHkNCmlzIGFsc28gdXNlZCB0
+byBwYXNzIGFsbCB0aGUgcG9zc2libGUgaW5wdXQgcGFyZW50cy4NCg0KQ2M6IFJvYiBIZXJyaW5n
+IDxyb2JoK2R0QGtlcm5lbC5vcmc+DQpDYzogU3RlcGhlbiBCb3lkIDxzYm95ZEBrZXJuZWwub3Jn
+Pg0KQ2M6IFNoYXduIEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz4NCkNjOiBTYXNjaGEgSGF1ZXIg
+PGtlcm5lbEBwZW5ndXRyb25peC5kZT4NCkNjOiBNaWNoYWVsIFR1cnF1ZXR0ZSA8bXR1cnF1ZXR0
+ZUBiYXlsaWJyZS5jb20+DQpDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNClNpZ25lZC1v
+ZmYtYnk6IERvbmcgQWlzaGVuZyA8YWlzaGVuZy5kb25nQG54cC5jb20+DQotLS0NCkNoYW5nZUxv
+ZzoNCnYxLT52MjoNCiAqIGNoYW5nZWQgdG8gb25lIGNlbGwgYmluZGluZyBpbnNwaXJlZCBieSBh
+cm0sc2NwaS50eHQNCiAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vYXJt
+LHNjcGkudHh0DQogICBSZXNvdXJjZSBJRCBpcyBlbmNvZGVkIGluICdyZWcnIHByb3BlcnR5Lg0K
+ICAgQ2xvY2sgdHlwZSBpcyBlbmNvZGVkIGluIGdlbmVyaWMgY2xvY2staW5kaWNlcyBwcm9wZXJ0
+eS4NCiAgIFRoZW4gd2UgZG9uJ3QgaGF2ZSB0byBzZWFyY2ggYWxsIHRoZSBEVCBub2RlcyB0byBm
+ZXRjaA0KICAgdGhvc2UgdHdvIHZhbHVlIHRvIGNvbnN0cnVjdCBjbG9ja3Mgd2hpY2ggaXMgcmVs
+YXRpdmVseQ0KICAgbG93IGVmZmljaWVuY3kuDQogKiBBZGQgcmVxdWlyZWQgcG93ZXItZG9tYWlu
+IHByb3BlcnR5IGFzIHdlbGwuDQotLS0NCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJl
+ZXNjYWxlL2ZzbCxzY3UudHh0ICB8IDQ1ICsrKysrKysrKysrKysrKysrKy0tLS0NCiBpbmNsdWRl
+L2R0LWJpbmRpbmdzL2Zpcm13YXJlL2lteC9yc3JjLmggICAgICAgICAgICB8IDE3ICsrKysrKysr
+DQogMiBmaWxlcyBjaGFuZ2VkLCA1NCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQ0KDQpk
+aWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2Nh
+bGUvZnNsLHNjdS50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2Zy
+ZWVzY2FsZS9mc2wsc2N1LnR4dA0KaW5kZXggNWQ3ZGJhYi4uMmY0NmU4OSAxMDA2NDQNCi0tLSBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxlL2ZzbCxzY3Uu
+dHh0DQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZyZWVzY2Fs
+ZS9mc2wsc2N1LnR4dA0KQEAgLTg5LDYgKzg5LDI3IEBAIFJlcXVpcmVkIHByb3BlcnRpZXM6DQog
+CQkJICAiZnNsLGlteDhxbS1jbG9jayINCiAJCQkgICJmc2wsaW14OHF4cC1jbG9jayINCiAJCQlm
+b2xsb3dlZCBieSAiZnNsLHNjdS1jbGsiDQorLSAjYWRkcmVzcy1jZWxsczoJU2hvdWxkIGJlIDEu
+DQorLSAjc2l6ZS1jZWxsczoJCVNob3VsZCBiZSAwLg0KKw0KK1N1YiBub2RlcyBhcmUgcmVxdWly
+ZWQgdG8gcmVwcmVzZW50IGFsbCBhdmFpbGFibGUgU0NVIGNsb2NrcyB3aXRoaW4gdGhpcw0KK2hh
+cmR3YXJlIHN1YnN5c3RlbSBhbmQgdGhlIGZvbGxvd2luZyBwcm9wZXJ0aWVzIGFyZSBuZWVkZWQ6
+DQorDQorLSByZWc6CQkJU2hvdWxkIGNvbnRhaW4gdGhlIFJlc291cmNlIElEIG9mIHRoaXMgU0NV
+IGNsb2NrLg0KKy0gI2Nsb2NrLWNlbGxzOgkJU2hvdWxkIGJlIDEuDQorLSBjbG9jay1pbmRpY2Vz
+OglJbmRleCBvZiBhbGwgY2xvY2sgdHlwZXMgc3VwcG9ydGVkIGJ5IHRoaXMgU0NVIGNsb2NrLg0K
+KwkJCVRoZSBvcmRlciBzaG91bGQgbWF0Y2ggdGhlIGNsb2NrLW91dHB1dC1uYW1lcyBhcnJheS4N
+CisJCQlSZWZlciB0byA8aW5jbHVkZS9kdC1iaW5kaW5ncy9maXJtd2FyZS9pbXgvcnNyYy5oPiBm
+b3INCisJCQlhdmFpbGFibGUgY2xvY2sgdHlwZXMgc3VwcG9ydGVkIGJ5IFNDVS4NCistIGNsb2Nr
+LW91dHB1dC1uYW1lczoJU2hhbGwgYmUgdGhlIGNvcnJlc3BvbmRpbmcgbmFtZXMgb2YgdGhlIG91
+dHB1dHMuDQorLSBwb3dlci1kb21haW5zOglTaG91bGQgY29udGFpbiB0aGUgcG93ZXIgZG9tYWlu
+IHVzZWQgYnkgdGhpcyBTQ1UgY2xvY2suDQorDQorT3B0aW9uYWwgcHJvcGVydGllczoNCistIGNs
+b2NrczoJCVNoYWxsIGJlIHRoZSBpbnB1dCBwYXJlbnQgY2xvY2socykgcGhhbmRsZSBmb3IgdGhl
+IGNsb2NrLg0KKwkJCUZvciBtdWx0aXBsZXhlZCBjbG9ja3MsIHRoZSBsaXN0IG9yZGVyIG11c3Qg
+bWF0Y2ggdGhlIGhhcmR3YXJlDQorCQkJcHJvZ3JhbW1pbmcgb3JkZXIuDQorDQorTGVnYWN5IENs
+b2NrIGJpbmRpbmcgKE5vIHN1Yi1ub2RlcyB3aGljaCBpcyBERVBSRUNBVEVEKToNCiAtICNjbG9j
+ay1jZWxsczoJCVNob3VsZCBiZSAxLiBDb250YWlucyB0aGUgQ2xvY2sgSUQgdmFsdWUuDQogLSBj
+bG9ja3M6CQlMaXN0IG9mIGNsb2NrIHNwZWNpZmllcnMsIG11c3QgY29udGFpbiBhbiBlbnRyeSBm
+b3INCiAJCQllYWNoIHJlcXVpcmVkIGVudHJ5IGluIGNsb2NrLW5hbWVzDQpAQCAtMTQ0LDYgKzE2
+NSwyMSBAQCBsc2lvX211MTogbWFpbGJveEA1ZDFjMDAwMCB7DQogCSNtYm94LWNlbGxzID0gPDI+
+Ow0KIH07DQogDQorY29ubi1zY3UtY2xvY2stY29udHJvbGxlciB7DQorCWNvbXBhdGlibGUgPSAi
+ZnNsLGlteDhxeHAtY2xrIiwgImZzbCxzY3UtY2xrIjsNCisJI2FkZHJlc3MtY2VsbHMgPSA8MT47
+DQorCSNzaXplLWNlbGxzID0gPDA+Ow0KKw0KKwl1YXJ0MF9jbGs6IGNsb2NrLXNjdUA1NyB7DQor
+CQlyZWcgPSA8NTc+Ow0KKwkJI2Nsb2NrLWNlbGxzID0gPDE+Ow0KKwkJY2xvY2staW5kaWNlcyA9
+IDxJTVhfU0NfUE1fQ0xLX1BFUj47DQorCQljbG9jay1vdXRwdXQtbmFtZXMgPSAidWFydDBfY2xr
+IjsNCisJCXBvd2VyLWRvbWFpbnMgPSA8JnBkIElNWF9TQ19SX1VBUlRfMD47DQorCX07DQorCS4u
+Lg0KK30NCisNCiBmaXJtd2FyZSB7DQogCXNjdSB7DQogCQljb21wYXRpYmxlID0gImZzbCxpbXgt
+c2N1IjsNCkBAIC0xNjAsMTEgKzE5Niw2IEBAIGZpcm13YXJlIHsNCiAJCQkgICZsc2lvX211MSAx
+IDMNCiAJCQkgICZsc2lvX211MSAzIDM+Ow0KIA0KLQkJY2xrOiBjbGsgew0KLQkJCWNvbXBhdGli
+bGUgPSAiZnNsLGlteDhxeHAtY2xrIiwgImZzbCxzY3UtY2xrIjsNCi0JCQkjY2xvY2stY2VsbHMg
+PSA8MT47DQotCQl9Ow0KLQ0KIAkJaW9tdXhjIHsNCiAJCQljb21wYXRpYmxlID0gImZzbCxpbXg4
+cXhwLWlvbXV4YyI7DQogDQpAQCAtMTkyLDggKzIyMyw2IEBAIHNlcmlhbEA1YTA2MDAwMCB7DQog
+CS4uLg0KIAlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KIAlwaW5jdHJsLTAgPSA8JnBpbmN0
+cmxfbHB1YXJ0MD47DQotCWNsb2NrcyA9IDwmY2xrIElNWDhRWFBfVUFSVDBfQ0xLPiwNCi0JCSA8
+JmNsayBJTVg4UVhQX1VBUlQwX0lQR19DTEs+Ow0KLQljbG9jay1uYW1lcyA9ICJwZXIiLCAiaXBn
+IjsNCisJY2xvY2tzID0gPCZ1YXJ0MF9jbGsgSU1YX1NDX1BNX0NMS19QRVI+Ow0KIAlwb3dlci1k
+b21haW5zID0gPCZwZCBJTVhfU0NfUl9VQVJUXzA+Ow0KIH07DQpkaWZmIC0tZ2l0IGEvaW5jbHVk
+ZS9kdC1iaW5kaW5ncy9maXJtd2FyZS9pbXgvcnNyYy5oIGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9m
+aXJtd2FyZS9pbXgvcnNyYy5oDQppbmRleCA0ZTYxZjY0Li5mYmVhY2E3IDEwMDY0NA0KLS0tIGEv
+aW5jbHVkZS9kdC1iaW5kaW5ncy9maXJtd2FyZS9pbXgvcnNyYy5oDQorKysgYi9pbmNsdWRlL2R0
+LWJpbmRpbmdzL2Zpcm13YXJlL2lteC9yc3JjLmgNCkBAIC01NDcsNCArNTQ3LDIxIEBADQogI2Rl
+ZmluZSBJTVhfU0NfUl9BVFRFU1RBVElPTgkJNTQ1DQogI2RlZmluZSBJTVhfU0NfUl9MQVNUCQkJ
+NTQ2DQogDQorLyoNCisgKiBEZWZpbmVzIGZvciBTQyBQTSBDTEsNCisgKi8NCisjZGVmaW5lIElN
+WF9TQ19QTV9DTEtfU0xWX0JVUwkJMAkvKiBTbGF2ZSBidXMgY2xvY2sgKi8NCisjZGVmaW5lIElN
+WF9TQ19QTV9DTEtfTVNUX0JVUwkJMQkvKiBNYXN0ZXIgYnVzIGNsb2NrICovDQorI2RlZmluZSBJ
+TVhfU0NfUE1fQ0xLX1BFUgkJMgkvKiBQZXJpcGhlcmFsIGNsb2NrICovDQorI2RlZmluZSBJTVhf
+U0NfUE1fQ0xLX1BIWQkJMwkvKiBQaHkgY2xvY2sgKi8NCisjZGVmaW5lIElNWF9TQ19QTV9DTEtf
+TUlTQwkJNAkvKiBNaXNjIGNsb2NrICovDQorI2RlZmluZSBJTVhfU0NfUE1fQ0xLX01JU0MwCQkw
+CS8qIE1pc2MgMCBjbG9jayAqLw0KKyNkZWZpbmUgSU1YX1NDX1BNX0NMS19NSVNDMQkJMQkvKiBN
+aXNjIDEgY2xvY2sgKi8NCisjZGVmaW5lIElNWF9TQ19QTV9DTEtfTUlTQzIJCTIJLyogTWlzYyAy
+IGNsb2NrICovDQorI2RlZmluZSBJTVhfU0NfUE1fQ0xLX01JU0MzCQkzCS8qIE1pc2MgMyBjbG9j
+ayAqLw0KKyNkZWZpbmUgSU1YX1NDX1BNX0NMS19NSVNDNAkJNAkvKiBNaXNjIDQgY2xvY2sgKi8N
+CisjZGVmaW5lIElNWF9TQ19QTV9DTEtfQ1BVCQkyCS8qIENQVSBjbG9jayAqLw0KKyNkZWZpbmUg
+SU1YX1NDX1BNX0NMS19QTEwJCTQJLyogUExMICovDQorI2RlZmluZSBJTVhfU0NfUE1fQ0xLX0JZ
+UEFTUwkJNAkvKiBCeXBhc3MgY2xvY2sgKi8NCisNCiAjZW5kaWYgLyogX19EVF9CSU5ESU5HU19S
+U0NSQ19JTVhfSCAqLw0KLS0gDQoyLjcuNA0KDQo=
