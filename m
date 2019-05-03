@@ -2,120 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 296AC12C43
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A58C12C52
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726887AbfECLXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 07:23:25 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:41600 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726372AbfECLXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:23:25 -0400
-Received: by mail-lf1-f66.google.com with SMTP id d8so4141729lfb.8
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 04:23:24 -0700 (PDT)
+        id S1726997AbfECL0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 07:26:42 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:44586 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726468AbfECL0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:26:42 -0400
+Received: by mail-wr1-f65.google.com with SMTP id c5so7392070wrs.11;
+        Fri, 03 May 2019 04:26:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FcmHPfvEkgCRhs8MwoURUl12UTs7GZp3rUDQq2z45EE=;
-        b=aXCH1J6xY+/I0fRBC5l2TkylR8ncaSqF0iH9iRdZifa30uW4FbL+VAmirt/NHu6BQq
-         d527HighZnr4tXz0jSTC3xXYTXIB6vN0ud+aUEW1qqrVJqLzUgYMqaL4/uJdMBZggtKw
-         4sdy6zGXHwMMGB1hA7qBBtJUeo7AfS8X8g/hg+L2RpKPHRMfehAoUYU0BbRd6usYRO9A
-         fqKrjy//b+ku/HRJc2ZWXQSCmc6QEpl89ATotIsRO7rUK+V8fuH5f4n76TcLPkJL/lcW
-         igcFDxUCnBLDYfE0uTd2ZJ2q0ZEnpUvSvQw9Q+syZhIjM4NQQ8/avuy7eKts80CRI9Ni
-         M5ow==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=j9Bj+Dr7WyGv/rMCkmt5BFQpG8uQuF0RuguMoXtRvS0=;
+        b=KhcmV8O0dVPoB8tdfI0z+kSjdn0vdYUoQOtCSIuzIFMc9Aa4HDUEnrmw8ciYUvNEJy
+         cvtUtn9J7f0xcQIm9oTTSb1CPbKpiYTi63Up+RBnqOLRJEy3mB75iZM3JjDoGR8dg2in
+         MMdZCcNPKdneA1jqG0wBS25E0In2g/NgyNJcxSAzkGzuQF/bnPJ9sYywS8i0ErLThyoP
+         q8Z9/bTw4J4LJDR1aGodbcw9SXlS+YrsYzComoXB45V24RjcJN6pzGoMIUd3Kf/g0kFo
+         JBhZoShu8+BzKxJtAFo+zvIyY5YFvWbaE2SwEA+I/0YifEKenih8ayBtbD5eUv1s6Eoo
+         Mmuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FcmHPfvEkgCRhs8MwoURUl12UTs7GZp3rUDQq2z45EE=;
-        b=Cp0xHMud4oyLb3nGvT5AsyUkK+Exxz2+dbupGoTNGWR5Uo7kPnzEMDx9U2Z+DGJEPF
-         hzhuxokAiHxK8Dntwz9ioOG1nR0MnoMPdDddxLhQCZ0sD2mrET5vGZ4c+dOmOlwPMwEP
-         9kkLyy+7CHVCJMgDkryrmeTwIy0PqiR3NB8TmoqlsoXzlA+PXWj/XuNY5bwCrtHCDkbV
-         OPSlGVOfyZu0qyHq/RBs4c7vxl3hfElo+xlZvPryev5dI7tuA1PsxBhKDO9dqQ3GDGJ7
-         mb7bF9JcI4dj8ivcF0mDmoM1SjAC0I6NPo2jjtIcUj0sigseAx0LAjH2+pQRkFzB/H8z
-         D9YQ==
-X-Gm-Message-State: APjAAAVzt4UP2yLS9kiyF/GkqF/alDZWIcFcsj9CH2WyJtZxC/3GS00d
-        1vb65oq4bT04Sm4W/LLBqkn9IEUm0SOCNc/g1aXi4g==
-X-Google-Smtp-Source: APXvYqyXKDOaZl5gMrFAmM7l9HtHHujY7b3HVhWKSjCAqLiTX2MO5kn5v/977JIG5Y2u0JLrhJzi0ShM6hTwtf55OsY=
-X-Received: by 2002:a19:f001:: with SMTP id p1mr5110685lfc.27.1556882603201;
- Fri, 03 May 2019 04:23:23 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=j9Bj+Dr7WyGv/rMCkmt5BFQpG8uQuF0RuguMoXtRvS0=;
+        b=dEQmtHp+toHLJ8h/5h9m1N8nJ+1FPwCUyLS7g+9h8e3QJ8PVMt3fVuteZgX1OggOFw
+         mYZProyh2bA8r856178FlOAfs//des2PNBWC0uKQ54MYlSF01SgaJFLn90LS2ItCnJ/o
+         +XbeuuWmfK5XcFWHKiKB93bEQ/Fdh0nJHhUHFEBm55nXMBzHYCjcDZWXP4DuiKtqchnG
+         NP02JsP4ZlUvOKuB0BddW790is8ZDRYD1uueB3HaJx0C0T6x+sCDF/EEOOPOzy8C5Pzx
+         icggykp/599UuMmjS2TQNxFmGzjUIG5JCTUiVwRxIeROnBdRqGUK2A6bhrVYijvZkB8g
+         pBRg==
+X-Gm-Message-State: APjAAAWlsMNSRenQd2PINlUcjEi4xcZ+rFT5P10xvtCeLhRPRf7iU2PN
+        BdM6OgzAHoRk9M4hcCLKR0S9ZRJeDns=
+X-Google-Smtp-Source: APXvYqw2hvhDgJ3VCDJcQcuW3ahQwR7R2Mg91+rWb9Y8oVcliDb9EpMX8XcPO53tP0nhm0GQTpf37g==
+X-Received: by 2002:adf:e9cb:: with SMTP id l11mr6376382wrn.114.1556882799909;
+        Fri, 03 May 2019 04:26:39 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id t27sm4332288wrb.27.2019.05.03.04.26.38
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 03 May 2019 04:26:39 -0700 (PDT)
+Date:   Fri, 3 May 2019 13:26:37 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
+        mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V5 12/16] arm64: tegra: Add P2U and PCIe controller nodes
+ to Tegra194 DT
+Message-ID: <20190503112637.GF32400@ulmo>
+References: <20190424052004.6270-1-vidyas@nvidia.com>
+ <20190424052004.6270-13-vidyas@nvidia.com>
 MIME-Version: 1.0
-References: <1556793293-21019-1-git-send-email-yash.shah@sifive.com>
- <1556793293-21019-3-git-send-email-yash.shah@sifive.com> <a92e356d-aadc-2c4f-8b23-3d732e7aa58a@ti.com>
-In-Reply-To: <a92e356d-aadc-2c4f-8b23-3d732e7aa58a@ti.com>
-From:   Yash Shah <yash.shah@sifive.com>
-Date:   Fri, 3 May 2019 16:52:46 +0530
-Message-ID: <CAJ2_jOEBDyG_7THdbGzny3gAmijGSQGV7eUO8MBwQaTgqKdN5g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller
- driver for SiFive SoCs
-To:     "Andrew F. Davis" <afd@ti.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        Sachin Ghadi <sachin.ghadi@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jkO+KyKz7TfD21mV"
+Content-Disposition: inline
+In-Reply-To: <20190424052004.6270-13-vidyas@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 7:07 PM Andrew F. Davis <afd@ti.com> wrote:
->
-> On 5/2/19 6:34 AM, Yash Shah wrote:
-> > The driver currently supports only SiFive FU540-C000 platform.
-> >
-> > The initial version of L2 cache controller driver includes:
-> > - Initial configuration reporting at boot up.
-> > - Support for ECC related functionality.
-> >
-> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> > ---
-> >  arch/riscv/mm/Makefile          |   1 +
-> >  arch/riscv/mm/sifive_l2_cache.c | 221 ++++++++++++++++++++++++++++++++++++++++
-> >  2 files changed, 222 insertions(+)
-> >  create mode 100644 arch/riscv/mm/sifive_l2_cache.c
-> >
-> > diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
-> > index eb22ab4..1523ee5 100644
-> > --- a/arch/riscv/mm/Makefile
-> > +++ b/arch/riscv/mm/Makefile
-> > @@ -3,3 +3,4 @@ obj-y += fault.o
-> >  obj-y += extable.o
-> >  obj-y += ioremap.o
-> >  obj-y += cacheflush.o
-> > +obj-y += sifive_l2_cache.o
-> > diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
-> > new file mode 100644
-> > index 0000000..923ab34
-> > --- /dev/null
-> > +++ b/arch/riscv/mm/sifive_l2_cache.c
-> > @@ -0,0 +1,221 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * SiFive L2 cache controller Driver
-> > + *
-> > + * Copyright (C) 2018-2019 SiFive, Inc.
-> > + *
-> > + */
 
-...
+--jkO+KyKz7TfD21mV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > +static unsigned int l2_datfail_count(void)
-> > +{
-> > +     return readl(l2_base + SIFIVE_L2_DATECCFAIL_COUNT);
-> > +}
->
-> Do you really need all these single line functions? Below in several
-> spots you use the readl directly, just do that everywhere.
+On Wed, Apr 24, 2019 at 10:50:00AM +0530, Vidya Sagar wrote:
+> Add P2U (PIPE to UPHY) and PCIe controller nodes to device tree.
+> The Tegra194 SoC contains six PCIe controllers and twenty P2U instances
+> grouped into two different PHY bricks namely High-Speed IO (HSIO-12 P2Us)
+> and NVIDIA High Speed (NVHS-8 P2Us) respectively.
+>=20
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> ---
+> Changes since [v4]:
+> * None
+>=20
+> Changes since [v3]:
+> * None
+>=20
+> Changes since [v2]:
+> * Included 'hsio' or 'nvhs' in P2U node's label names to reflect which br=
+ick
+>   they belong to
+> * Removed leading zeros in unit address
+>=20
+> Changes since [v1]:
+> * Flattened all P2U nodes by removing 'hsio-p2u' and 'nvhs-p2u' super nod=
+es
+> * Changed P2U nodes compatible string from 'nvidia,tegra194-phy-p2u' to '=
+nvidia,tegra194-p2u'
+> * Changed reg-name from 'base' to 'ctl'
+> * Updated all PCIe nodes according to the changes made to DT documentatio=
+n file
+>=20
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 449 +++++++++++++++++++++++
+>  1 file changed, 449 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/d=
+ts/nvidia/tegra194.dtsi
+> index c77ca211fa8f..dc433b446ff5 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+[...]
+> +	pcie@14180000 {
+[...]
+> +		ranges =3D <0x81000000 0x0 0x38100000 0x0 0x38100000 0x0 0x00100000   =
+ /* downstream I/O (1MB) */
+> +			  0xc2000000 0x18 0x00000000 0x18 0x00000000 0x3 0x40000000  /* prefe=
+tchable memory (13GB) */
+> +			  0x82000000 0x0 0x40000000 0x1B 0x40000000 0x0 0xC0000000>; /* non-p=
+refetchable memory (3GB) */
 
-Ok. Will remove these single line functions.
-Thanks for your comments.
+Please be consistent in the capitalization of hexadecimal numbers. You
+use lowercase hexdigits in one place and upprecase in others. Just stick
+to one (preferably lowercase since that's already used elsewhere in this
+file).
 
-- Yash
+> +	};
+> +
+> +	pcie@14100000 {
 
->
-> Andrew
->
+Also, entries should be sorted by unit-address, so controller 0 above
+needs to go further down.
+
+Thierry
+
+--jkO+KyKz7TfD21mV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzMJW0ACgkQ3SOs138+
+s6E+CxAAl1IP5hPwNub+ynrfDHIlvS8wnANVpXA+TBShMg1rBrA2c7ErQwRKFKrH
+nt0A/GAU1JPp+Ugy6Rvesx1f+mNpHl3ueZY9DnlY7FRjfgv39qKvFuCRAPHR2YDk
+CCgNJjCBroY3+OvmMxtK0b46pB7xtAwDXVBp0DbUGibGU+6wQ5XplqmwqQONu9YU
+tmMCy2vpr1PNzwgLGfhC7owYfz4vQVzJDWeSfUVbuf0uuhaYg9Lak5cfPJqEPPEF
+husujx86GqI+xk4zhAN/mvoMN9OoJplO7icUXCJRrB9lHOycZOA3SZwDFZm/rRmA
+q7AwE+bXW0FIX6Zel+6wAxBdpwvqc/RJmsRAe1efSh88NuTFn3AWW8Fc4K+4mOn/
+royxYh3z7Z/91PmfgoF9Ku6xtpeZVmD63lDQ+LHbTgrDb2lEjZ66Wcque1mYn4pt
+N6ko8YOVjwSEu0kVTk36j7Qyrk7VMTzuloelaaplcXY8iX0ClplKPTYH8+FbzXgQ
+W3itYlLXLNJQpfEceRZwuqWCcerLyURykmeVOih1n8PLuK0yEK8fr8GvyGP2JMvG
+hoF0m1QDdjnm1G7LvfLCBrngb6Bze4wQ+wLqn2u3ydi0m1gU5vJ0ac1oKIhMm6Si
+ntXZJ7cuJbnw4M3fkL8zHz+2HPyVZ+ZmZV/1GNX6KMKocNI8A6o=
+=IZEE
+-----END PGP SIGNATURE-----
+
+--jkO+KyKz7TfD21mV--
