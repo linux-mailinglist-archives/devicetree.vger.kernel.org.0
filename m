@@ -2,115 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F9E125B9
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 02:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1FA125C9
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 02:52:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726394AbfECAoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 May 2019 20:44:24 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:44236 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbfECAoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 May 2019 20:44:18 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t184so3158177oie.11
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 17:44:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=A2hincFuCgvv5JHuCTV0zjcSgRetC4sQsA2RxJqwbHE=;
-        b=OmqtnHqhiWeR9Oui8paJzv152rY6QABSkuQBz4HTi+7RcYfpqAMASWqQsmYpDFgDN6
-         8u4QGxIX+281+PUfSj8hi/U7tm8NJ9VAxVw6f/1fIubO5IRk2JSVgWheDKh9YqA4Wsbf
-         24sX8hJEdjs5npjlV/LbLiqkJxkPc5vfXFxPFLtHmaYVvwOT1Kl25XRCnzlFSWh2Q25H
-         cUcrTa1e6pmnoMfZEaTHDQhpE68nGq58M6J2ln/kAXPBqhupBP9xcAgry1zyiFWDMuo5
-         NRZs5NySNRdFsKgdLNe5bdoZ8f/LlUzn/ZIEd8r9DQV7aKNkXapSSaI0cJxyrsljswdm
-         UMNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A2hincFuCgvv5JHuCTV0zjcSgRetC4sQsA2RxJqwbHE=;
-        b=pnN8YTJQ+R3QLC/60qj8yw0chzjLem2d+F0SUYlz08FGSyEXZzSNJuKXQiebMHS1kz
-         9hNmvccor2+yHN1qeB+pBSGfK4XUso3bHgvWd1+W9S66A8yYgRYZuhwaHfyAccAjZAY+
-         Lw4h1WVt+pkNK9fWxI93BIhEPv71wwKUG+/RPF7q0KhsWki8UrS7WcAzMllmufm/uik2
-         35uBsn0VjFkcsFJSxJKhoH15shF7qQfvnFWAOpQIshxhgZtY3No/OA12Xp9GAwUS0Y/w
-         4CVYhI6kQWHUMN6ZpnZBMr25gIaBH+RM7e2JQT9r6D9lhS0b42/7sPXrF4Prt6lG4NVW
-         FREg==
-X-Gm-Message-State: APjAAAURv0rA9ibfsdrTC0vWAMj4mfrycEa3ERjUp7212cnr2d2JKnGO
-        kywEAXcv3LD7ajaKRigSZAORVriol+cRShnYxG/D7w==
-X-Google-Smtp-Source: APXvYqyH7XhI3a/DkRyh575w1BCN/DsRH5SQN4U4GjnrWhviWpfRz21kNlgkWO7kwhjd2fwRpqP4aZoATeVVAm4A6kc=
-X-Received: by 2002:aca:4586:: with SMTP id s128mr4131634oia.148.1556844256812;
- Thu, 02 May 2019 17:44:16 -0700 (PDT)
+        id S1726297AbfECAwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 May 2019 20:52:22 -0400
+Received: from mail-eopbgr20076.outbound.protection.outlook.com ([40.107.2.76]:49822
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726240AbfECAwV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 May 2019 20:52:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KBHPtdW70JPi+vsXxciAWn0+D/PcRDhCVzWhQ/Bm7lA=;
+ b=Ul+9Usipgq4C9zqw4cIBQA/n80PS1B1iSLUeXlRYozsNjcf8eFH4CvqjYWff5WrBB37fj5mpvWwVhzxeosc8tVDNIlCvYoXsr+EVEwQgW6P9oLPWLcwiB04x8zNkH4RcDAqx2C5T5ef8+ghiGevJ151jIxY6UFurEzuyJqDgmak=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB5026.eurprd04.prod.outlook.com (20.177.40.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1835.16; Fri, 3 May 2019 00:52:17 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13%6]) with mapi id 15.20.1856.008; Fri, 3 May 2019
+ 00:52:17 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: RE: [PATCH V2 0/2] clk: imx: scu: add parsing clocks from device tree
+ support
+Thread-Topic: [PATCH V2 0/2] clk: imx: scu: add parsing clocks from device
+ tree support
+Thread-Index: AQHU/3sXAchBbqvng0+oy01651OLQqZYlC0A
+Date:   Fri, 3 May 2019 00:52:17 +0000
+Message-ID: <AM0PR04MB4211508CC25111598527757A80350@AM0PR04MB4211.eurprd04.prod.outlook.com>
+References: <1556645270-20648-1-git-send-email-aisheng.dong@nxp.com>
+In-Reply-To: <1556645270-20648-1-git-send-email-aisheng.dong@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-originating-ip: [101.93.238.110]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5dd3edc7-3ab4-49fa-c740-08d6cf619710
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5026;
+x-ms-traffictypediagnostic: AM0PR04MB5026:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <AM0PR04MB502680CADF20174F1679EA1780350@AM0PR04MB5026.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 0026334A56
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(39860400002)(136003)(366004)(396003)(54534003)(189003)(199004)(53936002)(9686003)(68736007)(76116006)(110136005)(256004)(4326008)(478600001)(55016002)(305945005)(26005)(316002)(86362001)(52536014)(6246003)(54906003)(6306002)(2501003)(33656002)(25786009)(74316002)(2906002)(73956011)(486006)(186003)(476003)(6116002)(5660300002)(71200400001)(81166006)(6506007)(102836004)(81156014)(229853002)(71190400001)(7736002)(446003)(3846002)(966005)(99286004)(8676002)(7696005)(76176011)(8936002)(44832011)(64756008)(66476007)(14454004)(66066001)(66946007)(6436002)(11346002)(66556008)(66446008);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5026;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: hHHBZsSeEyikvY/6dta2fX+LtC9hAmQOl2TGLmdP8SUqDRGT6EhDZXVYVbkMpLkqeHjkuDSfsCAGJL8ZhusJeImUu1SOSjfNAICLSN3Dpl9DseqlqMF4gJj4x7v6xbJCOn0tP7DSdhcwYM8p1WAPkX39xEpSB+bK+vm1rrNogpFNJAN4VvaNwSByfQvorZzDNCk6CSOqSTqL8wpKObEB/YKSKe1r1Yz1/fZAKiRw/CRBzqqdMMLKI1SXmMGDj+vwdsTy/YLABWX+rhRGlFyLSla9ZmRqXWKEDzFme8vVJ2JGHm/sxuep6XYQglO/E4F8OragCn3FgxN+yYEYTaQKjrzh8NwK72bxQm+tsr34B4WOZLjrHxsO+054d0jWDRmtz0rG6ygRJsuTobyqroFZ2Z4Tfhbwm0cqo4ur8t3zhvw=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190502105053.GA12416@kroah.com> <76e84d54-6b7e-8cc1-492b-43822fc43ac4@kernel.org>
-In-Reply-To: <76e84d54-6b7e-8cc1-492b-43822fc43ac4@kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 2 May 2019 17:44:05 -0700
-Message-ID: <CAFd5g47JiSXHvMEu9NovkGdG7ugMCwVO0pGwT7bC=NCghD0w-g@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     shuah <shuah@kernel.org>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5dd3edc7-3ab4-49fa-c740-08d6cf619710
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2019 00:52:17.1451
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5026
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 7:04 AM shuah <shuah@kernel.org> wrote:
->
-> On 5/2/19 4:50 AM, Greg KH wrote:
-> > On Wed, May 01, 2019 at 04:01:09PM -0700, Brendan Higgins wrote:
-> >> ## TLDR
-> >>
-> >> I rebased the last patchset on 5.1-rc7 in hopes that we can get this in
-> >> 5.2.
-> >
-> > That might be rushing it, normally trees are already closed now for
-> > 5.2-rc1 if 5.1-final comes out this Sunday.
-> >
-> >> Shuah, I think you, Greg KH, and myself talked off thread, and we agreed
-> >> we would merge through your tree when the time came? Am I remembering
-> >> correctly?
-> >
-> > No objection from me.
-> >
->
-> Yes. I can take these through kselftest tree when the time comes.
-
-Awesome.
-
-> Agree with Greg that 5.2 might be rushing it. 5.3 would be a good
-> target.
-
-Whoops. I guess I should have sent this out a bit earlier. Oh well, as
-long as we are on our way!
+SGkgUm9iLA0KDQpEbyB5b3UgaGF2ZSBhIGNoYW5jZSB0byBoZWxwIGxvb2sgYXQgdGhpcz8NCg0K
+UmVnYXJkcw0KRG9uZyBBaXNoZW5nDQoNCj4gRnJvbTogQWlzaGVuZyBEb25nDQo+IFNlbnQ6IFdl
+ZG5lc2RheSwgTWF5IDEsIDIwMTkgMTozNSBBTQ0KPiANCj4gVGhpcyBpcyBhIGZvbGxvdyB1cCBv
+ZiB0aGUgcGF0Y2ggdGhyZWFkLg0KPiBodHRwczovL3d3dy5zcGluaWNzLm5ldC9saXN0cy9kZXZp
+Y2V0cmVlL21zZzI4MzY3NS5odG1sDQo+IA0KPiBUaGlzIHBhdGNoIHNlcmllcyBpcyBhIHByZXBh
+cmF0aW9uIGZvciB0aGUgTVg4IEFyY2hpdGVjdHVyZSBpbXByb3ZlbWVudC4NCj4gQXMgZm9yIElN
+WCBTQ1UgYmFzZWQgcGxhdGZvcm1zIGxpa2UgTVg4UU0gYW5kIE1YOFFYUCwgdGhleSBhcmUgY29t
+cHJpc2VkDQo+IG9mIGEgY291cGxlIG9mIFNTKFN1YnN5c3RlbXMpIHdoaWxlIG1vc3Qgb2YgdGhl
+bSB3aXRoaW4gdGhlIHNhbWUgU1MgY2FuIGJlDQo+IHNoYXJlZC4gZS5nLiBDbG9ja3MsIERldmlj
+ZXMgYW5kIGV0Yy4NCj4gDQo+IEhvd2V2ZXIsIGN1cnJlbnQgZGV2aWNlIHRyZWUgaXMgaGVhdmls
+eSBkZXBlbmRzIG9uIENsb2NrcyBJRHMgZGVmaW5lZCB3aGljaA0KPiBjYXVzZSBzb21lIHRyb3Vi
+bGVzIGluIHdyaXRpbmcgdGhlIGNvbW1vbiA8c29jPi1zcy14eC5kdHNpIGZpbGUuDQo+IA0KPiBU
+aGlzIHBhdGNoIHNlcmllcyBhZGRzIGEgbmV3IGJpbmRpbmcgdG8gc3VwcG9ydCBwYXJzaW5nIGNs
+b2NrcyBmcm9tIGRldmljZSB0cmVlDQo+IHdoaWNoIGNhbiBmdWxseSBkZWNvdXBsZSB0aGUgZGVw
+ZW5kZW5jeSBvZiBDbG9jayBJRHMgaW4gZGV2aWNlIHRyZWUgYW5kIG1ha2UNCj4gdXMgYmUgYWJs
+ZSB0byB3cml0ZSBhIGZ1bGx5IGdlbmVyaWMgY2xvY2sgZHJpdmVyIGZvciBTQ1UgYmFzZWQgU29D
+cy4NCj4gQW5kIGl0IGNhbiBtYWtlIHRoZSBkcml2ZXIgbXVjaCBlYXNpbHkgdG8gYmUgbWFpbnRh
+aW5lZCBpbiB0aGUgZnV0dXJlIGFuZA0KPiBhdm9pZCB3cml0aW5nIGEgbG90IG9mIGR1cGxpY2F0
+ZWQgY29kZXMuDQo+IA0KPiBDaGFuZ2VMb2c6DQo+IHYxLT52MjoNCj4gICogU0NVIGNsb2NrIGNo
+YW5nZWQgdG8gb25lIGNlbGwgY2xvY2sgYmluZGluZyBpbnNwaXJlZCBieSBhcm0sc2NwaS50eHQN
+Cj4gICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hcm0sc2NwaS50eHQN
+Cj4gICogQWRkIHJlcXVpcmVkIHBvd2VyIGRvbWFpbiBwcm9wZXJ0eQ0KPiAgKiBEcm9wcGVkIFBB
+VENIIDMmNCBmaXJzdCwgd2lsbCBzZW5kIHRoZSB1cGRhdGVkIHZlcnNpb24gYWNjb3JkaW5nbHkN
+Cj4gICAgYWZ0ZXIgdGhlIGJpbmRpbmcgaXMgZmluYWxseSBkZXRlcm1pbmVkLA0KPiANCj4gRG9u
+ZyBBaXNoZW5nICgyKToNCj4gICBkdC1iaW5kaW5nczogZmlybXdhcmU6IGlteC1zY3U6IG5ldyBi
+aW5kaW5nIHRvIHBhcnNlIGNsb2NrcyBmcm9tDQo+ICAgICBkZXZpY2UgdHJlZQ0KPiAgIGR0LWJp
+bmRpbmdzOiBjbG9jazogaW14LWxwY2c6IGFkZCBzdXBwb3J0IHRvIHBhcnNlIGNsb2NrcyBmcm9t
+IGRldmljZQ0KPiAgICAgdHJlZQ0KPiANCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9m
+cmVlc2NhbGUvZnNsLHNjdS50eHQgIHwgNDUNCj4gKysrKysrKysrKysrKysrKysrLS0tLQ0KPiAg
+Li4uL2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svaW14OHF4cC1scGNnLnR4dCAgICAgfCAzNCAr
+KysrKysrKysrKysrLS0tDQo+ICBpbmNsdWRlL2R0LWJpbmRpbmdzL2Zpcm13YXJlL2lteC9yc3Jj
+LmggICAgICAgICAgICB8IDE3ICsrKysrKysrDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDgyIGluc2Vy
+dGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQ0KPiANCj4gLS0NCj4gMi43LjQNCg0K
