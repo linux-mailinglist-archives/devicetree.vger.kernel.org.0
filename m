@@ -2,149 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 464EC12925
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 09:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9031012962
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 10:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726726AbfECH40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 03:56:26 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:35232 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725777AbfECH40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:56:26 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 4D0A7611FA; Fri,  3 May 2019 07:56:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1556870184;
-        bh=aDusQfMCjBF3dgdzRMthBxZkCv+AeRrwz8Z7d1VTjKo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=DRWkNWGAu7exQ3h4FFMC4HoxLk3WlgQ/prXDPdGrKGq5XEuvhLMmnMIPJ1UONp8JC
-         IdJpXD8luIkdRlg7tK31E6NdUm18rXc2veqcjehjof7wFxNnycWsn374j87pL4PYKx
-         S5ZJI5UEoCvkrtHRpSkMAyzXyE5mlDnEnPQ304r4=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 27FBB61112;
-        Fri,  3 May 2019 07:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1556870183;
-        bh=aDusQfMCjBF3dgdzRMthBxZkCv+AeRrwz8Z7d1VTjKo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ap9zuQAHsDHkRvSiCgmkJ2xd96WFTtPhOLcWJKSupjL2AXB/QnOa3Uiscn8bktcLW
-         O97hFHWI9+1QUfaKMxREaqDRACQuVHq+3rgFBBnFdhz14nHSTQ/AhQDpBq1Qa/92Lo
-         lzvQm+MogmNpc7fsLW72XQ3a/D8ky3sau1reA4Zk=
+        id S1725777AbfECH7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 03:59:03 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:31868 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725775AbfECH7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 03:59:03 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x437wN7I012786;
+        Fri, 3 May 2019 09:58:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=t609rofuUjW2NaRBXFT3b4myx0XAd7PIRxpvzFY38QQ=;
+ b=DVHzpus37rY9JnLDJSXa/PljnopKkvOOCeWw6Quita8INxNmef1CzUgFEqXWnlT3uiis
+ CB93ldPnYWNUARNN5GQnw8QEwTHKUcpR7HEqpx2jbC9W8VR7WddSEVW8ogweLzgqxu5F
+ KKM7sAlBEvByGX0cJz2fRssR7ydbq+iPz1hvCzbRrsk4Bj7fv7gpk6FOJjMdZS5CxW4c
+ dLxVQOxaSCo+5kbKP0J0g9NUXDN4IZCT3oqiAU4RDATlsSinClsIravJHEi6kNShKnHt
+ Q8rZ9p7FrN95/uEdTSbnyu+DjIv/x6e7dufFvkRupdP4TumB5nNXoEoairloIAV6OhXi Ng== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2s6xhbn0v7-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 03 May 2019 09:58:34 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3810231;
+        Fri,  3 May 2019 07:58:33 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0BD3D142E;
+        Fri,  3 May 2019 07:58:33 +0000 (GMT)
+Received: from [10.48.0.237] (10.75.127.47) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 3 May
+ 2019 09:58:32 +0200
+Subject: Re: [PATCH V2 1/3] watchdog: stm32: update to
+ devm_watchdog_register_device
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <1556806126-15890-1-git-send-email-ludovic.Barre@st.com>
+ <1556806126-15890-2-git-send-email-ludovic.Barre@st.com>
+ <20190502202122.GA27894@roeck-us.net>
+From:   Ludovic BARRE <ludovic.barre@st.com>
+Message-ID: <f649441e-b3fe-134d-9dea-ac7140fb2d9d@st.com>
+Date:   Fri, 3 May 2019 09:58:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Fri, 03 May 2019 15:56:23 +0800
-From:   Rocky Liao <rjliao@codeaurora.org>
-To:     Marcel Holtmann <marcel@holtmann.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Thierry Escande <thierry.escande@linaro.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel@vger.kernel.org,
-        "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        linux-bluetooth-owner@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: net: bluetooth: Add device property
- firmware-name for QCA6174
-In-Reply-To: <60C7AC89-37B6-441C-9349-BCB15717EB2C@holtmann.org>
-References: <1554368908-22017-2-git-send-email-rjliao@codeaurora.org>
- <1554888476-17560-1-git-send-email-rjliao@codeaurora.org>
- <A85D7982-E000-4A5F-9927-CA36E0BA60F2@holtmann.org>
- <7e0cf9ba98260309c43d9d6e63dead6c@codeaurora.org>
- <CAL_JsqLnM4XqQTCT7VTUSmukujz0VHJoCbXMF2--RmTEx_LZww@mail.gmail.com>
- <60C7AC89-37B6-441C-9349-BCB15717EB2C@holtmann.org>
-Message-ID: <17221139821fb6ee35f3119df7405401@codeaurora.org>
-X-Sender: rjliao@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+In-Reply-To: <20190502202122.GA27894@roeck-us.net>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-03_03:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcel,
+hi Guenter
 
-On 2019-04-27 13:59, Marcel Holtmann wrote:
-> Hi Rob,
+On 5/2/19 10:21 PM, Guenter Roeck wrote:
+> On Thu, May 02, 2019 at 04:08:44PM +0200, Ludovic Barre wrote:
+>> From: Ludovic Barre <ludovic.barre@st.com>
+>>
+>> This patch updates to devm_watchdog_register_device interface
+>>
+> Not that easy. See below.
 > 
->>>>> This patch adds an optional device property "firmware-name" to 
->>>>> allow
->>>>> the
->>>>> driver to load customized nvm firmware file based on this property.
->>>>> 
->>>>> Signed-off-by: Rocky Liao <rjliao@codeaurora.org>
->>>>> ---
->>>>> Changes in v3:
->>>>> * added firmware-name instead of nvm-postfix to specify full 
->>>>> firmware
->>>>> name
->>>>> ---
->>>>> Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt | 2 ++
->>>>> 1 file changed, 2 insertions(+)
->>>>> 
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>> b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>> index 824c0e2..2bcea50 100644
->>>>> --- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>> @@ -16,6 +16,7 @@ Optional properties for compatible string
->>>>> qcom,qca6174-bt:
->>>>> 
->>>>> - enable-gpios: gpio specifier used to enable chip
->>>>> - clocks: clock provided to the controller (SUSCLK_32KHZ)
->>>>> + - firmware-name: specify the name of nvm firmware to load
->>>>> 
->>>>> Required properties for compatible string qcom,wcn3990-bt:
->>>>> 
->>>>> @@ -39,6 +40,7 @@ serial@7570000 {
->>>>> 
->>>>>             enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
->>>>>             clocks = <&divclk4>;
->>>>> +            firmware-name = "nvm_00440302.bin";
->>>>>     };
->>>> 
->>>> and how is this a firmware-name property. Wouldn’t this be more like
->>>> nvm-file or something along these lines. This really needs to be
->>>> cleared with Rob to pick the right property name.
->>>> 
->>>> Regards
->>>> 
->>>> Marcel
->>> 
->>> Hi Rob,
->>> 
->>> Are you OK to use a property name "nvm-file" or "firmware-nvm-file"?
->>> Actually we have two firmware files, one is the patch file which is
->>> common to all of the products, the other is the nvm file which is
->>> customized. Using a "nvm-file" or "firmware-nvm-file" property name
->>> would be more clear.
->> 
->> 'firmware-name' is the standard name for specifying firmware file 
->> names.
+> A more complete solution is at
+> https://patchwork.kernel.org/patch/10894355
 > 
-> but it is not a firmware file, it is a NVM file. What happens if in
-> the future they need a firmware file and a NVM file?
+> I have a total of three patches for this driver pending for
+> the next kernel release. Maybe it would make sense to (re-)
+> start this series from there after the next commit window
+> closes.
 > 
-> Regards
-> 
-> Marcel
 
-We won't need to specify a rampatch firmware file in future as it's a 
-same file for all the boards with same chip, only the NVM firmware file 
-may have board differences. NVM file is also one of the firmware files 
-so I think it should be OK to use "firmware-name" property to specify 
-it.
+I used the repository defined in MAINTAINERS file
+git://www.linux-watchdog.org/linux-watchdog.git
+but there is no next branch.
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
-Forum,
-a Linux Foundation Collaborative Project
+Today, I see your kernel.org repository
+https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git/
+
+And I see your next branch, so I will use it.
+
+Regards,
+Ludo
+
+> Guenter
+> 
+>> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+>> ---
+>>   drivers/watchdog/stm32_iwdg.c | 3 +--
+>>   1 file changed, 1 insertion(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/watchdog/stm32_iwdg.c b/drivers/watchdog/stm32_iwdg.c
+>> index e00e3b3..e191bd8 100644
+>> --- a/drivers/watchdog/stm32_iwdg.c
+>> +++ b/drivers/watchdog/stm32_iwdg.c
+>> @@ -243,7 +243,7 @@ static int stm32_iwdg_probe(struct platform_device *pdev)
+>>   		dev_warn(&pdev->dev,
+>>   			 "unable to set timeout value, using default\n");
+>>   
+>> -	ret = watchdog_register_device(wdd);
+>> +	ret = devm_watchdog_register_device(&pdev->dev, wdd);
+>>   	if (ret) {
+>>   		dev_err(&pdev->dev, "failed to register watchdog device\n");
+>>   		goto err;
+>> @@ -263,7 +263,6 @@ static int stm32_iwdg_remove(struct platform_device *pdev)
+>>   {
+>>   	struct stm32_iwdg *wdt = platform_get_drvdata(pdev);
+>>   
+>> -	watchdog_unregister_device(&wdt->wdd);
+>>   	clk_disable_unprepare(wdt->clk_lsi);
+>>   	clk_disable_unprepare(wdt->clk_pclk);
+> 
+> This disables the clock while the watchdog is still registered
+> and running. That is not a good idea.
+> 
+>>   
+>> -- 
+>> 2.7.4
+>>
