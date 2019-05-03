@@ -2,74 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D83130BE
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39229130C0
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 16:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726468AbfECOxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 10:53:46 -0400
-Received: from sauhun.de ([88.99.104.3]:34356 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbfECOxp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 May 2019 10:53:45 -0400
-Received: from localhost (p54B33153.dip0.t-ipconnect.de [84.179.49.83])
-        by pokefinder.org (Postfix) with ESMTPSA id 09DE54A1428;
-        Fri,  3 May 2019 16:53:44 +0200 (CEST)
-Date:   Fri, 3 May 2019 16:53:43 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Chris Brandt <chris.brandt@renesas.com>
-Cc:     Simon Horman <horms@verge.net.au>,
+        id S1728018AbfECOyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 10:54:44 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:46505 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727032AbfECOyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 10:54:44 -0400
+X-Originating-IP: 90.88.149.145
+Received: from localhost (aaubervilliers-681-1-29-145.w90-88.abo.wanadoo.fr [90.88.149.145])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id C246D1BF20C;
+        Fri,  3 May 2019 14:54:35 +0000 (UTC)
+Date:   Fri, 3 May 2019 16:54:35 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 3/7] dt-bindings: i2c: riic: document r7s9210 support
-Message-ID: <20190503145343.GF24385@kunai>
-References: <20190430132309.12473-1-chris.brandt@renesas.com>
- <20190430132309.12473-4-chris.brandt@renesas.com>
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [PATCH v2 2/5] ASoC: sun4i-spdif: Add support for H6 SoC
+Message-ID: <20190503145435.jziomr3sqxp6jbpd@flea>
+References: <20190419191730.9437-1-peron.clem@gmail.com>
+ <20190419191730.9437-3-peron.clem@gmail.com>
+ <20190502082526.c5zo4uzceqzizbxo@flea>
+ <CAJiuCcdFUPBsXfKtDLt-p6Edx-7JrST9d0C=ofCU4CL8ZxwcsA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hK8Uo4Yp55NZU70L"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="f5z2x6ysmbssgmgl"
 Content-Disposition: inline
-In-Reply-To: <20190430132309.12473-4-chris.brandt@renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAJiuCcdFUPBsXfKtDLt-p6Edx-7JrST9d0C=ofCU4CL8ZxwcsA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---hK8Uo4Yp55NZU70L
-Content-Type: text/plain; charset=us-ascii
+--f5z2x6ysmbssgmgl
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 30, 2019 at 08:23:05AM -0500, Chris Brandt wrote:
-> Document support for the R7S9210 (RZ/A2) SoC. Also explicitly document
-> bindings for the R7S72100 (RZ/A1) SoC.
->=20
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+On Thu, May 02, 2019 at 11:39:24AM +0200, Cl=E9ment P=E9ron wrote:
+> > > @@ -169,16 +181,25 @@ struct sun4i_spdif_dev {
+> > >       struct snd_soc_dai_driver cpu_dai_drv;
+> > >       struct regmap *regmap;
+> > >       struct snd_dmaengine_dai_dma_data dma_params_tx;
+> > > +     const struct sun4i_spdif_quirks *quirks;
+> >
+> > I guess this will generate a warning since the structure hasn't been
+> > defined yet?
+>
+> It's a pointer to a structure so no warning from the compiler.
 
-Applied to for-next, thanks!
+Damn, I was convinced just declaring a pointer to a structure would
+result to a gcc warning. Nevermind then.
 
+> > > @@ -405,22 +426,26 @@ static struct snd_soc_dai_driver sun4i_spdif_da=
+i =3D {
+> > >       .name =3D "spdif",
+> > >  };
+> > >
+> > > -struct sun4i_spdif_quirks {
+> > > -     unsigned int reg_dac_txdata;    /* TX FIFO offset for DMA confi=
+g */
+> > > -     bool has_reset;
+> > > -};
+> > > -
+> > >  static const struct sun4i_spdif_quirks sun4i_a10_spdif_quirks =3D {
+> > >       .reg_dac_txdata =3D SUN4I_SPDIF_TXFIFO,
+> > > +     .reg_fctl_ftx   =3D SUN4I_SPDIF_FCTL_FTX,
+> > >  };
+> > >
+> > >  static const struct sun4i_spdif_quirks sun6i_a31_spdif_quirks =3D {
+> > >       .reg_dac_txdata =3D SUN4I_SPDIF_TXFIFO,
+> > > +     .reg_fctl_ftx   =3D SUN4I_SPDIF_FCTL_FTX,
+> > >       .has_reset      =3D true,
+> > >  };
+> > >
+> > >  static const struct sun4i_spdif_quirks sun8i_h3_spdif_quirks =3D {
+> > >       .reg_dac_txdata =3D SUN8I_SPDIF_TXFIFO,
+> > > +     .reg_fctl_ftx   =3D SUN4I_SPDIF_FCTL_FTX,
+> > > +     .has_reset      =3D true,
+> > > +};
+> > >
+> > > +static const struct sun4i_spdif_quirks sun50i_h6_spdif_quirks =3D {
+> > > +     .reg_dac_txdata =3D SUN8I_SPDIF_TXFIFO,
+> > > +     .reg_fctl_ftx   =3D SUN50I_H6_SPDIF_FCTL_FTX,
+> > >       .has_reset      =3D true,
+> >
+> > The reg_dac_txdata and reg_fctl_ftx changes here should also be part
+> > of a separate patch.
+>
+> You mean the reg_fctl_ftx quirk and the H6 introduction should be split ?
 
---hK8Uo4Yp55NZU70L
+Yep
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--f5z2x6ysmbssgmgl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlzMVfcACgkQFA3kzBSg
-Kbat+A/9HYjbx6Aq6tJ3Oo4NN0UU6Et6HxsROxT3fNzcUGiHJNWY7wEc+hGavCFr
-lO51Fme0Jj04hF2KGXy6/zMRzO99t72fEfhMlTNtmp8CJ/CNXjVKCnhdEC7U2ZIP
-ClaD7vzfymhJeYUWhJj94Zs2P0xKFqZoU92vkjceK73juLWQz9whPW7dLbv+ijFx
-Uau4Z6g8IQapAvxzYg2vBk1EbLjC7CPCHAXgUqDM9WYxKEjLbjoZbdXk2DPfA2a+
-iIfNdO/CJvI+0pq0jrIbEjTYVgP0U0nvBIMxsOlEMcleFm2s9+oqtqsgXKAtLMrA
-Mb1ULNxTSO5xJ43uaBo8zeyiiECs/STXrl2giC73XVVzUGYLKRCYPd6DUv9H2eTT
-Cym8sip9lyUpiQSZEhf2MgdDRb7EqXuZuUOHA1iZH3SPeEFEwMY1gmK7WKOWWGku
-FXK+Ytp/FlBBPnU1r3MrPh7QPTlVoocQTqW8p4hJy6oIYwcds2Ixqs2ynfGecGzM
-569IgHIQKhvQXoHmYTD1mbkrG2Snei+0Aw736BANLXjUb0iPMNkcTvEA/5wZGzTx
-0CNSdHa0biUlXRhzFiVAa86SNB9b9f/CTFupcrTJzYuvBhnIGKnMCoGoyDNua24Y
-DGZ2oBWjJOIMQsXGPkZq7h7vF4prLKZyQXwcm7qNw0yWmDW1M8A=
-=8+kg
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXMxWKwAKCRDj7w1vZxhR
+xTheAQD9sE7A0WEHij5Wf1qBjNLpFuz3ZidjjR2KW3BxB9EWSgD/fmxUP0w8djKy
+bpfpawxYsCpDiDgb1b2tfBSFbXO87wE=
+=ry69
 -----END PGP SIGNATURE-----
 
---hK8Uo4Yp55NZU70L--
+--f5z2x6ysmbssgmgl--
