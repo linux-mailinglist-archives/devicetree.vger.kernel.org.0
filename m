@@ -2,159 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 248DC13641
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 01:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 194751364A
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 01:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726580AbfECXlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 19:41:23 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45014 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726532AbfECXlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 19:41:23 -0400
-Received: by mail-ot1-f67.google.com with SMTP id d10so1693202otp.11
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 16:41:22 -0700 (PDT)
+        id S1726326AbfECXlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 19:41:55 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44039 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726600AbfECXlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 19:41:55 -0400
+Received: by mail-pg1-f193.google.com with SMTP id z16so3435785pgv.11
+        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 16:41:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mKALN1OkcwtQhcysb+FWH3t2vFKNjrdMKVQt2ijO0Po=;
-        b=uHwVMflHMaQY3whJ1EE4nVizGRxOy/tr5WOjeZAzMUNneEi1VOxLR7ILboGXaDspKX
-         EZdcTnWDLsjH5Xuv6Dpbla+mLd+ZOej6UTDsdicbg1f2NGRfNWvT53QLlViJ91MtO47Y
-         +NMNZSv0/KOCCjGp/8Z6JcV8oAgctk1uHe5BjikYU+meECnNZzF0Xtb+m6Lql1RyQZ+f
-         6pOCAlUul4FDKtOsuwcFiCf6Z4SU4Q97jpl1Ljx2pJqKs6Ok7cLSU5UcjCBf989disYo
-         L1k/caWEqmSpv8hm8mIrQVDY6SOrZ43BcimXmBjT67ScyO4HOEunsbiGdbsaE+Lu0zj7
-         pGEA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=l6MT9XTAzOvtTX/5BFhs9O1ystNfk4PRmB7Zlq4GEks=;
+        b=I5fn02mFQifGjpN0d9pCsyFAkP0MMebBP27unuYA93mPS3ebr9BWDLvtr+yO1a2e6z
+         QFv0PURfYyU3xNua5DcLsUe1CQxpXqCtmWtwy+EPAHfT9ko5ETR7YgNcCYM9ny4JGycA
+         krx7V9STi0K9MjPb7O8DJBl600XH1dLo6AO1Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mKALN1OkcwtQhcysb+FWH3t2vFKNjrdMKVQt2ijO0Po=;
-        b=ENmet+vJOCJ2lYjpRg1EXTjEU1fIb5iODbozLMjCavYzR1RTXFjMdwm4SkLKbDkM5a
-         hGhnKvjI1/9u3xIFA/F6c1BsBJ02k2ehaKlrnK6FmkZTcsr7lrtMwHKQxDl6jU/q43DX
-         7GnUaqMUbpGAE474Ae5yoIzS+8ebRqkUjVG9vAmKY3Vs/htXIkfcgLFrI+zx4fhy9gLU
-         4CvWApBF6r/UsFe3bvAxezPth0+20zK3QSBSRKoFzcbqgVRTH5MDWX1mJ4liDHf2WRrM
-         DLglC0ssSbsznkKJkfVaPFSD94q2f9+swIDY6JIk9ZiKZkYu00/szGaooQ7SKt01duVq
-         j/2A==
-X-Gm-Message-State: APjAAAVaSwHtJTsWA5Lch4q37RxxHffKVPmbb7gN4W/WkF12TsTQYe9q
-        D0VWWIPF9/Ov4BdIEOX5LitUC101ur61rMRyfE2OLw==
-X-Google-Smtp-Source: APXvYqzBloPRnX50VrJGlf0zwqZMx4kE8jlcjkF1A4MmAb/1CmwV6C22Krcs7y2A5uFCH7cqu5h7HYnPPCqLvVBMptw=
-X-Received: by 2002:a9d:5cc3:: with SMTP id r3mr8335667oti.338.1556926881968;
- Fri, 03 May 2019 16:41:21 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=l6MT9XTAzOvtTX/5BFhs9O1ystNfk4PRmB7Zlq4GEks=;
+        b=bOM5vnbNE8wSgPPZbgogy3801qPZ5PTAb3UAw4NI/+NC1wrKWgJxRhbuQMoGo8Ox0y
+         55CmJ4o7CwqxpkmWjvT8g3cm9mYqnQR2u+11lJDdLhlUyzHXazun5CjjqvRbCNs/SIO4
+         7qWssyd/i+eDGhmj0cd5L4kPCOyqkliRJCuTt9SUxvgp2mhSw9zgXrbg/UeTexSsgLfM
+         tC0dvFdQfeE95sNYdPjN4Zl3ENvKxrfTqlJmgj84DvOElaYGUbio+JCtboHVt1L3sD6h
+         LGaLfwRIWUg0x7Lbru7O2FsBiHYCOKeUJxZcgCTtSiROERRiYrYMHfotQJArqoaT9pVY
+         V7wQ==
+X-Gm-Message-State: APjAAAW6nYnH24/53t8zbZbanxMNUw2ZXGjtZfOGjaDZ5eAqxeGosAhg
+        oi6I2wQWxoi6Z0rp5ycqkJXukBEHbik=
+X-Google-Smtp-Source: APXvYqwfAhHmGJSMOXVwAdgxx8w7CRNIyO+uqKMR8/EDcFyegYMrslQC+XFDA+zm7x6sp4sqFt9B4Q==
+X-Received: by 2002:a63:6196:: with SMTP id v144mr14442228pgb.235.1556926914434;
+        Fri, 03 May 2019 16:41:54 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
+        by smtp.gmail.com with ESMTPSA id c8sm4480462pfr.16.2019.05.03.16.41.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 03 May 2019 16:41:53 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-rockchip@lists.infradead.org, briannorris@chromium.org,
+        mka@chromium.org, amstan@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: rockchip: Make rk3288-veyron-minnie run at hs200
+Date:   Fri,  3 May 2019 16:41:42 -0700
+Message-Id: <20190503234142.228982-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-17-brendanhiggins@google.com> <20190502110347.GE12416@kroah.com>
- <ECADFF3FD767C149AD96A924E7EA6EAF9770A3A0@USCULXMSG01.am.sony.com>
- <CAFd5g471Wawu6g14p0AO3aY8VPBKLA0mjHSdfR1qStFGzp3iGQ@mail.gmail.com> <20190503064241.GC20723@kroah.com>
-In-Reply-To: <20190503064241.GC20723@kroah.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Fri, 3 May 2019 16:41:10 -0700
-Message-ID: <CAFd5g44NrKM9WQCF1xW-BWpFNsC05UAS9jt1-S+vNRuBDZVsHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 16/17] kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     "Bird, Timothy" <Tim.Bird@sony.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Iurii Zaikin <yzaikin@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Thu, May 02, 2019 at 11:45:43AM -0700, Brendan Higgins wrote:
-> > On Thu, May 2, 2019 at 11:15 AM <Tim.Bird@sony.com> wrote:
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Greg KH
-> > > >
-> > > > On Wed, May 01, 2019 at 04:01:25PM -0700, Brendan Higgins wrote:
-> > > > > From: Iurii Zaikin <yzaikin@google.com>
-> > > > >
-> > > > > KUnit tests for initialized data behavior of proc_dointvec that is
-> > > > > explicitly checked in the code. Includes basic parsing tests including
-> > > > > int min/max overflow.
-> > > > >
-> > > > > Signed-off-by: Iurii Zaikin <yzaikin@google.com>
-> > > > > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > > > > ---
-> > > > >  kernel/Makefile      |   2 +
-> > > > >  kernel/sysctl-test.c | 292
-> > > > +++++++++++++++++++++++++++++++++++++++++++
-> > > > >  lib/Kconfig.debug    |   6 +
-> > > > >  3 files changed, 300 insertions(+)
-> > > > >  create mode 100644 kernel/sysctl-test.c
-> > > > >
-> > > > > diff --git a/kernel/Makefile b/kernel/Makefile
-> > > > > index 6c57e78817dad..c81a8976b6a4b 100644
-> > > > > --- a/kernel/Makefile
-> > > > > +++ b/kernel/Makefile
-> > > > > @@ -112,6 +112,8 @@ obj-$(CONFIG_HAS_IOMEM) += iomem.o
-> > > > >  obj-$(CONFIG_ZONE_DEVICE) += memremap.o
-> > > > >  obj-$(CONFIG_RSEQ) += rseq.o
-> > > > >
-> > > > > +obj-$(CONFIG_SYSCTL_KUNIT_TEST) += sysctl-test.o
-> > > >
-> > > > You are going to have to have a "standard" naming scheme for test
-> > > > modules, are you going to recommend "foo-test" over "test-foo"?  If so,
-> > > > that's fine, we should just be consistant and document it somewhere.
-> > > >
-> > > > Personally, I'd prefer "test-foo", but that's just me, naming is hard...
-> > >
-> > > My preference would be "test-foo" as well.  Just my 2 cents.
-> >
-> > I definitely agree we should be consistent. My personal bias
-> > (unsurprisingly) is "foo-test," but this is just because that is the
-> > convention I am used to in other projects I have worked on.
-> >
-> > On an unbiased note, we are currently almost evenly split between the
-> > two conventions with *slight* preference for "foo-test": I ran the two
-> > following grep commands on v5.1-rc7:
-> >
-> > grep -Hrn --exclude-dir="build" -e "config [a-zA-Z_0-9]\+_TEST$" | wc -l
-> > grep -Hrn --exclude-dir="build" -e "config TEST_[a-zA-Z_0-9]\+" | wc -l
-> >
-> > "foo-test" has 36 occurrences.
-> > "test-foo" has 33 occurrences.
-> >
-> > The things I am more concerned about is how this would affect file
-> > naming. If we have a unit test for foo.c, I think foo_test.c is more
-> > consistent with our namespacing conventions. The other thing, is if we
-> > already have a Kconfig symbol called FOO_TEST (or TEST_FOO) what
-> > should we name the KUnit test in this case? FOO_UNIT_TEST?
-> > FOO_KUNIT_TEST, like I did above?
->
-> Ok, I can live with "foo-test", as you are right, in a directory listing
-> and config option, it makes more sense to add it as a suffix.
+As some point hs200 was failing on rk3288-veyron-minnie.  See commit
+984926781122 ("ARM: dts: rockchip: temporarily remove emmc hs200 speed
+from rk3288 minnie").  Although I didn't track down exactly when it
+started working, it seems to work OK now, so let's turn it back on.
 
-Cool, so just for future reference, if we already have a Kconfig
-symbol called FOO_TEST (or TEST_FOO) what should we name the KUnit
-test in this case? FOO_UNIT_TEST? FOO_KUNIT_TEST, like I did above?
+To test this, I booted from SD card and then used this script to
+stress the enumeration process after fixing a memory leak [1]:
+  cd /sys/bus/platform/drivers/dwmmc_rockchip
+  for i in $(seq 1 3000); do
+    echo "========================" $i
+    echo ff0f0000.dwmmc > unbind
+    sleep .5
+    echo ff0f0000.dwmmc > bind
+    while true; do
+      if [ -e /dev/mmcblk2 ]; then
+        break;
+      fi
+      sleep .1
+    done
+  done
+
+It worked fine.
+
+[1] https://lkml.kernel.org/r/20190503233526.226272-1-dianders@chromium.org
+
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index 468a1818545d..ce57881625ec 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -90,10 +90,6 @@
+ 	pwm-off-delay-ms = <200>;
+ };
+ 
+-&emmc {
+-	/delete-property/mmc-hs200-1_8v;
+-};
+-
+ &gpio_keys {
+ 	pinctrl-0 = <&pwr_key_l &ap_lid_int_l &volum_down_l &volum_up_l>;
+ 
+-- 
+2.21.0.1020.gf2820cf01a-goog
+
