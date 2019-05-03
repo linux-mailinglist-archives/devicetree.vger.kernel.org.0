@@ -2,133 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A25012BD5
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 12:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A9C12BEF
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 13:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727153AbfECKsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 06:48:23 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:42843 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727135AbfECKsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 06:48:22 -0400
-Received: by mail-pf1-f196.google.com with SMTP id 13so2401551pfw.9
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 03:48:22 -0700 (PDT)
+        id S1727193AbfECLCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 07:02:04 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34203 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726396AbfECLCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 07:02:03 -0400
+Received: by mail-wr1-f67.google.com with SMTP id e9so7360022wrc.1;
+        Fri, 03 May 2019 04:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bzeisKrbd3NVmsuHkycqQpZOOZrTkWkXq9WqgrEgfB0=;
-        b=JaYHuUbP9s75WQ/WiGrEuulQNNGYORAeMSOkH3HzsxPQrs/nzwS9L4hUoDT34F2xfn
-         9e99AfPrndhTYVchadnaUZeewH6jOAqvWEaqck/WTr5Gy6slmD3ZksNS5ZnOuE5P9Zli
-         TtpYK7WSP1/TBxYtukB9xjN9sh4up41WU7Siw=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=nGfgCQXG08efjjx2XWvqXdQV7y9Ll65hvnLfZn3O1ag=;
+        b=bgWOxyzuPG//QO2JUiLSKloKw++xzOzO4bBxyiHmHbyJIK1PggjN3UQ+TaymK810Pu
+         Ancw4z6IABPZColxV3nbSsFbOyh5GLhSpSSw3CcxpiFmLREAr0XkGyTwp2aZgpSXUISA
+         zfX9l/hrJ76Yfj8mqDKmpiKkuCkPyBGZ+HwABA/fWnKh1fjMML4dburNQSZqC/HrmEnI
+         nMxegD0LT1/WjgLYeT64jzkKSvOGBSwr0Ph2m7wQW57c7eQf3VpYUyuGzUnN2/NI/2V8
+         jCn3gLgzIZFg1KsovV8Xb5h8ciQI159W0G/hsmnIV5aroqKatBfhcuqDIrlK1RV72dMH
+         k7qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bzeisKrbd3NVmsuHkycqQpZOOZrTkWkXq9WqgrEgfB0=;
-        b=HGAFR0FtFTH61A4QMY41uLH32lEzrlwohK/2fLLAWalPW4kzVKC+vPCbb3/oZvqD3W
-         cjzqWoKNm983fW6n7Q/iZQg/diyqOgTQ3v4hCQGO7Q+neVyyHe+3ZmSqhrFe2+A3Bbed
-         YSixyhx4KP56L8XyDB5TGjT/A6iobSPgmvyf98vwWIiAjaGUTGYvT37/IwlkQ6jPZR0z
-         x0Bex/wNY2Ow9LaHWe/7+ygN34getLW8wf6B87P/pdQz1l9W2VBNNwhta4DcoDgDA7cI
-         KwQ3rIRbKQd8AmUYznl79lP0UTzwkewydpSwT2ZKF9wLT9PNR1Yf5Xd5qd7PTnJ7D/1f
-         pGCQ==
-X-Gm-Message-State: APjAAAWPvmC6PCylS3FcRhDTV4wt9fsW7mLjEZpH2XYQQ6WqGjfiObAG
-        uZ1c2kwsLgRbgyEoB5QlQej5Ug==
-X-Google-Smtp-Source: APXvYqxyS/Viee8AeBaGT8IO9dn1bdGJz/q7gyZVY+P0K1JdPh+FtA+JdVDYOCKK3s8CgrrCjEdZUQ==
-X-Received: by 2002:a62:b418:: with SMTP id h24mr9669983pfn.145.1556880502238;
-        Fri, 03 May 2019 03:48:22 -0700 (PDT)
-Received: from localhost.localdomain ([49.206.203.165])
-        by smtp.gmail.com with ESMTPSA id k9sm1965479pga.22.2019.05.03.03.48.16
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 03 May 2019 03:48:21 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        linux-sunxi@googlegroups.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v5 3/3] arm64: dts: allwinner: a64-oceanic-5205-5inmfd: Enable GT911 CTP
-Date:   Fri,  3 May 2019 16:17:53 +0530
-Message-Id: <20190503104753.27562-3-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
-In-Reply-To: <20190503104753.27562-1-jagan@amarulasolutions.com>
-References: <20190503104753.27562-1-jagan@amarulasolutions.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=nGfgCQXG08efjjx2XWvqXdQV7y9Ll65hvnLfZn3O1ag=;
+        b=LBJujmcLeO6/jEOmLcZMiNBwLI7F96ZmgvHAqxbn8WszH9lCgCEdK8oSG+wDnp7pe2
+         A8OxbfTZo5Fk4IaDmydDP9sOxHEV86KPmrXhG08Ur5XZgk6OQvJ6D/jlBl1xvdA/3N+V
+         Ox6YAAE+2jM4Dk3okKWf04kdt1c123/nMICI7l5UNevZrIcX14oQrD7WDRDGlAsZy/ne
+         XL/piQRBZVjmqgPN9XM4kjgarV8MZ3LbljvfuLyVQGW/05eg0jykEdtmUwAhiQPLavn/
+         6ehIPMtbpLEk5ZtRe25CgRPbpV6cnWCvYNTcTW2fWIPOWUTlfYiTZ4G0mTZgHAYIxUTt
+         56yg==
+X-Gm-Message-State: APjAAAXECwt3BUKdzSNszVz/gMJmrSbxnL6W+XF1/iM/Y9OWp8CWLymz
+        q9aGCOZEmVpcv1yzMDoH1XE=
+X-Google-Smtp-Source: APXvYqyZrCi9BgSuSGPoKfa+sfrnKJfwljqkgF9FkpEdGOxfOe/jX4Ra5F+4c3H7nv9LPTNjKbL2ZQ==
+X-Received: by 2002:a05:6000:9:: with SMTP id h9mr6692149wrx.194.1556881321143;
+        Fri, 03 May 2019 04:02:01 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id x18sm1635766wrw.14.2019.05.03.04.01.59
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 03 May 2019 04:02:00 -0700 (PDT)
+Date:   Fri, 3 May 2019 13:01:59 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
+        mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V5 02/16] PCI/PME: Export pcie_pme_disable_msi() &
+ pcie_pme_no_msi() APIs
+Message-ID: <20190503110159.GB32400@ulmo>
+References: <20190424052004.6270-1-vidyas@nvidia.com>
+ <20190424052004.6270-3-vidyas@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ZfOjI3PrQbgiZnxM"
+Content-Disposition: inline
+In-Reply-To: <20190424052004.6270-3-vidyas@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Goodix GT911 CTP is bound with Oceanic 5205 5inMFD board.
 
-The CTP connected to board with,
-- SDA, SCK from i2c0
-- GPIO-LD0 as AVDD28 supply
-- PH4 gpio as interrupt pin
-- PH11 gpio as reset pin
-- X axis is inverted
-- Y axis is inverted
+--ZfOjI3PrQbgiZnxM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v5:
-- none
-Changes for v4:
-- drop i2c1 pinctrl
-Changes for v3:
-- Use 2.8v for reg_ldo_io0
-Changes for v2:
-- drop i2c1, bias-pull-up
+On Wed, Apr 24, 2019 at 10:49:50AM +0530, Vidya Sagar wrote:
+> Export pcie_pme_disable_msi() & pcie_pme_no_msi() APIs to enable drivers
+> using this API be able to build as loadable modules.
+>=20
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> ---
+> Changes from [v4]:
+> * None
+>=20
+> Changes from [v3]:
+> * None
+>=20
+> Changes from [v2]:
+> * Exported pcie_pme_no_msi() API after making pcie_pme_msi_disabled a sta=
+tic
+>=20
+> Changes from [v1]:
+> * This is a new patch in v2 series
+>=20
+>  drivers/pci/pcie/pme.c     | 14 +++++++++++++-
+>  drivers/pci/pcie/portdrv.h | 16 +++-------------
+>  2 files changed, 16 insertions(+), 14 deletions(-)
+>=20
+> diff --git a/drivers/pci/pcie/pme.c b/drivers/pci/pcie/pme.c
+> index 54d593d10396..d5e0ea4a62fc 100644
+> --- a/drivers/pci/pcie/pme.c
+> +++ b/drivers/pci/pcie/pme.c
+> @@ -25,7 +25,19 @@
+>   * that using MSI for PCIe PME signaling doesn't play well with PCIe PME=
+-based
+>   * wake-up from system sleep states.
+>   */
+> -bool pcie_pme_msi_disabled;
+> +static bool pcie_pme_msi_disabled;
+> +
+> +void pcie_pme_disable_msi(void)
+> +{
+> +	pcie_pme_msi_disabled =3D true;
+> +}
+> +EXPORT_SYMBOL_GPL(pcie_pme_disable_msi);
+> +
+> +bool pcie_pme_no_msi(void)
+> +{
+> +	return pcie_pme_msi_disabled;
+> +}
+> +EXPORT_SYMBOL_GPL(pcie_pme_no_msi);
+> =20
+>  static int __init pcie_pme_setup(char *str)
+>  {
+> diff --git a/drivers/pci/pcie/portdrv.h b/drivers/pci/pcie/portdrv.h
+> index 1d50dc58ac40..7c8c3da4bd58 100644
+> --- a/drivers/pci/pcie/portdrv.h
+> +++ b/drivers/pci/pcie/portdrv.h
+> @@ -125,22 +125,12 @@ void pcie_port_bus_unregister(void);
+>  struct pci_dev;
+> =20
+>  #ifdef CONFIG_PCIE_PME
+> -extern bool pcie_pme_msi_disabled;
+> -
+> -static inline void pcie_pme_disable_msi(void)
+> -{
+> -	pcie_pme_msi_disabled =3D true;
+> -}
+> -
+> -static inline bool pcie_pme_no_msi(void)
+> -{
+> -	return pcie_pme_msi_disabled;
+> -}
+> -
+> +void pcie_pme_disable_msi(void);
+> +bool pcie_pme_no_msi(void);
+>  void pcie_pme_interrupt_enable(struct pci_dev *dev, bool enable);
+>  #else /* !CONFIG_PCIE_PME */
+>  static inline void pcie_pme_disable_msi(void) {}
+> -static inline bool pcie_pme_no_msi(void) { return false; }
+> +static inline bool pcie_pme_no_msi(void) {}
 
+This looks wrong.
 
- .../sun50i-a64-oceanic-5205-5inmfd.dts        | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Thierry
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-index 6a2154525d1e..787ebd805a3b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-@@ -37,6 +37,22 @@
- 	status = "okay";
- };
- 
-+&i2c0 {
-+	status = "okay";
-+
-+	touchscreen@5d {
-+		compatible = "goodix,gt911";
-+		reg = <0x5d>;
-+		AVDD28-supply = <&reg_ldo_io0>;			/* VDD_CTP: GPIO0-LDO */
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 4 IRQ_TYPE_EDGE_FALLING>;
-+		irq-gpios = <&pio 7 4 GPIO_ACTIVE_HIGH>;	/* CTP-INT: PH4 */
-+		reset-gpios = <&pio 7 11 GPIO_ACTIVE_HIGH>;	/* CTP-RST: PH11 */
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+	};
-+};
-+
- &mdio {
- 	ext_rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
-@@ -52,6 +68,13 @@
- 	regulator-name = "vcc-phy";
- };
- 
-+&reg_ldo_io0 {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "vdd-ctp";
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
--- 
-2.18.0.321.gffc6fa0e3
+--ZfOjI3PrQbgiZnxM
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzMH6YACgkQ3SOs138+
+s6E4xw//dFTo8a4I8XRjFuw8mmRxoi0ZrVcgaoQ/hqpIqu/cew7PXc9XaqiB0JIK
+KJjArrSz8XHoez/vrmk4CBNk5ECEAeVV6Eyrm3R99fPoBuBihH+B3QYkeMALa6hh
+l2WUQRuDIYbRF71GjZlcgslAqZ8Bde19bxdwPg1T9kyOZmQrAiFq/PsRUPGscz1T
+b5EVJMR+GiKQ/dceyluUz1bqp0JFpdX6Ae6IgCKrw2Z1plVvGi39Pzix1Za1Q3pY
+EAlwOo6cebEhx0D7j/W/PLQM8+nQhBBAZiUWlwCOq/lsaL8Gt3r0RoLZchbX11Fp
+hOmz1535bjHaUx/NT6zz2QgKvJ8tErCCooq+RUlubv6QLdOTIegaLDVpCAa4CsTv
+wByyM7+oWwCvmIkWmv+nfllINKUiRFZOWASJ7aXAQh/1GGpx6wU/eaI+fbGMI/XJ
+c0n031xH/GPAL5fx9BnX5M0mYBUkxTEWWvMuAwrodEtJEqc++RIs9CHGXNICSqPs
+39NNzOS3tlhFDdR/KMe86vNYl8vfhjbM7m5v+8hmLwi4tOFO2KYY4KUXHNSgfnIi
+tMbUOjs3ojI3E3vvLqiYYPQ1F0xLCuY1KshgaZ/V7tdqn/pzPQtYaEedA3jh7XVd
+FVqPM1w7coRP7ty0PfJtfkUjOiV16jmSZdeMbzIJUqd7+9u5h74=
+=+xfr
+-----END PGP SIGNATURE-----
+
+--ZfOjI3PrQbgiZnxM--
