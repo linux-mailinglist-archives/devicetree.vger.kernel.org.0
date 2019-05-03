@@ -2,75 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA8112A7B
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 11:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC53A12AA8
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 11:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbfECJ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 05:28:42 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:44893 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725804AbfECJ2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 05:28:42 -0400
-Received: by mail-vs1-f66.google.com with SMTP id j184so3148728vsd.11;
-        Fri, 03 May 2019 02:28:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EvKw68jMK2eDsWxVRqOtlnx8B1f8dGcMlPF+TnAfRsQ=;
-        b=cFGRwbWcFvQIB88pk2K1PWzpKno92ySBvc/3ncXacfRvhkB1q+I4skRg8E9k0Bt4iy
-         55l7Negj8kHedVDlRGwKUkmHT3SB4Pv8d0OtslXKymvFevryii7xA79RVcRwOOBIpznB
-         kjy7abQeL7NXAIbo3hha3Ca1bqmyACtlu+yWMHDqSvyvub/bfIXCMg2ZaEZDJUrb0o9Y
-         HeotUPAVn/pmJHgllvruyg1tDTRlCY3IkH/mL3S9k09u4Y7ilM5K7priLyUW//MuJDSH
-         5xAldjvssNHQe2B0FXFjZQF7k43eAffEjrIQ2E1gY8zC4qVeSivoLI8apfLZ+AUtvGVM
-         FcWA==
-X-Gm-Message-State: APjAAAUX9QqtX/RYNqzdIDy8/ZIPbGeFeg1lcm3OHUV7J8yykIulYkJo
-        za+tzptm3DtQe93cWuK6BD+6WLtL4sV/ejGBQ8I=
-X-Google-Smtp-Source: APXvYqzvcCpnZZHmYadtKA97equNJmiCauvATqWDHHcaEcLdwzyZBnlDLQVW4NSZNk/nEE+utx+c0+iWQBeKuVFjgIE=
-X-Received: by 2002:a67:83cf:: with SMTP id f198mr4830491vsd.63.1556875721239;
- Fri, 03 May 2019 02:28:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <1556155517-5054-1-git-send-email-cv-dong@jinso.co.jp> <1556155517-5054-5-git-send-email-cv-dong@jinso.co.jp>
-In-Reply-To: <1556155517-5054-5-git-send-email-cv-dong@jinso.co.jp>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 3 May 2019 11:28:30 +0200
-Message-ID: <CAMuHMdVtmn-mDMXZh8F6C6oC_Qd809VvZHFyBN-SATXNJ9_T8w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] arm64: dts: renesas: r8a77965: Add TPU support
-To:     Cao Van Dong <cv-dong@jinso.co.jp>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S1727446AbfECJc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 05:32:56 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:3695 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727065AbfECJcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 05:32:53 -0400
+X-UUID: 83e55071fc694c3791f0629c516cc74e-20190503
+X-UUID: 83e55071fc694c3791f0629c516cc74e-20190503
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1258667011; Fri, 03 May 2019 17:32:41 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 3 May 2019 17:32:39 +0800
+Received: from mtkslt302.mediatek.inc (10.21.14.115) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 3 May 2019 17:32:39 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        =?UTF-8?B?56iy5ZCJ?= <h-inayoshi@jinso.co.jp>,
-        Hoan Nguyen An <na-hoan@jinso.co.jp>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>
+Subject: [PATCH v3 00/10] Add Support for MediaTek PMIC MT6358
+Date:   Fri, 3 May 2019 17:31:07 +0800
+Message-ID: <20190503093117.54830-1-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 7D00067F9E396F22E551B149909C1757BD011A8E6CD7F1F19677A6571AAF39D12000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 25, 2019 at 3:25 AM Cao Van Dong <cv-dong@jinso.co.jp> wrote:
-> Add tpu device node to dtsi for TPU support on r8a77965 SoC.
->
-> Signed-off-by: Cao Van Dong <cv-dong@jinso.co.jp>
+This patchset including refactoring interrupt add support to MT6358 PMIC.
+MT6358 is the primary PMIC for MT8183 platform.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+changes since v2:
+- rewrite the description of MT6358 regulators.
+- refine some coding style in the dts for better code quality.
+- refine the suspend behavior of mfd driver.
+- some minor bug fix of mfd driver, like adding IRQCHIP_SKIP_SET_WAKE
+  flag.
+- remove unused MT6358 register.
+- merge the same voltage table and remove unused chip id in the MT6358
+  regulator driver.
 
-Gr{oetje,eeting}s,
+Hsin-Hsiung Wang (8):
+  mfd: mt6397: clean up code
+  mfd: mt6397: extract irq related code from core driver
+  mfd: mt6397: modify suspend/resume behavior
+  dt-bindings: mfd: Add compatible for the MediaTek MT6358 PMIC
+  regulator: Add document for MT6358 regulator
+  mfd: Add support for the MediaTek MT6358 PMIC
+  regulator: mt6358: Add support for MT6358 regulator
+  arm64: dts: mt6358: add PMIC MT6358 related nodes
 
-                        Geert
+Ran Bi (2):
+  rtc: mt6397: fix alarm register overwrite
+  rtc: Add support for the MediaTek MT6358 RTC
+
+ .../devicetree/bindings/mfd/mt6397.txt        |  11 +-
+ .../bindings/regulator/mt6358-regulator.txt   | 358 +++++++++++
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi      | 358 +++++++++++
+ drivers/mfd/Makefile                          |   4 +-
+ drivers/mfd/mt6358-irq.c                      | 229 +++++++
+ drivers/mfd/mt6397-core.c                     | 293 +++------
+ drivers/mfd/mt6397-irq.c                      | 214 +++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/mt6358-regulator.c          | 586 ++++++++++++++++++
+ drivers/rtc/rtc-mt6397.c                      |  90 ++-
+ include/linux/mfd/mt6358/core.h               | 158 +++++
+ include/linux/mfd/mt6358/registers.h          | 282 +++++++++
+ include/linux/mfd/mt6397/core.h               |  15 +
+ include/linux/regulator/mt6358-regulator.h    |  56 ++
+ 15 files changed, 2442 insertions(+), 222 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6358.dtsi
+ create mode 100644 drivers/mfd/mt6358-irq.c
+ create mode 100644 drivers/mfd/mt6397-irq.c
+ create mode 100644 drivers/regulator/mt6358-regulator.c
+ create mode 100644 include/linux/mfd/mt6358/core.h
+ create mode 100644 include/linux/mfd/mt6358/registers.h
+ create mode 100644 include/linux/regulator/mt6358-regulator.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.18.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
