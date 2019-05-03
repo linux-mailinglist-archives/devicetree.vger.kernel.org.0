@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C90126E8
-	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 06:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B723412707
+	for <lists+devicetree@lfdr.de>; Fri,  3 May 2019 07:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725997AbfECEhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 00:37:39 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:35111 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726259AbfECEhi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 00:37:38 -0400
-Received: by mail-ot1-f65.google.com with SMTP id g24so4225408otq.2
-        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 21:37:38 -0700 (PDT)
+        id S1726400AbfECFSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 01:18:35 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:46995 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726220AbfECFSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 01:18:35 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 77so4230084otu.13
+        for <devicetree@vger.kernel.org>; Thu, 02 May 2019 22:18:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=MP+BYohbe5InwRfSzvg57aXOQ3N16hg/j/194MGpAY0=;
-        b=nX2mqnQH8G7lAq/7boHjf6fgeLW4OhXc8dycc5+By6G9miBNlXzrVPV09oM01sBY2z
-         1PY2T/XYJRHqtEONNgq9PADGf03W5G4sziQ4uRTMnqAEoh6iNM5a9Ezoiyo1ndCy7ojW
-         tk5gH9WgN5g9NpRotxrQseR6tWEmch2vzDn0sL0k1iRMx7bM8e8KuZGIwI0PZSgcFr3+
-         TlFU9bnfKzaF/HkPoJxOnNiQ3CLrmM6khM79ImW9xBb83Molxw1NMYQ6x9BlXbS1s9zs
-         S9Wn0BBJ13BpxlnQuKJTgsk8nHAZ3z9hw5P/B+YZkt20RKzyQ4WKZ9zq8VVw1rVYepe+
-         8Lqg==
+        bh=TcYMhvle0qn3Vbr1jw5wZlfwobq39YCNyqpLb7cb7Ao=;
+        b=vMgoD4BZW5GJfaQp5wHB4n5Uh0dHYfDvtMT6no12+p0edzsKljaBNtH2QSDc0E6VzT
+         LcuVJrv7cdGqX7U8FfKi5bagOC/nhHdsiKYsGPft1mReUq108TVFisXe9TJrijP3ncN9
+         v39q83CXeT5lkt4WLd/fwqU8g5riscYutv4Dl0z3LH4QLnkrqcMdMPzrzbEAqplHU0Uu
+         m3PA8EGRjwXV1jBeELzeCCKDGehqdroKwQf1lX98y7iQ89oh7pPsirzbD3JpTdCcD6Pl
+         9jznQM6AV2RqS1bTQE7nMwTk67da6P41iEI1afzG3TYud6oBdVc8/EIcpi2ctCF9A2Zz
+         QXpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MP+BYohbe5InwRfSzvg57aXOQ3N16hg/j/194MGpAY0=;
-        b=plQvLL1pAlpwZ/PzRiX+njgANspFTcr6zu6zcL5w6Bx3OBaBG5etV5VszQNLk1I2OE
-         4C0pGvLCFEslo3dnMjsynBA6iwZoMCXGtVNqMkMXRND2HMChDqpS0+WmmGsN/Nf4We9D
-         U0L/lNyiq4xgayy0vHkOrsdJT0XUwDB8JYhoaS/inhXtb4QIVm8qMlwLrs51jEy4mxzw
-         jRydnRLwX6dEMwnOELrJ3wW8WsWubyNWLfUBWLd1ztDQ1nRdVCgsGb5WStISFJR9jLVW
-         CImRnKF5fH/XHIUlJrQXoMqtESKynW0DZqHgsGW7CupiuQKBkNDiZUFOwOLET7IDgRBj
-         rArQ==
-X-Gm-Message-State: APjAAAUKXVnjpCYt1uVggWLp+5JctzFkW0gG10kdpk//anYf+U+4tbh0
-        FWIymwgd08zwTaEndOUcNAvc7ORQYVNPx4D+hNE9LA==
-X-Google-Smtp-Source: APXvYqzr00vtpNCRa2QqJZ42KJSToZ1wauw/4VV+vzP4c9tKhQXBp7ukXjW5JZyxz7qF7iSRxd8GRh/4dSu03CZLLfk=
-X-Received: by 2002:a9d:7f19:: with SMTP id j25mr5018212otq.25.1556858257579;
- Thu, 02 May 2019 21:37:37 -0700 (PDT)
+        bh=TcYMhvle0qn3Vbr1jw5wZlfwobq39YCNyqpLb7cb7Ao=;
+        b=Yu0cckRfwastdSgp55AXv8wBf4xeNZBSFTczh0cZjuqzsrlOykiAywEWIPufyChCGH
+         vUbW0rmZg6NDJgjP6Mhv8GSsvAVOqYi6WPkY0vqAAusznB6nCMLyMQyGZ0YI/4R7r3mU
+         7bZyrJJYpdLONqB7ocKY06xlXalf+0LZjsMjgtKN/A78RsrgHrqTexSBqjl4Mm8zXTxN
+         csadUKatx4m+o+J5thXgpsUquC8Jo96ETCFe4qu/Ax7QGJQmDMUYnMppKRaTnHp8VIzn
+         YA/evVUKmbZoNTKw6ecKWBrJBpojO7QZUaegW3iDbjOoYZB3GvN8ZA5EsSUzotKZuO21
+         B3yw==
+X-Gm-Message-State: APjAAAXDNEau01yVhPnvLL8PqUvNjBiA1nUoOpaqf6VIa2TMSSKxxJ1s
+        woQSy7jmG7rC+0PHEguqrzRdmOao6hmMZx/aG5twBw==
+X-Google-Smtp-Source: APXvYqyA2rSR/zhocpuvfAEjnR+/hEY11wb5Z34WyJg2tb2IGWD/sjsI629/w4anWfW9OX32ft4Cf8TKrI7DL3H8Uik=
+X-Received: by 2002:a05:6830:204a:: with SMTP id f10mr4960513otp.83.1556860714114;
+ Thu, 02 May 2019 22:18:34 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-4-brendanhiggins@google.com> <1befe456-d981-d726-44f9-ebe3702ee51d@kernel.org>
-In-Reply-To: <1befe456-d981-d726-44f9-ebe3702ee51d@kernel.org>
+ <20190501230126.229218-8-brendanhiggins@google.com> <d4934565-9b41-880e-3bbe-984224b50fac@kernel.org>
+In-Reply-To: <d4934565-9b41-880e-3bbe-984224b50fac@kernel.org>
 From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 2 May 2019 21:37:26 -0700
-Message-ID: <CAFd5g46Ok5rtXUyeHdyoujsdYPq4qwaZwdu3CxY50Gq_iq7B6A@mail.gmail.com>
-Subject: Re: [PATCH v2 03/17] kunit: test: add string_stream a std::stream
- like string builder
+Date:   Thu, 2 May 2019 22:18:22 -0700
+Message-ID: <CAFd5g44ex8B71K78V7-kRqcRw18Jou_c0KFtTR7wBpArw+P+MQ@mail.gmail.com>
+Subject: Re: [PATCH v2 07/17] kunit: test: add initial tests
 To:     shuah <shuah@kernel.org>
 Cc:     Frank Rowand <frowand.list@gmail.com>,
         Greg KH <gregkh@linuxfoundation.org>,
@@ -87,68 +86,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 2, 2019 at 6:26 PM shuah <shuah@kernel.org> wrote:
+On Thu, May 2, 2019 at 6:27 PM shuah <shuah@kernel.org> wrote:
 >
 > On 5/1/19 5:01 PM, Brendan Higgins wrote:
-< snip >
-> > diff --git a/kunit/Makefile b/kunit/Makefile
-> > index 5efdc4dea2c08..275b565a0e81f 100644
-> > --- a/kunit/Makefile
-> > +++ b/kunit/Makefile
-> > @@ -1 +1,2 @@
-> > -obj-$(CONFIG_KUNIT) +=                       test.o
-> > +obj-$(CONFIG_KUNIT) +=                       test.o \
-> > +                                     string-stream.o
-> > diff --git a/kunit/string-stream.c b/kunit/string-stream.c
-> > new file mode 100644
-> > index 0000000000000..7018194ecf2fa
-> > --- /dev/null
-> > +++ b/kunit/string-stream.c
-> > @@ -0,0 +1,144 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * C++ stream style string builder used in KUnit for building messages.
-> > + *
-> > + * Copyright (C) 2019, Google LLC.
-> > + * Author: Brendan Higgins <brendanhiggins@google.com>
-> > + */
+> > Add a test for string stream along with a simpler example.
+> >
+> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> > ---
+> >   kunit/Kconfig              | 12 ++++++
+> >   kunit/Makefile             |  4 ++
+> >   kunit/example-test.c       | 88 ++++++++++++++++++++++++++++++++++++++
+> >   kunit/string-stream-test.c | 61 ++++++++++++++++++++++++++
+> >   4 files changed, 165 insertions(+)
+> >   create mode 100644 kunit/example-test.c
+> >   create mode 100644 kunit/string-stream-test.c
+> >
+> > diff --git a/kunit/Kconfig b/kunit/Kconfig
+> > index 64480092b2c24..5cb500355c873 100644
+> > --- a/kunit/Kconfig
+> > +++ b/kunit/Kconfig
+> > @@ -13,4 +13,16 @@ config KUNIT
+> >         special hardware. For more information, please see
+> >         Documentation/kunit/
+> >
+> > +config KUNIT_TEST
+> > +     bool "KUnit test for KUnit"
+> > +     depends on KUNIT
+> > +     help
+> > +       Enables KUnit test to test KUnit.
 > > +
-> > +#include <linux/list.h>
-> > +#include <linux/slab.h>
-> > +#include <kunit/string-stream.h>
-> > +
-> > +int string_stream_vadd(struct string_stream *this,
-> > +                    const char *fmt,
-> > +                    va_list args)
-> > +{
-> > +     struct string_stream_fragment *fragment;
 >
-> Since there is field with the same name, please use a different
-> name. Using the same name for the struct which contains a field
-> of the same name get very confusing and will hard to maintain
-> the code.
+> Please add a bit more information on what this config option
+> does. Why should user care to enable it?
 >
-> > +     int len;
-> > +     va_list args_for_counting;
-> > +     unsigned long flags;
+> > +config KUNIT_EXAMPLE_TEST
+> > +     bool "Example test for KUnit"
+> > +     depends on KUNIT
+> > +     help
+> > +       Enables example KUnit test to demo features of KUnit.
 > > +
-> > +     /* Make a copy because `vsnprintf` could change it */
-> > +     va_copy(args_for_counting, args);
-> > +
-> > +     /* Need space for null byte. */
-> > +     len = vsnprintf(NULL, 0, fmt, args_for_counting) + 1;
-> > +
-> > +     va_end(args_for_counting);
-> > +
-> > +     fragment = kmalloc(sizeof(*fragment), GFP_KERNEL);
-> > +     if (!fragment)
-> > +             return -ENOMEM;
-> > +
-> > +     fragment->fragment = kmalloc(len, GFP_KERNEL);
 >
-> This is confusing. See above comment.
+> Same here.
 
-Good point. Will fix in the next revision.
+Sounds reasonable. Will fix in the next revision.
 
 < snip >
 
