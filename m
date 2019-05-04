@@ -2,78 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE9F6139BD
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 14:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A20B6139D5
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 14:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726770AbfEDMZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 08:25:37 -0400
-Received: from mga14.intel.com ([192.55.52.115]:32405 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725981AbfEDMZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 May 2019 08:25:37 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 May 2019 05:25:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,429,1549958400"; 
-   d="scan'208";a="321404141"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 04 May 2019 05:25:35 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
-        (envelope-from <lkp@intel.com>)
-        id 1hMtjS-000CFd-Jk; Sat, 04 May 2019 20:25:34 +0800
-Date:   Sat, 4 May 2019 20:25:00 +0800
-From:   kbuild test robot <lkp@intel.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     kbuild-all@01.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        robh+dt@kernel.org, mchehab@kernel.org, tfiga@chromium.org,
-        dshah@xilinx.com, hverkuil@xs4all.nl,
-        Michael Tretter <m.tretter@pengutronix.de>
-Subject: Re: [PATCH v5 5/5] [media] allegro: add SPS/PPS nal unit writer
-Message-ID: <201905042054.cJaeaTEE%lkp@intel.com>
-References: <20190503122010.16663-6-m.tretter@pengutronix.de>
+        id S1726963AbfEDMhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 08:37:13 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:46923 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726694AbfEDMhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 08:37:13 -0400
+X-Greylist: delayed 485 seconds by postgrey-1.27 at vger.kernel.org; Sat, 04 May 2019 08:37:11 EDT
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 6D2DC2382B7B;
+        Sat,  4 May 2019 14:29:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1556972945;
+        bh=HLLBJwzV2pGt8lnuFwJSi/sRGwJWRHH+ce3ZMNvAZhU=; l=2992;
+        h=From:To:Subject;
+        b=nIR0kJV2Eb+NDA9mrkcxBkYXa/OUqqmIvpkvfo96/Mi63Pb7nQCgGIBqWzbW5yYxV
+         HETKMTufs2LBJkxjO7Xuf509c3IhFpAdpOKrnL3WXM3A8SHnqvJfwdRkRnxqGrLXZO
+         xbS2XL+c8qZWdkr6dFS53o5Sypn5MIx9yxmCcfFc=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=list@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+From:   list@c-mauderer.de
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Christian Mauderer <oss@c-mauderer.de>
+Subject: [PATCH 1/2] dt-bindings: leds: Add binding for ubnt-spi LED.
+Date:   Sat,  4 May 2019 14:28:24 +0200
+Message-Id: <20190504122825.11883-1-list@c-mauderer.de>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190503122010.16663-6-m.tretter@pengutronix.de>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <155697294482.85380.6896766246519651555@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+From: Christian Mauderer <oss@c-mauderer.de>
 
-I love your patch! Perhaps something to improve:
+This patch adds the binding documentation for the LED controller found
+in Ubiquity airCube ISP devices.
 
-[auto build test WARNING on linuxtv-media/master]
-[also build test WARNING on v5.1-rc7 next-20190503]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
-
-url:    https://github.com/0day-ci/linux/commits/Michael-Tretter/Add-ZynqMP-VCU-Allegro-DVT-H-264-encoder-driver/20190504-161958
-base:   git://linuxtv.org/media_tree.git master
-reproduce:
-        # apt-get install sparse
-        make ARCH=x86_64 allmodconfig
-        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
-
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
-
-
-sparse warnings: (new ones prefixed by >>)
-
->> drivers/media/platform/allegro-dvt/nal-h264.c:433:6: sparse: sparse: symbol 'nal_h264_write_start_code_prefix' was not declared. Should it be static?
->> drivers/media/platform/allegro-dvt/nal-h264.c:451:6: sparse: sparse: symbol 'nal_h264_read_start_code_prefix' was not declared. Should it be static?
->> drivers/media/platform/allegro-dvt/nal-h264.c:469:6: sparse: sparse: symbol 'nal_h264_write_filler_data' was not declared. Should it be static?
->> drivers/media/platform/allegro-dvt/nal-h264.c:480:6: sparse: sparse: symbol 'nal_h264_read_filler_data' was not declared. Should it be static?
-
-Please review and possibly fold the followup patch.
-
+Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
 ---
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+
+I tested the patches with a 4.14 and a 4.19 kernel on the current OpenWRT.
+Although I didn't get the kernel running due to file system problems they build
+fine with a 5.1-rc7.
+
+I shortly described the protocol of the controller in a comment in the driver
+file in the second patch.
+
+Checkpatch gives the following warning for both patches:
+
+  WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+
+To be honest: I don't know what to do with it. Please excuse my ignorance here.
+It's the first driver that I want to add to the Linux kernel.
+
+Please point me to some documentation if I did miss some big points for
+submitting patches.
+
+
+ .../bindings/leds/leds-ubnt-spi.txt           | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-ubnt-spi.txt
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-ubnt-spi.txt b/Documentation/devicetree/bindings/leds/leds-ubnt-spi.txt
+new file mode 100644
+index 000000000000..ab1478cdc139
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-ubnt-spi.txt
+@@ -0,0 +1,49 @@
++Binding for the controller based LED found in Ubiquity airCube ISP and most
++likely some other Ubiquity devices.
++
++The protocol of the controller is quite simple. Only one byte will be sent. The
++value of the byte can be between the ubnt-spi,off_bright value and the
++ubnt-spi,max_bright value.
++
++The driver maybe can be used for other devices with a similar protocol too.
++
++Required properties:
++- compatible:		Should be "ubnt,spi-led".
++- spi-max-frequency:	Should be <100000> for this device.
++
++Optional sub-node properties:
++- ubnt-spi,off_bright:	The value that will be sent if the LED should be
++			switched off. Default value is 0.
++- ubnt-spi,max_bright:	Value for the maximum brightness. Default value for that
++			is 63.
++- label:		A label for the LED. If one is given, the LED will be
++			named "ubnt-spi:<label>" or "ubnt-spi::" otherwise.
++
++Being a SPI device this driver should be a sub-node of a SPI controller. The
++controller only supports one LED. For consistence with other controllers, the
++LED is defined as a sub-node.
++
++Example for the airCube ISP (with SPI controller matching that device):
++
++led_spi {
++	compatible = "spi-gpio";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	gpio-sck = <&gpio 3 GPIO_ACTIVE_HIGH>;
++	gpio-mosi = <&gpio 2 GPIO_ACTIVE_HIGH>;
++	cs-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
++	num-chipselects = <1>;
++
++	led_ubnt@0 {
++		compatible = "ubnt,spi-led";
++		reg = <0>;
++		spi-max-frequency = <100000>;
++
++		led {
++			label = "system";
++			/* keep the LED slightly on to show powered device */
++			ubnt-spi,off_bright = /bits/ 8 <4>;
++		};
++	};
++};
+-- 
+2.21.0
+
