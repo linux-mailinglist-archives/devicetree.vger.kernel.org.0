@@ -2,85 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F6A13B0E
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 18:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40D9613B21
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 18:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbfEDQBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 12:01:11 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:43313 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726230AbfEDQBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 12:01:11 -0400
-Received: by mail-ot1-f66.google.com with SMTP id e108so7932472ote.10;
-        Sat, 04 May 2019 09:01:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9t8LCWyfp/pOAtfgPb8iwJH/k7FZiFO2TuX9+ZiH3e8=;
-        b=XDst6UReaqewQc01UyXXsd9Cde8Cl/0ul6VQbBK/rPCuWcURU0P/u2JCu+gbJcdw0Y
-         rpYVuoIasC9ghLEO/DnX83JS7wqZlvEuEJD3A73XkXn3Cra9Mh6m1qQcfDzaZXVw02gx
-         +wCHGkUFJuxm+soaWav453qgAxRh4xsftNKZGBw3eCDE5d9BsTl4zShNGq4aT0AlU9eh
-         wYFRkhK+r0mb8QwJY9VEMw3/gDaxXJ5YmWXt5UPBBAAEKoY1xkL3qspj1rwAjFpWj9iq
-         KYStV1TQzFFTse0VkFBqWzwFkAHTQxg3o3DoZjwyV7q4e/rmMWn+W2JeceC4Y4cY5r2T
-         iADg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9t8LCWyfp/pOAtfgPb8iwJH/k7FZiFO2TuX9+ZiH3e8=;
-        b=rXN+z7HMt+tFMyiYMk7F6RXTNeiadmOTkzK+qkT26lbdA8W3KKL0mHvtn/4/4IFEJe
-         yaqWxSHYRUwkHpGxf1sIY2mlVFwzQwTCdzO4MsgqtDjyp3KP/rBbE402wKILC1z87zwv
-         VU91CqUUs2WS4V61mtEDheJaOfoOGkmzPss3cwKJB+tAtB2pXuBKBdBWL0Q3Y0pR6KxC
-         QPkieF4vxxxygy154VI6rBmsqRThVo8C5QVyWP9FE7KslPdMDf3FHN1jAvFISiv8YB+Z
-         +GzJfT3sjmn3n6g8YGqNfgMU6pMBFKKtipKkRODlxED+Wh7RcqoZuE+yHMWYXEkim7b6
-         1FKg==
-X-Gm-Message-State: APjAAAUvUFQ7cdILgrp+DXydjyIBUzumhq14NBokrkhR4Yco3y1hgSab
-        rJaC28eOvUIJwRGmmXiBzRFYMKwmxvF6Ljmegfk=
-X-Google-Smtp-Source: APXvYqxjdCLLQjiN6f/+hMfblnZSqvLsRxwwQad7eZvZjFfwokiUdx1JaLIvkLHcv1cUqulotQHYpffhDAYbxZ0DLXk=
-X-Received: by 2002:a9d:6153:: with SMTP id c19mr10865780otk.110.1556985670995;
- Sat, 04 May 2019 09:01:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190422064046.2822-1-o.rempel@pengutronix.de>
-In-Reply-To: <20190422064046.2822-1-o.rempel@pengutronix.de>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Sun, 5 May 2019 00:01:00 +0800
-Message-ID: <CAJsYDV+1dXfQ3qKMDkbbXa94UQ+DiNCQ3YQB=PTkeXJ19Xa8uQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] MIPS: ath79: add ag71xx support
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jay Cliburn <jcliburn@gmail.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
+        id S1726258AbfEDQMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 12:12:40 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:39152 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726217AbfEDQMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 12:12:40 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 6477B80313; Sat,  4 May 2019 18:12:28 +0200 (CEST)
+Date:   Sat, 4 May 2019 18:12:37 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     list@c-mauderer.de
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-mips@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Felix Fietkau <nbd@nbd.name>, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Christian Mauderer <oss@c-mauderer.de>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Add binding for ubnt-spi LED.
+Message-ID: <20190504161237.GA24060@amd>
+References: <20190504122825.11883-1-list@c-mauderer.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="J/dobhs11T7y2rNN"
+Content-Disposition: inline
+In-Reply-To: <20190504122825.11883-1-list@c-mauderer.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
 
-On Mon, Apr 22, 2019 at 2:41 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
-> [...]
-> - most of deficetree bindings was removed. Not every thing made sense
->   and most of it is SoC specific, so it is possible to detect it by
->   compatible.
+--J/dobhs11T7y2rNN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I noticed that you've dropped all PLL and gmac-config stuff. These are
-board-specific properties and PLL registers should be changed
-accroding to negotiated ethernet speed. By dropping them, you rely on
-bootloader to configure everything corectly for you (which has been
-proven unreliable for many ath79 routers) and ethernet won't work if
-negotiated speed changed after u-boot's configuration.
+On Sat 2019-05-04 14:28:24, list@c-mauderer.de wrote:
+> From: Christian Mauderer <oss@c-mauderer.de>
+>=20
+> This patch adds the binding documentation for the LED controller found
+> in Ubiquity airCube ISP devices.
+>=20
+> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
+> ---
+>=20
+> I tested the patches with a 4.14 and a 4.19 kernel on the current OpenWRT.
+> Although I didn't get the kernel running due to file system problems they=
+ build
+> fine with a 5.1-rc7.
+>=20
+> I shortly described the protocol of the controller in a comment in the dr=
+iver
+> file in the second patch.
+>=20
+> Checkpatch gives the following warning for both patches:
+>=20
+>   WARNING: added, moved or deleted file(s), does MAINTAINERS need
+> updating?
 
-Regards,
-Chuanhong Guo
+Ignore that :-).
+
+> diff --git a/Documentation/devicetree/bindings/leds/leds-ubnt-spi.txt b/D=
+ocumentation/devicetree/bindings/leds/leds-ubnt-spi.txt
+> new file mode 100644
+> index 000000000000..ab1478cdc139
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-ubnt-spi.txt
+> @@ -0,0 +1,49 @@
+> +Binding for the controller based LED found in Ubiquity airCube ISP and m=
+ost
+> +likely some other Ubiquity devices.
+
+It would be good to know what chip it is.. and name the binding
+accordingly.
+
+Alternatively, call its led-spi-byte, or something, as it is really
+trivial protocol. Maybe other chips will have same interface?
+
+> +Example for the airCube ISP (with SPI controller matching that device):
+> +
+> +led_spi {
+> +	compatible =3D "spi-gpio";
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <0>;
+> +
+> +	gpio-sck =3D <&gpio 3 GPIO_ACTIVE_HIGH>;
+> +	gpio-mosi =3D <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +	cs-gpios =3D <&gpio 1 GPIO_ACTIVE_HIGH>;
+> +	num-chipselects =3D <1>;
+> +
+> +	led_ubnt@0 {
+> +		compatible =3D "ubnt,spi-led";
+> +		reg =3D <0>;
+> +		spi-max-frequency =3D <100000>;
+> +
+> +		led {
+> +			label =3D "system";
+> +			/* keep the LED slightly on to show powered device */
+> +			ubnt-spi,off_bright =3D /bits/ 8 <4>;
+> +		};
+> +	};
+> +};
+
+Otherwise looks good to me,
+
+Acked-by: Pavel Machek <pavel@ucw.cz>
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--J/dobhs11T7y2rNN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAlzNufUACgkQMOfwapXb+vIO8QCdETjkj7yT1KkKezOd83CRZ96K
+DMkAoLrHGuBriWED+hd3nfBTrFNU/L5B
+=7/sq
+-----END PGP SIGNATURE-----
+
+--J/dobhs11T7y2rNN--
