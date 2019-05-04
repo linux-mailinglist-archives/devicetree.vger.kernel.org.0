@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8741E13829
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 09:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBEFF13857
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 11:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726302AbfEDHzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 03:55:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54378 "EHLO mail.kernel.org"
+        id S1726529AbfEDJA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 05:00:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44674 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725802AbfEDHzF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 May 2019 03:55:05 -0400
+        id S1726208AbfEDJA3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 May 2019 05:00:29 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CD94A206DF;
-        Sat,  4 May 2019 07:55:04 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id ADD44206BB;
+        Sat,  4 May 2019 09:00:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556956505;
-        bh=rYPN3R+HI0gzJ3zG999qqQnoIuSpK9XHHiTCWGM41vE=;
+        s=default; t=1556960428;
+        bh=7HXqKzpxUiSs04dSG1RdKuXbafCjffLyeVJkF8NBEOg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y8g6vWADpPZNrwosyOhB4k2QUKfIiD2hX6aCDYfnFrXrnot4C5HkGTT+mN7IL9N1d
-         P3EVHLgxD7l8Hk4kKaR0DHXaMqekVxvGkdOjv9yRJR3NuFYmETNCoXmGINZEfifezy
-         0wRMqWdU/sCwOeNyi2HgdwKAUt08vfWZPaT8SMEc=
-Date:   Sat, 4 May 2019 09:55:02 +0200
+        b=puUuzFkkzwwSmbdSjWHix07/cvUiyDGyk0+FIz9i4YcJ7oA6H7JhGuDTt7y30D2zN
+         eCdZKfgo7WOKsnlgmcJ93LF816InzU+PNYuJpGhQOM+HiUwVpwCiZstZvYR2idVS9/
+         YWJc88yVVZkIVYsvxgD8/JipbwxoZNuKsOaMrxW0=
+Date:   Sat, 4 May 2019 11:00:25 +0200
 From:   Greg KH <gregkh@linuxfoundation.org>
 To:     Dragan Cvetic <draganc@xilinx.com>
 Cc:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
@@ -34,67 +34,73 @@ Cc:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Derek Kiernan <dkiernan@xilinx.com>
-Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-Message-ID: <20190504075502.GA11133@kroah.com>
+Subject: Re: [PATCH V3 07/12] misc: xilinx_sdfec: Add ability to configure
+ LDPC
+Message-ID: <20190504090025.GB13840@kroah.com>
 References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
- <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
- <20190502172007.GA1874@kroah.com>
- <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <1556402706-176271-8-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172713.GD1874@kroah.com>
+ <BL0PR02MB5681D386363988CB2CA4D040CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+In-Reply-To: <BL0PR02MB5681D386363988CB2CA4D040CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
 User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 03, 2019 at 04:41:21PM +0000, Dragan Cvetic wrote:
+On Fri, May 03, 2019 at 04:49:19PM +0000, Dragan Cvetic wrote:
 > Hi Greg,
 > 
-> Please find my inline comments below,
-> 
-> Regards
-> Dragan
-> 
+> Please find inline comments below.
+
+As they should be, no need to mention it :)
+
 > > -----Original Message-----
 > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > Sent: Thursday 2 May 2019 18:20
+> > Sent: Thursday 2 May 2019 18:27
 > > To: Dragan Cvetic <draganc@xilinx.com>
 > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@lists.infradead.org; robh+dt@kernel.org;
 > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > Subject: Re: [PATCH V3 07/12] misc: xilinx_sdfec: Add ability to configure LDPC
 > > 
-> > On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic wrote:
-> > > +#define DRIVER_NAME "xilinx_sdfec"
-> > > +#define DRIVER_VERSION "0.3"
+> > On Sat, Apr 27, 2019 at 11:05:01PM +0100, Dragan Cvetic wrote:
+> > > --- a/include/uapi/misc/xilinx_sdfec.h
+> > > +++ b/include/uapi/misc/xilinx_sdfec.h
 > > 
-> > Version means nothing with the driver in the kernel tree, please remove
-> > it.
+> > <snip>
+> > 
+> > > +/**
+> > > + * xsdfec_calculate_shared_ldpc_table_entry_size - Calculates shared code
+> > > + * table sizes.
+> > > + * @ldpc: Pointer to the LPDC Code Parameters
+> > > + * @table_sizes: Pointer to structure containing the calculated table sizes
+> > > + *
+> > > + * Calculates the size of shared LDPC code tables used for a specified LPDC code
+> > > + * parameters.
+> > > + */
+> > > +inline void
+> > > +xsdfec_calculate_shared_ldpc_table_entry_size(struct xsdfec_ldpc_params *ldpc,
+> > > +	struct xsdfec_ldpc_param_table_sizes *table_sizes)
+> > > +{
+> > > +	/* Calculate the sc_size in 32 bit words */
+> > > +	table_sizes->sc_size = (ldpc->nlayers + 3) >> 2;
+> > > +	/* Calculate the la_size in 256 bit words */
+> > > +	table_sizes->la_size = ((ldpc->nlayers << 2) + 15) >> 4;
+> > > +	/* Calculate the qc_size in 256 bit words */
+> > > +	table_sizes->qc_size = ((ldpc->nqc << 2) + 15) >> 4;
+> > > +}
+> > 
+> > Why do you have an inline function in a user api .h file?  That's really
+> > not a good idea.
 > 
-> Will be removed. Thank you.
-> 
-> > 
-> > > +#define DRIVER_MAX_DEV BIT(MINORBITS)
-> > 
-> > Why this number?  Why limit yourself to any number?
-> > 
-> 
-> There can be max 8 devices for this driver. I'll change to 8.
-> 
-> > > +
-> > > +static struct class *xsdfec_class;
-> > 
-> > Do you really need your own class?
-> 
-> When writing a character device driver, my goal is to create and register an instance
-> of that structure associated with a struct file_operations, exposing a set of operations
-> to the user-space. One of the steps to make this goal is Create a class for a devices,
-> visible in /sys/class/.
+> This is just a Helper function for users aligning the calculations.
+> Please advise, is this acceptable?
 
-Why do you need a class?  Again, why not just use the misc_device api,
-that seems much more relevant here and will make the code a lot simpler.
+Not really, just have actual api functions in a uapi .h file, why would
+userspace care about this type of thing?
 
 thanks,
 
