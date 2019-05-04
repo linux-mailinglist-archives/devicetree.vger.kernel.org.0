@@ -2,123 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F70A13955
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 12:43:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC641395E
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 12:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726752AbfEDKmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 06:42:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44924 "EHLO mail.kernel.org"
+        id S1726969AbfEDKoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 06:44:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45246 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725981AbfEDKmz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 May 2019 06:42:55 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        id S1725981AbfEDKoI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 May 2019 06:44:08 -0400
+Received: from localhost (unknown [171.76.113.243])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 83EC9206DF;
-        Sat,  4 May 2019 10:42:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 57471206DF;
+        Sat,  4 May 2019 10:44:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1556966574;
-        bh=2wZMR8kL7s1krXCBVQ2gHWVCoJe2nAbegB0hEA5FL6g=;
+        s=default; t=1556966648;
+        bh=JGWkOV/hj8H+O/TaeLZewNOAIluePPJyTL/Z+sEbtrc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=g2qAYqK93MmeEO5EtmmbYxkKej3oQNG4Xe6XPJD6vrQPt38T1svHdBKrBvdMiYWgD
-         AZ7qWDqABTJ6olUjiTR2iLAVWnkx5H2eC/KCt6WPfdYa51NsGiNAAeStPcWNLEDQJV
-         lDwxJTqazCCtkTaH5ybwPNJUh0FxQBUrP7ZHlU+A=
-Date:   Sat, 4 May 2019 12:42:51 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-kselftest@vger.kernel.org,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-Message-ID: <20190504104251.GB1478@kroah.com>
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-13-brendanhiggins@google.com>
- <20190502110220.GD12416@kroah.com>
- <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
- <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
- <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
- <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com>
- <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
- <052fa196-4ea9-8384-79b7-fe6bacc0ee82@gmail.com>
- <CAFd5g47aY-CL+d7DfiyTidY4aAVY+eg1TM1UJ4nYqKSfHOi-0w@mail.gmail.com>
+        b=R1/I7vGESntvEjsznnS5YSGrJEHFUUsl/HX7tDipbeSdMiEflWSxaLbl6HrrNSuQe
+         wOyfDUGn52JKUfQxlBb5rr94/JCdQXupAjocbPBTs4KEblMN1VfEwuuvut+fJsgksQ
+         +iffzYiqmarWuk5PjBCU0Qs1X9I3WtMvT/Zinvzo=
+Date:   Sat, 4 May 2019 16:13:59 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     dan.j.williams@intel.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        ldewangan@nvidia.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] Add support for Tegra186/Tegra194 and generic fixes
+Message-ID: <20190504104359.GB3845@vkoul-mobl.Dlink>
+References: <1556801717-31507-1-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAFd5g47aY-CL+d7DfiyTidY4aAVY+eg1TM1UJ4nYqKSfHOi-0w@mail.gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <1556801717-31507-1-git-send-email-spujar@nvidia.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 03, 2019 at 04:14:49PM -0700, Brendan Higgins wrote:
-> In any case, it sounds like you and Greg are in agreement on the core
-> libraries generating the output in TAP13, so I won't argue that point
-> further.
+On 02-05-19, 18:25, Sameer Pujar wrote:
+> Audio DMA(ADMA) interface is a gateway in the AHUB for facilitating DMA
+> transfers between memory and all of its clients. Currently the driver
+> supports Tegra210 based platforms. This series adds support for Tegra186
+> and Tegra194 based platforms and fixes few functional issues.
 
-Great!
-
-> ## Analysis of using TAP13
-> 
-> One of my earlier concerns was that TAP13 is a bit over constrained
-> for what I would like to output from the KUnit core. It only allows
-> data to be output as either:
->  - test number
->  - ok/not ok with single line description
->  - directive
->  - diagnostics
->  - YAML block
-> 
-> The test number must become before a set of ok/not ok lines, and does
-> not contain any additional information. One annoying thing about this
-> is it doesn't provide any kind of nesting or grouping.
-
-It should handle nesting just fine, I think we do that already today.
-
-> There is one ok/not ok line per test and it may have a short
-> description of the test immediately after 'ok' or 'not ok'; this is
-> problematic because it wants the first thing you say about a test to
-> be after you know whether it passes or not.
-
-Take a look at the output of our current tests, I think you might find
-it to be a bit more flexible than you think.
-
-Also, this isn't our standard, we picked it because we needed a standard
-that the tools of today already understand.  It might have issues and
-other problems, but we are not in the business of writing test output
-parsing tools, and we don't want to force everyone out there to write
-custom parsers.  We want them to be able to use the tools they already
-have so they can test the kernel, and to do so as easily as possible.
-
-thanks,
-
-greg k-h
+Applied all, thanks
+-- 
+~Vinod
