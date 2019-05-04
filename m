@@ -2,97 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B37C13AB2
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 16:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8B213AB3
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 16:41:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727321AbfEDOk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 10:40:56 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:36261 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726217AbfEDOk4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 10:40:56 -0400
-Received: by mail-qk1-f193.google.com with SMTP id c14so1644429qke.3;
-        Sat, 04 May 2019 07:40:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=xu38cRaLtpnqYuurbo6CWspS+gIr3m1joWBLVxT3VQA=;
-        b=nkzXoV4AxU3SGKXtSy42c6ZXNaBHglADNYXaXokmwRgmqZp0zaWpXM579zcxFQhQKj
-         vlgmWJTxf2O4ZILm4VpZlyrxkNSFoeA8oPkAJiocRx+BY8tOUzzmAnmnfF/tl4TnPC9X
-         mvbuAj9kseO7oeqtnPXKzB+nXA2KBeQpjI2s0XyTxBTecC82qggq+arV6OwoVn7UOx+I
-         9l6sxoyG8I/1JQY/qyxqlXUqkC3PfQgeTXARgs3DXKgTfbTDKJiXewwth4MKMENHy3hA
-         ASUG1wRmtzwRnMt31I5KPUV5EtVhN6FPQxxyowpEKpqvmb7+aMKHT80Bn1cYpSjCvVaT
-         +cvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=xu38cRaLtpnqYuurbo6CWspS+gIr3m1joWBLVxT3VQA=;
-        b=YM1tb34BK8DJ0UfZ+gu3D+6pSxPzs9iERZ8l4JeY7Bu3/lmnbUp35EsFOONBKNa3GA
-         /JkzTaOg+fcMZl4MvFpXr5ZFpAn3LKw802UgwhZYEv+OWMsagu+n3Ia7ueHwkJ1M2IGh
-         rnNY4//aK3oBVQ4ORLlk7rSEF118QNOSgWeOCk0HK0g4qZqEvissIF+hOxO/cyx5D8w1
-         dlnAoGY9qjYIRc1PxAM02YvbQe+fHj6F1WAX2gxsU8h9Lkr7/ky+f3/gz27OeMHwIQZf
-         rhVf3UIvNeliCR/JdPvVQS4RdlVpPfIynoMZemPJg9dx3lLYTSrKaZ5KhXMu1l90YPc2
-         meJg==
-X-Gm-Message-State: APjAAAVvRcveeHJOZKxOGVU/mlnOsN2uN++jRz4MUvkxjsyAcpkcOKZT
-        kr1ty+eBCF+50tNF4OqsSsI=
-X-Google-Smtp-Source: APXvYqyWAYwH5Ber7i35gLcncyKZIE9FdNcmSHuccNVyBNZ+HZ7xNCikYoQoQw0NpsnmSG5fGriwGg==
-X-Received: by 2002:a05:620a:141a:: with SMTP id d26mr12478633qkj.238.1556980855673;
-        Sat, 04 May 2019 07:40:55 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:482:3c8:56cb:1049:60d2:137b])
-        by smtp.gmail.com with ESMTPSA id 67sm2536815qtc.29.2019.05.04.07.40.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 04 May 2019 07:40:55 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     hverkuil-cisco@xs4all.nl
-Cc:     rui.silva@linaro.org, slongerbeam@gmail.com,
-        p.zabel@pengutronix.de, linux-media@vger.kernel.org,
-        sebastien.szymanski@armadeus.com, otavio@ossystems.com.br,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 8/8] media: imx7-media-csi: Change imx7_csi_enable() to void
-Date:   Sat,  4 May 2019 11:40:27 -0300
-Message-Id: <20190504144027.31920-8-festevam@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190504144027.31920-1-festevam@gmail.com>
-References: <20190504144027.31920-1-festevam@gmail.com>
+        id S1726647AbfEDOlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 10:41:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34834 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726217AbfEDOlb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 May 2019 10:41:31 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0F9C720859;
+        Sat,  4 May 2019 14:41:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1556980890;
+        bh=gSjzNXwzVADkhUG1J+XQmSWvUA18jz5VVOMIPF/+1Wo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ThCm6UKrH6zyS8oz0Qw5T0dAyoGWPWxAFtryrhciPkXkkctI/EgK8butFvzCy9Hyu
+         RxqXKbYhZxGYfCNElmz9Q6ap8/AIANtSZHt7V2oAuWjLBRlgyXzVdYYLpGdJaRvbrO
+         tpoVgZrage+I+yowLYnvLnctJR+7XYiJHtWMEhRg=
+Date:   Sat, 4 May 2019 16:41:28 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>
+Subject: Re: [PATCH V3 04/12] misc: xilinx_sdfec: Add open, close and ioctl
+Message-ID: <20190504144128.GA13454@kroah.com>
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-5-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172345.GC1874@kroah.com>
+ <CAK8P3a2EKXrg4amHDi5zVvOQ8AM+u6EAhBc=T8Hk_tU20xSV4w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a2EKXrg4amHDi5zVvOQ8AM+u6EAhBc=T8Hk_tU20xSV4w@mail.gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-imx7_csi_enable() always return 0 and its return value is never checked,
-so convert it to void.
+On Sat, May 04, 2019 at 10:35:02AM -0400, Arnd Bergmann wrote:
+> On Thu, May 2, 2019 at 1:23 PM Greg KH <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Sat, Apr 27, 2019 at 11:04:58PM +0100, Dragan Cvetic wrote:
+> > > Add char device interface per DT node present and support
+> > > file operations:
+> > > - open(),
+> > > - close(),
+> > > - unlocked_ioctl(),
+> > > - compat_ioctl().
+> >
+> > Why do you need compat_ioctl() at all?  Any "new" driver should never
+> > need it.  Just create your structures properly.
+> 
+> The function he added was the version that is needed when the structures
+> are compatible. I submitted a series to add a generic 'compat_ptr_ioctl'
+> implementation that would save a few lines here doing the same thing,
+> but it's not merged yet.
+> 
+> Generally speaking, every driver that has a .ioctl() function should also
+> have a .compat_ioctl(), and ideally it should be exactly this trivial
+> version.
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- drivers/staging/media/imx/imx7-media-csi.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Ok, for some reason I thought if there was no need for a compat ioctl
+(i.e. no pointer mess), then no need for a callback at all.
 
-diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging/media/imx/imx7-media-csi.c
-index dcc6027fe32b..0f51791f788a 100644
---- a/drivers/staging/media/imx/imx7-media-csi.c
-+++ b/drivers/staging/media/imx/imx7-media-csi.c
-@@ -799,7 +799,7 @@ static int imx7_csi_configure(struct imx7_csi *csi)
- 	return 0;
- }
- 
--static int imx7_csi_enable(struct imx7_csi *csi)
-+static void imx7_csi_enable(struct imx7_csi *csi)
- {
- 	imx7_csi_sw_reset(csi);
- 
-@@ -807,10 +807,7 @@ static int imx7_csi_enable(struct imx7_csi *csi)
- 		imx7_csi_dmareq_rff_enable(csi);
- 		imx7_csi_hw_enable_irq(csi);
- 		imx7_csi_hw_enable(csi);
--		return 0;
- 	}
--
--	return 0;
- }
- 
- static void imx7_csi_disable(struct imx7_csi *csi)
--- 
-2.17.1
+thanks,
 
+greg k-h
