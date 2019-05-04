@@ -2,102 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B026E13667
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 01:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77BE0136A5
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 02:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726810AbfECX6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 May 2019 19:58:11 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:43314 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726573AbfECX6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 19:58:11 -0400
-Received: by mail-pl1-f194.google.com with SMTP id n8so3428354plp.10
-        for <devicetree@vger.kernel.org>; Fri, 03 May 2019 16:58:11 -0700 (PDT)
+        id S1726150AbfEDApQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 May 2019 20:45:16 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34784 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726059AbfEDApQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 May 2019 20:45:16 -0400
+Received: by mail-wr1-f67.google.com with SMTP id e9so9890996wrc.1;
+        Fri, 03 May 2019 17:45:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=v7+8a0jOi82vA98ZW8MLz4Zxp+tPvn5pEZ3hYsxU2i4=;
-        b=KeUBh5m7XrqqJoGtrD6Ib6knt5i2ib8XP24NKJEJyGpAwUOaLX/x7UY2/uecLPiyDe
-         9yyqjXnlM7Sdn7qZVIKCfp4lijNioihmlVmSLfE2FTzxpqPXWb817IqTmUzMWrglz7sL
-         SQh/iyPbwkDdI8Zm3zUAt91zibej3pbV7DGpc=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8VwFKzzRbLWX4hrPiMqxNUfmabJrkNHd9w6xJf41fv0=;
+        b=FFctQLEfxvEoAsqU4bSjqDc7VCXplurecawm7GYV8g6MaI9McurKHGn8bCUOdfYj+W
+         lNCqTHnZqxc4FxB2GazKevK99DFl50K3qZguO8UfLUu1gJLqjdIMu1s60khZu/XfF/Uf
+         8cEZNAQgCcFVrH7YaN3bNvSAEPkizc13v2rh5P4hHyWKcGmaH9YUAUfCS4kTvPDRNtsX
+         DYctTZ5MqSYikYXqs0Yx7AEZRgEK6X28uSHGn+mF48PFvvmeTTwJquwrZMZv7m3nXFN7
+         AWeGEz6bGP+ccISx5RLAujEn7S6YFilSc9j2RozEbfxoJjRWo1FQuYW6QLRXLP88Hy0B
+         EzJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=v7+8a0jOi82vA98ZW8MLz4Zxp+tPvn5pEZ3hYsxU2i4=;
-        b=q9mtz1soDteJafSkyrWccVWjWlALiPCPN60lCSz8F6OpUfAlwBJV6RdpXNGUk5gYse
-         sustI8znUNiRoeO4PStT9E4ygvANhOgMPAZyjd/sHpkuueaGtfQGyPrTV3PNLtm9fS+s
-         u99Xg7VC8BLkQqwpBQ/7w40MsR1taUm06p3I+cmh8YCWNHDHznAVgsQsZd2n90qE3/No
-         JgX0SEhoDKosd36N8KYwEJJDamtu8mRbV6mEPgLuZ6a3EAKw1yC8nLfKaN/xYiWeVN7r
-         unzFp5EmrcjKvdZ6qSEtNtTSjTIYwowdMp2mitMda1h30+5km8n1C7DjI/nHBKxCxr+q
-         BsXg==
-X-Gm-Message-State: APjAAAWk0qJOobHF+8ZsVitUAjdSVIIFO3Lc+sHCjArkMsxGvchFFaLL
-        xojYa5U2XymcpMYWoRTYNE5p3g==
-X-Google-Smtp-Source: APXvYqwCj3vkQhdXIGJu9EpWV0sc4q41te3mEjK0JRvTex2+xk1qSEGE3uWqGCe5EwjRzmV9owoA+A==
-X-Received: by 2002:a17:902:7207:: with SMTP id ba7mr13779305plb.329.1556927890867;
-        Fri, 03 May 2019 16:58:10 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id h127sm4092709pgc.31.2019.05.03.16.58.10
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 03 May 2019 16:58:10 -0700 (PDT)
-Date:   Fri, 3 May 2019 16:58:09 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, briannorris@chromium.org,
-        amstan@chromium.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8VwFKzzRbLWX4hrPiMqxNUfmabJrkNHd9w6xJf41fv0=;
+        b=oojV0EoTe0DW+LlZfy2rVBjoFoV8Lor6Dyw+8X7TI+/xSVebHLxBY/a4z6/7W901/g
+         n+OY67qRXvl9iA0/iSU1PFZZwaLVdMnzZBOT7HilYqQQ3tGs9RoJvWsyuKYSbhwZkLVh
+         Nqudb12Rh9OTOCTgIPHOpGV5SSjCAz/jqhdcmyBUfdtVKuM5gqd3xYXNkSgrGbCds7Eb
+         2EDfsx/xO8LBCG07lMX+0bg/wkH/DQ4Y/bVYR65ErBxI51swzC0IP59EmR4DDtxvRQDP
+         LwJGTio+hCybLYIMlhJPgVuOIl3P6Ob+IqT6wO1b0anLZhJ5JYqIiG3ZScXFFvNE5MCo
+         eyrw==
+X-Gm-Message-State: APjAAAU11b11p5tJMU7IBkO3J4sKJcq+jm30QMibwUbBs6D/EInsGA39
+        eT8zcgLvXClW44lLzi7Z3vM=
+X-Google-Smtp-Source: APXvYqyK9YUQkHKVjtH6dPewEE0ZYFQDZ7WJBX0XymDviA/UFFnvDcdpOSMbiHrrzdIbrVasy/VIug==
+X-Received: by 2002:adf:db8a:: with SMTP id u10mr9525582wri.82.1556930714443;
+        Fri, 03 May 2019 17:45:14 -0700 (PDT)
+Received: from localhost.localdomain (ipb218f40a.dynamic.kabel-deutschland.de. [178.24.244.10])
+        by smtp.gmail.com with ESMTPSA id b11sm5979161wmh.29.2019.05.03.17.45.12
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 03 May 2019 17:45:13 -0700 (PDT)
+From:   Eugeniu Rosca <roscaeugeniu@gmail.com>
+X-Google-Original-From: Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     "George G . Davis" <george_davis@mentor.com>,
+        Andy Lowe <andy_lowe@mentor.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: rockchip: Remove bogus 'i2s_clk_out' from
- rk3288-veyron-mickey
-Message-ID: <20190503235809.GD40515@google.com>
-References: <20190503234814.230901-1-dianders@chromium.org>
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: [PATCH 0/6] Zap SCIF2 DMA configuration in R-Car Gen3 DTS
+Date:   Sat,  4 May 2019 02:42:52 +0200
+Message-Id: <20190504004258.23574-1-erosca@de.adit-jv.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190503234814.230901-1-dianders@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 03, 2019 at 04:48:14PM -0700, Douglas Anderson wrote:
-> The rk3288-veyron-mickey device tree overrides the default "i2s" clock
-> settings to add the clock for "i2s_clk_out".
-> 
-> That clock is only present in the bindings downstream Chrome OS 3.14
-> tree.  Upstream the i2s port bindings doesn't specify that as a
-> possible clock.
-> 
-> Let's remove it.
-> 
-> NOTE: for other rk3288-veyron devices this clock is consumed by
-> 'maxim,max98090'.  Presumably if this clock is needed for mickey it'll
-> need to be consumed by something similar.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
-> 
->  arch/arm/boot/dts/rk3288-veyron-mickey.dts | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/rk3288-veyron-mickey.dts b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> index e852594417b5..f9c4ece3c0d3 100644
-> --- a/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> +++ b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> @@ -142,8 +142,6 @@
->  
->  &i2s {
->  	status = "okay";
-> -	clock-names = "i2s_hclk", "i2s_clk", "i2s_clk_out";
-> -	clocks = <&cru HCLK_I2S0>, <&cru SCLK_I2S0>, <&cru SCLK_I2S0_OUT>;
->  };
->  
->  &rk808 {
+This series is triggered by a regression on M3 targets caused by
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=703db5d1b175
+("arm64: dts: renesas: r8a7796: Enable DMA for SCIF2"), when applied
+on top of rcar-3.9.x Renesas official kernel.
 
-effectively, 'i2s_clk_out' is not use in the upstream kernel.
+This collection of patches attempts to consistently propagate the fix
+across the existing R-Car3 DTS. Full story is placed into
+commit ("Revert "arm64: dts: renesas: r8a7796: Enable DMA for SCIF2"").
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+While debugging drivers/tty/serial/sh-sci.c, a minor update avoiding
+__ptrval__ in dev_dbg() is included here as well.
+
+Tested using v5.1-rc7-131-gea9866793d1e on:
+ - H3-ES2.0-ULCB
+ - M3N-ES1.1-ULCB
+ - M3-ES1.1-Salvator-XS
+
+Eugeniu Rosca (6):
+  serial: sh-sci: Reveal ptrval in dev_dbg
+  Revert "arm64: dts: renesas: r8a7796: Enable DMA for SCIF2"
+  arm64: dts: renesas: r8a7795: zap dma configuration in scif2
+  Revert "arm64: dts: renesas: r8a77965: Enable DMA for SCIF2"
+  Revert "arm64: dts: renesas: r8a77990: Enable DMA for SCIF2"
+  Revert "arm64: dts: renesas: r8a77995: add DMA for SCIF2"
+
+ arch/arm64/boot/dts/renesas/r8a7795.dtsi  | 3 ---
+ arch/arm64/boot/dts/renesas/r8a7796.dtsi  | 3 ---
+ arch/arm64/boot/dts/renesas/r8a77965.dtsi | 3 ---
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi | 4 +---
+ arch/arm64/boot/dts/renesas/r8a77995.dtsi | 3 ---
+ drivers/tty/serial/sh-sci.c               | 8 ++++----
+ 6 files changed, 5 insertions(+), 19 deletions(-)
+
+-- 
+2.21.0
+
