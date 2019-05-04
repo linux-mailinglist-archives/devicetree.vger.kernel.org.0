@@ -2,145 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87D5D13969
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 13:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8391113982
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 13:41:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726215AbfEDLD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 07:03:58 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:38293 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725981AbfEDLD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 07:03:58 -0400
-Received: by mail-lj1-f194.google.com with SMTP id e18so7299445lja.5;
-        Sat, 04 May 2019 04:03:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BiywJZA9r6kxv/OyDdQ+nsf3ks4JUNhEjjCyaz/iKGE=;
-        b=Q97G8pZiOy62ZVDNe0KVvckArrkMdxecNMK4C/6pgUuK8qH7i5kTR0Xp9u0nXvwy7h
-         ieRz1pH9APKGOrspbwKDycEg93+6W263uNuzYcBeJQYleT8EaeL6QY6XR/yIrk+xtufz
-         C6371n8NrtHYFPe6DHKMlYBxBa1EXFXF5t3V276WQnuPj9AFY5iwuk7lSd8RMNRHtAau
-         XMzujU6b0I2dH/9Qdfs9Te1PrrHwdrUEIrc0lpC7nPuqmC8A/QxsznKfCrqNVO0iWXQ5
-         8Qm1DP/ACg/HV3uBVnYP5tyRc0+y7isFYLES++OZ0zSPeZN0GeWiwiXuoMQX/Cifce8V
-         qWJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BiywJZA9r6kxv/OyDdQ+nsf3ks4JUNhEjjCyaz/iKGE=;
-        b=We1011AvdsidE1gxliuTsal6ZnL1SLQzMNvQNUdCA77csaSurqw1ift8VpdtDEJMB+
-         oZsIXk1Dy5Jn6DN0zL4VpI9ANn+IGVnN4LFEYHYVmEaq0C2iU5iYRmLLfY64mOHvlBWw
-         LT7rTGSbgXOLAkE0p3v5PXiJCArr4ePJUdhyrihwUqwM0uGvWOJOC7a+UKLhh0mTBSQe
-         PYo2PF8MlR1mgxolRUgn56657K9ljYI29Qn5hZlUXajnDoAjDE0OeflBFmxgXrByJwU4
-         tn+cc5mvmuWX/bkVUzqMcBLcmewGsP3qptV7xZ6oF4gl2x8Ux1cgHrWdgJxrHL1HioAA
-         K47w==
-X-Gm-Message-State: APjAAAWvPd9VhqcdS1T4m9RpY8N+m3I2hXykGt5juI5+gP6uBgXt11VK
-        0ZyQ82KZ/8BhtaeULu5Q/tnKAIOYqfGYqyrm7kM=
-X-Google-Smtp-Source: APXvYqxAdM8lMj0YVduKkje1fAP2BJHG25g2COytac2Z1uIxoAVV6UQJjuekl53q0zv8YxsZvrYsyKGgLHP7ZDgHWOA=
-X-Received: by 2002:a2e:9188:: with SMTP id f8mr5201827ljg.100.1556967835818;
- Sat, 04 May 2019 04:03:55 -0700 (PDT)
+        id S1726529AbfEDLlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 07:41:36 -0400
+Received: from mga01.intel.com ([192.55.52.88]:43554 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727049AbfEDLlg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 May 2019 07:41:36 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 May 2019 04:41:35 -0700
+X-ExtLoop1: 1
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 04 May 2019 04:41:33 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1hMt2r-0003e2-6R; Sat, 04 May 2019 19:41:33 +0800
+Date:   Sat, 4 May 2019 19:40:49 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     kbuild-all@01.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        robh+dt@kernel.org, mchehab@kernel.org, tfiga@chromium.org,
+        dshah@xilinx.com, hverkuil@xs4all.nl,
+        Michael Tretter <m.tretter@pengutronix.de>
+Subject: Re: [PATCH v5 4/5] [media] allegro: add Allegro DVT video IP core
+ driver
+Message-ID: <201905041935.pwEMGoy7%lkp@intel.com>
+References: <20190503122010.16663-5-m.tretter@pengutronix.de>
 MIME-Version: 1.0
-References: <1556190530-19541-1-git-send-email-liuk@cetca.net.cn>
-In-Reply-To: <1556190530-19541-1-git-send-email-liuk@cetca.net.cn>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sat, 4 May 2019 08:03:55 -0300
-Message-ID: <CAOMZO5BbA6oq8okTR-r800k4XY76XxxEdufd1mjcV6HdTpVotA@mail.gmail.com>
-Subject: Re: [PATCHv2 1/2] ARM: dts: imx6sx: Use MX6SX_CLK_ENET for fec 'ahb' clock
-To:     Kay-Liu <liuk@cetca.net.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190503122010.16663-5-m.tretter@pengutronix.de>
+X-Patchwork-Hint: ignore
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kay-Liu,
+Hi Michael,
 
-On Thu, Apr 25, 2019 at 8:09 AM <liuk@cetca.net.cn> wrote:
->
-> From: Kay-Liu <liuk@cetca.net.cn>
->
-> The imx6sx's dts file defines five clocks for fec, the
-> 'ahb'clock's value is IMX6SX_CLK_ENET_AHB, but in the
-> i.MX6SX Reference Manual there is no such enet ahb clock,
-> there is only one "enet clock" in the CCM_CCGR3 register
-> which is controlled by bits 5-4, the enet clock is defined
-> for the 'ipg' clock, this can cause problem.
-> The original phenomenon is using imx6-solox processor and
-> Marvel 88E6390 switch with linux OS, the kernel will hang
-> during the startup of the linux OS.
-> After analyzing the phenomenon, the reason of CPU hang is
-> read/write enet module's register when the enet clock
-> is disabled. The kernel code try to avoids the problem
-> by resume enet clock before read/write enet register.
-> But the enet module's clock config will cause a special
-> environment which can bypass the clock resume mechanism.
-> The CPU has only one enet clock, after kernel parses
-> the dts file, the two clock variables 'ipg' and 'ahb'
-> finnaly point to the same enet clock register. This will
-> cause enet clock be disabled after fec probe over.
-> Because the power saving module will affect the BUG, so
-> there are two situations for this problem:
-> 1)Turn off power saving
-> Turn off power saving means that the resume mechanism is
-> disabled, so after fec probe over if any one read/write
-> enet module's register, the CPU will hang because no one
-> could resume the enet clock.
-> 2)Turn on power saving
-> Turn on power saving could resume enet clock before
-> read/write enet register by enable 'ipg' clk, this will
-> cause 'ahb' variable state and enet clock register value
-> don't match.If any task read/write enet at a high
-> frequently, the kernel will keep resume state and never
-> enter suspend process, this means that the kernel will
-> only modifies the register value during the first resume.
-> But the kernel init will check unused clock variable in
-> the late initcall, the 'ahb' clock will be treated as
-> unused, at this time, the enet clock will be disabled
-> bypass the resume mechanism, then the next read/write
-> enet module's register will cause the CPU hang.
-> Proposed solution is delete the 'ahb' clock's definition
-> in the clk-imx6sx.c, and modify fec device=E2=80=99s clocks in
-> the dts file, point =E2=80=98ahb=E2=80=99 from IMX6SX_CLK_ENET_AHB to
-> IMX6SX_CLK_ENET
->
-> Signed-off-by: Kay-Liu <liuk@cetca.net.cn>
-> ---
-> Change since v1:
-> -inproved commit log description
-> -add platform related clock change instead of describe is in the external=
- URL
->
->  arch/arm/boot/dts/imx6sx.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dts=
-i
-> index 5b16e65..b8b23a6 100644
-> --- a/arch/arm/boot/dts/imx6sx.dtsi
-> +++ b/arch/arm/boot/dts/imx6sx.dtsi
-> @@ -919,7 +919,7 @@
->                                 interrupts =3D <GIC_SPI 118 IRQ_TYPE_LEVE=
-L_HIGH>,
->                                              <GIC_SPI 119 IRQ_TYPE_LEVEL_=
-HIGH>;
->                                 clocks =3D <&clks IMX6SX_CLK_ENET>,
-> -                                        <&clks IMX6SX_CLK_ENET_AHB>,
-> +                                        <&clks IMX6SX_CLK_ENET>,
+I love your patch! Perhaps something to improve:
 
-Yes, there is really no IMX6SX_CLK_ENET_AHB as per the Refernce Manual
-and it is the same we do on imx6qdl.dtsi:
+[auto build test WARNING on linuxtv-media/master]
+[also build test WARNING on v5.1-rc7 next-20190503]
+[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+url:    https://github.com/0day-ci/linux/commits/Michael-Tretter/Add-ZynqMP-VCU-Allegro-DVT-H-264-encoder-driver/20190504-161958
+base:   git://linuxtv.org/media_tree.git master
+reproduce:
+        # apt-get install sparse
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
+
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+
+>> drivers/media/platform/allegro-dvt/allegro-core.c:735:5: sparse: sparse: symbol 'allegro_alloc_buffer' was not declared. Should it be static?
+>> drivers/media/platform/allegro-dvt/allegro-core.c:747:6: sparse: sparse: symbol 'allegro_free_buffer' was not declared. Should it be static?
+>> drivers/media/platform/allegro-dvt/allegro-core.c:1607:13: sparse: sparse: symbol 'allegro_hardirq' was not declared. Should it be static?
+>> drivers/media/platform/allegro-dvt/allegro-core.c:1621:13: sparse: sparse: symbol 'allegro_irq_thread' was not declared. Should it be static?
+
+Please review and possibly fold the followup patch.
+
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
