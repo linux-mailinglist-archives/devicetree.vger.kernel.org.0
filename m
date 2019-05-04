@@ -2,243 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF550139D3
-	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 14:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2A913A89
+	for <lists+devicetree@lfdr.de>; Sat,  4 May 2019 16:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726957AbfEDMhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 May 2019 08:37:12 -0400
-Received: from hamsrv800.servertools24.de ([213.238.32.28]:41007 "EHLO
-        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726944AbfEDMhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 08:37:12 -0400
-Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
-        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 2E0E82382B7F;
-        Sat,  4 May 2019 14:29:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
-        s=default; t=1556972945;
-        bh=twrSIH9u09qyvY05u6CqmGkan+Vq/pIAsiWF9GruoMQ=; l=6031;
-        h=From:To:Subject;
-        b=Pu6Sjbtisw2v5g9xwb1gopYpZkmQGHKN4v0lgU6Q+ZiJ/s4AoyYMO8cDpe/kyzEbc
-         UfXIIIU0xMXW6mbmckG05/Iajlle2AMJT9CSLXgJ5afXzgp6fYAAahaiO+urocA/gH
-         AdDSvRBl9SNAJyDRuJgmYRw5wj1Mu5Q2dnY+SogM=
-Authentication-Results: hamsrv800.servertools24.de;
-        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=list@c-mauderer.de smtp.helo=christian-pc.localdomain
-Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
-From:   list@c-mauderer.de
-To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Christian Mauderer <oss@c-mauderer.de>
-Subject: [PATCH 2/2] leds: ubnt-spi: Add Ubnt AirCube ISP LED driver
-Date:   Sat,  4 May 2019 14:28:25 +0200
-Message-Id: <20190504122825.11883-2-list@c-mauderer.de>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190504122825.11883-1-list@c-mauderer.de>
-References: <20190504122825.11883-1-list@c-mauderer.de>
+        id S1726770AbfEDOE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 May 2019 10:04:29 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:54432 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726768AbfEDOE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 May 2019 10:04:28 -0400
+X-UUID: 7b45a49b02564369a708bfd590c0959e-20190504
+X-UUID: 7b45a49b02564369a708bfd590c0959e-20190504
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <yingjoe.chen@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1990895940; Sat, 04 May 2019 22:04:24 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Sat, 4 May 2019 22:04:22 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 4 May 2019 22:04:16 +0800
+Message-ID: <1556978656.25811.1.camel@mtksdaap41>
+Subject: Re: [PATCH v3 10/10] rtc: Add support for the MediaTek MT6358 RTC
+From:   Yingjoe Chen <yingjoe.chen@mediatek.com>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Mark Brown" <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        Ran Bi <ran.bi@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        <linux-rtc@vger.kernel.org>
+Date:   Sat, 4 May 2019 22:04:16 +0800
+In-Reply-To: <20190503093117.54830-11-hsin-hsiung.wang@mediatek.com>
+References: <20190503093117.54830-1-hsin-hsiung.wang@mediatek.com>
+         <20190503093117.54830-11-hsin-hsiung.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <155697294554.85427.17299473909412673158@hamsrv800.servertools24.de>
-X-PPP-Vhost: c-mauderer.de
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 94F06579A06AD170C4104FD99EDD8ACC6517C53AB96CA365032830D34A4671372000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Mauderer <oss@c-mauderer.de>
+On Fri, 2019-05-03 at 17:31 +0800, Hsin-Hsiung Wang wrote:
+> From: Ran Bi <ran.bi@mediatek.com>
+> 
+> This add support for the MediaTek MT6358 RTC. Driver using
+> compatible data to store different RTC_WRTGR address offset.
+> 
+> Signed-off-by: Ran Bi <ran.bi@mediatek.com>
+> ---
+>  drivers/rtc/rtc-mt6397.c | 43 ++++++++++++++++++++++++++++++++--------
+>  1 file changed, 35 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+> index f85f1fc29e32..3476e29db87c 100644
+> --- a/drivers/rtc/rtc-mt6397.c
+> +++ b/drivers/rtc/rtc-mt6397.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/irqdomain.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/of_address.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/io.h>
+>  #include <linux/mfd/mt6397/core.h>
+> @@ -27,7 +28,8 @@
+>  #define RTC_BBPU		0x0000
+>  #define RTC_BBPU_CBUSY		BIT(6)
+>  
+> -#define RTC_WRTGR		0x003c
+> +#define RTC_WRTGR_MT6358	0x3a
+> +#define RTC_WRTGR_MT6397	0x3c
+>  
+>  #define RTC_IRQ_STA		0x0002
+>  #define RTC_IRQ_STA_AL		BIT(0)
+> @@ -71,6 +73,10 @@
+>  #define RTC_NUM_YEARS		128
+>  #define RTC_MIN_YEAR_OFFSET	(RTC_MIN_YEAR - RTC_BASE_YEAR)
+>  
+> +struct mtk_rtc_compatible {
+> +	u32			wrtgr_addr;
+> +};
+> +
+>  struct mt6397_rtc {
+>  	struct device		*dev;
+>  	struct rtc_device	*rtc_dev;
+> @@ -78,7 +84,25 @@ struct mt6397_rtc {
+>  	struct regmap		*regmap;
+>  	int			irq;
+>  	u32			addr_base;
+> +	const struct mtk_rtc_compatible *dev_comp;
+> +};
+> +
+> +static const struct mtk_rtc_compatible mt6358_rtc_compat = {
+> +	.wrtgr_addr = RTC_WRTGR_MT6358,
+> +};
+> +
+> +static const struct mtk_rtc_compatible mt6397_rtc_compat = {
+> +	.wrtgr_addr = RTC_WRTGR_MT6397,
+> +};
+> +
+> +static const struct of_device_id mt6397_rtc_of_match[] = {
+> +	{ .compatible = "mediatek,mt6358-rtc",
+> +		.data = (void *)&mt6358_rtc_compat, },
+> +	{ .compatible = "mediatek,mt6397-rtc",
+> +		.data = (void *)&mt6397_rtc_compat, },
+> +	{}
+>  };
+> +MODULE_DEVICE_TABLE(of, mt6397_rtc_of_match);
+>  
+>  static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
+>  {
+> @@ -86,7 +110,8 @@ static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
+>  	int ret;
+>  	u32 data;
+>  
+> -	ret = regmap_write(rtc->regmap, rtc->addr_base + RTC_WRTGR, 1);
+> +	ret = regmap_write(rtc->regmap,
+> +			   rtc->addr_base + rtc->dev_comp->wrtgr_addr, 1);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> @@ -332,6 +357,7 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>  	struct resource *res;
+>  	struct mt6397_chip *mt6397_chip = dev_get_drvdata(pdev->dev.parent);
+>  	struct mt6397_rtc *rtc;
+> +	const struct of_device_id *of_id;
+>  	int ret;
+>  
+>  	rtc = devm_kzalloc(&pdev->dev, sizeof(struct mt6397_rtc), GFP_KERNEL);
+> @@ -341,6 +367,13 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	rtc->addr_base = res->start;
+>  
+> +	of_id = of_match_device(mt6397_rtc_of_match, &pdev->dev);
+> +	if (!of_id) {
 
-This driver adds support for the custom LED controller used in Ubiquity
-airCube ISP devices and most likely some other simmilar Ubiquity
-products.
+This will never happens, but I'm fine with it.
 
-Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
----
- drivers/leds/Kconfig         |  10 +++
- drivers/leds/Makefile        |   1 +
- drivers/leds/leds-ubnt-spi.c | 140 +++++++++++++++++++++++++++++++++++
- 3 files changed, 151 insertions(+)
- create mode 100644 drivers/leds/leds-ubnt-spi.c
+Review-by: Yingjoe Chen <yingjoe.chen@mediatek.com>
 
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a72f97fca57b..e96ab93860ec 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -766,6 +766,16 @@ config LEDS_NIC78BX
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-nic78bx.
- 
-+config LEDS_UBNT_SPI
-+	tristate "LED support for Ubnt aircube ISP custom SPI LED controller"
-+	depends on LEDS_CLASS
-+	depends on SPI
-+	depends on OF
-+	help
-+	  This option enables basic support for the LED controller used in
-+	  Ubiquity airCube ISP devices. The controller is microcontroller based
-+	  and uses a single byte on the SPI to set brightness or blink patterns.
-+
- comment "LED Triggers"
- source "drivers/leds/trigger/Kconfig"
- 
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 4c1b0054f379..f272bfac109c 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -75,6 +75,7 @@ obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
- obj-$(CONFIG_LEDS_MLXCPLD)		+= leds-mlxcpld.o
- obj-$(CONFIG_LEDS_MLXREG)		+= leds-mlxreg.o
- obj-$(CONFIG_LEDS_NIC78BX)		+= leds-nic78bx.o
-+obj-$(CONFIG_LEDS_UBNT_SPI)		+= leds-ubnt-spi.o
- obj-$(CONFIG_LEDS_MT6323)		+= leds-mt6323.o
- obj-$(CONFIG_LEDS_LM3692X)		+= leds-lm3692x.o
- obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
-diff --git a/drivers/leds/leds-ubnt-spi.c b/drivers/leds/leds-ubnt-spi.c
-new file mode 100644
-index 000000000000..a3cb0dd5b0da
---- /dev/null
-+++ b/drivers/leds/leds-ubnt-spi.c
-@@ -0,0 +1,140 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Christian Mauderer <oss@c-mauderer.de>
-+
-+/*
-+ *  Custom controller based LED controller used in Ubiquity airCube ISP.
-+ *
-+ *  Reverse engineered protocol:
-+ *  - The device uses only a single byte sent via SPI.
-+ *  - The SPI input doesn't contain any relevant information.
-+ *  - Higher two bits set a mode. Lower six bits are a parameter.
-+ *  - Mode: 00 -> set brightness between 0x00 (min) and 0x3F (max)
-+ *  - Mode: 01 -> pulsing pattern (min -> max -> min) with an interval. From
-+ *    some tests, the period is about (50ms + 102ms * parameter). There is a
-+ *    slightly different pattern starting from 0x100 (longer gap between the
-+ *    pulses) but the time still follows that calculation.
-+ *  - Mode: 10 -> same as 01 but with only a ramp from min to max. Again a
-+ *    slight jump in the pattern at 0x100.
-+ *  - Mode: 11 -> blinking (off -> 25% -> off -> 25% -> ...) with a period of
-+ *    (105ms * parameter)
-+ *
-+ *  NOTE: This driver currently only implements mode 00 (brightness).
-+ */
-+
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi.h>
-+#include <linux/mutex.h>
-+#include <uapi/linux/uleds.h>
-+
-+#define UBNT_SPI_OFF_BRIGHTNESS	0x0
-+#define UBNT_SPI_MAX_BRIGHTNESS	0x3F
-+
-+struct ubnt_spi_led {
-+	struct led_classdev	ldev;
-+	struct spi_device	*spi;
-+	char			name[LED_MAX_NAME_SIZE];
-+	struct mutex		mutex;
-+	u8			off_bright;
-+	u8			max_bright;
-+};
-+
-+static int ubnt_spi_brightness_set_blocking(struct led_classdev *dev,
-+					    enum led_brightness brightness)
-+{
-+	struct ubnt_spi_led *led = container_of(dev, struct ubnt_spi_led, ldev);
-+	u8 value;
-+	int ret;
-+
-+	value = (u8) brightness + led->off_bright;
-+
-+	mutex_lock(&led->mutex);
-+	ret = spi_write(led->spi, &value, sizeof(value));
-+	mutex_unlock(&led->mutex);
-+
-+	return ret;
-+}
-+
-+static int ubnt_spi_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct device_node *child;
-+	struct ubnt_spi_led	*led;
-+	int ret;
-+	const char *tmp;
-+	const char *default_name = ":";
-+
-+	if (!dev->of_node)
-+		return -ENODEV;
-+
-+	if (of_get_child_count(dev->of_node) != 1) {
-+		dev_err(dev, "Device must have exactly one LED sub-node.");
-+		return -EINVAL;
-+	}
-+	child = of_get_next_child(dev->of_node, NULL);
-+
-+	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
-+	if (!led)
-+		return -ENOMEM;
-+
-+	led->spi	= spi;
-+
-+	ret = of_property_read_string(child, "label", &tmp);
-+	if (ret < 0)
-+		tmp = default_name;
-+	snprintf(led->name, sizeof(led->name), "ubnt-spi-led:%s", tmp);
-+
-+	ret = of_property_read_u8(child, "ubnt-spi,off_bright",
-+				  &led->off_bright);
-+	if (ret != 0)
-+		led->off_bright = UBNT_SPI_OFF_BRIGHTNESS;
-+
-+	ret = of_property_read_u8(child, "ubnt-spi,max_bright",
-+				  &led->max_bright);
-+	if (ret != 0)
-+		led->max_bright = UBNT_SPI_MAX_BRIGHTNESS;
-+
-+	mutex_init(&led->mutex);
-+	led->ldev.name = led->name;
-+	led->ldev.brightness = LED_OFF;
-+	led->ldev.max_brightness = led->max_bright - led->off_bright;
-+	led->ldev.brightness_set_blocking = ubnt_spi_brightness_set_blocking;
-+	ret = led_classdev_register(&spi->dev, &led->ldev);
-+	if (ret >= 0)
-+		spi_set_drvdata(spi, led);
-+
-+	return ret;
-+}
-+
-+static int ubnt_spi_remove(struct spi_device *spi)
-+{
-+	struct ubnt_spi_led	*led = spi_get_drvdata(spi);
-+
-+	led_classdev_unregister(&led->ldev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ubnt_spi_dt_ids[] = {
-+	{ .compatible = "ubnt,spi-led", },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, ubnt_spi_dt_ids);
-+
-+static struct spi_driver ubnt_spi_driver = {
-+	.probe		= ubnt_spi_probe,
-+	.remove		= ubnt_spi_remove,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= ubnt_spi_dt_ids,
-+	},
-+};
-+
-+module_spi_driver(ubnt_spi_driver);
-+
-+MODULE_AUTHOR("Christian Mauderer <oss@c-mauderer.de>");
-+MODULE_DESCRIPTION("Ubnt AirCube ISP LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("spi:ubnt-spi-led");
--- 
-2.21.0
+Joe.C
+
 
