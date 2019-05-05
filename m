@@ -2,133 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D803140CA
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 17:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20FE71417A
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 19:33:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727812AbfEEPsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 11:48:52 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:36055 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727847AbfEEPsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 11:48:40 -0400
-Received: by mail-lj1-f193.google.com with SMTP id y8so8815037ljd.3;
-        Sun, 05 May 2019 08:48:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wi5NVXtnZHEtDn7otTZBfkTlrRUfXOAkjzzEUQJdYMk=;
-        b=n+LYGa2fvFpQYMARku/Km7h+eVqpSaLzrG470CuZ8vVI6Guu8iwFZ8UmezKhJUSwHL
-         zBBeBMfzacKKVz+y5FuO0awvQurOYBLdJqc3sqRlySLQJxfVexTX5W9FNTXT/CAZbAH0
-         x0k76YEH4xE91JgN24i82LkB4lE5LuvSvj60ZTqh+9amRcosJraA3XgPTHw2QGUrGGkD
-         raj84BJ0JyDI4eJGZc05xi09r0xbHGYcXA0vH2vQVsfsgFeUHZcpDVLswPgyPlKDUcCN
-         E8xst00y3i/X8BcM2iFBRtcPNS1uSgdQwgyoS97kavoyWnqBfKEKSTNOn0DLJBeXBUGR
-         IseA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wi5NVXtnZHEtDn7otTZBfkTlrRUfXOAkjzzEUQJdYMk=;
-        b=SdB/nIVtUYALtiNYT/DUatNlcqknebU3gl65FlfcaCBGcUkyKa803ZZLJG2HRNRGHi
-         T3HwlQHCPmhtP354ZpWp32iE+oOqKEEoVZ3twZBimX4m4enGZ3tsnk0iFB0u0qwE2+9B
-         Ny+BgNBrRL4D4weQBY9Btjjn2Flye+o+qz0F1xBWZaJ1V/qfM2yAwqF4BpL+62O6YigE
-         SFBLHcZ4KBnN9vHrn7b5EJP04NgvgQAj3Rm2d/mOY4K6RLheTz65llnbnW9pEfSS9sLP
-         C3zBxiJZly8kwq2zcAxLOEY0TwnKaT5GGXvOt8PPFLK0SF70ivpQk79SKiHThB6wTodW
-         oe3Q==
-X-Gm-Message-State: APjAAAUewEhVP04Mftl+DQSshToOqDo5otCZdoSvZ371q3Zjt8TDRENp
-        xebD5HVg5guCa3lNz8T/QlLo46F2
-X-Google-Smtp-Source: APXvYqxRXVl7+hnxXsniJgdMRxAbjb6hsLVKmm9zT540i7EqW7fqSBISBINAJ6D+gUtFs5YC5FHLTg==
-X-Received: by 2002:a2e:9546:: with SMTP id t6mr11047359ljh.51.1557071318863;
-        Sun, 05 May 2019 08:48:38 -0700 (PDT)
-Received: from localhost.localdomain (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.gmail.com with ESMTPSA id d16sm1595278lfi.75.2019.05.05.08.48.37
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 05 May 2019 08:48:38 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1727232AbfEERdB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 5 May 2019 13:33:01 -0400
+Received: from coyote.holtmann.net ([212.227.132.17]:52995 "EHLO
+        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726905AbfEERdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 13:33:01 -0400
+Received: from marcel-macpro.fritz.box (p4FF9FD9B.dip0.t-ipconnect.de [79.249.253.155])
+        by mail.holtmann.org (Postfix) with ESMTPSA id BA6BBCEE02;
+        Sun,  5 May 2019 19:41:12 +0200 (CEST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.8\))
+Subject: Re: [PATCH v3 2/2] dt-bindings: net: bluetooth: Add device property
+ firmware-name for QCA6174
+From:   Marcel Holtmann <marcel@holtmann.org>
+In-Reply-To: <17221139821fb6ee35f3119df7405401@codeaurora.org>
+Date:   Sun, 5 May 2019 19:32:58 +0200
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Mallikarjun Kasoju <mkasoju@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 6/6] regulator: max77620: Support Maxim 77663
-Date:   Sun,  5 May 2019 18:43:25 +0300
-Message-Id: <20190505154325.30026-7-digetx@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190505154325.30026-1-digetx@gmail.com>
-References: <20190505154325.30026-1-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Thierry Escande <thierry.escande@linaro.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel@vger.kernel.org,
+        "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
+        linux-bluetooth-owner@vger.kernel.org
+Content-Transfer-Encoding: 8BIT
+Message-Id: <874D1677-BE9F-454C-AA95-39E3F3716300@holtmann.org>
+References: <1554368908-22017-2-git-send-email-rjliao@codeaurora.org>
+ <1554888476-17560-1-git-send-email-rjliao@codeaurora.org>
+ <A85D7982-E000-4A5F-9927-CA36E0BA60F2@holtmann.org>
+ <7e0cf9ba98260309c43d9d6e63dead6c@codeaurora.org>
+ <CAL_JsqLnM4XqQTCT7VTUSmukujz0VHJoCbXMF2--RmTEx_LZww@mail.gmail.com>
+ <60C7AC89-37B6-441C-9349-BCB15717EB2C@holtmann.org>
+ <17221139821fb6ee35f3119df7405401@codeaurora.org>
+To:     Rocky Liao <rjliao@codeaurora.org>
+X-Mailer: Apple Mail (2.3445.104.8)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Maxim 77663.
+Hi Rocky,
 
-Acked-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/regulator/max77620-regulator.c | 26 +++++++++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
+>>>>>> This patch adds an optional device property "firmware-name" to allow
+>>>>>> the
+>>>>>> driver to load customized nvm firmware file based on this property.
+>>>>>> Signed-off-by: Rocky Liao <rjliao@codeaurora.org>
+>>>>>> ---
+>>>>>> Changes in v3:
+>>>>>> * added firmware-name instead of nvm-postfix to specify full firmware
+>>>>>> name
+>>>>>> ---
+>>>>>> Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt | 2 ++
+>>>>>> 1 file changed, 2 insertions(+)
+>>>>>> diff --git
+>>>>>> a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>>>>>> b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>>>>>> index 824c0e2..2bcea50 100644
+>>>>>> --- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>>>>>> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
+>>>>>> @@ -16,6 +16,7 @@ Optional properties for compatible string
+>>>>>> qcom,qca6174-bt:
+>>>>>> - enable-gpios: gpio specifier used to enable chip
+>>>>>> - clocks: clock provided to the controller (SUSCLK_32KHZ)
+>>>>>> + - firmware-name: specify the name of nvm firmware to load
+>>>>>> Required properties for compatible string qcom,wcn3990-bt:
+>>>>>> @@ -39,6 +40,7 @@ serial@7570000 {
+>>>>>>            enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
+>>>>>>            clocks = <&divclk4>;
+>>>>>> +            firmware-name = "nvm_00440302.bin";
+>>>>>>    };
+>>>>> and how is this a firmware-name property. Wouldn’t this be more like
+>>>>> nvm-file or something along these lines. This really needs to be
+>>>>> cleared with Rob to pick the right property name.
+>>>>> Regards
+>>>>> Marcel
+>>>> Hi Rob,
+>>>> Are you OK to use a property name "nvm-file" or "firmware-nvm-file"?
+>>>> Actually we have two firmware files, one is the patch file which is
+>>>> common to all of the products, the other is the nvm file which is
+>>>> customized. Using a "nvm-file" or "firmware-nvm-file" property name
+>>>> would be more clear.
+>>> 'firmware-name' is the standard name for specifying firmware file names.
+>> but it is not a firmware file, it is a NVM file. What happens if in
+>> the future they need a firmware file and a NVM file?
+>> Regards
+>> Marcel
+> 
+> We won't need to specify a rampatch firmware file in future as it's a same file for all the boards with same chip, only the NVM firmware file may have board differences. NVM file is also one of the firmware files so I think it should be OK to use "firmware-name" property to specify it.
 
-diff --git a/drivers/regulator/max77620-regulator.c b/drivers/regulator/max77620-regulator.c
-index 0ad91a7f9cb9..0ec9f81fe74a 100644
---- a/drivers/regulator/max77620-regulator.c
-+++ b/drivers/regulator/max77620-regulator.c
-@@ -761,6 +761,24 @@ static struct max77620_regulator_info max20024_regs_info[MAX77620_NUM_REGS] = {
- 	RAIL_LDO(LDO8, ldo8, "in-ldo7-8", N, 800000, 3950000, 50000),
- };
- 
-+static struct max77620_regulator_info max77663_regs_info[MAX77620_NUM_REGS] = {
-+	RAIL_SD(SD0, sd0, "in-sd0", SD0, 600000, 3387500, 12500, 0xFF, NONE),
-+	RAIL_SD(SD1, sd1, "in-sd1", SD1, 800000, 1587500, 12500, 0xFF, NONE),
-+	RAIL_SD(SD2, sd2, "in-sd2", SDX, 600000, 3787500, 12500, 0xFF, NONE),
-+	RAIL_SD(SD3, sd3, "in-sd3", SDX, 600000, 3787500, 12500, 0xFF, NONE),
-+	RAIL_SD(SD4, sd4, "in-sd4", SDX, 600000, 3787500, 12500, 0xFF, NONE),
-+
-+	RAIL_LDO(LDO0, ldo0, "in-ldo0-1", N, 800000, 2375000, 25000),
-+	RAIL_LDO(LDO1, ldo1, "in-ldo0-1", N, 800000, 2375000, 25000),
-+	RAIL_LDO(LDO2, ldo2, "in-ldo2",   P, 800000, 3950000, 50000),
-+	RAIL_LDO(LDO3, ldo3, "in-ldo3-5", P, 800000, 3950000, 50000),
-+	RAIL_LDO(LDO4, ldo4, "in-ldo4-6", P, 800000, 1587500, 12500),
-+	RAIL_LDO(LDO5, ldo5, "in-ldo3-5", P, 800000, 3950000, 50000),
-+	RAIL_LDO(LDO6, ldo6, "in-ldo4-6", P, 800000, 3950000, 50000),
-+	RAIL_LDO(LDO7, ldo7, "in-ldo7-8", N, 800000, 3950000, 50000),
-+	RAIL_LDO(LDO8, ldo8, "in-ldo7-8", N, 800000, 3950000, 50000),
-+};
-+
- static int max77620_regulator_probe(struct platform_device *pdev)
- {
- 	struct max77620_chip *max77620_chip = dev_get_drvdata(pdev->dev.parent);
-@@ -785,9 +803,14 @@ static int max77620_regulator_probe(struct platform_device *pdev)
- 	case MAX77620:
- 		rinfo = max77620_regs_info;
- 		break;
--	default:
-+	case MAX20024:
- 		rinfo = max20024_regs_info;
- 		break;
-+	case MAX77663:
-+		rinfo = max77663_regs_info;
-+		break;
-+	default:
-+		return -EINVAL;
- 	}
- 
- 	config.regmap = pmic->rmap;
-@@ -881,6 +904,7 @@ static const struct dev_pm_ops max77620_regulator_pm_ops = {
- static const struct platform_device_id max77620_regulator_devtype[] = {
- 	{ .name = "max77620-pmic", },
- 	{ .name = "max20024-pmic", },
-+	{ .name = "max77663-pmic", },
- 	{},
- };
- MODULE_DEVICE_TABLE(platform, max77620_regulator_devtype);
--- 
-2.21.0
+ok then, but I need patches that apply cleanly against bluetooth-next.
+
+Regards
+
+Marcel
 
