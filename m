@@ -2,310 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81DAB1406A
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 16:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7055514075
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 17:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727765AbfEEOzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 10:55:10 -0400
-Received: from hamsrv800.servertools24.de ([213.238.32.28]:49907 "EHLO
-        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727584AbfEEOzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 10:55:10 -0400
-Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
-        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id A1F2F23824A4;
-        Sun,  5 May 2019 16:55:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
-        s=default; t=1557068108;
-        bh=bsgtWNy6pbx05K2sykOC962eE4Fs+b2eQbRXo2rNrXU=; l=8827;
-        h=Subject:To:From;
-        b=h4qflJwfi2d4RXWryA3vf9enN5LLD8Q3LxGDnXLWiQjzE8QmOunAxd9/C8BwCmAhQ
-         0bpM0zBAIKQK1q0pvQT0TgRCFTAJt4xhGWgw8+h5GO7nHaBPT31ck1f3ko25cCOScJ
-         k68+i1Q8Ta7prtghOmSCcytEYZBikmq3302Zgmmw=
-Authentication-Results: hamsrv800.servertools24.de;
-        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
-Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
-Subject: Re: [PATCH v2 2/2] leds: spi-byte: add single byte SPI LED driver
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>
-Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20190505125242.10298-1-oss@c-mauderer.de>
- <20190505125242.10298-2-oss@c-mauderer.de>
- <da311a7e-0d3b-5c60-5bed-06446e71e5ff@gmail.com>
-From:   Christian Mauderer <oss@c-mauderer.de>
-Message-ID: <56cc935a-0b31-e806-19cd-a111295e2fff@c-mauderer.de>
-Date:   Sun, 5 May 2019 16:55:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727772AbfEEPGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 11:06:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60942 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727657AbfEEPGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 5 May 2019 11:06:17 -0400
+Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E2644206DF;
+        Sun,  5 May 2019 15:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557068775;
+        bh=Yilr+L2nikrV6Cji7VPMZzQMDcS99srKqvKnAeM1gIc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=OU6N4MEf3lpoyztaKEc9yYCQ38PQcLmCSAHRd39Fa8Lj72S5nl65xvZQi6qd2gOq5
+         l4+fyYaybJNZveLTvfSGdHxbrSF0C+NyYTM2m/UCrFRdh5ocZ3dmbAWZZ+tZ/BmnPQ
+         vqtYKBATR5TH1zbWGe+UB/xHWWivNDOjpNFynKNw=
+Date:   Sun, 5 May 2019 16:06:09 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
+        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        charles-antoine.couret@essensium.com, devicetree@vger.kernel.org,
+        brandon.maier@rockwellcollins.com,
+        clayton.shotwell@rockwellcollins.com
+Subject: Re: [PATCH v2 5/6] iio: ad7949: Fix SPI interfacing for 14-bit
+ messages
+Message-ID: <20190505160609.2146f801@archlinux>
+In-Reply-To: <1556813672-49861-5-git-send-email-adam.michaelis@rockwellcollins.com>
+References: <1556813672-49861-1-git-send-email-adam.michaelis@rockwellcollins.com>
+        <1556813672-49861-5-git-send-email-adam.michaelis@rockwellcollins.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <da311a7e-0d3b-5c60-5bed-06446e71e5ff@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <155706810799.100373.8429823232049536692@hamsrv800.servertools24.de>
-X-PPP-Vhost: c-mauderer.de
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/05/2019 16:48, Jacek Anaszewski wrote:
-> Hi Christian,
-> 
-> Thank you for the update. I have some trivial nits,
-> please refer below.
+On Thu,  2 May 2019 11:14:31 -0500
+Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
 
-Hello Jacek,
+> The AD7949 (but not the other two models supported by this driver) uses
+> samples 14 bits wide. When attempting to communicate through certain SPI
+> controllers that require power-of-2 word widths, this fails. Adding
+> logic to pack the 14-bit messages into the most-significant bits of a
+> 16-bit message for communicating over byte-based SPI bus.
 
-thanks for having a look. I don't have problems with the changes and
-will integrate them into a v3. Sorry for the style nitpicks for example
-with the (ret != 0). It's different for each project and I haven't
-written much code with Linux style yet.
+So this does penalise controllers that do support 14 bits. Can we query
+that and perhaps look at only padding if necessary?
 
-I'll wait for another few hours in case someone else wants additional
-changes before posting v3.
+>=20
+> Only able to test with AD7949 part, but should support the 16-bit
+> samples of the AD7682 and AD7689, as well.
+>=20
+> Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+This has ended up more complex that I expected.  I 'think' the
+result is just to shift the data up two bits if needed to pad?
 
-Best regards
+There are some endian issues introduced as well by this patch.
 
-Christian
+Jonathan
 
-> 
-> On 5/5/19 2:52 PM, oss@c-mauderer.de wrote:
->> From: Christian Mauderer <oss@c-mauderer.de>
->>
->> This driver adds support for simple SPI based LED controller which use
->> only one byte for setting the brightness.
->>
->> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
->> ---
->>
->> Changes compared to v1:
->> - rename ubnt-spi to leds-spi-byte
->> - rework probe to get all parameters before allocating anything ->
->> error checks
->>    all collected together and initializing all fields of the device
->> structure is
->>    more obvious
->> - fix some unsteady indentations during variable declaration
->> - rework comment with protocol explanation
->> - handle case of off_bright > max_bright
->> - fix spelling in commit message
->> - mutex_destroy in remove
->> - change label to use either use the given one without a prefix or a
->> default one
->>    NOTE: Should the label be a mandatory parameter instead of the
->> default label?
->>
->>
->>   drivers/leds/Kconfig         |  12 ++++
->>   drivers/leds/Makefile        |   1 +
->>   drivers/leds/leds-spi-byte.c | 133 +++++++++++++++++++++++++++++++++++
->>   3 files changed, 146 insertions(+)
->>   create mode 100644 drivers/leds/leds-spi-byte.c
->>
->> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
->> index a72f97fca57b..0866c55e8004 100644
->> --- a/drivers/leds/Kconfig
->> +++ b/drivers/leds/Kconfig
->> @@ -766,6 +766,18 @@ config LEDS_NIC78BX
->>         To compile this driver as a module, choose M here: the module
->>         will be called leds-nic78bx.
->>   +config LEDS_SPI_BYTE
->> +    tristate "LED support for SPI LED controller with a single byte"
->> +    depends on LEDS_CLASS
->> +    depends on SPI
->> +    depends on OF
->> +    help
->> +      This option enables support for LED controller which use a
->> single byte
->> +      for controlling the brightness. The minimum and maximum value
->> of the
->> +      byte can be configured via a device tree. The driver can be
->> used for
->> +      example for the microcontroller based LED controller in the
->> Ubiquiti
->> +      airCube ISP devices.
->> +
->>   comment "LED Triggers"
->>   source "drivers/leds/trigger/Kconfig"
->>   diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
->> index 4c1b0054f379..1786d7e2c236 100644
->> --- a/drivers/leds/Makefile
->> +++ b/drivers/leds/Makefile
->> @@ -75,6 +75,7 @@ obj-$(CONFIG_LEDS_PM8058)        += leds-pm8058.o
->>   obj-$(CONFIG_LEDS_MLXCPLD)        += leds-mlxcpld.o
->>   obj-$(CONFIG_LEDS_MLXREG)        += leds-mlxreg.o
->>   obj-$(CONFIG_LEDS_NIC78BX)        += leds-nic78bx.o
->> +obj-$(CONFIG_LEDS_SPI_BYTE)        += leds-spi-byte.o
->>   obj-$(CONFIG_LEDS_MT6323)        += leds-mt6323.o
->>   obj-$(CONFIG_LEDS_LM3692X)        += leds-lm3692x.o
->>   obj-$(CONFIG_LEDS_SC27XX_BLTC)        += leds-sc27xx-bltc.o
->> diff --git a/drivers/leds/leds-spi-byte.c b/drivers/leds/leds-spi-byte.c
->> new file mode 100644
->> index 000000000000..19a68bce1a7c
->> --- /dev/null
->> +++ b/drivers/leds/leds-spi-byte.c
->> @@ -0,0 +1,133 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +// Copyright (c) 2019 Christian Mauderer <oss@c-mauderer.de>
->> +
->> +/*
->> + * The driver can be used for controllers with a very simple SPI
->> protocol: Only
->> + * one byte between an off and a max value (defined by devicetree)
->> will be sent.
->> + */
->> +
->> +#include <linux/leds.h>
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
->> +#include <linux/spi/spi.h>
->> +#include <linux/mutex.h>
->> +#include <uapi/linux/uleds.h>
->> +
->> +struct spi_byte_led {
->> +    struct led_classdev    ldev;
->> +    struct spi_device    *spi;
->> +    char            name[LED_MAX_NAME_SIZE];
->> +    struct mutex        mutex;
->> +    u8            off_value;
->> +    u8            max_value;
->> +};
->> +
->> +static int spi_byte_brightness_set_blocking(struct led_classdev *dev,
->> +                        enum led_brightness brightness)
->> +{
->> +    struct spi_byte_led *led = container_of(dev, struct spi_byte_led,
->> ldev);
->> +    u8 value;
->> +    int ret;
->> +
->> +    value = (u8) brightness + led->off_value;
->> +
->> +    mutex_lock(&led->mutex);
->> +    ret = spi_write(led->spi, &value, sizeof(value));
->> +    mutex_unlock(&led->mutex);
->> +
->> +    return ret;
->> +}
->> +
->> +static int spi_byte_probe(struct spi_device *spi)
->> +{
->> +    struct device *dev = &spi->dev;
->> +    struct device_node *child;
->> +    struct spi_byte_led *led;
->> +    int ret;
->> +    const char *default_name = "leds-spi-byte::";
->> +    const char *name;
->> +    u8 off_value;
->> +    u8 max_value;
->> +
->> +    if (!dev->of_node)
->> +        return -ENODEV;
->> +
->> +    if (of_get_child_count(dev->of_node) != 1) {
->> +        dev_err(dev, "Device must have exactly one LED sub-node.");
->> +        return -EINVAL;
->> +    }
->> +    child = of_get_next_child(dev->of_node, NULL);
->> +
->> +    ret = of_property_read_string(child, "label", &name);
->> +    if (ret != 0)
-> 
-> It is more customary to have "if (ret)" in such cases.
-> Applies to all occurrences below.
-> 
->> +        name = default_name;
->> +
->> +    ret = of_property_read_u8(child, "leds-spi-byte,off-value",
->> &off_value);
->> +    if (ret != 0) {
->> +        dev_err(dev, "LED node needs a leds-spi-byte,off-value.");
->> +        return -EINVAL;
->> +    }
->> +
->> +    ret = of_property_read_u8(child, "leds-spi-byte,max-value",
->> &max_value);
->> +    if (ret != 0) {
->> +        dev_err(dev, "LED node needs a leds-spi-byte,max-value.");
->> +        return -EINVAL;
->> +    }
->> +
->> +    if (off_value >= max_value) {
->> +        dev_err(dev, "off-value has to be smaller than max-value.");
->> +        return -EINVAL;
->> +    }
->> +
->> +    led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
->> +    if (!led)
->> +        return -ENOMEM;
->> +
->> +    led->spi = spi;
->> +    strlcpy(led->name, name, sizeof(led->name));
->> +    mutex_init(&led->mutex);
->> +    led->off_value = off_value;
->> +    led->max_value = max_value;
->> +    led->ldev.name = led->name;
->> +    led->ldev.brightness = LED_OFF;
-> 
-> This line is redundant - already zeroed by kzalloc.
-> 
->> +    led->ldev.max_brightness = led->max_value - led->off_value;
->> +    led->ldev.brightness_set_blocking =
->> spi_byte_brightness_set_blocking;
->> +    ret = led_classdev_register(&spi->dev, &led->ldev);
-> 
-> Please use devm_led_classdev_register().
-> 
->> +    if (ret >= 0)
->> +        spi_set_drvdata(spi, led);
-> 
-> This looks quite odd. Please shape it as below:
-> 
->     if (ret)
->         return ret
-> 
->     spi_set_drvdata(spi, led);
-> 
->> +
->> +    return ret;
-> 
->     s/ret/0/
-> 
->> +}
->> +
->> +static int spi_byte_remove(struct spi_device *spi)
->> +{
->> +    struct spi_byte_led    *led = spi_get_drvdata(spi);
->> +
->> +    led_classdev_unregister(&led->ldev);
->> +    mutex_destroy(&led->mutex);
->> +
->> +    return 0;
->> +}
->> +
->> +static const struct of_device_id spi_byte_dt_ids[] = {
->> +    { .compatible = "leds-spi-byte", },
->> +    {},
->> +};
->> +
->> +MODULE_DEVICE_TABLE(of, spi_byte_dt_ids);
->> +
->> +static struct spi_driver spi_byte_driver = {
->> +    .probe        = spi_byte_probe,
->> +    .remove        = spi_byte_remove,
->> +    .driver = {
->> +        .name        = KBUILD_MODNAME,
->> +        .of_match_table    = spi_byte_dt_ids,
->> +    },
->> +};
->> +
->> +module_spi_driver(spi_byte_driver);
->> +
->> +MODULE_AUTHOR("Christian Mauderer <oss@c-mauderer.de>");
->> +MODULE_DESCRIPTION("single byte SPI LED driver");
->> +MODULE_LICENSE("GPL v2");
->> +MODULE_ALIAS("spi:leds-spi-byte");
->>
-> 
+
+> ---
+> 	V2: Add some defines to reduce use of magic numbers.
+> ---
+>  drivers/iio/adc/ad7949.c | 106 +++++++++++++++++++++++++++--------------=
+------
+>  1 file changed, 60 insertions(+), 46 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index 7820e1097787..cba152151908 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -33,6 +33,11 @@
+>  #define AD7949_CFG_READBACK_DIS            1
+>  #define AD7949_CFG_READBACK_MASK           GENMASK(0, 0)
+> =20
+> +#define AD7949_BUFFER_LEN 4
+> +
+> +#define AD7949_HI_RESOLUTION 16
+> +#define AD7949_LO_RESOLUTION 14
+> +
+>  enum {
+>  	ID_AD7949 =3D 0,
+>  	ID_AD7682,
+> @@ -57,9 +62,9 @@ struct ad7949_adc_spec {
+>  };
+> =20
+>  static const struct ad7949_adc_spec ad7949_adc_spec[] =3D {
+> -	[ID_AD7949] =3D { .num_channels =3D 8, .resolution =3D 14 },
+> -	[ID_AD7682] =3D { .num_channels =3D 4, .resolution =3D 16 },
+> -	[ID_AD7689] =3D { .num_channels =3D 8, .resolution =3D 16 },
+> +	[ID_AD7949] =3D { .num_channels =3D 8, .resolution =3D AD7949_LO_RESOLU=
+TION },
+> +	[ID_AD7682] =3D { .num_channels =3D 4, .resolution =3D AD7949_HI_RESOLU=
+TION },
+> +	[ID_AD7689] =3D { .num_channels =3D 8, .resolution =3D AD7949_HI_RESOLU=
+TION },
+This obscures a 'non magic' number. It is better to just leave it as how
+many bits it actually is.
+
+>  };
+> =20
+>  /**
+> @@ -85,7 +90,7 @@ struct ad7949_adc_chip {
+>  	u8 resolution;
+>  	u16 cfg;
+>  	unsigned int current_channel;
+> -	u32 buffer ____cacheline_aligned;
+> +	u8 buffer[AD7949_BUFFER_LEN] ____cacheline_aligned;
+Why this change?  Ah, not using bits_per_word any more..
+
+>  };
+> =20
+>  static bool ad7949_spi_cfg_is_read_back(struct ad7949_adc_chip *ad7949_a=
+dc)
+> @@ -96,41 +101,51 @@ static bool ad7949_spi_cfg_is_read_back(struct ad794=
+9_adc_chip *ad7949_adc)
+>  	return false;
+>  }
+> =20
+> -static int ad7949_spi_bits_per_word(struct ad7949_adc_chip *ad7949_adc)
+> +static int ad7949_message_len(struct ad7949_adc_chip *ad7949_adc)
+>  {
+> -	int ret =3D ad7949_adc->resolution;
+> +	int tx_len =3D 2;
+> =20
+>  	if (ad7949_spi_cfg_is_read_back(ad7949_adc))
+> -		ret +=3D AD7949_CFG_REG_SIZE_BITS;
+> +		tx_len +=3D 2;
+> =20
+> -	return ret;
+> +	return tx_len;
+>  }
+> =20
+>  static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 =
+val,
+>  				u16 mask)
+>  {
+> -	int ret;
+> -	int bits_per_word =3D ad7949_spi_bits_per_word(ad7949_adc);
+> -	int shift =3D bits_per_word - AD7949_CFG_REG_SIZE_BITS;
+> +	int ret =3D 0;
+>  	struct spi_message msg;
+> -	struct spi_transfer tx[] =3D {
+> -		{
+> -			.tx_buf =3D &ad7949_adc->buffer,
+> -			.len =3D 4,
+> -			.bits_per_word =3D bits_per_word,
+> -		},
+> -	};
+> -
+> -	ad7949_adc->cfg =3D (val & mask) | (ad7949_adc->cfg & ~mask);
+> -	ad7949_adc->buffer =3D (ad7949_adc->cfg & AD7949_CFG_MASK_TOTAL) << shi=
+ft;
+> -	spi_message_init_with_transfers(&msg, tx, 1);
+> -	ret =3D spi_sync(ad7949_adc->spi, &msg);
+> +	struct spi_transfer tx;
+> +	u16 tmp_cfg =3D 0;
+> +
+> +	(void)memset(&tx, 0, sizeof(tx));
+> +	(void)memset(ad7949_adc->buffer, 0, AD7949_BUFFER_LEN);
+The void casts do nothing useful.
+
+memset(ad7949_adc->spi, sizeof(ad7949_adc->spi)) is better.
+
+however, I'm not clear why you can't use a similar c99 assignment to that
+the driver previously did.
+> +
+> +	tmp_cfg =3D ((val & mask) | (ad7949_adc->cfg & ~mask)) &
+> +		AD7949_CFG_MASK_TOTAL;
+> +
+> +	if (tmp_cfg !=3D ad7949_adc->cfg) {
+Flip the logic here and return early if it hasn't changed.
+
+> +		ad7949_adc->cfg =3D tmp_cfg;
+> +
+> +		/* Pack 14-bit value into 2 bytes, MSB first */
+> +		ad7949_adc->buffer[0] =3D ((ad7949_adc->cfg & 0x7f00) >> 6) |
+> +			((ad7949_adc->cfg & 0xc0) >> 6);
+So this:
+takes bits 13..8 and shifts them down to 7..2.
+takes bits 7..6 and shifts them down to 1..0
+
+Unless I'm missing something that's just 13..6 shifted down to 7..0
+(ad7949_adc->cfg & GENMASK(13, 6)) >> 6 or something like that.
+
+> +		ad7949_adc->buffer[1] =3D (ad7949_adc->cfg & 0x007f) << 2;
+
+Use GENMASK here as well.
+
+This looks like a shift up by 2 followed by a endian swap. Can we make
+that explicit as it'll be more readable...
+
+I'm a little worried that we have dropped the endian swap that was
+effectively occuring due to the larger bits_per_word for a version
+that always does it, whether or not we are on a big endian platform
+or a little endian one.
+
+=46rom the spi.h header
+
+ * In-memory data values are always in native CPU byte order, translated
+ * from the wire byte order (big-endian except with SPI_LSB_FIRST).  So
+ * for example when bits_per_word is sixteen, buffers are 2N bytes long
+ * (@len =3D 2N) and hold N sixteen bit words in CPU byte order.
+ *
+
+As you have it the bits_per_word is 8 and so there is no inbuilt assumption
+of ordering and you need you need to swap as you are on a little endian
+platform.
+
+> +
+> +		tx.tx_buf =3D ad7949_adc->buffer;
+> +		tx.len =3D ad7949_message_len(ad7949_adc);
+> +
+> +		spi_message_init_with_transfers(&msg, &tx, 1);
+
+spi_write?
+
+> +		ret =3D spi_sync(ad7949_adc->spi, &msg);
+> +
+> +		/*
+> +		 * This delay is to avoid a new request before the required
+> +		 * time to send a new command to the device
+> +		 */
+> +		udelay(2);
+> +	}
+> =20
+> -	/*
+> -	 * This delay is to avoid a new request before the required time to
+> -	 * send a new command to the device
+> -	 */
+> -	udelay(2);
+>  	return ret;
+>  }
+> =20
+> @@ -138,16 +153,10 @@ static int ad7949_spi_read_channel(struct ad7949_ad=
+c_chip *ad7949_adc, int *val,
+>  				   unsigned int channel)
+>  {
+>  	int ret;
+> -	int bits_per_word =3D ad7949_spi_bits_per_word(ad7949_adc);
+> -	int mask =3D GENMASK(ad7949_adc->resolution, 0);
+>  	struct spi_message msg;
+> -	struct spi_transfer tx[] =3D {
+> -		{
+> -			.rx_buf =3D &ad7949_adc->buffer,
+> -			.len =3D 4,
+> -			.bits_per_word =3D bits_per_word,
+> -		},
+> -	};
+> +	struct spi_transfer tx;
+> +
+> +	ad7949_adc->current_channel =3D channel;
+> =20
+>  	ret =3D ad7949_spi_write_cfg(ad7949_adc,
+>  				   channel << AD7949_CFG_CHAN_SEL_SHIFT,
+> @@ -155,24 +164,29 @@ static int ad7949_spi_read_channel(struct ad7949_ad=
+c_chip *ad7949_adc, int *val,
+>  	if (ret)
+>  		return ret;
+> =20
+> -	ad7949_adc->buffer =3D 0;
+> -	spi_message_init_with_transfers(&msg, tx, 1);
+> +	(void)memset(&tx, 0, sizeof(tx));
+
+> +	(void)memset(ad7949_adc->buffer, 0, AD7949_BUFFER_LEN);
+> +
+> +	tx.rx_buf =3D ad7949_adc->buffer;
+> +	tx.len =3D ad7949_message_len(ad7949_adc);
+> +
+> +	spi_message_init_with_transfers(&msg, &tx, 1);
+spi_read?
+
+>  	ret =3D spi_sync(ad7949_adc->spi, &msg);
+>  	if (ret)
+>  		return ret;
+> =20
+>  	/*
+> -	 * This delay is to avoid a new request before the required time to
+> -	 * send a new command to the device
+> +	 * This delay is to avoid a new request before the required time
+> +	 * to send a new command to the device.
+>  	 */
+>  	udelay(2);
+> =20
+> -	ad7949_adc->current_channel =3D channel;
+> +	*val =3D (ad7949_adc->buffer[0] << 8) | ad7949_adc->buffer[1];
+> =20
+> -	if (ad7949_spi_cfg_is_read_back(ad7949_adc))
+> -		*val =3D (ad7949_adc->buffer >> AD7949_CFG_REG_SIZE_BITS) & mask;
+> -	else
+> -		*val =3D ad7949_adc->buffer & mask;
+> +	if (ad7949_adc->resolution =3D=3D AD7949_LO_RESOLUTION) {
+
+14, much more readable as obvious what is happening.
+
+> +		/* 14-bit value in 16-bit buffer */
+> +		*val =3D *val >> 2;
+> +	}
+> =20
+>  	return 0;
+>  }
+
