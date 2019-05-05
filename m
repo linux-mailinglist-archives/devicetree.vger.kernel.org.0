@@ -2,252 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D0613F79
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 14:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6431B13FB2
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 15:28:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727660AbfEEMxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 08:53:21 -0400
-Received: from hamsrv800.servertools24.de ([213.238.32.28]:52425 "EHLO
-        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727647AbfEEMxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 08:53:21 -0400
-Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
-        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id B18322381AEC;
-        Sun,  5 May 2019 14:53:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
-        s=default; t=1557060798;
-        bh=k8D+f+l7WYBMw1Gjg40+qbOII57VFyUSe7F8h8tWKAo=; l=6154;
-        h=From:To:Subject;
-        b=sEEi30HU1QKoVL37n+Fhhrt80SzP1g4EmNC6h1DSwp1eTBxQ5aT/HefXXKGn0qI+w
-         XauiyUxTIo101ADPoMRbWpLPTFBGgIU1d6ucGVe7P90LZiFoUeuIm+VkOGmMlIn8Bo
-         BsSA2+z3rUL7wJNY7aop39trYsYLi+XCHQKs8hDQ=
-Authentication-Results: hamsrv800.servertools24.de;
-        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
-Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
-From:   oss@c-mauderer.de
-To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        id S1726310AbfEEN2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 09:28:18 -0400
+Received: from mail-eopbgr60082.outbound.protection.outlook.com ([40.107.6.82]:2283
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725873AbfEEN2S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 5 May 2019 09:28:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mxEm8J29UxXfpDXr9UMREWdvUBJfBSp6Off20hvufwY=;
+ b=JBb/iIZCiUj/DZAudklgfQrG4GlUHvuWeCziw0U4aqboNzyMpeig6ccH3rINKjuhi//DHUpqBu9i2RG28wbmOW/FiAgEcsBZub7/2KcTa9b/FJIIxk0aSHgZBa1l8QuehBK2QaKIvkFazzCjI/Is7U18pG4nOp42rZRRZoFvzYw=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB4259.eurprd04.prod.outlook.com (52.134.126.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.12; Sun, 5 May 2019 13:28:13 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::3173:24:d401:2378]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::3173:24:d401:2378%6]) with mapi id 15.20.1856.012; Sun, 5 May 2019
+ 13:28:13 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Christian Mauderer <oss@c-mauderer.de>
-Subject: [PATCH v2 2/2] leds: spi-byte: add single byte SPI LED driver
-Date:   Sun,  5 May 2019 14:52:42 +0200
-Message-Id: <20190505125242.10298-2-oss@c-mauderer.de>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190505125242.10298-1-oss@c-mauderer.de>
-References: <20190505125242.10298-1-oss@c-mauderer.de>
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Anson Huang <anson.huang@nxp.com>
+Subject: [PATCH 1/4] dt-bindings: fsl: scu: add ocotp binding
+Thread-Topic: [PATCH 1/4] dt-bindings: fsl: scu: add ocotp binding
+Thread-Index: AQHVA0ZjnXjmGbRNIUCIpXt7yxOkeg==
+Date:   Sun, 5 May 2019 13:28:13 +0000
+Message-ID: <20190505134130.28071-1-peng.fan@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.16.4
+x-clientproxiedby: HK0PR03CA0099.apcprd03.prod.outlook.com
+ (2603:1096:203:b0::15) To AM0PR04MB4481.eurprd04.prod.outlook.com
+ (2603:10a6:208:70::15)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 23060414-4bb9-4771-fb72-08d6d15d860c
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4259;
+x-ms-traffictypediagnostic: AM0PR04MB4259:
+x-microsoft-antispam-prvs: <AM0PR04MB425900E9B81EF98DDC3A1CAD88370@AM0PR04MB4259.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-forefront-prvs: 00286C0CA6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(396003)(136003)(366004)(346002)(189003)(199004)(486006)(54906003)(110136005)(68736007)(2906002)(476003)(2616005)(8936002)(8676002)(66066001)(81166006)(7416002)(7736002)(305945005)(44832011)(53936002)(36756003)(50226002)(4326008)(25786009)(86362001)(2201001)(1076003)(5660300002)(81156014)(52116002)(99286004)(102836004)(316002)(6506007)(3846002)(6116002)(386003)(478600001)(256004)(6512007)(71200400001)(14454004)(6486002)(6436002)(2501003)(66946007)(73956011)(186003)(71190400001)(66446008)(26005)(66476007)(66556008)(64756008);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4259;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: GTBQ1hQBdPk5hc+m2fjhSGkq5w/Wau0EfXw1SVNc0lHonYPzGtQV1hAv29eCfuu5YLF3y7NXkuTwMUN1uMP+WN468aWIeaNI+sDmkXV1Er7PVt1Sr5mnhgGlNdodB9wY5s1oXN1tb8PgJkhpz81d8wToFO7X7pZfD45jWJyYHoj2t2sPQcN7lTVG40RhDodZVXHUWlQsspWz4FSATSoXSAxKhAqMgb1NWuCRL96jJ7J9QUx+7EKFYgsfg61m2fiTzb2dv6Yk/Wuw36uZrojka1nnFPG8vlwdTYgYqZJ7LTnvSbwJr+WwiVoaH96/gHacuDzk1MYYxgOfdHfEivTpjzlBLVibMwWb50YD6F5nmronujuPTHLzy7JEgwe3+xBqcOjB/Zk6/msEknn9e7Phaz1dHa8EZX0Olw898z6JnaE=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <155706079807.85325.11572382588236835680@hamsrv800.servertools24.de>
-X-PPP-Vhost: c-mauderer.de
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23060414-4bb9-4771-fb72-08d6d15d860c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 May 2019 13:28:13.3263
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4259
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Mauderer <oss@c-mauderer.de>
-
-This driver adds support for simple SPI based LED controller which use
-only one byte for setting the brightness.
-
-Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
----
-
-Changes compared to v1:
-- rename ubnt-spi to leds-spi-byte
-- rework probe to get all parameters before allocating anything -> error checks
-  all collected together and initializing all fields of the device structure is
-  more obvious
-- fix some unsteady indentations during variable declaration
-- rework comment with protocol explanation
-- handle case of off_bright > max_bright
-- fix spelling in commit message
-- mutex_destroy in remove
-- change label to use either use the given one without a prefix or a default one
-  NOTE: Should the label be a mandatory parameter instead of the default label?
-
-
- drivers/leds/Kconfig         |  12 ++++
- drivers/leds/Makefile        |   1 +
- drivers/leds/leds-spi-byte.c | 133 +++++++++++++++++++++++++++++++++++
- 3 files changed, 146 insertions(+)
- create mode 100644 drivers/leds/leds-spi-byte.c
-
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a72f97fca57b..0866c55e8004 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -766,6 +766,18 @@ config LEDS_NIC78BX
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-nic78bx.
- 
-+config LEDS_SPI_BYTE
-+	tristate "LED support for SPI LED controller with a single byte"
-+	depends on LEDS_CLASS
-+	depends on SPI
-+	depends on OF
-+	help
-+	  This option enables support for LED controller which use a single byte
-+	  for controlling the brightness. The minimum and maximum value of the
-+	  byte can be configured via a device tree. The driver can be used for
-+	  example for the microcontroller based LED controller in the Ubiquiti
-+	  airCube ISP devices.
-+
- comment "LED Triggers"
- source "drivers/leds/trigger/Kconfig"
- 
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 4c1b0054f379..1786d7e2c236 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -75,6 +75,7 @@ obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
- obj-$(CONFIG_LEDS_MLXCPLD)		+= leds-mlxcpld.o
- obj-$(CONFIG_LEDS_MLXREG)		+= leds-mlxreg.o
- obj-$(CONFIG_LEDS_NIC78BX)		+= leds-nic78bx.o
-+obj-$(CONFIG_LEDS_SPI_BYTE)		+= leds-spi-byte.o
- obj-$(CONFIG_LEDS_MT6323)		+= leds-mt6323.o
- obj-$(CONFIG_LEDS_LM3692X)		+= leds-lm3692x.o
- obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
-diff --git a/drivers/leds/leds-spi-byte.c b/drivers/leds/leds-spi-byte.c
-new file mode 100644
-index 000000000000..19a68bce1a7c
---- /dev/null
-+++ b/drivers/leds/leds-spi-byte.c
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Christian Mauderer <oss@c-mauderer.de>
-+
-+/*
-+ * The driver can be used for controllers with a very simple SPI protocol: Only
-+ * one byte between an off and a max value (defined by devicetree) will be sent.
-+ */
-+
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi.h>
-+#include <linux/mutex.h>
-+#include <uapi/linux/uleds.h>
-+
-+struct spi_byte_led {
-+	struct led_classdev	ldev;
-+	struct spi_device	*spi;
-+	char			name[LED_MAX_NAME_SIZE];
-+	struct mutex		mutex;
-+	u8			off_value;
-+	u8			max_value;
-+};
-+
-+static int spi_byte_brightness_set_blocking(struct led_classdev *dev,
-+					    enum led_brightness brightness)
-+{
-+	struct spi_byte_led *led = container_of(dev, struct spi_byte_led, ldev);
-+	u8 value;
-+	int ret;
-+
-+	value = (u8) brightness + led->off_value;
-+
-+	mutex_lock(&led->mutex);
-+	ret = spi_write(led->spi, &value, sizeof(value));
-+	mutex_unlock(&led->mutex);
-+
-+	return ret;
-+}
-+
-+static int spi_byte_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct device_node *child;
-+	struct spi_byte_led *led;
-+	int ret;
-+	const char *default_name = "leds-spi-byte::";
-+	const char *name;
-+	u8 off_value;
-+	u8 max_value;
-+
-+	if (!dev->of_node)
-+		return -ENODEV;
-+
-+	if (of_get_child_count(dev->of_node) != 1) {
-+		dev_err(dev, "Device must have exactly one LED sub-node.");
-+		return -EINVAL;
-+	}
-+	child = of_get_next_child(dev->of_node, NULL);
-+
-+	ret = of_property_read_string(child, "label", &name);
-+	if (ret != 0)
-+		name = default_name;
-+
-+	ret = of_property_read_u8(child, "leds-spi-byte,off-value", &off_value);
-+	if (ret != 0) {
-+		dev_err(dev, "LED node needs a leds-spi-byte,off-value.");
-+		return -EINVAL;
-+	}
-+
-+	ret = of_property_read_u8(child, "leds-spi-byte,max-value", &max_value);
-+	if (ret != 0) {
-+		dev_err(dev, "LED node needs a leds-spi-byte,max-value.");
-+		return -EINVAL;
-+	}
-+
-+	if (off_value >= max_value) {
-+		dev_err(dev, "off-value has to be smaller than max-value.");
-+		return -EINVAL;
-+	}
-+
-+	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
-+	if (!led)
-+		return -ENOMEM;
-+
-+	led->spi = spi;
-+	strlcpy(led->name, name, sizeof(led->name));
-+	mutex_init(&led->mutex);
-+	led->off_value = off_value;
-+	led->max_value = max_value;
-+	led->ldev.name = led->name;
-+	led->ldev.brightness = LED_OFF;
-+	led->ldev.max_brightness = led->max_value - led->off_value;
-+	led->ldev.brightness_set_blocking = spi_byte_brightness_set_blocking;
-+	ret = led_classdev_register(&spi->dev, &led->ldev);
-+	if (ret >= 0)
-+		spi_set_drvdata(spi, led);
-+
-+	return ret;
-+}
-+
-+static int spi_byte_remove(struct spi_device *spi)
-+{
-+	struct spi_byte_led	*led = spi_get_drvdata(spi);
-+
-+	led_classdev_unregister(&led->ldev);
-+	mutex_destroy(&led->mutex);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id spi_byte_dt_ids[] = {
-+	{ .compatible = "leds-spi-byte", },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, spi_byte_dt_ids);
-+
-+static struct spi_driver spi_byte_driver = {
-+	.probe		= spi_byte_probe,
-+	.remove		= spi_byte_remove,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= spi_byte_dt_ids,
-+	},
-+};
-+
-+module_spi_driver(spi_byte_driver);
-+
-+MODULE_AUTHOR("Christian Mauderer <oss@c-mauderer.de>");
-+MODULE_DESCRIPTION("single byte SPI LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("spi:leds-spi-byte");
--- 
-2.21.0
-
+TlhQIGkuTVg4UVhQIGlzIGFuIEFSTXY4IFNvQyB3aXRoIGEgQ29ydGV4LU00IGNvcmUgaW5zaWRl
+IGFzDQpzeXN0ZW0gY29udHJvbGxlcihTQ1UpLCB0aGUgb2NvdHAgY29udHJvbGxlciBpcyBiZWlu
+ZyBjb250cm9sbGVkDQpieSB0aGUgU0NVLCBzbyBMaW51eCBuZWVkIHVzZSBSUEMgdG8gU0NVIGZv
+ciBvY290cCBoYW5kbGluZy4gVGhpcw0KcGF0Y2ggYWRkcyBiaW5kaW5nIGRvYyBmb3IgaS5NWDgg
+U0NVIE9DT1RQIGRyaXZlci4NCg0KU2lnbmVkLW9mZi1ieTogUGVuZyBGYW4gPHBlbmcuZmFuQG54
+cC5jb20+DQpDYzogUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCkNjOiBNYXJrIFJ1
+dGxhbmQgPG1hcmsucnV0bGFuZEBhcm0uY29tPg0KQ2M6IEFpc2hlbmcgRG9uZyA8YWlzaGVuZy5k
+b25nQG54cC5jb20+DQpDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KQ2M6IFVs
+ZiBIYW5zc29uIDx1bGYuaGFuc3NvbkBsaW5hcm8ub3JnPg0KQ2M6IFN0ZXBoZW4gQm95ZCA8c2Jv
+eWRAa2VybmVsLm9yZz4NCkNjOiBBbnNvbiBIdWFuZyA8YW5zb24uaHVhbmdAbnhwLmNvbT4NCkNj
+OiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KLS0tDQogRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvZnNsLHNjdS50eHQgfCAxMyArKysrKysrKysrKysr
+DQogMSBmaWxlIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxlL2ZzbCxzY3UudHh0IGIv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvZnNsLHNjdS50
+eHQNCmluZGV4IDVkN2RiYWJiYjc4NC4uOWNiN2Q1MmJkZjI2IDEwMDY0NA0KLS0tIGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvZnNsLHNjdS50eHQNCisr
+KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxlL2ZzbCxz
+Y3UudHh0DQpAQCAtMTAwLDYgKzEwMCwxMyBAQCBJRCBpbiBpdHMgImNsb2NrcyIgcGhhbmRsZSBj
+ZWxsLg0KIFNlZSB0aGUgZnVsbCBsaXN0IG9mIGNsb2NrIElEcyBmcm9tOg0KIGluY2x1ZGUvZHQt
+YmluZGluZ3MvY2xvY2svaW14OHF4cC1jbG9jay5oDQogDQorT0NPVFAgYmluZGluZ3MgYmFzZWQg
+b24gU0NVIE1lc3NhZ2UgUHJvdG9jb2wNCistLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCitSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KKy0g
+Y29tcGF0aWJsZToJCVNob3VsZCBiZSAiZnNsLGlteDhxeHAtb2NvdHAiDQorLSAjYWRkcmVzcy1j
+ZWxsczoJTXVzdCBiZSAxLiBDb250YWlucyBieXRlIGluZGV4DQorLSAjc2l6ZS1jZWxsczoJCU11
+c3QgYmUgMS4gQ29udGFpbnMgYnl0ZSBsZW5ndGgNCisNCiBQaW5jdHJsIGJpbmRpbmdzIGJhc2Vk
+IG9uIFNDVSBNZXNzYWdlIFByb3RvY29sDQogLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQogDQpAQCAtMTc3LDYgKzE4NCwxMiBAQCBm
+aXJtd2FyZSB7DQogCQkJLi4uDQogCQl9Ow0KIA0KKwkJb2NvdHA6IGlteDhxeC1vY290cCB7DQor
+CQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MT47DQorCQkJY29t
+cGF0aWJsZSA9ICJmc2wsaW14OHF4cC1vY290cCI7DQorCQl9Ow0KKw0KIAkJcGQ6IGlteDhxeC1w
+ZCB7DQogCQkJY29tcGF0aWJsZSA9ICJmc2wsaW14OHF4cC1zY3UtcGQiLCAiZnNsLHNjdS1wZCI7
+DQogCQkJI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwxPjsNCi0tIA0KMi4xNi40DQoNCg==
