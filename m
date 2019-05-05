@@ -2,105 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20FE71417A
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 19:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF075141C2
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 20:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727232AbfEERdB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 5 May 2019 13:33:01 -0400
-Received: from coyote.holtmann.net ([212.227.132.17]:52995 "EHLO
-        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726905AbfEERdB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 13:33:01 -0400
-Received: from marcel-macpro.fritz.box (p4FF9FD9B.dip0.t-ipconnect.de [79.249.253.155])
-        by mail.holtmann.org (Postfix) with ESMTPSA id BA6BBCEE02;
-        Sun,  5 May 2019 19:41:12 +0200 (CEST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.8\))
-Subject: Re: [PATCH v3 2/2] dt-bindings: net: bluetooth: Add device property
- firmware-name for QCA6174
-From:   Marcel Holtmann <marcel@holtmann.org>
-In-Reply-To: <17221139821fb6ee35f3119df7405401@codeaurora.org>
-Date:   Sun, 5 May 2019 19:32:58 +0200
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1727634AbfEESOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 14:14:44 -0400
+Received: from mail-sender200.upb.ro ([141.85.13.200]:43762 "EHLO mx.upb.ro"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726636AbfEESOo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 5 May 2019 14:14:44 -0400
+X-Greylist: delayed 336 seconds by postgrey-1.27 at vger.kernel.org; Sun, 05 May 2019 14:14:42 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mx.upb.ro (Postfix) with ESMTP id 5A920B560092;
+        Sun,  5 May 2019 21:09:04 +0300 (EEST)
+Received: from mx.upb.ro ([127.0.0.1])
+        by localhost (mx.upb.ro [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id qjAEdION00kg; Sun,  5 May 2019 21:09:02 +0300 (EEST)
+Received: from localhost (localhost [127.0.0.1])
+        by mx.upb.ro (Postfix) with ESMTP id BF351B5618E0;
+        Sun,  5 May 2019 21:09:02 +0300 (EEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mx.upb.ro BF351B5618E0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=upb.ro;
+        s=96342B8A-77E4-11E5-BA93-D93D0963A2DF; t=1557079742;
+        bh=LnDNlk6DOmQ1utGOMALPYd2kTfl57JKXKnsYulppIoo=;
+        h=From:To:Date:Message-Id:MIME-Version;
+        b=G6VL+S2RyDWtmRUDM1Sp0UFCsMkRN2YKwnYEtbuNHZ5EmR7kKUBNgofSilJDR+K6C
+         NWK//pLI0tBXa8ZjqtdSlA52BiMK1RxR/Zk7YYOSE6l02qEUWgbDIaMuvmHDuN/9k7
+         fjbgxs6AVVi5DfFRz/IvfTrB2MUb4TNGRtW/5fQE=
+X-Virus-Scanned: amavisd-new at upb.ro
+Received: from mx.upb.ro ([127.0.0.1])
+        by localhost (mx.upb.ro [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id POFBzA6OiHIj; Sun,  5 May 2019 21:09:02 +0300 (EEST)
+Received: from localhost.localdomain (unknown [188.25.87.154])
+        by mx.upb.ro (Postfix) with ESMTPSA id 93EDBB561841;
+        Sun,  5 May 2019 21:09:02 +0300 (EEST)
+From:   Radu Pirea <radu_nicolae.pirea@upb.ro>
+To:     Radu Pirea <radu_nicolae.pirea@upb.ro>,
+        Richard Genoud <richard.genoud@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Thierry Escande <thierry.escande@linaro.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel@vger.kernel.org,
-        "open list:BLUETOOTH DRIVERS" <linux-bluetooth@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        linux-bluetooth-owner@vger.kernel.org
-Content-Transfer-Encoding: 8BIT
-Message-Id: <874D1677-BE9F-454C-AA95-39E3F3716300@holtmann.org>
-References: <1554368908-22017-2-git-send-email-rjliao@codeaurora.org>
- <1554888476-17560-1-git-send-email-rjliao@codeaurora.org>
- <A85D7982-E000-4A5F-9927-CA36E0BA60F2@holtmann.org>
- <7e0cf9ba98260309c43d9d6e63dead6c@codeaurora.org>
- <CAL_JsqLnM4XqQTCT7VTUSmukujz0VHJoCbXMF2--RmTEx_LZww@mail.gmail.com>
- <60C7AC89-37B6-441C-9349-BCB15717EB2C@holtmann.org>
- <17221139821fb6ee35f3119df7405401@codeaurora.org>
-To:     Rocky Liao <rjliao@codeaurora.org>
-X-Mailer: Apple Mail (2.3445.104.8)
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/2] DMA support for AT91 USART in SPI mode
+Date:   Sun,  5 May 2019 21:06:44 +0300
+Message-Id: <20190505180646.1442-1-radu_nicolae.pirea@upb.ro>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rocky,
+Hi,
 
->>>>>> This patch adds an optional device property "firmware-name" to allow
->>>>>> the
->>>>>> driver to load customized nvm firmware file based on this property.
->>>>>> Signed-off-by: Rocky Liao <rjliao@codeaurora.org>
->>>>>> ---
->>>>>> Changes in v3:
->>>>>> * added firmware-name instead of nvm-postfix to specify full firmware
->>>>>> name
->>>>>> ---
->>>>>> Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt | 2 ++
->>>>>> 1 file changed, 2 insertions(+)
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>>> b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>>> index 824c0e2..2bcea50 100644
->>>>>> --- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>>> +++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.txt
->>>>>> @@ -16,6 +16,7 @@ Optional properties for compatible string
->>>>>> qcom,qca6174-bt:
->>>>>> - enable-gpios: gpio specifier used to enable chip
->>>>>> - clocks: clock provided to the controller (SUSCLK_32KHZ)
->>>>>> + - firmware-name: specify the name of nvm firmware to load
->>>>>> Required properties for compatible string qcom,wcn3990-bt:
->>>>>> @@ -39,6 +40,7 @@ serial@7570000 {
->>>>>>            enable-gpios = <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
->>>>>>            clocks = <&divclk4>;
->>>>>> +            firmware-name = "nvm_00440302.bin";
->>>>>>    };
->>>>> and how is this a firmware-name property. Wouldn’t this be more like
->>>>> nvm-file or something along these lines. This really needs to be
->>>>> cleared with Rob to pick the right property name.
->>>>> Regards
->>>>> Marcel
->>>> Hi Rob,
->>>> Are you OK to use a property name "nvm-file" or "firmware-nvm-file"?
->>>> Actually we have two firmware files, one is the patch file which is
->>>> common to all of the products, the other is the nvm file which is
->>>> customized. Using a "nvm-file" or "firmware-nvm-file" property name
->>>> would be more clear.
->>> 'firmware-name' is the standard name for specifying firmware file names.
->> but it is not a firmware file, it is a NVM file. What happens if in
->> the future they need a firmware file and a NVM file?
->> Regards
->> Marcel
-> 
-> We won't need to specify a rampatch firmware file in future as it's a same file for all the boards with same chip, only the NVM firmware file may have board differences. NVM file is also one of the firmware files so I think it should be OK to use "firmware-name" property to specify it.
+This is the version two of the patches with DMA support for
+spi-at91-usart driver.=20
 
-ok then, but I need patches that apply cleanly against bluetooth-next.
+Changes in v2:
+- specified in bindings order of dmas and dma-names
+- changed DMA_FROM_DEVICE to DMA_DEV_TO_MEM and DMA_TO_DEVICE to
+DMA_MEM_TO_DEV when dmaengine_prep_slave_sg is called
 
-Regards
+Changes in v1:
+- added DMA support
 
-Marcel
+
+Radu Pirea (2):
+  dt-bindings: mfd: atmel-usart: add DMA bindings for USART in SPI mode
+  spi: at91-usart: add DMA support
+
+ .../devicetree/bindings/mfd/atmel-usart.txt   |  20 +-
+ drivers/spi/spi-at91-usart.c                  | 221 +++++++++++++++++-
+ 2 files changed, 234 insertions(+), 7 deletions(-)
+
+--=20
+2.21.0
 
