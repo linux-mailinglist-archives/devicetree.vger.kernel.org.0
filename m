@@ -2,328 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD011404A
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 16:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C5B814061
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 16:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727692AbfEEOjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 10:39:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727325AbfEEOjs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 5 May 2019 10:39:48 -0400
-Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2EAF0208C0;
-        Sun,  5 May 2019 14:39:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557067186;
-        bh=hnnvMQwDDKOtZmZp6Tp1ClrJzK135DFiTn0Rt6cx8mM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=G046fBE7YdZ9hyP/GO1J4yKP2rGT8E7kWNAJwrAdL3SSoXXho4rTp9n+Q8uxYnLg1
-         KscIpns1X4xCiHNaK3IXp3I63sbVE0E7i2osbpSlQX9PQknaXUFzXZgeS6yeqZxPvA
-         mvIxcqwYb2C8QBmHTGIIUf8Z6AqusCk2rkiSQ02g=
-Date:   Sun, 5 May 2019 15:39:40 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Adam Michaelis <adam.michaelis@rockwellcollins.com>
-Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
-        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        charles-antoine.couret@essensium.com, devicetree@vger.kernel.org,
-        brandon.maier@rockwellcollins.com,
-        clayton.shotwell@rockwellcollins.com
-Subject: Re: [PATCH v2 1/6] iio: ad7949: Support internal Vref
-Message-ID: <20190505153940.2699d07f@archlinux>
-In-Reply-To: <1556813672-49861-1-git-send-email-adam.michaelis@rockwellcollins.com>
-References: <1556813672-49861-1-git-send-email-adam.michaelis@rockwellcollins.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1727325AbfEEOs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 10:48:27 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:41632 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727603AbfEEOs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 10:48:27 -0400
+Received: by mail-lf1-f65.google.com with SMTP id d8so7378845lfb.8;
+        Sun, 05 May 2019 07:48:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LTE2zO+VXR9AsjxQsMZUP8opCMvabfypdFsNrc4FQUY=;
+        b=vTA1RKFQLLXl482TZRBmv+AykdOPq9miWfkSoortz4KKCBqq4+RukryViq3q3hvMZ5
+         x+xW+xe7y769Qo9TjwoQ26amAA4ALdKKwIXQDPDqGBUdVIGzBoiW5RUKnAGO8QfycrLG
+         s4k/L48pjfIvKkYbcCvLlJ8E/Vi00gfRA7049IAtXuE8gNvQPhv8xiAUDRsDCCLd4X+V
+         e+0/+0bpVN+pMJNB89T4gpuXC/EBJ1e/BYaVPWL9pc6RX4K/kPyoipdx+DdzNIGPrJKD
+         FGFANAzj8yq+2vbHL4WWyIYo7hWzk1/JA7qPW2nvFQ8aljNCh6PAObQA5ibwe9MAWW66
+         +kBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LTE2zO+VXR9AsjxQsMZUP8opCMvabfypdFsNrc4FQUY=;
+        b=lsBwBbvk9azvXZBeqAH80iPGIpyTA3srRIWtGBXzzFmQHqdMd5z1VOQbHfShzDXz0O
+         2qF3eXiOram2VVwf39eXtRpbhKFkt20Y2ArZRQJIdpxOusCzBWxCXC4QEomD/iAcAQdx
+         A34MiirM4kMd4Jv/l5iIjMRAmUf7J9J0G/82IwCOA/2HqrsEGZIu3vXwizKtFmzNu7Zj
+         l5pcc7WZVpo2kTVWEqIRg0n0ulnaXsN1SHbrXYNeMrnsbRKBoVGGXrlnKXCmRwqMbKno
+         96Cpo6glmzhFkYVy/49TEtyOMNz4m5uebpsGukKm7FmXYC2WjVKJSQtHyX8upR9CigQr
+         Ag+Q==
+X-Gm-Message-State: APjAAAXkweJRzWvOL7r6L9axf5Q26tza0xHG2TIeCg5uiDdhHQQ21OFw
+        HU666zLF6742fuDS61+PHq0=
+X-Google-Smtp-Source: APXvYqzoEEjgQrmXRKGZ5zi0D8FsDHK+EQchhxl7iKJCAgkoxmPOHjraHAK6i5IUdGWYZDdImZj/Qg==
+X-Received: by 2002:ac2:554c:: with SMTP id l12mr3843878lfk.111.1557067704055;
+        Sun, 05 May 2019 07:48:24 -0700 (PDT)
+Received: from [192.168.1.19] (dnn153.neoplus.adsl.tpnet.pl. [83.24.95.153])
+        by smtp.gmail.com with ESMTPSA id v1sm1556385ljv.4.2019.05.05.07.48.22
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 05 May 2019 07:48:23 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] leds: spi-byte: add single byte SPI LED driver
+To:     oss@c-mauderer.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>
+Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190505125242.10298-1-oss@c-mauderer.de>
+ <20190505125242.10298-2-oss@c-mauderer.de>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <da311a7e-0d3b-5c60-5bed-06446e71e5ff@gmail.com>
+Date:   Sun, 5 May 2019 16:48:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190505125242.10298-2-oss@c-mauderer.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  2 May 2019 11:14:27 -0500
-Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
+Hi Christian,
 
-> Adding configurable (via device tree) options to select either an external
-> reference voltage (default, original implementation) or one of the two
-> internal reference voltages provided by the AD7949 part family.
+Thank you for the update. I have some trivial nits,
+please refer below.
+
+On 5/5/19 2:52 PM, oss@c-mauderer.de wrote:
+> From: Christian Mauderer <oss@c-mauderer.de>
 > 
-> Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
-Hi Adam,
-
-Clearly the comments I made on the DT patch will follow through to changes
-in here.
-
-A few minor comments below.
-
-Jonathan
-> ---
-> 	V2: Add some defines to reduce use of magic numbers.
-> ---
->  drivers/iio/adc/ad7949.c | 135 +++++++++++++++++++++++++++++++++++++----------
->  1 file changed, 108 insertions(+), 27 deletions(-)
+> This driver adds support for simple SPI based LED controller which use
+> only one byte for setting the brightness.
 > 
-> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
-> index ac0ffff6c5ae..afc1361af5fb 100644
-> --- a/drivers/iio/adc/ad7949.c
-> +++ b/drivers/iio/adc/ad7949.c
-> @@ -11,12 +11,27 @@
->  #include <linux/module.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/spi/spi.h>
-> -
-> -#define AD7949_MASK_CHANNEL_SEL		GENMASK(9, 7)
-> -#define AD7949_MASK_TOTAL		GENMASK(13, 0)
-> -#define AD7949_OFFSET_CHANNEL_SEL	7
-> -#define AD7949_CFG_READ_BACK		0x1
-> -#define AD7949_CFG_REG_SIZE_BITS	14
-> +#include <linux/of.h>
+> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
+> ---
+> 
+> Changes compared to v1:
+> - rename ubnt-spi to leds-spi-byte
+> - rework probe to get all parameters before allocating anything -> error checks
+>    all collected together and initializing all fields of the device structure is
+>    more obvious
+> - fix some unsteady indentations during variable declaration
+> - rework comment with protocol explanation
+> - handle case of off_bright > max_bright
+> - fix spelling in commit message
+> - mutex_destroy in remove
+> - change label to use either use the given one without a prefix or a default one
+>    NOTE: Should the label be a mandatory parameter instead of the default label?
+> 
+> 
+>   drivers/leds/Kconfig         |  12 ++++
+>   drivers/leds/Makefile        |   1 +
+>   drivers/leds/leds-spi-byte.c | 133 +++++++++++++++++++++++++++++++++++
+>   3 files changed, 146 insertions(+)
+>   create mode 100644 drivers/leds/leds-spi-byte.c
+> 
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index a72f97fca57b..0866c55e8004 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -766,6 +766,18 @@ config LEDS_NIC78BX
+>   	  To compile this driver as a module, choose M here: the module
+>   	  will be called leds-nic78bx.
+>   
+> +config LEDS_SPI_BYTE
+> +	tristate "LED support for SPI LED controller with a single byte"
+> +	depends on LEDS_CLASS
+> +	depends on SPI
+> +	depends on OF
+> +	help
+> +	  This option enables support for LED controller which use a single byte
+> +	  for controlling the brightness. The minimum and maximum value of the
+> +	  byte can be configured via a device tree. The driver can be used for
+> +	  example for the microcontroller based LED controller in the Ubiquiti
+> +	  airCube ISP devices.
 > +
-> +#define AD7949_CFG_REG_SIZE_BITS           14
-> +#define AD7949_CFG_MASK_TOTAL              GENMASK(13, 0)
-> +#define AD7949_CFG_OVERWRITE_SHIFT         13
-> +#define AD7949_CFG_CHAN_CFG_UNIPOLAR_GND   0x7
-> +#define AD7949_CFG_CHAN_CFG_MASK           GENMASK(12, 10)
-> +#define AD7949_CFG_CHAN_CFG_SHIFT          10
-> +#define AD7949_CFG_CHAN_SEL_MASK           GENMASK(9, 7)
-> +#define AD7949_CFG_CHAN_SEL_SHIFT          7
-> +#define AD7949_CFG_BW_FULL                 1
-> +#define AD7949_CFG_BW_SHIFT                6
-> +#define AD7949_CFG_BW_MASK                 GENMASK(6, 6)
-> +#define AD7949_CFG_REF_SEL_MASK            GENMASK(5, 3)
-> +#define AD7949_CFG_REF_SEL_SHIFT           3
-> +#define AD7949_CFG_SEQ_DISABLED            0x0
-> +#define AD7949_CFG_SEQ_SHIFT               1
-> +#define AD7949_CFG_SEQ_MASK                GENMASK(2, 1)
-Where possible use the FIELD_PREP and FIELD_GET macros
-to avoid needing to define both a _SHIFT and a _MASK.
-
-IIRC the mask needs to be a compile time constant, but I think that
-is always true with these.
-
-> +#define AD7949_CFG_READBACK_EN             0
-> +#define AD7949_CFG_READBACK_DIS            1
-> +#define AD7949_CFG_READBACK_MASK           GENMASK(0, 0)
->  
->  enum {
->  	ID_AD7949 = 0,
-> @@ -24,6 +39,18 @@ enum {
->  	ID_AD7689,
->  };
->  
-> +enum ad7949_ref_sel {
-> +	AD7949_REF_2V5 = 0, /* 2.5V internal ref + temp sensor */
-> +	AD7949_REF_4V0, /* 4.096V internal ref + temp sensor */
-> +	AD7949_REF_EXT_TEMP, /* External ref + temp sensor, no buffer */
-> +	AD7949_REF_EXT_TEMP_BUF, /* External ref + temp sensor + buffer */
-> +	AD7949_REF_RSRV_4,
-> +	AD7949_REF_RSRV_5,
-> +	AD7949_REF_EXT, /* External ref, no temp, no buffer */
-> +	AD7949_REF_EXT_BUF, /* External ref + buffer, no temp */
-> +	AD7949_REF_MAX,
+>   comment "LED Triggers"
+>   source "drivers/leds/trigger/Kconfig"
+>   
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 4c1b0054f379..1786d7e2c236 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -75,6 +75,7 @@ obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
+>   obj-$(CONFIG_LEDS_MLXCPLD)		+= leds-mlxcpld.o
+>   obj-$(CONFIG_LEDS_MLXREG)		+= leds-mlxreg.o
+>   obj-$(CONFIG_LEDS_NIC78BX)		+= leds-nic78bx.o
+> +obj-$(CONFIG_LEDS_SPI_BYTE)		+= leds-spi-byte.o
+>   obj-$(CONFIG_LEDS_MT6323)		+= leds-mt6323.o
+>   obj-$(CONFIG_LEDS_LM3692X)		+= leds-lm3692x.o
+>   obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
+> diff --git a/drivers/leds/leds-spi-byte.c b/drivers/leds/leds-spi-byte.c
+> new file mode 100644
+> index 000000000000..19a68bce1a7c
+> --- /dev/null
+> +++ b/drivers/leds/leds-spi-byte.c
+> @@ -0,0 +1,133 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2019 Christian Mauderer <oss@c-mauderer.de>
+> +
+> +/*
+> + * The driver can be used for controllers with a very simple SPI protocol: Only
+> + * one byte between an off and a max value (defined by devicetree) will be sent.
+> + */
+> +
+> +#include <linux/leds.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/mutex.h>
+> +#include <uapi/linux/uleds.h>
+> +
+> +struct spi_byte_led {
+> +	struct led_classdev	ldev;
+> +	struct spi_device	*spi;
+> +	char			name[LED_MAX_NAME_SIZE];
+> +	struct mutex		mutex;
+> +	u8			off_value;
+> +	u8			max_value;
 > +};
 > +
->  struct ad7949_adc_spec {
->  	u8 num_channels;
->  	u8 resolution;
-> @@ -41,6 +68,7 @@ struct ad7949_adc_spec {
->   * @vref: regulator generating Vref
->   * @iio_dev: reference to iio structure
->   * @spi: reference to spi structure
-> + * @ref_sel: selected reference voltage source
->   * @resolution: resolution of the chip
->   * @cfg: copy of the configuration register
->   * @current_channel: current channel in use
-> @@ -51,6 +79,7 @@ struct ad7949_adc_chip {
->  	struct regulator *vref;
->  	struct iio_dev *indio_dev;
->  	struct spi_device *spi;
-> +	enum ad7949_ref_sel ref_sel;
->  	u8 resolution;
->  	u16 cfg;
->  	unsigned int current_channel;
-> @@ -59,7 +88,7 @@ struct ad7949_adc_chip {
->  
->  static bool ad7949_spi_cfg_is_read_back(struct ad7949_adc_chip *ad7949_adc)
->  {
-> -	if (!(ad7949_adc->cfg & AD7949_CFG_READ_BACK))
-> +	if (!(ad7949_adc->cfg & AD7949_CFG_READBACK_MASK))
->  		return true;
->  
->  	return false;
-> @@ -91,7 +120,7 @@ static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
->  	};
->  
->  	ad7949_adc->cfg = (val & mask) | (ad7949_adc->cfg & ~mask);
-> -	ad7949_adc->buffer = ad7949_adc->cfg << shift;
-> +	ad7949_adc->buffer = (ad7949_adc->cfg & AD7949_CFG_MASK_TOTAL) << shift;
->  	spi_message_init_with_transfers(&msg, tx, 1);
->  	ret = spi_sync(ad7949_adc->spi, &msg);
->  
-> @@ -119,8 +148,8 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
->  	};
->  
->  	ret = ad7949_spi_write_cfg(ad7949_adc,
-> -				   channel << AD7949_OFFSET_CHANNEL_SEL,
-> -				   AD7949_MASK_CHANNEL_SEL);
-> +				   channel << AD7949_CFG_CHAN_SEL_SHIFT,
-> +				   AD7949_CFG_CHAN_SEL_MASK);
->  	if (ret)
->  		return ret;
->  
-> @@ -187,11 +216,20 @@ static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
->  		return IIO_VAL_INT;
->  
->  	case IIO_CHAN_INFO_SCALE:
-> -		ret = regulator_get_voltage(ad7949_adc->vref);
-> -		if (ret < 0)
-> -			return ret;
-> +		if (ad7949_adc->vref) {
-> +			ret = regulator_get_voltage(ad7949_adc->vref);
-> +			if (ret < 0)
-> +				return ret;
+> +static int spi_byte_brightness_set_blocking(struct led_classdev *dev,
+> +					    enum led_brightness brightness)
+> +{
+> +	struct spi_byte_led *led = container_of(dev, struct spi_byte_led, ldev);
+> +	u8 value;
+> +	int ret;
 > +
-> +			*val = ret / 5000;
-> +		} else if (ad7949_adc->ref_sel == AD7949_REF_2V5) {
-> +			*val = 2500;
-> +		} else if (ad7949_adc->ref_sel == AD7949_REF_4V0) {
-> +			*val = 4096;
-> +		} else {
-> +			return -EINVAL;
-> +		}
->  
-> -		*val = ret / 5000;
->  		return IIO_VAL_INT;
->  	}
->  
-> @@ -209,7 +247,7 @@ static int ad7949_spi_reg_access(struct iio_dev *indio_dev,
->  		*readval = ad7949_adc->cfg;
->  	else
->  		ret = ad7949_spi_write_cfg(ad7949_adc,
-> -			writeval & AD7949_MASK_TOTAL, AD7949_MASK_TOTAL);
-> +			writeval & AD7949_CFG_MASK_TOTAL, AD7949_CFG_MASK_TOTAL);
->  
->  	return ret;
->  }
-> @@ -223,10 +261,33 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
->  {
->  	int ret;
->  	int val;
-> +	u16 adc_config = 0;
->  
-> -	/* Sequencer disabled, CFG readback disabled, IN0 as default channel */
->  	ad7949_adc->current_channel = 0;
-> -	ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
-> +	ad7949_adc->cfg = 0;
+> +	value = (u8) brightness + led->off_value;
 > +
-> +	/*
-> +	 * 14-bit configuration register (pg 12 of AD7949 Datasheet):
-> +	 * | 13  | 12 - 10 | 9 - 7 | 6  | 5 -3 | 2 - 1 | 0  |
-> +	 * | CFG | INCC    | INx   | BW | REF  | SEQ   | RB |
-> +	 */
-Given this is now all opaque (as it should be) the comment isn't really
-very useful any more so I'd drop it.
-
-> +	adc_config = 1 << AD7949_CFG_OVERWRITE_SHIFT;
-> +	adc_config |=
-> +		(AD7949_CFG_CHAN_CFG_UNIPOLAR_GND << AD7949_CFG_CHAN_CFG_SHIFT)
-> +			& AD7949_CFG_CHAN_CFG_MASK;
-> +	adc_config |= (ad7949_adc->current_channel << AD7949_CFG_CHAN_SEL_SHIFT)
-> +			& AD7949_CFG_CHAN_SEL_MASK;
-> +	adc_config |= (AD7949_CFG_BW_FULL << AD7949_CFG_BW_SHIFT) &
-> +			AD7949_CFG_BW_MASK;
-> +	adc_config |= (ad7949_adc->ref_sel << AD7949_CFG_REF_SEL_SHIFT) &
-> +			AD7949_CFG_REF_SEL_MASK;
-> +	adc_config |= (AD7949_CFG_SEQ_DISABLED << AD7949_CFG_SEQ_SHIFT) &
-> +			AD7949_CFG_SEQ_MASK;
-
-Perhaps could used FIELD_PREP to do this in a cleaner fashion.
-
-> +	adc_config |= AD7949_CFG_READBACK_DIS;
+> +	mutex_lock(&led->mutex);
+> +	ret = spi_write(led->spi, &value, sizeof(value));
+> +	mutex_unlock(&led->mutex);
 > +
-> +	ret = ad7949_spi_write_cfg(ad7949_adc,
-> +			adc_config,
-> +			AD7949_CFG_MASK_TOTAL);
->  
->  	/*
->  	 * Do two dummy conversions to apply the first configuration setting.
-> @@ -245,6 +306,7 @@ static int ad7949_spi_probe(struct spi_device *spi)
->  	struct ad7949_adc_chip *ad7949_adc;
->  	struct iio_dev *indio_dev;
->  	int ret;
-> +	u32 temp;
->  
->  	indio_dev = devm_iio_device_alloc(dev, sizeof(*ad7949_adc));
->  	if (!indio_dev) {
-> @@ -263,21 +325,38 @@ static int ad7949_spi_probe(struct spi_device *spi)
->  	ad7949_adc = iio_priv(indio_dev);
->  	ad7949_adc->indio_dev = indio_dev;
->  	ad7949_adc->spi = spi;
-> +	ad7949_adc->vref = NULL;
->  
->  	spec = &ad7949_adc_spec[spi_get_device_id(spi)->driver_data];
->  	indio_dev->num_channels = spec->num_channels;
->  	ad7949_adc->resolution = spec->resolution;
->  
-> -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
-> -	if (IS_ERR(ad7949_adc->vref)) {
-> -		dev_err(dev, "fail to request regulator\n");
-> -		return PTR_ERR(ad7949_adc->vref);
-> +	ret = of_property_read_u32(ad7949_adc->indio_dev->dev.of_node,
-> +			"adi,reference-select",
-> +			&temp);
-> +	if ((ret == 0) && (temp < AD7949_REF_MAX) &&
-> +			(temp != AD7949_REF_RSRV_4) &&
-> +			(temp != AD7949_REF_RSRV_5)) {
-> +		ad7949_adc->ref_sel = (enum ad7949_ref_sel)temp;
-> +	} else {
-> +		ad7949_adc->ref_sel = AD7949_REF_EXT_BUF;
-> +		dev_warn(dev, "using external Vref by default\n");
->  	}
->  
-> -	ret = regulator_enable(ad7949_adc->vref);
-> -	if (ret < 0) {
-> -		dev_err(dev, "fail to enable regulator\n");
-> -		return ret;
-> +	/* Check whether using external Vref */
-> +	if ((ad7949_adc->ref_sel != AD7949_REF_2V5) &&
-> +			(ad7949_adc->ref_sel != AD7949_REF_4V0)) {
-> +		ad7949_adc->vref = devm_regulator_get(dev, "vref");
-> +		if (IS_ERR(ad7949_adc->vref)) {
-> +			dev_err(dev, "fail to request regulator\n");
-> +			return PTR_ERR(ad7949_adc->vref);
-> +		}
+> +	return ret;
+> +}
 > +
-> +		ret = regulator_enable(ad7949_adc->vref);
-> +		if (ret < 0) {
-> +			dev_err(dev, "fail to enable regulator\n");
-> +			return ret;
-> +		}
->  	}
->  
->  	mutex_init(&ad7949_adc->lock);
-> @@ -298,7 +377,8 @@ static int ad7949_spi_probe(struct spi_device *spi)
->  
->  err:
->  	mutex_destroy(&ad7949_adc->lock);
-> -	regulator_disable(ad7949_adc->vref);
-> +	if (ad7949_adc->vref)
-> +		regulator_disable(ad7949_adc->vref);
->  
->  	return ret;
->  }
-> @@ -310,7 +390,8 @@ static int ad7949_spi_remove(struct spi_device *spi)
->  
->  	iio_device_unregister(indio_dev);
->  	mutex_destroy(&ad7949_adc->lock);
-> -	regulator_disable(ad7949_adc->vref);
-> +	if (ad7949_adc->vref)
-> +		regulator_disable(ad7949_adc->vref);
->  
->  	return 0;
->  }
+> +static int spi_byte_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct device_node *child;
+> +	struct spi_byte_led *led;
+> +	int ret;
+> +	const char *default_name = "leds-spi-byte::";
+> +	const char *name;
+> +	u8 off_value;
+> +	u8 max_value;
+> +
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	if (of_get_child_count(dev->of_node) != 1) {
+> +		dev_err(dev, "Device must have exactly one LED sub-node.");
+> +		return -EINVAL;
+> +	}
+> +	child = of_get_next_child(dev->of_node, NULL);
+> +
+> +	ret = of_property_read_string(child, "label", &name);
+> +	if (ret != 0)
 
+It is more customary to have "if (ret)" in such cases.
+Applies to all occurrences below.
+
+> +		name = default_name;
+> +
+> +	ret = of_property_read_u8(child, "leds-spi-byte,off-value", &off_value);
+> +	if (ret != 0) {
+> +		dev_err(dev, "LED node needs a leds-spi-byte,off-value.");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = of_property_read_u8(child, "leds-spi-byte,max-value", &max_value);
+> +	if (ret != 0) {
+> +		dev_err(dev, "LED node needs a leds-spi-byte,max-value.");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (off_value >= max_value) {
+> +		dev_err(dev, "off-value has to be smaller than max-value.");
+> +		return -EINVAL;
+> +	}
+> +
+> +	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
+> +	if (!led)
+> +		return -ENOMEM;
+> +
+> +	led->spi = spi;
+> +	strlcpy(led->name, name, sizeof(led->name));
+> +	mutex_init(&led->mutex);
+> +	led->off_value = off_value;
+> +	led->max_value = max_value;
+> +	led->ldev.name = led->name;
+> +	led->ldev.brightness = LED_OFF;
+
+This line is redundant - already zeroed by kzalloc.
+
+> +	led->ldev.max_brightness = led->max_value - led->off_value;
+> +	led->ldev.brightness_set_blocking = spi_byte_brightness_set_blocking;
+> +	ret = led_classdev_register(&spi->dev, &led->ldev);
+
+Please use devm_led_classdev_register().
+
+> +	if (ret >= 0)
+> +		spi_set_drvdata(spi, led);
+
+This looks quite odd. Please shape it as below:
+
+	if (ret)
+		return ret
+
+	spi_set_drvdata(spi, led);
+
+> +
+> +	return ret;
+
+	s/ret/0/
+
+> +}
+> +
+> +static int spi_byte_remove(struct spi_device *spi)
+> +{
+> +	struct spi_byte_led	*led = spi_get_drvdata(spi);
+> +
+> +	led_classdev_unregister(&led->ldev);
+> +	mutex_destroy(&led->mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id spi_byte_dt_ids[] = {
+> +	{ .compatible = "leds-spi-byte", },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, spi_byte_dt_ids);
+> +
+> +static struct spi_driver spi_byte_driver = {
+> +	.probe		= spi_byte_probe,
+> +	.remove		= spi_byte_remove,
+> +	.driver = {
+> +		.name		= KBUILD_MODNAME,
+> +		.of_match_table	= spi_byte_dt_ids,
+> +	},
+> +};
+> +
+> +module_spi_driver(spi_byte_driver);
+> +
+> +MODULE_AUTHOR("Christian Mauderer <oss@c-mauderer.de>");
+> +MODULE_DESCRIPTION("single byte SPI LED driver");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_ALIAS("spi:leds-spi-byte");
+> 
+
+-- 
+Best regards,
+Jacek Anaszewski
