@@ -2,190 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5B661409B
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 17:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8A66140C1
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 17:48:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727820AbfEEPZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 11:25:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36776 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727343AbfEEPZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 5 May 2019 11:25:54 -0400
-Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CF8822082F;
-        Sun,  5 May 2019 15:25:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557069952;
-        bh=fIqjOlxzOgrK3zCqzNMKHZNwuH1rod6mWG8P0cloWxM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=pRmC2HWrd/lZWHHUHXLFkAaXe4zbBbq5NxOp6N+4yOF2QuRYcAKTRETfTnRgp1R+z
-         jMDwuTNeDamVvVLr3ghaeETGH4RIkrkd1uyg6l3cAZXicvv+om3W/guQIVKzMHh4Dz
-         dq/XpnujkJA/IP0b40jHsXS13rkqkJJ7jSxS53KQ=
-Date:   Sun, 5 May 2019 16:25:46 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Yangtao Li <tiny.windzz@gmail.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        maxime.ripard@bootlin.com, wens@csie.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 6/7] iio: adc: sun4i-gpadc-iio: add support for H6
- thermal sensor
-Message-ID: <20190505162546.634bae93@archlinux>
-In-Reply-To: <20190503072813.2719-7-tiny.windzz@gmail.com>
-References: <20190503072813.2719-1-tiny.windzz@gmail.com>
-        <20190503072813.2719-7-tiny.windzz@gmail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1727454AbfEEPse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 11:48:34 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:45586 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726524AbfEEPsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 11:48:33 -0400
+Received: by mail-lj1-f193.google.com with SMTP id w12so8990985ljh.12;
+        Sun, 05 May 2019 08:48:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BlEG9NIkB+2QxScurVzvzhb4UAYd8wqCw9tKjxEGmJQ=;
+        b=Z5ljalxiS8q/cLjSGutusocESg6ENqIF3poRf0yJOfDEkDl0ZBxIYovnL4Wb9CwcUp
+         o7LMaEE14rnCOzLnDCIjefX6rQWpgp76lRN9yFZ9072J/5AdRhvRx2O4Z9+M2sXccDjC
+         7SNgfPR0iXoQVd392+b17D02toIX3hnYof0/m6HZD037jav3zl6/VtyJA1zC2GkDSnUX
+         bnpxSnBlg5LMveEg+GBdwhtfmfAApRxc8JhGFPUvr47YlP9/UQCE9H8n93yb2C8m6Y1V
+         mmMbNRF134Zjoms6dU/4NzZ/kqZhMwnveZRKrqrdJhjD4PotyPRGHJ0kYkJwxD6KFRPW
+         +4Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BlEG9NIkB+2QxScurVzvzhb4UAYd8wqCw9tKjxEGmJQ=;
+        b=nYpnJyjDAuYTif36J7PNQn8TM9LEjdRDtShfizeatSTPLKCIMZbNTzaCqnwDexzv+C
+         OjhXxaiD1TBYY1QZttoJmt4mdu7bWdy5bRLXnjqdYnLntP3BnQU+fZolXYtIyJKLwsPn
+         J8IeEoig3j8e3OobVRSHyX4sVYxImV1g+F2sqILHu75JGeq8EYom2oEJZ2EVP5CNXERD
+         AQK7tlXr1VQIV5AAoAHcwpmGaFEDyMUaoBvx3rJY4VsoJFz0NM2jpcKLLDgqQ4CvG/H4
+         sDt9iZpwfDQGnz4y24LNx7iE6rzLpl9Ab0JyrBbQMmc950cfpaaSHM6NF2vfcJ+HsJOh
+         TjZA==
+X-Gm-Message-State: APjAAAVRuKiPirSHiaNh7NU4wzKKUWOysGQ21htrNA8WR4lkiGTyVhVF
+        QqBxz21fLYqccWZNEW+aWSk=
+X-Google-Smtp-Source: APXvYqxgEFFvRre94LLBuNrR+odXfimmP7OXvMOrD2Vr34gtNHuQQ0eq3glKVrQd9gHS4vmGxltDgg==
+X-Received: by 2002:a2e:9002:: with SMTP id h2mr3205865ljg.164.1557071311388;
+        Sun, 05 May 2019 08:48:31 -0700 (PDT)
+Received: from localhost.localdomain (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
+        by smtp.gmail.com with ESMTPSA id d16sm1595278lfi.75.2019.05.05.08.48.29
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 05 May 2019 08:48:30 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Mallikarjun Kasoju <mkasoju@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/6] Add support for Maxim 77663 MFD
+Date:   Sun,  5 May 2019 18:43:19 +0300
+Message-Id: <20190505154325.30026-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  3 May 2019 03:28:12 -0400
-Yangtao Li <tiny.windzz@gmail.com> wrote:
+Hello,
 
-> This patch adds support for the H6 ths sensor.
-> 
-> TODO: calibrate thermal sensor by using information from sid.
-> 
-> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-This and the patches before it that I haven't comment on look fine to me.
+This series adds support for the Maxim 77663 chip that provides PMIC, RTC,
+GPIO and watchdog timer functionality. The hardware is very similar to the
+Maxim 77620/20024 hardware units that are already supported by the kernel,
+hence we will reuse the existing drivers for 77663. The GPIO, regulator,
+RTC and watchdog timer functionality was tested on a Nexus 7 tablet that
+has the Max77663 chip, everything is working perfectly fine. I'm looking
+at upstreaming support for that tablet device and Max77663 is one of the
+core components that are currently missing in the upstream kernel.
 
-thanks,
+Changelog:
 
-Jonathan
-> ---
->  drivers/iio/adc/sun4i-gpadc-iio.c | 65 +++++++++++++++++++++++++++++++
->  include/linux/mfd/sun4i-gpadc.h   |  9 +++++
->  2 files changed, 74 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/sun4i-gpadc-iio.c b/drivers/iio/adc/sun4i-gpadc-iio.c
-> index f24eb76d65c0..9b6fc592f54c 100644
-> --- a/drivers/iio/adc/sun4i-gpadc-iio.c
-> +++ b/drivers/iio/adc/sun4i-gpadc-iio.c
-> @@ -120,6 +120,20 @@ static const struct gpadc_data sun8i_a33_gpadc_data = {
->  	.temp_data_base = SUN4I_GPADC_TEMP_DATA,
->  };
->  
-> +static int sun50i_gpadc_disable(struct sun4i_gpadc_iio *info);
-> +static int sun50i_gpadc_enable(struct sun4i_gpadc_iio *info);
-> +
-> +static const struct gpadc_data sun50i_h6_gpadc_data = {
-> +	.temp_offset = -2809,
-> +	.temp_scale = -67,
-> +	.has_bus_clk = true,
-> +	.has_bus_rst = true,
-> +	.gpadc_enable = sun50i_gpadc_enable,
-> +	.gpadc_disable = sun50i_gpadc_disable,
-> +	.sensor_count = 2,
-> +	.temp_data_base = SUN50I_H6_GPADC_TEMP_DATA,
-> +};
-> +
->  struct sun4i_sensor_tzd {
->  	struct sun4i_gpadc_iio          *info;
->  	struct thermal_zone_device      *tzd;
-> @@ -452,6 +466,53 @@ static int sun4i_gpadc_enable(struct sun4i_gpadc_iio *info)
->  	return 0;
->  }
->  
-> +static int sun50i_gpadc_enable(struct sun4i_gpadc_iio *info)
-> +{
-> +	int ret, val;
-> +
-> +	ret = reset_control_deassert(info->reset);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_prepare_enable(info->bus_clk);
-> +	if (ret)
-> +		goto assert_reset;
-> +
-> +	/*
-> +	 * clkin = 24MHz
-> +	 * T acquire = clkin / (SUN50I_GPADC_CTRL0_T_ACQ + 1)
-> +	 *           = 20us
-> +	 */
-> +	regmap_write(info->regmap, SUN4I_GPADC_CTRL0,
-> +		     SUN50I_GPADC_CTRL0_T_ACQ(479));
-> +	/* average over 4 samples */
-> +	regmap_write(info->regmap, SUN50I_H6_GPADC_CTRL3,
-> +		     SUN4I_GPADC_CTRL3_FILTER_EN |
-> +		     SUN4I_GPADC_CTRL3_FILTER_TYPE(1));
-> +	/* period = (SUN50I_GPADC_TPR_TEMP_PERIOD + 1) * 4096 / clkin; ~10ms */
-> +	regmap_write(info->regmap, SUN50I_GPADC_TPR,
-> +		     SUN50I_GPADC_TPR_TEMP_PERIOD(58));
-> +	/* TODO: calibrate ths */
-> +	/* enable sensor */
-> +	val = GENMASK(info->data->sensor_count - 1, 0);
-> +	regmap_write(info->regmap, SUN4I_GPADC_CTRL1, val);
-> +
-> +	return 0;
-> +
-> +assert_reset:
-> +	reset_control_assert(info->reset);
-> +
-> +	return ret;
-> +}
-> +
-> +static int sun50i_gpadc_disable(struct sun4i_gpadc_iio *info)
-> +{
-> +	clk_disable_unprepare(info->bus_clk);
-> +	reset_control_assert(info->reset);
-> +
-> +	return 0;
-> +}
-> +
->  static int sun4i_gpadc_runtime_suspend(struct device *dev)
->  {
->  	struct sun4i_gpadc_iio *info = iio_priv(dev_get_drvdata(dev));
-> @@ -546,6 +607,10 @@ static const struct of_device_id sun4i_gpadc_of_id[] = {
->  		.compatible = "allwinner,sun8i-a33-ths",
->  		.data = &sun8i_a33_gpadc_data,
->  	},
-> +	{
-> +		.compatible = "allwinner,sun50i-h6-ths",
-> +		.data = &sun50i_h6_gpadc_data,
-> +	},
->  	{ /* sentinel */ }
->  };
->  
-> diff --git a/include/linux/mfd/sun4i-gpadc.h b/include/linux/mfd/sun4i-gpadc.h
-> index 139872c2e0fe..f505013e9c0d 100644
-> --- a/include/linux/mfd/sun4i-gpadc.h
-> +++ b/include/linux/mfd/sun4i-gpadc.h
-> @@ -19,6 +19,9 @@
->  #define SUN4I_GPADC_CTRL0_FS_DIV(x)			((GENMASK(3, 0) & (x)) << 16)
->  #define SUN4I_GPADC_CTRL0_T_ACQ(x)			(GENMASK(15, 0) & (x))
->  
-> +/* TP_CTRL0 bits for sun50i SOCs */
-> +#define SUN50I_GPADC_CTRL0_T_ACQ(x)			((GENMASK(15, 0) & (x)) << 16)
-> +
->  #define SUN4I_GPADC_CTRL1				0x04
->  
->  #define SUN4I_GPADC_CTRL1_STYLUS_UP_DEBOUNCE(x)		((GENMASK(7, 0) & (x)) << 12)
-> @@ -49,6 +52,9 @@
->  #define SUN4I_GPADC_CTRL2_PRE_MEA_EN			BIT(24)
->  #define SUN4I_GPADC_CTRL2_PRE_MEA_THRE_CNT(x)		(GENMASK(23, 0) & (x))
->  
-> +#define SUN50I_GPADC_TPR				0x08
-> +#define SUN50I_GPADC_TPR_TEMP_PERIOD(x)			((GENMASK(19, 0) & (x)) << 12)
-> +
->  #define SUN4I_GPADC_CTRL3				0x0c
->  
->  #define SUN4I_GPADC_CTRL3_FILTER_EN			BIT(2)
-> @@ -84,6 +90,9 @@
->  #define SUN4I_GPADC_TEMP_DATA				0x20
->  #define SUN4I_GPADC_DATA				0x24
->  
-> +#define SUN50I_H6_GPADC_CTRL3				0x30
-> +#define SUN50I_H6_GPADC_TEMP_DATA			0xc0
-> +
->  #define SUN4I_GPADC_IRQ_FIFO_DATA			0
->  #define SUN4I_GPADC_IRQ_TEMP_DATA			1
->  
+v4: Addressed review comments from Rob Herring to v3 by making use of
+    generic "system-power-controller" property and making couple other
+    minor cosmetic changes. Added Mark's Brown a-b to the regulator-patch.
+
+v3: Dropped "Support device-tree properly" patch since turned out that
+    I2C core takes care of the device-tree matching and I wasn't aware of
+    it.
+
+v2: Added PINCTRL sub-device to Max77663 MFD as it looks compatible with
+    77620.
+
+    Added new "maxim,system-power-controller" OF property.
+
+    Patch "Support device-tree properly" now doesn't remove driver's
+    "id_table" since potentially it could have some use in the downstream
+    kernel forks and it doesn't hurt to keep it around.
+
+Dmitry Osipenko (6):
+  dt-bindings: mfd: max77620: Add compatible for Maxim 77663
+  dt-bindings: mfd: max77620: Add system-power-controller property
+  mfd: max77620: Fix swapped FPS_PERIOD_MAX_US values
+  mfd: max77620: Support Maxim 77663
+  mfd: max77620: Provide system power-off functionality
+  regulator: max77620: Support Maxim 77663
+
+ .../devicetree/bindings/mfd/max77620.txt      |  9 +-
+ drivers/mfd/max77620.c                        | 87 ++++++++++++++++++-
+ drivers/regulator/max77620-regulator.c        | 26 +++++-
+ include/linux/mfd/max77620.h                  |  5 +-
+ 4 files changed, 122 insertions(+), 5 deletions(-)
+
+-- 
+2.21.0
 
