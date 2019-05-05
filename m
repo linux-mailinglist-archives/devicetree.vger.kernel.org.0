@@ -2,110 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77A8813EF5
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 12:56:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C736913F09
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 13:05:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726965AbfEEK4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 06:56:40 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:36658 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbfEEK4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 06:56:40 -0400
-Received: by mail-lf1-f66.google.com with SMTP id y10so521402lfl.3;
-        Sun, 05 May 2019 03:56:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rZem5h7+lJlRGCGAz91trtXO50zKcHCmewfgQF5jNjg=;
-        b=JApbxfMiS9q/J1AQGa2+PUnd/92AKlK3q84cOsyibO+wTIbAnKJrqQgzplweATUuU3
-         4a8/RhL3MJkLc58LKUGXYmgQqK1tcOON4sy1w0lEiaHD9eQiOU0Lx0D/4Bf/SFp/4Lki
-         DjPoNsR4FGYjC0sw8WVhfBnVSd5J9df8QNbClMnbkNlsQO5C85Ubso8OX83rIkcrd4Ns
-         fBub5kejH0si7HZyNXmFYLCbVrEr9ufopwH14igPtQItpbHQL0VXrFrPot2OFn+GYGf+
-         WO8gj7pWBMK3jcsNysYJbAjuPMDy9RuwU7CJe4bt0QqJRE+qpv0jz7nz1KCn6lW2acYf
-         OL6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rZem5h7+lJlRGCGAz91trtXO50zKcHCmewfgQF5jNjg=;
-        b=jYRUbvRhvjNhLIi9TunJgbuNxam/DuRlH20NffV2oBmurLeaMX4qbcnrGEKtcovIBn
-         eTivm0X5DU1xX6Oom//cI+M5Vz7tWpMTw9Xiu+jt8GuXmy/s49BOSJQbK8YH7ajY8mDO
-         9gvk+X0297twlQnFD1Uu7S+EnYkkcDmXQECaRR4fnBXMsKcSemVv6jD4jgsQTFumeNay
-         4XNqiPUDy2pz6XIEhw07ff0Uq4Y2yT2ZWqrqEJ4LeqdKyYV4irfOLL44FJH3RqDXTGbi
-         1uOogkuga5/Ye9dvQKGwZ5MxxfI5DOFitcdfR7IdpTfOCNKqNvj2lfSjmRQs7EOr5KyG
-         nW9w==
-X-Gm-Message-State: APjAAAVP98QVO4jBG0hAkUW6USc0oOzXdyDqf69Edb9MjGdJX+i1hVfd
-        NaQi3xCZEDulC7GY87qY9XE=
-X-Google-Smtp-Source: APXvYqwaFrxTYPeZD0Oy7GLHSlGWx7by20O0KnAQLsMUUw4S5+piVPoSwZyAODV0GH7EANN5n07wJA==
-X-Received: by 2002:a19:97c8:: with SMTP id z191mr9792685lfd.167.1557053798347;
-        Sun, 05 May 2019 03:56:38 -0700 (PDT)
-Received: from [192.168.1.19] (chp150.neoplus.adsl.tpnet.pl. [83.31.13.150])
-        by smtp.gmail.com with ESMTPSA id y186sm1462887lfa.14.2019.05.05.03.56.36
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 05 May 2019 03:56:37 -0700 (PDT)
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Add binding for ubnt-spi LED.
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Christian Mauderer <list@c-mauderer.de>, oss@c-mauderer.de,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20190504122825.11883-1-list@c-mauderer.de>
- <4889e87a-5c7a-da74-bff6-c20fd07ea0f4@gmail.com>
- <0175bf00-f2eb-98c7-ce0b-d9a2858872e7@c-mauderer.de>
- <5cc8907f-5cb4-e8b4-7309-cc446ef5bde7@gmail.com> <20190504203448.GA24856@amd>
- <20190504221719.GA7237@amd>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <0001f61b-b245-0c70-ee39-a6ec95889938@gmail.com>
-Date:   Sun, 5 May 2019 12:56:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727608AbfEELFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 07:05:34 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:60131 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727507AbfEELFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 07:05:34 -0400
+X-UUID: de3c011c907f4acf891405518ae8bad3-20190505
+X-UUID: de3c011c907f4acf891405518ae8bad3-20190505
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 172973483; Sun, 05 May 2019 19:05:26 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N1.mediatek.inc
+ (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sun, 5 May
+ 2019 19:05:24 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (172.27.4.253) by
+ MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1395.4 via Frontend Transport; Sun, 5 May 2019 19:05:22 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <ck.hu@mediatek.com>, <stonea168@163.com>
+Subject: [PATCH v2 0/2] add dsi pwm0 node for mt8183
+Date:   Sun, 5 May 2019 19:05:15 +0800
+Message-ID: <20190505110517.965-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190504221719.GA7237@amd>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Changes since v1:
+ - remove "mediatek,mt8173-dsi" from dsi node.
 
-On 5/5/19 12:17 AM, Pavel Machek wrote:
-> Hi!
-> 
->>>> I wasn't aware of that list. Maybe "power" or even better "status" would
->>>> match the function.
->>>
->>> Hmm, I've just found out that there are two "wlan-ap" occurrences in
->>> the existing mainline bindings, so I propose to follow that.
-> 
-> Let me see... dove-d3plug.dts has "status", "wlan-ap", "wlan-act".
-> 
->>>> Should I add the color too? So "white:status"?
->>>
->>> Yes, why not if it is known. So, having the above I propose:
->>>
->>> 		label = "white:wlan-ap";
->>
->> Linux now runs on many different devices, and I believe userland wants
->> to know "this is main notification LED for this device" (and the only
->> one in this case).
+This patch is based on v5.1-rc1 and these patches:
+http://lists.infradead.org/pipermail/linux-mediatek/2019-March/017963.html
+https://patchwork.kernel.org/patch/10856987/
+https://patchwork.kernel.org/cover/10879001/
+https://patchwork.kernel.org/cover/10846677/
+https://patchwork.kernel.org/patch/10893519/
 
-This LED is on the access point, so it should have this affiliation
-somehow represented in the name.
+Jitao Shi (2):
+  arm64: dts: mt8183: add dsi node
+  arm64: dts: mt8183: add pwm0 node
 
-> ...and I guess if you have single LED it will be used for more than
-> "is AP active". IOW it will likely to be more similar to "status" than
-> "wlan-ap".
-
-IMO if a LED is on some specific device, then it should be reflected
-in the "function" section of the LED name. It facilitates locating in
-physically. If usersapce wants to change its purpose it is free to do
-so. e.g. via triggers. But it will not affect the LED name.
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 35 ++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
 -- 
-Best regards,
-Jacek Anaszewski
+2.21.0
+
