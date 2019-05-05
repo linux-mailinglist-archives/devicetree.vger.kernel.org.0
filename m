@@ -2,103 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28390141FE
-	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 20:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7A814230
+	for <lists+devicetree@lfdr.de>; Sun,  5 May 2019 22:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727343AbfEES5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 14:57:36 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:40633 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726636AbfEES5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 14:57:36 -0400
-Received: by mail-wr1-f68.google.com with SMTP id h4so14447073wre.7;
-        Sun, 05 May 2019 11:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=OeDdNxFAIiJbxVlmLt0vT4oKCgbVWapVCMPZgMC3vD4=;
-        b=KxTe1+XP3GjPYPEk6StBNAcJxouldhN0Yrgfja2+nGcERhV8XPv7BVqaRekYiGmmh+
-         Pzvoi8pGKVGsGZPWG0HN0K2Uj4WgUgtVEctH8P24mkHpH1CznI1y3WIXNP5WrKhBa86K
-         VU4h1pq/MaOD8hXFcC69gw2kl+gDUfuCOP697RM0vXS4VzUJ0JZnauEGRPKfJA73kOmo
-         wMFBB+OXzUE73cMma1UUV6BgjPzWIV57jHTG2p07h1yy/LrhJ8GD/kZzlpOMtvDUr6HM
-         ZT+EEJNIlbPyvGdslwHR3P95ao6HXUsRTyRBt6VVhuYeyETz1+o2n+OmiYG1rQiVrJLk
-         rP8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=OeDdNxFAIiJbxVlmLt0vT4oKCgbVWapVCMPZgMC3vD4=;
-        b=YHKrxJVe1qnJhsbczOQBnU+VPIZG7eVHNSj05VOWE34axdefJFZsADTnR+TDWBgrxd
-         SHIR00pLLfbF1TRQkqIJO8TG7G+SIOmg5ORtgxW0wWOidotLY3tyn10xNnK2baTpsIGB
-         SgWQsN/r399dBKFHYkLfT0+LOXO0kOfrVVc71aTM8CdRCjayau7csze/Rxr8iHx3Xeh3
-         KIOqYpq3EHsCo7WsfYrpmqcXWSY99RA+DtZ9JAJEAcmme8LYgztE3KwnzkukKSjZOhY3
-         LEjzoVTpELn6l5iVHFrwFoAEHiDq/O3eUtNNfM/8MNAVpGVAMHo7tqFCAcZmOR/q5q3I
-         4gYQ==
-X-Gm-Message-State: APjAAAU7ouVE04BUn79kdFF++TC0kKXwwJoob2baaYySg9+GcP5eV3w6
-        ERvzebtXYju62g1YoHzpiVyJ13TlyfE0MzgopeM=
-X-Google-Smtp-Source: APXvYqyYBQaeBgcJSB6WRG1AGb7zk5Y2dJQnwHDoqbJIkUUl4Is/8/gLZfzCfj3f4JGHIgiYsZSb5mAFT8qzAPaa2uQ=
-X-Received: by 2002:adf:edc8:: with SMTP id v8mr15712096wro.206.1557082654087;
- Sun, 05 May 2019 11:57:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190502122657.15577-1-jonas.gorski@gmail.com>
- <20190502122657.15577-2-jonas.gorski@gmail.com> <11dc70cb-114b-fb40-1b5e-fd71b8ced1af@amsat.org>
-In-Reply-To: <11dc70cb-114b-fb40-1b5e-fd71b8ced1af@amsat.org>
-From:   Jonas Gorski <jonas.gorski@gmail.com>
-Date:   Sun, 5 May 2019 20:57:57 +0200
-Message-ID: <CAOiHx==tzUHU1nSf9c2+EtR0wJ=HDstRhHBCBQE5j79_uwJOLQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] devicetree: document the BCM63XX gated clock bindings
-To:     =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <f4bug@amsat.org>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-mips@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727295AbfEEUAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 May 2019 16:00:49 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:51719 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726636AbfEEUAt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 May 2019 16:00:49 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id C36082382AB2;
+        Sun,  5 May 2019 22:00:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1557086445;
+        bh=hoHVjb7jMiB88CXZsoGR/dggti0Uxqd/YdYEBmyriQk=; l=2990;
+        h=From:To:Subject;
+        b=c9ZRggkrCwZgTGU4Jxly18iVmDqdmlYtlnw8n3zxUHyCXZmOGutOw969Fer3Ehg6L
+         SGzchdDJlISipuxokXU2HpWwl5bmyAnE1eDcDSYYlkUVn1VNfnqoMmHLbp4IFVhfea
+         aC7vUtSdHvEPzqVfTgDAeUlacDlS7Iy2Fmd4GsbM=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+From:   oss@c-mauderer.de
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Christian Mauderer <oss@c-mauderer.de>
+Subject: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+Date:   Sun,  5 May 2019 22:00:21 +0200
+Message-Id: <20190505200022.32209-1-oss@c-mauderer.de>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <155708644539.6832.12400246364427279861@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philippe,
+From: Christian Mauderer <oss@c-mauderer.de>
 
-On Fri, 3 May 2019 at 16:36, Philippe Mathieu-Daud=C3=A9 <f4bug@amsat.org> =
-wrote:
->
-> Hi Jonas,
->
-> On 5/2/19 2:26 PM, Jonas Gorski wrote:
-> > Add binding documentation for the gated clock controller found on MIPS
-> > based BCM63XX SoCs.
->
-> I'd have ordered this patch after the #2 of this series, or eventually
-> squashed both together. It is weird to document an unexistant feature
-> then implement it, while the opposite looks more natural.
-> (If you agree, maybe Paul can invert those when applying this series).
->
-> Anyway:
-> Reviewed-by: Philippe Mathieu-Daud=C3=A9 <f4bug@amsat.org>
+This patch adds the binding documentation for a simple SPI based LED
+controller which use only one byte for setting the brightness.
 
-You are documenting hardware, not a driver/feature. :-)
+Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
+---
 
-The binding is supposed to be a separate patch [1]. The natural order
-is to first describe the hardware (with the binding documentation),
-then add the actual driver making use of the binding. Checkpatch.pl
-will also warn if you use a compatible that isn't documented, which
-happens (shortly) if you first add the driver.
+Changes compared to v2:
+- None
+
+Changes compared to v1:
+- rename ubnt-spi to leds-spi-byte
+- rename "ubnt-spi,off_bright" and "ubnt-spi,max_bright" to
+  "leds-spi-byte,off-value" and "leds-spi-byte,max-value" and mark them required
+- rename led-controller node to "led-controller"
+- extend description
+- remove SPI controller
+- use "white:status" for the example label
 
 
-Regards
-Jonas
+ .../bindings/leds/leds-spi-byte.txt           | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-spi-byte.txt
 
-[1] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree=
-/bindings/submitting-patches.txt#L8
+diff --git a/Documentation/devicetree/bindings/leds/leds-spi-byte.txt b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+new file mode 100644
+index 000000000000..1dd6ab03a56d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+@@ -0,0 +1,47 @@
++* Single Byte SPI LED Device Driver.
++
++The driver can be used for controllers with a very simple SPI protocol: Only one
++byte will be sent. The value of the byte can be any value between the off-value
++and max-value defined in the properties.
++
++One example where the driver can be used is the controller in Ubiquiti airCube
++ISP devices. That LED controller is based on a 8 bit microcontroller (SONiX
++8F26E611LA) that has been programmed to control the single LED of the device.
++The controller supports four modes depending on the highest two bits in a byte:
++One setting for brightness, the other three provide different blink patterns.
++With the leds-spi-byte driver a basic support for the brightness mode of that
++controller can be easily achieved by setting the minimum and maximum to the
++brightness modes minimum and maximum byte value.
++
++Required properties:
++- compatible:		Should be "leds-spi-byte".
++
++Property rules described in Documentation/devicetree/bindings/spi/spi-bus.txt
++apply. In particular, "reg" and "spi-max-frequency" properties must be given.
++
++The driver currently only supports one LED. The properties of the LED are
++configured in a sub-node in the device node.
++
++LED sub-node properties:
++- label:
++	see Documentation/devicetree/bindings/leds/common.txt
++- leds-spi-byte,off-value:
++	The SPI byte value that should be sent to switch the LED off. Has to be
++	smaller than max-value. Range: 0 to 254.
++- leds-spi-byte,max-value:
++	The SPI byte value that should be sent to set the LED to the maximum
++	brightness. Has to be bigger than off-value. Range: 1 to 255.
++
++Example:
++
++led-controller@0 {
++	compatible = "leds-spi-byte";
++	reg = <0>;
++	spi-max-frequency = <100000>;
++
++	led {
++		label = "white:status";
++		leds-spi-byte,off-value = /bits/ 8 <0>;
++		leds-spi-byte,max-value = /bits/ 8 <63>;
++	};
++};
+-- 
+2.21.0
+
