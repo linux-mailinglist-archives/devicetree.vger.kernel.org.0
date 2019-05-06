@@ -2,184 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B09CE147BE
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 11:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C701147C9
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 11:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726365AbfEFJnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 05:43:05 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:44236 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725981AbfEFJnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 05:43:05 -0400
-Received: by mail-wr1-f67.google.com with SMTP id c5so16359608wrs.11
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 02:43:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oBRW4mzs2+gSuRgFKtSlAc3IAdXzqU5G7UW4zze+fv0=;
-        b=HEXOulifYSD9r6cpc+favVP51KND98+0UEUwidmOZ+pPyUdRR5WR3JUzUuNSX2pxIF
-         T/4MnQbM7IHWrbQVqbXyzeEWQWGuf3EgNQOiQp/8Hhvp87nNMZBMdlV3CVOrD3DaAn6J
-         ZdKkCGrKwiobSJZASqPNEgw9E5TFxcOHKf66XxLgdMHFQYwNe8iDCqox9IVWvZoNcB3R
-         FN2m2fG3G0pbWqFeWwBLoz1aFFCi45zvEnREThevLqPoiMMy5GOyH3B7zHm8YY1gtEn5
-         Ry2lclt2WVw6oBz33J9/YxM6oK8O/HlZ7HC/kNFgEoBuDij+/bD2XuaJ0yzc006uQg8S
-         zdIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oBRW4mzs2+gSuRgFKtSlAc3IAdXzqU5G7UW4zze+fv0=;
-        b=Btu2NngQ41adeVgQLlWX+xyawUCl8wot8NKjtVjpuE2l55yGA2R5RJNjjKU+FQpDY7
-         6JODizTvNbPFz9nF4phEChxruMeZFneAZksp6/HNO5GnlPYSuBvfmPpiHMk5nPRDKZlz
-         XO/laMkIGApvZOIqP0FvMoXHz5iwQrzSIy9K7To13ibtB90D4fhGtLWuK3/j8uZ9kPJc
-         VeB2HcH2h5N1l93Wg7iTb2cDs99Ar015ccnqJdptNG2EVA3gMClVS6sjpBS1e74+u3pr
-         /fV6jvqzlaIqs7Wzt7WRYb0DJXEAnJrKSIYdcs593UBub8s6dryMiy/aJGS3Wo/+V24r
-         c/gg==
-X-Gm-Message-State: APjAAAXCSNH8P518ypv93SdKibYpOjXCj6eWhDQ0eg/jXKYL/MhZ23pj
-        lTZ1lcosoJHeghDZmDisb6mDBQ==
-X-Google-Smtp-Source: APXvYqzERXrD9dfIppanGsG4vczgC5yAuidlgdRE0rB9x9uiRwmebaGhxtIZTRMTsNGX8g/83N2t8g==
-X-Received: by 2002:a5d:52c6:: with SMTP id r6mr18035560wrv.131.1557135782760;
-        Mon, 06 May 2019 02:43:02 -0700 (PDT)
-Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
-        by smtp.googlemail.com with ESMTPSA id g5sm10623857wrh.44.2019.05.06.02.43.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 06 May 2019 02:43:02 -0700 (PDT)
-Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
-To:     "michael.kao" <michael.kao@mediatek.com>, fan.chen@mediatek.com,
-        jamesjj.liao@mediatek.com, dawei.chien@mediatek.com,
-        louis.yu@mediatek.com, roger.lu@mediatek.com,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com>
- <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <8e0fad21-57d1-923c-fd8b-f5f2c47a5c94@linaro.org>
-Date:   Mon, 6 May 2019 11:43:00 +0200
+        id S1726095AbfEFJuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 05:50:25 -0400
+Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:49165 "EHLO
+        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726128AbfEFJuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 05:50:25 -0400
+Received: from [IPv6:2001:983:e9a7:1:94cb:c5ca:b4e:5bdf] ([IPv6:2001:983:e9a7:1:94cb:c5ca:b4e:5bdf])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id NaGKhMLr3NExlNaGLhxrSf; Mon, 06 May 2019 11:50:23 +0200
+Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
+To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org
+Cc:     laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Jacopo Mondi <jacopo@jmondi.org>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-3-m.felsch@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <c5c4b88d-7977-e253-1242-b9a86228a302@xs4all.nl>
+Date:   Mon, 6 May 2019 11:50:20 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
+In-Reply-To: <20190415124413.18456-3-m.felsch@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfN8EA+NKF63laeSQuHN5eXfe5ymsw9Za+w9Br5sKx16nzaKm3UQQhGwi2LV27ETbP15vhCmQMrRg9Y3k1Kum2QxliGV9O6Tz4FwhLopYyhiJFTffrBzy
+ 6nEQ0Ls3GQf23UirXuH0oGgL+CdDgvgpm/0xhBF+6xPDVkIjuFjJN/btoCqZNe/iBfA6+4dLJm7AjCKWnk6X1j3MXqL4JYWUS0HwLpvrR0D3xP0hO4Gsp0ge
+ /4BFfOS3cuZgNBqbfCHrJxCrO+wsUGRnI5nc1bQ8yQL6iMqn2jMTV5YpcLOdNA9mM/dmAHybhbS+XKHJVNUbJy4xdZx9nxiXlJ5J+d3rRoCVCLzIlvglkfiu
+ obVnSinwL6aPuR9vLbqrwYHFSHlYeKvjqPKu86MaK/G3eyp/uVQkXNZmzqFEVhTJINekzPFGDtjqSCyBKK151CpfNYfqGDfB5IlfiHzW3YVBc41LUYdAEnGP
+ wq+QYpVRBGl5PRS3qVOLMSn6kWcOKcMdZGsNVsXCUq1a04yhrnWlmPX3qf6wIkfPqyJBpWjXGBAGRxoN7J0xxegALSQuyxuFzVlM++TE3yiPBzJ9L7GirW9D
+ hrY/IHkRvL4qJiPDZuc4EOUYYHUyAxcSb8eZ0yjQ879PAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/05/2019 12:43, michael.kao wrote:
-> Add thermal zone node to Mediatek MT8183 dts file.
+On 4/15/19 2:44 PM, Marco Felsch wrote:
+> Currently every driver needs to parse the connector endpoints by it self.
+> This is the initial work to make this generic. The generic connector has
+> some common fields and some connector specific parts. The generic one
+> includes:
+>   - type
+>   - label
+>   - remote_port (the port where the connector is connected to)
+>   - remote_id   (the endpoint where the connector is connected to)
 > 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> The specific fields are within a union, since only one of them can be
+> available at the time. Since this is the initial support the patch adds
+> only the analog-connector specific ones.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
 > ---
-
-Hi Michael,
-
-the device tree binding for thermal specifies the thermal zone must
-define a cooling-maps (it is a required field).
-
-All the thermal zones below tzts1, tzts2, etc ... do not have it.
-
-
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
+> [1] https://patchwork.kernel.org/cover/10794703/
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 926df75..b92116f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -334,6 +334,67 @@
->  			status = "disabled";
->  		};
+> v6:
+> - fix some spelling and style issues
+> - rm unnecessary comments
+> - drop vga and dvi connector
+> 
+> v2-v4:
+> - nothing since the patch was squashed from series [1] into this
+>   series.
+> 
+>  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
+>  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 include/media/v4l2-connector.h
+> 
+> diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
+> new file mode 100644
+> index 000000000000..3a951c54f50e
+> --- /dev/null
+> +++ b/include/media/v4l2-connector.h
+> @@ -0,0 +1,30 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * v4l2-connector.h
+> + *
+> + * V4L2 connector types.
+> + *
+> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> + */
+> +
+> +#ifndef V4L2_CONNECTOR_H
+> +#define V4L2_CONNECTOR_H
+> +
+> +#define V4L2_CONNECTOR_MAX_LABEL 41
+
+Where does 41 come from? It's a weird number...
+
+> +
+> +/**
+> + * enum v4l2_connector_type - connector type
+> + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration
+
+typo: connetor -> connector
+
+> + * @V4L2_CON_COMPOSITE: analog composite connector
+> + * @V4L2_CON_SVIDEO:    analog svideo connector
+> + * @V4L2_CON_HDMI:      digital hdmi connector
+> + */
+> +enum v4l2_connector_type {
+> +	V4L2_CON_UNKNOWN,
+> +	V4L2_CON_COMPOSITE,
+> +	V4L2_CON_SVIDEO,
+> +	V4L2_CON_HDMI,
+> +};
+> +
+> +#endif /* V4L2_CONNECTOR_H */
+> +
+
+Is there a reason to create a new header for this? I think it is perfectly OK to
+add this define + enum for v4l2-fwnode.h.
+
+> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> index 6c07825e18b9..f4df1b95c5ef 100644
+> --- a/include/media/v4l2-fwnode.h
+> +++ b/include/media/v4l2-fwnode.h
+> @@ -22,6 +22,7 @@
+>  #include <linux/list.h>
+>  #include <linux/types.h>
 >  
-> +		thermal: thermal@1100b000 {
-> +			#thermal-sensor-cells = <1>;
-> +			compatible = "mediatek,mt8183-thermal";
-> +			reg = <0 0x1100b000 0 0x1000>;
-> +			interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>,
-> +				 <&infracfg CLK_INFRA_AUXADC>;
-> +			clock-names = "therm", "auxadc";
-> +			resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
-> +			mediatek,auxadc = <&auxadc>;
-> +			mediatek,apmixedsys = <&apmixedsys>;
-> +			mediatek,hw-reset-temp = <117000>;
-> +			nvmem-cells = <&thermal_calibration>;
-> +			nvmem-cell-names = "calibration-data";
-> +		};
-> +
-> +		thermal-zones {
-> +			cpu_thermal: cpu_thermal {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +
-> +				thermal-sensors = <&thermal 0>;
-> +				sustainable-power = <1500>;
-> +			};
-> +
-> +			tzts1: tzts1 {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +				thermal-sensors = <&thermal 1>;
-> +			};
-> +
-> +			tzts2: tzts2 {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +				thermal-sensors = <&thermal 2>;
-> +			};
-> +
-> +			tzts3: tzts3 {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +				thermal-sensors = <&thermal 3>;
-> +			};
-> +
-> +			tzts4: tzts4 {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +				thermal-sensors = <&thermal 4>;
-> +			};
-> +
-> +			tzts5: tzts5 {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +				thermal-sensors = <&thermal 5>;
-> +			};
-> +
-> +			tztsABB: tztsABB {
-> +				polling-delay-passive = <1000>;
-> +				polling-delay = <1000>;
-> +				thermal-sensors = <&thermal 6>;
-> +			};
-> +		};
->  		audiosys: syscon@11220000 {
->  			compatible = "mediatek,mt8183-audiosys", "syscon";
->  			reg = <0 0x11220000 0 0x1000>;
-> @@ -368,6 +429,9 @@
->  			compatible = "mediatek,mt8183-efuse",
->  				     "mediatek,efuse";
->  			reg = <0 0x11f10000 0 0x1000>;
-> +			thermal_calibration: calib@180 {
-> +				reg = <0x180 0xc>;
-> +			};
->  		};
+> +#include <media/v4l2-connector.h>
+>  #include <media/v4l2-mediabus.h>
+>  #include <media/v4l2-subdev.h>
 >  
->  		mfgcfg: syscon@13000000 {
+> @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
+>  	unsigned int remote_port;
+>  };
+>  
+> +/**
+> + * struct v4l2_fwnode_connector_analog - analog connector data structure
+> + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
+> + *                     if no restrictions are specified.
+> + */
+> +struct v4l2_fwnode_connector_analog {
+> +	v4l2_std_id supported_tvnorms;
+> +};
+> +
+> +/**
+> + * struct v4l2_fwnode_connector - the connector data structure
+> + * @remote_port: identifier of the remote endpoint port the connector connects
+> + *		 to
+> + * @remote_id: identifier of the remote endpoint the connector connects to
+> + * @label: connetor label
+
+Same typo. It's probably a good idea to grep for this typo in this patch series :-)
+
+> + * @type: connector type
+> + * @connector: connector configuration
+> + * @connector.analog: analog connector configuration
+> + *                    &struct v4l2_fwnode_connector_analog
+> + */
+> +struct v4l2_fwnode_connector {
+> +	unsigned int remote_port;
+> +	unsigned int remote_id;
+> +	char label[V4L2_CONNECTOR_MAX_LABEL];
+> +	enum v4l2_connector_type type;
+> +
+> +	union {
+> +		struct v4l2_fwnode_connector_analog analog;
+> +		/* future connectors */
+> +	} connector;
+> +};
+> +
+>  /**
+>   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
+>   * @fwnode: pointer to the endpoint's fwnode handle
 > 
 
+Regards,
 
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+	Hans
