@@ -2,109 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE20C14B02
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 15:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9001314B23
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 15:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726147AbfEFNiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 09:38:16 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:50487 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbfEFNiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 09:38:16 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 844E924001C;
-        Mon,  6 May 2019 13:38:06 +0000 (UTC)
-Date:   Mon, 6 May 2019 15:39:05 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v6 13/13] media: tvp5150: make debug output more readable
-Message-ID: <20190506133905.gvdgrei5n6crbwxc@uno.localdomain>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-14-m.felsch@pengutronix.de>
+        id S1725994AbfEFNrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 09:47:12 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:38838 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725852AbfEFNrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 09:47:12 -0400
+Received: from penelope.horms.nl (ip4dab7138.direct-adsl.nl [77.171.113.56])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 47B5625AED5;
+        Mon,  6 May 2019 23:47:10 +1000 (AEST)
+Received: by penelope.horms.nl (Postfix, from userid 7100)
+        id C554FE21322; Mon,  6 May 2019 15:47:05 +0200 (CEST)
+Date:   Mon, 6 May 2019 15:47:05 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Eugeniu Rosca <roscaeugeniu@gmail.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "George G . Davis" <george_davis@mentor.com>,
+        Andy Lowe <andy_lowe@mentor.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>
+Subject: Re: [PATCH 1/6] serial: sh-sci: Reveal ptrval in dev_dbg
+Message-ID: <20190506134700.ya565idfzzc3enbm@verge.net.au>
+References: <20190504004258.23574-1-erosca@de.adit-jv.com>
+ <20190504004258.23574-2-erosca@de.adit-jv.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ytby4rv5fpn2xb64"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190415124413.18456-14-m.felsch@pengutronix.de>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190504004258.23574-2-erosca@de.adit-jv.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, May 04, 2019 at 02:42:53AM +0200, Eugeniu Rosca wrote:
+> Starting with v4.15-rc2 commit ad67b74d2469d9 ("printk: hash addresses
+> printed with %p"), enabling debug prints in sh-sci.c would generate
+> output like below confusing the users who try to sneak into the
+> internals of the driver:
+> 
+> sh-sci e6e88000.serial: sci_request_dma: TX: got channel (____ptrval____)
+> sh-sci e6e88000.serial: sci_request_dma: mapped 4096@(____ptrval____) to 0x00000006798bf000
+> sh-sci e6e88000.serial: sci_request_dma: RX: got channel (____ptrval____)
+> sh-sci e6e88000.serial: sci_dma_tx_work_fn: (____ptrval____): 0...2, cookie 2
+> 
+> There are two possible fixes for that:
+>  - get rid of '%p' prints if they don't reveal any useful information
+>  - s/%p/%px/, since it is unlikely we have any concerns leaking the
+>    pointer values when running a debug/non-production kernel
 
---ytby4rv5fpn2xb64
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+I am concerned that this may expose information in circumstances
+where it is undesirable. Is it generally accepted practice to
+use %px in conjunction with dev_dbg() ?
 
-Hi Marco,
-  thanks
-
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-
-On Mon, Apr 15, 2019 at 02:44:13PM +0200, Marco Felsch wrote:
-> The debug output for tvp5150_selmux() isn't really intuitive. Register
-> values are printed decimal formatted and the input/output driver states
-> are printed as enum. Even more the "normal" output enum mapps to zero so
-> a active output will printing output=0 and a inactive output=1.
->
-> Change this by brinting the register values hex formatted and the states
-> as more readable string.
->
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  drivers/media/i2c/tvp5150.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index c0ee08546643..13ee6d781efb 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -302,9 +302,12 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
->  		break;
->  	}
->
-> -	dev_dbg_lvl(sd->dev, 1, debug, "Selecting video route: route input=%i, output=%i => tvp5150 input=%i, opmode=%i\n",
-> -			decoder->input, decoder->output,
-> -			input, opmode);
-> +	dev_dbg_lvl(sd->dev, 1, debug,
-> +		    "Selecting video route: route input=%s, output=%s => tvp5150 input=0x%02x, opmode=0x%02x\n",
-> +		    decoder->input == 0 ? "aip1a" :
-> +		    decoder->input == 2 ? "aip1b" : "svideo",
-> +		    decoder->output == 0 ? "normal" : "black-frame-gen",
-> +		    input, opmode);
->
->  	regmap_write(decoder->regmap, TVP5150_OP_MODE_CTL, opmode);
->  	regmap_write(decoder->regmap, TVP5150_VD_IN_SRC_SEL_1, input);
-> --
-> 2.20.1
->
-
---ytby4rv5fpn2xb64
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlzQOPkACgkQcjQGjxah
-VjznAg//dODoy3i18xQaDyQL/9/cB5Yj5K/pC2mfndsMHOHav7xm7ikuAZ8oEhA7
-3bfJnbTWFKU9qvQnozkf0VDDszqvyzpyJtSdVLPCFml87cpx6PLdd6txFUoL3Cc/
-PkmvrQA+8K4waii86qubtdI5Hr5tcvRj14gnOmND4GEQlvvWhWT8silh3BsG56/M
-exZmDyVC7TK6wUAGss0/ByfdC5AM/rOU0aZ2FlTZE3UWt0vDyM08CZ612Z0AE6xJ
-1oJyWBbzbpzNXUlMMyOZxQoTZrR1sL/ji+RGVNNveOR52g/IsugCSwgXW5Trt5hS
-Wea+v7gOZzGjFfmvYxTzYZ8gVv+Gt0u9tLQeHeJXpoGqW3kzEyQRc7VV/gNFD6TP
-1cTkH9nH9q9/u7UQyMn17bkekJSk2/WbJD90nkFfuZAyKSOC68YnXx3LGrZtRtC7
-ZlmkHxwLOtt63/nx92SkzmquIVC9bY6BJmAqjE6izKOhtkP9WKQAIVGtDGYJQDF8
-GtB0qtw28uUEWtb3kkoOBHjZ6yQ02DLPnePt2mrZQBJpXYtxGNUJdaw1Pp19tSeL
-cC69grf6OnzERkQHDGrQ9tP1skiBaEeUDiWtRYhhDYnmw3W4C6UdC45dpU5n+lTj
-kIDMq6F2EPHdLpmxpd9v+NsifRSbl23cwAjjJJYp8DrdDNuZ5qM=
-=qR7O
------END PGP SIGNATURE-----
-
---ytby4rv5fpn2xb64--
+...
