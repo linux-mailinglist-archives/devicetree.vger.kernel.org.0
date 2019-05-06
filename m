@@ -2,154 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1847515321
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC09A15325
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbfEFRyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 13:54:44 -0400
-Received: from mail-ua1-f68.google.com ([209.85.222.68]:37211 "EHLO
-        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726063AbfEFRyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 13:54:44 -0400
-Received: by mail-ua1-f68.google.com with SMTP id l17so4981798uar.4
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 10:54:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t/hieHfzO8noPDNoAxk691xfv/UVSgo8EHet25ThOxA=;
-        b=K3dHADv+pUO4Jys+GSog3efxohLaI5rNKm0Cz5eSJUzFXyet2diAyz+f0fLjUL3yZt
-         +F6kBpL4uL+xYYvw0UOhc9tMAnwBCXjgnB4hThOFCaQL9EAXB+5ZyIyq3GQGq3JYWO+Z
-         qEGlLm5H0EC7fbXNGXns50+HIKOtDbofkoRLRK17tgePEaynXSsLUHxR0IqVP6XL4Gu3
-         9ho0A+xv6gzjOG8zWMbCIS5Zn1HMiJeVZrHGX++a+fs1RRBpzBmy47AVao48DaPn7ZdC
-         yLPLfxfvlt/OdI/0m8QX68HyJxuyQJ6g9z6+yMag8L4LUDO1Y1aBi16/CVEnli5U7hnX
-         00jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t/hieHfzO8noPDNoAxk691xfv/UVSgo8EHet25ThOxA=;
-        b=OZjwvoU1uswtXb3qOdwuXGfYXiJKGkOqYM1TgO0/evZQzvbOKmsJrfXdDHVE2pbJXv
-         QewoK7L202U+rnmYXObjqEvpJDL14WaIQR2c4LxECOFmng+nlcKmK7r9MhhK1VsD4Drd
-         pWrD8IlpCHR82MOa48o+/lxeuSuQ2HCMzeWH1fnMXORJ+KVnVAthIMwpAEbKrIXKUwrc
-         WgVA2SFQEdHrOCMYtZgf+IwyVjrOSCJdhYsl3oncRehD0eH5ManVTB4jxBaP0jTGJVpY
-         mwCCdp9JhlcOMvi+fqSMLDkFrw1+/9eNB8Ko3qwwgxvKf2oPhK+jnEzVdvZx1XyFMXii
-         75ug==
-X-Gm-Message-State: APjAAAXlZk3ovphpoDUqA8QBDpY2jOlPYHJVxGma8Xy34eWhmKi0Np9o
-        /OTymasbwvqRQcs2MyYBtOWvkYeuriahdTlMJaoIug==
-X-Google-Smtp-Source: APXvYqwqwTUCzjDWfH3EHzsu393rI6tVpwgwXSK391tnxObsqcMP1lfqzmFm+qWPa/9uzA+kfrKWqWPRe+HKZXMG/uo=
-X-Received: by 2002:ab0:59aa:: with SMTP id g39mr4867600uad.124.1557165283581;
- Mon, 06 May 2019 10:54:43 -0700 (PDT)
+        id S1726608AbfEFRz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 13:55:29 -0400
+Received: from vps.xff.cz ([195.181.215.36]:53132 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726591AbfEFRz3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 13:55:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1557165326; bh=QToEKXP2eCsa3a89ivPJya44poxVDY+W0mrcVNncgzU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aC+4w2+sYJQXzcI226MvyxCEq28Ds0mPf9srDIxrQGAflss/0ZPhrSV2Fq/xNlJiO
+         iHF6yRftWmuTOR1UssD3uq4Cn9LYZD+6TXm7P04pXINVmEB8dJ9StUX5vVAeHxxNeg
+         Nqv6HcP8aHxISL+7r3vHuQLtMuaFF6fx5+DUJY2M=
+Date:   Mon, 6 May 2019 19:55:25 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Frank Lee <tiny.windzz@gmail.com>
+Cc:     Icenowy Zheng <icenowy@aosc.io>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, lars@metafoo.de,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        robh+dt@kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        pmeerw@pmeerw.net, knaack.h@gmx.de,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH 1/7] iio: adc: sun4i-gpadc: rework for support multiple
+ thermal sensor
+Message-ID: <20190506175525.swc5u7j6ntry7v3g@core.my.home>
+Mail-Followup-To: Frank Lee <tiny.windzz@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        lars@metafoo.de, Maxime Ripard <maxime.ripard@bootlin.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        robh+dt@kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>, pmeerw@pmeerw.net,
+        knaack.h@gmx.de, Lee Jones <lee.jones@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>
+References: <20190503072813.2719-1-tiny.windzz@gmail.com>
+ <20190503072813.2719-2-tiny.windzz@gmail.com>
+ <20190505162215.3594f77d@archlinux>
+ <20190506122807.4u323iys74jddcet@flea>
+ <282ccf0979e6c58effd0e177917bdf824c32f64e.camel@aosc.io>
+ <CAEExFWusPoxtkGCoA+3gXq69cXZEfjZW+UpHW_0UfrcjpLmaXg@mail.gmail.com>
 MIME-Version: 1.0
-References: <1557147240-29551-1-git-send-email-sagar.kadam@sifive.com>
- <1557147240-29551-4-git-send-email-sagar.kadam@sifive.com> <20190506132924.GD15291@lunn.ch>
-In-Reply-To: <20190506132924.GD15291@lunn.ch>
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-Date:   Mon, 6 May 2019 23:24:28 +0530
-Message-ID: <CAARK3H=9frKMTB6aWBwEmCxXxQuZgjAij_Uam+U8of48hjq=bA@mail.gmail.com>
-Subject: Re: [PATCH v1 v1 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC.
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>, peter@korsgaard.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAEExFWusPoxtkGCoA+3gXq69cXZEfjZW+UpHW_0UfrcjpLmaXg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 6, 2019 at 6:59 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> >  /*
-> >   * 'process_lock' exists because ocores_process() and ocores_process_timeout()
-> > @@ -239,8 +240,13 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
-> >       struct ocores_i2c *i2c = dev_id;
-> >       u8 stat = oc_getreg(i2c, OCI2C_STATUS);
-> >
-> > -     if (!(stat & OCI2C_STAT_IF))
-> > +     if (i2c->flags && SIFIVE_FLAG_POLL) {
->
-> Do you really want && here?
->
-> > +             if (stat & OCI2C_STAT_IF)
-> > +                     if (!(stat & OCI2C_STAT_BUSY))
-> > +                             return IRQ_NONE;
-> > +     } else if (!(stat & OCI2C_STAT_IF)) {
-> >               return IRQ_NONE;
-> > +     }
-> >
-> >       ocores_process(i2c, stat);
-> >
-> > @@ -356,6 +362,11 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
-> >               ret = ocores_isr(-1, i2c);
-> >               if (ret == IRQ_NONE)
-> >                       break; /* all messages have been transferred */
-> > +             else {
-> > +                     if (i2c->flags && SIFIVE_FLAG_POLL)
->
-> And here?
->
-> > +                             if (i2c->state == STATE_DONE)
-> > +                                     break;
-> > +             }
-> >       }
-> >  }
-> >
-> > @@ -406,7 +417,7 @@ static int ocores_xfer(struct i2c_adapter *adap,
-> >  {
-> >       struct ocores_i2c *i2c = i2c_get_adapdata(adap);
-> >
-> > -     if (i2c->flags & OCORES_FLAG_POLL)
-> > +     if ((i2c->flags & OCORES_FLAG_POLL) || (i2c->flags & SIFIVE_FLAG_POLL))
->
-> You can combine this
+Hi,
 
-Thanks for your suggestion's Andrew.
-Yes, I will optimize this.
->
-> if ((i2c->flags & (OCORES_FLAG_POLL | SIFIVE_FLAG_POLL))
->
-> >               return ocores_xfer_polling(adap, msgs, num);
-> >       return ocores_xfer_core(i2c, msgs, num, false);
-> >  }
-> > @@ -597,6 +608,7 @@ static int ocores_i2c_probe(struct platform_device *pdev)
-> >  {
-> >       struct ocores_i2c *i2c;
-> >       struct ocores_i2c_platform_data *pdata;
-> > +     const struct of_device_id *match;
-> >       struct resource *res;
-> >       int irq;
-> >       int ret;
-> > @@ -678,13 +690,21 @@ static int ocores_i2c_probe(struct platform_device *pdev)
+On Tue, May 07, 2019 at 01:08:39AM +0800, Frank Lee wrote:
+> On Tue, May 7, 2019 at 12:52 AM Icenowy Zheng <icenowy@aosc.io> wrote:
 > >
-> >       irq = platform_get_irq(pdev, 0);
-> >       if (irq == -ENXIO) {
-> > -             i2c->flags |= OCORES_FLAG_POLL;
-> > +             /*
-> > +              * Set a SIFIVE_FLAG_POLL to enable workaround for FU540
-> > +              * in polling mode interface of i2c-ocore driver.
-> > +              */
-> > +             match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
-> > +             if (match && (long)match->data == TYPE_SIFIVE_REV0)
-> > +                     i2c->flags |= SIFIVE_FLAG_POLL;
-> > +             else
-> > +                     i2c->flags |= OCORES_FLAG_POLL;
->
-> Please take a look at the whole code, and consider if it is better to
-> set both SIFIVE_FLAG_POLL and OCORES_FLAG_POLL. Maybe rename
-> SIFIVE_FLAG_POLL to OCORES_FLAG_BROKEN_IRQ_BIT?
->
-The intent of this patch is to add a workaround for hardware errratum
-of FU540 a SiFive Device,
-hence I had named the flag accordingly. Yes,
-OCORES_FLAG_BROKEN_IRQ_BIT is a better and generic term,
-I will rename and resubmit this patch
+> > 在 2019-05-06一的 14:28 +0200，Maxime Ripard写道：
+> > > Hi,
+> > >
+> > > On Sun, May 05, 2019 at 04:22:15PM +0100, Jonathan Cameron wrote:
+> > > > On Fri,  3 May 2019 03:28:07 -0400
+> > > > Yangtao Li <tiny.windzz@gmail.com> wrote:
+> > > >
+> > > > > For some SOCs, there are more than one thermal sensor, and there
+> > > > > are
+> > > > > currently four sensors on the A80. So we need to do some work in
+> > > > > order
+> > > > > to support multiple thermal sensors:
+> > > > >
+> > > > >   1) add sensor_count in gpadc_data.
+> > > > >   2) introduce sun4i_sensor_tzd in sun4i_gpadc_iio, to support
+> > > > > multiple
+> > > > >      thermal_zone_device and distinguish between different
+> > > > > sensors.
+> > > > >   3) modify read temperature and initialization function.
+> > > >
+> > > > This comment doesn't mention the devm change. If it had it would
+> > > > have
+> > > > raised immediate alarm bells.
+> > > >
+> > > > I'm also not keen on the web of pointers that this driver is
+> > > > steadily
+> > > > evolving.  I can't immediately see how to reduce that complexity
+> > > > however.
+> > >
+> > > So I might be responsible for that, and looking back, this has been a
+> > > mistake.
+> > >
+> > > This driver was initally put together to support a controller found
+> > > in
+> > > older (A10 up to A31) Allwinner SoCs. This controller had an ADC
+> > > driver that could be operated as a touchscreen controller, and was
+> > > providing a CPU temperature sensor and a general purpose ADC.
+> > >
+> > > However, we already had a driver for that controller in drivers/input
+> > > to report the CPU temperature, and the one in IIO was introduced to
+> > > support the general purpose ADC (and the CPU temperature). The long
+> > > term goal was to add the touchscreen feature as well eventually so
+> > > that we could remove the one in drivers/input. That didn't happen.
+> > >
+> > > At the same time, the Allwinner hardware slowly evolved to remove the
+> > > touchscreen and ADC features, and only keep the CPU temperature
+> > > readout. It then evolved further on to support multiple temperatures
+> > > (for different clusters, the GPU, and so on).
+> > >
+> > > So, today, we're in a situation where I was pushing everything into
+> > > that IIO drivers since there was similiraties between all the
+> > > generations, but the fact that we have to support so many odd cases
+> > > (DT bindings compatibility, controllers with and without ADC, etc)
+> > > that it becomes a real mess.
+> > >
+> > > And that mess isn't really used by anybody, since we want to have the
+> > > touchscreen.
+> > >
+> > > There's only one SoC that is supported only by that driver, which is
+> > > the A33 that only had a CPU temperature readout, and is still pretty
+> > > similar to the latest SoC from Allwinner (that is supported by this
+> > > series).
+> > >
+> > > I guess, for everyone's sanity and in order to not stall this
+> > > further,
+> > > it would just be better to create an hwmon driver for the A33 (and
+> > > onwards, including the H6) for the SoC that just have the temperature
+> > > readout feature. And for the older SoC, we just keep the older driver
+> > > under input/. Once the A33 is supported, we'll remove the driver in
+> > > IIO (and the related bits in drivers/mfd).
+> 
+> a hwmon driver or a thermal driver？
+> 
+> >
+> > I think a thermal driver is better.
+> 
+> This is what I hope to see a few months ago.
+> 
+> >
+> > Other SoCs' thermal sensor drivers are all thermal drivers.
+> >
+> > >
+> > > Armbian already has a driver for that they never upstreamed iirc, so
+> > > it might be a good starting point, and we would add the support for
+> > > the H6. How does that sound?
+> >
+> > I think the developer abandoned to upstream it because of the previous
+> > problem ;-)
+> >
+> > Maybe it can be taken and add A33&H6 support.
+> 
+> If OK, I am going to start some thermal driver work this weekend.  : )
 
--Thanks
-Sagar
+There are plenty of thermal drivers flying around, with varying levels
+of support for various SoCs:
 
-> Thanks
->         Andrew
+- H3/H5: https://megous.com/git/linux/commit/?h=ths-5.1&id=b8e20c5da7a00b3a3fa1b274fc8d5bea95872b0a
+- A83T: https://megous.com/git/linux/commit/?h=ths-5.1&id=796dff9a946fd475cc1e4bb948a723ea841c640c
+- H6: https://megous.com/git/linux/commit/?h=opi3-5.1&id=aeab762c19b4aa228a295258c9d6b2e1f143bf86
+
+For H3/H5 Icenowy also tried to upstream some variant of my THS driver, with
+better SID/calibration data reading support.
+
+I'd suggest starting with the H6 driver above (as that implements the
+calibration data readout correctly), and make it so that it can support multiple
+SoCs.
+
+regards,
+	o.
+
+> Cheers,
+> Yangtao
+> 
+> >
+> > >
+> > > Sorry for wasting everybody's time on this.
+> > >
+> > > Maxime
+> > >
+> > > --
+> > > Maxime Ripard, Bootlin
+> > > Embedded Linux and Kernel engineering
+> > > https://bootlin.com
+> > > _______________________________________________
+> > > linux-arm-kernel mailing list
+> > > linux-arm-kernel@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
