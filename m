@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF4321481A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EAF1481D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:05:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbfEFKFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:05:52 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:37650 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726304AbfEFKFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:05:51 -0400
-Received: by mail-pl1-f195.google.com with SMTP id z8so6133219pln.4
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:05:51 -0700 (PDT)
+        id S1726369AbfEFKF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 06:05:57 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:41149 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726362AbfEFKF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:05:57 -0400
+Received: by mail-pf1-f193.google.com with SMTP id l132so1540728pfc.8
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:05:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=J11CAk6hX0rsSVl1UifJnPX7sfZSPwS6EsqX4Zx/yUk=;
-        b=kaM5lSuLI0FV3PRZ8stKKlOCGIigBQ3ofdGJObwDHHSCL5UEwGsdcoi3yhbvo6H/5K
-         ZIBp/fx/ZM9jarokbi4rfhTl4Skw9U5+/R9qFky+M3PdsEOYnGSaJXlrOZefGTweIRIS
-         IK/Nm56I3yTXFWjf3St7nh87hpkbs/X2CHfqmE0kDWIhIkuY6gTQdVZWLTgbiM07MXJR
-         Qt8Lq93vAC86lCeyQjRjUu9vs4reNp0Kcrw1V70NYG4IkpRGqX27lvJCN4b5dAOCQDds
-         jyxaFs3H8ep+9+Kp4cjj5sxxQm0pcB/T977glnoYh22pxFsCyq61z3UEAgvPS9Xg129Y
-         bvmA==
+        bh=WKqEBPsoDpTtAdSfNyFLIMHr8olM8ej+c9mYA02GcCA=;
+        b=qPWznxScaM12nn3xySR9qMH+ArqYqHs7zb1I5dnOfe5n17nWQ+RDgZ6egeXGBpx8jV
+         2PNDhNE9D6uGZM1QTq+XpdQwg/4Ly0RZWY+dFS78niW8M/RGivNwF612wMA5SI11MYCI
+         wD1hx9RvUAA6JQJFxW52OuaNp613fGfPv1eG9jI8V4wH2wEEnWlx82lERMz+xBBbveZh
+         2Z7QcL4bRjkHZPTGLy3Q9dj/UWI4sqsf6qXrJy888kgl12mR4tOoxbmikstmIxoc8NYx
+         Q/0TrWOv32gksWYxshsjOd/iz/Cv9fuavrSKL6/wZjfAu3OBhj791zT4N0g9Yhoi4Zag
+         yu3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=J11CAk6hX0rsSVl1UifJnPX7sfZSPwS6EsqX4Zx/yUk=;
-        b=F7ZYE1tKSbGXM8SMc0WHXe5IwLv+NqwmaFeQLVm1qaVYyyGPcYp/H4l+Jqzd2C1CWg
-         RpJKs9CUpdqK+M9yC1eL1mslmah4M3hkLxc8UyEk5k+1sCbV3SVSw+vOPRooxDQQ9r2a
-         yAQo8rG7nXvVpo1gVET/DmAMLmKtXBfq8XM+SWCsWSasrd/mwA/ckpaVHisfbuCqU66j
-         G3w4M63qEduss78NW/RCkNg7Btki+7v2v7uxSv7X/6YQxoluJlASQBKRYFH9GacjdYlS
-         dFbs7zW3NVml/+4y/lKsKa7UZUOwexlAXKPrqul39PsVlpFlLfjkw069MnqWG10iWLSz
-         YDpg==
-X-Gm-Message-State: APjAAAVHV4QDnqNaHpSSHVf0IpL1XdzVKoGhs3Z8m5nO3DYmPA6MQVO7
-        tGZ2T8spBntqv1a6YO/7ojux
-X-Google-Smtp-Source: APXvYqz3YRJ9CGw5YQkYfcQtat0QM4RY2d72UCJBxq6uSXcYbbBu1tSi1wsMToVYUR4UT9LkO41+QQ==
-X-Received: by 2002:a17:902:be09:: with SMTP id r9mr31239391pls.215.1557137151415;
-        Mon, 06 May 2019 03:05:51 -0700 (PDT)
+        bh=WKqEBPsoDpTtAdSfNyFLIMHr8olM8ej+c9mYA02GcCA=;
+        b=paLzcOQRtNtyIjYC2F4QKln4z6lXwlXpUB7seBWdaSmHIQjg8407kU+AeAsP4cjeCp
+         Ajtu4NAuj2Zh1cqmdzXt1Jxgv0gmUaRV0M9tURic4rNjoGAiJK8j/10rUlX18rBLua4f
+         9hY/fS6ULaSJ46k1kmOhdJPZg07GTJnokNdeuld8Na+7Ff/pCIKs98npUp4JAKoQ04UX
+         gWkq+ejVm+YiAX9dFSt3jJiv+ki1GYFp242JKBrZ4Td1kTOe9A0Iaw44nprDW/4xUVya
+         N56OscyalGdc912DUEBW31vd3qKeyLWLaGIpYnZ8SbY0H/AsLDg83x61C/gX9NSYi4Mx
+         qtVQ==
+X-Gm-Message-State: APjAAAXg4bxNYOdyVMX89bQfpXisq+oN+J2GaDRndZot8zYmgb2zsbUk
+        yOuyKE4Ih9Z7qRTmNx504ArN
+X-Google-Smtp-Source: APXvYqyvyMit260wxAd9y8a+eQMxKEDvoHWY30D7y0aGg8LJY2AhtCFPGP98qESpHbpY5zrFQ53WTA==
+X-Received: by 2002:a63:9214:: with SMTP id o20mr30919321pgd.203.1557137156473;
+        Mon, 06 May 2019 03:05:56 -0700 (PDT)
 Received: from localhost.localdomain ([2409:4072:611b:55a4:e119:3b84:2d86:5b07])
-        by smtp.gmail.com with ESMTPSA id c137sm16229653pfb.154.2019.05.06.03.05.46
+        by smtp.gmail.com with ESMTPSA id c137sm16229653pfb.154.2019.05.06.03.05.51
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 06 May 2019 03:05:50 -0700 (PDT)
+        Mon, 06 May 2019 03:05:55 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
         robh+dt@kernel.org
@@ -50,9 +50,9 @@ Cc:     linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, loic.pallardy@st.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 1/3] dt-bindings: arm: stm32: Document Avenger96 devicetree binding
-Date:   Mon,  6 May 2019 15:35:32 +0530
-Message-Id: <20190506100534.24145-2-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 2/3] ARM: dts: stm32mp157: Add missing pinctrl definitions
+Date:   Mon,  6 May 2019 15:35:33 +0530
+Message-Id: <20190506100534.24145-3-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190506100534.24145-1-manivannan.sadhasivam@linaro.org>
 References: <20190506100534.24145-1-manivannan.sadhasivam@linaro.org>
@@ -61,27 +61,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document devicetree binding for Avenger96 board.
+Add missing pinctrl definitions for STM32MP157 MPU.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/stm32/stm32.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 75 +++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.txt b/Documentation/devicetree/bindings/arm/stm32/stm32.txt
-index 6808ed9ddfd5..eba363a4b514 100644
---- a/Documentation/devicetree/bindings/arm/stm32/stm32.txt
-+++ b/Documentation/devicetree/bindings/arm/stm32/stm32.txt
-@@ -8,3 +8,9 @@ using one of the following compatible strings:
-   st,stm32f746
-   st,stm32h743
-   st,stm32mp157
+diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+index 85c417d9983b..5efae4b4b37f 100644
+--- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+@@ -241,6 +241,23 @@
+ 				};
+ 			};
+ 
++			i2c1_pins_b: i2c1-2 {
++				pins {
++					pinmux = <STM32_PINMUX('F', 14, AF5)>, /* I2C1_SCL */
++						 <STM32_PINMUX('F', 15, AF5)>; /* I2C1_SDA */
++					bias-disable;
++					drive-open-drain;
++					slew-rate = <0>;
++				};
++			};
 +
-+Boards:
++			i2c1_pins_sleep_b: i2c1-3 {
++				pins {
++					pinmux = <STM32_PINMUX('F', 14, ANALOG)>, /* I2C1_SCL */
++						 <STM32_PINMUX('F', 15, ANALOG)>; /* I2C1_SDA */
++				};
++			};
 +
-+Root node property compatible must contain one of below depending on board:
+ 			i2c2_pins_a: i2c2-0 {
+ 				pins {
+ 					pinmux = <STM32_PINMUX('H', 4, AF4)>, /* I2C2_SCL */
+@@ -258,6 +275,21 @@
+ 				};
+ 			};
+ 
++			i2c2_pins_b1: i2c2-2 {
++				pins {
++					pinmux = <STM32_PINMUX('H', 5, AF4)>; /* I2C2_SDA */
++					bias-disable;
++					drive-open-drain;
++					slew-rate = <0>;
++				};
++			};
 +
-+ - Avenger96: "arrow,stm32mp157a-avenger96"
++			i2c2_pins_sleep_b1: i2c2-3 {
++				pins {
++					pinmux = <STM32_PINMUX('H', 5, ANALOG)>; /* I2C2_SDA */
++				};
++			};
++
+ 			i2c5_pins_a: i2c5-0 {
+ 				pins {
+ 					pinmux = <STM32_PINMUX('A', 11, AF4)>, /* I2C5_SCL */
+@@ -599,6 +631,34 @@
+ 					bias-disable;
+ 				};
+ 			};
++
++			uart4_pins_b: uart4-1 {
++				pins1 {
++					pinmux = <STM32_PINMUX('D', 1, AF8)>; /* UART4_TX */
++					bias-disable;
++					drive-push-pull;
++					slew-rate = <0>;
++				};
++				pins2 {
++					pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
++					bias-disable;
++				};
++			};
++
++			uart7_pins_a: uart7-0 {
++				pins1 {
++					pinmux = <STM32_PINMUX('E', 8, AF7)>; /* UART4_TX */
++					bias-disable;
++					drive-push-pull;
++					slew-rate = <0>;
++				};
++				pins2 {
++					pinmux = <STM32_PINMUX('E', 7, AF7)>, /* UART4_RX */
++						 <STM32_PINMUX('E', 10, AF7)>, /* UART4_CTS */
++						 <STM32_PINMUX('E', 9, AF7)>; /* UART4_RTS */
++					bias-disable;
++				};
++			};
+ 		};
+ 
+ 		pinctrl_z: pin-controller-z@54004000 {
+@@ -623,6 +683,21 @@
+ 				gpio-ranges = <&pinctrl_z 0 400 8>;
+ 			};
+ 
++			i2c2_pins_b2: i2c2-0 {
++				pins {
++					pinmux = <STM32_PINMUX('Z', 0, AF3)>; /* I2C2_SCL */
++					bias-disable;
++					drive-open-drain;
++					slew-rate = <0>;
++				};
++			};
++
++			i2c2_pins_sleep_b2: i2c2-1 {
++				pins {
++					pinmux = <STM32_PINMUX('Z', 0, ANALOG)>; /* I2C2_SCL */
++				};
++			};
++
+ 			i2c4_pins_a: i2c4-0 {
+ 				pins {
+ 					pinmux = <STM32_PINMUX('Z', 4, AF6)>, /* I2C4_SCL */
 -- 
 2.17.1
 
