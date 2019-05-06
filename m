@@ -2,113 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76B5C15014
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 17:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 713AC15041
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 17:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726680AbfEFPYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 11:24:50 -0400
-Received: from smtp1.de.adit-jv.com ([93.241.18.167]:56963 "EHLO
-        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726484AbfEFPYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 11:24:48 -0400
-Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
-        by smtp1.de.adit-jv.com (Postfix) with ESMTP id E8B6F3C00C6;
-        Mon,  6 May 2019 17:24:43 +0200 (CEST)
-Received: from smtp1.de.adit-jv.com ([127.0.0.1])
-        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id t12YR46iAR7u; Mon,  6 May 2019 17:24:37 +0200 (CEST)
-Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id C2C1B3C004C;
-        Mon,  6 May 2019 17:24:36 +0200 (CEST)
-Received: from vmlxhi-102.adit-jv.com (10.72.93.184) by HI2EXCH01.adit-jv.com
- (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 6 May 2019
- 17:24:36 +0200
-Date:   Mon, 6 May 2019 17:24:33 +0200
-From:   Eugeniu Rosca <erosca@de.adit-jv.com>
-To:     Simon Horman <horms@verge.net.au>
-CC:     Eugeniu Rosca <roscaeugeniu@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "George G . Davis" <george_davis@mentor.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        id S1726948AbfEFPaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 11:30:04 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:51497 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726520AbfEFPaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 11:30:04 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 89797238321C;
+        Mon,  6 May 2019 17:29:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1557156600;
+        bh=Apm5Pqo7KzNBmbTUtI4907tXkIKI5APU0UQP18XhlBY=; l=1197;
+        h=Subject:To:From;
+        b=v4I2x86mAZrVJ/DDAQdN3vpS6C95X6EWkvWfls1SJDz1nGxGss0zJiDuIO8fJn5ll
+         iz/gAivvYVbz1zS8rN5dbbG4gRwSlIiO6iiP5DRZTuGpDNiBRkCQK+HoKZq3Tl/4BS
+         nkah0Fp0W6eclkmnw9uhYDy6wtQTKxW9BTapFWl4=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+Subject: Re: [PATCH v3 2/2] leds: spi-byte: add single byte SPI LED driver
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Helge Deller <deller@gmx.de>,
-        Michael Neuling <mikey@neuling.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Philip Yang <Philip.Yang@amd.com>,
-        Matthew Wilcox <mawilcox@microsoft.com>,
-        Borislav Petkov <bp@suse.de>,
-        "Darrick J. Wong" <darrick.wong@oracle.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>
-Subject: Re: [PATCH 1/6] serial: sh-sci: Reveal ptrval in dev_dbg
-Message-ID: <20190506152433.GA22769@vmlxhi-102.adit-jv.com>
-References: <20190504004258.23574-1-erosca@de.adit-jv.com>
- <20190504004258.23574-2-erosca@de.adit-jv.com>
- <20190506134700.ya565idfzzc3enbm@verge.net.au>
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190505200022.32209-1-oss@c-mauderer.de>
+ <20190505200022.32209-2-oss@c-mauderer.de>
+ <8c150278-4bf6-4202-998e-4d82a2a3cd3c@ti.com>
+ <3f0d7a10-a67e-a2c2-98fe-a487493b8f2c@c-mauderer.de>
+ <fb0bc2a0-1311-3a45-04db-5cddcba48392@ti.com> <20190506151500.GA6221@amd>
+From:   Christian Mauderer <oss@c-mauderer.de>
+Message-ID: <3de252f0-de98-bec2-b233-8be1d38a4671@c-mauderer.de>
+Date:   Mon, 6 May 2019 17:29:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190506134700.ya565idfzzc3enbm@verge.net.au>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.72.93.184]
+In-Reply-To: <20190506151500.GA6221@amd>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-PPP-Message-ID: <155715659987.131028.8572111890407710116@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 06, 2019 at 03:47:05PM +0200, Simon Horman wrote:
-> On Sat, May 04, 2019 at 02:42:53AM +0200, Eugeniu Rosca wrote:
-> > Starting with v4.15-rc2 commit ad67b74d2469d9 ("printk: hash addresses
-> > printed with %p"), enabling debug prints in sh-sci.c would generate
-> > output like below confusing the users who try to sneak into the
-> > internals of the driver:
-> > 
-> > sh-sci e6e88000.serial: sci_request_dma: TX: got channel (____ptrval____)
-> > sh-sci e6e88000.serial: sci_request_dma: mapped 4096@(____ptrval____) to 0x00000006798bf000
-> > sh-sci e6e88000.serial: sci_request_dma: RX: got channel (____ptrval____)
-> > sh-sci e6e88000.serial: sci_dma_tx_work_fn: (____ptrval____): 0...2, cookie 2
-> > 
-> > There are two possible fixes for that:
-> >  - get rid of '%p' prints if they don't reveal any useful information
-> >  - s/%p/%px/, since it is unlikely we have any concerns leaking the
-> >    pointer values when running a debug/non-production kernel
+On 06/05/2019 17:15, Pavel Machek wrote:
+> Hi!
 > 
-> I am concerned that this may expose information in circumstances
-> where it is undesirable. Is it generally accepted practice to
-> use %px in conjunction with dev_dbg() ?
+>>> Of course it would have been possible to make it a lot more universal by
+>>> for example adding a prefix, a bit mask or other word lengths. But that
+>>> would have added a lot of complexity without any actual application.
+>>>
+>>
+>> I have to disagree here.  If this is supposed to be a universal SPI byte driver that
+>> needs special handling then it is either needs to be created in a universal way or needs to be made
+>> target specific.
+>>
 > 
-> ...
+> Let him be. The driver is good.
+> 
+> If some hardware needs more flexibility, we add it.
+> 
+> No need to have 1000 releases of everything.
+> 
+> 									Pavel
+> 
 
-Below commits performed a similar s/%p/%px/ update in debug context:
+Hello Pavel,
 
-Authors (CC-ed)   Commit         Subject
-----------------------------------------
-Christophe Leroy  b18f0ae92b0a1d ("powerpc/prom: fix early DEBUG messages")
-Helge Deller      3847dab7742186 ("parisc: Add alternative coding infrastructure")
-Michael Neuling   51c3c62b58b357 ("powerpc: Avoid code patching freed init sections")
-Kuninori Morimoto dabdbe3ae0cb9a ("ASoC: rsnd: don't use %p for dev_dbg()")
-Philip Yang       fa7e65147e5dca ("drm/amdkfd: use %px to print user space address instead of %p")
-Matthew Wilcox    68c1f08203f2b0 ("lib/list_debug.c: print unmangled addresses")
-Borislav Petkov   0e6c16c652cada ("x86/alternative: Print unadorned pointers")
-Darrick J. Wong   c96900435fa9fd ("xfs: use %px for data pointers when debugging")
-Helge Deller      04903c06b4854d ("parisc: Show unhashed HPA of Dino chip")
+thanks for the support.
 
-To quote Matthew, with respect to any debug prints:
-If an attacker can force this message to be printed, we've already lost.
+It's a pure hobby project so I have the time to add useful features or
+to improve the description to make it clear what the drivers intention
+is. So if we find a more useful set of features it's a good idea to
+discuss it.
 
-In any case, I won't be affected much if the change is not accepted,
-since it doesn't resolve any major issue on my end. Thanks!
+By the way: Although I haven't written a Linux driver yet it's not my
+first open source project. So I know that there can be a lot of
+different opinions and sometimes a lot of revisions. So no big risk of
+scaring me away.
 
--- 
-Best Regards,
-Eugeniu.
+Best regards
+
+Christian
