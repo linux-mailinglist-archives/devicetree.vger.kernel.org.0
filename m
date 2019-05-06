@@ -2,205 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5CCA147E1
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 11:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE243147FB
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725894AbfEFJ4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 05:56:36 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:39177 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725861AbfEFJ4f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 05:56:35 -0400
-Received: by mail-io1-f65.google.com with SMTP id m7so8315892ioa.6
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 02:56:34 -0700 (PDT)
+        id S1726411AbfEFJ77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 05:59:59 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:37054 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726016AbfEFJ77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 05:59:59 -0400
+Received: by mail-pg1-f195.google.com with SMTP id e6so6216612pgc.4
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 02:59:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GKysu+ggf2+uQ2eAYt5TABC1hM3kbCmZ2bSj1OoK+OM=;
-        b=MhppLfhCXW0INxzbxBlzLRgcumDMA+umn+ZIMi6q0SEj+gA8/uRdEhMghQ4vKoYlde
-         wny1k8TC8SRS3s4LbUOF7CBlrkRiJGnGlgqons8KzzHCVS0QGRKKj7maoD8EyAmx/H/P
-         ZQzliTixtkHeJsxdpySNWEHEBjUraQGgGtZIs=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=eMBEkWY+yoHOv35+4+osAhTZrDmIt7AwEsIPJqdF/3o=;
+        b=JWm3C8gHUmsaKnWdHgIGhPMh/OdZYaZQZwQeJOd6DQUH8Gbjik2AaWwJWpbsZ2eTPw
+         XQshzRWWqcz5SFWEFbJaozTWLHBtF7VQYwkSL0l+6EG5Lk90/zvLj/WyTC45NDe21H6c
+         8JNF2pmDC5CLdVhl+wjvk8oRWyVwSZ2xt31md96O9o6569tOiNNvI5v0w0RQS59ENndp
+         9K5/4HnuUqIx14sw3XKE7k6JMpo7lk6i6L0l3j7+vIJzJlzzKQEvPEZYJPMmIGxPlrmq
+         HCOdCrd8KniiDBVkCjk7A1gRn7FNDvhO0c7X6Yq5gUOuEYxIq/YrZuZS3ynwenNhvcp8
+         v+mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GKysu+ggf2+uQ2eAYt5TABC1hM3kbCmZ2bSj1OoK+OM=;
-        b=KzgM4+rTEtmvyQRoreBwulp0hbwjNES0KeO+35zPEwXKbgrqUtKawzb270MdhIo1ZZ
-         8U/qhU5Pa5rs6y/ei08etNe7ss3n4JkN3Bcw2zmqorCu7220GFhw1SXCjt7XmwGbVsYZ
-         eyw7jSMQgn0gHQkNlpQBRTUUHzIccWRvxnTN9pC0S0FpKczggfdO2teoyJfwhP3pzrd/
-         JJKSIr2HW4nd883UFI0Ds3YBuHbU1Zh715Suzp8hmAVX/Ne/ifMc5IJHe+M0MV0f3yZG
-         FsdhgIrlamdD65HaVbJhECmSSG6AZdx2OlahyJhT8+vsWfYwpx5JdB84ttmfSXfUH4xC
-         mZWw==
-X-Gm-Message-State: APjAAAVt9BFmt19FtfB8rse1gnTWRHFjnEnVNei9Od7V5ijdTJjfZ5GZ
-        Fiz3/rZqYbjMYInlc0VolggUm0lki9tIu09ntMUI7w==
-X-Google-Smtp-Source: APXvYqxnO2dIWJ1E/SWJUjsbW7VCI6mmCoIsPzRHG8r3fnfPHd+tzQrIUou2K1SZ7cU+q2Nd+dainfJ8cFKvythXg7c=
-X-Received: by 2002:a6b:bb82:: with SMTP id l124mr2188291iof.252.1557136594368;
- Mon, 06 May 2019 02:56:34 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=eMBEkWY+yoHOv35+4+osAhTZrDmIt7AwEsIPJqdF/3o=;
+        b=iHJirXpsI+WKejCgi1nekAqQkjaeHhZcaJ2VP+DZQLLe3BCkvB61YvuMRaoWXplnB4
+         urBsRrHyTWMe9XomLEwhcOJ5uuv7nTuepY9njWC7SKjm+1ds5lRWIiuH9Q95+umPhLJi
+         M5vgFlWLHu9/0S0mXH8QQKx0EW3q+7/tcBfUTj9X9Ti4zxEQbvTObd31CeEVgM1EC/4U
+         Lks5g19oIMwHV+baZrMCR4FYvrFuJskiBo/VL2YESHDAMkiNDcqCIiD+PlOSMcFoNsTk
+         8TF4qI1YcY+Mj1BJ3vLa/F1nSCUN3uLSZYxsTYa1mAp4KErRmy1YP3sE6sirtEe2O/dA
+         PGPQ==
+X-Gm-Message-State: APjAAAX2/F73h3oSX7iUs0DIXxQcEDF6dUT9FnhatZlTGwmbyS/Pnkyq
+        P0ZY5DDsI474mzTanyTl79qk
+X-Google-Smtp-Source: APXvYqzICVCOo980QxHqvj2nEfRkxI54XQPzFRDJGVrhybfA1++ueDo5q6nHCcSILwUj169XUgJEfw==
+X-Received: by 2002:a62:3501:: with SMTP id c1mr32740299pfa.184.1557136798385;
+        Mon, 06 May 2019 02:59:58 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:611b:55a4:e119:3b84:2d86:5b07])
+        by smtp.gmail.com with ESMTPSA id u123sm934037pfu.67.2019.05.06.02.59.53
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 06 May 2019 02:59:57 -0700 (PDT)
+Date:   Mon, 6 May 2019 15:29:51 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Alexandre Torgue <alexandre.torgue@st.com>
+Cc:     mcoquelin.stm32@gmail.com, robh+dt@kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loic.pallardy@st.com
+Subject: Re: [PATCH 2/3] ARM: dts: stm32mp157: Add missing pinctrl definitions
+Message-ID: <20190506095951.GA23734@Mani-XPS-13-9360>
+References: <20190503053123.6828-1-manivannan.sadhasivam@linaro.org>
+ <20190503053123.6828-3-manivannan.sadhasivam@linaro.org>
+ <369b2593-71b6-0b00-b72c-041967ffba73@st.com>
 MIME-Version: 1.0
-References: <20190501121448.3812-1-jagan@amarulasolutions.com> <20190501193429.GA9075@ravnborg.org>
-In-Reply-To: <20190501193429.GA9075@ravnborg.org>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Mon, 6 May 2019 15:26:22 +0530
-Message-ID: <CAMty3ZAfwVyvmAmenhrQHJcy3eq-Yb61a4WLop_8jS-7vM940A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/panel: simple: Add FriendlyELEC HD702E 800x1280
- LCD panel
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <369b2593-71b6-0b00-b72c-041967ffba73@st.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+Hi Alex,
 
-On Thu, May 2, 2019 at 1:04 AM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Jagan
->
-> On Wed, May 01, 2019 at 05:44:47PM +0530, Jagan Teki wrote:
-> > HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
-> > resolution. It has built in Goodix, GT9271 captive touchscreen
-> > with backlight adjustable via PWM.
-> >
-> > Add support for it.
-> >
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
->
-> Please submit the binding in a separate patch as per
-> Documentation/devicetree/bindings/submitting-patches.txt
-
-Hmm.. prepared like this initially but few of my patches were combined
-earlier even-though I sent it separately. anyway let me separate it
-again.
-
->
-> The binding looks like it is compatible with common-panel and
-> simple-panel - please say so in the bindings.
-> See for example the last few binding documents added to the kernel tree.
-
-Correct, will update.
-
->
+On Fri, May 03, 2019 at 09:13:27AM +0200, Alexandre Torgue wrote:
+> Hi Mani
+> 
+> On 5/3/19 7:31 AM, Manivannan Sadhasivam wrote:
+> > Add missing pinctrl definitions for STM32MP157 MPU.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > > ---
-> >  .../display/panel/friendlyarm,hd702e.txt      | 29 +++++++++++++++++++
-> >  drivers/gpu/drm/panel/panel-simple.c          | 26 +++++++++++++++++
-> >  2 files changed, 55 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
-> > new file mode 100644
-> > index 000000000000..67349d7f79be
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
-> > @@ -0,0 +1,29 @@
-> > +FriendlyELEC HD702E 800x1280 LCD panel
+> >   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 62 +++++++++++++++++++++++
+> >   1 file changed, 62 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> > index 85c417d9983b..0b5bcf6a7c97 100644
+> > --- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> > +++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> > @@ -241,6 +241,23 @@
+> >   				};
+> >   			};
+> > +			i2c1_pins_b: i2c1-2 {
+> > +				pins {
+> > +					pinmux = <STM32_PINMUX('F', 14, AF5)>, /* I2C1_SCL */
+> > +						 <STM32_PINMUX('F', 15, AF5)>; /* I2C1_SDA */
+> > +					bias-disable;
+> > +					drive-open-drain;
+> > +					slew-rate = <0>;
+> > +				};
+> > +			};
 > > +
-> > +HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
-> > +resolution. It has built in Goodix, GT9271 captive touchscreen
-> > +with backlight adjustable via PWM.
+> > +			i2c1_pins_sleep_b: i2c1-3 {
+> > +				pins {
+> > +					pinmux = <STM32_PINMUX('F', 14, ANALOG)>, /* I2C1_SCL */
+> > +						 <STM32_PINMUX('F', 15, ANALOG)>; /* I2C1_SDA */
+> > +				};
+> > +			};
 > > +
-> > +Required properties:
-> > +- compatible: should be "friendlyarm,hd702e"
-> > +- power-supply: regulator to provide the supply voltage
-> > +
-> > +Optional properties:
-> > +- backlight: phandle of the backlight device attached to the panel
-> > +
-> > +Optional nodes:
-> > +- Video port for LCD panel input.
-> > +
-> > +Example:
-> > +
-> > +     panel {
-> > +             compatible ="friendlyarm,hd702e";
-> > +             backlight = <&backlight>;
-> > +             power-supply = <&vcc3v3_sys>;
-> > +
-> > +             port {
-> > +                     panel_in_edp: endpoint {
-> > +                             remote-endpoint = <&edp_out_panel>;
-> > +                     };
-> > +             };
-> > +     };
-> > diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> > index 9e8218f6a3f2..9db3c0c65ef2 100644
-> > --- a/drivers/gpu/drm/panel/panel-simple.c
-> > +++ b/drivers/gpu/drm/panel/panel-simple.c
-> > @@ -1184,6 +1184,29 @@ static const struct panel_desc foxlink_fl500wvr00_a0t = {
-> >       .bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-> >  };
-> >
-> > +static const struct drm_display_mode friendlyarm_hd702e_mode = {
-> > +     .clock          = 67185,
-> > +     .hdisplay       = 800,
-> > +     .hsync_start    = 800 + 20,
-> > +     .hsync_end      = 800 + 20 + 24,
-> > +     .htotal         = 800 + 20 + 24 + 20,
-> > +     .vdisplay       = 1280,
-> > +     .vsync_start    = 1280 + 4,
-> > +     .vsync_end      = 1280 + 4 + 8,
-> > +     .vtotal         = 1280 + 4 + 8 + 4,
-> > +     .vrefresh       = 60,
-> > +     .flags          = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-> > +};
-> > +
-> > +static const struct panel_desc friendlyarm_hd702e = {
-> > +     .modes = &friendlyarm_hd702e_mode,
-> > +     .num_modes = 1,
-> > +     .size = {
-> > +             .width  = 94,
-> > +             .height = 151,
-> > +     },
-> > +};
-> As I read the datasheet then this panel needs at least a prepare delay
-> of 10 ms (it says > 10 ms from VGH until Data).
-> And then we also know that VGH shall be valid at least 10 ms after DVDD
-> so prepare is likely 20 ms.
->
-> Based on datasheet found here:
-> https://pan.baidu.com/s/1geEfBLh/
->
-> Please evaluate all delays.
+> >   			i2c2_pins_a: i2c2-0 {
+> >   				pins {
+> >   					pinmux = <STM32_PINMUX('H', 4, AF4)>, /* I2C2_SCL */
+> > @@ -258,6 +275,23 @@
+> >   				};
+> >   			};
+> > +			i2c2_pins_b: i2c2-2 {
+> > +				pins {
+> > +					pinmux = <STM32_PINMUX('Z', 0, AF3)>, /* I2C2_SCL */
+> > +						 <STM32_PINMUX('H', 5, AF4)>; /* I2C2_SDA */
+> 
+> You can't do that. <STM32_PINMUX('Z', 0, AF3)> has to be declared in
+> pincontroller-z. So in your case, you have to define 2 groups for i2C2 for
+> your default state (the same for the sleep state).
+> 
 
-This part I'm unclear, I tried to get the datasheet of this but
-couldn't find it either. I have a reference for these FriendlyELEC
-panels from https://github.com/friendlyarm/kernel-rockchip/blob/nanopi4-linux-v4.4.y/drivers/gpu/drm/panel/panel-friendlyelec.c
-but they are not using any of these delays.
+Ah, yes I failed to note pincontroller z. Will fix it in next revision!
 
->
+Thanks,
+Mani
+
+> regards
+> Alex
+> 
+> 
+> 
+> 
+> > +					bias-disable;
+> > +					drive-open-drain;
+> > +					slew-rate = <0>;
+> > +				};
+> > +			};
 > > +
-> >  static const struct drm_display_mode giantplus_gpg482739qs5_mode = {
-> >       .clock = 9000,
-> >       .hdisplay = 480,
-> > @@ -2634,6 +2657,9 @@ static const struct of_device_id platform_of_match[] = {
-> >       }, {
-> >               .compatible = "edt,etm0700g0edh6",
-> >               .data = &edt_etm0700g0bdh6,
-> > +     }, {
-> > +             .compatible = "friendlyarm,hd702e",
-> > +             .data = &friendlyarm_hd702e,
-> >       }, {
-> >               .compatible = "foxlink,fl500wvr00-a0t",
-> >               .data = &foxlink_fl500wvr00_a0t,
->
-> Add these in sorted order.
-> "fox" is before "fri"
-
-True, will sort it.
+> > +			i2c2_pins_sleep_b: i2c2-3 {
+> > +				pins {
+> > +					pinmux = <STM32_PINMUX('Z', 0, ANALOG)>, /* I2C2_SCL */
+> > +						 <STM32_PINMUX('H', 5, ANALOG)>; /* I2C2_SDA */
+> > +				};
+> > +			};
+> > +
+> >   			i2c5_pins_a: i2c5-0 {
+> >   				pins {
+> >   					pinmux = <STM32_PINMUX('A', 11, AF4)>, /* I2C5_SCL */
+> > @@ -599,6 +633,34 @@
+> >   					bias-disable;
+> >   				};
+> >   			};
+> > +
+> > +			uart4_pins_b: uart4-1 {
+> > +				pins1 {
+> > +					pinmux = <STM32_PINMUX('D', 1, AF8)>; /* UART4_TX */
+> > +					bias-disable;
+> > +					drive-push-pull;
+> > +					slew-rate = <0>;
+> > +				};
+> > +				pins2 {
+> > +					pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
+> > +					bias-disable;
+> > +				};
+> > +			};
+> > +
+> > +			uart7_pins_a: uart7-0 {
+> > +				pins1 {
+> > +					pinmux = <STM32_PINMUX('E', 8, AF7)>; /* UART4_TX */
+> > +					bias-disable;
+> > +					drive-push-pull;
+> > +					slew-rate = <0>;
+> > +				};
+> > +				pins2 {
+> > +					pinmux = <STM32_PINMUX('E', 7, AF7)>, /* UART4_RX */
+> > +						 <STM32_PINMUX('E', 10, AF7)>, /* UART4_CTS */
+> > +						 <STM32_PINMUX('E', 9, AF7)>; /* UART4_RTS */
+> > +					bias-disable;
+> > +				};
+> > +			};
+> >   		};
+> >   		pinctrl_z: pin-controller-z@54004000 {
+> > 
