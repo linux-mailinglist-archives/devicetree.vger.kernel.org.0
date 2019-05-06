@@ -2,99 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A772C152FF
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1847515321
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:54:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726437AbfEFRob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 13:44:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45276 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725883AbfEFRob (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 May 2019 13:44:31 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B7BE320B7C;
-        Mon,  6 May 2019 17:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557164670;
-        bh=FjPHioywBD1RQcEUs+vkS7eFM6aRa/+LWtdHsHtItOA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JG/BNZsRQv4furmZwUj/buubC8bARd1+lRZtO983CWusJclOgnlHNNRENOBo4TJqw
-         huxEgf0Tnd1xv9VUiVJ+bkxNpVGRbXX5MWaXJ9CEbNjiBS9jq9N/1hO87o3jhgn3O3
-         X+qsHJ9Nm1TjqTJqKinNSHBjVfrYvUGMs/f1NXdM=
-Received: by mail-qt1-f180.google.com with SMTP id t1so15035479qtc.12;
-        Mon, 06 May 2019 10:44:30 -0700 (PDT)
-X-Gm-Message-State: APjAAAUFcTMuKsjRKA84fBzvhRPJanbj3WhVkkj3+bTnZvy687J3lY1Z
-        wg7gjE4cQO/cf31FlrKAqMI3F8ESk73vyZ7T1A==
-X-Google-Smtp-Source: APXvYqxnbA+v6YC6RhzdoizzdiGEQT8tfZkHtrk/yG7J31NEHra2ZTqL73ZyJzQWmj6OgDUyPySPck8yaFObjYeyXjQ=
-X-Received: by 2002:a0c:d2f2:: with SMTP id x47mr21844351qvh.90.1557164669966;
- Mon, 06 May 2019 10:44:29 -0700 (PDT)
+        id S1726672AbfEFRyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 13:54:44 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:37211 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726063AbfEFRyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 13:54:44 -0400
+Received: by mail-ua1-f68.google.com with SMTP id l17so4981798uar.4
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 10:54:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t/hieHfzO8noPDNoAxk691xfv/UVSgo8EHet25ThOxA=;
+        b=K3dHADv+pUO4Jys+GSog3efxohLaI5rNKm0Cz5eSJUzFXyet2diAyz+f0fLjUL3yZt
+         +F6kBpL4uL+xYYvw0UOhc9tMAnwBCXjgnB4hThOFCaQL9EAXB+5ZyIyq3GQGq3JYWO+Z
+         qEGlLm5H0EC7fbXNGXns50+HIKOtDbofkoRLRK17tgePEaynXSsLUHxR0IqVP6XL4Gu3
+         9ho0A+xv6gzjOG8zWMbCIS5Zn1HMiJeVZrHGX++a+fs1RRBpzBmy47AVao48DaPn7ZdC
+         yLPLfxfvlt/OdI/0m8QX68HyJxuyQJ6g9z6+yMag8L4LUDO1Y1aBi16/CVEnli5U7hnX
+         00jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t/hieHfzO8noPDNoAxk691xfv/UVSgo8EHet25ThOxA=;
+        b=OZjwvoU1uswtXb3qOdwuXGfYXiJKGkOqYM1TgO0/evZQzvbOKmsJrfXdDHVE2pbJXv
+         QewoK7L202U+rnmYXObjqEvpJDL14WaIQR2c4LxECOFmng+nlcKmK7r9MhhK1VsD4Drd
+         pWrD8IlpCHR82MOa48o+/lxeuSuQ2HCMzeWH1fnMXORJ+KVnVAthIMwpAEbKrIXKUwrc
+         WgVA2SFQEdHrOCMYtZgf+IwyVjrOSCJdhYsl3oncRehD0eH5ManVTB4jxBaP0jTGJVpY
+         mwCCdp9JhlcOMvi+fqSMLDkFrw1+/9eNB8Ko3qwwgxvKf2oPhK+jnEzVdvZx1XyFMXii
+         75ug==
+X-Gm-Message-State: APjAAAXlZk3ovphpoDUqA8QBDpY2jOlPYHJVxGma8Xy34eWhmKi0Np9o
+        /OTymasbwvqRQcs2MyYBtOWvkYeuriahdTlMJaoIug==
+X-Google-Smtp-Source: APXvYqwqwTUCzjDWfH3EHzsu393rI6tVpwgwXSK391tnxObsqcMP1lfqzmFm+qWPa/9uzA+kfrKWqWPRe+HKZXMG/uo=
+X-Received: by 2002:ab0:59aa:: with SMTP id g39mr4867600uad.124.1557165283581;
+ Mon, 06 May 2019 10:54:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190505200022.32209-1-oss@c-mauderer.de> <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
- <20190506162848.GA9522@amd>
-In-Reply-To: <20190506162848.GA9522@amd>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 6 May 2019 12:44:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
-Message-ID: <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     oss@c-mauderer.de,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>
+References: <1557147240-29551-1-git-send-email-sagar.kadam@sifive.com>
+ <1557147240-29551-4-git-send-email-sagar.kadam@sifive.com> <20190506132924.GD15291@lunn.ch>
+In-Reply-To: <20190506132924.GD15291@lunn.ch>
+From:   Sagar Kadam <sagar.kadam@sifive.com>
+Date:   Mon, 6 May 2019 23:24:28 +0530
+Message-ID: <CAARK3H=9frKMTB6aWBwEmCxXxQuZgjAij_Uam+U8of48hjq=bA@mail.gmail.com>
+Subject: Re: [PATCH v1 v1 3/3] i2c-ocores: sifive: add polling mode workaround
+ for FU540-C000 SoC.
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>, peter@korsgaard.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 6, 2019 at 11:28 AM Pavel Machek <pavel@ucw.cz> wrote:
+On Mon, May 6, 2019 at 6:59 PM Andrew Lunn <andrew@lunn.ch> wrote:
 >
-> Hi!
+> >  /*
+> >   * 'process_lock' exists because ocores_process() and ocores_process_timeout()
+> > @@ -239,8 +240,13 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
+> >       struct ocores_i2c *i2c = dev_id;
+> >       u8 stat = oc_getreg(i2c, OCI2C_STATUS);
+> >
+> > -     if (!(stat & OCI2C_STAT_IF))
+> > +     if (i2c->flags && SIFIVE_FLAG_POLL) {
 >
-> > > +* Single Byte SPI LED Device Driver.
-> > > +
-> > > +The driver can be used for controllers with a very simple SPI protocol: Only one
-> > > +byte will be sent. The value of the byte can be any value between the off-value
-> > > +and max-value defined in the properties.
-> > > +
-> > > +One example where the driver can be used is the controller in Ubiquiti airCube
-> > > +ISP devices. That LED controller is based on a 8 bit microcontroller (SONiX
-> > > +8F26E611LA) that has been programmed to control the single LED of the device.
-> >
-> > What about power control of the uC?
-> >
-> > > +The controller supports four modes depending on the highest two bits in a byte:
-> > > +One setting for brightness, the other three provide different blink patterns.
-> >
-> > This part seems in no way generic.
-> >
-> > How does one support the blink patterns?
-> >
-> > > +With the leds-spi-byte driver a basic support for the brightness mode of that
-> > > +controller can be easily achieved by setting the minimum and maximum to the
-> > > +brightness modes minimum and maximum byte value.
-> > > +
-> > > +Required properties:
-> > > +- compatible:          Should be "leds-spi-byte".
-> >
-> > Generally, we don't do "generic" bindings like this. The exceptions
-> > are either we have confidence they really can be generic or they where
-> > created before we knew better. A sample size of 1 doesn't convince me
-> > the former is true.
-> >
-> > This comment *only* applies to the binding, not the driver. Specific
-> > bindings can easily be bound to generic drivers.
+> Do you really want && here?
 >
-> Ok, I'm afraid I caused this. What should the compatible be, then?
+> > +             if (stat & OCI2C_STAT_IF)
+> > +                     if (!(stat & OCI2C_STAT_BUSY))
+> > +                             return IRQ_NONE;
+> > +     } else if (!(stat & OCI2C_STAT_IF)) {
+> >               return IRQ_NONE;
+> > +     }
+> >
+> >       ocores_process(i2c, stat);
+> >
+> > @@ -356,6 +362,11 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
+> >               ret = ocores_isr(-1, i2c);
+> >               if (ret == IRQ_NONE)
+> >                       break; /* all messages have been transferred */
+> > +             else {
+> > +                     if (i2c->flags && SIFIVE_FLAG_POLL)
+>
+> And here?
+>
+> > +                             if (i2c->state == STATE_DONE)
+> > +                                     break;
+> > +             }
+> >       }
+> >  }
+> >
+> > @@ -406,7 +417,7 @@ static int ocores_xfer(struct i2c_adapter *adap,
+> >  {
+> >       struct ocores_i2c *i2c = i2c_get_adapdata(adap);
+> >
+> > -     if (i2c->flags & OCORES_FLAG_POLL)
+> > +     if ((i2c->flags & OCORES_FLAG_POLL) || (i2c->flags & SIFIVE_FLAG_POLL))
+>
+> You can combine this
 
-Knowing nothing about the h/w other than the above description:
-ubiquiti,aircube-leds
+Thanks for your suggestion's Andrew.
+Yes, I will optimize this.
+>
+> if ((i2c->flags & (OCORES_FLAG_POLL | SIFIVE_FLAG_POLL))
+>
+> >               return ocores_xfer_polling(adap, msgs, num);
+> >       return ocores_xfer_core(i2c, msgs, num, false);
+> >  }
+> > @@ -597,6 +608,7 @@ static int ocores_i2c_probe(struct platform_device *pdev)
+> >  {
+> >       struct ocores_i2c *i2c;
+> >       struct ocores_i2c_platform_data *pdata;
+> > +     const struct of_device_id *match;
+> >       struct resource *res;
+> >       int irq;
+> >       int ret;
+> > @@ -678,13 +690,21 @@ static int ocores_i2c_probe(struct platform_device *pdev)
+> >
+> >       irq = platform_get_irq(pdev, 0);
+> >       if (irq == -ENXIO) {
+> > -             i2c->flags |= OCORES_FLAG_POLL;
+> > +             /*
+> > +              * Set a SIFIVE_FLAG_POLL to enable workaround for FU540
+> > +              * in polling mode interface of i2c-ocore driver.
+> > +              */
+> > +             match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
+> > +             if (match && (long)match->data == TYPE_SIFIVE_REV0)
+> > +                     i2c->flags |= SIFIVE_FLAG_POLL;
+> > +             else
+> > +                     i2c->flags |= OCORES_FLAG_POLL;
+>
+> Please take a look at the whole code, and consider if it is better to
+> set both SIFIVE_FLAG_POLL and OCORES_FLAG_POLL. Maybe rename
+> SIFIVE_FLAG_POLL to OCORES_FLAG_BROKEN_IRQ_BIT?
+>
+The intent of this patch is to add a workaround for hardware errratum
+of FU540 a SiFive Device,
+hence I had named the flag accordingly. Yes,
+OCORES_FLAG_BROKEN_IRQ_BIT is a better and generic term,
+I will rename and resubmit this patch
 
-Not sure if that's a registered or correct vendor prefix though.
+-Thanks
+Sagar
 
-Rob
+> Thanks
+>         Andrew
