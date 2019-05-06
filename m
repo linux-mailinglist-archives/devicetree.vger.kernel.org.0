@@ -2,407 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D5EA14E10
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 16:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD5414EBB
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 17:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728456AbfEFO6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 10:58:24 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:43032 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727412AbfEFO6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 10:58:24 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x46EwBWE055607;
-        Mon, 6 May 2019 09:58:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1557154691;
-        bh=Ew5m1ivRlNlFjnkS9ywJrM+tSYQsysgDGyv44kIiFFU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=jdUkAMkXKXsEGWoqA3ZPbl+Rrre5+sPaUDlELbW1tkWUHlyqBi4INm/40wKauEIjP
-         3gmrEKf0ah4ERESpS+k9HTHtj7/Gtvv7puwBRhWII4JIxqPt4egu4ju34otHHVq6JN
-         l5xjyXEtV8pSUUOnDe9dHD8fPAqEFrP+PeP3wxhI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x46EwB9f040012
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 May 2019 09:58:11 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 6 May
- 2019 09:58:10 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 6 May 2019 09:58:10 -0500
-Received: from [10.250.90.63] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x46EwAAU009003;
-        Mon, 6 May 2019 09:58:10 -0500
-Subject: Re: [PATCH v3 2/2] leds: spi-byte: add single byte SPI LED driver
-To:     Christian Mauderer <oss@c-mauderer.de>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20190505200022.32209-1-oss@c-mauderer.de>
- <20190505200022.32209-2-oss@c-mauderer.de>
- <8c150278-4bf6-4202-998e-4d82a2a3cd3c@ti.com>
- <3f0d7a10-a67e-a2c2-98fe-a487493b8f2c@c-mauderer.de>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <fb0bc2a0-1311-3a45-04db-5cddcba48392@ti.com>
-Date:   Mon, 6 May 2019 09:58:17 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727337AbfEFPEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 11:04:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35878 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726496AbfEFPEY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 11:04:24 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 339E821530;
+        Mon,  6 May 2019 15:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557155063;
+        bh=GTU8OTjGtl5LOFT7cRg59KsW701NKsE0VzSWQUozfUE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Cvs5PHrbtmKdII0xM3nLCehc/8f272vJsChhVCWWGXtXnPy7j1H/KGXvY2kmKL2BW
+         ztsO2Cyzhz3QDyMR2bZxoONjXQdNpFbU42iJMQvfAsfgu9+xrUYnRYmd6+1vxUO5xT
+         aEepz0ihsx+ItjP/ZKs1EzwY1OQWrEXvEeWPn5E8=
+Received: by mail-qt1-f175.google.com with SMTP id a17so916220qth.3;
+        Mon, 06 May 2019 08:04:23 -0700 (PDT)
+X-Gm-Message-State: APjAAAVnxHMPXMMnu0dzdtwns4A9qAT51tAzYWr2Hb9NvJRBrfgc42+P
+        tJYTEK87m7QrURWOyVvUY6DaKew3ViRfqkf+aA==
+X-Google-Smtp-Source: APXvYqwTGaTwpQhCxUNSWGGAJ6lrotLyqlbDqtumhudX19OwLFLZtjwpqmue9eoggzwpO7k4YQzf0M3Agg9uhmRbdSE=
+X-Received: by 2002:ac8:610f:: with SMTP id a15mr21088874qtm.257.1557155062365;
+ Mon, 06 May 2019 08:04:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <3f0d7a10-a67e-a2c2-98fe-a487493b8f2c@c-mauderer.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190501121448.3812-1-jagan@amarulasolutions.com>
+ <20190501193429.GA9075@ravnborg.org> <CAMty3ZAfwVyvmAmenhrQHJcy3eq-Yb61a4WLop_8jS-7vM940A@mail.gmail.com>
+In-Reply-To: <CAMty3ZAfwVyvmAmenhrQHJcy3eq-Yb61a4WLop_8jS-7vM940A@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 6 May 2019 10:04:10 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+mYy1JF_cM7sD82aLuUSnZnwsSD6-Q-W1uTp+_oSdRmg@mail.gmail.com>
+Message-ID: <CAL_Jsq+mYy1JF_cM7sD82aLuUSnZnwsSD6-Q-W1uTp+_oSdRmg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/panel: simple: Add FriendlyELEC HD702E 800x1280
+ LCD panel
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, Heiko Stuebner <heiko@sntech.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 6, 2019 at 4:56 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> Hi Sam,
+>
+> On Thu, May 2, 2019 at 1:04 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+> >
+> > Hi Jagan
+> >
+> > On Wed, May 01, 2019 at 05:44:47PM +0530, Jagan Teki wrote:
+> > > HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
+> > > resolution. It has built in Goodix, GT9271 captive touchscreen
+> > > with backlight adjustable via PWM.
+> > >
+> > > Add support for it.
+> > >
+> > > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > > Cc: David Airlie <airlied@linux.ie>
+> > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> >
+> > Please submit the binding in a separate patch as per
+> > Documentation/devicetree/bindings/submitting-patches.txt
+>
+> Hmm.. prepared like this initially but few of my patches were combined
+> earlier even-though I sent it separately. anyway let me separate it
+> again.
 
+For what subsystem? All the maintainers that I was aware of doing that
+have stopped.
 
-On 5/6/19 7:59 AM, Christian Mauderer wrote:
-> Hello Dan,
-> 
-> thanks for reviewing the patch.
-> 
-> On 06/05/2019 14:05, Dan Murphy wrote:
->> Christian
->>
->> On 5/5/19 3:00 PM, oss@c-mauderer.de wrote:
->>> From: Christian Mauderer <oss@c-mauderer.de>
->>>
->>> This driver adds support for simple SPI based LED controller which use
->>> only one byte for setting the brightness.
->>>
->>> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
->>> ---
->>>
->>> Changes compared to v2:
->>> - use "if (ret)" instead of "if (ret != 0)"
->>> - don't initialize ldev-fields with zero
->>> - use devm_led_classdev_register instead of led_classdev_register
->>> - check for error instead of good case with the last if in spi_byte_probe
->>>
->>> Changes compared to v1:
->>> - rename ubnt-spi to leds-spi-byte
->>> - rework probe to get all parameters before allocating anything -> error checks
->>>   all collected together and initializing all fields of the device structure is
->>>   more obvious
->>> - fix some unsteady indentations during variable declaration
->>> - rework comment with protocol explanation
->>> - handle case of off_bright > max_bright
->>> - fix spelling in commit message
->>> - mutex_destroy in remove
->>> - change label to use either use the given one without a prefix or a default one
->>>
->>>
->>>  drivers/leds/Kconfig         |  12 ++++
->>>  drivers/leds/Makefile        |   1 +
->>>  drivers/leds/leds-spi-byte.c | 134 +++++++++++++++++++++++++++++++++++
->>>  3 files changed, 147 insertions(+)
->>>  create mode 100644 drivers/leds/leds-spi-byte.c
->>>
->>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
->>> index a72f97fca57b..0866c55e8004 100644
->>> --- a/drivers/leds/Kconfig
->>> +++ b/drivers/leds/Kconfig
->>> @@ -766,6 +766,18 @@ config LEDS_NIC78BX
->>>  	  To compile this driver as a module, choose M here: the module
->>>  	  will be called leds-nic78bx.
->>>  
->>> +config LEDS_SPI_BYTE
->>> +	tristate "LED support for SPI LED controller with a single byte"
->>> +	depends on LEDS_CLASS
->>> +	depends on SPI
->>> +	depends on OF
->>> +	help
->>> +	  This option enables support for LED controller which use a single byte
->>> +	  for controlling the brightness. The minimum and maximum value of the
->>> +	  byte can be configured via a device tree. The driver can be used for
->>> +	  example for the microcontroller based LED controller in the Ubiquiti
->>> +	  airCube ISP devices.
->>> +
->>>  comment "LED Triggers"
->>>  source "drivers/leds/trigger/Kconfig"
->>>  
->>> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
->>> index 4c1b0054f379..1786d7e2c236 100644
->>> --- a/drivers/leds/Makefile
->>> +++ b/drivers/leds/Makefile
->>> @@ -75,6 +75,7 @@ obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
->>>  obj-$(CONFIG_LEDS_MLXCPLD)		+= leds-mlxcpld.o
->>>  obj-$(CONFIG_LEDS_MLXREG)		+= leds-mlxreg.o
->>>  obj-$(CONFIG_LEDS_NIC78BX)		+= leds-nic78bx.o
->>> +obj-$(CONFIG_LEDS_SPI_BYTE)		+= leds-spi-byte.o
->>>  obj-$(CONFIG_LEDS_MT6323)		+= leds-mt6323.o
->>>  obj-$(CONFIG_LEDS_LM3692X)		+= leds-lm3692x.o
->>>  obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
->>> diff --git a/drivers/leds/leds-spi-byte.c b/drivers/leds/leds-spi-byte.c
->>> new file mode 100644
->>> index 000000000000..8170b2da497a
->>> --- /dev/null
->>> +++ b/drivers/leds/leds-spi-byte.c
->>> @@ -0,0 +1,134 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +// Copyright (c) 2019 Christian Mauderer <oss@c-mauderer.de>
->>> +
->>> +/*
->>> + * The driver can be used for controllers with a very simple SPI protocol: Only
->>> + * one byte between an off and a max value (defined by devicetree) will be sent.
->>> + */
->>> +
->>> +#include <linux/leds.h>
->>> +#include <linux/module.h>
->>> +#include <linux/of_device.h>
->>> +#include <linux/spi/spi.h>
->>> +#include <linux/mutex.h>
->>> +#include <uapi/linux/uleds.h>
->>> +
->>> +struct spi_byte_led {
->>> +	struct led_classdev	ldev;
->>> +	struct spi_device	*spi;
->>> +	char			name[LED_MAX_NAME_SIZE];
->>> +	struct mutex		mutex;
->>> +	u8			off_value;
->>> +	u8			max_value;
->>> +};
->>> +
->>> +static int spi_byte_brightness_set_blocking(struct led_classdev *dev,
->>> +					    enum led_brightness brightness)
->>> +{
->>> +	struct spi_byte_led *led = container_of(dev, struct spi_byte_led, ldev);
->>> +	u8 value;
->>> +	int ret;
->>> +
->>> +	value = (u8) brightness + led->off_value;
->>> +
->>
->> Sorry if this has been addressed but the versions moved fast.
->>
->> What is the purpose of adding the off_value?
->>
->> If max is 63 and say off value is 1 then this will set brightness to 64 but that is not what the LED framework will send.
->> if you read the brightness.
->>
->> Is it safe to assume that off_value would always be 0?
-> 
-> No it's not always 0.
-> 
-> In my target application (a microcontroller based LED controller from
-> Ubiquiti) I have the values from 0 to 63. But after some discussion I
-> wrote the driver to be more generic so it can cover some similar
-> controllers too.
-> 
-> So if there is a hypothetical SPI-based controller that uses a single
-> byte with values from 0x80 (off) to 0x8f (maximum brightness) to control
-> a LED, you could set the off and max values to these two and the driver
-> sends 0x80 if you set brightness to 0 and 0x8f if you set brightness to 15.
-> 
-
-In this case would the max brightness just be 0x7f.
-Maybe an optional DT property for brightness mask would help here.
-
-Not sure what the msb is in the example but if this bit defines the  LED on/off control then 
-maybe an optional dt property for this would be more clear.
-
-> A more concrete application could be to let the LED slightly on to show
-> power by setting the off value to for example 10 but letting the max
-> value at 63. In that case there would be only 53 brightness levels left.
-> 
-
-But then the LED is not off by user space request.  When the LED is asked to be off
-it should be off.  The brightness values requested by the user space should be honored and
-not modified by the driver.
-
-> Of course it would have been possible to make it a lot more universal by
-> for example adding a prefix, a bit mask or other word lengths. But that
-> would have added a lot of complexity without any actual application.
-> 
-
-I have to disagree here.  If this is supposed to be a universal SPI byte driver that
-needs special handling then it is either needs to be created in a universal way or needs to be made
-target specific.
-
->>
->>
->>> +	mutex_lock(&led->mutex);
->>> +	ret = spi_write(led->spi, &value, sizeof(value));
->>> +	mutex_unlock(&led->mutex);
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static int spi_byte_probe(struct spi_device *spi)
->>> +{
->>> +	struct device *dev = &spi->dev;
->>> +	struct device_node *child;
->>> +	struct spi_byte_led *led;
->>> +	int ret;
->>> +	const char *default_name = "leds-spi-byte::";
->>> +	const char *name;
->>> +	u8 off_value;
->>> +	u8 max_value;
->>> +
->>> +	if (!dev->of_node)
->>> +		return -ENODEV;
->>> +
->>> +	if (of_get_child_count(dev->of_node) != 1) {
->>> +		dev_err(dev, "Device must have exactly one LED sub-node.");
->>> +		return -EINVAL;
->>> +	}
->>> +	child = of_get_next_child(dev->of_node, NULL);
->>> +
->>> +	ret = of_property_read_string(child, "label", &name);
->>> +	if (ret)
->>> +		name = default_name;
->>> +
->>> +	ret = of_property_read_u8(child, "leds-spi-byte,off-value", &off_value);
->>> +	if (ret) {
->>> +		dev_err(dev, "LED node needs a leds-spi-byte,off-value.");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	ret = of_property_read_u8(child, "leds-spi-byte,max-value", &max_value);
->>> +	if (ret) {
->>> +		dev_err(dev, "LED node needs a leds-spi-byte,max-value.");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>
->> You could probably allocate the led struct memory first and then pass in the address of those
->> variables as opposed to creating the stack variables.
->>
->> 	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
->> 	if (!led)
->> 		return -ENOMEM;
->>
->> 	ret = of_property_read_string(child, "label", &led->ldev.name);
->> 	if (ret)
->> 		led->ldev.name = default_name;
->>
->> 	ret = of_property_read_u8(child, "leds-spi-byte,off-value", &led->off_value);
->> 	if (ret) {
->> 		dev_err(dev, "LED node needs a leds-spi-byte,off-value.");
->> 		return -EINVAL;
->> 	}
->> 	.
->> 	.
->> 	.
-> 
-> I had that in the first revision. Also no one objected, I noted that I
-> had to search whether I have initialized all fields when I added another
-> one. Therefore I thought it would be more readable if I initialize the
-> complete structure at one location. I put readability over efficiency in
-> that case because it's only called once during initialization. Of course
-> I can change that back.
-> 
-
-Well for readability you could also create a function that parses the node after allocating
-the memory.  That way all the DT parsing and value checking is done in a single function.
-
->>
->>
->>> +	if (off_value >= max_value) {
->>> +		dev_err(dev, "off-value has to be smaller than max-value.");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
->>> +	if (!led)
->>> +		return -ENOMEM;
->>> +
->>> +	led->spi = spi;
->>> +	strlcpy(led->name, name, sizeof(led->name));
->>> +	mutex_init(&led->mutex);
->>> +	led->off_value = off_value;
->>> +	led->max_value = max_value;
->>> +	led->ldev.name = led->name;
->>> +	led->ldev.max_brightness = led->max_value - led->off_value;
->>
->> Again not sure why this is needed.  This is changing the behavior of what max brightness value is defined in the DT.
->> And this is not documented in the DT doc.
->>
->> max_value = 255 off_value = 254 meets all the criteria but then LED framework has max brightness is 1
->> But that is not what is described in the DT.
-> 
-> Then my description in the DT wasn't clear enough. I wanted to express
-> that with the sentence: "The value of the byte can be any value between
-> the off-value and max-value defined in the properties."
-> 
-> Should I add another example (beneath the Ubiquiti controller) like the
-> following in the description to make it more clear?
-> 
-> "Another example could be a controller with the following control byte
-> structure:
-> - Bit 8 to 5: always 0x8
-> - Bit 4 to 0: brightness value
-> In that case the off-value would be 0x80 and the max-value would be 0x8f."
-> 
-
-In this case max-brightness would be 0xf.  No math needed.  With the aid of a brightness mask
-then the code would need to do a read before write.
-This makes this driver more extensible if it truly needs to be universal and generic.
-
-read_value = 0
-
-if (led->brightness_mask)
-	spi_read()
-
-value = (u8) brightness & led->brightness_mask | read_value; 
-// or it can also skip brightness_mask and use max_brightness
-// value = (u8) brightness & led->max_brightness | read_value; 
-
-spi_write(value)
-
-This aligns what is declared in the DT to what is expected from the user space.
-
->>
->>> +	led->ldev.brightness_set_blocking = spi_byte_brightness_set_blocking;
->>> +	ret = devm_led_classdev_register(&spi->dev, &led->ldev);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	spi_set_drvdata(spi, led);
->>
->> If you move this above the registration this can just become
->>
->> return = devm_led_classdev_register(&spi->dev, &led->ldev);
-> 
-> Good point. I'll change that.
-> 
->>
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int spi_byte_remove(struct spi_device *spi)
->>> +{
->>> +	struct spi_byte_led	*led = spi_get_drvdata(spi);
->>> +
->>> +	led_classdev_unregister(&led->ldev);
->>
->> Don't need this with devm call
-> 
-> Thanks for the hint. Jacek told me that already. I wanted to wait for
-> some further feedback before spamming the list with another version.
-> 
-
-One other thing if the LED driver is removed and the LED is on and unmanaged that is ok?
-
-Dan
-
->>
->> Dan
->>
->> <snip>
->>
-> 
-> Best regards
-> 
-> Christian
-> 
+Rob
