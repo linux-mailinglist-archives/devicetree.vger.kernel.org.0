@@ -2,105 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 15AA2143BF
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 05:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A39331455F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 09:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726156AbfEFD06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 May 2019 23:26:58 -0400
-Received: from mail-eopbgr70084.outbound.protection.outlook.com ([40.107.7.84]:20238
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725813AbfEFD05 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 5 May 2019 23:26:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qYm82xapVzqlM4WNQoM9knM1Nsx5RW958/Ue6kqfmN4=;
- b=LUZH71DoxrjiDWtmStrtHORjiImu+RR0kbAYluaKGw53B7pYapposFAX2h9lftwEmDnBbfAo+nrpZwy5625bQ+thSsQxKbJhVVkk2mPn+qYdBM7QCaWxeLGYA+uPgobJs6GATT97BXV62JrheFio8imLvHUxz6E5Fxrey/qbi1k=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3756.eurprd04.prod.outlook.com (52.134.73.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Mon, 6 May 2019 03:26:54 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::e8ca:4f6b:e43:c170]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::e8ca:4f6b:e43:c170%3]) with mapi id 15.20.1856.012; Mon, 6 May 2019
- 03:26:54 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: [PATCH 2/2] ARM: dts: imx6qdl: Assign corresponding clocks instead of
- dummy clock
-Thread-Topic: [PATCH 2/2] ARM: dts: imx6qdl: Assign corresponding clocks
- instead of dummy clock
-Thread-Index: AQHVA7uNF1kKh/86SEOOvgIfDAJrlA==
-Date:   Mon, 6 May 2019 03:26:54 +0000
-Message-ID: <1557112911-17115-2-git-send-email-Anson.Huang@nxp.com>
-References: <1557112911-17115-1-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1557112911-17115-1-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.7.4
-x-clientproxiedby: HK2PR02CA0212.apcprd02.prod.outlook.com
- (2603:1096:201:20::24) To DB3PR0402MB3916.eurprd04.prod.outlook.com
- (2603:10a6:8:10::18)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 85b17a79-30e8-40ac-96c6-08d6d1d2af67
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3756;
-x-ms-traffictypediagnostic: DB3PR0402MB3756:
-x-microsoft-antispam-prvs: <DB3PR0402MB37561176555BE9880EDFBDEDF5300@DB3PR0402MB3756.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:334;
-x-forefront-prvs: 0029F17A3F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(39860400002)(366004)(396003)(376002)(346002)(199004)(189003)(6436002)(4744005)(14444005)(110136005)(6486002)(316002)(71190400001)(71200400001)(256004)(8676002)(81156014)(81166006)(8936002)(50226002)(76176011)(66946007)(7736002)(2501003)(4326008)(52116002)(66556008)(64756008)(86362001)(66476007)(2201001)(66446008)(2906002)(99286004)(6116002)(3846002)(305945005)(478600001)(68736007)(6512007)(14454004)(53936002)(2616005)(11346002)(36756003)(5660300002)(73956011)(66066001)(102836004)(186003)(26005)(386003)(6506007)(25786009)(486006)(476003)(446003)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3756;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: +P1kc8ZD0tyQ0aOBNu78ZTyAd0iUyBttVOUtQL98m82zLC1SWA2/ZEkK2VwkVlIeLTDwvE+SuKinHlZ5wfn0eUZXHNRZlpPlPiVV2Rjk3wip5JrTK/w0WOpXw7vDnE95gfQ7AeUy9Fo6gdNsNl4NhRcmJZsedQtK8lUx2fFxZ8ZBH7+XNiJdcvCImGyUdVR9srRzR4jlfsUcYuwyqvweY9nkNihKeHHQW9IM+Bgb8zThEDP6t0K4BKbg0iw8SL7Y/WtlAwt5EO8bKX9M6uZYMretXpp3i5kWB1pQAtlDgREbv6IYHHRruCWPidAogteHmkf9qxSmj1koC2jkuMJSLhEa1NgBUnXL0odHApIa1YaZjDO1OfeRvhsJftR40dieRGC517Dx9Ngiqf5knDtCg/f9m1+fwkMMsnVPdRpWREg=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726400AbfEFHhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 03:37:54 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:39164 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726302AbfEFHhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 03:37:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=MlFyerrYRCSvPhKw2U+CT72hE7v7yaWVoYGE318wXPc=; b=N1euGcYiwa2CPfRpDTB2kTUHI
+        3sBVaJ2Rw9Z5DDgVI4HY/3r4mDZCa5xj1+kGB6PX58BCiHIa7Gom+vBUyS3TDJlQhHQnq84ccmLJz
+        WlwLAM+JS+XliWoOWhIB7QYZu+JlGFRqdv/AQTdE477BIRPZ1mXfYDzbBE3/F0EA3NmBQ=;
+Received: from kd111239184067.au-net.ne.jp ([111.239.184.67] helo=finisterre.ee.mobilebroadband)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hNYBt-0000s0-8z; Mon, 06 May 2019 07:37:37 +0000
+Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
+        id 1D8B2441D3C; Mon,  6 May 2019 04:37:33 +0100 (BST)
+Date:   Mon, 6 May 2019 12:37:33 +0900
+From:   Mark Brown <broonie@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v3 07/10] regulator: mt6358: Add support for MT6358
+ regulator
+Message-ID: <20190506033733.GH14916@sirena.org.uk>
+References: <20190503093117.54830-1-hsin-hsiung.wang@mediatek.com>
+ <20190503093117.54830-8-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85b17a79-30e8-40ac-96c6-08d6d1d2af67
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2019 03:26:54.0676
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3756
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="RbAp84Sx/Z5HOs1D"
+Content-Disposition: inline
+In-Reply-To: <20190503093117.54830-8-hsin-hsiung.wang@mediatek.com>
+X-Cookie: -- I have seen the FUN --
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-aS5NWDZRL0RMJ3MgV0RPR3MgdXNlIElNWDZRRExfQ0xLX0lQRyBhcyBjbG9jayByb290LCBhc3Np
-Z24NCklNWDZRRExfQ0xLX0lQRyB0byB0aGVtIGluc3RlYWQgb2YgSU1YNlFETF9DTEtfRFVNTVku
-DQoNClNpZ25lZC1vZmYtYnk6IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KLS0t
-DQogYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFkbC5kdHNpIHwgNCArKy0tDQogMSBmaWxlIGNoYW5n
-ZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2FyY2gv
-YXJtL2Jvb3QvZHRzL2lteDZxZGwuZHRzaSBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZxZGwuZHRz
-aQ0KaW5kZXggYjNhNzdiYy4uNjY0ZjdiNSAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRz
-L2lteDZxZGwuZHRzaQ0KKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFkbC5kdHNpDQpAQCAt
-Njc1LDE0ICs2NzUsMTQgQEANCiAJCQkJY29tcGF0aWJsZSA9ICJmc2wsaW14NnEtd2R0IiwgImZz
-bCxpbXgyMS13ZHQiOw0KIAkJCQlyZWcgPSA8MHgwMjBiYzAwMCAweDQwMDA+Ow0KIAkJCQlpbnRl
-cnJ1cHRzID0gPDAgODAgSVJRX1RZUEVfTEVWRUxfSElHSD47DQotCQkJCWNsb2NrcyA9IDwmY2xr
-cyBJTVg2UURMX0NMS19EVU1NWT47DQorCQkJCWNsb2NrcyA9IDwmY2xrcyBJTVg2UURMX0NMS19J
-UEc+Ow0KIAkJCX07DQogDQogCQkJd2RvZzI6IHdkb2dAMjBjMDAwMCB7DQogCQkJCWNvbXBhdGli
-bGUgPSAiZnNsLGlteDZxLXdkdCIsICJmc2wsaW14MjEtd2R0IjsNCiAJCQkJcmVnID0gPDB4MDIw
-YzAwMDAgMHg0MDAwPjsNCiAJCQkJaW50ZXJydXB0cyA9IDwwIDgxIElSUV9UWVBFX0xFVkVMX0hJ
-R0g+Ow0KLQkJCQljbG9ja3MgPSA8JmNsa3MgSU1YNlFETF9DTEtfRFVNTVk+Ow0KKwkJCQljbG9j
-a3MgPSA8JmNsa3MgSU1YNlFETF9DTEtfSVBHPjsNCiAJCQkJc3RhdHVzID0gImRpc2FibGVkIjsN
-CiAJCQl9Ow0KIA0KLS0gDQoyLjcuNA0KDQo=
+
+--RbAp84Sx/Z5HOs1D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Fri, May 03, 2019 at 05:31:14PM +0800, Hsin-Hsiung Wang wrote:
+
+A few fairly minor things but mostly this looks good.
+
+> +static const u32 vcama1_voltages[] = {
+> +	1800000, 2500000, 2700000,
+> +	2800000, 2900000, 3000000,
+> +};
+
+> +static const u32 vcama2_voltages[] = {
+> +	1800000, 2500000, 2700000,
+> +	2800000, 2900000, 3000000,
+> +};
+> +
+
+These two tables look the same?
+
+> +static int mt6358_get_voltage_sel(struct regulator_dev *rdev)
+> +{
+> +	int idx, ret;
+> +	u32 selector;
+> +	struct mt6358_regulator_info *info = rdev_get_drvdata(rdev);
+> +	const u32 *pvol;
+> +
+> +	ret = regmap_read(rdev->regmap, info->desc.vsel_reg, &selector);
+> +	if (ret != 0) {
+> +		dev_info(&rdev->dev,
+> +			 "Failed to get mt6358 %s vsel reg: %d\n",
+> +			 info->desc.name, ret);
+> +		return ret;
+> +	}
+> +
+> +	selector = (selector & info->desc.vsel_mask) >> info->vsel_shift;
+> +	pvol = (const u32 *)info->index_table;
+> +	ret = -1;
+> +	for (idx = 0; idx < info->desc.n_voltages; idx++) {
+> +		if (pvol[idx] == selector) {
+> +			ret = idx;
+> +			break;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+
+I don't entirely understand what this is intended to do which suggests
+it could use some comments.  As far as I can tell it's looking up the
+hardware selector in a table and then using the index of the entry in
+that table as the selector in order to deal with a sparse set of
+selectors, is that right?  You should be able to handle this by having
+_list_voltage() return an error code for the invalid selectors though we
+don't have helpers for that yet as it's an unusual design.
+
+Also -1 is not a good return value in the case where you fail to do a
+mapping, use -EINVAL.
+
+> +	ret = regmap_read(rdev->regmap, info->da_vsel_reg, &regval);
+> +	if (ret != 0) {
+> +		dev_info(&rdev->dev,
+> +			 "Failed to get mt6358 Buck %s vsel reg: %d\n",
+> +			 info->desc.name, ret);
+> +		return ret;
+> +	}
+
+These error messages should be dev_err().
+
+--RbAp84Sx/Z5HOs1D
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzPq/oACgkQJNaLcl1U
+h9BktAf/aapG5sI3j3lduVVaxhPGb7OblQA1/rmv6rhzowc0XcjywrRfMMlL6sep
+mS9qN1bqSNfzF9jPmK9OZS012K04jHqCbDzeJ8tJbRdq1SXNO0KpIukzTaPghrsc
+I42t/n4iqmnDtVyHRlBmhIpzeeJPdghqNRL+Q0WnBFEAtCjMq3TBXasmbEqPNFBs
+zMZHo7/pfbBJfeNiVYj4Z9Fujt9G1cLEiG0386sgTZLt2GXC1tFk5nsh1Z7dJppa
+U+L2jM+HMVU9ylQcVEMzsJx//3eEQHBMvGL18tkGtjU8zWnYUpue/A4MKziwwRyI
+WXOx4oPTy0KypDnnAhOZhT12VM+D1g==
+=otJk
+-----END PGP SIGNATURE-----
+
+--RbAp84Sx/Z5HOs1D--
