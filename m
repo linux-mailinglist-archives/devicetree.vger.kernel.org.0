@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4768F1488A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BDD214890
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:49:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726340AbfEFKtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:49:13 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:45468 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725856AbfEFKtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:49:13 -0400
-Received: by mail-pg1-f194.google.com with SMTP id i21so6256654pgi.12
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:49:12 -0700 (PDT)
+        id S1726418AbfEFKtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 06:49:19 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:44170 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726327AbfEFKtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:49:18 -0400
+Received: by mail-pf1-f194.google.com with SMTP id y13so6543973pfm.11
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:49:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=y8299RwRcUp2oS13ZRZK7TA/HszNxbKnoI7RGJSnP08=;
-        b=lYP8wvoE19ZYmyOYZuDXJacfw4A1+502jqMeNzNiJgTCyc+IuOMjro6yztuhqU9C2K
-         Qc7qJbMc912ZkDQFYKSLGf3HOuEYDcRnsUVCpdRjLIZeOoV2Dg3icuVZz/jYVo2gaRVw
-         bUCD7F6VsxUV/Rm6A9ez5Nt1IMv3pJPJyRIFs+EPFxqT3wyVthFzDxLfiXhUY63lZejf
-         KSkBq/LbvZBxPBD3GBpBvwak7tT13Xv6rtjTqE4fpU7P5s+qZsJVneb5/Qv4IZ6t942K
-         /ny6byUOkjhK9Ce68vnHM0KVfEbZoKC49VZn/d0BGw39MhI/DTnbUf8cwFvreCYN5O15
-         WRrg==
+        bh=4HiK00SsH+pkXj3bib/Dm6kAutuvgEnhqs4fr0K5FLU=;
+        b=HBBrzPCSragWeqLw9VL5g2rPc893dEPb5/25+bvYb0NfgsSnBhRPWLzy93bqb9v5Nu
+         l4otNUX7cMdPP0jP0ra/us2VgV65r3hEJCv2fhjbzsOaQ3bDmlXU+o2BQtIwM/7/Uw97
+         fpOmLJDea6SvvwUNetEPGxtEz+8RM4P7glSNTy5GQszNWRXBkAe6sqLt5u3bxHIuLsI+
+         7i1jcjmjruWx0U//A83Iu3bGxR8PYoAZQlGHo9vS7EpOuuLHm+gKSBuDhIft9Vdf8dlZ
+         VJeTQu+dAvjr6wBoTSQhkMxRH8pxFUHCHSDp6yOjhTqbA1pp+NMzXmCG3smb5zZt32Ys
+         qLXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=y8299RwRcUp2oS13ZRZK7TA/HszNxbKnoI7RGJSnP08=;
-        b=N5l0Yb9IqfyM15mGTU25pfEfih992K1KzUOcrKRYxNqqjolH8PdUjAV8LOmKKswZB2
-         yBwfdhVwHOyOk6+MjYKt/IIZYfxmciJODXFmrGysDhHHnPkZigW85DVVqyLE9akHMmC+
-         H6heuzj8/ouyuWCYF/zPm5TgUa7eVA6JgI7GziXo3a8dVEKMC0QRqnS1YCaE0LphrKaD
-         ylSRBCCQL7mvJIghfccaTaQ/6zZsyflVnoCoeuxxnJ4OAcY1U81G4rM0CkHMci0aSDwa
-         Hri41r9Vpyy3kNZEqzw8YaNDEOieWtPM5G1TVNjOT1CdfOic1N8rqxaMB9dpw+B5ueGf
-         Y7LA==
-X-Gm-Message-State: APjAAAUNrXeiOKxLo43lr0stJ9QlUCoAe3vsZLXiV61qunGlPZLScpPW
-        vLuUd6xCz5K1LMpFsm/mE4AgOFZOSv0=
-X-Google-Smtp-Source: APXvYqx3bcXFZvHNp3BOLXeUXt0/2CVp+dpci37goTgDm1+WEAz/uPfvxVtLr+d0yHLCyi5ZM1OU0A==
-X-Received: by 2002:a63:c104:: with SMTP id w4mr30672242pgf.409.1557139752529;
-        Mon, 06 May 2019 03:49:12 -0700 (PDT)
+        bh=4HiK00SsH+pkXj3bib/Dm6kAutuvgEnhqs4fr0K5FLU=;
+        b=FVXPhY0jYeYpDsZh0yWP+KJrqyw4ntQib4Q0KjzHfBnvg1mbjsHeG2yLEwe1D9/KpB
+         oNjiOTPb9FkZUoKZOY3tCsiOcSFdODJXwID8BAoG5RJ9gyRtYlnbUCsenoAWqJcX8Y2f
+         VZ5ty1Db6U8hfJH8H+SPlVjlRPrlBRSqJWIgwmXuTXosUJLvaJ+vvX/Dk8HW/rw5xt7G
+         qG5dbAt6KZYqKwFt/T/Hp7Vx+W1FVn90YJM2UosLkKj7L7ZB5nQWL5FP2xkuEgXtLrXw
+         Pk00QFaa5vwPm0mSiIpGrnNZ6euMU9xhndMv9jnMrPEw3GwyEDOCy1Ba90L2yG8pFyNs
+         uLXg==
+X-Gm-Message-State: APjAAAU4Mz5kr0RPsrQCR5gMXNvzodTYHuxKMQxCp/JN2Y22F2+KISuZ
+        2rI4dSBWzeW1/5EQ88GWlv4Kow==
+X-Google-Smtp-Source: APXvYqxNsts953IiloKTJ1hJwytN2Sl6bspyUJk+Nr/Kky6yX9IBsXli/CNSxZWw3gSLYfzgdStgZQ==
+X-Received: by 2002:a62:a515:: with SMTP id v21mr32702376pfm.41.1557139757825;
+        Mon, 06 May 2019 03:49:17 -0700 (PDT)
 Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id p67sm21662257pfi.123.2019.05.06.03.49.08
+        by smtp.googlemail.com with ESMTPSA id p67sm21662257pfi.123.2019.05.06.03.49.13
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 06 May 2019 03:49:11 -0700 (PDT)
+        Mon, 06 May 2019 03:49:17 -0700 (PDT)
 From:   Yash Shah <yash.shah@sifive.com>
 To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         palmer@sifive.com
@@ -50,9 +50,9 @@ Cc:     paul.walmsley@sifive.com, linux-kernel@vger.kernel.org,
         aou@eecs.berkeley.edu, mark.rutland@arm.com, robh+dt@kernel.org,
         sachin.ghadi@sifive.com, afd@ti.com,
         Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH v3 1/2] RISC-V: Add DT documentation for SiFive L2 Cache Controller
-Date:   Mon,  6 May 2019 16:18:39 +0530
-Message-Id: <1557139720-12384-2-git-send-email-yash.shah@sifive.com>
+Subject: [PATCH v3 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller driver for SiFive SoCs
+Date:   Mon,  6 May 2019 16:18:40 +0530
+Message-Id: <1557139720-12384-3-git-send-email-yash.shah@sifive.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1557139720-12384-1-git-send-email-yash.shah@sifive.com>
 References: <1557139720-12384-1-git-send-email-yash.shah@sifive.com>
@@ -61,71 +61,233 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for SiFive FU540 L2 cache controller driver
+The driver currently supports only SiFive FU540-C000 platform.
+
+The initial version of L2 cache controller driver includes:
+- Initial configuration reporting at boot up.
+- Support for ECC related functionality.
 
 Signed-off-by: Yash Shah <yash.shah@sifive.com>
 ---
- .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 51 ++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+ arch/riscv/include/asm/sifive_l2_cache.h |  16 +++
+ arch/riscv/mm/Makefile                   |   1 +
+ arch/riscv/mm/sifive_l2_cache.c          | 175 +++++++++++++++++++++++++++++++
+ 3 files changed, 192 insertions(+)
+ create mode 100644 arch/riscv/include/asm/sifive_l2_cache.h
+ create mode 100644 arch/riscv/mm/sifive_l2_cache.c
 
-diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+diff --git a/arch/riscv/include/asm/sifive_l2_cache.h b/arch/riscv/include/asm/sifive_l2_cache.h
 new file mode 100644
-index 0000000..73d8f19
+index 0000000..04f6748
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
-@@ -0,0 +1,51 @@
-+SiFive L2 Cache Controller
-+--------------------------
-+The SiFive Level 2 Cache Controller is used to provide access to fast copies
-+of memory for masters in a Core Complex. The Level 2 Cache Controller also
-+acts as directory-based coherency manager.
-+All the properties in ePAPR/DeviceTree specification applies for this platform
++++ b/arch/riscv/include/asm/sifive_l2_cache.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * SiFive L2 Cache Controller header file
++ *
++ */
 +
-+Required Properties:
-+--------------------
-+- compatible: Should be "sifive,fu540-c000-ccache" and "cache"
++#ifndef _ASM_RISCV_SIFIVE_L2_CACHE_H
++#define _ASM_RISCV_SIFIVE_L2_CACHE_H
 +
-+- cache-block-size: Specifies the block size in bytes of the cache.
-+  Should be 64
++extern int register_sifive_l2_error_notifier(struct notifier_block *nb);
++extern int unregister_sifive_l2_error_notifier(struct notifier_block *nb);
 +
-+- cache-level: Should be set to 2 for a level 2 cache
++#define SIFIVE_L2_ERR_TYPE_CE 0
++#define SIFIVE_L2_ERR_TYPE_UE 1
 +
-+- cache-sets: Specifies the number of associativity sets of the cache.
-+  Should be 1024
++#endif /* _ASM_RISCV_SIFIVE_L2_CACHE_H */
+diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+index eb22ab4..1523ee5 100644
+--- a/arch/riscv/mm/Makefile
++++ b/arch/riscv/mm/Makefile
+@@ -3,3 +3,4 @@ obj-y += fault.o
+ obj-y += extable.o
+ obj-y += ioremap.o
+ obj-y += cacheflush.o
++obj-y += sifive_l2_cache.o
+diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
+new file mode 100644
+index 0000000..4eb6461
+--- /dev/null
++++ b/arch/riscv/mm/sifive_l2_cache.c
+@@ -0,0 +1,175 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * SiFive L2 cache controller Driver
++ *
++ * Copyright (C) 2018-2019 SiFive, Inc.
++ *
++ */
++#include <linux/debugfs.h>
++#include <linux/interrupt.h>
++#include <linux/of_irq.h>
++#include <linux/of_address.h>
++#include <asm/sifive_l2_cache.h>
 +
-+- cache-size: Specifies the size in bytes of the cache. Should be 2097152
++#define SIFIVE_L2_DIRECCFIX_LOW 0x100
++#define SIFIVE_L2_DIRECCFIX_HIGH 0x104
++#define SIFIVE_L2_DIRECCFIX_COUNT 0x108
 +
-+- cache-unified: Specifies the cache is a unified cache
++#define SIFIVE_L2_DATECCFIX_LOW 0x140
++#define SIFIVE_L2_DATECCFIX_HIGH 0x144
++#define SIFIVE_L2_DATECCFIX_COUNT 0x148
 +
-+- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
++#define SIFIVE_L2_DATECCFAIL_LOW 0x160
++#define SIFIVE_L2_DATECCFAIL_HIGH 0x164
++#define SIFIVE_L2_DATECCFAIL_COUNT 0x168
 +
-+- reg: Physical base address and size of L2 cache controller registers map
++#define SIFIVE_L2_CONFIG 0x00
++#define SIFIVE_L2_WAYENABLE 0x08
++#define SIFIVE_L2_ECCINJECTERR 0x40
 +
-+Optional Properties:
-+--------------------
-+- next-level-cache: phandle to the next level cache if present.
++#define SIFIVE_L2_MAX_ECCINTR 3
 +
-+- memory-region: reference to the reserved-memory for the L2 Loosely Integrated
-+  Memory region. The reserved memory node should be defined as per the bindings
-+  in reserved-memory.txt
++static void __iomem *l2_base;
++static int g_irq[SIFIVE_L2_MAX_ECCINTR];
 +
++enum {
++	DIR_CORR = 0,
++	DATA_CORR,
++	DATA_UNCORR,
++};
 +
-+Example:
++#ifdef CONFIG_DEBUG_FS
++static struct dentry *sifive_test;
 +
-+	cache-controller@2010000 {
-+		compatible = "sifive,fu540-c000-ccache", "cache";
-+		cache-block-size = <64>;
-+		cache-level = <2>;
-+		cache-sets = <1024>;
-+		cache-size = <2097152>;
-+		cache-unified;
-+		interrupt-parent = <&plic0>;
-+		interrupts = <1 2 3>;
-+		reg = <0x0 0x2010000 0x0 0x1000>;
-+		next-level-cache = <&L25 &L40 &L36>;
-+		memory-region = <&l2_lim>;
-+	};
++static ssize_t l2_write(struct file *file, const char __user *data,
++			size_t count, loff_t *ppos)
++{
++	unsigned int val;
++
++	if (kstrtouint_from_user(data, count, 0, &val))
++		return -EINVAL;
++	if ((val >= 0 && val < 0xFF) || (val >= 0x10000 && val < 0x100FF))
++		writel(val, l2_base + SIFIVE_L2_ECCINJECTERR);
++	else
++		return -EINVAL;
++	return count;
++}
++
++static const struct file_operations l2_fops = {
++	.owner = THIS_MODULE,
++	.open = simple_open,
++	.write = l2_write
++};
++
++static void setup_sifive_debug(void)
++{
++	sifive_test = debugfs_create_dir("sifive_l2_cache", NULL);
++
++	debugfs_create_file("sifive_debug_inject_error", 0200,
++			    sifive_test, NULL, &l2_fops);
++}
++#endif
++
++static void l2_config_read(void)
++{
++	u32 regval, val;
++
++	regval = readl(l2_base + SIFIVE_L2_CONFIG);
++	val = regval & 0xFF;
++	pr_info("L2CACHE: No. of Banks in the cache: %d\n", val);
++	val = (regval & 0xFF00) >> 8;
++	pr_info("L2CACHE: No. of ways per bank: %d\n", val);
++	val = (regval & 0xFF0000) >> 16;
++	pr_info("L2CACHE: Sets per bank: %llu\n", (uint64_t)1 << val);
++	val = (regval & 0xFF000000) >> 24;
++	pr_info("L2CACHE: Bytes per cache block: %llu\n", (uint64_t)1 << val);
++
++	regval = readl(l2_base + SIFIVE_L2_WAYENABLE);
++	pr_info("L2CACHE: Index of the largest way enabled: %d\n", regval);
++}
++
++static const struct of_device_id sifive_l2_ids[] = {
++	{ .compatible = "sifive,fu540-c000-ccache" },
++	{ /* end of table */ },
++};
++
++static ATOMIC_NOTIFIER_HEAD(l2_err_chain);
++
++int register_sifive_l2_error_notifier(struct notifier_block *nb)
++{
++	return atomic_notifier_chain_register(&l2_err_chain, nb);
++}
++EXPORT_SYMBOL_GPL(register_sifive_l2_error_notifier);
++
++int unregister_sifive_l2_error_notifier(struct notifier_block *nb)
++{
++	return atomic_notifier_chain_unregister(&l2_err_chain, nb);
++}
++EXPORT_SYMBOL_GPL(unregister_sifive_l2_error_notifier);
++
++static irqreturn_t l2_int_handler(int irq, void *device)
++{
++	unsigned int regval, add_h, add_l;
++
++	if (irq == g_irq[DIR_CORR]) {
++		add_h = readl(l2_base + SIFIVE_L2_DIRECCFIX_HIGH);
++		add_l = readl(l2_base + SIFIVE_L2_DIRECCFIX_LOW);
++		pr_err("L2CACHE: DirError @ 0x%08X.%08X\n", add_h, add_l);
++		regval = readl(l2_base + SIFIVE_L2_DIRECCFIX_COUNT);
++		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_CE,
++					   "DirECCFix");
++	}
++	if (irq == g_irq[DATA_CORR]) {
++		add_h = readl(l2_base + SIFIVE_L2_DATECCFIX_HIGH);
++		add_l = readl(l2_base + SIFIVE_L2_DATECCFIX_LOW);
++		pr_err("L2CACHE: DataError @ 0x%08X.%08X\n", add_h, add_l);
++		regval = readl(l2_base + SIFIVE_L2_DATECCFIX_COUNT);
++		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_CE,
++					   "DatECCFix");
++	}
++	if (irq == g_irq[DATA_UNCORR]) {
++		add_h = readl(l2_base + SIFIVE_L2_DATECCFAIL_HIGH);
++		add_l = readl(l2_base + SIFIVE_L2_DATECCFAIL_LOW);
++		pr_err("L2CACHE: DataFail @ 0x%08X.%08X\n", add_h, add_l);
++		regval = readl(l2_base + SIFIVE_L2_DATECCFAIL_COUNT);
++		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_UE,
++					   "DatECCFail");
++	}
++
++	return IRQ_HANDLED;
++}
++
++int __init sifive_l2_init(void)
++{
++	struct device_node *np;
++	struct resource res;
++	int i, rc;
++
++	np = of_find_matching_node(NULL, sifive_l2_ids);
++	if (!np)
++		return -ENODEV;
++
++	if (of_address_to_resource(np, 0, &res))
++		return -ENODEV;
++
++	l2_base = ioremap(res.start, resource_size(&res));
++	if (!l2_base)
++		return -ENOMEM;
++
++	for (i = 0; i < SIFIVE_L2_MAX_ECCINTR; i++) {
++		g_irq[i] = irq_of_parse_and_map(np, i);
++		rc = request_irq(g_irq[i], l2_int_handler, 0, "l2_ecc", NULL);
++		if (rc) {
++			pr_err("L2CACHE: Could not request IRQ %d\n", g_irq[i]);
++			return rc;
++		}
++	}
++
++	l2_config_read();
++
++#ifdef CONFIG_DEBUG_FS
++	setup_sifive_debug();
++#endif
++	return 0;
++}
++device_initcall(sifive_l2_init);
 -- 
 1.9.1
 
