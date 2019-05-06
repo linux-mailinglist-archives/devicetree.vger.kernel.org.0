@@ -2,51 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D66AA1455B
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 09:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 331A314565
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 09:38:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbfEFHho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 03:37:44 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:38904 "EHLO
+        id S1726449AbfEFHiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 03:38:02 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:38980 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725851AbfEFHho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 03:37:44 -0400
+        with ESMTP id S1726346AbfEFHhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 03:37:47 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=q/JBvH8ocBJRDInrHMuqhLFgpwZ/1CDyM2bB8iVm+1Q=; b=q3BZziWWw5XKK40iJ4F4q0pNq
-        dfknWEHZk0VDTavM7TFIgK8W83a1x2Jhf/nad0JPZHvS2CrDs1F/LC1i1ooIUM5Ot2pyhCIR+u+iS
-        /BAVmbNBb5ZCqqOeD4URO3C0CtFyV12sT/c8PNyDDimdJepfmASvb/MM3dLJMH/eQPrPE=;
+         bh=tHEGQ9oW3tTgBWCAOeQCOTnFuPn94mh9AkAln7vInY4=; b=l7fNRNLCq2MIuMeUy6SV4mr7n
+        1qpPp/FUVJ51Os8GeDRVf7F5aguVa/b0irPfvM9G/cW6+FEzAtdo798HVEHAhauYXY8UsPSnZQSRL
+        tJ1EDC287NTk/V18FW2MzFdOSlzo/2DhR2TkqiYxz8p9y7lM+asUSwmonZ5IO7jxu/sL8=;
 Received: from kd111239184067.au-net.ne.jp ([111.239.184.67] helo=finisterre.ee.mobilebroadband)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hNYBs-0000s6-Az; Mon, 06 May 2019 07:37:36 +0000
+        id 1hNYBx-0000rz-7U; Mon, 06 May 2019 07:37:42 +0000
 Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
-        id CB81D440034; Mon,  6 May 2019 05:38:09 +0100 (BST)
-Date:   Mon, 6 May 2019 13:38:09 +0900
+        id 5653E44003B; Mon,  6 May 2019 05:44:25 +0100 (BST)
+Date:   Mon, 6 May 2019 13:44:25 +0900
 From:   Mark Brown <broonie@kernel.org>
-To:     Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, vinod.koul@linaro.org,
-        niklas.cassel@linaro.org, khasim.mohammed@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/3] drivers: regulator: qcom: add PMS405 SPMI regulator
-Message-ID: <20190506043809.GL14916@sirena.org.uk>
-References: <a3c281d5-d30e-294f-71ab-957decde2ba0@linaro.org>
- <20190502023316.GS14916@sirena.org.uk>
- <dd15d784-f2a1-78c6-3543-69bbcc1143c4@linaro.org>
- <20190503062626.GE14916@sirena.org.uk>
- <229823c4-f5d4-4821-ded1-cc046dd0bd20@linaro.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Timo Alho <talho@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH V3 5/9] spi: export spi core function spi_set_cs
+Message-ID: <20190506044425.GN14916@sirena.org.uk>
+References: <1555363834-32155-1-git-send-email-skomatineni@nvidia.com>
+ <1555363834-32155-6-git-send-email-skomatineni@nvidia.com>
+ <20190419151823.GS2803@sirena.org.uk>
+ <BYAPR12MB3398D133D1C71355BC530754C2390@BYAPR12MB3398.namprd12.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Ahst0DKxuyFxAqHk"
+        protocol="application/pgp-signature"; boundary="UIkw8Cc2/Xz5YwHB"
 Content-Disposition: inline
-In-Reply-To: <229823c4-f5d4-4821-ded1-cc046dd0bd20@linaro.org>
+In-Reply-To: <BYAPR12MB3398D133D1C71355BC530754C2390@BYAPR12MB3398.namprd12.prod.outlook.com>
 X-Cookie: -- I have seen the FUN --
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
@@ -55,55 +60,63 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Ahst0DKxuyFxAqHk
+--UIkw8Cc2/Xz5YwHB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 03, 2019 at 10:29:42AM +0200, Jorge Ramirez wrote:
-> On 5/3/19 08:26, Mark Brown wrote:
-> > On Thu, May 02, 2019 at 01:30:48PM +0200, Jorge Ramirez wrote:
+On Mon, Apr 29, 2019 at 10:02:46PM +0000, Sowjanya Komatineni wrote:
 
-> > It seems a bit of a jump to add a new driver - it's just another
-> > descriptor and ops structure isn't it?  Though as ever with the Qualcomm
-> > stuff this driver is pretty baroque which doesn't entirely help though I
-> > think it's just another regulator type which there's already some
-> > handling for.
+Please fix your mail client to word wrap within paragraphs at something
+substantially less than 80 columns.  Doing this makes your messages much
+easier to read and reply to.
 
-> So how do we move this forward?
+> > On Mon, Apr 15, 2019 at 02:30:30PM -0700, Sowjanya Komatineni wrote:
+> > > This patch exports spi_set_cs of the spi core to allow SPI masters to=
+=20
+> > > use when gpio based chip select is needed.
 
-> To sum up his regulator needs to be able to bypass accesses to
-> SPMI_COMMON_REG_VOLTAGE_RANGE and provide the range in some other way
-> hence the change below
+> > This isn't really what I meant when I said it'd be good to use the
+> > core GPIO code - this function doesn't do a huge amount really and
+> > the usage of it in your subsequent patch for the > driver isn't
+> > exactly joined up with the little it does (which is mainly swapping
+> > in the GPIO chip select instead of the hardware chip select) isn't
+> > used in your driver usage of this as far as I can see.  The bulk of
+> > the chip select handling code in the core is actually in
+> > transfer_one_message() which your driver doesn't use as it's got
+> > it's own implementation of that; I've not looked in enough detail to
+> > figure out if it could use it.
 
-> I can't find a simpler solution than this since the function does now
-> what is supposed to do for all the regulator types supported in the driver
+> In SPI Tegra driver, we wanted to have GPIO based CS control when
+> cs-gpios is specified in parallel to HW/SW CS. Having parallel GPIO
+> based CS is to mimic some of the timing stuff that's needed for some
+> spi devices by not actually using HW CS on platform but only for SPI
+> HW design logic inside the chip.
 
-The assumption that you need to have this regulator use functions that
-use and provide ranges is the very thing I'm trying to get you to
-change.  It looks like these regulators just need their own
-set_voltage_sel() and get_voltage_sel() then they can use the standard
-linear range mapping functions (and pobably the set_voltage_time_sel()
-needs fixing anyway for all the other regulators).
+> Tegra spi driver don't use set_cs callback so looking into spi_set_cs
+> from spi core implementation when cs-gpios property is used it exactly
+> the same that is needed for GPIO control CS. So used this in V3.=20
 
-There's already some conditional code in the probe function for handling
-different operations for the over current protection and SAW stuff, this
-looks like it should fit in reasonably well.  Usually this would be even
-easier as probe functions are just data driven but for some reason more
-than usual of this driver's data initializaiton is done dynamically.
+> Can you please provide more details on what you are suggesting?
+> Do you prefer not to use SPI core spi_set_cs and gpio_set_values APIs
+> and instead implement in tegra SPI driver using GPIO descriptors ?
 
---Ahst0DKxuyFxAqHk
+You're probably best open coding in the driver if there's value in using
+the hardware chip select.
+
+--UIkw8Cc2/Xz5YwHB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzPujEACgkQJNaLcl1U
-h9AkRwf9GK2o9cZ1OLFJrB/8tsboZ5JASZWrWkJyQhXcVyS0lEb46C0dmGfdx0QC
-K7zSOESXrHeOCwevpiCnlpBRtc8pP4raU2rWA4VgE7c7zASR2CITmJOpBDyAkZ6z
-lLSC2Tj++glpX0avpR3ySlj0jPOSi2J5Ya3J8Waa3FQZmACUOuSBWRwidw27JZqE
-2ya2yxvRLHvqy8CFqTXPgW2tOnI++sKwNsbJj7dKSjCHPT4NjALwGHGevcSlxYvn
-z21RkjOTzCm2jtUPphaEbecZW1MJzcjX+lJD7Io0e3tVveT5RUhX2Vd0IbPzyXGp
-s5taJbNKU1udzdqgETiAHg711RKazw==
-=ojFG
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzPu6YACgkQJNaLcl1U
+h9DM0Qf7Bykvbj1t4ndVRPemN1ZjRrYC94F5FOwPPHuLYIIFawPR0xupsoIwdZPi
+b9rbj7/L3dNBHHO+gjkDEQLYC++gMNJnL5bSo2AA8cz/qJhVqzMS0nu+F6Fgofup
+jwo4IWbjxYPAJWqrjWFj6Y79h+cXTmu+lcOiEnHoEjuqjxNH5fWJXqLrDYe7irOJ
+ST8QQXWtz2T1A9BfvWzZ56NFlieoOR+vKQFZZjwYzS7irq+F9LqT5Q/VKNQOvExL
+SLu4ZnMlPuZQBkOxFqtr8yve31kkxhyFfUrvhKCBwAHKzg+dt3Aop+gkbwJCeEEJ
+tuLSjnUOUENVdEKWAwHEj4DdEcXH7Q==
+=C76I
 -----END PGP SIGNATURE-----
 
---Ahst0DKxuyFxAqHk--
+--UIkw8Cc2/Xz5YwHB--
