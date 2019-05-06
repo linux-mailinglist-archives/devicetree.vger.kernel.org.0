@@ -2,177 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EEFF14807
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3894F1480F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbfEFKBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:01:10 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:36493 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725883AbfEFKBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:01:10 -0400
-Received: from [IPv6:2001:983:e9a7:1:94cb:c5ca:b4e:5bdf] ([IPv6:2001:983:e9a7:1:94cb:c5ca:b4e:5bdf])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id NaQkhMRU0NExlNaQlhxwoc; Mon, 06 May 2019 12:01:07 +0200
-Subject: Re: [PATCH v6 01/13] dt-bindings: connector: analog: add tv norms
- property
-To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org
-Cc:     laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Rob Herring <robh@kernel.org>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-2-m.felsch@pengutronix.de>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <9989034f-4794-adba-d89c-8330bbf7b27f@xs4all.nl>
-Date:   Mon, 6 May 2019 12:01:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1725861AbfEFKCy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 6 May 2019 06:02:54 -0400
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:39622 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725856AbfEFKCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:02:54 -0400
+Received: by mail-ua1-f65.google.com with SMTP id v7so2131917ual.6;
+        Mon, 06 May 2019 03:02:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9NwW6JuaCHRbk9iHlaDnZmYNT9j+qr4OHyLgmonq1CA=;
+        b=ReHcnQ/oRloUAIJYAZkUX4XzVk33uDyaf/VrZzYyvPN57Sfsofi/dMSDLr1mjAwmkx
+         1FBtLX6YDrx9CVCz1qxJkQwqeJH37EgD20Pe1gHLO7ybe/hzSFO6A69GrcNAWR4S7mgy
+         sWACiZ98et/1LRP5X0aRiSh976tiyVHITNZ0KxK+FF5JDkASgxbJUv6oZT81v44qk+7U
+         FCS1grbVQ8IC/ogDqX2W7UiY+QVgp6I4AqEx+apuss0iOSJUqnCU2+r8IOtI9OGFy+yx
+         rLHA0aVSwZRcO0lcIxIUp/V8esnQd1tpgrcODVfstzCbZXES4uBOIB9CaxiwtqcYvHzz
+         fRyQ==
+X-Gm-Message-State: APjAAAVJnJTHjXa26U2Tsmc4PSyuSc9ZNyWaRSh0UXZsN+gAuA1kiG8l
+        R6BSvXeWRqd4AFd8XGDJMQvMVPa2OoFW3ob1dVg=
+X-Google-Smtp-Source: APXvYqxk8z6V0eseA0bkbJ6PN020DcYv39FKIEIUOAix6BDdYJy+oQyhqSZ/ddanAGl+CLZR8FMgIFqRH0yLvnsftFw=
+X-Received: by 2002:a9f:352a:: with SMTP id o39mr12388154uao.78.1557136972908;
+ Mon, 06 May 2019 03:02:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190415124413.18456-2-m.felsch@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfHVAwXQwGIyKPnPdPVut+WatJT53qt0kLayNNf75LohAtSjLxv7VMeWXwv8FQn756S66YL6P/pvgMFCZRYDrlT0xiDPvXbd/DegZVILI5uzoZmKUpnJi
- t2PCrsaKcnIligL047HwmyPvijQ//ofYrLuOTD/Juq3PGLfNiwnKVRjBFXhuB9ZIkbZziveILda9wY2FUxY8AVCIA2TnzaDzikvIE2BEWpESI+8p4eSwVRGS
- bBNqmjasNtxK8VEtaG7X8tT2zMr0UdzSggKdd7UXuqT7SQB/jM0R9gMf1vvYI3VVnqKj7Uno1qfRBcKxpYyazS4XqBfKeRASMygPu6OsHUQ5kXCGuLNbFQ8o
- vhlFGpLZI7XnDxbPGCApGERJtuTPLdBkXM5xfyZLTlLrufJsXMpDJmzSLGad7WlXu6IcrdVQKFHDJojBdn32dVkbJzh+Q5Y6IQ5s9EyyjAeTW5UQxVPb+qZF
- q8qzFLitsONmWCHMjiDKSLndBHhzLhomi6qMKifoot0yAsQZW5KDk4qkqZSh9/ePBOtUDcijWYBf9VTTR7/Znzo5Q3I7v9XOZOuVvAzS/6rCgKV3IjzBVr1I
- GX0drWwfEFhCxTpDgNJcuLPsMybEgxOEKkITnnvcZRECtw==
+References: <20190504004258.23574-1-erosca@de.adit-jv.com> <20190504004258.23574-3-erosca@de.adit-jv.com>
+In-Reply-To: <20190504004258.23574-3-erosca@de.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 May 2019 12:02:41 +0200
+Message-ID: <CAMuHMdWnuvQvugqfMjE1R_QDvf-Pma8POb1x5YjRr97+M-=HHg@mail.gmail.com>
+Subject: Re: [PATCH 2/6] Revert "arm64: dts: renesas: r8a7796: Enable DMA for SCIF2"
+To:     Eugeniu Rosca <roscaeugeniu@gmail.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "George G . Davis" <george_davis@mentor.com>,
+        Andy Lowe <andy_lowe@mentor.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Michael Rodin <mrodin@de.adit-jv.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/15/19 2:44 PM, Marco Felsch wrote:
-> Some connectors no matter if in- or output supports only a limited
-> range of tv norms. It doesn't matter if the hardware behind that
-> connector supports more than the listed formats since the users are
-> restriced by a label e.g. to plug only a camera into this connector
-> which uses the PAL format.
+Hi Eugeniu,
 
-For S-Video and Composite connectors there are really just two formats
-to consider: 50 and 60 Hz. I.e. there is no difference between PAL
-and SECAM. Only for tuners/modulators does this matter.
+Thanks for your report!
 
-So it is a good idea to add TVNORM_525_60, TVNORM_625_50 to tvnorms.h.
+On Sat, May 4, 2019 at 2:45 AM Eugeniu Rosca <roscaeugeniu@gmail.com> wrote:
+> This reverts commit 97f26702bc95b5c3a72671d5c6675e4d6ee0a2f4.
+>
+> Here is the story behind this revert.
+>
+> Mainline commit [0] landed in the stable tree as commit [1], from where
+> it reached us in the form of regular stable update. After that, Michael
+> started to report occasional (30-50%) freezes of serial console on
+> booting M3-ES1.1-Salvator-XS. Same happened on M3-ES1.1-Salvator-X.
+>
+> Every time the issue occurs, the serial console outputs below [2]
+> before becoming totally unresponsive and printing nothing else:
+>   rcar-dmac e7300000.dma-controller: Channel Address Error
+>
+> Git bisecting shows that the problem is contributed by commits [0-1].
+>
+> While we can't be 100% certain (since we don't have the SCIF design docs
+> revealing its internal implementation detail) we think there is plenty
+> of evidence to assume that DMA is not supported on SCIF2, hence should
+> stay disabled on this specific channel:
+>
+>  - Excerpt from Chapter 17. Direct Memory Access Controller for System
+>    (SYS-DMAC) of R19UH0105EJ0150 Rev.1.50:
+>    ---------8<---------
+>    [H3, H3-N, M3-W, V3M, V3H, D3, M3-N, E3]
+>    The following modules can issue on-chip peripheral module requests.
+>    [..] HSCIF0/1/2/3/4, [..] SCIF0/1/3/4/5,
+>    ---------8<---------
+>
+>  - Excerpt from RENESAS_RCH3M3M3NE3_SCIF_UME_v2.00.pdf (Yocto v3.15.0):
+>    ---------8<---------
+>    DMA Transfer:
+>    - Support: SCIF0, SCIF1, SCIF3, SCIF4, SCIF5
+>    - Not support: SCIF2
+>    ---------8<---------
 
-In the various bindings examples I would recommend that you use
-TVNORM_525_60 or TVNORM_625_50 rather than e.g. PAL_M since that's what
-you would use in practice for Composite/S-Video.
+>  - Disabled SCIF2 DMA in official Renesas v4.9/v4.14 kernels, e.g. see:
+>    https://git.kernel.org/pub/scm/linux/kernel/git/horms/renesas-bsp.git/commit/?id=e79c418fda8c
 
-Regards,
+Table 17.5 ("Selecting On-Chip Peripheral Module Request Modes") of
+"R-Car Series, 3rd Generation User’s Manual: Hardware" gained entries
+for SCIF2 in Revision 1.50 of the document, but it seems 17.1.1
+("Features") and Table 17.6 ("Data Length of DMA Transfer for Each of
+the On-Chip Peripheral Modules") were forgotten to be updated.
+The addition of the entry for SCIF2 is also mentioned in "Renesas
+Technical Update  TN-RCT-S019A/E / R-Car M3-W Additional Explanation for
+Direct Memory Access Controller for System (SYS-DMAC)".
+Unfortunately both documents report wrong MID/RID values, due to a
+hexadecimal vs. decimal mistake, which were corrected in the Feb 12
+errata for Rev. 1.50.
 
-	Hans
+So in my understanding, and according to my testing, DMA has always
+worked for SCIF2 on (at least) R-Car H3 ES1.0/2.0, M3-W, and M3-N.
+However, early firmware versions (before IPL and Secure Monitor
+Rev1.0.6, released on Feb 25, 2016) prohibited the use of SYS-DMAC2,
+cfr. commit eb21089c32054ecd ("arm64: dts: renesas: r8a7795: Add missing
+SYS-DMAC2 dmas").
 
-> 
-> This patch adds the capability to describe such limitation within the
-> firmware. There are no format restrictions if the property isn't
-> present, so it's completely backward compatible.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> [1] https://patchwork.kernel.org/cover/10794703/
-> 
-> v6:
-> - tvnorms.h: use tabs instead of spaces
-> - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
-> - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
-> 
-> v2-v4:
-> - nothing since the patch was squashed from series [1] into this
->   series.
-> 
->  .../display/connector/analog-tv-connector.txt |  4 ++
->  include/dt-bindings/media/tvnorms.h           | 56 +++++++++++++++++++
->  2 files changed, 60 insertions(+)
->  create mode 100644 include/dt-bindings/media/tvnorms.h
-> 
-> diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> index 0c0970c210ab..346f8937a0b7 100644
-> --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> @@ -6,6 +6,9 @@ Required properties:
->  
->  Optional properties:
->  - label: a symbolic name for the connector
-> +- tvnorms: limit the supported tv norms on a connector to the given ones else
-> +           all tv norms are allowed. Possible video standards are defined in
-> +           include/dt-bindings/media/tvnorms.h.
->  
->  Required nodes:
->  - Video port for TV input
-> @@ -16,6 +19,7 @@ Example
->  tv: connector {
->  	compatible = "composite-video-connector";
->  	label = "tv";
-> +	tvnorms = <(TVNORM_PAL_M | TVNORM_NTSC_M)>;
->  
->  	port {
->  		tv_connector_in: endpoint {
-> diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
-> new file mode 100644
-> index 000000000000..058ab8414145
-> --- /dev/null
-> +++ b/include/dt-bindings/media/tvnorms.h
-> @@ -0,0 +1,56 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
-> +/*
-> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
-> +#define _DT_BINDINGS_MEDIA_TVNORMS_H
-> +
-> +/* one bit for each */
-> +#define TVNORM_PAL_B		0x00000001
-> +#define TVNORM_PAL_B1		0x00000002
-> +#define TVNORM_PAL_G		0x00000004
-> +#define TVNORM_PAL_H		0x00000008
-> +#define TVNORM_PAL_I		0x00000010
-> +#define TVNORM_PAL_D		0x00000020
-> +#define TVNORM_PAL_D1		0x00000040
-> +#define TVNORM_PAL_K		0x00000080
-> +
-> +#define TVNORM_PAL		(TVNORM_PAL_B  | \
-> +				 TVNORM_PAL_B1 | \
-> +				 TVNORM_PAL_G  | \
-> +				 TVNORM_PAL_H  | \
-> +				 TVNORM_PAL_I  | \
-> +				 TVNORM_PAL_D  | \
-> +				 TVNORM_PAL_D1 | \
-> +				 TVNORM_PAL_K)
-> +
-> +#define TVNORM_PAL_M		0x00000100
-> +#define TVNORM_PAL_N		0x00000200
-> +#define TVNORM_PAL_Nc		0x00000400
-> +#define TVNORM_PAL_60		0x00000800
-> +
-> +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
-> +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
-> +#define TVNORM_NTSC_443		0x00004000
-> +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
-> +
-> +#define TVNORM_SECAM_B		0x00010000
-> +#define TVNORM_SECAM_D		0x00020000
-> +#define TVNORM_SECAM_G		0x00040000
-> +#define TVNORM_SECAM_H		0x00080000
-> +#define TVNORM_SECAM_K		0x00100000
-> +#define TVNORM_SECAM_K1		0x00200000
-> +#define TVNORM_SECAM_L		0x00400000
-> +#define TVNORM_SECAM_LC		0x00800000
-> +
-> +#define TVNORM_SECAM		(TVNORM_SECAM_B  | \
-> +				 TVNORM_SECAM_D  | \
-> +				 TVNORM_SECAM_G  | \
-> +				 TVNORM_SECAM_H  | \
-> +				 TVNORM_SECAM_K  | \
-> +				 TVNORM_SECAM_K1 | \
-> +				 TVNORM_SECAM_L  | \
-> +				 TVNORM_SECAM_LC)
-> +
-> +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
-> 
+Perhaps some firmware versions may impose additional restrictions?
 
+> Based on the issues generated by [0-1] (reproduced on H3, M3 and M3N)
+> and the doc statements presented above, we think it makes sense to
+> disable DMA on SCIF2 for most/all R-Car3 SoCs.
+>
+> [0] v5.0-rc6 commit 97f26702bc95b5 ("arm64: dts: renesas: r8a7796: Enable DMA for SCIF2")
+> [1] v4.14.106 commit 703db5d1b1759f ("arm64: dts: renesas: r8a7796: Enable DMA for SCIF2")
+> [2] scif (DEBUG) and rcar-dmac logs:
+>     https://gist.github.com/erosca/132cce76a619724a9e4fa61d1db88c66
+
+I have checked my kernel logs, and found a few instances of "Channel
+Address Error".  In all cases, I had enabled/added extra debug prints in
+the sh-sci driver, which may have had impact.
+Last occurrence was in a kernel based on v4.18-rc2, which predates
+several recent fixes for the sh-sci and rcar-dmac drivers.
+Can the issue be reproduced on current mainline?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
