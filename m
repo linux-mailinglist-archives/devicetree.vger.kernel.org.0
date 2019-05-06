@@ -2,48 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1991114819
+	by mail.lfdr.de (Postfix) with ESMTP id AF4321481A
 	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726220AbfEFKFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:05:47 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:44124 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725856AbfEFKFr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:05:47 -0400
-Received: by mail-pf1-f193.google.com with SMTP id y13so6485793pfm.11
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:05:46 -0700 (PDT)
+        id S1726118AbfEFKFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 06:05:52 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:37650 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726304AbfEFKFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:05:51 -0400
+Received: by mail-pl1-f195.google.com with SMTP id z8so6133219pln.4
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:05:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PzJC2cGnv4guPyK0TH8rxdCNy91Y2MqZHMVt0Hj1UZg=;
-        b=NL1GyKgbriLVakxOq1jPwdxkfiGtpgzEVVNcaaGHD2TRfHVkTxbpCyNV/1ywD9Jw5w
-         yfbKzH10+nSa4f1w868NzXQMhVjbjmb9hcWAJs2OIuuLBlApd7pU5kTD2U/5l0YSzSBm
-         T2si2DEKppfFDmics//fwthVrvWKMnT78xAG1Wvz/uAfRWN9q7+0TPNvG6ZTgCFIVNae
-         Iwc+ttvFGJj/N6XC7LZdcgBXrXblJ+kJdiJ4ZQo3uxX+qz7h956lAdwSK8YtWglHxHVs
-         eRA9iqWc8ouN3gnGRhDk9I0VAD/2YnJbslPtEv+zv0seh2Oryf5aakf1VOhaRLdQp6Bf
-         /BXA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=J11CAk6hX0rsSVl1UifJnPX7sfZSPwS6EsqX4Zx/yUk=;
+        b=kaM5lSuLI0FV3PRZ8stKKlOCGIigBQ3ofdGJObwDHHSCL5UEwGsdcoi3yhbvo6H/5K
+         ZIBp/fx/ZM9jarokbi4rfhTl4Skw9U5+/R9qFky+M3PdsEOYnGSaJXlrOZefGTweIRIS
+         IK/Nm56I3yTXFWjf3St7nh87hpkbs/X2CHfqmE0kDWIhIkuY6gTQdVZWLTgbiM07MXJR
+         Qt8Lq93vAC86lCeyQjRjUu9vs4reNp0Kcrw1V70NYG4IkpRGqX27lvJCN4b5dAOCQDds
+         jyxaFs3H8ep+9+Kp4cjj5sxxQm0pcB/T977glnoYh22pxFsCyq61z3UEAgvPS9Xg129Y
+         bvmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PzJC2cGnv4guPyK0TH8rxdCNy91Y2MqZHMVt0Hj1UZg=;
-        b=d2Yrjxm9QYdQK5EckRayte7S1+FtHNpOhxkylFhjT05ybNffT6gS53jiEWUb7BJnm1
-         IA/pnV80nFVpM5UDoLtzinoKFVfIkIoj14iLh648oLPxNXhdoNz5vm48mGa3PZO0CeZ6
-         RQ1ZjufQ+eONqsdDgJpAEnA3znsJBsMpKrrPLYgjAppxiNkaYHowlfULlCSHCTq8SdUU
-         tL8YHeAMiYWvWHNjidRTpyBHVEQcrZqH+3y/fJ6lDOysZiBB4X5C50WoM/Wqkl58XOiy
-         JC82r+9g4wwz+llxzBeJvjsO3HPQZSn6mHJ3yNvwBwcjK702i7U6RumYoM3G3on3egOy
-         Z9Hw==
-X-Gm-Message-State: APjAAAVrq1aKjiek7WzmCLXkJZ3E7ohkKkJ/yaJBI+bF5y7yTXC9qyqg
-        4Ckg2ZyAQoys74sm4SDipEGr
-X-Google-Smtp-Source: APXvYqz0D0CtKqL3bIVtaE3Zyo+/xiVoozF07VaHqELDfSxUqbd9yW66ihVnrA16JSi02lR98iLN2Q==
-X-Received: by 2002:a62:3684:: with SMTP id d126mr31872502pfa.70.1557137146052;
-        Mon, 06 May 2019 03:05:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=J11CAk6hX0rsSVl1UifJnPX7sfZSPwS6EsqX4Zx/yUk=;
+        b=F7ZYE1tKSbGXM8SMc0WHXe5IwLv+NqwmaFeQLVm1qaVYyyGPcYp/H4l+Jqzd2C1CWg
+         RpJKs9CUpdqK+M9yC1eL1mslmah4M3hkLxc8UyEk5k+1sCbV3SVSw+vOPRooxDQQ9r2a
+         yAQo8rG7nXvVpo1gVET/DmAMLmKtXBfq8XM+SWCsWSasrd/mwA/ckpaVHisfbuCqU66j
+         G3w4M63qEduss78NW/RCkNg7Btki+7v2v7uxSv7X/6YQxoluJlASQBKRYFH9GacjdYlS
+         dFbs7zW3NVml/+4y/lKsKa7UZUOwexlAXKPrqul39PsVlpFlLfjkw069MnqWG10iWLSz
+         YDpg==
+X-Gm-Message-State: APjAAAVHV4QDnqNaHpSSHVf0IpL1XdzVKoGhs3Z8m5nO3DYmPA6MQVO7
+        tGZ2T8spBntqv1a6YO/7ojux
+X-Google-Smtp-Source: APXvYqz3YRJ9CGw5YQkYfcQtat0QM4RY2d72UCJBxq6uSXcYbbBu1tSi1wsMToVYUR4UT9LkO41+QQ==
+X-Received: by 2002:a17:902:be09:: with SMTP id r9mr31239391pls.215.1557137151415;
+        Mon, 06 May 2019 03:05:51 -0700 (PDT)
 Received: from localhost.localdomain ([2409:4072:611b:55a4:e119:3b84:2d86:5b07])
-        by smtp.gmail.com with ESMTPSA id c137sm16229653pfb.154.2019.05.06.03.05.41
+        by smtp.gmail.com with ESMTPSA id c137sm16229653pfb.154.2019.05.06.03.05.46
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 06 May 2019 03:05:45 -0700 (PDT)
+        Mon, 06 May 2019 03:05:50 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
         robh+dt@kernel.org
@@ -51,62 +50,38 @@ Cc:     linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, loic.pallardy@st.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 0/3] Add Avenger96 board support
-Date:   Mon,  6 May 2019 15:35:31 +0530
-Message-Id: <20190506100534.24145-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 1/3] dt-bindings: arm: stm32: Document Avenger96 devicetree binding
+Date:   Mon,  6 May 2019 15:35:32 +0530
+Message-Id: <20190506100534.24145-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190506100534.24145-1-manivannan.sadhasivam@linaro.org>
+References: <20190506100534.24145-1-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Document devicetree binding for Avenger96 board.
 
-This patchset adds Avenger96 board support. This board is one of the
-Consumer Edition boards of the 96Boards family from Arrow Electronics
-featuring STM32MP157A MPU and has the following features:
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/stm32/stm32.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-SoC: STM32MP157AAC
-PMIC: STPMIC1A
-RAM: 1024 Mbyte @ 533MHz
-Storage: eMMC v4.51: 8 Gbyte
-         microSD Socket: UHS-1 v3.01
-Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
-Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
-          Bluetooth®v4.2 (BR/EDR/BLE)
-USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
-Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
-LED: 4x User LED, 1x WiFi LED, 1x BT LED
-
-More information about this board can be found in 96Boards website:
-https://www.96boards.org/product/avenger96/
-
-Thanks,
-Mani
-
-Changes in v2:
-
-As per Alex's review:
-
-* Fixed I2C2 pinctrl node
-* Sorted the avenger96 dtb in alphabetical order
-* Added device-type property to memory node
-
-Manivannan Sadhasivam (3):
-  dt-bindings: arm: stm32: Document Avenger96 devicetree binding
-  ARM: dts: stm32mp157: Add missing pinctrl definitions
-  ARM: dts: Add Avenger96 devicetree support based on STM32MP157A
-
- .../devicetree/bindings/arm/stm32/stm32.txt   |   6 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/stm32mp157-pinctrl.dtsi     |  75 ++++
- arch/arm/boot/dts/stm32mp157a-avenger96.dts   | 321 ++++++++++++++++++
- 4 files changed, 403 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157a-avenger96.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.txt b/Documentation/devicetree/bindings/arm/stm32/stm32.txt
+index 6808ed9ddfd5..eba363a4b514 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/stm32.txt
++++ b/Documentation/devicetree/bindings/arm/stm32/stm32.txt
+@@ -8,3 +8,9 @@ using one of the following compatible strings:
+   st,stm32f746
+   st,stm32h743
+   st,stm32mp157
++
++Boards:
++
++Root node property compatible must contain one of below depending on board:
++
++ - Avenger96: "arrow,stm32mp157a-avenger96"
 -- 
 2.17.1
 
