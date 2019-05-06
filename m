@@ -2,457 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D7E614800
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EEFF14807
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726319AbfEFKAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:00:51 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:46884 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725981AbfEFKAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:00:51 -0400
-Received: by mail-pf1-f193.google.com with SMTP id j11so6465499pff.13
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:00:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=hBDl7NnVQt4qmeDKNuZ2UFclnyvvaBtqOvFKPVP/fjY=;
-        b=YJ9nJH6saLyMDqEiAIulG/3IBXgJ092UdbUeoaJQFuFFdkOn76AJN7PRI+eX0IpQ8i
-         26wn84LyC5SDuKlrPFztni2Af3Vff9tt3u6VfEC0Kvfbh1k/cUxnsyWa7Z0Up7yBHRyt
-         f2U83IgdSWcjE3mskkrSkxIPIB968EnlafTIMNPqkpUw1jqc81roPAG2FIfBHK5h8OC7
-         hFVsMVW4WDSE5IvvS3PJvMTXkFVB+udYQXzdIHBDn/EVeTUzvncTqyimH9/08ye2fK9l
-         w7hkkTWTUCxYf6NOGjw5CPSPaKmkKjjRHVn3U1S5Bbi1KFKfHQJMW/ZOk/mmrzH2i+C7
-         7tDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=hBDl7NnVQt4qmeDKNuZ2UFclnyvvaBtqOvFKPVP/fjY=;
-        b=Zw1TwLvDPpzve7MZ8q0NndvUc/XqZmUFS0mz6UenY/xj3AuuFrEKbNBCuaoo+UPLS0
-         MM1/o9EpqJVmkfE8FwQ9SApPsqzo/shLWYwVaNOMtdGbUJRag/DjZKr2KAf4uezEnx5N
-         Yt49nX6XyI2z+Y8fGenecEsTDc1g6jR1F8GI22r/WfnU47itUM6KF8DBccJXQ0QXAz4C
-         ys6Q6Fb2F+OWh4MJL3CEbXq6GycSf5RbCWVzeTG0wDkzGdLFuPa1nVAba71Y0nDzndvi
-         /XEzoVJTTFDmx196GMWJe/CTRnFzdI6cAKtjoDHW//37m8R2BcwQrxUNGYyxZPyjwAmZ
-         43CA==
-X-Gm-Message-State: APjAAAWiVPSg9CCqLBE2Rrx6zyZCbtLgZmQ6zQztPHwtMhs4CCsrHfh2
-        XgAfxcBW8aQlw/Qb4Hfl4Uhg
-X-Google-Smtp-Source: APXvYqzkWRVd3FAN0KUEm94DFGc456oh9LhLqJPm8/VZmPuwHXy1G1V1anSL/PBxcV5ORadwymc3Zg==
-X-Received: by 2002:a62:4281:: with SMTP id h1mr31998044pfd.162.1557136849576;
-        Mon, 06 May 2019 03:00:49 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:611b:55a4:e119:3b84:2d86:5b07])
-        by smtp.gmail.com with ESMTPSA id j5sm12467442pfe.15.2019.05.06.03.00.44
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 06 May 2019 03:00:48 -0700 (PDT)
-Date:   Mon, 6 May 2019 15:30:42 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     mcoquelin.stm32@gmail.com, robh+dt@kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loic.pallardy@st.com
-Subject: Re: [PATCH 3/3] ARM: dts: Add Avenger96 devicetree support based on
- STM32MP157A
-Message-ID: <20190506100042.GB23734@Mani-XPS-13-9360>
-References: <20190503053123.6828-1-manivannan.sadhasivam@linaro.org>
- <20190503053123.6828-4-manivannan.sadhasivam@linaro.org>
- <7e693155-d1d4-b12d-74fd-0236d9d52257@st.com>
+        id S1726118AbfEFKBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 06:01:10 -0400
+Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:36493 "EHLO
+        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725883AbfEFKBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:01:10 -0400
+Received: from [IPv6:2001:983:e9a7:1:94cb:c5ca:b4e:5bdf] ([IPv6:2001:983:e9a7:1:94cb:c5ca:b4e:5bdf])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id NaQkhMRU0NExlNaQlhxwoc; Mon, 06 May 2019 12:01:07 +0200
+Subject: Re: [PATCH v6 01/13] dt-bindings: connector: analog: add tv norms
+ property
+To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org
+Cc:     laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Rob Herring <robh@kernel.org>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-2-m.felsch@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <9989034f-4794-adba-d89c-8330bbf7b27f@xs4all.nl>
+Date:   Mon, 6 May 2019 12:01:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7e693155-d1d4-b12d-74fd-0236d9d52257@st.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190415124413.18456-2-m.felsch@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfHVAwXQwGIyKPnPdPVut+WatJT53qt0kLayNNf75LohAtSjLxv7VMeWXwv8FQn756S66YL6P/pvgMFCZRYDrlT0xiDPvXbd/DegZVILI5uzoZmKUpnJi
+ t2PCrsaKcnIligL047HwmyPvijQ//ofYrLuOTD/Juq3PGLfNiwnKVRjBFXhuB9ZIkbZziveILda9wY2FUxY8AVCIA2TnzaDzikvIE2BEWpESI+8p4eSwVRGS
+ bBNqmjasNtxK8VEtaG7X8tT2zMr0UdzSggKdd7UXuqT7SQB/jM0R9gMf1vvYI3VVnqKj7Uno1qfRBcKxpYyazS4XqBfKeRASMygPu6OsHUQ5kXCGuLNbFQ8o
+ vhlFGpLZI7XnDxbPGCApGERJtuTPLdBkXM5xfyZLTlLrufJsXMpDJmzSLGad7WlXu6IcrdVQKFHDJojBdn32dVkbJzh+Q5Y6IQ5s9EyyjAeTW5UQxVPb+qZF
+ q8qzFLitsONmWCHMjiDKSLndBHhzLhomi6qMKifoot0yAsQZW5KDk4qkqZSh9/ePBOtUDcijWYBf9VTTR7/Znzo5Q3I7v9XOZOuVvAzS/6rCgKV3IjzBVr1I
+ GX0drWwfEFhCxTpDgNJcuLPsMybEgxOEKkITnnvcZRECtw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex,
+On 4/15/19 2:44 PM, Marco Felsch wrote:
+> Some connectors no matter if in- or output supports only a limited
+> range of tv norms. It doesn't matter if the hardware behind that
+> connector supports more than the listed formats since the users are
+> restriced by a label e.g. to plug only a camera into this connector
+> which uses the PAL format.
 
-On Fri, May 03, 2019 at 11:01:00AM +0200, Alexandre Torgue wrote:
-> Hi Mani
+For S-Video and Composite connectors there are really just two formats
+to consider: 50 and 60 Hz. I.e. there is no difference between PAL
+and SECAM. Only for tuners/modulators does this matter.
+
+So it is a good idea to add TVNORM_525_60, TVNORM_625_50 to tvnorms.h.
+
+In the various bindings examples I would recommend that you use
+TVNORM_525_60 or TVNORM_625_50 rather than e.g. PAL_M since that's what
+you would use in practice for Composite/S-Video.
+
+Regards,
+
+	Hans
+
 > 
-> On 5/3/19 7:31 AM, Manivannan Sadhasivam wrote:
-> > Add devicetree support for Avenger96 board based on STM32MP157A MPU
-> > from ST Micro. This board is one of the 96Boards Consumer Edition board
-> > from Arrow Electronics and has the following features:
-> > 
-> > SoC: STM32MP157AAC
-> > PMIC: STPMIC1A
-> > RAM: 1024 Mbyte @ 533MHz
-> > Storage: eMMC v4.51: 8 Gbyte
-> >           microSD Socket: UHS-1 v3.01
-> > Ethernet Port: 10/100/1000 Mbit/s, IEEE 802.3 Compliant
-> > Wireless: WiFi 5 GHz & 2.4GHz IEEE 802.11a/b/g/n/ac
-> >            Bluetooth®v4.2 (BR/EDR/BLE)
-> > USB: 2x Type A (USB 2.0) Host and 1x Micro B (USB 2.0) OTG
-> > Display: HDMI: WXGA (1366x768)@ 60 fps, HDMI 1.4
-> > LED: 4x User LED, 1x WiFi LED, 1x BT LED
-> > 
-> > More information about this board can be found in 96Boards website:
-> > https://www.96boards.org/product/avenger96/
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >   arch/arm/boot/dts/Makefile                  |   1 +
-> >   arch/arm/boot/dts/stm32mp157a-avenger96.dts | 320 ++++++++++++++++++++
-> >   2 files changed, 321 insertions(+)
-> >   create mode 100644 arch/arm/boot/dts/stm32mp157a-avenger96.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index 8a1d0b3f55dd..f1d2f0bfa7c2 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -965,6 +965,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
-> >   	stm32h743i-eval.dtb \
-> >   	stm32h743i-disco.dtb \
-> >   	stm32mp157a-dk1.dtb \
-> > +	stm32mp157a-avenger96.dtb \
+> This patch adds the capability to describe such limitation within the
+> firmware. There are no format restrictions if the property isn't
+> present, so it's completely backward compatible.
 > 
-> follow alphabetic order please.
->
-
-Ack
-
-> >   	stm32mp157c-dk2.dtb \
-> >   	stm32mp157c-ed1.dtb \
-> >   	stm32mp157c-ev1.dtb
-> > diff --git a/arch/arm/boot/dts/stm32mp157a-avenger96.dts b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-> > new file mode 100644
-> > index 000000000000..a3b8af82ac70
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
-> > @@ -0,0 +1,320 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-> > +/*
-> > + * Copyright (C) Linaro Ltd 2019 - All Rights Reserved
-> > + * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "stm32mp157c.dtsi"
-> > +#include "stm32mp157-pinctrl.dtsi"
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/mfd/st,stpmic1.h>
-> > +
-> > +/ {
-> > +	model = "Arrow Electronics STM32MP157A Avenger96 board";
-> > +	compatible = "arrow,stm32mp157a-avenger96", "st,stm32mp157";
-> > +
-> > +	aliases {
-> > +		ethernet0 = &ethernet0;
-> > +		mmc0 = &sdmmc1;
-> > +		serial0 = &uart4;
-> > +		serial1 = &uart7;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0:115200n8";
-> > +	};
-> > +
-> > +	memory@c0000000 {
-> > +		reg = <0xc0000000 0x40000000>;
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> [1] https://patchwork.kernel.org/cover/10794703/
 > 
-> you could add device_type = "memory";
->
+> v6:
+> - tvnorms.h: use tabs instead of spaces
+> - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+> 
+> v2-v4:
+> - nothing since the patch was squashed from series [1] into this
+>   series.
+> 
+>  .../display/connector/analog-tv-connector.txt |  4 ++
+>  include/dt-bindings/media/tvnorms.h           | 56 +++++++++++++++++++
+>  2 files changed, 60 insertions(+)
+>  create mode 100644 include/dt-bindings/media/tvnorms.h
+> 
+> diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> index 0c0970c210ab..346f8937a0b7 100644
+> --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> @@ -6,6 +6,9 @@ Required properties:
+>  
+>  Optional properties:
+>  - label: a symbolic name for the connector
+> +- tvnorms: limit the supported tv norms on a connector to the given ones else
+> +           all tv norms are allowed. Possible video standards are defined in
+> +           include/dt-bindings/media/tvnorms.h.
+>  
+>  Required nodes:
+>  - Video port for TV input
+> @@ -16,6 +19,7 @@ Example
+>  tv: connector {
+>  	compatible = "composite-video-connector";
+>  	label = "tv";
+> +	tvnorms = <(TVNORM_PAL_M | TVNORM_NTSC_M)>;
+>  
+>  	port {
+>  		tv_connector_in: endpoint {
+> diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
+> new file mode 100644
+> index 000000000000..058ab8414145
+> --- /dev/null
+> +++ b/include/dt-bindings/media/tvnorms.h
+> @@ -0,0 +1,56 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
+> +/*
+> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
+> +#define _DT_BINDINGS_MEDIA_TVNORMS_H
+> +
+> +/* one bit for each */
+> +#define TVNORM_PAL_B		0x00000001
+> +#define TVNORM_PAL_B1		0x00000002
+> +#define TVNORM_PAL_G		0x00000004
+> +#define TVNORM_PAL_H		0x00000008
+> +#define TVNORM_PAL_I		0x00000010
+> +#define TVNORM_PAL_D		0x00000020
+> +#define TVNORM_PAL_D1		0x00000040
+> +#define TVNORM_PAL_K		0x00000080
+> +
+> +#define TVNORM_PAL		(TVNORM_PAL_B  | \
+> +				 TVNORM_PAL_B1 | \
+> +				 TVNORM_PAL_G  | \
+> +				 TVNORM_PAL_H  | \
+> +				 TVNORM_PAL_I  | \
+> +				 TVNORM_PAL_D  | \
+> +				 TVNORM_PAL_D1 | \
+> +				 TVNORM_PAL_K)
+> +
+> +#define TVNORM_PAL_M		0x00000100
+> +#define TVNORM_PAL_N		0x00000200
+> +#define TVNORM_PAL_Nc		0x00000400
+> +#define TVNORM_PAL_60		0x00000800
+> +
+> +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
+> +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
+> +#define TVNORM_NTSC_443		0x00004000
+> +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
+> +
+> +#define TVNORM_SECAM_B		0x00010000
+> +#define TVNORM_SECAM_D		0x00020000
+> +#define TVNORM_SECAM_G		0x00040000
+> +#define TVNORM_SECAM_H		0x00080000
+> +#define TVNORM_SECAM_K		0x00100000
+> +#define TVNORM_SECAM_K1		0x00200000
+> +#define TVNORM_SECAM_L		0x00400000
+> +#define TVNORM_SECAM_LC		0x00800000
+> +
+> +#define TVNORM_SECAM		(TVNORM_SECAM_B  | \
+> +				 TVNORM_SECAM_D  | \
+> +				 TVNORM_SECAM_G  | \
+> +				 TVNORM_SECAM_H  | \
+> +				 TVNORM_SECAM_K  | \
+> +				 TVNORM_SECAM_K1 | \
+> +				 TVNORM_SECAM_L  | \
+> +				 TVNORM_SECAM_LC)
+> +
+> +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
+> 
 
-Ack.
-
-Thanks,
-Mani
- 
-> > +	};
-> > +
-> > +	led {
-> > +		compatible = "gpio-leds";
-> > +		led1 {
-> > +			label = "green:user1";
-> > +			gpios = <&gpioz 7 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "heartbeat";
-> > +			default-state = "off";
-> > +		};
-> > +
-> > +		led2 {
-> > +			label = "green:user2";
-> > +			gpios = <&gpiof 3 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "mmc0";
-> > +			default-state = "off";
-> > +		};
-> > +
-> > +		led3 {
-> > +			label = "green:user3";
-> > +			gpios = <&gpiog 0 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "mmc1";
-> > +			default-state = "off";
-> > +		};
-> > +
-> > +		led4 {
-> > +			label = "green:user3";
-> > +			gpios = <&gpiog 1 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "none";
-> > +			default-state = "off";
-> > +			panic-indicator;
-> > +		};
-> > +
-> > +		led5 {
-> > +			label = "yellow:wifi";
-> > +			gpios = <&gpioz 3 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "phy0tx";
-> > +			default-state = "off";
-> > +		};
-> > +
-> > +		led6 {
-> > +			label = "blue:bt";
-> > +			gpios = <&gpioz 6 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "bluetooth-power";
-> > +			default-state = "off";
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&ethernet0 {
-> > +	status = "okay";
-> > +	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-> > +	pinctrl-1 = <&ethernet0_rgmii_pins_sleep_a>;
-> > +	pinctrl-names = "default", "sleep";
-> > +	phy-mode = "rgmii";
-> > +	max-speed = <1000>;
-> > +	phy-handle = <&phy0>;
-> > +
-> > +	mdio0 {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		compatible = "snps,dwmac-mdio";
-> > +		phy0: ethernet-phy@7 {
-> > +			reg = <7>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&i2c1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&i2c1_pins_b>;
-> > +	i2c-scl-rising-time-ns = <185>;
-> > +	i2c-scl-falling-time-ns = <20>;
-> > +	status = "okay";
-> > +	/delete-property/dmas;
-> > +	/delete-property/dma-names;
-> > +};
-> > +
-> > +&i2c2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&i2c2_pins_b>;
-> > +	i2c-scl-rising-time-ns = <185>;
-> > +	i2c-scl-falling-time-ns = <20>;
-> > +	status = "okay";
-> > +	/delete-property/dmas;
-> > +	/delete-property/dma-names;
-> > +};
-> > +
-> > +&i2c4 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&i2c4_pins_a>;
-> > +	i2c-scl-rising-time-ns = <185>;
-> > +	i2c-scl-falling-time-ns = <20>;
-> > +	status = "okay";
-> > +	/delete-property/dmas;
-> > +	/delete-property/dma-names;
-> > +
-> > +	pmic: stpmic@33 {
-> > +		compatible = "st,stpmic1";
-> > +		reg = <0x33>;
-> > +		interrupts-extended = <&exti 55 IRQ_TYPE_EDGE_FALLING>;
-> > +		interrupt-controller;
-> > +		#interrupt-cells = <2>;
-> > +		status = "okay";
-> > +
-> > +		st,main-control-register = <0x04>;
-> > +		st,vin-control-register = <0xc0>;
-> > +		st,usb-control-register = <0x30>;
-> > +
-> > +		regulators {
-> > +			compatible = "st,stpmic1-regulators";
-> > +
-> > +			ldo1-supply = <&v3v3>;
-> > +			ldo2-supply = <&v3v3>;
-> > +			ldo3-supply = <&vdd_ddr>;
-> > +			ldo5-supply = <&v3v3>;
-> > +			ldo6-supply = <&v3v3>;
-> > +			pwr_sw1-supply = <&bst_out>;
-> > +			pwr_sw2-supply = <&bst_out>;
-> > +
-> > +			vddcore: buck1 {
-> > +				regulator-name = "vddcore";
-> > +				regulator-min-microvolt = <1200000>;
-> > +				regulator-max-microvolt = <1350000>;
-> > +				regulator-always-on;
-> > +				regulator-initial-mode = <0>;
-> > +				regulator-over-current-protection;
-> > +			};
-> > +
-> > +			vdd_ddr: buck2 {
-> > +				regulator-name = "vdd_ddr";
-> > +				regulator-min-microvolt = <1350000>;
-> > +				regulator-max-microvolt = <1350000>;
-> > +				regulator-always-on;
-> > +				regulator-initial-mode = <0>;
-> > +				regulator-over-current-protection;
-> > +			};
-> > +
-> > +			vdd: buck3 {
-> > +				regulator-name = "vdd";
-> > +				regulator-min-microvolt = <3300000>;
-> > +				regulator-max-microvolt = <3300000>;
-> > +				regulator-always-on;
-> > +				st,mask_reset;
-> > +				regulator-initial-mode = <0>;
-> > +				regulator-over-current-protection;
-> > +			};
-> > +
-> > +			v3v3: buck4 {
-> > +				regulator-name = "v3v3";
-> > +				regulator-min-microvolt = <3300000>;
-> > +				regulator-max-microvolt = <3300000>;
-> > +				regulator-always-on;
-> > +				regulator-over-current-protection;
-> > +				regulator-initial-mode = <0>;
-> > +			};
-> > +
-> > +			vdda: ldo1 {
-> > +				regulator-name = "vdda";
-> > +				regulator-min-microvolt = <2900000>;
-> > +				regulator-max-microvolt = <2900000>;
-> > +				interrupts = <IT_CURLIM_LDO1 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +			};
-> > +
-> > +			v2v8: ldo2 {
-> > +				regulator-name = "v2v8";
-> > +				regulator-min-microvolt = <2800000>;
-> > +				regulator-max-microvolt = <2800000>;
-> > +				interrupts = <IT_CURLIM_LDO2 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +			};
-> > +
-> > +			vtt_ddr: ldo3 {
-> > +				regulator-name = "vtt_ddr";
-> > +				regulator-min-microvolt = <500000>;
-> > +				regulator-max-microvolt = <750000>;
-> > +				regulator-always-on;
-> > +				regulator-over-current-protection;
-> > +			};
-> > +
-> > +			vdd_usb: ldo4 {
-> > +				regulator-name = "vdd_usb";
-> > +				regulator-min-microvolt = <3300000>;
-> > +				regulator-max-microvolt = <3300000>;
-> > +				interrupts = <IT_CURLIM_LDO4 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +			};
-> > +
-> > +			vdd_sd: ldo5 {
-> > +				regulator-name = "vdd_sd";
-> > +				regulator-min-microvolt = <2900000>;
-> > +				regulator-max-microvolt = <2900000>;
-> > +				interrupts = <IT_CURLIM_LDO5 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +				regulator-boot-on;
-> > +			};
-> > +
-> > +			v1v8: ldo6 {
-> > +				regulator-name = "v1v8";
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				interrupts = <IT_CURLIM_LDO6 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +				regulator-enable-ramp-delay = <300000>;
-> > +			};
-> > +
-> > +			vref_ddr: vref_ddr {
-> > +				regulator-name = "vref_ddr";
-> > +				regulator-always-on;
-> > +				regulator-over-current-protection;
-> > +			};
-> > +
-> > +			bst_out: boost {
-> > +				regulator-name = "bst_out";
-> > +				interrupts = <IT_OCP_BOOST 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +			};
-> > +
-> > +			vbus_otg: pwr_sw1 {
-> > +				regulator-name = "vbus_otg";
-> > +				interrupts = <IT_OCP_OTG 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +				regulator-active-discharge;
-> > +			};
-> > +
-> > +			vbus_sw: pwr_sw2 {
-> > +				regulator-name = "vbus_sw";
-> > +				interrupts = <IT_OCP_SWOUT 0>;
-> > +				interrupt-parent = <&pmic>;
-> > +				regulator-active-discharge;
-> > +			};
-> > +		};
-> > +
-> > +		onkey {
-> > +			compatible = "st,stpmic1-onkey";
-> > +			interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 1>;
-> > +			interrupt-names = "onkey-falling", "onkey-rising";
-> > +			status = "okay";
-> > +		};
-> > +
-> > +		watchdog {
-> > +			compatible = "st,stpmic1-wdt";
-> > +			status = "disabled";
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&iwdg2 {
-> > +	timeout-sec = <32>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&rng1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&rtc {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&sdmmc1 {
-> > +	pinctrl-names = "default", "opendrain", "sleep";
-> > +	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_dir_pins_a>;
-> > +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-> > +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-> > +	broken-cd;
-> > +	st,sig-dir;
-> > +	st,neg-edge;
-> > +	st,use-ckin;
-> > +	bus-width = <4>;
-> > +	vmmc-supply = <&vdd_sd>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart4 {
-> > +	/* On Low speed expansion header */
-> > +	label = "LS-UART1";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&uart4_pins_b>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart7 {
-> > +	/* On Low speed expansion header */
-> > +	label = "LS-UART0";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&uart7_pins_a>;
-> > +	status = "okay";
-> > +};
-> > 
