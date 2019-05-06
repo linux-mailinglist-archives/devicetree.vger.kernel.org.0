@@ -2,75 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5DE6154E8
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 22:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744CF154DE
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 22:25:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726201AbfEFU3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 16:29:34 -0400
-Received: from pbmsgap02.intersil.com ([192.157.179.202]:42124 "EHLO
-        pbmsgap02.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726190AbfEFU3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 16:29:34 -0400
-X-Greylist: delayed 961 seconds by postgrey-1.27 at vger.kernel.org; Mon, 06 May 2019 16:29:34 EDT
-Received: from pps.filterd (pbmsgap02.intersil.com [127.0.0.1])
-        by pbmsgap02.intersil.com (8.16.0.27/8.16.0.27) with SMTP id x46JhDxW006433;
-        Mon, 6 May 2019 16:13:10 -0400
-Received: from pbmxdp01.intersil.corp (pbmxdp01.pb.intersil.com [132.158.200.222])
-        by pbmsgap02.intersil.com with ESMTP id 2s94wdsv9p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Mon, 06 May 2019 16:13:10 -0400
-Received: from pbmxdp02.intersil.corp (132.158.200.223) by
- pbmxdp01.intersil.corp (132.158.200.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.1531.3; Mon, 6 May 2019 16:13:08 -0400
-Received: from localhost.localdomain (132.158.202.108) by
- pbmxdp02.intersil.corp (132.158.200.223) with Microsoft SMTP Server id
- 15.1.1531.3 via Frontend Transport; Mon, 6 May 2019 16:13:08 -0400
-From:   Chris Brandt <chris.brandt@renesas.com>
-To:     Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>
-Subject: [PATCH] ARM: dts: r7s9210-rza2mevb: add ethernet aliases
-Date:   Mon, 6 May 2019 15:12:36 -0500
-Message-ID: <20190506201236.110281-1-chris.brandt@renesas.com>
-X-Mailer: git-send-email 2.16.1
+        id S1726478AbfEFUZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 16:25:13 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:54693 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726370AbfEFUZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 16:25:13 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id E080F801A3; Mon,  6 May 2019 22:25:00 +0200 (CEST)
+Date:   Mon, 6 May 2019 22:25:12 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Christian Mauderer <oss@c-mauderer.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+Message-ID: <20190506202511.GA4979@amd>
+References: <20190505200022.32209-1-oss@c-mauderer.de>
+ <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
+ <20190506162848.GA9522@amd>
+ <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
+ <54199d69-67a9-eb9d-e46d-b3ea43e2e7a3@c-mauderer.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-06_11:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=773
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905060162
-X-Proofpoint-Spam-Reason: mlx
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="vkogqOf2sHV7VnPd"
+Content-Disposition: inline
+In-Reply-To: <54199d69-67a9-eb9d-e46d-b3ea43e2e7a3@c-mauderer.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ethernet aliases so u-boot can find the device nodes.
 
-Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
----
- arch/arm/boot/dts/r7s9210-rza2mevb.dts | 2 ++
- 1 file changed, 2 insertions(+)
+--vkogqOf2sHV7VnPd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/r7s9210-rza2mevb.dts b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-index 1eba37db7cdc..7795066d82cb 100644
---- a/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-+++ b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-@@ -17,6 +17,8 @@
- 
- 	aliases {
- 		serial0 = &scif4;
-+		ethernet0 = &ether0;
-+		ethernet1 = &ether1;
- 	};
- 
- 	chosen {
--- 
-2.16.1
+Hi!
 
+> >> Ok, I'm afraid I caused this. What should the compatible be, then?
+> >=20
+> > Knowing nothing about the h/w other than the above description:
+> > ubiquiti,aircube-leds
+> >=20
+> > Not sure if that's a registered or correct vendor prefix though.
+> >=20
+> > Rob
+> >=20
+>=20
+> Where would such a vendor prefix be registered? Does that mean that only
+> the vendor is allowed to use it? In that case: How would a reverse
+> engineered prefix look like?
+
+You can use it, too. It is in
+Documentation/devicetree/bindings/vendor-prefixes.txt :
+
+ubnt    Ubiquiti Networks
+
+So you can probably use ubnt, prefix.
+
+> (still with some missing parts like U-Boot) about two weeks later. I had
+> a look at it and they are not using a device tree. So there is no
+> "official" string that I could deduce from that archive.
+
+Mainline is the master. You are more "official" than them ;-).
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--vkogqOf2sHV7VnPd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAlzQmCcACgkQMOfwapXb+vIwOACfS3OKSH61uc/BSiQliPVPMyxZ
+dt8An0E2c7R4KbBbjNVsOXcyf561MQtw
+=xg07
+-----END PGP SIGNATURE-----
+
+--vkogqOf2sHV7VnPd--
