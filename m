@@ -2,164 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9575147AA
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 11:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B09CE147BE
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 11:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726312AbfEFJd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 05:33:28 -0400
-Received: from mail-it1-f194.google.com ([209.85.166.194]:54173 "EHLO
-        mail-it1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbfEFJd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 05:33:27 -0400
-Received: by mail-it1-f194.google.com with SMTP id l10so19198111iti.3
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 02:33:27 -0700 (PDT)
+        id S1726365AbfEFJnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 05:43:05 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44236 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbfEFJnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 05:43:05 -0400
+Received: by mail-wr1-f67.google.com with SMTP id c5so16359608wrs.11
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 02:43:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gyd/Ti2kNFqn57KrY+jJie0lDAypj1lVK7fphS1Bm7M=;
-        b=HKsFzThl5UWeChygjAOtiRYkHMtsyGBOPTcSmC+vo3Rm32ECFjRyNUWDPcIzhoy4Wf
-         YYkKqERL30biuuTmsK95DtLtLhsfmquox7B7WsSAMs92vIvpxcFh9m4T2bkRn8Bjn5lN
-         zE1+piUwnv4R43r5rHaMnAB+nQRO/IT8RT7Ig=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=oBRW4mzs2+gSuRgFKtSlAc3IAdXzqU5G7UW4zze+fv0=;
+        b=HEXOulifYSD9r6cpc+favVP51KND98+0UEUwidmOZ+pPyUdRR5WR3JUzUuNSX2pxIF
+         T/4MnQbM7IHWrbQVqbXyzeEWQWGuf3EgNQOiQp/8Hhvp87nNMZBMdlV3CVOrD3DaAn6J
+         ZdKkCGrKwiobSJZASqPNEgw9E5TFxcOHKf66XxLgdMHFQYwNe8iDCqox9IVWvZoNcB3R
+         FN2m2fG3G0pbWqFeWwBLoz1aFFCi45zvEnREThevLqPoiMMy5GOyH3B7zHm8YY1gtEn5
+         Ry2lclt2WVw6oBz33J9/YxM6oK8O/HlZ7HC/kNFgEoBuDij+/bD2XuaJ0yzc006uQg8S
+         zdIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gyd/Ti2kNFqn57KrY+jJie0lDAypj1lVK7fphS1Bm7M=;
-        b=eYI8sT+AQhH57R1CVa1Rwge6JMCM9po5MhRURTduerUgClR2cZa6bhsdhpTn68dIua
-         u24Dd6e0v41ci0FiRwjGgeQdwcyKKzJswfRzYnQapiFyhPE3avQ/ArSMMwwvpGyfjV7k
-         7eGky+eZN4LTvzUCqkufolU7pfwU+pEXIYZwJdAy1sSUvdewPGLZicukYrpbynVZ+JgB
-         A3Ix3ftRkB9GZNl91OlJhPv6cU/qxE129h4xLw0kSkU3rf51QCAcPWiWcOAKb86tjhfM
-         6qj2pGSGWbxJTCEVCFczICMpvZYmp1fwMsISc3S31rvhIkUMaUAD62YmkmAXOb6ZlgtY
-         2eBw==
-X-Gm-Message-State: APjAAAXiQ5M9i7AvLXOMmo6kzNTPP1MEZSkRZ+b20VOXiKf93pXYaPi/
-        zPhAcWS+Jl7e1uKpxpAWOmdhcy7Nytr/PatERhRlfQ==
-X-Google-Smtp-Source: APXvYqx/SnEtjDy0ciVF4+liqkodEYASR4S6w603/eqwIhIS2Lvf6CSIQVgbf5ng1w20fkg51AF8ckTTLJqxn2r59Ac=
-X-Received: by 2002:a24:65cf:: with SMTP id u198mr6958544itb.32.1557135206826;
- Mon, 06 May 2019 02:33:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190503115928.27662-1-jagan@amarulasolutions.com> <20190503144651.ttqfha656dykqjzo@flea>
-In-Reply-To: <20190503144651.ttqfha656dykqjzo@flea>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Mon, 6 May 2019 15:03:15 +0530
-Message-ID: <CAMty3ZCQTiX5OvCG_uMRS02vFu0c1-bkcyauLD6oaFcd=y3RNA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: allwinner: h6: orangepi-one-plus: Add Ethernet support
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oBRW4mzs2+gSuRgFKtSlAc3IAdXzqU5G7UW4zze+fv0=;
+        b=Btu2NngQ41adeVgQLlWX+xyawUCl8wot8NKjtVjpuE2l55yGA2R5RJNjjKU+FQpDY7
+         6JODizTvNbPFz9nF4phEChxruMeZFneAZksp6/HNO5GnlPYSuBvfmPpiHMk5nPRDKZlz
+         XO/laMkIGApvZOIqP0FvMoXHz5iwQrzSIy9K7To13ibtB90D4fhGtLWuK3/j8uZ9kPJc
+         VeB2HcH2h5N1l93Wg7iTb2cDs99Ar015ccnqJdptNG2EVA3gMClVS6sjpBS1e74+u3pr
+         /fV6jvqzlaIqs7Wzt7WRYb0DJXEAnJrKSIYdcs593UBub8s6dryMiy/aJGS3Wo/+V24r
+         c/gg==
+X-Gm-Message-State: APjAAAXCSNH8P518ypv93SdKibYpOjXCj6eWhDQ0eg/jXKYL/MhZ23pj
+        lTZ1lcosoJHeghDZmDisb6mDBQ==
+X-Google-Smtp-Source: APXvYqzERXrD9dfIppanGsG4vczgC5yAuidlgdRE0rB9x9uiRwmebaGhxtIZTRMTsNGX8g/83N2t8g==
+X-Received: by 2002:a5d:52c6:: with SMTP id r6mr18035560wrv.131.1557135782760;
+        Mon, 06 May 2019 02:43:02 -0700 (PDT)
+Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
+        by smtp.googlemail.com with ESMTPSA id g5sm10623857wrh.44.2019.05.06.02.43.01
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 May 2019 02:43:02 -0700 (PDT)
+Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
+To:     "michael.kao" <michael.kao@mediatek.com>, fan.chen@mediatek.com,
+        jamesjj.liao@mediatek.com, dawei.chien@mediatek.com,
+        louis.yu@mediatek.com, roger.lu@mediatek.com,
+        Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com>
+ <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <8e0fad21-57d1-923c-fd8b-f5f2c47a5c94@linaro.org>
+Date:   Mon, 6 May 2019 11:43:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 3, 2019 at 8:16 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> On Fri, May 03, 2019 at 05:29:28PM +0530, Jagan Teki wrote:
-> > Add Ethernet support for orangepi-one-plus board,
-> >
-> > - Ethernet port connected via RTL8211E PHY
-> > - PHY suppiled with
-> >   GMAC-2V5, fixed regulator with GMAC_EN pin via PD6
-> >   GMAC-3V, which is supplied by VCC3V3-MAC via aldo2
-> > - RGMII-RESET pin connected via PD14
-> >
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
->
-> Your commit log should be improved. We can get those informations from
-> the patch itself...
+On 02/05/2019 12:43, michael.kao wrote:
+> Add thermal zone node to Mediatek MT8183 dts file.
+> 
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> ---
 
-Thought it was a clear commit log :)  will update anyway.
+Hi Michael,
 
->
-> > ---
-> > Changes for v2:
-> > - emac changes on top of https://patchwork.kernel.org/cover/10899529/
-> >   series
-> >
-> >  .../allwinner/sun50i-h6-orangepi-one-plus.dts |  8 ++++
-> >  .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 42 +++++++++++++++++++
-> >  2 files changed, 50 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > index 12e17567ab56..9e8ed1053715 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > @@ -9,4 +9,12 @@
-> >  / {
-> >       model = "OrangePi One Plus";
-> >       compatible = "xunlong,orangepi-one-plus", "allwinner,sun50i-h6";
-> > +
-> > +     aliases {
-> > +             ethernet0 = &emac;
-> > +     };
-> > +};
-> > +
-> > +&emac {
-> > +     status = "okay";
-> >  };
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > index 62e27948a3fa..c48e24acaf8a 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > @@ -45,6 +45,48 @@
-> >               regulator-max-microvolt = <5000000>;
-> >               regulator-always-on;
-> >       };
-> > +
-> > +     /*
-> > +      * The board uses 2.5V RGMII signalling. Power sequence to enable
-> > +      * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-> > +      * at the same time and to wait 100ms.
-> > +      */
-> > +     reg_gmac_2v5: gmac-2v5 {
-> > +             compatible = "regulator-fixed";
-> > +             regulator-name = "gmac-2v5";
-> > +             regulator-min-microvolt = <2500000>;
-> > +             regulator-max-microvolt = <2500000>;
-> > +             startup-delay-us = <100000>;
-> > +             enable-active-high;
-> > +             gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* GMAC_EN: PD6 */
-> > +
-> > +             /* The real parent of gmac-2v5 is reg_vcc5v, but we need to
-> > +              * enable two regulators to power the phy. This is one way
-> > +              * to achieve that.
-> > +              */
-> > +             vin-supply = <&reg_aldo2>; /* VCC3V3-MAC: GMAC-3V */
-> > +     };
-> > +};
-> > +
-> > +&emac {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&ext_rgmii_pins>;
-> > +     phy-mode = "rgmii";
-> > +     phy-handle = <&ext_rgmii_phy>;
-> > +     phy-supply = <&reg_gmac_2v5>;
-> > +     allwinner,rx-delay-ps = <1500>;
-> > +     allwinner,tx-delay-ps = <700>;
-> > +};
-> > +
-> > +&mdio {
-> > +     ext_rgmii_phy: ethernet-phy@1 {
-> > +             compatible = "ethernet-phy-ieee802.3-c22";
-> > +             reg = <1>;
-> > +
-> > +             reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* RGMII-RESET: PD14 */
-> > +             reset-assert-us = <15000>;
-> > +             reset-deassert-us = <40000>;
-> > +     };
-> >  };
->
-> ... however, at no point in time you explain why you made that switch,
-> and while most of the definition of the EMAC nodes is in the DTSI, you
-> only enable it in one DTS.
+the device tree binding for thermal specifies the thermal zone must
+define a cooling-maps (it is a required field).
 
-The dtsi is shared b/w 1+ and lite2 and 1+ has emac, so I enabled the
-status directly on dts and keeping the relevant nodes on dtsi just
-like SoC dtsi does. do I need to mention this in commit log?
+All the thermal zones below tzts1, tzts2, etc ... do not have it.
+
+
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 926df75..b92116f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -334,6 +334,67 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		thermal: thermal@1100b000 {
+> +			#thermal-sensor-cells = <1>;
+> +			compatible = "mediatek,mt8183-thermal";
+> +			reg = <0 0x1100b000 0 0x1000>;
+> +			interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&infracfg CLK_INFRA_THERM>,
+> +				 <&infracfg CLK_INFRA_AUXADC>;
+> +			clock-names = "therm", "auxadc";
+> +			resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+> +			mediatek,auxadc = <&auxadc>;
+> +			mediatek,apmixedsys = <&apmixedsys>;
+> +			mediatek,hw-reset-temp = <117000>;
+> +			nvmem-cells = <&thermal_calibration>;
+> +			nvmem-cell-names = "calibration-data";
+> +		};
+> +
+> +		thermal-zones {
+> +			cpu_thermal: cpu_thermal {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +
+> +				thermal-sensors = <&thermal 0>;
+> +				sustainable-power = <1500>;
+> +			};
+> +
+> +			tzts1: tzts1 {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +				thermal-sensors = <&thermal 1>;
+> +			};
+> +
+> +			tzts2: tzts2 {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +				thermal-sensors = <&thermal 2>;
+> +			};
+> +
+> +			tzts3: tzts3 {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +				thermal-sensors = <&thermal 3>;
+> +			};
+> +
+> +			tzts4: tzts4 {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +				thermal-sensors = <&thermal 4>;
+> +			};
+> +
+> +			tzts5: tzts5 {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +				thermal-sensors = <&thermal 5>;
+> +			};
+> +
+> +			tztsABB: tztsABB {
+> +				polling-delay-passive = <1000>;
+> +				polling-delay = <1000>;
+> +				thermal-sensors = <&thermal 6>;
+> +			};
+> +		};
+>  		audiosys: syscon@11220000 {
+>  			compatible = "mediatek,mt8183-audiosys", "syscon";
+>  			reg = <0 0x11220000 0 0x1000>;
+> @@ -368,6 +429,9 @@
+>  			compatible = "mediatek,mt8183-efuse",
+>  				     "mediatek,efuse";
+>  			reg = <0 0x11f10000 0 0x1000>;
+> +			thermal_calibration: calib@180 {
+> +				reg = <0x180 0xc>;
+> +			};
+>  		};
+>  
+>  		mfgcfg: syscon@13000000 {
+> 
+
+
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
