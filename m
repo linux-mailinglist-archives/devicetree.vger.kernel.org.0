@@ -2,179 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE5314AED
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 15:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC5F814AF7
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 15:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726147AbfEFNbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 09:31:04 -0400
-Received: from vps.xff.cz ([195.181.215.36]:51150 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725852AbfEFNbE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 May 2019 09:31:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1557149462; bh=5NaP41T2tboqejgP6JhPceVbZhbz7QlauYREMH66sUE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rffGOnol+UCVtuc4lDzDpU7ZELd4yFrvN3P6lLYRyUkMf2wJhR1AX8b8lMAji2h0n
-         2hcL/yQD/1SZ52jNLuAZBeuMne37sNSo4TNFrHQfo/McQbm19+xPw/4MvcC02mOFbD
-         hwZXO1KICQaLB/t3qCIZHRwM9Q6pRPorlo98oDeI=
-Date:   Mon, 6 May 2019 15:31:01 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v2] arm64: allwinner: h6:
- orangepi-one-plus: Add Ethernet support
-Message-ID: <20190506133101.c3twwwydy5mez3db@core.my.home>
-Mail-Followup-To: Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-References: <20190503115928.27662-1-jagan@amarulasolutions.com>
- <20190503144651.ttqfha656dykqjzo@flea>
- <CAMty3ZCQTiX5OvCG_uMRS02vFu0c1-bkcyauLD6oaFcd=y3RNA@mail.gmail.com>
+        id S1725852AbfEFNfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 09:35:45 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:43821 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725813AbfEFNfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 09:35:45 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id E082C1BF20A;
+        Mon,  6 May 2019 13:35:39 +0000 (UTC)
+Date:   Mon, 6 May 2019 15:36:33 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v6 07/13] media: tvp5150: add FORMAT_TRY support for
+ get/set selection handlers
+Message-ID: <20190506133555.yrxaeg5lbswzcd3i@uno.localdomain>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-8-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lqlwi3dao4omlvmz"
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZCQTiX5OvCG_uMRS02vFu0c1-bkcyauLD6oaFcd=y3RNA@mail.gmail.com>
+In-Reply-To: <20190415124413.18456-8-m.felsch@pengutronix.de>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 06, 2019 at 03:03:15PM +0530, Jagan Teki wrote:
-> On Fri, May 3, 2019 at 8:16 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > On Fri, May 03, 2019 at 05:29:28PM +0530, Jagan Teki wrote:
-> > > Add Ethernet support for orangepi-one-plus board,
-> > >
-> > > - Ethernet port connected via RTL8211E PHY
-> > > - PHY suppiled with
-> > >   GMAC-2V5, fixed regulator with GMAC_EN pin via PD6
-> > >   GMAC-3V, which is supplied by VCC3V3-MAC via aldo2
-> > > - RGMII-RESET pin connected via PD14
-> > >
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> >
-> > Your commit log should be improved. We can get those informations from
-> > the patch itself...
-> 
-> Thought it was a clear commit log :)  will update anyway.
-> 
-> >
-> > > ---
-> > > Changes for v2:
-> > > - emac changes on top of https://patchwork.kernel.org/cover/10899529/
-> > >   series
-> > >
-> > >  .../allwinner/sun50i-h6-orangepi-one-plus.dts |  8 ++++
-> > >  .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 42 +++++++++++++++++++
-> > >  2 files changed, 50 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > > index 12e17567ab56..9e8ed1053715 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > > @@ -9,4 +9,12 @@
-> > >  / {
-> > >       model = "OrangePi One Plus";
-> > >       compatible = "xunlong,orangepi-one-plus", "allwinner,sun50i-h6";
-> > > +
-> > > +     aliases {
-> > > +             ethernet0 = &emac;
-> > > +     };
-> > > +};
-> > > +
-> > > +&emac {
-> > > +     status = "okay";
-> > >  };
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > > index 62e27948a3fa..c48e24acaf8a 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > > @@ -45,6 +45,48 @@
-> > >               regulator-max-microvolt = <5000000>;
-> > >               regulator-always-on;
-> > >       };
-> > > +
-> > > +     /*
-> > > +      * The board uses 2.5V RGMII signalling. Power sequence to enable
-> > > +      * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-> > > +      * at the same time and to wait 100ms.
-> > > +      */
-> > > +     reg_gmac_2v5: gmac-2v5 {
-> > > +             compatible = "regulator-fixed";
-> > > +             regulator-name = "gmac-2v5";
-> > > +             regulator-min-microvolt = <2500000>;
-> > > +             regulator-max-microvolt = <2500000>;
-> > > +             startup-delay-us = <100000>;
-> > > +             enable-active-high;
-> > > +             gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* GMAC_EN: PD6 */
-> > > +
-> > > +             /* The real parent of gmac-2v5 is reg_vcc5v, but we need to
-> > > +              * enable two regulators to power the phy. This is one way
-> > > +              * to achieve that.
-> > > +              */
-> > > +             vin-supply = <&reg_aldo2>; /* VCC3V3-MAC: GMAC-3V */
-> > > +     };
-> > > +};
-> > > +
-> > > +&emac {
-> > > +     pinctrl-names = "default";
-> > > +     pinctrl-0 = <&ext_rgmii_pins>;
-> > > +     phy-mode = "rgmii";
-> > > +     phy-handle = <&ext_rgmii_phy>;
-> > > +     phy-supply = <&reg_gmac_2v5>;
-> > > +     allwinner,rx-delay-ps = <1500>;
-> > > +     allwinner,tx-delay-ps = <700>;
-> > > +};
-> > > +
-> > > +&mdio {
-> > > +     ext_rgmii_phy: ethernet-phy@1 {
-> > > +             compatible = "ethernet-phy-ieee802.3-c22";
-> > > +             reg = <1>;
-> > > +
-> > > +             reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* RGMII-RESET: PD14 */
-> > > +             reset-assert-us = <15000>;
-> > > +             reset-deassert-us = <40000>;
-> > > +     };
-> > >  };
-> >
-> > ... however, at no point in time you explain why you made that switch,
-> > and while most of the definition of the EMAC nodes is in the DTSI, you
-> > only enable it in one DTS.
-> 
-> The dtsi is shared b/w 1+ and lite2 and 1+ has emac, so I enabled the
-> status directly on dts and keeping the relevant nodes on dtsi just
-> like SoC dtsi does. do I need to mention this in commit log?
 
-Lite 2 doesn't have reg_gmac_2v5 and it also doesn't have the external phy.
-But with this patch, reg_gmac_2v5 will also show up in the Lite 2's final
-DTB.
+--lqlwi3dao4omlvmz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Comapred to SoC dtsi, the SoC always has things that are in the dtsi, they
-are just not enabled/used by the board, but they are present on the chip.
+Hi Marco,
 
-So this comes down to what the meaning of board-level dtsi should be. I
-doubt we want it to mean "a collection of stuff that may or may not be
-present on the boards that depend on it".
+On Mon, Apr 15, 2019 at 02:44:07PM +0200, Marco Felsch wrote:
+> Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
+> the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
+> no way to try different selections. The patch adds a helper function to
+> select the correct selection memory space (sub-device file handle or
+> driver state) which will be set/returned.
+>
+> The TVP5150 AVID will be updated if the 'which' field is FORMAT_ACTIVE
+> and the requested selection rectangle differs from the already set one.
+>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Changelog:
+>
+> v5:
+>  - handle stub for v4l2_subdev_get_try_crop() internal since commit
+>    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
+>    isn't anymore part of this series.
+>  - add error handling of __tvp5150_get_pad_crop()
+> v4:
+>  - fix merge conflict due to rebase on top of media-tree/master
+>  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
+>
+>  drivers/media/i2c/tvp5150.c | 130 ++++++++++++++++++++++++++----------
+>  1 file changed, 96 insertions(+), 34 deletions(-)
+>
+> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+> index 4e3228b2ccbc..9331609425bf 100644
+> --- a/drivers/media/i2c/tvp5150.c
+> +++ b/drivers/media/i2c/tvp5150.c
+> @@ -19,6 +19,7 @@
+>  #include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-fwnode.h>
+>  #include <media/v4l2-mc.h>
+> +#include <media/v4l2-rect.h>
+>
+>  #include "tvp5150_reg.h"
+>
+> @@ -997,20 +998,48 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
+>  		crop->height = TVP5150_V_MAX_OTHERS;
+>  }
+>
+> +static struct v4l2_rect *
+> +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
+> +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
+> +		       enum v4l2_subdev_format_whence which)
+> +{
+> +	switch (which) {
+> +	case V4L2_SUBDEV_FORMAT_TRY:
+> +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
+> +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
+> +#else
+> +		return ERR_PTR(-ENOTTY);
+> +#endif
+> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
+> +		return &decoder->rect;
+> +	default:
+> +		return NULL;
 
-regards,
-	o.
+Do you need this default case? Can you return -EINVAL so that...
 
-> -- 
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> For more options, visit https://groups.google.com/d/optout.
+> +	}
+> +}
+> +
+>  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+>  			    struct v4l2_subdev_pad_config *cfg,
+>  			    struct v4l2_subdev_format *format)
+>  {
+>  	struct v4l2_mbus_framefmt *f;
+> +	struct v4l2_rect *__crop;
+>  	struct tvp5150 *decoder = to_tvp5150(sd);
+>
+>  	if (!format || (format->pad != TVP5150_PAD_VID_OUT))
+>  		return -EINVAL;
+>
+>  	f = &format->format;
+> +	__crop = __tvp5150_get_pad_crop(decoder, cfg, format->pad,
+> +					format->which);
+> +	if (IS_ERR_OR_NULL(__crop)) {
+
+... here you just need to check if (IS_ERR()) and return it?
+
+> +		if (!__crop)
+> +			return -EINVAL;
+> +		else
+> +			return PTR_ERR(__crop);
+> +	}
+>
+> -	f->width = decoder->rect.width;
+> -	f->height = decoder->rect.height / 2;
+> +	f->width = __crop->width;
+> +	f->height = __crop->height / 2;
+>
+>  	f->code = TVP5150_MBUS_FMT;
+>  	f->field = TVP5150_FIELD;
+> @@ -1021,17 +1050,51 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+>  	return 0;
+>  }
+>
+> +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
+> +{
+> +	struct tvp5150 *decoder = to_tvp5150(sd);
+> +	v4l2_std_id std;
+> +
+> +	/* Calculate height based on current standard */
+> +	if (decoder->norm == V4L2_STD_ALL)
+> +		std = tvp5150_read_std(sd);
+> +	else
+> +		std = decoder->norm;
+> +
+> +	return (std & V4L2_STD_525_60) ?
+> +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
+> +}
+> +
+> +static inline void
+> +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect rect)
+> +{
+> +	struct tvp5150 *decoder = to_tvp5150(sd);
+> +	unsigned int hmax = tvp5150_get_hmax(sd);
+> +
+> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> +		     rect.top + rect.height - hmax);
+> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> +		     rect.left >> TVP5150_CROP_SHIFT);
+> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> +		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> +		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> +		     TVP5150_CROP_SHIFT);
+> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> +		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> +}
+> +
+>  static int tvp5150_set_selection(struct v4l2_subdev *sd,
+>  				 struct v4l2_subdev_pad_config *cfg,
+>  				 struct v4l2_subdev_selection *sel)
+>  {
+>  	struct tvp5150 *decoder = to_tvp5150(sd);
+>  	struct v4l2_rect rect = sel->r;
+> -	v4l2_std_id std;
+> -	int hmax;
+> +	struct v4l2_rect *__crop;
+> +	unsigned int hmax;
+>
+> -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
+> -	    sel->target != V4L2_SEL_TGT_CROP)
+> +	if (sel->target != V4L2_SEL_TGT_CROP)
+>  		return -EINVAL;
+>
+>  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
+> @@ -1040,17 +1103,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+>  	/* tvp5150 has some special limits */
+>  	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
+>  	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
+> -
+> -	/* Calculate height based on current standard */
+> -	if (decoder->norm == V4L2_STD_ALL)
+> -		std = tvp5150_read_std(sd);
+> -	else
+> -		std = decoder->norm;
+> -
+> -	if (std & V4L2_STD_525_60)
+> -		hmax = TVP5150_V_MAX_525_60;
+> -	else
+> -		hmax = TVP5150_V_MAX_OTHERS;
+> +	hmax = tvp5150_get_hmax(sd);
+>
+>  	/*
+>  	 * alignments:
+> @@ -1063,20 +1116,23 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+>  			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
+>  			      hmax - rect.top, 0, 0);
+>
+> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> -		     rect.top + rect.height - hmax);
+> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> -		     rect.left >> TVP5150_CROP_SHIFT);
+> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> -		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> -		     TVP5150_CROP_SHIFT);
+> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> +	__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
+> +	if (IS_ERR_OR_NULL(__crop)) {
+> +		if (!__crop)
+> +			return -EINVAL;
+> +		else
+> +			return PTR_ERR(__crop);
+
+here too
+
+> +	}
+> +
+> +	/*
+> +	 * Update output image size if the selection (crop) rectangle size or
+> +	 * position has been modified.
+> +	 */
+> +	if (!v4l2_rect_equal(&rect, __crop))
+> +		if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE)
+
+Can this be a single condition?
+Or maybe you could check if the rects are equal and this is a TRY and
+return here.
+
+> +			__tvp5150_set_selection(sd, rect);
+>
+> -	decoder->rect = rect;
+> +	*__crop = rect;
+>
+>  	return 0;
+>  }
+> @@ -1086,11 +1142,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+>  				 struct v4l2_subdev_selection *sel)
+>  {
+>  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
+> +	struct v4l2_rect *__crop;
+>  	v4l2_std_id std;
+>
+> -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> -		return -EINVAL;
+> -
+>  	switch (sel->target) {
+>  	case V4L2_SEL_TGT_CROP_BOUNDS:
+>  		sel->r.left = 0;
+> @@ -1108,7 +1162,15 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+>  			sel->r.height = TVP5150_V_MAX_OTHERS;
+>  		return 0;
+>  	case V4L2_SEL_TGT_CROP:
+> -		sel->r = decoder->rect;
+> +		__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
+> +						sel->which);
+> +		if (IS_ERR_OR_NULL(__crop)) {
+> +			if (!__crop)
+> +				return -EINVAL;
+> +			else
+> +				return PTR_ERR(__crop);
+> +		}
+> +		sel->r = *__crop;
+>  		return 0;
+>  	default:
+>  		return -EINVAL;
+> --
+> 2.20.1
+>
+
+--lqlwi3dao4omlvmz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlzQOGEACgkQcjQGjxah
+Vjwczg/+LsOHw6lFHWUQLBgIBiGHfnLrgxNrJFvJYcgBxwte9iWhdOzhZEPSUXbz
+qTkzSyV7etvrrvWHRvAXjjQrhpLl/gv4FEtblZjDx+W3sqhURIvoM8nJCXAs6b9j
+5MpOcB8MTmOd10kZl9wt74duNWfV3cWhOg57x1AeSdaCkr2zDweEYJbnhPu/cJBQ
+NXpcf5gul77C4Ahc4ZFvQ2SKPta87vGVuNQpEUyTPdWTo67lQi327tn6KmhNnOeZ
+CUiYbGY+yqT3W+fTzRg5MRkxx0677SXu9VtezT3S+4d0RrIL+E0wVWBtaxbDFQAi
+BdJZMI0dKoYthkQrQCD91AmkxNpCe5qY8Tg8SFMiAR/OPR+U2Ac6kQOqn5V7Be1R
+KR/Z2Yge5vOuyDZi9YQ+C6O6gXqyc98+F0Q8Z6lUbdMN3L0C+aXEVy/insan/c1b
+QP+9gdSJSrgoir65QwK3aYovX9wst7LuAQWRGSH2b/fwsR4mJBt+S7XC6drSQ0xY
+Is5ZWbk+iXcb/wrl17uAKs8YxmaYjA5lGnGHmrSl3+DMC/Td5qDiIs1gJtanqfEx
+UrxNbLYhJv2ntJDkxEYC+MEkF/P0LFmC8RopQBcxX5ZGfxIB3s+1mjzGq/SrIVK5
+0dq03kgQ0YplyyqycEpZVZkbfW21bwgCa+R+gkq65VLUsI4ca0E=
+=7m8K
+-----END PGP SIGNATURE-----
+
+--lqlwi3dao4omlvmz--
