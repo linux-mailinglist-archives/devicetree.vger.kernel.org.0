@@ -2,111 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8391513A
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 18:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C6F151DB
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 18:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726270AbfEFQ2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 12:28:48 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:49345 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbfEFQ2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 12:28:48 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 24CC280176; Mon,  6 May 2019 18:28:37 +0200 (CEST)
-Date:   Mon, 6 May 2019 18:28:48 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     oss@c-mauderer.de,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
-Message-ID: <20190506162848.GA9522@amd>
-References: <20190505200022.32209-1-oss@c-mauderer.de>
- <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
+        id S1726571AbfEFQqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 12:46:20 -0400
+Received: from smtp3.ono.com ([62.42.230.163]:47299 "EHLO smtp3.ono.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726287AbfEFQqU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 12:46:20 -0400
+X-Junkmail-Premium-Raw: score=16/50,refid=2.7.2:2019.5.6.153617:17:16.798,ip=62.42.230.134,rules=__HAS_MSGID,
+ __SANE_MSGID, MSGID_JMAIL_DEFAULT, INVALID_MSGID_NO_FQDN, __HAS_FROM,
+ __HAS_REPLYTO, __FRAUD_WEBMAIL_REPLYTO, __SUBJ_ALPHA_START,
+ __PHISH_SPEAR_SUBJ_ALERT, __SUBJ_ALPHA_END, __MIME_VERSION, __CT,
+ __CT_TEXT_PLAIN, __CTE, MISSING_HEADERS, __CP_NAME_BODY,
+ __FRAUD_INYOURCOUNTRY, __STOCK_PHRASE_7, __STOCK_PHRASE_8,
+ __FRAUD_MONEY_GENERIC, __FRAUD_MONEY_BIG_COIN_DIG, __OEM_PRICE,
+ __FRAUD_MONEY_CURRENCY_DOLLAR, __NO_HTML_TAG_RAW, BODY_SIZE_700_799,
+ BODYTEXTP_SIZE_3000_LESS, __MIME_TEXT_P1, __MIME_TEXT_ONLY, HTML_00_01,
+ HTML_00_10, __FRAUD_MONEY_CURRENCY, __FRAUD_MONEY_BIG_COIN,
+ __FRAUD_MONEY_VALUE, __FRAUD_MONEY, FRAUD_X3, BODY_SIZE_5000_LESS,
+ __FRAUD_WEBMAIL, WEBMAIL_REPLYTO_NOT_FROM, FRAUD_WEBMAIL_R_NOT_F,
+ __FRAUD_COMMON, __MIME_TEXT_P, NO_URI_FOUND, NO_CTA_URI_FOUND,
+ __PHISH_SPEAR_STRUCTURE_1, BODY_SIZE_1000_LESS, BODY_SIZE_2000_LESS,
+ __PHISH_SPEAR_STRUCTURE_2, REPLYTO_FROM_DIFF_ADDY, NO_URI_HTTPS,
+ BODY_SIZE_7000_LESS, TO_MALFORMED
+Received: from resprs04 (62.42.230.134) by smtp3.ono.com (9.0.019.09-1)
+        id 5CC0A28F0083EB32; Mon, 6 May 2019 18:45:34 +0200
+Received: from (198.143.43.15) by webmailcpr04n.ono.com;  Mon, 6 May 2019 18:45:33 +0200
+Message-ID: <11826458.1755511557161133275.JavaMail.defaultUser@defaultHost>
+Date:   Mon, 6 May 2019 18:45:33 +0200 (CEST)
+From:   Aisha Gaddafi <alosax@ono.com>
+Reply-To: mgaddafi08@gmail.com
+Subject: hello dear
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="PEIAKu/WMn1b1Hv9"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Type: text/plain;charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
+hello dear
+I came across your contact during my private search. Mrs Aisha Al-
+Qaddafi is my name, the only daughter of late Libyan president, am a 
+single Mother and a Widow with three Children.I have funds the sum of 
+$27.5 million USD for investment, I am interested in you for investment 
+project assistance in your country,because of my current refugee 
+status, i shall compensate you 30% of the total sum after the funds are 
+transfer into your account,I am willing to negotiate 
+investment/business profit sharing ratio with you base on the future 
+investment earning profits.
+Reply me urgent for more details
+Mrs Aisha Al-Qaddafi
 
---PEIAKu/WMn1b1Hv9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi!
 
-> > +* Single Byte SPI LED Device Driver.
-> > +
-> > +The driver can be used for controllers with a very simple SPI protocol=
-: Only one
-> > +byte will be sent. The value of the byte can be any value between the =
-off-value
-> > +and max-value defined in the properties.
-> > +
-> > +One example where the driver can be used is the controller in Ubiquiti=
- airCube
-> > +ISP devices. That LED controller is based on a 8 bit microcontroller (=
-SONiX
-> > +8F26E611LA) that has been programmed to control the single LED of the =
-device.
->=20
-> What about power control of the uC?
->=20
-> > +The controller supports four modes depending on the highest two bits i=
-n a byte:
-> > +One setting for brightness, the other three provide different blink pa=
-tterns.
->=20
-> This part seems in no way generic.
->=20
-> How does one support the blink patterns?
->=20
-> > +With the leds-spi-byte driver a basic support for the brightness mode =
-of that
-> > +controller can be easily achieved by setting the minimum and maximum t=
-o the
-> > +brightness modes minimum and maximum byte value.
-> > +
-> > +Required properties:
-> > +- compatible:          Should be "leds-spi-byte".
->=20
-> Generally, we don't do "generic" bindings like this. The exceptions
-> are either we have confidence they really can be generic or they where
-> created before we knew better. A sample size of 1 doesn't convince me
-> the former is true.
->=20
-> This comment *only* applies to the binding, not the driver. Specific
-> bindings can easily be bound to generic drivers.
 
-Ok, I'm afraid I caused this. What should the compatible be, then?
 
-									Pavel
 
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
 
---PEIAKu/WMn1b1Hv9
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
 
-iEYEARECAAYFAlzQYMAACgkQMOfwapXb+vJqcACfUBuvX1ehuIeuKW+uI4OQawWH
-2WsAniARehfC0UTHPFhyjFMFsM9QVLDd
-=uXUc
------END PGP SIGNATURE-----
-
---PEIAKu/WMn1b1Hv9--
