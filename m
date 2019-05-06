@@ -2,300 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAA031496B
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 14:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB7E1497E
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 14:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726160AbfEFMSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 08:18:30 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51322 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726156AbfEFMSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 08:18:30 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x46CIHYN054299;
-        Mon, 6 May 2019 07:18:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1557145097;
-        bh=jJLwQd3pFIHe34zU3i/HHRq/I7L/8S7gmJI9jaq1Ak0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cur3fFT11+6EFknbuA+EvjsN3DZ1qZ5CEN5Tqfhw8/iOy2GwYXZGy+7eFAN5UrbaC
-         n9o7eWReaHuSerzF98IYPhV1R8Um6CwK0XlBPCWkUmwAGku09ieT/6kD2rDsxR9j0o
-         8qObBJl7aX84/RK3KsOAhEWfjIOJa0Y6DyNUgTOA=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x46CIHDL016244
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 May 2019 07:18:17 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 6 May
- 2019 07:18:17 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 6 May 2019 07:18:16 -0500
-Received: from [10.250.67.168] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x46CIG0r043691;
-        Mon, 6 May 2019 07:18:16 -0500
-Subject: Re: [PATCH v3 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller
- driver for SiFive SoCs
-To:     Yash Shah <yash.shah@sifive.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <palmer@sifive.com>
-CC:     <paul.walmsley@sifive.com>, <linux-kernel@vger.kernel.org>,
-        <aou@eecs.berkeley.edu>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <sachin.ghadi@sifive.com>
-References: <1557139720-12384-1-git-send-email-yash.shah@sifive.com>
- <1557139720-12384-3-git-send-email-yash.shah@sifive.com>
-From:   "Andrew F. Davis" <afd@ti.com>
-Message-ID: <d36b7a74-0d08-0143-b479-45f760c347ba@ti.com>
-Date:   Mon, 6 May 2019 08:18:17 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <1557139720-12384-3-git-send-email-yash.shah@sifive.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1725856AbfEFMX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 08:23:59 -0400
+Received: from mail-eopbgr780079.outbound.protection.outlook.com ([40.107.78.79]:54621
+        "EHLO NAM03-BY2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725827AbfEFMX7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 08:23:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8X0+P5Sm5WOvr4dReZrS3AWGzBErsCauRkQSEH/ITCw=;
+ b=TCfO0CD3ahliVPvjlIo22BUxL0DqZgBqS7q6fSOhHIQz+2lVWNdDoseoKsdC5TshbulNdc6HpIKAx5hS1EQXnDQDOw7NpdoMMtotnQ8br7XZGh6M3GuVW9U6dyofzmksVrMYPNa/t48Voi/osSvVXhuzD4JLCWY+JDXs5c5AdCM=
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
+ BL0PR02MB3843.namprd02.prod.outlook.com (52.132.9.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.12; Mon, 6 May 2019 12:23:56 +0000
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Mon, 6 May 2019
+ 12:23:56 +0000
+From:   Dragan Cvetic <draganc@xilinx.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: RE: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Thread-Topic: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Thread-Index: AQHU/UVOyBvhwX5Hf0mi9G9IHzQgRKZYHAiAgAGBAECAAQXIAIADZtRg
+Date:   Mon, 6 May 2019 12:23:56 +0000
+Message-ID: <BL0PR02MB56814D6EACC16938A0575D16CB300@BL0PR02MB5681.namprd02.prod.outlook.com>
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172007.GA1874@kroah.com>
+ <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190504075502.GA11133@kroah.com>
+In-Reply-To: <20190504075502.GA11133@kroah.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=draganc@xilinx.com; 
+x-originating-ip: [149.199.80.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2849d9ec-7af0-46d7-d4b2-08d6d21db5cb
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB3843;
+x-ms-traffictypediagnostic: BL0PR02MB3843:
+x-microsoft-antispam-prvs: <BL0PR02MB3843E236856AF89C9C8621A7CB300@BL0PR02MB3843.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0029F17A3F
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(366004)(136003)(376002)(396003)(39860400002)(199004)(189003)(13464003)(478600001)(6246003)(54906003)(52536014)(3846002)(476003)(486006)(14454004)(2906002)(81156014)(81166006)(66446008)(4326008)(316002)(186003)(305945005)(7736002)(107886003)(6116002)(53936002)(8676002)(446003)(11346002)(74316002)(26005)(86362001)(76116006)(68736007)(99286004)(9686003)(66066001)(66556008)(6436002)(53546011)(256004)(66946007)(73956011)(64756008)(66476007)(229853002)(102836004)(14444005)(71190400001)(5660300002)(71200400001)(8936002)(25786009)(33656002)(6916009)(6506007)(76176011)(7696005)(55016002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB3843;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Mmy24UGHwddgcDOPqMLT1uzi8N0o23Pxe2cgRIxSDsjubSRmpZ/qpNNdEYbPzZOWqPv1zAEq/OkpnDMx9r8w7f3Nnf21y1aLCd3leQ4qGYS79q+RHBgrsmaIG+Jw4HwKeiXF2hfiTTpPy5e6twBQSLLQx4q6Z27ePNzMyK8iSffW/LYtqKLm+V+T0km2MZf9X/8cRxGB+8epynkz+oqxjCma6uspjDjowEWnHJP+LrhW/vD6lwW9YAhUMUagvcI+82Ztc7B1mIWJ6wPqQbBu6AO9LX8ISWzAMmIrEdhsdBXenrt6wEA+GaxsTUldBz64oJQrSIjvH18Hv6/yVC//FQLAOqbqN5BqfgAZyOZ4VrCKjbT7Hpod0PfHMG0rifBE2qp+F/7ZalruEu20fwEPR0oERrLC3KRAFlRIViPE4dE=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2849d9ec-7af0-46d7-d4b2-08d6d21db5cb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2019 12:23:56.4363
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB3843
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/6/19 6:48 AM, Yash Shah wrote:
-> The driver currently supports only SiFive FU540-C000 platform.
-> 
-> The initial version of L2 cache controller driver includes:
-> - Initial configuration reporting at boot up.
-> - Support for ECC related functionality.
-> 
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> ---
->  arch/riscv/include/asm/sifive_l2_cache.h |  16 +++
->  arch/riscv/mm/Makefile                   |   1 +
->  arch/riscv/mm/sifive_l2_cache.c          | 175 +++++++++++++++++++++++++++++++
->  3 files changed, 192 insertions(+)
->  create mode 100644 arch/riscv/include/asm/sifive_l2_cache.h
->  create mode 100644 arch/riscv/mm/sifive_l2_cache.c
-> 
-> diff --git a/arch/riscv/include/asm/sifive_l2_cache.h b/arch/riscv/include/asm/sifive_l2_cache.h
-> new file mode 100644
-> index 0000000..04f6748
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/sifive_l2_cache.h
-> @@ -0,0 +1,16 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * SiFive L2 Cache Controller header file
-> + *
-> + */
-> +
-> +#ifndef _ASM_RISCV_SIFIVE_L2_CACHE_H
-> +#define _ASM_RISCV_SIFIVE_L2_CACHE_H
-> +
-> +extern int register_sifive_l2_error_notifier(struct notifier_block *nb);
-> +extern int unregister_sifive_l2_error_notifier(struct notifier_block *nb);
-> +
-> +#define SIFIVE_L2_ERR_TYPE_CE 0
-> +#define SIFIVE_L2_ERR_TYPE_UE 1
-> +
-> +#endif /* _ASM_RISCV_SIFIVE_L2_CACHE_H */
-> diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
-> index eb22ab4..1523ee5 100644
-> --- a/arch/riscv/mm/Makefile
-> +++ b/arch/riscv/mm/Makefile
-> @@ -3,3 +3,4 @@ obj-y += fault.o
->  obj-y += extable.o
->  obj-y += ioremap.o
->  obj-y += cacheflush.o
-> +obj-y += sifive_l2_cache.o
-> diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
-> new file mode 100644
-> index 0000000..4eb6461
-> --- /dev/null
-> +++ b/arch/riscv/mm/sifive_l2_cache.c
-> @@ -0,0 +1,175 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SiFive L2 cache controller Driver
-> + *
-> + * Copyright (C) 2018-2019 SiFive, Inc.
-> + *
-> + */
-> +#include <linux/debugfs.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_address.h>
-> +#include <asm/sifive_l2_cache.h>
-> +
-> +#define SIFIVE_L2_DIRECCFIX_LOW 0x100
-> +#define SIFIVE_L2_DIRECCFIX_HIGH 0x104
-> +#define SIFIVE_L2_DIRECCFIX_COUNT 0x108
-> +
-> +#define SIFIVE_L2_DATECCFIX_LOW 0x140
-> +#define SIFIVE_L2_DATECCFIX_HIGH 0x144
-> +#define SIFIVE_L2_DATECCFIX_COUNT 0x148
-> +
-> +#define SIFIVE_L2_DATECCFAIL_LOW 0x160
-> +#define SIFIVE_L2_DATECCFAIL_HIGH 0x164
-> +#define SIFIVE_L2_DATECCFAIL_COUNT 0x168
-> +
-> +#define SIFIVE_L2_CONFIG 0x00
-> +#define SIFIVE_L2_WAYENABLE 0x08
-> +#define SIFIVE_L2_ECCINJECTERR 0x40
-> +
-> +#define SIFIVE_L2_MAX_ECCINTR 3
-> +
-> +static void __iomem *l2_base;
-> +static int g_irq[SIFIVE_L2_MAX_ECCINTR];
-> +
-> +enum {
-> +	DIR_CORR = 0,
-> +	DATA_CORR,
-> +	DATA_UNCORR,
-> +};
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +static struct dentry *sifive_test;
-> +
-> +static ssize_t l2_write(struct file *file, const char __user *data,
-> +			size_t count, loff_t *ppos)
-> +{
-> +	unsigned int val;
-> +
-> +	if (kstrtouint_from_user(data, count, 0, &val))
-> +		return -EINVAL;
-> +	if ((val >= 0 && val < 0xFF) || (val >= 0x10000 && val < 0x100FF))
 
-I'm guessing bit 16 is the enable and the lower 8 are some kind of
-region to enable the error? This is probably a bad interface, it looks
-useful for testing but doesn't provide any debugging info useful for
-running systems. Do you really want userspace to be able to do this?
 
-Andrew
+> -----Original Message-----
+> From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> Sent: Saturday 4 May 2019 08:55
+> To: Dragan Cvetic <draganc@xilinx.com>
+> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
+sts.infradead.org; robh+dt@kernel.org;
+> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
+l.org; Derek Kiernan <dkiernan@xilinx.com>
+> Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+>=20
+> On Fri, May 03, 2019 at 04:41:21PM +0000, Dragan Cvetic wrote:
+> > Hi Greg,
+> >
+> > Please find my inline comments below,
+> >
+> > Regards
+> > Dragan
+> >
+> > > -----Original Message-----
+> > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > Sent: Thursday 2 May 2019 18:20
+> > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kerne=
+l@lists.infradead.org; robh+dt@kernel.org;
+> > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.k=
+ernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > >
+> > > On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic wrote:
+> > > > +#define DRIVER_NAME "xilinx_sdfec"
+> > > > +#define DRIVER_VERSION "0.3"
+> > >
+> > > Version means nothing with the driver in the kernel tree, please remo=
+ve
+> > > it.
+> >
+> > Will be removed. Thank you.
+> >
+> > >
+> > > > +#define DRIVER_MAX_DEV BIT(MINORBITS)
+> > >
+> > > Why this number?  Why limit yourself to any number?
+> > >
+> >
+> > There can be max 8 devices for this driver. I'll change to 8.
+> >
+> > > > +
+> > > > +static struct class *xsdfec_class;
+> > >
+> > > Do you really need your own class?
+> >
+> > When writing a character device driver, my goal is to create and regist=
+er an instance
+> > of that structure associated with a struct file_operations, exposing a =
+set of operations
+> > to the user-space. One of the steps to make this goal is Create a class=
+ for a devices,
+> > visible in /sys/class/.
+>=20
+> Why do you need a class?  Again, why not just use the misc_device api,
+> that seems much more relevant here and will make the code a lot simpler.
+>=20
 
-> +		writel(val, l2_base + SIFIVE_L2_ECCINJECTERR);
-> +	else
-> +		return -EINVAL;
-> +	return count;
-> +}
-> +
-> +static const struct file_operations l2_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = simple_open,
-> +	.write = l2_write
-> +};
-> +
-> +static void setup_sifive_debug(void)
-> +{
-> +	sifive_test = debugfs_create_dir("sifive_l2_cache", NULL);
-> +
-> +	debugfs_create_file("sifive_debug_inject_error", 0200,
-> +			    sifive_test, NULL, &l2_fops);
-> +}
-> +#endif
-> +
-> +static void l2_config_read(void)
-> +{
-> +	u32 regval, val;
-> +
-> +	regval = readl(l2_base + SIFIVE_L2_CONFIG);
-> +	val = regval & 0xFF;
-> +	pr_info("L2CACHE: No. of Banks in the cache: %d\n", val);
-> +	val = (regval & 0xFF00) >> 8;
-> +	pr_info("L2CACHE: No. of ways per bank: %d\n", val);
-> +	val = (regval & 0xFF0000) >> 16;
-> +	pr_info("L2CACHE: Sets per bank: %llu\n", (uint64_t)1 << val);
-> +	val = (regval & 0xFF000000) >> 24;
-> +	pr_info("L2CACHE: Bytes per cache block: %llu\n", (uint64_t)1 << val);
-> +
-> +	regval = readl(l2_base + SIFIVE_L2_WAYENABLE);
-> +	pr_info("L2CACHE: Index of the largest way enabled: %d\n", regval);
-> +}
-> +
-> +static const struct of_device_id sifive_l2_ids[] = {
-> +	{ .compatible = "sifive,fu540-c000-ccache" },
-> +	{ /* end of table */ },
-> +};
-> +
-> +static ATOMIC_NOTIFIER_HEAD(l2_err_chain);
-> +
-> +int register_sifive_l2_error_notifier(struct notifier_block *nb)
-> +{
-> +	return atomic_notifier_chain_register(&l2_err_chain, nb);
-> +}
-> +EXPORT_SYMBOL_GPL(register_sifive_l2_error_notifier);
-> +
-> +int unregister_sifive_l2_error_notifier(struct notifier_block *nb)
-> +{
-> +	return atomic_notifier_chain_unregister(&l2_err_chain, nb);
-> +}
-> +EXPORT_SYMBOL_GPL(unregister_sifive_l2_error_notifier);
-> +
-> +static irqreturn_t l2_int_handler(int irq, void *device)
-> +{
-> +	unsigned int regval, add_h, add_l;
-> +
-> +	if (irq == g_irq[DIR_CORR]) {
-> +		add_h = readl(l2_base + SIFIVE_L2_DIRECCFIX_HIGH);
-> +		add_l = readl(l2_base + SIFIVE_L2_DIRECCFIX_LOW);
-> +		pr_err("L2CACHE: DirError @ 0x%08X.%08X\n", add_h, add_l);
-> +		regval = readl(l2_base + SIFIVE_L2_DIRECCFIX_COUNT);
-> +		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_CE,
-> +					   "DirECCFix");
-> +	}
-> +	if (irq == g_irq[DATA_CORR]) {
-> +		add_h = readl(l2_base + SIFIVE_L2_DATECCFIX_HIGH);
-> +		add_l = readl(l2_base + SIFIVE_L2_DATECCFIX_LOW);
-> +		pr_err("L2CACHE: DataError @ 0x%08X.%08X\n", add_h, add_l);
-> +		regval = readl(l2_base + SIFIVE_L2_DATECCFIX_COUNT);
-> +		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_CE,
-> +					   "DatECCFix");
-> +	}
-> +	if (irq == g_irq[DATA_UNCORR]) {
-> +		add_h = readl(l2_base + SIFIVE_L2_DATECCFAIL_HIGH);
-> +		add_l = readl(l2_base + SIFIVE_L2_DATECCFAIL_LOW);
-> +		pr_err("L2CACHE: DataFail @ 0x%08X.%08X\n", add_h, add_l);
-> +		regval = readl(l2_base + SIFIVE_L2_DATECCFAIL_COUNT);
-> +		atomic_notifier_call_chain(&l2_err_chain, SIFIVE_L2_ERR_TYPE_UE,
-> +					   "DatECCFail");
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +int __init sifive_l2_init(void)
-> +{
-> +	struct device_node *np;
-> +	struct resource res;
-> +	int i, rc;
-> +
-> +	np = of_find_matching_node(NULL, sifive_l2_ids);
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	if (of_address_to_resource(np, 0, &res))
-> +		return -ENODEV;
-> +
-> +	l2_base = ioremap(res.start, resource_size(&res));
-> +	if (!l2_base)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < SIFIVE_L2_MAX_ECCINTR; i++) {
-> +		g_irq[i] = irq_of_parse_and_map(np, i);
-> +		rc = request_irq(g_irq[i], l2_int_handler, 0, "l2_ecc", NULL);
-> +		if (rc) {
-> +			pr_err("L2CACHE: Could not request IRQ %d\n", g_irq[i]);
-> +			return rc;
-> +		}
-> +	}
-> +
-> +	l2_config_read();
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +	setup_sifive_debug();
-> +#endif
-> +	return 0;
-> +}
-> +device_initcall(sifive_l2_init);
-> 
+The driver can have 8 devices in SoC plus more in Programming Logic. It loo=
+ked logical to group them under the same MAJOR, although they are independe=
+nt of each other.
+Is this argument strong enough to use class?
+
+> thanks,
+>=20
+> greg k-h
