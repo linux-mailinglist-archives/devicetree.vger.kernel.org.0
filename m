@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27BAF152FC
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A772C152FF
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726545AbfEFRoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 13:44:08 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:40230 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726519AbfEFRoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 13:44:08 -0400
-Received: by mail-vs1-f67.google.com with SMTP id c24so1782516vsp.7
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 10:44:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OeGgjZBJ9uWD1pdsX/+zOfgOjAibZGBp9WPaU0eToUc=;
-        b=m4Zw2fBY+VMLzhBfTBbz4Dtlq0Cc6l6MqEwoJ7YTjrYPzeO8QeIYW3yIFLyCL117Kt
-         axxocOSPh/a+gWkz5TWdPKqb2BPRt/jtybJOfLKxxemlLxpId3LZKDrEsHYJlkXqRfwz
-         fCTrKPtDSaBjY4auU4otyGauXVMtlpMTLmviNmwp8xF+tgZuQMZPsaKxN5HR6oBL5vv2
-         Zb040i1FzkyXpGkN4I4IP7WFVE6iEZwE10S2R1vSIzVYWL40r/PqrLJElx8kQUpZMdyS
-         9343jPbZPHbXIDd2SJlyBmLnUf59HZ8PtlBE/IOAyuF/EUfnmI/1F3+fvCafLr94a9B9
-         gs7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OeGgjZBJ9uWD1pdsX/+zOfgOjAibZGBp9WPaU0eToUc=;
-        b=gmCjAOw+HEYVRgzG/K8aFnMr+/MeCA0F5XYi3JWtJMIpgdZKzT8sviHQ7RRHsSSRLd
-         A+suvQ9G8Z22Dg4HAGWAo+cTRT2rwKN0MObLgWbepuVFQSfTDdD7rK03/u++E0zdzz82
-         7rtFX+jD3BxyCw9Ox832Yq2JvUfHNR8TxDO+9AWzDpEvcQkGKEQ2MeB42Yf63RnYg90y
-         ZjHPmk3Ps773w2Pro4uR1pAhCM5DZZK6NZbqkEowXmtaO2Z4t15+4D/2FEshUPjeDcmh
-         YNzpie2eUxipOJn8UQailKqajE52DSjQeUwuU2RH0p8cPi8esoblQCbU8pH+OVhnaTBc
-         tYZg==
-X-Gm-Message-State: APjAAAUAhd0kg8zkj6q3RTpuMwYIz90pMElyiTn2S8J/2dNvIS16nzgO
-        ePOggUsLpgdbWBHVBtkWti1xyV5b5xOxRvECNbK+aw==
-X-Google-Smtp-Source: APXvYqxj9ho/3KigVFISlPQqfamyJ4vl1xCgP8i9j8q0ibA/ApDLHmmjNXKUf72ouvJJD/44drdXvLamKur++kGc2Rs=
-X-Received: by 2002:a67:dd95:: with SMTP id i21mr8883021vsk.48.1557164647231;
- Mon, 06 May 2019 10:44:07 -0700 (PDT)
+        id S1726437AbfEFRob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 13:44:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45276 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725883AbfEFRob (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 13:44:31 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B7BE320B7C;
+        Mon,  6 May 2019 17:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557164670;
+        bh=FjPHioywBD1RQcEUs+vkS7eFM6aRa/+LWtdHsHtItOA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JG/BNZsRQv4furmZwUj/buubC8bARd1+lRZtO983CWusJclOgnlHNNRENOBo4TJqw
+         huxEgf0Tnd1xv9VUiVJ+bkxNpVGRbXX5MWaXJ9CEbNjiBS9jq9N/1hO87o3jhgn3O3
+         X+qsHJ9Nm1TjqTJqKinNSHBjVfrYvUGMs/f1NXdM=
+Received: by mail-qt1-f180.google.com with SMTP id t1so15035479qtc.12;
+        Mon, 06 May 2019 10:44:30 -0700 (PDT)
+X-Gm-Message-State: APjAAAUFcTMuKsjRKA84fBzvhRPJanbj3WhVkkj3+bTnZvy687J3lY1Z
+        wg7gjE4cQO/cf31FlrKAqMI3F8ESk73vyZ7T1A==
+X-Google-Smtp-Source: APXvYqxnbA+v6YC6RhzdoizzdiGEQT8tfZkHtrk/yG7J31NEHra2ZTqL73ZyJzQWmj6OgDUyPySPck8yaFObjYeyXjQ=
+X-Received: by 2002:a0c:d2f2:: with SMTP id x47mr21844351qvh.90.1557164669966;
+ Mon, 06 May 2019 10:44:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-13-brendanhiggins@google.com> <20190502110220.GD12416@kroah.com>
- <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
- <a49c5088-a821-210c-66de-f422536f5b01@gmail.com> <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
- <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com> <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
- <052fa196-4ea9-8384-79b7-fe6bacc0ee82@gmail.com> <CAFd5g47aY-CL+d7DfiyTidY4aAVY+eg1TM1UJ4nYqKSfHOi-0w@mail.gmail.com>
- <63f63c7c-6185-5e64-b338-6a5e7fb9e27c@gmail.com>
-In-Reply-To: <63f63c7c-6185-5e64-b338-6a5e7fb9e27c@gmail.com>
-From:   Kees Cook <keescook@google.com>
-Date:   Mon, 6 May 2019 10:43:55 -0700
-Message-ID: <CAGXu5jJpp2HyEWMtAde+VUt=9ni3HRu69NM4rUQJu4kBrnx9Kw@mail.gmail.com>
-Subject: Re: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Shuah Khan <shuah@kernel.org>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
+References: <20190505200022.32209-1-oss@c-mauderer.de> <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
+ <20190506162848.GA9522@amd>
+In-Reply-To: <20190506162848.GA9522@amd>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 6 May 2019 12:44:18 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
+Message-ID: <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     oss@c-mauderer.de,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 5, 2019 at 5:19 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> You can see the full version 14 document in the submitter's repo:
+On Mon, May 6, 2019 at 11:28 AM Pavel Machek <pavel@ucw.cz> wrote:
 >
->   $ git clone https://github.com/isaacs/testanything.github.io.git
->   $ cd testanything.github.io
->   $ git checkout tap14
->   $ ls tap-version-14-specification.md
+> Hi!
 >
-> My understanding is the the version 14 specification is not trying to
-> add new features, but instead capture what is already implemented in
-> the wild.
-
-Oh! I didn't know about the work on TAP 14. I'll go read through this.
-
-> > ## Here is what I propose for this patchset:
+> > > +* Single Byte SPI LED Device Driver.
+> > > +
+> > > +The driver can be used for controllers with a very simple SPI protocol: Only one
+> > > +byte will be sent. The value of the byte can be any value between the off-value
+> > > +and max-value defined in the properties.
+> > > +
+> > > +One example where the driver can be used is the controller in Ubiquiti airCube
+> > > +ISP devices. That LED controller is based on a 8 bit microcontroller (SONiX
+> > > +8F26E611LA) that has been programmed to control the single LED of the device.
 > >
-> >  - Print out test number range at the beginning of each test suite.
-> >  - Print out log lines as soon as they happen as diagnostics.
-> >  - Print out the lines that state whether a test passes or fails as a
-> > ok/not ok line.
+> > What about power control of the uC?
 > >
-> > This would be technically conforming with TAP13 and is consistent with
-> > what some kselftests have done.
+> > > +The controller supports four modes depending on the highest two bits in a byte:
+> > > +One setting for brightness, the other three provide different blink patterns.
+> >
+> > This part seems in no way generic.
+> >
+> > How does one support the blink patterns?
+> >
+> > > +With the leds-spi-byte driver a basic support for the brightness mode of that
+> > > +controller can be easily achieved by setting the minimum and maximum to the
+> > > +brightness modes minimum and maximum byte value.
+> > > +
+> > > +Required properties:
+> > > +- compatible:          Should be "leds-spi-byte".
+> >
+> > Generally, we don't do "generic" bindings like this. The exceptions
+> > are either we have confidence they really can be generic or they where
+> > created before we knew better. A sample size of 1 doesn't convince me
+> > the former is true.
+> >
+> > This comment *only* applies to the binding, not the driver. Specific
+> > bindings can easily be bound to generic drivers.
+>
+> Ok, I'm afraid I caused this. What should the compatible be, then?
 
-This is what I fixed kselftest to actually do (it wasn't doing correct
-TAP13), and Shuah is testing the series now:
-https://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git/log/?h=ksft-tap-refactor
+Knowing nothing about the h/w other than the above description:
+ubiquiti,aircube-leds
 
-I'll go read TAP 14 now...
+Not sure if that's a registered or correct vendor prefix though.
 
--- 
-Kees Cook
+Rob
