@@ -2,183 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A037D15339
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD5B15387
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 20:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726536AbfEFR7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 13:59:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49842 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726437AbfEFR7Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 May 2019 13:59:25 -0400
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726181AbfEFST1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 14:19:27 -0400
+Received: from dc2-smtprelay2.synopsys.com ([198.182.61.142]:51940 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726175AbfEFST1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 14:19:27 -0400
+Received: from mailhost.synopsys.com (dc2-mailhost2.synopsys.com [10.12.135.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 58D9320C01;
-        Mon,  6 May 2019 17:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557165563;
-        bh=M3A35/Iynxv2BZiGtto3GB3IdL+AuYWt31SikluuKo8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aNJGwQBwZoFY+vxMblff7iOtjy2jozqtaL4JsO3+tIm01GEkcmJsSDyIR+rn8HNs1
-         3CTXFciAjNa9Ck2R9K4mLcu/hQzWGFvtmSYrUNs+y1lZ1aG6UX/8DAQ/NDOGUN8i+f
-         WP9V8kk6xmPqNNYxHFX4SmZ3s+x1IvWfAid6I++o=
-Received: by mail-qk1-f175.google.com with SMTP id k189so1215848qkc.0;
-        Mon, 06 May 2019 10:59:23 -0700 (PDT)
-X-Gm-Message-State: APjAAAWdukoVtEpslYHAuSyjgDnHQjKJ8g9JAEGbDC55w75iFtfJypVj
-        +ZHurNiOBDvTQ3j1VaG1R37NnZ1UftWyRV/9ng==
-X-Google-Smtp-Source: APXvYqwP73+D7JbR03CG7GsStZCm936MHP7fY/mRy3H1sJgDvUg3rcfBgJiLwjZ7+t2264vRkVati9lQdcwcrQdnGsI=
-X-Received: by 2002:a37:4b92:: with SMTP id y140mr21286108qka.79.1557165562544;
- Mon, 06 May 2019 10:59:22 -0700 (PDT)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 83258C01B4;
+        Mon,  6 May 2019 18:19:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1557166761; bh=QtJyrHd1kqFiZBvKEbAd5xX72dDlbRtHAwVPExvEW6A=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=I3Sp4fEPPA3ef3oVOMH4WQCUtNOkvZO6ESx3XdCc3xpf+CWutYaRryD/xXQXbYb2b
+         mYjz6FXkZtDjZyu2ESfADn9yw782b7aLa3VIs/qszEScwQfzHmk7ZCAvYsWEvk4kUL
+         I1iSCzHbFIi7hIc7m0MrWEyGqCKWc4wk+aboC5EN+k0P77lCaEqq/2u6NQmC4w9PyH
+         7vQad/BBOwOB3AD7IYz2LUQLQbPZHxmunu6IADiWdMzeQzhZ3ZdizH1t6iPxNaQ0lF
+         lb9pqzsYg++yaW2p2GRuN0gPLz1wNbFHMTAIOHs4teWp46q7YH063zpRsyuGAs/U/m
+         IdN4WZJKlDVgQ==
+Received: from US01WXQAHTC1.internal.synopsys.com (us01wxqahtc1.internal.synopsys.com [10.12.238.230])
+        (using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id 51933A0095;
+        Mon,  6 May 2019 18:19:23 +0000 (UTC)
+Received: from US01HYBRID2.internal.synopsys.com (10.15.246.24) by
+ US01WXQAHTC1.internal.synopsys.com (10.12.238.230) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Mon, 6 May 2019 11:19:23 -0700
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com (10.13.134.195)
+ by mrs.synopsys.com (10.15.246.24) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Mon, 6 May 2019 11:19:23 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopsys.onmicrosoft.com; s=selector1-synopsys-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QtJyrHd1kqFiZBvKEbAd5xX72dDlbRtHAwVPExvEW6A=;
+ b=P2SuC4TSIw7HPekAWtT1Lkozqod+7Zh7dYfUZmvFLpm47y/7OV0beYnslcnR6XM/td5E37Jh7l4ErJR4+2Kpwk2Tu1iA+rIFVof0i7LBpZgSQSQK4HLNhHSdeOS3IWs11oyOxChehLlwRZMaJr65c7G3Ly4c7rmIBRYsYy2zGSk=
+Received: from MWHPR12MB1632.namprd12.prod.outlook.com (10.172.56.21) by
+ MWHPR12MB1775.namprd12.prod.outlook.com (10.175.55.22) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Mon, 6 May 2019 18:19:20 +0000
+Received: from MWHPR12MB1632.namprd12.prod.outlook.com
+ ([fe80::c5dc:3b4:6ab8:4dc6]) by MWHPR12MB1632.namprd12.prod.outlook.com
+ ([fe80::c5dc:3b4:6ab8:4dc6%2]) with mapi id 15.20.1856.012; Mon, 6 May 2019
+ 18:19:20 +0000
+From:   Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+To:     "Jose.Abreu@synopsys.com" <Jose.Abreu@synopsys.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Vineet Gupta <Vineet.Gupta1@synopsys.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-snps-arc@lists.infradead.org" 
+        <linux-snps-arc@lists.infradead.org>
+CC:     "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>,
+        "Vineet.Gupta1@synopsys.com" <Vineet.Gupta1@synopsys.com>,
+        "Eugeniy.Paltsev@synopsys.com" <Eugeniy.Paltsev@synopsys.com>,
+        Alexey Brodkin <Alexey.Brodkin@synopsys.com>
+Subject: Re: [PATCH] ARC: [plat-hsdk]: Add missing multicast filter bins
+ number to GMAC node
+Thread-Topic: [PATCH] ARC: [plat-hsdk]: Add missing multicast filter bins
+ number to GMAC node
+Thread-Index: AQHVAPmYu+SP3l/OT0e8rqST5fDlGKZX+TEAgAZ1TIA=
+Date:   Mon, 6 May 2019 18:19:20 +0000
+Message-ID: <1557166759.17021.9.camel@synopsys.com>
+References: <7f36bbadc0df4c93c396690dab59f34775de3874.1556788240.git.joabreu@synopsys.com>
+         <56933076-879c-78a0-4bae-2613203b93b1@synopsys.com>
+In-Reply-To: <56933076-879c-78a0-4bae-2613203b93b1@synopsys.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=paltsev@synopsys.com; 
+x-originating-ip: [84.204.78.101]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: db93fc10-3909-4230-81fd-08d6d24f5be6
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:MWHPR12MB1775;
+x-ms-traffictypediagnostic: MWHPR12MB1775:
+x-microsoft-antispam-prvs: <MWHPR12MB17754AF42F8FA4F933A446C7DE300@MWHPR12MB1775.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4125;
+x-forefront-prvs: 0029F17A3F
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(136003)(39850400004)(376002)(346002)(396003)(189003)(199004)(54906003)(8676002)(8936002)(110136005)(316002)(102836004)(66066001)(256004)(76176011)(186003)(81156014)(86362001)(81166006)(53546011)(2501003)(478600001)(229853002)(5660300002)(53936002)(6512007)(6506007)(2201001)(14454004)(6486002)(6116002)(107886003)(66476007)(66556008)(64756008)(66446008)(68736007)(76116006)(66946007)(446003)(2906002)(11346002)(73956011)(476003)(91956017)(6246003)(6436002)(2616005)(486006)(4326008)(305945005)(7736002)(99286004)(26005)(71190400001)(71200400001)(3846002)(36756003)(103116003)(25786009);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR12MB1775;H:MWHPR12MB1632.namprd12.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: synopsys.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: LtCLXwsLT6co9xynGg2JZ11/j1E7fGTC0Xi2nPeZ7e7BLLFQUnc4qGD3ION2nngr4kcOZcpC8/r0UnEhQItdm4BCamGeLxn7kOQDi0Ro1ByuFhpKGjuuHeTqHubd4LlFL18W8odPBP939pgt+Uz7DBMGxbcgD1zaRC6dIR2KhdMHyDG3OfzULlO1oIrPCK3QUlVVMvJ1FKUsJK24wsqbhed0Mf+qOnY7bW7PENr2ThfftGxgGOZdRGSmeU+DlOG/7nLySukFyxNX8MZFqiT2ULHlQcDfz/mTReHyo/COaCg3h7Hbvv/wJ+jO2TDuafCKfgkm1ElkaNJgJhLwAUSC0wa3mqRbS0/+rNqk0i+VRPjmcwiS2ilwawpOC4v+jyU4hPo78AcVGll/YVZZfXeeuRjrFYW85aLhQbvjYaQpYBI=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5A823811A20DAA43B211A7AB42CD65C2@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190505200022.32209-1-oss@c-mauderer.de> <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
- <4e91d5e7-a583-58d5-9c14-ad86029ed9e7@c-mauderer.de>
-In-Reply-To: <4e91d5e7-a583-58d5-9c14-ad86029ed9e7@c-mauderer.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 6 May 2019 12:59:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKGhTkdMj2Vx1U6UshGFb=iv4Rwvk5Hu-Y6vErNTw6+Ug@mail.gmail.com>
-Message-ID: <CAL_JsqKGhTkdMj2Vx1U6UshGFb=iv4Rwvk5Hu-Y6vErNTw6+Ug@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
-To:     Christian Mauderer <oss@c-mauderer.de>
-Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-CrossTenant-Network-Message-Id: db93fc10-3909-4230-81fd-08d6d24f5be6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2019 18:19:20.3634
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1775
+X-OriginatorOrg: synopsys.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 6, 2019 at 12:03 PM Christian Mauderer <oss@c-mauderer.de> wrote:
->
-> On 06/05/2019 18:21, Rob Herring wrote:
-> > On Sun, May 5, 2019 at 3:00 PM <oss@c-mauderer.de> wrote:
-> >>
-> >> From: Christian Mauderer <oss@c-mauderer.de>
-> >>
-> >> This patch adds the binding documentation for a simple SPI based LED
-> >> controller which use only one byte for setting the brightness.
-> >>
-> >> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
-> >> ---
-> >>
-> >> Changes compared to v2:
-> >> - None
-> >>
-> >> Changes compared to v1:
-> >> - rename ubnt-spi to leds-spi-byte
-> >> - rename "ubnt-spi,off_bright" and "ubnt-spi,max_bright" to
-> >>   "leds-spi-byte,off-value" and "leds-spi-byte,max-value" and mark them required
-> >> - rename led-controller node to "led-controller"
-> >> - extend description
-> >> - remove SPI controller
-> >> - use "white:status" for the example label
-> >>
-> >>
-> >>  .../bindings/leds/leds-spi-byte.txt           | 47 +++++++++++++++++++
-> >>  1 file changed, 47 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/leds/leds-spi-byte.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/leds/leds-spi-byte.txt b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
-> >> new file mode 100644
-> >> index 000000000000..1dd6ab03a56d
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
-> >> @@ -0,0 +1,47 @@
-> >> +* Single Byte SPI LED Device Driver.
-> >> +
-> >> +The driver can be used for controllers with a very simple SPI protocol: Only one
-> >> +byte will be sent. The value of the byte can be any value between the off-value
-> >> +and max-value defined in the properties.
-> >> +
-> >> +One example where the driver can be used is the controller in Ubiquiti airCube
-> >> +ISP devices. That LED controller is based on a 8 bit microcontroller (SONiX
-> >> +8F26E611LA) that has been programmed to control the single LED of the device.
-> >
-> > What about power control of the uC?
->
-> You mean if the uC receives a reset or power cycle independent of the
-> main controller? I don't think that this can happen on that board. But I
-> don't have any schematics to prove that.
-
-I was really only pointing out potential issues around "generic"
-bindings. The protocol interface is not the only thing.
-
-> >> +The controller supports four modes depending on the highest two bits in a byte:
-> >> +One setting for brightness, the other three provide different blink patterns.
-> >
-> > This part seems in no way generic.
-> >
-> > How does one support the blink patterns?
->
-> You are correct that this part is not generic. But a multi-purpose
-> driver like the one I proposed could deliver a basic support for the
-> device by controlling the brightness.
->
-> It's only a basic support so the blink patterns are not supported.
-
-Then you would have to change/extend the binding when you want to
-support that. With a specific compatible, you only need a driver
-change.
-
-> I had a look at the functions in "struct led_classdev". There is a
-> blink_set(..) function that expects that delay_on and delay_off can be
-> set independent. That's not possible for hardware supported blinking on
-> this device. The other function pattern_set(..) would allow an even more
-> universal interface. All possible patterns of the LED could be covered
-> in that but I don't think that this is true the other way round.
->
-> So in my opinion the only thing that can be implemented in a useful way
-> for that controller is the brightness.
-
-What the OS can support evolves and should be independent of the binding.
-
-> >
-> >> +With the leds-spi-byte driver a basic support for the brightness mode of that
-> >> +controller can be easily achieved by setting the minimum and maximum to the
-> >> +brightness modes minimum and maximum byte value.
-> >> +
-> >> +Required properties:
-> >> +- compatible:          Should be "leds-spi-byte".
-> >
-> > Generally, we don't do "generic" bindings like this. The exceptions
-> > are either we have confidence they really can be generic or they where
-> > created before we knew better. A sample size of 1 doesn't convince me
-> > the former is true.
->
-> I could construct another sample (some SPI-based digital potentiometer
-> where you set values between 17 and 213) but I doubt that it would be a
-> good idea to fight for the name.
->
-> My original target device is a quite special one: I don't have a chip
-> number. The controller Ubiquiti built here is based on a microcontroller
-> that could be anything. The general device is named "Ubiquiti airCube
-> ISP" or (a short form that I found at some locations) ubnt-acb-isp. I
-> assume that they used the same controller in the non-ISP-version but I
-> haven't checked that. So how about one of these:
->
-> - ubnt,spi-byte-led
-> - ubnt,spi-acb-led
-> - ubnt,acb-isp-led
-
-ubnt,acb-spi-led perhaps as the order is usually <product|soc>-<sub device>.
-
-Or the last one if you wanted to keep 'isp'.
-
->
-> Most likely I'll get the off-value and max-value based on the binding
-> name then (0 and 63 for that device). So I'll just remove the two
-> parameters then.
->
-> >
-> > This comment *only* applies to the binding, not the driver. Specific
-> > bindings can easily be bound to generic drivers.
-> >
->
-> So the driver should still be called spi-byte (or something similar)?
-
-Yes, whatever the LED maintainers want there.
-
-Rob
+SGksDQoNCkknbGwgY2hlY2sgdGhpcyBpbiB0aGUgbmV4dCBmZXcgZGF5cy4NCg0KT24gVGh1LCAy
+MDE5LTA1LTAyIGF0IDA4OjQxIC0wNzAwLCBWaW5lZXQgR3VwdGEgd3JvdGU6DQo+ICtDQyBBbGV4
+ZXksIEV1Z2VuaXkgd2hvIG1haW50YWluIGhzZGsgc3VwcG9ydCAhDQo+IA0KPiBPbiA1LzIvMTkg
+ODoxMiBBTSwgSm9zZSBBYnJldSB3cm90ZToNCj4gPiBHTUFDIGNvbnRyb2xsZXIgb24gSFNESyBi
+b2FyZHMgc3VwcG9ydHMgMjU2IEhhc2ggVGFibGUgc2l6ZSBzbyB3ZSBuZWVkIHRvDQo+ID4gYWRk
+IHRoZSBtdWx0aWNhc3QgZmlsdGVyIGJpbnMgcHJvcGVydHkuIFRoaXMgYWxsb3dzIGZvciB0aGUg
+SGFzaCBmaWx0ZXINCj4gPiB0byB3b3JrIHByb3Blcmx5IHVzaW5nIHN0bW1hYyBkcml2ZXIuDQo+
+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogSm9zZSBBYnJldSA8am9hYnJldUBzeW5vcHN5cy5jb20+
+DQo+ID4gQ2M6IEpvYW8gUGludG8gPGpwaW50b0BzeW5vcHN5cy5jb20+DQo+ID4gQ2M6IFJvYiBI
+ZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+DQo+ID4gQ2M6IE1hcmsgUnV0bGFuZCA8bWFyay5y
+dXRsYW5kQGFybS5jb20+DQo+ID4gQ2M6IFZpbmVldCBHdXB0YSA8dmd1cHRhQHN5bm9wc3lzLmNv
+bT4NCj4gPiAtLS0NCj4gPiAgYXJjaC9hcmMvYm9vdC9kdHMvaHNkay5kdHMgfCAxICsNCj4gPiAg
+MSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2Fy
+Y2gvYXJjL2Jvb3QvZHRzL2hzZGsuZHRzIGIvYXJjaC9hcmMvYm9vdC9kdHMvaHNkay5kdHMNCj4g
+PiBpbmRleCA2OWJjMWM5ZThlNTAuLmIwZjA1OTM3N2FiMCAxMDA2NDQNCj4gPiAtLS0gYS9hcmNo
+L2FyYy9ib290L2R0cy9oc2RrLmR0cw0KPiA+ICsrKyBiL2FyY2gvYXJjL2Jvb3QvZHRzL2hzZGsu
+ZHRzDQo+ID4gQEAgLTE4Nyw2ICsxODcsNyBAQA0KPiA+ICAJCQlpbnRlcnJ1cHQtbmFtZXMgPSAi
+bWFjaXJxIjsNCj4gPiAgCQkJcGh5LW1vZGUgPSAicmdtaWkiOw0KPiA+ICAJCQlzbnBzLHBibCA9
+IDwzMj47DQo+ID4gKwkJCXNucHMsbXVsdGljYXN0LWZpbHRlci1iaW5zID0gPDI1Nj47DQo+ID4g
+IAkJCWNsb2NrcyA9IDwmZ21hY2Nsaz47DQo+ID4gIAkJCWNsb2NrLW5hbWVzID0gInN0bW1hY2V0
+aCI7DQo+ID4gIAkJCXBoeS1oYW5kbGUgPSA8JnBoeTA+Ow0KPiA+IA0KPiANCj4gDQotLSANCiBF
+dWdlbml5IFBhbHRzZXY=
