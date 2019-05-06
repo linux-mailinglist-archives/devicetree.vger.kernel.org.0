@@ -2,132 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF920151DF
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 18:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E65F151ED
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 18:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726428AbfEFQrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 12:47:11 -0400
-Received: from mail-ua1-f65.google.com ([209.85.222.65]:46315 "EHLO
-        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbfEFQrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 12:47:11 -0400
-Received: by mail-ua1-f65.google.com with SMTP id n23so4879131uap.13;
-        Mon, 06 May 2019 09:47:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KRsp84CR/wZjf7JSxDT5PziM3wZtSANeGjBl9N5WJPY=;
-        b=M2WAm3zKsvX/U5EO7RnbWnpV7F70x5KP9SwdmROsIEe7qOoeXWRK/+dzNYEuN7DLdf
-         KDiyG3t+V1q1W/2lcHpFRCAjPDRAece4OzP3HgQ70yac83vwQH2I7qeyWnOZxbjGxSry
-         uNssbiAoB9NF16QnVpDN0lkqrY4gbxmqhiQUth7bzjspFgVUdVufYKb7yy5gav8ib7va
-         fCM6mIluYhwjk0tIbKmyO+xtf0Q1hpTY1re0EL819Pxrdtgft9vI+diJeECilhTadEvt
-         Ou3xkObFCbrw1QKB6/KPuTzovxu/Q6hq3ZYypnLNHgSO21EaBxgw908AnK1j75jnyKNX
-         x0vw==
-X-Gm-Message-State: APjAAAXDkuZUo++LyflJ+YmIvW2c76Sg4eQTkYA8HIZJzlLFcRI3A6E9
-        6Ld0RkJ1Iktz1RK0weH0ap6sPSvnq24muHlImOc=
-X-Google-Smtp-Source: APXvYqxivUBYKeylf06dc/FajmKOGINCDT9FRcHViFrODon94uEeIITcByJUAga3hTH23Y3VDVffI/Cm5Acd2hQyJVE=
-X-Received: by 2002:a9f:2b84:: with SMTP id y4mr10578570uai.28.1557161229621;
- Mon, 06 May 2019 09:47:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190504004258.23574-1-erosca@de.adit-jv.com> <20190504004258.23574-2-erosca@de.adit-jv.com>
- <20190506134700.ya565idfzzc3enbm@verge.net.au> <20190506152433.GA22769@vmlxhi-102.adit-jv.com>
-In-Reply-To: <20190506152433.GA22769@vmlxhi-102.adit-jv.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 May 2019 18:46:57 +0200
-Message-ID: <CAMuHMdXJzEYL48qwHAxrRsurQLBipZsQpv+w8i=+B2XCM_CZng@mail.gmail.com>
-Subject: Re: [PATCH 1/6] serial: sh-sci: Reveal ptrval in dev_dbg
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "George G . Davis" <george_davis@mentor.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Helge Deller <deller@gmx.de>,
-        Michael Neuling <mikey@neuling.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Philip Yang <Philip.Yang@amd.com>,
-        Matthew Wilcox <mawilcox@microsoft.com>,
-        Borislav Petkov <bp@suse.de>,
-        "Darrick J. Wong" <darrick.wong@oracle.com>
+        id S1726418AbfEFQwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 12:52:38 -0400
+Received: from hermes.aosc.io ([199.195.250.187]:48555 "EHLO hermes.aosc.io"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726321AbfEFQwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 12:52:38 -0400
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
+        by hermes.aosc.io (Postfix) with ESMTPSA id 572BE6DA6E;
+        Mon,  6 May 2019 16:52:30 +0000 (UTC)
+Message-ID: <282ccf0979e6c58effd0e177917bdf824c32f64e.camel@aosc.io>
+Subject: Re: [PATCH 1/7] iio: adc: sun4i-gpadc: rework for support multiple
+ thermal sensor
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org, lars@metafoo.de,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        wens@csie.org, robh+dt@kernel.org, pmeerw@pmeerw.net,
+        knaack.h@gmx.de, lee.jones@linaro.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Tue, 07 May 2019 00:52:22 +0800
+In-Reply-To: <20190506122807.4u323iys74jddcet@flea>
+References: <20190503072813.2719-1-tiny.windzz@gmail.com>
+         <20190503072813.2719-2-tiny.windzz@gmail.com>
+         <20190505162215.3594f77d@archlinux> <20190506122807.4u323iys74jddcet@flea>
+Organization: Anthon Open-Source Community
 Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugeniu,
+在 2019-05-06一的 14:28 +0200，Maxime Ripard写道：
+> Hi,
+> 
+> On Sun, May 05, 2019 at 04:22:15PM +0100, Jonathan Cameron wrote:
+> > On Fri,  3 May 2019 03:28:07 -0400
+> > Yangtao Li <tiny.windzz@gmail.com> wrote:
+> > 
+> > > For some SOCs, there are more than one thermal sensor, and there
+> > > are
+> > > currently four sensors on the A80. So we need to do some work in
+> > > order
+> > > to support multiple thermal sensors:
+> > > 
+> > >   1) add sensor_count in gpadc_data.
+> > >   2) introduce sun4i_sensor_tzd in sun4i_gpadc_iio, to support
+> > > multiple
+> > >      thermal_zone_device and distinguish between different
+> > > sensors.
+> > >   3) modify read temperature and initialization function.
+> > 
+> > This comment doesn't mention the devm change. If it had it would
+> > have
+> > raised immediate alarm bells.
+> > 
+> > I'm also not keen on the web of pointers that this driver is
+> > steadily
+> > evolving.  I can't immediately see how to reduce that complexity
+> > however.
+> 
+> So I might be responsible for that, and looking back, this has been a
+> mistake.
+> 
+> This driver was initally put together to support a controller found
+> in
+> older (A10 up to A31) Allwinner SoCs. This controller had an ADC
+> driver that could be operated as a touchscreen controller, and was
+> providing a CPU temperature sensor and a general purpose ADC.
+> 
+> However, we already had a driver for that controller in drivers/input
+> to report the CPU temperature, and the one in IIO was introduced to
+> support the general purpose ADC (and the CPU temperature). The long
+> term goal was to add the touchscreen feature as well eventually so
+> that we could remove the one in drivers/input. That didn't happen.
+> 
+> At the same time, the Allwinner hardware slowly evolved to remove the
+> touchscreen and ADC features, and only keep the CPU temperature
+> readout. It then evolved further on to support multiple temperatures
+> (for different clusters, the GPU, and so on).
+> 
+> So, today, we're in a situation where I was pushing everything into
+> that IIO drivers since there was similiraties between all the
+> generations, but the fact that we have to support so many odd cases
+> (DT bindings compatibility, controllers with and without ADC, etc)
+> that it becomes a real mess.
+> 
+> And that mess isn't really used by anybody, since we want to have the
+> touchscreen.
+> 
+> There's only one SoC that is supported only by that driver, which is
+> the A33 that only had a CPU temperature readout, and is still pretty
+> similar to the latest SoC from Allwinner (that is supported by this
+> series).
+> 
+> I guess, for everyone's sanity and in order to not stall this
+> further,
+> it would just be better to create an hwmon driver for the A33 (and
+> onwards, including the H6) for the SoC that just have the temperature
+> readout feature. And for the older SoC, we just keep the older driver
+> under input/. Once the A33 is supported, we'll remove the driver in
+> IIO (and the related bits in drivers/mfd).
 
-On Mon, May 6, 2019 at 5:24 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
-> On Mon, May 06, 2019 at 03:47:05PM +0200, Simon Horman wrote:
-> > On Sat, May 04, 2019 at 02:42:53AM +0200, Eugeniu Rosca wrote:
-> > > Starting with v4.15-rc2 commit ad67b74d2469d9 ("printk: hash addresses
-> > > printed with %p"), enabling debug prints in sh-sci.c would generate
-> > > output like below confusing the users who try to sneak into the
-> > > internals of the driver:
-> > >
-> > > sh-sci e6e88000.serial: sci_request_dma: TX: got channel (____ptrval____)
-> > > sh-sci e6e88000.serial: sci_request_dma: mapped 4096@(____ptrval____) to 0x00000006798bf000
-> > > sh-sci e6e88000.serial: sci_request_dma: RX: got channel (____ptrval____)
-> > > sh-sci e6e88000.serial: sci_dma_tx_work_fn: (____ptrval____): 0...2, cookie 2
-> > >
-> > > There are two possible fixes for that:
-> > >  - get rid of '%p' prints if they don't reveal any useful information
-> > >  - s/%p/%px/, since it is unlikely we have any concerns leaking the
-> > >    pointer values when running a debug/non-production kernel
-> >
-> > I am concerned that this may expose information in circumstances
-> > where it is undesirable. Is it generally accepted practice to
-> > use %px in conjunction with dev_dbg() ?
-> >
-> > ...
->
-> Below commits performed a similar s/%p/%px/ update in debug context:
->
-> Authors (CC-ed)   Commit         Subject
-> ----------------------------------------
-> Christophe Leroy  b18f0ae92b0a1d ("powerpc/prom: fix early DEBUG messages")
-> Helge Deller      3847dab7742186 ("parisc: Add alternative coding infrastructure")
-> Michael Neuling   51c3c62b58b357 ("powerpc: Avoid code patching freed init sections")
-> Kuninori Morimoto dabdbe3ae0cb9a ("ASoC: rsnd: don't use %p for dev_dbg()")
-> Philip Yang       fa7e65147e5dca ("drm/amdkfd: use %px to print user space address instead of %p")
-> Matthew Wilcox    68c1f08203f2b0 ("lib/list_debug.c: print unmangled addresses")
-> Borislav Petkov   0e6c16c652cada ("x86/alternative: Print unadorned pointers")
-> Darrick J. Wong   c96900435fa9fd ("xfs: use %px for data pointers when debugging")
-> Helge Deller      04903c06b4854d ("parisc: Show unhashed HPA of Dino chip")
->
-> To quote Matthew, with respect to any debug prints:
-> If an attacker can force this message to be printed, we've already lost.
+I think a thermal driver is better.
 
-I think the issue with using %px in debug code is that a distro may enable
-CONFIG_DYNAMIC_DEBUG (it is enabled in several defconfigs), after which
-an attacker just has to convince/trick the system into enabling debug for that
-particular driver.
+Other SoCs' thermal sensor drivers are all thermal drivers.
 
-> In any case, I won't be affected much if the change is not accepted,
-> since it doesn't resolve any major issue on my end. Thanks!
+> 
+> Armbian already has a driver for that they never upstreamed iirc, so
+> it might be a good starting point, and we would add the support for
+> the H6. How does that sound?
 
-OK.
+I think the developer abandoned to upstream it because of the previous
+problem ;-)
 
-Gr{oetje,eeting}s,
+Maybe it can be taken and add A33&H6 support.
 
-                        Geert
+> 
+> Sorry for wasting everybody's time on this.
+> 
+> Maxime
+> 
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
