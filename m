@@ -2,119 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B5114446
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 07:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C609F1447D
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 08:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725836AbfEFFr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 01:47:26 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:56735 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725834AbfEFFrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 01:47:25 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hNWT6-0003V2-80; Mon, 06 May 2019 07:47:16 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hNWT3-0000cb-CZ; Mon, 06 May 2019 07:47:13 +0200
-Date:   Mon, 6 May 2019 07:47:13 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
-        kernel@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] TVP5150 new features
-Message-ID: <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+        id S1725836AbfEFGhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 02:37:01 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:33212 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725710AbfEFGhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 02:37:01 -0400
+Received: by mail-oi1-f195.google.com with SMTP id m204so3072309oib.0
+        for <devicetree@vger.kernel.org>; Sun, 05 May 2019 23:37:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AsWrneXTR0dVmh3/0SghuMR1v5mpMf18phXdK8FnXQk=;
+        b=frf8920IMdLHYA/tNXNdbO5znbdlL6YbO1Vla6P0uim8zVqGlJzdIdUoD9WDeJS6R8
+         /s2Rt9jsQT/VZreSzLBh/1i1eBSmy3l3eHLvsSbEvK4Lgh1idRMTIPi0Z0JPe0rH4ybS
+         s5pg63tEF90wA1Dlko0cr/SnnAAMkGfWeP1OOqGYkrles+0m21rVkBrpgS/tmXcJ5e9W
+         XU7Dr5OGCdaMBI2txRDcgyJMb1dHaJiqoA32A0XpwSC5HhrYet6oFf5W4dHDv/jus9cM
+         7e9xPoBFDurVIDAXFUmnJWqlfxY28c5ML7kuJ7sANzrCi4znsOpJZHVEpgmvLIfgHo4K
+         QOvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AsWrneXTR0dVmh3/0SghuMR1v5mpMf18phXdK8FnXQk=;
+        b=C1WUITEOwxprm8SSfZ8Z8EBGEMq2aZKsGrN5T2bxx2knawoMc+mrZudrWPw6oSiK2x
+         v/iixePGUvusZvRPdnTUzvIZC8RN3JRNy91SN9BbMtCWFCvOELd28tuBEp6Tjh7WcMFr
+         2wnQDsWutrlwkRr7iyNSucflg76K4H6WPxwD5ybz1V7qsjhmsu1ARtTHKJD+EYM2u/4r
+         465NPHpON/OeYSKOO8cWDrTijdqUNfoa1ayfII69lcF2u+xkq2SAHJIuj69/FBNGZt6S
+         PKpLo0KjaEq9OfJ4hran8NVwFdze9YQ+N/S1sqXvGQBzVd4ttBYF53xm6J6maDEya/y3
+         OHsg==
+X-Gm-Message-State: APjAAAVN6im5mIJfMpP4EX0aNweHYrrZgh6M70Q0NR5NcN97akCc7/8U
+        XStdt8WefPdBzYgYINAXbb6TNytKS3n3eH1NHRsZKQ==
+X-Google-Smtp-Source: APXvYqwfACU3oJMu1A/L3M8/Z8X5tpHYCsDugmBY2FX4wctU4dLdhD5XkYMiUU6ywBQrmX0xNHQIVr4RhVDekURBAXk=
+X-Received: by 2002:aca:ba0b:: with SMTP id k11mr171531oif.57.1557124620939;
+ Sun, 05 May 2019 23:37:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190415124413.18456-1-m.felsch@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 07:46:25 up 107 days, 10:28, 77 users,  load average: 0.07, 0.06,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1246f7a9ce912458ea3b889b0c0e392897a664c8.1554879978.git.baolin.wang@linaro.org>
+In-Reply-To: <1246f7a9ce912458ea3b889b0c0e392897a664c8.1554879978.git.baolin.wang@linaro.org>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Mon, 6 May 2019 14:36:49 +0800
+Message-ID: <CAMz4ku+1-w8va__JNkBME5tPuG0AdhzksVbNbYomqY94JggPVg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: sprd: Add clock properties for serial devices
+To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Olof Johansson <olof@lixom.net>, arm-soc <arm@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Hi Olof,
 
-I know you are busy but can you have a look on it?
+On Wed, 10 Apr 2019 at 15:23, Baolin Wang <baolin.wang@linaro.org> wrote:
+>
+> We've introduced power management logics for the Spreadtrum serial
+> controller by commit 062ec2774c8a ("serial: sprd: Add power management
+> for the Spreadtrum serial controller"), thus add related clock properties
+> to support this feature.
+>
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> ---
 
-Regards,
-  Marco
+Could you take this patch through the arm-soc tree if no objections
+from you? Thanks.
 
-On 19-04-15 14:44, Marco Felsch wrote:
-> Hi,
-> 
-> many thanks to Hans and Jacopo for the feedack :) this v6 address the
-> comments both made on my v5 [1].
-> 
-> In short this is round fixes just some minor issues rather than major
-> ones so the diff to the v5 is really small. The changed patches contain
-> the changelog so I omit it here.
-> 
-> I've tested it on a custom hardware but I can't test the em28xx usb
-> use-case since I haven't such a device. So other testers are welcome :)
-> 
-> Looking forward for your feedack,
-> 
-> 	Marco
-> 
-> [1] https://patchwork.kernel.org/cover/10886903/
-> 
-> Javier Martinez Canillas (1):
->   partial revert of "[media] tvp5150: add HW input connectors support"
-> 
-> Marco Felsch (11):
->   dt-bindings: connector: analog: add tv norms property
->   media: v4l2-fwnode: add v4l2_fwnode_connector
->   media: v4l2-fwnode: add initial connector parsing support
->   media: tvp5150: add input source selection of_graph support
->   media: dt-bindings: tvp5150: Add input port connectors DT bindings
->   media: tvp5150: add FORMAT_TRY support for get/set selection handlers
->   media: tvp5150: add s_power callback
->   media: dt-bindings: tvp5150: cleanup bindings stlye
->   media: dt-bindings: tvp5150: add optional tvnorms documentation
->   media: tvp5150: add support to limit tv norms on connector
->   media: tvp5150: make debug output more readable
-> 
-> Michael Tretter (1):
->   media: tvp5150: initialize subdev before parsing device tree
-> 
->  .../display/connector/analog-tv-connector.txt |   4 +
->  .../devicetree/bindings/media/i2c/tvp5150.txt | 125 +++-
->  drivers/media/i2c/tvp5150.c                   | 672 +++++++++++++-----
->  drivers/media/v4l2-core/v4l2-fwnode.c         | 111 +++
->  include/dt-bindings/media/tvnorms.h           |  56 ++
->  include/dt-bindings/media/tvp5150.h           |   2 -
->  include/media/v4l2-connector.h                |  30 +
->  include/media/v4l2-fwnode.h                   |  49 ++
->  8 files changed, 859 insertions(+), 190 deletions(-)
->  create mode 100644 include/dt-bindings/media/tvnorms.h
->  create mode 100644 include/media/v4l2-connector.h
-> 
-> -- 
-> 2.20.1
-> 
-> 
-> 
+>  arch/arm64/boot/dts/sprd/whale2.dtsi |   16 ++++++++++++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/sprd/whale2.dtsi b/arch/arm64/boot/dts/sprd/whale2.dtsi
+> index 34b6ca0..b5c5dce 100644
+> --- a/arch/arm64/boot/dts/sprd/whale2.dtsi
+> +++ b/arch/arm64/boot/dts/sprd/whale2.dtsi
+> @@ -75,7 +75,9 @@
+>                                              "sprd,sc9836-uart";
+>                                 reg = <0x0 0x100>;
+>                                 interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> -                               clocks = <&ext_26m>;
+> +                               clock-names = "enable", "uart", "source";
+> +                               clocks = <&apapb_gate CLK_UART0_EB>,
+> +                                      <&ap_clk CLK_UART0>, <&ext_26m>;
+>                                 status = "disabled";
+>                         };
+>
+> @@ -84,7 +86,9 @@
+>                                              "sprd,sc9836-uart";
+>                                 reg = <0x100000 0x100>;
+>                                 interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> -                               clocks = <&ext_26m>;
+> +                               clock-names = "enable", "uart", "source";
+> +                               clocks = <&apapb_gate CLK_UART1_EB>,
+> +                                      <&ap_clk CLK_UART1>, <&ext_26m>;
+>                                 status = "disabled";
+>                         };
+>
+> @@ -93,7 +97,9 @@
+>                                              "sprd,sc9836-uart";
+>                                 reg = <0x200000 0x100>;
+>                                 interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+> -                               clocks = <&ext_26m>;
+> +                               clock-names = "enable", "uart", "source";
+> +                               clocks = <&apapb_gate CLK_UART2_EB>,
+> +                                      <&ap_clk CLK_UART2>, <&ext_26m>;
+>                                 status = "disabled";
+>                         };
+>
+> @@ -102,7 +108,9 @@
+>                                              "sprd,sc9836-uart";
+>                                 reg = <0x300000 0x100>;
+>                                 interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> -                               clocks = <&ext_26m>;
+> +                               clock-names = "enable", "uart", "source";
+> +                               clocks = <&apapb_gate CLK_UART3_EB>,
+> +                                      <&ap_clk CLK_UART3>, <&ext_26m>;
+>                                 status = "disabled";
+>                         };
+>                 };
+> --
+> 1.7.9.5
+>
+
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Baolin Wang
+Best Regards
