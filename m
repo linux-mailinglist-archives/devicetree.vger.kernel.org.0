@@ -2,77 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E0715540
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 23:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E211555F
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 23:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726400AbfEFVJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 17:09:05 -0400
-Received: from muru.com ([72.249.23.125]:48062 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726322AbfEFVJF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 May 2019 17:09:05 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id D199280DB;
-        Mon,  6 May 2019 21:09:22 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Tero Kristo <t-kristo@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: [PATCH] clk: ti: clkctrl: Fix clkdm_clk handling
-Date:   Mon,  6 May 2019 14:08:54 -0700
-Message-Id: <20190506210854.24300-1-tony@atomide.com>
-X-Mailer: git-send-email 2.21.0
+        id S1726190AbfEFVVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 17:21:44 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:41947 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726439AbfEFVVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 17:21:44 -0400
+Received: by mail-wr1-f66.google.com with SMTP id c12so19171409wrt.8
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 14:21:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=lXD1mb7om2S9zSCUA/jiD1ctEPtzNRTTy8VLPu0OfRw=;
+        b=syVX4TyaME689Dw0tKkFGY20rbG610lj0Rm3K5LktJGE7T/+ESMSmSKsIzfDeuosYU
+         q977j/7wfPIUfgZpvosU2dQCPwMGBMcUFhI3KthhCkWenXn7L5bv+OkfL+q0Rmgg6bVo
+         Az56nLuZgVpdVx+OSbHG0m/syw8nFZNuNxWQxz4WLW1O4eipAz7hqdqlMhrzbLaMsEtl
+         oL+b+s4YXyJLMhURD2YkNKHaPucKed91SuoprlxHxtOlcbCTIEsLaXDkZKiOW9/aBXnJ
+         /yV4vvCOPfv0r56ZdraB6Q10oawDAh43GHsuCx4PSDJdOsbOAp19h9lQtk0iXJNUX4mg
+         E6bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=lXD1mb7om2S9zSCUA/jiD1ctEPtzNRTTy8VLPu0OfRw=;
+        b=qWt6deO/BbTxkoyWDu1jVOxNmZCkr4Gyo9OM3oieeUGZO6cytGs1wNr1+bCxbRhhu+
+         EUhICaS1wL5+kZsPwYtcX4W3zQE5qq4ZRA0fi/JLOTw6C4A/MIYxon8Rr1MrI86WMt+3
+         gFNnMZHOHzdPSqZm72CYPB+k8VkMoDodHfuFqYe9gCdKmn+Q94h4udMa5WALzgsY0tJd
+         fb1BdG/C1HGrrjETu/gW5pfgnv0vGPDmEtAwNISK8+BxeFJC3nSsaXjNgscE4Zmr3ZiM
+         upwW1xT796ZFb4BKl+JVshiY9J/LK/cnliiqD7El/Pg4f7IyBnbIn5vlG1V/hSsLLc6Z
+         qkGA==
+X-Gm-Message-State: APjAAAXTVDXeMdiEGCJQf+BWUgNMKcUcOzLsrzs000kS66/MzfoirLjF
+        r5tMFWDTqnhohkATY0MgQvqahJWchxE=
+X-Google-Smtp-Source: APXvYqxvtkFmVw9sccOwXJvJqiWW6aZLJWCZFpwJpRBZ4wEHIWyOMEc1v8PxFZSE0AUQ33UqZz112w==
+X-Received: by 2002:a5d:464f:: with SMTP id j15mr1750213wrs.265.1557177702531;
+        Mon, 06 May 2019 14:21:42 -0700 (PDT)
+Received: from arch-late (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id 10sm13794829wmn.4.2019.05.06.14.21.41
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 06 May 2019 14:21:41 -0700 (PDT)
+References: <20190504144027.31920-1-festevam@gmail.com> <20190504144027.31920-6-festevam@gmail.com>
+User-agent: mu4e 1.2.0; emacs 27.0.50
+From:   Rui Miguel Silva <rui.silva@linaro.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     hverkuil-cisco@xs4all.nl, slongerbeam@gmail.com,
+        p.zabel@pengutronix.de, linux-media@vger.kernel.org,
+        sebastien.szymanski@armadeus.com, otavio@ossystems.com.br,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/8] media: dt-bindings: imx7-csi: Document a single CSI clock
+In-reply-to: <20190504144027.31920-6-festevam@gmail.com>
+Date:   Mon, 06 May 2019 22:21:40 +0100
+Message-ID: <m3ef5b5lej.fsf@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need to always call clkdm_clk_enable() and clkdm_clk_disable() even
-the clkctrl clock(s) enabled for the domain do not have any gate register
-bits. Otherwise clockdomains may never get enabled except when devices get
-probed with the legacy "ti,hwmods" devicetree property.
+Oi Fabio,
+On Sat 04 May 2019 at 15:40, Fabio Estevam wrote:
+> As per the i.MX7D Reference Manual only the MCLK is used for
+> the CSI block, so only document this single clock.
+>
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 
-Fixes: 88a172526c32 ("clk: ti: add support for clkctrl clocks")
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+You missed to add a cover-letter to the series, but I have tested
+it and reviewed on top of Steve series [0] and everything looks good.
+
+Thanks for fixes.
+
+For the all series:
+Tested-by: Rui Miguel Silva <rmfrfs@gmail.com>
+Reviewed-by: Rui Miguel Silva <rmfrfs@gmail.com>
+
 ---
- drivers/clk/ti/clkctrl.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Cheers,
+	Rui
 
-diff --git a/drivers/clk/ti/clkctrl.c b/drivers/clk/ti/clkctrl.c
---- a/drivers/clk/ti/clkctrl.c
-+++ b/drivers/clk/ti/clkctrl.c
-@@ -137,9 +137,6 @@ static int _omap4_clkctrl_clk_enable(struct clk_hw *hw)
- 	int ret;
- 	union omap4_timeout timeout = { 0 };
- 
--	if (!clk->enable_bit)
--		return 0;
--
- 	if (clk->clkdm) {
- 		ret = ti_clk_ll_ops->clkdm_clk_enable(clk->clkdm, hw->clk);
- 		if (ret) {
-@@ -151,6 +148,9 @@ static int _omap4_clkctrl_clk_enable(struct clk_hw *hw)
- 		}
- 	}
- 
-+	if (!clk->enable_bit)
-+		return 0;
-+
- 	val = ti_clk_ll_ops->clk_readl(&clk->enable_reg);
- 
- 	val &= ~OMAP4_MODULEMODE_MASK;
-@@ -179,7 +179,7 @@ static void _omap4_clkctrl_clk_disable(struct clk_hw *hw)
- 	union omap4_timeout timeout = { 0 };
- 
- 	if (!clk->enable_bit)
--		return;
-+		goto exit;
- 
- 	val = ti_clk_ll_ops->clk_readl(&clk->enable_reg);
- 
--- 
-2.21.0
+[0]: https://lore.kernel.org/linux-media/20190503224326.21039-1-slongerbeam@gmail.com/
+
+> ---
+>  Documentation/devicetree/bindings/media/imx7-csi.txt | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/media/imx7-csi.txt b/Documentation/devicetree/bindings/media/imx7-csi.txt
+> index 3c07bc676bc3..443aef07356e 100644
+> --- a/Documentation/devicetree/bindings/media/imx7-csi.txt
+> +++ b/Documentation/devicetree/bindings/media/imx7-csi.txt
+> @@ -14,8 +14,7 @@ Required properties:
+>  - interrupts    : should contain CSI interrupt;
+>  - clocks        : list of clock specifiers, see
+>          Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
+> -- clock-names   : must contain "axi", "mclk" and "dcic" entries, matching
+> -                 entries in the clock property;
+> +- clock-names   : must contain "mclk";
+>  
+>  The device node shall contain one 'port' child node with one child 'endpoint'
+>  node, according to the bindings defined in:
+> @@ -32,10 +31,8 @@ example:
+>                          compatible = "fsl,imx7-csi";
+>                          reg = <0x30710000 0x10000>;
+>                          interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> -                        clocks = <&clks IMX7D_CLK_DUMMY>,
+> -                                        <&clks IMX7D_CSI_MCLK_ROOT_CLK>,
+> -                                        <&clks IMX7D_CLK_DUMMY>;
+> -                        clock-names = "axi", "mclk", "dcic";
+> +                        clocks = <&clks IMX7D_CSI_MCLK_ROOT_CLK>;
+> +                        clock-names = "mclk";
+>  
+>                          port {
+>                                  csi_from_csi_mux: endpoint {
+
