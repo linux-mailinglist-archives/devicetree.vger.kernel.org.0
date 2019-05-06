@@ -2,201 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C49AA14877
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB7414888
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726250AbfEFKnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:43:43 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:39262 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726128AbfEFKnn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:43:43 -0400
-Received: by mail-wr1-f66.google.com with SMTP id v10so4332209wrt.6
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:43:42 -0700 (PDT)
+        id S1725883AbfEFKtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 06:49:07 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:47056 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725853AbfEFKtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:49:07 -0400
+Received: by mail-pl1-f196.google.com with SMTP id bi2so6158318plb.13
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 03:49:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uCi++m+hmflAtTf0wEp9JT3iL7NhPW7odYvIK611ma4=;
-        b=SZr/UgT/IQ9sh8lvU0B3M5ekEWd0V/Cm4RNDe4ul6z8F9ZavaeSx4eVJh/dWCzqJUo
-         oTscLrrY/6XZpLJTGkh9fAhyvrWiEEUWqYTiUjvzy7RILfvJUyKjB1lUQdxuFEYiil7r
-         nCRgmM4BL9sZ78L4/HF73e2hVRJEu3F3ab0ClPhoe37o6TOmB6DiBJXN8kcntvnM6pq4
-         gjSzS2FNGW7nUp5PX+fYaI5JzK7lhr7T8H89irVfl5xKre2OHu9snUmHscPcB8oaRGST
-         UiXkA8lKGhXNOuprkmPEtZIzhKhsohMtE5PnGSV2mAwj8RYU58yVfGXg269G2yVol4UM
-         YzLQ==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=BRC3Z3+UxcLDFwyiUMPxf4Qer+1eOXAYqQrSL6zMVrc=;
+        b=P8BZuNbzW6NxX/w1mub6qkbcIgZKE08lp7r2HwhPmLvc2eHKVVsvY9aALR3r+SJDxR
+         3GzD3TqYIgVv74EvjLjuR0WOfZ+RYFDEZs1YGYqFk7pw9wVcNOE4iK6wr4izhdDknx/1
+         WFcXo6aai/nlS4FLPaDPGgtIqy1k3wc9YfSDKoQl5QCLoLNlx71/VyKKaJzjr50oBPV9
+         c0pXgfklT4MbACS7chlFLjwdGwrrMXVP/6F3R4vX08BxmnsGMr/qL7VOkEmKNudpo9XM
+         F5eJDuPCjNXYVp2Nxs48DuD5qZb7DeNIfYypFYLhwXybkiMhiB++QlKWAGvnzjPbbl3g
+         h2ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uCi++m+hmflAtTf0wEp9JT3iL7NhPW7odYvIK611ma4=;
-        b=MoAT9G6DnLYRACj9zIP9O395x/u0mInRjbV5O+ReNe4e5Pzc7BrEMK6ouwU6g/DXA6
-         Ak3av1wP3OhiUKwfwyx7lYFryJu+snotGO+l2UHnMSxpDG3UUnu+z9GNBQqNy4w59Gub
-         MTWH2MfxC7LqikW4QmvnO31qbZhpHOCKp2nWZ9qNVS0Z0ygjIRBgW0ncac3vy75lNLdw
-         xyBIpEhZ8tWiM8jSopfm8WyGgjffDW06TaO5tt0z/xPGgHujwKaL9Ac1lFJJsKHTHtnF
-         ruacFpSp/+f8wWz8N+0h2I0d83RydHgc2JkRczI6OM6g1DrNS1y9CisTRhPRdfOigZoS
-         vHrQ==
-X-Gm-Message-State: APjAAAUMZHX1OC5KSTfk8V+L4f1NWUZ+fIl8yga6kznyWViCGxUqvp4H
-        M3Ps8hAqi24F/jcwi7d3PizZNw==
-X-Google-Smtp-Source: APXvYqxMdxGiwDUmRg23C6IamUTuPcgy9FIEmdOIgUAB7rWrlG9hpuSisSfXusd7mNEl3e66L2oRLQ==
-X-Received: by 2002:adf:ec0d:: with SMTP id x13mr17035465wrn.268.1557139421124;
-        Mon, 06 May 2019 03:43:41 -0700 (PDT)
-Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
-        by smtp.googlemail.com with ESMTPSA id t18sm18987347wrg.19.2019.05.06.03.43.39
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 06 May 2019 03:43:40 -0700 (PDT)
-Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "michael.kao" <michael.kao@mediatek.com>, fan.chen@mediatek.com,
-        jamesjj.liao@mediatek.com, dawei.chien@mediatek.com,
-        louis.yu@mediatek.com, roger.lu@mediatek.com,
-        Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com>
- <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
- <CAJMQK-isJf6f+OubbCdoXs8L2cup=rm3Z8Mr7Q26QshMP-0wxA@mail.gmail.com>
- <20190503164651.GB40515@google.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <c6cf6170-331d-8ffc-d272-e5d8ee648eda@linaro.org>
-Date:   Mon, 6 May 2019 12:43:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190503164651.GB40515@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=BRC3Z3+UxcLDFwyiUMPxf4Qer+1eOXAYqQrSL6zMVrc=;
+        b=FVZUVMC+wmUMALog4TKK6KManDFNzv9s4KElcppTpPzIvW6lMIql5ObWyoph944xy+
+         8ytzRZIlF8YxxZ1BNGtVAS30uvXPGKEN2N9xufIgMSqMKLE2/5By3zC3P8AOjV1Fxl8o
+         VN8AVI5N//YKCOIy8/JEJloJOAZ2222zEWbOGEizxAqrMyPPb3pR1IfPXu3+i1W8L+dY
+         O6ymIBG93OGmIA8widv3/5lHP4eFeTcWQ5vvmmzXdobPuxjI6haaVM0IDA0C+xFCCYjS
+         /kNzB6LuIvsuCOpU7c8lWLrJFPaVre44yniIWcB6Nqyno0VkxPg94tcbh7ASreqJxDlx
+         cxZw==
+X-Gm-Message-State: APjAAAXVEQhXZVt/NzQZ063We5k6SF0+YhmQ33hL+0Bz9RnryasoQAnL
+        4JxlHKD0PDFpRA8pgjz7WPf3uw==
+X-Google-Smtp-Source: APXvYqwXKlvXYBYhWYyONyfIJ8A2MOOKh40u2Bmp1IQvp2bhgWtuZDxtb1uAg+BW4JM6GkBoXY1tIQ==
+X-Received: by 2002:a17:902:2bc5:: with SMTP id l63mr32159119plb.202.1557139746900;
+        Mon, 06 May 2019 03:49:06 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id p67sm21662257pfi.123.2019.05.06.03.49.02
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 06 May 2019 03:49:06 -0700 (PDT)
+From:   Yash Shah <yash.shah@sifive.com>
+To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        palmer@sifive.com
+Cc:     paul.walmsley@sifive.com, linux-kernel@vger.kernel.org,
+        aou@eecs.berkeley.edu, mark.rutland@arm.com, robh+dt@kernel.org,
+        sachin.ghadi@sifive.com, afd@ti.com,
+        Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH v3 0/2] L2 cache controller support for SiFive FU540
+Date:   Mon,  6 May 2019 16:18:38 +0530
+Message-Id: <1557139720-12384-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/05/2019 18:46, Matthias Kaehlcke wrote:
-> Hi,
-> 
-> On Fri, May 03, 2019 at 04:03:58PM +0800, Hsin-Yi Wang wrote:
->> On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
->>>
->>> Add thermal zone node to Mediatek MT8183 dts file.
->>>
->>> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
->>> ---
->>>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
->>>  1 file changed, 64 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
->>> index 926df75..b92116f 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
->>> @@ -334,6 +334,67 @@
->>>                         status = "disabled";
->>>                 };
->>>
->>> +               thermal: thermal@1100b000 {
->>> +                       #thermal-sensor-cells = <1>;
->>> +                       compatible = "mediatek,mt8183-thermal";
->>> +                       reg = <0 0x1100b000 0 0x1000>;
->>> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
->>> +                       clocks = <&infracfg CLK_INFRA_THERM>,
->>> +                                <&infracfg CLK_INFRA_AUXADC>;
->>> +                       clock-names = "therm", "auxadc";
->>> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
->>> +                       mediatek,auxadc = <&auxadc>;
->>> +                       mediatek,apmixedsys = <&apmixedsys>;
->>> +                       mediatek,hw-reset-temp = <117000>;
->>> +                       nvmem-cells = <&thermal_calibration>;
->>> +                       nvmem-cell-names = "calibration-data";
->>> +               };
->>> +
->>> +               thermal-zones {
->>> +                       cpu_thermal: cpu_thermal {
->>> +                               polling-delay-passive = <1000>;
->>> +                               polling-delay = <1000>;
->>> +
->>> +                               thermal-sensors = <&thermal 0>;
->>> +                               sustainable-power = <1500>;
->>> +                       };
->>> +
->>> +                       tzts1: tzts1 {
->>> +                               polling-delay-passive = <1000>;
->>> +                               polling-delay = <1000>;
->>> +                               thermal-sensors = <&thermal 1>;
->> Is sustainable-power required for tzts? Though it's an optional
->> property, kernel would have warning:
->> [    0.631556] thermal thermal_zone1: power_allocator:
->> sustainable_power will be estimated
->> [    0.639586] thermal thermal_zone2: power_allocator:
->> sustainable_power will be estimated
->> [    0.647611] thermal thermal_zone3: power_allocator:
->> sustainable_power will be estimated
->> [    0.655635] thermal thermal_zone4: power_allocator:
->> sustainable_power will be estimated
->> [    0.663658] thermal thermal_zone5: power_allocator:
->> sustainable_power will be estimated
->> if no sustainable-power assigned.
-> 
-> The property is indeed optional, if it isn't specified IPA will use
-> the sum of the minimum power of all 'power actors' of the zone as
-> estimate (see estimate_sustainable_power()). This may lead to overly
-> agressive throttling, since the nominal sustainable power will always
-> be <= the requested power.
-> 
-> In my understanding the sustainable power may varies between devices,
-> even for the same SoC. One could have all the hardware crammed into a
-> tiny plastic enclosure (e.g. ASUS Chromebit), another might have a
-> laptop form factor and a metal enclosure (e.g. ASUS C201). Both
-> examples are based on an Rockchip rk3288, but they have completely
-> different thermal behavior, and would likely have different values for
-> 'sustainable-power'.
-> 
-> In this sense I tend to consider 'sustainable-power' more a device,
-> than a SoC property. You could specify a 'reasonable' value as a
-> starting point, but it will likely not be optimal for all or even most
-> devices. The warning might even be useful for device makers by
-> indicating them that there is room for tweaking.
+This patch series adds an L2 cache controller driver with DT documentation
+for SiFive FU540-C000.
 
+These two patches were initially part of the patch series:
+'L2 cache controller and EDAC support for SiFive SoCs'
+https://lkml.org/lkml/2019/4/15/320
+In order to merge L2 cache controller driver without any dependency on EDAC,
+the L2 cache controller patches are re-posted separately in this series.
 
-The sustainable power is the power dissipated by the devices belonging
-to the thermal zone at the given trip temperature.
+The patchset is based on Linux 5.1-rc2 and tested on HiFive Unleashed
+board with additional board related patches needed for testing can be
+found at dev/yashs/L2_cache_controller branch of:
+https://github.com/yashshah7/riscv-linux.git
 
-With the power numbers and the cooling devices, the IPA will change the
-states of the cooling devices to leverage the dissipated power to the
-sustainable power.
+Changes since v2
+- Add a header file to expose Macros and extern functions
+- Remove all single line functions
 
-The contribution is the cooling effect of the cooling device.
+Changes since v1
+- Mention the valid values for cache properties in DT documentation
+- Remove the unnecessary property 'reg-names'
+- Add "cache" to supported compatible string property
+- Remove conditional checks from debugfs functions in sifive_l2_cache.c
 
-However, the IPA is limited to one thermal zone and the cooling device
-is the cpu cooling device. There is the devfreq cooling device but as
-the graphic driver is not upstream, it is found in the android tree only
-for the moment.
+Yash Shah (2):
+  RISC-V: Add DT documentation for SiFive L2 Cache Controller
+  RISC-V: sifive_l2_cache: Add L2 cache controller driver for SiFive
+    SoCs
 
-As you mentioned the sustainable power can vary depending on the form
-factor and the production process for the same SoC (they can go to
-higher frequencies thus dissipate more power). That is the reason why we
-split the DT per SoC and we override the values on a per SoC version basis.
-
-You can have a look the rk3399.dtsi and their variant for experimental
-board (*-rock960.dts) and the chromebook version (*-gru-kevin.dts).
-
-Do you want a empiric procedure to find out the sustainable power ?
-
-
-
-
-
-
+ .../devicetree/bindings/riscv/sifive-l2-cache.txt  |  51 ++++++
+ arch/riscv/include/asm/sifive_l2_cache.h           |  16 ++
+ arch/riscv/mm/Makefile                             |   1 +
+ arch/riscv/mm/sifive_l2_cache.c                    | 175 +++++++++++++++++++++
+ 4 files changed, 243 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+ create mode 100644 arch/riscv/include/asm/sifive_l2_cache.h
+ create mode 100644 arch/riscv/mm/sifive_l2_cache.c
 
 -- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+1.9.1
 
