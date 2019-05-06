@@ -2,67 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C6F151DB
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 18:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF920151DF
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 18:47:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726571AbfEFQqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 12:46:20 -0400
-Received: from smtp3.ono.com ([62.42.230.163]:47299 "EHLO smtp3.ono.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726287AbfEFQqU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 May 2019 12:46:20 -0400
-X-Junkmail-Premium-Raw: score=16/50,refid=2.7.2:2019.5.6.153617:17:16.798,ip=62.42.230.134,rules=__HAS_MSGID,
- __SANE_MSGID, MSGID_JMAIL_DEFAULT, INVALID_MSGID_NO_FQDN, __HAS_FROM,
- __HAS_REPLYTO, __FRAUD_WEBMAIL_REPLYTO, __SUBJ_ALPHA_START,
- __PHISH_SPEAR_SUBJ_ALERT, __SUBJ_ALPHA_END, __MIME_VERSION, __CT,
- __CT_TEXT_PLAIN, __CTE, MISSING_HEADERS, __CP_NAME_BODY,
- __FRAUD_INYOURCOUNTRY, __STOCK_PHRASE_7, __STOCK_PHRASE_8,
- __FRAUD_MONEY_GENERIC, __FRAUD_MONEY_BIG_COIN_DIG, __OEM_PRICE,
- __FRAUD_MONEY_CURRENCY_DOLLAR, __NO_HTML_TAG_RAW, BODY_SIZE_700_799,
- BODYTEXTP_SIZE_3000_LESS, __MIME_TEXT_P1, __MIME_TEXT_ONLY, HTML_00_01,
- HTML_00_10, __FRAUD_MONEY_CURRENCY, __FRAUD_MONEY_BIG_COIN,
- __FRAUD_MONEY_VALUE, __FRAUD_MONEY, FRAUD_X3, BODY_SIZE_5000_LESS,
- __FRAUD_WEBMAIL, WEBMAIL_REPLYTO_NOT_FROM, FRAUD_WEBMAIL_R_NOT_F,
- __FRAUD_COMMON, __MIME_TEXT_P, NO_URI_FOUND, NO_CTA_URI_FOUND,
- __PHISH_SPEAR_STRUCTURE_1, BODY_SIZE_1000_LESS, BODY_SIZE_2000_LESS,
- __PHISH_SPEAR_STRUCTURE_2, REPLYTO_FROM_DIFF_ADDY, NO_URI_HTTPS,
- BODY_SIZE_7000_LESS, TO_MALFORMED
-Received: from resprs04 (62.42.230.134) by smtp3.ono.com (9.0.019.09-1)
-        id 5CC0A28F0083EB32; Mon, 6 May 2019 18:45:34 +0200
-Received: from (198.143.43.15) by webmailcpr04n.ono.com;  Mon, 6 May 2019 18:45:33 +0200
-Message-ID: <11826458.1755511557161133275.JavaMail.defaultUser@defaultHost>
-Date:   Mon, 6 May 2019 18:45:33 +0200 (CEST)
-From:   Aisha Gaddafi <alosax@ono.com>
-Reply-To: mgaddafi08@gmail.com
-Subject: hello dear
+        id S1726428AbfEFQrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 12:47:11 -0400
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:46315 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725883AbfEFQrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 12:47:11 -0400
+Received: by mail-ua1-f65.google.com with SMTP id n23so4879131uap.13;
+        Mon, 06 May 2019 09:47:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KRsp84CR/wZjf7JSxDT5PziM3wZtSANeGjBl9N5WJPY=;
+        b=M2WAm3zKsvX/U5EO7RnbWnpV7F70x5KP9SwdmROsIEe7qOoeXWRK/+dzNYEuN7DLdf
+         KDiyG3t+V1q1W/2lcHpFRCAjPDRAece4OzP3HgQ70yac83vwQH2I7qeyWnOZxbjGxSry
+         uNssbiAoB9NF16QnVpDN0lkqrY4gbxmqhiQUth7bzjspFgVUdVufYKb7yy5gav8ib7va
+         fCM6mIluYhwjk0tIbKmyO+xtf0Q1hpTY1re0EL819Pxrdtgft9vI+diJeECilhTadEvt
+         Ou3xkObFCbrw1QKB6/KPuTzovxu/Q6hq3ZYypnLNHgSO21EaBxgw908AnK1j75jnyKNX
+         x0vw==
+X-Gm-Message-State: APjAAAXDkuZUo++LyflJ+YmIvW2c76Sg4eQTkYA8HIZJzlLFcRI3A6E9
+        6Ld0RkJ1Iktz1RK0weH0ap6sPSvnq24muHlImOc=
+X-Google-Smtp-Source: APXvYqxivUBYKeylf06dc/FajmKOGINCDT9FRcHViFrODon94uEeIITcByJUAga3hTH23Y3VDVffI/Cm5Acd2hQyJVE=
+X-Received: by 2002:a9f:2b84:: with SMTP id y4mr10578570uai.28.1557161229621;
+ Mon, 06 May 2019 09:47:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-To:     unlisted-recipients:; (no To-header on input)
+References: <20190504004258.23574-1-erosca@de.adit-jv.com> <20190504004258.23574-2-erosca@de.adit-jv.com>
+ <20190506134700.ya565idfzzc3enbm@verge.net.au> <20190506152433.GA22769@vmlxhi-102.adit-jv.com>
+In-Reply-To: <20190506152433.GA22769@vmlxhi-102.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 May 2019 18:46:57 +0200
+Message-ID: <CAMuHMdXJzEYL48qwHAxrRsurQLBipZsQpv+w8i=+B2XCM_CZng@mail.gmail.com>
+Subject: Re: [PATCH 1/6] serial: sh-sci: Reveal ptrval in dev_dbg
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "George G . Davis" <george_davis@mentor.com>,
+        Andy Lowe <andy_lowe@mentor.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Helge Deller <deller@gmx.de>,
+        Michael Neuling <mikey@neuling.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Philip Yang <Philip.Yang@amd.com>,
+        Matthew Wilcox <mawilcox@microsoft.com>,
+        Borislav Petkov <bp@suse.de>,
+        "Darrick J. Wong" <darrick.wong@oracle.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
-hello dear
-I came across your contact during my private search. Mrs Aisha Al-
-Qaddafi is my name, the only daughter of late Libyan president, am a 
-single Mother and a Widow with three Children.I have funds the sum of 
-$27.5 million USD for investment, I am interested in you for investment 
-project assistance in your country,because of my current refugee 
-status, i shall compensate you 30% of the total sum after the funds are 
-transfer into your account,I am willing to negotiate 
-investment/business profit sharing ratio with you base on the future 
-investment earning profits.
-Reply me urgent for more details
-Mrs Aisha Al-Qaddafi
+Hi Eugeniu,
 
+On Mon, May 6, 2019 at 5:24 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> On Mon, May 06, 2019 at 03:47:05PM +0200, Simon Horman wrote:
+> > On Sat, May 04, 2019 at 02:42:53AM +0200, Eugeniu Rosca wrote:
+> > > Starting with v4.15-rc2 commit ad67b74d2469d9 ("printk: hash addresses
+> > > printed with %p"), enabling debug prints in sh-sci.c would generate
+> > > output like below confusing the users who try to sneak into the
+> > > internals of the driver:
+> > >
+> > > sh-sci e6e88000.serial: sci_request_dma: TX: got channel (____ptrval____)
+> > > sh-sci e6e88000.serial: sci_request_dma: mapped 4096@(____ptrval____) to 0x00000006798bf000
+> > > sh-sci e6e88000.serial: sci_request_dma: RX: got channel (____ptrval____)
+> > > sh-sci e6e88000.serial: sci_dma_tx_work_fn: (____ptrval____): 0...2, cookie 2
+> > >
+> > > There are two possible fixes for that:
+> > >  - get rid of '%p' prints if they don't reveal any useful information
+> > >  - s/%p/%px/, since it is unlikely we have any concerns leaking the
+> > >    pointer values when running a debug/non-production kernel
+> >
+> > I am concerned that this may expose information in circumstances
+> > where it is undesirable. Is it generally accepted practice to
+> > use %px in conjunction with dev_dbg() ?
+> >
+> > ...
+>
+> Below commits performed a similar s/%p/%px/ update in debug context:
+>
+> Authors (CC-ed)   Commit         Subject
+> ----------------------------------------
+> Christophe Leroy  b18f0ae92b0a1d ("powerpc/prom: fix early DEBUG messages")
+> Helge Deller      3847dab7742186 ("parisc: Add alternative coding infrastructure")
+> Michael Neuling   51c3c62b58b357 ("powerpc: Avoid code patching freed init sections")
+> Kuninori Morimoto dabdbe3ae0cb9a ("ASoC: rsnd: don't use %p for dev_dbg()")
+> Philip Yang       fa7e65147e5dca ("drm/amdkfd: use %px to print user space address instead of %p")
+> Matthew Wilcox    68c1f08203f2b0 ("lib/list_debug.c: print unmangled addresses")
+> Borislav Petkov   0e6c16c652cada ("x86/alternative: Print unadorned pointers")
+> Darrick J. Wong   c96900435fa9fd ("xfs: use %px for data pointers when debugging")
+> Helge Deller      04903c06b4854d ("parisc: Show unhashed HPA of Dino chip")
+>
+> To quote Matthew, with respect to any debug prints:
+> If an attacker can force this message to be printed, we've already lost.
 
+I think the issue with using %px in debug code is that a distro may enable
+CONFIG_DYNAMIC_DEBUG (it is enabled in several defconfigs), after which
+an attacker just has to convince/trick the system into enabling debug for that
+particular driver.
 
+> In any case, I won't be affected much if the change is not accepted,
+> since it doesn't resolve any major issue on my end. Thanks!
 
+OK.
 
+Gr{oetje,eeting}s,
 
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
