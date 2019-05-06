@@ -2,160 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3824814850
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 711C914856
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 12:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725886AbfEFK0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 06:26:36 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:40702 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbfEFK0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:26:36 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x46AIvBj034896;
-        Mon, 6 May 2019 10:26:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type : in-reply-to;
- s=corp-2018-07-02; bh=6tzxzcTc/aqne9cPRGeSKcpQM5kD6ysk+yLi19TTFts=;
- b=vNw6lfQt9QAB6vRvb5Y7x+cCAYz06O6DH27saqT9yWqXTBF4JwytEseiwEivc65I4KDE
- jaoXwG1GYhQFEAtodTPLrIjEB+BrCe3Y9+p0vn2vyq4UEl97dGmdS0C+YC4V9GhDyqlQ
- 1b7UKMynmLWw2RSyLudehMb0cuvy/9MvuDF7hUKP2RXmsmnt0EuUcErBY8ABX18P4REn
- lXRYDeQ7XY6jQgZ9N39PYppGyJkTMvP6ery8mT7v50iHAzwO+TY0WeXPV24yrWbC5LWK
- n0Xo6wBRRhAaJyef49muGVgFr+IH+uDof6zn5swPMb/tCA5xEm4QL8bjIveCk/G/Nbth XQ== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by userp2130.oracle.com with ESMTP id 2s94bfnmg5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 06 May 2019 10:26:27 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x46ANqKO193300;
-        Mon, 6 May 2019 10:24:27 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
-        by userp3030.oracle.com with ESMTP id 2sagyt9sas-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 06 May 2019 10:24:27 +0000
-Received: from abhmp0015.oracle.com (abhmp0015.oracle.com [141.146.116.21])
-        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x46AONan030405;
-        Mon, 6 May 2019 10:24:24 GMT
-Received: from kadam (/105.52.123.240)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Mon, 06 May 2019 03:24:23 -0700
-Date:   Mon, 6 May 2019 13:24:12 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     kbuild@01.org, Michael Tretter <m.tretter@pengutronix.de>
-Cc:     kbuild-all@01.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        robh+dt@kernel.org, mchehab@kernel.org, tfiga@chromium.org,
-        dshah@xilinx.com, hverkuil@xs4all.nl,
-        Michael Tretter <m.tretter@pengutronix.de>
-Subject: Re: [PATCH v5 5/5] [media] allegro: add SPS/PPS nal unit writer
-Message-ID: <20190506102412.GR2239@kadam>
+        id S1726282AbfEFK3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 06:29:45 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:36745 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726085AbfEFK3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 06:29:44 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190506102942euoutp02154dbd0f78410b3f77e78169577b1356~cEUp9yz5R0600506005euoutp02a
+        for <devicetree@vger.kernel.org>; Mon,  6 May 2019 10:29:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190506102942euoutp02154dbd0f78410b3f77e78169577b1356~cEUp9yz5R0600506005euoutp02a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557138582;
+        bh=1Zxj4PqvwivxAPF6w95dS0sI9tHHMuUsGPtKoed7y/0=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=Gb958JLSKuhMoy6HkhEyV7Mk01thn6AleP6oKBL4N+STSSvS7jwSQOM7bbrbGkiAd
+         x6n6/Wvfg2z5A029EoR1LFALbIacRjHSO8Vw4YuzZ7ekiF5MYj8zHuki/Q4xbchSZI
+         8aGT53rbUCrNhT5jA3umZ7BFD8OjJNzngvq78aJw=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190506102941eucas1p13c11436a32f3a0770ad3be1a982a263b~cEUpIJWCm1056610566eucas1p1U;
+        Mon,  6 May 2019 10:29:41 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 73.4D.04377.59C00DC5; Mon,  6
+        May 2019 11:29:41 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190506102940eucas1p1ee62c58e1fc8ffa155cf1710baa82548~cEUoQxyBK0861308613eucas1p1x;
+        Mon,  6 May 2019 10:29:40 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190506102940eusmtrp112e35268797a7148d8ca48cce4162727~cEUoCo97o2720527205eusmtrp1N;
+        Mon,  6 May 2019 10:29:40 +0000 (GMT)
+X-AuditID: cbfec7f4-12dff70000001119-95-5cd00c95580a
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id D6.57.04140.49C00DC5; Mon,  6
+        May 2019 11:29:40 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190506102939eusmtip166c1968f0a5a51232c34544383386cf3~cEUnP8XUo0073300733eusmtip1L;
+        Mon,  6 May 2019 10:29:39 +0000 (GMT)
+Subject: Re: [PATCH v3 3/4] Documentation: devicetree: add PPMU events
+ description
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <97277857-666d-7720-9d85-19120c977682@partner.samsung.com>
+Date:   Mon, 6 May 2019 12:29:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190503122010.16663-6-m.tretter@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9248 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905060091
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9248 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1905060091
+In-Reply-To: <CAL_JsqJcm9Z6vYFHGyAZ+h3-kmSv6e=3NtO-fjJn3-QT0JoX+w@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUyNYRjHu8/z2lknd4d0iWkefaBNaD7cphkmzjeahtFw6FmikvOU900y
+        p6S3Fac6S2Veau3k5JRU3iu9rHJCq5QwpUYdTLEsSU9Ppm+/+7p//93/a7t5StvFePJhkdGi
+        IVIfLrBqurzul33ZFZfW4BWmpMXkTpaVIR0jAwzJq33OkNTeQYrY7SUcaYkb4oitt50hr6py
+        WDKcXItIlv2RihTX9nDkZscLFek+V8iSiQcVHKkZimfIz4YPaB3WWXItSFdp7uF0tqKLrK70
+        xlldSlkR0g3bFm5ld6n9Q8TwsGOiYfnafeqD1oEGOqrT5cSjpy+pWGRTJyJnHvAqmOj+xiUi
+        Na/FhQjSU5pp5TCC4ElsMSVbWjyM4OWtkH+JrxktjCIVIGhr/jGdcCC4bMpiZWs2DoLbb9s5
+        mefgRTBmNE0lKNzMQKs5fjLB8yz2hYqio7KjwZvAktbIyExjb0i8mzDF7ngnvKsrYRTHDRqz
+        +2iZnXEgpA1dmGpHYQ/o6stTKewF9xw5lPwW4HEOno3WskrtjdB56Q+n8Gz4XF82zQugKSOJ
+        VliC2ORrSOEz0Jt6ddpZAzX1Lxi5M4WXgrVquTJeD6WF40geA3aFToebUsEV0sszKWWsgQSj
+        VrGXQFlSq0rhuVBgMXFpSDDPWMw8YxnzjGXM/9/NR3QR8hBjpIhQUfKLFI/7SvoIKSYy1PfA
+        kQgbmvxxTX/qRypQ1e/91QjzSHDR5Hvbg7WM/ph0MqIaAU8JczT6/ufBWk2I/uQp0XBkryEm
+        XJSq0XyeFjw0p53e79biUH20eFgUo0TDv1sV7+wZi5LzjQ1xeYOPT7w9uyTzixDSV7fSmGAX
+        3Dnrho9Bhype33aQtQ91zYPbP/tVVg3mdp5v7y/v+bq+8c3cluptPWxKVDgN7r0lJu11o1d2
+        sXXP6JNPD5qGt5jrAvz9HS73db935AbM89m82jQWyKdqhFctTkGzMrOEdfELPJIenv/eJtDS
+        Qf1KH8og6f8CTulMDW0DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRmVeSWpSXmKPExsVy+t/xu7pTeC7EGJyfqmWxccZ6VovrX56z
+        Wsw/co7Vov/xa2aL8+c3sFucbXrDbrHp8TVWi8u75rBZfO49wmgx4/w+Jou1R+6yWyy9fpHJ
+        4nbjCjaL/3t2sFscftPOavHtxCNGBwGPNfPWMHrsnHWX3WPTqk42j81L6j36tqxi9Pi8SS6A
+        LUrPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/OJiU1J7MstUjfLkEvY/3z
+        EywFN3gq9h28xNzAuImri5GTQ0LAROL95LOsXYxcHEICSxklJl67yA6REJOYtG87lC0s8eda
+        FxtE0WtGiRfHVoAlhAVCJNbduwZmiwgoSvxumwY2iVngEqvE1m1NUGNbmCWmNhxk7GLk4GAT
+        0JPYsaoQpIFXwE1izYSTrCA2i4CKRNfWDjBbVCBC4sz7FSwQNYISJ2c+AbM5BQIlJrxpZQax
+        mQXMJOZtfghli0vcejKfCcKWl9j+dg7zBEahWUjaZyFpmYWkZRaSlgWMLKsYRVJLi3PTc4uN
+        9IoTc4tL89L1kvNzNzECI3vbsZ9bdjB2vQs+xCjAwajEw+uhdD5GiDWxrLgy9xCjBAezkghv
+        4rNzMUK8KYmVValF+fFFpTmpxYcYTYGem8gsJZqcD0w6eSXxhqaG5haWhubG5sZmFkrivB0C
+        B2OEBNITS1KzU1MLUotg+pg4OKUaGDeoRlxTe3Xhna9yipRq42r5gzyPJ6gXTHI/vzBq4s0z
+        LO/dDNcGsiyL5w72XpAq7FazRbG/7x/7lDLFZx4mlXPn7PhfYH7++7Hdn00mn43mVhe7PX/L
+        ba17Gt/3Tll347BZxO1nWUvNFCsYbvo9mFvJKHjjbrhFvaN25l1v1rSK7WGXZj05wqXEUpyR
+        aKjFXFScCACXdFxBAgMAAA==
+X-CMS-MailID: 20190506102940eucas1p1ee62c58e1fc8ffa155cf1710baa82548
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0
+References: <1555681688-19643-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0@eucas1p2.samsung.com>
+        <1555681688-19643-4-git-send-email-l.luba@partner.samsung.com>
+        <20190430223629.GA22317@bogus>
+        <1fd44623-4a59-f014-1ae9-a7cc605ad30f@partner.samsung.com>
+        <CAL_JsqJcm9Z6vYFHGyAZ+h3-kmSv6e=3NtO-fjJn3-QT0JoX+w@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi Rob,
 
-url:    https://github.com/0day-ci/linux/commits/Michael-Tretter/Add-ZynqMP-VCU-Allegro-DVT-H-264-encoder-driver/20190504-161958
-base:   git://linuxtv.org/media_tree.git master
+On 5/2/19 10:24 PM, Rob Herring wrote:
+> On Thu, May 2, 2019 at 3:52 AM Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 5/1/19 12:36 AM, Rob Herring wrote:
+>>> On Fri, Apr 19, 2019 at 03:48:07PM +0200, Lukasz Luba wrote:
+>>>> Extend the documenation by events description with new 'event-data-type'
+>>>> field. Add example how the event might be defined in DT.
+>>>
+>>> Why do we need event types in DT? We don't do this for other h/w such as
+>>> ARM PMU.
+>> In ARM PMU all the events are hard-coded into the driver code i.e. in v7
+>> arch/arm/kernel/perf_event_v7.c
+>> and are seen from perf. They are different type and for different
+>> purpose. The Ecynos PPMU events are not seen in perf, they are
+>> for internal monitoring and must not be reset by other actors like perf.
+>> They are used by the 'bus drivers' to made some heuristics and tune the
+>> internal settings, like frequency.
+>>
+>> Chanwoo has written PPMU driver which relies on DT definition.
+>> The DT events are used by other DT devices by phandle.
+> 
+> How is that done? I don't see anything in the binding for that.
+Here are the DT devices and how they are pinned together:
+- declared devfreq events:
+https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi
+- devfreq events pinned to the bus device:
+https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412-odroid-common.dtsi#L107
+- the bus device itself:
+https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412.dtsi#L457
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Regards,
+Lukasz
 
-smatch warnings:
-drivers/media/platform/allegro-dvt/nal-h264.c:205 rbsp_read_bit() warn: signedness bug returning '(-22)'
-drivers/media/platform/allegro-dvt/nal-h264.c:259 rbsp_read_bits() warn: unsigned 'bit' is never less than zero.
-
-# https://github.com/0day-ci/linux/commit/eba69588199f08008a1fb4ad24e1f3e66d0080e3
-git remote add linux-review https://github.com/0day-ci/linux
-git remote update linux-review
-git checkout eba69588199f08008a1fb4ad24e1f3e66d0080e3
-vim +205 drivers/media/platform/allegro-dvt/nal-h264.c
-
-eba69588 Michael Tretter 2019-05-03  188  
-eba69588 Michael Tretter 2019-05-03  189  static inline bool rbsp_read_bit(struct rbsp *rbsp)
-                                                        ^^^^
-eba69588 Michael Tretter 2019-05-03  190  {
-eba69588 Michael Tretter 2019-05-03  191  	int shift;
-eba69588 Michael Tretter 2019-05-03  192  	int ofs;
-eba69588 Michael Tretter 2019-05-03  193  	bool bit;
-eba69588 Michael Tretter 2019-05-03  194  	int err;
-eba69588 Michael Tretter 2019-05-03  195  
-eba69588 Michael Tretter 2019-05-03  196  	if (rbsp->num_consecutive_zeros == 22) {
-eba69588 Michael Tretter 2019-05-03  197  		err = discard_emulation_prevention_three_byte(rbsp);
-eba69588 Michael Tretter 2019-05-03  198  		if (err)
-eba69588 Michael Tretter 2019-05-03  199  			return err;
-                                                                ^^^^^^^^^^
-
-eba69588 Michael Tretter 2019-05-03  200  	}
-eba69588 Michael Tretter 2019-05-03  201  
-eba69588 Michael Tretter 2019-05-03  202  	shift = 7 - (rbsp->pos % 8);
-eba69588 Michael Tretter 2019-05-03  203  	ofs = rbsp->pos / 8;
-eba69588 Michael Tretter 2019-05-03  204  	if (ofs >= rbsp->size)
-eba69588 Michael Tretter 2019-05-03 @205  		return -EINVAL;
-                                                        ^^^^^^^^^^^^^^
-Probably this function should return int instead of bool.
-
-eba69588 Michael Tretter 2019-05-03  206  
-eba69588 Michael Tretter 2019-05-03  207  	bit = (rbsp->data[ofs] >> shift) & 1;
-eba69588 Michael Tretter 2019-05-03  208  
-eba69588 Michael Tretter 2019-05-03  209  	rbsp->pos++;
-eba69588 Michael Tretter 2019-05-03  210  
-eba69588 Michael Tretter 2019-05-03  211  	if (bit == 1 ||
-eba69588 Michael Tretter 2019-05-03  212  	    (rbsp->num_consecutive_zeros < 7 && (rbsp->pos % 8 == 0)))
-eba69588 Michael Tretter 2019-05-03  213  		rbsp->num_consecutive_zeros = 0;
-eba69588 Michael Tretter 2019-05-03  214  	else
-eba69588 Michael Tretter 2019-05-03  215  		rbsp->num_consecutive_zeros++;
-eba69588 Michael Tretter 2019-05-03  216  
-eba69588 Michael Tretter 2019-05-03  217  	return bit;
-eba69588 Michael Tretter 2019-05-03  218  }
-
-[ snip ]
-
-eba69588 Michael Tretter 2019-05-03  248  static inline int rbsp_read_bits(struct rbsp *rbsp, int n, unsigned int *value)
-eba69588 Michael Tretter 2019-05-03  249  {
-eba69588 Michael Tretter 2019-05-03  250  	int i;
-eba69588 Michael Tretter 2019-05-03  251  	unsigned int bit;
-                                                ^^^^^^^^^^^^^^^^
-
-eba69588 Michael Tretter 2019-05-03  252  	unsigned int tmp = 0;
-eba69588 Michael Tretter 2019-05-03  253  
-eba69588 Michael Tretter 2019-05-03  254  	if (n > 8 * sizeof(*value))
-eba69588 Michael Tretter 2019-05-03  255  		return -EINVAL;
-eba69588 Michael Tretter 2019-05-03  256  
-eba69588 Michael Tretter 2019-05-03  257  	for (i = n; i > 0; i--) {
-eba69588 Michael Tretter 2019-05-03  258  		bit = rbsp_read_bit(rbsp);
-eba69588 Michael Tretter 2019-05-03 @259  		if (bit < 0)
-                                                            ^^^^^^^
-
-eba69588 Michael Tretter 2019-05-03  260  			return bit;
-eba69588 Michael Tretter 2019-05-03  261  		tmp |= bit << (i - 1);
-eba69588 Michael Tretter 2019-05-03  262  	}
-eba69588 Michael Tretter 2019-05-03  263  
-eba69588 Michael Tretter 2019-05-03  264  	if (value)
-eba69588 Michael Tretter 2019-05-03  265  		*value = tmp;
-eba69588 Michael Tretter 2019-05-03  266  
-eba69588 Michael Tretter 2019-05-03  267  	return 0;
-eba69588 Michael Tretter 2019-05-03  268  }
-eba69588 Michael Tretter 2019-05-03  269  
-
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+> 
+> Rob
+> 
+> 
