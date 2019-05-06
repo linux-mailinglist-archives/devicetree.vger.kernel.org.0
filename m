@@ -2,75 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42031152BA
-	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47313152EA
+	for <lists+devicetree@lfdr.de>; Mon,  6 May 2019 19:40:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbfEFR1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 13:27:49 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:32813 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726296AbfEFR1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 13:27:49 -0400
-Received: by mail-it1-f193.google.com with SMTP id u16so10067255itc.0;
-        Mon, 06 May 2019 10:27:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hrn4nDHLtIMhzMGRLfGe5OwhTlrLcnKtSdjsnoP6xiM=;
-        b=DkeyWD7RBFpR9tT6CP4d99Vm+FIBqsrtXbFyfCEIPIzWYYg9bbTURlXAU8G/p6U9w2
-         GziT77do1ZGEqVTuzqStaSYxaynb3jE/5CRgWR+6HsUnK9wpDg9WoUmqleUe+7x9SmZ9
-         KMN3fF4itf4zL0p6O8w5nwPtvotWnbJiPWTlES8b9AJiNShEel/YDJ+E3smvvFHgH2hD
-         NYDI5nFzZArpKH0MyxzorQff6KMSg8JYschfAlDcc8RdBrh+12kZWEz9+Lcw8w2VqcMO
-         /AYw0i9RgHqNlneApOcM/7Vs3X8OBziWx+ka5+cBzM/B79yWieEyYBuYoXqCqPo2tkLA
-         QtkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hrn4nDHLtIMhzMGRLfGe5OwhTlrLcnKtSdjsnoP6xiM=;
-        b=ibPdwpBZvEq7xvuFM02v/0OQdIL8Ce9O2f4B3qLaz9rREQYx2euUlrMJNXoozMA0q6
-         FjjxN5eWt5WubTnkhFXWftLl1dXBFUIqQQWvGEbB2eDf7lr1zZZRhpq0cJAAwqQq/Qjn
-         WPZ1QuP8fHM9oIxWBvOCdfV7tHbQLrpwPmZTRyCHRmDJxSfY/PLK+nJ6YKOMBOkiZ9yV
-         QLhGDQr+Nl0IcTd0dQdEdB6OkNXwvBBg+U054CO9b3ZYU7wmVn/jciBM5bAHqvkkNkoE
-         W8+J5zJv9EPGW3kq2V8WadmXQTUh+kiYXGPW3seVebkeZnUbuM3SJCI7znOimcZ+vMSn
-         m3YQ==
-X-Gm-Message-State: APjAAAX7wxep1D3AQG7vJjhThm2dNLNqi+MOhLn+j7+0dyVrZ6jdvAQ7
-        /bkx3dUyDvDGhoXFTW6JmLKhEI9MObTY1hyIUes=
-X-Google-Smtp-Source: APXvYqypzmeE+Qzmq7cAlI69wXa0fQ7lASmzZADHAmtTVDFoQy6R0N49XZu+0BmBEs+grTENfcg1LgcH5YN+XV/QXYg=
-X-Received: by 2002:a24:6c54:: with SMTP id w81mr18770409itb.78.1557163668187;
- Mon, 06 May 2019 10:27:48 -0700 (PDT)
+        id S1726481AbfEFRkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 13:40:43 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41598 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726407AbfEFRkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 13:40:42 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x46HeUqH053320;
+        Mon, 6 May 2019 12:40:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1557164430;
+        bh=ZCOeWk2+oOUkpocPHyHgeoqkoSrsW6qEAAMPyc8IjJQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=uUay38zGkl2mQIbvUL+OghqFyWzCDS6PCQ3eHQiA2k/y8grWM4tjCEozoemzP1ocs
+         QeNqxvAxRUuzCTOolYtONBvGtQKFymhfsKzY7+n9Mv4h7om5RM+wgDAeoG7qCjiKtB
+         /Eqt9LnA0YrHWAxDv+ks06+b12mdsfTpM2EBzhvQ=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x46HeUKA117109
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 May 2019 12:40:30 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 6 May
+ 2019 12:40:29 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 6 May 2019 12:40:29 -0500
+Received: from [10.250.90.63] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x46HeTA5088320;
+        Mon, 6 May 2019 12:40:29 -0500
+Subject: Re: [PATCH v3 2/2] leds: spi-byte: add single byte SPI LED driver
+To:     Christian Mauderer <oss@c-mauderer.de>, Pavel Machek <pavel@ucw.cz>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190505200022.32209-1-oss@c-mauderer.de>
+ <20190505200022.32209-2-oss@c-mauderer.de>
+ <8c150278-4bf6-4202-998e-4d82a2a3cd3c@ti.com>
+ <3f0d7a10-a67e-a2c2-98fe-a487493b8f2c@c-mauderer.de>
+ <fb0bc2a0-1311-3a45-04db-5cddcba48392@ti.com> <20190506151500.GA6221@amd>
+ <3de252f0-de98-bec2-b233-8be1d38a4671@c-mauderer.de>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <8b55ddf2-379b-9012-9d91-e31ab4f6a68a@ti.com>
+Date:   Mon, 6 May 2019 12:40:36 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190410174139.20012-1-tiny.windzz@gmail.com> <20190410174139.20012-3-tiny.windzz@gmail.com>
- <20190426211540.GA890@bogus> <CAEExFWs2UwPLzgyO0apMOZf56um5isdZmf+7-wj_TqMozxZJQg@mail.gmail.com>
- <CAL_Jsq+0mQYyAqfY3nmF-oFx2X4qHU567chQ1s8p-rgD2GEFnw@mail.gmail.com>
- <20190430044245.s4viduudej6q2eq6@vireshk-i7> <CAEExFWsAQ3b42YqfW-b8vuq_NZgfDe+0D5TzP09ber0Ljvv43g@mail.gmail.com>
-In-Reply-To: <CAEExFWsAQ3b42YqfW-b8vuq_NZgfDe+0D5TzP09ber0Ljvv43g@mail.gmail.com>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Tue, 7 May 2019 01:27:36 +0800
-Message-ID: <CAEExFWsVgAV=br1kAfgMTLnS6ELfMjFegiusUYPK6A3k7Nq9Mg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: cpufreq: Document allwinner,cpu-operating-points-v2
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        David Miller <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <3de252f0-de98-bec2-b233-8be1d38a4671@c-mauderer.de>
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Christian
 
-PING...
+On 5/6/19 10:29 AM, Christian Mauderer wrote:
+> On 06/05/2019 17:15, Pavel Machek wrote:
+>> Hi!
+>>
+>>>> Of course it would have been possible to make it a lot more universal by
+>>>> for example adding a prefix, a bit mask or other word lengths. But that
+>>>> would have added a lot of complexity without any actual application.
+>>>>
+>>>
+>>> I have to disagree here.  If this is supposed to be a universal SPI byte driver that
+>>> needs special handling then it is either needs to be created in a universal way or needs to be made
+>>> target specific.
+>>>
+>>
+>> Let him be. The driver is good.
+>>
+>> If some hardware needs more flexibility, we add it.
+>>
+>> No need to have 1000 releases of everything.
+>>
+>> 									Pavel
+>>
+> 
+> Hello Pavel,
+> 
+> thanks for the support.
+> 
+> It's a pure hobby project so I have the time to add useful features or
+> to improve the description to make it clear what the drivers intention
+> is. So if we find a more useful set of features it's a good idea to
+> discuss it.
+> 
+> By the way: Although I haven't written a Linux driver yet it's not my
+> first open source project. So I know that there can be a lot of
+> different opinions and sometimes a lot of revisions. So no big risk of
+> scaring me away.
+> 
+
+Hopefully the feedback from all is helping you with developing kernel drivers :).
+
+One request though is can you slow down a bit in the versions?
+I had 3 versions in my inbox before I had a chance to review v1.
+
+I have been asked the same thing by someone and now I try to give at least 24-48 hours so others over seas
+can get a chance to review prior to posting a new version.
+
+Dan
+
+> Best regards
+> 
+> Christian
+> 
