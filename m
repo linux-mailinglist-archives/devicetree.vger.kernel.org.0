@@ -2,98 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF3815F10
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18B9C15F4D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727183AbfEGIOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:14:07 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:59906 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727157AbfEGIOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:14:06 -0400
-X-UUID: 08a9a21b1f3743a9b8640cb3d172fe0a-20190507
-X-UUID: 08a9a21b1f3743a9b8640cb3d172fe0a-20190507
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 948636124; Tue, 07 May 2019 16:14:00 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs03n1.mediatek.inc (172.21.101.181) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 7 May 2019 16:13:59 +0800
-Received: from mtkslt302.mediatek.inc (10.21.14.115) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 7 May 2019 16:13:59 +0800
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
-CC:     Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        YT Shen <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>, <kendrick.hsu@mediatek.com>,
-        Frederic Chen <Frederic.Chen@mediatek.com>
-Subject: [PATCH v5 12/12] arm64: dts: add gce node for mt8183
-Date:   Tue, 7 May 2019 16:13:55 +0800
-Message-ID: <20190507081355.52630-13-bibby.hsieh@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190507081355.52630-1-bibby.hsieh@mediatek.com>
-References: <20190507081355.52630-1-bibby.hsieh@mediatek.com>
+        id S1726283AbfEGIZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:25:54 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:13467 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725780AbfEGIZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:25:54 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cd1410d0000>; Tue, 07 May 2019 01:25:49 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 07 May 2019 01:25:53 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 07 May 2019 01:25:53 -0700
+Received: from [10.25.73.250] (10.124.1.5) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 7 May
+ 2019 08:25:45 +0000
+Subject: Re: [PATCH V5 07/16] dt-bindings: PCI: designware: Add binding for
+ CDM register check
+To:     Rob Herring <robh@kernel.org>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
+        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
+        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190424052004.6270-1-vidyas@nvidia.com>
+ <20190424052004.6270-8-vidyas@nvidia.com> <20190426143247.GA25107@bogus>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <031df2ca-27de-2388-5f23-078320203f5d@nvidia.com>
+Date:   Tue, 7 May 2019 13:55:42 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <20190426143247.GA25107@bogus>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL101.nvidia.com (172.20.187.10)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557217549; bh=wQ9iFk4m3fdncdNS9i5YNta0RWRMl3LzCyGnAnhJj9I=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=MXC5lAAu50cq3hcFNtv/ibtbTWSvcfLsti/Ltt4G90H4fHzLcszsONMpsbKMU89py
+         K+yHYQJGaymZrZ77yP4ZLznqCFZmaQWJ0EL+cVWghKUsEYXv7I/m7kW0uyrDvTzNQn
+         b0A30eKLoCXb6eMa58CghegvrAlpHctPi0czTxKeLlqv98zAYugihXRX+QXA6DaiV+
+         YsnqDDvZaVFIyfmXda/ugcfBOsSKkX8zG1lv7+Xzrlpd2xBnlLDYtdBOYNbFomc1vR
+         O3fykmhmO1wPrlWc9fLP4UV65i6+iUIA7uH25j2FJEBFDc64C0fzC+nNsZnuHCmVMo
+         D0A4wPfcoQjCg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add gce device node for mt8183
+On 4/26/2019 8:02 PM, Rob Herring wrote:
+> On Wed, Apr 24, 2019 at 10:49:55AM +0530, Vidya Sagar wrote:
+>> Add support to enable CDM (Configuration Dependent Module) registers check
+>> for any data corruption. CDM registers include standard PCIe configuration
+>> space registers, Port Logic registers and iATU and DMA registers.
+>> Refer Section S.4 of Synopsys DesignWare Cores PCI Express Controller Databook
+>> Version 4.90a
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>> Changes since [v4]:
+>> * None
+>>
+>> Changes since [v3]:
+>> * None
+>>
+>> Changes since [v2]:
+>> * Changed flag name from 'cdm-check' to 'enable-cdm-check'
+>> * Added info about Port Logic and DMA registers being part of CDM
+>>
+>> Changes since [v1]:
+>> * This is a new patch in v2 series
+>>
+>>   Documentation/devicetree/bindings/pci/designware-pcie.txt | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/designware-pcie.txt b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+>> index 5561a1c060d0..85b872c42a9f 100644
+>> --- a/Documentation/devicetree/bindings/pci/designware-pcie.txt
+>> +++ b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+>> @@ -34,6 +34,11 @@ Optional properties:
+>>   - clock-names: Must include the following entries:
+>>   	- "pcie"
+>>   	- "pcie_bus"
+>> +- enable-cdm-check: This is a boolean property and if present enables
+> 
+> This needs a vendor prefix.
+Why only for this? Since this whole file is for Synopsys DesignWare core based PCIe IP,
+I thought there is specific prefix required. Am I wrong? Also, CDM checking is a feature
+of IP and DWC based implementations can choose either to enable this feature at hardware level
+or not. And whoever enabled it at hardware level (like Tegra194) can set this flag to
+enable corresponding software support.
 
-Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index b36e37fcdfe3..d6d26fa32dd7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/power/mt8183-power.h>
-+#include <dt-bindings/gce/mt8183-gce.h>
- #include "mt8183-pinfunc.h"
- / {
- 	compatible = "mediatek,mt8183";
-@@ -293,6 +294,16 @@
- 			clock-names = "spi", "wrap";
- 		};
- 
-+		gce: gce@10238000 {
-+			compatible = "mediatek,mt8183-gce";
-+			reg = <0 0x10238000 0 0x4000>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			#mbox-cells = <3>;
-+			#subsys-cells = <3>;
-+			clocks = <&infracfg CLK_INFRA_GCE>;
-+			clock-names = "gce";
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt8183-uart",
- 				     "mediatek,mt6577-uart";
--- 
-2.18.0
+> 
+>> +   automatic checking of CDM (Configuration Dependent Module) registers
+>> +   for data corruption. CDM registers include standard PCIe configuration
+>> +   space registers, Port Logic registers, DMA and iATU (internal Address
+>> +   Translation Unit) registers.
+>>   RC mode:
+>>   - num-viewport: number of view ports configured in hardware. If a platform
+>>     does not specify it, the driver assumes 2.
+>> -- 
+>> 2.17.1
+>>
 
