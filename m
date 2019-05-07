@@ -2,89 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60621164EC
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BEC1164F6
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726590AbfEGNs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 09:48:27 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:41559 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726704AbfEGNs0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:48:26 -0400
-X-Originating-IP: 90.88.28.253
-Received: from localhost (aaubervilliers-681-1-86-253.w90-88.abo.wanadoo.fr [90.88.28.253])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2D759C0009;
-        Tue,  7 May 2019 13:48:24 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: [PATCH 4/4] ARM: dts: sun6i: Add default address and size cells for SPI
-Date:   Tue,  7 May 2019 15:48:16 +0200
-Message-Id: <ee26c07fa953422fdaeb27c00ddfe98cc82d4017.1557236840.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
-References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
+        id S1726788AbfEGNts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:49:48 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:60424 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726295AbfEGNtr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:49:47 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id A83A225AD8B;
+        Tue,  7 May 2019 23:49:45 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 90A3D9403F2; Tue,  7 May 2019 15:49:43 +0200 (CEST)
+Date:   Tue, 7 May 2019 15:49:43 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Chris Brandt <chris.brandt@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: r7s9210-rza2mevb: add ethernet aliases
+Message-ID: <20190507134942.idhlkq2rueaxn3li@verge.net.au>
+References: <20190506201236.110281-1-chris.brandt@renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190506201236.110281-1-chris.brandt@renesas.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SPI controller bindings require an address cell size of 1, and a size
-cell size of 0. Let's put it at the DTSI level to make sure that's properly
-enforced.
+On Mon, May 06, 2019 at 03:12:36PM -0500, Chris Brandt wrote:
+> Add ethernet aliases so u-boot can find the device nodes.
+> 
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- arch/arm/boot/dts/sun6i-a31.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks Chris,
 
-diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi b/arch/arm/boot/dts/sun6i-a31.dtsi
-index c04efad81bbc..a57cbf33c12f 100644
---- a/arch/arm/boot/dts/sun6i-a31.dtsi
-+++ b/arch/arm/boot/dts/sun6i-a31.dtsi
-@@ -987,6 +987,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI0>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		spi1: spi@1c69000 {
-@@ -999,6 +1001,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI1>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		spi2: spi@1c6a000 {
-@@ -1011,6 +1015,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI2>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		spi3: spi@1c6b000 {
-@@ -1023,6 +1029,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI3>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		gic: interrupt-controller@1c81000 {
--- 
-git-series 0.9.1
+This looks fine to me but I will wait to see if there are other reviews
+before applying.
+
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
