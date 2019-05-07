@@ -2,176 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF88516C6A
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 22:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C4316C93
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 22:49:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727173AbfEGUlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 16:41:01 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:53276 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727161AbfEGUk7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 16:40:59 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 805516119F; Tue,  7 May 2019 20:40:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1557261658;
-        bh=xBvD6VP3TkBtyf8cYqhK8l+cP1on9J0F2DdO4YFTSu0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KC07UvY9acDQerQWVtHH0RB50vHChxgt5x5HaBF6psqqNalQX3ynXwGVh690Jq3nz
-         R7ZhimI6+C/soz+heEh80UQX9BgrKFyCM7nwZvf6eYOMlMzREoqAlNq9qKlnYt+eb8
-         hMqJ7ny13/Xf7o7NpIjwA/TF4ig31rA8r0IdYa7o=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1726371AbfEGUtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 16:49:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40458 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726329AbfEGUtG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 16:49:06 -0400
+Received: from localhost (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: ilina@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C9D18611D1;
-        Tue,  7 May 2019 20:40:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1557261657;
-        bh=xBvD6VP3TkBtyf8cYqhK8l+cP1on9J0F2DdO4YFTSu0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=V8MyBrlivpVn+v7xg2lzLNxWgnte2VuQIS0ZbSjtgHsguOGD3jeJRu/WKnLQ2UqCO
-         JLTNkcDNCPF+4CL98QrKScp9aL4g4iXxfe9KunahbEkYLdhtoBzhJa+ty28k+pGznt
-         ObPNsa8JauzKisWqFWUJuK0WaHT0zVRB+zna7yQs=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C9D18611D1
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
-From:   Lina Iyer <ilina@codeaurora.org>
-To:     swboyd@chromium.org, evgreen@chromium.org, marc.zyngier@arm.com,
-        linus.walleij@linaro.org
-Cc:     linux-kernel@vger.kernel.org, rplsssn@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, thierry.reding@gmail.com,
-        bjorn.andersson@linaro.org, dianders@chromium.org,
-        Lina Iyer <ilina@codeaurora.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 07/11] dt-bindings: sdm845-pinctrl: add wakeup interrupt parent for GPIO
-Date:   Tue,  7 May 2019 14:37:45 -0600
-Message-Id: <20190507203749.3384-8-ilina@codeaurora.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190507203749.3384-1-ilina@codeaurora.org>
-References: <20190507203749.3384-1-ilina@codeaurora.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 5ED85205C9;
+        Tue,  7 May 2019 20:49:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557262144;
+        bh=UgQi0e7oHFXGjN1t4VrSnFtRC24frVRuEPTYfkilrW0=;
+        h=In-Reply-To:References:From:Subject:Cc:To:Date:From;
+        b=wxmG5tUCN0ycumdAr5/YRmGR0VS6AW087jInglKNSFP74iCaL9HDqJd0HLwAUYT/F
+         TNmpN2BxlDjHfQzQm3/94TRUXspHIbucrf9jvaUpSHO+GHrTTODDiGrafiurVmYr3b
+         9cRG+CeH6C9+gOusj5zihFQMz3pxy+0EUL75anQU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1557215457.2147.90.camel@mtksdaap41>
+References: <20190430112012.4514-1-roger.lu@mediatek.com> <20190430112012.4514-2-roger.lu@mediatek.com> <155665629219.168659.8221738507474891604@swboyd.mtv.corp.google.com> <1556777971.12123.35.camel@mtksdaap41> <155691770027.200842.16164651681407381397@swboyd.mtv.corp.google.com> <1557215457.2147.90.camel@mtksdaap41>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [RFC v1 1/3] dt-bindings: soc: add mtk svs dt-bindings
+Cc:     Mark Rutland <mark.rutland@arm.com>, Nishanth Menon <nm@ti.com>,
+        Angus.Lin@mediatek.com, devicetree@vger.kernel.org,
+        Viresh Kumar <vireshk@kernel.org>, linux-pm@vger.kernel.org,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        linux-kernel@vger.kernel.org, Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org, Andy-YT.Liu@mediatek.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, HenryC.Chen@mediatek.com
+To:     Roger Lu <roger.lu@mediatek.com>
+Message-ID: <155726214346.14659.17800352563837760252@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.8
+Date:   Tue, 07 May 2019 13:49:03 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDM845 SoC has an always-on interrupt controller (PDC) with select GPIO
-routed to the PDC as interrupts that can be used to wake the system up
-from deep low power modes and suspend.
+Quoting Roger Lu (2019-05-07 00:50:57)
+> Dear Stephen,
+>=20
+> Sorry for the late reply.
+>=20
+> On Fri, 2019-05-03 at 14:08 -0700, Stephen Boyd wrote:
+> > Quoting Roger Lu (2019-05-01 23:19:31)
+> > > On Tue, 2019-04-30 at 13:31 -0700, Stephen Boyd wrote:
+> > > > Quoting Roger Lu (2019-04-30 04:20:10)
+> > > > > diff --git a/Documentation/devicetree/bindings/power/mtk-svs.txt =
+b/Documentation/devicetree/bindings/power/mtk-svs.txt
+> > > > > new file mode 100644
+> > > > > index 000000000000..355329db74ba
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/power/mtk-svs.txt
+> > [..]
+> > > > > +
+> > > > > +               svs_gpu: svs_gpu {
+> > > > > +                       compatible =3D "mediatek,mt8183-svs-gpu";
+> > > > > +                       power-domains =3D <&scpsys MT8183_POWER_D=
+OMAIN_MFG_2D>;
+> > > > > +                       operating-points-v2 =3D <&gpu_opp_table>;
+> > > > > +               };
+> > > >=20
+> > > > It looks like you need multiple OPPs for a single device, because i=
+t has
+> > > > different independent power supplies it wants to associate the OPP
+> > > > tables with?
+> > > Yes. SVS has different controllers inside the hardware in order to
+> > > calculate and optimize different OPP table voltage part.
+> >=20
+> > So is there more than one SVS register region that needs certain devices
+> > to be powered on or at least have their power domain enabled so that the
+> > SVS hardware can read the voltage and adjust accordingly? I should read
+> > the driver I suppose.
+> No, basically, each SVS controller (aka SVS bank) only has one SVS
+> register region that needs to be powered on for the init.
+> In MT8183 SVS case, SVS has four controllers (banks). Each SVS bank
+> needs corresponding power domain to be on for its init.
+>=20
+> #SVS bank corresponding power domain
+> svs_cpu_little: Needs CPU-A53 power on for init
+> svs_cpu_big: Needs CPU-A73 power on for init
+> svs_cci: Needs CPU-A53 power on for init
+> svs_gpu: Needs MFG_2D power on for init
+>=20
+> P.S SVS driver will use pm_runtime_get_sync() to turn on power before
+> svs bank init and pm_runtime_put_sync() to turn off power power after
+> svs bank init.
 
-Update the sdm845 pinctrl device bindings to reference the PDC wakeup
-interrupt controller and the GPIO PDC interrupt map.
+Ok. How are you making sure that certain CPUs are powered on?
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Lina Iyer <ilina@codeaurora.org>
----
- .../bindings/pinctrl/qcom,sdm845-pinctrl.txt  | 79 ++++++++++++++++++-
- 1 file changed, 78 insertions(+), 1 deletion(-)
+>=20
+> >=20
+> > >=20
+> > > > Why can't these OPP tables be attached to the devices that
+> > > > use them, i.e. CPU, GPU, CCI, etc.? Seems odd that those devices do=
+n't
+> > > > have OPP tables that this hardware block can look up somehow.
+> > > Those OPP tables are attached by our DVFS node (please refers below
+> > > patch). SVS just shares with their OPP table and help optimize these =
+OPP
+> > > tables' voltage part.
+> > >=20
+> > > Add cpufreq DTS node to the mt8183 and mt8183-evb
+> > > https://patchwork.kernel.org/patch/10921675/
+> >=20
+> > Cool thanks for the pointer.
+> >=20
+> > >=20
+> > >=20
+> > > > Similarly,
+> > > > the power domains should probably be part of the devices that are u=
+sing
+> > > > them and not these sub-nodes that are mirroring the other hardware
+> > > > blocks in the system?
+> > > Oh. There is a svs controller in GPU power-domain. We need to turn on
+> > > GPU power so that svs controller can work functionally. Therefore, we
+> > > add GPU power-domains in our svs_gpu sub-node.
+> > >=20
+> > >=20
+> >=20
+> > Sorry, I'm not really following what you're saying too closely. I think
+> > I get it but it sounds complicated.
+> >=20
+> > I'm mostly wondering if having properties like svs-gpu =3D <&gpu_node>,
+> > and svs-cci =3D <&cci_node> would work for you. The idea would be to li=
+nk
+> > this hardware block to the nodes that it's going to adjust the OPPs of.
+> > Once you have the node, use some sort of OPP API to get the OPP table
+> > for a device_node and adjust it at runtime for the current OPP.
+> Yes, I understand your idea. Thank you. I share my design purpose and
+> the troubles I encountered when linking other hardware block.
+>=20
+> #my design purpose
+> 1. SVS bank doesn't need all the resources in other device node like
+> cci_node. Therefore, I model SVS sub-nodes to declare what svs bank
+> needs.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.txt
-index 665aadb5ea28..895832127193 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm845-pinctrl.txt
-@@ -53,7 +53,6 @@ pin, a group, or a list of pins or groups. This configuration can include the
- mux function to select on those pin(s)/group(s), and various pin configuration
- parameters, such as pull-up, drive strength, etc.
- 
--
- PIN CONFIGURATION NODES:
- 
- The name of each subnode is not important; all subnodes should be enumerated
-@@ -160,6 +159,84 @@ Example:
- 		#gpio-cells = <2>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
-+		wakeup-parent = <&pdc_intc>;
-+		irqdomain-map = <1 0 &pdc_intc 30 0>,
-+				<3 0 &pdc_intc 31 0>,
-+				<5 0 &pdc_intc 32 0>,
-+				<10 0 &pdc_intc 33 0>,
-+				<11 0 &pdc_intc 34 0>,
-+				<20 0 &pdc_intc 35 0>,
-+				<22 0 &pdc_intc 36 0>,
-+				<24 0 &pdc_intc 37 0>,
-+				<26 0 &pdc_intc 38 0>,
-+				<30 0 &pdc_intc 39 0>,
-+				<31 0 &pdc_intc 117 0>,
-+				<32 0 &pdc_intc 41 0>,
-+				<34 0 &pdc_intc 42 0>,
-+				<36 0 &pdc_intc 43 0>,
-+				<37 0 &pdc_intc 44 0>,
-+				<38 0 &pdc_intc 45 0>,
-+				<39 0 &pdc_intc 46 0>,
-+				<40 0 &pdc_intc 47 0>,
-+				<41 0 &pdc_intc 115 0>,
-+				<43 0 &pdc_intc 49 0>,
-+				<44 0 &pdc_intc 50 0>,
-+				<46 0 &pdc_intc 51 0>,
-+				<48 0 &pdc_intc 52 0>,
-+				<49 0 &pdc_intc 118 0>,
-+				<52 0 &pdc_intc 54 0>,
-+				<53 0 &pdc_intc 55 0>,
-+				<54 0 &pdc_intc 56 0>,
-+				<56 0 &pdc_intc 57 0>,
-+				<57 0 &pdc_intc 58 0>,
-+				<58 0 &pdc_intc 59 0>,
-+				<59 0 &pdc_intc 60 0>,
-+				<60 0 &pdc_intc 61 0>,
-+				<61 0 &pdc_intc 62 0>,
-+				<62 0 &pdc_intc 63 0>,
-+				<63 0 &pdc_intc 64 0>,
-+				<64 0 &pdc_intc 65 0>,
-+				<66 0 &pdc_intc 66 0>,
-+				<68 0 &pdc_intc 67 0>,
-+				<71 0 &pdc_intc 68 0>,
-+				<73 0 &pdc_intc 69 0>,
-+				<77 0 &pdc_intc 70 0>,
-+				<78 0 &pdc_intc 71 0>,
-+				<79 0 &pdc_intc 72 0>,
-+				<80 0 &pdc_intc 73 0>,
-+				<84 0 &pdc_intc 74 0>,
-+				<85 0 &pdc_intc 75 0>,
-+				<86 0 &pdc_intc 76 0>,
-+				<88 0 &pdc_intc 77 0>,
-+				<89 0 &pdc_intc 116 0>,
-+				<91 0 &pdc_intc 79 0>,
-+				<92 0 &pdc_intc 80 0>,
-+				<95 0 &pdc_intc 81 0>,
-+				<96 0 &pdc_intc 82 0>,
-+				<97 0 &pdc_intc 83 0>,
-+				<101 0 &pdc_intc 84 0>,
-+				<103 0 &pdc_intc 85 0>,
-+				<104 0 &pdc_intc 86 0>,
-+				<115 0 &pdc_intc 90 0>,
-+				<116 0 &pdc_intc 91 0>,
-+				<117 0 &pdc_intc 92 0>,
-+				<118 0 &pdc_intc 93 0>,
-+				<119 0 &pdc_intc 94 0>,
-+				<120 0 &pdc_intc 95 0>,
-+				<121 0 &pdc_intc 96 0>,
-+				<122 0 &pdc_intc 97 0>,
-+				<123 0 &pdc_intc 98 0>,
-+				<124 0 &pdc_intc 99 0>,
-+				<125 0 &pdc_intc 100 0>,
-+				<127 0 &pdc_intc 102 0>,
-+				<128 0 &pdc_intc 103 0>,
-+				<129 0 &pdc_intc 104 0>,
-+				<130 0 &pdc_intc 105 0>,
-+				<132 0 &pdc_intc 106 0>,
-+				<133 0 &pdc_intc 107 0>,
-+				<145 0 &pdc_intc 108 0>;
-+		irqdomain-map-mask = <0xff 0>;
-+		irqdomain-map-pass-thru = <0 0xff>;
- 
- 		qup9_active: qup9-active {
- 			mux {
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Do you mean that there are other properties in the cci_node that the SVS
+hardware block doesn't use? That doesn't sound like a problem to me. I
+view nodes in the SoC bus as all memory mapped IO devices and it sounds
+like SVS is a hardware IP core that's off to the side in the system that
+has some sensors that goes into various other IP blocks in the system.
+It's correct to model the registers and interrupts, etc. as one node for
+the one hardware block that's delivered by the hardware engineers.
+
+>=20
+> #troubles - linking other hardware block
+> 1. I don't know how to get cpu devcie after we link CPU node
+> (svs_cpu_little =3D <cpu0>). I use "get_cpu_device(unsigned cpu)" in Linux
+> driver to attain cpuX device generally.
+
+This should probably be some sort of list property that points to all
+the CPUs in the little and big clusters. Then the code can iterate
+through the node pointers and look for an OPP table in any of them by
+combining of_cpu_node_to_id() with get_cpu_device()?
+
+> 2. Our MT8183 has three gpu-related node as below, svs_gpu need the
+> reference of gpu (OPP table) & gpu_core2 (power-domain MFG_2D) to make
+> sure svs_gpu can init and update gpu OPP table. I don't know how to
+> refer two nodes by one property. Therefore, I model a svs_gpu to declare
+> what it needs.
+>=20
+> gpu: mali@13040000 {
+>         ...
+>         power-domains =3D <&scpsys MT8183_POWER_DOMAIN_MFG_CORE0>;
+>         operating-points-v2 =3D <&gpu_opp_table>;
+>         ...
+> }
+>=20
+> gpu_core1: mali_gpu_core1 {
+>         ...
+>         power-domains =3D <&scpsys MT8183_POWER_DOMAIN_MFG_CORE1>;
+> };
+>=20
+> gpu_core2: mali_gpu_core2 {
+>         ...
+>         power-domains =3D <&scpsys MT8183_POWER_DOMAIN_MFG_2D>;
+> };
+
+These three nodes should be combined into one node for the GPU. The
+power domains will need to be referred to by name. Luckily we have
+support for multiple power domains in the kernel now so this should
+work. Let us know if it doesn't work for some reason.
+
+>=20
+> P.S MT8183 GPU won't do upstream. So, there is no patchwork weblink to
+> refer.
+
+Sure.
 
