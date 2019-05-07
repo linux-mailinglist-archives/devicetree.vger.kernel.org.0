@@ -2,232 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E55416609
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74CDF1660F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726429AbfEGOwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 10:52:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42648 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726351AbfEGOwB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 10:52:01 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E937C21019;
-        Tue,  7 May 2019 14:51:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557240719;
-        bh=gWUxo89d44SUn3J2Zc928qElLW2XT8oWIyto8ecrjIY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YUtgkGToiqE6/WiAbanqadOhny/GrUBQ7hVL+t9ZAGA2iEdyxQtd38ixlsU4zL3y8
-         w+xWAtKkx73pRR7L41YbY9B5/OtTMHhgAsIhu49ZJsJnAEFqRaj8NF3OLQDefAIJOT
-         kgi1vgjg5tXIIEE+/VLjaVz39OGKHTGmPR61RfXw=
-Received: by mail-qt1-f176.google.com with SMTP id i31so19291016qti.13;
-        Tue, 07 May 2019 07:51:58 -0700 (PDT)
-X-Gm-Message-State: APjAAAXmaFWY69FBJT2S3EwGJp+DTxa8DD95Rdygy0m9n2nhh4gJpd5q
-        Xv7412jJ/iQ1TZgLxgIk+6SQl8ySqdaWTZepEA==
-X-Google-Smtp-Source: APXvYqzxIefvVeNFRFHHncOA0m/a9ZI1n2OxWxSSZe8gViWqPJVgQkyi4KCb2IcqBYcRyd+wlZBqTVovXgTwYP7ETyw=
-X-Received: by 2002:aed:2471:: with SMTP id s46mr6594381qtc.144.1557240718119;
- Tue, 07 May 2019 07:51:58 -0700 (PDT)
+        id S1726505AbfEGOxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 10:53:00 -0400
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:36937 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726429AbfEGOw7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 10:52:59 -0400
+Received: by mail-yw1-f66.google.com with SMTP id 186so4603496ywo.4
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 07:52:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QsBH3/6csQjaE99mExw7IfFXVrloklkX9pCxbhdLh74=;
+        b=mbgXMp/1KMUq1BUS9eZLhL8CKZK/DoGo3oNSSBQJjt5C4AfCcTEo8K03NsU2Qd7zzv
+         i1JRhvOPD5EL2ftJF3As7EK4mS+lN0tF4wt28QOUQat71TEp+O+AuxHLdfo4pqZKsaEd
+         kwR2mE/Oz3X/WeLW9csTbepgqy+SZfKktXiKawhU/AxNsXlehFKBMzYpLLbfwq8wBYcz
+         C2+skA0IsJ2gBWmzmU85JpXxQZkyi8l/i5u9L8phzZl2jm+x0qtnOgKdyIOEnO/xl7tL
+         ND6f+VSi2LXKf/z2y7f+hft23H3mSAVeIp51nrNe0AOI9ArlI8ew29HZIOTIyj5ziZeU
+         T58w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QsBH3/6csQjaE99mExw7IfFXVrloklkX9pCxbhdLh74=;
+        b=XyujUVBQhmNDTF/otDMIR3YCDEJAKdjtn8HOUWSQuCeYlOvUeG97VbLZJsgqV4YwJ8
+         nzKdlq7/72a9yzKVicusBhT8kQ594a2OoMKTwqtN5akZ91h/nTq6NVHdftIQvs+/gSCy
+         xEAmBxgcZ6wSUZieQouKlyGl60X936+TbYjlIvpktPX+7bn+qG+L3SbaWK3yvYxw09JV
+         WD1xb8m+Kp6Fh3LSNu7QiqhlGiw2RpBJT8v9JUunj/8NmpqDE00Ahy2BHp/yUoK3TvUW
+         7DRLf2vn4taAio1GywH136+rJc82/b/YF2fomGQ/NIQFlH6BjZsiqqsYGwk+1tsYeNlK
+         Ej2g==
+X-Gm-Message-State: APjAAAXx8qtaKcZulTU4nTAP4pUmdwOW0XMgrVSKLPb7b8Khwv/oZaf9
+        cEbzR0J+j2RcpAvm2ZAIelCfXRbKyhLDPLaReQiIrA==
+X-Google-Smtp-Source: APXvYqwSOyNWaXXqAR64Yl6lra7e1M+E9ZK/56Uz24VtVymWObkhiXt0imSNWCiPDevrgTPeJxA2O5ZLVLoebp5pxmc=
+X-Received: by 2002:a25:5145:: with SMTP id f66mr20397598ybb.151.1557240778588;
+ Tue, 07 May 2019 07:52:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
- <e39713deed69735e5c02c4273bf84572aa589736.1557236840.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <e39713deed69735e5c02c4273bf84572aa589736.1557236840.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 7 May 2019 09:51:46 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLJ+aeG8zakZokv2qfwiLBiJ-49ByGuQ_-YuTUyGXtNnQ@mail.gmail.com>
-Message-ID: <CAL_JsqLJ+aeG8zakZokv2qfwiLBiJ-49ByGuQ_-YuTUyGXtNnQ@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: spi: sun6i: Add YAML schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+References: <20190507044801.250396-1-dianders@chromium.org>
+In-Reply-To: <20190507044801.250396-1-dianders@chromium.org>
+From:   Guenter Roeck <groeck@google.com>
+Date:   Tue, 7 May 2019 07:52:47 -0700
+Message-ID: <CABXOdTcsDU5dSAFWZBAvrOGRa+BokgKi9huGfs=fO4ObCOvnHQ@mail.gmail.com>
+Subject: Re: [PATCH] of: Add dummy for of_node_is_root if not CONFIG_OF
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Julius Werner <jwerner@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Brian Norris <briannorris@chromium.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-spi <linux-spi@vger.kernel.org>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 8:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Mon, May 6, 2019 at 9:48 PM Douglas Anderson <dianders@chromium.org> wrote:
 >
-> Switch the DT binding to a YAML schema to enable the DT validation.
+> We'll add a dummy to just return false.
 >
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+
+Reviewed-by: Guenter Roeck <groeck@chromium.org>
+
 > ---
->  Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml | 106 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
->  Documentation/devicetree/bindings/spi/spi-sun6i.txt                |  44 +------------------------------
->  2 files changed, 106 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-sun6i.txt
 >
-> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> new file mode 100644
-> index 000000000000..0cd7244653a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/allwinner,sun6i-a31-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  include/linux/of.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 0cf857012f11..62ae5c1cafa5 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -653,6 +653,11 @@ static inline bool of_have_populated_dt(void)
+>         return false;
+>  }
+>
+> +static inline bool of_node_is_root(const struct device_node *node)
+> +{
+> +       return false;
+> +}
 > +
-> +title: Allwinner A31 SPI Controller Device Tree Bindings
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml"
-> +
-> +maintainers:
-> +  - Chen-Yu Tsai <wens@csie.org>
-> +  - Maxime Ripard <maxime.ripard@bootlin.com>
-> +
-> +properties:
-> +  "#address-cells": true
-> +  "#size-cells": true
-> +
-> +  compatible:
-> +    enum:
-> +      - allwinner,sun6i-a31-spi
-> +      - allwinner,sun8i-h3-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Bus Clock
-> +      - description: Module Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ahb
-> +      - const: mod
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    items:
-> +      - description: RX DMA Channel
-> +      - description: TX DMA Channel
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
-> +
-> +  num-cs: true
-> +
-> +patternProperties:
-> +  "^[a-z]+@[0-9]+$":
-
-Same issues here as patch 1.
-
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 0
-> +          maximum: 4
-> +
-> +      spi-rx-bus-width:
-> +        const: 1
-> +
-> +      spi-tx-bus-width:
-> +        const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi1: spi@1c69000 {
-> +        compatible = "allwinner,sun6i-a31-spi";
-> +        reg = <0x01c69000 0x1000>;
-> +        interrupts = <0 66 4>;
-> +        clocks = <&ahb1_gates 21>, <&spi1_clk>;
-> +        clock-names = "ahb", "mod";
-> +        resets = <&ahb1_rst 21>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +    };
-> +
-> +  - |
-> +    spi0: spi@1c68000 {
-> +        compatible = "allwinner,sun8i-h3-spi";
-> +        reg = <0x01c68000 0x1000>;
-> +        interrupts = <0 65 4>;
-> +        clocks = <&ccu 30>, <&ccu 82>;
-> +        clock-names = "ahb", "mod";
-> +        dmas = <&dma 23>, <&dma 23>;
-> +        dma-names = "rx", "tx";
-> +        resets = <&ccu 15>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/spi/spi-sun6i.txt b/Documentation/devicetree/bindings/spi/spi-sun6i.txt
-> deleted file mode 100644
-> index 435a8e0731ac..000000000000
-> --- a/Documentation/devicetree/bindings/spi/spi-sun6i.txt
-> +++ /dev/null
-> @@ -1,44 +0,0 @@
-> -Allwinner A31/H3 SPI controller
-> -
-> -Required properties:
-> -- compatible: Should be "allwinner,sun6i-a31-spi" or "allwinner,sun8i-h3-spi".
-> -- reg: Should contain register location and length.
-> -- interrupts: Should contain interrupt.
-> -- clocks: phandle to the clocks feeding the SPI controller. Two are
-> -          needed:
-> -  - "ahb": the gated AHB parent clock
-> -  - "mod": the parent module clock
-> -- clock-names: Must contain the clock names described just above
-> -- resets: phandle to the reset controller asserting this device in
-> -          reset
-> -
-> -Optional properties:
-> -- dmas: DMA specifiers for rx and tx dma. See the DMA client binding,
-> -       Documentation/devicetree/bindings/dma/dma.txt
-> -- dma-names: DMA request names should include "rx" and "tx" if present.
-> -
-> -Example:
-> -
-> -spi1: spi@1c69000 {
-> -       compatible = "allwinner,sun6i-a31-spi";
-> -       reg = <0x01c69000 0x1000>;
-> -       interrupts = <0 66 4>;
-> -       clocks = <&ahb1_gates 21>, <&spi1_clk>;
-> -       clock-names = "ahb", "mod";
-> -       resets = <&ahb1_rst 21>;
-> -};
-> -
-> -spi0: spi@1c68000 {
-> -       compatible = "allwinner,sun8i-h3-spi";
-> -       reg = <0x01c68000 0x1000>;
-> -       interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-> -       clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
-> -       clock-names = "ahb", "mod";
-> -       dmas = <&dma 23>, <&dma 23>;
-> -       dma-names = "rx", "tx";
-> -       pinctrl-names = "default";
-> -       pinctrl-0 = <&spi0_pins>;
-> -       resets = <&ccu RST_BUS_SPI0>;
-> -       #address-cells = <1>;
-> -       #size-cells = <0>;
-> -};
+>  static inline struct device_node *of_get_compatible_child(const struct device_node *parent,
+>                                         const char *compatible)
+>  {
 > --
-> git-series 0.9.1
+> 2.21.0.1020.gf2820cf01a-goog
+>
