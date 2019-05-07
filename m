@@ -2,121 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F48B15957
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 07:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F8215AD8
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 07:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727925AbfEGFfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 01:35:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55876 "EHLO mail.kernel.org"
+        id S1728620AbfEGFtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 01:49:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60058 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727921AbfEGFfx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 01:35:53 -0400
-Received: from localhost (unknown [106.200.210.185])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729127AbfEGFkd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 01:40:33 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4BB9420C01;
-        Tue,  7 May 2019 05:35:52 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B12172087F;
+        Tue,  7 May 2019 05:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557207353;
-        bh=0L4usra1BWLLoQ6Ux30TjVYIwy8g90JNMEHJnbVW2bk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FqQwOTE8wHKh1em/Zw+yqD1h4HGq9lupWbgQrz3Bm+z+RBDstmOntfkEjUs9rx3Lm
-         1KMgqbvHgNrdG7Qw0Deeu4HAg+3I3eHQWYIDlxmcDAfcHhxl2UX6ZevSjoAg2Omf9z
-         miHgPFGSBqPcBwBljOKqFhXBWZSaec0HfYrARRfU=
-Date:   Tue, 7 May 2019 11:05:47 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, amit.kucheria@linaro.org,
-        jorge.ramirez-ortiz@linaro.org, lina.iyer@linaro.org,
-        ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs404: Add PSCI cpuidle support
-Message-ID: <20190507053547.GE16052@vkoul-mobl>
-References: <20190506193115.20909-1-niklas.cassel@linaro.org>
+        s=default; t=1557207632;
+        bh=6rqeJIpOxgLw/JjrqCTGWN5oEHnbMtARRiJU296VwB8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=VhxL6kclzZ7TEwIrSRmca9vDRbC2Gd8ghKbeGfZrET42LpfUa7svyCt9xYLrXUWjY
+         a2XmyloCCXkia6FUxgoTBjgKbZ/GfLglMO6vCjzzV1og9MlzwNj3LeWUtjQsn6syTf
+         Z7pO/MemYk3w4Zx/uFCQ1zcqjcKBYK7wOVScSO34=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sasha Levin <alexander.levin@microsoft.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 69/95] arm64: dts: marvell: armada-ap806: reserve PSCI area
+Date:   Tue,  7 May 2019 01:37:58 -0400
+Message-Id: <20190507053826.31622-69-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190507053826.31622-1-sashal@kernel.org>
+References: <20190507053826.31622-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190506193115.20909-1-niklas.cassel@linaro.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-05-19, 21:31, Niklas Cassel wrote:
-> Add device bindings for CPUs to suspend using PSCI as the enable-method.
-> 
-> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qcs404.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> index ffedf9640af7..f9db9f3ee10c 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> @@ -31,6 +31,7 @@
->  			reg = <0x100>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			cpu-idle-states = <&CPU_PC>;
->  		};
->  
->  		CPU1: cpu@101 {
-> @@ -39,6 +40,7 @@
->  			reg = <0x101>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			cpu-idle-states = <&CPU_PC>;
->  		};
->  
->  		CPU2: cpu@102 {
-> @@ -47,6 +49,7 @@
->  			reg = <0x102>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			cpu-idle-states = <&CPU_PC>;
->  		};
->  
->  		CPU3: cpu@103 {
-> @@ -55,12 +58,24 @@
->  			reg = <0x103>;
->  			enable-method = "psci";
->  			next-level-cache = <&L2_0>;
-> +			cpu-idle-states = <&CPU_PC>;
->  		};
->  
->  		L2_0: l2-cache {
->  			compatible = "cache";
->  			cache-level = <2>;
->  		};
-> +
-> +		idle-states {
+From: Heinrich Schuchardt <xypron.glpk@gmx.de>
 
-Since we are trying to sort the file per address and
-alphabetically, it would be great if this can be moved before l2-cache
-:)
+[ Upstream commit 132ac39cffbcfed80ada38ef0fc6d34d95da7be6 ]
 
-Other than that this lgtm
+The memory area [0x4000000-0x4200000[ is occupied by the PSCI firmware. Any
+attempt to access it from Linux leads to an immediate crash.
+
+So let's make the same memory reservation as the vendor kernel.
+
+[gregory: added as comment that this region matches the mainline U-boot]
+Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Sasha Levin <alexander.levin@microsoft.com>
+---
+ arch/arm64/boot/dts/marvell/armada-ap806.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
+index 30d48ecf46e0..27d2bd85d1ae 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
+@@ -65,6 +65,23 @@
+ 		method = "smc";
+ 	};
  
-> +			CPU_PC: pc {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x40000003>;
-> +				entry-latency-us = <125>;
-> +				exit-latency-us = <180>;
-> +				min-residency-us = <595>;
-> +				local-timer-stop;
-> +			};
-> +		};
->  	};
->  
->  	firmware {
-> -- 
-> 2.21.0
-
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/*
++		 * This area matches the mapping done with a
++		 * mainline U-Boot, and should be updated by the
++		 * bootloader.
++		 */
++
++		psci-area@4000000 {
++			reg = <0x0 0x4000000 0x0 0x200000>;
++			no-map;
++		};
++	};
++
+ 	ap806 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
 -- 
-~Vinod
+2.20.1
+
