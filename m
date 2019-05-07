@@ -2,122 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93690169E3
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 20:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5C191665C
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 17:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726522AbfEGSHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 14:07:38 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:36195 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726378AbfEGSHi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 14:07:38 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 7E4F124000B;
-        Tue,  7 May 2019 18:07:33 +0000 (UTC)
-Date:   Tue, 7 May 2019 17:13:53 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-spi <linux-spi@vger.kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: spi: Add YAML schemas for the generic
- SPI options
-Message-ID: <20190507151353.ns2i72ii5cw6z7lz@flea>
-References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
- <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com>
+        id S1726470AbfEGPPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 11:15:30 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:35003 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726351AbfEGPP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 11:15:29 -0400
+Received: by mail-pf1-f193.google.com with SMTP id t87so8248599pfa.2
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 08:15:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:from:to:subject:date:message-id;
+        bh=jxvbr3KCxGuFA0UUCE0tn2m+gj1lVeJv2p0ZckpwEOo=;
+        b=godi/eRqc9u1IGuhM6qD/GD01ckleD8wICQ7/wytewi8a7HBbzkII3459Dcb5M+5sy
+         SFVxVOPrh7oEqVmF4uK8oXWesB2bHmyIkIDNTNkIiFE6aVDQAuMrT+Lhyc7dZjrVGUz3
+         OYxlsQzH8MWBzSPmXLdIQNiSbw2MXf7hEu7OfDrD/NCs0oNCRXmxFjIiJhNeiDiPuNi3
+         WPOv5roEbMkZgK8sd3IbMVL6LZW1FMNM5rqNKdKe625cMdK66Qm1aU5VhWd0NQHg5Ra3
+         0XZSzk+0CYdxAWjOaclyJKyw53FQhY5XIYz5khKa4DFmlAxxdg66yLH1zv2d6LR1LfWo
+         kvgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=mime-version:x-gm-message-state:from:to:subject:date:message-id;
+        bh=jxvbr3KCxGuFA0UUCE0tn2m+gj1lVeJv2p0ZckpwEOo=;
+        b=br1v9veFOFm8kSBL3pcspntP5KIbG/w+/D8AHM9rjYMy9DiaTmiMxZW43h//e12lgV
+         UUoRM2cBz2IH8eL0Aus4jSs3zYq9lgPfrxlDVEvtGCtf5hfirSs728UCXG/nKI9fH9qX
+         /45G807Uir/BfCImCNeFAPcP/2DQtNNdaO4P6A5J6eqUYhd5GGmxX/3TbC3aJYk6bAdA
+         DP4WNCPPUR23GTZgQi71YOHONwKAdggUA3MJrrqOswQOVBsFIJYohhU9c2dqzMBtaNqA
+         JPZCwdIbLv9xtF1ceZx21GT6/ZJtm9xf9SMskU6BvUxRFzs768R01qpP5oWnj2tQ2JFK
+         oyMQ==
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+X-Gm-Message-State: APjAAAU2fibWThQuu5YbtyO0znHaMiQaFJ/fJqDm4BsQvxXzkAxohQDc
+        PTEwoOMXlksoVeKR+sPYMavi9BdEP1u5RsJHQpC3bYSsaAi7yx8AHJgCndtPFGRhq4lJwUqxo0C
+        l/O7IukgRy9yLkKU=
+X-Google-Smtp-Source: APXvYqzrXRe5boGKu4+E5H+iFQtt2WKa8IE844ytrYjmvDo2sjKQXZGEQiX+PPyG3XVys162mtMbAQ==
+X-Received: by 2002:a65:4649:: with SMTP id k9mr16750621pgr.239.1557242128887;
+        Tue, 07 May 2019 08:15:28 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id 2sm5397398pgc.49.2019.05.07.08.15.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 07 May 2019 08:15:28 -0700 (PDT)
+From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
+        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
+        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 v2 0/3] Extend dt bindings to support I2C on sifive devices and a fix broken IRQ in polling mode.
+Date:   Tue,  7 May 2019 20:45:05 +0530
+Message-Id: <1557242108-13580-1-git-send-email-sagar.kadam@sifive.com>
+X-Mailer: git-send-email 1.9.1
+Content-Type: text/plain; charset="US-ASCII"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The patch is based on mainline v5.1 and extends DT-bindings for Opencore based I2C device in FU540 
+SoC, available on HiFive unleashed board (Rev A00), and also provides a workaround for broken IRQ
+which affect I2C polling mode interface on FU540 chipsets. 
 
-On Tue, May 07, 2019 at 09:35:28AM -0500, Rob Herring wrote:
-> On Tue, May 7, 2019 at 8:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > The SPI controllers have a bunch of generic options that are needed in a
-> > device tree. Add a YAML schemas for those.
->
-> I'd started on this one, but was planning to move it to the schema
-> repository. The issue there is re-licensing (adding BSD 2 clause).
-> Maybe better to just move it later.
+The polling mode workaround patch fixes the CPU stall issue, when-ever i2c transfer are initiated.
 
-I just found out that dt-doc-validate also chokes on the reference
-URI. Maybe I should just submit it to the repo then once that is
-settled?
+This workaround checks if it's a FU540 chipset based on device tree information, and check's for open
+core's IF(interrupt flag) and TIP flags to break from the polling loop upon completion of transfer.
 
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^spi(@[a-zA-Z0-9]+)?$"
->
-> I think we want just "(@.*)". At a minimum, you need to allow for ','.
-> It would be the a bus schema for the parent which should validate unit
-> addresses, so we should pretty much just allow anything here.
+To test the patch, a PMOD-AD2 sensor is connected to HiFive Unleashed board over J1 connector, and 
+appropriate device node is added into board specific device tree as per the information provided in 
+dt-bindings in Documentation/devicetree/bindings/i2c/i2c-sifive.txt.
+Without this workaround, the CPU stall's infinitely.
 
-The issue with this is that it will also match any node starting with
-spi. In the Allwinner case, that also means the pinctrl nodes with spi
-pins in them, but I'm sure we can find more corner cases.
+Busybox i2c utilities used to verify workaround : i2cdetect, i2cdump, i2cset, i2cget
 
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +  cs-gpios:
-> > +    description: |
-> > +      GPIOs used as chip selects.
-> > +      If that property is used, the number of chip selects will be
-> > +      increased automatically with max(cs-gpios, hardware chip selects).
-> > +
-> > +      So if, for example, the controller has 2 CS lines, and the
-> > +      cs-gpios looks like this
-> > +        cs-gpios = <&gpio1 0 0>, <0>, <&gpio1 1 0>, <&gpio1 2 0>;
-> > +
-> > +      Then it should be configured so that num_chipselect = 4, with
-> > +      the following mapping
-> > +        cs0 : &gpio1 0 0
-> > +        cs1 : native
-> > +        cs2 : &gpio1 1 0
-> > +        cs3 : &gpio1 2 0
-> > +
-> > +  num-cs:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Total number of chip selects.
-> > +
-> > +  spi-slave:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
->
-> "type: boolean" is sufficient here. Maybe we should just remove
-> 'flag'. OTOH, maybe consistency with other types and the abstraction
-> is better as we could add to the flag schema.
 
-I was trying to be consistent. Do you want me to remove it?
+Patch History:
 
-> > +      spi-rx-bus-width:
-> > +        allOf:
-> > +          - $ref: /schemas/types.yaml#/definitions/uint32
-> > +          - enum: [ 1, 2, 4, 8 ]
->
-> Is the old doc out of date and 8 is allowed now?
+V0<->V1:
+-Incorporate review comments from Andrew
+-Extend dt bindings into i2c-ocores.txt instead of adding new file
+-Rename SIFIVE_FLAG_POLL to OCORES_FLAG_BROKEN_IRQ
 
-It's not, it's a copy and paste mistake.
+V0:
+-Update dt bindings for sifive i2c devices
+-Fix broken IRQ affecting i2c polling mode interface.
 
-I'll respin this with your fixes, thanks!
-Maxime
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Sagar Shrikant Kadam (3):
+  dt-bindings: i2c: extend existing opencore bindings.
+  i2c-ocore: sifive: add support for i2c device on FU540-c000 SoC.
+  i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC.
+
+ .../devicetree/bindings/i2c/i2c-ocores.txt         | 20 +++++++++++++
+ drivers/i2c/busses/i2c-ocores.c                    | 33 +++++++++++++++++++---
+ 2 files changed, 49 insertions(+), 4 deletions(-)
+
+-- 
+1.9.1
+
+
+-- 
+The information transmitted is intended only for the person or entity to 
+which it is addressed and may contain confidential and/or privileged 
+material. If you are not the intended recipient of this message please do 
+not read, copy, use or disclose this communication and notify the sender 
+immediately. It should be noted that any review, retransmission, 
+dissemination or other use of, or taking action or reliance upon, this 
+information by persons or entities other than the intended recipient is 
+prohibited.
