@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D6715F7F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C49515F8F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfEGIiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:38:01 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:39640 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726362AbfEGIiB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:38:01 -0400
-Received: by mail-lf1-f65.google.com with SMTP id z124so5042926lfd.6
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 01:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=H56LWvRoJenj3gjF/AqdoHfS2q4UJwGAV40zvmjB1F8=;
-        b=WSNc9E++2ZiSjXAwx0aZUTX1qfObMgJ5OvXyTboldnayvobrppJPm2DoAuOCJSoVxP
-         lp6fi37TUkNRefBszMSbd+q5cxChgY8axLrLpYqv/UNNNfWqW1rcc5pTQwS3grcac4C/
-         7I3w6IC9C4LVzgrgcNdbntSiGg6N7CxqhH8btge6Dh0v8krPz9HUywLJ433+dFPhUDBN
-         ODlTR+K6Wrdoj+Oy5t4hL0NqRtADW6vdSHfANl3fGXNd9ux+tS1gR/AMfZSITiJ9TpIb
-         70O8xMkZi/VrnlHVzWOwIlTeaCvlIkgSUfSZ/d0aPDlt8Y4P9bmfn9wbT0RXBBJH1RVU
-         isbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=H56LWvRoJenj3gjF/AqdoHfS2q4UJwGAV40zvmjB1F8=;
-        b=UGDKtQjuG0dPXY2C3g7D2qM7iF+bYIAYcXGCvg111BKSXivgJOKC/SN3U0sixewWVT
-         3OCtexCJNegAZW+n+UGQDbZdO7nXUYLmx23O74OesgmHXt8nsCvgBvyVPtwZNE2LgHIf
-         mTTqUesmzU6dPv0Y9KhafhEa4DlBv/8sQZPTA4pWEhPIU2VeVksffwVeGJgVuNefc5xm
-         1/SdaMxpXtCsSFTpuw149cVebnYPTnrhMb4Dr7R8VWyO/Ld79r+uQ3XF6WYkH/v7zm8G
-         kU0MgO5FIwMEN0b6JSJ861aFugXIHRzhGP+zuuw6WjqIC7JKyMUkQiGZ2Mt7x+RUBliU
-         s3PA==
-X-Gm-Message-State: APjAAAX/gsKRDRwKMAgmvA5Vzafs7G+w88xdDRRGn9VQpUPe4yYwy35n
-        VMWOgtR1ePHbhg+1vPIbUykhOw==
-X-Google-Smtp-Source: APXvYqwy2oWfRQEzrfzKXkmx3BByGTTvYGOnGz9B/N3HP9OzEfVDwRmTfl8W5mkaDsKD6t0VlSuymw==
-X-Received: by 2002:ac2:42d5:: with SMTP id n21mr11557068lfl.162.1557218279099;
-        Tue, 07 May 2019 01:37:59 -0700 (PDT)
-Received: from [192.168.0.199] ([31.173.80.92])
-        by smtp.gmail.com with ESMTPSA id r8sm1168087lfp.55.2019.05.07.01.37.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 01:37:58 -0700 (PDT)
-Subject: Re: [PATCH 02/10] dt-bindings: rcar-gen3-phy-usb2: Document
- uses_usb_x1
-To:     Chris Brandt <chris.brandt@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-3-chris.brandt@renesas.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <b3c3e21d-35aa-d222-e8d4-e5f63286044e@cogentembedded.com>
-Date:   Tue, 7 May 2019 11:37:53 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726276AbfEGIkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:40:06 -0400
+Received: from sauhun.de ([88.99.104.3]:41954 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726159AbfEGIkG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 04:40:06 -0400
+Received: from localhost (p54B332BA.dip0.t-ipconnect.de [84.179.50.186])
+        by pokefinder.org (Postfix) with ESMTPSA id 6C28C2C28E9;
+        Tue,  7 May 2019 10:40:03 +0200 (CEST)
+Date:   Tue, 7 May 2019 10:40:03 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chuanhua Han <chuanhua.han@nxp.com>, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, leoyang.li@nxp.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com,
+        wsa+renesas@sang-engineering.com, u.kleine-koenig@pengutronix.de,
+        eha@deif.com, linux@rempel-privat.de, sumit.batra@nxp.com,
+        l.stach@pengutronix.de, peda@axentia.se
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: add optional mul-value property to
+ binding
+Message-ID: <20190507084002.GA25688@kunai>
+References: <20190430043242.29687-1-chuanhua.han@nxp.com>
+ <20190502205901.GA24224@bogus>
 MIME-Version: 1.0
-In-Reply-To: <20190506234631.113226-3-chris.brandt@renesas.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0OAP2g/MAC+5xKAE"
+Content-Disposition: inline
+In-Reply-To: <20190502205901.GA24224@bogus>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
 
-On 07.05.2019 2:46, Chris Brandt wrote:
+--0OAP2g/MAC+5xKAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Document the optional renesas,uses_usb_x1 property.
-> 
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
-> ---
->   Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
-> index d46188f450bf..26bf377102d3 100644
-> --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
-> +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
-> @@ -46,6 +46,8 @@ channel as USB OTG:
->   	       regulator will be managed during the PHY power on/off sequence.
->   - renesas,no-otg-pins: boolean, specify when a board does not provide proper
->   		       otg pins.
-> +- renesas,use_usb_x1: boolean, the dedicated 48MHz crystal inputs USB_X1 are
+On Thu, May 02, 2019 at 03:59:01PM -0500, Rob Herring wrote:
+> On Tue, Apr 30, 2019 at 12:32:40PM +0800, Chuanhua Han wrote:
+> > NXP Layerscape SoC have up to three MUL options available for all
+> > divider values, we choice of MUL determines the internal monitor rate
+> > of the I2C bus (SCL and SDA signals):
+> > A lower MUL value results in a higher sampling rate of the I2C signals.
+> > A higher MUL value results in a lower sampling rate of the I2C signals.
+> >=20
+> > So in Optional properties we added our custom mul-value property in the
+> > binding to select which mul option for the device tree i2c controller
+> > node.
+> >=20
+> > Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/i2c/i2c-imx.txt | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.txt b/Docume=
+ntation/devicetree/bindings/i2c/i2c-imx.txt
+> > index b967544590e8..ba8e7b7b3fa8 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
+> > @@ -18,6 +18,9 @@ Optional properties:
+> >  - sda-gpios: specify the gpio related to SDA pin
+> >  - pinctrl: add extra pinctrl to configure i2c pins to gpio function fo=
+r i2c
+> >    bus recovery, call it "gpio" state
+> > +- mul-value: NXP Layerscape SoC have up to three MUL options available=
+ for
+> > +all I2C divider values, it describes which MUL we choose to use for th=
+e driver,
+> > +the values should be 1,2,4.
+>=20
+> Needs a vendor prefix. I don't find 'value' to add anything nor do I=20
+> understand what MUL is.
+>=20
+> If it is determined by SoC rather than board, then it should perhaps be=
+=20
+> implied by compatible.
 
-    Hyphens are preferred to underscores in the DT property names.
+I was wondering the same.
 
-> +                      used for the PLL source
->   
->   Example (R-Car H3):
 
-MBR, Sergei
+--0OAP2g/MAC+5xKAE
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlzRRF8ACgkQFA3kzBSg
+KbbUbRAApE4I45wTxiU40khw2A2mDLGqByh6dKjqeRVRHGsUrLdKN3tptV5pVqgM
+LdX5QFuA4Hp1TEkPLhuie+S7y0DfcN1NQEOPtP2ofZFTcMV93MhvZ7W2KEegnbld
+RzvlIcqxMHoQgDBsJunkOcZuqUVicSwYETYXsbFGBAMJGTzhZR4Sh2Qt0VNRUmwu
+UMFuBqnnhDXBkl7VSeKXDgjctCJnVaiyqj2jnz5HD4eOBtHj7zvPXnSYyMfYhrUL
+Z6TXVxdloC6j8noqtORUM4YmlleDepXqp/L2SGRhZ1Qi55XQd6oexxiP7ndDZV0W
+WRu3GaJOtXyOQYqeYMkfLbUPn90FkDLCFun1HKPBO07fcX/qWZmZnoXVX2799odV
+jofYTj6X0ILs79fIUT8wAUnMCmEgjgPOynl57loP4f8lh6VoWeDAEI1nwCoPxi0l
+TKabxPYDHpbT7vFP2eaR7/dXQxb+pgLNMUeqzPpIQ7XnSHrLl+7nrhVDcpzSWTr2
+ci6eWscPRJNr/OVa0wd+L4nthna/K89ZApK4zf9aioBTLPZ/EEZscAJ/YuZiJZ2d
+ZtwvTt6ewEz6D5OF6vsNjn7FOuqp7CIEhyPqFU+E5SC3iO05TqBhb9w34F5mO2oK
+Oswf5Q47JpcE4stdbVJa7ZTUd+P8gfmH+X71qLQzcU3wujem2K4=
+=cq07
+-----END PGP SIGNATURE-----
+
+--0OAP2g/MAC+5xKAE--
