@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF8816663
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 17:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A261666A
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 17:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726804AbfEGPPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 11:15:42 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:42777 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726672AbfEGPPl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 11:15:41 -0400
-Received: by mail-pf1-f195.google.com with SMTP id 13so8514095pfw.9
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 08:15:41 -0700 (PDT)
+        id S1726870AbfEGPPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 11:15:48 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:46525 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726865AbfEGPPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 11:15:48 -0400
+Received: by mail-pl1-f196.google.com with SMTP id bi2so8335675plb.13
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 08:15:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=mime-version:from:to:subject:date:message-id:in-reply-to:references;
-        bh=hsW4nLPXM+q/uY8MZYS1nps05YO+5x2cf5Nbss6qqYE=;
-        b=ClkS187gzhi/j1pAPSt6DjelbgpPXv7fjPdfzDV5qJFZvVL/W1eB6MRvaIHMkL1YlF
-         pAjVyMroQ4MkU/9oeDSWhJa17pUefKXId6mr8kgz0EEGuZQFP91sS1XfCqcXs47UF9rQ
-         7dEymJY2nJgMLXRvZ0fz7wBEFuXsMuNoe8NdOShlmskNuDYYeOiJ8Tzj34QdKU5d8j4r
-         ENTIm4l6tM2JOx2x+Lg4mIDkpXINbB8YaavDO/p+RBL4hjLoibx0xK8XVVqWMnaC7MdM
-         DOogTingeVjfEUlirlITsKl3ddLCz/Y6H7rIgtRBx0P0UXMf6Ql3bnHCqLwkJSmQ09Of
-         PJEw==
+        bh=ezJJYEzxOSAxwZu5Qv2HQh0qcKaC7e6tAejJ+6qzI9Q=;
+        b=iF+0g7n/cGqvlvQeGxp24KtUxCsPs5OnWSZxz/XHDeizhBZE7614RnZcXAUMn008mt
+         dS7YBnc+jzPJXOfz5nDgtuadv8DNFXP3xqgyusW6CyoA2VbHBp3KRZ7sAUYN4EpZ3VdP
+         K5n7Ti0LA37SB2HOGCFiS/tNcrMZkRk9+krjFnMnkoVNhEF9qRGmTzDtHU73HYCFFN58
+         TgoN1B4+dkLZ5TTz3pCmEFFp8AeZpCwuBm3WxGcDxWVuVLQaQflBs7mJMyCoTiUMNNdj
+         vcRq4MNqefMYJuPrivAOmfYlMH8msmZJtWlSnwZtcsdcIlF45eVITjv7sMfQyBRrury9
+         lsXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=mime-version:x-gm-message-state:from:to:subject:date:message-id
          :in-reply-to:references;
-        bh=hsW4nLPXM+q/uY8MZYS1nps05YO+5x2cf5Nbss6qqYE=;
-        b=IsQxkJ/LvpGxZ/stMDFYfs+N95GpRg99Pax1F0p97kWxsjRkd9cneyaTNMLmU2QiG6
-         LWza47QQQNYC0WZCVg/uxkC44nNS1ij72k2Hm2O3xCK2Cb39/W+wWUA7dWdqktu0ER7t
-         WGIefWQDG07LqmVMvBx2+ZIDYSZOTjzMDaUmH/dl6QLghS1aL7L+JQId8BJl/CId1APl
-         jMU9CkuhzFnwqeRrpp8ApP9CRkVKYbwuL+FXdOolbTKJOuMbGNtHouNUkHAZgx6knzsH
-         LkfsRKte7qbdHzt5L9DHKHhZmek4wizdXm3vN8NwM9Mqr1r1bF5aT+ja+TKTPTbu4Umz
-         taYQ==
+        bh=ezJJYEzxOSAxwZu5Qv2HQh0qcKaC7e6tAejJ+6qzI9Q=;
+        b=ka4ei68yLUon7DVn3tnJiSF+4+TIkeB4EaYs5l4Wcsh59Itjl2hE7W7V+X3oPqY6AX
+         UYuIp4qjeqAwcQTFiWsHEQG7JnNQd2UvTVfccYnHtjNYTX7ZfXjHy5ZIQirjbnALBVpr
+         w5mHn0iYXcinXdYb3dZNaTOJqrn+pFDh0DvSqMxeCCQLXth8GFfRnbF9K8jHKOAtOl/s
+         q9x6ZkBT8YLEa6PlN3PdEnvbrmB7kqtWmrOvYC4Ul13jRpV70Z4zm296fUvJzkghIkYV
+         0Si67YsJcIYaZcHrlsh0FFkdX1PtmNfKXyxjHp/16E687T5Wtukx2bAqlMd8p8sPJk9w
+         KBGg==
 MIME-Version: 1.0
-X-Gm-Message-State: APjAAAVRITKp0wRbCZ175mqfHKrFtljvwRZugiSzCkGFN4GqdI32hTYn
-        x4OV9ordcGpiIRebqd/FT+3P2zu3wUSQ3dot4NMKWtj+Kucmf8YgQLrQw1csOlM7dHEaIpyPgZK
-        f7NoYLY7W6kF4+Vs=
-X-Google-Smtp-Source: APXvYqxmlABOO00POLT4NWe6l6j+ZCfYLjr32u7zp94znUQbwT5xkhl7TAvUrQu4mpR/mTRnSdE+1g==
-X-Received: by 2002:aa7:8046:: with SMTP id y6mr42416829pfm.251.1557242140707;
-        Tue, 07 May 2019 08:15:40 -0700 (PDT)
+X-Gm-Message-State: APjAAAWQ6nWALQ1Usg938KeYmIHF3hAJeKctD2h6EK067RvetfYk9TSi
+        bW2sxu+OuEOAT2/zTEVcOg3dn/Spd7sLUUq1/NG6aCTmTL2rhl2JbUcEDFcKUe9LYJu+4zmeBWB
+        LG51GzldbaT9dBdU=
+X-Google-Smtp-Source: APXvYqw92q/y/dpF3qOih3WEvN/1uShPh4h/eO54vUyzDYo/E8LVRT/CQ3YgidasSD0wUxoLDRXJwA==
+X-Received: by 2002:a17:902:900a:: with SMTP id a10mr40804350plp.336.1557242147782;
+        Tue, 07 May 2019 08:15:47 -0700 (PDT)
 Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id 2sm5397398pgc.49.2019.05.07.08.15.36
+        by smtp.googlemail.com with ESMTPSA id 2sm5397398pgc.49.2019.05.07.08.15.44
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 07 May 2019 08:15:40 -0700 (PDT)
+        Tue, 07 May 2019 08:15:47 -0700 (PDT)
 From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
 To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
         andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
         sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 v2 1/3] dt-bindings: i2c: extend existing opencore bindings.
-Date:   Tue,  7 May 2019 20:45:06 +0530
-Message-Id: <1557242108-13580-2-git-send-email-sagar.kadam@sifive.com>
+Subject: [PATCH v2 v2 2/3] i2c-ocore: sifive: add support for i2c device on FU540-c000 SoC.
+Date:   Tue,  7 May 2019 20:45:07 +0530
+Message-Id: <1557242108-13580-3-git-send-email-sagar.kadam@sifive.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1557242108-13580-1-git-send-email-sagar.kadam@sifive.com>
 References: <1557242108-13580-1-git-send-email-sagar.kadam@sifive.com>
@@ -63,50 +63,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add FU540-C000 specific device tree bindings to already
-available i2-ocores file. This device is available on
-HiFive Unleashed Rev A00 board.
+Update device id table for Opencores I2C master used in HiFive Unleashed
+platform having FU540-c000 chipset.
 
 Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
 ---
- Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/i2c/busses/i2c-ocores.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-index 17bef9a..f6bcf90 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-@@ -2,6 +2,7 @@ Device tree configuration for i2c-ocores
+diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
+index 4e1a077..7bf7b0c 100644
+--- a/drivers/i2c/busses/i2c-ocores.c
++++ b/drivers/i2c/busses/i2c-ocores.c
+@@ -85,6 +85,7 @@ struct ocores_i2c {
  
- Required properties:
- - compatible      : "opencores,i2c-ocores" or "aeroflexgaisler,i2cmst"
-+                    "sifive,fu540-c000-i2c" or "sifive,i2c0"
- - reg             : bus address start and address range size of device
- - interrupts      : interrupt number
- - clocks          : handle to the controller clock; see the note below.
-@@ -67,3 +68,22 @@ or
- 			reg = <0x60>;
- 		};
- 	};
-+or
-+	/*
-+	  An Opencore based I2C node in FU540-C000 chip from SiFive
-+	  This chip has a hardware erratum for broken IRQ
-+	  so it's recommended not to define interrupt in the device node
-+	*/
-+	i2c@10030000 {
-+			compatible = "sifive,i2c0","sifive,fu540-c000-i2c";
-+			reg = <0x0 0x10030000 0x0 0x1000>;
-+			reg-names = "i2c-control";
-+			clocks = <&tlclk>;
-+			clock-frequency = <100000>;
-+
-+			reg-shift = <2>;
-+			reg-io-width = <1>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+	};
+ #define TYPE_OCORES		0
+ #define TYPE_GRLIB		1
++#define TYPE_SIFIVE_REV0	2
+ 
+ static void oc_setreg_8(struct ocores_i2c *i2c, int reg, u8 value)
+ {
+@@ -465,6 +466,10 @@ static u32 ocores_func(struct i2c_adapter *adap)
+ 		.data = (void *)TYPE_OCORES,
+ 	},
+ 	{
++		.compatible = "sifive,fu540-c000-i2c",
++		.data = (void *)TYPE_SIFIVE_REV0,
++	},
++	{
+ 		.compatible = "aeroflexgaisler,i2cmst",
+ 		.data = (void *)TYPE_GRLIB,
+ 	},
 -- 
 1.9.1
 
