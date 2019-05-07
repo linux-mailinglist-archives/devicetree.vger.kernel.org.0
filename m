@@ -2,125 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2AE216465
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3465164DA
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726321AbfEGNRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 09:17:33 -0400
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.3]:52882 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726420AbfEGNRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:17:33 -0400
-Received: from [46.226.52.101] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-3.bemta.az-a.eu-west-1.aws.symcld.net id AB/1F-23123-96581DC5; Tue, 07 May 2019 13:17:29 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDKsWRWlGSWpSXmKPExsUyo1hfUjez9WK
-  MwfpFahZvHv9jtzjW9oTdYv6Rc6wWzYvXs1lc3jWHzWLRslZmi6XXLzJZtO49wm6xasEBdosr
-  T6cyOnB5rJm3htFj56y77B6bVnWyeeyfu4bdY8v+z4wenzfJeez9/JslgD2KNTMvKb8igTXj5
-  /0Z7AU7BCreH+pga2DcwtvFyMkhJLCGUeLLXXsQm1fAVGLfj81MILawQITE1gvfgWwODjYBXY
-  muO6ZdjFwcIgLfGCWmHVvFDuIwC7xllPj2qIcRpIFFQEWi7dkdNhCbUyBW4v+fwywgRUIC95k
-  kZlyfCVbELKAp0br9NzuILSGgIbHh5jEmiM2CEidnPmGBqJGXaN46mxlks5CArMTRS7EQ5QoS
-  Z7dMZISwkyTO9V1hm8AoMAvJ1FlIJs1CMmkBI/MqRoukosz0jJLcxMwcXUMDA11DQyNdQ0tjX
-  SNjE73EKt1EvdRS3fLU4hJdQ73E8mK94src5JwUvbzUkk2MwJhKKTj4agfjrhXphxglOZiURH
-  lF7C/GCPEl5adUZiQWZ8QXleakFh9ilOHgUJLg7W0GygkWpaanVqRl5gCjGyYtwcGjJMKbDpL
-  mLS5IzC3OTIdInWLU5Vhw89c8ZiGWvPy8VClx3p0gRQIgRRmleXAjYInmEqOslDAvIwMDgxBP
-  QWpRbmYJqvwrRnEORiVh3n6QKTyZeSVwm14BHcEEdMS8jnMgR5QkIqSkGhirPZNmcegmWswQj
-  ty3Jn/i6uiTTR/aWq/E75t2xuVH1ZWGDQZKCl9nGClP8lBZ0ce2TJn9x4qtjtuf740QSefiVP
-  8YN5VdjFE0unX6KaV55zrnnFo4b2+mMjtnuHR51vxNmf+sgm++/ppvZWKv+2p68xfzSPP/c7Z
-  ULpvQarZwNoPzv9ieIDYlluKMREMt5qLiRAABRNN8LwMAAA==
-X-Env-Sender: cst@phaseone.com
-X-Msg-Ref: server-8.tower-265.messagelabs.com!1557235049!8196729!1
-X-Originating-IP: [152.115.47.25]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.31.5; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 19072 invoked from network); 7 May 2019 13:17:29 -0000
-Received: from unknown (HELO Exchange2.phaseone.com) (152.115.47.25)
-  by server-8.tower-265.messagelabs.com with AES256-SHA encrypted SMTP; 7 May 2019 13:17:29 -0000
-Received: from cstu16.phaseone.com (172.16.2.207) by Exchange2.phaseone.com
- (172.16.1.180) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 7 May
- 2019 15:17:28 +0200
-Message-ID: <1557235048.114189.22.camel@phaseone.com>
-Subject: Re: [PATCH 3/3] usb: dwc3: gadget: Add support for disabling U1 and
- U2 entries
-From:   "Claus H. Stovgaard" <cst@phaseone.com>
-To:     Anurag Kumar Vulisha <anuragku@xilinx.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "v.anuragkumar@gmail.com" <v.anuragkumar@gmail.com>
-Date:   Tue, 7 May 2019 15:17:28 +0200
-In-Reply-To: <BYAPR02MB55918A76A1567C3209860748A7310@BYAPR02MB5591.namprd02.prod.outlook.com>
-References: <1556792423-4833-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
-         <1556792423-4833-4-git-send-email-anurag.kumar.vulisha@xilinx.com>
-         <30102591E157244384E984126FC3CB4F639E7BA8@us01wembx1.internal.synopsys.com>
-         <1557176302.18203.20.camel@phaseone.com>
-         <BYAPR02MB55918A76A1567C3209860748A7310@BYAPR02MB5591.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
+        id S1726516AbfEGNpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:45:09 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53298 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726304AbfEGNpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:45:09 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x47Diw8m012273;
+        Tue, 7 May 2019 08:44:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1557236698;
+        bh=E6////DJtGhtMBQIUz9ZeWa9IxXTY2D3IVy0VJeXBn0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SR3iR6hD6PQTcZFAHKS/lIKonY5lEBBz9JMNO/JwSCZivaqFa/AJQiXjf3Hb87o4o
+         NpV3BJK07HH0WLqSaJAYv+UQnozq1grYVP1SdREu9WZaz1J3iyFoEeA8cPcnNMeT01
+         oxrFr0d5It8Fuy+9ih+R7MNQV33neeIg8VIqvfvM=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x47DiwGF060905
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 May 2019 08:44:58 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 7 May
+ 2019 08:44:57 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 7 May 2019 08:44:57 -0500
+Received: from [10.250.67.168] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x47DivCN106703;
+        Tue, 7 May 2019 08:44:57 -0500
+Subject: Re: [PATCH v3 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller
+ driver for SiFive SoCs
+To:     Yash Shah <yash.shah@sifive.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        <linux-kernel@vger.kernel.org>, <aou@eecs.berkeley.edu>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+References: <1557139720-12384-1-git-send-email-yash.shah@sifive.com>
+ <1557139720-12384-3-git-send-email-yash.shah@sifive.com>
+ <d36b7a74-0d08-0143-b479-45f760c347ba@ti.com>
+ <CAJ2_jOFZjTNA3Nf=zNwLT+St21Q2_TPx_XYhggU=yef6LPkLdg@mail.gmail.com>
+From:   "Andrew F. Davis" <afd@ti.com>
+Message-ID: <ba1481d0-f21b-5b0d-e3d5-ecb9faf42407@ti.com>
+Date:   Tue, 7 May 2019 09:44:58 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [172.16.2.207]
-X-ClientProxiedBy: Exchange3.phaseone.com (172.16.1.184) To
- Exchange2.phaseone.com (172.16.1.180)
+In-Reply-To: <CAJ2_jOFZjTNA3Nf=zNwLT+St21Q2_TPx_XYhggU=yef6LPkLdg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anurag
+On 5/7/19 2:48 AM, Yash Shah wrote:
+> On Mon, May 6, 2019 at 5:48 PM Andrew F. Davis <afd@ti.com> wrote:
+>>
+>> On 5/6/19 6:48 AM, Yash Shah wrote:
+>>> The driver currently supports only SiFive FU540-C000 platform.
+>>>
+>>> The initial version of L2 cache controller driver includes:
+>>> - Initial configuration reporting at boot up.
+>>> - Support for ECC related functionality.
+>>>
+>>> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+>>> ---
+>>>  arch/riscv/include/asm/sifive_l2_cache.h |  16 +++
+>>>  arch/riscv/mm/Makefile                   |   1 +
+>>>  arch/riscv/mm/sifive_l2_cache.c          | 175 +++++++++++++++++++++++++++++++
+>>>  3 files changed, 192 insertions(+)
+>>>  create mode 100644 arch/riscv/include/asm/sifive_l2_cache.h
+>>>  create mode 100644 arch/riscv/mm/sifive_l2_cache.c
+>>>
+>>> diff --git a/arch/riscv/include/asm/sifive_l2_cache.h b/arch/riscv/include/asm/sifive_l2_cache.h
+>>> new file mode 100644
+>>> index 0000000..04f6748
+>>> --- /dev/null
+>>> +++ b/arch/riscv/include/asm/sifive_l2_cache.h
+>>> @@ -0,0 +1,16 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>> +/*
+>>> + * SiFive L2 Cache Controller header file
+>>> + *
+>>> + */
+>>> +
+>>> +#ifndef _ASM_RISCV_SIFIVE_L2_CACHE_H
+>>> +#define _ASM_RISCV_SIFIVE_L2_CACHE_H
+>>> +
+>>> +extern int register_sifive_l2_error_notifier(struct notifier_block *nb);
+>>> +extern int unregister_sifive_l2_error_notifier(struct notifier_block *nb);
+>>> +
+>>> +#define SIFIVE_L2_ERR_TYPE_CE 0
+>>> +#define SIFIVE_L2_ERR_TYPE_UE 1
+>>> +
+>>> +#endif /* _ASM_RISCV_SIFIVE_L2_CACHE_H */
+>>> diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+>>> index eb22ab4..1523ee5 100644
+>>> --- a/arch/riscv/mm/Makefile
+>>> +++ b/arch/riscv/mm/Makefile
+>>> @@ -3,3 +3,4 @@ obj-y += fault.o
+>>>  obj-y += extable.o
+>>>  obj-y += ioremap.o
+>>>  obj-y += cacheflush.o
+>>> +obj-y += sifive_l2_cache.o
+>>> diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
+>>> new file mode 100644
+>>> index 0000000..4eb6461
+>>> --- /dev/null
+>>> +++ b/arch/riscv/mm/sifive_l2_cache.c
+>>> @@ -0,0 +1,175 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * SiFive L2 cache controller Driver
+>>> + *
+>>> + * Copyright (C) 2018-2019 SiFive, Inc.
+>>> + *
+>>> + */
+> [...]
+>>> +
+>>> +#ifdef CONFIG_DEBUG_FS
+>>> +static struct dentry *sifive_test;
+>>> +
+>>> +static ssize_t l2_write(struct file *file, const char __user *data,
+>>> +                     size_t count, loff_t *ppos)
+>>> +{
+>>> +     unsigned int val;
+>>> +
+>>> +     if (kstrtouint_from_user(data, count, 0, &val))
+>>> +             return -EINVAL;
+>>> +     if ((val >= 0 && val < 0xFF) || (val >= 0x10000 && val < 0x100FF))
+>>
+>> I'm guessing bit 16 is the enable and the lower 8 are some kind of
+>> region to enable the error? This is probably a bad interface, it looks
+>> useful for testing but doesn't provide any debugging info useful for
+>> running systems. Do you really want userspace to be able to do this?
+> 
+> Bit 16 selects the type of ECC error (0=data or 1=directory error).
+> The lower 8 bits toggles (corrupt) that bit index.
+> Are you suggesting to remove this debug interface altogether or you
+> want me to improve the current interface?
+> Something like providing 2 separate debugfs files for data and
+> directory errors. And create a separate 8-bit debugfs variable to
+> select the bit index to toggle.
+> 
 
-> > > Please use "-" rather than "_" in the property names.
-> > I have thought about this feature over the weekend, and think the
-> > naming should be
-> > changed to something like "snps,bos-u1-exit-lat-in-us"
-> > and named the same in the code. And then be the value used by the
-> > get_config_params. E.g. the device-tree is used to set the values
-> > directly used for
-> > bUxdevExitLat instead of named something not related to exit
-> > latency.
-> > 
-> > With this the name and function is a 1 to 1 match, and you can
-> > among others set it to
-> > 0 for optaining what Anurag wants.
-> > 
-> Your suggestion looks good but the problem is the U1 and U2 exit
-> latencies are
-> fixed values in dwc3 controller(can be found in HCSPARAMS3). Adding
-> different
-> exit latencies may modify the U1SEL/U2SEL values sent from the host
-> but the real
-> dwc3 controller exit latencies are not getting changed. Because of
-> this reason I
-> had opted "snps,dis_u1_entry_quirk", so that the U1/U2 exit latency
-> values
-> reported in BOS descriptor can be either be zero (when U1/U2 entries
-> needs to be
-> disabled) or non-zero value (reported in HCSPARAMS3) when U1/U2
-> states allowed.
-> Based on this I think it is better if we can continue with "snps,dis-
-> u1-entry-quirk"
-> instead of the "snps,bos-u1-exit-lat-in-us". Please  provide your
-> opinion on this.
+I was suggesting to remove the whole thing. I don't see it being all
+that useful, but it is up to you.
 
-With this in mind I can see why having direct control over the exit
-latency value might not be optimum in many situations.
-Regarding the name, I think the snps,dis_u1_entry_quirk will be a good
-name, if it is combined with the DCTL control. E.g. remove the configfs
-part of my patch, and merge the DCTL control with your patches.
-If the dt-binding still only control the bos descriptor I think a
-better name is something with u1_force_exist_lat_0 or similar.
+Andrew
 
-I don't think setting bos to 0 or controlling DCTL will be used
-individual, so to keep things simple I will vote for
-snps,dis_u1_entry_quirk, and then just control all elements regarding
-disabling U1/U2 from this dt-binding.
-
-Please cut what your need from my patch.
-
-BR Claus
+> - Yash
+> 
+>>
+>> Andrew
+>>
+> 
