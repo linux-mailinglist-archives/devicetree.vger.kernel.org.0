@@ -2,61 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1001D167DB
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 18:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C39167F0
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 18:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726394AbfEGQ1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 12:27:03 -0400
-Received: from mx2.suse.de ([195.135.220.15]:44330 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726738AbfEGQ1D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 12:27:03 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 4364CAEB5;
-        Tue,  7 May 2019 16:27:02 +0000 (UTC)
-From:   Andreas Schwab <schwab@suse.de>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     Palmer Dabbelt <palmer@sifive.com>, linux-pwm@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Thierry Reding <thierry.reding@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sachin Ghadi <sachin.ghadi@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH v11 0/2] PWM support for HiFive Unleashed
-References: <1553508779-9685-1-git-send-email-yash.shah@sifive.com>
-        <mvmbm1zueya.fsf@suse.de> <mvmpnqcsn6u.fsf@suse.de>
-        <CAJ2_jOFu-yCZV_A4B48_fLq7h7UA6LUWhgpxr0uuh7vhW9Q8pA@mail.gmail.com>
-        <mvmlfzisiwc.fsf@suse.de>
-        <CAJ2_jOG2M03aLBgUOgGjWH9CUxq2aTG97eSX70=UaSbGCMMF_g@mail.gmail.com>
-X-Yow:  TONY RANDALL!  Is YOUR life a PATIO of FUN??
-Date:   Tue, 07 May 2019 18:27:01 +0200
-In-Reply-To: <CAJ2_jOG2M03aLBgUOgGjWH9CUxq2aTG97eSX70=UaSbGCMMF_g@mail.gmail.com>
-        (Yash Shah's message of "Tue, 7 May 2019 16:31:58 +0530")
-Message-ID: <mvm7eb2qlgq.fsf@suse.de>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.2 (gnu/linux)
+        id S1726411AbfEGQc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 12:32:58 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:32893 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726197AbfEGQc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 12:32:58 -0400
+Received: by mail-vs1-f68.google.com with SMTP id z145so10797982vsc.0;
+        Tue, 07 May 2019 09:32:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xfZ+nPfJalivsFUof8XfkbfxeRXadcob2dPu22J78FE=;
+        b=fXgkkodcnkRkgqOKPo7Lo23rHK9gmlTUyDkeg8WbYvjt/AmJJTseE8R446j9Ibxr3K
+         eTv9g9c2TMbp8916ViJXf8vs0VKRiVXjkzkrdii+/HiFcoxWsnlohQh0re3RcIpKxeb5
+         SfX8F9KBw0whfZMsDqbazwNBBaN7HYIfFDgd0qj26zZw3hY1sg+pY/D4xdVovmWyvg85
+         oHhrpXFw3wOBVmWPWGgs3r/7IHhWaPiX4jkBCJpgflDhXakQcKaoHAkgGnVmxQeYy7kA
+         /sn79S8T02Cu65B2f5ZhCF5B/mREmgHsRLie3fLPE+giL5HseVMmapLi3oVNaHmt4E2V
+         R+Fw==
+X-Gm-Message-State: APjAAAUqlm+y6FuIXWwdFJbO+TdYYepo7tdk/hNchdZ9DPiwzA8y1mkW
+        VCTNWYoQNWshLoRxaq6zK/Elo8r65jA7que6tME=
+X-Google-Smtp-Source: APXvYqwnBOm/31+1n0uOIej23iQ7zEwFHV7MPPxuNGseA0JkCWZ9jKf5bC8Pf3dai9+n75aDdCcSS3EpAwX0z+b1ukA=
+X-Received: by 2002:a67:ba07:: with SMTP id l7mr16617093vsn.11.1557246776403;
+ Tue, 07 May 2019 09:32:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-2-chris.brandt@renesas.com> <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
+ <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 7 May 2019 18:32:44 +0200
+Message-ID: <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com>
+Subject: Re: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1 option
+To:     Chris Brandt <Chris.Brandt@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mai 07 2019, Yash Shah <yash.shah@sifive.com> wrote:
+Hi Chris,
 
-> Leds on HiFive Unleashed are wired to supply instead of ground.
-> And as per ./Documentation/devicetree/bindings/leds/leds-pwm.txt, you
-> need to provide additional property "active-low" in such case.
+On Tue, May 7, 2019 at 5:43 PM Chris Brandt <Chris.Brandt@renesas.com> wrote:
+> On Tue, May 07, 2019, Geert Uytterhoeven wrote:
+> > > +       if (of_property_read_bool(dev->of_node, "renesas,uses_usb_x1"))
+> > > +               channel->uses_usb_x1 = true;
+> > > +
+> >
+> > Perhaps this can be checked some other way (e.g. by checking for a non-
+> > zero
+> > clock rate of the USB_X1 clock referenced from DT), thus removing the need
+> > for
+> > adding a custom property?
 >
-> - active-low : (optional) For PWMs where the LED is wired to supply
-> rather than ground.
+> Currently, there is no USB_X1 in DT like there is for RZ/A1.
+>
+> For RZ/A2, those are dedicated pins that belong to the USB HW block
+> itself. They do not feed into the system CPG or any dividers, so I
+> never included it in the .dtsi.
 
-This fixes the issue.
+Like pcie_bus_clk on R-Car?
+We do have that in DT, with a "clock" link to it from the PCIe device node.
+After all, it is provided by an external clock crystal, and consumed by the
+PCIe device.
 
-Thanks, Andreas.
+> So with that said, does a uses-usb-x1 property make more sense?
+
+No ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Andreas Schwab, SUSE Labs, schwab@suse.de
-GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
-"And now for something completely different."
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
