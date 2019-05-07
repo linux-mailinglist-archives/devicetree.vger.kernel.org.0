@@ -2,150 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0EA415DEB
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 09:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D20B715E39
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 09:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726561AbfEGHKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 03:10:49 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:8609 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726297AbfEGHKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 03:10:49 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cd12f740000>; Tue, 07 May 2019 00:10:44 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Tue, 07 May 2019 00:10:48 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Tue, 07 May 2019 00:10:48 -0700
-Received: from [10.25.73.250] (172.20.13.39) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 7 May
- 2019 07:10:40 +0000
-Subject: Re: [PATCH V5 02/16] PCI/PME: Export pcie_pme_disable_msi() &
- pcie_pme_no_msi() APIs
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
-        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
-        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190424052004.6270-1-vidyas@nvidia.com>
- <20190424052004.6270-3-vidyas@nvidia.com> <20190503110159.GB32400@ulmo>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <b8f482f4-8136-07b5-3d68-f45a6fd580ba@nvidia.com>
-Date:   Tue, 7 May 2019 12:40:36 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726565AbfEGHcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 03:32:22 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:41351 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726085AbfEGHcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 03:32:22 -0400
+Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20190507073219epoutp04639fd374d17cf3c0ae45931088078cb0~cVjDw7nvY1146711467epoutp04D
+        for <devicetree@vger.kernel.org>; Tue,  7 May 2019 07:32:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20190507073219epoutp04639fd374d17cf3c0ae45931088078cb0~cVjDw7nvY1146711467epoutp04D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557214339;
+        bh=tFHGDRRfdLTDhSz5hJ8Dy0HOsMTdJJJeVQpZJnvzqTc=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=GOz6MhcauDEu1U6FJlv4f4TOc9dhsU9pOZW2/o4wIjUqLw12wCt88631B7EzXxXry
+         ItRvHKA/RwQ7Cgpm9D5RYg7bI/2gp3PIKBGbQHTawAOAugC5FaE8S7vUso8Ry3Ausz
+         qNHgK9pDrl5tDVs208c2/uV603iNWlQVIyD6nnxI=
+Received: from epsmges1p5.samsung.com (unknown [182.195.40.152]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190507073216epcas1p2a8106a09c66f3030f54288a8526544c8~cVjBA4C-r1822218222epcas1p2Q;
+        Tue,  7 May 2019 07:32:16 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
+        BE.CF.04108.08431DC5; Tue,  7 May 2019 16:32:16 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+        20190507073215epcas1p4ec7ba8c6174f577380d349cc265e6164~cVjAj0NGL0520505205epcas1p4T;
+        Tue,  7 May 2019 07:32:15 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190507073215epsmtrp266d42dd5bbcdee13e780d4ac850b4cd3~cVjAi3qoi0371003710epsmtrp2Y;
+        Tue,  7 May 2019 07:32:15 +0000 (GMT)
+X-AuditID: b6c32a39-8b7ff7000000100c-fd-5cd134807346
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        8F.38.03662.F7431DC5; Tue,  7 May 2019 16:32:15 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190507073215epsmtip1623212646bc6558738fbf534664c2724~cVjARnntt2392923929epsmtip1L;
+        Tue,  7 May 2019 07:32:15 +0000 (GMT)
+Subject: Re: [PATCH v7 01/13] clk: samsung: add needed IDs for DMC clocks in
+ Exynos5420
+To:     Lukasz Luba <l.luba@partner.samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <8b063f30-1a4d-3292-2e57-6e33e94d57ae@samsung.com>
+Date:   Tue, 7 May 2019 16:33:41 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190503110159.GB32400@ulmo>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
- HQMAIL101.nvidia.com (172.20.187.10)
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+In-Reply-To: <1557155521-30949-2-git-send-email-l.luba@partner.samsung.com>
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557213044; bh=KIRiMdJ3vHsuNoXRBzUBVE4jj3DtsdclgdYyB8TtsKg=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=N0cu64tGkekeUlr8GKtZ16+dmuv0OOULTcHPKb31Wg/Etaa5vKT7q/lCU9FWUezN/
-         X+GgJbW6gv3Wlgg0qz4wcVp/+BHHqKijSr7kxXMORKyhWwiG/1PY1x/PskChTDTaiM
-         Ix0gYrXm/p0ytf1PRzZ6mjbbv5b7q7+flVxgw3YiG76X7uayqz/Z/aUO4r/CkBb/2t
-         D6MMYSGaJci4N2uY/oLvsOcCw1MxHSwVGcbrWEJFGvFuL73XUq5CGYt/yx+PQy9377
-         t3IfNouplwTxNXL9xDOEvQ4LHkNjw+z/z/MUkElZPJv+nFXO4z/VecuQreGLOwJQe3
-         f15d3SAi3cWww==
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDJsWRmVeSWpSXmKPExsWy7bCmrm6DycUYg92vxSw2zljPajH/yDlW
+        i9UfHzNaTD41l8niTHeuRf/j18wW589vYLc42/SG3eJWg4zF5V1z2Cw+9x5htJhxfh+Txdoj
+        d9ktbjeuYLM4/Kad1WL/FS+L27/5LL6deMToIOTx7eskFo/ZDRdZPHbOusvusWlVJ5tHb/M7
+        No+D7/YwefRtWcXosfl0tcfnTXIBnFHZNhmpiSmpRQqpecn5KZl56bZK3sHxzvGmZgaGuoaW
+        FuZKCnmJuam2Si4+AbpumTlAzygplCXmlAKFAhKLi5X07WyK8ktLUhUy8otLbJVSC1JyCiwL
+        9IoTc4tL89L1kvNzrQwNDIxMgQoTsjO2/VnJXHBDtGLL0n9sDYyvBLsYOTgkBEwkluwR6mLk
+        4hAS2MEo8fPsTzYI5xOjxP/1N1i7GDmBnG+MEjt26YLYIA231rSyQBTtZZQ48aSfGcJ5zyix
+        /+tHJpAqYYFIiVVzfzGCJEQEljNK7Jt6F8xhFljNJPHn61qwuWwCWhL7X9xgA7H5BRQlrv54
+        zAhi8wrYSXz+8I8FxGYRUJH4vwyiRlQgQuL+sQ2sEDWCEidnPgGr4RTwllj96xTYZmYBcYlb
+        T+ZD2fISzVtng50nIXCLXeL27YWsEE+4SEw+9YkJwhaWeHV8CzuELSXx+d1eNgi7WmLlySNs
+        EM0djBJb9l+AajaW2L90MhMo+JgFNCXW79KHWMYn8e5rDyskVHklOtqEIKqVJS4/uAu1SlJi
+        cXsn1HgPidUTTrBMYFScheSdWUhemIXkhVkIyxYwsqxiFEstKM5NTy02LDBFju5NjOCUrmW5
+        g/HYOZ9DjAIcjEo8vA9sL8QIsSaWFVfmHmKU4GBWEuFNfHYuRog3JbGyKrUoP76oNCe1+BCj
+        KTC0JzJLiSbnA/NNXkm8oamRsbGxhYmhmamhoZI473oH5xghgfTEktTs1NSC1CKYPiYOTqkG
+        Rg050f+TFef8fv9+74v6QD6dCTO4Jsf0vo6drK94fs+fMqu70p2uaVf+2i55dnNZ5MU0IZV5
+        QXteM/4RPeWSdd2s3zt9v1TG5b1xidUFeqLGndLxCk3ip/mmlIq43Ij/Ucoq/Xrig7QTngzP
+        pI+cKv8iIrjEPfDOye5iie032Yw7nxh36E5VU2Ipzkg01GIuKk4EAADe3Rn/AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBIsWRmVeSWpSXmKPExsWy7bCSnG69ycUYg3Xv9S02zljPajH/yDlW
+        i9UfHzNaTD41l8niTHeuRf/j18wW589vYLc42/SG3eJWg4zF5V1z2Cw+9x5htJhxfh+Txdoj
+        d9ktbjeuYLM4/Kad1WL/FS+L27/5LL6deMToIOTx7eskFo/ZDRdZPHbOusvusWlVJ5tHb/M7
+        No+D7/YwefRtWcXosfl0tcfnTXIBnFFcNimpOZllqUX6dglcGdv+rGQuuCFasWXpP7YGxleC
+        XYycHBICJhK31rSydDFycQgJ7GaUWPr/MxNEQlJi2sWjzF2MHEC2sMThw8UQNW8ZJZrv9rOB
+        1AgLREqsmvuLESQhIrCcUWLu36Vgk5gFVjNJTPq4hQ2i5T6jxMV3H1lAWtgEtCT2v7gB1s4v
+        oChx9cdjRhCbV8BO4vOHf2A1LAIqEv+XQdSICkRInHm/ggWiRlDi5MwnYDangLfE6l+nwE5l
+        FlCX+DPvEjOELS5x68l8qLi8RPPW2cwTGIVnIWmfhaRlFpKWWUhaFjCyrGKUTC0ozk3PLTYs
+        MMpLLdcrTswtLs1L10vOz93ECI5vLa0djCdOxB9iFOBgVOLh7bC+ECPEmlhWXJl7iFGCg1lJ
+        hDfx2bkYId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rzy+ccihQTSE0tSs1NTC1KLYLJMHJxSDYyr
+        PX1EVMOP2J7wDWw7F3t5gbFC2my5+DqHPRUPd7cWK3DMuSC/I+3izUuFadOjpzN7PNfYpldU
+        dub+Q7azyzrX9f97v31J+pGbTReSOn2jl+hdVxXve/e5XkdL5t7NezMrt8uc21iwfbHUM/+e
+        kk1JjwIu6fkd45tuw+VqWWjj0a556pz16ilKLMUZiYZazEXFiQC9W1ty6wIAAA==
+X-CMS-MailID: 20190507073215epcas1p4ec7ba8c6174f577380d349cc265e6164
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20190506151210eucas1p13c2a4b86a6f987ff34fbe1e2d705fbbf
+References: <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190506151210eucas1p13c2a4b86a6f987ff34fbe1e2d705fbbf@eucas1p1.samsung.com>
+        <1557155521-30949-2-git-send-email-l.luba@partner.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/3/2019 4:31 PM, Thierry Reding wrote:
-> On Wed, Apr 24, 2019 at 10:49:50AM +0530, Vidya Sagar wrote:
->> Export pcie_pme_disable_msi() & pcie_pme_no_msi() APIs to enable drivers
->> using this API be able to build as loadable modules.
->>
->> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->> ---
->> Changes from [v4]:
->> * None
->>
->> Changes from [v3]:
->> * None
->>
->> Changes from [v2]:
->> * Exported pcie_pme_no_msi() API after making pcie_pme_msi_disabled a static
->>
->> Changes from [v1]:
->> * This is a new patch in v2 series
->>
->>   drivers/pci/pcie/pme.c     | 14 +++++++++++++-
->>   drivers/pci/pcie/portdrv.h | 16 +++-------------
->>   2 files changed, 16 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/pci/pcie/pme.c b/drivers/pci/pcie/pme.c
->> index 54d593d10396..d5e0ea4a62fc 100644
->> --- a/drivers/pci/pcie/pme.c
->> +++ b/drivers/pci/pcie/pme.c
->> @@ -25,7 +25,19 @@
->>    * that using MSI for PCIe PME signaling doesn't play well with PCIe PME-based
->>    * wake-up from system sleep states.
->>    */
->> -bool pcie_pme_msi_disabled;
->> +static bool pcie_pme_msi_disabled;
->> +
->> +void pcie_pme_disable_msi(void)
->> +{
->> +	pcie_pme_msi_disabled = true;
->> +}
->> +EXPORT_SYMBOL_GPL(pcie_pme_disable_msi);
->> +
->> +bool pcie_pme_no_msi(void)
->> +{
->> +	return pcie_pme_msi_disabled;
->> +}
->> +EXPORT_SYMBOL_GPL(pcie_pme_no_msi);
->>   
->>   static int __init pcie_pme_setup(char *str)
->>   {
->> diff --git a/drivers/pci/pcie/portdrv.h b/drivers/pci/pcie/portdrv.h
->> index 1d50dc58ac40..7c8c3da4bd58 100644
->> --- a/drivers/pci/pcie/portdrv.h
->> +++ b/drivers/pci/pcie/portdrv.h
->> @@ -125,22 +125,12 @@ void pcie_port_bus_unregister(void);
->>   struct pci_dev;
->>   
->>   #ifdef CONFIG_PCIE_PME
->> -extern bool pcie_pme_msi_disabled;
->> -
->> -static inline void pcie_pme_disable_msi(void)
->> -{
->> -	pcie_pme_msi_disabled = true;
->> -}
->> -
->> -static inline bool pcie_pme_no_msi(void)
->> -{
->> -	return pcie_pme_msi_disabled;
->> -}
->> -
->> +void pcie_pme_disable_msi(void);
->> +bool pcie_pme_no_msi(void);
->>   void pcie_pme_interrupt_enable(struct pci_dev *dev, bool enable);
->>   #else /* !CONFIG_PCIE_PME */
->>   static inline void pcie_pme_disable_msi(void) {}
->> -static inline bool pcie_pme_no_msi(void) { return false; }
->> +static inline bool pcie_pme_no_msi(void) {}
-> 
-> This looks wrong.
-Can you please give more info on what is wrong in this?
+Hi Lukasz,
 
+On 19. 5. 7. 오전 12:11, Lukasz Luba wrote:
+> Define new IDs for clocks used by Dynamic Memory Controller in
+> Exynos5422 SoC.
 > 
-> Thierry
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> ---
+>  include/dt-bindings/clock/exynos5420.h | 28 ++++++++++++++++++++++------
+>  1 file changed, 22 insertions(+), 6 deletions(-)
+> 
+> diff --git a/include/dt-bindings/clock/exynos5420.h b/include/dt-bindings/clock/exynos5420.h
+> index 355f469..bf50d8a 100644
+> --- a/include/dt-bindings/clock/exynos5420.h
+> +++ b/include/dt-bindings/clock/exynos5420.h
+> @@ -60,6 +60,7 @@
+>  #define CLK_MAU_EPLL		159
+>  #define CLK_SCLK_HSIC_12M	160
+>  #define CLK_SCLK_MPHY_IXTAL24	161
+> +#define CLK_SCLK_BPLL		162
+>  
+>  /* gate clocks */
+>  #define CLK_UART0		257
+> @@ -195,6 +196,16 @@
+>  #define CLK_ACLK432_CAM		518
+>  #define CLK_ACLK_FL1550_CAM	519
+>  #define CLK_ACLK550_CAM		520
+> +#define CLK_CLKM_PHY0		521
+> +#define CLK_CLKM_PHY1		522
+> +#define CLK_ACLK_PPMU_DREX0_0	523
+> +#define CLK_ACLK_PPMU_DREX0_1	524
+> +#define CLK_ACLK_PPMU_DREX1_0	525
+> +#define CLK_ACLK_PPMU_DREX1_1	526
+> +#define CLK_PCLK_PPMU_DREX0_0	527
+> +#define CLK_PCLK_PPMU_DREX0_1	528
+> +#define CLK_PCLK_PPMU_DREX1_0	529
+> +#define CLK_PCLK_PPMU_DREX1_1	530
+>  
+>  /* mux clocks */
+>  #define CLK_MOUT_HDMI		640
+> @@ -217,6 +228,8 @@
+>  #define CLK_MOUT_EPLL		657
+>  #define CLK_MOUT_MAU_EPLL	658
+>  #define CLK_MOUT_USER_MAU_EPLL	659
+> +#define CLK_MOUT_SCLK_SPLL	660
+> +#define CLK_MOUT_MX_MSPLL_CCORE_PHY	661
+>  
+>  /* divider clocks */
+>  #define CLK_DOUT_PIXEL		768
+> @@ -243,13 +256,16 @@
+>  #define CLK_DOUT_ACLK300_GSCL	789
+>  #define CLK_DOUT_ACLK400_DISP1	790
+>  #define CLK_DOUT_PCLK_CDREX	791
+> -#define CLK_DOUT_SCLK_CDREX	792
+> -#define CLK_DOUT_ACLK_CDREX1	793
+> -#define CLK_DOUT_CCLK_DREX0	794
+> -#define CLK_DOUT_CLK2X_PHY0	795
+> -#define CLK_DOUT_PCLK_CORE_MEM	796
+
+The your previous patch didn't change the id number
+of already exiting clocks. It cause the fault.
+In order to keep the compatibility, you keep
+the original id number without modification.
+
+Please don't change the id number of the existing clocks
+and then just add the new clocks.
+
+
+> +#define CLK_DOUT_PCLK_DREX0	792
+> +#define CLK_DOUT_PCLK_DREX1	793
+> +#define CLK_DOUT_SCLK_CDREX	794
+> +#define CLK_DOUT_ACLK_CDREX1	795
+> +#define CLK_DOUT_CCLK_DREX0	796
+> +#define CLK_DOUT_CLK2X_PHY0	797
+> +#define CLK_DOUT_PCLK_CORE_MEM	798
+> +#define CLK_FF_DOUT_SPLL2	799
+>  
+>  /* must be greater than maximal clock id */
+> -#define CLK_NR_CLKS		797
+> +#define CLK_NR_CLKS		800
+>  
+>  #endif /* _DT_BINDINGS_CLOCK_EXYNOS_5420_H */
 > 
 
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
