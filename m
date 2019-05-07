@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B897715F65
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D6F515F79
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726561AbfEGIbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:31:21 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:9684 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726063AbfEGIbU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:31:20 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cd1425a0000>; Tue, 07 May 2019 01:31:22 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 07 May 2019 01:31:14 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 07 May 2019 01:31:14 -0700
-Received: from [10.25.73.250] (10.124.1.5) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 7 May
- 2019 08:31:07 +0000
-Subject: Re: [PATCH V5 09/16] Documentation/devicetree: Add PCIe
- supports-clkreq property
-To:     Rob Herring <robh@kernel.org>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
-        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
-        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190424052004.6270-1-vidyas@nvidia.com>
- <20190424052004.6270-10-vidyas@nvidia.com> <20190426152229.GA8492@bogus>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <d8ef9c8d-031b-4c77-b225-4a1fef3bc9eb@nvidia.com>
-Date:   Tue, 7 May 2019 14:01:03 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+        id S1726368AbfEGIhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:37:46 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56982 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726362AbfEGIhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:37:45 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x478bVuW127250;
+        Tue, 7 May 2019 03:37:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1557218251;
+        bh=1FjG3j/GZXNf0sBrxxtjLhI9p1BMMNmge5pQT42QF1U=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=mvgjb4ePzxMp5mETNWkP7zsfEmppIco1QwlwsaU5kTDf/eVcGLQFht2sbXSuzQtqX
+         B/NiwHuBsAjTi2h2VLJU5ZyOoq9OcMUFhgBmUo/iRg0BlobEtAFJt2R6ZovGVvaDkh
+         WIM0HcK5nx4bHprUGkiTwXZheZS4oDnZU/fsROds=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x478bVh5097764
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 May 2019 03:37:31 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 7 May
+ 2019 03:37:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 7 May 2019 03:37:30 -0500
+Received: from [192.168.2.10] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x478bRVX095908;
+        Tue, 7 May 2019 03:37:27 -0500
+Subject: Re: [PATCH 07/16] dmaengine: Add function to request slave channel
+ from a dma_device
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <ssantosh@kernel.org>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
+        <t-kristo@ti.com>, <tony@atomide.com>
+References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
+ <20190506123456.6777-8-peter.ujfalusi@ti.com>
+Message-ID: <89b2ded6-f1f5-dda5-9ae4-d94bcf4c041f@ti.com>
+Date:   Tue, 7 May 2019 11:37:33 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190426152229.GA8492@bogus>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL101.nvidia.com (172.20.187.10)
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20190506123456.6777-8-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557217882; bh=E4R0bJaTc1XE8Bf2zvQbXuwPLi2Wnco5hGqGVqidxEo=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=EjKMx+IrwLC7OlCn4DahxXHLMvnH1eWfEWPdkY/ioG3avM5ymJYSCMMugCZWV4n1x
-         FsOJwNFO2fEcxle7Ne9WovuScxWqwRHx8lpa3BH6b5A5udhmvr0irtXmCru6Hy0Yj+
-         ED+8LoEy0fZ9yJDTov8NGlEc5ExVyXI8sLRmBkfdsUftk4M49ons7tllllj0Ao4+Oe
-         LOAiIjAeZxulLxMFTdZE5b+O4bXhiWyDQ+7rWqPnDr9cE9Ti4gLfT9GPKz0qwyUW5n
-         cJYifvYWO84KI8RI3CC/5HLc5ZfUjYfPOLxSDFJM4BbzUCxT5FdeB/KHkV5KIq3TQV
-         tkXX3FOplgwVQ==
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/26/2019 8:52 PM, Rob Herring wrote:
-> On Wed, Apr 24, 2019 at 10:49:57AM +0530, Vidya Sagar wrote:
->> Some host controllers need to know the existence of clkreq signal routing to
->> downstream devices to be able to advertise low power features like ASPM L1
->> substates. Without clkreq signal routing being present, enabling ASPM L1 sub
->> states might lead to downstream devices falling off the bus. Hence a new device
->> tree property 'supports-clkreq' is added to make such host controllers
->> aware of clkreq signal routing to downstream devices.
-> 
-> Please be consistent with subjects (Use 'dt-bindings: ...')
-When I had made this change, I did a git log and saw 'Documentation/devicetree:' as
-the prefix and hence added it. But, now, with linux-next top of the tree,  I see
-two more commits with 'dt-bindings:' prefix. I'll change my patch also to the new
-'dt-bindings:' prefix.
+
+
+On 06/05/2019 15.34, Peter Ujfalusi wrote:
+> dma_get_any_slave_channel() would skip using the filter function, which
+> in some cases needed to be executed before the alloc_chan_resources
+> callback to make sure that all parameters are provided for the slave
+> channel.
+
+This can be dropped in favor of
+https://patchwork.kernel.org/patch/10932299/
+from Baolin Wangm and using __dma_request_channel() in the k3-udma driver.
+
+- Péter
 
 > 
-> With that change,
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  drivers/dma/dmaengine.c   | 7 ++++---
+>  include/linux/dmaengine.h | 5 ++++-
+>  2 files changed, 8 insertions(+), 4 deletions(-)
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> diff --git a/drivers/dma/dmaengine.c b/drivers/dma/dmaengine.c
+> index 8eed5ff0fc01..7ec93be12088 100644
+> --- a/drivers/dma/dmaengine.c
+> +++ b/drivers/dma/dmaengine.c
+> @@ -617,7 +617,8 @@ struct dma_chan *dma_get_slave_channel(struct dma_chan *chan)
+>  }
+>  EXPORT_SYMBOL_GPL(dma_get_slave_channel);
+>  
+> -struct dma_chan *dma_get_any_slave_channel(struct dma_device *device)
+> +struct dma_chan *dmadev_get_slave_channel(struct dma_device *device,
+> +					  dma_filter_fn fn, void *fn_param)
+>  {
+>  	dma_cap_mask_t mask;
+>  	struct dma_chan *chan;
+> @@ -628,13 +629,13 @@ struct dma_chan *dma_get_any_slave_channel(struct dma_device *device)
+>  	/* lock against __dma_request_channel */
+>  	mutex_lock(&dma_list_mutex);
+>  
+> -	chan = find_candidate(device, &mask, NULL, NULL);
+> +	chan = find_candidate(device, &mask, fn, fn_param);
+>  
+>  	mutex_unlock(&dma_list_mutex);
+>  
+>  	return IS_ERR(chan) ? NULL : chan;
+>  }
+> -EXPORT_SYMBOL_GPL(dma_get_any_slave_channel);
+> +EXPORT_SYMBOL_GPL(dmadev_get_slave_channel);
+>  
+>  /**
+>   * __dma_request_channel - try to allocate an exclusive channel
+> diff --git a/include/linux/dmaengine.h b/include/linux/dmaengine.h
+> index c1486564a314..4774b66f2064 100644
+> --- a/include/linux/dmaengine.h
+> +++ b/include/linux/dmaengine.h
+> @@ -1541,7 +1541,10 @@ int dmaenginem_async_device_register(struct dma_device *device);
+>  void dma_async_device_unregister(struct dma_device *device);
+>  void dma_run_dependencies(struct dma_async_tx_descriptor *tx);
+>  struct dma_chan *dma_get_slave_channel(struct dma_chan *chan);
+> -struct dma_chan *dma_get_any_slave_channel(struct dma_device *device);
+> +struct dma_chan *dmadev_get_slave_channel(struct dma_device *device,
+> +					  dma_filter_fn fn, void *fn_param);
+> +#define dma_get_any_slave_channel(device) \
+> +	dmadev_get_slave_channel(device, NULL, NULL)
+>  #define dma_request_channel(mask, x, y) __dma_request_channel(&(mask), x, y)
+>  #define dma_request_slave_channel_compat(mask, x, y, dev, name) \
+>  	__dma_request_slave_channel_compat(&(mask), x, y, dev, name)
 > 
->>
->> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->> ---
->> Changes since [v4]:
->> * None
->>
->> Changes since [v3]:
->> * Rebased on top of linux-next top of the tree
->>
->> Changes since [v2]:
->> * None
->>
->> Changes since [v1]:
->> * This is a new patch in v2 series
->>
->>   Documentation/devicetree/bindings/pci/pci.txt | 5 +++++
->>   1 file changed, 5 insertions(+)
 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
