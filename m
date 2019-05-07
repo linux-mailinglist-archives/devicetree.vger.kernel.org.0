@@ -2,141 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45A8816DE0
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 01:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3205016DF6
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 01:53:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfEGXhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 19:37:32 -0400
-Received: from mx.socionext.com ([202.248.49.38]:9568 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726091AbfEGXhc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 19:37:32 -0400
-Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 08 May 2019 08:37:30 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 5990A6117D;
-        Wed,  8 May 2019 08:37:30 +0900 (JST)
-Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Wed, 8 May 2019 08:37:30 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
-        by iyokan.css.socionext.com (Postfix) with ESMTP id F18AD40357;
-        Wed,  8 May 2019 08:37:29 +0900 (JST)
-Received: from localhost (unknown [10.213.234.103])
-        by yuzu.css.socionext.com (Postfix) with ESMTPS id DA230121B6C;
-        Wed,  8 May 2019 08:37:29 +0900 (JST)
-Date:   Wed, 8 May 2019 08:37:29 +0900
-From:   Kazuhiro Kasai <kasai.kazuhiro@socionext.com>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        orito.takao@socionext.com, sugaya.taichi@socionext.com,
-        kanematsu.shinji@socionext.com, jaswinder.singh@linaro.org,
-        masami.hiramatsu@linaro.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dmaengine: milbeaut: Add Milbeaut AXI DMA controller
-Message-ID: <20190507233729.GB3359@ubuntu>
-References: <1553487314-9185-1-git-send-email-kasai.kazuhiro@socionext.com>
- <1553487314-9185-3-git-send-email-kasai.kazuhiro@socionext.com>
- <20190426114629.GU28103@vkoul-mobl>
- <20190507053924.GA3359@ubuntu>
- <20190507171042.GS16052@vkoul-mobl>
+        id S1726091AbfEGXxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 19:53:39 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:41508 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726329AbfEGXxj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 19:53:39 -0400
+Received: by mail-qk1-f194.google.com with SMTP id g190so2294938qkf.8;
+        Tue, 07 May 2019 16:53:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=L9nRO3OgbdwWHjpA53OGHSskgjyPngc9dG49IKBY4s8=;
+        b=vTJpuy2L0mthe8AZrxCFw86oXl90wDb1O4uiusl0sgPs7i/9hNuUO0e17PCQdq7yXI
+         /6uTb9AZwryczTXsngtDpjFE1xfoPT9gcnXRIlX2HB1cLWEyoeTyDTjfsxF78/9i7YhF
+         x/caNvI3SI0B0FFf9ockbracdxqZOsVBhfIfw0VMcZTtUsPLoI7It1db3NCBM3bePMbu
+         2/gjrHBMoxTUC9plnHnfr0tRqS43Dd70GuOhDQ5VSmF8UxWx8nqKTqio4hms9j0e/FTQ
+         BwmTZDy9c744KyY17Kcv1XmwoJTRFUNsgi28oLk9VIcvcnYPsMiv6F62a4k47vrk+DWQ
+         i4MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+         :content-transfer-encoding;
+        bh=L9nRO3OgbdwWHjpA53OGHSskgjyPngc9dG49IKBY4s8=;
+        b=iv9rcYeBPHsiPjnix6/8peegV7970tpvwpyo+bdRmbiSzl8+m9ATux/68dhoJxQW3V
+         1RCZrZrR3ZNL3slRhVwfV8oULakaSEpukhvlqqnGvO2/lbh1k1H8U9Dt3FbKqm3aG7ZA
+         3k7+sfD8xeDLIE2lKLT4ol4tvkicHyTUbsfI64Uiob2kKEJSm5k03mkyVnbA1zf5rO6y
+         bs+OqiplyJmlBRNJrc0Mmmv+J9aaGiDnSBkETNazHNFgd87u7D2t32HReqHsyOZc5g88
+         qt7AuhgkDG8JPse/1ciVA/UaimjRG29DpFI+kg8iVFE9dlM/27+xOVEgXDLMcpw3vT/x
+         F2aw==
+X-Gm-Message-State: APjAAAX616nNrUCzJE6LXV56V1Uce0Iph/fY5RIa2G1wcu1RN6bnoe6v
+        zBBTptgBvhzI7siRnHAmZA2o0ByQBH+/6MgPZA==
+X-Google-Smtp-Source: APXvYqwUXfRBlgrdgLcam1zsZokuXJb39dZQPVnWZCQ0UVRVsiQChPicGxt3MPa4j8J3lX+/FZDRQYVtvmcfihr7mPs=
+X-Received: by 2002:a37:4a12:: with SMTP id x18mr26452247qka.184.1557273217300;
+ Tue, 07 May 2019 16:53:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190507171042.GS16052@vkoul-mobl>
+From:   Rob Herring <robherring2@gmail.com>
+Date:   Tue, 7 May 2019 18:53:25 -0500
+Message-ID: <CAL_JsqJ8YqaiNwj715B=5r39RzuXLn1inhAQ044j8d-L0vYLZA@mail.gmail.com>
+Subject: [GIT PULL] Devicetree for 5.2
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Linus,
 
-Thank you very much for quick response!
-I appreciate your comments.
+Please pull DT updates for 5.2.
 
-Maybe it takes long time, but I will try to write v2 patch with virt-dma.
+Rob
 
-On Tue, May 07, 2019 at 22:40 +0530, Vinod Koul wrote:
-> On 07-05-19, 14:39, Kazuhiro Kasai wrote:
-> > On Fri, Apr 26, 2019 at 17:16 +0530, Vinod Koul wrote:
-> > > On 25-03-19, 13:15, Kazuhiro Kasai wrote:
->
-> > > > +struct m10v_dma_chan {
-> > > > +	struct dma_chan chan;
-> > > > +	struct m10v_dma_device *mdmac;
-> > > > +	void __iomem *regs;
-> > > > +	int irq;
-> > > > +	struct m10v_dma_desc mdesc;
-> > >
-> > > So there is a *single* descriptor? Not a list??
-> >
-> > Yes, single descriptor.
->
-> And why is that, you can create a list and keep getting descriptors and
-> issue them to hardware and get better pref!
+The following changes since commit 8c2ffd9174779014c3fe1f96d9dc3641d9175f00=
+:
 
-I understand, thank you.
+  Linux 5.1-rc2 (2019-03-24 14:02:26 -0700)
 
->
-> > > > +static dma_cookie_t m10v_xdmac_tx_submit(struct dma_async_tx_descriptor *txd)
-> > > > +{
-> > > > +	struct m10v_dma_chan *mchan = to_m10v_dma_chan(txd->chan);
-> > > > +	dma_cookie_t cookie;
-> > > > +	unsigned long flags;
-> > > > +
-> > > > +	spin_lock_irqsave(&mchan->lock, flags);
-> > > > +	cookie = dma_cookie_assign(txd);
-> > > > +	spin_unlock_irqrestore(&mchan->lock, flags);
-> > > > +
-> > > > +	return cookie;
-> > >
-> > > sounds like vchan_tx_submit() i think you can use virt-dma layer and then
-> > > get rid of artificial limit in driver and be able to queue up the txn on
-> > > dmaengine.
-> >
-> > OK, I will try to use virt-dma layer in next version.
->
-> And you will get lists to manage descriptor for free! so you can use
-> that to support multiple txns as well!
+are available in the Git repository at:
 
-It sounds great! I start to study virt-dma layer for next version.
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+tags/devicetree-for-5.2
 
->
-> > > > +static struct dma_async_tx_descriptor *
-> > > > +m10v_xdmac_prep_dma_memcpy(struct dma_chan *chan, dma_addr_t dst,
-> > > > +			   dma_addr_t src, size_t len, unsigned long flags)
-> > > > +{
-> > > > +	struct m10v_dma_chan *mchan = to_m10v_dma_chan(chan);
-> > > > +
-> > > > +	dma_async_tx_descriptor_init(&mchan->mdesc.txd, chan);
-> > > > +	mchan->mdesc.txd.tx_submit = m10v_xdmac_tx_submit;
-> > > > +	mchan->mdesc.txd.callback = NULL;
-> > > > +	mchan->mdesc.txd.flags = flags;
-> > > > +	mchan->mdesc.txd.cookie = -EBUSY;
-> > > > +
-> > > > +	mchan->mdesc.len = len;
-> > > > +	mchan->mdesc.src = src;
-> > > > +	mchan->mdesc.dst = dst;
-> > > > +
-> > > > +	return &mchan->mdesc.txd;
-> > >
-> > > So you support single descriptor and dont check if this has been already
-> > > configured. So I guess this has been tested by doing txn one at a time
-> > > and not submitted bunch of txn and wait for them to complete. Please fix
-> > > that to really enable dmaengine capabilities.
-> >
-> > Thank you for advice. I want to fix it and I have 2 questions.
-> >
-> > 1. Does virt-dma layer help to fix this?
->
-> Yes
+for you to fetch changes up to 2a656cb5a4a3473c5fc6bf4fddc3560ceed53220:
 
-It sounds very good news for me. Thank you.
+  of: unittest: Remove error printing on OOM (2019-05-02 16:38:59 -0500)
 
->
-> > 2. Can dmatest test that dmaengine capabilities?
->
-> Yes for memcpy operations, see Documentation/driver-api/dmaengine/dmatest.rst
->
+----------------------------------------------------------------
+Devicetree for 5.2:
 
-OK, I will read the document.
+- Fix possible memory leak in reserved-memory failure case
 
-Thanks,
-Kasai
+- Support for DMA parent bus which are not a parent node
+
+- Clang -Wunsequenced fix
+
+- Remove some unnecessary prints on memory alloc failures
+
+- Various printk msg and comment fixes
+
+- Update DT schema tools repository location
+
+- Convert simple-framebuffer binding to DT schema
+
+- Bindings for isl68137 and ir38064 trivial devices
+
+- New documentation on binding do's and don't's for binding writers to
+  ignore
+
+----------------------------------------------------------------
+Chris Packham (1):
+      of: use correct function prototype for of_overlay_fdt_apply()
+
+Christian Lamparter (1):
+      dt-bindings: pinctrl: fix bias-pull,up typo
+
+Cl=C3=A9ment P=C3=A9ron (1):
+      dt-bindings: mfd: axp20x: Add fallback for axp805
+
+Florian Fainelli (1):
+      of: Improve of_phandle_iterator_next() error message
+
+Geert Uytterhoeven (2):
+      of: irq: Remove WARN_ON() for kzalloc() failure
+      of: unittest: Remove error printing on OOM
+
+Jojo Zeng (1):
+      of/device.c: fix the wrong comments
+
+Maxime Ripard (6):
+      of: property: Document that of_graph_get_endpoint_by_regs needs
+of_node_put
+      dt-bindings: interconnect: Add a dma interconnect name
+      dt-bindings: bus: Add binding for the Allwinner MBUS controller
+      of: address: Retrieve a parent through a callback in
+__of_translate_address
+      of: address: Add support for the parent DMA bus
+      dt-bindings: Add schemas for simple-framebuffer
+
+Miquel Raynal (1):
+      dt-bindings: connector: Spelling mistake
+
+Patrick Venture (2):
+      dt-bindings: Add ir38064 as a trivial device
+      dt-bindings: Add isl68137 as a trivial device
+
+Phong Tran (1):
+      of: fix clang -Wunsequenced for be32_to_cpu()
+
+Rob Herring (3):
+      dt-bindings: Add a guide of do's and don't's for writing bindings
+      dt-bindings: Require child nodes type to be 'object'
+      dt-bindings: Update schema project location to devicetree.org github =
+group
+
+pierre Kuo (1):
+      of: reserved_mem: fix reserve memory leak
+
+xiaojiangfeng (1):
+      of: del redundant type conversion
+
+ Documentation/devicetree/bindings/arm/cpus.yaml    |   1 +
+ .../devicetree/bindings/arm/sunxi/sunxi-mbus.txt   |  36 +++++
+ .../bindings/connector/usb-connector.txt           |   2 +-
+ .../display/amlogic,simple-framebuffer.txt         |  33 -----
+ .../bindings/display/simple-framebuffer-sunxi.txt  |  36 -----
+ .../bindings/display/simple-framebuffer.txt        |  91 ------------
+ .../bindings/display/simple-framebuffer.yaml       | 160 +++++++++++++++++=
+++++
+ .../bindings/interconnect/interconnect.txt         |   4 +
+ .../bindings/interrupt-controller/arm,gic.yaml     |   1 +
+ Documentation/devicetree/bindings/mfd/axp20x.txt   |   1 +
+ .../bindings/pinctrl/qcom,apq8064-pinctrl.txt      |   2 +-
+ .../bindings/pinctrl/qcom,ipq4019-pinctrl.txt      |   2 +-
+ .../bindings/pinctrl/qcom,ipq8064-pinctrl.txt      |   2 +-
+ .../bindings/pinctrl/qcom,msm8660-pinctrl.txt      |   2 +-
+ .../bindings/pinctrl/qcom,msm8974-pinctrl.txt      |   2 +-
+ .../bindings/timer/arm,arch_timer_mmio.yaml        |   1 +
+ .../devicetree/bindings/trivial-devices.yaml       |   4 +
+ .../devicetree/bindings/writing-bindings.txt       |  60 ++++++++
+ Documentation/devicetree/writing-schema.md         |   2 +-
+ drivers/of/address.c                               |  40 +++++-
+ drivers/of/base.c                                  |   5 +-
+ drivers/of/device.c                                |   2 +-
+ drivers/of/fdt.c                                   |   2 +-
+ drivers/of/irq.c                                   |   2 +-
+ drivers/of/of_reserved_mem.c                       |  22 ++-
+ drivers/of/property.c                              |   2 +-
+ drivers/of/unittest.c                              |  13 +-
+ include/linux/of.h                                 |   7 +-
+ 28 files changed, 341 insertions(+), 196 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunxi/sunxi-mbus.=
+txt
+ delete mode 100644
+Documentation/devicetree/bindings/display/amlogic,simple-framebuffer.txt
+ delete mode 100644
+Documentation/devicetree/bindings/display/simple-framebuffer-sunxi.txt
+ delete mode 100644
+Documentation/devicetree/bindings/display/simple-framebuffer.txt
+ create mode 100644
+Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+ create mode 100644 Documentation/devicetree/bindings/writing-bindings.txt
