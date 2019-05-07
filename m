@@ -2,81 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F29F01610B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A602016126
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726340AbfEGJfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 05:35:38 -0400
-Received: from vps.xff.cz ([195.181.215.36]:60078 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726286AbfEGJfh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 05:35:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1557221735; bh=ldoLNmoDFfbeja2q4a+Rh5QICPMhKBlbE7KGJkgYnvw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fO9vlopfZxr3U78dgV0RXJxUiXqgiQfcDS0dXQA3Fe/vMCA9+DW3PyWSNIk8Cp0d9
-         OTRKbUeidJ2E4+080m3bpyzxfqpXMliXGec0mzapVPD8iuS5e1ESFtyh/FDKNeqkeC
-         QelJZ4Kg7S8J3krLQMFKbmOWVCjGFQ1sx0LgRkiY=
-Date:   Tue, 7 May 2019 11:35:35 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wens@csie.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: allwinner: h6: Enable HDMI output on
- orangepi 3
-Message-ID: <20190507093535.uapqhxduwtbdgbtq@core.my.home>
-Mail-Followup-To: Maxime Ripard <maxime.ripard@bootlin.com>,
-        Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wens@csie.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20190420145240.27400-1-tiny.windzz@gmail.com>
- <20190502073401.3l3fl4alicyzpud7@flea>
+        id S1726543AbfEGJjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 05:39:33 -0400
+Received: from mx2.suse.de ([195.135.220.15]:54718 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726399AbfEGJjd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 05:39:33 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 992EBAD89;
+        Tue,  7 May 2019 09:39:31 +0000 (UTC)
+From:   Andreas Schwab <schwab@suse.de>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     Palmer Dabbelt <palmer@sifive.com>, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sachin Ghadi <sachin.ghadi@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [PATCH v11 0/2] PWM support for HiFive Unleashed
+References: <1553508779-9685-1-git-send-email-yash.shah@sifive.com>
+        <mvmbm1zueya.fsf@suse.de> <mvmpnqcsn6u.fsf@suse.de>
+        <CAJ2_jOFu-yCZV_A4B48_fLq7h7UA6LUWhgpxr0uuh7vhW9Q8pA@mail.gmail.com>
+X-Yow:  I feel better about world problems now!
+Date:   Tue, 07 May 2019 11:39:31 +0200
+In-Reply-To: <CAJ2_jOFu-yCZV_A4B48_fLq7h7UA6LUWhgpxr0uuh7vhW9Q8pA@mail.gmail.com>
+        (Yash Shah's message of "Thu, 2 May 2019 09:31:16 +0530")
+Message-ID: <mvmlfzisiwc.fsf@suse.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190502073401.3l3fl4alicyzpud7@flea>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+On Mai 02 2019, Yash Shah <yash.shah@sifive.com> wrote:
 
-On Thu, May 02, 2019 at 09:34:01AM +0200, Maxime Ripard wrote:
-> On Sat, Apr 20, 2019 at 10:52:40AM -0400, Yangtao Li wrote:
-> > Orangepi 3 has HDMI type A connector.
-> >
-> > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> 
-> Queued for 5.3, thanks!
-> Maxime
+> The PWM default output state is high (When duty cycle is 0), So I
+> guess leds will remain on by default.
 
-This patch is not enough. HDMI support on Orange Pi 3 also needs to
-enable DDC IO. While the SoC will feed some default output singal
-into the display, without DDC enabled it will not work reliably.
+So that's the bug that needs to be fixed.
 
-That support is part of my Orange Pi 3 series, and will be reworked
-for v5 of that series.
+Andreas.
 
-While I can rebase on top of this, it would be easier if you dropped
-this patch until the propper support is ready. I don't see any reason
-why this should be rushed with half-working solution.
-
-regards,
-	o.
-
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
-
-
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
+-- 
+Andreas Schwab, SUSE Labs, schwab@suse.de
+GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
+"And now for something completely different."
