@@ -2,262 +2,679 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41B8516AF6
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 21:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C58A716B52
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 21:28:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726470AbfEGTNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 15:13:52 -0400
-Received: from mail-eopbgr800095.outbound.protection.outlook.com ([40.107.80.95]:6422
-        "EHLO NAM03-DM3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726276AbfEGTNv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 15:13:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Sony.onmicrosoft.com;
- s=selector1-Sony-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OETcERvdxEccn4uxMv/L2c7hJBriL+YRSBY062rstiU=;
- b=OWMlIy5Bfxy8+2fxU1Hi/v6r8c1ChBdI3sL4uPdCZDUiMyG5nyH3FyfJJuioEWDWvT/fcJNrS+d4jwtNXNMmWKu2CBmk1Qw0vb4DD/BCtoe0MbtfFItEdR/w3H/yNKnPF34SlEVDFdIEtwQ8o300lpGgCQ0TbsqDoJo4dPtwPTk=
-Received: from MWHPR13CA0016.namprd13.prod.outlook.com (2603:10b6:300:16::26)
- by DM5PR13MB1401.namprd13.prod.outlook.com (2603:10b6:3:11c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1878.15; Tue, 7 May
- 2019 19:13:35 +0000
-Received: from BL2NAM02FT048.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::206) by MWHPR13CA0016.outlook.office365.com
- (2603:10b6:300:16::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1878.18 via Frontend
- Transport; Tue, 7 May 2019 19:13:34 +0000
-Authentication-Results: spf=permerror (sender IP is 160.33.194.229)
- smtp.mailfrom=sony.com; google.com; dkim=none (message not signed)
- header.d=none;google.com; dmarc=none action=none header.from=sony.com;
-Received-SPF: PermError (protection.outlook.com: domain of sony.com used an
- invalid SPF mechanism)
-Received: from usculsndmail02v.am.sony.com (160.33.194.229) by
- BL2NAM02FT048.mail.protection.outlook.com (10.152.76.109) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.1856.11 via Frontend Transport; Tue, 7 May 2019 19:13:34 +0000
-Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com [146.215.230.103])
-        by usculsndmail02v.am.sony.com (Sentrion-MTA-4.3.2/Sentrion-MTA-4.3.2) with ESMTP id x47JDWsZ024534;
-        Tue, 7 May 2019 19:13:32 GMT
-Received: from USCULXHUB01V.am.sony.com (usculxhub01v.am.sony.com [146.215.231.15])
-        by usculsndmail12v.am.sony.com (Sentrion-MTA-4.3.2/Sentrion-MTA-4.3.2) with ESMTP id x47JDU9f012737;
-        Tue, 7 May 2019 19:13:30 GMT
-Received: from USCULXMSG01.am.sony.com ([fe80::b09d:6cb6:665e:d1b5]) by
- USCULXHUB01V.am.sony.com ([146.215.231.15]) with mapi id 14.03.0439.000; Tue,
- 7 May 2019 15:13:30 -0400
-From:   <Tim.Bird@sony.com>
-To:     <brendanhiggins@google.com>, <frowand.list@gmail.com>
-CC:     <gregkh@linuxfoundation.org>, <keescook@google.com>,
-        <kieran.bingham@ideasonboard.com>, <mcgrof@kernel.org>,
-        <robh@kernel.org>, <sboyd@kernel.org>, <shuah@kernel.org>,
-        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <kunit-dev@googlegroups.com>, <linux-doc@vger.kernel.org>,
-        <linux-fsdevel@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
-        <linux-nvdimm@lists.01.org>, <linux-um@lists.infradead.org>,
-        <Alexander.Levin@microsoft.com>, <amir73il@gmail.com>,
-        <dan.carpenter@oracle.com>, <dan.j.williams@intel.com>,
-        <daniel@ffwll.ch>, <jdike@addtoit.com>, <joel@jms.id.au>,
-        <julia.lawall@lip6.fr>, <khilman@baylibre.com>,
-        <knut.omang@oracle.com>, <logang@deltatee.com>,
-        <mpe@ellerman.id.au>, <pmladek@suse.com>, <richard@nod.at>,
-        <rientjes@google.com>, <rostedt@goodmis.org>,
-        <wfg@linux.intel.com>, <felixguoxiuping@gmail.com>
-Subject: RE: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-Thread-Topic: [PATCH v2 12/17] kunit: tool: add Python wrappers for running
- KUnit tests
-Thread-Index: AQHVAHJhoNqUCvrlqkWNVYoBnpR0L6ZX7y8AgAB264CAADSlgIAAKamAgAAhmQCAAEBZgIAA4H+AgABHUoCAAzbVgIABZW4AgAEcg3A=
-Date:   Tue, 7 May 2019 19:13:14 +0000
-Message-ID: <ECADFF3FD767C149AD96A924E7EA6EAF9770AE37@USCULXMSG01.am.sony.com>
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <20190501230126.229218-13-brendanhiggins@google.com>
- <20190502110220.GD12416@kroah.com>
- <CAFd5g47t=EdLKFCT=CnPkrM2z0nDVo24Gz4j0VxFOJbARP37Lg@mail.gmail.com>
- <a49c5088-a821-210c-66de-f422536f5b01@gmail.com>
- <CAFd5g44iWRchQKdJYtjRtPY6e-6e0eXpKXXsx5Ooi6sWE474KA@mail.gmail.com>
- <1a5f3c44-9fa9-d423-66bf-45255a90c468@gmail.com>
- <CAFd5g45RYm+zfdJXnyp2KZZH5ojfOzy++aq+4zBeE5VDu6WgEw@mail.gmail.com>
- <052fa196-4ea9-8384-79b7-fe6bacc0ee82@gmail.com>
- <CAFd5g47aY-CL+d7DfiyTidY4aAVY+eg1TM1UJ4nYqKSfHOi-0w@mail.gmail.com>
- <63f63c7c-6185-5e64-b338-6a5e7fb9e27c@gmail.com>
- <CAFd5g46=ZU58uJ=Qhs3soBzJjzJKJFY0_uzZ7fe1CxPfJioNOA@mail.gmail.com>
-In-Reply-To: <CAFd5g46=ZU58uJ=Qhs3soBzJjzJKJFY0_uzZ7fe1CxPfJioNOA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [146.215.228.6]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726313AbfEGT1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 15:27:20 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:47017 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726561AbfEGT1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 15:27:20 -0400
+Received: by mail-io1-f67.google.com with SMTP id m14so15180993ion.13
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 12:27:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xIWJuJ8VvjMJ6/ZPrfsiqSKMvjowYKxSH70RwBvP3c8=;
+        b=TaTsQl0a8X+N123xUM1UURcrVMQ3loEmO8onydX9FiTUmyb2DiD3LYNf1mVXsIVqGp
+         mASWXAcsTPsLpdhxwHFDpW/ElVBCA//pjdXpZtnA1uqJd9nnWMFcmpdauk1uakKomvv8
+         k2Phr108Pa1l77FWg2HlZiSU31hi+FjDGeWUQQzSrA+z9kzLDs8g8VPMJi44PvystdzK
+         G2Dxcb6LoZGjoQsOnCQcMNkYPQiwvLgu/R/6F98rvYJLM9fnrxAOgHEPKlQS1M20Ngz3
+         krn64RcrH56IzlifBxkNUoCcnMai0oGPuQ7xUM7y5x+/ohV4RNF4uO3iNTLp6+fsrU4O
+         2/Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xIWJuJ8VvjMJ6/ZPrfsiqSKMvjowYKxSH70RwBvP3c8=;
+        b=lHEOR2Y75WqzQf23q0zoOZrbt4p4XEbZ+MbstxVpbuXQ1omcWYhejorAQSoTXyxWaV
+         QbpYpA6D8KqnAIPJCry8jmK0MrOhwPjInwz0SC2PMmGE4G1Jxu+Czk+hner+S/akTUf7
+         kuTVV7QPCoTXnaooJ9jOznQMq2K+b9HLQZZY7Aq+/GTVpg6mJMVAPeKkFlJkt6BlFPWr
+         27IFd5+TMWpp5OidoF7oLV0j59+1K8/0DKgRZ9KAipbxs93eTQdCw5sPm4W8KojvsH/J
+         D4I6vKH7N5FvXRlZktO8LM+tYrOzh4eCRSgkiDdeVahNpBODqz+LcSLPDFGq8RSK+mk9
+         HLWQ==
+X-Gm-Message-State: APjAAAUfo9Rh+ZJHvKxqD8ZFOgdtk9U8bmSMgLrml14JjbvBr3g+QEEH
+        rr7o0s0YPqgor6ubMyjP74oOeBtV6PBLgB/135loiYnt
+X-Google-Smtp-Source: APXvYqwsokJsKaTRdRrdFYTS9qf0UR3qA7HPhf0pDL9uxHYJPBJURQUpynZiRbqa6R/HBA1XoYxs85u8NMbxZ6ndz7o=
+X-Received: by 2002:a6b:b212:: with SMTP id b18mr13925389iof.15.1557257239023;
+ Tue, 07 May 2019 12:27:19 -0700 (PDT)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:160.33.194.229;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10019020)(1496009)(136003)(396003)(39860400002)(376002)(346002)(2980300002)(448002)(51444003)(189003)(199004)(13464003)(55674003)(126002)(356004)(336012)(50466002)(7736002)(37786003)(246002)(6666004)(305945005)(55846006)(486006)(186003)(316002)(426003)(72206003)(8676002)(436003)(54906003)(33656002)(966005)(229853002)(476003)(2876002)(4326008)(14444005)(446003)(11346002)(110136005)(6246003)(3846002)(102836004)(6116002)(86152003)(55016002)(6306002)(2906002)(5660300002)(53546011)(7406005)(85326001)(7416002)(23676004)(7696005)(26005)(8936002)(47776003)(478600001)(76176011)(70586007)(86362001)(70206006)(66066001)(2486003)(5001870100001);DIR:OUT;SFP:1102;SCL:1;SRVR:DM5PR13MB1401;H:usculsndmail02v.am.sony.com;FPR:;SPF:PermError;LANG:en;PTR:mail.sonyusa.com,mail02.sonyusa.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4a588ed9-b19c-4f12-e016-08d6d32019ba
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:DM5PR13MB1401;
-X-MS-TrafficTypeDiagnostic: DM5PR13MB1401:
-X-MS-Exchange-PUrlCount: 3
-X-Microsoft-Antispam-PRVS: <DM5PR13MB14015E8F3E30EFCCFDD970A9FD310@DM5PR13MB1401.namprd13.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-Forefront-PRVS: 0030839EEE
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: vSzy8IZrS9bO85wOMSB0Lev7xvGIqUpuDKE1CToyQILnnoycswVpzKBL+9JssNF6pU9sOEJlcJMYQlEJ1ahZ5bwkGP/IRwVh+Jm60ql/CM0DfwovFcS3RPkV/6pRAZxXjMY0ktCgXxHIIcdNiytKWO5IkyZT7ABXlVS6fU+pqovKZ1GUMgk6KZZPwaY9pUQr7JYVM1aazjZAGhBlssA0JCtkC3Rk64yqRSsqMDck2jn5wc7ulTeCcVyuZBq+HQ2laU6Pu4NymV+1bqCAzWhK2WjeRA5QOsAXA6HNMpQKFX/bEVU1xu+9X//I3FwP9lay+aVgvzAgCWuZrd9rcYOZPcJ56Cx9B0kegb4u6jej498ZFMsJuhjA5FY+rySc5ahZXcox3HnMajbxI5Rz5/XuIziYMHsnGbSLmHA5Et+drBE=
-X-OriginatorOrg: sony.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2019 19:13:34.2144
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a588ed9-b19c-4f12-e016-08d6d32019ba
-X-MS-Exchange-CrossTenant-Id: 66c65d8a-9158-4521-a2d8-664963db48e4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=66c65d8a-9158-4521-a2d8-664963db48e4;Ip=[160.33.194.229];Helo=[usculsndmail02v.am.sony.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR13MB1401
+References: <1556556252-22868-2-git-send-email-Frank.Li@nxp.com>
+ <20190430185903.30661-1-andrew.smirnov@gmail.com> <CAHrpEqTCUY4_nT_N3PLehtAjpw6ipOkr8Cc53RPkzU=5un8Czg@mail.gmail.com>
+ <CAHQ1cqGXFFPRaP7xPxUV3pGqE1_i0OaHQ9CN-DFkg8TSM8OWVQ@mail.gmail.com> <CAHrpEqRSMZ_YGiWu=_cK8sU6sC1s4HH9DVuHbAVgeH28pXH=jg@mail.gmail.com>
+In-Reply-To: <CAHrpEqRSMZ_YGiWu=_cK8sU6sC1s4HH9DVuHbAVgeH28pXH=jg@mail.gmail.com>
+From:   Andrey Smirnov <andrew.smirnov@gmail.com>
+Date:   Tue, 7 May 2019 12:27:07 -0700
+Message-ID: <CAHQ1cqEnaVVAGb0bwA5bvM4+=dDK-O1My7Oc1a3av05=4+u5LA@mail.gmail.com>
+Subject: Re: [PATCH V9 2/4] drivers/perf: imx_ddr: Add ddr performance counter
+To:     Zhi Li <lznuaa@gmail.com>
+Cc:     Frank Li <frank.li@nxp.com>, Aisheng Dong <aisheng.dong@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Will Deacon <will.deacon@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVyZSBpcyBhIGJpdCBvZiBpbmxpbmUgY29tbWVudGFyeSBvbiB0aGUgVEFQMTMvVEFQMTQgZGlz
-Y3Vzc2lvbi4NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBCcmVuZGFu
-IEhpZ2dpbnMgDQo+IA0KPiA+IE9uIDUvMy8xOSA0OjE0IFBNLCBCcmVuZGFuIEhpZ2dpbnMgd3Jv
-dGU6DQo+ID4gPj4gT24gNS8yLzE5IDEwOjM2IFBNLCBCcmVuZGFuIEhpZ2dpbnMgd3JvdGU6DQo+
-ID4gPiBJbiBhbnkgY2FzZSwgaXQgc291bmRzIGxpa2UgeW91IGFuZCBHcmVnIGFyZSBpbiBhZ3Jl
-ZW1lbnQgb24gdGhlIGNvcmUNCj4gPiA+IGxpYnJhcmllcyBnZW5lcmF0aW5nIHRoZSBvdXRwdXQg
-aW4gVEFQMTMsIHNvIEkgd29uJ3QgYXJndWUgdGhhdCBwb2ludA0KPiA+ID4gZnVydGhlci4NCj4g
-PiA+DQo+ID4gPiAjIyBBbmFseXNpcyBvZiB1c2luZyBUQVAxMw0KPiA+DQo+ID4gSSBoYXZlIG5l
-dmVyIGxvb2tlZCBhdCBUQVAgdmVyc2lvbiAxMyBpbiBhbnkgZGVwdGggYXQgYWxsLCBzbyBkbyBu
-b3QgY29uc2lkZXINCj4gPiBtZSB0byBiZSBhbnkgc29ydCBvZiBleHBlcnQuDQo+ID4NCj4gPiBN
-eSBlbnRpcmUgVEFQIGtub3dsZWRnZSBpcyBiYXNlZCBvbjoNCj4gPg0KPiA+ICAgaHR0cHM6Ly90
-ZXN0YW55dGhpbmcub3JnL3RhcC12ZXJzaW9uLTEzLXNwZWNpZmljYXRpb24uaHRtbA0KPiA+DQo+
-ID4gYW5kIHRoZSBwdWxsIHJlcXVlc3QgdG8gY3JlYXRlIHRoZSBUQVAgdmVyc2lvbiAxNCBzcGVj
-aWZpY2F0aW9uOg0KPiA+DQo+ID4gICAgaHR0cHM6Ly9naXRodWIuY29tL1Rlc3RBbnl0aGluZy90
-ZXN0YW55dGhpbmcuZ2l0aHViLmlvL3B1bGwvMzYvZmlsZXMNCj4gPg0KPiA+IFlvdSBjYW4gc2Vl
-IHRoZSBmdWxsIHZlcnNpb24gMTQgZG9jdW1lbnQgaW4gdGhlIHN1Ym1pdHRlcidzIHJlcG86DQo+
-ID4NCj4gPiAgICQgZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9pc2FhY3MvdGVzdGFueXRo
-aW5nLmdpdGh1Yi5pby5naXQNCj4gPiAgICQgY2QgdGVzdGFueXRoaW5nLmdpdGh1Yi5pbw0KPiA+
-ICAgJCBnaXQgY2hlY2tvdXQgdGFwMTQNCj4gPiAgICQgbHMgdGFwLXZlcnNpb24tMTQtc3BlY2lm
-aWNhdGlvbi5tZA0KPiA+DQo+ID4gTXkgdW5kZXJzdGFuZGluZyBpcyB0aGUgdGhlIHZlcnNpb24g
-MTQgc3BlY2lmaWNhdGlvbiBpcyBub3QgdHJ5aW5nIHRvDQo+ID4gYWRkIG5ldyBmZWF0dXJlcywg
-YnV0IGluc3RlYWQgY2FwdHVyZSB3aGF0IGlzIGFscmVhZHkgaW1wbGVtZW50ZWQgaW4NCj4gPiB0
-aGUgd2lsZC4NCj4gPg0KPiA+DQo+ID4gPiBPbmUgb2YgbXkgZWFybGllciBjb25jZXJucyB3YXMg
-dGhhdCBUQVAxMyBpcyBhIGJpdCBvdmVyIGNvbnN0cmFpbmVkDQo+ID4gPiBmb3Igd2hhdCBJIHdv
-dWxkIGxpa2UgdG8gb3V0cHV0IGZyb20gdGhlIEtVbml0IGNvcmUuIEl0IG9ubHkgYWxsb3dzDQo+
-ID4gPiBkYXRhIHRvIGJlIG91dHB1dCBhcyBlaXRoZXI6DQo+ID4gPiAgLSB0ZXN0IG51bWJlcg0K
-PiA+ID4gIC0gb2svbm90IG9rIHdpdGggc2luZ2xlIGxpbmUgZGVzY3JpcHRpb24NCj4gPiA+ICAt
-IGRpcmVjdGl2ZQ0KPiA+ID4gIC0gZGlhZ25vc3RpY3MNCj4gPiA+ICAtIFlBTUwgYmxvY2sNCj4g
-PiA+DQo+ID4gPiBUaGUgdGVzdCBudW1iZXIgbXVzdCBiZWNvbWUgYmVmb3JlIGEgc2V0IG9mIG9r
-L25vdCBvayBsaW5lcywgYW5kIGRvZXMNCj4gPiA+IG5vdCBjb250YWluIGFueSBhZGRpdGlvbmFs
-IGluZm9ybWF0aW9uLiBPbmUgYW5ub3lpbmcgdGhpbmcgYWJvdXQgdGhpcw0KPiA+ID4gaXMgaXQg
-ZG9lc24ndCBwcm92aWRlIGFueSBraW5kIG9mIG5lc3Rpbmcgb3IgZ3JvdXBpbmcuDQo+ID4NCj4g
-PiBHcmVnJ3MgcmVzcG9uc2UgbWVudGlvbnMga3Rlc3QgKD8pIGFscmVhZHkgZG9lcyBuZXN0aW5n
-Lg0KPiANCj4gSSB0aGluayB3ZSBhcmUgdGFsa2luZyBhYm91dCBrc2VsZnRlc3QuDQo+IA0KPiA+
-IFZlcnNpb24gMTQgYWxsb3dzIG5lc3RpbmcgdGhyb3VnaCBzdWJ0ZXN0cy4gIEkgaGF2ZSBub3Qg
-bG9va2VkIGF0IHdoYXQNCj4gPiBrdGVzdCBkb2VzLCBzbyBJIGRvIG5vdCBrbm93IGlmIGl0IHVz
-ZXMgc3VidGVzdCwgb3Igc29tZXRoaW5nIGVsc2UuDQo+IA0KPiBPaCBuaWNlISBUaGF0IGlzIG5l
-dyBpbiB2ZXJzaW9uIDE0LiBJIGNhbiB1c2UgdGhhdC4NCg0KV2UgaGF2ZSBydW4gaW50byB0aGUg
-cHJvYmxlbSBvZiBzdWJ0ZXN0cyAob3IgbmVzdGVkIHRlc3RzLCBib3RoIHVzaW5nDQpUQVAxMykg
-aW4gRnVlZ28uICBJIHJlY2FsbCB0aGF0IHRoaXMgaXNzdWUgY2FtZSB1cCBpbiBrc2VsZnRlc3Qs
-IGFuZCBJIGJlbGlldmUNCndlIGRpc2N1c3NlZCBhIHNvbHV0aW9uLCBidXQgSSBkb24ndCByZWNh
-bGwgd2hhdCBpdCB3YXMuDQoNCkNhbiBzb21lb25lIHJlbWluZCBtZSB3aGF0IGtzZWxmdGVzdCBk
-b2VzIHRvIGhhbmRsZSBuZXN0ZWQgdGVzdHMNCihpbiB0ZXJtcyBvZiBUQVAxMyBvdXRwdXQpPw0K
-DQo+IA0KPiA+ID4gVGhlcmUgaXMgb25lIG9rL25vdCBvayBsaW5lIHBlciB0ZXN0IGFuZCBpdCBt
-YXkgaGF2ZSBhIHNob3J0DQo+ID4gPiBkZXNjcmlwdGlvbiBvZiB0aGUgdGVzdCBpbW1lZGlhdGVs
-eSBhZnRlciAnb2snIG9yICdub3Qgb2snOyB0aGlzIGlzDQo+ID4gPiBwcm9ibGVtYXRpYyBiZWNh
-dXNlIGl0IHdhbnRzIHRoZSBmaXJzdCB0aGluZyB5b3Ugc2F5IGFib3V0IGEgdGVzdCB0bw0KPiA+
-ID4gYmUgYWZ0ZXIgeW91IGtub3cgd2hldGhlciBpdCBwYXNzZXMgb3Igbm90Lg0KPiA+DQo+ID4g
-SSB0aGluayB5b3UgY291bGQgb3V0cHV0IGEgZGlhZ25vc3RpYyBsaW5lIHRoYXQgc2F5cyBhIHRl
-c3QgaXMgc3RhcnRpbmcuDQo+ID4gVGhpcyBpcyBpbXBvcnRhbnQgdG8gbWUgYmVjYXVzZSBwcmlu
-dGsoKSBlcnJvcnMgYW5kIHdhcm5pbmdzIHRoYXQgYXJlDQo+ID4gcmVsYXRlZCB0byBhIHRlc3Qg
-Y2FuIGJlIG91dHB1dCBieSBhIHN1YnN5c3RlbSBvdGhlciB0aGFuIHRoZSBzdWJzeXN0ZW0NCj4g
-PiB0aGF0IEkgYW0gdGVzdGluZy4gIElmIHRoZXJlIGlzIG5vIG1hcmtlciBhdCB0aGUgc3RhcnQg
-b2YgdGhlIHRlc3QNCj4gPiB0aGVuIHRoZXJlIGlzIG5vIHdheSB0byBhdHRyaWJ1dGUgdGhlIHBy
-aW50aygpcyB0byB0aGUgdGVzdC4NCj4gDQo+IEkgYWdyZWUuDQoNClRoaXMgaXMgYSBzaWduaWZp
-Y2FudCBwcm9ibGVtLiAgSW4gRnVlZ28gd2Ugb3V0cHV0IGVhY2ggbGluZSB3aXRoIGEgdGVzdCBp
-ZCBwcmVmaXgsDQp3aGljaCBnb2VzIGFnYWluc3QgdGhlIHNwZWMsIGJ1dCBoZWxwcyBzb2x2ZSB0
-aGlzLiAgVGVzdCBvdXRwdXQgc2hvdWxkIGJlDQprZXB0IHNlcGFyYXRlIGZyb20gc3lzdGVtIG91
-dHB1dCwgYnV0IGlmIEkgdW5kZXJzdGFuZCBjb3JyZWN0bHksIHRoZXJlIGFyZSBubw0KY2hhbm5l
-bHMgaW4gcHJpbmt0IHRvIHVzZSB0byBrZWVwIGRpZmZlcmVudCBkYXRhIHN0cmVhbXMgc2VwYXJh
-dGUuDQoNCkhvdyBkb2VzIGtzZWxmdGVzdCBkZWFsIHdpdGggdGhpcyBub3c/DQoNCj4gDQo+IFRl
-Y2huaWNhbGx5IGNvbmZvcm1zIHdpdGggdGhlIHNwZWMsIGFuZCBrc2VsZnRlc3QgZG9lcyB0aGF0
-LCBidXQgaXMNCj4gYWxzbyBub3QgcGFydCBvZiB0aGUgc3BlYy4gV2VsbCwgaXQgKmlzKiBzcGVj
-aWZpZWQgaWYgeW91IHVzZQ0KPiBzdWJ0ZXN0cy4gSSB0aGluayB0aGUgcmlnaHQgYXBwcm9hY2gg
-aXMgdG8gbWFrZSBlYWNoDQo+ICJrdW5pdF9tb2R1bGUvdGVzdCBzdWl0ZSIgYSB0ZXN0LCBhbmQg
-YWxsIHRoZSB0ZXN0IGNhc2VzIHdpbGwgYmUNCj4gc3VidGVzdHMuDQo+IA0KPiA+ID4gRGlyZWN0
-aXZlcyBhcmUganVzdCBhIHdheSB0byBzcGVjaWZ5IHNraXBwZWQgdGVzdHMgYW5kIFRPRE9zLg0K
-PiA+ID4NCj4gPiA+IERpYWdub3N0aWNzIHNlZW0gdXNlZnVsLCBpdCBsb29rcyBsaWtlIHlvdSBj
-YW4gcHV0IHdoYXRldmVyDQo+ID4gPiBpbmZvcm1hdGlvbiBpbiB0aGVtIGFuZCBwcmludCB0aGVt
-IG91dCBhdCBhbnl0aW1lLiBJdCBsb29rcyBsaWtlIGEgbG90DQo+ID4gPiBvZiBrc2VsZnRlc3Rz
-IGVtaXQgYSBsb3Qgb2YgZGF0YSB0aGlzIHdheS4NCj4gPiA+DQo+ID4gPiBUaGUgWUFNTCBibG9j
-ayBzZWVtcyB0byBiZSB0aGUgd2F5IHRoYXQgdGhleSBwcmVmZXIgdXNlcnMgdG8gZW1pdCBkYXRh
-DQo+ID4gPiBiZXlvbmQgbnVtYmVyIG9mIHRlc3RzIHJ1biBhbmQgd2hldGhlciBhIHRlc3QgcGFz
-c2VkIG9yIGZhaWxlZC4gSQ0KPiA+ID4gY291bGQgZXhwcmVzcyBtb3N0IHRoaW5ncyBJIHdhbnQg
-dG8gZXhwcmVzcyBpbiB0ZXJtcyBvZiBZQU1MLCBidXQgaXQNCj4gPiA+IGlzIG5vdCB0aGUgbmlj
-ZXN0IGZvcm1hdCBmb3IgZGlzcGxheWluZyBhIGxvdCBvZiBkYXRhIGxpa2UNCj4gPiA+IGV4cGVj
-dGF0aW9ucywgbWlzc2VkIGZ1bmN0aW9uIGNhbGxzLCBhbmQgb3RoZXIgdGhpbmdzIHdoaWNoIGhh
-dmUgYQ0KPiA+ID4gbmF0dXJhbCBjb25jaXNlIHJlcHJlc2VudGF0aW9uLiBOZXZlcnRoZWxlc3Ms
-IFlBTUwgcmVhZGFiaWxpdHkgaXMNCj4gPiA+IG1vc3RseSBhIHByb2JsZW0gd2hvIHdvbid0IGJl
-IHVzaW5nIHRoZSB3cmFwcGVyIHNjcmlwdHMuDQo+ID4NCj4gPiBUaGUgZXhhbXBsZXMgaW4gc3Bl
-Y2lmaWNhdGlvbiBWMTMgYW5kIFYxNCBsb29rIHZlcnkgc2ltcGxlIGFuZCB2ZXJ5DQo+ID4gcmVh
-ZGFibGUgdG8gbWUuICAoQW5kIEkgYW0gbm90IGEgZmFuIG9mIFlBTUwuKQ0KPiA+DQo+ID4NCj4g
-PiA+IE15IGJpZ2dlc3QNCj4gPiA+IHByb2JsZW0gd2l0aCB0aGUgWUFNTCBibG9jayBpcyB0aGF0
-IHlvdSBjYW4gb25seSBoYXZlIG9uZSwgYW5kIFRBUA0KPiA+ID4gc3BlY2lmaWVzIHRoYXQgaXQg
-bXVzdCBjb21lIGFmdGVyIHRoZSBjb3JyZXNwb25kaW5nIG9rL25vdCBvayBsaW5lLA0KPiA+ID4g
-d2hpY2ggYWdhaW4gaGFzIHRoZSBpc3N1ZSB0aGF0IHlvdSBoYXZlIHRvIGhvbGQgb24gdG8gYSBs
-b3Qgb2YNCj4gPiA+IGRpYWdub3N0aWMgZGF0YSBsb25nZXIgdGhhbiB5b3UgaWRlYWxseSB3b3Vs
-ZC4gQW5vdGhlciBkb3duc2lkZSBpcw0KPiA+ID4gdGhhdCBJIG5vdyBoYXZlIHRvIHdyaXRlIGEg
-WUFNTCBzZXJpYWxpemVyIGZvciB0aGUga2VybmVsLg0KPiA+DQo+ID4gSWYgYSB0ZXN0IGdlbmVy
-YXRlcyBkaWFnbm9zdGljIGRhdGEsIHRoZW4gSSB3b3VsZCBleHBlY3QgdGhhdCB0byBiZQ0KPiA+
-IHRoZSBkaXJlY3QgcmVzdWx0IG9mIGEgdGVzdCBmYWlsdXJlLiAgU28gdGhlIHRlc3QgY2FuIG91
-dHB1dCB0aGUNCj4gPiAibm90IG9rIiBsaW5lLCB0aGVuIGltbWVkaWF0ZWx5IG91dHB1dCB0aGUg
-WUFNTCBibG9jay4gIEkgZG8gbm90DQo+ID4gc2VlIGEgbmVlZCBmb3Igc3Rhc2hpbmcgWUFNTCBv
-dXRwdXQgYWhlYWQgb2YgdGltZS4NCj4gPg0KPiA+IElmIGRpYWdub3N0aWMgZGF0YSBpcyBnZW5l
-cmF0ZWQgYmVmb3JlIHRoZSB0ZXN0IGNhbiBkZXRlcm1pbmUNCj4gPiBzdWNjZXNzIG9yIGZhaWx1
-cmUsIHRoZW4gaXQgY2FuIGJlIG91dHB1dCBhcyBkaWFnbm9zdGljIGRhdGENCj4gPiBpbnN0ZWFk
-IG9mIHN0YXNoaW5nIGl0IGZvciBsYXRlci4NCj4gDQo+IENvb2wsIHRoYXQncyB3aGF0IEkgYW0g
-dGhpbmtpbmcgSSBhbSBnb2luZyB0byBkbyAtIEkganVzdCB3YW50ZWQgdG8NCj4gbWFrZSBzdXJl
-IHBlb3BsZSB3ZXJlIG9rYXkgd2l0aCB0aGlzIGFwcHJvYWNoLiBJIG1lYW4sIEkgdGhpbmsgdGhh
-dCBpcw0KPiB3aGF0IGtzZWxmdGVzdCBkb2VzLg0KDQpJTUhPIHRoZSBkaWFnbm9zdGljIGRhdGEg
-ZG9lcyBub3QgaGF2ZSB0byBiZSBpbiBZQU1MLiAgVGhhdCdzIG9ubHkNCmlmIHRoZXJlJ3MgYSB3
-ZWxsLWtub3duIHNjaGVtYSBmb3IgdGhlIGRpYWdub3N0aWMgZGF0YSwgdG8gbWFrZSB0aGUNCmRh
-dGEgbWFjaGluZS1yZWFkYWJsZS4gICBUQVAxMyBzcGVjaWZpY2FsbHkgYXZvaWRlZCBkZWZpbmlu
-ZyBzdWNoIGENCnNjaGVtYS4gIEkgbmVlZCB0byBsb29rIGF0IFRBUDE0IGFuZCBzZWUgaWYgdGhl
-eSBoYXZlIGRlZmluZWQgc29tZXRoaW5nLg0KKFRoYW5rcyBmb3IgYnJpbmdpbmcgdGhhdCB0byBt
-eSBhdHRlbnRpb24uKQ0KDQpUaGUgaW1wb3J0YW50IHBhcnQsIHNpbmNlIHRoZXJlIGFyZSBubyBz
-dGFydCBhbmQgZW5kIGRlbGltaXRlcnMgZm9yIGVhY2gNCnRlc3RjYXNlLCBpcyB0byBzdHJ1Y3R1
-cmUgb3V0cHV0IChpbmNsdWRpbmcgZnJvbSB1bnJlbGF0ZWQgc3ViLXN5c3RlbXMNCmFmZmVjdGVk
-IGJ5IHRoZSB0ZXN0KSB0byBlaXRoZXIgb2NjdXIgYWxsIGJlZm9yZSBvciBhbGwgYWZ0ZXIgdGhl
-IHRlc3QgbGluZS4NCk90aGVyd2lzZSBpdCdzIGltcG9zc2libGUgdG8gc2Vuc2libHkgcGFyc2Ug
-dGhlIGRpYWdub3N0aWMgZGF0YSBhbmQgYXNzb2NpYXRlIGl0DQp3aXRoIGEgdGVzdC4gIChUaGF0
-IGlzLCB0aGUgVEFQIGxpbmVzIGJlY29tZSB0aGUgZGVsaW1pdGVycyBiZXR3ZWVuIGVhY2ggdGVz
-dGNhc2Uncw0Kb3V0cHV0IGFuZCBkYXRhKS4gIFRoaXMgaXMgYSBwcmV0dHkgYmlnIHdlYWtuZXNz
-IG9mIFRBUDEzLiAgU2luY2UgdGhlIFRBUCBsaW5lDQpoYXMgdGhlIHRlc3QgcmVzdWx0LCBpdCB1
-c3VhbGx5IG1lYW5zIHRoYXQgdGhlIHN1YnN5c3RlbSBvdXRwdXQgZm9yIHRoZSB0ZXN0DQppcyBl
-bWl0dGVkICpiZWZvcmUqIHRoZSBUQVAgbGluZS4gIEl0J3MgcHJlZmVyYWJsZSwgaW4gb3JkZXIg
-dG8ga2VlcCB0aGUNCmRhdGEgdG9nZXRoZXIsIHRoYXQgdGhlIGRpYWdub3N0aWMgZGF0YSBhbHNv
-IGJlIGVtaXR0ZWQgYmVmb3JlIHRoZSBUQVANCmxpbmUuDQoNCj4gDQo+IFdlIGNhbiBob2xkIG9m
-ZiBvbiB0aGUgWUFNTCBzdHVmZiBmb3Igbm93IHRoZW4uDQo+IA0KPiA+ID4gIyMgSGVyZSBpcyB3
-aGF0IEkgcHJvcG9zZSBmb3IgdGhpcyBwYXRjaHNldDoNCj4gPiA+DQo+ID4gPiAgLSBQcmludCBv
-dXQgdGVzdCBudW1iZXIgcmFuZ2UgYXQgdGhlIGJlZ2lubmluZyBvZiBlYWNoIHRlc3Qgc3VpdGUu
-DQo+ID4gPiAgLSBQcmludCBvdXQgbG9nIGxpbmVzIGFzIHNvb24gYXMgdGhleSBoYXBwZW4gYXMg
-ZGlhZ25vc3RpY3MuDQo+ID4gPiAgLSBQcmludCBvdXQgdGhlIGxpbmVzIHRoYXQgc3RhdGUgd2hl
-dGhlciBhIHRlc3QgcGFzc2VzIG9yIGZhaWxzIGFzIGENCj4gPiA+IG9rL25vdCBvayBsaW5lLg0K
-PiA+ID4NCj4gPiA+IFRoaXMgd291bGQgYmUgdGVjaG5pY2FsbHkgY29uZm9ybWluZyB3aXRoIFRB
-UDEzIGFuZCBpcyBjb25zaXN0ZW50IHdpdGgNCj4gPiA+IHdoYXQgc29tZSBrc2VsZnRlc3RzIGhh
-dmUgZG9uZS4NCj4gPiA+DQo+ID4gPiAjIyBUbyBiZSBkb25lIGluIGEgZnV0dXJlIHBhdGNoc2V0
-Og0KPiA+ID4NCj4gPiA+IEFkZCBhIFlBTUwgc2VyaWFsaXplciBhbmQgcHJpbnQgb3V0IHNvbWUg
-bG9ncyBjb250YWluaW5nIHN0cnVjdHVyZWQNCj4gPiA+IGRhdGEgKGxpa2UgZXhwZWN0YXRpb24g
-ZmFpbHVyZXMsIHVuZXhwZWN0ZWQgZnVuY3Rpb24gY2FsbHMsIGV0YykgaW4NCj4gPiA+IFlBTUwg
-YmxvY2tzLg0KPiA+DQo+ID4gWUFNTCBzZXJpYWxpemVyIHNvdW5kcyBsaWtlIG5vdCBuZWVkZWQg
-Y29tcGxleGl0eS4NCkkgYWdyZWUsIGZvciBub3cuDQoNCkkgdGhpbmsgaWYgd2Ugc3RhcnQgdG8g
-c2VlIHNvbWUgcGF0dGVybnMgZm9yIHNvbWUgZGF0YSB0aGF0IG1hbnkgdGVzdHMNCm91dHB1dCwg
-d2UgbWlnaHQgd2FudCAoYXMgYSBrZXJuZWwgY29tbXVuaXR5KSB0byBkZWZpbmUgYSBZQU1MDQpz
-Y2hlbWEgZm9yIHRoZSBrc2VsZnRlc3Qgb3V0cHV0LiAgQnV0IEkgdGhpbmsgdGhhdCdzIGJpdGlu
-ZyBvZmYgdG9vIG11Y2gNCnJpZ2h0IG5vdy4gIElNSE8gd2Ugd291bGQgd2FudCBhbnkgWUFNTCBz
-Y2hlbWEgd2UgZGVmaW5lIHRvDQpjb3ZlciBtb3JlIHRoYW4ganVzdCB1bml0IHRlc3RzLCBzbyB0
-aGUgam9iIG9mIGRlZmluaW5nIHRoYXQgd291bGQgYmUNCnByZXR0eSBiaWcuDQoNClRoaXMgd291
-bGQgYmUgYSBnb29kIGRpc2N1c3Npb24gdG8gaGF2ZSBhdCBhIHRlc3RpbmcgbWljcm8tY29uZmVy
-ZW5jZQ0Kb3Igc3VtbWl0LiA6LSkNCg0KPiA+DQo+ID4gPg0KPiA+ID4gRG9lcyB0aGlzIHNvdW5k
-IHJlYXNvbmFibGU/IEkgd2lsbCBnbyBhaGVhZCBhbmQgc3RhcnQgd29ya2luZyBvbiB0aGlzLA0K
-PiA+ID4gYnV0IGZlZWwgZnJlZSB0byBnaXZlIG1lIGZlZWRiYWNrIG9uIHRoZSBvdmVyYWxsIGlk
-ZWEgaW4gdGhlIG1lYW50aW1lLg0KDQpTb3VuZHMgZ29vZC4gIFRoYW5rcyBmb3Igd29ya2luZyBv
-biB0aGlzLg0KIC0tIFRpbQ0KDQo=
+On Wed, May 1, 2019 at 7:16 AM Zhi Li <lznuaa@gmail.com> wrote:
+>
+> On Tue, Apr 30, 2019 at 8:06 PM Andrey Smirnov <andrew.smirnov@gmail.com> wrote:
+> >
+> > On Tue, Apr 30, 2019 at 1:08 PM Zhi Li <lznuaa@gmail.com> wrote:
+> > >
+> > > On Tue, Apr 30, 2019 at 1:59 PM Andrey Smirnov <andrew.smirnov@gmail.com> wrote:
+> > > >
+> > > > > Add ddr performance monitor support for iMX8QXP
+> > > >
+> > > > > There are 4 counters for ddr perfomance events.
+> > > > > counter 0 is dedicated for cycles.
+> > > > > you choose any up to 3 no cycles events.
+> > > >
+> > > > > for example:
+> > > >
+> > > > > perf stat -a -e ddr0/read-cycles/,ddr0/write-cycles/,ddr0/precharge/ ls
+> > > > > perf stat -a -e ddr0/cycles/,ddr0/read-access/,ddr0/write-access/ ls
+> > > >
+> > > > > Support below events.
+> > > >
+> > > > >   ddr0/activate/                                     [Kernel PMU event]
+> > > > >   ddr0/axid-read/                                    [Kernel PMU event]
+> > > > >   ddr0/axid-write/                                   [Kernel PMU event]
+> > > > >   ddr0/cycles/                                       [Kernel PMU event]
+> > > > >   ddr0/hp-read-credit-cnt/                           [Kernel PMU event]
+> > > > >   ddr0/hp-read/                                      [Kernel PMU event]
+> > > > >   ddr0/hp-req-nodcredit/                             [Kernel PMU event]
+> > > > >   ddr0/hp-xact-credit/                               [Kernel PMU event]
+> > > > >   ddr0/load-mode/                                    [Kernel PMU event]
+> > > > >   ddr0/lp-read-credit-cnt/                           [Kernel PMU event]
+> > > > >   ddr0/lp-req-nocredit/                              [Kernel PMU event]
+> > > > >   ddr0/lp-xact-credit/                               [Kernel PMU event]
+> > > > >   ddr0/mwr/                                          [Kernel PMU event]
+> > > > >   ddr0/precharge/                                    [Kernel PMU event]
+> > > > >   ddr0/raw-hazard/                                   [Kernel PMU event]
+> > > > >   ddr0/read-access/                                  [Kernel PMU event]
+> > > > >   ddr0/read-activate/                                [Kernel PMU event]
+> > > > >   ddr0/read-command/                                 [Kernel PMU event]
+> > > > >   ddr0/read-cycles/                                  [Kernel PMU event]
+> > > > >   ddr0/read-modify-write-command/                    [Kernel PMU event]
+> > > > >   ddr0/read-queue-depth/                             [Kernel PMU event]
+> > > > >   ddr0/read-write-transition/                        [Kernel PMU event]
+> > > > >   ddr0/read/                                         [Kernel PMU event]
+> > > > >   ddr0/refresh/                                      [Kernel PMU event]
+> > > > >   ddr0/selfresh/                                     [Kernel PMU event]
+> > > > >   ddr0/wr-xact-credit/                               [Kernel PMU event]
+> > > > >   ddr0/write-access/                                 [Kernel PMU event]
+> > > > >   ddr0/write-command/                                [Kernel PMU event]
+> > > > >   ddr0/write-credit-cnt/                             [Kernel PMU event]
+> > > > >   ddr0/write-cycles/                                 [Kernel PMU event]
+> > > > >   ddr0/write-queue-depth/                            [Kernel PMU event]
+> > > > >   ddr0/write/
+> > > >
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > > No change from V8 to V9
+> > > >
+> > > > > Change from v7 to v8
+> > > > >  * remove unused define
+> > > > >  * change total_events to active_events, change active_events to events
+> > > > >  * remove flags,
+> > > > >  * fix multi line comments code sytle
+> > > > >  * add pmu_enable\disable function
+> > > > >  * disable event at irq handle
+> > > > >  * remove counter check at ddr_perf_free_counter
+> > > > >  * remove pmu->irq check
+> > > > >  * add group check
+> > > >
+> > > > > Change from v6 to v7
+> > > > >  * added irq affinity handle, ref arm-ccn.c
+> > > > >  * added IRQF_NOBALANCING | IRQF_NO_THREAD
+> > > > >  * added ida_simple_remove at failure path
+> > > >
+> > > > > Change from v5 to v6
+> > > > >  * fix insmod\rmmod problem
+> > > > >  * remove randunt register read at irq handle
+> > > > >  * change u32 irq to int
+> > > > >  * devm_request_irq use default flags.
+> > > >
+> > > > > Change from v4 to v5
+> > > > >  * Remove AXI ID filter function
+> > > >
+> > > > > Change from v3 to v4
+> > > > >  * Change FSL_IMX8_DDR_PERF to FSL_IMX8_DDR_PMU
+> > > > >  * sort include
+> > > > >  * remove struct fsl_ddr_devtype_data
+> > > > >  * Added comment need disable control first
+> > > > >  * Added comment about must enable cycle counter
+> > > > >  * Added macro for EVENT_AXI_READ, remove hardcode 0x41 and 0x42
+> > > > >  * Added comment about cycle counter is fastest one
+> > > >
+> > > > > Change from v2 to v3
+> > > > >  * remove kfree
+> > > >
+> > > > > Change from V1 to V2
+> > > > >  * update Kconfig by use i.MX8 instead of i.MX8 QXP
+> > > > >  * remove gpl statememnt since SPDX tag
+> > > > >  * use dev_kzalloc
+> > > > >  * use dev_err
+> > > > >  * commit message show axi_read 0x41\axi_write 0x42
+> > > > >  * commit message show cycles must be enabled
+> > > > >  * Irq only issue at cycles overflow
+> > > > >  * use NUM_COUNTER
+> > > > >  * use devm_request_irq
+> > > > >  * add hotplug callback to handle context migration
+> > > >
+> > > > Hey Frank,
+> > > >
+> > > > I missed your effort to upstream this and ended up spening some time
+> > > > working on the same thing in parallel, so I have some comments below.
+> > > >
+> > > > > +PMU_EVENT_ATTR_STRING(cycles, ddr_perf_cycles, "event=0x00");
+> > > > > +PMU_EVENT_ATTR_STRING(selfresh, ddr_perf_selfresh, "event=0x01");
+> > > > > +PMU_EVENT_ATTR_STRING(read-access, ddr_perf_read_accesses, "event=0x04");
+> > > > > +PMU_EVENT_ATTR_STRING(write-access, ddr_perf_write_accesses, "event=0x05");
+> > > > > +PMU_EVENT_ATTR_STRING(read-queue-depth, ddr_perf_read_queue_depth,
+> > > > > +                     "event=0x08");
+> > > > > +PMU_EVENT_ATTR_STRING(write-queue-depth, ddr_perf_write_queue_depth,
+> > > > > +                     "event=0x09");
+> > > > > +PMU_EVENT_ATTR_STRING(lp-read-credit-cnt, ddr_perf_lp_read_credit_cnt,
+> > > > > +                     "event=0x10");
+> > > > > +PMU_EVENT_ATTR_STRING(hp-read-credit-cnt, ddr_perf_hp_read_credit_cnt,
+> > > > > +                     "event=0x11");
+> > > > > +PMU_EVENT_ATTR_STRING(write-credit-cnt, ddr_perf_write_credit_cnt,
+> > > > > +                     "event=0x12");
+> > > > > +PMU_EVENT_ATTR_STRING(read-command, ddr_perf_read_command, "event=0x20");
+> > > > > +PMU_EVENT_ATTR_STRING(write-command, ddr_perf_write_command, "event=0x21");
+> > > > > +PMU_EVENT_ATTR_STRING(read-modify-write-command,
+> > > > > +             ddr_perf_read_modify_write_command, "event=0x22");
+> > > > > +PMU_EVENT_ATTR_STRING(hp-read, ddr_perf_hp_read, "event=0x23");
+> > > > > +PMU_EVENT_ATTR_STRING(hp-req-nodcredit, ddr_perf_hp_req_nocredit, "event=0x24");
+> > > > > +PMU_EVENT_ATTR_STRING(hp-xact-credit, ddr_perf_hp_xact_credit, "event=0x25");
+> > > > > +PMU_EVENT_ATTR_STRING(lp-req-nocredit, ddr_perf_lp_req_nocredit, "event=0x26");
+> > > > > +PMU_EVENT_ATTR_STRING(lp-xact-credit, ddr_perf_lp_xact_credit, "event=0x27");
+> > > > > +PMU_EVENT_ATTR_STRING(wr-xact-credit, ddr_perf_wr_xact_credit, "event=0x29");
+> > > > > +PMU_EVENT_ATTR_STRING(read-cycles, ddr_perf_read_cycles, "event=0x2a");
+> > > > > +PMU_EVENT_ATTR_STRING(write-cycles, ddr_perf_write_cycles, "event=0x2b");
+> > > > > +PMU_EVENT_ATTR_STRING(read-write-transition, ddr_perf_read_write_transition,
+> > > > > +                     "event=0x30");
+> > > > > +PMU_EVENT_ATTR_STRING(precharge, ddr_perf_precharge, "event=0x31");
+> > > > > +PMU_EVENT_ATTR_STRING(activate, ddr_perf_activate, "event=0x32");
+> > > > > +PMU_EVENT_ATTR_STRING(load-mode, ddr_perf_load_mode, "event=0x33");
+> > > > > +PMU_EVENT_ATTR_STRING(mwr, ddr_perf_mwr, "event=0x34");
+> > > > > +PMU_EVENT_ATTR_STRING(read, ddr_perf_read, "event=0x35");
+> > > > > +PMU_EVENT_ATTR_STRING(read-activate, ddr_perf_read_activate, "event=0x36");
+> > > > > +PMU_EVENT_ATTR_STRING(refresh, ddr_perf_refresh, "event=0x37");
+> > > > > +PMU_EVENT_ATTR_STRING(write, ddr_perf_write, "event=0x38");
+> > > > > +PMU_EVENT_ATTR_STRING(raw-hazard, ddr_perf_raw_hazard, "event=0x39");
+> > > >
+> > > > You can really save quite a bit of boilerplate if you define those
+> > > > inplace with a custom macro and a custom show function:
+> > > >
+> > > > static ssize_t
+> > > > ddr_pmu_event_show(struct device *dev, struct device_attribute *attr,
+> > > >                    char *page)
+> > > > {
+> > > >         struct perf_pmu_events_attr *pmu_attr;
+> > > >
+> > > >         pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
+> > > >         return sprintf(page, "event=0x%02llx\n", pmu_attr->id);
+> > > > }
+> > > >
+> > > > #define IMX8_DDR_PMU_EVENT_ATTR(_name, _id)                             \
+> > > >         (&((struct perf_pmu_events_attr[]) {                            \
+> > > >                 { .attr = __ATTR(_name, 0444, ddr_pmu_event_show, NULL), \
+> > > >                   .id = _id, }                                          \
+> > > >         })[0].attr.attr)
+> > > >
+> > > > static struct attribute *ddr_pmu_events_attrs[] = {
+> > > >         IMX8_DDR_PMU_EVENT_ATTR(cycles,              CYCLES_EVENT_ID),
+> > > >         IMX8_DDR_PMU_EVENT_ATTR(selfresh,                       0x01),
+> > > >         IMX8_DDR_PMU_EVENT_ATTR(read-access,                    0x04),
+> > > >         IMX8_DDR_PMU_EVENT_ATTR(write-access,                   0x05),
+> > > >         IMX8_DDR_PMU_EVENT_ATTR(read-queue-depth,               0x08),
+> > > >
+> > >
+> > > I don't think it make any difference.
+> > >
+> > > best regards
+> > > Frank Li
+> > >
+> > > > ...
+> > > >
+> > > > > +
+> > > > > +struct ddr_pmu {
+> > > > > +     struct pmu pmu;
+> > > > > +     void __iomem *base;
+> > > > > +     unsigned int cpu;
+> > > > > +     struct  hlist_node node;
+> > > > > +     struct  device *dev;
+> > > >
+> > > > This device pointer is used only once in ddr_perf_event_init() and
+> > > > even in that function not all error cases get a dedicated kernel
+> > > > message. I'd consider just dropping it and the message it is used in.
+> > > >
+> > > > > +     struct perf_event *events[NUM_COUNTERS];
+> > > > > +     int active_events;
+> > > >
+> > > > I'd very strongly encourage you to convert the driver to use a proper
+> > > > bitmask instead of this counter. E.g:
+> > > >
+> > > > DECLARE_BITMAP(active_mask, NUM_COUNTERS);
+> > >
+> > > I don't think it has big difference at these case.
+> > >
+> > > best regards
+> > > Frank Li
+> > >
+> > > >
+> > > > I'll comment more on that below.
+> > > >
+> > > > > +     enum cpuhp_state cpuhp_state;
+> > > > > +     int irq;
+> > > > > +     int id;
+> > > > > +};
+> > > >
+> > > > > +static struct attribute_group ddr_perf_events_attr_group = {
+> > > > > +     .name = "events",
+> > > > > +     .attrs = ddr_perf_events_attrs,
+> > > > > +};
+> > > > > +
+> > > > > +PMU_FORMAT_ATTR(event, "config:0-63");
+> > > > > +
+> > > >
+> > > > Event ID is really only 8-bits wide, AFAIK. Is there any reason to
+> > > > reserve all 64 for it in config?
+> > > >
+> > > > > +static struct attribute *ddr_perf_format_attrs[] = {
+> > > > > +     &format_attr_event.attr,
+> > > > > +     NULL,
+> > > > > +};
+> > > > > +
+> > > > > +static struct attribute_group ddr_perf_format_attr_group = {
+> > > > > +     .name = "format",
+> > > > > +     .attrs = ddr_perf_format_attrs,
+> > > > > +};
+> > > > > +
+> > > > > +static const struct attribute_group *attr_groups[] = {
+> > > > > +     &ddr_perf_events_attr_group,
+> > > > > +     &ddr_perf_format_attr_group,
+> > > > > +     &ddr_perf_cpumask_attr_group,
+> > > > > +     NULL,
+> > > > > +};
+> > > > > +
+> > > > > +static u32 ddr_perf_alloc_counter(struct ddr_pmu *pmu, int event)
+> > > > > +{
+> > > > > +     int i;
+> > > > > +
+> > > > > +     /*
+> > > > > +      * Always map cycle event to counter 0
+> > > > > +      * Cycles counter is dedicated for cycle event
+> > > > > +      * can't used for the other events
+> > > > > +      */
+> > > > > +     if (event == EVENT_CYCLES_ID) {
+> > > > > +             if (pmu->events[EVENT_CYCLES_COUNTER] == NULL)
+> > > > > +                     return EVENT_CYCLES_COUNTER;
+> > > > > +             else
+> > > > > +                     return -ENOENT;
+> > > > > +     }
+> > > > > +
+> > > > > +     for (i = 1; i < NUM_COUNTERS; i++) {
+> > > > > +             if (pmu->events[i] == NULL)
+> > > > > +                     return i;
+> > > > > +     }
+> > > >
+> > > > This is the first place where using a bitmap would simplify the
+> > > > driver. Here all you'd need to do is:
+> > > >
+> > > >
+> > > > if (event == CYCLES_EVENT_ID) {
+> > > >    ...
+> > > > } else {
+> > > >   i =  find_next_zero_bit(pmu->active_mask, NUM_COUNTERS,
+> > > >                           EVENT_CYCLES_COUNTER + 1);
+> > > >   if (i == NUM_COUNTERS)
+> > > >         return -EAGAIN;
+> > > >
+> > > > }
+> > > >
+> > > > set_bit(i, pmu->active_mask);
+> > > >
+> > > > ...
+> > > >
+> > > > > +
+> > > > > +     return -ENOENT;
+> > > > > +}
+> > > > > +
+> > > > > +static u32 ddr_perf_free_counter(struct ddr_pmu *pmu, int counter)
+> > > > > +{
+> > > > > +     pmu->events[counter] = NULL;
+> > > > > +
+> > > > > +     return 0;
+> > > > > +}
+> > > >
+> > > > Is this function even necessary? It is used only once in the code and
+> > > > it's return value is ignored
+> > >
+> > > It help improve code read. Generally allocate and free always a pair.
+> > > I change change to void.
+> > >
+> > > best regards
+> > > Frank Li
+> > >
+> > > >
+> > > > > +
+> > > > > +static u32 ddr_perf_read_counter(struct ddr_pmu *pmu, int counter)
+> > > > > +{
+> > > > > +     return readl(pmu->base + COUNTER_READ + counter * 4);
+> > > > > +}
+> > > >
+> > > > Would using readl_relaxed() be beneficial here?
+> > >
+> > > Maybe. But only few register read when run perf.
+> > >
+> > > best regards
+> > > Frank Li
+> > >
+> > > >
+> > > > > +
+> > > > > +static int ddr_perf_event_init(struct perf_event *event)
+> > > > > +{
+> > > > > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> > > > > +     struct hw_perf_event *hwc = &event->hw;
+> > > > > +     struct perf_event *sibling;
+> > > > > +
+> > > > > +     if (event->attr.type != event->pmu->type)
+> > > > > +             return -ENOENT;
+> > > > > +
+> > > > > +     if (is_sampling_event(event) || event->attach_state & PERF_ATTACH_TASK)
+> > > > > +             return -EOPNOTSUPP;
+> > > > > +
+> > > > > +     if (event->cpu < 0) {
+> > > > > +             dev_warn(pmu->dev, "Can't provide per-task data!\n");
+> > > > > +             return -EOPNOTSUPP;
+> > > > > +     }
+> > > > > +
+> > > > > +     if (event->attr.exclude_user        ||
+> > > > > +         event->attr.exclude_kernel      ||
+> > > > > +         event->attr.exclude_hv          ||
+> > > > > +         event->attr.exclude_idle        ||
+> > > > > +         event->attr.exclude_host        ||
+> > > > > +         event->attr.exclude_guest       ||
+> > > >
+> > > > You don't need any of the above if you pass:
+> > > >
+> > > > .capabilities = PERF_PMU_CAP_NO_EXCLUDE
+> > > >
+> > > > in your struct pmu initialization
+> > > >
+> > > > > +         event->attr.sample_period)
+> > > > > +             return -EINVAL;
+> > > > > +
+> > > > > +     /*
+> > > > > +      * We must NOT create groups containing mixed PMUs, although software
+> > > > > +      * events are acceptable (for example to create a CCN group
+> > > > > +      * periodically read when a hrtimer aka cpu-clock leader triggers).
+> > > > > +      */
+> > > > > +     if (event->group_leader->pmu != event->pmu &&
+> > > > > +                     !is_software_event(event->group_leader))
+> > > > > +             return -EINVAL;
+> > > > > +
+> > > > > +     for_each_sibling_event(sibling, event->group_leader) {
+> > > > > +             if (sibling->pmu != event->pmu &&
+> > > > > +                             !is_software_event(sibling))
+> > > > > +                     return -EINVAL;
+> > > > > +     }
+> > > > > +
+> > > > > +     event->cpu = pmu->cpu;
+> > > > > +     hwc->idx = -1;
+> > > > > +
+> > > > > +     return 0;
+> > > > > +}
+> > > >
+> > > > > +
+> > > > > +static void ddr_perf_event_enable(struct ddr_pmu *pmu, int config,
+> > > > > +                               int counter, bool enable)
+> > > > > +{
+> > > >
+> > > > This function doesn't really have anything to do with events (unlike,
+> > > > for example, ddr_perf_event_start() below). Maybe it would be better
+> > > > to rename it to ddr_perf_counter_enable()?
+> > > >
+> > > > > +     u8 reg = counter * 4 + COUNTER_CNTL;
+> > > > > +     int val;
+> > > > > +
+> > > > > +     if (enable) {
+> > > > > +             /*
+> > > > > +              * must disable first, then enable again
+> > > > > +              * otherwise, cycle counter will not work
+> > > > > +              * if previous state is enabled.
+> > > > > +              */
+> > > > > +             writel(0, pmu->base + reg);
+> > > > > +             val = CNTL_EN | CNTL_CLEAR;
+> > > > > +             val |= (config << CNTL_CSV_SHIFT) & CNTL_CSV_MASK;
+> > > >
+> > > > You can simplify the above with FIELD_PREP(CNTL_CSV_MASK, config)
+> > > >
+> > > > > +     } else {
+> > > > > +             /* Disable counter */
+> > > > > +             val = readl(pmu->base + reg) & CNTL_EN_MASK;
+> > > >
+> > > > This register will be blown away by the code in the other if branch
+> > > > next time the counter is enabled. What's the point of doing
+> > > > read-modify-write and trying to preserve all but EN bits as they were here?
+> > > >
+> > > > Why not just do:
+> > > >
+> > > > writel(CNTL_CLEAR, pmu->base + reg);
+> > > >
+> > > > ?
+> > > >
+> > > > > +     }
+> > > > > +
+> > > > > +     writel(val, pmu->base + reg);
+> > > > > +}
+> > > > > +
+> > > > > +static void ddr_perf_event_start(struct perf_event *event, int flags)
+> > > > > +{
+> > > > > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> > > > > +     struct hw_perf_event *hwc = &event->hw;
+> > > > > +     int counter = hwc->idx;
+> > > > > +
+> > > > > +     local64_set(&hwc->prev_count, 0);
+> > > > > +
+> > > > > +     ddr_perf_event_enable(pmu, event->attr.config, counter, true);
+> > > > > +}
+> > > > > +
+> > > > > +static int ddr_perf_event_add(struct perf_event *event, int flags)
+> > > > > +{
+> > > > > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> > > > > +     struct hw_perf_event *hwc = &event->hw;
+> > > > > +     int counter;
+> > > > > +     int cfg = event->attr.config;
+> > > > > +
+> > > > > +     counter = ddr_perf_alloc_counter(pmu, cfg);
+> > > > > +     if (counter < 0) {
+> > > > > +             dev_dbg(pmu->dev, "There are not enough counters\n");
+> > > > > +             return -EOPNOTSUPP;
+> > > > > +     }
+> > > > > +
+> > > > > +     pmu->events[counter] = event;
+> > > > > +     pmu->active_events++;
+> > > > > +     hwc->idx = counter;
+> > > >
+> > > > What about hw->state?
+> > > >
+> > > > > +
+> > > > > +     if (flags & PERF_EF_START)
+> > > > > +             ddr_perf_event_start(event, flags);
+> > > > > +
+> > > > > +     local64_set(&hwc->prev_count, ddr_perf_read_counter(pmu, counter));
+> > > >
+> > > > What's this local64_set() for? You already clear prev_counter and HW
+> > > > counter when event is started. This just seems redundant.
+> > > >
+> > > > > +
+> > > > > +     return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static void ddr_perf_event_stop(struct perf_event *event, int flags)
+> > > > > +{
+> > > > > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> > > > > +     struct hw_perf_event *hwc = &event->hw;
+> > > > > +     int counter = hwc->idx;
+> > > > > +
+> > > > > +     ddr_perf_event_enable(pmu, event->attr.config, counter, false);
+> > > > > +     ddr_perf_event_update(event);
+> > > >
+> > > > hw->state isn't updated here either? I'm no expert on perf subsystem,
+> > > > so maybe it's OK, but most of the other drivers in this category do
+> > > >
+> > > > hw->state |= PERF_HES_STOPPED | PERF_HES_UPTODATE;
+> > > >
+> > > > > +}
+> > > > > +
+> > > > > +static void ddr_perf_event_del(struct perf_event *event, int flags)
+> > > > > +{
+> > > > > +     struct ddr_pmu *pmu = to_ddr_pmu(event->pmu);
+> > > > > +     struct hw_perf_event *hwc = &event->hw;
+> > > > > +     int counter = hwc->idx;
+> > > > > +
+> > > > > +     ddr_perf_event_stop(event, PERF_EF_UPDATE);
+> > > > > +
+> > > > > +     ddr_perf_free_counter(pmu, counter);
+> > > > > +     pmu->active_events--;
+> > > > > +     hwc->idx = -1;
+> > > > > +}
+> > > > > +
+> > > > > +static void ddr_perf_pmu_enable(struct pmu *pmu)
+> > > > > +{
+> > > > > +     struct ddr_pmu *ddr_pmu = to_ddr_pmu(pmu);
+> > > > > +
+> > > > > +     /* enable cycle counter if cycle is not active event list */
+> > > > > +     if (ddr_pmu->events[EVENT_CYCLES_COUNTER] == NULL)
+> > > > > +             ddr_perf_event_enable(ddr_pmu,
+> > > > > +                                   EVENT_CYCLES_ID,
+> > > > > +                                   EVENT_CYCLES_COUNTER,
+> > > > > +                                   true);
+> > > > > +}
+> > > > > +
+> > > > > +static void ddr_perf_pmu_disable(struct pmu *pmu)
+> > > > > +{
+> > > > > +     struct ddr_pmu *ddr_pmu = to_ddr_pmu(pmu);
+> > > > > +
+> > > > > +     if (ddr_pmu->events[EVENT_CYCLES_COUNTER] == NULL)
+> > > > > +             ddr_perf_event_enable(ddr_pmu,
+> > > > > +                                   EVENT_CYCLES_ID,
+> > > > > +                                   EVENT_CYCLES_COUNTER,
+> > > > > +                                   false);
+> > > > > +}
+> > > >
+> > > > It seems that both of those functions will enable/disable cycles
+> > > > counter multiple times if "perf" is called with a list specifying
+> > > > multiple events but not cycles counter. Not sure if this is
+> > > > intentional, in case it is not, using a bitmask would allow you to
+> > > > avoid this by using bitmap_weight(), e.g:
+> > > >
+> > > > if (bitmap_weight(pmu->active_mask, NUM_COUNTERS) == 1 &&
+> > > >     ...
+> > > >
+> > > > > +
+> > > > > +static irqreturn_t ddr_perf_irq_handler(int irq, void *p)
+> > > > > +{
+> > > > > +     int i;
+> > > > > +     struct ddr_pmu *pmu = (struct ddr_pmu *) p;
+> > > > > +     struct perf_event *event, *cycle_event = NULL;
+> > > > > +
+> > > > > +     /* all counter will stop if cycle counter disabled */
+> > > > > +     ddr_perf_event_enable(pmu,
+> > > > > +                           EVENT_CYCLES_ID,
+> > > > > +                           EVENT_CYCLES_COUNTER,
+> > > > > +                           false);
+> > > >
+> > > > The comment below says that IRQ is only raised when cycles counter
+> > > > overflow and when that happens all of the counters are stopped. What's
+> > > > the goal of the code disabling cycles counter above then?
+> > >
+> > > Mark suggest disable PMU at irq beginning.  The below is V7 review comments.
+> > >
+> > > "That's true (and I had forgotten this), but there's still a potential
+> > > problem depending on IRQ latency.
+> > >
+> > > For example, an overflow might occur just before we do some other
+> > > programming of the PMU (while the CPU has IRQs disabled) where we
+> > > restart the cycle counter (and the IRQ is de-asserted).
+> > >
+> > > Depending on when the interrupt controller samples the state of that
+> > > IRQ, and when the CPU takes a resulting interrupt, we may be able to end
+> > > up in the IRQ handler with the cycle counter enabled. Explicitly
+> > > disabling the cycle counter avoids that possibility.
+> > >
+> > > Regardless, we'll want to move the enable of the cycle counter last to
+> > > ensure that groups aren't skewed.
+> > > "
+> >
+> > Ah, I'd add this as a comment then.
+> >
+> > > >
+> > > > > +     /*
+> > > > > +      * When the cycle counter overflows, all counters are stopped,
+> > > > > +      * and an IRQ is raised. If any other counter overflows, it
+> > > > > +      * continues counting, and no IRQ is raised.
+> > > > > +      *
+> > > > > +      * Cycles occur at least 4 times as often as other events, so we
+> > > > > +      * can update all events on a cycle counter overflow and not
+> > > > > +      * lose events.
+> > > > > +      *
+> > > > > +      */
+> > > > > +     for (i = 0; i < NUM_COUNTERS; i++) {
+> > > > > +
+> > > > > +             if (!pmu->events[i])
+> > > > > +                     continue;
+> > > > > +
+> > > > > +             event = pmu->events[i];
+> > > > > +
+> > > > > +             ddr_perf_event_update(event);
+> > > >
+> > > > If you already reading this counter out, why not clear its value to 0
+> > > > to avoid having it overflow while at it?
+> > >
+> > > Clear counter need additional lock to make sure previous value is the
+> > > same as hardware one.
+> > > At this time, only cycle counter over flow, the other counter is not over flow.
+> > >
+> > > Overflow bit only work on cycle counter,  the other counter is free running.
+> > >
+> >
+> > I am not sure I follow. Sure the counter is free-running, but that
+> > doesn't change the fact that it will eventually overflow. What happens
+> > when during Nth interrupt the value of the given counter is
+> > 0xFFFF_FFFF and during N + 1 st interrupt it becomes 0? Perhaps I am
+> > just missing something.
+>
+> it is not problem.
+> If previous value =0xFFFF_FFFF,  the current counter overflow into 0.
+> The difference is 0 - 0xFFFF_FFFF in 32bit unsigned int,
+> which is 1.  1 will be added into internal 64bit variable.
+>
+> if cur - prev < 0x7FFF_FFFF,  the diff = cur-prev is always correct.
+>
+> cycle increase speed > 4 times the other events.  so all other events
+> (cur->prev) always below 0x7FFF_FFFF.
+>
+> the above method is popular.
+>
+
+Ah, I see, thanks for the explanation.
+
+Thanks,
+Andrey Smirnov
