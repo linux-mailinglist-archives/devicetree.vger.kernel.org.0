@@ -2,186 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F2B15FBC
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0341A15FC9
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726593AbfEGItY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:49:24 -0400
-Received: from mail-eopbgr690060.outbound.protection.outlook.com ([40.107.69.60]:18915
-        "EHLO NAM04-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725780AbfEGItY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 04:49:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9jnm+5DPm82QOz4O3NbmD5dDeuBvD7b6i0dcmQbscHM=;
- b=cMAOQ3XSLutsXK02w2zxS21YnFVWBnsQxlHITSiyfYB+/cb7/SfiIWvqC9H3ZIIHm16NiCrWJZ59xbm42jQnQsi5gIxiulrgYt9i7smfpZJKAa87ZBcQL9S1U/X5RBl4KXt7b/RVQfFnVVOQvPmeq7ehPCR19eIpj6W4+KXiTg0=
-Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
- BL0PR02MB4898.namprd02.prod.outlook.com (52.132.14.83) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.12; Tue, 7 May 2019 08:48:41 +0000
-Received: from BL0PR02MB5681.namprd02.prod.outlook.com
- ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
- ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 08:48:41 +0000
-From:   Dragan Cvetic <draganc@xilinx.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <dkiernan@xilinx.com>
-Subject: RE: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-Thread-Topic: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-Thread-Index: AQHU/UVOyBvhwX5Hf0mi9G9IHzQgRKZYHAiAgAGBAECAAQXIAIADZtRggAAL5YCAATcywA==
-Date:   Tue, 7 May 2019 08:48:41 +0000
-Message-ID: <BL0PR02MB568169E26DCD12498EBDFC3ACB310@BL0PR02MB5681.namprd02.prod.outlook.com>
-References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
- <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
- <20190502172007.GA1874@kroah.com>
- <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
- <20190504075502.GA11133@kroah.com>
- <BL0PR02MB56814D6EACC16938A0575D16CB300@BL0PR02MB5681.namprd02.prod.outlook.com>
- <20190506123425.GA26360@kroah.com>
-In-Reply-To: <20190506123425.GA26360@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=draganc@xilinx.com; 
-x-originating-ip: [149.199.80.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7b1bdd10-0ce8-4b6a-226a-08d6d2c8ce24
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB4898;
-x-ms-traffictypediagnostic: BL0PR02MB4898:
-x-microsoft-antispam-prvs: <BL0PR02MB4898157F4314057627F7FABFCB310@BL0PR02MB4898.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39850400004)(346002)(366004)(396003)(136003)(376002)(13464003)(189003)(199004)(305945005)(55016002)(26005)(66946007)(66476007)(52536014)(73956011)(2906002)(316002)(7736002)(54906003)(64756008)(7696005)(4326008)(66556008)(33656002)(6116002)(68736007)(186003)(9686003)(14444005)(256004)(99286004)(6436002)(3846002)(5660300002)(81166006)(66446008)(66066001)(81156014)(8936002)(8676002)(6916009)(107886003)(76116006)(6246003)(14454004)(446003)(25786009)(74316002)(486006)(53936002)(76176011)(86362001)(11346002)(71200400001)(71190400001)(102836004)(476003)(229853002)(478600001)(53546011)(6506007);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4898;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: xilinx.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: rCs73paD0sLPXdMctWKr9oYG76bXIrbpsm3a4CJUKfdJIz8V6twAJg8A3kQRIR3AXTN/et/RCG/ctlMiVILWLYNWcdJR+PGjbLK37U+qoveglkGPN7qQaBzGIpj6VY7WKpdCTnpoV/S/w+OEjetgKxJbGQUusF+9ldzqwV0RmYolgypG46iqgWx3Hxr7QGqqrMBUROsuuOdLIldtwAourAivp5sNUG2LLxofeXbUwgZQOJRdCQR5E0D4S6c2yeWuROWlAqXg+O8wAdk5E16AeoqtzudWm6hfldMZxNfW3Qgf0AAcDjOrECwST2+eXZ2Vhz9ZYsnvIiiTrWjuRs/qJ0tLwHpKsCuk/odRqeF7bbATYt1qIWHeoQN2thxI19GYXZN8evEmjRdO9Y8+3E0tjk6tclDd4JhfcCt4p+5oWvs=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726663AbfEGIwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:52:02 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:51234 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726998AbfEGIwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:52:00 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190507085158euoutp01ac791707cecb15fddfa938f44ddd4d27~cWomOAbHs0545705457euoutp01d
+        for <devicetree@vger.kernel.org>; Tue,  7 May 2019 08:51:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190507085158euoutp01ac791707cecb15fddfa938f44ddd4d27~cWomOAbHs0545705457euoutp01d
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557219118;
+        bh=hetYVOToJg0L8UX37YH89VTY9OyLVzGKnQVcgxs3fCs=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=enRXQFbkqTQ7wv5Icv15/kG8ltrg058kut/tHESagolQXMe1GXTJxW5EQ1lWVOH5U
+         KmEXWp9LNGt4gR4IYPIL/P8VG8w0mjC4mNTo5s/Msh5Y8qY/niaYuexxBMRacQRMAv
+         bt8mrDJ/tp9uQ0BnzHRops6UbFfRz9vWitkipxzE=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190507085157eucas1p13a10163bad5ffdf23b19d06f265281e2~cWolfNSeF2606426064eucas1p18;
+        Tue,  7 May 2019 08:51:57 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 9D.CF.04377.C2741DC5; Tue,  7
+        May 2019 09:51:56 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190507085156eucas1p18bf86f975316494ca113fb8277142d5d~cWokwCP7s2608326083eucas1p1R;
+        Tue,  7 May 2019 08:51:56 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190507085156eusmtrp168231ad756fde37810c7f65c3a97e2cc~cWokh1vAC2307323073eusmtrp1f;
+        Tue,  7 May 2019 08:51:56 +0000 (GMT)
+X-AuditID: cbfec7f4-12dff70000001119-1f-5cd1472c3e72
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 96.B2.04140.C2741DC5; Tue,  7
+        May 2019 09:51:56 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190507085155eusmtip14d97314f14b9d9cd177f7b8dbe9d5b18~cWojxjZQt1697216972eusmtip1i;
+        Tue,  7 May 2019 08:51:55 +0000 (GMT)
+Subject: Re: [PATCH v7 01/13] clk: samsung: add needed IDs for DMC clocks in
+ Exynos5420
+To:     Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <55e89fc7-6f22-b384-adbf-40c68618bdac@partner.samsung.com>
+Date:   Tue, 7 May 2019 10:51:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b1bdd10-0ce8-4b6a-226a-08d6d2c8ce24
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 08:48:41.1791
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4898
+In-Reply-To: <8b063f30-1a4d-3292-2e57-6e33e94d57ae@samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRj2O5edM3FyWqYvaWkrySKnScTXhW50mf3qV3QRculJJTdtRy1T
+        YiWUWWoplU5thYm6DFOnTX8kTtG8KxlGJmnazdQIp9QUqXkW+e95n/d5eJ8HXpaUT9Kr2Rht
+        Aq/TqmMVEleqrvV3T+CWI/1hwT+aMK7Kq6TxoO0LjY0tPTR++nMM4dyOIgJ33dLg7LHvJO7t
+        fc7g7muTDH7dUCjBM5ktCOf1viTws5ZhBg9dLZPg5skbNG4cOIqH5t3x3KuPaJ9cNTebQ6kK
+        9P2Uqt4wzKiqTTclqsy0aYkqy2xCqprOFNVM9dpj7CnX3ZF8bEwSrwvaE+4and5fysSX+Vz6
+        WfCG1qN5zwwkZYHbBvr0QpSBXFk5V4YgI7eNFgcbAktVnnMzg6D5moX8Z7n7q4MSF6UIespL
+        nJYpBC8sesKhWsmdBFORfcnuwRUjuFc+TzgGkntKwMLss78WlpVwSrCYLjgMMu4wtL9pohw0
+        xW0A00Sog17FnYAPrc9pUbIC2vPHKQeWcnth1PJkiSc5L3g3biRE7AtptQWk4xRw+SwMGkeQ
+        GPsglJXbCRGvhIk2MyNiH+jMvU2JWAB95mOnPhXGsoucml3Q3Na/FJnkNkFlQ5BI74eWsVrk
+        oIFzh7dTK8QI7pBT94AUaRmkX5eL6gAw3+5zBvCE0or7zB2kMCwrZlhWxrCsjOH/3UeIMiEv
+        PlHQRPFCiJa/qBTUGiFRG6WMiNNUo78/2LnYZrOghoWzVsSxSOEmu3OgL0xOq5OEZI0VAUsq
+        PGTqzz1hclmkOvkyr4s7o0uM5QUr8mYphZcsxWXktJyLUifw53k+ntf92xKsdLUeKV2ka0j/
+        hxX6gB2SUZ+TpcklVFqFL9Oxbr33OcHvvbwrlQg+3hfxNZIyCcZvBYRswHtOmh9qs/sPbtS2
+        fmpGqVlYar/cNFzbGIEO7TRPzxnfu1m3K4uHayJLttprzOGNgYsVbH2w7QQTsqjtTpI9QVby
+        SlWM4mpsnY9fuIISotVbN5M6Qf0HzN2T/H8DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPIsWRmVeSWpSXmKPExsVy+t/xu7o67hdjDE5t4rDYOGM9q8X1L89Z
+        LeYfOcdqsfrjY0aLyafmMlmc6c616H/8mtni/PkN7BZnm96wW1zeNYfN4nPvEUaLGef3MVms
+        PXKX3eJ24wo2i8Nv2lkt9l/xsrj9m8/i24lHjA5CHt++TmLxmN1wkcVj56y77B6bVnWyefQ2
+        v2Pz6NuyitFj8+lqj8+b5AI4ovRsivJLS1IVMvKLS2yVog0tjPQMLS30jEws9QyNzWOtjEyV
+        9O1sUlJzMstSi/TtEvQyOi4uZy9YIVPxcfZV1gbG32JdjJwcEgImEhN/nGLpYuTiEBJYyijx
+        +cM6NoiEmMSkfdvZIWxhiT/Xutggil4zSlz//40VJCEsECmxau4vRhBbRGAxo8TX1mqQImaB
+        1UwSkz5ugeqYwiRx8ulc5i5GDg42AT2JHasKQRp4BdwkTl49yAISZhFQkVj1yhMkLCoQIXHm
+        /QoWiBJBiZMzn4DZnAL2Eg93LAHbyyxgJjFv80NmCFtc4taT+UwQtrxE89bZzBMYhWYhaZ+F
+        pGUWkpZZSFoWMLKsYhRJLS3OTc8tNtIrTswtLs1L10vOz93ECIz8bcd+btnB2PUu+BCjAAej
+        Eg/vA9sLMUKsiWXFlbmHGCU4mJVEeBOfnYsR4k1JrKxKLcqPLyrNSS0+xGgK9NtEZinR5Hxg
+        UsoriTc0NTS3sDQ0NzY3NrNQEuftEDgYIySQnliSmp2aWpBaBNPHxMEp1cB4NrfxqXKh+M1C
+        5x3yEfm3o42NXr/euWBi4yubDvG2/AV3JE1euyYVWyVFTxTraPzvdUtZ8PenhLSjKYkNejMv
+        Lbov125wmEMh8Pvq7LQ3Mim7d07hm7Q1gZl7JbtKHvfFi+GMXyaLZyp4uNc8zl3EGWyW8iji
+        io3X0hpTxq1q6ve/7MspO6TEUpyRaKjFXFScCADylnyFEgMAAA==
+X-CMS-MailID: 20190507085156eucas1p18bf86f975316494ca113fb8277142d5d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190506151210eucas1p13c2a4b86a6f987ff34fbe1e2d705fbbf
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190506151210eucas1p13c2a4b86a6f987ff34fbe1e2d705fbbf
+References: <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190506151210eucas1p13c2a4b86a6f987ff34fbe1e2d705fbbf@eucas1p1.samsung.com>
+        <1557155521-30949-2-git-send-email-l.luba@partner.samsung.com>
+        <8b063f30-1a4d-3292-2e57-6e33e94d57ae@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Chanwoo,
 
+On 5/7/19 9:33 AM, Chanwoo Choi wrote:
+> Hi Lukasz,
+> 
+> On 19. 5. 7. 오전 12:11, Lukasz Luba wrote:
+>> Define new IDs for clocks used by Dynamic Memory Controller in
+>> Exynos5422 SoC.
+>>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   include/dt-bindings/clock/exynos5420.h | 28 ++++++++++++++++++++++------
+>>   1 file changed, 22 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/clock/exynos5420.h b/include/dt-bindings/clock/exynos5420.h
+>> index 355f469..bf50d8a 100644
+>> --- a/include/dt-bindings/clock/exynos5420.h
+>> +++ b/include/dt-bindings/clock/exynos5420.h
+>> @@ -60,6 +60,7 @@
+>>   #define CLK_MAU_EPLL		159
+>>   #define CLK_SCLK_HSIC_12M	160
+>>   #define CLK_SCLK_MPHY_IXTAL24	161
+>> +#define CLK_SCLK_BPLL		162
+>>   
+>>   /* gate clocks */
+>>   #define CLK_UART0		257
+>> @@ -195,6 +196,16 @@
+>>   #define CLK_ACLK432_CAM		518
+>>   #define CLK_ACLK_FL1550_CAM	519
+>>   #define CLK_ACLK550_CAM		520
+>> +#define CLK_CLKM_PHY0		521
+>> +#define CLK_CLKM_PHY1		522
+>> +#define CLK_ACLK_PPMU_DREX0_0	523
+>> +#define CLK_ACLK_PPMU_DREX0_1	524
+>> +#define CLK_ACLK_PPMU_DREX1_0	525
+>> +#define CLK_ACLK_PPMU_DREX1_1	526
+>> +#define CLK_PCLK_PPMU_DREX0_0	527
+>> +#define CLK_PCLK_PPMU_DREX0_1	528
+>> +#define CLK_PCLK_PPMU_DREX1_0	529
+>> +#define CLK_PCLK_PPMU_DREX1_1	530
+>>   
+>>   /* mux clocks */
+>>   #define CLK_MOUT_HDMI		640
+>> @@ -217,6 +228,8 @@
+>>   #define CLK_MOUT_EPLL		657
+>>   #define CLK_MOUT_MAU_EPLL	658
+>>   #define CLK_MOUT_USER_MAU_EPLL	659
+>> +#define CLK_MOUT_SCLK_SPLL	660
+>> +#define CLK_MOUT_MX_MSPLL_CCORE_PHY	661
+>>   
+>>   /* divider clocks */
+>>   #define CLK_DOUT_PIXEL		768
+>> @@ -243,13 +256,16 @@
+>>   #define CLK_DOUT_ACLK300_GSCL	789
+>>   #define CLK_DOUT_ACLK400_DISP1	790
+>>   #define CLK_DOUT_PCLK_CDREX	791
+>> -#define CLK_DOUT_SCLK_CDREX	792
+>> -#define CLK_DOUT_ACLK_CDREX1	793
+>> -#define CLK_DOUT_CCLK_DREX0	794
+>> -#define CLK_DOUT_CLK2X_PHY0	795
+>> -#define CLK_DOUT_PCLK_CORE_MEM	796
+> 
+> The your previous patch didn't change the id number
+> of already exiting clocks. It cause the fault.
+> In order to keep the compatibility, you keep
+> the original id number without modification.
+True, the previous patch didn't change these IDs.
+I have not seen any faults during builds and stress tests, though.
+> 
+> Please don't change the id number of the existing clocks
+> and then just add the new clocks.
+OK, I will add CLK_DOUT_PCLK_DREX0	and CLK_DOUT_PCLK_DREX1
+at the end:
+------------------>8--------------------------
+@@ -248,8 +261,11 @@
+  #define CLK_DOUT_CCLK_DREX0    794
+  #define CLK_DOUT_CLK2X_PHY0    795
+  #define CLK_DOUT_PCLK_CORE_MEM 796
++#define CLK_FF_DOUT_SPLL2      797
++#define CLK_DOUT_PCLK_DREX0    798
++#define CLK_DOUT_PCLK_DREX1    799
 
-> -----Original Message-----
-> From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> Sent: Monday 6 May 2019 13:34
-> To: Dragan Cvetic <draganc@xilinx.com>
-> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
-sts.infradead.org; robh+dt@kernel.org;
-> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
-l.org; Derek Kiernan <dkiernan@xilinx.com>
-> Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
->=20
-> On Mon, May 06, 2019 at 12:23:56PM +0000, Dragan Cvetic wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > Sent: Saturday 4 May 2019 08:55
-> > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kerne=
-l@lists.infradead.org; robh+dt@kernel.org;
-> > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.k=
-ernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-> > >
-> > > On Fri, May 03, 2019 at 04:41:21PM +0000, Dragan Cvetic wrote:
-> > > > Hi Greg,
-> > > >
-> > > > Please find my inline comments below,
-> > > >
-> > > > Regards
-> > > > Dragan
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > > > Sent: Thursday 2 May 2019 18:20
-> > > > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-k=
-ernel@lists.infradead.org; robh+dt@kernel.org;
-> > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vg=
-er.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-> > > > >
-> > > > > On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic wrote:
-> > > > > > +#define DRIVER_NAME "xilinx_sdfec"
-> > > > > > +#define DRIVER_VERSION "0.3"
-> > > > >
-> > > > > Version means nothing with the driver in the kernel tree, please =
-remove
-> > > > > it.
-> > > >
-> > > > Will be removed. Thank you.
-> > > >
-> > > > >
-> > > > > > +#define DRIVER_MAX_DEV BIT(MINORBITS)
-> > > > >
-> > > > > Why this number?  Why limit yourself to any number?
-> > > > >
-> > > >
-> > > > There can be max 8 devices for this driver. I'll change to 8.
-> > > >
-> > > > > > +
-> > > > > > +static struct class *xsdfec_class;
-> > > > >
-> > > > > Do you really need your own class?
-> > > >
-> > > > When writing a character device driver, my goal is to create and re=
-gister an instance
-> > > > of that structure associated with a struct file_operations, exposin=
-g a set of operations
-> > > > to the user-space. One of the steps to make this goal is Create a c=
-lass for a devices,
-> > > > visible in /sys/class/.
-> > >
-> > > Why do you need a class?  Again, why not just use the misc_device api=
-,
-> > > that seems much more relevant here and will make the code a lot simpl=
-er.
-> > >
-> >
-> > The driver can have 8 devices in SoC plus more in Programming Logic.
-> > It looked logical to group them under the same MAJOR, although they
-> > are independent of each other.  Is this argument strong enough to use
-> > class?
->=20
-> Not really :)
->=20
-> 8 devices is pretty small.  What tool will be trying to talk to all of
-> these devices and how was it going to find out what devices were in the
-> system?
->
+  /* must be greater than maximal clock id */
+-#define CLK_NR_CLKS            797
++#define CLK_NR_CLKS            800
+-----------------8<---------------------------
 
-These devices are Forward Error Correction encoder/decoder
-and will be part of the RF communication chain. They will be included
-in the system through DT. Also, described in DT.
-  =20
+Can I add your ack in the modified version?
 
-> thanks,
->=20
-> greg k-h
+Regards,
+Lukasz
+> 
+> 
+>> +#define CLK_DOUT_PCLK_DREX0	792
+>> +#define CLK_DOUT_PCLK_DREX1	793
+>> +#define CLK_DOUT_SCLK_CDREX	794
+>> +#define CLK_DOUT_ACLK_CDREX1	795
+>> +#define CLK_DOUT_CCLK_DREX0	796
+>> +#define CLK_DOUT_CLK2X_PHY0	797
+>> +#define CLK_DOUT_PCLK_CORE_MEM	798
+>> +#define CLK_FF_DOUT_SPLL2	799
+>>   
+>>   /* must be greater than maximal clock id */
+>> -#define CLK_NR_CLKS		797
+>> +#define CLK_NR_CLKS		800
+>>   
+>>   #endif /* _DT_BINDINGS_CLOCK_EXYNOS_5420_H */
+>>
+> 
