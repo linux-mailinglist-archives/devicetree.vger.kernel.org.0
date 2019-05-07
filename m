@@ -2,121 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A85991633B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 13:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A0A16348
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 14:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726682AbfEGL5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 07:57:47 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35912 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726685AbfEGL5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 07:57:36 -0400
-Received: by mail-wr1-f67.google.com with SMTP id o4so21954963wra.3
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 04:57:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1rHCx6L3GXgpLSY85OBaF3yHPOjpl8Cwfh6FO8D2O4I=;
-        b=ZWz8Ne1bpYs9dwxkTuB7UuqVVop0CvuA6m7QtVT8rMJydQmuiN0iEFu30bYGtnRZgb
-         OxZ4kIt8i2PKuPs97ocwBqQ8mVNGjIeGHXBa26X2PmmNBwAb2nNldL2uigf76+mGp/YG
-         JG5I10GW7ZDutGdJxdpPyrKdtUu7/j30CY0DOJANXkwvWuXHY2IxNuMDfbx3YHZqos61
-         GqtHRvNESm0D1M7y6CxMxZAvz+Sa1eoHoRNrJ2GvXw2XFETwLM8mDBM5JdHPptLe3MfJ
-         ah9zKSzhIlaybeaXTlWJOSf89aZpRVftDNiLERlgJzO91gkEloeXdZiydTfoC5PNVEtQ
-         TM2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=1rHCx6L3GXgpLSY85OBaF3yHPOjpl8Cwfh6FO8D2O4I=;
-        b=c7OUpQkdmIBdyj2o1rTvkYfMfjZAnrN/DPNw5HNZh8QYTkDDhMf4BEGR+V3mFvj5Xe
-         JjkK59FEhKlOl2ionxuzM5VeXkQjoIP9Hx35nJR83fKHc3MneaFUPAIphl5i6acRL3BM
-         C3YaQ/G+bYDLp1lq8Yza4sb/HYHvOOoG9Y7D76Gvun4x5u/0ScH26krqlG46fuPyocKA
-         /RWdn+YxAiLpdVDFmcGDvyae1uvJF1edm2YQUcspL0w/flzV1yTw3uNGdKe+s50YNsVr
-         7o1r+UZ7GaO3NXLYLZvxblYtIBxFHP+/3bvbEB0YfXfgiabXBFddcoMH/j81e4QB3/n2
-         H4/g==
-X-Gm-Message-State: APjAAAXqjB2rSqg1fkWMsRJgIKXvGZhPYpezkKLAIRnkdI+8G/FBbc8n
-        4nJZ+Rp8xiD4yGbLj8unyhzBrA==
-X-Google-Smtp-Source: APXvYqxtuwhQYKKyA7f4ToySm0WEeeU5OY1VRRVJPndZ8+M+fJBt3j4+IzmJcv5g2FbvKSe8xYt5VQ==
-X-Received: by 2002:a5d:53c8:: with SMTP id a8mr8778721wrw.152.1557230254753;
-        Tue, 07 May 2019 04:57:34 -0700 (PDT)
-Received: from glaroque-ThinkPad-T480.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s11sm7120274wrb.71.2019.05.07.04.57.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 04:57:34 -0700 (PDT)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        khilman@baylibre.com
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] pinctrl: meson: g12a: add DS bank value
-Date:   Tue,  7 May 2019 13:57:26 +0200
-Message-Id: <20190507115726.23714-7-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190507115726.23714-1-glaroque@baylibre.com>
-References: <20190507115726.23714-1-glaroque@baylibre.com>
+        id S1726404AbfEGMAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 08:00:45 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:36890 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726322AbfEGMAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 08:00:45 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id ED58A608FC; Tue,  7 May 2019 12:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557230443;
+        bh=7LyD1gBqN0kjp5dHRT6VDikLnE48o7JdS1Yn4I9ZtHY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=d4OL75wRoVSb6M9pN0nitiKBWtK+cjDuY3gAHX69Gqc+Gq1NUgq5TA2NVEtd07Dbu
+         6c9W7iBlO7Zpg4SXTf8DLGn9wtKfB8sxbUwCe5hPLVJn0of9yUlPVVnhhOQtwzk6JB
+         /w+hp3Pc2venHHUnAJrglUin98Llgz5yshHngaAc=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.79.40.96] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 107FA60128;
+        Tue,  7 May 2019 12:00:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557230442;
+        bh=7LyD1gBqN0kjp5dHRT6VDikLnE48o7JdS1Yn4I9ZtHY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=gHRJChjdfN2YS9cDmAfJRoj+16Rw/SmlOOa+CHLl13za3Qz2xq54rb6VIp8hihMnq
+         vEed2Js/FrFMbKcW3iyIcHITAfhCh8WqxLDdMIzcVBgTm/v5vGRdo0OOD44ZNz2GL5
+         QB08MqmFXUmSvpn0nPV2T9HsBbBAUFm5N+sXpGQA=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 107FA60128
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
+Subject: Re: [PATCH v2 2/5] interconnect: Add of_icc_get_by_index() helper
+ function
+To:     Georgi Djakov <georgi.djakov@linaro.org>, vireshk@kernel.org,
+        sboyd@kernel.org, nm@ti.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, rjw@rjwysocki.net
+Cc:     jcrouse@codeaurora.org, vincent.guittot@linaro.org,
+        bjorn.andersson@linaro.org, amit.kucheria@linaro.org,
+        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
+        evgreen@chromium.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20190423132823.7915-1-georgi.djakov@linaro.org>
+ <20190423132823.7915-3-georgi.djakov@linaro.org>
+From:   Sibi Sankar <sibis@codeaurora.org>
+Message-ID: <e6469e3b-3653-d20b-b27d-242547a777df@codeaurora.org>
+Date:   Tue, 7 May 2019 17:29:40 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190423132823.7915-3-georgi.djakov@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add drive-strength bank register and bit value for G12A SoC
+Hey Georgi,
 
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- drivers/pinctrl/meson/pinctrl-meson-g12a.c | 36 +++++++++++-----------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+On 4/23/19 6:58 PM, Georgi Djakov wrote:
+> This is the same as the traditional of_icc_get() function, but the
+> difference is that it takes index as an argument, instead of name.
+> 
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> ---
+>   drivers/interconnect/core.c  | 45 ++++++++++++++++++++++++++++--------
+>   include/linux/interconnect.h |  6 +++++
+>   2 files changed, 41 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
+> index 871eb4bc4efc..a7c3c262c974 100644
+> --- a/drivers/interconnect/core.c
+> +++ b/drivers/interconnect/core.c
+> @@ -295,9 +295,9 @@ static struct icc_node *of_icc_get_from_provider(struct of_phandle_args *spec)
+>   }
+>   
+>   /**
+> - * of_icc_get() - get a path handle from a DT node based on name
+> + * of_icc_get_by_index() - get a path handle from a DT node based on index
+>    * @dev: device pointer for the consumer device
+> - * @name: interconnect path name
+> + * @idx: interconnect path index
+>    *
+>    * This function will search for a path between two endpoints and return an
+>    * icc_path handle on success. Use icc_put() to release constraints when they
+> @@ -309,13 +309,12 @@ static struct icc_node *of_icc_get_from_provider(struct of_phandle_args *spec)
+>    * Return: icc_path pointer on success or ERR_PTR() on error. NULL is returned
+>    * when the API is disabled or the "interconnects" DT property is missing.
+>    */
+> -struct icc_path *of_icc_get(struct device *dev, const char *name)
+> +struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
+>   {
+>   	struct icc_path *path = ERR_PTR(-EPROBE_DEFER);
+>   	struct icc_node *src_node, *dst_node;
+>   	struct device_node *np = NULL;
+>   	struct of_phandle_args src_args, dst_args;
+> -	int idx = 0;
+>   	int ret;
+>   
+>   	if (!dev || !dev->of_node)
+> @@ -335,12 +334,6 @@ struct icc_path *of_icc_get(struct device *dev, const char *name)
+>   	 * lets support only global ids and extend this in the future if needed
+>   	 * without breaking DT compatibility.
+>   	 */
+> -	if (name) {
+> -		idx = of_property_match_string(np, "interconnect-names", name);
+> -		if (idx < 0)
+> -			return ERR_PTR(idx);
+> -	}
+> -
+>   	ret = of_parse_phandle_with_args(np, "interconnects",
+>   					 "#interconnect-cells", idx * 2,
+>   					 &src_args);
+> @@ -383,6 +376,38 @@ struct icc_path *of_icc_get(struct device *dev, const char *name)
+>   
+>   	return path;
+>   }
+> +
+> +/**
+> + * of_icc_get() - get a path handle from a DT node based on name
+> + * @dev: device pointer for the consumer device
+> + * @name: interconnect path name
+> + *
+> + * This function will search for a path between two endpoints and return an
+> + * icc_path handle on success. Use icc_put() to release constraints when they
+> + * are not needed anymore.
+> + * If the interconnect API is disabled, NULL is returned and the consumer
+> + * drivers will still build. Drivers are free to handle this specifically,
+> + * but they don't have to.
+> + *
+> + * Return: icc_path pointer on success or ERR_PTR() on error. NULL is returned
+> + * when the API is disabled or the "interconnects" DT property is missing.
+> + */
+> +struct icc_path *of_icc_get(struct device *dev, const char *name)
+> +{
+> +	int idx = 0;
+> +
+> +	if (!dev || !dev->of_node)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	if (name) {
+> +		idx = of_property_match_string(dev->of_node,
+> +					       "interconnect-names", name);
+> +		if (idx < 0)
+> +			return ERR_PTR(idx);
+> +	}
+> +
+> +	return of_icc_get_by_index(dev, idx);
+> +}
+>   EXPORT_SYMBOL_GPL(of_icc_get);
+>   
+>   /**
+> diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
+> index dc25864755ba..0e430b3b6519 100644
+> --- a/include/linux/interconnect.h
+> +++ b/include/linux/interconnect.h
+> @@ -28,6 +28,7 @@ struct device;
+>   struct icc_path *icc_get(struct device *dev, const int src_id,
+>   			 const int dst_id);
+>   struct icc_path *of_icc_get(struct device *dev, const char *name);
+> +struct icc_path *of_icc_get_by_index(struct device *dev, int idx);
+>   void icc_put(struct icc_path *path);
+>   int icc_set_bw(struct icc_path *path, u32 avg_bw, u32 peak_bw);
+>   
+> @@ -45,6 +46,11 @@ static inline struct icc_path *of_icc_get(struct device *dev,
+>   	return NULL;
+>   }
+>   
+> +struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-index d494492e98e9..3475cd7bd2af 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-@@ -1304,28 +1304,28 @@ static struct meson_pmx_func meson_g12a_aobus_functions[] = {
- };
- 
- static struct meson_bank meson_g12a_periphs_banks[] = {
--	/* name  first  last  irq  pullen  pull  dir  out  in */
--	BANK("Z",    GPIOZ_0,    GPIOZ_15, 12, 27,
--	     4,  0,  4,  0,  12,  0,  13, 0,  14, 0),
--	BANK("H",    GPIOH_0,    GPIOH_8, 28, 36,
--	     3,  0,  3,  0,  9,  0,  10,  0,  11,  0),
--	BANK("BOOT", BOOT_0,     BOOT_15,  37, 52,
--	     0,  0,  0,  0,  0, 0,  1, 0,  2, 0),
--	BANK("C",    GPIOC_0,    GPIOC_7,  53, 60,
--	     1,  0,  1,  0,  3, 0,  4, 0,  5, 0),
--	BANK("A",    GPIOA_0,    GPIOA_15,  61, 76,
--	     5,  0,  5,  0,  16,  0,  17,  0,  18,  0),
--	BANK("X",    GPIOX_0,    GPIOX_19,   77, 96,
--	     2,  0,  2,  0,  6,  0,  7,  0,  8,  0),
-+	/* name  first  last  irq  pullen  pull  dir  out  in  ds */
-+	BANK_DS("Z",    GPIOZ_0,    GPIOZ_15, 12, 27,
-+		4,  0,  4,  0,  12,  0,  13, 0,  14, 0, 5, 0),
-+	BANK_DS("H",    GPIOH_0,    GPIOH_8, 28, 36,
-+		3,  0,  3,  0,  9,  0,  10,  0,  11,  0, 4, 0),
-+	BANK_DS("BOOT", BOOT_0,     BOOT_15,  37, 52,
-+		0,  0,  0,  0,  0, 0,  1, 0,  2, 0, 0, 0),
-+	BANK_DS("C",    GPIOC_0,    GPIOC_7,  53, 60,
-+		1,  0,  1,  0,  3, 0,  4, 0,  5, 0, 1, 0),
-+	BANK_DS("A",    GPIOA_0,    GPIOA_15,  61, 76,
-+		5,  0,  5,  0,  16,  0,  17,  0,  18,  0, 6, 0),
-+	BANK_DS("X",    GPIOX_0,    GPIOX_19,   77, 96,
-+		2,  0,  2,  0,  6,  0,  7,  0,  8,  0, 2, 0),
- };
- 
- static struct meson_bank meson_g12a_aobus_banks[] = {
--	/* name  first  last  irq  pullen  pull  dir  out  in  */
--	BANK("AO",   GPIOAO_0,  GPIOAO_11,  0, 11,
--	     3,  0,  2, 0,  0,  0,  4, 0,  1,  0),
-+	/* name  first  last  irq  pullen  pull  dir  out  in  ds */
-+	BANK_DS("AO", GPIOAO_0, GPIOAO_11, 0, 11, 3, 0, 2, 0, 0, 0, 4, 0, 1, 0,
-+		0, 0),
- 	/* GPIOE actually located in the AO bank */
--	BANK("E",   GPIOE_0,  GPIOE_2,   97, 99,
--	     3,  16,  2, 16,  0,  16,  4, 16,  1,  16),
-+	BANK_DS("E", GPIOE_0, GPIOE_2, 97, 99, 3, 16, 2, 16, 0, 16, 4, 16, 1,
-+		16, 1, 0),
- };
- 
- static struct meson_pmx_bank meson_g12a_periphs_pmx_banks[] = {
+This should be static inline instead
+
+> +{
+> +	return NULL;
+> +}
+> +
+>   static inline void icc_put(struct icc_path *path)
+>   {
+>   }
+> 
+
 -- 
-2.17.1
-
+Qualcomm Innovation Center, Inc.
+Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
