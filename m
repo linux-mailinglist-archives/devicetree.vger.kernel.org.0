@@ -2,135 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6F515F79
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D6715F7F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726368AbfEGIhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:37:46 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:56982 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726362AbfEGIhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:37:45 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x478bVuW127250;
-        Tue, 7 May 2019 03:37:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1557218251;
-        bh=1FjG3j/GZXNf0sBrxxtjLhI9p1BMMNmge5pQT42QF1U=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=mvgjb4ePzxMp5mETNWkP7zsfEmppIco1QwlwsaU5kTDf/eVcGLQFht2sbXSuzQtqX
-         B/NiwHuBsAjTi2h2VLJU5ZyOoq9OcMUFhgBmUo/iRg0BlobEtAFJt2R6ZovGVvaDkh
-         WIM0HcK5nx4bHprUGkiTwXZheZS4oDnZU/fsROds=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x478bVh5097764
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 May 2019 03:37:31 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 7 May
- 2019 03:37:30 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 7 May 2019 03:37:30 -0500
-Received: from [192.168.2.10] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x478bRVX095908;
-        Tue, 7 May 2019 03:37:27 -0500
-Subject: Re: [PATCH 07/16] dmaengine: Add function to request slave channel
- from a dma_device
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
-        <ssantosh@kernel.org>
-CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <t-kristo@ti.com>, <tony@atomide.com>
-References: <20190506123456.6777-1-peter.ujfalusi@ti.com>
- <20190506123456.6777-8-peter.ujfalusi@ti.com>
-Message-ID: <89b2ded6-f1f5-dda5-9ae4-d94bcf4c041f@ti.com>
-Date:   Tue, 7 May 2019 11:37:33 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        id S1726276AbfEGIiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:38:01 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:39640 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726362AbfEGIiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:38:01 -0400
+Received: by mail-lf1-f65.google.com with SMTP id z124so5042926lfd.6
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 01:37:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=H56LWvRoJenj3gjF/AqdoHfS2q4UJwGAV40zvmjB1F8=;
+        b=WSNc9E++2ZiSjXAwx0aZUTX1qfObMgJ5OvXyTboldnayvobrppJPm2DoAuOCJSoVxP
+         lp6fi37TUkNRefBszMSbd+q5cxChgY8axLrLpYqv/UNNNfWqW1rcc5pTQwS3grcac4C/
+         7I3w6IC9C4LVzgrgcNdbntSiGg6N7CxqhH8btge6Dh0v8krPz9HUywLJ433+dFPhUDBN
+         ODlTR+K6Wrdoj+Oy5t4hL0NqRtADW6vdSHfANl3fGXNd9ux+tS1gR/AMfZSITiJ9TpIb
+         70O8xMkZi/VrnlHVzWOwIlTeaCvlIkgSUfSZ/d0aPDlt8Y4P9bmfn9wbT0RXBBJH1RVU
+         isbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=H56LWvRoJenj3gjF/AqdoHfS2q4UJwGAV40zvmjB1F8=;
+        b=UGDKtQjuG0dPXY2C3g7D2qM7iF+bYIAYcXGCvg111BKSXivgJOKC/SN3U0sixewWVT
+         3OCtexCJNegAZW+n+UGQDbZdO7nXUYLmx23O74OesgmHXt8nsCvgBvyVPtwZNE2LgHIf
+         mTTqUesmzU6dPv0Y9KhafhEa4DlBv/8sQZPTA4pWEhPIU2VeVksffwVeGJgVuNefc5xm
+         1/SdaMxpXtCsSFTpuw149cVebnYPTnrhMb4Dr7R8VWyO/Ld79r+uQ3XF6WYkH/v7zm8G
+         kU0MgO5FIwMEN0b6JSJ861aFugXIHRzhGP+zuuw6WjqIC7JKyMUkQiGZ2Mt7x+RUBliU
+         s3PA==
+X-Gm-Message-State: APjAAAX/gsKRDRwKMAgmvA5Vzafs7G+w88xdDRRGn9VQpUPe4yYwy35n
+        VMWOgtR1ePHbhg+1vPIbUykhOw==
+X-Google-Smtp-Source: APXvYqwy2oWfRQEzrfzKXkmx3BByGTTvYGOnGz9B/N3HP9OzEfVDwRmTfl8W5mkaDsKD6t0VlSuymw==
+X-Received: by 2002:ac2:42d5:: with SMTP id n21mr11557068lfl.162.1557218279099;
+        Tue, 07 May 2019 01:37:59 -0700 (PDT)
+Received: from [192.168.0.199] ([31.173.80.92])
+        by smtp.gmail.com with ESMTPSA id r8sm1168087lfp.55.2019.05.07.01.37.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 May 2019 01:37:58 -0700 (PDT)
+Subject: Re: [PATCH 02/10] dt-bindings: rcar-gen3-phy-usb2: Document
+ uses_usb_x1
+To:     Chris Brandt <chris.brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-3-chris.brandt@renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <b3c3e21d-35aa-d222-e8d4-e5f63286044e@cogentembedded.com>
+Date:   Tue, 7 May 2019 11:37:53 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190506123456.6777-8-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20190506234631.113226-3-chris.brandt@renesas.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello!
 
+On 07.05.2019 2:46, Chris Brandt wrote:
 
-On 06/05/2019 15.34, Peter Ujfalusi wrote:
-> dma_get_any_slave_channel() would skip using the filter function, which
-> in some cases needed to be executed before the alloc_chan_resources
-> callback to make sure that all parameters are provided for the slave
-> channel.
-
-This can be dropped in favor of
-https://patchwork.kernel.org/patch/10932299/
-from Baolin Wangm and using __dma_request_channel() in the k3-udma driver.
-
-- Péter
-
+> Document the optional renesas,uses_usb_x1 property.
 > 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
 > ---
->  drivers/dma/dmaengine.c   | 7 ++++---
->  include/linux/dmaengine.h | 5 ++++-
->  2 files changed, 8 insertions(+), 4 deletions(-)
+>   Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/dma/dmaengine.c b/drivers/dma/dmaengine.c
-> index 8eed5ff0fc01..7ec93be12088 100644
-> --- a/drivers/dma/dmaengine.c
-> +++ b/drivers/dma/dmaengine.c
-> @@ -617,7 +617,8 @@ struct dma_chan *dma_get_slave_channel(struct dma_chan *chan)
->  }
->  EXPORT_SYMBOL_GPL(dma_get_slave_channel);
->  
-> -struct dma_chan *dma_get_any_slave_channel(struct dma_device *device)
-> +struct dma_chan *dmadev_get_slave_channel(struct dma_device *device,
-> +					  dma_filter_fn fn, void *fn_param)
->  {
->  	dma_cap_mask_t mask;
->  	struct dma_chan *chan;
-> @@ -628,13 +629,13 @@ struct dma_chan *dma_get_any_slave_channel(struct dma_device *device)
->  	/* lock against __dma_request_channel */
->  	mutex_lock(&dma_list_mutex);
->  
-> -	chan = find_candidate(device, &mask, NULL, NULL);
-> +	chan = find_candidate(device, &mask, fn, fn_param);
->  
->  	mutex_unlock(&dma_list_mutex);
->  
->  	return IS_ERR(chan) ? NULL : chan;
->  }
-> -EXPORT_SYMBOL_GPL(dma_get_any_slave_channel);
-> +EXPORT_SYMBOL_GPL(dmadev_get_slave_channel);
->  
->  /**
->   * __dma_request_channel - try to allocate an exclusive channel
-> diff --git a/include/linux/dmaengine.h b/include/linux/dmaengine.h
-> index c1486564a314..4774b66f2064 100644
-> --- a/include/linux/dmaengine.h
-> +++ b/include/linux/dmaengine.h
-> @@ -1541,7 +1541,10 @@ int dmaenginem_async_device_register(struct dma_device *device);
->  void dma_async_device_unregister(struct dma_device *device);
->  void dma_run_dependencies(struct dma_async_tx_descriptor *tx);
->  struct dma_chan *dma_get_slave_channel(struct dma_chan *chan);
-> -struct dma_chan *dma_get_any_slave_channel(struct dma_device *device);
-> +struct dma_chan *dmadev_get_slave_channel(struct dma_device *device,
-> +					  dma_filter_fn fn, void *fn_param);
-> +#define dma_get_any_slave_channel(device) \
-> +	dmadev_get_slave_channel(device, NULL, NULL)
->  #define dma_request_channel(mask, x, y) __dma_request_channel(&(mask), x, y)
->  #define dma_request_slave_channel_compat(mask, x, y, dev, name) \
->  	__dma_request_slave_channel_compat(&(mask), x, y, dev, name)
-> 
+> diff --git a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> index d46188f450bf..26bf377102d3 100644
+> --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> @@ -46,6 +46,8 @@ channel as USB OTG:
+>   	       regulator will be managed during the PHY power on/off sequence.
+>   - renesas,no-otg-pins: boolean, specify when a board does not provide proper
+>   		       otg pins.
+> +- renesas,use_usb_x1: boolean, the dedicated 48MHz crystal inputs USB_X1 are
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+    Hyphens are preferred to underscores in the DT property names.
+
+> +                      used for the PLL source
+>   
+>   Example (R-Car H3):
+
+MBR, Sergei
+
