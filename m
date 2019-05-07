@@ -2,176 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6297D1601B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6BE1603E
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726446AbfEGJFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 05:05:38 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:57245 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbfEGJFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 05:05:38 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190507090536euoutp0153b7fb28e552764bd2b6622ad1502c40~cW0gQHLUv1317513175euoutp01A
-        for <devicetree@vger.kernel.org>; Tue,  7 May 2019 09:05:36 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190507090536euoutp0153b7fb28e552764bd2b6622ad1502c40~cW0gQHLUv1317513175euoutp01A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1557219936;
-        bh=Ukf+FLcqAF3cEVXKTbQFGjd2gzyerf+1cQvBi47rjTU=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=oESQ57Q+uc54HIJ91fJzUQOwmfe0jjkbA2i3J5cuHk6Vp8QkhbcY+ti7BUCe6fZ8J
-         VGd4XJUBYHe9vEaGGMPfqd8BHEET9uH1uyOxPztvC+DHLJM1n/t+ZVkjNBjoux3xt/
-         QyifCw8f1I4nDILwUonTV5/osasGLhNQbQuXFGyE=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190507090535eucas1p1eeff1030a0df912b00643c9273cc6d72~cW0fM8Bm23257032570eucas1p1p;
-        Tue,  7 May 2019 09:05:35 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id EA.90.04325.E5A41DC5; Tue,  7
-        May 2019 10:05:34 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190507090534eucas1p2f6624c19f0c2d2b084bddcc72d544a60~cW0eVsZMY2656426564eucas1p2P;
-        Tue,  7 May 2019 09:05:34 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190507090533eusmtrp1aefae86a1bd5f3855c85ddf8ff2df8ff~cW0eHdzcR3169331693eusmtrp14;
-        Tue,  7 May 2019 09:05:33 +0000 (GMT)
-X-AuditID: cbfec7f5-b75ff700000010e5-5e-5cd14a5ed4c8
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id E9.35.04140.D5A41DC5; Tue,  7
-        May 2019 10:05:33 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190507090533eusmtip20d4a7dacfddd5212fbd5671d0e54bc67~cW0ddmHD72340623406eusmtip2D;
-        Tue,  7 May 2019 09:05:33 +0000 (GMT)
-Subject: Re: [PATCH v3 3/4] Documentation: devicetree: add PPMU events
- description
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, willy.mh.wolff.ml@gmail.com
-Message-ID: <3d221027-292b-7d0d-2510-f230a81f4b52@partner.samsung.com>
-Date:   Tue, 7 May 2019 11:05:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
+        id S1726327AbfEGJOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 05:14:51 -0400
+Received: from mx.socionext.com ([202.248.49.38]:3463 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726291AbfEGJOu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 05:14:50 -0400
+Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 07 May 2019 18:14:48 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 1ACBF180B47;
+        Tue,  7 May 2019 18:14:49 +0900 (JST)
+Received: from 10.213.24.1 (10.213.24.1) by m-FILTER with ESMTP; Tue, 7 May 2019 18:14:49 +0900
+Received: from SOC-EX02V.e01.socionext.com (10.213.24.22) by
+ SOC-EX03V.e01.socionext.com (10.213.24.23) with Microsoft SMTP Server (TLS)
+ id 15.0.995.29; Tue, 7 May 2019 18:14:48 +0900
+Received: from SOC-EX02V.e01.socionext.com ([10.213.25.22]) by
+ SOC-EX02V.e01.socionext.com ([10.213.25.22]) with mapi id 15.00.0995.028;
+ Tue, 7 May 2019 18:14:48 +0900
+From:   <orito.takao@socionext.com>
+To:     <ulf.hansson@linaro.org>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <masami.hiramatsu@linaro.org>,
+        <jaswinder.singh@linaro.org>, <sugaya.taichi@socionext.com>,
+        <kasai.kazuhiro@socionext.com>, <kanematsu.shinji@socionext.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: add DT bindings for Milbeaut SD
+ controller
+Thread-Topic: [PATCH 1/2] dt-bindings: mmc: add DT bindings for Milbeaut SD
+ controller
+Thread-Index: AQHU+9RXOLUG4XsvaU+oK6YWULWxq6ZSXNwAgAx/PYA=
+Date:   Tue, 7 May 2019 09:14:47 +0000
+Message-ID: <20190507181439.9D74.F0D17A80@socionext.com>
+References: <1556244392-15822-1-git-send-email-orito.takao@socionext.com>
+ <CAPDyKFouv1MDJXwDryqhC=X4mLycoAigB3x6Xee09U+QNGTa-Q@mail.gmail.com>
+In-Reply-To: <CAPDyKFouv1MDJXwDryqhC=X4mLycoAigB3x6Xee09U+QNGTa-Q@mail.gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Becky! ver. 2.74.02 [ja] (Unregistered)
+x-originating-ip: [10.213.24.1]
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-ID: <4B9D2BC15922934897589C9947C4EF2C@socionext.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-In-Reply-To: <97277857-666d-7720-9d85-19120c977682@partner.samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUhTURjGPbu7u9fV5DgrXyqKRmIJzbKIS99F1IqooJA+pFp50dG2bFdd
-        X5AWZJpLUzAbliWZ08yPKWqSS1S0stqWYJFf6VZWumJsBaFWzrvI/573eX7nnPeBQxPSHnIu
-        rdImsjqtUi0TiYV17b+sy47stMcsH2lcxlTnV5LMW+8wyRS2vSaZLMcIwVitVRTz6tIoxZgd
-        3STT1VggYjyGNsTkWy0C5lFbH8UUv7ULmJ5Uk4j586SBYlpH00jm57MhtAkryu+UI8VjYx+l
-        MJelixQ19y8qrteWIYXHvGCv6JB4XSyrViWzusgNx8TxTUX5goSxoDPXClJRCkqfmYECacCr
-        oP5BFpGBxLQUmxB8cT0R8YMXwf1BD8UPHgTO/HT070ha3m9/UIKgdcAj5AcXgvHv7ZSPCsH7
-        oaK/e1LTtAjLoaHstM+ehRfB2JU80scT+CUJNmOa0BdI8DZorpggfFqIF4PD3jt1z2x8AAba
-        q0ieCYbnt5xTfCDeDiOFT6d8AofCe2ehgNcLod5VMFUIcCoNX8xu/9pboa46Q8jrEPjaUUvx
-        ej505mb6fQ5SDPf8/AVwZN32M2uhtcNO+soQeClUNkby9maoMU0gnw04CN65gvkVgiCn7ibB
-        2xK4ekXK00ugNtMm4PUcKCnPo7KRzDitmHFaGeO0Msb/795FwjIUyiZxmjiWW6ll9XJOqeGS
-        tHHyE6c0ZjT55Tp/d/xoQJbx4y0I00g2U5K9xRYjJZXJ3FlNCwKakM2SKD+9jpFKYpVnz7G6
-        U0d1SWqWa0HzaKEsVHI+4MNhKY5TJrInWTaB1f1LBXTg3BQkn3jzKj7cud5iOHc5LG+PXmMa
-        V2/sstT1OZszPpbaTEWbdxU1kdFa447iBS92dw6FR98QlO5T1AREub0zAvSfB6PWxOb2rgg2
-        eHM25Ri8G+5t7VGpqiv6V9vFB+9+u+y+sCvC9DBs2F3q0RQG7NzdL9N/bdVE3Mp0rLUFk39q
-        5TIhF69cEUHoOOVf0QlhiG4DAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRmVeSWpSXmKPExsVy+t/xe7qxXhdjDI6eNrXYOGM9q8X1L89Z
-        LeYfOcdq0f/4NbPF+fMb2C3ONr1ht9j0+BqrxeVdc9gsPvceYbSYcX4fk8XaI3fZLZZev8hk
-        cbtxBZvF/z072C0Ov2lntfh24hGjg4DHmnlrGD12zrrL7rFpVSebx+Yl9R59W1YxenzeJBfA
-        FqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRvl6CXsXfR
-        DKaC33wV3XMaGRsYO3m6GDk5JARMJNqn/WPvYuTiEBJYyihx5+N9ZoiEmMSkfdvZIWxhiT/X
-        uthAbCGB14wSi6akgNjCAiES6+5dA6rh4GAT0JPYsaoQJCwioCjxu20aK8hMZoFLrBJbtzWx
-        Qiw4yCyxb/9aVpAqXgE3iQPr/oItYxFQkXh88Q7YMlGBCIkz71ewQNQISpyc+QTM5hRwl3g9
-        fz9YL7OAmcS8zQ+ZIWxxiVtP5jNB2PIS29/OYZ7AKDQLSfssJC2zkLTMQtKygJFlFaNIamlx
-        bnpusZFecWJucWleul5yfu4mRmBcbzv2c8sOxq53wYcYBTgYlXh4H9heiBFiTSwrrsw9xCjB
-        wawkwpv47FyMEG9KYmVValF+fFFpTmrxIUZToOcmMkuJJucDU05eSbyhqaG5haWhubG5sZmF
-        kjhvh8DBGCGB9MSS1OzU1ILUIpg+Jg5OqQZGrnPM25azl7jyGalVRxxusHEs1BFiak3u031c
-        +qz3kMjpuTVdx3rlf+lE7GWbv03nqkrgrMytLSpfuvNPfPl8339x6svtIhV52xkXrmqwvWUt
-        vudVvM6ysimVt/6eEsqqq3Xi/Pv47fyo1Uo/fM4tKXYo7OHWKxYw2vzEw3VbhOWL6OWXVzEo
-        sRRnJBpqMRcVJwIAomVimwEDAAA=
-X-CMS-MailID: 20190507090534eucas1p2f6624c19f0c2d2b084bddcc72d544a60
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0
-References: <1555681688-19643-1-git-send-email-l.luba@partner.samsung.com>
-        <CGME20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0@eucas1p2.samsung.com>
-        <1555681688-19643-4-git-send-email-l.luba@partner.samsung.com>
-        <20190430223629.GA22317@bogus>
-        <1fd44623-4a59-f014-1ae9-a7cc605ad30f@partner.samsung.com>
-        <CAL_JsqJcm9Z6vYFHGyAZ+h3-kmSv6e=3NtO-fjJn3-QT0JoX+w@mail.gmail.com>
-        <97277857-666d-7720-9d85-19120c977682@partner.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 5/6/19 12:29 PM, Lukasz Luba wrote:
-> Hi Rob,
-> 
-> On 5/2/19 10:24 PM, Rob Herring wrote:
->> On Thu, May 2, 2019 at 3:52 AM Lukasz Luba 
->> <l.luba@partner.samsung.com> wrote:
->>>
->>> Hi Rob,
->>>
->>> On 5/1/19 12:36 AM, Rob Herring wrote:
->>>> On Fri, Apr 19, 2019 at 03:48:07PM +0200, Lukasz Luba wrote:
->>>>> Extend the documenation by events description with new 
->>>>> 'event-data-type'
->>>>> field. Add example how the event might be defined in DT.
->>>>
->>>> Why do we need event types in DT? We don't do this for other h/w 
->>>> such as
->>>> ARM PMU.
->>> In ARM PMU all the events are hard-coded into the driver code i.e. in v7
->>> arch/arm/kernel/perf_event_v7.c
->>> and are seen from perf. They are different type and for different
->>> purpose. The Ecynos PPMU events are not seen in perf, they are
->>> for internal monitoring and must not be reset by other actors like perf.
->>> They are used by the 'bus drivers' to made some heuristics and tune the
->>> internal settings, like frequency.
->>>
->>> Chanwoo has written PPMU driver which relies on DT definition.
->>> The DT events are used by other DT devices by phandle.
->>
->> How is that done? I don't see anything in the binding for that.
-> Here are the DT devices and how they are pinned together:
-> - declared devfreq events:
-> https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi 
-> 
-> - devfreq events pinned to the bus device:
-> https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412-odroid-common.dtsi#L107 
-> 
-> - the bus device itself:
-> https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412.dtsi#L457 
-> 
-> 
-> Regards,
-> Lukasz
-> 
->>
->> Rob
->>
->>
-Can I send the next version of the patch set, which has Chanwoo's
-suggestions, or do you have some objections to this PPMU entries?
-
-Regards,
-Lukasz
+DQpUaGFuayB5b3UgZm9yIHJldmlld2luZyBteSBwYXRjaGVzLg0KU29ycnkgZm9yIG15IGxhdGUg
+cmVwbHkuIEphcGFuIHdhcyBpbiBTcHJpbmcgVmFjYXRpb24uDQoNCj4gT24gRnJpLCAyNiBBcHIg
+MjAxOSBhdCAwNDowNCwgVGFrYW8gT3JpdG8gPG9yaXRvLnRha2FvQHNvY2lvbmV4dC5jb20+IHdy
+b3RlOg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogVGFrYW8gT3JpdG8gPG9yaXRvLnRha2FvQHNv
+Y2lvbmV4dC5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9z
+ZGhjaS1taWxiZWF1dC50eHQgICAgIHwgMzUgKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ICAx
+IGZpbGUgY2hhbmdlZCwgMzUgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9zZGhjaS1taWxiZWF1dC50eHQN
+Cj4gPg0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+bW1jL3NkaGNpLW1pbGJlYXV0LnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9tbWMvc2RoY2ktbWlsYmVhdXQudHh0DQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBp
+bmRleCAwMDAwMDAwLi43MDA4NDYyDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvc2RoY2ktbWlsYmVhdXQudHh0DQo+ID4g
+QEAgLTAsMCArMSwzNSBAQA0KPiA+ICsqIFNPQ0lPTkVYVCBTREhDSSBjb250cm9sbGVyDQo+ID4g
+Kw0KPiA+ICtUaGlzIGZpbGUgZG9jdW1lbnRzIGRpZmZlcmVuY2VzIGJldHdlZW4gdGhlIGNvcmUg
+cHJvcGVydGllcyBpbiBtbWMudHh0DQo+ID4gK2FuZCB0aGUgcHJvcGVydGllcyB1c2VkIGJ5IHRo
+ZSBzZGhjaV9taWxiZWF1dCBkcml2ZXIuDQo+ID4gKw0KPiA+ICtSZXF1aXJlZCBwcm9wZXJ0aWVz
+Og0KPiA+ICstIGNvbXBhdGlibGU6ICJzb2Npb25leHQsbWlsYmVhdXQtbTEwdi1zZGhjaS0zLjAi
+DQo+ID4gKy0gY2xvY2tzOiBNdXN0IGNvbnRhaW4gYW4gZW50cnkgZm9yIGVhY2ggZW50cnkgaW4g
+Y2xvY2stbmFtZXMuIEl0IGlzIGENCj4gPiArICBsaXN0IG9mIHBoYW5kbGVzIGFuZCBjbG9jay1z
+cGVjaWZpZXIgcGFpcnMuDQo+ID4gKyAgU2VlIC4uL2Nsb2Nrcy9jbG9jay1iaW5kaW5ncy50eHQg
+Zm9yIGRldGFpbHMuDQo+ID4gKy0gY2xvY2stbmFtZXM6IFNob3VsZCBjb250YWluIHRoZSBmb2xs
+b3dpbmcgdHdvIGVudHJpZXM6DQo+ID4gKyAgICAgICAiaWZhY2UiIC0gY2xvY2sgdXNlZCBmb3Ig
+c2RoY2kgaW50ZXJmYWNlDQo+ID4gKyAgICAgICAiY29yZSIgIC0gY29yZSBjbG9jayBmb3Igc2Ro
+Y2kgY29udHJvbGxlcg0KPiA+ICsNCj4gPiArT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiArLSB2
+cW1tYy1zdXBwbHk6IHBoYW5kbGUgdG8gdGhlIHJlZ3VsYXRvciBkZXZpY2UgdHJlZSBub2RlLCBt
+ZW50aW9uZWQNCj4gPiArICBhcyB0aGUgVkNDUS9WRERfSU8gc3VwcGx5IGluIHRoZSBlTU1DL1NE
+IHNwZWNzLg0KPiA+ICstIGZ1aml0c3UsY21kLWRhdC1kZWxheS1zZWxlY3Q6IGJvb2xlYW4gcHJv
+cGVydHkgaW5kaWNhdGluZyB0aGF0IHRoaXMgaG9zdA0KPiA+ICsgIHJlcXVpcmVzIHRoZSBDTURf
+REFUX0RFTEFZIGNvbnRyb2wgdG8gYmUgZW5hYmxlZC4NCj4gPiArLSBzbmksbW1jLXBvd2VyLWdw
+aW86IHNldCBwcm9wZXJ0eSBpbmRpY2F0aW5nIHRoYXQgcG93ZXIgb24gb3Igb2ZmIG5lZWRzDQo+
+ID4gKyAgY29udHJvbCBvZiBncGlvcy4NCj4gDQo+IFBsZWFzZSB1c2UgYSB2bW1jLXN1cHBseSBp
+bnN0ZWFkIG9mICJwb3dlci1ncGlvIiAod2hpY2ggbWVhbnMgeW91IG5lZWQNCj4gdG8gbW9kZWwg
+dGhpcyBhcyBhIGZpeGVkIEdQSU8gcmVndWxhdG9yKS4NCg0KT0ssIEkgd2lsbCBzdHVkeSBhYm91
+dCByZWd1bGF0b3Ivdm1tYy1zdXBwbHkgYW5kIGNoYW5nZSB0byB1c2UgaXQuDQoNClRoYW5rcw0K
+T3JpdG8NCg0KPiANCj4gPiArDQo+ID4gK0V4YW1wbGU6DQo+ID4gKyAgICAgICBzZGhjaTM6IG1t
+Y0AxYjAxMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAic29jaW9uZXh0
+LG1pbGJlYXV0LW0xMHYtc2RoY2ktMy4wIjsNCj4gPiArICAgICAgICAgICAgICAgcmVnID0gPDB4
+MWIwMTAwMDAgMHgxMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgIGludGVycnVwdHMgPSA8MCAy
+NjUgMHg0PjsNCj4gPiArICAgICAgICAgICAgICAgdm9sdGFnZS1yYW5nZXMgPSA8MzMwMCAzMzAw
+PjsNCj4gPiArICAgICAgICAgICAgICAgYnVzLXdpZHRoID0gPDQ+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICBjbG9ja3MgPSA8JmNsayA3PiwgPCZhaGJfY2xrPjsNCj4gPiArICAgICAgICAgICAgICAg
+Y2xvY2stbmFtZXMgPSAiY29yZSIsICJpZmFjZSI7DQo+ID4gKyAgICAgICAgICAgICAgIGNhcC1z
+ZGlvLWlycTsNCj4gPiArICAgICAgICAgICAgICAgc25pLG1tYy1wb3dlci1ncGlvID0gPCZwaW5j
+dHJsIDUzIEdQSU9fQUNUSVZFX0hJR0g+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGZ1
+aml0c3UsY21kLWRhdC1kZWxheS1zZWxlY3Q7DQo+ID4gKyAgICAgICB9Ow0KPiA+IC0tDQo+ID4g
+MS45LjENCj4gPg0KPiA+DQo+IA0KPiBLaW5kIHJlZ2FyZHMNCj4gVWZmZQ0KDQotLSANClRha2Fv
+IE9yaXRvIDxvcml0by50YWthb0Bzb2Npb25leHQuY29tPg0K
