@@ -2,157 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E29F16592
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA4EB165A4
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726804AbfEGOWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 10:22:16 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:38798 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726454AbfEGOWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 10:22:16 -0400
-X-UUID: 154115064e8a4275805302ff7213d8ff-20190507
-X-UUID: 154115064e8a4275805302ff7213d8ff-20190507
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <frederic.chen@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 191652116; Tue, 07 May 2019 22:22:06 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 7 May 2019 22:22:05 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 7 May 2019 22:22:05 +0800
-Message-ID: <1557238925.11663.21.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V1 1/6] dt-bindings: mt8183: Add binding for DIP
- shared memory
-From:   Frederic Chen <frederic.chen@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <hans.verkuil@cisco.com>,
-        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
-        <matthias.bgg@gmail.com>, <mchehab@kernel.org>,
-        <yuzhao@chromium.org>, <zwisler@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <Sean.Cheng@mediatek.com>,
-        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
-        <holmes.chiou@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
-        <jungo.lin@mediatek.com>, <Rynn.Wu@mediatek.com>,
-        <linux-media@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <devicetree@vger.kernel.org>, <shik@chromium.org>,
-        <suleiman@chromium.org>
-Date:   Tue, 7 May 2019 22:22:05 +0800
-In-Reply-To: <20190430011506.GA8514@bogus>
-References: <20190417104511.21514-1-frederic.chen@mediatek.com>
-         <20190417104511.21514-2-frederic.chen@mediatek.com>
-         <20190430011506.GA8514@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726353AbfEGO2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 10:28:30 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:42998 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726767AbfEGO2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 10:28:30 -0400
+Received: by mail-lj1-f195.google.com with SMTP id y10so8013664lji.9
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 07:28:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EedFfExEAPHM+PZr6GR11mpG+D5zRor5kGwA4BVlfyY=;
+        b=uf+CmDK2YI6m644TB+xuy6UsPlkwrb+ZxcN4czm3KYEALhBCKTcLpg9aF3iTBitvvo
+         KjNtWx3/I5gEVcMv0rgFmiB7FYtFV0UpoNntXVYY21xu+U7JHLFc2VuoYnrAtbnW2J+g
+         rdpY4n1XVGQ2nZX4SDrXpOLbYDEabk13f5+kCLQw9IXPmHCApwZ7X905CrNJAEnsmbRt
+         V+y60q9tlTxyr/yrTE0Ozjiqf8myMTEbQ/jehp4tMlkUu8M7qRRIp4RiDOFuOoN/3Dek
+         anD0kRP2TMU2L4pW4z4noSxNErlaZxVevHpjiWtNfqVN0GJzKk+alg8SCLhUZLVIDWXM
+         wzHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=EedFfExEAPHM+PZr6GR11mpG+D5zRor5kGwA4BVlfyY=;
+        b=nWFdZC1mqdBy0Dp7Mn2n0v+b3qOl4ZO01gMETGuVjZ/cS+TrtWCVqvYU1fm75QLLVA
+         04t35oiizMAAMoyBdL/s7K30p2yPvGZNF4+1f7PVhabkCIluPx/v1PEsvIPXp0HgIAJM
+         f3Ksr2Mm7epMLPUKXPruLCNW04/PKrab3jEamkc11xF3muK3QpHSku3Zks2XifluTTUu
+         tVyAy2gc8b/FcK3IGrcGhPK635Fb3up9buTzPmrrxIDhF846NGII8Wayt3bnPCkb8bwU
+         81XuYoGJ8ecczaijBe9S1x+3eu4sDnBoS/iKx5ovAW/QOwgCazCp7KGOt07urDdu2yaO
+         3zHw==
+X-Gm-Message-State: APjAAAXx5uRGD8SSw8Oi59v18Y724Tv1itdF5x4/rl5nORJlTK+VFkk0
+        GrwvA44cdCsJh+1C3Qyea9rghQ==
+X-Google-Smtp-Source: APXvYqw0mASzMSi5rdO7Sb18cOgjD5LYFYcr/D6t9bnbMaeljY+qkhroQl+x8E1AOmi4OEMvYCIjsg==
+X-Received: by 2002:a2e:8347:: with SMTP id l7mr17756852ljh.17.1557239307989;
+        Tue, 07 May 2019 07:28:27 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([31.173.83.143])
+        by smtp.gmail.com with ESMTPSA id j24sm3154312lfh.28.2019.05.07.07.28.26
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 May 2019 07:28:26 -0700 (PDT)
+Subject: Re: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
+ not using OTG
+To:     Chris Brandt <Chris.Brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-4-chris.brandt@renesas.com>
+ <17bcc673-5fed-ce4f-3d61-af34bfa5d769@cogentembedded.com>
+ <TY1PR01MB1562550164C7977D28C90F128A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <34544f59-76aa-710a-a6ec-7d7d7f31a023@cogentembedded.com>
+Date:   Tue, 7 May 2019 17:28:25 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-X-MTK:  N
+In-Reply-To: <TY1PR01MB1562550164C7977D28C90F128A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Rob,
+On 05/07/2019 02:45 PM, Chris Brandt wrote:
 
-I appreciate your comments.
-
-On Mon, 2019-04-29 at 20:15 -0500, Rob Herring wrote:
-> On Wed, Apr 17, 2019 at 06:45:06PM +0800, Frederic Chen wrote:
-> > This patch adds the binding for describing the shared memory
-> > used to exchange configuration and tuning data between the
-> > co-processor and Digital Image Processing (DIP) unit of the
-> > camera ISP system on Mediatek SoCs.
-> > 
-> > Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-> > ---
-> >  .../mediatek,reserve-memory-dip_smem.txt      | 45 +++++++++++++++++++
-> >  1 file changed, 45 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> > new file mode 100644
-> > index 000000000000..64c001b476b9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> > @@ -0,0 +1,45 @@
-> > +Mediatek DIP Shared Memory binding
-> > +
-> > +This binding describes the shared memory, which serves the purpose of
-> > +describing the shared memory region used to exchange data between Digital
-> > +Image Processing (DIP) and co-processor in Mediatek SoCs.
-> > +
-> > +The co-processor doesn't have the iommu so we need to use the physical
-> > +address to access the shared buffer in the firmware.
-> > +
-> > +The Digital Image Processing (DIP) can access memory through mt8183 IOMMU so
-> > +it can use dma address to access the memory region.
-> > +(See iommu/mediatek,iommu.txt for the detailed description of Mediatek IOMMU)
-> > +
-> > +
-> > +Required properties:
-> > +
-> > +- compatible: must be "mediatek,reserve-memory-dip_smem"
+>>> --- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+>>> +++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+>>> @@ -408,7 +408,12 @@ static int rcar_gen3_phy_usb2_init(struct phy *p)
+>>>  		if (rcar_gen3_needs_init_otg(channel))
+>>>  			rcar_gen3_init_otg(channel);
+>>>  		rphy->otg_initialized = true;
+>>> -	}
+>>> +	} else
+>>
+>>    Wait, don't we neeed {} here?
+>>
+>>> +		/* Not OTG, so dr_mode should be set in PHY node */
+>>> +		if (usb_get_dr_mode(channel->dev) == USB_DR_MODE_PERIPHERAL)
+>>> +			writel(0x80000000, usb2_base + USB2_COMMCTRL);
+>>> +		else
+>>> +			writel(0x00000000, usb2_base + USB2_COMMCTRL);
 > 
-> Don't use '_'.
+> Technically there is only 1 statement after the else (the 'if' which 
+> will also include the 'else') statement. The coding rules say not to use
+> { } if there is only 1 statement.
 
-I got it. I will use "mediatek,reserve-memory-dip-smem" instead in next
-version of the patch
+   Don't you remember another rule: use {} in all branches if at least 
+one branch uses {}?
 
-> 
-> > +
-> > +- reg: required for static allocation (see reserved-memory.txt for
-> > +  the detailed usage)
-> > +
-> > +- alloc-range: required for dynamic allocation. The range must
-> > +  between 0x00000400 and 0x100000000 due to the co-processer's
-> > +  addressing limitation
-> 
-> Generally, you should pick either static or dynamic allocation for a 
-> given binding. Static if there's some address restriction or sharing, 
-> dynamic if not.
-> 
-> Sounds like static in this case.
-> 
+> Chris
 
-DIP reserved memory has address restriction so it is the static case. I
-would like to remove the dynamic allocation part and modify the
-description as following:
-
-- reg: required for DIP. The range must be between 0x00000400 and
-  0x100000000 due to the co-processor's addressing limitation.
-  The size must be 26MB. Please see reserved-memory.txt for the 
-  detailed usage.
-
-> > +
-> > +- size: required for dynamic allocation. The unit is bytes.
-> > +  If you want to enable the full feature of Digital Processing Unit,
-> > +  you need 20 MB at least.
-> > +
-> > +
-> > +Example:
-> > +
-> > +The following example shows the DIP shared memory setup for MT8183.
-> > +
-> > +	reserved-memory {
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +		ranges;
-> > +		reserve-memory-dip_smem {
-> > +			compatible = "mediatek,reserve-memory-dip_smem";
-> > +			size = <0 0x1400000>;
-> > +			alignment = <0 0x1000>;
-> > +			alloc-ranges = <0 0x40000000 0 0x50000000>;
-> > +		};
-> > +	};
-> > -- 
-> > 2.18.0
-> > 
-
-Sincerely,
-
-Frederic Chen
+MBR, Sergei
 
 
