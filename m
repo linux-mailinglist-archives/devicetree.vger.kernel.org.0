@@ -2,134 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DAE215D7D
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 08:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8730315DAF
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 08:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726597AbfEGGeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 02:34:50 -0400
-Received: from mail-eopbgr150088.outbound.protection.outlook.com ([40.107.15.88]:37091
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726612AbfEGGeu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 02:34:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zIqFKo67j1OLxemIF4EVaarhth6Ewg64aY1XCv684qM=;
- b=qLQnx9/GemTcvcQ5HlvMYxe9/NUOwHyppcdnIZ9fN+gCCQX70E0yZy05W6KWIvf6yRQHyvOXZX3zj4ZEeYR1VvlsGk/Ec0C+Rh0MQUqi87SnTkzTLJBsrKASijN3VU4s3lR2AlZeWMuWwvplqQUe6ybMeZMGmz9RIDvYaZYVyt0=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3771.eurprd04.prod.outlook.com (52.134.67.30) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Tue, 7 May 2019 06:34:37 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::e8ca:4f6b:e43:c170]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::e8ca:4f6b:e43:c170%3]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 06:34:37 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: [PATCH 5/5] ARM: dts: imx6sx-sdb: Assign corresponding power supply
- for LDOs
-Thread-Topic: [PATCH 5/5] ARM: dts: imx6sx-sdb: Assign corresponding power
- supply for LDOs
-Thread-Index: AQHVBJ7x3Esw4lVUTkihnrtILND7+A==
-Date:   Tue, 7 May 2019 06:34:37 +0000
-Message-ID: <1557210565-4457-5-git-send-email-Anson.Huang@nxp.com>
-References: <1557210565-4457-1-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1557210565-4457-1-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.7.4
-x-clientproxiedby: HK2PR0302CA0014.apcprd03.prod.outlook.com
- (2603:1096:202::24) To DB3PR0402MB3916.eurprd04.prod.outlook.com
- (2603:10a6:8:10::18)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ec7518c3-9aad-44f7-9d74-08d6d2b6139d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3771;
-x-ms-traffictypediagnostic: DB3PR0402MB3771:
-x-microsoft-antispam-prvs: <DB3PR0402MB3771DD4275776C817075EEB4F5310@DB3PR0402MB3771.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
-x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(366004)(39860400002)(376002)(346002)(136003)(189003)(199004)(6486002)(66066001)(68736007)(26005)(386003)(6506007)(186003)(102836004)(86362001)(11346002)(2616005)(446003)(76176011)(110136005)(14454004)(316002)(2201001)(52116002)(2501003)(5660300002)(99286004)(6116002)(2906002)(3846002)(4326008)(6512007)(6436002)(476003)(486006)(25786009)(36756003)(256004)(53936002)(305945005)(66476007)(66556008)(64756008)(66446008)(50226002)(478600001)(81156014)(81166006)(8676002)(8936002)(71190400001)(7736002)(73956011)(66946007)(71200400001)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3771;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: B5UCuCV/Szp/u3iRvgm8rZhX6jHLVMdlCarDfKrAqdAqxYQW8RAeQpCPPcDu1faz1QQcrCy8/KlD7C+HDJQ/bsaR99A7l/fxhIqh4JnMMBshzOYYYqjZ3KVGVIVRgb5ZnkHieNC7Dd/AWrC75hz6TVEXpmVyj2cDpdwap+ONWOG2RFgOs78aXBKD2rLlXvqfMDYE7GD+iywKsUVYcKPX9YIcJFcoQzsiTB7DXhQkTXhi/fUCbFyAmbNiQsv1yY46YebdN1VinU07KA8fkzz36cN6WM11OjRrat4nUxREdljQojtFoh3F87QcajksyLYhdJ4LTfLY66GsPrZKa0vRFBZzwaGSne+SP75IJWB+bkgjZTnMIWQ2oLZyxRxYtBlcjexUo8klW6HQjNJDe9qUYOZDH2IpxOy7vpMZg+YjTJ4=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726546AbfEGGtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 02:49:33 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:44037 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbfEGGtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 02:49:33 -0400
+Received: by mail-lf1-f65.google.com with SMTP id n134so9125664lfn.11
+        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 23:49:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uDWB+PNcjI4q/A/1DW85bUa/9Snq5OItKRPTK4tpNfU=;
+        b=mPrbLeI30J/5s8XP70Yj52evlvXJ+8D0wG4lJ7LzE0tziEfVMe35aZD1BE6WI1yyo0
+         8+8e6vWuS+J0RC7AoQ6pQEKib60ad9mR1GiKSsQPkmmVxgqC//yQUpRJ67XKmGA6Zz1J
+         rNFUfKVDPJ6wVNWUOGOkhXSh1udaWNlpNbtFKypXPZC5HQopgW4AEQ0d3upC3QSlPDMY
+         z/dEKgODIODKyWS/Wm0VVsmRhf/9/1HhwwAKOC+5Si7DwyCjo1jcBIDLjaL+jGRCcXBQ
+         J9et5jTt1BaIodrKCBBDxDF/Tm/RSpH9ZArW5N9nNu2H8wBKejWnt9Dvq794avLVnJUa
+         NAxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uDWB+PNcjI4q/A/1DW85bUa/9Snq5OItKRPTK4tpNfU=;
+        b=bRid+QoqxKlCiRUkshijI64lynMcToxHn3Qf/k/yJxf16iakFuwxxhLeW0Zj8sbQ5N
+         YwK+x/MvbTSo6KWSyMBWyxsJr+NqC9fcDFNwvFDww2ivzYqFrwDmmtftFmyfI9LB3rI3
+         YqfBEVWqOKUsM1YFgT0OzaTdOtHE03VL4WeRooNhSw1T127+B3tRRsxrl5HjmAR2Mvp/
+         hww7E+jxEwsum2WZpYNCIYThJ+CYi3f04WT++wpDiGF8np0SGH8hxRwd7lKfrWlnw1E0
+         S5AYKx0DjWnzYtlrvi0RStqCJu73tCm3STem+JqKHi7aK2yD3Shi2W5uV4mPfBvNZyKa
+         MzIQ==
+X-Gm-Message-State: APjAAAW5G3JBsJ85dkZgslFK09hBh26YJbS9hx4YdkItUUD35/B31vD8
+        54zrmYe42PcCfpXnZ7AWEZ2YoJtINxJ8m7Z20pAWO++36emS7+yJU4trVe+cAJqRz3hiQvERUqE
+        bzR4x8uqT+m2oy+XF6g2AD4RPE/C+Op8=
+X-Google-Smtp-Source: APXvYqyfjgoxjBepkSXY0LT82aLu+Pj5tiZ6BdCvglYDPWY4vHbpWDaqXOtmKKpb03mlKKnpt8wbeK4r74iaaD2tR5A=
+X-Received: by 2002:a19:81d4:: with SMTP id c203mr1957595lfd.160.1557211771188;
+ Mon, 06 May 2019 23:49:31 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec7518c3-9aad-44f7-9d74-08d6d2b6139d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 06:34:37.7443
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3771
+References: <1557139720-12384-1-git-send-email-yash.shah@sifive.com>
+ <1557139720-12384-3-git-send-email-yash.shah@sifive.com> <d36b7a74-0d08-0143-b479-45f760c347ba@ti.com>
+In-Reply-To: <d36b7a74-0d08-0143-b479-45f760c347ba@ti.com>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Tue, 7 May 2019 12:18:54 +0530
+Message-ID: <CAJ2_jOFZjTNA3Nf=zNwLT+St21Q2_TPx_XYhggU=yef6LPkLdg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] RISC-V: sifive_l2_cache: Add L2 cache controller
+ driver for SiFive SoCs
+To:     "Andrew F. Davis" <afd@ti.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gaS5NWDZTWCBTREIgYm9hcmQsIHZnZW42IHN1cHBsaWVzIHZkZDFwMS92ZGQycDUgTERPIGFu
-ZA0Kc3cyIHN1cHBsaWVzIHZkZDNwMCBMRE8sIHRoaXMgcGF0Y2ggYXNzaWducyBjb3JyZXNwb25k
-aW5nIHBvd2VyDQpzdXBwbHkgZm9yIHZkZDFwMS92ZGQycDUvdmRkM3AwIHRvIGF2b2lkIGNvbmZ1
-c2lvbiBieSBiZWxvdyBsb2c6DQoNCnZkZDFwMTogc3VwcGxpZWQgYnkgcmVndWxhdG9yLWR1bW15
-DQp2ZGQzcDA6IHN1cHBsaWVkIGJ5IHJlZ3VsYXRvci1kdW1teQ0KdmRkMnA1OiBzdXBwbGllZCBi
-eSByZWd1bGF0b3ItZHVtbXkNCg0KV2l0aCB0aGlzIHBhdGNoLCB0aGUgcG93ZXIgc3VwcGx5IGlz
-IG1vcmUgYWNjdXJhdGU6DQoNCnZkZDFwMTogc3VwcGxpZWQgYnkgVkdFTjYNCnZkZDNwMDogc3Vw
-cGxpZWQgYnkgU1cyDQp2ZGQycDU6IHN1cHBsaWVkIGJ5IFZHRU42DQoNClNpZ25lZC1vZmYtYnk6
-IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KLS0tDQogYXJjaC9hcm0vYm9vdC9k
-dHMvaW14NnN4LXNkYi1yZXZhLmR0cyB8IDEyICsrKysrKysrKysrKw0KIGFyY2gvYXJtL2Jvb3Qv
-ZHRzL2lteDZzeC1zZGIuZHRzICAgICAgfCAxMiArKysrKysrKysrKysNCiBhcmNoL2FybS9ib290
-L2R0cy9pbXg2c3guZHRzaSAgICAgICAgIHwgIDYgKysrLS0tDQogMyBmaWxlcyBjaGFuZ2VkLCAy
-NyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm0v
-Ym9vdC9kdHMvaW14NnN4LXNkYi1yZXZhLmR0cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZzeC1z
-ZGItcmV2YS5kdHMNCmluZGV4IDAwYzQ4NTQuLjViM2Q2YzEwIDEwMDY0NA0KLS0tIGEvYXJjaC9h
-cm0vYm9vdC9kdHMvaW14NnN4LXNkYi1yZXZhLmR0cw0KKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMv
-aW14NnN4LXNkYi1yZXZhLmR0cw0KQEAgLTE1NCwzICsxNTQsMTUgQEANCiAJZW5hYmxlLWFjdGl2
-ZS1oaWdoOw0KIAl2aW4tc3VwcGx5ID0gPCZyZWdfY2FuX2VuPjsNCiB9Ow0KKw0KKyZyZWdfdmRk
-MXAxIHsNCisJdmluLXN1cHBseSA9IDwmdmdlbjZfcmVnPjsNCit9Ow0KKw0KKyZyZWdfdmRkM3Aw
-IHsNCisJdmluLXN1cHBseSA9IDwmc3cyX3JlZz47DQorfTsNCisNCismcmVnX3ZkZDJwNSB7DQor
-CXZpbi1zdXBwbHkgPSA8JnZnZW42X3JlZz47DQorfTsNCmRpZmYgLS1naXQgYS9hcmNoL2FybS9i
-b290L2R0cy9pbXg2c3gtc2RiLmR0cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZzeC1zZGIuZHRz
-DQppbmRleCA5OThlM2UxLi4xMGY2ZGE4IDEwMDY0NA0KLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMv
-aW14NnN4LXNkYi5kdHMNCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZzeC1zZGIuZHRzDQpA
-QCAtMTM3LDYgKzEzNywxOCBAQA0KIAl2aW4tc3VwcGx5ID0gPCZzdzFhX3JlZz47DQogfTsNCiAN
-CismcmVnX3ZkZDFwMSB7DQorCXZpbi1zdXBwbHkgPSA8JnZnZW42X3JlZz47DQorfTsNCisNCism
-cmVnX3ZkZDNwMCB7DQorCXZpbi1zdXBwbHkgPSA8JnN3Ml9yZWc+Ow0KK307DQorDQorJnJlZ192
-ZGQycDUgew0KKwl2aW4tc3VwcGx5ID0gPCZ2Z2VuNl9yZWc+Ow0KK307DQorDQogJnJlZ19jYW5f
-c3RieSB7DQogCS8qIFRyYW5zY2VpdmVyIEVOL1NUQlkgaXMgYWN0aXZlIGxvdyBvbiBSZXZCIGJv
-YXJkICovDQogCWdwaW8gPSA8JmdwaW80IDI3IEdQSU9fQUNUSVZFX0xPVz47DQpkaWZmIC0tZ2l0
-IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnN4LmR0c2kgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2
-c3guZHRzaQ0KaW5kZXggYjE2YTEyMy4uYmJkZmRkOCAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtL2Jv
-b3QvZHRzL2lteDZzeC5kdHNpDQorKysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2c3guZHRzaQ0K
-QEAgLTYwMCw3ICs2MDAsNyBAQA0KIAkJCQkJICAgICA8R0lDX1NQSSA1NCBJUlFfVFlQRV9MRVZF
-TF9ISUdIPiwNCiAJCQkJCSAgICAgPEdJQ19TUEkgMTI3IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0K
-IA0KLQkJCQlyZWd1bGF0b3ItMXAxIHsNCisJCQkJcmVnX3ZkZDFwMTogcmVndWxhdG9yLTFwMSB7
-DQogCQkJCQljb21wYXRpYmxlID0gImZzbCxhbmF0b3AtcmVndWxhdG9yIjsNCiAJCQkJCXJlZ3Vs
-YXRvci1uYW1lID0gInZkZDFwMSI7DQogCQkJCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDwx
-MDAwMDAwPjsNCkBAIC02MTUsNyArNjE1LDcgQEANCiAJCQkJCWFuYXRvcC1lbmFibGUtYml0ID0g
-PDA+Ow0KIAkJCQl9Ow0KIA0KLQkJCQlyZWd1bGF0b3ItM3AwIHsNCisJCQkJcmVnX3ZkZDNwMDog
-cmVndWxhdG9yLTNwMCB7DQogCQkJCQljb21wYXRpYmxlID0gImZzbCxhbmF0b3AtcmVndWxhdG9y
-IjsNCiAJCQkJCXJlZ3VsYXRvci1uYW1lID0gInZkZDNwMCI7DQogCQkJCQlyZWd1bGF0b3ItbWlu
-LW1pY3Jvdm9sdCA9IDwyODAwMDAwPjsNCkBAIC02MzAsNyArNjMwLDcgQEANCiAJCQkJCWFuYXRv
-cC1lbmFibGUtYml0ID0gPDA+Ow0KIAkJCQl9Ow0KIA0KLQkJCQlyZWd1bGF0b3ItMnA1IHsNCisJ
-CQkJcmVnX3ZkZDJwNTogcmVndWxhdG9yLTJwNSB7DQogCQkJCQljb21wYXRpYmxlID0gImZzbCxh
-bmF0b3AtcmVndWxhdG9yIjsNCiAJCQkJCXJlZ3VsYXRvci1uYW1lID0gInZkZDJwNSI7DQogCQkJ
-CQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9IDwyMjUwMDAwPjsNCi0tIA0KMi43LjQNCg0K
+On Mon, May 6, 2019 at 5:48 PM Andrew F. Davis <afd@ti.com> wrote:
+>
+> On 5/6/19 6:48 AM, Yash Shah wrote:
+> > The driver currently supports only SiFive FU540-C000 platform.
+> >
+> > The initial version of L2 cache controller driver includes:
+> > - Initial configuration reporting at boot up.
+> > - Support for ECC related functionality.
+> >
+> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > ---
+> >  arch/riscv/include/asm/sifive_l2_cache.h |  16 +++
+> >  arch/riscv/mm/Makefile                   |   1 +
+> >  arch/riscv/mm/sifive_l2_cache.c          | 175 +++++++++++++++++++++++++++++++
+> >  3 files changed, 192 insertions(+)
+> >  create mode 100644 arch/riscv/include/asm/sifive_l2_cache.h
+> >  create mode 100644 arch/riscv/mm/sifive_l2_cache.c
+> >
+> > diff --git a/arch/riscv/include/asm/sifive_l2_cache.h b/arch/riscv/include/asm/sifive_l2_cache.h
+> > new file mode 100644
+> > index 0000000..04f6748
+> > --- /dev/null
+> > +++ b/arch/riscv/include/asm/sifive_l2_cache.h
+> > @@ -0,0 +1,16 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * SiFive L2 Cache Controller header file
+> > + *
+> > + */
+> > +
+> > +#ifndef _ASM_RISCV_SIFIVE_L2_CACHE_H
+> > +#define _ASM_RISCV_SIFIVE_L2_CACHE_H
+> > +
+> > +extern int register_sifive_l2_error_notifier(struct notifier_block *nb);
+> > +extern int unregister_sifive_l2_error_notifier(struct notifier_block *nb);
+> > +
+> > +#define SIFIVE_L2_ERR_TYPE_CE 0
+> > +#define SIFIVE_L2_ERR_TYPE_UE 1
+> > +
+> > +#endif /* _ASM_RISCV_SIFIVE_L2_CACHE_H */
+> > diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+> > index eb22ab4..1523ee5 100644
+> > --- a/arch/riscv/mm/Makefile
+> > +++ b/arch/riscv/mm/Makefile
+> > @@ -3,3 +3,4 @@ obj-y += fault.o
+> >  obj-y += extable.o
+> >  obj-y += ioremap.o
+> >  obj-y += cacheflush.o
+> > +obj-y += sifive_l2_cache.o
+> > diff --git a/arch/riscv/mm/sifive_l2_cache.c b/arch/riscv/mm/sifive_l2_cache.c
+> > new file mode 100644
+> > index 0000000..4eb6461
+> > --- /dev/null
+> > +++ b/arch/riscv/mm/sifive_l2_cache.c
+> > @@ -0,0 +1,175 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * SiFive L2 cache controller Driver
+> > + *
+> > + * Copyright (C) 2018-2019 SiFive, Inc.
+> > + *
+> > + */
+[...]
+> > +
+> > +#ifdef CONFIG_DEBUG_FS
+> > +static struct dentry *sifive_test;
+> > +
+> > +static ssize_t l2_write(struct file *file, const char __user *data,
+> > +                     size_t count, loff_t *ppos)
+> > +{
+> > +     unsigned int val;
+> > +
+> > +     if (kstrtouint_from_user(data, count, 0, &val))
+> > +             return -EINVAL;
+> > +     if ((val >= 0 && val < 0xFF) || (val >= 0x10000 && val < 0x100FF))
+>
+> I'm guessing bit 16 is the enable and the lower 8 are some kind of
+> region to enable the error? This is probably a bad interface, it looks
+> useful for testing but doesn't provide any debugging info useful for
+> running systems. Do you really want userspace to be able to do this?
+
+Bit 16 selects the type of ECC error (0=data or 1=directory error).
+The lower 8 bits toggles (corrupt) that bit index.
+Are you suggesting to remove this debug interface altogether or you
+want me to improve the current interface?
+Something like providing 2 separate debugfs files for data and
+directory errors. And create a separate 8-bit debugfs variable to
+select the bit index to toggle.
+
+- Yash
+
+>
+> Andrew
+>
+
+-- 
+The information transmitted is intended only for the person or entity to 
+which it is addressed and may contain confidential and/or privileged 
+material. If you are not the intended recipient of this message please do 
+not read, copy, use or disclose this communication and notify the sender 
+immediately. It should be noted that any review, retransmission, 
+dissemination or other use of, or taking action or reliance upon, this 
+information by persons or entities other than the intended recipient is 
+prohibited.
