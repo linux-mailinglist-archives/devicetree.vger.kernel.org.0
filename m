@@ -2,105 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F3D115FA5
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:44:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D59F615FB6
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726991AbfEGIo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:44:27 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:46574 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727014AbfEGIo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:44:26 -0400
-Received: by mail-lf1-f67.google.com with SMTP id k18so11173021lfj.13
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 01:44:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/TEtUQerbzNDbMApQnE7fl+aZhcChUfXzq2vTK+1alo=;
-        b=rleNqMilhRe8NeGJMI+BO9fCS+ffEQ67uAkRxjGiOdxjSPWcez+9tkZM15saLCKg6w
-         kPGWP55+pgj/RfYSZ18V0kEPJldHVbn4oqdP2iBjImM/jWzSGfYN+9LvlBhkrTzH10cL
-         xgG4iLArIvj/qzZ+6AIjXGjo8akwrAq9iNf2N3sQ9sXAyISKxNwjr3BK8ya7jrm9kPTM
-         IXkir3jZiHnnVQmzdRbcz4IK2cK3JgnYZ5jy4uZ1/drblBsjLl6PXYm7L44ylVeulZiQ
-         UGQZDj95k8HFfvo1aQNk2OhqKclIVGs2seUp7jto/lSSCF+JUXKj+xz/btwItZUKH1uk
-         3DKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/TEtUQerbzNDbMApQnE7fl+aZhcChUfXzq2vTK+1alo=;
-        b=OWUtCnQ0oVX3WfuIrUAp500H+RDlomNpNlWV3bamS9J1EcXUPlbxtAS8QIwlFUQmrD
-         QBb2cvln36DDE6HEmXoueBz5h2Im/kQVb7JpZW6BzpGV0AM+e3wg169GzgC0NM3V+jgw
-         McHb3kTqXeKMCdpORhm8x02LKAl3CRb+WBya0QezsnIzCWD3MwYMniJsKQUQdQlKTgjS
-         KRCFW6pG8jANLx3tyiSZ1NoYsBSZwWsUvNjMgtgGMyx4TEH9xg4TSlaKk0mC7s8dQ2f5
-         wKe10Daozph1CPaEJk9tZnqHKGphrcfKJUwnZzjobGg92k4T/EaqAn6KjTAEzfsJGsx4
-         NzIQ==
-X-Gm-Message-State: APjAAAXyzsgGbyGW9zBPDZz4AAP65wqU6b5FTvbqVkfJVzLvWh8MrDEn
-        j6GJh6+MumhugiaiIldFjsAAo6+vGk0=
-X-Google-Smtp-Source: APXvYqxC+QeOdrtkp6TrZlboNRyLGXETMNNFl2nkB0L5/jul5uT14641232atp2qgsYTdPPE0H4uIg==
-X-Received: by 2002:ac2:52b1:: with SMTP id r17mr15541907lfm.39.1557218664064;
-        Tue, 07 May 2019 01:44:24 -0700 (PDT)
-Received: from [192.168.0.199] ([31.173.80.92])
-        by smtp.gmail.com with ESMTPSA id 63sm3170991lfz.2.2019.05.07.01.44.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 01:44:23 -0700 (PDT)
-Subject: Re: [PATCH 09/10] ARM: dts: r7s9210: Add USB Device support
-To:     Chris Brandt <chris.brandt@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-10-chris.brandt@renesas.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <8182b7b7-c447-b0ba-2654-ac71f9c86dbb@cogentembedded.com>
-Date:   Tue, 7 May 2019 11:44:18 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190506234631.113226-10-chris.brandt@renesas.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1726085AbfEGIsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:48:35 -0400
+Received: from mail-eopbgr80045.outbound.protection.outlook.com ([40.107.8.45]:62081
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725780AbfEGIsf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 04:48:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Aq3CVt2b3lc5FgEiUrsD8dwwYa/6bf7sNuyyllfY9Qc=;
+ b=F+eBurhH5ulkkI/Ip3iWxA7Fvj17RV1u8yGpfDq2GcYSOGcKaSsdjTZjZHY6s93kE8DnQjT3m7+kCUQO6lVrYMFlbjFILdD4KWz8BrNH3kJgoUkdiZcT37LnV/3GuMAVZsN/6a6O7s5iVo4VN/WEHAv3zZtaONraskrqCzgypKE=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2849.eurprd04.prod.outlook.com (10.175.40.20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Tue, 7 May 2019 08:48:31 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 08:48:31 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2] arm64: dts: ls1028a: Add USB dt nodes
+Thread-Topic: [PATCH v2] arm64: dts: ls1028a: Add USB dt nodes
+Thread-Index: AQHU+/SBIFirjMEfrESTZvW0Hl61haZW+m4AgAhvTQA=
+Date:   Tue, 7 May 2019 08:48:31 +0000
+Message-ID: <AM5PR0402MB286539A070BDEEDFC3304F0EF1310@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20190426055558.44544-1-ran.wang_1@nxp.com>
+ <20190501235410.GA25492@bogus>
+In-Reply-To: <20190501235410.GA25492@bogus>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-originating-ip: [92.121.36.197]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bd759458-80dc-4b19-23ff-08d6d2c8c853
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2849;
+x-ms-traffictypediagnostic: AM5PR0402MB2849:
+x-microsoft-antispam-prvs: <AM5PR0402MB2849500B82E1C50B29BEE3BFF1310@AM5PR0402MB2849.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-forefront-prvs: 0030839EEE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(346002)(136003)(366004)(376002)(396003)(39860400002)(189003)(199004)(305945005)(86362001)(71190400001)(71200400001)(6506007)(6246003)(81156014)(6916009)(53546011)(33656002)(81166006)(54906003)(53936002)(8676002)(26005)(55016002)(446003)(5660300002)(186003)(7736002)(9686003)(8936002)(74316002)(52536014)(256004)(102836004)(6436002)(73956011)(7696005)(316002)(11346002)(486006)(66556008)(66476007)(64756008)(66446008)(14454004)(66946007)(99286004)(68736007)(76116006)(76176011)(229853002)(66066001)(25786009)(2906002)(4326008)(478600001)(14444005)(476003)(3846002)(6116002)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2849;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Adic0pvt9H5MNoFvyJ0glYIODbCuQCtSp47pzv5ExGAAkbdyCY+sMLA9zEkT3YBpeKBg8w0dOLsavZlo+ymemg5m/UfvyIUJWPDuQMO47r+JUYjWNWun5jucu7lCg0IppuHIXUqM8mw5CeZSd+Bf3z0CvUiWUGoaOGU5pRofAN+8X+YbK8QOX2A+K6qB8ca0dX0syNsE57aQKeZtSLKEZMuITh4YlB5ypCozvgR4TcU1mFlWCPWWbO1EFt0NEoQcQRE2UpG4gtDo4TDZQtbFU5cqLDTVZYxukVpItMyfqNHsPSa/tbf9MJIXO+x0nff3eji7OCWZK1gwhIiAtpySQRDIsYvpbAUFXbJpkgwFq8z20Z4lJ91S7L74ya2TaE9LuIji+XYweQQnnIobwK+SbBjra7lhVq/AuMIZLmlYEuA=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd759458-80dc-4b19-23ff-08d6d2c8c853
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 08:48:31.4346
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2849
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.05.2019 2:46, Chris Brandt wrote:
+Hi Rob,
 
-> Add USB Device support for RZ/A2.
-> 
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
-> ---
->   arch/arm/boot/dts/r7s9210.dtsi | 24 ++++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/r7s9210.dtsi b/arch/arm/boot/dts/r7s9210.dtsi
-> index 1a992e6197c3..67ac746142d0 100644
-> --- a/arch/arm/boot/dts/r7s9210.dtsi
-> +++ b/arch/arm/boot/dts/r7s9210.dtsi
-> @@ -354,6 +354,18 @@
->   			status = "disabled";
->   		};
->   
-> +		usbhs0: usbhs@e8219000 {
+On Thursday, May 02, 2019 07:54 Rob Herring wrote:
+>=20
+> On Fri, Apr 26, 2019 at 05:54:26AM +0000, Ran Wang wrote:
+> > This patch adds USB dt nodes for LS1028A.
+> >
+> > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> > ---
+> > Changes in v2:
+> >   - Rename node from usb3@... to usb@... to meet DTSpec
+> >
+> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   20
+> ++++++++++++++++++++
+> >  1 files changed, 20 insertions(+), 0 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > index 8dd3501..188cfb8 100644
+> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > @@ -144,6 +144,26 @@
+> >  			clocks =3D <&sysclk>;
+> >  		};
+> >
+> > +		usb0:usb@3100000 {
+>                      ^ space needed
 
-   The node names should be generic, i.e. "usb@e8219000".
+Yes, will update this in next version.
+=20
+> > +			compatible=3D "snps,dwc3";
+>=20
+> Needs an SoC specific compatible.
 
-[...]
-> @@ -386,6 +398,18 @@
->   			status = "disabled";
->   		};
->   
-> +		usbhs1: usbhs@e821b000 {
+Do you mean change compatible to "snps,dwc3", "fsl,ls1028a-dwc3" ?
 
-    Same here.
+As I know, so far there is no SoC specific programming for this IP, so do
+you think it's still necessary to add it?
 
-[...]
+Regards,
+Ran
 
-MBR, Sergei
+> > +			reg=3D <0x0 0x3100000 0x0 0x10000>;
+> > +			interrupts=3D <0 80 0x4>;
+> > +			dr_mode=3D "host";
+> > +			snps,dis_rxdet_inp3_quirk;
+> > +			snps,quirk-frame-length-adjustment =3D <0x20>;
+> > +			snps,incr-burst-type-adjustment =3D <1>, <4>, <8>, <16>;
+> > +		};
+> > +
+> > +		usb1:usb@3110000 {
+> > +			compatible=3D "snps,dwc3";
+> > +			reg=3D <0x0 0x3110000 0x0 0x10000>;
+> > +			interrupts=3D <0 81 0x4>;
+> > +			dr_mode=3D "host";
+> > +			snps,dis_rxdet_inp3_quirk;
+> > +			snps,quirk-frame-length-adjustment =3D <0x20>;
+> > +			snps,incr-burst-type-adjustment =3D <1>, <4>, <8>, <16>;
+> > +		};
+> > +
+> >  		i2c0: i2c@2000000 {
+> >  			compatible =3D "fsl,vf610-i2c";
+> >  			#address-cells =3D <1>;
+> > --
+> > 1.7.1
+> >
