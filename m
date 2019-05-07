@@ -2,132 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AF7F16A02
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 20:19:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4386F16A07
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 20:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726378AbfEGSS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 14:18:59 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:38258 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726321AbfEGSS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 14:18:59 -0400
-Received: by mail-oi1-f194.google.com with SMTP id u199so5160930oie.5;
-        Tue, 07 May 2019 11:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DIIRa7p/rV4HB2as8tjEDFq+RRs+MK4VGHcsoldRJag=;
-        b=ra/kAOAx2DWa1Yxmu8NuLHtcqurukNSBbe1FvM0kjVJXJak8i6fZKY0dRvjQpFoDX2
-         pMdBgTLS7qZHdJ8Q0eHaFXDUWeN1g+p2WU9fGqlraeVmkb2lGW6BMm50xZDZMjNq3Q9v
-         WzU2Qz98pv8n8jfwsmCDEKzJ8pTEvbHyRSd6HNT0wmA6zhFfG8CDlb58ceLzweGQvneu
-         +oV7Jdn+o+Y1k8VmFLG67p+CDCB+mlQ5EVmc8OKmrpAbZ6EKD7onTrOk4uZ87kv4xAjB
-         6KXVI+N4Gthna8eIeDiLH0lFRyr26dIHz9QOT7soXVLNSTxQhhhQR9kGKNq5/7dWHtkT
-         aeKw==
+        id S1726607AbfEGSVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 14:21:16 -0400
+Received: from secvs02.rockwellcollins.com ([205.175.225.241]:56631 "EHLO
+        secvs02.rockwellcollins.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725859AbfEGSVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 14:21:16 -0400
+X-RC-All-From: , 205.175.225.60, No hostname, adam.michaelis@rockwellcollins.com,
+ Adam Michaelis <adam.michaelis@rockwellcollins.com>, , 
+X-RC-Attachments: , ,
+X-RC-RemoteIP: 205.175.225.60
+X-RC-RemoteHost: No hostname
+X-RC-IP-Hostname: secip02.rockwellcollins.com
+X-RC-IP-MID: 254228774
+X-RC-IP-Group: GOOGLE_RELAYED
+X-RC-IP-Policy: $GOOGLE_RELAYED
+X-RC-IP-SBRS: None
+Received: from unknown (HELO mail-it1-f200.google.com) ([205.175.225.60])
+  by secvs02.rockwellcollins.com with ESMTP/TLS/AES128-GCM-SHA256; 07 May 2019 13:21:14 -0500
+Received: by mail-it1-f200.google.com with SMTP id t196so15422119ita.7
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 11:21:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=DIIRa7p/rV4HB2as8tjEDFq+RRs+MK4VGHcsoldRJag=;
-        b=o9nsDu9UTkhyKpo95zxF2lzJWmuP4pK2E6e8WAPypew9DmIB5ad5lH2smNxnrKVvMO
-         3J4IL3oIbpZEsrQOhS77O7l13oc3sc+W9zzxhnq+fadjnYhhc8DUdAtxwi+AxwfT/9jl
-         zv469lRMRAMfJDF4dW0yzaC+oUxBLNSoHO6K2/aXRCnGkDh7zxG5J1vqil18jG3ijAly
-         GM7A/pJ+5LIMrvZ0Cw6JxNBOtDG4zKvy6gilXDPycBgPmJqkzxP6qY0yl8kNyWxBm+hw
-         HX73TF2TfLHErBRerkOpEF0XNA4C/OcqejzhMcAl9x8bNAyZQz9pM/he2XBPW1diWPJa
-         Cniw==
-X-Gm-Message-State: APjAAAXQo0HkwnrpoSo0vyw1SOO/P3hkxiYnNqnr5+d+RJ0JXBE33asB
-        cizw3FNwUtEWi22hOOHgP5E8VDES+Ds+f/vS5/k=
-X-Google-Smtp-Source: APXvYqwKfGvxV5yt/tcKqmGHxSUIsuuAeVYrF+n/PP82BHgwaxt6NE/Rtt7jU/L28u6iqYANZra1FUahagvh2ZmaR7c=
-X-Received: by 2002:aca:bdc4:: with SMTP id n187mr1040051oif.140.1557253138576;
- Tue, 07 May 2019 11:18:58 -0700 (PDT)
+        bh=VFV83yD3+Q4ELRdiBHRduUU2hiRv0XoHCimX6lMqsY8=;
+        b=QESkG1TIu3ljk3aOJjSPN6nfl4Fpu6OqYzl+mZQW+AAfGeBC2u0A5kRdASL6jlDGLp
+         zAL4/wLRChKAd6UeKLpTOdXU6TpH+mRs5hhhsF5TXcOyUnpt54+46RjsglB//A+NRsqO
+         W0YHSBs6gbUYWbX+ztMbxU/nB1PklNnZBs4cqXgSxhQ1mYkflpIQR57D6ZK4GV/EikD5
+         x3qti2Smt9J8aEbb1yEenkfUB2FmF+D2SSZUnFG8Y4f7u/6jbhOlkzFAqlG36fX995Vw
+         Njv74j/ySkoMScgJOSmSg0jrzNYtNPG2E3aCgpVu6kp5MGMzEJwZd9yFHOQDSjUs8A8P
+         rvwg==
+X-Gm-Message-State: APjAAAWkotLAa8eKewt8cT+txllQWDceHC9EP4Py4OnAbAqmONE61sqh
+        NOrh5V7//1MIWBt5kZAey/15gfqFfFrIifA/ZuzvvB+5r6gWjENUu7+VpNEGvGNgnXJ/ZKpX9zv
+        gGlk19dPdD+t9zEVTeGc2WtdyKDbSc+WjLJv2WfIxKj2DUkeDMzU+Kkqp
+X-Received: by 2002:a5d:9153:: with SMTP id y19mr9597237ioq.38.1557253274511;
+        Tue, 07 May 2019 11:21:14 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw7IqwUz1vJaA3xng+OwfneiRGf6SzSH3Qi7dLDeDHnI/o/bTTj8wa5oe93k+wzVCza+9k2hhSDDtN8uvLI9vs=
+X-Received: by 2002:a5d:9153:: with SMTP id y19mr9597220ioq.38.1557253274314;
+ Tue, 07 May 2019 11:21:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190507115726.23714-1-glaroque@baylibre.com> <20190507115726.23714-6-glaroque@baylibre.com>
-In-Reply-To: <20190507115726.23714-6-glaroque@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 7 May 2019 20:18:47 +0200
-Message-ID: <CAFBinCC-wYD1ZJ8Dd6mwd=qAqi8YX0=VacjbEc-bxKrQnZvwDA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] pinctrl: meson: add support of drive-strength-microamp
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        khilman@baylibre.com, linux-gpio@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
+References: <1556745423-11368-1-git-send-email-adam.michaelis@rockwellcollins.com>
+ <1556745423-11368-2-git-send-email-adam.michaelis@rockwellcollins.com> <20190505132234.313b78e9@archlinux>
+In-Reply-To: <20190505132234.313b78e9@archlinux>
+From:   Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Date:   Tue, 7 May 2019 13:21:03 -0500
+Message-ID: <CALMrGWUVnixueCbzKKkZ0af0rWze=N3SLD5EuynC869=nLw3PA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: iio: ad7949: Add adi,reference-select
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
+        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        Couret Charles-Antoine <charles-antoine.couret@essensium.com>,
+        devicetree@vger.kernel.org,
+        Brandon Maier <brandon.maier@rockwellcollins.com>,
+        Clayton Shotwell <clayton.shotwell@rockwellcollins.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 1:57 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+On Sun, May 5, 2019 at 7:22 AM Jonathan Cameron <jic23@kernel.org> wrote:
 >
-> drive-strength-microamp is a new feature needed for G12A SoC.
-> the default DS setting after boot is usually 500uA and it is not enough for
-> many functions. We need to be able to set the drive strength to reliably
-> enable things like MMC, I2C, etc ...
+> On Wed,  1 May 2019 16:16:59 -0500
+> Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
 >
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-with the comments below addressed:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-> ---
->  drivers/pinctrl/meson/pinctrl-meson.c | 102 ++++++++++++++++++++++++++
->  drivers/pinctrl/meson/pinctrl-meson.h |  18 ++++-
->  2 files changed, 119 insertions(+), 1 deletion(-)
+> > Adding optional parameter to AD7949 to specify the source for the
+> > reference voltage signal. Default value is maintaned with option '6' to
+> > match previous version of driver.
+> >
+> > Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/ad7949.txt         | 22 ++++++++++++++++++++--
+> >  1 file changed, 20 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/ad7949.txt b/Documentation/devicetree/bindings/iio/adc/ad7949.txt
+> > index c7f5057356b1..14ee9a2cb2a5 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/ad7949.txt
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ad7949.txt
+> > @@ -6,11 +6,29 @@ Required properties:
+> >       * "adi,ad7682"
+> >       * "adi,ad7689"
+> >   - reg: spi chip select number for the device
+> > - - vref-supply: The regulator supply for ADC reference voltage
+> >
+> > -Example:
+> > +Optional properties:
+> > + - adi,reference-select: Select the reference voltage source to use
+> > + when converting the input voltages. Valid values are:
+> So my immediate thought here is we are mapping one binding to several
+> different things. Some of which are definitely better described in other
+> ways.
 >
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index a216a7537564..3da867c13f47 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -219,12 +219,56 @@ static int meson_pinconf_enable_bias(struct meson_pinctrl *pc, unsigned int pin,
->         return 0;
->  }
+> So let us break it down:
 >
-> +static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
-> +                                           unsigned int pin,
-> +                                           u16 drive_strength_ua)
-> +{
-> +       struct meson_bank *bank;
-> +       unsigned int reg, bit;
-> +       unsigned int ds_val;
-you can move ds_val to the line above
+> Internal vs external.
+> - External should require a regulator.  If the regulator is there, normal
+> assumption would be you want to use it.
+>
+> Which internal reference?  Hmm. This would be incompatible with the external
+> regulator and I'd expect the presence of such a regulator to override this.
+> That does need a new binding.
+> adi,internal-reference-milivolts = 2500 or 4096.   Much nicer to have
+> real numbers for someone wondering how it is configured than an enum.
+>
+> Temperature sensor enabled: Why is this a devicetree question rather than
+> a runtime decision?
+>
+> Buffer enabled: This needs a custom binding
+> adi,external-reference-buffer-enable or something like that?
+>
+> Makes for a more consistent binding where some elements can be common
+> across similar devices.  It would be good to see if similar bindings
+> already exist.  Potentially tings like the reference-buffer enable
+> may be worth making standard ADC properties rather than device
+> specific.
+>
+> Thanks,
+>
+> Jonathan
+>
+The property name "adi,reference-select" was copied from the
+adi,ad7124 bindings as a similar hardware register configuration value
+field. If the property was separated into three independent fields,
+there would be a lot of explanation and checking required since many
+of the combinations are invalid (for example, temperature sensor and
+buffer are always enabled if internal reference is used). I could
+possibly see removing the temperature sensor configuration from the
+device tree, but, the current driver (even after these patches) does
+not provide any support to read the temperature sensor's value. I
+include that information in the configuration options as a summary of
+the datasheet.
 
-[...]
-> +       if (!pc->reg_ds) {
-> +               dev_err(pc->dev, "drive-strength not supported\n");
-I'm getting this on one of my Meson8m2 boards:
-$ # cat /sys/kernel/debug/pinctrl/c1109880.pinctrl-pinctrl-meson/pinconf-pins
-...
-[  874.748531] meson8-pinctrl c1109880.pinctrl: drive-strength not supported
-[  874.755278] meson8-pinctrl c1109880.pinctrl: drive-strength not supported
-[  874.762086] meson8-pinctrl c1109880.pinctrl: drive-strength not supported
-Pin config settings per pin
-Format: pin (name): configs
-pin 0 (GPIOX_0): input bias disabled
-pin 1 (GPIOX_1): input bias disabled
-pin 2 (GPIOX_2): input bias disabled
-...
-
-I believe we are not supposed to complain when getting the
-drive-strength when reg_ds is absent.
-all pre-G12A SoCs don't have reg_ds, so we don't need to error-out in
-that case (because that's perfectly valid)
-
-[...]
-> +static int meson_pinconf_get_drive_strength(struct meson_pinctrl *pc,
-> +                                           unsigned int pin,
-> +                                           u16 *drive_strength_ua)
-> +{
-> +       struct meson_bank *bank;
-> +       unsigned int reg, bit;
-> +       unsigned int val;
-> +       int ret;
-> +
-> +       if (!pc->reg_ds) {
-> +               dev_err(pc->dev, "drive-strength not supported\n");
-based on your previous explanation (that you want to inform the .dts
-author that he's doing something wrong) I'm happy with this error if
-Linus W. doesn't veto this.
-
-
-Regards
-Martin
+Adam
+>
+> > +   0: Internal 2.5V reference; temperature sensor enabled
+> > +   1: Internal 4.096V reference; temperature sensor enabled
+> > +   2: External reference, temperature sensor enabled, no buffer
+> > +   3: External reference, temperature sensor enabled, buffer enabled
+> > +   6: External reference, temperature sensor disabled, no buffer
+> > +   7: External reference, temperature sensor disabled, buffer enabled
+> > + - vref-supply: The regulator supply for ADC reference voltage. Required
+> > + if external reference selected by 'adi,reference-select'.
+> > +
+> > +Examples:
+> >  adc@0 {
+> >       compatible = "adi,ad7949";
+> >       reg = <0>;
+> > +     adi,reference-select = <2>;
+> >       vref-supply = <&vdd_supply>;
+> >  };
+> > +
+> > +adc@0 {
+> > +     compatible = "adi,ad7949";
+> > +     reg = <0>;
+> > +     adi,reference-select = <0>;
+> > +};
+>
