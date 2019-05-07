@@ -2,95 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E352165F2
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E55416609
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726444AbfEGOns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 10:43:48 -0400
-Received: from mail-eopbgr1400139.outbound.protection.outlook.com ([40.107.140.139]:57754
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725859AbfEGOns (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 10:43:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aM0Nd0hS5cwxiqbVjrIhyckr+/lsIhaa8E7lQbaaI9M=;
- b=BvCwVyEV+OLyE03Fd0hbJF1HR8X55VAiTq+UN24vqef5iq5Nm1zyCNdQGh8z/ZunEp09l/gpXrC0c0LVp7cNzGoyBCeT2fREK9jvtctaDJddwsRvkuXqjXtwMhVXAprDVzblAjM/h0sShKEWQ4/4GMN4O0SW03RTZVV3xtBABIM=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1835.jpnprd01.prod.outlook.com (52.133.163.20) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.10; Tue, 7 May 2019 14:43:41 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 14:43:41 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
- not using OTG
-Thread-Topic: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
- not using OTG
-Thread-Index: AQHVBGYbvpIQ5ioroEGpDalH9Ovnd6ZfhsEAgAAEBrCAAC6vgIAAAodw
-Date:   Tue, 7 May 2019 14:43:41 +0000
-Message-ID: <TY1PR01MB1562C153ABE676047F568BBD8A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-4-chris.brandt@renesas.com>
- <17bcc673-5fed-ce4f-3d61-af34bfa5d769@cogentembedded.com>
- <TY1PR01MB1562550164C7977D28C90F128A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <34544f59-76aa-710a-a6ec-7d7d7f31a023@cogentembedded.com>
-In-Reply-To: <34544f59-76aa-710a-a6ec-7d7d7f31a023@cogentembedded.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [24.206.39.126]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 50f26ac9-4f6b-4522-a6ff-08d6d2fa6605
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1835;
-x-ms-traffictypediagnostic: TY1PR01MB1835:
-x-microsoft-antispam-prvs: <TY1PR01MB183521668A620E1A497A06488A310@TY1PR01MB1835.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(396003)(376002)(39860400002)(136003)(366004)(199004)(189003)(102836004)(25786009)(4744005)(186003)(9686003)(6506007)(53936002)(26005)(55016002)(66066001)(52536014)(66946007)(73956011)(99286004)(76116006)(76176011)(5660300002)(64756008)(66446008)(4326008)(6246003)(71200400001)(68736007)(256004)(7696005)(66556008)(71190400001)(66476007)(6116002)(72206003)(74316002)(316002)(3846002)(6636002)(54906003)(86362001)(2906002)(110136005)(229853002)(11346002)(81156014)(446003)(486006)(476003)(33656002)(81166006)(8676002)(478600001)(7736002)(305945005)(14454004)(6436002)(8936002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1835;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: uPZDp5PeF7+tmUu0T2UI8Phz9EfG3VsbTRbk5xqa3+OFSnGO4FwGKskR81QELEXiLtOAPb/eE7gwxEnV+qgi+dxxvM1yqMFNm/0tz00VKebQZ2YpAPgfg50Ki3yqZAOMpOQrbeO4UrDi64pSP/VegEkmGPtGyMgV+A/mL2kfOuu7KjlnjC9bXADHoAwxK3Yki+gEoqbv9c+JlpPILgYvCDE21FJPf9Kelv483UKlSWV+BGU1iI3AdJNvOxUZa3eOYZBF6bPdHdmXgs0mlgUUq/5oHlToC5pZ6WVuTKUqGFmvMBhP/MkFD/yy30xtct81+B8h4rbsK0qLMwx5xw3bN0DNBl3VKM5RhbuRgNeOFac45N2eorEXBVzpmp23OjZBtnjF/VN1hSpNjo0BSsymQ30MjtJ0XKEH8Mzirs5bsPw=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726429AbfEGOwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 10:52:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42648 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726351AbfEGOwB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 10:52:01 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E937C21019;
+        Tue,  7 May 2019 14:51:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557240719;
+        bh=gWUxo89d44SUn3J2Zc928qElLW2XT8oWIyto8ecrjIY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YUtgkGToiqE6/WiAbanqadOhny/GrUBQ7hVL+t9ZAGA2iEdyxQtd38ixlsU4zL3y8
+         w+xWAtKkx73pRR7L41YbY9B5/OtTMHhgAsIhu49ZJsJnAEFqRaj8NF3OLQDefAIJOT
+         kgi1vgjg5tXIIEE+/VLjaVz39OGKHTGmPR61RfXw=
+Received: by mail-qt1-f176.google.com with SMTP id i31so19291016qti.13;
+        Tue, 07 May 2019 07:51:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAXmaFWY69FBJT2S3EwGJp+DTxa8DD95Rdygy0m9n2nhh4gJpd5q
+        Xv7412jJ/iQ1TZgLxgIk+6SQl8ySqdaWTZepEA==
+X-Google-Smtp-Source: APXvYqzxIefvVeNFRFHHncOA0m/a9ZI1n2OxWxSSZe8gViWqPJVgQkyi4KCb2IcqBYcRyd+wlZBqTVovXgTwYP7ETyw=
+X-Received: by 2002:aed:2471:: with SMTP id s46mr6594381qtc.144.1557240718119;
+ Tue, 07 May 2019 07:51:58 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50f26ac9-4f6b-4522-a6ff-08d6d2fa6605
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 14:43:41.2545
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1835
+References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
+ <e39713deed69735e5c02c4273bf84572aa589736.1557236840.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <e39713deed69735e5c02c4273bf84572aa589736.1557236840.git-series.maxime.ripard@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 7 May 2019 09:51:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLJ+aeG8zakZokv2qfwiLBiJ-49ByGuQ_-YuTUyGXtNnQ@mail.gmail.com>
+Message-ID: <CAL_JsqLJ+aeG8zakZokv2qfwiLBiJ-49ByGuQ_-YuTUyGXtNnQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: spi: sun6i: Add YAML schemas
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-spi <linux-spi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCBNYXkgMDcsIDIwMTkgMSwgU2VyZ2VpIFNodHlseW92IHdyb3RlOg0KPiAgICBEb24n
-dCB5b3UgcmVtZW1iZXIgYW5vdGhlciBydWxlOiB1c2Uge30gaW4gYWxsIGJyYW5jaGVzIGlmIGF0
-IGxlYXN0DQo+IG9uZSBicmFuY2ggdXNlcyB7fT8NCg0KQWgsIEkgc2VlIGl0IG5vdy4NCg0KRG9j
-dW1lbnRhdGlvbi9wcm9jZXNzL2NvZGluZy1zdHlsZS5yc3Q6DQoNClRoaXMgZG9lcyBub3QgYXBw
-bHkgaWYgb25seSBvbmUgYnJhbmNoIG9mIGEgY29uZGl0aW9uYWwgc3RhdGVtZW50IGlzIGEgc2lu
-Z2xlDQpzdGF0ZW1lbnQ7IGluIHRoZSBsYXR0ZXIgY2FzZSB1c2UgYnJhY2VzIGluIGJvdGggYnJh
-bmNoZXM6DQoNCi4uIGNvZGUtYmxvY2s6OiBjDQoNCglpZiAoY29uZGl0aW9uKSB7DQoJCWRvX3Ro
-aXMoKTsNCgkJZG9fdGhhdCgpOw0KCX0gZWxzZSB7DQoJCW90aGVyd2lzZSgpOw0KCX0NCg0KDQpJ
-IHdpbGwgY2hhbmdlIGl0Lg0KVGhhbmtzIQ0KDQpDaHJpcw0K
+On Tue, May 7, 2019 at 8:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Switch the DT binding to a YAML schema to enable the DT validation.
+>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml | 106 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+>  Documentation/devicetree/bindings/spi/spi-sun6i.txt                |  44 +------------------------------
+>  2 files changed, 106 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-sun6i.txt
+>
+> diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+> new file mode 100644
+> index 000000000000..0cd7244653a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
+> @@ -0,0 +1,106 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/allwinner,sun6i-a31-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner A31 SPI Controller Device Tree Bindings
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml"
+> +
+> +maintainers:
+> +  - Chen-Yu Tsai <wens@csie.org>
+> +  - Maxime Ripard <maxime.ripard@bootlin.com>
+> +
+> +properties:
+> +  "#address-cells": true
+> +  "#size-cells": true
+> +
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun6i-a31-spi
+> +      - allwinner,sun8i-h3-spi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ahb
+> +      - const: mod
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    items:
+> +      - description: RX DMA Channel
+> +      - description: TX DMA Channel
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx
+> +      - const: tx
+> +
+> +  num-cs: true
+> +
+> +patternProperties:
+> +  "^[a-z]+@[0-9]+$":
+
+Same issues here as patch 1.
+
+> +    properties:
+> +      reg:
+> +        items:
+> +          minimum: 0
+> +          maximum: 4
+> +
+> +      spi-rx-bus-width:
+> +        const: 1
+> +
+> +      spi-tx-bus-width:
+> +        const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi1: spi@1c69000 {
+> +        compatible = "allwinner,sun6i-a31-spi";
+> +        reg = <0x01c69000 0x1000>;
+> +        interrupts = <0 66 4>;
+> +        clocks = <&ahb1_gates 21>, <&spi1_clk>;
+> +        clock-names = "ahb", "mod";
+> +        resets = <&ahb1_rst 21>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
+> +
+> +  - |
+> +    spi0: spi@1c68000 {
+> +        compatible = "allwinner,sun8i-h3-spi";
+> +        reg = <0x01c68000 0x1000>;
+> +        interrupts = <0 65 4>;
+> +        clocks = <&ccu 30>, <&ccu 82>;
+> +        clock-names = "ahb", "mod";
+> +        dmas = <&dma 23>, <&dma 23>;
+> +        dma-names = "rx", "tx";
+> +        resets = <&ccu 15>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/spi/spi-sun6i.txt b/Documentation/devicetree/bindings/spi/spi-sun6i.txt
+> deleted file mode 100644
+> index 435a8e0731ac..000000000000
+> --- a/Documentation/devicetree/bindings/spi/spi-sun6i.txt
+> +++ /dev/null
+> @@ -1,44 +0,0 @@
+> -Allwinner A31/H3 SPI controller
+> -
+> -Required properties:
+> -- compatible: Should be "allwinner,sun6i-a31-spi" or "allwinner,sun8i-h3-spi".
+> -- reg: Should contain register location and length.
+> -- interrupts: Should contain interrupt.
+> -- clocks: phandle to the clocks feeding the SPI controller. Two are
+> -          needed:
+> -  - "ahb": the gated AHB parent clock
+> -  - "mod": the parent module clock
+> -- clock-names: Must contain the clock names described just above
+> -- resets: phandle to the reset controller asserting this device in
+> -          reset
+> -
+> -Optional properties:
+> -- dmas: DMA specifiers for rx and tx dma. See the DMA client binding,
+> -       Documentation/devicetree/bindings/dma/dma.txt
+> -- dma-names: DMA request names should include "rx" and "tx" if present.
+> -
+> -Example:
+> -
+> -spi1: spi@1c69000 {
+> -       compatible = "allwinner,sun6i-a31-spi";
+> -       reg = <0x01c69000 0x1000>;
+> -       interrupts = <0 66 4>;
+> -       clocks = <&ahb1_gates 21>, <&spi1_clk>;
+> -       clock-names = "ahb", "mod";
+> -       resets = <&ahb1_rst 21>;
+> -};
+> -
+> -spi0: spi@1c68000 {
+> -       compatible = "allwinner,sun8i-h3-spi";
+> -       reg = <0x01c68000 0x1000>;
+> -       interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+> -       clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
+> -       clock-names = "ahb", "mod";
+> -       dmas = <&dma 23>, <&dma 23>;
+> -       dma-names = "rx", "tx";
+> -       pinctrl-names = "default";
+> -       pinctrl-0 = <&spi0_pins>;
+> -       resets = <&ccu RST_BUS_SPI0>;
+> -       #address-cells = <1>;
+> -       #size-cells = <0>;
+> -};
+> --
+> git-series 0.9.1
