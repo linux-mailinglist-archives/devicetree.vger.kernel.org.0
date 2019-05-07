@@ -2,94 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C39167F0
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 18:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3678E1680C
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 18:40:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726411AbfEGQc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 12:32:58 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:32893 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726197AbfEGQc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 12:32:58 -0400
-Received: by mail-vs1-f68.google.com with SMTP id z145so10797982vsc.0;
-        Tue, 07 May 2019 09:32:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xfZ+nPfJalivsFUof8XfkbfxeRXadcob2dPu22J78FE=;
-        b=fXgkkodcnkRkgqOKPo7Lo23rHK9gmlTUyDkeg8WbYvjt/AmJJTseE8R446j9Ibxr3K
-         eTv9g9c2TMbp8916ViJXf8vs0VKRiVXjkzkrdii+/HiFcoxWsnlohQh0re3RcIpKxeb5
-         SfX8F9KBw0whfZMsDqbazwNBBaN7HYIfFDgd0qj26zZw3hY1sg+pY/D4xdVovmWyvg85
-         oHhrpXFw3wOBVmWPWGgs3r/7IHhWaPiX4jkBCJpgflDhXakQcKaoHAkgGnVmxQeYy7kA
-         /sn79S8T02Cu65B2f5ZhCF5B/mREmgHsRLie3fLPE+giL5HseVMmapLi3oVNaHmt4E2V
-         R+Fw==
-X-Gm-Message-State: APjAAAUqlm+y6FuIXWwdFJbO+TdYYepo7tdk/hNchdZ9DPiwzA8y1mkW
-        VCTNWYoQNWshLoRxaq6zK/Elo8r65jA7que6tME=
-X-Google-Smtp-Source: APXvYqwnBOm/31+1n0uOIej23iQ7zEwFHV7MPPxuNGseA0JkCWZ9jKf5bC8Pf3dai9+n75aDdCcSS3EpAwX0z+b1ukA=
-X-Received: by 2002:a67:ba07:: with SMTP id l7mr16617093vsn.11.1557246776403;
- Tue, 07 May 2019 09:32:56 -0700 (PDT)
+        id S1726494AbfEGQkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 12:40:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48848 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbfEGQkQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 12:40:16 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1E9BE205C9;
+        Tue,  7 May 2019 16:40:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557247215;
+        bh=bvy3TxkD6QYNRWZoUtKKAkzQfSrcSJIcIGTYRGnLKug=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JTCJWQqMALzVnz8pn0XWSps1BGXqUlUzq+/+NT/Ch42t/H9o2FEbSvt7oC++u0ThX
+         0LqL/ynMHT3x9ny1Txnf+8YJ2NzB7zdliZvC6DP6MdKAQSEWt6XwZOqSXvm/uK3iJX
+         N9Cmj98zvy+F+ywMFFWm43oZlpxOWVcThstqdmVA=
+Received: by mail-qt1-f175.google.com with SMTP id d13so2859030qth.5;
+        Tue, 07 May 2019 09:40:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAWPVzl6ytuD08wNxp0MHLe5jhDQrwk9fbKWI8LZ3ehzzXB/DIRy
+        tqhwXrnE36ZaPL1rnhfI6z5AUqgaUbfMhsz1JQ==
+X-Google-Smtp-Source: APXvYqwp5oN/U/L3GW2JMFZpyrG4LHPEVHaqtylnCTc4SbNGRF2GMOSnOZpjLlwUzTir6yXm3AenT0Q78p+6iSnukXE=
+X-Received: by 2002:ac8:641:: with SMTP id e1mr27627572qth.76.1557247214367;
+ Tue, 07 May 2019 09:40:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-2-chris.brandt@renesas.com> <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
- <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 7 May 2019 18:32:44 +0200
-Message-ID: <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com>
-Subject: Re: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1 option
-To:     Chris Brandt <Chris.Brandt@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20190426055558.44544-1-ran.wang_1@nxp.com> <20190501235410.GA25492@bogus>
+ <AM5PR0402MB286539A070BDEEDFC3304F0EF1310@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+In-Reply-To: <AM5PR0402MB286539A070BDEEDFC3304F0EF1310@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 May 2019 11:40:02 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+tmUCjZw7ybhKTGg0NNfc+JsOQ30vArfHzdw14XoWm5A@mail.gmail.com>
+Message-ID: <CAL_Jsq+tmUCjZw7ybhKTGg0NNfc+JsOQ30vArfHzdw14XoWm5A@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: ls1028a: Add USB dt nodes
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
-
-On Tue, May 7, 2019 at 5:43 PM Chris Brandt <Chris.Brandt@renesas.com> wrote:
-> On Tue, May 07, 2019, Geert Uytterhoeven wrote:
-> > > +       if (of_property_read_bool(dev->of_node, "renesas,uses_usb_x1"))
-> > > +               channel->uses_usb_x1 = true;
-> > > +
+On Tue, May 7, 2019 at 3:48 AM Ran Wang <ran.wang_1@nxp.com> wrote:
+>
+> Hi Rob,
+>
+> On Thursday, May 02, 2019 07:54 Rob Herring wrote:
 > >
-> > Perhaps this can be checked some other way (e.g. by checking for a non-
-> > zero
-> > clock rate of the USB_X1 clock referenced from DT), thus removing the need
-> > for
-> > adding a custom property?
+> > On Fri, Apr 26, 2019 at 05:54:26AM +0000, Ran Wang wrote:
+> > > This patch adds USB dt nodes for LS1028A.
+> > >
+> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> > > ---
+> > > Changes in v2:
+> > >   - Rename node from usb3@... to usb@... to meet DTSpec
+> > >
+> > >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   20
+> > ++++++++++++++++++++
+> > >  1 files changed, 20 insertions(+), 0 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > > index 8dd3501..188cfb8 100644
+> > > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > > @@ -144,6 +144,26 @@
+> > >                     clocks = <&sysclk>;
+> > >             };
+> > >
+> > > +           usb0:usb@3100000 {
+> >                      ^ space needed
 >
-> Currently, there is no USB_X1 in DT like there is for RZ/A1.
+> Yes, will update this in next version.
 >
-> For RZ/A2, those are dedicated pins that belong to the USB HW block
-> itself. They do not feed into the system CPG or any dividers, so I
-> never included it in the .dtsi.
+> > > +                   compatible= "snps,dwc3";
+> >
+> > Needs an SoC specific compatible.
+>
+> Do you mean change compatible to "snps,dwc3", "fsl,ls1028a-dwc3" ?
 
-Like pcie_bus_clk on R-Car?
-We do have that in DT, with a "clock" link to it from the PCIe device node.
-After all, it is provided by an external clock crystal, and consumed by the
-PCIe device.
+Well, that's the wrong order, but yes.
 
-> So with that said, does a uses-usb-x1 property make more sense?
+> As I know, so far there is no SoC specific programming for this IP, so do
+> you think it's still necessary to add it?
 
-No ;-)
+Yes. All the bugs and quirks are discovered already?
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
