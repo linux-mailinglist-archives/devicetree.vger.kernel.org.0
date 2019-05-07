@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5B616420
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 14:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D946916421
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 14:58:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726569AbfEGM5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 08:57:52 -0400
-Received: from mail-it1-f196.google.com ([209.85.166.196]:39526 "EHLO
-        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726823AbfEGM5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 08:57:48 -0400
-Received: by mail-it1-f196.google.com with SMTP id m186so759247itd.4
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 05:57:47 -0700 (PDT)
+        id S1726506AbfEGM63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 08:58:29 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:40367 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726435AbfEGM62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 08:58:28 -0400
+Received: by mail-io1-f65.google.com with SMTP id s20so4430520ioj.7
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 05:58:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=0tpjcX8McjyYgv5/kWuINyynciVnOO7CJ86ikKZd+4g=;
-        b=Rxxs5hK0qGnzH7fqh66e4Eo+TGmNsKGD4tP0wvGisqVV3aZM0m3FHn1ocajb+McYSu
-         zbIzQeYY2ji7/XVMqA7EwE+MbcRV455kTsQx4IofquUaVFBi+s5ScLRn3qmLaxJ2AHsc
-         U31Hq+5sV3IV/BsGdTFBkPWbaiZxj4/V5jhy8=
+         :cc;
+        bh=d1BYInvs1oFf7Gbsgx4CY3rSRVa9DYGZ8/CYy23V2us=;
+        b=nQ6gegFmujDnuKXP6cFCYr0axTyHf4uFwZaIrUljHKVC9068oWSqJkAfk9Gh17PHyE
+         uuCAjcmQeEOEjMHmCxUBI66XpnjQXroNYqsF+bbQt/09H+irkR7ubMcF5QEqvKJmmrN5
+         2R8R63oORKLnObh4WCc2I0C7S4zjFiYauYq3Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=0tpjcX8McjyYgv5/kWuINyynciVnOO7CJ86ikKZd+4g=;
-        b=e6PnAcf+RkaoGR8ERwUFfK7OUVaubvfs34ADmk7Y2thiBW8xTlycb5EzvkIMJd4ATS
-         zK4txvGUXy84BUzPmLY+DDX5rgojnVLqZgrFDK6W59/lx45MZJ5poklWJzoNEDtCzYFv
-         r2RPNliH862kc8fvd5JRj6h7iK5Q2E0+hqodf9oQjr7mirVHqyG0pnMXItQaa1oQgKin
-         PAuVjhWeEhUvjSu3om2it7eX3ACaP44oVfacsJsx3h3mgtMdvPJ4/4nSXSMrcObGCxk0
-         7KcD1SLfMfqcsUrpfUBkLlTVYgHl1d87cd0yiRzIIdmNYYcwp34P+cUdV7kdBQkyMp1a
-         e9fA==
-X-Gm-Message-State: APjAAAXR73fmpc1SHRpTYwyPVq36577MxEYNKd1ZyolBJ0Z0+fylNFw/
-        3/YflgQ8JZdLoPOu0Cwxp461eD4uDHIzELAkEY2a1LKD
-X-Google-Smtp-Source: APXvYqz8eEfTlDbhEWXsRqixp4YhLJz9Bp5ddH/g4ZeYiffylPkssVgZj/k76i5n4HZ+v9owl78h9IKz8CO5jtPfxZc=
-X-Received: by 2002:a24:1cc4:: with SMTP id c187mr2490255itc.107.1557233867322;
- Tue, 07 May 2019 05:57:47 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=d1BYInvs1oFf7Gbsgx4CY3rSRVa9DYGZ8/CYy23V2us=;
+        b=VD3A0hDxvfzV5S1Ttlb8jIEDw6SzhWuOsUagakaqdDLp2/PGN/jAvdMg+zvCXJrxeY
+         A6UhmMgD000xmCmOQB9oEiFM/bNA0tAahS5Khozu5zKJy1WpznONtQjjFA35uEvl2zcE
+         IcgFlVtf2JJsqE6jFzWmLg89LykLDVOL7Et3xF1z07SSpxU8w1EeoMAxmjh5BzpJuifb
+         kcrnzotJIPYfgddp0GMsW/yKAfLfzoY6WwQ/lso8YyXU8MMas5/rrqYGa24oeWz1ZgYc
+         QI71xRlaqqG9VBDtZsu4hG5adrw3tKTv5GPh0kUcL8CAN466KAuqWrj3EOWadKLwMeoQ
+         xt/g==
+X-Gm-Message-State: APjAAAWyD3vXUxIFsxdnl8fXF1r7SnBM3BjM22nEcvxcWd2WvXqdGbb8
+        m4MMra1wLbltgVTbj6//4q5uwkI0M+4YCeRaB5ePfw==
+X-Google-Smtp-Source: APXvYqwhx0sRi8/kQiro3wLZ7MDPkblbSgfSAjdeAhU/iYZfl1yQK/PGVAnga6qoHKYhXx/3TZGLyhlEorR953lTIZc=
+X-Received: by 2002:a5d:9a11:: with SMTP id s17mr892216iol.267.1557233908042;
+ Tue, 07 May 2019 05:58:28 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190503115928.27662-1-jagan@amarulasolutions.com>
  <20190503144651.ttqfha656dykqjzo@flea> <CAMty3ZCQTiX5OvCG_uMRS02vFu0c1-bkcyauLD6oaFcd=y3RNA@mail.gmail.com>
- <20190506133101.c3twwwydy5mez3db@core.my.home>
-In-Reply-To: <20190506133101.c3twwwydy5mez3db@core.my.home>
+ <20190507070617.h7loqiqvznqvvprq@flea>
+In-Reply-To: <20190507070617.h7loqiqvznqvvprq@flea>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 7 May 2019 18:27:35 +0530
-Message-ID: <CAMty3ZDNi7t-FSj=Wt3p39=CWx-o6QzKgbMKYd93mgDLBMVrbg@mail.gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v2] arm64: allwinner: h6:
- orangepi-one-plus: Add Ethernet support
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 7 May 2019 18:28:16 +0530
+Message-ID: <CAMty3ZB0+uAKzoi=LpbE0nty2BHxqwY=0Pm36uiNnjuc5TKCdg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: allwinner: h6: orangepi-one-plus: Add Ethernet support
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Michael Trimarchi <michael@amarulasolutions.com>,
         devicetree <devicetree@vger.kernel.org>,
@@ -58,18 +56,15 @@ To:     Jagan Teki <jagan@amarulasolutions.com>,
         linux-amarula <linux-amarula@amarulasolutions.com>,
         linux-sunxi <linux-sunxi@googlegroups.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 6, 2019 at 7:01 PM Ond=C5=99ej Jirman <megous@megous.com> wrote=
-:
+On Tue, May 7, 2019 at 12:36 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
 > On Mon, May 06, 2019 at 03:03:15PM +0530, Jagan Teki wrote:
-> > On Fri, May 3, 2019 at 8:16 PM Maxime Ripard <maxime.ripard@bootlin.com=
-> wrote:
+> > On Fri, May 3, 2019 at 8:16 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 > > >
 > > > On Fri, May 03, 2019 at 05:29:28PM +0530, Jagan Teki wrote:
 > > > > Add Ethernet support for orangepi-one-plus board,
@@ -82,124 +77,16 @@ On Mon, May 6, 2019 at 7:01 PM Ond=C5=99ej Jirman <megous@megous.com> wrote=
 > > > >
 > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 > > >
-> > > Your commit log should be improved. We can get those informations fro=
-m
+> > > Your commit log should be improved. We can get those informations from
 > > > the patch itself...
 > >
 > > Thought it was a clear commit log :)  will update anyway.
-> >
-> > >
-> > > > ---
-> > > > Changes for v2:
-> > > > - emac changes on top of https://patchwork.kernel.org/cover/1089952=
-9/
-> > > >   series
-> > > >
-> > > >  .../allwinner/sun50i-h6-orangepi-one-plus.dts |  8 ++++
-> > > >  .../dts/allwinner/sun50i-h6-orangepi.dtsi     | 42 +++++++++++++++=
-++++
-> > > >  2 files changed, 50 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-p=
-lus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > > > index 12e17567ab56..9e8ed1053715 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > > > @@ -9,4 +9,12 @@
-> > > >  / {
-> > > >       model =3D "OrangePi One Plus";
-> > > >       compatible =3D "xunlong,orangepi-one-plus", "allwinner,sun50i=
--h6";
-> > > > +
-> > > > +     aliases {
-> > > > +             ethernet0 =3D &emac;
-> > > > +     };
-> > > > +};
-> > > > +
-> > > > +&emac {
-> > > > +     status =3D "okay";
-> > > >  };
-> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi =
-b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > > > index 62e27948a3fa..c48e24acaf8a 100644
-> > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-> > > > @@ -45,6 +45,48 @@
-> > > >               regulator-max-microvolt =3D <5000000>;
-> > > >               regulator-always-on;
-> > > >       };
-> > > > +
-> > > > +     /*
-> > > > +      * The board uses 2.5V RGMII signalling. Power sequence to en=
-able
-> > > > +      * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power ra=
-ils
-> > > > +      * at the same time and to wait 100ms.
-> > > > +      */
-> > > > +     reg_gmac_2v5: gmac-2v5 {
-> > > > +             compatible =3D "regulator-fixed";
-> > > > +             regulator-name =3D "gmac-2v5";
-> > > > +             regulator-min-microvolt =3D <2500000>;
-> > > > +             regulator-max-microvolt =3D <2500000>;
-> > > > +             startup-delay-us =3D <100000>;
-> > > > +             enable-active-high;
-> > > > +             gpio =3D <&pio 3 6 GPIO_ACTIVE_HIGH>; /* GMAC_EN: PD6=
- */
-> > > > +
-> > > > +             /* The real parent of gmac-2v5 is reg_vcc5v, but we n=
-eed to
-> > > > +              * enable two regulators to power the phy. This is on=
-e way
-> > > > +              * to achieve that.
-> > > > +              */
-> > > > +             vin-supply =3D <&reg_aldo2>; /* VCC3V3-MAC: GMAC-3V *=
-/
-> > > > +     };
-> > > > +};
-> > > > +
-> > > > +&emac {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&ext_rgmii_pins>;
-> > > > +     phy-mode =3D "rgmii";
-> > > > +     phy-handle =3D <&ext_rgmii_phy>;
-> > > > +     phy-supply =3D <&reg_gmac_2v5>;
-> > > > +     allwinner,rx-delay-ps =3D <1500>;
-> > > > +     allwinner,tx-delay-ps =3D <700>;
-> > > > +};
-> > > > +
-> > > > +&mdio {
-> > > > +     ext_rgmii_phy: ethernet-phy@1 {
-> > > > +             compatible =3D "ethernet-phy-ieee802.3-c22";
-> > > > +             reg =3D <1>;
-> > > > +
-> > > > +             reset-gpios =3D <&pio 3 14 GPIO_ACTIVE_LOW>; /* RGMII=
--RESET: PD14 */
-> > > > +             reset-assert-us =3D <15000>;
-> > > > +             reset-deassert-us =3D <40000>;
-> > > > +     };
-> > > >  };
-> > >
-> > > ... however, at no point in time you explain why you made that switch=
-,
-> > > and while most of the definition of the EMAC nodes is in the DTSI, yo=
-u
-> > > only enable it in one DTS.
-> >
-> > The dtsi is shared b/w 1+ and lite2 and 1+ has emac, so I enabled the
-> > status directly on dts and keeping the relevant nodes on dtsi just
-> > like SoC dtsi does. do I need to mention this in commit log?
 >
-> Lite 2 doesn't have reg_gmac_2v5 and it also doesn't have the external ph=
-y.
-> But with this patch, reg_gmac_2v5 will also show up in the Lite 2's final
-> DTB.
+> Well, yes and no. The commit log is clear indeed, but it doesn't
+> provide what it's supposed to provide.
 >
-> Comapred to SoC dtsi, the SoC always has things that are in the dtsi, the=
-y
-> are just not enabled/used by the board, but they are present on the chip.
->
-> So this comes down to what the meaning of board-level dtsi should be. I
-> doubt we want it to mean "a collection of stuff that may or may not be
-> present on the boards that depend on it".
+> You shouldn't put *what* is being done by the patch. That's pretty
+> easy to figure out by reading the patch itself. You have to explain
+> why and how you did it, which is lacking in that case.
 
-Was thinking in another direction, thanks for the info. agreed.
+Make sense, will rework.
