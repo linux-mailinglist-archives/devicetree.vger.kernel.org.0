@@ -2,161 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C6991684B
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 18:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6742D1685C
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 18:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726476AbfEGQpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 12:45:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51246 "EHLO mail.kernel.org"
+        id S1726598AbfEGQuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 12:50:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52872 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726322AbfEGQpL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 12:45:11 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        id S1726548AbfEGQuu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 12:50:50 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 97C9921019;
-        Tue,  7 May 2019 16:45:09 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CE30A20B7C;
+        Tue,  7 May 2019 16:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557247509;
-        bh=iM8J/j10jYr+vXCxXzUjgCYgZk17YUkoK9VE/2fhJ1I=;
+        s=default; t=1557247848;
+        bh=4tZewm4W45u/iRbwmWuTzyVbl39+IFYmFh6qEBuo2/Q=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=INXumkFeyNf58pU/qjd3huFH5ZfaxLIpyMXHCnZHxbXpsPJF6T1W6Vkh88hhOGvrJ
-         GIheX5UtWz5QwB5Diw5nYE1jqJSPYf2nUHSJh66NP2uXzpdCBhwXjr4Np+l7L8hUOv
-         mxoIiNV+EIzMpgJ0Ex/W0XZsuvBDRvLXKk1WcejY=
-Received: by mail-qt1-f173.google.com with SMTP id f24so9394033qtk.11;
-        Tue, 07 May 2019 09:45:09 -0700 (PDT)
-X-Gm-Message-State: APjAAAW38M9Gj0afQsWp34yIMtcPqexEj+ZkKDww0vcMTa0oFMgsPMU2
-        lL3t6er9pY7fTllc6G2RqfdislO1NyFIcY2ddQ==
-X-Google-Smtp-Source: APXvYqy7rk1sMMIHbSD/9OOZe8P3NIAyg7u8OPXuXWtwWi2WaDv6h/Xnf9ZSQ+8dUBlM+SULUoG2eW9wkEEg+3BdjGk=
-X-Received: by 2002:ac8:641:: with SMTP id e1mr27644859qth.76.1557247508777;
- Tue, 07 May 2019 09:45:08 -0700 (PDT)
+        b=Uqn/JtYS4kPRY76N+lJ+ylfSX3jhhKt8bpMbsPUAbhIPq7WbPOkwI7B+bzrRF+mtW
+         rr9fHN54+6u6esuv8V9WbtBn2fLQCuyF7SDLs4bATzuba3qo3XUrWi5tyIGjUg7cWf
+         ohL4+iQdMasZDjhJ/NdA27RT3khpi3Ok67A7e0sg=
+Received: by mail-qk1-f182.google.com with SMTP id c15so1403744qkl.2;
+        Tue, 07 May 2019 09:50:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAWU/YvdochfhPJ65wvV2J/RL4XUBsq8SVnpfwMUF95E7Rekw30F
+        Fq7nxqolBxCAObeOF1tB7yWqEeSclDpRbk/xRw==
+X-Google-Smtp-Source: APXvYqwy91gBuwgIgFwBIlr7H7WziKK1/q+qve5xTg6xIcAxeG7XLdX/VKJhShfFBkFEzLxxQLOwWb8GHqYD7EgmNlA=
+X-Received: by 2002:a37:5c81:: with SMTP id q123mr23947855qkb.29.1557247848038;
+ Tue, 07 May 2019 09:50:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <1556893635-18549-1-git-send-email-ynezz@true.cz> <1556893635-18549-3-git-send-email-ynezz@true.cz>
-In-Reply-To: <1556893635-18549-3-git-send-email-ynezz@true.cz>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 7 May 2019 11:44:57 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLt6UFU_6bmh3Pc0taXUgMtAEV7kL7eZU13cLOjoakf=Q@mail.gmail.com>
-Message-ID: <CAL_JsqLt6UFU_6bmh3Pc0taXUgMtAEV7kL7eZU13cLOjoakf=Q@mail.gmail.com>
-Subject: Re: [PATCH v4 02/10] dt-bindings: doc: reflect new NVMEM
- of_get_mac_address behaviour
-To:     =?UTF-8?Q?Petr_=C5=A0tetiar?= <ynezz@true.cz>
-Cc:     netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
+References: <1555681688-19643-1-git-send-email-l.luba@partner.samsung.com>
+ <CGME20190419134822eucas1p29c6eff0f500311749b33c4f556123cf0@eucas1p2.samsung.com>
+ <1555681688-19643-4-git-send-email-l.luba@partner.samsung.com>
+ <20190430223629.GA22317@bogus> <1fd44623-4a59-f014-1ae9-a7cc605ad30f@partner.samsung.com>
+ <CAL_JsqJcm9Z6vYFHGyAZ+h3-kmSv6e=3NtO-fjJn3-QT0JoX+w@mail.gmail.com>
+ <97277857-666d-7720-9d85-19120c977682@partner.samsung.com> <3d221027-292b-7d0d-2510-f230a81f4b52@partner.samsung.com>
+In-Reply-To: <3d221027-292b-7d0d-2510-f230a81f4b52@partner.samsung.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 May 2019 11:50:37 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+K-bdhTBnW5R4M0nDoikfFRdz-BeZf9Rf-hSmACj4B2w@mail.gmail.com>
+Message-ID: <CAL_Jsq+K-bdhTBnW5R4M0nDoikfFRdz-BeZf9Rf-hSmACj4B2w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] Documentation: devicetree: add PPMU events description
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, willy.mh.wolff.ml@gmail.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 3, 2019 at 9:27 AM Petr =C5=A0tetiar <ynezz@true.cz> wrote:
+On Tue, May 7, 2019 at 4:05 AM Lukasz Luba <l.luba@partner.samsung.com> wrote:
 >
-> As of_get_mac_address now supports NVMEM under the hood, we need to updat=
-e
-> the bindings documentation with the new nvmem-cell* properties, which wou=
-ld
-> mean copy&pasting a lot of redundant information to every binding
-> documentation currently referencing some of the MAC address properties.
+> Hi Rob,
 >
-> So I've just removed all the references to the optional MAC address
-> properties and replaced them with the small note referencing
-> net/ethernet.txt file.
->
-> Signed-off-by: Petr =C5=A0tetiar <ynezz@true.cz>
-> ---
->
->  Changes since v2:
->
->  * replaced only MAC address related optional properties with a text
->    referencing ethernet.txt
->
->  Documentation/devicetree/bindings/net/altera_tse.txt           |  5 ++--=
--
->  Documentation/devicetree/bindings/net/amd-xgbe.txt             |  5 +++-=
--
->  Documentation/devicetree/bindings/net/brcm,amac.txt            |  4 ++--
->  Documentation/devicetree/bindings/net/cpsw.txt                 |  4 +++-
->  Documentation/devicetree/bindings/net/davinci_emac.txt         |  5 +++-=
--
->  Documentation/devicetree/bindings/net/dsa/dsa.txt              |  5 ++--=
--
->  Documentation/devicetree/bindings/net/ethernet.txt             |  6 ++++=
---
->  Documentation/devicetree/bindings/net/hisilicon-femac.txt      |  4 +++-
->  .../devicetree/bindings/net/hisilicon-hix5hd2-gmac.txt         |  4 +++-
->  Documentation/devicetree/bindings/net/keystone-netcp.txt       | 10 ++++=
-+-----
->  Documentation/devicetree/bindings/net/macb.txt                 |  5 ++--=
--
->  Documentation/devicetree/bindings/net/marvell-pxa168.txt       |  4 +++-
->  Documentation/devicetree/bindings/net/microchip,enc28j60.txt   |  3 ++-
->  Documentation/devicetree/bindings/net/microchip,lan78xx.txt    |  5 ++--=
--
->  Documentation/devicetree/bindings/net/qca,qca7000.txt          |  4 +++-
->  Documentation/devicetree/bindings/net/samsung-sxgbe.txt        |  4 +++-
->  .../devicetree/bindings/net/snps,dwc-qos-ethernet.txt          |  5 +++-=
--
->  .../devicetree/bindings/net/socionext,uniphier-ave4.txt        |  4 ++--
->  Documentation/devicetree/bindings/net/socionext-netsec.txt     |  5 +++-=
--
->  .../devicetree/bindings/net/wireless/mediatek,mt76.txt         |  5 +++-=
--
->  Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt   |  4 ++--
->  21 files changed, 58 insertions(+), 42 deletions(-)
+> On 5/6/19 12:29 PM, Lukasz Luba wrote:
+> > Hi Rob,
+> >
+> > On 5/2/19 10:24 PM, Rob Herring wrote:
+> >> On Thu, May 2, 2019 at 3:52 AM Lukasz Luba
+> >> <l.luba@partner.samsung.com> wrote:
+> >>>
+> >>> Hi Rob,
+> >>>
+> >>> On 5/1/19 12:36 AM, Rob Herring wrote:
+> >>>> On Fri, Apr 19, 2019 at 03:48:07PM +0200, Lukasz Luba wrote:
+> >>>>> Extend the documenation by events description with new
+> >>>>> 'event-data-type'
+> >>>>> field. Add example how the event might be defined in DT.
+> >>>>
+> >>>> Why do we need event types in DT? We don't do this for other h/w
+> >>>> such as
+> >>>> ARM PMU.
+> >>> In ARM PMU all the events are hard-coded into the driver code i.e. in v7
+> >>> arch/arm/kernel/perf_event_v7.c
+> >>> and are seen from perf. They are different type and for different
+> >>> purpose. The Ecynos PPMU events are not seen in perf, they are
+> >>> for internal monitoring and must not be reset by other actors like perf.
+> >>> They are used by the 'bus drivers' to made some heuristics and tune the
+> >>> internal settings, like frequency.
+> >>>
+> >>> Chanwoo has written PPMU driver which relies on DT definition.
+> >>> The DT events are used by other DT devices by phandle.
+> >>
+> >> How is that done? I don't see anything in the binding for that.
+> > Here are the DT devices and how they are pinned together:
+> > - declared devfreq events:
+> > https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412-ppmu-common.dtsi
+> >
+> > - devfreq events pinned to the bus device:
+> > https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412-odroid-common.dtsi#L107
+> >
+> > - the bus device itself:
+> > https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/exynos4412.dtsi#L457
+> >
+> >
+> > Regards,
+> > Lukasz
+> >
+> >>
+> >> Rob
+> >>
+> >>
+> Can I send the next version of the patch set, which has Chanwoo's
+> suggestions, or do you have some objections to this PPMU entries?
 
-[...]
-
-> diff --git a/Documentation/devicetree/bindings/net/keystone-netcp.txt b/D=
-ocumentation/devicetree/bindings/net/keystone-netcp.txt
-> index 04ba1dc..3a65aab 100644
-> --- a/Documentation/devicetree/bindings/net/keystone-netcp.txt
-> +++ b/Documentation/devicetree/bindings/net/keystone-netcp.txt
-> @@ -135,14 +135,14 @@ Optional properties:
->                 are swapped.  The netcp driver will swap the two DWORDs
->                 back to the proper order when this property is set to 2
->                 when it obtains the mac address from efuse.
-> -- local-mac-address:   the driver is designed to use the of_get_mac_addr=
-ess api
-> -                       only if efuse-mac is 0. When efuse-mac is 0, the =
-MAC
-> -                       address is obtained from local-mac-address. If th=
-is
-> -                       attribute is not present, then the driver will us=
-e a
-> -                       random MAC address.
->  - "netcp-device label":        phandle to the device specification for e=
-ach of NetCP
->                         sub-module attached to this interface.
->
-> +The MAC address will be determined using the optional properties defined=
- in
-> +ethernet.txt, as provided by the of_get_mac_address API and only if efus=
-e-mac
-
-Don't make references to Linux in bindings. You can talk about
-expectations of client programs (e.g Linux, u-boot, BSD, etc.) though.
+I think the existing binding which this is based on needs some
+changes, so it's pointless really for me to comment on additions.
 
 Rob
