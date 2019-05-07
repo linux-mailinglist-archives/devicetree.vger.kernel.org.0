@@ -2,127 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8121158E7
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 07:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8655315C7B
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 08:04:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726348AbfEGFZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 01:25:03 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:41250 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726331AbfEGFZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 01:25:03 -0400
-Received: by mail-qt1-f195.google.com with SMTP id c13so17632091qtn.8
-        for <devicetree@vger.kernel.org>; Mon, 06 May 2019 22:25:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0hFqmwNLrgOZ2d4LHKnw2c1GsxJZR0XMM1CJizfkss0=;
-        b=oTNWEoWULY5My61dxjSyob+ke4AB8mRsMSGQA39QxxGStJqKwc6brL3ScY9Pf6MlNV
-         cHlwWL4HZ2LL18qYr53Bt8gCq0vAEVs49chuSjny1Td+/Havv9W25UPJAwR7YrDl8KVP
-         gd5O+H3z2FdeEtB4nJ1685Y+V8/0Vt3jWOwxA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0hFqmwNLrgOZ2d4LHKnw2c1GsxJZR0XMM1CJizfkss0=;
-        b=rKc10EJBd83nZsOn6hdNkgKDcxiysDh7znsLFF+cep7h9YV9V+HSqU1YCY9J/UWP4B
-         GEqHzRyzLc8Ck8oPiKG0THzSdOzlbca17AqdHmyQKhskQluWtzZjhSHeWOTQVxdCqZuM
-         OJOlA0Uopl8+Hrof5t7MPTtOy078vJyy3fe5fNef0CjwXw6AEasVu5tu6uiNyO93eVSg
-         vDLm8q2E9KSJ8uqMGya13PMqkdBxxoQVRYvtfK618LZ0+4EVWQTEBzFZPZlNwI/8laKW
-         RK8eqMKMsgWkx7u+VFQmWDcC0b629LiMpNIT8wayNn8sy3qUuXexTe642kv/sofioKLh
-         h4Xw==
-X-Gm-Message-State: APjAAAX+6757hvrh4FcnXy5lnqFhWpRemzsFheI0AgJo0P4UArS2aWzi
-        tp3SGYPkLSa03BetlNiXKtFvZ06bgr2XvjlqdKOFnQ==
-X-Google-Smtp-Source: APXvYqw2tJU/Bf+A/JCr79IIzV4N6cX86Z0Gi/0NwYK3aYJCyNc6+UuOalKy+yiSTLrBH1vrjl87uP7dCzAESuSwzsc=
-X-Received: by 2002:ac8:1ae2:: with SMTP id h31mr7545363qtk.75.1557206702363;
- Mon, 06 May 2019 22:25:02 -0700 (PDT)
+        id S1727668AbfEGFfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 01:35:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55032 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727646AbfEGFfB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 01:35:01 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9C4232087F;
+        Tue,  7 May 2019 05:34:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557207300;
+        bh=ifEQPmsUCOHDvFEbi5HY2ksclEgvKvioGnD9ciCML8U=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=1Llo+5NuJpRJvzclmJk0aqv3bwhmUUV9kNIlYeHUw4VCVqKBPGrE2AIMy3azvc0I6
+         X8d3p/d9dzi2Iu02uyW72YtNPs37cUi5PQPz2+Fg7g5aSAFpDZ743qQv0L2MADX20Q
+         HszajeLXYh20w8NlOU4MMSrhGGObPCBnB1JoEDes=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.0 71/99] of_net: Fix residues after of_get_nvmem_mac_address removal
+Date:   Tue,  7 May 2019 01:32:05 -0400
+Message-Id: <20190507053235.29900-71-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190507053235.29900-1-sashal@kernel.org>
+References: <20190507053235.29900-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <20190503093117.54830-1-hsin-hsiung.wang@mediatek.com> <20190503093117.54830-5-hsin-hsiung.wang@mediatek.com>
-In-Reply-To: <20190503093117.54830-5-hsin-hsiung.wang@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Tue, 7 May 2019 14:24:51 +0900
-Message-ID: <CANMq1KCiK69kXkpagccqd1=pKOs7qOOVuJUaCe5JfoGVmPt7mg@mail.gmail.com>
-Subject: Re: [PATCH v3 04/10] dt-bindings: mfd: Add compatible for the
- MediaTek MT6358 PMIC
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org, Sean Wang <sean.wang@mediatek.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 3, 2019 at 6:34 PM Hsin-Hsiung Wang
-<hsin-hsiung.wang@mediatek.com> wrote:
->
-> This adds compatible for the MediaTek MT6358 PMIC.
->
-> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mt6397.txt | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> index 0ebd08af777d..62f1c17c7738 100644
-> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> @@ -17,22 +17,27 @@ Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
->  This document describes the binding for MFD device and its sub module.
->
->  Required properties:
-> -compatible: "mediatek,mt6397" or "mediatek,mt6323"
-> +compatible:
-> +       "mediatek,mt6323" for PMIC MT6323
-> +       "mediatek,mt6358" for PMIC MT6358
-> +       "mediatek,mt6397" for PMIC MT6397
->
->  Optional subnodes:
->
->  - rtc
->         Required properties:
-> -               - compatible: "mediatek,mt6397-rtc"
-> +               - compatible: "mediatek,mt6397-rtc" or "mediatek,mt6358-rtc"
->  - regulators
->         Required properties:
->                 - compatible: "mediatek,mt6397-regulator"
->         see Documentation/devicetree/bindings/regulator/mt6397-regulator.txt
-> +               - compatible: "mediatek,mt6358-regulator"
-> +       see Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
->                 - compatible: "mediatek,mt6323-regulator"
->         see Documentation/devicetree/bindings/regulator/mt6323-regulator.txt
->  - codec
->         Required properties:
-> -               - compatible: "mediatek,mt6397-codec"
-> +               - compatible: "mediatek,mt6397-codec" or "mediatek,mt6358-sound"
+From: Petr Štetiar <ynezz@true.cz>
 
-Sean had a question about this
-(https://patchwork.kernel.org/patch/10846669/#22524299):
-"why didn't we use a more consistent naming as mt6358-codec?"
+[ Upstream commit 36ad7022536e0c65f8baeeaa5efde11dec44808a ]
 
->  - clk
->         Required properties:
->                 - compatible: "mediatek,mt6397-clk"
-> --
-> 2.18.0
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+I've discovered following discrepancy in the bindings/net/ethernet.txt
+documentation, where it states following:
+
+ - nvmem-cells: phandle, reference to an nvmem node for the MAC address;
+ - nvmem-cell-names: string, should be "mac-address" if nvmem is to be..
+
+which is actually misleading and confusing. There are only two ethernet
+drivers in the tree, cadence/macb and davinci which supports this
+properties.
+
+This nvmem-cell* properties were introduced in commit 9217e566bdee
+("of_net: Implement of_get_nvmem_mac_address helper"), but
+commit afa64a72b862 ("of: net: kill of_get_nvmem_mac_address()")
+forget to properly clean up this parts.
+
+So this patch fixes the documentation by moving the nvmem-cell*
+properties at the appropriate places.  While at it, I've removed unused
+include as well.
+
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Fixes: afa64a72b862 ("of: net: kill of_get_nvmem_mac_address()")
+Signed-off-by: Petr Štetiar <ynezz@true.cz>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ Documentation/devicetree/bindings/net/davinci_emac.txt | 2 ++
+ Documentation/devicetree/bindings/net/ethernet.txt     | 2 --
+ Documentation/devicetree/bindings/net/macb.txt         | 4 ++++
+ drivers/of/of_net.c                                    | 1 -
+ 4 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/davinci_emac.txt b/Documentation/devicetree/bindings/net/davinci_emac.txt
+index 24c5cdaba8d2..ca83dcc84fb8 100644
+--- a/Documentation/devicetree/bindings/net/davinci_emac.txt
++++ b/Documentation/devicetree/bindings/net/davinci_emac.txt
+@@ -20,6 +20,8 @@ Required properties:
+ Optional properties:
+ - phy-handle: See ethernet.txt file in the same directory.
+               If absent, davinci_emac driver defaults to 100/FULL.
++- nvmem-cells: phandle, reference to an nvmem node for the MAC address
++- nvmem-cell-names: string, should be "mac-address" if nvmem is to be used
+ - ti,davinci-rmii-en: 1 byte, 1 means use RMII
+ - ti,davinci-no-bd-ram: boolean, does EMAC have BD RAM?
+ 
+diff --git a/Documentation/devicetree/bindings/net/ethernet.txt b/Documentation/devicetree/bindings/net/ethernet.txt
+index cfc376bc977a..2974e63ba311 100644
+--- a/Documentation/devicetree/bindings/net/ethernet.txt
++++ b/Documentation/devicetree/bindings/net/ethernet.txt
+@@ -10,8 +10,6 @@ Documentation/devicetree/bindings/phy/phy-bindings.txt.
+   the boot program; should be used in cases where the MAC address assigned to
+   the device by the boot program is different from the "local-mac-address"
+   property;
+-- nvmem-cells: phandle, reference to an nvmem node for the MAC address;
+-- nvmem-cell-names: string, should be "mac-address" if nvmem is to be used;
+ - max-speed: number, specifies maximum speed in Mbit/s supported by the device;
+ - max-frame-size: number, maximum transfer unit (IEEE defined MTU), rather than
+   the maximum frame size (there's contradiction in the Devicetree
+diff --git a/Documentation/devicetree/bindings/net/macb.txt b/Documentation/devicetree/bindings/net/macb.txt
+index 3e17ac1d5d58..1a914116f4c2 100644
+--- a/Documentation/devicetree/bindings/net/macb.txt
++++ b/Documentation/devicetree/bindings/net/macb.txt
+@@ -26,6 +26,10 @@ Required properties:
+ 	Optional elements: 'tsu_clk'
+ - clocks: Phandles to input clocks.
+ 
++Optional properties:
++- nvmem-cells: phandle, reference to an nvmem node for the MAC address
++- nvmem-cell-names: string, should be "mac-address" if nvmem is to be used
++
+ Optional properties for PHY child node:
+ - reset-gpios : Should specify the gpio for phy reset
+ - magic-packet : If present, indicates that the hardware supports waking
+diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
+index 810ab0fbcccb..d820f3edd431 100644
+--- a/drivers/of/of_net.c
++++ b/drivers/of/of_net.c
+@@ -7,7 +7,6 @@
+  */
+ #include <linux/etherdevice.h>
+ #include <linux/kernel.h>
+-#include <linux/nvmem-consumer.h>
+ #include <linux/of_net.h>
+ #include <linux/phy.h>
+ #include <linux/export.h>
+-- 
+2.20.1
+
