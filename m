@@ -2,49 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5844415FE9
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B7B615FF8
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726399AbfEGI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:58:45 -0400
-Received: from mail-qt1-f194.google.com ([209.85.160.194]:41327 "EHLO
-        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726383AbfEGI6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:58:45 -0400
-Received: by mail-qt1-f194.google.com with SMTP id c13so18099478qtn.8
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 01:58:44 -0700 (PDT)
+        id S1726996AbfEGI7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:59:08 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:42869 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726885AbfEGI7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:59:07 -0400
+Received: by mail-qk1-f194.google.com with SMTP id d4so221989qkc.9
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 01:59:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=N4j8vIu2wMMo6UT4+kjIlyoObNO3WTbPl4WCu+/nidM=;
-        b=ctTKjgV+zvGS9Gu1Me48lcXJj5NqtLOU2qUZfsGcBDnwCUXDVEdjcq3QLVxixOlQSa
-         xDxe0j3pLX2v9kUw9PZ+P910lyFYWbJbJkIgwu+caLtqZ49bbGbcdHpr8qyqbT9Oy5rV
-         ZfEOk3QiUo7CLg9q/N5n5gysIRNWmEcCZxpLQ=
+        bh=3aU3KdevIyzgXbG781UoZs1Bb4vUUWKNcMK076foDGU=;
+        b=ON+p2hg7Pm2pamPArQ09UUBPZnXq1MgAYa2Q6ziX4dSU3Ex/qwkdxRfrmyQQKq4fo0
+         CzdRAKKzu2/TUUbDJOleTBxNvkUtNAbVv6BJ5B8EVOF6ygVEtUfE2cih/mGrjoausodv
+         pBx/sT84pXaXCG5QgM+6SgdQFHkYaLjmPAq9g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=N4j8vIu2wMMo6UT4+kjIlyoObNO3WTbPl4WCu+/nidM=;
-        b=qQOqpC8m58/XyG0XZmNMSJhboM1qV+7n5DdDq6pWYudE6yFBveUK+saI+Yr1U35+cn
-         T1bobPwBeXirkptIKiOq6Hxvkm1nTpoX6L8WKCGPoCj62xEdg8hx5if3J9xvTFVhw2iP
-         pe8mGYQuFMXfzNkXrHwgvtvXtYmA5w5NK04GFnYHFTiVzz/zQR+cpf5GX2aEFWJsR4Wy
-         pOIdleXWEPZoq5dNyRg+GIvnefZrLrpBIMTj6ifolc0RXKl0HmsDXttmy5IDGE/0ppKb
-         0a6Mz4zeSsTbddo3dvt0DnARAUv5l4p/03ONLjleRYdhOt06C2hIAEqaRwjfC/i5hht8
-         eGfQ==
-X-Gm-Message-State: APjAAAVr7EW+Z22z7G+/aGyA4QxmWMb/sKmoNVO3lqSXy3e2ybEvog2S
-        lI2qJeS5i6Hp/rHQlZvk14x99Uyd7bM8C3cU0S4y6g==
-X-Google-Smtp-Source: APXvYqwh0Jp85DeTO2qBWgQsuEyExRB1yb+3NzYLBg178fUUMnHKuPVE2ZV5rt3C9hW9+lUMAdlXGFQiVeB/ea6x5qw=
-X-Received: by 2002:ac8:3fe3:: with SMTP id v32mr24484207qtk.307.1557219524087;
- Tue, 07 May 2019 01:58:44 -0700 (PDT)
+        bh=3aU3KdevIyzgXbG781UoZs1Bb4vUUWKNcMK076foDGU=;
+        b=THocaw7R7+l3XkM65sy2BZzd0xtL4C3X69jrSikCf4nRrjZwT9ageqQIiNUQp/8cKt
+         8Ppu7buL5OiQy+/cBhYYznVz9+hPv+Cb4hgS6KY3CTkC5JXcXm4rhajU+QOLPkyUWRgK
+         H/QbsHh+dHodC30YAHW4L5CSr9QoN9iEwm++AW/qVgbvMUJSL0LheOM9TXq3ycIr85xx
+         OULNy9740FRJahkruEZuMs7Y0uH0CYbz6SDQlW3P/AzEsMiqg8BiV9RV8DBMu/qe5IUm
+         TYxx3lU3vk1OSl5K1HbbCr1T7UoMgrjY4sdTyLrWsENKuH641BXSjjDoIHtk6Iw/dPVq
+         2Vkw==
+X-Gm-Message-State: APjAAAUMa0rUZjSZj1WP6NlgrCJYO7B2mAwVe6Mrde/L2C9qJtGLTBGr
+        htDTO5hJCgJlDwpqgWjnxP8gHj3p786SrfHgve/frQ==
+X-Google-Smtp-Source: APXvYqwPpaxX5r4wI/jXxlXZQ/vWJkvg48WefXd+ah/jnuQKCFF2bVOLDxZdtW5Aili31vG0ozFXkzpJEG1lt+lr1Mk=
+X-Received: by 2002:a05:620a:1641:: with SMTP id c1mr236605qko.103.1557219546010;
+ Tue, 07 May 2019 01:59:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com> <1556793795-25204-6-git-send-email-michael.kao@mediatek.com>
-In-Reply-To: <1556793795-25204-6-git-send-email-michael.kao@mediatek.com>
+References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com> <1556793795-25204-7-git-send-email-michael.kao@mediatek.com>
+In-Reply-To: <1556793795-25204-7-git-send-email-michael.kao@mediatek.com>
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 7 May 2019 16:58:18 +0800
-Message-ID: <CAJMQK-hKoK1hfK+XJuyExxp3rDWY9py6j3_jwEMfVeJcYYM7XA@mail.gmail.com>
-Subject: Re: [PATCH 5/8] arm64: dts: mt8183: Increase polling frequency for
- CPU thermal zone
+Date:   Tue, 7 May 2019 16:58:40 +0800
+Message-ID: <CAJMQK-i6oZ1dTbTXV2_nX+mGfZ7JcafRMKbb81YgPk67Gdbjbg@mail.gmail.com>
+Subject: Re: [PATCH 6/8] thermal: mediatek: mt8183: fix bank number settings
 To:     "michael.kao" <michael.kao@mediatek.com>
 Cc:     fan.chen@mediatek.com, jamesjj.liao@mediatek.com,
         dawei.chien@mediatek.com, louis.yu@mediatek.com,
@@ -54,10 +53,9 @@ Cc:     fan.chen@mediatek.com, jamesjj.liao@mediatek.com,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -66,31 +64,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
 >
-> From: Matthias Kaehlcke <mka@chromium.org>
+> From: Michael Kao <michael.kao@mediatek.com>
 >
-> Evaluate the thermal zone every 500ms while not cooling and every
-> 100ms when passive cooling is performed.
+> MT8183_NUM_ZONES should be set to 1
+> because MT8183 doesn't have multiple banks.
 >
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Fixes: a4ffe6b52d27 ("thermal: mediatek: add support for MT8183")
+> Signed-off-by: Michael Kao <Michael.Kao@mediatek.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/thermal/mtk_thermal.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 0b3294b..be879ac 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -370,8 +370,8 @@
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
+> index 5c07a61..cb41e46 100644
+> --- a/drivers/thermal/mtk_thermal.c
+> +++ b/drivers/thermal/mtk_thermal.c
+> @@ -216,6 +216,9 @@ enum {
+>  /* The total number of temperature sensors in the MT8183 */
+>  #define MT8183_NUM_SENSORS     6
 >
->                 thermal-zones {
->                         cpu_thermal: cpu_thermal {
-> -                               polling-delay-passive = <1000>;
-> -                               polling-delay = <1000>;
-> +                               polling-delay-passive = <100>;
-> +                               polling-delay = <500>;
+> +/* The number of banks in the MT8183 */
+> +#define MT8183_NUM_ZONES               1
+> +
+>  /* The number of sensing points per bank */
+>  #define MT8183_NUM_SENSORS_PER_ZONE     6
 >
->                                 thermal-sensors = <&thermal 0>;
->                                 sustainable-power = <1500>;
+> @@ -503,7 +506,7 @@ struct mtk_thermal {
+>
+>  static const struct mtk_thermal_data mt8183_thermal_data = {
+>         .auxadc_channel = MT8183_TEMP_AUXADC_CHANNEL,
+> -       .num_banks = MT8183_NUM_SENSORS_PER_ZONE,
+> +       .num_banks = MT8183_NUM_ZONES,
+>         .num_sensors = MT8183_NUM_SENSORS,
+>         .vts_index = mt8183_vts_index,
+>         .cali_val = MT8183_CALIBRATION,
 
 Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
