@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 681EE1643F
+	by mail.lfdr.de (Postfix) with ESMTP id D100B16440
 	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726481AbfEGNHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 09:07:30 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:41595 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726406AbfEGNH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:07:29 -0400
-Received: by mail-pl1-f195.google.com with SMTP id d9so8173544pls.8
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 06:07:29 -0700 (PDT)
+        id S1726531AbfEGNHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:07:35 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:43823 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726381AbfEGNHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:07:35 -0400
+Received: by mail-pf1-f193.google.com with SMTP id c6so3442919pfa.10
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 06:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zVEShq2r+HH1dqUKjsY/tIvQnR4fC4lx62sAnv2cszQ=;
-        b=jm+TvJfNFt6JoZDpIcsdQYCpeFYqOblkOGI08ywsGy57x+8/bmkSF4Jiva803NbPKE
-         s7m5WLd6gfL1+tbGQjSyYmf3uBgqOudNS4xmd/KNNKzha6oI95GWuIDU4syC1mQ+66W8
-         lrUJaarBqXPhwdumssK7oXfiCQKiWLW3S0Kas=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=oYIcefqUbtjO6efG05qDKL3HAKUE9dWz26q5t6PWQVk=;
+        b=edyEPa62/tqOK5yYOgIKFbrNm5HJFRdrthDyG8k085PwYA7rMARCaKhtyT0spUv1lZ
+         z80r7mktww84mBSrnXqBVlE03aT9WMA4HAZ4mqg/i8fZ1NPa02rZ+dxElXpGI3svX4yK
+         Ag+W8uF1vfH5vDlvlyHmywP0gZ4a0qKxq5iBM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zVEShq2r+HH1dqUKjsY/tIvQnR4fC4lx62sAnv2cszQ=;
-        b=m6Ilp9UIIRfiascoR3E/dKiLkoXSd6B4MuNiCAsB+BYRQ8Jbgx1bfeVQTgSG9BjInl
-         xDe/oRUUJD1/K44cflFHK547d2zQjG6qmkF4UgUQx7KwAR/65cECs6a77251iycrsk4u
-         2PxXxssvKOErnE5sebriD6avElBQuJNz6lB79jg+vFPk22S0lu4iic9cLZnKdyAtqD7x
-         ILTmRXPihXRRc3v2yYdO1sNY+qkrpRJ1DR5PeF1zODnEalQyxv6qZkMHjSj4goqN38TE
-         jwtRubqfmYz2e8gkGlZvmH+a2CR6rn75VjwqRV0ehsgEGJp+WY411mGj2jA2wIVlbWjm
-         yvyw==
-X-Gm-Message-State: APjAAAXUOdC/XHBb6ud4xr0JGn5zHAenhFdOe55FFL6XLCwLrJSOmSmg
-        KlzuHC0xEqd2pD2zBtzEi89zYg==
-X-Google-Smtp-Source: APXvYqxTNLStKgWqhFuYnzLAEpQKZaTXrhsWJy7MmuW5PcblTQp6f4JovNxg5jyNfUeBBZ2VP2/bHQ==
-X-Received: by 2002:a17:902:2a:: with SMTP id 39mr39639547pla.64.1557234449180;
-        Tue, 07 May 2019 06:07:29 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=oYIcefqUbtjO6efG05qDKL3HAKUE9dWz26q5t6PWQVk=;
+        b=QdjTVYB0lFOktaio7x7m7bRgrz6jXuLXSjR00CdZrh5Bd/nVAWSxFC1jSkSWXWJRcv
+         LauU+z4Bd7tl/nFuTCTLgTJsiUGt1pjcz8ZjxiRdJT+ZqcSzsBVAha/Q4O7Cs7nCWzjL
+         m9SLrYr994poc9OVIq74ht/2QFw2jbk9k25KtET5+PJ5STnWayzMfpQmx07FCHHmspRW
+         Dt3qv8SR3Vf9iaQMM6grz3K1w/5GvyMqrun0gdAe6g2FmlpOnLcTq6jI1EWSuGaebWla
+         BOjTPELeiN57UuJ5im6fl6t16q/3zM/BSfpYsIhTCnpQ6PS7xyjs2KqbfF6ygyS/IJdT
+         A+eg==
+X-Gm-Message-State: APjAAAWj3Nzd4u20u14kZxSs+2R3xle0h480cwt4/Jw+3IBBAaKbcG8f
+        30KJT9PNOy+TmPaTrGB5Uv+LWQ==
+X-Google-Smtp-Source: APXvYqy2CKkQ9wX0prpKV/pt24cFsadXZXvMcaev7EfdOiJeDL66Kfub6iLEmQkBCbHk4BdoBKJpNg==
+X-Received: by 2002:a63:fb56:: with SMTP id w22mr38503539pgj.354.1557234454717;
+        Tue, 07 May 2019 06:07:34 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:3682:cdb6:452:ecda:bdfa:452e])
-        by smtp.gmail.com with ESMTPSA id w190sm21889823pfb.101.2019.05.07.06.07.24
+        by smtp.gmail.com with ESMTPSA id w190sm21889823pfb.101.2019.05.07.06.07.29
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 06:07:28 -0700 (PDT)
+        Tue, 07 May 2019 06:07:33 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -53,10 +53,12 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 1/3] dt-bindings: display: Document FriendlyELEC HD702E LCD panel
-Date:   Tue,  7 May 2019 18:37:06 +0530
-Message-Id: <20190507130708.11255-1-jagan@amarulasolutions.com>
+Subject: [PATCH v2 2/3] drm/panel: simple: Add FriendlyELEC HD702E 800x1280 LCD panel
+Date:   Tue,  7 May 2019 18:37:07 +0530
+Message-Id: <20190507130708.11255-2-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+In-Reply-To: <20190507130708.11255-1-jagan@amarulasolutions.com>
+References: <20190507130708.11255-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -68,7 +70,8 @@ HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
 resolution. It has built in Goodix, GT9271 captive touchscreen
 with backlight adjustable via PWM.
 
-Add dt-bindings documentation for it.
+Add support for it.
+
 Cc: Thierry Reding <thierry.reding@gmail.com>
 Cc: Sam Ravnborg <sam@ravnborg.org>
 Cc: David Airlie <airlied@linux.ie>
@@ -78,52 +81,56 @@ Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
 Changes for v2:
-- separate binding patch from driver
-- Add simple-panel compatible as fallback
-- Add text info about simple-panel bindings
+- separate it from binding patch
+- sort the match id and compatible 
 
- .../display/panel/friendlyarm,hd702e.txt      | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
+ drivers/gpu/drm/panel/panel-simple.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
-new file mode 100644
-index 000000000000..6c9156fc3478
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
-@@ -0,0 +1,32 @@
-+FriendlyELEC HD702E 800x1280 LCD panel
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 9e8218f6a3f2..93274e270663 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -1184,6 +1184,29 @@ static const struct panel_desc foxlink_fl500wvr00_a0t = {
+ 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+ };
+ 
++static const struct drm_display_mode friendlyarm_hd702e_mode = {
++	.clock		= 67185,
++	.hdisplay	= 800,
++	.hsync_start	= 800 + 20,
++	.hsync_end	= 800 + 20 + 24,
++	.htotal		= 800 + 20 + 24 + 20,
++	.vdisplay	= 1280,
++	.vsync_start	= 1280 + 4,
++	.vsync_end	= 1280 + 4 + 8,
++	.vtotal		= 1280 + 4 + 8 + 4,
++	.vrefresh	= 60,
++	.flags		= DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
++};
 +
-+HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
-+resolution. It has built in Goodix, GT9271 captive touchscreen
-+with backlight adjustable via PWM.
++static const struct panel_desc friendlyarm_hd702e = {
++	.modes = &friendlyarm_hd702e_mode,
++	.num_modes = 1,
++	.size = {
++		.width	= 94,
++		.height	= 151,
++	},
++};
 +
-+Required properties:
-+- compatible: should be "friendlyarm,hd702e"
-+- power-supply: regulator to provide the supply voltage
-+
-+Optional properties:
-+- backlight: phandle of the backlight device attached to the panel
-+
-+Optional nodes:
-+- Video port for LCD panel input.
-+
-+This binding is compatible with the simple-panel binding, which is specified
-+in simple-panel.txt in this directory.
-+
-+Example:
-+
-+	panel {
-+		compatible ="friendlyarm,hd702e", "simple-panel";
-+		backlight = <&backlight>;
-+		power-supply = <&vcc3v3_sys>;
-+
-+		port {
-+			panel_in_edp: endpoint {
-+				remote-endpoint = <&edp_out_panel>;
-+			};
-+		};
-+	};
+ static const struct drm_display_mode giantplus_gpg482739qs5_mode = {
+ 	.clock = 9000,
+ 	.hdisplay = 480,
+@@ -2637,6 +2660,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "foxlink,fl500wvr00-a0t",
+ 		.data = &foxlink_fl500wvr00_a0t,
++	}, {
++		.compatible = "friendlyarm,hd702e",
++		.data = &friendlyarm_hd702e,
+ 	}, {
+ 		.compatible = "giantplus,gpg482739qs5",
+ 		.data = &giantplus_gpg482739qs5
 -- 
 2.18.0.321.gffc6fa0e3
 
