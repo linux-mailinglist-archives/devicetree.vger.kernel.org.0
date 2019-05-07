@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 035ED16108
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F29F01610B
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726349AbfEGJfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 05:35:12 -0400
-Received: from first.geanix.com ([116.203.34.67]:44194 "EHLO first.geanix.com"
+        id S1726340AbfEGJfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 05:35:38 -0400
+Received: from vps.xff.cz ([195.181.215.36]:60078 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726286AbfEGJfM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 05:35:12 -0400
-Received: from localhost.localdomain (unknown [95.138.208.137])
-        by first.geanix.com (Postfix) with ESMTPSA id 369049A4;
-        Tue,  7 May 2019 09:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1557221671; bh=Pd8q3/s2f6PUgoD4hgdXCCpxwqFUSFL5YGrmr0pSyWY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=XP3X90C9NDs8maiEDoD+NSWimXCvUDDU4uBX69uQv7C9CQBpIg5YLMYq5PI07Ezwa
-         YxxmFVXqO1tcsuUAYfQcRkD9KQqJAlb2hVbhtl4GbKehVJdPD471y0EOAe9TcZOoJQ
-         /BTKZgx5PyrRo806BzF/0Z87SYYDnq5kep1iWRPqk4VWLAfLCcAAzNl3mFQzPME3Es
-         Op8U4B7u/y5VqpM0/0+pbIo+rhpcrupHxfbi68bv/q1qBxUqfYcAoqVsCh5B/zJ6Ih
-         1+j8Arid2cLB9xaRcTtnxAQ6uCdXZDlXHRwnq9WzTFuG0XuEZdB0slZiuG4ZTrF9nc
-         WxWdqZmpOMErQ==
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        mkl@pengutronix.de
-Cc:     Sean Nyekjaer <sean@geanix.com>, robh+dt@kernel.org
-Subject: [PATCH 2/2] dt-bindings: can: mcp251x: add mcp25625 support
-Date:   Tue,  7 May 2019 11:34:37 +0200
-Message-Id: <20190507093437.26025-2-sean@geanix.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190507093437.26025-1-sean@geanix.com>
-References: <20190507093437.26025-1-sean@geanix.com>
+        id S1726286AbfEGJfh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 05:35:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1557221735; bh=ldoLNmoDFfbeja2q4a+Rh5QICPMhKBlbE7KGJkgYnvw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fO9vlopfZxr3U78dgV0RXJxUiXqgiQfcDS0dXQA3Fe/vMCA9+DW3PyWSNIk8Cp0d9
+         OTRKbUeidJ2E4+080m3bpyzxfqpXMliXGec0mzapVPD8iuS5e1ESFtyh/FDKNeqkeC
+         QelJZ4Kg7S8J3krLQMFKbmOWVCjGFQ1sx0LgRkiY=
+Date:   Tue, 7 May 2019 11:35:35 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wens@csie.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: allwinner: h6: Enable HDMI output on
+ orangepi 3
+Message-ID: <20190507093535.uapqhxduwtbdgbtq@core.my.home>
+Mail-Followup-To: Maxime Ripard <maxime.ripard@bootlin.com>,
+        Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wens@csie.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20190420145240.27400-1-tiny.windzz@gmail.com>
+ <20190502073401.3l3fl4alicyzpud7@flea>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,UNPARSEABLE_RELAY,URIBL_BLOCKED
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on 9cf0eadf640b
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190502073401.3l3fl4alicyzpud7@flea>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fully compatible with mcp2515, the mcp25625 have
-integrated transceiver.
+Hi Maxime,
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
----
- Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt | 1 +
- 1 file changed, 1 insertion(+)
+On Thu, May 02, 2019 at 09:34:01AM +0200, Maxime Ripard wrote:
+> On Sat, Apr 20, 2019 at 10:52:40AM -0400, Yangtao Li wrote:
+> > Orangepi 3 has HDMI type A connector.
+> >
+> > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
+> 
+> Queued for 5.3, thanks!
+> Maxime
 
-diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
-index 188c8bd4eb67..5a0111d4de58 100644
---- a/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
-+++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251x.txt
-@@ -4,6 +4,7 @@ Required properties:
-  - compatible: Should be one of the following:
-    - "microchip,mcp2510" for MCP2510.
-    - "microchip,mcp2515" for MCP2515.
-+   - "microchip,mcp25625" for MCP25625.
-  - reg: SPI chip select.
-  - clocks: The clock feeding the CAN controller.
-  - interrupts: Should contain IRQ line for the CAN controller.
--- 
-2.21.0
+This patch is not enough. HDMI support on Orange Pi 3 also needs to
+enable DDC IO. While the SoC will feed some default output singal
+into the display, without DDC enabled it will not work reliably.
+
+That support is part of my Orange Pi 3 series, and will be reworked
+for v5 of that series.
+
+While I can rebase on top of this, it would be easier if you dropped
+this patch until the propper support is ready. I don't see any reason
+why this should be rushed with half-working solution.
+
+regards,
+	o.
+
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+
+
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
