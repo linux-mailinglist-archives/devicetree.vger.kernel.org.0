@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D100B16440
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C348716442
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:08:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726531AbfEGNHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 09:07:35 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43823 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726381AbfEGNHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:07:35 -0400
-Received: by mail-pf1-f193.google.com with SMTP id c6so3442919pfa.10
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 06:07:35 -0700 (PDT)
+        id S1726753AbfEGNHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:07:40 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:41225 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726406AbfEGNHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:07:40 -0400
+Received: by mail-pg1-f195.google.com with SMTP id z3so4587869pgp.8
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 06:07:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=oYIcefqUbtjO6efG05qDKL3HAKUE9dWz26q5t6PWQVk=;
-        b=edyEPa62/tqOK5yYOgIKFbrNm5HJFRdrthDyG8k085PwYA7rMARCaKhtyT0spUv1lZ
-         z80r7mktww84mBSrnXqBVlE03aT9WMA4HAZ4mqg/i8fZ1NPa02rZ+dxElXpGI3svX4yK
-         Ag+W8uF1vfH5vDlvlyHmywP0gZ4a0qKxq5iBM=
+        bh=rmbbR+nEPRU8PAUrqs/Xp1Cybc4IWp6SjLWLlkBHpm0=;
+        b=MQeNgF/ztfyfJPkOLp8v44evWaHK6oQNiqkbYk6h5b2kjyPiu6a9LJ5OzAeVCfV1bv
+         eXov666QPajT8xgYjzaUgoDgyOvsb27oueOSiVnHWAqcG9Q6V47EeBKCQryKWP53/JtH
+         G8SChDw3Fr+NIFF9Q/ph7KdV8veIMSpgTWz04=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=oYIcefqUbtjO6efG05qDKL3HAKUE9dWz26q5t6PWQVk=;
-        b=QdjTVYB0lFOktaio7x7m7bRgrz6jXuLXSjR00CdZrh5Bd/nVAWSxFC1jSkSWXWJRcv
-         LauU+z4Bd7tl/nFuTCTLgTJsiUGt1pjcz8ZjxiRdJT+ZqcSzsBVAha/Q4O7Cs7nCWzjL
-         m9SLrYr994poc9OVIq74ht/2QFw2jbk9k25KtET5+PJ5STnWayzMfpQmx07FCHHmspRW
-         Dt3qv8SR3Vf9iaQMM6grz3K1w/5GvyMqrun0gdAe6g2FmlpOnLcTq6jI1EWSuGaebWla
-         BOjTPELeiN57UuJ5im6fl6t16q/3zM/BSfpYsIhTCnpQ6PS7xyjs2KqbfF6ygyS/IJdT
-         A+eg==
-X-Gm-Message-State: APjAAAWj3Nzd4u20u14kZxSs+2R3xle0h480cwt4/Jw+3IBBAaKbcG8f
-        30KJT9PNOy+TmPaTrGB5Uv+LWQ==
-X-Google-Smtp-Source: APXvYqy2CKkQ9wX0prpKV/pt24cFsadXZXvMcaev7EfdOiJeDL66Kfub6iLEmQkBCbHk4BdoBKJpNg==
-X-Received: by 2002:a63:fb56:: with SMTP id w22mr38503539pgj.354.1557234454717;
-        Tue, 07 May 2019 06:07:34 -0700 (PDT)
+        bh=rmbbR+nEPRU8PAUrqs/Xp1Cybc4IWp6SjLWLlkBHpm0=;
+        b=hFUCFIDF20LCxLTh1Awt99X9KC8vFFdWRmWWk5AwUb+4jYA1fe40Ak4oeTy0TRSvif
+         nZimxnidPO7JQzBrQl3izq3Fbs2l+O/OD3whdSCWEFPaRgH3gs3IQnweSkOziEhlbUvU
+         6IB9/FZBu89+K2+X4yR/4I+oc1qrVqU/a/k+jxq+kX2p9u8fd00JH4h/I3GPMjKTmos0
+         8WsZB7BcD4k4fWglbSwKm9zglfn8OVeireIdYtKwoLCvwfKOzCaxpc/t3ELtR7/SRZmy
+         oX6XSnUJmT7nDTKToZWT1MYk0Kbq8Kl3ueCThqkmZ5VOhhTBPPYsHJKqOjXU5rtzBSuD
+         FwzA==
+X-Gm-Message-State: APjAAAUh4SOJDivefrAjQKmv1KR55SYZFCCgdKal9S8oULu9rXAV9pfW
+        +J8XZIYfl3S0epZSRVb+klhsxw==
+X-Google-Smtp-Source: APXvYqxLeInLf88kjLthLdkTwo1/yWUp+xFEYrpTiTrZa+Gcgm+ciJnRApUuxQzvX/3b2mjsA5Dy5Q==
+X-Received: by 2002:aa7:92c4:: with SMTP id k4mr42376765pfa.183.1557234459930;
+        Tue, 07 May 2019 06:07:39 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:3682:cdb6:452:ecda:bdfa:452e])
-        by smtp.gmail.com with ESMTPSA id w190sm21889823pfb.101.2019.05.07.06.07.29
+        by smtp.gmail.com with ESMTPSA id w190sm21889823pfb.101.2019.05.07.06.07.34
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 06:07:33 -0700 (PDT)
+        Tue, 07 May 2019 06:07:39 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -53,9 +53,9 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 2/3] drm/panel: simple: Add FriendlyELEC HD702E 800x1280 LCD panel
-Date:   Tue,  7 May 2019 18:37:07 +0530
-Message-Id: <20190507130708.11255-2-jagan@amarulasolutions.com>
+Subject: [DO NOT MERGE] [PATCH v2 3/3] arm64: rockchip: rk3399: nanopc-t4: Enable FriendlyELEC HD702E eDP panel
+Date:   Tue,  7 May 2019 18:37:08 +0530
+Message-Id: <20190507130708.11255-3-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190507130708.11255-1-jagan@amarulasolutions.com>
 References: <20190507130708.11255-1-jagan@amarulasolutions.com>
@@ -66,71 +66,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
-resolution. It has built in Goodix, GT9271 captive touchscreen
-with backlight adjustable via PWM.
+FriendlyELEC HD702E is one of optional LCD panel for
+NanoPC T4 eDP interface.
 
-Add support for it.
+It features 800x1280 resolutions, with built in GT9271 captive
+touchscreen and adjustable backlight via PWM.
 
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Reviewed-by: Rob Herring <robh@kernel.org>
+eDP panel connections are:
+- VCC3V3_SYS: 3.3V panel power supply
+- GPIO4_C2: PWM0_BL pin
+- GPIO4_D5_LCD_BL_EN: Backlight enable pin
+- VCC12V0_SYS: 12V backlight power supply
+- Touchscreen connected via I2C4
+- GPIO1_C4_TP_INT: touchscreen interrupt pin
+- GPIO1_B5_TP_RST: touchscreen reset pin
+
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
 Changes for v2:
-- separate it from binding patch
-- sort the match id and compatible 
+- use force-hpd and delete-property for edp
+- use generic backlight brightness
+- add simple-panel fallback compatible
 
- drivers/gpu/drm/panel/panel-simple.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ .../boot/dts/rockchip/rk3399-nanopc-t4.dts    | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 9e8218f6a3f2..93274e270663 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1184,6 +1184,29 @@ static const struct panel_desc foxlink_fl500wvr00_a0t = {
- 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+index 931c3dbf1b7d..4cacd09658dc 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
+@@ -46,6 +46,14 @@
+ 		};
+ 	};
+ 
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		enable-gpios = <&gpio4 RK_PD5 GPIO_ACTIVE_HIGH>;	/* GPIO4_D5_LCD_BL_EN */
++		pwms = <&pwm0 0 25000 0>;
++		power-supply = <&vcc12v0_sys>;
++		status = "okay";
++	};
++
+ 	ir-receiver {
+ 		compatible = "gpio-ir-receiver";
+ 		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
+@@ -64,6 +72,18 @@
+ 		fan-supply = <&vcc12v0_sys>;
+ 		pwms = <&pwm1 0 50000 0>;
+ 	};
++
++	panel {
++		compatible ="friendlyarm,hd702e", "simple-panel";
++		backlight = <&backlight>;
++		power-supply = <&vcc3v3_sys>;
++
++		port {
++			panel_in_edp: endpoint {
++				remote-endpoint = <&edp_out_panel>;
++			};
++		};
++	};
  };
  
-+static const struct drm_display_mode friendlyarm_hd702e_mode = {
-+	.clock		= 67185,
-+	.hdisplay	= 800,
-+	.hsync_start	= 800 + 20,
-+	.hsync_end	= 800 + 20 + 24,
-+	.htotal		= 800 + 20 + 24 + 20,
-+	.vdisplay	= 1280,
-+	.vsync_start	= 1280 + 4,
-+	.vsync_end	= 1280 + 4 + 8,
-+	.vtotal		= 1280 + 4 + 8 + 4,
-+	.vrefresh	= 60,
-+	.flags		= DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
+ &cpu_thermal {
+@@ -94,6 +114,25 @@
+ 	};
+ };
+ 
++&edp {
++	status = "okay";
++	force-hpd;
++	/delete-property/ pinctrl-0;
++
++	ports {
++		edp_out: port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			edp_out_panel: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&panel_in_edp>;
++			};
++		};
++	};
 +};
 +
-+static const struct panel_desc friendlyarm_hd702e = {
-+	.modes = &friendlyarm_hd702e_mode,
-+	.num_modes = 1,
-+	.size = {
-+		.width	= 94,
-+		.height	= 151,
-+	},
+ &gpu_thermal {
+ 	trips {
+ 		gpu_warm: gpu_warm {
+@@ -130,6 +169,17 @@
+ 	};
+ };
+ 
++&i2c4 {
++	touchscreen@5d {
++		compatible = "goodix,gt911";
++		reg = <0x5d>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <RK_PC4 IRQ_TYPE_EDGE_FALLING>;
++		irq-gpio = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;	/* GPIO1_C4_TP_INT */
++		reset-gpio = <&gpio1 RK_PB5 GPIO_ACTIVE_LOW>;	/* GPIO1_B5_TP_RST */
++	};
 +};
 +
- static const struct drm_display_mode giantplus_gpg482739qs5_mode = {
- 	.clock = 9000,
- 	.hdisplay = 480,
-@@ -2637,6 +2660,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "foxlink,fl500wvr00-a0t",
- 		.data = &foxlink_fl500wvr00_a0t,
-+	}, {
-+		.compatible = "friendlyarm,hd702e",
-+		.data = &friendlyarm_hd702e,
- 	}, {
- 		.compatible = "giantplus,gpg482739qs5",
- 		.data = &giantplus_gpg482739qs5
+ &sdhci {
+ 	mmc-hs400-1_8v;
+ 	mmc-hs400-enhanced-strobe;
 -- 
 2.18.0.321.gffc6fa0e3
 
