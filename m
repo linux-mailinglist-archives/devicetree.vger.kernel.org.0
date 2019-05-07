@@ -2,101 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E20B216DB8
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 01:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45A8816DE0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 01:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfEGXJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 19:09:54 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:42511 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726091AbfEGXJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 19:09:54 -0400
-Received: by mail-lj1-f194.google.com with SMTP id y10so9287549lji.9;
-        Tue, 07 May 2019 16:09:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vk0G5/KAtP9NDw7LHnLsf8NsNY0KwtVtgkW1AKkGjKQ=;
-        b=u1CPd+tbyoZQI1gzBERndNqWsMbS3AKZU4SiYvB3NKDoyr+iQDI+S7eYiCP3LUFwUN
-         XHoIDcHXOLM2p9b9VoxLLfj9KtmvX9Y8iXkTG8GPZ4xyT59sad5tFTgF6RmJJwzA3Sm8
-         cIr+cOinLVxbBpm8dJaLh1dAoM8O6nKC3JmRnuuYaR5zKccd2VJqIP5r14JG5dHM5K7E
-         0Z6dLmXI0hDpyRpqGgjVeUvall8r5Bw1h03TqjklRbxHrtAh/XkikWBRQ41rm6v7ClIL
-         NpGVVOEkF3iFy2pgOdrTlehEih+Oy+/+KePA8fFJs7xwS3jeYPPsofP6gVgF+AhvYjiC
-         iu7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vk0G5/KAtP9NDw7LHnLsf8NsNY0KwtVtgkW1AKkGjKQ=;
-        b=PMIM1+CMoe7q1MfRORC1ZgI74ZDXxpEcytN2o3hN6Fs/IE7nb+66odm2MOOy2knYag
-         VITEc0h/yt9u+QTDqJpCvHQmdq0CwdRJ2VCMsWuqbF9zoNPUja5UdDQp6eW1AqK1wo7+
-         4uofcOP1+zNv+XJ+OynFJ2dqOjGpMyQs1Wp2Q0MyHC9Wxg/sPMbNncpri//+aXK0tT/U
-         2h421vo3/CwKhFHhyFKby1KgYwME1gKjSxGHz3M4Lnf3DHrDh1bi7agpcqtSCf9Jgvsq
-         6R5j/Um9Nft1ENOq/dYVogIWDUQjj62igvXoxfDENKUEXyrt2R5WWWgVkzxFLB5w16Fa
-         rU1w==
-X-Gm-Message-State: APjAAAXlhVM0mmv1UIWctF+Ds0TIsCsMtYfzToITWpTpuBmm6s3dWo4y
-        JNhnwDOoipeHRoxxRXoctSQ2RyZuV4HP2bJKUx4=
-X-Google-Smtp-Source: APXvYqxikcAzHK+93rRK0elQZX4vQRe2yPPmD/LRGFuhwj1hmj5kgDPmGBPnPCDqLM2nPxVZ6JJ0t10IsEa4a59y/kI=
-X-Received: by 2002:a2e:2b81:: with SMTP id r1mr4146671ljr.138.1557270592446;
- Tue, 07 May 2019 16:09:52 -0700 (PDT)
+        id S1726276AbfEGXhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 19:37:32 -0400
+Received: from mx.socionext.com ([202.248.49.38]:9568 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726091AbfEGXhc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 19:37:32 -0400
+Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 08 May 2019 08:37:30 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 5990A6117D;
+        Wed,  8 May 2019 08:37:30 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Wed, 8 May 2019 08:37:30 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+        by iyokan.css.socionext.com (Postfix) with ESMTP id F18AD40357;
+        Wed,  8 May 2019 08:37:29 +0900 (JST)
+Received: from localhost (unknown [10.213.234.103])
+        by yuzu.css.socionext.com (Postfix) with ESMTPS id DA230121B6C;
+        Wed,  8 May 2019 08:37:29 +0900 (JST)
+Date:   Wed, 8 May 2019 08:37:29 +0900
+From:   Kazuhiro Kasai <kasai.kazuhiro@socionext.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        orito.takao@socionext.com, sugaya.taichi@socionext.com,
+        kanematsu.shinji@socionext.com, jaswinder.singh@linaro.org,
+        masami.hiramatsu@linaro.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dmaengine: milbeaut: Add Milbeaut AXI DMA controller
+Message-ID: <20190507233729.GB3359@ubuntu>
+References: <1553487314-9185-1-git-send-email-kasai.kazuhiro@socionext.com>
+ <1553487314-9185-3-git-send-email-kasai.kazuhiro@socionext.com>
+ <20190426114629.GU28103@vkoul-mobl>
+ <20190507053924.GA3359@ubuntu>
+ <20190507171042.GS16052@vkoul-mobl>
 MIME-Version: 1.0
-References: <1556190530-19541-1-git-send-email-liuk@cetca.net.cn>
- <CAOMZO5BbA6oq8okTR-r800k4XY76XxxEdufd1mjcV6HdTpVotA@mail.gmail.com>
- <AM0PR04MB421133A3F3C6B534B6ECEA7880370@AM0PR04MB4211.eurprd04.prod.outlook.com>
- <VI1PR0402MB360058CE70AD60C116EE0634FF370@VI1PR0402MB3600.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR0402MB360058CE70AD60C116EE0634FF370@VI1PR0402MB3600.eurprd04.prod.outlook.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 7 May 2019 20:09:58 -0300
-Message-ID: <CAOMZO5CSaRZEiaqxBTcBhaYjRLxMjb6Boyy0eO6OAEFBPv3_Kw@mail.gmail.com>
-Subject: Re: [PATCHv2 1/2] ARM: dts: imx6sx: Use MX6SX_CLK_ENET for fec 'ahb' clock
-To:     Andy Duan <fugang.duan@nxp.com>
-Cc:     Aisheng Dong <aisheng.dong@nxp.com>, Kay-Liu <liuk@cetca.net.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190507171042.GS16052@vkoul-mobl>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
 
-On Sun, May 5, 2019 at 5:15 AM Andy Duan <fugang.duan@nxp.com> wrote:
+Thank you very much for quick response!
+I appreciate your comments.
 
-> Nack the patch !
+Maybe it takes long time, but I will try to write v2 patch with virt-dma.
+
+On Tue, May 07, 2019 at 22:40 +0530, Vinod Koul wrote:
+> On 07-05-19, 14:39, Kazuhiro Kasai wrote:
+> > On Fri, Apr 26, 2019 at 17:16 +0530, Vinod Koul wrote:
+> > > On 25-03-19, 13:15, Kazuhiro Kasai wrote:
 >
-> Firstly, i.MX6SX has ENET AHB bus clock for MAC, and currently it is set 200Mhz like clock tree:
->         IMX6SX_CLK_ENET_PODF 200Mhz -> IMX6SX_CLK_ENET_SEL -> IMX6SX_CLK_ENET_AHB
+> > > > +struct m10v_dma_chan {
+> > > > +	struct dma_chan chan;
+> > > > +	struct m10v_dma_device *mdmac;
+> > > > +	void __iomem *regs;
+> > > > +	int irq;
+> > > > +	struct m10v_dma_desc mdesc;
+> > >
+> > > So there is a *single* descriptor? Not a list??
+> >
+> > Yes, single descriptor.
 >
-> IMX6SX_CLK_ENET the clock is IPG clock for ENET IP ipg_clk_mac0_s/ipg_clk_s.
-> (Please check RM Table 18-3. System Clocks, Gating, and Override)
+> And why is that, you can create a list and keep getting descriptors and
+> issue them to hardware and get better pref!
 
-Ok, but could you please show us where in the Reference Manual the
-IMX6SX_CLK_ENET_AHB is mentioned?
+I understand, thank you.
 
-I don't see ENET_AHB in imx6qdl Reference Manual either and we don't
-have a ENET_AHB the clk-imx6q driver and nor in the devicetree,
-
-> Secondly,  for your issue you caught, which was fixed by patch:
-> commit d7c3a206e6338e4ccdf030719dec028e26a521d5
-> Author: Andy Duan <fugang.duan@nxp.com>
-> Date:   Tue Apr 9 03:40:56 2019 +0000
 >
->     net: fec: manage ahb clock in runtime pm
+> > > > +static dma_cookie_t m10v_xdmac_tx_submit(struct dma_async_tx_descriptor *txd)
+> > > > +{
+> > > > +	struct m10v_dma_chan *mchan = to_m10v_dma_chan(txd->chan);
+> > > > +	dma_cookie_t cookie;
+> > > > +	unsigned long flags;
+> > > > +
+> > > > +	spin_lock_irqsave(&mchan->lock, flags);
+> > > > +	cookie = dma_cookie_assign(txd);
+> > > > +	spin_unlock_irqrestore(&mchan->lock, flags);
+> > > > +
+> > > > +	return cookie;
+> > >
+> > > sounds like vchan_tx_submit() i think you can use virt-dma layer and then
+> > > get rid of artificial limit in driver and be able to queue up the txn on
+> > > dmaengine.
+> >
+> > OK, I will try to use virt-dma layer in next version.
+>
+> And you will get lists to manage descriptor for free! so you can use
+> that to support multiple txns as well!
 
-Would this also fix the case where power management support is disabled?
+It sounds great! I start to study virt-dma layer for next version.
 
-If I understand correctly the explanation from Kay-Liu he would still
-see a hang in the case when PM is disabled.
+>
+> > > > +static struct dma_async_tx_descriptor *
+> > > > +m10v_xdmac_prep_dma_memcpy(struct dma_chan *chan, dma_addr_t dst,
+> > > > +			   dma_addr_t src, size_t len, unsigned long flags)
+> > > > +{
+> > > > +	struct m10v_dma_chan *mchan = to_m10v_dma_chan(chan);
+> > > > +
+> > > > +	dma_async_tx_descriptor_init(&mchan->mdesc.txd, chan);
+> > > > +	mchan->mdesc.txd.tx_submit = m10v_xdmac_tx_submit;
+> > > > +	mchan->mdesc.txd.callback = NULL;
+> > > > +	mchan->mdesc.txd.flags = flags;
+> > > > +	mchan->mdesc.txd.cookie = -EBUSY;
+> > > > +
+> > > > +	mchan->mdesc.len = len;
+> > > > +	mchan->mdesc.src = src;
+> > > > +	mchan->mdesc.dst = dst;
+> > > > +
+> > > > +	return &mchan->mdesc.txd;
+> > >
+> > > So you support single descriptor and dont check if this has been already
+> > > configured. So I guess this has been tested by doing txn one at a time
+> > > and not submitted bunch of txn and wait for them to complete. Please fix
+> > > that to really enable dmaengine capabilities.
+> >
+> > Thank you for advice. I want to fix it and I have 2 questions.
+> >
+> > 1. Does virt-dma layer help to fix this?
+>
+> Yes
 
-Thanks
+It sounds very good news for me. Thank you.
+
+>
+> > 2. Can dmatest test that dmaengine capabilities?
+>
+> Yes for memcpy operations, see Documentation/driver-api/dmaengine/dmatest.rst
+>
+
+OK, I will read the document.
+
+Thanks,
+Kasai
