@@ -2,199 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 379AA16BA5
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 21:47:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D016416C31
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 22:27:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726335AbfEGTri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 15:47:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51596 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726321AbfEGTri (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 15:47:38 -0400
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7A549208C4;
-        Tue,  7 May 2019 19:47:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557258456;
-        bh=H9Pa58GpFX4BokZ1UWZ8tTsFNDuLeFOIEWPBcJy1heE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LkL+jhljELw+1Vjy7SQO2B7SG/ZFkBAa66k5eCcSYVMV8KkTPmaFy0x2zCQw1NIku
-         iYKl3D0T+eWNhu1FYvlzM8Wz3tpXXQTbhxBG2r4mGRDmAEQY8BP5vzqJ0DkALLJ1uN
-         wiiQwrL5TQYgFWKI3NTFoUzsA/gc6WuFuDOxOM4k=
-Received: by mail-qt1-f170.google.com with SMTP id f24so10092417qtk.11;
-        Tue, 07 May 2019 12:47:36 -0700 (PDT)
-X-Gm-Message-State: APjAAAUb9C3R0l66Eqp1dhMt42DDBzLvxbmnWBF6mHQh78Z08UMvLAKa
-        YK+Idgq3TGsrEUuNmI01vTj5iIUKOyKuxAX+KQ==
-X-Google-Smtp-Source: APXvYqy49GlAiANz6VDO2OHCA7oetEwsRwSl/TppflexiHOPW7nabAFldrLAb3/DPpRad19efNzXP4bp5t0xr+vd/14=
-X-Received: by 2002:ac8:66d3:: with SMTP id m19mr27729011qtp.359.1557258455708;
- Tue, 07 May 2019 12:47:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190507045433.542-1-hsinyi@chromium.org>
-In-Reply-To: <20190507045433.542-1-hsinyi@chromium.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 7 May 2019 14:47:00 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: add support for rng-seed
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
+        id S1726791AbfEGU1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 16:27:16 -0400
+Received: from mail-eopbgr1410091.outbound.protection.outlook.com ([40.107.141.91]:65342
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726295AbfEGU1Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 16:27:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yEkMWcX6HsBOxYZkqcwobddpvndEpU5m9hFIBHHReHc=;
+ b=ToUZDcuhyo3wJAu2LAzJv/dgaxKJkeZxApcspJ2gceHNLWxDq4e9PnYLYys2iHhBvfu6QlnehdJyRdSsdl4XxrLbEioBPWN4Nj2wKG6fVMQ75/AzhV82Pq9Ie3TjFMXW36xQzLnl3S4/WeaEwf+oTNUnVBhplXaIvRedNiAFnHo=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY1PR01MB1788.jpnprd01.prod.outlook.com (52.133.160.150) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Tue, 7 May 2019 20:27:12 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 20:27:12 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1
+ option
+Thread-Topic: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1
+ option
+Thread-Index: AQHVBGYQ+cfCaNX+ik+H7Wxy1mef+qZfTXmAgAB2sVCAABgIAIAANL0g
+Date:   Tue, 7 May 2019 20:27:11 +0000
+Message-ID: <TY1PR01MB1562A5D204AD0104862D09FE8A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-2-chris.brandt@renesas.com>
+ <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
+ <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+ <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [24.206.39.126]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6ba0c359-612e-43db-7b70-08d6d32a62ff
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1788;
+x-ms-traffictypediagnostic: TY1PR01MB1788:
+x-microsoft-antispam-prvs: <TY1PR01MB178808FCD52A97D10AD133E48A310@TY1PR01MB1788.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0030839EEE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(346002)(376002)(39860400002)(136003)(396003)(189003)(199004)(229853002)(6436002)(4744005)(25786009)(186003)(6116002)(6246003)(55016002)(7736002)(99286004)(5660300002)(11346002)(9686003)(76176011)(102836004)(68736007)(7696005)(6506007)(72206003)(54906003)(53936002)(8936002)(14454004)(446003)(316002)(486006)(478600001)(81156014)(8676002)(81166006)(476003)(33656002)(4326008)(71190400001)(71200400001)(6916009)(86362001)(256004)(26005)(66946007)(66446008)(64756008)(3846002)(73956011)(76116006)(66476007)(66556008)(66066001)(305945005)(74316002)(2906002)(52536014);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1788;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: jRijiSlj7rsN6h/BkV/ObW10f9rnVCgs6c/9TFLSfakIwHDbiGn4Cs+VrzVkUD6OSWc9DSMgV5TBtMoBL8SO9pX7Z8NmyazDlzvFndQKhFh/dBAJDtL1IjvuVwsd6WcgMK0usHm/HAAjFk7UAFx/LSf819hAOMpM7YE3/FxkkuwztX6IR9+z5LnjLk+sp1rSNUYbpeEFP1wQVLX/hdqJXqjFGoEAikwx+VDlciDKXH7/yKJzp0k7RPbvqTpuyMQnYDJO7twJtYDLSSGprXj23etZs1REguID9GHjwD5lh0w1SNeXmumfOgN2n6Fw1q6DhqA2UwdoJO9mLYWSiq7iIqxaZvhds724onMZ2XLU9VXCv+tmG2sY9nBtBX/eeJfA6njyrX2aIwOJudIzcHWjf9cZIiOVyuAWQQhl6njUt9g=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ba0c359-612e-43db-7b70-08d6d32a62ff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 20:27:12.0039
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1788
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+boot-architecture list as there was some discussion about this IIRC.
-
-On Mon, May 6, 2019 at 11:54 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> Introducing a chosen node, rng-seed, which is an 64 bytes entropy
-> that can be passed to kernel called very early to increase device
-> randomness. Bootloader should provide this entropy and the value is
-> read from /chosen/rng-seed in DT.
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->
-> ---
->  Documentation/devicetree/bindings/chosen.txt | 14 +++++++++
-
-Actually, this file has been converted to json-schema and lives
-here[1]. I need to remove this one (or leave it with a reference to
-the new one).
-
->  arch/arm64/kernel/setup.c                    |  2 ++
->  drivers/of/fdt.c                             | 33 ++++++++++++++++++++
->  include/linux/of_fdt.h                       |  1 +
->  4 files changed, 50 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
-> index 45e79172a646..bfd360691650 100644
-> --- a/Documentation/devicetree/bindings/chosen.txt
-> +++ b/Documentation/devicetree/bindings/chosen.txt
-> @@ -28,6 +28,20 @@ mode) when EFI_RNG_PROTOCOL is supported, it will be overwritten by
->  the Linux EFI stub (which will populate the property itself, using
->  EFI_RNG_PROTOCOL).
->
-> +rng-seed
-> +-----------
-> +
-> +This property served as an entropy to add device randomness. It is parsed
-> +as a 64 byte value, e.g.
-
-Why only 64-bytes?
-
-> +
-> +/ {
-> +       chosen {
-> +               rng-seed = <0x31951b3c 0xc9fab3a5 0xffdf1660 ...>
-> +       };
-> +};
-> +
-> +This random value should be provided by bootloader.
-> +
->  stdout-path
->  -----------
->
-> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-> index 413d566405d1..ade4261516dd 100644
-> --- a/arch/arm64/kernel/setup.c
-> +++ b/arch/arm64/kernel/setup.c
-> @@ -292,6 +292,8 @@ void __init setup_arch(char **cmdline_p)
->         early_fixmap_init();
->         early_ioremap_init();
->
-> +       early_init_dt_rng_seed(__fdt_pointer);
-> +
-
-I'm trying to reduce or eliminate all these early_init_dt_* calls.
-
-Why is this arch specific and why can't this be done after
-unflattening? It doesn't look like add_device_randomness() needs
-anything early.
-
->         setup_machine_fdt(__fdt_pointer);
->
->         parse_early_param();
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index de893c9616a1..74e2c0c80b91 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -22,6 +22,7 @@
->  #include <linux/slab.h>
->  #include <linux/libfdt.h>
->  #include <linux/debugfs.h>
-> +#include <linux/random.h>
->  #include <linux/serial_core.h>
->  #include <linux/sysfs.h>
->
-> @@ -1117,6 +1118,38 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->         return 1;
->  }
->
-> +extern void *__init __fixmap_remap_fdt(phys_addr_t dt_phys, int *size,
-> +                                      pgprot_t prot);
-> +
-> +void __init early_init_dt_rng_seed(u64 dt_phys)
-> +{
-> +       void *fdt;
-> +       int node, size, i;
-> +       fdt64_t *prop;
-> +       u64 rng_seed[8];
-> +
-> +       fdt = __fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL);
-> +       if (!fdt)
-> +               return;
-> +
-> +       node = fdt_path_offset(fdt, "/chosen");
-> +       if (node < 0)
-> +               return;
-> +
-> +       prop = fdt_getprop_w(fdt, node, "rng-seed", &size);
-> +       if (!prop || size != sizeof(u64) * 8)
-> +               return;
-> +
-> +       for (i = 0; i < 8; i++) {
-> +               rng_seed[i] = fdt64_to_cpu(*(prop + i));
-> +               /* clear seed so it won't be found. */
-> +               *(prop + i) = 0;
-> +       }
-> +       add_device_randomness(rng_seed, size);
-> +
-> +       return;
-> +}
-> +
->  #ifndef MIN_MEMBLOCK_ADDR
->  #define MIN_MEMBLOCK_ADDR      __pa(PAGE_OFFSET)
->  #endif
-> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
-> index a713e5d156d8..a4548dd6351e 100644
-> --- a/include/linux/of_fdt.h
-> +++ b/include/linux/of_fdt.h
-> @@ -71,6 +71,7 @@ extern uint32_t of_get_flat_dt_phandle(unsigned long node);
->
->  extern int early_init_dt_scan_chosen(unsigned long node, const char *uname,
->                                      int depth, void *data);
-> +extern void early_init_dt_rng_seed(u64 dt_phys);
->  extern int early_init_dt_scan_memory(unsigned long node, const char *uname,
->                                      int depth, void *data);
->  extern int early_init_dt_scan_chosen_stdout(void);
-> --
-> 2.20.1
->
+SGkgR2VlcnQsDQoNCk9uIFR1ZSwgTWF5IDA3LCAyMDE5IDEsIEdlZXJ0IFV5dHRlcmhvZXZlbiB3
+cm90ZToNCj4gPiBTbyB3aXRoIHRoYXQgc2FpZCwgZG9lcyBhIHVzZXMtdXNiLXgxIHByb3BlcnR5
+IG1ha2UgbW9yZSBzZW5zZT8NCj4gDQo+IE5vIDstKQ0KDQpTby4uLi4NCg0KSSBndWVzcyB0aGUg
+Zmlyc3QgcGF0Y2ggaW4gdGhlIHNlcmllcyBuZWVkcyB0byBhZGQgdGhpcyB0byB0aGUgLmR0c2k6
+DQoNCgl1c2JfeDFfY2xrOiB1c2JfeDEgew0KCQkjY2xvY2stY2VsbHMgPSA8MD47DQoJCWNvbXBh
+dGlibGUgPSAiZml4ZWQtY2xvY2siOw0KCQkvKiBJZiBjbGsgcHJlc2VudCwgdmFsdWUgbXVzdCBi
+ZSBzZXQgYnkgYm9hcmQgKi8NCgkJY2xvY2stZnJlcXVlbmN5ID0gPDA+Ow0KCX07DQoNClRoZW4g
+SSBjYW4gcmVmZXJlbmNlICJ1c2JfeDEiIGluIHRoZSBkcml2ZXIgYW5kIHNlZSBpZiBpdCBpcyBz
+ZXQgdG8gDQpub24temVyby4NCg0KV2hhdCBkbyB5b3UgdGhpbms/DQoNCg0KQ2hyaXMNCg0K
