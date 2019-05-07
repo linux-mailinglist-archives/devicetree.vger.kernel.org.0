@@ -2,389 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E824165C4
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E352165F2
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 16:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725843AbfEGOfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 10:35:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38424 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726403AbfEGOfl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 10:35:41 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A720E2087F;
-        Tue,  7 May 2019 14:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557239740;
-        bh=/XkcMtZQIpjRMiz1T2qad6TxcjqnG9Miac8ikYCqU6Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DQRDcGfTdeusktCABD4gk9TcYK2onQTU0g0HvtSY1cK919Mfp0aVYAi/CSxbVI6Sn
-         TDb0LzMk8sxrDHBFL4UN2pErHsSQ2uZCsqJN30o8RRpJAJf7J/ri5H3h+O/3rLSWMm
-         Qs9BlwZaZqEEqQ/dNJ+tOFYc6pmuucqeySECeHy4=
-Received: by mail-qk1-f180.google.com with SMTP id w20so356866qka.7;
-        Tue, 07 May 2019 07:35:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAWEqPA9nKeA+cd2pCQAqX+dfzq3pnpMGKSezf4A2PH254KWS+nf
-        /u4Tjfmhxd9elLCnQlISnoZ0Vw+nuPx18sIqqA==
-X-Google-Smtp-Source: APXvYqxmhNvlrV328Mx2uun8Zwuep9D85FcT9j6MBr7UX8OuKIjNMNyXYevMaqtFHmWBh/AZmkLb3NuqmIkYNg8yN4o=
-X-Received: by 2002:a37:ad14:: with SMTP id f20mr25561161qkm.147.1557239739860;
- Tue, 07 May 2019 07:35:39 -0700 (PDT)
+        id S1726444AbfEGOns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 10:43:48 -0400
+Received: from mail-eopbgr1400139.outbound.protection.outlook.com ([40.107.140.139]:57754
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725859AbfEGOns (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 10:43:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aM0Nd0hS5cwxiqbVjrIhyckr+/lsIhaa8E7lQbaaI9M=;
+ b=BvCwVyEV+OLyE03Fd0hbJF1HR8X55VAiTq+UN24vqef5iq5Nm1zyCNdQGh8z/ZunEp09l/gpXrC0c0LVp7cNzGoyBCeT2fREK9jvtctaDJddwsRvkuXqjXtwMhVXAprDVzblAjM/h0sShKEWQ4/4GMN4O0SW03RTZVV3xtBABIM=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY1PR01MB1835.jpnprd01.prod.outlook.com (52.133.163.20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Tue, 7 May 2019 14:43:41 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 14:43:41 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
+ not using OTG
+Thread-Topic: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
+ not using OTG
+Thread-Index: AQHVBGYbvpIQ5ioroEGpDalH9Ovnd6ZfhsEAgAAEBrCAAC6vgIAAAodw
+Date:   Tue, 7 May 2019 14:43:41 +0000
+Message-ID: <TY1PR01MB1562C153ABE676047F568BBD8A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-4-chris.brandt@renesas.com>
+ <17bcc673-5fed-ce4f-3d61-af34bfa5d769@cogentembedded.com>
+ <TY1PR01MB1562550164C7977D28C90F128A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+ <34544f59-76aa-710a-a6ec-7d7d7f31a023@cogentembedded.com>
+In-Reply-To: <34544f59-76aa-710a-a6ec-7d7d7f31a023@cogentembedded.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [24.206.39.126]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 50f26ac9-4f6b-4522-a6ff-08d6d2fa6605
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1835;
+x-ms-traffictypediagnostic: TY1PR01MB1835:
+x-microsoft-antispam-prvs: <TY1PR01MB183521668A620E1A497A06488A310@TY1PR01MB1835.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 0030839EEE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(396003)(376002)(39860400002)(136003)(366004)(199004)(189003)(102836004)(25786009)(4744005)(186003)(9686003)(6506007)(53936002)(26005)(55016002)(66066001)(52536014)(66946007)(73956011)(99286004)(76116006)(76176011)(5660300002)(64756008)(66446008)(4326008)(6246003)(71200400001)(68736007)(256004)(7696005)(66556008)(71190400001)(66476007)(6116002)(72206003)(74316002)(316002)(3846002)(6636002)(54906003)(86362001)(2906002)(110136005)(229853002)(11346002)(81156014)(446003)(486006)(476003)(33656002)(81166006)(8676002)(478600001)(7736002)(305945005)(14454004)(6436002)(8936002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1835;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: uPZDp5PeF7+tmUu0T2UI8Phz9EfG3VsbTRbk5xqa3+OFSnGO4FwGKskR81QELEXiLtOAPb/eE7gwxEnV+qgi+dxxvM1yqMFNm/0tz00VKebQZ2YpAPgfg50Ki3yqZAOMpOQrbeO4UrDi64pSP/VegEkmGPtGyMgV+A/mL2kfOuu7KjlnjC9bXADHoAwxK3Yki+gEoqbv9c+JlpPILgYvCDE21FJPf9Kelv483UKlSWV+BGU1iI3AdJNvOxUZa3eOYZBF6bPdHdmXgs0mlgUUq/5oHlToC5pZ6WVuTKUqGFmvMBhP/MkFD/yy30xtct81+B8h4rbsK0qLMwx5xw3bN0DNBl3VKM5RhbuRgNeOFac45N2eorEXBVzpmp23OjZBtnjF/VN1hSpNjo0BSsymQ30MjtJ0XKEH8Mzirs5bsPw=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 7 May 2019 09:35:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com>
-Message-ID: <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: spi: Add YAML schemas for the generic
- SPI options
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-spi <linux-spi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50f26ac9-4f6b-4522-a6ff-08d6d2fa6605
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 14:43:41.2545
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1835
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 8:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> The SPI controllers have a bunch of generic options that are needed in a
-> device tree. Add a YAML schemas for those.
-
-I'd started on this one, but was planning to move it to the schema
-repository. The issue there is re-licensing (adding BSD 2 clause).
-Maybe better to just move it later.
-
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/spi/spi-bus.txt         | 111 +-----
->  Documentation/devicetree/bindings/spi/spi-controller.yaml | 156 +++++++-
->  2 files changed, 156 insertions(+), 111 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-bus.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/spi-controller.yaml
->
-> diff --git a/Documentation/devicetree/bindings/spi/spi-bus.txt b/Documentation/devicetree/bindings/spi/spi-bus.txt
-> deleted file mode 100644
-> index 1f6e86f787ef..000000000000
-> --- a/Documentation/devicetree/bindings/spi/spi-bus.txt
-> +++ /dev/null
-> @@ -1,111 +0,0 @@
-> -SPI (Serial Peripheral Interface) busses
-> -
-> -SPI busses can be described with a node for the SPI controller device
-> -and a set of child nodes for each SPI slave on the bus.  The system's SPI
-> -controller may be described for use in SPI master mode or in SPI slave mode,
-> -but not for both at the same time.
-> -
-> -The SPI controller node requires the following properties:
-> -- compatible      - Name of SPI bus controller following generic names
-> -                   recommended practice.
-> -
-> -In master mode, the SPI controller node requires the following additional
-> -properties:
-> -- #address-cells  - number of cells required to define a chip select
-> -               address on the SPI bus.
-> -- #size-cells     - should be zero.
-> -
-> -In slave mode, the SPI controller node requires one additional property:
-> -- spi-slave       - Empty property.
-> -
-> -No other properties are required in the SPI bus node.  It is assumed
-> -that a driver for an SPI bus device will understand that it is an SPI bus.
-> -However, the binding does not attempt to define the specific method for
-> -assigning chip select numbers.  Since SPI chip select configuration is
-> -flexible and non-standardized, it is left out of this binding with the
-> -assumption that board specific platform code will be used to manage
-> -chip selects.  Individual drivers can define additional properties to
-> -support describing the chip select layout.
-> -
-> -Optional properties (master mode only):
-> -- cs-gpios       - gpios chip select.
-> -- num-cs         - total number of chipselects.
-> -
-> -If cs-gpios is used the number of chip selects will be increased automatically
-> -with max(cs-gpios > hw cs).
-> -
-> -So if for example the controller has 2 CS lines, and the cs-gpios
-> -property looks like this:
-> -
-> -cs-gpios = <&gpio1 0 0>, <0>, <&gpio1 1 0>, <&gpio1 2 0>;
-> -
-> -Then it should be configured so that num_chipselect = 4 with the
-> -following mapping:
-> -
-> -cs0 : &gpio1 0 0
-> -cs1 : native
-> -cs2 : &gpio1 1 0
-> -cs3 : &gpio1 2 0
-> -
-> -
-> -SPI slave nodes must be children of the SPI controller node.
-> -
-> -In master mode, one or more slave nodes (up to the number of chip selects) can
-> -be present.  Required properties are:
-> -- compatible      - Name of SPI device following generic names recommended
-> -                   practice.
-> -- reg             - Chip select address of device.
-> -- spi-max-frequency - Maximum SPI clocking speed of device in Hz.
-> -
-> -In slave mode, the (single) slave node is optional.
-> -If present, it must be called "slave".  Required properties are:
-> -- compatible      - Name of SPI device following generic names recommended
-> -                   practice.
-> -
-> -All slave nodes can contain the following optional properties:
-> -- spi-cpol        - Empty property indicating device requires inverse clock
-> -                   polarity (CPOL) mode.
-> -- spi-cpha        - Empty property indicating device requires shifted clock
-> -                   phase (CPHA) mode.
-> -- spi-cs-high     - Empty property indicating device requires chip select
-> -                   active high.
-> -- spi-3wire       - Empty property indicating device requires 3-wire mode.
-> -- spi-lsb-first   - Empty property indicating device requires LSB first mode.
-> -- spi-tx-bus-width - The bus width (number of data wires) that is used for MOSI.
-> -                   Defaults to 1 if not present.
-> -- spi-rx-bus-width - The bus width (number of data wires) that is used for MISO.
-> -                   Defaults to 1 if not present.
-> -- spi-rx-delay-us - Microsecond delay after a read transfer.
-> -- spi-tx-delay-us - Microsecond delay after a write transfer.
-> -
-> -Some SPI controllers and devices support Dual and Quad SPI transfer mode.
-> -It allows data in the SPI system to be transferred using 2 wires (DUAL) or 4
-> -wires (QUAD).
-> -Now the value that spi-tx-bus-width and spi-rx-bus-width can receive is
-> -only 1 (SINGLE), 2 (DUAL) and 4 (QUAD).
-> -Dual/Quad mode is not allowed when 3-wire mode is used.
-> -
-> -If a gpio chipselect is used for the SPI slave the gpio number will be passed
-> -via the SPI master node cs-gpios property.
-> -
-> -SPI example for an MPC5200 SPI bus:
-> -       spi@f00 {
-> -               #address-cells = <1>;
-> -               #size-cells = <0>;
-> -               compatible = "fsl,mpc5200b-spi","fsl,mpc5200-spi";
-> -               reg = <0xf00 0x20>;
-> -               interrupts = <2 13 0 2 14 0>;
-> -               interrupt-parent = <&mpc5200_pic>;
-> -
-> -               ethernet-switch@0 {
-> -                       compatible = "micrel,ks8995m";
-> -                       spi-max-frequency = <1000000>;
-> -                       reg = <0>;
-> -               };
-> -
-> -               codec@1 {
-> -                       compatible = "ti,tlv320aic26";
-> -                       spi-max-frequency = <100000>;
-> -                       reg = <1>;
-> -               };
-> -       };
-> diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> new file mode 100644
-> index 000000000000..dc239083886c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> @@ -0,0 +1,156 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/spi-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SPI Controller Generic Binding
-> +
-> +maintainers:
-> +  - Mark Brown <broonie@kernel.org>
-> +
-> +description: |
-> +  SPI busses can be described with a node for the SPI controller device
-> +  and a set of child nodes for each SPI slave on the bus. The system SPI
-> +  controller may be described for use in SPI master mode or in SPI slave mode,
-> +  but not for both at the same time.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^spi(@[a-zA-Z0-9]+)?$"
-
-I think we want just "(@.*)". At a minimum, you need to allow for ','.
-It would be the a bus schema for the parent which should validate unit
-addresses, so we should pretty much just allow anything here.
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  cs-gpios:
-> +    description: |
-> +      GPIOs used as chip selects.
-> +      If that property is used, the number of chip selects will be
-> +      increased automatically with max(cs-gpios, hardware chip selects).
-> +
-> +      So if, for example, the controller has 2 CS lines, and the
-> +      cs-gpios looks like this
-> +        cs-gpios = <&gpio1 0 0>, <0>, <&gpio1 1 0>, <&gpio1 2 0>;
-> +
-> +      Then it should be configured so that num_chipselect = 4, with
-> +      the following mapping
-> +        cs0 : &gpio1 0 0
-> +        cs1 : native
-> +        cs2 : &gpio1 1 0
-> +        cs3 : &gpio1 2 0
-> +
-> +  num-cs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Total number of chip selects.
-> +
-> +  spi-slave:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-
-"type: boolean" is sufficient here. Maybe we should just remove
-'flag'. OTOH, maybe consistency with other types and the abstraction
-is better as we could add to the flag schema.
-
-> +    description:
-> +      The SPI controller acts as a slave, instead of a master.
-> +
-> +required:
-> +  - "#address-cells"
-> +  - "#size-cells"
-
-Only if there are child nodes...
-
-> +
-> +patternProperties:
-> +  "^slave$":
-
-type: object
-
-> +    properties:
-> +      compatible:
-> +        description:
-> +          Compatible of the SPI device.
-> +
-> +    required:
-> +      - compatible
-> +
-> +  "^[a-z]+@[0-9]+$":
-
-  "^.*@[0-9a-f]+":
-    type: object
-
-> +    properties:
-> +      compatible:
-> +        description:
-> +          Compatible of the SPI device.
-> +
-> +      reg:
-> +        maxItems: 1
-> +        description:
-> +          Chip select used by the device.
-
-I tend to think we should limit something like this to reasonable
-values. We're not going to have 2^32 chip selects. 256 should be
-enough for anyone(TM).
-
-> +      spi-3wire:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires 3-wire mode.
-> +
-> +      spi-cpha:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires shifted clock phase (CPHA) mode.
-> +
-> +      spi-cpol:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires inverse clock polarity (CPOL) mode.
-> +
-> +      spi-cs-high:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires the chip select active high.
-> +
-> +      spi-lsb-first:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires the LSB first mode.
-> +
-> +      spi-rx-bus-width:
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [ 1, 2, 4, 8 ]
-
-Is the old doc out of date and 8 is allowed now?
-
-> +          - default: 1
-> +        description:
-> +          Bus width to the SPI bus used for MISO.
-> +
-> +      spi-rx-delay-us:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-
-This can actually be dropped because any property with a unit suffix
-is already type checked.
-
-
-> +        description:
-> +          Delay, in microseconds, after a read transfer.
-> +
-> +      spi-tx-bus-width:
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [ 1, 2, 4, 8 ]
-> +          - default: 1
-> +        description:
-> +          Bus width to the SPI bus used for MOSI.
-> +
-> +      spi-tx-delay-us:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Delay, in microseconds, after a write transfer.
-
-You missed spi-max-frequency.
-
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +examples:
-> +  - |
-> +    spi@f00 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        compatible = "fsl,mpc5200b-spi","fsl,mpc5200-spi";
-> +        reg = <0xf00 0x20>;
-> +        interrupts = <2 13 0 2 14 0>;
-> +        interrupt-parent = <&mpc5200_pic>;
-> +
-> +        ethernet-switch@0 {
-> +            compatible = "micrel,ks8995m";
-> +            spi-max-frequency = <1000000>;
-> +            reg = <0>;
-> +        };
-> +
-> +        codec@1 {
-> +            compatible = "ti,tlv320aic26";
-> +            spi-max-frequency = <100000>;
-> +            reg = <1>;
-> +        };
-> +    };
->
-> base-commit: fcdb095ad0016d77d3729dcf8ea915ca4b80fd8b
-> --
-> git-series 0.9.1
+T24gVHVlLCBNYXkgMDcsIDIwMTkgMSwgU2VyZ2VpIFNodHlseW92IHdyb3RlOg0KPiAgICBEb24n
+dCB5b3UgcmVtZW1iZXIgYW5vdGhlciBydWxlOiB1c2Uge30gaW4gYWxsIGJyYW5jaGVzIGlmIGF0
+IGxlYXN0DQo+IG9uZSBicmFuY2ggdXNlcyB7fT8NCg0KQWgsIEkgc2VlIGl0IG5vdy4NCg0KRG9j
+dW1lbnRhdGlvbi9wcm9jZXNzL2NvZGluZy1zdHlsZS5yc3Q6DQoNClRoaXMgZG9lcyBub3QgYXBw
+bHkgaWYgb25seSBvbmUgYnJhbmNoIG9mIGEgY29uZGl0aW9uYWwgc3RhdGVtZW50IGlzIGEgc2lu
+Z2xlDQpzdGF0ZW1lbnQ7IGluIHRoZSBsYXR0ZXIgY2FzZSB1c2UgYnJhY2VzIGluIGJvdGggYnJh
+bmNoZXM6DQoNCi4uIGNvZGUtYmxvY2s6OiBjDQoNCglpZiAoY29uZGl0aW9uKSB7DQoJCWRvX3Ro
+aXMoKTsNCgkJZG9fdGhhdCgpOw0KCX0gZWxzZSB7DQoJCW90aGVyd2lzZSgpOw0KCX0NCg0KDQpJ
+IHdpbGwgY2hhbmdlIGl0Lg0KVGhhbmtzIQ0KDQpDaHJpcw0K
