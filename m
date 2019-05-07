@@ -2,102 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2156D15793
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 04:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F13F157DB
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 05:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbfEGC0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 May 2019 22:26:43 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:54942 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725994AbfEGC0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 May 2019 22:26:43 -0400
-X-UUID: 996369109acf407595d83a84a6852306-20190507
-X-UUID: 996369109acf407595d83a84a6852306-20190507
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 2014171805; Tue, 07 May 2019 10:26:37 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 7 May
- 2019 10:26:36 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 7 May 2019 10:26:34 +0800
-Message-ID: <1557195994.10179.263.camel@mhfsdcap03>
-Subject: Re: [PATCH] dt-binding: usb: add usb-role-switch property
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S1726879AbfEGDCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 May 2019 23:02:51 -0400
+Received: from mail-eopbgr10080.outbound.protection.outlook.com ([40.107.1.80]:10814
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726346AbfEGDCv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 May 2019 23:02:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=saxqos/nQDJQsNSHnss4DxFfxmLYJwOdkuVt9kRLtKI=;
+ b=RBTacOCkkDIBwkZMccViSTq8vS2sSBUDdxM+JhI2X2j7Gg0xyNNDt3+LoNbyiKlQKDmCW/BTprFm25RO4/t3cFhj7HNwlrmpw4ZpdOu6eCJx8ahi73ZBy7F1VmZonb1fkyJDya+oLl1C9XYMxXCX6mbnVWvSVU35B9H7NfL16i0=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3754.eurprd04.prod.outlook.com (52.134.67.26) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.11; Tue, 7 May 2019 03:02:45 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::e8ca:4f6b:e43:c170]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::e8ca:4f6b:e43:c170%3]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 03:02:45 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "Yu Chen" <chenyu56@huawei.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Min Guo <min.guo@mediatek.com>,
-        "Felipe Balbi" <felipe.balbi@linux.intel.com>
-Date:   Tue, 7 May 2019 10:26:34 +0800
-In-Reply-To: <20190502194905.GA22144@bogus>
-References: <5756e05930f5e6a3940ad9d019399c8e63d24f18.1556454324.git.chunfeng.yun@mediatek.com>
-         <20190502194905.GA22144@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: [PATCH] ARM: dts: imx6ul: add clock-frequency to CPU node
+Thread-Topic: [PATCH] ARM: dts: imx6ul: add clock-frequency to CPU node
+Thread-Index: AQHVBIFYqIWZIuwvrU2KnaxGQFBgOQ==
+Date:   Tue, 7 May 2019 03:02:45 +0000
+Message-ID: <1557197868-6963-1-git-send-email-Anson.Huang@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK0PR01CA0040.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:3e::28) To DB3PR0402MB3916.eurprd04.prod.outlook.com
+ (2603:10a6:8:10::18)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c20c8842-c5ee-4aef-245e-08d6d2987a77
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3754;
+x-ms-traffictypediagnostic: DB3PR0402MB3754:
+x-microsoft-antispam-prvs: <DB3PR0402MB3754CDDA57C6E4FC697AB798F5310@DB3PR0402MB3754.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1388;
+x-forefront-prvs: 0030839EEE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(396003)(346002)(366004)(39860400002)(199004)(189003)(2906002)(102836004)(478600001)(386003)(6506007)(99286004)(5660300002)(66066001)(486006)(2501003)(305945005)(86362001)(52116002)(2201001)(3846002)(6116002)(4744005)(68736007)(14454004)(6436002)(8936002)(53936002)(7736002)(25786009)(6486002)(66476007)(73956011)(66946007)(66556008)(64756008)(66446008)(4326008)(186003)(316002)(50226002)(256004)(26005)(36756003)(476003)(2616005)(6512007)(14444005)(71190400001)(110136005)(71200400001)(8676002)(81166006)(81156014)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3754;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Q58S0t6lLK8acWWH0KWoR8NWY3ZFrWOpZKRsULrvWK+FYCgV0eegaR5cm5tAGS+5lWfW1Qt5YjAKeg9Pc5FFVTp1pWA3P2+4S2Qd7iG68Z5uyF4jQGMiwxTZUo2vOHMJElBg6vI6vSB2EyjbKqs/Sgj6VihFibdyZ9l0d6sNwG5keAlhyDI0D6nf6je7jlu840bc44qSFmmtHN8zvf1eISruR6jFDj75BMGuC0mzKCA1olmPug4FSVhlWSbX6qvhh5WWA23fe4jzZMLDaLMMvcCh/mDWrtMObbc4c9p4iqye8jYJ9T+QNPGJp/hmFvOvslLJ3uatlG3+c27/Rs4IOUUfLMyfsved7tbXBCpfThEFKfBgTMad9o3hN7ahSAaQChHkJWzzJlhcovcNF9CFLtM2FmGlIw/n1z3rotqeagQ=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c20c8842-c5ee-4aef-245e-08d6d2987a77
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 03:02:45.6328
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3754
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-05-02 at 14:49 -0500, Rob Herring wrote:
-> On Sun, Apr 28, 2019 at 08:27:46PM +0800, Chunfeng Yun wrote:
-> > Add a property usb-role-switch to tell Dual-Role controller driver
-> > that use USB Role Switch framework to handle the role switch between
-> > host mode and device mode, it's useful when the driver has already
-> > supported other ways, such as extcon framework etc.
-> > 
-> > Cc: Biju Das <biju.das@bp.renesas.com>
-> > Cc: Yu Chen <chenyu56@huawei.com>
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> > v1:
-> > the property is discussed in:
-> > [v2,2/7] dt-bindings: usb: renesas_usb3: add usb-role-switch property
-> > https://patchwork.kernel.org/patch/10852497/
-> > 
-> > Mediatek and Hisilicon also try to use it:
-> > [v4,3/6] dt-bindings: usb: mtu3: add properties about USB Role Switch
-> > https://patchwork.kernel.org/patch/10918385/
-> > [v4,6/6] usb: mtu3: register a USB Role Switch for dual role mode
-> > https://patchwork.kernel.org/patch/10918367/
-> > 
-> > [v6,10/13] usb: dwc3: Registering a role switch in the DRD code
-> > https://patchwork.kernel.org/patch/10909981/
-> > ---
-> >  Documentation/devicetree/bindings/usb/generic.txt | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
-> > index 0a74ab8dfdc2..c73950b72513 100644
-> > --- a/Documentation/devicetree/bindings/usb/generic.txt
-> > +++ b/Documentation/devicetree/bindings/usb/generic.txt
-> > @@ -30,6 +30,9 @@ Optional properties:
-> >  			optional for OTG device.
-> >   - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
-> >  			optional for OTG device.
-> > + - usb-role-switch: tells Dual-Role USB controller driver that we want to use
-> > +			USB Role Switch framework to handle the role switch
-> > +			between host mode and device mode.
-> 
-> Please describe this in terms of h/w functionality, not drivers and 
-> Linux things.
-Sorry for the late reply, v2 is posted
-
-> 
-> Rob
-
-
+QWRkIGNsb2NrLWZyZXF1ZW5jeSBwcm9wZXJ0eSB0byBDUFUgbm9kZS4gQXZvaWRzIHdhcm5pbmdz
+IGxpa2UNCiIvY3B1cy9jcHVAMCBtaXNzaW5nIGNsb2NrLWZyZXF1ZW5jeSBwcm9wZXJ0eSIgZm9y
+ICJhcm0sY29ydGV4LWE3Ii4NCg0KU2lnbmVkLW9mZi1ieTogQW5zb24gSHVhbmcgPEFuc29uLkh1
+YW5nQG54cC5jb20+DQotLS0NCiBhcmNoL2FybS9ib290L2R0cy9pbXg2dWwuZHRzaSAgfCAxICsN
+CiBhcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLmR0c2kgfCAxICsNCiAyIGZpbGVzIGNoYW5nZWQs
+IDIgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnVs
+LmR0c2kgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2dWwuZHRzaQ0KaW5kZXggYmJmMDEwYy4uZmMz
+ODhiOCAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bC5kdHNpDQorKysgYi9h
+cmNoL2FybS9ib290L2R0cy9pbXg2dWwuZHRzaQ0KQEAgLTU5LDYgKzU5LDcgQEANCiAJCQljb21w
+YXRpYmxlID0gImFybSxjb3J0ZXgtYTciOw0KIAkJCWRldmljZV90eXBlID0gImNwdSI7DQogCQkJ
+cmVnID0gPDA+Ow0KKwkJCWNsb2NrLWZyZXF1ZW5jeSA9IDw2OTYwMDAwMDA+Ow0KIAkJCWNsb2Nr
+LWxhdGVuY3kgPSA8NjEwMzY+OyAvKiB0d28gQ0xLMzIgcGVyaW9kcyAqLw0KIAkJCSNjb29saW5n
+LWNlbGxzID0gPDI+Ow0KIAkJCW9wZXJhdGluZy1wb2ludHMgPSA8DQpkaWZmIC0tZ2l0IGEvYXJj
+aC9hcm0vYm9vdC9kdHMvaW14NnVsbC5kdHNpIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnVsbC5k
+dHNpDQppbmRleCAyMmU0YTMwLi43MjdiOTJmIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm0vYm9vdC9k
+dHMvaW14NnVsbC5kdHNpDQorKysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLmR0c2kNCkBA
+IC0xMiw2ICsxMiw3IEBADQogL2RlbGV0ZS1ub2RlLyAmY3J5cHRvOw0KIA0KICZjcHUwIHsNCisJ
+Y2xvY2stZnJlcXVlbmN5ID0gPDkwMDAwMDAwMD47DQogCW9wZXJhdGluZy1wb2ludHMgPSA8DQog
+CQkvKiBrSHoJdVYgKi8NCiAJCTkwMDAwMAkxMjc1MDAwDQotLSANCjIuNy40DQoNCg==
