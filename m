@@ -2,259 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 910A31645A
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2AE216465
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726428AbfEGNQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 09:16:07 -0400
-Received: from mail-eopbgr790078.outbound.protection.outlook.com ([40.107.79.78]:44902
-        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726321AbfEGNQG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 09:16:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Sh91UyZ5CG3oKqllnpLHPUVnPM/iwog42gkqfmdoJAY=;
- b=U54jBjVDOwo5ETdeOJyp91vnOe16hy09MOrUsqoocSMHvZwyCwfCGH5vhfKOK6Rde/i81Vq2GvIZKeTkVztuUS6k3fYEODYHOT67TbDQK2+KE9ajsNynG66+TGp2jppuoUKyYdlblnSuW5HBMO+DYEimaojg2PR4B0sWxs68auY=
-Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
- BL0PR02MB4449.namprd02.prod.outlook.com (10.167.179.26) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.15; Tue, 7 May 2019 13:15:58 +0000
-Received: from BL0PR02MB5681.namprd02.prod.outlook.com
- ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
- ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 13:15:58 +0000
-From:   Dragan Cvetic <draganc@xilinx.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        id S1726321AbfEGNRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:17:33 -0400
+Received: from mail1.bemta25.messagelabs.com ([195.245.230.3]:52882 "EHLO
+        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726420AbfEGNRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:17:33 -0400
+Received: from [46.226.52.101] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
+        by server-3.bemta.az-a.eu-west-1.aws.symcld.net id AB/1F-23123-96581DC5; Tue, 07 May 2019 13:17:29 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDKsWRWlGSWpSXmKPExsUyo1hfUjez9WK
+  MwfpFahZvHv9jtzjW9oTdYv6Rc6wWzYvXs1lc3jWHzWLRslZmi6XXLzJZtO49wm6xasEBdosr
+  T6cyOnB5rJm3htFj56y77B6bVnWyeeyfu4bdY8v+z4wenzfJeez9/JslgD2KNTMvKb8igTXj5
+  /0Z7AU7BCreH+pga2DcwtvFyMkhJLCGUeLLXXsQm1fAVGLfj81MILawQITE1gvfgWwODjYBXY
+  muO6ZdjFwcIgLfGCWmHVvFDuIwC7xllPj2qIcRpIFFQEWi7dkdNhCbUyBW4v+fwywgRUIC95k
+  kZlyfCVbELKAp0br9NzuILSGgIbHh5jEmiM2CEidnPmGBqJGXaN46mxlks5CArMTRS7EQ5QoS
+  Z7dMZISwkyTO9V1hm8AoMAvJ1FlIJs1CMmkBI/MqRoukosz0jJLcxMwcXUMDA11DQyNdQ0tjX
+  SNjE73EKt1EvdRS3fLU4hJdQ73E8mK94src5JwUvbzUkk2MwJhKKTj4agfjrhXphxglOZiURH
+  lF7C/GCPEl5adUZiQWZ8QXleakFh9ilOHgUJLg7W0GygkWpaanVqRl5gCjGyYtwcGjJMKbDpL
+  mLS5IzC3OTIdInWLU5Vhw89c8ZiGWvPy8VClx3p0gRQIgRRmleXAjYInmEqOslDAvIwMDgxBP
+  QWpRbmYJqvwrRnEORiVh3n6QKTyZeSVwm14BHcEEdMS8jnMgR5QkIqSkGhirPZNmcegmWswQj
+  ty3Jn/i6uiTTR/aWq/E75t2xuVH1ZWGDQZKCl9nGClP8lBZ0ce2TJn9x4qtjtuf740QSefiVP
+  8YN5VdjFE0unX6KaV55zrnnFo4b2+mMjtnuHR51vxNmf+sgm++/ppvZWKv+2p68xfzSPP/c7Z
+  ULpvQarZwNoPzv9ieIDYlluKMREMt5qLiRAABRNN8LwMAAA==
+X-Env-Sender: cst@phaseone.com
+X-Msg-Ref: server-8.tower-265.messagelabs.com!1557235049!8196729!1
+X-Originating-IP: [152.115.47.25]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.31.5; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 19072 invoked from network); 7 May 2019 13:17:29 -0000
+Received: from unknown (HELO Exchange2.phaseone.com) (152.115.47.25)
+  by server-8.tower-265.messagelabs.com with AES256-SHA encrypted SMTP; 7 May 2019 13:17:29 -0000
+Received: from cstu16.phaseone.com (172.16.2.207) by Exchange2.phaseone.com
+ (172.16.1.180) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 7 May
+ 2019 15:17:28 +0200
+Message-ID: <1557235048.114189.22.camel@phaseone.com>
+Subject: Re: [PATCH 3/3] usb: dwc3: gadget: Add support for disabling U1 and
+ U2 entries
+From:   "Claus H. Stovgaard" <cst@phaseone.com>
+To:     Anurag Kumar Vulisha <anuragku@xilinx.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <dkiernan@xilinx.com>
-Subject: RE: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-Thread-Topic: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-Thread-Index: AQHU/UVOyBvhwX5Hf0mi9G9IHzQgRKZYHAiAgAGBAECAAQXIAIADZtRggAAL5YCAATcywIAAKlGAgAAWmLCAABaBAIAABssg
-Date:   Tue, 7 May 2019 13:15:58 +0000
-Message-ID: <BL0PR02MB5681A7C4F93F33F1C1E05114CB310@BL0PR02MB5681.namprd02.prod.outlook.com>
-References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
- <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
- <20190502172007.GA1874@kroah.com>
- <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
- <20190504075502.GA11133@kroah.com>
- <BL0PR02MB56814D6EACC16938A0575D16CB300@BL0PR02MB5681.namprd02.prod.outlook.com>
- <20190506123425.GA26360@kroah.com>
- <BL0PR02MB568169E26DCD12498EBDFC3ACB310@BL0PR02MB5681.namprd02.prod.outlook.com>
- <20190507093941.GC20355@kroah.com>
- <BL0PR02MB568148AD27F3FE86D168BDF9CB310@BL0PR02MB5681.namprd02.prod.outlook.com>
- <20190507122106.GA7873@kroah.com>
-In-Reply-To: <20190507122106.GA7873@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=draganc@xilinx.com; 
-x-originating-ip: [149.199.80.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a44ea838-bc48-48ab-8bc9-08d6d2ee24fa
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB4449;
-x-ms-traffictypediagnostic: BL0PR02MB4449:
-x-microsoft-antispam-prvs: <BL0PR02MB4449368B670A883EFF8B7E4DCB310@BL0PR02MB4449.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(136003)(39860400002)(376002)(346002)(396003)(13464003)(189003)(199004)(68736007)(6916009)(81156014)(8676002)(8936002)(6246003)(6436002)(486006)(52536014)(229853002)(86362001)(76116006)(305945005)(7736002)(14444005)(256004)(74316002)(476003)(446003)(55016002)(73956011)(66946007)(11346002)(66476007)(66556008)(64756008)(66446008)(66066001)(316002)(26005)(53546011)(25786009)(6506007)(5660300002)(186003)(81166006)(33656002)(4326008)(102836004)(71200400001)(71190400001)(107886003)(9686003)(53936002)(3846002)(2906002)(54906003)(76176011)(14454004)(99286004)(7696005)(478600001)(6116002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4449;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: xilinx.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: WvjX/UzY63sYA97KvWt0dRXKA4FeKYLw2bwV6ZfUOGbbqe1qMdGY2pd3x0CLIsqi8foN9xeFviaAhEqHr0l6HHNbUmmaeLjr7sCPjlSXTjKLToOoqjzQIUu8xpKSyZepucheydDin44l1/svNCJfCH1R6xpCVmOPqgbR3k/+6ytp5+bR4LP4jMXHVi4NDoH3Qdy500WYaP7bUkX6r9wm0s9VON76d3kvta4ViDuUYVo+0KjCnXARsyM8Hevkg41K1Qs4xVRk83GKHCREvgTs8oBTacq4RdAmnEYOoXnTqs5pHTWX0FBdDHC8jySDurnaGzB9vdELBZ2laIHwhTZDaniVP8RG13mHM16mCAeV/v38nK1KoUFrDvpSsLy+IyoYtUfgsp0o5L9nh9NQ65cnBe5etZ3nI6L8VOM3qI4rkbs=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        "v.anuragkumar@gmail.com" <v.anuragkumar@gmail.com>
+Date:   Tue, 7 May 2019 15:17:28 +0200
+In-Reply-To: <BYAPR02MB55918A76A1567C3209860748A7310@BYAPR02MB5591.namprd02.prod.outlook.com>
+References: <1556792423-4833-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
+         <1556792423-4833-4-git-send-email-anurag.kumar.vulisha@xilinx.com>
+         <30102591E157244384E984126FC3CB4F639E7BA8@us01wembx1.internal.synopsys.com>
+         <1557176302.18203.20.camel@phaseone.com>
+         <BYAPR02MB55918A76A1567C3209860748A7310@BYAPR02MB5591.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a44ea838-bc48-48ab-8bc9-08d6d2ee24fa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 13:15:58.1684
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4449
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.16.2.207]
+X-ClientProxiedBy: Exchange3.phaseone.com (172.16.1.184) To
+ Exchange2.phaseone.com (172.16.1.180)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Anurag
 
+> > > Please use "-" rather than "_" in the property names.
+> > I have thought about this feature over the weekend, and think the
+> > naming should be
+> > changed to something like "snps,bos-u1-exit-lat-in-us"
+> > and named the same in the code. And then be the value used by the
+> > get_config_params. E.g. the device-tree is used to set the values
+> > directly used for
+> > bUxdevExitLat instead of named something not related to exit
+> > latency.
+> > 
+> > With this the name and function is a 1 to 1 match, and you can
+> > among others set it to
+> > 0 for optaining what Anurag wants.
+> > 
+> Your suggestion looks good but the problem is the U1 and U2 exit
+> latencies are
+> fixed values in dwc3 controller(can be found in HCSPARAMS3). Adding
+> different
+> exit latencies may modify the U1SEL/U2SEL values sent from the host
+> but the real
+> dwc3 controller exit latencies are not getting changed. Because of
+> this reason I
+> had opted "snps,dis_u1_entry_quirk", so that the U1/U2 exit latency
+> values
+> reported in BOS descriptor can be either be zero (when U1/U2 entries
+> needs to be
+> disabled) or non-zero value (reported in HCSPARAMS3) when U1/U2
+> states allowed.
+> Based on this I think it is better if we can continue with "snps,dis-
+> u1-entry-quirk"
+> instead of the "snps,bos-u1-exit-lat-in-us". Please  provide your
+> opinion on this.
 
-> -----Original Message-----
-> From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> Sent: Tuesday 7 May 2019 13:21
-> To: Dragan Cvetic <draganc@xilinx.com>
-> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
-sts.infradead.org; robh+dt@kernel.org;
-> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
-l.org; Derek Kiernan <dkiernan@xilinx.com>
-> Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
->=20
-> On Tue, May 07, 2019 at 11:55:42AM +0000, Dragan Cvetic wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > Sent: Tuesday 7 May 2019 10:40
-> > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kerne=
-l@lists.infradead.org; robh+dt@kernel.org;
-> > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.k=
-ernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-> > >
-> > > On Tue, May 07, 2019 at 08:48:41AM +0000, Dragan Cvetic wrote:
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > > > Sent: Monday 6 May 2019 13:34
-> > > > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-k=
-ernel@lists.infradead.org; robh+dt@kernel.org;
-> > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vg=
-er.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
-> > > > >
-> > > > > On Mon, May 06, 2019 at 12:23:56PM +0000, Dragan Cvetic wrote:
-> > > > > >
-> > > > > >
-> > > > > > > -----Original Message-----
-> > > > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > > > > > Sent: Saturday 4 May 2019 08:55
-> > > > > > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-a=
-rm-kernel@lists.infradead.org; robh+dt@kernel.org;
-> > > > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kerne=
-l@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core dr=
-iver
-> > > > > > >
-> > > > > > > On Fri, May 03, 2019 at 04:41:21PM +0000, Dragan Cvetic wrote=
-:
-> > > > > > > > Hi Greg,
-> > > > > > > >
-> > > > > > > > Please find my inline comments below,
-> > > > > > > >
-> > > > > > > > Regards
-> > > > > > > > Dragan
-> > > > > > > >
-> > > > > > > > > -----Original Message-----
-> > > > > > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > > > > > > > Sent: Thursday 2 May 2019 18:20
-> > > > > > > > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > > > > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; lin=
-ux-arm-kernel@lists.infradead.org; robh+dt@kernel.org;
-> > > > > > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-k=
-ernel@vger.kernel.org; Derek Kiernan
-> <dkiernan@xilinx.com>
-> > > > > > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add cor=
-e driver
-> > > > > > > > >
-> > > > > > > > > On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic w=
-rote:
-> > > > > > > > > > +#define DRIVER_NAME "xilinx_sdfec"
-> > > > > > > > > > +#define DRIVER_VERSION "0.3"
-> > > > > > > > >
-> > > > > > > > > Version means nothing with the driver in the kernel tree,=
- please remove
-> > > > > > > > > it.
-> > > > > > > >
-> > > > > > > > Will be removed. Thank you.
-> > > > > > > >
-> > > > > > > > >
-> > > > > > > > > > +#define DRIVER_MAX_DEV BIT(MINORBITS)
-> > > > > > > > >
-> > > > > > > > > Why this number?  Why limit yourself to any number?
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > There can be max 8 devices for this driver. I'll change to =
-8.
-> > > > > > > >
-> > > > > > > > > > +
-> > > > > > > > > > +static struct class *xsdfec_class;
-> > > > > > > > >
-> > > > > > > > > Do you really need your own class?
-> > > > > > > >
-> > > > > > > > When writing a character device driver, my goal is to creat=
-e and register an instance
-> > > > > > > > of that structure associated with a struct file_operations,=
- exposing a set of operations
-> > > > > > > > to the user-space. One of the steps to make this goal is Cr=
-eate a class for a devices,
-> > > > > > > > visible in /sys/class/.
-> > > > > > >
-> > > > > > > Why do you need a class?  Again, why not just use the misc_de=
-vice api,
-> > > > > > > that seems much more relevant here and will make the code a l=
-ot simpler.
-> > > > > > >
-> > > > > >
-> > > > > > The driver can have 8 devices in SoC plus more in Programming L=
-ogic.
-> > > > > > It looked logical to group them under the same MAJOR, although =
-they
-> > > > > > are independent of each other.  Is this argument strong enough =
-to use
-> > > > > > class?
-> > > > >
-> > > > > Not really :)
-> > > > >
-> > > > > 8 devices is pretty small.  What tool will be trying to talk to a=
-ll of
-> > > > > these devices and how was it going to find out what devices were =
-in the
-> > > > > system?
-> > > > >
-> > > >
-> > > > These devices are Forward Error Correction encoder/decoder
-> > > > and will be part of the RF communication chain. They will be includ=
-ed
-> > > > in the system through DT. Also, described in DT.
-> > >
-> > > Userspace doesn't mess with DT.
-> > >
-> > > I am asking what userspace tool/program is going to be interacting wi=
-th
-> > > these devices through your now-custom api you are creating.  Do you h=
-ave
-> > > a link to that software, and how is that code doing the "determine wh=
-at
-> > > device nodes are associated with what devices" logic?
-> > >
-> >
-> > Example code is not public yet, sorry.
->=20
-> Ok, then I think we need to wait for that to get this merged at the
-> minimum, don't you agree?  Otherwise how do we even know that any of
-> these codepaths are tested?
->=20
-> > The index number in the device name
-> > is a link to device, see snippet from the example code:
-> >
-> > #define FEC_DEC  "/dev/xsdfec0"
-> > dec_fd =3D open_xsdfec(FEC_DEC);
-> >
-> > The index number corresponds to the device order in DT.
->=20
-> So that implies you don't need a class at all, right?
->=20
+With this in mind I can see why having direct control over the exit
+latency value might not be optimum in many situations.
+Regarding the name, I think the snps,dis_u1_entry_quirk will be a good
+name, if it is combined with the DCTL control. E.g. remove the configfs
+part of my patch, and merge the DCTL control with your patches.
+If the dt-binding still only control the bos descriptor I think a
+better name is something with u1_force_exist_lat_0 or similar.
 
-Greg, you won:(
-Thanks for patience, I appreciate it very much.
-Dragan
+I don't think setting bos to 0 or controlling DCTL will be used
+individual, so to keep things simple I will vote for
+snps,dis_u1_entry_quirk, and then just control all elements regarding
+disabling U1/U2 from this dt-binding.
 
-> thanks,
->=20
-> greg k-h
+Please cut what your need from my patch.
+
+BR Claus
