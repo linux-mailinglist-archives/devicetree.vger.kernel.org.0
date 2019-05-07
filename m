@@ -2,105 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32BA516993
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 19:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE1751699D
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 19:54:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726649AbfEGRwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 13:52:09 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:39145 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726448AbfEGRwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 13:52:09 -0400
-Received: by mail-pl1-f196.google.com with SMTP id g9so1131490plm.6;
-        Tue, 07 May 2019 10:52:08 -0700 (PDT)
+        id S1727544AbfEGRx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 13:53:58 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:45650 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbfEGRx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 13:53:58 -0400
+Received: by mail-oi1-f193.google.com with SMTP id u3so7253544oic.12;
+        Tue, 07 May 2019 10:53:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3hWkoDSJOZrfkTI64LpT00O3NiHbk0Ob1pJ65mVFON8=;
-        b=JwQVKBlKDR92Sclejlu6Vw2HEiOQ94zveEodXjIxNpRKXX/8QP/ICWdvWDwa4eKxIL
-         9x6Y2YrvN0jM6eBBCUIDzg2wUc7GCnowlNy6K1KkASCQdcV59d4QIsxSf71IYZILRf96
-         h9t6FQ2wjKVqYwMkQ7B1S/QP5s76pj/6/uj0TIJqIl7uUNh+jcuAUBvRZLrmz031NFFd
-         BVqdGZrbqCCk/bTfnHb2lvbNMJ4nq34bC9x7KKG+vF7fDu9+bPE89gNpo0ZVoECB+CNG
-         kxgfFa2hdzWd45g/DfPIU6N4IdmsDDCZXQMwtgn4uCT7l7r3tovrR4ecZQGcoyEFxMkm
-         gAyw==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7flmOY2ATgGfQPKE9sBeHn57pA1FJ9fgxAgK5bf/VXc=;
+        b=M5MayXekFPagZQ5mdyBhaKAXMoy8IaH7d9jFE8KzsTXxsbxQ+j+4u6H02CRXeL1p5J
+         EzTE4z4LojpYp7Nlyn/gV+zMJm1tyEgP7BseAUmRN5bNXZbn+mB/rydOG9HvlIhkFyaO
+         V7Ay9tjeHOlLKfjzLdrymd3PBPnHCI5M10i3TlkXg++ucuhiPqCFcRweLF36wgBHWu+y
+         3krEQlgulpbzhOpy467IhUvTv78AUJes+Ykb5SVN0BXM58cB7ogm+1SN9Qmavd8uyhBD
+         aOZQOORBm3cucV/GAcz/jWRugt2Z9BjR8sAWbT+0owqHjp9a/hqBudd3nV/HVJwhNulA
+         wqGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3hWkoDSJOZrfkTI64LpT00O3NiHbk0Ob1pJ65mVFON8=;
-        b=HBOzabr1SXrzVkDUJ/eViMqflGDEr3dH1OZz+y3JXAgt3n8B+Lm99lKo6j8ruvVR02
-         Fvd6AjnPkAR0dJxcsA1olwXKeSetV7aGn4G5WozfkoAXlSEQ9MY5k0deA3evyEGTcXw5
-         eSTBpuRNFgOoTwZNfOTE1qtUvi7o3X/X92iDJ5Uj0FPoyZMd8S3xsdoFjYgbXlzuDiwQ
-         67Yq9mJ7KsJ/yMTy2w0d7WkiEwPKV0tvhG7m3wZ9C8Q9OKMa0AC1GDQrzCrBLoUje2Yo
-         7LoDEh402AQmDur8OFtmUQ5MK9hhjo0KDCm8cgg49volUnn8PT1FCG50uaDlnPsKNbFJ
-         KYfA==
-X-Gm-Message-State: APjAAAUcVoGsopC/DpSuYAIPy1f2GnYn8XWlMIw2DXUK9EmfqddA49dg
-        hL81qiXjMMN2uf3rKMTFHFA=
-X-Google-Smtp-Source: APXvYqwV2fTFNQXeeczraLQ8ZQHBYaNpzObxLES0PAOQWGcz6OqTVaRRZV1VJ+05CjQtDMabO/z4ag==
-X-Received: by 2002:a17:902:8343:: with SMTP id z3mr25340601pln.240.1557251528475;
-        Tue, 07 May 2019 10:52:08 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id g128sm19504187pfb.131.2019.05.07.10.52.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 10:52:07 -0700 (PDT)
-Subject: Re: [PATCH] of: Add dummy for of_node_is_root if not CONFIG_OF
-To:     Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>
-Cc:     linux-rockchip@lists.infradead.org, jwerner@chromium.org,
-        groeck@chromium.org, briannorris@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190507044801.250396-1-dianders@chromium.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <a3573253-e3de-0a82-8af3-6bacea20bd97@gmail.com>
-Date:   Tue, 7 May 2019 10:52:06 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7flmOY2ATgGfQPKE9sBeHn57pA1FJ9fgxAgK5bf/VXc=;
+        b=O1FGoCk4YRIUPSpaT5AcagsxW+FX66tViFTuUOJghs8/QuWVZYHoVDyYkUjbCVyWSy
+         /Yv/HfeCu1g9SKK/uICGQXQYSvT6knayw0O9Nb37XCgdDqAVF7v0BPd//Wt4jbii8RXK
+         hoWpIm55TlRHMnRI/h0IR5JdJCduRzQYP7xVFn9UKtW1SZikxRH/ifbe+Whqgv8JLl37
+         mC2NqJctOkwJk4UfU5dQre71Q3kbFqiKr/qa7BgKR1oCKPKrsvRS2IEf6hv1+uuB+H+j
+         Kt6lIZyeYBRGV2/TkiIqodh2j16C3ZmsKiixOlRn8eiCbqMPUWF2NsTvHD5G7dT2LMuy
+         XOew==
+X-Gm-Message-State: APjAAAWTIQpPbpU/MOlhOLyvJFAu7d5oh6d/w5YCWuw1METgsurOmXI2
+        ntfbAC+DTijPNWr1ySoa4DJBwIE2aApWY/nxzmMMWLdga9A=
+X-Google-Smtp-Source: APXvYqwnv2W92AwYPmHA+pZgR+UfUWyGF7yrgdcg/vKDBYgUmxUAUGXWBDjENWKrzjJVY2Wha6sDhMq72YjhPCXJxfg=
+X-Received: by 2002:aca:5b06:: with SMTP id p6mr1023295oib.129.1557251635564;
+ Tue, 07 May 2019 10:53:55 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190507044801.250396-1-dianders@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190507115726.23714-1-glaroque@baylibre.com> <20190507115726.23714-5-glaroque@baylibre.com>
+In-Reply-To: <20190507115726.23714-5-glaroque@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 7 May 2019 19:53:44 +0200
+Message-ID: <CAFBinCBQSE7wh367Aa25zwtDphsx8Z_KGDTn8dcSCir6bLvq_A@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] pinctrl: meson: Rework enable/disable bias part
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        khilman@baylibre.com, linux-gpio@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/6/19 9:48 PM, Douglas Anderson wrote:
-> We'll add a dummy to just return false.
+Hi Guillaume,
 
-A more complete explanation of why this is needed please.
+On Tue, May 7, 2019 at 1:57 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+>
+> rework bias enable/disable part to prepare drive-strength integration
+if it was my patch I would add "no functional changes" at the end to
+make it explicit that this only changes the structure of the code.
 
-My one guess would be compile testing of arch/sparc/kernel/prom_64.c
-fails???
+>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+with the minor comments from below addressed:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
--Frank
-
-
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
-> 
->  include/linux/of.h | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 0cf857012f11..62ae5c1cafa5 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -653,6 +653,11 @@ static inline bool of_have_populated_dt(void)
->  	return false;
+>  drivers/pinctrl/meson/pinctrl-meson.c | 79 ++++++++++++++++-----------
+>  1 file changed, 48 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+> index 96a4a72708e4..a216a7537564 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
+> @@ -174,13 +174,57 @@ int meson_pmx_get_groups(struct pinctrl_dev *pcdev, unsigned selector,
+>         return 0;
 >  }
->  
-> +static inline bool of_node_is_root(const struct device_node *node)
+>
+> +static int meson_pinconf_disable_bias(struct meson_pinctrl *pc,
+> +                                     unsigned int pin)
 > +{
-> +	return false;
-> +}
+> +       struct meson_bank *bank;
+> +       unsigned int reg, bit = 0;
+> +       int ret;
 > +
->  static inline struct device_node *of_get_compatible_child(const struct device_node *parent,
->  					const char *compatible)
->  {
-> 
+> +       ret = meson_get_bank(pc, pin, &bank);
+> +       if (ret)
+> +               return ret;
+add an empty line here to keep it consistent with the rest of the code
 
+[...]
+>  static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+>                              unsigned long *configs, unsigned num_configs)
+>  {
+>         struct meson_pinctrl *pc = pinctrl_dev_get_drvdata(pcdev);
+>         struct meson_bank *bank;
+bank is not read anymore (it's passed to meson_get_bank to set it, but
+then it's not read, which is probably why my compiler doesn't
+complain)
+
+>         enum pin_config_param param;
+> -       unsigned int reg, bit;
+>         int i, ret;
+>
+>         ret = meson_get_bank(pc, pin, &bank);
+> @@ -192,44 +236,17 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+>
+>                 switch (param) {
+>                 case PIN_CONFIG_BIAS_DISABLE:
+> -                       dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
+> -
+> -                       meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg,
+> -                                              &bit);
+> -                       ret = regmap_update_bits(pc->reg_pullen, reg,
+> -                                                BIT(bit), 0);
+> +                       ret = meson_pinconf_disable_bias(pc, pin);
+>                         if (ret)
+>                                 return ret;
+>                         break;
+>                 case PIN_CONFIG_BIAS_PULL_UP:
+> -                       dev_dbg(pc->dev, "pin %u: enable pull-up\n", pin);
+> -
+> -                       meson_calc_reg_and_bit(bank, pin, REG_PULLEN,
+> -                                              &reg, &bit);
+> -                       ret = regmap_update_bits(pc->reg_pullen, reg,
+> -                                                BIT(bit), BIT(bit));
+> -                       if (ret)
+> -                               return ret;
+> -
+> -                       meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
+> -                       ret = regmap_update_bits(pc->reg_pull, reg,
+> -                                                BIT(bit), BIT(bit));
+> +                       ret = meson_pinconf_enable_bias(pc, pin, 1);
+use "true" instead of "1"?
+
+>                         if (ret)
+>                                 return ret;
+>                         break;
+>                 case PIN_CONFIG_BIAS_PULL_DOWN:
+> -                       dev_dbg(pc->dev, "pin %u: enable pull-down\n", pin);
+> -
+> -                       meson_calc_reg_and_bit(bank, pin, REG_PULLEN,
+> -                                              &reg, &bit);
+> -                       ret = regmap_update_bits(pc->reg_pullen, reg,
+> -                                                BIT(bit), BIT(bit));
+> -                       if (ret)
+> -                               return ret;
+> -
+> -                       meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
+> -                       ret = regmap_update_bits(pc->reg_pull, reg,
+> -                                                BIT(bit), 0);
+> +                       ret = meson_pinconf_enable_bias(pc, pin, 0);
+use "false" instead of "0"?
+
+one overall comment: thank you for working on this!
+in my opinion it's a good preparation step to ensure that
+meson_pinconf_set is easy to understand even if we add more
+functionality here
+
+
+Regards
+Martin
