@@ -2,127 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 698BD15E66
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 09:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C9115E70
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 09:43:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725878AbfEGHld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 03:41:33 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:30640 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726561AbfEGHlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 03:41:32 -0400
-X-UUID: 5c8c42ba27db4e4e9655739fc1987802-20190507
-X-UUID: 5c8c42ba27db4e4e9655739fc1987802-20190507
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 601173642; Tue, 07 May 2019 15:41:29 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS33N1.mediatek.inc (172.27.4.75) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 7 May 2019 15:41:27 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 7 May 2019 15:41:27 +0800
-Message-ID: <1557214887.3498.7.camel@mtksdaap41>
-Subject: Re: [v3 3/3] drm/mediatek: add mt8183 dpi support
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        "Rahul Sharma" <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King" <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
+        id S1726646AbfEGHnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 03:43:43 -0400
+Received: from mail-eopbgr140071.outbound.protection.outlook.com ([40.107.14.71]:39593
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726418AbfEGHnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 03:43:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kHU13rTKYTz+Va7OyPr6XsWt7s6RMld+hzaCtV3Thq0=;
+ b=eZqj5Zu6V48sICxl0wzEeNUCahNAaIuazRLWHmSpbliSmrFc7n2/RYAgPW1pTirMQ7yFQ1l1KxJDm8aFNHdx5XPfE5a8ra5dZOzOW6pMz9fnDTuc33HT1WIX5LGR5xkW1LKlpYxtZJ24xsods2zU19xDYgpP1X3UTWhEWwoLmqQ=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2803.eurprd04.prod.outlook.com (10.175.45.10) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Tue, 7 May 2019 07:43:37 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 07:43:37 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Tue, 7 May 2019 15:41:27 +0800
-In-Reply-To: <20190416055242.75764-4-jitao.shi@mediatek.com>
-References: <20190416055242.75764-1-jitao.shi@mediatek.com>
-         <20190416055242.75764-4-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH] arm64: dts: ls1028a: Fix CPU idle fail.
+Thread-Topic: [PATCH] arm64: dts: ls1028a: Fix CPU idle fail.
+Thread-Index: AQHVBKiUKthuJMWQ50upa4TU1imk1w==
+Date:   Tue, 7 May 2019 07:43:37 +0000
+Message-ID: <20190507074454.41589-1-ran.wang_1@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HK2PR02CA0198.apcprd02.prod.outlook.com
+ (2603:1096:201:21::34) To AM5PR0402MB2865.eurprd04.prod.outlook.com
+ (2603:10a6:203:9e::16)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.17.1
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7f9ccb5e-9e18-4a3e-8072-08d6d2bfb73e
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2803;
+x-ms-traffictypediagnostic: AM5PR0402MB2803:
+x-microsoft-antispam-prvs: <AM5PR0402MB28035712D3C2E3B5F9C1893FF1310@AM5PR0402MB2803.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2887;
+x-forefront-prvs: 0030839EEE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(376002)(346002)(396003)(136003)(39860400002)(189003)(199004)(110136005)(14454004)(68736007)(99286004)(36756003)(186003)(478600001)(54906003)(316002)(73956011)(6506007)(52116002)(102836004)(26005)(86362001)(6436002)(386003)(66066001)(6486002)(6116002)(7736002)(6512007)(53936002)(5660300002)(2906002)(1076003)(66446008)(64756008)(66556008)(66476007)(8676002)(66946007)(256004)(305945005)(81166006)(81156014)(2616005)(71200400001)(14444005)(476003)(486006)(50226002)(8936002)(71190400001)(25786009)(4326008)(3846002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2803;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: IcKh9CFK2nALr2iZ9fUlpTvK/eqERFPuyov83VsVus4pOJzQdmzcd8J6EIuutuZKCtr3xpOVqcHJ4bBEvYd6rxPkIr0uBl1sunGu/MjRVFHuz/1eVglkG43QNAIO+JGfJ21KvHCM0UHnNkyxFy62Tob6Xoz43C1H9MUzw0CJlMFZ/r3ctZGpY6f7Ri01QNJ9fAXbT+KSfJh02O12MUurt2I+biWmYES7L9yAWVuHk/ZdINGnDjgby/CysJDKYBn141OH0CpU4w9rxsjXwSih/cr00VtGorEMvx878tRPLLPp3NvLE39Vs4GFBLcRURntd9Wq5qMJ/khD3SsRB7CBxae5RxuEmSoqJeVSnIbiBLnd6S0CfYl52uArZ39tspeDh+WgCCg3yolBmYCjyugz67hUCa5WTrMWTQ030V0lcSA=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f9ccb5e-9e18-4a3e-8072-08d6d2bfb73e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 07:43:37.7539
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2803
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-On Tue, 2019-04-16 at 13:52 +0800, Jitao Shi wrote:
-
-I need the commit message. Even though the code is easy to understand,
-words for this patch is still necessary.
-
-Regards,
-CK
-
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 66405159141a..fbb087218775 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -681,6 +681,16 @@ static unsigned int mt2701_calculate_factor(int clock)
->  		return 2;
->  }
->  
-> +static unsigned int mt8183_calculate_factor(int clock)
-> +{
-> +	if (clock <= 27000)
-> +		return 8;
-> +	else if (clock <= 167000)
-> +		return 4;
-> +	else
-> +		return 2;
-> +}
-> +
->  static const struct mtk_dpi_conf mt8173_conf = {
->  	.cal_factor = mt8173_calculate_factor,
->  	.reg_h_fre_con = 0xe0,
-> @@ -692,6 +702,12 @@ static const struct mtk_dpi_conf mt2701_conf = {
->  	.edge_sel_en = true,
->  };
->  
-> +static const struct mtk_dpi_conf mt8183_conf = {
-> +	.cal_factor = mt8183_calculate_factor,
-> +	.reg_h_fre_con = 0xe0,
-> +	.dual_edge = true,
-> +};
-> +
->  static int mtk_dpi_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -787,6 +803,9 @@ static const struct of_device_id mtk_dpi_of_ids[] = {
->  	{ .compatible = "mediatek,mt8173-dpi",
->  	  .data = &mt8173_conf,
->  	},
-> +	{ .compatible = "mediatek,mt8183-dpi",
-> +	  .data = &mt8183_conf,
-> +	},
->  	{ },
->  };
->  
-
-
+UFNDSSBzcGVjIGRlZmluZSAxc3QgcGFyYW1ldGVyJ3MgYml0IDE2IG9mIGZ1bmN0aW9uIENQVV9T
+VVNQRU5EIHRvDQppbmRpY2F0ZSBDUFUgU3RhdGUgVHlwZTogMCBmb3Igc3RhbmRieSwgMSBmb3Ig
+cG93ZXIgZG93bi4gSW4gdGhpcw0KY2FzZSwgd2Ugd2FudCB0byBzZWxlY3Qgc3RhbmRieSBmb3Ig
+Q1BVIGlkbGUgZmVhdHVyZS4gQnV0IGN1cnJlbnQNCnNldHRpbmcgd3JvbmdseSBzZWxlY3QgcG93
+ZXIgZG93biBhbmQgY2F1c2UgQ1BVIFNVU1BFTkQgZmFpbCBldmVyeQ0KdGltZS4gTmVlZCB0aGlz
+IGZpeC4NCg0KU2lnbmVkLW9mZi1ieTogUmFuIFdhbmcgPHJhbi53YW5nXzFAbnhwLmNvbT4NCi0t
+LQ0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kgfCAgIDE4
+ICsrKysrKysrKy0tLS0tLS0tLQ0KIDEgZmlsZXMgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCA5
+IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2Nh
+bGUvZnNsLWxzMTAyOGEuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1s
+czEwMjhhLmR0c2kNCmluZGV4IGIwNDU4MTIuLmJmN2Y4NDUgMTAwNjQ0DQotLS0gYS9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpDQorKysgYi9hcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpDQpAQCAtMjgsNyArMjgsNyBAQA0K
+IAkJCWVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQogCQkJY2xvY2tzID0gPCZjbG9ja2dlbiAxIDA+
+Ow0KIAkJCW5leHQtbGV2ZWwtY2FjaGUgPSA8JmwyPjsNCi0JCQljcHUtaWRsZS1zdGF0ZXMgPSA8
+JkNQVV9QSDIwPjsNCisJCQljcHUtaWRsZS1zdGF0ZXMgPSA8JkNQVV9QVzIwPjsNCiAJCX07DQog
+DQogCQljcHUxOiBjcHVAMSB7DQpAQCAtMzgsNyArMzgsNyBAQA0KIAkJCWVuYWJsZS1tZXRob2Qg
+PSAicHNjaSI7DQogCQkJY2xvY2tzID0gPCZjbG9ja2dlbiAxIDA+Ow0KIAkJCW5leHQtbGV2ZWwt
+Y2FjaGUgPSA8JmwyPjsNCi0JCQljcHUtaWRsZS1zdGF0ZXMgPSA8JkNQVV9QSDIwPjsNCisJCQlj
+cHUtaWRsZS1zdGF0ZXMgPSA8JkNQVV9QVzIwPjsNCiAJCX07DQogDQogCQlsMjogbDItY2FjaGUg
+ew0KQEAgLTUzLDEzICs1MywxMyBAQA0KIAkJICovDQogCQllbnRyeS1tZXRob2QgPSAiYXJtLHBz
+Y2kiOw0KIA0KLQkJQ1BVX1BIMjA6IGNwdS1waDIwIHsNCi0JCQljb21wYXRpYmxlID0gImFybSxp
+ZGxlLXN0YXRlIjsNCi0JCQlpZGxlLXN0YXRlLW5hbWUgPSAiUEgyMCI7DQotCQkJYXJtLHBzY2kt
+c3VzcGVuZC1wYXJhbSA9IDwweDAwMDEwMDAwPjsNCi0JCQllbnRyeS1sYXRlbmN5LXVzID0gPDEw
+MDA+Ow0KLQkJCWV4aXQtbGF0ZW5jeS11cyA9IDwxMDAwPjsNCi0JCQltaW4tcmVzaWRlbmN5LXVz
+ID0gPDMwMDA+Ow0KKwkJQ1BVX1BXMjA6IGNwdS1wdzIwIHsNCisJCQkgIGNvbXBhdGlibGUgPSAi
+YXJtLGlkbGUtc3RhdGUiOw0KKwkJCSAgaWRsZS1zdGF0ZS1uYW1lID0gIlBXMjAiOw0KKwkJCSAg
+YXJtLHBzY2ktc3VzcGVuZC1wYXJhbSA9IDwweDA+Ow0KKwkJCSAgZW50cnktbGF0ZW5jeS11cyA9
+IDwyMDAwPjsNCisJCQkgIGV4aXQtbGF0ZW5jeS11cyA9IDwyMDAwPjsNCisJCQkgIG1pbi1yZXNp
+ZGVuY3ktdXMgPSA8NjAwMD47DQogCQl9Ow0KIAl9Ow0KIA0KLS0gDQoxLjcuMQ0KDQo=
