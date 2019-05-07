@@ -2,139 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F14C016514
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46C0016522
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726795AbfEGNwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 09:52:40 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:16027 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726444AbfEGNwk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:52:40 -0400
-X-UUID: 224ef36218ca4f27a573c49c6ba05807-20190507
-X-UUID: 224ef36218ca4f27a573c49c6ba05807-20190507
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <jerry-ch.chen@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1290839521; Tue, 07 May 2019 21:52:32 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs03n2.mediatek.inc (172.21.101.182) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 7 May 2019 21:52:30 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 7 May 2019 21:52:30 +0800
-Message-ID: <1557237150.11458.45.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V1 3/6] dt-bindings: mt8183: Added FD dt-bindings
-From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <hans.verkuil@cisco.com>,
-        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
-        <matthias.bgg@gmail.com>, <mchehab@kernel.org>,
-        <yuzhao@chromium.org>, <zwisler@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <Sean.Cheng@mediatek.com>,
-        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
-        <holmes.chiou@mediatek.com>, <frederic.chen@mediatek.com>,
-        <jungo.lin@mediatek.com>, <Rynn.Wu@mediatek.com>,
-        <linux-media@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <devicetree@vger.kernel.org>, <shik@chromium.org>,
-        <suleiman@chromium.org>, <jerry-ch.chen@mediatek.com>
-Date:   Tue, 7 May 2019 21:52:30 +0800
-In-Reply-To: <20190501224647.GA12044@bogus>
-References: <20190423104505.38778-1-Jerry-Ch.chen@mediatek.com>
-         <20190423104505.38778-4-Jerry-Ch.chen@mediatek.com>
-         <20190501224647.GA12044@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726761AbfEGNx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:53:26 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:60658 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726394AbfEGNxZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:53:25 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 636D725B762;
+        Tue,  7 May 2019 23:53:23 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 4FE809403F2; Tue,  7 May 2019 15:53:21 +0200 (CEST)
+Date:   Tue, 7 May 2019 15:53:21 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] irqchip: Add Renesas RZ/A1 Interrupt Controller
+ driver
+Message-ID: <20190507135321.nuukbsbhwcsc7afc@verge.net.au>
+References: <20190502123220.3016-1-geert+renesas@glider.be>
+ <20190502123220.3016-3-geert+renesas@glider.be>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 208F602F23B4135D007ECC86C99CD3A7F4CB67645D09D8B5C4AFEE51EBC031A52000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190502123220.3016-3-geert+renesas@glider.be>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thank you for your comments.
-
-On Wed, 2019-05-01 at 17:46 -0500, Rob Herring wrote:
-> On Tue, Apr 23, 2019 at 06:45:02PM +0800, Jerry-ch Chen wrote:
-> > From: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-> > 
-> > This patch adds DT binding documentation for the Face Detection (FD)
-> > unit of the camera system on Mediatek's SoCs.
-> > 
-> > Signed-off-by: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-> > ---
-> >  .../bindings/media/mediatek,mt8183-fd.txt     | 34 +++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt b/Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
-> > new file mode 100644
-> > index 000000000000..97c12fd93e7e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
-> > @@ -0,0 +1,34 @@
-> > +* Mediatek Face Detection Unit (FD)
-> > +
-> > +Face Detection (FD) unit is a typical memory-to-memory HW device.
-> > +It provides hardware accelerated face detection function, and it
-> > +is able to detect different poses of faces. FD will writre result
-> > +of detected face into memory as output.
-> > +
-> > +Required properties:
-> > +- compatible: "mediatek,mt8183-fd"
-> > +- reg: Physical base address and length of the function block register space
-> > +- interrupts: interrupt number to the cpu.
-> > +- iommus: should point to the respective IOMMU block with master port as
-> > +  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
-> > +  for details.
+On Thu, May 02, 2019 at 02:32:17PM +0200, Geert Uytterhoeven wrote:
+> Add a driver for the Renesas RZ/A1 Interrupt Controller.
 > 
-> How many entries? Looks like 3 from the example.
+> This supports using up to 8 external interrupts on RZ/A1, with
+> configurable sense select.
 > 
-
-Yes, we have 3 entries.  I would like to update this part as
-following:
-
-iommus: should point to the 3 entries:  M4U_PORT_CAM_FDVT_RP,
-M4U_PORT_CAM_FDVT_WR and M4U_PORT_CAM_FDVT_RB.  (Please see
-Documentation/devicetree/bindings/iommu/mediatek,iommu.txt for details.)
-
-> > +- mediatek,larb: must contain the local arbiters in the current Socs, see
-> > +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
-> > +  for details.
-> > +- clocks : must contain the FDVT clock
-> > +- clock-names: must contain FD_CLK_IMG_FD
-> > +
-> > +Example:
-> > +	fd:fd@1502b000 {
->            ^ space needed
+> NMI edge select is not yet supported.
 > 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Tested-by: Chris Brandt <chris.brandt@renesas.com>
 
-We will fix it in next version of the patch.
-
-> > +		compatible = "mediatek,mt8183-fd";
-> > +		mediatek,larb = <&larb5>;
-> > +		mediatek,scp = <&scp>;
-> > +		iommus = <&iommu M4U_PORT_CAM_FDVT_RP>,
-> > +			 <&iommu M4U_PORT_CAM_FDVT_WR>,
-> > +			 <&iommu M4U_PORT_CAM_FDVT_RB>;
-> > +		reg = <0 0x1502b000 0 0x1000>;
-> > +		interrupts = <GIC_SPI 269 IRQ_TYPE_LEVEL_LOW>;
-> > +		clocks = <&imgsys CLK_IMG_FDVT>;
-> > +		clock-names = "FD_CLK_IMG_FD";
-> > +	};
-> > +
-> > -- 
-> > 2.18.0
-> > 
-
-Sincerely,
-
-Jerry
-
-
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
 
