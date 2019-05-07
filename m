@@ -2,110 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C9115E70
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 09:43:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6570415E84
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 09:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726646AbfEGHnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 03:43:43 -0400
-Received: from mail-eopbgr140071.outbound.protection.outlook.com ([40.107.14.71]:39593
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726418AbfEGHnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 03:43:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kHU13rTKYTz+Va7OyPr6XsWt7s6RMld+hzaCtV3Thq0=;
- b=eZqj5Zu6V48sICxl0wzEeNUCahNAaIuazRLWHmSpbliSmrFc7n2/RYAgPW1pTirMQ7yFQ1l1KxJDm8aFNHdx5XPfE5a8ra5dZOzOW6pMz9fnDTuc33HT1WIX5LGR5xkW1LKlpYxtZJ24xsods2zU19xDYgpP1X3UTWhEWwoLmqQ=
-Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
- AM5PR0402MB2803.eurprd04.prod.outlook.com (10.175.45.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.10; Tue, 7 May 2019 07:43:37 +0000
-Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
- ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
- ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 07:43:37 +0000
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        id S1727026AbfEGHrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 03:47:35 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:54374 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726725AbfEGHrd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 03:47:33 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id B6F37FB03;
+        Tue,  7 May 2019 09:47:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id DAVuvV9XCslZ; Tue,  7 May 2019 09:47:27 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 0FCAB4619A; Tue,  7 May 2019 09:47:27 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH] arm64: dts: ls1028a: Fix CPU idle fail.
-Thread-Topic: [PATCH] arm64: dts: ls1028a: Fix CPU idle fail.
-Thread-Index: AQHVBKiUKthuJMWQ50upa4TU1imk1w==
-Date:   Tue, 7 May 2019 07:43:37 +0000
-Message-ID: <20190507074454.41589-1-ran.wang_1@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK2PR02CA0198.apcprd02.prod.outlook.com
- (2603:1096:201:21::34) To AM5PR0402MB2865.eurprd04.prod.outlook.com
- (2603:10a6:203:9e::16)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ran.wang_1@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f9ccb5e-9e18-4a3e-8072-08d6d2bfb73e
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2803;
-x-ms-traffictypediagnostic: AM5PR0402MB2803:
-x-microsoft-antispam-prvs: <AM5PR0402MB28035712D3C2E3B5F9C1893FF1310@AM5PR0402MB2803.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2887;
-x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(376002)(346002)(396003)(136003)(39860400002)(189003)(199004)(110136005)(14454004)(68736007)(99286004)(36756003)(186003)(478600001)(54906003)(316002)(73956011)(6506007)(52116002)(102836004)(26005)(86362001)(6436002)(386003)(66066001)(6486002)(6116002)(7736002)(6512007)(53936002)(5660300002)(2906002)(1076003)(66446008)(64756008)(66556008)(66476007)(8676002)(66946007)(256004)(305945005)(81166006)(81156014)(2616005)(71200400001)(14444005)(476003)(486006)(50226002)(8936002)(71190400001)(25786009)(4326008)(3846002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2803;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: IcKh9CFK2nALr2iZ9fUlpTvK/eqERFPuyov83VsVus4pOJzQdmzcd8J6EIuutuZKCtr3xpOVqcHJ4bBEvYd6rxPkIr0uBl1sunGu/MjRVFHuz/1eVglkG43QNAIO+JGfJ21KvHCM0UHnNkyxFy62Tob6Xoz43C1H9MUzw0CJlMFZ/r3ctZGpY6f7Ri01QNJ9fAXbT+KSfJh02O12MUurt2I+biWmYES7L9yAWVuHk/ZdINGnDjgby/CysJDKYBn141OH0CpU4w9rxsjXwSih/cr00VtGorEMvx878tRPLLPp3NvLE39Vs4GFBLcRURntd9Wq5qMJ/khD3SsRB7CBxae5RxuEmSoqJeVSnIbiBLnd6S0CfYl52uArZ39tspeDh+WgCCg3yolBmYCjyugz67hUCa5WTrMWTQ030V0lcSA=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thierry Reding <treding@nvidia.com>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Hovold <johan@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: [PATCH v10 0/2] Mixel MIPI DPHY support for NXPs i.MX8 SOCs
+Date:   Tue,  7 May 2019 09:47:24 +0200
+Message-Id: <cover.1557215047.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f9ccb5e-9e18-4a3e-8072-08d6d2bfb73e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 07:43:37.7539
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2803
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UFNDSSBzcGVjIGRlZmluZSAxc3QgcGFyYW1ldGVyJ3MgYml0IDE2IG9mIGZ1bmN0aW9uIENQVV9T
-VVNQRU5EIHRvDQppbmRpY2F0ZSBDUFUgU3RhdGUgVHlwZTogMCBmb3Igc3RhbmRieSwgMSBmb3Ig
-cG93ZXIgZG93bi4gSW4gdGhpcw0KY2FzZSwgd2Ugd2FudCB0byBzZWxlY3Qgc3RhbmRieSBmb3Ig
-Q1BVIGlkbGUgZmVhdHVyZS4gQnV0IGN1cnJlbnQNCnNldHRpbmcgd3JvbmdseSBzZWxlY3QgcG93
-ZXIgZG93biBhbmQgY2F1c2UgQ1BVIFNVU1BFTkQgZmFpbCBldmVyeQ0KdGltZS4gTmVlZCB0aGlz
-IGZpeC4NCg0KU2lnbmVkLW9mZi1ieTogUmFuIFdhbmcgPHJhbi53YW5nXzFAbnhwLmNvbT4NCi0t
-LQ0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kgfCAgIDE4
-ICsrKysrKysrKy0tLS0tLS0tLQ0KIDEgZmlsZXMgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCA5
-IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2Nh
-bGUvZnNsLWxzMTAyOGEuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1s
-czEwMjhhLmR0c2kNCmluZGV4IGIwNDU4MTIuLmJmN2Y4NDUgMTAwNjQ0DQotLS0gYS9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpDQorKysgYi9hcmNoL2FybTY0
-L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpDQpAQCAtMjgsNyArMjgsNyBAQA0K
-IAkJCWVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQogCQkJY2xvY2tzID0gPCZjbG9ja2dlbiAxIDA+
-Ow0KIAkJCW5leHQtbGV2ZWwtY2FjaGUgPSA8JmwyPjsNCi0JCQljcHUtaWRsZS1zdGF0ZXMgPSA8
-JkNQVV9QSDIwPjsNCisJCQljcHUtaWRsZS1zdGF0ZXMgPSA8JkNQVV9QVzIwPjsNCiAJCX07DQog
-DQogCQljcHUxOiBjcHVAMSB7DQpAQCAtMzgsNyArMzgsNyBAQA0KIAkJCWVuYWJsZS1tZXRob2Qg
-PSAicHNjaSI7DQogCQkJY2xvY2tzID0gPCZjbG9ja2dlbiAxIDA+Ow0KIAkJCW5leHQtbGV2ZWwt
-Y2FjaGUgPSA8JmwyPjsNCi0JCQljcHUtaWRsZS1zdGF0ZXMgPSA8JkNQVV9QSDIwPjsNCisJCQlj
-cHUtaWRsZS1zdGF0ZXMgPSA8JkNQVV9QVzIwPjsNCiAJCX07DQogDQogCQlsMjogbDItY2FjaGUg
-ew0KQEAgLTUzLDEzICs1MywxMyBAQA0KIAkJICovDQogCQllbnRyeS1tZXRob2QgPSAiYXJtLHBz
-Y2kiOw0KIA0KLQkJQ1BVX1BIMjA6IGNwdS1waDIwIHsNCi0JCQljb21wYXRpYmxlID0gImFybSxp
-ZGxlLXN0YXRlIjsNCi0JCQlpZGxlLXN0YXRlLW5hbWUgPSAiUEgyMCI7DQotCQkJYXJtLHBzY2kt
-c3VzcGVuZC1wYXJhbSA9IDwweDAwMDEwMDAwPjsNCi0JCQllbnRyeS1sYXRlbmN5LXVzID0gPDEw
-MDA+Ow0KLQkJCWV4aXQtbGF0ZW5jeS11cyA9IDwxMDAwPjsNCi0JCQltaW4tcmVzaWRlbmN5LXVz
-ID0gPDMwMDA+Ow0KKwkJQ1BVX1BXMjA6IGNwdS1wdzIwIHsNCisJCQkgIGNvbXBhdGlibGUgPSAi
-YXJtLGlkbGUtc3RhdGUiOw0KKwkJCSAgaWRsZS1zdGF0ZS1uYW1lID0gIlBXMjAiOw0KKwkJCSAg
-YXJtLHBzY2ktc3VzcGVuZC1wYXJhbSA9IDwweDA+Ow0KKwkJCSAgZW50cnktbGF0ZW5jeS11cyA9
-IDwyMDAwPjsNCisJCQkgIGV4aXQtbGF0ZW5jeS11cyA9IDwyMDAwPjsNCisJCQkgIG1pbi1yZXNp
-ZGVuY3ktdXMgPSA8NjAwMD47DQogCQl9Ow0KIAl9Ow0KIA0KLS0gDQoxLjcuMQ0KDQo=
+This adds initial support for the Mixel IP based mipi dphy as found on i.MX8
+processors.  It has support for the i.MX8MQ, support for other variants can be
+added - once the platform specific parts are in - via the provided devdata.
+The driver is somewhat based on what's found in NXPs BSP.
+
+Public documentation on the DPHY's registers is currently thin in the i.MX8
+reference manuals (even on the i.MX8QXP form 11/18) so most of the values were
+taken from existing drivers. Newer NXP drivers have a bit more details so where
+possible the timings are calculated and validated.
+
+This was tested with the an initial version of a NWL MIPI DSI host
+controller driver
+
+    https://lists.freedesktop.org/archives/dri-devel/2019-March/209685.html
+
+and a forward ported DCSS driver on linux-next 20190506.
+
+Robert Chiras (the author of the corresponding driver in NXPs vendor
+tree) got this driver to work in his tree as well using mxsfb:
+
+    https://www.spinics.net/lists/arm-kernel/msg711950.html
+
+Changes from v9
+* As per review comments from Fabio Estevam
+  * Sort includes alphabetically
+  * Remove excessive new lines between functions
+  * Drop error message on devm_ioremap_resource, handled by
+    the core already.
+  * Don't default to it on i.MX8
+* As per review comments from Sam Ravnborg
+  * Use clearer variablenames:
+       struct regmap *regs -> regmap
+       void __iomem *regs -> base
+  * Use u32 for all parameters of get_best_ratio()
+  * Don't use non-ascii symbols in debug message
+  * Change MODULE_LICENSE to GPL
+* As per review comment from Andreas Färber
+  * Change co-authored-by: to co-developed-by:
+* Collect Signed-off-by from Robert Chiras
+
+Changes from v8
+* Collect Reviewed-by from Rob Herring
+* Fix {hs,clk}_prepare vs {hs,clk}_zero debug print out
+
+Changes from v7
+* As per review comments from Rob Herring
+  * Use fsl, as vendor prefix
+  * Drop changes to vendor-prefixes.txt due to that
+  * Shorten mixel_dphy to dphy in the example
+* Fix an indentation error noticed by checkpatch that got introduced in v6
+* Use lowercase letters in hex addresses in DT bindings example
+
+Changes from v6
+* Depend on HAS_IOMEM (fixes a build problem on UM spotted by kbuild)
+
+Changes from v5
+* Fix build problems on mips (spotted by the kbuild test robot) by using u32
+  consistently and long long for lp_t.
+
+Changes from v4
+* Build by default on ARCH_MXC && ARM64
+
+Changes form v3
+* Check correct variable after devm_ioremap_resource
+* Add Robert Chiras as Co-authored-by since he's the author
+  of the driver in NXPs BSP.
+
+Changes from v2
+* As per review comments from Fabio Estevam
+  * KConfig: select REGMAP_MMIO
+  * Drop phy_read
+  * Don't make phy_write inline
+  * Remove duplicate debugging output
+  * Comment style and typo fixes
+  * Add #defines's for PLL lock timing values
+  * Return correct error value when PLL fails to lock
+  * Check error when enabling clock
+  * Use devm_ioremap_resource
+* As per review comments from Robert Chiras
+  * Deassert PD_DPHY after PLL lock (as per mixel ref manual)
+  * Assert PD_{DPHY,PLL} before power on (as per mixel ref manual)manual
+* Add exit phy_op to reset CN/CM/CO
+
+Changes from v1
+* As per review comments from Fabio Estevam
+  * Kconfig: tristate mixel dphy support.
+  * Drop unused 'ret' in mixel_dphy_ref_power_off.
+  * Match values of DPHY_RXL{PRP,DRP} to those of
+    https://source.codeaurora.org/external/imx/linux-imx/log/?h=imx_4.14.78_1.0.0_ga
+    The previous values were based on 4.9.
+  * Use resource size on devm_ioremap, we have that in dt already.
+  * Use regmap so it's simple to dump the registers.
+  * Use regmap_read_poll_timeout instead of open coded loop.
+  * Add undocumented rxhs_settle register
+* As per review comments from Sam Ravnborg
+  * Move driver to d/phy/freescale/
+  * Move SPDX-License-Identifier to top of file.
+  * Drop '/* #define DEBUG 1 */'.
+  * Use GPL-2.0+ since the vendor driver uses that as well.
+  * Drop the mutex, register access is now protected by regmap.
+  * Fix various style / indentation issues.
+* Check for register read, write and ioremap errors
+* Improve phy timing calculations
+  * Use LP clock rate where sensible, check for errors
+  * Use ad hoc forumulas for timings involving hs clock
+* Switch from dphy_ops to devdata. Other i.MX8 variants
+  differ in register layout too
+* Add Mixel Inc to vendor-prefixes.txt
+
+Guido Günther (2):
+  dt-bindings: phy: Add documentation for mixel dphy
+  phy: Add driver for mixel mipi dphy found on NXP's i.MX8 SoCs
+
+ .../bindings/phy/mixel,mipi-dsi-phy.txt       |  29 +
+ drivers/phy/freescale/Kconfig                 |  10 +
+ drivers/phy/freescale/Makefile                |   1 +
+ .../phy/freescale/phy-fsl-imx8-mipi-dphy.c    | 499 ++++++++++++++++++
+ 4 files changed, 539 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+ create mode 100644 drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
+
+-- 
+2.20.1
+
