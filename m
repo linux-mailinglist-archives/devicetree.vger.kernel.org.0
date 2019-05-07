@@ -2,91 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D946916421
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 14:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 681EE1643F
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 15:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726506AbfEGM63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 08:58:29 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:40367 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726435AbfEGM62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 08:58:28 -0400
-Received: by mail-io1-f65.google.com with SMTP id s20so4430520ioj.7
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 05:58:28 -0700 (PDT)
+        id S1726481AbfEGNHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 09:07:30 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:41595 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726406AbfEGNH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 09:07:29 -0400
+Received: by mail-pl1-f195.google.com with SMTP id d9so8173544pls.8
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 06:07:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d1BYInvs1oFf7Gbsgx4CY3rSRVa9DYGZ8/CYy23V2us=;
-        b=nQ6gegFmujDnuKXP6cFCYr0axTyHf4uFwZaIrUljHKVC9068oWSqJkAfk9Gh17PHyE
-         uuCAjcmQeEOEjMHmCxUBI66XpnjQXroNYqsF+bbQt/09H+irkR7ubMcF5QEqvKJmmrN5
-         2R8R63oORKLnObh4WCc2I0C7S4zjFiYauYq3Q=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVEShq2r+HH1dqUKjsY/tIvQnR4fC4lx62sAnv2cszQ=;
+        b=jm+TvJfNFt6JoZDpIcsdQYCpeFYqOblkOGI08ywsGy57x+8/bmkSF4Jiva803NbPKE
+         s7m5WLd6gfL1+tbGQjSyYmf3uBgqOudNS4xmd/KNNKzha6oI95GWuIDU4syC1mQ+66W8
+         lrUJaarBqXPhwdumssK7oXfiCQKiWLW3S0Kas=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d1BYInvs1oFf7Gbsgx4CY3rSRVa9DYGZ8/CYy23V2us=;
-        b=VD3A0hDxvfzV5S1Ttlb8jIEDw6SzhWuOsUagakaqdDLp2/PGN/jAvdMg+zvCXJrxeY
-         A6UhmMgD000xmCmOQB9oEiFM/bNA0tAahS5Khozu5zKJy1WpznONtQjjFA35uEvl2zcE
-         IcgFlVtf2JJsqE6jFzWmLg89LykLDVOL7Et3xF1z07SSpxU8w1EeoMAxmjh5BzpJuifb
-         kcrnzotJIPYfgddp0GMsW/yKAfLfzoY6WwQ/lso8YyXU8MMas5/rrqYGa24oeWz1ZgYc
-         QI71xRlaqqG9VBDtZsu4hG5adrw3tKTv5GPh0kUcL8CAN466KAuqWrj3EOWadKLwMeoQ
-         xt/g==
-X-Gm-Message-State: APjAAAWyD3vXUxIFsxdnl8fXF1r7SnBM3BjM22nEcvxcWd2WvXqdGbb8
-        m4MMra1wLbltgVTbj6//4q5uwkI0M+4YCeRaB5ePfw==
-X-Google-Smtp-Source: APXvYqwhx0sRi8/kQiro3wLZ7MDPkblbSgfSAjdeAhU/iYZfl1yQK/PGVAnga6qoHKYhXx/3TZGLyhlEorR953lTIZc=
-X-Received: by 2002:a5d:9a11:: with SMTP id s17mr892216iol.267.1557233908042;
- Tue, 07 May 2019 05:58:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190503115928.27662-1-jagan@amarulasolutions.com>
- <20190503144651.ttqfha656dykqjzo@flea> <CAMty3ZCQTiX5OvCG_uMRS02vFu0c1-bkcyauLD6oaFcd=y3RNA@mail.gmail.com>
- <20190507070617.h7loqiqvznqvvprq@flea>
-In-Reply-To: <20190507070617.h7loqiqvznqvvprq@flea>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVEShq2r+HH1dqUKjsY/tIvQnR4fC4lx62sAnv2cszQ=;
+        b=m6Ilp9UIIRfiascoR3E/dKiLkoXSd6B4MuNiCAsB+BYRQ8Jbgx1bfeVQTgSG9BjInl
+         xDe/oRUUJD1/K44cflFHK547d2zQjG6qmkF4UgUQx7KwAR/65cECs6a77251iycrsk4u
+         2PxXxssvKOErnE5sebriD6avElBQuJNz6lB79jg+vFPk22S0lu4iic9cLZnKdyAtqD7x
+         ILTmRXPihXRRc3v2yYdO1sNY+qkrpRJ1DR5PeF1zODnEalQyxv6qZkMHjSj4goqN38TE
+         jwtRubqfmYz2e8gkGlZvmH+a2CR6rn75VjwqRV0ehsgEGJp+WY411mGj2jA2wIVlbWjm
+         yvyw==
+X-Gm-Message-State: APjAAAXUOdC/XHBb6ud4xr0JGn5zHAenhFdOe55FFL6XLCwLrJSOmSmg
+        KlzuHC0xEqd2pD2zBtzEi89zYg==
+X-Google-Smtp-Source: APXvYqxTNLStKgWqhFuYnzLAEpQKZaTXrhsWJy7MmuW5PcblTQp6f4JovNxg5jyNfUeBBZ2VP2/bHQ==
+X-Received: by 2002:a17:902:2a:: with SMTP id 39mr39639547pla.64.1557234449180;
+        Tue, 07 May 2019 06:07:29 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:3682:cdb6:452:ecda:bdfa:452e])
+        by smtp.gmail.com with ESMTPSA id w190sm21889823pfb.101.2019.05.07.06.07.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 May 2019 06:07:28 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 7 May 2019 18:28:16 +0530
-Message-ID: <CAMty3ZB0+uAKzoi=LpbE0nty2BHxqwY=0Pm36uiNnjuc5TKCdg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: allwinner: h6: orangepi-one-plus: Add Ethernet support
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 1/3] dt-bindings: display: Document FriendlyELEC HD702E LCD panel
+Date:   Tue,  7 May 2019 18:37:06 +0530
+Message-Id: <20190507130708.11255-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 12:36 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> On Mon, May 06, 2019 at 03:03:15PM +0530, Jagan Teki wrote:
-> > On Fri, May 3, 2019 at 8:16 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > On Fri, May 03, 2019 at 05:29:28PM +0530, Jagan Teki wrote:
-> > > > Add Ethernet support for orangepi-one-plus board,
-> > > >
-> > > > - Ethernet port connected via RTL8211E PHY
-> > > > - PHY suppiled with
-> > > >   GMAC-2V5, fixed regulator with GMAC_EN pin via PD6
-> > > >   GMAC-3V, which is supplied by VCC3V3-MAC via aldo2
-> > > > - RGMII-RESET pin connected via PD14
-> > > >
-> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > >
-> > > Your commit log should be improved. We can get those informations from
-> > > the patch itself...
-> >
-> > Thought it was a clear commit log :)  will update anyway.
->
-> Well, yes and no. The commit log is clear indeed, but it doesn't
-> provide what it's supposed to provide.
->
-> You shouldn't put *what* is being done by the patch. That's pretty
-> easy to figure out by reading the patch itself. You have to explain
-> why and how you did it, which is lacking in that case.
+HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
+resolution. It has built in Goodix, GT9271 captive touchscreen
+with backlight adjustable via PWM.
 
-Make sense, will rework.
+Add dt-bindings documentation for it.
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+Changes for v2:
+- separate binding patch from driver
+- Add simple-panel compatible as fallback
+- Add text info about simple-panel bindings
+
+ .../display/panel/friendlyarm,hd702e.txt      | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
+
+diff --git a/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
+new file mode 100644
+index 000000000000..6c9156fc3478
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/friendlyarm,hd702e.txt
+@@ -0,0 +1,32 @@
++FriendlyELEC HD702E 800x1280 LCD panel
++
++HD702E lcd is FriendlyELEC developed eDP LCD panel with 800x1280
++resolution. It has built in Goodix, GT9271 captive touchscreen
++with backlight adjustable via PWM.
++
++Required properties:
++- compatible: should be "friendlyarm,hd702e"
++- power-supply: regulator to provide the supply voltage
++
++Optional properties:
++- backlight: phandle of the backlight device attached to the panel
++
++Optional nodes:
++- Video port for LCD panel input.
++
++This binding is compatible with the simple-panel binding, which is specified
++in simple-panel.txt in this directory.
++
++Example:
++
++	panel {
++		compatible ="friendlyarm,hd702e", "simple-panel";
++		backlight = <&backlight>;
++		power-supply = <&vcc3v3_sys>;
++
++		port {
++			panel_in_edp: endpoint {
++				remote-endpoint = <&edp_out_panel>;
++			};
++		};
++	};
+-- 
+2.18.0.321.gffc6fa0e3
+
