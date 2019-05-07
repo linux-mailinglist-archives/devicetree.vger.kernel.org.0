@@ -2,95 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D016416C31
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 22:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 768D316C77
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 22:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbfEGU1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 16:27:16 -0400
-Received: from mail-eopbgr1410091.outbound.protection.outlook.com ([40.107.141.91]:65342
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726295AbfEGU1Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 16:27:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yEkMWcX6HsBOxYZkqcwobddpvndEpU5m9hFIBHHReHc=;
- b=ToUZDcuhyo3wJAu2LAzJv/dgaxKJkeZxApcspJ2gceHNLWxDq4e9PnYLYys2iHhBvfu6QlnehdJyRdSsdl4XxrLbEioBPWN4Nj2wKG6fVMQ75/AzhV82Pq9Ie3TjFMXW36xQzLnl3S4/WeaEwf+oTNUnVBhplXaIvRedNiAFnHo=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1788.jpnprd01.prod.outlook.com (52.133.160.150) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Tue, 7 May 2019 20:27:12 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 20:27:12 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1
- option
-Thread-Topic: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1
- option
-Thread-Index: AQHVBGYQ+cfCaNX+ik+H7Wxy1mef+qZfTXmAgAB2sVCAABgIAIAANL0g
-Date:   Tue, 7 May 2019 20:27:11 +0000
-Message-ID: <TY1PR01MB1562A5D204AD0104862D09FE8A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-2-chris.brandt@renesas.com>
- <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
- <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [24.206.39.126]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6ba0c359-612e-43db-7b70-08d6d32a62ff
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1788;
-x-ms-traffictypediagnostic: TY1PR01MB1788:
-x-microsoft-antispam-prvs: <TY1PR01MB178808FCD52A97D10AD133E48A310@TY1PR01MB1788.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(346002)(376002)(39860400002)(136003)(396003)(189003)(199004)(229853002)(6436002)(4744005)(25786009)(186003)(6116002)(6246003)(55016002)(7736002)(99286004)(5660300002)(11346002)(9686003)(76176011)(102836004)(68736007)(7696005)(6506007)(72206003)(54906003)(53936002)(8936002)(14454004)(446003)(316002)(486006)(478600001)(81156014)(8676002)(81166006)(476003)(33656002)(4326008)(71190400001)(71200400001)(6916009)(86362001)(256004)(26005)(66946007)(66446008)(64756008)(3846002)(73956011)(76116006)(66476007)(66556008)(66066001)(305945005)(74316002)(2906002)(52536014);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1788;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: jRijiSlj7rsN6h/BkV/ObW10f9rnVCgs6c/9TFLSfakIwHDbiGn4Cs+VrzVkUD6OSWc9DSMgV5TBtMoBL8SO9pX7Z8NmyazDlzvFndQKhFh/dBAJDtL1IjvuVwsd6WcgMK0usHm/HAAjFk7UAFx/LSf819hAOMpM7YE3/FxkkuwztX6IR9+z5LnjLk+sp1rSNUYbpeEFP1wQVLX/hdqJXqjFGoEAikwx+VDlciDKXH7/yKJzp0k7RPbvqTpuyMQnYDJO7twJtYDLSSGprXj23etZs1REguID9GHjwD5lh0w1SNeXmumfOgN2n6Fw1q6DhqA2UwdoJO9mLYWSiq7iIqxaZvhds724onMZ2XLU9VXCv+tmG2sY9nBtBX/eeJfA6njyrX2aIwOJudIzcHWjf9cZIiOVyuAWQQhl6njUt9g=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1727156AbfEGUle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 16:41:34 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:53042 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727128AbfEGUkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 16:40:55 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 2E180609CD; Tue,  7 May 2019 20:40:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557261655;
+        bh=FvVIHSPF6TCOHS2vRpI1pV1Cn/7oodyF9St6quwD52M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=hixVokxqOtjqymzXsK5Ec5PQBRTvW759zd7J0GzeK/9fK6nOgjtS48MTpgaRTXwAB
+         lZJZu3GeGsL8/iTVRm929ZxBUyjK6/IN3PoYMPVXOXUoViUl5JJFlopUjqdUSHZ5GQ
+         UwfUBz1X0YNBFgJBOHdWlaTafQWF/9qv+gBj59X4=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: ilina@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7176760F3F;
+        Tue,  7 May 2019 20:40:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557261654;
+        bh=FvVIHSPF6TCOHS2vRpI1pV1Cn/7oodyF9St6quwD52M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=AcWT5ESZ7Gdwdp8j3RkWJFxXVQ45sYW9TWEDE21Qk4xDJuu9Qp6bu83ttrLFLdhpW
+         0Jpxd2K73PUzqjSAaLTc9Jj7uyGVUrUmOR5ffs8DR5TQE00f/thVs85dV185gnpu9N
+         rl3b/gm0SdKbmAdNXaGaqZW0ALDRi74PY+4j5+2A=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7176760F3F
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
+From:   Lina Iyer <ilina@codeaurora.org>
+To:     swboyd@chromium.org, evgreen@chromium.org, marc.zyngier@arm.com,
+        linus.walleij@linaro.org
+Cc:     linux-kernel@vger.kernel.org, rplsssn@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, thierry.reding@gmail.com,
+        bjorn.andersson@linaro.org, dianders@chromium.org,
+        Lina Iyer <ilina@codeaurora.org>, devicetree@vger.kernel.org
+Subject: [PATCH v5 04/11] of: irq: document properties for wakeup interrupt parent
+Date:   Tue,  7 May 2019 14:37:42 -0600
+Message-Id: <20190507203749.3384-5-ilina@codeaurora.org>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190507203749.3384-1-ilina@codeaurora.org>
+References: <20190507203749.3384-1-ilina@codeaurora.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ba0c359-612e-43db-7b70-08d6d32a62ff
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 20:27:12.0039
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1788
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNCk9uIFR1ZSwgTWF5IDA3LCAyMDE5IDEsIEdlZXJ0IFV5dHRlcmhvZXZlbiB3
-cm90ZToNCj4gPiBTbyB3aXRoIHRoYXQgc2FpZCwgZG9lcyBhIHVzZXMtdXNiLXgxIHByb3BlcnR5
-IG1ha2UgbW9yZSBzZW5zZT8NCj4gDQo+IE5vIDstKQ0KDQpTby4uLi4NCg0KSSBndWVzcyB0aGUg
-Zmlyc3QgcGF0Y2ggaW4gdGhlIHNlcmllcyBuZWVkcyB0byBhZGQgdGhpcyB0byB0aGUgLmR0c2k6
-DQoNCgl1c2JfeDFfY2xrOiB1c2JfeDEgew0KCQkjY2xvY2stY2VsbHMgPSA8MD47DQoJCWNvbXBh
-dGlibGUgPSAiZml4ZWQtY2xvY2siOw0KCQkvKiBJZiBjbGsgcHJlc2VudCwgdmFsdWUgbXVzdCBi
-ZSBzZXQgYnkgYm9hcmQgKi8NCgkJY2xvY2stZnJlcXVlbmN5ID0gPDA+Ow0KCX07DQoNClRoZW4g
-SSBjYW4gcmVmZXJlbmNlICJ1c2JfeDEiIGluIHRoZSBkcml2ZXIgYW5kIHNlZSBpZiBpdCBpcyBz
-ZXQgdG8gDQpub24temVyby4NCg0KV2hhdCBkbyB5b3UgdGhpbms/DQoNCg0KQ2hyaXMNCg0K
+Some interrupt controllers in a SoC, are always powered on and have a
+select interrupts routed to them, so that they can wakeup the SoC from
+suspend. Add wakeup-parent DT property to refer to these interrupt
+controllers.
+
+If the interrupts routed to the wakeup parent are not sequential, than a
+map needs to exist to associate the same interrupt line on multiple
+interrupt controllers. Providing this map in every driver is cumbersome.
+Let's add this in the device tree and document the properties to map the
+interrupt specifiers
+
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+---
+Changes in v5:
+	- Update documentation to describe masks in the example
+Changes in v4:
+	- Added this documentation
+---
+ .../interrupt-controller/interrupts.txt       | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+index 8a3c40829899..e3e43f5d5566 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+@@ -108,3 +108,57 @@ commonly used:
+ 			sensitivity = <7>;
+ 		};
+ 	};
++
++3) Interrupt wakeup parent
++--------------------------
++
++Some interrupt controllers in a SoC, are always powered on and have a select
++interrupts routed to them, so that they can wakeup the SoC from suspend. These
++interrupt controllers do not fall into the category of a parent interrupt
++controller and can be specified by the "wakeup-parent" property and contain a
++single phandle referring to the wakeup capable interrupt controller.
++
++   Example:
++	wakeup-parent = <&pdc_intc>;
++
++
++4) Interrupt mapping
++--------------------
++
++Sometimes interrupts may be detected by more than one interrupt controller
++(depending on which controller is active). The interrupt controllers may not
++be in hierarchy and therefore the interrupt controller driver is required to
++establish the relationship between the same interrupt at different interrupt
++controllers. If these interrupts are not sequential then a map needs to be
++specified to help identify these interrupts.
++
++Mapping the interrupt specifiers in the device tree can be done using the
++"irqdomain-map" property. The property contains interrupt specifier at the
++current interrupt controller followed by the interrupt specifier at the mapped
++interrupt controller.
++
++   irqdomain-map = <incoming-interrupt-specifier mapped-interrupt-specifier>
++
++The optional properties "irqdomain-map-mask" and "irqdomain-map-pass-thru" may
++be provided to help interpret the valid bits of the incoming and mapped
++interrupt specifiers respectively.
++
++   Example:
++	intc: interrupt-controller@17a00000 {
++		#interrupt-cells = <3>;
++	};
++
++	pinctrl@3400000 {
++		#interrupt-cells = <2>;
++		irqdomain-map = <22 0 &intc 36 0>, <24 0 &intc 37 0>;
++		irqdomain-map-mask = <0xff 0>;
++		irqdomain-map-pass-thru = <0 0xff>;
++	};
++
++In the above example, the input interrupt specifier map-mask <0xff 0> applied
++on the incoming interrupt specifier of the map <22 0>, <24 0>, returns the
++input interrupt 22, 24 etc. The second argument being irq type is immaterial
++from the map and is used from the incoming request instead. The pass-thru
++specifier parses the output interrupt specifier from the rest of the unparsed
++argments from the map <&intc 36 0>, <&intc 37 0> etc to return the output
++interrupt 36, 37 etc.
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
