@@ -2,96 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BE421625C
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 12:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECE1516281
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 13:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726953AbfEGKzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 06:55:21 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:35418 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725994AbfEGKzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 06:55:20 -0400
-Received: by mail-lj1-f193.google.com with SMTP id m20so4675733lji.2;
-        Tue, 07 May 2019 03:55:19 -0700 (PDT)
+        id S1726280AbfEGLAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 07:00:22 -0400
+Received: from mail-eopbgr1400120.outbound.protection.outlook.com ([40.107.140.120]:51445
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726095AbfEGLAW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 07:00:22 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=VXRQC0UsjauveYOiCa1HYIm6GnidpMCvjvUYDOoy8Kk=;
-        b=VYDBlMQM/nMdmQESkPNOIOO0h9ONTG/hgvDy8XsTml1o4qUTDLnhRfle9wOL/Zaklv
-         va6dq8w70Itj6U1a0GNuU53NVSeQs+Q9lAbDTHZiUh+C+h/TgpwHaZIBejQg3Qw7TqiJ
-         o0ISt0SNZCrwyBVZwDgyDHFTeGtQXJZmLvamAW0ayMpIs26LlnmNy7C4hivNW+Rq4Sdm
-         HzBc0KFQsIdMtAqpLaeadJXI0mSLZcJOFcmIIejiZZtn1YNFT/XUO9vCu2ckz5yrNVTZ
-         aqPylUWrfsjepkTy7Al4ppslefHU6G3Xu6BjPt/OyzO1KDl75KQip4qak1B1XeKUb4ep
-         qTaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=VXRQC0UsjauveYOiCa1HYIm6GnidpMCvjvUYDOoy8Kk=;
-        b=KhK47tB9ktGgPssfLoOufC83X8boXDEQEfdZs2Leg+HTjuX67lt6O+NIXmqqUuAsLm
-         lsZGuF/hhwIKdJoIRgqGyu+hcxFh8cvnCPhPBohgkHTRgzUuWvPVj7+QsfkypHCQ0K7T
-         yVR/R4m6pxS+XlSLMcyxOJFLt18xwOaWd5dPf2EeQerLYz+Fua1/NHUJBnXlQU9ULPud
-         msSNpOuCNqHOGo+Im6QhmnEdtn5asfq05A90F+EMD5veKUk7gIEfUlt0y91a4fF0P9JW
-         kAZ9bWnB7VBYm2CUHE9GKVVes2mQ34X/xVYc3FK5wipljw945kz4mFFbwLr6b5ygrME6
-         54cw==
-X-Gm-Message-State: APjAAAUpLmJBaYcoGV1qHwn7YiCg4kdnEW4t7ebSmvFt+Ot/M0QZ5dbr
-        mX/apRg9DNjs3xerFXlupExmzQlpTiJydjDO80M=
-X-Google-Smtp-Source: APXvYqzG7AIMRfvZsHfREXhwZ2Vicp5dmMb3CrEXJw5WkOuq4TRI1BSQoriBbA7VwVewocx0xBmOjkzmaCaPMCXnOmg=
-X-Received: by 2002:a2e:390c:: with SMTP id g12mr18105225lja.174.1557226518508;
- Tue, 07 May 2019 03:55:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1557215047.git.agx@sigxcpu.org> <299e28042e0a24c0cde593873bdfb15e18187a92.1557215047.git.agx@sigxcpu.org>
-In-Reply-To: <299e28042e0a24c0cde593873bdfb15e18187a92.1557215047.git.agx@sigxcpu.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 7 May 2019 07:55:23 -0300
-Message-ID: <CAOMZO5CQXmmw50J3Pjy8wKOr+BBEo_-B9ChV32bq1Re4_0-4CQ@mail.gmail.com>
-Subject: Re: [PATCH v10 2/2] phy: Add driver for mixel mipi dphy found on
- NXP's i.MX8 SoCs
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zyaVeHdLdmFqUy4wCx0mrTzfY42aMIXZJJTs6W30ZxQ=;
+ b=WAJ1YzZ08rvR19LksfUk7S4rz/JVrWjFBpHT48YzrxDQcuHFZGapHrjolG+EmNMEgXhg8cxylpV3QADGU7SKOCr3xJp98SD26kyx6+JfpeHAUXQuCRLwju87JeDLrspGLOKbPtUDO3+2fWTTI5CGn0M8PWOuXvEWlGXC3VLg1kA=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY2SPR01MB0015.jpnprd01.prod.outlook.com (20.177.150.9) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Tue, 7 May 2019 11:00:18 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 11:00:18 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thierry Reding <treding@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Hovold <johan@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        USB list <linux-usb@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1
+ option
+Thread-Topic: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1
+ option
+Thread-Index: AQHVBGYQ+cfCaNX+ik+H7Wxy1mef+qZfTXmAgAAw/eA=
+Date:   Tue, 7 May 2019 11:00:18 +0000
+Message-ID: <TY1PR01MB1562D08E4F5A6C635024BE718A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-2-chris.brandt@renesas.com>
+ <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 67e00e27-3e90-4c89-f25c-08d6d2db3136
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY2SPR01MB0015;
+x-ms-traffictypediagnostic: TY2SPR01MB0015:
+x-microsoft-antispam-prvs: <TY2SPR01MB00150D84A6D26456D08981F58A310@TY2SPR01MB0015.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0030839EEE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(39860400002)(136003)(396003)(346002)(376002)(189003)(199004)(3846002)(33656002)(316002)(55016002)(9686003)(52536014)(99286004)(68736007)(54906003)(446003)(74316002)(256004)(486006)(72206003)(11346002)(14454004)(186003)(102836004)(7696005)(6506007)(476003)(305945005)(26005)(76176011)(8936002)(478600001)(25786009)(6116002)(8676002)(81166006)(81156014)(2906002)(86362001)(7736002)(53936002)(6246003)(6916009)(5660300002)(4326008)(66066001)(71200400001)(71190400001)(66946007)(73956011)(76116006)(229853002)(66476007)(6436002)(66556008)(64756008)(66446008)(4744005);DIR:OUT;SFP:1102;SCL:1;SRVR:TY2SPR01MB0015;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: uFbpVKQNZmaJhb88SP9fjph5fQjSv1KQRTHacazGWuDtCRJxn5wRXR4RPO+2vVxugYOKtG7yIoiV8fgGDcToX3Eazw2dFLS3tr/ohBgUhCBqJxTUujnZvUc23kmG5Ue6PdRi7S+D9jG+tsA4a7wgZe653QPCWc4JG4Yj7nz1AkGYMyrjmuZApCYk0i7fX7/nxqG9dLM3HTT8wTSswKAF4xuHIBONUn3/m8w5hWaaVrqm5H51nqUyDl/LkHqvI5o6Xoy6zOtU2DzvPnizaYcWksBsR03R4nSc7Jo5E6KjyTCAPwzpShcbUB35kUniC+YGMUgM5YPJ9Jpc3eOYHypGGs1Vrpd48mNT4Jf08F7tM28FJD66sSpEip299sfNu6TMD1PuwZFrt/mmln5tg/qOIQN2jcyLhtSrBGVYnrW9llc=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67e00e27-3e90-4c89-f25c-08d6d2db3136
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 11:00:18.3168
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2SPR01MB0015
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 4:47 AM Guido G=C3=BCnther <agx@sigxcpu.org> wrote:
->
-> This adds support for the Mixel DPHY as found on i.MX8 CPUs but since
-> this is an IP core it will likely be found on others in the future. So
-> instead of adding this to the nwl host driver make it a generic PHY
-> driver.
->
-> The driver supports the i.MX8MQ. Support for i.MX8QM and i.MX8QXP can be
-> added once the necessary system controller bits are in via
-> mixel_dphy_devdata.
->
-> Signed-off-by: Guido G=C3=BCnther <agx@sigxcpu.org>
-> Co-developed-by: Robert Chiras <robert.chiras@nxp.com>
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+SGkgR2VlcnQsDQoNCk9uIFR1ZSwgTWF5IDA3LCAyMDE5LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
+dGU6DQo+ID4gKyAgICAgICBpZiAob2ZfcHJvcGVydHlfcmVhZF9ib29sKGRldi0+b2Zfbm9kZSwg
+InJlbmVzYXMsdXNlc191c2JfeDEiKSkNCj4gPiArICAgICAgICAgICAgICAgY2hhbm5lbC0+dXNl
+c191c2JfeDEgPSB0cnVlOw0KPiA+ICsNCj4gDQo+IFBlcmhhcHMgdGhpcyBjYW4gYmUgY2hlY2tl
+ZCBzb21lIG90aGVyIHdheSAoZS5nLiBieSBjaGVja2luZyBmb3IgYSBub24tDQo+IHplcm8NCj4g
+Y2xvY2sgcmF0ZSBvZiB0aGUgVVNCX1gxIGNsb2NrIHJlZmVyZW5jZWQgZnJvbSBEVCksIHRodXMg
+cmVtb3ZpbmcgdGhlIG5lZWQNCj4gZm9yDQo+IGFkZGluZyBhIGN1c3RvbSBwcm9wZXJ0eT8NCg0K
+DQpHb29kIHBvaW50LiBJJ3ZlIGRvbmUgdGhhdCBmb3Igb3RoZXIgZHJpdmVycyBiZWZvcmUgYW5k
+IGl0IHdvcmtlZCB3ZWxsLg0KDQpJJ2xsIHRha2UgdGhpcyBvdXQuLi5vbmUgbGVzcyBwcm9wZXJ0
+eSB0byBzZXQgOikNCg0KUXVlc3Rpb246IFNpbmNlIHRoZSBkcml2ZXIgZGVwZW5kcyBvbiB0aGlz
+LCBzaG91bGQgSSBtZW50aW9uIHRoaXMgaW4gdGhlDQpkdC1iaW5kaW5ncyBkb2N1bWVudGF0aW9u
+ID8NCg0KVGhhbmtzLA0KQ2hyaXMNCg==
