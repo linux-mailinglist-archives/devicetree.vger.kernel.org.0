@@ -2,112 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C49515F8F
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A60915F92
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 10:40:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfEGIkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 04:40:06 -0400
-Received: from sauhun.de ([88.99.104.3]:41954 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726159AbfEGIkG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 04:40:06 -0400
-Received: from localhost (p54B332BA.dip0.t-ipconnect.de [84.179.50.186])
-        by pokefinder.org (Postfix) with ESMTPSA id 6C28C2C28E9;
-        Tue,  7 May 2019 10:40:03 +0200 (CEST)
-Date:   Tue, 7 May 2019 10:40:03 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Chuanhua Han <chuanhua.han@nxp.com>, mark.rutland@arm.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, leoyang.li@nxp.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com,
-        wsa+renesas@sang-engineering.com, u.kleine-koenig@pengutronix.de,
-        eha@deif.com, linux@rempel-privat.de, sumit.batra@nxp.com,
-        l.stach@pengutronix.de, peda@axentia.se
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: add optional mul-value property to
- binding
-Message-ID: <20190507084002.GA25688@kunai>
-References: <20190430043242.29687-1-chuanhua.han@nxp.com>
- <20190502205901.GA24224@bogus>
+        id S1726725AbfEGIkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 04:40:52 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:34701 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726331AbfEGIkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 04:40:52 -0400
+Received: by mail-lf1-f65.google.com with SMTP id v18so8990154lfi.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 01:40:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ji+xADNfaJTtv5uZbqXIgNnoEnwkksODtlAIFeWlJMI=;
+        b=RIu87sfJ8sLBUchig0AmWeXfzQZF5yy2HrbrymQqW26ssAmv+mjWUqDWiIGFM3Tcr9
+         vogmNeeZyCKIjj6nB7juBIqkhh17ct7VDI7Rmt+2988DBcUKkZ7JdyjMKVk8+d+sXKml
+         QWbENBHnRbD99IekirNlf0WqHfWRjuUiLBdepXlcVAJcm+/WBMv73WrImI4TIJ9UKJbp
+         tKR4akyl33r0PomKcN3wWMVqXZncfGVn2xxay59c4WWWyV0qD1oG5zzVyLnYTOC/8KjY
+         5ZI35P77rOrgcVLa8AfftwG8XP9TbGrgDr0BlgXzvdtwsrhcKZcrQhWw5KK9yVjOV8bn
+         YthA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ji+xADNfaJTtv5uZbqXIgNnoEnwkksODtlAIFeWlJMI=;
+        b=PZkD4FYnkwNtvlGlv5RFPgffJT0p2X5morQZZ+gpTvAYRQDwLRlfVKAizqI42sSkLF
+         DYSZjW9vqJra9X1igAGtO4nm+pHRq+ykGNnilW2Czv+L8tCYo+zr+1VzB4uReonM2+8P
+         pyDf3dkZjiUGf1NggXLhosf49CeTqvPgBtkUAkTTClaw+XAr0LkoJ6OQj1zkuEWIxLcr
+         qi7rHWasGBj5NstVSsEfkPYYsEm2cyb3FoMmx8PfloH3J2reQgEYcFicetcrLfp6SdDJ
+         X4xXI1KI0QUFENJDhWjTD7/H/4bj52sU/pI+DYosLjR9vDGn0zZiks0c7GuZPfSS5ghE
+         a9JQ==
+X-Gm-Message-State: APjAAAW/D7v6eQugXZJ0tuPlL+LgYt1v2DHIBF/kkYs6uyQ79L5aQxYm
+        kCB5+DmkRtUEqCnRKHETAuHUNQ==
+X-Google-Smtp-Source: APXvYqzczqdv/6jAMkHnFLMtj6YWXtCAp54lOBUFf+UM74Ih3cysdpF3WlxDInIIDgdZ8NV3y4Z1tQ==
+X-Received: by 2002:a19:ae14:: with SMTP id f20mr1083046lfc.49.1557218450832;
+        Tue, 07 May 2019 01:40:50 -0700 (PDT)
+Received: from [192.168.0.199] ([31.173.80.92])
+        by smtp.gmail.com with ESMTPSA id u20sm2989950ljd.58.2019.05.07.01.40.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 May 2019 01:40:49 -0700 (PDT)
+Subject: Re: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
+ not using OTG
+To:     Chris Brandt <chris.brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-4-chris.brandt@renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <5af1345d-a7ed-c1d6-0c72-e6506427319a@cogentembedded.com>
+Date:   Tue, 7 May 2019 11:40:45 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0OAP2g/MAC+5xKAE"
-Content-Disposition: inline
-In-Reply-To: <20190502205901.GA24224@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190506234631.113226-4-chris.brandt@renesas.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07.05.2019 2:46, Chris Brandt wrote:
 
---0OAP2g/MAC+5xKAE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> When not using OTG, the PHY will need to know if it should function as
+> host or peripheral by checking dr_mode in the PHY node (not the parent
+> controller node).
+> 
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+> ---
+>   drivers/phy/renesas/phy-rcar-gen3-usb2.c | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/phy/renesas/phy-rcar-gen3-usb2.c b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> index 218b32e458cb..4eaa228ebd30 100644
+> --- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> +++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
+> @@ -408,7 +408,12 @@ static int rcar_gen3_phy_usb2_init(struct phy *p)
+>   		if (rcar_gen3_needs_init_otg(channel))
+>   			rcar_gen3_init_otg(channel);
+>   		rphy->otg_initialized = true;
+> -	}
+> +	} else
+> +		/* Not OTG, so dr_mode should be set in PHY node */
+> +		if (usb_get_dr_mode(channel->dev) == USB_DR_MODE_PERIPHERAL)
+> +			writel(0x80000000, usb2_base + USB2_COMMCTRL);
+> +		else
+> +			writel(0x00000000, usb2_base + USB2_COMMCTRL);
+>   
+>   	rphy->initialized = true;
+>   
+> @@ -638,6 +643,7 @@ static int rcar_gen3_phy_usb2_probe(struct platform_device *pdev)
+>   	if (of_property_read_bool(dev->of_node, "renesas,uses_usb_x1"))
+>   		channel->uses_usb_x1 = true;
+>   
+> +
 
-On Thu, May 02, 2019 at 03:59:01PM -0500, Rob Herring wrote:
-> On Tue, Apr 30, 2019 at 12:32:40PM +0800, Chuanhua Han wrote:
-> > NXP Layerscape SoC have up to three MUL options available for all
-> > divider values, we choice of MUL determines the internal monitor rate
-> > of the I2C bus (SCL and SDA signals):
-> > A lower MUL value results in a higher sampling rate of the I2C signals.
-> > A higher MUL value results in a lower sampling rate of the I2C signals.
-> >=20
-> > So in Optional properties we added our custom mul-value property in the
-> > binding to select which mul option for the device tree i2c controller
-> > node.
-> >=20
-> > Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/i2c/i2c-imx.txt | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.txt b/Docume=
-ntation/devicetree/bindings/i2c/i2c-imx.txt
-> > index b967544590e8..ba8e7b7b3fa8 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-imx.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-imx.txt
-> > @@ -18,6 +18,9 @@ Optional properties:
-> >  - sda-gpios: specify the gpio related to SDA pin
-> >  - pinctrl: add extra pinctrl to configure i2c pins to gpio function fo=
-r i2c
-> >    bus recovery, call it "gpio" state
-> > +- mul-value: NXP Layerscape SoC have up to three MUL options available=
- for
-> > +all I2C divider values, it describes which MUL we choose to use for th=
-e driver,
-> > +the values should be 1,2,4.
->=20
-> Needs a vendor prefix. I don't find 'value' to add anything nor do I=20
-> understand what MUL is.
->=20
-> If it is determined by SoC rather than board, then it should perhaps be=
-=20
-> implied by compatible.
+    Unrelated whitespace tweaking? :-)
 
-I was wondering the same.
+>   	/*
+>   	 * devm_phy_create() will call pm_runtime_enable(&phy->dev);
+>   	 * And then, phy-core will manage runtime pm for this device.
 
-
---0OAP2g/MAC+5xKAE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlzRRF8ACgkQFA3kzBSg
-KbbUbRAApE4I45wTxiU40khw2A2mDLGqByh6dKjqeRVRHGsUrLdKN3tptV5pVqgM
-LdX5QFuA4Hp1TEkPLhuie+S7y0DfcN1NQEOPtP2ofZFTcMV93MhvZ7W2KEegnbld
-RzvlIcqxMHoQgDBsJunkOcZuqUVicSwYETYXsbFGBAMJGTzhZR4Sh2Qt0VNRUmwu
-UMFuBqnnhDXBkl7VSeKXDgjctCJnVaiyqj2jnz5HD4eOBtHj7zvPXnSYyMfYhrUL
-Z6TXVxdloC6j8noqtORUM4YmlleDepXqp/L2SGRhZ1Qi55XQd6oexxiP7ndDZV0W
-WRu3GaJOtXyOQYqeYMkfLbUPn90FkDLCFun1HKPBO07fcX/qWZmZnoXVX2799odV
-jofYTj6X0ILs79fIUT8wAUnMCmEgjgPOynl57loP4f8lh6VoWeDAEI1nwCoPxi0l
-TKabxPYDHpbT7vFP2eaR7/dXQxb+pgLNMUeqzPpIQ7XnSHrLl+7nrhVDcpzSWTr2
-ci6eWscPRJNr/OVa0wd+L4nthna/K89ZApK4zf9aioBTLPZ/EEZscAJ/YuZiJZ2d
-ZtwvTt6ewEz6D5OF6vsNjn7FOuqp7CIEhyPqFU+E5SC3iO05TqBhb9w34F5mO2oK
-Oswf5Q47JpcE4stdbVJa7ZTUd+P8gfmH+X71qLQzcU3wujem2K4=
-=cq07
------END PGP SIGNATURE-----
-
---0OAP2g/MAC+5xKAE--
+MBR, Sergei
