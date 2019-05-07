@@ -2,101 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E38C116325
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 13:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA58F16333
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 13:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726491AbfEGL5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 07:57:30 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:53947 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726322AbfEGL53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 07:57:29 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 198so2232783wme.3
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 04:57:28 -0700 (PDT)
+        id S1726477AbfEGL5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 07:57:32 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:36325 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726427AbfEGL5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 07:57:31 -0400
+Received: by mail-wm1-f65.google.com with SMTP id j187so3554027wmj.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 04:57:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id;
-        bh=OPHdfYWKRwJAQs5uJB7kF0RzPQn+beeGrm95NylS/7s=;
-        b=x8IfvxSV8xEyOX6DuO+iRYAmA4ddSLYPKfR6dboTkoILy/QRKBArxlBAqvMLlcmJL1
-         /5D8PHaON0JpgYnLnNZnWq9uxuReXFmxTfcDj+3heSe1vSpK7rUgSOtcnqBuDb40cG8W
-         DONlXDGPv3EnkrEbbGS0r8GTGdxvqbI5Rs5XAAjZoOIa8sj36Xmvbvpd8hGuEXmkVlXA
-         kKUSswjcq87zaGBGK5mK3W9Cz9wP0qjY1Nc7vL857HnFB5qcKLNbMeNDbSo3uv05fbno
-         KB5O8EZSr1mMGwCqRxSoVtld61l4K+vCXFWZyiYf8EauwQ4Qq5xWoxE1LSw2ed6XxKGE
-         UPVA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=cMIohpfoq8ydYsh8yqcuhIMeQYx+QNBx59vvj52nmtM=;
+        b=KvxZZuB2MX2DVl3lnqgiZt+iGtjzeQEPj/COF446peA5i69RRFXamMwhvQA1o7OAXe
+         yXSCHgvlPe5qLe0o/xmVXnAvDe2bM/A541S/CmyMwog6ZlEivLmsWC/NLIYQ3tdWtYVb
+         4u70QE/SUbU0vByzmAgzAJG1KxRjUKcaj2NuOhIhZ/bbMDkRE368iE7xnOtKn3Z8Kt2S
+         +rNaRAZmXagI+0cUwgfn4mR1X9+S2ePWl/L1NZqjtDGjdiiBX/cyIf9wlsn41zKM/rOG
+         /BReYnLgRTFAa9uaP9fn3YTUqEgnLGJYtvV1OOwTskbJsrSMQvdgC0a69/Coxxuqj9rh
+         AEsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=OPHdfYWKRwJAQs5uJB7kF0RzPQn+beeGrm95NylS/7s=;
-        b=kyqeKrV2wZwcDRcRwWfz++Lj/lE5eXuf60ueEL6Oyeo4rZqj1We4LHeoafmC0HrXW3
-         sw29+XOl7eHUqsVWpnsU/EDGLspcOz+KWzkhg33UoTFo2GcJRqAsIsjq1Gmk5qBoUit2
-         IKSrCuNIap3zlK/y1TD8mPBYym86Uz577CZ3SfI0bOQgmytdDdOHRSmNxigaCbL8iGSa
-         nDXtEmRiRxydUyQ8x7EEETnyclzFD09oIpIUfph8uHpAQrqSp0Ocah8yAaTN99mnZmip
-         /Q7+017H1/GEhaIROAal+yYl/E3up2j8MnzpXOvEuGbTL/Nx0fUai2GgeRU+UJ33fzaq
-         8stQ==
-X-Gm-Message-State: APjAAAWdGbHODUUdwlnfhGUIP+/MgQJSvDRGhiz2U5og1o5FQPS0Sj11
-        CTAW0D4BU4H1IWdHa5TLk67B1g==
-X-Google-Smtp-Source: APXvYqxq1oFwTc8aEPHZEL8JAQfGOWvAnNWHmRNXvEeDBiKqtaWlXMyzKk+kWPFbz7vEnwL3O1Lq0w==
-X-Received: by 2002:a1c:1903:: with SMTP id 3mr20479100wmz.103.1557230248087;
-        Tue, 07 May 2019 04:57:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=cMIohpfoq8ydYsh8yqcuhIMeQYx+QNBx59vvj52nmtM=;
+        b=Y93YrMI4Qep9l2AG9o+YMXjXUSkJQB1wsww40a7A/jFMhdYKXy89CpEnNWxlRH0lhA
+         5hNlMlDV9kX8uoTfq70fWbEBgpEZkG7GgFrDnw5279ndXt5TGo1mDwsco8OWSxsOadQT
+         wfAc1J97d7tJwCUcQ1Rl/5R4xyEN4k0IDJtUff1NeLBfBozKtQjvxn9vizHa5Dr4qqtm
+         arpya+Dg7qYXYfr9QDZ3AcQ+qHcrizPA8cvD7qtiTmnZxxX79yr8l3fHvdxjd/mfDVAq
+         XB23asROGOiemlg8E+MSRDK0H+vVDjKZN6M4l4sqY5VCM5D7o5kOuLTkwUj2S409X+DF
+         /ZQA==
+X-Gm-Message-State: APjAAAUtefBRiRJfUS9XSjloPeLGLzyLBuSHJlhawkpK0Qi6HISaZEVP
+        rT53EDQ7uCbkDQc0QB2OOhBZeA==
+X-Google-Smtp-Source: APXvYqzmj2Rq5RP6yyQou3bzdy9uJ/w14kHqMcuRNezp/SQ/B/6RzFds9x8L9gkQSErOSrCkXWefOw==
+X-Received: by 2002:a05:600c:2298:: with SMTP id 24mr19775725wmf.21.1557230249232;
+        Tue, 07 May 2019 04:57:29 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s11sm7120274wrb.71.2019.05.07.04.57.26
+        by smtp.gmail.com with ESMTPSA id s11sm7120274wrb.71.2019.05.07.04.57.28
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 04:57:27 -0700 (PDT)
+        Tue, 07 May 2019 04:57:28 -0700 (PDT)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
         khilman@baylibre.com
 Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 0/6]  Add drive-strength in Meson pinctrl driver
-Date:   Tue,  7 May 2019 13:57:20 +0200
-Message-Id: <20190507115726.23714-1-glaroque@baylibre.com>
+Subject: [PATCH v3 1/6] dt-bindings: pinctrl: add a 'drive-strength-microamp' property
+Date:   Tue,  7 May 2019 13:57:21 +0200
+Message-Id: <20190507115726.23714-2-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190507115726.23714-1-glaroque@baylibre.com>
+References: <20190507115726.23714-1-glaroque@baylibre.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The purpose of this patchset is to add drive-strength support in meson pinconf
-driver. This is a new feature that was added on the g12a. It is critical for us
-to support this since many functions are failing with default pad drive-strength.
+This property allow drive-strength parameter in uA instead of mA.
 
-The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
-'drive-strength' is expressed in mA.
-So this patch add another generic property "drive-strength-uA". The change to do so
-would be minimal and could be benefit to other platforms later on.
+Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+---
+ Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Cheers
-Guillaume
-
-Changes since v2:
-- update driver-strength-uA property to be compliant with DT documentation
-- rework patch series for better understanding
-- rework set_bias function
-
-Changes since v1:
-- fix missing break
-- implement new pinctrl generic property "drive-strength-uA"
-
-[1] https://lkml.kernel.org/r/20190314163725.7918-1-jbrunet@baylibre.com
-
-
-Guillaume La Roque (6):
-  dt-bindings: pinctrl: add a 'drive-strength-microamp' property
-  pinctrl: generic: add new 'drive-strength-microamp' property support
-  dt-bindings: pinctrl: meson: Add drive-strength-microamp property
-  pinctrl: meson: Rework enable/disable bias part
-  pinctrl: meson: add support of drive-strength-microamp
-  pinctrl: meson: g12a: add DS bank value
-
- .../bindings/pinctrl/meson,pinctrl.txt        |   4 +
- .../bindings/pinctrl/pinctrl-bindings.txt     |   3 +
- drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  36 ++--
- drivers/pinctrl/meson/pinctrl-meson.c         | 177 +++++++++++++++---
- drivers/pinctrl/meson/pinctrl-meson.h         |  18 +-
- drivers/pinctrl/pinconf-generic.c             |   2 +
- include/linux/pinctrl/pinconf-generic.h       |   3 +
- 7 files changed, 195 insertions(+), 48 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+index cef2b5855d60..84adce9f2a75 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+@@ -258,6 +258,7 @@ drive-push-pull		- drive actively high and low
+ drive-open-drain	- drive with open drain
+ drive-open-source	- drive with open source
+ drive-strength		- sink or source at most X mA
++drive-strength-microamp	- sink or source at most X uA
+ input-enable		- enable input on pin (no effect on output, such as
+ 			  enabling an input buffer)
+ input-disable		- disable input on pin (no effect on output, such as
+@@ -326,6 +327,8 @@ arguments are described below.
+ 
+ - drive-strength takes as argument the target strength in mA.
+ 
++- drive-strength-microamp takes as argument the target strength in uA.
++
+ - input-debounce takes the debounce time in usec as argument
+   or 0 to disable debouncing
+ 
 -- 
 2.17.1
 
