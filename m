@@ -2,72 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A70B116360
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 14:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E8A1639C
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 14:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726404AbfEGMDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 08:03:42 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:34952 "EHLO gloria.sntech.de"
+        id S1726508AbfEGMVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 08:21:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52836 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726276AbfEGMDm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 08:03:42 -0400
-Received: from we0048.dip.tu-dresden.de ([141.76.176.48] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hNyot-0008KE-Sm; Tue, 07 May 2019 14:03:39 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-rockchip@lists.infradead.org, briannorris@chromium.org,
-        mka@chromium.org, amstan@chromium.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: rockchip: Make rk3288-veyron-minnie run at hs200
-Date:   Tue, 07 May 2019 14:03:39 +0200
-Message-ID: <4345663.CAMg3MOt9f@phil>
-In-Reply-To: <20190503234142.228982-1-dianders@chromium.org>
-References: <20190503234142.228982-1-dianders@chromium.org>
+        id S1725858AbfEGMVL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 08:21:11 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 326C1205ED;
+        Tue,  7 May 2019 12:21:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557231669;
+        bh=AGYkrEj2uxk4UWcYj5hJT4ocZ0MX1hx3P87PhI15ZXM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tojakutQbyKkgVrhxp/DED5mzzPfcAHNxVtUCrrvxOHZiVyr/rUMEKYCy/SGEEOkL
+         ENhJIHzuORYDeGzGqGSPCid/tbPKEmYheiTe7W6hRJ8MiaVeEQkQRiiEvyxAiFZjUg
+         lPPHP6wFfjD4w8kFE5TIkK33w4GgUYw3wMIMrPc8=
+Date:   Tue, 7 May 2019 14:21:06 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Dragan Cvetic <draganc@xilinx.com>
+Cc:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Message-ID: <20190507122106.GA7873@kroah.com>
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172007.GA1874@kroah.com>
+ <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190504075502.GA11133@kroah.com>
+ <BL0PR02MB56814D6EACC16938A0575D16CB300@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190506123425.GA26360@kroah.com>
+ <BL0PR02MB568169E26DCD12498EBDFC3ACB310@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190507093941.GC20355@kroah.com>
+ <BL0PR02MB568148AD27F3FE86D168BDF9CB310@BL0PR02MB5681.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BL0PR02MB568148AD27F3FE86D168BDF9CB310@BL0PR02MB5681.namprd02.prod.outlook.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 4. Mai 2019, 01:41:42 CEST schrieb Douglas Anderson:
-> As some point hs200 was failing on rk3288-veyron-minnie.  See commit
-> 984926781122 ("ARM: dts: rockchip: temporarily remove emmc hs200 speed
-> from rk3288 minnie").  Although I didn't track down exactly when it
-> started working, it seems to work OK now, so let's turn it back on.
+On Tue, May 07, 2019 at 11:55:42AM +0000, Dragan Cvetic wrote:
 > 
-> To test this, I booted from SD card and then used this script to
-> stress the enumeration process after fixing a memory leak [1]:
->   cd /sys/bus/platform/drivers/dwmmc_rockchip
->   for i in $(seq 1 3000); do
->     echo "========================" $i
->     echo ff0f0000.dwmmc > unbind
->     sleep .5
->     echo ff0f0000.dwmmc > bind
->     while true; do
->       if [ -e /dev/mmcblk2 ]; then
->         break;
->       fi
->       sleep .1
->     done
->   done
 > 
-> It worked fine.
+> > -----Original Message-----
+> > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > Sent: Tuesday 7 May 2019 10:40
+> > To: Dragan Cvetic <draganc@xilinx.com>
+> > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@lists.infradead.org; robh+dt@kernel.org;
+> > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > 
+> > On Tue, May 07, 2019 at 08:48:41AM +0000, Dragan Cvetic wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > > Sent: Monday 6 May 2019 13:34
+> > > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@lists.infradead.org; robh+dt@kernel.org;
+> > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > > >
+> > > > On Mon, May 06, 2019 at 12:23:56PM +0000, Dragan Cvetic wrote:
+> > > > >
+> > > > >
+> > > > > > -----Original Message-----
+> > > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > > > > Sent: Saturday 4 May 2019 08:55
+> > > > > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@lists.infradead.org; robh+dt@kernel.org;
+> > > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > > > > >
+> > > > > > On Fri, May 03, 2019 at 04:41:21PM +0000, Dragan Cvetic wrote:
+> > > > > > > Hi Greg,
+> > > > > > >
+> > > > > > > Please find my inline comments below,
+> > > > > > >
+> > > > > > > Regards
+> > > > > > > Dragan
+> > > > > > >
+> > > > > > > > -----Original Message-----
+> > > > > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > > > > > > Sent: Thursday 2 May 2019 18:20
+> > > > > > > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > > > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@lists.infradead.org; robh+dt@kernel.org;
+> > > > > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > > > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > > > > > > >
+> > > > > > > > On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic wrote:
+> > > > > > > > > +#define DRIVER_NAME "xilinx_sdfec"
+> > > > > > > > > +#define DRIVER_VERSION "0.3"
+> > > > > > > >
+> > > > > > > > Version means nothing with the driver in the kernel tree, please remove
+> > > > > > > > it.
+> > > > > > >
+> > > > > > > Will be removed. Thank you.
+> > > > > > >
+> > > > > > > >
+> > > > > > > > > +#define DRIVER_MAX_DEV BIT(MINORBITS)
+> > > > > > > >
+> > > > > > > > Why this number?  Why limit yourself to any number?
+> > > > > > > >
+> > > > > > >
+> > > > > > > There can be max 8 devices for this driver. I'll change to 8.
+> > > > > > >
+> > > > > > > > > +
+> > > > > > > > > +static struct class *xsdfec_class;
+> > > > > > > >
+> > > > > > > > Do you really need your own class?
+> > > > > > >
+> > > > > > > When writing a character device driver, my goal is to create and register an instance
+> > > > > > > of that structure associated with a struct file_operations, exposing a set of operations
+> > > > > > > to the user-space. One of the steps to make this goal is Create a class for a devices,
+> > > > > > > visible in /sys/class/.
+> > > > > >
+> > > > > > Why do you need a class?  Again, why not just use the misc_device api,
+> > > > > > that seems much more relevant here and will make the code a lot simpler.
+> > > > > >
+> > > > >
+> > > > > The driver can have 8 devices in SoC plus more in Programming Logic.
+> > > > > It looked logical to group them under the same MAJOR, although they
+> > > > > are independent of each other.  Is this argument strong enough to use
+> > > > > class?
+> > > >
+> > > > Not really :)
+> > > >
+> > > > 8 devices is pretty small.  What tool will be trying to talk to all of
+> > > > these devices and how was it going to find out what devices were in the
+> > > > system?
+> > > >
+> > >
+> > > These devices are Forward Error Correction encoder/decoder
+> > > and will be part of the RF communication chain. They will be included
+> > > in the system through DT. Also, described in DT.
+> > 
+> > Userspace doesn't mess with DT.
+> > 
+> > I am asking what userspace tool/program is going to be interacting with
+> > these devices through your now-custom api you are creating.  Do you have
+> > a link to that software, and how is that code doing the "determine what
+> > device nodes are associated with what devices" logic?
+> > 
 > 
-> [1] https://lkml.kernel.org/r/20190503233526.226272-1-dianders@chromium.org
+> Example code is not public yet, sorry.
+
+Ok, then I think we need to wait for that to get this merged at the
+minimum, don't you agree?  Otherwise how do we even know that any of
+these codepaths are tested?
+
+> The index number in the device name
+> is a link to device, see snippet from the example code:
 > 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> #define FEC_DEC  "/dev/xsdfec0"
+> dec_fd = open_xsdfec(FEC_DEC);
+> 
+> The index number corresponds to the device order in DT.
 
-applied for 5.3
+So that implies you don't need a class at all, right?
 
-Thanks
-Heiko
+thanks,
 
-
+greg k-h
