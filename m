@@ -2,110 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCEF916716
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 17:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 317C81673E
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 17:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726604AbfEGPpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 11:45:04 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:34981 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726523AbfEGPpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 11:45:04 -0400
-Received: by mail-wr1-f66.google.com with SMTP id w12so9580527wrp.2
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 08:45:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=2V0KRw1X58VA1zYEdAPk5xBLtGjEZfqDlI4myBarUq4=;
-        b=Yy5jMJ2ZIGJeG404RpP9WoYgNRTgrT7VYEhcrexMSkT2UlStHDAKro9YhHqIU9PMMQ
-         Gj0SWTbwWOp4k85nkWe7AQCbG958G/t1/tkf7FGVNOnmc6lx6fmKUSQ725yVo6vlNQQr
-         JUc02nMsvq2nbCmnvR0IpehTOl51duBRK4067ahnaSB7cu524DKutjAnFW6aOK0m1+2P
-         joCLhf5ig8b2ig9oPswIWq/l35IWziGT4chI8F6xifOvS6ZmGwrZoxGQdqufYa+sluUY
-         UbG4F25wQqcAbHbdKrTjr1aXfJYhXqcdlRPdNUnV3/MqAC+xOw5aW1Te1jyHXl/tNDh7
-         CpLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=2V0KRw1X58VA1zYEdAPk5xBLtGjEZfqDlI4myBarUq4=;
-        b=L7Oy17kgx9twm/U05x7C30g8ndSz33G+vbfoe1fimha7C4u3T6q1OQiWk/zF1uAUOr
-         1+42a8ivbWmX4RoBWvPoZ3kc7jHg+cXbzgSBWUXSggLgRDCpM43/7UjLL4eXWZotLgAq
-         ROwCKV7tsyFlR54ur8q5YT9WERVWjEONL5zzDYTtV1VEmn40f+f9gjsUv2iGlM0ZTufT
-         KkFFP7ku08Wcu3UL73+eDQKPoN7+3jd0Z0ThcJnVN3L6e0W/WcfD9WTaDWThDAXlUO3w
-         OC/isk796xMceGCVsOSb/j/5Ztjy3mt+9I+FYVf911NAtMpDoL+GHhKS+jCoMMExlr9z
-         40mg==
-X-Gm-Message-State: APjAAAXhuoI/0Jpri9GVa3oPpmtvS5O9AyJKZwcpHOCeRBlORQXNgasG
-        3hq5tPp5bG5B2PvXWsPPKhQ/0Q==
-X-Google-Smtp-Source: APXvYqx1ZgBnmf0Vh3kreTWGa5/FxgkWxJQ/j0gdArM5OEkyd7Azus61oAFXyJvB3HAhrbHjJgvz7Q==
-X-Received: by 2002:a5d:52c4:: with SMTP id r4mr18766060wrv.79.1557243902842;
-        Tue, 07 May 2019 08:45:02 -0700 (PDT)
-Received: from boomer.baylibre.com (uluru.liltaz.com. [163.172.81.188])
-        by smtp.gmail.com with ESMTPSA id j71sm14285280wmj.44.2019.05.07.08.45.01
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 07 May 2019 08:45:02 -0700 (PDT)
-Message-ID: <8c4776976c1803d4cd944d88dd73e2b414fe1201.camel@baylibre.com>
-Subject: Re: [PATCH v3 0/6]  Add drive-strength in Meson pinctrl driver
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Guillaume La Roque <glaroque@baylibre.com>,
-        linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        khilman@baylibre.com
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Tue, 07 May 2019 17:45:00 +0200
-In-Reply-To: <20190507115726.23714-1-glaroque@baylibre.com>
-References: <20190507115726.23714-1-glaroque@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S1726659AbfEGP5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 11:57:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36882 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726438AbfEGP5u (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 11:57:50 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1ECBE20C01;
+        Tue,  7 May 2019 15:57:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557244669;
+        bh=yYeUtQyXycJKGzzKbaR03Sgh1x8livGCDAEBIteSL1I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=m21zi0uw6YcaiMutrzLXpu2AH8gOQclBvy0xOtN3MrLBng7lPp8C8QFVwZJUsGC5k
+         opQvIYdSitiQLmo6xw5A/6HMFIboVYByWnoL6xlNjVBBpWd5sqUZDjnIk3s9cmXba3
+         ydobS7X0pn8834+IwkOGzoqFiD0vX8icyqbJKcoE=
+Received: by mail-qk1-f182.google.com with SMTP id a132so10367524qkb.13;
+        Tue, 07 May 2019 08:57:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAXkZfhC38ZpGU7C3PcbXe4vqVU5uexG0dufJ1K8dh9EASxreL3r
+        d3x+JmIjpUSiT8fnHS4KhZXv4+k8gCV+k63OQA==
+X-Google-Smtp-Source: APXvYqwk+Jr303x3CaQ9QFpPib22XA30jtdBeT+DhVsEK0IVy2YDsaZ0ABIqg81EzByodZnq8CpRQJzVsrmS0QBUy9A=
+X-Received: by 2002:a37:4b92:: with SMTP id y140mr25992725qka.79.1557244668293;
+ Tue, 07 May 2019 08:57:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <1556893635-18549-1-git-send-email-ynezz@true.cz> <20190505.214727.1839442238121977055.davem@davemloft.net>
+In-Reply-To: <20190505.214727.1839442238121977055.davem@davemloft.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 May 2019 10:57:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL66PdCv7bFwfD9p6VQCcXOesz3EjPcYB9FGosgjOS8yw@mail.gmail.com>
+Message-ID: <CAL_JsqL66PdCv7bFwfD9p6VQCcXOesz3EjPcYB9FGosgjOS8yw@mail.gmail.com>
+Subject: Re: [PATCH v4 00/10] of_net: Add NVMEM support to of_get_mac_address
+To:     David Miller <davem@davemloft.net>
+Cc:     =?UTF-8?Q?Petr_=C5=A0tetiar?= <ynezz@true.cz>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-05-07 at 13:57 +0200, Guillaume La Roque wrote:
-> The purpose of this patchset is to add drive-strength support in meson pinconf
-> driver. This is a new feature that was added on the g12a. It is critical for us
-> to support this since many functions are failing with default pad drive-strength.
-> 
-> The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
-> 'drive-strength' is expressed in mA.
-> So this patch add another generic property "drive-strength-uA". The change to do so
-> would be minimal and could be benefit to other platforms later on.
-> 
-> Cheers
-> Guillaume
-> 
-> Changes since v2:
-> - update driver-strength-uA property to be compliant with DT documentation
-> - rework patch series for better understanding
-> - rework set_bias function
-> 
-> Changes since v1:
-> - fix missing break
-> - implement new pinctrl generic property "drive-strength-uA"
-> 
-> [1] https://lkml.kernel.org/r/20190314163725.7918-1-jbrunet@baylibre.com
-> 
-> 
-> Guillaume La Roque (6):
->   dt-bindings: pinctrl: add a 'drive-strength-microamp' property
->   pinctrl: generic: add new 'drive-strength-microamp' property support
->   dt-bindings: pinctrl: meson: Add drive-strength-microamp property
->   pinctrl: meson: Rework enable/disable bias part
->   pinctrl: meson: add support of drive-strength-microamp
->   pinctrl: meson: g12a: add DS bank value
-> 
->  .../bindings/pinctrl/meson,pinctrl.txt        |   4 +
->  .../bindings/pinctrl/pinctrl-bindings.txt     |   3 +
->  drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  36 ++--
->  drivers/pinctrl/meson/pinctrl-meson.c         | 177 +++++++++++++++---
->  drivers/pinctrl/meson/pinctrl-meson.h         |  18 +-
->  drivers/pinctrl/pinconf-generic.c             |   2 +
->  include/linux/pinctrl/pinconf-generic.h       |   3 +
->  7 files changed, 195 insertions(+), 48 deletions(-)
-> 
+On Sun, May 5, 2019 at 11:47 PM David Miller <davem@davemloft.net> wrote:
+>
+> From: Petr =C5=A0tetiar <ynezz@true.cz>
+> Date: Fri,  3 May 2019 16:27:05 +0200
+>
+> > this patch series is a continuation of my previous attempt[1], where I'=
+ve
+> > tried to wire MTD layer into of_get_mac_address, so it would be possibl=
+e to
+> > load MAC addresses from various NVMEMs as EEPROMs etc.
+>  ...
+>
+> Series applied, thank you.
 
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+Patch 1 at least is still be discussed. What was implemented based on
+my comments on v2 is really broken. Now the allocated buffer is
+tracked by both devm and DT refcounting. Whoever's ref count drops
+first will free the buffer.
 
+Rob
