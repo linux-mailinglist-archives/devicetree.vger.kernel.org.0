@@ -2,100 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0B916305
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 13:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D062416321
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 13:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726322AbfEGLpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 07:45:08 -0400
-Received: from mail-eopbgr1410132.outbound.protection.outlook.com ([40.107.141.132]:45664
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        id S1726412AbfEGLzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 07:55:47 -0400
+Received: from mail-eopbgr750083.outbound.protection.outlook.com ([40.107.75.83]:37606
+        "EHLO NAM02-BL2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725859AbfEGLpI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 07:45:08 -0400
+        id S1725858AbfEGLzq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 07:55:46 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zKqeSS0GluXOv71G3LAm6YEFWzUueL6NboLE9ADue84=;
- b=L0HNKINqh+HfsIDPftcgVwuXaBokJDW3ZflSA2hiAYrM9/BjCXKq1J1bTUHhlnwgRx9egOrMp6AAKmCWumOK3inUNKwK6/YGaoLWXPoCGtWWzL4MVfWitLErYO9YvDuT5OeAsFU5Npufszb+qbeyiNaYS346b9jVxLtfSh7M9zI=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1577.jpnprd01.prod.outlook.com (52.133.162.21) with Microsoft SMTP
+ bh=MlsPVL/OPJVuyO6nVATrnAtBro0uVtKXzXMTeTTQVNU=;
+ b=Iir1G1R2+N6zjNLjeyGUTJKYU9t9qCkChkTchdNe8aEU0/N4DFT4J33hPP/qNZveIKr6XE++Y4fLFrOlwVOQPQ9ZX/s+A23GNw1U6pGMrdTtPisujtnjurFgCW6FnT+YJVcd3QAgLO908bgJRN6nt/Gigc4j6FdANJhwxINJItw=
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com (20.177.241.92) by
+ BL0PR02MB4769.namprd02.prod.outlook.com (20.177.144.78) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.12; Tue, 7 May 2019 11:45:04 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
- 11:45:04 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ 15.20.1856.15; Tue, 7 May 2019 11:55:42 +0000
+Received: from BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d]) by BL0PR02MB5681.namprd02.prod.outlook.com
+ ([fe80::6cde:f726:b36e:752d%5]) with mapi id 15.20.1856.012; Tue, 7 May 2019
+ 11:55:42 +0000
+From:   Dragan Cvetic <draganc@xilinx.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
- not using OTG
-Thread-Topic: [PATCH 03/10] phy: renesas: rcar-gen3-usb2: Check dr_mode when
- not using OTG
-Thread-Index: AQHVBGYbvpIQ5ioroEGpDalH9Ovnd6ZfhsEAgAAEBrA=
-Date:   Tue, 7 May 2019 11:45:04 +0000
-Message-ID: <TY1PR01MB1562550164C7977D28C90F128A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-4-chris.brandt@renesas.com>
- <17bcc673-5fed-ce4f-3d61-af34bfa5d769@cogentembedded.com>
-In-Reply-To: <17bcc673-5fed-ce4f-3d61-af34bfa5d769@cogentembedded.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <dkiernan@xilinx.com>
+Subject: RE: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Thread-Topic: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+Thread-Index: AQHU/UVOyBvhwX5Hf0mi9G9IHzQgRKZYHAiAgAGBAECAAQXIAIADZtRggAAL5YCAATcywIAAKlGAgAAWmLA=
+Date:   Tue, 7 May 2019 11:55:42 +0000
+Message-ID: <BL0PR02MB568148AD27F3FE86D168BDF9CB310@BL0PR02MB5681.namprd02.prod.outlook.com>
+References: <1556402706-176271-1-git-send-email-dragan.cvetic@xilinx.com>
+ <1556402706-176271-3-git-send-email-dragan.cvetic@xilinx.com>
+ <20190502172007.GA1874@kroah.com>
+ <BL0PR02MB5681B0F2BC0D74D8604D4289CB350@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190504075502.GA11133@kroah.com>
+ <BL0PR02MB56814D6EACC16938A0575D16CB300@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190506123425.GA26360@kroah.com>
+ <BL0PR02MB568169E26DCD12498EBDFC3ACB310@BL0PR02MB5681.namprd02.prod.outlook.com>
+ <20190507093941.GC20355@kroah.com>
+In-Reply-To: <20190507093941.GC20355@kroah.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
+ smtp.mailfrom=draganc@xilinx.com; 
+x-originating-ip: [149.199.80.133]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 496594e5-7082-4b6b-55b5-08d6d2e17258
+x-ms-office365-filtering-correlation-id: ead12c1c-cbd1-4dc0-78a9-08d6d2e2ee80
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1577;
-x-ms-traffictypediagnostic: TY1PR01MB1577:
-x-microsoft-antispam-prvs: <TY1PR01MB1577035F7D1D9E577531B35C8A310@TY1PR01MB1577.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BL0PR02MB4769;
+x-ms-traffictypediagnostic: BL0PR02MB4769:
+x-microsoft-antispam-prvs: <BL0PR02MB4769B212298792586E4C54D6CB310@BL0PR02MB4769.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 0030839EEE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(346002)(136003)(396003)(376002)(39860400002)(199004)(189003)(256004)(4744005)(86362001)(186003)(6506007)(73956011)(66446008)(7736002)(6116002)(64756008)(66946007)(66556008)(66476007)(14454004)(76116006)(99286004)(55016002)(476003)(71190400001)(26005)(76176011)(7696005)(446003)(102836004)(71200400001)(11346002)(66066001)(9686003)(486006)(72206003)(25786009)(33656002)(6246003)(54906003)(110136005)(6436002)(478600001)(68736007)(2906002)(4326008)(316002)(74316002)(229853002)(305945005)(3846002)(53936002)(81156014)(81166006)(8936002)(52536014)(8676002)(6636002)(5660300002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1577;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(346002)(366004)(39860400002)(396003)(13464003)(189003)(199004)(53546011)(55016002)(33656002)(25786009)(14454004)(6506007)(478600001)(6916009)(54906003)(66946007)(486006)(73956011)(64756008)(66446008)(66476007)(66556008)(76116006)(4326008)(74316002)(71200400001)(7696005)(107886003)(6116002)(53936002)(6246003)(68736007)(229853002)(3846002)(6436002)(11346002)(446003)(476003)(102836004)(52536014)(5660300002)(81156014)(7736002)(76176011)(81166006)(86362001)(66066001)(2906002)(8676002)(71190400001)(305945005)(26005)(9686003)(14444005)(256004)(316002)(186003)(8936002)(99286004);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR02MB4769;H:BL0PR02MB5681.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: WgF3bYDr3rSQUvVUJ2hqGVvD5dBeEGUrdvgrcD+HYdSyHXn4t8VNNZGZMLQkIvlNuBtwBibEkPkkqyadDgxtt00Rqh6lDrPadorj5QiEvdUJPN/KxT/y5je0NuU+4fNsBYS0GSoqzviUbOw597u0NN5mFyhWfEyKkap5tmgG9TrqyHfFiWHWWFPFevRWDA+1bRBuQeDy6tYyJ8G3bhMopTry2fPYadhf0d5Y3IPbm3VvTFyTIvjpqum01FUpnVVRMxI6MWsxFvOsM+oqIRAZoE2AJiBzplPZ/7Bw804sga0JJqP6akqHhafLPN/Rsz81buemW5TGqc2gF6ynXd7JAgBouIUm4k3JbEqV5DVnuAa0/AKrYOL5RK7Pvvl5OTGOaQpuvHMytVIv6CcsSxbPZa24DU9LBGhvl/GEd0LYAq8=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: 6R0R17NhhOlBxVg2+b6oeGSYo+tg9mSsQFGbKYkDVuhtU8mzs6ie0WNDCYNAamqdIweHfjcg3xOiklIZQ/X5xLdVYnCK70cYHbHxYIXWOMCG8izgN32sCj+SK8qrTRY2Za5BHX0OXhYjiKhZ7YXjl4Ly21bG6klu6MWGD1Q2L6rGLMJqhfY+EihRVu4MhfI/jU8SQ8F0H85Z5yZxf6/Nn8bMKtweKxGbHjK/guiYUMfW7y+JDTf6s2ekmq6sdPkL8nL5GdW4PrHBHg+XmznTtD4+bTKlP3C6dcrBFk8WkYQCbAnEuCyuHMGpysNfIpYyIdcvghDZavz06jHqr88UUT1UrroxXniNLiGeMZgI2wuLTtJA8bwciu+2XPDK8dJ44Tux1F4Itt1di3YxOPcRXDXDyJjJdVoMpC5BoZ1n+R0=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 496594e5-7082-4b6b-55b5-08d6d2e17258
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 11:45:04.4087
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ead12c1c-cbd1-4dc0-78a9-08d6d2e2ee80
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2019 11:55:42.3373
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1577
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB4769
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCBNYXkgMDcsIDIwMTksIFNlcmdlaSBTaHR5bHlvdiB3cm90ZToNCj4gPiAtLS0gYS9k
-cml2ZXJzL3BoeS9yZW5lc2FzL3BoeS1yY2FyLWdlbjMtdXNiMi5jDQo+ID4gKysrIGIvZHJpdmVy
-cy9waHkvcmVuZXNhcy9waHktcmNhci1nZW4zLXVzYjIuYw0KPiA+IEBAIC00MDgsNyArNDA4LDEy
-IEBAIHN0YXRpYyBpbnQgcmNhcl9nZW4zX3BoeV91c2IyX2luaXQoc3RydWN0IHBoeSAqcCkNCj4g
-PiAgCQlpZiAocmNhcl9nZW4zX25lZWRzX2luaXRfb3RnKGNoYW5uZWwpKQ0KPiA+ICAJCQlyY2Fy
-X2dlbjNfaW5pdF9vdGcoY2hhbm5lbCk7DQo+ID4gIAkJcnBoeS0+b3RnX2luaXRpYWxpemVkID0g
-dHJ1ZTsNCj4gPiAtCX0NCj4gPiArCX0gZWxzZQ0KPiANCj4gICAgV2FpdCwgZG9uJ3Qgd2UgbmVl
-ZWQge30gaGVyZT8NCj4gDQo+ID4gKwkJLyogTm90IE9URywgc28gZHJfbW9kZSBzaG91bGQgYmUg
-c2V0IGluIFBIWSBub2RlICovDQo+ID4gKwkJaWYgKHVzYl9nZXRfZHJfbW9kZShjaGFubmVsLT5k
-ZXYpID09IFVTQl9EUl9NT0RFX1BFUklQSEVSQUwpDQo+ID4gKwkJCXdyaXRlbCgweDgwMDAwMDAw
-LCB1c2IyX2Jhc2UgKyBVU0IyX0NPTU1DVFJMKTsNCj4gPiArCQllbHNlDQo+ID4gKwkJCXdyaXRl
-bCgweDAwMDAwMDAwLCB1c2IyX2Jhc2UgKyBVU0IyX0NPTU1DVFJMKTsNCg0KVGVjaG5pY2FsbHkg
-dGhlcmUgaXMgb25seSAxIHN0YXRlbWVudCBhZnRlciB0aGUgZWxzZSAodGhlICdpZicgd2hpY2gg
-DQp3aWxsIGFsc28gaW5jbHVkZSB0aGUgJ2Vsc2UnKSBzdGF0ZW1lbnQuIFRoZSBjb2RpbmcgcnVs
-ZXMgc2F5IG5vdCB0byB1c2UNCnsgfSBpZiB0aGVyZSBpcyBvbmx5IDEgc3RhdGVtZW50Lg0KDQoN
-CkNocmlzDQo=
+
+
+> -----Original Message-----
+> From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> Sent: Tuesday 7 May 2019 10:40
+> To: Dragan Cvetic <draganc@xilinx.com>
+> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
+sts.infradead.org; robh+dt@kernel.org;
+> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
+l.org; Derek Kiernan <dkiernan@xilinx.com>
+> Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+>=20
+> On Tue, May 07, 2019 at 08:48:41AM +0000, Dragan Cvetic wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > Sent: Monday 6 May 2019 13:34
+> > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kerne=
+l@lists.infradead.org; robh+dt@kernel.org;
+> > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.k=
+ernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > >
+> > > On Mon, May 06, 2019 at 12:23:56PM +0000, Dragan Cvetic wrote:
+> > > >
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > > > Sent: Saturday 4 May 2019 08:55
+> > > > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-k=
+ernel@lists.infradead.org; robh+dt@kernel.org;
+> > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vg=
+er.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core driver
+> > > > >
+> > > > > On Fri, May 03, 2019 at 04:41:21PM +0000, Dragan Cvetic wrote:
+> > > > > > Hi Greg,
+> > > > > >
+> > > > > > Please find my inline comments below,
+> > > > > >
+> > > > > > Regards
+> > > > > > Dragan
+> > > > > >
+> > > > > > > -----Original Message-----
+> > > > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
+> > > > > > > Sent: Thursday 2 May 2019 18:20
+> > > > > > > To: Dragan Cvetic <draganc@xilinx.com>
+> > > > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-a=
+rm-kernel@lists.infradead.org; robh+dt@kernel.org;
+> > > > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kerne=
+l@vger.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
+> > > > > > > Subject: Re: [PATCH V3 02/12] misc: xilinx-sdfec: add core dr=
+iver
+> > > > > > >
+> > > > > > > On Sat, Apr 27, 2019 at 11:04:56PM +0100, Dragan Cvetic wrote=
+:
+> > > > > > > > +#define DRIVER_NAME "xilinx_sdfec"
+> > > > > > > > +#define DRIVER_VERSION "0.3"
+> > > > > > >
+> > > > > > > Version means nothing with the driver in the kernel tree, ple=
+ase remove
+> > > > > > > it.
+> > > > > >
+> > > > > > Will be removed. Thank you.
+> > > > > >
+> > > > > > >
+> > > > > > > > +#define DRIVER_MAX_DEV BIT(MINORBITS)
+> > > > > > >
+> > > > > > > Why this number?  Why limit yourself to any number?
+> > > > > > >
+> > > > > >
+> > > > > > There can be max 8 devices for this driver. I'll change to 8.
+> > > > > >
+> > > > > > > > +
+> > > > > > > > +static struct class *xsdfec_class;
+> > > > > > >
+> > > > > > > Do you really need your own class?
+> > > > > >
+> > > > > > When writing a character device driver, my goal is to create an=
+d register an instance
+> > > > > > of that structure associated with a struct file_operations, exp=
+osing a set of operations
+> > > > > > to the user-space. One of the steps to make this goal is Create=
+ a class for a devices,
+> > > > > > visible in /sys/class/.
+> > > > >
+> > > > > Why do you need a class?  Again, why not just use the misc_device=
+ api,
+> > > > > that seems much more relevant here and will make the code a lot s=
+impler.
+> > > > >
+> > > >
+> > > > The driver can have 8 devices in SoC plus more in Programming Logic=
+.
+> > > > It looked logical to group them under the same MAJOR, although they
+> > > > are independent of each other.  Is this argument strong enough to u=
+se
+> > > > class?
+> > >
+> > > Not really :)
+> > >
+> > > 8 devices is pretty small.  What tool will be trying to talk to all o=
+f
+> > > these devices and how was it going to find out what devices were in t=
+he
+> > > system?
+> > >
+> >
+> > These devices are Forward Error Correction encoder/decoder
+> > and will be part of the RF communication chain. They will be included
+> > in the system through DT. Also, described in DT.
+>=20
+> Userspace doesn't mess with DT.
+>=20
+> I am asking what userspace tool/program is going to be interacting with
+> these devices through your now-custom api you are creating.  Do you have
+> a link to that software, and how is that code doing the "determine what
+> device nodes are associated with what devices" logic?
+>=20
+
+Example code is not public yet, sorry. The index number in the device name
+is a link to device, see snippet from the example code:
+
+#define FEC_DEC  "/dev/xsdfec0"
+dec_fd =3D open_xsdfec(FEC_DEC);
+
+The index number corresponds to the device order in DT.
+
+> thanks,
+>=20
+> greg k-h
