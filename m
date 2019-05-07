@@ -2,169 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E6A416178
-	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C2141617A
+	for <lists+devicetree@lfdr.de>; Tue,  7 May 2019 11:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfEGJw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 05:52:28 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:8473 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726063AbfEGJw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 05:52:28 -0400
-X-UUID: 703808d8e3e34ab59b7730dc354c3c30-20190507
-X-UUID: 703808d8e3e34ab59b7730dc354c3c30-20190507
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1425543058; Tue, 07 May 2019 17:52:18 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS33N1.mediatek.inc (172.27.4.75) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 7 May 2019 17:52:15 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 7 May 2019 17:52:15 +0800
-Message-ID: <1557222735.3498.11.camel@mtksdaap41>
-Subject: Re: [v2 1/5] drm/mediatek: move mipi_dsi_host_register to probe
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        "Rahul Sharma" <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King" <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Tue, 7 May 2019 17:52:15 +0800
-In-Reply-To: <20190416060501.76276-2-jitao.shi@mediatek.com>
-References: <20190416060501.76276-1-jitao.shi@mediatek.com>
-         <20190416060501.76276-2-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726980AbfEGJwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 05:52:33 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:40057 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726607AbfEGJwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 05:52:33 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 33905238208F;
+        Tue,  7 May 2019 11:52:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1557222749;
+        bh=GdFPeeobBcXNMXUpWxwcs6XGxZ2JfxZnlrpJJuSN1b8=; l=2411;
+        h=Subject:To:From;
+        b=q7WnlMWulU4R2t+D0BdBDTook3HxsYD6a/2uTSugG0U5iX2sRDwZq2S8o9I8SDcE9
+         SfYButk5z9uldkSNjjfH9iGrtHMqilFuKl5BlYu6OH1A+VieBlJDYNdQ6CRJXdr/FY
+         HRTVG6Kzqk+AqLbMtbi54C5SQN0gYHzuGxde3H64=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190505200022.32209-1-oss@c-mauderer.de>
+ <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
+ <20190506162848.GA9522@amd>
+ <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
+ <54199d69-67a9-eb9d-e46d-b3ea43e2e7a3@c-mauderer.de>
+ <20190506202511.GA4979@amd>
+From:   Christian Mauderer <oss@c-mauderer.de>
+Message-ID: <faba9d62-c650-5be8-a9c2-645be10dab6d@c-mauderer.de>
+Date:   Tue, 7 May 2019 11:52:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <20190506202511.GA4979@amd>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
+X-PPP-Message-ID: <155722274953.18256.9661346452446357281@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
-
-On Tue, 2019-04-16 at 14:04 +0800, Jitao Shi wrote:
-> DSI panel driver need attach function which is inculde in
-> mipi_dsi_host_ops.
+On 06/05/2019 22:25, Pavel Machek wrote:
+> Hi!
 > 
-> If mipi_dsi_host_register is not in probe, dsi panel will
-> probe fail or more delay.
-
-I think this patch just prevent delay, not to prevent dsi panel probe
-fail. In [1], you mention mipi_dsi_attach() is called in
-panel_simple_dsi_probe(), but panel_simple_dsi_probe() is trigger by
-mipi_dsi_host_register(), so the probe would success.
-
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/panel/panel-simple.c?h=v5.0-rc6#n2987
-
-
+>>>> Ok, I'm afraid I caused this. What should the compatible be, then?
+>>>
+>>> Knowing nothing about the h/w other than the above description:
+>>> ubiquiti,aircube-leds
+>>>
+>>> Not sure if that's a registered or correct vendor prefix though.
+>>>
+>>> Rob
+>>>
+>>
+>> Where would such a vendor prefix be registered? Does that mean that only
+>> the vendor is allowed to use it? In that case: How would a reverse
+>> engineered prefix look like?
 > 
-> So move the mipi_dsi_host_register to probe from bind.
+> You can use it, too. It is in
+> Documentation/devicetree/bindings/vendor-prefixes.txt :
 > 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 50 ++++++++++++++++++------------
->  1 file changed, 30 insertions(+), 20 deletions(-)
+> ubnt    Ubiquiti Networks
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index b00eb2d2e086..6c4ac37f983d 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -1045,12 +1045,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
->  		return ret;
->  	}
->  
-> -	ret = mipi_dsi_host_register(&dsi->host);
-> -	if (ret < 0) {
-> -		dev_err(dev, "failed to register DSI host: %d\n", ret);
-> -		goto err_ddp_comp_unregister;
-> -	}
-> -
->  	ret = mtk_dsi_create_conn_enc(drm, dsi);
->  	if (ret) {
->  		DRM_ERROR("Encoder create failed with %d\n", ret);
-> @@ -1060,8 +1054,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
->  	return 0;
->  
->  err_unregister:
-> -	mipi_dsi_host_unregister(&dsi->host);
-> -err_ddp_comp_unregister:
->  	mtk_ddp_comp_unregister(drm, &dsi->ddp_comp);
->  	return ret;
->  }
-> @@ -1097,31 +1089,37 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->  
->  	dsi->host.ops = &mtk_dsi_ops;
->  	dsi->host.dev = dev;
-> +	dsi->dev = dev;
+> So you can probably use ubnt, prefix.
+> 
+>> (still with some missing parts like U-Boot) about two weeks later. I had
+>> a look at it and they are not using a device tree. So there is no
+>> "official" string that I could deduce from that archive.
+> 
+> Mainline is the master. You are more "official" than them ;-).
+> 									Pavel
+> 
 
-Why do this?
+Hello
 
-Regards,
-CK
+let me summarize the direction before I create a v4:
 
-> +	ret = mipi_dsi_host_register(&dsi->host);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to register DSI host: %d\n", ret);
-> +		return ret;
-> +	}
->  
->  	ret = drm_of_find_panel_or_bridge(dev->of_node, 0, 0,
->  					  &dsi->panel, &dsi->bridge);
->  	if (ret)
-> -		return ret;
-> +		goto err_unregister_host;
->  
->  	dsi->engine_clk = devm_clk_get(dev, "engine");
->  	if (IS_ERR(dsi->engine_clk)) {
->  		ret = PTR_ERR(dsi->engine_clk);
->  		dev_err(dev, "Failed to get engine clock: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	dsi->digital_clk = devm_clk_get(dev, "digital");
->  	if (IS_ERR(dsi->digital_clk)) {
->  		ret = PTR_ERR(dsi->digital_clk);
->  		dev_err(dev, "Failed to get digital clock: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	dsi->hs_clk = devm_clk_get(dev, "hs");
->  	if (IS_ERR(dsi->hs_clk)) {
->  		ret = PTR_ERR(dsi->hs_clk);
->  		dev_err(dev, "Failed to get hs clock: %d\n", ret);
-> -		return ret;
-> +		goto err_unregister_host;
->  	}
->  
->  	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+Rob Herring suggested "ubnt,acb-spi-led" for the binding name in his
+Mail from 06.05.2019 17:59 UTC. If no one objects, I'll use that.
 
+With the more specific name I'll remove the off-value and max-value from
+the device tree. Instead I'll create some look up table in the driver.
+based on the name or go back to the defines like in the v1 patch. What
+kind of solution would be preferable depends on the next question:
 
+How should I name the driver? Should I use a device specific name like
+in v1 again (most likely now acb-spi-led)? That would allow to
+potentially add a hardware supported blinking in that driver. The
+alternative would be the more generic name that it has now
+(leds-spi-byte) without any plans to add the blinking but it could be
+potentially used for example for a digital potentiometer based
+brightness setting.
 
+Note that I didn't really had planned to implement the blinking support
+because I don't have a use case for it. So it would be either a feature
+that I would add because someone insists. Or it could be added in the
+future by a user who wants that feature (maybe Ubiquiti when they
+upgrade their kernel?).
+
+If it is a required feature for that driver: Please note that although
+of course I would do some basic tests during development it would be a
+mostly unused and therefore untested feature.
+
+Best regards
+
+Christian
