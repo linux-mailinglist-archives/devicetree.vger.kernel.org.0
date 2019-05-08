@@ -2,84 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD331789F
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 13:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F763178A8
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 13:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728108AbfEHLpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 07:45:43 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:47089 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728043AbfEHLph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 07:45:37 -0400
-Received: by mail-wr1-f65.google.com with SMTP id r7so26749923wrr.13
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 04:45:36 -0700 (PDT)
+        id S1728176AbfEHLqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 07:46:15 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:43835 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727706AbfEHLqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 07:46:14 -0400
+Received: by mail-wr1-f67.google.com with SMTP id r4so11484787wro.10
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 04:46:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to
          :user-agent;
-        bh=tlwX1TwlUBY6Z37kB2EJ5w9WiIHcYvXReYxAo3ZK/QU=;
-        b=aLFaoXIJBRIIYYQi6a34dUkmQ3Qxn+QdslldTwFr/3TeRmdWtnkEXUKnt5cwI64iyS
-         E3Z/VyxNSChE4jryrWHmG9WxOPHJyFgX8PCVGm9FkCw0FK/48uk+vFoodfeyXH6xh3dC
-         ECnGN20wkM9Aw+TLnn07DGMMyPxOQ07qHmHHS741REuApklwsX5NSnVskZXnzaDWBajC
-         yA2DQxXY3Fcn7VQXf3vYtY7BQDtZ+oH3JuF0tz9n3GThksESTNyRgsnqyWVcHm8/VeAf
-         H4mEWWWZKDUkGf+FVTX5HnAI2ggA2oYgwa3+zT+xydKTnsftnA6Sc7gQDrtTuhxV/L+C
-         YeDA==
+        bh=JMXRWT/F4hp5WfrQGRhzI2YLNPd4nX+eBcUO3CBizws=;
+        b=Ezjf3jfdQWt8+1oRjIl4JHtShWCjon4HaXtoPv6Q4hNQ3C9AYRYsISbe45hvnNGK4D
+         IpQ8TzgeTJW8y2uF820mzyoewxCakvkiC0aiQa6YXUlZWI4l/YNPujRMIH1fS2ezveq5
+         gipjHBqcB7fbPOf61V+fdWG72epbFItzz8D6aQazvQieVRNrOGxtDE08vMRgXP+30dcj
+         2qLGIJkrHiJSQ5mcj9N12O8BESc0QMIvYA9EHApOALMkRwIvjmXi/p6ZVarTlrDVmjvF
+         AZ9sEqNvBClVOIRuLRdfCM0Uu3ml0OFgMMjRu/4x06T7h/+f0KOZJzbD4WGqqRhpd5/g
+         p7/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to:user-agent;
-        bh=tlwX1TwlUBY6Z37kB2EJ5w9WiIHcYvXReYxAo3ZK/QU=;
-        b=Qy5UqGasMXGBeQoVrqLsl5b3AGDAvlH+cALJ+IKMQukY+F0ZRt1AhhVzzffdWD4tea
-         s9lzZmObnsumwMx8q2cGo5H20SPf5ZhjgMlMjNOg6bc49nz32eS4HF5eV3bxo9bu3ZM7
-         crdkvAkjZ/ru3+6Epk32FmZEdkmdGtVcOntClCmwOpHimZkef7b+C5ZMxD7tusECKmAM
-         Ko58ady80/goJn0uy/lo891h0KOo/uv2Dqq4jFyGfGbRZa//fXEeoC25Y2qT1Y8g8NWJ
-         VrYqXQvgXNWhrjpCQFeU5IYrN6xPqDYBosR0BzGZpsKFNmQHSaq8NVpIRDAuki2xoxF5
-         Gzlw==
-X-Gm-Message-State: APjAAAVN7W58M/sBwHP5jo3uGWBZSElavSRYOeHGAzQf/Adff8GVid6b
-        ZL36C1OlVV9zBZVHLa8dVkZazdU1LTg=
-X-Google-Smtp-Source: APXvYqykdlP88xzgMGKDUs4qkEmodZQT12LFcXefUZay/XBaDwzQZGh3E3/CFHN5zN+W7WJ3Pyni6A==
-X-Received: by 2002:a5d:6249:: with SMTP id m9mr9799370wrv.255.1557315935670;
-        Wed, 08 May 2019 04:45:35 -0700 (PDT)
+        bh=JMXRWT/F4hp5WfrQGRhzI2YLNPd4nX+eBcUO3CBizws=;
+        b=tv14mWmHJN08qKGSqfL6di6hgZW5DMOyqB1Y7LpkHiZo0dmsytQw2sF1+YK6Dt71Ce
+         COP23IsjSjQBTysYx27IfUjWnSVLUmpHEY5uIJk7S0whVF6J5Y+guJL07Rrh9npVzrAt
+         wtSb2R4Og1Uto9iBbmInQaTfqf7uFiwLmPyDBmVQVUr7gW0SACVO0Zgj3S6qShmogN28
+         o5z9tN0EHc1BF2l7p19jRIcdsfGkPcHFHlyCng+gl52QAOnDirMkuKcmAlJ0Qqncu1aJ
+         ie8fu3gAnPdHGJ8Yj1IK7OEN6rYTWWT7HtkWOhwOIUBLh/6uHLqQbiPI2hP5AyuWFGY3
+         y6VQ==
+X-Gm-Message-State: APjAAAVugkjDgou7mbPk+wMaC637FVa7hopjiyW7Nxc+YsiyARX17ptE
+        +RpiHfihY2s8JSupWifTwEr1fQ==
+X-Google-Smtp-Source: APXvYqyXTmLI4JXav9TDocJWmcd5fIHJYqnB6gupx9rImn0d0mLlJ8TiDiXRuOldMiuSCLR8SkGzIA==
+X-Received: by 2002:adf:a202:: with SMTP id p2mr27045648wra.166.1557315973156;
+        Wed, 08 May 2019 04:46:13 -0700 (PDT)
 Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id k67sm2055362wmb.34.2019.05.08.04.45.34
+        by smtp.gmail.com with ESMTPSA id b10sm28889467wrh.59.2019.05.08.04.46.12
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 08 May 2019 04:45:35 -0700 (PDT)
-Date:   Wed, 8 May 2019 12:45:33 +0100
+        Wed, 08 May 2019 04:46:12 -0700 (PDT)
+Date:   Wed, 8 May 2019 12:46:11 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Yangtao Li <tiny.windzz@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        maxime.ripard@bootlin.com, wens@csie.org, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 6/7] iio: adc: sun4i-gpadc-iio: add support for H6
- thermal sensor
-Message-ID: <20190508114533.GG31645@dell>
-References: <20190503072813.2719-1-tiny.windzz@gmail.com>
- <20190503072813.2719-7-tiny.windzz@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Mallikarjun Kasoju <mkasoju@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/6] dt-bindings: mfd: max77620: Add compatible for
+ Maxim 77663
+Message-ID: <20190508114611.GH31645@dell>
+References: <20190505154325.30026-1-digetx@gmail.com>
+ <20190505154325.30026-2-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190503072813.2719-7-tiny.windzz@gmail.com>
+In-Reply-To: <20190505154325.30026-2-digetx@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 May 2019, Yangtao Li wrote:
+On Sun, 05 May 2019, Dmitry Osipenko wrote:
 
-> This patch adds support for the H6 ths sensor.
+> Maxim 77663 has a few minor differences in regards to hardware interface
+> and available capabilities by comparing it with 77620 and 20024 models,
+> hence re-use 77620 device-tree binding for the 77663.
 > 
-> TODO: calibrate thermal sensor by using information from sid.
-> 
-> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> ---
->  drivers/iio/adc/sun4i-gpadc-iio.c | 65 +++++++++++++++++++++++++++++++
->  include/linux/mfd/sun4i-gpadc.h   |  9 +++++
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
 For my own reference:
   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
