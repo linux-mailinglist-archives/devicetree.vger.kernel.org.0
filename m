@@ -2,142 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F143174AA
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 11:09:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2EFE174D9
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 11:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbfEHJJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 05:09:40 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:58348 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbfEHJJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 05:09:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=DXt5IntGctC+H7tmN7EBvL0ioZYMHBlAhEaJOHxOk2M=; b=QripnkRtQHYP
-        1MfCqvkWjIjF3ZxOPKirO+fKlNxWj81QKDx5JRCVqQF5UK07eADTWpy8uMv8yW2BTfBWtvLajWO1u
-        rND8Pl20qN9DfjbWtXvCcCi5luE/BldIqfXVopiaJa+lGkJkDMNpwVDUDFcjA8JBErXU2b++/wnRd
-        AGkaI=;
-Received: from [61.199.190.11] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hOIZl-0007gS-A6; Wed, 08 May 2019 09:09:24 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id B7CB344003F; Wed,  8 May 2019 10:08:57 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Radu Pirea <radu_nicolae.pirea@upb.ro>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Richard Genoud <richard.genoud@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Applied "dt-bindings: mfd: atmel-usart: add DMA bindings for USART in SPI mode" to the spi tree
-In-Reply-To: <20190505180646.1442-2-radu_nicolae.pirea@upb.ro>
-X-Patchwork-Hint: ignore
-Message-Id: <20190508090857.B7CB344003F@finisterre.sirena.org.uk>
-Date:   Wed,  8 May 2019 10:08:57 +0100 (BST)
+        id S1727135AbfEHJRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 05:17:37 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:37885 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726740AbfEHJRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 05:17:37 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190508091734euoutp021533d7e0e4268a3a31f9f75a69075582~cqoPvsfGa0171301713euoutp02Y
+        for <devicetree@vger.kernel.org>; Wed,  8 May 2019 09:17:34 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190508091734euoutp021533d7e0e4268a3a31f9f75a69075582~cqoPvsfGa0171301713euoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557307054;
+        bh=7tBkm4ZtupatdeJAm08/bLQ2G9rQyH25ePfOtf7iIms=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=INDpxIdwtQrw9uk2mQLNO8Dm7G5mi60bbKneFh58YF1vB7nssHx/IEf+lGPwO7V/2
+         PBWES5ThBkvLoZmVZ6ufPl/hC/US+dE2yNMdqpsL35j0yQZgWhCDdNDFsGAgVlrYFC
+         Vxl2Y2ZjzDgM4lE9a422r4bjGvG4l63zsug632pU=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190508091733eucas1p24c03e56cdbdb8fe30d3509b04a94f975~cqoOy1isp0746207462eucas1p2g;
+        Wed,  8 May 2019 09:17:33 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id FE.86.04325.DAE92DC5; Wed,  8
+        May 2019 10:17:33 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190508091732eucas1p157ea16882d06a949ac3ca7e401254e4c~cqoN3MYQ-0568605686eucas1p1N;
+        Wed,  8 May 2019 09:17:32 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190508091732eusmtrp261ff770e5e358e93647d59bb1812443e~cqoNo6_Ch0062100621eusmtrp2V;
+        Wed,  8 May 2019 09:17:32 +0000 (GMT)
+X-AuditID: cbfec7f5-b8fff700000010e5-83-5cd29ead5f34
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id F6.03.04140.CAE92DC5; Wed,  8
+        May 2019 10:17:32 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190508091731eusmtip1b4b3fb389cc4ca1dbd0962761eb0a285~cqoMpYRy30741107411eusmtip19;
+        Wed,  8 May 2019 09:17:31 +0000 (GMT)
+Subject: Re: [PATCH v7 07/13] dt-bindings: memory-controllers: add
+ Exynos5422 DMC device description
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        cw00.choi@samsung.com, kyungmin.park@samsung.com,
+        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+        myungjoo.ham@samsung.com, keescook@chromium.org, tony@atomide.com,
+        jroedel@suse.de, treding@nvidia.com, digetx@gmail.com,
+        willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <fdcbad67-65c8-36f4-1473-e2c46ccc431a@partner.samsung.com>
+Date:   Wed, 8 May 2019 11:17:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190507170422.GA25179@bogus>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0zMcRjHfe77s1vXPl3Us5jmmPkxlfzYZ2NC5MaGGeZHxuGr0CX3FZLZ
+        YQtHRZG6utKGUllJSx3Srrj8qBR2lJ9do6GMK41D3H1r+u/1PJ/38zzv9/bhKWU3489vj9kj
+        6GI00SpWTlfc+9E45WpOS0Sw8Zc/uZZRwhBbzweG5NY1MqToqx2RtAcmGXl0UktS7J8o0tRU
+        ypGGI5858sSczRJHUh0iGU3VMnK17hVH2g4XsKT/ViVHaj8fY8idp4tJm9OLfK9vR3N91N97
+        U2l1lr6ZVlcZX3HqssITrDrpaDerTi4vROrrDxPUjrLRy/l18tlbhejtewVd0JxN8qi8Pt/Y
+        mvH7G1ovcXpkCjAgDx7wdLCWO2gDkvNKXICg+lsRJRU9COw/v3FS4UBwPctID4687KtjXazE
+        +QicLSGSqAtBzp8qt8gHbwPLxVbOxcPxGHAmpjMuEYVvU+DoeIcMiOdZHAiVhbtdGgUOh5vn
+        kt1LaTwOCp73ylw8Aq+BN/dKGUnjDfczO9z7PfBksDTa3HoK+0FrR65M4gC40ZXtjgDYxMOT
+        9Bec5HoBPOsrYSX2gY/W8oH+KOivkoYBi6BPykMSHwR7imlAMwtqrc2MyzOFJ0KJOciFgOdB
+        SeNKCb3geZe35MALUivOU1JbAccTldKOCVB+6vHAHV/IL07nTiOVcUgu45AsxiFZjP/PXkB0
+        IfIT4kRtpCBOixH2BYoarRgXExm4ZZe2DP37hQ//WHsrUfWvzRaEeaTyVHTGNkcoGc1eMV5r
+        QcBTquEK25mWCKViqyb+gKDbtVEXFy2IFjSSp1V+ioRhb9crcaRmj7BTEGIF3eCrjPfw16O5
+        1rtt9bM23Jl/WTfz0uMKsNviXmptb4PHZkUfOTvNGeFn8Lnx/ktxWGnY7xGr67PNh7yVst0F
+        Ts36XNOB6V/0xYcmjpvX/fX1jitrX6O8ZaGzaxpqtezBcMOq9pBrae2hJ3Mqlsp9twTFX/BX
+        9c3woHsyVywMM7NJt9IWLen08txpVtFilGbqJEonav4CmWKjuIEDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphleLIzCtJLcpLzFFi42I5/e/4Xd018y7FGCzbLGexccZ6VovrX56z
+        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
+        e+Quu8XtxhVsFv/37GC3OPymndVi/xUvi9u/+Sy+nXjE6CDs8e3rJBaP2Q0XWTx2zrrL7rFp
+        VSebR2/zOzaPvi2rGD02n672+LxJLoAjSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DY
+        PNbKyFRJ384mJTUnsyy1SN8uQS9j4XexggNqFWdvLWVvYJwr38XIySEhYCJx5/sRti5GLg4h
+        gaWMEq/Wt7BCJMQkJu3bzg5hC0v8udYFVfSaUeLnsw+MIAlhgTSJG0umsoHYIgKKEr/bprGC
+        FDEL7GWWWL9rLlRHA5PEyZnzWLoYOTjYBPQkdqwqBGngFXCT2D21D6yZRUBFYsWNr0wgtqhA
+        hMSZ9ytYIGoEgVqfgNmcAtoSh85dB6tnFjCTmLf5ITOELS5x68l8JghbXmL72znMExiFZiFp
+        n4WkZRaSlllIWhYwsqxiFEktLc5Nzy020itOzC0uzUvXS87P3cQITAHbjv3csoOx613wIUYB
+        DkYlHt4XBRdjhFgTy4orcw8xSnAwK4nwXp94KUaINyWxsiq1KD++qDQntfgQoynQcxOZpUST
+        84HpKa8k3tDU0NzC0tDc2NzYzEJJnLdD4GCMkEB6YklqdmpqQWoRTB8TB6dUA+MyxsT3Ms8W
+        xGo8kGBLeHykU+q05aa3ndyPVcJlPhYZKHQw81vJPT7KKbZwxSYjiTC147df9E84c2L5E4u3
+        827znFzqbt9sddthwq6ZC4JaHXnvWtjt3/1aoGfS9n/6/VtzH5+UDzk988HqV917Kndf36Of
+        ZlPvelS18IWt9a3cDu61f1hORc1TYinOSDTUYi4qTgQAC7T/4xcDAAA=
+X-CMS-MailID: 20190508091732eucas1p157ea16882d06a949ac3ca7e401254e4c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190506151215eucas1p2c57147edac5671c5ec9a223efb6b4adc
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190506151215eucas1p2c57147edac5671c5ec9a223efb6b4adc
+References: <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
+        <CGME20190506151215eucas1p2c57147edac5671c5ec9a223efb6b4adc@eucas1p2.samsung.com>
+        <1557155521-30949-8-git-send-email-l.luba@partner.samsung.com>
+        <20190507170422.GA25179@bogus>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Hi Rob,
 
-   dt-bindings: mfd: atmel-usart: add DMA bindings for USART in SPI mode
+On 5/7/19 7:04 PM, Rob Herring wrote:
+> On Mon, May 06, 2019 at 05:11:55PM +0200, Lukasz Luba wrote:
+>> The patch adds description for DT binding for a new Exynos5422 Dynamic
+>> Memory Controller device.
+>>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   .../bindings/memory-controllers/exynos5422-dmc.txt | 74 ++++++++++++++++++++++
+>>   1 file changed, 74 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> new file mode 100644
+>> index 0000000..be602a9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+>> @@ -0,0 +1,74 @@
+>> +* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
+>> +
+>> +The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
+>> +memory chips are connected. The driver is to monitor the controller in runtime
+>> +and switch frequency and voltage. To monitor the usage of the controller in
+>> +runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
+>> +is able to measure the current load of the memory.
+>> +When 'userspace' governor is used for the driver, an application is able to
+>> +switch the DMC and memory frequency.
+>> +
+>> +Required properties for DMC device for Exynos5422:
+>> +- compatible: Should be "samsung,exynos5422-dmc".
+>> +- clock-names : the name of clock used by the controller.
+>> +- clocks : phandles for clock specified in "clock-names" property.
+> 
+> Need to enumerate the clocks and their order.
+OK I will add a list here and above in 'clock-names' in the right order.
+> 
+>> +- devfreq-events : phandles for PPMU devices connected to this DMC.
+>> +- vdd-supply : phandle for voltage regulator which is connected.
+>> +- reg : registers of two CDREX controllers.
+>> +- operating-points-v2 : phandle for OPPs described in v2 definition.
+>> +- device-handle : phandle of the connected DRAM memory device. For more
+>> +	information please refer to Documentation
+> 
+> Documentation... ?
+I should have changed it after I moved the lpddr3.txt files in the doc
+dir. I missed it, my apologies.
+> 
+>> +- devfreq-events : phandles of the PPMU events used by the controller.
+>> +- samsung,syscon-chipid : phandle of the ChipID used by the controller.
+>> +- samsung,syscon-clk : phandle of the clock register set used by the controller.
+> 
+> Looks like a hack. Can't you get this from the clocks property? What is
+> this for?
+As Krzysztof commented in the next message, the chipid register contains
+information about memory size and the clock register set has some
+registers from DMC (timings settings) which are not typical 'clocks'.
+Chanwoo suggested to use syscon regmap to access these clock registers
+safely. Krzysztof suggested to use syscon regmap similar to Sylwester's
+AVS driver while accessing chipid registers.
+That's why they are here. Both register sets contain needed information
+for proper operation of the driver.
 
-has been applied to the spi tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From f7b99e5948e6be8b850eecbb2de1986d26a76b36 Mon Sep 17 00:00:00 2001
-From: Radu Pirea <radu_nicolae.pirea@upb.ro>
-Date: Sun, 5 May 2019 21:06:45 +0300
-Subject: [PATCH] dt-bindings: mfd: atmel-usart: add DMA bindings for USART in
- SPI mode
-
-The bindings for DMA are now common for both drivers of the USART
-IP.
-
-The node given as an example for USART in SPI mode has been updated in
-order to include DMA bindings.
-
-Signed-off-by: Radu Pirea <radu_nicolae.pirea@upb.ro>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/mfd/atmel-usart.txt   | 20 ++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/atmel-usart.txt b/Documentation/devicetree/bindings/mfd/atmel-usart.txt
-index 7f0cd72f47d2..699fd3c9ace8 100644
---- a/Documentation/devicetree/bindings/mfd/atmel-usart.txt
-+++ b/Documentation/devicetree/bindings/mfd/atmel-usart.txt
-@@ -17,17 +17,24 @@ Required properties for USART in SPI mode:
- - cs-gpios: chipselects (internal cs not supported)
- - atmel,usart-mode : Must be <AT91_USART_MODE_SPI> (found in dt-bindings/mfd/at91-usart.h)
- 
-+Optional properties in serial and SPI mode:
-+- dma bindings for dma transfer:
-+	- dmas: DMA specifier, consisting of a phandle to DMA controller node,
-+		memory peripheral interface and USART DMA channel ID, FIFO configuration.
-+		The order of DMA channels is fixed. The first DMA channel must be TX
-+		associated channel and the second one must be RX associated channel.
-+		Refer to dma.txt and atmel-dma.txt for details.
-+	- dma-names: "tx" for TX channel.
-+		     "rx" for RX channel.
-+		     The order of dma-names is also fixed. The first name must be "tx"
-+		     and the second one must be "rx" as in the examples below.
-+
- Optional properties in serial mode:
- - atmel,use-dma-rx: use of PDC or DMA for receiving data
- - atmel,use-dma-tx: use of PDC or DMA for transmitting data
- - {rts,cts,dtr,dsr,rng,dcd}-gpios: specify a GPIO for RTS/CTS/DTR/DSR/RI/DCD line respectively.
-   It will use specified PIO instead of the peripheral function pin for the USART feature.
-   If unsure, don't specify this property.
--- add dma bindings for dma transfer:
--	- dmas: DMA specifier, consisting of a phandle to DMA controller node,
--		memory peripheral interface and USART DMA channel ID, FIFO configuration.
--		Refer to dma.txt and atmel-dma.txt for details.
--	- dma-names: "rx" for RX channel, "tx" for TX channel.
- - atmel,fifo-size: maximum number of data the RX and TX FIFOs can store for FIFO
-   capable USARTs.
- - rs485-rts-delay, rs485-rx-during-tx, linux,rs485-enabled-at-boot-time: see rs485.txt
-@@ -81,5 +88,8 @@ Example:
- 		interrupts = <12 IRQ_TYPE_LEVEL_HIGH 5>;
- 		clocks = <&usart0_clk>;
- 		clock-names = "usart";
-+		dmas = <&dma0 2 AT91_DMA_CFG_PER_ID(3)>,
-+		       <&dma0 2 (AT91_DMA_CFG_PER_ID(4) | AT91_DMA_CFG_FIFOCFG_ASAP)>;
-+		dma-names = "tx", "rx";
- 		cs-gpios = <&pioB 3 0>;
- 	};
--- 
-2.20.1
-
+Regards,
+Lukasz
+> 
+>> +
+>> +Example:
+>> +
+>> +	ppmu_dmc0_0: ppmu@10d00000 {
+>> +		compatible = "samsung,exynos-ppmu";
+>> +		reg = <0x10d00000 0x2000>;
+>> +		clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
+>> +		clock-names = "ppmu";
+>> +		events {
+>> +			ppmu_event_dmc0_0: ppmu-event3-dmc0_0 {
+>> +				event-name = "ppmu-event3-dmc0_0";
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	dmc: memory-controller@10c20000 {
+>> +		compatible = "samsung,exynos5422-dmc";
+>> +		reg = <0x10c20000 0x100>, <0x10c30000 0x100>,
+>> +		clocks = 	<&clock CLK_FOUT_SPLL>,
+>> +				<&clock CLK_MOUT_SCLK_SPLL>,
+>> +				<&clock CLK_FF_DOUT_SPLL2>,
+>> +				<&clock CLK_FOUT_BPLL>,
+>> +				<&clock CLK_MOUT_BPLL>,
+>> +				<&clock CLK_SCLK_BPLL>,
+>> +				<&clock CLK_MOUT_MX_MSPLL_CCORE>,
+>> +				<&clock CLK_MOUT_MX_MSPLL_CCORE_PHY>,
+>> +				<&clock CLK_MOUT_MCLK_CDREX>,
+>> +				<&clock CLK_DOUT_CLK2X_PHY0>,
+>> +				<&clock CLK_CLKM_PHY0>,
+>> +				<&clock CLK_CLKM_PHY1>;
+>> +		clock-names =	"fout_spll",
+>> +				"mout_sclk_spll",
+>> +				"ff_dout_spll2",
+>> +				"fout_bpll",
+>> +				"mout_bpll",
+>> +				"sclk_bpll",
+>> +				"mout_mx_mspll_ccore",
+>> +				"mout_mx_mspll_ccore_phy",
+>> +				"mout_mclk_cdrex",
+>> +				"dout_clk2x_phy0",
+>> +				"clkm_phy0",
+>> +			        "clkm_phy1";
+>> +		operating-points-v2 = <&dmc_opp_table>;
+>> +		devfreq-events = <&ppmu_event3_dmc0_0>,	<&ppmu_event3_dmc0_1>,
+>> +				<&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
+>> +		operating-points-v2 = <&dmc_opp_table>;
+>> +		device-handle = <&samsung_K3QF2F20DB>;
+>> +		vdd-supply = <&buck1_reg>;
+>> +		samsung,syscon-clk = <&clock>;
+>> +		samsung,syscon-chipid = <&chipid>;
+>> +	};
+>> -- 
+>> 2.7.4
+>>
+> 
+> 
