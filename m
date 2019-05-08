@@ -2,76 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD3417B30
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 16:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A3517B43
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 16:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727569AbfEHOAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 10:00:09 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:35980 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725910AbfEHOAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 10:00:08 -0400
-Received: by mail-lf1-f65.google.com with SMTP id y10so7953499lfl.3;
-        Wed, 08 May 2019 07:00:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=A/RecR1rW1Fa0qI6BI1+pt6K3HhV2pBmhpGAgExuqbY=;
-        b=L2wgrcn2RiTzWJjzdGGcMAb+4QdFdbfv7w8yr7/jq/AyXXSC1UuRhwj81kUm+XSp08
-         /+xIPWJxKHjiHhtkoeviJm508XOZVu+yOEpbrifTUS8Irciqenk4VPkGMzSl+hxZM885
-         zpCqTSQvFAoKFMVX+VEGd9oJ799+2MNAJ2rnHJxi9D13GUjGm7aARgGMk8OtlQ1ZCBkN
-         wUidMrnLD6uY5Ceb6P2wTPSFwt13gBNrQBZqosMabY0xQHf0g3YN7qKOyarGLZDjQ7C5
-         r3urgB+BS7fCu61cRNyEALPsxpwGPTWeL+gBChiu+m1g30t2Skuc01HzijLzYk38Uetq
-         ZSNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A/RecR1rW1Fa0qI6BI1+pt6K3HhV2pBmhpGAgExuqbY=;
-        b=im2xt58P5C2BfXG+BYcnXO/IeE2qttf+rF1kKvL0XQG8Ggl2SWZr98IKqacQRqgkU5
-         ve3jHwr3DF1BrS5gieOxw8fi/A32lKYJzVSTxMY0tjzBg1F8mFBtWFQ763KoNZ47JTDR
-         r93Z6oyja47ltfJRShC8JRjI2X8TLCahyFPSSUg519MIRsI/IsEXXaPfJttVfbgAwf3i
-         PzWlZyqLHLib0Nrsq8nHzDkKxfKvBo7MnyvHcLT6nu6lHoQKX8m7B7Y8Yay1dGnJhOM/
-         4fHH/NxtmrpkJ/6WpAcf301X6wsn+oFeZWNJZo8bk8f/vdceV0MZFSM0ZwZxGeUoX3At
-         varA==
-X-Gm-Message-State: APjAAAWZD+vZj/0xtX1EtxGcX0BumpaUx4XXFYi2iLuD3KO4Gq0TunL9
-        WfC6/TGCpvBqfJOzDP5aeefxRuGnOJQukqXcll0=
-X-Google-Smtp-Source: APXvYqxMDcI05V7rcIBs5a7w8JUvRxFOrjR60YX9s3Rv9Xs80DYwGhyEUHG0vD4vgHhscWzVmIVX7t76kWq//3P6SXs=
-X-Received: by 2002:a19:c746:: with SMTP id x67mr20053219lff.152.1557324006896;
- Wed, 08 May 2019 07:00:06 -0700 (PDT)
+        id S1727409AbfEHOEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 10:04:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41150 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726515AbfEHOEY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 10:04:24 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B663B20675;
+        Wed,  8 May 2019 14:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557324262;
+        bh=KlTf0lMaCe47EgBjCnPByj4hDErmqmcJfE6SdzLc12M=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2buYcneBmgQ5V4Iw6o/K3ZrNV0b77ofTlHXyAj0b4jQdn9AtpAzSTjEwoAqk1h+gT
+         ueccm04t06vQFNAXTBQ+YbLu1GfVVzYoBQuoRJdtEiSMwzKRKD8Oe//WdpKM+50KYZ
+         3ke6V30/bQeBnbleUiNNiV6w6lxABp63FSReE2gM=
+Received: by mail-qk1-f170.google.com with SMTP id g190so3412175qkf.8;
+        Wed, 08 May 2019 07:04:22 -0700 (PDT)
+X-Gm-Message-State: APjAAAW0AV67+XHzAeoLmJgw1+ZmTBsRolfVgFVwH+2ehtXyBt2MT6/7
+        ltmqXgZLW4/EZugC0aX/ezH6VIWTvzoCmKnb2w==
+X-Google-Smtp-Source: APXvYqwcHIVFkIoGCXVZq2f5fTsv1WzR50s06Zc88lHoMFN67drmKMqTiFVbYH/8xeLwoA2P5feUPfU7TuRdlEMoJ30=
+X-Received: by 2002:a37:4711:: with SMTP id u17mr29663919qka.326.1557324261976;
+ Wed, 08 May 2019 07:04:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190508135501.17578-1-pramod.kumar_1@nxp.com> <20190508135501.17578-3-pramod.kumar_1@nxp.com>
-In-Reply-To: <20190508135501.17578-3-pramod.kumar_1@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 8 May 2019 11:00:14 -0300
-Message-ID: <CAOMZO5C=dAN0LkhbTqCApmhv1msxAC8B2=u6D0gtC2KYV7T-HQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] add dts file to enable support for ls1046afrwy board.
-To:     Pramod Kumar <pramod.kumar_1@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+References: <20190507045433.542-1-hsinyi@chromium.org> <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
+ <CAJMQK-iVhScf0ybZ85kqP0B5_QPoYZ9PZt35jHRUh8FNHKvu7w@mail.gmail.com>
+In-Reply-To: <CAJMQK-iVhScf0ybZ85kqP0B5_QPoYZ9PZt35jHRUh8FNHKvu7w@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 8 May 2019 09:04:10 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
+Message-ID: <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: add support for rng-seed
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Michal Hocko <mhocko@suse.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>
+        Stephen Boyd <swboyd@chromium.org>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pramod,
+On Tue, May 7, 2019 at 11:08 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> On Wed, May 8, 2019 at 3:47 AM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > +boot-architecture list as there was some discussion about this IIRC.
+> >
+> > On Mon, May 6, 2019 at 11:54 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> > >
+> > > Introducing a chosen node, rng-seed, which is an 64 bytes entropy
+> > > that can be passed to kernel called very early to increase device
+> > > randomness. Bootloader should provide this entropy and the value is
+> > > read from /chosen/rng-seed in DT.
+> > >
+> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > >
+> > > ---
+> > >  Documentation/devicetree/bindings/chosen.txt | 14 +++++++++
+> >
+> > Actually, this file has been converted to json-schema and lives
+> > here[1]. I need to remove this one (or leave it with a reference to
+> > the new one).
+> >
+> > >  arch/arm64/kernel/setup.c                    |  2 ++
+> > >  drivers/of/fdt.c                             | 33 ++++++++++++++++++++
+> > >  include/linux/of_fdt.h                       |  1 +
+> > >  4 files changed, 50 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+> > > index 45e79172a646..bfd360691650 100644
+> > > --- a/Documentation/devicetree/bindings/chosen.txt
+> > > +++ b/Documentation/devicetree/bindings/chosen.txt
+> > > @@ -28,6 +28,20 @@ mode) when EFI_RNG_PROTOCOL is supported, it will be overwritten by
+> > >  the Linux EFI stub (which will populate the property itself, using
+> > >  EFI_RNG_PROTOCOL).
+> > >
+> > > +rng-seed
+> > > +-----------
+> > > +
+> > > +This property served as an entropy to add device randomness. It is parsed
+> > > +as a 64 byte value, e.g.
+> >
+> > Why only 64-bytes?
+> We can also not specify size and read what bootloader can provide.
+> >
+> > > +
+> > > +/ {
+> > > +       chosen {
+> > > +               rng-seed = <0x31951b3c 0xc9fab3a5 0xffdf1660 ...>
+> > > +       };
+> > > +};
+> > > +
+> > > +This random value should be provided by bootloader.
+> > > +
+> > >  stdout-path
+> > >  -----------
+> > >
+> > > diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> > > index 413d566405d1..ade4261516dd 100644
+> > > --- a/arch/arm64/kernel/setup.c
+> > > +++ b/arch/arm64/kernel/setup.c
+> > > @@ -292,6 +292,8 @@ void __init setup_arch(char **cmdline_p)
+> > >         early_fixmap_init();
+> > >         early_ioremap_init();
+> > >
+> > > +       early_init_dt_rng_seed(__fdt_pointer);
+> > > +
+> >
+> > I'm trying to reduce or eliminate all these early_init_dt_* calls.
+> >
+> > Why is this arch specific and why can't this be done after
+> > unflattening? It doesn't look like add_device_randomness() needs
+> > anything early.
+> Currently unflattening is called after setup_machine_fdt(), which
+> called fixmap_remap_fdt() //__fixmap_remap_fdt(dt_phys, &size,
+> PAGE_KERNEL_RO), and we can't modify DT after that since it's read
+> only. But we need to clear (eg. write 0 to it) the rng-seed after
+> reading from DT.
 
-On Wed, May 8, 2019 at 10:56 AM Pramod Kumar <pramod.kumar_1@nxp.com> wrote:
+Why do you need to clear it? That wasn't necessary for kaslr-seed.
 
-> +&fman0 {
-> +       ethernet@e0000 {
+Why not change the mapping to RW? It would be nice if this worked on
+more than one arch.
 
-You have passed @e0000 without a corresponfing reg entry.
-
-This causes dtc build warnings with W=1.
-
-Please make sure you don't introduce new W=1 warnings.
+Rob
