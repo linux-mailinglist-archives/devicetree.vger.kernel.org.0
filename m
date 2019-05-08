@@ -2,110 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49F24178E1
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 13:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B3AC1795F
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 14:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728363AbfEHLvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 07:51:41 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:55045 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727684AbfEHLvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 07:51:41 -0400
-Received: by mail-wm1-f68.google.com with SMTP id b203so1729811wmb.4
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 04:51:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=fxMdWr+Y0B0LQlIyW4uE4+5LAprnpZmZmdymzVpaLRo=;
-        b=bLRtQsjDJ2En5fTi3GA8DSNaW3y8sw97+N3aJC9kUwBnDr9DtUaJVd1GAfVNSmmRiO
-         XVqPkP2G7hYFCPZoZbvIurmgd7fdDJK/L9pHcETeIYms39KOsTn/s6OD9HS0z2Cnw61m
-         TZ/WN+QIKw2dm5Nmljo850S9/F/JdV6JUWIRyh48EyZ5q//vCHUXVo5e0X9MBDRyhezu
-         xOKl7hS0mUbWzBg3qofqfEZQRBPcvdme959CiKLzaJgQKH1zQ0d6apwWKZrvkQH+G+pU
-         SCyGlwa/CXuXlQciKzGcU5l5NDZTFv05FCcUFF5MfOjK2kDn6P5ngH51GVtk1+IxfvZy
-         ni8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=fxMdWr+Y0B0LQlIyW4uE4+5LAprnpZmZmdymzVpaLRo=;
-        b=I4aipXtQIWSGsKDn7rIMFa0NlU36qh0dlzRxcP3+7wtKhoFHkMZ9xhsk2XCJCJG9s8
-         /lYF6RRhBR20NSZdn2sOHWhUIjypa3RS8mpb34GR3OgFIQmBe58ugDMFGGrv5e+r8N8v
-         p0dhgQApQA09RLLrH4yszB65UnidSGtcitEU4Un8Eh8pi0kfCPgU+IEaMasQaopOBhy5
-         Gl7FV7f0uzOZoUDypKOVPTRaFba4mKjigPJaWL9fqWbgowZyf9sNbHKfHWcgC8+9BV1D
-         Z1mwL6zMIog7neAtgCFELOhj2ut39uuLoZMLj2ht/cAdkWnmlXuK2UDvrXQYQs7xYWM2
-         G/Kw==
-X-Gm-Message-State: APjAAAVLdLYssdQd0cE6SpO7sWMDoxjxD362lnmWrOf6AXS2VXs03JVC
-        P2/D4pTNIR179G9/STPN/x7HoA==
-X-Google-Smtp-Source: APXvYqx3tHJji8GV7ug+uIe5aYHHxknjL/dzHQLeBBZnXsZid6cAjh7dSLl2l6NzGwfPUe7wJFB1tQ==
-X-Received: by 2002:a7b:cb4e:: with SMTP id v14mr2672023wmj.52.1557316299503;
-        Wed, 08 May 2019 04:51:39 -0700 (PDT)
-Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id r10sm3212041wml.10.2019.05.08.04.51.38
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 08 May 2019 04:51:38 -0700 (PDT)
-Date:   Wed, 8 May 2019 12:51:37 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1728424AbfEHMXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 08:23:41 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:61947 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727575AbfEHMXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 08:23:41 -0400
+X-UUID: 0258ad8330e14eaa8eb091acd65846a1-20190508
+X-UUID: 0258ad8330e14eaa8eb091acd65846a1-20190508
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <michael.kao@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 235792297; Wed, 08 May 2019 20:23:37 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 8 May 2019 20:23:35 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 8 May 2019 20:23:35 +0800
+Message-ID: <1557318215.29634.7.camel@mtksdccf07>
+Subject: Re: [PATCH 1/8] arm64: dts: mt8183: add thermal zone node
+From:   Michael Kao <michael.kao@mediatek.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+CC:     Matthias Kaehlcke <mka@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, <fan.chen@mediatek.com>,
+        <jamesjj.liao@mediatek.com>, <dawei.chien@mediatek.com>,
+        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Mallikarjun Kasoju <mkasoju@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [GIT PULL] Immutable branch between MFD and Regulator due for the
- v5.2 merge window
-Message-ID: <20190508115137.GM31645@dell>
-References: <20190505154325.30026-1-digetx@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>
+Date:   Wed, 8 May 2019 20:23:35 +0800
+In-Reply-To: <c6cf6170-331d-8ffc-d272-e5d8ee648eda@linaro.org>
+References: <1556793795-25204-1-git-send-email-michael.kao@mediatek.com>
+         <1556793795-25204-2-git-send-email-michael.kao@mediatek.com>
+         <CAJMQK-isJf6f+OubbCdoXs8L2cup=rm3Z8Mr7Q26QshMP-0wxA@mail.gmail.com>
+         <20190503164651.GB40515@google.com>
+         <c6cf6170-331d-8ffc-d272-e5d8ee648eda@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190505154325.30026-1-digetx@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-TM-SNTS-SMTP: AA13AA691B0CF73F1B5A1F4F47777D55CE9FB045FE730AE38B5FDF7571CED59C2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enjoy!
+On Mon, 2019-05-06 at 12:43 +0200, Daniel Lezcano wrote:
+> On 03/05/2019 18:46, Matthias Kaehlcke wrote:
+> > Hi,
+> > 
+> > On Fri, May 03, 2019 at 04:03:58PM +0800, Hsin-Yi Wang wrote:
+> >> On Thu, May 2, 2019 at 10:43 AM michael.kao <michael.kao@mediatek.com> wrote:
+> >>>
+> >>> Add thermal zone node to Mediatek MT8183 dts file.
+> >>>
+> >>> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
+> >>>  1 file changed, 64 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> >>> index 926df75..b92116f 100644
+> >>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> >>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> >>> @@ -334,6 +334,67 @@
+> >>>                         status = "disabled";
+> >>>                 };
+> >>>
+> >>> +               thermal: thermal@1100b000 {
+> >>> +                       #thermal-sensor-cells = <1>;
+> >>> +                       compatible = "mediatek,mt8183-thermal";
+> >>> +                       reg = <0 0x1100b000 0 0x1000>;
+> >>> +                       interrupts = <0 76 IRQ_TYPE_LEVEL_LOW>;
+> >>> +                       clocks = <&infracfg CLK_INFRA_THERM>,
+> >>> +                                <&infracfg CLK_INFRA_AUXADC>;
+> >>> +                       clock-names = "therm", "auxadc";
+> >>> +                       resets = <&infracfg  MT8183_INFRACFG_AO_THERM_SW_RST>;
+> >>> +                       mediatek,auxadc = <&auxadc>;
+> >>> +                       mediatek,apmixedsys = <&apmixedsys>;
+> >>> +                       mediatek,hw-reset-temp = <117000>;
+> >>> +                       nvmem-cells = <&thermal_calibration>;
+> >>> +                       nvmem-cell-names = "calibration-data";
+> >>> +               };
+> >>> +
+> >>> +               thermal-zones {
+> >>> +                       cpu_thermal: cpu_thermal {
+> >>> +                               polling-delay-passive = <1000>;
+> >>> +                               polling-delay = <1000>;
+> >>> +
+> >>> +                               thermal-sensors = <&thermal 0>;
+> >>> +                               sustainable-power = <1500>;
+> >>> +                       };
+> >>> +
+> >>> +                       tzts1: tzts1 {
+> >>> +                               polling-delay-passive = <1000>;
+> >>> +                               polling-delay = <1000>;
+> >>> +                               thermal-sensors = <&thermal 1>;
+> >> Is sustainable-power required for tzts? Though it's an optional
+> >> property, kernel would have warning:
+> >> [    0.631556] thermal thermal_zone1: power_allocator:
+> >> sustainable_power will be estimated
+> >> [    0.639586] thermal thermal_zone2: power_allocator:
+> >> sustainable_power will be estimated
+> >> [    0.647611] thermal thermal_zone3: power_allocator:
+> >> sustainable_power will be estimated
+> >> [    0.655635] thermal thermal_zone4: power_allocator:
+> >> sustainable_power will be estimated
+> >> [    0.663658] thermal thermal_zone5: power_allocator:
+> >> sustainable_power will be estimated
+> >> if no sustainable-power assigned.
+> > 
+> > The property is indeed optional, if it isn't specified IPA will use
+> > the sum of the minimum power of all 'power actors' of the zone as
+> > estimate (see estimate_sustainable_power()). This may lead to overly
+> > agressive throttling, since the nominal sustainable power will always
+> > be <= the requested power.
+> > 
+> > In my understanding the sustainable power may varies between devices,
+> > even for the same SoC. One could have all the hardware crammed into a
+> > tiny plastic enclosure (e.g. ASUS Chromebit), another might have a
+> > laptop form factor and a metal enclosure (e.g. ASUS C201). Both
+> > examples are based on an Rockchip rk3288, but they have completely
+> > different thermal behavior, and would likely have different values for
+> > 'sustainable-power'.
+> > 
+> > In this sense I tend to consider 'sustainable-power' more a device,
+> > than a SoC property. You could specify a 'reasonable' value as a
+> > starting point, but it will likely not be optimal for all or even most
+> > devices. The warning might even be useful for device makers by
+> > indicating them that there is room for tweaking.
+> 
+> 
+> The sustainable power is the power dissipated by the devices belonging
+> to the thermal zone at the given trip temperature.
+> 
+> With the power numbers and the cooling devices, the IPA will change the
+> states of the cooling devices to leverage the dissipated power to the
+> sustainable power.
+> 
+> The contribution is the cooling effect of the cooling device.
+> 
+> However, the IPA is limited to one thermal zone and the cooling device
+> is the cpu cooling device. There is the devfreq cooling device but as
+> the graphic driver is not upstream, it is found in the android tree only
+> for the moment.
+> 
+> As you mentioned the sustainable power can vary depending on the form
+> factor and the production process for the same SoC (they can go to
+> higher frequencies thus dissipate more power). That is the reason why we
+> split the DT per SoC and we override the values on a per SoC version basis.
+> 
+> You can have a look the rk3399.dtsi and their variant for experimental
+> board (*-rock960.dts) and the chromebook version (*-gru-kevin.dts).
+> 
+> Do you want a empiric procedure to find out the sustainable power ?
+> 
+> 
+> 
+OK, I will add the cooling map. But the tzts1 ~ tzts6 don't need to binding cooler.
+The "cpu_thermal" is max value of tzts1 ~tzts6. And cpu_thermal bind
+cooler with IPA. tzts1~6 don't need to add cooler. So, do I just add
+cooling map without any binding any cooling-cell?
 
-The following changes since commit e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd:
+I think thermal framework will add estimated sustainable power. Maybe I
+should add by myself. What's procedure do you recommend to find
+sustainable power?
 
-  Linux 5.1 (2019-05-05 17:42:58 -0700)
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-regulator-v5.2
-
-for you to fetch changes up to 744b13107d0d2ec36c5293d7b59129d3186c9396:
-
-  mfd: max77620: Provide system power-off functionality (2019-05-08 12:50:14 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD and Regulator due for the v5.2 merge window
-
-----------------------------------------------------------------
-Dmitry Osipenko (5):
-      dt-bindings: mfd: max77620: Add compatible for Maxim 77663
-      dt-bindings: mfd: max77620: Add system-power-controller property
-      mfd: max77620: Fix swapped FPS_PERIOD_MAX_US values
-      mfd: max77620: Support Maxim 77663
-      mfd: max77620: Provide system power-off functionality
-
- Documentation/devicetree/bindings/mfd/max77620.txt |  9 ++-
- drivers/mfd/max77620.c                             | 87 +++++++++++++++++++++-
- include/linux/mfd/max77620.h                       |  5 +-
- 3 files changed, 97 insertions(+), 4 deletions(-)
- 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
