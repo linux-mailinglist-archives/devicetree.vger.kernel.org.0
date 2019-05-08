@@ -2,156 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 550AD1708E
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 07:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF56170CF
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 08:11:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727998AbfEHFu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 01:50:58 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:37438 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727993AbfEHFu6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 01:50:58 -0400
-X-UUID: 500fe131497247b7b415ffd9d6f6b2db-20190508
-X-UUID: 500fe131497247b7b415ffd9d6f6b2db-20190508
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1631832587; Wed, 08 May 2019 13:50:51 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 8 May 2019 13:50:49 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 8 May 2019 13:50:48 +0800
-Message-ID: <1557294648.3936.17.camel@mtksdaap41>
-Subject: Re: [PATCH v5 09/12] soc: mediatek: cmdq: add polling function
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "YT Shen" <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>, <kendrick.hsu@mediatek.com>,
-        Frederic Chen <Frederic.Chen@mediatek.com>
-Date:   Wed, 8 May 2019 13:50:48 +0800
-In-Reply-To: <20190507081355.52630-10-bibby.hsieh@mediatek.com>
-References: <20190507081355.52630-1-bibby.hsieh@mediatek.com>
-         <20190507081355.52630-10-bibby.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1725860AbfEHGL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 02:11:26 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34725 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725891AbfEHGL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 02:11:26 -0400
+Received: by mail-wr1-f67.google.com with SMTP id f7so15180112wrq.1
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 23:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=GqEqCNgSxd2APLcFtwFmHcxS1CnmhrSkbjU7782mmEA=;
+        b=l13Kn1KUq5zSRAzSwAktRUo1C6jyppWNyv3HllcCtdXrTu4EpW8geG9Iry0cHA2uMf
+         pOK265Mrbp8iag3zrgfE0qXUaTXZuGC+FNDTwEJgqKa+FoeBCIN84XDRBA9hXZanzAqM
+         dqoOhRA/jPnW2p89bXTLRyO/tq324AKCNEPpsHJ/aiVZUZMXsMogE8I4BrrptyAzy7n+
+         LRcFr6ISOPot7ORaO23ZT5UHzXRkqgFVYlIC5iqzOFH9ch8nh4cAESOM7wimzrnadnUI
+         zDX67dO/9slLZ91EOtq8okbepSPmze+rKL5wpTtJZTNkH1MPd/T1j9Qk/NXL8lKD4pCX
+         TN5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=GqEqCNgSxd2APLcFtwFmHcxS1CnmhrSkbjU7782mmEA=;
+        b=mqXX7CMptJ23p/P3jfLYazBquZYm2LUO7eQDy0z3rhgB96728XiQEz6ltY/6yDPNGe
+         n/gHs0QtaIYYr7TfuaLOLOYWwvKgsTvwZ0sFUrSj2VC4Chtce2Aw+uaZtfJVjLyfiX0d
+         6C+h2gKaqHDNo9gpPUB5fhbYj9kB2TkYmjJ02rgeHNawderipMuj2USxcZkcU+6t7Ubm
+         T4CT1US6Hc10sprxfmQ4xdbM1Z+YdtOuRucuZ0IEIci9494tt66cnsJ0CsWP0EpKp8tp
+         W3WQh6aRffcUinRdGEeR9ZSsvAFg953qpVGwSMSxHMJBOwJsgbrPulUc0Meq8apmnW+K
+         tF7w==
+X-Gm-Message-State: APjAAAURcJv1mHQw8UtzukRSJzT/X3ST/j9B1PIyDh+96yMuu6WEJ3fr
+        qIqCfsfCVhrGLm1BWrvYN/CAhg==
+X-Google-Smtp-Source: APXvYqyhLI8rjbMFiYKWUY/0814APcR9oqetQaa4ygCTxANrE1IE/VWJ8JAne09spnjza72PYUlIxw==
+X-Received: by 2002:adf:dc8a:: with SMTP id r10mr9548175wrj.15.1557295883528;
+        Tue, 07 May 2019 23:11:23 -0700 (PDT)
+Received: from dell ([2.27.167.43])
+        by smtp.gmail.com with ESMTPSA id k67sm1170939wmb.34.2019.05.07.23.11.21
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 07 May 2019 23:11:22 -0700 (PDT)
+Date:   Wed, 8 May 2019 07:11:19 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Marek Vasut <marek.vasut@gmail.com>
+Cc:     masonccyang@mxic.com.tw, bbrezillon@kernel.org, broonie@kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-spi@vger.kernel.org, mark.rutland@arm.com,
+        Rob Herring <robh@kernel.org>,
+        sergei.shtylyov@cogentembedded.com, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
+ RPC-IF MFD bindings
+Message-ID: <20190508061119.GB7627@dell>
+References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
+ <1556092536-17095-4-git-send-email-masonccyang@mxic.com.tw>
+ <20190424212356.GA27103@bogus>
+ <65853dc2-6f3c-1494-7e72-54877797cdd2@gmail.com>
+ <20190507125730.GD29524@dell>
+ <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
+ <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 98A27776C78C6B6C388C0D3DF352BFE56658EAC7DA54A74740E94190632AAACE2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bibby:
+On Wed, 08 May 2019, Marek Vasut wrote:
 
-On Tue, 2019-05-07 at 16:13 +0800, Bibby Hsieh wrote:
-> add polling function in cmdq helper functions
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
+> On 5/8/19 4:48 AM, masonccyang@mxic.com.tw wrote:
+> > Hi Jones,
+> > 
+> >> "Lee Jones" <lee.jones@linaro.org>
+> >> 2019/05/07 下午 08:58
+> >>
+> >> To
+> >>
+> >> "Marek Vasut" <marek.vasut@gmail.com>,
+> >>
+> >> cc
+> >>
+> >> "Rob Herring" <robh@kernel.org>, "Mason Yang"
+> >> <masonccyang@mxic.com.tw>, broonie@kernel.org, linux-
+> >> kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+> >> bbrezillon@kernel.org, linux-renesas-soc@vger.kernel.org, "Geert
+> >> Uytterhoeven" <geert+renesas@glider.be>,
+> >> sergei.shtylyov@cogentembedded.com, mark.rutland@arm.com,
+> >> devicetree@vger.kernel.org, juliensu@mxic.com.tw, "Simon Horman"
+> >> <horms@verge.net.au>, zhengxunli@mxic.com.tw
+> >>
+> >> Subject
+> >>
+> >> Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
+> >> RPC-IF MFD bindings
+> >>
+> >> On Wed, 24 Apr 2019, Marek Vasut wrote:
+> >>
+> >> > On 4/24/19 11:23 PM, Rob Herring wrote:
+> >> > > On Wed, Apr 24, 2019 at 03:55:36PM +0800, Mason Yang wrote:
+> >> > >> Document the bindings used by the Renesas R-Car Gen3 RPC-IF MFD.
+> >> > >>
+> >> > >> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> >> > >> ---
+> >> > >>  .../devicetree/bindings/mfd/mfd-renesas-rpc.txt    | 40 ++++++
+> >> ++++++++++++++++
+> >> > >>  1 file changed, 40 insertions(+)
+> >> > >>  create mode 100644 Documentation/devicetree/bindings/mfd/mfd-
+> >> renesas-rpc.txt
+> >> > >>
+> >> > >> diff --git a/Documentation/devicetree/bindings/mfd/mfd-renesas-
+> >> rpc.txt b/Documentation/devicetree/bindings/mfd/mfd-renesas-rpc.txt
+> >> > >> new file mode 100644
+> >> > >> index 0000000..668b822
+> >> > >> --- /dev/null
+> >> > >> +++ b/Documentation/devicetree/bindings/mfd/mfd-renesas-rpc.txt
+> >> > >> @@ -0,0 +1,40 @@
+> >> > >> +Renesas R-Car Gen3 RPC-IF MFD Device Tree Bindings
+> >> > >> +--------------------------------------------------
+> >> > >
+> >> > > Looks like a SPI flash controller from the example. What makes it an
+> >> > > MFD?
+> >> >
+> >> > It supports both SPI NOR and HyperFlash (CFI-compliant flash with
+> >> > different bus interface).
+> >>
+> >> Looks like you're registering one OR the other.
+> >>
+> >> Why don't you just do this from DT?
+> >>
+> >> No reason for this to be an MFD IMHO.
+> > 
+> > 
+> > okay, I will patch it back to SPI mode only.
 > 
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-cmdq-helper.c   | 29 ++++++++++++++++++++++++
->  include/linux/mailbox/mtk-cmdq-mailbox.h |  1 +
->  include/linux/soc/mediatek/mtk-cmdq.h    | 15 ++++++++++++
->  3 files changed, 45 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> index 17ee8196fb3d..716f8c4f207b 100644
-> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> @@ -220,6 +220,34 @@ int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event)
->  }
->  EXPORT_SYMBOL(cmdq_pkt_clear_event);
->  
-> +int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
-> +		  u16 offset, u32 value, u32 mask)
-> +{
-> +	struct cmdq_instruction *inst;
-> +
-> +	if (mask != 0xffffffff) {
-> +		inst = cmdq_pkt_append_command(pkt);
-> +		if (!inst)
-> +			return -ENOMEM;
-> +
-> +		inst->op = CMDQ_CODE_MASK;
-> +		inst->value = ~mask;
-> +		offset = offset | 0x1;
-> +	}
-> +
-> +	inst = cmdq_pkt_append_command(pkt);
-> +	if (!inst)
-> +		return -ENOMEM;
-> +
-> +	inst->op = CMDQ_CODE_POLL;
-> +	inst->value = value;
-> +	inst->offset = offset;
-> +	inst->subsys = subsys;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(cmdq_pkt_poll);
-> +
->  static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
->  {
->  	struct cmdq_instruction *inst;
-> diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
-> index f21801d32a3a..1dfd5ed5c8c5 100644
-> --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
-> +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
-> @@ -46,6 +46,7 @@
->  enum cmdq_code {
->  	CMDQ_CODE_MASK = 0x02,
->  	CMDQ_CODE_WRITE = 0x04,
-> +	CMDQ_CODE_POLL = 0x08,
->  	CMDQ_CODE_JUMP = 0x10,
->  	CMDQ_CODE_WFE = 0x20,
->  	CMDQ_CODE_EOC = 0x40,
-> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
-> index 52f69c8db8de..0651a0bffa54 100644
-> --- a/include/linux/soc/mediatek/mtk-cmdq.h
-> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
-> @@ -99,6 +99,21 @@ int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event);
->   */
->  int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event);
->  
-> +/**
-> + * cmdq_pkt_poll() - Append polling command to the CMDQ packet, ask GCE to
-> + *		     execute an instruction that wait for a specified hardware
-> + *		     register to check for the value. All GCE hardware
-> + *		     threads will be blocked by this instruction.
-> + * @pkt:	the CMDQ packet
-> + * @subsys:	the CMDQ sub system code
-> + * @offset:	register offset from CMDQ sub system
-> + * @value:	the specified target register value
-> + * @mask:	the specified target register mask
-> + *
-> + * Return: 0 for success; else the error code is returned
-> + */
-> +int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
-> +		  u16 offset, u32 value, u32 mask);
->  /**
->   * cmdq_pkt_flush_async() - trigger CMDQ to asynchronously execute the CMDQ
->   *                          packet and call back at the end of done packet
+> I don't think that's what Lee meant . The controller supports _both_
+> modes , hence it would have the same compatible string. You just need to
+> extract the mode of operation from the DT.
 
+HiSilicon attempted to upstream something similar, only their
+controller provided NAND and NOR functionality.  They used different
+compatible strings to differentiate between the varying
+technologies.
 
+They too tried to use MFD as a means to select between them (which was
+also NACKed).  Not sure what they ended up doing, but the original
+submission and (half of) the conversation can be found at [0].  Some
+more of the thread continues at [1].
+
+Hope that helps.
+
+[0] https://groups.google.com/forum/#!topic/fa.linux.kernel/F6i9o8sfOIw
+[1] https://marc.info/?l=devicetree&m=147669165104431&w=2
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
