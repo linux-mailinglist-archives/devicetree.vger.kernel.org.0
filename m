@@ -2,101 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFE1174DC
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 11:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA7F1753D
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 11:39:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727139AbfEHJSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 05:18:02 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:58038 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727095AbfEHJSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 05:18:02 -0400
-X-UUID: f8fa99313bcb48bc84e5086c75477e09-20190508
-X-UUID: f8fa99313bcb48bc84e5086c75477e09-20190508
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1820003838; Wed, 08 May 2019 17:17:56 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 8 May 2019 17:17:55 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 8 May 2019 17:17:54 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S1726882AbfEHJjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 05:39:37 -0400
+Received: from 60-251-196-230.HINET-IP.hinet.net ([60.251.196.230]:53324 "EHLO
+        ironport.ite.com.tw" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726727AbfEHJjh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 05:39:37 -0400
+X-Greylist: delayed 6251 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 May 2019 05:39:35 EDT
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 08 May 2019 17:39:34 +0800
+Received: from csbcas.internal.ite.com.tw (csbcas1.internal.ite.com.tw [192.168.65.46])
+        by mse.ite.com.tw with ESMTP id x489dVGb055126;
+        Wed, 8 May 2019 17:39:31 +0800 (GMT-8)
+        (envelope-from allen.chen@ite.com.tw)
+Received: from allen-VirtualBox.internal.ite.com.tw (192.168.70.14) by
+ csbcas1.internal.ite.com.tw (192.168.65.45) with Microsoft SMTP Server (TLS)
+ id 14.3.352.0; Wed, 8 May 2019 17:39:32 +0800
+From:   allen <allen.chen@ite.com.tw>
+To:     <allen.chen@ite.com.tw>
+CC:     Pi-Hsun Shih <pihsun@chromium.org>,
+        Amithash Prasad <amithash@fb.com>,
+        Ben Whitten <ben.whitten@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Hovold <johan@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        "moderated list:ARM/Mediatek SoC support" 
         <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Min Guo <min.guo@mediatek.com>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: [v3 PATCH] dt-binding: usb: add usb-role-switch property
-Date:   Wed, 8 May 2019 17:17:44 +0800
-Message-ID: <c3596e996c9ab39c6b9bc14b93309244c4a55014.1557306151.git.chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
+        Nickey Yang <nickey.yang@rock-chips.com>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <treding@nvidia.com>
+Subject: [PATCH 0/3] IT6505 cover letter
+Date:   Wed, 8 May 2019 17:31:55 +0800
+Message-ID: <1557307985-21228-1-git-send-email-allen.chen@ite.com.tw>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MTK:  N
+X-Originating-IP: [192.168.70.14]
+X-MAIL: mse.ite.com.tw x489dVGb055126
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a property usb-role-switch to tell the driver that use
-USB Role Switch framework to handle the role switch,
-it's useful when the driver has already supported other ways,
-such as extcon framework etc.
+The IT6505 is a high-performance DisplayPort 1.1a transmitter, fully compliant with DisplayPort 1.1a, HDCP 1.3 specifications. The IT6505 supports color depth of up to 36 bits (12 bits/color) and ensures robust transmission of high-quality uncompressed video content, along with uncompressed and compressed digital audio content.
 
-Cc: Biju Das <biju.das@bp.renesas.com>
-Cc: Yu Chen <chenyu56@huawei.com>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v3:
-    add property type, modify description suggested by Heikki
+This series contains document bindings, Kconfig to control the function enable or not.
 
-v2:
-    describe it in terms of h/w functionality suggested by Rob
+Allen Chen (3):
+  dt-bindings: Add binding for IT6505.
+  drm/bridge: add it6505 driver
+  drm/bridge: it6505 driver add char device feature.
 
-v1:
-    the property is discussed in:
-    [v2,2/7] dt-bindings: usb: renesas_usb3: add usb-role-switch property
-    https://patchwork.kernel.org/patch/10852497/
+ .../bindings/display/bridge/ite,it6505.txt         |   30 +
+ .../devicetree/bindings/vendor-prefixes.txt        |    1 +
+ drivers/gpu/drm/bridge/Kconfig                     |   22 +
+ drivers/gpu/drm/bridge/Makefile                    |    1 +
+ drivers/gpu/drm/bridge/ite-it6505.c                | 2768 ++++++++++++++++++++
+ 5 files changed, 2822 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+ create mode 100644 drivers/gpu/drm/bridge/ite-it6505.c
 
-    Mediatek and Hisilicon also try to use it:
-    [v4,3/6] dt-bindings: usb: mtu3: add properties about USB Role Switch
-    https://patchwork.kernel.org/patch/10918385/
-    [v4,6/6] usb: mtu3: register a USB Role Switch for dual role mode
-    https://patchwork.kernel.org/patch/10918367/
-
-    [v6,10/13] usb: dwc3: Registering a role switch in the DRD code
-    https://patchwork.kernel.org/patch/10909981/
----
- Documentation/devicetree/bindings/usb/generic.txt | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
-index 0a74ab8dfdc2..cf5a1ad456e6 100644
---- a/Documentation/devicetree/bindings/usb/generic.txt
-+++ b/Documentation/devicetree/bindings/usb/generic.txt
-@@ -30,6 +30,10 @@ Optional properties:
- 			optional for OTG device.
-  - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
- 			optional for OTG device.
-+ - usb-role-switch: boolean, indicates that the device is capable of assigning
-+			the USB data role (USB host or USB device) for a given
-+			USB connector, such as Type-C, Type-B(micro).
-+			see connector/usb-connector.txt.
- 
- This is an attribute to a USB controller such as:
- 
 -- 
-2.21.0
+1.9.1
 
