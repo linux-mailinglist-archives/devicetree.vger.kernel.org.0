@@ -2,232 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDCA2171E4
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 08:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C93FB171E2
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 08:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725910AbfEHGqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 02:46:48 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:13500 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725884AbfEHGqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 02:46:48 -0400
-X-Greylist: delayed 375 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 May 2019 02:46:46 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557298005;
-        s=strato-dkim-0002; d=chronox.de;
-        h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=SsUTm1R7UUQ+bTJ7Pc64aIfy+AkoXx22RxCukswczwc=;
-        b=qTjP+ZY1Z2j2FxK1G3sa+Riq3yUk6AMTr0nYdQfL4oiRSy1yk8svWMvhox8ji747Lh
-        aTMr6q7zqAt6YmVTElSL5hnFp+dMYmMgwnoyqFQYoG1A/uESh5xJxEwYF+2S5wHHou7D
-        Ug+Pbl0oV//sWq1uivgSMDuf8+lYP5BuUoFK6vePq7w61W/6aaJPBSmXDY/Y1hz2GsSL
-        X8bW5AlGtTzm2QU7NwRNnJLVMhktAu/c5D6vMYMiyUwmL5+tM3W+iq9plFD72ncXJqVc
-        pE2/hM9QFNUpWgyR3rz5jvv0GbOXj5nnhce4RA9Xp3G9XAdQOazCiVHrv2ddjXud6rpE
-        e3jQ==
-X-RZG-AUTH: ":P2ERcEykfu11Y98lp/T7+hdri+uKZK8TKWEqNyiHySGSa9k9xmwdNnzGHXPbIvSbR/w="
-X-RZG-CLASS-ID: mo00
-Received: from tauon.chronox.de
-        by smtp.strato.de (RZmta 44.18 DYNA|AUTH)
-        with ESMTPSA id R0373fv486YM8ZU
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Wed, 8 May 2019 08:34:22 +0200 (CEST)
-From:   Stephan Mueller <smueller@chronox.de>
-To:     neal.liu@mediatek.com
-Cc:     mpm@selenic.com, herbert@gondor.apana.org.au, robh+dt@kernel.org,
-        mark.rutland@arm.com, matthias.bgg@gmail.com,
-        wsd_upstream@mediatek.com, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/3] hwrng: add mt67xx-rng driver
-Date:   Wed, 08 May 2019 08:34:22 +0200
-Message-ID: <12193108.aNnqf5ydOJ@tauon.chronox.de>
-In-Reply-To: <1557287937-2410-4-git-send-email-neal.liu@mediatek.com>
-References: <1557287937-2410-1-git-send-email-neal.liu@mediatek.com> <1557287937-2410-4-git-send-email-neal.liu@mediatek.com>
+        id S1726506AbfEHGql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 02:46:41 -0400
+Received: from mail-eopbgr00046.outbound.protection.outlook.com ([40.107.0.46]:1270
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725910AbfEHGql (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 02:46:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+cVPJcI2IgvX2PoXud+kBc5+l8GJkxzTteT26e1rjc8=;
+ b=qupj+JSfIz0kDf3jmazSwkzXRYI++Sau6epxDbo+z3S8CNdZR1ZVda7h06e5S84bOqWNTV2/zQjK2uxYWqKBF8aM1+WV1grIC/qHh7Q87YsjUgRFErmpUb0VuNBD5tXSOkERmWXHUu4y0WENwllMwBtEAsihq78PFwVvvTqfgfc=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2900.eurprd04.prod.outlook.com (10.175.40.150) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.20; Wed, 8 May 2019 06:46:38 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1856.012; Wed, 8 May 2019
+ 06:46:38 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v3] arm64: dts: ls1028a: Add USB dt nodes
+Thread-Topic: [PATCH v3] arm64: dts: ls1028a: Add USB dt nodes
+Thread-Index: AQHVBWnJ2RizrGxsQECLN0zEf7YLpQ==
+Date:   Wed, 8 May 2019 06:46:37 +0000
+Message-ID: <20190508064814.14223-1-ran.wang_1@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HK2PR03CA0059.apcprd03.prod.outlook.com
+ (2603:1096:202:17::29) To AM5PR0402MB2865.eurprd04.prod.outlook.com
+ (2603:10a6:203:9e::16)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.17.1
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b45e70ce-f88a-40f9-1c82-08d6d380eb51
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2900;
+x-ms-traffictypediagnostic: AM5PR0402MB2900:
+x-microsoft-antispam-prvs: <AM5PR0402MB29005C3E2DBE026C446D6A1DF1320@AM5PR0402MB2900.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2657;
+x-forefront-prvs: 0031A0FFAF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(366004)(39860400002)(346002)(136003)(376002)(189003)(199004)(66066001)(476003)(2906002)(99286004)(256004)(305945005)(71200400001)(71190400001)(81156014)(81166006)(386003)(54906003)(36756003)(26005)(52116002)(14454004)(8676002)(478600001)(25786009)(1076003)(102836004)(4326008)(6506007)(2616005)(7736002)(316002)(73956011)(66446008)(66476007)(66556008)(64756008)(66946007)(6916009)(186003)(86362001)(53936002)(6512007)(6116002)(3846002)(8936002)(486006)(50226002)(5660300002)(6486002)(6436002)(68736007);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2900;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 9WKGI0FGiCGeha4Qf1sgmNz23pOJcJQnhL6MO0g91v63KJ76V9biR3ETitJgtq2fZNsr7QT+zhsHLbpIe5jz5+bWpe7ioeV/MLNDcicsyhpReAkUGV1uoquVT5wrMoCt/eSc0PDpjznqQqH7Fv6j6gvysw3+KYA4dskrVsygtm+skjaX28HneOsV9VwYpDAH+FvUCmVmdjLrBQY9KA0HV+3u/YoKuSAiO9MvZMsrzz+J+qLMwTOzEiUdvqPJttDNgLg3PiMgVh8lK3VaWNX0ChbBOG9cNwW/GAZU8mDAg5kDrODOsg0SUhnA41fW96SKIVh9H539ToDjtRNJUe7n2EIudOd1uxB5F+7NVJ4wzwD4PARcEY0s+Vau4f8mlqSfxUVPXPhksBAqb0pbVOjIwlzyhrurnYz2C0rZovZPOvA=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b45e70ce-f88a-40f9-1c82-08d6d380eb51
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 06:46:38.0473
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2900
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 8. Mai 2019, 05:58:57 CEST schrieb neal.liu@mediatek.com:
-
-Hi liu,
-
-> From: Neal Liu <neal.liu@mediatek.com>
-> 
-> For Mediatek SoCs on ARMv8 with TrustZone enabled, peripherals like
-> entropy sources is not accessible from normal world (linux) and
-> rather accessible from secure world (ATF/TEE) only. This driver aims
-> to provide a generic interface to ATF rng service.
-> 
-> Signed-off-by: Neal Liu <neal.liu@mediatek.com>
-> ---
->  drivers/char/hw_random/Kconfig      |   16 ++++++
->  drivers/char/hw_random/Makefile     |    1 +
->  drivers/char/hw_random/mt67xx-rng.c |  104
-> +++++++++++++++++++++++++++++++++++ 3 files changed, 121 insertions(+)
->  create mode 100644 drivers/char/hw_random/mt67xx-rng.c
-> 
-> diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-> index 25a7d8f..98751d3 100644
-> --- a/drivers/char/hw_random/Kconfig
-> +++ b/drivers/char/hw_random/Kconfig
-> @@ -398,6 +398,22 @@ config HW_RANDOM_MTK
-> 
->  	  If unsure, say Y.
-> 
-> +config HW_RANDOM_MT67XX
-> +	tristate "Mediatek MT67XX Random Number Generator support"
-> +	depends on HW_RANDOM
-> +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> +	default HW_RANDOM
-> +	help
-> +	  This driver provides kernel-side support for the Random Number
-> +	  Generator hardware found on Mediatek MT67xx SoCs. The difference
-> +	  with mtk-rng is the Random Number Generator hardware is secure
-> +	  access only.
-> +
-> +	  To compile this driver as a module, choose M here. the
-> +	  module will be called mt67xx-rng.
-> +
-> +	  If unsure, say Y.
-> +
->  config HW_RANDOM_S390
->  	tristate "S390 True Random Number Generator support"
->  	depends on S390
-> diff --git a/drivers/char/hw_random/Makefile
-> b/drivers/char/hw_random/Makefile index 7c9ef4a..4be95ab 100644
-> --- a/drivers/char/hw_random/Makefile
-> +++ b/drivers/char/hw_random/Makefile
-> @@ -36,6 +36,7 @@ obj-$(CONFIG_HW_RANDOM_PIC32) += pic32-rng.o
->  obj-$(CONFIG_HW_RANDOM_MESON) += meson-rng.o
->  obj-$(CONFIG_HW_RANDOM_CAVIUM) += cavium-rng.o cavium-rng-vf.o
->  obj-$(CONFIG_HW_RANDOM_MTK)	+= mtk-rng.o
-> +obj-$(CONFIG_HW_RANDOM_MT67XX) += mt67xx-rng.o
->  obj-$(CONFIG_HW_RANDOM_S390) += s390-trng.o
->  obj-$(CONFIG_HW_RANDOM_KEYSTONE) += ks-sa-rng.o
->  obj-$(CONFIG_HW_RANDOM_OPTEE) += optee-rng.o
-> diff --git a/drivers/char/hw_random/mt67xx-rng.c
-> b/drivers/char/hw_random/mt67xx-rng.c new file mode 100644
-> index 0000000..e70cbbe
-> --- /dev/null
-> +++ b/drivers/char/hw_random/mt67xx-rng.c
-> @@ -0,0 +1,104 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2019 MediaTek Inc.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/hw_random.h>
-> +#include <linux/of.h>
-> +#include <linux/arm-smccc.h>
-> +#include <linux/soc/mediatek/mtk_sip_svc.h>
-> +
-> +#define PFX			KBUILD_MODNAME ": "
-> +#define MT67XX_RNG_MAGIC	0x74726e67
-> +#define SMC_RET_NUM		4
-> +
-> +struct mt67xx_rng_priv {
-> +	struct hwrng rng;
-> +};
-> +
-> +
-> +static void __rng_sec_read(uint32_t *val)
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	arm_smccc_smc(MTK_SIP_KERNEL_GET_RND,
-> +		      MT67XX_RNG_MAGIC, 0, 0, 0, 0, 0, 0, &res);
-> +
-> +	val[0] = res.a0;
-> +	val[1] = res.a1;
-> +	val[2] = res.a2;
-> +	val[3] = res.a3;
-> +}
-> +
-> +static int mt67xx_rng_read(struct hwrng *rng, void *buf, size_t max, bool
-> wait) +{
-> +	int i, retval = 0;
-> +	uint32_t val[4] = {0};
-> +	size_t get_rnd_size = sizeof(u32) * SMC_RET_NUM;
-> +
-> +	if (!buf) {
-> +		pr_err("%s, buf is NULL\n", __func__);
-> +		return -EFAULT;
-> +	}
-> +
-> +	while (max >= get_rnd_size) {
-> +		__rng_sec_read(val);
-> +
-> +		for (i = 0; i < SMC_RET_NUM; i++) {
-> +			*(u32 *)buf = val[i];
-
-I am not sure this cast is right - or how is it guaranteed that buf is word-
-aligned?
-
-> +			buf += sizeof(u32);
-> +		}
-> +
-> +		retval += get_rnd_size;
-> +		max -= get_rnd_size;
-> +	}
-> +
-> +	return retval;
-> +}
-> +
-> +static int mt67xx_rng_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct mt67xx_rng_priv *priv;
-> +
-> +	pr_info(PFX "driver registered\n");
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->rng.name = KBUILD_MODNAME;
-> +	priv->rng.read = mt67xx_rng_read;
-> +	priv->rng.priv = (unsigned long)&pdev->dev;
-> +	priv->rng.quality = 900;
-> +
-> +	ret = devm_hwrng_register(&pdev->dev, &priv->rng);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to register rng device: %d\n", 
-ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id mt67xx_rng_match[] = {
-> +	{ .compatible = "mediatek,mt67xx-rng", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mt67xx_rng_match);
-> +
-> +static struct platform_driver mt67xx_rng_driver = {
-> +	.probe = mt67xx_rng_probe,
-> +	.driver = {
-> +		.name = KBUILD_MODNAME,
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = mt67xx_rng_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(mt67xx_rng_driver);
-> +
-> +MODULE_DESCRIPTION("Mediatek MT67XX Random Number Generator Driver");
-> +MODULE_AUTHOR("Neal Liu <neal.liu@mediatek.com>");
-> +MODULE_LICENSE("GPL");
-
-
-
-Ciao
-Stephan
-
-
+VGhpcyBwYXRjaCBhZGRzIFVTQiBkdCBub2RlcyBmb3IgTFMxMDI4QS4NCg0KU2lnbmVkLW9mZi1i
+eTogUmFuIFdhbmcgPHJhbi53YW5nXzFAbnhwLmNvbT4NCi0tLQ0KQ2hhbmdlcyBpbiB2MzoNCiAg
+LSBBZGQgc3BhY2UgYmV0d2VlbiBsYWJlbCBhbmQgbm9kZSBuYW1lLg0KICAtIEFkZCBzcGNhZSB3
+aXRoIHByb3BlcnRpZXMgYW5kICc9Jy4NCiAgLSBBZGQgU29DIHNwZWNpZmljIGNvbXBhdGlibGUu
+DQoNCkNoYW5nZXMgaW4gdjI6DQogIC0gUmVuYW1lIG5vZGUgZnJvbSB1c2IzQC4uLiB0byB1c2JA
+Li4uIHRvIG1lZXQgRFRTcGVjDQoNCiBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wt
+bHMxMDI4YS5kdHNpIHwgICAyMCArKysrKysrKysrKysrKysrKysrKw0KIDEgZmlsZXMgY2hhbmdl
+ZCwgMjAgaW5zZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kgYi9hcmNoL2FybTY0L2Jv
+b3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpDQppbmRleCA4ZGQzNTAxLi4xOTUxOWRm
+IDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEu
+ZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRz
+aQ0KQEAgLTE0NCw2ICsxNDQsMjYgQEANCiAJCQljbG9ja3MgPSA8JnN5c2Nsaz47DQogCQl9Ow0K
+IA0KKwkJdXNiMDogdXNiQDMxMDAwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAiZnNsLGxzMTAyOGEt
+ZHdjMyIsICJzbnBzLGR3YzMiOw0KKwkJCXJlZyA9IDwweDAgMHgzMTAwMDAwIDB4MCAweDEwMDAw
+PjsNCisJCQlpbnRlcnJ1cHRzID0gPDAgODAgMHg0PjsNCisJCQlkcl9tb2RlID0gImhvc3QiOw0K
+KwkJCXNucHMsZGlzX3J4ZGV0X2lucDNfcXVpcms7DQorCQkJc25wcyxxdWlyay1mcmFtZS1sZW5n
+dGgtYWRqdXN0bWVudCA9IDwweDIwPjsNCisJCQlzbnBzLGluY3ItYnVyc3QtdHlwZS1hZGp1c3Rt
+ZW50ID0gPDE+LCA8ND4sIDw4PiwgPDE2PjsNCisJCX07DQorDQorCQl1c2IxOiB1c2JAMzExMDAw
+MCB7DQorCQkJY29tcGF0aWJsZSA9ICJmc2wsbHMxMDI4YS1kd2MzIiwgInNucHMsZHdjMyI7DQor
+CQkJcmVnID0gPDB4MCAweDMxMTAwMDAgMHgwIDB4MTAwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8
+MCA4MSAweDQ+Ow0KKwkJCWRyX21vZGUgPSAiaG9zdCI7DQorCQkJc25wcyxkaXNfcnhkZXRfaW5w
+M19xdWlyazsNCisJCQlzbnBzLHF1aXJrLWZyYW1lLWxlbmd0aC1hZGp1c3RtZW50ID0gPDB4MjA+
+Ow0KKwkJCXNucHMsaW5jci1idXJzdC10eXBlLWFkanVzdG1lbnQgPSA8MT4sIDw0PiwgPDg+LCA8
+MTY+Ow0KKwkJfTsNCisNCiAJCWkyYzA6IGkyY0AyMDAwMDAwIHsNCiAJCQljb21wYXRpYmxlID0g
+ImZzbCx2ZjYxMC1pMmMiOw0KIAkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KLS0gDQoxLjcuMQ0K
+DQo=
