@@ -2,84 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00248171F9
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 08:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA5917203
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 09:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726448AbfEHG7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 02:59:47 -0400
-Received: from mail-vk1-f194.google.com ([209.85.221.194]:36392 "EHLO
-        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726179AbfEHG7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 02:59:47 -0400
-Received: by mail-vk1-f194.google.com with SMTP id d74so4707797vka.3;
-        Tue, 07 May 2019 23:59:46 -0700 (PDT)
+        id S1726438AbfEHHCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 03:02:30 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:38963 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725884AbfEHHCa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 03:02:30 -0400
+Received: by mail-vk1-f196.google.com with SMTP id s80so4701510vke.6;
+        Wed, 08 May 2019 00:02:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Hb3fPf5B0g2t3lQ+CxtsUvfMJ5uLadXuXQz78ww3fYU=;
-        b=G7QEGx7GDDKHzNKCTQgVo1xdT5l5jA8HnO0Lb5xhAZRokOEALifEnhY2APdS3XVR3n
-         uwn3kRwE1GADfAV1B07F4wIONZrTYGiQHTbUtTTSoix+Ci92IjKahK+jwFIUvF41dGMz
-         Kra0KVz55NW7xU0xjxRPJ0yoAgaJETk6vFMuYiMpBZ72Wn8S/wpiCobtIwR0CrpFty7m
-         CFXiyHZanCw8hqLA4p8sax3hfBV8ezXrm+rB9hbnUWJn8ad0H8aILXHuRAoR/7AwEjeb
-         fLLwnbskRMNDKGwdqCb/WqiHddsp/WP9t6TTOxnf3KUwmDEZdkfIGctmeFn3kHZV6ALt
-         n/Tg==
-X-Gm-Message-State: APjAAAVUMiIKAoyuqnkxk/ZFgU2VnjTZXq0FFjYVNI0GhdnKe/sHjJev
-        aTcm4wFJC8rxh/PPaOXDPqzGxvgykrHDPJuagQE=
-X-Google-Smtp-Source: APXvYqzDHFkWbgySn+FGkvYLb5zdM4esJpytVoVC/45AAGMJR0HiALWM3MGwMRiitZNx7TU69wuIUv49l3BaA9SVOfQ=
-X-Received: by 2002:a1f:ff0b:: with SMTP id p11mr12708100vki.83.1557298786234;
- Tue, 07 May 2019 23:59:46 -0700 (PDT)
+        bh=s3snM+V6eXPtc3suucMMZZ/lK+LHa/OrZBjLjSByG20=;
+        b=CykxoTpcT9zU5Q/RpdVfPWYZ7Yd/Hkg4CwX59NuEGsQL6KFKRoTcg/Vo2x9QirPjNo
+         4KOa/cyxHHEHeBQAnMyaE2lQq3XcQVKzauygnId9WbBuDbvEixn3cWJ1yiJyHIINq8aM
+         H9CsAk1Gs4+g+NoiOkc2psHM44qkT7af3ZRiSTozb0VHCwCu1BuQcSQfAXgnVdVzb4b6
+         47kGS+j33ETqgaSO15pdorwduIxble6vcIwDmXbgYzDL9oA0T5IiEOSbMyXNx+whiuB5
+         qCQh+qIEvwHjDjwjZpZR8wASFIlcGB3qoWmP8tn/mWKR6hjPLPtsbAtoLnMe/CJErZ4q
+         fxlQ==
+X-Gm-Message-State: APjAAAXI7mQR6jBwfnart0RmySiY0cYdqv1vNokmO/0mIXG059Wjz6bs
+        C4MJPxyRZ8X1KliJB/441f3649zBlcQXAg77AwY=
+X-Google-Smtp-Source: APXvYqza/1hvaxWQdWLSj9zXnCXHGz/kbH9GtVmvA3jR7MZPios+I6UtHlJUbjkjBLz4KluTkPylBVYsMYSX9Ufq2UQ=
+X-Received: by 2002:a1f:c2c1:: with SMTP id s184mr10230817vkf.65.1557298949399;
+ Wed, 08 May 2019 00:02:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-2-chris.brandt@renesas.com> <CAMuHMdV3yW44Y1D2Vn1mNJK8pNF3db20An9Sde8=18r8y7m9LQ@mail.gmail.com>
- <TY1PR01MB15621F21D3A3F1F550D85CD68A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <CAMuHMdWBR-069LJZ12pe1azystGp7egzYjKYFVkuRwMoukvzrQ@mail.gmail.com> <TY1PR01MB1562A5D204AD0104862D09FE8A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY1PR01MB1562A5D204AD0104862D09FE8A310@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
+ <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 8 May 2019 08:59:33 +0200
-Message-ID: <CAMuHMdXyuXOGxa=xVwEFWRWB_yHLGG4kLs-ECesSnoD2ctEVRQ@mail.gmail.com>
-Subject: Re: [PATCH 01/10] phy: renesas: rcar-gen3-usb2: Add uses_usb_x1 option
-To:     Chris Brandt <Chris.Brandt@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 8 May 2019 09:02:17 +0200
+Message-ID: <CAMuHMdX7KjJf4yDiEBBXLogHGbo9LcfTM5TvCHAXu_0Bvf0uzA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: spi: Add YAML schemas for the generic
+ SPI options
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        USB list <linux-usb@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        linux-spi <linux-spi@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Mark Brown <broonie@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
-
-On Tue, May 7, 2019 at 10:27 PM Chris Brandt <Chris.Brandt@renesas.com> wrote:
-> On Tue, May 07, 2019 1, Geert Uytterhoeven wrote:
-> > > So with that said, does a uses-usb-x1 property make more sense?
+On Tue, May 7, 2019 at 4:35 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Tue, May 7, 2019 at 8:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > The SPI controllers have a bunch of generic options that are needed in a
+> > device tree. Add a YAML schemas for those.
 > >
-> > No ;-)
->
-> So....
->
-> I guess the first patch in the series needs to add this to the .dtsi:
->
->         usb_x1_clk: usb_x1 {
->                 #clock-cells = <0>;
->                 compatible = "fixed-clock";
->                 /* If clk present, value must be set by board */
->                 clock-frequency = <0>;
->         };
->
-> Then I can reference "usb_x1" in the driver and see if it is set to
-> non-zero.
->
-> What do you think?
+> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-Exactly!
+> > index 1f6e86f787ef..000000000000
+> > --- a/Documentation/devicetree/bindings/spi/spi-bus.txt
+> > +++ /dev/null
+
+> > -In master mode, the SPI controller node requires the following additional
+> > -properties:
+> > -- #address-cells  - number of cells required to define a chip select
+> > -               address on the SPI bus.
+> > -- #size-cells     - should be zero.
+> > -
+> > -In slave mode, the SPI controller node requires one additional property:
+> > -- spi-slave       - Empty property.
+
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+
+> > +  spi-slave:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+>
+> "type: boolean" is sufficient here. Maybe we should just remove
+> 'flag'. OTOH, maybe consistency with other types and the abstraction
+> is better as we could add to the flag schema.
+>
+> > +    description:
+> > +      The SPI controller acts as a slave, instead of a master.
+> > +
+> > +required:
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+>
+> Only if there are child nodes...
+
+... and spi-slave is not present.
 
 Gr{oetje,eeting}s,
 
