@@ -2,224 +2,425 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 122A8179C8
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 14:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A88B17A18
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 15:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726656AbfEHMy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 08:54:56 -0400
-Received: from mail-eopbgr130055.outbound.protection.outlook.com ([40.107.13.55]:14983
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726444AbfEHMyz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 08:54:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O0NtTvNvySWbtEwMFp5UBOxqQqU1xTGuOUsVYeq98Yo=;
- b=dptP6K6j+8bMue49s8HO7OTS0qv8ZVYk70lS5F3xf4TWRiX8/dK0cPwSENRD7b8SG6ZbiUOeaFSXV+5Nh5SzhL5QL8LhKP0NRkymmf0rkl1j0F7ckQTwdZGp9ED4YFdeEXWAIEYKvdAQmNnPS3JvKr5aGHCR3rTy37qFScnwNf8=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB5457.eurprd04.prod.outlook.com (20.178.113.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.14; Wed, 8 May 2019 12:54:45 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::3173:24:d401:2378]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::3173:24:d401:2378%6]) with mapi id 15.20.1856.012; Wed, 8 May 2019
- 12:54:45 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: RE: [PATCH V2 2/4] nvmem: imx: add i.MX8 nvmem driver
-Thread-Topic: [PATCH V2 2/4] nvmem: imx: add i.MX8 nvmem driver
-Thread-Index: AQHVBUmUyhPYZQPb306ccqN8amt06aZhHNiAgAARt+A=
-Date:   Wed, 8 May 2019 12:54:45 +0000
-Message-ID: <AM0PR04MB448107E13218D6C17C0ACAD488320@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <20190508030927.16668-1-peng.fan@nxp.com>
- <20190508030927.16668-2-peng.fan@nxp.com>
- <AM0PR04MB4211796D47D5AB4A2F98102F80320@AM0PR04MB4211.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB4211796D47D5AB4A2F98102F80320@AM0PR04MB4211.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: caef7c58-c24d-4072-8117-08d6d3b458a9
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5457;
-x-ms-traffictypediagnostic: AM0PR04MB5457:
-x-microsoft-antispam-prvs: <AM0PR04MB545716AFA3567283B08E75F488320@AM0PR04MB5457.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(396003)(39860400002)(136003)(366004)(189003)(199004)(7416002)(11346002)(53936002)(7736002)(446003)(68736007)(476003)(8936002)(8676002)(81156014)(44832011)(25786009)(14444005)(256004)(81166006)(26005)(102836004)(6506007)(305945005)(6246003)(229853002)(5660300002)(186003)(6116002)(71200400001)(71190400001)(74316002)(14454004)(3846002)(486006)(2906002)(478600001)(4326008)(76176011)(54906003)(73956011)(52536014)(66446008)(66476007)(2501003)(76116006)(55016002)(9686003)(66556008)(66946007)(99286004)(316002)(110136005)(7696005)(64756008)(66066001)(86362001)(2201001)(33656002)(6436002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5457;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Vn2L9QYIEZ0GsI4W6yM+MOdYtqX8uyt665l9KlvR9jhUtpkGqD50NDWvTaZIxppFubkwaU/fkcEYrAHNTci3K+dJjWUbf479DfQbzWXXOhws/ScX7yF27KVQKXMcJiuGsdHcmWKAW2M/dfMyiocC7uAWYt9tJqMoKFo7gJU3AkbbZOjsf8RJMzAbPXQAKk8dvKnOhKKEitihrPoR4mZSZu4f3rhJOk1cOjG6Oiu+Tan2ZpdFu2HpphZaxDmT6WZ7VA5YUEdYQOBd/3eSuI/MZ+qkaJUa3ueqiOifbC0xGATxbaXonfkj3BW0FeEHjFzn/UU5IfyjGcLna11Ibn/3ypv1yPqLTLfLBEK4cyWR0n1VVp3N7AI/AFkWrU1SigSpS3ZoDSHv06d+8CXiAjMnafifqaYlp8pRqIbGAQqkZhE=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1727343AbfEHNND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 09:13:03 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:45303 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726776AbfEHNNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 09:13:02 -0400
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1hOMNV-00066X-Cp; Wed, 08 May 2019 15:12:57 +0200
+Received: from [192.168.137.87] (nat079013.nat.FH-Koeln.DE [139.6.79.13])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
+         client-signature RSA-PSS (4096 bits))
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 4259D40998E;
+        Wed,  8 May 2019 13:12:54 +0000 (UTC)
+Subject: Re: [PATCH V7 RESEND 04/10] can: mcp25xxfd: Add Microchip mcp25xxfd
+ CAN FD driver
+To:     kernel@martin.sperl.org, linux-can@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190419051432.13538-1-kernel@martin.sperl.org>
+ <20190419051432.13538-5-kernel@martin.sperl.org>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <9fe8a9bf-954e-e203-7b81-57b9460046fd@pengutronix.de>
+Date:   Wed, 8 May 2019 15:12:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: caef7c58-c24d-4072-8117-08d6d3b458a9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 12:54:45.3911
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5457
+In-Reply-To: <20190419051432.13538-5-kernel@martin.sperl.org>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQWlzaGVuZywNCg0KPiBTdWJqZWN0OiBSRTogW1BBVENIIFYyIDIvNF0gbnZtZW06IGlteDog
-YWRkIGkuTVg4IG52bWVtIGRyaXZlcg0KPiANCj4gPiBGcm9tOiBQZW5nIEZhbg0KPiA+IFNlbnQ6
-IFdlZG5lc2RheSwgTWF5IDgsIDIwMTkgMTA6NTYgQU0NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWRk
-cyBpLk1YOCBudm1lbSBvY290cCBkcml2ZXIgdG8gYWNjZXNzIGZ1c2UgdmlhIFJQQyB0bw0KPiA+
-IGkuTVg4IHN5c3RlbSBjb250cm9sbGVyLg0KPiA+DQo+ID4gQ2M6IFNyaW5pdmFzIEthbmRhZ2F0
-bGEgPHNyaW5pdmFzLmthbmRhZ2F0bGFAbGluYXJvLm9yZz4NCj4gPiBDYzogU2hhd24gR3VvIDxz
-aGF3bmd1b0BrZXJuZWwub3JnPg0KPiA+IENjOiBTYXNjaGEgSGF1ZXIgPHMuaGF1ZXJAcGVuZ3V0
-cm9uaXguZGU+DQo+ID4gQ2M6IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFtIDxrZXJuZWxAcGVuZ3V0
-cm9uaXguZGU+DQo+ID4gQ2M6IEZhYmlvIEVzdGV2YW0gPGZlc3RldmFtQGdtYWlsLmNvbT4NCj4g
-PiBDYzogTlhQIExpbnV4IFRlYW0gPGxpbnV4LWlteEBueHAuY29tPg0KPiA+IENjOiBsaW51eC1h
-cm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gPiBTaWduZWQtb2ZmLWJ5OiBQZW5nIEZh
-biA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gPiAtLS0NCj4gPg0KPiA+IFYyOg0KPiA+ICBBZGQgInNj
-dSIgb3IgIlNDVSIsIEFkZCBpbXhfc2NfbWlzY19vdHBfZnVzZV9yZWFkLCBtaW5vciBmaXhlcw0K
-PiA+DQo+ID4gIGRyaXZlcnMvbnZtZW0vS2NvbmZpZyAgICAgICAgIHwgICA3ICsrDQo+ID4gIGRy
-aXZlcnMvbnZtZW0vTWFrZWZpbGUgICAgICAgIHwgICAyICsNCj4gPiAgZHJpdmVycy9udm1lbS9p
-bXgtb2NvdHAtc2N1LmMgfCAxNzANCj4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysNCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCAxNzkgaW5zZXJ0aW9ucygrKQ0KPiA+
-ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9udm1lbS9pbXgtb2NvdHAtc2N1LmMNCj4gPg0K
-PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL252bWVtL0tjb25maWcgYi9kcml2ZXJzL252bWVtL0tj
-b25maWcgaW5kZXgNCj4gPiA1MzBkNTcwNzI0YzkuLjc5YWZlNDQxOTVhMSAxMDA2NDQNCj4gPiAt
-LS0gYS9kcml2ZXJzL252bWVtL0tjb25maWcNCj4gPiArKysgYi9kcml2ZXJzL252bWVtL0tjb25m
-aWcNCj4gPiBAQCAtMzYsNiArMzYsMTMgQEAgY29uZmlnIE5WTUVNX0lNWF9PQ09UUA0KPiA+ICAJ
-ICBUaGlzIGRyaXZlciBjYW4gYWxzbyBiZSBidWlsdCBhcyBhIG1vZHVsZS4gSWYgc28sIHRoZSBt
-b2R1bGUNCj4gPiAgCSAgd2lsbCBiZSBjYWxsZWQgbnZtZW0taW14LW9jb3RwLg0KPiA+DQo+ID4g
-K2NvbmZpZyBOVk1FTV9JTVhfT0NPVFBfU0NVDQo+ID4gKwl0cmlzdGF0ZSAiaS5NWDggU0NVIE9u
-LUNoaXAgT1RQIENvbnRyb2xsZXIgc3VwcG9ydCINCj4gPiArCWRlcGVuZHMgb24gSU1YX1NDVQ0K
-PiA+ICsJaGVscA0KPiA+ICsJICBUaGlzIGlzIGEgZHJpdmVyIGZvciB0aGUgU0NVIE9uLUNoaXAg
-T1RQIENvbnRyb2xsZXIgKE9DT1RQKQ0KPiA+ICsJICBhdmFpbGFibGUgb24gaS5NWDggU29Dcy4N
-Cj4gPiArDQo+ID4gIGNvbmZpZyBOVk1FTV9MUEMxOFhYX0VFUFJPTQ0KPiA+ICAJdHJpc3RhdGUg
-Ik5YUCBMUEMxOFhYIEVFUFJPTSBNZW1vcnkgU3VwcG9ydCINCj4gPiAgCWRlcGVuZHMgb24gQVJD
-SF9MUEMxOFhYIHx8IENPTVBJTEVfVEVTVCBkaWZmIC0tZ2l0DQo+ID4gYS9kcml2ZXJzL252bWVt
-L01ha2VmaWxlIGIvZHJpdmVycy9udm1lbS9NYWtlZmlsZSBpbmRleA0KPiA+IDJlY2U4ZmZmZmRk
-YS4uMzBkNjUzZDM0ZTU3IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbnZtZW0vTWFrZWZpbGUN
-Cj4gPiArKysgYi9kcml2ZXJzL252bWVtL01ha2VmaWxlDQo+ID4gQEAgLTEzLDYgKzEzLDggQEAg
-b2JqLSQoQ09ORklHX05WTUVNX0lNWF9JSU0pCSs9DQo+ID4gbnZtZW0taW14LWlpbS5vDQo+ID4g
-IG52bWVtLWlteC1paW0teQkJCTo9IGlteC1paW0ubw0KPiA+ICBvYmotJChDT05GSUdfTlZNRU1f
-SU1YX09DT1RQKQkrPSBudm1lbS1pbXgtb2NvdHAubw0KPiA+ICBudm1lbS1pbXgtb2NvdHAteQkJ
-Oj0gaW14LW9jb3RwLm8NCj4gPiArb2JqLSQoQ09ORklHX05WTUVNX0lNWF9PQ09UUF9TQ1UpCSs9
-IG52bWVtLWlteC1vY290cC1zY3Uubw0KPiA+ICtudm1lbS1pbXgtb2NvdHAtc2N1LXkJCTo9IGlt
-eC1vY290cC1zY3Uubw0KPiA+ICBvYmotJChDT05GSUdfTlZNRU1fTFBDMThYWF9FRVBST00pCSs9
-DQo+ID4gbnZtZW1fbHBjMTh4eF9lZXByb20ubw0KPiA+ICBudm1lbV9scGMxOHh4X2VlcHJvbS15
-CTo9IGxwYzE4eHhfZWVwcm9tLm8NCj4gPiAgb2JqLSQoQ09ORklHX05WTUVNX0xQQzE4WFhfT1RQ
-KQkrPSBudm1lbV9scGMxOHh4X290cC5vDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbnZtZW0v
-aW14LW9jb3RwLXNjdS5jDQo+ID4gYi9kcml2ZXJzL252bWVtL2lteC1vY290cC1zY3UuYyBuZXcg
-ZmlsZSBtb2RlIDEwMDY0NCBpbmRleA0KPiA+IDAwMDAwMDAwMDAwMC4uMDM4ZTc0NGM4NTg4DQo+
-ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvbnZtZW0vaW14LW9jb3RwLXNjdS5j
-DQo+ID4gQEAgLTAsMCArMSwxNzAgQEANCj4gPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
-IEdQTC0yLjArDQo+ID4gKy8qDQo+ID4gKyAqIGkuTVg4IE9DT1RQIGZ1c2Vib3ggZHJpdmVyDQo+
-ID4gKyAqDQo+ID4gKyAqIENvcHlyaWdodCAyMDE5IE5YUA0KPiA+ICsgKg0KPiA+ICsgKiBQZW5n
-IEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gPiArICovDQo+ID4gKw0KPiA+ICsjaW5jbHVkZSA8
-bGludXgvZmlybXdhcmUvaW14L3NjaS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvbW9kdWxlLmg+
-DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9udm1lbS1wcm92aWRlci5oPg0KPiA+ICsjaW5jbHVkZSA8
-bGludXgvb2ZfZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9wbGF0Zm9ybV9kZXZpY2Uu
-aD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4NCj4gPiArDQo+ID4gK2VudW0gb2NvdHBf
-ZGV2dHlwZSB7DQo+ID4gKwlJTVg4UVhQLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArc3RydWN0IG9j
-b3RwX2RldnR5cGVfZGF0YSB7DQo+ID4gKwlpbnQgZGV2dHlwZTsNCj4gPiArCWludCBucmVnczsN
-Cj4gPiArfTsNCj4gPiArDQo+ID4gK3N0cnVjdCBvY290cF9wcml2IHsNCj4gPiArCXN0cnVjdCBk
-ZXZpY2UgKmRldjsNCj4gPiArCWNvbnN0IHN0cnVjdCBvY290cF9kZXZ0eXBlX2RhdGEgKmRhdGE7
-DQo+ID4gKwlzdHJ1Y3QgaW14X3NjX2lwYyAqbnZtZW1faXBjOw0KPiA+ICt9Ow0KPiA+ICsNCj4g
-PiArc3RydWN0IGlteF9zY19tc2dfcmVxX21pc2NfZnVzZV9yZWFkIHsNCj4gPiArCXN0cnVjdCBp
-bXhfc2NfcnBjX21zZyBoZHI7DQo+ID4gKwl1MzIgd29yZDsNCj4gPiArfSBfX3BhY2tlZDsNCj4g
-PiArDQo+ID4gK3N0cnVjdCBpbXhfc2NfbXNnX3Jlc3BfbWlzY19mdXNlX3JlYWQgew0KPiA+ICsJ
-c3RydWN0IGlteF9zY19ycGNfbXNnIGhkcjsNCj4gPiArCXUzMiB2YWw7DQo+ID4gK30gX19wYWNr
-ZWQ7DQo+ID4gKw0KPiANCj4gSG93IGFib3V0DQo+IHN0cnVjdCBpbXhfc2NfbXNnX21pc2NfZnVz
-ZV9yZWFkIHsNCj4gCXN0cnVjdCBpbXhfc2NfcnBjX21zZyBoZHI7DQo+IAl1bmlvbiB7DQo+IAkJ
-dTMyIHdvcmQ7DQo+IAkJdTMyIHZhbDsNCj4gCX0gZGF0YTsNCj4gfSBfX3BhY2tlZDsNCg0KVGhl
-biBubyBuZWVkIHVuaW9uLCBqdXN0ICJ3b3JkIiBpcyBvayBoZXJlLg0KRml4IGluIFYzLg0KDQo+
-IA0KPiBUaGVuIHdlIGNhbiBzYXZlIG9uZSBzdHJ1Y3QgYW5kIGNvbnZlcnQuDQo+IA0KPiA+ICtz
-dGF0aWMgc3RydWN0IG9jb3RwX2RldnR5cGVfZGF0YSBpbXg4cXhwX2RhdGEgPSB7DQo+ID4gKwku
-ZGV2dHlwZSA9IElNWDhRWFAsDQo+ID4gKwkubnJlZ3MgPSA4MDAsDQo+ID4gK307DQo+ID4gKw0K
-PiA+ICtzdGF0aWMgaW50IGlteF9zY19taXNjX290cF9mdXNlX3JlYWQoc3RydWN0IGlteF9zY19p
-cGMgKmlwYywgdTMyIHdvcmQsDQo+ID4gKwkJCQkgICAgIHUzMiAqdmFsKQ0KPiA+ICt7DQo+ID4g
-KwlzdHJ1Y3QgaW14X3NjX21zZ19yZXFfbWlzY19mdXNlX3JlYWQgbXNnOw0KPiA+ICsJc3RydWN0
-IGlteF9zY19tc2dfcmVzcF9taXNjX2Z1c2VfcmVhZCAqcmVzcDsNCj4gPiArCXN0cnVjdCBpbXhf
-c2NfcnBjX21zZyAqaGRyID0gJm1zZy5oZHI7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsNCj4gPiAr
-CWhkci0+dmVyID0gSU1YX1NDX1JQQ19WRVJTSU9OOw0KPiA+ICsJaGRyLT5zdmMgPSAodWludDhf
-dClJTVhfU0NfUlBDX1NWQ19NSVNDOw0KPiA+ICsJaGRyLT5mdW5jID0gKHVpbnQ4X3QpSU1YX1ND
-X01JU0NfRlVOQ19PVFBfRlVTRV9SRUFEOw0KPiANCj4gUGxzIGRyb3AgdGhlIHVubmVjZXNzYXJ5
-IHR5cGUgY29udmVyc2lvbi4NCg0KT2suDQoNCj4gDQo+ID4gKwloZHItPnNpemUgPSAyOw0KPiA+
-ICsNCj4gPiArCW1zZy53b3JkID0gd29yZDsNCj4gPiArDQo+ID4gKwlyZXQgPSBpbXhfc2N1X2Nh
-bGxfcnBjKGlwYywgJm1zZywgdHJ1ZSk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCXJldHVybiBy
-ZXQ7DQo+ID4gKw0KPiA+ICsJcmVzcCA9IChzdHJ1Y3QgaW14X3NjX21zZ19yZXNwX21pc2NfZnVz
-ZV9yZWFkICopJm1zZzsNCj4gPiArCWlmICh2YWwgIT0gTlVMTCkNCj4gDQo+IERyb3AgdGhpcyB1
-bm5lY2Vzc2FyeSBjaGVjaw0KDQpvay4NCg0KPiANCj4gPiArCQkqdmFsID0gcmVzcC0+dmFsOw0K
-PiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGlt
-eF9zY3Vfb2NvdHBfcmVhZCh2b2lkICpjb250ZXh0LCB1bnNpZ25lZCBpbnQgb2Zmc2V0LA0KPiA+
-ICsJCQkgICAgICB2b2lkICp2YWwsIHNpemVfdCBieXRlcykNCj4gPiArew0KPiA+ICsJc3RydWN0
-IG9jb3RwX3ByaXYgKnByaXYgPSBjb250ZXh0Ow0KPiA+ICsJdTMyIGNvdW50LCBpbmRleCwgbnVt
-X2J5dGVzOw0KPiA+ICsJdTMyICpidWY7DQo+ID4gKwl2b2lkICpwOw0KPiA+ICsJaW50IGksIHJl
-dDsNCj4gPiArDQo+ID4gKwlpbmRleCA9IG9mZnNldCA+PiAyOw0KPiA+ICsJbnVtX2J5dGVzID0g
-cm91bmRfdXAoKG9mZnNldCAlIDQpICsgYnl0ZXMsIDQpOw0KPiA+ICsJY291bnQgPSBudW1fYnl0
-ZXMgPj4gMjsNCj4gPiArDQo+ID4gKwlpZiAoY291bnQgPiAocHJpdi0+ZGF0YS0+bnJlZ3MgLSBp
-bmRleCkpDQo+ID4gKwkJY291bnQgPSBwcml2LT5kYXRhLT5ucmVncyAtIGluZGV4Ow0KPiA+ICsN
-Cj4gPiArCXAgPSBremFsbG9jKG51bV9ieXRlcywgR0ZQX0tFUk5FTCk7DQo+ID4gKwlpZiAoIXAp
-DQo+ID4gKwkJcmV0dXJuIC1FTk9NRU07DQo+ID4gKw0KPiA+ICsJYnVmID0gcDsNCj4gPiArDQo+
-ID4gKwlmb3IgKGkgPSBpbmRleDsgaSA8IChpbmRleCArIGNvdW50KTsgaSsrKSB7DQo+ID4gKwkJ
-aWYgKHByaXYtPmRhdGEtPmRldnR5cGUgPT0gSU1YOFFYUCkgew0KPiA+ICsJCQlpZiAoKGkgPiAy
-NzEpICYmIChpIDwgNTQ0KSkgew0KPiA+ICsJCQkJKih1MzIgKilidWYgPSAwOw0KPiANCj4gU3Rp
-bGwgbmVlZCBjb252ZXJ0Pw0KDQpXaWxsIGRyb3AgdGhlIGNvbnZlcnQuDQoNCj4gDQo+ID4gKwkJ
-CQlidWYgKz0gNDsNCj4gDQo+IEknbSBub3Qgc3VyZSB0aGlzIGlzIHJpZ2h0DQo+IFNob3VsZG4n
-dCBpdCBiZSBidWYrKyA/DQoNCllvdSBhcmUgcmlnaHQuIEZvcmdldCB0aGUgZml4IHRoZSBob2xl
-IHBhcnQuDQoNCj4gDQo+ID4gKwkJCQljb250aW51ZTsNCj4gPiArCQkJfQ0KPiA+ICsJCX0NCj4g
-PiArDQo+ID4gKwkJcmV0ID0gaW14X3NjX21pc2Nfb3RwX2Z1c2VfcmVhZChwcml2LT5udm1lbV9p
-cGMsIGksIGJ1Zik7DQo+ID4gKwkJaWYgKHJldCkgew0KPiA+ICsJCQlrZnJlZShwKTsNCj4gPiAr
-CQkJcmV0dXJuIHJldDsNCj4gPiArCQl9DQo+ID4gKwkJYnVmKys7DQo+ID4gKwl9DQo+ID4gKw0K
-PiA+ICsJbWVtY3B5KHZhbCwgcCArIG9mZnNldCAlIDQsIGJ5dGVzKTsNCj4gDQo+IElzIHRoZXJl
-IGEgYnVpbGQgd2FybmluZz8NCj4gSSB3b25kZXIgYSBtb3JlIHNhZmUgd2F5IG1heWJlOg0KPiBt
-ZW1jcHkodmFsLCAodTggKilwICsgb2Zmc2V0ICUgNCwgYnlwdGVzKTsNCg0KSSBkaWQgbm90IG1l
-ZXQgaXNzdWUuIEZpeCBpbiB2My4NCg0KVGhhbmtzLA0KUGVuZy4NCg0KPiANCj4gUmVnYXJkcw0K
-PiBEb25nIEFpc2hlbmcNCj4gDQo+ID4gKw0KPiA+ICsJa2ZyZWUocCk7DQo+ID4gKw0KPiA+ICsJ
-cmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgbnZtZW1fY29uZmln
-IGlteF9zY3Vfb2NvdHBfbnZtZW1fY29uZmlnID0gew0KPiA+ICsJLm5hbWUgPSAiaW14LXNjdS1v
-Y290cCIsDQo+ID4gKwkucmVhZF9vbmx5ID0gdHJ1ZSwNCj4gPiArCS53b3JkX3NpemUgPSA0LA0K
-PiA+ICsJLnN0cmlkZSA9IDEsDQo+ID4gKwkub3duZXIgPSBUSElTX01PRFVMRSwNCj4gPiArCS5y
-ZWdfcmVhZCA9IGlteF9zY3Vfb2NvdHBfcmVhZCwNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0YXRp
-YyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIGlteF9zY3Vfb2NvdHBfZHRfaWRzW10gPSB7DQo+
-ID4gKwl7IC5jb21wYXRpYmxlID0gImZzbCxpbXg4cXhwLXNjdS1vY290cCIsICh2b2lkICopJmlt
-eDhxeHBfZGF0YSB9LA0KPiA+ICsJeyB9LA0KPiA+ICt9Ow0KPiA+ICtNT0RVTEVfREVWSUNFX1RB
-QkxFKG9mLCBpbXhfc2N1X29jb3RwX2R0X2lkcyk7DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGlt
-eF9zY3Vfb2NvdHBfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikgew0KPiA+ICsJ
-c3RydWN0IGRldmljZSAqZGV2ID0gJnBkZXYtPmRldjsNCj4gPiArCXN0cnVjdCBvY290cF9wcml2
-ICpwcml2Ow0KPiA+ICsJc3RydWN0IG52bWVtX2RldmljZSAqbnZtZW07DQo+ID4gKwlpbnQgcmV0
-Ow0KPiA+ICsNCj4gPiArCXByaXYgPSBkZXZtX2t6YWxsb2MoZGV2LCBzaXplb2YoKnByaXYpLCBH
-RlBfS0VSTkVMKTsNCj4gPiArCWlmICghcHJpdikNCj4gPiArCQlyZXR1cm4gLUVOT01FTTsNCj4g
-PiArDQo+ID4gKwlyZXQgPSBpbXhfc2N1X2dldF9oYW5kbGUoJnByaXYtPm52bWVtX2lwYyk7DQo+
-ID4gKwlpZiAocmV0KQ0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsJcHJpdi0+ZGF0
-YSA9IG9mX2RldmljZV9nZXRfbWF0Y2hfZGF0YShkZXYpOw0KPiA+ICsJcHJpdi0+ZGV2ID0gZGV2
-Ow0KPiA+ICsJaW14X3NjdV9vY290cF9udm1lbV9jb25maWcuc2l6ZSA9IDQgKiBwcml2LT5kYXRh
-LT5ucmVnczsNCj4gPiArCWlteF9zY3Vfb2NvdHBfbnZtZW1fY29uZmlnLmRldiA9IGRldjsNCj4g
-PiArCWlteF9zY3Vfb2NvdHBfbnZtZW1fY29uZmlnLnByaXYgPSBwcml2Ow0KPiA+ICsJbnZtZW0g
-PSBkZXZtX252bWVtX3JlZ2lzdGVyKGRldiwgJmlteF9zY3Vfb2NvdHBfbnZtZW1fY29uZmlnKTsN
-Cj4gPiArDQo+ID4gKwlyZXR1cm4gUFRSX0VSUl9PUl9aRVJPKG52bWVtKTsNCj4gPiArfQ0KPiA+
-ICsNCj4gPiArc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9kcml2ZXIgaW14X3NjdV9vY290cF9kcml2
-ZXIgPSB7DQo+ID4gKwkucHJvYmUJPSBpbXhfc2N1X29jb3RwX3Byb2JlLA0KPiA+ICsJLmRyaXZl
-ciA9IHsNCj4gPiArCQkubmFtZQk9ICJpbXhfc2N1X29jb3RwIiwNCj4gPiArCQkub2ZfbWF0Y2hf
-dGFibGUgPSBpbXhfc2N1X29jb3RwX2R0X2lkcywNCj4gPiArCX0sDQo+ID4gK307DQo+ID4gK21v
-ZHVsZV9wbGF0Zm9ybV9kcml2ZXIoaW14X3NjdV9vY290cF9kcml2ZXIpOw0KPiA+ICsNCj4gPiAr
-TU9EVUxFX0FVVEhPUigiUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+Iik7DQo+ID4gK01PRFVM
-RV9ERVNDUklQVElPTigiaS5NWDggU0NVIE9DT1RQIGZ1c2UgYm94IGRyaXZlciIpOw0KPiA+ICtN
-T0RVTEVfTElDRU5TRSgiR1BMIHYyIik7DQo+ID4gLS0NCj4gPiAyLjE2LjQNCg0K
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD
+Content-Type: multipart/mixed; boundary="ds4ILGG6wmir7tnpuOKgh4HNhNjCI4CsP";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: kernel@martin.sperl.org, linux-can@vger.kernel.org,
+ devicetree@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
+Message-ID: <9fe8a9bf-954e-e203-7b81-57b9460046fd@pengutronix.de>
+Subject: Re: [PATCH V7 RESEND 04/10] can: mcp25xxfd: Add Microchip mcp25xxfd
+ CAN FD driver
+References: <20190419051432.13538-1-kernel@martin.sperl.org>
+ <20190419051432.13538-5-kernel@martin.sperl.org>
+In-Reply-To: <20190419051432.13538-5-kernel@martin.sperl.org>
+
+--ds4ILGG6wmir7tnpuOKgh4HNhNjCI4CsP
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
+
+On 4/19/19 7:14 AM, kernel@martin.sperl.org wrote:
+> From: Martin Sperl <kernel@martin.sperl.org>
+>=20
+> Add un-optimized Can2.0 and CanFD support.
+>=20
+> CAN-Transmission and Optimizations and are separate patches
+>=20
+> On a Rasperry pi 3 it is already able to process Can2.0 Frames
+> with DLC=3D0 on a CAN bus with 1MHz. without losing any packets
+> on the SPI side. Packets still get lost inside the network stack.
+>=20
+> Signed-off-by: Martin Sperl <kernel@martin.sperl.org>
+
+[..]
+
+> diff --git a/drivers/net/can/spi/mcp25xxfd/mcp25xxfd_can.c b/drivers/ne=
+t/can/spi/mcp25xxfd/mcp25xxfd_can.c
+> index f98b02ff057b..eabd7ca50645 100644
+> --- a/drivers/net/can/spi/mcp25xxfd/mcp25xxfd_can.c
+> +++ b/drivers/net/can/spi/mcp25xxfd/mcp25xxfd_can.c
+> @@ -38,23 +38,162 @@
+>   * for timestamping of RX frames as well as for TEF entries.
+>   */
+>=20
+> -/* Implementation notes:
+> - *
+> - * Right now we only use the CAN controller block to put us into deep =
+sleep
+> - * this means that the oscillator clock is turned off.
+> - * So this is the only thing that we implement here right now
+> - */
+> -
+> +#include <linux/can/core.h>
+> +#include <linux/can/dev.h>
+>  #include <linux/device.h>
+> +#include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+>=20
+> +#include "mcp25xxfd_base.h"
+> +#include "mcp25xxfd_can_debugfs.h"
+> +#include "mcp25xxfd_can_fifo.h"
+> +#include "mcp25xxfd_can_int.h"
+> +#include "mcp25xxfd_can_priv.h"
+>  #include "mcp25xxfd_clock.h"
+>  #include "mcp25xxfd_cmd.h"
+> +#include "mcp25xxfd_int.h"
+>  #include "mcp25xxfd_priv.h"
+>  #include "mcp25xxfd_regs.h"
+>=20
+> -static int mcp25xxfd_can_get_mode(struct mcp25xxfd_priv *priv, u32 *re=
+g)
+> +#include <uapi/linux/can/netlink.h>
+> +
+> +/* module parameters */
+> +unsigned int bw_sharing_log2bits;
+> +module_param(bw_sharing_log2bits, uint, 0664);
+> +MODULE_PARM_DESC(bw_sharing_log2bits,
+> +		 "Delay between 2 transmissions in number of arbitration bit times\n=
+");
+> +bool enable_edge_filter;
+> +module_param(enable_edge_filter, bool, 0664);
+> +MODULE_PARM_DESC(enable_edge_filter,
+> +		 "Enable ISO11898-1:2015 edge_filtering");
+> +unsigned int tdc_mode =3D 2;
+> +module_param(tdc_mode, uint, 0664);
+> +MODULE_PARM_DESC(tdc_mode,
+> +		 "Transmitter Delay Mode - 0 =3D disabled, 1 =3D fixed, 2 =3D auto\n=
+");
+> +unsigned int tdc_value;
+> +module_param(tdc_value, uint, 0664);
+> +MODULE_PARM_DESC(tdc_value,
+> +		 "Transmission Delay Value - range: [0:63] SCLK");
+> +int tdc_offset =3D 64; /* outside of range to use computed values */
+> +module_param(tdc_offset, int, 0664);
+> +MODULE_PARM_DESC(tdc_offset,
+> +		 "Transmission Delay offset - range: [-64:63] SCLK");
+> +
+> +/* everything related to bit timing */
+> +static
+> +const struct can_bittiming_const mcp25xxfd_can_nominal_bittiming_const=
+ =3D {
+> +	.name           =3D DEVICE_NAME,
+> +	.tseg1_min      =3D 2,
+> +	.tseg1_max      =3D BIT(MCP25XXFD_CAN_NBTCFG_TSEG1_BITS),
+> +	.tseg2_min      =3D 1,
+> +	.tseg2_max      =3D BIT(MCP25XXFD_CAN_NBTCFG_TSEG2_BITS),
+> +	.sjw_max        =3D BIT(MCP25XXFD_CAN_NBTCFG_SJW_BITS),
+> +	.brp_min        =3D 1,
+> +	.brp_max        =3D BIT(MCP25XXFD_CAN_NBTCFG_BRP_BITS),
+> +	.brp_inc        =3D 1,
+> +};
+> +
+> +static
+> +const struct can_bittiming_const mcp25xxfd_can_data_bittiming_const =3D=
+ {
+> +	.name           =3D DEVICE_NAME,
+> +	.tseg1_min      =3D 1,
+> +	.tseg1_max      =3D BIT(MCP25XXFD_CAN_DBTCFG_TSEG1_BITS),
+> +	.tseg2_min      =3D 1,
+> +	.tseg2_max      =3D BIT(MCP25XXFD_CAN_DBTCFG_TSEG2_BITS),
+> +	.sjw_max        =3D BIT(MCP25XXFD_CAN_DBTCFG_SJW_BITS),
+> +	.brp_min        =3D 1,
+> +	.brp_max        =3D BIT(MCP25XXFD_CAN_DBTCFG_BRP_BITS),
+> +	.brp_inc        =3D 1,
+> +};
+> +
+> +static int mcp25xxfd_can_do_set_nominal_bittiming(struct net_device *n=
+et)
+> +{
+> +	struct mcp25xxfd_can_priv *cpriv =3D netdev_priv(net);
+> +	struct can_bittiming *bt =3D &cpriv->can.bittiming;
+> +
+> +	int sjw =3D bt->sjw;
+> +	int pseg2 =3D bt->phase_seg2;
+> +	int pseg1 =3D bt->phase_seg1;
+> +	int propseg =3D bt->prop_seg;
+> +	int brp =3D bt->brp;
+> +
+> +	int tseg1 =3D propseg + pseg1;
+> +	int tseg2 =3D pseg2;
+> +
+> +	/* calculate nominal bit timing */
+> +	cpriv->regs.nbtcfg =3D ((sjw - 1) << MCP25XXFD_CAN_NBTCFG_SJW_SHIFT) =
+|
+> +		((tseg2 - 1) << MCP25XXFD_CAN_NBTCFG_TSEG2_SHIFT) |
+> +		((tseg1 - 1) << MCP25XXFD_CAN_NBTCFG_TSEG1_SHIFT) |
+> +		((brp - 1) << MCP25XXFD_CAN_NBTCFG_BRP_SHIFT);
+> +
+> +	return mcp25xxfd_cmd_write(cpriv->priv->spi, MCP25XXFD_CAN_NBTCFG,
+> +				   cpriv->regs.nbtcfg);
+> +}
+> +
+> +static int mcp25xxfd_can_do_set_data_bittiming(struct net_device *net)=
+
+> +{
+> +	struct mcp25xxfd_can_priv *cpriv =3D netdev_priv(net);
+> +	struct mcp25xxfd_priv *priv =3D cpriv->priv;
+> +	struct can_bittiming *bt =3D &cpriv->can.data_bittiming;
+> +	struct spi_device *spi =3D priv->spi;
+> +
+> +	int sjw =3D bt->sjw;
+> +	int pseg2 =3D bt->phase_seg2;
+> +	int pseg1 =3D bt->phase_seg1;
+> +	int propseg =3D bt->prop_seg;
+> +	int brp =3D bt->brp;
+> +
+> +	int tseg1 =3D propseg + pseg1;
+> +	int tseg2 =3D pseg2;
+> +
+> +	int tdco;
+> +	int ret;
+> +
+> +	/* set up Transmitter delay compensation */
+> +	cpriv->regs.tdc =3D 0;
+> +	/* configure TDC mode */
+> +	if (tdc_mode < 4)
+> +		cpriv->regs.tdc =3D tdc_mode << MCP25XXFD_CAN_TDC_TDCMOD_SHIFT;
+> +	else
+> +		cpriv->regs.tdc =3D MCP25XXFD_CAN_TDC_TDCMOD_AUTO <<
+> +			MCP25XXFD_CAN_TDC_TDCMOD_SHIFT;
+> +
+> +	/* configure TDC offsets */
+> +	if ((tdc_offset >=3D -64) && tdc_offset < 64)
+> +		tdco =3D tdc_offset;
+> +	else
+> +		tdco =3D clamp_t(int, bt->brp * tseg1, -64, 63);
+> +	cpriv->regs.tdc |=3D (tdco << MCP25XXFD_CAN_TDC_TDCO_SHIFT) &
+> +		MCP25XXFD_CAN_TDC_TDCO_MASK;
+> +
+> +	/* configure TDC value */
+> +	if (tdc_value < 64)
+> +		cpriv->regs.tdc |=3D tdc_value << MCP25XXFD_CAN_TDC_TDCV_SHIFT;
+> +
+> +	/* enable edge filtering */
+> +	if (enable_edge_filter)
+> +		cpriv->regs.tdc |=3D MCP25XXFD_CAN_TDC_EDGFLTEN;
+> +
+> +	/* set TDC */
+> +	ret =3D mcp25xxfd_cmd_write(spi, MCP25XXFD_CAN_TDC, cpriv->regs.tdc);=
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* calculate data bit timing */
+> +	cpriv->regs.dbtcfg =3D ((sjw - 1) << MCP25XXFD_CAN_DBTCFG_SJW_SHIFT) =
+|
+> +		((tseg2 - 1) << MCP25XXFD_CAN_DBTCFG_TSEG2_SHIFT) |
+> +		((tseg1 - 1) << MCP25XXFD_CAN_DBTCFG_TSEG1_SHIFT) |
+> +		((brp - 1) << MCP25XXFD_CAN_DBTCFG_BRP_SHIFT);
+> +
+> +	return mcp25xxfd_cmd_write(spi, MCP25XXFD_CAN_DBTCFG,
+> +				   cpriv->regs.dbtcfg);
+> +}
+> +
+> +int mcp25xxfd_can_get_mode(struct mcp25xxfd_priv *priv, u32 *reg)
+>  {
+>  	int ret;
+>=20
+> @@ -66,11 +205,11 @@ static int mcp25xxfd_can_get_mode(struct mcp25xxfd=
+_priv *priv, u32 *reg)
+>  		MCP25XXFD_CAN_CON_OPMOD_SHIFT;
+>  }
+>=20
+> -static int mcp25xxfd_can_switch_mode(struct mcp25xxfd_priv *priv,
+> -				     u32 *reg, int mode)
+> +int mcp25xxfd_can_switch_mode_no_wait(struct mcp25xxfd_priv *priv,
+> +				      u32 *reg, int mode)
+>  {
+>  	u32 dummy;
+> -	int ret, i;
+> +	int ret;
+>=20
+>  	/* get the current mode/register - if reg is NULL
+>  	 * when the can controller is not setup yet
+> @@ -78,9 +217,11 @@ static int mcp25xxfd_can_switch_mode(struct mcp25xx=
+fd_priv *priv,
+>  	 * (this only happens during initialization phase)
+>  	 */
+>  	if (reg) {
+> -		ret =3D mcp25xxfd_can_get_mode(priv, reg);
+> -		if (ret < 0)
+> -			return ret;
+> +		if (!reg) {
+> +			ret =3D mcp25xxfd_can_get_mode(priv, reg);
+> +			if (ret < 0)
+> +				return ret;
+> +		}
+
+After this patch the function reads:
+
+> static int mcp25xxfd_can_switch_mode_no_wait(struct mcp25xxfd_priv *pri=
+v,
+> 					     u32 *reg, int mode)
+> {
+> 	u32 dummy;
+> 	int ret;
+>=20
+> 	/* get the current mode/register - if reg is NULL
+> 	 * when the can controller is not setup yet
+> 	 * typically by calling mcp25xxfd_can_sleep_mode
+> 	 * (this only happens during initialization phase)
+> 	 */
+> 	if (reg) {
+> 		if (!reg) {
+
+This looks wrong.
+
+> 			ret =3D mcp25xxfd_can_get_mode(priv, reg);
+> 			if (ret < 0)
+> 				return ret;
+> 		}
+> 	} else {
+> 		/* alternatively use dummy */
+> 		dummy =3D 0;
+> 		reg =3D &dummy;
+> 	}
+>=20
+
+Marc
+
+--=20
+Pengutronix e.K.                  | Marc Kleine-Budde           |
+Industrial Linux Solutions        | Phone: +49-231-2826-924     |
+Vertretung West/Dortmund          | Fax:   +49-5121-206917-5555 |
+Amtsgericht Hildesheim, HRA 2686  | http://www.pengutronix.de   |
+
+
+--ds4ILGG6wmir7tnpuOKgh4HNhNjCI4CsP--
+
+--9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEmvEkXzgOfc881GuFWsYho5HknSAFAlzS1dEACgkQWsYho5Hk
+nSCDyAgAsuFM0m3Y5vshjetwsmxPMq7F3ALb1CuXSblkItda+S3XF8veJiWUW8ZH
+P0NhJ71AkD53LG7Wg/VOFdRTYqfQIXpapQrP724qzyrriyn+CzxBtrdgTcM+D/2o
+nMQCT9wWiYr5p2Sja+a6ZY9Fa/c+9aNvjV76O2Oz8/X/FVuhSODaWoEFOHS4G+fw
+r12D/xVmAoTDHzS9FVUY7GDSupFm0KED8TySCdGc/IduDFW/aS9UIGTaexWyWOAv
+YsAgE/NFQL1YmE4sxtrCdbdBObSSTm+k7x9gjrborTW7UUtwN4VHOsx284WyprrW
+RKn9pPFV5ZpWRW5d+RZzKDp0jdpS5A==
+=dRB+
+-----END PGP SIGNATURE-----
+
+--9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD--
