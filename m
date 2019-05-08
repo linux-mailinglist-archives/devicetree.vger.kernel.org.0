@@ -2,102 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA2EF1758B
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 12:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46D3817598
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 12:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726839AbfEHKAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 06:00:24 -0400
-Received: from mail-eopbgr50072.outbound.protection.outlook.com ([40.107.5.72]:19078
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726916AbfEHKAY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 06:00:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4B9htAaDGUQ7lU1VuL1ilAsP5SxQSsXz3AVv8b1ZTvw=;
- b=nx0OZaT7n/hS+RgVnil46siHX5F1rtQ8uXOD8V4DJ2HnGhloqPaGJEz/lFlda6/WGicmTweYo7gRoCC9WD4U2YbSyBzen+d+tTx4QFdoGoYqEro4cKJm3P9hC3xIb9bbt1heY8eYeyI//BnviOA7p6+y+jWHZIVN+hM0+O3lukg=
-Received: from AM0PR04MB4865.eurprd04.prod.outlook.com (20.176.215.158) by
- AM0PR04MB6083.eurprd04.prod.outlook.com (20.179.34.143) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Wed, 8 May 2019 10:00:19 +0000
-Received: from AM0PR04MB4865.eurprd04.prod.outlook.com
- ([fe80::f496:84c1:30b5:43be]) by AM0PR04MB4865.eurprd04.prod.outlook.com
- ([fe80::f496:84c1:30b5:43be%7]) with mapi id 15.20.1856.012; Wed, 8 May 2019
- 10:00:19 +0000
-From:   Wen He <wen.he_1@nxp.com>
-To:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     Leo Li <leoyang.li@nxp.com>, Wen He <wen.he_1@nxp.com>
-Subject: [v1 4/4] arm64: ls1028ardb: Add support DP nodes for LS1028ARDB
-Thread-Topic: [v1 4/4] arm64: ls1028ardb: Add support DP nodes for LS1028ARDB
-Thread-Index: AQHVBYTYyPYgW7vI8E6GQ5gNiL+aow==
-Date:   Wed, 8 May 2019 10:00:19 +0000
-Message-ID: <20190508100136.7009-4-wen.he_1@nxp.com>
-References: <20190508100136.7009-1-wen.he_1@nxp.com>
-In-Reply-To: <20190508100136.7009-1-wen.he_1@nxp.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK0P153CA0043.APCP153.PROD.OUTLOOK.COM
- (2603:1096:203:17::31) To AM0PR04MB4865.eurprd04.prod.outlook.com
- (2603:10a6:208:c4::30)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=wen.he_1@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 89b90a52-674c-49b0-a68a-08d6d39bfa4c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6083;
-x-ms-traffictypediagnostic: AM0PR04MB6083:
-x-microsoft-antispam-prvs: <AM0PR04MB608390974C41FE75EE6D2EA7E2320@AM0PR04MB6083.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(346002)(39860400002)(376002)(136003)(366004)(199004)(189003)(476003)(11346002)(14454004)(316002)(2201001)(256004)(86362001)(4326008)(478600001)(305945005)(8936002)(25786009)(446003)(102836004)(2906002)(66446008)(66476007)(73956011)(66556008)(64756008)(66946007)(6486002)(71200400001)(81156014)(36756003)(81166006)(66066001)(8676002)(71190400001)(53936002)(6506007)(386003)(76176011)(5660300002)(54906003)(3846002)(99286004)(6116002)(52116002)(486006)(110136005)(6436002)(2616005)(68736007)(7736002)(2501003)(50226002)(1076003)(186003)(26005)(6512007);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6083;H:AM0PR04MB4865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: tA3SY4cEmlQDYVisuH6teirySgBI/0SK2YkdcfyeKZBpTnSwzjiYwajDrcgwDWJ0mPe8mspN+u9I9Fyi6Pxnk6u+dSgOBvA1FZucJP0Bx14VLAXEZDRCRwejsUICw9ZYt3EyVE2Se2RSY//ljoDuCxXL9qvmYMEvz9hmfVmnSXkzWJH44TrreO7Zkx0+VixfiWCT3AREJuTS8jgBp6MCA11qVvYY/k/0+9gSSnqdHnpXkSic4IXE8nzq5nx+YwvEeNqi3V68RKVG82e1RP7y687aO+qkWo80u3xeJNRbjRun0H3GSGAcmcVx+xFg8090lWisFk9vkTbfyCxUh4CzP0vTdN2UNFD1/ls4PH0EfReTSf1dZGGplPDyjvdEQgFR1UfLKKnryRp95JYv+JRZ7P60PL7R3Wk+MvLFdNl/Cq0=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726140AbfEHKFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 06:05:14 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:54441 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725868AbfEHKFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 06:05:10 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190508100507euoutp02b506794cc2a6058c95651c349f3f8a1e~crRw_WS4i2862328623euoutp02p
+        for <devicetree@vger.kernel.org>; Wed,  8 May 2019 10:05:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190508100507euoutp02b506794cc2a6058c95651c349f3f8a1e~crRw_WS4i2862328623euoutp02p
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557309908;
+        bh=Lal4PtYXV/9VLRwc99/d1O5mQ4PrmsmpztEfidkvKoQ=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=dLsVjQOdc/QWZcUc73XJirlnuIga1FGbno5eqNZ20VCcEGLDOgh73B1K/5VFa0pIV
+         zEsgyc5+8K2eKAxjO561QeTkd/9E3l7xNXoZwWcJ0VV8JeWw+ppUWl5sOvOfbKHssG
+         A3rbbIJ4CHlIQEAAp65jOF0NO6sJ5dwSKqhJDJk4=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190508100507eucas1p2c8f8203ab28f455c339bcf5248d23844~crRwSGEHy2244422444eucas1p2U;
+        Wed,  8 May 2019 10:05:07 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 5B.0F.04377.2D9A2DC5; Wed,  8
+        May 2019 11:05:06 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190508100506eucas1p2ab217f8232db3d01a018222434e50e87~crRvj0HTf0236202362eucas1p2T;
+        Wed,  8 May 2019 10:05:06 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190508100506eusmtrp1e3048af202edc8671be2a56a2867d1ba~crRvVh--Q2472424724eusmtrp1e;
+        Wed,  8 May 2019 10:05:06 +0000 (GMT)
+X-AuditID: cbfec7f4-12dff70000001119-70-5cd2a9d25d13
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 0C.99.04140.2D9A2DC5; Wed,  8
+        May 2019 11:05:06 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190508100505eusmtip12c6ed055f8b8859ba3b841ff3111a8dc~crRuRFBUZ0420404204eusmtip1O;
+        Wed,  8 May 2019 10:05:05 +0000 (GMT)
+Subject: Re: [PATCH v7 12/13] ARM: dts: exynos: add DMC device for
+ exynos5422
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <b8debbd9-fd49-5666-eab1-b905ed050067@partner.samsung.com>
+Date:   Wed, 8 May 2019 12:05:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89b90a52-674c-49b0-a68a-08d6d39bfa4c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 10:00:19.6730
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6083
+In-Reply-To: <CAJKOXPcOWkUa_+sLNXdhqpQNN9oaCuHzpjvagsE+ViA0mDf4Vw@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0yMcRzHfe95nrun5vJ1RZ/FmMPIJjK278aikT34Iz/HaOPkWaG7ck/5
+        FXPkRyJS6Do/chh1nOvX+nE2kXbJ4RR2FaY5v1XKVUSk66npv9f383m/93m/ty9LKT4zAexm
+        TTyv1ahilFJvutjW5Zham1sbMf2jZTbJ11sY4mz/yJDsyicMudHmQiTj4QUJeXRMTU66vlLE
+        4ciTkccHmmTkmfW8lLhTKxHRO+5IiLnytYy83J8jJfebjjCk/Pli8vK3D+l88BbNU3CdHek0
+        d05XQ3NlhtcyrsB0VMqlJrVIuRNFJsQV2hM5d8GYpexa7zmb+JjN23nttJAN3tEtp83SOF3k
+        zoMfnIwOGYNTkBcLeCYYLbdRCvJmFTgHwaMrbolnocDtCA5d7Wc3Al0rNWAw5zsZ0XAdQdmt
+        35T4aEZQp8+WpSCW9cXh4Era4TH44UBw/vnRZ6BwPg0lpdY+jRQHQalpm0cjxwuhtrKa8TCN
+        J4DpQVbfsRF4Dbyx5TGiZjhUZ72jPeyFl0GP7bLMwxT2h4Z32RKRx0JJ8/m+PICzWLjY2YXE
+        1AuguzxTJrIvfKkq6ufRYM84TossgC7V2K/fA66TF/o1s+F+VQ3jyUz1lrFYp4njUDA/eSH1
+        jAH7QF3zcDGCD6QXZ1LiWA7JhxWiejIUHX8qEXkkXL95VpaGlIZBxQyDyhgGlTH8v3sJ0Sbk
+        zycI6ihemKHhdwQJKrWQoIkKioxVF6DeD2j/W9VeiqzdGysQZpFyqPxTXE2EglFtF3apKxCw
+        lNJP7jxVG6GQb1Lt2s1rY9drE2J4oQKNYmmlvzxxSOM6BY5SxfNbeT6O1w5sJaxXgA6tTrS1
+        PPeL31u95Zu7PnfKuIkbNGMbfxlzkqx/Va5Ft9+uXHat59WwjuJU/fjHU3uCLas2luYumX+x
+        njSEXLIbtZErys5Nmrvi+731jjt7PjW8D9lXTYeV8KGzprvCJ8tjuxrtLfl3ucCRutCf69p8
+        wwytdjaiMC95edqZG8dyUtoXYCUtRKuCp1BaQfUPiAQ0uHwDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42I5/e/4Xd1LKy/FGNycx2WxccZ6VovrX56z
+        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
+        e+Quu8XtxhVsFofftLNa7L/iZXH7N5/FtxOPGB2EPL59ncTiMbvhIovHzll32T02repk8+ht
+        fsfm0bdlFaPH5tPVHp83yQVwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq
+        6dvZpKTmZJalFunbJehlvJuylq2gIbmi5dl11gbGhYZdjJwcEgImEms3XmftYuTiEBJYyihx
+        7PV3RoiEmMSkfdvZIWxhiT/Xutggil4zSmw+8ZkNJCEs4Cux48VFsAYRAU2J63+/g01iFtjI
+        InHxVS8TRMdyJokz/9YCVXFwsAnoSexYVQjSwCvgJnHpyElWEJtFQEVi1YmZzCC2qECExJn3
+        K1ggagQlTs58AmZzCgRK/D+2COwiZgEziXmbHzJD2OISt57MZ4Kw5SW2v53DPIFRaBaS9llI
+        WmYhaZmFpGUBI8sqRpHU0uLc9NxiI73ixNzi0rx0veT83E2MwNjfduznlh2MXe+CDzEKcDAq
+        8fC+KLgYI8SaWFZcmXuIUYKDWUmE9/rESzFCvCmJlVWpRfnxRaU5qcWHGE2BnpvILCWanA9M
+        S3kl8YamhuYWlobmxubGZhZK4rwdAgdjhATSE0tSs1NTC1KLYPqYODilGhiVrf/82bNrRmP1
+        vP5JJwofP921RD7tB4ebQ8tS7l7J00FvFFvnf44sjW05kfq6L3jtNNGKlFwJFqYLzqXiryYX
+        nc5t/vCx6A5nipbtn4vTrj0o7Vqmm/hmklSTXrWoFs++yofnthzd8qJU8HLQBJdZT/hbt16N
+        +bZa5ZXEXYu5b+zv9O1hmflNiaU4I9FQi7moOBEAffcMpRMDAAA=
+X-CMS-MailID: 20190508100506eucas1p2ab217f8232db3d01a018222434e50e87
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190506151219eucas1p2b5c3368873696f51e7d0d3a3e6d6bf1e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190506151219eucas1p2b5c3368873696f51e7d0d3a3e6d6bf1e
+References: <CGME20190506151219eucas1p2b5c3368873696f51e7d0d3a3e6d6bf1e@eucas1p2.samsung.com>
+        <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
+        <1557155521-30949-13-git-send-email-l.luba@partner.samsung.com>
+        <CAJKOXPcOWkUa_+sLNXdhqpQNN9oaCuHzpjvagsE+ViA0mDf4Vw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBwYXRjaCBhZGQgSERQIFBIWSBDb250cm9sbGVyIHJlbGF0ZWQgbm9kZXMgb24gdGhlIExT
-MTAyOEFSREIuDQpOb3cgTFMxMDI4QVJEQiBvbiBEUCBoYXMgZm9sbG93aW5nIGZlYXR1cmVzOg0K
-LSBTdXBwb3J0cyA0IGRwIGxhbmUgY2hhbm5lbCBhbmQgbGFuZSBtYXBwaW5nIGlzIDEtMC0zLTIu
-DQotIEJ5IGRlZmF1bHQsIHRoZSBwaXhlbCBsaW5rIHJhdGUgdmFsdWUncyAyN01oei4NCi0gQnkg
-ZGVmYXVsdCwgc3VwcG9ydCB0aGUgcmVzb2x1aW9ucyBhcmUgNGtANjAsMTA4MHBANjAsNzIwcEA2
-MCwNCjQ4MHBANjAuIGFsc28gdXNlciBjYW4gc3BlY2lmeSBhbnkgY29tYmluYXRpb24gb2YgbW9u
-aXRvciBzdXBwb3J0ZWQNCnJlc29sdWlvbnMgYnkgd3JpdHRlbiBpbiB0aGUgbm9kZSAncmVzb2x1
-aW9uJy4NCi0gQnkgZGVmYXVsdCwgdGhlIGVkaWQgZnVuY3Rpb24gaXMgbm90IGluIHVzZS4NCg0K
-U2lnbmVkLW9mZi1ieTogQWxpc29uIFdhbmcgPGFsaXNvbi53YW5nQG54cC5jb20+DQpTaWduZWQt
-b2ZmLWJ5OiBXZW4gSGUgPHdlbi5oZV8xQG54cC5jb20+DQotLS0NCiBhcmNoL2FybTY0L2Jvb3Qv
-ZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzIHwgMTIgKysrKysrKysrKysrDQogMSBm
-aWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXJkYi5kdHMgYi9hcmNoL2FybTY0L2Jvb3Qv
-ZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQppbmRleCBmOWMyNzJmYjA3MzguLjUx
-M2IwZTM3ZWExMyAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2Zz
-bC1sczEwMjhhLXJkYi5kdHMNCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2Zz
-bC1sczEwMjhhLXJkYi5kdHMNCkBAIC0xNTEsMyArMTUxLDE1IEBADQogJnNhaTQgew0KIAlzdGF0
-dXMgPSAib2theSI7DQogfTsNCisNCismaGRwIHsNCisJZnNsLG5vX2VkaWQ7DQorCXJlc29sdXRp
-b24gPSAiMzg0MHgyMTYwQDYwIiwNCisJCSAgICIxOTIweDEwODBANjAiLA0KKwkJICAgIjEyODB4
-NzIwQDYwIiwNCisJCSAgICI3MjB4NDgwQDYwIjsNCisJbGFuZV9tYXBwaW5nID0gPDB4NGU+Ow0K
-KwllZHBfbGlua19yYXRlID0gPDB4Nj47DQorCWVkcF9udW1fbGFuZXMgPSA8MHg0PjsNCisJc3Rh
-dHVzID0gIm9rYXkiOw0KK307DQotLSANCjIuMTcuMQ0KDQo=
+
+
+On 5/8/19 9:25 AM, Krzysztof Kozlowski wrote:
+> On Mon, 6 May 2019 at 17:12, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>> Add description of Dynamic Memory Controller and PPMU counters.
+>> They are used by exynos5422-dmc driver.
+>> There is a definition of the memory chip, which is then used during
+>> calculation of timings for each OPP.
+>> The algorithm in the driver needs these two sets to bound the timings.
+>>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   arch/arm/boot/dts/exynos5420.dtsi             | 121 +++++++++++++++++++++++++
+>>   arch/arm/boot/dts/exynos5422-odroid-core.dtsi | 122 ++++++++++++++++++++++++++
+>>   2 files changed, 243 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
+>> index aaff158..1b66601 100644
+>> --- a/arch/arm/boot/dts/exynos5420.dtsi
+>> +++ b/arch/arm/boot/dts/exynos5420.dtsi
+>> @@ -14,6 +14,7 @@
+>>   #include <dt-bindings/clock/exynos5420.h>
+>>   #include <dt-bindings/clock/exynos-audss-clk.h>
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/pmu/exynos_ppmu.h>
+>>
+>>   / {
+>>          compatible = "samsung,exynos5420", "samsung,exynos5";
+>> @@ -235,6 +236,38 @@
+>>                          status = "disabled";
+>>                  };
+>>
+>> +               dmc: memory-controller@10c20000 {
+>> +                       compatible = "samsung,exynos5422-dmc";
+>> +                       reg = <0x10c20000 0x100>, <0x10c30000 0x100>;
+>> +                       clocks = <&clock CLK_FOUT_SPLL>,
+>> +                                <&clock CLK_MOUT_SCLK_SPLL>,
+>> +                                <&clock CLK_FF_DOUT_SPLL2>,
+>> +                                <&clock CLK_FOUT_BPLL>,
+>> +                                <&clock CLK_MOUT_BPLL>,
+>> +                                <&clock CLK_SCLK_BPLL>,
+>> +                                <&clock CLK_MOUT_MX_MSPLL_CCORE>,
+>> +                                <&clock CLK_MOUT_MX_MSPLL_CCORE_PHY>,
+>> +                                <&clock CLK_MOUT_MCLK_CDREX>,
+>> +                                <&clock CLK_DOUT_CLK2X_PHY0>,
+>> +                                <&clock CLK_CLKM_PHY0>,
+>> +                                <&clock CLK_CLKM_PHY1>;
+>> +                       clock-names = "fout_spll",
+>> +                                     "mout_sclk_spll",
+>> +                                     "ff_dout_spll2",
+>> +                                     "fout_bpll",
+>> +                                     "mout_bpll",
+>> +                                     "sclk_bpll",
+>> +                                     "mout_mx_mspll_ccore",
+>> +                                     "mout_mx_mspll_ccore_phy",
+>> +                                     "mout_mclk_cdrex",
+>> +                                     "dout_clk2x_phy0",
+>> +                                     "clkm_phy0",
+>> +                                     "clkm_phy1";
+>> +                       samsung,syscon-clk = <&clock>;
+>> +                       samsung,syscon-chipid = <&chipid>;
+>> +                       status = "disabled";
+>> +               };
+>> +
+>>                  nocp_mem0_0: nocp@10ca1000 {
+>>                          compatible = "samsung,exynos5420-nocp";
+>>                          reg = <0x10CA1000 0x200>;
+>> @@ -271,6 +304,94 @@
+>>                          status = "disabled";
+>>                  };
+>>
+>> +               ppmu_dmc0_0: ppmu@10d00000 {
+>> +                       compatible = "samsung,exynos-ppmu";
+>> +                       reg = <0x10d00000 0x2000>;
+>> +                       clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
+>> +                       clock-names = "ppmu";
+>> +                       events {
+>> +                               ppmu_event0_dmc0_0: ppmu-event0-dmc0_0 {
+>> +                                       event-name = "ppmu-event0-dmc0_0";
+>> +                                       event-data-type = <PPMU_RO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event1_dmc0_0: ppmu-event1-dmc0_0 {
+>> +                                       event-name = "ppmu-event1-dmc0_0";
+>> +                                       event-data-type = <PPMU_WO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event3_dmc0_0: ppmu-event3-dmc0_0 {
+>> +                                       event-name = "ppmu-event3-dmc0_0";
+>> +                                       event-data-type = <(PPMU_RO_DATA_CNT |
+>> +                                               PPMU_WO_DATA_CNT)>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               ppmu_dmc0_1: ppmu@10d10000 {
+>> +                       compatible = "samsung,exynos-ppmu";
+>> +                       reg = <0x10d10000 0x2000>;
+>> +                       clocks = <&clock CLK_PCLK_PPMU_DREX0_1>;
+>> +                       clock-names = "ppmu";
+>> +                       events {
+>> +                               ppmu_event0_dmc0_1: ppmu-event0-dmc0_1 {
+>> +                                       event-name = "ppmu-event0-dmc0_1";
+>> +                                       event-data-type = <PPMU_RO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event1_dmc0_1: ppmu-event1-dmc0_1 {
+>> +                                       event-name = "ppmu-event1-dmc0_1";
+>> +                                       event-data-type = <PPMU_WO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event3_dmc0_1: ppmu-event3-dmc0_1 {
+>> +                                       event-name = "ppmu-event3-dmc0_1";
+>> +                                       event-data-type = <(PPMU_RO_DATA_CNT |
+>> +                                               PPMU_WO_DATA_CNT)>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               ppmu_dmc1_0: ppmu@10d60000 {
+>> +                       compatible = "samsung,exynos-ppmu";
+>> +                       reg = <0x10d60000 0x2000>;
+>> +                       clocks = <&clock CLK_PCLK_PPMU_DREX1_0>;
+>> +                       clock-names = "ppmu";
+>> +                       events {
+>> +                               ppmu_event0_dmc1_0: ppmu-event0-dmc1_0 {
+>> +                                       event-name = "ppmu-event0-dmc1_0";
+>> +                                       event-data-type = <PPMU_RO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event1_dmc1_0: ppmu-event1-dmc1_0 {
+>> +                                       event-name = "ppmu-event1-dmc1_0";
+>> +                                       event-data-type = <PPMU_WO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event3_dmc1_0: ppmu-event3-dmc1_0 {
+>> +                                       event-name = "ppmu-event3-dmc1_0";
+>> +                                       event-data-type = <(PPMU_RO_DATA_CNT |
+>> +                                               PPMU_WO_DATA_CNT)>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               ppmu_dmc1_1: ppmu@10d70000 {
+>> +                       compatible = "samsung,exynos-ppmu";
+>> +                       reg = <0x10d70000 0x2000>;
+>> +                       clocks = <&clock CLK_PCLK_PPMU_DREX1_1>;
+>> +                       clock-names = "ppmu";
+>> +                       events {
+>> +                               ppmu_event0_dmc1_1: ppmu-event0-dmc1_1 {
+>> +                                       event-name = "ppmu-event0-dmc1_1";
+>> +                                       event-data-type = <PPMU_RO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event1_dmc1_1: ppmu-event1-dmc1_1 {
+>> +                                       event-name = "ppmu-event1-dmc1_1";
+>> +                                       event-data-type = <PPMU_WO_DATA_CNT>;
+>> +                               };
+>> +                               ppmu_event3_dmc1_1: ppmu-event3-dmc1_1 {
+>> +                                       event-name = "ppmu-event3-dmc1_1";
+>> +                                       event-data-type = <(PPMU_RO_DATA_CNT |
+>> +                                               PPMU_WO_DATA_CNT)>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>>                  gsc_pd: power-domain@10044000 {
+>>                          compatible = "samsung,exynos4210-pd";
+>>                          reg = <0x10044000 0x20>;
+>> diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+>> index 25d95de1..76abf03 100644
+>> --- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+>> +++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+>> @@ -34,6 +34,97 @@
+>>                          clock-frequency = <24000000>;
+>>                  };
+>>          };
+>> +
+>> +       dmc_opp_table: opp_table2 {
+>> +               compatible = "operating-points-v2";
+>> +
+>> +               opp00 {
+>> +                       opp-hz = /bits/ 64 <165000000>;
+>> +                       opp-microvolt = <875000>;
+>> +               };
+>> +               opp01 {
+>> +                       opp-hz = /bits/ 64 <206000000>;
+>> +                       opp-microvolt = <875000>;
+>> +               };
+>> +               opp02 {
+>> +                       opp-hz = /bits/ 64 <275000000>;
+>> +                       opp-microvolt = <875000>;
+>> +               };
+>> +               opp03 {
+>> +                       opp-hz = /bits/ 64 <413000000>;
+>> +                       opp-microvolt = <887500>;
+>> +               };
+>> +               opp04 {
+>> +                       opp-hz = /bits/ 64 <543000000>;
+>> +                       opp-microvolt = <937500>;
+>> +               };
+>> +               opp05 {
+>> +                       opp-hz = /bits/ 64 <633000000>;
+>> +                       opp-microvolt = <1012500>;
+>> +               };
+>> +               opp06 {
+>> +                       opp-hz = /bits/ 64 <728000000>;
+>> +                       opp-microvolt = <1037500>;
+>> +               };
+>> +               opp07 {
+>> +                       opp-hz = /bits/ 64 <825000000>;
+>> +                       opp-microvolt = <1050000>;
+>> +               };
+>> +       };
+>> +
+>> +       samsung_K3QF2F20DB: lpddr3 {
+>> +               compatible      = "Samsung,K3QF2F20DB", "jedec,lpddr3";
+>> +               density         = <16384>;
+>> +               io-width        = <32>;
+>> +               #address-cells  = <1>;
+>> +               #size-cells     = <0>;
+>> +
+>> +               tRFC-min-tck            = <17>;
+>> +               tRRD-min-tck            = <2>;
+>> +               tRPab-min-tck           = <2>;
+>> +               tRPpb-min-tck           = <2>;
+>> +               tRCD-min-tck            = <3>;
+>> +               tRC-min-tck             = <6>;
+>> +               tRAS-min-tck            = <5>;
+>> +               tWTR-min-tck            = <2>;
+>> +               tWR-min-tck             = <7>;
+>> +               tRTP-min-tck            = <2>;
+>> +               tW2W-C2C-min-tck        = <0>;
+>> +               tR2R-C2C-min-tck        = <0>;
+>> +               tWL-min-tck             = <8>;
+>> +               tDQSCK-min-tck          = <5>;
+>> +               tRL-min-tck             = <14>;
+>> +               tFAW-min-tck            = <5>;
+>> +               tXSR-min-tck            = <12>;
+>> +               tXP-min-tck             = <2>;
+>> +               tCKE-min-tck            = <2>;
+>> +               tCKESR-min-tck          = <2>;
+>> +               tMRD-min-tck            = <5>;
+>> +
+>> +               timings_samsung_K3QF2F20DB_800mhz: lpddr3-timings@0 {
+>> +                       compatible      = "jedec,lpddr3-timings";
+>> +                       reg             = <800000000>; /* workaround: it shows max-freq */
+> 
+> Please be sure that there are no new warnings (make dtbs W=1). This
+> does not look correct (reg does not match unit address).
+Rob has also pointed out in the bindings that it should have @800000000.
+Regarding the dtbs warnings, it does not produce any new even with '@0'.
+
+I have changed it to @800000000 in the next version.
+
+Regards,
+Lukasz
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
