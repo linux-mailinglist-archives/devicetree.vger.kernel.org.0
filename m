@@ -2,118 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1541017317
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 10:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7CF917304
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 09:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726476AbfEHIEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 04:04:10 -0400
-Received: from HC210-202-87-179.vdslpro.static.apol.com.tw ([210.202.87.179]:47246
-        "EHLO ironport.ite.com.tw" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725842AbfEHIEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 04:04:10 -0400
-X-Greylist: delayed 588 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 May 2019 04:04:09 EDT
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 08 May 2019 15:54:20 +0800
-Received: from csbcas.internal.ite.com.tw (csbcas1.internal.ite.com.tw [192.168.65.46])
-        by mse.ite.com.tw with ESMTP id x487sFOA075568;
-        Wed, 8 May 2019 15:54:15 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from allen-VirtualBox.internal.ite.com.tw (192.168.70.14) by
- csbcas1.internal.ite.com.tw (192.168.65.45) with Microsoft SMTP Server (TLS)
- id 14.3.352.0; Wed, 8 May 2019 15:54:15 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        David Airlie <airlied@linux.ie>,
+        id S1726803AbfEHHzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 03:55:53 -0400
+Received: from mail-eopbgr820082.outbound.protection.outlook.com ([40.107.82.82]:56288
+        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726415AbfEHHzw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 03:55:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ntZ1DgLIHPzxyWjXS/i+t9vKfZShLt9v6y3eqbMIIEI=;
+ b=C/wDZ53A3EZZcdOYBZhK++Eeo/df1P2N4YF4O3lp1+5OB6f1WE8Y9QUw8uAQQD6wsf7/d/Gu8EiQC58PwmYshhphL1L63K62Nqj2q6iyESqzTpBh2UARk58+eAFW/79GXajbQHFR3ov+PS8lg0eIG6WzsG29E+oUneb9QZS9xMQ=
+Received: from MN2PR02CA0032.namprd02.prod.outlook.com (2603:10b6:208:fc::45)
+ by DM5PR02MB3830.namprd02.prod.outlook.com (2603:10b6:4:b0::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1856.12; Wed, 8 May
+ 2019 07:55:10 +0000
+Received: from CY1NAM02FT054.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e45::206) by MN2PR02CA0032.outlook.office365.com
+ (2603:10b6:208:fc::45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1878.20 via Frontend
+ Transport; Wed, 8 May 2019 07:55:09 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ CY1NAM02FT054.mail.protection.outlook.com (10.152.74.100) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1856.11
+ via Frontend Transport; Wed, 8 May 2019 07:55:08 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <anurag.kumar.vulisha@xilinx.com>)
+        id 1hOHPw-0004Y6-E8; Wed, 08 May 2019 00:55:08 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <anurag.kumar.vulisha@xilinx.com>)
+        id 1hOHPr-0005yM-9u; Wed, 08 May 2019 00:55:03 -0700
+Received: from xsj-pvapsmtp01 (maildrop.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x487sqF4027151;
+        Wed, 8 May 2019 00:54:53 -0700
+Received: from [172.23.64.8] (helo=xhdvnc108.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <anuragku@xilinx.com>)
+        id 1hOHPg-0005s9-KO; Wed, 08 May 2019 00:54:52 -0700
+Received: by xhdvnc108.xilinx.com (Postfix, from userid 15427)
+        id C80BC604D8; Wed,  8 May 2019 13:24:51 +0530 (IST)
+From:   Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Hovold <johan@kernel.org>,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
-        Koen Kooi <koen@dominion.thruhere.net>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Ben Whitten <ben.whitten@gmail.com>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/3] dt-bindings: Add binding for IT6505.
-Date:   Wed, 8 May 2019 15:48:40 +0800
-Message-ID: <1557301722-20827-2-git-send-email-allen.chen@ite.com.tw>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1557301722-20827-1-git-send-email-allen.chen@ite.com.tw>
-References: <1557301722-20827-1-git-send-email-allen.chen@ite.com.tw>
+        Felipe Balbi <balbi@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        "Claus H. Stovgaard" <cst@phaseone.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <v.anuragkumar@gmail.com>,
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
+Subject: [PATCH v2 0/3] usb: gadget: Add support for disabling U1 and U2 entries
+Date:   Wed, 8 May 2019 13:24:48 +0530
+Message-ID: <1557302091-7455-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
+X-Mailer: git-send-email 2.1.1
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(39860400002)(346002)(136003)(396003)(2980300002)(199004)(189003)(63266004)(7416002)(47776003)(305945005)(356004)(6666004)(90966002)(81166006)(486006)(81156014)(103686004)(26005)(2616005)(186003)(8936002)(51416003)(426003)(8676002)(476003)(336012)(2906002)(50226002)(16586007)(126002)(4326008)(6266002)(316002)(6306002)(42186006)(110136005)(70586007)(5660300002)(70206006)(14444005)(107886003)(54906003)(106002)(478600001)(48376002)(966005)(52956003)(50466002)(36756003)(36386004)(6606295002);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR02MB3830;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;A:1;MX:1;
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [192.168.70.14]
-X-MAIL: mse.ite.com.tw x487sFOA075568
-To:     unlisted-recipients:; (no To-header on input)
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2966770b-a25f-415a-a58a-08d6d38a7e36
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328);SRVR:DM5PR02MB3830;
+X-MS-TrafficTypeDiagnostic: DM5PR02MB3830:
+X-MS-Exchange-PUrlCount: 1
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-Microsoft-Antispam-PRVS: <DM5PR02MB383097B712FB76222FB0FCE7A7320@DM5PR02MB3830.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Forefront-PRVS: 0031A0FFAF
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: 848ofKxSide2kz0vOQHCMH3F5BFB8QzXRUmztvYUI5DDh3yfMrecykWhNZZy/h4fd8zrzRXf/toxz7yXtnzDWnUs2RB1uyEHCvThIQ3pHSKdiBpKAKAZVy6o9xpZ2eXR2ARTspeeiacAnwlA0Wr4XzGcZM1KpmM3g18cZo9D0RXcCHLcWdm578TRK4cLllJ0/I0YdcNZDXUVjmM7p5NbGDvtvDGF3zehczVJfQL4L0NuPjKW5xEoDLo38MjDvO0xfKKokPgglP0SDrORCeoBaMNnxSLG6hav0J6JJ/93Y8ViLf7UVQZ0AR1lo1hAZetBr8F1N663viD5ZNnBCEa1oNEnMrZ1T/3f4lIP+6WLG9vjIeduJZLfdGaslAYgnki23k2/gbCx6xHknDr4GHrAH8uiB2zhZCWknHnZS70WSRI=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2019 07:55:08.9654
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2966770b-a25f-415a-a58a-08d6d38a7e36
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR02MB3830
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Allen Chen <allen.chen@ite.com.tw>
+Gadget applications may have a requirement to disable the U1 and U2
+entry based on the usecase. Below are few usecases where the disabling
+U1/U2 entries may be possible.
 
-Add a DT binding documentation for IT6505.
+Usecase 1:
+When combining dwc3 with an redriver for a USB Type-C device solution, it
+sometimes have problems with leaving U1/U2 for certain hosts, resulting in
+link training errors and reconnects. For this U1/U2 state entries may be
+avoided.
 
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+Usecase 2:
+When performing performance benchmarking on mass storage gadget the
+U1 and U2 entries can be disabled.
 
----
- .../bindings/display/bridge/ite,it6505.txt         | 30 ++++++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.txt        |  1 +
- 2 files changed, 31 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+Usecase 3:
+When periodic transfers like ISOC transfers are used with bInterval
+of 1 which doesn't require the link to enter into U1 or U2 state entry
+(since ping is issued from host for every uframe interval). In this
+case the U1 and U2 entry can be disabled.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-new file mode 100644
-index 0000000..c3506ac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-@@ -0,0 +1,30 @@
-+iTE it6505 DP bridge bindings
-+
-+Required properties:
-+        - compatible: "ite,it6505"
-+        - reg: i2c address of the bridge
-+        - ovdd-supply: I/O voltage
-+        - pwr18-supply: Core voltage
-+        - interrupts: interrupt specifier of INT pin
-+        - reset-gpios: gpio specifier of RESET pin
-+
-+Example:
-+	it6505dptx: it6505dptx@5c {
-+                compatible = "ite,it6505";
-+                status = "okay";
-+                interrupt-parent = <&pio>;
-+                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
-+                reg = <0x5c>;
-+                pinctrl-names = "default";
-+                pinctrl-0 = <&it6505_pins>;
-+                ovdd-supply = <&mt6358_vsim1_reg>;
-+                pwr18-supply = <&it6505_pp18_reg>;
-+                reset-gpios = <&pio 179 1>;
-+                hpd-gpios = <&pio 9 0>;
-+                extcon = <&usbc_extcon>;
-+                port {
-+                        it6505_in: endpoint {
-+                                remote-endpoint = <&dpi_out>;
-+                        };
-+                };
-+        };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-index 2c3fc51..c088646 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-@@ -184,6 +184,7 @@ iom	Iomega Corporation
- isee	ISEE 2007 S.L.
- isil	Intersil
- issi	Integrated Silicon Solutions Inc.
-+ite	iTE Tech. Inc.
- itead	ITEAD Intelligent Systems Co.Ltd
- iwave  iWave Systems Technologies Pvt. Ltd.
- jdi	Japan Display Inc.
+Disablement of U1/U2 can be done by setting U1DevExitLat and U2DevExitLat
+values to 0 in the BOS descriptor. Host on seeing 0 value for U1DevExitLat
+and U2DevExitLat, it doesn't send SET_SEL requests to the gadget. There
+may be some hosts which may send SET_SEL requests even after seeing 0 in
+the UxDevExitLat of BOS descriptor. To aviod U1/U2 entries for these type
+of hosts, dwc3 controller can be programmed to reject those U1/U2 requests
+by not enabling ACCEPTUxENA bits in DCTL register.
+
+This patch series updates the same.
+
+Changes in v2:
+	1. As suggested by Thinh Nguyen changed the "snps,dis_u1_entry_quirk"
+	   to "snps,dis-u1-entry-quirk"
+	2. Merged the changes done by Claus H. Stovgaard in ep0.c for rejecting
+	   U1/U2 requests into this patch. Changes done by Claus can be found
+	   here https://marc.info/?l=linux-kernel&m=155722068820568&w=2
+
+Anurag Kumar Vulisha (3):
+  doc: dt: bindings: usb: dwc3: Update entries for disabling U1 and U2
+  usb: gadget: send usb_gadget as an argument in get_config_params
+  usb: dwc3: gadget: Add support for disabling U1 and U2 entries
+
+ Documentation/devicetree/bindings/usb/dwc3.txt |  2 ++
+ drivers/usb/dwc3/core.c                        |  4 ++++
+ drivers/usb/dwc3/core.h                        |  4 ++++
+ drivers/usb/dwc3/ep0.c                         |  9 ++++++++-
+ drivers/usb/dwc3/gadget.c                      | 19 +++++++++++++++++++
+ drivers/usb/dwc3/gadget.h                      |  6 ++++++
+ drivers/usb/gadget/composite.c                 |  2 +-
+ include/linux/usb/gadget.h                     |  3 ++-
+ 8 files changed, 46 insertions(+), 3 deletions(-)
+
 -- 
-1.9.1
+2.1.1
 
