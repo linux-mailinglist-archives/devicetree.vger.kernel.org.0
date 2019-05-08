@@ -2,1953 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A20317260
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 09:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD56F1726C
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 09:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726684AbfEHHME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 03:12:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41342 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725884AbfEHHME (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 03:12:04 -0400
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0A2CA216C4;
-        Wed,  8 May 2019 07:11:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557299519;
-        bh=ay0r3fVcdJCNvxCU8Bew2uknILLYkJYpK/jZkXDp+N4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Dw53D+P2O8LtGy6BKAwYWfiptfeRdQbpMKMxFTnNiY3Y8zVBxuijIfSYetOiaUhse
-         M1ePh9yWmYgSN7k9nSCWASVqNiL0jSo6Ccfg1QsusPmiDL1xW/ffNyk4wAdSOeTILD
-         KzQOXTru620LCJetkwFzjujKEBMcjCpo+P9hI1hQ=
-Received: by mail-lj1-f182.google.com with SMTP id u21so7388379lja.5;
-        Wed, 08 May 2019 00:11:58 -0700 (PDT)
-X-Gm-Message-State: APjAAAUWmW8BLjKNXUkpcblESdG9wQ5vrhxJYLcgKSwJcTVNUSCixhqj
-        zHMD2wKdLHfOyfoYcjxbPGv/PKKPiw9gTXYOfvY=
-X-Google-Smtp-Source: APXvYqz7yTTLUPmkU/QCF0xyoqlr42HJyV/Ne9hWvbvkEodusBSY0DPIKCbECc8FeRevJxoClb/NdXO3ktmGDFs2u1Y=
-X-Received: by 2002:a2e:9ec6:: with SMTP id h6mr20074725ljk.169.1557299516945;
- Wed, 08 May 2019 00:11:56 -0700 (PDT)
+        id S1726598AbfEHHQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 03:16:22 -0400
+Received: from mail-eopbgr150074.outbound.protection.outlook.com ([40.107.15.74]:2627
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725880AbfEHHQW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 03:16:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NpCjB8Hg2c9/WTWYSVEnWtUiyDxSeNRaHWKIu63Az70=;
+ b=bXeUZ+9R3x7N6oWLxddTMjd5l3T1wndja+vb6/PFBvzcf+laSpGal8OlzSyGyhL5RiPlCHoJTLare2cXi85o+u8oeZi59gZ5kHTA2mrdNYXkQr3QaZnuEtPeCKJSwFoL6VVgeXWgRSeEpDMrQ7dgM2RPkohY4Cpn23xeDi4OKh8=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB4355.eurprd04.prod.outlook.com (52.134.92.22) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.10; Wed, 8 May 2019 07:16:11 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13%6]) with mapi id 15.20.1856.012; Wed, 8 May 2019
+ 07:16:11 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
+ parse clocks from device tree
+Thread-Topic: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
+ parse clocks from device tree
+Thread-Index: AQHVAVBb7f0cb5nI7Uu+7uASdidwZ6ZZfT8AgADmL2CABZgoAIAAo1zA
+Date:   Wed, 8 May 2019 07:16:11 +0000
+Message-ID: <AM0PR04MB421180CD45226B30082BDE4D80320@AM0PR04MB4211.eurprd04.prod.outlook.com>
+References: <1556846821-8581-1-git-send-email-aisheng.dong@nxp.com>
+ <1556846821-8581-2-git-send-email-aisheng.dong@nxp.com>
+ <CAL_JsqLJ+Lc_3huQizy4BVFgVV94Yg8KsOOgXLv4dQU8H=WfWw@mail.gmail.com>
+ <AM0PR04MB4211B2F21350CAE370D7A93780360@AM0PR04MB4211.eurprd04.prod.outlook.com>
+ <CAL_JsqLNRnYxUGyhpiL2OFxOT1wXZH2LG4XUH7qf14TpA5Dk=A@mail.gmail.com>
+In-Reply-To: <CAL_JsqLNRnYxUGyhpiL2OFxOT1wXZH2LG4XUH7qf14TpA5Dk=A@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: baca5eaf-d893-4d3c-7ec1-08d6d3850c86
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4355;
+x-ms-traffictypediagnostic: AM0PR04MB4355:
+x-microsoft-antispam-prvs: <AM0PR04MB4355C9ECF8EE51FB4993167280320@AM0PR04MB4355.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 0031A0FFAF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(136003)(39860400002)(346002)(376002)(396003)(199004)(189003)(54534003)(52314003)(26005)(305945005)(4326008)(6506007)(7736002)(30864003)(74316002)(76176011)(186003)(7696005)(14444005)(3846002)(256004)(6116002)(446003)(11346002)(54906003)(68736007)(33656002)(52536014)(8676002)(99286004)(5660300002)(81166006)(81156014)(9686003)(102836004)(14454004)(53546011)(55016002)(478600001)(76116006)(66446008)(64756008)(73956011)(25786009)(66476007)(66556008)(66946007)(66066001)(486006)(53936002)(2906002)(476003)(6246003)(8936002)(44832011)(6436002)(316002)(229853002)(71200400001)(86362001)(71190400001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4355;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ctxmLOjq06B6yczeFzIaithqRfxDnZ7HiCvBWOR++FXJqubAEplpPNBVX9scf5RInHS/a0/X/JQjElu/G4jPV1DvBvOqHr1vENX7/EigLp3vs0rAWdSG3KMKysCkqzgEr6bZwi+hJLP2DEbQ5CCVYCKwFod3a7UkzK0+aT2elgqnyPmIZJQt1KNEChKSZGq/50VA3MP9NZNh84c5geLBrNtYFXdBFYVAGTufWOmeZQ54mbrUrOaSbD+Jpcj0iM8oMLm+j45H25zP6lLDd+KOMk5V7AR16T3NCZ49zw2EJ3tc2LhrO/eUqDCWBCrR5vvg1DcxSo8OkC/kR7VMRownKugcNWTUDmng5UZ3b9fPizUdsjq09oVHHjokxN4WeMYXutmILPZ0Z8gScG8HOtZdG07icJG+sp2RYMih1a0fLJI=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <CGME20190506151216eucas1p2f0c5ba0920b256789240b87fbb88f3fe@eucas1p2.samsung.com>
- <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com> <1557155521-30949-9-git-send-email-l.luba@partner.samsung.com>
-In-Reply-To: <1557155521-30949-9-git-send-email-l.luba@partner.samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 8 May 2019 09:11:45 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcn-+VM8C-DtYEf=Q1bE2AGW494rgVY46KifJjk7bnBjg@mail.gmail.com>
-Message-ID: <CAJKOXPcn-+VM8C-DtYEf=Q1bE2AGW494rgVY46KifJjk7bnBjg@mail.gmail.com>
-Subject: Re: [PATCH v7 08/13] drivers: memory: add DMC driver for Exynos5422
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: baca5eaf-d893-4d3c-7ec1-08d6d3850c86
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 07:16:11.2126
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4355
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-())On Mon, 6 May 2019 at 17:12, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
-> This patch adds driver for Exynos5422 Dynamic Memory Controller.
-> The driver provides support for dynamic frequency and voltage scaling for
-> DMC and DRAM. It supports changing timings of DRAM running with different
-> frequency. There is also an algorithm to calculate timigns based on
-> memory description provided in DT.
-> The patch also contains needed MAINTAINERS file update.
->
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  MAINTAINERS                             |    8 +
->  drivers/memory/samsung/Kconfig          |   17 +
->  drivers/memory/samsung/Makefile         |    1 +
->  drivers/memory/samsung/exynos5422-dmc.c | 1761 +++++++++++++++++++++++++++++++
->  4 files changed, 1787 insertions(+)
->  create mode 100644 drivers/memory/samsung/exynos5422-dmc.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8ac65e4..c7abb73 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3396,6 +3396,14 @@ S:       Maintained
->  F:     drivers/devfreq/exynos-bus.c
->  F:     Documentation/devicetree/bindings/devfreq/exynos-bus.txt
->
-> +DMC FREQUENCY DRIVER FOR SAMSUNG EXYNOS5422
-> +M:     Lukasz Luba <l.luba@partner.samsung.com>
-> +L:     linux-pm@vger.kernel.org
-> +L:     linux-samsung-soc@vger.kernel.org
-> +S:     Maintained
-> +F:     drivers/memory/samsung/exynos5422-dmc.c
-> +F:     Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
-> +
->  BUSLOGIC SCSI DRIVER
->  M:     Khalid Aziz <khalid@gonehiking.org>
->  L:     linux-scsi@vger.kernel.org
-> diff --git a/drivers/memory/samsung/Kconfig b/drivers/memory/samsung/Kconfig
-> index 79ce7ea..202972b 100644
-> --- a/drivers/memory/samsung/Kconfig
-> +++ b/drivers/memory/samsung/Kconfig
-> @@ -5,6 +5,23 @@ config SAMSUNG_MC
->           Support for the Memory Controller (MC) devices found on
->           Samsung Exynos SoCs.
->
-> +config ARM_EXYNOS5422_DMC
-> +       tristate "ARM EXYNOS5422 Dynamic Memory Controller driver"
-> +       depends on ARCH_EXYNOS || COMPILE_TEST
-> +       select DDR
-> +       select PM_DEVFREQ
-> +       select DEVFREQ_GOV_SIMPLE_ONDEMAND
-> +       select DEVFREQ_GOV_USERSPACE
-> +       select PM_DEVFREQ_EVENT
-> +       select PM_OPP
-> +       help
-> +         This adds driver for Exynos5422 DMC (Dynamic Memory Controller).
-> +         The driver provides support for Dynamic Voltage and Frequency Scaling in
-> +         DMC and DRAM. It also supports changing timings of DRAM running with
-> +         different frequency. The timings are calculated based on DT memory
-> +         information.
-> +
-> +
->  if SAMSUNG_MC
->
->  config EXYNOS_SROM
-> diff --git a/drivers/memory/samsung/Makefile b/drivers/memory/samsung/Makefile
-> index 00587be..4f6e438 100644
-> --- a/drivers/memory/samsung/Makefile
-> +++ b/drivers/memory/samsung/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_ARM_EXYNOS5422_DMC)       += exynos5422-dmc.o
->  obj-$(CONFIG_EXYNOS_SROM)      += exynos-srom.o
-> diff --git a/drivers/memory/samsung/exynos5422-dmc.c b/drivers/memory/samsung/exynos5422-dmc.c
-> new file mode 100644
-> index 0000000..64e99b1
-> --- /dev/null
-> +++ b/drivers/memory/samsung/exynos5422-dmc.c
-> @@ -0,0 +1,1761 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2019 Samsung Electronics Co., Ltd.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/delay.h>
-> +#include <linux/devfreq.h>
-> +#include <linux/devfreq-event.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_opp.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/slab.h>
-> +#include <memory/jedec_ddr.h>
-> +#include "../of_memory.h"
-> +
-> +#define EXYNOS5_DREXI_TIMINGAREF               (0x0030)
-> +#define EXYNOS5_DREXI_TIMINGROW0               (0x0034)
-> +#define EXYNOS5_DREXI_TIMINGDATA0              (0x0038)
-> +#define EXYNOS5_DREXI_TIMINGPOWER0             (0x003C)
-> +#define EXYNOS5_DREXI_TIMINGROW1               (0x00E4)
-> +#define EXYNOS5_DREXI_TIMINGDATA1              (0x00E8)
-> +#define EXYNOS5_DREXI_TIMINGPOWER1             (0x00EC)
-> +#define CDREX_PAUSE                            (0x91c)
-> +#define CDREX_LPDDR3PHY_CON3                   (0xa20)
-> +#define EXYNOS5_TIMING_SET_SWI                  (1UL << 28)
-> +#define USE_MX_MSPLL_TIMINGS                   (1)
-> +#define USE_BPLL_TIMINGS                       (0)
-> +
-> +#define EXYNOS5_AREF_NORMAL                    (0x2e)
-> +
-> +#define IS_MEM_2GB(val) \
-> +       (                                               \
-> +        (((val) & 0xf0) & 0x20) ? 1 :                  \
-> +               (((val) & 0xf0) & 0x30) ? 1 : 0         \
-> +       )
-> +
-> +#define EXYNOS5_POP_OPTIONS(val)       (((val >> 4) & 0x3UL) << 4)
-> +#define EXYNOS5_DDR_TYPE(val)          (((val >> 14) & 0x1UL))
-> +
-> +#define EXYNOS5_CHIP_PROD_ID           (0)
-> +#define EXYNOS5_CHIP_PKG_ID            (4)
-> +
-> +#define PPMU_PMCNT_CONST_RATIO_MUL     15
-> +#define PPMU_PMCNT_CONST_RATIO_DIV     10
-> +
-> +#define AXI_BUS_WIDTH_BYTES (128 >> 3)
-> +
-> +enum dmc_slot_id {
-> +       DMC0_0,
-> +       DMC0_1,
-> +       DMC1_0,
-> +       DMC1_1,
-> +       DMC_SLOTS_END
-> +};
-> +
-> +/**
-> + * struct dmc_slot_info - Describes DMC's slot
-> + *
-> + * The structure holds DMC's slot name which is part of the device name
-> + * provided in DT. Each slot has particular share of the DMC bandwidth.
-> + * To abstract the model performance and values in performance counters,
-> + * fields 'ratio_mul' and 'ratio_div' are used in calculation algorithm
-> + * for each slot. Please check the corresponding function with the algorithm,
-> + * to see how these variables are used.
-> + */
-> +struct dmc_slot_info {
-> +       char *name;
-> +       int id;
-> +       int ratio_mul;
-> +       int ratio_div;
-> +};
-> +
-> +/**
-> + * struct dmc_opp_table - Operating level desciption
-> + *
-> + * Covers frequency and voltage settings of the DMC operating mode.
-> + */
-> +struct dmc_opp_table {
-> +       u32 freq_hz;
-> +       u32 volt_uv;
-> +};
-> +
-> +/**
-> + * struct exynos5_dmc - main structure describing DMC device
-> + *
-> + * The main structure for the Dynamic Memory Controller which covers clocks,
-> + * memory regions, HW information, parameters and current operating mode.
-> + */
-> +struct exynos5_dmc {
-> +       struct device *dev;
-> +       struct devfreq *df;
-> +       struct devfreq_simple_ondemand_data gov_data;
-> +       void __iomem *base_drexi0;
-> +       void __iomem *base_drexi1;
-> +       struct regmap *clk_regmap;
-> +       struct regmap *chipid_regmap;
-> +       struct mutex lock;
-> +       unsigned long curr_rate;
-> +       unsigned long curr_volt;
-> +       unsigned long bypass_rate;
-> +       struct dmc_opp_table *opp;
-> +       struct dmc_opp_table opp_bypass;
-> +       int opp_count;
-> +       u32 timings_arr_size;
-> +       u32 *timing_row;
-> +       u32 *timing_data;
-> +       u32 *timing_power;
-> +       const struct lpddr3_timings *timings;
-> +       const struct lpddr3_min_tck *min_tck;
-> +       u32 bypass_timing_row;
-> +       u32 bypass_timing_data;
-> +       u32 bypass_timing_power;
-> +       unsigned int prod_rev;
-> +       unsigned int pkg_rev;
-> +       unsigned int mem_info;
-> +       struct regulator *vdd_mif;
-> +       struct clk *fout_spll;
-> +       struct clk *fout_bpll;
-> +       struct clk *mout_spll;
-> +       struct clk *mout_bpll;
-> +       struct clk *mout_mclk_cdrex;
-> +       struct clk *dout_clk2x_phy0;
-> +       struct clk *mout_mx_mspll_ccore;
-> +       struct clk *mx_mspll_ccore_phy;
-> +       struct clk *mout_mx_mspll_ccore_phy;
-> +       struct devfreq_event_dev **counter;
-> +       int num_counters;
-> +#ifdef CONFIG_DEBUG_FS
-> +       struct dentry *dbg_root;
-> +#endif
-> +};
-> +
-> +#define TIMING_FIELD(t_name, t_bit_beg, t_bit_end) \
-> +       { .name = t_name, .bit_beg = t_bit_beg, .bit_end = t_bit_end }
-> +
-> +#define TIMING_VAL(timing_array, id, t_val)                    \
-> +({                                                             \
-> +               u32 __val;                              \
-> +               __val = t_val << timing_array[id].bit_beg;      \
-> +               __val;                                          \
-> +})
-> +
-> +#define TIMING_VAL2REG(timing, t_val)                  \
-> +({                                                             \
-> +               u32 __val;                              \
-> +               __val = t_val << timing->bit_beg;       \
-> +               __val;                                          \
-> +})
-> +
-> +#define TIMING_REG2VAL(reg, timing)                    \
-> +({                                                             \
-> +               u32 __val;                              \
-> +               reg <<= (31 - timing->bit_end);         \
-> +               reg >>= (31 - timing->bit_end);         \
-> +               __val = reg >> timing->bit_beg; \
-> +               __val;                                          \
-> +})
-> +
-> +struct timing_reg {
-> +       char *name;
-> +       int bit_beg;
-> +       int bit_end;
-> +       unsigned int val;
-> +};
-> +
-> +static const struct timing_reg timing_row[] = {
-> +       TIMING_FIELD("tRFC", 24, 31),
-> +       TIMING_FIELD("tRRD", 20, 23),
-> +       TIMING_FIELD("tRP", 16, 19),
-> +       TIMING_FIELD("tRCD", 12, 15),
-> +       TIMING_FIELD("tRC", 6, 11),
-> +       TIMING_FIELD("tRAS", 0, 5),
-> +};
-> +
-> +static const struct timing_reg timing_data[] = {
-> +       TIMING_FIELD("tWTR", 28, 31),
-> +       TIMING_FIELD("tWR", 24, 27),
-> +       TIMING_FIELD("tRTP", 20, 23),
-> +       TIMING_FIELD("tW2W-C2C", 14, 14),
-> +       TIMING_FIELD("tR2R-C2C", 12, 12),
-> +       TIMING_FIELD("WL", 8, 11),
-> +       TIMING_FIELD("tDQSCK", 4, 7),
-> +       TIMING_FIELD("RL", 0, 3),
-> +};
-> +
-> +static const struct timing_reg timing_power[] = {
-> +       TIMING_FIELD("tFAW", 26, 31),
-> +       TIMING_FIELD("tXSR", 16, 25),
-> +       TIMING_FIELD("tXP", 8, 15),
-> +       TIMING_FIELD("tCKE", 4, 7),
-> +       TIMING_FIELD("tMRD", 0, 3),
-> +};
-> +
-> +#define TIMING_COUNT (ARRAY_SIZE(timing_row) + ARRAY_SIZE(timing_data) + \
-> +                     ARRAY_SIZE(timing_power))
-> +
-> +static int exynos5_counters_set_event(struct exynos5_dmc *dmc)
-> +{
-> +       int i, ret;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               if (!dmc->counter[i])
-> +                       continue;
-> +               ret = devfreq_event_set_event(dmc->counter[i]);
-> +               if (ret < 0)
-> +                       return ret;
-> +       }
-> +       return 0;
-> +}
-> +
-> +static int exynos5_counters_enable_edev(struct exynos5_dmc *dmc)
-> +{
-> +       int i, ret;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               if (!dmc->counter[i])
-> +                       continue;
-> +               ret = devfreq_event_enable_edev(dmc->counter[i]);
-> +               if (ret < 0)
-> +                       return ret;
-> +       }
-> +       return 0;
-> +}
-> +
-> +static int exynos5_counters_disable_edev(struct exynos5_dmc *dmc)
-> +{
-> +       int i, ret;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               if (!dmc->counter[i])
-> +                       continue;
-> +               ret = devfreq_event_disable_edev(dmc->counter[i]);
-> +               if (ret < 0)
-> +                       return ret;
-> +       }
-> +       return 0;
-> +}
-> +
-> +/* Event names to DMC channel and slot with proper data count type */
-> +static const char *event_name[] = {
-> +       /* Counters for DMC0 slot 0 */
-> +       "ppmu-event0-dmc0_0",
-> +       "DMC0_0-Read",
-> +       "ppmu-event1-dmc0_0",
-> +       "DMC0_0-Write",
-> +       "ppmu-event3-dmc0_0",
-> +       "DMC0_0-Read+Write",
-> +       /* Counters for DMC0 slot 1 */
-> +       "ppmu-event0-dmc0_1",
-> +       "DMC0_1-Read",
-> +       "ppmu-event1-dmc0_1",
-> +       "DMC0_1-Write",
-> +       "ppmu-event3-dmc0_1",
-> +       "DMC0_1-Read+Write",
-> +       /* Counters for DMC1 slot 0 */
-> +       "ppmu-event0-dmc1_0",
-> +       "DMC1_0-Read",
-> +       "ppmu-event1-dmc1_0",
-> +       "DMC1_0-Write",
-> +       "ppmu-event3-dmc1_0",
-> +       "DMC1_0-Read+Write",
-> +       /* Counters for DMC1 slot 0 */
-> +       "ppmu-event0-dmc1_1",
-> +       "DMC1_1-Read",
-> +       "ppmu-event1-dmc1_1",
-> +       "DMC1_1-Write",
-> +       "ppmu-event3-dmc1_1",
-> +       "DMC1_1-Read+Write",
-> +};
-> +
-> +/**
-> + * find_target_freq_id() - Finds requested frequency in local DMC configuration
-> + * @dmc:       device for which the information is checked
-> + * @target_rate:       requested frequency in KHz
-> + *
-> + * Seeks in the local DMC driver structure for the requested frequency value
-> + * and returns index or error value.
-> + */
-> +static int find_target_freq_idx(struct exynos5_dmc *dmc,
-> +                               unsigned long target_rate)
-> +{
-> +       int i;
-> +
-> +       for (i = dmc->opp_count - 1; i >= 0; i--)
-> +               if (dmc->opp[i].freq_hz <= target_rate)
-> +                       return i;
-> +
-> +       return -EINVAL;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_chip_revision_settings() - Chooses proper DMC's configuration
-> + * @dmc:       device for which is going to be checked and configured
-> + *
-> + * Function checks the HW product information in order to choose proper
-> + * configuration for DMC frequency, voltage and DRAM timings.
-> + */
-> +static int exynos5_dmc_chip_revision_settings(struct exynos5_dmc *dmc)
-> +{
-> +       unsigned int val;
-> +
-> +       regmap_read(dmc->chipid_regmap, EXYNOS5_CHIP_PROD_ID, &val);
-> +       dmc->prod_rev = val;
-> +
-> +       regmap_read(dmc->chipid_regmap, EXYNOS5_CHIP_PKG_ID, &val);
-> +       dmc->pkg_rev = val;
-
-You do not use them later (prod_rev and pkg_rev) except debug message.
-Don't store them only for that purpose... and you anyway do not need
-to print prod_id/pkg_id. These are properties of SoC/chipid, not
-properties of DMC. They could be printed by chipd driver but not by
-other drivers.
-
-Actually, you do not use mem_info either, so remove all of it.
-
-> +
-> +       dmc->mem_info = EXYNOS5_POP_OPTIONS(val);
-> +       dmc->mem_info |= EXYNOS5_DDR_TYPE(val);
-> +
-> +       if (!IS_MEM_2GB(dmc->mem_info)) {
-> +               dev_warn(dmc->dev, "DRAM memory type not supported\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_switch_timing_regs() - Changes bank register set for DRAM timings
-> + * @dmc:       device for which the new settings is going to be applied
-> + * @set:       boolean variable passing set value
-> + *
-> + * Changes the register set, which holds timing parameters.
-> + * There is two register sets: 0 and 1. The register set 0
-> + * is used in normal operation when the clock is provided from main PLL.
-> + * The bank register set 1 is used when the main PLL frequency is going to be
-> + * changed and the clock is taken from alternative, stable source.
-> + * This function switches between these banks according to the
-> + * currently used clock source.
-> + */
-> +static void exynos5_switch_timing_regs(struct exynos5_dmc *dmc, bool set)
-> +{
-> +       unsigned int reg;
-> +       int ret;
-> +
-> +       ret = regmap_read(dmc->clk_regmap, CDREX_LPDDR3PHY_CON3, &reg);
-> +
-> +       if (set)
-> +               reg |= EXYNOS5_TIMING_SET_SWI;
-> +       else
-> +               reg &= ~EXYNOS5_TIMING_SET_SWI;
-> +
-> +       regmap_write(dmc->clk_regmap, CDREX_LPDDR3PHY_CON3, reg);
-> +}
-> +
-> +/**
-> + * exynos5_init_freq_table() - Initialized PM OPP framework
-> + * @dev:       devfreq device for which the OPP table is going to be
-> + *             initialized
-> + * @dmc:       DMC device for which the frequencies are used for OPP init
-> + * @profile:   devfreq device's profile
-> + *
-> + * Populate the devfreq device's OPP table based on current frequency, voltage.
-> + */
-> +static int exynos5_init_freq_table(struct device *dev, struct exynos5_dmc *dmc,
-> +                                  struct devfreq_dev_profile *profile)
-> +{
-> +       int i, ret;
-> +       int idx;
-> +       unsigned long freq;
-> +
-> +       ret = dev_pm_opp_of_add_table(dev);
-> +       if (ret < 0) {
-> +               dev_err(dev, "Failed to get OPP table\n");
-> +               return ret;
-> +       }
-> +
-> +       dmc->opp_count = dev_pm_opp_get_opp_count(dev);
-> +
-> +       dmc->opp = devm_kmalloc_array(dmc->dev, dmc->opp_count,
-> +                                     sizeof(struct dmc_opp_table), GFP_KERNEL);
-> +       if (!dmc->opp)
-> +               goto err_opp;
-> +
-> +       idx = dmc->opp_count - 1;
-> +       for (i = 0, freq = ULONG_MAX; i < dmc->opp_count; i++, freq--) {
-> +               struct dev_pm_opp *opp;
-> +
-> +               opp = dev_pm_opp_find_freq_floor(dev, &freq);
-> +               if (IS_ERR(opp))
-> +                       goto err_free_tables;
-> +
-> +               dmc->opp[idx - i].freq_hz = freq;
-> +               dmc->opp[idx - i].volt_uv = dev_pm_opp_get_voltage(opp);
-> +
-> +               dev_pm_opp_put(opp);
-> +       }
-> +
-> +       return 0;
-> +
-> +err_free_tables:
-> +       kfree(dmc->opp);
-> +err_opp:
-> +       dev_pm_opp_of_remove_table(dev);
-> +
-> +       return -EINVAL;
-> +}
-> +
-> +/**
-> + * exynos5_set_bypass_dram_timings() - Low-level changes of the DRAM timings
-> + * @dmc:       device for which the new settings is going to be applied
-> + * @param:     DRAM parameters which passes timing data
-> + *
-> + * Low-level function for changing timings for DRAM memory clocking from
-> + * 'bypass' clock source (fixed frequency @400MHz).
-> + * It uses timing bank registers set 1.
-> + */
-> +static void exynos5_set_bypass_dram_timings(struct exynos5_dmc *dmc)
-> +{
-> +       writel(EXYNOS5_AREF_NORMAL,
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGAREF);
-> +
-> +       writel(dmc->bypass_timing_row,
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGROW1);
-> +       writel(dmc->bypass_timing_row,
-> +              dmc->base_drexi1 + EXYNOS5_DREXI_TIMINGROW1);
-> +       writel(dmc->bypass_timing_data,
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGDATA1);
-> +       writel(dmc->bypass_timing_data,
-> +              dmc->base_drexi1 + EXYNOS5_DREXI_TIMINGDATA1);
-> +       writel(dmc->bypass_timing_power,
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGPOWER1);
-> +       writel(dmc->bypass_timing_power,
-> +              dmc->base_drexi1 + EXYNOS5_DREXI_TIMINGPOWER1);
-> +}
-> +
-> +/**
-> + * exynos5_dram_change_timings() - Low-level changes of the DRAM final timings
-> + * @dmc:       device for which the new settings is going to be applied
-> + * @target_rate:       target frequency of the DMC
-> + *
-> + * Low-level function for changing timings for DRAM memory operating from main
-> + * clock source (BPLL), which can have different frequencies. Thus, each
-> + * frequency must have corresponding timings register values in order to keep
-> + * the needed delays.
-> + * It uses timing bank registers set 0.
-> + */
-> +static int exynos5_dram_change_timings(struct exynos5_dmc *dmc,
-> +                                      unsigned long target_rate)
-> +{
-> +       int idx;
-> +
-> +       for (idx = dmc->opp_count - 1; idx >= 0; idx--)
-> +               if (dmc->opp[idx].freq_hz <= target_rate)
-> +                       break;
-> +
-> +       if (idx < 0)
-> +               return -EINVAL;
-> +
-> +       writel(EXYNOS5_AREF_NORMAL,
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGAREF);
-> +
-> +       writel(dmc->timing_row[idx],
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGROW0);
-> +       writel(dmc->timing_row[idx],
-> +              dmc->base_drexi1 + EXYNOS5_DREXI_TIMINGROW0);
-> +       writel(dmc->timing_data[idx],
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGDATA0);
-> +       writel(dmc->timing_data[idx],
-> +              dmc->base_drexi1 + EXYNOS5_DREXI_TIMINGDATA0);
-> +       writel(dmc->timing_power[idx],
-> +              dmc->base_drexi0 + EXYNOS5_DREXI_TIMINGPOWER0);
-> +       writel(dmc->timing_power[idx],
-> +              dmc->base_drexi1 + EXYNOS5_DREXI_TIMINGPOWER0);
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_align_target_voltage() - Sets the final voltage for the DMC
-> + * @dmc:       device for which it is going to be set
-> + * @target_volt:       new voltage which is chosen to be final
-> + *
-> + * Function tries to align voltage to the safe level for 'normal' mode.
-> + * It checks the need of higher voltage and changes the value. The target
-> + * voltage might be lower that currently set and still the system will be
-> + * stable.
-> + */
-> +static int exynos5_dmc_align_target_voltage(struct exynos5_dmc *dmc,
-> +                                           unsigned long target_volt)
-> +{
-> +       int ret = 0;
-> +
-> +       if (dmc->curr_volt > target_volt) {
-> +               ret = regulator_set_voltage(dmc->vdd_mif, target_volt,
-> +                                           target_volt);
-> +               if (!ret)
-> +                       dmc->curr_volt = target_volt;
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_align_bypass_voltage() - Sets the voltage for the DMC
-> + * @dmc:       device for which it is going to be set
-> + * @target_volt:       new voltage which is chosen to be final
-> + *
-> + * Function tries to align voltage to the safe level for the 'bypass' mode.
-> + * It checks the need of higher voltage and changes the value.
-> + * The target voltage must not be less than currently needed, because
-> + * for current frequency the device might become unstable.
-> + */
-> +static int exynos5_dmc_align_bypass_voltage(struct exynos5_dmc *dmc,
-> +                                           unsigned long target_volt)
-> +{
-> +       int ret = 0;
-> +       unsigned long bypass_volt = dmc->opp_bypass.volt_uv;
-> +
-> +       target_volt = max(bypass_volt, target_volt);
-> +
-> +       if (dmc->curr_volt >= target_volt)
-> +               return 0;
-> +
-> +       ret = regulator_set_voltage(dmc->vdd_mif, target_volt,
-> +                                   target_volt);
-> +       if (!ret)
-> +               dmc->curr_volt = target_volt;
-> +
-> +       return ret;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_align_bypass_dram_timings() - Chooses and sets DRAM timings
-> + * @dmc:       device for which it is going to be set
-> + * @target_rate:       new frequency which is chosen to be final
-> + *
-> + * Function changes the DRAM timings for the temporary 'bypass' mode.
-> + */
-> +static int exynos5_dmc_align_bypass_dram_timings(struct exynos5_dmc *dmc,
-> +                                                unsigned long target_rate)
-> +{
-> +       int idx = find_target_freq_idx(dmc, target_rate);
-> +
-> +       if (idx < 0)
-> +               return -EINVAL;
-> +
-> +       exynos5_set_bypass_dram_timings(dmc);
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_switch_to_bypass_configuration() - Switching to temporary clock
-> + * @dmc:       DMC device for which the switching is going to happen
-> + * @target_rate:       new frequency which is going to be set as a final
-> + * @target_volt:       new voltage which is going to be set as a final
-> + *
-> + * Function configures DMC and clocks for operating in temporary 'bypass' mode.
-> + * This mode is used only temporary but if required, changes voltage and timings
-> + * for DRAM chips. It switches the main clock to stable clock source for the
-> + * period of the main PLL reconfiguration.
-> + */
-> +static int exynos5_dmc_switch_to_bypass_configuration(struct exynos5_dmc *dmc,
-> +                                  unsigned long target_rate,
-> +                                  unsigned long target_volt)
-> +{
-> +       int ret;
-> +
-> +       /*
-> +        * Having higher voltage for a particular frequency does not harm
-> +        * the chip. Use it for the temporary frequency change when one
-> +        * voltage manipulation might be avoided.
-> +        */
-> +       ret = exynos5_dmc_align_bypass_voltage(dmc, target_volt);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /*
-> +        * Longer delays for DRAM does not cause crash, the opposite does.
-> +        */
-> +       ret = exynos5_dmc_align_bypass_dram_timings(dmc, target_rate);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /*
-> +        * Delays are long enough, so use them for the new coming clock.
-> +        */
-> +       exynos5_switch_timing_regs(dmc, USE_MX_MSPLL_TIMINGS);
-> +
-> +       return ret;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_change_freq_and_volt() - Changes voltage and frequency of the DMC
-> + * using safe procedure
-> + * @dmc:       device for which the frequency is going to be changed
-> + * @target_rate:       requested new frequency
-> + * @target_volt:       requested voltage which corresponds to the new frequency
-> + *
-> + * The DMC frequency change procedure requires a few steps.
-> + * The main requirement is to change the clock source in the clk mux
-> + * for the time of main clock PLL locking. The assumption is that the
-> + * alternative clock source set as parent is stable.
-> + * The second parent's clock frequency is fixed to 400MHz, it is named 'bypass'
-> + * clock. This requires alignment in DRAM timing parameters for the new
-> + * T-period. There is two bank sets for keeping DRAM
-> + * timings: set 0 and set 1. The set 0 is used when main clock source is
-> + * chosen. The 2nd set of regs is used for 'bypass' clock. Switching between
-> + * the two bank sets is part of the process.
-> + * The voltage must also be aligned to the minimum required level. There is
-> + * this intermediate step with switching to 'bypass' parent clock source.
-> + * if the old voltage is lower, it requires an increase of the voltage level.
-> + * The complexity of the voltage manipulation is hidden in low level function.
-> + * In this function there is last alignment of the voltage level at the end.
-> + */
-> +static int
-> +exynos5_dmc_change_freq_and_volt(struct exynos5_dmc *dmc,
-> +                                unsigned long target_rate,
-> +                                unsigned long target_volt)
-> +{
-> +       int ret;
-> +
-> +       ret = exynos5_dmc_switch_to_bypass_configuration(dmc, target_rate,
-> +                                                        target_volt);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /*
-> +        * Voltage is set at least to a level needed for this frequency,
-> +        * so switching clock source is safe now.
-> +        */
-> +       clk_prepare_enable(dmc->fout_spll);
-> +       clk_prepare_enable(dmc->mout_spll);
-> +       clk_prepare_enable(dmc->mout_mx_mspll_ccore);
-> +
-> +       ret = clk_set_parent(dmc->mout_mclk_cdrex, dmc->mout_mx_mspll_ccore);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /*
-> +        * We are safe to increase the timings for current bypass frequency.
-> +        * Thanks to this the settings we be ready for the upcoming clock source
-> +        * change.
-> +        */
-> +       exynos5_dram_change_timings(dmc, target_rate);
-> +
-> +       clk_set_rate(dmc->fout_bpll, target_rate);
-> +
-> +       exynos5_switch_timing_regs(dmc, USE_BPLL_TIMINGS);
-> +
-> +       ret = clk_set_parent(dmc->mout_mclk_cdrex, dmc->mout_bpll);
-> +       if (ret)
-> +               return ret;
-> +
-> +       clk_disable_unprepare(dmc->mout_mx_mspll_ccore);
-> +       clk_disable_unprepare(dmc->mout_spll);
-> +       clk_disable_unprepare(dmc->fout_spll);
-> +       /*
-> +        * Make sure if the voltage is not from 'bypass' settings and align to
-> +        * the right level for power efficiency.
-> +        */
-> +       ret = exynos5_dmc_align_target_voltage(dmc, target_volt);
-> +
-> +       return ret;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_get_volt_freq() - Gets the frequency and voltage from the OPP
-> + * table.
-> + * @dev:       device for which the frequency is going to be changed
-> + * @freq:       requested frequency in KHz
-> + * @target_rate:       returned frequency which is the same or lower than
-> + *                     requested
-> + * @target_volt:       returned voltage which corresponds to the returned
-> + *                     frequency
-> + *
-> + * Function gets requested frequency and checks OPP framework for needed
-> + * frequency and voltage. It populates the values 'target_rate' and
-> + * 'target_volt' or returns error value when OPP framework fails.
-> + */
-> +static int exynos5_dmc_get_volt_freq(struct device *dev, unsigned long *freq,
-> +                                    unsigned long *target_rate,
-> +                                    unsigned long *target_volt, u32 flags)
-> +{
-> +       struct dev_pm_opp *opp;
-> +
-> +       opp = devfreq_recommended_opp(dev, freq, flags);
-> +       if (IS_ERR(opp))
-> +               return PTR_ERR(opp);
-> +
-> +       *target_rate = dev_pm_opp_get_freq(opp);
-> +       *target_volt = dev_pm_opp_get_voltage(opp);
-> +       dev_pm_opp_put(opp);
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_target() - Function responsible for changing frequency of DMC
-> + * @dev:       device for which the frequency is going to be changed
-> + * @freq:      requested frequency in KHz
-> + * @flags:     flags provided for this frequency change request
-> + *
-> + * An entry function provided to the devfreq framework which provides frequency
-> + * change of the DMC. The function gets the possible rate from OPP table based
-> + * on requested frequency. It calls the next function responsible for the
-> + * frequency and voltage change. In case of failure, does not set 'curr_rate'
-> + * and returns error value to the framework.
-> + */
-> +static int exynos5_dmc_target(struct device *dev, unsigned long *freq,
-> +                             u32 flags)
-> +{
-> +       struct exynos5_dmc *dmc = dev_get_drvdata(dev);
-> +       unsigned long target_rate = 0;
-> +       unsigned long target_volt = 0;
-> +       int ret;
-> +
-> +       ret = exynos5_dmc_get_volt_freq(dev, freq, &target_rate, &target_volt,
-> +                                       flags);
-> +
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (target_rate == dmc->curr_rate)
-> +               return 0;
-> +
-> +       mutex_lock(&dmc->lock);
-> +
-> +       ret = exynos5_dmc_change_freq_and_volt(dmc, target_rate, target_volt);
-> +
-> +       if (ret) {
-> +               mutex_unlock(&dmc->lock);
-> +               return ret;
-> +       }
-> +
-> +       dmc->curr_rate = target_rate;
-> +
-> +       mutex_unlock(&dmc->lock);
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_counters_get() - Gets the performance counters values.
-> + * @dmc:       device for which the counters are going to be checked
-> + * @load_count:        variable which is populated with counter value
-> + * @total_count:       variable which is used as 'wall clock' reference
-> + *
-> + * Function which provides performance counters values. It sums up counters for
-> + * two DMC channels. The 'total_count' is used as a reference and max value.
-> + * The ratio 'load_count/total_count' shows the busy percentage [0%, 100%].
-> + */
-> +static int exynos5_counters_get(struct exynos5_dmc *dmc,
-> +                               unsigned long *load_count,
-> +                               unsigned long *total_count)
-> +{
-> +       unsigned long total = 0;
-> +       struct devfreq_event_data event;
-> +       int ret, i;
-> +
-> +       *load_count = 0;
-> +
-> +       /* Take into account only read+write counters, but stop all */
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               if (!dmc->counter[i])
-> +                       continue;
-> +
-> +               ret = devfreq_event_get_event(dmc->counter[i], &event);
-> +               if (ret < 0)
-> +                       return ret;
-> +
-> +               if (i % 3 != 2)
-> +                       continue;
-> +
-> +               *load_count += event.load_count;
-> +
-> +               if (total < event.total_count)
-> +                       total = event.total_count;
-> +       }
-> +
-> +       *total_count = total;
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_get_status() - Read current DMC performance statistics.
-> + * @dev:       device for which the statistics are requested
-> + * @stat:      structure which has statistic fields
-> + *
-> + * Function reads the DMC performance counters and calculates 'busy_time'
-> + * and 'total_time'. To protect from overflow, the values are shifted right
-> + * by 10. After read out the counters are setup to count again.
-> + */
-> +static int exynos5_dmc_get_status(struct device *dev,
-> +                                 struct devfreq_dev_status *stat)
-> +{
-> +       struct exynos5_dmc *dmc = dev_get_drvdata(dev);
-> +       unsigned long load, total;
-> +       int ret;
-> +
-> +       ret = exynos5_counters_get(dmc, &load, &total);
-> +       if (ret < 0)
-> +               return -EINVAL;
-> +
-> +       /* To protect from overflow in calculation ratios, divide by 1024 */
-> +       stat->busy_time = load >> 10;
-> +       stat->total_time = total >> 10;
-> +
-> +       ret = exynos5_counters_set_event(dmc);
-> +       if (ret < 0) {
-> +               dev_err(dmc->dev, "could not set event counter\n");
-
-Please, make usage of 'dev' consistent and simpler:
-1. You have here 'dev' so why dereferencing dmc->dev? Is it different dev? No.
-2. In some places you use dmc->dev, in some &pdev->dev (while having
-also reference to dmc). Just use one convention, except for the cases
-where you could use 'dev' from argument directly.
-
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_get_cur_freq() - Function returns current DMC frequency
-> + * @dev:       device for which the framework checks operating frequency
-> + * @freq:      returned frequency value
-> + *
-> + * It returns the currently used frequency of the DMC. The real operating
-> + * frequency might be lower when the clock source value could not be divided
-> + * to the requested value.
-> + */
-> +static int exynos5_dmc_get_cur_freq(struct device *dev, unsigned long *freq)
-> +{
-> +       struct exynos5_dmc *dmc = dev_get_drvdata(dev);
-> +
-> +       mutex_lock(&dmc->lock);
-> +       *freq = dmc->curr_rate;
-> +       mutex_unlock(&dmc->lock);
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_df_profile - Devfreq governor's profile structure
-> + *
-> + * It provides to the devfreq framework needed functions and polling period.
-> + */
-> +static struct devfreq_dev_profile exynos5_dmc_df_profile = {
-> +       .polling_ms = 500,
-> +       .target = exynos5_dmc_target,
-> +       .get_dev_status = exynos5_dmc_get_status,
-> +       .get_cur_freq = exynos5_dmc_get_cur_freq,
-> +};
-> +
-> +/**
-> + * exynos5_dmc_align_initial_frequency() - Align initial frequency value
-> + * @dmc:       device for which the frequency is going to be set
-> + * @bootloader_init_freq:      initial frequency set by the bootloader in KHz
-> + *
-> + * The initial bootloader frequency, which is present during boot, might be
-> + * different that supported frequency values in the driver. It is possible
-> + * due to different PLL settings or used PLL as a source.
-> + * This function provides the 'initial_freq' for the devfreq framework
-> + * statistics engine which supports only registered values. Thus, some alignment
-> + * must be made.
-> + */
-> +unsigned long
-> +exynos5_dmc_align_init_freq(struct exynos5_dmc *dmc,
-> +                           unsigned long bootloader_init_freq)
-> +{
-> +       unsigned long aligned_freq;
-> +       int idx;
-> +
-> +       idx = find_target_freq_idx(dmc, bootloader_init_freq);
-> +       if (idx >= 0)
-> +               aligned_freq = dmc->opp[idx].freq_hz;
-> +       else
-> +               aligned_freq = dmc->opp[dmc->opp_count - 1].freq_hz;
-> +
-> +       return aligned_freq;
-> +}
-> +
-> +/**
-> + * create_timings_aligned() - Create register values and align with standard
-> + * @dmc:       device for which the frequency is going to be set
-> + * @idx:       speed bin in the OPP table
-> + * @clk_period_ps:     the period of the clock, known as tCK
-> + *
-> + * The function calculates timings and creates a register value ready for
-> + * a frequency transition. The register contains a few timings. They are
-> + * shifted by a known offset. The timing value is calculated based on memory
-> + * specyfication: minimal time required and minimal cycles required.
-> + */
-> +static int create_timings_aligned(struct exynos5_dmc *dmc, u32 *reg_timing_row,
-> +                                 u32 *reg_timing_data, u32 *reg_timing_power,
-> +                                 u32 clk_period_ps)
-> +{
-> +       u32 val;
-> +       const struct timing_reg *reg;
-> +
-> +       if (clk_period_ps == 0)
-> +               return -EINVAL;
-> +
-> +       *reg_timing_row = 0;
-> +       *reg_timing_data = 0;
-> +       *reg_timing_power = 0;
-> +
-> +       val = dmc->timings->tRFC / clk_period_ps;
-> +       val += dmc->timings->tRFC % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRFC);
-> +       reg = &timing_row[0];
-> +       *reg_timing_row |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRRD / clk_period_ps;
-> +       val += dmc->timings->tRRD % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRRD);
-> +       reg = &timing_row[1];
-> +       *reg_timing_row |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRPab / clk_period_ps;
-> +       val += dmc->timings->tRPab % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRPab);
-> +       reg = &timing_row[2];
-> +       *reg_timing_row |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRCD / clk_period_ps;
-> +       val += dmc->timings->tRCD % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRCD);
-> +       reg = &timing_row[3];
-> +       *reg_timing_row |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRC / clk_period_ps;
-> +       val += dmc->timings->tRC % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRC);
-> +       reg = &timing_row[4];
-> +       *reg_timing_row |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRAS / clk_period_ps;
-> +       val += dmc->timings->tRAS % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRAS);
-> +       reg = &timing_row[5];
-> +       *reg_timing_row |= TIMING_VAL2REG(reg, val);
-> +
-> +       /* data related timings */
-> +       val = dmc->timings->tWTR / clk_period_ps;
-> +       val += dmc->timings->tWTR % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tWTR);
-> +       reg = &timing_data[0];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tWR / clk_period_ps;
-> +       val += dmc->timings->tWR % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tWR);
-> +       reg = &timing_data[1];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRTP / clk_period_ps;
-> +       val += dmc->timings->tRTP % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRTP);
-> +       reg = &timing_data[2];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tW2W_C2C / clk_period_ps;
-> +       val += dmc->timings->tW2W_C2C % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tW2W_C2C);
-> +       reg = &timing_data[3];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tR2R_C2C / clk_period_ps;
-> +       val += dmc->timings->tR2R_C2C % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tR2R_C2C);
-> +       reg = &timing_data[4];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tWL / clk_period_ps;
-> +       val += dmc->timings->tWL % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tWL);
-> +       reg = &timing_data[5];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tDQSCK / clk_period_ps;
-> +       val += dmc->timings->tDQSCK % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tDQSCK);
-> +       reg = &timing_data[6];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tRL / clk_period_ps;
-> +       val += dmc->timings->tRL % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tRL);
-> +       reg = &timing_data[7];
-> +       *reg_timing_data |= TIMING_VAL2REG(reg, val);
-> +
-> +       /* power related timings */
-> +       val = dmc->timings->tFAW / clk_period_ps;
-> +       val += dmc->timings->tFAW % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tXP);
-> +       reg = &timing_power[0];
-> +       *reg_timing_power |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tXSR / clk_period_ps;
-> +       val += dmc->timings->tXSR % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tXSR);
-> +       reg = &timing_power[1];
-> +       *reg_timing_power |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tXP / clk_period_ps;
-> +       val += dmc->timings->tXP % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tXP);
-> +       reg = &timing_power[2];
-> +       *reg_timing_power |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tCKE / clk_period_ps;
-> +       val += dmc->timings->tCKE % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tCKE);
-> +       reg = &timing_power[3];
-> +       *reg_timing_power |= TIMING_VAL2REG(reg, val);
-> +
-> +       val = dmc->timings->tMRD / clk_period_ps;
-> +       val += dmc->timings->tMRD % clk_period_ps ? 1 : 0;
-> +       val = max(val, dmc->min_tck->tMRD);
-> +       reg = &timing_power[4];
-> +       *reg_timing_power |= TIMING_VAL2REG(reg, val);
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * of_get_dram_timings() - helper function for parsing DT settings for DRAM
-> + * @dmc:        device for which the frequency is going to be set
-> + *
-> + * The function parses DT entries with DRAM information.
-> + */
-> +static int of_get_dram_timings(struct exynos5_dmc *dmc)
-> +{
-> +       int ret = 0;
-> +       int idx;
-> +       struct device_node *np_ddr;
-> +       u32 freq_mhz, clk_period_ps;
-> +
-> +       np_ddr = of_parse_phandle(dmc->dev->of_node, "device-handle", 0);
-> +       if (!np_ddr) {
-> +               dev_warn(dmc->dev, "could not find 'device-handle' in DT\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       dmc->timing_row = devm_kmalloc_array(dmc->dev, TIMING_COUNT,
-> +                                            sizeof(u32), GFP_KERNEL);
-> +       if (!dmc->timing_row)
-> +               return -ENOMEM;
-> +
-> +       dmc->timing_data = devm_kmalloc_array(dmc->dev, TIMING_COUNT,
-> +                                             sizeof(u32), GFP_KERNEL);
-> +       if (!dmc->timing_data)
-> +               return -ENOMEM;
-> +
-> +       dmc->timing_power = devm_kmalloc_array(dmc->dev, TIMING_COUNT,
-> +                                              sizeof(u32), GFP_KERNEL);
-> +       if (!dmc->timing_power)
-> +               return -ENOMEM;
-> +
-> +       dmc->timings = of_lpddr3_get_ddr_timings(np_ddr, dmc->dev,
-> +                                                DDR_TYPE_LPDDR3,
-> +                                                &dmc->timings_arr_size);
-> +       if (!dmc->timings) {
-> +               of_node_put(np_ddr);
-> +               dev_warn(dmc->dev, "could not get timings from DT\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       dmc->min_tck = of_lpddr3_get_min_tck(np_ddr, dmc->dev);
-> +       if (!dmc->min_tck) {
-> +               of_node_put(np_ddr);
-> +               dev_warn(dmc->dev, "could not get tck from DT\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       /* Sorted array of OPPs with frequency ascending */
-> +       for (idx = 0; idx < dmc->opp_count; idx++) {
-> +               freq_mhz = dmc->opp[idx].freq_hz / 1000000;
-> +               clk_period_ps = 1000000 / freq_mhz;
-> +
-> +               ret = create_timings_aligned(dmc, &dmc->timing_row[idx],
-> +                                            &dmc->timing_data[idx],
-> +                                            &dmc->timing_power[idx],
-> +                                            clk_period_ps);
-> +       }
-> +
-> +       of_node_put(np_ddr);
-> +
-> +       /* Take the highest frequency's timings as 'bypass' */
-> +       dmc->bypass_timing_row = dmc->timing_row[idx - 1];
-> +       dmc->bypass_timing_data = dmc->timing_data[idx - 1];
-> +       dmc->bypass_timing_power = dmc->timing_power[idx - 1];
-> +
-> +       return ret;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_init_clks() - Initialize clocks needed for DMC operation.
-> + * @dev:       device for which the clocks are setup
-> + * @dmc:       DMC structure containing needed fields
-> + *
-> + * Get the needed clocks defined in DT device, enable and set the right parents.
-> + * Read current frequency and initialize the initial rate for governor.
-> + */
-> +static int exynos5_dmc_init_clks(struct device *dev, struct exynos5_dmc *dmc)
-> +{
-> +       int ret;
-> +       unsigned long target_volt = 0;
-> +       unsigned long target_rate = 0;
-> +
-> +       dmc->fout_spll = devm_clk_get(dev, "fout_spll");
-> +       if (IS_ERR(dmc->fout_spll))
-> +               return PTR_ERR(dmc->fout_spll);
-> +
-> +       dmc->fout_bpll = devm_clk_get(dev, "fout_bpll");
-> +       if (IS_ERR(dmc->fout_bpll))
-> +               return PTR_ERR(dmc->fout_bpll);
-> +
-> +       dmc->mout_mclk_cdrex = devm_clk_get(dev, "mout_mclk_cdrex");
-> +       if (IS_ERR(dmc->mout_mclk_cdrex))
-> +               return PTR_ERR(dmc->mout_mclk_cdrex);
-> +
-> +       dmc->mout_bpll = devm_clk_get(dev, "mout_bpll");
-> +       if (IS_ERR(dmc->mout_bpll))
-> +               return PTR_ERR(dmc->mout_bpll);
-> +
-> +       dmc->mout_mx_mspll_ccore = devm_clk_get(dev, "mout_mx_mspll_ccore");
-> +       if (IS_ERR(dmc->mout_mx_mspll_ccore))
-> +               return PTR_ERR(dmc->mout_mx_mspll_ccore);
-> +
-> +       dmc->dout_clk2x_phy0 = devm_clk_get(dev, "dout_clk2x_phy0");
-> +       if (IS_ERR(dmc->dout_clk2x_phy0))
-> +               return PTR_ERR(dmc->dout_clk2x_phy0);
-> +
-> +       dmc->mout_spll = devm_clk_get(dev, "ff_dout_spll2");
-> +       if (IS_ERR(dmc->mout_spll)) {
-> +               dmc->mout_spll = devm_clk_get(dev, "mout_sclk_spll");
-> +               if (IS_ERR(dmc->mout_spll))
-> +                       return PTR_ERR(dmc->mout_spll);
-> +       }
-> +
-> +       /*
-> +        * Convert frequency to KHz values and set it for the governor.
-> +        */
-> +       dmc->curr_rate = clk_get_rate(dmc->mout_mclk_cdrex);
-> +       dmc->curr_rate = exynos5_dmc_align_init_freq(dmc, dmc->curr_rate);
-> +       exynos5_dmc_df_profile.initial_freq = dmc->curr_rate;
-> +
-> +       ret = exynos5_dmc_get_volt_freq(dev, &dmc->curr_rate, &target_rate,
-> +                                       &target_volt, 0);
-> +       if (ret)
-> +               return ret;
-> +
-> +       dmc->curr_volt = target_volt;
-> +
-> +       clk_prepare_enable(dmc->mout_spll);
-> +       clk_set_parent(dmc->mout_mx_mspll_ccore, dmc->mout_spll);
-> +       clk_prepare_enable(dmc->mout_mx_mspll_ccore);
-> +
-> +       dmc->bypass_rate = clk_get_rate(dmc->mout_mx_mspll_ccore);
-> +
-> +       clk_prepare_enable(dmc->fout_bpll);
-> +       clk_prepare_enable(dmc->mout_bpll);
-> +
-
-This would leave certain clocks unbalanced (e.g. mout_spll). I do not
-get logic of it... you enable them for entire lifetime of device and
-then still toggle in exynos5_dmc_change_freq_and_volt(). Which clocks
-do you want to have enabled all the time and which not?
-
-
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_performance_counters_init() - Initializes performance DMC's counters
-> + * @dmc:       DMC for which it does the setup
-> + *
-> + * Initialization of performance counters in DMC for estimating usage.
-> + * The counter's values are used for calculation of a memory bandwidth and based
-> + * on that the governor changes the frequency.
-> + * The counters are not used when the governor is GOVERNOR_USERSPACE.
-> + */
-> +static int exynos5_performance_counters_init(struct exynos5_dmc *dmc)
-> +{
-> +       int counters_size;
-> +       int ret, i;
-> +
-> +       dmc->num_counters = devfreq_event_get_edev_count(dmc->dev);
-> +       if (dmc->num_counters < 0) {
-> +               dev_err(dmc->dev, "could not get devfreq-event counters\n");
-> +               return dmc->num_counters;
-> +       }
-> +
-> +       counters_size = sizeof(struct devfreq_event_dev) * dmc->num_counters;
-> +       dmc->counter = devm_kzalloc(dmc->dev, counters_size, GFP_KERNEL);
-> +       if (!dmc->counter)
-> +               return -ENOMEM;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               dmc->counter[i] =
-> +                       devfreq_event_get_edev_by_phandle(dmc->dev, i);
-> +               if (IS_ERR_OR_NULL(dmc->counter[i]))
-> +                       return -EPROBE_DEFER;
-> +       }
-> +
-> +       ret = exynos5_counters_enable_edev(dmc);
-> +       if (ret < 0) {
-> +               dev_err(dmc->dev, "could not enable event counter\n");
-> +               return ret;
-> +       }
-> +
-> +       ret = exynos5_counters_set_event(dmc);
-> +       if (ret < 0) {
-> +               dev_err(dmc->dev, "counld not set event counter\n");
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +
-> +static int dmc_dbg_show_timings(struct seq_file *seq, void *na)
-> +{
-> +       struct exynos5_dmc *dmc = seq->private;
-> +       int i, j;
-> +       u32 val;
-> +       const struct timing_reg *reg;
-> +
-> +       seq_printf(seq, "timings for each frequency\n");
-> +       for (j = dmc->opp_count - 1; j >= 0; j--) {
-> +               seq_printf(seq, "frequency = %uMHz\n",
-> +                                  dmc->opp[j].freq_hz / 1000000);
-> +               seq_printf(seq, "timing_row, timing_data, timing_power\n");
-> +               seq_printf(seq, "0x%08X, 0x%08X, 0x%08X\n", dmc->timing_row[j],
-> +                          dmc->timing_data[j], dmc->timing_power[j]);
-> +       }
-> +
-> +       for (j = dmc->opp_count - 1; j >= 0; j--) {
-> +               seq_printf(seq, "frequency [MHz] = %u\n",
-> +                                  dmc->opp[j].freq_hz / 1000000);
-> +
-> +               for (i = 0; i < ARRAY_SIZE(timing_row); i++) {
-> +                       reg = &timing_row[i];
-> +                       val = TIMING_REG2VAL(dmc->timing_row[j], reg);
-> +                       seq_printf(seq, "%s = %u\n", reg->name, val);
-> +               }
-> +
-> +               for (i = 0; i < ARRAY_SIZE(timing_data); i++) {
-> +                       reg = &timing_data[i];
-> +                       val = TIMING_REG2VAL(dmc->timing_data[j], reg);
-> +                       seq_printf(seq, "%s = %u\n", reg->name, val);
-> +               }
-> +
-> +               for (i = 0; i < ARRAY_SIZE(timing_power); i++) {
-> +                       reg = &timing_power[i];
-> +                       val = TIMING_REG2VAL(dmc->timing_power[j], reg);
-> +                       seq_printf(seq, "%s = %u\n", reg->name, val);
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int dmc_dbg_open_timings(struct inode *inode, struct file *f)
-> +{
-> +       return single_open(f, dmc_dbg_show_timings, inode->i_private);
-> +}
-> +
-> +static const char *event_get_name(const char *evt)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < ARRAY_SIZE(event_name); i += 2) {
-> +               if (!strcmp(event_name[i], evt))
-> +                       return event_name[i + 1];
-> +       }
-> +
-> +       return "Unknown";
-> +}
-> +
-> +static int dmc_dbg_show_cnt(struct seq_file *seq, void *na)
-> +{
-> +       struct exynos5_dmc *dmc = seq->private;
-> +       int i;
-> +       struct devfreq_event_data event;
-> +       struct devfreq_event_dev *edev;
-> +       int ret;
-> +       const char *evt_name;
-> +       u64 ts_new, delta;
-> +       static u64 ts;
-> +
-> +       seq_printf(seq, "Performance based on PMU counters\n");
-> +       seq_printf(seq, "The counters could overflow every ~9.2 sec\n");
-> +
-> +       ts_new = ktime_get_ns();
-> +       delta = ts_new - ts;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               edev = dmc->counter[i];
-> +               if (!edev)
-> +                       continue;
-> +
-> +               evt_name = event_get_name(edev->desc->name);
-> +
-> +               ret = devfreq_event_get_event(edev, &event);
-> +               if (ret < 0)
-> +                       return ret;
-> +
-> +               seq_printf(seq, "%s = %lu / %lu\n", evt_name, event.load_count,
-> +                          event.total_count);
-> +       }
-> +
-> +       seq_printf(seq, "For last %llu ms\n",
-> +                  div64_u64(delta, 1000000UL));
-> +
-> +       ts = ktime_get_ns();
-> +       ret = exynos5_counters_set_event(dmc);
-> +       if (ret < 0) {
-> +               dev_err(dmc->dev, "could not set event counter\n");
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int dmc_dbg_open_cnt(struct inode *inode, struct file *f)
-> +{
-> +       return single_open(f, dmc_dbg_show_cnt, inode->i_private);
-> +}
-> +
-> +struct counter {
-> +       u64 load;
-> +       u64 total;
-> +};
-> +
-> +static int dmc_dbg_show_cnt_100ms(struct seq_file *seq, void *na)
-> +{
-> +       struct exynos5_dmc *dmc = seq->private;
-> +       int i;
-> +       u64 bandwidth = 0;
-> +       struct devfreq_event_data event;
-> +       struct devfreq_event_dev *edev;
-> +       int ret;
-> +       const char *evt_name;
-> +       u64 ts_new, delta;
-> +       static u64 ts;
-> +       struct counter *cnt;
-> +       u64 total[3] = {0, 0, 0 }; /* read, write, read+write data*/
-> +       const char *type[3] = {"read", "write", "read+write"};
-> +       u64 bus_cyc_count = 0;
-> +       int offset = 0;
-> +       char *s;
-
-That amount of local declarations is a clear hint that you should
-split this function.
-
-> +
-> +       s = kzalloc(PAGE_SIZE * sizeof(char), GFP_KERNEL);
-> +       if (!s)
-> +               return -ENOMEM;
-> +
-> +       cnt = kcalloc(dmc->num_counters, sizeof(struct counter), GFP_KERNEL);
-> +       if (!cnt)
-> +               return -ENOMEM;
-> +
-> +       ret = exynos5_counters_set_event(dmc);
-> +       if (ret < 0) {
-> +               dev_err(dmc->dev, "could not set event counter\n");
-> +               return ret;
-> +       }
-> +
-> +       ts = ktime_get_ns();
-> +       msleep(100);
-> +
-> +       /* Seprate data acquisition from presentation due to some
-> +          overheads. */
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               edev = dmc->counter[i];
-> +               if (!edev)
-> +                       continue;
-> +
-> +               ret = devfreq_event_get_event(edev, &event);
-> +               if (ret < 0)
-> +                       return ret;
-> +
-> +               total[i % 3] += event.load_count;
-> +               cnt[i].load = event.load_count;
-> +               cnt[i].total = event.total_count;
-> +
-> +               if (bus_cyc_count < event.total_count)
-> +                       bus_cyc_count = event.total_count;
-> +       }
-> +
-> +       ts_new = ktime_get_ns();
-> +       delta = ts_new - ts;
-> +       if (delta == 0)
-> +               delta = 1;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               edev = dmc->counter[i];
-> +               if (!edev)
-> +                       continue;
-> +
-> +               evt_name = event_get_name(edev->desc->name);
-> +
-> +               bandwidth = (u64)cnt[i].load * AXI_BUS_WIDTH_BYTES * 1000;
-> +               bandwidth = div64_u64(bandwidth, delta);
-> +
-> +               offset += sprintf(s + offset, "%s\t\t%llu MB/s\n",
-> +                                 evt_name, bandwidth);
-> +       }
-> +
-> +       for (i = 0; i < 3; i++) {
-> +               bandwidth = (u64)total[i] * AXI_BUS_WIDTH_BYTES * 1000;
-> +               bandwidth = div64_u64(bandwidth, delta);
-> +
-> +               offset += sprintf(s + offset, "total\t%s\t\t%llu MB/s\n",
-> +                                 type[i], bandwidth);
-> +       }
-> +
-> +       /* AXI speed is presented in MHz*/
-> +       bus_cyc_count *= 1000;
-> +
-> +       seq_printf(seq, "Performance based on PMU counters\n");
-> +       seq_printf(seq, "The counters will overflow every ~9.2 sec\n");
-> +       seq_printf(seq, "%s", s);
-> +       seq_printf(seq, "AXI bus frequency %llu MHz, width %u B, SDR mode\n",
-> +                  div64_u64(bus_cyc_count, delta), AXI_BUS_WIDTH_BYTES);
-> +       seq_printf(seq, "For last %llu ms\n",
-> +                  div64_u64(delta, 1000000UL));
-> +
-> +       kfree(cnt);
-> +       kfree(s);
-> +
-> +       return 0;
-> +}
-> +
-> +static int dmc_dbg_show_cnt_100ms_raw(struct seq_file *seq, void *na)
-> +{
-> +       struct exynos5_dmc *dmc = seq->private;
-> +       int i;
-> +       struct devfreq_event_data event;
-> +       struct devfreq_event_dev *edev;
-> +       int ret;
-> +       const char *evt_name;
-> +       u64 ts_new, delta;
-> +       static u64 ts;
-> +       struct counter *cnt;
-> +       const char *type[3] = {"read", "write", "read+write"};
-> +       int offset = 0;
-> +       char *s;
-
-The same.
-
-> +
-> +       s = kzalloc(PAGE_SIZE * sizeof(char), GFP_KERNEL);
-> +       if (!s)
-> +               return -ENOMEM;
-> +
-> +       cnt = kcalloc(dmc->num_counters, sizeof(struct counter), GFP_KERNEL);
-> +       if (!cnt)
-> +               return -ENOMEM;
-> +
-> +       ret = exynos5_counters_set_event(dmc);
-> +       if (ret < 0) {
-> +               dev_err(dmc->dev, "could not set event counter\n");
-> +               return ret;
-> +       }
-> +
-> +       ts = ktime_get_ns();
-> +       msleep(100);
-> +
-> +       /* Seprate data acquisition from presentation due to some
-> +          overheads. */
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               edev = dmc->counter[i];
-> +               if (!edev)
-> +                       continue;
-> +
-> +               ret = devfreq_event_get_event(edev, &event);
-> +               if (ret < 0)
-> +                       return ret;
-> +
-> +               cnt[i].load = event.load_count;
-> +               cnt[i].total = event.total_count;
-> +       }
-> +
-> +       ts_new = ktime_get_ns();
-> +       delta = ts_new - ts;
-> +       if (delta == 0)
-> +               delta = 1;
-> +
-> +       for (i = 0; i < dmc->num_counters; i++) {
-> +               edev = dmc->counter[i];
-> +               if (!edev)
-> +                       continue;
-> +
-> +               evt_name = event_get_name(edev->desc->name);
-> +
-> +               offset += sprintf(s + offset, "%s (%s)\t\t%llu / %llu\n",
-> +                                 evt_name, type[i % 3], cnt[i].load,
-> +                                 cnt[i].total);
-> +       }
-> +
-> +       seq_printf(seq, "Performance based on PMU counters ('load'/'total')\n");
-> +       seq_printf(seq, "The counters will overflow every ~9.2 sec\n");
-> +       seq_printf(seq, "%s", s);
-> +       seq_printf(seq, "For last %llu ms\n",
-> +                  div64_u64(delta, 1000000UL));
-> +
-> +       kfree(cnt);
-> +       kfree(s);
-> +
-> +       return 0;
-> +}
-> +
-> +static int dmc_dbg_open_cnt_100ms(struct inode *inode, struct file *f)
-> +{
-> +       return single_open(f, dmc_dbg_show_cnt_100ms, inode->i_private);
-> +}
-> +
-> +static int dmc_dbg_open_cnt_100ms_raw(struct inode *inode, struct file *f)
-> +{
-> +       return single_open(f, dmc_dbg_show_cnt_100ms_raw, inode->i_private);
-> +}
-> +
-> +static const struct file_operations dmc_debugfs_ops_timings = {
-> +       .open = dmc_dbg_open_timings,
-> +       .read = seq_read,
-> +       .release = single_release,
-> +};
-> +
-> +static const struct file_operations dmc_debugfs_ops_cnt = {
-> +       .open = dmc_dbg_open_cnt,
-> +       .read = seq_read,
-> +       .release = single_release,
-> +};
-> +
-> +static const struct file_operations dmc_debugfs_ops_cnt_100ms = {
-> +       .open = dmc_dbg_open_cnt_100ms,
-> +       .read = seq_read,
-> +       .release = single_release,
-> +};
-> +
-> +static const struct file_operations dmc_debugfs_ops_cnt_100ms_raw = {
-> +       .open = dmc_dbg_open_cnt_100ms_raw,
-> +       .read = seq_read,
-> +       .release = single_release,
-> +};
-> +
-> +static void exynos5_dmc_debugfs_init(struct exynos5_dmc *dmc)
-> +{
-> +       struct dentry *dentry;
-> +
-> +       dmc->dbg_root = debugfs_create_dir(dev_name(dmc->dev), NULL);
-> +       if (!dmc->dbg_root)
-> +               return;
-> +
-> +       dentry = debugfs_create_file("timings", 0444, dmc->dbg_root, dmc,
-> +                                    &dmc_debugfs_ops_timings);
-> +       if (!dentry)
-> +               goto clean_debugfs;
-> +
-> +       dentry = debugfs_create_file("counters", 0444, dmc->dbg_root, dmc,
-> +                                    &dmc_debugfs_ops_cnt);
-> +       if (!dentry)
-> +               goto clean_debugfs;
-> +
-> +       dentry = debugfs_create_file("100ms_counters", 0444, dmc->dbg_root, dmc,
-> +                                    &dmc_debugfs_ops_cnt_100ms);
-> +       if (!dentry)
-> +               goto clean_debugfs;
-> +
-> +       dentry = debugfs_create_file("100ms_raw_counters", 0444, dmc->dbg_root,
-> +                                    dmc, &dmc_debugfs_ops_cnt_100ms_raw);
-> +       if (!dentry)
-> +               goto clean_debugfs;
-> +
-> +       return;
-> +
-> +clean_debugfs:
-> +       debugfs_remove_recursive(dmc->dbg_root);
-> +}
-> +#else
-> +static void exynos5_dmc_debugfs_init(struct exynos5_dmc *dmc)
-> +{}
-> +#endif
-> +
-> +/**
-> + * exynos5_dmc_set_pause_on_switching() - Controls a pause feature in DMC
-> + * @dmc:       device which is used for changing this feature
-> + * @set:       a boolean state passing enable/disable request
-> + *
-> + * There is a need of pausing DREX DMC when divider or MUX in clock tree
-> + * changes its configuration. In such situation access to the memory is blocked
-> + * in DMC automatically. This feature is used when clock frequency change
-> + * request appears and touches clock tree.
-> + */
-> +static inline int exynos5_dmc_set_pause_on_switching(struct exynos5_dmc *dmc)
-> +{
-> +       unsigned int val;
-> +       int ret;
-> +
-> +       ret = regmap_read(dmc->clk_regmap, CDREX_PAUSE, &val);
-> +       if (ret)
-> +               return ret;
-> +
-> +       val |= 1UL;
-> +       regmap_write(dmc->clk_regmap, CDREX_PAUSE, val);
-> +
-> +       return 0;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_probe() - Probe function for the DMC driver
-> + * @pdev:      platform device for which the driver is going to be initialized
-> + *
-> + * Initialize basic components: clocks, regulators, performance counters, etc.
-> + * Read out product version and based on the information setup
-> + * internal structures for the controller (frequency and voltage) and for DRAM
-> + * memory parameters: timings for each operating frequency.
-> + * Register new devfreq device for controlling DVFS of the DMC.
-> + */
-> +static int exynos5_dmc_probe(struct platform_device *pdev)
-> +{
-> +       int ret = 0;
-> +       struct exynos5_dmc *dmc;
-> +       struct device *dev = &pdev->dev;
-> +       struct device_node *np = dev->of_node;
-> +       struct resource *res;
-> +
-> +       dmc = devm_kzalloc(dev, sizeof(*dmc), GFP_KERNEL);
-> +       if (!dmc)
-> +               return -ENOMEM;
-> +
-> +       mutex_init(&dmc->lock);
-> +
-> +       dmc->dev = dev;
-> +       platform_set_drvdata(pdev, dmc);
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       dmc->base_drexi0 = devm_ioremap_resource(dev, res);
-> +       if (IS_ERR(dmc->base_drexi0))
-> +               return PTR_ERR(dmc->base_drexi0);
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +       dmc->base_drexi1 = devm_ioremap_resource(dev, res);
-> +       if (IS_ERR(dmc->base_drexi1))
-> +               return PTR_ERR(dmc->base_drexi1);
-> +
-> +       dmc->chipid_regmap = syscon_regmap_lookup_by_phandle(np,
-> +                               "samsung,syscon-chipid");
-> +       if (IS_ERR(dmc->chipid_regmap))
-> +               return PTR_ERR(dmc->chipid_regmap);
-> +
-> +       dmc->clk_regmap = syscon_regmap_lookup_by_phandle(np,
-> +                               "samsung,syscon-clk");
-> +       if (IS_ERR(dmc->clk_regmap))
-> +               return PTR_ERR(dmc->clk_regmap);
-> +
-> +       ret = exynos5_dmc_chip_revision_settings(dmc);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = exynos5_init_freq_table(dev, dmc, &exynos5_dmc_df_profile);
-> +       if (ret) {
-> +               dev_warn(dev, "couldn't initialize frequency settings\n");
-> +               return ret;
-> +       }
-> +
-> +       dmc->vdd_mif = devm_regulator_get(dev, "vdd");
-> +       if (IS_ERR(dmc->vdd_mif)) {
-> +               ret = PTR_ERR(dmc->vdd_mif);
-> +               dev_warn(dev, "couldn't get regulator\n");
-
-This could be EPROBE_DEFER so do not print a warning then.
-
-> +               return ret;
-> +       }
-> +
-> +       ret = exynos5_dmc_init_clks(dev, dmc);
-> +       if (ret) {
-> +               dev_warn(dev, "couldn't initialize clocks\n");
-
-The same - no warnings on deferred probe.
-
-> +               return ret;
-> +       }
-> +
-> +       ret = of_get_dram_timings(dmc);
-> +       if (ret) {
-> +               dev_warn(dev, "couldn't initialize timings settings\n");
-> +               return ret;
-> +       }
-> +
-> +       ret = exynos5_performance_counters_init(dmc);
-> +       if (ret) {
-> +               dev_warn(dev, "couldn't probe performance counters\n");
-> +               goto remove_clocks;
-> +       }
-> +
-> +       ret = exynos5_dmc_set_pause_on_switching(dmc);
-> +       if (ret) {
-> +               dev_warn(dev, "couldn't get access to PAUSE register\n");
-> +               goto remove_clocks;
-> +       }
-> +
-
-One line can be removed.
-
-> +
-> +       /*
-> +        * Setup default thresholds for the devfreq governor.
-> +        * The values are chosen based on experiments.
-> +        */
-> +       dmc->gov_data.upthreshold = 30;
-> +       dmc->gov_data.downdifferential = 5;
-> +
-> +       dmc->df = devm_devfreq_add_device(dev, &exynos5_dmc_df_profile,
-> +                                         DEVFREQ_GOV_USERSPACE,
-> +                                         &dmc->gov_data);
-> +
-> +       if (IS_ERR(dmc->df)) {
-> +               ret = PTR_ERR(dmc->df);
-> +               goto err_devfreq_add;
-> +       }
-> +
-> +       exynos5_dmc_debugfs_init(dmc);
-> +
-> +       dev_info(&pdev->dev, "DMC init for prod_id=0x%08x pkg_id=0x%08x\n",
-> +                dmc->prod_rev, dmc->pkg_rev);
-> +
-> +       return 0;
-> +
-> +err_devfreq_add:
-> +       exynos5_counters_disable_edev(dmc);
-> +remove_clocks:
-> +       clk_disable_unprepare(dmc->mout_mx_mspll_ccore);
-> +       clk_disable_unprepare(dmc->mout_spll);
-
-It does not look like full clock cleanup. You enabled 4 clocks.
-
-> +
-> +       return ret;
-> +}
-> +
-> +/**
-> + * exynos5_dmc_remove() - Remove function for the platform device
-> + * @pdev:      platform device which is going to be removed
-> + *
-> + * The function relies on 'devm' framework function which automatically
-> + * clean the device's resources. It just calls explicitly disable function for
-> + * the performance counters.
-> + */
-> +static int exynos5_dmc_remove(struct platform_device *pdev)
-> +{
-> +       struct exynos5_dmc *dmc = dev_get_drvdata(&pdev->dev);
-> +
-> +       exynos5_counters_disable_edev(dmc);
-> +
-> +       clk_disable_unprepare(dmc->mout_mx_mspll_ccore);
-> +       clk_disable_unprepare(dmc->mout_spll);
-
-The same.
-
-> +
-> +       dev_pm_opp_remove_table(&pdev->dev);
-> +
-> +       dev_info(&pdev->dev, "DMC removed\n");
-
-No need to inform about removal.
-
-Best regards,
-Krzysztof
-
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id exynos5_dmc_of_match[] = {
-> +       { .compatible = "samsung,exynos5422-dmc", },
-> +       { },
-> +};
-> +MODULE_DEVICE_TABLE(of, exynos5_dmc_of_match);
-> +
-> +static struct platform_driver exynos5_dmc_platdrv = {
-> +       .probe  = exynos5_dmc_probe,
-> +       .remove = exynos5_dmc_remove,
-> +       .driver = {
-> +               .name   = "exynos5-dmc",
-> +               .of_match_table = exynos5_dmc_of_match,
-> +       },
-> +};
-> +module_platform_driver(exynos5_dmc_platdrv);
-> +MODULE_DESCRIPTION("Driver for Exynos5422 Dynamic Memory Controller dynamic frequency and voltage change");
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_AUTHOR("Samsung");
-> --
-> 2.7.4
->
+PiBGcm9tOiBSb2IgSGVycmluZyBbbWFpbHRvOnJvYmgrZHRAa2VybmVsLm9yZ10NCj4gU2VudDog
+V2VkbmVzZGF5LCBNYXkgOCwgMjAxOSAyOjAzIEFNDQo+IA0KPiBPbiBTYXQsIE1heSA0LCAyMDE5
+IGF0IDc6MTkgQU0gQWlzaGVuZyBEb25nIDxhaXNoZW5nLmRvbmdAbnhwLmNvbT4NCj4gd3JvdGU6
+DQo+ID4NCj4gPiA+IEZyb206IFJvYiBIZXJyaW5nIFttYWlsdG86cm9iaCtkdEBrZXJuZWwub3Jn
+XQ0KPiA+ID4gU2VudDogRnJpZGF5LCBNYXkgMywgMjAxOSAxMDo1MyBQTQ0KPiA+ID4gU3ViamVj
+dDogUmU6IFtQQVRDSCBWMiAxLzJdIGR0LWJpbmRpbmdzOiBmaXJtd2FyZTogaW14LXNjdTogbmV3
+DQo+ID4gPiBiaW5kaW5nIHRvIHBhcnNlIGNsb2NrcyBmcm9tIGRldmljZSB0cmVlDQo+ID4gPg0K
+PiA+ID4gT24gVGh1LCBNYXkgMiwgMjAxOSBhdCA4OjM0IFBNIEFpc2hlbmcgRG9uZyA8YWlzaGVu
+Zy5kb25nQG54cC5jb20+DQo+ID4gPiB3cm90ZToNCj4gPiA+DQo+ID4gPiA+IFRoZXJlJ3MgYSBm
+ZXcgbGltaXRhdGlvbnMgb24gdGhlIG9yaWdpbmFsIG9uZSBjZWxsIGNsb2NrIGJpbmRpbmcNCj4g
+PiA+ID4gKCNjbG9jay1jZWxscyA9IDwxPikgdGhhdCB3ZSBoYXZlIHRvIGRlZmluZSBhbGwgY2xv
+Y2sgSURzIGZvcg0KPiA+ID4gPiBkZXZpY2UgdHJlZSB0byByZWZlcmVuY2UuIFRoaXMgbWF5IGNh
+dXNlIHRyb3VibGVzIGlmIHdlIHdhbnQgdG8NCj4gPiA+ID4gdXNlIGNvbW1vbiBjbG9jayBJRHMg
+Zm9yIG11bHRpIHBsYXRmb3JtcyBzdXBwb3J0IHdoZW4gdGhlIGNsb2NrIG9mDQo+ID4gPiA+IHRo
+b3NlIHBsYXRmb3JtcyBhcmUgbW9zdGx5IHRoZSBzYW1lLg0KPiA+ID4gPiBlLmcuIEN1cnJlbnQg
+Y2xvY2sgSURzIG5hbWUgYXJlIGRlZmluZWQgd2l0aCBTUyBwcmVmaXguDQo+ID4gPiA+DQo+ID4g
+PiA+IEhvd2V2ZXIgdGhlIGRldmljZSBtYXkgcmVzaWRlIGluIGRpZmZlcmVudCBTUyBhY3Jvc3Mg
+Q1BVcywgdGhhdA0KPiA+ID4gPiBtZWFucyB0aGUgU1MgcHJlZml4IG1heSBub3QgdmFsaWQgYW55
+bW9yZSBmb3IgYSBuZXcgU29DLg0KPiA+ID4gPiBGdXJ0aGVybW9yZSwgdGhlIGRldmljZSBhdmFp
+bGFiaWxpdHkgb2YgdGhvc2UgY2xvY2tzIG1heSBhbHNvIHZhcnkgYSBiaXQuDQo+ID4gPiA+DQo+
+ID4gPiA+IEZvciBzdWNoIHNpdHVhdGlvbiwgV2UgZm9ybWVybHkgcGxhbm5lZCB0byBhZGQgYWxs
+IG5ldyBJRHMgZm9yDQo+ID4gPiA+IGVhY2ggU1MgYW5kIGR5bmFtaWNhbGx5IGNoZWNrIGF2YWls
+YWJpbGl0eSBmb3IgZGlmZmVyZW50IFNvQyBpbg0KPiA+ID4gPiBkcml2ZXIuIFRoYXQgY2FuIGJl
+IGRvbmUgYnV0IHRoYXQgbWF5IGludm9sdmUgYSBsb3QgZWZmb3J0IGFuZCBtYXkNCj4gPiA+ID4g
+cmVzdWx0IGluIG1vcmUgY2hhbmdlcyBhbmQgZHVwbGljYXRlZCBjb2RlIGluIGRyaXZlciwgYWxz
+byBtYWtlDQo+ID4gPiA+IGRldmljZSB0cmVlIHVwc3RyZWFtaW5nIGhhcmQgd2hpY2ggZGVwZW5k
+cyBvbiBDbG9jayBJRHMuDQo+ID4gPiA+DQo+ID4gPiA+IFRvIHJlbGllZiB0aGlzIHNpdHVhdGlv
+biwgd2Ugd2FudCB0byBtb3ZlIHRoZSBjbG9jayBkZWZpbml0aW9uDQo+ID4gPiA+IGludG8gZGV2
+aWNlIHRyZWUgd2hpY2ggY2FuIGZ1bGx5IGRlY291cGxlIHRoZSBkZXBlbmRlbmN5IG9mIENsb2Nr
+DQo+ID4gPiA+IElEIGRlZmluaXRpb24gZnJvbSBkZXZpY2UgdHJlZS4gVGhpcyBjYW4gbWFrZSB1
+cyB3cml0ZSBhIGZ1bGwNCj4gPiA+ID4gZ2VuZXJpYyBjbG9jayBkcml2ZXIgZm9yIFNDVSBiYXNl
+ZCBTb0NzLiBObyBtb3JlIGZyZXF1ZW50IGNoYW5nZXMNCj4gPiA+ID4gbmVlZGVkIGluIGNsb2Nr
+IGRyaXZlciBhbnkgbW9yZS4NCj4gPiA+ID4NCj4gPiA+ID4gSW4gdGhlIG1lYW53aGlsZSwgd2Ug
+Y2FuIGFsc28gdXNlIHRoZSBleGlzdGVuY2Ugb2YgY2xvY2sgbm9kZXMgaW4NCj4gPiA+ID4gZGV2
+aWNlIHRyZWUgdG8gYWRkcmVzcyB0aGUgZGV2aWNlIGFuZCBjbG9jayBhdmFpbGFiaWxpdHkNCj4g
+PiA+ID4gZGlmZmVyZW5jZXMgYWNyb3NzIGRpZmZlcmVudCBTb0NzLg0KPiA+ID4gPg0KPiA+ID4g
+PiBGb3IgU0NVIGNsb2Nrcywgb25seSB0d28gcGFyYW1zIHJlcXVpcmVkLiBUaGUgZmlyc3Qgb25l
+IGlzDQo+ID4gPiA+IHJlc291cmNlIGlkIHdoaWNoIGlzIGVuY29kZWQgaW4gcmVnIHByb3BlcnR5
+IGFuZCB0aGUgc2Vjb25kIGlzDQo+ID4gPiA+IGNsb2NrIHR5cGUgaW5kZXggd2hpY2ggaXMgZW5j
+b2RlZCBpbiBnZW5lcmljIGNsb2NrLWluZGljZXMgcHJvcGVydHkNCj4gdGhleSdyZSBub3QgY29u
+dGludW91c2x5Lg0KPiA+ID4gPg0KPiA+ID4gPiBBbmQgYXMgd2UgYWxzbyB3YW50IHRvIHN1cHBv
+cnQgY2xvY2sgc2V0IHBhcmVudCBmdW5jdGlvbiwgJ2Nsb2NrcycNCj4gPiA+ID4gcHJvcGVydHkg
+aXMgYWxzbyB1c2VkIHRvIHBhc3MgYWxsIHRoZSBwb3NzaWJsZSBpbnB1dCBwYXJlbnRzLg0KPiA+
+ID4gPg0KPiA+ID4gPiBDYzogUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCj4gPiA+
+ID4gQ2M6IFN0ZXBoZW4gQm95ZCA8c2JveWRAa2VybmVsLm9yZz4NCj4gPiA+ID4gQ2M6IFNoYXdu
+IEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz4NCj4gPiA+ID4gQ2M6IFNhc2NoYSBIYXVlciA8a2Vy
+bmVsQHBlbmd1dHJvbml4LmRlPg0KPiA+ID4gPiBDYzogTWljaGFlbCBUdXJxdWV0dGUgPG10dXJx
+dWV0dGVAYmF5bGlicmUuY29tPg0KPiA+ID4gPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5v
+cmcNCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogRG9uZyBBaXNoZW5nIDxhaXNoZW5nLmRvbmdAbnhw
+LmNvbT4NCj4gPiA+ID4gLS0tDQo+ID4gPiA+IENoYW5nZUxvZzoNCj4gPiA+ID4gdjEtPnYyOg0K
+PiA+ID4gPiAgKiBjaGFuZ2VkIHRvIG9uZSBjZWxsIGJpbmRpbmcgaW5zcGlyZWQgYnkgYXJtLHNj
+cGkudHh0DQo+ID4gPiA+ICAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0v
+YXJtLHNjcGkudHh0DQo+ID4gPiA+ICAgIFJlc291cmNlIElEIGlzIGVuY29kZWQgaW4gJ3JlZycg
+cHJvcGVydHkuDQo+ID4gPiA+ICAgIENsb2NrIHR5cGUgaXMgZW5jb2RlZCBpbiBnZW5lcmljIGNs
+b2NrLWluZGljZXMgcHJvcGVydHkuDQo+ID4gPiA+ICAgIFRoZW4gd2UgZG9uJ3QgaGF2ZSB0byBz
+ZWFyY2ggYWxsIHRoZSBEVCBub2RlcyB0byBmZXRjaA0KPiA+ID4gPiAgICB0aG9zZSB0d28gdmFs
+dWUgdG8gY29uc3RydWN0IGNsb2NrcyB3aGljaCBpcyByZWxhdGl2ZWx5DQo+ID4gPiA+ICAgIGxv
+dyBlZmZpY2llbmN5Lg0KPiA+ID4gPiAgKiBBZGQgcmVxdWlyZWQgcG93ZXItZG9tYWluIHByb3Bl
+cnR5IGFzIHdlbGwuDQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAgLi4uL2RldmljZXRyZWUvYmluZGlu
+Z3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4dCAgfCA0NQ0KPiA+ID4gKysrKysrKysrKysrKysr
+KysrLS0tLQ0KPiA+ID4gPiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9maXJtd2FyZS9pbXgvcnNyYy5o
+ICAgICAgICAgICAgfCAxNyArKysrKysrKw0KPiA+ID4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA1NCBp
+bnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQ0KPiA+ID4gPg0KPiA+ID4gPiBkaWZmIC0tZ2l0
+DQo+ID4gPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2Nh
+bGUvZnNsLHNjdS50eHQNCj4gPiA+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4dA0KPiA+ID4gPiBpbmRleCA1ZDdkYmFiLi4yZjQ2
+ZTg5IDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4dA0KPiA+ID4gPiArKysgYi9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4dA0KPiA+ID4gPiBA
+QCAtODksNiArODksMjcgQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiA+ID4gICAgICAgICAg
+ICAgICAgICAgICAgICAgICAiZnNsLGlteDhxbS1jbG9jayINCj4gPiA+ID4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAiZnNsLGlteDhxeHAtY2xvY2siDQo+ID4gPiA+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIGZvbGxvd2VkIGJ5ICJmc2wsc2N1LWNsayINCj4gPiA+ID4gKy0gI2FkZHJlc3Mt
+Y2VsbHM6ICAgICAgU2hvdWxkIGJlIDEuDQo+ID4gPiA+ICstICNzaXplLWNlbGxzOiAgICAgICAg
+IFNob3VsZCBiZSAwLg0KPiA+ID4gPiArDQo+ID4gPiA+ICtTdWIgbm9kZXMgYXJlIHJlcXVpcmVk
+IHRvIHJlcHJlc2VudCBhbGwgYXZhaWxhYmxlIFNDVSBjbG9ja3MNCj4gPiA+ID4gK3dpdGhpbiB0
+aGlzIGhhcmR3YXJlIHN1YnN5c3RlbSBhbmQgdGhlIGZvbGxvd2luZyBwcm9wZXJ0aWVzIGFyZQ0K
+PiBuZWVkZWQ6DQo+ID4gPiA+ICsNCj4gPiA+ID4gKy0gcmVnOiAgICAgICAgICAgICAgICAgU2hv
+dWxkIGNvbnRhaW4gdGhlIFJlc291cmNlIElEIG9mIHRoaXMgU0NVDQo+IGNsb2NrLg0KPiA+ID4g
+PiArLSAjY2xvY2stY2VsbHM6ICAgICAgICAgICAgICAgIFNob3VsZCBiZSAxLg0KPiA+ID4gPiAr
+LSBjbG9jay1pbmRpY2VzOiAgICAgICBJbmRleCBvZiBhbGwgY2xvY2sgdHlwZXMgc3VwcG9ydGVk
+IGJ5IHRoaXMgU0NVDQo+IGNsb2NrLg0KPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBU
+aGUgb3JkZXIgc2hvdWxkIG1hdGNoIHRoZQ0KPiA+ID4gPiArY2xvY2stb3V0cHV0LW5hbWVzDQo+
+ID4gPiBhcnJheS4NCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgUmVmZXIgdG8NCj4g
+PiA+IDxpbmNsdWRlL2R0LWJpbmRpbmdzL2Zpcm13YXJlL2lteC9yc3JjLmg+IGZvcg0KPiA+ID4g
+PiArICAgICAgICAgICAgICAgICAgICAgICBhdmFpbGFibGUgY2xvY2sgdHlwZXMgc3VwcG9ydGVk
+IGJ5IFNDVS4NCj4gPiA+DQo+ID4gPiBJIHdvdWxkIGhhdmUgZXhwZWN0ZWQgdGhlIGNsb2NrIGNl
+bGwgdG8gY29udGFpbiB0aGUgUmVzb3VyY2UgSUQuDQo+ID4gPg0KPiA+ID4gQWxzbywgdGhpcyBz
+dGlsbCBoYXMgb25lIGNsb2NrIHBlciBub2RlIHdoaWNoIHlvdSBzaG91bGQgYXZvaWQNCj4gPiA+
+IHVubGVzcyB0aGVyZSdzIG9ubHkgYSBzbWFsbCBudW1iZXIgb2YgY2xvY2tzIChzYXkgfjIwKS4g
+TW92ZSB0aGlzDQo+ID4gPiBhbGwgdG8gYSBzaW5nbGUgbm9kZSB3aXRoIHRoZSBsaXN0IG9mIGNs
+b2NrIElEcyBpbiBjbG9jay1pbmRpY2VzIGFuZA0KPiA+ID4gb3RoZXIgcHJvcGVydGllcyBsaWtl
+IHBvd2VyLWRvbWFpbnMgY2FuIG1hdGNoIHVwIHdpdGggY2xvY2staW5kaWNlcy4NCj4gPiA+IElP
+VywgYm90aCBzaG91bGQgaGF2ZSB0aGUgc2FtZSBsZW5ndGggKGluIGVsZW1lbnRzKS4NCj4gPiA+
+DQo+ID4NCj4gPiBEbyB5b3UgbWVhbiBzb21ldGhpbmcgbGlrZSB0aGlzPw0KPiA+DQo+ID4gI2Rl
+ZmluZSBJTVhfU0NVX0NMS19JRChyc3JjLCB0eXBlKSAgICAgICh0eXBlIDw8IDE2IHwgcnNyYykN
+Cj4gPiBzY3VfY2xrOiBzY3UtY2xvY2stY29udHJvbGxlciB7DQo+ID4gICAgICAgICBjb21wYXRp
+YmxlID0gImZzbCxpbXg4cXhwLXNjdS1jbGsiLCAiZnNsLHNjdS1jbGsiOw0KPiA+ICAgICAgICAg
+I2Nsb2NrLWNlbGxzID0gPDE+Ow0KPiA+ICAgICAgICAgY2xvY2staW5kaWNlcyA9IDxJTVhfU0NV
+X0NMS19JRChJTVhfU0NfUl9FTkVUXzAsDQo+IElNWF9TQ19QTV9DTEtfUEVSKT4sDQo+ID4gICAg
+ICAgICAgICAgICAgICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX0VORVRfMCwNCj4g
+SU1YX1NDX1BNX0NMS19CWVBBU1MpPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICA8SU1Y
+X1NDVV9DTEtfSUQoSU1YX1NDX1JfRU5FVF8wLA0KPiBJTVhfU0NfUE1fQ0xLX01JU0MwKT4sDQo+
+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX1VBUlRf
+MCwNCj4gSU1YX1NDX1BNX0NMS19QRVIpPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAu
+Li4NCj4gPg0KPiA+ICAgICAgICAgY2xvY2stb3V0cHV0LW5hbWVzID0gImVuZXQwX2NsayIsDQo+
+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiZW5ldDBfYnlwYXNzX2NsayIsDQo+ID4g
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiZW5ldDBfcmdtaWlfY2xrIiwNCj4gPiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICJ1YXJ0MF9jbGsiLA0KPiA+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgLi4uDQo+ID4NCj4gPiAgICAgICAgIHBvd2VyLWRvbWFpbnMgPSA8JnBk
+IElNWF9TQ19SX0VORVRfMD4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhf
+U0NfUl9FTkVUXzA+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1Jf
+RU5FVF8wPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICA8JnBkIElNWF9TQ19SX1VBUlRf
+MD4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgLi4uDQo+ID4gfTsNCj4gDQo+IFllcywg
+YnV0Li4uDQo+IA0KPiA+IHNlcmlhbEA1YTA2MDAwMCB7DQo+ID4gICAgICAgICAuLi4NCj4gPiAg
+ICAgICAgIGNsb2NrcyA9IDwmc2N1X2NsayBJTVhfU0NVX0NMS19JRChJTVhfU0NfUl9VQVJUXzAs
+DQo+ID4gSU1YX1NDX1BNX0NMS19QRVIpPjsNCj4gDQo+IEkgdGhvdWdodCBkZXZpY2VzIGdvdCBj
+bG9ja3MgZnJvbSB0aGUgTFBDRz8NCj4gDQoNClllcy4gSGVyZSBpcyBqdXN0IGFuIGV4YW1wbGUg
+b2YgdXNpbmcgU0NVIGNsb2Nrcy4NCkFuZCBmb3Igc29tZSBkZXZpY2VzIHdpdGhvdXQgTFBDRywg
+aXQgY291bGQgYWxzbyBnZXQgY2xvY2tzIGRpcmVjdGx5IGZyb20gU0NVIGNsb2NrLg0KIA0KPiA+
+ICAgICAgICAgcG93ZXItZG9tYWlucyA9IDwmcGQgSU1YX1NDX1JfVUFSVF8wPjsgfTsNCj4gPg0K
+PiA+IEkgd29uZGVyIG1vdmluZyBhbGwgY2xvY2sgcmVzb3VyY2VzIGludG8gYSBzaW5nbGUgY2xv
+Y2sgY29udHJvbGxlcg0KPiA+IG5vZGUgbWF5IHJlc3VsdCBpbiBsb3NpbmcgdGhlIGNvbmZpZ3Vy
+YXRpb24gZ3JhbnVsYXJpdHkgb2YgaW5kaXZpZHVhbCBjbG9ja3MNCj4gZnJvbSBkZXZpY2UgdHJl
+ZS4NCj4gPg0KPiA+IEZvciBTQ1UgYmFzZWQgcGxhdGZvcm1zLCB0aGUgcmVzb3VyY2UgYXZhaWxh
+YmlsaXR5IChlLmcuDQo+ID4gZGV2aWNlL2Nsb2Nrcy9wb3dlcikgYXJlIGNvbmZpZ3VyYWJsZSBi
+eSBTQ1UgZmlybXdhcmUgYWNjb3JkaW5nIHRvIHRoZQ0KPiBkaWZmZXJlbnQgU1cgZXhlY3V0aW9u
+IHBhcnRpdGlvbiBjb25maWd1cmF0aW9uLg0KPiA+IGUuZy4gQWNjb3JkaW5nIHRvIGN1c3RvbWVy
+J3MgcmVxdWlyZW1lbnRzLCB3ZSBtYXkgYWxsb2NhdGUgc29tZQ0KPiA+IHJlc291cmNlcyB0byBN
+NCBwYXJ0aXRpb24gbGlrZSBzb21lIEkyQywgQ0FOLCBhdWRpbyByZXNvdXJjZXMgd2hpY2ggY2Fu
+J3QgYmUNCj4gYWNjZXNzZWQgYnkgQSBjb3JlLg0KPiA+IEFuZCB3ZSBtYXkgYWxsb2NhdGUgZXZl
+biBtb3JlIGZvciB2aXJ0dWFsIG1hY2hpbmVzIHJ1bm5pbmcgYXQgYW5vdGhlciBDUFUNCj4gY29y
+ZS4NCj4gPiBUaHVzLCBkZWZpbmluZyBhbGwgdGhlIGNsb2NrIHNvdXJjZXMgKGZpeGVkKSBpbiBk
+ZXZpY2UgdHJlZSBmb3IgQSBjb3JlDQo+ID4gc2VlbXMgdG8gYmUgYSBsaXR0bGUgYml0IG1lYW5p
+bmdsZXNzIGFuZCBpdCBhbHNvIGNhdXNlcyB1cyBoYXJkIHRvIGV4dGVuZCBmb3IgYQ0KPiBuZXcg
+U29DLg0KPiANCj4gSSdtIG5vdCBzdWdnZXN0aW5nIHRoYXQuIEl0J3MgcmVhbGx5IGp1c3QgcmUt
+YXJyYW5naW5nIGFsbCB0aGUgc2FtZSBkYXRhIGZyb20gYQ0KPiBidW5jaCBvZiBjaGlsZCBub2Rl
+cyB0byBhIHNpbmdsZSBub2RlLiBHcmFudGVkLCBpdCBtYXkgYmUgZWFzaWVyIHRvIGFkZC9kZWxl
+dGUNCj4gbm9kZXMgdGhhbiBhZGQvZGVsZXRlIGVsZW1lbnRzIGZyb20gYW4gYXJyYXkgb2YgcHJv
+cGVydHkgdmFsdWVzLCBidXQgcmVhbGx5DQo+IHRoYXQncyBqdXN0IGEgdG9vbGluZyBwcm9ibGVt
+DQo+IA0KDQpPa2F5LCB1bmRlcnN0b29kLg0KU28gaXQgc2VlbXMgd2UgY291bGQgc3RpbGwgaGF2
+ZSBhIHNlcGFyYXRlIGNsb2NrIGNvbnRyb2xsZXIgbm9kZSBmb3IgZWFjaCBTUyBidXQgbWVyZ2UN
+CmFsbCB0aGUgc2FtZSBkYXRhIG9mIGNoaWxkIG5vZGVzIGRhdGEgaW50byBpdC4NCg0KSG93ZXZl
+ciwgd2Ugc3RpbGwgaGF2ZSBvbmUgY29uY2Vybi4NClRha2luZyBNWDhRWFAgRE1BIFNTIGFzIGV4
+YW1wbGUsIHdpdGggb25lIG5vZGUgZGVzY3JpcHRpb24sIGl0IG1heSBiZSBzb21ldGhpbmcNCmxp
+a2UgYmVsb3c6DQpkbWFfc2N1X2NsazogZG1hLXNjdS1jbG9jay1jb250cm9sbGVyIHsNCiAgICAg
+ICAgY29tcGF0aWJsZSA9ICJmc2wsaW14OHF4cC1zY3UtcGQiLCAiZnNsLHNjdS1jbGsiOw0KICAg
+ICAgICAjY2xvY2stY2VsbHMgPSA8MT47DQogICAgICAgIGNsb2NrLWluZGljZXMgPSA8SU1YX1ND
+VV9DTEtfSUQoSU1YX1NDX1JfQURDXzAsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAg
+ICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfQ0FOXzAsIElNWF9TQ19QTV9D
+TEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1ND
+X1JfRlRNXzAsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAgICA8
+SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfRlRNXzEsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAg
+ICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfSTJDXzAsIElNWF9T
+Q19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQo
+SU1YX1NDX1JfSTJDXzEsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAg
+ICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfSTJDXzIsIElNWF9TQ19QTV9DTEtfUEVSKT4s
+DQogICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfSTJDXzMs
+IElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9D
+TEtfSUQoSU1YX1NDX1JfTENEXzAsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAg
+ICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfTENEXzBfUFdNXzAsIElNWF9TQ19Q
+TV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1Y
+X1NDX1JfU1BJXzAsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAg
+ICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfU1BJXzEsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQog
+ICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfU1BJXzIsIElN
+WF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtf
+SUQoSU1YX1NDX1JfU1BJXzMsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAgICAgICAgICAg
+ICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfVUFSVF8wLCBJTVhfU0NfUE1fQ0xLX1BF
+Uik+LA0KICAgICAgICAgICAgICAgICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX1VB
+UlRfMSwgSU1YX1NDX1BNX0NMS19QRVIpPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDxJTVhf
+U0NVX0NMS19JRChJTVhfU0NfUl9VQVJUXzIsIElNWF9TQ19QTV9DTEtfUEVSKT4sDQogICAgICAg
+ICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfVUFSVF8zLCBJTVhfU0Nf
+UE1fQ0xLX1BFUik+Ow0KICAgICAgICBjbG9jay1vdXRwdXQtbmFtZXMgPSAiYWRjMF9jbGsiLA0K
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiY2FuMF9jbGsiLA0KICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAiZnRtMF9jbGsiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAi
+ZnRtMV9jbGsiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaTJjMF9jbGsiLA0KICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAiaTJjMV9jbGsiLA0KICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAiaTJjMl9jbGsiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaTJj
+M19jbGsiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibGNkMF9jbGsiLA0KICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAibGNkMF9wd20wX2NsayIsDQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICJzcGkwX2NsayIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICJz
+cGkxX2NsayIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICJzcGkyX2NsayIsDQogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICJzcGkzX2NsayIsDQogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICJ1YXJ0MF9jbGsiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAidWFy
+dDFfY2xrIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInVhcnQyX2NsayIsDQogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICJ1YXJ0M19jbGsiOw0KICAgICAgICBwb3dlci1kb21h
+aW5zID0gPCZwZCBJTVhfU0NfUl9BRENfMD4sDQogICAgICAgICAgICAgICAgICAgICAgICA8JnBk
+IElNWF9TQ19SX0NBTl8wPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1Jf
+RlRNXzA+LA0KICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9GVE1fMT4sDQog
+ICAgICAgICAgICAgICAgICAgICAgICA8JnBkIElNWF9TQ19SX0kyQ18wPiwNCiAgICAgICAgICAg
+ICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1JfSTJDXzE+LA0KICAgICAgICAgICAgICAgICAgICAg
+ICAgPCZwZCBJTVhfU0NfUl9JMkNfMj4sDQogICAgICAgICAgICAgICAgICAgICAgICA8JnBkIElN
+WF9TQ19SX0kyQ18zPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1JfTENE
+XzA+LA0KICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9MQ0RfMF9QV01fMD4s
+DQogICAgICAgICAgICAgICAgICAgICAgICA8JnBkIElNWF9TQ19SX1NQSV8wPiwNCiAgICAgICAg
+ICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1JfU1BJXzE+LA0KICAgICAgICAgICAgICAgICAg
+ICAgICAgPCZwZCBJTVhfU0NfUl9TUElfMj4sDQogICAgICAgICAgICAgICAgICAgICAgICA8JnBk
+IElNWF9TQ19SX1NQSV8zPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1Jf
+VUFSVF8wPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1JfVUFSVF8xPiwN
+CiAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1JfVUFSVF8yPiwNCiAgICAgICAg
+ICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1JfVUFSVF8zPjsNCn07DQoNCkZvciBNWDhRTSwg
+ZXZlbiBpZiB3ZSBoYXZlIG9uZSBtb3JlIFVBUlRfNCwgdGhlbiB3ZSBzdGlsbCBoYXZlIHRvIHdy
+aXRlDQphbGwgdGhlIHNhbWUgdGhpbmdzIGFnYWluIHdpdGggYW4gZXh0cmEgVUFSVF80LiBJdCBz
+ZWVtcyBpdCdzIGEgYml0IHZpb2xhdGUgb3VyIGRlc2lnbg0KdGhhdCB1c2luZyBhIHNoYXJlZCBv
+bmUgYW5kIGRvIGluY3JlbWVudGFsIGNoYW5nZXMgZm9yIG5ldyBTb0NzLg0KRG8geW91IHRoaW5r
+IGlmIHRoaXMgaXMgYWNjZXB0YWJsZSB0byB5b3U/DQpCdXQgaWYgZGVzY3JpYmUgdGhlbSBwZXIg
+bm9kZXMsIHdlIGRvIG5vdCBoYXZlIHN1Y2ggaXNzdWUuDQoNCkFueXdheSwgcGxlYXNlIHRlbGwg
+bWUgeW91ciBjaG9pY2UsIHRoZW4gSSB3aWxsIGZvbGxvdy4NCg0KQlRXLCBJIGRvbid0IGtub3cg
+aG93IGEgdG9vbCBjYW4gYWRkcmVzcyB0aGlzIGlzc3VlLg0KUGxlYXNlIGxldCBtZSBrbm93IGlm
+IHlvdSBoYXZlIGJldHRlciBpZGVhLg0KDQo+ID4gRS5nLiBNWDhRTSBoYXMgbW9yZSBjbG9ja3Mg
+dGhhbiBRWFAgaW4gZGlmZmVyZW50IFNTLg0KPiA+IFRoYXQncyB3aHkgd2Ugd2FudCB0aGUgcGVy
+IGNsb2NrIHNvdXJjZSBub2RlIGRlZmluaXRpb24gaW4gRFQuDQo+ID4gVGhlbiB3ZSBjYW4gY29u
+ZmlndXJlIHRoZSBjbG9jayBzb3VyY2VzIGNvbnZlbmllbnRseSBhY2NvcmRpbmcgdG8NCj4gPiBk
+aWZmZXJlbnQgcGFydGl0aW9uIHNldHRpbmcgYW5kIG5ldyBTb0MgcHJvcGVydHkuDQo+ID4NCj4g
+PiBGdXJ0aGVybW9yZSwgcGVyIGNsb2NrIHJlc291cmNlIG5vZGUgYWxzbyBtYWtlcyB1cyBtb3Jl
+IGVhc2lseSB0bw0KPiA+IGhhbmRsZSBwb3dlciBkb21haW4gSW4gYSBtb3JlIHN0YW5kYXJkIHdh
+eSBhbmQgZG8gc3RhdGUgc2F2ZSZyZXN0b3JlDQo+ID4gZHVyaW5nIHN5c3RlbSBzdXNwZW5kL3Jl
+c3VtZSBkdWUgdG8gdGhlIGNsb2NrIHN0YXRlIHdpbGwgYmUgbG9zdCB3aGVuIHRoZQ0KPiBwb3dl
+ciBpcyBvZmYuDQo+ID4NCj4gPiBBbm90aGVyIGltcG9ydGFudCB0aGluZyBpcyB0aGF0IE1YOCBp
+cyBjb25zaXN0ZWQgb2YgYSBudW1iZXIgb2YgSFcNCj4gPiBzdWJzeXN0ZW0gd2hpbGUgZWFjaCBT
+dWJzeXN0ZW0gaGFzIHNlcGFyYXRlIGNsb2NrIGNvbnRyb2xsZXJzIChib3RoIFNDVQ0KPiBjbG9j
+ayBjb250cm9sbGVycyBhbmQgTFBDRyBjbG9jayBjb250cm9sbGVycykuDQo+ID4gSSBiZWxpZXZl
+IHRoaXMgaXMgZGlmZmVyZW50IGZyb20gb3RoZXIgdmVuZG9yIGxpa2UgVEkgYW5kIEFSTSBKdW5v
+DQo+ID4gd2hpY2ggbWlnaHQgbWFrZSB1cyBmZWVsIHdlIHNob3VsZCB1c2UgdGhlIHNhbWUgd2F5
+IGFzIHRoZWlycyBhdCB0aGUgZmlyc3QNCj4gZ2xhbmNlLiBCdXQgd2UncmUgZGlmZmVyZW50Lg0K
+PiA+DQo+ID4gVGhhdCdzIHdoeSBJIHVzZSBwZXIgY2xvY2sgcmVzb3VyY2Ugbm9kZSBhcyBpdCBz
+ZWVtcyB0byBiZSBiZXR0ZXIgZm9yIGkuTVgNCj4gc3BlY2lhbCBjaGFyYWN0ZXJpc3RpYy4NCj4g
+Pg0KPiA+IENvbnNpZGVyaW5nIGFsbCBhYm92ZSByZXF1aXJlbWVudHMsIGhvdyB3b3VsZCB5b3Ug
+c3VnZ2VzdCB1cyB0byBkbz8NCj4gPg0KPiA+ID4gRm9yIHRoZSBjbG9jayB0eXBlLCBwZXJoYXBz
+IGNvbWJpbmUgdGhhdCBpbiB0aGUgY2xvY2sgY2VsbCB3aXRoIHRoZQ0KPiA+ID4gcmVzb3VyY2Ug
+SUQgc3VjaCBhcyB1c2luZyB0aGUgdXBwZXIgOC1iaXRzLg0KPiA+ID4NCj4gPg0KPiA+IEl0IHNl
+ZW1zIHdlIG11c3QgY29tYmluZSB0aGVtIGJlY2F1c2UgY3VycmVudCBjbG9jay1pbmRpY2VzIGJp
+bmRpbmcNCj4gPiBkb2VzIG5vdCBzdXBwb3J0IHR3byBjZWxscyBpbmRleCB3aGljaCBzZWVtcyBh
+IGRyYXdiYWNrIGZyb20gdXNlciBwb2ludCBvZg0KPiB2aWV3Lg0KPiA+IGUuZy4NCj4gPiBjbG9j
+a3MgPSA8JnNjdV9jbGsgSU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfVUFSVF8wLA0KPiA+IElNWF9T
+Q19QTV9DTEtfUEVSKT47DQo+IA0KPiBUaGF0IHdhcyBteSBvcmlnaW5hbCB0aG91Z2h0LCBidXQg
+d2UgY291bGQganVzdCBzYXkgdGhlIGNsb2NrLWluZGljZXMgZWxlbWVudA0KPiBzaXplIGlzIGVx
+dWFsIHRvIHRoZSAjY2xvY2stY2VsbHMgc2l6ZSBhbmQgdXNlIDIgY2VsbHMuDQo+IA0KDQpPa2F5
+LCB0aGVuIHdlIGhhdmUgZXh0ZW5kIHRoZSBjbG9jayBjb3JlIEFQSSBvZl9jbGtfZ2V0X3BhcmVu
+dF9uYW1lDQp0byBzdXBwb3J0IGl0IGFzIHdlbGwuDQoNClJlZ2FyZHMNCkRvbmcgQWlzaGVuZw0K
+DQo+IFJvYg0K
