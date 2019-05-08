@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8910175D8
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 12:19:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C024175EB
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 12:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726435AbfEHKTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 06:19:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39088 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725778AbfEHKTT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 06:19:19 -0400
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B8F2D216C4;
-        Wed,  8 May 2019 10:19:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557310758;
-        bh=KgiLwHa8c628XCTksNuq14BZQuGqDsnA4pu3qRgYcxQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=2wft5YmM3CM2rKVQmpR6hOXN83mEVRAGkfTMAnH44HifrmzxdXs+02+K45kkV3yXn
-         SvHDi2skTrO4pZqoo9fwE+uG5WIJDdk33/r0LrAJsE606iivCAE2HAmf2kBc4cwQEU
-         7Zu6tEOESBQf/upZesMJd6wJb1Pb3iqzL6f13vfE=
-Received: by mail-lj1-f176.google.com with SMTP id y10so10458062lji.9;
-        Wed, 08 May 2019 03:19:17 -0700 (PDT)
-X-Gm-Message-State: APjAAAXgi3EkamGkdwSyIYhaXl/j71xt21dN/Bnzc6qsQ/4L/R2NwiJv
-        GtiYwcES88ib3iU1KwpsJYoqxB/mJ+aFwv1b45I=
-X-Google-Smtp-Source: APXvYqwYkt5J0rET0wyrGnqJH8poPsUWaDooXeIeenTxmEqd6U1lzC8GOwJ2ZxmNmgblZZPq0m1QyUUqoG45zpuRE0s=
-X-Received: by 2002:a2e:82cb:: with SMTP id n11mr20509505ljh.183.1557310756058;
- Wed, 08 May 2019 03:19:16 -0700 (PDT)
+        id S1726571AbfEHKZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 06:25:12 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:32770 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725778AbfEHKZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 06:25:12 -0400
+Received: by mail-wr1-f66.google.com with SMTP id e11so13417958wrs.0
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 03:25:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=PaqzO9al4lxA936zY+spe2YORCqLvjGbaUUHSrafi3k=;
+        b=EEb6b5GNUr7bsYl/13ISQmF2h/5LBWSJkbvH6DNaQ0ZXyDAGV41LYDaQohaSxYCYzU
+         RYgjwqkGH+E59hKG4JmHHzikh/aU4z5evz3j0WOUn2SqaiVqZKwq3CJ2EdM5jPRA2jhf
+         SKCqVRUUl/ZGf3eDUpLHZ/o2XqFtVPFzdKtz1kZ7GsdxAV5veHc5edqL8oMafcAnwFKC
+         4UaAtP0QXCf4S7mOVRtdeMCViDfF9vWmUbe3yN+RmyvUZYE1894b6g3oYYx9ErO5a/HX
+         zgt43oYIMfZOozp7YmsqsCn5U+wWTw64iUpAvnRUn/zcDd8xEdRSXqKhvYlukjoLfzOj
+         MJJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=PaqzO9al4lxA936zY+spe2YORCqLvjGbaUUHSrafi3k=;
+        b=cvPDwB9EonjzmyPBxW/wJIInDAUCjEEYUAcrerNpjjzfO1DDIE/fRF0jxoXVAbrH4Q
+         mvTK0WlPF7Fm39a9IGPE3SSQGSpfFZCM6Xlo0EKK6aml0Ue3NzgRweQ+BzY7nGHhy6Yh
+         fCOmCv62lhvzRlBPYunRx/J2lCFyWisrsB9DiaOnyey/KB2Rj4d2oq9S+PGWUW/P20Kj
+         cO8zLy4KO6DwdnU61AUHWhiUO0UokwaTooK2GpQtSq9VWQrgB1ZZC9Ud+vU2qKGqYeTo
+         OwsNDUCQpQ4xpvYcZaZ2yMSFC2+XtP7IEmdd1v/UIS081ixHbsdHcWrResgUdNPpthAu
+         mvYA==
+X-Gm-Message-State: APjAAAXbwCG4xJgEFSxtjCGmwO09ua6ebG4F0LrfTfPugn1w8LezZUXw
+        y6cMguYzZGOspJ+7eWGBxHJmFhpuCcQ=
+X-Google-Smtp-Source: APXvYqz7H7fEpsZn4oC8Tv6c320q/odXG2NZeDdHFsKUvo4mP1qvW3GULokZIO6R3GZ1NGG5p/3lTg==
+X-Received: by 2002:a5d:518d:: with SMTP id k13mr9026224wrv.285.1557311110705;
+        Wed, 08 May 2019 03:25:10 -0700 (PDT)
+Received: from dell ([2.27.167.43])
+        by smtp.gmail.com with ESMTPSA id b10sm28463131wrh.59.2019.05.08.03.25.09
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 08 May 2019 03:25:10 -0700 (PDT)
+Date:   Wed, 8 May 2019 11:25:08 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] mfd: axp20x: add USB power supply mfd cell to AXP803
+Message-ID: <20190508102508.GH3995@dell>
+References: <20190418161804.17723-1-wens@kernel.org>
+ <20190418161804.17723-2-wens@kernel.org>
 MIME-Version: 1.0
-References: <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
- <CGME20190506151215eucas1p2c57147edac5671c5ec9a223efb6b4adc@eucas1p2.samsung.com>
- <1557155521-30949-8-git-send-email-l.luba@partner.samsung.com>
- <20190507170422.GA25179@bogus> <CAJKOXPdacKBrKeCyCaE7VS8-NOR4Oo27XY7rx20P2ORY2vBBSg@mail.gmail.com>
- <ab489925-040c-815c-2aef-50ed0ee6cd6c@partner.samsung.com>
-In-Reply-To: <ab489925-040c-815c-2aef-50ed0ee6cd6c@partner.samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 8 May 2019 12:19:04 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPc2Swoi+xc_=QTMdY8p2DTtf5SprpfMFC6B9QCNUtxm-w@mail.gmail.com>
-Message-ID: <CAJKOXPc2Swoi+xc_=QTMdY8p2DTtf5SprpfMFC6B9QCNUtxm-w@mail.gmail.com>
-Subject: Re: [PATCH v7 07/13] dt-bindings: memory-controllers: add Exynos5422
- DMC device description
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190418161804.17723-2-wens@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 May 2019 at 11:45, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
->
-> On 5/8/19 9:19 AM, Krzysztof Kozlowski wrote:
-> > On Tue, 7 May 2019 at 19:04, Rob Herring <robh@kernel.org> wrote:
-> >>> +- devfreq-events : phandles of the PPMU events used by the controller.
-> >>> +- samsung,syscon-chipid : phandle of the ChipID used by the controller.
-> >>> +- samsung,syscon-clk : phandle of the clock register set used by the controller.
-> >>
-> >> Looks like a hack. Can't you get this from the clocks property? What is
-> >> this for?
-> >
-> > Hi Rob,
-> >
-> > Lukasz uses these two syscon regmaps to read certain registers. For
-> > chipid he reads it to check the size of attached memory (only 2 GB
-> > version is supported). This indeed looks like a hack. However the
-> > second regmap (clk) is needed to get the timing data from registers
-> > from DMC clock driver address space. These are registers with memory
-> > timing so their data is not exposed anyway in common clk framework.
-> >
-> > Best regards,
-> > Krzysztof
->
-> Thank you Krzysztof for a fast response. I have also responded to Rob.
-> I wouldn't call accessing chipid registers as a hack, though. The DMC
-> registers do not contain information about the memory chip since it is
-> in phase of production the board not the chip. Thus, chipid regs (which
-> loads from e-fuses) are best place to put information about memory
-> type/size.
+On Fri, 19 Apr 2019, Chen-Yu Tsai wrote:
 
-By hack I meant that you have to read chipid instead of DTS... but as
-you pointed, the DTS could not match the real fused values so actually
-it makes sense to read them.
+> From: Chen-Yu Tsai <wens@csie.org>
+> 
+> The AXP803 has a VBUS power input. Its functionality is the same as the
+> one found in the AXP813. Now that the axp20x_usb_power driver supports
+> this variant, we can add an mfd cell for it to use it.
+> 
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> ---
+>  drivers/mfd/axp20x.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Best regards,
-Krzysztof
+Applied, thanks.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
