@@ -2,101 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B233016F88
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 05:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5A416F91
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 05:44:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726632AbfEHDmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 23:42:23 -0400
-Received: from mail-eopbgr20059.outbound.protection.outlook.com ([40.107.2.59]:20228
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726516AbfEHDmX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 23:42:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q/zUq08HnW7dhwD6miK7ZR98RL0VOqWKdF+9oKHCrtw=;
- b=MfvNU5LGdRwsjpkmWxI8KmVv3Vs9WDmXq40V8x1I7F2mKEO4mhVx/8skF+5MAK9krJcwTlkg/wjxkAXlCj8fWllfwMnHjskjBs14VGb7uUE7bMxzrKQtO9r++N2anMxpUuDqrbgCrhHl7IgPK0VyWFe8HZK9SarCu9MaBJxq5+U=
-Received: from VI1PR0402MB3600.eurprd04.prod.outlook.com (52.134.5.23) by
- VI1PR0402MB2733.eurprd04.prod.outlook.com (10.175.22.143) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Wed, 8 May 2019 03:42:19 +0000
-Received: from VI1PR0402MB3600.eurprd04.prod.outlook.com
- ([fe80::9889:fa82:4172:14df]) by VI1PR0402MB3600.eurprd04.prod.outlook.com
- ([fe80::9889:fa82:4172:14df%6]) with mapi id 15.20.1856.012; Wed, 8 May 2019
- 03:42:13 +0000
-From:   Andy Duan <fugang.duan@nxp.com>
-To:     Fabio Estevam <festevam@gmail.com>
-CC:     Aisheng Dong <aisheng.dong@nxp.com>, Kay-Liu <liuk@cetca.net.cn>,
+        id S1726720AbfEHDoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 23:44:15 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:51797 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726516AbfEHDoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 23:44:15 -0400
+X-UUID: 86b810c50c0f40feb7a66dc923344c34-20190508
+X-UUID: 86b810c50c0f40feb7a66dc923344c34-20190508
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1838829485; Wed, 08 May 2019 11:43:56 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 8 May 2019 11:43:55 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 8 May 2019 11:43:55 +0800
+Message-ID: <1557287035.3936.2.camel@mtksdaap41>
+Subject: Re: [PATCH v5 03/12] dt-binding: gce: add binding for gce subsys
+ property
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+        Daniel Kurtz <djkurtz@chromium.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCHv2 1/2] ARM: dts: imx6sx: Use MX6SX_CLK_ENET for
- fec 'ahb' clock
-Thread-Topic: [EXT] Re: [PATCHv2 1/2] ARM: dts: imx6sx: Use MX6SX_CLK_ENET for
- fec 'ahb' clock
-Thread-Index: AQHVAmkSkfnHjuPrDUuL+rGIVj8MEqZcLD7wgAABdICABCF2AIAAS6QQ
-Date:   Wed, 8 May 2019 03:42:12 +0000
-Message-ID: <VI1PR0402MB3600C57B5922EC20D87DF913FF320@VI1PR0402MB3600.eurprd04.prod.outlook.com>
-References: <1556190530-19541-1-git-send-email-liuk@cetca.net.cn>
- <CAOMZO5BbA6oq8okTR-r800k4XY76XxxEdufd1mjcV6HdTpVotA@mail.gmail.com>
- <AM0PR04MB421133A3F3C6B534B6ECEA7880370@AM0PR04MB4211.eurprd04.prod.outlook.com>
- <VI1PR0402MB360058CE70AD60C116EE0634FF370@VI1PR0402MB3600.eurprd04.prod.outlook.com>
- <CAOMZO5CSaRZEiaqxBTcBhaYjRLxMjb6Boyy0eO6OAEFBPv3_Kw@mail.gmail.com>
-In-Reply-To: <CAOMZO5CSaRZEiaqxBTcBhaYjRLxMjb6Boyy0eO6OAEFBPv3_Kw@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fugang.duan@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e71f75e2-0754-41d6-1d7e-08d6d367284d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB2733;
-x-ms-traffictypediagnostic: VI1PR0402MB2733:
-x-microsoft-antispam-prvs: <VI1PR0402MB2733BF7F84DB9E963392C06BFF320@VI1PR0402MB2733.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(366004)(376002)(39860400002)(396003)(346002)(189003)(199004)(102836004)(6506007)(305945005)(8676002)(6436002)(6116002)(1411001)(11346002)(446003)(6246003)(8936002)(74316002)(7416002)(53546011)(3846002)(68736007)(81156014)(81166006)(186003)(99286004)(25786009)(7696005)(54906003)(14454004)(256004)(2906002)(26005)(86362001)(14444005)(52536014)(7736002)(71190400001)(229853002)(76176011)(55016002)(71200400001)(4326008)(476003)(9686003)(486006)(66446008)(53936002)(316002)(6916009)(33656002)(73956011)(66946007)(76116006)(66476007)(66556008)(64756008)(5660300002)(4744005)(478600001)(66066001)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB2733;H:VI1PR0402MB3600.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: ZSAMTL0OwWaYPbDHFGtgOyBO1Pgg2Rrs7t9a/Rx3oTiDjK290TxKgzq/NeT5oKQuFjHJsA+d32m8AEaBYdKtW2k21N8via+30Mh5qY5g+AWIxOBtn5yFKW3OB1d8TmOZXkmF+LJDHU8YPpRN0zRenWo6DpRd/zqpl7wSCaIQDInDq96SzMrgQnYjZoV+UUWPCzP4I5tZ8k+Cs4vCRhucDLrzg/gy7/ACm2mDgt57JPx2YYnHCvUXRa6FvRMfekUNQW8Xk3NJSRep5tWqqgzrisP9GdM6spbXOdqf8mfokQZgX1jUdYJYcCDcerOpBy5c7X/sL6T3GPJ/Lq4Oy/g84UdZwfRk51n7B9TEsmR/V6sxVXFk59niZkt7VFaVaktEZEpPpvJnXyNf/2MWchxQVgw2SosfdtP8PJlG3VZZdsc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "YT Shen" <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <ginny.chen@mediatek.com>, <kendrick.hsu@mediatek.com>,
+        Frederic Chen <Frederic.Chen@mediatek.com>
+Date:   Wed, 8 May 2019 11:43:55 +0800
+In-Reply-To: <20190507081355.52630-4-bibby.hsieh@mediatek.com>
+References: <20190507081355.52630-1-bibby.hsieh@mediatek.com>
+         <20190507081355.52630-4-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e71f75e2-0754-41d6-1d7e-08d6d367284d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 03:42:12.9527
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2733
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogRmFiaW8gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPg0KPiBIaSBBbmR5LA0KPiAN
-Cj4gT24gU3VuLCBNYXkgNSwgMjAxOSBhdCA1OjE1IEFNIEFuZHkgRHVhbiA8ZnVnYW5nLmR1YW5A
-bnhwLmNvbT4gd3JvdGU6DQo+IA0KPiA+IE5hY2sgdGhlIHBhdGNoICENCj4gPg0KLi4uDQo+ID4g
-U2Vjb25kbHksICBmb3IgeW91ciBpc3N1ZSB5b3UgY2F1Z2h0LCB3aGljaCB3YXMgZml4ZWQgYnkg
-cGF0Y2g6DQo+ID4gY29tbWl0IGQ3YzNhMjA2ZTYzMzhlNGNjZGYwMzA3MTlkZWMwMjhlMjZhNTIx
-ZDUNCj4gPiBBdXRob3I6IEFuZHkgRHVhbiA8ZnVnYW5nLmR1YW5AbnhwLmNvbT4NCj4gPiBEYXRl
-OiAgIFR1ZSBBcHIgOSAwMzo0MDo1NiAyMDE5ICswMDAwDQo+ID4NCj4gPiAgICAgbmV0OiBmZWM6
-IG1hbmFnZSBhaGIgY2xvY2sgaW4gcnVudGltZSBwbQ0KPiANCj4gV291bGQgdGhpcyBhbHNvIGZp
-eCB0aGUgY2FzZSB3aGVyZSBwb3dlciBtYW5hZ2VtZW50IHN1cHBvcnQgaXMgZGlzYWJsZWQ/DQo+
-IA0KPiBJZiBJIHVuZGVyc3RhbmQgY29ycmVjdGx5IHRoZSBleHBsYW5hdGlvbiBmcm9tIEtheS1M
-aXUgaGUgd291bGQgc3RpbGwgc2VlIGENCj4gaGFuZyBpbiB0aGUgY2FzZSB3aGVuIFBNIGlzIGRp
-c2FibGVkLg0KPiANCj4gVGhhbmtzDQpGcm9tIGN1cnJlbnQgZGVzaWduLCBpdCBzdGlsbCB3b3Jr
-IGV2ZW4gaWYgZGlzYWJsZSBQTS4NClBsZWFzZSBkb3VibGUgY2hlY2sgaXQuDQoNCkFuZHkNCg==
+Hi, Bibby:
+
+On Tue, 2019-05-07 at 16:13 +0800, Bibby Hsieh wrote:
+> tcmdq driver provide a function that get the relationship
+> of sub system number from device node for client.
+> add specification for #subsys-cells, mediatek,gce-subsys.
+> 
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+>  .../devicetree/bindings/mailbox/mtk-gce.txt       | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> index 1f7f8f2a3f49..8fd9479bc9f6 100644
+> --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> @@ -21,11 +21,19 @@ Required properties:
+>  	priority: Priority of GCE thread.
+>  	atomic_exec: GCE processing continuous packets of commands in atomic
+>  		way.
+> +- #subsys-cells: Should be 3.
+> +	<&phandle subsys_number start_offset size>
+> +	phandle: Label name of a gce node.
+> +	subsys_number: specify the sub-system id which is corresponding
+> +		       to the register address.
+> +	start_offset: the start offset of register address that GCE can access.
+> +	size: the total size of register address that GCE can access.
+>  
+>  Required properties for a client device:
+>  - mboxes: Client use mailbox to communicate with GCE, it should have this
+>    property and list of phandle, mailbox specifiers.
+> -- mediatek,gce-subsys: u32, specify the sub-system id which is corresponding
+> +Optional propertier for a client device:
+
+properties
+
+Regards,
+CK
+
+> +- mediatek,gce-client-reg: u32, specify the sub-system id which is corresponding
+>    to the register address.
+>  
+>  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h'
+> @@ -40,6 +48,7 @@ Example:
+>  		clocks = <&infracfg CLK_INFRA_GCE>;
+>  		clock-names = "gce";
+>  		#mbox-cells = <3>;
+> +		#subsys-cells = <3>;
+>  	};
+>  
+>  Example for a client device:
+> @@ -48,9 +57,9 @@ Example for a client device:
+>  		compatible = "mediatek,mt8173-mmsys";
+>  		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST 1>,
+>  			 <&gce 1 CMDQ_THR_PRIO_LOWEST 1>;
+> -		mediatek,gce-subsys = <SUBSYS_1400XXXX>;
+>  		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
+>  				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
+> -
+> +		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
+> +					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
+>  		...
+>  	};
+
+
