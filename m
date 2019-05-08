@@ -2,135 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD4E16EAE
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 03:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 716D816EDC
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726513AbfEHBhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 21:37:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726378AbfEHBhW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 May 2019 21:37:22 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 88AC0214C6;
-        Wed,  8 May 2019 01:37:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557279441;
-        bh=OIKNrpQ//1+gNyFNJNx5GTrLEgWv7I8DuK91PHiBHGU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YoIj9jBz0ncG68/oormp3IZkK+oscTLcGb8PSX4KzJuQ7lM2ZwkFTsUrfsUc6uwn+
-         P1o3R/VHf4Bnai4Bd9WniWYjnFgSSr/bBxalHv9qCm3WjRFIkMY/SFRPnRd4druLg3
-         7veiohg9gGuwgwZ0TJS6u5KodZgBdccsb1Yofsv8=
-Received: by mail-qk1-f173.google.com with SMTP id g190so2409269qkf.8;
-        Tue, 07 May 2019 18:37:21 -0700 (PDT)
-X-Gm-Message-State: APjAAAWxoM0AtyLg0VZOTskqZkZtc2xPFC48Ul0NNPy+Z0AW7CqQdRtC
-        0nBb15wlP9bLy7oasG1W8Od3HnP4O2N14jVdXg==
-X-Google-Smtp-Source: APXvYqyeiy1xlQlbcMBCEKm6e0Cu0M1tx5QYpc220iWQ2Ezm2T8NmPq4Igp3eHP72JG5/Njg7ZMROOL/ApIYZNB2fdY=
-X-Received: by 2002:a37:351:: with SMTP id 78mr1234316qkd.147.1557279440735;
- Tue, 07 May 2019 18:37:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <b7a6095a5c900fa23cc54d1ccd8e8ef0ccf6e788.1557236840.git-series.maxime.ripard@bootlin.com>
- <CAL_JsqKeLWgGLafwbKViTgpw4B=W9YGULaMr8h0p_rWX8PP_UQ@mail.gmail.com> <20190507151353.ns2i72ii5cw6z7lz@flea>
-In-Reply-To: <20190507151353.ns2i72ii5cw6z7lz@flea>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 7 May 2019 20:37:09 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+AzBUcJouvOCdYPHK6z8h_V3h5vqYPUuFD756z49wf3w@mail.gmail.com>
-Message-ID: <CAL_Jsq+AzBUcJouvOCdYPHK6z8h_V3h5vqYPUuFD756z49wf3w@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: spi: Add YAML schemas for the generic
- SPI options
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-spi <linux-spi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726381AbfEHCTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 22:19:42 -0400
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:40462 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726533AbfEHCTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 22:19:42 -0400
+Received: by mail-yw1-f66.google.com with SMTP id 18so10170270ywe.7
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 19:19:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=53Jboj1jRgFvMb4WzHp98oy3I5nfTVXEAchn1y2EzOc=;
+        b=RBlup3KPFNcyrB9ylm1qkvs0cblxy6flpxA0OYqN53KJ8PIAYu8bo8D+/x/2pvQsmM
+         dl4wfuL8b02ODRM/SfXQfikr08d923wAv0kjMs9VhtlTv4EQiORgx3Rxhbwu9XcyWbHE
+         mj0pse0+S5xQSdjyolPLlxWnNr4H+2+Jnopz28QnJz9ijG2nGcc4nXu1G7Nv9QoiIeo3
+         L8i+OFgfTReIrAy3/4ipDRegLIPRsI3twnwK1LFJ5480U8fjuXKeZnCUwamHV9ZcDWbn
+         OOw6DkQabvzVU9g9iQdPeluo3AWax/6Oxwan60wUvw95otfaUHekxnGsvNrLXPgH0/6P
+         diaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=53Jboj1jRgFvMb4WzHp98oy3I5nfTVXEAchn1y2EzOc=;
+        b=dpIa44zHIv+e4R839AT4qEh68gUNaiTU2ValRohN4bCVPqNVX4noIgxXc7weZWOnYB
+         GddPjFistfvK3fsu3Cqoo07eF4DLeeiTES7sF3wBSmekcAbwu9pFYvUYG8MhQy+wF+La
+         pc2xP7GPTlfzICMqT/CFchDR4hUFtsifXUVZsd2v8k+dhrc4TosbIWdCw4umOqb5V8+R
+         /9crqkpL7bu7fX0KEbZiwoaKSE8W45kfH1TJKW7rolYYoav/rqGv4yzr+h0Fpr/Z34fX
+         fP0cMD+sUh+4gwcAVRROUAzBmujFjdVjugHsLhPeFSoaY0atZofriHJJfEfLSOsF4UbV
+         7dPw==
+X-Gm-Message-State: APjAAAXF7W9yrYkxhqZg05yKH0hXCp3nUrwL+MBxbBvxyvns//9vxfLg
+        mVHxuBqgE7C2TLWaydfOEcnSYA==
+X-Google-Smtp-Source: APXvYqxIefpB6QOxsv5208c4eOzk2H+HjQbDo2jovyEHJ5xfkrhRDkweBqtP1NwPjRT6lpkVusJgxw==
+X-Received: by 2002:a25:542:: with SMTP id 63mr23605669ybf.331.1557281980950;
+        Tue, 07 May 2019 19:19:40 -0700 (PDT)
+Received: from localhost.localdomain (li931-65.members.linode.com. [45.56.113.65])
+        by smtp.gmail.com with ESMTPSA id s4sm1168116yws.48.2019.05.07.19.19.31
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 May 2019 19:19:39 -0700 (PDT)
+From:   Leo Yan <leo.yan@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Wei Xu <xuwei5@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Leo Yan <leo.yan@linaro.org>, Guodong Xu <guodong.xu@linaro.org>,
+        Zhangfei Gao <zhangfei.gao@linaro.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        Chris Healy <cphealy@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Lee Jones <lee.jones@linaro.org>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>
+Subject: [PATCH v2 00/11] dts: Update DT bindings for CoreSight replicator and funnel
+Date:   Wed,  8 May 2019 10:18:51 +0800
+Message-Id: <20190508021902.10358-1-leo.yan@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 1:07 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Hi,
->
-> On Tue, May 07, 2019 at 09:35:28AM -0500, Rob Herring wrote:
-> > On Tue, May 7, 2019 at 8:48 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > The SPI controllers have a bunch of generic options that are needed in a
-> > > device tree. Add a YAML schemas for those.
-> >
-> > I'd started on this one, but was planning to move it to the schema
-> > repository. The issue there is re-licensing (adding BSD 2 clause).
-> > Maybe better to just move it later.
->
-> I just found out that dt-doc-validate also chokes on the reference
-> URI. Maybe I should just submit it to the repo then once that is
-> settled?
+Since the DT bindings consolidatoins for CoreSight replicator and funnel
+is ready for kernel v5.2 merge window [1], this patch set is to update
+the related CoreSight DT bindings for platforms; IIUC, this patch set
+will be safe for merging into kernel v5.2 because the dependency
+patches in [1] will be landed into mainline kernel v5.2 cycle.
 
-I'm not really too excited about chasing down licensing on every file
-we want to move and I'd like to avoid per file licenses, so I'd like
-local $refs to work. I think I've got something figured out that will
-work. It will need a small kernel side change though.
+In this patch set, it tries to update below two compatible strings to
+the latest strings:
 
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: "^spi(@[a-zA-Z0-9]+)?$"
-> >
-> > I think we want just "(@.*)". At a minimum, you need to allow for ','.
-> > It would be the a bus schema for the parent which should validate unit
-> > addresses, so we should pretty much just allow anything here.
->
-> The issue with this is that it will also match any node starting with
-> spi. In the Allwinner case, that also means the pinctrl nodes with spi
-> pins in them, but I'm sure we can find more corner cases.
+  s/"arm,coresight-replicator"/"arm,coresight-static-replicator"
+  s/"arm,coresight-funnel"/"arm,coresight-dynamic-funnel"
 
-Maybe I wasn't clear, but I meant changing just the unit-address part. So:
+Please note, some platforms have two continuous patches, one is for
+updating static replicator compatible string and another is for dynamic
+funnel change; and other platforms have only one patch since it only
+needs to change for dynamic funnel.
 
-"^spi(@.*)$"
+Avoid to introduce merging confliction, I rebased this patch set on
+linux-next branch with last commit fcdb095ad001 ("Add linux-next
+specific files for 20190506").
 
->
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +  cs-gpios:
-> > > +    description: |
-> > > +      GPIOs used as chip selects.
-> > > +      If that property is used, the number of chip selects will be
-> > > +      increased automatically with max(cs-gpios, hardware chip selects).
-> > > +
-> > > +      So if, for example, the controller has 2 CS lines, and the
-> > > +      cs-gpios looks like this
-> > > +        cs-gpios = <&gpio1 0 0>, <0>, <&gpio1 1 0>, <&gpio1 2 0>;
-> > > +
-> > > +      Then it should be configured so that num_chipselect = 4, with
-> > > +      the following mapping
-> > > +        cs0 : &gpio1 0 0
-> > > +        cs1 : native
-> > > +        cs2 : &gpio1 1 0
-> > > +        cs3 : &gpio1 2 0
-> > > +
-> > > +  num-cs:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      Total number of chip selects.
-> > > +
-> > > +  spi-slave:
-> > > +    $ref: /schemas/types.yaml#/definitions/flag
-> >
-> > "type: boolean" is sufficient here. Maybe we should just remove
-> > 'flag'. OTOH, maybe consistency with other types and the abstraction
-> > is better as we could add to the flag schema.
->
-> I was trying to be consistent. Do you want me to remove it?
+This patch set has been tested on Arm Juno and Hikey620 boards, other
+platforms are only compilation passing.
 
-No, it's fine.
+P.s. when use scirpt/checkpatch.pl, it reports the warnings as below. I
+think we can ignore this warnings for this patch set, please review if
+this makes sense for you.
 
-Rob
+WARNING: line over 80 characters
+#29: FILE: arch/arm/boot/dts/imx7s.dtsi:178:
++                       compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+
+[1] https://archive.armlinux.org.uk/lurker/message/20190412.102734.2afbb29a.en.html
+
+== Changes for v2 ==
+* Add explanation for the change in the commit logs. (Fabio)
+* Merge the separate patches for funnel and replicator per DTS into
+  a single patch. (Suzuki)
+
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc: Wei Xu <xuwei5@hisilicon.com>
+Cc: Guodong Xu <guodong.xu@linaro.org>
+Cc: Zhangfei Gao <zhangfei.gao@linaro.org>
+Cc: Haojian Zhuang <haojian.zhuang@linaro.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Chris Healy <cphealy@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Andy Gross <agross@kernel.org>
+Cc: David Brown <david.brown@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Lee Jones <lee.jones@linaro.org>
+Cc: Chunyan Zhang <zhang.chunyan@linaro.org>
+Cc: Orson Zhai <orsonzhai@gmail.com>
+Cc: Baolin Wang <baolin.wang@linaro.org>
+
+
+Leo Yan (11):
+  ARM: dts: hip04: Update coresight DT bindings
+  ARM: dts: imx7s: Update coresight DT bindings
+  ARM: dts: qcom-apq8064: Update coresight DT bindings
+  ARM: dts: ste: Update coresight DT bindings
+  ARM: dts: vexpress-v2p-ca15_a7: Update coresight DT bindings
+  ARM: dts: qcom-msm8974: Update coresight DT bindings
+  arm64: dts: hi6220: Update coresight DT bindings
+  arm64: dts: juno: Update coresight DT bindings
+  arm64: dts: qcom-msm8916: Update coresight DT bindings
+  arm64: dts: sc9836: Update coresight DT bindings
+  arm64: dts: sc9860: Update coresight DT bindings
+
+ arch/arm/boot/dts/hip04.dtsi                   | 18 +++++++++---------
+ arch/arm/boot/dts/imx7s.dtsi                   |  6 +++---
+ arch/arm/boot/dts/qcom-apq8064.dtsi            |  4 ++--
+ arch/arm/boot/dts/qcom-msm8974.dtsi            |  6 +++---
+ arch/arm/boot/dts/ste-dbx5x0.dtsi              |  4 ++--
+ arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts     |  4 ++--
+ arch/arm64/boot/dts/arm/juno-base.dtsi         |  6 +++---
+ arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi      |  4 ++--
+ .../boot/dts/hisilicon/hi6220-coresight.dtsi   |  6 +++---
+ arch/arm64/boot/dts/qcom/msm8916.dtsi          |  4 ++--
+ arch/arm64/boot/dts/sprd/sc9836.dtsi           |  2 +-
+ arch/arm64/boot/dts/sprd/sc9860.dtsi           |  8 ++++----
+ 12 files changed, 36 insertions(+), 36 deletions(-)
+
+-- 
+2.17.1
+
