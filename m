@@ -2,159 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D6C918014
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 20:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F64818058
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 21:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726506AbfEHSxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 14:53:14 -0400
-Received: from mail-eopbgr40088.outbound.protection.outlook.com ([40.107.4.88]:18181
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725910AbfEHSxN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 14:53:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t+YKAOFNylk+wCOycQeinm8aZncWOKIJ3ANKZh3jpZQ=;
- b=UXwkvA7ZncFmpBlYfIM4CQ4VEbYM34D86eAj6sHhAut3qqdlRbVD4B/sUl5rx3huaksckxK3mUIyz8chVrn+a+giEwGJjdy0PGHGmHTTNB8mSDUouaFkn57JFzJvdrBYVwyJy8BGUSevREuuEaYvV4bnkLGXgpEdUOyVrok+19k=
-Received: from AM6PR04MB5863.eurprd04.prod.outlook.com (20.179.1.11) by
- AM6PR04MB6007.eurprd04.prod.outlook.com (20.178.86.215) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.21; Wed, 8 May 2019 18:53:06 +0000
-Received: from AM6PR04MB5863.eurprd04.prod.outlook.com
- ([fe80::4151:fb1b:9bf8:36f3]) by AM6PR04MB5863.eurprd04.prod.outlook.com
- ([fe80::4151:fb1b:9bf8:36f3%2]) with mapi id 15.20.1878.019; Wed, 8 May 2019
- 18:53:06 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Chuanhua Han <chuanhua.han@nxp.com>, Rob Herring <robh@kernel.org>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "eha@deif.com" <eha@deif.com>,
-        "linux@rempel-privat.de" <linux@rempel-privat.de>,
-        Sumit Batra <sumit.batra@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "peda@axentia.se" <peda@axentia.se>
-Subject: RE: [EXT] Re: [PATCH 1/3] dt-bindings: i2c: add optional mul-value
- property to binding
-Thread-Topic: [EXT] Re: [PATCH 1/3] dt-bindings: i2c: add optional mul-value
- property to binding
-Thread-Index: AQHU/w2T7xtjy05tc0unzik+I96jZaZYVaGAgAjTJgCAAHWtYA==
-Date:   Wed, 8 May 2019 18:53:06 +0000
-Message-ID: <AM6PR04MB58632B9ADF6FB92BCB7A3FFC8F320@AM6PR04MB5863.eurprd04.prod.outlook.com>
-References: <20190430043242.29687-1-chuanhua.han@nxp.com>
- <20190502205901.GA24224@bogus>
- <AM0PR04MB43537B281229FA847CE6F2B897320@AM0PR04MB4353.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB43537B281229FA847CE6F2B897320@AM0PR04MB4353.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leoyang.li@nxp.com; 
-x-originating-ip: [64.157.242.222]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 78b029e5-0d78-4343-fa3b-08d6d3e66823
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB6007;
-x-ms-traffictypediagnostic: AM6PR04MB6007:
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-microsoft-antispam-prvs: <AM6PR04MB600710C7ECEDDCE5CE156EC58F320@AM6PR04MB6007.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:619;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(39860400002)(376002)(366004)(136003)(396003)(13464003)(199004)(189003)(476003)(9686003)(11346002)(446003)(55016002)(2906002)(66946007)(66476007)(66556008)(64756008)(66446008)(76116006)(73956011)(52536014)(14454004)(478600001)(8936002)(486006)(68736007)(7696005)(76176011)(99286004)(5660300002)(186003)(26005)(6506007)(53546011)(102836004)(229853002)(6436002)(3846002)(6116002)(53936002)(305945005)(74316002)(7416002)(256004)(25786009)(66066001)(71190400001)(71200400001)(4326008)(86362001)(33656002)(54906003)(110136005)(6246003)(7736002)(316002)(8676002)(81166006)(81156014);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB6007;H:AM6PR04MB5863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 6yiaHgEHoImTtIIP4Ivb2sjm4JYKFneW/56DXdnWU6fp9Af9T8j1zbR9275Q6aAc2nLVcRwjbsPr8ig+NcXo+2xS+FbNhFUDdLuvVyFQVxmZYgw+QX2RtxH+EfJHKEty1UQe/jayr3FHj83iyceb1oNPTmpFB8VlpzLCVFj1F/GAlYIKjubUDCzsVOpzvU3hjoRaEtkqZ7jcSFhCfzy6hAD82l8XBLCpHw48MIk24oWqEDr0Aa7mD+t3XeEY5ujw7p/NCihaHXDi+UuFdLMdUsvgyQBCRAZ5tsNpfgIti7DZFTcfzKw8VW9dsT3dlfmWStLkbATf1emEz5asm6wX36tAElbpGxWds84TjibHsHleHT44BvoR5MxVfKIEc6qEi3wssLwWkJ4/yGR+yH1lGi1xA+D03xSoJxu/TfaVVA0=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S1728005AbfEHTSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 15:18:12 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34468 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726837AbfEHTSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 15:18:12 -0400
+Received: by mail-ot1-f66.google.com with SMTP id l17so17496otq.1
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 12:18:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=x37pcn3M6vPyg8cwbr5kr7DA8TIGTpCINTXyPVgD+Ik=;
+        b=Tx5sqWDXdN8o4nGLji4/tassr/7PVDxGlOko7CN/z8i4N9ZMaHczzcrn/j+3bWaIHg
+         iOhpr/qiQfk83FIrSpg8oOQ/3ZDOOWZK1iGRN1Ddaj0rjVUqqAdg+akK6Az9iUT/HWCE
+         +RbgLGBoM1KXmGzzFIdkSL/IP4jH5qxrIacDRusA9GI4pmte2X+oIf0E5qiPUr2cjsje
+         HB/zl/SGOwDMcNb4wUEnNJNezPu8EGRGEAmGb2cN0dQFAqmAPXLAujkKEFLsuw97W54q
+         q1Z4px77M6zMr0w7jrHy+UAPGRirtQr8A0ngAaBrMdPG2Wp4nQeveIDR0gQr0RiXfH01
+         tN9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=x37pcn3M6vPyg8cwbr5kr7DA8TIGTpCINTXyPVgD+Ik=;
+        b=mlJGcVP5DJlkp/saZ97JqQl4mNwx3UITeTz90nopKcRoIrNxXZgjFywWt88zx6CwBd
+         vbJXOGQPi3qWYjkoHyCb5GlcrU2PgxJGLM6UrA6DZX/yO42J1j3m7aIBoZbuxdjD5sfP
+         imKb7EkrRFBn9rqKVDXypmpH89vryZAZy8v3KHoYzoCcwu+0o+bXcjLT/RX/rfeIk9uo
+         SmNrtiAaxXTSbb1YxUjFHlCZmjO8V/HwaaTCQnxBoUODUzsgQkB9F+wTEHtqc+HeVlkx
+         LbnlDCf6ThyrxTnsB8Qk7Hb8iX2kEyfRQSeqe3V6IetAhcZVVhwvpLS8Rczg8F7FnUon
+         KXcg==
+X-Gm-Message-State: APjAAAXzCjaVfoy8sk8kjdXc/kXk4yNfVEsHA4TvaHwd72PygDZ5zbTs
+        ZynYzSt+tsaFp9OaLEcE+EqzbFoPmLsRiaNZp5FIPg==
+X-Google-Smtp-Source: APXvYqyfzxRBSCRa6LOxqn0s3VTe/9YM4zBiRl29i9QcDTSnE2MBNKYlv+HY3jgBfbTk6mq4eJX0kIjTTskxL5HlLJ0=
+X-Received: by 2002:a05:6830:14cd:: with SMTP id t13mr11912335otq.25.1557343091371;
+ Wed, 08 May 2019 12:18:11 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78b029e5-0d78-4343-fa3b-08d6d3e66823
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 18:53:06.2140
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6007
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <54940124-50df-16ec-1a32-ad794ee05da7@gmail.com> <20190507080119.GB28121@kroah.com>
+ <20190507172256.GB5900@mit.edu>
+In-Reply-To: <20190507172256.GB5900@mit.edu>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Wed, 8 May 2019 12:17:59 -0700
+Message-ID: <CAFd5g47vQQeSHLX_cvWSVzva9YgsXz9DNqPv8Z=nw=-kAcmr3Q@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     "Theodore Ts'o" <tytso@mit.edu>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQ2h1YW5odWEgSGFuDQo+
-IFNlbnQ6IFdlZG5lc2RheSwgTWF5IDgsIDIwMTkgNjo0NSBBTQ0KPiBUbzogUm9iIEhlcnJpbmcg
-PHJvYmhAa2VybmVsLm9yZz4NCj4gQ2M6IG1hcmsucnV0bGFuZEBhcm0uY29tOyBzaGF3bmd1b0Br
-ZXJuZWwub3JnOw0KPiBzLmhhdWVyQHBlbmd1dHJvbml4LmRlOyBMZW8gTGkgPGxlb3lhbmcubGlA
-bnhwLmNvbT47IGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZn
-ZXIua2VybmVsLm9yZzsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsg
-bGludXgtaTJjQHZnZXIua2VybmVsLm9yZzsNCj4ga2VybmVsQHBlbmd1dHJvbml4LmRlOyBkbC1s
-aW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsNCj4gZmVzdGV2YW1AZ21haWwuY29tOyB3c2Er
-cmVuZXNhc0BzYW5nLWVuZ2luZWVyaW5nLmNvbTsgdS5rbGVpbmUtDQo+IGtvZW5pZ0BwZW5ndXRy
-b25peC5kZTsgZWhhQGRlaWYuY29tOyBsaW51eEByZW1wZWwtcHJpdmF0LmRlOyBTdW1pdA0KPiBC
-YXRyYSA8c3VtaXQuYmF0cmFAbnhwLmNvbT47IGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU7IHBlZGFA
-YXhlbnRpYS5zZQ0KPiBTdWJqZWN0OiBSRTogW0VYVF0gUmU6IFtQQVRDSCAxLzNdIGR0LWJpbmRp
-bmdzOiBpMmM6IGFkZCBvcHRpb25hbCBtdWwtdmFsdWUNCj4gcHJvcGVydHkgdG8gYmluZGluZw0K
-PiANCj4gDQo+IA0KPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gRnJvbTogUm9i
-IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCj4gPiBTZW50OiAyMDE5xOo11MIzyNUgNDo1OQ0K
-PiA+IFRvOiBDaHVhbmh1YSBIYW4gPGNodWFuaHVhLmhhbkBueHAuY29tPg0KPiA+IENjOiBtYXJr
-LnJ1dGxhbmRAYXJtLmNvbTsgc2hhd25ndW9Aa2VybmVsLm9yZzsNCj4gcy5oYXVlckBwZW5ndXRy
-b25peC5kZTsNCj4gPiBMZW8gTGkgPGxlb3lhbmcubGlAbnhwLmNvbT47IGxpbnV4LWtlcm5lbEB2
-Z2VyLmtlcm5lbC5vcmc7DQo+ID4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFy
-bS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gPiBsaW51eC1pMmNAdmdlci5rZXJuZWwu
-b3JnOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGRsLWxpbnV4LWlteA0KPiA+IDxsaW51eC1pbXhA
-bnhwLmNvbT47IGZlc3RldmFtQGdtYWlsLmNvbTsNCj4gPiB3c2ErcmVuZXNhc0BzYW5nLWVuZ2lu
-ZWVyaW5nLmNvbTsgdS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlOw0KPiA+IGVoYUBkZWlm
-LmNvbTsgbGludXhAcmVtcGVsLXByaXZhdC5kZTsgU3VtaXQgQmF0cmENCj4gPiA8c3VtaXQuYmF0
-cmFAbnhwLmNvbT47IGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU7IHBlZGFAYXhlbnRpYS5zZQ0KPiA+
-IFN1YmplY3Q6IFtFWFRdIFJlOiBbUEFUQ0ggMS8zXSBkdC1iaW5kaW5nczogaTJjOiBhZGQgb3B0
-aW9uYWwNCj4gPiBtdWwtdmFsdWUgcHJvcGVydHkgdG8gYmluZGluZw0KPiA+DQo+ID4gQ2F1dGlv
-bjogRVhUIEVtYWlsDQo+ID4NCj4gPiBPbiBUdWUsIEFwciAzMCwgMjAxOSBhdCAxMjozMjo0MFBN
-ICswODAwLCBDaHVhbmh1YSBIYW4gd3JvdGU6DQo+ID4gPiBOWFAgTGF5ZXJzY2FwZSBTb0MgaGF2
-ZSB1cCB0byB0aHJlZSBNVUwgb3B0aW9ucyBhdmFpbGFibGUgZm9yIGFsbA0KPiA+ID4gZGl2aWRl
-ciB2YWx1ZXMsIHdlIGNob2ljZSBvZiBNVUwgZGV0ZXJtaW5lcyB0aGUgaW50ZXJuYWwgbW9uaXRv
-cg0KPiA+ID4gcmF0ZSBvZiB0aGUgSTJDIGJ1cyAoU0NMIGFuZCBTREEgc2lnbmFscyk6DQo+ID4g
-PiBBIGxvd2VyIE1VTCB2YWx1ZSByZXN1bHRzIGluIGEgaGlnaGVyIHNhbXBsaW5nIHJhdGUgb2Yg
-dGhlIEkyQyBzaWduYWxzLg0KPiA+ID4gQSBoaWdoZXIgTVVMIHZhbHVlIHJlc3VsdHMgaW4gYSBs
-b3dlciBzYW1wbGluZyByYXRlIG9mIHRoZSBJMkMgc2lnbmFscy4NCj4gPiA+DQo+ID4gPiBTbyBp
-biBPcHRpb25hbCBwcm9wZXJ0aWVzIHdlIGFkZGVkIG91ciBjdXN0b20gbXVsLXZhbHVlIHByb3Bl
-cnR5IGluDQo+ID4gPiB0aGUgYmluZGluZyB0byBzZWxlY3Qgd2hpY2ggbXVsIG9wdGlvbiBmb3Ig
-dGhlIGRldmljZSB0cmVlIGkyYw0KPiA+ID4gY29udHJvbGxlciBub2RlLg0KPiA+ID4NCj4gPiA+
-IFNpZ25lZC1vZmYtYnk6IENodWFuaHVhIEhhbiA8Y2h1YW5odWEuaGFuQG54cC5jb20+DQo+ID4g
-PiAtLS0NCj4gPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1p
-bXgudHh0IHwgMyArKysNCj4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQo+
-ID4gPg0KPiA+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9pMmMvaTJjLWlteC50eHQNCj4gPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL2kyYy9pMmMtaW14LnR4dA0KPiA+ID4gaW5kZXggYjk2NzU0NDU5MGU4Li5iYThlN2I3YjNm
-YTggMTAwNjQ0DQo+ID4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-aTJjL2kyYy1pbXgudHh0DQo+ID4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvaTJjL2kyYy1pbXgudHh0DQo+ID4gPiBAQCAtMTgsNiArMTgsOSBAQCBPcHRpb25hbCBw
-cm9wZXJ0aWVzOg0KPiA+ID4gIC0gc2RhLWdwaW9zOiBzcGVjaWZ5IHRoZSBncGlvIHJlbGF0ZWQg
-dG8gU0RBIHBpbg0KPiA+ID4gIC0gcGluY3RybDogYWRkIGV4dHJhIHBpbmN0cmwgdG8gY29uZmln
-dXJlIGkyYyBwaW5zIHRvIGdwaW8gZnVuY3Rpb24gZm9yIGkyYw0KPiA+ID4gICAgYnVzIHJlY292
-ZXJ5LCBjYWxsIGl0ICJncGlvIiBzdGF0ZQ0KPiA+ID4gKy0gbXVsLXZhbHVlOiBOWFAgTGF5ZXJz
-Y2FwZSBTb0MgaGF2ZSB1cCB0byB0aHJlZSBNVUwgb3B0aW9ucw0KPiA+ID4gK2F2YWlsYWJsZSBm
-b3IgYWxsIEkyQyBkaXZpZGVyIHZhbHVlcywgaXQgZGVzY3JpYmVzIHdoaWNoIE1VTCB3ZQ0KPiA+
-ID4gK2Nob29zZSB0byB1c2UgZm9yIHRoZSBkcml2ZXIsIHRoZSB2YWx1ZXMgc2hvdWxkIGJlIDEs
-Miw0Lg0KPiA+DQo+ID4gTmVlZHMgYSB2ZW5kb3IgcHJlZml4LiBJIGRvbid0IGZpbmQgJ3ZhbHVl
-JyB0byBhZGQgYW55dGhpbmcgbm9yIGRvIEkNCj4gPiB1bmRlcnN0YW5kIHdoYXQgTVVMIGlzLg0K
-PiBZZXMseW91IGFyZSByaWdodCENCj4gPg0KPiA+IElmIGl0IGlzIGRldGVybWluZWQgYnkgU29D
-IHJhdGhlciB0aGFuIGJvYXJkLCB0aGVuIGl0IHNob3VsZCBwZXJoYXBzDQo+ID4gYmUgaW1wbGll
-ZCBieSBjb21wYXRpYmxlLg0KPiBUaGlzIGlzIGRldGVybWluZWQgYnkgdGhlIFNPQywgYnV0IGl0
-IGhhcyB0aHJlZSBvcHRpb25zIHRvIGNob29zZSBmcm9tLCBzbyBJDQo+IHRoaW5rIGl0J3MgYmV0
-dGVyIHRvIHVzZSB0aGUgb3B0aW9uYWwgb3B0aW9uIGluc3RlYWQgb2YgY29tcGF0aWJsZQ0KDQpJ
-ZiB0aGVyZSBpcyBvbmx5IG9uZSBiZXN0IGNob2ljZSBmb3IgZWFjaCBTb0MgbGV0dGluZyB0aGUg
-U29DIGNvbXBhdGlibGUgZGV0ZXJtaW5lIGl0IHdpbGwgYmUgdGhlIGJlc3QuICBVbmxlc3MgZGlm
-ZmVyZW50IGJvYXJkIGRlc2lnbnModXNlIGNhc2VzKSBvZiB0aGUgc2FtZSBTb0MgcmVxdWlyZXMg
-ZGlmZmVyZW50IE1VTCBzZXR0aW5ncywgSSBhbHNvIGRvbid0IHNlZSBtdWNoIHZhbHVlIG9mIG1h
-a2luZyBpdCBkZWZpbmVkIGluIGRldmljZSB0cmVlLg0KDQpSZWdhcmRzLA0KTGVvDQo=
+> On Tue, May 07, 2019 at 10:01:19AM +0200, Greg KH wrote:
+> > > My understanding is that the intent of KUnit is to avoid booting a kernel on
+> > > real hardware or in a virtual machine.  That seems to be a matter of semantics
+> > > to me because isn't invoking a UML Linux just running the Linux kernel in
+> > > a different form of virtualization?
+> > >
+> > > So I do not understand why KUnit is an improvement over kselftest.
+> > >
+> > > It seems to me that KUnit is just another piece of infrastructure that I
+> > > am going to have to be familiar with as a kernel developer.  More overhead,
+> > > more information to stuff into my tiny little brain.
+> > >
+> > > I would guess that some developers will focus on just one of the two test
+> > > environments (and some will focus on both), splitting the development
+> > > resources instead of pooling them on a common infrastructure.
+> > >
+> > > What am I missing?
+> >
+> > kselftest provides no in-kernel framework for testing kernel code
+> > specifically.  That should be what kunit provides, an "easy" way to
+> > write in-kernel tests for things.
+> >
+> > Brendan, did I get it right?
+>
+> Yes, that's basically right.  You don't *have* to use KUnit.  It's
+> supposed to be a simple way to run a large number of small tests that
+> for specific small components in a system.
+>
+> For example, I currently use xfstests using KVM and GCE to test all of
+> ext4.  These tests require using multiple 5 GB and 20GB virtual disks,
+> and it works by mounting ext4 file systems and exercising ext4 through
+> the system call interfaces, using userspace tools such as fsstress,
+> fsx, fio, etc.  It requires time overhead to start the VM, create and
+> allocate virtual disks, etc.  For example, to run a single 3 seconds
+> xfstest (generic/001), it requires full 10 seconds to run it via
+> kvm-xfstests.
+>
+> KUnit is something else; it's specifically intended to allow you to
+> create lightweight tests quickly and easily, and by reducing the
+> effort needed to write and run unit tests, hopefully we'll have a lot
+> more of them and thus improve kernel quality.
+>
+> As an example, I have a volunteer working on developing KUinit tests
+> for ext4.  We're going to start by testing the ext4 extent status
+> tree.  The source code is at fs/ext4/extent_status.c; it's
+> approximately 1800 LOC.  The Kunit tests for the extent status tree
+> will exercise all of the corner cases for the various extent status
+> tree functions --- e.g., ext4_es_insert_delayed_block(),
+> ext4_es_remove_extent(), ext4_es_cache_extent(), etc.  And it will do
+> this in isolation without our needing to create a test file system or
+> using a test block device.
+>
+> Next we'll test the ext4 block allocator, again in isolation.  To test
+> the block allocator we will have to write "mock functions" which
+> simulate reading allocation bitmaps from disk.  Again, this will allow
+> the test writer to explicitly construct corner cases and validate that
+> the block allocator works as expected without having to reverese
+> engineer file system data structures which will force a particular
+> code path to be executed.
+>
+> So this is why it's largely irrelevant to me that KUinit uses UML.  In
+> fact, it's a feature.  We're not testing device drivers, or the
+> scheduler, or anything else architecture-specific.  UML is not about
+> virtualization.  What it's about in this context is allowing us to
+> start running test code as quickly as possible.  Booting KVM takes
+> about 3-4 seconds, and this includes initializing virtio_scsi and
+> other device drivers.  If by using UML we can hold the amount of
+> unnecessary kernel subsystem initialization down to the absolute
+> minimum, and if it means that we can communicating to the test
+> framework via a userspace "printf" from UML/KUnit code, as opposed to
+> via a virtual serial port to KVM's virtual console, it all makes for
+> lighter weight testing.
+>
+> Why did I go looking for a volunteer to write KUnit tests for ext4?
+> Well, I have a plan to make some changes in restructing how ext4's
+> write path works, in order to support things like copy-on-write, a
+> more efficient delayed allocation system, etc.  This will require
+> making changes to the extent status tree, and by having unit tests for
+> the extent status tree, we'll be able to detect any bugs that we might
+> accidentally introduce in the es tree far more quickly than if we
+> didn't have those tests available.  Google has long found that having
+> these sorts of unit tests is a real win for developer velocity for any
+> non-trivial code module (or C++ class), even when you take into
+> account the time it takes to create the unit tests.
+>
+>                                         - Ted
+>
+> P.S.  Many thanks to Brendan for finding such a volunteer for me; the
+> person in question is a SRE from Switzerland who is interested in
+> getting involved with kernel testing, and this is going to be their
+> 20% project.  :-)
+
+Thanks Ted, I really appreciate it!
+
+Since Ted provided such an awesome detailed response, I don't think I
+really need to go into any detail; nevertheless, I think that Greg and
+Shuah have the right idea; in particular, Shuah provides a good
+summary.
+
+Thanks everyone!
