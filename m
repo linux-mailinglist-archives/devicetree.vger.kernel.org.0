@@ -2,98 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9984178D5
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 13:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F24178E1
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 13:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727728AbfEHLtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 07:49:16 -0400
-Received: from mail-eopbgr50052.outbound.protection.outlook.com ([40.107.5.52]:42306
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728341AbfEHLtP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 07:49:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1tfYvloir+yRrmJ7bbXzzhF+As7jjb3W+G5yqlLikRk=;
- b=cP2HXhe/aOo005Ak8pZCKpxEqCVlLB3dljfYlFO8vzKH0KjfXd5y+jmBflQa0PKUDKFyEJG1HnxuKGqVd8RZi2WmBb/k2c4rldTrAtglX3GPEtGH4dfMk+2VeVEg3nAllR5etVcnju+V0F8y00tNvO1VCouG7ppHMQBQdmszsg0=
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
- AM0PR04MB4945.eurprd04.prod.outlook.com (20.176.215.218) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.10; Wed, 8 May 2019 11:49:06 +0000
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::c415:3cab:a042:2e13]) by AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::c415:3cab:a042:2e13%6]) with mapi id 15.20.1856.012; Wed, 8 May 2019
- 11:49:06 +0000
-From:   Aisheng Dong <aisheng.dong@nxp.com>
-To:     Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        id S1728363AbfEHLvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 07:51:41 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:55045 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727684AbfEHLvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 07:51:41 -0400
+Received: by mail-wm1-f68.google.com with SMTP id b203so1729811wmb.4
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 04:51:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=fxMdWr+Y0B0LQlIyW4uE4+5LAprnpZmZmdymzVpaLRo=;
+        b=bLRtQsjDJ2En5fTi3GA8DSNaW3y8sw97+N3aJC9kUwBnDr9DtUaJVd1GAfVNSmmRiO
+         XVqPkP2G7hYFCPZoZbvIurmgd7fdDJK/L9pHcETeIYms39KOsTn/s6OD9HS0z2Cnw61m
+         TZ/WN+QIKw2dm5Nmljo850S9/F/JdV6JUWIRyh48EyZ5q//vCHUXVo5e0X9MBDRyhezu
+         xOKl7hS0mUbWzBg3qofqfEZQRBPcvdme959CiKLzaJgQKH1zQ0d6apwWKZrvkQH+G+pU
+         SCyGlwa/CXuXlQciKzGcU5l5NDZTFv05FCcUFF5MfOjK2kDn6P5ngH51GVtk1+IxfvZy
+         ni8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=fxMdWr+Y0B0LQlIyW4uE4+5LAprnpZmZmdymzVpaLRo=;
+        b=I4aipXtQIWSGsKDn7rIMFa0NlU36qh0dlzRxcP3+7wtKhoFHkMZ9xhsk2XCJCJG9s8
+         /lYF6RRhBR20NSZdn2sOHWhUIjypa3RS8mpb34GR3OgFIQmBe58ugDMFGGrv5e+r8N8v
+         p0dhgQApQA09RLLrH4yszB65UnidSGtcitEU4Un8Eh8pi0kfCPgU+IEaMasQaopOBhy5
+         Gl7FV7f0uzOZoUDypKOVPTRaFba4mKjigPJaWL9fqWbgowZyf9sNbHKfHWcgC8+9BV1D
+         Z1mwL6zMIog7neAtgCFELOhj2ut39uuLoZMLj2ht/cAdkWnmlXuK2UDvrXQYQs7xYWM2
+         G/Kw==
+X-Gm-Message-State: APjAAAVLdLYssdQd0cE6SpO7sWMDoxjxD362lnmWrOf6AXS2VXs03JVC
+        P2/D4pTNIR179G9/STPN/x7HoA==
+X-Google-Smtp-Source: APXvYqx3tHJji8GV7ug+uIe5aYHHxknjL/dzHQLeBBZnXsZid6cAjh7dSLl2l6NzGwfPUe7wJFB1tQ==
+X-Received: by 2002:a7b:cb4e:: with SMTP id v14mr2672023wmj.52.1557316299503;
+        Wed, 08 May 2019 04:51:39 -0700 (PDT)
+Received: from dell ([2.27.167.43])
+        by smtp.gmail.com with ESMTPSA id r10sm3212041wml.10.2019.05.08.04.51.38
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 08 May 2019 04:51:38 -0700 (PDT)
+Date:   Wed, 8 May 2019 12:51:37 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: RE: [PATCH V2 4/4] arm64: dts: imx: add i.MX8QXP ocotp support
-Thread-Topic: [PATCH V2 4/4] arm64: dts: imx: add i.MX8QXP ocotp support
-Thread-Index: AQHVBUmcX4GOGcsPv0ihTPWps1XlRqZhHPxg
-Date:   Wed, 8 May 2019 11:49:06 +0000
-Message-ID: <AM0PR04MB4211A76AA2D65894CCB0F39A80320@AM0PR04MB4211.eurprd04.prod.outlook.com>
-References: <20190508030927.16668-1-peng.fan@nxp.com>
- <20190508030927.16668-4-peng.fan@nxp.com>
-In-Reply-To: <20190508030927.16668-4-peng.fan@nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=aisheng.dong@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 605cb25b-6a5f-438e-8567-08d6d3ab2cc3
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4945;
-x-ms-traffictypediagnostic: AM0PR04MB4945:
-x-microsoft-antispam-prvs: <AM0PR04MB4945E8A5D780556B4FC275DB80320@AM0PR04MB4945.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:160;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(376002)(346002)(136003)(366004)(39860400002)(189003)(199004)(2906002)(9686003)(6506007)(2501003)(99286004)(305945005)(102836004)(74316002)(7416002)(186003)(26005)(7736002)(6246003)(55016002)(33656002)(4326008)(25786009)(6436002)(6116002)(3846002)(53936002)(66066001)(68736007)(256004)(229853002)(52536014)(2201001)(8676002)(81156014)(81166006)(71190400001)(71200400001)(66446008)(86362001)(316002)(54906003)(14454004)(110136005)(66946007)(66556008)(64756008)(66476007)(76116006)(73956011)(7696005)(478600001)(76176011)(486006)(476003)(5660300002)(11346002)(446003)(4744005)(8936002)(44832011);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4945;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: T7GG+qacRiBWo5XQRaZOAKYqknefD0as8osnqaRid6frXZ8L6Wd+z3piKKXGkBVzUo6jPFsPCyNn0Bc1pmsC2QPmkbzDLQ8YoSjfxQv/ObvELwtMIuA8R0GMkpEPZcNceM+oYujD/z7iwPXOma1/pxB3yeDPNJ8o6MbYTtNDpoziU8s4lX0MKSCii0s0Ykbm5vj9pgE7kF5UkufkGaz+zMa9ej43dzfq+8bv7RdQuDjjZ5dI5uZrlstuIu7mKzRZf0F0Ifr/o/2rv7C4zdkVrx1dspsxPDm3IckxfU2XK/HQrqSpQ+SFTMMajfw6+ivHmH7fWeaijf/4+40kIGTCYnpzXbhH+KIxWkPrM8PmXgriTdZ8HdllM8EhZkG5adkShivG95FpJAOlD/hSqCztI6E9lhLW8tU5WXHTVSHnfmc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Mallikarjun Kasoju <mkasoju@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [GIT PULL] Immutable branch between MFD and Regulator due for the
+ v5.2 merge window
+Message-ID: <20190508115137.GM31645@dell>
+References: <20190505154325.30026-1-digetx@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 605cb25b-6a5f-438e-8567-08d6d3ab2cc3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 11:49:06.2653
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4945
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190505154325.30026-1-digetx@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBGcm9tOiBQZW5nIEZhbg0KPiBTZW50OiBXZWRuZXNkYXksIE1heSA4LCAyMDE5IDEwOjU2IEFN
-DQo+IA0KPiBBZGQgaS5NWDhRWFAgb2NvdHAgbm9kZQ0KPiANCj4gQ2M6IFJvYiBIZXJyaW5nIDxy
-b2JoK2R0QGtlcm5lbC5vcmc+DQo+IENjOiBNYXJrIFJ1dGxhbmQgPG1hcmsucnV0bGFuZEBhcm0u
-Y29tPg0KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPiBDYzogU2FzY2hh
-IEhhdWVyIDxzLmhhdWVyQHBlbmd1dHJvbml4LmRlPg0KPiBDYzogUGVuZ3V0cm9uaXggS2VybmVs
-IFRlYW0gPGtlcm5lbEBwZW5ndXRyb25peC5kZT4NCj4gQ2M6IEZhYmlvIEVzdGV2YW0gPGZlc3Rl
-dmFtQGdtYWlsLmNvbT4NCj4gQ2M6IE5YUCBMaW51eCBUZWFtIDxsaW51eC1pbXhAbnhwLmNvbT4N
-Cj4gQ2M6IEFpc2hlbmcgRG9uZyA8YWlzaGVuZy5kb25nQG54cC5jb20+DQo+IENjOiBBbnNvbiBI
-dWFuZyA8YW5zb24uaHVhbmdAbnhwLmNvbT4NCj4gQ2M6IERhbmllbCBCYWx1dGEgPGRhbmllbC5i
-YWx1dGFAbnhwLmNvbT4NCj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+IENjOiBs
-aW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gU2lnbmVkLW9mZi1ieTogUGVu
-ZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+DQoNClJldmlld2VkLWJ5OiBEb25nIEFpc2hlbmcgPGFp
-c2hlbmcuZG9uZ0BueHAuY29tPg0KDQpSZWdhcmRzDQpEb25nIEFpc2hlbmcNCg==
+Enjoy!
+
+The following changes since commit e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd:
+
+  Linux 5.1 (2019-05-05 17:42:58 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-regulator-v5.2
+
+for you to fetch changes up to 744b13107d0d2ec36c5293d7b59129d3186c9396:
+
+  mfd: max77620: Provide system power-off functionality (2019-05-08 12:50:14 +0100)
+
+----------------------------------------------------------------
+Immutable branch between MFD and Regulator due for the v5.2 merge window
+
+----------------------------------------------------------------
+Dmitry Osipenko (5):
+      dt-bindings: mfd: max77620: Add compatible for Maxim 77663
+      dt-bindings: mfd: max77620: Add system-power-controller property
+      mfd: max77620: Fix swapped FPS_PERIOD_MAX_US values
+      mfd: max77620: Support Maxim 77663
+      mfd: max77620: Provide system power-off functionality
+
+ Documentation/devicetree/bindings/mfd/max77620.txt |  9 ++-
+ drivers/mfd/max77620.c                             | 87 +++++++++++++++++++++-
+ include/linux/mfd/max77620.h                       |  5 +-
+ 3 files changed, 97 insertions(+), 4 deletions(-)
+ 
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
