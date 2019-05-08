@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB3B116EF2
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E1CB16EF6
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbfEHCUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 22:20:19 -0400
-Received: from mail-yw1-f68.google.com ([209.85.161.68]:41703 "EHLO
-        mail-yw1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726711AbfEHCUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 22:20:18 -0400
-Received: by mail-yw1-f68.google.com with SMTP id o65so13200271ywd.8
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 19:20:18 -0700 (PDT)
+        id S1726752AbfEHCU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 22:20:26 -0400
+Received: from mail-yw1-f67.google.com ([209.85.161.67]:42634 "EHLO
+        mail-yw1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726749AbfEHCU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 22:20:26 -0400
+Received: by mail-yw1-f67.google.com with SMTP id s5so8427014ywd.9
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 19:20:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=luzkdm/vY/d9DSMJpZXXkdaCYVQylLWX37IuJlSjSvI=;
-        b=O4CvT+wpioFlo6o1ONKedXd5PmRIkZ34A7MtUnDx5L42qIpPstYgNWmOxMg4LEGRyb
-         DTpNaSj2GxM7k8NZLthuEyRPb3YKw47qUBfjXZUtBzCNNntwpttHmeU8dfBBg78D1iGg
-         vuAMTacyFw5gLbCb6GUZG+J5G/heP+LtZee6+vPsxbSXotGPX9KI740YKLzJPbGfjAhP
-         3mr2ytKXAY7QnMyz2MwpdNl4yGLWt3jikQ3T8fOOGCPrb8llxwC4/Kb71nUkJZ0aXmiW
-         nUTMrLpvwZtmkA7+Dmqhy5yxPQ0guX2QYX1ro2RwDjsq7xioeAcYl9ruVbHsm64Xqm4N
-         ZfKg==
+        bh=AG3FqXHLs4/OFGe9lSxLhNOZ2EEYR0vwOTMhYn26hGo=;
+        b=P/eBgw2AZxiQULSdHa/cTRJXa0hypgcD0Sg7WsC+8N1aAaZkkB5Zf79CxpulQW2L66
+         H0y4n5HkqbK6Cj22lHTSc63ASar/nQT6Q1d4VsJStFQXUVb7ORvlTSEziogYg5vkwq/A
+         5OJJm23AUom2BG0qsfj4piAmSEQdDXTH5p+W7+pajHJkcsKPTnvtVZM2Qx+knKNMKJyW
+         T5spVxIbcgr94pyej+So1AJYp9vmsjJeaIZBU24g+hYruPyYwJteP6z5DeSDJfG62s6H
+         5AUslmpr6EiXAYrvyjFIpfYXMIwWafgJ5ufqz5eo6/zYDLk8t/3HoQYwi8ahi2+jYzs/
+         ca/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=luzkdm/vY/d9DSMJpZXXkdaCYVQylLWX37IuJlSjSvI=;
-        b=twK1rnuaQUjtvfJMAaC8G9O2tyc1i6E9eyFy058rfNP6CGZyz6tPKGm4wRbgGCIn+d
-         v/geGMnYCS9KMby4ILpXPDas38+HddwqT6Qop5PN7BULc6SjJg0ruhgPUGepH/EVHVqw
-         RMQimf1YXj75tFRfKu9I/y6kQMcdBQ2QWjY8I6IgKlfDK14LaggBDgTcUO2eiL1J+HZx
-         OAdNAbFG1Am8B1hPGx3Jm8jt4OdGiArmMAwwh3JrL58U2FJGA/DBNLM355HeLiNB4mLK
-         VeB59JNFDI6VdJLQ1bmmjlF1XVES5O6Efc+/s42Cy5HuE4VyxfpsLAMrcopR/wN3CsG/
-         xy4A==
-X-Gm-Message-State: APjAAAW+Uvhp7+zTJpnD1NgmTyyqX3Df2Tp7V+VdxYSH3vGti97OGd05
-        Fe555WBCFKSgY74SnBHR/QVE0g==
-X-Google-Smtp-Source: APXvYqwtZ33+oLWzmatl408B313A7G34hUUVmzsJOmZ1DLU5dGNKsPVJWev9P0fXaghzne8AaVkDvQ==
-X-Received: by 2002:a25:7652:: with SMTP id r79mr22520606ybc.216.1557282018025;
-        Tue, 07 May 2019 19:20:18 -0700 (PDT)
+        bh=AG3FqXHLs4/OFGe9lSxLhNOZ2EEYR0vwOTMhYn26hGo=;
+        b=nsgpDJAc9o9sMFXzRS6kePoAVwzo2/DJ1GJk+uE91ypz8HG9urL+eeeh5Xh6DQsEUU
+         YtfTRlZmR2QMkx01FI0l9jji2WovsYpa+kXgY4GathOlepKomw0WiCquhAb8zMavpLxg
+         Xx8IxDzMErphzeYot7FtVJAIL3CcDjyLG4IPkDvmFcprEXfsaHFdS/urtlbElHqvsxiT
+         rs4z8lgi5w6ahKrN908G76df7xW6AMJXulSkUYXNrqLU3wIk1S+Ct2lgzm9jEzp7cmN4
+         eqlctH2gCFkF10fiPR1Kwpm+mWf+7ST+JhMp2QRKGycR+SioIMTAOHwTHPZvHodQa/d/
+         NRUQ==
+X-Gm-Message-State: APjAAAUD/wpEzvkHjUFywrt+r5W/B3nsj1iXWKh9mQp3uMY2m1zyC0OA
+        BTdEFH/YGg6afr9tq15s7iKkgg==
+X-Google-Smtp-Source: APXvYqw0FKw200XiMULFd5Py9JxtXGaMTZc+CwuyFGd8KR6CqMPQe9hjhCvI5Ix31kUBUi/8D01W3w==
+X-Received: by 2002:a81:a414:: with SMTP id b20mr25269935ywh.278.1557282025269;
+        Tue, 07 May 2019 19:20:25 -0700 (PDT)
 Received: from localhost.localdomain (li931-65.members.linode.com. [45.56.113.65])
-        by smtp.gmail.com with ESMTPSA id s4sm1168116yws.48.2019.05.07.19.20.11
+        by smtp.gmail.com with ESMTPSA id s4sm1168116yws.48.2019.05.07.19.20.18
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 19:20:17 -0700 (PDT)
+        Tue, 07 May 2019 19:20:24 -0700 (PDT)
 From:   Leo Yan <leo.yan@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -66,9 +66,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     Leo Yan <leo.yan@linaro.org>
-Subject: [PATCH v2 05/11] ARM: dts: vexpress-v2p-ca15_a7: Update coresight DT bindings
-Date:   Wed,  8 May 2019 10:18:56 +0800
-Message-Id: <20190508021902.10358-6-leo.yan@linaro.org>
+Subject: [PATCH v2 06/11] ARM: dts: qcom-msm8974: Update coresight DT bindings
+Date:   Wed,  8 May 2019 10:18:57 +0800
+Message-Id: <20190508021902.10358-7-leo.yan@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190508021902.10358-1-leo.yan@linaro.org>
 References: <20190508021902.10358-1-leo.yan@linaro.org>
@@ -81,41 +81,49 @@ CoreSight DT bindings have been updated, thus the old compatible strings
 are obsolete and the drivers will report warning if DTS uses these
 obsolete strings.
 
-This patch switches to the new bindings for CoreSight dynamic funnel and
-static replicator, so can dismiss warning during initialisation.
+This patch switches to the new bindings for CoreSight dynamic funnel,
+so can dismiss warning during initialisation.
 
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc: Andy Gross <agross@kernel.org>
+Cc: David Brown <david.brown@linaro.org>
 Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
 Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
 Signed-off-by: Leo Yan <leo.yan@linaro.org>
 ---
- arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-index 00cd9f5bef2e..164c904c9992 100644
---- a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-+++ b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-@@ -440,7 +440,7 @@
- 		/* non-configurable replicators don't show up on the
- 		 * AMBA bus.  As such no need to add "arm,primecell".
- 		 */
--		compatible = "arm,coresight-replicator";
-+		compatible = "arm,coresight-static-replicator";
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 45b5c8ef0374..272ebea20a5f 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -897,7 +897,7 @@
+ 		};
  
- 		out-ports {
- 			#address-cells = <1>;
-@@ -471,7 +471,7 @@
- 	};
+ 		funnel@fc31b000 {
+-			compatible = "arm,coresight-funnel", "arm,primecell";
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0xfc31b000 0x1000>;
  
- 	funnel@20040000 {
--		compatible = "arm,coresight-funnel", "arm,primecell";
-+		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 		reg = <0 0x20040000 0 0x1000>;
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+@@ -931,7 +931,7 @@
+ 		};
  
- 		clocks = <&oscclk6a>;
+ 		funnel@fc31a000 {
+-			compatible = "arm,coresight-funnel", "arm,primecell";
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0xfc31a000 0x1000>;
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
+@@ -969,7 +969,7 @@
+ 		};
+ 
+ 		funnel@fc345000 { /* KPSS funnel only 4 inputs are used */
+-			compatible = "arm,coresight-funnel", "arm,primecell";
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+ 			reg = <0xfc345000 0x1000>;
+ 
+ 			clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc RPM_SMD_QDSS_A_CLK>;
 -- 
 2.17.1
 
