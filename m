@@ -2,128 +2,411 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5666D18137
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 22:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4DDF18156
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 22:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727344AbfEHUnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 16:43:21 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:35384 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726470AbfEHUnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 16:43:21 -0400
-Received: by mail-qt1-f195.google.com with SMTP id d20so63165qto.2;
-        Wed, 08 May 2019 13:43:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+J13HW6Ql7AVbYnId9Z2QZkxRcrcMv8VFcAxxJspMsw=;
-        b=Abfs+E+a4cAbjo09o779pV+bz6q5nWwGBguyKwYYWnn/uI2QSqGgTKRUiln2uIFM4N
-         BxhZGcL32DSB0sABMxEh2Zyx9xLyS6KCXhx8yb8Pyd02t3omhPtoA8MnE+Xqm7T7MT6i
-         nQ4Ylsu+rqXDfhkswcHo19S4L6P2spvTDF77/q2mM/mfb/Jijui9J32vAUGsreIeCbI3
-         O51sIl4AKUcouILnErmLIu+DnT4NB4RZAxX5psIrrcst7vFExxmEFZlEfKVn+571TBbg
-         rgyHJiberhayBRkWLXFMlYEkLExTx8pHba3zt0LLuW1i3t5FpoPrm8pfEdVCODbrVxe6
-         aBZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+J13HW6Ql7AVbYnId9Z2QZkxRcrcMv8VFcAxxJspMsw=;
-        b=rzC+KbnGQ99ZVdh22cEE0FDFWixJIZVhKUFc/rq3gGMRueBxNAx182imOzdq638Cfh
-         pIiFjCe0QLp8mdoSV1n6XasUZ4EOUxjK6/zBGGyT85L2PDomA5CDDcoLvA+hCZuPAel/
-         LRcTImCf5oyn59ec4mbc76SNLpcTac79vHrN4dFHN1laptRix71DDTx5TIEph+PqLF8v
-         GEe1qmVzSrDpd0cYhE/AoZ/U+8y4rXlRQlPBem9T1SLcA4ohqHkATYa5rGki0m259Dmt
-         X9KZq8FU85nbzhETLla9F0mRVqv2ilXf0WB+MBoqu5dY8ud+KgVc0EoNbAlgj7Vbt/am
-         FPEQ==
-X-Gm-Message-State: APjAAAWQBu5V4AbR3+EaZ3pOIco/V0MAP7WTRDrkIUq6CHy+oNYpBHBk
-        UvvUuREGkVg3O6Qa71JfqIw=
-X-Google-Smtp-Source: APXvYqzC+uayIVCgj/sYsqvmOlwsBhYzG+/NFi8gvRxXMRCNTjLlbVy7CUTUTCX52sOI8QS8s2tB+w==
-X-Received: by 2002:ac8:26e4:: with SMTP id 33mr57629qtp.388.1557348199900;
-        Wed, 08 May 2019 13:43:19 -0700 (PDT)
-Received: from localhost ([2601:184:4780:7861:6268:7a0b:50be:cebc])
-        by smtp.gmail.com with ESMTPSA id x7sm18276qkc.22.2019.05.08.13.43.19
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 08 May 2019 13:43:19 -0700 (PDT)
-From:   Rob Clark <robdclark@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Jayant Shekhar <jshekhar@codeaurora.org>,
-        Sravanthi Kollukuduru <skolluku@codeaurora.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/5] dt-bindings: msm/disp: Introduce interconnect bindings for MDSS on SDM845
-Date:   Wed,  8 May 2019 13:42:13 -0700
-Message-Id: <20190508204219.31687-4-robdclark@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190508204219.31687-1-robdclark@gmail.com>
-References: <20190508204219.31687-1-robdclark@gmail.com>
+        id S1726859AbfEHUyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 16:54:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45618 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726727AbfEHUyV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 16:54:21 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E15DF2173C;
+        Wed,  8 May 2019 20:54:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557348860;
+        bh=tWV/gWokrqjEWW86w0MvmRWKkr4PcsLZwu+5cA4DvzA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=u4XyIss2ZXPprn66sZ96vvDCzr3ElW8ae4YOO7qN+8ylqNt6qfhtICVT7SKnaUbzO
+         Foc2/SbyKg2TWjcyuQ349Ls/2ezeJRLrrLI8S+p6vVQBVRZ6mEWKTauDEWq0LO3PxH
+         WRPHnz1ry4j1pOFVRC7rgyf35PhzgQ2DgkAOw1dE=
+Received: by mail-qt1-f171.google.com with SMTP id i31so20679qti.13;
+        Wed, 08 May 2019 13:54:19 -0700 (PDT)
+X-Gm-Message-State: APjAAAWBFIHgPwjDMf4ZPFYugsOfRWDnPZ3Cc2f+Or9jh+15zf+xcRKu
+        g9UBOrmx7WILH4DhAaGEmRWL4r5TeiNpawkFdw==
+X-Google-Smtp-Source: APXvYqyIJO9jyUOfSxSgewiDo7+nsX9cXd1yYrxNAIDDw7xZk7u75QnrWiHLuORUna7KxFgMuRPNFiFYpjr5kLEeL6Y=
+X-Received: by 2002:aed:306c:: with SMTP id 99mr128390qte.38.1557348859072;
+ Wed, 08 May 2019 13:54:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1556876854-32441-1-git-send-email-alexandre.torgue@st.com>
+In-Reply-To: <1556876854-32441-1-git-send-email-alexandre.torgue@st.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 8 May 2019 15:54:07 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+sydL5tHafgOWaW-+j4OJZ1JxVh5b=YXSMYRDxEDG3-g@mail.gmail.com>
+Message-ID: <CAL_Jsq+sydL5tHafgOWaW-+j4OJZ1JxVh5b=YXSMYRDxEDG3-g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: Convert stm32 pinctrl bindings to jason-schema
+To:     Alexandre Torgue <alexandre.torgue@st.com>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jayant Shekhar <jshekhar@codeaurora.org>
+What's jason-schema? ;)
 
-Add interconnect properties such as interconnect provider specifier
-, the edge source and destination ports which are required by the
-interconnect API to configure interconnect path for MDSS.
+On Fri, May 3, 2019 at 4:47 AM Alexandre Torgue <alexandre.torgue@st.com> wrote:
+>
+> Convert the STM32 pinctrl binding to DT schema format using json-schema.
+>
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+> ---
+>
+> Hi,
+>
+> First pacth to convert DT bindings file (here pinctrl STM32) to jsaon-schema
+> in order to take advantage of devicetree validation tool for STM32.
 
-Changes in v2:
-	- None
+> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> new file mode 100644
+> index 0000000..fcceca0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> @@ -0,0 +1,271 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) STMicroelectronics 2019.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STM32 GPIO and Pin Mux/Config controller
+> +
+> +maintainers:
+> +  - Alexandre TORGUE <alexandre.torgue@st.com>
 
-Changes in v3:
-	- Remove common property definitions (Rob Herring)
+nit: add a blank line
 
-Changes in v4:
-	- Use port macros and change port string names (Georgi Djakov)
+> +description: |
+> +  STMicroelectronics's STM32 MCUs intregrate a GPIO and Pin mux/config hardware
+> +  controller. It controls the input/output settings on the available pins and
+> +  also provides ability to multiplex and configure the output of various
+> +  on-chip controllers onto these pads.
+> +
+> +properties:
+> +  compatible:
+> +      items:
 
-Changes in v5-v7:
-	- None
+You can drop items since there is only 1.
 
-Signed-off-by: Sravanthi Kollukuduru <skolluku@codeaurora.org>
-Signed-off-by: Jayant Shekhar <jshekhar@codeaurora.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- Documentation/devicetree/bindings/display/msm/dpu.txt | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> +        - enum:
+> +          - st,stm32f429-pinctrl
+> +          - st,stm32f469-pinctrl
+> +          - st,stm32f746-pinctrl
+> +          - st,stm32f769-pinctrl
+> +          - st,stm32h743-pinctrl
+> +          - st,stm32mp157-pinctrl
+> +          - st,stm32mp157-z-pinctrl
+> +
+> +  '#address-cells':
+> +    const: 1
+> +  '#size-cells':
+> +    const: 1
+> +    description:
+> +      Defines mapping between pin controller node (parent) to
+> +      gpio-bank node (children).
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu.txt b/Documentation/devicetree/bindings/display/msm/dpu.txt
-index ad2e8830324e..a61dd40f3792 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu.txt
-+++ b/Documentation/devicetree/bindings/display/msm/dpu.txt
-@@ -28,6 +28,11 @@ Required properties:
- - #address-cells: number of address cells for the MDSS children. Should be 1.
- - #size-cells: Should be 1.
- - ranges: parent bus address space is the same as the child bus address space.
-+- interconnects : interconnect path specifier for MDSS according to
-+  Documentation/devicetree/bindings/interconnect/interconnect.txt. Should be
-+  2 paths corresponding to 2 AXI ports.
-+- interconnect-names : MDSS will have 2 port names to differentiate between the
-+  2 interconnect paths defined with interconnect specifier.
- 
- Optional properties:
- - assigned-clocks: list of clock specifiers for clocks needing rate assignment
-@@ -86,6 +91,11 @@ Example:
- 		interrupt-controller;
- 		#interrupt-cells = <1>;
- 
-+		interconnects = <&rsc_hlos MASTER_MDP0 &rsc_hlos SLAVE_EBI1>,
-+				<&rsc_hlos MASTER_MDP1 &rsc_hlos SLAVE_EBI1>;
-+
-+		interconnect-names = "mdp0-mem", "mdp1-mem";
-+
- 		iommus = <&apps_iommu 0>;
- 
- 		#address-cells = <2>;
--- 
-2.20.1
+Don't need description for common properties unless there's really
+something binding specific to add. Same is true on a bunch of other
+description entries.
 
+> +
+> +  ranges:
+> +    description:
+> +      Defines mapping between pin controller node (parent) to
+> +      gpio-bank node (children).
+> +  pins-are-numbered:
+> +    description:
+> +      Specify the subnodes are using numbered pinmux to
+> +      specify pins.
+> +  st,syscfg:
+
+Needs to define the type (phandle-array).
+
+> +    description: |
+> +      Should be phandle/offset/mask:
+> +        - The phandle to the syscon node which includes IRQ mux selection register.
+> +        - The offset of the IRQ mux selection register
+> +        - The field mask of IRQ mux, needed if different of 0xf.
+
+This can be expressed as a constraint:
+
+items:
+  - items:
+    - description: The phandle to the syscon node which includes IRQ
+mux selection register.
+    - description: The offset of the IRQ mux selection register
+    - description: The field mask of IRQ mux, needed if different of 0xf.
+
+Perhaps there are some constraints on the values of the cells.
+
+> +
+> +  hwlocks:
+> +    description: Reference to a phandle of a hardware spinlock provider node.
+
+No need for a description.
+
+> +  st,package:
+> +    description:
+> +     Indicates the SOC package used.
+> +     More details in include/dt-bindings/pinctrl/stm32-pinfunc.h
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [1, 2, 4, 8]
+> +
+> +patternProperties:
+> +  '^gpio@[0-9a-z]*$':
+
+Hex only: a-f
+
+> +    properties:
+> +      gpio-controller:
+> +        description:
+> +          Indicates this device is a GPIO controller.
+
+No need to describe standard properties.
+
+> +      '#gpio-cells':
+> +        const: 2
+> +        description: |
+> +          The first cell is the pin number.
+> +          The second one is the polarity
+> +          * 0 for active high.
+> +          * 1 for active low.
+
+As long as this is the standard cell definition, no need to describe.
+
+> +
+> +      reg:
+> +        description:
+> +          The gpio address range, relative to the pinctrl range.
+
+Need to say how many entries (maxItems), not what reg is.
+
+> +      clocks:
+> +        description:
+> +          Clock that drives this bank.
+
+ditto.
+
+> +      st,bank-name:
+
+type?
+
+possible values or regex match?
+
+> +        description:
+> +          Should be a name string for this bank as specified in the datasheet.
+> +      reset:
+
+resets
+
+How many items?
+
+> +        description:
+> +          Reference to the reset controller.
+> +      gpio-ranges:
+> +        description: |
+> +          Define a dedicated mapping between a pin-controller and
+> +          a gpio controller. Format is <&phandle a b c> with:
+> +          -(phandle): phandle of pin-controller.
+> +          -(a): gpio base offset in range.
+> +          -(b): pin base offset in range.
+> +          -(c): gpio count in range.
+
+All common, so not needed here.
+
+> +          This entry has to be used either if there are holes inside a bank:
+> +          GPIOB0/B1/B2/B14/B15 (see example 2) or if banks are not contiguous:
+> +          GPIOA/B/C/E...
+> +          NOTE: If "gpio-ranges" is used for a gpio controller, all gpio-controller
+> +          have to use a "gpio-ranges" entry.
+> +          More details in Documentation/devicetree/bindings/gpio/gpio.txt.
+> +
+> +      ngpios:
+> +        description:
+> +          Number of available gpios in a bank.
+> +        minimum: 1
+> +        maximum: 16
+> +
+> +      st,bank-ioport:
+
+type?
+
+> +        description:
+> +          Should correspond to the EXTI IOport selection (EXTI line used
+> +          to select GPIOs as interrupts).
+> +
+> +    required:
+> +      - gpio-controller
+> +      - '#gpio-cells'
+> +      - reg
+> +      - clocks
+> +      - st,bank-name
+> +
+> +  '-[0-9]*$':
+> +    patternProperties:
+> +      '^pins':
+> +        description: |
+> +          A pinctrl node should contain at least one subnode representing the
+> +          pinctrl group available on the machine. Each subnode will list the
+> +          pins it needs, and how they should be configured, with regard to muxer
+> +          configuration, pullups, drive, output high/low and output speed.
+> +        properties:
+> +          pinmux:
+> +            allOf:
+> +              - $ref: "/schemas/types.yaml#/definitions/uint32-array"
+> +            description: |
+> +              Integer array, represents gpio pin number and mux setting.
+> +              Supported pin number and mux varies for different SoCs, and are
+> +              defined in dt-bindings/pinctrl/<soc>-pinfunc.h directly.
+> +              These defines are calculated as: ((port * 16 + line) << 8) | function
+> +              With:
+> +              - port: The gpio port index (PA = 0, PB = 1, ..., PK = 11)
+> +              - line: The line offset within the port (PA0 = 0, PA1 = 1, ..., PA15 = 15)
+> +              - function: The function number, can be:
+> +              * 0 : GPIO
+> +              * 1 : Alternate Function 0
+> +              * 2 : Alternate Function 1
+> +              * 3 : Alternate Function 2
+> +              * ...
+> +              * 16 : Alternate Function 15
+> +              * 17 : Analog
+> +              To simplify the usage, macro is available to generate "pinmux" field.
+> +              This macro is available here:
+> +                - include/dt-bindings/pinctrl/stm32-pinfunc.h
+> +              Some examples of using macro:
+> +               /* GPIO A9 set as alernate function 2 */
+> +               ... {
+> +                          pinmux = <STM32_PINMUX('A', 9, AF2)>;
+> +               };
+> +               /* GPIO A9 set as GPIO  */
+> +               ... {
+> +                          pinmux = <STM32_PINMUX('A', 9, GPIO)>;
+> +               };
+> +               /* GPIO A9 set as analog */
+> +               ... {
+> +                          pinmux = <STM32_PINMUX('A', 9, ANALOG)>;
+> +               };
+> +
+> +          bias-disable:
+> +            type: boolean
+> +          bias-pull-down:
+> +            type: boolean
+> +          bias-pull-up:
+> +            type: boolean
+> +          drive-push-pull:
+> +            type: boolean
+> +          drive-open-drain:
+> +            type: boolean
+> +          output-low:
+> +            type: boolean
+> +          output-high:
+> +            type: boolean
+> +          slew-rate:
+> +            description: |
+> +              0: Low speed
+> +              1: Medium speed
+> +              2: Fast speed
+> +              3: High speed
+> +            allOf:
+> +              - $ref: /schemas/types.yaml#/definitions/uint32
+> +              - enum: [0, 1, 2, 3]
+> +
+> +        required:
+> +          - pinmux
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - ranges
+> +  - pins-are-numbered
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/stm32-pinfunc.h>
+> +    //Example 1
+> +      pin-controller@40020000 {
+
+Because we're horribly inconsistent, 'pinctrl' is the standard node name.
+
+> +              #address-cells = <1>;
+> +              #size-cells = <1>;
+> +              compatible = "st,stm32f429-pinctrl";
+> +              ranges = <0 0x40020000 0x3000>;
+> +              pins-are-numbered;
+> +
+> +              gpioa: gpio@0 {
+> +                      gpio-controller;
+> +                      #gpio-cells = <2>;
+> +                      reg = <0x0 0x400>;
+> +                      resets = <&reset_ahb1 0>;
+> +                      st,bank-name = "GPIOA";
+> +              };
+> +       };
+> +
+> +    //Example 2 (using gpio-ranges)
+> +      pin-controller@50020000 {
+> +              #address-cells = <1>;
+> +              #size-cells = <1>;
+> +              compatible = "st,stm32f429-pinctrl";
+> +              ranges = <0 0x50020000 0x3000>;
+> +              pins-are-numbered;
+> +
+> +              gpiob: gpio@1000 {
+> +                      gpio-controller;
+> +                      #gpio-cells = <2>;
+> +                      reg = <0x1000 0x400>;
+> +                      resets = <&reset_ahb1 0>;
+> +                      st,bank-name = "GPIOB";
+> +                      gpio-ranges = <&pinctrl 0 0 16>;
+> +              };
+> +
+> +              gpioc: gpio@2000 {
+> +                      gpio-controller;
+> +                      #gpio-cells = <2>;
+> +                      reg = <0x2000 0x400>;
+> +                      resets = <&reset_ahb1 0>;
+> +                      st,bank-name = "GPIOC";
+> +                      ngpios = <5>;
+> +                      gpio-ranges = <&pinctrl 0 16 3>,
+> +                                    <&pinctrl 14 30 2>;
+> +              };
+> +      };
+> +
+> +    //Example 3 pin groups
+> +      pin-controller@60020000 {
+> +        usart1_pins_a: usart1-0 {
+> +                pins1 {
+> +                        pinmux = <STM32_PINMUX('A', 9, AF7)>;
+> +                        bias-disable;
+> +                        drive-push-pull;
+> +                        slew-rate = <0>;
+> +                };
+> +                pins2 {
+> +                        pinmux = <STM32_PINMUX('A', 10, AF7)>;
+> +                        bias-disable;
+> +                };
+> +        };
+> +    };
+> +
+> +    usart1 {
+> +                pinctrl-0 = <&usart1_pins_a>;
+> +                pinctrl-names = "default";
+> +    };
+> +
+> +...
+> --
+> 2.7.4
+>
