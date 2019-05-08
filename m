@@ -2,169 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2073117CAA
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 16:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F8117CCA
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 17:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726956AbfEHO4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 10:56:06 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:37563 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726649AbfEHO4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 10:56:06 -0400
-Received: by mail-lj1-f194.google.com with SMTP id n4so1838088ljg.4
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 07:56:04 -0700 (PDT)
+        id S1727123AbfEHPGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 11:06:15 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:44151 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726914AbfEHPGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 11:06:15 -0400
+Received: by mail-qk1-f194.google.com with SMTP id w25so3514125qkj.11
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2019 08:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8htDcYzvv7rGzEh8SqUEM1/ymGp68hJkdW1G1i150EM=;
-        b=w0hD5FuVoDkpcYZEH7/hQmo7kvYPFTKu1Nne/k7qLwFcxkpw/KA/DE8ou6SQJEMxiF
-         RNoQRLE/udVXpEIRwi0W3p8AGuVvUhjx0AWZJiZMN25RpB0z60h3ibiMC0AliArsOJU8
-         g8lNCi1CJ9w18AE6YIKpI6Im/05JygD3Aw5h0xzHpNF5FGVP5XAE0qSnZGxgnnY/1uu0
-         ZkHRqJVrTK7mEbcYwd5Sh6yMApDYwoX97jVRsG+EaGwTIaixZ1l+eAUSWf8qjQwXcMEI
-         XWM/pnA8T5HS+TdFR7HKUFd/06ijxR2DOUdeNIt203QVWrpjiXkviHzIF8n1lR/9yEX3
-         6lzw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oDzDsVMU+LJr7Vip7FUWGFjPTFwrPecpVC+p71dwHL0=;
+        b=YyvjUF7kcpOEi0nE6dzVsg/gcQTmv5N8+kMHVneU2YA724wvUKi6bG88nc2ddw8bwh
+         xQWEOtv1wgEx0039HHBmyRo0mYya6XFQesGUURR537siA2xMVgsISqv6MqgcHvOE01gZ
+         WUTtn0x8U7/FWPvWp3kHk1dWp4H/CicnYmdTA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8htDcYzvv7rGzEh8SqUEM1/ymGp68hJkdW1G1i150EM=;
-        b=DCTTs0WKh85UMdBdqekALbZY2tmlDVy5Cjpee5HR91NzsSeTjDqNCljbEYMQSU9lM1
-         ScdoYFlM2QdPO6d79iXrYUdc8YasrEf7U8hZFuIRIshflr2fSW2d4hM7qlsiCdhKZg77
-         kN0TZLQOgi8AB2PohPFHteQ/eHDoVTbk2C8v5ubT+0ilFnWoQGVmNPbyprdU5rgxgtYU
-         /8nvO2qpvyZuHk0XyiVA+ofaB9MaQ+dwf4SFpYvk00woaX/qccDpQ/i9e8nk6OpafQY7
-         01TEMqyen+lhKTur/6OZvJn5LuD6/92nVf925RzKd4NWN6pqTxs4+KA63nLWpJYDCOrM
-         xSEA==
-X-Gm-Message-State: APjAAAVdAvTbZDwwaJx/yomkejtXejQUWH2U0Ym7zzobTYra36vEkN/Z
-        pNC3G6vwk2d7+aJ0C8gl1GJ/KA==
-X-Google-Smtp-Source: APXvYqx8dgczlzcNNVH0OesMn1GM0gojrEv212M95EXagjHgR2Kb8Z7o1Y3rRcUCMZyDw3bXEW13WA==
-X-Received: by 2002:a2e:7a03:: with SMTP id v3mr22963583ljc.142.1557327363560;
-        Wed, 08 May 2019 07:56:03 -0700 (PDT)
-Received: from centauri ([90.228.168.81])
-        by smtp.gmail.com with ESMTPSA id k2sm3893991ljg.6.2019.05.08.07.56.01
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 08 May 2019 07:56:02 -0700 (PDT)
-Date:   Wed, 8 May 2019 16:56:00 +0200
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>,
-        Lina Iyer <lina.iyer@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs404: Add PSCI cpuidle support
-Message-ID: <20190508145600.GA26843@centauri>
-References: <20190506193115.20909-1-niklas.cassel@linaro.org>
- <CAP245DXLHqU3tv5cii=Z1G4J5m=Emy7yiHP=zSTpY6GX02NKcg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oDzDsVMU+LJr7Vip7FUWGFjPTFwrPecpVC+p71dwHL0=;
+        b=rRTIk8aWAx3yHHPwnWnKcXUZLMiXDjBaFTzv+BArINVyV/Kjyfw6+7a6CZyecyNSCt
+         Lgv/e7PBKq9ZruiP8fChKuIh//YxKUYo+J6njZ3zDg3juvb7X1+FP60Ic/EBthiq1DA8
+         zqzJXHwrzOMwKptLUjIaaOqpH6fF7S2dO/D51whHQkuqa7Rg2PJXCLNcoLfXUacjnNBr
+         Oy/M92oFVMnN3iNLqsI5ZZmfYQcleQGWai7bUnauRd5LZScIguyc3hsQdbYyyHOKrPmN
+         y2A58IOmB1dA5tyrJhU7zzSFOszdZppkVR/QoWZ1aj5nQR0SuKk/l9i4vV1kVXtan7Uq
+         8Ubw==
+X-Gm-Message-State: APjAAAWcAa8J19Z55DzyGPncl1B6rCPLQYIYvsP2/pCgDd/d+IwxvUD9
+        c7+ft2nnf5uwfCrd1H3g1Hmuq8xGUECM07eIDrUdUQ==
+X-Google-Smtp-Source: APXvYqzKF9hpiQ7++7G8HoeOWq1DqYNKoDcAsjHDKXSfNfIFkZYm1Ylb5eOULOWWNB0JjrIWx70mQF4jn2aNPXQtqnc=
+X-Received: by 2002:a05:620a:16c3:: with SMTP id a3mr6908351qkn.222.1557327974036;
+ Wed, 08 May 2019 08:06:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAP245DXLHqU3tv5cii=Z1G4J5m=Emy7yiHP=zSTpY6GX02NKcg@mail.gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190507045433.542-1-hsinyi@chromium.org> <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
+ <CAJMQK-iVhScf0ybZ85kqP0B5_QPoYZ9PZt35jHRUh8FNHKvu7w@mail.gmail.com> <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 8 May 2019 23:05:47 +0800
+Message-ID: <CAJMQK-jjzYwX3NZAKJ-8ypjcN75o-ZX4iOVD=84JecEd4qV1bA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: add support for rng-seed
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Michal Hocko <mhocko@suse.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 08, 2019 at 02:48:19AM +0530, Amit Kucheria wrote:
-> On Tue, May 7, 2019 at 1:01 AM Niklas Cassel <niklas.cassel@linaro.org> wrote:
+On Wed, May 8, 2019 at 10:04 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Tue, May 7, 2019 at 11:08 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
 > >
-> > Add device bindings for CPUs to suspend using PSCI as the enable-method.
-> >
-> > Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qcs404.dtsi | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> > index ffedf9640af7..f9db9f3ee10c 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> > @@ -31,6 +31,7 @@
-> >                         reg = <0x100>;
-> >                         enable-method = "psci";
-> >                         next-level-cache = <&L2_0>;
-> > +                       cpu-idle-states = <&CPU_PC>;
-> >                 };
-> >
-> >                 CPU1: cpu@101 {
-> > @@ -39,6 +40,7 @@
-> >                         reg = <0x101>;
-> >                         enable-method = "psci";
-> >                         next-level-cache = <&L2_0>;
-> > +                       cpu-idle-states = <&CPU_PC>;
-> >                 };
-> >
-> >                 CPU2: cpu@102 {
-> > @@ -47,6 +49,7 @@
-> >                         reg = <0x102>;
-> >                         enable-method = "psci";
-> >                         next-level-cache = <&L2_0>;
-> > +                       cpu-idle-states = <&CPU_PC>;
-> >                 };
-> >
-> >                 CPU3: cpu@103 {
-> > @@ -55,12 +58,24 @@
-> >                         reg = <0x103>;
-> >                         enable-method = "psci";
-> >                         next-level-cache = <&L2_0>;
-> > +                       cpu-idle-states = <&CPU_PC>;
-> >                 };
-> >
-> >                 L2_0: l2-cache {
-> >                         compatible = "cache";
-> >                         cache-level = <2>;
-> >                 };
-> > +
-> > +               idle-states {
-> 
-> entry-method="psci" property goes here. I have a patch fixing it for 410c ;-)
-> 
-> I don't think the psci_cpuidle_ops will even get called without this.
-
-Hello Amit,
-
-I added debug prints in psci_cpu_suspend_enter() and arm_cpuidle_suspend()
-when verifying this patch, and psci_cpu_suspend_enter() is indeed called,
-with the correct psci suspend parameter.
-
-The output from:
-grep "" /sys/bus/cpu/devices/cpu0/cpuidle/state?/*
-also looks sane.
-
-However, if 'entry-method="psci"' is required according to the DT binding,
-perhaps you can send a 2/2 series that fixes both this patch and msm8916 ?
-
-> Did you see any changes in consumption with this patch? I was trying
-> to measure that before sending this out.
-
-I don't know of any way to measure the power consumption on this board,
-so no, I haven't been able to verify that the firmware actually does
-the right thing here.
-
-
-Kind regards,
-Niklas
-
-> 
-> > +                       CPU_PC: pc {
-> > +                               compatible = "arm,idle-state";
-> > +                               arm,psci-suspend-param = <0x40000003>;
-> > +                               entry-latency-us = <125>;
-> > +                               exit-latency-us = <180>;
-> > +                               min-residency-us = <595>;
-> > +                               local-timer-stop;
-> > +                       };
-> > +               };
-> >         };
-> >
-> >         firmware {
-> > --
-> > 2.21.0
-> >
+> > On Wed, May 8, 2019 at 3:47 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > +boot-architecture list as there was some discussion about this IIRC.
+> > >
+> > > On Mon, May 6, 2019 at 11:54 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> > > >
+> > > > Introducing a chosen node, rng-seed, which is an 64 bytes entropy
+> > > > that can be passed to kernel called very early to increase device
+> > > > randomness. Bootloader should provide this entropy and the value is
+> > > > read from /chosen/rng-seed in DT.
+> > > >
+> > > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > > >
+> > > > ---
+> > > >  Documentation/devicetree/bindings/chosen.txt | 14 +++++++++
+> > >
+> > > Actually, this file has been converted to json-schema and lives
+> > > here[1]. I need to remove this one (or leave it with a reference to
+> > > the new one).
+> > >
+> > > >  arch/arm64/kernel/setup.c                    |  2 ++
+> > > >  drivers/of/fdt.c                             | 33 ++++++++++++++++++++
+> > > >  include/linux/of_fdt.h                       |  1 +
+> > > >  4 files changed, 50 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+> > > > index 45e79172a646..bfd360691650 100644
+> > > > --- a/Documentation/devicetree/bindings/chosen.txt
+> > > > +++ b/Documentation/devicetree/bindings/chosen.txt
+> > > > @@ -28,6 +28,20 @@ mode) when EFI_RNG_PROTOCOL is supported, it will be overwritten by
+> > > >  the Linux EFI stub (which will populate the property itself, using
+> > > >  EFI_RNG_PROTOCOL).
+> > > >
+> > > > +rng-seed
+> > > > +-----------
+> > > > +
+> > > > +This property served as an entropy to add device randomness. It is parsed
+> > > > +as a 64 byte value, e.g.
+> > >
+> > > Why only 64-bytes?
+> > We can also not specify size and read what bootloader can provide.
+> > >
+> > > > +
+> > > > +/ {
+> > > > +       chosen {
+> > > > +               rng-seed = <0x31951b3c 0xc9fab3a5 0xffdf1660 ...>
+> > > > +       };
+> > > > +};
+> > > > +
+> > > > +This random value should be provided by bootloader.
+> > > > +
+> > > >  stdout-path
+> > > >  -----------
+> > > >
+> > > > diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> > > > index 413d566405d1..ade4261516dd 100644
+> > > > --- a/arch/arm64/kernel/setup.c
+> > > > +++ b/arch/arm64/kernel/setup.c
+> > > > @@ -292,6 +292,8 @@ void __init setup_arch(char **cmdline_p)
+> > > >         early_fixmap_init();
+> > > >         early_ioremap_init();
+> > > >
+> > > > +       early_init_dt_rng_seed(__fdt_pointer);
+> > > > +
+> > >
+> > > I'm trying to reduce or eliminate all these early_init_dt_* calls.
+> > >
+> > > Why is this arch specific and why can't this be done after
+> > > unflattening? It doesn't look like add_device_randomness() needs
+> > > anything early.
+> > Currently unflattening is called after setup_machine_fdt(), which
+> > called fixmap_remap_fdt() //__fixmap_remap_fdt(dt_phys, &size,
+> > PAGE_KERNEL_RO), and we can't modify DT after that since it's read
+> > only. But we need to clear (eg. write 0 to it) the rng-seed after
+> > reading from DT.
+>
+> Why do you need to clear it? That wasn't necessary for kaslr-seed.
+I think it's for security purpose. If we know the random seed, it's
+more likely we can predict randomness.
+Currently on arm64, kaslr-seed will be wiped out (in
+arch/arm64/kernel/kaslr.c#get_kaslr_seed(), it's set to 0) so we can't
+read from sysfs (eg. /sys/firmware/devicetree/.../kaslr-seed)
+I'm not sure on other arch if it will be wiped out.
+>
+> Why not change the mapping to RW? It would be nice if this worked on
+> more than one arch.
+>
+> Rob
