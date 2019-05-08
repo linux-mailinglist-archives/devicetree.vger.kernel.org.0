@@ -2,127 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF5A416F91
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 05:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26EA16FB0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 05:52:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726720AbfEHDoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 23:44:15 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51797 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726516AbfEHDoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 23:44:15 -0400
-X-UUID: 86b810c50c0f40feb7a66dc923344c34-20190508
-X-UUID: 86b810c50c0f40feb7a66dc923344c34-20190508
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1838829485; Wed, 08 May 2019 11:43:56 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 8 May 2019 11:43:55 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 8 May 2019 11:43:55 +0800
-Message-ID: <1557287035.3936.2.camel@mtksdaap41>
-Subject: Re: [PATCH v5 03/12] dt-binding: gce: add binding for gce subsys
- property
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "YT Shen" <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>, <kendrick.hsu@mediatek.com>,
-        Frederic Chen <Frederic.Chen@mediatek.com>
-Date:   Wed, 8 May 2019 11:43:55 +0800
-In-Reply-To: <20190507081355.52630-4-bibby.hsieh@mediatek.com>
-References: <20190507081355.52630-1-bibby.hsieh@mediatek.com>
-         <20190507081355.52630-4-bibby.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726877AbfEHDwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 23:52:21 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39797 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726727AbfEHDwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 23:52:20 -0400
+Received: by mail-wr1-f68.google.com with SMTP id v10so12873287wrt.6;
+        Tue, 07 May 2019 20:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=DcGjXeg0eS0q2STrcadngNVQ19GQsSpa7hlcxfI3B4w=;
+        b=SEz3TTQ7P2fSn4ugPwi0u6SQOWHqRtYz8f4ZGwYieVz5K3SjWGJPrErDMJS4stvwSZ
+         OARjhZ/OIEnr/3bpPLKh1WdHeShbiiDh2Phc6T95Mvoy95VOozlZq83lh/nhZ2lFwwgv
+         FY7RLe/HvYIrtxBiIUT7WHXwkc5BIq+y8gPKOhbUjUCuRoVp1sKpDUMWAVZ4BE5oEXmx
+         LqzyZkO+JuyK+QWYm0vu41jP2fo6aE1SIutPDQ9ioZlHg2Lf+7NpRcwoxRMowNl+9Qj2
+         7Pqtbi5NB5z/Ksy4IWy+171sqFjP0wuUymU15ayk+m/PLl7ijHxHPudc/qzpVcekQdgQ
+         Tz/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DcGjXeg0eS0q2STrcadngNVQ19GQsSpa7hlcxfI3B4w=;
+        b=Ab9VB9MXum2uRXCpIp+FxXKGTnsn+TAodLapPr5bfjmVreqyW3g/gbnubmHfdC+/cI
+         9ERbgxGpPGVWwK53hZ9+NmPrGBsEk3a5daVxwpzOI2IwUF7kk2weG8DArwWDmxO1lcsp
+         VFnP9zK1Kl5ymitm0fcHw2PzZJkh3+DXAor8r9I2/A7S5fncebhH2+qjajYZ0pfgkLd9
+         qmIIMbVdA5uGpNexgIplGyyhtmLTIGtuJwe2Kd9l3j7XMQvXCazjmKMdr9GQIxnnA9ga
+         CkKrB6h1bPhsjvTDE1Sc5ff7e2Dab9EsXMZ6JQys0Cq7gHO+PglR4EeXNSHzVk8BLON4
+         n4dA==
+X-Gm-Message-State: APjAAAVL8KzmaaAIiFlHUvt8Tx9YEYCm9aFYx2dXCWisf017XxL+r8wH
+        0ZAO1qNmF5WSYvPgIyrPDmr0FgWx
+X-Google-Smtp-Source: APXvYqx/aEcgcunoBQTZXNUA4Wom6qxK/g7oa+Sgks4LYMYFspUoBy8SPjla86B/3DjIchWkMU6L4Q==
+X-Received: by 2002:adf:c6c3:: with SMTP id c3mr25955128wrh.267.1557287538368;
+        Tue, 07 May 2019 20:52:18 -0700 (PDT)
+Received: from [192.168.1.4] (ip-86-49-110-70.net.upcbroadband.cz. [86.49.110.70])
+        by smtp.gmail.com with ESMTPSA id b124sm875376wmg.21.2019.05.07.20.52.16
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 May 2019 20:52:17 -0700 (PDT)
+Subject: Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
+ RPC-IF MFD bindings
+To:     masonccyang@mxic.com.tw, Lee Jones <lee.jones@linaro.org>
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-spi@vger.kernel.org, mark.rutland@arm.com,
+        Rob Herring <robh@kernel.org>,
+        sergei.shtylyov@cogentembedded.com, zhengxunli@mxic.com.tw
+References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
+ <1556092536-17095-4-git-send-email-masonccyang@mxic.com.tw>
+ <20190424212356.GA27103@bogus>
+ <65853dc2-6f3c-1494-7e72-54877797cdd2@gmail.com>
+ <20190507125730.GD29524@dell>
+ <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
+From:   Marek Vasut <marek.vasut@gmail.com>
+Openpgp: preference=signencrypt
+Message-ID: <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com>
+Date:   Wed, 8 May 2019 05:52:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+In-Reply-To: <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
+Content-Type: text/plain; charset=UTF-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bibby:
-
-On Tue, 2019-05-07 at 16:13 +0800, Bibby Hsieh wrote:
-> tcmdq driver provide a function that get the relationship
-> of sub system number from device node for client.
-> add specification for #subsys-cells, mediatek,gce-subsys.
+On 5/8/19 4:48 AM, masonccyang@mxic.com.tw wrote:
+> Hi Jones,
 > 
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> ---
->  .../devicetree/bindings/mailbox/mtk-gce.txt       | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
+>> "Lee Jones" <lee.jones@linaro.org>
+>> 2019/05/07 下午 08:58
+>>
+>> To
+>>
+>> "Marek Vasut" <marek.vasut@gmail.com>,
+>>
+>> cc
+>>
+>> "Rob Herring" <robh@kernel.org>, "Mason Yang"
+>> <masonccyang@mxic.com.tw>, broonie@kernel.org, linux-
+>> kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+>> bbrezillon@kernel.org, linux-renesas-soc@vger.kernel.org, "Geert
+>> Uytterhoeven" <geert+renesas@glider.be>,
+>> sergei.shtylyov@cogentembedded.com, mark.rutland@arm.com,
+>> devicetree@vger.kernel.org, juliensu@mxic.com.tw, "Simon Horman"
+>> <horms@verge.net.au>, zhengxunli@mxic.com.tw
+>>
+>> Subject
+>>
+>> Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
+>> RPC-IF MFD bindings
+>>
+>> On Wed, 24 Apr 2019, Marek Vasut wrote:
+>>
+>> > On 4/24/19 11:23 PM, Rob Herring wrote:
+>> > > On Wed, Apr 24, 2019 at 03:55:36PM +0800, Mason Yang wrote:
+>> > >> Document the bindings used by the Renesas R-Car Gen3 RPC-IF MFD.
+>> > >>
+>> > >> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+>> > >> ---
+>> > >>  .../devicetree/bindings/mfd/mfd-renesas-rpc.txt    | 40 ++++++
+>> ++++++++++++++++
+>> > >>  1 file changed, 40 insertions(+)
+>> > >>  create mode 100644 Documentation/devicetree/bindings/mfd/mfd-
+>> renesas-rpc.txt
+>> > >>
+>> > >> diff --git a/Documentation/devicetree/bindings/mfd/mfd-renesas-
+>> rpc.txt b/Documentation/devicetree/bindings/mfd/mfd-renesas-rpc.txt
+>> > >> new file mode 100644
+>> > >> index 0000000..668b822
+>> > >> --- /dev/null
+>> > >> +++ b/Documentation/devicetree/bindings/mfd/mfd-renesas-rpc.txt
+>> > >> @@ -0,0 +1,40 @@
+>> > >> +Renesas R-Car Gen3 RPC-IF MFD Device Tree Bindings
+>> > >> +--------------------------------------------------
+>> > >
+>> > > Looks like a SPI flash controller from the example. What makes it an
+>> > > MFD?
+>> >
+>> > It supports both SPI NOR and HyperFlash (CFI-compliant flash with
+>> > different bus interface).
+>>
+>> Looks like you're registering one OR the other.
+>>
+>> Why don't you just do this from DT?
+>>
+>> No reason for this to be an MFD IMHO.
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> index 1f7f8f2a3f49..8fd9479bc9f6 100644
-> --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> @@ -21,11 +21,19 @@ Required properties:
->  	priority: Priority of GCE thread.
->  	atomic_exec: GCE processing continuous packets of commands in atomic
->  		way.
-> +- #subsys-cells: Should be 3.
-> +	<&phandle subsys_number start_offset size>
-> +	phandle: Label name of a gce node.
-> +	subsys_number: specify the sub-system id which is corresponding
-> +		       to the register address.
-> +	start_offset: the start offset of register address that GCE can access.
-> +	size: the total size of register address that GCE can access.
->  
->  Required properties for a client device:
->  - mboxes: Client use mailbox to communicate with GCE, it should have this
->    property and list of phandle, mailbox specifiers.
-> -- mediatek,gce-subsys: u32, specify the sub-system id which is corresponding
-> +Optional propertier for a client device:
+> 
+> okay, I will patch it back to SPI mode only.
 
-properties
+I don't think that's what Lee meant . The controller supports _both_
+modes , hence it would have the same compatible string. You just need to
+extract the mode of operation from the DT.
 
-Regards,
-CK
-
-> +- mediatek,gce-client-reg: u32, specify the sub-system id which is corresponding
->    to the register address.
->  
->  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h'
-> @@ -40,6 +48,7 @@ Example:
->  		clocks = <&infracfg CLK_INFRA_GCE>;
->  		clock-names = "gce";
->  		#mbox-cells = <3>;
-> +		#subsys-cells = <3>;
->  	};
->  
->  Example for a client device:
-> @@ -48,9 +57,9 @@ Example for a client device:
->  		compatible = "mediatek,mt8173-mmsys";
->  		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST 1>,
->  			 <&gce 1 CMDQ_THR_PRIO_LOWEST 1>;
-> -		mediatek,gce-subsys = <SUBSYS_1400XXXX>;
->  		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
->  				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
-> -
-> +		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
-> +					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
->  		...
->  	};
-
-
+-- 
+Best regards,
+Marek Vasut
