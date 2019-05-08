@@ -2,124 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3120117AEA
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 15:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BBFF17B14
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 15:53:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727721AbfEHNn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 09:43:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56536 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727488AbfEHNnx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 09:43:53 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2B762216B7;
-        Wed,  8 May 2019 13:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557323033;
-        bh=OJmgP1E+mmtjTsf1WtejtNwHG6Y398f4yIiaqFrrEiI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CdP1f7ILZqBPw2BMpB4qJDVKL+7JgHgaXfvD05pl9bLGdggralLbG1nqusElIuLzk
-         +V4NFW49BWaHn0+jNsT3dT7A6EcCbx1yJHNdEHM1DR9ZK5EZO2KMnyVP2rZ9dIz0Zn
-         GSMp1fayn7tbMI5icg6rWM+bxbIsWbmdYPpmY70U=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     linux-mtd@lists.infradead.org
-Cc:     dinguyen@kernel.org, marex@denx.de, tudor.ambarus@microchip.com,
-        dwmw2@infradead.org, computersforpeace@gmail.com,
-        bbrezillon@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Tien-Fong Chee <tien.fong.chee@intel.com>
-Subject: [PATCHv4 2/2] mtd: spi-nor: cadence-quadspi: add reset control
-Date:   Wed,  8 May 2019 08:43:38 -0500
-Message-Id: <20190508134338.20565-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
-In-Reply-To: <20190508134338.20565-1-dinguyen@kernel.org>
-References: <20190508134338.20565-1-dinguyen@kernel.org>
+        id S1727263AbfEHNxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 09:53:10 -0400
+Received: from mail-eopbgr40052.outbound.protection.outlook.com ([40.107.4.52]:37861
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726515AbfEHNxK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 09:53:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T6CQsVhk7mKENS5NeBymmjDOqgS6e1PzopOuWfQN+z0=;
+ b=bWFvJij07XUEoyyFlnwBb7K8ifgbW1sT5Q1ru9lwHuUq3nUy48nNQ7QTCbphWZEu8NrOt5sFn490KHJO0mYJwROugU2gA5EyhtR0ENiuW2tAtDrlemtOm2YiroreK0HrHglFUm8uj4deSETYtCbjvi8vXTSOIEXfQcFusfimtU0=
+Received: from AM6PR04MB5032.eurprd04.prod.outlook.com (20.177.34.92) by
+ AM6PR04MB6166.eurprd04.prod.outlook.com (20.179.6.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.20; Wed, 8 May 2019 13:53:06 +0000
+Received: from AM6PR04MB5032.eurprd04.prod.outlook.com
+ ([fe80::15c1:586e:553c:3cda]) by AM6PR04MB5032.eurprd04.prod.outlook.com
+ ([fe80::15c1:586e:553c:3cda%6]) with mapi id 15.20.1856.012; Wed, 8 May 2019
+ 13:53:06 +0000
+From:   Pramod Kumar <pramod.kumar_1@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Add dts support for frwy-ls1046a board
+Thread-Topic: [PATCH 0/2] Add dts support for frwy-ls1046a board
+Thread-Index: AQHVBaVcVxiwNXKHRk6FzKZTFRXjTg==
+Date:   Wed, 8 May 2019 13:53:06 +0000
+Message-ID: <20190508135501.17578-1-pramod.kumar_1@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.17.1
+x-clientproxiedby: BM1PR01CA0162.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:68::32) To AM6PR04MB5032.eurprd04.prod.outlook.com
+ (2603:10a6:20b:9::28)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pramod.kumar_1@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [92.120.1.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: eff22d21-e4b2-49e2-4638-08d6d3bc7f33
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB6166;
+x-ms-traffictypediagnostic: AM6PR04MB6166:
+x-microsoft-antispam-prvs: <AM6PR04MB6166046A09CB6B291C4C7A77F6320@AM6PR04MB6166.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-forefront-prvs: 0031A0FFAF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(366004)(39860400002)(376002)(346002)(396003)(189003)(199004)(5660300002)(4744005)(52116002)(99286004)(478600001)(68736007)(1076003)(8936002)(102836004)(6512007)(50226002)(476003)(316002)(81156014)(81166006)(53936002)(73956011)(8676002)(2501003)(36756003)(2616005)(486006)(26005)(6436002)(66946007)(64756008)(66446008)(6486002)(66476007)(66556008)(110136005)(14454004)(86362001)(4326008)(186003)(66066001)(54906003)(25786009)(2201001)(386003)(6506007)(2906002)(7736002)(305945005)(256004)(71200400001)(71190400001)(6116002)(3846002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB6166;H:AM6PR04MB5032.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: WDeIZ4GaOHJw9pL+PBWBtXJAonycMC1l51OLmS5GvKEd9S6JsogtVJfJMakTpnnym86lUDBW2oPhEz3fL3fn2ep318PQCnIoyoDlq4ueRtVSCJIXbw5j3p2f7ovYFjDR0w0CGaGw1AiYr5veddICh+36YJb7ccaCNpLBOqeNZd12R8g1tOzfYAey4bBktrMhPF6lcVnDOIF8t3R+b4aF63YHCqJOpnPu+dmrLidyEDdn7bRm3WXd40sTMp4nTJULuWZe3Ob0orxIZYraxiq9Dgs1Am3DGYE1UFPx7GgmzKThsDq+QjWkG7M+BGJA5Ly/ZM3Bm5sISIy2B8c/6HOE2sjvfNGHJWWzja5aMmtL4RbTKpqppHp/wkNEanz07j3nHzNaGhknQZNqZJ8V2z/+GL35AGaMdU3ByWAhJ6Oer/8=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eff22d21-e4b2-49e2-4638-08d6d3bc7f33
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 13:53:06.4045
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6166
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Get the reset control properties for the QSPI controller and bring them
-out of reset. Most will have just one reset bit, but there is an additional
-OCP reset bit that is used ECC. The OCP reset bit will also need to get
-de-asserted as well. [1]
-
-[1] https://www.intel.com/content/www/us/en/programmable/hps/arria-10/hps.html#reg_soc_top/sfo1429890575955.html
-
-Suggested-by: Tien-Fong Chee <tien.fong.chee@intel.com>
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v4: fix compile error
-v3: return full error by using PTR_ERR(rtsc)
-    move reset control calls until after the clock enables
-    use udelay(2) to be safe
-    Add optional OCP(Open Core Protocol) reset signal
-v2: use devm_reset_control_get_optional_exclusive
-    print an error message
-    return -EPROBE_DEFER
----
- drivers/mtd/spi-nor/cadence-quadspi.c | 30 +++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
-index 792628750eec..d3906e5a1d44 100644
---- a/drivers/mtd/spi-nor/cadence-quadspi.c
-+++ b/drivers/mtd/spi-nor/cadence-quadspi.c
-@@ -34,6 +34,7 @@
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reset.h>
- #include <linux/sched.h>
- #include <linux/spi/spi.h>
- #include <linux/timer.h>
-@@ -1336,6 +1337,8 @@ static int cqspi_probe(struct platform_device *pdev)
- 	struct cqspi_st *cqspi;
- 	struct resource *res;
- 	struct resource *res_ahb;
-+	struct reset_control *rstc;
-+	struct reset_control *rstc_ocp;
- 	const struct cqspi_driver_platdata *ddata;
- 	int ret;
- 	int irq;
-@@ -1402,6 +1405,33 @@ static int cqspi_probe(struct platform_device *pdev)
- 		goto probe_clk_failed;
- 	}
- 
-+	/* Obtain QSPI reset control */
-+	rstc = devm_reset_control_get_optional_exclusive(dev, "qspi");
-+	if (IS_ERR(rstc)) {
-+		dev_err(dev, "Cannot get QSPI reset.\n");
-+		if (PTR_ERR(rstc) == -EPROBE_DEFER)
-+			return PTR_ERR(rstc);
-+	}
-+
-+	rstc_ocp = devm_reset_control_get_optional_exclusive(dev, "qspi-ocp");
-+	if (IS_ERR(rstc_ocp)) {
-+		dev_err(dev, "Cannot get QSPI OCP reset.\n");
-+		if (PTR_ERR(rstc_ocp) == -EPROBE_DEFER)
-+			return PTR_ERR(rstc_ocp);
-+	}
-+
-+	if (rstc) {
-+		reset_control_assert(rstc);
-+		udelay(2);
-+		reset_control_deassert(rstc);
-+	}
-+
-+	if (rstc_ocp) {
-+		reset_control_assert(rstc_ocp);
-+		udelay(2);
-+		reset_control_deassert(rstc_ocp);
-+	}
-+
- 	cqspi->master_ref_clk_hz = clk_get_rate(cqspi->clk);
- 	ddata  = of_device_get_match_data(dev);
- 	if (ddata && (ddata->quirks & CQSPI_NEEDS_WR_DELAY))
--- 
-2.20.0
-
+QWRkIGR0cyBzdXBwb3J0IGZvciBmcnd5LWxzMTA0NmEgd2hpY2ggaXMgYmFzZWQgb24gbHMxMDQ2
+YSBzb2MgDQoNCg0KUHJhbW9kIEt1bWFyICgyKToNCiAgZHQtYmluZGluZ3M6IGFybTogZnNsOiBB
+ZGQgZGV2aWNlIHRyZWUgYmluZGluZyBmb3IgbHMxMDQ2YS1mcnd5IGJvYXJkDQogIGFkZCBkdHMg
+ZmlsZSB0byBlbmFibGUgc3VwcG9ydCBmb3IgbHMxMDQ2YWZyd3kgYm9hcmQuDQoNCiAuLi4vZGV2
+aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWwgICAgICAgICAgfCAgIDEgKw0KIGFyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL01ha2VmaWxlICAgICAgICB8ICAgMSArDQogLi4uL2Jvb3Qv
+ZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQ2YS1mcnd5LmR0cyAgIHwgMTU2ICsrKysrKysrKysrKysr
+KysrKw0KIDMgZmlsZXMgY2hhbmdlZCwgMTU4IGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAx
+MDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTA0NmEtZnJ3eS5kdHMN
+Cg0KLS0gDQoyLjE3LjENCg0K
