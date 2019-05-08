@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C1B16EEA
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B68D16EEB
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:20:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726667AbfEHCT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 22:19:57 -0400
-Received: from mail-yw1-f66.google.com ([209.85.161.66]:37678 "EHLO
-        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726656AbfEHCT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 22:19:56 -0400
-Received: by mail-yw1-f66.google.com with SMTP id 186so6151056ywo.4
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 19:19:56 -0700 (PDT)
+        id S1726527AbfEHCUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 22:20:04 -0400
+Received: from mail-yw1-f68.google.com ([209.85.161.68]:37687 "EHLO
+        mail-yw1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726658AbfEHCUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 22:20:04 -0400
+Received: by mail-yw1-f68.google.com with SMTP id 186so6151252ywo.4
+        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 19:20:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EJcheVh2VdnVEm8ir4B4beYwlwhOMfHWAEVZqUrLmdY=;
-        b=p/eCSvrcLDZ3saZccWINQ109dB0I3a8hAVs99je3InpqziiOYpiYVfCJjumpxjXllc
-         XCnYvbctI+g4kL0+WVM2sCWoAuOwXIAhLHG3iyAXhHr5+E84B60yt0AcT0fEFkzRL8LK
-         I9+n3PSNFP9niT7U3k5Ags6fH+hYcB+p4ph5y9KIzcFqDWz+fzD/qsG4gMowdUw/GViv
-         UGwf4wAyl9+YnQA86zfj6xq7pnk52N0F8usHXwiWPVUpKPSx74JTmWlxhn7URI02VgxN
-         xlenWVyVV3TH0J8RnUqEk9hoU8hvK5Z7agLQhLLE+IYVuc1H2UEBZdsiHAgSL6HdyITu
-         v3Sg==
+        bh=V4MjvAfsmYt35Qj0jxF1NF/Z9s8olO9umFfF5oX+E7s=;
+        b=v0zJ8I8yxGiRb6J++uIhWFMwG/diBBv1wJefCabNxV+5fOOf5YVa9I5/6+1zNIpBlO
+         GdCpGPuhp6Zsdie8FF+bTPItDmcPSg3bY3yEsOq411LktjRw4vI7qRlirHDw1jwxqSCJ
+         OcDUMZCwdJGbWRTLYJljeJer3ElORzUmqDXFeyVHhh2grN7jLA6Uo7SHEvpAZvoQkw9Q
+         c5CCJ6//+iOFahhIG7aV/6GOn6isIQoBnM+x+CWocgthqMvflC9Bdtmkvc694Ci4FK0s
+         K5/SJkxWxiyeeRCaVGbc3yEf/ZGg4w3eEiO695PPfOSffhO0bCcnS/YcBH/n5WwM7+DO
+         g4xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=EJcheVh2VdnVEm8ir4B4beYwlwhOMfHWAEVZqUrLmdY=;
-        b=RAoG+IIJJ86Acv8YtFaNbGySDuiK2nqQ4yYQLxyEZQtewbyPAWDcyprIEzfETsPTjA
-         ppyOhAoe3949uSnvGvSwa3YPnUVQDIR8np8daGSOsVnUFYQzQqsUD48PojiKOl4FDbRE
-         MO33fKycr4qU+J28G0wJM54Ckj+N1/VMSldxxsWeIwECtCC72M3+FZO0XwiFQEkLDkrX
-         e1jKqCnShsuU+bWBUJti0IFfATtzL9VK0XmmyHXJmaUVNq1w29LloQRWcC/JIbQT/OVJ
-         1qFKmnaa+AfpLW/tz71PAY0bmeYv7UNd0aoNOMrTOZaOdWumXXbpINbFWSAyOvlseJEv
-         KQhQ==
-X-Gm-Message-State: APjAAAU5OShu5pL4sERJF8A6bMDOh9SfND8GOfWr+8/q0SX3qQ2IbE9a
-        ecZkVYSRfOXL0/2z27xPlqqEbw==
-X-Google-Smtp-Source: APXvYqy114deqNgQb7N10yZoINB5kBO7zPcLq30xR6rE9zB8xFdeDOpPGqIuNv46YKnOqdetLwfiig==
-X-Received: by 2002:a25:d64a:: with SMTP id n71mr23617255ybg.462.1557281996153;
-        Tue, 07 May 2019 19:19:56 -0700 (PDT)
+        bh=V4MjvAfsmYt35Qj0jxF1NF/Z9s8olO9umFfF5oX+E7s=;
+        b=VazNc7ha3JWmONEAGQYXRez70E/njTHHKpCyEUhJ0f5q+okk5VhcS8oZPYXzgOSwsw
+         7TwjSH4n/pLhNJNI4Ov3XwyZxEJVL8Bnard3uCkDcpXbH/CY/gM9MdABNn7ggaPuNi5l
+         HkpLtmW2oeOEMxwQzWRs/dCAThFCXJbmSmD3DDtFks/zXBUsAeQVlxNqtImZkzRyHEV2
+         CAg+Zi3yU+zlW7KHzm03sP3CUuhwQMSVcoKnzOaeKJoMqw9eNbTWodYfWc5+rxTCsKVF
+         MLHRzu8DuyHucYHBGs7YefCutCItppiynhal/kbSBe5YwRjqaCFmMKZjHYjrb0IEIbGE
+         SsSA==
+X-Gm-Message-State: APjAAAVGKZJsLDwzWpDyojuIsR+5A+/OHIx19636LUjC4ovrbWy0cVso
+        J1gPPSVEkuZLf7tZkSKz7D0LZQ==
+X-Google-Smtp-Source: APXvYqyU7pDHfVnSkOI32/itiCS+CICRnF48CMOaqcMCCS/1KO/sw44MPaaFQQ+CTk8/ppKC86lrtQ==
+X-Received: by 2002:a25:ca12:: with SMTP id a18mr5032891ybg.21.1557282003329;
+        Tue, 07 May 2019 19:20:03 -0700 (PDT)
 Received: from localhost.localdomain (li931-65.members.linode.com. [45.56.113.65])
-        by smtp.gmail.com with ESMTPSA id s4sm1168116yws.48.2019.05.07.19.19.48
+        by smtp.gmail.com with ESMTPSA id s4sm1168116yws.48.2019.05.07.19.19.56
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 May 2019 19:19:55 -0700 (PDT)
+        Tue, 07 May 2019 19:20:02 -0700 (PDT)
 From:   Leo Yan <leo.yan@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -65,11 +65,10 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Chunyan Zhang <zhang.lyra@gmail.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Leo Yan <leo.yan@linaro.org>, Chris Healy <cphealy@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH v2 02/11] ARM: dts: imx7s: Update coresight DT bindings
-Date:   Wed,  8 May 2019 10:18:53 +0800
-Message-Id: <20190508021902.10358-3-leo.yan@linaro.org>
+Cc:     Leo Yan <leo.yan@linaro.org>
+Subject: [PATCH v2 03/11] ARM: dts: qcom-apq8064: Update coresight DT bindings
+Date:   Wed,  8 May 2019 10:18:54 +0800
+Message-Id: <20190508021902.10358-4-leo.yan@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190508021902.10358-1-leo.yan@linaro.org>
 References: <20190508021902.10358-1-leo.yan@linaro.org>
@@ -85,48 +84,37 @@ obsolete strings.
 This patch switches to the new bindings for CoreSight dynamic funnel and
 static replicator, so can dismiss warning during initialisation.
 
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Chris Healy <cphealy@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Andy Gross <agross@kernel.org>
+Cc: David Brown <david.brown@linaro.org>
 Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
 Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
 Signed-off-by: Leo Yan <leo.yan@linaro.org>
 ---
- arch/arm/boot/dts/imx7s.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/qcom-apq8064.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-index 106711d2c01b..d8b4eb67146d 100644
---- a/arch/arm/boot/dts/imx7s.dtsi
-+++ b/arch/arm/boot/dts/imx7s.dtsi
-@@ -117,7 +117,7 @@
- 		 * non-configurable replicators don't show up on the
- 		 * AMBA bus.  As such no need to add "arm,primecell"
- 		 */
--		compatible = "arm,coresight-replicator";
-+		compatible = "arm,coresight-static-replicator";
- 
- 		out-ports {
- 			#address-cells = <1>;
-@@ -175,7 +175,7 @@
- 		ranges;
- 
- 		funnel@30041000 {
--			compatible = "arm,coresight-funnel", "arm,primecell";
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 			reg = <0x30041000 0x1000>;
- 			clocks = <&clks IMX7D_MAIN_AXI_ROOT_CLK>;
- 			clock-names = "apb_pclk";
-@@ -217,7 +217,7 @@
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index 65975df6a8c3..8b79b4112ee1 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -1603,7 +1603,7 @@
  		};
  
- 		funnel@30083000 {
+ 		replicator {
+-			compatible = "arm,coresight-replicator";
++			compatible = "arm,coresight-static-replicator";
+ 
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
+ 			clock-names = "apb_pclk";
+@@ -1636,7 +1636,7 @@
+ 		};
+ 
+ 		funnel@1a04000 {
 -			compatible = "arm,coresight-funnel", "arm,primecell";
 +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 			reg = <0x30083000 0x1000>;
- 			clocks = <&clks IMX7D_MAIN_AXI_ROOT_CLK>;
- 			clock-names = "apb_pclk";
+ 			reg = <0x1a04000 0x1000>;
+ 
+ 			clocks = <&rpmcc RPM_QDSS_CLK>;
 -- 
 2.17.1
 
