@@ -2,170 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCF56170CF
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 08:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1154C1717F
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 08:26:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725860AbfEHGL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 02:11:26 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:34725 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725891AbfEHGL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 02:11:26 -0400
-Received: by mail-wr1-f67.google.com with SMTP id f7so15180112wrq.1
-        for <devicetree@vger.kernel.org>; Tue, 07 May 2019 23:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=GqEqCNgSxd2APLcFtwFmHcxS1CnmhrSkbjU7782mmEA=;
-        b=l13Kn1KUq5zSRAzSwAktRUo1C6jyppWNyv3HllcCtdXrTu4EpW8geG9Iry0cHA2uMf
-         pOK265Mrbp8iag3zrgfE0qXUaTXZuGC+FNDTwEJgqKa+FoeBCIN84XDRBA9hXZanzAqM
-         dqoOhRA/jPnW2p89bXTLRyO/tq324AKCNEPpsHJ/aiVZUZMXsMogE8I4BrrptyAzy7n+
-         LRcFr6ISOPot7ORaO23ZT5UHzXRkqgFVYlIC5iqzOFH9ch8nh4cAESOM7wimzrnadnUI
-         zDX67dO/9slLZ91EOtq8okbepSPmze+rKL5wpTtJZTNkH1MPd/T1j9Qk/NXL8lKD4pCX
-         TN5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=GqEqCNgSxd2APLcFtwFmHcxS1CnmhrSkbjU7782mmEA=;
-        b=mqXX7CMptJ23p/P3jfLYazBquZYm2LUO7eQDy0z3rhgB96728XiQEz6ltY/6yDPNGe
-         n/gHs0QtaIYYr7TfuaLOLOYWwvKgsTvwZ0sFUrSj2VC4Chtce2Aw+uaZtfJVjLyfiX0d
-         6C+h2gKaqHDNo9gpPUB5fhbYj9kB2TkYmjJ02rgeHNawderipMuj2USxcZkcU+6t7Ubm
-         T4CT1US6Hc10sprxfmQ4xdbM1Z+YdtOuRucuZ0IEIci9494tt66cnsJ0CsWP0EpKp8tp
-         W3WQh6aRffcUinRdGEeR9ZSsvAFg953qpVGwSMSxHMJBOwJsgbrPulUc0Meq8apmnW+K
-         tF7w==
-X-Gm-Message-State: APjAAAURcJv1mHQw8UtzukRSJzT/X3ST/j9B1PIyDh+96yMuu6WEJ3fr
-        qIqCfsfCVhrGLm1BWrvYN/CAhg==
-X-Google-Smtp-Source: APXvYqyhLI8rjbMFiYKWUY/0814APcR9oqetQaa4ygCTxANrE1IE/VWJ8JAne09spnjza72PYUlIxw==
-X-Received: by 2002:adf:dc8a:: with SMTP id r10mr9548175wrj.15.1557295883528;
-        Tue, 07 May 2019 23:11:23 -0700 (PDT)
-Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id k67sm1170939wmb.34.2019.05.07.23.11.21
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 07 May 2019 23:11:22 -0700 (PDT)
-Date:   Wed, 8 May 2019 07:11:19 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Marek Vasut <marek.vasut@gmail.com>
-Cc:     masonccyang@mxic.com.tw, bbrezillon@kernel.org, broonie@kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-spi@vger.kernel.org, mark.rutland@arm.com,
-        Rob Herring <robh@kernel.org>,
-        sergei.shtylyov@cogentembedded.com, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
- RPC-IF MFD bindings
-Message-ID: <20190508061119.GB7627@dell>
-References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
- <1556092536-17095-4-git-send-email-masonccyang@mxic.com.tw>
- <20190424212356.GA27103@bogus>
- <65853dc2-6f3c-1494-7e72-54877797cdd2@gmail.com>
- <20190507125730.GD29524@dell>
- <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
- <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com>
+        id S1726082AbfEHG0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 02:26:53 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:19621 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725884AbfEHG0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 02:26:52 -0400
+X-UUID: 3f9020aaaf04425997874e36e2301ec3-20190508
+X-UUID: 3f9020aaaf04425997874e36e2301ec3-20190508
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1509536441; Wed, 08 May 2019 14:26:45 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 8 May
+ 2019 14:26:43 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 8 May 2019 14:26:42 +0800
+Message-ID: <1557296802.10179.272.camel@mhfsdcap03>
+Subject: Re: [v2 PATCH] dt-binding: usb: add usb-role-switch property
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Yu Chen <chenyu56@huawei.com>, Min Guo <min.guo@mediatek.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>
+Date:   Wed, 8 May 2019 14:26:42 +0800
+In-Reply-To: <20190507141305.GA19816@kuha.fi.intel.com>
+References: <38ff51264e971d5c58940c8435b9d8d274662d50.1557195204.git.chunfeng.yun@mediatek.com>
+         <20190507141305.GA19816@kuha.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 May 2019, Marek Vasut wrote:
-
-> On 5/8/19 4:48 AM, masonccyang@mxic.com.tw wrote:
-> > Hi Jones,
-> > 
-> >> "Lee Jones" <lee.jones@linaro.org>
-> >> 2019/05/07 下午 08:58
-> >>
-> >> To
-> >>
-> >> "Marek Vasut" <marek.vasut@gmail.com>,
-> >>
-> >> cc
-> >>
-> >> "Rob Herring" <robh@kernel.org>, "Mason Yang"
-> >> <masonccyang@mxic.com.tw>, broonie@kernel.org, linux-
-> >> kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-> >> bbrezillon@kernel.org, linux-renesas-soc@vger.kernel.org, "Geert
-> >> Uytterhoeven" <geert+renesas@glider.be>,
-> >> sergei.shtylyov@cogentembedded.com, mark.rutland@arm.com,
-> >> devicetree@vger.kernel.org, juliensu@mxic.com.tw, "Simon Horman"
-> >> <horms@verge.net.au>, zhengxunli@mxic.com.tw
-> >>
-> >> Subject
-> >>
-> >> Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
-> >> RPC-IF MFD bindings
-> >>
-> >> On Wed, 24 Apr 2019, Marek Vasut wrote:
-> >>
-> >> > On 4/24/19 11:23 PM, Rob Herring wrote:
-> >> > > On Wed, Apr 24, 2019 at 03:55:36PM +0800, Mason Yang wrote:
-> >> > >> Document the bindings used by the Renesas R-Car Gen3 RPC-IF MFD.
-> >> > >>
-> >> > >> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> >> > >> ---
-> >> > >>  .../devicetree/bindings/mfd/mfd-renesas-rpc.txt    | 40 ++++++
-> >> ++++++++++++++++
-> >> > >>  1 file changed, 40 insertions(+)
-> >> > >>  create mode 100644 Documentation/devicetree/bindings/mfd/mfd-
-> >> renesas-rpc.txt
-> >> > >>
-> >> > >> diff --git a/Documentation/devicetree/bindings/mfd/mfd-renesas-
-> >> rpc.txt b/Documentation/devicetree/bindings/mfd/mfd-renesas-rpc.txt
-> >> > >> new file mode 100644
-> >> > >> index 0000000..668b822
-> >> > >> --- /dev/null
-> >> > >> +++ b/Documentation/devicetree/bindings/mfd/mfd-renesas-rpc.txt
-> >> > >> @@ -0,0 +1,40 @@
-> >> > >> +Renesas R-Car Gen3 RPC-IF MFD Device Tree Bindings
-> >> > >> +--------------------------------------------------
-> >> > >
-> >> > > Looks like a SPI flash controller from the example. What makes it an
-> >> > > MFD?
-> >> >
-> >> > It supports both SPI NOR and HyperFlash (CFI-compliant flash with
-> >> > different bus interface).
-> >>
-> >> Looks like you're registering one OR the other.
-> >>
-> >> Why don't you just do this from DT?
-> >>
-> >> No reason for this to be an MFD IMHO.
-> > 
-> > 
-> > okay, I will patch it back to SPI mode only.
+On Tue, 2019-05-07 at 17:13 +0300, Heikki Krogerus wrote:
+> On Tue, May 07, 2019 at 10:22:58AM +0800, Chunfeng Yun wrote:
+> > diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
+> > index 0a74ab8dfdc2..f5a6ad053ecc 100644
+> > --- a/Documentation/devicetree/bindings/usb/generic.txt
+> > +++ b/Documentation/devicetree/bindings/usb/generic.txt
+> > @@ -30,6 +30,11 @@ Optional properties:
+> >  			optional for OTG device.
+> >   - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
+> >  			optional for OTG device.
+> > + - usb-role-switch: tells Dual-Role USB controllers we want to handle the role
+> > +			switch between host and device according to the state
+> > +			detected by the USB connector, typically for Type-C,
+> > +			Type-B(micro).
+> > +			see connector/usb-connector.txt.
 > 
-> I don't think that's what Lee meant . The controller supports _both_
-> modes , hence it would have the same compatible string. You just need to
-> extract the mode of operation from the DT.
+> That does not look correct to me. Firstly, USB role switches are not
+> always dual-role USB controllers. 
+Thanks for review, I look through some drivers, you are right, some phys
+also switch the roles.
 
-HiSilicon attempted to upstream something similar, only their
-controller provided NAND and NOR functionality.  They used different
-compatible strings to differentiate between the varying
-technologies.
+> Secondly, stating what determines
+> the role irrelevant IMO.
+> 
+> Since this is a boolean property, the description for it should simply
+> explain what does it tell about the capabilities of the device that
+> has it. The description should not make any assumptions about the
+> users of the property, and since the property is a "generic" USB
+> property, I'm not sure it should make any assumptions about the type
+> of the device that has the property either. Also, I would really like
+> the description to show the type of the property.
+Ok I'll add it.
 
-They too tried to use MFD as a means to select between them (which was
-also NACKed).  Not sure what they ended up doing, but the original
-submission and (half of) the conversation can be found at [0].  Some
-more of the thread continues at [1].
+> 
+> Why not just say something like this:
+> 
+> "Boolean property informing that the device is capable of assigning
+> the USB data role (USB host or USB device) for a given USB connector."
+will modify it.
 
-Hope that helps.
+> 
+> 
+> thanks,
+> 
 
-[0] https://groups.google.com/forum/#!topic/fa.linux.kernel/F6i9o8sfOIw
-[1] https://marc.info/?l=devicetree&m=147669165104431&w=2
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
