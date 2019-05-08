@@ -2,280 +2,439 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7104D172F7
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 09:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D0C1730F
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 10:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726470AbfEHHzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 03:55:13 -0400
-Received: from mail-eopbgr790054.outbound.protection.outlook.com ([40.107.79.54]:43904
-        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726163AbfEHHzN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 03:55:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D/WFehwEYs6b90jeMmUSFsVHIm7NpMcDB3cnb9MxZNQ=;
- b=OYY9k6qP/MyV1Fg/nQ6zTm9XzrRZCT02gXwDAoRnyNH2qobfTvH1APFsJ8qRjN3nE5Hk8r82hO40lKVu/roonhxXqw7Zd9v79upuHqBTKD3mAqJqZ+Y8F61UrYw3oQ2Fr54u98jqOpTBl7+q1X7FfIInuT+laciCEFirYZh5YHU=
-Received: from SN4PR0201CA0010.namprd02.prod.outlook.com
- (2603:10b6:803:2b::20) by DM5PR02MB3832.namprd02.prod.outlook.com
- (2603:10b6:4:b1::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1856.11; Wed, 8 May
- 2019 07:55:10 +0000
-Received: from CY1NAM02FT018.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::204) by SN4PR0201CA0010.outlook.office365.com
- (2603:10b6:803:2b::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1878.20 via Frontend
- Transport; Wed, 8 May 2019 07:55:09 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- CY1NAM02FT018.mail.protection.outlook.com (10.152.75.183) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1856.11
- via Frontend Transport; Wed, 8 May 2019 07:55:09 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <anurag.kumar.vulisha@xilinx.com>)
-        id 1hOHPw-0004Y7-Jd; Wed, 08 May 2019 00:55:08 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <anurag.kumar.vulisha@xilinx.com>)
-        id 1hOHPr-0005yM-F6; Wed, 08 May 2019 00:55:03 -0700
-Received: from xsj-pvapsmtp01 (maildrop.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x487ss6u027165;
-        Wed, 8 May 2019 00:54:54 -0700
-Received: from [172.23.64.8] (helo=xhdvnc108.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <anuragku@xilinx.com>)
-        id 1hOHPh-0005sH-R9; Wed, 08 May 2019 00:54:54 -0700
-Received: by xhdvnc108.xilinx.com (Postfix, from userid 15427)
-        id 031AE604D8; Wed,  8 May 2019 13:24:53 +0530 (IST)
-From:   Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        "Claus H. Stovgaard" <cst@phaseone.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <v.anuragkumar@gmail.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-Subject: [PATCH v2 3/3] usb: dwc3: gadget: Add support for disabling U1 and U2 entries
-Date:   Wed, 8 May 2019 13:24:51 +0530
-Message-ID: <1557302091-7455-4-git-send-email-anurag.kumar.vulisha@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1557302091-7455-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
-References: <1557302091-7455-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(346002)(39860400002)(376002)(136003)(396003)(2980300002)(199004)(189003)(186003)(76176011)(7416002)(52956003)(2906002)(36756003)(63266004)(16586007)(110136005)(54906003)(14444005)(305945005)(26005)(356004)(42186006)(36386004)(316002)(5660300002)(6306002)(6266002)(51416003)(426003)(81166006)(81156014)(8676002)(106002)(336012)(103686004)(107886003)(70206006)(47776003)(50466002)(446003)(2616005)(48376002)(8936002)(70586007)(478600001)(90966002)(476003)(966005)(4326008)(486006)(11346002)(50226002)(126002)(6606295002);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR02MB3832;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;A:1;MX:1;
+        id S1726428AbfEHIAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 04:00:55 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:7791 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725910AbfEHIAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 04:00:55 -0400
+X-UUID: f9d29b6a6cb445dfb6f50a135c6d7032-20190508
+X-UUID: f9d29b6a6cb445dfb6f50a135c6d7032-20190508
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
+        (envelope-from <ran.bi@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 315186190; Wed, 08 May 2019 16:00:42 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs08n2.mediatek.inc
+ (172.21.101.56) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 8 May
+ 2019 16:00:40 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 8 May 2019 16:00:39 +0800
+Message-ID: <1557302439.22641.4.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 08/10] arm64: dts: mt6358: add PMIC MT6358 related
+ nodes
+From:   Ran Bi <ran.bi@mediatek.com>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Mark Brown" <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        <linux-rtc@vger.kernel.org>
+Date:   Wed, 8 May 2019 16:00:39 +0800
+In-Reply-To: <20190503093117.54830-9-hsin-hsiung.wang@mediatek.com>
+References: <20190503093117.54830-1-hsin-hsiung.wang@mediatek.com>
+         <20190503093117.54830-9-hsin-hsiung.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6f162e7d-a7ad-4779-0d7e-08d6d38a7e53
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328);SRVR:DM5PR02MB3832;
-X-MS-TrafficTypeDiagnostic: DM5PR02MB3832:
-X-MS-Exchange-PUrlCount: 1
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-Microsoft-Antispam-PRVS: <DM5PR02MB383245982195E8CAB72DDC6FA7320@DM5PR02MB3832.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
-X-Forefront-PRVS: 0031A0FFAF
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: STCG6/S4kPT2ba1gmDmTmH41OlTjm3WqMrUOopJ3XQSIRNkMypmIF/oZx9S8L3fXO+pjnMYXe0QAZqq4Uo6V4saGeT5LOZDA6Me0X1x00XDZodlS65JYIJJkDh2ao+ArHEfnv1UTQZRe9XA3zDdDvSNi2QNZ0Zd2woFmngAaM2yiStpRZi9Ejt3ecXtRX/HBL1m5npmSDapmNQaqG4zfBJsRTA5+cYQvl+deOpA3O/xPyqxTmHBBxgL40719ilGPDzLj/VtR0ytggpQ9hmBLMAxNnJju7UP/3Xlw9dHqfjIDSTNNWvXBKXY/bQijL0Por7W65yo47H9V6qHfP/m0jJuKI26Ryl+F7QZ9VHDK5t0Xkjk/hmgyVsmiIv7y44NFi+/FECe/7kWsM0e8tOv8hgKNRr8gp/s0w43Od6m7FCs=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2019 07:55:09.1257
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f162e7d-a7ad-4779-0d7e-08d6d38a7e53
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR02MB3832
+X-TM-SNTS-SMTP: AD1F05E2E033372105E63A636EB902B46C8DA9CE0938F5E6DBD825BE23C881332000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gadget applications may have a requirement to disable the U1 and U2
-entry based on the usecase. Below are few usecases where the disabling
-U1/U2 entries may be possible.
+On Fri, 2019-05-03 at 17:31 +0800, Hsin-Hsiung Wang wrote:
+> add PMIC MT6358 related nodes which is for MT8183 platform
+> 
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt6358.dtsi | 358 +++++++++++++++++++++++
+>  1 file changed, 358 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt6358.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+> new file mode 100644
+> index 000000000000..74da59de3794
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+> @@ -0,0 +1,358 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2019 MediaTek Inc.
+> + */
+> +
+> +&pwrap {
+> +	pmic: mt6358 {
+> +		compatible = "mediatek,mt6358";
+> +		interrupt-controller;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <182 IRQ_TYPE_LEVEL_HIGH>;
+> +		#interrupt-cells = <2>;
+> +
+> +		mt6358codec: mt6358codec {
+> +			compatible = "mediatek,mt6358-sound";
+> +		};
+> +
+> +		mt6358regulator: mt6358regulator {
+> +			compatible = "mediatek,mt6358-regulator";
+> +
+> +			mt6358_vdram1_reg: buck_vdram1 {
+> +				regulator-compatible = "buck_vdram1";
+> +				regulator-name = "vdram1";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <2087500>;
+> +				regulator-ramp-delay = <12500>;
+> +				regulator-enable-ramp-delay = <0>;
+> +				regulator-always-on;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vcore_reg: buck_vcore {
+> +				regulator-name = "vcore";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <200>;
+> +				regulator-always-on;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vpa_reg: buck_vpa {
+> +				regulator-name = "vpa";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <3650000>;
+> +				regulator-ramp-delay = <50000>;
+> +				regulator-enable-ramp-delay = <250>;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vproc11_reg: buck_vproc11 {
+> +				regulator-name = "vproc11";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <200>;
+> +				regulator-always-on;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vproc12_reg: buck_vproc12 {
+> +				regulator-name = "vproc12";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <200>;
+> +				regulator-always-on;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vgpu_reg: buck_vgpu {
+> +				regulator-name = "vgpu";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <200>;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vs2_reg: buck_vs2 {
+> +				regulator-name = "vs2";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <2087500>;
+> +				regulator-ramp-delay = <12500>;
+> +				regulator-enable-ramp-delay = <0>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vmodem_reg: buck_vmodem {
+> +				regulator-name = "vmodem";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <900>;
+> +				regulator-always-on;
+> +				regulator-allowed-modes = <0 1>;
+> +			};
+> +
+> +			mt6358_vs1_reg: buck_vs1 {
+> +				regulator-name = "vs1";
+> +				regulator-min-microvolt = <1000000>;
+> +				regulator-max-microvolt = <2587500>;
+> +				regulator-ramp-delay = <12500>;
+> +				regulator-enable-ramp-delay = <0>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vdram2_reg: ldo_vdram2 {
+> +				regulator-name = "vdram2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <3300>;
+> +			};
+> +
+> +			mt6358_vsim1_reg: ldo_vsim1 {
+> +				regulator-name = "vsim1";
+> +				regulator-min-microvolt = <1700000>;
+> +				regulator-max-microvolt = <3100000>;
+> +				regulator-enable-ramp-delay = <540>;
+> +			};
+> +
+> +			mt6358_vibr_reg: ldo_vibr {
+> +				regulator-name = "vibr";
+> +				regulator-min-microvolt = <1200000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-enable-ramp-delay = <60>;
+> +			};
+> +
+> +			mt6358_vrf12_reg: ldo_vrf12 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vrf12";
+> +				regulator-min-microvolt = <1200000>;
+> +				regulator-max-microvolt = <1200000>;
+> +				regulator-enable-ramp-delay = <120>;
+> +			};
+> +
+> +			mt6358_vio18_reg: ldo_vio18 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vio18";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <2700>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vusb_reg: ldo_vusb {
+> +				regulator-name = "vusb";
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3100000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vcamio_reg: ldo_vcamio {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vcamio";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vcamd_reg: ldo_vcamd {
+> +				regulator-name = "vcamd";
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vcn18_reg: ldo_vcn18 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vcn18";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vfe28_reg: ldo_vfe28 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vfe28";
+> +				regulator-min-microvolt = <2800000>;
+> +				regulator-max-microvolt = <2800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vsram_proc11_reg: ldo_vsram_proc11 {
+> +				regulator-name = "vsram_proc11";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <240>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vcn28_reg: ldo_vcn28 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vcn28";
+> +				regulator-min-microvolt = <2800000>;
+> +				regulator-max-microvolt = <2800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vsram_others_reg: ldo_vsram_others {
+> +				regulator-name = "vsram_others";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <240>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vsram_gpu_reg: ldo_vsram_gpu {
+> +				regulator-name = "vsram_gpu";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <240>;
+> +			};
+> +
+> +			mt6358_vxo22_reg: ldo_vxo22 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vxo22";
+> +				regulator-min-microvolt = <2200000>;
+> +				regulator-max-microvolt = <2200000>;
+> +				regulator-enable-ramp-delay = <120>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vefuse_reg: ldo_vefuse {
+> +				regulator-name = "vefuse";
+> +				regulator-min-microvolt = <1700000>;
+> +				regulator-max-microvolt = <1900000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vaux18_reg: ldo_vaux18 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vaux18";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vmch_reg: ldo_vmch {
+> +				regulator-name = "vmch";
+> +				regulator-min-microvolt = <2900000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-enable-ramp-delay = <60>;
+> +			};
+> +
+> +			mt6358_vbif28_reg: ldo_vbif28 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vbif28";
+> +				regulator-min-microvolt = <2800000>;
+> +				regulator-max-microvolt = <2800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vsram_proc12_reg: ldo_vsram_proc12 {
+> +				regulator-name = "vsram_proc12";
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1293750>;
+> +				regulator-ramp-delay = <6250>;
+> +				regulator-enable-ramp-delay = <240>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vcama1_reg: ldo_vcama1 {
+> +				regulator-name = "vcama1";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vemc_reg: ldo_vemc {
+> +				regulator-name = "vemc";
+> +				regulator-min-microvolt = <2900000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-enable-ramp-delay = <60>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vio28_reg: ldo_vio28 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vio28";
+> +				regulator-min-microvolt = <2800000>;
+> +				regulator-max-microvolt = <2800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_va12_reg: ldo_va12 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "va12";
+> +				regulator-min-microvolt = <1200000>;
+> +				regulator-max-microvolt = <1200000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			mt6358_vrf18_reg: ldo_vrf18 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vrf18";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-enable-ramp-delay = <120>;
+> +			};
+> +
+> +			mt6358_vcn33_bt_reg: ldo_vcn33_bt {
+> +				regulator-name = "vcn33_bt";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3500000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vcn33_wifi_reg: ldo_vcn33_wifi {
+> +				regulator-name = "vcn33_wifi";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3500000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vcama2_reg: ldo_vcama2 {
+> +				regulator-name = "vcama2";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vmc_reg: ldo_vmc {
+> +				regulator-name = "vmc";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-enable-ramp-delay = <60>;
+> +			};
+> +
+> +			mt6358_vldo28_reg: ldo_vldo28 {
+> +				regulator-name = "vldo28";
+> +				regulator-min-microvolt = <2800000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vaud28_reg: ldo_vaud28 {
+> +				compatible = "regulator-fixed";
+> +				regulator-name = "vaud28";
+> +				regulator-min-microvolt = <2800000>;
+> +				regulator-max-microvolt = <2800000>;
+> +				regulator-enable-ramp-delay = <270>;
+> +			};
+> +
+> +			mt6358_vsim2_reg: ldo_vsim2 {
+> +				regulator-name = "vsim2";
+> +				regulator-min-microvolt = <1700000>;
+> +				regulator-max-microvolt = <3100000>;
+> +				regulator-enable-ramp-delay = <540>;
+> +			};
+> +		};
 
-Usecase 1:
-When combining dwc3 with an redriver for a USB Type-C device solution, it
-sometimes have problems with leaving U1/U2 for certain hosts, resulting in
-link training errors and reconnects. For this U1/U2 state entries may be
-avoided.
+Missing mt6358 rtc node here:
++		mt6358rtc: mt6358rtc {
++			compatible = "mediatek,mt6358-rtc";
++		};
 
-Usecase 2:
-When performing performance benchmarking on mass storage gadget the
-U1 and U2 entries can be disabled.
+> +	};
+> +};
 
-Usecase 3:
-When periodic transfers like ISOC transfers are used with bInterval
-of 1 which doesn't require the link to enter into U1 or U2 state entry
-(since ping is issued from host for every uframe interval). In this
-case the U1 and U2 entry can be disabled.
-
-Disablement of U1/U2 can be done by setting U1DevExitLat and U2DevExitLat
-values to 0 in the BOS descriptor. Host on seeing 0 value for U1DevExitLat
-and U2DevExitLat, it doesn't send SET_SEL requests to the gadget. There
-may be some hosts which may send SET_SEL requests even after seeing 0 in
-the UxDevExitLat of BOS descriptor. To aviod U1/U2 entries for these type
-of hosts, dwc3 controller can be programmed to reject those U1/U2 requests
-by not enabling ACCEPTUxENA bits in DCTL register.
-
-This patch updates the same.
-
-Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-Signed-off-by: Claus H. Stovgaard <cst@phaseone.com>
----
- Changes in v2
-	1. As suggested by Thinh Nguyen changed the "snps,dis_u1_entry_quirk"
-	   to "snps,dis-u1-entry-quirk"
-	2. Merged the changes done by Claus H. Stovgaard in ep0.c for rejecting
-	   U1/U2 requests into this patch. Changes done by Claus can be found
-	   here https://marc.info/?l=linux-kernel&m=155722068820568&w=2
-	3. Changed the commit message.
----
- drivers/usb/dwc3/core.c   |  4 ++++
- drivers/usb/dwc3/core.h   |  4 ++++
- drivers/usb/dwc3/ep0.c    |  9 ++++++++-
- drivers/usb/dwc3/gadget.c | 19 +++++++++++++++++++
- drivers/usb/dwc3/gadget.h |  6 ++++++
- 5 files changed, 41 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index a1b126f..180239b 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1285,6 +1285,10 @@ static void dwc3_get_properties(struct dwc3 *dwc)
- 				"snps,dis_u2_susphy_quirk");
- 	dwc->dis_enblslpm_quirk = device_property_read_bool(dev,
- 				"snps,dis_enblslpm_quirk");
-+	dwc->dis_u1_entry_quirk = device_property_read_bool(dev,
-+				"snps,dis-u1-entry-quirk");
-+	dwc->dis_u2_entry_quirk = device_property_read_bool(dev,
-+				"snps,dis-u2-entry-quirk");
- 	dwc->dis_rxdet_inp3_quirk = device_property_read_bool(dev,
- 				"snps,dis_rxdet_inp3_quirk");
- 	dwc->dis_u2_freeclk_exists_quirk = device_property_read_bool(dev,
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 1528d39..fa398e2 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -1015,6 +1015,8 @@ struct dwc3_scratchpad_array {
-  * @dis_u2_susphy_quirk: set if we disable usb2 suspend phy
-  * @dis_enblslpm_quirk: set if we clear enblslpm in GUSB2PHYCFG,
-  *                      disabling the suspend signal to the PHY.
-+ * @dis_u1_entry_quirk: set if link entering into U1 state needs to be disabled.
-+ * @dis_u2_entry_quirk: set if link entering into U2 state needs to be disabled.
-  * @dis_rxdet_inp3_quirk: set if we disable Rx.Detect in P3
-  * @dis_u2_freeclk_exists_quirk : set if we clear u2_freeclk_exists
-  *			in GUSB2PHYCFG, specify that USB2 PHY doesn't
-@@ -1206,6 +1208,8 @@ struct dwc3 {
- 	unsigned		dis_u3_susphy_quirk:1;
- 	unsigned		dis_u2_susphy_quirk:1;
- 	unsigned		dis_enblslpm_quirk:1;
-+	unsigned		dis_u1_entry_quirk:1;
-+	unsigned		dis_u2_entry_quirk:1;
- 	unsigned		dis_rxdet_inp3_quirk:1;
- 	unsigned		dis_u2_freeclk_exists_quirk:1;
- 	unsigned		dis_del_phy_power_chg_quirk:1;
-diff --git a/drivers/usb/dwc3/ep0.c b/drivers/usb/dwc3/ep0.c
-index 8efde17..8e94efc 100644
---- a/drivers/usb/dwc3/ep0.c
-+++ b/drivers/usb/dwc3/ep0.c
-@@ -379,6 +379,8 @@ static int dwc3_ep0_handle_u1(struct dwc3 *dwc, enum usb_device_state state,
- 	if ((dwc->speed != DWC3_DSTS_SUPERSPEED) &&
- 			(dwc->speed != DWC3_DSTS_SUPERSPEED_PLUS))
- 		return -EINVAL;
-+	if (dwc->dis_u1_entry_quirk)
-+		return -EINVAL;
- 
- 	reg = dwc3_readl(dwc->regs, DWC3_DCTL);
- 	if (set)
-@@ -401,6 +403,8 @@ static int dwc3_ep0_handle_u2(struct dwc3 *dwc, enum usb_device_state state,
- 	if ((dwc->speed != DWC3_DSTS_SUPERSPEED) &&
- 			(dwc->speed != DWC3_DSTS_SUPERSPEED_PLUS))
- 		return -EINVAL;
-+	if (dwc->dis_u2_entry_quirk)
-+		return -EINVAL;
- 
- 	reg = dwc3_readl(dwc->regs, DWC3_DCTL);
- 	if (set)
-@@ -626,7 +630,10 @@ static int dwc3_ep0_set_config(struct dwc3 *dwc, struct usb_ctrlrequest *ctrl)
- 			 * nothing is pending from application.
- 			 */
- 			reg = dwc3_readl(dwc->regs, DWC3_DCTL);
--			reg |= (DWC3_DCTL_ACCEPTU1ENA | DWC3_DCTL_ACCEPTU2ENA);
-+			if (!dwc->dis_u1_entry_quirk)
-+				reg |= DWC3_DCTL_ACCEPTU1ENA;
-+			if (!dwc->dis_u2_entry_quirk)
-+				reg |= DWC3_DCTL_ACCEPTU2ENA;
- 			dwc3_writel(dwc->regs, DWC3_DCTL, reg);
- 		}
- 		break;
-diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
-index e293400..f2d3112 100644
---- a/drivers/usb/dwc3/gadget.c
-+++ b/drivers/usb/dwc3/gadget.c
-@@ -2073,6 +2073,24 @@ static int dwc3_gadget_stop(struct usb_gadget *g)
- 	return 0;
- }
- 
-+static void dwc3_gadget_config_params(struct usb_gadget *g,
-+				      struct usb_dcd_config_params *params)
-+{
-+	struct dwc3		*dwc = gadget_to_dwc(g);
-+
-+	/* U1 Device exit Latency */
-+	if (dwc->dis_u1_entry_quirk)
-+		params->bU1devExitLat = 0;
-+	else
-+		params->bU1devExitLat = DWC3_DEFAULT_U1_DEV_EXIT_LAT;
-+
-+	/* U2 Device exit Latency */
-+	if (dwc->dis_u2_entry_quirk)
-+		params->bU2DevExitLat = 0;
-+	else
-+		params->bU2DevExitLat = DWC3_DEFAULT_U2_DEV_EXIT_LAT;
-+}
-+
- static void dwc3_gadget_set_speed(struct usb_gadget *g,
- 				  enum usb_device_speed speed)
- {
-@@ -2142,6 +2160,7 @@ static const struct usb_gadget_ops dwc3_gadget_ops = {
- 	.udc_start		= dwc3_gadget_start,
- 	.udc_stop		= dwc3_gadget_stop,
- 	.udc_set_speed		= dwc3_gadget_set_speed,
-+	.get_config_params	= dwc3_gadget_config_params,
- };
- 
- /* -------------------------------------------------------------------------- */
-diff --git a/drivers/usb/dwc3/gadget.h b/drivers/usb/dwc3/gadget.h
-index 3ed738e..5faf4d1 100644
---- a/drivers/usb/dwc3/gadget.h
-+++ b/drivers/usb/dwc3/gadget.h
-@@ -48,6 +48,12 @@ struct dwc3;
- /* DEPXFERCFG parameter 0 */
- #define DWC3_DEPXFERCFG_NUM_XFER_RES(n)	((n) & 0xffff)
- 
-+/* U1 Device exit Latency */
-+#define DWC3_DEFAULT_U1_DEV_EXIT_LAT	0x0A	/* Less then 10 microsec */
-+
-+/* U2 Device exit Latency */
-+#define DWC3_DEFAULT_U2_DEV_EXIT_LAT	0x1FF	/* Less then 511 microsec */
-+
- /* -------------------------------------------------------------------------- */
- 
- #define to_dwc3_request(r)	(container_of(r, struct dwc3_request, request))
--- 
-2.1.1
 
