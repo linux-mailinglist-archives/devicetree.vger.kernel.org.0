@@ -2,197 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5352416F16
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7A5B16F44
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 04:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726381AbfEHCjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 22:39:13 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:14670 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726371AbfEHCjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 22:39:13 -0400
-X-UUID: 5c2410f0ce734c189fe4165f79ed32a3-20190508
-X-UUID: 5c2410f0ce734c189fe4165f79ed32a3-20190508
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1437165598; Wed, 08 May 2019 10:39:08 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS33DR.mediatek.inc (172.27.6.106) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 8 May 2019 10:39:05 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 8 May 2019 10:39:05 +0800
-Message-ID: <1557283144.31731.4.camel@mtksdaap41>
-Subject: Re: [v2 2/5] drm/mediatek: CMDQ reg address of mt8173 is different
- with mt2701
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        "Rahul Sharma" <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King" <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
+        id S1726411AbfEHC4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 22:56:07 -0400
+Received: from mail-eopbgr10068.outbound.protection.outlook.com ([40.107.1.68]:57782
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726371AbfEHC4G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 22:56:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w2E1vSgiDUnsKxaunmF3/XtI9jYTGlfqdgySbAe8FCA=;
+ b=GkQVp7kXFykkaanx2AbLheH7HD7x3m9KfkX4FopdQH9U4vLk8rPCQR2lqbQ1mW9FCBjR1el66GMSPljnp1mmM/6U2H2qOERz6ziXsvpwPhTuQOgWO/atfJeljuptx3xEIwJksapLwuChGvGnIW4uT5FdJqoUOAhLnGpp4F1mL1w=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB5153.eurprd04.prod.outlook.com (20.177.40.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.15; Wed, 8 May 2019 02:56:02 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::3173:24:d401:2378]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::3173:24:d401:2378%6]) with mapi id 15.20.1856.012; Wed, 8 May 2019
+ 02:56:02 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Wed, 8 May 2019 10:39:04 +0800
-In-Reply-To: <20190416060501.76276-3-jitao.shi@mediatek.com>
-References: <20190416060501.76276-1-jitao.shi@mediatek.com>
-         <20190416060501.76276-3-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Anson Huang <anson.huang@nxp.com>
+Subject: [PATCH V2 1/4] dt-bindings: fsl: scu: add ocotp binding
+Thread-Topic: [PATCH V2 1/4] dt-bindings: fsl: scu: add ocotp binding
+Thread-Index: AQHVBUmS8YEY+TS9pUGxn5n6MqiHxQ==
+Date:   Wed, 8 May 2019 02:56:02 +0000
+Message-ID: <20190508030927.16668-1-peng.fan@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.16.4
+x-clientproxiedby: HK0P153CA0028.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:203:17::16) To AM0PR04MB4481.eurprd04.prod.outlook.com
+ (2603:10a6:208:70::15)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a96015b6-f15e-4da2-65f1-08d6d360b4d5
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5153;
+x-ms-traffictypediagnostic: AM0PR04MB5153:
+x-microsoft-antispam-prvs: <AM0PR04MB5153C8A635FF5AF175ED3A1588320@AM0PR04MB5153.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-forefront-prvs: 0031A0FFAF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(376002)(366004)(136003)(346002)(39860400002)(189003)(199004)(26005)(1076003)(68736007)(66446008)(14454004)(2501003)(66946007)(186003)(52116002)(305945005)(102836004)(7736002)(316002)(66556008)(64756008)(66476007)(53936002)(73956011)(25786009)(7416002)(50226002)(8936002)(5660300002)(4326008)(71190400001)(71200400001)(6512007)(478600001)(54906003)(110136005)(6116002)(3846002)(2906002)(36756003)(81156014)(81166006)(8676002)(86362001)(2201001)(66066001)(6436002)(6486002)(2616005)(256004)(6506007)(486006)(44832011)(386003)(99286004)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5153;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: I2ZBmrJh6WgINPX3iYI1h5/SvECPoppiB0UvFgB2/z+dLF8AhaB2i0Rbo5X1Ya4JE8u9juytjzy9u6r5UKsCqIjWaBMk6qJ5dP9jRERieFHPtUaiJoLGOwaD1AHUdbAC36rKzOa4+/WsO+hKV/X8RN1+sgWn367NmsLi7TOlq6/T+FhwkYfQ3xVuKn5HTIFGlKylWNZsXTRmvwNdRUaykEarGUHDAAW1Cb8dgXzT63WvnslQmqxI98uDZ0c0sHLqYNzy5ZQxyj31H11dFLuahRO5PxmEwx0paO6EJlpVYBnSHyj2Ci1snNxopD5APCxpysgBSYh6TeynC8ytD3mKX/Lw4Fu13i6QZLtDU9lBYvf9bh/YfEl8eDv5Tf0BabPEPfXgtWBoz9wBzi8nKbVR1JyUIraLP2VzKbY/lR0xsxo=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a96015b6-f15e-4da2-65f1-08d6d360b4d5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 02:56:02.7586
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5153
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-04-16 at 14:04 +0800, Jitao Shi wrote:
-> Config the different CMDQ reg address in driver data.
-> 
-For MT8173, you change reg_cmd_off from 0x180 to 0x200, so this patch is
-a bug fix. You should add a 'Fixes' tag.
-
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 39 +++++++++++++++++++++++-------
->  1 file changed, 30 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index 6c4ac37f983d..573e6bec6d36 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -131,7 +131,6 @@
->  #define VM_CMD_EN			BIT(0)
->  #define TS_VFP_EN			BIT(5)
->  
-> -#define DSI_CMDQ0		0x180
->  #define CONFIG				(0xff << 0)
->  #define SHORT_PACKET			0
->  #define LONG_PACKET			2
-> @@ -156,6 +155,10 @@
->  
->  struct phy;
->  
-> +struct mtk_dsi_driver_data {
-> +	const u32 reg_cmdq_off;
-> +};
-> +
->  struct mtk_dsi {
->  	struct mtk_ddp_comp ddp_comp;
->  	struct device *dev;
-> @@ -182,6 +185,7 @@ struct mtk_dsi {
->  	bool enabled;
->  	u32 irq_data;
->  	wait_queue_head_t irq_wait_queue;
-> +	struct mtk_dsi_driver_data *driver_data;
->  };
->  
->  static inline struct mtk_dsi *encoder_to_dsi(struct drm_encoder *e)
-> @@ -934,6 +938,7 @@ static void mtk_dsi_cmdq(struct mtk_dsi *dsi, const struct mipi_dsi_msg *msg)
->  	const char *tx_buf = msg->tx_buf;
->  	u8 config, cmdq_size, cmdq_off, type = msg->type;
->  	u32 reg_val, cmdq_mask, i;
-> +	u32 reg_cmdq_off = dsi->driver_data->reg_cmdq_off;
->  
->  	if (MTK_DSI_HOST_IS_READ(type))
->  		config = BTA;
-> @@ -953,9 +958,11 @@ static void mtk_dsi_cmdq(struct mtk_dsi *dsi, const struct mipi_dsi_msg *msg)
->  	}
->  
->  	for (i = 0; i < msg->tx_len; i++)
-> -		writeb(tx_buf[i], dsi->regs + DSI_CMDQ0 + cmdq_off + i);
-> +		mtk_dsi_mask(dsi, (reg_cmdq_off + cmdq_off + i) & (~0x3U),
-> +			     (0xffUL << (((i + cmdq_off) & 3U) * 8U)),
-> +			     tx_buf[i] << (((i + cmdq_off) & 3U) * 8U));
-
-You say you would follow Nicolas' suggestion here.
-
->  
-> -	mtk_dsi_mask(dsi, DSI_CMDQ0, cmdq_mask, reg_val);
-> +	mtk_dsi_mask(dsi, reg_cmdq_off, cmdq_mask, reg_val);
->  	mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE, cmdq_size);
->  }
->  
-> @@ -1074,10 +1081,27 @@ static const struct component_ops mtk_dsi_component_ops = {
->  	.unbind = mtk_dsi_unbind,
->  };
->  
-> +static const struct mtk_dsi_driver_data mt8173_dsi_driver_data = {
-> +	.reg_cmdq_off = 0x200,
-> +};
-> +
-> +static const struct mtk_dsi_driver_data mt2701_dsi_driver_data = {
-> +	.reg_cmdq_off = 0x180,
-> +};
-> +
-> +static const struct of_device_id mtk_dsi_of_match[] = {
-> +	{ .compatible = "mediatek,mt2701-dsi",
-> +	  .data = &mt2701_dsi_driver_data },
-> +	{ .compatible = "mediatek,mt8173-dsi",
-> +	  .data = &mt8173_dsi_driver_data },
-> +	{ },
-> +};
-> +
->  static int mtk_dsi_probe(struct platform_device *pdev)
->  {
->  	struct mtk_dsi *dsi;
->  	struct device *dev = &pdev->dev;
-> +	const struct of_device_id *of_id;
->  	struct resource *regs;
->  	int irq_num;
->  	int comp_id;
-> @@ -1101,6 +1125,9 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_unregister_host;
->  
-> +	of_id = of_match_device(mtk_dsi_of_match, &pdev->dev);
-> +	dsi->driver_data = of_id->data;
-
-Maybe use of_device_get_match_data() is a more simple way. You could
-refer to [1].
-
-[1]
-https://elixir.bootlin.com/linux/v5.1/source/drivers/gpu/drm/mediatek/mtk_disp_ovl.c#L300
-
-Regards,
-CK
-
-> +
->  	dsi->engine_clk = devm_clk_get(dev, "engine");
->  	if (IS_ERR(dsi->engine_clk)) {
->  		ret = PTR_ERR(dsi->engine_clk);
-> @@ -1193,12 +1220,6 @@ static int mtk_dsi_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> -static const struct of_device_id mtk_dsi_of_match[] = {
-> -	{ .compatible = "mediatek,mt2701-dsi" },
-> -	{ .compatible = "mediatek,mt8173-dsi" },
-> -	{ },
-> -};
-> -
->  struct platform_driver mtk_dsi_driver = {
->  	.probe = mtk_dsi_probe,
->  	.remove = mtk_dsi_remove,
-
-
+TlhQIGkuTVg4UVhQIGlzIGFuIEFSTXY4IFNvQyB3aXRoIGEgQ29ydGV4LU00IGNvcmUgaW5zaWRl
+IGFzDQpzeXN0ZW0gY29udHJvbGxlcihTQ1UpLCB0aGUgb2NvdHAgY29udHJvbGxlciBpcyBiZWlu
+ZyBjb250cm9sbGVkDQpieSB0aGUgU0NVLCBzbyBMaW51eCBuZWVkIHVzZSBSUEMgdG8gU0NVIGZv
+ciBvY290cCBoYW5kbGluZy4gVGhpcw0KcGF0Y2ggYWRkcyBiaW5kaW5nIGRvYyBmb3IgaS5NWDgg
+U0NVIE9DT1RQIGRyaXZlci4NCg0KQ2M6IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+
+DQpDYzogTWFyayBSdXRsYW5kIDxtYXJrLnJ1dGxhbmRAYXJtLmNvbT4NCkNjOiBBaXNoZW5nIERv
+bmcgPGFpc2hlbmcuZG9uZ0BueHAuY29tPg0KQ2M6IFNoYXduIEd1byA8c2hhd25ndW9Aa2VybmVs
+Lm9yZz4NCkNjOiBVbGYgSGFuc3NvbiA8dWxmLmhhbnNzb25AbGluYXJvLm9yZz4NCkNjOiBTdGVw
+aGVuIEJveWQgPHNib3lkQGtlcm5lbC5vcmc+DQpDYzogQW5zb24gSHVhbmcgPGFuc29uLmh1YW5n
+QG54cC5jb20+DQpDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNClNpZ25lZC1vZmYtYnk6
+IFBlbmcgRmFuIDxwZW5nLmZhbkBueHAuY29tPg0KLS0tDQoNClYyOg0KIE1vdmUgT0NPVFAgdG8g
+ZW5kLCBhZGQgZXhhbXBsZSwgYWRkICJzY3UiDQoNCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9h
+cm0vZnJlZXNjYWxlL2ZzbCxzY3UudHh0ICB8IDIyICsrKysrKysrKysrKysrKysrKysrKysNCiAx
+IGZpbGUgY2hhbmdlZCwgMjIgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvZnNsLHNjdS50eHQgYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4dA0K
+aW5kZXggNWQ3ZGJhYmJiNzg0Li5mMzc4OTIyOTA2ZjYgMTAwNjQ0DQotLS0gYS9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4dA0KKysrIGIv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvZnNsLHNjdS50
+eHQNCkBAIC0xMzMsNiArMTMzLDE4IEBAIFJUQyBiaW5kaW5ncyBiYXNlZCBvbiBTQ1UgTWVzc2Fn
+ZSBQcm90b2NvbA0KIFJlcXVpcmVkIHByb3BlcnRpZXM6DQogLSBjb21wYXRpYmxlOiBzaG91bGQg
+YmUgImZzbCxpbXg4cXhwLXNjLXJ0YyI7DQogDQorT0NPVFAgYmluZGluZ3MgYmFzZWQgb24gU0NV
+IE1lc3NhZ2UgUHJvdG9jb2wNCistLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCitSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KKy0gY29tcGF0
+aWJsZToJCVNob3VsZCBiZSAiZnNsLGlteDhxeHAtc2N1LW9jb3RwIg0KKy0gI2FkZHJlc3MtY2Vs
+bHM6CU11c3QgYmUgMS4gQ29udGFpbnMgYnl0ZSBpbmRleA0KKy0gI3NpemUtY2VsbHM6CQlNdXN0
+IGJlIDEuIENvbnRhaW5zIGJ5dGUgbGVuZ3RoDQorDQorT3B0aW9uYWwgQ2hpbGQgbm9kZXM6DQor
+DQorLSBEYXRhIGNlbGxzIG9mIG9jb3RwOg0KKyAgRGV0YWlsZWQgYmluZGluZ3MgYXJlIGRlc2Ny
+aWJlZCBpbiBiaW5kaW5ncy9udm1lbS9udm1lbS50eHQNCisNCiBFeGFtcGxlIChpbXg4cXhwKToN
+CiAtLS0tLS0tLS0tLS0tDQogYWxpYXNlcyB7DQpAQCAtMTc3LDYgKzE4OSwxNiBAQCBmaXJtd2Fy
+ZSB7DQogCQkJLi4uDQogCQl9Ow0KIA0KKwkJb2NvdHA6IGlteDhxeC1vY290cCB7DQorCQkJY29t
+cGF0aWJsZSA9ICJmc2wsaW14OHF4cC1zY3Utb2NvdHAiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0g
+PDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDE+Ow0KKw0KKwkJCWZlY19tYWMwOiBtYWNAMmM0IHsN
+CisJCQkJcmVnID0gPDB4MmM0IDg+Ow0KKwkJCX07DQorCQl9Ow0KKw0KIAkJcGQ6IGlteDhxeC1w
+ZCB7DQogCQkJY29tcGF0aWJsZSA9ICJmc2wsaW14OHF4cC1zY3UtcGQiLCAiZnNsLHNjdS1wZCI7
+DQogCQkJI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwxPjsNCi0tIA0KMi4xNi40DQoNCg==
