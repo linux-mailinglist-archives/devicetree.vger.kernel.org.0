@@ -2,192 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3205016DF6
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 01:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8F0A16E8E
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 03:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbfEGXxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 May 2019 19:53:39 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:41508 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbfEGXxj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 May 2019 19:53:39 -0400
-Received: by mail-qk1-f194.google.com with SMTP id g190so2294938qkf.8;
-        Tue, 07 May 2019 16:53:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc
-         :content-transfer-encoding;
-        bh=L9nRO3OgbdwWHjpA53OGHSskgjyPngc9dG49IKBY4s8=;
-        b=vTJpuy2L0mthe8AZrxCFw86oXl90wDb1O4uiusl0sgPs7i/9hNuUO0e17PCQdq7yXI
-         /6uTb9AZwryczTXsngtDpjFE1xfoPT9gcnXRIlX2HB1cLWEyoeTyDTjfsxF78/9i7YhF
-         x/caNvI3SI0B0FFf9ockbracdxqZOsVBhfIfw0VMcZTtUsPLoI7It1db3NCBM3bePMbu
-         2/gjrHBMoxTUC9plnHnfr0tRqS43Dd70GuOhDQ5VSmF8UxWx8nqKTqio4hms9j0e/FTQ
-         BwmTZDy9c744KyY17Kcv1XmwoJTRFUNsgi28oLk9VIcvcnYPsMiv6F62a4k47vrk+DWQ
-         i4MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
-         :content-transfer-encoding;
-        bh=L9nRO3OgbdwWHjpA53OGHSskgjyPngc9dG49IKBY4s8=;
-        b=iv9rcYeBPHsiPjnix6/8peegV7970tpvwpyo+bdRmbiSzl8+m9ATux/68dhoJxQW3V
-         1RCZrZrR3ZNL3slRhVwfV8oULakaSEpukhvlqqnGvO2/lbh1k1H8U9Dt3FbKqm3aG7ZA
-         3k7+sfD8xeDLIE2lKLT4ol4tvkicHyTUbsfI64Uiob2kKEJSm5k03mkyVnbA1zf5rO6y
-         bs+OqiplyJmlBRNJrc0Mmmv+J9aaGiDnSBkETNazHNFgd87u7D2t32HReqHsyOZc5g88
-         qt7AuhgkDG8JPse/1ciVA/UaimjRG29DpFI+kg8iVFE9dlM/27+xOVEgXDLMcpw3vT/x
-         F2aw==
-X-Gm-Message-State: APjAAAX616nNrUCzJE6LXV56V1Uce0Iph/fY5RIa2G1wcu1RN6bnoe6v
-        zBBTptgBvhzI7siRnHAmZA2o0ByQBH+/6MgPZA==
-X-Google-Smtp-Source: APXvYqwUXfRBlgrdgLcam1zsZokuXJb39dZQPVnWZCQ0UVRVsiQChPicGxt3MPa4j8J3lX+/FZDRQYVtvmcfihr7mPs=
-X-Received: by 2002:a37:4a12:: with SMTP id x18mr26452247qka.184.1557273217300;
- Tue, 07 May 2019 16:53:37 -0700 (PDT)
-MIME-Version: 1.0
-From:   Rob Herring <robherring2@gmail.com>
-Date:   Tue, 7 May 2019 18:53:25 -0500
-Message-ID: <CAL_JsqJ8YqaiNwj715B=5r39RzuXLn1inhAQ044j8d-L0vYLZA@mail.gmail.com>
-Subject: [GIT PULL] Devicetree for 5.2
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        id S1726313AbfEHBRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 May 2019 21:17:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57400 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726276AbfEHBRn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 May 2019 21:17:43 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4956220656;
+        Wed,  8 May 2019 01:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557278263;
+        bh=xprzQNXnjgl0sRF9o5r/xzeUA1KdsH6ymcebTYGISB4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=AHOQf7dBy/Ju9H9H2/XBl64k5L0GkH5hqk1CX2ZcfzlAoPJgeLUpXKwSU/FrNDvT5
+         jq+zgAdBF+9bx/wB6zrt4p/4yo2cMHKH7lcILnjng2ZdjiQq7xxM6enZsRqJROJmrF
+         ZILE4hrd4yz/x2CTiNM+IpUqb8oPO7gD/n1YlNdA=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     linux-mtd@lists.infradead.org
+Cc:     dinguyen@kernel.org, marex@denx.de, tudor.ambarus@microchip.com,
+        dwmw2@infradead.org, computersforpeace@gmail.com,
+        bbrezillon@kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: [PATCHv3 1/2] dt-bindings: cadence-quadspi: add options reset property
+Date:   Tue,  7 May 2019 20:17:33 -0500
+Message-Id: <20190508011734.14966-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.20.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+The QSPI module can have an optional reset signals that will hold the
+module in a reset state.
 
-Please pull DT updates for 5.2.
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ Documentation/devicetree/bindings/mtd/cadence-quadspi.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Rob
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+index 4345c3a6f530..b6264323a03c 100644
+--- a/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
++++ b/Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+@@ -35,6 +35,8 @@ custom properties:
+ 		  (qspi_n_ss_out).
+ - cdns,tslch-ns : Delay in nanoseconds between setting qspi_n_ss_out low
+                   and first bit transfer.
++- resets	: Must contain an entry for each entry in reset-names.
++		  See ../reset/reset.txt for details.
+ 
+ Example:
+ 
+@@ -50,6 +52,8 @@ Example:
+ 		cdns,fifo-depth = <128>;
+ 		cdns,fifo-width = <4>;
+ 		cdns,trigger-address = <0x00000000>;
++		resets = <&rst QSPI_RESET>, <&rst QSPI_OCP_RESET>;
++		reset-names = "qspi", "qspi-ocp";
+ 
+ 		flash0: n25q00@0 {
+ 			...
+-- 
+2.20.0
 
-The following changes since commit 8c2ffd9174779014c3fe1f96d9dc3641d9175f00=
-:
-
-  Linux 5.1-rc2 (2019-03-24 14:02:26 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-tags/devicetree-for-5.2
-
-for you to fetch changes up to 2a656cb5a4a3473c5fc6bf4fddc3560ceed53220:
-
-  of: unittest: Remove error printing on OOM (2019-05-02 16:38:59 -0500)
-
-----------------------------------------------------------------
-Devicetree for 5.2:
-
-- Fix possible memory leak in reserved-memory failure case
-
-- Support for DMA parent bus which are not a parent node
-
-- Clang -Wunsequenced fix
-
-- Remove some unnecessary prints on memory alloc failures
-
-- Various printk msg and comment fixes
-
-- Update DT schema tools repository location
-
-- Convert simple-framebuffer binding to DT schema
-
-- Bindings for isl68137 and ir38064 trivial devices
-
-- New documentation on binding do's and don't's for binding writers to
-  ignore
-
-----------------------------------------------------------------
-Chris Packham (1):
-      of: use correct function prototype for of_overlay_fdt_apply()
-
-Christian Lamparter (1):
-      dt-bindings: pinctrl: fix bias-pull,up typo
-
-Cl=C3=A9ment P=C3=A9ron (1):
-      dt-bindings: mfd: axp20x: Add fallback for axp805
-
-Florian Fainelli (1):
-      of: Improve of_phandle_iterator_next() error message
-
-Geert Uytterhoeven (2):
-      of: irq: Remove WARN_ON() for kzalloc() failure
-      of: unittest: Remove error printing on OOM
-
-Jojo Zeng (1):
-      of/device.c: fix the wrong comments
-
-Maxime Ripard (6):
-      of: property: Document that of_graph_get_endpoint_by_regs needs
-of_node_put
-      dt-bindings: interconnect: Add a dma interconnect name
-      dt-bindings: bus: Add binding for the Allwinner MBUS controller
-      of: address: Retrieve a parent through a callback in
-__of_translate_address
-      of: address: Add support for the parent DMA bus
-      dt-bindings: Add schemas for simple-framebuffer
-
-Miquel Raynal (1):
-      dt-bindings: connector: Spelling mistake
-
-Patrick Venture (2):
-      dt-bindings: Add ir38064 as a trivial device
-      dt-bindings: Add isl68137 as a trivial device
-
-Phong Tran (1):
-      of: fix clang -Wunsequenced for be32_to_cpu()
-
-Rob Herring (3):
-      dt-bindings: Add a guide of do's and don't's for writing bindings
-      dt-bindings: Require child nodes type to be 'object'
-      dt-bindings: Update schema project location to devicetree.org github =
-group
-
-pierre Kuo (1):
-      of: reserved_mem: fix reserve memory leak
-
-xiaojiangfeng (1):
-      of: del redundant type conversion
-
- Documentation/devicetree/bindings/arm/cpus.yaml    |   1 +
- .../devicetree/bindings/arm/sunxi/sunxi-mbus.txt   |  36 +++++
- .../bindings/connector/usb-connector.txt           |   2 +-
- .../display/amlogic,simple-framebuffer.txt         |  33 -----
- .../bindings/display/simple-framebuffer-sunxi.txt  |  36 -----
- .../bindings/display/simple-framebuffer.txt        |  91 ------------
- .../bindings/display/simple-framebuffer.yaml       | 160 +++++++++++++++++=
-++++
- .../bindings/interconnect/interconnect.txt         |   4 +
- .../bindings/interrupt-controller/arm,gic.yaml     |   1 +
- Documentation/devicetree/bindings/mfd/axp20x.txt   |   1 +
- .../bindings/pinctrl/qcom,apq8064-pinctrl.txt      |   2 +-
- .../bindings/pinctrl/qcom,ipq4019-pinctrl.txt      |   2 +-
- .../bindings/pinctrl/qcom,ipq8064-pinctrl.txt      |   2 +-
- .../bindings/pinctrl/qcom,msm8660-pinctrl.txt      |   2 +-
- .../bindings/pinctrl/qcom,msm8974-pinctrl.txt      |   2 +-
- .../bindings/timer/arm,arch_timer_mmio.yaml        |   1 +
- .../devicetree/bindings/trivial-devices.yaml       |   4 +
- .../devicetree/bindings/writing-bindings.txt       |  60 ++++++++
- Documentation/devicetree/writing-schema.md         |   2 +-
- drivers/of/address.c                               |  40 +++++-
- drivers/of/base.c                                  |   5 +-
- drivers/of/device.c                                |   2 +-
- drivers/of/fdt.c                                   |   2 +-
- drivers/of/irq.c                                   |   2 +-
- drivers/of/of_reserved_mem.c                       |  22 ++-
- drivers/of/property.c                              |   2 +-
- drivers/of/unittest.c                              |  13 +-
- include/linux/of.h                                 |   7 +-
- 28 files changed, 341 insertions(+), 196 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/sunxi/sunxi-mbus.=
-txt
- delete mode 100644
-Documentation/devicetree/bindings/display/amlogic,simple-framebuffer.txt
- delete mode 100644
-Documentation/devicetree/bindings/display/simple-framebuffer-sunxi.txt
- delete mode 100644
-Documentation/devicetree/bindings/display/simple-framebuffer.txt
- create mode 100644
-Documentation/devicetree/bindings/display/simple-framebuffer.yaml
- create mode 100644 Documentation/devicetree/bindings/writing-bindings.txt
