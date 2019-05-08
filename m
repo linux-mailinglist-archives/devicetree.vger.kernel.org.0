@@ -2,174 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB62179A8
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 14:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8ACC179BA
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 14:48:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727129AbfEHMp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 08:45:59 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:59693 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726796AbfEHMp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 08:45:58 -0400
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1hOLxM-000400-0c; Wed, 08 May 2019 14:45:56 +0200
-Received: from [192.168.137.87] (nat079013.nat.FH-Koeln.DE [139.6.79.13])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 0D1ED409947;
-        Wed,  8 May 2019 12:45:54 +0000 (UTC)
-Subject: Re: [PATCH 1/2] can: mcp251x: add support for mcp25625
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Sean Nyekjaer <sean@geanix.com>, linux-can@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org
-References: <20190507093437.26025-1-sean@geanix.com>
- <18a26b2f-5166-2142-4b8d-59818ac6fd8b@pengutronix.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <68a1efc0-a07d-fae2-3942-650035c9634a@pengutronix.de>
-Date:   Wed, 8 May 2019 14:45:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727406AbfEHMsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 08:48:40 -0400
+Received: from mail-eopbgr1410091.outbound.protection.outlook.com ([40.107.141.91]:29568
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726444AbfEHMsk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 May 2019 08:48:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3OOqSGnnYTF3iY5GuKym2WzLYHUoAxLbuRfA7pFfLqg=;
+ b=eg/90kF/6717ygiX93sbUMaAOmWvxqNxJy+h9qH6B4CRfuMx28JDYMAEE1mm93ogCTeli3b5mBeHOEgdOsqDwQkXBRQdMh7V/yyAR1/ARsjltozauHWbBSsr3dNCr0vEUhLmnWYgChNUXayIqwROKIxLm+h2p3UuTg0KfJknuxY=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY1PR01MB1787.jpnprd01.prod.outlook.com (52.133.164.10) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.12; Wed, 8 May 2019 12:48:36 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1856.012; Wed, 8 May 2019
+ 12:48:36 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Simon Horman <horms@verge.net.au>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 10/10] ARM: dts: r7s9210-rza2mevb: Add USB host support
+Thread-Topic: [PATCH 10/10] ARM: dts: r7s9210-rza2mevb: Add USB host support
+Thread-Index: AQHVBGY/mP4xZNO/3kWcH4UIHFLGMKZg++mAgAAyy1A=
+Date:   Wed, 8 May 2019 12:48:36 +0000
+Message-ID: <TY1PR01MB15624892AE0A749A63053DA98A320@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-11-chris.brandt@renesas.com>
+ <20190508094230.5j2skmmlkzlmy2ls@verge.net.au>
+In-Reply-To: <20190508094230.5j2skmmlkzlmy2ls@verge.net.au>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 67433bd4-d960-4df0-752e-08d6d3b37ca3
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1787;
+x-ms-traffictypediagnostic: TY1PR01MB1787:
+x-microsoft-antispam-prvs: <TY1PR01MB17878523225A394FEEF328328A320@TY1PR01MB1787.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0031A0FFAF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(346002)(376002)(396003)(39860400002)(366004)(189003)(199004)(6246003)(4744005)(66946007)(66446008)(76116006)(26005)(74316002)(14454004)(66476007)(33656002)(2906002)(66556008)(64756008)(4326008)(73956011)(72206003)(99286004)(478600001)(7736002)(25786009)(9686003)(55016002)(53936002)(7696005)(76176011)(54906003)(71200400001)(71190400001)(316002)(229853002)(6916009)(52536014)(186003)(102836004)(6506007)(68736007)(3846002)(305945005)(486006)(8936002)(6116002)(256004)(81166006)(66066001)(81156014)(86362001)(6436002)(8676002)(446003)(476003)(5660300002)(11346002)(21314003);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1787;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: GzuBOPrUwT0x7jVZwnMYOxmnaA7P/TMYDLdRrghMkXw3zSp7ZQQTeqTJxsE8Lr8XqETKqMF++jfgBWOHE3NL7FzrLGq0qAWiUYPkbO9tSWffHDe0Wu2OM3m+umDVedF8t9GSfTGn9mYQ20uGT4+ox7UuF41Y2Wcob/eHo47FjEzCDWFyVw4nBuJkagY63ZwT3k6yu3zILdFDou4QDXWugxffCg91uzdoVuangFQVH3UFs2czqcaibMIa/rUkQ8OjEDihvzzx3xjwVg2RgJzcqpbfGs9kK05wTBEjBNnhk9rgtbwI2tJ0ST7o7CTIvuzmQyV21P3ygqdGTucCXimVCRFr9Skgl7NY5qK7vUVDIta93jcLKbY0hfu9TK6n+fa8ilerpH8vQAjbNUAwKf837JwuUw8/v4BS594hcZybfz8=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <18a26b2f-5166-2142-4b8d-59818ac6fd8b@pengutronix.de>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="lw2RIdFyXFwN1Civ5fQ4kWHCzo2X2RZUo"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67433bd4-d960-4df0-752e-08d6d3b37ca3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 12:48:36.1896
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1787
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---lw2RIdFyXFwN1Civ5fQ4kWHCzo2X2RZUo
-Content-Type: multipart/mixed; boundary="61fUK01FFsp6PKqP9OUagp05FJAz5CLVT";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Sean Nyekjaer <sean@geanix.com>, linux-can@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: robh+dt@kernel.org
-Message-ID: <68a1efc0-a07d-fae2-3942-650035c9634a@pengutronix.de>
-Subject: Re: [PATCH 1/2] can: mcp251x: add support for mcp25625
-References: <20190507093437.26025-1-sean@geanix.com>
- <18a26b2f-5166-2142-4b8d-59818ac6fd8b@pengutronix.de>
-In-Reply-To: <18a26b2f-5166-2142-4b8d-59818ac6fd8b@pengutronix.de>
+Hi Simon,
 
---61fUK01FFsp6PKqP9OUagp05FJAz5CLVT
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
-
-On 5/8/19 2:45 PM, Marc Kleine-Budde wrote:
-> On 5/7/19 11:34 AM, Sean Nyekjaer wrote:
->> Fully compatible with mcp2515, the mcp25625 have
->> integrated transceiver.
->>
->> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+On Wed, May 08, 2019, Simon Horman wrote:
+> Please add a space between the usb2_phy0 and ehci0 nodes.
+> Likewise below between the usb2_phy1 and ehci1 nodes.
 >=20
-> I've mentioned the mcp25625 to the .in file and properly introduced the=
+> Otherwise this patch looks good to me.
 
-> mcp25625 as a new model in the driver itself. This way the debug output=
+I also see that you renamed some patch titles from
+  "ARM: dts: r7s9210-rza2mevb: xxx"=20
+to
+  "ARM: dts: rza2mevb: xxx"
 
-> is formated properly:
+when you applied them.
+So I will make that change as well.
 
-Added both patches to linux-can-testing.
-
-Marc
-
---=20
-Pengutronix e.K.                  | Marc Kleine-Budde           |
-Industrial Linux Solutions        | Phone: +49-231-2826-924     |
-Vertretung West/Dortmund          | Fax:   +49-5121-206917-5555 |
-Amtsgericht Hildesheim, HRA 2686  | http://www.pengutronix.de   |
-
-
---61fUK01FFsp6PKqP9OUagp05FJAz5CLVT--
-
---lw2RIdFyXFwN1Civ5fQ4kWHCzo2X2RZUo
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEmvEkXzgOfc881GuFWsYho5HknSAFAlzSz38ACgkQWsYho5Hk
-nSAUUwgAgFI48RUywTjkkzLOoGYLrjv2N2kCOuGV+826SdJbnpOMMaDNCgwNIPpe
-RCRA8ouPuwrlE3iZ9Y+eA9pImecgeEJqnGOe0yq/ghgcTxMQ08FHS7ySYiMTd0RE
-V96VXFjJGDunm94yP/X2VsZ2fbis3I9n3Dgid2K3KVpQDQMPR7+1G/cWOGWHfu2U
-YK/wHYL4mvwMmF/O4wgDSF9eqyDjeJlgeUrW5NwL527GQs+utQj1RsrmjNLOXQv4
-XOeSEsJWhevPRGa7he8QThrasEowEqYoNEqDWgWB4bQ2tmJswDoWBBZ5FIVM/48Y
-OnniV1VEht0TKyTHc2Znd32/V2xrsg==
-=tLGM
------END PGP SIGNATURE-----
-
---lw2RIdFyXFwN1Civ5fQ4kWHCzo2X2RZUo--
+Chris
