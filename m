@@ -2,112 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB3B17568
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 11:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0093017573
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 11:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbfEHJro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 05:47:44 -0400
-Received: from mail-eopbgr150050.outbound.protection.outlook.com ([40.107.15.50]:42753
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726634AbfEHJro (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 May 2019 05:47:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MYKSw8E3S3YAcBWxSFu4j7WStB3i2e/0mj4lpwSvJ58=;
- b=RDKS6WCpPv13kq+kVmnYdXH3VrZ5+IQMYhXC2A59w5WrA5dzlXMTOa0rI1DouXMNz3zwxpTGjTUijLRTMgDk20hN/TYSb8lbuAZS2viyxsUzXspKd+HRtzCfzjXU9FjmR7CY/LKORWtkZRaa/fq1cawVbaKYr/AsQav0sQtV5Iw=
-Received: from VI1PR04MB4543.eurprd04.prod.outlook.com (20.177.55.90) by
- VI1PR04MB4462.eurprd04.prod.outlook.com (20.177.53.94) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Wed, 8 May 2019 09:47:38 +0000
-Received: from VI1PR04MB4543.eurprd04.prod.outlook.com
- ([fe80::5d07:911b:18e1:1525]) by VI1PR04MB4543.eurprd04.prod.outlook.com
- ([fe80::5d07:911b:18e1:1525%4]) with mapi id 15.20.1856.012; Wed, 8 May 2019
- 09:47:38 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "broonie@kernel.org" <broonie@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "plyatov@gmail.com" <plyatov@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: RE: [EXT] Re: [PATCH v3 10/14] dt-bindings: dma: imx-sdma: add
- i.mx6ul/6sx  compatible name
-Thread-Topic: [EXT] Re: [PATCH v3 10/14] dt-bindings: dma: imx-sdma: add
- i.mx6ul/6sx  compatible name
-Thread-Index: AQHVBPXDrkhn+7eeekK+EpnqoHxjf6Zg+QNg
-Date:   Wed, 8 May 2019 09:47:38 +0000
-Message-ID: <VI1PR04MB45434F10FA0AC88AFE2DB09489320@VI1PR04MB4543.eurprd04.prod.outlook.com>
-References: <1557249513-4903-1-git-send-email-yibin.gong@nxp.com>
- <1557249513-4903-11-git-send-email-yibin.gong@nxp.com>
- <20190507165601.GA17194@bogus>
-In-Reply-To: <20190507165601.GA17194@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yibin.gong@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bc0548f4-333e-4519-fe07-08d6d39a34f4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4462;
-x-ms-traffictypediagnostic: VI1PR04MB4462:
-x-microsoft-antispam-prvs: <VI1PR04MB446223DD4B9BE9D881B73A7089320@VI1PR04MB4462.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(39860400002)(396003)(376002)(366004)(189003)(199004)(8676002)(81156014)(81166006)(53936002)(71190400001)(4326008)(76176011)(102836004)(66066001)(8936002)(7696005)(6506007)(5660300002)(446003)(256004)(11346002)(478600001)(476003)(25786009)(6916009)(14454004)(486006)(6116002)(4744005)(3846002)(305945005)(66946007)(73956011)(76116006)(66476007)(7416002)(9686003)(71200400001)(54906003)(68736007)(86362001)(33656002)(2906002)(26005)(186003)(99286004)(229853002)(66556008)(6436002)(52536014)(64756008)(74316002)(66446008)(7736002)(6246003)(316002)(55016002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4462;H:VI1PR04MB4543.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: +Yl8u/xWF8nmY5CuTOD0yrKFVHCLe7vxfUCGAyUOGsf7dq9JERyXEW3j1sNgFd47DfPRADxiG3i+vCaha6weSAI+wsXp4Ok4XNR/WjZlrPUj87wQr3s8sH+0xLg6nRENpb2bCh0SwVo6DXImMpIMYJHYjXAkpgGHOEKUnv1lc5caD1vhNGnol3GzQteqbxv48IfgxzjBebinFO8De5yrcsgFp58KzAW2vLdBCuQwA1CgGgY06zJrEXw//E94ZcL17iyxfK2MlaQbFQZYbj1y0K+m6frfZ3fk1u7FUXiYxpfwz85C9BYj8oRn3NlLRxVVqS6Bb7lWiFJAVqmqzIKFg/vjJu/3OoiiN5HE7gYPzBE5MqPHn+tVA+E2Mq32ZAHHxOQ1LR9hKPI5cCJqqHfh9vqYD9Fy17XDrOPPWLSuZ3M=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727037AbfEHJu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 05:50:27 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:49425 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727020AbfEHJu0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 05:50:26 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190508095024euoutp02b04cedb9db88374f24752093581e36df~crE52B1BV1991519915euoutp02P
+        for <devicetree@vger.kernel.org>; Wed,  8 May 2019 09:50:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190508095024euoutp02b04cedb9db88374f24752093581e36df~crE52B1BV1991519915euoutp02P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557309024;
+        bh=Ywi1wkeJuVFQ+t8gnUtKE7QRvdv9GhMOIUul9O7s9So=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=NDnVQO1NQuYCY7nT5Fo+rtnd5JVlVMfe8DdpEeFDBg7JZBwGmEItcWL2D6IXaGCfI
+         i9LVk5M212dTJF4UcOXZf8SRciMaJ1zBc0VTpJQlZNcrglqsIi0cLdtwMbUHg7gpu7
+         gKvI8fozTlICiMkRtNrbHRlluJpvM285F0RpHPKY=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190508095023eucas1p2be99a06cecee4919cc5206474b562b19~crE4401tP2451924519eucas1p2U;
+        Wed,  8 May 2019 09:50:23 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 00.EA.04298.E56A2DC5; Wed,  8
+        May 2019 10:50:22 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190508095022eucas1p1cb92b51986b599f4e5c2c09bd27de96c~crE4E853Y0352903529eucas1p1h;
+        Wed,  8 May 2019 09:50:22 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190508095022eusmtrp2b73f9c8c9b80d7f26f94e97802984405~crE32toPU1994219942eusmtrp2M;
+        Wed,  8 May 2019 09:50:22 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-78-5cd2a65e5d69
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 9A.97.04140.D56A2DC5; Wed,  8
+        May 2019 10:50:21 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190508095020eusmtip263acdd83163621e120bbd1929e98478b~crE26CqsQ2603426034eusmtip28;
+        Wed,  8 May 2019 09:50:20 +0000 (GMT)
+Subject: Re: [PATCH v7 11/13] ARM: dts: exynos: add syscon to clock
+ compatible
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <8d02ef2c-c5dd-6a72-9638-d858df3ea16d@partner.samsung.com>
+Date:   Wed, 8 May 2019 11:50:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc0548f4-333e-4519-fe07-08d6d39a34f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 09:47:38.5528
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4462
+In-Reply-To: <CAJKOXPd6GKVPixMiG37SoHiswaih-3S+o7QJn=WbuqdZzu-s_w@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTURSGvZ2ZzoCWDGU7onFpMFGjIATxJhoV1yIv+KQiIlUnQKQFO4Ky
+        mKDEBQRBUQtlUwnWoIZFwuoWqBRZrBRicUFRUJTNaMEF41YGI2//Oec7+c9/cxlCOki5MuGq
+        g5xapYiQiW3JysbvxqXBV01By951eeOyrBIKm0f7KVygf0Th6596Ec5szhPh1tNKnN47SGCj
+        sZTGbceGaNxRmyvGljQ9wlnGuyJ8U99N4+dHr4lxw9BJCt/r3IKf/7DDX5reoLVS+Zexc6Q8
+        J7GdlNdou2l5eXGyWJ6WNCKWn6koRvJbLfFyS/mcACbQdtU+LiI8hlN7rA6xDWvLHEZR39jD
+        mq6bdCJKlqQghgHWG9JHY1OQLSNlryEYaUgXCcUogm+vXyGhsCAwt5SJU5DNxMYLnY4WBjoE
+        F8czxEIxjOBJTxNlpRzYAKgazySt2pFdBOafXykrRLBlJFRV19JWczHrDtXFB6yMhN0EAy9b
+        J3iSdYPT5y3Iqp3Y7fCqsZQSGHt4mN03wdiwWyHninmCIVgXeNZXIBL0XKgaziWsXsBmM1B0
+        /zoSzt4AFq2JFLQDDBgqaEHPht81wjKwPCSmXZ7kE6A3PW+SWQkNhnbKejPxN0xJrYfQ9oXb
+        ulJKeEc76Bq2F06wg3OVGkJoS+DUCalAL4SK1MeTRs6gu3GRzkAy7ZRg2ilhtFPCaP/7XkJk
+        MXLhonllKMd7qrhD7rxCyUerQt33RirL0d8v2PLL8LkajZn21COWQbIZkvdR7UFSShHDxyrr
+        ETCEzFFiPmsKkkr2KWLjOHXkbnV0BMfXo1kMKXORxE/r2SllQxUHuf0cF8Wp/01FjI1rIqpL
+        CkxqN33Q978bO3rc7Uj+2tEHmqf9riEJ0Z6HBgN/3xpY7hnsm/qzw/GqqjT35a7N2HeFt8zP
+        P9RYOD9j/ceSeRdeLNjRvaJgM9WpaTgfbhP8dluBzn98Zp0hWFvi96soPmz6niQ/n/yPcV7N
+        G+3XOecXan1O3VmTsCTAa2h5SNUuJxnJhyk8FxNqXvEH90Mqkn4DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPIsWRmVeSWpSXmKPExsVy+t/xe7qxyy7FGJxbaWOxccZ6VovrX56z
+        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
+        e+Quu8XtxhVsFofftLNa7L/iZXH7N5/FtxOPGB2EPL59ncTiMbvhIovHzll32T02repk8+ht
+        fsfm0bdlFaPH5tPVHp83yQVwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq
+        6dvZpKTmZJalFunbJehlnJ38lrHgh0DF9Btr2RsYO3m7GDk5JARMJO4sX84OYgsJLGWUuH5N
+        ASIuJjFp33Z2CFtY4s+1LrYuRi6gmteMEj/2vWcFSQgL+Emcmr0ZzBYR0JS4/vc7K0gRs8BG
+        FomLr3qZIDqWM0ksm/qHuYuRg4NNQE9ix6pCkAZeATeJV/fOsIDYLAIqEt1TPjOC2KICERJn
+        3q9ggagRlDg58wmYzSkQKDF70XWwGmYBM4l5mx8yQ9jiEreezGeCsOUltr+dwzyBUWgWkvZZ
+        SFpmIWmZhaRlASPLKkaR1NLi3PTcYiO94sTc4tK8dL3k/NxNjMDI33bs55YdjF3vgg8xCnAw
+        KvHwvii4GCPEmlhWXJl7iFGCg1lJhPf6xEsxQrwpiZVVqUX58UWlOanFhxhNgZ6byCwlmpwP
+        TEp5JfGGpobmFpaG5sbmxmYWSuK8HQIHY4QE0hNLUrNTUwtSi2D6mDg4pRoYZ3heU54QmrxY
+        dF0AU9Z14fcfHLoy7k4rnfWePf2KlYZH7uINojee7Tz0e1/oIqPkgOerXDcfXHTs+11em8ab
+        XzRW8L1T5ztufZnPuctwQput9t81ivl7zgcIRZ942td5KFoizHZR0JUaYbu/ry8rMgeyyMZe
+        bEheHGGwbMGmgCZxrt6Zk1w6lViKMxINtZiLihMBKxn/OxIDAAA=
+X-CMS-MailID: 20190508095022eucas1p1cb92b51986b599f4e5c2c09bd27de96c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190506151219eucas1p2feab00f7b7c1c5fdd5614423fb38eae2
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190506151219eucas1p2feab00f7b7c1c5fdd5614423fb38eae2
+References: <CGME20190506151219eucas1p2feab00f7b7c1c5fdd5614423fb38eae2@eucas1p2.samsung.com>
+        <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
+        <1557155521-30949-12-git-send-email-l.luba@partner.samsung.com>
+        <CAJKOXPd6GKVPixMiG37SoHiswaih-3S+o7QJn=WbuqdZzu-s_w@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Wed, 8 May 2019 09:16:38 +0000, Rob Herring wrote:
-> On Tue, 7 May 2019 09:16:38 +0000, Robin Gong wrote:
-> > Add i.mx6ul and i.mx6sx compatible name.
-> >
-> > Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
->=20
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-Sorry, no tags and no comments get from V2 for this patch. Just resend the =
-whole
-patch set for v3 since other comments addressed from other patch.=20
->=20
-> If a tag was not added on purpose, please state why and what changed.
+
+On 5/8/19 9:22 AM, Krzysztof Kozlowski wrote:
+> On Mon, 6 May 2019 at 17:12, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>> In order get the clock by phandle and use it with regmap it needs to be
+>> compatible with syscon. The DMC driver uses two registers from clock
+>> register set and needs the regmap of them.
+>>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   arch/arm/boot/dts/exynos5800.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm/boot/dts/exynos5800.dtsi b/arch/arm/boot/dts/exynos5800.dtsi
+>> index 57d3b31..0a2b328 100644
+>> --- a/arch/arm/boot/dts/exynos5800.dtsi
+>> +++ b/arch/arm/boot/dts/exynos5800.dtsi
+>> @@ -17,7 +17,7 @@
+>>   };
+>>
+>>   &clock {
+>> -       compatible = "samsung,exynos5800-clock";
+>> +       compatible = "samsung,exynos5800-clock", "syscon";
+> 
+> What about Exynos5420 DTSI?
+OK, I will also add it to 5420 dtsi.
+--------------------------8<------------------------------------------
+diff --git a/arch/arm/boot/dts/exynos5420.dtsi 
+b/arch/arm/boot/dts/exynos5420.dtsi
+index aaff158..d9203f0 100644
+--- a/arch/arm/boot/dts/exynos5420.dtsi
++++ b/arch/arm/boot/dts/exynos5420.dtsi
+@@ -173,7 +173,7 @@
+                 };
+
+                 clock: clock-controller@10010000 {
+-                       compatible = "samsung,exynos5420-clock";
++                       compatible = "samsung,exynos5420-clock", "syscon";
+                         reg = <0x10010000 0x30000>;
+                         #clock-cells = <1>;
+                 };
+diff --git a/arch/arm/boot/dts/exynos5800.dtsi 
+b/arch/arm/boot/dts/exynos5800.dtsi
+index 57d3b31..0a2b328 100644
+--- a/arch/arm/boot/dts/exynos5800.dtsi
++++ b/arch/arm/boot/dts/exynos5800.dtsi
+@@ -17,7 +17,7 @@
+  };
+
+  &clock {
+-       compatible = "samsung,exynos5800-clock";
++       compatible = "samsung,exynos5800-clock", "syscon";
+  };
+----------------------------->8-----------------------------------
+
+Can I add your ack after that?
+
+Regards,
+Lukasz
+> 
+> Best regards,
+> Krzysztof
+> 
+>>   };
+>>
+>>   &cluster_a15_opp_table {
+>> --
+>> 2.7.4
+>>
+> 
+> 
