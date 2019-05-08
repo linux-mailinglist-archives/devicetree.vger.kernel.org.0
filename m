@@ -2,425 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A88B17A18
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 15:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 877D817A1A
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2019 15:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727343AbfEHNND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 May 2019 09:13:03 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:45303 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726776AbfEHNNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 09:13:02 -0400
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1hOMNV-00066X-Cp; Wed, 08 May 2019 15:12:57 +0200
-Received: from [192.168.137.87] (nat079013.nat.FH-Koeln.DE [139.6.79.13])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 4259D40998E;
-        Wed,  8 May 2019 13:12:54 +0000 (UTC)
-Subject: Re: [PATCH V7 RESEND 04/10] can: mcp25xxfd: Add Microchip mcp25xxfd
- CAN FD driver
-To:     kernel@martin.sperl.org, linux-can@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20190419051432.13538-1-kernel@martin.sperl.org>
- <20190419051432.13538-5-kernel@martin.sperl.org>
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <9fe8a9bf-954e-e203-7b81-57b9460046fd@pengutronix.de>
-Date:   Wed, 8 May 2019 15:12:49 +0200
+        id S1727507AbfEHNNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 May 2019 09:13:07 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:45219 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727438AbfEHNNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 May 2019 09:13:06 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190508131305euoutp01d2f96e1c18be4fa3e7af9063e5a70552~ct13vCMu31990919909euoutp01B
+        for <devicetree@vger.kernel.org>; Wed,  8 May 2019 13:13:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190508131305euoutp01d2f96e1c18be4fa3e7af9063e5a70552~ct13vCMu31990919909euoutp01B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1557321185;
+        bh=eXhCUDgM0oIHnRivX2ZhfLzQLHq/huckSvDHj9jbwrY=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=NQNam05B7uPudHnTdG5BxMpqH5SkCKOLcazEjlvqq0r3z8WZxBlt4g0QvcKWjeuO4
+         EbuIVTROArxPAR7E1mvf/WFA6dpvZzP8UhXFVoXAODMcZsCoM1nMe+cY3mtTWTozUU
+         qYOtuVBlkq4/+yIEC5rdKVwJ7g7CU8MTNS+ztZOA=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190508131304eucas1p1c5466948d6a2dad412a52db9e4ef6d6c~ct13DMXrs2066020660eucas1p1O;
+        Wed,  8 May 2019 13:13:04 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 87.25.04298.0E5D2DC5; Wed,  8
+        May 2019 14:13:04 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190508131303eucas1p15db96735e01d8bd535861b91aa7298b8~ct12NBAx-0289202892eucas1p1R;
+        Wed,  8 May 2019 13:13:03 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190508131303eusmtrp24dd788c179063640d11b24074a8c30ad~ct11_14KZ0688306883eusmtrp2K;
+        Wed,  8 May 2019 13:13:03 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-85-5cd2d5e065ed
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id E3.C0.04140.FD5D2DC5; Wed,  8
+        May 2019 14:13:03 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190508131302eusmtip2160fd4fca1c240b849c598e039e50fbd~ct11KeAkx0788807888eusmtip2z;
+        Wed,  8 May 2019 13:13:02 +0000 (GMT)
+Subject: Re: [PATCH v7 11/13] ARM: dts: exynos: add syscon to clock
+ compatible
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
+        treding@nvidia.com, digetx@gmail.com, willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <f60314f9-61bc-a9e1-7ddd-f068c241e860@partner.samsung.com>
+Date:   Wed, 8 May 2019 15:13:04 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190419051432.13538-5-kernel@martin.sperl.org>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAJKOXPf3tZGp-UQagGKNs0xFBGz2NwBdA2R=Y25C5jTK_ZcMXg@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0gUURjFuzszO+PibuNq+WVStBVUlCYEXirCoGQoCIMCM6O2nDR1zHZ8
+        m7RWWq2ZpVS6alZQmibqJmoWBj7zlWmJoliigpFamo8o0XKcjfzv3PP9Lt85l8sQ2q+UE3Mu
+        JIw3hOiDdUoVWVb/q21bf2eH73ZLmQaXpBdRuGtqmMI5te8oXDAxiHBaU7YCtyQJOGVwhMBt
+        bcU0br08SuMPlVlKPJlci3B6W5UCF9b20bg3Pk+Ja0avUfjNxwO4d1aDZ94OIA8tNzOdSnKZ
+        xnaSe2nuozlL/g0ll3zlm5K7VZqPuBfNsdykZY0X46Pa7ccHn4vgDa57TqkC7iYkk6HjK6Ky
+        ujMJI5pnTYhhgN0BuaZDJmTDaNk8BPXl+0xItaCnEDzOalHIh0kED2qGFRIlXSice0XIg1wE
+        VR1JVmoMwUDBtUXKnvWC8t9ppKQd2M3QNfeTkiCCLSGhvKKSlnYrWReoyL8gMWrWE8bSTIs8
+        yW6A7JIiWtIrWG/4XF9MyYwdNGYMLTI27GG48m1cKWmCdYSeoRyFrNdC+VjWYjpgMxiYzUtA
+        cux9MPFpzqrt4WtDKS1rZ/jzMsdaTQRj8iMrcxEGU7KtzC6oaWinpMzEQpmiSlfZ3guvc4sp
+        +Rk10D1mJ0fQQGrZfUK21XA9USvTm6D05nvropWQ+/wefRvpzEuKmZeUMS8pY/6/9yEi85Ej
+        Hy4K/rzoFsJHuoh6QQwP8Xc5c16woIUf2Dzf8KMCTXecrkYsg3S26oDqDl8tpY8Qo4VqBAyh
+        c1B33Vmw1H766BjecP6kITyYF6vRaobUOapjl/Uf17L++jA+iOdDecO/qYKxcTIijd8TLlqY
+        D/L1znzscWTYFlLNV50SY7SJG9LfC6FB7qODnhvPCpeSwm+3Buytuzo0crTEUXPQeaST/KBa
+        f9k93rndZ2Kmafn17zF469qnRQNDqjOBPTfvx8Q1r1vlGmmMsnuWJLR4Irqx8YCDJfBE3fjU
+        /sMpx77E3Wj32umqetOjI8UAvdsWwiDq/wJGjqJpfQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42I5/e/4Pd37Vy/FGNz8LWCxccZ6VovrX56z
+        Wsw/co7VYvXHx4wWk0/NZbI4051r0f/4NbPF+fMb2C3ONr1ht7i8aw6bxefeI4wWM87vY7JY
+        e+Quu8XtxhVsFofftLNa7L/iZXH7N5/FtxOPGB2EPL59ncTiMbvhIovHzll32T02repk8+ht
+        fsfm0bdlFaPH5tPVHp83yQVwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq
+        6dvZpKTmZJalFunbJehlTG3tZSn4IFox58Zs5gbGfwJdjJwcEgImEmv/7mbuYuTiEBJYyihx
+        7sRrJoiEmMSkfdvZIWxhiT/Xutggil4zSmw7uAOsSFjAT+LU7M2sILaIgKbE9b/fWUGKmAU2
+        skhcfNXLBNGxmlli9fPvQKM4ONgE9CR2rCoEaeAVcJN4O7mLBcRmEVCRmLtxPdg2UYEIiTPv
+        V7BA1AhKnJz5BMzmFAiUaH73gQ3EZhYwk5i3+SEzhC0ucevJfCYIW15i+9s5zBMYhWYhaZ+F
+        pGUWkpZZSFoWMLKsYhRJLS3OTc8tNtIrTswtLs1L10vOz93ECIz9bcd+btnB2PUu+BCjAAej
+        Eg9vxqFLMUKsiWXFlbmHGCU4mJVEeK9PBArxpiRWVqUW5ccXleakFh9iNAV6biKzlGhyPjAt
+        5ZXEG5oamltYGpobmxubWSiJ83YIHIwREkhPLEnNTk0tSC2C6WPi4JRqYOwqX7rz1hmnMxe/
+        W81/lpnv7ZrrWl05WX9X10HuPi0lg733Dy8RTv33ce1X5X015W81Z/yffuf+n+vc+b9/M5/b
+        lLCqjLP5WcgFnl67ORPf3I7WS5/4vca9Is9TwXHq3AO7J5xUOZJiUyfK+aWF6Y/H10Tnx9ou
+        Z3Vq92eFKzmmd95meG3zuUCJpTgj0VCLuag4EQCliK9xEwMAAA==
+X-CMS-MailID: 20190508131303eucas1p15db96735e01d8bd535861b91aa7298b8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190506151219eucas1p2feab00f7b7c1c5fdd5614423fb38eae2
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190506151219eucas1p2feab00f7b7c1c5fdd5614423fb38eae2
+References: <CGME20190506151219eucas1p2feab00f7b7c1c5fdd5614423fb38eae2@eucas1p2.samsung.com>
+        <1557155521-30949-1-git-send-email-l.luba@partner.samsung.com>
+        <1557155521-30949-12-git-send-email-l.luba@partner.samsung.com>
+        <CAJKOXPd6GKVPixMiG37SoHiswaih-3S+o7QJn=WbuqdZzu-s_w@mail.gmail.com>
+        <8d02ef2c-c5dd-6a72-9638-d858df3ea16d@partner.samsung.com>
+        <CAJKOXPf3tZGp-UQagGKNs0xFBGz2NwBdA2R=Y25C5jTK_ZcMXg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD
-Content-Type: multipart/mixed; boundary="ds4ILGG6wmir7tnpuOKgh4HNhNjCI4CsP";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: kernel@martin.sperl.org, linux-can@vger.kernel.org,
- devicetree@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
- Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-Message-ID: <9fe8a9bf-954e-e203-7b81-57b9460046fd@pengutronix.de>
-Subject: Re: [PATCH V7 RESEND 04/10] can: mcp25xxfd: Add Microchip mcp25xxfd
- CAN FD driver
-References: <20190419051432.13538-1-kernel@martin.sperl.org>
- <20190419051432.13538-5-kernel@martin.sperl.org>
-In-Reply-To: <20190419051432.13538-5-kernel@martin.sperl.org>
 
---ds4ILGG6wmir7tnpuOKgh4HNhNjCI4CsP
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
+On 5/8/19 12:17 PM, Krzysztof Kozlowski wrote:
+> On Wed, 8 May 2019 at 11:50, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>
+>>
+>> On 5/8/19 9:22 AM, Krzysztof Kozlowski wrote:
+>>> On Mon, 6 May 2019 at 17:12, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>>>
+>>>> In order get the clock by phandle and use it with regmap it needs to be
+>>>> compatible with syscon. The DMC driver uses two registers from clock
+>>>> register set and needs the regmap of them.
+>>>>
+>>>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>>>> ---
+>>>>    arch/arm/boot/dts/exynos5800.dtsi | 2 +-
+>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/exynos5800.dtsi b/arch/arm/boot/dts/exynos5800.dtsi
+>>>> index 57d3b31..0a2b328 100644
+>>>> --- a/arch/arm/boot/dts/exynos5800.dtsi
+>>>> +++ b/arch/arm/boot/dts/exynos5800.dtsi
+>>>> @@ -17,7 +17,7 @@
+>>>>    };
+>>>>
+>>>>    &clock {
+>>>> -       compatible = "samsung,exynos5800-clock";
+>>>> +       compatible = "samsung,exynos5800-clock", "syscon";
+>>>
+>>> What about Exynos5420 DTSI?
+>> OK, I will also add it to 5420 dtsi.
+>> --------------------------8<------------------------------------------
+>> diff --git a/arch/arm/boot/dts/exynos5420.dtsi
+>> b/arch/arm/boot/dts/exynos5420.dtsi
+>> index aaff158..d9203f0 100644
+>> --- a/arch/arm/boot/dts/exynos5420.dtsi
+>> +++ b/arch/arm/boot/dts/exynos5420.dtsi
+>> @@ -173,7 +173,7 @@
+>>                   };
+>>
+>>                   clock: clock-controller@10010000 {
+>> -                       compatible = "samsung,exynos5420-clock";
+>> +                       compatible = "samsung,exynos5420-clock", "syscon";
+>>                           reg = <0x10010000 0x30000>;
+>>                           #clock-cells = <1>;
+>>                   };
+>> diff --git a/arch/arm/boot/dts/exynos5800.dtsi
+>> b/arch/arm/boot/dts/exynos5800.dtsi
+>> index 57d3b31..0a2b328 100644
+>> --- a/arch/arm/boot/dts/exynos5800.dtsi
+>> +++ b/arch/arm/boot/dts/exynos5800.dtsi
+>> @@ -17,7 +17,7 @@
+>>    };
+>>
+>>    &clock {
+>> -       compatible = "samsung,exynos5800-clock";
+>> +       compatible = "samsung,exynos5800-clock", "syscon";
+>>    };
+>> ----------------------------->8-----------------------------------
+>>
+>> Can I add your ack after that?
+> 
+> No need for ack. The DTS have to go through arm-soc so I will pick it
+> up when dependencies get in and bindings are accepted (acked or
+> applied). We have now merge window so I guess this will go to v5.4-rc1
+> at earliest.
+> 
+> If you want to speed up things in future, be sure that dependencies
+> (headers) are applied as early as possible.
+Thank you Krzysztof for the explanation, good to know that.
 
-On 4/19/19 7:14 AM, kernel@martin.sperl.org wrote:
-> From: Martin Sperl <kernel@martin.sperl.org>
->=20
-> Add un-optimized Can2.0 and CanFD support.
->=20
-> CAN-Transmission and Optimizations and are separate patches
->=20
-> On a Rasperry pi 3 it is already able to process Can2.0 Frames
-> with DLC=3D0 on a CAN bus with 1MHz. without losing any packets
-> on the SPI side. Packets still get lost inside the network stack.
->=20
-> Signed-off-by: Martin Sperl <kernel@martin.sperl.org>
-
-[..]
-
-> diff --git a/drivers/net/can/spi/mcp25xxfd/mcp25xxfd_can.c b/drivers/ne=
-t/can/spi/mcp25xxfd/mcp25xxfd_can.c
-> index f98b02ff057b..eabd7ca50645 100644
-> --- a/drivers/net/can/spi/mcp25xxfd/mcp25xxfd_can.c
-> +++ b/drivers/net/can/spi/mcp25xxfd/mcp25xxfd_can.c
-> @@ -38,23 +38,162 @@
->   * for timestamping of RX frames as well as for TEF entries.
->   */
->=20
-> -/* Implementation notes:
-> - *
-> - * Right now we only use the CAN controller block to put us into deep =
-sleep
-> - * this means that the oscillator clock is turned off.
-> - * So this is the only thing that we implement here right now
-> - */
-> -
-> +#include <linux/can/core.h>
-> +#include <linux/can/dev.h>
->  #include <linux/device.h>
-> +#include <linux/interrupt.h>
->  #include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/spi/spi.h>
->=20
-> +#include "mcp25xxfd_base.h"
-> +#include "mcp25xxfd_can_debugfs.h"
-> +#include "mcp25xxfd_can_fifo.h"
-> +#include "mcp25xxfd_can_int.h"
-> +#include "mcp25xxfd_can_priv.h"
->  #include "mcp25xxfd_clock.h"
->  #include "mcp25xxfd_cmd.h"
-> +#include "mcp25xxfd_int.h"
->  #include "mcp25xxfd_priv.h"
->  #include "mcp25xxfd_regs.h"
->=20
-> -static int mcp25xxfd_can_get_mode(struct mcp25xxfd_priv *priv, u32 *re=
-g)
-> +#include <uapi/linux/can/netlink.h>
-> +
-> +/* module parameters */
-> +unsigned int bw_sharing_log2bits;
-> +module_param(bw_sharing_log2bits, uint, 0664);
-> +MODULE_PARM_DESC(bw_sharing_log2bits,
-> +		 "Delay between 2 transmissions in number of arbitration bit times\n=
-");
-> +bool enable_edge_filter;
-> +module_param(enable_edge_filter, bool, 0664);
-> +MODULE_PARM_DESC(enable_edge_filter,
-> +		 "Enable ISO11898-1:2015 edge_filtering");
-> +unsigned int tdc_mode =3D 2;
-> +module_param(tdc_mode, uint, 0664);
-> +MODULE_PARM_DESC(tdc_mode,
-> +		 "Transmitter Delay Mode - 0 =3D disabled, 1 =3D fixed, 2 =3D auto\n=
-");
-> +unsigned int tdc_value;
-> +module_param(tdc_value, uint, 0664);
-> +MODULE_PARM_DESC(tdc_value,
-> +		 "Transmission Delay Value - range: [0:63] SCLK");
-> +int tdc_offset =3D 64; /* outside of range to use computed values */
-> +module_param(tdc_offset, int, 0664);
-> +MODULE_PARM_DESC(tdc_offset,
-> +		 "Transmission Delay offset - range: [-64:63] SCLK");
-> +
-> +/* everything related to bit timing */
-> +static
-> +const struct can_bittiming_const mcp25xxfd_can_nominal_bittiming_const=
- =3D {
-> +	.name           =3D DEVICE_NAME,
-> +	.tseg1_min      =3D 2,
-> +	.tseg1_max      =3D BIT(MCP25XXFD_CAN_NBTCFG_TSEG1_BITS),
-> +	.tseg2_min      =3D 1,
-> +	.tseg2_max      =3D BIT(MCP25XXFD_CAN_NBTCFG_TSEG2_BITS),
-> +	.sjw_max        =3D BIT(MCP25XXFD_CAN_NBTCFG_SJW_BITS),
-> +	.brp_min        =3D 1,
-> +	.brp_max        =3D BIT(MCP25XXFD_CAN_NBTCFG_BRP_BITS),
-> +	.brp_inc        =3D 1,
-> +};
-> +
-> +static
-> +const struct can_bittiming_const mcp25xxfd_can_data_bittiming_const =3D=
- {
-> +	.name           =3D DEVICE_NAME,
-> +	.tseg1_min      =3D 1,
-> +	.tseg1_max      =3D BIT(MCP25XXFD_CAN_DBTCFG_TSEG1_BITS),
-> +	.tseg2_min      =3D 1,
-> +	.tseg2_max      =3D BIT(MCP25XXFD_CAN_DBTCFG_TSEG2_BITS),
-> +	.sjw_max        =3D BIT(MCP25XXFD_CAN_DBTCFG_SJW_BITS),
-> +	.brp_min        =3D 1,
-> +	.brp_max        =3D BIT(MCP25XXFD_CAN_DBTCFG_BRP_BITS),
-> +	.brp_inc        =3D 1,
-> +};
-> +
-> +static int mcp25xxfd_can_do_set_nominal_bittiming(struct net_device *n=
-et)
-> +{
-> +	struct mcp25xxfd_can_priv *cpriv =3D netdev_priv(net);
-> +	struct can_bittiming *bt =3D &cpriv->can.bittiming;
-> +
-> +	int sjw =3D bt->sjw;
-> +	int pseg2 =3D bt->phase_seg2;
-> +	int pseg1 =3D bt->phase_seg1;
-> +	int propseg =3D bt->prop_seg;
-> +	int brp =3D bt->brp;
-> +
-> +	int tseg1 =3D propseg + pseg1;
-> +	int tseg2 =3D pseg2;
-> +
-> +	/* calculate nominal bit timing */
-> +	cpriv->regs.nbtcfg =3D ((sjw - 1) << MCP25XXFD_CAN_NBTCFG_SJW_SHIFT) =
-|
-> +		((tseg2 - 1) << MCP25XXFD_CAN_NBTCFG_TSEG2_SHIFT) |
-> +		((tseg1 - 1) << MCP25XXFD_CAN_NBTCFG_TSEG1_SHIFT) |
-> +		((brp - 1) << MCP25XXFD_CAN_NBTCFG_BRP_SHIFT);
-> +
-> +	return mcp25xxfd_cmd_write(cpriv->priv->spi, MCP25XXFD_CAN_NBTCFG,
-> +				   cpriv->regs.nbtcfg);
-> +}
-> +
-> +static int mcp25xxfd_can_do_set_data_bittiming(struct net_device *net)=
-
-> +{
-> +	struct mcp25xxfd_can_priv *cpriv =3D netdev_priv(net);
-> +	struct mcp25xxfd_priv *priv =3D cpriv->priv;
-> +	struct can_bittiming *bt =3D &cpriv->can.data_bittiming;
-> +	struct spi_device *spi =3D priv->spi;
-> +
-> +	int sjw =3D bt->sjw;
-> +	int pseg2 =3D bt->phase_seg2;
-> +	int pseg1 =3D bt->phase_seg1;
-> +	int propseg =3D bt->prop_seg;
-> +	int brp =3D bt->brp;
-> +
-> +	int tseg1 =3D propseg + pseg1;
-> +	int tseg2 =3D pseg2;
-> +
-> +	int tdco;
-> +	int ret;
-> +
-> +	/* set up Transmitter delay compensation */
-> +	cpriv->regs.tdc =3D 0;
-> +	/* configure TDC mode */
-> +	if (tdc_mode < 4)
-> +		cpriv->regs.tdc =3D tdc_mode << MCP25XXFD_CAN_TDC_TDCMOD_SHIFT;
-> +	else
-> +		cpriv->regs.tdc =3D MCP25XXFD_CAN_TDC_TDCMOD_AUTO <<
-> +			MCP25XXFD_CAN_TDC_TDCMOD_SHIFT;
-> +
-> +	/* configure TDC offsets */
-> +	if ((tdc_offset >=3D -64) && tdc_offset < 64)
-> +		tdco =3D tdc_offset;
-> +	else
-> +		tdco =3D clamp_t(int, bt->brp * tseg1, -64, 63);
-> +	cpriv->regs.tdc |=3D (tdco << MCP25XXFD_CAN_TDC_TDCO_SHIFT) &
-> +		MCP25XXFD_CAN_TDC_TDCO_MASK;
-> +
-> +	/* configure TDC value */
-> +	if (tdc_value < 64)
-> +		cpriv->regs.tdc |=3D tdc_value << MCP25XXFD_CAN_TDC_TDCV_SHIFT;
-> +
-> +	/* enable edge filtering */
-> +	if (enable_edge_filter)
-> +		cpriv->regs.tdc |=3D MCP25XXFD_CAN_TDC_EDGFLTEN;
-> +
-> +	/* set TDC */
-> +	ret =3D mcp25xxfd_cmd_write(spi, MCP25XXFD_CAN_TDC, cpriv->regs.tdc);=
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* calculate data bit timing */
-> +	cpriv->regs.dbtcfg =3D ((sjw - 1) << MCP25XXFD_CAN_DBTCFG_SJW_SHIFT) =
-|
-> +		((tseg2 - 1) << MCP25XXFD_CAN_DBTCFG_TSEG2_SHIFT) |
-> +		((tseg1 - 1) << MCP25XXFD_CAN_DBTCFG_TSEG1_SHIFT) |
-> +		((brp - 1) << MCP25XXFD_CAN_DBTCFG_BRP_SHIFT);
-> +
-> +	return mcp25xxfd_cmd_write(spi, MCP25XXFD_CAN_DBTCFG,
-> +				   cpriv->regs.dbtcfg);
-> +}
-> +
-> +int mcp25xxfd_can_get_mode(struct mcp25xxfd_priv *priv, u32 *reg)
->  {
->  	int ret;
->=20
-> @@ -66,11 +205,11 @@ static int mcp25xxfd_can_get_mode(struct mcp25xxfd=
-_priv *priv, u32 *reg)
->  		MCP25XXFD_CAN_CON_OPMOD_SHIFT;
->  }
->=20
-> -static int mcp25xxfd_can_switch_mode(struct mcp25xxfd_priv *priv,
-> -				     u32 *reg, int mode)
-> +int mcp25xxfd_can_switch_mode_no_wait(struct mcp25xxfd_priv *priv,
-> +				      u32 *reg, int mode)
->  {
->  	u32 dummy;
-> -	int ret, i;
-> +	int ret;
->=20
->  	/* get the current mode/register - if reg is NULL
->  	 * when the can controller is not setup yet
-> @@ -78,9 +217,11 @@ static int mcp25xxfd_can_switch_mode(struct mcp25xx=
-fd_priv *priv,
->  	 * (this only happens during initialization phase)
->  	 */
->  	if (reg) {
-> -		ret =3D mcp25xxfd_can_get_mode(priv, reg);
-> -		if (ret < 0)
-> -			return ret;
-> +		if (!reg) {
-> +			ret =3D mcp25xxfd_can_get_mode(priv, reg);
-> +			if (ret < 0)
-> +				return ret;
-> +		}
-
-After this patch the function reads:
-
-> static int mcp25xxfd_can_switch_mode_no_wait(struct mcp25xxfd_priv *pri=
-v,
-> 					     u32 *reg, int mode)
-> {
-> 	u32 dummy;
-> 	int ret;
->=20
-> 	/* get the current mode/register - if reg is NULL
-> 	 * when the can controller is not setup yet
-> 	 * typically by calling mcp25xxfd_can_sleep_mode
-> 	 * (this only happens during initialization phase)
-> 	 */
-> 	if (reg) {
-> 		if (!reg) {
-
-This looks wrong.
-
-> 			ret =3D mcp25xxfd_can_get_mode(priv, reg);
-> 			if (ret < 0)
-> 				return ret;
-> 		}
-> 	} else {
-> 		/* alternatively use dummy */
-> 		dummy =3D 0;
-> 		reg =3D &dummy;
-> 	}
->=20
-
-Marc
-
---=20
-Pengutronix e.K.                  | Marc Kleine-Budde           |
-Industrial Linux Solutions        | Phone: +49-231-2826-924     |
-Vertretung West/Dortmund          | Fax:   +49-5121-206917-5555 |
-Amtsgericht Hildesheim, HRA 2686  | http://www.pengutronix.de   |
-
-
---ds4ILGG6wmir7tnpuOKgh4HNhNjCI4CsP--
-
---9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEmvEkXzgOfc881GuFWsYho5HknSAFAlzS1dEACgkQWsYho5Hk
-nSCDyAgAsuFM0m3Y5vshjetwsmxPMq7F3ALb1CuXSblkItda+S3XF8veJiWUW8ZH
-P0NhJ71AkD53LG7Wg/VOFdRTYqfQIXpapQrP724qzyrriyn+CzxBtrdgTcM+D/2o
-nMQCT9wWiYr5p2Sja+a6ZY9Fa/c+9aNvjV76O2Oz8/X/FVuhSODaWoEFOHS4G+fw
-r12D/xVmAoTDHzS9FVUY7GDSupFm0KED8TySCdGc/IduDFW/aS9UIGTaexWyWOAv
-YsAgE/NFQL1YmE4sxtrCdbdBObSSTm+k7x9gjrborTW7UUtwN4VHOsx284WyprrW
-RKn9pPFV5ZpWRW5d+RZzKDp0jdpS5A==
-=dRB+
------END PGP SIGNATURE-----
-
---9AWvklFo50bWruUHCyXyGo0NdmJc7QdPD--
+Regards,
+Lukasz
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
