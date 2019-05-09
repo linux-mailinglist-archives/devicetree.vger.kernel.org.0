@@ -2,230 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7062B18AD3
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 15:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53ACF18B26
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 16:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbfEINhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 09:37:23 -0400
-Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:54960 "EHLO
-        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726195AbfEINhX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 09:37:23 -0400
-Received: from callcc.thunk.org ([66.31.38.53])
-        (authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x49DZpAW030412
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 9 May 2019 09:35:52 -0400
-Received: by callcc.thunk.org (Postfix, from userid 15806)
-        id 6AC26420024; Thu,  9 May 2019 09:35:51 -0400 (EDT)
-Date:   Thu, 9 May 2019 09:35:51 -0400
-From:   "Theodore Ts'o" <tytso@mit.edu>
-To:     Knut Omang <knut.omang@oracle.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190509133551.GD29703@mit.edu>
-Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
-        Knut Omang <knut.omang@oracle.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Brendan Higgins <brendanhiggins@google.com>, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
-        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <54940124-50df-16ec-1a32-ad794ee05da7@gmail.com>
- <20190507080119.GB28121@kroah.com>
- <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
- <20190509015856.GB7031@mit.edu>
- <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
- <20190509032017.GA29703@mit.edu>
- <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+        id S1726752AbfEIOCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 10:02:53 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43917 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726583AbfEIOCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 10:02:52 -0400
+Received: by mail-wr1-f66.google.com with SMTP id r4so3207589wro.10;
+        Thu, 09 May 2019 07:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=HNoXaNV1qBkGpwMuiuD1EF2zj1FqN5YTgxnrdjR1Y+E=;
+        b=bNk0zLrzPxvNcqvQqsw3NvvN9mgFKnowH0hYYdX6XYHkVI+3YFifVzAhJ0drkgyhnq
+         3kjkoClOiBLQs/+1fuPOF+TmF3+CF8Ob8gkMKs3gNuHBHRza+0BSioY1aG6KIFxBdx2n
+         F/wN5t40/VEpseSXgkhUt8pjds9r/B95uhbyuaWRdu6iEivreOgiQlcMtGuBU0chREe2
+         xD4c4D6zZvUyijF4ye+mbfQWpbGDxn9TpXTZaEgz5x4pdh5dw6r0ms7d/pcsq5HCsq+q
+         suEzRvahGD/yowYPK85yL+rllrjlpXjsM5KKGeSlCJxxcLIoC1lWkAfz6ayYZQcu/aBQ
+         +1Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=HNoXaNV1qBkGpwMuiuD1EF2zj1FqN5YTgxnrdjR1Y+E=;
+        b=WMaK2KzD/Y3N7qUc78rZ5fRAeumcZOihqU/T+R6S4J8js96o+/nYdrERpc279skCQi
+         0DYUwsIwerZS1RLXZMK8lG2PhvBaAmDu9W7g10LNm6EsxaiYwhKCQMjlhTlczz8qlGnW
+         ilMI6LMxg7ifx3k+1qkFSC8leLDsn3O9TMbtu6b9kobW6ce9aKc8RI8aA1XWchp/FSZs
+         I0vWuY06jyWLow3BSjT0XZSseZxuCYCkBhERY4WRIROD1YMtGFBwAEFXm/2JbUvmGgRN
+         uIa9VqUCCQ9WUhxwqzHS0HHSaNt/5DuTmtDpV1AgDvvvOTJymRHr003KnSLeQpL1+fLt
+         mV4g==
+X-Gm-Message-State: APjAAAUwooxgxqy9WUJwJY54QIkjrHG4CjlEt8vGqdUqWORmSoki88zw
+        7w3TXY+QruJPiSkT/sZPZyNI8fBSk0U=
+X-Google-Smtp-Source: APXvYqzKnLJvIGU4e9eAFYPHSnEi/qYg6RE6Ka6v+mvu7EKyv0TYR/v3G9p6bU+FfqJ7VAUMezmUjg==
+X-Received: by 2002:adf:f488:: with SMTP id l8mr1636437wro.287.1557410570267;
+        Thu, 09 May 2019 07:02:50 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id y7sm7338385wrg.45.2019.05.09.07.02.48
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 09 May 2019 07:02:48 -0700 (PDT)
+Date:   Thu, 9 May 2019 16:02:47 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, jonathanh@nvidia.com,
+        lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 01/28] soc/tegra: pmc: Export
+ tegra_powergate_power_on()
+Message-ID: <20190509140247.GA8907@ulmo>
+References: <20190423092825.759-1-mmaddireddy@nvidia.com>
+ <20190423092825.759-2-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="M9NhX3UHpAaciwkO"
 Content-Disposition: inline
-In-Reply-To: <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190423092825.759-2-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 09, 2019 at 01:52:15PM +0200, Knut Omang wrote:
-> 1) Tests that exercises typically algorithmic or intricate, complex
->    code with relatively few outside dependencies, or where the dependencies 
->    are considered worth mocking, such as the basics of container data 
->    structures or page table code. If I get you right, Ted, the tests 
->    you refer to in this thread are such tests. I believe covering this space 
->    is the goal Brendan has in mind for KUnit.
 
-Yes, that's correct.  I'd also add that one of the key differences is
-that it sounds like Frank and you are coming from the perspective of
-testing *device drivers* where in general there aren't a lot of
-complex code which is hardware independent.  After all, the vast
-majority of device drivers are primarily interface code to hardware,
-with as much as possible abstracted away to common code.  (Take, for
-example, the model of the SCSI layer; or all of the kobject code.)
+--M9NhX3UHpAaciwkO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 2) Tests that exercises interaction between a module under test and other 
->    parts of the kernel, such as testing intricacies of the interaction of 
->    a driver or file system with the rest of the kernel, and with hardware, 
->    whether that is real hardware or a model/emulation. 
->    Using your testing needs as example again, Ted, from my shallow understanding,
->    you have such needs within the context of xfstests (https://github.com/tytso/xfstests)
+On Tue, Apr 23, 2019 at 02:57:58PM +0530, Manikanta Maddireddy wrote:
+> tegra_powergate_sequence_power_up() powers up partition and also enables
+> clock & reset. However, if a controller like PCIe have multiple clocks
+> & resets and they need to be enabled in a sequence, driver must use
+> standalone function tegra_powergate_power_on() to power up partition.
+>=20
+> Export tegra_powergate_power_on() to allow Tegra controller drivers to
+> unpower gate partition independent to clock & reset.
+>=20
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> ---
+> V2: No change
+>=20
+>  drivers/soc/tegra/pmc.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+> index 0c5f79528e5f..cb3de81348bd 100644
+> --- a/drivers/soc/tegra/pmc.c
+> +++ b/drivers/soc/tegra/pmc.c
+> @@ -701,6 +701,7 @@ int tegra_powergate_power_on(unsigned int id)
+> =20
+>  	return tegra_powergate_set(pmc, id, true);
+>  }
+> +EXPORT_SYMBOL(tegra_powergate_power_on);
+> =20
+>  /**
+>   * tegra_powergate_power_off() - power off partition
 
-Well, upstream is for xfstests is git://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git
+If the sequence for the PCI power partition is becoming non-standard,
+this is going to hamper our efforts to move to generic PM domains. But
+it is what it is, so let's do this for now. We might need to revise this
+later on if/when we come up with a better solution.
 
-The test framework where I can run 20 hours worth of xfstests
-(multiple file system features enabled, multiple mount options, etc.)
-in 3 hours of wall clock time using multiple cloud VM is something
-called gce-xfstests.
+Bjorn, do you want to pick this up as part of this series, given the
+build dependency? If so:
 
-I also have kvm-xfstests, which optimizes low test latency, where I
-want to run a one or a small number of tests with a minimum of
-overhead --- gce startup and shutdown is around 2 minutes, where as
-kvm startup and shutdown is about 7 seconds.  As far as I'm concerned,
-7 seconds is still too slow, but that's the best I've been able to do
-given all of the other things I want a test framework to do, including
-archiving test results, parsing the test results so it's easy to
-interpret, etc.  Both kvm-xfstests and gce-xfstests are located at:
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-	git://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git
+Alternatively I could provide a stable branch for you to pull in. But I
+don't think it'd be necessary, the PMC driver is a fairly slow-moving
+target these days.
 
-So if Frank's primary argument is "too many frameworks", it's already
-too late.  The block layer has blktests has a seprate framework,
-called blktests --- and yeah, it's a bit painful to launch or learn
-how to set things up.
+Thierry
 
-That's why I added support to run blktests using gce-xfstests and
-kvm-xfstests, so that "gce-xfstests --blktests" or "kvm-xfstests
---xfstests" will pluck a kernel from your build tree, and launch at
-test appliance VM using that kernel and run the block layer tests.
+--M9NhX3UHpAaciwkO
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The point is we *already* have multiple test frameworks, which are
-optimized for testing different parts of the kernel.  And if you plan
-to do a lot of work in these parts of the kernel, you're going to have
-to learn how to use some other test framework other than kselftest.
-Sorry, that's just the way it goes.
+-----BEGIN PGP SIGNATURE-----
 
-Of course, I'll accept trivial patches that haven't been tested using
-xfstests --- but that's because I can trivially run the smoke test for
-you.  Of course, if I get a lot of patches from a contributor which
-cause test regressions, I'll treat them much like someone who
-contribute patches which fail to build.  I'll apply pressure to the
-contributor to actually build test, or run a ten minute kvm-xfstests
-smoke test.  Part of the reason why I feel comfortable to do this is
-it's really easy to run the smoke test.  There are pre-compiled test
-appliances, and a lot of documentation:
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzUMwMACgkQ3SOs138+
+s6HprA/9F4gXqL3jv8cXkVNJm079C4WLCBNlKQk0065YfmbsRGwyqJgSkMQcQybk
+N9At6Dmh4fAUPh5xwJ8yQ5eOphdPtbpci1cPMJk6Ze/tuQTtObDjHeggFz3Zx6M7
++R/AmRcbiyBomUrcey7bO398IFSF6bhpaKXxmJxzwlNY2JAzRS77jo1JcCnYolh2
+2WZypuJmC6Vp9Z9yC8u+nGdZRu2ca9VYDezV9yVrTN0mG+YYN/eFyjUcuRypLScF
+lm2hoAXu5M3RywjACzJltQgJd1+y2looqmrTlBxXm5xlNq7DdHK8d7KVLrtb2Qn5
+ml3BtQ540YQmzaWyeukbP3XGxJ2/gIkKhjQ249u0AV8Op+LcDuaduHzhTUjeIFTL
+1o/Vhc5FO+uqlyF7ete2R3jejJF99dPIbB2qq3E1H7Wt2EBiNpMVeCYD4cwRH9R+
+xsgEb9SjshqMoAbr3sx+9AumfGchj33Mf0WIDCmZYXzk2L4pERBMi4PtMABd2NY5
+XHbKEBy7iYnQCmDnKqcf+3+8Y+EZx6voh9ntDQiZBcCEhpaPKVOFiUuP9naEar8K
+ue23LYfeIOFjZyeI6Cbj9FmS3JDtSNcciymoVOGdby3n6rDh+2FrHkhpbkbA9C+3
+fA0BNLhVJl7lQJ8SwdQqEbIbiVzw5lNlvPFW8CthRf12SmR7keI=
+=Bhb3
+-----END PGP SIGNATURE-----
 
-https://github.com/tytso/xfstests-bld/blob/master/Documentation/kvm-quickstart.md
-
-This is why I have close to zero sympathy to Frank's complaint that
-extra test frameworks are a bad thing.  To me, that's whining.  I've
-done a huge amount of work to meet contributors more than half-way.
-The insistence that "There Must Be One", ala the Highlander movie, is
-IMHO so wrong that it's not even close.  Is it really that hard to do
-a "git pull", download a test appliance, set up a config file to tell
-kvm-xfstests where to find your build tree, and then run "kvm-xfstests
---smoke" or "gce-xfstests --smoke"?  Cry me a river.
-
-There are already multiple test frameworks, and if you expect to do a
-lot of work in a particular subsystem, you'll be expected to use the
-Maintainer's choice of tests.  Deal with it.  We do this so we can
-scale to the number of contributors we have in our subsystem.
-
-> To 1) I agree with Frank in that the problem with using UML is that you still have to
-> relate to the complexity of a kernel run time system, while what you really want for these
-> types of tests is just to compile a couple of kernel source files in a normal user land
-> context, to allow the use of Valgrind and other user space tools on the code.
-
-"Just compiling a couple of kernel source files in a normal user land"
-is much harder than you think.  It requires writing vast numbers of
-mocking functions --- for a file system I would have to simulate the
-block device layer, large portions of the VFS layer, the scheduler and
-the locking layer if I want to test locking bugs, etc., etc.  In
-practice, UML itself is serving as mocking layer, by its mere
-existence.  So when Frank says that KUnit doesn't provide any mocking
-functions, I don't at all agree.  Using KUnit and UML makes testing
-internal interfaces *far* simpler, especially if the comparison is
-"just compile some kernel source files as part of a userspace test
-program".
-
-Perhaps your and Frank's experience is different --- perhaps that can
-be explained by your past experience and interest in testing device
-drivers as opposed to file systems.
-
-The other thing I'd add is that at least for me, a really important
-consideration is how quickly we can run tests.  I consider
-minimization of developer friction (e.g., all you need to do is
-running "make ; kvm-xfstests --smoke" to run tests), and maximizing
-developer velocity to be high priority goals.  Developer velocity is
-how quickly can you run the tests; ideally, less than 5-10 seconds.
-
-And that's the other reason why I consider unit tests to be a
-complement to integration tests.  "gce-xfstests --smoke" takes 10-15
-minutes.  If I can have unit tests which takes 5-15 seconds for a
-smoke test of the specific part of ext4 that I am modifying (and often
-with much better coverage than integration tests from userspace),
-that's at really big deal.  I can do this for e2fsprogs; but if I have
-to launch a VM, the VM overhead pretty much eats all or most of that
-time budget right there.
-
-From looking at your documentation of KTF, you are targetting the use
-case of continuous testing.  That's a different testing scenario than
-what I'm describing; with continuous testing, overhead measured in
-minutes or even tens of minutes is not a big deal.  But if you are
-trying to do real-time testing as part of your development process ---
-*real* Test Driven Development, then test latency is a really big
-deal.
-
-I'll grant that for people who are working on device drivers where
-architecture dependencies are a big deal, building for an architecture
-where you can run in a virtual environment or using test hardware is
-going to be a better way to go.  And Brendan has said he's willing to
-look at adapting KUnit so it can be built for use in a virtual
-environment to accomodate your requirements.
-
-As far as I'm concerned, however, I would *not* be interested in KTF
-unless you could demonstrate to me that launching at test VM, somehow
-getting the kernel modules copied into the VM, and running the tests
-as kernel modules, has zero overhead compared to using UML.
-
-Ultimately, I'm a pragmatist.  If KTF serves your needs best, good for
-you.  If other approaches are better for other parts of the kernel,
-let's not try to impose a strict "There Must Be Only One" religion.
-That's already not true today, and for good reason.  There are many
-different kinds of kernel code, and many different types of test
-philosophies.  Trying to force all kernel testing into a single
-Procrustean Bed is simply not productive.
-
-Regards,
-
-						- Ted
+--M9NhX3UHpAaciwkO--
