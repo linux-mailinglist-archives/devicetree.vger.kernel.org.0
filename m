@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F479195C3
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 01:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F13BA195DE
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 01:59:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726694AbfEIXlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 19:41:23 -0400
-Received: from ale.deltatee.com ([207.54.116.67]:38178 "EHLO ale.deltatee.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726108AbfEIXlX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 May 2019 19:41:23 -0400
-Received: from s01061831bf6ec98c.cg.shawcable.net ([68.147.80.180] helo=[192.168.6.141])
-        by ale.deltatee.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <logang@deltatee.com>)
-        id 1hOseo-0006HM-DN; Thu, 09 May 2019 17:40:59 -0600
-To:     Theodore Ts'o <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
-        knut.omang@oracle.com, gregkh@linuxfoundation.org,
-        brendanhiggins@google.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, amir73il@gmail.com,
-        dan.carpenter@oracle.com, dan.j.williams@intel.com,
-        daniel@ffwll.ch, jdike@addtoit.com, joel@jms.id.au,
-        julia.lawall@lip6.fr, khilman@baylibre.com, mpe@ellerman.id.au,
-        pmladek@suse.com, richard@nod.at, rientjes@google.com,
-        rostedt@goodmis.org, wfg@linux.intel.com
-References: <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
- <20190509015856.GB7031@mit.edu>
- <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
- <20190509032017.GA29703@mit.edu>
- <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
- <20190509133551.GD29703@mit.edu>
- <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
- <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
- <20190509214233.GA20877@mit.edu>
- <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com>
- <20190509233043.GC20877@mit.edu>
-From:   Logan Gunthorpe <logang@deltatee.com>
-Message-ID: <8914afef-1e66-e6e3-f891-5855768d3018@deltatee.com>
-Date:   Thu, 9 May 2019 17:40:48 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190509233043.GC20877@mit.edu>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1726694AbfEIX7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 19:59:47 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.47.102]:53444 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726701AbfEIX7r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 19:59:47 -0400
+Received: from mailhost.synopsys.com (dc8-mailhost1.synopsys.com [10.13.135.209])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 1DA2DC00D0;
+        Thu,  9 May 2019 23:59:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1557446390; bh=EnqrzmpzPbj+nGgnpyTF6VzPxqLccG3bhMGQETJ3X8c=;
+        h=From:To:CC:Subject:Date:References:From;
+        b=Mwm1+mM2RVhLnJUa6D1AJx3dhWWhijAAloSjByMrWk0GErXdoZcGJgIvqxb04DICq
+         4Rd8dHDIf+eUdbZTU/S6yP3HNZlbHbwibdu5L8p83z+LT9GYKw7chIaRKA1vto5trE
+         yM+dNdFMW0qnGR7rLSK+WEjYrAzSD898OoDpaun3KVo9DXfP/eATtMQRk8RNIx9d2G
+         sbaiHMMrlT2/vmSsITdWIQ44RwsifsAp/mmqpusjPXgIy+rz2pf7lVIuvblZKs2mea
+         GMtQbSkfRHvlw3hl6h3TAAzl6VawULLss2hQpwZc+b1hEzH446Wh56q1Vgi1o/F866
+         WA3d2nrj3UX5w==
+Received: from US01WXQAHTC1.internal.synopsys.com (us01wxqahtc1.internal.synopsys.com [10.12.238.230])
+        (using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id 936DFA005D;
+        Thu,  9 May 2019 23:59:45 +0000 (UTC)
+Received: from us01wembx1.internal.synopsys.com ([169.254.1.223]) by
+ US01WXQAHTC1.internal.synopsys.com ([::1]) with mapi id 14.03.0415.000; Thu,
+ 9 May 2019 16:59:45 -0700
+From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To:     Anurag Kumar Vulisha <anuragku@xilinx.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Felipe Balbi" <balbi@kernel.org>,
+        "Claus H. Stovgaard" <cst@phaseone.com>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "v.anuragkumar@gmail.com" <v.anuragkumar@gmail.com>
+Subject: Re: [PATCH v2 3/3] usb: dwc3: gadget: Add support for disabling U1
+ and U2 entries
+Thread-Topic: [PATCH v2 3/3] usb: dwc3: gadget: Add support for disabling U1
+ and U2 entries
+Thread-Index: AQHVBXNg9QMnfODDx0qS+2/7kcKJQQ==
+Date:   Thu, 9 May 2019 23:59:43 +0000
+Message-ID: <30102591E157244384E984126FC3CB4F639E9E8F@us01wembx1.internal.synopsys.com>
+References: <1557302091-7455-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
+ <1557302091-7455-4-git-send-email-anurag.kumar.vulisha@xilinx.com>
+ <30102591E157244384E984126FC3CB4F639E9823@us01wembx1.internal.synopsys.com>
+ <BL0PR02MB5587B28B6CCAC0FD790F8335A7330@BL0PR02MB5587.namprd02.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 68.147.80.180
-X-SA-Exim-Rcpt-To: wfg@linux.intel.com, rostedt@goodmis.org, rientjes@google.com, richard@nod.at, pmladek@suse.com, mpe@ellerman.id.au, khilman@baylibre.com, julia.lawall@lip6.fr, joel@jms.id.au, jdike@addtoit.com, daniel@ffwll.ch, dan.j.williams@intel.com, dan.carpenter@oracle.com, amir73il@gmail.com, Alexander.Levin@microsoft.com, linux-um@lists.infradead.org, linux-nvdimm@lists.01.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-doc@vger.kernel.org, kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, shuah@kernel.org, sboyd@kernel.org, robh@kernel.org, mcgrof@kernel.org, kieran.bingham@ideasonboard.com, keescook@google.com, brendanhiggins@google.com, gregkh@linuxfoundation.org, knut.omang@oracle.com, Tim.Bird@sony.com, frowand.list@gmail.com, tytso@mit.edu
-X-SA-Exim-Mail-From: logang@deltatee.com
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ale.deltatee.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-8.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-        GREYLIST_ISWHITE autolearn=ham autolearn_force=no version=3.4.2
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
-X-SA-Exim-Scanned: Yes (on ale.deltatee.com)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.13.184.19]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2019-05-09 5:30 p.m., Theodore Ts'o wrote:
-> On Thu, May 09, 2019 at 04:20:05PM -0600, Logan Gunthorpe wrote:
->>
->> The second item, arguably, does have significant overlap with kselftest.
->> Whether you are running short tests in a light weight UML environment or
->> higher level tests in an heavier VM the two could be using the same
->> framework for writing or defining in-kernel tests. It *may* also be valuable
->> for some people to be able to run all the UML tests in the heavy VM
->> environment along side other higher level tests.
->>
->> Looking at the selftests tree in the repo, we already have similar items to
->> what Kunit is adding as I described in point (2) above. kselftest_harness.h
->> contains macros like EXPECT_* and ASSERT_* with very similar intentions to
->> the new KUNIT_EXECPT_* and KUNIT_ASSERT_* macros.
->>
->> However, the number of users of this harness appears to be quite small. Most
->> of the code in the selftests tree seems to be a random mismash of scripts
->> and userspace code so it's not hard to see it as something completely
->> different from the new Kunit:
->>
->> $ git grep --files-with-matches kselftest_harness.h *
-> 
-> To the extent that we can unify how tests are written, I agree that
-> this would be a good thing.  However, you should note that
-> kselftest_harness.h is currently assums that it will be included in
-> userspace programs.  This is most obviously seen if you look closely
-> at the functions defined in the header files which makes calls to
-> fork(), abort() and fprintf().
-
-Ah, yes. I obviously did not dig deep enough. Using kunit for in-kernel 
-tests and kselftest_harness for userspace tests seems like a sensible 
-line to draw to me. Trying to unify kernel and userspace here sounds 
-like it could be difficult so it's probably not worth forcing the issue 
-unless someone wants to do some really fancy work to get it done.
-
-Based on some of the other commenters, I was under the impression that 
-kselftests had in-kernel tests but I'm not sure where or if they exist. 
-If they do exists, it seems like it would make sense to convert those to 
-kunit and have Kunit tests run-able in a VM or baremetal instance.
-
-Logan
-
+Hi Anurag,=0A=
+=0A=
+Anurag Kumar Vulisha wrote:=0A=
+>>> +		return -EINVAL;=0A=
+>>>=0A=
+>>>  	reg =3D dwc3_readl(dwc->regs, DWC3_DCTL);=0A=
+>>>  	if (set)=0A=
+>>> @@ -626,7 +630,10 @@ static int dwc3_ep0_set_config(struct dwc3 *dwc, s=
+truct=0A=
+>> usb_ctrlrequest *ctrl)=0A=
+>>>  			 * nothing is pending from application.=0A=
+>>>  			 */=0A=
+>>>  			reg =3D dwc3_readl(dwc->regs, DWC3_DCTL);=0A=
+>>> -			reg |=3D (DWC3_DCTL_ACCEPTU1ENA |=0A=
+>> DWC3_DCTL_ACCEPTU2ENA);=0A=
+>>> +			if (!dwc->dis_u1_entry_quirk)=0A=
+>>> +				reg |=3D DWC3_DCTL_ACCEPTU1ENA;=0A=
+>>> +			if (!dwc->dis_u2_entry_quirk)=0A=
+>>> +				reg |=3D DWC3_DCTL_ACCEPTU2ENA;=0A=
+>>>  			dwc3_writel(dwc->regs, DWC3_DCTL, reg);=0A=
+>>>  		}=0A=
+>>>  		break;=0A=
+>>> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c=0A=
+>>> index e293400..f2d3112 100644=0A=
+>>> --- a/drivers/usb/dwc3/gadget.c=0A=
+>>> +++ b/drivers/usb/dwc3/gadget.c=0A=
+>>> @@ -2073,6 +2073,24 @@ static int dwc3_gadget_stop(struct usb_gadget *g=
+)=0A=
+>>>  	return 0;=0A=
+>>>  }=0A=
+>>>=0A=
+>>> +static void dwc3_gadget_config_params(struct usb_gadget *g,=0A=
+>>> +				      struct usb_dcd_config_params *params)=0A=
+>>> +{=0A=
+>>> +	struct dwc3		*dwc =3D gadget_to_dwc(g);=0A=
+>>> +=0A=
+>>> +	/* U1 Device exit Latency */=0A=
+>>> +	if (dwc->dis_u1_entry_quirk)=0A=
+>>> +		params->bU1devExitLat =3D 0;=0A=
+>> It doesn't make sense to have exit latency of 0. Rejecting=0A=
+>> SET_FEATURE(enable U1/U2) should already let the host know that the=0A=
+>> device doesn't support U1/U2.=0A=
+>>=0A=
+> I am okay to remove this, but I feel that it is better to report zero val=
+ue instead=0A=
+> of a non-zero value in exit latency of BOS when U1 or U2 entries are not =
+supported. =0A=
+> Advantage of reporting 0 is that some hosts doesn't even send SET_FEATURE=
+(U1/U2)=0A=
+> requests on seeing zero value in BOS descriptor. Also there can be cases =
+where U1 is=0A=
+> disabled and U2 entry is allowed or vice versa, for these kind of cases t=
+he driver can=0A=
+> set zero exit latency value for U1 and non-zero exit latency value for U2=
+ . Based on this=0A=
+> I think it would be better to report 0 when U1/U2 states are not enabled.=
+ Please provide=0A=
+> your opinion on this.=0A=
+=0A=
+Hm... I assume you're testing against linux usb stack and xhci host. If=0A=
+that's the case, it looks like host will still request the device to=0A=
+enter U1/U2 despite the device rejecting SET_FEATURE(enable U1/U2). This=0A=
+needs to be fixed. I think what you have is fine to workaround this issue.=
+=0A=
+=0A=
+Thanks,=0A=
+Thinh=0A=
