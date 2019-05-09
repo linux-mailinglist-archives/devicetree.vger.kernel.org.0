@@ -2,272 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7A561850E
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 08:06:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61ED218566
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 08:23:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726878AbfEIGGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 02:06:10 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:43721 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726179AbfEIGGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 02:06:09 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 0E919220A5;
-        Thu,  9 May 2019 02:06:08 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Thu, 09 May 2019 02:06:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to
-        :subject:content-type; s=fm2; bh=SuctwDlVhH18vzG5WhFjPtKUCfoS1SU
-        LOKHQ7orIUNs=; b=lfs8LGR4GbTaWlud6KKBBIj23SBTLzhFIY1WO5GBOAwDSVu
-        VCwhIvKaj1o6xyHbaDqB7Tji4/PYsDznixSEqLwRXbOn25q7YVnDZSFltyLvyTKr
-        jROyVCm+9DRkYiXm1XQzUpVnd5j1c+6yhVCpOtJ1Q9ALxDhXevsNCer03ktXexQJ
-        CDxJtYQvqWe6RhuvRISf6E6EfF7OLt/B39iWGHSsPIcnTUbAg9JFljjzMZ17DpW0
-        RCggzwjX4I/JjTE7L4fEIRzX3JiidO7J4JETsbCQhtHDbQGQE6R6M6PdiuMWbV0g
-        Z5coXsQ/Jeex3GUNkz4ZBCGiSI5AUxi3KZ08ajA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=SuctwD
-        lVhH18vzG5WhFjPtKUCfoS1SULOKHQ7orIUNs=; b=WrznOOAszPOrpOne62Dgug
-        f7c7LKPoA7qkLeYgRq92XlVU3JJAN86NkswnoghX46rEBYvN5y41THuZeY9zmfvF
-        fQUI2Z8xqAaOLIkVxO2JVXHpSS9mNQmQx76iBxv/fP8fC9sULXgmdQGeJWqXUgJB
-        8XR+aZdkVQ+aeo7I2P25bE1sLF0J44Om+BVrvCxkvVgydG1TmcfI+05jj+Jl9yzo
-        PHKBfzLWfzyP7RvTb+04nIxPFQb6rtzPCsaDaHDLgZcUykc/4MHntYO27eCyUen6
-        SRvx+zLr0iRpFvDpImCaL+woLVoYSQzIA8MXMB+sasyjUSuMOFP4v5qAxX1ZImfw
-        ==
-X-ME-Sender: <xms:TsPTXOukkYXzeXR_nEdBVC-Tw5pEUwuShajO-Z2mnWKlsUOYP2nwmQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrkeeggddutddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
-    rhfuihiivgeptd
-X-ME-Proxy: <xmx:TsPTXEgRg3POyfVcJv0QBYvkGAvkf1Jzg-IrFoS5Q59oiKpMiGIXBQ>
-    <xmx:TsPTXMvgPIXNdy1nqIsP0QN_YANasgxXci9ENznYtJv9_bn71QsdCg>
-    <xmx:TsPTXG5e4ATmU0_cRHfZXVVG2Z0wVwYvHWBdAscvhiBTzctabtUrKQ>
-    <xmx:T8PTXBB9VIc93Vdjk7GZr1OxhjK5X9K010XigoVWht-UXmqB_KHktw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 78A207C3DB; Thu,  9 May 2019 02:06:06 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-449-gfb3fc5a-fmstable-20190430v1
-Mime-Version: 1.0
-Message-Id: <29d7503b-6c14-4990-aadc-7cbce2897fc2@www.fastmail.com>
-In-Reply-To: <20190509035549.2203169-1-taoren@fb.com>
-References: <20190509035549.2203169-1-taoren@fb.com>
-Date:   Thu, 09 May 2019 02:06:05 -0400
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Tao Ren" <taoren@fb.com>, "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH] ARM: dts: aspeed: Add Facebook YAMP BMC
-Content-Type: text/plain
+        id S1726733AbfEIGXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 02:23:43 -0400
+Received: from mail-eopbgr1400094.outbound.protection.outlook.com ([40.107.140.94]:6077
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726683AbfEIGXm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 May 2019 02:23:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WBBThbzzBZhrySEVZWkmkes7KaA/DSkhPMh+Otfsm38=;
+ b=RTM43DUZaplDZ5uCNwI2HeRV5neNUuhbxORq0EgUG9urgpiJmP9kK/URY+ir/F1f5+YYIfsCc2uhpdqO1Hm7vpo1nbMZYmE63X/DOO341GJSczIHWq446wpjRXud4otJmZ28BU4DxoqFjMNEl93Fr+AzAIhBcZi3mPSoBEtlgok=
+Received: from OSBPR01MB3174.jpnprd01.prod.outlook.com (20.176.240.146) by
+ OSBPR01MB3591.jpnprd01.prod.outlook.com (20.178.5.215) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.20; Thu, 9 May 2019 06:23:38 +0000
+Received: from OSBPR01MB3174.jpnprd01.prod.outlook.com
+ ([fe80::4d29:3383:d67d:d562]) by OSBPR01MB3174.jpnprd01.prod.outlook.com
+ ([fe80::4d29:3383:d67d:d562%3]) with mapi id 15.20.1856.012; Thu, 9 May 2019
+ 06:23:38 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Chris Brandt <Chris.Brandt@renesas.com>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>
+Subject: RE: [PATCH 00/10] usb: Add host and device support for RZ/A2
+Thread-Topic: [PATCH 00/10] usb: Add host and device support for RZ/A2
+Thread-Index: AQHVBGYHqBe7JTZ/4k2vKamrKGugU6ZfYQSwgAIoCQCAAMOq8A==
+Date:   Thu, 9 May 2019 06:23:37 +0000
+Message-ID: <OSBPR01MB3174EB1DCBEB9C7CDB3EC3D6D8330@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <OSBPR01MB317442B092744C8D312682DCD8310@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+ <TY1PR01MB1562C5FCC551A2857A6D15E78A320@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY1PR01MB1562C5FCC551A2857A6D15E78A320@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
+x-originating-ip: [118.238.235.108]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6d08fc73-23e3-4513-63a5-08d6d446df82
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB3591;
+x-ms-traffictypediagnostic: OSBPR01MB3591:
+x-microsoft-antispam-prvs: <OSBPR01MB3591A5CA5E818F8328785EC3D8330@OSBPR01MB3591.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 003245E729
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(366004)(376002)(346002)(396003)(39860400002)(189003)(199004)(8676002)(81156014)(81166006)(76116006)(446003)(11346002)(478600001)(316002)(66476007)(68736007)(476003)(8936002)(86362001)(486006)(74316002)(14454004)(6116002)(26005)(3846002)(6636002)(66066001)(229853002)(2906002)(9686003)(53936002)(54906003)(6506007)(7696005)(6862004)(4326008)(76176011)(52536014)(99286004)(71200400001)(71190400001)(66946007)(55016002)(186003)(66556008)(73956011)(66446008)(64756008)(7736002)(305945005)(33656002)(14444005)(6246003)(256004)(25786009)(6436002)(102836004)(5660300002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB3591;H:OSBPR01MB3174.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: vKS4Qsb790L9cleSqww6DVcVBBh8Hl9EpbCbH0rQLQPExyWVMq41XDUx0oWW0hvs2vyJ9uY5jxqopWle9YacB0QBR62CK4ePTqJEO6jqPERp4+TISEADuU3xr3B4lr0AGINjxFE7X+4XeafcTAPEB4TEc5qlMimR0hAjPdTKwPDSKmAS069wI/JyUd64NVb7UhnrcIzm22Q4Sp29N1yQwuC9ms5J47yj0FQktX4W5oHyZ8SedzKoY1blgW8fZu/kf+oCEGkMzgjptejB7dNSv7fuqlTGGb0pFDZAOQR8nt0wbpUPWYZzYay/T7z+3kMdmE/QkQADP1dFZGp6PnclUwtzv3BqlxTDnUQ5kFoD6IzJVnT2LT17beIAvo/5Yedj8W6bU3SUvwOuW4rA/ClirHcGvQt4LoJiNoU82zFgUr0=
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d08fc73-23e3-4513-63a5-08d6d446df82
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2019 06:23:38.0386
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3591
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Chris=1B$B$5$s=1B(B
 
+> From: Chris Brandt, Sent: Thursday, May 9, 2019 3:08 AM
+>=20
+> Hi Shimoda=1B$B$5$s=1B(B
+>=20
+> > From: Yoshihiro Shimoda
+> > Sent: Tuesday, May 07, 2019 5:17 AM
+> > > For the most part, the RZ/A2 has the same USB 2.0 host and device
+> > > HW as the R-Car Gen3, so we can reuse a lot of the code.
+> > >
+> > > However, there are a couple extra register bits, and the CFIFO
+> > > register 8-bit access works a little different (weird, no idea why).
+> >
+> > This is just my gut feeling, but if we set the BIGEND bit in the CFIFOS=
+EL
+> > of RZ/A2M (R-Car Gen3 doesn't have such a bit though), could the origin=
+al
+> > code work correctly?
+>=20
+> I just tried to set CFIFOSEL.BIGEND =3D 1
 
-On Thu, 9 May 2019, at 13:26, Tao Ren wrote:
-> Add initial version of device tree for Facebook YAMP ast2500 BMC.
-> 
-> Signed-off-by: Tao Ren <taoren@fb.com>
+Thank you for trying it!
 
-Acked-by: Andrew Jeffery <andrew@aj.id.au>
+>  * Set CFIFOSEL.BIGEND =3D 1
+>  * Write 8-bit values to CFIFO (same method as R-Car)
+>  * Set CFIFOSEL.BIGEND =3D 0
+>=20
+> The result is bad.
 
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../arm/boot/dts/aspeed-bmc-facebook-yamp.dts | 160 ++++++++++++++++++
->  2 files changed, 161 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index f4f5aeaf3298..710616dcb62e 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1254,6 +1254,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
->  	aspeed-bmc-facebook-cmm.dtb \
->  	aspeed-bmc-facebook-tiogapass.dtb \
-> +	aspeed-bmc-facebook-yamp.dtb \
->  	aspeed-bmc-intel-s2600wf.dtb \
->  	aspeed-bmc-opp-lanyang.dtb \
->  	aspeed-bmc-opp-palmetto.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts 
-> b/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts
-> new file mode 100644
-> index 000000000000..4e09a9cf32b7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yamp.dts
-> @@ -0,0 +1,160 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (c) 2018 Facebook Inc.
-> +/dts-v1/;
-> +
-> +#include "aspeed-g5.dtsi"
-> +
-> +/ {
-> +	model = "Facebook YAMP 100 BMC";
-> +	compatible = "facebook,yamp-bmc", "aspeed,ast2500";
-> +
-> +	aliases {
-> +		/*
-> +		 * Override the default uart aliases to avoid breaking
-> +		 * the legacy applications.
-> +		 */
-> +		serial0 = &uart5;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &uart5;
-> +		bootargs = "console=ttyS0,9600n8 root=/dev/ram rw";
-> +	};
-> +
-> +	memory@80000000 {
-> +		reg = <0x80000000 0x20000000>;
-> +	};
-> +};
-> +
-> +&pinctrl {
-> +	aspeed,external-nodes = <&gfx &lhc>;
-> +};
-> +
-> +/*
-> + * Update reset type to "system" (full chip) to fix warm reboot hang 
-> issue
-> + * when reset type is set to default ("soc", gated by reset mask 
-> registers).
-> + */
-> +&wdt1 {
-> +	status = "okay";
-> +	aspeed,reset-type = "system";
-> +};
-> +
-> +/*
-> + * wdt2 is not used by Yamp.
-> + */
-> +&wdt2 {
-> +	status = "disabled";
-> +};
-> +
-> +&fmc {
-> +	status = "okay";
-> +	flash@0 {
-> +		status = "okay";
-> +		m25p,fast-read;
-> +		label = "bmc";
-> +#include "facebook-bmc-flash-layout.dtsi"
-> +	};
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_txd1_default
-> +		     &pinctrl_rxd1_default>;
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_txd2_default
-> +		     &pinctrl_rxd2_default>;
-> +};
-> +
-> +&uart3 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_txd3_default
-> +		     &pinctrl_rxd3_default>;
-> +};
-> +
-> +&uart5 {
-> +	status = "okay";
-> +};
-> +
-> +&mac0 {
-> +	status = "okay";
-> +	use-ncsi;
-> +	no-hw-checksum;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rmii1_default>;
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +
-> +	i2c-switch@75 {
-> +		compatible = "nxp,pca9548";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		reg = <0x75>;
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c5 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c6 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c7 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c8 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c9 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c10 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c11 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c12 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c13 {
-> +	status = "okay";
-> +};
-> +
-> +&vhub {
-> +	status = "okay";
-> +};
-> -- 
-> 2.17.1
-> 
->
+I got it...
+
+> But, then I tried this:
+>  * Set CFIFOSEL.MBW =3D 0   (CFIFO port access =3D 8-bit)
+>  * Write 8-bit values to CFIFO
+>  * Set CFIFOSEL.MBW =3D 2   (CFIFO port access =3D 32-bit)
+>=20
+> Code:
+> u16 cfifosel =3D usbhs_read(priv, fifo->sel);
+>=20
+> usbhs_write(priv, fifo->sel, cfifosel & 0xF3FF); // MBW =3D 8-bit
+>=20
+> 		for (i =3D 0; i < len; i++)
+> 			iowrite8(buf[i], addr); //same address each time
+>=20
+> usbhs_write(priv, fifo->sel, cfifosel);	// MBW =3D 32-bit
+>=20
+>=20
+> This method works good.
+
+I got it.
+
+>   (I assume this method would work with R-Car also)
+
+Unfortunately, R-Car cannot work with this method...
+But, "iowrite8(buf[i], addr + 3);" or "iowrite32(buf[i], addr);" works on t=
+he R-Car.
+And then, I realized that R-Car CFIFO register allows 32-bit access only...
+# So, I'm asking HW guy whether the 8-bit access can be allowed or not now.=
+..
+
+> But...then we have extra register reads and writes.
+> Register accesses are slower, so performance is lower.
+>=20
+> So, I prefer my original method:
+> 	if (usbhsc_flags_has(priv, USBHSF_CFIFO_BYTE_ADDR))
+> 		for (i =3D 0; i < len; i++)
+> 			iowrite8(buf[i], addr + (i & 0x03));
+> 	else
+> 		for (i =3D 0; i < len; i++)
+> 			iowrite8(buf[i], addr + (0x03 - (i & 0x03)));
+>=20
+>=20
+> Do you agree?
+
+I agree.
+However, I have some comments about the patch. So, I'll reply on the patch =
+later.
+
+Best regards,
+Yoshihiro Shimoda
+
+> Chris
+
