@@ -2,161 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A177E18C2F
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 16:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7838C18C34
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 16:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726448AbfEIOmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 10:42:25 -0400
-Received: from mail-eopbgr1400107.outbound.protection.outlook.com ([40.107.140.107]:28160
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726234AbfEIOmZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 May 2019 10:42:25 -0400
+        id S1726495AbfEIOpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 10:45:33 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:41033 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726251AbfEIOpd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 10:45:33 -0400
+Received: by mail-wr1-f68.google.com with SMTP id d12so3425733wrm.8;
+        Thu, 09 May 2019 07:45:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UqwQfVQx/tyIvHYeftXGqv1wibvDjkOi0Gd7ejHkxX0=;
- b=GdnWAzlBCdFrkpWJORnXgtG14mETb7fmmngKROC/IcGbrxO4y0eB1SPjmDnBswljVKyJ6ZCGrqejUM8Un00neBpah99+s7myzb4BUVHdpNWC/AhKHwdhAmjfZJ/Adfx2IVRQN6YqkGI5fcwuULp/nkHLNEzexZe5snZrR0bW7/k=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1628.jpnprd01.prod.outlook.com (52.133.161.13) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.12; Thu, 9 May 2019 14:42:20 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1878.022; Thu, 9 May 2019
- 14:42:20 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>
-Subject: RE: [PATCH 06/10] usb: renesas_usbhs: Add support for RZ/A2
-Thread-Topic: [PATCH 06/10] usb: renesas_usbhs: Add support for RZ/A2
-Thread-Index: AQHVBGYrI2C6wi6GUEeEvfBgdp4V36ZiYgMAgABJS4A=
-Date:   Thu, 9 May 2019 14:42:19 +0000
-Message-ID: <TY1PR01MB1562EAE92B76A5F3892865308A330@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190506234631.113226-1-chris.brandt@renesas.com>
- <20190506234631.113226-7-chris.brandt@renesas.com>
- <OSBPR01MB317436B70E57E04964BDDECED8330@OSBPR01MB3174.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSBPR01MB317436B70E57E04964BDDECED8330@OSBPR01MB3174.jpnprd01.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ad42fa74-1d41-4e84-bfcb-08d6d48c8a54
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1628;
-x-ms-traffictypediagnostic: TY1PR01MB1628:
-x-microsoft-antispam-prvs: <TY1PR01MB1628C44217D7CB970CFFF3538A330@TY1PR01MB1628.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1227;
-x-forefront-prvs: 003245E729
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(136003)(376002)(346002)(39860400002)(366004)(199004)(189003)(446003)(6862004)(486006)(229853002)(11346002)(66946007)(6246003)(476003)(73956011)(6636002)(66476007)(8676002)(64756008)(66446008)(25786009)(66556008)(8936002)(81156014)(81166006)(478600001)(186003)(9686003)(55016002)(2906002)(86362001)(26005)(72206003)(6506007)(76116006)(53936002)(68736007)(4326008)(102836004)(14444005)(256004)(305945005)(52536014)(33656002)(316002)(5660300002)(7736002)(74316002)(66066001)(71190400001)(71200400001)(6436002)(99286004)(7696005)(76176011)(3846002)(6116002)(54906003)(14454004);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1628;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: KvnXzQQUOMiUfnTbbGJ6qnnq8TnVGrgDB32+OZtfFL2Ls6e5aR8F9ymhkh1YtGFNt5GBwpSTotLLnEX4U2RSFIHZfNrZbs+woBOjlKHTf93wu6BclcaKX5SXfW+lR1c8JdkUffZPd3m2OkShCojeZilNxSukf60TqW3gAyugLKCAwtbLG0sGya6jz8acKtTZ6O+G7kKO2vGUp2g6AmOiIHWM8DLk2mL/3kd4kk2X5zxTRlzulrWWK5izeiEWwrv1gkxmEzx46SHssqw9k5mUPNl/SNJWtBSgXcdlTWyNLlUJQVxyjgvggXmm3yGFmSarudBAqWhpdrFp0VhLmqP9YZIAEf48miBsd+fZJfl8iVzYZ36g4g5YyG3ybYQeiTo54FIeQaafiizto/PCvku6pBg0VMCJcR5o3E5zWkxDZww=
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+j6enYkOBnSNkyu2eM7te0ntdtQJlHA891U/RcLzMOk=;
+        b=kHe04ueLrXXM9xAYkzCl/tdnpOFhua3fwQg4FFoeQ52eAyKgtfGKUOcUgxg542fWrH
+         2KQhPbIhOqbtfRj//JoNRQilkvcOBbcRmTatcJ6GC2lqOuT1KqhUXw5/7gXz+44A4mZr
+         cn54lXSug2YzBXx4bwx9WYZFwquHCMBrNAtpEQyzkkxZEssWO9jN6csI5kq805PpQWzI
+         vRhP3cv+X2JHUGWejMfWrySXLXLI7TWJ6lU4iyN4biSpQF3mkcI8ArfI03ZLTlEIP0p9
+         YaSZtbgWInwNuQT0cQkcxHz1UJsz3mjsy9+exVSheE5EJOlZjvrzbq20UXQEZPGubs4x
+         lvpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+j6enYkOBnSNkyu2eM7te0ntdtQJlHA891U/RcLzMOk=;
+        b=S+eXGsNEwCwmXyiJz6GphFrn2uzqJNV2Yq+REff2hgtVkKFQPtfnUXfa3ufEVccf0e
+         5gC75E6h5KCYJMRt3uXXe7ogSSNCRjN0gYFgmVNA6nWgZ1K+X39IELqlOesbKKTdhIqr
+         gd4HUQSStTJmJqwM/Ty8G9X9R25DGjSSSEW2zm/IH0lEVTRsv43aIGXUok8qoKCSPvpp
+         Uww0H+90HZENh94o4e2TUeTKaQVUyz0iFndjtVk6Y8baG9yWypygWH9cs/tDEFUHZSlC
+         dG3tXo6pa6Yqbz6T3BbsOQyhDu21+6qTqPBIbxElokTJuOhZJy13blJhwBILkLEwcrhk
+         nOwA==
+X-Gm-Message-State: APjAAAWqtUDAUpkONPXhrX4mXCxY59S2lHPINuTDYtDYyxhkXcJXSaqz
+        4JWtCzlVcCHnqutDJKxb3Do=
+X-Google-Smtp-Source: APXvYqwPUayhHjNPJSch0iyycrJiUPgfYnBHtqIvmVX8IHBFD+1qP+oBJpmFODSeisfJvP0n+1Rsvg==
+X-Received: by 2002:adf:f90c:: with SMTP id b12mr3394468wrr.63.1557413130481;
+        Thu, 09 May 2019 07:45:30 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id v184sm3678347wma.6.2019.05.09.07.45.29
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 09 May 2019 07:45:29 -0700 (PDT)
+Date:   Thu, 9 May 2019 16:45:28 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        jonathanh@nvidia.com, lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 27/28] PCI: tegra: Add support for GPIO based PCIe
+ reset
+Message-ID: <20190509144528.GX8907@ulmo>
+References: <20190423092825.759-1-mmaddireddy@nvidia.com>
+ <20190423092825.759-28-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad42fa74-1d41-4e84-bfcb-08d6d48c8a54
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2019 14:42:19.9732
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1628
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dQ+ozEaLk2y6HH72"
+Content-Disposition: inline
+In-Reply-To: <20190423092825.759-28-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda=1B$B$5$s!"=1B(B
 
-> From: Yoshihiro Shimoda
-> Sent: Thursday, May 09, 2019 3:04 AM
+--dQ+ozEaLk2y6HH72
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > -/* status */
-> > -#define usbhsc_flags_init(p)   do {(p)->flags =3D 0; } while (0)
-> > -#define usbhsc_flags_set(p, b) ((p)->flags |=3D  (b))
-> > -#define usbhsc_flags_clr(p, b) ((p)->flags &=3D ~(b))
-> > -#define usbhsc_flags_has(p, b) ((p)->flags &   (b))
+On Tue, Apr 23, 2019 at 02:58:24PM +0530, Manikanta Maddireddy wrote:
+> Add support for GPIO based PERST# instead of SFIO mode controlled by AFI.
+> GPIO number comes from per port PCIe device tree node.
 >=20
-> I would like to separate this patch to some patches like below to review
-> the patch(es) easily:
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> ---
+> V2: Using standard "reset-gpio" property
 >=20
-> 1. Just move these definitions to common.h.
-
-FYI, checkpatch.pl says this:
-
-  WARNING: Single statement macros should not use a do {} while (0) loop
-  #122: FILE: drivers/usb/renesas_usbhs/common.h:350:
-  +#define usbhsc_flags_init(p)   do {(p)->flags =3D 0; } while (0)
-
-So, I will change this code to:
-
-#define usbhsc_flags_init(p)   {(p)->flags =3D 0;}
-
-
-
-> It's the same with RZA1. So, I think we can reuse the code like below.
-> What do you think?
-> +	if (dparam->type =3D=3D USBHS_TYPE_RZA1 ||
-> +	    dparam->type =3D=3D USBHS_TYPE_RZA2) {
-> 		dparam->pipe_configs =3D usbhsc_new_pipe;
-> 		dparam->pipe_size =3D ARRAY_SIZE(usbhsc_new_pipe);
-> 	}
-
-OK.
-
-#At first, RZA2 had 'dparam->has_usb_dmac =3D 1'. But, DMA had some
- issues, so I removed it.
-
-
-
-> I prefer to add "{ }" on "if" and "else" like below.
+>  drivers/pci/controller/pci-tegra.c | 36 +++++++++++++++++++++++++-----
+>  1 file changed, 30 insertions(+), 6 deletions(-)
 >=20
-> 	if (usbhsc_flags_has(priv, USBHSF_CFIFO_BYTE_ADDR)) {
-> 		for (i =3D 0; i < len; i++)
-> 			iowrite8(buf[i], addr + (i & 0x03));
-> 	} else {
-> 		for (i =3D 0; i < len; i++)
-> 			iowrite8(buf[i], addr + (0x03 - (i & 0x03)));
-> 	}
+> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/=
+pci-tegra.c
+> index 72d344858e25..09b3b3e847c5 100644
+> --- a/drivers/pci/controller/pci-tegra.c
+> +++ b/drivers/pci/controller/pci-tegra.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/debugfs.h>
+>  #include <linux/delay.h>
+>  #include <linux/export.h>
+> +#include <linux/gpio.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/irq.h>
+> @@ -26,6 +27,7 @@
+>  #include <linux/module.h>
+>  #include <linux/msi.h>
+>  #include <linux/of_address.h>
+> +#include <linux/of_gpio.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/pci.h>
+> @@ -400,6 +402,8 @@ struct tegra_pcie_port {
+>  	unsigned int lanes;
+> =20
+>  	struct phy **phys;
+> +
+> +	int reset_gpio;
 
-OK.
-#I always prefer braces. It is easier to read.
+Please store the struct gpio_desc * here.
 
+>  };
+> =20
+>  struct tegra_pcie_bus {
+> @@ -583,15 +587,23 @@ static void tegra_pcie_port_reset(struct tegra_pcie=
+_port *port)
+>  	unsigned long value;
+> =20
+>  	/* pulse reset signal */
+> -	value =3D afi_readl(port->pcie, ctrl);
+> -	value &=3D ~AFI_PEX_CTRL_RST;
+> -	afi_writel(port->pcie, value, ctrl);
+> +	if (gpio_is_valid(port->reset_gpio)) {
+> +		gpiod_set_value(gpio_to_desc(port->reset_gpio), 0);
 
-> > +static int usbhs_rza2_power_ctrl(struct platform_device *pdev,
-> > +				void __iomem *base, int enable)
-> > +{
-> > +	struct usbhs_priv *priv =3D usbhs_pdev_to_priv(pdev);
-> > +	int retval =3D -ENODEV;
-> > +
-> > +	if (priv->phy) {
-> > +		if (enable) {
-> > +			retval =3D phy_init(priv->phy);
-> > +			if (enable) {
-> > +				usbhs_bset(priv, SUSPMODE, SUSPM, SUSPM);
-> > +				/* Wait 100 usec for PLL to become stable */
-> > +				udelay(100);
-> > +			} else {
+Then there's no need for the conversion between the integer and the
+descriptor.
+
+> +	} else {
+> +		value =3D afi_readl(port->pcie, ctrl);
+> +		value &=3D ~AFI_PEX_CTRL_RST;
+> +		afi_writel(port->pcie, value, ctrl);
+> +	}
+> =20
+>  	usleep_range(1000, 2000);
+> =20
+> -	value =3D afi_readl(port->pcie, ctrl);
+> -	value |=3D AFI_PEX_CTRL_RST;
+> -	afi_writel(port->pcie, value, ctrl);
+> +	if (gpio_is_valid(port->reset_gpio)) {
+> +		gpiod_set_value(gpio_to_desc(port->reset_gpio), 1);
+> +	} else {
+> +		value =3D afi_readl(port->pcie, ctrl);
+> +		value |=3D AFI_PEX_CTRL_RST;
+> +		afi_writel(port->pcie, value, ctrl);
+> +	}
+>  }
+> =20
+>  static void tegra_pcie_enable_rp_features(struct tegra_pcie_port *port)
+> @@ -2299,6 +2311,18 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *=
+pcie)
+>  		if (IS_ERR(rp->base))
+>  			return PTR_ERR(rp->base);
+> =20
+> +		rp->reset_gpio =3D of_get_named_gpio(port, "reset-gpio", 0);
+
+You can use devm_gpiod_get_from_of_node() to achieve this. Also, that
+function allows you to pass in flags, so you no longer need the below
+extra step to configure the GPIO.
+
+> +		if (gpio_is_valid(rp->reset_gpio)) {
+> +			err =3D devm_gpio_request_one(dev, rp->reset_gpio,
+> +						    GPIOF_OUT_INIT_LOW,
+> +						    "pex_reset");
+
+Perhaps we want to include the port in the label somehow?
+
+> +			if (err < 0) {
+> +				dev_err(dev, "failed to request reset-gpio: %d\n",
+
+Something like the below would be more consistent with the rest of the
+driver:
+
+	"failed to request reset GPIO: %d\n"
+
+Thierry
+
+> +					err);
+> +				return err;
+> +			}
+> +		}
+> +
+>  		list_add_tail(&rp->list, &pcie->ports);
+>  	}
+> =20
+> --=20
+> 2.17.1
 >=20
-> This else code never runs. So,
 
-Yes, thank you.
+--dQ+ozEaLk2y6HH72
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This code is ugly, so I'm going to change it.
+-----BEGIN PGP SIGNATURE-----
 
-Chris
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzUPQgACgkQ3SOs138+
+s6HTshAAo2nf73sYvfmc+JCqaBR7ml4YFK+9SSm6ElRVC5cTk5lg3smZ24UgVk+1
+jjECxHHPNRBlB66HEiz0Q6sZX65pY2bl5J16Dh98Ud+qMmccb10iWB5EF5OPZxar
+fx5iM7rxmTvwxEVruILwbP5JqZq3cIoRmaM3GbSWD6OCRMEAhPqCqZD9kHymAf34
+ZME75DKF4oOgJzcPJpIkWmyEwdJAX8Eb+UmDLEzSa4J2MyXfoYScH5+EeKfwZLdj
+ros2sqkdac4v8Abz/tWKjXkg1A5ogKSubGzJgOMHc/X0bWX9mKqrE3ScEIcjQoNp
+OrhzREgUPHiEIoqPCgC1ZUywiYQcHUt5bl7uU3RyM+pltOnI4ZIB2OD1BjSQ8VtN
+4sQLqMivSlTOAAzatQwbyA80Z6+HRUxoOx71nmTnS5XKlxYJWRPPsV/qwEzO/75V
+/JZHpCIUtO/UfHi5X9Ik80fXmBLTZ60V+g9TCqjalVNJ5HAugAWZVyMaCYO8m/qx
+r70cSCFgC4Zzek4VPNwzqXelu900cqDjLsy73nJWQn9a/vG9T6uFvt6a1T3ZjuO2
+LvOfvuJ1sKF3AijVJ7uHw8rOAsbhGH7/fap/XpHG/t5lq/fRuJG8gRI/7YYm9fR9
+r1YixEr1koRlLcEePJ8pW5plztzgpFeEA9L2IdDW1ili6OrZgDU=
+=rsaI
+-----END PGP SIGNATURE-----
 
+--dQ+ozEaLk2y6HH72--
