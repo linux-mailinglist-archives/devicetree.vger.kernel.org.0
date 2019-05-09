@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F6818D80
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B33318D8E
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbfEIP6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 11:58:49 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:50731 "EHLO
+        id S1726656AbfEIP6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 11:58:53 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:36947 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726754AbfEIP6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:58:48 -0400
+        with ESMTP id S1726777AbfEIP6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:58:51 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hOlRS-00076a-2m; Thu, 09 May 2019 17:58:42 +0200
+        id 1hOlRW-00076b-TN; Thu, 09 May 2019 17:58:46 +0200
 Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hOlRR-00062q-6l; Thu, 09 May 2019 17:58:41 +0200
+        id 1hOlRR-00062s-7G; Thu, 09 May 2019 17:58:41 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     robh+dt@kernel.org, shawnguo@kernel.org, linux-imx@nxp.com
 Cc:     Stefan.Nickl@kontron.com, Gilles.Buloz@kontron.com,
         Michael.Brunner@kontron.com, thomas.schaefer@kontron.com,
         frieder.schrempf@kontron.de, kernel@pengutronix.de,
         devicetree@vger.kernel.org
-Subject: [PATCH 11/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI1 interface
-Date:   Thu,  9 May 2019 17:58:28 +0200
-Message-Id: <20190509155834.22838-12-m.felsch@pengutronix.de>
+Subject: [PATCH 12/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Watchdog
+Date:   Thu,  9 May 2019 17:58:29 +0200
+Message-Id: <20190509155834.22838-13-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190509155834.22838-1-m.felsch@pengutronix.de>
 References: <20190509155834.22838-1-m.felsch@pengutronix.de>
@@ -43,52 +43,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Add support according the SMARC Spec 1.1 [1] and provided schematics.
-Due to the lack of hardware the interface can't be tested right now.
+
+Kontron connected the pin to the SoM CPLD too. The CPLD performs after a
+30s timeout so we need to enable the watchdog per default.
 
 [1] https://sget.org/standards/smarc
 
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-index 864e05b14b6f..1b2764a9ba7f 100644
+index 1b2764a9ba7f..e62f349a351a 100644
 --- a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
 +++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-@@ -241,6 +241,14 @@
- 	pinctrl-0 = <&pinctrl_flexcan2>;
- };
- 
-+/* SPI1 */
-+&ecspi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	fsl,spi-num-chipselects = <2>;
-+	cs-gpios = <&gpio2 26 0>, <&gpio2 27 0>;
-+};
-+
- /* SPI0 */
- &ecspi4 {
- 	pinctrl-names = "default";
-@@ -414,6 +422,17 @@
+@@ -691,6 +691,12 @@
+ 			MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x17059
  		>;
  	};
- 
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_CS0__ECSPI2_SCLK 0x100b1
-+			MX6QDL_PAD_EIM_CS1__ECSPI2_MOSI 0x100b1
-+			MX6QDL_PAD_EIM_OE__ECSPI2_MISO  0x100b1
 +
-+			MX6QDL_PAD_EIM_RW__GPIO2_IO26  0x1b0b0 /* CS0 */
-+			MX6QDL_PAD_EIM_LBA__GPIO2_IO27 0x1b0b0 /* CS1 */
++	pinctrl_wdog1: wdog1rp {
++		fsl,pins = <
++			MX6QDL_PAD_GPIO_9__WDOG1_B	0x1b0b0
 +		>;
 +	};
+ };
+ 
+ &mipi_csi {
+@@ -770,3 +776,10 @@
+ 	no-1-8-v;
+ 	non-removable;
+ };
 +
- 	pinctrl_ecspi4: ecspi4grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_EIM_D21__ECSPI4_SCLK 0x100b1
++&wdog1 {
++	/* CPLD is feeded by watchdog (hardwired) */
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog1>;
++	status = "okay";
++};
 -- 
 2.20.1
 
