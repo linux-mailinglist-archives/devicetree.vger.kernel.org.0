@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0666918EF3
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 19:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2917D18F2E
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 19:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726657AbfEIRZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 13:25:32 -0400
-Received: from anholt.net ([50.246.234.109]:36838 "EHLO anholt.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726656AbfEIRZc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 May 2019 13:25:32 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by anholt.net (Postfix) with ESMTP id B0F7910A34BA;
-        Thu,  9 May 2019 10:25:31 -0700 (PDT)
-X-Virus-Scanned: Debian amavisd-new at anholt.net
-Received: from anholt.net ([127.0.0.1])
-        by localhost (kingsolver.anholt.net [127.0.0.1]) (amavisd-new, port 10024)
-        with LMTP id YK81nugJA6pl; Thu,  9 May 2019 10:25:30 -0700 (PDT)
-Received: from eliezer.anholt.net (localhost [127.0.0.1])
-        by anholt.net (Postfix) with ESMTP id 4084610A34B6;
-        Thu,  9 May 2019 10:25:30 -0700 (PDT)
-Received: by eliezer.anholt.net (Postfix, from userid 1000)
-        id 6022C2FE3AA9; Thu,  9 May 2019 10:25:29 -0700 (PDT)
-From:   Eric Anholt <eric@anholt.net>
-To:     Lukas Wunner <lukas@wunner.de>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Martin Sperl <kernel@martin.sperl.org>,
-        Noralf Tronnes <noralf@tronnes.org>,
-        linux-rpi-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: bcm283x: Enable DMA support for SPI controller
-In-Reply-To: <ab21b59ece7db065ee86f6f0c0a7623144db52b4.1557419583.git.lukas@wunner.de>
-References: <ab21b59ece7db065ee86f6f0c0a7623144db52b4.1557419583.git.lukas@wunner.de>
-User-Agent: Notmuch/0.22.2+1~gb0bcfaa (http://notmuchmail.org) Emacs/26.1 (x86_64-pc-linux-gnu)
-Date:   Thu, 09 May 2019 10:25:27 -0700
-Message-ID: <87zhnv35h4.fsf@anholt.net>
+        id S1726661AbfEIReh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 13:34:37 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:36140 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726640AbfEIReg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 13:34:36 -0400
+Received: by mail-pl1-f195.google.com with SMTP id d21so1484826plr.3
+        for <devicetree@vger.kernel.org>; Thu, 09 May 2019 10:34:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=NV8a2i73WVKMbLkPe/ykYUDMcv3XghE7mWCl/3SVv/k=;
+        b=bzNv4L1MDrKiasCNxfbxCkBQ9X3YkMoS0qsgQKS0FtFlKHET55fhcvqLMiusJECl5l
+         q/33EuO92lW5akeoBjO9Pim9SjApfPHNf541rTI06X0gZY92PMvN9WsuoigCAeDwBUMc
+         XvhUhEPTQGBPY12oVfWmeSo3sl/1Qk9HuwLDh86ABXPBGVhxt1zOfx9MDP3s2thtSgCt
+         CB5bE7CMg58hEpmBZ4orboXWEYAp5JFYb5lOtzi3LSbormd5dDzCQT5rrksBbFFmXGLG
+         hSmngon424Ew+aAH8fUUGbhVRdYNuJCp5G47qZ2KzRjP0+SN/BUw/uMtcwpA6qssDh2D
+         hzzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=NV8a2i73WVKMbLkPe/ykYUDMcv3XghE7mWCl/3SVv/k=;
+        b=YBOya5NVtzu6++vJot5qmiGQrlhf6urlvX63VMvKpOOZuTQtn7QToop8p7ZQ3Ia/h2
+         unZoAlOVGov+n/E9So94zUuD2dFhrQhrvynjxtlSnWh2seNF2zhhL1hCYdgT0YkxfY2b
+         cJTpU8VMxPtdhndl9OSdqZDBApkovd5hLXBds5keVVVw7md4wLPkIHVAEcHK4MTqXuMD
+         eotE5sdtzaAYJE9xWB5Ilu7GpkiYWDCnpUs5X7RBtizv0+4Bsyi+IaaDQ6MvTUSHv78P
+         8orWWNwt8otDrBsrxurxLS0GLgxeY5JB0h8vw1qZxJbQWyUsGuU1j9jae1t1m7vp+FlU
+         Zsuw==
+X-Gm-Message-State: APjAAAXl9acGGzVV3IxSoq4Gg7pjdUjcxPnRLdTh+S+4brwuYcHsfb2k
+        FGKj0/x71jW0pJP3rmXT8IEp4A==
+X-Google-Smtp-Source: APXvYqwGtwtzv7H/zs+qkb/WvwOd0PUv3OZLcslB9uxXJvZ5w1rSJfUucWQhGKXD0BdWBBMGExYOmg==
+X-Received: by 2002:a17:902:424:: with SMTP id 33mr6829930ple.102.1557423276297;
+        Thu, 09 May 2019 10:34:36 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:7849:6889:3e03:e97c])
+        by smtp.googlemail.com with ESMTPSA id 25sm3909134pfo.145.2019.05.09.10.34.34
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 09 May 2019 10:34:35 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Guillaume La Roque <glaroque@baylibre.com>,
+        linus.walleij@linaro.org
+Cc:     jbrunet@baylibre.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] Add drive-strength in Meson pinctrl driver
+In-Reply-To: <20190509162920.7054-1-glaroque@baylibre.com>
+References: <20190509162920.7054-1-glaroque@baylibre.com>
+Date:   Thu, 09 May 2019 10:34:34 -0700
+Message-ID: <7h36lnh6qd.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Guillaume La Roque <glaroque@baylibre.com> writes:
 
-Lukas Wunner <lukas@wunner.de> writes:
-
-> Without this, the driver for the BCM2835 SPI controller uses interrupt
-> mode instead of DMA mode, incurring a significant performance penalty.
-> The Foundation's device tree has had these attributes for years, but for
-> some reason they were never upstreamed.
+> The purpose of this patchset is to add drive-strength support in meson pinconf
+> driver. This is a new feature that was added on the g12a. It is critical for us
+> to support this since many functions are failing with default pad drive-strength.
 >
-> They were originally contributed by Noralf Tr=C3=B8nnes and Martin Sperl:
-> https://github.com/raspberrypi/linux/commit/25f3e064afc8
-> https://github.com/raspberrypi/linux/commit/e0edb52b47e6
+> The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
+> 'drive-strength' is expressed in mA.
+> So this patch add another generic property "drive-strength-uA". The change to do so
+
+Looks like you forgot to update the cover letter.
+
+The new property in this series is actually named
+"drive-strengh-micromap"
+
+> would be minimal and could be benefit to other platforms later on.
 >
-> The DREQ numbers 6 and 7 are documented in section 4.2.1.3 of:
-> https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.p=
-df
+> Cheers
+> Guillaume
 >
-> Tested-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> Changes since v3:
+> - remove dev_err in meson_get_drive_strength
+> - cleanup code
 
-Reviewed-by: Eric Anholt <eric@anholt.net>
+You didn't mention the property rename.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAlzUYocACgkQtdYpNtH8
-nuisSQ/9F3xsTI4/P6Gv97jjfvxzNJ5xNdrxauZLWJldZh8RC0MSP1sq7NqlE3AG
-pxvuVLVVv8rqt/6sJtTz8Hat0kPWG9gf17dg9WnrutUXv/ovk5Cr9OBpCIhXieTU
-5RWVxQgxMe+dDrbOTuh3L9vVD18Yd+qKnsgINJ5vei4biYGLBVxTpeGUBhIrTKwU
-A224+8KNqHLmFHMEtd9GmjWIrbhrcJH3tU8vCRQvWcO8uihvN2beJ5V3JjsqNEuG
-V8FLOAkzT3Epxuh+irGHcMMFCvLXtPi6wl5WYTZfyAB8zPnNNuoo3OpNAZEfeHtY
-rimyjeJZY/YxGXlDvJxRAnaDS7McfxQ4zsO6tVsPKdSNZMHreMr4eAyzaAzqm4kC
-LFY3HFrY0cm6/aMBQmJSi7oZgaGLKTlmWAIwCh1XxRlN6GocNnjw1857Fol7VP3z
-0URKyKGao7oyODfi2xAJFlnmPmY5OLDaURasO6XZqWwAVFN7IyeUHank0xxKrkC+
-xD7ED3oPDWigpfaVCL/yAIj9W6KiwZFGQW2fwZSIerisU17ZjSg5r4vnBf2q4wT+
-oLY4Xa5Gx0gYjnZvovl4o1Fb0msNF/gtt1MHt0O3Krq/XPgekWC9nkBvzNJdeBIK
-LsweHQA+/4DHnDL/zbkoqlrvx4d+x8UH57Gy2WmHmBOP85xtNaU=
-=6g+P
------END PGP SIGNATURE-----
---=-=-=--
+Kevin
