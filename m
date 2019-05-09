@@ -2,73 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83371189C1
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 14:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C2E18A0C
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 14:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726594AbfEIMaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 08:30:06 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:50032 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726426AbfEIMaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 08:30:06 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 25BB425AD6F;
-        Thu,  9 May 2019 22:30:04 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 2A0B89403F2; Thu,  9 May 2019 14:30:02 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
+        id S1726573AbfEIMvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 08:51:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50470 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726054AbfEIMvl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 May 2019 08:51:41 -0400
+Received: from localhost (unknown [106.200.210.185])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0EEA421479;
+        Thu,  9 May 2019 12:51:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557406300;
+        bh=5Vi+tEKkp9VxJRyFwYeZI7OuxsJj4UPpv65iBZIJ/kU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kbYedNbtek73Ryw7WZTAkNJt5ocKMKYDQTGYb95tyIAircFqXNRLinWK0eKaSnYoI
+         XIHtHXjg26aFPx7LlHijIWlNJIfkxuanMYz8iaJ49YiOWZHRKijrHeOp26SLU+1ITH
+         2c+/lKZDeLPbccYFdVajGF7Wot0rkwUuUDVdcEds=
+Date:   Thu, 9 May 2019 18:21:35 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Cao Van Dong <cv-dong@jinso.co.jp>,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH repost] dt-bindings: timer: renesas, cmt: Document r8a779{5|65|90} CMT support
-Date:   Thu,  9 May 2019 14:29:49 +0200
-Message-Id: <20190509122949.23256-1-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4] clk: gcc-qcs404: Add PCIe resets
+Message-ID: <20190509125135.GE16052@vkoul-mobl>
+References: <20190508223922.5609-1-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190508223922.5609-1-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Cao Van Dong <cv-dong@jinso.co.jp>
+On 08-05-19, 15:39, Bjorn Andersson wrote:
+> Enabling PCIe requires several of the PCIe related resets from GCC, so
+> add them all.
 
-Document SoC specific bindings for R-Car H3/M3-N/E3 SoCs.
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Signed-off-by: Cao Van Dong <cv-dong@jinso.co.jp>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
----
- Documentation/devicetree/bindings/timer/renesas,cmt.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.txt b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-index c0594450e9ef..c5220bcd852b 100644
---- a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-+++ b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
-@@ -42,12 +42,18 @@ Required Properties:
-     - "renesas,r8a7793-cmt1" for the 48-bit CMT1 device included in r8a7793.
-     - "renesas,r8a7794-cmt0" for the 32-bit CMT0 device included in r8a7794.
-     - "renesas,r8a7794-cmt1" for the 48-bit CMT1 device included in r8a7794.
-+    - "renesas,r8a7795-cmt0" for the 32-bit CMT0 device included in r8a7795.
-+    - "renesas,r8a7795-cmt1" for the 48-bit CMT1 device included in r8a7795.
-     - "renesas,r8a7796-cmt0" for the 32-bit CMT0 device included in r8a7796.
-     - "renesas,r8a7796-cmt1" for the 48-bit CMT1 device included in r8a7796.
-+    - "renesas,r8a77965-cmt0" for the 32-bit CMT0 device included in r8a77965.
-+    - "renesas,r8a77965-cmt1" for the 48-bit CMT1 device included in r8a77965.
-     - "renesas,r8a77970-cmt0" for the 32-bit CMT0 device included in r8a77970.
-     - "renesas,r8a77970-cmt1" for the 48-bit CMT1 device included in r8a77970.
-     - "renesas,r8a77980-cmt0" for the 32-bit CMT0 device included in r8a77980.
-     - "renesas,r8a77980-cmt1" for the 48-bit CMT1 device included in r8a77980.
-+    - "renesas,r8a77990-cmt0" for the 32-bit CMT0 device included in r8a77990.
-+    - "renesas,r8a77990-cmt1" for the 48-bit CMT1 device included in r8a77990.
- 
-     - "renesas,rcar-gen2-cmt0" for 32-bit CMT0 devices included in R-Car Gen2
- 		and RZ/G1.
 -- 
-2.11.0
-
+~Vinod
