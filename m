@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69C5818D8D
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2598818D8F
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726766AbfEIP6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 11:58:48 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:33245 "EHLO
+        id S1726558AbfEIP6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 11:58:54 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:59249 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726617AbfEIP6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:58:48 -0400
+        with ESMTP id S1726753AbfEIP6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:58:49 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hOlRS-00076W-2n; Thu, 09 May 2019 17:58:42 +0200
+        id 1hOlRS-00076X-2g; Thu, 09 May 2019 17:58:42 +0200
 Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hOlRR-00062e-4t; Thu, 09 May 2019 17:58:41 +0200
+        id 1hOlRR-00062h-5O; Thu, 09 May 2019 17:58:41 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     robh+dt@kernel.org, shawnguo@kernel.org, linux-imx@nxp.com
 Cc:     Stefan.Nickl@kontron.com, Gilles.Buloz@kontron.com,
         Michael.Brunner@kontron.com, thomas.schaefer@kontron.com,
         frieder.schrempf@kontron.de, kernel@pengutronix.de,
         devicetree@vger.kernel.org
-Subject: [PATCH 07/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC GPIO interface
-Date:   Thu,  9 May 2019 17:58:24 +0200
-Message-Id: <20190509155834.22838-8-m.felsch@pengutronix.de>
+Subject: [PATCH 08/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC HDMI interface
+Date:   Thu,  9 May 2019 17:58:25 +0200
+Message-Id: <20190509155834.22838-9-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190509155834.22838-1-m.felsch@pengutronix.de>
 References: <20190509155834.22838-1-m.felsch@pengutronix.de>
@@ -45,50 +45,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 Add support according the SMARC Spec 1.1 [1] and provided schematics.
 Due to the lack of hardware the interface can't be tested right now.
 
+Since the imx6 HDMI signals are not muxable we only have to add the
+dedicated i2c-hdmi signals.
+
 [1] https://sget.org/standards/smarc
 
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-index 7a32767c35f1..9b8a1d99d967 100644
+index 9b8a1d99d967..e0372687d8f4 100644
 --- a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
 +++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-@@ -322,7 +322,7 @@
+@@ -313,6 +313,13 @@
+ 	};
+ };
  
- &iomuxc {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_mgmt_gpios>;
-+	pinctrl-0 = <&pinctrl_mgmt_gpios &pinctrl_gpio>;
- 
- 	pinctrl_ecspi4: ecspi4grp {
- 		fsl,pins = <
-@@ -351,6 +351,23 @@
++/* HDMI_CTRL */
++&i2c2 {
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c2>;
++};
++
+ /* I2C_PM */
+ &i2c3 {
+ 	clock-frequency = <100000>;
+@@ -404,6 +411,13 @@
  		>;
  	};
  
-+	pinctrl_gpio: gpiogrp {
++	pinctrl_i2c2: i2c2grp {
 +		fsl,pins = <
-+			MX6QDL_PAD_EIM_DA0__GPIO3_IO00	0x1b0b0	/* GPIO0 / CAM0_PWR# */
-+			MX6QDL_PAD_EIM_DA1__GPIO3_IO01	0x1b0b0 /* GPIO1 / CAM1_PWR# */
-+			MX6QDL_PAD_EIM_DA2__GPIO3_IO02	0x1b0b0 /* GPIO2 / CAM0_RST# */
-+			MX6QDL_PAD_EIM_DA3__GPIO3_IO03	0x1b0b0 /* GPIO3 / CAM1_RST# */
-+			MX6QDL_PAD_EIM_DA4__GPIO3_IO04	0x1b0b0 /* GPIO4 / HDA_RST#  */
-+			MX6QDL_PAD_EIM_DA5__GPIO3_IO05	0x1b0b0 /* GPIO5 / PWM_OUT   */
-+			MX6QDL_PAD_EIM_DA6__GPIO3_IO06	0x1b0b0 /* GPIO6 / TACHIN    */
-+			MX6QDL_PAD_EIM_DA7__GPIO3_IO07	0x1b0b0 /* GPIO7 / PCAM_FLD  */
-+			MX6QDL_PAD_EIM_DA8__GPIO3_IO08	0x1b0b0 /* GPIO8 / CAN0_ERR# */
-+			MX6QDL_PAD_EIM_DA9__GPIO3_IO09	0x1b0b0 /* GPIO9 / CAN1_ERR# */
-+			MX6QDL_PAD_EIM_DA10__GPIO3_IO10	0x1b0b0 /* GPIO10            */
-+			MX6QDL_PAD_EIM_DA11__GPIO3_IO11	0x1b0b0 /* GPIO11            */
++			MX6QDL_PAD_KEY_COL3__I2C2_SCL		0x4001b8b1
++			MX6QDL_PAD_KEY_ROW3__I2C2_SDA		0x4001b8b1
 +		>;
 +	};
 +
- 	pinctrl_enet: enetgrp {
+ 	pinctrl_i2c3: i2c3grp {
  		fsl,pins = <
- 			MX6QDL_PAD_RGMII_TXC__RGMII_TXC       0x1b0b0
+ 			MX6QDL_PAD_GPIO_3__I2C3_SCL		0x4001b8b1
 -- 
 2.20.1
 
