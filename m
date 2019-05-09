@@ -2,117 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20EE018AAE
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 15:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7062B18AD3
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 15:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726195AbfEIN34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 09:29:56 -0400
-Received: from mail-eopbgr50060.outbound.protection.outlook.com ([40.107.5.60]:22357
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726054AbfEIN3z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 May 2019 09:29:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MeUweS/VZAn2fh4/eFhKzhdwC+uKv8rDe746QlgMp+k=;
- b=h6eNm6DCMbp+SxsobjNt1H9NpbCMt9HW7ePkxYVOzrUiVDwLmdO8uuGOsN8otshAu70OUkX5hUwnTqQQ7W3ltV90TTn4gjC/lQFRjWtPTTjZSPCFgutAU+SCF3oVNPwX+9c6DMvoSvQjYtIRoFoCFk5ymh5AbijRT7nTFAmjQZU=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3673.eurprd04.prod.outlook.com (52.134.70.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1856.11; Thu, 9 May 2019 13:29:50 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1878.022; Thu, 9 May 2019
- 13:29:50 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        "schnitzeltony@gmail.com" <schnitzeltony@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "jan.tuerk@emtrion.com" <jan.tuerk@emtrion.com>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: [PATCH V12 5/5] ARM: dts: imx7ulp-evk: Add backlight support
-Thread-Topic: [PATCH V12 5/5] ARM: dts: imx7ulp-evk: Add backlight support
-Thread-Index: AQHVBmtHFU9Wn9MxQkO02kKidSBEsQ==
-Date:   Thu, 9 May 2019 13:29:50 +0000
-Message-ID: <1557408252-21281-6-git-send-email-Anson.Huang@nxp.com>
-References: <1557408252-21281-1-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1557408252-21281-1-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.7.4
-x-clientproxiedby: HK0P153CA0001.APCP153.PROD.OUTLOOK.COM
- (2603:1096:203:18::13) To DB3PR0402MB3916.eurprd04.prod.outlook.com
- (2603:10a6:8:10::18)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 315240dc-3388-426a-9fdb-08d6d4826997
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3673;
-x-ms-traffictypediagnostic: DB3PR0402MB3673:
-x-microsoft-antispam-prvs: <DB3PR0402MB36732CE5BE45F2C45D80E3BBF5330@DB3PR0402MB3673.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:243;
-x-forefront-prvs: 003245E729
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(136003)(396003)(39860400002)(346002)(366004)(199004)(189003)(7416002)(6512007)(86362001)(2201001)(6486002)(305945005)(66556008)(66946007)(73956011)(66476007)(64756008)(7736002)(66446008)(316002)(99286004)(2906002)(186003)(6436002)(26005)(53936002)(102836004)(66066001)(50226002)(4326008)(76176011)(36756003)(52116002)(81156014)(386003)(6506007)(2501003)(8936002)(71200400001)(14454004)(81166006)(8676002)(71190400001)(68736007)(110136005)(5660300002)(3846002)(11346002)(446003)(256004)(478600001)(486006)(476003)(25786009)(6116002)(2616005)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3673;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 8w6bGnY4IM3nQmWoXfzIT3z6SE38bnGkI29h3ju4H64twWRaTP6e3RPM4G7Te+83UZZWhAlmNDv4DefwRiNzk1tKMGjdE0X9SQr0lCFnCs3ar4BpYHqQA/ml028Iwe9ngQfOLgenZ6n3E6CpgoiW7NZt2SZ2e8vhWXf7frXQKrEmHz3yUqYdf30DHCJS8l0AxmJv/EKw5QxdmfIS+mvCEPOmFNC7vVnNzYMhAvRyMc9FzkuvXCaTI1fd0CtRRhnxiQvgx697juiM55JWv/X8RFZHsDtLvMoDfuKBY8wxANidrjsD0zJ2D+IPoGNWhdkTWAy3vGh2Zgae/7S0E6fuPLOA3kKId53QzWraiQ3mqdd+TDTWGBPjTfQwqwt9Fmz4aut2iq8Whuf/PYcODKntNef/CMig1w3YsnceSgmveDc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726573AbfEINhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 09:37:23 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:54960 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726195AbfEINhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 09:37:23 -0400
+Received: from callcc.thunk.org ([66.31.38.53])
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x49DZpAW030412
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 9 May 2019 09:35:52 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id 6AC26420024; Thu,  9 May 2019 09:35:51 -0400 (EDT)
+Date:   Thu, 9 May 2019 09:35:51 -0400
+From:   "Theodore Ts'o" <tytso@mit.edu>
+To:     Knut Omang <knut.omang@oracle.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
+        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190509133551.GD29703@mit.edu>
+Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
+        Knut Omang <knut.omang@oracle.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Brendan Higgins <brendanhiggins@google.com>, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
+        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
+        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <54940124-50df-16ec-1a32-ad794ee05da7@gmail.com>
+ <20190507080119.GB28121@kroah.com>
+ <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
+ <20190509015856.GB7031@mit.edu>
+ <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
+ <20190509032017.GA29703@mit.edu>
+ <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 315240dc-3388-426a-9fdb-08d6d4826997
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2019 13:29:50.6999
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3673
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBwYXRjaCBhZGRzIGkuTVg3VUxQIEVWSyBib2FyZCBNSVBJLURTSSBiYWNrbGlnaHQgc3Vw
-cG9ydC4NCg0KU2lnbmVkLW9mZi1ieTogQW5zb24gSHVhbmcgPEFuc29uLkh1YW5nQG54cC5jb20+
-DQotLS0NCk5vIGNoYW5nZS4NCi0tLQ0KIGFyY2gvYXJtL2Jvb3QvZHRzL2lteDd1bHAtZXZrLmR0
-cyB8IDIwICsrKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDIwIGluc2VydGlv
-bnMoKykNCg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDd1bHAtZXZrLmR0cyBi
-L2FyY2gvYXJtL2Jvb3QvZHRzL2lteDd1bHAtZXZrLmR0cw0KaW5kZXggYTA5MDI2YS4uNTlmMDk0
-ZSAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDd1bHAtZXZrLmR0cw0KKysrIGIv
-YXJjaC9hcm0vYm9vdC9kdHMvaW14N3VscC1ldmsuZHRzDQpAQCAtMjIsNiArMjIsMTQgQEANCiAJ
-CXJlZyA9IDwweDYwMDAwMDAwIDB4NDAwMDAwMDA+Ow0KIAl9Ow0KIA0KKwliYWNrbGlnaHQgew0K
-KwkJY29tcGF0aWJsZSA9ICJwd20tYmFja2xpZ2h0IjsNCisJCXB3bXMgPSA8JnRwbTQgMSA1MDAw
-MCAwPjsNCisJCWJyaWdodG5lc3MtbGV2ZWxzID0gPDAgMjAgMjUgMzAgMzUgNDAgMTAwPjsNCisJ
-CWRlZmF1bHQtYnJpZ2h0bmVzcy1sZXZlbCA9IDw2PjsNCisJCXN0YXR1cyA9ICJva2F5IjsNCisJ
-fTsNCisNCiAJcmVnX3ZzZF8zdjM6IHJlZ3VsYXRvci12c2QtM3YzIHsNCiAJCWNvbXBhdGlibGUg
-PSAicmVndWxhdG9yLWZpeGVkIjsNCiAJCXJlZ3VsYXRvci1uYW1lID0gIlZTRF8zVjMiOw0KQEAg
-LTQwLDYgKzQ4LDEyIEBADQogCXN0YXR1cyA9ICJva2F5IjsNCiB9Ow0KIA0KKyZ0cG00IHsNCisJ
-cGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCisJcGluY3RybC0wID0gPCZwaW5jdHJsX3B3bTA+
-Ow0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCiAmdXNkaGMwIHsNCiAJcGluY3RybC1uYW1l
-cyA9ICJkZWZhdWx0IjsNCiAJcGluY3RybC0wID0gPCZwaW5jdHJsX3VzZGhjMD47DQpAQCAtNTcs
-NiArNzEsMTIgQEANCiAJCWJpYXMtcHVsbC11cDsNCiAJfTsNCiANCisJcGluY3RybF9wd20wOiBw
-d20wZ3JwIHsNCisJCWZzbCxwaW5zID0gPA0KKwkJCUlNWDdVTFBfUEFEX1BURjJfX1RQTTRfQ0gx
-CTB4Mg0KKwkJPjsNCisJfTsNCisNCiAJcGluY3RybF91c2RoYzA6IHVzZGhjMGdycCB7DQogCQlm
-c2wscGlucyA9IDwNCiAJCQlJTVg3VUxQX1BBRF9QVEQxX19TREhDMF9DTUQJMHg0Mw0KLS0gDQoy
-LjcuNA0KDQo=
+On Thu, May 09, 2019 at 01:52:15PM +0200, Knut Omang wrote:
+> 1) Tests that exercises typically algorithmic or intricate, complex
+>    code with relatively few outside dependencies, or where the dependencies 
+>    are considered worth mocking, such as the basics of container data 
+>    structures or page table code. If I get you right, Ted, the tests 
+>    you refer to in this thread are such tests. I believe covering this space 
+>    is the goal Brendan has in mind for KUnit.
+
+Yes, that's correct.  I'd also add that one of the key differences is
+that it sounds like Frank and you are coming from the perspective of
+testing *device drivers* where in general there aren't a lot of
+complex code which is hardware independent.  After all, the vast
+majority of device drivers are primarily interface code to hardware,
+with as much as possible abstracted away to common code.  (Take, for
+example, the model of the SCSI layer; or all of the kobject code.)
+
+> 2) Tests that exercises interaction between a module under test and other 
+>    parts of the kernel, such as testing intricacies of the interaction of 
+>    a driver or file system with the rest of the kernel, and with hardware, 
+>    whether that is real hardware or a model/emulation. 
+>    Using your testing needs as example again, Ted, from my shallow understanding,
+>    you have such needs within the context of xfstests (https://github.com/tytso/xfstests)
+
+Well, upstream is for xfstests is git://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git
+
+The test framework where I can run 20 hours worth of xfstests
+(multiple file system features enabled, multiple mount options, etc.)
+in 3 hours of wall clock time using multiple cloud VM is something
+called gce-xfstests.
+
+I also have kvm-xfstests, which optimizes low test latency, where I
+want to run a one or a small number of tests with a minimum of
+overhead --- gce startup and shutdown is around 2 minutes, where as
+kvm startup and shutdown is about 7 seconds.  As far as I'm concerned,
+7 seconds is still too slow, but that's the best I've been able to do
+given all of the other things I want a test framework to do, including
+archiving test results, parsing the test results so it's easy to
+interpret, etc.  Both kvm-xfstests and gce-xfstests are located at:
+
+	git://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git
+
+So if Frank's primary argument is "too many frameworks", it's already
+too late.  The block layer has blktests has a seprate framework,
+called blktests --- and yeah, it's a bit painful to launch or learn
+how to set things up.
+
+That's why I added support to run blktests using gce-xfstests and
+kvm-xfstests, so that "gce-xfstests --blktests" or "kvm-xfstests
+--xfstests" will pluck a kernel from your build tree, and launch at
+test appliance VM using that kernel and run the block layer tests.
+
+The point is we *already* have multiple test frameworks, which are
+optimized for testing different parts of the kernel.  And if you plan
+to do a lot of work in these parts of the kernel, you're going to have
+to learn how to use some other test framework other than kselftest.
+Sorry, that's just the way it goes.
+
+Of course, I'll accept trivial patches that haven't been tested using
+xfstests --- but that's because I can trivially run the smoke test for
+you.  Of course, if I get a lot of patches from a contributor which
+cause test regressions, I'll treat them much like someone who
+contribute patches which fail to build.  I'll apply pressure to the
+contributor to actually build test, or run a ten minute kvm-xfstests
+smoke test.  Part of the reason why I feel comfortable to do this is
+it's really easy to run the smoke test.  There are pre-compiled test
+appliances, and a lot of documentation:
+
+https://github.com/tytso/xfstests-bld/blob/master/Documentation/kvm-quickstart.md
+
+This is why I have close to zero sympathy to Frank's complaint that
+extra test frameworks are a bad thing.  To me, that's whining.  I've
+done a huge amount of work to meet contributors more than half-way.
+The insistence that "There Must Be One", ala the Highlander movie, is
+IMHO so wrong that it's not even close.  Is it really that hard to do
+a "git pull", download a test appliance, set up a config file to tell
+kvm-xfstests where to find your build tree, and then run "kvm-xfstests
+--smoke" or "gce-xfstests --smoke"?  Cry me a river.
+
+There are already multiple test frameworks, and if you expect to do a
+lot of work in a particular subsystem, you'll be expected to use the
+Maintainer's choice of tests.  Deal with it.  We do this so we can
+scale to the number of contributors we have in our subsystem.
+
+> To 1) I agree with Frank in that the problem with using UML is that you still have to
+> relate to the complexity of a kernel run time system, while what you really want for these
+> types of tests is just to compile a couple of kernel source files in a normal user land
+> context, to allow the use of Valgrind and other user space tools on the code.
+
+"Just compiling a couple of kernel source files in a normal user land"
+is much harder than you think.  It requires writing vast numbers of
+mocking functions --- for a file system I would have to simulate the
+block device layer, large portions of the VFS layer, the scheduler and
+the locking layer if I want to test locking bugs, etc., etc.  In
+practice, UML itself is serving as mocking layer, by its mere
+existence.  So when Frank says that KUnit doesn't provide any mocking
+functions, I don't at all agree.  Using KUnit and UML makes testing
+internal interfaces *far* simpler, especially if the comparison is
+"just compile some kernel source files as part of a userspace test
+program".
+
+Perhaps your and Frank's experience is different --- perhaps that can
+be explained by your past experience and interest in testing device
+drivers as opposed to file systems.
+
+The other thing I'd add is that at least for me, a really important
+consideration is how quickly we can run tests.  I consider
+minimization of developer friction (e.g., all you need to do is
+running "make ; kvm-xfstests --smoke" to run tests), and maximizing
+developer velocity to be high priority goals.  Developer velocity is
+how quickly can you run the tests; ideally, less than 5-10 seconds.
+
+And that's the other reason why I consider unit tests to be a
+complement to integration tests.  "gce-xfstests --smoke" takes 10-15
+minutes.  If I can have unit tests which takes 5-15 seconds for a
+smoke test of the specific part of ext4 that I am modifying (and often
+with much better coverage than integration tests from userspace),
+that's at really big deal.  I can do this for e2fsprogs; but if I have
+to launch a VM, the VM overhead pretty much eats all or most of that
+time budget right there.
+
+From looking at your documentation of KTF, you are targetting the use
+case of continuous testing.  That's a different testing scenario than
+what I'm describing; with continuous testing, overhead measured in
+minutes or even tens of minutes is not a big deal.  But if you are
+trying to do real-time testing as part of your development process ---
+*real* Test Driven Development, then test latency is a really big
+deal.
+
+I'll grant that for people who are working on device drivers where
+architecture dependencies are a big deal, building for an architecture
+where you can run in a virtual environment or using test hardware is
+going to be a better way to go.  And Brendan has said he's willing to
+look at adapting KUnit so it can be built for use in a virtual
+environment to accomodate your requirements.
+
+As far as I'm concerned, however, I would *not* be interested in KTF
+unless you could demonstrate to me that launching at test VM, somehow
+getting the kernel modules copied into the VM, and running the tests
+as kernel modules, has zero overhead compared to using UML.
+
+Ultimately, I'm a pragmatist.  If KTF serves your needs best, good for
+you.  If other approaches are better for other parts of the kernel,
+let's not try to impose a strict "There Must Be Only One" religion.
+That's already not true today, and for good reason.  There are many
+different kinds of kernel code, and many different types of test
+philosophies.  Trying to force all kernel testing into a single
+Procrustean Bed is simply not productive.
+
+Regards,
+
+						- Ted
