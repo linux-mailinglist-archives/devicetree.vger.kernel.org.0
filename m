@@ -2,103 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C84119572
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 00:53:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3069195B8
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 01:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726658AbfEIWxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 18:53:39 -0400
-Received: from anholt.net ([50.246.234.109]:39386 "EHLO anholt.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726219AbfEIWxj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 May 2019 18:53:39 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by anholt.net (Postfix) with ESMTP id C42CF10A34BF;
-        Thu,  9 May 2019 15:53:38 -0700 (PDT)
-X-Virus-Scanned: Debian amavisd-new at anholt.net
-Received: from anholt.net ([127.0.0.1])
-        by localhost (kingsolver.anholt.net [127.0.0.1]) (amavisd-new, port 10024)
-        with LMTP id KaayIk_7wkA7; Thu,  9 May 2019 15:53:37 -0700 (PDT)
-Received: from eliezer.anholt.net (localhost [127.0.0.1])
-        by anholt.net (Postfix) with ESMTP id A64FC10A34BC;
-        Thu,  9 May 2019 15:53:37 -0700 (PDT)
-Received: by eliezer.anholt.net (Postfix, from userid 1000)
-        id 27EFC2FE3AA9; Thu,  9 May 2019 15:53:37 -0700 (PDT)
-From:   Eric Anholt <eric@anholt.net>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer\:BROADCOM BCM281XX\/BCM11XXX\/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Doug Berger <opendmb@gmail.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Lukas Wunner <lukas@wunner.de>,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        Al Cooper <alcooperx@gmail.com>,
-        "open list\:PIN CONTROL SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list\:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list\:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/3] pinctrl: bcm: Allow PINCTRL_BCM2835 for ARCH_BRCMSTB
-In-Reply-To: <20190509205955.27842-1-f.fainelli@gmail.com>
-References: <20190509205955.27842-1-f.fainelli@gmail.com>
-User-Agent: Notmuch/0.22.2+1~gb0bcfaa (http://notmuchmail.org) Emacs/26.1 (x86_64-pc-linux-gnu)
-Date:   Thu, 09 May 2019 15:53:36 -0700
-Message-ID: <87woizqlxr.fsf@anholt.net>
+        id S1726795AbfEIXcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 19:32:25 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:38430 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726108AbfEIXcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 19:32:24 -0400
+Received: from callcc.thunk.org (guestnat-104-133-0-109.corp.google.com [104.133.0.109] (may be forged))
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x49NUiJg006219
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 9 May 2019 19:30:45 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id AC36A420024; Thu,  9 May 2019 19:30:43 -0400 (EDT)
+Date:   Thu, 9 May 2019 19:30:43 -0400
+From:   "Theodore Ts'o" <tytso@mit.edu>
+To:     Logan Gunthorpe <logang@deltatee.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
+        knut.omang@oracle.com, gregkh@linuxfoundation.org,
+        brendanhiggins@google.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, amir73il@gmail.com,
+        dan.carpenter@oracle.com, dan.j.williams@intel.com,
+        daniel@ffwll.ch, jdike@addtoit.com, joel@jms.id.au,
+        julia.lawall@lip6.fr, khilman@baylibre.com, mpe@ellerman.id.au,
+        pmladek@suse.com, richard@nod.at, rientjes@google.com,
+        rostedt@goodmis.org, wfg@linux.intel.com
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190509233043.GC20877@mit.edu>
+Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
+        knut.omang@oracle.com, gregkh@linuxfoundation.org,
+        brendanhiggins@google.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
+        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com
+References: <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
+ <20190509015856.GB7031@mit.edu>
+ <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
+ <20190509032017.GA29703@mit.edu>
+ <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+ <20190509133551.GD29703@mit.edu>
+ <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
+ <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
+ <20190509214233.GA20877@mit.edu>
+ <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+On Thu, May 09, 2019 at 04:20:05PM -0600, Logan Gunthorpe wrote:
+> 
+> The second item, arguably, does have significant overlap with kselftest.
+> Whether you are running short tests in a light weight UML environment or
+> higher level tests in an heavier VM the two could be using the same
+> framework for writing or defining in-kernel tests. It *may* also be valuable
+> for some people to be able to run all the UML tests in the heavy VM
+> environment along side other higher level tests.
+> 
+> Looking at the selftests tree in the repo, we already have similar items to
+> what Kunit is adding as I described in point (2) above. kselftest_harness.h
+> contains macros like EXPECT_* and ASSERT_* with very similar intentions to
+> the new KUNIT_EXECPT_* and KUNIT_ASSERT_* macros.
+> 
+> However, the number of users of this harness appears to be quite small. Most
+> of the code in the selftests tree seems to be a random mismash of scripts
+> and userspace code so it's not hard to see it as something completely
+> different from the new Kunit:
+> 
+> $ git grep --files-with-matches kselftest_harness.h *
 
-Florian Fainelli <f.fainelli@gmail.com> writes:
+To the extent that we can unify how tests are written, I agree that
+this would be a good thing.  However, you should note that
+kselftest_harness.h is currently assums that it will be included in
+userspace programs.  This is most obviously seen if you look closely
+at the functions defined in the header files which makes calls to
+fork(), abort() and fprintf().
 
-> Hi Linus,
->
-> This patch series allows making use of the pinctrl-bcm2835 driver on
-> ARCH_BRCMSTB where it is also used. Binding document is updated, and
-> then the Kconfig language is updated to allow selecting this driver with
-> ARCH_BRCMSTB, finally, Al updates the logic to account for the
-> additional registers that were added on 7211.
+So Kunit can't reuse kselftest_harness.h unmodified.  And whether or
+not the actual implementation of the header file can be reused or
+refactored, making the unit tests use the same or similar syntax would
+be a good thing.
 
-As far as platform maintainer goes, patch 1-2 are:
+Cheers,
 
-Reviewed-by: Eric Anholt <eric@anholt.net>
-
-and patch 3 is:
-
-Acked-by: Eric Anholt <eric@anholt.net>
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAlzUr3AACgkQtdYpNtH8
-nuhpHQ//dM7jTyPUB9eHCYdZerTKDtr+6aY7wKi3KTY3eTJVErru/9skG0qyV1Es
-ccQf6Zkj20wnXjucSP9f0zEHCaeybXgx3OKLALE063nuglnvfKhEzDGvzWUb2Xv6
-BBlCBf5o9xM5nIhdw1i2bITSNvUXYZy+JFRTVZH59x5h6OBYfaxLFwon7hxFajpQ
-1VxFDUEIpltkJuJNp7dXNvC+iIEAv7zWNS5JR05S8h5R7H23c4odUPfWEGkMTFdH
-w2+kPoNVT6aZ3u4DT+EFH/SGfhAWwkCX06KBa5/J8G026R/x6VG6lmsohe7sGyrh
-HRoozBamxxCixfHI2imHsjwkLWLlEijZeh+HV8iHmTlQcdZnLY6hQ0KxAsVr9dqW
-r03BFJ1uHKhFg86kPsVraAVlOhr8riqQnzsrmh/LkmG0eF6WppgLQ1Q2txFvA4/R
-WxFXNu0vRRd4X4ICCcllge77E50HM3bhxwmbdp/oouQfyJVMxwVJUzbbDGEKWQ5u
-JDYndEouNcbB8+vnRzli8bqu+tkif/wODaqp8THHB4IvpteGcgk2+yCBh0CrYV6f
-/WGNhOZFqWHshFL1uVYwPvnlW4VkJPTJ7O8w490kobjnU8CwCTn0rUoe2n45f8Oi
-iecWgOgVSl9mjzEL3d81+PmuomYdSwz9vz2LhOkD4oiATkGSbK4=
-=HgWt
------END PGP SIGNATURE-----
---=-=-=--
+						- Ted
