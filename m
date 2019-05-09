@@ -2,75 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D964818C6C
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 16:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6EC18C9C
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbfEIOyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 10:54:54 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:57765 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726192AbfEIOyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 10:54:54 -0400
-X-UUID: 4d68c5eb26f54662a2d978ecfc2af531-20190509
-X-UUID: 4d68c5eb26f54662a2d978ecfc2af531-20190509
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1440209227; Thu, 09 May 2019 22:54:49 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs03n2.mediatek.inc (172.21.101.182) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 9 May 2019 22:54:46 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 9 May 2019 22:54:46 +0800
-Message-ID: <1557413686.23445.6.camel@mtkswgap22>
-Subject: Re: [PATCH 3/3] hwrng: add mt67xx-rng driver
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     Stephan Mueller <smueller@chronox.de>, <mpm@selenic.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <matthias.bgg@gmail.com>, <wsd_upstream@mediatek.com>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <Crystal.Guo@mediatek.com>
-Date:   Thu, 9 May 2019 22:54:46 +0800
-In-Reply-To: <20190509052649.xfkgb3qd7rhcgktj@gondor.apana.org.au>
-References: <1557287937-2410-1-git-send-email-neal.liu@mediatek.com>
-         <1557287937-2410-4-git-send-email-neal.liu@mediatek.com>
-         <12193108.aNnqf5ydOJ@tauon.chronox.de>
-         <1557311737.11818.11.camel@mtkswgap22>
-         <20190509052649.xfkgb3qd7rhcgktj@gondor.apana.org.au>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726561AbfEIPCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 11:02:46 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37422 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726234AbfEIPCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:02:46 -0400
+Received: by mail-wr1-f65.google.com with SMTP id a12so3544028wrn.4;
+        Thu, 09 May 2019 08:02:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=4dsx/q7HbMfsJZPbIMqDoMkdbIHaHboqniF/scq0b4s=;
+        b=op6o+sDbTlaAqh7mLZq6GcfYJtBYwK/t5Ez5FeZjMGVM+R4nw64WCOnJHAIu6anCbL
+         BujfdZAeZMWJ/Dlaq2wod6cDWiBHkdyHNul9SUIeV0O98paTiQKNL4R0x324PuVX8Gjz
+         bFACvMoqM5o6BVotZK0jvKrZEwYCgTSHBdXcgXrwlzeEFePHDECxcqMvzZf2FN2552Hf
+         aQMw1DaX8t6ZcdCmAzG+Xt199k66+RES/9LNoSEjHu0kyuIlH4oCRpGLdAuWtfp2zxyu
+         cS2KNl3aGbr2CHQP0pDZPHAm33chi1iuIaAE9w8ax2fPTZ1Zi0bycLTZCT55uCViWszk
+         DqjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=4dsx/q7HbMfsJZPbIMqDoMkdbIHaHboqniF/scq0b4s=;
+        b=prDAztzHNhYnvSRv9ukHuJnK1lsdGndY2o5UOq3XSfirVDP7VHyOrTS9nkyx6rw6uy
+         4KtO97QZDMRVIYVeRCv5nprV9UrSu0puy5KoLQoDaxAGRD79NqB4GzIwr9kYO4V/HcOJ
+         10h0ChBc2/cqrCmnBd+8Nf96SKxsDuBEXL0CJkH54zaGjqZ9Ek2170nHj418cjQtKqjE
+         dn480c+aZx3nZMjZWt5W8sssrQbUzgaGRvtdluoj/LkgYhXUDFWkjvjerrXNibuK9la7
+         3DX0Yyi8ACPSZNRmBI+vlUAZNhhcdcP01TJqzu5urvjmjyW+W8E9OD55t9QKCdZQJ6zo
+         ArUA==
+X-Gm-Message-State: APjAAAV4JG7HxuPx//L8WkTelGbKE55ImZsNKcBYGlbf2HgABFIv2dnZ
+        lXGNUqc4O6aB9N14WmexE0I=
+X-Google-Smtp-Source: APXvYqz1DHOTlq78BMwbYXJC2Qau6WsX7Qi1e9jzkdUqySLmmY1bFf1hVZGmkhfBKtlDD7VBl5mzVw==
+X-Received: by 2002:a5d:4ec9:: with SMTP id s9mr3667227wrv.223.1557414164337;
+        Thu, 09 May 2019 08:02:44 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id p18sm1628761wrp.38.2019.05.09.08.02.42
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 09 May 2019 08:02:43 -0700 (PDT)
+Date:   Thu, 9 May 2019 17:02:42 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Anson Huang <anson.huang@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Robin Gong <yibin.gong@nxp.com>,
+        "schnitzeltony@gmail.com" <schnitzeltony@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "jan.tuerk@emtrion.com" <jan.tuerk@emtrion.com>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH V12 1/5] dt-bindings: pwm: Add i.MX TPM PWM binding
+Message-ID: <20190509150242.GC8907@ulmo>
+References: <1557408252-21281-1-git-send-email-Anson.Huang@nxp.com>
+ <1557408252-21281-2-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: DAF1C2FB982B2A5BC6E4832EA14731AB2E44B177010654C3FE819CDBF77FEEAE2000:8
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gLcqQrOcczDba7nC"
+Content-Disposition: inline
+In-Reply-To: <1557408252-21281-2-git-send-email-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-05-09 at 13:26 +0800, Herbert Xu wrote:
-> On Wed, May 08, 2019 at 06:35:37PM +0800, Neal Liu wrote:
-> > Hi Stephan,
-> > 	We think the cast is fine, and it cannot guarantee the buf is
-> > word-align.
-> > 	I reference multiple rng driver's implementation and found it's common
-> > usage for this. So it might be general usage for community. Is there any
-> > suggestion that is more appropriate?
-> 
-> If you don't know whether it's unaligned or not then you should
-> do an unaligned operation.
 
-Hi Stephan/Herbert,
-	My mistake. This buffer is allocated by kmalloc with larger than 32
-bytes. So yes, it's word-align for sure.
-	reference:
-https://elixir.bootlin.com/linux/latest/source/drivers/char/hw_random/core.c#L590
+--gLcqQrOcczDba7nC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-	Thanks
-Best Regards,
--Neal Liu
+On Thu, May 09, 2019 at 01:29:19PM +0000, Anson Huang wrote:
+> Add i.MX TPM(Low Power Timer/Pulse Width Modulation Module) PWM binding.
+>=20
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> No change.
+> ---
+>  .../devicetree/bindings/pwm/imx-tpm-pwm.txt        | 22 ++++++++++++++++=
+++++++
+>  1 file changed, 22 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/imx-tpm-pwm.txt
 
+Applied, thanks.
 
+Thierry
+
+--gLcqQrOcczDba7nC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzUQRIACgkQ3SOs138+
+s6GPVw/9Gdzsk9uaLau6Rkdgpm7E27qHxLaoGWnFIO4dSmbBB54pZ4RyBEndDzAM
++oKL64WpYLt3z8VCoEQTQ0kUyN3s1fcPfU8IQIAJ6D7cI8iIiaT7vyCWS3MCYT9q
++yx97WQdOo5AFnyy9VT6P4o9D3OE95QLrER7Wf3MXmAxWamrrS9cnly+DjB+Jien
+2mJfWK/nUfxYMSBOTZrKGNh85gPsrIb2AiMLGJn92KMyyd8/nRcHJMUlFZk+0bXn
+4VSRc2MFnUmlNcjYmqyDT/CcnkFVzLI6+Dlthcaiq3icjVw1Z61fyrG3IN+kW1KE
+Nhq7y2EywnEiFcNmhIYxjyqSDsblmJiPpAGD6EA2pLk/dxjvnoeu9KsiBiWZQnsA
+yWiaQKdUBAKJgP33vqiwv+mMQK8pYZrEThr8FKZ995qj37zlhP3ewtM9vrqMHUBN
+81hGXOH48ZBCkFT0vHPrm2c6+FMkqk+Y/sZmyxor5Pje8nR0MVh9X/w/u1U+wOlR
+RCzKA4pAvhWDzainC3x5uijo+HKomQ54wLq694KK97cUUp5CJxi0zD3PFMlye0Uc
+JQ7RGOWwunI3u/wkS+YUmA18kqvYzzCg7BLDA3+o7oVb1nYPIA0sSPyFqq7SXhh6
+YHy8kd3yzeuZ9ylMyUqeiei8prfyYiC1q2HyFi5w0ZImpq9bujY=
+=Jfgf
+-----END PGP SIGNATURE-----
+
+--gLcqQrOcczDba7nC--
