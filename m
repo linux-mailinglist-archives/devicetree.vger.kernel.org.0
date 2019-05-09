@@ -2,114 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71DE518BF7
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 16:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A177E18C2F
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 16:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726251AbfEIOis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 10:38:48 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53140 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726187AbfEIOis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 10:38:48 -0400
-Received: by mail-wm1-f66.google.com with SMTP id g26so1669364wmh.2;
-        Thu, 09 May 2019 07:38:46 -0700 (PDT)
+        id S1726448AbfEIOmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 10:42:25 -0400
+Received: from mail-eopbgr1400107.outbound.protection.outlook.com ([40.107.140.107]:28160
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726234AbfEIOmZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 May 2019 10:42:25 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=m4fgq+LFH8COx/RVqdvaf/++0F11ap24aKygbbJdzsY=;
-        b=IVq7sj6qNKKNZJnsBADX02ZoOsCu2UokncYE5l72lAgWNl+OaFAv7l03YfQ5g6eaVP
-         pAGl6sumO1L8RN4fTVsvdE6zOvP5PW8MWE4uRog2bZLzlnjIVmeVy/7v5fB+HGultqS7
-         SeZywf61+UscuY56eQR/Ii6T9z/eMrkxb4R7wdPdxGDHsGn9An8I+Qt/WT4tLs/LQ0sw
-         6keDZJQxxmHh4sSS+Ecwsffe/Sz2RgUvHy9nw0TL2WMcqD6eeX6oNV3kpEiCqtLghiw1
-         IL0t9SGOXKhDnKhq9Jjth0rp9HiS6X2JEJjhuDV46PiKD+t7FLxO/VhvJEa0DXQPJT4E
-         s3ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=m4fgq+LFH8COx/RVqdvaf/++0F11ap24aKygbbJdzsY=;
-        b=Gs+uAd9cNXFoPf9kZYdWCa/OW2N225TTvngbSBfYET15Ezraxj+KPqg92dIBFbnJ70
-         x8PgcuiRECNfaExxs1deLtgbV1i7E0hVYgleKiijQ4mHCMAiSw7LPwfz9/bX+Kf3TGLr
-         OnmtOEJSNzIygDqbGuGRcz1E6svCNgdX7Al3psnJFmNgfZ5M3nK4VCGIYbLlU4BfoWO2
-         52eWzVMlt7decL4rI1eKHKkxAzWlhnR/xkAAz1F7AZOnYnEqWxHOARVMUFjXLBkXLkjI
-         NQkQ2o1AwRhbmKgDcMmq8f9cDQm4y2dZHj5RZ4ON8yhS55YS4qUCmvCbxU1LAo2pzKw2
-         0AfQ==
-X-Gm-Message-State: APjAAAUXuY+CchVRXYeI6oEk/FQARrA73t3c9TEFYzeVs2/Kj5SkXLIa
-        r+Qdw8xBn+6b2SoE6nVr3vo=
-X-Google-Smtp-Source: APXvYqzlS62YDqXiJ1FwLRrXkUUOGSsZMKto6TwWzIVpUC3rwdCnjprJ6inuw6RTkIaCBl5saqGgVw==
-X-Received: by 2002:a1c:e90f:: with SMTP id q15mr3366253wmc.1.1557412725793;
-        Thu, 09 May 2019 07:38:45 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id y7sm7532201wrg.45.2019.05.09.07.38.44
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 09 May 2019 07:38:44 -0700 (PDT)
-Date:   Thu, 9 May 2019 16:38:43 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        jonathanh@nvidia.com, lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 24/28] arm64: tegra: Add PEX DPD states as pinctrl
- properties
-Message-ID: <20190509143843.GW8907@ulmo>
-References: <20190423092825.759-1-mmaddireddy@nvidia.com>
- <20190423092825.759-25-mmaddireddy@nvidia.com>
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UqwQfVQx/tyIvHYeftXGqv1wibvDjkOi0Gd7ejHkxX0=;
+ b=GdnWAzlBCdFrkpWJORnXgtG14mETb7fmmngKROC/IcGbrxO4y0eB1SPjmDnBswljVKyJ6ZCGrqejUM8Un00neBpah99+s7myzb4BUVHdpNWC/AhKHwdhAmjfZJ/Adfx2IVRQN6YqkGI5fcwuULp/nkHLNEzexZe5snZrR0bW7/k=
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
+ TY1PR01MB1628.jpnprd01.prod.outlook.com (52.133.161.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1856.12; Thu, 9 May 2019 14:42:20 +0000
+Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
+ ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1878.022; Thu, 9 May 2019
+ 14:42:20 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+CC:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>
+Subject: RE: [PATCH 06/10] usb: renesas_usbhs: Add support for RZ/A2
+Thread-Topic: [PATCH 06/10] usb: renesas_usbhs: Add support for RZ/A2
+Thread-Index: AQHVBGYrI2C6wi6GUEeEvfBgdp4V36ZiYgMAgABJS4A=
+Date:   Thu, 9 May 2019 14:42:19 +0000
+Message-ID: <TY1PR01MB1562EAE92B76A5F3892865308A330@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+References: <20190506234631.113226-1-chris.brandt@renesas.com>
+ <20190506234631.113226-7-chris.brandt@renesas.com>
+ <OSBPR01MB317436B70E57E04964BDDECED8330@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSBPR01MB317436B70E57E04964BDDECED8330@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ad42fa74-1d41-4e84-bfcb-08d6d48c8a54
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1628;
+x-ms-traffictypediagnostic: TY1PR01MB1628:
+x-microsoft-antispam-prvs: <TY1PR01MB1628C44217D7CB970CFFF3538A330@TY1PR01MB1628.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1227;
+x-forefront-prvs: 003245E729
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(136003)(376002)(346002)(39860400002)(366004)(199004)(189003)(446003)(6862004)(486006)(229853002)(11346002)(66946007)(6246003)(476003)(73956011)(6636002)(66476007)(8676002)(64756008)(66446008)(25786009)(66556008)(8936002)(81156014)(81166006)(478600001)(186003)(9686003)(55016002)(2906002)(86362001)(26005)(72206003)(6506007)(76116006)(53936002)(68736007)(4326008)(102836004)(14444005)(256004)(305945005)(52536014)(33656002)(316002)(5660300002)(7736002)(74316002)(66066001)(71190400001)(71200400001)(6436002)(99286004)(7696005)(76176011)(3846002)(6116002)(54906003)(14454004);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1628;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: KvnXzQQUOMiUfnTbbGJ6qnnq8TnVGrgDB32+OZtfFL2Ls6e5aR8F9ymhkh1YtGFNt5GBwpSTotLLnEX4U2RSFIHZfNrZbs+woBOjlKHTf93wu6BclcaKX5SXfW+lR1c8JdkUffZPd3m2OkShCojeZilNxSukf60TqW3gAyugLKCAwtbLG0sGya6jz8acKtTZ6O+G7kKO2vGUp2g6AmOiIHWM8DLk2mL/3kd4kk2X5zxTRlzulrWWK5izeiEWwrv1gkxmEzx46SHssqw9k5mUPNl/SNJWtBSgXcdlTWyNLlUJQVxyjgvggXmm3yGFmSarudBAqWhpdrFp0VhLmqP9YZIAEf48miBsd+fZJfl8iVzYZ36g4g5YyG3ybYQeiTo54FIeQaafiizto/PCvku6pBg0VMCJcR5o3E5zWkxDZww=
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="j2Klb18PAKd8hQ5U"
-Content-Disposition: inline
-In-Reply-To: <20190423092825.759-25-mmaddireddy@nvidia.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad42fa74-1d41-4e84-bfcb-08d6d48c8a54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2019 14:42:19.9732
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1628
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shimoda=1B$B$5$s!"=1B(B
 
---j2Klb18PAKd8hQ5U
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> From: Yoshihiro Shimoda
+> Sent: Thursday, May 09, 2019 3:04 AM
 
-On Tue, Apr 23, 2019 at 02:58:21PM +0530, Manikanta Maddireddy wrote:
-> Add PEX deep power down states as pinctrl properties to set in PCIe drive=
-r.
-> In Tegra210, BIAS pads are not in power down mode when clamps are applied.
-> To set the pads in DPD, pass the PEX DPD states as pinctrl properties to
-> PCIe driver.
+> > -/* status */
+> > -#define usbhsc_flags_init(p)   do {(p)->flags =3D 0; } while (0)
+> > -#define usbhsc_flags_set(p, b) ((p)->flags |=3D  (b))
+> > -#define usbhsc_flags_clr(p, b) ((p)->flags &=3D ~(b))
+> > -#define usbhsc_flags_has(p, b) ((p)->flags &   (b))
 >=20
-> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> ---
-> V2: Using standard pinctrl names, default and idle
+> I would like to separate this patch to some patches like below to review
+> the patch(es) easily:
 >=20
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> 1. Just move these definitions to common.h.
 
-I'll pick this up into the Tegra tree once the rest of the set has been
-merged.
+FYI, checkpatch.pl says this:
 
-Thierry
+  WARNING: Single statement macros should not use a do {} while (0) loop
+  #122: FILE: drivers/usb/renesas_usbhs/common.h:350:
+  +#define usbhsc_flags_init(p)   do {(p)->flags =3D 0; } while (0)
 
---j2Klb18PAKd8hQ5U
-Content-Type: application/pgp-signature; name="signature.asc"
+So, I will change this code to:
 
------BEGIN PGP SIGNATURE-----
+#define usbhsc_flags_init(p)   {(p)->flags =3D 0;}
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzUO3MACgkQ3SOs138+
-s6EqPg/9Hf1Lj2EaSE+1o808c0caXI47Ve9zySckGhNFOIJ+dmvrAs0CI0ZXWXuV
-F03ZGRR9OqCx9rh8LXzPraHx2iPHR9sG5vsbCRTpddiH6ye9nQ0E+bvwapADwHNF
-7pu1VD5F8tXXjd6FAblVKd2kBhej0e0pZySh4nNKjRe/kiyOisVOSDWV2qFc5xEI
-KlFUcdDIe6lDIxfvVVobdcqxb4jA6ln4Coghefv9WiwvrTtQsFkTQoRIa2fIvffC
-DgD2GxxkLC0P87iIbIhl3NPNgKavAQ12kEh5bD8wVuoDH1qCgTXMQYNyUZ4SOcwN
-c+7jIVI2SiKlt5A55aBpz0Zn+jPNDH3pX2D3cjFigNM4OJwpam2Qd1said6C8CWu
-mr4vcUv1kRwo4BmqtDoSs7cI42EaXclJBqG8LKHaSVUcMGYH4jIVzfpOrhgECcYL
-xe18d2tWUv+OTJxLf1LXZFfu1sTx6fkltqODIsEsw2PPdYglXyZhqx/0yAbLSqAN
-eIvlsI9gZY5jH5zq84BWaQTcsRhYKx+qwTyQqnigfEjnA9yVhLTdKxjODNjycImk
-paqk29gGDtohGN8o9RfBTWbhq04UFSAyVeBYDtqMeMkTBIz9mezAtNoR4v33WHwf
-Go5Nsipm6Wg/liA4+vB1lNti8GU7eVJItmJhxFxe+8QfZXmd6lQ=
-=LNbR
------END PGP SIGNATURE-----
 
---j2Klb18PAKd8hQ5U--
+
+> It's the same with RZA1. So, I think we can reuse the code like below.
+> What do you think?
+> +	if (dparam->type =3D=3D USBHS_TYPE_RZA1 ||
+> +	    dparam->type =3D=3D USBHS_TYPE_RZA2) {
+> 		dparam->pipe_configs =3D usbhsc_new_pipe;
+> 		dparam->pipe_size =3D ARRAY_SIZE(usbhsc_new_pipe);
+> 	}
+
+OK.
+
+#At first, RZA2 had 'dparam->has_usb_dmac =3D 1'. But, DMA had some
+ issues, so I removed it.
+
+
+
+> I prefer to add "{ }" on "if" and "else" like below.
+>=20
+> 	if (usbhsc_flags_has(priv, USBHSF_CFIFO_BYTE_ADDR)) {
+> 		for (i =3D 0; i < len; i++)
+> 			iowrite8(buf[i], addr + (i & 0x03));
+> 	} else {
+> 		for (i =3D 0; i < len; i++)
+> 			iowrite8(buf[i], addr + (0x03 - (i & 0x03)));
+> 	}
+
+OK.
+#I always prefer braces. It is easier to read.
+
+
+> > +static int usbhs_rza2_power_ctrl(struct platform_device *pdev,
+> > +				void __iomem *base, int enable)
+> > +{
+> > +	struct usbhs_priv *priv =3D usbhs_pdev_to_priv(pdev);
+> > +	int retval =3D -ENODEV;
+> > +
+> > +	if (priv->phy) {
+> > +		if (enable) {
+> > +			retval =3D phy_init(priv->phy);
+> > +			if (enable) {
+> > +				usbhs_bset(priv, SUSPMODE, SUSPM, SUSPM);
+> > +				/* Wait 100 usec for PLL to become stable */
+> > +				udelay(100);
+> > +			} else {
+>=20
+> This else code never runs. So,
+
+Yes, thank you.
+
+This code is ugly, so I'm going to change it.
+
+Chris
+
