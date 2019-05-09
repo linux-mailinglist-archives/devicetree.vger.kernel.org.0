@@ -2,128 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D62FD193A0
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 22:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF7DA193E6
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 23:01:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726819AbfEIUjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 16:39:35 -0400
-Received: from pbmsgap01.intersil.com ([192.157.179.201]:34796 "EHLO
-        pbmsgap01.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726715AbfEIUjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 16:39:35 -0400
-Received: from pps.filterd (pbmsgap01.intersil.com [127.0.0.1])
-        by pbmsgap01.intersil.com (8.16.0.27/8.16.0.27) with SMTP id x49KD5RN018305;
-        Thu, 9 May 2019 16:14:39 -0400
-Received: from pbmxdp02.intersil.corp (pbmxdp02.pb.intersil.com [132.158.200.223])
-        by pbmsgap01.intersil.com with ESMTP id 2scabqgu2g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Thu, 09 May 2019 16:14:38 -0400
-Received: from pbmxdp03.intersil.corp (132.158.200.224) by
- pbmxdp02.intersil.corp (132.158.200.223) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.1531.3; Thu, 9 May 2019 16:14:37 -0400
-Received: from localhost.localdomain (132.158.202.108) by
- pbmxdp03.intersil.corp (132.158.200.224) with Microsoft SMTP Server id
- 15.1.1531.3 via Frontend Transport; Thu, 9 May 2019 16:14:37 -0400
-From:   Chris Brandt <chris.brandt@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1726108AbfEIVBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 17:01:19 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:40477 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725992AbfEIVBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 17:01:19 -0400
+Received: by mail-pl1-f196.google.com with SMTP id b3so1713886plr.7;
+        Thu, 09 May 2019 14:01:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=HiuXIyYLdmsAYU6zvL+k+NRqP/Z17rWpYIQBydjoiww=;
+        b=p5q8KobLVi5edHgQ6CguPyLD2oE0Vj0uuNMeT13IKga4CeJPBxJ045FvYlbPdKgkVG
+         KNRVHGuossb5kf4g3Cqi9vTFc7+/1DdhVZJoc5aD41kJ0xsLXFVk1jwl1hGKvKh9aR3V
+         oHBwjetUfosixvCiPwkjEA4T9cN0IxGJCWz8qqWcfz3GJx0n+ICGyyE1HLPDlTKTwy0a
+         c31mCmHqfpTGU9ASAKA7ithdmMuD1aIOhwebdXG70EZ1ru9obYde2uI6pESM00RYPvN3
+         8LSrDi0XTbk0KcEDWOP63SAkWJPVlhDR6ZgwRW3xoeTzghmFs1zSXobjmSvTY5HmGs1t
+         8oog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=HiuXIyYLdmsAYU6zvL+k+NRqP/Z17rWpYIQBydjoiww=;
+        b=rZVY04c4RW3EjB3T9220ZHFN6pQJKJCvdBZlkxnvjeJCmR8fDUq1YNUUuTswYMBT8N
+         2+EKgzkg7UnZs2kJy1adVWRsTh0yc4+1RU7+/8PLjhrB95yzuwUsip2TL/yqysMElsKl
+         +MtIQVjv5uq+rAaHXBiSbjR499fYzKRuhJJklLnI3PutYw/cjHqo609v620SXcXgM29S
+         w8VUnP1wucc/2LxD8i64vPU+Bxdasdte0p/i9M23we0RrSM3Ayv0wQwtp5sTjjzTY/0K
+         h/Z1jTYRkRPbuqO7MyEqiUhmmmuoOUQbkO2awfhhnmrXo5FeCIiMp3W4mynhDEFWSEdi
+         VC1g==
+X-Gm-Message-State: APjAAAUzOtN6rr6aY4w8/chepH7YhAsGXeDD+XWsgbDwU2a6xiCeIvg3
+        yLkdq3Wh67F3cnl9fDr5FTs=
+X-Google-Smtp-Source: APXvYqwPPVJPZR7Ngz7iUDd5Xh+3EilFjMx5Kc5mIo1MpJqawPOja005npdCY5gWF1YEA35rO2073Q==
+X-Received: by 2002:a17:902:bd86:: with SMTP id q6mr8273799pls.152.1557435678642;
+        Thu, 09 May 2019 14:01:18 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.250])
+        by smtp.gmail.com with ESMTPSA id d15sm10989209pfm.186.2019.05.09.14.01.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 May 2019 14:01:17 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        "Chris Brandt" <chris.brandt@renesas.com>
-Subject: [PATCH v2 15/15] ARM: dts: rza2mevb: Add USB host support
-Date:   Thu, 9 May 2019 15:11:42 -0500
-Message-ID: <20190509201142.10543-16-chris.brandt@renesas.com>
-X-Mailer: git-send-email 2.16.1
-In-Reply-To: <20190509201142.10543-1-chris.brandt@renesas.com>
-References: <20190509201142.10543-1-chris.brandt@renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-09_02:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=541
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905090115
-X-Proofpoint-Spam-Reason: mlx
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Doug Berger <opendmb@gmail.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Lukas Wunner <lukas@wunner.de>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        linux-gpio@vger.kernel.org (open list:PIN CONTROL SUBSYSTEM),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2835
+        ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 0/3] pinctrl: bcm: Allow PINCTRL_BCM2835 for ARCH_BRCMSTB
+Date:   Thu,  9 May 2019 13:59:52 -0700
+Message-Id: <20190509205955.27842-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB Host support for both the Type-C connector on the CPU board
-and the Type-A plug on the sub board.
+Hi Linus,
 
-Both boards are also capable of USB Device operation as well after the
-appropriate Device Tree modifications.
+This patch series allows making use of the pinctrl-bcm2835 driver on
+ARCH_BRCMSTB where it is also used. Binding document is updated, and
+then the Kconfig language is updated to allow selecting this driver with
+ARCH_BRCMSTB, finally, Al updates the logic to account for the
+additional registers that were added on 7211.
 
-Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
----
-v2:
- * added blank line between nodes
- * removed 'r7s9210-' from patch title
- * removed 'renesas,uses_usb_x1' property
----
- arch/arm/boot/dts/r7s9210-rza2mevb.dts | 37 ++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Thanks!
 
-diff --git a/arch/arm/boot/dts/r7s9210-rza2mevb.dts b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-index 7da409170db5..c0a4484a0bde 100644
---- a/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-+++ b/arch/arm/boot/dts/r7s9210-rza2mevb.dts
-@@ -107,6 +107,18 @@
- 		pinmux = <RZA2_PINMUX(PORT5, 4, 3)>,	/* SD1_CD */
- 			 <RZA2_PINMUX(PORT5, 5, 3)>;	/* SD1_WP */
- 	};
-+
-+	usb0_pins: usb0 {
-+		pinmux = <RZA2_PINMUX(PORT5, 2, 3)>,	/* VBUSIN0 */
-+			 <RZA2_PINMUX(PORTC, 6, 1)>,	/* VBUSEN0 */
-+			 <RZA2_PINMUX(PORTC, 7, 1)>;	/* OVRCUR0 */
-+	};
-+
-+	usb1_pins: usb1 {
-+		pinmux = <RZA2_PINMUX(PORTC, 0, 1)>,	/* VBUSIN1 */
-+			 <RZA2_PINMUX(PORTC, 5, 1)>,	/* VBUSEN1 */
-+			 <RZA2_PINMUX(PORT7, 5, 5)>;	/* OVRCUR1 */
-+	};
- };
- 
- /* High resolution System tick timers */
-@@ -161,3 +173,28 @@
- 	bus-width = <4>;
- 	status = "okay";
- };
-+
-+/* USB-0 as Host */
-+/* NOTE: Requires JP3 to be fitted */
-+&usb2_phy0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb0_pins>;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+/* USB-1 as Host */
-+&usb2_phy1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb1_pins>;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
+Al Cooper (1):
+  pinctrl: bcm2835: bcm7211: Add support for 7211 pull-up functionality
+
+Doug Berger (1):
+  pinctrl: bcm: Allow PINCTRL_BCM2835 for ARCH_BRCMSTB
+
+Florian Fainelli (1):
+  dt-bindings: pinctrl: bcm2835-gpio: Document BCM7211 compatible
+
+ .../bindings/pinctrl/brcm,bcm2835-gpio.txt    |  3 +
+ drivers/pinctrl/bcm/Kconfig                   |  6 +-
+ drivers/pinctrl/bcm/pinctrl-bcm2835.c         | 85 +++++++++++++++++--
+ 3 files changed, 88 insertions(+), 6 deletions(-)
+
 -- 
-2.16.1
+2.17.1
 
