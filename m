@@ -2,107 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C48194FB
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 23:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B051119530
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 00:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726721AbfEIV6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 17:58:25 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:40149 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726754AbfEIV6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 17:58:24 -0400
-Received: by mail-vs1-f66.google.com with SMTP id c24so2404917vsp.7
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2019 14:58:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8FXPIq1hegck4+LUfvPI3e12GgUDRXQleew5eHpUJZ4=;
-        b=GWU18C7YaAP+YZQi3muCAvs0KMaXaiY3pUYWpt1UWv65qwcRPAYuQhtt69DqUxV4f7
-         iITK0m73QzNWHzEWWQTtFcEvXgMsGCKqzSf++mwGmIpww1ehMyP+vzRjgC9S6IRVORaW
-         A27qAJi5bmbkLBWUdmMflVPq+oxdZCA0YqEcw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8FXPIq1hegck4+LUfvPI3e12GgUDRXQleew5eHpUJZ4=;
-        b=pZDJTRpZLMP4/WT53BPlxBhqSK7OIRp3aSp+uOzRACXVL188e8hUnmBj4VE9JdVkeL
-         SopOrjKVwDgeV0mFvKTPWgYbJzxzwwc1gV3xX6zCBO1J78HPc6yJPR9113Z3QHy5kz57
-         OFsiXxh47xkXIidYcC0GHw6W7V19ZYO4RzFMS9FeNSol5T5SWA+yRICyct2Dl5cmz9k/
-         K9xCpXMVbVgkpdauj4GBs6t6MatZcQk5j332srM9l9vRRXGr5Jii1gTpbVn5YD1mogGH
-         dD8KmHWPf/IJXe4j3VvyPafLMuGkQ4Q/mrCVpKQHX8ciURARxDD3OANJth80MpgIJ571
-         gFCg==
-X-Gm-Message-State: APjAAAWJg10RQ8wnWIqTxfZEJjpCsEgCp13HWwxHCMI82GLY8x4KZThW
-        aD/Xf0CIPihUqhsZA6p0PXiVRFupszE=
-X-Google-Smtp-Source: APXvYqz97OE5ytzEy4fNuKNCk9tgfG3dm3LAYkmgmJRkKc7d3r2IJ6/x904jFEn0arzfyzPMOMbUOQ==
-X-Received: by 2002:a67:dc8d:: with SMTP id g13mr3431721vsk.120.1557439102560;
-        Thu, 09 May 2019 14:58:22 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id c204sm1327585vkd.14.2019.05.09.14.58.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 09 May 2019 14:58:21 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id r62so2399155vsc.9
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2019 14:58:21 -0700 (PDT)
-X-Received: by 2002:a67:de07:: with SMTP id q7mr3837804vsk.66.1557439100581;
- Thu, 09 May 2019 14:58:20 -0700 (PDT)
+        id S1727037AbfEIWU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 18:20:58 -0400
+Received: from ale.deltatee.com ([207.54.116.67]:36450 "EHLO ale.deltatee.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726219AbfEIWU6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 May 2019 18:20:58 -0400
+Received: from s01061831bf6ec98c.cg.shawcable.net ([68.147.80.180] helo=[192.168.6.141])
+        by ale.deltatee.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <logang@deltatee.com>)
+        id 1hOrOj-00055b-MR; Thu, 09 May 2019 16:20:18 -0600
+To:     Theodore Ts'o <tytso@mit.edu>,
+        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
+        knut.omang@oracle.com, gregkh@linuxfoundation.org,
+        brendanhiggins@google.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, amir73il@gmail.com,
+        dan.carpenter@oracle.com, dan.j.williams@intel.com,
+        daniel@ffwll.ch, jdike@addtoit.com, joel@jms.id.au,
+        julia.lawall@lip6.fr, khilman@baylibre.com, mpe@ellerman.id.au,
+        pmladek@suse.com, richard@nod.at, rientjes@google.com,
+        rostedt@goodmis.org, wfg@linux.intel.com
+References: <54940124-50df-16ec-1a32-ad794ee05da7@gmail.com>
+ <20190507080119.GB28121@kroah.com>
+ <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
+ <20190509015856.GB7031@mit.edu>
+ <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
+ <20190509032017.GA29703@mit.edu>
+ <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+ <20190509133551.GD29703@mit.edu>
+ <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
+ <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
+ <20190509214233.GA20877@mit.edu>
+From:   Logan Gunthorpe <logang@deltatee.com>
+Message-ID: <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com>
+Date:   Thu, 9 May 2019 16:20:05 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190507045433.542-1-hsinyi@chromium.org> <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
- <CAJMQK-iVhScf0ybZ85kqP0B5_QPoYZ9PZt35jHRUh8FNHKvu7w@mail.gmail.com>
- <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
- <CAJMQK-jjzYwX3NZAKJ-8ypjcN75o-ZX4iOVD=84JecEd4qV1bA@mail.gmail.com>
- <CAL_JsqLnmedF5cJYH+91U2Q_WX755O8TQs6Ue9mqtEiFKcjGWQ@mail.gmail.com> <CAJMQK-hJUG855+TqX=droOjUfb-MKnU0n0FYtr_SW2KByKAW1w@mail.gmail.com>
-In-Reply-To: <CAJMQK-hJUG855+TqX=droOjUfb-MKnU0n0FYtr_SW2KByKAW1w@mail.gmail.com>
-From:   Kees Cook <keescook@chromium.org>
-Date:   Thu, 9 May 2019 14:58:07 -0700
-X-Gmail-Original-Message-ID: <CAGXu5j+S3tQ3DFtmTJT_O1rNx4ofZWvaFpPrES9peHRhMqRGjg@mail.gmail.com>
-Message-ID: <CAGXu5j+S3tQ3DFtmTJT_O1rNx4ofZWvaFpPrES9peHRhMqRGjg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: add support for rng-seed
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190509214233.GA20877@mit.edu>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 68.147.80.180
+X-SA-Exim-Rcpt-To: wfg@linux.intel.com, rostedt@goodmis.org, rientjes@google.com, richard@nod.at, pmladek@suse.com, mpe@ellerman.id.au, khilman@baylibre.com, julia.lawall@lip6.fr, joel@jms.id.au, jdike@addtoit.com, daniel@ffwll.ch, dan.j.williams@intel.com, dan.carpenter@oracle.com, amir73il@gmail.com, Alexander.Levin@microsoft.com, linux-um@lists.infradead.org, linux-nvdimm@lists.01.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-doc@vger.kernel.org, kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, shuah@kernel.org, sboyd@kernel.org, robh@kernel.org, mcgrof@kernel.org, kieran.bingham@ideasonboard.com, keescook@google.com, brendanhiggins@google.com, gregkh@linuxfoundation.org, knut.omang@oracle.com, Tim.Bird@sony.com, frowand.list@gmail.com, tytso@mit.edu
+X-SA-Exim-Mail-From: logang@deltatee.com
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ale.deltatee.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-8.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+        GREYLIST_ISWHITE autolearn=ham autolearn_force=no version=3.4.2
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: Yes (on ale.deltatee.com)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 9, 2019 at 1:00 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> This early added entropy is also going to be used for stack canary. At
-> the time it's created there's not be much entropy (before
-> boot_init_stack_canary(), there's only add_latent_entropy() and
-> command_line).
-> On arm64, there is a single canary for all tasks. If RNG is weak or
-> the seed can be read, it might be easier to figure out the canary.
 
-With newer compilers[1] there will be a per-task canary on arm64[2],
-which will improve this situation, but many architectures lack a
-per-task canary, unfortunately. I've also recently rearranged the RNG
-initialization[3] which should also help with better entropy mixing.
-But each of these are kind of band-aids against not having sufficient
-initial entropy, which leaves the canary potentially exposed.
 
--Kees
+On 2019-05-09 3:42 p.m., Theodore Ts'o wrote:
+> On Thu, May 09, 2019 at 11:12:12AM -0700, Frank Rowand wrote:
+>>
+>>     "My understanding is that the intent of KUnit is to avoid booting a kernel on
+>>     real hardware or in a virtual machine.  That seems to be a matter of semantics
+>>     to me because isn't invoking a UML Linux just running the Linux kernel in
+>>     a different form of virtualization?
+>>
+>>     So I do not understand why KUnit is an improvement over kselftest.
+>>
+>>     ...
+>>
+>>     What am I missing?"
+> 
+> One major difference: kselftest requires a userspace environment; it
+> starts systemd, requires a root file system from which you can load
+> modules, etc.  Kunit doesn't require a root file system; doesn't
+> require that you start systemd; doesn't allow you to run arbitrary
+> perl, python, bash, etc. scripts.  As such, it's much lighter weight
+> than kselftest, and will have much less overhead before you can start
+> running tests.  So it's not really the same kind of virtualization.
 
-[1] https://gcc.gnu.org/git/?p=gcc.git;a=commitdiff;h=359c1bf35e3109d2f3882980b47a5eae46123259
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0a1213fa7432778b71a1c0166bf56660a3aab030
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/tytso/random.git/commit/?h=dev&id=d55535232c3dbde9a523a9d10d68670f5fe5dec3
+I largely agree with everything Ted has said in this thread, but I 
+wonder if we are conflating two different ideas that is causing an 
+impasse. From what I see, Kunit actually provides two different things:
 
--- 
-Kees Cook
+1) An execution environment that can be run very quickly in userspace on 
+tests in the kernel source. This speeds up the tests and gives a lot of 
+benefit to developers using those tests because they can get feedback on 
+their code changes a *lot* quicker.
+
+2) A framework to write unit tests that provides a lot of the same 
+facilities as other common unit testing frameworks from userspace (ie. a 
+runner that runs a list of tests and a bunch of helpers such as 
+KUNIT_EXPECT_* to simplify test passes and failures).
+
+The first item from Kunit is novel and I see absolutely no overlap with 
+anything kselftest does. It's also the valuable thing I'd like to see 
+merged and grow.
+
+The second item, arguably, does have significant overlap with kselftest. 
+Whether you are running short tests in a light weight UML environment or 
+higher level tests in an heavier VM the two could be using the same 
+framework for writing or defining in-kernel tests. It *may* also be 
+valuable for some people to be able to run all the UML tests in the 
+heavy VM environment along side other higher level tests.
+
+Looking at the selftests tree in the repo, we already have similar items 
+to what Kunit is adding as I described in point (2) above. 
+kselftest_harness.h contains macros like EXPECT_* and ASSERT_* with very 
+similar intentions to the new KUNIT_EXECPT_* and KUNIT_ASSERT_* macros.
+
+However, the number of users of this harness appears to be quite small. 
+Most of the code in the selftests tree seems to be a random mismash of 
+scripts and userspace code so it's not hard to see it as something 
+completely different from the new Kunit:
+
+$ git grep --files-with-matches kselftest_harness.h *
+Documentation/dev-tools/kselftest.rst
+MAINTAINERS
+tools/testing/selftests/kselftest_harness.h
+tools/testing/selftests/net/tls.c
+tools/testing/selftests/rtc/rtctest.c
+tools/testing/selftests/seccomp/Makefile
+tools/testing/selftests/seccomp/seccomp_bpf.c
+tools/testing/selftests/uevent/Makefile
+tools/testing/selftests/uevent/uevent_filtering.c
+
+Thus, I can personally see a lot of value in integrating the kunit test 
+framework with this kselftest harness. There's only a small number of 
+users of the kselftest harness today, so one way or another it seems 
+like getting this integrated early would be a good idea. Letting Kunit 
+and Kselftests progress independently for a few years will only make 
+this worse and may become something we end up regretting.
+
+Logan
+
+
+
+
+
+
+
