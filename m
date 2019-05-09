@@ -2,107 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E94619068
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 20:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C9E8192D9
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 21:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727076AbfEISoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 14:44:37 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:42575 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727055AbfEISoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 14:44:34 -0400
-Received: by mail-qt1-f193.google.com with SMTP id j53so3697054qta.9;
-        Thu, 09 May 2019 11:44:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gNzbchyS3MYXKFC8vXfjMbKEn2g9EXo8PLmv/XF6OgQ=;
-        b=TTNDv5mNgHh7RhlaXKTRIDiMCPa6fNBk7ERMYokDoBWwODUQ+TgQ0DgBBc6jQ9hBiW
-         kt6oupJUYmACQvepi7F4NWlVZFQQ1CU5J5E4Ool4Rkzbqv4pyHTKg4um54Bd3+Jy7JzD
-         RPOYM68lZ95tHvHm5AmrnElVotyK79ItbT5OzZDrmZQIJpSIDyDGuN/cm+PGnNxe5lle
-         x2lZHA9qTgZ7sXyyW4Lj+sHZKbARxs2wmeGZM6JG+xbbbQN3sVC/9bmNl3vXB5BKWpBG
-         wt1m65ELO48/VHTNQejQVxNoZftYI07HehvNAE0AbR+k2ANdRn7C5CGUAEsQWcYTl0Fa
-         i1sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gNzbchyS3MYXKFC8vXfjMbKEn2g9EXo8PLmv/XF6OgQ=;
-        b=M05cDPHPHFXsYH83jBdvQDTMqcMjPsuWegyyKVnIcblEEnZSYhXhzMmmqh3p43sok9
-         bJCpb1mY13/cdinUwV573hp8/stNd5Pz7gc7BYbkX4UZA8HriMPoV4PW10n2nY4uXr71
-         pWkR2E3G2/E9we2LBck171AmF+m5jqPZVWm/DFgCqHXccsD1hnYCr6GTsJ6A6B1+F4EC
-         tw0HrwaTbr0nrnyKUtbHpnPGwU2NyTVBFOTWRlltgsHbUd+Cd5eQrQlmmsi/8AntSD8k
-         DVDyawg+8QGwHfIeNgGe8Kylw2nbTc3tm/1+Y1SGXNPlJ4Nj7E6acSsE/KrqTa5+AbVe
-         MB2g==
-X-Gm-Message-State: APjAAAUP8ZkMrpWlJUSQfIPu2QbwEHnUlY2A9uGSB+VHOu+iDTDl9q3O
-        7Tj4r96qqoKXmonQMgoZ4My0Ntv52Ck=
-X-Google-Smtp-Source: APXvYqzvkaSup/U+6jlc0XHDqTIZZGZnUdW7Fzk8uuVh2NxC01TyNPoFq3JKeoBV1falQBosMIuPVw==
-X-Received: by 2002:a0c:9ac1:: with SMTP id k1mr4997641qvf.36.1557427473250;
-        Thu, 09 May 2019 11:44:33 -0700 (PDT)
-Received: from localhost ([2601:184:4780:7861:6268:7a0b:50be:cebc])
-        by smtp.gmail.com with ESMTPSA id e3sm1116133qkn.93.2019.05.09.11.44.32
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 09 May 2019 11:44:32 -0700 (PDT)
-From:   Rob Clark <robdclark@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Rob Clark <robdclark@chromium.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
+        id S1726930AbfEITUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 15:20:32 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:60226 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726907AbfEITUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 15:20:32 -0400
+X-IronPort-AV: E=Sophos;i="5.60,450,1549897200"; 
+   d="scan'208";a="15462905"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 10 May 2019 04:20:29 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4F427415F3F2;
+        Fri, 10 May 2019 04:20:26 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC 3/3] arm64: dts: qcom: sdm845-cheza: delete zap-shader
-Date:   Thu,  9 May 2019 11:44:13 -0700
-Message-Id: <20190509184415.11592-4-robdclark@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190509184415.11592-1-robdclark@gmail.com>
-References: <20190509184415.11592-1-robdclark@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH repost 0/5] Repost CAN and CANFD dt-bindings
+Date:   Thu,  9 May 2019 20:20:17 +0100
+Message-Id: <1557429622-31676-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Clark <robdclark@chromium.org>
+Dear All,
 
-This is unused on cheza.  Delete the node to get rid of the reserved-
-memory section, and to avoid the driver from attempting to load a zap
-shader that doesn't exist every time it powers up the GPU.
+I am reposting some CAN and CANFD related dt-bindings changes for
+Renesas' R-Car and RZ/G devices that have been originally sent
+end of last year and beginning of this year.
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
----
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 2 ++
- arch/arm64/boot/dts/qcom/sdm845.dtsi       | 2 +-
- 2 files changed, 3 insertions(+), 1 deletion(-)
+Thanks,
+Fab
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index 8ccbe246dff4..28c28517b21a 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -175,6 +175,8 @@
- /delete-node/ &venus_mem;
- /delete-node/ &cdsp_mem;
- /delete-node/ &cdsp_pas;
-+/delete-node/ &zap_shader;
-+/delete-node/ &gpu_mem;
- 
- /* Increase the size from 120 MB to 128 MB */
- &mpss_region {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index b2d9e46c3916..2ea74b58a613 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1989,7 +1989,7 @@
- 
- 			qcom,gmu = <&gmu>;
- 
--			zap-shader {
-+			zap_shader: zap-shader {
- 				memory-region = <&gpu_mem>;
- 			};
- 
+Fabrizio Castro (3):
+  dt-bindings: can: rcar_can: Fix RZ/G2 CAN clocks
+  dt-bindings: can: rcar_can: Add r8a774c0 support
+  dt-bindings: can: rcar_canfd: document r8a774c0 support
+
+Marek Vasut (2):
+  dt-bindings: can: rcar_canfd: document r8a77965 support
+  dt-bindings: can: rcar_canfd: document r8a77990 support
+
+ Documentation/devicetree/bindings/net/can/rcar_can.txt   | 13 ++++---------
+ Documentation/devicetree/bindings/net/can/rcar_canfd.txt | 16 ++++++++++------
+ 2 files changed, 14 insertions(+), 15 deletions(-)
+
 -- 
-2.20.1
+2.7.4
 
