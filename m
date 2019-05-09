@@ -2,136 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9130718C9F
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF66618CDB
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2019 17:22:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726749AbfEIPDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 11:03:01 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45657 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726234AbfEIPDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:03:01 -0400
-Received: by mail-wr1-f65.google.com with SMTP id s15so3486805wra.12;
-        Thu, 09 May 2019 08:02:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+Sog/2qIfcLY1kwGbgsfnaLx1YInIBe0tmQKmP6und8=;
-        b=agNGjFRiqp7mKOA0sQBpnVLz6Is49Ht1R++OlJR51N5ZhOmXmn9B9bjKoaCplyoGZX
-         o0D4RPxiOoechErWKKdqUMf5YIG4QHxLWCBeVtmO5ML9eLa7vM2yXQQzSFBl102vPvB2
-         dN/VOVjGj4fu/GMzdxa+FuHn0nPsF9VBMoEygXoJN7Pjiuo7rNUpIWcs/jtyHrGhdmnv
-         NdQabe0Ddzt8U5wppFH1vxjGHqtKwrg3voWdW9wLdKu7UPE03HZ127Q7xZtAztFkZWdp
-         XBqFvUSs9+4jS4XOzZ+VnwNMCn4KcUUBUloB4TsVDNBSFaO3tDml4w05QNirotWIgYtW
-         ZFVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+Sog/2qIfcLY1kwGbgsfnaLx1YInIBe0tmQKmP6und8=;
-        b=SkP6bU9Ynu83HNxSdTAEHmfLl3tfb8XcjdxRLuCtgHn8kShvXt68V/KhADzm1m6G3/
-         f4F816efexWT3nAjZTIB3kkxUJ7j0sWfIe3UCOV/X+oqXHY3T6GMIXApncCqDkeA1S96
-         +TXWHVA7LOxN5GiTc71iCY7+S1adDweSpLSPW0lffH2dEHU4eAwYSBIyCUX32jObcaui
-         K06IDgknJRXDDkZyOE7Pw08PH+yaOZH7Gl381IGCCUEVpNNLWp/KY14wXWm1DFNCuIuP
-         rrry04XNgqacbhXdZpfmOgTu14zKr8VNVqRgy8NuKN3n+v3dKGUJKowcIcsOHCvflXBt
-         RZ1Q==
-X-Gm-Message-State: APjAAAXNx/ACOzgewzIaAVz6MOlpF3lSOUG7+sKThgz68rJUxj7IBTgn
-        LrXERqJse1Gatu3dzw2uuNs=
-X-Google-Smtp-Source: APXvYqx2U4Ma/5CCY1tcHElwBTn4qwsSkBBXTVWp/3t0oForQwbgZRUKZ2bl+MvX4wDPq89Ij4naKg==
-X-Received: by 2002:adf:edc8:: with SMTP id v8mr3701903wro.206.1557414178884;
-        Thu, 09 May 2019 08:02:58 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id x17sm3298766wru.27.2019.05.09.08.02.57
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 09 May 2019 08:02:58 -0700 (PDT)
-Date:   Thu, 9 May 2019 17:02:57 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        "schnitzeltony@gmail.com" <schnitzeltony@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "jan.tuerk@emtrion.com" <jan.tuerk@emtrion.com>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH V12 2/5] pwm: Add i.MX TPM PWM driver support
-Message-ID: <20190509150257.GD8907@ulmo>
-References: <1557408252-21281-1-git-send-email-Anson.Huang@nxp.com>
- <1557408252-21281-3-git-send-email-Anson.Huang@nxp.com>
+        id S1726576AbfEIPWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 11:22:14 -0400
+Received: from condef-04.nifty.com ([202.248.20.69]:36729 "EHLO
+        condef-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726234AbfEIPWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 11:22:13 -0400
+Received: from conssluserg-04.nifty.com ([10.126.8.83])by condef-04.nifty.com with ESMTP id x49FK4c0005453
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 00:20:04 +0900
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46]) (authenticated)
+        by conssluserg-04.nifty.com with ESMTP id x49FJklU008070;
+        Fri, 10 May 2019 00:19:47 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com x49FJklU008070
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1557415188;
+        bh=/RmcGIvKlIeX5sautHUKWG9CqgOL/snHwlMz4C7RK7Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LpHPoAEd2po4sFlMrUGrNwEbOY28Aww4RDFL8YojNSo8sO3uY8ARSe11GyQZr8OUc
+         PRXjmAA9Atra/ht71v0rHNXzigOrkVT34erRnwrRqUUVqzsgRkUrKxyr6wo4jKapXO
+         x+D0BbHsXbe3nlzMrhdbo42vgj+AHOcWxsHTrvXbYr0d6fzsy1ol6RSHLUHYi3ayUH
+         MOjWMWO+tHDDhtImH09a0PoueXUKhmfqqJyCQ57GfOsMfWyrvnUPEY+1c8oag+THsl
+         aQtv59lraQ5Gmx3yk+TyXlcVHT55wTSMsVki/rd1We3cI4eZ1og6VgKylmkDa0tjDc
+         q7H/XL+sV3XHw==
+X-Nifty-SrcIP: [209.85.217.46]
+Received: by mail-vs1-f46.google.com with SMTP id q64so1671666vsd.1;
+        Thu, 09 May 2019 08:19:47 -0700 (PDT)
+X-Gm-Message-State: APjAAAWM3w7VKAifW8aL/3MwywEk4SKCrCfOlEDDoWjTqJKxEvzINsqX
+        7Ec/mtowIRbMhQk5h45mNZWn5cHSgm5VS6znWuI=
+X-Google-Smtp-Source: APXvYqx6QjKlJ2f+g4A6WK94eltfaSbhy0aZvu24LJigaNs8MefbVE61l1HSqEqjAJsc0x0q+dn5JmOY0plbpWccbg8=
+X-Received: by 2002:a67:f109:: with SMTP id n9mr2430794vsk.181.1557415186326;
+ Thu, 09 May 2019 08:19:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="h13GW2gLSV2TxsNR"
-Content-Disposition: inline
-In-Reply-To: <1557408252-21281-3-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+In-Reply-To: <20190501230126.229218-1-brendanhiggins@google.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Fri, 10 May 2019 00:19:08 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARzaeZ+ZNbDSii2cpFkk4bUqOu3keNq4qX0LhftuK8+MQ@mail.gmail.com>
+Message-ID: <CAK7LNARzaeZ+ZNbDSii2cpFkk4bUqOu3keNq4qX0LhftuK8+MQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        "Luis R. Rodriguez" <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Cc: Shuah Khan" <shuah@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
+        Tim Bird <Tim.Bird@sony.com>, amir73il@gmail.com,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>, rientjes@google.com,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 2, 2019 at 8:02 AM Brendan Higgins
+<brendanhiggins@google.com> wrote:
+>
+> ## TLDR
+>
+> I rebased the last patchset on 5.1-rc7 in hopes that we can get this in
+> 5.2.
+>
+> Shuah, I think you, Greg KH, and myself talked off thread, and we agreed
+> we would merge through your tree when the time came? Am I remembering
+> correctly?
+>
+> ## Background
+>
+> This patch set proposes KUnit, a lightweight unit testing and mocking
+> framework for the Linux kernel.
+>
+> Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+> it does not require installing the kernel on a test machine or in a VM
+> and does not require tests to be written in userspace running on a host
+> kernel. Additionally, KUnit is fast: From invocation to completion KUnit
+> can run several dozen tests in under a second. Currently, the entire
+> KUnit test suite for KUnit runs in under a second from the initial
+> invocation (build time excluded).
+>
+> KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+> Googletest/Googlemock for C++. KUnit provides facilities for defining
+> unit test cases, grouping related test cases into test suites, providing
+> common infrastructure for running tests, mocking, spying, and much more.
+>
+> ## What's so special about unit testing?
+>
+> A unit test is supposed to test a single unit of code in isolation,
+> hence the name. There should be no dependencies outside the control of
+> the test; this means no external dependencies, which makes tests orders
+> of magnitudes faster. Likewise, since there are no external dependencies,
+> there are no hoops to jump through to run the tests. Additionally, this
+> makes unit tests deterministic: a failing unit test always indicates a
+> problem. Finally, because unit tests necessarily have finer granularity,
+> they are able to test all code paths easily solving the classic problem
+> of difficulty in exercising error handling code.
+>
+> ## Is KUnit trying to replace other testing frameworks for the kernel?
+>
+> No. Most existing tests for the Linux kernel are end-to-end tests, which
+> have their place. A well tested system has lots of unit tests, a
+> reasonable number of integration tests, and some end-to-end tests. KUnit
+> is just trying to address the unit test space which is currently not
+> being addressed.
+>
+> ## More information on KUnit
+>
+> There is a bunch of documentation near the end of this patch set that
+> describes how to use KUnit and best practices for writing unit tests.
+> For convenience I am hosting the compiled docs here:
+> https://google.github.io/kunit-docs/third_party/kernel/docs/
+> Additionally for convenience, I have applied these patches to a branch:
+> https://kunit.googlesource.com/linux/+/kunit/rfc/v5.1-rc7/v1
+> The repo may be cloned with:
+> git clone https://kunit.googlesource.com/linux
+> This patchset is on the kunit/rfc/v5.1-rc7/v1 branch.
+>
+> ## Changes Since Last Version
+>
+> None. I just rebased the last patchset on v5.1-rc7.
+>
+> --
+> 2.21.0.593.g511ec345e18-goog
+>
 
---h13GW2gLSV2TxsNR
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The following is the log of 'git am' of this series.
+I see several 'new blank line at EOF' warnings.
 
-On Thu, May 09, 2019 at 01:29:29PM +0000, Anson Huang wrote:
-> i.MX7ULP has TPM(Low Power Timer/Pulse Width Modulation Module)
-> inside, it can support multiple PWM channels, all the channels
-> share same counter and period setting, but each channel can
-> configure its duty and polarity independently.
->=20
-> There are several TPM modules in i.MX7ULP, the number of channels
-> in TPM modules are different, it can be read from each TPM module's
-> PARAM register.
->=20
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Reviewed-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-> ---
-> Changes since V11:
-> 	- ONLY add function comment to pwm_imx_tpm_round_state(), no code change.
-> ---
->  drivers/pwm/Kconfig       |  11 ++
->  drivers/pwm/Makefile      |   1 +
->  drivers/pwm/pwm-imx-tpm.c | 448 ++++++++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 460 insertions(+)
->  create mode 100644 drivers/pwm/pwm-imx-tpm.c
 
-Applied, thanks.
 
-Thierry
+masahiro@pug:~/workspace/bsp/linux$ git am ~/Downloads/*.patch
+Applying: kunit: test: add KUnit test runner core
+Applying: kunit: test: add test resource management API
+Applying: kunit: test: add string_stream a std::stream like string builder
+.git/rebase-apply/patch:223: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: kunit: test: add kunit_stream a std::stream like logger
+Applying: kunit: test: add the concept of expectations
+.git/rebase-apply/patch:475: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: kbuild: enable building KUnit
+Applying: kunit: test: add initial tests
+.git/rebase-apply/patch:203: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: kunit: test: add support for test abort
+.git/rebase-apply/patch:453: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: kunit: test: add tests for kunit test abort
+Applying: kunit: test: add the concept of assertions
+.git/rebase-apply/patch:518: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: kunit: test: add test managed resource tests
+Applying: kunit: tool: add Python wrappers for running KUnit tests
+.git/rebase-apply/patch:457: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: kunit: defconfig: add defconfigs for building KUnit tests
+Applying: Documentation: kunit: add documentation for KUnit
+.git/rebase-apply/patch:71: new blank line at EOF.
++
+.git/rebase-apply/patch:209: new blank line at EOF.
++
+.git/rebase-apply/patch:848: new blank line at EOF.
++
+warning: 3 lines add whitespace errors.
+Applying: MAINTAINERS: add entry for KUnit the unit testing framework
+Applying: kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
+Applying: MAINTAINERS: add proc sysctl KUnit test to PROC SYSCTL section
 
---h13GW2gLSV2TxsNR
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzUQSEACgkQ3SOs138+
-s6F/KA//UWmIXrWZOEJNfWpMu2ymqohHv39qDATl8P2EsfvZ2lFAEj+Q7KxyUghE
-VEbkXJksm+A8u8HBj1MKNzbxrc1xodUIWaOVo3/Nj8BY3gt1+yIaiVaEhRvUPaod
-18uhIWkFg2eZAw+3vHRumyHdL/DeYu1ejmvCD3qmeCbW7TPudKPy4DFzpD2zQmYG
-qVKChU8J6SA+jUNsUrAVaKBdSoorWWeImvgZeXWUN6ltRZnua5goJvWU6NSDhe5B
-PPvaJAOBJADlWJ3VmGieueuY4ds2k+XbFzXezgPQZNzFYrCgdMG+A6KCzbt5ZKS+
-3Hh4iSlVKwpvbK6bxOqSqqAi1AkqbGSX3FRLy1/vpm9t+SXrZWpuk/YczuaXkmNi
-PhKmIQGpeuBscTs9geeNY3bstqKouYoJr5KiPrk8AxeBdxxxv6QWJtoAOXr26OqM
-uGkZqYemfYjsfb8fS6Yix4NsXNfDDGU5NpHuzaoBZgbzKHZsCXYB4YYWOzX2vOE/
-7TzVOLSBy/sbjDxjclVrwMvbxz9JU+j//9wn4qU49fqI3IVOq8yOa+D2jZTHOrJN
-v0X6H5YQzDGtOwsPSPQIeCAxXeqvwBCmUsN65AlfVd6NHld4x/yuiXvezOqrobjn
-eVxK3nv9C88dJUO40pmTUBCe5P/rXFQk5NcSffby6hGUbz3UuCA=
-=SEhD
------END PGP SIGNATURE-----
 
---h13GW2gLSV2TxsNR--
+
+
+--
+Best Regards
+Masahiro Yamada
