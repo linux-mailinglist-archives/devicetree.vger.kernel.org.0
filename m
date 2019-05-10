@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E836119D6C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 14:49:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2492519D74
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 14:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727320AbfEJMtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 08:49:42 -0400
-Received: from hel-mailgw-01.vaisala.com ([193.143.230.17]:9765 "EHLO
-        hel-mailgw-01.vaisala.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727071AbfEJMtm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 08:49:42 -0400
-X-IronPort-AV: E=Sophos;i="5.60,453,1549922400"; 
-   d="scan'208";a="218814811"
-Subject: Re: [PATCH v3 2/2] dt-bindings: power: reset: add document for NVMEM
- based reboot-mode
-To:     Rob Herring <robh@kernel.org>
-Cc:     "sre@kernel.org" <sre@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <fc60b885f1b447ce55950184c7921cfc1c96ade6>
- <20190421190913.1478-3-nandor.han@vaisala.com> <20190430224731.GA31760@bogus>
-From:   Nandor Han <nandor.han@vaisala.com>
-Message-ID: <0134c853-f5eb-8d6f-6523-61688607b367@vaisala.com>
-Date:   Fri, 10 May 2019 15:49:36 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+        id S1727324AbfEJMy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 08:54:27 -0400
+Received: from foss.arm.com ([217.140.101.70]:46278 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727071AbfEJMy1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 08:54:27 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 541EA374;
+        Fri, 10 May 2019 05:54:27 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 87E133F6C4;
+        Fri, 10 May 2019 05:54:25 -0700 (PDT)
+Date:   Fri, 10 May 2019 13:54:22 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, andy.gross@linaro.org,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv1 1/8] arm64: dts: Fix various entry-method properties to
+ reflect documentation
+Message-ID: <20190510125422.GB10284@e107155-lin>
+References: <cover.1557486950.git.amit.kucheria@linaro.org>
+ <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20190430224731.GA31760@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-OriginalArrivalTime: 10 May 2019 12:49:36.0745 (UTC) FILETIME=[D3041D90:01D5072E]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/1/19 1:47 AM, Rob Herring wrote:
+On Fri, May 10, 2019 at 04:59:39PM +0530, Amit Kucheria wrote:
+> The idle-states binding documentation[1] mentions that the
+> 'entry-method' property is required on 64-bit platforms and must be set
+> to "psci".
+>
+> We fixed up all uses of the entry-method property in
+> commit e9880240e4f4 ("arm64: dts: Fix various entry-method properties to
+> reflect documentation"). But a new one has appeared. Fix it up.
+>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
 
-Hi Rob,
-   Thanks for review.
+Ah right, new ones always appear for short period.
+Anyways,
 
->> @@ -0,0 +1,32 @@
->> +NVMEM reboot mode driver
->> +
->> +This driver gets reboot mode magic value from reboot-mode driver
->> +and stores it in a NVMEM cell named "reboot-mode". Then the bootloader
->> +can read it and take different action according to the magic
->> +value stored.
-> 
-> This is also assuming the nvmem is writeable which is more often not the
-> case.
-> 
-> Is your usecase a platform that supports pstore? Adding on to that
-> binding might be a better fit.
-> 
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
 
-I'm using an RTC persistent memory for storing this data. The available
-memory is low and don't think pstore will fit in this case.
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 2896bbcfa3bb..42e7822a0227 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -51,7 +51,7 @@
+>  		 * PSCI node is not added default, U-boot will add missing
+>  		 * parts if it determines to use PSCI.
+>  		 */
+> -		entry-method = "arm,psci";
+> +		entry-method = "psci";
+>
+>  		CPU_PH20: cpu-ph20 {
+>  			compatible = "arm,idle-state";
+> --
+> 2.17.1
+>
 
->> +The rest of the properties should follow the generic reboot-mode description
->> +found in reboot-mode.txt
->> +
->> +Example:
->> +	reboot-mode-nvmem@0 {
-> 
-> What's this node for?
-> 
->> +		compatible = "simple-mfd";
-> 
-> I only see 1 function.
-> 
-
-No need to this. Will remove
-
-Nandor
