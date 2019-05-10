@@ -2,100 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E07DE19667
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 04:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1F4196CD
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 04:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726806AbfEJCAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 May 2019 22:00:06 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:64910 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726799AbfEJCAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 May 2019 22:00:06 -0400
-X-UUID: b758b69594e44c8cb2c3c23ad694a496-20190510
-X-UUID: b758b69594e44c8cb2c3c23ad694a496-20190510
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1714720852; Fri, 10 May 2019 10:00:01 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33DR.mediatek.inc
- (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 10 May
- 2019 09:59:59 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 10 May 2019 09:59:59 +0800
-Message-ID: <1557453599.10179.280.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 08/15] usb: renesas_usbhs: move flags macros
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Chris Brandt <chris.brandt@renesas.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>
-Date:   Fri, 10 May 2019 09:59:59 +0800
-In-Reply-To: <20190509201142.10543-9-chris.brandt@renesas.com>
-References: <20190509201142.10543-1-chris.brandt@renesas.com>
-         <20190509201142.10543-9-chris.brandt@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726931AbfEJCxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 May 2019 22:53:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57992 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726864AbfEJCxZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 May 2019 22:53:25 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6C8CB2182B;
+        Fri, 10 May 2019 02:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557456805;
+        bh=yndtu6l2F2QVUpcWsd1U44NK1dKySqWeENOPnEkorBk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=w7R6Q8D1B80KXOCpDCuyqvyOwIr8Xy/Tfuq2FGhpJnsmcx6PJr3FcFJsjyjcUcxRo
+         L5qPSog8XPgsd3m9P53XAM4hc30Fm52q0Q0O/oeBIcd0eRKzhUc4FxWZVY5oCIW2Fx
+         JPZSfj4Jr2GMlZOEcnezn3V49hGEBQW6TBgm15B0=
+Date:   Fri, 10 May 2019 10:53:03 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Wen He <wen.he_1@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
+Subject: Re: [v4] arm64: dts: ls1028a: Add properties for Mali DP500 node
+Message-ID: <20190510025302.GB15856@dragon>
+References: <20190422101941.11335-1-wen.he_1@nxp.com>
 MIME-Version: 1.0
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190422101941.11335-1-wen.he_1@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-05-09 at 15:11 -0500, Chris Brandt wrote:
-> Move flags macros to header file so they can be used by other files.
+On Mon, Apr 22, 2019 at 10:18:10AM +0000, Wen He wrote:
+> The LS1028A has a LCD controller and Displayport interface that
+> connects to eDP and Displayport connectors on the LS1028A board.
 > 
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
-> ---
->  drivers/usb/renesas_usbhs/common.c |  7 -------
->  drivers/usb/renesas_usbhs/common.h | 10 ++++++++++
->  2 files changed, 10 insertions(+), 7 deletions(-)
+> This patch enables the LCD controller driver on the LS1028A.
 > 
-> diff --git a/drivers/usb/renesas_usbhs/common.c b/drivers/usb/renesas_usbhs/common.c
-> index 249fbee97f3f..efb26ffd9809 100644
-> --- a/drivers/usb/renesas_usbhs/common.c
-> +++ b/drivers/usb/renesas_usbhs/common.c
-> @@ -44,13 +44,6 @@
->   */
->  
-> 
-> -#define USBHSF_RUNTIME_PWCTRL	(1 << 0)
-> -
-> -/* status */
-> -#define usbhsc_flags_init(p)   do {(p)->flags = 0; } while (0)
-> -#define usbhsc_flags_set(p, b) ((p)->flags |=  (b))
-> -#define usbhsc_flags_clr(p, b) ((p)->flags &= ~(b))
-> -#define usbhsc_flags_has(p, b) ((p)->flags &   (b))
->  
->  /*
->   * platform call back
-> diff --git a/drivers/usb/renesas_usbhs/common.h b/drivers/usb/renesas_usbhs/common.h
-> index 3777af848a35..1ca94b8f5508 100644
-> --- a/drivers/usb/renesas_usbhs/common.h
-> +++ b/drivers/usb/renesas_usbhs/common.h
-> @@ -339,4 +339,14 @@ struct usbhs_priv *usbhs_pdev_to_priv(struct platform_device *pdev);
->  #define usbhs_priv_to_dev(priv)		(&priv->pdev->dev)
->  #define usbhs_priv_to_lock(priv)	(&priv->lock)
->  
-> +/*
-> + * flags
-> + */
-> +#define USBHSF_RUNTIME_PWCTRL	(1 << 0)
-BIT(0)?
-> +
-> +#define usbhsc_flags_init(p)   ((p)->flags = 0)
-> +#define usbhsc_flags_set(p, b) ((p)->flags |=  (b))
-> +#define usbhsc_flags_clr(p, b) ((p)->flags &= ~(b))
-> +#define usbhsc_flags_has(p, b) ((p)->flags &   (b))
-> +
->  #endif /* RENESAS_USB_DRIVER_H */
+> Signed-off-by: Alison Wang <alison.wang@nxp.com>
+> Signed-off-by: Wen He <wen.he_1@nxp.com>
+> Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 
+Hi Wen,
 
+The base64 encoding of the message makes it very difficult to apply the
+patch.  I managed to apply it manually this time, but please do not use
+base64 for future patch posting.
+
+Shawn
