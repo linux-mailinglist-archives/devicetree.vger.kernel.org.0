@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D7D1A31B
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 20:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFBD11A31E
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 20:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728042AbfEJSp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 14:45:56 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:40978 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727562AbfEJSp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 14:45:56 -0400
-Received: by mail-pl1-f194.google.com with SMTP id f12so1204071plt.8
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 11:45:56 -0700 (PDT)
+        id S1728066AbfEJSqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 14:46:02 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:40986 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727903AbfEJSqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 14:46:02 -0400
+Received: by mail-pl1-f195.google.com with SMTP id f12so1204160plt.8
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 11:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZM7SY/0BpFAbopYEDbwnieszVXK8F7PH873RQSPiOGw=;
-        b=eSmkaRdfluc3LITMaj52pu9Lm3tSLmTqyzpSePda+Stm7E9Nvv4lCWt62yvZEMnqC3
-         r7afY22FHunRw47eNe4uw3BYf3x1JEdpF3RmPZ+Yp1CJG/T8fHghd/qMkCqdjmia/E3O
-         EpojE9CCfBucSdWMnF3lhlPgGEUxGIdquEDFsKZJR/rjQ2TWYBca341e9eSShXJBow98
-         lJNweQrjhv+0lHoDhv9EjYUoC247BylKAH5g8Lfbwi6TycVeSCKXBH/1dIoV/GjQIhxa
-         HrWmQa7dJDlgFxXV3fRkcBE4NtxIEYQ2u4trrqqeppiKG11BHlVV1p55O3CF0pE9+BJg
-         pguQ==
+        bh=vGDKTNjsKzMe4GW+UPOj5iNxo8t2mh5Da0jHvYPytGE=;
+        b=p2Pip4Ll9DSrmW0FfFYLYWffhVHDVwjr16LGT6u1ugr+3DzDArCr7Dx/6bhjjxfVoI
+         KrK14jqo0hVo5aIzZ2qP+uyYKG3fOu9Gkx9eSnB8J4d8JOVzDlyHN5kz2Nt4EJIOUcY3
+         BxRdAO2iUVAprShO5MqiPm/mr/tscFe5kJ24dQ7JwVRdgWz2QaJszP337BuCuV0d0pHq
+         0zjeRkpt+VhW/IvdNuTDS1aKC3B/ymdq0wMEhTA7rsFpAJfOvPpm0qpHiH60+SPuUh+H
+         4z9NqpXEtqC27/xBNeairhhcWaaMl7Ak5FUGU8VlgnskRY4sYBsFI4z23STp1ywRPAvT
+         ItMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=ZM7SY/0BpFAbopYEDbwnieszVXK8F7PH873RQSPiOGw=;
-        b=VlB14h3go7+GRav0BVgMOqOAX34uXaCfLaoEwUm7UvMOH6y5RVSi9RX/hY+hQPo6ty
-         6XY426WSF/1BCGm3lrZf3tzyUXEh5J0parFaQfqskISnjhrlkqQKdQLFckaVYBSOpBPn
-         PKnWNtTDrVNU1FgKxw/RpX3qItS1H76IM3Rj9ofcBZv6M7uoUlHL+8rh1ziTL95z7ksk
-         0ttVc/oV45MYLfGcomrbzDqQBArlJLEOa6dyQEL09OMRSgGSRORcy6mQN2e6qMjlsNC0
-         L+DuT9c7FpLLNj0qykRwHam5CpN01GP1KWNM4AI2+t5vbriv0bwbjEs/UGKT+LA9ibyF
-         8b7Q==
-X-Gm-Message-State: APjAAAW49wjEFdw1PWRBxTTZjUdWSYR6GRHHsqMiGRCcWiLjHrmWLBkO
-        eT2fw6M60XxVfBTSpHq3nIPn
-X-Google-Smtp-Source: APXvYqxehUfLgKa/EJLFMORNrx2COq3ir5fRNxBGMKqgYwg3ZYbf0h6xEgq3a/Wkcs4t665qS0wXlg==
-X-Received: by 2002:a17:902:868e:: with SMTP id g14mr15465190plo.183.1557513955941;
-        Fri, 10 May 2019 11:45:55 -0700 (PDT)
+        bh=vGDKTNjsKzMe4GW+UPOj5iNxo8t2mh5Da0jHvYPytGE=;
+        b=mEBbL9qAGauRnaqiQQl4rDKJbQOh3uZgm2De8J7Algo/dlo3SRBdl+TXCgwlJZRkGG
+         MPa9GliqYoh+PuwemepAj2wh3OxHJZb0x3N6HajM05wsx8JNy+pzM1wAVULODzfBq5lY
+         YNelpc3p50+gyaIuHez7SGbJ8SysvFXscrI9DopTaNiGgvVlpnBpZRu7wHQX/N3ON6MZ
+         MG2fTI5YqW45ghbS3Ewz0zCukvvJEpyMWptm5VHH4O2C9CJsJdGbWHNm3jAxdp4Tq+M0
+         7CeRNJ3Qait7Uw+ODxtVTpuqlrXyinzckIfn+aQPFu6Ccp1ZtWTtjmQT/e5cDUnwOPkZ
+         mB9A==
+X-Gm-Message-State: APjAAAWy5Ic7YBjgKuod1aWA8Al4RzGj+yGNUuj4KzSHgqhKVyerqdin
+        cjSkqNwyL3mTYxdY4MNV6NWD
+X-Google-Smtp-Source: APXvYqwwSkKeD5/Lj1MCuuCxCrpV789NiQqjWlUJyNqEn8UuMn8VzljR7w/AJImCku24GfkBT/7GUQ==
+X-Received: by 2002:a17:902:7d83:: with SMTP id a3mr15613197plm.305.1557513961387;
+        Fri, 10 May 2019 11:46:01 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:73c1:9991:95b6:5055:2390:bf9b])
-        by smtp.gmail.com with ESMTPSA id g188sm8652049pfc.151.2019.05.10.11.45.50
+        by smtp.gmail.com with ESMTPSA id g188sm8652049pfc.151.2019.05.10.11.45.56
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 10 May 2019 11:45:54 -0700 (PDT)
+        Fri, 10 May 2019 11:46:00 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     p.zabel@pengutronix.de, robh+dt@kernel.org
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         haitao.suo@bitmain.com, darren.tsao@bitmain.com,
         alec.lin@bitmain.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 2/4] arm64: dts: bitmain: Add reset controller support for BM1880 SoC
-Date:   Sat, 11 May 2019 00:15:23 +0530
-Message-Id: <20190510184525.13568-3-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 3/4] reset: Add reset controller support for BM1880 SoC
+Date:   Sat, 11 May 2019 00:15:24 +0530
+Message-Id: <20190510184525.13568-4-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190510184525.13568-1-manivannan.sadhasivam@linaro.org>
 References: <20190510184525.13568-1-manivannan.sadhasivam@linaro.org>
@@ -60,72 +60,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reset controller support for Bitmain BM1880 SoC. This commit also
-adds reset support to UART peripherals.
+Add reset controller support for Bitmain BM1880 SoC reusing the
+reset-simple driver.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
- arch/arm64/boot/dts/bitmain/bm1880.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/reset/Kconfig        | 3 ++-
+ drivers/reset/reset-simple.c | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/bitmain/bm1880.dtsi b/arch/arm64/boot/dts/bitmain/bm1880.dtsi
-index fdfdc65d29ef..3ab039029bf2 100644
---- a/arch/arm64/boot/dts/bitmain/bm1880.dtsi
-+++ b/arch/arm64/boot/dts/bitmain/bm1880.dtsi
-@@ -5,6 +5,7 @@
-  */
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 2c8c23db92fb..b25e8d139f0d 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -117,7 +117,7 @@ config RESET_QCOM_PDC
  
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/bitmain,bm1880-reset.h>
+ config RESET_SIMPLE
+ 	bool "Simple Reset Controller Driver" if COMPILE_TEST
+-	default ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARCH_ASPEED
++	default ARCH_STM32 || ARCH_STRATIX10 || ARCH_SUNXI || ARCH_ZX || ARCH_ASPEED || ARCH_BITMAIN
+ 	help
+ 	  This enables a simple reset controller driver for reset lines that
+ 	  that can be asserted and deasserted by toggling bits in a contiguous,
+@@ -129,6 +129,7 @@ config RESET_SIMPLE
+ 	   - RCC reset controller in STM32 MCUs
+ 	   - Allwinner SoCs
+ 	   - ZTE's zx2967 family
++	   - Bitmain BM1880 SoC
  
- / {
- 	compatible = "bitmain,bm1880";
-@@ -92,6 +93,12 @@
- 				compatible = "bitmain,bm1880-pinctrl";
- 				reg = <0x50 0x4B0>;
- 			};
-+
-+			rst: reset-controller@c00 {
-+				compatible = "bitmain,bm1880-reset";
-+				reg = <0xc00 0x8>;
-+				#reset-cells = <1>;
-+			};
- 		};
+ config RESET_STM32MP157
+ 	bool "STM32MP157 Reset Driver" if COMPILE_TEST
+diff --git a/drivers/reset/reset-simple.c b/drivers/reset/reset-simple.c
+index 77fbba3100c8..5e8c86470e6b 100644
+--- a/drivers/reset/reset-simple.c
++++ b/drivers/reset/reset-simple.c
+@@ -129,6 +129,8 @@ static const struct of_device_id reset_simple_dt_ids[] = {
+ 		.data = &reset_simple_active_low },
+ 	{ .compatible = "aspeed,ast2400-lpc-reset" },
+ 	{ .compatible = "aspeed,ast2500-lpc-reset" },
++	{ .compatible = "bitmain,bm1880-reset",
++		.data = &reset_simple_active_low },
+ 	{ /* sentinel */ },
+ };
  
- 		uart0: serial@58018000 {
-@@ -100,6 +107,7 @@
- 			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
-+			resets = <&rst BM1880_RST_UART0_1_CLK>;
- 			status = "disabled";
- 		};
- 
-@@ -109,6 +117,7 @@
- 			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
-+			resets = <&rst BM1880_RST_UART0_1_ACLK>;
- 			status = "disabled";
- 		};
- 
-@@ -118,6 +127,7 @@
- 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
-+			resets = <&rst BM1880_RST_UART2_3_CLK>;
- 			status = "disabled";
- 		};
- 
-@@ -127,6 +137,7 @@
- 			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
-+			resets = <&rst BM1880_RST_UART2_3_ACLK>;
- 			status = "disabled";
- 		};
- 	};
 -- 
 2.17.1
 
