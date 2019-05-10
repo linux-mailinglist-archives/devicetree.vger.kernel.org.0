@@ -2,167 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 239D61979C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 06:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 113BA197BA
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 06:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727154AbfEJEee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 00:34:34 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:40498 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727150AbfEJEee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 00:34:34 -0400
-Received: by mail-pf1-f196.google.com with SMTP id u17so2500701pfn.7
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2019 21:34:34 -0700 (PDT)
+        id S1727001AbfEJEiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 00:38:23 -0400
+Received: from mail-eopbgr1410129.outbound.protection.outlook.com ([40.107.141.129]:19728
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726907AbfEJEiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 00:38:23 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=iX3tMXHfmXAFXgezY0ndg+xouFZG1EouvpxfWVnQyEI=;
-        b=wPfwc2D5OF/jIrQh6ZiDhbghVvEWi/KSKgRlbqnjQdVSy1tBYJ/ow053Yrs0CJfGRH
-         0LybhQkgMUqXokj+6NjwjduqZqgutOyy0QX9GcL8zyspz4T+Bt9pGDhSF57RQaNGLY+M
-         cVLmvrlpp7Qz1hO6bALHejmw8tpzUXStqxX3W1Iip0hFVhB4z1p/1FS0J4Cy+nTbGJtP
-         lfaDV6tyBANfmTO3J8s0WwMFJEI3NfTxbXYbcKnwoJORsYhUVtHglzjpo6wJDiaxm/g6
-         Ajqb+Thj3C1/9Mn4zOaHND+I0qL1LYR3KXR5tkXTclDP4XRG/JML+XFhOFPhBrCsdjtw
-         Duow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=iX3tMXHfmXAFXgezY0ndg+xouFZG1EouvpxfWVnQyEI=;
-        b=kSWzfft1TjBrJvXrxAjLYXYLQwpeF+F9TI5sZgnb58O9OvMT3BMVLdX01ceBnHiME4
-         RuCmZ9pmBgrIXoNyLve22yx1lOA9ZyPv2QwV9gaW+ymtrypkIwmDsdjjxPbwQ7XY9E+R
-         1RC6F+gola073m5jNNPS37dB/qpto+nuzi+mBD1pl5SXevVX9+L4uJ/sEjNFDPxslbnp
-         2/IUHUU6e9Oo97HdNCwkeyQ6IWnvZ4pvjMH5HuQCLzPqugeX0qepJn4eOVhpMIWmvbiM
-         U1sMuisXxXJJeAl9SZSewToMGO/UDV/1FYK20d0AdHYU0l0TSORNLq8HwzOkNCgdmh7T
-         Z/CA==
-X-Gm-Message-State: APjAAAX6L31opTUzjkwOphvhWllykhfed8uLFv2RNOwjEW9PA6oJ5dgh
-        mVuC1ngKjy6UCtt4j13A88rEVQ==
-X-Google-Smtp-Source: APXvYqz+VCrGwz0F1OeNQEiRJZyZwGUfV3b04q0MFLWKiNqRgZb4ye/bbEOX7ZRjTy+HIpkkBqHGmw==
-X-Received: by 2002:a63:ed03:: with SMTP id d3mr11006230pgi.7.1557462873882;
-        Thu, 09 May 2019 21:34:33 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id s17sm4785317pfm.149.2019.05.09.21.34.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 09 May 2019 21:34:33 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
+ d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vmmCiuHxmQA3aRSs3NsS3RfM5Xj+c2AFIirzaDeoOrg=;
+ b=muokvj96w0hqkSCCQ8fsVqN9EtHMuGJq9UadH3VLk3poOrycHP3Y6DrdzZbGOmvAnVQr8Z2AM0L6u8NZbf5pnoSb0CsO1h11GbJfLIBywGY9GI1fPRVN5DwzUl10pA3YNRyLkBXcYD4KgWYTvB5jfwgebcac+T86OcYyOnszdl4=
+Received: from OSBPR01MB3174.jpnprd01.prod.outlook.com (20.176.240.146) by
+ OSBPR01MB3720.jpnprd01.prod.outlook.com (20.178.97.215) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.20; Fri, 10 May 2019 04:38:18 +0000
+Received: from OSBPR01MB3174.jpnprd01.prod.outlook.com
+ ([fe80::f873:6332:738d:7213]) by OSBPR01MB3174.jpnprd01.prod.outlook.com
+ ([fe80::f873:6332:738d:7213%3]) with mapi id 15.20.1878.022; Fri, 10 May 2019
+ 04:38:18 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Chris Brandt <Chris.Brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] arm64: dts: qcom: qcs404: Add fastrpc nodes
-Date:   Thu,  9 May 2019 21:34:21 -0700
-Message-Id: <20190510043421.31393-9-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190510043421.31393-1-bjorn.andersson@linaro.org>
-References: <20190510043421.31393-1-bjorn.andersson@linaro.org>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Chris Brandt <Chris.Brandt@renesas.com>
+Subject: RE: [PATCH v2 04/15] dt-bindings: rcar-gen3-phy-usb2: Document use of
+ usb_x1
+Thread-Topic: [PATCH v2 04/15] dt-bindings: rcar-gen3-phy-usb2: Document use
+ of usb_x1
+Thread-Index: AQHVBqOYCISEYyQKq0WBPURrqMi4qKZjwi9g
+Date:   Fri, 10 May 2019 04:38:18 +0000
+Message-ID: <OSBPR01MB3174A8008FF1E216893398E8D80C0@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+References: <20190509201142.10543-1-chris.brandt@renesas.com>
+ <20190509201142.10543-5-chris.brandt@renesas.com>
+In-Reply-To: <20190509201142.10543-5-chris.brandt@renesas.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
+x-originating-ip: [118.238.235.108]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d4b0fa50-9173-4905-aa08-08d6d501530b
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB3720;
+x-ms-traffictypediagnostic: OSBPR01MB3720:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <OSBPR01MB3720FC09A9242FC250DF7405D80C0@OSBPR01MB3720.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1107;
+x-forefront-prvs: 0033AAD26D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(346002)(376002)(39860400002)(366004)(136003)(199004)(189003)(5660300002)(52536014)(3846002)(6116002)(8676002)(71200400001)(6506007)(81156014)(81166006)(25786009)(229853002)(2906002)(7696005)(14454004)(71190400001)(66066001)(86362001)(26005)(476003)(8936002)(11346002)(486006)(102836004)(186003)(446003)(966005)(74316002)(478600001)(76116006)(66446008)(256004)(73956011)(14444005)(33656002)(6306002)(55016002)(66556008)(64756008)(66476007)(76176011)(7736002)(4326008)(54906003)(110136005)(99286004)(6246003)(107886003)(53936002)(9686003)(68736007)(6436002)(316002)(66946007)(305945005);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB3720;H:OSBPR01MB3174.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: suOPa5EcEJ26K5VNvd12612wvb6VYlENRNrbfoGmsHaeFMlV1lvbkmEQnwdWErgc5WPlyr62ZBHSo8vRPuCwuEZ0i9WEJq6WJCS/PibaAI5NVLxclIa4+X6y38HWn6uFSQPhp4K8VImroE8NgGxb7i+fwBVoVcppL7dcV0qEqYzOhbnX8/jdC4jXeD8kqo22wR3vG6CZXgKQeNAm+4IA7mz3emI4JaAsOiflmi+38xDfpRejrgZX3/HhV1SFaoASi9rCWcW2x0bbUdxm1kIL6fpM4OSn8vKWEAxyEeY1qkSOqeooWVG258TsyMGBqYigtwhyxdgKoWbVrORPy12emwiyV9jd0uJA9EQu5DzngfMvJvftrOEfpGylzfLDEazhfmM2ooc5RZOWRSRmU9yQVWqDRo+Gji09mK9DqhIVlVc=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4b0fa50-9173-4905-aa08-08d6d501530b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2019 04:38:18.2591
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3720
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Escande <thierry.escande@linaro.org>
+Hi Chris-san,
 
-The ADSP fastrpc provides 3 context banks and are assigned to IOMMU
-context banks 23, 24 and 25; using SIDs 0x804, 0x805 and 0x806.  The
-CDSP fastrpc provides 5 context banks and are assigned to IOMMU context
-banks 5, 6, 7, 8 and 9; using SIDs 0x1001 through 0x1005. Add these to
-their respective remoteproc.
+Thank you for the patch!
 
-The lower 4 bits of the SID is used to identify the context bank when
-communicating with the fastrpc firmware, so this gives the reg values.
+> From: Chris Brandt, Sent: Friday, May 10, 2019 5:12 AM
+>=20
+> Document the optional renesas,uses_usb_x1 property.
+>=20
+> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+> ---
+> v2:
+>  * removed 'use_usb_x1' option
+>  * document that 'usb_x1' clock node will be detected to determine if
+>    48MHz clock exists
+> ---
+>  Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> index d46188f450bf..79d8360d92e5 100644
+> --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> @@ -28,7 +28,9 @@ Required properties:
+>  	      followed by the generic version.
+>=20
+>  - reg: offset and length of the partial USB 2.0 Host register block.
+> -- clocks: clock phandle and specifier pair(s).
+> +- clocks: clock phandle and specifier pair(s). For SoCs that have a sepa=
+rate
+> +          dedicated 48MHz USB_X1 input, if a 'usb_x1' clock node exists =
+and is
+> +          set to non-zero, the PHY will use the 48MHZ input for the PLL.
 
-Signed-off-by: Thierry Escande <thierry.escande@linaro.org>
-[bjorn: Added SMMU linkage and extend commit message]
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 66 ++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+I think we need to add clock-names property for usb_x1 at least.
+I checked the other doc "renesas,du.txt".
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
+umentation/devicetree/bindings/display/renesas,du.txt#n31
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index fcde4f0334c2..858a53160564 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -243,6 +243,45 @@
- 				mboxes = <&apcs_glb 12>;
- 
- 				label = "cdsp";
-+
-+				fastrpc_cdsp: fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "cdsp";
-+
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_iommu 5>;
-+					};
-+
-+					cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_iommu 6>;
-+					};
-+
-+					cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_iommu 7>;
-+					};
-+
-+					cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_iommu 8>;
-+					};
-+
-+					cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_iommu 9>;
-+					};
-+				};
- 			};
- 		};
- 
-@@ -928,6 +967,33 @@
- 				mboxes = <&apcs_glb 8>;
- 
- 				label = "adsp";
-+
-+				fastrpc_adsp: fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_iommu 23>;
-+					};
-+
-+					cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_iommu 24>;
-+					};
-+
-+					cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&apps_iommu 25>;
-+					};
-+				};
- 			};
- 		};
- 	};
--- 
-2.18.0
+I think we can reuse it like below:
+
+- clock-names: Name of the clocks. This property is model-dependent.
+  - R-Car Gen3 SoCs use a single functional clock. The clock doesn't need t=
+o be
+    named.
+  - RZ/A2 uses a single functional clock as a separate dedicated 48MHz
+    USB_X1 input. So, the functional clock must be named "???" and
+    the USB_X1 input must be named as "usb_x1".
+
+What do you think? I'm not sure how to be named the functional clock so tha=
+t
+the sample is named as "???".
+
+Best regards,
+Yoshihiro Shimoda
+
+>  - #phy-cells: see phy-bindings.txt in the same directory, must be <1> (a=
+nd
+>  	      using <0> is deprecated).
+>=20
+> --
+> 2.16.1
 
