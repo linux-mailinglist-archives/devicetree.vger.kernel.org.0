@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABEBA19C9C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 13:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7814E19CA1
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 13:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727308AbfEJL35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 07:29:57 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:45740 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727145AbfEJL35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 07:29:57 -0400
-Received: by mail-pg1-f193.google.com with SMTP id i21so2876761pgi.12
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 04:29:57 -0700 (PDT)
+        id S1727347AbfEJLaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 07:30:02 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:38549 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727301AbfEJLaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 07:30:01 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 10so3086865pfo.5
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 04:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :in-reply-to:references;
-        bh=3omjhH7TbR3FmFs5TtPgVwPetLA6H87w8Ypx7qlc/xQ=;
-        b=HoRmKH63l7C7FzvYpQKh9CZ7kohym54pLp7tXuBRX+GWRJfziLnjDDh+iRDQO9D9ee
-         L4gUVGETEU2esvl0g5q9h3bRgSsop0fGsD0JpUSAmANdczdGmY6DncD+TdxbG83VSLOB
-         ECMSRiDOXP/Qvyj9HQXFZqa4yto5zcrr+/ckIp8uh6ttN53QE3GNGRsdrEOGhUKa9tN6
-         cpDhWAifzey2GtZ4GhvpKvoMeoyVVNA+uQAOJfdNMJAJKf91DdZ6OPg+2ndEz9dgdFSr
-         HMdKg/UDzXCfEyHxEksgJUnkPpgp9Z2LWM6luP+ICipwxa3FyktPtwlvuTTzOwiY+Lzi
-         QKbw==
+        bh=Nowmg4pM+Rb20HCwqnrJE3ir4gOjFPzAF5fVDd2jYag=;
+        b=DaU0WMI+essN/z0vje9uyYZ/QVRI5R7wBylNonZJ7l9TcmbGVfnnheCNpFi2rdH/fw
+         mm6qF57JD4HFRZHe2mvxcPLnNjjZV2R4QENKZsyWst8gEEkfrIQPduttU4QnYPPQbio1
+         y+Sm36/ksNcO6SplI1eUVlQuOG6OxE0lbRjzyL0VOj/S2+ifDUG96gEiHno20zUl+1c7
+         qJzgJBWxT46RYiIyccb1qMZ6O0njE6CU/0Mg1N4AMlVJDP0Yve2guyuTSTh2FjVxt1na
+         7MEx5uYwviLZCAey4uRmV3Fnc8hV3+jhM3Eq4LS+mryeP8WRwFR0SBhK9idMQNXTK+AG
+         HePA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:in-reply-to:references;
-        bh=3omjhH7TbR3FmFs5TtPgVwPetLA6H87w8Ypx7qlc/xQ=;
-        b=ATr2fOLGxJ9zIan/1H3w/+sbZk9B/N13IkbEWlsKIcPq39MVOdvXqaRtwRi9QQwQgg
-         6jGhAyn8PinjI4C3Q2kwj07QHgUB+BrIvlySMh9MzYf2MEqEIEhs7pquCKJuuWBRUSDx
-         c1JjGBrG1qd+2Awq2k+M6wF4L/DQeHgYc6CLPV7zRlff4B7xxpc5gnIEBBd7JVfgXYx1
-         8LXcxdU7NJmSr7KhSk+MvzJBboXKWPfKnH1OgLdkgcAgThWxnVNKG7VBGzrLQVpzlJTn
-         A+nywNr+m/H7X3Y017PtX3KSU7QEBzhAQPbIybzdwnlKiLz+cpkFSf7QowYLq9tNNgvd
-         +qfA==
-X-Gm-Message-State: APjAAAUXTaxONKLF2fr81AWlkptPJ8zjc5GOVpv4OuvNT+rOH576ObMI
-        qxtIVVUg8LO3yeqANZu2hh+QAQ==
-X-Google-Smtp-Source: APXvYqzNyy7bxRrQ7l94JGdi1xN/ExFPIGkh1mhDP9vdWj+8z618L0x1+xHqlUuds8ama1WOaBRHOA==
-X-Received: by 2002:aa7:820c:: with SMTP id k12mr13044777pfi.177.1557487796788;
-        Fri, 10 May 2019 04:29:56 -0700 (PDT)
+        bh=Nowmg4pM+Rb20HCwqnrJE3ir4gOjFPzAF5fVDd2jYag=;
+        b=DJVLA6iAx9tz6kI0cZ+WddEaxyh+rZoMth3Js3bm+LhLPbbLO3nhxl99pwIMJXKxx0
+         HI83n0pw8dz/0fQac/XOiDD6/aYuXa9emkVgAIAflHmaHPDgNNQm8OYtAmBzGELJ/JUb
+         LO3dLrxHQG5LOpLVAeSQ1reDwE5RYRKf7fwCE9/bsVba7Ar8SAEqR0C5//cP2xzODJ3M
+         nWHNlDpKKFpVzz7voiyzB8nPo301JEbFKQScauuNGULpDrV94Pj+jPgTWHab1HZA5CZy
+         he/skSCN7y0lppj5BvqX+Va5yJqQv/qQS4i65Cw3YhwmbyblGmSpRr8cb/GXrsCyQRbA
+         Mi0Q==
+X-Gm-Message-State: APjAAAWdemThTmY+nZLvvvEFdGpMLdzvfGw1SnLPa/c+D1SiYQvrwl5j
+        dyWjjM939kL2xIxxaugTHvM1eQ==
+X-Google-Smtp-Source: APXvYqz3aNdA7UVeHCg8AIz0RMXjZdXsJQmzSBKVmpxlKPs/GHjbdV6nMbG5/5VUHxpVMz6YT8nheg==
+X-Received: by 2002:a62:87c6:: with SMTP id i189mr13483917pfe.65.1557487800962;
+        Fri, 10 May 2019 04:30:00 -0700 (PDT)
 Received: from localhost ([103.8.150.7])
-        by smtp.gmail.com with ESMTPSA id s137sm2854428pfc.119.2019.05.10.04.29.55
+        by smtp.gmail.com with ESMTPSA id 9sm5583081pgv.5.2019.05.10.04.29.59
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 10 May 2019 04:29:56 -0700 (PDT)
+        Fri, 10 May 2019 04:30:00 -0700 (PDT)
 From:   Amit Kucheria <amit.kucheria@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         bjorn.andersson@linaro.org, andy.gross@linaro.org,
         David Brown <david.brown@linaro.org>,
         Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCHv1 1/8] arm64: dts: Fix various entry-method properties to reflect documentation
-Date:   Fri, 10 May 2019 16:59:39 +0530
-Message-Id: <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org
+Subject: [PATCHv1 2/8] Documentation: arm: Link idle-states binding to code
+Date:   Fri, 10 May 2019 16:59:40 +0530
+Message-Id: <5f25e2b3096fa73f205e1797e355e049ed9f8c9c.1557486950.git.amit.kucheria@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1557486950.git.amit.kucheria@linaro.org>
 References: <cover.1557486950.git.amit.kucheria@linaro.org>
@@ -64,33 +63,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The idle-states binding documentation[1] mentions that the
-'entry-method' property is required on 64-bit platforms and must be set
-to "psci".
+The enable-method needs to be psci for the psci_cpuidle_ops to be
+correctly registered.
 
-We fixed up all uses of the entry-method property in
-commit e9880240e4f4 ("arm64: dts: Fix various entry-method properties to
-reflect documentation"). But a new one has appeared. Fix it up.
+Add a note to the binding documentation on where to find the declaration
+of the enable-method since it is a macro and escapes any attempts to
+grep for it.
 
 Cc: Sudeep Holla <sudeep.holla@arm.com>
 Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/idle-states.txt | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 2896bbcfa3bb..42e7822a0227 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -51,7 +51,7 @@
- 		 * PSCI node is not added default, U-boot will add missing
- 		 * parts if it determines to use PSCI.
- 		 */
--		entry-method = "arm,psci";
-+		entry-method = "psci";
+diff --git a/Documentation/devicetree/bindings/arm/idle-states.txt b/Documentation/devicetree/bindings/arm/idle-states.txt
+index 45730ba60af5..3a42335a6f3d 100644
+--- a/Documentation/devicetree/bindings/arm/idle-states.txt
++++ b/Documentation/devicetree/bindings/arm/idle-states.txt
+@@ -239,6 +239,10 @@ processor idle states, defined as device tree nodes, are listed.
+ 			# On ARM v8 64-bit this property is required and must
+ 			  be:
+ 			   - "psci"
++			     (This assumes that the enable-method is "psci"
++			     in the cpu node[6] that then uses the
++			     CPUIDLE_METHOD_OF_DECLARE macro to setup the
++			     psci_cpuidle_ops callbacks)
+ 			# On ARM 32-bit systems this property is optional
  
- 		CPU_PH20: cpu-ph20 {
- 			compatible = "arm,idle-state";
+ The nodes describing the idle states (state) can only be defined within the
+@@ -697,3 +701,6 @@ cpus {
+ 
+ [5] Devicetree Specification
+     https://www.devicetree.org/specifications/
++
++[6] ARM Linux Kernel documentation - Booting AArch64 Linux
++    Documentation/arm64/booting.txt
 -- 
 2.17.1
 
