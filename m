@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C3A19963
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 10:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8938719979
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 10:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727036AbfEJIQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 04:16:06 -0400
-Received: from mail-eopbgr1410125.outbound.protection.outlook.com ([40.107.141.125]:57216
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727003AbfEJIQG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 04:16:06 -0400
+        id S1727230AbfEJIX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 04:23:29 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:40699 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727213AbfEJIX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 04:23:28 -0400
+Received: by mail-wr1-f68.google.com with SMTP id h4so6682626wre.7
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 01:23:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a9v+qU4uitj7zj7k7p06clXXft/UVyNvRI+qZnkudmI=;
- b=f+hFn5vhFmdIEnVrMN0W0YJ79gpskRTuI/gmmUaykI3lDvWWRJJfJwgJJT2ZnnLI5nmVi3P71Ji5Lg/YPs5TUcAEMjdRwxZM31LoWBsKavAYq7WRjsZWXvMn7EJNdJtyPsJiz04qkeK8hkazfmbds81YGZXjniu3wt553HatdFE=
-Received: from OSBPR01MB3174.jpnprd01.prod.outlook.com (20.176.240.146) by
- OSBPR01MB2406.jpnprd01.prod.outlook.com (52.134.253.137) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.21; Fri, 10 May 2019 08:16:01 +0000
-Received: from OSBPR01MB3174.jpnprd01.prod.outlook.com
- ([fe80::f873:6332:738d:7213]) by OSBPR01MB3174.jpnprd01.prod.outlook.com
- ([fe80::f873:6332:738d:7213%3]) with mapi id 15.20.1878.022; Fri, 10 May 2019
- 08:16:01 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v2 11/15] usb: renesas_usbhs: Add support for RZ/A2
-Thread-Topic: [PATCH v2 11/15] usb: renesas_usbhs: Add support for RZ/A2
-Thread-Index: AQHVBqPAmD3IBsdkTkW6RcwYeB06RKZj8K2AgAASkhA=
-Date:   Fri, 10 May 2019 08:16:00 +0000
-Message-ID: <OSBPR01MB3174FA32BADD2B97A6003ADCD80C0@OSBPR01MB3174.jpnprd01.prod.outlook.com>
-References: <20190509201142.10543-1-chris.brandt@renesas.com>
- <20190509201142.10543-12-chris.brandt@renesas.com>
- <CAMuHMdV7aQd-g1t_t27d8ge69e3VZnG7nQ7Lzre=qrJ1UrUuuA@mail.gmail.com>
-In-Reply-To: <CAMuHMdV7aQd-g1t_t27d8ge69e3VZnG7nQ7Lzre=qrJ1UrUuuA@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
-x-originating-ip: [118.238.235.108]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f24738f5-4c6a-486b-b14e-08d6d51fbd05
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB2406;
-x-ms-traffictypediagnostic: OSBPR01MB2406:
-x-microsoft-antispam-prvs: <OSBPR01MB24062FD8BF014C4B8D915690D80C0@OSBPR01MB2406.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0033AAD26D
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(136003)(396003)(39860400002)(376002)(366004)(189003)(199004)(4744005)(54906003)(229853002)(110136005)(9686003)(76176011)(478600001)(7696005)(55016002)(6636002)(8936002)(486006)(6436002)(6506007)(14454004)(53546011)(4326008)(102836004)(33656002)(25786009)(52536014)(66476007)(66556008)(64756008)(66446008)(476003)(186003)(2906002)(26005)(66946007)(73956011)(316002)(81166006)(11346002)(66066001)(81156014)(68736007)(8676002)(6246003)(446003)(71200400001)(5660300002)(71190400001)(6116002)(99286004)(256004)(86362001)(7736002)(305945005)(53936002)(3846002)(74316002)(76116006);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB2406;H:OSBPR01MB3174.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: VejQ3gAbL4O6UJ5YkOCUGeZ2Q2dhfOT5gVrwQkv5c5fG96gHUaGpCPgbsrusU5kbNXLBkeLqdTXxJ8vioPENDS/yM6c3d5K2YEU6g94hKPj9zSNHO+S3UU7xYnZLbZaj/d/wcTvjBp0ppEqUr9ST1ywGGhcGEze8FS6VM+8sF3KIiSunJQeiIcr8zooHxbfHSa+EqCz+QxMbEZ6Fv36HXBVMEf324p/BpjrjYdk+Lhv0mvvigG5pzZtwJgHAj3RQ5qVCxzyPc3/BleDf8sE0ynCyLJR1Mch4beO5NgUnZ2sIPY9NpCW44HtL3jpedGnQZqB0ZxvSeFBB65k6ngkIKyJveawdfo0W29JYr/ri/dEGSw10ag62IuhXVGwITPuNbpvKRNZzbXaCWPgsTIOFn+ncS2iaIsApMWLVE+i1YRA=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f24738f5-4c6a-486b-b14e-08d6d51fbd05
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2019 08:16:00.9374
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2406
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=Wj+JuMQUbdyPmxQe7yGb3on4JCnRF2E0EfoUvV/8+mo=;
+        b=hrgSnmEZP5o845QntWaqkMqOVqNtfRnJYedwIUiR8aPv3ToBQClvXus+4pijKIphJ+
+         mju28gpMrnOTM9z7MYRAGPici4FVfNz+TShfe8r6CyXky1Ih8JmxTScix+E04B3sRfgF
+         L3sOCzpOZYj3Hj6jMrWSqj2mYH1+2j8ov41RmXVBFaIT8wzFffPWwZwgOV7i4PKIOUAu
+         sx1JH1zTJ0iq1IMsKAEDgdLfFPFQMcxKwPiS0HPEdq5cSPMfiNDzbDWf/j4mdhHdvlbe
+         q/XV9JO1MbM5xRpaD1ZZqFZLCvUFqFfZg1q7sGkEv9avADAEmB0W3DQP4LoUQDeN/ea/
+         0Xqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Wj+JuMQUbdyPmxQe7yGb3on4JCnRF2E0EfoUvV/8+mo=;
+        b=DhJrwjfEgtgtKfjK/BcQPmphJ5IU3YCRYwjZt0NONMw/t122S4asukQRJeFetWJtw5
+         6r188lAdzLqD2KO5wU8MgbRla2XxoSf9blyxcAcbpnD+kMsnS+6ASqMFwalRKLIyY+Hi
+         2vf1RhY439GEoyaOG3Eg+MhksdhH7o9/ISFCnQptKBcjmVGHHLQRocTjshyzfqTTBleA
+         gK2RFVqRkvGFkmxSHdRLFjg3KZDZuQ6gObvigSiPGvgvmEN7ixcIX+a8/xrZ/Vn7GNIm
+         meoMqB1k5KT5kHQicHuKly32/gVZuF3tKiGhbBCKo8Il5j3IlXkGVUJbvSfiM4fL+t6T
+         h0pg==
+X-Gm-Message-State: APjAAAUf4BVhltkjDe8hx8GKhlPkmukLe6nT9fpyBQ74WUegEYkhwrle
+        LuRfvJ0idPQ5ZIM6Jg1fvvhbvA==
+X-Google-Smtp-Source: APXvYqwecEWs+XfLMKppQZEk1BrPP3H3rvwtOqtfnWYTx6JqWQTAaqAiGxF1JGoGfM272vY60No63w==
+X-Received: by 2002:a5d:68cf:: with SMTP id p15mr6684597wrw.105.1557476606633;
+        Fri, 10 May 2019 01:23:26 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id z4sm3790285wmk.5.2019.05.10.01.23.25
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 May 2019 01:23:25 -0700 (PDT)
+From:   Guillaume La Roque <glaroque@baylibre.com>
+To:     linus.walleij@linaro.org, khilman@baylibre.com
+Cc:     jbrunet@baylibre.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/6] Add drive-strength in Meson pinctrl driver
+Date:   Fri, 10 May 2019 10:23:18 +0200
+Message-Id: <20190510082324.21181-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogRnJpZGF5
-LCBNYXkgMTAsIDIwMTkgNDowNyBQTQ0KPiANCj4gSGkgQ2hyaXMsDQo+IA0KPiBPbiBUaHUsIE1h
-eSA5LCAyMDE5IGF0IDEwOjE0IFBNIENocmlzIEJyYW5kdCA8Y2hyaXMuYnJhbmR0QHJlbmVzYXMu
-Y29tPiB3cm90ZToNCjxzbmlwPg0KPiBCVFcsIHRoaXMgZHJpdmVyIHVzZXMgYSBtaXggb2YgZmVh
-dHVyZSBjaGVja2luZyB1c2luZyBVU0JIU19UWVBFXyoNCj4gZW51bXMsIGFuZCBhIHBhcmFtZXRl
-ciBibG9jay9jYWxsYmFjayBzdHJ1Y3QNCj4gKHJlbmVzYXNfdXNiaHNfcGxhdGZvcm1fY2FsbGJh
-Y2spLiAgUGVyaGFwcyB0aGUgZmVhdHVyZSBmbGFncyBjYW4ganVzdA0KPiBiZSBtb3ZlZCB0byB0
-aGUgc3RydWN0LCBhbmQgdGhlIHZhcmlvdXMgc3RydWN0cyByZWZlcmVuY2VkIGZyb20NCj4gb2Zf
-ZGV2aWNlX2lkLmRhdGE/DQoNClRoYW5rIHlvdSBmb3IgeW91ciBjb21tZW50ISBJIHRoaW5rIHNv
-LiBTbywgSSdsbCBtYWtlIHN1Y2ggYSBwYXRjaCBsYXRlci4NCg0KQmVzdCByZWdhcmRzLA0KWW9z
-aGloaXJvIFNoaW1vZGENCg0KPiBHcntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAgICAg
-ICAgICAgICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhl
-cmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+
-IA0KPiBJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBj
-YWxsIG15c2VsZiBhIGhhY2tlci4gQnV0DQo+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlz
-dHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdC4NCj4gICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcw0K
+The purpose of this patchset is to add drive-strength support in meson pinconf
+driver. This is a new feature that was added on the g12a. It is critical for us
+to support this since many functions are failing with default pad drive-strength.
+
+The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
+'drive-strength' is expressed in mA.
+So this patch add another generic property "drive-strength-microamp". The change to do so
+would be minimal and could be benefit to other platforms later on.
+
+Cheers
+Guillaume
+
+Changes since v4:
+- fix dt-binding documentation
+- rename drive-strength-uA to drive-strength-microamp in coverletter
+
+Changes since v3:
+- remove dev_err in meson_get_drive_strength
+- cleanup code
+
+Changes since v2:
+- rename driver-strength-uA property to drive-strength-microamp
+- rework patch series for better understanding
+- rework set_bias function
+
+Changes since v1:
+- fix missing break
+- implement new pinctrl generic property "drive-strength-uA"
+
+[1] https://lkml.kernel.org/r/20190314163725.7918-1-jbrunet@baylibre.com
+
+Guillaume La Roque (6):
+  dt-bindings: pinctrl: add a 'drive-strength-microamp' property
+  pinctrl: generic: add new 'drive-strength-microamp' property support
+  dt-bindings: pinctrl: meson: Add drive-strength-microamp property
+  pinctrl: meson: Rework enable/disable bias part
+  pinctrl: meson: add support of drive-strength-microamp
+  pinctrl: meson: g12a: add DS bank value
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |   4 +
+ .../bindings/pinctrl/pinctrl-bindings.txt     |   3 +
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  36 ++--
+ drivers/pinctrl/meson/pinctrl-meson.c         | 180 ++++++++++++++----
+ drivers/pinctrl/meson/pinctrl-meson.h         |  18 +-
+ drivers/pinctrl/pinconf-generic.c             |   2 +
+ include/linux/pinctrl/pinconf-generic.h       |   3 +
+ 7 files changed, 193 insertions(+), 53 deletions(-)
+
+-- 
+2.17.1
+
