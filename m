@@ -2,567 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A40871A06B
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 17:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E15F61A085
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 17:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726969AbfEJPpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 11:45:49 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:21414 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726930AbfEJPpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 11:45:49 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4AFRMrc029079;
-        Fri, 10 May 2019 17:45:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=EDgWPk87oXg8YzV/4F3uiVhPZFZ4rv/kb1qOckXHwGM=;
- b=Y2K9EEVGq+tebiaiBvUZHMXqFqfWcldSosAX82+yaCvwWCsHSb3rddjodYSlqs8kThiV
- JLzAFZxeXEq+w6PtSPJtJN09CbWTO5SvjPRJ+TDGT/8aeWNPJ+Z5X4eSqCNyyZDT6pQE
- MOinOB281F0tKKISu+zqwellC2OC2zSpjPOrAD24vEC1SL76YLfBF4oWWsENxpdhp1XH
- hx59lupxH8lKbBssRi7ALnPAxsbrFUlzQMKxgWM+ehghSMlIMUaE5b18Cd6IGqxicvhO
- 7MzqTmMItuhvpOIDB97anLnB2eA/ry52s+SbdJNAYzlzWNzTVDAQqIMUkKxgTH7ffC3k vA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2sc9s4kas1-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 10 May 2019 17:45:28 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3AE4831;
-        Fri, 10 May 2019 15:45:28 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D19592945;
-        Fri, 10 May 2019 15:45:27 +0000 (GMT)
-Received: from localhost (10.75.127.44) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 10 May 2019 17:45:27
- +0200
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Subject: [PATCH v2] dt-bindings: pinctrl: Convert stm32 pinctrl bindings to json-schema
-Date:   Fri, 10 May 2019 17:45:26 +0200
-Message-ID: <1557503126-3025-1-git-send-email-alexandre.torgue@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1727257AbfEJPvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 11:51:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59504 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727144AbfEJPvq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 11:51:46 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id ADF5320881;
+        Fri, 10 May 2019 15:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557503505;
+        bh=jjJN9MCI2/bJQYJD0A6H8bv3bdJi3Q/PurxoIoi1bLc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LFbRHLkQumOEJR0QML+NE/Dlx3jQ6C6mXckZ6o/H18WK018Tm7s1TH9ZiRjkY6qxC
+         AvIQg21IbE7EAgEdM3O+kbiHPqqnhHQW7WuXCaEPtJ5nDJlnMMqS+fkyrgHNjngC+W
+         V79pPqZ162SsEPoNUPJia0lru3wFAdbrvl66Xn2A=
+Received: by mail-qt1-f182.google.com with SMTP id j53so7104703qta.9;
+        Fri, 10 May 2019 08:51:45 -0700 (PDT)
+X-Gm-Message-State: APjAAAU2Ln94eWk3ajQkjWtO+vcr3GHq8pA/9kJaXe6BlXXakeCx/wz5
+        cY/sivEAh4itksZMztT+ZexDqgEF8Tr9pRSxBQ==
+X-Google-Smtp-Source: APXvYqzCtiDrvSidyJ1Y6HHqXiZAob0e8QJkkwye5sqCJHrQXA7SekK8d+4LASnRxReen63o7QlSe27+zyjO89A4fJs=
+X-Received: by 2002:a0c:fe65:: with SMTP id b5mr9797177qvv.106.1557503504974;
+ Fri, 10 May 2019 08:51:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-09_02:,,
- signatures=0
+References: <20190507045433.542-1-hsinyi@chromium.org> <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
+ <CAJMQK-i-0RgdQEniqaKubdjF-dpd1JOCWy7DOPDfN33EqgL5iA@mail.gmail.com>
+In-Reply-To: <CAJMQK-i-0RgdQEniqaKubdjF-dpd1JOCWy7DOPDfN33EqgL5iA@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 10 May 2019 10:51:33 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLHGobOQg-j=8e=ivCBWh6f+xy43zTzdXBQ-U86AOg-6w@mail.gmail.com>
+Message-ID: <CAL_JsqLHGobOQg-j=8e=ivCBWh6f+xy43zTzdXBQ-U86AOg-6w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: add support for rng-seed
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Michal Hocko <mhocko@suse.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 pinctrl binding to DT schema format using json-schema.
+On Thu, May 9, 2019 at 11:27 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> On Wed, May 8, 2019 at 3:47 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> > >  Documentation/devicetree/bindings/chosen.txt | 14 +++++++++
+> >
+> > Actually, this file has been converted to json-schema and lives
+> > here[1]. I need to remove this one (or leave it with a reference to
+> > the new one).
+> >
+>
+> Hi Rob,
+> I can't find where the new document is. Can you help point it again? Thanks.
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
----
+Sorry, forgot to add that:
 
-Hi,
+https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml
 
-First pacth to convert DT bindings file (here pinctrl STM32) to json-schema
-in order to take advantage of devicetree validation tool for STM32.
-
-Changes since v1:
- - Fix errors reported by Rob.
-
-
-regards
-Alex
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt
-deleted file mode 100644
-index 0016925..0000000
---- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.txt
-+++ /dev/null
-@@ -1,208 +0,0 @@
--* STM32 GPIO and Pin Mux/Config controller
--
--STMicroelectronics's STM32 MCUs intregrate a GPIO and Pin mux/config hardware
--controller. It controls the input/output settings on the available pins and
--also provides ability to multiplex and configure the output of various on-chip
--controllers onto these pads.
--
--Pin controller node:
--Required properies:
-- - compatible: value should be one of the following:
--   "st,stm32f429-pinctrl"
--   "st,stm32f469-pinctrl"
--   "st,stm32f746-pinctrl"
--   "st,stm32f769-pinctrl"
--   "st,stm32h743-pinctrl"
--   "st,stm32mp157-pinctrl"
--   "st,stm32mp157-z-pinctrl"
-- - #address-cells: The value of this property must be 1
-- - #size-cells	: The value of this property must be 1
-- - ranges	: defines mapping between pin controller node (parent) to
--   gpio-bank node (children).
-- - pins-are-numbered: Specify the subnodes are using numbered pinmux to
--   specify pins.
--
--GPIO controller/bank node:
--Required properties:
-- - gpio-controller : Indicates this device is a GPIO controller
-- - #gpio-cells	  : Should be two.
--			The first cell is the pin number
--			The second one is the polarity:
--				- 0 for active high
--				- 1 for active low
-- - reg		  : The gpio address range, relative to the pinctrl range
-- - clocks	  : clock that drives this bank
-- - st,bank-name	  : Should be a name string for this bank as specified in
--   the datasheet
--
--Optional properties:
-- - reset:	  : Reference to the reset controller
-- - st,syscfg: Should be phandle/offset/mask.
--	-The phandle to the syscon node which includes IRQ mux selection register.
--	-The offset of the IRQ mux selection register
--	-The field mask of IRQ mux, needed if different of 0xf.
-- - gpio-ranges: Define a dedicated mapping between a pin-controller and
--   a gpio controller. Format is <&phandle a b c> with:
--	-(phandle): phandle of pin-controller.
--	-(a): gpio base offset in range.
--	-(b): pin base offset in range.
--	-(c): gpio count in range
--   This entry has to be used either if there are holes inside a bank:
--	GPIOB0/B1/B2/B14/B15 (see example 2)
--   or if banks are not contiguous:
--	GPIOA/B/C/E...
--   NOTE: If "gpio-ranges" is used for a gpio controller, all gpio-controller
--   have to use a "gpio-ranges" entry.
--   More details in Documentation/devicetree/bindings/gpio/gpio.txt.
-- - st,bank-ioport: should correspond to the EXTI IOport selection (EXTI line
--   used to select GPIOs as interrupts).
-- - hwlocks: reference to a phandle of a hardware spinlock provider node.
-- - st,package: Indicates the SOC package used.
--   More details in include/dt-bindings/pinctrl/stm32-pinfunc.h
--
--Example 1:
--#include <dt-bindings/pinctrl/stm32f429-pinfunc.h>
--...
--
--	pin-controller {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		compatible = "st,stm32f429-pinctrl";
--		ranges = <0 0x40020000 0x3000>;
--		pins-are-numbered;
--
--		gpioa: gpio@40020000 {
--			gpio-controller;
--			#gpio-cells = <2>;
--			reg = <0x0 0x400>;
--			resets = <&reset_ahb1 0>;
--			st,bank-name = "GPIOA";
--		};
--		...
--		pin-functions nodes follow...
--	};
--
--Example 2:
--#include <dt-bindings/pinctrl/stm32f429-pinfunc.h>
--...
--
--	pinctrl: pin-controller {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		compatible = "st,stm32f429-pinctrl";
--		ranges = <0 0x40020000 0x3000>;
--		pins-are-numbered;
--
--		gpioa: gpio@40020000 {
--			gpio-controller;
--			#gpio-cells = <2>;
--			reg = <0x0 0x400>;
--			resets = <&reset_ahb1 0>;
--			st,bank-name = "GPIOA";
--			gpio-ranges = <&pinctrl 0 0 16>;
--		};
--
--		gpiob: gpio@40020400 {
--			gpio-controller;
--			#gpio-cells = <2>;
--			reg = <0x0 0x400>;
--			resets = <&reset_ahb1 0>;
--			st,bank-name = "GPIOB";
--			ngpios = 4;
--			gpio-ranges = <&pinctrl 0 16 3>,
--				      <&pinctrl 14 30 2>;
--		};
--
--
--		...
--		pin-functions nodes follow...
--	};
--
--
--Contents of function subnode node:
------------------------------------
--Subnode format
--A pinctrl node should contain at least one subnode representing the
--pinctrl group available on the machine. Each subnode will list the
--pins it needs, and how they should be configured, with regard to muxer
--configuration, pullups, drive, output high/low and output speed.
--
--    node {
--	pinmux = <PIN_NUMBER_PINMUX>;
--	GENERIC_PINCONFIG;
--    };
--
--Required properties:
--- pinmux: integer array, represents gpio pin number and mux setting.
--  Supported pin number and mux varies for different SoCs, and are defined in
--  dt-bindings/pinctrl/<soc>-pinfunc.h directly.
--  These defines are calculated as:
--    ((port * 16 + line) << 8) | function
--  With:
--    - port: The gpio port index (PA = 0, PB = 1, ..., PK = 11)
--    - line: The line offset within the port (PA0 = 0, PA1 = 1, ..., PA15 = 15)
--    - function: The function number, can be:
--      * 0 : GPIO
--      * 1 : Alternate Function 0
--      * 2 : Alternate Function 1
--      * 3 : Alternate Function 2
--      * ...
--      * 16 : Alternate Function 15
--      * 17 : Analog
--
--  To simplify the usage, macro is available to generate "pinmux" field.
--  This macro is available here:
--    - include/dt-bindings/pinctrl/stm32-pinfunc.h
--
--  Some examples of using macro:
--    /* GPIO A9 set as alernate function 2 */
--    ... {
--		pinmux = <STM32_PINMUX('A', 9, AF2)>;
--    };
--    /* GPIO A9 set as GPIO  */
--    ... {
--		pinmux = <STM32_PINMUX('A', 9, GPIO)>;
--    };
--    /* GPIO A9 set as analog */
--    ... {
--		pinmux = <STM32_PINMUX('A', 9, ANALOG)>;
--    };
--
--Optional properties:
--- GENERIC_PINCONFIG: is the generic pinconfig options to use.
--  Available options are:
--   - bias-disable,
--   - bias-pull-down,
--   - bias-pull-up,
--   - drive-push-pull,
--   - drive-open-drain,
--   - output-low
--   - output-high
--   - slew-rate = <x>, with x being:
--       < 0 > : Low speed
--       < 1 > : Medium speed
--       < 2 > : Fast speed
--       < 3 > : High speed
--
--Example:
--
--pin-controller {
--...
--	usart1_pins_a: usart1@0 {
--		pins1 {
--			pinmux = <STM32_PINMUX('A', 9, AF7)>;
--			bias-disable;
--			drive-push-pull;
--			slew-rate = <0>;
--		};
--		pins2 {
--			pinmux = <STM32_PINMUX('A', 10, AF7)>;
--			bias-disable;
--		};
--	};
--};
--
--&usart1 {
--	pinctrl-0 = <&usart1_pins_a>;
--	pinctrl-names = "default";
--};
-diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-new file mode 100644
-index 0000000..06c4b66
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-@@ -0,0 +1,264 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) STMicroelectronics 2019.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STM32 GPIO and Pin Mux/Config controller
-+
-+maintainers:
-+  - Alexandre TORGUE <alexandre.torgue@st.com>
-+
-+description: |
-+  STMicroelectronics's STM32 MCUs intregrate a GPIO and Pin mux/config hardware
-+  controller. It controls the input/output settings on the available pins and
-+  also provides ability to multiplex and configure the output of various
-+  on-chip controllers onto these pads.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,stm32f429-pinctrl
-+      - st,stm32f469-pinctrl
-+      - st,stm32f746-pinctrl
-+      - st,stm32f769-pinctrl
-+      - st,stm32h743-pinctrl
-+      - st,stm32mp157-pinctrl
-+      - st,stm32mp157-z-pinctrl
-+
-+  '#address-cells':
-+    const: 1
-+  '#size-cells':
-+    const: 1
-+
-+  ranges: true
-+  pins-are-numbered: true
-+  hwlocks: true
-+
-+  st,syscfg:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    description: Should be phandle/offset/mask
-+    items:
-+      - description: Phandle to the syscon node which includes IRQ mux selection.
-+      - description: The offset of the IRQ mux selection register.
-+      - description: The field mask of IRQ mux, needed if different of 0xf.
-+
-+  st,package:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [1, 2, 4, 8]
-+    description:
-+     Indicates the SOC package used.
-+     More details in include/dt-bindings/pinctrl/stm32-pinfunc.h
-+
-+
-+patternProperties:
-+  '^gpio@[0-9a-f]*$':
-+    properties:
-+      gpio-controller: true
-+      '#gpio-cells':
-+        const: 2
-+
-+      reg:
-+        maxItems: 1
-+      clocks:
-+        maxItems: 1
-+      reset:
-+        minItems: 1
-+        maxItems: 1
-+      gpio-ranges:
-+        minItems: 1
-+        maxItems: 16
-+      ngpios:
-+        description:
-+          Number of available gpios in a bank.
-+        minimum: 1
-+        maximum: 16
-+
-+      st,bank-name:
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/string"
-+          - enum:
-+            - GPIOA
-+            - GPIOB
-+            - GPIOC
-+            - GPIOD
-+            - GPIOE
-+            - GPIOF
-+            - GPIOG
-+            - GPIOH
-+            - GPIOI
-+            - GPIOJ
-+            - GPIOK
-+            - GPIOZ
-+        description:
-+          Should be a name string for this bank as specified in the datasheet.
-+
-+      st,bank-ioport:
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/uint32"
-+          - minimum: 0
-+          - maximum: 11
-+
-+        description:
-+          Should correspond to the EXTI IOport selection (EXTI line used
-+          to select GPIOs as interrupts).
-+
-+    required:
-+      - gpio-controller
-+      - '#gpio-cells'
-+      - reg
-+      - clocks
-+      - st,bank-name
-+
-+  '-[0-9]*$':
-+    patternProperties:
-+      '^pins':
-+        description: |
-+          A pinctrl node should contain at least one subnode representing the
-+          pinctrl group available on the machine. Each subnode will list the
-+          pins it needs, and how they should be configured, with regard to muxer
-+          configuration, pullups, drive, output high/low and output speed.
-+        properties:
-+          pinmux:
-+            allOf:
-+              - $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+            description: |
-+              Integer array, represents gpio pin number and mux setting.
-+              Supported pin number and mux varies for different SoCs, and are
-+              defined in dt-bindings/pinctrl/<soc>-pinfunc.h directly.
-+              These defines are calculated as: ((port * 16 + line) << 8) | function
-+              With:
-+              - port: The gpio port index (PA = 0, PB = 1, ..., PK = 11)
-+              - line: The line offset within the port (PA0 = 0, PA1 = 1, ..., PA15 = 15)
-+              - function: The function number, can be:
-+              * 0 : GPIO
-+              * 1 : Alternate Function 0
-+              * 2 : Alternate Function 1
-+              * 3 : Alternate Function 2
-+              * ...
-+              * 16 : Alternate Function 15
-+              * 17 : Analog
-+              To simplify the usage, macro is available to generate "pinmux" field.
-+              This macro is available here:
-+                - include/dt-bindings/pinctrl/stm32-pinfunc.h
-+              Some examples of using macro:
-+               /* GPIO A9 set as alernate function 2 */
-+               ... {
-+                          pinmux = <STM32_PINMUX('A', 9, AF2)>;
-+               };
-+               /* GPIO A9 set as GPIO  */
-+               ... {
-+                          pinmux = <STM32_PINMUX('A', 9, GPIO)>;
-+               };
-+               /* GPIO A9 set as analog */
-+               ... {
-+                          pinmux = <STM32_PINMUX('A', 9, ANALOG)>;
-+               };
-+
-+          bias-disable:
-+            type: boolean
-+          bias-pull-down:
-+            type: boolean
-+          bias-pull-up:
-+            type: boolean
-+          drive-push-pull:
-+            type: boolean
-+          drive-open-drain:
-+            type: boolean
-+          output-low:
-+            type: boolean
-+          output-high:
-+            type: boolean
-+          slew-rate:
-+            description: |
-+              0: Low speed
-+              1: Medium speed
-+              2: Fast speed
-+              3: High speed
-+            allOf:
-+              - $ref: /schemas/types.yaml#/definitions/uint32
-+              - enum: [0, 1, 2, 3]
-+
-+        required:
-+          - pinmux
-+
-+required:
-+  - compatible
-+  - '#address-cells'
-+  - '#size-cells'
-+  - ranges
-+  - pins-are-numbered
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+    //Example 1
-+      pinctrl@40020000 {
-+              #address-cells = <1>;
-+              #size-cells = <1>;
-+              compatible = "st,stm32f429-pinctrl";
-+              ranges = <0 0x40020000 0x3000>;
-+              pins-are-numbered;
-+
-+              gpioa: gpio@0 {
-+                      gpio-controller;
-+                      #gpio-cells = <2>;
-+                      reg = <0x0 0x400>;
-+                      resets = <&reset_ahb1 0>;
-+                      st,bank-name = "GPIOA";
-+              };
-+       };
-+
-+    //Example 2 (using gpio-ranges)
-+      pinctrl@50020000 {
-+              #address-cells = <1>;
-+              #size-cells = <1>;
-+              compatible = "st,stm32f429-pinctrl";
-+              ranges = <0 0x50020000 0x3000>;
-+              pins-are-numbered;
-+
-+              gpiob: gpio@1000 {
-+                      gpio-controller;
-+                      #gpio-cells = <2>;
-+                      reg = <0x1000 0x400>;
-+                      resets = <&reset_ahb1 0>;
-+                      st,bank-name = "GPIOB";
-+                      gpio-ranges = <&pinctrl 0 0 16>;
-+              };
-+
-+              gpioc: gpio@2000 {
-+                      gpio-controller;
-+                      #gpio-cells = <2>;
-+                      reg = <0x2000 0x400>;
-+                      resets = <&reset_ahb1 0>;
-+                      st,bank-name = "GPIOC";
-+                      ngpios = <5>;
-+                      gpio-ranges = <&pinctrl 0 16 3>,
-+                                    <&pinctrl 14 30 2>;
-+              };
-+      };
-+
-+    //Example 3 pin groups
-+      pinctrl@60020000 {
-+        usart1_pins_a: usart1-0 {
-+                pins1 {
-+                        pinmux = <STM32_PINMUX('A', 9, AF7)>;
-+                        bias-disable;
-+                        drive-push-pull;
-+                        slew-rate = <0>;
-+                };
-+                pins2 {
-+                        pinmux = <STM32_PINMUX('A', 10, AF7)>;
-+                        bias-disable;
-+                };
-+        };
-+    };
-+
-+    usart1 {
-+                pinctrl-0 = <&usart1_pins_a>;
-+                pinctrl-names = "default";
-+    };
-+
-+...
--- 
-2.7.4
-
+Rob
