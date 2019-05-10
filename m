@@ -2,107 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FACF1A37C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 21:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EFF41A381
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 21:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727945AbfEJTrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 15:47:39 -0400
-Received: from mail-yw1-f48.google.com ([209.85.161.48]:35951 "EHLO
-        mail-yw1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727656AbfEJTrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 15:47:39 -0400
-Received: by mail-yw1-f48.google.com with SMTP id q185so5650778ywe.3
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 12:47:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=JffiYT1tcBGQIyMyATAAqC+loflKT9wWvMspK9YpWxU=;
-        b=L9rajkoSfGFOjIbxutcs41C2onJXUVFAJgqVs9w1sSdio8psH8qdqdtNSlz6J8mWXJ
-         2hZNWk8niZ71Z1BjOuJA3N7gWccB5GyCo+GU/zl6iWf8KaR3g3FDrQLWdMT0E1J0C/tk
-         oCoc5RIs/0WtLP7KOt929aLMotaEgmzRyElnJtWpqq0RqWmNFheAz7Vlp0/bmxtiCwUI
-         6QETIz9vERD5SC8hXPknwpZhooujlKLvXcBsZYFzrHka87+dvti1Ob/rceX8IiCN++2d
-         vYl/EWX5nUE7o069MmMcOAxgqi7h0SG658fx7G94Pq47CGmafyWX8aBNSnfXkj9pTkv2
-         hHqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=JffiYT1tcBGQIyMyATAAqC+loflKT9wWvMspK9YpWxU=;
-        b=ncXQO5p31xRHFX4/9y1VBpsjcVqsovD5axFkWbzOoa4foxUUcLSmAivk++nk/aBXuj
-         gV2A8H3NhSQOcu6+5yESeHKDg48TG7B6SZs/qKi4uE4Rnl0ngOWREsL4vbY3CUwGDc+L
-         vhykN1MGYSCp7Dr9PvGDyIToZ2koaQ6NLtBMm47dQsqELbcmxaiaGdFZITvirgcPxvMi
-         TKJZN5ju0YBSSKbjjm9Ra5hCE58t++TtEV/BDNf5TBCDaDiBL4AQBJ7mJ8wC848eEAjq
-         ZapzG4yFzYMw/8HGVX81MHZOzHNfD4p1cm7EUYgPQgfhClE6H5Y0KxwuQezOD35V+r4P
-         Yvtw==
-X-Gm-Message-State: APjAAAW7tW5cDfhWWuE7hivXqMe55o23rTX/LqHzZVrdVsVPDQAgA+tb
-        NslaJ3EX5KuNAHIdmrGc051QsD1UIxFN0vY8FqE=
-X-Google-Smtp-Source: APXvYqxSZTxra4dSqZ0uV4+z/sqWLOp523MKAu/O7d6N9vyouCLmoaGITPfCGmeHt1dh893kQWldYZyfSdtX9+YPhIo=
-X-Received: by 2002:a25:9cc4:: with SMTP id z4mr6727169ybo.92.1557517658068;
- Fri, 10 May 2019 12:47:38 -0700 (PDT)
+        id S1727818AbfEJTur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 15:50:47 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:46753 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727769AbfEJTuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 15:50:46 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 428AE23807A8;
+        Fri, 10 May 2019 21:50:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1557517842;
+        bh=kfmJ7lZCKHgh1h8IOVrzaVZRimz6BizJLzVkx6jWcpk=; l=2853;
+        h=Subject:From:To;
+        b=qxnM2Jp4Nao7512J1L1hhnx5TDsJcKZpYfYCcdZefBB6mWJaT2fg16IWqu0FTT+DA
+         OovW7bWKoOXoEwaqSuPmnJAQlqM3Qd5/HD9tWB4gVBTZSY07E+QgdIP57SgdWuuhcI
+         Of/5/S05VGj0U+8B/56Zc0tu2WwSqfZWfqJKQsgE=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+From:   Christian Mauderer <oss@c-mauderer.de>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190505200022.32209-1-oss@c-mauderer.de>
+ <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
+ <20190506162848.GA9522@amd>
+ <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
+ <54199d69-67a9-eb9d-e46d-b3ea43e2e7a3@c-mauderer.de>
+ <20190506202511.GA4979@amd>
+ <faba9d62-c650-5be8-a9c2-645be10dab6d@c-mauderer.de>
+Message-ID: <c10de8fe-5955-da5f-d197-cda9a0d5452f@c-mauderer.de>
+Date:   Fri, 10 May 2019 21:50:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <CAJiuCceeLwY+myYtUf15frSYsLKmGaUBifAOxUkNWwSjbF4oDg@mail.gmail.com>
- <20190429220503.GA4720@bogus>
-In-Reply-To: <20190429220503.GA4720@bogus>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Fri, 10 May 2019 21:47:27 +0200
-Message-ID: <CAJiuCcc2_HWKvHyBepu_PXG+T-qD_4KFw=qT_rtrvqJDEXbrZw@mail.gmail.com>
-Subject: Re: Question about compatible fallback and documentation
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <faba9d62-c650-5be8-a9c2-645be10dab6d@c-mauderer.de>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-PPP-Message-ID: <155751784258.124782.3523868683074027487@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 07/05/2019 11:52, Christian Mauderer wrote:
+> On 06/05/2019 22:25, Pavel Machek wrote:
+>> Hi!
+>>
+>>>>> Ok, I'm afraid I caused this. What should the compatible be, then?
+>>>>
+>>>> Knowing nothing about the h/w other than the above description:
+>>>> ubiquiti,aircube-leds
+>>>>
+>>>> Not sure if that's a registered or correct vendor prefix though.
+>>>>
+>>>> Rob
+>>>>
+>>>
+>>> Where would such a vendor prefix be registered? Does that mean that only
+>>> the vendor is allowed to use it? In that case: How would a reverse
+>>> engineered prefix look like?
+>>
+>> You can use it, too. It is in
+>> Documentation/devicetree/bindings/vendor-prefixes.txt :
+>>
+>> ubnt    Ubiquiti Networks
+>>
+>> So you can probably use ubnt, prefix.
+>>
+>>> (still with some missing parts like U-Boot) about two weeks later. I had
+>>> a look at it and they are not using a device tree. So there is no
+>>> "official" string that I could deduce from that archive.
+>>
+>> Mainline is the master. You are more "official" than them ;-).
+>> 									Pavel
+>>
+> 
+> Hello
+> 
+> let me summarize the direction before I create a v4:
+> 
+> Rob Herring suggested "ubnt,acb-spi-led" for the binding name in his
+> Mail from 06.05.2019 17:59 UTC. If no one objects, I'll use that.
+> 
+> With the more specific name I'll remove the off-value and max-value from
+> the device tree. Instead I'll create some look up table in the driver.
+> based on the name or go back to the defines like in the v1 patch. What
+> kind of solution would be preferable depends on the next question:
+> 
+> How should I name the driver? Should I use a device specific name like
+> in v1 again (most likely now acb-spi-led)? That would allow to
+> potentially add a hardware supported blinking in that driver. The
+> alternative would be the more generic name that it has now
+> (leds-spi-byte) without any plans to add the blinking but it could be
+> potentially used for example for a digital potentiometer based
+> brightness setting.
+> 
+> Note that I didn't really had planned to implement the blinking support
+> because I don't have a use case for it. So it would be either a feature
+> that I would add because someone insists. Or it could be added in the
+> future by a user who wants that feature (maybe Ubiquiti when they
+> upgrade their kernel?).
+> 
+> If it is a required feature for that driver: Please note that although
+> of course I would do some basic tests during development it would be a
+> mostly unused and therefore untested feature.
+> 
+> Best regards
+> 
+> Christian
+> 
 
-On Tue, 30 Apr 2019 at 00:05, Rob Herring <robh@kernel.org> wrote:
->
-> On Sun, Apr 14, 2019 at 06:18:04PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> > Hi,
-> >
-> > I have to bind an already existing IP by a vendor in a new SoC called
-> > "SOC3" device-tree.
-> >
-> > In the 1st gen of "SOC1" the IP is introduced :
-> > soc1.dtsi :
-> > compatible =3D "vendor,ip-soc1";
-> >
-> > Then a 2nd gen of the IP is introduced in "SOC2" with new registers.
-> > But the driver of the 1st gen is still working fine and no update of
-> > the existing driver has been introduced because not required.
-> > soc2.dtsi :
-> > compatible =3D "vendor,ip-soc2", "vendor,ip-soc1";
-> >
-> > Finally in "SOC3" and regardind the user manual we think that the IP
-> > introduced is the same as "SOC2".
-> > Should the compatible in soc3.dtsi be A or B?
-> > A) compatible =3D "vendor,ip-soc2", "vendor,ip-soc1";
-> > or
-> > B) compatible =3D "vendor,ip-soc3", "vendor,ip-soc2", "vendor,ip-soc1";
-> >
-> > I propose the solution B) because we don't know what could happens
-> > maybe the IP could need a quirks only for "SOC3". And device tree
-> > shouldn't move for the user only the driver.
->
-> B is correct.
->
-> Or you could list soc3 and soc2 given you do know there are additional
-> features. That would require a driver update, but likely the new SoC
-> requires some OS changes. Maybe someday SoC design will be disciplined
-> enough that new SoCs are fully backwards compatible.
+Hello,
 
-Thanks for the answer,
-Clement
+sorry for repeating my question. I assume I wrote to much text hiding
+it: How should I name the driver?
 
->
-> > Last question does we have to document all the compatible use in
-> > DTS(i) files in the Documentation ? or only the compatible used by the
-> > drivers ?
->
-> What is used in DTS files.
->
-> Rob
+The name for the binding is clear (ubnt,acb-spi-led). Only the driver is
+left (keep leds-spi-byte or rename to leds-ubnt-acb-spi or something else).
+
+Best regards
+
+Christian
