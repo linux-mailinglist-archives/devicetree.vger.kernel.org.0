@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2830C1A222
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 19:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77EC61A24C
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 19:32:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727836AbfEJRKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 13:10:42 -0400
-Received: from smtp1.de.adit-jv.com ([93.241.18.167]:54827 "EHLO
-        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727796AbfEJRKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 13:10:42 -0400
-Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
-        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 8DBF83C00C6;
-        Fri, 10 May 2019 19:10:39 +0200 (CEST)
-Received: from smtp1.de.adit-jv.com ([127.0.0.1])
-        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 2dIuZMVPBgda; Fri, 10 May 2019 19:10:32 +0200 (CEST)
-Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id C99FE3C004C;
-        Fri, 10 May 2019 19:10:24 +0200 (CEST)
-Received: from vmlxhi-102.adit-jv.com (10.72.93.184) by HI2EXCH01.adit-jv.com
- (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 10 May
- 2019 19:10:24 +0200
-Date:   Fri, 10 May 2019 19:10:21 +0200
-From:   Eugeniu Rosca <erosca@de.adit-jv.com>
-To:     "George G. Davis" <ggdavisiv@gmail.com>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+        id S1727704AbfEJRcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 13:32:00 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:40961 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727453AbfEJRb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 13:31:59 -0400
+Received: by mail-ed1-f66.google.com with SMTP id m4so6121141edd.8;
+        Fri, 10 May 2019 10:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=w7FukaSOWmU1MZzQqS+AmxHZTAQNw2SrsDsc9k5kRs0=;
+        b=qYzl9fLUzXiEcDEudYYZG9z4EZzyB0fYZl4wq9mDCOi5OFRQiD0vtS7yehPbo7lCbI
+         UC988nHKI4i+dJI6WNij5/63TbO4pVnAXWTLklylRyFefzKmNQdMJV6Qe3tfy8nKysV2
+         Aqv2+guc+GqFEtY68R5BmfH0ZTURhyoHUL3TuoB9pWtVHOJAtisz3iwkyIl0xckxXy3v
+         B+PJ4qWr+iBFwl3fsX5wydly9fxxLRoD6HucLGxAeVCLSy1ThUwuwIfbYoJruY3kEZfH
+         A1JvDtzTSXf6JBBYvergPvsZOVdZbDgK8f2+baIbvdaU7jd03u6VqIEtGxJWj6rm3DRi
+         ViAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=w7FukaSOWmU1MZzQqS+AmxHZTAQNw2SrsDsc9k5kRs0=;
+        b=LNVGmLVu/hlk8P5DAfphfEK5Ve7Z71t0RAwpqcgYvQRc3dBdak1zIOoDo77K6em8yg
+         jRD34S8HcinVBH24JEzLTQKhTit0/dSZDmRWzy2WQ2cKpL/15uu5/blXP9eXlas+lGXK
+         ZyxVnsSmxeULNr8OxK8/7ajgmQsg5CUXBEtt04koNy4XzBs+/mJjDb+PdgACkB2Ka6Qs
+         5p5Jyuq1ACa10M0GLi/pGySWdS5f44MsJsgNZtc+V/8RJEvwIX9Q08G8B8M0uYT7+r/y
+         wkvfkz/8DkhyWS3cedJAPvjz0DzhT5ti7o3Mg3WFbMS2t7LJWd8MfDzR0O5fm9wNjpST
+         tQzw==
+X-Gm-Message-State: APjAAAXcEk2oZ7wWTsJ8AOWRCqZLw2ybF6xmxlaI6aHgs/zBXl/K/+jk
+        96HTrtoXV3FjG0p17G8d3VFNcDnM
+X-Google-Smtp-Source: APXvYqxA/71Z6cfoww2mIZJyYH2jEGbUgRiMBIJC+7SOpG/Sa9uTAE+AGJ6aHz6MVd7YP755lBdqTQ==
+X-Received: by 2002:a17:906:3955:: with SMTP id g21mr9629259eje.61.1557509517569;
+        Fri, 10 May 2019 10:31:57 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.250])
+        by smtp.gmail.com with ESMTPSA id v16sm1599567edm.56.2019.05.10.10.31.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 May 2019 10:31:56 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     bcm-kernel-feedback-list@broadcom.com, stefan.wahren@i2se.com,
+        wahrenst@gmx.net, herbert@gondor.apana.org.au,
+        linux-crypto@vger.kernel.org, mpm@selenic.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "George G. Davis" <george_davis@mentor.com>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>
-Subject: Re: [PATCH] serial: sh-sci: disable DMA for uart_console
-Message-ID: <20190510171021.GA22691@vmlxhi-102.adit-jv.com>
-References: <20190506194233.GA32430@vmlxhi-102.adit-jv.com>
- <1557413011-1662-1-git-send-email-george_davis@mentor.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1557413011-1662-1-git-send-email-george_davis@mentor.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.72.93.184]
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM IPROC ARM
+        ARCHITECTURE)
+Subject: [PATCH 1/2] dt-bindings: rng: Document BCM7211 RNG compatible string
+Date:   Fri, 10 May 2019 10:31:10 -0700
+Message-Id: <20190510173112.2196-2-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190510173112.2196-1-f.fainelli@gmail.com>
+References: <20190510173112.2196-1-f.fainelli@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi George,
+BCM7211 features a RNG200 block, document its compatible string.
 
-I am able to reproduce the SCIF2 console freeze described in the
-referenced patchwork link using M3-ES1.1-Salvator-XS and recent
-v5.1-9573-gb970afcfcabd kernel.
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+---
+ Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-I confirm the behavior is healed with this patch. Thanks!
-Hope to see it accepted soon, since it fixes a super annoying
-console breakage every fourth boot or so on lots of R-Car3 targets.
-
-Tested-by: Eugeniu Rosca <erosca@de.adit-jv.com>
-
-On Thu, May 09, 2019 at 10:43:30AM -0400, George G. Davis wrote:
-> As noted in commit 84b40e3b57ee ("serial: 8250: omap: Disable DMA for
-> console UART"), UART console lines use low-level PIO only access functions
-> which will conflict with use of the line when DMA is enabled, e.g. when
-> the console line is also used for systemd messages. So disable DMA
-> support for UART console lines.
-> 
-> Fixes: https://patchwork.kernel.org/patch/10929511/
-> Reported-by: Michael Rodin <mrodin@de.adit-jv.com>
-> Cc: Eugeniu Rosca <erosca@de.adit-jv.com>
-> Signed-off-by: George G. Davis <george_davis@mentor.com>
-> ---
->  drivers/tty/serial/sh-sci.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-> index 3cd139752d3f..885b56b1d4e4 100644
-> --- a/drivers/tty/serial/sh-sci.c
-> +++ b/drivers/tty/serial/sh-sci.c
-> @@ -1557,6 +1557,9 @@ static void sci_request_dma(struct uart_port *port)
->  
->  	dev_dbg(port->dev, "%s: port %d\n", __func__, port->line);
->  
-> +	if (uart_console(port))
-> +		return; /* Cannot use DMA on console */
-> +
->  	if (!port->dev->of_node)
->  		return;
->  
-> -- 
-> 2.7.4
-> 
-
+diff --git a/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt b/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt
+index 0014da9145af..c223e54452da 100644
+--- a/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt
++++ b/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt
+@@ -2,6 +2,7 @@ HWRNG support for the iproc-rng200 driver
+ 
+ Required properties:
+ - compatible : Must be one of:
++	       "brcm,bcm7211-rng200"
+ 	       "brcm,bcm7278-rng200"
+ 	       "brcm,iproc-rng200"
+ - reg : base address and size of control register block
 -- 
-Best Regards,
-Eugeniu.
+2.17.1
+
