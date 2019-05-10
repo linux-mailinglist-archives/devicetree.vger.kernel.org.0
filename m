@@ -2,137 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B00D19893
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 08:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D67F71989D
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 08:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726924AbfEJGsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 02:48:38 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:57265 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726857AbfEJGsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 02:48:38 -0400
-X-UUID: 5b33f12457704db1b97a65315a30794e-20190510
-X-UUID: 5b33f12457704db1b97a65315a30794e-20190510
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 441105826; Fri, 10 May 2019 14:48:32 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 10 May 2019 14:48:30 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 10 May 2019 14:48:30 +0800
-Message-ID: <1557470910.20990.7.camel@mtksdaap41>
-Subject: Re: [PATCH v5 04/12] dt-binding: gce: add binding for gce event
- property
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "YT Shen" <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>, <kendrick.hsu@mediatek.com>,
-        Frederic Chen <Frederic.Chen@mediatek.com>
-Date:   Fri, 10 May 2019 14:48:30 +0800
-In-Reply-To: <1557458857.29102.1.camel@mtksdaap41>
-References: <20190507081355.52630-1-bibby.hsieh@mediatek.com>
-         <20190507081355.52630-5-bibby.hsieh@mediatek.com>
-         <1557292247.3936.5.camel@mtksdaap41> <1557458857.29102.1.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726995AbfEJGz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 02:55:26 -0400
+Received: from mail-vk1-f194.google.com ([209.85.221.194]:36729 "EHLO
+        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726816AbfEJGz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 02:55:26 -0400
+Received: by mail-vk1-f194.google.com with SMTP id d74so1239678vka.3;
+        Thu, 09 May 2019 23:55:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5S9csFKbMV0lCD/883Gzapxj9FADXFJIar7vKVVR0O8=;
+        b=km90iV7NH33a49i9BEDtdSMEYPCj1B/rHjgQatWAisPYu8WyIReTz5uWxjsRvSMtIn
+         gnoANa+lF+A3qAGrJZb/GnBCEJjpnxeOyJjS+4VjUi6l9Chd9ptW4ywU/6jtQuOQ9oUo
+         cMvj6j5D/YB6bwcrYIroMsEsxeUPyURk0NvUWr8fZL9XeQBmQv4wf92fBw0htiB7YvrA
+         Gc+VUSKPlpb8oQjYXbd82hSsYV0G0xDMcF4d2hht9TGgYZg2S0pFhWSzneWZkFsSSSar
+         f/c3uTurfwH/ZNRK7rTNap5HVkm1n07TgmGofem4ozeFAJSlZBKOpFa3yW9B1yukbRYD
+         Ueig==
+X-Gm-Message-State: APjAAAXivKo3jEztFcRhexpkB7COimfPvBm19If3w3fz/R1U6sDr8nNY
+        hmF4KIJ+xx8PmlRjzmxjG6F4tOibAdWHpJZ9SYo=
+X-Google-Smtp-Source: APXvYqwVOLLjDh9wLuImY1mtAOjaXNdijdjj3OwaDer8wRVyGXiE789bd0xEagP5xJcvcqLHK1+7fEF0aq2bXiX/Nu4=
+X-Received: by 2002:a1f:62c7:: with SMTP id w190mr4140087vkb.72.1557471324885;
+ Thu, 09 May 2019 23:55:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <20190509201142.10543-1-chris.brandt@renesas.com>
+ <20190509201142.10543-5-chris.brandt@renesas.com> <OSBPR01MB3174A8008FF1E216893398E8D80C0@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSBPR01MB3174A8008FF1E216893398E8D80C0@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 10 May 2019 08:55:13 +0200
+Message-ID: <CAMuHMdVVoYak4FGEOYK_dGLCLEQ7avVCv5AcY43BPkDnt7OZ4w@mail.gmail.com>
+Subject: Re: [PATCH v2 04/15] dt-bindings: rcar-gen3-phy-usb2: Document use of usb_x1
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Chris Brandt <Chris.Brandt@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bibby:
+Hi Shimoda-san, Chris,
 
-On Fri, 2019-05-10 at 11:27 +0800, Bibby Hsieh wrote:
-> Hi, CK,
-> 
-> On Wed, 2019-05-08 at 13:10 +0800, CK Hu wrote:
-> > Hi, Bibby:
-> > 
-> > On Tue, 2019-05-07 at 16:13 +0800, Bibby Hsieh wrote:
-> > > Client hardware would send event to GCE hardware,
-> > > mediatek,gce-event-names and mediatek,gce-events
-> > > can be used to present the event.
-> > > 
-> > > Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mailbox/mtk-gce.txt | 9 +++++++--
-> > >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> > > index 8fd9479bc9f6..76491f194c56 100644
-> > > --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> > > +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> > > @@ -35,6 +35,9 @@ Required properties for a client device:
-> > >  Optional propertier for a client device:
-> > >  - mediatek,gce-client-reg: u32, specify the sub-system id which is corresponding
-> > >    to the register address.
-> > > +- mediatek,gce-event-names: the event name can be defined by user.
-> > 
-> > gce-event is like an interrupt from client hardware to GCE hardware, we
-> > do not give a name to an interrupt, so do we need to give a name for
-> > gce-event?
-> > 
-> 
-> Yes, we need to know the name of gce-ecent.
-> The name can help users to figure out the problems when GCE meet the
-> event time out errors.
+On Fri, May 10, 2019 at 6:38 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Chris Brandt, Sent: Friday, May 10, 2019 5:12 AM
+> >
+> > Document the optional renesas,uses_usb_x1 property.
+> >
+> > Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+> > ---
+> > v2:
+> >  * removed 'use_usb_x1' option
+> >  * document that 'usb_x1' clock node will be detected to determine if
+> >    48MHz clock exists
+> > ---
+> >  Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> > b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> > index d46188f450bf..79d8360d92e5 100644
+> > --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> > +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> > @@ -28,7 +28,9 @@ Required properties:
+> >             followed by the generic version.
+> >
+> >  - reg: offset and length of the partial USB 2.0 Host register block.
+> > -- clocks: clock phandle and specifier pair(s).
+> > +- clocks: clock phandle and specifier pair(s). For SoCs that have a separate
+> > +          dedicated 48MHz USB_X1 input, if a 'usb_x1' clock node exists and is
+> > +          set to non-zero, the PHY will use the 48MHZ input for the PLL.
+>
+> I think we need to add clock-names property for usb_x1 at least.
 
-For debug, driver does not need this information. In your example, The
-event 'CMDQ_EVENT_MDP_RDMA0_SOF' is used by rdma driver. I think rdma
-driver should know why it need this event (it want to know whether 'rdma
-is starting to work (SOF)'), so when this event is time out, rdma driver
-should know what is timeout (it knows RDMA_SOF is timeout).
+Indeed. "if a 'usb_x1' clock node exists" is too fragile; better reference
+the clock from "clocks".
 
-Regards,
-CK
+> I checked the other doc "renesas,du.txt".
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/display/renesas,du.txt#n31
+>
+> I think we can reuse it like below:
+>
+> - clock-names: Name of the clocks. This property is model-dependent.
+>   - R-Car Gen3 SoCs use a single functional clock. The clock doesn't need to be
+>     named.
+>   - RZ/A2 uses a single functional clock as a separate dedicated 48MHz
 
-> 
-> 
-> > Regards,
-> > CK
-> > 
-> > > +- mediatek,gce-events: u32, the event number defined in
-> > > +  'dt-bindings/gce/mt8173-gce.h' or 'dt-binding/gce/mt8183-gce.h'.
-> > >  
-> > >  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h'
-> > >  or 'dt-binding/gce/mt8183-gce.h'. Such as sub-system ids, thread priority, event ids.
-> > > @@ -57,8 +60,10 @@ Example for a client device:
-> > >  		compatible = "mediatek,mt8173-mmsys";
-> > >  		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST 1>,
-> > >  			 <&gce 1 CMDQ_THR_PRIO_LOWEST 1>;
-> > > -		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
-> > > -				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
-> > > +		mediatek,gce-event-names = "rdma0_sof",
-> > > +					   "rsz0_sof";
-> > > +		mediatek,gce-events = <CMDQ_EVENT_MDP_RDMA0_SOF>,
-> > > +				      <CMDQ_EVENT_MDP_RSZ0_SOF>;
-> > >  		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
-> > >  					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
-> > >  		...
-> > 
-> > 
-> 
+and a separate?
+
+>     USB_X1 input. So, the functional clock must be named "???" and
+>     the USB_X1 input must be named as "usb_x1".
+>
+> What do you think? I'm not sure how to be named the functional clock so that
+> the sample is named as "???".
+
+We typically use "fclk" for the functional clock's name.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
