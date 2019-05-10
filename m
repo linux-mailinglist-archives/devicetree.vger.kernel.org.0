@@ -2,78 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E89519DA6
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 15:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD0A19DAB
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 15:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727450AbfEJNAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 09:00:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40490 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727071AbfEJNAL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 09:00:11 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 63AFB217F9;
-        Fri, 10 May 2019 13:00:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557493210;
-        bh=LsB4wRG7wXandWAwzv751zSzegIOxKf8DCwVeYS+wZo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=o9UoB1IQfAzm/77bKAUyUve7ebdMFEiCfoaRDB5FHwVX7SeHyD7LSFzlA2KwZPWN8
-         iQFgN9YsNWzEFcPkXXzZbK2oJpreht+OsFKhsMvDW7DVQPHSBQQ/v6OQh2pEX0OCRU
-         2HvTRdsJGJhBBncqT4FYXfSlYOHki8wNlUSfmJJA=
-Received: by mail-qk1-f172.google.com with SMTP id c1so2247002qkk.4;
-        Fri, 10 May 2019 06:00:10 -0700 (PDT)
-X-Gm-Message-State: APjAAAVaRZuUK0Bc2HPLPrZZ14wYgQlFRpQeK4cQQFET1kAl4VpEHrFE
-        dg7fObbLVna7ZZ5O2V7rRsR0CrxHth19TRi4Aw==
-X-Google-Smtp-Source: APXvYqyJFUpcXFgSc64L63+Yfqmy5T2ssN8dGlZHA7sVG67a1VSyOBVNxl+4OXjQWFgv+hoyeCHBDol+AkCsOX/sC/w=
-X-Received: by 2002:a05:620a:1107:: with SMTP id o7mr1133260qkk.184.1557493209611;
- Fri, 10 May 2019 06:00:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <68d3fb999d16e49696e832e1d1a6bcd7b76a6e8d.1557389988.git-series.maxime.ripard@bootlin.com>
- <CAL_JsqJi0iwM61anziC-cHXp0PL2AEtXiWFCLn943vTxK5eeig@mail.gmail.com> <20190510105759.z2ob5tl4ovn2ctdo@flea>
-In-Reply-To: <20190510105759.z2ob5tl4ovn2ctdo@flea>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 10 May 2019 07:59:56 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL+R3nWZi8u7_QRuGj=k7M2qB+NkM982OZfw0=n3+uLWA@mail.gmail.com>
-Message-ID: <CAL_JsqL+R3nWZi8u7_QRuGj=k7M2qB+NkM982OZfw0=n3+uLWA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: Add YAML schemas for the generic
- MMC options
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1727505AbfEJNAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 09:00:18 -0400
+Received: from mail-eopbgr50042.outbound.protection.outlook.com ([40.107.5.42]:23298
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727071AbfEJNAS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 09:00:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B3nAIffZWJtiZei8PXmyXUVi/mz6wf4IYQ+H6UL+HKg=;
+ b=SopPsFDNh0ykzSFIGxYVysXBApPwpaAvxTfZnOL3+n+q3+2B1od9PLYuNJ8wiYSXfbHAyuocgfZOtq4HrfaWnYqnFPu3uB3SQjVDValkJIJi/E5mrEKGt5RFIs3hqesrPhLKdW0HBq+K5E1beinUnBztT5y1umHBk/aHdMP0F94=
+Received: from AM6PR04MB5032.eurprd04.prod.outlook.com (20.177.34.92) by
+ AM6PR04MB6182.eurprd04.prod.outlook.com (20.179.6.151) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.21; Fri, 10 May 2019 13:00:13 +0000
+Received: from AM6PR04MB5032.eurprd04.prod.outlook.com
+ ([fe80::15c1:586e:553c:3cda]) by AM6PR04MB5032.eurprd04.prod.outlook.com
+ ([fe80::15c1:586e:553c:3cda%6]) with mapi id 15.20.1856.016; Fri, 10 May 2019
+ 13:00:13 +0000
+From:   Pramod Kumar <pramod.kumar_1@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>,
+        Leo Li <leoyang.li@nxp.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH v2 0/3] arm64: dts: nxp: add ls1046a frwy board support
+Thread-Topic: [PATCH v2 0/3] arm64: dts: nxp: add ls1046a frwy board support
+Thread-Index: AQHVBzBOJHZGTIZmHEO+Z8xAU6v8Bg==
+Date:   Fri, 10 May 2019 13:00:13 +0000
+Message-ID: <20190510130207.14330-1-pramod.kumar_1@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.17.1
+x-clientproxiedby: SG2PR04CA0183.apcprd04.prod.outlook.com
+ (2603:1096:4:14::21) To AM6PR04MB5032.eurprd04.prod.outlook.com
+ (2603:10a6:20b:9::28)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pramod.kumar_1@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [92.120.1.70]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9bfb1743-11e8-4a16-2e77-08d6d54770aa
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB6182;
+x-ms-traffictypediagnostic: AM6PR04MB6182:
+x-microsoft-antispam-prvs: <AM6PR04MB61827E85A7D23DA8EC410457F60C0@AM6PR04MB6182.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2887;
+x-forefront-prvs: 0033AAD26D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(136003)(396003)(39860400002)(346002)(376002)(199004)(189003)(50226002)(2906002)(6436002)(99286004)(6486002)(186003)(4744005)(110136005)(53936002)(6116002)(52116002)(3846002)(8936002)(4326008)(25786009)(26005)(8676002)(81156014)(81166006)(54906003)(2501003)(66066001)(6636002)(14454004)(6512007)(386003)(102836004)(6506007)(36756003)(478600001)(305945005)(71190400001)(1076003)(486006)(256004)(476003)(2616005)(86362001)(71200400001)(66946007)(66476007)(66556008)(66446008)(316002)(2201001)(7736002)(73956011)(68736007)(64756008)(5660300002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB6182;H:AM6PR04MB5032.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: rrJhgjucL9Yj4f9TagoUidfXepBEAAA3ddCHQcfPyRS+1Yor1D1YFKhWdugpZ05b/8heo9ithF4LFBw0CtrXZ+MC4jV1AyV0G+lcrN065h8EWfUBb3oUnqVbFaJrGOmdljfCFF2+lTIxFx1mt4a0RlGGRhPGsnG4s/n16JF/Is2wg6Lo7GwdynNb44GUT4Bq8IS6T/QnTILnEPUsNXXzRu1dtJ1KQYn8VlgK2nS9vm0ydIvEbMmm3xLMKaPEhm3frHY88kanMrFYXWBkAkJzV5P+34bbjmRSzqrDMCIzwrVgKsHsQ/PMxyzWRhINd+ELcmdLqHe1WLfVhZUZsyt7AvGr6/9DbUFi7v6VGXmUZOq6molHkNoLNV19JOTWHy+QoyEguGs/PceneI91hP/IgMhGDu2Nw5lMVLfiZ6yLI+M=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bfb1743-11e8-4a16-2e77-08d6d54770aa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2019 13:00:13.2841
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6182
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 10, 2019 at 5:58 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Hi Rob,
->
-> On Thu, May 09, 2019 at 11:45:26AM -0500, Rob Herring wrote:
-> > > +dependencies:
-> > > +  cd-inverted: [ cd-gpios ]
-> >
-> > The note (which you dropped) says 'cd-inverted' applies for built-in CD too.
-> >
-> > At least that is what I take "Polarity of dedicated pins can be
-> > specified, using *-inverted properties." to mean.
->
-> Indeed, my bad. i guess we should probably keep that note. How are we
-> supposed to keep a note that would apply to multiple properties? In
-> the global description?
-
-You could do a comment next to both properties or add it to the
-description on one and refer to it from the other property (and group
-the 2 properties together).
-
-Rob
+Q2hhbmdlcyBmb3IgdjI6DQotIE1vZGlmaWVkIGNvbWl0IG1lc3NhZ2UNCi0gQWRkIGR0cyBlbnRy
+eSBmb3IgcXNwaSBub3IgZmxhc2gNCg0KQ2hhbmdlcyBmb3IgdjE6DQotIEFkZCBkdHMgc3VwcG9y
+dCBmb3IgbHMxMDQ2YSBmcnd5IGJvYXJkLg0KLSBBZGQgImZzbCxsczEwNDZhLWZyd3kiIGJpbmRp
+bmdzIGZvciBsczEwNDZhZnJ3eSBib2FyZCBiYXNlZCBvbiBsczEwNDZhIFNvQw0KDQpQcmFtb2Qg
+S3VtYXIgKDMpOg0KICBkdC1iaW5kaW5nczogYXJtOiBueHA6IEFkZCBkZXZpY2UgdHJlZSBiaW5k
+aW5nIGZvciBsczEwNDZhLWZyd3kgYm9hcmQNCiAgYXJtNjQ6IGR0czogbnhwOiBhZGQgbHMxMDQ2
+YS1mcnd5IGJvYXJkIHN1cHBvcnQNCiAgYXJtNjQ6IGR0czogbnhwOiBmcnd5LWxzMTA0NmE6IGFk
+ZCBzdXBwb3J0IGZvciBtaWNyb24gbm9yIGZsYXNoDQoNCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5n
+cy9hcm0vZnNsLnlhbWwgICAgICAgICAgfCAgIDEgKw0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJl
+ZXNjYWxlL01ha2VmaWxlICAgICAgICB8ICAgMSArDQogLi4uL2Jvb3QvZHRzL2ZyZWVzY2FsZS9m
+c2wtbHMxMDQ2YS1mcnd5LmR0cyAgIHwgMTczICsrKysrKysrKysrKysrKysrKw0KIDMgZmlsZXMg
+Y2hhbmdlZCwgMTc1IGluc2VydGlvbnMoKykNCiBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02
+NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTA0NmEtZnJ3eS5kdHMNCg0KLS0gDQoyLjE3LjEN
+Cg0K
