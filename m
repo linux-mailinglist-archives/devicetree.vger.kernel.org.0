@@ -2,244 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B86B719D1C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 14:18:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A5219D6A
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 14:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727202AbfEJMS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 08:18:28 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:39100 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727071AbfEJMS2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 08:18:28 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id BC7E71A0169;
-        Fri, 10 May 2019 14:18:25 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AF61F1A003A;
-        Fri, 10 May 2019 14:18:25 +0200 (CEST)
-Received: from jana.ea.freescale.net (gw_auto.ea.freescale.net [10.171.94.100])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 2E915205ED;
-        Fri, 10 May 2019 14:18:25 +0200 (CEST)
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Angus Ainslie <angus@akkea.ca>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3] arm64: dts: imx8mm-evk: Add BD71847 PMIC
-Date:   Fri, 10 May 2019 15:18:22 +0300
-Message-Id: <04a79ff9811691cb365bfcaf3f0b250706bce295.1557490424.git.leonard.crestez@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727100AbfEJMt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 08:49:28 -0400
+Received: from mail-eopbgr130075.outbound.protection.outlook.com ([40.107.13.75]:64465
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727071AbfEJMt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 08:49:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ficx79QKKi4OdnGf8pHUVHNPrLeLEltcSkwjTdr5w9I=;
+ b=hD35Q1DAmIAsQWgBT4x1HxkH2mqJIhcRHC3CCv0Bs09untyIDCWecZn5IW4SWX34dfBuY55S3HqostzfmApGSck7RXBvZuS7treBy2ZPJBeN3oJslSzqd+FYjw2E54vWpaZPpoTvJZVS7UnxEypsqe4rL7aW4UXk/8T2wSiAmPo=
+Received: from VI1PR04MB4800.eurprd04.prod.outlook.com (20.177.48.221) by
+ VI1PR04MB5744.eurprd04.prod.outlook.com (20.178.127.86) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.22; Fri, 10 May 2019 12:49:21 +0000
+Received: from VI1PR04MB4800.eurprd04.prod.outlook.com
+ ([fe80::91dc:dc9:180e:cf65]) by VI1PR04MB4800.eurprd04.prod.outlook.com
+ ([fe80::91dc:dc9:180e:cf65%3]) with mapi id 15.20.1878.022; Fri, 10 May 2019
+ 12:49:21 +0000
+From:   Vabhav Sharma <vabhav.sharma@nxp.com>
+To:     Fabio Estevam <festevam@gmail.com>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] Re: [PATCH 2/2] add dts file to enable support for
+ ls1046afrwy board.
+Thread-Topic: [EXT] Re: [PATCH 2/2] add dts file to enable support for
+ ls1046afrwy board.
+Thread-Index: AQHVBaVf+VCLC05vFU+xwIgyLZG0QaZhQWwAgAMPZHA=
+Date:   Fri, 10 May 2019 12:49:21 +0000
+Message-ID: <VI1PR04MB480054935B3DDADFF2FD0055F30C0@VI1PR04MB4800.eurprd04.prod.outlook.com>
+References: <20190508135501.17578-1-pramod.kumar_1@nxp.com>
+ <20190508135501.17578-3-pramod.kumar_1@nxp.com>
+ <CAOMZO5C=dAN0LkhbTqCApmhv1msxAC8B2=u6D0gtC2KYV7T-HQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5C=dAN0LkhbTqCApmhv1msxAC8B2=u6D0gtC2KYV7T-HQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=vabhav.sharma@nxp.com; 
+x-originating-ip: [92.120.0.8]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3c295be6-6205-4e38-75d3-08d6d545ec8c
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5744;
+x-ms-traffictypediagnostic: VI1PR04MB5744:
+x-microsoft-antispam-prvs: <VI1PR04MB5744739A5E7FE2CA18D50D0EF30C0@VI1PR04MB5744.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2043;
+x-forefront-prvs: 0033AAD26D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(396003)(346002)(39860400002)(366004)(376002)(13464003)(189003)(199004)(305945005)(26005)(76176011)(6506007)(53546011)(74316002)(3846002)(102836004)(2906002)(486006)(476003)(86362001)(446003)(11346002)(6116002)(7696005)(44832011)(5660300002)(99286004)(68736007)(71200400001)(71190400001)(14454004)(52536014)(186003)(256004)(316002)(14444005)(6246003)(478600001)(4326008)(73956011)(76116006)(66476007)(53936002)(66446008)(64756008)(66556008)(6636002)(66946007)(25786009)(110136005)(8936002)(7736002)(9686003)(6436002)(66066001)(55016002)(54906003)(8676002)(33656002)(229853002)(81166006)(81156014);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5744;H:VI1PR04MB4800.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: KKSiUzIHSceR5ACDQogmbzY1LTc/upQ/yf0UNLOKzEllOLwV/a5Y/laoi3m+UsoMEh/qprnUuW2FYpUC9aEzrNRZw8g5fjsHUpZR5jpBdDiRK6xRq5+3NCmxzWvXHzKNZS3H0EpkQNKBG+aQ0lJZAmiS29MSfwnPiHHeY5tvBMCltDCJkosP/ycXUQy95+64Fj+Cj0FfloH/8xH2Jji9U0LdzhfBwFrq0iYGjZdq+20Dvtc1+lMXb6ByMSWAutJdGseeuMurzDC37b8fIc/lOSkKd01BoJ0kMIr/9uDKiPBlogOVogkKIlc048/U9tZlpOy5waPZzPxAsNfXtlTBzzHENfbJRCw9WwKQpI8v3NUWAYrlWzUgJlKhnYESw4zObh+8xunDqEJ5yhgUUS9r6CJKWfIR/jm2HDzMqW2MROE=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c295be6-6205-4e38-75d3-08d6d545ec8c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 May 2019 12:49:21.5970
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5744
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BUCK2 regulator is used for cpufreq voltage control, otherwise
-configuration is mostly static.
-
-This uses the newly-implemented rohm,reset-snvs-powered property to
-properly handle the SNVS state of imx8mm.
-
-Between BD71837 and BD71847 the BUCK3/4 regulators were removed but
-datasheet and board schematics kept the names for BUCK5/6/7/8. The
-driver however renumbered 5/6/7/8 to 3/4/5/6. Use the names from DT
-bindings and add comments to signal this.
-
-Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
-Acked-By: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-
----
-I apologize for sending base64 in the past, it's caused by IT policy but I
-found a workaround and hopefully this arrives in plain-text as intended.
-
-Changes since v2:
- - Replace regulator-compatible with regulator-name (Shawn)
-Link to v2: https://patchwork.kernel.org/patch/10913177/
-
-Changes since v1:
- - Move compatible property first
- - Remove address/size numbering from regulators list
-Link to v1: https://marc.info/?l=linux-clk&m=155530430429151&w=2
-
- arch/arm64/boot/dts/freescale/imx8mm-evk.dts | 131 +++++++++++++++++++++++++++
- 1 file changed, 131 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-index 2d5d89475b76..f8ff0a4b8961 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-@@ -37,10 +37,14 @@
- 		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 	};
- };
- 
-+&A53_0 {
-+	cpu-supply = <&buck2_reg>;
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-@@ -93,10 +97,124 @@
- 	pinctrl-0 = <&pinctrl_wdog>;
- 	fsl,ext-reset-output;
- 	status = "okay";
- };
- 
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	pmic@4b {
-+		compatible = "rohm,bd71847";
-+		reg = <0x4b>;
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 GPIO_ACTIVE_LOW>;
-+		rohm,reset-snvs-powered;
-+
-+		regulators {
-+			buck1_reg: BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <1250>;
-+			};
-+
-+			buck2_reg: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <1250>;
-+				rohm,dvs-run-voltage = <1000000>;
-+				rohm,dvs-idle-voltage = <900000>;
-+			};
-+
-+			buck3_reg: BUCK3 {
-+				// BUCK5 in datasheet
-+				regulator-name = "BUCK3";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck4_reg: BUCK4 {
-+				// BUCK6 in datasheet
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5_reg: BUCK5 {
-+				// BUCK7 in datasheet
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1605000>;
-+				regulator-max-microvolt = <1995000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck6_reg: BUCK6 {
-+				// BUCK8 in datasheet
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1_reg: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2_reg: LDO2 {
-+				regulator-name = "LDO2";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3_reg: LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4_reg: LDO4 {
-+				regulator-name = "LDO4";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo6_reg: LDO6 {
-+				regulator-name = "LDO6";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- &iomuxc {
- 	pinctrl-names = "default";
- 
- 	pinctrl_fec1: fec1grp {
- 		fsl,pins = <
-@@ -122,10 +240,23 @@
- 		fsl,pins = <
- 			MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16	0x19
- 		>;
- 	};
- 
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL			0x400001c3
-+			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicirq {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x41
-+		>;
-+	};
-+
- 	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmc {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
- 		>;
- 	};
--- 
-2.7.4
-
+SGkgRmFiaW8sDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRmFiaW8g
+RXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPg0KPiBTZW50OiBXZWRuZXNkYXksIE1heSA4LCAy
+MDE5IDc6MzAgUE0NCj4gVG86IFByYW1vZCBLdW1hciA8cHJhbW9kLmt1bWFyXzFAbnhwLmNvbT4N
+Cj4gQ2M6IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207IHNoYXduZ3Vv
+QGtlcm5lbC5vcmc7DQo+IG1hbml2YW5uYW4uc2FkaGFzaXZhbUBsaW5hcm8ub3JnOyBBaXNoZW5n
+IERvbmcNCj4gPGFpc2hlbmcuZG9uZ0BueHAuY29tPjsgTWljaGFsLlZva2FjQHlzb2Z0LmNvbTsN
+Cj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5v
+cmc7IFZhYmhhdiBTaGFybWENCj4gPHZhYmhhdi5zaGFybWFAbnhwLmNvbT4NCj4gU3ViamVjdDog
+W0VYVF0gUmU6IFtQQVRDSCAyLzJdIGFkZCBkdHMgZmlsZSB0byBlbmFibGUgc3VwcG9ydCBmb3Ig
+bHMxMDQ2YWZyd3kNCj4gYm9hcmQuDQo+IA0KPiBDYXV0aW9uOiBFWFQgRW1haWwNCj4gDQo+IEhp
+IFByYW1vZCwNCj4gDQo+IE9uIFdlZCwgTWF5IDgsIDIwMTkgYXQgMTA6NTYgQU0gUHJhbW9kIEt1
+bWFyDQo+IDxwcmFtb2Qua3VtYXJfMUBueHAuY29tPiB3cm90ZToNCj4gDQo+ID4gKyZmbWFuMCB7
+DQo+ID4gKyAgICAgICBldGhlcm5ldEBlMDAwMCB7DQo+IA0KPiBZb3UgaGF2ZSBwYXNzZWQgQGUw
+MDAwIHdpdGhvdXQgYSBjb3JyZXNwb25maW5nIHJlZyBlbnRyeS4NCj4gDQo+IFRoaXMgY2F1c2Vz
+IGR0YyBidWlsZCB3YXJuaW5ncyB3aXRoIFc9MS4NCj4gDQo+IFBsZWFzZSBtYWtlIHN1cmUgeW91
+IGRvbid0IGludHJvZHVjZSBuZXcgVz0xIHdhcm5pbmdzLg0KZXRoZXJuZXQgbm9kZSBpcyBpbmNs
+dWRlZCB3aXRoIGZzbC1sczEwNDYtcG9zdC5kdHNpIGZpbGUgYW5kIG5vIHdhcm5pbmcgaXMgaW50
+cm9kdWNlZC4NCm5vZGUgY29udGVudCBjYW4gYmUgZm91bmQgaW4gIGFyY2gvYXJtNjQvYm9vdC9k
+dHMvZnJlZXNjYWxlL3FvcmlxLWZtYW4zLTAtMWctMC5kdHNpOg0KICAgICAgICBldGhlcm5ldEBl
+MDAwMCB7DQogICAgICAgICAgICAgICAgY2VsbC1pbmRleCA9IDwwPjsNCiAgICAgICAgICAgICAg
+ICBjb21wYXRpYmxlID0gImZzbCxmbWFuLW1lbWFjIjsNCiAgICAgICAgICAgICAgICByZWcgPSA8
+MHhlMDAwMCAweDEwMDA+Ow0KICAgICAgICAgICAgICAgIGZzbCxmbWFuLXBvcnRzID0gPCZmbWFu
+MF9yeF8weDA4ICZmbWFuMF90eF8weDI4PjsNCiAgICAgICAgICAgICAgICBwdHAtdGltZXIgPSA8
+JnB0cF90aW1lcjA+Ow0KICAgICAgICAgICAgICAgIHBjc3BoeS1oYW5kbGUgPSA8JnBjc3BoeTA+
+Ow0KICAgICAgICB9Ow0KDQpSZWdhcmRzLA0KVmFiaGF2DQo=
