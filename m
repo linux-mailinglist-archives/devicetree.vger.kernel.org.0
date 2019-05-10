@@ -2,120 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AFDEF1A30C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 20:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A8B71A318
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 20:45:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727589AbfEJSjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 14:39:01 -0400
-Received: from relay1.mentorg.com ([192.94.38.131]:56514 "EHLO
-        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727034AbfEJSjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 14:39:01 -0400
-Received: from svr-orw-mbx-01.mgc.mentorg.com ([147.34.90.201])
-        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-        id 1hPAPz-0004oV-7D from George_Davis@mentor.com ; Fri, 10 May 2019 11:38:51 -0700
-Received: from localhost (147.34.91.1) by svr-orw-mbx-01.mgc.mentorg.com
- (147.34.90.201) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Fri, 10 May
- 2019 11:38:49 -0700
-Date:   Fri, 10 May 2019 14:38:47 -0400
-From:   "George G. Davis" <george_davis@mentor.com>
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>
-CC:     "George G. Davis" <ggdavisiv@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-Subject: Re: [PATCH] serial: sh-sci: disable DMA for uart_console
-Message-ID: <20190510183847.GB28648@mam-gdavis-lt>
-References: <20190506194233.GA32430@vmlxhi-102.adit-jv.com>
- <1557413011-1662-1-git-send-email-george_davis@mentor.com>
- <20190510171021.GA22691@vmlxhi-102.adit-jv.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190510171021.GA22691@vmlxhi-102.adit-jv.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-ClientProxiedBy: svr-orw-mbx-04.mgc.mentorg.com (147.34.90.204) To
- svr-orw-mbx-01.mgc.mentorg.com (147.34.90.201)
+        id S1727967AbfEJSpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 14:45:46 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:41083 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727868AbfEJSpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 14:45:46 -0400
+Received: by mail-pf1-f193.google.com with SMTP id l132so3673166pfc.8
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 11:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=+ONNq5P1j2Oa2lnhO1rhLpWrLa5fRjw816TA+nIPdAY=;
+        b=toJTxaY7Oi3WSP7j9XR8L1TpR/R3z4gk690EyVAx2KwpGLRgtDgPooejuD21ZFsnOF
+         P41Hj8QjOONHOc6PsXvkrx3K/8EdCufd32VYzBp/FQN0SR669WirzCtDrqOxBywae7qz
+         LtMRN403KkG4C3QAXJbvVA2pLbZHSGC/VvO78LBo9EjdfcOBVdNoqi9ougS9WX0WI/Hp
+         ab8W+7hDM6HDhP6gbSHP9onWH07fBTK5OYA/PuTdq/mwpMomjWaJubfexpHms8tvjA8t
+         7dpUYn3MJLO0u1IWK3bWB9SkFZNw0vGKNz5SxeZazWZ1MqqvFphAbNQekUGjvhw+Khpv
+         NQyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=+ONNq5P1j2Oa2lnhO1rhLpWrLa5fRjw816TA+nIPdAY=;
+        b=HIC9NobuemrRZlm1/Q3+u6k5CqPEEgxAGJt5KNQ2JF3oA5eVKLNNmwdbwQb86Sr+yU
+         z1strQ9cyOEUu3RZcJ98p+ik8SSzqoKxz111z1owVIe4pWNFwx6sHFQyYO77TpT/P+4y
+         18s2cM0c6NX0hlk+yBCqNlmKPun5l/DOKjoedTeBImjLlVN4LoMR3WbDPD6qxMxN9wN9
+         jWQQDwZm5NxqTK5CaJnaeiS240mB9A+5r6u7Px9vH2kghy5DPWZUlfPU2yARpV+iYLiF
+         orwoRp3c9lT8L24tuf+fdiEUt8JTyOD20pKyT0KXJkoMYq1tjavk2KyRrMnZ3L7SI3HR
+         hsmQ==
+X-Gm-Message-State: APjAAAU7t+Qg3aqH1g3OwfqqXfbMcEz/xJgDuOwgfffAc6Y4orWTXcs9
+        1YoqZqk9I4qmScoq5K6YHlKappunBg==
+X-Google-Smtp-Source: APXvYqwSxfztzhhhRo7isnL7o9KZ65ABp2JOE21/ph9rWgEgyjqSrKYtiD5FkpvLW26e3WW67DhG6A==
+X-Received: by 2002:a63:6941:: with SMTP id e62mr14542253pgc.99.1557513945390;
+        Fri, 10 May 2019 11:45:45 -0700 (PDT)
+Received: from localhost.localdomain ([2405:204:73c1:9991:95b6:5055:2390:bf9b])
+        by smtp.gmail.com with ESMTPSA id g188sm8652049pfc.151.2019.05.10.11.45.39
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 May 2019 11:45:44 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
+        alec.lin@bitmain.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/4] Add reset controller support for BM1880 SoC
+Date:   Sat, 11 May 2019 00:15:21 +0530
+Message-Id: <20190510184525.13568-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Eugeniu,
+Hello,
 
-On Fri, May 10, 2019 at 07:10:21PM +0200, Eugeniu Rosca wrote:
-> Hi George,
-> 
-> I am able to reproduce the SCIF2 console freeze described in the
-> referenced patchwork link using M3-ES1.1-Salvator-XS and recent
-> v5.1-9573-gb970afcfcabd kernel.
-> 
-> I confirm the behavior is healed with this patch. Thanks!
-> Hope to see it accepted soon, since it fixes a super annoying
-> console breakage every fourth boot or so on lots of R-Car3 targets.
-> 
-> Tested-by: Eugeniu Rosca <erosca@de.adit-jv.com>
+This patchset adds reset controller support for Bitmain BM1880 SoC.
+BM1880 SoC has only one reset controller and the reset-simple driver
+has been reused here.
 
-Thanks for testing.
+This patchset has been tested on 96Boards Sophon Edge board.
 
-Also note, for the record, that the problem is not limited to SCIF2, e.g. try
-setting console=ttySC<n> wheren <n> is not SCIF2 on any other board which
-includes support for other serial ports, e.g. r8a7795-salvator-x, and you will
-observe the same problem on other SCIF ports too. It's just a concidence that
-most boards use SCIF2 as the default serial console where the console hangs
-(resolved by this patch) have been observed on multiple boards.
+Thanks,
+Mani
 
-> 
-> On Thu, May 09, 2019 at 10:43:30AM -0400, George G. Davis wrote:
-> > As noted in commit 84b40e3b57ee ("serial: 8250: omap: Disable DMA for
-> > console UART"), UART console lines use low-level PIO only access functions
-> > which will conflict with use of the line when DMA is enabled, e.g. when
-> > the console line is also used for systemd messages. So disable DMA
-> > support for UART console lines.
-> > 
-> > Fixes: https://patchwork.kernel.org/patch/10929511/
-> > Reported-by: Michael Rodin <mrodin@de.adit-jv.com>
-> > Cc: Eugeniu Rosca <erosca@de.adit-jv.com>
-> > Signed-off-by: George G. Davis <george_davis@mentor.com>
-> > ---
-> >  drivers/tty/serial/sh-sci.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-> > index 3cd139752d3f..885b56b1d4e4 100644
-> > --- a/drivers/tty/serial/sh-sci.c
-> > +++ b/drivers/tty/serial/sh-sci.c
-> > @@ -1557,6 +1557,9 @@ static void sci_request_dma(struct uart_port *port)
-> >  
-> >  	dev_dbg(port->dev, "%s: port %d\n", __func__, port->line);
-> >  
-> > +	if (uart_console(port))
-> > +		return; /* Cannot use DMA on console */
-> > +
-> >  	if (!port->dev->of_node)
-> >  		return;
-> >  
-> > -- 
-> > 2.7.4
-> > 
-> 
-> -- 
-> Best Regards,
-> Eugeniu.
+Changes in v3:
+
+* Removed the clk-rst part as it turned out be the clock gating register set.
+
+Changes in v2:
+
+As per review from Philipp:
+
+* Reused reset_simple_active_low struct instead of a new one for bm1880
+* Splitted the SPDX license change to a separate commit
+* Added Reviewed-by tags from Rob and Philipp
+
+Manivannan Sadhasivam (4):
+  dt-bindings: reset: Add devicetree binding for BM1880 reset controller
+  arm64: dts: bitmain: Add reset controller support for BM1880 SoC
+  reset: Add reset controller support for BM1880 SoC
+  reset: Switch to SPDX license identifier for reset-simple
+
+ .../bindings/reset/bitmain,bm1880-reset.txt   | 18 +++++++
+ arch/arm64/boot/dts/bitmain/bm1880.dtsi       | 11 ++++
+ drivers/reset/Kconfig                         |  3 +-
+ drivers/reset/reset-simple.c                  |  8 ++-
+ .../dt-bindings/reset/bitmain,bm1880-reset.h  | 51 +++++++++++++++++++
+ 5 files changed, 85 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/bitmain,bm1880-reset.txt
+ create mode 100644 include/dt-bindings/reset/bitmain,bm1880-reset.h
 
 -- 
-Regards,
-George
+2.17.1
+
