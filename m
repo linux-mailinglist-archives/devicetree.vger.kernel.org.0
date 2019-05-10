@@ -2,210 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B0819B8D
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 12:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B874A19B93
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 12:26:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727497AbfEJKZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 06:25:20 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45107 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727452AbfEJKZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 06:25:20 -0400
-Received: by mail-ot1-f67.google.com with SMTP id a10so2787032otl.12
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 03:25:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iI9UjzWLOTz9GmvdS5N+dD4tpC8SGzYvR6XlaJd6X3w=;
-        b=RWz50WjGVhE778RI5E/gnmwHtyGZ0gaAmZ0iZ0plK5kWhBoeeKOWqyMXplH8fTtUsP
-         YFZpCe51wfH5rpKYyGn5ULLWDdnHqiz/qOEV7NBjxq+KfO41fJG4qhtbH5TVMqmlTXuD
-         b5rf6YzechDPYqaa7IxCgG1hq1vCZ1jw2HsD3qL0n5got4d9IQUHA7ngtw1jru23KETZ
-         S2a1Yzky70EiE/cKvmqv3j36xHYkNkJZpgW2MH+/MVDg0jSJzsPJ2n3uuvsMbcTdrYqq
-         lTHYE5RDq+PIvvcx+UdbW+CJ6Tf73MUjggBvl433KWXT2rTGYfdgh08GkTh9dkD5qrWP
-         Kl5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iI9UjzWLOTz9GmvdS5N+dD4tpC8SGzYvR6XlaJd6X3w=;
-        b=g979jAXM3vI5NuKzGxOgFQ/05rPuXzWJ0xO8ie96Np9Dqq7c99BYdOC9Fgj+N/m38/
-         uXI0AXvHSlWmde86sd5PXj/GufxBdhJXwXCiPeiRnJuUq38UukVvpb+f92QlLXnRiDfI
-         IRPcjAQPodjfXYuJvyqxv1hHlEjh+7vCx8TAfc8VMr5kOoJREVbudBPHijXHd4SwGUKE
-         V13lmxrN2C48jMUFUcmAv1zvawzk9ZQGqY33HrQmmwLN/5rQ/r2674vZa6fun7UC2vt9
-         /03tvB6b6Vn+MNnpRgd2rW60nzyMADYMwtJvSAdYJC9ZD7WKa21Vmk7U36/JRstNioso
-         ycdg==
-X-Gm-Message-State: APjAAAWuM8GHli6anoXlFeIOCKXopi1no8COixteod77yhffYMC+dMO0
-        HJB1IKcC/32ht/SBLk9ivIU8gXb+rZS+y1h4+2a9iA==
-X-Google-Smtp-Source: APXvYqxXdPfUlpaL4uIAwV7G2qrVEfAWWo/p1axPqhCLsuZp8oSxIViDaU9/ZJAkWQ8RAXvu3wGakIwT/norp7EOSwY=
-X-Received: by 2002:a9d:640f:: with SMTP id h15mr622694otl.338.1557483918605;
- Fri, 10 May 2019 03:25:18 -0700 (PDT)
+        id S1727341AbfEJK0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 06:26:32 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:34759 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727302AbfEJK0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 06:26:32 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id DF1B520001C;
+        Fri, 10 May 2019 10:26:28 +0000 (UTC)
+Date:   Fri, 10 May 2019 12:26:28 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: sound: sun4i-spdif: Document that
+ the RX channel can be missing
+Message-ID: <20190510102628.u344cqe7sftuamfg@flea>
+References: <dc84c7e9ce272109052f553a5e050bfe1a09e9d6.1557252411.git-series.maxime.ripard@bootlin.com>
+ <d9afb19c32f8b9b2c40c8d4c0c3df74bff0ccf35.1557252411.git-series.maxime.ripard@bootlin.com>
+ <CAL_Jsq+iLmzti5TX-TUU3PN4taC66UMqHMk-aKTjZKt1kVRtMQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190501230126.229218-1-brendanhiggins@google.com> <CAK7LNARzaeZ+ZNbDSii2cpFkk4bUqOu3keNq4qX0LhftuK8+MQ@mail.gmail.com>
-In-Reply-To: <CAK7LNARzaeZ+ZNbDSii2cpFkk4bUqOu3keNq4qX0LhftuK8+MQ@mail.gmail.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Fri, 10 May 2019 03:25:06 -0700
-Message-ID: <CAFd5g47iaxW5Nk+sELxgasnbpNX7O6kwUTT7gMWoN3gA=_we6Q@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "Luis R. Rodriguez" <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Cc: Shuah Khan" <shuah@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        Tim Bird <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+iLmzti5TX-TUU3PN4taC66UMqHMk-aKTjZKt1kVRtMQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Thu, May 2, 2019 at 8:02 AM Brendan Higgins
-> <brendanhiggins@google.com> wrote:
-> >
-> > ## TLDR
-> >
-> > I rebased the last patchset on 5.1-rc7 in hopes that we can get this in
-> > 5.2.
-> >
-> > Shuah, I think you, Greg KH, and myself talked off thread, and we agreed
-> > we would merge through your tree when the time came? Am I remembering
-> > correctly?
-> >
-> > ## Background
-> >
-> > This patch set proposes KUnit, a lightweight unit testing and mocking
-> > framework for the Linux kernel.
-> >
-> > Unlike Autotest and kselftest, KUnit is a true unit testing framework;
-> > it does not require installing the kernel on a test machine or in a VM
-> > and does not require tests to be written in userspace running on a host
-> > kernel. Additionally, KUnit is fast: From invocation to completion KUnit
-> > can run several dozen tests in under a second. Currently, the entire
-> > KUnit test suite for KUnit runs in under a second from the initial
-> > invocation (build time excluded).
-> >
-> > KUnit is heavily inspired by JUnit, Python's unittest.mock, and
-> > Googletest/Googlemock for C++. KUnit provides facilities for defining
-> > unit test cases, grouping related test cases into test suites, providing
-> > common infrastructure for running tests, mocking, spying, and much more.
-> >
-> > ## What's so special about unit testing?
-> >
-> > A unit test is supposed to test a single unit of code in isolation,
-> > hence the name. There should be no dependencies outside the control of
-> > the test; this means no external dependencies, which makes tests orders
-> > of magnitudes faster. Likewise, since there are no external dependencies,
-> > there are no hoops to jump through to run the tests. Additionally, this
-> > makes unit tests deterministic: a failing unit test always indicates a
-> > problem. Finally, because unit tests necessarily have finer granularity,
-> > they are able to test all code paths easily solving the classic problem
-> > of difficulty in exercising error handling code.
-> >
-> > ## Is KUnit trying to replace other testing frameworks for the kernel?
-> >
-> > No. Most existing tests for the Linux kernel are end-to-end tests, which
-> > have their place. A well tested system has lots of unit tests, a
-> > reasonable number of integration tests, and some end-to-end tests. KUnit
-> > is just trying to address the unit test space which is currently not
-> > being addressed.
-> >
-> > ## More information on KUnit
-> >
-> > There is a bunch of documentation near the end of this patch set that
-> > describes how to use KUnit and best practices for writing unit tests.
-> > For convenience I am hosting the compiled docs here:
-> > https://google.github.io/kunit-docs/third_party/kernel/docs/
-> > Additionally for convenience, I have applied these patches to a branch:
-> > https://kunit.googlesource.com/linux/+/kunit/rfc/v5.1-rc7/v1
-> > The repo may be cloned with:
-> > git clone https://kunit.googlesource.com/linux
-> > This patchset is on the kunit/rfc/v5.1-rc7/v1 branch.
-> >
-> > ## Changes Since Last Version
-> >
-> > None. I just rebased the last patchset on v5.1-rc7.
-> >
-> > --
-> > 2.21.0.593.g511ec345e18-goog
-> >
->
-> The following is the log of 'git am' of this series.
-> I see several 'new blank line at EOF' warnings.
->
->
->
-> masahiro@pug:~/workspace/bsp/linux$ git am ~/Downloads/*.patch
-> Applying: kunit: test: add KUnit test runner core
-> Applying: kunit: test: add test resource management API
-> Applying: kunit: test: add string_stream a std::stream like string builder
-> .git/rebase-apply/patch:223: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> Applying: kunit: test: add kunit_stream a std::stream like logger
-> Applying: kunit: test: add the concept of expectations
-> .git/rebase-apply/patch:475: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> Applying: kbuild: enable building KUnit
-> Applying: kunit: test: add initial tests
-> .git/rebase-apply/patch:203: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> Applying: kunit: test: add support for test abort
-> .git/rebase-apply/patch:453: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> Applying: kunit: test: add tests for kunit test abort
-> Applying: kunit: test: add the concept of assertions
-> .git/rebase-apply/patch:518: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> Applying: kunit: test: add test managed resource tests
-> Applying: kunit: tool: add Python wrappers for running KUnit tests
-> .git/rebase-apply/patch:457: new blank line at EOF.
-> +
-> warning: 1 line adds whitespace errors.
-> Applying: kunit: defconfig: add defconfigs for building KUnit tests
-> Applying: Documentation: kunit: add documentation for KUnit
-> .git/rebase-apply/patch:71: new blank line at EOF.
-> +
-> .git/rebase-apply/patch:209: new blank line at EOF.
-> +
-> .git/rebase-apply/patch:848: new blank line at EOF.
-> +
-> warning: 3 lines add whitespace errors.
-> Applying: MAINTAINERS: add entry for KUnit the unit testing framework
-> Applying: kernel/sysctl-test: Add null pointer test for sysctl.c:proc_dointvec()
-> Applying: MAINTAINERS: add proc sysctl KUnit test to PROC SYSCTL section
+Hi Rob,
 
-Sorry about this! I will have it fixed on the next revision.
+On Wed, May 08, 2019 at 02:35:10PM -0500, Rob Herring wrote:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: allwinner,sun8i-h3-spdif
+> > +
+> > +    then:
+> > +      properties:
+> > +        dmas:
+> > +          maxItems: 1
+>
+> In this and below, these should get added automatically by
+> fixup_schema. If not present, we set minItems/maxItems to the size of
+> the items list. It look like you added support for that, so left over
+> from before you addressed that for if/then/else?
+
+Sorry, I should have brought that up in the pull request.
+
+It seems that it's still necessary when using allOf, otherwise the
+schema won't match
+
+Maybe there's something more to fix when using allOf?
+
+> > +          items:
+> > +            - description: RX DMA Channel
+>
+> s/RX/TX/
+>
+> > +
+> > +        dma-names:
+> > +          maxItems: 1
+> > +          items:
+> > +            - const: tx
+> > +
+> > +    else:
+> > +      properties:
+> > +        dmas:
+> > +          minItems: 2
+> > +          maxItems: 2
+> > +          items:
+> > +            - description: RX DMA Channel
+> > +            - description: TX DMA Channel
+> > +
+> > +        dma-names:
+> > +          minItems: 2
+> > +          maxItems: 2
+> > +          items:
+> > +            - const: rx
+> > +            - const: tx
+>
+> I'm really on the fence whether it's worth it to add all this just add
+> the restrictions based on the compatible. I guess with copy-n-paste
+> this would be a common error.
+
+Converting most of the bindings to the schemas has shown that (at
+least in our case), we've been pretty bad at keeping the documentation
+up to date with that kind of information.
+
+Adding that kind of construct at least has the benefit to actively
+enforce that the documentation is complete.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
