@@ -2,286 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FE4198C0
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 09:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 653A4198D5
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 09:16:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbfEJHHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 03:07:53 -0400
-Received: from mail-eopbgr680045.outbound.protection.outlook.com ([40.107.68.45]:48864
-        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727111AbfEJHHp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 03:07:45 -0400
+        id S1727099AbfEJHQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 03:16:37 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38709 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726924AbfEJHQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 03:16:36 -0400
+Received: by mail-wm1-f68.google.com with SMTP id f2so6166604wmj.3
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 00:16:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EeD8pFmCJJjZYjHcLHGEp1CDCmB5e0TiIXSH20sH4VY=;
- b=ArqFqxvfTRhRHFc/XqL8GsOcqyABcePKXqh5Cf+nyoq6fNP9kzlrmveqosCEZeraVfqFn1dKW0rfr8OGt5L/zsRuFUGSaEqgMrn1Fv+kJq0+tLoz03bvVUKu+sTlncgxhNEGHMVwTxmvsh2jL4L9WUea7IdpVdxrp2i6w9fxDV0=
-Received: from CY4PR02CA0024.namprd02.prod.outlook.com (2603:10b6:903:18::34)
- by CO1PR02MB159.namprd02.prod.outlook.com (2a01:111:e400:101e::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.1856.11; Fri, 10
- May 2019 07:07:41 +0000
-Received: from SN1NAM02FT042.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::209) by CY4PR02CA0024.outlook.office365.com
- (2603:10b6:903:18::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1878.21 via Frontend
- Transport; Fri, 10 May 2019 07:07:40 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.100)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
-Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
- SN1NAM02FT042.mail.protection.outlook.com (10.152.73.149) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1856.11
- via Frontend Transport; Fri, 10 May 2019 07:07:40 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]:59147 helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
-        (envelope-from <anurag.kumar.vulisha@xilinx.com>)
-        id 1hOzd5-0003Nu-Pk; Fri, 10 May 2019 00:07:39 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <anurag.kumar.vulisha@xilinx.com>)
-        id 1hOzd0-0004bk-LW; Fri, 10 May 2019 00:07:34 -0700
-Received: from xsj-pvapsmtp01 (xsj-smtp.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x4A77Uuk007918;
-        Fri, 10 May 2019 00:07:30 -0700
-Received: from [172.23.64.8] (helo=xhdvnc108.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <anuragku@xilinx.com>)
-        id 1hOzcw-0004aV-3s; Fri, 10 May 2019 00:07:30 -0700
-Received: by xhdvnc108.xilinx.com (Postfix, from userid 15427)
-        id 4C98760514; Fri, 10 May 2019 12:37:29 +0530 (IST)
-From:   Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        "Claus H. Stovgaard" <cst@phaseone.com>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <v.anuragkumar@gmail.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-Subject: [PATCH v3 3/3] usb: dwc3: gadget: Add support for disabling U1 and U2 entries
-Date:   Fri, 10 May 2019 12:37:28 +0530
-Message-ID: <1557472048-10536-4-git-send-email-anurag.kumar.vulisha@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1557472048-10536-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
-References: <1557472048-10536-1-git-send-email-anurag.kumar.vulisha@xilinx.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(136003)(396003)(346002)(376002)(2980300002)(199004)(189003)(4326008)(36386004)(47776003)(103686004)(486006)(966005)(478600001)(63266004)(7416002)(14444005)(50226002)(36756003)(6306002)(81156014)(8676002)(81166006)(110136005)(6266002)(48376002)(336012)(54906003)(50466002)(51416003)(8936002)(106002)(305945005)(126002)(5660300002)(476003)(446003)(26005)(107886003)(11346002)(2616005)(356004)(42186006)(426003)(316002)(90966002)(16586007)(52956003)(70586007)(70206006)(76176011)(2906002)(186003)(5001870100001)(6606295002);DIR:OUT;SFP:1101;SCL:1;SRVR:CO1PR02MB159;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:xapps1.xilinx.com,unknown-60-100.xilinx.com;A:1;MX:1;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=JvTnepYea0EBsHjZpph8FxtYlM4OPmMVBMIjktcmeVM=;
+        b=cTVa3xp4hXBoZyNXrz0uNxHmzZiNUJbTL+zYRUNb5Kp7iDXGPDo/Qwf/AIQNvql+z1
+         TNjnQyNXYNfOcVp1naNqLyp7JnkYXPiGmm7uW0pXrOuuy3ErZ+IOtyd7T9NGKUWs15+z
+         QY8WPl1qTvbOjwGdfYngu0PbbEwqcfiCeU+VGc9xKWI4luR6PWMvrmPJCAlBXymKuDTa
+         8nT/9wThav6hqA2g8NyuKGMbwFsewaoYYbw3aIQewGFEg/x6nXkpL2jcSY76SjEaa4tm
+         skaXfrXagfMko40tR+Mbk3toK0awX0PY9AO9usxErzdPoBI3/b/yOLZBFOG4BL03vBy4
+         TGiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=JvTnepYea0EBsHjZpph8FxtYlM4OPmMVBMIjktcmeVM=;
+        b=DS/HinwHEtdlDomCPihjdrL3gVj4ryCNe4kSSEVNYghfhN/+dqWIsbNaS3rDObvYM3
+         VdajwzHxHFJm3QP1Cf2PsaU5RgHrt5W4FtNrx3kyauUY5Db426CN3TnggloV5fza1tsx
+         on5IdbF/C8dr8g6wYb5qq4f6PqkFILXFCY0f1rnpTQSPWu6h3+AMPdhLO+L6e6+MDr7z
+         xCCOCZLKNo7su5UoBHLZ598Af69U53ag2GYy0gfKTvlcXZp6w/6vKmQrfA94u5eZvBG6
+         g2KSO0e7NLriAasqgeOGvooOPLcPsCTVzgZSOlr2o6lJr2SYrVy94if2F7IIMDCkHIjm
+         wM+A==
+X-Gm-Message-State: APjAAAU6JEEmRJ8Xxjoc3ywGT5cVO7xIfPwGL/UgjsGr/MRCUMifQask
+        WNPR9yZEV23lAuVOiwI1gusUkQ==
+X-Google-Smtp-Source: APXvYqz67ixtb5Kj+lW57C/bg64GF8kDMDU5xV9ktI11Srq5D7jgxo/wcrgpIrmML8Jc5rcrWgf1PA==
+X-Received: by 2002:a1c:80d7:: with SMTP id b206mr5606595wmd.48.1557472594154;
+        Fri, 10 May 2019 00:16:34 -0700 (PDT)
+Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
+        by smtp.googlemail.com with ESMTPSA id i18sm6521170wro.36.2019.05.10.00.16.32
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 May 2019 00:16:33 -0700 (PDT)
+Subject: Re: [EXT] Re: [PATCH v6] arm64: dts: ls1088a: add one more thermal
+ zone node
+To:     Andy Tang <andy.tang@nxp.com>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        "edubezval@gmail.com" <edubezval@gmail.com>
+References: <20190423022507.34969-1-andy.tang@nxp.com>
+ <20190510031335.GD15856@dragon>
+ <VI1PR04MB4333D24227603D1497BA3CB9F30C0@VI1PR04MB4333.eurprd04.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <9fb2e306-38c7-2af7-5470-ff5bc4e23370@linaro.org>
+Date:   Fri, 10 May 2019 09:16:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 964d6c9a-a494-4c53-1260-08d6d51630ed
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328);SRVR:CO1PR02MB159;
-X-MS-TrafficTypeDiagnostic: CO1PR02MB159:
-X-MS-Exchange-PUrlCount: 1
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-Microsoft-Antispam-PRVS: <CO1PR02MB159167C5095645EA3F0956CA70C0@CO1PR02MB159.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
-X-Forefront-PRVS: 0033AAD26D
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: VdLWNIPeudEK+zFxA0WywOc7M8g2Q0+GGO3P5BITMLiLRaPnXqMIxY+mu1toARBKIPs3PTQk4SdKh0KnGxvh2SXQWbofrdOBSR7MFEJ9vqEpythcKDtql19P4/Nqn1sstddV9BFvJVjKT/WwR6ijPuORFjeG9CTBR3SBd9itTxEjiDgWFPAdyMiyIYQMSo1y3TCHNYbup60Ck969EyOdc3LQjoQCqk/7kUoAVnCDi0j7Yj0OsGuQfFxx3gBOefwfmQpA6RqMNZaJYWJ8QPPkw0JSrEH1U6CRkX0RbdwV78tPCT5simvbsUcODV1nMVFJ/o2djbXwCNJT4PBhf0hcKwif46O6BK9pA36EV0FHolqoVachm9+j2mKxfRdOx2RkAeDalqZVLilQEQVMGaIOmJ5EeMyI3oj5Vlzbfmbvf84=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2019 07:07:40.2030
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 964d6c9a-a494-4c53-1260-08d6d51630ed
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR02MB159
+In-Reply-To: <VI1PR04MB4333D24227603D1497BA3CB9F30C0@VI1PR04MB4333.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=gbk
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gadget applications may have a requirement to disable the U1 and U2
-entry based on the usecase. Below are few usecases where the disabling
-U1/U2 entries may be possible.
+On 10/05/2019 05:40, Andy Tang wrote:
+>> -----Original Message-----
+>> From: Shawn Guo <shawnguo@kernel.org>
+>> Sent: 2019Äê5ÔÂ10ÈÕ 11:14
+>> To: Andy Tang <andy.tang@nxp.com>
+>> Cc: Leo Li <leoyang.li@nxp.com>; robh+dt@kernel.org;
+>> mark.rutland@arm.com; linux-arm-kernel@lists.infradead.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> linux-pm@vger.kernel.org; daniel.lezcano@linaro.org; rui.zhang@intel.com;
+>> edubezval@gmail.com
+>> Subject: [EXT] Re: [PATCH v6] arm64: dts: ls1088a: add one more thermal
+>> zone node
+>>
+>> Caution: EXT Email
+>>
+>> On Tue, Apr 23, 2019 at 10:25:07AM +0800, Yuantian Tang wrote:
+>>> Ls1088a has 2 thermal sensors, core cluster and SoC platform. Core
+>>> cluster sensor is used to monitor the temperature of core and SoC
+>>> platform is for platform. The current dts only support the first sensor.
+>>> This patch adds the second sensor node to dts to enable it.
+>>>
+>>> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+>>> ---
+>>> v6:
+>>>         - add cooling device map to cpu0-7 in platform node.
+> I like to explain a little. I think it makes sense that multiple thermal zone map to same cooling device. 
+> In this way, no matter which thermal zone raises a temp alarm, it can call cooling device to chill out.
+> I also asked cpufreq maintainer about the cooling map issue, he think it would be fine.
+> I have tested and no issue found. 
+> 
+> Daniel, what's your thought?
 
-Usecase 1:
-When combining dwc3 with an redriver for a USB Type-C device solution, it
-sometimes have problems with leaving U1/U2 for certain hosts, resulting in
-link training errors and reconnects. For this U1/U2 state entries may be
-avoided.
+If there are multiple thermal zones, they will be managed by different
+instances of a thermal governor. Each instances will act on the shared
+cooling device and will collide in their decisions:
 
-Usecase 2:
-When performing performance benchmarking on mass storage gadget the
-U1 and U2 entries can be disabled.
+ - If the sensors are closed, their behavior will be similar regarding
+the temperature. The governors may take the same decision for the
+cooling device. But in such case having just one thermal zone managed is
+enough.
 
-Usecase 3:
-When periodic transfers like ISOC transfers are used with bInterval
-of 1 which doesn't require the link to enter into U1 or U2 state entry
-(since ping is issued from host for every uframe interval). In this
-case the U1 and U2 entry can be disabled.
+ - If the sensors are not closed, their behavior will be different
+regarding the temperature. The governors will take different decision
+regarding the cooling device (one will decrease the freq, other will
+increase the freq).
 
-Disablement of U1/U2 can be done by setting U1DevExitLat and U2DevExitLat
-values to 0 in the BOS descriptor. Host on seeing 0 value for U1DevExitLat
-and U2DevExitLat, it doesn't send SET_SEL requests to the gadget. There
-may be some hosts which may send SET_SEL requests even after seeing 0 in
-the UxDevExitLat of BOS descriptor. To aviod U1/U2 entries for these type
-of hosts, dwc3 controller can be programmed to reject those U1/U2 requests
-by not enabling ACCEPTUxENA bits in DCTL register.
+As the thermal governors are not able to manage several thermal zones
+and there is one cooling device (the cpu cooling device), this setup
+won't work as expected IMO.
 
-This patch updates the same.
+The setup making sense is having a thermal zone per 'cluster' and a
+cooling device per 'cluster'. That means the platform has one clock line
+per 'cluster'. The thermal management happens in a self-contained
+thermal zone (one cooling device - one governor - one thermal zone).
 
-Signed-off-by: Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
-Signed-off-by: Claus H. Stovgaard <cst@phaseone.com>
----
- Changes in v3:
-	1. As suggested by Thinh Nguyen modified the logic for rejecting only
-	   SET_FEATURE(enable U1/U2) from host.
-	2. Used cpu_to_le16() before assigning the value to bU2DevExitLat.
+In the case of HMP, other combinations are possible to be optimal.
 
- Changes in v2:
-	1. As suggested by Thinh Nguyen changed the "snps,dis_u1_entry_quirk"
-	   to "snps,dis-u1-entry-quirk"
-	2. Merged the changes done by Claus H. Stovgaard in ep0.c for rejecting
-	   U1/U2 requests into this patch. Changes done by Claus can be found
-	   here https://marc.info/?l=linux-kernel&m=155722068820568&w=2
-	3. Changed the commit message.
----
- drivers/usb/dwc3/core.c   |  4 ++++
- drivers/usb/dwc3/core.h   |  4 ++++
- drivers/usb/dwc3/ep0.c    |  9 ++++++++-
- drivers/usb/dwc3/gadget.c | 20 ++++++++++++++++++++
- drivers/usb/dwc3/gadget.h |  6 ++++++
- 5 files changed, 42 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index a1b126f..180239b 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1285,6 +1285,10 @@ static void dwc3_get_properties(struct dwc3 *dwc)
- 				"snps,dis_u2_susphy_quirk");
- 	dwc->dis_enblslpm_quirk = device_property_read_bool(dev,
- 				"snps,dis_enblslpm_quirk");
-+	dwc->dis_u1_entry_quirk = device_property_read_bool(dev,
-+				"snps,dis-u1-entry-quirk");
-+	dwc->dis_u2_entry_quirk = device_property_read_bool(dev,
-+				"snps,dis-u2-entry-quirk");
- 	dwc->dis_rxdet_inp3_quirk = device_property_read_bool(dev,
- 				"snps,dis_rxdet_inp3_quirk");
- 	dwc->dis_u2_freeclk_exists_quirk = device_property_read_bool(dev,
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 1528d39..fa398e2 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -1015,6 +1015,8 @@ struct dwc3_scratchpad_array {
-  * @dis_u2_susphy_quirk: set if we disable usb2 suspend phy
-  * @dis_enblslpm_quirk: set if we clear enblslpm in GUSB2PHYCFG,
-  *                      disabling the suspend signal to the PHY.
-+ * @dis_u1_entry_quirk: set if link entering into U1 state needs to be disabled.
-+ * @dis_u2_entry_quirk: set if link entering into U2 state needs to be disabled.
-  * @dis_rxdet_inp3_quirk: set if we disable Rx.Detect in P3
-  * @dis_u2_freeclk_exists_quirk : set if we clear u2_freeclk_exists
-  *			in GUSB2PHYCFG, specify that USB2 PHY doesn't
-@@ -1206,6 +1208,8 @@ struct dwc3 {
- 	unsigned		dis_u3_susphy_quirk:1;
- 	unsigned		dis_u2_susphy_quirk:1;
- 	unsigned		dis_enblslpm_quirk:1;
-+	unsigned		dis_u1_entry_quirk:1;
-+	unsigned		dis_u2_entry_quirk:1;
- 	unsigned		dis_rxdet_inp3_quirk:1;
- 	unsigned		dis_u2_freeclk_exists_quirk:1;
- 	unsigned		dis_del_phy_power_chg_quirk:1;
-diff --git a/drivers/usb/dwc3/ep0.c b/drivers/usb/dwc3/ep0.c
-index 8efde17..3996b9c 100644
---- a/drivers/usb/dwc3/ep0.c
-+++ b/drivers/usb/dwc3/ep0.c
-@@ -379,6 +379,8 @@ static int dwc3_ep0_handle_u1(struct dwc3 *dwc, enum usb_device_state state,
- 	if ((dwc->speed != DWC3_DSTS_SUPERSPEED) &&
- 			(dwc->speed != DWC3_DSTS_SUPERSPEED_PLUS))
- 		return -EINVAL;
-+	if (set && dwc->dis_u1_entry_quirk)
-+		return -EINVAL;
- 
- 	reg = dwc3_readl(dwc->regs, DWC3_DCTL);
- 	if (set)
-@@ -401,6 +403,8 @@ static int dwc3_ep0_handle_u2(struct dwc3 *dwc, enum usb_device_state state,
- 	if ((dwc->speed != DWC3_DSTS_SUPERSPEED) &&
- 			(dwc->speed != DWC3_DSTS_SUPERSPEED_PLUS))
- 		return -EINVAL;
-+	if (set && dwc->dis_u2_entry_quirk)
-+		return -EINVAL;
- 
- 	reg = dwc3_readl(dwc->regs, DWC3_DCTL);
- 	if (set)
-@@ -626,7 +630,10 @@ static int dwc3_ep0_set_config(struct dwc3 *dwc, struct usb_ctrlrequest *ctrl)
- 			 * nothing is pending from application.
- 			 */
- 			reg = dwc3_readl(dwc->regs, DWC3_DCTL);
--			reg |= (DWC3_DCTL_ACCEPTU1ENA | DWC3_DCTL_ACCEPTU2ENA);
-+			if (!dwc->dis_u1_entry_quirk)
-+				reg |= DWC3_DCTL_ACCEPTU1ENA;
-+			if (!dwc->dis_u2_entry_quirk)
-+				reg |= DWC3_DCTL_ACCEPTU2ENA;
- 			dwc3_writel(dwc->regs, DWC3_DCTL, reg);
- 		}
- 		break;
-diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
-index e293400..30b2e63 100644
---- a/drivers/usb/dwc3/gadget.c
-+++ b/drivers/usb/dwc3/gadget.c
-@@ -2073,6 +2073,25 @@ static int dwc3_gadget_stop(struct usb_gadget *g)
- 	return 0;
- }
- 
-+static void dwc3_gadget_config_params(struct usb_gadget *g,
-+				      struct usb_dcd_config_params *params)
-+{
-+	struct dwc3		*dwc = gadget_to_dwc(g);
-+
-+	/* U1 Device exit Latency */
-+	if (dwc->dis_u1_entry_quirk)
-+		params->bU1devExitLat = 0;
-+	else
-+		params->bU1devExitLat = DWC3_DEFAULT_U1_DEV_EXIT_LAT;
-+
-+	/* U2 Device exit Latency */
-+	if (dwc->dis_u2_entry_quirk)
-+		params->bU2DevExitLat = 0;
-+	else
-+		params->bU2DevExitLat =
-+				cpu_to_le16(DWC3_DEFAULT_U2_DEV_EXIT_LAT);
-+}
-+
- static void dwc3_gadget_set_speed(struct usb_gadget *g,
- 				  enum usb_device_speed speed)
- {
-@@ -2142,6 +2161,7 @@ static const struct usb_gadget_ops dwc3_gadget_ops = {
- 	.udc_start		= dwc3_gadget_start,
- 	.udc_stop		= dwc3_gadget_stop,
- 	.udc_set_speed		= dwc3_gadget_set_speed,
-+	.get_config_params	= dwc3_gadget_config_params,
- };
- 
- /* -------------------------------------------------------------------------- */
-diff --git a/drivers/usb/dwc3/gadget.h b/drivers/usb/dwc3/gadget.h
-index 3ed738e..5faf4d1 100644
---- a/drivers/usb/dwc3/gadget.h
-+++ b/drivers/usb/dwc3/gadget.h
-@@ -48,6 +48,12 @@ struct dwc3;
- /* DEPXFERCFG parameter 0 */
- #define DWC3_DEPXFERCFG_NUM_XFER_RES(n)	((n) & 0xffff)
- 
-+/* U1 Device exit Latency */
-+#define DWC3_DEFAULT_U1_DEV_EXIT_LAT	0x0A	/* Less then 10 microsec */
-+
-+/* U2 Device exit Latency */
-+#define DWC3_DEFAULT_U2_DEV_EXIT_LAT	0x1FF	/* Less then 511 microsec */
-+
- /* -------------------------------------------------------------------------- */
- 
- #define to_dwc3_request(r)	(container_of(r, struct dwc3_request, request))
+
 -- 
-2.1.1
+ <http://www.linaro.org/> Linaro.org ©¦ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
