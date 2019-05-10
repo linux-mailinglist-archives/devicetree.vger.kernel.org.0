@@ -2,118 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 794CA19847
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 08:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B38F19853
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 08:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726873AbfEJGOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 02:14:06 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:42737 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726808AbfEJGOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 02:14:05 -0400
-Received: by mail-lf1-f66.google.com with SMTP id w23so3261250lfc.9
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2019 23:14:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wcoCn9aET8ENDUMb5kZFQY4rPTMs5oVxV7wArQjOIBo=;
-        b=OBoy5jFwq7rwO6rQvfRJjzjUxv5hh15DMppI5VJRgrtBPPvNHy3xN3DS9UhKYbdjg2
-         x4th2Lp7uXVK/Q+3WelH6KnB3Xzx5iDF0au91UTqihiFLCAIk9+ctrLUnNOF6paggLUR
-         iehK957Lt3Jw4wMEOGI1tIRKyCMykJlJy6Hug=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wcoCn9aET8ENDUMb5kZFQY4rPTMs5oVxV7wArQjOIBo=;
-        b=Uq95nB/r+9X3onpqvhm3g5ukT6W8EWzkjrcLvQU5CtLjziuPpx3OnobOG7JnVyc3ld
-         YoDjRE24ZinwHVHgk26h846mYMxAkhKNzCN1bvQj7mBKyMvImVF8JTUfs1H88gWG31ww
-         dmDTFzXm89mWXT6/aKqzWfPsfE//UXELe+/vh7r9iOkXnQ8liFOv/o0GtcS4DnSgEaMM
-         jHElrtR8URCAcA2bhv5V7vlaxXTOf+7zYbGRFtdXQrc/HqCkKaLhRVb2bgo/zSbH45ZE
-         xw+94/rKHdXPMFViQkDKPIMQeZB8zOdX8H3KV62CFruN6/fUQ1EcbPwNTCrRBu7GVhRL
-         +8TA==
-X-Gm-Message-State: APjAAAVFLE9YymRVGRr8brYl1PwVwW2pCVaBU9tBAGEUjVSYYSJsEO4T
-        t0pGzt+57ymyfxAWs4vdXB9wQg==
-X-Google-Smtp-Source: APXvYqxjq3SwLXsYD1FL12FSPs1z8AbTUxVH50KLsWdg3JeNkzbWs8UtasTLQvTkgAAB7vhwEhVrpA==
-X-Received: by 2002:ac2:43cf:: with SMTP id u15mr4755854lfl.67.1557468843494;
-        Thu, 09 May 2019 23:14:03 -0700 (PDT)
-Received: from [172.16.11.26] ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id f4sm1025869ljm.80.2019.05.09.23.14.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 09 May 2019 23:14:02 -0700 (PDT)
-Subject: Re: [PATCH] arm64: add support for rng-seed
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        devicetree@vger.kernel.org,
+        id S1727026AbfEJGVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 02:21:36 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:5013 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726808AbfEJGVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 02:21:36 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cd518480000>; Thu, 09 May 2019 23:20:56 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 09 May 2019 23:21:33 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 09 May 2019 23:21:33 -0700
+Received: from [10.24.47.55] (10.124.1.5) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 10 May
+ 2019 06:21:27 +0000
+Subject: RE: [PATCH V5 03/16] PCI: Export pcie_bus_config symbol
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Kees Cook <keescook@chromium.org>
-References: <20190507045433.542-1-hsinyi@chromium.org>
- <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
- <CAJMQK-iVhScf0ybZ85kqP0B5_QPoYZ9PZt35jHRUh8FNHKvu7w@mail.gmail.com>
- <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
- <CAJMQK-jjzYwX3NZAKJ-8ypjcN75o-ZX4iOVD=84JecEd4qV1bA@mail.gmail.com>
- <CAL_JsqLnmedF5cJYH+91U2Q_WX755O8TQs6Ue9mqtEiFKcjGWQ@mail.gmail.com>
- <CAJMQK-hJUG855+TqX=droOjUfb-MKnU0n0FYtr_SW2KByKAW1w@mail.gmail.com>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Message-ID: <36fab640-b98e-9781-f96f-0ed988a71077@rasmusvillemoes.dk>
-Date:   Fri, 10 May 2019 08:14:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Krishna Thota <kthota@nvidia.com>,
+        Manikanta Maddireddy <mmaddireddy@nvidia.com>,
+        "sagar.tv@gmail.com" <sagar.tv@gmail.com>
+References: <20190424052004.6270-1-vidyas@nvidia.com>
+ <20190424052004.6270-4-vidyas@nvidia.com> <20190503110732.GC32400@ulmo>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <80616ff5-d7a5-84a4-a71b-569e340d128c@nvidia.com>
+Date:   Fri, 10 May 2019 11:51:24 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAJMQK-hJUG855+TqX=droOjUfb-MKnU0n0FYtr_SW2KByKAW1w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190503110732.GC32400@ulmo>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
+ HQMAIL101.nvidia.com (172.20.187.10)
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557469257; bh=24uok8Emgfq8JqLYEmA9il4vmwDxuvY2qeXLWgy1Ux8=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=VGPaDZPU6RodfRcYpWevyox/CweWPCBp2FZ9famAhFSxmUmLYCqoxomnKy3VUay8+
+         BzMmFoE5yCRMN4THPY6r8HObhAtdLkjZ1FFvmHhAh5NDKaq5SmDigH/E0+PxNknxjN
+         GAb9d7nnGvIWMUWovvD2NALS935C9Af05oRJyiGb+x0saF9s4ch+FkwJ8nOeM6UF5n
+         bbycgvMnkvjCQW2ElsYBymdx5+RWWDbQn2NuFwb6Hxk3tG0mTb1cT/u+bcyPH5ahrP
+         wOnRr+ELEdu/+/RZEAJuMkkjUhagK8PK5+gy2jJqkJxdjOf1B3F31MaTnpYKmsCmMI
+         WmQxUames0JFQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/05/2019 10.00, Hsin-Yi Wang wrote:
->>>> Why do you need to clear it? That wasn't necessary for kaslr-seed.
->>> I think it's for security purpose. If we know the random seed, it's
->>> more likely we can predict randomness.
->>> Currently on arm64, kaslr-seed will be wiped out (in
->>> arch/arm64/kernel/kaslr.c#get_kaslr_seed(), it's set to 0) so we can't
->>> read from sysfs (eg. /sys/firmware/devicetree/.../kaslr-seed)
->>> I'm not sure on other arch if it will be wiped out.
->>
->> The difference is if I have the kaslr seed, I can calculate the kernel
->> base address.
->>
->> In your case, you are feeding an RNG which continually has entropy
->> added to it. I can't see that knowing one piece of the entropy data is
->> a security hole. It looks more like you've just copied what what done
->> for kaslr-seed.
-> +Kees who can probably explain this better.
+
+
+> -----Original Message-----
+> From: linux-pci-owner@vger.kernel.org <linux-pci-owner@vger.kernel.org> On
+> Behalf Of Thierry Reding
+> Sent: Friday, May 3, 2019 4:38 PM
+> To: Vidya Sagar <vidyas@nvidia.com>
+> Cc: lorenzo.pieralisi@arm.com; bhelgaas@google.com; robh+dt@kernel.org;
+> mark.rutland@arm.com; Jonathan Hunter <jonathanh@nvidia.com>;
+> kishon@ti.com; catalin.marinas@arm.com; will.deacon@arm.com;
+> jingoohan1@gmail.com; gustavo.pimentel@synopsys.com; Mikko Perttunen
+> <mperttunen@nvidia.com>; linux-pci@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-tegra@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Krishna Thota
+> <kthota@nvidia.com>; Manikanta Maddireddy <mmaddireddy@nvidia.com>;
+> sagar.tv@gmail.com
+> Subject: Re: [PATCH V5 03/16] PCI: Export pcie_bus_config symbol
 > 
-> This early added entropy is also going to be used for stack canary. At
-> the time it's created there's not be much entropy (before
-> boot_init_stack_canary(), there's only add_latent_entropy() and
-> command_line).
+> On Wed, Apr 24, 2019 at 10:49:51AM +0530, Vidya Sagar wrote:
+> > Export pcie_bus_config to enable host controller drivers setting it to
+> > a specific configuration be able to build as loadable modules
+> >
+> > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> > ---
+> > Changes since [v4]:
+> > * None
+> >
+> > Changes since [v3]:
+> > * None
+> >
+> > Changes since [v2]:
+> > * None
+> >
+> > Changes since [v1]:
+> > * This is a new patch in v2 series
+> >
+> >  drivers/pci/pci.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> 
+> It doesn't look to me like this is something that host controller drivers are
+> supposed to change. This is set via the pci kernel command- line parameter,
+> meaning it's a way of tuning the system configuration.
+> Drivers should not be allowed to override this after the fact.
+> 
+> Why do we need to set this?
+Here is the reason I'm doing it.
+First things first, Tegra194 supports MPS up to 256 bytes.
+Assume there are two endpoints with MPS supported up to
+a) 128 bytes (Ex:- Realtek NIC with 8168 controller)
+b) 256 bytes (Ex:- Kingston NVMe drive)
+Now, leaving "pcie_bus_config" untouched in the driver sets it to
+PCIE_BUS_DEFAULT by default. With this setting, for both (a) and (b),
+MPS is set to 128, which means, even though Tegra194 supports 256 MPS, it is not
+set to 256 even in case of (b) thereby not using RP's 256 MPS feature.
+If I explicitly set pcie_bus_config=PCIE_BUS_PERFORMACE in the code, then 256 MPS is set when
+(b) is connected, but when (a) is connected, for root port MPS 256 is set and for
+endpoint MPS 128 is set, because of which root port tries to send packets with 256
+payload that breaks functionality of Realtek NIC card.
+The best option I've found out is that when I set 256 in PCI_EXP_DEVCTL of root port
+explicitly before link up and use pcie_bus_config=PCIE_BUS_SAFE, then, I get the best of both
+PCIE_BUS_DEFAULT and PCIE_BUS_PERFORMANCE i.e. with (a) connected, MPS is set to 128 in both RP
+and EP and with (b) connected, MPS is set to 256 in both RP and EP.
 
-So, why not just have the bootloader add whatever entropy it has via the
-commandline, which already gets mixed in? That requires no kernel
-changes, and works for all architectures.
+So, is it like, pcie_bus_config shouldn't be set to anything explicitly in the driver and depending on the
+platform and what is connected to root port, kernel parameter can be passed with appropriate setting?
 
-If anything, perhaps instead of just adding gobbledygook=abc123, make an
-official command line parameter (there was talk about this at some
-point), and have the kernel overwrite the value with xxx so it's not
-visible in /proc/cmdline.
-
-Rasmus
+> 
+> Thierry
+> 
+> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c index
+> > f5ff01dc4b13..731f78508601 100644
+> > --- a/drivers/pci/pci.c
+> > +++ b/drivers/pci/pci.c
+> > @@ -94,6 +94,7 @@ unsigned long pci_hotplug_mem_size =
+> > DEFAULT_HOTPLUG_MEM_SIZE;  unsigned long pci_hotplug_bus_size =
+> > DEFAULT_HOTPLUG_BUS_SIZE;
+> >
+> >  enum pcie_bus_config_types pcie_bus_config = PCIE_BUS_DEFAULT;
+> > +EXPORT_SYMBOL_GPL(pcie_bus_config);
+> >
+> >  /*
+> >   * The default CLS is used if arch didn't set CLS explicitly and not
+> > --
+> > 2.17.1
+> >
