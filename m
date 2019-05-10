@@ -2,212 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BCF1719EC2
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 16:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 993FB19EF0
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 16:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727849AbfEJOL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 10:11:57 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:51329 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727521AbfEJOL5 (ORCPT
+        id S1727901AbfEJOUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 10:20:47 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:42043 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727247AbfEJOUq (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 10:11:57 -0400
-Received: from [IPv6:2001:983:e9a7:1:2dea:e21e:760a:b215] ([IPv6:2001:983:e9a7:1:2dea:e21e:760a:b215])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id P6FehfBjhsDWyP6Ffhcr4d; Fri, 10 May 2019 16:11:55 +0200
-Subject: Re: [PATCH v5 4/5] [media] allegro: add Allegro DVT video IP core
- driver
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        dshah@xilinx.com, mchehab@kernel.org, robh+dt@kernel.org,
-        kernel@pengutronix.de, tfiga@chromium.org
-References: <20190503122010.16663-1-m.tretter@pengutronix.de>
- <20190503122010.16663-5-m.tretter@pengutronix.de>
- <0d15e216-7e10-eb55-1957-32be1c48f461@xs4all.nl>
- <20190510122819.3a978105@litschi.hi.pengutronix.de>
- <f9136e3a-6592-7198-b4fb-75664a8b653e@xs4all.nl>
- <20190510155239.0502e080@litschi.hi.pengutronix.de>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <5755a4f2-b946-283f-7a96-6bb9583d2c73@xs4all.nl>
-Date:   Fri, 10 May 2019 16:11:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Fri, 10 May 2019 10:20:46 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4AE1A8q018315;
+        Fri, 10 May 2019 16:20:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=SFxogR9JPF6xdKCGoAamjmYfeUtysrEoecdQ7E/pxnY=;
+ b=mEL2JpCF2XTXzAYSgFKO3ZZSG1AtAHEA3xHUV3AAztHXrLVyy5gNUe/YZG6XVi3GBobL
+ /CMniv9lTNLF/SoWjiCKqKaVpamyr/RM15PGCeglVxiSMum0h8TaGN0DnwFfMBPKokMp
+ JDHGqRXK0GfXCWc5y+jZSx6hFQOmtMcQa+HJoIDkbxL63gHT+ZDhnb4V+byBXEfT+USI
+ fKMCPAvj32RSQO6WFgDpUpMKUq8IggydLO1icYXcjqzmt2LEwdkRuuhedAbCClmLNZM1
+ nnWOR9f2ltj3T2piC8A7gYI5q5UfftWaRFI/usmAh5Cc5iPSFRx7kwqjdKECk7wWtGk9 pg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2scbkaj2fs-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 10 May 2019 16:20:30 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D418C31;
+        Fri, 10 May 2019 14:20:29 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 81557113A;
+        Fri, 10 May 2019 14:20:29 +0000 (GMT)
+Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 10 May
+ 2019 16:20:29 +0200
+Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 10 May 2019 16:20:28
+ +0200
+From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
+To:     Yannick Fertre <yannick.fertre@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Vincent Abriou <vincent.abriou@st.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/5] Add supply property for DSI controller
+Date:   Fri, 10 May 2019 16:20:18 +0200
+Message-ID: <1557498023-10766-1-git-send-email-yannick.fertre@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20190510155239.0502e080@litschi.hi.pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfBPpHW0bTHxMTZqJ/GAUvHNnZvyIdfcPGj099MZv5FE9OhetPBvtYLQUFMu2jI4FdCr0FSBuAEgGCsOFjsKBqKZJX8qh09dybV7gUGvAW8b+vG/r0n1k
- QiHntmGOz9g7jcqWAbs2QnZRFAYIfo/n1N20K6QChBXSM6siCI8t/SLocKplQBahzubZUVwSwTuEMatdbjTQHHX2MaJM38ClzuQFoVEEgoKlG0ZDaSimvUAt
- l2Q8/A3Ou5XoXSwOVkA2xvd8CnkhSX5RgWylwRJALTAOyrDc+fI/LZd8A0wGaELeONlvUmLmYL3Id4+LK9PSJBrPU6SbNFDWhEc2RGCtrzIEjO3J7eHE5cRi
- RXSjlerp2HjPjNzyz/nuMidCXPYyrHTAW+kvQUUOm/h3dzpjZIhgBwrZQovqUPpHYkhmKaddSof1kCjTqDYJncpbg5TYcaeHAhsfRI2eIQv1D1m1fjNXMt6H
- Rx2Sp1J96yZ668vXlYVCYBi5DTTcikSOT74b3Q==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.23.97]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-09_02:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/10/19 3:52 PM, Michael Tretter wrote:
-> On Fri, 10 May 2019 12:58:43 +0200, Hans Verkuil wrote:
->> On 5/10/19 12:28 PM, Michael Tretter wrote:
->>> On Fri, 10 May 2019 10:28:53 +0200, Hans Verkuil wrote:  
->>>> On 5/3/19 2:20 PM, Michael Tretter wrote:  
->>>>> Add a V4L2 mem-to-mem driver for Allegro DVT video IP cores as found in
->>>>> the EV family of the Xilinx ZynqMP SoC. The Zynq UltraScale+ Device
->>>>> Technical Reference Manual uses the term VCU (Video Codec Unit) for the
->>>>> encoder, decoder and system integration block.
->>>>>
->>>>> This driver takes care of interacting with the MicroBlaze MCU that
->>>>> controls the actual IP cores. The IP cores and MCU are integrated in the
->>>>> FPGA. The xlnx_vcu driver is responsible for configuring the clocks and
->>>>> providing information about the codec configuration.
->>>>>
->>>>> The driver currently only supports the H.264 video encoder.
->>>>>
->>>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
->>>>> ---  
->>
->> <snip>
->>
->>>>> +static int allegro_try_fmt_vid_out(struct file *file, void *fh,
->>>>> +				   struct v4l2_format *f)
->>>>> +{
->>>>> +	f->fmt.pix.field = V4L2_FIELD_NONE;
->>>>> +
->>>>> +	f->fmt.pix.width = clamp_t(__u32, f->fmt.pix.width,
->>>>> +				   ALLEGRO_WIDTH_MIN, ALLEGRO_WIDTH_MAX);
->>>>> +	f->fmt.pix.height = clamp_t(__u32, f->fmt.pix.height,
->>>>> +				    ALLEGRO_HEIGHT_MIN, ALLEGRO_HEIGHT_MAX);    
->>>>
->>>> Shouldn't this be rounded up to the macroblock size? Or is the encoder
->>>> smart enough to do the padding internally?  
->>>
->>> The driver sends a message with the visible size of the raw frames
->>> (without macroblock alignment) to the encoder firmware. Therefore, the
->>> encoder firmware is responsible for handling the padding to macroblock
->>> size.  
->>
->> Please add a comment describing this. It is unusual for encoders to be
->> able to do this so it is good to document this.
-> 
-> OK.
-> 
->>
->>>
->>> Furthermore, the encoder requires that the stride is 32 byte aligned.
->>> Therefore, we naturally have a macroblock alignment regarding the
->>> width, but not regarding the height. This limitation is already
->>> included in the bytesperline field.  
->>
->> Ack.
->>
->>>   
->>>>  
->>>>> +
->>>>> +	f->fmt.pix.pixelformat = V4L2_PIX_FMT_NV12;
->>>>> +	f->fmt.pix.bytesperline = round_up(f->fmt.pix.width, 32);
->>>>> +	f->fmt.pix.sizeimage =
->>>>> +		f->fmt.pix.bytesperline * f->fmt.pix.height * 3 / 2;
->>>>> +
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>> +static int allegro_s_fmt_vid_out(struct file *file, void *fh,
->>>>> +				 struct v4l2_format *f)
->>>>> +{
->>>>> +	struct allegro_channel *channel = fh_to_channel(fh);
->>>>> +	int err;
->>>>> +
->>>>> +	err = allegro_try_fmt_vid_out(file, fh, f);
->>>>> +	if (err)
->>>>> +		return err;
->>>>> +
->>>>> +	channel->width = f->fmt.pix.width;
->>>>> +	channel->height = f->fmt.pix.height;
->>>>> +	channel->stride = f->fmt.pix.bytesperline;
->>>>> +	channel->sizeimage_raw = f->fmt.pix.sizeimage;
->>>>> +
->>>>> +	channel->colorspace = f->fmt.pix.colorspace;
->>>>> +	channel->ycbcr_enc = f->fmt.pix.ycbcr_enc;
->>>>> +	channel->quantization = f->fmt.pix.quantization;
->>>>> +	channel->xfer_func = f->fmt.pix.xfer_func;
->>>>> +
->>>>> +	channel->level =
->>>>> +		select_minimum_h264_level(channel->width, channel->height);
->>>>> +	channel->sizeimage_encoded =
->>>>> +		estimate_stream_size(channel->width, channel->height);
->>>>> +
->>>>> +	return 0;
->>>>> +}
->>>>> +
->>>>> +static int allegro_g_selection(struct file *file, void *priv,
->>>>> +			       struct v4l2_selection *s)
->>>>> +{
->>>>> +	struct v4l2_fh *fh = file->private_data;
->>>>> +	struct allegro_channel *channel = fh_to_channel(fh);
->>>>> +
->>>>> +	if (!V4L2_TYPE_IS_OUTPUT(s->type))
->>>>> +		return -EINVAL;
->>>>> +
->>>>> +	switch (s->target) {
->>>>> +	case V4L2_SEL_TGT_CROP:
->>>>> +	case V4L2_SEL_TGT_CROP_DEFAULT:
->>>>> +	case V4L2_SEL_TGT_CROP_BOUNDS:
->>>>> +		s->r.left = 0;
->>>>> +		s->r.top = 0;
->>>>> +		s->r.width = channel->width;
->>>>> +		s->r.height = channel->height;    
->>>>
->>>> I don't think this is quite right. The CROP target should return the visible
->>>> width/height (e.g. 1920x1080) whereas the other two targets should return the
->>>> coded width/height (e.g. 1920x1088 when rounded to the macroblock alignment).
->>>>
->>>> Note: if the hardware doesn't require that the raw frame is macroblock aligned,
->>>> then I need to think a bit more about how the selection handling should be
->>>> done.  
->>>
->>> The driver internally calculates the coded width/height in macroblocks
->>> and cropping and writes it to the SPS. Currently, this isn't exposed to
->>> userspace, because I don't see a need to tell the userspace about that.
->>>
->>> If there is a reason to expose this to userspace, I am fine with
->>> implementing that.  
->>
->> There really is no need for the selection API at all. Just drop both
->> G and S_SELECTION from the driver. Let me know if the compliance test
->> fails for drivers without selection support, I'll have to fix the test
->> in that case.
-> 
-> The compliance test for VIDIOC_S_FMT fails with the following message
-> if G_SELECTION is not implemented:
-> 
->                 fail: v4l2-test-formats.cpp(836): sel.r.width != fmt.g_width()
->         test VIDIOC_S_FMT: FAIL
-> 
+The DSI controller needs a new property that powers its physical layer.
+Binding has been updated to documented this property.
+Device tree of stm32mp157c soc.
+Move reg18 & reg11 to stm32mp157c device tree file.
+Remove property phy-dsi-supply property to stm32mp157c-dk2.dts file.
 
-Try this patch:
 
-Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
----
-diff --git a/utils/v4l2-compliance/v4l2-test-formats.cpp b/utils/v4l2-compliance/v4l2-test-formats.cpp
-index fc497e3c..544ecb5c 100644
---- a/utils/v4l2-compliance/v4l2-test-formats.cpp
-+++ b/utils/v4l2-compliance/v4l2-test-formats.cpp
-@@ -828,7 +828,11 @@ static int testM2MFormats(struct node *node)
- 		.type = fmt.g_type(),
- 		.target = V4L2_SEL_TGT_CROP,
- 	};
--	node->g_selection(sel);
-+	if (node->g_selection(sel) == ENOTTY) {
-+		fail_on_test(fmt_cap.g_width() != fmt.g_width());
-+		fail_on_test(fmt_cap.g_height() != fmt.g_height());
-+		return 0;
-+	}
- 	fail_on_test(sel.r.top || sel.r.left);
- 	fail_on_test(sel.r.width != fmt.g_width());
- 	fail_on_test(sel.r.height != fmt.g_height());
-------------------------------------------------------------
+Changes in v2:
+- rename patch drm/stm: dsi: add support of an optional regulator
+- rework dw_mipi_dsi-stm probe sequence
 
-Regards,
+Yannick Fertré (5):
+  dt-bindings: display: stm32: add supply property to DSI controller
+  drm/stm: dsi: add support of an optional regulator
+  ARM: dts: stm32: add phy-dsi-supply property on stm32mp157c
+  ARM: dts: stm32: move fixe regulators reg11 & reg18
+  ARM: dts: stm32: remove phy-dsi-supply property on stm32mp157c-dk2
+    board
 
-	Hans
+ .../devicetree/bindings/display/st,stm32-ltdc.txt    |  3 +++
+ arch/arm/boot/dts/stm32mp157c-dk2.dts                |  9 ---------
+ arch/arm/boot/dts/stm32mp157c-ed1.dts                | 16 ----------------
+ arch/arm/boot/dts/stm32mp157c.dtsi                   | 17 +++++++++++++++++
+ drivers/gpu/drm/stm/dw_mipi_dsi-stm.c              | 45 +++++++++++++++++++---
+ 5 files changed, 40 insertions(+), 25 deletions(-)
+
+--
+2.7.4
+
