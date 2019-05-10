@@ -2,133 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9DEA19BD3
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 12:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AC1E19BDA
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 12:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727541AbfEJKpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 06:45:17 -0400
-Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:44080 "EHLO
-        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727251AbfEJKpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 06:45:17 -0400
-Received: from callcc.thunk.org ([66.31.38.53])
-        (authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x4AAhcGQ005268
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 10 May 2019 06:43:39 -0400
-Received: by callcc.thunk.org (Postfix, from userid 15806)
-        id 8AE2E420024; Fri, 10 May 2019 06:43:38 -0400 (EDT)
-Date:   Fri, 10 May 2019 06:43:38 -0400
-From:   "Theodore Ts'o" <tytso@mit.edu>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, richard@nod.at, rientjes@google.com,
-        rostedt@goodmis.org, wfg@linux.intel.com
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190510104338.GB6889@mit.edu>
-Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Brendan Higgins <brendanhiggins@google.com>, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
-        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        Tim.Bird@sony.com, amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, richard@nod.at, rientjes@google.com,
-        rostedt@goodmis.org, wfg@linux.intel.com
-References: <20190501230126.229218-1-brendanhiggins@google.com>
- <54940124-50df-16ec-1a32-ad794ee05da7@gmail.com>
- <20190507080119.GB28121@kroah.com>
- <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
- <20190509015856.GB7031@mit.edu>
- <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
- <78e4d46e-6212-9871-51d6-dd2126f39d45@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <78e4d46e-6212-9871-51d6-dd2126f39d45@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727554AbfEJKtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 06:49:18 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:52747 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727251AbfEJKtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 06:49:18 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hP35W-0003Mk-U4; Fri, 10 May 2019 12:49:14 +0200
+Message-ID: <1557485354.7859.5.camel@pengutronix.de>
+Subject: Re: [PATCH v5 4/5] [media] allegro: add Allegro DVT video IP core
+ driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     dshah@xilinx.com, mchehab@kernel.org, robh+dt@kernel.org,
+        kernel@pengutronix.de, tfiga@chromium.org
+Date:   Fri, 10 May 2019 12:49:14 +0200
+In-Reply-To: <0d15e216-7e10-eb55-1957-32be1c48f461@xs4all.nl>
+References: <20190503122010.16663-1-m.tretter@pengutronix.de>
+         <20190503122010.16663-5-m.tretter@pengutronix.de>
+         <0d15e216-7e10-eb55-1957-32be1c48f461@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 09, 2019 at 10:11:01PM -0700, Frank Rowand wrote:
-> >> You *can* run in-kernel test using modules; but there is no framework
-> >> for the in-kernel code found in the test modules, which means each of
-> >> the in-kernel code has to create their own in-kernel test
-> >> infrastructure.
+On Fri, 2019-05-10 at 10:28 +0200, Hans Verkuil wrote:
+[...]
+> > +static int allegro_g_selection(struct file *file, void *priv,
+> > +			       struct v4l2_selection *s)
+> > +{
+> > +	struct v4l2_fh *fh = file->private_data;
+> > +	struct allegro_channel *channel = fh_to_channel(fh);
+> > +
+> > +	if (!V4L2_TYPE_IS_OUTPUT(s->type))
+> > +		return -EINVAL;
+> > +
+> > +	switch (s->target) {
+> > +	case V4L2_SEL_TGT_CROP:
+> > +	case V4L2_SEL_TGT_CROP_DEFAULT:
+> > +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> > +		s->r.left = 0;
+> > +		s->r.top = 0;
+> > +		s->r.width = channel->width;
+> > +		s->r.height = channel->height;
 > 
-> The kselftest in-kernel tests follow a common pattern.  As such, there
-> is a framework.
+> I don't think this is quite right. The CROP target should return the visible
+> width/height (e.g. 1920x1080) whereas the other two targets should return the
+> coded width/height (e.g. 1920x1088 when rounded to the macroblock alignment).
 
-So we may have different definitions of "framework".  In my book, code
-reuse by "cut and paste" does not make a framework.  Could they be
-rewritten to *use* a framework, whether it be KTF or KUnit?  Sure!
-But they are not using a framework *today*.
+The stateful encoder spec says about CROP_DEFAULT and CROP_BOUNDS:
 
-> This next two paragraphs you ignored entirely in your reply:
-> 
-> > Why create an entire new subsystem (KUnit) when you can add a header
-> > file (and .c code as appropriate) that outputs the proper TAP formatted
-> > results from kselftest kernel test modules?
+    V4L2_SEL_TGT_CROP_BOUNDS
 
-And you keep ignoring my main observation, which is that spinning up a
-VM, letting systemd start, mounting a root file system, etc., is all
-unnecessary overhead which takes time.  This is important to me,
-because developer velocity is extremely important if you are doing
-test driven development.
+         equal to the full source frame, matching the active OUTPUT
+         format
 
-Yes, you can manually unload a module, recompile the module, somehow
-get the module back into the VM (perhaps by using virtio-9p), and then
-reloading the module with the in-kernel test code, and the restart the
-test.  BUT: (a) even if it is faster, it requires a lot of manual
-steps, and would be very hard to automate, and (b) if the test code
-ever OOPS or triggers a lockdep warning, you will need to restart the
-VM, and so this involves all of the VM restart overhead, plus trying
-to automate determining when you actually do need to restart the VM
-versus unloading and reloading the module.   It's clunky.
+    V4L2_SEL_TGT_CROP_DEFAULT
 
-Being able to do the equivalent of "make && make check" is a really
-big deal.  And "make check" needs to go fast.
+        equal to V4L2_SEL_TGT_CROP_BOUNDS
 
-You keep ignore this point, perhaps because you don't care about this
-issue?  Which is fine, and why we may just need to agree to disagree.
+There is no mention that the "full source frame" must be equal to the
+coded size. Enforcing this would unnecesarily limit the ability to
+import DMA-Buffers from other sources.
 
-Cheers,
+Imagine for example 1080p capture and encoding - if the source provides
+unpadded 1920x1080 buffers (with the required stride), importing them
+into an encoder that enforces height to be a multiple ot 16 wouldn't
+work, even though the hardware may be capable of only reading 1080 lines
+from the source frame.
 
-						- Ted
+> Note: if the hardware doesn't require that the raw frame is macroblock aligned,
+> then I need to think a bit more about how the selection handling should be
+> done.
 
-P.S.  Running scripts is Turing-equivalent, so it's self-evident that
-*anything* you can do with other test frameworks you can somehow do in
-kselftests.  That argument doesn't impress me, and why I do consider
-it quite flippant.  (Heck, /bin/vi is Turing equivalent so we could
-use vi to as a kernel test framework.  Or we could use emacs.  Let's
-not.  :-)
-
-The question is whether it is the most best and most efficient way to
-do that testing.  And developer velocity is a really big part of my
-evaluation function when judging whether or a test framework is fit
-for that purpose.
+regards
+Philipp
