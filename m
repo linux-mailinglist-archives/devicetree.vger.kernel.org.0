@@ -2,91 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EC61A24C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 19:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B26B1A2A8
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 19:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727704AbfEJRcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 13:32:00 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:40961 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727453AbfEJRb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 13:31:59 -0400
-Received: by mail-ed1-f66.google.com with SMTP id m4so6121141edd.8;
-        Fri, 10 May 2019 10:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=w7FukaSOWmU1MZzQqS+AmxHZTAQNw2SrsDsc9k5kRs0=;
-        b=qYzl9fLUzXiEcDEudYYZG9z4EZzyB0fYZl4wq9mDCOi5OFRQiD0vtS7yehPbo7lCbI
-         UC988nHKI4i+dJI6WNij5/63TbO4pVnAXWTLklylRyFefzKmNQdMJV6Qe3tfy8nKysV2
-         Aqv2+guc+GqFEtY68R5BmfH0ZTURhyoHUL3TuoB9pWtVHOJAtisz3iwkyIl0xckxXy3v
-         B+PJ4qWr+iBFwl3fsX5wydly9fxxLRoD6HucLGxAeVCLSy1ThUwuwIfbYoJruY3kEZfH
-         A1JvDtzTSXf6JBBYvergPvsZOVdZbDgK8f2+baIbvdaU7jd03u6VqIEtGxJWj6rm3DRi
-         ViAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=w7FukaSOWmU1MZzQqS+AmxHZTAQNw2SrsDsc9k5kRs0=;
-        b=LNVGmLVu/hlk8P5DAfphfEK5Ve7Z71t0RAwpqcgYvQRc3dBdak1zIOoDo77K6em8yg
-         jRD34S8HcinVBH24JEzLTQKhTit0/dSZDmRWzy2WQ2cKpL/15uu5/blXP9eXlas+lGXK
-         ZyxVnsSmxeULNr8OxK8/7ajgmQsg5CUXBEtt04koNy4XzBs+/mJjDb+PdgACkB2Ka6Qs
-         5p5Jyuq1ACa10M0GLi/pGySWdS5f44MsJsgNZtc+V/8RJEvwIX9Q08G8B8M0uYT7+r/y
-         wkvfkz/8DkhyWS3cedJAPvjz0DzhT5ti7o3Mg3WFbMS2t7LJWd8MfDzR0O5fm9wNjpST
-         tQzw==
-X-Gm-Message-State: APjAAAXcEk2oZ7wWTsJ8AOWRCqZLw2ybF6xmxlaI6aHgs/zBXl/K/+jk
-        96HTrtoXV3FjG0p17G8d3VFNcDnM
-X-Google-Smtp-Source: APXvYqxA/71Z6cfoww2mIZJyYH2jEGbUgRiMBIJC+7SOpG/Sa9uTAE+AGJ6aHz6MVd7YP755lBdqTQ==
-X-Received: by 2002:a17:906:3955:: with SMTP id g21mr9629259eje.61.1557509517569;
-        Fri, 10 May 2019 10:31:57 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.250])
-        by smtp.gmail.com with ESMTPSA id v16sm1599567edm.56.2019.05.10.10.31.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 10 May 2019 10:31:56 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     bcm-kernel-feedback-list@broadcom.com, stefan.wahren@i2se.com,
-        wahrenst@gmx.net, herbert@gondor.apana.org.au,
-        linux-crypto@vger.kernel.org, mpm@selenic.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM IPROC ARM
-        ARCHITECTURE)
-Subject: [PATCH 1/2] dt-bindings: rng: Document BCM7211 RNG compatible string
-Date:   Fri, 10 May 2019 10:31:10 -0700
-Message-Id: <20190510173112.2196-2-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190510173112.2196-1-f.fainelli@gmail.com>
-References: <20190510173112.2196-1-f.fainelli@gmail.com>
+        id S1727617AbfEJRu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 13:50:56 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:12524 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727551AbfEJRu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 13:50:56 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cd5b9d80001>; Fri, 10 May 2019 10:50:17 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 10 May 2019 10:50:54 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 10 May 2019 10:50:54 -0700
+Received: from [10.25.74.39] (172.20.13.39) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 10 May
+ 2019 17:50:47 +0000
+Subject: Re: [PATCH V5 03/16] PCI: Export pcie_bus_config symbol
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Thierry Reding <thierry.reding@gmail.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Krishna Thota <kthota@nvidia.com>,
+        Manikanta Maddireddy <mmaddireddy@nvidia.com>,
+        "sagar.tv@gmail.com" <sagar.tv@gmail.com>
+References: <20190424052004.6270-1-vidyas@nvidia.com>
+ <20190424052004.6270-4-vidyas@nvidia.com> <20190503110732.GC32400@ulmo>
+ <80616ff5-d7a5-84a4-a71b-569e340d128c@nvidia.com>
+ <20190510164623.GI235064@google.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <484cd585-d576-e6c3-d222-0b2391b5a7fe@nvidia.com>
+Date:   Fri, 10 May 2019 23:20:43 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190510164623.GI235064@google.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
+ HQMAIL101.nvidia.com (172.20.187.10)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557510617; bh=myxHy02oeX5AFakgSkoBUPpIXZQF5FReGyngp+QG/u0=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=LMcRy5S166FLGtxfqcO+toaJpYUnD4e+CrVuppvw4S+Dm/q83pCZNYDN80M1mJuEs
+         LHP0skMkOUQopt85C1oiICVHMZwQeHZ9+uDI/ofI0VyyfIwK7XJFP4jLQyKQuaeyBT
+         12M9svhEKJ1HHd2DtuqN1JkYHK2rwyOEH4ZjUlJU6hecw7kmw9Jl4ELXLQSf1KKfuZ
+         XKqocV0TQsFwz23Ygjdnu+AClov70ObYWrGPmnPFcvCM4TGSG3lepgKZ0bGmsNdnIo
+         ublwi58Ci9Pv3Iq4f4PSsXm8o+qm6C/xhu2dgNvg5hoecoMQuyaVpf6D6CI953czm5
+         cCtwW0U1kKmCg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCM7211 features a RNG200 block, document its compatible string.
+On 5/10/2019 10:16 PM, Bjorn Helgaas wrote:
+> Hi Vidya,
+> 
+> On Fri, May 10, 2019 at 11:51:24AM +0530, Vidya Sagar wrote:
+>>> -----Original Message-----
+>>> From: linux-pci-owner@vger.kernel.org <linux-pci-owner@vger.kernel.org> On
+>>> Behalf Of Thierry Reding
+>>> Sent: Friday, May 3, 2019 4:38 PM
+>>> To: Vidya Sagar <vidyas@nvidia.com>
+>>> On Wed, Apr 24, 2019 at 10:49:51AM +0530, Vidya Sagar wrote:
+>>>> Export pcie_bus_config to enable host controller drivers setting it to
+>>>> a specific configuration be able to build as loadable modules
+>>>>
+>>>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> 
+>>> It doesn't look to me like this is something that host controller drivers are
+>>> supposed to change. This is set via the pci kernel command- line parameter,
+>>> meaning it's a way of tuning the system configuration.
+>>> Drivers should not be allowed to override this after the fact.
+>>>
+>>> Why do we need to set this?
+>> Here is the reason I'm doing it.
+>> First things first, Tegra194 supports MPS up to 256 bytes.
+>> Assume there are two endpoints with MPS supported up to
+>> a) 128 bytes (Ex:- Realtek NIC with 8168 controller)
+>> b) 256 bytes (Ex:- Kingston NVMe drive)
+>> Now, leaving "pcie_bus_config" untouched in the driver sets it to
+>> PCIE_BUS_DEFAULT by default. With this setting, for both (a) and (b),
+>> MPS is set to 128, which means, even though Tegra194 supports 256 MPS, it is not
+>> set to 256 even in case of (b) thereby not using RP's 256 MPS feature.
+>> If I explicitly set pcie_bus_config=PCIE_BUS_PERFORMACE in the code, then 256 MPS is set when
+>> (b) is connected, but when (a) is connected, for root port MPS 256 is set and for
+>> endpoint MPS 128 is set, because of which root port tries to send packets with 256
+>> payload that breaks functionality of Realtek NIC card.
+>> The best option I've found out is that when I set 256 in PCI_EXP_DEVCTL of root port
+>> explicitly before link up and use pcie_bus_config=PCIE_BUS_SAFE, then, I get the best of both
+>> PCIE_BUS_DEFAULT and PCIE_BUS_PERFORMANCE i.e. with (a) connected, MPS is set to 128 in both RP
+>> and EP and with (b) connected, MPS is set to 256 in both RP and EP.
+>>
+>> So, is it like, pcie_bus_config shouldn't be set to anything explicitly in the driver and depending on the
+>> platform and what is connected to root port, kernel parameter can be passed with appropriate setting?
+> 
+> Host controller drivers shouldn't change this unless there's some host
+> controller defect that means the generic code can't do the right
+> thing.  Even then, I'd prefer that the host controller driver merely
+> set a quirk bit that describes the defect, e.g., "mps_*_broken".  Then
+> the generic code could pay attention to that and we wouldn't have to
+> make "pcie_bus_config" a part of the ABI.
+> 
+>  From your description, it sounds like there's nothing actually wrong
+> with the Tegra194 hardware, but the generic code isn't as smart about
+> setting MPS as it possibly could be.  My solution to that would be to
+> make the generic code smarter so everybody can benefit.
+> 
+> Bjorn
+Thanks Bjorn for your take on this. I'll drop this patch from the current series
+and make a note to optimize PCIE_BUS_DEFAULT to do a better job of setting
+MPS in the best possible way.
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt b/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt
-index 0014da9145af..c223e54452da 100644
---- a/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt
-+++ b/Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt
-@@ -2,6 +2,7 @@ HWRNG support for the iproc-rng200 driver
- 
- Required properties:
- - compatible : Must be one of:
-+	       "brcm,bcm7211-rng200"
- 	       "brcm,bcm7278-rng200"
- 	       "brcm,iproc-rng200"
- - reg : base address and size of control register block
--- 
-2.17.1
+> 
+>>>> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c index
+>>>> f5ff01dc4b13..731f78508601 100644
+>>>> --- a/drivers/pci/pci.c
+>>>> +++ b/drivers/pci/pci.c
+>>>> @@ -94,6 +94,7 @@ unsigned long pci_hotplug_mem_size =
+>>>> DEFAULT_HOTPLUG_MEM_SIZE;  unsigned long pci_hotplug_bus_size =
+>>>> DEFAULT_HOTPLUG_BUS_SIZE;
+>>>>
+>>>>   enum pcie_bus_config_types pcie_bus_config = PCIE_BUS_DEFAULT;
+>>>> +EXPORT_SYMBOL_GPL(pcie_bus_config);
+>>>>
+>>>>   /*
+>>>>    * The default CLS is used if arch didn't set CLS explicitly and not
+>>>> --
+>>>> 2.17.1
+>>>>
 
