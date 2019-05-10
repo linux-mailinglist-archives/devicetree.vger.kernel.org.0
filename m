@@ -2,224 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3C7D19FB1
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 16:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0FB119FF1
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 17:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727523AbfEJO6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 10:58:40 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:53753 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727346AbfEJO6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 10:58:40 -0400
-Received: from litschi.hi.pengutronix.de ([2001:67c:670:100:feaa:14ff:fe6a:8db5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <m.tretter@pengutronix.de>)
-        id 1hP6yq-0003yf-3n; Fri, 10 May 2019 16:58:36 +0200
-Date:   Fri, 10 May 2019 16:58:33 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        dshah@xilinx.com, mchehab@kernel.org, robh+dt@kernel.org,
-        kernel@pengutronix.de, tfiga@chromium.org
-Subject: Re: [PATCH v5 4/5] [media] allegro: add Allegro DVT video IP core
- driver
-Message-ID: <20190510165833.4984cf0c@litschi.hi.pengutronix.de>
-In-Reply-To: <5755a4f2-b946-283f-7a96-6bb9583d2c73@xs4all.nl>
-References: <20190503122010.16663-1-m.tretter@pengutronix.de>
-        <20190503122010.16663-5-m.tretter@pengutronix.de>
-        <0d15e216-7e10-eb55-1957-32be1c48f461@xs4all.nl>
-        <20190510122819.3a978105@litschi.hi.pengutronix.de>
-        <f9136e3a-6592-7198-b4fb-75664a8b653e@xs4all.nl>
-        <20190510155239.0502e080@litschi.hi.pengutronix.de>
-        <5755a4f2-b946-283f-7a96-6bb9583d2c73@xs4all.nl>
-Organization: Pengutronix
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+        id S1727401AbfEJPQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 11:16:05 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38798 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727353AbfEJPQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 11:16:02 -0400
+Received: by mail-wm1-f68.google.com with SMTP id f2so7920644wmj.3
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 08:16:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=HNTqfGPCwHotSSFB/bs3NRxKL+FaiL/rv+Medyfbh88=;
+        b=P9mrqU4+sESJPNllGdbaccCTv5uBF42euzxH8O6o8zHSGzXapBATU/ejvkoDYJd8pX
+         6AJBVyP+RdkRIdNRvSa4EzWUeFPzAQShL4KAOw0t3O2xYe5xHu7M3H3ylRZTfAkpdvf2
+         ue+dkzSeHV7jn0J84ADyxcL0PbUaXMbV8FwFURUkTQ4K2TFgvKyXk4HsgXm5u4/HZqJI
+         HbpDbjtOV/p/ZxxNEI9efJL4OUiW5dqVY6gxO3PbOtSMc4BYqRlShapCRdVTHpknfn+c
+         8h6L57V14ODLHHpOGw7A3c0Aj8/IMBuJZqjVBLF3NZ2/ROIyz8U83oRLNQ68NkPE71GJ
+         8k6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=HNTqfGPCwHotSSFB/bs3NRxKL+FaiL/rv+Medyfbh88=;
+        b=H4VDUh9N663oiNR8+l0QJClFlJkQ+mZWd03RgXFvcgTV46yRE/5eTkYM381bHoTLCN
+         +I+3T9b1xBc967Utz8AHG0665IQSXOw0NkOnguzXqIxO9hwlkiqjGrkGKR2z4tk1xAZ8
+         m58nwXI9zgpAO2ZAYx7eFEH/FI4fdlel1A4jissXJJvGaQnzWBL7DVSPjXjRKet+5BPN
+         8Adud75AQzqhARuMXhCrw1heTMv9ebOysE8KnpCPR1Ks/sIvAurV2BSq+tFetI7q5sw5
+         Ho/4IkMdzyHd9m2JcXgol09E1VOHAZySCa5W55kagTDzLubAziTEFIEv12IEy1C5Sq5R
+         tL/g==
+X-Gm-Message-State: APjAAAXs1iw++0se+iRctd2wtFYPmMmDzXGjFwqk72ltrRHKhn4d0la4
+        tRyLL7qRKzFcw1VN4J3CbNCr/g==
+X-Google-Smtp-Source: APXvYqwNcxQ+wZMQA6guBn6Potmx/LFX1w8O7OL3E3EWuj53qYCOqeHNdMVEJUOrPTEFTAuf9pvusQ==
+X-Received: by 2002:a1c:14:: with SMTP id 20mr7907578wma.66.1557501360717;
+        Fri, 10 May 2019 08:16:00 -0700 (PDT)
+Received: from dell ([2.27.167.43])
+        by smtp.gmail.com with ESMTPSA id v189sm8817961wma.3.2019.05.10.08.15.58
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 10 May 2019 08:15:59 -0700 (PDT)
+Date:   Fri, 10 May 2019 16:15:56 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Amelie Delaunay <amelie.delaunay@st.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [GIT PULL] Immutable branch between MFD and Pinctrl due for the
+ v5.2 merge window
+Message-ID: <20190510151556.GA4319@dell>
+References: <1557392336-28239-1-git-send-email-amelie.delaunay@st.com>
+ <20190510072314.GC7321@dell>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:feaa:14ff:fe6a:8db5
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190510072314.GC7321@dell>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 May 2019 16:11:54 +0200, Hans Verkuil wrote:
-> On 5/10/19 3:52 PM, Michael Tretter wrote:
-> > On Fri, 10 May 2019 12:58:43 +0200, Hans Verkuil wrote:  
-> >> On 5/10/19 12:28 PM, Michael Tretter wrote:  
-> >>> On Fri, 10 May 2019 10:28:53 +0200, Hans Verkuil wrote:    
-> >>>> On 5/3/19 2:20 PM, Michael Tretter wrote:    
-> >>>>> Add a V4L2 mem-to-mem driver for Allegro DVT video IP cores as found in
-> >>>>> the EV family of the Xilinx ZynqMP SoC. The Zynq UltraScale+ Device
-> >>>>> Technical Reference Manual uses the term VCU (Video Codec Unit) for the
-> >>>>> encoder, decoder and system integration block.
-> >>>>>
-> >>>>> This driver takes care of interacting with the MicroBlaze MCU that
-> >>>>> controls the actual IP cores. The IP cores and MCU are integrated in the
-> >>>>> FPGA. The xlnx_vcu driver is responsible for configuring the clocks and
-> >>>>> providing information about the codec configuration.
-> >>>>>
-> >>>>> The driver currently only supports the H.264 video encoder.
-> >>>>>
-> >>>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> >>>>> ---    
-> >>
-> >> <snip>
-> >>  
-> >>>>> +static int allegro_try_fmt_vid_out(struct file *file, void *fh,
-> >>>>> +				   struct v4l2_format *f)
-> >>>>> +{
-> >>>>> +	f->fmt.pix.field = V4L2_FIELD_NONE;
-> >>>>> +
-> >>>>> +	f->fmt.pix.width = clamp_t(__u32, f->fmt.pix.width,
-> >>>>> +				   ALLEGRO_WIDTH_MIN, ALLEGRO_WIDTH_MAX);
-> >>>>> +	f->fmt.pix.height = clamp_t(__u32, f->fmt.pix.height,
-> >>>>> +				    ALLEGRO_HEIGHT_MIN, ALLEGRO_HEIGHT_MAX);      
-> >>>>
-> >>>> Shouldn't this be rounded up to the macroblock size? Or is the encoder
-> >>>> smart enough to do the padding internally?    
-> >>>
-> >>> The driver sends a message with the visible size of the raw frames
-> >>> (without macroblock alignment) to the encoder firmware. Therefore, the
-> >>> encoder firmware is responsible for handling the padding to macroblock
-> >>> size.    
-> >>
-> >> Please add a comment describing this. It is unusual for encoders to be
-> >> able to do this so it is good to document this.  
-> > 
-> > OK.
-> >   
-> >>  
-> >>>
-> >>> Furthermore, the encoder requires that the stride is 32 byte aligned.
-> >>> Therefore, we naturally have a macroblock alignment regarding the
-> >>> width, but not regarding the height. This limitation is already
-> >>> included in the bytesperline field.    
-> >>
-> >> Ack.
-> >>  
-> >>>     
-> >>>>    
-> >>>>> +
-> >>>>> +	f->fmt.pix.pixelformat = V4L2_PIX_FMT_NV12;
-> >>>>> +	f->fmt.pix.bytesperline = round_up(f->fmt.pix.width, 32);
-> >>>>> +	f->fmt.pix.sizeimage =
-> >>>>> +		f->fmt.pix.bytesperline * f->fmt.pix.height * 3 / 2;
-> >>>>> +
-> >>>>> +	return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int allegro_s_fmt_vid_out(struct file *file, void *fh,
-> >>>>> +				 struct v4l2_format *f)
-> >>>>> +{
-> >>>>> +	struct allegro_channel *channel = fh_to_channel(fh);
-> >>>>> +	int err;
-> >>>>> +
-> >>>>> +	err = allegro_try_fmt_vid_out(file, fh, f);
-> >>>>> +	if (err)
-> >>>>> +		return err;
-> >>>>> +
-> >>>>> +	channel->width = f->fmt.pix.width;
-> >>>>> +	channel->height = f->fmt.pix.height;
-> >>>>> +	channel->stride = f->fmt.pix.bytesperline;
-> >>>>> +	channel->sizeimage_raw = f->fmt.pix.sizeimage;
-> >>>>> +
-> >>>>> +	channel->colorspace = f->fmt.pix.colorspace;
-> >>>>> +	channel->ycbcr_enc = f->fmt.pix.ycbcr_enc;
-> >>>>> +	channel->quantization = f->fmt.pix.quantization;
-> >>>>> +	channel->xfer_func = f->fmt.pix.xfer_func;
-> >>>>> +
-> >>>>> +	channel->level =
-> >>>>> +		select_minimum_h264_level(channel->width, channel->height);
-> >>>>> +	channel->sizeimage_encoded =
-> >>>>> +		estimate_stream_size(channel->width, channel->height);
-> >>>>> +
-> >>>>> +	return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int allegro_g_selection(struct file *file, void *priv,
-> >>>>> +			       struct v4l2_selection *s)
-> >>>>> +{
-> >>>>> +	struct v4l2_fh *fh = file->private_data;
-> >>>>> +	struct allegro_channel *channel = fh_to_channel(fh);
-> >>>>> +
-> >>>>> +	if (!V4L2_TYPE_IS_OUTPUT(s->type))
-> >>>>> +		return -EINVAL;
-> >>>>> +
-> >>>>> +	switch (s->target) {
-> >>>>> +	case V4L2_SEL_TGT_CROP:
-> >>>>> +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> >>>>> +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> >>>>> +		s->r.left = 0;
-> >>>>> +		s->r.top = 0;
-> >>>>> +		s->r.width = channel->width;
-> >>>>> +		s->r.height = channel->height;      
-> >>>>
-> >>>> I don't think this is quite right. The CROP target should return the visible
-> >>>> width/height (e.g. 1920x1080) whereas the other two targets should return the
-> >>>> coded width/height (e.g. 1920x1088 when rounded to the macroblock alignment).
-> >>>>
-> >>>> Note: if the hardware doesn't require that the raw frame is macroblock aligned,
-> >>>> then I need to think a bit more about how the selection handling should be
-> >>>> done.    
-> >>>
-> >>> The driver internally calculates the coded width/height in macroblocks
-> >>> and cropping and writes it to the SPS. Currently, this isn't exposed to
-> >>> userspace, because I don't see a need to tell the userspace about that.
-> >>>
-> >>> If there is a reason to expose this to userspace, I am fine with
-> >>> implementing that.    
-> >>
-> >> There really is no need for the selection API at all. Just drop both
-> >> G and S_SELECTION from the driver. Let me know if the compliance test
-> >> fails for drivers without selection support, I'll have to fix the test
-> >> in that case.  
-> > 
-> > The compliance test for VIDIOC_S_FMT fails with the following message
-> > if G_SELECTION is not implemented:
-> > 
-> >                 fail: v4l2-test-formats.cpp(836): sel.r.width != fmt.g_width()
-> >         test VIDIOC_S_FMT: FAIL
-> >   
-> 
-> Try this patch:
-> 
-> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+** Contains fix for i386 build breakage **
 
-Tested-by: Michael Tretter <m.tretter@pengutronix.de>
+Enjoy!
 
-> ---
-> diff --git a/utils/v4l2-compliance/v4l2-test-formats.cpp b/utils/v4l2-compliance/v4l2-test-formats.cpp
-> index fc497e3c..544ecb5c 100644
-> --- a/utils/v4l2-compliance/v4l2-test-formats.cpp
-> +++ b/utils/v4l2-compliance/v4l2-test-formats.cpp
-> @@ -828,7 +828,11 @@ static int testM2MFormats(struct node *node)
->  		.type = fmt.g_type(),
->  		.target = V4L2_SEL_TGT_CROP,
->  	};
-> -	node->g_selection(sel);
-> +	if (node->g_selection(sel) == ENOTTY) {
-> +		fail_on_test(fmt_cap.g_width() != fmt.g_width());
-> +		fail_on_test(fmt_cap.g_height() != fmt.g_height());
-> +		return 0;
-> +	}
->  	fail_on_test(sel.r.top || sel.r.left);
->  	fail_on_test(sel.r.width != fmt.g_width());
->  	fail_on_test(sel.r.height != fmt.g_height());
-> ------------------------------------------------------------
+The following changes since commit e93c9c99a629c61837d5a7fc2120cd2b6c70dbdd:
 
-Thanks. First I thought that it is strange to successfully finish the
-test early and skip all remaining tests, but all remaining tests are
-void anyway if g_selection is not implemented.
+  Linux 5.1 (2019-05-05 17:42:58 -0700)
 
-Michael
+are available in the Git repository at:
 
-> 
-> Regards,
-> 
-> 	Hans
-> 
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-pinctrl-v5.2-1
+
+for you to fetch changes up to 9af2de7657f5a52f9e15aebb6f9348f9b8f250a6:
+
+  pinctrl: Kconfig: Fix STMFX GPIO expander Pinctrl/GPIO driver dependencies (2019-05-10 16:09:56 +0100)
+
+----------------------------------------------------------------
+Immutable branch between MFD and Pinctrl due for the v5.2 merge window
+
+Contains fix for i386 build breakage
+
+----------------------------------------------------------------
+Amelie Delaunay (5):
+      dt-bindings: mfd: Add ST Multi-Function eXpander (STMFX) core bindings
+      mfd: Add ST Multi-Function eXpander (STMFX) core driver
+      dt-bindings: pinctrl: document the STMFX pinctrl bindings
+      pinctrl: Add STMFX GPIO expander Pinctrl/GPIO driver
+      pinctrl: Kconfig: Fix STMFX GPIO expander Pinctrl/GPIO driver dependencies
+
+ Documentation/devicetree/bindings/mfd/stmfx.txt    |  28 +
+ .../devicetree/bindings/pinctrl/pinctrl-stmfx.txt  | 116 +++
+ drivers/mfd/Kconfig                                |  13 +
+ drivers/mfd/Makefile                               |   2 +-
+ drivers/mfd/stmfx.c                                | 545 ++++++++++++++
+ drivers/pinctrl/Kconfig                            |  14 +
+ drivers/pinctrl/Makefile                           |   1 +
+ drivers/pinctrl/pinctrl-stmfx.c                    | 820 +++++++++++++++++++++
+ include/linux/mfd/stmfx.h                          | 123 ++++
+ 9 files changed, 1661 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/stmfx.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt
+ create mode 100644 drivers/mfd/stmfx.c
+ create mode 100644 drivers/pinctrl/pinctrl-stmfx.c
+ create mode 100644 include/linux/mfd/stmfx.h
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
