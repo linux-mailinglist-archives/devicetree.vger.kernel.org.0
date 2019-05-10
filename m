@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E15F61A085
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 17:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAEE71A0B2
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 17:54:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727257AbfEJPvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 11:51:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727144AbfEJPvq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 11:51:46 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ADF5320881;
-        Fri, 10 May 2019 15:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557503505;
-        bh=jjJN9MCI2/bJQYJD0A6H8bv3bdJi3Q/PurxoIoi1bLc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LFbRHLkQumOEJR0QML+NE/Dlx3jQ6C6mXckZ6o/H18WK018Tm7s1TH9ZiRjkY6qxC
-         AvIQg21IbE7EAgEdM3O+kbiHPqqnhHQW7WuXCaEPtJ5nDJlnMMqS+fkyrgHNjngC+W
-         V79pPqZ162SsEPoNUPJia0lru3wFAdbrvl66Xn2A=
-Received: by mail-qt1-f182.google.com with SMTP id j53so7104703qta.9;
-        Fri, 10 May 2019 08:51:45 -0700 (PDT)
-X-Gm-Message-State: APjAAAU2Ln94eWk3ajQkjWtO+vcr3GHq8pA/9kJaXe6BlXXakeCx/wz5
-        cY/sivEAh4itksZMztT+ZexDqgEF8Tr9pRSxBQ==
-X-Google-Smtp-Source: APXvYqzCtiDrvSidyJ1Y6HHqXiZAob0e8QJkkwye5sqCJHrQXA7SekK8d+4LASnRxReen63o7QlSe27+zyjO89A4fJs=
-X-Received: by 2002:a0c:fe65:: with SMTP id b5mr9797177qvv.106.1557503504974;
- Fri, 10 May 2019 08:51:44 -0700 (PDT)
+        id S1727255AbfEJPxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 11:53:54 -0400
+Received: from mail-wr1-f46.google.com ([209.85.221.46]:43972 "EHLO
+        mail-wr1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727502AbfEJPxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 11:53:32 -0400
+Received: by mail-wr1-f46.google.com with SMTP id r4so8448599wro.10
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 08:53:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WmYcNnwfKVscZCmwdjK6jhJ9WBHb6BXwy0H5GLHZ/VU=;
+        b=C0hRRVJkS6zB+gVPwbTFLoQ/yrTJe0AdMUE73ja1XnESm9WmkHP+J9t1kL18F89+Ar
+         Egg+kK9TylG8JTm6oqDQCeiK74nWu62vsP4nIgEBc8KBnTx6Cf8K8cgtOQEyVzIVKj21
+         6wnLy3HMAlGd7LjVvWStoqLs91EkMu4NqovsGbMkzOIo+ayRm8P3sVzd52760Q3bQ8Kv
+         NktQEj+r/gGlKKS/J2qED2hxbwxNRj/NjVGpeZxBbtTmR0nZxmetlLSK8lIbKSa9epcP
+         DSog5ymi+1RkFJTHrMV2sRa/tkMuTeaU3G/LXcDIoQ/5nEsU5Cgcr9F+RoM3IXjR52Pp
+         H/bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WmYcNnwfKVscZCmwdjK6jhJ9WBHb6BXwy0H5GLHZ/VU=;
+        b=cS3m/l5En/h84TP3XB1lNpjvJx/yM72GdWwjLgDQwX+lA0nXXyH1bFsY52vzqHoop4
+         JKOhGEFgBjXeraCb9oYh8ikEDioP7RZ5yP8DQRXRLuoAXouvLfuQ9PnUWic+Q0D7PHrY
+         14ekbuWIlK7uOAOe5Tq711bJAhAos1+0pdgheeuU7myGcWoIi7VNSRC/wCiMGuXm5krq
+         KOqGpaypv4d7HhhLBh7so6ch9y+01tbuAF2Lxn9zlTvdqD6dhcynbGySfsLp1L7WQacz
+         OHhYIspbPNjeOcXKCtPvsBi1SPJ18iqERnEO8SajtfTm6msvk23lrlyXLmzmLDq5qrGi
+         cmWA==
+X-Gm-Message-State: APjAAAV0Fcw/JhO2HIJJvcx5O6pVPvrsmAJkSJ8VrV7yBDeuHQpc1gfd
+        3/xR4xDFKxkjWWE4iRhbwqX5xw==
+X-Google-Smtp-Source: APXvYqxG++tIt5+P1saVu6V+j0sm+4hTQruPueDBJA4MZeuRgE44zFdvgStVURuvnv+y7381WMKuKA==
+X-Received: by 2002:adf:e5cc:: with SMTP id a12mr8663276wrn.78.1557503610457;
+        Fri, 10 May 2019 08:53:30 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id u14sm5333860wrn.30.2019.05.10.08.53.29
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 10 May 2019 08:53:29 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/2] arm64: dts: meson: g12a board node order
+Date:   Fri, 10 May 2019 17:53:25 +0200
+Message-Id: <20190510155327.5759-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190507045433.542-1-hsinyi@chromium.org> <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
- <CAJMQK-i-0RgdQEniqaKubdjF-dpd1JOCWy7DOPDfN33EqgL5iA@mail.gmail.com>
-In-Reply-To: <CAJMQK-i-0RgdQEniqaKubdjF-dpd1JOCWy7DOPDfN33EqgL5iA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 10 May 2019 10:51:33 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLHGobOQg-j=8e=ivCBWh6f+xy43zTzdXBQ-U86AOg-6w@mail.gmail.com>
-Message-ID: <CAL_JsqLHGobOQg-j=8e=ivCBWh6f+xy43zTzdXBQ-U86AOg-6w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: add support for rng-seed
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 9, 2019 at 11:27 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> On Wed, May 8, 2019 at 3:47 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> > >  Documentation/devicetree/bindings/chosen.txt | 14 +++++++++
-> >
-> > Actually, this file has been converted to json-schema and lives
-> > here[1]. I need to remove this one (or leave it with a reference to
-> > the new one).
-> >
->
-> Hi Rob,
-> I can't find where the new document is. Can you help point it again? Thanks.
+The order of the nodes in the u200 and sei510 is bit fancy.
+Order nodes by address, then node name, then aliases.
 
-Sorry, forgot to add that:
+This makes rebasing is little less painful
 
-https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml
+Jerome Brunet (2):
+  arm64: dts: meson: sei510: consistently order nodes
+  arm64: dts: meson: u200: consistently order nodes
 
-Rob
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    | 92 +++++++++----------
+ .../boot/dts/amlogic/meson-g12a-u200.dts      | 50 +++++-----
+ 2 files changed, 72 insertions(+), 70 deletions(-)
+
+-- 
+2.20.1
+
