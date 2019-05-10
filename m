@@ -2,177 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4A51A375
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 21:42:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FACF1A37C
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 21:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727694AbfEJTmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 15:42:49 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:38168 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727638AbfEJTmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 15:42:49 -0400
-Received: by mail-io1-f66.google.com with SMTP id y6so5427796ior.5;
-        Fri, 10 May 2019 12:42:49 -0700 (PDT)
+        id S1727945AbfEJTrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 15:47:39 -0400
+Received: from mail-yw1-f48.google.com ([209.85.161.48]:35951 "EHLO
+        mail-yw1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727656AbfEJTrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 15:47:39 -0400
+Received: by mail-yw1-f48.google.com with SMTP id q185so5650778ywe.3
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 12:47:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=YO5aV9RNmEsHE9amrXyCgHA1u0E4O0knkwps7WnuFv0=;
-        b=BCDPaaEqvrLXcSGRWr5S3MZNdOouK+RphRlWHZ5/MqyPJSq1/rPiTHnFk5GulaQEYW
-         9ZrqoezOIM8sO+Oo/+S/zlh28o8gSbW66OlRlIM/argXlA3WQx10wZtdOpEM6Qp52bRM
-         EZq/+WrL1PR4EM+D2SAXqa3DpEuELlep0Gx0zLQa/N9OohVwJ+bY2J0dBMxyXvYWBhSH
-         XvXtqFssBfQw5o7/5tHjkfl+bxC3Md0PWk5wHdZZUv+Wqx65XFIXoATFvlqqbGfuVsnq
-         z2utpcJsI+XxLd1wiEtgIQI+CcPVT0hRStWY4FYKktl1IxFQLqY7W4VugQaawX/kYfHz
-         1tdQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JffiYT1tcBGQIyMyATAAqC+loflKT9wWvMspK9YpWxU=;
+        b=L9rajkoSfGFOjIbxutcs41C2onJXUVFAJgqVs9w1sSdio8psH8qdqdtNSlz6J8mWXJ
+         2hZNWk8niZ71Z1BjOuJA3N7gWccB5GyCo+GU/zl6iWf8KaR3g3FDrQLWdMT0E1J0C/tk
+         oCoc5RIs/0WtLP7KOt929aLMotaEgmzRyElnJtWpqq0RqWmNFheAz7Vlp0/bmxtiCwUI
+         6QETIz9vERD5SC8hXPknwpZhooujlKLvXcBsZYFzrHka87+dvti1Ob/rceX8IiCN++2d
+         vYl/EWX5nUE7o069MmMcOAxgqi7h0SG658fx7G94Pq47CGmafyWX8aBNSnfXkj9pTkv2
+         hHqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=YO5aV9RNmEsHE9amrXyCgHA1u0E4O0knkwps7WnuFv0=;
-        b=b+DH1O1adtAfQ4OqPtAB40y0G3cfDzTHIbF1Fi5nx/9NM7wJ+9ftDSGc8mtrUc6+VR
-         XKNIn1ByQ7Mpjc0P4nVAbq0CQ6d9w+MtnWfS6kmtN3AgzGULuYkPz6p7tsLEJvf9xV/V
-         70ElBwRMxPOBN4+Gm8XoZPvnvAnFzOfzD1lmAajhSy4kEMRxQHtchlnI4BB29te0PosB
-         eS7zK9tHLpNlayWIkhtn7VZF2F72+/ekYJjy0ghjGyZCm6l+a3XEjOfdbbfY9NGn8+G7
-         4hM+a6fRABnSNHld25WrRo1UcLNTimjVj/pehadQHV+C7PaW1K+6TyG5qhjlh+vPVHpl
-         bMAw==
-X-Gm-Message-State: APjAAAUN8MKFFrO4J6PMsQjEDrMFDaTC3r2VKNHs+TK+gB5PF4CLFeI1
-        lFNSZjhlM8PA8qwcK68xcwJkyVYfRDt6Sw==
-X-Google-Smtp-Source: APXvYqx5kbQ9jaDVLMe+fwt230a/4Euni6CMHlf+lRjuzrr3etdu9O2C4gXTKyCTCM8O97vANKQlUw==
-X-Received: by 2002:a6b:5b0f:: with SMTP id v15mr8502059ioh.82.1557517368203;
-        Fri, 10 May 2019 12:42:48 -0700 (PDT)
-Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id p184sm2845331itb.2.2019.05.10.12.42.46
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 10 May 2019 12:42:47 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-omap@vger.kernel.org
-Cc:     adam.ford@logicpd.com, Adam Ford <aford173@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to dts
-Date:   Fri, 10 May 2019 14:42:29 -0500
-Message-Id: <20190510194229.20628-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JffiYT1tcBGQIyMyATAAqC+loflKT9wWvMspK9YpWxU=;
+        b=ncXQO5p31xRHFX4/9y1VBpsjcVqsovD5axFkWbzOoa4foxUUcLSmAivk++nk/aBXuj
+         gV2A8H3NhSQOcu6+5yESeHKDg48TG7B6SZs/qKi4uE4Rnl0ngOWREsL4vbY3CUwGDc+L
+         vhykN1MGYSCp7Dr9PvGDyIToZ2koaQ6NLtBMm47dQsqELbcmxaiaGdFZITvirgcPxvMi
+         TKJZN5ju0YBSSKbjjm9Ra5hCE58t++TtEV/BDNf5TBCDaDiBL4AQBJ7mJ8wC848eEAjq
+         ZapzG4yFzYMw/8HGVX81MHZOzHNfD4p1cm7EUYgPQgfhClE6H5Y0KxwuQezOD35V+r4P
+         Yvtw==
+X-Gm-Message-State: APjAAAW7tW5cDfhWWuE7hivXqMe55o23rTX/LqHzZVrdVsVPDQAgA+tb
+        NslaJ3EX5KuNAHIdmrGc051QsD1UIxFN0vY8FqE=
+X-Google-Smtp-Source: APXvYqxSZTxra4dSqZ0uV4+z/sqWLOp523MKAu/O7d6N9vyouCLmoaGITPfCGmeHt1dh893kQWldYZyfSdtX9+YPhIo=
+X-Received: by 2002:a25:9cc4:: with SMTP id z4mr6727169ybo.92.1557517658068;
+ Fri, 10 May 2019 12:47:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAJiuCceeLwY+myYtUf15frSYsLKmGaUBifAOxUkNWwSjbF4oDg@mail.gmail.com>
+ <20190429220503.GA4720@bogus>
+In-Reply-To: <20190429220503.GA4720@bogus>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Fri, 10 May 2019 21:47:27 +0200
+Message-ID: <CAJiuCcc2_HWKvHyBepu_PXG+T-qD_4KFw=qT_rtrvqJDEXbrZw@mail.gmail.com>
+Subject: Re: Question about compatible fallback and documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the source code is compiled using hard-coded values
-from CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK.  This patch allows this
-clock divider value to be moved to the device tree and be changed
-without having to recompile the kernel.
+Hi,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+On Tue, 30 Apr 2019 at 00:05, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Apr 14, 2019 at 06:18:04PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Hi,
+> >
+> > I have to bind an already existing IP by a vendor in a new SoC called
+> > "SOC3" device-tree.
+> >
+> > In the 1st gen of "SOC1" the IP is introduced :
+> > soc1.dtsi :
+> > compatible =3D "vendor,ip-soc1";
+> >
+> > Then a 2nd gen of the IP is introduced in "SOC2" with new registers.
+> > But the driver of the 1st gen is still working fine and no update of
+> > the existing driver has been introduced because not required.
+> > soc2.dtsi :
+> > compatible =3D "vendor,ip-soc2", "vendor,ip-soc1";
+> >
+> > Finally in "SOC3" and regardind the user manual we think that the IP
+> > introduced is the same as "SOC2".
+> > Should the compatible in soc3.dtsi be A or B?
+> > A) compatible =3D "vendor,ip-soc2", "vendor,ip-soc1";
+> > or
+> > B) compatible =3D "vendor,ip-soc3", "vendor,ip-soc2", "vendor,ip-soc1";
+> >
+> > I propose the solution B) because we don't know what could happens
+> > maybe the IP could need a quirks only for "SOC3". And device tree
+> > shouldn't move for the user only the driver.
+>
+> B is correct.
+>
+> Or you could list soc3 and soc2 given you do know there are additional
+> features. That would require a driver update, but likely the new SoC
+> requires some OS changes. Maybe someday SoC design will be disciplined
+> enough that new SoCs are fully backwards compatible.
 
-diff --git a/Documentation/devicetree/bindings/display/ti/ti,omap3-dss.txt b/Documentation/devicetree/bindings/display/ti/ti,omap3-dss.txt
-index cd02516a40b6..42449d07c47e 100644
---- a/Documentation/devicetree/bindings/display/ti/ti,omap3-dss.txt
-+++ b/Documentation/devicetree/bindings/display/ti/ti,omap3-dss.txt
-@@ -40,7 +40,7 @@ Required properties:
- Optional properties:
- - max-memory-bandwidth: Input memory (from main memory to dispc) bandwidth limit
- 			in bytes per second
--
-+- min-fck-pck-ratio:  Make sure that DISPC FCK is at least n x PCK
- 
- RFBI
- ----
-diff --git a/arch/arm/boot/dts/omap3.dtsi b/arch/arm/boot/dts/omap3.dtsi
-index 4043ecb38016..bf84a8487aae 100644
---- a/arch/arm/boot/dts/omap3.dtsi
-+++ b/arch/arm/boot/dts/omap3.dtsi
-@@ -751,7 +751,7 @@
- 			#size-cells = <1>;
- 			ranges;
- 
--			dispc@48050400 {
-+			dispc: dispc@48050400 {
- 				compatible = "ti,omap3-dispc";
- 				reg = <0x48050400 0x400>;
- 				interrupts = <25>;
-diff --git a/drivers/gpu/drm/omapdrm/dss/Kconfig b/drivers/gpu/drm/omapdrm/dss/Kconfig
-index f24ebf7f61dd..d0666edcdf2a 100644
---- a/drivers/gpu/drm/omapdrm/dss/Kconfig
-+++ b/drivers/gpu/drm/omapdrm/dss/Kconfig
-@@ -102,24 +102,6 @@ config OMAP2_DSS_DSI
- 
- 	  See http://www.mipi.org/ for DSI specifications.
- 
--config OMAP2_DSS_MIN_FCK_PER_PCK
--	int "Minimum FCK/PCK ratio (for scaling)"
--	range 0 32
--	default 0
--	help
--	  This can be used to adjust the minimum FCK/PCK ratio.
--
--	  With this you can make sure that DISPC FCK is at least
--	  n x PCK. Video plane scaling requires higher FCK than
--	  normally.
--
--	  If this is set to 0, there's no extra constraint on the
--	  DISPC FCK. However, the FCK will at minimum be
--	  2xPCK (if active matrix) or 3xPCK (if passive matrix).
--
--	  Max FCK is 173MHz, so this doesn't work if your PCK
--	  is very high.
--
- config OMAP2_DSS_SLEEP_AFTER_VENC_RESET
- 	bool "Sleep 20ms after VENC reset"
- 	default y
-diff --git a/drivers/gpu/drm/omapdrm/dss/dispc.c b/drivers/gpu/drm/omapdrm/dss/dispc.c
-index ba82d916719c..09a130c53da2 100644
---- a/drivers/gpu/drm/omapdrm/dss/dispc.c
-+++ b/drivers/gpu/drm/omapdrm/dss/dispc.c
-@@ -198,6 +198,9 @@ struct dispc_device {
- 
- 	/* DISPC_CONTROL & DISPC_CONFIG lock*/
- 	spinlock_t control_lock;
-+
-+	/* Optional min-fck-pck-ratio */
-+	u32 min_fck_per_pck;
- };
- 
- enum omap_color_component {
-@@ -3683,15 +3686,8 @@ bool dispc_div_calc(struct dispc_device *dispc, unsigned long dispc_freq,
- 	unsigned long pck, lck;
- 	unsigned long lck_max;
- 	unsigned long pckd_hw_min, pckd_hw_max;
--	unsigned int min_fck_per_pck;
- 	unsigned long fck;
- 
--#ifdef CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK
--	min_fck_per_pck = CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK;
--#else
--	min_fck_per_pck = 0;
--#endif
--
- 	pckd_hw_min = dispc->feat->min_pcd;
- 	pckd_hw_max = 255;
- 
-@@ -3723,7 +3719,7 @@ bool dispc_div_calc(struct dispc_device *dispc, unsigned long dispc_freq,
- 			else
- 				fck = lck;
- 
--			if (fck < pck * min_fck_per_pck)
-+			if (fck < pck * dispc->min_fck_per_pck)
- 				continue;
- 
- 			if (func(lckd, pckd, lck, pck, data))
-@@ -4826,6 +4822,8 @@ static int dispc_bind(struct device *dev, struct device *master, void *data)
- 		}
- 	}
- 
-+	of_property_read_u32(np, "min-fck-pck-ratio", &dispc->min_fck_per_pck);
-+
- 	r = dispc_init_gamma_tables(dispc);
- 	if (r)
- 		goto err_free;
--- 
-2.17.1
+Thanks for the answer,
+Clement
 
+>
+> > Last question does we have to document all the compatible use in
+> > DTS(i) files in the Documentation ? or only the compatible used by the
+> > drivers ?
+>
+> What is used in DTS files.
+>
+> Rob
