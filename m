@@ -2,138 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24FCF1990B
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 09:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C55EB19930
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 09:51:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727006AbfEJHh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 03:37:58 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:39418 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbfEJHh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 03:37:58 -0400
-Received: by mail-qk1-f195.google.com with SMTP id z128so3093191qkb.6
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 00:37:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YPIdmEziEMHUxazGM82nUeKFs82CMeVb0svBlAIM9mc=;
-        b=YOQP0dtsuHdYUa3VJGsw06uyx6HBDRcu7CqZFjC6R74X5SCqFH/fbolbZ4NikUGBOB
-         01VRHlTKWDTKyNcqr0mx3OXaYA78NK/XUYGPfVgakaCkbsccPVHl+QvhvJFgRCvxbuDG
-         KJ3D9BUxmIMQh16Ljn7fZFKLA8Vj0mFGbYJho=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YPIdmEziEMHUxazGM82nUeKFs82CMeVb0svBlAIM9mc=;
-        b=NwAErg1pi4+L9W+fZy9kh3fp1WFH5SJiiYGe6xNbIMCeTdMPGt08DGw/9Vo3jHM74R
-         uKgXt3Mj1RxLhHwI6dWLHAbHijDcUsashWHHmfqsI7o78YiY9iUPOqGdjAjX2hJbitMp
-         2LLV4IU+p+qkU8nugjCtsj3YB6/qs/sD+8UZTrcHuHE0IMAx+vwJDJeLkLK7iv9rdKWP
-         xhF9IGakGlwSQ0whOCJj9GSRK1JYoelQgeEmXYJMvoLW7fmtUOHq1baXxaIg+OUwkSHF
-         b8mMrb5Kg6J24SAAoZOxmiPjHeWcr1aNil+ftklsmZpy9M58fF+AplX6/ntCePnbqN69
-         RDSA==
-X-Gm-Message-State: APjAAAVHZdTCuUpMAX4Bwj4aRsTxc2zJ80EhWW0B9fLb2vtUMM4Mbcf1
-        Zz/TvM6V5/rKMWam/2swVPTF2avdXNOQg33N3Bp18A==
-X-Google-Smtp-Source: APXvYqw0oTMu+CovlvxeRY9ocZTmZNLydi0JE63J09a1MhVGCcjf777Api8V4IshlZIMqAkICDBwoldY3iKTtUIQcho=
-X-Received: by 2002:a05:620a:1585:: with SMTP id d5mr7444463qkk.212.1557473876989;
- Fri, 10 May 2019 00:37:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190507045433.542-1-hsinyi@chromium.org> <CAL_Jsq+rGeFKAPVmPvv_Z+G=BppKUK-tEUphBajZVxFtbRBJvQ@mail.gmail.com>
- <CAJMQK-iVhScf0ybZ85kqP0B5_QPoYZ9PZt35jHRUh8FNHKvu7w@mail.gmail.com>
- <CAL_JsqJZ+mOnrLWt0Cpo_Ybr_ohxwWom1qiyV8_EFocULde7=Q@mail.gmail.com>
- <CAJMQK-jjzYwX3NZAKJ-8ypjcN75o-ZX4iOVD=84JecEd4qV1bA@mail.gmail.com>
- <CAL_JsqLnmedF5cJYH+91U2Q_WX755O8TQs6Ue9mqtEiFKcjGWQ@mail.gmail.com>
- <CAJMQK-hJUG855+TqX=droOjUfb-MKnU0n0FYtr_SW2KByKAW1w@mail.gmail.com> <36fab640-b98e-9781-f96f-0ed988a71077@rasmusvillemoes.dk>
-In-Reply-To: <36fab640-b98e-9781-f96f-0ed988a71077@rasmusvillemoes.dk>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 10 May 2019 15:37:31 +0800
-Message-ID: <CAJMQK-hpA7rkaznW2REYbO=6rOvEMfJOvo6xxPkNb9o1VNUqTA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: add support for rng-seed
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1726936AbfEJHvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 03:51:22 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:57542 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726899AbfEJHvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 May 2019 03:51:22 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4A7ke2e019336;
+        Fri, 10 May 2019 09:51:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=nmDxg4+93XGhQH+CBc6pkLSbg19CIe1swFbFgCL8ynY=;
+ b=uR/72ikBnHLXDX5yi8jl/nbg4R6bAWIlVXcz+WyWuipKJP7UA4+VROg3MFgElPvXKUu+
+ PrAexkTBVIP4hZvUSn3QFTiBL/0r8aRlUL33o9THxXKlkhyz5LuG668SvRR2d77uRgYR
+ M/rENVvB5J8brAwKB4ZCsUnECND3xm58KDJtaUdq4jzUIj+R90IbaWrTd51J6ZryrrdQ
+ OEDsDGHUo3K8vAu7mCrb8bwT1NIpnrAZyXoj7ylz1ceOibnGzdXqbSCOlkxgiaGKw7Hp
+ G1CYGHSnbQ1RR4cAl9bndfPzGH7buA5hNwhCCSQAnJ/wXMwyg6CBKYzauGASOmzG6XEN LQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2scdjp7fum-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 10 May 2019 09:51:04 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9800A3D;
+        Fri, 10 May 2019 07:51:03 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 10EFC15CE;
+        Fri, 10 May 2019 07:51:02 +0000 (GMT)
+Received: from [10.48.0.167] (10.75.127.44) by SFHDAG5NODE3.st.com
+ (10.75.127.15) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 10 May
+ 2019 09:51:02 +0200
+Subject: Re: [RESEND PATCH v5 0/3] Add PM support to STM32 LP Timer drivers
+To:     <thierry.reding@gmail.com>
+CC:     <robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>,
+        <tduszyns@gmail.com>, <mark.rutland@arm.com>,
+        <alexandre.torgue@st.com>, <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Loic PALLARDY <loic.pallardy@st.com>,
+        Mark Brown <broonie@kernel.org>
+References: <1555580267-29299-1-git-send-email-fabrice.gasnier@st.com>
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+Message-ID: <45e934af-d677-d7d4-09ea-3ed01872dab6@st.com>
+Date:   Fri, 10 May 2019 09:51:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <1555580267-29299-1-git-send-email-fabrice.gasnier@st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG5NODE3.st.com
+ (10.75.127.15)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-09_02:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 10, 2019 at 2:14 PM Rasmus Villemoes
-<linux@rasmusvillemoes.dk> wrote:
+On 4/18/19 11:37 AM, Fabrice Gasnier wrote:
+> This patch series adds power management support for STM32 LP Timer:
+> - PWM driver
+> - Document the pinctrl states for sleep mode
+> 
+> It also adds device link between the PWM consumer and the PWM provider.
+> This allows proper sequencing for suspend/resume (e.g. user will likely
+> do a pwm_disable() before the PWM provider suspend executes), see [1].
+> 
+> [1] https://lkml.org/lkml/2019/2/5/770
+> 
 
-> So, why not just have the bootloader add whatever entropy it has via the
-> commandline, which already gets mixed in? That requires no kernel
-> changes, and works for all architectures.
->
-> If anything, perhaps instead of just adding gobbledygook=abc123, make an
-> official command line parameter (there was talk about this at some
-> point), and have the kernel overwrite the value with xxx so it's not
-> visible in /proc/cmdline.
->
-> Rasmus
+Hi Thierry,
 
-For some arch, besides commandline, we also need to overwrite bootargs
-in fdt, otherwise it's still visible by
-/sys/firmware/devicetree/base/chosen/bootargs for example.
+Please let me know if you have some more comments on this series. It's
+been under review since quite some time now.
 
-Originally planned to land v2 as
+Thanks in advance,
+Best Regards,
+Fabrice
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index de893c9616a1..96ea5eba9dd5 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -24,6 +24,7 @@
- #include <linux/debugfs.h>
- #include <linux/serial_core.h>
- #include <linux/sysfs.h>
-+#include <linux/random.h>
-
- #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
- #include <asm/page.h>
-@@ -1079,6 +1080,7 @@ int __init early_init_dt_scan_chosen(unsigned
-long node, const char *uname,
- {
-        int l;
-        const char *p;
-+       const void *rng_seed;
-
-        pr_debug("search \"chosen\", depth: %d, uname: %s\n", depth, uname);
-
-@@ -1113,6 +1115,15 @@ int __init early_init_dt_scan_chosen(unsigned
-long node, const char *uname,
-
-        pr_debug("Command line is: %s\n", (char*)data);
-
-+       rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
-+       if (!rng_seed || l == 0)
-+               return 1;
-+
-+       /* try to clear seed so it won't be found. */
-+        fdt_nop_property(initial_boot_params, node, "rng-seed");
-+
-+        add_device_randomness(rng_seed, l);
-+
-        /* break now */
-        return 1;
- }
-
-(For arm64 RW/RO issue, it will be done in other patch.)
-
-If we add parameter into commandline, I think we probably also need to
-do similar changes here since there are fdt related overwrite.
+> ---
+> resend v5:
+> - update collected acks
+> 
+> Changes in v5:
+> - improve a warning message, fix a style issue.
+> 
+> Changes in v4:
+> - improve error handling when adding the PWM consumer device link.
+> 
+> Changes in v3:
+> - Move the device_link_add() call to of_pwm_get() as discussed with Uwe.
+> 
+> Changes in v2:
+> - Don't disable PWM channel in PWM provider: rather refuse to suspend
+>   and report an error as suggested by Uwe and Thierry.
+> - Add patch 3/3 to propose device link addition.
+> - No updates for STM32 LP Timer IIO driver. Patches can be send separately.
+> 
+> Fabrice Gasnier (3):
+>   dt-bindings: pwm-stm32-lp: document pinctrl sleep state
+>   pwm: stm32-lp: Add power management support
+>   pwm: core: add consumer device link
+> 
+>  .../devicetree/bindings/pwm/pwm-stm32-lp.txt       |  9 ++--
+>  drivers/pwm/core.c                                 | 50 ++++++++++++++++++++--
+>  drivers/pwm/pwm-stm32-lp.c                         | 25 +++++++++++
+>  include/linux/pwm.h                                |  6 ++-
+>  4 files changed, 82 insertions(+), 8 deletions(-)
+> 
