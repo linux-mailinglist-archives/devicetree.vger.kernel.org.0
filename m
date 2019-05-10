@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B874A19B93
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 12:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC2D19B99
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 12:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727341AbfEJK0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 06:26:32 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:34759 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727302AbfEJK0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 06:26:32 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id DF1B520001C;
-        Fri, 10 May 2019 10:26:28 +0000 (UTC)
-Date:   Fri, 10 May 2019 12:26:28 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: sound: sun4i-spdif: Document that
- the RX channel can be missing
-Message-ID: <20190510102628.u344cqe7sftuamfg@flea>
-References: <dc84c7e9ce272109052f553a5e050bfe1a09e9d6.1557252411.git-series.maxime.ripard@bootlin.com>
- <d9afb19c32f8b9b2c40c8d4c0c3df74bff0ccf35.1557252411.git-series.maxime.ripard@bootlin.com>
- <CAL_Jsq+iLmzti5TX-TUU3PN4taC66UMqHMk-aKTjZKt1kVRtMQ@mail.gmail.com>
+        id S1727560AbfEJK1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 06:27:45 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:33883 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727553AbfEJK1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 06:27:45 -0400
+Received: by mail-oi1-f196.google.com with SMTP id v10so4177625oib.1
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 03:27:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0uHZ1jppAcFBhTR/1pJQr4fDRVmFHkByLDGRo+AFRuU=;
+        b=dsrwv0H2Rfrc01YiHmjTjaNBThgH0Ls0D+S54kv0UogNbIoQQubjPK8qT7L0mF33CS
+         aYviEu/LNE9drmcPOAdswXb57a7sipQirjIlQ7Ynd6iOEeUmTl+PCZ+GBOOHxMXwo9/H
+         j4gtOzrnEtCf/6EINxveE8MFRW5uJt9rldnOcDpx4xbhTJdLV7YP/WUGh+m3XZLAcGc9
+         VEH6sMdw5imAeTPV6OEInKN7s7agTjKI9bFZXH+y+qga4ATyjX3DaKij5ONVkcQdV95p
+         PteDCGEucmeJdXRwmJxetOEP+cggWxt3r6pDiaF7DdvsmqnhTbIkbLBpggd06dK5/E3N
+         9y4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0uHZ1jppAcFBhTR/1pJQr4fDRVmFHkByLDGRo+AFRuU=;
+        b=WyuIBrDrI3nR+X/BZ4fJdaxBJ6vF5qifsewU6DbgMgvrM+F4HTaP4Qravloyqwi0OC
+         /ANfwBTTgiRoPJWfm4mSNCBQSeEdb2ML2c1Oe1krSY/AAuFjrgNjefQmGTTBoaHDofG5
+         bxAJXgWhm3+4OZ4T3V0YqRpe2SOZg7QFRHPWw47CC4txHovFGoF/TmAGd6YNfoRTHWoa
+         loWHM4rS5stWQtxlgi7ajKDCKyhDQAM+r2cWZZUslZ4qYw3OGGh+UlDXxg2NlyY6QGyt
+         L2cQxQTydaGg10xMS/VbxpLKxpASXC0Cix8nx0ej7qyeFjxHnj7N1ouY8HhyMBpSnYmL
+         bA1Q==
+X-Gm-Message-State: APjAAAVCqs2IhVNCdWnlQZ5tbgDEx5izUEEVglCkyFDs/4gigdQTBxZT
+        JklC3tfmvq/xSQPzVklMWJDMNz96D4JFZoaJOP/35A==
+X-Google-Smtp-Source: APXvYqzItdyzdcRLdkdQjbdb1r5m6MPSdjbNOyMVXP3tR2XNB/TjHeBcC5zqpfKlvhj2ObI953CDQuJHYFWf+OOgkMY=
+X-Received: by 2002:aca:43d5:: with SMTP id q204mr4737682oia.100.1557484064075;
+ Fri, 10 May 2019 03:27:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+iLmzti5TX-TUU3PN4taC66UMqHMk-aKTjZKt1kVRtMQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+References: <20190501230126.229218-1-brendanhiggins@google.com>
+ <20190501230126.229218-7-brendanhiggins@google.com> <CAK7LNAQ+SRMn8UFjW1dZv_TrL0qjD2v2S=rXgtUpiA-urr1DDA@mail.gmail.com>
+In-Reply-To: <CAK7LNAQ+SRMn8UFjW1dZv_TrL0qjD2v2S=rXgtUpiA-urr1DDA@mail.gmail.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 10 May 2019 03:27:33 -0700
+Message-ID: <CAFd5g47BNZ0gRz4SXb37XjyXF_LyNZrSmoqDbzaaCUrTg3O7Yg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/17] kbuild: enable building KUnit
+To:     Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "Luis R. Rodriguez" <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Cc: Shuah Khan" <shuah@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        Tim Bird <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Wed, May 08, 2019 at 02:35:10PM -0500, Rob Herring wrote:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: allwinner,sun8i-h3-spdif
-> > +
-> > +    then:
-> > +      properties:
-> > +        dmas:
-> > +          maxItems: 1
+> On Thu, May 2, 2019 at 8:03 AM Brendan Higgins
+> <brendanhiggins@google.com> wrote:
+> >
+> > Add KUnit to root Kconfig and Makefile allowing it to actually be built.
+> >
+> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
 >
-> In this and below, these should get added automatically by
-> fixup_schema. If not present, we set minItems/maxItems to the size of
-> the items list. It look like you added support for that, so left over
-> from before you addressed that for if/then/else?
-
-Sorry, I should have brought that up in the pull request.
-
-It seems that it's still necessary when using allOf, otherwise the
-schema won't match
-
-Maybe there's something more to fix when using allOf?
-
-> > +          items:
-> > +            - description: RX DMA Channel
+> You need to make sure
+> to not break git-bisect'abililty.
 >
-> s/RX/TX/
 >
-> > +
-> > +        dma-names:
-> > +          maxItems: 1
-> > +          items:
-> > +            - const: tx
-> > +
-> > +    else:
-> > +      properties:
-> > +        dmas:
-> > +          minItems: 2
-> > +          maxItems: 2
-> > +          items:
-> > +            - description: RX DMA Channel
-> > +            - description: TX DMA Channel
-> > +
-> > +        dma-names:
-> > +          minItems: 2
-> > +          maxItems: 2
-> > +          items:
-> > +            - const: rx
-> > +            - const: tx
+> With this commit, I see build error.
 >
-> I'm really on the fence whether it's worth it to add all this just add
-> the restrictions based on the compatible. I guess with copy-n-paste
-> this would be a common error.
+>   CC      kunit/test.o
+> kunit/test.c:11:10: fatal error: os.h: No such file or directory
+>  #include <os.h>
+>           ^~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.build;279: kunit/test.o] Error 1
+> make: *** [Makefile;1763: kunit/] Error 2
 
-Converting most of the bindings to the schemas has shown that (at
-least in our case), we've been pretty bad at keeping the documentation
-up to date with that kind of information.
+Nice catch! That header shouldn't even be in there.
 
-Adding that kind of construct at least has the benefit to actively
-enforce that the documentation is complete.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Sorry about that. I will have it fixed in the next revision.
