@@ -2,121 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C55EB19930
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 09:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 331FF19951
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2019 10:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726936AbfEJHvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 May 2019 03:51:22 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:57542 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726899AbfEJHvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 May 2019 03:51:22 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4A7ke2e019336;
-        Fri, 10 May 2019 09:51:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=nmDxg4+93XGhQH+CBc6pkLSbg19CIe1swFbFgCL8ynY=;
- b=uR/72ikBnHLXDX5yi8jl/nbg4R6bAWIlVXcz+WyWuipKJP7UA4+VROg3MFgElPvXKUu+
- PrAexkTBVIP4hZvUSn3QFTiBL/0r8aRlUL33o9THxXKlkhyz5LuG668SvRR2d77uRgYR
- M/rENVvB5J8brAwKB4ZCsUnECND3xm58KDJtaUdq4jzUIj+R90IbaWrTd51J6ZryrrdQ
- OEDsDGHUo3K8vAu7mCrb8bwT1NIpnrAZyXoj7ylz1ceOibnGzdXqbSCOlkxgiaGKw7Hp
- G1CYGHSnbQ1RR4cAl9bndfPzGH7buA5hNwhCCSQAnJ/wXMwyg6CBKYzauGASOmzG6XEN LQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2scdjp7fum-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 10 May 2019 09:51:04 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9800A3D;
-        Fri, 10 May 2019 07:51:03 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 10EFC15CE;
-        Fri, 10 May 2019 07:51:02 +0000 (GMT)
-Received: from [10.48.0.167] (10.75.127.44) by SFHDAG5NODE3.st.com
- (10.75.127.15) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 10 May
- 2019 09:51:02 +0200
-Subject: Re: [RESEND PATCH v5 0/3] Add PM support to STM32 LP Timer drivers
-To:     <thierry.reding@gmail.com>
-CC:     <robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>,
-        <tduszyns@gmail.com>, <mark.rutland@arm.com>,
-        <alexandre.torgue@st.com>, <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Loic PALLARDY <loic.pallardy@st.com>,
-        Mark Brown <broonie@kernel.org>
-References: <1555580267-29299-1-git-send-email-fabrice.gasnier@st.com>
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-Message-ID: <45e934af-d677-d7d4-09ea-3ed01872dab6@st.com>
-Date:   Fri, 10 May 2019 09:51:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727036AbfEJIM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 May 2019 04:12:26 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:52076 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726899AbfEJIMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 May 2019 04:12:25 -0400
+Received: by mail-it1-f195.google.com with SMTP id s3so8009892itk.1
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2019 01:12:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BBAzF3ukUH/0YN2wqJedYjAOrMYWc/znufhrHMASOjw=;
+        b=DTbMLXFLcAiB15aupDILUkfkz5gcC9f94HX5NsBdu7KUdwUxv8H4sA/hHV0eLJv1Zg
+         VK8qSoAs3eoT26WJzo3aCh8WcBLCOqjCQC56r8GX2qHK3fUKr0w/DnfabTgCCXRGaun2
+         hQtjdrH9YxiarIh9Zizdq7T+K/OxLjodKRv2Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BBAzF3ukUH/0YN2wqJedYjAOrMYWc/znufhrHMASOjw=;
+        b=HQ2h2P/TG9jVA6aFKrrpQNOFyret+ZMTqLuYmLLKDgNPntz1y1toM5DWEX3EgGmKlL
+         7XHsHC/FAdU66OwPZ5R6EU21x5H24WzFmQkr2IGxKo3il/6WJMOZwM6c17/gxR4fPNVC
+         /LpZzENKxh+jcV5uTDWNfJ4i99IZUiOMwbUG/4kEhq5M74Jz+w8+p14JrBt8IExXq7hC
+         z1eg+Nz4GPfj7+MCM7XaZfpkpppkOoG3Rwoxks8EkJ/p9OG+eoLMhgiY6yULIDy2WGIU
+         cvjVlDGzITW0QmSH6UfPvnqEGlC67cgEBTnmGGl0f2BlLOeOkvA61HYtwZXR/hbMLV8t
+         vdRQ==
+X-Gm-Message-State: APjAAAWLlMAgQ2Ix2XD3LHnxpmFnOzy8rifPRIwPoJAJai3rbKq3xja9
+        dUuw+hZQsnvZ9fInqN7xJJYDkXdct6b/Yrpk5WQF2Q==
+X-Google-Smtp-Source: APXvYqwtKFD3/r+cWIqBKLLuiGzfuFV2T1vL9O4CSxpGbXJpLMcrf9zEidMeL+0DEwVPJdbGFlDa8SqPmFsr6woW+ok=
+X-Received: by 2002:a05:660c:4d0:: with SMTP id v16mr7006290itk.62.1557475944416;
+ Fri, 10 May 2019 01:12:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1555580267-29299-1-git-send-email-fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG5NODE3.st.com
- (10.75.127.15)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-09_02:,,
- signatures=0
+References: <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
+ <20190509015856.GB7031@mit.edu> <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
+ <20190509032017.GA29703@mit.edu> <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+ <20190509133551.GD29703@mit.edu> <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
+ <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com> <20190509214233.GA20877@mit.edu>
+ <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com> <20190509233043.GC20877@mit.edu>
+ <8914afef-1e66-e6e3-f891-5855768d3018@deltatee.com> <6d6e91ec-33d3-830b-4895-4d7a20ba7d45@gmail.com>
+ <a1b88d5add15d43de0468c32d9a2427629337abb.camel@oracle.com>
+In-Reply-To: <a1b88d5add15d43de0468c32d9a2427629337abb.camel@oracle.com>
+From:   Daniel Vetter <daniel@ffwll.ch>
+Date:   Fri, 10 May 2019 10:12:13 +0200
+Message-ID: <CAKMK7uFd1xUx8u3xWLwifVSq4OEnMO4S-m0hESe68UzONXnMFg@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Knut Omang <knut.omang@oracle.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        "Theodore Ts'o" <tytso@mit.edu>, Tim.Bird@sony.com,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "Luis R. Rodriguez" <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, sboyd@kernel.org,
+        Shuah Khan <shuah@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>, jdike@addtoit.com,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/18/19 11:37 AM, Fabrice Gasnier wrote:
-> This patch series adds power management support for STM32 LP Timer:
-> - PWM driver
-> - Document the pinctrl states for sleep mode
-> 
-> It also adds device link between the PWM consumer and the PWM provider.
-> This allows proper sequencing for suspend/resume (e.g. user will likely
-> do a pwm_disable() before the PWM provider suspend executes), see [1].
-> 
-> [1] https://lkml.org/lkml/2019/2/5/770
-> 
+On Fri, May 10, 2019 at 7:49 AM Knut Omang <knut.omang@oracle.com> wrote:
+>
+> On Thu, 2019-05-09 at 22:18 -0700, Frank Rowand wrote:
+> > On 5/9/19 4:40 PM, Logan Gunthorpe wrote:
+> > >
+> > >
+> > > On 2019-05-09 5:30 p.m., Theodore Ts'o wrote:
+> > >> On Thu, May 09, 2019 at 04:20:05PM -0600, Logan Gunthorpe wrote:
+> > >>>
+> > >>> The second item, arguably, does have significant overlap with kselftest.
+> > >>> Whether you are running short tests in a light weight UML environment or
+> > >>> higher level tests in an heavier VM the two could be using the same
+> > >>> framework for writing or defining in-kernel tests. It *may* also be valuable
+> > >>> for some people to be able to run all the UML tests in the heavy VM
+> > >>> environment along side other higher level tests.
+> > >>>
+> > >>> Looking at the selftests tree in the repo, we already have similar items to
+> > >>> what Kunit is adding as I described in point (2) above. kselftest_harness.h
+> > >>> contains macros like EXPECT_* and ASSERT_* with very similar intentions to
+> > >>> the new KUNIT_EXECPT_* and KUNIT_ASSERT_* macros.
+> > >>>
+> > >>> However, the number of users of this harness appears to be quite small. Most
+> > >>> of the code in the selftests tree seems to be a random mismash of scripts
+> > >>> and userspace code so it's not hard to see it as something completely
+> > >>> different from the new Kunit:
+> > >>>
+> > >>> $ git grep --files-with-matches kselftest_harness.h *
+> > >>
+> > >> To the extent that we can unify how tests are written, I agree that
+> > >> this would be a good thing.  However, you should note that
+> > >> kselftest_harness.h is currently assums that it will be included in
+> > >> userspace programs.  This is most obviously seen if you look closely
+> > >> at the functions defined in the header files which makes calls to
+> > >> fork(), abort() and fprintf().
+> > >
+> > > Ah, yes. I obviously did not dig deep enough. Using kunit for
+> > > in-kernel tests and kselftest_harness for userspace tests seems like
+> > > a sensible line to draw to me. Trying to unify kernel and userspace
+> > > here sounds like it could be difficult so it's probably not worth
+> > > forcing the issue unless someone wants to do some really fancy work
+> > > to get it done.
+> > >
+> > > Based on some of the other commenters, I was under the impression
+> > > that kselftests had in-kernel tests but I'm not sure where or if they
+> > > exist.
+> >
+> > YES, kselftest has in-kernel tests.  (Excuse the shouting...)
+> >
+> > Here is a likely list of them in the kernel source tree:
+> >
+> > $ grep module_init lib/test_*.c
+> > lib/test_bitfield.c:module_init(test_bitfields)
+> > lib/test_bitmap.c:module_init(test_bitmap_init);
+> > lib/test_bpf.c:module_init(test_bpf_init);
+> > lib/test_debug_virtual.c:module_init(test_debug_virtual_init);
+> > lib/test_firmware.c:module_init(test_firmware_init);
+> > lib/test_hash.c:module_init(test_hash_init);  /* Does everything */
+> > lib/test_hexdump.c:module_init(test_hexdump_init);
+> > lib/test_ida.c:module_init(ida_checks);
+> > lib/test_kasan.c:module_init(kmalloc_tests_init);
+> > lib/test_list_sort.c:module_init(list_sort_test);
+> > lib/test_memcat_p.c:module_init(test_memcat_p_init);
+> > lib/test_module.c:static int __init test_module_init(void)
+> > lib/test_module.c:module_init(test_module_init);
+> > lib/test_objagg.c:module_init(test_objagg_init);
+> > lib/test_overflow.c:static int __init test_module_init(void)
+> > lib/test_overflow.c:module_init(test_module_init);
+> > lib/test_parman.c:module_init(test_parman_init);
+> > lib/test_printf.c:module_init(test_printf_init);
+> > lib/test_rhashtable.c:module_init(test_rht_init);
+> > lib/test_siphash.c:module_init(siphash_test_init);
+> > lib/test_sort.c:module_init(test_sort_init);
+> > lib/test_stackinit.c:module_init(test_stackinit_init);
+> > lib/test_static_key_base.c:module_init(test_static_key_base_init);
+> > lib/test_static_keys.c:module_init(test_static_key_init);
+> > lib/test_string.c:module_init(string_selftest_init);
+> > lib/test_ubsan.c:module_init(test_ubsan_init);
+> > lib/test_user_copy.c:module_init(test_user_copy_init);
+> > lib/test_uuid.c:module_init(test_uuid_init);
+> > lib/test_vmalloc.c:module_init(vmalloc_test_init)
+> > lib/test_xarray.c:module_init(xarray_checks);
+> >
+> >
+> > > If they do exists, it seems like it would make sense to
+> > > convert those to kunit and have Kunit tests run-able in a VM or
+> > > baremetal instance.
+> >
+> > They already run in a VM.
+> >
+> > They already run on bare metal.
+> >
+> > They already run in UML.
+> >
+> > This is not to say that KUnit does not make sense.  But I'm still trying
+> > to get a better description of the KUnit features (and there are
+> > some).
+>
+> FYI, I have a master student who looks at converting some of these to KTF, such as for
+> instance the XArray tests, which lended themselves quite good to a semi-automated
+> conversion.
+>
+> The result is also a somewhat more compact code as well as the flexibility
+> provided by the Googletest executor and the KTF frameworks, such as running selected
+> tests, output formatting, debugging features etc.
 
-Hi Thierry,
-
-Please let me know if you have some more comments on this series. It's
-been under review since quite some time now.
-
-Thanks in advance,
-Best Regards,
-Fabrice
-
-> ---
-> resend v5:
-> - update collected acks
-> 
-> Changes in v5:
-> - improve a warning message, fix a style issue.
-> 
-> Changes in v4:
-> - improve error handling when adding the PWM consumer device link.
-> 
-> Changes in v3:
-> - Move the device_link_add() call to of_pwm_get() as discussed with Uwe.
-> 
-> Changes in v2:
-> - Don't disable PWM channel in PWM provider: rather refuse to suspend
->   and report an error as suggested by Uwe and Thierry.
-> - Add patch 3/3 to propose device link addition.
-> - No updates for STM32 LP Timer IIO driver. Patches can be send separately.
-> 
-> Fabrice Gasnier (3):
->   dt-bindings: pwm-stm32-lp: document pinctrl sleep state
->   pwm: stm32-lp: Add power management support
->   pwm: core: add consumer device link
-> 
->  .../devicetree/bindings/pwm/pwm-stm32-lp.txt       |  9 ++--
->  drivers/pwm/core.c                                 | 50 ++++++++++++++++++++--
->  drivers/pwm/pwm-stm32-lp.c                         | 25 +++++++++++
->  include/linux/pwm.h                                |  6 ++-
->  4 files changed, 82 insertions(+), 8 deletions(-)
-> 
+So is KTF already in upstream? Or is the plan to unify the KTF and
+Kunit in-kernel test harnesses? Because there's tons of these
+in-kernel unit tests already, and every merge we get more (Frank's
+list didn't even look into drivers or anywhere else, e.g. it's missing
+the locking self tests I worked on in the past), and a more structured
+approach would really be good.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
