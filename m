@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 579741A84A
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 17:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2921A853
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 17:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728626AbfEKPqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 11:46:55 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:44936 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728604AbfEKPqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 11:46:55 -0400
-Received: by mail-wr1-f67.google.com with SMTP id c5so10766758wrs.11
-        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 08:46:54 -0700 (PDT)
+        id S1728658AbfEKPwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 11:52:55 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:37056 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728618AbfEKPwz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 11:52:55 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 7so4001660wmo.2
+        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 08:52:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=message-id:subject:from:to:cc:date:in-reply-to:references
          :user-agent:mime-version:content-transfer-encoding;
-        bh=9EyAvll/ATAIGdWTAfOnNvm6AJWZDwOSY5TYnJ4aLu4=;
-        b=W8NR9LnIM746OC6UAr+I4/mwaTFWbv/cXM9gmgPM3KoD0ltprY3CktFRo2rAiOPbfr
-         4VhYGiIKa+rfIYOCCPIx4IMHeveJirtAo3Ya+zx7+TstMMo14LBljvp7nPdgFK5M1Dyp
-         wyGi0Mft856R9ZsfcbaAH+AnJr6G6SzFMSCtQ3FtYpRO8Ucn56f2eiZTa+32s0+Luat2
-         WObr+TQMnPFKjqYEK6SUC1Gtw47yjmdPe70Rz8jDksZKduyeield1foYZhD+qWaeewTb
-         lZEVwyr8ulZWRoKyFgqd6DdaueObW7u5l/7YBjzndbwKzWQzW4AQ5ODiRidBxSk/pFBI
-         y5zw==
+        bh=wPE7oz9+/ykS8zKoedHqVltx9asTMcwNqU/NkoJcdcY=;
+        b=s0FzKNSdOBwo0GMStdjIpty4uA5mj8FO72cIPIiYgPgYd35EBRX9ZiG8D0YFnvU2+t
+         VYwKiZ1P/isFku880QbFIILYQg3OhxyqzDJdkmfWwJRUDidN4S9lzNq8KB4rICYtC4I4
+         S2Q3K/YunQWelvK80PpWUzRAXPoJpO4nn7wFr8BYPQXuIHi469BOXYyjSuWJZxRTPHx3
+         eNagyGJCnyOkUKPvtBSHVXNACZg4o05CBhoNRxq9gh+4Ql99zjGV222YVyfVJ+9dRgoD
+         cWuf4cdIxX9M/3BZ0fbVsS1I4pmOVkmVl8j66d12AogWNnCpJjJFiU3K1pNRYATgECZX
+         Ll7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
          :references:user-agent:mime-version:content-transfer-encoding;
-        bh=9EyAvll/ATAIGdWTAfOnNvm6AJWZDwOSY5TYnJ4aLu4=;
-        b=DIV6PPTZBYtXKI6vVhwZeS0koR3bRU0UKVOs1XvWK737rKL/oDLUk8aQHhX3yOcSA+
-         BwNY210FjDxtiy9LHaFOypDJ8u4tbHaxq6DkZSS6Z+DinCcdNseo48aVXE77ZQeAK5/m
-         +kJDFecOoa2dn6pCXgECuDUgFtmvswYzf6iiYWj21pZLwK7mOIJr52O5pcH/M7XN81Ya
-         +920ROm0OdiNoAjKtaEmq0kpNRzfls9woxMMG0jxJSaZQEdN+ubCvwhPF5kdUahKUbW8
-         00+HztqGlOL+D6+QmSNzsmVi0ILFhkYOnHbNuo2N1TxRIroHC5U5BPcYrnTE/f1tpA7T
-         VFig==
-X-Gm-Message-State: APjAAAWwzCXj9NZNz/r63C3+2tTSo/GQ5z94YLqsNt25rmK/q2oW6Mb8
-        wHQmcF9o+7TqgP11kP0PQZ2gAjgbmO4=
-X-Google-Smtp-Source: APXvYqxB8d87irChUP/Gna5KPAG1k70rARyG7XAXhFYcz1xreLZlylj5y6uj22gjPVvPo3HoulXyHA==
-X-Received: by 2002:a5d:50c7:: with SMTP id f7mr11637247wrt.95.1557589613287;
-        Sat, 11 May 2019 08:46:53 -0700 (PDT)
+        bh=wPE7oz9+/ykS8zKoedHqVltx9asTMcwNqU/NkoJcdcY=;
+        b=j8ak0jgz7XDfhixuum0l53TL81yCnr6CICr8Rta8vSnTCUGO0uSg3GXvetYujHcW/J
+         Aisa7pbuq5zXNb/QMOYdNHey5jz0caaYdZUh5igOkAipTNn3HtybOs+5yeShVF3Mk/1t
+         ItdMCOdQgG38lNaPuECWi2ic/Fq5Qz3HcxdcZjkdeOCuJT68H+sZfDs78UqBvM2K/d2z
+         uSUdlG54vWd1nyA/Lq3xh6CoilrUvBoBSRBPrStzWj+hZ9Lxz8FUWIv7M2cL+MO0J3/o
+         MFeD22IFac1QWxhESBCk5ezf1UhcYiV1e+PyWjQ7mXZWl/QFGHjO7HgLI3yQ7Q7cJFdI
+         OIOA==
+X-Gm-Message-State: APjAAAXE5VNfNrZVMLFXkuBiyMyxu7YmGXwfVeHA8XzFTQWfoqah6VS0
+        K0XzSTMTc1LSGzZ5NTGNtEx3lg==
+X-Google-Smtp-Source: APXvYqxNW8CXjnTFV/v4WjIAb7jakTDUy3oFkP7JkALz95R+UIhsGTf/3/M7lS479C8OkF5mMMCpsg==
+X-Received: by 2002:a1c:a013:: with SMTP id j19mr6207172wme.59.1557589973884;
+        Sat, 11 May 2019 08:52:53 -0700 (PDT)
 Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.gmail.com with ESMTPSA id y6sm11486952wrw.60.2019.05.11.08.46.49
+        by smtp.gmail.com with ESMTPSA id m17sm7174332wmc.6.2019.05.11.08.52.52
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sat, 11 May 2019 08:46:52 -0700 (PDT)
-Message-ID: <bf1360ab62a4e7bd3928052ebb6c969e8059f29e.camel@baylibre.com>
-Subject: Re: [PATCH 5/5] arm64: dts: meson: sei510: add network support
+        Sat, 11 May 2019 08:52:53 -0700 (PDT)
+Message-ID: <3bad9dc8c53e50c4aea1212bf949215660259412.camel@baylibre.com>
+Subject: Re: [PATCH 1/2] arm64: dts: meson: sei510: consistently order nodes
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>
 Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Date:   Sat, 11 May 2019 17:46:45 +0200
-In-Reply-To: <7ho94ac4jn.fsf@baylibre.com>
-References: <20190510164940.13496-1-jbrunet@baylibre.com>
-         <20190510164940.13496-6-jbrunet@baylibre.com> <7ho94ac4jn.fsf@baylibre.com>
+Date:   Sat, 11 May 2019 17:52:50 +0200
+In-Reply-To: <7h4l62dlyh.fsf@baylibre.com>
+References: <20190510155327.5759-1-jbrunet@baylibre.com>
+         <20190510155327.5759-2-jbrunet@baylibre.com> <7h4l62dlyh.fsf@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
@@ -63,48 +63,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-05-10 at 15:45 -0700, Kevin Hilman wrote:
-> Jerome Brunet <jbrunet@baylibre.com> writes:
+On Fri, 2019-05-10 at 14:43 -0700, Kevin Hilman wrote:
+> minor nit: I kind of like "aliases" and "chosen" at the top since they
+> are kind of special nodes, but honestly, I can't think of a really good
+> reason other than personal preference, so keeping things sorted as
+> you've done here is probably better.
 > 
-> > Enable the network interface of the SEI510 which use the internal PHY.
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> I tried testing this series on SEI510, but I must still be missing some
-> defconfig options, as the default defconfig doesn't lead to a working
-> interface.
 
-That's weird. AFAICT, the net part has hit Linus's tree.
-You should have everything needed by default, the mdio mux has
+You thought the same, then thought maybe memory was important too. But going
+down that path, you end up sorting by feeling. It is going to be difficult
+to all agree on which nodes are special.
 
-> default m if ARCH_MESON
+In the end, we just want/need something that is easy to respect and verify.
 
-> 
-> 
-> I tried adding this kconfig fragment[1], and the dwmac probes/inits but
-> I must still be missing something, as the dwmac is still failing to find
-> a PHY.  Boot log: https://termbin.com/ivf3
-> 
-> I have the same result testing on the u200.
-
-I don't any other patch pending for the network of the g12a.
-Maybe I've done something wrong while rebasing. I'll check on monday.
-
-> 
 > Kevin
-> 
-> [1] amlogic network kconfig fragment
-> CONFIG_STMMAC_ETH=y
-> 
-> # following are needed, but automatically enabled if above is set
-> #CONFIG_STMMAC_PLATFORM=m
-> #CONFIG_DWMAC_MESON=m
-> 
-> CONFIG_PHYLIB=y
-> CONFIG_MICREL_PHY=y
-> CONFIG_REALTEK_PHY=y
-> 
-> CONFIG_MDIO_BUS_MUX_MESON_G12A=y
-> CONFIG_MESON_GXL_PHY=y
 
 
