@@ -2,289 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E8BA81A6E3
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 08:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D3A1A706
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 08:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728251AbfEKGq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 02:46:28 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:34762 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726849AbfEKGq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 02:46:27 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x4B6g6Uq025673;
-        Sat, 11 May 2019 06:43:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=message-id : subject
- : from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=corp-2018-07-02;
- bh=1QK6W6CC3+ccPxrSKF4xwoDQTey+3Zw3yM7Vill3vMM=;
- b=QQHgm/GpaI2EpKx/jn7Af9br5xSVhUWmBFJd3PkW2bcaGv976ySRePWf8kwN53fDx/wU
- MuQR2dOJUUaxxCw3FeCPwqR7e7SbRaCd+mhoOK/dcK8UbTgKem6mBoNtjwARrxZ3cERN
- qRaeWsGwNlQZtsPQZOJl+mjJYvR5wZYPEdHRf3i+GtOFdr256BsLlD4JITMTzt+eJeMK
- 8SWLoBGotUshwFCeu4xcqOc/tVajjJdK/iQzvJZ2GrHjmK0X0F6NKFClch59CdxuaLHa
- eKAWdh42ASUprSfj5Sny1WLuuq8xHB+WSyqJCZKauAUUKn1XACJUOXhYhExQJX47kQ6o 5Q== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by userp2130.oracle.com with ESMTP id 2sdntt8ab3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Sat, 11 May 2019 06:43:48 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x4B6g536022877;
-        Sat, 11 May 2019 06:43:47 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by userp3030.oracle.com with ESMTP id 2sdkgsucd1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Sat, 11 May 2019 06:43:47 +0000
-Received: from abhmp0017.oracle.com (abhmp0017.oracle.com [141.146.116.23])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x4B6hXIn027461;
-        Sat, 11 May 2019 06:43:34 GMT
-Received: from asu (/92.220.18.196)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Fri, 10 May 2019 23:43:33 -0700
-Message-ID: <a3362d96a6d95d852753739384ded814f5269aac.camel@oracle.com>
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-From:   Knut Omang <knut.omang@oracle.com>
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Logan Gunthorpe <logang@deltatee.com>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "Luis R. Rodriguez" <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Shuah Khan <shuah@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Jeff Dike <jdike@addtoit.com>, Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Date:   Sat, 11 May 2019 08:43:23 +0200
-In-Reply-To: <8abaf5f2-dd33-98d0-7b34-b57de7fe7c8b@gmail.com>
-References: <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
-         <20190509015856.GB7031@mit.edu>
-         <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
-         <20190509032017.GA29703@mit.edu>
-         <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
-         <20190509133551.GD29703@mit.edu>
-         <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
-         <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
-         <20190509214233.GA20877@mit.edu>
-         <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com>
-         <20190509233043.GC20877@mit.edu>
-         <8914afef-1e66-e6e3-f891-5855768d3018@deltatee.com>
-         <6d6e91ec-33d3-830b-4895-4d7a20ba7d45@gmail.com>
-         <a1b88d5add15d43de0468c32d9a2427629337abb.camel@oracle.com>
-         <CAKMK7uFd1xUx8u3xWLwifVSq4OEnMO4S-m0hESe68UzONXnMFg@mail.gmail.com>
-         <CAFd5g47Fvafwgh15JNfxSBRf5qqG2z+V+XGAB2cJtNnHFTiFfQ@mail.gmail.com>
-         <8abaf5f2-dd33-98d0-7b34-b57de7fe7c8b@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S1728325AbfEKG4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 02:56:52 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:56455 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726502AbfEKG4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 May 2019 02:56:52 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 9573F2382F56;
+        Sat, 11 May 2019 08:56:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1557557809;
+        bh=LXo5UyeGN5Z5r+VKJ/g7HhUyQ09/a3Dzwm/SPTHXc3A=; l=4295;
+        h=Subject:To:From;
+        b=E0nugSGhBfRWlk3mUShtctpKn23bvXnhsouqpgqQxvPBozuda2r73945CC+L/sMd8
+         9HAkf+UMFAo5uNtF4Gc8iqOawNDvpmfGML5jh8ntN09+M11cj6qFpU+24Enc3Itg/G
+         Hfrimo7Sx+vua8EnZ/1Lg1GQp0w4gus9W6vgsXXY=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190505200022.32209-1-oss@c-mauderer.de>
+ <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
+ <20190506162848.GA9522@amd>
+ <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
+ <54199d69-67a9-eb9d-e46d-b3ea43e2e7a3@c-mauderer.de>
+ <20190506202511.GA4979@amd>
+ <faba9d62-c650-5be8-a9c2-645be10dab6d@c-mauderer.de>
+ <c10de8fe-5955-da5f-d197-cda9a0d5452f@c-mauderer.de>
+ <ccddfde6-e60c-605c-beb4-9b89e8b81be9@gmail.com>
+From:   Christian Mauderer <oss@c-mauderer.de>
+Message-ID: <82b27718-3a58-6692-02e4-41b45c16b81e@c-mauderer.de>
+Date:   Sat, 11 May 2019 08:56:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9253 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1810050000 definitions=main-1905110045
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9253 signatures=668686
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
- definitions=main-1905110045
+In-Reply-To: <ccddfde6-e60c-605c-beb4-9b89e8b81be9@gmail.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <155755780891.63617.8443829080711161377@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-05-10 at 14:59 -0700, Frank Rowand wrote:
-> On 5/10/19 3:23 AM, Brendan Higgins wrote:
-> >> On Fri, May 10, 2019 at 7:49 AM Knut Omang <knut.omang@oracle.com> wrote:
-> >>>
-> >>> On Thu, 2019-05-09 at 22:18 -0700, Frank Rowand wrote:
-> >>>> On 5/9/19 4:40 PM, Logan Gunthorpe wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 2019-05-09 5:30 p.m., Theodore Ts'o wrote:
-> >>>>>> On Thu, May 09, 2019 at 04:20:05PM -0600, Logan Gunthorpe wrote:
-> >>>>>>>
-> >>>>>>> The second item, arguably, does have significant overlap with kselftest.
-> >>>>>>> Whether you are running short tests in a light weight UML environment or
-> >>>>>>> higher level tests in an heavier VM the two could be using the same
-> >>>>>>> framework for writing or defining in-kernel tests. It *may* also be valuable
-> >>>>>>> for some people to be able to run all the UML tests in the heavy VM
-> >>>>>>> environment along side other higher level tests.
-> >>>>>>>
-> >>>>>>> Looking at the selftests tree in the repo, we already have similar items to
-> >>>>>>> what Kunit is adding as I described in point (2) above. kselftest_harness.h
-> >>>>>>> contains macros like EXPECT_* and ASSERT_* with very similar intentions to
-> >>>>>>> the new KUNIT_EXECPT_* and KUNIT_ASSERT_* macros.
-> >>>>>>>
-> >>>>>>> However, the number of users of this harness appears to be quite small. Most
-> >>>>>>> of the code in the selftests tree seems to be a random mismash of scripts
-> >>>>>>> and userspace code so it's not hard to see it as something completely
-> >>>>>>> different from the new Kunit:
-> >>>>>>>
-> >>>>>>> $ git grep --files-with-matches kselftest_harness.h *
-> >>>>>>
-> >>>>>> To the extent that we can unify how tests are written, I agree that
-> >>>>>> this would be a good thing.  However, you should note that
-> >>>>>> kselftest_harness.h is currently assums that it will be included in
-> >>>>>> userspace programs.  This is most obviously seen if you look closely
-> >>>>>> at the functions defined in the header files which makes calls to
-> >>>>>> fork(), abort() and fprintf().
-> >>>>>
-> >>>>> Ah, yes. I obviously did not dig deep enough. Using kunit for
-> >>>>> in-kernel tests and kselftest_harness for userspace tests seems like
-> >>>>> a sensible line to draw to me. Trying to unify kernel and userspace
-> >>>>> here sounds like it could be difficult so it's probably not worth
-> >>>>> forcing the issue unless someone wants to do some really fancy work
-> >>>>> to get it done.
-> >>>>>
-> >>>>> Based on some of the other commenters, I was under the impression
-> >>>>> that kselftests had in-kernel tests but I'm not sure where or if they
-> >>>>> exist.
-> >>>>
-> >>>> YES, kselftest has in-kernel tests.  (Excuse the shouting...)
-> >>>>
-> >>>> Here is a likely list of them in the kernel source tree:
-> >>>>
-> >>>> $ grep module_init lib/test_*.c
-> >>>> lib/test_bitfield.c:module_init(test_bitfields)
-> >>>> lib/test_bitmap.c:module_init(test_bitmap_init);
-> >>>> lib/test_bpf.c:module_init(test_bpf_init);
-> >>>> lib/test_debug_virtual.c:module_init(test_debug_virtual_init);
-> >>>> lib/test_firmware.c:module_init(test_firmware_init);
-> >>>> lib/test_hash.c:module_init(test_hash_init);  /* Does everything */
-> >>>> lib/test_hexdump.c:module_init(test_hexdump_init);
-> >>>> lib/test_ida.c:module_init(ida_checks);
-> >>>> lib/test_kasan.c:module_init(kmalloc_tests_init);
-> >>>> lib/test_list_sort.c:module_init(list_sort_test);
-> >>>> lib/test_memcat_p.c:module_init(test_memcat_p_init);
-> >>>> lib/test_module.c:static int __init test_module_init(void)
-> >>>> lib/test_module.c:module_init(test_module_init);
-> >>>> lib/test_objagg.c:module_init(test_objagg_init);
-> >>>> lib/test_overflow.c:static int __init test_module_init(void)
-> >>>> lib/test_overflow.c:module_init(test_module_init);
-> >>>> lib/test_parman.c:module_init(test_parman_init);
-> >>>> lib/test_printf.c:module_init(test_printf_init);
-> >>>> lib/test_rhashtable.c:module_init(test_rht_init);
-> >>>> lib/test_siphash.c:module_init(siphash_test_init);
-> >>>> lib/test_sort.c:module_init(test_sort_init);
-> >>>> lib/test_stackinit.c:module_init(test_stackinit_init);
-> >>>> lib/test_static_key_base.c:module_init(test_static_key_base_init);
-> >>>> lib/test_static_keys.c:module_init(test_static_key_init);
-> >>>> lib/test_string.c:module_init(string_selftest_init);
-> >>>> lib/test_ubsan.c:module_init(test_ubsan_init);
-> >>>> lib/test_user_copy.c:module_init(test_user_copy_init);
-> >>>> lib/test_uuid.c:module_init(test_uuid_init);
-> >>>> lib/test_vmalloc.c:module_init(vmalloc_test_init)
-> >>>> lib/test_xarray.c:module_init(xarray_checks);
-> >>>>
-> >>>>
-> >>>>> If they do exists, it seems like it would make sense to
-> >>>>> convert those to kunit and have Kunit tests run-able in a VM or
-> >>>>> baremetal instance.
-> >>>>
-> >>>> They already run in a VM.
-> >>>>
-> >>>> They already run on bare metal.
-> >>>>
-> >>>> They already run in UML.
-> >>>>
-> >>>> This is not to say that KUnit does not make sense.  But I'm still trying
-> >>>> to get a better description of the KUnit features (and there are
-> >>>> some).
-> >>>
-> >>> FYI, I have a master student who looks at converting some of these to KTF, such as
-> for
-> >>> instance the XArray tests, which lended themselves quite good to a semi-automated
-> >>> conversion.
-> >>>
-> >>> The result is also a somewhat more compact code as well as the flexibility
-> >>> provided by the Googletest executor and the KTF frameworks, such as running selected
-> >>> tests, output formatting, debugging features etc.
-> >>
-> >> So is KTF already in upstream? Or is the plan to unify the KTF and
-> > 
-> > I am not certain about KTF's upstream plans, but I assume that Knut
-> > would have CC'ed me on the thread if he had started working on it.
-> > 
-> >> Kunit in-kernel test harnesses? Because there's tons of these
-> > 
-> > No, no plan. Knut and I talked about this a good while ago and it
-> > seemed that we had pretty fundamentally different approaches both in
-> > terms of implementation and end goal. Combining them seemed pretty
-> > infeasible, at least from a technical perspective. Anyway, I am sure
-> > Knut would like to give him perspective on the matter and I don't want
-> > to say too much without first giving him a chance to chime in on the
-> > matter.
-> > 
-> > Nevertheless, I hope you don't see resolving this as a condition for
-> > accepting this patchset. I had several rounds of RFC on KUnit, and no
-> > one had previously brought this up.
+Hello Jacek,
+
+On 10/05/2019 22:42, Jacek Anaszewski wrote:
+> Hi Christian,
 > 
-> I seem to recall a request in reply to the KUnit RFC email threads to
-> work together.
-
-You recall right.
-I wanted us to work together to refine a common approach.
-I still think that's possible.
-
-> However whether that impacts acceptance of this patch set is up to
-> the maintainer and how she wants to resolve the potential collision
-> of KUnit and KTF (if there is indeed any sort of collision).
-
-I believe there's overlap and potential for unification and code sharing.
-My concern is to make sure that that can happen without disrupting too 
-many test users. I'd really like to get some more time to explore that.
-
-It strikes me that the main difference in the two approaches 
-lies in the way reporting is done by default. Since KUnit handles all the
-reporting itself, while KTF relies on Googletest for that, a lot more code 
-in KUnit revolves around that part, while with KTF we have focused more on 
-features to enable writing powerful and effective tests.
-
-The reporting part can possibly be made configurable: Reporting with printk or reporting 
-via netlink to user space. In fact, as a KTF debugging option KTF already 
-supports printk reporting which can be enabled via sysfs.
-
-If macros can have the same syntax, then there's 
-likely features in KTF that KUnit users would benefit from too. 
-But this of course have to be tried out.
-
-Knut
-
-> >> in-kernel unit tests already, and every merge we get more (Frank's
-> >> list didn't even look into drivers or anywhere else, e.g. it's missing
-> >> the locking self tests I worked on in the past), and a more structured
-> >> approach would really be good.
-> > 
-> > Well, that's what I am trying to do. I hope you like it!
-> > 
-> > Cheers!
-> > .
-> > 
+> On 5/10/19 9:50 PM, Christian Mauderer wrote:
+>> On 07/05/2019 11:52, Christian Mauderer wrote:
+>>> On 06/05/2019 22:25, Pavel Machek wrote:
+>>>> Hi!
+>>>>
+>>>>>>> Ok, I'm afraid I caused this. What should the compatible be, then?
+>>>>>>
+>>>>>> Knowing nothing about the h/w other than the above description:
+>>>>>> ubiquiti,aircube-leds
+>>>>>>
+>>>>>> Not sure if that's a registered or correct vendor prefix though.
+>>>>>>
+>>>>>> Rob
+>>>>>>
+>>>>>
+>>>>> Where would such a vendor prefix be registered? Does that mean that
+>>>>> only
+>>>>> the vendor is allowed to use it? In that case: How would a reverse
+>>>>> engineered prefix look like?
+>>>>
+>>>> You can use it, too. It is in
+>>>> Documentation/devicetree/bindings/vendor-prefixes.txt :
+>>>>
+>>>> ubnt    Ubiquiti Networks
+>>>>
+>>>> So you can probably use ubnt, prefix.
+>>>>
+>>>>> (still with some missing parts like U-Boot) about two weeks later.
+>>>>> I had
+>>>>> a look at it and they are not using a device tree. So there is no
+>>>>> "official" string that I could deduce from that archive.
+>>>>
+>>>> Mainline is the master. You are more "official" than them ;-).
+>>>>                                     Pavel
+>>>>
+>>>
+>>> Hello
+>>>
+>>> let me summarize the direction before I create a v4:
+>>>
+>>> Rob Herring suggested "ubnt,acb-spi-led" for the binding name in his
+>>> Mail from 06.05.2019 17:59 UTC. If no one objects, I'll use that.
+>>>
+>>> With the more specific name I'll remove the off-value and max-value from
+>>> the device tree. Instead I'll create some look up table in the driver.
+>>> based on the name or go back to the defines like in the v1 patch. What
+>>> kind of solution would be preferable depends on the next question:
+>>>
+>>> How should I name the driver? Should I use a device specific name like
+>>> in v1 again (most likely now acb-spi-led)? That would allow to
+>>> potentially add a hardware supported blinking in that driver. The
+>>> alternative would be the more generic name that it has now
+>>> (leds-spi-byte) without any plans to add the blinking but it could be
+>>> potentially used for example for a digital potentiometer based
+>>> brightness setting.
+>>>
+>>> Note that I didn't really had planned to implement the blinking support
+>>> because I don't have a use case for it. So it would be either a feature
+>>> that I would add because someone insists. Or it could be added in the
+>>> future by a user who wants that feature (maybe Ubiquiti when they
+>>> upgrade their kernel?).
+>>>
+>>> If it is a required feature for that driver: Please note that although
+>>> of course I would do some basic tests during development it would be a
+>>> mostly unused and therefore untested feature.
+>>>
+>>> Best regards
+>>>
+>>> Christian
+>>>
+>>
+>> Hello,
+>>
+>> sorry for repeating my question. I assume I wrote to much text hiding
+>> it: How should I name the driver?
+>>
+>> The name for the binding is clear (ubnt,acb-spi-led). Only the driver is
+>> left (keep leds-spi-byte or rename to leds-ubnt-acb-spi or something
+>> else).
 > 
+> Why leds-spi-byte name would prevent addition of blink support? It can
+> be always added basing on OF compatible. If it is to be generic SPI
+> byte driver, then I'd use leds-spi-byte. Actually also the things
+> like allowed brightness levels could be determined basing on that,
+> and not in device tree, but in the driver.
+> 
+> Please compare how e.g. drivers/leds/leds-is31fl32xx.c accomplishes
+> that.
+> 
+
+I would have expected that adding a lot of device specific code (in that
+case blinking) to a multi-purpose driver would be bad style. But I'll go
+for the generic name if that is the accepted way. I already mentioned
+multiple times that my target is currently only the brightness. So the
+device specific code maybe is added quite a bit in the future anyway in
+which case it would still be possible to rename a part (if it isn't used
+otherwise) or at least split it into it's own c-file.
+
+I'll prepare a v4 in the near future and send it to the list. I only
+learned that it would be a good idea to wait for at least a day for some
+other opinions before doing that ;-)
+
+Best regards
+
+Christian
 
