@@ -2,98 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB4E1A8CD
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76B681A8E1
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726221AbfEKRfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 13:35:45 -0400
-Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:50198 "EHLO
-        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725879AbfEKRfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 13:35:45 -0400
-Received: from callcc.thunk.org (rrcs-67-53-55-100.west.biz.rr.com [67.53.55.100])
-        (authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x4BHXkiw001051
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 11 May 2019 13:33:50 -0400
-Received: by callcc.thunk.org (Postfix, from userid 15806)
-        id DFD64420024; Sat, 11 May 2019 13:33:44 -0400 (EDT)
-Date:   Sat, 11 May 2019 13:33:44 -0400
-From:   "Theodore Ts'o" <tytso@mit.edu>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Tim.Bird@sony.com, knut.omang@oracle.com,
-        gregkh@linuxfoundation.org, brendanhiggins@google.com,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190511173344.GA8507@mit.edu>
-Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
-        knut.omang@oracle.com, gregkh@linuxfoundation.org,
-        brendanhiggins@google.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
-        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        logang@deltatee.com, mpe@ellerman.id.au, pmladek@suse.com,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-References: <a09a7e0e-9894-8c1a-34eb-fc482b1759d0@gmail.com>
- <20190509015856.GB7031@mit.edu>
- <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
- <20190509032017.GA29703@mit.edu>
- <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
- <20190509133551.GD29703@mit.edu>
- <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
- <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
- <20190509214233.GA20877@mit.edu>
- <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com>
+        id S1725903AbfEKRps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 13:45:48 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:36853 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725895AbfEKRps (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 13:45:48 -0400
+Received: by mail-wm1-f67.google.com with SMTP id j187so10164111wmj.1
+        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 10:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=92ZA36IfdaOtsZw80t2M4+MXEzMldpioQlWAUTdSiyM=;
+        b=GNZ67HorQfYfzNJYPsTQiKiEZ1u9f9aUoZ/E1qQniEFWPFzxEhxkB6iTFfKGLmCiNV
+         9wViPgp4PdVYAeU7i5PBjtHyBLZ1Qas6ehl9CBX7rmqCWHbwdRg88AK9ej6MlF2NH7Jr
+         FTrgMkhTdZUsvtmgGToQXOQh3i/VFjtjMM7SMUFQk+LO8naQb2HJx46EPKteI/Ksk3U6
+         M+0gr59EHZTEqmqajUq3dF+JLvcdmH5f2eN8YZ+cVX3mz7xvo9u4XvB1aM+CFjoSPRnQ
+         iKZ/zjq6j9vzEVscp7nT6rilo4X4L2g7oCVPrajeaP4ZIPpsW9MoBYclI5vndvwtFWj4
+         lF0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=92ZA36IfdaOtsZw80t2M4+MXEzMldpioQlWAUTdSiyM=;
+        b=c3GhJIo3QZ1UWelncC/GcOW58zdFtGyYNg6yZ8oAkwWRAsS2uxwEDyFVqiA3mjNsN1
+         Gm5c44QNUccwAh5toLUPw7dqHjiHK9cXWc3+kpfvL6rT5IDJcNoTiXyLC0npQw1OlOzv
+         /HIGIXkEMHzGXubRMO8IMu85xsxKiO2q1gaarJ66YHWq/dfd8Nzsr4aKHcwo/Vkl5eXp
+         o+LT+hdKL/3Q6ONyhCClwwNkLfOD4Dab8kE/8++oR3aABAzGhcy3HVZJiPZWCA9qg1fz
+         eK/9gIq4mqTDIuJbQ7qcLNDo2Iu4dHTyP1apu7P9EZyILOF94v4MZwW14Cp/iY9Zgi81
+         nZxA==
+X-Gm-Message-State: APjAAAXxsZTOkaF3jc82yvFw8b6rnWCrHsA0qwZnAzr72FYz3kvLTDgD
+        6BIx9foNMUyR9b7MYzZaTcI=
+X-Google-Smtp-Source: APXvYqyBv+xZzZ9rpWv+EUHwPoSsPYeaBjz1deSYDtLsTCx/vqUrbrwe8U8OOTlcrUM78XGzTpDYMw==
+X-Received: by 2002:a05:600c:2248:: with SMTP id a8mr11140164wmm.75.1557596746018;
+        Sat, 11 May 2019 10:45:46 -0700 (PDT)
+Received: from blackbox.darklights.net (p200300F133C8AD0059E186517133DF77.dip0.t-ipconnect.de. [2003:f1:33c8:ad00:59e1:8651:7133:df77])
+        by smtp.googlemail.com with ESMTPSA id h188sm10309538wmf.48.2019.05.11.10.45.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 11 May 2019 10:45:45 -0700 (PDT)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     khilman@baylibre.com, linux-amlogic@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        jbrunet@baylibre.com,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH] arm64: dts: amlogic: remove ethernet-phy-idAAAA.BBBB compatible strings
+Date:   Sat, 11 May 2019 19:45:34 +0200
+Message-Id: <20190511174534.2403-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 10, 2019 at 02:12:40PM -0700, Frank Rowand wrote:
-> However, the reply is incorrect.  Kselftest in-kernel tests (which
-> is the context here) can be configured as built in instead of as
-> a module, and built in a UML kernel.  The UML kernel can boot,
-> running the in-kernel tests before UML attempts to invoke the
-> init process.
+The Ethernet PHY documentation
+(Documentation/devicetree/bindings/net/phy.txt) states that:
+  If the PHY reports an incorrect ID (or none at all) then the
+  "compatible" list may contain an entry with the correct PHY ID in the
+  form: "ethernet-phy-idAAAA.BBBB"
 
-Um, Citation needed?
+An older version of the documentation suggested that the compatible
+string can be used when the PHY ID is known.
 
-I don't see any evidence for this in the kselftest documentation, nor
-do I see any evidence of this in the kselftest Makefiles.
+Remove the ethernet-phy-id compatible string and add a comment with the
+PHY ID instead.
+This is a no-op on boards which are shipped with the PHY that was
+listed (= all known cases). However, if a board manufacturer decides to
+ship a different PHY we will now load and use the correct driver because
+we ask the PHY to identify itself.
 
-There exists test modules in the kernel that run before the init
-scripts run --- but that's not strictly speaking part of kselftests,
-and do not have any kind of infrastructure.  As noted, the
-kselftests_harness header file fundamentally assumes that you are
-running test code in userspace.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts  | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts   | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-				- Ted
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
+index 0c8e8305b1f3..767b1763a612 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
+@@ -81,7 +81,7 @@
+ 
+ &external_mdio {
+ 	external_phy: ethernet-phy@0 {
+-		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
++		/* Realtek RTL8211F (0x001cc916) */
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 		interrupt-parent = <&gpio_intc>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index 8acfd40090d2..a99c1ba3131c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -111,7 +111,7 @@
+ 
+ &external_mdio {
+ 	external_phy: ethernet-phy@0 {
+-		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
++		/* Realtek RTL8211F (0x001cc916) */
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
+index 73d656e4aade..8939c0fc5b62 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
+@@ -63,7 +63,7 @@
+ 
+ &external_mdio {
+ 	external_phy: ethernet-phy@0 {
+-		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
++		/* Realtek RTL8211F (0x001cc916) */
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 		interrupt-parent = <&gpio_intc>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index 7fa20a8ede17..acb4aaf9b956 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -113,7 +113,7 @@
+ 
+ &external_mdio {
+ 	external_phy: ethernet-phy@0 {
+-		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
++		/* Realtek RTL8211F (0x001cc916) */
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 	};
+-- 
+2.21.0
+
