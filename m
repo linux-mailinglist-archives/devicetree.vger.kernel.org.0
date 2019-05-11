@@ -2,197 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD4B1A741
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 11:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4671A791
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 12:31:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728427AbfEKJLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 05:11:37 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:38779 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728424AbfEKJLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 05:11:37 -0400
-Received: by mail-lj1-f196.google.com with SMTP id 14so7026493ljj.5;
-        Sat, 11 May 2019 02:11:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Bcd3U09lxVpjtPKMEHtfsohkvWYbDLt3u8qyneHgOVo=;
-        b=tjCx9VEsEUGEOAvlwxqkB8z4SvOjoqbR+lnsJkGabWmPIYCRvukNFVWD+lNmrr1Ofh
-         2kflmCedQRNkVgqIjOO30sEqp6v8GuzLHqCpPTVh+6DsND+kYd+KDhw10KR7WV2eqo6+
-         Nq1dn0NK8Mv0MkvEN/33G7OK1ymW4BDhR4V3HwaKdiQIo+pE4/vO5gdY4NQPd2lvW/5C
-         zF70lSm/vSmo1FnApwSEUT47JypeWsfRU4bdeqFR8qw50ug9pkYgcwLKgtcEDib7UMI+
-         0h8NC9EeFduDel/Yzt2pyQKJ8pOmnb9YQF0WUZO+AwfJ5jQ+wG+6FE6l4KNvlW5TB0sn
-         Xx8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Bcd3U09lxVpjtPKMEHtfsohkvWYbDLt3u8qyneHgOVo=;
-        b=Vvin7GZavMURTlwWL/hQ5Q+NF7nHnBthVQJcSRlScNigCdJ/nOpEkQjQupcCJ2qHdO
-         gVIB1YXRd75922exoy2gqMBj+BqeVgNSJuiPOUMTV9/xOsieIwasy+DLJJRid+hiLCjn
-         VCbBP7n0RDaXkfeZ9rprX0QmOrhas/0WgbMnH886Dsq3nGGhxccbipyoGCJxJWhCF0Om
-         ffTfZ60DSEVDtAyvP6+sItkf+AcrF6UMihCo+XM4C0TUtPI3/erougjILbpw1UxR39TD
-         dBtlUUCfLgXHUvMA3gqEgDY4R0F2HJ/3jyXCjobxU1jNjoEvxRcizSickvtwjNDjuhkW
-         t+vA==
-X-Gm-Message-State: APjAAAVSS94N2Sgf7jJduuKZziqSB2HisRQV76q+QZh2dAPkaBiFB4hA
-        Rwe+aLgaNDQh6ibPPSMr6ZY=
-X-Google-Smtp-Source: APXvYqy9tWHOKh/wuYYSBxOBq5+VTB6QCoEBPRLOVeXEdA8o/v22BmvpTrvmnTTDZQa57LQtDfUbxw==
-X-Received: by 2002:a2e:9546:: with SMTP id t6mr8264359ljh.51.1557565894489;
-        Sat, 11 May 2019 02:11:34 -0700 (PDT)
-Received: from [192.168.1.19] (bgp193.neoplus.adsl.tpnet.pl. [83.28.79.193])
-        by smtp.gmail.com with ESMTPSA id b7sm1171421ljb.93.2019.05.11.02.11.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 11 May 2019 02:11:33 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add binding for spi-byte LED.
-To:     Christian Mauderer <oss@c-mauderer.de>, Pavel Machek <pavel@ucw.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20190505200022.32209-1-oss@c-mauderer.de>
- <CAL_JsqKmKzSw2-mfmBbhpyY=Ku6H7cE2KZrgkcPD7kAS_GqbFw@mail.gmail.com>
- <20190506162848.GA9522@amd>
- <CAL_JsqJerwvjghnuiwndE9Kp_qX5ef-aSa5JcdUAoE6R6YYuYA@mail.gmail.com>
- <54199d69-67a9-eb9d-e46d-b3ea43e2e7a3@c-mauderer.de>
- <20190506202511.GA4979@amd>
- <faba9d62-c650-5be8-a9c2-645be10dab6d@c-mauderer.de>
- <c10de8fe-5955-da5f-d197-cda9a0d5452f@c-mauderer.de>
- <ccddfde6-e60c-605c-beb4-9b89e8b81be9@gmail.com>
- <82b27718-3a58-6692-02e4-41b45c16b81e@c-mauderer.de>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <6fd9c537-1d89-0c8e-d3a9-f0e1f2ae1fdd@gmail.com>
-Date:   Sat, 11 May 2019 11:11:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728503AbfEKKbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 06:31:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44406 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725894AbfEKKbT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 May 2019 06:31:19 -0400
+Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C0C502173B;
+        Sat, 11 May 2019 10:31:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557570678;
+        bh=6k8EPsGdL6g4eHOmeIRROVs2KhBL466o2hmEBk6TQ0g=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=FgW2Tba/g+vC7SOIiSP2fKKVLurxyF3UEwWrKpDfosHyZ/AcVF3p8y4yIGDQIfaSs
+         nfLsQSgPz6awxzjqmFZ07atrqFp0YE/UrPpNPu1QrBz50QZzxs+lLkA3A5rPlhZxac
+         QfDPBsV56gMpQZKxuQsO7+NcWyg+LmQK1aEzJ9qA=
+Date:   Sat, 11 May 2019 11:31:12 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Adam Michaelis <adam.michaelis@collins.com>
+Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
+        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        Couret Charles-Antoine <charles-antoine.couret@essensium.com>,
+        devicetree@vger.kernel.org,
+        Brandon Maier <brandon.maier@rockwellcollins.com>,
+        Clayton Shotwell <clayton.shotwell@rockwellcollins.com>,
+        "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
+Subject: Re: [PATCH v2 3/6] iio: ad7949: Support configuration read-back
+Message-ID: <20190511113112.2da6385d@archlinux>
+In-Reply-To: <CALMrGWV6rtYQShtm7uBQygtdOpPW30mLnKMxb2Jk8pY68B6yyw@mail.gmail.com>
+References: <1556813672-49861-1-git-send-email-adam.michaelis@rockwellcollins.com>
+        <1556813672-49861-3-git-send-email-adam.michaelis@rockwellcollins.com>
+        <20190505154227.1735b1b2@archlinux>
+        <CALMrGWV6rtYQShtm7uBQygtdOpPW30mLnKMxb2Jk8pY68B6yyw@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <82b27718-3a58-6692-02e4-41b45c16b81e@c-mauderer.de>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/11/19 8:56 AM, Christian Mauderer wrote:
-> Hello Jacek,
+On Tue, 7 May 2019 14:53:32 -0500
+Adam Michaelis <adam.michaelis@collins.com> wrote:
+
+> On Sun, May 5, 2019 at 9:42 AM Jonathan Cameron <jic23@kernel.org> wrote:
+> >
+> > On Thu,  2 May 2019 11:14:29 -0500
+> > Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
+> >  
+> > > Adds device tree parameter to set the configuration read-back bit
+> > > in the configuration register to tell the AD7949 to include the value of
+> > > the configuration register at the time the current sample was acquired
+> > > when reading from the part.
+> > >
+> > > Further work must be done to make read-back information available to
+> > > consumer.  
+> >
+> > This needs some explanation of why it is useful at all. I'm certainly unclear
+> > on why it would be useful to configure this at boot time.
+> >
+> > Code looks fine.
+> >
+> > Jonathan
+> >  
+> The configuration read-back feature is being maintained from the
+> original version of this driver. Before adding the device tree entry,
+> there was no way to change this setting other than debugfs raw access
+> to the SPI interface, and there is still no access to the returned
+> configuration data should the feature be enabled. I would be willing
+> to remove the feature altogether, but wanted to tread softly on
+> existing features.
+Ah. Makes sense.  My gut feeling is to drop it.
+
+Anyone at Analog have a view on this?
+
+Thanks,
+
+Jonathan
+
 > 
-> On 10/05/2019 22:42, Jacek Anaszewski wrote:
->> Hi Christian,
->>
->> On 5/10/19 9:50 PM, Christian Mauderer wrote:
->>> On 07/05/2019 11:52, Christian Mauderer wrote:
->>>> On 06/05/2019 22:25, Pavel Machek wrote:
->>>>> Hi!
->>>>>
->>>>>>>> Ok, I'm afraid I caused this. What should the compatible be, then?
->>>>>>>
->>>>>>> Knowing nothing about the h/w other than the above description:
->>>>>>> ubiquiti,aircube-leds
->>>>>>>
->>>>>>> Not sure if that's a registered or correct vendor prefix though.
->>>>>>>
->>>>>>> Rob
->>>>>>>
->>>>>>
->>>>>> Where would such a vendor prefix be registered? Does that mean that
->>>>>> only
->>>>>> the vendor is allowed to use it? In that case: How would a reverse
->>>>>> engineered prefix look like?
->>>>>
->>>>> You can use it, too. It is in
->>>>> Documentation/devicetree/bindings/vendor-prefixes.txt :
->>>>>
->>>>> ubnt    Ubiquiti Networks
->>>>>
->>>>> So you can probably use ubnt, prefix.
->>>>>
->>>>>> (still with some missing parts like U-Boot) about two weeks later.
->>>>>> I had
->>>>>> a look at it and they are not using a device tree. So there is no
->>>>>> "official" string that I could deduce from that archive.
->>>>>
->>>>> Mainline is the master. You are more "official" than them ;-).
->>>>>                                      Pavel
->>>>>
->>>>
->>>> Hello
->>>>
->>>> let me summarize the direction before I create a v4:
->>>>
->>>> Rob Herring suggested "ubnt,acb-spi-led" for the binding name in his
->>>> Mail from 06.05.2019 17:59 UTC. If no one objects, I'll use that.
->>>>
->>>> With the more specific name I'll remove the off-value and max-value from
->>>> the device tree. Instead I'll create some look up table in the driver.
->>>> based on the name or go back to the defines like in the v1 patch. What
->>>> kind of solution would be preferable depends on the next question:
->>>>
->>>> How should I name the driver? Should I use a device specific name like
->>>> in v1 again (most likely now acb-spi-led)? That would allow to
->>>> potentially add a hardware supported blinking in that driver. The
->>>> alternative would be the more generic name that it has now
->>>> (leds-spi-byte) without any plans to add the blinking but it could be
->>>> potentially used for example for a digital potentiometer based
->>>> brightness setting.
->>>>
->>>> Note that I didn't really had planned to implement the blinking support
->>>> because I don't have a use case for it. So it would be either a feature
->>>> that I would add because someone insists. Or it could be added in the
->>>> future by a user who wants that feature (maybe Ubiquiti when they
->>>> upgrade their kernel?).
->>>>
->>>> If it is a required feature for that driver: Please note that although
->>>> of course I would do some basic tests during development it would be a
->>>> mostly unused and therefore untested feature.
->>>>
->>>> Best regards
->>>>
->>>> Christian
->>>>
->>>
->>> Hello,
->>>
->>> sorry for repeating my question. I assume I wrote to much text hiding
->>> it: How should I name the driver?
->>>
->>> The name for the binding is clear (ubnt,acb-spi-led). Only the driver is
->>> left (keep leds-spi-byte or rename to leds-ubnt-acb-spi or something
->>> else).
->>
->> Why leds-spi-byte name would prevent addition of blink support? It can
->> be always added basing on OF compatible. If it is to be generic SPI
->> byte driver, then I'd use leds-spi-byte. Actually also the things
->> like allowed brightness levels could be determined basing on that,
->> and not in device tree, but in the driver.
->>
->> Please compare how e.g. drivers/leds/leds-is31fl32xx.c accomplishes
->> that.
->>
+> Adam
+> > >
+> > > Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+> > > ---
+> > >       V2: Add some defines to reduce use of magic numbers.
+> > > ---
+> > >  drivers/iio/adc/ad7949.c | 12 +++++++++++-
+> > >  1 file changed, 11 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> > > index afc1361af5fb..7820e1097787 100644
+> > > --- a/drivers/iio/adc/ad7949.c
+> > > +++ b/drivers/iio/adc/ad7949.c
+> > > @@ -69,6 +69,7 @@ struct ad7949_adc_spec {
+> > >   * @iio_dev: reference to iio structure
+> > >   * @spi: reference to spi structure
+> > >   * @ref_sel: selected reference voltage source
+> > > + * @cfg_readback: whether reads will include configuration data
+> > >   * @resolution: resolution of the chip
+> > >   * @cfg: copy of the configuration register
+> > >   * @current_channel: current channel in use
+> > > @@ -80,6 +81,7 @@ struct ad7949_adc_chip {
+> > >       struct iio_dev *indio_dev;
+> > >       struct spi_device *spi;
+> > >       enum ad7949_ref_sel ref_sel;
+> > > +     bool cfg_readback;
+> > >       u8 resolution;
+> > >       u16 cfg;
+> > >       unsigned int current_channel;
+> > > @@ -283,7 +285,11 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+> > >                       AD7949_CFG_REF_SEL_MASK;
+> > >       adc_config |= (AD7949_CFG_SEQ_DISABLED << AD7949_CFG_SEQ_SHIFT) &
+> > >                       AD7949_CFG_SEQ_MASK;
+> > > -     adc_config |= AD7949_CFG_READBACK_DIS;
+> > > +
+> > > +     if (ad7949_adc->cfg_readback)
+> > > +             adc_config |= AD7949_CFG_READBACK_EN;
+> > > +     else
+> > > +             adc_config |= AD7949_CFG_READBACK_DIS;
+> > >
+> > >       ret = ad7949_spi_write_cfg(ad7949_adc,
+> > >                       adc_config,
+> > > @@ -331,6 +337,10 @@ static int ad7949_spi_probe(struct spi_device *spi)
+> > >       indio_dev->num_channels = spec->num_channels;
+> > >       ad7949_adc->resolution = spec->resolution;
+> > >
+> > > +     ad7949_adc->cfg_readback = of_property_read_bool(
+> > > +                     ad7949_adc->indio_dev->dev.of_node,
+> > > +                     "adi,cfg-readback");
+> > > +
+> > >       ret = of_property_read_u32(ad7949_adc->indio_dev->dev.of_node,
+> > >                       "adi,reference-select",
+> > >                       &temp);  
+> >  
 > 
-> I would have expected that adding a lot of device specific code (in that
-> case blinking) to a multi-purpose driver would be bad style.
+> --
 
-This is a matter of how much customizable the driver is going to be.
-It can serve as a nice code base for other devices with simple
-SPI-based protocol.
-
-> But I'll go
-> for the generic name if that is the accepted way. I already mentioned
-> multiple times that my target is currently only the brightness. So the
-> device specific code maybe is added quite a bit in the future anyway in
-> which case it would still be possible to rename a part (if it isn't used
-> otherwise) or at least split it into it's own c-file.
-> 
-> I'll prepare a v4 in the near future and send it to the list. I only
-> learned that it would be a good idea to wait for at least a day for some
-> other opinions before doing that ;-)
-
-Sure thing. The fact that I'm replying to your message doesn't mean
-I'm expecting your immediate reaction :-)
-
--- 
-Best regards,
-Jacek Anaszewski
