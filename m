@@ -2,119 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 873891A841
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 17:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 579741A84A
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 17:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728603AbfEKPeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 11:34:17 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:41279 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728619AbfEKPeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 11:34:17 -0400
-Received: by mail-lf1-f66.google.com with SMTP id d8so6138837lfb.8;
-        Sat, 11 May 2019 08:34:15 -0700 (PDT)
+        id S1728626AbfEKPqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 11:46:55 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44936 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728604AbfEKPqz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 11:46:55 -0400
+Received: by mail-wr1-f67.google.com with SMTP id c5so10766758wrs.11
+        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 08:46:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=84JHqpvk8mL81D3Fb9jHkIhre7Vu+1G/dx+IuNvSfMg=;
-        b=iAL1t8GEA+dk7GYcG1LU+54t8yl4w0wQKm76b3bbuyLJ5MrZcLPlsMtflOKmMTeUVA
-         e5tH/wDZCKzRPhyeyPcIA2C2sANNCtBmvr4BWUF7hRZ/kQQFQlmy07LOJMacc7dCjNb8
-         AxLyKSDCThgWiBsI8oBsxkw8xoFmHDYiBHFiIDv7Q09iSboBZ/g95pUuFgCOmVsodfdp
-         oO3juzdqxxGYjyN4KlyCXoRuoPsBv9+FPCEij6O2ytwreXvb1O/QbTOp97yJA7X/wGnh
-         qIx9/8dP7cCBZIatPcNoglrGyHKyqLSjPvNOyOx+lx6tixI90xRagGbIUFhwb9L+bhZg
-         TElA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=9EyAvll/ATAIGdWTAfOnNvm6AJWZDwOSY5TYnJ4aLu4=;
+        b=W8NR9LnIM746OC6UAr+I4/mwaTFWbv/cXM9gmgPM3KoD0ltprY3CktFRo2rAiOPbfr
+         4VhYGiIKa+rfIYOCCPIx4IMHeveJirtAo3Ya+zx7+TstMMo14LBljvp7nPdgFK5M1Dyp
+         wyGi0Mft856R9ZsfcbaAH+AnJr6G6SzFMSCtQ3FtYpRO8Ucn56f2eiZTa+32s0+Luat2
+         WObr+TQMnPFKjqYEK6SUC1Gtw47yjmdPe70Rz8jDksZKduyeield1foYZhD+qWaeewTb
+         lZEVwyr8ulZWRoKyFgqd6DdaueObW7u5l/7YBjzndbwKzWQzW4AQ5ODiRidBxSk/pFBI
+         y5zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=84JHqpvk8mL81D3Fb9jHkIhre7Vu+1G/dx+IuNvSfMg=;
-        b=fRDPbduvx2LJOho8Axqojzgps6FllX6UEfy+w4iCkSmp3hbyVMv/kYWfSumz0WO43H
-         /fJBBJ3GFQEudT2ojSy8dA6u1FUJYkpnGBr50tMBafHCbi1dESPntLgtZfBWU8/y77jB
-         BzVlR/IpzGcttjU04R2dWK0POnup2hLOsylnPye1i59td1FiFDUZJZoYDsKvwNlQGdL2
-         OxJMXo7oS66665GoHFahgKDxLZjdfqVwDpH1QkiEGbsmp4XGrAM83TililOXOBnClHTG
-         g9Q4WJ7w9CLh26oDbXjhOG6NCSZ91I8KrjjPrImGAAiw5iYdr1PbqXZLmpFpofgBNOnT
-         F5fw==
-X-Gm-Message-State: APjAAAUBWC4/Rzl5ggrHXLyx/zUGrvS6LfNBZngwt9Ya8JZ/fprw1SUh
-        WIdbzf4usfdFdTOluIt/5Jm6//EbSoxDMdD6xxc=
-X-Google-Smtp-Source: APXvYqyFSdB83+PvLvyVfaJGlXfF5Y+av+7oJkOt+vmG7S7sVxEQH18eoRtaGwY40fNCPNcELbQvjxou15T0CevLGDo=
-X-Received: by 2002:ac2:5621:: with SMTP id b1mr9421588lff.27.1557588854794;
- Sat, 11 May 2019 08:34:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190501225719.3257-1-angus@akkea.ca> <20190501225719.3257-2-angus@akkea.ca>
-In-Reply-To: <20190501225719.3257-2-angus@akkea.ca>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sat, 11 May 2019 12:34:08 -0300
-Message-ID: <CAOMZO5APMf+iuJuqXCrMNX0Ud73iANXvEs+Y59iH+g6tuMX++Q@mail.gmail.com>
-Subject: Re: [PATCH v8 1/3] arm64: dts: fsl: librem5: Add a device tree for
- the Librem5 devkit
-To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=9EyAvll/ATAIGdWTAfOnNvm6AJWZDwOSY5TYnJ4aLu4=;
+        b=DIV6PPTZBYtXKI6vVhwZeS0koR3bRU0UKVOs1XvWK737rKL/oDLUk8aQHhX3yOcSA+
+         BwNY210FjDxtiy9LHaFOypDJ8u4tbHaxq6DkZSS6Z+DinCcdNseo48aVXE77ZQeAK5/m
+         +kJDFecOoa2dn6pCXgECuDUgFtmvswYzf6iiYWj21pZLwK7mOIJr52O5pcH/M7XN81Ya
+         +920ROm0OdiNoAjKtaEmq0kpNRzfls9woxMMG0jxJSaZQEdN+ubCvwhPF5kdUahKUbW8
+         00+HztqGlOL+D6+QmSNzsmVi0ILFhkYOnHbNuo2N1TxRIroHC5U5BPcYrnTE/f1tpA7T
+         VFig==
+X-Gm-Message-State: APjAAAWwzCXj9NZNz/r63C3+2tTSo/GQ5z94YLqsNt25rmK/q2oW6Mb8
+        wHQmcF9o+7TqgP11kP0PQZ2gAjgbmO4=
+X-Google-Smtp-Source: APXvYqxB8d87irChUP/Gna5KPAG1k70rARyG7XAXhFYcz1xreLZlylj5y6uj22gjPVvPo3HoulXyHA==
+X-Received: by 2002:a5d:50c7:: with SMTP id f7mr11637247wrt.95.1557589613287;
+        Sat, 11 May 2019 08:46:53 -0700 (PDT)
+Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id y6sm11486952wrw.60.2019.05.11.08.46.49
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sat, 11 May 2019 08:46:52 -0700 (PDT)
+Message-ID: <bf1360ab62a4e7bd3928052ebb6c969e8059f29e.camel@baylibre.com>
+Subject: Re: [PATCH 5/5] arm64: dts: meson: sei510: add network support
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Date:   Sat, 11 May 2019 17:46:45 +0200
+In-Reply-To: <7ho94ac4jn.fsf@baylibre.com>
+References: <20190510164940.13496-1-jbrunet@baylibre.com>
+         <20190510164940.13496-6-jbrunet@baylibre.com> <7ho94ac4jn.fsf@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angus,
+On Fri, 2019-05-10 at 15:45 -0700, Kevin Hilman wrote:
+> Jerome Brunet <jbrunet@baylibre.com> writes:
+> 
+> > Enable the network interface of the SEI510 which use the internal PHY.
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> 
+> I tried testing this series on SEI510, but I must still be missing some
+> defconfig options, as the default defconfig doesn't lead to a working
+> interface.
 
-This looks good. Only minor issues:
+That's weird. AFAICT, the net part has hit Linus's tree.
+You should have everything needed by default, the mdio mux has
 
-On Wed, May 1, 2019 at 7:57 PM Angus Ainslie (Purism) <angus@akkea.ca> wrote:
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> @@ -0,0 +1,823 @@
-> +/* SPDX-License-Identifier: GPL-2.0+
+> default m if ARCH_MESON
 
-This should be
-// SPDX-License-Identifier: GPL-2.0+
+> 
+> 
+> I tried adding this kconfig fragment[1], and the dwmac probes/inits but
+> I must still be missing something, as the dwmac is still failing to find
+> a PHY.  Boot log: https://termbin.com/ivf3
+> 
+> I have the same result testing on the u200.
 
-as pointed out by checkpatch.
+I don't any other patch pending for the network of the g12a.
+Maybe I've done something wrong while rebasing. I'll check on monday.
 
-> +       reg_1v8_p: regulator-1V8-P {
+> 
+> Kevin
+> 
+> [1] amlogic network kconfig fragment
+> CONFIG_STMMAC_ETH=y
+> 
+> # following are needed, but automatically enabled if above is set
+> #CONFIG_STMMAC_PLATFORM=m
+> #CONFIG_DWMAC_MESON=m
+> 
+> CONFIG_PHYLIB=y
+> CONFIG_MICREL_PHY=y
+> CONFIG_REALTEK_PHY=y
+> 
+> CONFIG_MDIO_BUS_MUX_MESON_G12A=y
+> CONFIG_MESON_GXL_PHY=y
 
-Maybe lowercase instead?
 
-> +       wifi_pwr_en: wifi-en {
-> +               compatible = "regulator-fixed";
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_wifi_pwr_en>;
-> +               regulator-name = "WIFI_EN";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               gpio = <&gpio3 5 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +               regulator-always-on;
-
-Do you really needs all these regulators to be 'regulator-always-on'?
-
-> +&i2c1 {
-> +       clock-frequency = <400000>;
-
-Maybe you could use 100kHz instead in order to avoid the problem
-described by the following i.MX8M erratum:
-
-e7805: I2C: When the I2C clock speed is configured for 400 kHz, the
-SCL low period violates the I2C spec of 1.3 uS min
-https://www.nxp.com/docs/en/errata/IMX8MDQLQ_1N14W.pdf
-
-> +&usdhc2 {
-> +       pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +       pinctrl-0 = <&pinctrl_usdhc2>;
-> +       pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +       pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +       bus-width = <4>;
-> +       vmmc-supply = <&reg_usdhc2_vmmc>;
-> +       power-supply = <&wifi_pwr_en>;
-> +
-
-Unneeded blank line.
