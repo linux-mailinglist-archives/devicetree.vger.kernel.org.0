@@ -2,129 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADEDB1A717
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 09:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3932E1A718
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 09:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728417AbfEKHj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 03:39:58 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:37469 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728320AbfEKHj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 03:39:57 -0400
-Received: by mail-lf1-f68.google.com with SMTP id h126so5675937lfh.4
-        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 00:39:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2QQvaa/SSPqU/FGa7FdkdaExZgaJpUrgkhTOk/BWtiM=;
-        b=WHflFKkhglb72GcEopz4ufUa4gcFc2YBuChFrCOLWMjoEPseufiTopM+2ObjCOI3dJ
-         +shsE8KjFphsphk73bpvif8SepL1UqiZQHdh2CFy3U9LQe2bAJc8YubUjXobMfb0gAWQ
-         hWmDOcmiENM9bTedee+trHBabvExBGL7TLBKDKGTIeIunI7LiPRI9jWpdyUWEtpZaTKL
-         gjd+24bC6kzoY5I0ruDjZnN/dvwXfRMTfqYwshrKj9fyZdcOFQ7NDXRwG+vCeTkPzviS
-         9ESbeN9PKKPB19TCSXzbitNsn4tJ8puhpxG/DFxb+MYWQe1VNKBqzYol7FiCudw20MZR
-         vm3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2QQvaa/SSPqU/FGa7FdkdaExZgaJpUrgkhTOk/BWtiM=;
-        b=G7QDKisCrfmnZXh+9RX9gr/TCGZ9Mt4z1sTaQQ/xfpUuR3njzNloNcHD3CApI5DjGo
-         eehKmTPBdPPsgqVKI/1hexO1iPYA1uJIjqtJIV90ooz8LVjqdn6XEVUWNbl3aA20o5fG
-         IDqjuLEYswuuQYrRXJq980rx06Hi5hlzH6sdPlt/2hlXZDIh0XlZAELATACDQpqYj+Nr
-         JZ5HRufH3zcV322ZjE/9x5pDGyvGfDklKR/XmK9l69JLwTBbQ0Ci0ulh3QXEmBxS+oqo
-         /gNFr6USmHJc024ZMtoUpZCQ1s25cWJRNXyeXqwii/fKqKt5edLZD8+/YZda+cLAf8DB
-         N0Sw==
-X-Gm-Message-State: APjAAAUm9dPPGNEMqUTg0eP64m8Bc6OY6r4N5Mjqdpu9y2S5kSBJmtTl
-        1Qugo1xYJGwv/xQaeAfpp1Ryug==
-X-Google-Smtp-Source: APXvYqxhynHXBx45Q7/bEav695m59fzNRlA3xStpUwAkKwFbG8IjXtbZ8gRAuWPzfuQJ4ORvVExG5g==
-X-Received: by 2002:a19:cc95:: with SMTP id c143mr8090645lfg.138.1557560395529;
-        Sat, 11 May 2019 00:39:55 -0700 (PDT)
-Received: from [192.168.0.199] ([31.173.81.194])
-        by smtp.gmail.com with ESMTPSA id 10sm2005112ljv.47.2019.05.11.00.39.52
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 11 May 2019 00:39:53 -0700 (PDT)
-Subject: Re: [PATCH v2 05/15] phy: renesas: rcar-gen3-usb2: Check dr_mode when
- not using OTG
-To:     Chris Brandt <Chris.Brandt@renesas.com>,
+        id S1728422AbfEKHlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 03:41:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35686 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728320AbfEKHlH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 May 2019 03:41:07 -0400
+Received: from localhost (unknown [106.200.210.185])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1BC492146F;
+        Sat, 11 May 2019 07:41:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557560466;
+        bh=yUGn3nBDM+NUhCYRMjsuGMOSaVf0lUwnCgp8qA04/Ak=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=s/2Is2q9J+dk6006Os9qa64aZFmAa6gMh0CcEvhm/gCaiNVU0G3bBZMLhZzGRx0LL
+         5Ti+SkX6cdZR7FRN1GGCcTw62Y2p6S/Zi/yaQl6DtWpBgZ2ZJ5utHfZn2aJwSMepIn
+         551VGmt0LsHtS3108/EUa0UyP/QlxT7We620IHzM=
+Date:   Sat, 11 May 2019 13:11:03 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20190509201142.10543-1-chris.brandt@renesas.com>
- <20190509201142.10543-6-chris.brandt@renesas.com>
- <e987df36-eca6-f05f-d1bf-7dc43fc9d4b4@cogentembedded.com>
- <TY1PR01MB15628A94DA371A7636984A708A0C0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <711839c7-930f-938e-4626-8a7524f5b82e@cogentembedded.com>
-Date:   Sat, 11 May 2019 10:39:40 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs404: Update memory map to v3
+Message-ID: <20190511074103.GH16052@vkoul-mobl>
+References: <20190306175120.22544-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <TY1PR01MB15628A94DA371A7636984A708A0C0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190306175120.22544-1-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.05.2019 16:55, Chris Brandt wrote:
+On 06-03-19, 09:51, Bjorn Andersson wrote:
+> Update the reserved-memory map to version 3, to adjust to changes in the
+> remoteprocs.
 
->>> +	} else {
->>> +		/* Not OTG, so dr_mode should be set in PHY node */
->>> +		mode = usb_get_dr_mode(channel->dev);
->>> +		if (mode == USB_DR_MODE_HOST)
->>> +			writel(0x00000000, usb2_base + USB2_COMMCTRL);
->>> +		else if (mode == USB_DR_MODE_PERIPHERAL)
->>> +			writel(0x80000000, usb2_base + USB2_COMMCTRL);
->>
->>      Maybe a *switch* instead?
-> 
-> I like that idea because I can get rid of the dr_mode variable.
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-    Yes. :-)
-
-> However...
-> I just tried it, but if I only have a case for HOST and PERIPHERAL, I
-> get this gcc warning:
-> 
->    warning: enumeration value ‘USB_DR_MODE_UNKNOWN’ not handled in switch [-Wswitch]
->    warning: enumeration value ‘USB_DR_MODE_OTG’ not handled in switch [-Wswitch]
-> 
-> 
-> So, my code would have to be:
-> 
-> 	} else {
-> 		/* Not OTG, so dr_mode should be set in PHY node */
-> 		switch (usb_get_dr_mode(channel->dev)) {
-> 		case USB_DR_MODE_HOST:
-> 			writel(0x00000000, usb2_base + USB2_COMMCTRL);
-> 			break;
-> 		case USB_DR_MODE_PERIPHERAL:
-> 			writel(0x80000000, usb2_base + USB2_COMMCTRL);
-> 			break;
-> 		case USB_DR_MODE_UNKNOWN:
-> 		case USB_DR_MODE_OTG:
-
-    Maybe default: instead?
-
-> 			break;
-> 		}
-> 	}
-> 
-> I guess that is still OK.
-
-    Yes. :-)
-
-> Chris
-
-MBR, Sergei
+-- 
+~Vinod
