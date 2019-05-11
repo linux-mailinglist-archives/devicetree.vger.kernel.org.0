@@ -2,93 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C60D1A8A1
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1845A1A8B1
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbfEKRQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 13:16:28 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:39733 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726787AbfEKRQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 13:16:28 -0400
-Received: by mail-oi1-f196.google.com with SMTP id v2so3251401oie.6;
-        Sat, 11 May 2019 10:16:28 -0700 (PDT)
+        id S1726889AbfEKR0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 13:26:03 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:39029 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726482AbfEKR0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 13:26:02 -0400
+Received: by mail-wr1-f65.google.com with SMTP id w8so8519948wrl.6
+        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 10:26:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vmjomU5YJY1hJ5LLp4HW3B+RQuK7rgkSpAY98t+yz8o=;
-        b=slKwAE6jfgdzV3wLyArpatbYuZnieepmKQla1+9qvI2E2rycU6g1G7V3nJarzymotB
-         OOktkdgfHW9GdVOCxYYO2xO4EUtHaMZpWi7CfClL/k0K4jKnNt9rYrKip/Yo9Y9vcKNp
-         lf4irG4cZ3dGwdolaKyDsyLG+57iPN22aa5duKXce7wXjFpxe4te6EaNoH+QA5sXwR1P
-         n3bLE+JZMLXK71v7GhBM+QAWTcIVZoA0dG490NUhdAygRYFNGfE1+JYb3b5X5aryXIvF
-         4vYiBd0fpbPc1LQ6iQx4gHGvHRNNQ5MTj2egzb31kA08efK/uOpr+Aev7GxrRcczEaka
-         ixNA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=zGbXafpSb2HshgO2XMP6h8Y6gtWk2K/zGjC4Q7Aa/fg=;
+        b=sOceQQQ7FUjZUb9cq6RMY4OY0UtuWxXjBusFoTudXNPxeE/PaMGSOANxujMyfFCSLM
+         1MmHNbnE3b5nkHrr84AJOBPTlThBl6Mbdlr7MgbOf+YmyiLHSH+WVq3tuMap/Q3GWYo5
+         e+r5CvUmT38WroNUBTzKMimertVVCGaw4KkpvYITGmKEgM1CfOew3qI0+UrYDjHV7gWA
+         R6NNnosMK492+4YUMQwf5NVEeKk7diYUx2R2n92WtXJ1ZZzSBJsSg2tv4qLSfNpbVzH/
+         UyRHd0M9QM2mXz3eLJSRT1yZ5fHYcZTsupdmyr/f53gzHlHDhvojVzJSaMMsK6CZpRNK
+         viJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vmjomU5YJY1hJ5LLp4HW3B+RQuK7rgkSpAY98t+yz8o=;
-        b=ob8RFTbDn2iio4kWpUCXT2Jgr6m9cI+5AGSN0xQKb4LS6y0j9a4kkbLokxz0bRkVaB
-         +RJfAIDXe+T9i+5aqTgHww4x2u9XVqhAkH1ULBMuyl6lEmaLnbw6n2ji5p644NQxm6Qr
-         6cyGUq0dRbdcXiY5DIn7v2zDe5iyEoHw+6zH8DXieCGIbSQQ508zh4zTFt9yyVNP04n1
-         Zm9dGl4/qlsYMtfIGry8vDNHzTiyo3vYKyu3B8410pQEYOAmK350XzrIY5XRvbN+mOXP
-         9g5Ct6MTvusW96o5C6elNc6mj3ETOFglZtkvim7wZBGHExrZggzM/h2V0UGcAeGRgZ31
-         NLIA==
-X-Gm-Message-State: APjAAAUiNMDOUNbk4VardYE7wo/pMoxg7wAs8YfCc+F3adcJ0HrGbsO6
-        0m3Fq0/d5rXovU0s3I8WTLRevdXFN+peax/mAiiOARrtUYO/5Q==
-X-Google-Smtp-Source: APXvYqwDBBFTnklw8obeVbRgYAvDTy11F6HrgYJI1Y/q9N3Y451amnscogWIGhUwAoBS6nGEGKbEQkAY7I8Wo9PaEuU=
-X-Received: by 2002:aca:b68a:: with SMTP id g132mr8819792oif.47.1557594987534;
- Sat, 11 May 2019 10:16:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190510164940.13496-1-jbrunet@baylibre.com> <20190510164940.13496-6-jbrunet@baylibre.com>
- <7ho94ac4jn.fsf@baylibre.com>
-In-Reply-To: <7ho94ac4jn.fsf@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 11 May 2019 19:16:16 +0200
-Message-ID: <CAFBinCDA3kqCK9riSkNAv9069ASN8E2ECdsffi+U7mYRqHrfJg@mail.gmail.com>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=zGbXafpSb2HshgO2XMP6h8Y6gtWk2K/zGjC4Q7Aa/fg=;
+        b=XBGj/Onl6fn8qS7j5IhNZ4lYDLBH6rFJnafjDlHFPovQN9dG2XQY9XhLy1Py79HRck
+         JlJGLGiv8gqEh9bAilAh1Ysh4VmDzUsMdyzoUFxsgDn9WZMQI7eLYgjt/A4E1nabZfTZ
+         iBOtpqUfZwJXgTswVobVirWlOA5+rHseJJAiOfn/ovOtCyHkHWkvWZMERuSjFHad+3oO
+         o+m00ShS6Dzm6dP47lFm2G2Cr/Px9909pO6Cs5BHCQ29E6Nidu+v1CCZX2iUWnaPFsd2
+         nALUP/hxv+fc6H6EHHlfJdrAI6ipNL/qptpqKsUfVDyhbeZirKkIYHCECUQXsKQBYu3a
+         UQgA==
+X-Gm-Message-State: APjAAAVUReosj6W8dJjB+Q0oPPC4ZShBDm4u7GgKLziJczvDAlZJfMWg
+        /0pGWUn53h9ym4m2utA54HWCGw==
+X-Google-Smtp-Source: APXvYqxiNrIZ71M/NEU6SrK8ObcYzxQx6F/XwLVianmSstjOsoGpmQ5a6gJNvCIZA+XBpy8zwlMaPw==
+X-Received: by 2002:adf:a202:: with SMTP id p2mr11897591wra.166.1557595560934;
+        Sat, 11 May 2019 10:26:00 -0700 (PDT)
+Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id o8sm17856891wra.4.2019.05.11.10.25.59
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sat, 11 May 2019 10:26:00 -0700 (PDT)
+Message-ID: <c474c55386dede7f541aaf8afd6c87b78ccd6577.camel@baylibre.com>
 Subject: Re: [PATCH 5/5] arm64: dts: meson: sei510: add network support
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
+Date:   Sat, 11 May 2019 19:25:58 +0200
+In-Reply-To: <CAFBinCDA3kqCK9riSkNAv9069ASN8E2ECdsffi+U7mYRqHrfJg@mail.gmail.com>
+References: <20190510164940.13496-1-jbrunet@baylibre.com>
+         <20190510164940.13496-6-jbrunet@baylibre.com> <7ho94ac4jn.fsf@baylibre.com>
+         <CAFBinCDA3kqCK9riSkNAv9069ASN8E2ECdsffi+U7mYRqHrfJg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
+On Sat, 2019-05-11 at 19:16 +0200, Martin Blumenstingl wrote:
+> Hi Kevin,
+> 
+> On Sat, May 11, 2019 at 12:45 AM Kevin Hilman <khilman@baylibre.com> wrote:
+> > Jerome Brunet <jbrunet@baylibre.com> writes:
+> > 
+> > > Enable the network interface of the SEI510 which use the internal PHY.
+> > > 
+> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > 
+> > I tried testing this series on SEI510, but I must still be missing some
+> > defconfig options, as the default defconfig doesn't lead to a working
+> > interface.
+> > 
+> > 
+> > I tried adding this kconfig fragment[1], and the dwmac probes/inits but
+> > I must still be missing something, as the dwmac is still failing to find
+> > a PHY.  Boot log: https://termbin.com/ivf3
+> > 
+> > I have the same result testing on the u200.
+> I wonder if we're simply missing the pinctrl definitions in the ethmac node:
+>   pinctrl-0 = <&eth_rmii_pins>;
+>   pinctrl-names = "default";
+> 
+> I don't know how the SoC works internally but I am assuming that the
+> MDIO pins are routed to the "internal PHY" (within the chip).
+> also we need the eth_rmii_pins anyways for the RXD/TXD pins which are
+> connected to the physical Ethernet port on the board.
+> bonus question: while writing this email I'm surprised to see that on
+> GXL we don't use the rmii pins anywhere, why is Ethernet working fine
+> there?
 
-On Sat, May 11, 2019 at 12:45 AM Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Jerome Brunet <jbrunet@baylibre.com> writes:
->
-> > Enable the network interface of the SEI510 which use the internal PHY.
-> >
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->
-> I tried testing this series on SEI510, but I must still be missing some
-> defconfig options, as the default defconfig doesn't lead to a working
-> interface.
->
->
-> I tried adding this kconfig fragment[1], and the dwmac probes/inits but
-> I must still be missing something, as the dwmac is still failing to find
-> a PHY.  Boot log: https://termbin.com/ivf3
->
-> I have the same result testing on the u200.
-I wonder if we're simply missing the pinctrl definitions in the ethmac node:
-  pinctrl-0 = <&eth_rmii_pins>;
-  pinctrl-names = "default";
+AFAIK, the pinmux is for the external pad Martin
+The internal phy does not use those pads.
 
-I don't know how the SoC works internally but I am assuming that the
-MDIO pins are routed to the "internal PHY" (within the chip).
-also we need the eth_rmii_pins anyways for the RXD/TXD pins which are
-connected to the physical Ethernet port on the board.
-bonus question: while writing this email I'm surprised to see that on
-GXL we don't use the rmii pins anywhere, why is Ethernet working fine
-there?
+> 
+> 
+> Martin
 
 
-Martin
