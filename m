@@ -2,91 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 852141A7C4
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 14:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 628D11A7D1
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 14:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728533AbfEKMFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 08:05:44 -0400
-Received: from mail-eopbgr1400119.outbound.protection.outlook.com ([40.107.140.119]:35493
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725861AbfEKMFo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 May 2019 08:05:44 -0400
+        id S1728591AbfEKMce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 08:32:34 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:33370 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726240AbfEKMce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 08:32:34 -0400
+Received: by mail-wr1-f66.google.com with SMTP id d9so2124171wrx.0;
+        Sat, 11 May 2019 05:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gCBbvpQUcD69vuX98q9yRmFQDson6LPl4W6+Vgj6zfc=;
- b=XppD+0UfsT9P1oL18lsfEO0XnjEiCMJZSCxS7vu9AKWgORDiWuntLRrPZwywcX8UkFAu7TqaNLj+AOwlE1gYsx96HLa0StmLjbq+N+LyjS9NB9eYtQL/RldcBt6kUqa0Sqb1S6SiHKCxDN2omeaQpgZkQwy1iRUheeg9neteVE0=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1802.jpnprd01.prod.outlook.com (52.133.164.13) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.21; Sat, 11 May 2019 12:05:35 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::99cf:c94c:d11f:c2f0%5]) with mapi id 15.20.1878.022; Sat, 11 May 2019
- 12:05:35 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v2 05/15] phy: renesas: rcar-gen3-usb2: Check dr_mode when
- not using OTG
-Thread-Topic: [PATCH v2 05/15] phy: renesas: rcar-gen3-usb2: Check dr_mode
- when not using OTG
-Thread-Index: AQHVBqOe6pcDFSgi+kib0k09CW4w2aZkCZeAgABXf8CAASsEAIAASbRA
-Date:   Sat, 11 May 2019 12:05:35 +0000
-Message-ID: <TY1PR01MB156253600A81FD44964B56658A0D0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190509201142.10543-1-chris.brandt@renesas.com>
- <20190509201142.10543-6-chris.brandt@renesas.com>
- <e987df36-eca6-f05f-d1bf-7dc43fc9d4b4@cogentembedded.com>
- <TY1PR01MB15628A94DA371A7636984A708A0C0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <711839c7-930f-938e-4626-8a7524f5b82e@cogentembedded.com>
-In-Reply-To: <711839c7-930f-938e-4626-8a7524f5b82e@cogentembedded.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4e26c54a-877a-41ac-ab22-08d6d608f9b8
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1802;
-x-ms-traffictypediagnostic: TY1PR01MB1802:
-x-microsoft-antispam-prvs: <TY1PR01MB180284D196022A7249E26FA48A0D0@TY1PR01MB1802.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2887;
-x-forefront-prvs: 00342DD5BC
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(136003)(346002)(39850400004)(366004)(376002)(199004)(189003)(476003)(7696005)(5660300002)(66446008)(81166006)(76176011)(8936002)(86362001)(4326008)(66066001)(81156014)(6636002)(64756008)(66556008)(25786009)(6246003)(316002)(486006)(305945005)(256004)(8676002)(186003)(7736002)(71190400001)(99286004)(229853002)(71200400001)(53936002)(26005)(54906003)(6436002)(2906002)(3846002)(6116002)(68736007)(478600001)(52536014)(102836004)(74316002)(72206003)(66946007)(558084003)(110136005)(66476007)(55016002)(76116006)(14454004)(73956011)(446003)(11346002)(6506007)(33656002)(9686003);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1802;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: /EMR5YXRXskiblYmCLSiZ6Kv3bRJRpX/wuEGfb/F+71V3nkvkn/jrFTH1MgXAfDA7s+c5Q+8RywH+A5TC7ntNzPaPAlyzJeQZucDzb0AOaNvTCNJfLcia3dKAuYhQx9SWzsypHL3S43Sc+HfwDc1Nbhwojb8EePlNE0oqLhmMJe4CZXDR7B8XIrqfrvUAcns7BpSY/IiHw9alBdjqrMjyhqadgnHmwSxszkKlfeHRr87wtNN5HQqbPWU9n03kGwXUrLQ00B7q7nFv+OZiWPe2t2+n1P4EIpSMHyi1on3uc9dSgqzwA8ALIQcRYJqQ90a10r/6EqqJDn8k3vdU8JDLOEY86GCtEt66a+1v2BZWqIZz3lHxDhaMhEauL4bBVSB47HPo/IHyHQ7iYsnu61zEPIBqnjWAQr4VoC4jEUDqio=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=z36DBF8uzaNUXPe6+Cpp2JzXZTaHD3wGKITgeF7biT4=;
+        b=dknuyWvFFKylY5XCdzE5sBKt2uEzimW5P4awc66inlGSOVg0JWO0rd755IH79nY1fO
+         qdi1NuDbkgW22cj7Wqq8TKwAg1UAPG7WtwO3akTNa1iXw/a5/r8GmqkMI45SI0dV1+zo
+         CnO0Yyyq1TOyTH2d80Yg2E8oVg1d+Y/MY6RoEk7f2pHDdsTHRMMIseanui5XzJi8YjM3
+         CF0K7RROTGa/LajkdrFW4G3cgiDNUpjB2+7M8hfF2k3nNmqcWHuhrfV4q9YZqvd+t/UY
+         99I3sSpZphwKHd0SVghqERMYCX/336CwaoJjoeiEUvnJHjfh9bADrCn74r6Jznfo3nOs
+         HgaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=z36DBF8uzaNUXPe6+Cpp2JzXZTaHD3wGKITgeF7biT4=;
+        b=SWlA593OUtCXeuZsELiwpyonchnnfhtzCpghWOkkKc1l9WXBUFKPWOPFVocv22jX4G
+         kEVAsmucB6vP1soKdjT3JslFkItZhtCaR3K/KDMeL1NOGFL4OqBSv64LfwtMy4/DiJrd
+         v06BO8OsJguUXxO4S1L5TP4GySs8FqONfpYzu7P0+nDpos8D/Siz32zyJE6GZ/coIw68
+         jMR30lI7f1/pHJbFJnPPvLK6nmTwShsJ+Y3JuvqS723K4HeaxKt8NyLqqiWxd9gOoMKX
+         TWpVq5wxEPI1Zszii83CaKZb5DTCVf/gqLpOr0YHHg4B/mZKsMdTX/8JcSHvz8v9p254
+         S6Ww==
+X-Gm-Message-State: APjAAAWPtljGYawj+57E2ogMj5yKmtjHLHbqjz/3j9iQo4d1mggtslyh
+        REJE60/N95g2Zq3GJjUvsD4=
+X-Google-Smtp-Source: APXvYqzQcX7d6RmTgy5kRsYvGJ7rFqeqLG/nmPQ1vpcZVjcaexthsPMcqhpfBFGYW8EmLjT1+7ca7Q==
+X-Received: by 2002:adf:dd43:: with SMTP id u3mr11652089wrm.302.1557577952422;
+        Sat, 11 May 2019 05:32:32 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8bd4:5700:152f:e071:7960:90b9? (p200300EA8BD45700152FE071796090B9.dip0.t-ipconnect.de. [2003:ea:8bd4:5700:152f:e071:7960:90b9])
+        by smtp.googlemail.com with ESMTPSA id n2sm14130454wra.89.2019.05.11.05.32.31
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 11 May 2019 05:32:31 -0700 (PDT)
+Subject: Re: [PATCH 5/5] net: phy: dp83867: Use unsigned variables to store
+ unsigned properties
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Trent Piepho <tpiepho@impinj.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <20190510214550.18657-1-tpiepho@impinj.com>
+ <20190510214550.18657-5-tpiepho@impinj.com>
+ <49c6afc4-6c5b-51c9-74ab-9a6e8c2460a5@gmail.com>
+Message-ID: <3a42c0cc-4a4b-e168-c03e-1cc13bd2f5d4@gmail.com>
+Date:   Sat, 11 May 2019 14:32:28 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e26c54a-877a-41ac-ab22-08d6d608f9b8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2019 12:05:35.5454
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1802
+In-Reply-To: <49c6afc4-6c5b-51c9-74ab-9a6e8c2460a5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU2F0LCBNYXkgMTEsIDIwMTksIFNlcmdlaSBTaHR5bHlvdiB3cm90ZToNCj4gPiAJCWNhc2Ug
-VVNCX0RSX01PREVfVU5LTk9XTjoNCj4gPiAJCWNhc2UgVVNCX0RSX01PREVfT1RHOg0KPiANCj4g
-ICAgIE1heWJlIGRlZmF1bHQ6IGluc3RlYWQ/DQoNClllcywgdXNpbmcgZGVmYXVsdCBpbnN0ZWFk
-IHdvcmtzLg0KDQpUaGFuayB5b3UhDQoNCkNocmlzDQo=
+On 11.05.2019 12:41, Heiner Kallweit wrote:
+> On 10.05.2019 23:46, Trent Piepho wrote:
+>> The variables used to store u32 DT properties were signed ints.  This
+>> doesn't work properly if the value of the property were to overflow.
+>> Use unsigned variables so this doesn't happen.
+>>
+> In patch 3 you added a check for DT properties being out of range.
+> I think this would be good also for the three properties here.
+> The delay values are only 4 bits wide, so you might also consider
+> to switch to u8 or u16.
+> 
+I briefly looked over the rest of the driver. What is plain wrong
+is to allocate memory for the private data structure in the
+config_init callback. This has to be done in the probe callback.
+An example is marvell_probe(). As you seem to work on this driver,
+can you provide a patch for this?
+
+> Please note that net-next is closed currently. Please resubmit the
+> patches once it's open again, and please annotate them properly
+> with net-next.
+> 
+>> Cc: Andrew Lunn <andrew@lunn.ch>
+>> Cc: Florian Fainelli <f.fainelli@gmail.com>
+>> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+>> Signed-off-by: Trent Piepho <tpiepho@impinj.com>
+>> ---
+>>  drivers/net/phy/dp83867.c | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
+>> index a46cc9427fb3..edd9e27425e8 100644
+>> --- a/drivers/net/phy/dp83867.c
+>> +++ b/drivers/net/phy/dp83867.c
+>> @@ -82,9 +82,9 @@ enum {
+>>  };
+>>  
+>>  struct dp83867_private {
+>> -	int rx_id_delay;
+>> -	int tx_id_delay;
+>> -	int fifo_depth;
+>> +	u32 rx_id_delay;
+>> +	u32 tx_id_delay;
+>> +	u32 fifo_depth;
+>>  	int io_impedance;
+>>  	int port_mirroring;
+>>  	bool rxctrl_strap_quirk;
+>>
+> 
+
