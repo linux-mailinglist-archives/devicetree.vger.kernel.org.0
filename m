@@ -2,140 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76B681A8E1
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 090EF1A8E5
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725903AbfEKRps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 13:45:48 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36853 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725895AbfEKRps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 13:45:48 -0400
-Received: by mail-wm1-f67.google.com with SMTP id j187so10164111wmj.1
-        for <devicetree@vger.kernel.org>; Sat, 11 May 2019 10:45:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=92ZA36IfdaOtsZw80t2M4+MXEzMldpioQlWAUTdSiyM=;
-        b=GNZ67HorQfYfzNJYPsTQiKiEZ1u9f9aUoZ/E1qQniEFWPFzxEhxkB6iTFfKGLmCiNV
-         9wViPgp4PdVYAeU7i5PBjtHyBLZ1Qas6ehl9CBX7rmqCWHbwdRg88AK9ej6MlF2NH7Jr
-         FTrgMkhTdZUsvtmgGToQXOQh3i/VFjtjMM7SMUFQk+LO8naQb2HJx46EPKteI/Ksk3U6
-         M+0gr59EHZTEqmqajUq3dF+JLvcdmH5f2eN8YZ+cVX3mz7xvo9u4XvB1aM+CFjoSPRnQ
-         iKZ/zjq6j9vzEVscp7nT6rilo4X4L2g7oCVPrajeaP4ZIPpsW9MoBYclI5vndvwtFWj4
-         lF0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=92ZA36IfdaOtsZw80t2M4+MXEzMldpioQlWAUTdSiyM=;
-        b=c3GhJIo3QZ1UWelncC/GcOW58zdFtGyYNg6yZ8oAkwWRAsS2uxwEDyFVqiA3mjNsN1
-         Gm5c44QNUccwAh5toLUPw7dqHjiHK9cXWc3+kpfvL6rT5IDJcNoTiXyLC0npQw1OlOzv
-         /HIGIXkEMHzGXubRMO8IMu85xsxKiO2q1gaarJ66YHWq/dfd8Nzsr4aKHcwo/Vkl5eXp
-         o+LT+hdKL/3Q6ONyhCClwwNkLfOD4Dab8kE/8++oR3aABAzGhcy3HVZJiPZWCA9qg1fz
-         eK/9gIq4mqTDIuJbQ7qcLNDo2Iu4dHTyP1apu7P9EZyILOF94v4MZwW14Cp/iY9Zgi81
-         nZxA==
-X-Gm-Message-State: APjAAAXxsZTOkaF3jc82yvFw8b6rnWCrHsA0qwZnAzr72FYz3kvLTDgD
-        6BIx9foNMUyR9b7MYzZaTcI=
-X-Google-Smtp-Source: APXvYqyBv+xZzZ9rpWv+EUHwPoSsPYeaBjz1deSYDtLsTCx/vqUrbrwe8U8OOTlcrUM78XGzTpDYMw==
-X-Received: by 2002:a05:600c:2248:: with SMTP id a8mr11140164wmm.75.1557596746018;
-        Sat, 11 May 2019 10:45:46 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133C8AD0059E186517133DF77.dip0.t-ipconnect.de. [2003:f1:33c8:ad00:59e1:8651:7133:df77])
-        by smtp.googlemail.com with ESMTPSA id h188sm10309538wmf.48.2019.05.11.10.45.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 11 May 2019 10:45:45 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     khilman@baylibre.com, linux-amlogic@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        jbrunet@baylibre.com,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH] arm64: dts: amlogic: remove ethernet-phy-idAAAA.BBBB compatible strings
-Date:   Sat, 11 May 2019 19:45:34 +0200
-Message-Id: <20190511174534.2403-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.21.0
+        id S1725939AbfEKRsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 13:48:43 -0400
+Received: from node.akkea.ca ([192.155.83.177]:33202 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725914AbfEKRsn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 May 2019 13:48:43 -0400
+Received: by node.akkea.ca (Postfix, from userid 33)
+        id AC2D44E204D; Sat, 11 May 2019 17:48:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1557596922; bh=lJqKVF9Utmeexu4/9PvbN0VcjTxvy2f//T2aaSg+rQk=;
+        h=To:Subject:Date:From:Cc:In-Reply-To:References;
+        b=mqU4v4a7n3qhR1GBajJI64EU2VrEK899V7D8wNt+0UF7FUr+tRSioFeo7WwfF/aev
+         zX/TozE2AkN+VikUSexxn9QbObQPov88Rxb4wfHTAhBv6xKpn8gKrN8tmD3gg5aUlU
+         FBdw4uNcr7yuXYMBpet3bm+l3CxUrLtao2L3Md8c=
+To:     Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v8 1/3] arm64: dts: fsl: librem5: Add a device tree for  the Librem5 devkit
+X-PHP-Originating-Script: 1000:rcube.php
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sat, 11 May 2019 10:48:42 -0700
+From:   Angus Ainslie <angus@akkea.ca>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+In-Reply-To: <CAOMZO5APMf+iuJuqXCrMNX0Ud73iANXvEs+Y59iH+g6tuMX++Q@mail.gmail.com>
+References: <20190501225719.3257-1-angus@akkea.ca>
+ <20190501225719.3257-2-angus@akkea.ca>
+ <CAOMZO5APMf+iuJuqXCrMNX0Ud73iANXvEs+Y59iH+g6tuMX++Q@mail.gmail.com>
+Message-ID: <592c6d80582d0571bc49cfaa114adc83@www.akkea.ca>
+X-Sender: angus@akkea.ca
+User-Agent: Roundcube Webmail/1.1.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Ethernet PHY documentation
-(Documentation/devicetree/bindings/net/phy.txt) states that:
-  If the PHY reports an incorrect ID (or none at all) then the
-  "compatible" list may contain an entry with the correct PHY ID in the
-  form: "ethernet-phy-idAAAA.BBBB"
+Hi Fabio,
 
-An older version of the documentation suggested that the compatible
-string can be used when the PHY ID is known.
+On 2019-05-11 08:34, Fabio Estevam wrote:
+> Hi Angus,
+> 
+> This looks good. Only minor issues:
+> 
+> On Wed, May 1, 2019 at 7:57 PM Angus Ainslie (Purism) <angus@akkea.ca> 
+> wrote:
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+>> @@ -0,0 +1,823 @@
+>> +/* SPDX-License-Identifier: GPL-2.0+
+> 
+> This should be
+> // SPDX-License-Identifier: GPL-2.0+
+> 
+> as pointed out by checkpatch.
+> 
+>> +       reg_1v8_p: regulator-1V8-P {
+> 
+> Maybe lowercase instead?
+> 
 
-Remove the ethernet-phy-id compatible string and add a comment with the
-PHY ID instead.
-This is a no-op on boards which are shipped with the PHY that was
-listed (= all known cases). However, if a board manufacturer decides to
-ship a different PHY we will now load and use the correct driver because
-we ask the PHY to identify itself.
+Ok, I'll fix those 2.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts  | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts   | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+>> +       wifi_pwr_en: wifi-en {
+>> +               compatible = "regulator-fixed";
+>> +               pinctrl-names = "default";
+>> +               pinctrl-0 = <&pinctrl_wifi_pwr_en>;
+>> +               regulator-name = "WIFI_EN";
+>> +               regulator-min-microvolt = <3300000>;
+>> +               regulator-max-microvolt = <3300000>;
+>> +               gpio = <&gpio3 5 GPIO_ACTIVE_HIGH>;
+>> +               enable-active-high;
+>> +               regulator-always-on;
+> 
+> Do you really needs all these regulators to be 'regulator-always-on'?
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-index 0c8e8305b1f3..767b1763a612 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-@@ -81,7 +81,7 @@
- 
- &external_mdio {
- 	external_phy: ethernet-phy@0 {
--		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		/* Realtek RTL8211F (0x001cc916) */
- 		reg = <0>;
- 		max-speed = <1000>;
- 		interrupt-parent = <&gpio_intc>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-index 8acfd40090d2..a99c1ba3131c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-@@ -111,7 +111,7 @@
- 
- &external_mdio {
- 	external_phy: ethernet-phy@0 {
--		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		/* Realtek RTL8211F (0x001cc916) */
- 		reg = <0>;
- 		max-speed = <1000>;
- 	};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-index 73d656e4aade..8939c0fc5b62 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-@@ -63,7 +63,7 @@
- 
- &external_mdio {
- 	external_phy: ethernet-phy@0 {
--		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		/* Realtek RTL8211F (0x001cc916) */
- 		reg = <0>;
- 		max-speed = <1000>;
- 		interrupt-parent = <&gpio_intc>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-index 7fa20a8ede17..acb4aaf9b956 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-@@ -113,7 +113,7 @@
- 
- &external_mdio {
- 	external_phy: ethernet-phy@0 {
--		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		/* Realtek RTL8211F (0x001cc916) */
- 		reg = <0>;
- 		max-speed = <1000>;
- 	};
--- 
-2.21.0
+Unfortunately yes.
+
+>> +&i2c1 {
+>> +       clock-frequency = <400000>;
+> 
+> Maybe you could use 100kHz instead in order to avoid the problem
+> described by the following i.MX8M erratum:
+> 
+> e7805: I2C: When the I2C clock speed is configured for 400 kHz, the
+> SCL low period violates the I2C spec of 1.3 uS min
+> https://www.nxp.com/docs/en/errata/IMX8MDQLQ_1N14W.pdf
+> 
+
+I discovered this a few days ago.
+
+https://source.puri.sm/angus.ainslie/linux-next/commit/10c9d9e55aba0e179166001b9292e37a37bfe0ea
+
+You're right 100kHz is a better choice.
+
+>> +&usdhc2 {
+>> +       pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>> +       pinctrl-0 = <&pinctrl_usdhc2>;
+>> +       pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
+>> +       pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
+>> +       bus-width = <4>;
+>> +       vmmc-supply = <&reg_usdhc2_vmmc>;
+>> +       power-supply = <&wifi_pwr_en>;
+>> +
+> 
+> Unneeded blank line.
+
+I'll fix it for the next rev.
+
+Thanks
+Angus
 
