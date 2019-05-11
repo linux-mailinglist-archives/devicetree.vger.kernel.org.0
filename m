@@ -2,115 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 670E71A87F
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 18:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A0231A88F
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 19:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726783AbfEKQqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 12:46:31 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:42642 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726482AbfEKQqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 12:46:30 -0400
-Received: by mail-ot1-f66.google.com with SMTP id f23so8267138otl.9;
-        Sat, 11 May 2019 09:46:30 -0700 (PDT)
+        id S1726482AbfEKQ77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 12:59:59 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:39113 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726270AbfEKQ76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 12:59:58 -0400
+Received: by mail-oi1-f196.google.com with SMTP id v2so3235136oie.6;
+        Sat, 11 May 2019 09:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=96bKsMAm9Vo8ijmk3T9jhbPo2k1zIbt2qUcMzxdEzIE=;
-        b=V28RfDIEVi47GSrUnvFhAP+TUnCVNQKKG0eV1YR70qCefysFU7zSTGFzmQ2OfqTUzx
-         HXHmC7eNp5UFgHdBNh5MFqKSgvvJeKhBQVVHzOIZ/MR/WOggJw2FeC0Hfrra+589QTXN
-         sI6Hmgvsvgbnf4J9+q+4sAgKGlSPsDS2f0sJebunqBItN2d6Y+cXCg7FiPtaG1l3L42C
-         G1+Uvzm8lWICt/I4EL+qip/FCZ5jyi+fMmd0yuLa2QeyYwVMPP+4mC6jabY6oQ9JUkmC
-         z9sbR6vZUezOJSe+7CGfInn6oCBfbjytow1lVKHcy0LpLzrmCybL4rLYJbD9uEQSB3zO
-         o8hg==
+        bh=SjNwRGGXu5Be11Dj6PNdZiF9AujZ6/yOzswhRut3k3E=;
+        b=DgHUPAmJmGQ+dEpurEqKvNioA3YxLnpoA37tONehwHuP65leqdysmLbUDtIVuDPnV+
+         /rKEtvsIggCPV9P340NPO7WVHDmAYR9ebJKs8p0z3XA/Vvg94hzbCGyTtLq6dKEH0pan
+         TehO7d3/jnEBgJtOjuzBYXC9ael97lD7vbSxEPcl+Q4lmoSwWGbllPFmRQdBz/oOz2L/
+         8hUdNDDEwZIzI7y3psCMRKXTudT/SMAU3Bh+QkY8XBV1DNRm0zeFfGjZoHzsHp16CyZq
+         2BFoqXmx8athQtcyMnV7eflqhuJLey63r3xa9yeShJ1Goud4W0K8FEbqsUzBYzwpiQXD
+         5GRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=96bKsMAm9Vo8ijmk3T9jhbPo2k1zIbt2qUcMzxdEzIE=;
-        b=g7a58fpjOp9kegwNAAKrvHGhlvi7QaAN1NeheoBi3TxdDAqn+X+QlmT8hNiZjlQ4nV
-         +/WS6r2e4ClZ4ls2fikhyvvCprSRFWUmloA2AMlVgcT4y1P2yT0XQNS5Yvb7W6tstbiQ
-         TmXkzHmO/eazBBfiq164WyYvO/ulMHofDxh2Y+FdnvhJkpoebmTnkuxFTSm/BGtMycwg
-         2SuGXPbj9NZ1zJwwafiYE6ZfMGCn1EagCGArB13DrA6VPDx/2NprTaj9SjjOlpJrodNV
-         IZe/aeQ7DRh91n718Pd8yQ7KNaAyO8VEmq7+7Crnp/PGtwxSdbPqHF2l8c+sv2dKh29V
-         oMAg==
-X-Gm-Message-State: APjAAAWRqf6A7+i9C7BM0qnSIKGn0z0MDjqyhCEhbpDaCZNUvKs3LXdO
-        rtb+cJ/uFdJ185ej7SsC+MrmSVgq+hw98sR0iQ8=
-X-Google-Smtp-Source: APXvYqwZ2Yawymrjhy2bfBFHnKAAPtDfzpc4uZrwzTwdpTA3nLQCVTT0MYmYZR49feLIgKD6cddI93e+R+MPKYHPHvc=
-X-Received: by 2002:a9d:6759:: with SMTP id w25mr10813499otm.348.1557593189896;
- Sat, 11 May 2019 09:46:29 -0700 (PDT)
+        bh=SjNwRGGXu5Be11Dj6PNdZiF9AujZ6/yOzswhRut3k3E=;
+        b=L/wBtrlH+1KkjLyJkIiK0Gl991p38I2UpuGek0/oCz/FQxx0G/xM1dRMJCWWbaJGKd
+         NXOrsV0RKiVGq7qSVnD2r+5+vi2+lTPkz5j3MsE2rFpDEnA4xBB+1Czefot4FG7/CKwM
+         2CQwBj5/kyHgEybP85HEfJuBcF0/T9ccODQQyh8D82/7RwLxcluy23uDOznwqA6xgEP2
+         hhxX5vsiEj/i0V3GMdK/ttQ7xHHB4cV13OYtIsY231PYpkK+sHnHIhivK3ygIDN8fhxC
+         5td7zrXSPsRLDn2bNxyO2SuNrOuOqHxe+X+PhGk+bKgVACTZKOfQGq51Qho8lHw74JJ3
+         LSEw==
+X-Gm-Message-State: APjAAAWxmfTjgHyV4isjGkRm5hNMGDRmtCJ3GNvbH37rBA/jq++GBmS3
+        xqHVAZjhYt8DAoLIJYILF7SYBEBxo6+JxtNlZZc=
+X-Google-Smtp-Source: APXvYqzkb2QhTyKOWMd6vfKBBm2PRJcPYttvl8GjcF3VU3IR8IZjzLtUHA8an8Ofwc8+A0v3fHlp3ise5fiwKThwlLA=
+X-Received: by 2002:aca:b68a:: with SMTP id g132mr8777744oif.47.1557593998010;
+ Sat, 11 May 2019 09:59:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190510082324.21181-1-glaroque@baylibre.com> <20190510082324.21181-6-glaroque@baylibre.com>
-In-Reply-To: <20190510082324.21181-6-glaroque@baylibre.com>
+References: <20190510164940.13496-1-jbrunet@baylibre.com> <20190510164940.13496-4-jbrunet@baylibre.com>
+In-Reply-To: <20190510164940.13496-4-jbrunet@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 11 May 2019 18:46:19 +0200
-Message-ID: <CAFBinCAYNvBtNwZdKJVUpObogjaiAx0W0Y-cnOL7RtARhYOW_g@mail.gmail.com>
-Subject: Re: [PATCH v5 5/6] pinctrl: meson: add support of drive-strength-microamp
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     linus.walleij@linaro.org, khilman@baylibre.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jbrunet@baylibre.com
+Date:   Sat, 11 May 2019 18:59:47 +0200
+Message-ID: <CAFBinCAe3jd598MPLUGFEoBAOaeXovSz7_8Kn7ZMmSFvRLFSXg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] arm64: dts: meson: g12a: add mdio multiplexer
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guillaume,
+Hi Jerome,
 
-On Fri, May 10, 2019 at 10:23 AM Guillaume La Roque
-<glaroque@baylibre.com> wrote:
+On Fri, May 10, 2019 at 6:49 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> drive-strength-microamp is a new feature needed for G12A SoC.
-> the default DS setting after boot is usually 500uA and it is not enough for
-> many functions. We need to be able to set the drive strength to reliably
-> enable things like MMC, I2C, etc ...
+> Add the g12a mdio multiplexer which allows to connect to either
+> an external phy through the SoC pins or the internal 10/100 phy
 >
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
-
-the warning messages when printing pinconf-pins (in debugfs) are gone
-on my Meson8m2 board so:
-Tested-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
-
-[...]
-> +static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
-> +                                           unsigned int pin,
-> +                                           u16 drive_strength_ua)
-> +{
-> +       struct meson_bank *bank;
-> +       unsigned int reg, bit, ds_val;
-> +       int ret;
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 32 +++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index fe0f73730525..6e9587aafb5d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -460,6 +460,38 @@
+>                                 assigned-clock-rates = <100000000>;
+>                                 #phy-cells = <1>;
+>                         };
 > +
-> +       if (!pc->reg_ds) {
-> +               dev_err(pc->dev, "drive-strength not supported\n");
-> +               return -ENOTSUPP;
-> +       }
+> +                       eth_phy: mdio-multiplexer@4c000 {
+> +                               compatible = "amlogic,g12a-mdio-mux";
+> +                               reg = <0x0 0x4c000 0x0 0xa4>;
+> +                               clocks = <&clkc CLKID_ETH_PHY>,
+> +                                        <&xtal>,
+> +                                        <&clkc CLKID_MPLL_5OM>;
+I haven't noticed that before but there's a typo in the MPLL_5OM clock
+definition:
+the O (capital o) should be a 0 (zero).
+can you fix this typo in an additional clock patch for v5.2 - then we
+don't have to do it in v5.3 where this .dtsi might already use it
+
+> +                               clock-names = "pclk", "clkin0", "clkin1";
+> +                               mdio-parent-bus = <&mdio0>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
 > +
-> +       ret = meson_get_bank(pc, pin, &bank);
-> +       if (ret)
-> +               return ret;
+> +                               ext_mdio: mdio@0 {
+> +                                       reg = <0>;
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +                               };
 > +
-> +       meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-> +       bit = bit << 1;
-I was confused by this shifting (not sure why I haven't noticed this
-in earlier revisions). however, it all made sense after I did the
-maths for two examples:
+> +                               int_mdio: mdio@1 {
+> +                                       reg = <1>;
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       internal_ephy: ethernet_phy@8 {
+> +                                               compatible = "ethernet-phy-id0180.3301",
+> +                                                            "ethernet-phy-ieee802.3-c22";
+please drop the compatible string and replace it with a comment (if
+you feel that it's needed).
+quote from Documentation/devicetree/bindings/net/phy.txt:
+> If the PHY reports an incorrect ID (or none at all) then the
+> "compatible" list may contain an entry with the correct PHY ID in the
+> form: "ethernet-phy-idAAAA.BBBB"
 
-BOOT_0 uses drive-strength register 0x0 bits [1:0] so the result
-should be "bit = 0"
-meson_calc_reg_and_bit returns bit = 0
-0 << 1 = 0, so this seems right
-
-BOOT_15 uses drive-strength register 0x0 bits [31:30] so the result
-should be "bit = 30"
-meson_calc_reg_and_bit returns bit = 15
-15 << 1 = 30
-
-so all seems fine, even though it wasn't obvious to me at first sight
-that it's all good
+I am going to send a patch for other Amlogic boards to remove any
+ethernet-phy-id comaptible string
 
 
+Regards
 Martin
