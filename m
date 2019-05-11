@@ -2,180 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B038A1A792
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 12:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D6B1A797
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 12:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728445AbfEKKi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 06:38:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45954 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725894AbfEKKi4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 May 2019 06:38:56 -0400
-Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B982D21479;
-        Sat, 11 May 2019 10:38:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557571135;
-        bh=R+jGbUpsZf3mEgDQzHaxnGGRxNQzI9w1jb/5WfOujnw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BgIOBHua84fxb1WUDKafZQhvvBNVq5C8H4reIaqqlgH8njy1E+F5ZXlwiuND+kmYc
-         T4yPsnqVoTIaAyyvtJI89WsOccFZL+Ln358o/zBDbUoCQ/Rjvtrb9035Ns+UZfnStp
-         5IE1/M9DUpF6tp7F2Cnt5sbbom5okobotcRivHU4=
-Date:   Sat, 11 May 2019 11:38:49 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Adam Michaelis <adam.michaelis@collins.com>
-Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
-        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        Couret Charles-Antoine <charles-antoine.couret@essensium.com>,
-        devicetree@vger.kernel.org,
-        Brandon Maier <brandon.maier@rockwellcollins.com>,
-        Clayton Shotwell <clayton.shotwell@rockwellcollins.com>
-Subject: Re: [PATCH 2/6] dt-bindings: iio: ad7949: Add adi,reference-select
-Message-ID: <20190511113849.3b15b542@archlinux>
-In-Reply-To: <CALMrGWUVnixueCbzKKkZ0af0rWze=N3SLD5EuynC869=nLw3PA@mail.gmail.com>
-References: <1556745423-11368-1-git-send-email-adam.michaelis@rockwellcollins.com>
-        <1556745423-11368-2-git-send-email-adam.michaelis@rockwellcollins.com>
-        <20190505132234.313b78e9@archlinux>
-        <CALMrGWUVnixueCbzKKkZ0af0rWze=N3SLD5EuynC869=nLw3PA@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728488AbfEKKlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 06:41:40 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:39894 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725894AbfEKKlj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 06:41:39 -0400
+Received: by mail-wr1-f67.google.com with SMTP id w8so7893859wrl.6;
+        Sat, 11 May 2019 03:41:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dxo37QiebDnia51nBIXSyhvdd7R5v9MF4iXVx2vhVik=;
+        b=EdcLPKtnYZSorPFZws0W0CPF7F821AUXHVPp+92cnlCVS0uS6klBTjKGfJwNOxvWaM
+         IZwn1/jtPcgRxstd+PF7JKTydUDBUus+HZly3U2RhupDEygZT0PuAu/QOH4rgeeBNO9F
+         svnjf11HuaY1246HzVMyHnTgZQAQc1JlzPHxN2Aa4dQaqI54GiqG7RFIU3hMU8K05dSR
+         5qPtbIaV/5cikfWlFOxXz77gYebGAdXUeM8Tfy80ftJ52klj2sI51bwCpDSiqqbaKCTv
+         Qgh7NN8eMDXPdPpQEsDUEIiQHCpn/fdYP+iVM/DyC1JNFENmFTSp8xQ9fw9WC9eFz75M
+         JpmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dxo37QiebDnia51nBIXSyhvdd7R5v9MF4iXVx2vhVik=;
+        b=Dj0KHtDbrhqkXtfMLDyrQbrrBdNnHfwoVYcncyCAPE+9hn6TUDD6D/2recTxp+xEsC
+         sDLpjW9NtmbMGQ5XF/0LJs5MHCtAlxhfIR09XB0ZFjqteE9DnTsX7bGfVuaNoUdI40bp
+         6N5DMlJX8mgXDLfjkPXhijJjnKJJwr56RyaaaPfP+2rRKhInHioCIK9OBBPLJxIgBh/J
+         1YbmtqiDr/Ix0kaouuYRLFkkExVEto/IZH3uWIBVjA/JqVrBgPIbCG/44JTWWH7S6rFQ
+         yjx5eF84ro4wtm3AtqG7w0ZkVboGvvqL1dKpfGvhAvXoLPEVQCJd69gEhXIYQZBG7Vt3
+         gZtg==
+X-Gm-Message-State: APjAAAVwQJ1sXVtvwJ9EczJU0ZHFEdEQaagBDjyoncEcl6W2TzTKjESF
+        E3YgImaJcKQzK3fB1j1VyOc=
+X-Google-Smtp-Source: APXvYqwqeEqNJmtHPVZezZmUT6MtGbi4k3ufZFZ0tezCR4ruOL5pRDJHgIEpEhu5LVlkdUTkIarQAA==
+X-Received: by 2002:adf:dc4b:: with SMTP id m11mr11302841wrj.66.1557571297735;
+        Sat, 11 May 2019 03:41:37 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8bd4:5700:152f:e071:7960:90b9? (p200300EA8BD45700152FE071796090B9.dip0.t-ipconnect.de. [2003:ea:8bd4:5700:152f:e071:7960:90b9])
+        by smtp.googlemail.com with ESMTPSA id f7sm6466262wrt.81.2019.05.11.03.41.36
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 11 May 2019 03:41:36 -0700 (PDT)
+Subject: Re: [PATCH 5/5] net: phy: dp83867: Use unsigned variables to store
+ unsigned properties
+To:     Trent Piepho <tpiepho@impinj.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <20190510214550.18657-1-tpiepho@impinj.com>
+ <20190510214550.18657-5-tpiepho@impinj.com>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <49c6afc4-6c5b-51c9-74ab-9a6e8c2460a5@gmail.com>
+Date:   Sat, 11 May 2019 12:41:31 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190510214550.18657-5-tpiepho@impinj.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 May 2019 13:21:03 -0500
-Adam Michaelis <adam.michaelis@collins.com> wrote:
-
-> On Sun, May 5, 2019 at 7:22 AM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > On Wed,  1 May 2019 16:16:59 -0500
-> > Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
-> >  
-> > > Adding optional parameter to AD7949 to specify the source for the
-> > > reference voltage signal. Default value is maintaned with option '6' to
-> > > match previous version of driver.
-> > >
-> > > Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
-> > > ---
-> > >  .../devicetree/bindings/iio/adc/ad7949.txt         | 22 ++++++++++++++++++++--
-> > >  1 file changed, 20 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/ad7949.txt b/Documentation/devicetree/bindings/iio/adc/ad7949.txt
-> > > index c7f5057356b1..14ee9a2cb2a5 100644
-> > > --- a/Documentation/devicetree/bindings/iio/adc/ad7949.txt
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/ad7949.txt
-> > > @@ -6,11 +6,29 @@ Required properties:
-> > >       * "adi,ad7682"
-> > >       * "adi,ad7689"
-> > >   - reg: spi chip select number for the device
-> > > - - vref-supply: The regulator supply for ADC reference voltage
-> > >
-> > > -Example:
-> > > +Optional properties:
-> > > + - adi,reference-select: Select the reference voltage source to use
-> > > + when converting the input voltages. Valid values are:  
-> > So my immediate thought here is we are mapping one binding to several
-> > different things. Some of which are definitely better described in other
-> > ways.
-> >
-> > So let us break it down:
-> >
-> > Internal vs external.
-> > - External should require a regulator.  If the regulator is there, normal
-> > assumption would be you want to use it.
-> >
-> > Which internal reference?  Hmm. This would be incompatible with the external
-> > regulator and I'd expect the presence of such a regulator to override this.
-> > That does need a new binding.
-> > adi,internal-reference-milivolts = 2500 or 4096.   Much nicer to have
-> > real numbers for someone wondering how it is configured than an enum.
-> >
-> > Temperature sensor enabled: Why is this a devicetree question rather than
-> > a runtime decision?
-> >
-> > Buffer enabled: This needs a custom binding
-> > adi,external-reference-buffer-enable or something like that?
-> >
-> > Makes for a more consistent binding where some elements can be common
-> > across similar devices.  It would be good to see if similar bindings
-> > already exist.  Potentially tings like the reference-buffer enable
-> > may be worth making standard ADC properties rather than device
-> > specific.
-> >
-> > Thanks,
-> >
-> > Jonathan
-> >  
-> The property name "adi,reference-select" was copied from the
-> adi,ad7124 bindings as a similar hardware register configuration value
-> field. If the property was separated into three independent fields,
-> there would be a lot of explanation and checking required since many
-> of the combinations are invalid (for example, temperature sensor and
-> buffer are always enabled if internal reference is used). I could
-> possibly see removing the temperature sensor configuration from the
-> device tree, but, the current driver (even after these patches) does
-> not provide any support to read the temperature sensor's value. I
-> include that information in the configuration options as a summary of
-> the datasheet.
-
-There would certainly be nothing wrong with ignoring the temperature
-sensor element for now.  It is the sort of thing it's possible no one will
-ever actually add.
-
-The reference select for 7124 was both much simpler than this and is
-per channel.  To use a regulator presence in that case would require
-defining a separate regulator for each channel.  The aim is always
-to have the most readable possible (and generic) bindings, but
-sometimes it really is too hard to do and we fall back on manufacturer
-specific ones.  Here I don't think that is true.
-
-I agree there is a small amount of additional complexity to validating
-the provided settings, but it's not going to be that complex.
-
-First see if there is an external regulator.
-If there is check for buffer enable (and possibly temperature enable).
-
-If no external buffer then check for internal ref.
-
-There is no need to check for invalid combinations. The documentation
-needs to include this but the code doesn't.
-
-Thanks
-
-Jonathan
-
-
-
+On 10.05.2019 23:46, Trent Piepho wrote:
+> The variables used to store u32 DT properties were signed ints.  This
+> doesn't work properly if the value of the property were to overflow.
+> Use unsigned variables so this doesn't happen.
 > 
-> Adam
-> >  
-> > > +   0: Internal 2.5V reference; temperature sensor enabled
-> > > +   1: Internal 4.096V reference; temperature sensor enabled
-> > > +   2: External reference, temperature sensor enabled, no buffer
-> > > +   3: External reference, temperature sensor enabled, buffer enabled
-> > > +   6: External reference, temperature sensor disabled, no buffer
-> > > +   7: External reference, temperature sensor disabled, buffer enabled
-> > > + - vref-supply: The regulator supply for ADC reference voltage. Required
-> > > + if external reference selected by 'adi,reference-select'.
-> > > +
-> > > +Examples:
-> > >  adc@0 {
-> > >       compatible = "adi,ad7949";
-> > >       reg = <0>;
-> > > +     adi,reference-select = <2>;
-> > >       vref-supply = <&vdd_supply>;
-> > >  };
-> > > +
-> > > +adc@0 {
-> > > +     compatible = "adi,ad7949";
-> > > +     reg = <0>;
-> > > +     adi,reference-select = <0>;
-> > > +};  
-> >  
+In patch 3 you added a check for DT properties being out of range.
+I think this would be good also for the three properties here.
+The delay values are only 4 bits wide, so you might also consider
+to switch to u8 or u16.
+
+Please note that net-next is closed currently. Please resubmit the
+patches once it's open again, and please annotate them properly
+with net-next.
+
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Trent Piepho <tpiepho@impinj.com>
+> ---
+>  drivers/net/phy/dp83867.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
+> index a46cc9427fb3..edd9e27425e8 100644
+> --- a/drivers/net/phy/dp83867.c
+> +++ b/drivers/net/phy/dp83867.c
+> @@ -82,9 +82,9 @@ enum {
+>  };
+>  
+>  struct dp83867_private {
+> -	int rx_id_delay;
+> -	int tx_id_delay;
+> -	int fifo_depth;
+> +	u32 rx_id_delay;
+> +	u32 tx_id_delay;
+> +	u32 fifo_depth;
+>  	int io_impedance;
+>  	int port_mirroring;
+>  	bool rxctrl_strap_quirk;
+> 
 
