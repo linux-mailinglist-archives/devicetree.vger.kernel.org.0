@@ -2,127 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 266771AD75
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 19:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A9171AD8F
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 19:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726790AbfELRPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 13:15:21 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:46662 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726529AbfELRPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 13:15:21 -0400
-Received: by mail-qk1-f196.google.com with SMTP id a132so6582748qkb.13
-        for <devicetree@vger.kernel.org>; Sun, 12 May 2019 10:15:20 -0700 (PDT)
+        id S1726790AbfELRqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 13:46:17 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36175 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726529AbfELRqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 13:46:17 -0400
+Received: by mail-wm1-f68.google.com with SMTP id j187so11558733wmj.1;
+        Sun, 12 May 2019 10:46:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QVZfv1XrlSfCBKYSGVa1+qErP5NlTniZ7Uw0fXhDRsM=;
+        b=nBmE7w7P+u/frCbPSdZZa0Xz+mMQkcFFkWsU3I6Hta0YBTEF9DDgCHpCIVFXrcFstD
+         CEvhmQNCSykn2g8xZMk77WWw626Ia3fV1rSp5z1dYf6OVEkMUXY/QD5FRaZ2qY8VVstE
+         m5OJQirNJgPgxvv28WYnq8sJXVTdvAmynUI37JIyuZY8Sb/1XxRABptKzWNvbjmnJlnV
+         DOwj5L1QUQOvOzZarMkEh80NzOQX8/f1msKgmIyc/ms/1s2dhTxCPcptMh/feRm+rBsI
+         QpSQD6JEXJzk1T5/RbL472yHbo/VkcuOMhf15pXbJKuBPmBJ7uTDTF4QBpCLjtJbyZf9
+         iXzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Sz6oXhk1MUAcDMqhVgJnZ+u8Zwtmv3OV0JGi1Y8CWDw=;
-        b=dFivOiQDCNs4kUnY3/LNC+C7triaBFkJ71yWW00bGsc+G38n7/9MJNYF9VSfNWk8as
-         LHM2iAbBea+i4mtWNCigJN1mKruWh6eYtJ1BGw/mSfafvO06R2W+NZrMvfoWodHPLbd5
-         TMOZXHqnzRCaLXRTOU7iPDp6LdcYyG3ZePSL8RTelIB82cNlCV4F2CZR+WC+uhvoy34x
-         n4FGtDQ7voUTKXQFssVET5S6jsQ9B4vGrLZhq/rdD7qRW9dePBahhOazoKITLfYxjJ7t
-         /3UpnALs+XCAw5F6Vyx/l9gYUyr6VAWUGRPvFM/S0mPI5qzN0WOra+L6LoGsehN8ZJg7
-         e5sg==
-X-Gm-Message-State: APjAAAVw+ndYSVWCb1XjdXTE08jLFY8Cym7nJ5fpCb28LPezHKTkCWaH
-        Ts4aWkbHchrN/DTvxqkvISlctQ==
-X-Google-Smtp-Source: APXvYqxLzieYropX9DXBLnvbsudc9FJW0WQmQVUd/9WRnEbpC2BiYAyAKTnxKUBxw7ns2tMNztADiw==
-X-Received: by 2002:a37:b3c5:: with SMTP id c188mr18807278qkf.97.1557681320186;
-        Sun, 12 May 2019 10:15:20 -0700 (PDT)
-Received: from redhat.com (pool-173-76-105-71.bstnma.fios.verizon.net. [173.76.105.71])
-        by smtp.gmail.com with ESMTPSA id c32sm6064980qte.2.2019.05.12.10.15.18
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sun, 12 May 2019 10:15:19 -0700 (PDT)
-Date:   Sun, 12 May 2019 13:15:16 -0400
-From:   "Michael S. Tsirkin" <mst@redhat.com>
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Cc:     iommu@lists.linux-foundation.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        virtio-dev@lists.oasis-open.org, joro@8bytes.org,
-        jasowang@redhat.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        bhelgaas@google.com, frowand.list@gmail.com,
-        kvmarm@lists.cs.columbia.edu, eric.auger@redhat.com,
-        tnowicki@caviumnetworks.com, kevin.tian@intel.com,
-        marc.zyngier@arm.com, robin.murphy@arm.com, will.deacon@arm.com,
-        lorenzo.pieralisi@arm.com, bharat.bhushan@nxp.com
-Subject: Re: [PATCH v7 0/7] Add virtio-iommu driver
-Message-ID: <20190512131500-mutt-send-email-mst@kernel.org>
-References: <20190115121959.23763-1-jean-philippe.brucker@arm.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QVZfv1XrlSfCBKYSGVa1+qErP5NlTniZ7Uw0fXhDRsM=;
+        b=o1XknW6Tzvr6gpMwQD6NJC18PzsOy8z8a1akUhRTXyGRAqdL1c//31lt5WZLVDCj3/
+         bYWCOt/wIJ5D6dwCTh8Ic3hRK7iC/+i2+7MBQvbHXgzrHMqRM7wABWT6Q98FewpZ9VMh
+         t3iMFGO/g30stb7jr84WpSEiOl7MMEo/UwLEIDpUqPyqRydGWsQDPkKJItToO297zHXI
+         yXOr8yKkBjNIsYEJgZJ/0F/N6QNkSPjAgs5m2V1c7+YpsVoImFtx1lqEWekk4z5Lg4Ho
+         nnEvTK2ccfN2jZm0pOSau0/UtqLaUPTCXrp9Bfemc46zE8tJZXZbE2L5LwLVDqOSo2z9
+         6i+g==
+X-Gm-Message-State: APjAAAWbh/KvSFAJAqhshAQ9zt+9RpYqMQayho8zSej8i0jQhPVZaS4H
+        hhUmFBDvpKcmXQcig+3zs7E=
+X-Google-Smtp-Source: APXvYqxhWeqE2lBh2k5a4dTcV7sEJ2M9qqkT8DQ/tBHx1rAhg4yUak6CGFAClz0i/26Aef9LHqGtXw==
+X-Received: by 2002:a05:600c:254e:: with SMTP id e14mr1830396wma.70.1557683175358;
+        Sun, 12 May 2019 10:46:15 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
+        by smtp.gmail.com with ESMTPSA id d14sm9090558wre.78.2019.05.12.10.46.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 12 May 2019 10:46:14 -0700 (PDT)
+From:   peron.clem@gmail.com
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v4 0/8] Allwinner H6 Mali GPU support
+Date:   Sun, 12 May 2019 19:46:00 +0200
+Message-Id: <20190512174608.10083-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190115121959.23763-1-jean-philippe.brucker@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 15, 2019 at 12:19:52PM +0000, Jean-Philippe Brucker wrote:
-> Implement the virtio-iommu driver, following specification v0.9 [1].
-> 
-> This is a simple rebase onto Linux v5.0-rc2. We now use the
-> dev_iommu_fwspec_get() helper introduced in v5.0 instead of accessing
-> dev->iommu_fwspec, but there aren't any functional change from v6 [2].
-> 
-> Our current goal for virtio-iommu is to get a paravirtual IOMMU working
-> on Arm, and enable device assignment to guest userspace. In this
-> use-case the mappings are static, and don't require optimal performance,
-> so this series tries to keep things simple. However there is plenty more
-> to do for features and optimizations, and having this base in v5.1 would
-> be good. Given that most of the changes are to drivers/iommu, I believe
-> the driver and future changes should go via the IOMMU tree.
-> 
-> You can find Linux driver and kvmtool device on v0.9.2 branches [3],
-> module and x86 support on virtio-iommu/devel. Also tested with Eric's
-> QEMU device [4]. Please note that the series depends on Robin's
-> probe-deferral fix [5], which will hopefully land in v5.0.
-> 
-> [1] Virtio-iommu specification v0.9, sources and pdf
->     git://linux-arm.org/virtio-iommu.git virtio-iommu/v0.9
->     http://jpbrucker.net/virtio-iommu/spec/v0.9/virtio-iommu-v0.9.pdf
-> 
-> [2] [PATCH v6 0/7] Add virtio-iommu driver
->     https://lists.linuxfoundation.org/pipermail/iommu/2018-December/032127.html
-> 
-> [3] git://linux-arm.org/linux-jpb.git virtio-iommu/v0.9.2
->     git://linux-arm.org/kvmtool-jpb.git virtio-iommu/v0.9.2
-> 
-> [4] [RFC v9 00/17] VIRTIO-IOMMU device
->     https://www.mail-archive.com/qemu-devel@nongnu.org/msg575578.html
-> 
-> [5] [PATCH] iommu/of: Fix probe-deferral
->     https://www.spinics.net/lists/arm-kernel/msg698371.html
+From: Clément Péron <peron.clem@gmail.com>
 
-For virtio things:
+Hi,
 
-Acked-by: Michael S. Tsirkin <mst@redhat.com>
+The Allwinner H6 has a Mali-T720 MP2. The drivers are
+out-of-tree so this series only introduce the dt-bindings.
 
+The first patch is from Neil Amstrong and has been already
+merged in linux-amlogic. It is required for this series.
 
+The second patch is from Icenowy Zheng where I changed the
+order has required by Rob Herring.
+See: https://patchwork.kernel.org/patch/10699829/
 
-> Jean-Philippe Brucker (7):
->   dt-bindings: virtio-mmio: Add IOMMU description
->   dt-bindings: virtio: Add virtio-pci-iommu node
->   of: Allow the iommu-map property to omit untranslated devices
->   PCI: OF: Initialize dev->fwnode appropriately
->   iommu: Add virtio-iommu driver
->   iommu/virtio: Add probe request
->   iommu/virtio: Add event queue
-> 
->  .../devicetree/bindings/virtio/iommu.txt      |   66 +
->  .../devicetree/bindings/virtio/mmio.txt       |   30 +
->  MAINTAINERS                                   |    7 +
->  drivers/iommu/Kconfig                         |   11 +
->  drivers/iommu/Makefile                        |    1 +
->  drivers/iommu/virtio-iommu.c                  | 1158 +++++++++++++++++
->  drivers/of/base.c                             |   10 +-
->  drivers/pci/of.c                              |    7 +
->  include/uapi/linux/virtio_ids.h               |    1 +
->  include/uapi/linux/virtio_iommu.h             |  161 +++
->  10 files changed, 1449 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
->  create mode 100644 drivers/iommu/virtio-iommu.c
->  create mode 100644 include/uapi/linux/virtio_iommu.h
-> 
-> -- 
-> 2.19.1
+Thanks,
+Clément
+
+Changes in v4:
+ - Add Rob Herring reviewed-by tag
+ - Resent with correct Maintainers
+
+Changes in v3 (Thanks to Maxime Ripard):
+ - Reauthor Icenowy for her patch
+
+Changes in v2 (Thanks to Maxime Ripard):
+ - Drop GPU OPP Table
+ - Add clocks and clock-names in required
+
+Clément Péron (6):
+  dt-bindings: gpu: mali-midgard: Add H6 mali gpu compatible
+  arm64: dts: allwinner: Add ARM Mali GPU node for H6
+  arm64: dts: allwinner: Add mali GPU supply for Pine H64
+  arm64: dts: allwinner: Add mali GPU supply for Beelink GS1
+  arm64: dts: allwinner: Add mali GPU supply for OrangePi Boards
+  arm64: dts: allwinner: Add mali GPU supply for OrangePi 3
+
+Icenowy Zheng (1):
+  dt-bindings: gpu: add bus clock for Mali Midgard GPUs
+
+Neil Armstrong (1):
+  dt-bindings: gpu: mali-midgard: Add resets property
+
+ .../bindings/gpu/arm,mali-midgard.txt         | 27 +++++++++++++++++++
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  5 ++++
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |  5 ++++
+ .../dts/allwinner/sun50i-h6-orangepi.dtsi     |  5 ++++
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  5 ++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 14 ++++++++++
+ 6 files changed, 61 insertions(+)
+
+-- 
+2.17.1
+
