@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5881AD57
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 19:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F661AB32
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 10:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727023AbfELRFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 13:05:51 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49650 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726883AbfELRFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 13:05:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=u2q75OsSvN0gs9+vI+HKmu1j+P1UgVapAAD+9M7rxxI=; b=RuxoE3LAX9keebSda6rl0E4YX
-        sdxnYM8dMd4Ld7j/AwvO/B+7D1m64BAgXVoOolJHM/VlPKUO6H0ZBzN61/Mke/pSijUeyaJHLkeOK
-        IL8uhxAbGX1K/eFMLrbtvOGWovUjthTKAsJHoZFS1Bge0Ral8dhc1EGCs6utORIACiX0A=;
-Received: from [81.145.206.43] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hPruu-00044c-8K; Sun, 12 May 2019 17:05:40 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id F412C440036; Sun, 12 May 2019 08:52:23 +0100 (BST)
-Date:   Sun, 12 May 2019 16:52:23 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Radu Pirea <radu_nicolae.pirea@upb.ro>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Richard Genoud <richard.genoud@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: Applied "dt-bindings: mfd: atmel-usart: add DMA bindings for
- USART in SPI mode" to the spi tree
-Message-ID: <20190512075223.GF21483@sirena.org.uk>
-References: <20190505180646.1442-2-radu_nicolae.pirea@upb.ro>
- <20190508090857.B7CB344003F@finisterre.sirena.org.uk>
- <20190508105105.GN3995@dell>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xkXJwpr35CY/Lc3I"
-Content-Disposition: inline
-In-Reply-To: <20190508105105.GN3995@dell>
-X-Cookie: HOST SYSTEM RESPONDING, PROBABLY UP...
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726128AbfELI0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 04:26:20 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:45839 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725934AbfELI0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 04:26:20 -0400
+Received: by mail-pf1-f193.google.com with SMTP id s11so5485712pfm.12;
+        Sun, 12 May 2019 01:26:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=z7fqRlGKomLBOv7X8ZNXyme9e+4ESlFc2IpZxYNJbQs=;
+        b=LivOin7NcHcNmpntbideMsybvPb498BcFq1ByK6j+Uq7qL0e0WJvVSp5vQ4Znq0DcI
+         ajxGhn/HbbuGzQLBXHpG6wochn8ootEPLp5sm7Zyd/FSIsQzntX/ux5er9FaJzEiMQBg
+         Rhq/rGnR3exp6P0UJa/AbHyPIxIIq0VkqmIS92Nvqt8Ugs/k+VP9SAVZwT/8VZHKsPxY
+         xqwpgMmSHatKLFtk75kXaKCMrHbiju+9KA9tBO8tzbVOYn32laQl9jA6UKTeNRTMOid4
+         9LO71V6c/jM6NdK38rwp2cU5N5tVX5UnRf600YpeivrxfL4DmzWPfsraXmWE2TzQVWQL
+         aWMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=z7fqRlGKomLBOv7X8ZNXyme9e+4ESlFc2IpZxYNJbQs=;
+        b=AiegK+tG+WVGx6VyYdnkR3wnhOcB0N4LHo13xlSlVOiQPqn7Rrzq+RGhalDyJmdusv
+         lebeq3JLHwJZEyv0jgF/QmzXHMtgfSrwzIbzGn2vZgu19B8EPsdUlaUIZfYNcfudM5JU
+         qBQmZ62aBidm3w7fPdgPaCtyJSnniMxR3C9Kr4OV1eptH/4FRyeeRViG4jf4elRwxbwW
+         eJnH0QXZiGZ59oNwBrGBZOvZYOdIqDn1JC6HSj8XkAVPty07MMjxuKy0QvhwvyuiKWKG
+         e3g4c8vRY2Vhb9Jo6W7KTcTcgohisXKs5m/SLiTQCt8CGL8mRNPpNpp+eIrz0E8Fa6vA
+         dBTg==
+X-Gm-Message-State: APjAAAUftvekOAoTb8Qo+TbgoEN3WFqD2HH1sxX59gZaslL8r7gdBxnM
+        2ebkTKLBF0pPOiLxYasWACI=
+X-Google-Smtp-Source: APXvYqx1A1kbLI9y/5pUCwvMoNIIk19yu+EqQtr6gApatuYzdCzGhzmtCXnd5sRlZo9Rzt2csXEEeQ==
+X-Received: by 2002:a62:200f:: with SMTP id g15mr26215748pfg.7.1557649579414;
+        Sun, 12 May 2019 01:26:19 -0700 (PDT)
+Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
+        by smtp.gmail.com with ESMTPSA id j9sm30306887pfc.43.2019.05.12.01.26.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 12 May 2019 01:26:18 -0700 (PDT)
+From:   Yangtao Li <tiny.windzz@gmail.com>
+To:     tiny.windzz@gmail.com, rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
+        catalin.marinas@arm.com, will.deacon@arm.com, davem@davemloft.net,
+        mchehab+samsung@kernel.org, gregkh@linuxfoundation.org,
+        Jonathan.Cameron@huawei.com, nicolas.ferre@microchip.com,
+        paulmck@linux.ibm.com, andy.gross@linaro.org, olof@lixom.net,
+        bjorn.andersson@linaro.org, jagan@amarulasolutions.com,
+        marc.w.gonzalez@free.fr, stefan.wahren@i2se.com,
+        enric.balletbo@collabora.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] add thermal driver for h6
+Date:   Sun, 12 May 2019 04:26:11 -0400
+Message-Id: <20190512082614.9045-1-tiny.windzz@gmail.com>
+X-Mailer: git-send-email 2.17.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset support thermal driver of allwinner H6.
 
---xkXJwpr35CY/Lc3I
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yangtao Li (3):
+  arm64: defconfig: add allwinner sid support
+  thermal: sun50i: add thermal driver for h6
+  dt-bindings: thermal: add binding document for h6 thermal controller
 
-On Wed, May 08, 2019 at 11:51:05AM +0100, Lee Jones wrote:
-> > Signed-off-by: Mark Brown <broonie@kernel.org>
-> > ---
-> >  .../devicetree/bindings/mfd/atmel-usart.txt   | 20 ++++++++++++++-----
+ .../bindings/thermal/sun50i-thermal.txt       |  32 ++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/thermal/Kconfig                       |  14 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/sun50i_thermal.c              | 357 ++++++++++++++++++
+ 6 files changed, 412 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
+ create mode 100644 drivers/thermal/sun50i_thermal.c
 
-> Interesting!
+-- 
+2.17.0
 
-For some reason the bindings for the SPI function got put in the MFD
-directory, dunno why.
-
---xkXJwpr35CY/Lc3I
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzX0LcACgkQJNaLcl1U
-h9DQCwf/WFhMZtcust0DuMCXriQ8faNSLBTBaf77XBUl0FDL66Uge3k6OO/5RP3h
-8hEh7TTviJw3VCcryu1ee9kRNUVdBqdiSHEzb18Q2gDfGmmGrJWGzj59B/47NUjz
-e5enUWORH2PLwGFNmZ81Ay2w2DUvN1UPDHKcCWX1/fbJBxBkzRYiCLjZAOMh9QE6
-QEKjmRIJmVnvgNYeSoz5DNo+++PUKxZYX2IN0JN9oX7LtPdjN9UL4HegW+3xflrB
-IVi2Am4CNMwDCNlMDHrkdClRKmEmAlDRU3kWxlUDLezIKbA3LAiFhQ9nuXyC+Q7e
-Ncn36/FFn/CtfjbD1EWLwGhBGQGoGw==
-=A/JO
------END PGP SIGNATURE-----
-
---xkXJwpr35CY/Lc3I--
