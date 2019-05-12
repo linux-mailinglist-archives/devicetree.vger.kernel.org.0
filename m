@@ -2,98 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D4D1AD6C
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 19:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 266771AD75
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 19:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726769AbfELRH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 13:07:29 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52418 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726669AbfELRH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 13:07:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=G5xlJDa6zk0mg1D7OFpmjSf2+dxHmYsbAjbOgtF2WVI=; b=cl3dzex1TWMNPiBpesr65Eo7F
-        H9HVQq0TuFUpVsHX6kptGrMiUcMeHxfVc8fG3sNL3EIFW+VKSMfcpTBTeS+d5PLybyPfUyzr1fcXu
-        F1TQyTLbAcBSu8IXgsuB8MXptkbna1IYhHGmDBpkTI7Wcy5opdxLgWRyyN7+bHahNrssM=;
-Received: from [81.145.206.43] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hPrwV-00046h-5C; Sun, 12 May 2019 17:07:19 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 2298B44000C; Sun, 12 May 2019 18:07:17 +0100 (BST)
-Date:   Sun, 12 May 2019 18:07:17 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Mallikarjun Kasoju <mkasoju@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 6/6] regulator: max77620: Support Maxim 77663
-Message-ID: <20190512170717.GS21483@sirena.org.uk>
-References: <20190505154325.30026-1-digetx@gmail.com>
- <20190505154325.30026-7-digetx@gmail.com>
- <f8f67e00-0544-c999-92e0-3998c2f70ee7@gmail.com>
+        id S1726790AbfELRPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 13:15:21 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:46662 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726529AbfELRPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 13:15:21 -0400
+Received: by mail-qk1-f196.google.com with SMTP id a132so6582748qkb.13
+        for <devicetree@vger.kernel.org>; Sun, 12 May 2019 10:15:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Sz6oXhk1MUAcDMqhVgJnZ+u8Zwtmv3OV0JGi1Y8CWDw=;
+        b=dFivOiQDCNs4kUnY3/LNC+C7triaBFkJ71yWW00bGsc+G38n7/9MJNYF9VSfNWk8as
+         LHM2iAbBea+i4mtWNCigJN1mKruWh6eYtJ1BGw/mSfafvO06R2W+NZrMvfoWodHPLbd5
+         TMOZXHqnzRCaLXRTOU7iPDp6LdcYyG3ZePSL8RTelIB82cNlCV4F2CZR+WC+uhvoy34x
+         n4FGtDQ7voUTKXQFssVET5S6jsQ9B4vGrLZhq/rdD7qRW9dePBahhOazoKITLfYxjJ7t
+         /3UpnALs+XCAw5F6Vyx/l9gYUyr6VAWUGRPvFM/S0mPI5qzN0WOra+L6LoGsehN8ZJg7
+         e5sg==
+X-Gm-Message-State: APjAAAVw+ndYSVWCb1XjdXTE08jLFY8Cym7nJ5fpCb28LPezHKTkCWaH
+        Ts4aWkbHchrN/DTvxqkvISlctQ==
+X-Google-Smtp-Source: APXvYqxLzieYropX9DXBLnvbsudc9FJW0WQmQVUd/9WRnEbpC2BiYAyAKTnxKUBxw7ns2tMNztADiw==
+X-Received: by 2002:a37:b3c5:: with SMTP id c188mr18807278qkf.97.1557681320186;
+        Sun, 12 May 2019 10:15:20 -0700 (PDT)
+Received: from redhat.com (pool-173-76-105-71.bstnma.fios.verizon.net. [173.76.105.71])
+        by smtp.gmail.com with ESMTPSA id c32sm6064980qte.2.2019.05.12.10.15.18
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sun, 12 May 2019 10:15:19 -0700 (PDT)
+Date:   Sun, 12 May 2019 13:15:16 -0400
+From:   "Michael S. Tsirkin" <mst@redhat.com>
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Cc:     iommu@lists.linux-foundation.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        virtio-dev@lists.oasis-open.org, joro@8bytes.org,
+        jasowang@redhat.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        bhelgaas@google.com, frowand.list@gmail.com,
+        kvmarm@lists.cs.columbia.edu, eric.auger@redhat.com,
+        tnowicki@caviumnetworks.com, kevin.tian@intel.com,
+        marc.zyngier@arm.com, robin.murphy@arm.com, will.deacon@arm.com,
+        lorenzo.pieralisi@arm.com, bharat.bhushan@nxp.com
+Subject: Re: [PATCH v7 0/7] Add virtio-iommu driver
+Message-ID: <20190512131500-mutt-send-email-mst@kernel.org>
+References: <20190115121959.23763-1-jean-philippe.brucker@arm.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jo46wx5DSA4a/gWG"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f8f67e00-0544-c999-92e0-3998c2f70ee7@gmail.com>
-X-Cookie: HOST SYSTEM RESPONDING, PROBABLY UP...
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190115121959.23763-1-jean-philippe.brucker@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jan 15, 2019 at 12:19:52PM +0000, Jean-Philippe Brucker wrote:
+> Implement the virtio-iommu driver, following specification v0.9 [1].
+> 
+> This is a simple rebase onto Linux v5.0-rc2. We now use the
+> dev_iommu_fwspec_get() helper introduced in v5.0 instead of accessing
+> dev->iommu_fwspec, but there aren't any functional change from v6 [2].
+> 
+> Our current goal for virtio-iommu is to get a paravirtual IOMMU working
+> on Arm, and enable device assignment to guest userspace. In this
+> use-case the mappings are static, and don't require optimal performance,
+> so this series tries to keep things simple. However there is plenty more
+> to do for features and optimizations, and having this base in v5.1 would
+> be good. Given that most of the changes are to drivers/iommu, I believe
+> the driver and future changes should go via the IOMMU tree.
+> 
+> You can find Linux driver and kvmtool device on v0.9.2 branches [3],
+> module and x86 support on virtio-iommu/devel. Also tested with Eric's
+> QEMU device [4]. Please note that the series depends on Robin's
+> probe-deferral fix [5], which will hopefully land in v5.0.
+> 
+> [1] Virtio-iommu specification v0.9, sources and pdf
+>     git://linux-arm.org/virtio-iommu.git virtio-iommu/v0.9
+>     http://jpbrucker.net/virtio-iommu/spec/v0.9/virtio-iommu-v0.9.pdf
+> 
+> [2] [PATCH v6 0/7] Add virtio-iommu driver
+>     https://lists.linuxfoundation.org/pipermail/iommu/2018-December/032127.html
+> 
+> [3] git://linux-arm.org/linux-jpb.git virtio-iommu/v0.9.2
+>     git://linux-arm.org/kvmtool-jpb.git virtio-iommu/v0.9.2
+> 
+> [4] [RFC v9 00/17] VIRTIO-IOMMU device
+>     https://www.mail-archive.com/qemu-devel@nongnu.org/msg575578.html
+> 
+> [5] [PATCH] iommu/of: Fix probe-deferral
+>     https://www.spinics.net/lists/arm-kernel/msg698371.html
 
---jo46wx5DSA4a/gWG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+For virtio things:
 
-On Sun, May 12, 2019 at 05:08:15PM +0300, Dmitry Osipenko wrote:
+Acked-by: Michael S. Tsirkin <mst@redhat.com>
 
-> Just want to get yours attention to that Lee picked up the patches into
-> the MFD tree, excluding this patch. I assume this one will have to go
-> via the regulator's tree.
 
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
 
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
-
---jo46wx5DSA4a/gWG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzYUrwACgkQJNaLcl1U
-h9Av/Af6A7eNJJBMhZupsKDyFp3/A06DY0GmX/yFWFZsvWD8tC+lwGKriot3sRsO
-hgzEGPzGKHsPap5Co+eJMK5qju+hoCTxr0EXsJGz7jUV4yvNF9kVP9vjDFDdiB3q
-h7i54gvLBADsp9iaxm/1zlXsVtXoAeONz+g401sWi2tBo49EMSixuSZVuX6mEo3N
-+UoZRX+jK87XBL10ewBMdtrYMqrr2h6X3Wd8WH9010x/ug49Iem7Oq7XgL18vnrt
-lyfJnNOKB7x2ebWfjrfh2vyk9F0zoRhH7Jn/6qzlAvEbSkTQNF8EaCYQEVJ3kujM
-a3UExN7W25SrNbX2yjcj0Z7+te8Z/Q==
-=est8
------END PGP SIGNATURE-----
-
---jo46wx5DSA4a/gWG--
+> Jean-Philippe Brucker (7):
+>   dt-bindings: virtio-mmio: Add IOMMU description
+>   dt-bindings: virtio: Add virtio-pci-iommu node
+>   of: Allow the iommu-map property to omit untranslated devices
+>   PCI: OF: Initialize dev->fwnode appropriately
+>   iommu: Add virtio-iommu driver
+>   iommu/virtio: Add probe request
+>   iommu/virtio: Add event queue
+> 
+>  .../devicetree/bindings/virtio/iommu.txt      |   66 +
+>  .../devicetree/bindings/virtio/mmio.txt       |   30 +
+>  MAINTAINERS                                   |    7 +
+>  drivers/iommu/Kconfig                         |   11 +
+>  drivers/iommu/Makefile                        |    1 +
+>  drivers/iommu/virtio-iommu.c                  | 1158 +++++++++++++++++
+>  drivers/of/base.c                             |   10 +-
+>  drivers/pci/of.c                              |    7 +
+>  include/uapi/linux/virtio_ids.h               |    1 +
+>  include/uapi/linux/virtio_iommu.h             |  161 +++
+>  10 files changed, 1449 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/virtio/iommu.txt
+>  create mode 100644 drivers/iommu/virtio-iommu.c
+>  create mode 100644 include/uapi/linux/virtio_iommu.h
+> 
+> -- 
+> 2.19.1
