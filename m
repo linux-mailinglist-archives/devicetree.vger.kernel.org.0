@@ -2,150 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2DF01ABB7
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 12:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E321ABC4
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 12:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726128AbfELKRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 06:17:24 -0400
-Received: from mail-eopbgr80052.outbound.protection.outlook.com ([40.107.8.52]:23443
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726430AbfELKRY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 May 2019 06:17:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IdkQe65UllMCK1Lo692/q35p7MrKVn0ocPabj5f7cGU=;
- b=sB8Reivdhm3WEwCrHmnNp3ipkmQCUODKBETZAAhy5KFWyxt0yxJJ4b+lVNNhCI1RJnZVebQ+jTkCn1PhulfUq4Cxb4RTQ2WXuopGQELF23WpKkv12oZjgAynewBfvZk2xgLwtk6PjRZDeF7N2t6kL4noBrEJ/TCIlResXNWTwhE=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3946.eurprd04.prod.outlook.com (52.134.72.13) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.21; Sun, 12 May 2019 10:17:19 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1878.022; Sun, 12 May 2019
- 10:17:19 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: [PATCH RESEND 3/3] arm64: dts: imx8mm: add clock for GPIO node
-Thread-Topic: [PATCH RESEND 3/3] arm64: dts: imx8mm: add clock for GPIO node
-Thread-Index: AQHVCKvh/NX7XOmts02cLucmrJnrTQ==
-Date:   Sun, 12 May 2019 10:17:19 +0000
-Message-ID: <1557655926-12915-3-git-send-email-Anson.Huang@nxp.com>
-References: <1557655926-12915-1-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1557655926-12915-1-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.7.4
-x-clientproxiedby: HK0P153CA0044.APCP153.PROD.OUTLOOK.COM
- (2603:1096:203:17::32) To DB3PR0402MB3916.eurprd04.prod.outlook.com
- (2603:10a6:8:10::18)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0a61d12a-9f46-49d8-3114-08d6d6c30321
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3946;
-x-ms-traffictypediagnostic: DB3PR0402MB3946:
-x-microsoft-antispam-prvs: <DB3PR0402MB3946E3B4BE664B96FDC27895F50E0@DB3PR0402MB3946.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:923;
-x-forefront-prvs: 0035B15214
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(376002)(346002)(39860400002)(366004)(136003)(199004)(189003)(52116002)(2906002)(110136005)(386003)(102836004)(14454004)(478600001)(76176011)(4326008)(8936002)(2501003)(68736007)(99286004)(6486002)(25786009)(50226002)(66066001)(3846002)(7416002)(53936002)(6116002)(66946007)(256004)(66476007)(64756008)(66446008)(66556008)(73956011)(7736002)(486006)(305945005)(5660300002)(2616005)(476003)(11346002)(446003)(71190400001)(71200400001)(26005)(186003)(86362001)(2201001)(8676002)(6436002)(81166006)(6506007)(36756003)(316002)(81156014)(6512007)(32563001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3946;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: SPUTZJOD+o6v3zoQf3nQp6HQDX7S/Dec9TUAT5ZgdrYQylwZVoQWAa5zH1lyMAUY2YJbEhMfMfPcE2CPeghK5H0HnbJMIDC6UNd5lbXKrjU5mQMHppf98/1SomA/DF8FGNLTVE+0xjW2KCNrlvzJKyM5Gby2uzPfHr9LVEBFmFU2wnWDUgeFtVHWLU2I0mv0OMTUn3kvgL8xA+vmfLvLoSB4X9iFAT3IAvued9n9Ic8DPav1ofNOC2j3zKlkyCPP+5AViQMTc7TnCXWFTb1wHBhMiMqrNzbF17L+odnb+qAeggAmsamyqjp6n0C93w0v4+5S5uJ3oZt/xbqaI5MIsQrCAeTWTeIgFw5DnE10kme+yafb3T5EQeyWKmtNh4w/DACjDGNDzSDx91rBSsvLlhOvbA0Th/7VCrNdtcEQ2pY=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <D71E0B23D8290D4EB06ADDAEEBBE7193@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726355AbfELKWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 06:22:47 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54472 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726232AbfELKWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 06:22:47 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 988EF2B6;
+        Sun, 12 May 2019 12:22:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1557656564;
+        bh=DDR03bYg2ePZF7d5mgZhH20vPXhFxdLu/MQ9njF3CQQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ubY5jB/68AMS9OBdxqPuH2LdmYqEgpccxeh4DGF/Ps1H0SqQFd58RbwOfcM6pwTMI
+         LgAvyNImm36i4hXultF85+27UlkRBIr9N6KytTIPPpZesoVBVdKyy2I2LN/aWUlOzR
+         PbLKAaJ0SjZvG7Bcb7lZbCSOcSTXYodwgx6mSDoc=
+Date:   Sun, 12 May 2019 13:22:28 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH v2 02/10] dt-bindings: display: bridge: thc63lvd1024:
+ Document dual-link operation
+Message-ID: <20190512102228.GB4960@pendragon.ideasonboard.com>
+References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
+ <CAMuHMdXtg3Kv+zt6kS9tViu93AjaHsOrSSotemt8T=8XVJcdyA@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a61d12a-9f46-49d8-3114-08d6d6c30321
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2019 10:17:19.6059
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3946
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXtg3Kv+zt6kS9tViu93AjaHsOrSSotemt8T=8XVJcdyA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MM has clock gate for each GPIO bank, add clock info
-to GPIO node for clock management.
+Hi Geert,
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
----
-No change, just resend patch with correct encoding.
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On Sun, May 12, 2019 at 10:58:54AM +0200, Geert Uytterhoeven wrote:
+> On Sat, May 11, 2019 at 11:07 PM Laurent Pinchart wrote:
+> > The THC63LVD1024 LVDS decoder can operate in two modes, single-link or
+> > dual-link. In dual-link mode both input ports are used to carry even-
+> > and odd-numbered pixels separately. Document this in the DT bindings,
+> > along with the related rules governing port and usage.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > ---
+> >  .../bindings/display/bridge/thine,thc63lvd1024.txt          | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
+> > index 37f0c04d5a28..d17d1e5820d7 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
+> > +++ b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
+> > @@ -28,6 +28,12 @@ Optional video port nodes:
+> >  - port@1: Second LVDS input port
+> >  - port@3: Second digital CMOS/TTL parallel output
+> >
+> > +The device can operate in single-link mode or dual-link mode. In single-link
+> > +mode, all pixels are received on port@0, and port@1 shall not contain any
+> > +endpoint. In dual-link mode, even-numbered pixels are received on port@0 and
+> > +odd-numbered pixels on port@1, and both port@0 and port@1 shall contain
+> > +endpoints.
+> 
+> This describes single/dual input.
+> Does single/dual output need to be described, too?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dt=
-s/freescale/imx8mm.dtsi
-index 6b407a94..f32d4e9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -206,6 +206,7 @@
- 				reg =3D <0x30200000 0x10000>;
- 				interrupts =3D <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =3D <&clk IMX8MM_CLK_GPIO1_ROOT>;
- 				gpio-controller;
- 				#gpio-cells =3D <2>;
- 				interrupt-controller;
-@@ -217,6 +218,7 @@
- 				reg =3D <0x30210000 0x10000>;
- 				interrupts =3D <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =3D <&clk IMX8MM_CLK_GPIO2_ROOT>;
- 				gpio-controller;
- 				#gpio-cells =3D <2>;
- 				interrupt-controller;
-@@ -228,6 +230,7 @@
- 				reg =3D <0x30220000 0x10000>;
- 				interrupts =3D <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =3D <&clk IMX8MM_CLK_GPIO3_ROOT>;
- 				gpio-controller;
- 				#gpio-cells =3D <2>;
- 				interrupt-controller;
-@@ -239,6 +242,7 @@
- 				reg =3D <0x30230000 0x10000>;
- 				interrupts =3D <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =3D <&clk IMX8MM_CLK_GPIO4_ROOT>;
- 				gpio-controller;
- 				#gpio-cells =3D <2>;
- 				interrupt-controller;
-@@ -250,6 +254,7 @@
- 				reg =3D <0x30240000 0x10000>;
- 				interrupts =3D <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =3D <&clk IMX8MM_CLK_GPIO5_ROOT>;
- 				gpio-controller;
- 				#gpio-cells =3D <2>;
- 				interrupt-controller;
---=20
-2.7.4
+Jacopo asked the same question on v1 :-) Dual-output should be described
+as well, but as I have no hardware setup where to test that, I decided
+to leave it out of the DT bindings to start with, as it's generally a
+bad idea to specify untested DT bindings (as in having no end-to-end
+implementation). I don't think it will be a big deal though, there is
+already a port for the second output, it should just be a matter of
+connecting it.
 
+> BTW, I see the second input/output set is optional, wile the first set
+> is required.  Could it happen the hardware is wired for the second
+> set only?
+
+Not to my knowledge. In dual-in, dual-out the two input/output pairs are
+not independent, the two inputs are used together to create a higher
+bandwidth link, and the odd- and even-pixels are then sent to separate
+routes.
+
+-- 
+Regards,
+
+Laurent Pinchart
