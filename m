@@ -2,101 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E321ABC4
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 12:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 223481ABD7
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 12:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726355AbfELKWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 06:22:47 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54472 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726232AbfELKWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 06:22:47 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 988EF2B6;
-        Sun, 12 May 2019 12:22:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1557656564;
-        bh=DDR03bYg2ePZF7d5mgZhH20vPXhFxdLu/MQ9njF3CQQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ubY5jB/68AMS9OBdxqPuH2LdmYqEgpccxeh4DGF/Ps1H0SqQFd58RbwOfcM6pwTMI
-         LgAvyNImm36i4hXultF85+27UlkRBIr9N6KytTIPPpZesoVBVdKyy2I2LN/aWUlOzR
-         PbLKAaJ0SjZvG7Bcb7lZbCSOcSTXYodwgx6mSDoc=
-Date:   Sun, 12 May 2019 13:22:28 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v2 02/10] dt-bindings: display: bridge: thc63lvd1024:
- Document dual-link operation
-Message-ID: <20190512102228.GB4960@pendragon.ideasonboard.com>
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
- <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
- <CAMuHMdXtg3Kv+zt6kS9tViu93AjaHsOrSSotemt8T=8XVJcdyA@mail.gmail.com>
+        id S1726375AbfELKtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 06:49:02 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:54142 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726100AbfELKtC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 May 2019 06:49:02 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 3D11BFB03;
+        Sun, 12 May 2019 12:48:57 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id GpXnQVOhyJqT; Sun, 12 May 2019 12:48:52 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 7CE9947D5C; Sun, 12 May 2019 12:48:51 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thierry Reding <treding@nvidia.com>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Hovold <johan@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: [PATCH v11 0/2] Mixel MIPI DPHY support for NXPs i.MX8 SOCs
+Date:   Sun, 12 May 2019 12:48:49 +0200
+Message-Id: <cover.1557657814.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXtg3Kv+zt6kS9tViu93AjaHsOrSSotemt8T=8XVJcdyA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+This adds initial support for the Mixel IP based mipi dphy as found on i.MX8
+processors.  It has support for the i.MX8MQ, support for other variants can be
+added - once the platform specific parts are in - via the provided devdata.
+The driver is somewhat based on what's found in NXPs BSP.
 
-On Sun, May 12, 2019 at 10:58:54AM +0200, Geert Uytterhoeven wrote:
-> On Sat, May 11, 2019 at 11:07 PM Laurent Pinchart wrote:
-> > The THC63LVD1024 LVDS decoder can operate in two modes, single-link or
-> > dual-link. In dual-link mode both input ports are used to carry even-
-> > and odd-numbered pixels separately. Document this in the DT bindings,
-> > along with the related rules governing port and usage.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  .../bindings/display/bridge/thine,thc63lvd1024.txt          | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
-> > index 37f0c04d5a28..d17d1e5820d7 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
-> > +++ b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
-> > @@ -28,6 +28,12 @@ Optional video port nodes:
-> >  - port@1: Second LVDS input port
-> >  - port@3: Second digital CMOS/TTL parallel output
-> >
-> > +The device can operate in single-link mode or dual-link mode. In single-link
-> > +mode, all pixels are received on port@0, and port@1 shall not contain any
-> > +endpoint. In dual-link mode, even-numbered pixels are received on port@0 and
-> > +odd-numbered pixels on port@1, and both port@0 and port@1 shall contain
-> > +endpoints.
-> 
-> This describes single/dual input.
-> Does single/dual output need to be described, too?
+Public documentation on the DPHY's registers is currently thin in the i.MX8
+reference manuals (even on the i.MX8QXP form 11/18) so most of the values were
+taken from existing drivers. Newer NXP drivers have a bit more details so where
+possible the timings are calculated and validated.
 
-Jacopo asked the same question on v1 :-) Dual-output should be described
-as well, but as I have no hardware setup where to test that, I decided
-to leave it out of the DT bindings to start with, as it's generally a
-bad idea to specify untested DT bindings (as in having no end-to-end
-implementation). I don't think it will be a big deal though, there is
-already a port for the second output, it should just be a matter of
-connecting it.
+This was tested with the an initial version of a NWL MIPI DSI host
+controller driver
 
-> BTW, I see the second input/output set is optional, wile the first set
-> is required.  Could it happen the hardware is wired for the second
-> set only?
+    https://lists.freedesktop.org/archives/dri-devel/2019-March/209685.html
 
-Not to my knowledge. In dual-in, dual-out the two input/output pairs are
-not independent, the two inputs are used together to create a higher
-bandwidth link, and the odd- and even-pixels are then sent to separate
-routes.
+and a forward ported DCSS driver on linux-next 20190506.
+
+Robert Chiras (the author of the corresponding driver in NXPs vendor
+tree) got this driver to work in his tree as well using mxsfb:
+
+    https://www.spinics.net/lists/arm-kernel/msg711950.html
+
+Changes from v10
+* Collect Reviewed-by: from Fabio Estevam
+* Collect Reviewed-by: from Sam Ravnborg
+* As per review comments from Sam Ravnborg
+  * Terminate all dev_{dbg,err} with '\n'
+  * Add more whitespace to CM/CN/CO macros
+  * Drop another non-ascii symbol in a debug message
+
+Changes from v9
+* As per review comments from Fabio Estevam
+  * Sort includes alphabetically
+  * Remove excessive new lines between functions
+  * Drop error message on devm_ioremap_resource, handled by
+    the core already.
+  * Don't default to it on i.MX8
+* As per review comments from Sam Ravnborg
+  * Use clearer variablenames:
+       struct regmap *regs -> regmap
+       void __iomem *regs -> base
+  * Use u32 for all parameters of get_best_ratio()
+  * Don't use non-ascii symbols in debug message
+  * Change MODULE_LICENSE to GPL
+* As per review comment from Andreas Färber
+  * Change co-authored-by: to co-developed-by:
+* Collect Signed-off-by from Robert Chiras
+
+Changes from v8
+* Collect Reviewed-by from Rob Herring
+* Fix {hs,clk}_prepare vs {hs,clk}_zero debug print out
+
+Changes from v7
+* As per review comments from Rob Herring
+  * Use fsl, as vendor prefix
+  * Drop changes to vendor-prefixes.txt due to that
+  * Shorten mixel_dphy to dphy in the example
+* Fix an indentation error noticed by checkpatch that got introduced in v6
+* Use lowercase letters in hex addresses in DT bindings example
+
+Changes from v6
+* Depend on HAS_IOMEM (fixes a build problem on UM spotted by kbuild)
+
+Changes from v5
+* Fix build problems on mips (spotted by the kbuild test robot) by using u32
+  consistently and long long for lp_t.
+
+Changes from v4
+* Build by default on ARCH_MXC && ARM64
+
+Changes form v3
+* Check correct variable after devm_ioremap_resource
+* Add Robert Chiras as Co-authored-by since he's the author
+  of the driver in NXPs BSP.
+
+Changes from v2
+* As per review comments from Fabio Estevam
+  * KConfig: select REGMAP_MMIO
+  * Drop phy_read
+  * Don't make phy_write inline
+  * Remove duplicate debugging output
+  * Comment style and typo fixes
+  * Add #defines's for PLL lock timing values
+  * Return correct error value when PLL fails to lock
+  * Check error when enabling clock
+  * Use devm_ioremap_resource
+* As per review comments from Robert Chiras
+  * Deassert PD_DPHY after PLL lock (as per mixel ref manual)
+  * Assert PD_{DPHY,PLL} before power on (as per mixel ref manual)manual
+* Add exit phy_op to reset CN/CM/CO
+
+Changes from v1
+* As per review comments from Fabio Estevam
+  * Kconfig: tristate mixel dphy support.
+  * Drop unused 'ret' in mixel_dphy_ref_power_off.
+  * Match values of DPHY_RXL{PRP,DRP} to those of
+    https://source.codeaurora.org/external/imx/linux-imx/log/?h=imx_4.14.78_1.0.0_ga
+    The previous values were based on 4.9.
+  * Use resource size on devm_ioremap, we have that in dt already.
+  * Use regmap so it's simple to dump the registers.
+  * Use regmap_read_poll_timeout instead of open coded loop.
+  * Add undocumented rxhs_settle register
+* As per review comments from Sam Ravnborg
+  * Move driver to d/phy/freescale/
+  * Move SPDX-License-Identifier to top of file.
+  * Drop '/* #define DEBUG 1 */'.
+  * Use GPL-2.0+ since the vendor driver uses that as well.
+  * Drop the mutex, register access is now protected by regmap.
+  * Fix various style / indentation issues.
+* Check for register read, write and ioremap errors
+* Improve phy timing calculations
+  * Use LP clock rate where sensible, check for errors
+  * Use ad hoc forumulas for timings involving hs clock
+* Switch from dphy_ops to devdata. Other i.MX8 variants
+  differ in register layout too
+* Add Mixel Inc to vendor-prefixes.txt
+
+Guido Günther (2):
+  dt-bindings: phy: Add documentation for mixel dphy
+  phy: Add driver for mixel mipi dphy found on NXP's i.MX8 SoCs
+
+ .../bindings/phy/mixel,mipi-dsi-phy.txt       |  29 +
+ drivers/phy/freescale/Kconfig                 |  10 +
+ drivers/phy/freescale/Makefile                |   1 +
+ .../phy/freescale/phy-fsl-imx8-mipi-dphy.c    | 500 ++++++++++++++++++
+ 4 files changed, 540 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+ create mode 100644 drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.c
 
 -- 
-Regards,
+2.20.1
 
-Laurent Pinchart
