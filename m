@@ -2,117 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4BB91AB2C
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 10:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6EE61AB36
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 10:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726587AbfELI03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 04:26:29 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:42706 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725934AbfELI02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 04:26:28 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 13so5501188pfw.9;
-        Sun, 12 May 2019 01:26:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=qI16oqs6X+YZXj2yLfBOsFJ0yl1UeyG9NZW0E4qFEjM=;
-        b=aNTi/o2B+xeystVa+Q3aNwsJJV+tvjZ2fAEK/aibVWkK9S6v+PEwnez16nUwBe1qS8
-         upiIjBaoImpcTzZmnd2zg+ZNfHl4G9Gtj9wJyx/MeMH4rvgv9jRjHDAHZKmjgaNCIoYt
-         ZhPCrUXvEAxzeOJBttD9d/nSYnwcgncT0lfVkCX/P9rHPTfvzH+mvOBGyYQeIZ08+/nt
-         E4wp+KD5lNwl2y/hcYcwzfFeoJB4i9BD21y1V5TjiL7xpZI54mI995MwBx7oRqjMPULL
-         cyYzBD/jHpXbPMm6CdpkN9Y09H5KG/zNuginFXcFDxhxiBW5TdnlbZPVboQYf9AZDKQX
-         +gTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=qI16oqs6X+YZXj2yLfBOsFJ0yl1UeyG9NZW0E4qFEjM=;
-        b=cGdXjHqUn+V24QxEP8UVSiZptOaT5lwpYuMnhwi0QrYXWqDXM1vdJAMjdRLe6F9b4p
-         /KYRBmk/9l1jhEk38Dru3VjBnozDGOd8yHhvDIypwI2kilj7Ye2cfXzZ0UrfG/3Pe0fn
-         EdCjcQJS48qyOxcp/n+AAJNI1G4pnSASWN5rB5uCzErs5zs16UmIPtnbx3liM4h/g+9Z
-         2cnAIrbUraXikzuAU7roC9SZoSO4ND+wdFxlRLl18QD7l51FKYeOgMtfhCc5hDBvbXfF
-         iswvd7iiVlwoVFxccOEZFJOVoRyzPo6fOizb89hsZBfcaRc5aKqvqw/efiDGORhwj3J9
-         iUxQ==
-X-Gm-Message-State: APjAAAU8CKd4O+a6wPx1wFgM2qUji6qjgxISFe/JfhShyAIiaCg2vNpT
-        5yPmk8YzzJB3n4Js7CJv5oU=
-X-Google-Smtp-Source: APXvYqw0BUy0j28XMpYRMC1njFl6TsjR5ScQQirgG+92GPsuGEoaMq3sHF4jM3DGqBY3xKz/pGmRVQ==
-X-Received: by 2002:a63:8dc9:: with SMTP id z192mr24480707pgd.6.1557649588155;
-        Sun, 12 May 2019 01:26:28 -0700 (PDT)
-Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
-        by smtp.gmail.com with ESMTPSA id l21sm14297789pff.40.2019.05.12.01.26.27
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 12 May 2019 01:26:27 -0700 (PDT)
-From:   Yangtao Li <tiny.windzz@gmail.com>
-To:     tiny.windzz@gmail.com, rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
-        catalin.marinas@arm.com, will.deacon@arm.com, davem@davemloft.net,
-        mchehab+samsung@kernel.org, gregkh@linuxfoundation.org,
-        Jonathan.Cameron@huawei.com, nicolas.ferre@microchip.com,
-        paulmck@linux.ibm.com, andy.gross@linaro.org, olof@lixom.net,
-        bjorn.andersson@linaro.org, jagan@amarulasolutions.com,
-        marc.w.gonzalez@free.fr, stefan.wahren@i2se.com,
-        enric.balletbo@collabora.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: thermal: add binding document for h6 thermal controller
-Date:   Sun, 12 May 2019 04:26:14 -0400
-Message-Id: <20190512082614.9045-4-tiny.windzz@gmail.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <20190512082614.9045-1-tiny.windzz@gmail.com>
-References: <20190512082614.9045-1-tiny.windzz@gmail.com>
+        id S1726519AbfELI24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 04:28:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33128 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726232AbfELI24 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 May 2019 04:28:56 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9AB752133D;
+        Sun, 12 May 2019 08:28:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557649735;
+        bh=ej1bG/nCfrNEH5tbxkwwsErdtlk/4SkESIR3LTlD8GU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ednfRobqHRaPu80OUose+XDZohmsMurFPtJgF8e37w49M54joejVRkSY9izSliupo
+         CdQEIQXQ36aYGiJlNDtdlfE4hjpwAq2mKLhZS6ABEicwGQXQBu3EtAMCEo4QB9h31L
+         pMxsTB2nx/rXs9KLI+IbRVaynRto6e9B+y+JGSJs=
+Date:   Sun, 12 May 2019 16:28:23 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     BOUGH CHEN <haibo.chen@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/3] ARM: dts: imx7d: correct the pad drive strength
+ setting
+Message-ID: <20190512082822.GO15856@dragon>
+References: <20190429124547.19928-1-haibo.chen@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190429124547.19928-1-haibo.chen@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds binding document for allwinner h6 thermal controller.
+On Mon, Apr 29, 2019 at 12:37:57PM +0000, BOUGH CHEN wrote:
+> commit 5490c77d596a ("dt-bindings: pinctrl: imx7d: Fix PAD_CTL_DSE_X*")
+> point out that the PAD_CTL_DSE_X* values are wrongly document in the
+> RM. For the USDHC 100Mhz pad drive strength, it should be PAD_CTL_DSE_X4,
+> this patch fix this.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 
-Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
----
- .../bindings/thermal/sun50i-thermal.txt       | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
+I do not apply patches using base64 encoding.
 
-diff --git a/Documentation/devicetree/bindings/thermal/sun50i-thermal.txt b/Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
-new file mode 100644
-index 000000000000..67eda7794262
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
-@@ -0,0 +1,32 @@
-+Binding for Thermal Sensor of Allwinner SOC.
-+
-+This describes the device tree binding for the Allwinner thermal controller
-+which measures the on-SoC temperatures.
-+
-+Required properties:
-+- compatible:
-+  - "allwinner,sun50i-h6-ths" : For H6
-+- reg: Address range of the thermal controller
-+- clocks, clock-names: Clocks needed for the thermal controller.
-+		       The required clocks for h6 are: "bus".
-+- resets, reset-names: Reference to the reset controller controlling
-+		       the thermal controller.
-+- nvmem-cells: A phandle to the calibration data provided by a nvmem device. If
-+	       unspecified default values shall be used.
-+- nvmem-cell-names: Should be "calib"
-+- #thermal-sensor-cells : For H6 Should be 1.
-+			  See ./thermal.txt for a description.
-+
-+Example:
-+
-+	ths: ths@1c25000 {
-+		compatible = "allwinner,sun50i-h6-ths";
-+		reg = <0x05070400 0x100>;
-+		clocks = <&ccu CLK_BUS_THS>;
-+		clock-names = "bus";
-+		resets = <&ccu RST_BUS_THS>;
-+		reset-names = "bus";
-+		nvmem-cells = <&tsen_calib>;
-+		nvmem-cell-names = "calib";
-+		#thermal-sensor-cells = <1>;
-+	};
--- 
-2.17.0
+Shawn
 
+> ---
+>  arch/arm/boot/dts/imx7-colibri.dtsi | 22 +++++++++----------
+>  arch/arm/boot/dts/imx7-mba7.dtsi    | 10 ++++-----
+>  arch/arm/boot/dts/imx7-tqma7.dtsi   | 20 ++++++++---------
+>  arch/arm/boot/dts/imx7d-pico.dtsi   | 32 +++++++++++++--------------
+>  arch/arm/boot/dts/imx7d-sdb.dts     | 34 ++++++++++++++---------------
+>  5 files changed, 59 insertions(+), 59 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
+> index 895fbde4d433..b9d5dd35731b 100644
+> --- a/arch/arm/boot/dts/imx7-colibri.dtsi
+> +++ b/arch/arm/boot/dts/imx7-colibri.dtsi
+> @@ -630,17 +630,17 @@
+>  
+>  	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
+>  		fsl,pins = <
+> -			MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
+> -			MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
+> -			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
+> -			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
+> -			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
+> -			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
+> -			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
+> -			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
+> -			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
+> -			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
+> -			MX7D_PAD_SD3_STROBE__SD3_STROBE         0x1a
+> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
+> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x19
+> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
+> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
+> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
+> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
+> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
+> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
+> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
+> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
+> +			MX7D_PAD_SD3_STROBE__SD3_STROBE         0x19
+>  		>;
+>  	};
+>  
+> diff --git a/arch/arm/boot/dts/imx7-mba7.dtsi b/arch/arm/boot/dts/imx7-mba7.dtsi
+> index 50abf18ad30b..9ecaabe7bcc7 100644
+> --- a/arch/arm/boot/dts/imx7-mba7.dtsi
+> +++ b/arch/arm/boot/dts/imx7-mba7.dtsi
+> @@ -437,12 +437,12 @@
+>  
+>  	pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
+>  		fsl,pins = <
+> -			MX7D_PAD_SD1_CMD__SD1_CMD		0x5a
+> +			MX7D_PAD_SD1_CMD__SD1_CMD		0x59
+>  			MX7D_PAD_SD1_CLK__SD1_CLK		0x57
+> -			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x5a
+> -			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x5a
+> -			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x5a
+> -			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x5a
+> +			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
+> +			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
+> +			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
+> +			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
+>  		>;
+>  	};
+>  
+> diff --git a/arch/arm/boot/dts/imx7-tqma7.dtsi b/arch/arm/boot/dts/imx7-tqma7.dtsi
+> index 9aaed85138cb..a3aa63b241e2 100644
+> --- a/arch/arm/boot/dts/imx7-tqma7.dtsi
+> +++ b/arch/arm/boot/dts/imx7-tqma7.dtsi
+> @@ -178,17 +178,17 @@
+>  
+>  	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
+>  		fsl,pins = <
+> -			MX7D_PAD_SD3_CMD__SD3_CMD               0x5a
+> +			MX7D_PAD_SD3_CMD__SD3_CMD               0x59
+>  			MX7D_PAD_SD3_CLK__SD3_CLK               0x51
+> -			MX7D_PAD_SD3_DATA0__SD3_DATA0           0x5a
+> -			MX7D_PAD_SD3_DATA1__SD3_DATA1           0x5a
+> -			MX7D_PAD_SD3_DATA2__SD3_DATA2           0x5a
+> -			MX7D_PAD_SD3_DATA3__SD3_DATA3           0x5a
+> -			MX7D_PAD_SD3_DATA4__SD3_DATA4           0x5a
+> -			MX7D_PAD_SD3_DATA5__SD3_DATA5           0x5a
+> -			MX7D_PAD_SD3_DATA6__SD3_DATA6           0x5a
+> -			MX7D_PAD_SD3_DATA7__SD3_DATA7           0x5a
+> -			MX7D_PAD_SD3_STROBE__SD3_STROBE         0x1a
+> +			MX7D_PAD_SD3_DATA0__SD3_DATA0           0x59
+> +			MX7D_PAD_SD3_DATA1__SD3_DATA1           0x59
+> +			MX7D_PAD_SD3_DATA2__SD3_DATA2           0x59
+> +			MX7D_PAD_SD3_DATA3__SD3_DATA3           0x59
+> +			MX7D_PAD_SD3_DATA4__SD3_DATA4           0x59
+> +			MX7D_PAD_SD3_DATA5__SD3_DATA5           0x59
+> +			MX7D_PAD_SD3_DATA6__SD3_DATA6           0x59
+> +			MX7D_PAD_SD3_DATA7__SD3_DATA7           0x59
+> +			MX7D_PAD_SD3_STROBE__SD3_STROBE         0x19
+>  		>;
+>  	};
+>  
+> diff --git a/arch/arm/boot/dts/imx7d-pico.dtsi b/arch/arm/boot/dts/imx7d-pico.dtsi
+> index 6f50ebf31a0a..223092eae6c0 100644
+> --- a/arch/arm/boot/dts/imx7d-pico.dtsi
+> +++ b/arch/arm/boot/dts/imx7d-pico.dtsi
+> @@ -491,12 +491,12 @@
+>  
+>  	pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
+>  		fsl,pins = <
+> -			MX7D_PAD_SD1_CMD__SD1_CMD		0x5a
+> -			MX7D_PAD_SD1_CLK__SD1_CLK		0x1a
+> -			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x5a
+> -			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x5a
+> -			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x5a
+> -			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x5a
+> +			MX7D_PAD_SD1_CMD__SD1_CMD		0x59
+> +			MX7D_PAD_SD1_CLK__SD1_CLK		0x19
+> +			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
+> +			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
+> +			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
+> +			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
+>  			MX7D_PAD_SD1_CD_B__GPIO5_IO0		0x15
+>  		>;
+>  	};
+> @@ -541,16 +541,16 @@
+>  
+>  	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
+>  		fsl,pins = <
+> -			MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
+> -			MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
+> -			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
+> -			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
+> -			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
+> -			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
+> -			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
+> -			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
+> -			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
+> -			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
+> +			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
+> +			MX7D_PAD_SD3_CLK__SD3_CLK		0x19
+> +			MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
+> +			MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
+> +			MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
+> +			MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
+> +			MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
+> +			MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
+> +			MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
+> +			MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
+>  		>;
+>  	};
+>  
+> diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sdb.dts
+> index 202922ed3754..6a6035b2bc22 100644
+> --- a/arch/arm/boot/dts/imx7d-sdb.dts
+> +++ b/arch/arm/boot/dts/imx7d-sdb.dts
+> @@ -665,12 +665,12 @@
+>  
+>  		pinctrl_usdhc2_100mhz: usdhc2grp_100mhz {
+>  			fsl,pins = <
+> -				MX7D_PAD_SD2_CMD__SD2_CMD		0x5a
+> -				MX7D_PAD_SD2_CLK__SD2_CLK		0x1a
+> -				MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5a
+> -				MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5a
+> -				MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5a
+> -				MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5a
+> +				MX7D_PAD_SD2_CMD__SD2_CMD		0x59
+> +				MX7D_PAD_SD2_CLK__SD2_CLK		0x19
+> +				MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
+> +				MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
+> +				MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
+> +				MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
+>  			>;
+>  		};
+>  
+> @@ -704,17 +704,17 @@
+>  
+>  		pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
+>  			fsl,pins = <
+> -				MX7D_PAD_SD3_CMD__SD3_CMD		0x5a
+> -				MX7D_PAD_SD3_CLK__SD3_CLK		0x1a
+> -				MX7D_PAD_SD3_DATA0__SD3_DATA0		0x5a
+> -				MX7D_PAD_SD3_DATA1__SD3_DATA1		0x5a
+> -				MX7D_PAD_SD3_DATA2__SD3_DATA2		0x5a
+> -				MX7D_PAD_SD3_DATA3__SD3_DATA3		0x5a
+> -				MX7D_PAD_SD3_DATA4__SD3_DATA4		0x5a
+> -				MX7D_PAD_SD3_DATA5__SD3_DATA5		0x5a
+> -				MX7D_PAD_SD3_DATA6__SD3_DATA6		0x5a
+> -				MX7D_PAD_SD3_DATA7__SD3_DATA7		0x5a
+> -				MX7D_PAD_SD3_STROBE__SD3_STROBE		0x1a
+> +				MX7D_PAD_SD3_CMD__SD3_CMD		0x59
+> +				MX7D_PAD_SD3_CLK__SD3_CLK		0x19
+> +				MX7D_PAD_SD3_DATA0__SD3_DATA0		0x59
+> +				MX7D_PAD_SD3_DATA1__SD3_DATA1		0x59
+> +				MX7D_PAD_SD3_DATA2__SD3_DATA2		0x59
+> +				MX7D_PAD_SD3_DATA3__SD3_DATA3		0x59
+> +				MX7D_PAD_SD3_DATA4__SD3_DATA4		0x59
+> +				MX7D_PAD_SD3_DATA5__SD3_DATA5		0x59
+> +				MX7D_PAD_SD3_DATA6__SD3_DATA6		0x59
+> +				MX7D_PAD_SD3_DATA7__SD3_DATA7		0x59
+> +				MX7D_PAD_SD3_STROBE__SD3_STROBE		0x19
+>  			>;
+>  		};
+>  
+> -- 
+> 2.17.1
+> 
