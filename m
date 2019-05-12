@@ -2,97 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEAF91AB63
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 10:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7CA1AD4F
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 19:06:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726031AbfELI7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 May 2019 04:59:07 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:35479 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725934AbfELI7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 04:59:06 -0400
-Received: by mail-vs1-f65.google.com with SMTP id q13so1348484vso.2;
-        Sun, 12 May 2019 01:59:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xmj+I9tVEtlvAoJOYekCEKipPaHuy5E98bYFqplmOIM=;
-        b=PW6pQFUPSOeCy3qsE2jtXIA8jSgf4BI5R74HmW7Phyg7V7qyIWr3f2eV8d+pjRR71k
-         vFTSVj70xiRAZ1Cn3VKjWa+gO/dVrdrqiWIjIGp/Z5CPo0kkcbcOmejRUnQ+I+zqfl3s
-         e+9/4ht6ZO0i1eXnvKPXMVJ0SDxMFofxmBS81tTZdU+zc+/Igj2R63AUccIllZPY47u/
-         t4QDDSmSZPw646RkBC1IdkGbQ31Cj7LbETrI5nSwLFF17/2dcnihesvWTqS3aaMhnwyS
-         htA4TAEpBygYgqCjtbX98lwxcFb2e7s/zItmhpEWG47gd3r8cO0eNEIzE7H9qN8tHt7d
-         j52g==
-X-Gm-Message-State: APjAAAUxLUVsAzmEqKeBf5xzbyP0yTEzT1hylmgYB++vHxwmmr7L9f6x
-        9ou+c3wcnHluG7Et/fWfdodNMtJF0f/ccvr+Ih8T9w==
-X-Google-Smtp-Source: APXvYqwV94aZ1VL4lfwYJEp/40rS1E/jr9iHPIrwVquCH0M7ZMjOYI5S9d7KrlTj86tVN5eQc1pUBKt2ei04wyvboDs=
-X-Received: by 2002:a67:7c93:: with SMTP id x141mr3348581vsc.96.1557651545711;
- Sun, 12 May 2019 01:59:05 -0700 (PDT)
+        id S1727043AbfELRFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 13:05:53 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49718 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727019AbfELRFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 13:05:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=9HMs6CFMH8EU8RkzgWGBu0MKVwuwgXnq0J4Rp8C3PBM=; b=kVo2FL0u92pisbUZ8qm0jj+af
+        upIAewvYpAZOIs/oaH3emVc/79v5kuI85PG0MY/aVGoH1H5P/7qYMngw3I0DXCu+z9tA6PeG3vsDJ
+        VAMcxzyYfxEdLK2QtkJp5Ar37wdVSg/uLZF7sTVaGcGOQtay0AqUCCdfZwbhuAldLK9r0=;
+Received: from [81.145.206.43] (helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hPruu-00044d-8y; Sun, 12 May 2019 17:05:40 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id DE14D440066; Sun, 12 May 2019 10:16:18 +0100 (BST)
+Date:   Sun, 12 May 2019 18:16:18 +0900
+From:   Mark Brown <broonie@kernel.org>
+To:     Robin Gong <yibin.gong@nxp.com>
+Cc:     "robh@kernel.org" <robh@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "plyatov@gmail.com" <plyatov@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v3 06/14] spi: imx: fix ERR009165
+Message-ID: <20190512091618.GP21483@sirena.org.uk>
+References: <1557249513-4903-1-git-send-email-yibin.gong@nxp.com>
+ <1557249513-4903-7-git-send-email-yibin.gong@nxp.com>
 MIME-Version: 1.0
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com> <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
-In-Reply-To: <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Sun, 12 May 2019 10:58:54 +0200
-Message-ID: <CAMuHMdXtg3Kv+zt6kS9tViu93AjaHsOrSSotemt8T=8XVJcdyA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/10] dt-bindings: display: bridge: thc63lvd1024:
- Document dual-link operation
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="h9WqFG8zn/Mwlkpe"
+Content-Disposition: inline
+In-Reply-To: <1557249513-4903-7-git-send-email-yibin.gong@nxp.com>
+X-Cookie: HOST SYSTEM RESPONDING, PROBABLY UP...
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
 
-On Sat, May 11, 2019 at 11:07 PM Laurent Pinchart
-<laurent.pinchart+renesas@ideasonboard.com> wrote:
-> The THC63LVD1024 LVDS decoder can operate in two modes, single-link or
-> dual-link. In dual-link mode both input ports are used to carry even-
-> and odd-numbered pixels separately. Document this in the DT bindings,
-> along with the related rules governing port and usage.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  .../bindings/display/bridge/thine,thc63lvd1024.txt          | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
-> index 37f0c04d5a28..d17d1e5820d7 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
-> +++ b/Documentation/devicetree/bindings/display/bridge/thine,thc63lvd1024.txt
-> @@ -28,6 +28,12 @@ Optional video port nodes:
->  - port@1: Second LVDS input port
->  - port@3: Second digital CMOS/TTL parallel output
->
-> +The device can operate in single-link mode or dual-link mode. In single-link
-> +mode, all pixels are received on port@0, and port@1 shall not contain any
-> +endpoint. In dual-link mode, even-numbered pixels are received on port@0 and
-> +odd-numbered pixels on port@1, and both port@0 and port@1 shall contain
-> +endpoints.
+--h9WqFG8zn/Mwlkpe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This describes single/dual input.
-Does single/dual output need to be described, too?
+On Tue, May 07, 2019 at 09:16:13AM +0000, Robin Gong wrote:
+> Change to XCH  mode even in dma mode, please refer to the below
+> errata:
+> https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf
 
-BTW, I see the second input/output set is optional, wile the first set
-is required.  Could it happen the hardware is wired for the second
-set only?
+Acked-by: Mark Brown <broonie@kernel.org>
 
-Gr{oetje,eeting}s,
+--h9WqFG8zn/Mwlkpe
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                        Geert
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzX5GIACgkQJNaLcl1U
+h9Ax/Qf9F9Mm2dXsW6BETnXLb+haskxu5BW0ouwrc02+EmnMZCpk+eK2JWSx/BVA
+hHEAVO5EpQ0txbRvSYWbDxfOheX1M6BYaA2ROjxHirVL+HT52VRa+dYja6OcK/LY
+PDXYdW6hHB3YqCBFcV+/oXF94jjke9Rh+pnUIs5YEdRnd5MoZiYSCzvJKVcsDaHl
+FAzP/LhX8HAupSbLbGojE7NKqKj2SuOeaKsD10zBEdo0eVFzCCsKwkNvmTlweDgy
+VXujenPsoeAsM9VNu5En2yvrMtAN+7oe2mo5HZvOvdF4deOUS4HqR87fFEzT4Zad
+IWZBFcTVrdqXuUinn5daxLAhu/5Rjg==
+=9X9u
+-----END PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--h9WqFG8zn/Mwlkpe--
