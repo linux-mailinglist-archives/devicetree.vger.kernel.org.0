@@ -2,128 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 617991AC56
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 15:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 320A51AC5F
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 15:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbfELNYD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 12 May 2019 09:24:03 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:51907 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726415AbfELNYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 09:24:02 -0400
-Received: from xps13 (unknown [109.190.253.16])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id CBA23200009;
-        Sun, 12 May 2019 13:23:49 +0000 (UTC)
-Date:   Sun, 12 May 2019 15:23:40 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     broonie@kernel.org, marek.vasut@gmail.com,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        bbrezillon@kernel.org, dwmw2@infradead.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        computersforpeace@gmail.com, paul.burton@mips.com, stefan@agner.ch,
-        christophe.kerello@st.com, liang.yang@amlogic.com,
-        geert@linux-m68k.org, devicetree@vger.kernel.org,
-        marcel.ziswiler@toradex.com, linux-mtd@lists.infradead.org,
-        richard@nod.at, juliensu@mxic.com.tw, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 4/4] dt-bindings: mfd: Document Macronix MX25F0A
- controller bindings
-Message-ID: <20190512152328.49576a0f@xps13>
-In-Reply-To: <1555320234-15802-5-git-send-email-masonccyang@mxic.com.tw>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
-        <1555320234-15802-5-git-send-email-masonccyang@mxic.com.tw>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726586AbfELN0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 May 2019 09:26:09 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:39597 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726501AbfELN0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 May 2019 09:26:09 -0400
+X-Originating-IP: 109.190.253.16
+Received: from localhost (unknown [109.190.253.16])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 7E9D0FF803;
+        Sun, 12 May 2019 13:26:00 +0000 (UTC)
+Date:   Sun, 12 May 2019 15:25:58 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Yangtao Li <tiny.windzz@gmail.com>
+Cc:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, wens@csie.org, catalin.marinas@arm.com,
+        will.deacon@arm.com, davem@davemloft.net,
+        mchehab+samsung@kernel.org, gregkh@linuxfoundation.org,
+        Jonathan.Cameron@huawei.com, nicolas.ferre@microchip.com,
+        paulmck@linux.ibm.com, andy.gross@linaro.org, olof@lixom.net,
+        bjorn.andersson@linaro.org, jagan@amarulasolutions.com,
+        marc.w.gonzalez@free.fr, stefan.wahren@i2se.com,
+        enric.balletbo@collabora.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: defconfig: add allwinner sid support
+Message-ID: <20190512132558.745wbonxn6qrwvke@flea>
+References: <20190512082614.9045-1-tiny.windzz@gmail.com>
+ <20190512082614.9045-2-tiny.windzz@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lbhyzlowgxdvkbq7"
+Content-Disposition: inline
+In-Reply-To: <20190512082614.9045-2-tiny.windzz@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
 
-Mason Yang <masonccyang@mxic.com.tw> wrote on Mon, 15 Apr 2019 17:23:54
-+0800:
+--lbhyzlowgxdvkbq7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Document the bindings used by the Macronix MX25F0A MFD controller.
-> 
-> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> ---
->  .../devicetree/bindings/mfd/mxic-mx25f0a.txt       | 51 ++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/mxic-mx25f0a.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mxic-mx25f0a.txt b/Documentation/devicetree/bindings/mfd/mxic-mx25f0a.txt
-> new file mode 100644
-> index 0000000..7f3e0f8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/mxic-mx25f0a.txt
-> @@ -0,0 +1,51 @@
-> +Macronix MX25F0A MultiFunction Device Tree Bindings
-> +----------------------------------------------------
-> +
-> +MX25F0A is a MultiFunction Device with SPI and raw NAND, which
-> +supports either spi host controller or raw nand controller.
+On Sun, May 12, 2019 at 04:26:12AM -0400, Yangtao Li wrote:
+> Sid contains speedbin information and temperature sensor
+> calibration information and more, which are important for SOC.
+>
+> This patch enables CONFIG_NVMEM_SUNXI_SID by default.
+>
+> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
 
-Acronyms in plain English should be in upper case.
+Applied for 5.3, thanks
 
-> +
-> +Required properties:
-> +- compatible: should be "mxic,mx25f0a"
-> +- #address-cells: should be 1
-> +- #size-cells: should be 0
-> +- reg: should contain 2 entries, one for the registers and one for the direct
-> +       mapping area in SPI mode.
-> +- reg-names: should contain "regs" and "dirmap"
-> +- interrupts: interrupt line connected to this MFD controller
-> +- SPI controller driver:
-> +		- clock-names: should contain "ps_clk", "send_clk" and
-> +			       "send_dly_clk"
-> +		- clocks: should contain 3 entries for the "ps_clk", "send_clk"
-> +			  and "send_dly_clk" clocks
-> +
-> +- Raw nand controller driver.
-> +		- nand-ecc-mode = "soft";
-> +		- nand-ecc-algo = "bch";
-> +
-> +Example:
-> +
-> +	mxic: mx25f0a@43c30000 {
-> +		compatible = "mxic,mx25f0a";
-> +		reg = <0x43c30000 0x10000>, <0xa0000000 0x4000000>;
-> +		reg-names = "regs", "dirmap";
-> +
-> +		/* spi */
-> +		clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
-> +		clock-names = "send_clk", "send_dly_clk", "ps_clk";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		flash@0 {
-> +			compatible = "jedec,spi-nor";
-> +			reg = <0>;
-> +			spi-max-frequency = <25000000>;
-> +			spi-tx-bus-width = <4>;
-> +			spi-rx-bus-width = <4>;
-> +		};
-> +
-> +		/* nand */
-> +		nand-ecc-mode = "soft";
-> +		nand-ecc-algo = "bch";
-> +		nand-ecc-step-size = <512>;
-> +		nand-ecc-strength = <8>;
+Maxime
 
-Any reason to enforce 512B/8b correction? Why not letting the core
-choose for you depending on the NAND chip's requirements?
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
+--lbhyzlowgxdvkbq7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Anyway, I think you can have only one or the other (NAND or SPI), not
-both, and you probably should have a compatible or a property to tell
-the kernel which one you are using, right?
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXNge5gAKCRDj7w1vZxhR
+xeJXAP0WWHx9kGrJrvMvq9Mm+3L1Sd+z+4KFnlWWGuQScu8bXwD/d3EK/qKg46B+
+ztgYKIXbsBFk0dYQ8tOvMmeB84JBkQw=
+=kR0R
+-----END PGP SIGNATURE-----
 
-Thanks,
-Miquèl
+--lbhyzlowgxdvkbq7--
