@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E981A983
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2019 23:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A9D71A9F7
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2019 03:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726033AbfEKVHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 May 2019 17:07:37 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:58288 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726100AbfEKVHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 May 2019 17:07:37 -0400
-Received: from pendragon.bb.dnainternet.fi (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 233C5587;
-        Sat, 11 May 2019 23:07:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1557608853;
-        bh=C42ViQQj+3BvDs8mfpAj5KQh4LmMJlp09KTfcFjJpSw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iYPtkkeornhkS4/kPUi7ChxtpUmbrMP4Z/90A9MMX58sCGawnoyc7KAh/7P1Ykvwp
-         YF2AjSb3pEiFxRuLfDJn+v2sctjWhB4cQvYmhc431wCO/5fktIqpS61Hjo5OOriaG4
-         Zo+lW0JlSZpXXjRQMptw4mbxDk7jkYJ8Uo+ETu4U=
-From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 04/10] dt-bindings: display: renesas: lvds: Add renesas,companion property
-Date:   Sun, 12 May 2019 00:06:56 +0300
-Message-Id: <20190511210702.18394-5-laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
+        id S1726201AbfELBac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 May 2019 21:30:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49402 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726130AbfELBac (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 May 2019 21:30:32 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4527A2146F;
+        Sun, 12 May 2019 01:30:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557624631;
+        bh=sa7egvkcBjJP+/4O4tBOAUF0eYA7a90YlTdMgsQcJes=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i55OgSq1V5HkURHE2MoeBK+V2oS9cbSJyIO+AlYhTFS4hA2W/2k7uJwwVLNi+ucIK
+         O7JMKaewb8NzZPlv6QM0/sC69O+SHZ74/s7a4AtWFLTT1uZCF95ZLqqlRcDyJpnqaq
+         KKHS8JFK4QHXE1PDVRW28BfKJhnCLL2DiIEg768U=
+Date:   Sun, 12 May 2019 09:30:00 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/2] Enable wm8524 codec on i.MX8MM EVK
+Message-ID: <20190512012959.GM15856@dragon>
+References: <20190424150350.7963-1-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190424150350.7963-1-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new optional renesas,companion property to point to the companion
-LVDS encoder. This is used to support dual-link operation where the main
-LVDS encoder splits even-numbered and odd-numbered pixels between the
-two LVDS encoders.
+On Wed, Apr 24, 2019 at 03:04:12PM +0000, Daniel Baluta wrote:
+> This patch series introduces the SAI nodes on i.MX8MM EVK then
+> creates the wm8524 codec node and finally uses simple card machine
+> driver to create a sound card.
+> 
+> Changes since v2:
+> 	- place compatible strings one a single lines
+> 	- move GPIO pinctrl in a node of its own
+> 	- remove codec phandle
+> 
+> Changes since v1:
+>         - use "fsl,imx8mm-sai", "fsl,imx8mq-sai" compatbile strings and
+>           remove "fsl,imx6sx-sai" because SAI module on i.MX8M is not
+>           compatbile with SAI modules form i.MX6
+> 
+> Daniel Baluta (2):
+>   arm64: dts: imx8mm: Add SAI nodes
+>   arm64: dts: imx8mm-evk: Enable audio codec wm8524
 
-The new property doesn't control the mode of operation, it only
-describes the relationship between the master and companion LVDS
-encoders.
+Hi Marco,
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
----
-Changes since v1:
+Are you fine with this version?
 
-- Fixed typo
----
- .../devicetree/bindings/display/bridge/renesas,lvds.txt     | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-index 900a884ad9f5..f2cc01d54cbd 100644
---- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-@@ -45,6 +45,12 @@ OF graph bindings specified in Documentation/devicetree/bindings/graph.txt.
- 
- Each port shall have a single endpoint.
- 
-+Optional properties:
-+
-+- renesas,companion : phandle to the companion LVDS encoder. This property is
-+  valid for the first LVDS encoder on D3 and E3 SoCs only, and points to the
-+  second encoder to be used as a companion in dual-link mode.
-+
- 
- Example:
- 
--- 
-Regards,
-
-Laurent Pinchart
-
+Shawn
