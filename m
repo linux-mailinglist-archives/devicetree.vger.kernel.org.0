@@ -2,78 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D841BEF5
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 23:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28C3C1BEFB
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 23:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726286AbfEMVHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 17:07:07 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:38745 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726277AbfEMVHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 17:07:07 -0400
-Received: by mail-io1-f48.google.com with SMTP id x24so3814266ion.5
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 14:07:06 -0700 (PDT)
+        id S1726452AbfEMVHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 17:07:52 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:43535 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726211AbfEMVHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 17:07:52 -0400
+Received: by mail-pl1-f194.google.com with SMTP id n8so7078961plp.10
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 14:07:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=+7m8qAQjBviaFmOghs6Z+97Gn0Ch4ti3J4o9pemJXns=;
-        b=moy9hST8u3nZL8K7X9LmUOb8sPFjKOZk9jjU7eXuqiU+rrXYV1JBnO24vrOKZO6Ly2
-         1Mge2VulaUA068g32/5UvGe2Gaf7cRcv/9Q0E1GEBQIRu3pJGtfuAxDe0Z/MAT9zghwr
-         SPEDzdu68/OGdeXkJY6u/QCMEQdFFEOdaG/7Z930tzvmGpEJB680G797FIRNJGxe14cl
-         ZvTWtSAcgbSB2llJ2wy38UOvx07Nhko1YRrL8ccK8492ipBnnmcq0BSFNaYHB7vpH7pF
-         nzJjFa5Xh+Wk5Yi7uZDsUfD5o/EfLNJ+mRniDrilmgVo7dYEgx9ZKd4OfLQL0mzYQAOX
-         36UA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=VyWcWjrZXEyD6w07tvHm50fVGWK7lK6mM8u98FcSYoY=;
+        b=GGGhRxCLGCDe1tt+2HecuE4u75ZdWTyADg0qZXEsWP6EA7hGLVcgJgyKy41jgfrNgR
+         ZU50QVg1F3c2QdeRgYlOKY3O5aFVv0pNIwqw/ajzRsklhVFsguNbBpd8ElghBnVIb+33
+         xe8eBd32gzjcFINDMtM5uGleiX7/hFAPComeweZL4XDbUYnhO6dVdgtmEea1w/3l/15d
+         dv//EQsWEC+llGw6tX1s9F38gB1wpVJezOtAcXMRPjpe9RLKIKcpGgNmc+xuHkYDk876
+         +UVpckEfGohYz4oaDHpcpEaVTb+GP7cPQ9SHr+e3N7y9EgQiXt7oWn/INWuXzcIwGNPR
+         Z0VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=+7m8qAQjBviaFmOghs6Z+97Gn0Ch4ti3J4o9pemJXns=;
-        b=ruyjrYAb2vLXm4aEOzB088QVgRfZAvF/Ox8h+4zOvtWHtYH2VUhJhck752CgS0dm1L
-         +jX0LYKQmj+a2whzzDhi1070w4VTWTGSIIHPjAKvLahVFp0/4alXQjhorUJY9kXNdwZC
-         K4GwFWaTZMMi0LEXwB5/nj/Ezrkzw8WDDwK6x6S1eE6EDmhbcF0+BKQbMXWNrSLD6ubC
-         BvkWM81KCq/KB72wETgLXaqiXO+zDID+O+mZQF1k56d1Qm657LloGYOs6w7zjaowQtdf
-         +JJ3U3nQFxK85cH3xZ0WDUT2qjDOlSSG7AHLnzSibSG8HTDloCYkN9dd+q+dSmUzL9GK
-         PMKA==
-X-Gm-Message-State: APjAAAXHKbBYWsBmGNV/hzaqzOSzQzyL8zxLSpEXLzdBoWwCFxretWbE
-        ThPCxhOJSa+Te9X8/1UaVxAkZVVEw44=
-X-Google-Smtp-Source: APXvYqzAKBcFsS+Y7adHO16lbwFC8l2Evh0Cd9l2abi8zINYBOvpufFAj53P8LJXw8+H5xm3l6EJtA==
-X-Received: by 2002:a6b:c386:: with SMTP id t128mr16804601iof.167.1557781626383;
-        Mon, 13 May 2019 14:07:06 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id p78sm300323itp.35.2019.05.13.14.07.05
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 14:07:05 -0700 (PDT)
-Date:   Mon, 13 May 2019 14:07:05 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Rob Herring <robh+dt@kernel.org>
-cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
-        Megan Wachs <megan@sifive.com>,
-        Wesley Terpstra <wesley@sifive.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=VyWcWjrZXEyD6w07tvHm50fVGWK7lK6mM8u98FcSYoY=;
+        b=MbNqrlFH9/eKErETJ6oYCfzsvIQy0LLa4mygpz4bkSqQeih1tMeQZO1V7+eTaAG5Yc
+         LESrGb2UgRvt7BPAfQi7ZZdfKPaHBV4ZHJqbe+FORgNUyF9qTWj/6v+ndw4nbm7YiCIs
+         mcCWbO1tNHLQZZsnBfaXgp1byIhbPBapLO47BnL96woZCu85zhGn7QEHIQYMdGaVZ8Qg
+         AqQNafui/CaIkJdHMWTQCqN2ATXtNDjSMXmZ3+XwS60L1IvrCbf0xTzIGo03HHwOI/+H
+         zH1c+BpHLtKMd0oB8+ydiI8qvCvb6XzLSpzlTc0wCUXNpz9+Z17yDGvJ0wUTCqqTRY/M
+         udHA==
+X-Gm-Message-State: APjAAAUQm1Co/K6I/Z7YvlJ9321r+JuUBCqheG6G6f4Tiwz2x4HRYCA7
+        gCFQ029Z3nGvT0wDZ1pq7bgR7w==
+X-Google-Smtp-Source: APXvYqy4RdMGzwqzFo1V/pbxH61eNqRNaPswK4JglVAPvy+TtjrmAjqxmKK8n1mSWWT4UrrI6/L6JQ==
+X-Received: by 2002:a17:902:a40b:: with SMTP id p11mr5883784plq.306.1557781671009;
+        Mon, 13 May 2019 14:07:51 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id 85sm6939980pgb.52.2019.05.13.14.07.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 May 2019 14:07:50 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-riscv@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Paul Walmsley <paul@pwsan.com>
-Subject: Re: [PATCH] dt-bindings: sifive: describe sifive-blocks versioning
-In-Reply-To: <CAL_JsqJRdjoTo2hGrKWvcyer18wt9N6w0nkfa9xx_e2xJ6pkYg@mail.gmail.com>
-Message-ID: <alpine.DEB.2.21.9999.1905131406480.21198@viisi.sifive.com>
-References: <alpine.DEB.2.21.9999.1811211704520.16271@viisi.sifive.com> <CAL_JsqJRdjoTo2hGrKWvcyer18wt9N6w0nkfa9xx_e2xJ6pkYg@mail.gmail.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sdm845-mtp: Add Truly display
+Date:   Mon, 13 May 2019 14:07:47 -0700
+Message-Id: <20190513210747.22429-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Bring in the Truly display and enable the DSI channels to make the
+mdss/gpu probe, even though we're lacking LABIB, preventing us from
+seeing anything on the screen.
 
-On Mon, 13 May 2019, Rob Herring wrote:
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 79 +++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-> I just noticed this was never re-spun and applied. We now have
-> bindings in tree referring to it though.
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+index 02b8357c8ce8..83198a19ff57 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+@@ -352,6 +352,77 @@
+ 	status = "okay";
+ };
+ 
++&dsi0 {
++	status = "okay";
++	vdda-supply = <&vdda_mipi_dsi0_1p2>;
++
++	qcom,dual-dsi-mode;
++	qcom,master-dsi;
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&truly_in_0>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++
++	panel@0 {
++		compatible = "truly,nt35597-2K-display";
++		reg = <0>;
++		vdda-supply = <&vreg_l14a_1p88>;
++
++		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
++		mode-gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				truly_in_0: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				truly_in_1: endpoint {
++					remote-endpoint = <&dsi1_out>;
++				};
++			};
++		};
++	};
++};
++
++&dsi0_phy {
++	status = "okay";
++	vdds-supply = <&vdda_mipi_dsi0_pll>;
++};
++
++&dsi1 {
++	status = "okay";
++	vdda-supply = <&vdda_mipi_dsi1_1p2>;
++
++	qcom,dual-dsi-mode;
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&truly_in_1>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++};
++
++&dsi1_phy {
++	status = "okay";
++	vdds-supply = <&vdda_mipi_dsi1_pll>;
++};
++
+ &gcc {
+ 	protected-clocks = <GCC_QSPI_CORE_CLK>,
+ 			   <GCC_QSPI_CORE_CLK_SRC>,
+@@ -365,6 +436,14 @@
+ 	clock-frequency = <400000>;
+ };
+ 
++&mdss {
++	status = "okay";
++};
++
++&mdss_mdp {
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+-- 
+2.18.0
 
-Will send an updated version shortly.
-
-- Paul
