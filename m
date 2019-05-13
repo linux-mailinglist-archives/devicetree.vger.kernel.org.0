@@ -2,130 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 755E81B2CE
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 11:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 404571B2D8
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 11:28:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727576AbfEMJYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 05:24:50 -0400
-Received: from lb2-smtp-cloud8.xs4all.net ([194.109.24.25]:53385 "EHLO
-        lb2-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727568AbfEMJYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 May 2019 05:24:50 -0400
-Received: from [192.168.2.10] ([46.9.252.75])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id Q7COhiHa00YQeQ7CRhcWle; Mon, 13 May 2019 11:24:48 +0200
-Subject: Re: [PATCH v2 13/15] [media] mtk-mipicsi: add the function for
- Get/Set PARM for application
-To:     Stu Hsieh <stu.hsieh@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, CK Hu <ck.hu@mediatek.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-References: <1555407015-18130-1-git-send-email-stu.hsieh@mediatek.com>
- <1555407015-18130-14-git-send-email-stu.hsieh@mediatek.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <8dcbaa14-29bb-8469-fc36-82e34df81737@xs4all.nl>
-Date:   Mon, 13 May 2019 11:24:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727982AbfEMJ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 05:28:13 -0400
+Received: from smtp-out.xnet.cz ([178.217.244.18]:19484 "EHLO smtp-out.xnet.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727971AbfEMJ2N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 05:28:13 -0400
+Received: from meh.true.cz (meh.true.cz [108.61.167.218])
+        (Authenticated sender: petr@true.cz)
+        by smtp-out.xnet.cz (Postfix) with ESMTPSA id 56CED37B5;
+        Mon, 13 May 2019 11:28:09 +0200 (CEST)
+Received: from localhost (meh.true.cz [local])
+        by meh.true.cz (OpenSMTPD) with ESMTPA id 281a2c16;
+        Mon, 13 May 2019 11:28:07 +0200 (CEST)
+Date:   Mon, 13 May 2019 11:28:07 +0200
+From:   Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Andy Duan <fugang.duan@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "john@phrozen.org" <john@phrozen.org>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alban Bedel <albeu@free.fr>, devicetree@vger.kernel.org
+Subject: Re: NVMEM address DT post processing [Was: Re: [PATCH net 0/3] add
+ property "nvmem_macaddr_swap" to swap macaddr bytes order]
+Message-ID: <20190513092807.GX81826@meh.true.cz>
+Reply-To: Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
+References: <1557476567-17397-4-git-send-email-fugang.duan@nxp.com>
+ <1557476567-17397-3-git-send-email-fugang.duan@nxp.com>
+ <1557476567-17397-2-git-send-email-fugang.duan@nxp.com>
+ <1557476567-17397-1-git-send-email-fugang.duan@nxp.com>
+ <20190510112822.GT81826@meh.true.cz>
+ <20190510113155.mvpuhe4yzxdaanei@flea>
+ <20190511144444.GU81826@meh.true.cz>
+ <20190512121910.432t2vncvmpu26qg@flea>
 MIME-Version: 1.0
-In-Reply-To: <1555407015-18130-14-git-send-email-stu.hsieh@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfCfMFdvufpYlAoVkC6/FNWW97drMNqs9zzMyTIveUsIjoRhTAZz6jCYP+N8X20c09w4lo8FUspQkD+2oPhGYQTZzu2WEOh90nYKhmU2CmuyX13+n5SQv
- NtTtQ9ZiNK3Y7OWRJ14rFaq/zJtplNwHlvOGFMWE4ZQnbgMLmavgsMicqnqpWIz2uWzArRDsFKFNbDURDhXxN0TA5+Xhvk64qcRfTazx4EC409QcFbmxSMF6
- j2HyUMdR4qhn7uSi+aO5gW40JlUQKs7avOGmfq0+NLiZVjoYJ0nP9Oc/rlwfjmCC0aIHDvGfhKGoJq/zvYMucPHM1lg2Lhlmb5eQE6o1BonMkhsfzcdd8OtT
- GJVYq7W71fFh3Ysj4zzDuHbDB+RitRSZLvtBChQ2afHKdB64JHAgKxjv2XaGBgHkiD9GPYeDey6zwfPh1JsBhMBghUtrHXso+Ao5vyfH+RRy1OXyX0UiwN+y
- haivmh+uBdjzm82CPSAbZA2doMljXSuT0mP+5r1piFnfZaNR8Q+o/CByF54fRcRL6i0K0lycDgoZeXJwAQIbCS7zyv7AFUX7tWX7ABnHAIpEsZNq+8735Neu
- Re1DepiL6jzJfYazFiwy865SDnmZgaW8JwSYCPO6US6aqw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190512121910.432t2vncvmpu26qg@flea>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/16/19 11:30 AM, Stu Hsieh wrote:
-> This patch add the function for Get/Set PARM for application.
+Maxime Ripard <maxime.ripard@bootlin.com> [2019-05-12 14:19:10]:
+
+> > @@ -29,6 +31,19 @@ Optional properties:
+> >  bits:  Is pair of bit location and number of bits, which specifies offset
+> >         in bit and number of bits within the address range specified by reg property.
+> >         Offset takes values from 0-7.
+> > +byte-indices: array, encoded as an arbitrary number of (offset, length) pairs,
+> > +            within the address range specified by reg property. Each pair is
+> > +            then processed with byte-transform in order to produce single u8
+> > +            sized byte.
+> > +byte-transform: string, specifies the transformation which should be applied
+> > +              to every byte-indices pair in order to produce usable u8 sized byte,
+> > +              possible values are "none", "ascii" and "bcd". Default is "none".
+> > +byte-adjust: number, value by which should be adjusted resulting output byte at
+> > +           byte-adjust-at offset.
+> > +byte-adjust-at: number, specifies offset of resulting output byte which should be
+> > +              adjusted by byte-adjust value, default is 0.
+> > +byte-result-swap: boolean, specifies if the resulting output bytes should be
+> > +                swapped prior to return
+> >
+> >  For example:
+> >
+> > @@ -59,6 +74,36 @@ For example:
+> >                 ...
+> >         };
+> >
+> > +Another example where we've MAC address for eth1 stored in the NOR EEPROM as
+> > +following sequence of bytes (output of hexdump -C /dev/mtdX):
+> > +
+> > + 00000180  66 61 63 5f 6d 61 63 20  3d 20 44 34 3a 45 45 3a  |fac_mac = D4:EE:|
+> > + 00000190  30 37 3a 33 33 3a 36 43  3a 32 30 0a 42 44 49 4e  |07:33:6C:20.BDIN|
+> > +
+> > +Which means, that MAC address is stored in EEPROM as D4:EE:07:33:6C:20, so
+> > +ASCII delimited by colons, but we can't use this MAC address directly as
+> > +there's only one MAC address stored in the EEPROM and we need to increment last
+> > +octet/byte in this address in order to get usable MAC address for eth1 device.
+> > +
+> > + eth1_addr: eth-mac-addr@18a {
+> > +     reg = <0x18a 0x11>;
+> > +     byte-indices = < 0 2
+> > +                      3 2
+> > +                      6 2
+> > +                      9 2
+> > +                     12 2
+> > +                     15 2>;
+> > +     byte-transform = "ascii";
+> > +     byte-increment = <1>;
+> > +     byte-increment-at = <5>;
+> > +     byte-result-swap;
+> > + };
+> > +
+> > + &eth1 {
+> > +     nvmem-cells = <&eth1_addr>;
+> > +     nvmem-cell-names = "mac-address";
+> > + };
+> > +
 > 
-> Application can get the information about number of link.
-> 
-> Signed-off-by: Stu Hsieh <stu.hsieh@mediatek.com>
-> ---
->  .../media/platform/mtk-mipicsi/mtk_mipicsi.c  | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c b/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
-> index 5e4028d0d5e1..5db9c68b0da9 100644
-> --- a/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
-> +++ b/drivers/media/platform/mtk-mipicsi/mtk_mipicsi.c
-> @@ -346,6 +346,38 @@ static int get_subdev_link(const struct soc_camera_device *icd,
->  	return 0;
->  }
->  
-> +static int mtk_mipicsi_get_parm(struct soc_camera_device *icd,
-> +	struct v4l2_streamparm *a)
-> +{
-> +	unsigned int link = 0U;
-> +	u8 link_reg_val = 0x0U;
-> +	int ret = 0;
-> +
-> +	/*get camera link number*/
-> +	ret = get_subdev_link(icd, &link, &link_reg_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	a->parm.capture.timeperframe.numerator = 1;
-> +	a->parm.capture.timeperframe.denominator = 30;
-> +	a->parm.capture.reserved[0] = link_reg_val;
-> +	a->parm.capture.reserved[1] = (u32)(icd->use_count);
+> Something along those lines yes. I'm not sure why in your example the
+> cell doesn't start at the mac address itself, instead of starting at
+> the key + having to specify an offset though. The reg property is the
+> offset already.
 
-No, no, don't use G/S_PARM for that. It's an awful API and other than
-getting/setting the frame period it shouldn't be used for anything else.
+The cell starts at the MAC address itself, 0x180 is offset within the EEPROM
+and 0xa is byte within the offset (off-by-one, correct should be 0x9 though).
 
-I've CC-ed Sakari, he is the CSI specialist. I think some work was done
-(or is in progress) regarding providing more CSI lane information.
+  EEPROM                 byte within EEPROM offset
+  offset    1  2  3  4  5  5  6  7   8  9  a  b  c  d  e  f
+ ------------------------------------------------------------|-----------------
+ 00000180  66 61 63 5f 6d 61 63 20  3d 20 44 34 3a 45 45 3a  |fac_mac = D4:EE:|
+ 00000190  30 37 3a 33 33 3a 36 43  3a 32 30 0a 42 44 49 4e  |07:33:6C:20.BDIN|
 
-> +	dev_info(icd->parent, "use count %d\n", icd->use_count);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_mipicsi_set_param(struct soc_camera_device *icd,
-> +	struct v4l2_streamparm *a)
-> +{
-> +	struct soc_camera_host *ici = to_soc_camera_host(icd->parent);
-> +
-> +	if (ici->ops->get_parm == NULL)
-> +		return ici->ops->get_parm(icd, a);
+So this would produce following:
 
-This clearly was never tested since ici->ops->get_parm is NULL when
-you call it. I'd drop this function altogether since there is no
-point if you can make changes.
+ eth1_addr: eth-mac-addr@189 {
+    reg = <0x189 0x11>;         /* 0x44 0x34 0x3a 0x45 0x45 0x3a 0x30 0x37
+                                 * 0x3a 0x33 0x33 0x3a 0x36 0x43 0x3a 0x32 0x30 */
+    byte-indices = < 0 2        /* 0x44 0x34 */
+                     3 2        /* 0x45 0x45 */
+                     6 2        /* 0x30 0x37 */
+                     9 2        /* 0x33 0x33 */
+                    12 2        /* 0x36 0x43 */
+                    15 2>;      /* 0x32 0x30 */
+    byte-transform = "ascii";   /* 0xd4 0xee 0x7 0x33 0x6c 0x20 */
+    byte-increment = <1>;
+    byte-increment-at = <5>;    /* 0xd4 0xee 0x7 0x33 0x6c 0x21 */
+    byte-result-swap;           /* 0x21 0x6c 0x33 0x7 0xee 0xd4 */
+ };
 
-Regards,
-
-	Hans
-
-> +
-> +	return 0;
-> +}
-> +
->  static u32 get_bytesperline(const u32 fmt, const u32 width)
->  {
->  	u32 bytesperline = 0;
-> @@ -884,6 +916,8 @@ static struct soc_camera_host_ops mtk_soc_camera_host_ops = {
->  	.poll			= vb2_fop_poll,
->  	.querycap		= mtk_mipicsi_querycap,
->  	.set_bus_param		= mtk_mipicsi_set_bus_param,
-> +	.get_parm		= mtk_mipicsi_get_parm,
-> +	.set_parm		= mtk_mipicsi_set_param,
->  };
->  
->  static void mtk_mipicsi_ana_init(void __iomem *base)
-> 
-
+-- ynezz
