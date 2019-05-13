@@ -2,113 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFCD1BFA5
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 00:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 666EB1BFE2
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 01:40:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726580AbfEMWsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 18:48:36 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:34567 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726286AbfEMWsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 18:48:36 -0400
-Received: by mail-vs1-f68.google.com with SMTP id q64so9115326vsd.1
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 15:48:35 -0700 (PDT)
+        id S1726578AbfEMXku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 19:40:50 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:40848 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726551AbfEMXku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 19:40:50 -0400
+Received: by mail-pg1-f195.google.com with SMTP id d31so7570955pgl.7
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 16:40:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6ZsjBt83vZW6+pdPdwVwbAfNO1Tv5TbEk4rycrbIYbM=;
-        b=Tnz5OKHnLPR6l118hvL+HTgPPNlqas3wlnC3peejx+OqWX4dLD+cDrKseKtykoAH9e
-         GLcRZfSqtv9xi3Ko60lAn/PLCJOfMAWSxymkyBglt2shWGuRu6sroABxXS9otN9gsBD4
-         7yvl0lsv06bq8HtkrCD8e7D0l3meHeTy2Grn4=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=J8kVwdfKryVwhVTqGuXeaVb2n8/8oNSbahQ/YtWP1xI=;
+        b=sa5hTJoEG20bTMXXVU6g1aEoSJCap4+nQDLEavj4IVB0Q0WvFwch1WnSeHVzCeOf+6
+         NozdunUylZsJGkfbUevW1O5aRpxemgsu+Cqap9XkehWY73/n/SPIStbxuSlubLpk9jO8
+         EdTkhBdYfxzPwyCGLxp2WbiGrvxaRjzX4/otJYQd5sWrbLfmRbKm2YU867GS5Dd/D4wL
+         sEP7BY3gwMRxi4fSJYa94KNLcP7twzqhYFbbRVeIS9dTm0jHaiLBh/MT3Yl0gpPfxKJf
+         HYYblv/KEjMtWT0fDBkwACZ8qic4unhuM16gzLYZvPBFkhWVRoY/Gu6KOnbpTQz2XUao
+         VVzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6ZsjBt83vZW6+pdPdwVwbAfNO1Tv5TbEk4rycrbIYbM=;
-        b=DO1nYg6OXCkAYcRbmdxLVBagy29z2vq3r0pIaDRzPzLT5rKAFZKY//JHsvg6Be0KMo
-         5fO5Rak/5Hb2t+EqcRPMT+A/9lBaV+p4vc/FZmB0hTDVvgGBlRvwz+SIVhMjWx74nPxp
-         MCC9GKJLULZKMKS7rhl7zJB/yZhX7jXlhFg4jsk2y2C0xwrdqBbQFablMJMY+s6WE326
-         psnxaKPwNPeK1hZo1sRCQ5JzfEkAxqRJvd86KesO25lyNVOG5kmJZFs7MwzoUKhobVvK
-         I0rC+sp/Xxjb2wn5oJjPFowOe+G/H8OSvGJA9oa5zyQvuBOimHama+IoDmU3B8+C8ioJ
-         DaQA==
-X-Gm-Message-State: APjAAAVWWylV+VZVJGtPiW3zW3iDPDcK22F9dsiiPjEFsO5H6Hex3YNm
-        DIrfNmsqJIMbuD6byUfrbNHwtKpuZ88=
-X-Google-Smtp-Source: APXvYqzgAYQhzkxr3RM4L49im6vfcxmt4rMocRjDi9kefTFCo7ExpcNay4W6Bn1Oz51vWQLZQAAC0g==
-X-Received: by 2002:a67:ed11:: with SMTP id l17mr15704787vsp.154.1557787714707;
-        Mon, 13 May 2019 15:48:34 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id u83sm3635105vke.33.2019.05.13.15.48.33
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 13 May 2019 15:48:34 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id m1so1944830vsr.6
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 15:48:33 -0700 (PDT)
-X-Received: by 2002:a67:b348:: with SMTP id b8mr7122321vsm.144.1557787713606;
- Mon, 13 May 2019 15:48:33 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=J8kVwdfKryVwhVTqGuXeaVb2n8/8oNSbahQ/YtWP1xI=;
+        b=fPbT4pooDdGGn0+mtuasPszBJ3Bo+l6UnJy4PoxmAyPxBySBzi5a2BSphjtNFsycQm
+         rEJavi7Onrp908vD5LR1nHPZraoETxlPwctKO8TDKfvPMWbsG87nJb3cmXw7JOa0AFLe
+         Xm8qwduwbIn4pAu4AM8uRwr/A4Mu2OhxlJlae8vWyWPOo2knT/b7QIybbUyDe6MBGDKh
+         bNXoEdRXFVgDdTAorDMr45IzeAfDswWC1SlCyFnc15zzry9gNbJDm87JjnYYU2whg1kQ
+         z7aY7AWFv8NCkUgpnAbPeW/ObGDilLha9RKuZGgyHVuDFVNUlw8mqbPdGP23xntdLCmc
+         OQ+w==
+X-Gm-Message-State: APjAAAXi1VXPwWwmtlc2lbhzsxE1JUOytUp0H0/7ani2lRx0BPzwcrCZ
+        HH6q3fASkuKim6v5L5edLyKBgQ==
+X-Google-Smtp-Source: APXvYqxJza/f7WkrQm4MQNmOM8P+Yp7+nyNFIKDtT5FejuIGuzHjEwFK6tl1nzjsKXvMKfPowpL0mg==
+X-Received: by 2002:a65:5682:: with SMTP id v2mr34932877pgs.100.1557790849488;
+        Mon, 13 May 2019 16:40:49 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:fd66:a9bc:7c2c:636a])
+        by smtp.googlemail.com with ESMTPSA id e14sm12696269pff.60.2019.05.13.16.40.48
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 13 May 2019 16:40:48 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: meson: sei510: consistently order nodes
+In-Reply-To: <b81b46f1-5e8f-26e8-399f-3baca8336e50@baylibre.com>
+References: <20190510155327.5759-1-jbrunet@baylibre.com> <20190510155327.5759-2-jbrunet@baylibre.com> <7h4l62dlyh.fsf@baylibre.com> <3bad9dc8c53e50c4aea1212bf949215660259412.camel@baylibre.com> <b81b46f1-5e8f-26e8-399f-3baca8336e50@baylibre.com>
+Date:   Mon, 13 May 2019 16:40:47 -0700
+Message-ID: <7hef51c48w.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20190509184415.11592-1-robdclark@gmail.com> <20190509184415.11592-3-robdclark@gmail.com>
-In-Reply-To: <20190509184415.11592-3-robdclark@gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 13 May 2019 15:48:22 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WXW3aApS=c7baxhtfr1Nf-UnBN2s=rEBBkjj4=TCdT+g@mail.gmail.com>
-Message-ID: <CAD=FV=WXW3aApS=c7baxhtfr1Nf-UnBN2s=rEBBkjj4=TCdT+g@mail.gmail.com>
-Subject: Re: [RFC 2/3] arm64: dts: qcom: sdm845-cheza: Re-add reserved memory
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-On Thu, May 9, 2019 at 11:44 AM Rob Clark <robdclark@gmail.com> wrote:
-
-> From: Douglas Anderson <dianders@chromium.org>
+> On 11/05/2019 17:52, Jerome Brunet wrote:
+>> On Fri, 2019-05-10 at 14:43 -0700, Kevin Hilman wrote:
+>>> minor nit: I kind of like "aliases" and "chosen" at the top since they
+>>> are kind of special nodes, but honestly, I can't think of a really good
+>>> reason other than personal preference, so keeping things sorted as
+>>> you've done here is probably better.
+>>>
+>> 
+>> You thought the same, then thought maybe memory was important too. But going
+>> down that path, you end up sorting by feeling. It is going to be difficult
+>> to all agree on which nodes are special.
+>> 
+>> In the end, we just want/need something that is easy to respect and verify.
 >
-> Let's fixup the reserved memory to re-add the things we deleted in
-> ("CHROMIUM: arm64: dts: qcom: sdm845-cheza: Temporarily delete
-> reserved-mem changes") in a way that plays nicely with the new
-> upstream definitions.
+> I think it would be better to have the same layout for aliases and memory over
+> all the amlogic DTS, it's common over all socs to have these nodes on top.
 
-The message above makes no sense since that commit you reference isn't
-in upstream.
+aliases, chosen, memory and reserved-memory are ones that are typically
+on the top for convience sake, but looking around we have not been
+terribly consistent there either.
 
-...but in any case, why not squash this in with the previous commit?
+At this point, to continue the tradition, I'm not going to be too picky
+about enforcing "standards" that are loosely defined (or undefined) and
+will generally accept cleanups that are moving us towards consistency
+and ease of rebasing.
 
-
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-
-Remove Stephen's Reviewed-by.  In general reviews that happen in the
-Chrome OS gerrit shouldn't be carried over when things are posted
-upstream.
-
-
-> +/* Increase the size from 2MB to 8MB */
-> +&rmtfs_mem {
-> +       reg = <0 0x88f00000 0 0x800000>;
-> +};
-> +
-> +/ {
-> +       reserved-memory {
-> +               venus_mem: memory@96000000 {
-> +                       reg = <0 0x96000000 0 0x500000>;
-> +                       no-map;
-> +               };
-> +       };
-> +};
-
-nit: blank line?
-
--Doug
+Kevin
