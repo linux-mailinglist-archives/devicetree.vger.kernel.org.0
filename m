@@ -2,77 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 195F91BC33
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42BE51BC3B
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728884AbfEMRte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 13:49:34 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:38683 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728006AbfEMRtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:49:33 -0400
-Received: by mail-oi1-f193.google.com with SMTP id u199so10019254oie.5;
-        Mon, 13 May 2019 10:49:33 -0700 (PDT)
+        id S1731872AbfEMRvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 13:51:19 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:45711 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731830AbfEMRvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:51:19 -0400
+Received: by mail-ot1-f66.google.com with SMTP id t24so3894762otl.12;
+        Mon, 13 May 2019 10:51:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1bEwJx2ooCiZhjSjSzVcynikIQKez+Mq3GV6Bc4o1g4=;
-        b=juJw9UdONJby1B1DBKo8KbR5ljah59f+Hj/QqLx8A44hQOb/M6SP2WFuvv9wmaJIr5
-         Ez1gcDNXmE5qUtKaU6/MrSmNrVIWewTQUYaYKUA4bOCJhwdmBht80/96PlLWN8e0G2FB
-         94zx3VJ1i5UdSHX7XPhpH0W11weY6zVMdJWZjHOPUp5F90OKS1qt7me5Ec1MaI+CpR9J
-         AzL+OEsTBtEPo+Aftj5gYyRR2Zc1gtSCZQsDKUszjHtOHFSX50VTiFFusw/xwL8kBZpf
-         p2kwLIIejJhN46v+iT7ZNN4rA74Q4prxgQ4UnsP7WtaBV4NQFSCAgAbWpctB20/ezz+K
-         kuNw==
-X-Gm-Message-State: APjAAAXKoMbIp9US5LIwyQgFVVaVrbfi92KRe2EFr6j2/3VHJoAlCCqb
-        e1lk89PO0RKpBZEjeC/wfQ==
-X-Google-Smtp-Source: APXvYqy0R7mepWjuSXAvIn0kyC5CCEbOHcAeOo6ptGap/IwGmmPfQucJEkl1TWnjC8CEZvN439r/ug==
-X-Received: by 2002:aca:a84d:: with SMTP id r74mr250154oie.44.1557769773031;
-        Mon, 13 May 2019 10:49:33 -0700 (PDT)
+        bh=m4N4IZgDvzO5+VbOkAL+/qLpzVDWLu+YalUcmqAEWjc=;
+        b=jnwFH8UA94RdkkU6CHRBw5rimQjGO2zj1ZuICVrlxgXiYjbYUK7b4LtF+ejfmo22Xk
+         bQ8BAJ4rBW+Th20chDf3J2ld2TBO4Ea1V8N5rq77Re59zvMe119k9q9dUWuGtEIu+AJ2
+         tEEL3cUgWwkbMa6caJM7A2pQ5rB0uXJt0txXF95VpKGvT3NvwuFzv2/mDX+SiqvwhMwa
+         paDQqNHWNdIfdpUSsrfqN/ddMFwILEmcFaP4oqCaboGhvY6K0Sut+Qiy75qKqAqp337Z
+         t2ZvJabIsA6TiViBzrqWktAQxwJsyp3mWuSplsf2gJjoaeMnc5XGJncL4btRv5MBYpnv
+         HyvA==
+X-Gm-Message-State: APjAAAXpsXPy9aeV7ZsgMHqDpRRTHm7/+vTwyt9kr08r9OQIr+WxfNcz
+        n6onuQ8x3atYt5Cp8mHvoA==
+X-Google-Smtp-Source: APXvYqyi6vDqkZOF8NsHPlQ7yDvigtmGZCYFZkAc4wdlsemMKX21ODIa4vUe8/dokESav8OUMfKvnw==
+X-Received: by 2002:a9d:6d8c:: with SMTP id x12mr11381060otp.34.1557769878486;
+        Mon, 13 May 2019 10:51:18 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m206sm5362723oif.50.2019.05.13.10.49.32
+        by smtp.gmail.com with ESMTPSA id x21sm576703otk.4.2019.05.13.10.51.17
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 10:49:32 -0700 (PDT)
-Date:   Mon, 13 May 2019 12:49:31 -0500
+        Mon, 13 May 2019 10:51:17 -0700 (PDT)
+Date:   Mon, 13 May 2019 12:51:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     guoren@kernel.org
-Cc:     marc.zyngier@arm.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jason@lakedaemon.net, tglx@linutronix.de, guoren@kernel.org,
-        ren_guo@c-sky.com
-Subject: Re: [PATCH V3 1/2] dt-bindings: interrupt-controller: Update csky
- mpintc
-Message-ID: <20190513174931.GA19167@bogus>
-References: <1557741339-29331-1-git-send-email-guoren@kernel.org>
+To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Scott Wood <oss@buserror.net>,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
+        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>
+Subject: Re: [PATCH v3 4/6] dt-bindings: soc/fsl: qe: document new
+ fsl,qe-snums  binding
+Message-ID: <20190513175117.GA22288@bogus>
+References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
+ <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
+ <20190513111442.25724-5-rasmus.villemoes@prevas.dk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1557741339-29331-1-git-send-email-guoren@kernel.org>
+In-Reply-To: <20190513111442.25724-5-rasmus.villemoes@prevas.dk>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 May 2019 17:55:38 +0800, guoren@kernel.org wrote:
-> From: Guo Ren <ren_guo@c-sky.com>
+On Mon, 13 May 2019 11:14:58 +0000, Rasmus Villemoes wrote:
+> Reading table 4-30, and its footnotes, of the QUICC Engine Block
+> Reference Manual shows that the set of snum _values_ is not
+> necessarily just a function of the _number_ of snums, as given in the
+> fsl,qe-num-snums property.
 > 
-> Add trigger type and priority setting for csky,mpintc. The driver also
-> could support #interrupt-cells <1> and it wouldn't invalidate existing
-> DTs. Here we only show the complete format.
+> As an alternative, to make it easier to add support for other variants
+> of the QUICC engine IP, this introduces a new binding fsl,qe-snums,
+> which automatically encodes both the number of snums and the actual
+> values to use.
 > 
-> Changes for V3:
->  - Update commit msg about compatible
-> 
-> Changes for V2:
->  - change #interrupt-cells to <3>
-> 
-> Signed-off-by: Guo Ren <ren_guo@c-sky.com>
-> Cc: Marc Zyngier <marc.zyngier@arm.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
 > ---
->  .../bindings/interrupt-controller/csky,mpintc.txt   | 21 +++++++++++++++++----
->  1 file changed, 17 insertions(+), 4 deletions(-)
+> Rob, thanks for the review of v2. However, since I moved the example
+> from the commit log to the binding (per Joakim's request), I didn't
+> add a Reviewed-by tag for this revision.
+> 
+>  .../devicetree/bindings/soc/fsl/cpm_qe/qe.txt       | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
