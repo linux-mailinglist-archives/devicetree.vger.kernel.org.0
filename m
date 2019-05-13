@@ -2,92 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF201B493
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D161B4AE
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728520AbfEMLNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 07:13:30 -0400
-Received: from mail-vk1-f194.google.com ([209.85.221.194]:36961 "EHLO
-        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728409AbfEMLNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 07:13:30 -0400
-Received: by mail-vk1-f194.google.com with SMTP id o187so3191674vkg.4;
-        Mon, 13 May 2019 04:13:29 -0700 (PDT)
+        id S1729297AbfEMLPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 07:15:00 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:33397 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729300AbfEMLO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 07:14:59 -0400
+Received: by mail-qt1-f196.google.com with SMTP id m32so11109425qtf.0
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 04:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7ZfFsSLpKN7HyaM6v93FCUf+4/Rm0naSo5dp2W2IoAs=;
+        b=P7ipmsq9G0+9OQ54tSFpZgx4uejZvqKec5RS4a3yX+3drQ7fHtnDqSGIIgcnEEtqk7
+         JkP2QLEsEoGnD0hS/v+0AtmraeSEhBrD6jM+/soz3CKbv0M54wMXOYJGVOld0lzQuNdh
+         q0lc45XDBoD1Pt+YWPhZ7I4v05Ywg6KPt8S5Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=/pd5isyFpDeE3AyBnCUJiWiqlznT6f7kJ6kW0m/JGv0=;
-        b=DgyZg9ozrEcJ/EnUGFSHoV8IdZEN2HlUrfFlXmK/lp9ZyepLBvsECfsnva1TSv3XZu
-         g72eABAwyL8RwofvIT7KLlu9dFFACmhYsBtKIzOyWpmXVLdfoWuGv4vVPhuii8nqRVTP
-         nHNG8tM74jU9HXp/oayGop0mSSP3xx6h9I6kGwyZmdb+w5Ae65UQGMxka9+Q3zpQUK+L
-         AYUg0vvdh5/q5pVCywqtMJoIrZWT5s8dtSnJXQXP0VjAPdSYJhs+KRTJuoO9yPqESRYu
-         E/btcqLrhTgzf/82yMbjK5IA828pB41DtfjqPDZMB+8e6InUFz9Zuu319CpPALPNE/6D
-         n/2A==
-X-Gm-Message-State: APjAAAVgyPeZOwbHD0tziHMX/wxH0TjEdNAmndbMzqd4EO3CR8tfAApL
-        yU7aNN01iTJ9cCCcBQkoh2eJcxKBJwDTxiY5Ohs=
-X-Google-Smtp-Source: APXvYqzGQGneFk2qC7z1BupEocV/I1PZSWp0WeD+iIZ6EKW9Py9AqeGvI70MJa2R3Izqb6b5XGD0VkEuo5ymCAzpPZc=
-X-Received: by 2002:a1f:3dc9:: with SMTP id k192mr3729750vka.74.1557746008863;
- Mon, 13 May 2019 04:13:28 -0700 (PDT)
+        bh=7ZfFsSLpKN7HyaM6v93FCUf+4/Rm0naSo5dp2W2IoAs=;
+        b=R0Ldk+GlpduxBstkrWSWiiPspv0pqvz/E4PYGcbYKfaxH/yq3RIKyRit0VMLxNA6EM
+         xz75ud4J+FG75Z1Kdg5a1yQ9vLLPFy9keGvDpzkp87ys5aS9eF2vpjdgyTUOtpw9TIeH
+         cZn1IacGvtiWRYko/akvxy1hPrcVlkduKPXwIYIZk77zA1wmLqOuip6lz7kKhC0rwqx5
+         keVsCJeilPwTNU7S8LYU51sEeAuptxGJASK4HBhPWIsG0JeCgSsr8nenvOzn7cTAb8qS
+         ZMVJ941VXKGp5NYuMYdWt3owbotqaLXF5v4M9+ytAOXidhZsAq7l87SQQjzZvztzdnMG
+         AI0w==
+X-Gm-Message-State: APjAAAVu0Fj5zWExi3a18fQM6yzAXhDTxSlN0CSjdFdia1jFmxWH/YcE
+        T9W2CwX1D5hB+wZzlLho/f1PFXG5FdCsBDfV58SAhA==
+X-Google-Smtp-Source: APXvYqyBfY131U29dBbU/X4gXO3dZg+CiqpFSNzlD1lAHQ8Z1Q1egpybgdc6YHf9RPbXTaQ8EFaZSNZK9NLwjWHnaJY=
+X-Received: by 2002:ac8:22d3:: with SMTP id g19mr1436241qta.236.1557746098383;
+ Mon, 13 May 2019 04:14:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190506194233.GA32430@vmlxhi-102.adit-jv.com> <1557413011-1662-1-git-send-email-george_davis@mentor.com>
-In-Reply-To: <1557413011-1662-1-git-send-email-george_davis@mentor.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 13 May 2019 13:13:16 +0200
-Message-ID: <CAMuHMdUCcxfVdY1PqfYRZMjHN2eP_-NAsniCY39XyrDysAu1Pw@mail.gmail.com>
-Subject: Re: [PATCH] serial: sh-sci: disable DMA for uart_console
-To:     "George G. Davis" <ggdavisiv@gmail.com>
-Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+References: <20190513003819.356-1-hsinyi@chromium.org> <20190513003819.356-2-hsinyi@chromium.org>
+ <20190513085853.GB9271@rapoport-lnx>
+In-Reply-To: <20190513085853.GB9271@rapoport-lnx>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Mon, 13 May 2019 19:14:32 +0800
+Message-ID: <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] amr64: map FDT as RW for early_init_dt_scan()
+To:     Mike Rapoport <rppt@linux.ibm.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "George G. Davis" <george_davis@mentor.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Michal Hocko <mhocko@suse.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi George,
+On Mon, May 13, 2019 at 4:59 PM Mike Rapoport <rppt@linux.ibm.com> wrote:
 
-On Thu, May 9, 2019 at 4:44 PM George G. Davis <ggdavisiv@gmail.com> wrote:
-> As noted in commit 84b40e3b57ee ("serial: 8250: omap: Disable DMA for
-> console UART"), UART console lines use low-level PIO only access functions
-> which will conflict with use of the line when DMA is enabled, e.g. when
-> the console line is also used for systemd messages. So disable DMA
-> support for UART console lines.
 >
-> Fixes: https://patchwork.kernel.org/patch/10929511/
-> Reported-by: Michael Rodin <mrodin@de.adit-jv.com>
-> Cc: Eugeniu Rosca <erosca@de.adit-jv.com>
-> Signed-off-by: George G. Davis <george_davis@mentor.com>
+> This makes the fdt mapped without the call to meblock_reserve(fdt) which
+> makes the fdt memory available for memblock allocations.
+>
+> Chances that is will be actually allocated are small, but you know, things
+> happen.
+>
+> IMHO, instead of calling directly __fixmap_remap_fdt() it would be better
+> to add pgprot parameter to fixmap_remap_fdt(). Then here and in kaslr.c it
+> can be called with PAGE_KERNEL and below with PAGE_KERNEL_RO.
+>
+> There is no problem to call memblock_reserve() for the same area twice,
+> it's essentially a NOP.
+>
+Thanks for the suggestion. Will update fixmap_remap_fdt() in next patch.
 
-I think this makes sense.  In addition to OMAP 8250, the same approach
-is used in the Mediatek 8250 and iMX serial drivers.
+However, I tested on some arm64 platform, if we also call
+memblock_reserve() in kaslr.c, would cause warning[1] when
+memblock_reserve() is called again in setup_machine_fdt(). The warning
+comes from https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L601
+```
+if (type->regions[0].size == 0) {
+  WARN_ON(type->cnt != 1 || type->total_size);
+  ...
+```
 
-Regardless, this is definitely better than removing the "dmas" properties
-from DT, as DT describes hardware, not usage policies.
+Call memblock_reserve() multiple times after setup_machine_fdt()
+doesn't have such warning though.
 
-Anyone else with a comment?
+I didn't trace the real reason causing this. But in this case, maybe
+don't call memblock_reserve() in kaslr?
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[1]
+[    0.000000] WARNING: CPU: 0 PID: 0 at
+/mnt/host/source/src/third_party/kernel/v4.19/mm/memblock.c:583
+memblock_add_range+0x1bc/0x1c8
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 4.19.38 #125
+[    0.000000] pstate: 600001c5 (nZCv dAIF -PAN -UAO)
+[    0.000000] pc : memblock_add_range+0x1bc/0x1c8
+[    0.000000] lr : memblock_add_range+0x30/0x1c8
+[    0.000000] sp : ffffff9b5e203e80
+[    0.000000] x29: ffffff9b5e203ed0 x28: 0000000040959324
+[    0.000000] x27: 0000000040080000 x26: 0000000000080000
+[    0.000000] x25: 0000000080127e4b x24: 0000000000000000
+[    0.000000] x23: 0000001b55000000 x22: 000000000001152b
+[    0.000000] x21: 000000005f800000 x20: 0000000000000000
+[    0.000000] x19: ffffff9b5e24bf00 x18: 00000000ffffffb8
+[    0.000000] x17: 000000000000003c x16: ffffffbefea00000
+[    0.000000] x15: ffffffbefea00000 x14: ffffff9b5e3c17d8
+[    0.000000] x13: 00e8000000000713 x12: 0000000000000000
+[    0.000000] x11: ffffffbefea00000 x10: 00e800005f800710
+[    0.000000] x9 : 000000000001152b x8 : ffffff9b5e365690
+[    0.000000] x7 : 6f20646573616228 x6 : 0000000000000002
+[    0.000000] x5 : 0000000000000000 x4 : 0000000000000000
+[    0.000000] x3 : 0000000000200000 x2 : 000000000001152b
+[    0.000000] x1 : 000000005f800000 x0 : ffffff9b5e24bf00
+[    0.000000] Call trace:
+[    0.000000]  memblock_add_range+0x1bc/0x1c8
+[    0.000000]  memblock_reserve+0x60/0xac
+[    0.000000]  fixmap_remap_fdt+0x4c/0x78
+[    0.000000]  setup_machine_fdt+0x64/0xfc
+[    0.000000]  setup_arch+0x68/0x1e0
+[    0.000000]  start_kernel+0x68/0x380
