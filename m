@@ -2,91 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A129B1BA5C
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 857561BA6B
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729127AbfEMPsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 11:48:22 -0400
-Received: from relay1.mentorg.com ([192.94.38.131]:37325 "EHLO
-        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726814AbfEMPsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:48:22 -0400
-Received: from svr-orw-mbx-01.mgc.mentorg.com ([147.34.90.201])
-        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-        id 1hQDBb-00024C-CH from George_Davis@mentor.com ; Mon, 13 May 2019 08:48:19 -0700
-Received: from localhost (147.34.91.1) by svr-orw-mbx-01.mgc.mentorg.com
- (147.34.90.201) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Mon, 13 May
- 2019 08:48:17 -0700
-From:   "George G. Davis" <george_davis@mentor.com>
-To:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-CC:     Chris Brandt <chris.brandt@renesas.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "George G. Davis" <george_davis@mentor.com>,
-        <stable@vger.kernel.org>
-Subject: [PATCH v2] serial: sh-sci: disable DMA for uart_console
-Date:   Mon, 13 May 2019 11:47:26 -0400
-Message-ID: <1557762446-23811-1-git-send-email-george_davis@mentor.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: svr-orw-mbx-02.mgc.mentorg.com (147.34.90.202) To
- svr-orw-mbx-01.mgc.mentorg.com (147.34.90.201)
+        id S1728820AbfEMPxc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 13 May 2019 11:53:32 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:39004 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728291AbfEMPxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:53:32 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d8])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 0E6FC14E11A1D;
+        Mon, 13 May 2019 08:53:32 -0700 (PDT)
+Date:   Mon, 13 May 2019 08:53:31 -0700 (PDT)
+Message-Id: <20190513.085331.1462639042534804530.davem@davemloft.net>
+To:     ynezz@true.cz
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        robh+dt@kernel.org, frowand.list@gmail.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of_net: Fix missing of_find_device_by_node ref count
+ drop
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <1557740500-2479-1-git-send-email-ynezz@true.cz>
+References: <1557740500-2479-1-git-send-email-ynezz@true.cz>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=iso-8859-15
+Content-Transfer-Encoding: 8BIT
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 13 May 2019 08:53:32 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As noted in commit 84b40e3b57ee ("serial: 8250: omap: Disable DMA for
-console UART"), UART console lines use low-level PIO only access functions
-which will conflict with use of the line when DMA is enabled, e.g. when
-the console line is also used for systemd messages. So disable DMA
-support for UART console lines.
+From: Petr ¦tetiar <ynezz@true.cz>
+Date: Mon, 13 May 2019 11:41:39 +0200
 
-Fixes: https://patchwork.kernel.org/patch/10929511/
-Reported-by: Michael Rodin <mrodin@de.adit-jv.com>
-Tested-by: Eugeniu Rosca <erosca@de.adit-jv.com>
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: George G. Davis <george_davis@mentor.com>
----
-v2: Clarify comment regarding DMA support on kernel console,
-    add {Tested,Reviewed}-by:, and Cc: linux-stable lines.
----
- drivers/tty/serial/sh-sci.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+> of_find_device_by_node takes a reference to the embedded struct device
+> which needs to be dropped after use.
+> 
+> Fixes: d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
+> Reported-by: kbuild test robot <lkp@intel.com>
+> Reported-by: Julia Lawall <julia.lawall@lip6.fr>
+> Signed-off-by: Petr ¦tetiar <ynezz@true.cz>
 
-diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
-index 3cd139752d3f..abc705716aa0 100644
---- a/drivers/tty/serial/sh-sci.c
-+++ b/drivers/tty/serial/sh-sci.c
-@@ -1557,6 +1557,13 @@ static void sci_request_dma(struct uart_port *port)
- 
- 	dev_dbg(port->dev, "%s: port %d\n", __func__, port->line);
- 
-+	/*
-+	 * DMA on console may interfere with Kernel log messages which use
-+	 * plain putchar(). So, simply don't use it with a console.
-+	 */
-+	if (uart_console(port))
-+		return;
-+
- 	if (!port->dev->of_node)
- 		return;
- 
--- 
-2.7.4
-
+Applied, thank you.
