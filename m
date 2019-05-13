@@ -2,114 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0311B834
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 16:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49EF01B8D9
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 16:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730580AbfEMOVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 10:21:47 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:38729 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730439AbfEMOVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 10:21:46 -0400
-Received: by mail-wr1-f67.google.com with SMTP id v11so15518100wru.5
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 07:21:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cSguXg1ULNsLVeUlyV/JBYC1DyTsN/aiCX3xWl5lL/w=;
-        b=jleNO/Cdfykym1Iv62B4ZMzaeTMBfgLnbRfEOuZTYHQdFwoD/fE3Nu1uIO83bTuCb0
-         WufTyu79QjpzY5s5s1Orw+T6OkXimC1WGuD0yHItW1LPMoPvqskys5DxO8pNyTC4ETUn
-         89Ywwrps4NBIRn5o/0NOl6bzkn3fmWkCmrYM3/Grojkmqb4lW1xowhu96CezF4gLiK/1
-         pDJQJQvPFq6JEytsSw8z70jl3Aeprsh4UCVcEIAsKpgSj9R8c3+d/jI7Jk6plZr47VhM
-         Mb/gptNd4QJJZk6wUuG2U8eo6Ut7BoGxnUESQsUaQv5y5S+4390RDYWn7yytT4L9H7BN
-         VSuw==
+        id S1728970AbfEMOnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 10:43:24 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:39457 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729893AbfEMOnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 10:43:24 -0400
+Received: by mail-vs1-f65.google.com with SMTP id m1so1003717vsr.6;
+        Mon, 13 May 2019 07:43:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cSguXg1ULNsLVeUlyV/JBYC1DyTsN/aiCX3xWl5lL/w=;
-        b=gmHDYvjGq5y/mXwmpntxzvL1lUT5ZgXeftYZQM/tqdXofx5hnV8jXWWuaUMn00B4dc
-         frIyWVZHVB8IjrKMzJK/q9XnbqRLxkx871Qcat41fgseJPWxajhlMvIWPfWEWPFKlnXv
-         z3C3sliuYRaFL0Zt2Q31vt49ioxgrWYCGHinRQoimK9lgvmDpMIcPi79+7nSPSMj5Bnm
-         KTEgYRwNSCxuofM2lWiC25UoNOWvxPvu/YE4ZtvmMrZDrzkLULJc0pl4N683Pbq6WRFz
-         0XAh8exCSSPzEKMGDcKnfsoPTfqGaLxlrWbDR0l6tagOJFqBord5EVezkEP6fBCxBGtk
-         c9zg==
-X-Gm-Message-State: APjAAAXK/W+NXA2WvcNA/tn2HMHaZK2Wenq1jVjKz2jFsYdKw0fy4gXk
-        gQqO4YTVIHkmAUXRJ4iLtfy7sQ==
-X-Google-Smtp-Source: APXvYqyb7jvJZ+9TFKgT7DkyliaCtl4ZcjeYhYQ5a7ehr+YjdueGGPUKUKqqrkwlDWYC3gJx5sgcgQ==
-X-Received: by 2002:adf:aa0a:: with SMTP id p10mr8675758wrd.125.1557757305028;
-        Mon, 13 May 2019 07:21:45 -0700 (PDT)
-Received: from localhost.localdomain (aputeaux-684-1-11-31.w90-86.abo.wanadoo.fr. [90.86.214.31])
-        by smtp.gmail.com with ESMTPSA id v184sm21133615wma.6.2019.05.13.07.21.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 13 May 2019 07:21:44 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, matthias.bgg@gmail.com
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH 2/2] input: keyboard: mtk-pmic-keys: add MT6392 support
-Date:   Mon, 13 May 2019 16:21:20 +0200
-Message-Id: <20190513142120.6527-2-fparent@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190513142120.6527-1-fparent@baylibre.com>
-References: <20190513142120.6527-1-fparent@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ClzU7jZAryaIXzR+/qv1yEuyi15Ak7Jc5yYHkm+jUlE=;
+        b=UHSBnBwRKi2PsFkZS/Y1M9KW5l+UG/SNvzsM00vj10nq1Ur8+7/V1Ead9gAxfLWbW+
+         tAL2s0kU2TRouxv2tuXytbyyGrcg9s1iyh/8OrDSRzpEJY58MH/fEdn4HnhSvT7JxoMn
+         /3yb2yQ1KeWeqhLR8wf+C3SYwMB0BTDCAMksnfnninUpvJp4onyxWrb1apce6wvAmsgl
+         o/RBEa8ZxVfQLhNMJ0LPgMmtagsYhnUVzjRZzjNEMHwjYUqRFWmESVC2caKr54t2WDjN
+         ZaZjHe7aUhYNficbc7yxbHb0oYgguBCuXHwIyfO+Rhh2gBSQCb9NCMM7dAXMHN23VAIU
+         2cJQ==
+X-Gm-Message-State: APjAAAWrcC/Lee2T4klztruJtBjWFIE0toUaWi30BtobsuODaZhXcmUY
+        L5pducjb035/MF8CR1Gyv5GBXPpZE4Hb9RjLMs0=
+X-Google-Smtp-Source: APXvYqx6lgUfn+cBlcwFavQQI3d2TF3Qqkzwe2QJhqICSPH/EAbTfEMSktmNgiu1Yfxi3tdjXLT5ZhTyKRREk2FELMc=
+X-Received: by 2002:a67:f303:: with SMTP id p3mr2137246vsf.166.1557758602639;
+ Mon, 13 May 2019 07:43:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
+ <1556092536-17095-4-git-send-email-masonccyang@mxic.com.tw>
+ <20190424212356.GA27103@bogus> <65853dc2-6f3c-1494-7e72-54877797cdd2@gmail.com>
+ <20190507125730.GD29524@dell> <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
+ <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com> <20190508061119.GB7627@dell>
+ <OFE86674B9.06D723A0-ON482583F5.000AD50C-482583F5.000BA075@mxic.com.tw>
+ <a05cff8f-7df2-1938-c0e7-f9366bece607@cogentembedded.com> <OFB19BCE91.6EBBAA77-ON482583F6.000234E2-482583F6.00061290@mxic.com.tw>
+ <CAMuHMdUP8KU3Dbv6cwOvrY0hWOcm1xqVcsi20+GvazYMDLGGZg@mail.gmail.com> <OFD932ABFC.E3FFCEB8-ON482583F9.003412B1-482583F9.0034D5CA@mxic.com.tw>
+In-Reply-To: <OFD932ABFC.E3FFCEB8-ON482583F9.003412B1-482583F9.0034D5CA@mxic.com.tw>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 13 May 2019 16:43:09 +0200
+Message-ID: <CAMuHMdWsZPevpYg0HfbgaXPD89RFdOOEPawvvZDt3Kp4=PeLRQ@mail.gmail.com>
+Subject: Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
+ RPC-IF MFD bindings
+To:     Mason Yang <masonccyang@mxic.com.tw>
+Cc:     Boris Brezillon <bbrezillon@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        zhengxunli@mxic.com.tw
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for MT6392 PMIC's keys.
+Hi Mason,
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- drivers/input/keyboard/mtk-pmic-keys.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Note that if you send multipart/text+html emails, they will be dropped silently
+by most Linux mailing lists.
+Hence I'm quoting your last email fully, to give other people a chance
+reading it (and commenting).
 
-diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-index 8e6ebab05ab4..aaf68cbf7e5b 100644
---- a/drivers/input/keyboard/mtk-pmic-keys.c
-+++ b/drivers/input/keyboard/mtk-pmic-keys.c
-@@ -18,6 +18,7 @@
- #include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/mfd/mt6323/registers.h>
-+#include <linux/mfd/mt6392/registers.h>
- #include <linux/mfd/mt6397/core.h>
- #include <linux/mfd/mt6397/registers.h>
- #include <linux/module.h>
-@@ -83,6 +84,16 @@ static const struct mtk_pmic_regs mt6323_regs = {
- 	.pmic_rst_reg = MT6323_TOP_RST_MISC,
- };
- 
-+static const struct mtk_pmic_regs mt6392_regs = {
-+	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
-+		0x2, MT6392_INT_MISC_CON, 0x10),
-+	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
-+		0x4, MT6392_INT_MISC_CON, 0x8),
-+	.pmic_rst_reg = MT6392_TOP_RST_MISC,
-+};
-+
- struct mtk_pmic_keys_info {
- 	struct mtk_pmic_keys *keys;
- 	const struct mtk_pmic_keys_regs *regs;
-@@ -238,6 +249,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
- 	}, {
- 		.compatible = "mediatek,mt6323-keys",
- 		.data = &mt6323_regs,
-+	}, {
-+		.compatible = "mediatek,mt6392-keys",
-+		.data = &mt6392_regs,
- 	}, {
- 		/* sentinel */
- 	}
+On Mon, May 13, 2019 at 11:37 AM <masonccyang@mxic.com.tw> wrote:
+> > > > [...]
+> > > > >> > >> > On 4/24/19 11:23 PM, Rob Herring wrote:
+> > > > >> > >> > > On Wed, Apr 24, 2019 at 03:55:36PM +0800, Mason Yang wrote:
+> > > > >> > >> > >> Document the bindings used by the Renesas R-Car
+> > Gen3 RPC-IF MFD.
+> > > > >> > >> > >>
+> > > > >> > >> > >> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> > > > >> > >> > >> ---
+> > > > >> > >> > >>  .../devicetree/bindings/mfd/mfd-renesas-rpc.txt
+> > | 40 ++++++
+> > > > >> > >> ++++++++++++++++
+> > > > >> > >> > >>  1 file changed, 40 insertions(+)
+> > > > >> > >> > >>  create mode 100644 Documentation/devicetree/
+> > bindings/mfd/mfd-
+> > > > >> > >> renesas-rpc.txt
+> > > > >> > >> > >>
+> > > > >> > >> > >> diff --git a/Documentation/devicetree/bindings/mfd/
+> > mfd-renesas-
+> > > > >> > >> rpc.txt b/Documentation/devicetree/bindings/mfd/mfd-
+> > renesas-rpc.txt
+> > > > >> > >> > >> new file mode 100644
+> > > > >> > >> > >> index 0000000..668b822
+> > > > >> > >> > >> --- /dev/null
+> > > > >> > >> > >> +++ b/Documentation/devicetree/bindings/mfd/mfd-
+> > renesas-rpc.txt
+> > > > >> > >> > >> @@ -0,0 +1,40 @@
+> > > > >> > >> > >> +Renesas R-Car Gen3 RPC-IF MFD Device Tree Bindings
+> > > > >> > >> > >> +--------------------------------------------------
+> > > > >> > >> > >
+> > > > >> > >> > > Looks like a SPI flash controller from the example. What
+> > > > makes it an
+> > > > >> > >> > > MFD?
+> > > > >> > >> >
+> > > > >> > >> > It supports both SPI NOR and HyperFlash (CFI-compliantflash with
+> > > > >> > >> > different bus interface).
+> > > > >> > >>
+> > > > >> > >> Looks like you're registering one OR the other.
+> > > > >> > >>
+> > > > >> > >> Why don't you just do this from DT?
+> > > > >> > >>
+> > > > >> > >> No reason for this to be an MFD IMHO.
+> > > > >> > >
+> > > > >> > >
+> > > > >> > > okay, I will patch it back to SPI mode only.
+> > > > >> >
+> > > > >> > I don't think that's what Lee meant . The controller supports _both_
+> > > > >> > modes , hence it would have the same compatible string. You
+> > just need to
+> > > > >> > extract the mode of operation from the DT.
+> > > > >>
+> > > > >> HiSilicon attempted to upstream something similar, only their
+> > > > >> controller provided NAND and NOR functionality.  They used different
+> > > > >> compatible strings to differentiate between the varying
+> > > > >> technologies.
+> > > > >>
+> > > > >> They too tried to use MFD as a means to select between them (which was
+> > > > >> also NACKed).  Not sure what they ended up doing, but the original
+> > > > >> submission and (half of) the conversation can be found at [0].  Some
+> > > > >> more of the thread continues at [1].
+> > > > >>
+> > > > >> Hope that helps.
+> > > > >>
+> > > > >> [0] https://groups.google.com/forum/#!topic/fa.linux.kernel/F6i9o8sfOIw
+> > > > >> [1] https://marc.info/?l=devicetree&m=147669165104431&w=2
+> > > > >
+> > > > >
+> > > > > Hi Marek,
+> > > > >
+> > > > > By Jones's comments:
+> > > > >
+> > --------------------------------------------------------------------------
+> > > > >> From: Shunquan Lin <linshunquan1@hisilicon.com>
+> > > > >>
+> > > > >> This patch adds driver support for HiSilicon Flash Memory
+> > > > >> Controller(FMC). HiSilicon FMC is a multi-functions device which
+> > > > >> supports SPI Nor flash controller, SPI nand Flash controller and
+> > > > >> parallel nand flash controller.
+> > > > >
+> > > > > MFDs are for devices which span multiple subsystems.
+> > > >
+> > > >    And we do! One of the subdrivers will live under drivers/
+> > spi/, the other
+> > > > under drivers/mtd/...
+> > > >
+> > >
+> > > From my point of view, I think Jones mean to MFD's subsystems are
+> > working simultaneously
+> > > at the run-time, one period of time is working for sub-device-1
+> > and later period of time
+> > > is working for sub-device-2 and so on.
+> > >
+> > > But for RPC-IF, SPI or HF mode is decided at boot time by pins
+> > configure and later in kernel
+> > > by dtb, RPC-IF can't switch SPI and HF mode at the run time.
+> >
+> > > So far, Jones seems don't agree RPC-IF to MFD and then RPC MFD
+> > will not applied
+> > > to mfd tree by him !
+> >
+> > There's precedence for such constructs being an MFD: please see
+> > drivers/mfd/at91-usart.c, which registers a single MFD cell for either
+> > serial or SPI.
+>
+> okay, many thanks for your information.
+>
+> How about to patch RPF-IF dts to:
+> -------------------------------------------------------------->
+>
+> Renesas R-Car Gen3 RPC-IF controller Device Tree Bindings
+> ---------------------------------------------------------
+>
+>   RPC-IF supports both SPI NOR and HyperFlash (CFI-compliant flash)
+>
+>   Required properties:
+>   - compatible: should be an SoC-specific compatible value, followed by
+>                   "renesas,rcar-gen3-rpc" as a fallback.
+>                   supported SoC-specific values are:
+>                   "renesas,r8a77995-rpc"  (R-Car D3)
+>   - reg: should contain three register areas:
+>           first for the base address of RPC-IF registers,
+>           second for the direct mapping read mode and
+>           third for the write buffer area.
+>   - reg-names: should contain "regs", "dirmap" and "wbuf"
+>   - clocks: should contain 1 entries for the module's clock
+>   - clock-names: should contain "rpc"
+>
+>   Example:
+>   - SPI mode:
+>
+>           rpc: rpc-if@ee200000 {
+>                   compatible = "renesas,r8a77995-rpc", "renesas,rcar-gen3-rpc";
+>                   reg = <0 0xee200000 0 0x200>, <0 0x08000000 0 0x4000000>,
+>                         <0 0xee208000 0 0x100>;
+>                   reg-names = "regs", "dirmap", "wbuf";
+>                   clocks = <&cpg CPG_MOD 917>;
+>                   clock-names = "rpc";
+>                   power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
+>                   resets = <&cpg 917>;
+>                   #address-cells = <1>;
+>                   #size-cells = <0>;
+>
+>                   flash@0 {
+>                           compatible = "jedec,spi-nor";
+>                           reg = <0>;
+>                           spi-max-frequency = <40000000>;
+>                           spi-tx-bus-width = <1>;
+>                           spi-rx-bus-width = <1>;
+>                   };
+>           };
+>
+>   - HF mode:
+>           rpc: rpc-if@ee200000 {
+>                   compatible = "renesas,r8a77995-rpc", "renesas,rcar-gen3-rpc";
+>                   reg = <0 0xee200000 0 0x200>, <0 0x08000000 0 0x4000000>,
+>                         <0 0xee208000 0 0x100>;
+>                   reg-names = "regs", "dirmap", "wbuf";
+>                   clocks = <&cpg CPG_MOD 917>;
+>                   clock-names = "rpc";
+>                   power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
+>                   resets = <&cpg 917>;
+>                   #address-cells = <1>;
+>                   #size-cells = <1>;
+>
+>                   flash@0 {
+>                           compatible = "cfi-flash";
+>                           reg = <0 0x4000000>;
+>                   };
+>           };
+>
+> --------------------------------------------------------------<
+>
+> Is it OK ?
+
+I'll defer to the MTD experts.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.20.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
