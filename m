@@ -2,168 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28C3C1BEFB
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 23:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A4F21BF07
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 23:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726452AbfEMVHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 17:07:52 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:43535 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726211AbfEMVHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 17:07:52 -0400
-Received: by mail-pl1-f194.google.com with SMTP id n8so7078961plp.10
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 14:07:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=VyWcWjrZXEyD6w07tvHm50fVGWK7lK6mM8u98FcSYoY=;
-        b=GGGhRxCLGCDe1tt+2HecuE4u75ZdWTyADg0qZXEsWP6EA7hGLVcgJgyKy41jgfrNgR
-         ZU50QVg1F3c2QdeRgYlOKY3O5aFVv0pNIwqw/ajzRsklhVFsguNbBpd8ElghBnVIb+33
-         xe8eBd32gzjcFINDMtM5uGleiX7/hFAPComeweZL4XDbUYnhO6dVdgtmEea1w/3l/15d
-         dv//EQsWEC+llGw6tX1s9F38gB1wpVJezOtAcXMRPjpe9RLKIKcpGgNmc+xuHkYDk876
-         +UVpckEfGohYz4oaDHpcpEaVTb+GP7cPQ9SHr+e3N7y9EgQiXt7oWn/INWuXzcIwGNPR
-         Z0VQ==
+        id S1726528AbfEMVMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 17:12:23 -0400
+Received: from mail-vk1-f193.google.com ([209.85.221.193]:42330 "EHLO
+        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726190AbfEMVMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 17:12:22 -0400
+Received: by mail-vk1-f193.google.com with SMTP id u131so3692589vke.9;
+        Mon, 13 May 2019 14:12:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=VyWcWjrZXEyD6w07tvHm50fVGWK7lK6mM8u98FcSYoY=;
-        b=MbNqrlFH9/eKErETJ6oYCfzsvIQy0LLa4mygpz4bkSqQeih1tMeQZO1V7+eTaAG5Yc
-         LESrGb2UgRvt7BPAfQi7ZZdfKPaHBV4ZHJqbe+FORgNUyF9qTWj/6v+ndw4nbm7YiCIs
-         mcCWbO1tNHLQZZsnBfaXgp1byIhbPBapLO47BnL96woZCu85zhGn7QEHIQYMdGaVZ8Qg
-         AqQNafui/CaIkJdHMWTQCqN2ATXtNDjSMXmZ3+XwS60L1IvrCbf0xTzIGo03HHwOI/+H
-         zH1c+BpHLtKMd0oB8+ydiI8qvCvb6XzLSpzlTc0wCUXNpz9+Z17yDGvJ0wUTCqqTRY/M
-         udHA==
-X-Gm-Message-State: APjAAAUQm1Co/K6I/Z7YvlJ9321r+JuUBCqheG6G6f4Tiwz2x4HRYCA7
-        gCFQ029Z3nGvT0wDZ1pq7bgR7w==
-X-Google-Smtp-Source: APXvYqy4RdMGzwqzFo1V/pbxH61eNqRNaPswK4JglVAPvy+TtjrmAjqxmKK8n1mSWWT4UrrI6/L6JQ==
-X-Received: by 2002:a17:902:a40b:: with SMTP id p11mr5883784plq.306.1557781671009;
-        Mon, 13 May 2019 14:07:51 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id 85sm6939980pgb.52.2019.05.13.14.07.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 13 May 2019 14:07:50 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fwgxwzkPKpYer454wE1HmHZymSsd8lz9TRcTd3oW0lg=;
+        b=fDh+bcgr8ANU8ngnJW/V7o+CXOWgGjoen/BS2MM8i5RnZN6DjAQXn7mhCZURADrA00
+         HTivaSTAPsAVoz3TQpo4PxYKIAbLKQpoVvOa4l1LlqjmmwBgEHgXw72OBK6PLmhsBZ4h
+         NJ0OMTbaStXKCJvn6gffdvd3Ibl9Gc0jfxloUHv9/lNfTllIPNn7eY5uIZGNBIzYvW+q
+         FQLLaWrwSE/3sRFTf19TYkT1NyhHgq0/G1+8TQpX5uZTmKjKYkKDy7B6VoNSEL6bzD6m
+         akAZGWkgLMc6g9Py00gyx36SF006/D2ev9It2dbSPMSg7UTxIe/ygQN+igPUiqvrs4SK
+         gyzw==
+X-Gm-Message-State: APjAAAVpPZWz5NpxDRXI4UjmuxOwmcWZrZka4IEXiuF8CluvZ6z5LZr4
+        FPVMbREMwq6bbqvcQgGTVsYJeBCWtRfxkfIl+/s=
+X-Google-Smtp-Source: APXvYqyP0rCQTfxCtmcCuNAjTKGz9jyDaM44zl+FM7Cg71IBHDYpWO8EK7OTfjifTS4CE5IP156+NEZ52GUrAjg+9CU=
+X-Received: by 2002:a1f:2fd2:: with SMTP id v201mr2588876vkv.83.1557781941530;
+ Mon, 13 May 2019 14:12:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190509201142.10543-1-chris.brandt@renesas.com>
+ <20190509201142.10543-5-chris.brandt@renesas.com> <OSBPR01MB3174A8008FF1E216893398E8D80C0@OSBPR01MB3174.jpnprd01.prod.outlook.com>
+ <CAMuHMdVVoYak4FGEOYK_dGLCLEQ7avVCv5AcY43BPkDnt7OZ4w@mail.gmail.com> <TY1PR01MB15620F606FDE4AF0C446213E8A0F0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY1PR01MB15620F606FDE4AF0C446213E8A0F0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 13 May 2019 23:12:09 +0200
+Message-ID: <CAMuHMdU5UaOXXkVVr88fCG2xO702RuYbbGeyNOPLFb01G6RU-w@mail.gmail.com>
+Subject: Re: [PATCH v2 04/15] dt-bindings: rcar-gen3-phy-usb2: Document use of usb_x1
+To:     Chris Brandt <Chris.Brandt@renesas.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sdm845-mtp: Add Truly display
-Date:   Mon, 13 May 2019 14:07:47 -0700
-Message-Id: <20190513210747.22429-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.18.0
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bring in the Truly display and enable the DSI channels to make the
-mdss/gpu probe, even though we're lacking LABIB, preventing us from
-seeing anything on the screen.
+Hi Chris,
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 79 +++++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+On Mon, May 13, 2019 at 11:07 PM Chris Brandt <Chris.Brandt@renesas.com> wrote:
+> On Fri, May 10, 2019, Geert Uytterhoeven wrote:
+> > > I think we can reuse it like below:
+> > >
+> > > - clock-names: Name of the clocks. This property is model-dependent.
+> > >   - R-Car Gen3 SoCs use a single functional clock. The clock doesn't
+> > need to be
+> > >     named.
+> > >   - RZ/A2 uses a single functional clock as a separate dedicated 48MHz
+> >
+> > and a separate?
+> >
+> > >     USB_X1 input. So, the functional clock must be named "???" and
+> > >     the USB_X1 input must be named as "usb_x1".
+> > >
+> > > What do you think? I'm not sure how to be named the functional clock so
+> > that
+> > > the sample is named as "???".
+> >
+> > We typically use "fclk" for the functional clock's name.
+>
+>
+> Just to make sure I'm following this, here is what you are asking for:
+>
+> [r7s9210.dtsi]
+>
+>         usb2_phy1: usb-phy@e821a200 {
+>                 compatible = "renesas,usb2-phy-r7s9210", "renesas,rcar-gen3-usb2-phy";
+>                 reg = <0xe821a200 0x10>;
+>                 interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+> +               clocks = <&cpg CPG_MOD 60>, <&usb_x1_clk>;
+> +               clock-names = "fclk", "usb_x1";
+>                 power-domains = <&cpg>;
+>                 #phy-cells = <0>;
+>                 status = "disabled";
+>
+>
+> [phy-rcar-gen3-usb2.c]
+>         usb_x1_clk = devm_clk_get(dev, "usb_x1");
+>         if (!IS_ERR(usb_x1_clk)))
+>                 if (clk_get_rate(usb_x1_clk))
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-index 02b8357c8ce8..83198a19ff57 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-@@ -352,6 +352,77 @@
- 	status = "okay";
- };
- 
-+&dsi0 {
-+	status = "okay";
-+	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-+
-+	qcom,dual-dsi-mode;
-+	qcom,master-dsi;
-+
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&truly_in_0>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
-+
-+	panel@0 {
-+		compatible = "truly,nt35597-2K-display";
-+		reg = <0>;
-+		vdda-supply = <&vreg_l14a_1p88>;
-+
-+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-+		mode-gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				truly_in_0: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				truly_in_1: endpoint {
-+					remote-endpoint = <&dsi1_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0_phy {
-+	status = "okay";
-+	vdds-supply = <&vdda_mipi_dsi0_pll>;
-+};
-+
-+&dsi1 {
-+	status = "okay";
-+	vdda-supply = <&vdda_mipi_dsi1_1p2>;
-+
-+	qcom,dual-dsi-mode;
-+
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&truly_in_1>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi1_phy {
-+	status = "okay";
-+	vdds-supply = <&vdda_mipi_dsi1_pll>;
-+};
-+
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
-@@ -365,6 +436,14 @@
- 	clock-frequency = <400000>;
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
+if (!IS_ERR(usb_x1_clk) && clk_get_rate(usb_x1_clk))
+
+>                         channel->uses_usb_x1 = true;
+>
+>
+> And then document this in the bindings, saying that clock-names is
+> option if there is only 1 clock (to be backward compatible with existing
+
+optional
+
+> Device Trees.
+>
+> Is this correct?
+
+Exactly!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.18.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
