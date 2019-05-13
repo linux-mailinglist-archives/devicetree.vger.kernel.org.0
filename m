@@ -2,116 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B851BD2B
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 20:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 216F51BD53
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 20:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726352AbfEMS2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 14:28:34 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:45364 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726286AbfEMS2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 14:28:34 -0400
-Received: by mail-pf1-f195.google.com with SMTP id s11so7622887pfm.12
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 11:28:33 -0700 (PDT)
+        id S1727259AbfEMSj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 14:39:28 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:34400 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727255AbfEMSj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 14:39:27 -0400
+Received: by mail-pl1-f194.google.com with SMTP id w7so6919411plz.1
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 11:39:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=lULlTV7m1pBxNEpFfsXGT5YAWHe6OnD78UhuQracLx8=;
-        b=ba8z1HjqfNcfNQjKO962vacXZSrGJfjVu0a94Rx2cmEQ0Dj9bHClLAPxRIitovoLUL
-         go+R0p+2WQ886PHGs9YVj6K4v936eyoIutajrb9hqAgsDZJ9WTJHtueRbJDUeHIWS7R5
-         XN6BC3BFEMfgTjd+VgvJ0iBKCiaL/dfGiZ6XirafRYfXoh1777NT/CcQ5SZYEhV1y6qL
-         RvgE5njVf/5gBOjDVUAF/vXjxWfDs+9tZ4ak39aqjn7aWm8ctR1eL1U8ysBphRallsPd
-         nHf9xrrvYxEo6uF00XfTT81EZc2KciUMYhQ4uEZdrA5009BwxnOwwO5mncxQ/UTF2frQ
-         rdgA==
+        bh=OHoX7oCDIxtnl3NxtTVvKViiqkZglgOas/g1Rubunpw=;
+        b=ZWZUGjjawgSeblVhgOyDlCAGehMU/Z0twGz6rujUUg+RLiCUzlrAnTLFcPy3TgWvfU
+         Fd0UT+okOXosraWP4hGiz8yB04ZmpU2BsxQRd46mO6PNoqx9TsGDiJEtV4lxbPJ36ex/
+         undy3vtilTIBNn4Y4yuefGrOfxV+XQhh2dKnvDf9hnscJrHAnjVSeALFFT+AMWCW4Y9h
+         Jhu6wF0JwP2e1KmW5KLrnrbFPn19cVSLTD1kKx3wOx8Ofp+KpQZsBdtHK9Ql00vuWihH
+         LExnK/hNrae/YOtkyv7dzAx+3QR52XAF+I8RMbJoQndRs6tFofXaU4Z4yETkZJkd1BhX
+         e9sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lULlTV7m1pBxNEpFfsXGT5YAWHe6OnD78UhuQracLx8=;
-        b=pNAZV/dMqnk8jgNbb/DR3PcRjbQ9QpJkUyyQs5CywCHQQF9m/J2uVocYIeEjrxC2mC
-         cVUbOzoqxkmps1Fsb2VvleHasQnxhCqAQL2HIdDfi+CnbDowh/kbkSbH1Gunjqns23Oe
-         O4ASmyGPOibtn4QF5nLPXdwf6u8JK+bBGjf+RfDxIC25YeEZRDD3qwzAgr4LfYweno37
-         k7pPCCI1zuQrmZgSZvg12YHmmDRTEs6Sop/5btU0LO4fpsN+vroF9IrwJrzG8peZ/KwS
-         TKuxZQfPVBbzzqUROjbSgu7FMoL8OWwyilFkjnd7yGWe5GgQpxAJMEseMhIlSoB2QuNu
-         PJKw==
-X-Gm-Message-State: APjAAAXBQVcQDUN8YUHqPbyxyvtY59blFzdcaRpCEs1Q4WomzoUjwql8
-        TcGk3OsxXGxrYwd7LQdeLMZVsg==
-X-Google-Smtp-Source: APXvYqyyRyX/Z1Ftzu6C+Ft3g/y3kRv4J5edtr6lSayFN26x2cJKgLsUkqLQAty3g5bhEFF2jBUONg==
-X-Received: by 2002:a63:6b41:: with SMTP id g62mr21612026pgc.240.1557772113010;
-        Mon, 13 May 2019 11:28:33 -0700 (PDT)
+        bh=OHoX7oCDIxtnl3NxtTVvKViiqkZglgOas/g1Rubunpw=;
+        b=UGnnGqBUKmRDe8aXDKzS6arKQ+wdGQh1vOnl8vEij//BFbbvuUbyF4j3Hs5DfoTmZ4
+         ZUcey77zXMwemU8fPlErmQVkkyxxsED5ZsbL9ES/Q9Fi0Lt2YQQBtT8u1ZdGW91tKQ6+
+         n9MC/QZtWUoSEurak75dIFujTktfvY6KbxvD06dEVdGMBpfrdHgdiLCJtCc4Q+hx7wIm
+         E8QLFLXmG7/nTrrQi0rWQ4B96EvjpLQ4oeLAa3eZB+fnfI75i4UxGTidDsowcKldqqDD
+         5l3CXy6kO6cMMGxxYIfR1voueT9dkTfRf2Nq/eA6wAl5A0F2UGGyVsjzdZ/7wP6Rb3y2
+         oAkA==
+X-Gm-Message-State: APjAAAUohRX62W0MsHrLALzA5L8dTLs6iWaRd96Qm3Fz4Zl+LhArAdjL
+        X5gtUvJ04Xeb5QO7RTzacZcapRTq9Q4=
+X-Google-Smtp-Source: APXvYqynr2g6ljNTN5TU7b36goVbopwPwI4vVSq9IFQfsOzsCc5jpeiEx5UIY/EXqC5dgrtP7joR6w==
+X-Received: by 2002:a17:902:2de4:: with SMTP id p91mr16401267plb.300.1557772766932;
+        Mon, 13 May 2019 11:39:26 -0700 (PDT)
 Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id r124sm15257455pgr.91.2019.05.13.11.28.31
+        by smtp.gmail.com with ESMTPSA id b23sm5116335pfi.6.2019.05.13.11.39.25
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 11:28:32 -0700 (PDT)
-Date:   Mon, 13 May 2019 11:28:53 -0700
+        Mon, 13 May 2019 11:39:26 -0700 (PDT)
+Date:   Mon, 13 May 2019 11:39:47 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: qcs404: Define APPS IOMMU
-Message-ID: <20190513182853.GI2085@tuxbook-pro>
-References: <20190510043421.31393-1-bjorn.andersson@linaro.org>
- <20190510043421.31393-8-bjorn.andersson@linaro.org>
- <20190513045402.GA2707@vkoul-mobl>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        andy.gross@linaro.org, David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv1 1/8] arm64: dts: Fix various entry-method properties to
+ reflect documentation
+Message-ID: <20190513183947.GJ2085@tuxbook-pro>
+References: <cover.1557486950.git.amit.kucheria@linaro.org>
+ <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190513045402.GA2707@vkoul-mobl>
+In-Reply-To: <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
 User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 12 May 21:54 PDT 2019, Vinod Koul wrote:
+On Fri 10 May 04:29 PDT 2019, Amit Kucheria wrote:
 
-> On 09-05-19, 21:34, Bjorn Andersson wrote:
-> > The APPS IOMMU provides contexts for FastRPC, MDP and WLAN, among other
-> > things.  Define these. We use the qcom_iommu binding because the
->         ^^^
-> Double spaces crept in..
+Subject indicates pluralism, but this fixes a specific platform
+(board?). I think you should update that.
+
+> The idle-states binding documentation[1] mentions that the
+> 'entry-method' property is required on 64-bit platforms and must be set
+> to "psci".
 > 
-
-That's to give you some breathing room while reading it - but not as
-much as a new paragraph :)
-
-> > firmware restrictions in incompatible with the arm-smmu.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qcs404.dtsi | 85 ++++++++++++++++++++++++++++
-> >  1 file changed, 85 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> > index b213f6acad76..fcde4f0334c2 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> > @@ -378,6 +378,91 @@
-> >  			reg = <0x01937000 0x25000>;
-> >  		};
-> >  
-> > +		apps_iommu: iommu@1e20000 {
-> > +			compatible = "qcom,qcs404-iommu", "qcom,msm-iommu-v1";
+> We fixed up all uses of the entry-method property in
+> commit e9880240e4f4 ("arm64: dts: Fix various entry-method properties to
+> reflect documentation"). But a new one has appeared. Fix it up.
 > 
-> Did we define qcom,qcs404-iommu in bindings, It does not seem to be
-> there in this patch, next or integration one
-> 
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
 
-No, this was entirely intended to fall back on the generic compatible.
+The message looks good though, so with a new subject you have my:
 
-That said, further testing of this series indicates that we have a
-cache issue related to the SMMU. In working out this I came up with a
-series of patches to the arm-smmu driver that allow us to use this with
-the standard Qualcomm bootloader.
-
-So let's ignore patch 7 and 8 in this series until we know how to deal
-with the SMMU.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 Regards,
 Bjorn
+
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 2896bbcfa3bb..42e7822a0227 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -51,7 +51,7 @@
+>  		 * PSCI node is not added default, U-boot will add missing
+>  		 * parts if it determines to use PSCI.
+>  		 */
+> -		entry-method = "arm,psci";
+> +		entry-method = "psci";
+>  
+>  		CPU_PH20: cpu-ph20 {
+>  			compatible = "arm,idle-state";
+> -- 
+> 2.17.1
+> 
