@@ -2,142 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C90661B464
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 982ED1B467
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:01:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728109AbfEMLBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 07:01:32 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:32969 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728093AbfEMLBc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 07:01:32 -0400
-Received: by mail-vs1-f67.google.com with SMTP id y6so7725482vsb.0
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 04:01:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3laysTfG58br9ekvMftLCflS2bw8W4QgtgThoJczg/k=;
-        b=OhBo05KGmUf9v7pWQWG2ym5VzciK3m8PAY7OCLMPlu6ajuOvl8hsdIR4ktGO+tfwZl
-         PjR20rgtE7om7EPFacQai80QmP6uZk5pby1EEaVmUXxjTt6Mz7+zzZ5iu8wW80qi5I9o
-         foT1oVXlmX9+sq/K74dm7TbFBOxgihNI3wwntlPd2t+8D5fEEMzj8h4LAzIy4n4C8WpB
-         Pkk6j/6qoX6yN6HEH/HV3Gq8tAJFDAHkw8W4a4a5qBsCHltyw120WKfvXocYBD+axxPZ
-         o6qfEGMerK6xUutpokiJ7Us7JSqUb3okCaB091vvHdYlJhe5MA/L98Zis5GlgN21VfPC
-         wEMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3laysTfG58br9ekvMftLCflS2bw8W4QgtgThoJczg/k=;
-        b=TBEKuG04i7Pk4hseoidDM+QsK5plpDfNJAg2YZR7p/+n+fymDHGk+CdydDMK/RdHhS
-         zPr0QjDS/oF8mrN+uMKSuQNYknJkjjAeHnFyjh5Qg1EYQIdmzZCb7u8Cg7kzjmTb/fIK
-         FKppnF736gqq6B68jTiBTaS9cq9hMJF8m12EKUqFsfxXMIwjEH5MKh+J/uAsTjRrVPPL
-         iZiTDuK66GeN+ey6etGZgN8Z//yQiOnbZsl77uRSuL2yZLnaBzfecTIshVX7nQR8qdKI
-         +EPHUXb8gq3r6F+W6Mbj0oMt/wJEhWSFzBXxiSrk0/ofLF2qsDHOEABbBdUZ6mfG5dyc
-         d3yA==
-X-Gm-Message-State: APjAAAVILlPd72+6bkEOc/RVDkzAa9TT8MvEsoGlVM3jXqJLhRJwj7zx
-        Tx0NlzSkTso508v+g10Ff/FX/f6mMcU1vzS+dvQQqw==
-X-Google-Smtp-Source: APXvYqwV2DWLvk1wJJw3pvk0vpggagApxSMhez6K6Oy7eHi1sUKyejPrVUYCo8vRQVFz+4/5mCLluau/NDUjAhelBM0=
-X-Received: by 2002:a67:f48b:: with SMTP id o11mr4801333vsn.9.1557745291516;
- Mon, 13 May 2019 04:01:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190114184255.258318-1-mka@chromium.org>
-In-Reply-To: <20190114184255.258318-1-mka@chromium.org>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Mon, 13 May 2019 16:31:20 +0530
-Message-ID: <CAHLCerP+F9AP97+qVCMqwu-OMJXRhwZrXd33Wk-vj5eyyw-KyA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1729207AbfEMLBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 07:01:41 -0400
+Received: from mail-eopbgr50048.outbound.protection.outlook.com ([40.107.5.48]:59894
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727838AbfEMLBk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 07:01:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MO6gaIlOGNiwxpeyq1/UarEoxpVmmpAv5XZMDwy+bUs=;
+ b=Gz+RpwjmBj6SdA18JLV7LQ9yubJj+S9UcbQ32iNxzibwDEzS5AVFExUnHwF+yz5olPPlF/oaZy7Jp/D9J7jubupK4cqtbyDGulQC8ivC4aRs9tOTwN2tlopSqiIJUoGORDD5ZoDrTIcPzHSD3IvKvoCcDAF+CpSY7AILsQKzD0c=
+Received: from AM0PR04MB6434.eurprd04.prod.outlook.com (20.179.252.215) by
+ AM0PR04MB5138.eurprd04.prod.outlook.com (52.134.89.95) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.24; Mon, 13 May 2019 11:01:37 +0000
+Received: from AM0PR04MB6434.eurprd04.prod.outlook.com
+ ([fe80::19be:75a:9fe:7cec]) by AM0PR04MB6434.eurprd04.prod.outlook.com
+ ([fe80::19be:75a:9fe:7cec%7]) with mapi id 15.20.1878.024; Mon, 13 May 2019
+ 11:01:37 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lucas Stach <l.stach@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH v4 0/5] cpufreq: Add imx-cpufreq-dt driver for speed grading
+Thread-Topic: [PATCH v4 0/5] cpufreq: Add imx-cpufreq-dt driver for speed
+ grading
+Thread-Index: AQHVCXs8MBVHQc8rXk+VbTw870d1OQ==
+Date:   Mon, 13 May 2019 11:01:37 +0000
+Message-ID: <cover.1557742902.git.leonard.crestez@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [89.37.124.34]
+x-mailer: git-send-email 2.17.1
+x-clientproxiedby: VI1PR04CA0134.eurprd04.prod.outlook.com
+ (2603:10a6:803:f0::32) To AM0PR04MB6434.eurprd04.prod.outlook.com
+ (2603:10a6:208:16c::23)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c118f5d9-fc81-42ec-7f23-08d6d7925e81
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5138;
+x-ms-traffictypediagnostic: AM0PR04MB5138:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs: <AM0PR04MB513891F95DB3E83E63735157EE0F0@AM0PR04MB5138.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0036736630
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(396003)(346002)(376002)(366004)(136003)(189003)(199004)(7736002)(2906002)(6306002)(44832011)(99286004)(36756003)(6512007)(53936002)(54906003)(110136005)(476003)(2616005)(4326008)(52116002)(256004)(486006)(6116002)(3846002)(14444005)(66066001)(8676002)(81156014)(81166006)(478600001)(102836004)(7416002)(14454004)(966005)(68736007)(5660300002)(50226002)(8936002)(6486002)(25786009)(66446008)(64756008)(66556008)(66476007)(71190400001)(71200400001)(86362001)(6436002)(6506007)(386003)(66946007)(73956011)(316002)(26005)(305945005)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5138;H:AM0PR04MB6434.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: gN2oYHLkf37KAcdh14g8gP4EzbCxF7hyWR4jmtg42lS5mBttH62C26wMF0C6QqIAuHFB/jkUS94AgBIC4hBmvWpWgUwvWPeBmy0vjg5S25qdEVik9iIF1vQsICnShw4wajtazY2QU8zkuylr4wFKGgUgci3dy+2stIqUIp7GWjVjdInSUhN7hqKsAMD5HNxutUGeF/wZYsORcoZS4j4dvTRQF+uBQ2tAxB1jWX2Q1bXPZuowhYdKW+rrS9BKqFntrOsUVJHx4u6y3jr4XUYrc/9UX3KcwO+pFC0zomnKFwrvOILX399Tox8eYsEZP+ntyMaHvxLA9TUFQfUSc4MwLUYS3vAQhrp1rXH3zjwh+TNDPJfMouAfMdmi/iCUIdCnokhUDi4Wxer6NJW7ma2mWhC8h9I0IynGr/sZmka9CS4=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <13C41D9609273F49A77AE0DA0AB8AA6B@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c118f5d9-fc81-42ec-7f23-08d6d7925e81
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2019 11:01:37.2824
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5138
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> The 8 CPU cores of the SDM845 are organized in two clusters of 4 big
-> ("gold") and 4 little ("silver") cores. Add a cpu-map node to the DT
-> that describes this topology.
+Right now in upstream imx8m cpufreq support just lists a common subset
+of OPPs because the higher ones should only be attempted after checking
+speed grading in fuses.
 
-This is partly true. There are two groups of gold and silver cores,
-but AFAICT they are in a single cluster, not two separate ones. SDM845
-is one of the early examples of ARM's Dynamiq architecture.
+Driver reads from nvmem and calls dev_pm_opp_set_supported_hw before
+registering cpufreq-dt.
 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Changes since v3:
+ * Drop default m entirely (Viresh)
+Link to v3: https://patchwork.kernel.org/project/linux-arm-kernel/list/?ser=
+ies=3D114685
 
-I noticed that this patch sneaked through for this merge window but
-perhaps we can whip up a quick fix for -rc2?
+Changes since v2:
+ * Minor reformatting in Kconfig (Viresh)
+ * Open-code imx_cpufreq_dt_match_node (Viresh)
+ * Add mkt_segment bits to supported_hw and update .dtsi to match after
+reviewing latest datasheets.
+ * Add devicetree list (keep forgetting dts needs to be reviewed)
+Link to v2: https://patchwork.kernel.org/project/linux-arm-kernel/list/?ser=
+ies=3D113163
 
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 38 ++++++++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index c27cbd3bcb0a6..f6c0d87e663f3 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -192,6 +192,44 @@
->                                 next-level-cache = <&L3_0>;
->                         };
->                 };
-> +
-> +               cpu-map {
-> +                       cluster0 {
-> +                               core0 {
-> +                                       cpu = <&CPU0>;
-> +                               };
-> +
-> +                               core1 {
-> +                                       cpu = <&CPU1>;
-> +                               };
-> +
-> +                               core2 {
-> +                                       cpu = <&CPU2>;
-> +                               };
-> +
-> +                               core3 {
-> +                                       cpu = <&CPU3>;
-> +                               };
-> +                       };
-> +
-> +                       cluster1 {
+Link to v1 (RFC): https://patchwork.kernel.org/patch/10916769/
 
-This shouldn't exist.
+Driver is built as a module. It depends on nvmem-imx which can also be a
+module.
 
-> +                               core0 {
+I never noticed anything wrong with going above the fused speed grading
+however it's technically unsafe so the cpufreq code changes should go in
+before DT changes.
 
-Rename to core4, 5, etc...
+Leonard Crestez (5):
+  cpufreq: Add imx-cpufreq-dt driver
+  dt-bindings: imx-cpufreq-dt: Document opp-supported-hw usage
+  arm64: dts: imx8mm: Add cpu speed grading and all OPPs
+  arm64: dts: imx8mq: Add cpu speed grading and all OPPs
+  arm64: defconfig: ARM_IMX_CPUFREQ_DT=3Dm
 
-> +                                       cpu = <&CPU4>;
-> +                               };
-> +
-> +                               core1 {
-> +                                       cpu = <&CPU5>;
-> +                               };
-> +
-> +                               core2 {
-> +                                       cpu = <&CPU6>;
-> +                               };
-> +
-> +                               core3 {
-> +                                       cpu = <&CPU7>;
-> +                               };
-> +                       };
-> +               };
->         };
->
->         pmu {
-> --
-> 2.20.1.97.g81188d93c3-goog
->
+ .../bindings/cpufreq/imx-cpufreq-dt.txt       | 37 +++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 17 +++-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 26 ++++-
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/cpufreq/Kconfig.arm                   |  9 ++
+ drivers/cpufreq/Makefile                      |  1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c          |  3 +
+ drivers/cpufreq/imx-cpufreq-dt.c              | 96 +++++++++++++++++++
+ drivers/soc/imx/soc-imx8.c                    |  3 +
+ 9 files changed, 191 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/imx-cpufreq-d=
+t.txt
+ create mode 100644 drivers/cpufreq/imx-cpufreq-dt.c
+
+--=20
+2.17.1
+
