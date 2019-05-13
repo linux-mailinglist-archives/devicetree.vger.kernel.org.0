@@ -2,86 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42BE51BC3B
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D96731BC45
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731872AbfEMRvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 13:51:19 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:45711 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731830AbfEMRvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:51:19 -0400
-Received: by mail-ot1-f66.google.com with SMTP id t24so3894762otl.12;
-        Mon, 13 May 2019 10:51:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=m4N4IZgDvzO5+VbOkAL+/qLpzVDWLu+YalUcmqAEWjc=;
-        b=jnwFH8UA94RdkkU6CHRBw5rimQjGO2zj1ZuICVrlxgXiYjbYUK7b4LtF+ejfmo22Xk
-         bQ8BAJ4rBW+Th20chDf3J2ld2TBO4Ea1V8N5rq77Re59zvMe119k9q9dUWuGtEIu+AJ2
-         tEEL3cUgWwkbMa6caJM7A2pQ5rB0uXJt0txXF95VpKGvT3NvwuFzv2/mDX+SiqvwhMwa
-         paDQqNHWNdIfdpUSsrfqN/ddMFwILEmcFaP4oqCaboGhvY6K0Sut+Qiy75qKqAqp337Z
-         t2ZvJabIsA6TiViBzrqWktAQxwJsyp3mWuSplsf2gJjoaeMnc5XGJncL4btRv5MBYpnv
-         HyvA==
-X-Gm-Message-State: APjAAAXpsXPy9aeV7ZsgMHqDpRRTHm7/+vTwyt9kr08r9OQIr+WxfNcz
-        n6onuQ8x3atYt5Cp8mHvoA==
-X-Google-Smtp-Source: APXvYqyi6vDqkZOF8NsHPlQ7yDvigtmGZCYFZkAc4wdlsemMKX21ODIa4vUe8/dokESav8OUMfKvnw==
-X-Received: by 2002:a9d:6d8c:: with SMTP id x12mr11381060otp.34.1557769878486;
-        Mon, 13 May 2019 10:51:18 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x21sm576703otk.4.2019.05.13.10.51.17
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 10:51:17 -0700 (PDT)
-Date:   Mon, 13 May 2019 12:51:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Scott Wood <oss@buserror.net>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joakim Tjernlund <Joakim.Tjernlund@infinera.com>,
-        Rasmus Villemoes <Rasmus.Villemoes@prevas.se>
-Subject: Re: [PATCH v3 4/6] dt-bindings: soc/fsl: qe: document new
- fsl,qe-snums  binding
-Message-ID: <20190513175117.GA22288@bogus>
-References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
- <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
- <20190513111442.25724-5-rasmus.villemoes@prevas.dk>
+        id S1729452AbfEMRwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 13:52:41 -0400
+Received: from emh03.mail.saunalahti.fi ([62.142.5.109]:46728 "EHLO
+        emh03.mail.saunalahti.fi" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729282AbfEMRwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:52:41 -0400
+Received: from t60.musicnaut.iki.fi (85-76-80-127-nat.elisa-mobile.fi [85.76.80.127])
+        by emh03.mail.saunalahti.fi (Postfix) with ESMTP id 4C41840047;
+        Mon, 13 May 2019 20:52:38 +0300 (EEST)
+Date:   Mon, 13 May 2019 20:52:38 +0300
+From:   Aaro Koskinen <aaro.koskinen@iki.fi>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: Convert vendor prefixes to json-schema
+Message-ID: <20190513175238.GA3198@t60.musicnaut.iki.fi>
+References: <20190510194018.28206-1-robh@kernel.org>
+ <20190511181753.GA2444@t60.musicnaut.iki.fi>
+ <CAL_JsqK_pTxYd0iq=-yKTexWKueVqBSyNfOrfek9k-8pg3YE9w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190513111442.25724-5-rasmus.villemoes@prevas.dk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAL_JsqK_pTxYd0iq=-yKTexWKueVqBSyNfOrfek9k-8pg3YE9w@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 May 2019 11:14:58 +0000, Rasmus Villemoes wrote:
-> Reading table 4-30, and its footnotes, of the QUICC Engine Block
-> Reference Manual shows that the set of snum _values_ is not
-> necessarily just a function of the _number_ of snums, as given in the
-> fsl,qe-num-snums property.
-> 
-> As an alternative, to make it easier to add support for other variants
-> of the QUICC engine IP, this introduces a new binding fsl,qe-snums,
-> which automatically encodes both the number of snums and the actual
-> values to use.
-> 
-> Signed-off-by: Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-> ---
-> Rob, thanks for the review of v2. However, since I moved the example
-> from the commit log to the binding (per Joakim's request), I didn't
-> add a Reviewed-by tag for this revision.
-> 
->  .../devicetree/bindings/soc/fsl/cpm_qe/qe.txt       | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
-> 
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, May 13, 2019 at 08:02:08AM -0500, Rob Herring wrote:
+> On Sat, May 11, 2019 at 1:23 PM Aaro Koskinen <aaro.koskinen@iki.fi> wrote:
+> > On Fri, May 10, 2019 at 02:40:18PM -0500, Rob Herring wrote:
+> > > Convert the vendor prefix registry to a schema. This will enable checking
+> > > that new vendor prefixes are added (in addition to the less than perfect
+> > > checkpatch.pl check) and will also check against adding other prefixes
+> > > which are not vendors.
+> > >
+> > > Converted vendor-prefixes.txt using the following sed script:
+> > >
+> > > sed -e 's/\([a-zA-Z0-9\-]*\)[[:space:]]*\([a-zA-Z0-9].*\)/  "^\1,\.\*\":\n    description: \2/'
+> > >
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > [...]
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> > > deleted file mode 100644
+> > > index e9034a6c003a..000000000000
+> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
+> > > +++ /dev/null
+> > > @@ -1,476 +0,0 @@
+> > > -Device tree binding vendor prefix registry.  Keep list in alphabetical order.
+> > [...]
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > new file mode 100644
+> > > index 000000000000..be037fb2cada
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > @@ -0,0 +1,975 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >
+> > Is there a license change as well?
+> 
+> It is, as we're trying to dual license schema files when possible. I
+> have permission from Grant who was the primary author. Also, given
+> that the file is 235 different authors with most being 1-2 lines, I
+> don't think that really meets the threshold of being copyright
+> holders.
+
+OK. I was just wondering because the changelog suggests it was only a
+mechanical conversion.
+
+I remember DT may have preference to dual license but based on quick
+grep couldn't find that stated anywhere...
+
+A.
