@@ -2,260 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EF01B8D9
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 16:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AAC1B8E9
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 16:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728970AbfEMOnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 10:43:24 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:39457 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729893AbfEMOnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 10:43:24 -0400
-Received: by mail-vs1-f65.google.com with SMTP id m1so1003717vsr.6;
-        Mon, 13 May 2019 07:43:23 -0700 (PDT)
+        id S1729904AbfEMOo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 10:44:58 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:34705 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728081AbfEMOo6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 10:44:58 -0400
+Received: by mail-ed1-f67.google.com with SMTP id p27so17977135eda.1
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 07:44:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=sender:date:from:to:subject:message-id:mail-followup-to:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=oa11tgFM6isQYlc2/lSr8+dtL7dz0FGS2ImXszdei94=;
+        b=lkK1jfdXRSWG4EOPXpNEsgoMZb8lUzm2FfYavTsrFBTY7w3Z4FVJ9cp/fBcnbUD9bK
+         Frxw45KRQigXleUJaVccMl3gMpsrT0DKhj92T3OICo7PFH1ZWYiDKuhrJn4Bo6DXp0gB
+         BN+9OOpk6LCzBYskBvabimkY7bAvWM5tFDS84=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ClzU7jZAryaIXzR+/qv1yEuyi15Ak7Jc5yYHkm+jUlE=;
-        b=UHSBnBwRKi2PsFkZS/Y1M9KW5l+UG/SNvzsM00vj10nq1Ur8+7/V1Ead9gAxfLWbW+
-         tAL2s0kU2TRouxv2tuXytbyyGrcg9s1iyh/8OrDSRzpEJY58MH/fEdn4HnhSvT7JxoMn
-         /3yb2yQ1KeWeqhLR8wf+C3SYwMB0BTDCAMksnfnninUpvJp4onyxWrb1apce6wvAmsgl
-         o/RBEa8ZxVfQLhNMJ0LPgMmtagsYhnUVzjRZzjNEMHwjYUqRFWmESVC2caKr54t2WDjN
-         ZaZjHe7aUhYNficbc7yxbHb0oYgguBCuXHwIyfO+Rhh2gBSQCb9NCMM7dAXMHN23VAIU
-         2cJQ==
-X-Gm-Message-State: APjAAAWrcC/Lee2T4klztruJtBjWFIE0toUaWi30BtobsuODaZhXcmUY
-        L5pducjb035/MF8CR1Gyv5GBXPpZE4Hb9RjLMs0=
-X-Google-Smtp-Source: APXvYqx6lgUfn+cBlcwFavQQI3d2TF3Qqkzwe2QJhqICSPH/EAbTfEMSktmNgiu1Yfxi3tdjXLT5ZhTyKRREk2FELMc=
-X-Received: by 2002:a67:f303:: with SMTP id p3mr2137246vsf.166.1557758602639;
- Mon, 13 May 2019 07:43:22 -0700 (PDT)
+        h=x-gm-message-state:sender:date:from:to:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to:user-agent;
+        bh=oa11tgFM6isQYlc2/lSr8+dtL7dz0FGS2ImXszdei94=;
+        b=lPZNuSbxiqIZwqjLxt1OrCXxCHXnGX/G2mfGCy1gXuWfy7KxWlKlmV/JWjjB1QzBjp
+         Ou8MEfVGHOsJ5XfoPuMshxWZYYQepimQZWsq1gqtl8odp3xyovcgmceXeZuGF9Hl5Flv
+         416sX0eS6yy2ip3jscKwROdIhZbHfa8UgHIRYaNNLAdgmita/CkztgPKAAr90OQkm+90
+         jQguflxQa6oHRj2lN4x9hFIgNtR0T2fd5LxF6OHbpL+RVmiom9NTQmtHDkaqdRzF5ZZ2
+         lhFeVSQwWAn6VzBgl0/dqPUMeEsPFR5CvP8WozEC9bZcoFXJVh8RLJB/CHiwwSdUlhD6
+         XYWw==
+X-Gm-Message-State: APjAAAVv24ByjkXOo9OnFYpftQIsgrEXJYJk00yjI3ijggMbxpztQ147
+        gwKPGUaYuYNc53HpGfNLoZL/NQ==
+X-Google-Smtp-Source: APXvYqzazE/ARkr3DfLFYQv2UcXLE6AXccxEO07VmSzGlXapLczjo2jaDfA5V6TtDA06sVwBcw/rGw==
+X-Received: by 2002:a17:906:18b1:: with SMTP id c17mr22862891ejf.196.1557758696660;
+        Mon, 13 May 2019 07:44:56 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
+        by smtp.gmail.com with ESMTPSA id ox15sm1844293ejb.52.2019.05.13.07.44.54
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 13 May 2019 07:44:55 -0700 (PDT)
+Date:   Mon, 13 May 2019 16:44:51 +0200
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Theodore Ts'o <tytso@mit.edu>,
+        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
+        knut.omang@oracle.com, gregkh@linuxfoundation.org,
+        brendanhiggins@google.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, amir73il@gmail.com,
+        dan.carpenter@oracle.com, dan.j.williams@intel.com,
+        daniel@ffwll.ch, jdike@addtoit.com, joel@jms.id.au,
+        julia.lawall@lip6.fr, khilman@baylibre.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190513144451.GQ17751@phenom.ffwll.local>
+Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
+        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
+        knut.omang@oracle.com, gregkh@linuxfoundation.org,
+        brendanhiggins@google.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
+        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
+        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, jdike@addtoit.com, joel@jms.id.au,
+        julia.lawall@lip6.fr, khilman@baylibre.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com
+References: <20190509015856.GB7031@mit.edu>
+ <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
+ <20190509032017.GA29703@mit.edu>
+ <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+ <20190509133551.GD29703@mit.edu>
+ <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
+ <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
+ <20190509214233.GA20877@mit.edu>
+ <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com>
+ <20190511173344.GA8507@mit.edu>
 MIME-Version: 1.0
-References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
- <1556092536-17095-4-git-send-email-masonccyang@mxic.com.tw>
- <20190424212356.GA27103@bogus> <65853dc2-6f3c-1494-7e72-54877797cdd2@gmail.com>
- <20190507125730.GD29524@dell> <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
- <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com> <20190508061119.GB7627@dell>
- <OFE86674B9.06D723A0-ON482583F5.000AD50C-482583F5.000BA075@mxic.com.tw>
- <a05cff8f-7df2-1938-c0e7-f9366bece607@cogentembedded.com> <OFB19BCE91.6EBBAA77-ON482583F6.000234E2-482583F6.00061290@mxic.com.tw>
- <CAMuHMdUP8KU3Dbv6cwOvrY0hWOcm1xqVcsi20+GvazYMDLGGZg@mail.gmail.com> <OFD932ABFC.E3FFCEB8-ON482583F9.003412B1-482583F9.0034D5CA@mxic.com.tw>
-In-Reply-To: <OFD932ABFC.E3FFCEB8-ON482583F9.003412B1-482583F9.0034D5CA@mxic.com.tw>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 13 May 2019 16:43:09 +0200
-Message-ID: <CAMuHMdWsZPevpYg0HfbgaXPD89RFdOOEPawvvZDt3Kp4=PeLRQ@mail.gmail.com>
-Subject: Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
- RPC-IF MFD bindings
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     Boris Brezillon <bbrezillon@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        zhengxunli@mxic.com.tw
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190511173344.GA8507@mit.edu>
+X-Operating-System: Linux phenom 4.14.0-3-amd64 
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
+On Sat, May 11, 2019 at 01:33:44PM -0400, Theodore Ts'o wrote:
+> On Fri, May 10, 2019 at 02:12:40PM -0700, Frank Rowand wrote:
+> > However, the reply is incorrect.  Kselftest in-kernel tests (which
+> > is the context here) can be configured as built in instead of as
+> > a module, and built in a UML kernel.  The UML kernel can boot,
+> > running the in-kernel tests before UML attempts to invoke the
+> > init process.
+> 
+> Um, Citation needed?
+> 
+> I don't see any evidence for this in the kselftest documentation, nor
+> do I see any evidence of this in the kselftest Makefiles.
+> 
+> There exists test modules in the kernel that run before the init
+> scripts run --- but that's not strictly speaking part of kselftests,
+> and do not have any kind of infrastructure.  As noted, the
+> kselftests_harness header file fundamentally assumes that you are
+> running test code in userspace.
 
-Note that if you send multipart/text+html emails, they will be dropped silently
-by most Linux mailing lists.
-Hence I'm quoting your last email fully, to give other people a chance
-reading it (and commenting).
+Yeah I really like the "no userspace required at all" design of kunit,
+while still collecting results in a well-defined way (unless the current
+self-test that just run when you load the module, with maybe some
+kselftest ad-hoc wrapper around to collect the results).
 
-On Mon, May 13, 2019 at 11:37 AM <masonccyang@mxic.com.tw> wrote:
-> > > > [...]
-> > > > >> > >> > On 4/24/19 11:23 PM, Rob Herring wrote:
-> > > > >> > >> > > On Wed, Apr 24, 2019 at 03:55:36PM +0800, Mason Yang wrote:
-> > > > >> > >> > >> Document the bindings used by the Renesas R-Car
-> > Gen3 RPC-IF MFD.
-> > > > >> > >> > >>
-> > > > >> > >> > >> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> > > > >> > >> > >> ---
-> > > > >> > >> > >>  .../devicetree/bindings/mfd/mfd-renesas-rpc.txt
-> > | 40 ++++++
-> > > > >> > >> ++++++++++++++++
-> > > > >> > >> > >>  1 file changed, 40 insertions(+)
-> > > > >> > >> > >>  create mode 100644 Documentation/devicetree/
-> > bindings/mfd/mfd-
-> > > > >> > >> renesas-rpc.txt
-> > > > >> > >> > >>
-> > > > >> > >> > >> diff --git a/Documentation/devicetree/bindings/mfd/
-> > mfd-renesas-
-> > > > >> > >> rpc.txt b/Documentation/devicetree/bindings/mfd/mfd-
-> > renesas-rpc.txt
-> > > > >> > >> > >> new file mode 100644
-> > > > >> > >> > >> index 0000000..668b822
-> > > > >> > >> > >> --- /dev/null
-> > > > >> > >> > >> +++ b/Documentation/devicetree/bindings/mfd/mfd-
-> > renesas-rpc.txt
-> > > > >> > >> > >> @@ -0,0 +1,40 @@
-> > > > >> > >> > >> +Renesas R-Car Gen3 RPC-IF MFD Device Tree Bindings
-> > > > >> > >> > >> +--------------------------------------------------
-> > > > >> > >> > >
-> > > > >> > >> > > Looks like a SPI flash controller from the example. What
-> > > > makes it an
-> > > > >> > >> > > MFD?
-> > > > >> > >> >
-> > > > >> > >> > It supports both SPI NOR and HyperFlash (CFI-compliantflash with
-> > > > >> > >> > different bus interface).
-> > > > >> > >>
-> > > > >> > >> Looks like you're registering one OR the other.
-> > > > >> > >>
-> > > > >> > >> Why don't you just do this from DT?
-> > > > >> > >>
-> > > > >> > >> No reason for this to be an MFD IMHO.
-> > > > >> > >
-> > > > >> > >
-> > > > >> > > okay, I will patch it back to SPI mode only.
-> > > > >> >
-> > > > >> > I don't think that's what Lee meant . The controller supports _both_
-> > > > >> > modes , hence it would have the same compatible string. You
-> > just need to
-> > > > >> > extract the mode of operation from the DT.
-> > > > >>
-> > > > >> HiSilicon attempted to upstream something similar, only their
-> > > > >> controller provided NAND and NOR functionality.  They used different
-> > > > >> compatible strings to differentiate between the varying
-> > > > >> technologies.
-> > > > >>
-> > > > >> They too tried to use MFD as a means to select between them (which was
-> > > > >> also NACKed).  Not sure what they ended up doing, but the original
-> > > > >> submission and (half of) the conversation can be found at [0].  Some
-> > > > >> more of the thread continues at [1].
-> > > > >>
-> > > > >> Hope that helps.
-> > > > >>
-> > > > >> [0] https://groups.google.com/forum/#!topic/fa.linux.kernel/F6i9o8sfOIw
-> > > > >> [1] https://marc.info/?l=devicetree&m=147669165104431&w=2
-> > > > >
-> > > > >
-> > > > > Hi Marek,
-> > > > >
-> > > > > By Jones's comments:
-> > > > >
-> > --------------------------------------------------------------------------
-> > > > >> From: Shunquan Lin <linshunquan1@hisilicon.com>
-> > > > >>
-> > > > >> This patch adds driver support for HiSilicon Flash Memory
-> > > > >> Controller(FMC). HiSilicon FMC is a multi-functions device which
-> > > > >> supports SPI Nor flash controller, SPI nand Flash controller and
-> > > > >> parallel nand flash controller.
-> > > > >
-> > > > > MFDs are for devices which span multiple subsystems.
-> > > >
-> > > >    And we do! One of the subdrivers will live under drivers/
-> > spi/, the other
-> > > > under drivers/mtd/...
-> > > >
-> > >
-> > > From my point of view, I think Jones mean to MFD's subsystems are
-> > working simultaneously
-> > > at the run-time, one period of time is working for sub-device-1
-> > and later period of time
-> > > is working for sub-device-2 and so on.
-> > >
-> > > But for RPC-IF, SPI or HF mode is decided at boot time by pins
-> > configure and later in kernel
-> > > by dtb, RPC-IF can't switch SPI and HF mode at the run time.
-> >
-> > > So far, Jones seems don't agree RPC-IF to MFD and then RPC MFD
-> > will not applied
-> > > to mfd tree by him !
-> >
-> > There's precedence for such constructs being an MFD: please see
-> > drivers/mfd/at91-usart.c, which registers a single MFD cell for either
-> > serial or SPI.
->
-> okay, many thanks for your information.
->
-> How about to patch RPF-IF dts to:
-> -------------------------------------------------------------->
->
-> Renesas R-Car Gen3 RPC-IF controller Device Tree Bindings
-> ---------------------------------------------------------
->
->   RPC-IF supports both SPI NOR and HyperFlash (CFI-compliant flash)
->
->   Required properties:
->   - compatible: should be an SoC-specific compatible value, followed by
->                   "renesas,rcar-gen3-rpc" as a fallback.
->                   supported SoC-specific values are:
->                   "renesas,r8a77995-rpc"  (R-Car D3)
->   - reg: should contain three register areas:
->           first for the base address of RPC-IF registers,
->           second for the direct mapping read mode and
->           third for the write buffer area.
->   - reg-names: should contain "regs", "dirmap" and "wbuf"
->   - clocks: should contain 1 entries for the module's clock
->   - clock-names: should contain "rpc"
->
->   Example:
->   - SPI mode:
->
->           rpc: rpc-if@ee200000 {
->                   compatible = "renesas,r8a77995-rpc", "renesas,rcar-gen3-rpc";
->                   reg = <0 0xee200000 0 0x200>, <0 0x08000000 0 0x4000000>,
->                         <0 0xee208000 0 0x100>;
->                   reg-names = "regs", "dirmap", "wbuf";
->                   clocks = <&cpg CPG_MOD 917>;
->                   clock-names = "rpc";
->                   power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
->                   resets = <&cpg 917>;
->                   #address-cells = <1>;
->                   #size-cells = <0>;
->
->                   flash@0 {
->                           compatible = "jedec,spi-nor";
->                           reg = <0>;
->                           spi-max-frequency = <40000000>;
->                           spi-tx-bus-width = <1>;
->                           spi-rx-bus-width = <1>;
->                   };
->           };
->
->   - HF mode:
->           rpc: rpc-if@ee200000 {
->                   compatible = "renesas,r8a77995-rpc", "renesas,rcar-gen3-rpc";
->                   reg = <0 0xee200000 0 0x200>, <0 0x08000000 0 0x4000000>,
->                         <0 0xee208000 0 0x100>;
->                   reg-names = "regs", "dirmap", "wbuf";
->                   clocks = <&cpg CPG_MOD 917>;
->                   clock-names = "rpc";
->                   power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
->                   resets = <&cpg 917>;
->                   #address-cells = <1>;
->                   #size-cells = <1>;
->
->                   flash@0 {
->                           compatible = "cfi-flash";
->                           reg = <0 0x4000000>;
->                   };
->           };
->
-> --------------------------------------------------------------<
->
-> Is it OK ?
-
-I'll defer to the MTD experts.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+What I want to do long-term is to run these kernel unit tests as part of
+the build-testing, most likely in gitlab (sooner or later, for drm.git
+only ofc). So that people get their pull requests (and patch series, we
+have some ideas to tie this into patchwork) automatically tested for this
+super basic stuff.
+-Daniel
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
