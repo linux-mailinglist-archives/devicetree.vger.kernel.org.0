@@ -2,90 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 629191B9D0
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F1881B9DD
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:24:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727132AbfEMPWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 11:22:07 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:32790 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727458AbfEMPWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:22:07 -0400
-Received: by mail-oi1-f196.google.com with SMTP id m204so9647097oib.0;
-        Mon, 13 May 2019 08:22:06 -0700 (PDT)
+        id S1729744AbfEMPXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 11:23:52 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:34742 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727458AbfEMPXw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:23:52 -0400
+Received: by mail-oi1-f195.google.com with SMTP id v10so9643173oib.1;
+        Mon, 13 May 2019 08:23:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=G5tBDBp/DtV8SNXwtrPbsVe7Rc/q6YIIYxtmFnOVJDY=;
-        b=km/pEZG4r/5983+BxmdDhpZUuw7sZzLhQtJIiuOwgNbBqg0QXdYW3BTEpUuTPAWJwO
-         M6rd6xVyo7qmp81DnGRp9vOxTOXpC8Eomg2RKaFWl0Qjde35USIn63J4ypFDbvAxzFwE
-         vjpaSAex+Wa/YZz+vtUFPAAbs/zJKRG/wfgVqRYs8PAAUL0Wg+sQ3NkapZxSV9UoXW2x
-         utZ3DgWWQMjFDz6bD456cfzsrbS17IZsTA2LV4+Tt6q9cDDHl7F/9vA3DI1lhEpl/DP3
-         QQAKg0fasKTAyEyMdbPUiKzS54NQJKXcjVIVC6sA+I/HHgk4hthPwnyLJBKq1VWinvCN
-         MTZg==
-X-Gm-Message-State: APjAAAU8JyTatQnQYOr8EdBurt0HAfFCMlmr7xIWoCYJEA8KoHcptc8u
-        Yw3KaLkgqCFbAsXyOgHlDw==
-X-Google-Smtp-Source: APXvYqyDyMqJLZVdVcByUg10Ow8jEEwxJKUk0RrIJEW9cbnuxfisOiumsiptzyIvhS1udws+DOn7Xg==
-X-Received: by 2002:aca:ac43:: with SMTP id v64mr9672388oie.40.1557760926143;
-        Mon, 13 May 2019 08:22:06 -0700 (PDT)
+        bh=XfGOlUQQ0BR8c4BsoZfFHQRJzybAooAiYyp3hXARCkQ=;
+        b=kgcK5itGGd5QIo9mqSMTdU4gZgAJAcDAvn4Xaze/S55Kv5nj6KT6CbistSdJHxAaUb
+         CHEiQzbHuYhofBeKQkVblZEWhzpYN8NIpq20Y1X14Rka/1EZsG95MQfQlANOSa/29yB1
+         vxZ3KzkIk/YTJhlIdPxFtwxremyAiXNFHvawa4uEG4tLrflaVpM8/5SHmlTxP4/BiZRD
+         OOSeVCaI6Ac/aXR6r/t+vo2pi6UwYdGBEIVRLt7PLiL6vZGUiAqd9Fgr0oCtM3Oqr6Bd
+         xugET5I+dq3BB6hb0KI4W4pVdzy5yHfXrRIH87H8NMEz1T8fbBskx8Mgv6isIN7wEuz8
+         L8IQ==
+X-Gm-Message-State: APjAAAWldRAi1W1HGvjVRqL1ean2Z0bOeDKu6rsUTclF7BBGrxxD740o
+        La34wVNDUAcehnwLpQ1aXuyjKsc=
+X-Google-Smtp-Source: APXvYqwogXG9j5/7+ZY36riOYzWM8WHj5Fegta9WZGu25wuD9gOfHcK9nAeELOAXUnR4igtZg//L2Q==
+X-Received: by 2002:aca:309:: with SMTP id 9mr14046095oid.94.1557761030441;
+        Mon, 13 May 2019 08:23:50 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o206sm5281587oih.48.2019.05.13.08.22.05
+        by smtp.gmail.com with ESMTPSA id m203sm5419883oib.45.2019.05.13.08.23.49
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 08:22:05 -0700 (PDT)
-Date:   Mon, 13 May 2019 10:22:05 -0500
+        Mon, 13 May 2019 08:23:49 -0700 (PDT)
+Date:   Mon, 13 May 2019 10:23:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, kishon@ti.com, catalin.marinas@arm.com,
-        will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, vidyas@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V6 10/15] dt-bindings: PHY: P2U: Add Tegra194 P2U block
-Message-ID: <20190513152204.GA20594@bogus>
-References: <20190513050626.14991-1-vidyas@nvidia.com>
- <20190513050626.14991-11-vidyas@nvidia.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/8] dt-bindings: remoteproc: Rename and amend Hexagon
+ v56 binding
+Message-ID: <20190513152349.GA23710@bogus>
+References: <20190510043421.31393-1-bjorn.andersson@linaro.org>
+ <20190510043421.31393-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190513050626.14991-11-vidyas@nvidia.com>
+In-Reply-To: <20190510043421.31393-2-bjorn.andersson@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 May 2019 10:36:21 +0530, Vidya Sagar wrote:
-> Add support for Tegra194 P2U (PIPE to UPHY) module block which is a glue
-> module instantiated one for each PCIe lane between Synopsys DesignWare core
-> based PCIe IP and Universal PHY block.
+On Thu,  9 May 2019 21:34:14 -0700, Bjorn Andersson wrote:
+> The SDM845 Audio DSP peripheral image loader binding describes the
+> properties needed to load and boot firmware on a Hexagon v56. Rename the
+> file and add the Compute DSP (CDSP) found in QCS404 to the binding.
 > 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
-> Changes since [v5]:
-> * Added Sob
-> * Changed node name from "p2u@xxxxxxxx" to "phy@xxxxxxxx"
-> 
-> Changes since [v4]:
-> * None
-> 
-> Changes since [v3]:
-> * None
-> 
-> Changes since [v2]:
-> * Changed node label to reflect new format that includes either 'hsio' or
->   'nvhs' in its name to reflect which UPHY brick they belong to
-> 
-> Changes since [v1]:
-> * This is a new patch in v2 series
-> 
->  .../bindings/phy/phy-tegra194-p2u.txt         | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+>  ...qcom,adsp-pil.txt => qcom,hexagon-v56.txt} | 35 +++++++++++++------
+>  1 file changed, 25 insertions(+), 10 deletions(-)
+>  rename Documentation/devicetree/bindings/remoteproc/{qcom,adsp-pil.txt => qcom,hexagon-v56.txt} (74%)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
