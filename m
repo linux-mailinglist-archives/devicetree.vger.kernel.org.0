@@ -2,72 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 615611B980
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 042391B994
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729593AbfEMPGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 11:06:04 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39160 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728659AbfEMPGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:06:03 -0400
-Received: by mail-ot1-f66.google.com with SMTP id r7so7567268otn.6;
-        Mon, 13 May 2019 08:06:03 -0700 (PDT)
+        id S1728167AbfEMPKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 11:10:41 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:40137 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727339AbfEMPKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:10:41 -0400
+Received: by mail-ot1-f68.google.com with SMTP id u11so1650957otq.7;
+        Mon, 13 May 2019 08:10:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bKxni4Tnr4JV/OACFJaw+XVWF/+XkwKuGUE+XE3uQeA=;
-        b=oSMzCMK3+G+J3Ysy045aBRdNxHryn4kqr9UOg2aLVL5fHoBDCxOIE2LSBRVpuwY+N/
-         x3Kk4L1h1YYNOFmTRmMmCKEc13jMnsz6WkwU9F1qRMq9AK5Kh8yBGiD5sUawIYdRPIwE
-         4BJ5eNdRIkH4KIK9ZDVoCCiY+fWt1SB3iaI+PFODH61rNJrAvKU1yqPpQwBJAd/EVW4j
-         uYaZfiXb2cMjd2MqqhIrXuAtjT8fHGksT0BlNziRSTuxCIzeOarPz04r8VYYkI7buAjr
-         QYFs9taf7Gw0tXvbBLN6xikW9YnNPBI+ndTmIROJX4mmsJXVaLXYPx9PIzm09beASmBB
-         g3pg==
-X-Gm-Message-State: APjAAAXV127AKgILGHkx59+TY8BBiA7geQeHISvWGVi4/X0t5c5hNdnD
-        r8EYfG/jDvTlbHSjm7LAvg==
-X-Google-Smtp-Source: APXvYqw/GihQMP21orlofX8NqbcrIV1iCJZoSvbgR6Y1E26mr/GcNPDvJQkTbd5Rg6WgZ+e95G+xuQ==
-X-Received: by 2002:a9d:4808:: with SMTP id c8mr2532355otf.316.1557759962932;
-        Mon, 13 May 2019 08:06:02 -0700 (PDT)
+        bh=mrlBNb20gXfjogJL/vTxD9cKe2qkJA2/o6bt1fHbzvs=;
+        b=ZqR0MZh33/xDApqoKIwiJmvIMtYy70DHOVP2jdGRZbj0bOFmncoiPXQ3+qtwAICDNt
+         Z4l07sl0lTj1MK6arSv1BxokivfCS2LgJE+b/L6qLOWcq18jvHMpN14GWJ2tTs1GHEEd
+         sLH4Czy4yqw6G8/LJTtrGwPiZUBotCY+RFIVDN+9LoJ+j1Zg6tElNtjAxx47EG24vSZM
+         ULX+3moYYQYYmZYDoP1A8jgr4x9LTtyzEZ1rIG3c9yFAtwW7L2x5vifG0IJvQ2CbYysX
+         H81vA9Pbpx5Xlvqo7O7iEX6f1fHnuAPbg6U+BriyP34fEtMIRq90ghA338zAUkmn+0sJ
+         0Weg==
+X-Gm-Message-State: APjAAAUWv4q7K/s3lwd7RpNPsGx0yCJ4pAGqQaUmJDDTIV8/WoZH9TvD
+        iy7hKlB7cPkBgL+q0ejTiw==
+X-Google-Smtp-Source: APXvYqz9+00kzCXfTWCaYUMHUIJW4CqyQSVc0SoytOVsa8luLWoZm8aaMTmTn2waEWJZVCnDKf4BTw==
+X-Received: by 2002:a9d:4a98:: with SMTP id i24mr1395692otf.199.1557760240114;
+        Mon, 13 May 2019 08:10:40 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w142sm1648584oie.15.2019.05.13.08.06.02
+        by smtp.gmail.com with ESMTPSA id 64sm5294507oth.47.2019.05.13.08.10.39
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 08:06:02 -0700 (PDT)
-Date:   Mon, 13 May 2019 10:06:01 -0500
+        Mon, 13 May 2019 08:10:39 -0700 (PDT)
+Date:   Mon, 13 May 2019 10:10:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com
-Subject: Re: [PATCH v3 05/10] regulator: Add document for MT6358 regulator
-Message-ID: <20190513150601.GA21798@bogus>
-References: <20190503093117.54830-1-hsin-hsiung.wang@mediatek.com>
- <20190503093117.54830-6-hsin-hsiung.wang@mediatek.com>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        mark.rutland@arm.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, kishon@ti.com, catalin.marinas@arm.com,
+        will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
+        mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V6 06/15] dt-bindings: PCI: designware: Add binding for
+ CDM register check
+Message-ID: <20190513151038.GA30653@bogus>
+References: <20190513050626.14991-1-vidyas@nvidia.com>
+ <20190513050626.14991-7-vidyas@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190503093117.54830-6-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <20190513050626.14991-7-vidyas@nvidia.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 03, 2019 at 05:31:12PM +0800, Hsin-Hsiung Wang wrote:
-> add dt-binding document for MediaTek MT6358 PMIC
+On Mon, May 13, 2019 at 10:36:17AM +0530, Vidya Sagar wrote:
+> Add support to enable CDM (Configuration Dependent Module) registers check
+> for any data corruption. CDM registers include standard PCIe configuration
+> space registers, Port Logic registers and iATU and DMA registers.
+> Refer Section S.4 of Synopsys DesignWare Cores PCI Express Controller Databook
+> Version 4.90a
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
 > ---
->  .../bindings/regulator/mt6358-regulator.txt   | 358 ++++++++++++++++++
->  1 file changed, 358 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
+> Changes since [v5]:
+> * None
+> 
+> Changes since [v4]:
+> * None
+> 
+> Changes since [v3]:
+> * None
+> 
+> Changes since [v2]:
+> * Changed flag name from 'cdm-check' to 'enable-cdm-check'
+> * Added info about Port Logic and DMA registers being part of CDM
+> 
+> Changes since [v1]:
+> * This is a new patch in v2 series
+> 
+>  Documentation/devicetree/bindings/pci/designware-pcie.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/designware-pcie.txt b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> index 5561a1c060d0..85b872c42a9f 100644
+> --- a/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> @@ -34,6 +34,11 @@ Optional properties:
+>  - clock-names: Must include the following entries:
+>  	- "pcie"
+>  	- "pcie_bus"
+> +- enable-cdm-check: This is a boolean property and if present enables
+> +   automatic checking of CDM (Configuration Dependent Module) registers
+> +   for data corruption. CDM registers include standard PCIe configuration
+> +   space registers, Port Logic registers, DMA and iATU (internal Address
+> +   Translation Unit) registers.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+snps,enable-cdm-check
+
+>  RC mode:
+>  - num-viewport: number of view ports configured in hardware. If a platform
+>    does not specify it, the driver assumes 2.
+> -- 
+> 2.17.1
+> 
