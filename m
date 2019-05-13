@@ -2,58 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC451B681
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 14:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B5C81B697
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 15:02:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728301AbfEMMz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 08:55:26 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:33732 "EHLO vps0.lunn.ch"
+        id S1727850AbfEMNCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 09:02:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58194 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727462AbfEMMz0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 May 2019 08:55:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=25Uwi8H60pwR1izqxasvTT+l1DgmsqYph9SZk1uXsws=; b=mhVGgKf6LMTY3GRpQFIQrTTQPi
-        Y1jNUhq75vqkCJ0pQigCy6TXXxcpx7EEl6AUfOq/Zb7IDBIXltz178vZAUZcZTQ57DkrmHcaGBGkU
-        yHRMCHibWd4aWhn89mX9iTOB8aiCFZ48ar/tk0or4BlvAPJorp1eycoihgaXXhjxbEXM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hQAUC-0008IB-I9; Mon, 13 May 2019 14:55:20 +0200
-Date:   Mon, 13 May 2019 14:55:20 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of_net: Fix missing of_find_device_by_node ref count drop
-Message-ID: <20190513125520.GD28969@lunn.ch>
-References: <1557740500-2479-1-git-send-email-ynezz@true.cz>
+        id S1728743AbfEMNCW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 09:02:22 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F1891208C3;
+        Mon, 13 May 2019 13:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557752541;
+        bh=H9yflkxj6PKD3OyDhgd0M9qzd9BvjS5peXo1ZDL6l7o=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fvzr6fUmh5VMDX6ruMe4cbLAvHv03i5G5cVHFraNC/aZJ47xCJ13rb7mHBPvNG7Mx
+         C2QVc5k4JzxKeVL3gLJ2mPKbp2FictiN4mWXiPLPyQTKXcxTon2WvIOsBGcs8dbn9D
+         TTJ6EI14yYDXi4ST7r3KfKC+n6MPtGuzjo48bgtg=
+Received: by mail-qt1-f178.google.com with SMTP id y22so11107430qtn.8;
+        Mon, 13 May 2019 06:02:20 -0700 (PDT)
+X-Gm-Message-State: APjAAAXloS57HCBZliTfJ+NcUOohhFkHPq6EhBkCNxtPupf1vjW2qqO6
+        FJp5UbAyb2jbV0zU1yig9ChIcTKFyUnQ3nGYYw==
+X-Google-Smtp-Source: APXvYqyKtJigwpzlH1zaVYXjJKjImDYRZk+VXVQe9W4bQI+I+tbYntkvZc73VPfXham9aA16TsN6xQ+Ys5v8TZJww/o=
+X-Received: by 2002:ac8:641:: with SMTP id e1mr23421622qth.76.1557752540205;
+ Mon, 13 May 2019 06:02:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1557740500-2479-1-git-send-email-ynezz@true.cz>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20190510194018.28206-1-robh@kernel.org> <20190511181753.GA2444@t60.musicnaut.iki.fi>
+In-Reply-To: <20190511181753.GA2444@t60.musicnaut.iki.fi>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 13 May 2019 08:02:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK_pTxYd0iq=-yKTexWKueVqBSyNfOrfek9k-8pg3YE9w@mail.gmail.com>
+Message-ID: <CAL_JsqK_pTxYd0iq=-yKTexWKueVqBSyNfOrfek9k-8pg3YE9w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Convert vendor prefixes to json-schema
+To:     Aaro Koskinen <aaro.koskinen@iki.fi>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 11:41:39AM +0200, Petr Štetiar wrote:
-> of_find_device_by_node takes a reference to the embedded struct device
-> which needs to be dropped after use.
-> 
-> Fixes: d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
-> Reported-by: kbuild test robot <lkp@intel.com>
-> Reported-by: Julia Lawall <julia.lawall@lip6.fr>
-> Signed-off-by: Petr Štetiar <ynezz@true.cz>
+On Sat, May 11, 2019 at 1:23 PM Aaro Koskinen <aaro.koskinen@iki.fi> wrote:
+>
+> On Fri, May 10, 2019 at 02:40:18PM -0500, Rob Herring wrote:
+> > Convert the vendor prefix registry to a schema. This will enable checking
+> > that new vendor prefixes are added (in addition to the less than perfect
+> > checkpatch.pl check) and will also check against adding other prefixes
+> > which are not vendors.
+> >
+> > Converted vendor-prefixes.txt using the following sed script:
+> >
+> > sed -e 's/\([a-zA-Z0-9\-]*\)[[:space:]]*\([a-zA-Z0-9].*\)/  "^\1,\.\*\":\n    description: \2/'
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> [...]
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> > deleted file mode 100644
+> > index e9034a6c003a..000000000000
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
+> > +++ /dev/null
+> > @@ -1,476 +0,0 @@
+> > -Device tree binding vendor prefix registry.  Keep list in alphabetical order.
+> [...]
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > new file mode 100644
+> > index 000000000000..be037fb2cada
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -0,0 +1,975 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>
+> Is there a license change as well?
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+It is, as we're trying to dual license schema files when possible. I
+have permission from Grant who was the primary author. Also, given
+that the file is 235 different authors with most being 1-2 lines, I
+don't think that really meets the threshold of being copyright
+holders.
 
-    Andrew
+Rob
