@@ -2,456 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F4A71B51A
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 402F71B520
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729246AbfEMLg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 07:36:57 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:46230 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728810AbfEMLgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 07:36:55 -0400
-Received: by mail-pl1-f194.google.com with SMTP id r18so1587751pls.13
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 04:36:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=AaaDENnh8+JO2RPDpSn3qV7MLgW0nZnP7gISsk3svnE=;
-        b=kjSuubivvnmBWuD7lJSN7JpYdB6wXOH8Wjxq4EIaRYYtppuWsAif4vQZA5+21wjPui
-         Nib1JGryFRl/Lr2JqWV8nqVOrv12H+mbv0pdzgg70WRVNo2qP9FKDj+YEPtpDJAMffgM
-         yFL0+8CeH7ondq3EmklsKvoIThOuuB2RoSTN6f5ToZ9TmmQ+U+dDacHhnYQSKT/OR/p2
-         edSzAiC3qHRIKWIe6siMJUO9YmaO55UnvIiHATVotIOoNF4YlYrIkyL7dICcZ6q4OV18
-         PkQm2XLsS7zy/0OUH1YG+Fko3DuzQ/8Jw+9o5ocLCvRgQF46jZ0z2LkSG4X9NihLBJyI
-         Si9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=AaaDENnh8+JO2RPDpSn3qV7MLgW0nZnP7gISsk3svnE=;
-        b=DE02ZWbWracGkdr+4n6fX7vaPq8Z0nA/rPxXFFriVhSFGbukNqKObGEMT9kz83Z650
-         W2WMZWdcmmZOef86YQerykEtGImYsvcfFS7v8tuX3pThBaZMBVBH/6fU/K2A0o2qQ0CF
-         6xiZs++xp80vT7sRED4ZvTEp58ZbBtpVGxMbmKlOqp4D5Gu5O+lrk10gR6aQHVmkxagZ
-         0jIVvSedIGKOMh+nOCRpCd8tKqrxJov/Btso2AbIZkeC37ATrku9nvX5n1IOm1gl9bs7
-         ukbcsTyall0vA4EPei48PGFNR4R1szyPV/xolhJF367GPLENXYI79ukQ7UWkvZy990/j
-         Ceaw==
-X-Gm-Message-State: APjAAAX/mn8jZomh+81U44NKDgtLciYXNUwJDKGKWPM1hc2dLgQLAsCN
-        7rtTe1tnDHLtpHBCClCp6ed92w==
-X-Google-Smtp-Source: APXvYqxpO8/kCOGBde9z2kCMGeMeKgU+EnaxLdZR4pJjWTysVvwuaVA1SI8wfcJLqrcZ8zDORFLm6A==
-X-Received: by 2002:a17:902:e30b:: with SMTP id cg11mr29341050plb.3.1557747413713;
-        Mon, 13 May 2019 04:36:53 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id d15sm44657128pfm.186.2019.05.13.04.36.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 13 May 2019 04:36:52 -0700 (PDT)
-From:   Yash Shah <yash.shah@sifive.com>
-To:     linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        thierry.reding@gmail.com
-Cc:     palmer@sifive.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
-        linux-kernel@vger.kernel.org, sachin.ghadi@sifive.com,
-        paul.walmsley@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH v12 2/2] pwm: sifive: Add a driver for SiFive SoC PWM
-Date:   Mon, 13 May 2019 17:06:20 +0530
-Message-Id: <1557747380-12257-3-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1557747380-12257-1-git-send-email-yash.shah@sifive.com>
-References: <1557747380-12257-1-git-send-email-yash.shah@sifive.com>
+        id S1728566AbfEMLjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 07:39:08 -0400
+Received: from mail-eopbgr740071.outbound.protection.outlook.com ([40.107.74.71]:35664
+        "EHLO NAM01-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728969AbfEMLjI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 07:39:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=infinera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7bFwWqOQHMOO+34Oa8D7hVJuyV7G6ZKpj+L+SAshp40=;
+ b=VkqJcfyetNKc0vn8PtEFzEdyFAgzQVJTGOp1jpnYoc1pYlx3pmnzLxuPARhaUNc/JzH9MkbAgM+gvH9xj/fpOhvCBhc+hkmGW+eTEHmM7q/HlaF4s+CreVwN0Pfe7ptcDHXBGvVMTKvu7VT4FNE0fQ3nKU6X2zwtz0rjHO9sazY=
+Received: from BN8PR10MB3540.namprd10.prod.outlook.com (20.179.78.205) by
+ BN8PR10MB3730.namprd10.prod.outlook.com (20.179.97.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.22; Mon, 13 May 2019 11:39:01 +0000
+Received: from BN8PR10MB3540.namprd10.prod.outlook.com
+ ([fe80::24c5:ea68:cff3:4a16]) by BN8PR10MB3540.namprd10.prod.outlook.com
+ ([fe80::24c5:ea68:cff3:4a16%7]) with mapi id 15.20.1878.024; Mon, 13 May 2019
+ 11:39:01 +0000
+From:   Joakim Tjernlund <Joakim.Tjernlund@infinera.com>
+To:     "rasmus.villemoes@prevas.dk" <rasmus.villemoes@prevas.dk>,
+        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
+        "qiang.zhao@nxp.com" <qiang.zhao@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "Rasmus.Villemoes@prevas.se" <Rasmus.Villemoes@prevas.se>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "christophe.leroy@c-s.fr" <christophe.leroy@c-s.fr>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "oss@buserror.net" <oss@buserror.net>
+Subject: Re: [PATCH v3 4/6] dt-bindings: soc/fsl: qe: document new
+ fsl,qe-snums binding
+Thread-Topic: [PATCH v3 4/6] dt-bindings: soc/fsl: qe: document new
+ fsl,qe-snums binding
+Thread-Index: AQHVCX0dAJ3DoPo7GkSqekfXCWC8OKZo7e6A
+Date:   Mon, 13 May 2019 11:39:01 +0000
+Message-ID: <35d7ec55a136259668cadbb662bfd4913c4423ca.camel@infinera.com>
+References: <20190501092841.9026-1-rasmus.villemoes@prevas.dk>
+         <20190513111442.25724-1-rasmus.villemoes@prevas.dk>
+         <20190513111442.25724-5-rasmus.villemoes@prevas.dk>
+In-Reply-To: <20190513111442.25724-5-rasmus.villemoes@prevas.dk>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Joakim.Tjernlund@infinera.com; 
+x-originating-ip: [88.131.87.201]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 11214e72-c1b0-4e30-2f8d-08d6d797987b
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:BN8PR10MB3730;
+x-ms-traffictypediagnostic: BN8PR10MB3730:
+x-microsoft-antispam-prvs: <BN8PR10MB3730703F403556E2FCC7C3FFF40F0@BN8PR10MB3730.namprd10.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-forefront-prvs: 0036736630
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(39860400002)(136003)(376002)(366004)(396003)(346002)(40224003)(199004)(189003)(51914003)(52084003)(186003)(446003)(54906003)(14454004)(305945005)(229853002)(66556008)(66066001)(6486002)(99286004)(11346002)(66446008)(64756008)(7416002)(66476007)(3846002)(26005)(6116002)(6506007)(102836004)(6512007)(476003)(76176011)(2906002)(6436002)(2616005)(110136005)(7736002)(76116006)(91956017)(66946007)(73956011)(486006)(6246003)(2501003)(86362001)(36756003)(118296001)(316002)(256004)(5024004)(8676002)(81166006)(14444005)(81156014)(5660300002)(53936002)(71190400001)(71200400001)(68736007)(8936002)(72206003)(4326008)(2201001)(478600001)(25786009)(142933001)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:BN8PR10MB3730;H:BN8PR10MB3540.namprd10.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: infinera.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: BnAdRF8xk/oDQ7bQP4AFZAcaWjDFZ5fmdZhODaOpjs/bt02E4XObfbVJXu9cvndwqcM8BQL0zN0M07pJJhIeaRLuRT3G/1yy1rK0dRedHS8UB/Poi9HOT7A6fldznUQB6kGHuZ3ogEswHB1Zf3/mu1jma8PFikWWk5sO5LkqDATfJ32sMHyZN0XbXPpWrYDmwVaBkpVY/IHh1PSO0oueWKiJ+VMSqQzO6LBO9Fm1oAtfAK4gGlMJDWQdidPJ6YxtzJBYaX+u/ycDvBkXZHXXmnk1hWzwh5ibFCrGUJow0conPwVI08XK46QgHKyKvBkRVhOLkVlzSmRqV/PDK31oGLPnHtTH3GMDfyKcJuxunhg9CXqREY/ENHI1VZLOWlr+/+6UBZm3t2CvLMZDPkB5UR4B9dm8hWSOVnExZ7Zx+g0=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AFB1973088CD854496BB37D5532730F9@namprd10.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: infinera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11214e72-c1b0-4e30-2f8d-08d6d797987b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2019 11:39:01.6378
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 285643de-5f5b-4b03-a153-0ae2dc8aaf77
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR10MB3730
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds a PWM driver for PWM chip present in SiFive's HiFive Unleashed SoC.
-
-Signed-off-by: Wesley W. Terpstra <wesley@sifive.com>
-[Atish: Various fixes and code cleanup]
-Signed-off-by: Atish Patra <atish.patra@wdc.com>
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
----
- drivers/pwm/Kconfig      |  11 ++
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-sifive.c | 338 +++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 350 insertions(+)
- create mode 100644 drivers/pwm/pwm-sifive.c
-
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 54f8238..95c1181 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -389,6 +389,17 @@ config PWM_SAMSUNG
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-samsung.
- 
-+config PWM_SIFIVE
-+	tristate "SiFive PWM support"
-+	depends on OF
-+	depends on COMMON_CLK
-+	depends on RISCV || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for SiFive SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-sifive.
-+
- config PWM_SPEAR
- 	tristate "STMicroelectronics SPEAr PWM support"
- 	depends on PLAT_SPEAR
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 448825e..0da3e99 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -38,6 +38,7 @@ obj-$(CONFIG_PWM_RCAR)		+= pwm-rcar.o
- obj-$(CONFIG_PWM_RENESAS_TPU)	+= pwm-renesas-tpu.o
- obj-$(CONFIG_PWM_ROCKCHIP)	+= pwm-rockchip.o
- obj-$(CONFIG_PWM_SAMSUNG)	+= pwm-samsung.o
-+obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
- obj-$(CONFIG_PWM_SPEAR)		+= pwm-spear.o
- obj-$(CONFIG_PWM_STI)		+= pwm-sti.o
- obj-$(CONFIG_PWM_STM32)		+= pwm-stm32.o
-diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-new file mode 100644
-index 0000000..1921e6ea
---- /dev/null
-+++ b/drivers/pwm/pwm-sifive.c
-@@ -0,0 +1,338 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2017-2018 SiFive
-+ * For SiFive's PWM IP block documentation please refer Chapter 14 of
-+ * Reference Manual : https://static.dev.sifive.com/FU540-C000-v1.0.pdf
-+ *
-+ * Limitations:
-+ * - When changing both duty cycle and period, we cannot prevent in
-+ *   software that the output might produce a period with mixed
-+ *   settings (new period length and old duty cycle).
-+ * - The hardware cannot generate a 100% duty cycle.
-+ * - The hardware generates only inverted output.
-+ */
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/slab.h>
-+#include <linux/bitfield.h>
-+
-+/* Register offsets */
-+#define PWM_SIFIVE_PWMCFG		0x0
-+#define PWM_SIFIVE_PWMCOUNT		0x8
-+#define PWM_SIFIVE_PWMS			0x10
-+#define PWM_SIFIVE_PWMCMP0		0x20
-+
-+/* PWMCFG fields */
-+#define PWM_SIFIVE_PWMCFG_SCALE		GENMASK(3, 0)
-+#define PWM_SIFIVE_PWMCFG_STICKY	BIT(8)
-+#define PWM_SIFIVE_PWMCFG_ZERO_CMP	BIT(9)
-+#define PWM_SIFIVE_PWMCFG_DEGLITCH	BIT(10)
-+#define PWM_SIFIVE_PWMCFG_EN_ALWAYS	BIT(12)
-+#define PWM_SIFIVE_PWMCFG_EN_ONCE	BIT(13)
-+#define PWM_SIFIVE_PWMCFG_CENTER	BIT(16)
-+#define PWM_SIFIVE_PWMCFG_GANG		BIT(24)
-+#define PWM_SIFIVE_PWMCFG_IP		BIT(28)
-+
-+/* PWM_SIFIVE_SIZE_PWMCMP is used to calculate offset for pwmcmpX registers */
-+#define PWM_SIFIVE_SIZE_PWMCMP		4
-+#define PWM_SIFIVE_CMPWIDTH		16
-+#define PWM_SIFIVE_DEFAULT_PERIOD	10000000
-+
-+struct pwm_sifive_ddata {
-+	struct pwm_chip	chip;
-+	struct mutex lock; /* lock to protect user_count */
-+	struct notifier_block notifier;
-+	struct clk *clk;
-+	void __iomem *regs;
-+	unsigned int real_period;
-+	unsigned int approx_period;
-+	int user_count;
-+};
-+
-+static inline
-+struct pwm_sifive_ddata *pwm_sifive_chip_to_ddata(struct pwm_chip *c)
-+{
-+	return container_of(c, struct pwm_sifive_ddata, chip);
-+}
-+
-+static int pwm_sifive_request(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
-+
-+	mutex_lock(&ddata->lock);
-+	ddata->user_count++;
-+	mutex_unlock(&ddata->lock);
-+
-+	return 0;
-+}
-+
-+static void pwm_sifive_free(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
-+
-+	mutex_lock(&ddata->lock);
-+	ddata->user_count--;
-+	mutex_unlock(&ddata->lock);
-+}
-+
-+static void pwm_sifive_update_clock(struct pwm_sifive_ddata *ddata,
-+				    unsigned long rate)
-+{
-+	unsigned long long num;
-+	unsigned long scale_pow;
-+	int scale;
-+	u32 val;
-+	/*
-+	 * The PWM unit is used with pwmzerocmp=0, so the only way to modify the
-+	 * period length is using pwmscale which provides the number of bits the
-+	 * counter is shifted before being feed to the comparators. A period
-+	 * lasts (1 << (PWM_SIFIVE_CMPWIDTH + pwmscale)) clock ticks.
-+	 * (1 << (PWM_SIFIVE_CMPWIDTH + scale)) * 10^9/rate = period
-+	 */
-+	scale_pow = div64_ul(ddata->approx_period * (u64)rate, NSEC_PER_SEC);
-+	scale = clamp(ilog2(scale_pow) - PWM_SIFIVE_CMPWIDTH, 0, 0xf);
-+
-+	val = PWM_SIFIVE_PWMCFG_EN_ALWAYS |
-+	      FIELD_PREP(PWM_SIFIVE_PWMCFG_SCALE, scale);
-+	writel(val, ddata->regs + PWM_SIFIVE_PWMCFG);
-+
-+	/* As scale <= 15 the shift operation cannot overflow. */
-+	num = (unsigned long long)NSEC_PER_SEC << (PWM_SIFIVE_CMPWIDTH + scale);
-+	ddata->real_period = div64_ul(num, rate);
-+	dev_dbg(ddata->chip.dev,
-+		"New real_period = %u ns\n", ddata->real_period);
-+}
-+
-+static void pwm_sifive_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				 struct pwm_state *state)
-+{
-+	struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
-+	u32 duty, val;
-+
-+	duty = readl(ddata->regs + PWM_SIFIVE_PWMCMP0 +
-+		     pwm->hwpwm * PWM_SIFIVE_SIZE_PWMCMP);
-+
-+	state->enabled = duty > 0;
-+
-+	val = readl(ddata->regs + PWM_SIFIVE_PWMCFG);
-+	if (!(val & PWM_SIFIVE_PWMCFG_EN_ALWAYS))
-+		state->enabled = false;
-+
-+	state->period = ddata->real_period;
-+	state->duty_cycle =
-+		(u64)duty * ddata->real_period >> PWM_SIFIVE_CMPWIDTH;
-+	state->polarity = PWM_POLARITY_INVERSED;
-+}
-+
-+static int pwm_sifive_enable(struct pwm_chip *chip, bool enable)
-+{
-+	struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
-+	int ret;
-+
-+	if (enable) {
-+		ret = clk_enable(ddata->clk);
-+		if (ret) {
-+			dev_err(ddata->chip.dev, "Enable clk failed\n");
-+			return ret;
-+		}
-+	}
-+
-+	if (!enable)
-+		clk_disable(ddata->clk);
-+
-+	return 0;
-+}
-+
-+static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    struct pwm_state *state)
-+{
-+	struct pwm_sifive_ddata *ddata = pwm_sifive_chip_to_ddata(chip);
-+	struct pwm_state cur_state;
-+	unsigned int duty_cycle;
-+	unsigned long long num;
-+	bool enabled;
-+	int ret = 0;
-+	u32 frac;
-+
-+	if (state->polarity != PWM_POLARITY_INVERSED)
-+		return -EINVAL;
-+
-+	ret = clk_enable(ddata->clk);
-+	if (ret) {
-+		dev_err(ddata->chip.dev, "Enable clk failed\n");
-+		return ret;
-+	}
-+
-+	mutex_lock(&ddata->lock);
-+	cur_state = pwm->state;
-+	enabled = cur_state.enabled;
-+
-+	duty_cycle = state->duty_cycle;
-+	if (!state->enabled)
-+		duty_cycle = 0;
-+
-+	/*
-+	 * The problem of output producing mixed setting as mentioned at top,
-+	 * occurs here. To minimize the window for this problem, we are
-+	 * calculating the register values first and then writing them
-+	 * consecutively
-+	 */
-+	num = (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
-+	frac = DIV_ROUND_CLOSEST_ULL(num, state->period);
-+	/* The hardware cannot generate a 100% duty cycle */
-+	frac = min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-+
-+	if (state->period != ddata->approx_period) {
-+		if (ddata->user_count != 1) {
-+			ret = -EBUSY;
-+			goto exit;
-+		}
-+		ddata->approx_period = state->period;
-+		pwm_sifive_update_clock(ddata, clk_get_rate(ddata->clk));
-+	}
-+
-+	writel(frac, ddata->regs + PWM_SIFIVE_PWMCMP0 +
-+	       pwm->hwpwm * PWM_SIFIVE_SIZE_PWMCMP);
-+
-+	if (state->enabled != enabled)
-+		pwm_sifive_enable(chip, state->enabled);
-+
-+exit:
-+	clk_disable(ddata->clk);
-+	mutex_unlock(&ddata->lock);
-+	return ret;
-+}
-+
-+static const struct pwm_ops pwm_sifive_ops = {
-+	.request = pwm_sifive_request,
-+	.free = pwm_sifive_free,
-+	.get_state = pwm_sifive_get_state,
-+	.apply = pwm_sifive_apply,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int pwm_sifive_clock_notifier(struct notifier_block *nb,
-+				     unsigned long event, void *data)
-+{
-+	struct clk_notifier_data *ndata = data;
-+	struct pwm_sifive_ddata *ddata =
-+		container_of(nb, struct pwm_sifive_ddata, notifier);
-+
-+	if (event == POST_RATE_CHANGE)
-+		pwm_sifive_update_clock(ddata, ndata->new_rate);
-+
-+	return NOTIFY_OK;
-+}
-+
-+static int pwm_sifive_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct pwm_sifive_ddata *ddata;
-+	struct pwm_chip *chip;
-+	struct resource *res;
-+	int ret;
-+
-+	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
-+	if (!ddata)
-+		return -ENOMEM;
-+
-+	mutex_init(&ddata->lock);
-+	chip = &ddata->chip;
-+	chip->dev = dev;
-+	chip->ops = &pwm_sifive_ops;
-+	chip->of_xlate = of_pwm_xlate_with_flags;
-+	chip->of_pwm_n_cells = 3;
-+	chip->base = -1;
-+	chip->npwm = 4;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	ddata->regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(ddata->regs)) {
-+		dev_err(dev, "Unable to map IO resources\n");
-+		return PTR_ERR(ddata->regs);
-+	}
-+
-+	ddata->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(ddata->clk)) {
-+		if (PTR_ERR(ddata->clk) != -EPROBE_DEFER)
-+			dev_err(dev, "Unable to find controller clock\n");
-+		return PTR_ERR(ddata->clk);
-+	}
-+
-+	ret = clk_prepare_enable(ddata->clk);
-+	if (ret) {
-+		dev_err(dev, "failed to enable clock for pwm: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* Watch for changes to underlying clock frequency */
-+	ddata->notifier.notifier_call = pwm_sifive_clock_notifier;
-+	ret = clk_notifier_register(ddata->clk, &ddata->notifier);
-+	if (ret) {
-+		dev_err(dev, "failed to register clock notifier: %d\n", ret);
-+		goto disable_clk;
-+	}
-+
-+	ret = pwmchip_add(chip);
-+	if (ret < 0) {
-+		dev_err(dev, "cannot register PWM: %d\n", ret);
-+		goto unregister_clk;
-+	}
-+
-+	platform_set_drvdata(pdev, ddata);
-+	dev_dbg(dev, "SiFive PWM chip registered %d PWMs\n", chip->npwm);
-+
-+	return 0;
-+
-+unregister_clk:
-+	clk_notifier_unregister(ddata->clk, &ddata->notifier);
-+disable_clk:
-+	clk_disable_unprepare(ddata->clk);
-+
-+	return ret;
-+}
-+
-+static int pwm_sifive_remove(struct platform_device *dev)
-+{
-+	struct pwm_sifive_ddata *ddata = platform_get_drvdata(dev);
-+	bool is_enabled = false;
-+	struct pwm_device *pwm;
-+	int ret, ch;
-+
-+	ret = pwmchip_remove(&ddata->chip);
-+	clk_notifier_unregister(ddata->clk, &ddata->notifier);
-+
-+	for (ch = 0; ch < ddata->chip.npwm; ch++) {
-+		pwm = &ddata->chip.pwms[ch];
-+		if (pwm->state.enabled) {
-+			is_enabled = true;
-+			break;
-+		}
-+	}
-+	if (is_enabled)
-+		clk_disable(ddata->clk);
-+	clk_disable_unprepare(ddata->clk);
-+	return ret;
-+}
-+
-+static const struct of_device_id pwm_sifive_of_match[] = {
-+	{ .compatible = "sifive,pwm0" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, pwm_sifive_of_match);
-+
-+static struct platform_driver pwm_sifive_driver = {
-+	.probe = pwm_sifive_probe,
-+	.remove = pwm_sifive_remove,
-+	.driver = {
-+		.name = "pwm-sifive",
-+		.of_match_table = pwm_sifive_of_match,
-+	},
-+};
-+module_platform_driver(pwm_sifive_driver);
-+
-+MODULE_DESCRIPTION("SiFive PWM driver");
-+MODULE_LICENSE("GPL v2");
--- 
-1.9.1
-
+T24gTW9uLCAyMDE5LTA1LTEzIGF0IDExOjE0ICswMDAwLCBSYXNtdXMgVmlsbGVtb2VzIHdyb3Rl
+Og0KPiBDQVVUSU9OOiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIG9mIHRoZSBv
+cmdhbml6YXRpb24uIERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVz
+cyB5b3UgcmVjb2duaXplIHRoZSBzZW5kZXIgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4N
+Cj4gDQo+IA0KPiBSZWFkaW5nIHRhYmxlIDQtMzAsIGFuZCBpdHMgZm9vdG5vdGVzLCBvZiB0aGUg
+UVVJQ0MgRW5naW5lIEJsb2NrDQo+IFJlZmVyZW5jZSBNYW51YWwgc2hvd3MgdGhhdCB0aGUgc2V0
+IG9mIHNudW0gX3ZhbHVlc18gaXMgbm90DQo+IG5lY2Vzc2FyaWx5IGp1c3QgYSBmdW5jdGlvbiBv
+ZiB0aGUgX251bWJlcl8gb2Ygc251bXMsIGFzIGdpdmVuIGluIHRoZQ0KPiBmc2wscWUtbnVtLXNu
+dW1zIHByb3BlcnR5Lg0KPiANCj4gQXMgYW4gYWx0ZXJuYXRpdmUsIHRvIG1ha2UgaXQgZWFzaWVy
+IHRvIGFkZCBzdXBwb3J0IGZvciBvdGhlciB2YXJpYW50cw0KPiBvZiB0aGUgUVVJQ0MgZW5naW5l
+IElQLCB0aGlzIGludHJvZHVjZXMgYSBuZXcgYmluZGluZyBmc2wscWUtc251bXMsDQo+IHdoaWNo
+IGF1dG9tYXRpY2FsbHkgZW5jb2RlcyBib3RoIHRoZSBudW1iZXIgb2Ygc251bXMgYW5kIHRoZSBh
+Y3R1YWwNCj4gdmFsdWVzIHRvIHVzZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFJhc211cyBWaWxs
+ZW1vZXMgPHJhc211cy52aWxsZW1vZXNAcHJldmFzLmRrPg0KPiAtLS0NCj4gUm9iLCB0aGFua3Mg
+Zm9yIHRoZSByZXZpZXcgb2YgdjIuIEhvd2V2ZXIsIHNpbmNlIEkgbW92ZWQgdGhlIGV4YW1wbGUN
+Cj4gZnJvbSB0aGUgY29tbWl0IGxvZyB0byB0aGUgYmluZGluZyAocGVyIEpvYWtpbSdzIHJlcXVl
+c3QpLCBJIGRpZG4ndA0KDQpUaGFua3MsIGxvb2tzIGdvb2Qgbm93Lg0KDQo+IGFkZCBhIFJldmll
+d2VkLWJ5IHRhZyBmb3IgdGhpcyByZXZpc2lvbi4NCj4gDQo+ICAuLi4vZGV2aWNldHJlZS9iaW5k
+aW5ncy9zb2MvZnNsL2NwbV9xZS9xZS50eHQgICAgICAgfCAxMyArKysrKysrKysrKystDQo+ICAx
+IGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlm
+ZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvZnNsL2NwbV9x
+ZS9xZS50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL2ZzbC9jcG1f
+cWUvcWUudHh0DQo+IGluZGV4IGQ3YWZhZmY1ZmFmZi4uMDVlYzJhODM4YzU0IDEwMDY0NA0KPiAt
+LS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL2ZzbC9jcG1fcWUvcWUu
+dHh0DQo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvZnNsL2Nw
+bV9xZS9xZS50eHQNCj4gQEAgLTE4LDcgKzE4LDggQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4g
+IC0gcmVnIDogb2Zmc2V0IGFuZCBsZW5ndGggb2YgdGhlIGRldmljZSByZWdpc3RlcnMuDQo+ICAt
+IGJ1cy1mcmVxdWVuY3kgOiB0aGUgY2xvY2sgZnJlcXVlbmN5IGZvciBRVUlDQyBFbmdpbmUuDQo+
+ICAtIGZzbCxxZS1udW0tcmlzY3M6IGRlZmluZSBob3cgbWFueSBSSVNDIGVuZ2luZXMgdGhlIFFF
+IGhhcy4NCj4gLS0gZnNsLHFlLW51bS1zbnVtczogZGVmaW5lIGhvdyBtYW55IHNlcmlhbCBudW1i
+ZXIoU05VTSkgdGhlIFFFIGNhbiB1c2UgZm9yIHRoZQ0KPiArLSBmc2wscWUtc251bXM6IFRoaXMg
+cHJvcGVydHkgaGFzIHRvIGJlIHNwZWNpZmllZCBhcyAnL2JpdHMvIDgnIHZhbHVlLA0KPiArICBk
+ZWZpbmluZyB0aGUgYXJyYXkgb2Ygc2VyaWFsIG51bWJlciAoU05VTSkgdmFsdWVzIGZvciB0aGUg
+dmlydHVhbA0KPiAgICB0aHJlYWRzLg0KPiANCj4gIE9wdGlvbmFsIHByb3BlcnRpZXM6DQo+IEBA
+IC0zNCw2ICszNSwxMSBAQCBSZWNvbW1lbmRlZCBwcm9wZXJ0aWVzDQo+ICAtIGJyZy1mcmVxdWVu
+Y3kgOiB0aGUgaW50ZXJuYWwgY2xvY2sgc291cmNlIGZyZXF1ZW5jeSBmb3IgYmF1ZC1yYXRlDQo+
+ICAgIGdlbmVyYXRvcnMgaW4gSHouDQo+IA0KPiArRGVwcmVjYXRlZCBwcm9wZXJ0aWVzDQo+ICst
+IGZzbCxxZS1udW0tc251bXM6IGRlZmluZSBob3cgbWFueSBzZXJpYWwgbnVtYmVyKFNOVU0pIHRo
+ZSBRRSBjYW4gdXNlDQo+ICsgIGZvciB0aGUgdGhyZWFkcy4gVXNlIGZzbCxxZS1zbnVtcyBpbnN0
+ZWFkIHRvIG5vdCBvbmx5IHNwZWNpZnkgdGhlDQo+ICsgIG51bWJlciBvZiBzbnVtcywgYnV0IGFs
+c28gdGhlaXIgdmFsdWVzLg0KPiArDQo+ICBFeGFtcGxlOg0KPiAgICAgICBxZUBlMDEwMDAwMCB7
+DQo+ICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+IEBAIC00NCw2ICs1MCwxMSBAQCBF
+eGFtcGxlOg0KPiAgICAgICAgIHJlZyA9IDxlMDEwMDAwMCA0ODA+Ow0KPiAgICAgICAgIGJyZy1m
+cmVxdWVuY3kgPSA8MD47DQo+ICAgICAgICAgYnVzLWZyZXF1ZW5jeSA9IDwxNzlBN0IwMD47DQo+
+ICsgICAgICAgZnNsLHFlLXNudW1zID0gL2JpdHMvIDggPA0KPiArICAgICAgICAgICAgICAgMHgw
+NCAweDA1IDB4MEMgMHgwRCAweDE0IDB4MTUgMHgxQyAweDFEDQo+ICsgICAgICAgICAgICAgICAw
+eDI0IDB4MjUgMHgyQyAweDJEIDB4MzQgMHgzNSAweDg4IDB4ODkNCj4gKyAgICAgICAgICAgICAg
+IDB4OTggMHg5OSAweEE4IDB4QTkgMHhCOCAweEI5IDB4QzggMHhDOQ0KPiArICAgICAgICAgICAg
+ICAgMHhEOCAweEQ5IDB4RTggMHhFOT47DQo+ICAgICAgIH0NCj4gDQo+ICAqIE11bHRpLVVzZXIg
+UkFNIChNVVJBTSkNCj4gLS0NCj4gMi4yMC4xDQo+IA0KDQo=
