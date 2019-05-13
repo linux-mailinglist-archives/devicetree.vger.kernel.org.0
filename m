@@ -2,177 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA00F1B03E
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 08:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF6E61B0C5
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 09:05:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727341AbfEMGWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 02:22:41 -0400
-Received: from conuserg-10.nifty.com ([210.131.2.77]:39928 "EHLO
-        conuserg-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727582AbfEMGWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 02:22:40 -0400
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
-        by conuserg-10.nifty.com with ESMTP id x4D6MKMH031944;
-        Mon, 13 May 2019 15:22:24 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com x4D6MKMH031944
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1557728546;
-        bh=OfIIhemlSrlQXaNMkfHqX67qd7jBRMPIHtESheuz9Xg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MGuNVM4HIJn3sGkIzCx0NaTE96qTKfhXUc4a/D58K2M1iRkcFfX8P2tF8AE2NGZJD
-         D1PPv7MLc7uTQo3h9ng9GAWKckObeJnnAPN+WGFJitVDzWkSRysrBoEYGdk1wYvmRM
-         s+c8yRHquRkzlJyY2Q8AsnOGT4QmMNN5w7lGIZxrOpE9wzZjEsHc2L6bHsceL2e8fs
-         v6DK5RAoFJy+JbCP/d0RwDMMph4APDu82HpeTu5xqXz39PlzCgg0FEmID4TWt4M8+4
-         K78FqMrTdboC53WryiUe08oETiyFMjLTjiEQzHDUYJscz5eI8NbjZl7ETLQjC04Ubo
-         NF2HmL3+14c4g==
-X-Nifty-SrcIP: [153.142.97.92]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     linux-kbuild@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        netdev@vger.kernel.org, x86@kernel.org, linux-media@vger.kernel.org
-Subject: [PATCH 4/4] kbuild: remove 'addtree' and 'flags' magic for header search paths
-Date:   Mon, 13 May 2019 15:22:17 +0900
-Message-Id: <20190513062217.20750-5-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190513062217.20750-1-yamada.masahiro@socionext.com>
-References: <20190513062217.20750-1-yamada.masahiro@socionext.com>
+        id S1727305AbfEMHFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 03:05:07 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:35950 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725866AbfEMHFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 03:05:07 -0400
+Received: by mail-vs1-f68.google.com with SMTP id c76so7349349vsd.3;
+        Mon, 13 May 2019 00:05:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4gXmxzF/Po14uQPLggz4c13bFBQQgBSLY5M86BA4rHg=;
+        b=Jxq+qTXEvj2MfT8eJ8De8dK1yRKJhLB01iIFZJCztitgZ6LadyEqdEArvfQSnz7bwF
+         1lfNNIIYa7mYK14O0sMWglOWOeEnqRDxDDxczV4CzeyTnrcgkskD2NlwGgbpkmbEIMsF
+         bMsgcFRWlYQZGNCYRBRXzIQZekeLaPKb1s5F6xYJiMl6mTS9amdN3wfVGQf20wjg5Vwh
+         l9UqbSAJxojH2EVoKnVuzAknm5bBy45aY4y5i1tzx/i5em90iEt9OykmSwOHp7ZXEbEq
+         G0BB1XjapZE2auk9tfXuqJylLd3wZVCeJXLhcoyX9CakxPxN2hjSlpm+dUNrCgWySz22
+         vhXw==
+X-Gm-Message-State: APjAAAWC/nnA2eNWBgvkuUp8331Azvnkp3is3fLZaY2Mhy6R31o5cxtC
+        RZ9qAiBGifrxCrBynXqR0S9eDGWGzY+pKhxyUyU=
+X-Google-Smtp-Source: APXvYqxgfS2ynbKs1o+2aZa8e7ecnAhyI2eO9iqCen14keAf7VzmDKsxF/OAPpOIAq4KuP9J+HPN5ZGt1iA/54SjGCc=
+X-Received: by 2002:a67:fdd4:: with SMTP id l20mr8909563vsq.63.1557731105926;
+ Mon, 13 May 2019 00:05:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190505180646.1442-2-radu_nicolae.pirea@upb.ro>
+ <20190508090857.B7CB344003F@finisterre.sirena.org.uk> <20190508105105.GN3995@dell>
+ <20190512075223.GF21483@sirena.org.uk>
+In-Reply-To: <20190512075223.GF21483@sirena.org.uk>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 13 May 2019 09:04:54 +0200
+Message-ID: <CAMuHMdUOwff68bSjvG3vo5+HUjtRCNXLbAiUc7et4m+yfSCoFA@mail.gmail.com>
+Subject: Re: Applied "dt-bindings: mfd: atmel-usart: add DMA bindings for
+ USART in SPI mode" to the spi tree
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Richard Genoud <richard.genoud@gmail.com>,
+        Radu Pirea <radu_nicolae.pirea@upb.ro>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'addtree' and 'flags' in scripts/Kbuild.include are so compilecated
-and ugly.
+Hi Mark,
 
-As I mentioned in [1], Kbuild should stop automatic prefixing of header
-search path options.
+On Sun, May 12, 2019 at 7:05 PM Mark Brown <broonie@kernel.org> wrote:
+> On Wed, May 08, 2019 at 11:51:05AM +0100, Lee Jones wrote:
+> > > Signed-off-by: Mark Brown <broonie@kernel.org>
+> > > ---
+> > >  .../devicetree/bindings/mfd/atmel-usart.txt   | 20 ++++++++++++++-----
+>
+> > Interesting!
+>
+> For some reason the bindings for the SPI function got put in the MFD
+> directory, dunno why.
 
-Instead, in-kernel Makefiles should explicitly add $(srctree)/ to
-the search paths in the srctree.
+Because this is a block that can do either SPI or USART, hence MFD?
 
-Kbuild still caters to add $(srctree)/$(src) and $(objtree)/$(obj)
-to the header search path for O= building, but never touches extra
-compiler options from ccflags-y etc.
+Gr{oetje,eeting}s,
 
-Going forward, in-kernel Makefiles should explicitly specify
-$(srctree)/ if extra search paths are needed.
+                        Geert
 
- Example)    ccflags-y += -I $(srctree)/foo/bar
-
-You do not have to change external module Makefiles because $(src)
-is already an absolute path for external modules.
-
- Example)    ccflags-y += -I $(src)/foo/bar
-
-[1]: https://patchwork.kernel.org/patch/9632347/
-
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
----
-
- scripts/Kbuild.include |  8 --------
- scripts/Makefile.host  | 12 +++++-------
- scripts/Makefile.lib   | 26 ++++++++------------------
- 3 files changed, 13 insertions(+), 33 deletions(-)
-
-diff --git a/scripts/Kbuild.include b/scripts/Kbuild.include
-index 7484b9d8272f..a675ce11a573 100644
---- a/scripts/Kbuild.include
-+++ b/scripts/Kbuild.include
-@@ -192,14 +192,6 @@ clean := -f $(srctree)/scripts/Makefile.clean obj
- # $(Q)$(MAKE) $(hdr-inst)=dir
- hdr-inst := -f $(srctree)/scripts/Makefile.headersinst obj
- 
--# Prefix -I with $(srctree) if it is not an absolute path.
--# skip if -I has no parameter
--addtree = $(if $(patsubst -I%,%,$(1)), \
--$(if $(filter-out -I/% -I./% -I../%,$(1)),$(patsubst -I%,-I$(srctree)/%,$(1)),$(1)),$(1))
--
--# Find all -I options and call addtree
--flags = $(foreach o,$($(1)),$(if $(filter -I%,$(o)),$(call addtree,$(o)),$(o)))
--
- # echo command.
- # Short version is used, if $(quiet) equals `quiet_', otherwise full one.
- echo-cmd = $(if $($(quiet)cmd_$(1)),\
-diff --git a/scripts/Makefile.host b/scripts/Makefile.host
-index 73b804197fca..b6a54bdf0965 100644
---- a/scripts/Makefile.host
-+++ b/scripts/Makefile.host
-@@ -67,18 +67,16 @@ _hostc_flags   = $(KBUILD_HOSTCFLAGS)   $(HOST_EXTRACFLAGS)   \
- _hostcxx_flags = $(KBUILD_HOSTCXXFLAGS) $(HOST_EXTRACXXFLAGS) \
-                  $(HOSTCXXFLAGS_$(basetarget).o)
- 
--__hostc_flags	= $(_hostc_flags)
--__hostcxx_flags	= $(_hostcxx_flags)
--
-+# $(objtree)/$(obj) for including generated headers from checkin source files
- ifeq ($(KBUILD_EXTMOD),)
- ifneq ($(srctree),.)
--__hostc_flags	= -I$(obj) $(call flags,_hostc_flags)
--__hostcxx_flags	= -I$(obj) $(call flags,_hostcxx_flags)
-+_hostc_flags   += -I $(objtree)/$(obj)
-+_hostcxx_flags += -I $(objtree)/$(obj)
- endif
- endif
- 
--hostc_flags    = -Wp,-MD,$(depfile) $(__hostc_flags)
--hostcxx_flags  = -Wp,-MD,$(depfile) $(__hostcxx_flags)
-+hostc_flags    = -Wp,-MD,$(depfile) $(_hostc_flags)
-+hostcxx_flags  = -Wp,-MD,$(depfile) $(_hostcxx_flags)
- 
- #####
- # Compile programs on the host
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 41e98fa66b91..1b412d4394ae 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -137,36 +137,26 @@ _c_flags += $(if $(patsubst n%,, \
- 	$(CFLAGS_KCOV))
- endif
- 
--__c_flags	= $(_c_flags)
--__a_flags	= $(_a_flags)
--__cpp_flags     = $(_cpp_flags)
--
--# If building the kernel in a separate objtree expand all occurrences
--# of -Idir to -I$(srctree)/dir except for absolute paths (starting with '/').
-+# $(srctree)/$(src) for including checkin headers from generated source files
-+# $(objtree)/$(obj) for including generated headers from checkin source files
- ifeq ($(KBUILD_EXTMOD),)
- ifneq ($(srctree),.)
--
--# -I$(obj) locates generated .h files
--# $(call addtree,-I$(obj)) locates .h files in srctree, from generated .c files
--#   and locates generated .h files
--# FIXME: Replace both with specific CFLAGS* statements in the makefiles
--__c_flags	= $(if $(obj),$(call addtree,-I$(src)) -I$(obj)) \
--		  $(call flags,_c_flags)
--__a_flags	= $(call flags,_a_flags)
--__cpp_flags     = $(call flags,_cpp_flags)
-+_c_flags   += -I $(srctree)/$(src) -I $(objtree)/$(obj)
-+_a_flags   += -I $(srctree)/$(src) -I $(objtree)/$(obj)
-+_cpp_flags += -I $(srctree)/$(src) -I $(objtree)/$(obj)
- endif
- endif
- 
- c_flags        = -Wp,-MD,$(depfile) $(NOSTDINC_FLAGS) $(LINUXINCLUDE)     \
- 		 -include $(srctree)/include/linux/compiler_types.h       \
--		 $(__c_flags) $(modkern_cflags)                           \
-+		 $(_c_flags) $(modkern_cflags)                           \
- 		 $(basename_flags) $(modname_flags)
- 
- a_flags        = -Wp,-MD,$(depfile) $(NOSTDINC_FLAGS) $(LINUXINCLUDE)     \
--		 $(__a_flags) $(modkern_aflags)
-+		 $(_a_flags) $(modkern_aflags)
- 
- cpp_flags      = -Wp,-MD,$(depfile) $(NOSTDINC_FLAGS) $(LINUXINCLUDE)     \
--		 $(__cpp_flags)
-+		 $(_cpp_flags)
- 
- ld_flags       = $(KBUILD_LDFLAGS) $(ldflags-y) $(LDFLAGS_$(@F))
- 
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
