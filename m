@@ -2,104 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB6E81AFEA
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 07:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFBB41B035
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 08:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726277AbfEMFJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 01:09:14 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:5224 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbfEMFJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 01:09:14 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cd8fbd20000>; Sun, 12 May 2019 22:08:34 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Sun, 12 May 2019 22:09:13 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Sun, 12 May 2019 22:09:13 -0700
-Received: from HQMAIL110.nvidia.com (172.18.146.15) by HQMAIL104.nvidia.com
- (172.18.146.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 13 May
- 2019 05:09:12 +0000
-Received: from HQMAIL104.nvidia.com (172.18.146.11) by hqmail110.nvidia.com
- (172.18.146.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 13 May
- 2019 05:08:57 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL104.nvidia.com
- (172.18.146.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Mon, 13 May 2019 05:08:57 +0000
-Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5cd8fbe50000>; Sun, 12 May 2019 22:08:57 -0700
-From:   Vidya Sagar <vidyas@nvidia.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
-CC:     <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
-Subject: [PATCH V6 15/15] arm64: Add Tegra194 PCIe driver to defconfig
-Date:   Mon, 13 May 2019 10:36:26 +0530
-Message-ID: <20190513050626.14991-16-vidyas@nvidia.com>
+        id S1726642AbfEMGWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 02:22:30 -0400
+Received: from conuserg-10.nifty.com ([210.131.2.77]:39680 "EHLO
+        conuserg-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727351AbfEMGWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 02:22:30 -0400
+Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
+        by conuserg-10.nifty.com with ESMTP id x4D6MKMD031944;
+        Mon, 13 May 2019 15:22:21 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com x4D6MKMD031944
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1557728542;
+        bh=swEZk/Cz28om8/f0Dg5Vc4B35GQqTxoFUbP1b15szx0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ukcj8KGPL9n5eGX37YX+59e9VBeS2YQuC2ctkglb/oRV9CSvYxQ46LPf030QpAX1n
+         FiBvQlvVtcYFSAYmziyEYqZTTJflZmchyBGt8wMfisMRFXsZfz5r5/P+3zx5IY6esv
+         eK1Ut+jP6Jmu4AvAZFOuIqXe4pCF0xMrI4C+uhLppzqYDbv5OZpF9b/YdISs+URE1c
+         QU1x/JlipyxnSVOsoFS6ZGlED+EOufNSh662uQPRRfz85fM143fhiXd43ZN9bYof/n
+         +4/86QmaRcOoFujKqBrgT6/4Ro0iBauFyDyyKmuXaaC6c46sVv5ts1rG6tffPFLPQ3
+         Ei0/PevcXe2Dg==
+X-Nifty-SrcIP: [153.142.97.92]
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+To:     linux-kbuild@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        netdev@vger.kernel.org, x86@kernel.org, linux-media@vger.kernel.org
+Subject: [PATCH 0/4] kbuild: remove 'addtree' and 'flags' magic
+Date:   Mon, 13 May 2019 15:22:13 +0900
+Message-Id: <20190513062217.20750-1-yamada.masahiro@socionext.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190513050626.14991-1-vidyas@nvidia.com>
-References: <20190513050626.14991-1-vidyas@nvidia.com>
-X-NVConfidentiality: public
-MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557724114; bh=TG1BO7VjWyZ5GG8pPCGHN1pvhx441wUV7iT3GFGGVbE=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=lxRRozX6pBepVMJOJ273eLYdxlNbaE2qE4eyFw9LbUQAtp5akRJYtv6zQcvbfgd2a
-         sZ5lVAbOitsfPF5sh57N6+WjnXnEycVPpi2BelrWx7CqJBsBekmEL77FEb74PfdmKi
-         68nKGMgDKhCOS+f4LDi9p7GboXDE+J7WyDBKmauapQ1Of9wb3uv6g4DMPq1+ZBwrfD
-         05ivXGeLMVcZ5wiQWvToEGG9Ba1+/DWZC9strw71hT7qw7OdqPDVlWg5UtOSi+Z9xb
-         mFZj3A0EjlvChWvYVbOTvgtczbT145QuBSLVfIJ7H8esA3ONUN4vj7FLkCJ6tfrWF3
-         svrsymJypc8Ng==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe host controller driver for DesignWare core based
-PCIe controller IP present in Tegra194.
+The 'addtree' and 'flags' are longstanding PITA.
 
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
----
-Changes since [v5]:
-* None
+When we discussed this in kbuild ML,
+(https://patchwork.kernel.org/patch/9632347/)
+we agreed to get rid of this hack.
 
-Changes since [v4]:
-* None
+This required lots of efforts to send many fixups
+to each subsystem.
 
-Changes since [v3]:
-* None
+I did it, all the per-subsystem fixups were merged
+except media subsystem.
 
-Changes since [v2]:
-* None
+I will apply all the remaining fixups,
+and delete 'addtree' and 'flags' magic.
 
-Changes since [v1]:
-* Changed CONFIG_PCIE_TEGRA194 from 'y' to 'm'
+I have tested this series for a long time,
+and addressed all the reported issues.
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c12c505dd24f..57097c2dd67d 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -195,6 +195,7 @@ CONFIG_PCIE_QCOM=y
- CONFIG_PCIE_ARMADA_8K=y
- CONFIG_PCIE_KIRIN=y
- CONFIG_PCIE_HISI_STB=y
-+CONFIG_PCIE_TEGRA194=m
- CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
- CONFIG_DEVTMPFS=y
- CONFIG_DEVTMPFS_MOUNT=y
+
+Masahiro Yamada (4):
+  media: remove unneeded header search paths
+  media: prefix header search paths with $(srctree)/
+  treewide: prefix header search paths with $(srctree)/
+  kbuild: remove 'addtree' and 'flags' magic for header search paths
+
+ arch/mips/pnx833x/Platform                    |  2 +-
+ arch/powerpc/Makefile                         |  2 +-
+ arch/sh/Makefile                              |  4 +--
+ arch/x86/kernel/Makefile                      |  2 +-
+ arch/x86/mm/Makefile                          |  2 +-
+ arch/xtensa/boot/lib/Makefile                 |  2 +-
+ drivers/hid/intel-ish-hid/Makefile            |  2 +-
+ drivers/media/common/b2c2/Makefile            |  4 +--
+ drivers/media/dvb-frontends/cxd2880/Makefile  |  2 --
+ drivers/media/i2c/smiapp/Makefile             |  2 +-
+ drivers/media/mmc/siano/Makefile              |  3 +--
+ drivers/media/pci/b2c2/Makefile               |  2 +-
+ drivers/media/pci/bt8xx/Makefile              |  5 ++--
+ drivers/media/pci/cx18/Makefile               |  4 +--
+ drivers/media/pci/cx23885/Makefile            |  4 +--
+ drivers/media/pci/cx88/Makefile               |  4 +--
+ drivers/media/pci/ddbridge/Makefile           |  4 +--
+ drivers/media/pci/dm1105/Makefile             |  2 +-
+ drivers/media/pci/mantis/Makefile             |  2 +-
+ drivers/media/pci/netup_unidvb/Makefile       |  2 +-
+ drivers/media/pci/ngene/Makefile              |  4 +--
+ drivers/media/pci/pluto2/Makefile             |  2 +-
+ drivers/media/pci/pt1/Makefile                |  4 +--
+ drivers/media/pci/pt3/Makefile                |  4 +--
+ drivers/media/pci/smipcie/Makefile            |  5 ++--
+ drivers/media/pci/ttpci/Makefile              |  4 +--
+ drivers/media/platform/sti/c8sectpfe/Makefile |  5 ++--
+ drivers/media/radio/Makefile                  |  2 --
+ drivers/media/spi/Makefile                    |  4 +--
+ drivers/media/usb/as102/Makefile              |  2 +-
+ drivers/media/usb/au0828/Makefile             |  4 +--
+ drivers/media/usb/b2c2/Makefile               |  2 +-
+ drivers/media/usb/cx231xx/Makefile            |  5 ++--
+ drivers/media/usb/em28xx/Makefile             |  4 +--
+ drivers/media/usb/go7007/Makefile             |  2 +-
+ drivers/media/usb/pvrusb2/Makefile            |  4 +--
+ drivers/media/usb/siano/Makefile              |  2 +-
+ drivers/media/usb/tm6000/Makefile             |  4 +--
+ drivers/media/usb/ttusb-budget/Makefile       |  2 +-
+ drivers/media/usb/usbvision/Makefile          |  2 --
+ drivers/net/ethernet/chelsio/libcxgb/Makefile |  2 +-
+ drivers/target/iscsi/cxgbit/Makefile          |  6 ++---
+ drivers/usb/storage/Makefile                  |  2 +-
+ fs/ocfs2/dlm/Makefile                         |  3 +--
+ fs/ocfs2/dlmfs/Makefile                       |  2 +-
+ fs/xfs/Makefile                               |  4 +--
+ net/bpfilter/Makefile                         |  2 +-
+ scripts/Kbuild.include                        |  8 ------
+ scripts/Makefile.host                         | 12 ++++-----
+ scripts/Makefile.lib                          | 26 ++++++-------------
+ scripts/dtc/Makefile                          |  6 ++---
+ scripts/genksyms/Makefile                     |  4 +--
+ scripts/kconfig/Makefile                      |  4 +--
+ 53 files changed, 85 insertions(+), 119 deletions(-)
+
 -- 
 2.17.1
 
