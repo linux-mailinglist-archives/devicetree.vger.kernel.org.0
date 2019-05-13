@@ -2,89 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 842341BA29
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5571BA3C
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731380AbfEMPfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 11:35:38 -0400
-Received: from node.akkea.ca ([192.155.83.177]:38478 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729119AbfEMPfi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 May 2019 11:35:38 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id 38E244E204B; Mon, 13 May 2019 15:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1557761738; bh=IA5QAKvFGl/GldPEQRgRzpBt5N4v+SgzFVD8uRxNccQ=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=Gr6lUiLUBt9Z2GOjRtJI5PlFgszE/UujExaNo5g6icub4nEHuS/ux+ZfMt6SYEMS8
-         ry99GHzRa1x4enT/IOYkAM7FqhxRIV8OWYf6u2+BpanqGQoQPJLboa8dRxZhC7VJQ/
-         KEpFFo4MgOEHr90KjPnImdi/poHDRSw4y/lXWaMQ=
-To:     Joe Perches <joe@perches.com>
-Subject: Re: [PATCH v9 1/3] arm64: dts: fsl: librem5: Add a device tree for  the Librem5 devkit
-X-PHP-Originating-Script: 1000:rcube.php
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 13 May 2019 08:35:38 -0700
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-kernel-owner@vger.kernel.org
-In-Reply-To: <0f355f524122cb4dd6388431495a9d182e3ed9d6.camel@perches.com>
-References: <20190513145539.28174-1-angus@akkea.ca>
- <20190513145539.28174-2-angus@akkea.ca>
- <0f355f524122cb4dd6388431495a9d182e3ed9d6.camel@perches.com>
-Message-ID: <11c9a715ee0599e50359eb5ad5bd093e@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
+        id S1728459AbfEMPle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 11:41:34 -0400
+Received: from dc8-smtprelay2.synopsys.com ([198.182.47.102]:41258 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728046AbfEMPle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 11:41:34 -0400
+Received: from mailhost.synopsys.com (dc2-mailhost2.synopsys.com [10.12.135.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 31F1CC01E8;
+        Mon, 13 May 2019 15:41:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1557762098; bh=V4Ds8wpGcxDDnQ94OqrHoU9qqROXRW6ISAWZpliDISU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dcoEaAtyPhIy436IcB78mvMQiPJQtHRtZJC3t0uZrqnDlq4NgCB0hC9LMHQSSKvLi
+         4PDwPdT2jZVRqo32sqUfDt33o1LkblG8os0wrlRf5JtSdpP7SoRBNKZ1xMrUgN86sC
+         ocn3IIZE8LacifosHsfF7Tfib9s0U7L0lNwD14SKlXcUPJSK77WqPfST0nvhvGvQWg
+         /3p05AyClCMouwppkRrM+quu56s+PLdEHgCGSqlfiNXVzYZ5f6BloAefrkuz8lb86k
+         lKTzvFjAXn1ZfGJ1fyc/v2XEHxoV2K/vwmKzSznbelpfBcFYGNyIVuKosTNGQUoMv4
+         wOAS4u+xSjk3g==
+Received: from de02.synopsys.com (de02.internal.synopsys.com [10.225.17.21])
+        by mailhost.synopsys.com (Postfix) with ESMTP id AED65A009C;
+        Mon, 13 May 2019 15:41:32 +0000 (UTC)
+Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
+        by de02.synopsys.com (Postfix) with ESMTP id D15693F91F;
+        Mon, 13 May 2019 17:41:31 +0200 (CEST)
+From:   Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Joao.Pinto@synopsys.com,
+        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
+Subject: [PATCH 0/2] Add DesignWare IP support to simple reset
+Date:   Mon, 13 May 2019 17:41:26 +0200
+Message-Id: <cover.1557759340.git.gustavo.pimentel@synopsys.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joe,
+This patch series adds a reset-simple compatible string for DesignWare
+IPs allowing active high and low resets inputs.
 
-On 2019-05-13 08:11, Joe Perches wrote:
-> On Mon, 2019-05-13 at 07:55 -0700, Angus Ainslie (Purism) wrote:
->> This is for the development kit board for the Librem 5. The current 
->> level
->> of support yields a working console and is able to boot userspace from
->> the network or eMMC.
-> []
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts 
->> b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
->> new file mode 100644
-> 
-> Perhaps add an entry in the MAINTAINERS file for this
-> .dts file similar to other freescale boards?
+Also adds the corresponding documentation.
 
-The MAINTAINERS files has this entry
+Gustavo Pimentel (2):
+  reset: Add DesignWare IP support to simple reset
+  dt-bindings: Document the DesignWare IP reset bindings
 
-ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
-M:  Shawn Guo <shawnguo@kernel.org>
-M:  Sascha Hauer <s.hauer@pengutronix.de>
-R:  Pengutronix Kernel Team <kernel@pengutronix.de>
-R:  Fabio Estevam <festevam@gmail.com>
-R:  NXP Linux Team <linux-imx@nxp.com>
-L:  linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-S:  Maintained
-T:  git git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
-N:  imx
-N:  mxs
-X:  drivers/media/i2c/
+ .../devicetree/bindings/reset/snps,dw-reset.txt    | 30 ++++++++++++++++++++++
+ drivers/reset/Kconfig                              |  2 +-
+ drivers/reset/reset-simple.c                       |  3 +++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.txt
 
+-- 
+2.7.4
 
-Shouldn't the "N: imx" cover this board already ?
-
-Maybe I misunderstood, are you suggesting I add an new entry for "F: 
-arch/arm64/boot/dts/freescale/*" ?
-
-Thanks
-Angus
