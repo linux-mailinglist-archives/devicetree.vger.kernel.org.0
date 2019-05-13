@@ -2,141 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A1731B3DB
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 12:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88FD31B40D
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 12:29:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729038AbfEMKVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 06:21:08 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:57216 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727982AbfEMKVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 06:21:08 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id C529F6029B; Mon, 13 May 2019 10:21:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1557742867;
-        bh=o27eDQs8Ek4ezMIN7MbMFSjgb8ArAV7kG2SwqCvtZdA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bWnAias+J9AckEoCMLevKws76NYrDXBBLj8I8PGjCUEQuoLrYsbqZlIVIgdwr7dE1
-         2XyLTTeLBuDhXtkrm8PrvpKUzszgbLUSqv7BDGrZt/+gxYcaN+kx1PvN+1IN6FszaM
-         GBXWLXAGDcSmJfyJUY93kEk5jdytBx4RCBglyN9M=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1728164AbfEMK3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 06:29:13 -0400
+Received: from smtp1.de.adit-jv.com ([93.241.18.167]:60030 "EHLO
+        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727132AbfEMK3N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 06:29:13 -0400
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 5AD173C00D1;
+        Mon, 13 May 2019 12:29:09 +0200 (CEST)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 8oozwrA1y91j; Mon, 13 May 2019 12:29:02 +0200 (CEST)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sibis@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5966C609F3;
-        Mon, 13 May 2019 10:21:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1557742865;
-        bh=o27eDQs8Ek4ezMIN7MbMFSjgb8ArAV7kG2SwqCvtZdA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PfTxizg/kMBTrp0EV71oXX3pM20MBjQ3xDij46m8IqP93Dh8tGVh0kqdTdLyL8XX3
-         0ykzSWXuCEXU9uqEQtHcf3axo54NLz06R2s7TFfBW4xZb/P1cPu2id6jV7mUKrzq3Q
-         A+s62N4FmJbKMt5Bb4wskVuSMVIeA9aulAcmohdI=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5966C609F3
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, agross@kernel.org
-Cc:     david.brown@linaro.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        marc.w.gonzalez@free.fr, Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v4 9/9] arm64: dts: qcom: msm8998: Add rpmpd node
-Date:   Mon, 13 May 2019 15:50:15 +0530
-Message-Id: <20190513102015.26551-10-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190513102015.26551-1-sibis@codeaurora.org>
-References: <20190513102015.26551-1-sibis@codeaurora.org>
+        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 9F0EF3C00BF;
+        Mon, 13 May 2019 12:29:02 +0200 (CEST)
+Received: from vmlxhi-102.adit-jv.com (10.72.93.184) by HI2EXCH01.adit-jv.com
+ (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 13 May
+ 2019 12:29:02 +0200
+Date:   Mon, 13 May 2019 12:28:59 +0200
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     "George G. Davis" <george_davis@mentor.com>
+CC:     "George G. Davis" <ggdavisiv@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Andy Lowe <andy_lowe@mentor.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>
+Subject: Re: [PATCH] serial: sh-sci: disable DMA for uart_console
+Message-ID: <20190513102859.GA18462@vmlxhi-102.adit-jv.com>
+References: <20190506194233.GA32430@vmlxhi-102.adit-jv.com>
+ <1557413011-1662-1-git-send-email-george_davis@mentor.com>
+ <20190510171021.GA22691@vmlxhi-102.adit-jv.com>
+ <20190510183847.GB28648@mam-gdavis-lt>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20190510183847.GB28648@mam-gdavis-lt>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.72.93.184]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the rpmpd node on the msm8998 and define the available levels.
+Hi George,
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 51 +++++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+On Fri, May 10, 2019 at 02:38:47PM -0400, George G. Davis wrote:
+> Hello Eugeniu,
+> 
+> On Fri, May 10, 2019 at 07:10:21PM +0200, Eugeniu Rosca wrote:
+> > Hi George,
+> > 
+> > I am able to reproduce the SCIF2 console freeze described in the
+> > referenced patchwork link using M3-ES1.1-Salvator-XS and recent
+> > v5.1-9573-gb970afcfcabd kernel.
+> > 
+> > I confirm the behavior is healed with this patch. Thanks!
+> > Hope to see it accepted soon, since it fixes a super annoying
+> > console breakage every fourth boot or so on lots of R-Car3 targets.
+> > 
+> > Tested-by: Eugeniu Rosca <erosca@de.adit-jv.com>
+> 
+> Thanks for testing.
+> 
+> Also note, for the record, that the problem is not limited to SCIF2, e.g. try
+> setting console=ttySC<n> wheren <n> is not SCIF2 on any other board which
+> includes support for other serial ports, e.g. r8a7795-salvator-x, and you will
+> observe the same problem on other SCIF ports too. It's just a concidence that
+> most boards use SCIF2 as the default serial console where the console hangs
+> (resolved by this patch) have been observed on multiple boards.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 574be78a936e..aa501221ca4d 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-msm8998.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
-+#include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/gpio/gpio.h>
- 
- / {
-@@ -264,6 +265,56 @@
- 				compatible = "qcom,rpmcc-msm8998", "qcom,rpmcc";
- 				#clock-cells = <1>;
- 			};
-+
-+			rpmpd: power-controller {
-+				compatible = "qcom,msm8998-rpmpd";
-+				#power-domain-cells = <1>;
-+				operating-points-v2 = <&rpmpd_opp_table>;
-+
-+				rpmpd_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					rpmpd_opp_ret: opp1 {
-+						opp-level = <RPM_SMD_LEVEL_RETENTION>;
-+					};
-+
-+					rpmpd_opp_ret_plus: opp2 {
-+						opp-level = <RPM_SMD_LEVEL_RETENTION_PLUS>;
-+					};
-+
-+					rpmpd_opp_min_svs: opp3 {
-+						opp-level = <RPM_SMD_LEVEL_MIN_SVS>;
-+					};
-+
-+					rpmpd_opp_low_svs: opp4 {
-+						opp-level = <RPM_SMD_LEVEL_LOW_SVS>;
-+					};
-+
-+					rpmpd_opp_svs: opp5 {
-+						opp-level = <RPM_SMD_LEVEL_SVS>;
-+					};
-+
-+					rpmpd_opp_svs_plus: opp6 {
-+						opp-level = <RPM_SMD_LEVEL_SVS_PLUS>;
-+					};
-+
-+					rpmpd_opp_nom: opp7 {
-+						opp-level = <RPM_SMD_LEVEL_NOM>;
-+					};
-+
-+					rpmpd_opp_nom_plus: opp8 {
-+						opp-level = <RPM_SMD_LEVEL_NOM_PLUS>;
-+					};
-+
-+					rpmpd_opp_turbo: opp9 {
-+						opp-level = <RPM_SMD_LEVEL_TURBO>;
-+					};
-+
-+					rpmpd_opp_turbo_plus: opp10 {
-+						opp-level = <RPM_SMD_LEVEL_BINNING>;
-+					};
-+				};
-+			};
- 		};
- 	};
- 
+Thanks for the additional level of detail.
+
+FTR, trying to track the origin of the problem, it looks to me that the
+issue was _unmasked_ by v4.16-rc1 commit be7e251d20e6c8 ("tty: serial:
+sh-sci: Hide DMA config question") which turned on DMA on SCIF by
+default.
+
+I wonder if it'd be helpful to resend the patch w/o using --in-reply-to,
+so that it appears as standalone entry in linux-renesas-soc patchwork.
+Currently, assuming that the R-Car maintainers filter out any "Rejected"
+patches (which is the default patchwork behavior), your patch would be
+hidden from their eye.
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+Best Regards,
+Eugeniu.
