@@ -2,90 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7468F1BCF8
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 20:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B851BD2B
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 20:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732365AbfEMSJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 14:09:46 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:18205 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732361AbfEMSJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 14:09:45 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cd9b2ef0004>; Mon, 13 May 2019 11:09:51 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 13 May 2019 11:09:44 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 13 May 2019 11:09:44 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 13 May
- 2019 18:09:43 +0000
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 13 May
- 2019 18:09:44 +0000
-Received: from manikanta-bm2.nvidia.com (172.20.13.39) by HQMAIL.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Mon, 13 May 2019 18:09:40 +0000
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-To:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <lorenzo.pieralisi@arm.com>,
-        <vidyas@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Subject: [PATCH V3 29/29] PCI: tegra: Change link retry log level to debug
-Date:   Mon, 13 May 2019 23:37:44 +0530
-Message-ID: <20190513180744.16493-30-mmaddireddy@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190513180744.16493-1-mmaddireddy@nvidia.com>
-References: <20190513180744.16493-1-mmaddireddy@nvidia.com>
-X-NVConfidentiality: public
+        id S1726352AbfEMS2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 14:28:34 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:45364 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726286AbfEMS2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 14:28:34 -0400
+Received: by mail-pf1-f195.google.com with SMTP id s11so7622887pfm.12
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 11:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=lULlTV7m1pBxNEpFfsXGT5YAWHe6OnD78UhuQracLx8=;
+        b=ba8z1HjqfNcfNQjKO962vacXZSrGJfjVu0a94Rx2cmEQ0Dj9bHClLAPxRIitovoLUL
+         go+R0p+2WQ886PHGs9YVj6K4v936eyoIutajrb9hqAgsDZJ9WTJHtueRbJDUeHIWS7R5
+         XN6BC3BFEMfgTjd+VgvJ0iBKCiaL/dfGiZ6XirafRYfXoh1777NT/CcQ5SZYEhV1y6qL
+         RvgE5njVf/5gBOjDVUAF/vXjxWfDs+9tZ4ak39aqjn7aWm8ctR1eL1U8ysBphRallsPd
+         nHf9xrrvYxEo6uF00XfTT81EZc2KciUMYhQ4uEZdrA5009BwxnOwwO5mncxQ/UTF2frQ
+         rdgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lULlTV7m1pBxNEpFfsXGT5YAWHe6OnD78UhuQracLx8=;
+        b=pNAZV/dMqnk8jgNbb/DR3PcRjbQ9QpJkUyyQs5CywCHQQF9m/J2uVocYIeEjrxC2mC
+         cVUbOzoqxkmps1Fsb2VvleHasQnxhCqAQL2HIdDfi+CnbDowh/kbkSbH1Gunjqns23Oe
+         O4ASmyGPOibtn4QF5nLPXdwf6u8JK+bBGjf+RfDxIC25YeEZRDD3qwzAgr4LfYweno37
+         k7pPCCI1zuQrmZgSZvg12YHmmDRTEs6Sop/5btU0LO4fpsN+vroF9IrwJrzG8peZ/KwS
+         TKuxZQfPVBbzzqUROjbSgu7FMoL8OWwyilFkjnd7yGWe5GgQpxAJMEseMhIlSoB2QuNu
+         PJKw==
+X-Gm-Message-State: APjAAAXBQVcQDUN8YUHqPbyxyvtY59blFzdcaRpCEs1Q4WomzoUjwql8
+        TcGk3OsxXGxrYwd7LQdeLMZVsg==
+X-Google-Smtp-Source: APXvYqyyRyX/Z1Ftzu6C+Ft3g/y3kRv4J5edtr6lSayFN26x2cJKgLsUkqLQAty3g5bhEFF2jBUONg==
+X-Received: by 2002:a63:6b41:: with SMTP id g62mr21612026pgc.240.1557772113010;
+        Mon, 13 May 2019 11:28:33 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id r124sm15257455pgr.91.2019.05.13.11.28.31
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 13 May 2019 11:28:32 -0700 (PDT)
+Date:   Mon, 13 May 2019 11:28:53 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] arm64: dts: qcom: qcs404: Define APPS IOMMU
+Message-ID: <20190513182853.GI2085@tuxbook-pro>
+References: <20190510043421.31393-1-bjorn.andersson@linaro.org>
+ <20190510043421.31393-8-bjorn.andersson@linaro.org>
+ <20190513045402.GA2707@vkoul-mobl>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557770991; bh=dfk57XYZNcal8kO/q/km6FS8x4fl4LBYZX0nrUA4sbw=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=ZssemgCp9+L+mh35ktR66F3bBsa3hN9i2rovjVeEGH/PPTHM/z9604Q72v4a89lZQ
-         Z5j+eNfHMOhMvOREJdYvFU16tLQ38+lBHblM6xeJbuyFvHqGAfeYcZCxDlk5vv/3LM
-         73spqJKV1xkWaMC0vuV7QHd6xXQiSO3Pop9C/2cxgYwN0PS4nNUyGa4Lp3OSkk6Hmv
-         NUqKWEszwexlGjr3jV8I7O/O/o10AW5C0wdB1U/2w89x/14K/cIXiEpfv47XZA6tfH
-         4ICvrToj744qdk1z8ktWm9fw1IMIvVy2Ly7rRy2nLCTXIwob9Di0ttMsxl2ui1wDVw
-         JtRSnNduJeiVQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190513045402.GA2707@vkoul-mobl>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver checks for link up three times before giving up, each retry attempt
-is printed as an error. Letting users know that PCIe link is down and in the
-process of being brought up again is for debug, not an error condition.
+On Sun 12 May 21:54 PDT 2019, Vinod Koul wrote:
 
-Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
----
-V3: Changed dev_err to dev_dbg
+> On 09-05-19, 21:34, Bjorn Andersson wrote:
+> > The APPS IOMMU provides contexts for FastRPC, MDP and WLAN, among other
+> > things.  Define these. We use the qcom_iommu binding because the
+>         ^^^
+> Double spaces crept in..
+> 
 
-V2: Updated commit log
+That's to give you some breathing room while reading it - but not as
+much as a new paragraph :)
 
- drivers/pci/controller/pci-tegra.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > firmware restrictions in incompatible with the arm-smmu.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/qcs404.dtsi | 85 ++++++++++++++++++++++++++++
+> >  1 file changed, 85 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> > index b213f6acad76..fcde4f0334c2 100644
+> > --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> > @@ -378,6 +378,91 @@
+> >  			reg = <0x01937000 0x25000>;
+> >  		};
+> >  
+> > +		apps_iommu: iommu@1e20000 {
+> > +			compatible = "qcom,qcs404-iommu", "qcom,msm-iommu-v1";
+> 
+> Did we define qcom,qcs404-iommu in bindings, It does not seem to be
+> there in this patch, next or integration one
+> 
 
-diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-index b021863303f1..1370d0015f50 100644
---- a/drivers/pci/controller/pci-tegra.c
-+++ b/drivers/pci/controller/pci-tegra.c
-@@ -2373,7 +2373,7 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
- 		} while (--timeout);
- 
- 		if (!timeout) {
--			dev_err(dev, "link %u down, retrying\n", port->index);
-+			dev_dbg(dev, "link %u down, retrying\n", port->index);
- 			goto retry;
- 		}
- 
--- 
-2.17.1
+No, this was entirely intended to fall back on the generic compatible.
 
+That said, further testing of this series indicates that we have a
+cache issue related to the SMMU. In working out this I came up with a
+series of patches to the arm-smmu driver that allow us to use this with
+the standard Qualcomm bootloader.
+
+So let's ignore patch 7 and 8 in this series until we know how to deal
+with the SMMU.
+
+Regards,
+Bjorn
