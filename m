@@ -2,51 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 857561BA6B
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 17:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F37C11BA94
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 18:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728820AbfEMPxc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 13 May 2019 11:53:32 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:39004 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728291AbfEMPxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 11:53:32 -0400
-Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d8])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 0E6FC14E11A1D;
-        Mon, 13 May 2019 08:53:32 -0700 (PDT)
-Date:   Mon, 13 May 2019 08:53:31 -0700 (PDT)
-Message-Id: <20190513.085331.1462639042534804530.davem@davemloft.net>
-To:     ynezz@true.cz
-Cc:     andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
-        robh+dt@kernel.org, frowand.list@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of_net: Fix missing of_find_device_by_node ref count
- drop
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <1557740500-2479-1-git-send-email-ynezz@true.cz>
-References: <1557740500-2479-1-git-send-email-ynezz@true.cz>
-X-Mailer: Mew version 6.8 on Emacs 26.1
+        id S1730250AbfEMQFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 12:05:34 -0400
+Received: from smtprelay0192.hostedemail.com ([216.40.44.192]:39066 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730269AbfEMQFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 12:05:33 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay04.hostedemail.com (Postfix) with ESMTP id D35CA180A8CCE;
+        Mon, 13 May 2019 16:05:31 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::,RULES_HIT:41:355:379:599:800:960:966:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:2110:2196:2199:2393:2553:2559:2562:2691:2828:3138:3139:3140:3141:3142:3354:3622:3865:3866:3867:3868:3870:3871:3872:3873:3874:4321:4385:5007:6119:6742:7514:7809:7903:10004:10400:10848:11232:11657:11658:11914:12043:12296:12555:12679:12740:12760:12895:13071:13184:13229:13255:13439:14096:14097:14180:14181:14659:14721:21060:21080:21451:21627:21740:30054:30090:30091,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:29,LUA_SUMMARY:none
+X-HE-Tag: band11_4ce277087f652
+X-Filterd-Recvd-Size: 3941
+Received: from XPS-9350.home (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
+        (Authenticated sender: joe@perches.com)
+        by omf14.hostedemail.com (Postfix) with ESMTPA;
+        Mon, 13 May 2019 16:05:28 +0000 (UTC)
+Message-ID: <a2a45d8f881d877027e2c32faf71c7a3f4897324.camel@perches.com>
+Subject: Re: [PATCH v9 1/3] arm64: dts: fsl: librem5: Add a device tree for
+ the Librem5 devkit
+From:   Joe Perches <joe@perches.com>
+To:     Angus Ainslie <angus@akkea.ca>
+Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-kernel-owner@vger.kernel.org
+Date:   Mon, 13 May 2019 09:05:27 -0700
+In-Reply-To: <11c9a715ee0599e50359eb5ad5bd093e@www.akkea.ca>
+References: <20190513145539.28174-1-angus@akkea.ca>
+         <20190513145539.28174-2-angus@akkea.ca>
+         <0f355f524122cb4dd6388431495a9d182e3ed9d6.camel@perches.com>
+         <11c9a715ee0599e50359eb5ad5bd093e@www.akkea.ca>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.30.1-1build1 
 Mime-Version: 1.0
-Content-Type: Text/Plain; charset=iso-8859-15
-Content-Transfer-Encoding: 8BIT
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 13 May 2019 08:53:32 -0700 (PDT)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Petr ¦tetiar <ynezz@true.cz>
-Date: Mon, 13 May 2019 11:41:39 +0200
+On Mon, 2019-05-13 at 08:35 -0700, Angus Ainslie wrote:
+> Hi Joe,
 
-> of_find_device_by_node takes a reference to the embedded struct device
-> which needs to be dropped after use.
+Hi.
+
+> On 2019-05-13 08:11, Joe Perches wrote:
+> > On Mon, 2019-05-13 at 07:55 -0700, Angus Ainslie (Purism) wrote:
+> > > This is for the development kit board for the Librem 5. The current 
+> > > level
+> > > of support yields a working console and is able to boot userspace from
+> > > the network or eMMC.
+> > []
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts 
+> > > b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> > > new file mode 100644
+> > 
+> > Perhaps add an entry in the MAINTAINERS file for this
+> > .dts file similar to other freescale boards?
 > 
-> Fixes: d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
-> Reported-by: kbuild test robot <lkp@intel.com>
-> Reported-by: Julia Lawall <julia.lawall@lip6.fr>
-> Signed-off-by: Petr ¦tetiar <ynezz@true.cz>
+> The MAINTAINERS files has this entry
+> 
+> ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
+> M:  Shawn Guo <shawnguo@kernel.org>
+> M:  Sascha Hauer <s.hauer@pengutronix.de>
+> R:  Pengutronix Kernel Team <kernel@pengutronix.de>
+> R:  Fabio Estevam <festevam@gmail.com>
+> R:  NXP Linux Team <linux-imx@nxp.com>
+> L:  linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> S:  Maintained
+> T:  git git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
+> N:  imx
+> N:  mxs
+> X:  drivers/media/i2c/
+> 
+> Shouldn't the "N: imx" cover this board already ?
 
-Applied, thank you.
+Yes, it would, but not 'exclusively' by the get_maintainer.pl
+script.
+
+> Maybe I misunderstood, are you suggesting I add an new entry for "F: 
+> arch/arm64/boot/dts/freescale/*" ?
+
+I don't believe an F: arch/arm64/boot/dts/freescale/*
+pattern would be appropriate as there is already another
+section with this path as a pattern.
+
+ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE
+M:	Shawn Guo <shawnguo@kernel.org>
+M:	Li Yang <leoyang.li@nxp.com>
+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+S:	Maintained
+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
+F:	arch/arm/boot/dts/ls1021a*
+F:	arch/arm64/boot/dts/freescale/fsl-*
+F:	arch/arm64/boot/dts/freescale/qoriq-*
+
+I suggest perhaps just adding a more specific entry of
+
+F:	arch/arm64/boot/dts/freescale/imx*
+
+And just FYI:
+
+F: entries should be preferred over N: entries as
+filename collisions with other regex matches are common.
+
+Controlling the mismatches as was done with the X: exclusion
+for drivers/media/i2c/ may not scale if another filename
+is added into the kernel tree that is not maintained by you
+that matches either of the imx or mxs pattern.
+
+It's not really a significant issue though you may get a few
+patches for files you don't care about at some point.
+
+cheers, Joe
+
