@@ -2,66 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3971B484
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEF201B493
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 13:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729262AbfEMLGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 07:06:36 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:47959 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727695AbfEMLGd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 07:06:33 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1hQ8ms-0001aM-9u; Mon, 13 May 2019 13:06:30 +0200
-Message-ID: <1557745589.4442.5.camel@pengutronix.de>
-Subject: Re: [PATCH v3 0/4] Add reset controller support for BM1880 SoC
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
-        alec.lin@bitmain.com
-Date:   Mon, 13 May 2019 13:06:29 +0200
-In-Reply-To: <20190510184525.13568-1-manivannan.sadhasivam@linaro.org>
-References: <20190510184525.13568-1-manivannan.sadhasivam@linaro.org>
+        id S1728520AbfEMLNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 07:13:30 -0400
+Received: from mail-vk1-f194.google.com ([209.85.221.194]:36961 "EHLO
+        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728409AbfEMLNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 07:13:30 -0400
+Received: by mail-vk1-f194.google.com with SMTP id o187so3191674vkg.4;
+        Mon, 13 May 2019 04:13:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/pd5isyFpDeE3AyBnCUJiWiqlznT6f7kJ6kW0m/JGv0=;
+        b=DgyZg9ozrEcJ/EnUGFSHoV8IdZEN2HlUrfFlXmK/lp9ZyepLBvsECfsnva1TSv3XZu
+         g72eABAwyL8RwofvIT7KLlu9dFFACmhYsBtKIzOyWpmXVLdfoWuGv4vVPhuii8nqRVTP
+         nHNG8tM74jU9HXp/oayGop0mSSP3xx6h9I6kGwyZmdb+w5Ae65UQGMxka9+Q3zpQUK+L
+         AYUg0vvdh5/q5pVCywqtMJoIrZWT5s8dtSnJXQXP0VjAPdSYJhs+KRTJuoO9yPqESRYu
+         E/btcqLrhTgzf/82yMbjK5IA828pB41DtfjqPDZMB+8e6InUFz9Zuu319CpPALPNE/6D
+         n/2A==
+X-Gm-Message-State: APjAAAVgyPeZOwbHD0tziHMX/wxH0TjEdNAmndbMzqd4EO3CR8tfAApL
+        yU7aNN01iTJ9cCCcBQkoh2eJcxKBJwDTxiY5Ohs=
+X-Google-Smtp-Source: APXvYqzGQGneFk2qC7z1BupEocV/I1PZSWp0WeD+iIZ6EKW9Py9AqeGvI70MJa2R3Izqb6b5XGD0VkEuo5ymCAzpPZc=
+X-Received: by 2002:a1f:3dc9:: with SMTP id k192mr3729750vka.74.1557746008863;
+ Mon, 13 May 2019 04:13:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190506194233.GA32430@vmlxhi-102.adit-jv.com> <1557413011-1662-1-git-send-email-george_davis@mentor.com>
+In-Reply-To: <1557413011-1662-1-git-send-email-george_davis@mentor.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 13 May 2019 13:13:16 +0200
+Message-ID: <CAMuHMdUCcxfVdY1PqfYRZMjHN2eP_-NAsniCY39XyrDysAu1Pw@mail.gmail.com>
+Subject: Re: [PATCH] serial: sh-sci: disable DMA for uart_console
+To:     "George G. Davis" <ggdavisiv@gmail.com>
+Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Andy Lowe <andy_lowe@mentor.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "George G. Davis" <george_davis@mentor.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi George,
 
-On Sat, 2019-05-11 at 00:15 +0530, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This patchset adds reset controller support for Bitmain BM1880 SoC.
-> BM1880 SoC has only one reset controller and the reset-simple driver
-> has been reused here.
-> 
-> This patchset has been tested on 96Boards Sophon Edge board.
-> 
-> Thanks,
-> Mani
-> 
-> Changes in v3:
-> 
-> * Removed the clk-rst part as it turned out be the clock gating register set.
+On Thu, May 9, 2019 at 4:44 PM George G. Davis <ggdavisiv@gmail.com> wrote:
+> As noted in commit 84b40e3b57ee ("serial: 8250: omap: Disable DMA for
+> console UART"), UART console lines use low-level PIO only access functions
+> which will conflict with use of the line when DMA is enabled, e.g. when
+> the console line is also used for systemd messages. So disable DMA
+> support for UART console lines.
+>
+> Fixes: https://patchwork.kernel.org/patch/10929511/
+> Reported-by: Michael Rodin <mrodin@de.adit-jv.com>
+> Cc: Eugeniu Rosca <erosca@de.adit-jv.com>
+> Signed-off-by: George G. Davis <george_davis@mentor.com>
 
-Thank you, I'd like to pick up patches 1, 3, and 4.
+I think this makes sense.  In addition to OMAP 8250, the same approach
+is used in the Mediatek 8250 and iMX serial drivers.
 
-Since patch 2 depends on patch 1, you could either temporarily replace
-the constants with their numerical value, until patch 1 is merged, or I
-could provide a stable branch that contains patch 1 after v5.2-rc1.
+Regardless, this is definitely better than removing the "dmas" properties
+from DT, as DT describes hardware, not usage policies.
 
-regards
-Philipp
+Anyone else with a comment?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
