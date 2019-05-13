@@ -2,136 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80AAC1B8E9
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 16:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A20D51B8F2
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 16:47:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729904AbfEMOo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 10:44:58 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:34705 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728081AbfEMOo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 10:44:58 -0400
-Received: by mail-ed1-f67.google.com with SMTP id p27so17977135eda.1
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 07:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=sender:date:from:to:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=oa11tgFM6isQYlc2/lSr8+dtL7dz0FGS2ImXszdei94=;
-        b=lkK1jfdXRSWG4EOPXpNEsgoMZb8lUzm2FfYavTsrFBTY7w3Z4FVJ9cp/fBcnbUD9bK
-         Frxw45KRQigXleUJaVccMl3gMpsrT0DKhj92T3OICo7PFH1ZWYiDKuhrJn4Bo6DXp0gB
-         BN+9OOpk6LCzBYskBvabimkY7bAvWM5tFDS84=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=oa11tgFM6isQYlc2/lSr8+dtL7dz0FGS2ImXszdei94=;
-        b=lPZNuSbxiqIZwqjLxt1OrCXxCHXnGX/G2mfGCy1gXuWfy7KxWlKlmV/JWjjB1QzBjp
-         Ou8MEfVGHOsJ5XfoPuMshxWZYYQepimQZWsq1gqtl8odp3xyovcgmceXeZuGF9Hl5Flv
-         416sX0eS6yy2ip3jscKwROdIhZbHfa8UgHIRYaNNLAdgmita/CkztgPKAAr90OQkm+90
-         jQguflxQa6oHRj2lN4x9hFIgNtR0T2fd5LxF6OHbpL+RVmiom9NTQmtHDkaqdRzF5ZZ2
-         lhFeVSQwWAn6VzBgl0/dqPUMeEsPFR5CvP8WozEC9bZcoFXJVh8RLJB/CHiwwSdUlhD6
-         XYWw==
-X-Gm-Message-State: APjAAAVv24ByjkXOo9OnFYpftQIsgrEXJYJk00yjI3ijggMbxpztQ147
-        gwKPGUaYuYNc53HpGfNLoZL/NQ==
-X-Google-Smtp-Source: APXvYqzazE/ARkr3DfLFYQv2UcXLE6AXccxEO07VmSzGlXapLczjo2jaDfA5V6TtDA06sVwBcw/rGw==
-X-Received: by 2002:a17:906:18b1:: with SMTP id c17mr22862891ejf.196.1557758696660;
-        Mon, 13 May 2019 07:44:56 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
-        by smtp.gmail.com with ESMTPSA id ox15sm1844293ejb.52.2019.05.13.07.44.54
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 07:44:55 -0700 (PDT)
-Date:   Mon, 13 May 2019 16:44:51 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Theodore Ts'o <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
-        knut.omang@oracle.com, gregkh@linuxfoundation.org,
-        brendanhiggins@google.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        robh@kernel.org, sboyd@kernel.org, shuah@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, amir73il@gmail.com,
-        dan.carpenter@oracle.com, dan.j.williams@intel.com,
-        daniel@ffwll.ch, jdike@addtoit.com, joel@jms.id.au,
-        julia.lawall@lip6.fr, khilman@baylibre.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190513144451.GQ17751@phenom.ffwll.local>
-Mail-Followup-To: Theodore Ts'o <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
-        knut.omang@oracle.com, gregkh@linuxfoundation.org,
-        brendanhiggins@google.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org, robh@kernel.org,
-        sboyd@kernel.org, shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, jdike@addtoit.com, joel@jms.id.au,
-        julia.lawall@lip6.fr, khilman@baylibre.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com
-References: <20190509015856.GB7031@mit.edu>
- <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
- <20190509032017.GA29703@mit.edu>
- <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
- <20190509133551.GD29703@mit.edu>
- <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
- <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
- <20190509214233.GA20877@mit.edu>
- <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com>
- <20190511173344.GA8507@mit.edu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190511173344.GA8507@mit.edu>
-X-Operating-System: Linux phenom 4.14.0-3-amd64 
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1730633AbfEMOrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 10:47:00 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:52465 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728916AbfEMOq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 10:46:59 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hQCEB-0000AL-2b; Mon, 13 May 2019 16:46:55 +0200
+Message-ID: <1557758814.4442.9.camel@pengutronix.de>
+Subject: Re: [PATCH v3 0/4] Add reset controller support for BM1880 SoC
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, haitao.suo@bitmain.com,
+        darren.tsao@bitmain.com, alec.lin@bitmain.com
+Date:   Mon, 13 May 2019 16:46:54 +0200
+In-Reply-To: <20190513140637.GA19120@Mani-XPS-13-9360>
+References: <20190510184525.13568-1-manivannan.sadhasivam@linaro.org>
+         <1557745589.4442.5.camel@pengutronix.de>
+         <20190513140637.GA19120@Mani-XPS-13-9360>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 11, 2019 at 01:33:44PM -0400, Theodore Ts'o wrote:
-> On Fri, May 10, 2019 at 02:12:40PM -0700, Frank Rowand wrote:
-> > However, the reply is incorrect.  Kselftest in-kernel tests (which
-> > is the context here) can be configured as built in instead of as
-> > a module, and built in a UML kernel.  The UML kernel can boot,
-> > running the in-kernel tests before UML attempts to invoke the
-> > init process.
+On Mon, 2019-05-13 at 19:36 +0530, Manivannan Sadhasivam wrote:
+> Hi Philipp,
 > 
-> Um, Citation needed?
+> On Mon, May 13, 2019 at 01:06:29PM +0200, Philipp Zabel wrote:
+> > Hi,
+> > 
+> > On Sat, 2019-05-11 at 00:15 +0530, Manivannan Sadhasivam wrote:
+> > > Hello,
+> > > 
+> > > This patchset adds reset controller support for Bitmain BM1880 SoC.
+> > > BM1880 SoC has only one reset controller and the reset-simple driver
+> > > has been reused here.
+> > > 
+> > > This patchset has been tested on 96Boards Sophon Edge board.
+> > > 
+> > > Thanks,
+> > > Mani
+> > > 
+> > > Changes in v3:
+> > > 
+> > > * Removed the clk-rst part as it turned out be the clock gating register set.
+> > 
+> > Thank you, I'd like to pick up patches 1, 3, and 4.
+> > 
+> > Since patch 2 depends on patch 1, you could either temporarily replace
+> > the constants with their numerical value, until patch 1 is merged, or I
+> > could provide a stable branch that contains patch 1 after v5.2-rc1.
+> > 
 > 
-> I don't see any evidence for this in the kselftest documentation, nor
-> do I see any evidence of this in the kselftest Makefiles.
-> 
-> There exists test modules in the kernel that run before the init
-> scripts run --- but that's not strictly speaking part of kselftests,
-> and do not have any kind of infrastructure.  As noted, the
-> kselftests_harness header file fundamentally assumes that you are
-> running test code in userspace.
+> I can use the numerical value in meantime, please pick those patches and I'll
+> take the dts through arm-soc tree.
 
-Yeah I really like the "no userspace required at all" design of kunit,
-while still collecting results in a well-defined way (unless the current
-self-test that just run when you load the module, with maybe some
-kselftest ad-hoc wrapper around to collect the results).
+Done.
 
-What I want to do long-term is to run these kernel unit tests as part of
-the build-testing, most likely in gitlab (sooner or later, for drm.git
-only ofc). So that people get their pull requests (and patch series, we
-have some ideas to tie this into patchwork) automatically tested for this
-super basic stuff.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+regards
+Philipp
