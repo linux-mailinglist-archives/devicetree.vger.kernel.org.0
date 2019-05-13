@@ -2,152 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4736C1BBAB
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E801BBBE
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731339AbfEMRTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 13:19:25 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45804 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729503AbfEMRTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:19:25 -0400
-Received: by mail-ot1-f67.google.com with SMTP id t24so3797219otl.12;
-        Mon, 13 May 2019 10:19:24 -0700 (PDT)
+        id S1727245AbfEMRUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 13:20:47 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41863 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726709AbfEMRUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:20:47 -0400
+Received: by mail-ot1-f68.google.com with SMTP id g8so12500144otl.8;
+        Mon, 13 May 2019 10:20:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=gxg55zJpNlVm2nYvWvCM959D+KA++JweeXldKs1l7XI=;
-        b=YOpx5Gfuiz7/I1GC2K2JHc/cK0drj3PAq7S03vi4BQ0Dm0RVTfhrY2YfRv92ttsQ7P
-         7VOZ2rOmqwSdDhptWaj1QvBXKmjLgUQKm6mzYoqqqJTLvuUTF2Sx8YBrWYVUC4C5wBqx
-         zD9B6FhoLkY4G+ggX+lWPh9Xzzd/bTHBQWC/xhd7kG5oq02TOI0TAmBgABmuTdthmGxX
-         EHR7dx1pP1COqYKGJsdrxvEXV2NtbAuhYUJS4Ca6GPQ2YPi9oBed6EWKI7gXGDEsgs+9
-         ZWG1MYDsG3VjNC0VOeh3RfuBPF7NncgvKPXBwx/qVJImV/m33xxF5UxIhrpjD5YPL1U3
-         OG7Q==
-X-Gm-Message-State: APjAAAUtHT6m/W1L/cKTa93Ro1I+GrwZy8Om2sZ7OlPZRpHbwgH2DqLF
-        JpjoJrdaeK3FoR9IoTjt3Q==
-X-Google-Smtp-Source: APXvYqx7PhGUwDZEi+8Vj6jS0VwAlzO0fyOLufMf85clsIBI268PujGqMZ25iGzjREBsER4YemD1fg==
-X-Received: by 2002:a05:6830:11ce:: with SMTP id v14mr15390493otq.184.1557767964113;
-        Mon, 13 May 2019 10:19:24 -0700 (PDT)
+        bh=6lzt8+79/YXe1RIAgMQrfkL/2w3nR8+pbpD1D7X7dZs=;
+        b=mzYBbZoFiAoH0K8kMMO10Af2wgi0pxPVKo+TQsCDqpVjSNkpU5r7Ze5qn/jilo1h+S
+         IQwC+YP/xDb4MNaab6eGEz4r2v1wkjdLOuUD80LJ0NFXCaAA+BxPtphMlRbMDbn5HEPI
+         Nv4YgnGDCTfaK1l39nbXmX1YSCPYV5fWwFQh97WpPGuDyxFjYXSBIJHfOuQc6RqZkv9K
+         lRqGUyfi/aYMkh7fXVa6T+udCnn9IOhYzEORuD5z9WplLeG1ea1h9zqU4IwkqoUPIuUC
+         sNeqBoe4NCBpojDx0VpuejJPDNje6XkM3pq0EpQHMssoMso87Y2FJ+UEeq+6NpyZ43b3
+         wgWw==
+X-Gm-Message-State: APjAAAU6558PeUDT68LvVKF4WoxHw7ymnvvylNvDapzyyGSTA1HZbpLI
+        oVn8b2+MhFuEdHWCi6T8hA==
+X-Google-Smtp-Source: APXvYqzsH1mqH6ub44FM+TlRJfY1RFcsoPG0Ib6mN86yJC0AWQ7f1gf70pq1BaxFaLVpTID/KR6xlQ==
+X-Received: by 2002:a05:6830:14c6:: with SMTP id t6mr560925otq.3.1557768046408;
+        Mon, 13 May 2019 10:20:46 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g84sm5482087oia.31.2019.05.13.10.19.22
+        by smtp.gmail.com with ESMTPSA id o5sm5230136otl.44.2019.05.13.10.20.45
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 10:19:23 -0700 (PDT)
-Date:   Mon, 13 May 2019 12:19:22 -0500
+        Mon, 13 May 2019 10:20:45 -0700 (PDT)
+Date:   Mon, 13 May 2019 12:20:44 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Fabien Dessenne <fabien.dessenne@st.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        Loic Pallardy <loic.pallardy@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Ludovic Barre <ludovic.barre@st.com>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: Re: [PATCH v3 2/8] dt-bindings: remoteproc: add bindings for stm32
- remote processor driver
-Message-ID: <20190513171922.GA25458@bogus>
-References: <1556784606-3016-1-git-send-email-fabien.dessenne@st.com>
- <1556784606-3016-3-git-send-email-fabien.dessenne@st.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v3 1/5] dt-bindings: interrupt-controller: Add Renesas
+ RZ/A1 Interrupt Controller
+Message-ID: <20190513172044.GA593@bogus>
+References: <20190502123220.3016-1-geert+renesas@glider.be>
+ <20190502123220.3016-2-geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1556784606-3016-3-git-send-email-fabien.dessenne@st.com>
+In-Reply-To: <20190502123220.3016-2-geert+renesas@glider.be>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 02, 2019 at 10:10:00AM +0200, Fabien Dessenne wrote:
-> Add the device tree bindings document for the stm32 remoteproc devices.
+On Thu,  2 May 2019 14:32:16 +0200, Geert Uytterhoeven wrote:
+> Add DT bindings for the Renesas RZ/A1 Interrupt Controller.
 > 
-> Signed-off-by: Fabien Dessenne <fabien.dessenne@st.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../devicetree/bindings/remoteproc/stm32-rproc.txt | 63 ++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
+> v3:
+>   - Use interrupt-map (+ #address-cells and interrupt-map-mask) instead
+>     of renesas,gic-spi-base,
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt b/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
-> new file mode 100644
-> index 0000000..a495757
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
-> @@ -0,0 +1,63 @@
-> +STMicroelectronics STM32 Remoteproc
-> +-----------------------------------
-> +This document defines the binding for the remoteproc component that loads and
-> +boots firmwares on the ST32MP family chipset.
-> +
-> +Required properties:
-> +- compatible:	Must be "st,stm32mp1-m4"
-> +- reg:		Address ranges of the RETRAM and MCU SRAM memories used by the
-> +		remote processor.
-> +- resets:	Reference to a reset controller asserting the remote processor.
-> +- st,syscfg-holdboot: Reference to the system configuration which holds the
-> +		remote processor reset hold boot
-> +	1st cell: phandle of syscon block
-> +	2nd cell: register offset containing the hold boot setting
-> +	3rd cell: register bitmask for the hold boot field
-> +- st,syscfg-tz: Reference to the system configuration which holds the RCC trust
-> +		zone mode
-> +	1st cell: phandle to syscon block
-> +	2nd cell: register offset containing the RCC trust zone mode setting
-> +	3rd cell: register bitmask for the RCC trust zone mode bit
-> +
-> +Optional properties:
-> +- interrupts:	Should contain the watchdog interrupt
-> +- mboxes:	This property is required only if the rpmsg/virtio functionality
-> +		is used. List of phandle and mailbox channel specifiers:
-> +		- a channel (a) used to communicate through virtqueues with the
-> +		  remote proc.
-> +		  Bi-directional channel:
-> +		      - from local to remote = send message
-> +		      - from remote to local = send message ack
-> +		- a channel (b) working the opposite direction of channel (a)
-> +		- a channel (c) used by the local proc to notify the remote proc
-> +		  that it is about to be shut down.
-> +		  Unidirectional channel:
-> +		      - from local to remote, where ACK from the remote means
-> +		        that it is ready for shutdown
-> +- mbox-names:	This property is required if the mboxes property is used.
-> +		- must be "vq0" for channel (a)
-> +		- must be "vq1" for channel (b)
-> +		- must be "shutdown" for channel (c)
-> +- memory-region: List of phandles to the reserved memory regions associated with
-> +		the remoteproc device. This is variable and describes the
-> +		memories shared with the remote processor (eg: remoteproc
-> +		firmware and carveouts, rpmsg vrings, ...).
-> +		(see ../reserved-memory/reserved-memory.txt)
-> +- st,syscfg-pdds: Reference to the system configuration which holds the remote
-> +		processor deep sleep setting
-> +	1st cell: phandle to syscon block
-> +	2nd cell: register offset containing the deep sleep setting
-> +	3rd cell: register bitmask for the deep sleep bit
-> +- st,auto_boot:	If defined, when remoteproc is probed, it loads the default
-> +		firmware and starts the remote processor.
-
-s/_/-/
-
-> +
-> +Example:
-> +	m4_rproc: m4@38000000 {
-> +		compatible = "st,stm32mp1-m4";
-> +		reg = <0x00000000 0x10000>,
-
-Doesn't match the unit-address.
-
-> +		      <0x10000000 0x40000>,
-> +		      <0x30000000 0x40000>;
-> +		resets = <&rcc MCU_R>;
-> +		st,syscfg-holdboot = <&rcc 0x10C 0x1>;
-> +		st,syscfg-tz = <&rcc 0x000 0x1>;
-> +	};
-> -- 
-> 2.7.4
+> v2:
+>   - Add "renesas,gic-spi-base",
+>   - Document RZ/A2M.
+> ---
+>  .../renesas,rza1-irqc.txt                     | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rza1-irqc.txt
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
