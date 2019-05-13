@@ -2,86 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 951F91BC17
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A5AF1BC2F
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 19:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731837AbfEMRlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 13:41:09 -0400
-Received: from node.akkea.ca ([192.155.83.177]:42422 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731826AbfEMRlH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 May 2019 13:41:07 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id EEDF74E2056;
-        Mon, 13 May 2019 17:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1557769266; bh=SfqX2EFJOvWCTClrRDpHw/tV94ED1IxtbtG2u/MWNBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=xMH57FpVKbOPRJMQ/aOYfWAbHf+RQtfUKFy1l2Kc/AReh0dQ7DvLPD2fURm9qEHyg
-         g2Biu1UxUtUJbax0aYax3nosozu8KfdtpVGh0GGrFlgl3XyN5LQ/Ek0cs2FA4M40M0
-         yaj60NDJugQENm5BIiIpUewQy9qUBpwWtM+4LMTc=
-X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
-Received: from node.akkea.ca ([127.0.0.1])
-        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id cK3IV_30aGiW; Mon, 13 May 2019 17:41:06 +0000 (UTC)
-Received: from midas.localdomain (S0106788a2041785e.gv.shawcable.net [70.66.86.75])
-        by node.akkea.ca (Postfix) with ESMTPSA id 19DA54E204E;
-        Mon, 13 May 2019 17:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1557769266; bh=SfqX2EFJOvWCTClrRDpHw/tV94ED1IxtbtG2u/MWNBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=xMH57FpVKbOPRJMQ/aOYfWAbHf+RQtfUKFy1l2Kc/AReh0dQ7DvLPD2fURm9qEHyg
-         g2Biu1UxUtUJbax0aYax3nosozu8KfdtpVGh0GGrFlgl3XyN5LQ/Ek0cs2FA4M40M0
-         yaj60NDJugQENm5BIiIpUewQy9qUBpwWtM+4LMTc=
-From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
-To:     angus.ainslie@puri.sm
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>
-Subject: [PATCH v10 4/4] dt-bindings: arm: fsl: Add the imx8mq boards
-Date:   Mon, 13 May 2019 10:40:57 -0700
-Message-Id: <20190513174057.4410-5-angus@akkea.ca>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190513174057.4410-1-angus@akkea.ca>
-References: <20190513174057.4410-1-angus@akkea.ca>
+        id S1728578AbfEMRsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 13:48:23 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:34973 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728884AbfEMRsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 13:48:22 -0400
+Received: by mail-ot1-f67.google.com with SMTP id n14so5668708otk.2;
+        Mon, 13 May 2019 10:48:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gkHpJzWFAksIMv+VI682dKhDhr4Fbw0OiglBoy3hzNs=;
+        b=eFqyMYtZEPXKGobq8vjlWfQxdn5ATh+VwqVKIHgvLyAUgaPk82GPZuO4FBNEauL3Lf
+         1QlhZSSzhbRVu3u8gTH4ZVI6XKFtYIc/txCOUiiz6g5w+306Ta9EMRbNn/03vLr4txSa
+         RWq5U2eryyBflLMsCgmZFwA73aVYoenErDlr/OwdNAg8Rf1mOFVK0LunKKA21B4gSj/X
+         8Yw1yuq0WXHR38oR9XkquSU8C+q6E69QjceQSbQP56aeN4SCETBJ0EQsNhh8b3YHomhy
+         +evJA5/bI20ZPqA3otP5+RitQhWNsgpJv0mkY5K8PDhDUEqkvxdbNIdcYLB6We4/Nsv0
+         y1RQ==
+X-Gm-Message-State: APjAAAU7DvQKj6TefQgy09a8EzBqL9+xkFmCuVDRCAIXQgASg0ZFo/1/
+        Lo3bBmNh7BN7rvXfArHZeQ==
+X-Google-Smtp-Source: APXvYqyDNm+2TRXIedzOkppCtpoGAVu0Y//bfN1IBeyWcv0SwaLYFxVbDIaB5w/V3N+DpWu8gG67sA==
+X-Received: by 2002:a05:6830:164e:: with SMTP id h14mr17428711otr.321.1557769701976;
+        Mon, 13 May 2019 10:48:21 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e9sm6164134otf.48.2019.05.13.10.48.20
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 13 May 2019 10:48:20 -0700 (PDT)
+Date:   Mon, 13 May 2019 12:48:20 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Claudiu.Beznea@microchip.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Claudiu.Beznea@microchip.com
+Subject: Re: [PATCH v3 3/4] dt-bindings: clk: at91: add bindings for
+ SAM9X60's  slow clock controller
+Message-ID: <20190513174820.GA16840@bogus>
+References: <1557487388-32098-1-git-send-email-claudiu.beznea@microchip.com>
+ <1557487388-32098-4-git-send-email-claudiu.beznea@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557487388-32098-4-git-send-email-claudiu.beznea@microchip.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for imx8mq based boards
+On Fri, 10 May 2019 11:23:35 +0000, <Claudiu.Beznea@microchip.com> wrote:
+> From: Claudiu Beznea <claudiu.beznea@microchip.com>
+> 
+> Add bindings for SAM9X60's slow clock controller.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+> 
+> Hi Rob,
+> 
+> I didn't added your Reviewed-by tag to this version since I changed
+> the driver with regards to clock-cells DT binding (and I though you
+> may want to comment on this).
+> 
+> Thank you,
+> Claudiu Beznea
+> 
+>  Documentation/devicetree/bindings/clock/at91-clock.txt | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
 
-Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
 Reviewed-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 407138ebc0d0..41364b127200 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -177,6 +177,13 @@ properties:
-               - fsl,imx8mm-evk            # i.MX8MM EVK Board
-           - const: fsl,imx8mm
- 
-+      - description: i.MX8MQ based Boards
-+        items:
-+          - enum:
-+              - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-+              - purism,librem5-devkit     # Purism Librem5 devkit
-+          - const: fsl,imx8mq
-+
-       - description: i.MX8QXP based Boards
-         items:
-           - enum:
--- 
-2.17.1
-
