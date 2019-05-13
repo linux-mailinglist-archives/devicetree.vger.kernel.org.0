@@ -2,134 +2,1071 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD651B291
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 11:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2431B28C
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 11:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728416AbfEMJOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 05:14:51 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:38758 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727576AbfEMJN2 (ORCPT
+        id S1728575AbfEMJOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 05:14:21 -0400
+Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:34135 "EHLO
+        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728801AbfEMJOV (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 May 2019 05:13:28 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4D9Crjs028859;
-        Mon, 13 May 2019 11:13:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=IWhtElWmdpgKIU8VGl5G2wFIivmrFZHb3+vkvkOzBGA=;
- b=E6iQyyyNDLealIRBDwwE1PJRXet68DzmjV/MzkkvfL7fEnyvVlT1Qo6UAOQyNfFgbywo
- wh0HHkKmexaCwPl0x4409KMWbQbXOQhe8G62Bp7kPUrQb77X1/YnJgavAMad4vxRWPOD
- Rf5AORgARCAky3RE/pXkqL4NFa42RPpYl8DnzkEhZAv0s99NHpDC555Sy5rvZxDoXFFm
- +KDcCuHxPU+o4az8B43kmydkb3nPK51goWLVvBD3VfAtR0JV2iN+xJSPYSewY8dCMOpk
- 5uhbUZORK7+hNSoOPM72zj1ksuNuiDrg9HlduGf59TP5ol/1kSn5r6e3jNqVJLnRZrZ2 mA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2sdn9fhywd-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 13 May 2019 11:13:14 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C44BF31;
-        Mon, 13 May 2019 09:13:12 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7DB691651;
-        Mon, 13 May 2019 09:13:12 +0000 (GMT)
-Received: from SFHDAG5NODE3.st.com (10.75.127.15) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 13 May
- 2019 11:13:12 +0200
-Received: from SFHDAG5NODE3.st.com ([fe80::7c09:5d6b:d2c7:5f47]) by
- SFHDAG5NODE3.st.com ([fe80::7c09:5d6b:d2c7:5f47%20]) with mapi id
- 15.00.1347.000; Mon, 13 May 2019 11:13:12 +0200
-From:   Fabien DESSENNE <fabien.dessenne@st.com>
-To:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-CC:     Benjamin GAIGNARD <benjamin.gaignard@st.com>,
-        Fabien DESSENNE <fabien.dessenne@st.com>
-Subject: Re: [PATCH v2 0/6] hwspinlock: allow sharing of hwspinlocks
-Thread-Topic: [PATCH v2 0/6] hwspinlock: allow sharing of hwspinlocks
-Thread-Index: AQHU+0e1QzNWA48760KM6GhFSHX8FaZowBIA
-Date:   Mon, 13 May 2019 09:13:11 +0000
-Message-ID: <25aae4ca-0568-ccaf-0c47-4f5f4e2e8599@st.com>
-References: <1556183843-28033-1-git-send-email-fabien.dessenne@st.com>
-In-Reply-To: <1556183843-28033-1-git-send-email-fabien.dessenne@st.com>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Mon, 13 May 2019 05:14:21 -0400
+Received: from [192.168.2.10] ([46.9.252.75])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id Q72BhiEji0YQeQ72EhcUum; Mon, 13 May 2019 11:14:15 +0200
+Subject: Re: [RFC PATCH V1 0/6] media: platform: Add support for Face
+ Detection (FD) on mt8183 SoC
+To:     Jerry-ch Chen <Jerry-Ch.chen@mediatek.com>, hans.verkuil@cisco.com,
+        laurent.pinchart+renesas@ideasonboard.com, tfiga@chromium.org,
+        matthias.bgg@gmail.com, mchehab@kernel.org
+Cc:     yuzhao@chromium.org, zwisler@chromium.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
+        sj.huang@mediatek.com, christie.yu@mediatek.com,
+        holmes.chiou@mediatek.com, frederic.chen@mediatek.com,
+        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
+        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, shik@chromium.org,
+        suleiman@chromium.org
+References: <20190423104505.38778-1-Jerry-Ch.chen@mediatek.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <fdc47528-0bfc-898d-c478-ef864769de3f@xs4all.nl>
+Date:   Mon, 13 May 2019 11:14:11 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.49]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D55BFC742E8B3D4FAB756D29EDD9858A@st.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-13_06:,,
- signatures=0
+In-Reply-To: <20190423104505.38778-1-Jerry-Ch.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfK+AqNZcv4TOOZWcHd8Iz0Nysq4w5BXg+Dk83n8XuvW6k2YAej5yeqRb5w/Fax0Eamk0gqi4tv/+9FR6Cu9n8RtHTQzUn4SI76NjPDDpu2qQY3NM/wgJ
+ w/5DcdO8ydpkoTq+sh/t5dRIJcg0NPJGUdVxArGXsgSX8zI1XjXF32DBd/eXABmfZHrlkBPS/cFddBS2Rdo9Cv9OqiEj5X7++iyeLHUqtPahbtjOekKdjb8j
+ Put3nOC+Yofcot2JYvUjbnD1pcyz5xlV+l0/hiu5XaIhZk2v1l7qmUU6nnQP6CzBx4HBsz22kQx67C9AlLOUbPgioHXG4CAUIBtjHsaMRmsUagMsQiLEGMKp
+ i9Co2qMggZF1DY1Ru6nZNumgsV7+qFbk2NC1rIb/74mXm1/sQtaVmP1GDMnqoh0k6XsaOPxDvTFoNS8krps+Kql+uv2UaNzkdW9pmUAj1iz64OR3UpMyg9x3
+ A1xE5MWENPBcauaSyZgOSXIGGzYT5hStEfW0yX1S9KxmmwHVb1G0C1/ivhdhZ6tcweGWnxSh1R+12q9QJjQhvAHgoTn6WtUyKGg5LOdRTABfX0lkV18Py1ha
+ BxHJNiQ3ZmzDqBF0Y1JWWjcy5FoQypwRajQQjRmZZzi0Aje5e3ILXac4Jlhf/0LCJNke0O+5AMrnVSOdpYgft0Of2o/UBHHcQ6Pkmdxyx9gNxw+lPihbK1Pn
+ 0O5QZMu6Tnef+GR8Lvmy8F4U5QHT5EEBU5wyrp249PNSs8hQAWUddvesDzdXKzOsYFXxyP9HV1Jwq7oyo27BClYmZX60/CQAoMFR0E159t+XT0gXgBqRxw/E
+ rlJVV10baxw2stK5/bm975/96j/OxGSLUx0birI574varvN/pEZkFky+kQ5GW3tCN0zuFWMttoXFn+TAbH4U88y+4vZcLvJix/HTvTN1NCWs+52ftNiE7IxX
+ mUVn+IJPyrhWIfAD5BFVb2P12LI=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkNCg0KDQpJIEdvdCBSb2IncyBSZXZpZXdlZC1ieS4gQW55IGZ1cnRoZXIgY29tbWVudHM/DQoN
-Cg0KRmFiaWVuDQoNCg0KT24gMjUvMDQvMjAxOSAxMToxNyBBTSwgRmFiaWVuIERlc3Nlbm5lIHdy
-b3RlOg0KPiBUaGUgY3VycmVudCBpbXBsZW1lbnRhdGlvbiBkb2VzIG5vdCBhbGxvdyB0d28gZGlm
-ZmVyZW50IGRldmljZXMgdG8gdXNlDQo+IGEgY29tbW9uIGh3c3BpbmxvY2suIFRoaXMgcGF0Y2gg
-c2V0IHByb3Bvc2VzIHRvIGhhdmUsIGFzIGFuIG9wdGlvbiwgc29tZQ0KPiBod3NwaW5sb2NrcyBz
-aGFyZWQgYmV0d2VlbiBzZXZlcmFsIHVzZXJzLg0KPg0KPiBCZWxvdyBpcyBhbiBleGFtcGxlIHRo
-YXQgZXhwbGFpbiB0aGUgbmVlZCBmb3IgdGhpczoNCj4gCWV4dGk6IGludGVycnVwdC1jb250cm9s
-bGVyQDUwMDBkMDAwIHsNCj4gCQljb21wYXRpYmxlID0gInN0LHN0bTMybXAxLWV4dGkiLCAic3lz
-Y29uIjsNCj4gCQlpbnRlcnJ1cHQtY29udHJvbGxlcjsNCj4gCQkjaW50ZXJydXB0LWNlbGxzID0g
-PDI+Ow0KPiAJCXJlZyA9IDwweDUwMDBkMDAwIDB4NDAwPjsNCj4gCQlod2xvY2tzID0gPCZoc2Vt
-IDE+Ow0KPiAJfTsNCj4gVGhlIHR3byBkcml2ZXJzIChzdG0zMm1wMS1leHRpIGFuZCBzeXNjb24p
-IHJlZmVyIHRvIHRoZSBzYW1lIGh3bG9jay4NCj4gV2l0aCB0aGUgY3VycmVudCBod3NwaW5sb2Nr
-IGltcGxlbWVudGF0aW9uLCBvbmx5IHRoZSBmaXJzdCBkcml2ZXIgc3VjY2VlZHMNCj4gaW4gcmVx
-dWVzdGluZyAoaHdzcGluX2xvY2tfcmVxdWVzdF9zcGVjaWZpYykgdGhlIGh3bG9jay4gVGhlIHNl
-Y29uZCByZXF1ZXN0DQo+IGZhaWxzLg0KPg0KPg0KPiBUaGUgcHJvcG9zZWQgYXBwcm9hY2ggZG9l
-cyBub3QgbW9kaWZ5IHRoZSBBUEksIGJ1dCBleHRlbmRzIHRoZSBEVCAnaHdsb2NrcycNCj4gcHJv
-cGVydHkgd2l0aCBhIHNlY29uZCBvcHRpb25hbCBwYXJhbWV0ZXIgKHRoZSBmaXJzdCBvbmUgaWRl
-bnRpZmllcyBhbg0KPiBod2xvY2spIHRoYXQgc3BlY2lmaWVzIHdoZXRoZXIgYW4gaHdsb2NrIGlz
-IHJlcXVlc3RlZCBmb3IgZXhjbHVzaXZlIHVzYWdlDQo+IChjdXJyZW50IGJlaGF2aW9yKSBvciBj
-YW4gYmUgc2hhcmVkIGJldHdlZW4gc2V2ZXJhbCB1c2Vycy4NCj4gRXhhbXBsZXM6DQo+IAlod2xv
-Y2tzID0gPCZoc2VtIDg+OwlSZWYgdG8gaHdsb2NrICM4IGZvciBleGNsdXNpdmUgdXNhZ2UNCj4g
-CWh3bG9ja3MgPSA8JmhzZW0gOCAwPjsJUmVmIHRvIGh3bG9jayAjOCBmb3IgZXhjbHVzaXZlICgw
-KSB1c2FnZQ0KPiAJaHdsb2NrcyA9IDwmaHNlbSA4IDE+OwlSZWYgdG8gaHdsb2NrICM4IGZvciBz
-aGFyZWQgKDEpIHVzYWdlDQo+DQo+IEFzIGEgY29uc3RyYWludCwgdGhlICNod2xvY2stY2VsbHMg
-dmFsdWUgbXVzdCBiZSAxIG9yIDIuDQo+IEluIHRoZSBjdXJyZW50IGltcGxlbWVudGF0aW9uLCB0
-aGlzIGNhbiBoYXZlIHRoZW9yaWNhbGx5IGFueSB2YWx1ZSBidXQ6DQo+IC0gYWxsIG9mIHRoZSBl
-eGlzaXRpbmcgZHJpdmVycyB1c2UgdGhlIHNhbWUgdmFsdWUgOiAxLg0KPiAtIHRoZSBmcmFtZXdv
-cmsgc3VwcG9ydHMgb25seSBvbmUgdmFsdWUgOiAxIChzZWUgaW1wbGVtZW50YXRpb24gb2YNCj4g
-ICAgb2ZfaHdzcGluX2xvY2tfc2ltcGxlX3hsYXRlKCkpDQo+IEhlbmNlLCBpdCBzaGFsbCBub3Qg
-YmUgYSBwcm9ibGVtIHRvIHJlc3RyaWN0IHRoaXMgdmFsdWUgdG8gMSBvciAyIHNpbmNlDQo+IGl0
-IHdvbid0IGJyZWFrIGFueSBkcml2ZXIuDQo+DQo+IENoYW5nZXMgc2luY2UgdjE6DQo+ICogUmVt
-b3ZlZCB1c2VsZXNzICdzdGF0dXMgPSAib2theSInIGZyb20gc3RtMzJtcDE1N2MuZHRzaQ0KPg0K
-PiBGYWJpZW4gRGVzc2VubmUgKDYpOg0KPiAgICBkdC1iaW5kaW5nczogaHdsb2NrOiBhZGQgc3Vw
-cG9ydCBvZiBzaGFyZWQgbG9ja3MNCj4gICAgaHdzcGlubG9jazogYWxsb3cgc2hhcmluZyBvZiBo
-d3NwaW5sb2Nrcw0KPiAgICBkdC1iaW5kaW5nczogaHdsb2NrOiB1cGRhdGUgU1RNMzIgI2h3bG9j
-ay1jZWxscyB2YWx1ZQ0KPiAgICBBUk06IGR0czogc3RtMzI6IEFkZCBod3NwaW5sb2NrIG5vZGUg
-Zm9yIHN0bTMybXAxNTcgU29DDQo+ICAgIEFSTTogZHRzOiBzdG0zMjogQWRkIGh3bG9jayBmb3Ig
-aXJxY2hpcCBvbiBzdG0zMm1wMTU3DQo+ICAgIEFSTTogZHRzOiBzdG0zMjogaHdsb2NrcyBmb3Ig
-R1BJTyBmb3Igc3RtMzJtcDE1Nw0KPg0KPiAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2h3bG9j
-ay9od2xvY2sudHh0ICAgICAgICAgIHwgMjcgKysrKystLQ0KPiAgIC4uLi9iaW5kaW5ncy9od2xv
-Y2svc3Qsc3RtMzItaHdzcGlubG9jay50eHQgICAgICAgIHwgIDYgKy0NCj4gICBEb2N1bWVudGF0
-aW9uL2h3c3BpbmxvY2sudHh0ICAgICAgICAgICAgICAgICAgICAgICB8IDEwICsrLQ0KPiAgIGFy
-Y2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTctcGluY3RybC5kdHNpICAgICAgICAgIHwgIDIgKw0K
-PiAgIGFyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTdjLmR0c2kgICAgICAgICAgICAgICAgIHwg
-IDkgKysrDQo+ICAgZHJpdmVycy9od3NwaW5sb2NrL2h3c3BpbmxvY2tfY29yZS5jICAgICAgICAg
-ICAgICAgfCA4MiArKysrKysrKysrKysrKysrKy0tLS0tDQo+ICAgZHJpdmVycy9od3NwaW5sb2Nr
-L2h3c3BpbmxvY2tfaW50ZXJuYWwuaCAgICAgICAgICAgfCAgMiArDQo+ICAgNyBmaWxlcyBjaGFu
-Z2VkLCAxMDcgaW5zZXJ0aW9ucygrKSwgMzEgZGVsZXRpb25zKC0pDQo+
+On 4/23/19 12:44 PM, Jerry-ch Chen wrote:
+> Hello,
+> 
+> This RFC patch series is adding Face Detection (FD) driver on Mediatek
+> mt8183 SoC. It belongs to the first Mediatek's camera driver series based
+> on V4L2 and media controller framework. I posted the main part of the FD
+> driver as RFC to discuss first and would like some review comments.
+> 
+> ==============
+> Introduction
+> ==============
+> 
+> Face Detection (FD) unit provides hardware accelerated face detection
+> feature. It can detect different sizes of faces in a given image.
+> Furthermore, it has the capability to detect the faces of Rotation-in-Plane
+> from -180 to +180 degrees and Rotation-off-Plane from -90 to +90 degrees.
+> 
+> The driver is implemented with V4L2 and media controller framework. We have
+> the following entities describing the FD path. Since a FD frame has
+> multiple buffers, the driver uses Request API to control the multiple
+> buffer's enqueue flow.
+> 
+> 1. Meta input (output video device): connects to FD sub device. It accepts
+>    the input parameter buffer from userspace. The metadata interface is
+>    only a temporary solution to kick off driver development and is not
+>    ready for reviewed yet.
+> 
+> 2. RAW (output video device): connects to FD sub device. It accepts input
+>    image buffer from userspace.
+> 
+> 3. FD (sub device): connects to Meta output. When processing an image,
+>    FD hardware only returns the statistics of detected faces so it needs
+>    only one capture video devices to return the streaming data to the user.
+> 
+> 4. Meta output (capture video device): Return the result of detected faces
+>    in meta capture buffers.
+
+I'm a bit confused. What should be in a valid request? One Meta Input buffer
+and one RAW buffer?
+
+Out of curiosity: is there a limit to the number of faces the HW can detect?
+
+Regards,
+
+	Hans
+
+> 
+> The overall file structure of the FD driver is as following:
+> 
+> * mtk_fd-v4l2.c: implements FD V4L2 and vb2 operations.
+> 
+> * mtk_fd-dev.c: implements fd driver software flow. FD driver supports
+> 2 software pipes at the same time. All the pipes share the same FD hardware
+> to process the images.
+> 
+> * mtk_fd-40.c: implements the hardware driving part.
+> 
+> * mtk_fd-smem.c: provides the shared memory management required operation.
+> We reserved a memory region for the co-processor and FD to exchange the
+> tuning and hardware configuration data.
+> 
+> ==================
+> Changes in v1
+> ==================
+> 
+> RFC v1 includes the following modification:
+> 1. Uses Request API instead of FD's buffer collection design
+> 
+> 2. removed unnecessary abstraction structurally, including mtk_fd_ctx and
+> related ops
+> 
+> 3. removed the fd_smem node from device tree
+> 
+> 4. Fixed the common issues Tomasz commented on Mediatek ISP Pass 1's RFC v0
+> patch series
+> 
+> ==================
+> Dependent patch
+> ==================
+> 
+> FD driver depends on MDP 3 driver and SCP driver. The patches are as
+> following:
+> 
+> [1]. support mdp3 on mt8183 platform
+> https://patchwork.kernel.org/cover/10844219/
+> 
+> [2]. Add support for mt8183 SCP
+> https://patchwork.kernel.org/cover/10872547/
+> 
+> ==================
+> Compliance test
+> ==================
+> 
+> v4l2-compliance SHA: not available, 32 bits
+> 
+> Compliance test for mtk-fd-4.0 device /dev/media1:
+> 
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> 
+> Required ioctls:
+> 	test MEDIA_IOC_DEVICE_INFO: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/media1 open: OK
+> 	test MEDIA_IOC_DEVICE_INFO: OK
+> 	test for unlimited opens: OK
+> 
+> Media Controller ioctls:
+> 	test MEDIA_IOC_G_TOPOLOGY: OK
+> 	Entities: 8 Interfaces: 8 Pads: 12 Links: 14
+> 	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+> 	test MEDIA_IOC_SETUP_LINK: OK
+> 
+> Total for mtk-fd-4.0 device /dev/media1: 7, Succeeded: 7, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for mtk-fd-4.0 device /dev/v4l-subdev3:
+> 
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x03000005
+> 	Type             : V4L Sub-Device
+> Entity Info:
+> 	ID               : 0x00000001 (1)
+> 	Name             : MTK-FD-V4L2
+> 	Function         : Video Pixel Formatter
+> 	Pad 0x01000002   : 0: Sink
+> 	  Link 0x0200000b: from remote pad 0x1000008 of entity 'MTK-FD-V4L2 FDInput': Data, Enabled
+> 	Pad 0x01000003   : 1: Sink
+> 	  Link 0x02000011: from remote pad 0x100000e of entity 'MTK-FD-V4L2 FDConfig': Data, Enabled
+> 	Pad 0x01000004   : 2: Source
+> 	  Link 0x02000017: to remote pad 0x1000014 of entity 'MTK-FD-V4L2 FDOutput': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/v4l-subdev3 open: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Sub-Device ioctls (Sink Pad 0):
+> 	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+> 
+> Sub-Device ioctls (Sink Pad 1):
+> 	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+> 
+> Sub-Device ioctls (Source Pad 2):
+> 	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK (Not Supported)
+> 	test VIDIOC_TRY_FMT: OK (Not Supported)
+> 	test VIDIOC_S_FMT: OK (Not Supported)
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+> 	test VIDIOC_EXPBUF: OK (Not Supported)
+> 	test Requests: OK (Not Supported)
+> 
+> Total for mtk-fd-4.0 device /dev/v4l-subdev3: 62, Succeeded: 62, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for MTK-FD-V4L2 device /dev/video12:
+> 
+> Driver Info:
+> 	Driver name      : MTK-FD-V4L2
+> 	Card type        : MTK-FD-V4L2
+> 	Bus info         : platform:1502b000.fd
+> 	Driver version   : 4.19.33
+> 	Capabilities     : 0x84202000
+> 		Video Output Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04202000
+> 		Video Output Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x03000009
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x00000007 (7)
+> 	Name             : MTK-FD-V4L2 FDInput
+> 	Function         : V4L2 I/O
+> 	Pad 0x01000008   : 0: Source
+> 	  Link 0x0200000b: to remote pad 0x1000002 of entity 'MTK-FD-V4L2': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video12 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK
+> 
+> Total for MTK-FD-V4L2 device /dev/video12: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for MTK-FD-V4L2 device /dev/video13:
+> 
+> Driver Info:
+> 	Driver name      : MTK-FD-V4L2
+> 	Card type        : MTK-FD-V4L2
+> 	Bus info         : platform:1502b000.fd
+> 	Driver version   : 4.19.33
+> 	Capabilities     : 0x8c200000
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x0c200000
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x0300000f
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x0000000d (13)
+> 	Name             : MTK-FD-V4L2 FDConfig
+> 	Function         : V4L2 I/O
+> 	Pad 0x0100000e   : 0: Source
+> 	  Link 0x02000011: to remote pad 0x1000003 of entity 'MTK-FD-V4L2': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video13 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK
+> 
+> Total for MTK-FD-V4L2 device /dev/video13: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for MTK-FD-V4L2 device /dev/video14:
+> 
+> Driver Info:
+> 	Driver name      : MTK-FD-V4L2
+> 	Card type        : MTK-FD-V4L2
+> 	Bus info         : platform:1502b000.fd
+> 	Driver version   : 4.19.33
+> 	Capabilities     : 0x84a00000
+> 		Metadata Capture
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04a00000
+> 		Metadata Capture
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x03000015
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x00000013 (19)
+> 	Name             : MTK-FD-V4L2 FDOutput
+> 	Function         : V4L2 I/O
+> 	Pad 0x01000014   : 0: Sink
+> 	  Link 0x02000017: from remote pad 0x1000004 of entity 'MTK-FD-V4L2': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video14 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK
+> 
+> Total for MTK-FD-V4L2 device /dev/video14: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for mtk-fd-4.0 device /dev/v4l-subdev4:
+> 
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x0300001d
+> 	Type             : V4L Sub-Device
+> Entity Info:
+> 	ID               : 0x00000019 (25)
+> 	Name             : MTK-FD-V4L2-STREAM-1
+> 	Function         : Video Pixel Formatter
+> 	Pad 0x0100001a   : 0: Sink
+> 	  Link 0x02000023: from remote pad 0x1000020 of entity 'MTK-FD-V4L2-STREAM-1 FDInput': Data, Enabled
+> 	Pad 0x0100001b   : 1: Sink
+> 	  Link 0x02000029: from remote pad 0x1000026 of entity 'MTK-FD-V4L2-STREAM-1 FDConfig': Data, Enabled
+> 	Pad 0x0100001c   : 2: Source
+> 	  Link 0x0200002f: to remote pad 0x100002c of entity 'MTK-FD-V4L2-STREAM-1 FDOutput': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/v4l-subdev4 open: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Sub-Device ioctls (Sink Pad 0):
+> 	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+> 
+> Sub-Device ioctls (Sink Pad 1):
+> 	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+> 
+> Sub-Device ioctls (Source Pad 2):
+> 	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+> 	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+> 	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK (Not Supported)
+> 	test VIDIOC_TRY_FMT: OK (Not Supported)
+> 	test VIDIOC_S_FMT: OK (Not Supported)
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+> 	test VIDIOC_EXPBUF: OK (Not Supported)
+> 	test Requests: OK (Not Supported)
+> 
+> Total for mtk-fd-4.0 device /dev/v4l-subdev4: 62, Succeeded: 62, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for MTK-FD-V4L2-STR device /dev/video15:
+> 
+> Driver Info:
+> 	Driver name      : MTK-FD-V4L2-STR
+> 	Card type        : MTK-FD-V4L2-STREAM-1
+> 	Bus info         : platform:1502b000.fd
+> 	Driver version   : 4.19.33
+> 	Capabilities     : 0x84202000
+> 		Video Output Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04202000
+> 		Video Output Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x03000021
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x0000001f (31)
+> 	Name             : MTK-FD-V4L2-STREAM-1 FDInput
+> 	Function         : V4L2 I/O
+> 	Pad 0x01000020   : 0: Source
+> 	  Link 0x02000023: to remote pad 0x100001a of entity 'MTK-FD-V4L2-STREAM-1': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video15 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK
+> 
+> Total for MTK-FD-V4L2-STR device /dev/video15: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for MTK-FD-V4L2-STR device /dev/video16:
+> 
+> Driver Info:
+> 	Driver name      : MTK-FD-V4L2-STR
+> 	Card type        : MTK-FD-V4L2-STREAM-1
+> 	Bus info         : platform:1502b000.fd
+> 	Driver version   : 4.19.33
+> 	Capabilities     : 0x8c200000
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x0c200000
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x03000027
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x00000025 (37)
+> 	Name             : MTK-FD-V4L2-STREAM-1 FDConfig
+> 	Function         : V4L2 I/O
+> 	Pad 0x01000026   : 0: Source
+> 	  Link 0x02000029: to remote pad 0x100001b of entity 'MTK-FD-V4L2-STREAM-1': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video16 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK
+> 
+> Total for MTK-FD-V4L2-STR device /dev/video16: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> --------------------------------------------------------------------------------
+> Compliance test for MTK-FD-V4L2-STR device /dev/video17:
+> 
+> Driver Info:
+> 	Driver name      : MTK-FD-V4L2-STR
+> 	Card type        : MTK-FD-V4L2-STREAM-1
+> 	Bus info         : platform:1502b000.fd
+> 	Driver version   : 4.19.33
+> 	Capabilities     : 0x84a00000
+> 		Metadata Capture
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04a00000
+> 		Metadata Capture
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : mtk-fd-4.0
+> 	Model            : MTK-FD-V4L2
+> 	Serial           :
+> 	Bus info         : platform:1502b000.fd
+> 	Media version    : 4.19.33
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 4.19.33
+> Interface Info:
+> 	ID               : 0x0300002d
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x0000002b (43)
+> 	Name             : MTK-FD-V4L2-STREAM-1 FDOutput
+> 	Function         : V4L2 I/O
+> 	Pad 0x0100002c   : 0: Sink
+> 	  Link 0x0200002f: from remote pad 0x100001c of entity 'MTK-FD-V4L2-STREAM-1': Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video17 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK
+> 
+> Total for MTK-FD-V4L2-STR device /dev/video17: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> 
+> Grand Total for mtk-fd-4.0 device /dev/media1: 401, Succeeded: 401, Failed: 0, Warnings: 0
+> 
+> 
+> Jerry-ch Chen (6):
+>   dt-bindings: mt8183: Add binding for FD shared memory
+>   dts: arm64: mt8183: Add FD shared memory node
+>   dt-bindings: mt8183: Added FD dt-bindings
+>   dts: arm64: mt8183: Add FD nodes
+>   media: platform: Add Mediatek FD driver KConfig
+>   platform: mtk-isp: Add Mediatek FD driver
+> 
+>  .../bindings/media/mediatek,mt8183-fd.txt     |   34 +
+>  .../mediatek,reserve-memory-fd_smem.txt       |   44 +
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   29 +
+>  drivers/media/platform/Kconfig                |    2 +
+>  drivers/media/platform/mtk-isp/Kconfig        |   18 +
+>  drivers/media/platform/mtk-isp/Makefile       |   16 +
+>  drivers/media/platform/mtk-isp/fd/Makefile    |   25 +
+>  .../media/platform/mtk-isp/fd/mtk_fd-dev.c    |  754 +++++++++++
+>  .../media/platform/mtk-isp/fd/mtk_fd-dev.h    |  315 +++++
+>  drivers/media/platform/mtk-isp/fd/mtk_fd-hw.h |  158 +++
+>  .../media/platform/mtk-isp/fd/mtk_fd-smem.c   |  322 +++++
+>  .../media/platform/mtk-isp/fd/mtk_fd-smem.h   |   39 +
+>  .../media/platform/mtk-isp/fd/mtk_fd-v4l2.c   | 1171 +++++++++++++++++
+>  drivers/media/platform/mtk-isp/fd/mtk_fd_40.c |  555 ++++++++
+>  14 files changed, 3482 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-fd_smem.txt
+>  create mode 100644 drivers/media/platform/mtk-isp/Kconfig
+>  create mode 100644 drivers/media/platform/mtk-isp/Makefile
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/Makefile
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd-dev.c
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd-dev.h
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd-hw.h
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd-smem.c
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd-smem.h
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd-v4l2.c
+>  create mode 100755 drivers/media/platform/mtk-isp/fd/mtk_fd_40.c
+> 
+
