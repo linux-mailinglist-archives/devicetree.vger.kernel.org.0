@@ -2,137 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 716761B3AA
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 12:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68AD91B3E7
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2019 12:21:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728820AbfEMKGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 06:06:52 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:42493 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728669AbfEMKGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 06:06:52 -0400
-Received: by mail-wr1-f67.google.com with SMTP id l2so14511853wrb.9
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 03:06:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cWZpI2iOGBt+YmamLzOSa1MZVWDqyyiwbed07CD+vUY=;
-        b=NVqMVsb4zw3PQozB+fMujk0U9R5bovAEmdYXPOuG3YTWCH/1ZCWlQ0sl+N8+T1RAwD
-         RH0Wd/EEVDlQfmSXoMUtFWX46CWcFGOMK+suaJX9vEoCuzUeAuNd9iML4+MR2QC2w0+Q
-         LmMafstZyBofGWMe2Dbg7XhSpRCTb3opyYimXM59Tr4UMkoR0jkSn0od7UBpu0O4l5UF
-         OdkiGdXJRIph5Ffcu+J3/fLgDDm58uxDwy8w03X3y1XRPP77IZ7ngpQ/4WKXmjsRC0fc
-         7LsmePyFiyzoWLHU2Zc4jaGUmNLKy8Ku5Qp7MccrgcNkc/HnPYS3UTfhRHj+13ReNnJi
-         Liig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cWZpI2iOGBt+YmamLzOSa1MZVWDqyyiwbed07CD+vUY=;
-        b=EmU/5YjOzwqY8EdneonPb0HclYla/+WPwlspcGxWCuzz+HiUFqsMWAe8S7MU1WiY38
-         8Fk8Lh5Mp2F58ecLfxnbw5hp9ubsfCRhyW0oMrpruW9J/mC2tq7sGQs4XI+Rs5qImkan
-         YbZZHzOoL/fuztbwwG2oeEIf8iP0fbZurp++1ivPDl0keb+RqFUmLlygH6kxrdX/zCTR
-         kxpJe25tdwUlmEZbc2jq9QqmbPCmnI5gLtcwLcUVk1pGwLunEW/Ti50Uhzohp+/S/gKW
-         eq3FJ9KuzRzd12YPwqSCTfxEPBWRpJF/6anuZUIksmwjNBHeJbRNCuUVcFPDqBdA5OhY
-         gEUQ==
-X-Gm-Message-State: APjAAAVMu2w+zBWfILtLYfOmNe8AGfCoFZGAYSCM21f7zACz2PyXkiKf
-        rI3z7l0KPNo3q2FH7w05R2oQ3i0p42E=
-X-Google-Smtp-Source: APXvYqzltWE/0+4/D4a9+forUflvkb/p4cqe/WXUECEW9bin+ILyukeE+Z2hlAaejR7hDGjQ7GB39g==
-X-Received: by 2002:a5d:464f:: with SMTP id j15mr12654824wrs.265.1557742009870;
-        Mon, 13 May 2019 03:06:49 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id j82sm3310715wmj.40.2019.05.13.03.06.48
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 13 May 2019 03:06:49 -0700 (PDT)
-Subject: Re: NVMEM address DT post processing [Was: Re: [PATCH net 0/3] add
- property "nvmem_macaddr_swap" to swap macaddr bytes order]
-To:     =?UTF-8?Q?Petr_=c5=a0tetiar?= <ynezz@true.cz>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Andy Duan <fugang.duan@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "john@phrozen.org" <john@phrozen.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alban Bedel <albeu@free.fr>, devicetree@vger.kernel.org
-References: <1557476567-17397-4-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-3-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-2-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-1-git-send-email-fugang.duan@nxp.com>
- <20190510112822.GT81826@meh.true.cz> <20190510113155.mvpuhe4yzxdaanei@flea>
- <20190511144444.GU81826@meh.true.cz>
- <547abcff-103a-13b8-f42a-c0bd1d910bbc@linaro.org>
- <20190513090700.GW81826@meh.true.cz>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <8cee0086-7459-24c7-82f9-d559527df6e6@linaro.org>
-Date:   Mon, 13 May 2019 11:06:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728773AbfEMKUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 06:20:35 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:55606 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727690AbfEMKUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 06:20:35 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 58D0260A05; Mon, 13 May 2019 10:20:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557742834;
+        bh=xeung/fcJPz0PMtwZCGQUbZWLdgHpjUWzXB+uUPGwQA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Iuo+dLjIJHRxCqtLAjD3A8QovQyy2MJMGt/PbRD/wBOeKvn09kLS+bioQetlGMLCj
+         eSSOa9WHteVe3mWzBVgqGK0hlo/YmUccF+aKpJKQKfuQSX5AtJgQcYTD9f/xEFPOdZ
+         RYCXoVUELilHEPT3H0HCMA+zcCdhGk1ttGWDRLdA=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B41AC6029B;
+        Mon, 13 May 2019 10:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557742833;
+        bh=xeung/fcJPz0PMtwZCGQUbZWLdgHpjUWzXB+uUPGwQA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HAxsASr2LGl/8iIH/2g5WXiW6WGR4EiLyOBivMAeuG1Ryoj+l2khdCktOuSdejEAl
+         mMnSaVL2aS8CaSEv9iw4OMwEAzvKPN0QoUN0scitVP90NvV4mCHz+M53wPhujkdIX+
+         tEUShI0DPiBT7AdZwhelQnzpKyEOSdNA0zmmd51Q=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B41AC6029B
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, agross@kernel.org
+Cc:     david.brown@linaro.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        marc.w.gonzalez@free.fr, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v4 0/9] RPMPD for QCS404 and MSM8998
+Date:   Mon, 13 May 2019 15:50:06 +0530
+Message-Id: <20190513102015.26551-1-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190513090700.GW81826@meh.true.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Re-worked the macros of the rpmpd driver. Add power domains support
+for QCS404 and MSM8998.
 
+V4:
+* fixup fixes tag and commit message in patch 1 [Marc]
+* fixup typos in qcs404 and msm8998 dt nodes
+* fixup comments regarding resource type in patch 8 [Marc]
 
-On 13/05/2019 10:07, Petr Štetiar wrote:
-> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 09:25:55]:
-> 
-> Hi,
-> 
->> My initial idea was to add compatible strings to the cell so that most of
->> the encoding information can be derived from it. For example if the encoding
->> representing in your example is pretty standard or vendor specific we could
->> just do with a simple compatible like below:
-> 
-> that vendor/compatible list would be quite long[1], there are hundreds of
+V3:
+* always send level updates to vfc and vfl in set_performance state
+* fixup commit messages [Rajendra]
+* fixup s-o-b ordering
 
-You are right just vendor list could be very long, but I was hoping that 
-the post-processing would fall in some categories which can be used in 
-compatible string.
+V2:
+* Add rpmpd support for msm8998
+* fixup corner/vfc with vlfl/vfl
 
-Irrespective of which we need to have some sort of compatible string to 
-enable nvmem core to know that there is some form of post processing to 
-be done on the cells!. Without which there is a danger of continuing to 
-adding new properties to the cell bindings which have no relation to 
-each other.
+Bjorn Andersson (4):
+  soc: qcom: rpmpd: Modify corner defining macros
+  dt-bindings: power: Add rpm power domain bindings for qcs404
+  soc: qcom: rpmpd: Add QCS404 power-domains
+  arm64: dts: qcom: qcs404: Add rpmpd node
 
+Sibi Sankar (5):
+  soc: qcom: rpmpd: fixup rpmpd set performance state
+  soc: qcom: rpmpd: Add support to set rpmpd state to max
+  dt-bindings: power: Add rpm power domain bindings for msm8998
+  soc: qcom: rpmpd: Add MSM8998 power-domains
+  arm64: dts: qcom: msm8998: Add rpmpd node
 
-> devices in current OpenWrt tree (using currently custom patch) and probably
-> dozens currently unsupported (ASCII encoded MAC address in NVMEM). So my goal
-> is to add some DT functionality which would cover all of these.
+ .../devicetree/bindings/power/qcom,rpmpd.txt  |   2 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  51 +++++++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  55 +++++++
+ drivers/soc/qcom/rpmpd.c                      | 134 ++++++++++++++----
+ include/dt-bindings/power/qcom-rpmpd.h        |  34 +++++
+ 5 files changed, 252 insertions(+), 24 deletions(-)
 
-> 
->> eth1_addr: eth-mac-addr@18a {
->> 	compatible = "xxx,nvmem-mac-address";
->> 	reg = <0x18a 0x11>;	
->> };
-> 
-> while sketching the possible DT use cases I came to the this option as well, it
-> was very compeling as it would kill two birds with one stone (fix outstanding
-> MTD/NVMEM OF clash as well[2]), but I think, that it makes more sense to add
-> this functionality to nvmem core so it could be reused by other consumers, not
-> just by network layer.
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-Changes to nvmem dt bindings have been already rejected, for this more 
-discussion at: https://lore.kernel.org/patchwork/patch/936312/
-
---srini
-
-> 
-> 1. https://git.openwrt.org/?p=openwrt%2Fopenwrt.git&a=search&h=HEAD&st=grep&s=mtd-mac-address
-> 2. https://lore.kernel.org/netdev/20190418133646.GA94236@meh.true.cz
-> 
-> -- ynezz
-> 
