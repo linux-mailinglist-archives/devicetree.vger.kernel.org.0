@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E21DD1C922
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A9371C92E
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbfENNB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 09:01:26 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:35157 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725562AbfENNB0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 09:01:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=0kFdElstit5HS2EU/3V72XmqkmzHX/hLJaDRJlo92tE=; b=KR2ftx3Legw5rt2nBzRBv3At7m
-        c6sBkIA+LG5oK99YSWNQ72RddWtfX4emfxqhnEN2D+AeATdWtPL7NeWmnWFp4Sx/rAFyeXfUaVuEY
-        hOikx6j5xLKLnzO48LCjDTXBNX0pbnEUqrlcCp9bwbS9gMd6kF4hwSBn2UyjZxQW3CBg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hQX3R-0002SK-P9; Tue, 14 May 2019 15:01:13 +0200
-Date:   Tue, 14 May 2019 15:01:13 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sagar Kadam <sagar.kadam@sifive.com>
-Cc:     Rob Herring <robh@kernel.org>, mark.rutland@arm.com,
-        peter@korsgaard.com, Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 v2 1/3] dt-bindings: i2c: extend existing opencore
- bindings.
-Message-ID: <20190514130113.GB5892@lunn.ch>
-References: <1557242108-13580-1-git-send-email-sagar.kadam@sifive.com>
- <1557242108-13580-2-git-send-email-sagar.kadam@sifive.com>
- <20190513205615.GA5844@bogus>
- <CAARK3HkTCGWg4CAo1LmQHmf4_NFukjTwO1LAHjgSTS+R_5CRSg@mail.gmail.com>
+        id S1726174AbfENNIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 09:08:39 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:46599 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725562AbfENNIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 09:08:39 -0400
+Received: by mail-lj1-f193.google.com with SMTP id h21so12486250ljk.13;
+        Tue, 14 May 2019 06:08:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jGnWaeTdAGYVob1R/TxXevTDDOUSFKjgVCqNbbE/1nI=;
+        b=hz3x2Hx3tvoY4x19hxjgKQPiNUhxFg13owl7/k6Ky6dO4KK2ca5+M2T/ZQAHHSZThe
+         xIwgSLc13QESbL3hNX+o5utV03dRJChs7nOKk6wkDO5elb16VMgToE05vxVoHrSD0yoL
+         wABAYKND66EjSnJljB/B9NcK7jayPwmR0lvS/EA3rYOLZ0RgNQDRysBwK/VkBtP/rZDu
+         fpeYAXJCvJ/wpkfEqBrurLrugaGUcJWi5Gg5sSe+sTbPk7iJLXpCd0hDsQ77PQ5vCPhL
+         Bn/CBBeO0ID0BLatVCRMm/lGrg5qSdZa628QsHlslnMeW58ygsZykh2ii05BeCZeaFJi
+         gQiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jGnWaeTdAGYVob1R/TxXevTDDOUSFKjgVCqNbbE/1nI=;
+        b=BWR0nYQH05fktCcFwntfwVLMF9UUsEMrP1uiAp9k7etusazA+UH64M7ao3MfsRomgx
+         Yf4Zt8NIwptxv3IzinHOo1CCsB3VlRc/cz8Qt7MnN8WH+K4h0lmmvarlOS1hK836qCpd
+         23NMtXjpgeEDaSw8Xp/EanWnMWwgpNtwBmyIxGbtQkzyu0nmTZSpLcXc5Fw/h0OBWLT3
+         7y8v1weo8c2+08f9FXl++FMAzq0n4mLtxdl4EzFrB4nQUriPzz+I3GpD+Fac1IeMWhZE
+         BiYcqoYVAs11GWNyvwLZIQCEQP8vlOIN/EHMUB16AVDHJtle6EUaVIcFKBqQi1D9p2tQ
+         mj4Q==
+X-Gm-Message-State: APjAAAVmIAtCRNuCoru7KAA3S/T27L9Vk8HJheASRfUdMqCp5tqkeAFn
+        Z3isVjx8RfZf5F5U9j34fLvv6/meSXqGvQwBgFY=
+X-Google-Smtp-Source: APXvYqwGecBzbpfdMXAIjdCxJTDl5Ws8nyl0nWjhHtCf7epuYAKPy0fZvIPVELRzmMR4xkE3iE/POW6O04b/VHIW07o=
+X-Received: by 2002:a2e:2b81:: with SMTP id r1mr15614143ljr.138.1557839316690;
+ Tue, 14 May 2019 06:08:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAARK3HkTCGWg4CAo1LmQHmf4_NFukjTwO1LAHjgSTS+R_5CRSg@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20190513202258.30949-1-angus@akkea.ca> <20190513202258.30949-2-angus@akkea.ca>
+In-Reply-To: <20190513202258.30949-2-angus@akkea.ca>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 14 May 2019 10:08:33 -0300
+Message-ID: <CAOMZO5Dn4sVJx3UPo-WXMen9N36CiBvq3i+GosJ_4FGZ7jnTqA@mail.gmail.com>
+Subject: Re: [PATCH v11 1/4] MAINTAINERS: add an entry for for arm63 imx devicetrees
+To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
+Cc:     angus.ainslie@puri.sm, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +     */
-> > > +     i2c@10030000 {
-> > > +                     compatible = "sifive,i2c0","sifive,fu540-c000-i2c";
-> > > +                     reg = <0x0 0x10030000 0x0 0x1000>;
-> > > +                     reg-names = "i2c-control";
-> >
-> > Not doucmented.
-> In v1, I had added a new binding file as sifive-i2c-ocores.txt for
-> SiFive i2c core.
-> After Andrew's suggestion,  extending the available i2c-ocores.txt
-> seemed to be a better idea rather than adding a new file.
-> so added an example node which is HiFive specific in the existing file.
-> Please let me know if I need to handle this in a different way.
+On Mon, May 13, 2019 at 5:23 PM Angus Ainslie (Purism) <angus@akkea.ca> wrote:
+>
+> Add an explicit reference to imx* devicetrees
+>
+> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
 
-Hi Sagar
+There is a typo in the Subject: "arm63" --> "arm64".
 
-Is reg-names actually needed?
-
-   Andrew
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
