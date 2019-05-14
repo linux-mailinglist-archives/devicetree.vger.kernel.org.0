@@ -2,125 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 648151D050
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E5B1D05A
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:14:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbfENUN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 16:13:57 -0400
-Received: from casper.infradead.org ([85.118.1.10]:60916 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726107AbfENUN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:13:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=BNb+dV3NVpUitMb6wFKSfOap4u//6ZgcL7PxAt1hGgM=; b=cUAo4R4KvqkBuxHKSI8Kf/Hhm0
-        wUYUAwxBl6TyMpXtWEPOncwMKrpQFMH6J5Smf/byp+HYh/JvpD67SR03utNaQ6qFDVyTDvE6dVIbP
-        99stx++2OBX0wBaqQhHqh75qi970yTv6dUlyURvZS2JY/BDmuum/5BDFnOVyEsh0++NvjqtH0SZbc
-        rWKF7oKOvLEO1jgPWDG0Z2VE+oWvulOl/SWi7iiPobLGhz/o3MJlFwMfyw4G2c7fwQoBoVlCgdRpu
-        4/TGw+LreWUkY9YtaMrDcX9ozSpmAMN/6fEwy9cwkFuUqIaXNDGNecMjTus3o0o64bVcaTbX2qZUY
-        Lj9oyujA==;
-Received: from [179.179.44.200] (helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hQdo2-0008VW-0t; Tue, 14 May 2019 20:13:46 +0000
-Date:   Tue, 14 May 2019 17:13:40 -0300
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v6 09/13] media: tvp5150: add s_power callback
-Message-ID: <20190514171340.444ce55b@coco.lan>
-In-Reply-To: <20190415124413.18456-10-m.felsch@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
-        <20190415124413.18456-10-m.felsch@pengutronix.de>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726336AbfENUOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 16:14:49 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38616 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726201AbfENUOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:14:48 -0400
+Received: by mail-ot1-f68.google.com with SMTP id s19so92132otq.5;
+        Tue, 14 May 2019 13:14:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=qDSk0SZEl2UvCN7TKGAHqgBAUsr16i+lq3jnqkJH6gc=;
+        b=M3XLD9eiZqgwiys1v+6sPpcKBn5sYU8eI7tZv/Dm4DHaRvn8F5zaxeSd6HZpJWy+U2
+         L8atTqL+weYlBtVc4ADp4n26dhkMvGTpWS7Xr5X6wb+Xkkf2Vuju7kqJC4KlqvkU7GcJ
+         cIcFi0ZctgXCB5frxonCtRbog1DMcb+tTsIjVlMmiGzhNgCCox32KZJNhKksI69xq7vf
+         gd4giUn/JCZC1w+z0EhUHFN08nwI/5UeucT5qZSx4Xspg5MladoBp590whwz12UK+ZT1
+         ikZUq7HxAo12G1MpyI31IgzQV8CRZz10eQU/ypeJ4+xw8cYEUasyZJzvQMv15MWYd4mU
+         McVA==
+X-Gm-Message-State: APjAAAWMe67vJFZ+BcecV/eJ2i98LjEMqDJAhQiVulMSarjMvbUztYQF
+        2luM4wWsWLjbDlPYqTo/tw==
+X-Google-Smtp-Source: APXvYqy0DmBg5AVm6UGSATsuf2eDa6AOsOSDM7QYNZcyDwYTVR4/PoV6LpYTKAOotzxVzhxgYi5seA==
+X-Received: by 2002:a9d:77c9:: with SMTP id w9mr13586344otl.253.1557864887960;
+        Tue, 14 May 2019 13:14:47 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r205sm4984401oig.0.2019.05.14.13.14.47
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 13:14:47 -0700 (PDT)
+Date:   Tue, 14 May 2019 15:14:46 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Torgue <alexandre.torgue@st.com>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@st.com>
+Subject: Re: [PATCH v2] dt-bindings: pinctrl: Convert stm32 pinctrl bindings
+ to json-schema
+Message-ID: <20190514201446.GA29557@bogus>
+References: <1557503126-3025-1-git-send-email-alexandre.torgue@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557503126-3025-1-git-send-email-alexandre.torgue@st.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 15 Apr 2019 14:44:09 +0200
-Marco Felsch <m.felsch@pengutronix.de> escreveu:
-
-> Don't en-/disable the interrupts during s_stream because someone can
-> disable the stream but wants to get informed if the stream is locked
-> again. So keep the interrupts enabled the whole time the pipeline is
-> opened.
-
-Not testing on any tvp5150 hardware, looks ok to me.
-
+On Fri, 10 May 2019 17:45:26 +0200, Alexandre Torgue wrote:
+> Convert the STM32 pinctrl binding to DT schema format using json-schema.
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
 > ---
->  drivers/media/i2c/tvp5150.c | 23 +++++++++++++++++------
->  1 file changed, 17 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index 305a5e256b31..cd54715eb641 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -1370,11 +1370,26 @@ static const struct media_entity_operations tvp5150_sd_media_ops = {
->  /****************************************************************************
->  			I2C Command
->   ****************************************************************************/
-> +static int tvp5150_s_power(struct  v4l2_subdev *sd, int on)
-> +{
-> +	struct tvp5150 *decoder = to_tvp5150(sd);
-> +	unsigned int val = 0;
-> +
-> +	if (on)
-> +		val = TVP5150_INT_A_LOCK;
-> +
-> +	if (decoder->irq)
-> +		/* Enable / Disable lock interrupt */
-> +		regmap_update_bits(decoder->regmap, TVP5150_INT_ENABLE_REG_A,
-> +				   TVP5150_INT_A_LOCK, val);
-> +
-> +	return 0;
-> +}
->  
->  static int tvp5150_s_stream(struct v4l2_subdev *sd, int enable)
->  {
->  	struct tvp5150 *decoder = to_tvp5150(sd);
-> -	unsigned int mask, val = 0, int_val = 0;
-> +	unsigned int mask, val = 0;
->  
->  	mask = TVP5150_MISC_CTL_YCBCR_OE | TVP5150_MISC_CTL_SYNC_OE |
->  	       TVP5150_MISC_CTL_CLOCK_OE;
-> @@ -1387,15 +1402,10 @@ static int tvp5150_s_stream(struct v4l2_subdev *sd, int enable)
->  			val = decoder->lock ? decoder->oe : 0;
->  		else
->  			val = decoder->oe;
-> -		int_val = TVP5150_INT_A_LOCK;
->  		v4l2_subdev_notify_event(&decoder->sd, &tvp5150_ev_fmt);
->  	}
->  
->  	regmap_update_bits(decoder->regmap, TVP5150_MISC_CTL, mask, val);
-> -	if (decoder->irq)
-> -		/* Enable / Disable lock interrupt */
-> -		regmap_update_bits(decoder->regmap, TVP5150_INT_ENABLE_REG_A,
-> -				   TVP5150_INT_A_LOCK, int_val);
->  
->  	return 0;
->  }
-> @@ -1586,6 +1596,7 @@ static const struct v4l2_subdev_core_ops tvp5150_core_ops = {
->  	.g_register = tvp5150_g_register,
->  	.s_register = tvp5150_s_register,
->  #endif
-> +	.s_power = tvp5150_s_power,
->  };
->  
->  static const struct v4l2_subdev_tuner_ops tvp5150_tuner_ops = {
+> Hi,
+> 
+> First pacth to convert DT bindings file (here pinctrl STM32) to json-schema
+> in order to take advantage of devicetree validation tool for STM32.
+> 
+> Changes since v1:
+>  - Fix errors reported by Rob.
+> 
+> 
+> regards
+> Alex
+> 
 
-
-
-Thanks,
-Mauro
+Reviewed-by: Rob Herring <robh@kernel.org>
