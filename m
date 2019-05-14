@@ -2,159 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52CC11C9B7
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81E21CA39
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 16:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726362AbfENN4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 09:56:43 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35366 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbfENN4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 09:56:20 -0400
-Received: by mail-wr1-f67.google.com with SMTP id w12so19363851wrp.2
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 06:56:18 -0700 (PDT)
+        id S1725854AbfENO06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 10:26:58 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:37894 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725928AbfENO05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 10:26:57 -0400
+Received: by mail-wm1-f67.google.com with SMTP id f2so3044059wmj.3
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 07:26:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3Z3XkroftFEOZ+oKRERn/ytHnCEs/zdgDA4cYGSY7DY=;
-        b=srwoGdM2pi3FUKVWb1bVPrzv+PX1GFaTRXsw3dRT8fB5USvGoV1sYMg53QdODFcxno
-         Q0dQocvYEG5gARTTaO4iSMlbRUw5ZFHdIjykqvm/sK+VgDNWhBLVYrpWGt/VpfiSU7L1
-         feo74fD6wjwCBdVYIDgvTwfDVDbfS02dmUaA8PZUv2D2A5SxpCtrd2ZsTJlhZs0E71C4
-         XjYy9KGfSI+p2m6BHcAB5HvvtmMu81IckC0kmMmOvOB7mANygS4KrcrekKkjs4bJjqyW
-         agiikBfaeI4Ee70Qu7YqT5BhX02BPGcNvWkzxUtuRfIr5n9xl+YCHs4tWyp5Vv/xUCxJ
-         uOjA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xo30xwvbJA7vC66mclDC+YHAOBu9mjboSFr2MJ8sIkM=;
+        b=a1B4CJazlurgVaQLDCYH/QOGHp+/p5etIFGptl1W62ONAx6U3RDXJXTKd2M2P39Gek
+         aFEKW4XmW9mBars8x0oQfyOljHLaWGC3IDMQxIe51gkJ9nBLU524QESKxwDuoeKdmPd0
+         i1wzZnfEtllMr7ZKgIgeJRk7jgAv01EIsOjwPZiQ9+D9kEpqdtjQO/crlDsp39WkskPF
+         ybRAUTiYNNsHQLl6Mi6TKidPWJnX0yRwg93HPaiwF6raYh22p0LpMN/rQa3/o6tg8BTK
+         VS8uNVsuXMvp7E5B9EOV9QHGUEnAwI2DuN7nqHRFovcdQrsJZwTAnu3mJJoY/PEFqUEh
+         W/0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3Z3XkroftFEOZ+oKRERn/ytHnCEs/zdgDA4cYGSY7DY=;
-        b=MViWz7CMNbYPIgLiO2B6YU3dF0vm5N2d/BE9ewPNfWItyzzydAziqCXrcqfGNMYymZ
-         HObNkmPXv/QUP4hJxDTyYwk46nY+RJNy3upVA8XyhbvK0hbBd8uW1ORzZkuqdM2U8k6K
-         A7DiergS/7Cif8NFTTDbPWGD4nbsg6UZiWC8CoA1L9ue5ATYvvIIHxswJVERxUYnMqSH
-         RL4FMrsozZ04P5TZ7x6SiPi6UmgxQqv/MyxzuXn6t3vVDCMsUS5i8ycHuWFONIFkjLpX
-         MKfZD8cCyS4evvG0gvTx1a1+cDK8LtEoPPOUguQKHBcRGcocKMBQZMSH5ayLDjffkpmB
-         bEyg==
-X-Gm-Message-State: APjAAAUDM0tNZLhMw29ooKTpSK3MRx8i5UeD3u9vc4ULnDYwoGoxBNTM
-        OfMe62CTr8kyxsRAUXqviGGcFUk2pcw=
-X-Google-Smtp-Source: APXvYqyzK4kQnCJQWuc1QqSsGoqGq9pNNeIqQotMC679d3W+STr2oaNTyTLUAtjUp3koLKbf/YLfPA==
-X-Received: by 2002:adf:ebd2:: with SMTP id v18mr3451395wrn.108.1557842177761;
-        Tue, 14 May 2019 06:56:17 -0700 (PDT)
-Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr. [85.68.183.99])
-        by smtp.gmail.com with ESMTPSA id d72sm1375764wmd.12.2019.05.14.06.56.16
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 14 May 2019 06:56:17 -0700 (PDT)
-From:   Maxime Jourdan <mjourdan@baylibre.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Maxime Jourdan <mjourdan@baylibre.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 1/4] dt-bindings: media: add Amlogic Video Decoder Bindings
-Date:   Tue, 14 May 2019 15:56:09 +0200
-Message-Id: <20190514135612.30822-2-mjourdan@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190514135612.30822-1-mjourdan@baylibre.com>
-References: <20190514135612.30822-1-mjourdan@baylibre.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xo30xwvbJA7vC66mclDC+YHAOBu9mjboSFr2MJ8sIkM=;
+        b=YMR6C+Bw6XE4suyKhSSjOdpBsr+B/n+CFvzXxWC/c7fVgjxdBDe7ngU7a6l+5Ar4Wb
+         JhvlMU7NS+atA64+A+OgXrnMTnf8IuYOrNWq5yA3JcYOg4MqydF1PbFP0VJ/lkjAvncQ
+         qRit8C0hJatzNEZp/CtFgGJwRDVRm3uQoHGa074poCCmIufcuS2ezs0BzP7vg+8isojR
+         a5VaKgZIg0/B5nRBHal+aN6pgqN0sNUr7A89Sis7jLTPkrPr5SIdqubx2c5mwielwAsL
+         9XktkYdCO+jzaQBWh1W044Z+KSvE3/mu/RgSUEbBrtvu9Q2DDCUN8LUYEXvHTUeSzOrs
+         q9gQ==
+X-Gm-Message-State: APjAAAXiTdMp2hCmgb7abN1F55tpWvPK2qbvlvc7DfRP9KHRiIuIN8sj
+        NbutGqMeopD4bdSPYUMBa5AhYeqOgTY=
+X-Google-Smtp-Source: APXvYqyxM8SBZKfuvPU5hDHnz2X0CskNKmcHoNnyDsUoWSQq5AQWOIwbyW+/3fdboHLdg35Qv7soLw==
+X-Received: by 2002:a1c:7a12:: with SMTP id v18mr4071578wmc.69.1557844015433;
+        Tue, 14 May 2019 07:26:55 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id h15sm12343642wru.52.2019.05.14.07.26.54
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 07:26:54 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/8] arm64: dts: meson: g12a: add audio devices
+Date:   Tue, 14 May 2019 16:26:41 +0200
+Message-Id: <20190514142649.1127-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the meson vdec dts node.
+This patchset adds audio related devices to g12a SoC family.
+It adds the clock controller as well as the memory, tdm, spdif
+and pdm interfaces.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
----
- .../bindings/media/amlogic,vdec.txt           | 71 +++++++++++++++++++
- 1 file changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
+At this stage, the HDMI and internal audio DAC are still missing.
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-new file mode 100644
-index 000000000000..aabdd01bcf32
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-@@ -0,0 +1,71 @@
-+Amlogic Video Decoder
-+================================
-+
-+The video decoding IP lies within the DOS memory region,
-+except for the hardware bitstream parser that makes use of an undocumented
-+region.
-+
-+It makes use of the following blocks:
-+
-+- ESPARSER is a bitstream parser that outputs to a VIFIFO. Further VDEC blocks
-+then feed from this VIFIFO.
-+- VDEC_1 can decode MPEG-1, MPEG-2, MPEG-4 part 2, MJPEG, H.263, H.264, VC-1.
-+- VDEC_HEVC can decode HEVC and VP9.
-+
-+Both VDEC_1 and VDEC_HEVC share the "vdec" IRQ and as such cannot run
-+concurrently.
-+
-+Device Tree Bindings:
-+---------------------
-+
-+VDEC: Video Decoder
-+--------------------------
-+
-+Required properties:
-+- compatible: value should be different for each SoC family as :
-+	- GXBB (S905) : "amlogic,gxbb-vdec"
-+	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
-+	- GXM (S912) : "amlogic,gxm-vdec"
-+- reg: base address and size of he following memory-mapped regions :
-+	- dos
-+	- esparser
-+- reg-names: should contain the names of the previous memory regions
-+- interrupts: should contain the following IRQs:
-+	- vdec
-+	- esparser
-+- interrupt-names: should contain the names of the previous interrupts
-+- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
-+- amlogic,canvas: should point to a canvas provider node
-+- clocks: should contain the following clocks :
-+	- dos_parser
-+	- dos
-+	- vdec_1
-+	- vdec_hevc
-+- clock-names: should contain the names of the previous clocks
-+- resets: should contain the parser reset
-+- reset-names: should be "esparser"
-+
-+Example:
-+
-+vdec: video-decoder@c8820000 {
-+	compatible = "amlogic,gxbb-vdec";
-+	reg = <0x0 0xc8820000 0x0 0x10000>,
-+	      <0x0 0xc110a580 0x0 0xe4>;
-+	reg-names = "dos", "esparser";
-+
-+	interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-+		     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-+	interrupt-names = "vdec", "esparser";
-+
-+	amlogic,ao-sysctrl = <&sysctrl_AO>;
-+	amlogic,canvas = <&canvas>;
-+
-+	clocks = <&clkc CLKID_DOS_PARSER>,
-+		 <&clkc CLKID_DOS>,
-+		 <&clkc CLKID_VDEC_1>,
-+		 <&clkc CLKID_VDEC_HEVC>;
-+	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
-+
-+	resets = <&reset RESET_PARSER>;
-+	reset-names = "esparser";
-+};
+Notice the use of the pinconf DT property 'drive-strength-microamp'.
+Support for this property is not yet merged in meson pinctrl driver but
+the DT part as been acked by the DT maintainer [0] so it should be safe
+to use.
+
+Changes since v1: [1]
+ * Had missing axg compatibles for the fifos (one last harmless change ...)
+ * Fix a few underscores in node names
+
+[0]: https://lkml.kernel.org/r/20190513152451.GA25690@bogus
+[1]: https://lkml.kernel.org/r/20190514111510.23299-1-jbrunet@baylibre.com
+
+Jerome Brunet (8):
+  arm64: dts: meson: g12a: add audio clock controller
+  arm64: dts: meson: g12a: add audio memory arbitrer
+  arm64: dts: meson: g12a: add audio fifos
+  arm64: dts: meson: g12a: add tdm
+  arm64: dts: meson: g12a: add spdifouts
+  arm64: dts: meson: g12a: add pdm
+  arm64: dts: meson: g12a: add spdifin
+  arm64: dts: meson: g12a: enable hdmi_tx sound dai provider
+
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1233 +++++++++++++++++--
+ 1 file changed, 1142 insertions(+), 91 deletions(-)
+
 -- 
-2.21.0
+2.20.1
 
