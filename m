@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1FC41CBA5
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 17:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF1871CBBD
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 17:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbfENPRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 11:17:37 -0400
-Received: from mail-yw1-f66.google.com ([209.85.161.66]:40910 "EHLO
-        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725854AbfENPRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 11:17:36 -0400
-Received: by mail-yw1-f66.google.com with SMTP id 18so14265617ywe.7;
-        Tue, 14 May 2019 08:17:36 -0700 (PDT)
+        id S1726025AbfENPW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 11:22:59 -0400
+Received: from mail-yw1-f65.google.com ([209.85.161.65]:33951 "EHLO
+        mail-yw1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725854AbfENPW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 11:22:58 -0400
+Received: by mail-yw1-f65.google.com with SMTP id n76so14314884ywd.1;
+        Tue, 14 May 2019 08:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=XlpJYHLmPG7Uggd9+oaIZ1OeCPKgknlGwcKeYgcPgps=;
-        b=dmpRF7RZxloSc1IpirAVs4uHNLPmixu1h5DGL0kn80zjR4NMuvwbzk04I71iyTq+I6
-         FFq4icPffkFrDE80DZkTbIEQCePFMc6rrKjiDUKR2yLzjDDytq3bmNcVsvDM4YW+CNgz
-         uh+dqa4DzyxtUGio4Fzqq7gmif5BzLB2GD3La6kHR6PqSV8Jh38XdxUXeygbQJkkyz8V
-         pMx1cxToi+sqCT0rMD5tgdgdT7YAYp9JAD8Ama+b8XJW5XO4LWLh0vYiEtHW60/m4NRb
-         FlkhmS5dSRhK2bO96CC0vcQwG/KLBjyZbG4F2bclAP8r1VMdbOAfq01Px1CG3FiVoVTU
-         jTlw==
+        bh=EIqb4eEH0S4LgQ1Yuwg43BMgX8ef+eVurK6N5WcObMU=;
+        b=vYmdyv9F2aheI/anon+QKteAny7T9Jkr5RqQgnGlUFC7tfsc6l0uZhzwhbGkpKWrM+
+         0wIQgCkUqAIJJiuKcWpmOAP1rmiLDxREh2+HSn/77OrV2OmMe1GNryaK5Jhn6rMzT3bJ
+         k7ecYwXz++aYRjdGRlKRK/baHs1CClyfvLZPqRIbMWxra8vFvLGZETpzx0FWraGbciky
+         q0O/MwvkTRJBcA2bOTZykoX7/cO+79ijS0Lv86uRvIt5UvugjKjNs5tODTEkfpT5F4g6
+         Ih9QJYumpv8dTaoCeesPt1IjlsdakWKtHqihnDqKfQLwWnTw37x8K9mhyhAs1u18HPX8
+         3cuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XlpJYHLmPG7Uggd9+oaIZ1OeCPKgknlGwcKeYgcPgps=;
-        b=FMdSZXPOQ6iyvbaS9C4KjlzQmIk9jcXYVfWNhYJNg+tfqAlwvWslrO96UAj7gNQZ5u
-         HjvxMD4fnVheevvBqsoZ4drm53dMEo0meVoHf1HYXj7zPxC/eft3dQ1LJhdkAr2qrqvW
-         cF03xORbuYd1s5Wf7v72E2uTLVEu2SSj7TjB0Zy1hU/zcIe81srtpLgpNaNpeFM7VkZ7
-         4PXXnUJESjiNq34t24ctkt8hHvBlUmGk47xYtKfxkUcvAhtEJaelROmBwUWJrblewVbK
-         0QB9AF7IOtDdjF9WF+w+BJxi7my43RueOeInB2HdRpAzXG96dghecuy/jsLn9iaqAXfE
-         qKQA==
-X-Gm-Message-State: APjAAAUHRhQlA1m9Xa8lJ5ClkcMfOuDl1x/o1cvg2wWYpbLpAr1BL1ni
-        CyZyq4nvwZrPX1mKF7ULTB3JZp1C7zFg9O1XxVc=
-X-Google-Smtp-Source: APXvYqxEriT2XkWrsa7sMupzbhPrCGn4wsQkd2YWnSKAQ8Mjc/v1DzNBx9GbGA3XQKwGm9ujepe0XUdZIaO+zUVSBaE=
-X-Received: by 2002:a25:9b88:: with SMTP id v8mr17000341ybo.153.1557847055669;
- Tue, 14 May 2019 08:17:35 -0700 (PDT)
+        bh=EIqb4eEH0S4LgQ1Yuwg43BMgX8ef+eVurK6N5WcObMU=;
+        b=Qp8UB2hWxjQrbVIZKKK+Fz5r8f6WEkr7fIi1S+RZpLFQ9UOUVbyKxYo8jgSKQkaz4z
+         2ljmXE0hiX0Ho6b5HqBsC0ngXWxsoG/QYVS8Tp32dckSukSfGEKCvKhpPkdb4IiUMrDA
+         kkGk71mTZbtJFdNyUqYls5bBWMkXEBnr+q3goXmf9nCoZgZTTc0vWyY97fA5qhJjgGe9
+         76H0KfOYSq8WU4+EY2Zyy+Jf0lyiF/dx5E5qBWSUJmRb+JZ8B4o76oggSxXoG0FzpkMq
+         MWMissyhB+jOisWKyiASAnoQWYcVfyehMnLcucF71c+Z475qI/1gqaMYJ0T6ih27kCgw
+         4H6Q==
+X-Gm-Message-State: APjAAAUcLVYy1dlgwXwpQpjBG4l10O4IA9YBNKtYb+Bxk7Cvxb+FBW06
+        ugqjqSok131gKxhvXy3O3wjZ3kI8xrdiqvPTQNbf6PWOXpcOuw==
+X-Google-Smtp-Source: APXvYqzsCBCwG+CsZWtmfQH5I1TFQjALA0U5fvim+GZofqMADF7Ffsdbqc9gP3rOktGVVJdHyqlZTkKTnqD3qMMrmPs=
+X-Received: by 2002:a25:9b88:: with SMTP id v8mr17018094ybo.153.1557847377908;
+ Tue, 14 May 2019 08:22:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190512174608.10083-1-peron.clem@gmail.com> <20190513151405.GW17751@phenom.ffwll.local>
- <de50a9da-669f-ab25-2ef2-5ffb90f8ee03@baylibre.com>
-In-Reply-To: <de50a9da-669f-ab25-2ef2-5ffb90f8ee03@baylibre.com>
+References: <20190512174608.10083-1-peron.clem@gmail.com> <20190512174608.10083-6-peron.clem@gmail.com>
+ <CAMty3ZBTO9+9HLikR8=KgWZQBp+1yVgxQ_rD-E8WeJ8VvpuAcA@mail.gmail.com> <CAGb2v64QpH2uL3Q2=ePEaYhrB1_J5uNT4VnBssBgwbOB0NDD0Q@mail.gmail.com>
+In-Reply-To: <CAGb2v64QpH2uL3Q2=ePEaYhrB1_J5uNT4VnBssBgwbOB0NDD0Q@mail.gmail.com>
 From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Tue, 14 May 2019 17:17:24 +0200
-Message-ID: <CAJiuCccuEw0BK6MwROR+XUDvu8AJTmZ5tu=pYwZbGAuvO31pgg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Allwinner H6 Mali GPU support
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     David Airlie <airlied@linux.ie>, Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 14 May 2019 17:22:46 +0200
+Message-ID: <CAJiuCccZvk_rHmh4Trt+1uG0APu886Zp_DvUwGcMkph0U0biAA@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v4 5/8] arm64: dts: allwinner: Add mali GPU
+ supply for Pine H64
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
         devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -64,91 +67,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Jagan, Chen-Yu,
 
-On Tue, 14 May 2019 at 12:29, Neil Armstrong <narmstrong@baylibre.com> wrot=
-e:
+On Tue, 14 May 2019 at 12:18, Chen-Yu Tsai <wens@csie.org> wrote:
 >
-> Hi,
->
-> On 13/05/2019 17:14, Daniel Vetter wrote:
-> > On Sun, May 12, 2019 at 07:46:00PM +0200, peron.clem@gmail.com wrote:
-> >> From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> >>
-> >> Hi,
-> >>
-> >> The Allwinner H6 has a Mali-T720 MP2. The drivers are
-> >> out-of-tree so this series only introduce the dt-bindings.
+> On Mon, May 13, 2019 at 2:28 AM Jagan Teki <jagan@amarulasolutions.com> w=
+rote:
 > >
-> > We do have an in-tree midgard driver now (since 5.2). Does this stuff w=
-ork
-> > together with your dt changes here?
+> > On Sun, May 12, 2019 at 11:16 PM <peron.clem@gmail.com> wrote:
+> > >
+> > > From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > >
+> > > Enable and add supply to the Mali GPU node on the
+> > > Pine H64 board.
+> > >
+> > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/a=
+rch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> > > index 4802902e128f..e16a8c6738f9 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> > > @@ -85,6 +85,11 @@
+> > >         status =3D "okay";
+> > >  };
+> > >
+> > > +&gpu {
+> > > +       mali-supply =3D <&reg_dcdcc>;
+> > > +       status =3D "okay";
+> > > +};
+> >
+> > I think we can squash all these board dts changes into single patch.
 >
-> No, but it should be easy to add.
-I will give it a try and let you know.
+> Yes. Please do so for all patches with the same changes applied to differ=
+ent
+> boards, and authored by the same person.
 
->
-> Cl=C3=A9ment, no need to resend the first patch, it's now on
-> linus master.
-Ok
+I thought it was required to have "smallest" patch as possible.
+And it's also better for tracking "Tested-by" tag.
+
+I will squash them in the next version.
 
 Thanks,
 Clement
-
 >
-> Could you also add support for the bus clock in panfrost
-> in the same patchset since it's also on master now ?
->
-> Neil
->
-> > -Daniel
-> >
-> >> The first patch is from Neil Amstrong and has been already
-> >> merged in linux-amlogic. It is required for this series.
-> >>
-> >> The second patch is from Icenowy Zheng where I changed the
-> >> order has required by Rob Herring.
-> >> See: https://patchwork.kernel.org/patch/10699829/
-> >>
-> >> Thanks,
-> >> Cl=C3=A9ment
-> >>
-> >> Changes in v4:
-> >>  - Add Rob Herring reviewed-by tag
-> >>  - Resent with correct Maintainers
-> >>
-> >> Changes in v3 (Thanks to Maxime Ripard):
-> >>  - Reauthor Icenowy for her patch
-> >>
-> >> Changes in v2 (Thanks to Maxime Ripard):
-> >>  - Drop GPU OPP Table
-> >>  - Add clocks and clock-names in required
-> >>
-> >> Cl=C3=A9ment P=C3=A9ron (6):
-> >>   dt-bindings: gpu: mali-midgard: Add H6 mali gpu compatible
-> >>   arm64: dts: allwinner: Add ARM Mali GPU node for H6
-> >>   arm64: dts: allwinner: Add mali GPU supply for Pine H64
-> >>   arm64: dts: allwinner: Add mali GPU supply for Beelink GS1
-> >>   arm64: dts: allwinner: Add mali GPU supply for OrangePi Boards
-> >>   arm64: dts: allwinner: Add mali GPU supply for OrangePi 3
-> >>
-> >> Icenowy Zheng (1):
-> >>   dt-bindings: gpu: add bus clock for Mali Midgard GPUs
-> >>
-> >> Neil Armstrong (1):
-> >>   dt-bindings: gpu: mali-midgard: Add resets property
-> >>
-> >>  .../bindings/gpu/arm,mali-midgard.txt         | 27 ++++++++++++++++++=
-+
-> >>  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  5 ++++
-> >>  .../dts/allwinner/sun50i-h6-orangepi-3.dts    |  5 ++++
-> >>  .../dts/allwinner/sun50i-h6-orangepi.dtsi     |  5 ++++
-> >>  .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  5 ++++
-> >>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 14 ++++++++++
-> >>  6 files changed, 61 insertions(+)
-> >>
-> >> --
-> >> 2.17.1
-> >>
-> >
->
+> ChenYu
