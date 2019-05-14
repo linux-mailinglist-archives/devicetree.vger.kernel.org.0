@@ -2,120 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF3FA1CEA3
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4767E1CEB1
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727528AbfENSIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 14:08:18 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:34770 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727506AbfENSIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:08:18 -0400
-Received: by mail-pf1-f195.google.com with SMTP id n19so9550010pfa.1
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 11:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=7yeeHOrqmC8a3wbdrT1dAENCvxmyZ37Vuhxj9vZ+GQw=;
-        b=S0jZM4XE6V0spZEZFXmF3lzmN9RyUrDls3YW1YfceLrf1+atDdYu1cDy9C4umcia/3
-         zscYDmEM5QFhJ0Lva8Sr/fBO7umd8310R/E4POlAM5wiB7jMzgSkP8SsOgHo4cuPtzqM
-         j5f31ImygRcFRnpQwdS5IZIz9c6qvCbiaaZwXxiQnGCs4OmdaNEeAT0BXUQnQH/qgAa6
-         HfIIFTZyV9zShckZnWJw1oElQyqVHLhJcgWa8zt0ufYs+8dsKUPv2sW1yVTo4jhRi601
-         xWiCimgXoAgU8fIvE1m4CgoqiIh5RUVt2mEcjUAPFJsbkkmefrie+e0G224VchBEu3Gt
-         Tibw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7yeeHOrqmC8a3wbdrT1dAENCvxmyZ37Vuhxj9vZ+GQw=;
-        b=fbrQVNlkahz+YXcQEizpy8qICWWBscxcB+vzmgje5K8g4Om6GikWfbSOPfkRVmYF6r
-         hnVku0qjpr3xd18ii4jpeOC4IkbimM7h0974x/QHlQ5epCCPGN9rapBqXi+fwSmXc3C9
-         eexhdlIqx18KDXvqOzPVb0yED0eHUB6U1T7qyLzFpTTVYfIzxUJBQRJeXMEn14gAOLg+
-         GOtzYjz//4YwSIQdJcYIJRFBY8Hsre4QmBSw+WuEyrrALdvV7+Jdeoyv+he206OptXvn
-         mkcBkzt3ZhYPovBkDFAIPR3DALEV+H9a2l8lN+Sa1wVCx8en2cWRyvTmemVoGfixFtDY
-         iBsw==
-X-Gm-Message-State: APjAAAU1zQZHk/tZtFV3WRdysfZy0lEx3Mo6Eg+3INM9nQIDfn/0Cd2b
-        txxxAb8LgFq2wBqQT3Z8MjSyQQ==
-X-Google-Smtp-Source: APXvYqwwVSNPE5KOIRDKGnKoGzgoMRg2kvhAd8LSW436lA1eY3lipqpVLe11sNrtmgGOqBltRdlWXQ==
-X-Received: by 2002:a65:534b:: with SMTP id w11mr39586352pgr.210.1557857296635;
-        Tue, 14 May 2019 11:08:16 -0700 (PDT)
-Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
-        by smtp.gmail.com with ESMTPSA id h18sm1568524pgv.38.2019.05.14.11.08.15
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 14 May 2019 11:08:15 -0700 (PDT)
-Date:   Tue, 14 May 2019 11:08:10 -0700
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     Jonathan Corbet <corbet@lwn.net>
-Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-Subject: Re: [PATCH v3 15/18] Documentation: kunit: add documentation for
- KUnit
-Message-ID: <20190514180810.GA109557@google.com>
-References: <20190514054251.186196-1-brendanhiggins@google.com>
- <20190514054251.186196-16-brendanhiggins@google.com>
- <20190514073422.4287267c@lwn.net>
+        id S1727032AbfENSLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 14:11:34 -0400
+Received: from casper.infradead.org ([85.118.1.10]:47868 "EHLO
+        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726201AbfENSLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:11:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=vvyyiv/ywvE0ghh1qAzpGX3mqIwI163eycow9PnL8QE=; b=B1Nh5fyWSn2eUGtHwEcER7kWlD
+        LWHPC3E7aLcBT/s+ZVqxeRddVDnpEgimaBe3RNJ5K64rFxgJ1vG3WO/1jYQrWzvIRdhJMs51heWsV
+        cbFOjJAZLU55rhlTn4dIESBPET/+KDH3RfJk7Wm8spTnwSr03qHxE3LAd/uSx8PTLYucFQP2jRO8i
+        /mZlTmJliHvBicE6xUZDBEpR3i5Okx1XmS6mjBqIocKcsV0bv9XzKJDEPqDu564R9GvW3y/FxqnsM
+        lq0ych32TkWUfo6sVveMys3FJan1w3D1HBP17s7u4xViWMuid3Ty/5QGnEV1U2qlTmIqQIXKwxpi4
+        1mgvil+w==;
+Received: from [179.179.44.200] (helo=coco.lan)
+        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hQbtc-0003NC-Op; Tue, 14 May 2019 18:11:25 +0000
+Date:   Tue, 14 May 2019 15:11:19 -0300
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 01/13] dt-bindings: connector: analog: add tv norms
+ property
+Message-ID: <20190514151119.2099cd10@coco.lan>
+In-Reply-To: <9989034f-4794-adba-d89c-8330bbf7b27f@xs4all.nl>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+        <20190415124413.18456-2-m.felsch@pengutronix.de>
+        <9989034f-4794-adba-d89c-8330bbf7b27f@xs4all.nl>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190514073422.4287267c@lwn.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 07:34:22AM -0600, Jonathan Corbet wrote:
-> On Mon, 13 May 2019 22:42:49 -0700
-> Brendan Higgins <brendanhiggins@google.com> wrote:
+Em Mon, 6 May 2019 12:01:06 +0200
+Hans Verkuil <hverkuil@xs4all.nl> escreveu:
+
+> On 4/15/19 2:44 PM, Marco Felsch wrote:
+> > Some connectors no matter if in- or output supports only a limited
+> > range of tv norms. It doesn't matter if the hardware behind that
+> > connector supports more than the listed formats since the users are
+> > restriced by a label e.g. to plug only a camera into this connector
+> > which uses the PAL format.  
 > 
-> > Add documentation for KUnit, the Linux kernel unit testing framework.
-> > - Add intro and usage guide for KUnit
-> > - Add API reference
+> For S-Video and Composite connectors there are really just two formats
+> to consider: 50 and 60 Hz. I.e. there is no difference between PAL
+> and SECAM. Only for tuners/modulators does this matter.
+> 
+> So it is a good idea to add TVNORM_525_60, TVNORM_625_50 to tvnorms.h.
+> 
+> In the various bindings examples I would recommend that you use
+> TVNORM_525_60 or TVNORM_625_50 rather than e.g. PAL_M since that's what
+> you would use in practice for Composite/S-Video.
+
+Hans, that could be true for component video, but for S-Video and
+Composite, you need to tell the demod how the color sub-carrier is
+encoded, and what's its frequency, or otherwise it won't work.
+
+There are plenty of equipments in Brazil that have both NTSC/M and
+PAL/M (and a few with PAL/N') output. All those formats are 60Hz.
+
+Colors are only decoded by tvp5150 and other demods if it is set
+to the right color format (PAL or NTSC) and to the right line 
+frequency (60Hz) [1]. Also, some decoders are very sensitive to the
+chroma sub-carrier frequency. That's the case of tvp5150.
+
+[1] Or - when supported by the hardware - if the demod is set to
+    automatic mode.
+
+    Automatic mode usually doesn't work well with PAL/M and PAL/N'.
+
+    The problem is related to the sub-carrier frequency: both 
+    PAL/N' (used only on Paraguay) and NTSC/M have the same 
+    frequency; PAL/M has a close but different frequency for the
+    color sub-carrier.
+
+    Most decoders use the frequency of the chroma sub-carrier in
+    order to switch between NTSC/M nd PAL/M. So, auto-detection
+    usually fails with PAL/N', as such detectors understand it
+    as NTSC.
+
+    Worse than that, it is not uncommon to have pseudo-PAL-M devices
+    that were made for the US market, and received a conversion
+    to PAL, with envolves adding a small board with a NTSC->PAL converter.
+    As most TV sets used in this part of the world are designed to
+    work both with PAL/M and PAL/N' (by using a broader notch filter),
+    to make the hardware cheaper, lots of manufacturers just
+    change the modulation on encoders, while keeping the NTSC XTAL.
+    So, in practice, such devices, sold as "PAL/M" are actually PAL/N'.
+    A significant amount of old VCRs and DVD devices found in Brazil
+    are actually PAL/N'. The same applies to game consoles.
+
+    Btw, the main reason for having analog video streams here nowadays
+    is to copy old videos from VCRs and encode them digitally or to
+    record games from game consoles.
+
+> 
+> Regards,
+> 
+> 	Hans
+> 
 > > 
-> > Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
-> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> > This patch adds the capability to describe such limitation within the
+> > firmware. There are no format restrictions if the property isn't
+> > present, so it's completely backward compatible.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
 > > ---
-> > Changes Since Last Revision:
-> >  - Addressed reference to incorrect number of sections, as per Randy's
-> >    comment.
-> >  - Make section underlines same length as the section title, as per
-> >    Randy's comments.
-> > ---
-> >  Documentation/index.rst           |   1 +
-> >  Documentation/kunit/api/index.rst |  16 +
-> >  Documentation/kunit/api/test.rst  |  14 +
-> >  Documentation/kunit/faq.rst       |  62 ++++
-> >  Documentation/kunit/index.rst     |  79 ++++
-> >  Documentation/kunit/start.rst     | 180 ++++++++++
-> >  Documentation/kunit/usage.rst     | 575 ++++++++++++++++++++++++++++++
-> 
-> Certainly it's great to see all this documentation coming with this
-> feature!
-> 
-> Naturally, though, I have one request: I'd rather not see this at the top
-> level, which is more than crowded enough as it is.  Can this material
-> please go into the development tools book, alongside the kselftest
-> documentation?
+> > [1] https://patchwork.kernel.org/cover/10794703/
+> > 
+> > v6:
+> > - tvnorms.h: use tabs instead of spaces
+> > - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> > - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+> > 
+> > v2-v4:
+> > - nothing since the patch was squashed from series [1] into this
+> >   series.
+> > 
+> >  .../display/connector/analog-tv-connector.txt |  4 ++
+> >  include/dt-bindings/media/tvnorms.h           | 56 +++++++++++++++++++
+> >  2 files changed, 60 insertions(+)
+> >  create mode 100644 include/dt-bindings/media/tvnorms.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > index 0c0970c210ab..346f8937a0b7 100644
+> > --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > @@ -6,6 +6,9 @@ Required properties:
+> >  
+> >  Optional properties:
+> >  - label: a symbolic name for the connector
+> > +- tvnorms: limit the supported tv norms on a connector to the given ones else
+> > +           all tv norms are allowed. Possible video standards are defined in
+> > +           include/dt-bindings/media/tvnorms.h.
+> >  
+> >  Required nodes:
+> >  - Video port for TV input
+> > @@ -16,6 +19,7 @@ Example
+> >  tv: connector {
+> >  	compatible = "composite-video-connector";
+> >  	label = "tv";
+> > +	tvnorms = <(TVNORM_PAL_M | TVNORM_NTSC_M)>;
+> >  
+> >  	port {
+> >  		tv_connector_in: endpoint {
+> > diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
+> > new file mode 100644
+> > index 000000000000..058ab8414145
+> > --- /dev/null
+> > +++ b/include/dt-bindings/media/tvnorms.h
+> > @@ -0,0 +1,56 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
+> > +/*
+> > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
+> > +#define _DT_BINDINGS_MEDIA_TVNORMS_H
+> > +
+> > +/* one bit for each */
+> > +#define TVNORM_PAL_B		0x00000001
+> > +#define TVNORM_PAL_B1		0x00000002
+> > +#define TVNORM_PAL_G		0x00000004
+> > +#define TVNORM_PAL_H		0x00000008
+> > +#define TVNORM_PAL_I		0x00000010
+> > +#define TVNORM_PAL_D		0x00000020
+> > +#define TVNORM_PAL_D1		0x00000040
+> > +#define TVNORM_PAL_K		0x00000080
+> > +
+> > +#define TVNORM_PAL		(TVNORM_PAL_B  | \
+> > +				 TVNORM_PAL_B1 | \
+> > +				 TVNORM_PAL_G  | \
+> > +				 TVNORM_PAL_H  | \
+> > +				 TVNORM_PAL_I  | \
+> > +				 TVNORM_PAL_D  | \
+> > +				 TVNORM_PAL_D1 | \
+> > +				 TVNORM_PAL_K)
+> > +
+> > +#define TVNORM_PAL_M		0x00000100
+> > +#define TVNORM_PAL_N		0x00000200
+> > +#define TVNORM_PAL_Nc		0x00000400
+> > +#define TVNORM_PAL_60		0x00000800
+> > +
+> > +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
+> > +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
+> > +#define TVNORM_NTSC_443		0x00004000
+> > +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
+> > +
+> > +#define TVNORM_SECAM_B		0x00010000
+> > +#define TVNORM_SECAM_D		0x00020000
+> > +#define TVNORM_SECAM_G		0x00040000
+> > +#define TVNORM_SECAM_H		0x00080000
+> > +#define TVNORM_SECAM_K		0x00100000
+> > +#define TVNORM_SECAM_K1		0x00200000
+> > +#define TVNORM_SECAM_L		0x00400000
+> > +#define TVNORM_SECAM_LC		0x00800000
+> > +
+> > +#define TVNORM_SECAM		(TVNORM_SECAM_B  | \
+> > +				 TVNORM_SECAM_D  | \
+> > +				 TVNORM_SECAM_G  | \
+> > +				 TVNORM_SECAM_H  | \
+> > +				 TVNORM_SECAM_K  | \
+> > +				 TVNORM_SECAM_K1 | \
+> > +				 TVNORM_SECAM_L  | \
+> > +				 TVNORM_SECAM_LC)
+> > +
+> > +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
 
-Oh yeah, that seems like the obvious home for this in hindsight. Sorry
-about that. Will fix in next revision!
+Patch looks good to me.
 
-Thanks!
+Thanks,
+Mauro
