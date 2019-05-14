@@ -2,142 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D65951CC75
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 18:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 605B41CC91
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 18:11:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726218AbfENQFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 12:05:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725916AbfENQFf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 12:05:35 -0400
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E71D420863;
-        Tue, 14 May 2019 16:05:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557849934;
-        bh=hJfCCKi48RIVVVurf1uzxJpTYl+ZKJvrpl7smCiMk9k=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L/wizO1rm2m1f3c8ycsczry1ZMHkYklOT9Gq7r7ANgmAWG7SPyj+kYOKF6euRdbrx
-         wnhQ5cTM2ga4WLXvJJTNjoPZJB9vXsnQi4TGoyVi25FNKPa5rTjlUmXomMuoYKhpUX
-         NLTRYAu76AZITv/M6gd7lOt+AV7PEEx0CALj3o2Q=
-Received: by mail-qk1-f175.google.com with SMTP id c15so10647385qkl.2;
-        Tue, 14 May 2019 09:05:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAXBozo8Avxjg7L8XqHTkFba9hGQXqbIvgxUT3RXprlk+YCM8fRb
-        X/akZapobp8s+nJHY46Q0SHIPtqphk/Jma8e5Q==
-X-Google-Smtp-Source: APXvYqyglETLbb45wrJNIfZkmNqcgXRPRw5CeGZBc+AinbWKI/we4U8bnbDm+n/32ilz11VUASlMrGHWERgv4MMTLb8=
-X-Received: by 2002:a37:c42:: with SMTP id 63mr27440583qkm.326.1557849933158;
- Tue, 14 May 2019 09:05:33 -0700 (PDT)
+        id S1726501AbfENQLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 12:11:41 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:45557 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726013AbfENQLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 12:11:41 -0400
+Received: by mail-lf1-f68.google.com with SMTP id n22so12298534lfe.12
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 09:11:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=79OCTNk458byBS2H3Xt0sE1+KJDhnYCsFyQ7h5W7n7w=;
+        b=rEV45d52FtweB9bt6szB4ocHbp9e/OFDripRbyALASst+32ezBZgc9ZQa9pOVQkL1A
+         L0DxpCJVbFC36R+TXLsFNjOX0MARBsJcPrC9gDqBL70Gy2LQ5PThRWGt5k1jFqLg8tfz
+         xL1Pu2dxruYOFf1S1pjMiPx3P9gZzs7jKL70DZdRMFqwtxoAhmCrmYmE5+za2E4YjjyR
+         SwYld9BX/B0E6O8aQmBaemGdb3gFJ7wKTT5rYm6hDogI81VKNyZcp5c4pFgFLtXKUY9o
+         BRjOYI72AtYR/DFo3zNXYrJmGPZ7bq0lJWhylHd6EEok0J8IIOGhmoefLXWUbj5a69d4
+         Ygwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=79OCTNk458byBS2H3Xt0sE1+KJDhnYCsFyQ7h5W7n7w=;
+        b=WWTl3zjWHQ3588SmGD3cQXaoQ8CjzAmHvBu0HpMrdtbe90OIg6FzotZ8V/TjdVSMvE
+         PbYLRevTz6O6Sqsu3+Twtt4Ix6xDbOOcGZl0NVL2hze++/FMqyGM0oK2nMVcHVQl0/p9
+         kQWaKT73+Q9Ak1VtE+HvBEDhY8N3UYdrj3UEACuSQE738tbZ6OCowXkHH2dnXP9ad7+a
+         O1QueSgivwZcYkjR5m0IaU4/3Qpv5oI7CaIH7h9+sreT4peoDz98tzQ8QPoNRlS/zOoN
+         6Cr6ZhrznOVf047EbflC3HEwDUluGzGjYR5qjAlhTdrmWr2YU3nSAP5Nd3YQQ7zeiL+7
+         fCOA==
+X-Gm-Message-State: APjAAAWiYN0iO8MoqR4W1fX1gb9ZW5DZ+Hk+aAjYEYWl7/ibtU3Sn4PC
+        hiJgvNwZDPjMBaGVXJruuaxdPQ==
+X-Google-Smtp-Source: APXvYqyi7e9TjI8XPxrwpktl3EJ2JyOz0p4Se1vjd3AUZyBeZPecL5wHHXSzDB/JwQyEV0EZ41oNRA==
+X-Received: by 2002:ac2:4479:: with SMTP id y25mr17316963lfl.95.1557850298941;
+        Tue, 14 May 2019 09:11:38 -0700 (PDT)
+Received: from centauri.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id l14sm3850033lfc.61.2019.05.14.09.11.37
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 14 May 2019 09:11:37 -0700 (PDT)
+Date:   Tue, 14 May 2019 18:11:35 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, andy.gross@linaro.org,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv1 1/8] arm64: dts: Fix various entry-method properties to
+ reflect documentation
+Message-ID: <20190514161135.GA1824@centauri.ideon.se>
+References: <cover.1557486950.git.amit.kucheria@linaro.org>
+ <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
 MIME-Version: 1.0
-References: <1557242108-13580-1-git-send-email-sagar.kadam@sifive.com>
- <1557242108-13580-2-git-send-email-sagar.kadam@sifive.com>
- <20190513205615.GA5844@bogus> <CAARK3HkTCGWg4CAo1LmQHmf4_NFukjTwO1LAHjgSTS+R_5CRSg@mail.gmail.com>
-In-Reply-To: <CAARK3HkTCGWg4CAo1LmQHmf4_NFukjTwO1LAHjgSTS+R_5CRSg@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 14 May 2019 11:05:19 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKGyq-GaAXWqb=8DGCPYd-2kHWaOyNO9rC9dZkx2Z=LeQ@mail.gmail.com>
-Message-ID: <CAL_JsqKGyq-GaAXWqb=8DGCPYd-2kHWaOyNO9rC9dZkx2Z=LeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 v2 1/3] dt-bindings: i2c: extend existing opencore bindings.
-To:     Sagar Kadam <sagar.kadam@sifive.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab5bad0258e455ef84059b749ca9e79f311b5e3c.1557486950.git.amit.kucheria@linaro.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 7:50 AM Sagar Kadam <sagar.kadam@sifive.com> wrote:
->
-> Hello Rob,
->
-> Thank you for the review.
->
-> On Tue, May 14, 2019 at 2:26 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, May 07, 2019 at 08:45:06PM +0530, Sagar Shrikant Kadam wrote:
-> > > Add FU540-C000 specific device tree bindings to already
-> > > available i2-ocores file. This device is available on
-> > > HiFive Unleashed Rev A00 board.
-> > >
-> > > Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 20 ++++++++++++++++++++
-> > >  1 file changed, 20 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> > > index 17bef9a..f6bcf90 100644
-> > > --- a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> > > +++ b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> > > @@ -2,6 +2,7 @@ Device tree configuration for i2c-ocores
-> > >
-> > >  Required properties:
-> > >  - compatible      : "opencores,i2c-ocores" or "aeroflexgaisler,i2cmst"
-> > > +                    "sifive,fu540-c000-i2c" or "sifive,i2c0"
-> >
-> > If this is Opencores IP, does it really follow the Sifive versioning
-> > convention? If so, please reference sifive-blocks-ip-versioning.txt
-> > (which appears to have missed going upstream). Also, referencing the IP
-> > repository would be good too. If this IP block doesn't follow the same
-> > convention, then don't try using it for this binding.
-> >
-> Yes, the sifive,fu540-c000-i2c is a SoC specific compatibility string,
-> this way SoC specific
-> workaround's or bugs, can be handled in the software and the ip-block
-> specific compatibility
-> string "sifive,<ip-block-name><integer version number>" i.e.
-> sifive,i2c0 is IP block specific compatibility
-> string. Please let me know if I need some correction here?
-> I will also update reference for sifive-blocks-ip-versioning and the
-> ip repository into next version of patch.
+On Fri, May 10, 2019 at 04:59:39PM +0530, Amit Kucheria wrote:
+> The idle-states binding documentation[1] mentions that the
 
-My question is whether I can correlate v0 to a specific revision of
-the IP and versions will be tracked in the same way as SiFive IP
-blocks?
+This [1] reference is a null pointer ;)
 
-> > >  - reg             : bus address start and address range size of device
-> > >  - interrupts      : interrupt number
-> > >  - clocks          : handle to the controller clock; see the note below.
-> > > @@ -67,3 +68,22 @@ or
-> > >                       reg = <0x60>;
-> > >               };
-> > >       };
-> > > +or
-> >
-> > Just a new compatible isn't really a reason to add an example.
-> >
-> > > +     /*
-> > > +       An Opencore based I2C node in FU540-C000 chip from SiFive
-> > > +       This chip has a hardware erratum for broken IRQ
-> > > +       so it's recommended not to define interrupt in the device node
-> >
-> > Then interrupts needs to be optional.
-> True, I will move interrupts and interrupt parent into optional section
-> >
-> > > +     */
-> > > +     i2c@10030000 {
-> > > +                     compatible = "sifive,i2c0","sifive,fu540-c000-i2c";
-> > > +                     reg = <0x0 0x10030000 0x0 0x1000>;
-> > > +                     reg-names = "i2c-control";
-> >
-> > Not doucmented.
-> In v1, I had added a new binding file as sifive-i2c-ocores.txt for
-> SiFive i2c core.
-> After Andrew's suggestion,  extending the available i2c-ocores.txt
-> seemed to be a better idea rather than adding a new file.
-> so added an example node which is HiFive specific in the existing file.
-> Please let me know if I need to handle this in a different way.
+Other than that:
+Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
 
-That has nothing to do with whether reg-names is documented. Being in
-the example is not documented. You either need to add it to the
-property list or drop it from the example. IMO, you should drop it as
-it is not necessary with only 1 entry.
-
-Rob
+> 'entry-method' property is required on 64-bit platforms and must be set
+> to "psci".
+> 
+> We fixed up all uses of the entry-method property in
+> commit e9880240e4f4 ("arm64: dts: Fix various entry-method properties to
+> reflect documentation"). But a new one has appeared. Fix it up.
+> 
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 2896bbcfa3bb..42e7822a0227 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -51,7 +51,7 @@
+>  		 * PSCI node is not added default, U-boot will add missing
+>  		 * parts if it determines to use PSCI.
+>  		 */
+> -		entry-method = "arm,psci";
+> +		entry-method = "psci";
+>  
+>  		CPU_PH20: cpu-ph20 {
+>  			compatible = "arm,idle-state";
+> -- 
+> 2.17.1
+> 
