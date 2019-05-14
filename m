@@ -2,80 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E8901CCBE
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 18:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2B41CCCD
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 18:19:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726036AbfENQQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 12:16:11 -0400
-Received: from relay1.mentorg.com ([192.94.38.131]:44543 "EHLO
-        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbfENQQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 12:16:11 -0400
-Received: from svr-orw-mbx-01.mgc.mentorg.com ([147.34.90.201])
-        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-        id 1hQa63-0006ru-LN from George_Davis@mentor.com ; Tue, 14 May 2019 09:16:07 -0700
-Received: from localhost (147.34.91.1) by svr-orw-mbx-01.mgc.mentorg.com
- (147.34.90.201) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 14 May
- 2019 09:16:05 -0700
-Date:   Tue, 14 May 2019 12:16:04 -0400
-From:   "George G. Davis" <george_davis@mentor.com>
-To:     Wolfram Sang <wsa@the-dreams.de>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
-        Andy Lowe <andy_lowe@mentor.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        stable <stable@vger.kernel.org>
-Subject: Re: [PATCH v2] serial: sh-sci: disable DMA for uart_console
-Message-ID: <20190514161604.GD18528@mam-gdavis-lt>
-References: <1557762446-23811-1-git-send-email-george_davis@mentor.com>
- <CAMuHMdVaNWa=Q-7K-+_rM-8yYWB0-+4_o4hgACK6o-4BOrY07A@mail.gmail.com>
- <20190514153021.GC18528@mam-gdavis-lt>
- <20190514155450.GB6508@kunai>
+        id S1726025AbfENQTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 12:19:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49988 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725901AbfENQTw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 May 2019 12:19:52 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7A97320675;
+        Tue, 14 May 2019 16:19:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557850790;
+        bh=qzOY5O00XWu9ltpfoa6ZpPJ9ETaX0rvyq0x+5T3QeMY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LDdzJZZR0zPqXRSts4eVzoabG9u/04+N8xqmoyKWmbf9bfLaGGtz9FglclolDmYnc
+         VZhBS8SikBU3vD2X6G3UwTY7OpwuBaiBqtgnyNhSEMA8zvk1JmOurOmilkncQnUGQp
+         2XB0b0giGzlXj8r7kDAJSWMdrI7q6UUb+SC/5rR4=
+Received: by mail-qt1-f173.google.com with SMTP id o7so19707724qtp.4;
+        Tue, 14 May 2019 09:19:50 -0700 (PDT)
+X-Gm-Message-State: APjAAAUheto7O8hskH/P/q72BYGdzGPbcUXAFpX7BCYCP83MQfxm7TT0
+        zJPUMLgN9DgjB3MTtyqRfnksOVwyLbuHOsQ/8A==
+X-Google-Smtp-Source: APXvYqy/kSHQj4PRwOSVHrR1mu6BOErL78nzm6ufh9vWL2uISjxCvFbdDDvbMa+HOHIkfJYRZbIMBn1G+SPJCs366Qo=
+X-Received: by 2002:ac8:610f:: with SMTP id a15mr29576466qtm.257.1557850789752;
+ Tue, 14 May 2019 09:19:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190514155450.GB6508@kunai>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-ClientProxiedBy: svr-orw-mbx-04.mgc.mentorg.com (147.34.90.204) To
- svr-orw-mbx-01.mgc.mentorg.com (147.34.90.201)
+References: <20190417104511.21514-1-frederic.chen@mediatek.com>
+ <20190417104511.21514-2-frederic.chen@mediatek.com> <20190430011506.GA8514@bogus>
+ <1557238925.11663.21.camel@mtksdccf07>
+In-Reply-To: <1557238925.11663.21.camel@mtksdccf07>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 14 May 2019 11:19:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKGW9WqyNgqKD0MxsqxYHKZ+VNV5A2p+neGqwmKmiODOQ@mail.gmail.com>
+Message-ID: <CAL_JsqKGW9WqyNgqKD0MxsqxYHKZ+VNV5A2p+neGqwmKmiODOQ@mail.gmail.com>
+Subject: Re: [RFC PATCH V1 1/6] dt-bindings: mt8183: Add binding for DIP
+ shared memory
+To:     Frederic Chen <frederic.chen@mediatek.com>
+Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, Sean.Cheng@mediatek.com,
+        sj.huang@mediatek.com, christie.yu@mediatek.com,
+        holmes.chiou@mediatek.com,
+        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
+        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree@vger.kernel.org, shik@chromium.org,
+        suleiman@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Wolfram,
+On Tue, May 7, 2019 at 9:22 AM Frederic Chen <frederic.chen@mediatek.com> wrote:
+>
+> Dear Rob,
+>
+> I appreciate your comments.
+>
+> On Mon, 2019-04-29 at 20:15 -0500, Rob Herring wrote:
+> > On Wed, Apr 17, 2019 at 06:45:06PM +0800, Frederic Chen wrote:
+> > > This patch adds the binding for describing the shared memory
+> > > used to exchange configuration and tuning data between the
+> > > co-processor and Digital Image Processing (DIP) unit of the
+> > > camera ISP system on Mediatek SoCs.
+> > >
+> > > Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
+> > > ---
+> > >  .../mediatek,reserve-memory-dip_smem.txt      | 45 +++++++++++++++++++
+> > >  1 file changed, 45 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
+> > > new file mode 100644
+> > > index 000000000000..64c001b476b9
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
+> > > @@ -0,0 +1,45 @@
+> > > +Mediatek DIP Shared Memory binding
+> > > +
+> > > +This binding describes the shared memory, which serves the purpose of
+> > > +describing the shared memory region used to exchange data between Digital
+> > > +Image Processing (DIP) and co-processor in Mediatek SoCs.
+> > > +
+> > > +The co-processor doesn't have the iommu so we need to use the physical
+> > > +address to access the shared buffer in the firmware.
+> > > +
+> > > +The Digital Image Processing (DIP) can access memory through mt8183 IOMMU so
+> > > +it can use dma address to access the memory region.
+> > > +(See iommu/mediatek,iommu.txt for the detailed description of Mediatek IOMMU)
+> > > +
+> > > +
+> > > +Required properties:
+> > > +
+> > > +- compatible: must be "mediatek,reserve-memory-dip_smem"
+> >
+> > Don't use '_'.
+>
+> I got it. I will use "mediatek,reserve-memory-dip-smem" instead in next
+> version of the patch
+>
+> >
+> > > +
+> > > +- reg: required for static allocation (see reserved-memory.txt for
+> > > +  the detailed usage)
+> > > +
+> > > +- alloc-range: required for dynamic allocation. The range must
+> > > +  between 0x00000400 and 0x100000000 due to the co-processer's
+> > > +  addressing limitation
+> >
+> > Generally, you should pick either static or dynamic allocation for a
+> > given binding. Static if there's some address restriction or sharing,
+> > dynamic if not.
+> >
+> > Sounds like static in this case.
+> >
+>
+> DIP reserved memory has address restriction so it is the static case. I
+> would like to remove the dynamic allocation part and modify the
+> description as following:
+>
+> - reg: required for DIP. The range must be between 0x00000400 and
+>   0x100000000 due to the co-processor's addressing limitation.
+>   The size must be 26MB. Please see reserved-memory.txt for the
+>   detailed usage.
 
-On Tue, May 14, 2019 at 05:54:51PM +0200, Wolfram Sang wrote:
-> 
-> > > > Fixes: https://patchwork.kernel.org/patch/10929511/
-> > > 
-> > > I don't think this is an appropriate reference, as it points to a patch that
-> > > was never applied.
-> > 
-> > I included it as a link to an upstream problem report similar to other commits
-> > that I previewed. The link provides the extra context that I was perhaps to
-> > lazy to note in the commit header.
-> 
-> We have a "Link:" tag for things like this, e.g.:
-> 
-> Link: https://patchwork.kernel.org/patch/10929511/
+You can use dma-ranges to define addressing translations and
+restrictions like this. That will in turn set the device's dma-mask to
+ensure allocations are done in a region that is addressable.
 
-Right, I've changed it to a Link instead.
+But if you have a known, fixed size, then a carve out with
+reserved-memory is fine.
 
-Thanks!
-
--- 
-Regards,
-George
+Rob
