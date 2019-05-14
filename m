@@ -2,85 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A78B1C0E3
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 05:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF9991C0EA
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 05:34:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbfENDa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 23:30:29 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:4821 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726327AbfENDa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 May 2019 23:30:29 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cda365a0001>; Mon, 13 May 2019 20:30:35 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 13 May 2019 20:30:28 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 13 May 2019 20:30:28 -0700
-Received: from [10.24.47.172] (172.20.13.39) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 14 May
- 2019 03:30:22 +0000
-Subject: Re: [PATCH V6 02/15] PCI/PME: Export pcie_pme_disable_msi() &
- pcie_pme_no_msi() APIs
-To:     Christoph Hellwig <hch@infradead.org>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
-        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190513050626.14991-1-vidyas@nvidia.com>
- <20190513050626.14991-3-vidyas@nvidia.com>
- <20190513072539.GA27708@infradead.org>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <3a8cea93-2aeb-e5e2-4d56-f0c6449073c3@nvidia.com>
-Date:   Tue, 14 May 2019 09:00:19 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190513072539.GA27708@infradead.org>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
- HQMAIL101.nvidia.com (172.20.187.10)
-Content-Type: text/plain; charset="utf-8"; format=flowed
+        id S1726584AbfENDeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 May 2019 23:34:01 -0400
+Received: from mail-eopbgr130044.outbound.protection.outlook.com ([40.107.13.44]:22247
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726327AbfENDeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 May 2019 23:34:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ijRcvrg3jrVS2khTN8APbzM7uz8GeP5PbXhROHfCRj0=;
+ b=FfSIJ9yWbz8NZGuRjpxd/SaCWzFGavsYHBqwY7S5q9oO20zldsLeXlgwxysubWS+JzbQEceFNllHgnfI1TVfn+Ad+6AM/5so2RfLmlypOqm+Qu+x3pvzadQOnl2B4TEXS/o4nh5VsZtHu8ljW1plPf45qvDUEB1bZbjAhi6Utz0=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3802.eurprd04.prod.outlook.com (52.134.71.150) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.24; Tue, 14 May 2019 03:33:56 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1900.010; Tue, 14 May 2019
+ 03:33:56 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: [PATCH] arm64: dts: imx8mq: Add gpio alias
+Thread-Topic: [PATCH] arm64: dts: imx8mq: Add gpio alias
+Thread-Index: AQHVCgXcX4QYJXCP60mxd4H1AV7MJA==
+Date:   Tue, 14 May 2019 03:33:56 +0000
+Message-ID: <1557804533-18194-1-git-send-email-Anson.Huang@nxp.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557804635; bh=WF0v0tqItCQpPYntKi+aRXw99fOxbVxnrACwlglFS0M=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=CG/hepeT0PKprItd4aVLx0siRKGoqBQsVPtZB9n0+z3wKU/rBtSo7sUzqyrb5q6iw
-         20TBFHmDxZX/RK8u8iUDNYLnfx74+YmrrQ/gCL4EkiTDdaaVFSHjqNhR0leppyUeTB
-         ChSatjDwvyeWU/kZOVfMBXjsWOUXESuOmghAzkEPZoBNkTBaF1iQpV0Kj10V2cZA2I
-         EtXRmv/zTm2fa5APR7T2TPAQnDgfaV5lPPj9tI6Jeb8dHWbVTRgHGAIDWSdUP051FE
-         W+WvGWMI4/xdAWzkTHiS5Ftamt2ooSjaPGDD8W6OdZSzbkXID0FlK8AnD/mtizScL8
-         cwz8vpu2Aoprw==
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK2PR02CA0180.apcprd02.prod.outlook.com
+ (2603:1096:201:21::16) To DB3PR0402MB3916.eurprd04.prod.outlook.com
+ (2603:10a6:8:10::18)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2bf72782-ba51-4e85-f20a-08d6d81cfe4a
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3802;
+x-ms-traffictypediagnostic: DB3PR0402MB3802:
+x-microsoft-antispam-prvs: <DB3PR0402MB38023EB9BE1B07CA7078E490F5080@DB3PR0402MB3802.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:843;
+x-forefront-prvs: 0037FD6480
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(136003)(366004)(396003)(346002)(376002)(199004)(189003)(66556008)(66476007)(73956011)(66946007)(8936002)(486006)(66446008)(6512007)(478600001)(256004)(36756003)(305945005)(4326008)(64756008)(110136005)(2201001)(14454004)(4744005)(8676002)(6436002)(81156014)(81166006)(25786009)(68736007)(71200400001)(6486002)(5660300002)(53936002)(50226002)(7736002)(71190400001)(6506007)(102836004)(3846002)(6116002)(386003)(2616005)(52116002)(26005)(2906002)(316002)(476003)(186003)(7416002)(86362001)(99286004)(66066001)(2501003)(921003)(32563001)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3802;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: NT+B+BEIGbujM01wjRFFmXIzdmLNuDh8mObe8t8M/2FzbWPaktKgJk7t4B4omTl3EBpLas+WcOnD9y3lSo+LzqD9+2sv/6Onh4KCgKMDrv9j1hjDcsTxnB7EMIfGzSG2wvuoJVFJCW/HtDlvRxjj9xfsqfD0KuUqr6haQ+j+8GiATWzJVXhtF4IEPx2WJFVPysAmKGqwDiLnCBnwELr9r6b/oWV+COLhYgunvFZkJF4kVsJXZNHIBaQFB0B+ECV3BpwHSJYwce15fKyrqyr8jjBHTJdZB/4ZQ1M1a5tIOdbEGBFodk8xunFMN/OOd24KwXAL3GO3jOlvLGc/8eRJQ5deIajOx0a6Ol8pa5jQat0tl1WkGtK+4+QuuO+25icrDN0pU7BN3TE6C+Wky4y2p4hREsGDbKpINHpjsRRTxA0=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <0A018126CD316C4A904C208F9394F50C@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2bf72782-ba51-4e85-f20a-08d6d81cfe4a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 03:33:56.1846
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3802
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/13/2019 12:55 PM, Christoph Hellwig wrote:
-> On Mon, May 13, 2019 at 10:36:13AM +0530, Vidya Sagar wrote:
->> Export pcie_pme_disable_msi() & pcie_pme_no_msi() APIs to enable drivers
->> using these APIs be able to build as loadable modules.
-> 
-> But this is a global setting.  If you root port is broken you need
-> a per-rootport quirk instead.
-> 
-There is nothing broken in Tegra194 root port as such, rather,  this is more
-of software configuration choice and we are going with legacy interrupts than
-MSI interrupts (as Tegra194 doesn't support raising PME interrupts through MSI
-and please note that this doesn't mean root port is broken). Since Tegra194 has
-only Synopsys DesignWare core based host controllers and not any other hosts, I
-think it is fine to call this API in driver. Also, since this is a global setting,
-calling this APIs from anywhere (be it from quirk or from driver) would have the
-same effect, or did I miss anything here?
+Add i.MX8MQ GPIO alias for kernel GPIO driver usage.
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dt=
+s/freescale/imx8mq.dtsi
+index 6d635ba..df33672 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -30,6 +30,11 @@
+ 		spi0 =3D &ecspi1;
+ 		spi1 =3D &ecspi2;
+ 		spi2 =3D &ecspi3;
++		gpio0 =3D &gpio1;
++		gpio1 =3D &gpio2;
++		gpio2 =3D &gpio3;
++		gpio3 =3D &gpio4;
++		gpio4 =3D &gpio5;
+ 	};
+=20
+ 	ckil: clock-ckil {
+--=20
+2.7.4
+
