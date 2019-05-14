@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D131C6EC
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 12:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69C181C6F0
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 12:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbfENKWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 06:22:03 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46749 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725881AbfENKWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 06:22:02 -0400
-Received: by mail-wr1-f67.google.com with SMTP id r7so720618wrr.13
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 03:22:01 -0700 (PDT)
+        id S1726260AbfENKWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 06:22:36 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:35464 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725893AbfENKWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 06:22:36 -0400
+Received: by mail-wr1-f66.google.com with SMTP id w12so18575991wrp.2
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 03:22:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=E6SlSPXz/NIdq9DgRiId1vBM8lspvJEaKL5VgfIHa0Y=;
-        b=BQbtuLZS91vwp6fpyAbem8rN7fPncMazQmV/y0AcOR6uDjcfZFossqVs7rn5a+TKu3
-         5yBMTUmUSxgs/YuSfGrnjy36ntEB3WpESKMu39UtinXIeMoQScq5I4JkyTXbIgYYuChs
-         3Capo4uASxWtFSIX7EWLxAXdNj8bM6emdSc2dOrTADqhJbjmHNok1aN8SvsuPUsUhfWN
-         jfx/Pz5yRrLOUdpL57l3vjkA8BABi4Dq4HKtmTihMisl9onvtaCIk4oTFs/Xb+DVZjYn
-         GhoYM3ivV/nveCgDgXk8QdmvfT1Nxt7zQkgphlXOajQXdroRN7rilDAyO/pIIzQTXB8E
-         ZeNw==
+        bh=JS4sBt7IXohvdJKn0F8lWpqp1oCwlBU70LHzqo2dwZ0=;
+        b=JVPDo6UxJfPRIhlrANZYpLrkSBhH61/2DdCBE/SMC37X7qKsJH9OdVryg+kKEYCte7
+         uIzgzsw/qjJDhDWMUgHChbxhlpK1l9qEzl9nD39W/Bo8DVRoifvpIBaU++Lzu/D32fGI
+         5Q2u2Zq1gY/yd8sLE/T+UrG4dbqUPZlygKfpoOhDkkQ7iIuygvwABBK2Dc5xyCuK5n/7
+         Lzk/3Y2bqXRQ8tLKMOzBfnEixgQtTLtlLCB78N8cGSIVgCCFFQIzRTJYExyn9XwmsflV
+         DNKaSwUVVYZqu7AWJLQ3v0zsP8Lfbj+NXGdWq9wHzw9+ab/tvuYP1K/fAEkqmIDqKp6u
+         1eEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=E6SlSPXz/NIdq9DgRiId1vBM8lspvJEaKL5VgfIHa0Y=;
-        b=nJ03IgIFjrIPOvJAl8IWnurYLNPU18jD8L7hhUk5B6PrAYRUNPmwRKrMttrP1d6r5/
-         djItuIeFcEVpMbp7kK3k1eH3Z4v6xSpEfGsPuRnH7mP5R1Khy+wRJplC2tiSlvUJnlnk
-         9I5lDI2gsocmTiqJGkvbaMyZrrlSju+JETlK9cDVSBaAyWGKSwAfymrf4cOfmoEQgEjG
-         TS/lmHw4lyP9r5wlBVdyheu2ljKGq94oCYDAb0JQFLaa5GwYKiSZwohbbQl0oOvdOKWk
-         UwX9JrSK11M8C6wiWMIA0qoBYDcPPW+e67/MGMuVuBe4cGNy/eNFObDFmianMimM20Vb
-         DJWA==
-X-Gm-Message-State: APjAAAXUrTyLVIsrfnjgBcvTuZHHYacVfflAmu+bLKOb8sicM8rv/Tmj
-        S3IIKxWUeNnUTLZxgekFWskQsA==
-X-Google-Smtp-Source: APXvYqzAasMzhc3tS6ZAmslEDUvPmj4+tY32Vg3bcaJ+POdvq9tQsNUetRBRXqTLiOfUj/KhR8lHTg==
-X-Received: by 2002:adf:cf03:: with SMTP id o3mr13827712wrj.5.1557829320200;
-        Tue, 14 May 2019 03:22:00 -0700 (PDT)
+        bh=JS4sBt7IXohvdJKn0F8lWpqp1oCwlBU70LHzqo2dwZ0=;
+        b=qB6LCYupY1+Uu2Tz8BvA7VxCcKo6RJalG/krYXVyqTM5VCwIIRyxTASprquzeFEezs
+         puUGEMf4+dGlTw1siTE3yuFRyMwSqqor7lVRFPdMGNhpArW1nQprgLiBKgodfb+yNLiK
+         5eNLglS+khhsVFqsNNQbqkhKys40nlc4H6d9nG7d3xjWESU0pt7UrmX1zosvqmIf3ql1
+         pl/E8uHpcIEjJA+HKl66cY/smSXRgwrwXDrmNePe1yTyI5nrgRWGPQoBqK84dSDK+1zA
+         H4VNoa8iY9gasF04VhAHIl8EN1f/P6AcxC8F+5OrpCRmhpFzwypiSaU+Ya/uiEZFpXb5
+         uKIQ==
+X-Gm-Message-State: APjAAAXel6lUGkZNLdeEWb/J4EVUPK1TcCqMn8BjOqPOUeXX4h6gwp72
+        qyzbKqP8PX5oLl71tia4xLATwA==
+X-Google-Smtp-Source: APXvYqzWB783F3hQbnGDoZ91DEryw2E2bUBhtz9f3DNSzF9hVkBmhVyupxSUko8VTLt1GLUrNiPRhw==
+X-Received: by 2002:adf:e390:: with SMTP id e16mr18215602wrm.321.1557829353940;
+        Tue, 14 May 2019 03:22:33 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id l14sm14999889wrt.57.2019.05.14.03.21.59
+        by smtp.gmail.com with ESMTPSA id q26sm1895385wmq.25.2019.05.14.03.22.32
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 14 May 2019 03:21:59 -0700 (PDT)
-Subject: Re: [PATCH 0/3] arm64: dts: meson: g12a: add mmc B and C
+        Tue, 14 May 2019 03:22:33 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: g12a: set uart_ao clocks
 To:     Jerome Brunet <jbrunet@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>
 Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20190514091611.15278-1-jbrunet@baylibre.com>
+References: <20190514094537.8765-1-jbrunet@baylibre.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -104,12 +104,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <52aeb2a0-fe82-2039-d332-476db7d237db@baylibre.com>
-Date:   Tue, 14 May 2019 12:21:58 +0200
+Message-ID: <8e6fb5af-e158-d2a3-5c28-8360a03711db@baylibre.com>
+Date:   Tue, 14 May 2019 12:22:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190514091611.15278-1-jbrunet@baylibre.com>
+In-Reply-To: <20190514094537.8765-1-jbrunet@baylibre.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -118,29 +118,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2019 11:16, Jerome Brunet wrote:
-> This patchset adds the MMC controller B and C to the g12a SoC as well
-> as the u200 and sei510 boards.
+On 14/05/2019 11:45, Jerome Brunet wrote:
+> Now that the AO clock controller is available, make the uarts of the
+> always-on domain claim the appropriate peripheral clock.
 > 
-> MMC controller A has been left out on purpose. This controller is
-> special on this SoC family and will be added later on.
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> Notice the use of the pinconf DT property 'drive-strength-microamp'.
-> Support for this property is not yet merged in meson pinctrl driver but
-> the DT part as been acked by the DT maintainer [0] so it should be safe
-> to use.
-> 
-> [0]: https://lkml.kernel.org/r/20190513152451.GA25690@bogus
-> 
-> Jerome Brunet (3):
->   arm64: dts: meson: g12a: add mmc nodes
->   arm64: dts: meson: u200: add sd and emmc
->   arm64: dts: meson: sei510: add sd and emmc
-> 
->  .../boot/dts/amlogic/meson-g12a-sei510.dts    |  42 ++++++
->  .../boot/dts/amlogic/meson-g12a-u200.dts      |  42 ++++++
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   | 124 ++++++++++++++++++
->  3 files changed, 208 insertions(+)
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index b2f08fc96568..ca01064a771a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -708,7 +708,7 @@
+>  					     "amlogic,meson-ao-uart";
+>  				reg = <0x0 0x3000 0x0 0x18>;
+>  				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
+> -				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART>, <&xtal>;
+>  				clock-names = "xtal", "pclk", "baud";
+>  				status = "disabled";
+>  			};
+> @@ -718,7 +718,7 @@
+>  					     "amlogic,meson-ao-uart";
+>  				reg = <0x0 0x4000 0x0 0x18>;
+>  				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+> -				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
+>  				clock-names = "xtal", "pclk", "baud";
+>  				status = "disabled";
+>  			};
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
