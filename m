@@ -2,101 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 226DC1C57E
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 10:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC10B1C5C7
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 11:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726653AbfENI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 04:58:45 -0400
-Received: from michel.telenet-ops.be ([195.130.137.88]:48178 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726058AbfENI6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 04:58:44 -0400
-Received: from ramsan ([84.194.111.163])
-        by michel.telenet-ops.be with bizsmtp
-        id C8yf200053XaVaC068yf2j; Tue, 14 May 2019 10:58:42 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1hQTGg-0000FQ-VA; Tue, 14 May 2019 10:58:38 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1hQTGg-0004mK-Sp; Tue, 14 May 2019 10:58:38 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH/RFC v2] ARM: dts: r8a7791: Move enable-method to CPU nodes
-Date:   Tue, 14 May 2019 10:58:37 +0200
-Message-Id: <20190514085837.18325-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1726151AbfENJQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 05:16:16 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:40758 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726109AbfENJQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 05:16:16 -0400
+Received: by mail-wm1-f66.google.com with SMTP id h11so1969418wmb.5
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 02:16:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m3anIj92/L8NrlG9u2N2Y8IF5jQd43C2YjhwBflKNMM=;
+        b=IXXSssla/+rsSsLeIQf7AF8zrXr53GrMS3dwAZ5bi8fbwce53xVHsstXJZQRkQnahB
+         4G1giDmXV9ty/pmgqgwE0l5xv/yFpHLVKBLaANncHC/18mwC3Bw8m0fOpU+iJIOkocwI
+         LQWTDGeDYO9kvMgFGwoNhw/u6X5Q9JN3cdzZSqCAwZA47amoJmr0iugoodMpw77SgoyH
+         dEzoZWVgu3GNG3mm3si2VroGHSx/nr1k48HgzO6gszphhv8Cyn8PgS4qNmE784MZXv/1
+         WaTBIyrR96OS1lwMHcRpf3dFR/IlRTo9paXSb9HzsVfVdptMTnAzBEDDe4GfADhMT6RI
+         nlPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m3anIj92/L8NrlG9u2N2Y8IF5jQd43C2YjhwBflKNMM=;
+        b=qhQESSgb/Xh+a4ATSnRBR/x/XtZoguhftjpHB+bP9tWQ7p3wbd6Dlx/ew/JuDVKFio
+         o7CeI8/0/HyOobqrxI6QVt0KE7dM+O8gmwkNg7fETRD0yXhisGIQ5yX2nEDvIVv8N9/2
+         Y29zkY628XQDYNBU3wnNzv13ZTgcjLqLtim8i+vLigAzVCItcMB8CkSVWYs4EUsaoUJE
+         G3qkEZpSjSNJUXpPlAHtSQacEvFFVrichcgZMNzzZFk51E6SVuh4d2CsmAviqExQPECF
+         mGTzKVwVx4bGMTAbtrAb2aAad45FCigu9+THxDSaH83+FiFz+FGnTY7aKAocxVB1qDEJ
+         u+ZQ==
+X-Gm-Message-State: APjAAAXJqAf7l1ewUGpScB1aXrbjO+UmbGdECPU1ukLI7QJZOXBNQsy6
+        H5txuOyKIgQe1sEfxqti989ksw==
+X-Google-Smtp-Source: APXvYqwDWrDprnELvTySHIjnfYtG6C2tdrAZOARpxWykbzC0+OO4QdgMq6o9CfdvYnb7h0lLWx/6Nw==
+X-Received: by 2002:a1c:ab0b:: with SMTP id u11mr18572373wme.26.1557825374721;
+        Tue, 14 May 2019 02:16:14 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id y40sm17737158wrd.96.2019.05.14.02.16.13
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 02:16:14 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: meson: g12a: add mmc B and C
+Date:   Tue, 14 May 2019 11:16:08 +0200
+Message-Id: <20190514091611.15278-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to Documentation/devicetree/bindings/arm/cpus.yaml, the
-"enable-method" property should be a property of the individual CPU
-nodes, and not of the parent "cpus" container node.
-However, on R-Car M2-W, the property is tied to the "cpus" node instead.
+This patchset adds the MMC controller B and C to the g12a SoC as well
+as the u200 and sei510 boards.
 
-Secondary CPU bringup and CPU hot (un)plug work regardless, as
-arm_dt_init_cpu_maps() falls back to looking in the "cpus" node.
+MMC controller A has been left out on purpose. This controller is
+special on this SoC family and will be added later on.
 
-The cpuidle code does not have such a fallback, so it does not detect
-the enable-method.  Note that cpuidle does not support the
-"renesas,apmu" enable-method yet, so for now this does not make any
-difference.
+Notice the use of the pinconf DT property 'drive-strength-microamp'.
+Support for this property is not yet merged in meson pinctrl driver but
+the DT part as been acked by the DT maintainer [0] so it should be safe
+to use.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Arm64 and powerpc do not have such a fallback, but SH has, like arm32.
+[0]: https://lkml.kernel.org/r/20190513152451.GA25690@bogus
 
-This is marked RFC, as the alternative is to update the DT bindings to
-keep the status quo.
+Jerome Brunet (3):
+  arm64: dts: meson: g12a: add mmc nodes
+  arm64: dts: meson: u200: add sd and emmc
+  arm64: dts: meson: sei510: add sd and emmc
 
-v2:
-  - Update reference after commit 672951cbd1b70a9e ("dt-bindings: arm:
-    Convert cpu binding to json-schema").
----
- arch/arm/boot/dts/r8a7791.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    |  42 ++++++
+ .../boot/dts/amlogic/meson-g12a-u200.dts      |  42 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   | 124 ++++++++++++++++++
+ 3 files changed, 208 insertions(+)
 
-diff --git a/arch/arm/boot/dts/r8a7791.dtsi b/arch/arm/boot/dts/r8a7791.dtsi
-index 6f875502453cf40a..a8266e76d7e50739 100644
---- a/arch/arm/boot/dts/r8a7791.dtsi
-+++ b/arch/arm/boot/dts/r8a7791.dtsi
-@@ -68,7 +68,6 @@
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		enable-method = "renesas,apmu";
- 
- 		cpu0: cpu@0 {
- 			device_type = "cpu";
-@@ -77,6 +76,7 @@
- 			clock-frequency = <1500000000>;
- 			clocks = <&cpg CPG_CORE R8A7791_CLK_Z>;
- 			power-domains = <&sysc R8A7791_PD_CA15_CPU0>;
-+			enable-method = "renesas,apmu";
- 			next-level-cache = <&L2_CA15>;
- 			voltage-tolerance = <1>; /* 1% */
- 			clock-latency = <300000>; /* 300 us */
-@@ -97,6 +97,7 @@
- 			clock-frequency = <1500000000>;
- 			clocks = <&cpg CPG_CORE R8A7791_CLK_Z>;
- 			power-domains = <&sysc R8A7791_PD_CA15_CPU1>;
-+			enable-method = "renesas,apmu";
- 			next-level-cache = <&L2_CA15>;
- 			voltage-tolerance = <1>; /* 1% */
- 			clock-latency = <300000>; /* 300 us */
 -- 
-2.17.1
+2.20.1
 
