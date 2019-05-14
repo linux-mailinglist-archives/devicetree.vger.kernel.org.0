@@ -2,206 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4141C371
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 08:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D34D1C386
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 08:58:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbfENGwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 02:52:22 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37690 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726336AbfENGwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 02:52:21 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 7so1526208wmo.2
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 23:52:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=nc1AT9QHLViQtI9mMaQ7ovxvK7zuTsBcT1i7PoGDlCc=;
-        b=xrd1sHia8e0xNr+dj/10VK2b7xJdS4fagL8pZaGgZoB/KsMend2rW8Ymg1FNDGFq6x
-         QfRlGS8MIL/M67sPSr3LgA0N1+ZHjbFSElo0EK+yPRSEWK+GlugW9WNxmPXcjPZdTctZ
-         joAeBYnfxHVQw7GHykIsK4rRbJA8v1YwiljMVXyvIqxuAaXzXCSIKOWcD9wbXtBvSWyV
-         lcRT4QRyiQYGekFi92x10zoo6IIGZQX4AK/JfcLHbi8NoKT0ZMLYxNGrmY/ZFo80vWlG
-         f8kbw2HtTjua7Id8c92QCQxy/Z+7/Gus3Ws6aQAuLKRfChB8te92czBAEA/1kdaROMZ9
-         uOIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=nc1AT9QHLViQtI9mMaQ7ovxvK7zuTsBcT1i7PoGDlCc=;
-        b=udVbqvUjl3LPWQvnKY9NW4DIjh5r2UVXxyRBZ8y3do+xFbNQ1+QZDBWHz7uFK0725q
-         AZX+Zwa4Fwq7cL1XND4EsjOIV0C4dev0X7PsKUmA3wjuBXGtKVFzzPG+TkXG7NzWKQe+
-         vZ72JSN+Oh8aDdZBo2ndc9FlNlg8te4ZvzkeoB0DJLBoIXICjBXke+5fp5vaS4LgrxsM
-         CKa95COcyDCi4xL/LPY+z8YrR78KYUx8zX3mjlDH23sdGYDqiVO5RJBqcYSq3U5qkJU0
-         82vnOuUNQnDgMAyaquEudi3QKxb8vgbEUUotcgH58piYoSoAHDkIpRXXzgg4jAqF5Qsq
-         1Yiw==
-X-Gm-Message-State: APjAAAXWnk6KoFmbHiX6j200liv3iq8tIvkL2kuSSvKlLC7Tss31LIs0
-        0aPBCz9lMDFOw9f2iPI1KP7vsA==
-X-Google-Smtp-Source: APXvYqyxzx7+zkK9CsHaTlkS3oQgg2TaUpQ5iJps/9Iep8Joa7x7rdKPDOe/37WF/phHJvAynRfjKw==
-X-Received: by 2002:a05:600c:22cc:: with SMTP id 12mr6410903wmg.141.1557816738473;
-        Mon, 13 May 2019 23:52:18 -0700 (PDT)
-Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id h8sm1859415wmf.5.2019.05.13.23.52.17
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 May 2019 23:52:17 -0700 (PDT)
-Date:   Tue, 14 May 2019 07:52:16 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     broonie@kernel.org, marek.vasut@gmail.com,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        bbrezillon@kernel.org, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        sergei.shtylyov@cogentembedded.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        juliensu@mxic.com.tw, Simon Horman <horms@verge.net.au>,
-        zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v12 2/3] spi: Add Renesas R-Car Gen3 RPC-IF SPI
- controller driver
-Message-ID: <20190514065216.GL4319@dell>
-References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
- <1556092536-17095-3-git-send-email-masonccyang@mxic.com.tw>
+        id S1726319AbfENG57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 02:57:59 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:53948 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726314AbfENG57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 02:57:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=v6APzDCScyQRGBUkB7LKS/TbLCe8zxe216BVyYqK3ns=; b=RF2Lq0gfAM4omh5yrcevmJcVC
+        ZUkrfPEy9aQM9id/jJJWAZOURvPYMFDcmoO3MoAh3BPSsiihL7g05UP5KRY3E43AcCvrGgVBL5DGM
+        GwGXgqAf8drGPoBXMbgsJcYnOKoGK/xxPPKsPdIk0q24oj68lr7LkXgBGu20PUJw8vgrMYfI0b0ai
+        0q7aIdfi+1HQBEXB/OhXVr77sKFYoIui69swPHN1UUAqUy48HssgvHEiwHZgAqjnYlMQwCIE9rTXq
+        sYqILbYIekuTXBMuFfkorK2wKBbKk82Xz5be3Su/MHXyHQRfMpWahH6khzp2m/rQ8lsL0tdiJ2UX1
+        oksjnH9/Q==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100] helo=hirez.programming.kicks-ass.net)
+        by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hQRMj-0002fe-RX; Tue, 14 May 2019 06:56:46 +0000
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+        id 9F1E72029F87A; Tue, 14 May 2019 08:56:43 +0200 (CEST)
+Date:   Tue, 14 May 2019 08:56:43 +0200
+From:   Peter Zijlstra <peterz@infradead.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
+        kbuild test robot <lkp@intel.com>
+Subject: Re: [PATCH v3 08/18] objtool: add kunit_try_catch_throw to the
+ noreturn list
+Message-ID: <20190514065643.GC2589@hirez.programming.kicks-ass.net>
+References: <20190514054251.186196-1-brendanhiggins@google.com>
+ <20190514054251.186196-9-brendanhiggins@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1556092536-17095-3-git-send-email-masonccyang@mxic.com.tw>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190514054251.186196-9-brendanhiggins@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Apr 2019, Mason Yang wrote:
-
-> Add a driver for Renesas R-Car Gen3 RPC-IF SPI controller.
+On Mon, May 13, 2019 at 10:42:42PM -0700, Brendan Higgins wrote:
+> This fixes the following warning seen on GCC 7.3:
+>   kunit/test-test.o: warning: objtool: kunit_test_unsuccessful_try() falls through to next function kunit_test_catch()
 > 
-> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> Signed-off-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-> ---
->  drivers/spi/Kconfig           |   6 +
->  drivers/spi/Makefile          |   1 +
->  drivers/spi/spi-renesas-rpc.c | 571 ++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 578 insertions(+)
->  create mode 100644 drivers/spi/spi-renesas-rpc.c
-> 
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index f761655..1f52bcf 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -564,6 +564,12 @@ config SPI_RSPI
->  	help
->  	  SPI driver for Renesas RSPI and QSPI blocks.
->  
-> +config SPI_RENESAS_RPC
-> +	tristate "Renesas R-Car Gen3 RPC-IF controller"
-> +	depends on ARCH_RENESAS || COMPILE_TEST
-> +	help
-> +	  SPI driver for Renesas R-Car Gen3 RPC-IF.
-> +
->  config SPI_QCOM_QSPI
->  	tristate "QTI QSPI controller"
->  	depends on ARCH_QCOM
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index d8fc03c..b3a3deb 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -86,6 +86,7 @@ obj-$(CONFIG_SPI_QUP)			+= spi-qup.o
->  obj-$(CONFIG_SPI_ROCKCHIP)		+= spi-rockchip.o
->  obj-$(CONFIG_SPI_RB4XX)			+= spi-rb4xx.o
->  obj-$(CONFIG_SPI_RSPI)			+= spi-rspi.o
-> +obj-$(CONFIG_SPI_RENESAS_RPC)		+= spi-renesas-rpc.o
->  obj-$(CONFIG_SPI_S3C24XX)		+= spi-s3c24xx-hw.o
->  spi-s3c24xx-hw-y			:= spi-s3c24xx.o
->  spi-s3c24xx-hw-$(CONFIG_SPI_S3C24XX_FIQ) += spi-s3c24xx-fiq.o
-> diff --git a/drivers/spi/spi-renesas-rpc.c b/drivers/spi/spi-renesas-rpc.c
-> new file mode 100644
-> index 0000000..c2202d4
-> --- /dev/null
-> +++ b/drivers/spi/spi-renesas-rpc.c
-> @@ -0,0 +1,571 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Copyright (C) 2018 ~ 2019 Renesas Solutions Corp.
-> +// Copyright (C) 2019 Macronix International Co., Ltd.
-> +//
-> +// R-Car Gen3 RPC-IF SPI/QSPI/Octa driver
-> +//
-> +// Author:
-> +//	Mason Yang <masonccyang@mxic.com.tw>
-> +//
-> +
-> +#include <linux/clk.h>
-> +#include <linux/io.h>
-> +#include <linux/log2.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/mfd/renesas-rpc.h>
-> +#include <linux/module.h>
-> +#include <linux/mtd/mtd.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/spi/spi-mem.h>
-> +
-> +#include <asm/unaligned.h>
-> +
-> +struct rpc_spi {
-> +	struct rpc_mfd *mfd;
 
-The term MFD isn't a real thing.  What you're obtaining below is
-driver data and is normally articulated as 'ddata' in drivers.
-
-> +	u32 cur_speed_hz;
-> +	u32 cmd;
-> +	u32 addr;
-> +	u32 dummy;
-> +	u32 smcr;
-> +	u32 smenr;
-> +	u32 xferlen;
-> +	u32 totalxferlen;
-> +	enum spi_mem_data_dir xfer_dir;
-> +};
-
-[...]
-
-> +static void rpc_spi_hw_init(struct rpc_spi *rpc)
-> +{
-> +	//
-> +	// NOTE: The 0x260 are undocumented bits, but they must be set.
-> +	//	 RPC_PHYCNT_STRTIM is strobe timing adjustment bit,
-> +	//	 0x0 : the delay is biggest,
-> +	//	 0x1 : the delay is 2nd biggest,
-> +	//	 On H3 ES1.x, the value should be 0, while on others,
-> +	//	 the value should be 6.
-> +	//
-
-C++ style comments?  Is that a thing now?
-
-> +	regmap_write(rpc->mfd->regmap, RPC_PHYCNT, RPC_PHYCNT_CAL |
-> +				  RPC_PHYCNT_STRTIM(6) | 0x260);
-> +
-> +	//
-> +	// NOTE: The 0x1511144 are undocumented bits, but they must be set
-> +	//       for RPC_PHYOFFSET1.
-> +	//	 The 0x31 are undocumented bits, but they must be set
-> +	//	 for RPC_PHYOFFSET2.
-> +	//
-> +	regmap_write(rpc->mfd->regmap, RPC_PHYOFFSET1,
-> +		     RPC_PHYOFFSET1_DDRTMG(3) | 0x1511144);
-> +	regmap_write(rpc->mfd->regmap, RPC_PHYOFFSET2, 0x31 |
-> +		     RPC_PHYOFFSET2_OCTTMG(4));
-> +	regmap_write(rpc->mfd->regmap, RPC_SSLDR, RPC_SSLDR_SPNDL(7) |
-> +		     RPC_SSLDR_SLNDL(7) | RPC_SSLDR_SCKDL(7));
-> +	regmap_write(rpc->mfd->regmap, RPC_CMNCR, RPC_CMNCR_MD |
-> +		     RPC_CMNCR_SFDE | RPC_CMNCR_MOIIO_HIZ | RPC_CMNCR_IOFV_HIZ |
-> +		     RPC_CMNCR_BSZ(0));
-> +}
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+What is that file and function; no kernel tree near me seems to have
+that.
