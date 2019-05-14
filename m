@@ -2,86 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8341C795
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 13:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96CF61C822
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 14:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726201AbfENLPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 07:15:43 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36096 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726490AbfENLP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 07:15:27 -0400
-Received: by mail-wm1-f67.google.com with SMTP id j187so2403222wmj.1
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 04:15:25 -0700 (PDT)
+        id S1726475AbfENMFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 08:05:19 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:46885 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726075AbfENMFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 08:05:19 -0400
+Received: by mail-io1-f65.google.com with SMTP id q21so9566468iog.13
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 05:05:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mU8ejWHy+W5AYtnGGvQAFcqui30OeOfdUF4Rimt6ejQ=;
-        b=GrLWanG/uCTvdYXVZJknxkFiKNgW/j9vvGBCnZGnRIy98x3TPbc4wVRPJuIeVgLREw
-         PuB3uuz4WOf9LdlFEzX3WgQCRXsSHSbzv+h8Ea1deY/yxdKU/ROlZC8tKyGzyY8P3izB
-         3PrCDuiyANEuLQp3sMZJIrkbrZ5mLdC50mMIzJPmO26/J4Os8bTM0fCA2LDSzmPoUFnD
-         Yc+gmZZSdbF56ClMM4PXms+Xrm4bAOzI8FxWkaaiyle10F6PyA+fNpLX1jateVkv+Hnn
-         J1jDQV0h333B2KJhRCT7TJALRYXLwDmVwmQWFSkrgE2DUzQ1G091G0Me928VC1ADZxD3
-         vaiQ==
+        d=ffwll.ch; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3cCt7Fv9PrSN+POfdDA9BhvmV9/m6Z9B8cT0V9l7bcU=;
+        b=a7BcpiAa3cXS6NukeVFgCH7xf3ARmd8J6e/ULZ0a8xqTBwTNaq+N8QguChZh3uzW7f
+         kWHSY7qQUZbeMlUwXYdXunYt1ZQd2SKBDUTXd3jKW+KmrJ1DqqIRVtLYOVb1f+tEQL2N
+         W7DqiSEqrT+k9VDAEFt9iTN+c6I6bW1EG18JM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mU8ejWHy+W5AYtnGGvQAFcqui30OeOfdUF4Rimt6ejQ=;
-        b=l2ee7DMwAtjIE3vfxdsC6Ff/SaBY0eE1rHRl6U93LMjpSI9+xeZ8VTiHw1xULdSgLZ
-         lmhO0fyKmR9F2mkWftAqAZsf/vz2Zwk5Sonlv2xJPfFZJJ2tqZkhhI0N/HFRCvCaPU2k
-         Skw6dhLA8BW4WqdloCVXb9SdFl+nnlbA+kmH3BLIS29gGfhfrwWD0tAJtRpDkoLZEZrP
-         hvSA6x+RXfWLP5bsio2b+C4qz1dkX/ZYPIkh4rnYGeWjdPstnsfKn6TC0/i4IAG/frwZ
-         T4cYRF8lToaeelnw+zgjeNTHziXkWFVGH/Zq0lSdgmjUXwJ6Wj2ttjE52GgWF7BEsxXb
-         6xbg==
-X-Gm-Message-State: APjAAAVZhQh1HSSVl94jMF8emeD121kO6TpAMuIcE2qK5H/Jl1tRW3Bo
-        gGpvaosN/TFzm3QQoJlBlkpU2COtTHQ=
-X-Google-Smtp-Source: APXvYqwNYfIz+EntwTRpSxz3e5FlMiLk8xhRV0KoFKpWfBnG4xI9Vgeb/o/oIp3AfLznSOJCmCvPgw==
-X-Received: by 2002:a1c:7dd6:: with SMTP id y205mr15308582wmc.90.1557832525211;
-        Tue, 14 May 2019 04:15:25 -0700 (PDT)
-Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id c130sm7289922wmf.47.2019.05.14.04.15.24
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 May 2019 04:15:24 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 8/8] arm64: dts: meson: g12a: enable hdmi_tx sound dai provider
-Date:   Tue, 14 May 2019 13:15:10 +0200
-Message-Id: <20190514111510.23299-9-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190514111510.23299-1-jbrunet@baylibre.com>
-References: <20190514111510.23299-1-jbrunet@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3cCt7Fv9PrSN+POfdDA9BhvmV9/m6Z9B8cT0V9l7bcU=;
+        b=p/EtMGFnqBalK7wzi3Eqeh409KIvQJQ7XXHzvgsFVeJHSQoKCN+JxFBD0J/UhrAv0g
+         C2D5wPvqAInJdVl0t/7v6HbgGj3TxwpXX61+mJSV2v0p5pjGgkTyhus4HSsObEt8BkdL
+         FKNBamfq7BsE30rqurk8P2hzme3S2mr2NHHcXP9cTnRHjERQTBjnDvice8dyce3aSHNP
+         gItn8+6/rrwRQl4UDVJG7dBUrJk0n5TXunhB1tzxZ2gH5BNZk6Wxq4r9b/q/ANcm0831
+         nJik3J/J+kd+HwZ5lq36TAliysxE6IHHGYgdx4mGP+5TQu8POsAXpo89gD9DantrYsTa
+         XrKw==
+X-Gm-Message-State: APjAAAVsZF1MWdnXj96KGHR6DfjhvgVWe2ZmfQZ9A6brZpC4qlo5OuNE
+        5Jha5QB524NmHlDRJ+LCnvus5K2WrqfYPva7U4G9Yw==
+X-Google-Smtp-Source: APXvYqyhBqCsjjVPPpuo20Er/14b4Noh22uMAdPO6o3WUMvHLuILgjBTMJK3Dh0BqwvOEYcjDaa/KDS4xlT8iYcmIUQ=
+X-Received: by 2002:a6b:b654:: with SMTP id g81mr3614153iof.34.1557835518050;
+ Tue, 14 May 2019 05:05:18 -0700 (PDT)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+References: <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
+ <20190509032017.GA29703@mit.edu> <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
+ <20190509133551.GD29703@mit.edu> <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
+ <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com> <20190509214233.GA20877@mit.edu>
+ <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com> <20190511173344.GA8507@mit.edu>
+ <20190513144451.GQ17751@phenom.ffwll.local> <20190514060433.GA181462@google.com>
+In-Reply-To: <20190514060433.GA181462@google.com>
+From:   Daniel Vetter <daniel@ffwll.ch>
+Date:   Tue, 14 May 2019 14:05:05 +0200
+Message-ID: <CAKMK7uHqtSF_sazJTbFL+xmQJRk4iwukCKZHoDHhsKkLXk=ECQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     "Theodore Ts'o" <tytso@mit.edu>,
+        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
+        Knut Omang <knut.omang@oracle.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "Luis R. Rodriguez" <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, sboyd@kernel.org,
+        Shuah Khan <shuah@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>, linux-nvdimm@lists.01.org,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>, jdike@addtoit.com,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-At the moment the sysnopsys hdmi i2s driver provides a single playback
-DAI. Add the corresponding sound-dai-cell to the hdmi device node.
+On Tue, May 14, 2019 at 8:04 AM Brendan Higgins
+<brendanhiggins@google.com> wrote:
+>
+> On Mon, May 13, 2019 at 04:44:51PM +0200, Daniel Vetter wrote:
+> > On Sat, May 11, 2019 at 01:33:44PM -0400, Theodore Ts'o wrote:
+> > > On Fri, May 10, 2019 at 02:12:40PM -0700, Frank Rowand wrote:
+> > > > However, the reply is incorrect.  Kselftest in-kernel tests (which
+> > > > is the context here) can be configured as built in instead of as
+> > > > a module, and built in a UML kernel.  The UML kernel can boot,
+> > > > running the in-kernel tests before UML attempts to invoke the
+> > > > init process.
+> > >
+> > > Um, Citation needed?
+> > >
+> > > I don't see any evidence for this in the kselftest documentation, nor
+> > > do I see any evidence of this in the kselftest Makefiles.
+> > >
+> > > There exists test modules in the kernel that run before the init
+> > > scripts run --- but that's not strictly speaking part of kselftests,
+> > > and do not have any kind of infrastructure.  As noted, the
+> > > kselftests_harness header file fundamentally assumes that you are
+> > > running test code in userspace.
+> >
+> > Yeah I really like the "no userspace required at all" design of kunit,
+> > while still collecting results in a well-defined way (unless the current
+> > self-test that just run when you load the module, with maybe some
+> > kselftest ad-hoc wrapper around to collect the results).
+> >
+> > What I want to do long-term is to run these kernel unit tests as part of
+> > the build-testing, most likely in gitlab (sooner or later, for drm.git
+>
+> Totally! This is part of the reason I have been insisting on a minimum
+> of UML compatibility for all unit tests. If you can suffiently constrain
+> the environment that is required for tests to run in, it makes it much
+> easier not only for a human to run your tests, but it also makes it a
+> lot easier for an automated service to be able to run your tests.
+>
+> I actually have a prototype presubmit already working on my
+> "stable/non-upstream" branch. You can checkout what presubmit results
+> look like here[1][2].
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ug gerrit :-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index d4fc645f0ff3..5c8c93ff4816 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -158,6 +158,7 @@
- 				clock-names = "isfr", "iahb", "venci";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				#sound-dai-cells = <0>;
- 				status = "disabled";
- 
- 				/* VPU VENC Input */
+> > only ofc). So that people get their pull requests (and patch series, we
+> > have some ideas to tie this into patchwork) automatically tested for this
+>
+> Might that be Snowpatch[3]? I talked to Russell, the creator of Snowpatch,
+> and he seemed pretty open to collaboration.
+>
+> Before I heard about Snowpatch, I had an intern write a translation
+> layer that made Prow (the presubmit service that I used in the prototype
+> above) work with LKML[4].
+
+There's about 3-4 forks/clones of patchwork. snowpatch is one, we have
+a different one on freedesktop.org. It's a bit a mess :-/
+
+> I am not married to either approach, but I think between the two of
+> them, most of the initial legwork has been done to make presubmit on
+> LKML a reality.
+
+We do have presubmit CI working already with our freedesktop.org
+patchwork. The missing glue is just tying that into gitlab CI somehow
+(since we want to unify build testing more and make it easier for
+contributors to adjust things).
+-Daniel
+
+> > super basic stuff.
+>
+> I am really excited to hear back on what you think!
+>
+> Cheers!
+>
+> [1] https://kunit-review.googlesource.com/c/linux/+/1509/10#message-7bfa40efb132e15c8388755c273837559911425c
+> [2] https://kunit-review.googlesource.com/c/linux/+/1509/10#message-a6784496eafff442ac98fb068bf1a0f36ee73509
+> [3] https://developer.ibm.com/open/projects/snowpatch/
+> [4] https://kunit.googlesource.com/prow-lkml/
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
+
 -- 
-2.20.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
