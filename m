@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 477261C967
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:29:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 178671C977
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726336AbfENN2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 09:28:38 -0400
-Received: from node.akkea.ca ([192.155.83.177]:46994 "EHLO node.akkea.ca"
+        id S1725928AbfENNe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 09:34:26 -0400
+Received: from ms.lwn.net ([45.79.88.28]:44280 "EHLO ms.lwn.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726248AbfENN2c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 09:28:32 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id 7287C4E205C;
-        Tue, 14 May 2019 13:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1557840511; bh=SfqX2EFJOvWCTClrRDpHw/tV94ED1IxtbtG2u/MWNBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ArWOmfrVfyUY9OPmH5JYbBQXbJLEPnTECOk17ccrPa8vGR88kS1PlqSavaXxTYmos
-         FirCzkJJAEWRGxvPErWE5FPoCCsrfx7bFBnAAWhPPc+fQfE0tkbis914kHHLF+SEEy
-         AIwhttlPSh4wp/PjfyIS8RAgINqcLhAaga7W4pAo=
-X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
-Received: from node.akkea.ca ([127.0.0.1])
-        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id i5Rgqj0oOAh5; Tue, 14 May 2019 13:28:31 +0000 (UTC)
-Received: from midas.localdomain (S0106788a2041785e.gv.shawcable.net [70.66.86.75])
-        by node.akkea.ca (Postfix) with ESMTPSA id 93C784E204E;
-        Tue, 14 May 2019 13:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1557840511; bh=SfqX2EFJOvWCTClrRDpHw/tV94ED1IxtbtG2u/MWNBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ArWOmfrVfyUY9OPmH5JYbBQXbJLEPnTECOk17ccrPa8vGR88kS1PlqSavaXxTYmos
-         FirCzkJJAEWRGxvPErWE5FPoCCsrfx7bFBnAAWhPPc+fQfE0tkbis914kHHLF+SEEy
-         AIwhttlPSh4wp/PjfyIS8RAgINqcLhAaga7W4pAo=
-From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
-To:     angus.ainslie@puri.sm
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>
-Subject: [PATCH v12 4/4] dt-bindings: arm: fsl: Add the imx8mq boards
-Date:   Tue, 14 May 2019 06:28:22 -0700
-Message-Id: <20190514132822.27023-5-angus@akkea.ca>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190514132822.27023-1-angus@akkea.ca>
-References: <20190514132822.27023-1-angus@akkea.ca>
+        id S1725854AbfENNe0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 May 2019 09:34:26 -0400
+Received: from lwn.net (localhost [127.0.0.1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ms.lwn.net (Postfix) with ESMTPSA id D706B740;
+        Tue, 14 May 2019 13:34:23 +0000 (UTC)
+Date:   Tue, 14 May 2019 07:34:22 -0600
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
+        Felix Guo <felixguoxiuping@gmail.com>
+Subject: Re: [PATCH v3 15/18] Documentation: kunit: add documentation for
+ KUnit
+Message-ID: <20190514073422.4287267c@lwn.net>
+In-Reply-To: <20190514054251.186196-16-brendanhiggins@google.com>
+References: <20190514054251.186196-1-brendanhiggins@google.com>
+        <20190514054251.186196-16-brendanhiggins@google.com>
+Organization: LWN.net
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for imx8mq based boards
+On Mon, 13 May 2019 22:42:49 -0700
+Brendan Higgins <brendanhiggins@google.com> wrote:
 
-Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+> Add documentation for KUnit, the Linux kernel unit testing framework.
+> - Add intro and usage guide for KUnit
+> - Add API reference
+> 
+> Signed-off-by: Felix Guo <felixguoxiuping@gmail.com>
+> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> ---
+> Changes Since Last Revision:
+>  - Addressed reference to incorrect number of sections, as per Randy's
+>    comment.
+>  - Make section underlines same length as the section title, as per
+>    Randy's comments.
+> ---
+>  Documentation/index.rst           |   1 +
+>  Documentation/kunit/api/index.rst |  16 +
+>  Documentation/kunit/api/test.rst  |  14 +
+>  Documentation/kunit/faq.rst       |  62 ++++
+>  Documentation/kunit/index.rst     |  79 ++++
+>  Documentation/kunit/start.rst     | 180 ++++++++++
+>  Documentation/kunit/usage.rst     | 575 ++++++++++++++++++++++++++++++
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 407138ebc0d0..41364b127200 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -177,6 +177,13 @@ properties:
-               - fsl,imx8mm-evk            # i.MX8MM EVK Board
-           - const: fsl,imx8mm
- 
-+      - description: i.MX8MQ based Boards
-+        items:
-+          - enum:
-+              - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-+              - purism,librem5-devkit     # Purism Librem5 devkit
-+          - const: fsl,imx8mq
-+
-       - description: i.MX8QXP based Boards
-         items:
-           - enum:
--- 
-2.17.1
+Certainly it's great to see all this documentation coming with this
+feature!
 
+Naturally, though, I have one request: I'd rather not see this at the top
+level, which is more than crowded enough as it is.  Can this material
+please go into the development tools book, alongside the kselftest
+documentation?
+
+Thanks,
+
+jon
