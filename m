@@ -2,216 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B711C470
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 10:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D131C474
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 10:12:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726277AbfENIMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 04:12:16 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:38761 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725899AbfENIMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 04:12:15 -0400
-X-UUID: 1a31c88f6d4e4e1d8a3587bb10240087-20190514
-X-UUID: 1a31c88f6d4e4e1d8a3587bb10240087-20190514
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 703909718; Tue, 14 May 2019 16:12:05 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 14 May
- 2019 16:12:03 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 14 May 2019 16:12:03 +0800
-Message-ID: <1557821523.10179.284.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 2/8] usb: phy: phy-mxs-usb: add imx7ulp support
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Peter Chen <peter.chen@nxp.com>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>
-Date:   Tue, 14 May 2019 16:12:03 +0800
-In-Reply-To: <20190514073529.29505-3-peter.chen@nxp.com>
-References: <20190514073529.29505-1-peter.chen@nxp.com>
-         <20190514073529.29505-3-peter.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726295AbfENIMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 04:12:31 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:39881 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726303AbfENIMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 04:12:31 -0400
+Received: by mail-pl1-f193.google.com with SMTP id g9so7869825plm.6
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 01:12:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=NVJCQ/meS0Lsexv3IBx7F9d7yUIfFyO6avMbOIjFh4s=;
+        b=Qf/S0L0GOg+nfU17642TqGkQqhXSonrx9ER/aBydfh/biW25VannRP2+rJFupFnjNQ
+         6O3jNdfrZjij+GeMIqitmfstQ1mnbWWM05ksAzIPhV2I5nUim0wwLfODJnqnUNud35CU
+         dbKTV24y+A9OvRbYlzMzJKLZHVKLHAMmsK1K7rVw6Co+mNGh5+PF42t5apYIhH35lC7k
+         TgKcpWx2X2H+uW5hCymmqwV2gfLLNQvl8xN1+zUkXShWD4K7KWjS5GQDAMIh63fYGXm+
+         ed3BAsVtwYpPvqJsF7boIU5AB93ewkgqizm7aT4FDCBxNcM20DD8HvqPNk6s6Afw8A0a
+         krHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NVJCQ/meS0Lsexv3IBx7F9d7yUIfFyO6avMbOIjFh4s=;
+        b=PuGIaUAcvtADQMWKbLbrO5LsdZqwY7H8po58YQ7OJGscbNm8wBFIS/Cl3kpBoT2F8y
+         Zxil86J6zgnU3yR3FqcbGzRRaKq7rw/b5zQjllGAUORj0Dv/WrDrwR+xrQGCfJOzipDt
+         s/GZQ/X4jnZqW/s31E4Zx2cxJtCOliRLCc09Sd1kk9eJbc2MraUVqNWEomC81m6AULYw
+         rQJzwR+P+dAEOUttoWi54OVHL/J5o3UhzsScDYE3770xst6lSF4NFryjE+T8fZciugHE
+         NJZT/DtF6dhzox0+BvcXDUvwKFkbpAU4lD1iBf/rpe8xs46bvLGthvFwnh6CRPuD/vHM
+         1bBQ==
+X-Gm-Message-State: APjAAAUb4mw1ZLFwxNzZP/6n5M80xgyxzBgQ/C79CM0Egb1eKGiv3CZ3
+        6TgnsLYYXGe3FuSLqDwDD9zmbQ==
+X-Google-Smtp-Source: APXvYqxsZM0ICZqWX68w0XRe09cnfhLQe5GD234bzH2jX1Q7W6s2mg37aevN5UE3Oi+D1MLUU05rWw==
+X-Received: by 2002:a17:902:e9:: with SMTP id a96mr9816444pla.37.1557821549846;
+        Tue, 14 May 2019 01:12:29 -0700 (PDT)
+Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
+        by smtp.gmail.com with ESMTPSA id v1sm23451654pgb.85.2019.05.14.01.12.27
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 14 May 2019 01:12:28 -0700 (PDT)
+Date:   Tue, 14 May 2019 01:12:23 -0700
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     Peter Zijlstra <peterz@infradead.org>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
+        kbuild test robot <lkp@intel.com>
+Subject: Re: [PATCH v3 08/18] objtool: add kunit_try_catch_throw to the
+ noreturn list
+Message-ID: <20190514081223.GA230665@google.com>
+References: <20190514054251.186196-1-brendanhiggins@google.com>
+ <20190514054251.186196-9-brendanhiggins@google.com>
+ <20190514065643.GC2589@hirez.programming.kicks-ass.net>
 MIME-Version: 1.0
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190514065643.GC2589@hirez.programming.kicks-ass.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-05-14 at 07:38 +0000, Peter Chen wrote:
-> At imx7ulp, the USB related analog register is located in PHY register
-> region too, so we need to control PLL at PHY driver directly.
+On Tue, May 14, 2019 at 08:56:43AM +0200, Peter Zijlstra wrote:
+> On Mon, May 13, 2019 at 10:42:42PM -0700, Brendan Higgins wrote:
+> > This fixes the following warning seen on GCC 7.3:
+> >   kunit/test-test.o: warning: objtool: kunit_test_unsuccessful_try() falls through to next function kunit_test_catch()
+> > 
 > 
-> Signed-off-by: Peter Chen <peter.chen@nxp.com>
-> ---
->  drivers/usb/phy/phy-mxs-usb.c | 76 ++++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 75 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
-> index 1b1bb0ad40c3..90c96a8e9342 100644
-> --- a/drivers/usb/phy/phy-mxs-usb.c
-> +++ b/drivers/usb/phy/phy-mxs-usb.c
-> @@ -20,6 +20,7 @@
->  
->  #define DRIVER_NAME "mxs_phy"
->  
-> +/* Register Macro */
->  #define HW_USBPHY_PWD				0x00
->  #define HW_USBPHY_TX				0x10
->  #define HW_USBPHY_CTRL				0x30
-> @@ -37,6 +38,11 @@
->  #define GM_USBPHY_TX_TXCAL45DN(x)            (((x) & 0xf) << 8)
->  #define GM_USBPHY_TX_D_CAL(x)                (((x) & 0xf) << 0)
->  
-> +/* imx7ulp */
-> +#define HW_USBPHY_PLL_SIC			0xa0
-> +#define HW_USBPHY_PLL_SIC_SET			0xa4
-> +#define HW_USBPHY_PLL_SIC_CLR			0xa8
-> +
->  #define BM_USBPHY_CTRL_SFTRST			BIT(31)
->  #define BM_USBPHY_CTRL_CLKGATE			BIT(30)
->  #define BM_USBPHY_CTRL_OTG_ID_VALUE		BIT(27)
-> @@ -55,6 +61,12 @@
->  #define BM_USBPHY_IP_FIX                       (BIT(17) | BIT(18))
->  
->  #define BM_USBPHY_DEBUG_CLKGATE			BIT(30)
-> +/* imx7ulp */
-> +#define BM_USBPHY_PLL_LOCK			BIT(31)
-> +#define BM_USBPHY_PLL_REG_ENABLE		BIT(21)
-> +#define BM_USBPHY_PLL_BYPASS			BIT(16)
-> +#define BM_USBPHY_PLL_POWER			BIT(12)
-> +#define BM_USBPHY_PLL_EN_USB_CLKS		BIT(6)
->  
->  /* Anatop Registers */
->  #define ANADIG_ANA_MISC0			0x150
-> @@ -167,6 +179,9 @@ static const struct mxs_phy_data imx6ul_phy_data = {
->  	.flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS,
->  };
->  
-> +static const struct mxs_phy_data imx7ulp_phy_data = {
-> +};
-> +
->  static const struct of_device_id mxs_phy_dt_ids[] = {
->  	{ .compatible = "fsl,imx6sx-usbphy", .data = &imx6sx_phy_data, },
->  	{ .compatible = "fsl,imx6sl-usbphy", .data = &imx6sl_phy_data, },
-> @@ -174,6 +189,7 @@ static const struct of_device_id mxs_phy_dt_ids[] = {
->  	{ .compatible = "fsl,imx23-usbphy", .data = &imx23_phy_data, },
->  	{ .compatible = "fsl,vf610-usbphy", .data = &vf610_phy_data, },
->  	{ .compatible = "fsl,imx6ul-usbphy", .data = &imx6ul_phy_data, },
-> +	{ .compatible = "fsl,imx7ulp-usbphy", .data = &imx7ulp_phy_data, },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, mxs_phy_dt_ids);
-> @@ -198,6 +214,11 @@ static inline bool is_imx6sl_phy(struct mxs_phy *mxs_phy)
->  	return mxs_phy->data == &imx6sl_phy_data;
->  }
->  
-> +static inline bool is_imx7ulp_phy(struct mxs_phy *mxs_phy)
-> +{
-> +	return mxs_phy->data == &imx7ulp_phy_data;
-> +}
-> +
->  /*
->   * PHY needs some 32K cycles to switch from 32K clock to
->   * bus (such as AHB/AXI, etc) clock.
-> @@ -221,14 +242,59 @@ static void mxs_phy_tx_init(struct mxs_phy *mxs_phy)
->  	}
->  }
->  
-> +static int wait_for_pll_lock(const void __iomem *base)
-> +{
-> +	int loop_count = 100;
-> +
-> +	/* Wait for PLL to lock */
-> +	do {
-> +		if (readl(base + HW_USBPHY_PLL_SIC) & BM_USBPHY_PLL_LOCK)
-> +			break;
-> +		usleep_range(100, 150);
-> +	} while (loop_count-- > 0);
-> +
-there is a common API readl_poll_timeout(), maybe you can try it.
+> What is that file and function; no kernel tree near me seems to have
+> that.
 
-> +	return readl(base + HW_USBPHY_PLL_SIC) & BM_USBPHY_PLL_LOCK
-> +			? 0 : -ETIMEDOUT;
-> +}
-> +
-> +static int mxs_phy_pll_enable(void __iomem *base, bool enable)
-> +{
-> +	int ret = 0;
-> +
-> +	if (enable) {
-> +		writel(BM_USBPHY_PLL_REG_ENABLE, base + HW_USBPHY_PLL_SIC_SET);
-> +		writel(BM_USBPHY_PLL_BYPASS, base + HW_USBPHY_PLL_SIC_CLR);
-> +		writel(BM_USBPHY_PLL_POWER, base + HW_USBPHY_PLL_SIC_SET);
-> +		ret = wait_for_pll_lock(base);
-> +		if (ret)
-> +			return ret;
-> +		writel(BM_USBPHY_PLL_EN_USB_CLKS, base +
-> +				HW_USBPHY_PLL_SIC_SET);
-> +	} else {
-> +		writel(BM_USBPHY_PLL_EN_USB_CLKS, base +
-> +				HW_USBPHY_PLL_SIC_CLR);
-> +		writel(BM_USBPHY_PLL_POWER, base + HW_USBPHY_PLL_SIC_CLR);
-> +		writel(BM_USBPHY_PLL_BYPASS, base + HW_USBPHY_PLL_SIC_SET);
-> +		writel(BM_USBPHY_PLL_REG_ENABLE, base + HW_USBPHY_PLL_SIC_CLR);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static int mxs_phy_hw_init(struct mxs_phy *mxs_phy)
->  {
->  	int ret;
->  	void __iomem *base = mxs_phy->phy.io_priv;
->  
-> +	if (is_imx7ulp_phy(mxs_phy)) {
-> +		ret = mxs_phy_pll_enable(base, true);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->  	ret = stmp_reset_block(base + HW_USBPHY_CTRL);
->  	if (ret)
-> -		return ret;
-> +		goto disable_pll;
->  
->  	/* Power up the PHY */
->  	writel(0, base + HW_USBPHY_PWD);
-> @@ -253,6 +319,11 @@ static int mxs_phy_hw_init(struct mxs_phy *mxs_phy)
->  	mxs_phy_tx_init(mxs_phy);
->  
->  	return 0;
-> +
-> +disable_pll:
-> +	if (is_imx7ulp_phy(mxs_phy))
-> +		mxs_phy_pll_enable(base, false);
-> +	return ret;
->  }
->  
->  /* Return true if the vbus is there */
-> @@ -374,6 +445,9 @@ static void mxs_phy_shutdown(struct usb_phy *phy)
->  	writel(BM_USBPHY_CTRL_CLKGATE,
->  	       phy->io_priv + HW_USBPHY_CTRL_SET);
->  
-> +	if (is_imx7ulp_phy(mxs_phy))
-> +		mxs_phy_pll_enable(phy->io_priv, false);
-> +
->  	clk_disable_unprepare(mxs_phy->clk);
->  }
->  
+Oh, sorry about that. The function is added in the following patch,
+"[PATCH v3 09/18] kunit: test: add support for test abort"[1].
 
+My apologies if this patch is supposed to come after it in sequence, but
+I assumed it should come before otherwise objtool would complain about
+the symbol when it is introduced.
 
+Thanks!
+
+[1] https://lkml.org/lkml/2019/5/14/44
