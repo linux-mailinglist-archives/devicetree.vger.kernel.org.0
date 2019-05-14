@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C53E11CD6E
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 19:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD1691CDCC
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 19:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726665AbfENRHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 13:07:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36628 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726036AbfENRHG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 13:07:06 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CCE35216FD;
-        Tue, 14 May 2019 17:07:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557853624;
-        bh=ynl8AFpFEpjI9vrYRvobxmIYCbtOF48tRyFqccv//zc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0jC7UTr5HM4px+Sfy1o8XrnmDRQhV3GR3xyqaUtsZiWD1U9yFi/kfCt5cODPnixjC
-         Y18nLsql0XLr3UClDjWX8gLmjpdL2joxJLgYLllFC5Kj2PfDbKt62fUR9YaIxEsvXz
-         IZv7apDW+MobPpB1TJiFPar0xjIJi4A0ZnyFe2SI=
-Received: by mail-qk1-f178.google.com with SMTP id n68so8171207qka.1;
-        Tue, 14 May 2019 10:07:04 -0700 (PDT)
-X-Gm-Message-State: APjAAAVy39DKyQt7OQ3qTQTGBBhWcivq7rGr2XfDFvpGc+r1L5eZLlUU
-        tdBqbDycm+xKIn+zINwcxGLfWusTBDY/pkCedA==
-X-Google-Smtp-Source: APXvYqwkA2Dj1JJRXoqUmMjMw7gyMeOiQDb1TW0TDwg4hnLqAMxtTj6eK8LmAKdsaY3cW79uDKEIDb8mWuXgzckCYIE=
-X-Received: by 2002:a37:7982:: with SMTP id u124mr29199541qkc.79.1557853624097;
- Tue, 14 May 2019 10:07:04 -0700 (PDT)
+        id S1726587AbfENRSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 13:18:45 -0400
+Received: from casper.infradead.org ([85.118.1.10]:41632 "EHLO
+        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726251AbfENRSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 13:18:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=y1jt1vGYA3mBOQ/J2XJeuj9h+9xt/WgbyMVwztThSVQ=; b=sh7Mu5FxviOYnNnBztWbxc8j99
+        wRRyT86DWHAjfiCF6a59D1/7MH6MdrmwRPTgG7KW/DkBJ0nY1souFG/s7CQnRhK28w77tEsUfJ5SS
+        Yelf+jP4gl7sHFSiN4wHRy6co+V0iTpIwc76lKRmjpg1r51w+crVLjoPvpSatDyY/QX4OBFxAXSZW
+        UliRbMV2MTEJzf4LcNeEa1azm4Mwympu2HPW15PwN9aPyLM/V9TcCLGMI1vS+6IBA4GK2/TpHD/7N
+        xwdTIomf4CSP2fDM/645+B2d3QzNNoaO1mY7ZI423OdpWjNlXRMBGS7mH4zREaM0NZ/evUQXomdFY
+        8Dgu6xiA==;
+Received: from [179.179.44.200] (helo=coco.lan)
+        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hQb4Q-0000u5-4h; Tue, 14 May 2019 17:18:30 +0000
+Date:   Tue, 14 May 2019 14:18:24 -0300
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+        kernel@pengutronix.de, linux-media@vger.kernel.org
+Subject: Re: [PATCH v6 00/13] TVP5150 new features
+Message-ID: <20190514141824.5bd41389@coco.lan>
+In-Reply-To: <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+        <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20190509215538.93346-1-swboyd@chromium.org>
-In-Reply-To: <20190509215538.93346-1-swboyd@chromium.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 14 May 2019 12:06:48 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKS5KgNpVvunhax+M4+NceP9uy_V=2cYk54kg5eOfxXwA@mail.gmail.com>
-Message-ID: <CAL_JsqKS5KgNpVvunhax+M4+NceP9uy_V=2cYk54kg5eOfxXwA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of/fdt: Remove dead code and mark functions with __init
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 9, 2019 at 4:55 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Some functions in here are never called, and others are only called
-> during __init. Remove the dead code and some dead exports for functions
-> that don't exist (I'm looking at you of_fdt_get_string!). Mark some
-> functions with __init so we can throw them away after we boot up and
-> poke at the FDT blob too.
+Em Mon, 6 May 2019 07:47:13 +0200
+Marco Felsch <m.felsch@pengutronix.de> escreveu:
 
-Some of these aren't called, but there are cases where they could be
-used instead of accessing initial_boot_params directly. The question
-is what direction do we want to go. Make initial_boot_params private
-or do away with the wrapper api and expect users to use libfdt api
-only. I guess I lean toward the latter because that aligns with my
-goal to move all the code in drivers/of/ somewhere else so I have
-nothing to maintain. :)
+> Hi Mauro,
+> 
+> I know you are busy but can you have a look on it?
 
->
-> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../devicetree/bindings/common-properties.txt |  4 +-
->  drivers/of/fdt.c                              | 37 +++----------------
->  include/linux/of_fdt.h                        | 11 ------
->  3 files changed, 7 insertions(+), 45 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/common-properties.txt b/Documentation/devicetree/bindings/common-properties.txt
-> index a3448bfa1c82..1c50d8700ab5 100644
-> --- a/Documentation/devicetree/bindings/common-properties.txt
-> +++ b/Documentation/devicetree/bindings/common-properties.txt
-> @@ -25,8 +25,8 @@ Optional properties:
->  If a binding supports these properties, then the binding should also
->  specify the default behavior if none of these properties are present.
->  In such cases, little-endian is the preferred default, but it is not
-> -a requirement.  The of_device_is_big_endian() and of_fdt_is_big_endian()
-> -helper functions do assume that little-endian is the default, because
-> +a requirement.  The of_device_is_big_endian()
+You should really trust on the sub-maintainers for such kind of
+reviews :-)
 
-Hum, we shouldn't have kernel functions in binding docs. Can you
-reword to remove both functions.
+I'll take a look today.
 
-> +helper function assumes that little-endian is the default, because
->  most existing (PCI-based) drivers implicitly default to LE by using
->  readl/writel for MMIO accesses.
->
+> 
+> Regards,
+>   Marco
+> 
+> On 19-04-15 14:44, Marco Felsch wrote:
+> > Hi,
+> > 
+> > many thanks to Hans and Jacopo for the feedack :) this v6 address the
+> > comments both made on my v5 [1].
+> > 
+> > In short this is round fixes just some minor issues rather than major
+> > ones so the diff to the v5 is really small. The changed patches contain
+> > the changelog so I omit it here.
+> > 
+> > I've tested it on a custom hardware but I can't test the em28xx usb
+> > use-case since I haven't such a device. So other testers are welcome :)
+> > 
+> > Looking forward for your feedack,
+> > 
+> > 	Marco
+> > 
+> > [1] https://patchwork.kernel.org/cover/10886903/
+> > 
+> > Javier Martinez Canillas (1):
+> >   partial revert of "[media] tvp5150: add HW input connectors support"
+> > 
+> > Marco Felsch (11):
+> >   dt-bindings: connector: analog: add tv norms property
+> >   media: v4l2-fwnode: add v4l2_fwnode_connector
+> >   media: v4l2-fwnode: add initial connector parsing support
+> >   media: tvp5150: add input source selection of_graph support
+> >   media: dt-bindings: tvp5150: Add input port connectors DT bindings
+> >   media: tvp5150: add FORMAT_TRY support for get/set selection handlers
+> >   media: tvp5150: add s_power callback
+> >   media: dt-bindings: tvp5150: cleanup bindings stlye
+> >   media: dt-bindings: tvp5150: add optional tvnorms documentation
+> >   media: tvp5150: add support to limit tv norms on connector
+> >   media: tvp5150: make debug output more readable
+> > 
+> > Michael Tretter (1):
+> >   media: tvp5150: initialize subdev before parsing device tree
+> > 
+> >  .../display/connector/analog-tv-connector.txt |   4 +
+> >  .../devicetree/bindings/media/i2c/tvp5150.txt | 125 +++-
+> >  drivers/media/i2c/tvp5150.c                   | 672 +++++++++++++-----
+> >  drivers/media/v4l2-core/v4l2-fwnode.c         | 111 +++
+> >  include/dt-bindings/media/tvnorms.h           |  56 ++
+> >  include/dt-bindings/media/tvp5150.h           |   2 -
+> >  include/media/v4l2-connector.h                |  30 +
+> >  include/media/v4l2-fwnode.h                   |  49 ++
+> >  8 files changed, 859 insertions(+), 190 deletions(-)
+> >  create mode 100644 include/dt-bindings/media/tvnorms.h
+> >  create mode 100644 include/media/v4l2-connector.h
+> > 
+> > -- 
+> > 2.20.1
+> > 
+> > 
+> >   
+> 
+
+
+
+Thanks,
+Mauro
