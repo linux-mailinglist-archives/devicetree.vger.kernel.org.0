@@ -2,232 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4767E1CEB1
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3ED1CEB4
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727032AbfENSLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 14:11:34 -0400
-Received: from casper.infradead.org ([85.118.1.10]:47868 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfENSLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:11:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=vvyyiv/ywvE0ghh1qAzpGX3mqIwI163eycow9PnL8QE=; b=B1Nh5fyWSn2eUGtHwEcER7kWlD
-        LWHPC3E7aLcBT/s+ZVqxeRddVDnpEgimaBe3RNJ5K64rFxgJ1vG3WO/1jYQrWzvIRdhJMs51heWsV
-        cbFOjJAZLU55rhlTn4dIESBPET/+KDH3RfJk7Wm8spTnwSr03qHxE3LAd/uSx8PTLYucFQP2jRO8i
-        /mZlTmJliHvBicE6xUZDBEpR3i5Okx1XmS6mjBqIocKcsV0bv9XzKJDEPqDu564R9GvW3y/FxqnsM
-        lq0ych32TkWUfo6sVveMys3FJan1w3D1HBP17s7u4xViWMuid3Ty/5QGnEV1U2qlTmIqQIXKwxpi4
-        1mgvil+w==;
-Received: from [179.179.44.200] (helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hQbtc-0003NC-Op; Tue, 14 May 2019 18:11:25 +0000
-Date:   Tue, 14 May 2019 15:11:19 -0300
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 01/13] dt-bindings: connector: analog: add tv norms
- property
-Message-ID: <20190514151119.2099cd10@coco.lan>
-In-Reply-To: <9989034f-4794-adba-d89c-8330bbf7b27f@xs4all.nl>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
-        <20190415124413.18456-2-m.felsch@pengutronix.de>
-        <9989034f-4794-adba-d89c-8330bbf7b27f@xs4all.nl>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726295AbfENSMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 14:12:24 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:35891 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726201AbfENSMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:12:24 -0400
+Received: by mail-oi1-f195.google.com with SMTP id l203so12878795oia.3;
+        Tue, 14 May 2019 11:12:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7MKXOx72GnJK4OThTbg/Yq9n8A27D1pwO48w3mZxGik=;
+        b=TfDtCCNmcVJ7WXWPI4ZxFdlwO0Mhu9x3wjKHn1IdQCdY9mHw24ZvvuEItFjyHyZpu2
+         VVaz36e+vJPBfZPmbsEm41Coi/JjA4va/p9o0kvrggHc2zBWGDWLX/HBSSPbeqVTEGDU
+         mmMoH/38v1RUoxJGrxyn7NPQKxi+XI6brkd5mAVEiudZ6sx/eplCH0Uf5wFpUPHxv1bx
+         0hk6ZGy5qnlOI19/ytIrXV3KXZfKZQxz62xmm+92AAPdqeizcpWBMw39O6+iGuHjYqbf
+         jo5CP/qANtYYfvhexUdugkb9gbz68cThPWwAvxcQuEDgJ9O0HwqtCxFtu9cRngMYQIEY
+         ERgw==
+X-Gm-Message-State: APjAAAUOd5gcSGnSDvtXoXis3wg37CD0iZXveg3378RV4K81JXWuIj8M
+        eFNwkcTNwxB2d8YJL7Tiww==
+X-Google-Smtp-Source: APXvYqy19Xjq9sGP3TMfrsYa+PbNh1BafjhPi5bE6IL4JiP7WIz0dF4SnI69FmgshwGuUtHZQI4Byg==
+X-Received: by 2002:aca:5d86:: with SMTP id r128mr3690918oib.135.1557857542852;
+        Tue, 14 May 2019 11:12:22 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q25sm6355192otl.60.2019.05.14.11.12.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 11:12:22 -0700 (PDT)
+Date:   Tue, 14 May 2019 13:12:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 2/6] dt-bindings: usb: add binding for Type-B GPIO
+ connector driver
+Message-ID: <20190514181204.GA13949@bogus>
+References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1557823643-8616-3-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557823643-8616-3-git-send-email-chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 6 May 2019 12:01:06 +0200
-Hans Verkuil <hverkuil@xs4all.nl> escreveu:
-
-> On 4/15/19 2:44 PM, Marco Felsch wrote:
-> > Some connectors no matter if in- or output supports only a limited
-> > range of tv norms. It doesn't matter if the hardware behind that
-> > connector supports more than the listed formats since the users are
-> > restriced by a label e.g. to plug only a camera into this connector
-> > which uses the PAL format.  
+On Tue, May 14, 2019 at 04:47:19PM +0800, Chunfeng Yun wrote:
+> It's used to support dual role switch via GPIO when use Type-B
+> receptacle, typically the USB ID pin is connected to an input
+> GPIO pin
 > 
-> For S-Video and Composite connectors there are really just two formats
-> to consider: 50 and 60 Hz. I.e. there is no difference between PAL
-> and SECAM. Only for tuners/modulators does this matter.
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v5 changes:
+>  1. treat type-B connector as child device of USB controller's, but not
+>     as a separate virtual device, suggested by Rob
+>  2. put connector's port node under connector node, suggested by Rob
 > 
-> So it is a good idea to add TVNORM_525_60, TVNORM_625_50 to tvnorms.h.
+> v4 no changes
 > 
-> In the various bindings examples I would recommend that you use
-> TVNORM_525_60 or TVNORM_625_50 rather than e.g. PAL_M since that's what
-> you would use in practice for Composite/S-Video.
-
-Hans, that could be true for component video, but for S-Video and
-Composite, you need to tell the demod how the color sub-carrier is
-encoded, and what's its frequency, or otherwise it won't work.
-
-There are plenty of equipments in Brazil that have both NTSC/M and
-PAL/M (and a few with PAL/N') output. All those formats are 60Hz.
-
-Colors are only decoded by tvp5150 and other demods if it is set
-to the right color format (PAL or NTSC) and to the right line 
-frequency (60Hz) [1]. Also, some decoders are very sensitive to the
-chroma sub-carrier frequency. That's the case of tvp5150.
-
-[1] Or - when supported by the hardware - if the demod is set to
-    automatic mode.
-
-    Automatic mode usually doesn't work well with PAL/M and PAL/N'.
-
-    The problem is related to the sub-carrier frequency: both 
-    PAL/N' (used only on Paraguay) and NTSC/M have the same 
-    frequency; PAL/M has a close but different frequency for the
-    color sub-carrier.
-
-    Most decoders use the frequency of the chroma sub-carrier in
-    order to switch between NTSC/M nd PAL/M. So, auto-detection
-    usually fails with PAL/N', as such detectors understand it
-    as NTSC.
-
-    Worse than that, it is not uncommon to have pseudo-PAL-M devices
-    that were made for the US market, and received a conversion
-    to PAL, with envolves adding a small board with a NTSC->PAL converter.
-    As most TV sets used in this part of the world are designed to
-    work both with PAL/M and PAL/N' (by using a broader notch filter),
-    to make the hardware cheaper, lots of manufacturers just
-    change the modulation on encoders, while keeping the NTSC XTAL.
-    So, in practice, such devices, sold as "PAL/M" are actually PAL/N'.
-    A significant amount of old VCRs and DVD devices found in Brazil
-    are actually PAL/N'. The same applies to game consoles.
-
-    Btw, the main reason for having analog video streams here nowadays
-    is to copy old videos from VCRs and encode them digitally or to
-    record games from game consoles.
-
+> v3 changes:
+>  1. treat type-B connector as a virtual device, but not child device of
+>     USB controller's
 > 
-> Regards,
+> v2 changes:
+>   1. new patch to make binding clear suggested by Hans
+> ---
+>  .../bindings/usb/typeb-conn-gpio.txt          | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
 > 
-> 	Hans
+> diff --git a/Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt b/Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
+> new file mode 100644
+> index 000000000000..20dd3499a348
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
+> @@ -0,0 +1,42 @@
+> +USB Type-B GPIO Connector
+> +
+> +This is used to switch dual role mode from the USB ID pin connected to
+> +an input GPIO pin.
+> +
+> +Required properties:
+> +- compatible : should include "linux,typeb-conn-gpio" and "usb-b-connector".
+
+I don't think we need "linux,typeb-conn-gpio". A driver can decide to 
+handle GPIO lines if they present or we assume the parent device handles 
+ID and/or Vbus if they are not present.
+
+> +- id-gpios, vbus-gpios : either one of them must be present, and both
+> +	can be present as well.
+
+Please clarify that vbus-gpios is an input to sense Vbus presence as an 
+output it should be modelled as a regulator only.
+
+These should be added to usb-connector.txt.
+
+The result of all this is you don't need this file. Just additions to 
+usb-connector.txt.
+
+> +- vbus-supply : can be present if needed when supports dual role mode or
+> +	host mode.
+> +	see connector/usb-connector.txt
+> +
+> +Sub-nodes:
+> +- port : should be present.
+> +	see graph.txt
+> +
+> +Example:
+> +
+> +&mtu3 {
+> +	status = "okay";
+
+Don't show status in examples.
+
+> +
+> +	connector {
+> +		compatible = "linux,typeb-conn-gpio", "usb-b-connector";
+> +		label = "micro-USB";
+> +		type = "micro";
+> +		id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
+> +		vbus-supply = <&usb_p0_vbus>;
+> +
+> +		port {
+> +			bconn_ep: endpoint@0 {
+> +				remote-endpoint = <&usb_role_sw>;
+> +			};
+> +		};
+> +	};
+> +
+> +	port {
+> +		usb_role_sw: endpoint@0 {
+> +			remote-endpoint = <&bconn_ep>;
+> +		};
+> +	};
+
+When the host controller is the parent of the connector, you don't need 
+the graph unless you're describing the alternate modes in Type-C.
+
+> +};
+> -- 
+> 2.21.0
 > 
-> > 
-> > This patch adds the capability to describe such limitation within the
-> > firmware. There are no format restrictions if the property isn't
-> > present, so it's completely backward compatible.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> > [1] https://patchwork.kernel.org/cover/10794703/
-> > 
-> > v6:
-> > - tvnorms.h: use tabs instead of spaces
-> > - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
-> > - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
-> > 
-> > v2-v4:
-> > - nothing since the patch was squashed from series [1] into this
-> >   series.
-> > 
-> >  .../display/connector/analog-tv-connector.txt |  4 ++
-> >  include/dt-bindings/media/tvnorms.h           | 56 +++++++++++++++++++
-> >  2 files changed, 60 insertions(+)
-> >  create mode 100644 include/dt-bindings/media/tvnorms.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > index 0c0970c210ab..346f8937a0b7 100644
-> > --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > @@ -6,6 +6,9 @@ Required properties:
-> >  
-> >  Optional properties:
-> >  - label: a symbolic name for the connector
-> > +- tvnorms: limit the supported tv norms on a connector to the given ones else
-> > +           all tv norms are allowed. Possible video standards are defined in
-> > +           include/dt-bindings/media/tvnorms.h.
-> >  
-> >  Required nodes:
-> >  - Video port for TV input
-> > @@ -16,6 +19,7 @@ Example
-> >  tv: connector {
-> >  	compatible = "composite-video-connector";
-> >  	label = "tv";
-> > +	tvnorms = <(TVNORM_PAL_M | TVNORM_NTSC_M)>;
-> >  
-> >  	port {
-> >  		tv_connector_in: endpoint {
-> > diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
-> > new file mode 100644
-> > index 000000000000..058ab8414145
-> > --- /dev/null
-> > +++ b/include/dt-bindings/media/tvnorms.h
-> > @@ -0,0 +1,56 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
-> > +/*
-> > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
-> > +#define _DT_BINDINGS_MEDIA_TVNORMS_H
-> > +
-> > +/* one bit for each */
-> > +#define TVNORM_PAL_B		0x00000001
-> > +#define TVNORM_PAL_B1		0x00000002
-> > +#define TVNORM_PAL_G		0x00000004
-> > +#define TVNORM_PAL_H		0x00000008
-> > +#define TVNORM_PAL_I		0x00000010
-> > +#define TVNORM_PAL_D		0x00000020
-> > +#define TVNORM_PAL_D1		0x00000040
-> > +#define TVNORM_PAL_K		0x00000080
-> > +
-> > +#define TVNORM_PAL		(TVNORM_PAL_B  | \
-> > +				 TVNORM_PAL_B1 | \
-> > +				 TVNORM_PAL_G  | \
-> > +				 TVNORM_PAL_H  | \
-> > +				 TVNORM_PAL_I  | \
-> > +				 TVNORM_PAL_D  | \
-> > +				 TVNORM_PAL_D1 | \
-> > +				 TVNORM_PAL_K)
-> > +
-> > +#define TVNORM_PAL_M		0x00000100
-> > +#define TVNORM_PAL_N		0x00000200
-> > +#define TVNORM_PAL_Nc		0x00000400
-> > +#define TVNORM_PAL_60		0x00000800
-> > +
-> > +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
-> > +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
-> > +#define TVNORM_NTSC_443		0x00004000
-> > +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
-> > +
-> > +#define TVNORM_SECAM_B		0x00010000
-> > +#define TVNORM_SECAM_D		0x00020000
-> > +#define TVNORM_SECAM_G		0x00040000
-> > +#define TVNORM_SECAM_H		0x00080000
-> > +#define TVNORM_SECAM_K		0x00100000
-> > +#define TVNORM_SECAM_K1		0x00200000
-> > +#define TVNORM_SECAM_L		0x00400000
-> > +#define TVNORM_SECAM_LC		0x00800000
-> > +
-> > +#define TVNORM_SECAM		(TVNORM_SECAM_B  | \
-> > +				 TVNORM_SECAM_D  | \
-> > +				 TVNORM_SECAM_G  | \
-> > +				 TVNORM_SECAM_H  | \
-> > +				 TVNORM_SECAM_K  | \
-> > +				 TVNORM_SECAM_K1 | \
-> > +				 TVNORM_SECAM_L  | \
-> > +				 TVNORM_SECAM_LC)
-> > +
-> > +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
-
-Patch looks good to me.
-
-Thanks,
-Mauro
