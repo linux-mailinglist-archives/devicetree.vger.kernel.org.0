@@ -2,148 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4BF71C2BF
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 08:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7621C2CF
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 08:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725562AbfENGEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 02:04:46 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:46391 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725881AbfENGEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 02:04:41 -0400
-Received: by mail-pg1-f196.google.com with SMTP id t187so8019217pgb.13
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 23:04:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wphR9fs1TaZsZNH4NQjQ2k5wiALr/JJ7E+MkCJWg1G8=;
-        b=dXeMBsJluQkuZhtQlsIs60i39Eowu4Bt+MfjENGGmqpwBGoiYmgZ+5w8Qv26k9QKXI
-         1cnJzcNtxLLINZMIPeb4dfPgJ9g1ycOJEIg8i4YfGPpKugYG/E5lbz6d5J5x9AuwEioW
-         4w2gtbfJr7C59YLC9izuQhoVm6zDXWPFcTTTt0JfnLD/xaylHZ0XCbk5pClrxdins17i
-         5S5K0uYGrPEnttnkWkkw5N35wkZ3iKovTWWT7UaNVg+Cgtqi0115K/LElBXGDu9PpvZF
-         H60HHv+fa3B8a/nV2ZgfeVrjAVx8la+EU59rYesO3d6/OVXgbE5DewFQtzpmhhvoUR6U
-         YnrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wphR9fs1TaZsZNH4NQjQ2k5wiALr/JJ7E+MkCJWg1G8=;
-        b=IaJGDXn3m1Vdg4N9ID0jdRYEwR2C+zKMURJrqdzRTNFcBjGIqfQXVZbNyiajA8as1s
-         24bxQ2xfwKCWBtQazuXyMAz+2w6yvsjAslsvz/YlovutALDA3i2s+xiK5qE2c1FVUB2U
-         Q9kgOv4Q4vuovn3jwFq78lX/W/fsVtaacy65SO0knTuBBxZWgAbACYH39Kv2pdZqs4TK
-         apMJwmw5nnlhNKMGPgMCyzaD7b84Tfj0LxSqpNWgo3j88Mkip0v9owpN81Q4FhZDsxOS
-         qlnpkNRAHunoL+MwLbLh5+s9Zphyu3zCt5SKrjmYNPs5nTsWqQfoT7cLsbaBuKC0tfNT
-         Y2hA==
-X-Gm-Message-State: APjAAAXDDO2taPOeUUS0KJ8g2zgvFLU3Mh/GZf/Hlkmx46Wt/QaJWZBp
-        VnLEchoUlFOTCbPc99dPv7aHwg==
-X-Google-Smtp-Source: APXvYqzgwWIVKsYY211IYVBjZXLCdV1/hwybUBgofPR0QuIs5iXekLntSbypfxIlEzH7138sP0qZvw==
-X-Received: by 2002:aa7:8008:: with SMTP id j8mr38436137pfi.120.1557813879741;
-        Mon, 13 May 2019 23:04:39 -0700 (PDT)
-Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
-        by smtp.gmail.com with ESMTPSA id k10sm16067228pgo.82.2019.05.13.23.04.37
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 13 May 2019 23:04:38 -0700 (PDT)
-Date:   Mon, 13 May 2019 23:04:33 -0700
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     Theodore Ts'o <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>, Tim.Bird@sony.com,
-        knut.omang@oracle.com, gregkh@linuxfoundation.org,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, kunit-dev@googlegroups.com,
-        linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kselftest@vger.kernel.org, linux-nvdimm@lists.01.org,
-        linux-um@lists.infradead.org, Alexander.Levin@microsoft.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, jdike@addtoit.com, joel@jms.id.au,
-        julia.lawall@lip6.fr, khilman@baylibre.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190514060433.GA181462@google.com>
-References: <580e092f-fa4e-eedc-9e9a-a57dd085f0a6@gmail.com>
- <20190509032017.GA29703@mit.edu>
- <7fd35df81c06f6eb319223a22e7b93f29926edb9.camel@oracle.com>
- <20190509133551.GD29703@mit.edu>
- <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
- <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com>
- <20190509214233.GA20877@mit.edu>
- <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com>
- <20190511173344.GA8507@mit.edu>
- <20190513144451.GQ17751@phenom.ffwll.local>
+        id S1725854AbfENGIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 02:08:35 -0400
+Received: from mail-eopbgr70057.outbound.protection.outlook.com ([40.107.7.57]:10193
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725866AbfENGIf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 May 2019 02:08:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YTiyz7oOoBnGCYjmw0SOe1q6ZRigsgPAgF6dcT8cwZQ=;
+ b=BaA/vS70LAxYBPFEI9hKS4/HQpEkjfUjTBgwQsO6yncLrPvMFqzgHIENUOGku+w1GLMNw77B3RkX43Gcbg6Grf1hhVRGV1nNwl23ainszLMVuAPHOENPMvJiLeSby+x9YCotXUwyps5hV6QmVz2k9bAHxgFS2O70B9ilXbQOXo8=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3675.eurprd04.prod.outlook.com (52.134.69.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.22; Tue, 14 May 2019 06:08:29 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1900.010; Tue, 14 May 2019
+ 06:08:29 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: [PATCH] arm64: dts: imx8mq: Remove unnecessary blank lines
+Thread-Topic: [PATCH] arm64: dts: imx8mq: Remove unnecessary blank lines
+Thread-Index: AQHVChtz7Wi0Kxez2EK8fnK8F+Cmog==
+Date:   Tue, 14 May 2019 06:08:29 +0000
+Message-ID: <1557813807-3919-1-git-send-email-Anson.Huang@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK0P153CA0007.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:203:18::19) To DB3PR0402MB3916.eurprd04.prod.outlook.com
+ (2603:10a6:8:10::18)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5c12eae6-5a6e-4ff5-39a1-08d6d8329569
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3675;
+x-ms-traffictypediagnostic: DB3PR0402MB3675:
+x-microsoft-antispam-prvs: <DB3PR0402MB36751B1668481B36EF2CE2A0F5080@DB3PR0402MB3675.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:296;
+x-forefront-prvs: 0037FD6480
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(366004)(136003)(39860400002)(396003)(346002)(199004)(189003)(14444005)(256004)(6116002)(2201001)(26005)(7416002)(3846002)(2906002)(8936002)(66476007)(5660300002)(66556008)(64756008)(66446008)(102836004)(4744005)(66946007)(73956011)(6512007)(86362001)(71200400001)(6506007)(386003)(71190400001)(99286004)(476003)(2616005)(486006)(186003)(52116002)(110136005)(25786009)(4326008)(305945005)(478600001)(6436002)(14454004)(2501003)(6486002)(7736002)(53936002)(36756003)(68736007)(316002)(50226002)(8676002)(66066001)(81156014)(81166006)(32563001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3675;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ZD2NTU+t/4FgzYsceJzdPLlWZ5opnZIzLc67PeNXndR1dfZR0+iimqAuZA422KnpuQpnr6kda7JRPRpbvfMG8rc+xiQJLDUZoI2+2tLW9cUtpvKMfNrN8YgYszVNjK8D7HemPvfbAhRyCgoQayZ1gL0J2R9g58d+AjzZt+FAUYlKQMdMw4WI86PC6urbgjeCie0CnTaxoKKDTeTaUvmWRGHiMTsz2qStLHSqa/AlLZyte6UHg1Q/1udWEnfFq+JPHzvdJ+G46rpckeLr30gOCFubladv9QPC8U8ZfkBNt4y32gEC+05cBarVaFczBVraxKbFUmPmqqn1pPEP/K+3ZUzlv5QYpwwH5mUNFiVbOx4a6zWcRSK1Mwd2M7lqlYkzaNveMW6W4huRPi1IEbfYMsackaN1L0BTc3jMTXayhdY=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <1A0B0733A7F8DB418C08491CEEC218DE@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190513144451.GQ17751@phenom.ffwll.local>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c12eae6-5a6e-4ff5-39a1-08d6d8329569
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 06:08:29.3064
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3675
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 04:44:51PM +0200, Daniel Vetter wrote:
-> On Sat, May 11, 2019 at 01:33:44PM -0400, Theodore Ts'o wrote:
-> > On Fri, May 10, 2019 at 02:12:40PM -0700, Frank Rowand wrote:
-> > > However, the reply is incorrect.  Kselftest in-kernel tests (which
-> > > is the context here) can be configured as built in instead of as
-> > > a module, and built in a UML kernel.  The UML kernel can boot,
-> > > running the in-kernel tests before UML attempts to invoke the
-> > > init process.
-> > 
-> > Um, Citation needed?
-> > 
-> > I don't see any evidence for this in the kselftest documentation, nor
-> > do I see any evidence of this in the kselftest Makefiles.
-> > 
-> > There exists test modules in the kernel that run before the init
-> > scripts run --- but that's not strictly speaking part of kselftests,
-> > and do not have any kind of infrastructure.  As noted, the
-> > kselftests_harness header file fundamentally assumes that you are
-> > running test code in userspace.
-> 
-> Yeah I really like the "no userspace required at all" design of kunit,
-> while still collecting results in a well-defined way (unless the current
-> self-test that just run when you load the module, with maybe some
-> kselftest ad-hoc wrapper around to collect the results).
-> 
-> What I want to do long-term is to run these kernel unit tests as part of
-> the build-testing, most likely in gitlab (sooner or later, for drm.git
+Unnecessary blank lines do NOT help readability, so remove them.
 
-Totally! This is part of the reason I have been insisting on a minimum
-of UML compatibility for all unit tests. If you can suffiently constrain
-the environment that is required for tests to run in, it makes it much
-easier not only for a human to run your tests, but it also makes it a
-lot easier for an automated service to be able to run your tests.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-I actually have a prototype presubmit already working on my
-"stable/non-upstream" branch. You can checkout what presubmit results
-look like here[1][2].
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dt=
+s/freescale/imx8mq.dtsi
+index df33672..e5f3133 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -439,7 +439,6 @@
+ 					interrupts =3D <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+ 						<GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 				};
+-
+ 			};
+=20
+ 			clk: clock-controller@30380000 {
+@@ -908,7 +907,6 @@
+ 			status =3D "disabled";
+ 		};
+=20
+-
+ 		pcie0: pcie@33800000 {
+ 			compatible =3D "fsl,imx8mq-pcie";
+ 			reg =3D <0x33800000 0x400000>,
+--=20
+2.7.4
 
-> only ofc). So that people get their pull requests (and patch series, we
-> have some ideas to tie this into patchwork) automatically tested for this
-
-Might that be Snowpatch[3]? I talked to Russell, the creator of Snowpatch,
-and he seemed pretty open to collaboration.
-
-Before I heard about Snowpatch, I had an intern write a translation
-layer that made Prow (the presubmit service that I used in the prototype
-above) work with LKML[4].
-
-I am not married to either approach, but I think between the two of
-them, most of the initial legwork has been done to make presubmit on
-LKML a reality.
-
-> super basic stuff.
-
-I am really excited to hear back on what you think!
-
-Cheers!
-
-[1] https://kunit-review.googlesource.com/c/linux/+/1509/10#message-7bfa40efb132e15c8388755c273837559911425c
-[2] https://kunit-review.googlesource.com/c/linux/+/1509/10#message-a6784496eafff442ac98fb068bf1a0f36ee73509
-[3] https://developer.ibm.com/open/projects/snowpatch/
-[4] https://kunit.googlesource.com/prow-lkml/
