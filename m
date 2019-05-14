@@ -2,214 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C9121CB87
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 17:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1FC41CBA5
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 17:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725901AbfENPN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 11:13:28 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:33806 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726148AbfENPN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 11:13:27 -0400
-Received: by mail-wm1-f68.google.com with SMTP id j187so2600081wma.1
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 08:13:25 -0700 (PDT)
+        id S1725980AbfENPRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 11:17:37 -0400
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:40910 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725854AbfENPRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 11:17:36 -0400
+Received: by mail-yw1-f66.google.com with SMTP id 18so14265617ywe.7;
+        Tue, 14 May 2019 08:17:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=t5pUqAtTu3Pp9083z35/S4C2MMPbyV4DENbMiZCqxAo=;
-        b=ht1GkordzLmwea3pgHswwHh60uGQ/VrLwtvJ/GZabxooYYKHlfSuteQkuBMfyybGm2
-         uVqugG1F7L6WFHe67rfcelxcFau/+xa3r/OPktSOaCqc2BjWAuGlWA7F5OI/HeX3SxBZ
-         GOnAErCbR+BvJy+okGhuVyZtEEeIByhk/w399tWdT/sFOZCuD+MIXojoTPlU5avFmfsJ
-         kMBIYySejSQQsg12PLNJveR1aAgB7r0p/QECGJ+8jMppbLLMZQM08oxNLoiUtBO6LbE0
-         IJII+B1DnLr/kaWeoEhsJjQCfwXA8RLVFk5Zy3wboJxAELPJg4lAwzrAZhA+T6Q1O/g9
-         QwXg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=XlpJYHLmPG7Uggd9+oaIZ1OeCPKgknlGwcKeYgcPgps=;
+        b=dmpRF7RZxloSc1IpirAVs4uHNLPmixu1h5DGL0kn80zjR4NMuvwbzk04I71iyTq+I6
+         FFq4icPffkFrDE80DZkTbIEQCePFMc6rrKjiDUKR2yLzjDDytq3bmNcVsvDM4YW+CNgz
+         uh+dqa4DzyxtUGio4Fzqq7gmif5BzLB2GD3La6kHR6PqSV8Jh38XdxUXeygbQJkkyz8V
+         pMx1cxToi+sqCT0rMD5tgdgdT7YAYp9JAD8Ama+b8XJW5XO4LWLh0vYiEtHW60/m4NRb
+         FlkhmS5dSRhK2bO96CC0vcQwG/KLBjyZbG4F2bclAP8r1VMdbOAfq01Px1CG3FiVoVTU
+         jTlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=t5pUqAtTu3Pp9083z35/S4C2MMPbyV4DENbMiZCqxAo=;
-        b=int+twjNjMtefWhmO3WAQC5FEtNA2pijc5PLXPwwnSzr13iClymKoNmQ+jjtDGsGT6
-         nhCVqX2ZpRAOOkxbV1sBWfr1WW1/40jMjW2D1CuVkkyfyr8DIzLmr1H/b82NN2Vj2TZA
-         vYL58KVIfsCjk9PPbDokaQOrsYZJC3ggopGSEHyxQJGN8eUsorSs1CLSFfX08loinD42
-         +B5RUI3tnB5RWXHcEwZXM8kk6KbKB6adAX9qkKY6QIL/ajpfPm//5JAxFuu6hitJNALa
-         OV0Kl3qfjtT0iYKL0BKL5vLMRZ3/WIGKy9FZquaX30uIIUDiGZ6ygARsUOJT8LOMnCwD
-         dhgg==
-X-Gm-Message-State: APjAAAXDZMvrMBJGh9fsDxvomnKjb0UvU5WdMxV/VPOvrUatfPJQVOfN
-        VXKQq2My9+br/BKTPvh0aIkZZoRLDpk=
-X-Google-Smtp-Source: APXvYqzFw0X/ImP8bCeK+AMuZOgKgtP7xHpT9epnX0up5AwaMG6ulzHyusdTitjfir2WhOENR17ctA==
-X-Received: by 2002:a7b:c778:: with SMTP id x24mr16455823wmk.66.1557846804146;
-        Tue, 14 May 2019 08:13:24 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id f16sm6418442wrx.58.2019.05.14.08.13.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 14 May 2019 08:13:23 -0700 (PDT)
-Subject: Re: NVMEM address DT post processing [Was: Re: [PATCH net 0/3] add
- property "nvmem_macaddr_swap" to swap macaddr bytes order]
-To:     =?UTF-8?Q?Petr_=c5=a0tetiar?= <ynezz@true.cz>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Andy Duan <fugang.duan@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "john@phrozen.org" <john@phrozen.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alban Bedel <albeu@free.fr>, devicetree@vger.kernel.org
-References: <1557476567-17397-4-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-3-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-2-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-1-git-send-email-fugang.duan@nxp.com>
- <20190510112822.GT81826@meh.true.cz> <20190510113155.mvpuhe4yzxdaanei@flea>
- <20190511144444.GU81826@meh.true.cz>
- <547abcff-103a-13b8-f42a-c0bd1d910bbc@linaro.org>
- <20190513090700.GW81826@meh.true.cz>
- <8cee0086-7459-24c7-82f9-d559527df6e6@linaro.org>
- <20190513111612.GA21475@meh.true.cz>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <0c6cb9d4-2da1-00be-b527-5891b8b030a8@linaro.org>
-Date:   Tue, 14 May 2019 16:13:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=XlpJYHLmPG7Uggd9+oaIZ1OeCPKgknlGwcKeYgcPgps=;
+        b=FMdSZXPOQ6iyvbaS9C4KjlzQmIk9jcXYVfWNhYJNg+tfqAlwvWslrO96UAj7gNQZ5u
+         HjvxMD4fnVheevvBqsoZ4drm53dMEo0meVoHf1HYXj7zPxC/eft3dQ1LJhdkAr2qrqvW
+         cF03xORbuYd1s5Wf7v72E2uTLVEu2SSj7TjB0Zy1hU/zcIe81srtpLgpNaNpeFM7VkZ7
+         4PXXnUJESjiNq34t24ctkt8hHvBlUmGk47xYtKfxkUcvAhtEJaelROmBwUWJrblewVbK
+         0QB9AF7IOtDdjF9WF+w+BJxi7my43RueOeInB2HdRpAzXG96dghecuy/jsLn9iaqAXfE
+         qKQA==
+X-Gm-Message-State: APjAAAUHRhQlA1m9Xa8lJ5ClkcMfOuDl1x/o1cvg2wWYpbLpAr1BL1ni
+        CyZyq4nvwZrPX1mKF7ULTB3JZp1C7zFg9O1XxVc=
+X-Google-Smtp-Source: APXvYqxEriT2XkWrsa7sMupzbhPrCGn4wsQkd2YWnSKAQ8Mjc/v1DzNBx9GbGA3XQKwGm9ujepe0XUdZIaO+zUVSBaE=
+X-Received: by 2002:a25:9b88:: with SMTP id v8mr17000341ybo.153.1557847055669;
+ Tue, 14 May 2019 08:17:35 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190513111612.GA21475@meh.true.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190512174608.10083-1-peron.clem@gmail.com> <20190513151405.GW17751@phenom.ffwll.local>
+ <de50a9da-669f-ab25-2ef2-5ffb90f8ee03@baylibre.com>
+In-Reply-To: <de50a9da-669f-ab25-2ef2-5ffb90f8ee03@baylibre.com>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Tue, 14 May 2019 17:17:24 +0200
+Message-ID: <CAJiuCccuEw0BK6MwROR+XUDvu8AJTmZ5tu=pYwZbGAuvO31pgg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Allwinner H6 Mali GPU support
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     David Airlie <airlied@linux.ie>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On Tue, 14 May 2019 at 12:29, Neil Armstrong <narmstrong@baylibre.com> wrot=
+e:
+>
+> Hi,
+>
+> On 13/05/2019 17:14, Daniel Vetter wrote:
+> > On Sun, May 12, 2019 at 07:46:00PM +0200, peron.clem@gmail.com wrote:
+> >> From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> >>
+> >> Hi,
+> >>
+> >> The Allwinner H6 has a Mali-T720 MP2. The drivers are
+> >> out-of-tree so this series only introduce the dt-bindings.
+> >
+> > We do have an in-tree midgard driver now (since 5.2). Does this stuff w=
+ork
+> > together with your dt changes here?
+>
+> No, but it should be easy to add.
+I will give it a try and let you know.
 
-On 13/05/2019 12:16, Petr Štetiar wrote:
-> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 11:06:48]:
-> 
->> On 13/05/2019 10:07, Petr Štetiar wrote:
->>> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 09:25:55]:
->>>
->>>> My initial idea was to add compatible strings to the cell so that most of
->>>> the encoding information can be derived from it. For example if the encoding
->>>> representing in your example is pretty standard or vendor specific we could
->>>> just do with a simple compatible like below:
->>>
->>> that vendor/compatible list would be quite long[1], there are hundreds of
->>
->> You are right just vendor list could be very long, but I was hoping that the
->> post-processing would fall in some categories which can be used in
->> compatible string.
->>
->> Irrespective of which we need to have some sort of compatible string to
->> enable nvmem core to know that there is some form of post processing to be
->> done on the cells!. Without which there is a danger of continuing to adding
->> new properties to the cell bindings which have no relation to each other.
-> 
-> makes sense, so something like this would be acceptable?
-> 
->   eth1_addr: eth-mac-addr@18a {
->       /* or rather linux,nvmem-post-process ? */
->       compatible = "openwrt,nvmem-post-process";
-
-I don't think this would be a correct compatible string to use here.
-Before we decide on naming, I would like to understand bit more on what 
-are the other possible forms of storing mac address,
-Here is what I found,
-
-Type 1: Octets in ASCII without delimiters. (Swapped/non-Swapped)
-Type 2: Octets in ASCII with delimiters like (":", ",", ".", "-"... so 
-on) (Swapped/non-Swapped)
-Type 3: Is the one which stores mac address in Type1/2 but this has to 
-be incremented to be used on other instances of eth.
-
-Did I miss anything?
-My suggestion for type1 and type2 would be something like this, as long 
-as its okay with DT maintainers
-
-eth1_addr: eth-mac-addr@18a {
-	compatible = "ascii-mac-address";
-	reg = <0x18a 2>, <0x192 2>, <0x196 2>, <0x200 2>, <0x304 2>, <0x306 2>;
-	swap-mac-address;
-	delimiter = ":";
-};
-
-For type 3:
-
-This sounds like very much vendor specific optimization thing which am 
-not 100% sure atm.
-If dt maintainers are okay, may be we can add an increment in the 
-"ascii-mac-address" binding itself.
-
-Do you think "increment-at " would ever change?
-
->       reg = <0x189 0x11>;
->       indices = < 0 2
->                   3 2
->                   6 2
->                   9 2
->                  12 2
->                  15 2>;
->       transform = "ascii";
->       increment = <1>;
->       increment-at = <5>;
->       result-swap;
-
->   };
-> 
->   &eth1 {
->       nvmem-cells = <&eth1_addr>;
->       nvmem-cell-names = "mac-address";
->   };
-> 
->>> was very compeling as it would kill two birds with one stone (fix outstanding
->>> MTD/NVMEM OF clash as well[2]),
->>
->> Changes to nvmem dt bindings have been already rejected, for this more
->> discussion at: https://lore.kernel.org/patchwork/patch/936312/
-> 
-> I know, I've re-read this thread several times, but it's still unclear to me,
-> how this should be approached in order to be accepted by you and by DT
-> maintainers as well.
-> 
-> Anyway, to sum it up, from your point of view, following is fine?
-> 
-currently mtd already has support for nvmem but without dt support.
-
->   flash@0 {
->      partitions {
->          art: partition@ff0000 {
->              nvmem_dev: nvmem-cells {
->                  compatible = "nvmem-cells";
->                  eth1_addr: eth-mac-addr@189 {
->                      compatible = "openwrt,nvmem-post-process";
->                      reg = <0x189 0x6>;
->                      increment = <1>;
->                      increment-at = <5>;
->                      result-swap;
->                  };
->              };
->          };
->      };
->   };
-
-This [1] is what I had suggested at the end, where in its possible to 
-add provider node with its own custom bindings. In above example 
-nvmem_dev would be a proper nvmem provider.
+>
+> Cl=C3=A9ment, no need to resend the first patch, it's now on
+> linus master.
+Ok
 
 Thanks,
-srini
-[1] https://lkml.org/lkml/2018/6/7/972
-> 
->   &eth1 {
->      nvmem = <&nvmem_dev>;
->      nvmem-cells = <&eth1_addr>;
->      nvmem-cell-names = "mac-address";
->   };
-> 
-> -- ynezz
-> 
+Clement
+
+>
+> Could you also add support for the bus clock in panfrost
+> in the same patchset since it's also on master now ?
+>
+> Neil
+>
+> > -Daniel
+> >
+> >> The first patch is from Neil Amstrong and has been already
+> >> merged in linux-amlogic. It is required for this series.
+> >>
+> >> The second patch is from Icenowy Zheng where I changed the
+> >> order has required by Rob Herring.
+> >> See: https://patchwork.kernel.org/patch/10699829/
+> >>
+> >> Thanks,
+> >> Cl=C3=A9ment
+> >>
+> >> Changes in v4:
+> >>  - Add Rob Herring reviewed-by tag
+> >>  - Resent with correct Maintainers
+> >>
+> >> Changes in v3 (Thanks to Maxime Ripard):
+> >>  - Reauthor Icenowy for her patch
+> >>
+> >> Changes in v2 (Thanks to Maxime Ripard):
+> >>  - Drop GPU OPP Table
+> >>  - Add clocks and clock-names in required
+> >>
+> >> Cl=C3=A9ment P=C3=A9ron (6):
+> >>   dt-bindings: gpu: mali-midgard: Add H6 mali gpu compatible
+> >>   arm64: dts: allwinner: Add ARM Mali GPU node for H6
+> >>   arm64: dts: allwinner: Add mali GPU supply for Pine H64
+> >>   arm64: dts: allwinner: Add mali GPU supply for Beelink GS1
+> >>   arm64: dts: allwinner: Add mali GPU supply for OrangePi Boards
+> >>   arm64: dts: allwinner: Add mali GPU supply for OrangePi 3
+> >>
+> >> Icenowy Zheng (1):
+> >>   dt-bindings: gpu: add bus clock for Mali Midgard GPUs
+> >>
+> >> Neil Armstrong (1):
+> >>   dt-bindings: gpu: mali-midgard: Add resets property
+> >>
+> >>  .../bindings/gpu/arm,mali-midgard.txt         | 27 ++++++++++++++++++=
++
+> >>  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  5 ++++
+> >>  .../dts/allwinner/sun50i-h6-orangepi-3.dts    |  5 ++++
+> >>  .../dts/allwinner/sun50i-h6-orangepi.dtsi     |  5 ++++
+> >>  .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  5 ++++
+> >>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 14 ++++++++++
+> >>  6 files changed, 61 insertions(+)
+> >>
+> >> --
+> >> 2.17.1
+> >>
+> >
+>
