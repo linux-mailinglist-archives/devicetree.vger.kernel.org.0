@@ -2,131 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A071CFAE
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 21:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E801CFD9
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 21:28:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726195AbfENTNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 15:13:16 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:37996 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726134AbfENTNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 15:13:15 -0400
-Received: by mail-lj1-f196.google.com with SMTP id 14so277771ljj.5
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 12:13:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:from:to:cc:references:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=D9Mpv/Ka19QUo3Yv5Zhhwcz4xrs+t6R8N4bDjTao8es=;
-        b=Ys3HnMH7gqlpLEQvfGsqQZ4AH4oXF6E5Gqeqt6lGXM7jy1UDtYkN7zSaLXd5m2pybT
-         6wDT/W77uvNxhmxxg4kp3LXnUKSIqFNRKQxMgKTY8Fo2PItl23nFlf60IyEo2v77Oth6
-         GCi6QhUOGTP+vmUmi/za/YMXcqF/0Cx+3vcj5MiM5vCT+TQ1lHqNcNmHLPAT5opZTIWt
-         KUSfYl5MtAXHgabGz4+yepAvC2eaNcvqHqOQqkRKMgNQHajJXkki+uvNN2xzwhOQ4b1M
-         Uqr4mUaDmxeOP5IizAvYf7jqF+TBQwQ64ALXtmswKcPSWJv6MdhbHovSCf9FLMtfCe8D
-         tHUg==
+        id S1726190AbfENT2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 15:28:09 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:46564 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726013AbfENT2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 15:28:08 -0400
+Received: by mail-ot1-f67.google.com with SMTP id j49so8708387otc.13;
+        Tue, 14 May 2019 12:28:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=D9Mpv/Ka19QUo3Yv5Zhhwcz4xrs+t6R8N4bDjTao8es=;
-        b=kUudXUEWAHjMQwuu8d6tLGoePkJpmXLaI5Ajgp/QAkBWhKs7l4lSnb3UmssPIVkobX
-         3Um+Vnowj/iQM1tL1qx4cZ1cVySD5rRAwhArkeJwTQOAauD099TFLWaa8kWm2M4ozDl0
-         FyeMamREuXzngKbfnhS+b3qLMeDr/baCkT60YweereFHpONcsIhRvp+gW/SnU9jUdNUQ
-         iKVaUaizvWNd9JndaDA+jBPvsKKLPzUctLEEYowhvrZP/EbGarp1ClRo12y91ZwCYRmt
-         TGWRDg+zIq309tlA/sb1DVuo/dv3sgaLsVMODz1Iwfu8HDvvW7T9ym1K0gD3HfLJBLw8
-         RNGA==
-X-Gm-Message-State: APjAAAXTOY+0PYBWEgOCUIfJ63u/w19a380rngPl7fubr9C1aA4vvSsW
-        XYrBk9+oEJmkRd0KYLKNwhHlaA==
-X-Google-Smtp-Source: APXvYqwXJTBropO/IuseO4C6BcaScEWNBOPLrfNNCs7d2/NB2FanDtYgGeWtEAPIqS/TZDJdqvd8Gg==
-X-Received: by 2002:a2e:92ce:: with SMTP id k14mr17873191ljh.83.1557861192675;
-        Tue, 14 May 2019 12:13:12 -0700 (PDT)
-Received: from wasted.cogentembedded.com ([31.173.86.127])
-        by smtp.gmail.com with ESMTPSA id q29sm3826886ljc.8.2019.05.14.12.13.10
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 14 May 2019 12:13:11 -0700 (PDT)
-Subject: Re: [PATCH v9 2/3] spi: Add Renesas R-Car Gen3 RPC-IF SPI controller
- driver
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-To:     masonccyang@mxic.com.tw
-Cc:     bbrezillon@kernel.org, broonie@kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-spi@vger.kernel.org,
-        marek.vasut@gmail.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        zhengxunli@mxic.com.tw
-References: <1553847606-18122-1-git-send-email-masonccyang@mxic.com.tw>
- <1553847606-18122-3-git-send-email-masonccyang@mxic.com.tw>
- <1e2bf23d-db39-0d1d-0bcc-6d9cd2935a82@cogentembedded.com>
- <cdee3d53-6ee3-4435-117e-8ba4a58ca72b@cogentembedded.com>
- <OF82CE76E9.E6395EF7-ON482583DD.000E37D7-482583DD.000E5077@mxic.com.tw>
- <3d334751-8fd4-7db1-9deb-e6c94936df13@cogentembedded.com>
- <OF4ABCC306.B053BA23-ON482583E0.000F480C-482583E0.000FAD4A@mxic.com.tw>
- <3971c669-9095-9d18-d029-37f9663a54b2@cogentembedded.com>
- <OF58AAFF49.C4593DEB-ON482583E1.001D551E-482583E1.001F089D@mxic.com.tw>
- <9014077e-2648-adad-72c1-baf834f5a511@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <e0720e41-23da-2aa5-636b-777568974b17@cogentembedded.com>
-Date:   Tue, 14 May 2019 22:13:10 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6guL+gsRRdFgD/vbMcouXTpctp515ym8MFo367/IsYI=;
+        b=XCkZaxwULDPYRZb067kbo6f1iOGhzy8TDqEJszrAL8+UQYZm5LIvIOjAMkJvw7ugiw
+         DCFM42XxTaa6T8Wbj9ppFxR//WXl/Jt0AkXY9v9mIN+2rkYe1AkUKzn3sBNBVOuT7UiF
+         B2YNFV4niXF6mOzIoNCvZzb60KsS0ESJ9aYX0gYFdN/ubmK7kZ77/GmVD+QK2cY78iJ/
+         KryAzhdflfNQ0Iuzu0Tw3CWbpAahkPTzF1JrFIau0yyfrw9gL/wc+CuFtMVPMZB81dZ7
+         R+J2H9NCF/ic4p2Yr9t48Yf2lKtQareOY/p4CzL7mVuBQp5kxIMUCb5ECxf2K0iKFdiS
+         CvFA==
+X-Gm-Message-State: APjAAAVXnp48g5wlMEY3Eh/u82Pt/IkRjjAxW7oGz0Qt8eUptb5/VhfQ
+        J2MNaXMfdmbnn8BE6n3Z1w==
+X-Google-Smtp-Source: APXvYqzyZC245V0LNnDn7RBEDPgVXsCYD9n7cuZSuXUT9DCdxNCo/SfksSuwpVn2D9oIv/Gggi50ng==
+X-Received: by 2002:a9d:4d02:: with SMTP id n2mr169374otf.332.1557862087618;
+        Tue, 14 May 2019 12:28:07 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a2sm3731953otf.50.2019.05.14.12.28.06
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 12:28:06 -0700 (PDT)
+Date:   Tue, 14 May 2019 14:28:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stu Hsieh <stu.hsieh@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        CK Hu <ck.hu@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v3 01/13] dt-bindings: media: Add binding for MT2712
+ MIPI-CSI2
+Message-ID: <20190514192806.GA13654@bogus>
+References: <1557814430-9675-1-git-send-email-stu.hsieh@mediatek.com>
+ <1557814430-9675-2-git-send-email-stu.hsieh@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <9014077e-2648-adad-72c1-baf834f5a511@cogentembedded.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557814430-9675-2-git-send-email-stu.hsieh@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/14/2019 10:06 PM, Sergei Shtylyov wrote:
-
-[...]
->>>>>>>> Have you tested reading? v8 patch still works while v9 patches
->>>>>>>> hang on doing:
->>>>>>>>
->>>>>>>> $ cat /dev/mtd<n>...
->>>>>>>
->>>>>>>    Sorry, 'od -x', not 'cat'.
->>>>>>
->>>>>> root@draak:/# cat /proc/mtd
->>>>>> dev:    size   erasesize  name
->>>>>> mtd0: 00040000 00001000 "Bank 1 - Boot parameter"
->>>>>> mtd1: 00140000 00001000 "Bank 1 - Loader-BL2"
->>>>>> mtd2: 00040000 00001000 "Bank 1 - Certification"
->>>>>> mtd3: 00080000 00001000 "Bank 1 - ARM Trusted FW"
->>>>>> mtd4: 00400000 00001000 "Bank 1 - Reserved-1"
->>>>>> mtd5: 00300000 00001000 "Bank 1 - U-Boot"
->>>>>> mtd6: 00200000 00001000 "Bank 1 - Reserved-2"
->>>>>> mtd7: 00480000 00001000 "Bank 1 - Splash"
->>>>>> mtd8: 00040000 00001000 "Bank 1 - Device Tree"
->>>>>> root@draak:/# od -x /dev/mtd1
->>>>>> 0000000 0000 d280 0001 d280 0002 d280 0003 d280
->>>>>> 0000020 0004 d280 0005 d280 0006 d280 0007 d280
->>>>>> 0000040 0008 d280 0009 d280 000a d280 000b d280
->>>>>> 0000060 000c d280 000d d280 000e d280 000f d280
->>>>>> 0000100 0010 d280 0011 d280 0012 d280 0013 d280
->>>>>> 0000120 0014 d280 0015 d280 0016 d280 0017 d280
->>>>>> 0000140 0018 d280 0019 d280 001a d280 001b d280
->>>>>> 0000160 001c d280 001d d280 001e d280 1000 d53e
->>>>>> 0000200 f800 9266 1000 d51e 3fdf d503 3ba0 1005
->>>>>
->>>>>    Still hangs for me. After I patches spi-mem.c and the driver to
->>>>> call RPM for the MFD, it started working again. Perhaps, that clock>> >> is still enabled on your target. What does the following print (for
+On Tue, May 14, 2019 at 02:13:38PM +0800, Stu Hsieh wrote:
+> Add MIPI-CSI2 dt-binding for Mediatek MT2712 SoC
 > 
->    Even with these issues worked around, I still see strange behavior on
-> writes, e.g. after I mount JFFS2 partition, remove 1 file, unmount, re-mount,
-> and mount again, the removed file is back! :-/
-
-   Too many re-mounts, one was enough. :-)
-
-> [...]
+> Signed-off-by: Stu Hsieh <stu.hsieh@mediatek.com>
+> ---
+>  .../bindings/media/mediatek-mipicsi-camsv.txt | 53 ++++++++++++++++++
+>  .../media/mediatek-mipicsi-common.txt         | 19 +++++++
+>  .../bindings/media/mediatek-mipicsi.txt       | 54 +++++++++++++++++++
+>  3 files changed, 126 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-mipicsi-camsv.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-mipicsi-common.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-mipicsi.txt
 > 
->> thanks & best regards,
->> Mason
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-mipicsi-camsv.txt b/Documentation/devicetree/bindings/media/mediatek-mipicsi-camsv.txt
+> new file mode 100644
+> index 000000000000..5f34974f12ac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-mipicsi-camsv.txt
+> @@ -0,0 +1,53 @@
+> +* Mediatek MIPI-CSI2 receiver camsv
+> +
+> +Mediatek MIPI-CSI2 receiver camsv transfer data to DRAM in Mediatek SoCs
+> +
+> +Required properties:
 
-MBR, Sergei
+compatible?
+
+> +- reg : physical base address of the mipicsi receiver registers and length of
+> +  memory mapped region.
+
+How many regions? Looks like 2.
+
+> +- clocks: device clocks, see
+> +  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> +- interrupts : interrupt number to the interrupt controller.
+> +
+> +Example:
+> +	seninf1_mux_camsv0: seninf_mux_camsv@15002100 {
+
+Node names should be generic.
+
+mipi-csi@...
+
+Or maybe not as that's the last block...
+
+> +		reg = <0 0x15002120 0 0x40>,
+> +		      <0 0x15004000 0 0x1000>;
+> +		clocks = <&imgsys CLK_IMG_CAM_SV_EN>;
+> +		interrupts = <GIC_SPI 222 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	seninf2_mux_camsv1: seninf_mux_camsv@15002500 {
+> +		reg = <0 0x15002520 0 0x40>,
+> +		      <0 0x15005000 0 0x1000>;
+> +		clocks = <&imgsys CLK_IMG_CAM_SV_EN>;
+> +		interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	seninf3_mux_camsv2: seninf_mux_camsv@15002900 {
+> +		reg = <0 0x15002920 0 0x40>,
+> +		      <0 0x15006000 0 0x1000>;
+> +		clocks = <&imgsys CLK_IMG_CAM_SV1_EN>;
+> +		interrupts = <GIC_SPI 268 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	seninf4_mux_camsv3: seninf_mux_camsv@15002D00 {
+> +		reg = <0 0x15002D20 0 0x40>,
+> +		      <0 0x15007000 0 0x1000>;
+> +		clocks = <&imgsys CLK_IMG_CAM_SV1_EN>;
+> +		interrupts = <GIC_SPI 269 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	seninf5_mux_camsv4: seninf_mux_camsv@15003100 {
+> +		reg = <0 0x15003120 0 0x40>,
+> +		      <0 0x15008000 0 0x1000>;
+> +		clocks = <&imgsys CLK_IMG_CAM_SV2_EN>;
+> +		interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	seninf6_mux_camsv5: seninf_mux_camsv@15003500 {
+> +		reg = <0 0x15003520 0 0x40>,
+> +		      <0 0x15009000 0 0x1000>;
+> +		clocks = <&imgsys CLK_IMG_CAM_SV2_EN>;
+> +		interrupts = <GIC_SPI 271 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-mipicsi-common.txt b/Documentation/devicetree/bindings/media/mediatek-mipicsi-common.txt
+> new file mode 100644
+> index 000000000000..a67c744b75f0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-mipicsi-common.txt
+> @@ -0,0 +1,19 @@
+> +* Mediatek MIPI-CSI2 receiver common
+> +
+> +Mediatek MIPI-CSI2 receiver is the MIPI Signal capture hardware present in Mediatek SoCs
+> +
+> +Required properties:
+> +- compatible: should be "mediatek,mt2712-mipicsi-common"
+> +- reg : physical base address of the mipicsi receiver registers and length of
+> +  memory mapped region.
+> +- clocks: device clocks, see
+> +  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> +
+> +
+> +Example:
+> +	mipicsi: mipicsi@15002000 {
+> +		compatible = "mediatek,mt2712-mipicsi-common", "syscon";
+> +		reg = <0 0x15002000 0 0x10>;
+> +		clocks = <&imgsys CLK_IMG_SENINF_CAM_EN>,
+> +			 <&imgsys CLK_IMG_SENINF_SCAM_EN>;
+> +	};
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-mipicsi.txt b/Documentation/devicetree/bindings/media/mediatek-mipicsi.txt
+> new file mode 100644
+> index 000000000000..24741ed62b25
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-mipicsi.txt
+> @@ -0,0 +1,54 @@
+> +* Mediatek MIPI-CSI2 receiver
+> +
+> +Mediatek MIPI-CSI2 receiver is the MIPI Signal capture hardware present in Mediatek SoCs
+
+What's the difference with this and the prior block? Same text...
+
+> +
+> +Required properties:
+> +- compatible: should be "mediatek,mt2712-mipicsi"
+> +- reg : physical base address of the mipicsi receiver registers and length of
+> +  memory mapped region.
+> +- power-domains: a phandle to the power domain, see
+> +  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> +- mediatek,larb: must contain the local arbiters in the current Socs, see
+> +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> +  for details.
+> +- iommus: should point to the respective IOMMU block with master port as
+> +  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+> +  for details.
+> +- mediatek,seninf_mux_camsv: seninf_mux_camsv the data go through of the mipicsi port
+
+s/_/-/
+
+How many entries? Needs a reference to the binding doc. 
+
+> +- mediatek,mipicsiid: the id of the mipicsi port
+
+If this is for the 'mediatek,mipicsi' block, then just make the id a 
+cell value in the 'mediatek,mipicsi' prop.
+
+> +- mediatek,mipicsi: the common component of the two mipicsi port
+> +
+> +Example:
+
+I'd prefer one complete example showing all 3 components in this file 
+rather than piecemeal.
+
+> +	mipicsi0: mipicsi@10217000 {
+> +		compatible = "mediatek,mt2712-mipicsi";
+> +		mediatek,mipicsi = <&mipicsi>;
+> +		iommus = <&iommu0 M4U_PORT_CAM_DMA0>,
+> +			 <&iommu0 M4U_PORT_CAM_DMA1>;
+> +		mediatek,larb = <&larb2>;
+> +		power-domains = <&scpsys MT2712_POWER_DOMAIN_ISP>;
+> +
+> +		mediatek,seninf_mux_camsv = <&seninf1_mux_camsv0
+> +					     &seninf2_mux_camsv1
+> +					     &seninf3_mux_camsv2
+> +					     &seninf4_mux_camsv3>;
+> +		reg = <0 0x10217000 0 0x60>,
+> +		      <0 0x15002100 0 0x4>,
+> +		      <0 0x15002300 0 0x100>;
+> +		mediatek,mipicsiid = <0>;
+> +		status="disabled";
+
+Don't should status in examples.
+
+> +	};
+> +
+> +	mipicsi1: mipicsi@10218000 {
+
+This example doesn't add anything.
+
+> +		compatible = "mediatek,mt2712-mipicsi";
+> +		mediatek,mipicsi = <&mipicsi>;
+> +		iommus = <&iommu0 M4U_PORT_CAM_DMA2>;
+> +		mediatek,larb = <&larb2>;
+> +		power-domains = <&scpsys MT2712_POWER_DOMAIN_ISP>;
+> +		mediatek,seninf_mux_camsv = <&seninf5_mux_camsv4
+> +					     &seninf6_mux_camsv5>;
+> +		reg = <0 0x10218000 0 0x60>,
+> +		      <0 0x15002500 0 0x4>,
+> +		      <0 0x15002700 0 0x100>;
+> +		mediatek,mipicsiid = <1>;
+> +		status="disabled";
+> +	};
+> \ No newline at end of file
+
+Fix this...
+
+> -- 
+> 2.18.0
+> 
