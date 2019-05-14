@@ -2,164 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3ED1CEB4
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01E7C1CEC5
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726295AbfENSMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 14:12:24 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:35891 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfENSMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:12:24 -0400
-Received: by mail-oi1-f195.google.com with SMTP id l203so12878795oia.3;
-        Tue, 14 May 2019 11:12:23 -0700 (PDT)
+        id S1726393AbfENSMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 14:12:40 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:46629 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727548AbfENSMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:12:40 -0400
+Received: by mail-pg1-f194.google.com with SMTP id t187so9005859pgb.13
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 11:12:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=N4UQ8E37RD8PM/SrG8N/O0bEDGjz00r1+gSc2WyT1f4=;
+        b=Do+8Q+pHF8OB+tlzSEbCAlPOY5hObzGGmcvPm0YH3pOm8OWb+2EG6k/+3FX9ODnKET
+         HeeejJJzGaiMQRAOmVbGKQQo9GMUp77yZaFJ+oq5A5++UZ2bqGz1eozejMrClIviWLaH
+         6NqHaVQChwYnFjxvjCGyJrQCTbtCzP1YDVjWmeDvwiekfu/CIsr1rAo7eeV2cOghCM3s
+         jg1XfDoXavpa+8h5sP6zhUgTkyTdA3gv3smrtEjkWIEZtUEMHzNqwHjzR4ACtYGyLA5t
+         PjdZhQFtOg524SURCKg00duz4q2SfEaie9Z/aI0bjh6oNPjygJN8c7oYJhw88kmkUhL7
+         hq9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7MKXOx72GnJK4OThTbg/Yq9n8A27D1pwO48w3mZxGik=;
-        b=TfDtCCNmcVJ7WXWPI4ZxFdlwO0Mhu9x3wjKHn1IdQCdY9mHw24ZvvuEItFjyHyZpu2
-         VVaz36e+vJPBfZPmbsEm41Coi/JjA4va/p9o0kvrggHc2zBWGDWLX/HBSSPbeqVTEGDU
-         mmMoH/38v1RUoxJGrxyn7NPQKxi+XI6brkd5mAVEiudZ6sx/eplCH0Uf5wFpUPHxv1bx
-         0hk6ZGy5qnlOI19/ytIrXV3KXZfKZQxz62xmm+92AAPdqeizcpWBMw39O6+iGuHjYqbf
-         jo5CP/qANtYYfvhexUdugkb9gbz68cThPWwAvxcQuEDgJ9O0HwqtCxFtu9cRngMYQIEY
-         ERgw==
-X-Gm-Message-State: APjAAAUOd5gcSGnSDvtXoXis3wg37CD0iZXveg3378RV4K81JXWuIj8M
-        eFNwkcTNwxB2d8YJL7Tiww==
-X-Google-Smtp-Source: APXvYqy19Xjq9sGP3TMfrsYa+PbNh1BafjhPi5bE6IL4JiP7WIz0dF4SnI69FmgshwGuUtHZQI4Byg==
-X-Received: by 2002:aca:5d86:: with SMTP id r128mr3690918oib.135.1557857542852;
-        Tue, 14 May 2019 11:12:22 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q25sm6355192otl.60.2019.05.14.11.12.18
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 May 2019 11:12:22 -0700 (PDT)
-Date:   Tue, 14 May 2019 13:12:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5 2/6] dt-bindings: usb: add binding for Type-B GPIO
- connector driver
-Message-ID: <20190514181204.GA13949@bogus>
-References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
- <1557823643-8616-3-git-send-email-chunfeng.yun@mediatek.com>
+        bh=N4UQ8E37RD8PM/SrG8N/O0bEDGjz00r1+gSc2WyT1f4=;
+        b=dvbYEmsmSxtM33whRGFK25imlMmzr3cmGvZv714C8EQq+rhSeRZYCOKM8azZnkxQQD
+         0mC1Q4qTpl/lGQgQnwjCWk8GP1NpndA8XvSlQBtpEJrF/vZoJpsUO3VcDVjeMSrA3hKL
+         AKj3rgtUitPM6MPc1JbJHJYkfAGtWtMiCmSE9GBJ2kKeQ+AEVXrlN6Vs6M84Pay6vy6U
+         RRCUJIm19JBAmLK1gmYJeO47Tp69eAflvVZAJfOIK+/WwLEee+PTk4FdY+P4wlQlnXcP
+         tn1H+1DShYfQuK1FCVgzysB8/UuWU6esSFa9x1xiqnZDdTrluLp5wVbpieOhxQp2t2SC
+         OfQg==
+X-Gm-Message-State: APjAAAUu44F11whvPxH5eS7iCEBXRNSwgUuRUAL8ZblTxVA18yBVndXw
+        ZDFnheBX8nD7u6h8MW8gRpuFJA==
+X-Google-Smtp-Source: APXvYqzF1W3MvAqglRw1f3U3GzCogO4oDzfR+rvBgcAvxH3aiWBoZY2un6t4j9IVvIzAxmzzun0V4w==
+X-Received: by 2002:a62:d244:: with SMTP id c65mr3681839pfg.173.1557857559066;
+        Tue, 14 May 2019 11:12:39 -0700 (PDT)
+Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
+        by smtp.gmail.com with ESMTPSA id w189sm22611956pfw.147.2019.05.14.11.12.37
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 14 May 2019 11:12:38 -0700 (PDT)
+Date:   Tue, 14 May 2019 11:12:33 -0700
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     Peter Zijlstra <peterz@infradead.org>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
+        kbuild test robot <lkp@intel.com>
+Subject: Re: [PATCH v3 08/18] objtool: add kunit_try_catch_throw to the
+ noreturn list
+Message-ID: <20190514181233.GB109557@google.com>
+References: <20190514054251.186196-1-brendanhiggins@google.com>
+ <20190514054251.186196-9-brendanhiggins@google.com>
+ <20190514065643.GC2589@hirez.programming.kicks-ass.net>
+ <20190514081223.GA230665@google.com>
+ <20190514084655.GK2589@hirez.programming.kicks-ass.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1557823643-8616-3-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <20190514084655.GK2589@hirez.programming.kicks-ass.net>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 04:47:19PM +0800, Chunfeng Yun wrote:
-> It's used to support dual role switch via GPIO when use Type-B
-> receptacle, typically the USB ID pin is connected to an input
-> GPIO pin
+On Tue, May 14, 2019 at 10:46:55AM +0200, Peter Zijlstra wrote:
+> On Tue, May 14, 2019 at 01:12:23AM -0700, Brendan Higgins wrote:
+> > On Tue, May 14, 2019 at 08:56:43AM +0200, Peter Zijlstra wrote:
+> > > On Mon, May 13, 2019 at 10:42:42PM -0700, Brendan Higgins wrote:
+> > > > This fixes the following warning seen on GCC 7.3:
+> > > >   kunit/test-test.o: warning: objtool: kunit_test_unsuccessful_try() falls through to next function kunit_test_catch()
+> > > > 
+> > > 
+> > > What is that file and function; no kernel tree near me seems to have
+> > > that.
+> > 
+> > Oh, sorry about that. The function is added in the following patch,
+> > "[PATCH v3 09/18] kunit: test: add support for test abort"[1].
+> > 
+> > My apologies if this patch is supposed to come after it in sequence, but
+> > I assumed it should come before otherwise objtool would complain about
+> > the symbol when it is introduced.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v5 changes:
->  1. treat type-B connector as child device of USB controller's, but not
->     as a separate virtual device, suggested by Rob
->  2. put connector's port node under connector node, suggested by Rob
-> 
-> v4 no changes
-> 
-> v3 changes:
->  1. treat type-B connector as a virtual device, but not child device of
->     USB controller's
-> 
-> v2 changes:
->   1. new patch to make binding clear suggested by Hans
-> ---
->  .../bindings/usb/typeb-conn-gpio.txt          | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt b/Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
-> new file mode 100644
-> index 000000000000..20dd3499a348
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
-> @@ -0,0 +1,42 @@
-> +USB Type-B GPIO Connector
-> +
-> +This is used to switch dual role mode from the USB ID pin connected to
-> +an input GPIO pin.
-> +
-> +Required properties:
-> +- compatible : should include "linux,typeb-conn-gpio" and "usb-b-connector".
+> Or send me all patches such that I have context, or have a sane
+> Changelog that gives me context. Just don't give me one patch with a
+> crappy changelog.
 
-I don't think we need "linux,typeb-conn-gpio". A driver can decide to 
-handle GPIO lines if they present or we assume the parent device handles 
-ID and/or Vbus if they are not present.
+I will provide more context in the next revision.
 
-> +- id-gpios, vbus-gpios : either one of them must be present, and both
-> +	can be present as well.
-
-Please clarify that vbus-gpios is an input to sense Vbus presence as an 
-output it should be modelled as a regulator only.
-
-These should be added to usb-connector.txt.
-
-The result of all this is you don't need this file. Just additions to 
-usb-connector.txt.
-
-> +- vbus-supply : can be present if needed when supports dual role mode or
-> +	host mode.
-> +	see connector/usb-connector.txt
-> +
-> +Sub-nodes:
-> +- port : should be present.
-> +	see graph.txt
-> +
-> +Example:
-> +
-> +&mtu3 {
-> +	status = "okay";
-
-Don't show status in examples.
-
-> +
-> +	connector {
-> +		compatible = "linux,typeb-conn-gpio", "usb-b-connector";
-> +		label = "micro-USB";
-> +		type = "micro";
-> +		id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
-> +		vbus-supply = <&usb_p0_vbus>;
-> +
-> +		port {
-> +			bconn_ep: endpoint@0 {
-> +				remote-endpoint = <&usb_role_sw>;
-> +			};
-> +		};
-> +	};
-> +
-> +	port {
-> +		usb_role_sw: endpoint@0 {
-> +			remote-endpoint = <&bconn_ep>;
-> +		};
-> +	};
-
-When the host controller is the parent of the connector, you don't need 
-the graph unless you're describing the alternate modes in Type-C.
-
-> +};
-> -- 
-> 2.21.0
-> 
+Sorry about that!
