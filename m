@@ -2,122 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8AA1D0FF
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 23:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29DE41D125
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 23:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726216AbfENVFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 17:05:46 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:46620 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726089AbfENVFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 17:05:45 -0400
-Received: by mail-pf1-f195.google.com with SMTP id y11so121488pfm.13
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 14:05:45 -0700 (PDT)
+        id S1726565AbfENVQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 17:16:09 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35658 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726211AbfENVQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 17:16:09 -0400
+Received: by mail-pl1-f195.google.com with SMTP id g5so218814plt.2
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 14:16:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references:from
          :subject:cc:to:message-id:user-agent:date;
-        bh=AWxN5ptvu2yKLcW7Bm5LBMGr1ZVlYaAwhpzhB0nfW30=;
-        b=HNMe7lJXqBT7y/2cp+foZU0p50cuTfYKYZaABdqFDmkYX0VtYXw/Kvo3ZvmvCEzShG
-         WSo8VBK5+qTNJbQ9jH9/9p27q8As73WWcxqiY7ehdNv6hnmu4NF7FABbOlZFSkoE1wV6
-         ToM2vsichYz943+Om1qhsn7V2bTiJylmDMwOs=
+        bh=4/0EYyURtIIeG3BNu5Eb8zY3q3sILIawrVYeoU2X7wE=;
+        b=HYtfkmzDiWv/IoeQZ8htdEocmcAJwoVrmzPN3cllVYS3DBvkgnDeI7v5BR6vMZweSX
+         W4ZLmiOU3JxWHx72V1K3ych98Py+AXaNu6NC2OpH5ciRpOiFP1iglTiZjcXly1deVL8g
+         yraTHwNouWxUFKNzRbbqmYRpUAfx1MMm7AutA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:from:subject:cc:to:message-id:user-agent
          :date;
-        bh=AWxN5ptvu2yKLcW7Bm5LBMGr1ZVlYaAwhpzhB0nfW30=;
-        b=tesX/I0IX6k66sVDZMjBq6pKpqzmEBAQgnFPFxi3p4ZHnQXpwxzvWLua9U4gKX0xdN
-         pheLCzw4yTgwzptOylBX5mAqMNNXswY4n+Z3l0qkt8s6rsCywbX0BBPoiYJx2TuSLc7g
-         6VL2me1rR3exkJZGH9rxu6LKQUzku3GRTNctjiHEH5/7Dejd1YuQOaxW/9QWdFWBtTu1
-         PbSU0URBVvd3MV+xHRX9yt1tONn0ozJTkUu8qMfDZQB98imtLXozzLYHq36GmV68jb01
-         EVpjZBP1LszFlsh78i7Kpk/x56mMJ2HSi/w25WTJylVRbovbnZnf4F2fxY7HbeMXFv1u
-         +iBQ==
-X-Gm-Message-State: APjAAAXPQeVGh0w5DrlsHEaW4stLapGRcrTGgWVQzjoOzpJAgBjv7hYu
-        f877Sb1uBDAGnqxrwuoN0Niijg==
-X-Google-Smtp-Source: APXvYqz18bKfEM+qcHPBKQrWe+JFncgiIpoNu7rrAuyxF/9xscQmII8ueAu5RYyZ1oE1cXXVHko4AQ==
-X-Received: by 2002:aa7:8186:: with SMTP id g6mr43384614pfi.126.1557867944834;
-        Tue, 14 May 2019 14:05:44 -0700 (PDT)
+        bh=4/0EYyURtIIeG3BNu5Eb8zY3q3sILIawrVYeoU2X7wE=;
+        b=Bs3+u9+6T6/PEKlj60CsNf6fQaXq+l5M5teaV9r6TzJ/tnIKfFJJkMjIpjMblVP2w0
+         K+jwi9Z4g67dvx2bpVqkIt3whSf30+8Ne9TGHvLr9FBPxQj0mTXa+0V1KQ6RQkka5JXr
+         +jPkZmHNSnK2c/TYbIFgeKJteKk0SDajH3fUlpVda+xz7hySbT3bvkwbXfhZPf3ANhX6
+         hx/AbhPeInkaoi6sTgiexMc7n/GvmXuM6yfCqzLcipvhkGclrapM+XN4KhzfVZX5jzBC
+         uuaBQ/jsmEYa1vADV3qWCGmLqcGWqPIlZR/WCt0uTOTtq/SDXdPc9MqIV5vG6HHBIDXu
+         Yh/A==
+X-Gm-Message-State: APjAAAUyIyVG0EN+GJkzgaLm1sOGkp/0I+7jIAURbMAv4QO9b6BCgKXe
+        KaAOsXTAO/uIHlM8DK/kONiZBA==
+X-Google-Smtp-Source: APXvYqxvWZiVSIIq1zv4nXn2LXwxu37jK4T5pigsoozMDp9eWQ6PlpkvyNJVYs8JHXKdslF1wplP2Q==
+X-Received: by 2002:a17:902:2ae6:: with SMTP id j93mr16503676plb.130.1557868568753;
+        Tue, 14 May 2019 14:16:08 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id n35sm28281pgl.44.2019.05.14.14.05.43
+        by smtp.gmail.com with ESMTPSA id 187sm37857pfv.174.2019.05.14.14.16.07
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 May 2019 14:05:44 -0700 (PDT)
+        Tue, 14 May 2019 14:16:08 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
-References: <20190513003819.356-1-hsinyi@chromium.org> <20190513003819.356-2-hsinyi@chromium.org> <20190513085853.GB9271@rapoport-lnx> <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
+In-Reply-To: <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com>
+References: <20190114184255.258318-1-mka@chromium.org> <CAHLCerP+F9AP97+qVCMqwu-OMJXRhwZrXd33Wk-vj5eyyw-KyA@mail.gmail.com> <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com>
 From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v2 2/2] amr64: map FDT as RW for early_init_dt_scan()
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
+Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
+Cc:     Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kees Cook <keescook@chromium.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Mike Rapoport <rppt@linux.ibm.com>
-Message-ID: <155786794318.14659.2925897827978978040@swboyd.mtv.corp.google.com>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+To:     Amit Kucheria <amit.kucheria@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Message-ID: <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.8
-Date:   Tue, 14 May 2019 14:05:43 -0700
+Date:   Tue, 14 May 2019 14:16:07 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Hsin-Yi Wang (2019-05-13 04:14:32)
-> On Mon, May 13, 2019 at 4:59 PM Mike Rapoport <rppt@linux.ibm.com> wrote:
+Quoting Amit Kucheria (2019-05-13 04:54:12)
+> On Mon, May 13, 2019 at 4:31 PM Amit Kucheria <amit.kucheria@linaro.org> =
+wrote:
+> >
+> > On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromium.org> w=
+rote:
+> > >
+> > > The 8 CPU cores of the SDM845 are organized in two clusters of 4 big
+> > > ("gold") and 4 little ("silver") cores. Add a cpu-map node to the DT
+> > > that describes this topology.
+> >
+> > This is partly true. There are two groups of gold and silver cores,
+> > but AFAICT they are in a single cluster, not two separate ones. SDM845
+> > is one of the early examples of ARM's Dynamiq architecture.
+> >
+> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> >
+> > I noticed that this patch sneaked through for this merge window but
+> > perhaps we can whip up a quick fix for -rc2?
+> >
 >=20
-> >
-> > This makes the fdt mapped without the call to meblock_reserve(fdt) which
-> > makes the fdt memory available for memblock allocations.
-> >
-> > Chances that is will be actually allocated are small, but you know, thi=
-ngs
-> > happen.
-> >
-> > IMHO, instead of calling directly __fixmap_remap_fdt() it would be bett=
-er
-> > to add pgprot parameter to fixmap_remap_fdt(). Then here and in kaslr.c=
- it
-> > can be called with PAGE_KERNEL and below with PAGE_KERNEL_RO.
-> >
-> > There is no problem to call memblock_reserve() for the same area twice,
-> > it's essentially a NOP.
-> >
-> Thanks for the suggestion. Will update fixmap_remap_fdt() in next patch.
->=20
-> However, I tested on some arm64 platform, if we also call
-> memblock_reserve() in kaslr.c, would cause warning[1] when
-> memblock_reserve() is called again in setup_machine_fdt(). The warning
-> comes from https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L=
-601
-> ```
-> if (type->regions[0].size =3D=3D 0) {
->   WARN_ON(type->cnt !=3D 1 || type->total_size);
->   ...
-> ```
->=20
-> Call memblock_reserve() multiple times after setup_machine_fdt()
-> doesn't have such warning though.
->=20
-> I didn't trace the real reason causing this. But in this case, maybe
-> don't call memblock_reserve() in kaslr?
+> And please find attached a patch to fix this up. Andy, since this
+> hasn't landed yet (can we still squash this into the original patch?),
+> I couldn't add a Fixes tag.
 >=20
 
-Why not just have fixmap_remap_fdt() that maps it as RW and reserves
-memblock once, and then call __fixmap_remap_fdt() with RO after
-early_init_dt_scan() or unflatten_device_tree() is called? Why the
-desire to call memblock_reserve() twice or even three times?
+I had the same concern. Thanks for catching this. I suspect this must
+cause some problem for IPA given that it can't discern between the big
+and little "power clusters"?
+
+Either way,
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
