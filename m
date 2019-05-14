@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73E5B1D05A
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 426401D068
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726336AbfENUOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 16:14:49 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:38616 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfENUOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:14:48 -0400
-Received: by mail-ot1-f68.google.com with SMTP id s19so92132otq.5;
-        Tue, 14 May 2019 13:14:48 -0700 (PDT)
+        id S1726107AbfENURP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 16:17:15 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36983 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726044AbfENURP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:17:15 -0400
+Received: by mail-oi1-f196.google.com with SMTP id f4so106100oib.4;
+        Tue, 14 May 2019 13:17:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qDSk0SZEl2UvCN7TKGAHqgBAUsr16i+lq3jnqkJH6gc=;
-        b=M3XLD9eiZqgwiys1v+6sPpcKBn5sYU8eI7tZv/Dm4DHaRvn8F5zaxeSd6HZpJWy+U2
-         L8atTqL+weYlBtVc4ADp4n26dhkMvGTpWS7Xr5X6wb+Xkkf2Vuju7kqJC4KlqvkU7GcJ
-         cIcFi0ZctgXCB5frxonCtRbog1DMcb+tTsIjVlMmiGzhNgCCox32KZJNhKksI69xq7vf
-         gd4giUn/JCZC1w+z0EhUHFN08nwI/5UeucT5qZSx4Xspg5MladoBp590whwz12UK+ZT1
-         ikZUq7HxAo12G1MpyI31IgzQV8CRZz10eQU/ypeJ4+xw8cYEUasyZJzvQMv15MWYd4mU
-         McVA==
-X-Gm-Message-State: APjAAAWMe67vJFZ+BcecV/eJ2i98LjEMqDJAhQiVulMSarjMvbUztYQF
-        2luM4wWsWLjbDlPYqTo/tw==
-X-Google-Smtp-Source: APXvYqy0DmBg5AVm6UGSATsuf2eDa6AOsOSDM7QYNZcyDwYTVR4/PoV6LpYTKAOotzxVzhxgYi5seA==
-X-Received: by 2002:a9d:77c9:: with SMTP id w9mr13586344otl.253.1557864887960;
-        Tue, 14 May 2019 13:14:47 -0700 (PDT)
+        bh=vCIo0PtXohxKjB0d7BJFUlaniBQb1hXlIxL8AXnKx2s=;
+        b=uQxCUp6qCAnbP0LaPEe7DBmr24q0hQ25b6tG6y9/sGc256kAyZor18SqBilWYfGSAD
+         PrP12M/a/uegOWeUpvpBaDxWvU2a3FmLWLy8X0CrL8OHBOrQWtK+g1tY1EsYbimfZhQt
+         tYNh5Bu34LvALWhhUARY6y8VZuD3pFqFcGzDxoGvOhyrNsMxBPbBefbz5bJiZY7rTVQl
+         U05ziQztiHP48muHkjohxRcZ3LUonmogCar08BLMguAAmHMcQhLy3iU5TNISz43JEXrg
+         AtyA9gPWyiw6JXfjbEGqy8wtKQ88ZzDM143fxMfU82DOxj9bWLRlACOE5qIE5Be1gVHJ
+         4eSw==
+X-Gm-Message-State: APjAAAVkMo0f+ZHTpJJvQzzB+QYwSxj4ZnY+sqGolVYTaPkS+jNsujJF
+        jIV+1kHl+BJ1WqSaLpafaw==
+X-Google-Smtp-Source: APXvYqxlzufSIdi94CYyBDo86DA3MUke7A1hx6ju2bPmafSngpVcnhTslU8xbt70Z6gVCOZxeByWsg==
+X-Received: by 2002:aca:6086:: with SMTP id u128mr44867oib.79.1557865033944;
+        Tue, 14 May 2019 13:17:13 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r205sm4984401oig.0.2019.05.14.13.14.47
+        by smtp.gmail.com with ESMTPSA id c24sm1979892otm.75.2019.05.14.13.17.13
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 May 2019 13:14:47 -0700 (PDT)
-Date:   Tue, 14 May 2019 15:14:46 -0500
+        Tue, 14 May 2019 13:17:13 -0700 (PDT)
+Date:   Tue, 14 May 2019 15:17:12 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Subject: Re: [PATCH v2] dt-bindings: pinctrl: Convert stm32 pinctrl bindings
- to json-schema
-Message-ID: <20190514201446.GA29557@bogus>
-References: <1557503126-3025-1-git-send-email-alexandre.torgue@st.com>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH v2 02/10] dt-bindings: display: bridge: thc63lvd1024:
+ Document dual-link operation
+Message-ID: <20190514201712.GA1742@bogus>
+References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1557503126-3025-1-git-send-email-alexandre.torgue@st.com>
+In-Reply-To: <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 May 2019 17:45:26 +0200, Alexandre Torgue wrote:
-> Convert the STM32 pinctrl binding to DT schema format using json-schema.
+On Sun, 12 May 2019 00:06:54 +0300, Laurent Pinchart wrote:
+> The THC63LVD1024 LVDS decoder can operate in two modes, single-link or
+> dual-link. In dual-link mode both input ports are used to carry even-
+> and odd-numbered pixels separately. Document this in the DT bindings,
+> along with the related rules governing port and usage.
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 > ---
-> 
-> Hi,
-> 
-> First pacth to convert DT bindings file (here pinctrl STM32) to json-schema
-> in order to take advantage of devicetree validation tool for STM32.
-> 
-> Changes since v1:
->  - Fix errors reported by Rob.
-> 
-> 
-> regards
-> Alex
+>  .../bindings/display/bridge/thine,thc63lvd1024.txt          | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
