@@ -2,122 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E511C1E9
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 07:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 205DD1C1F6
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 07:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726762AbfENFfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 01:35:32 -0400
-Received: from mail-it1-f196.google.com ([209.85.166.196]:55164 "EHLO
-        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725935AbfENFfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 01:35:32 -0400
-Received: by mail-it1-f196.google.com with SMTP id a190so2931935ite.4;
-        Mon, 13 May 2019 22:35:32 -0700 (PDT)
+        id S1726774AbfENFni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 01:43:38 -0400
+Received: from mail-pl1-f202.google.com ([209.85.214.202]:53619 "EHLO
+        mail-pl1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726566AbfENFni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 01:43:38 -0400
+Received: by mail-pl1-f202.google.com with SMTP id h12so9896565pll.20
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2019 22:43:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ROnZBNUjavEPATCp1Opo+Fi0jSzmWi2jvW4E1gcmmR8=;
-        b=NSzdQDwpBBa362njSlwhNhs7vhCUxNwQXNRTOlCPRAPNS9KafxL6jwlRy2Is17dycj
-         hX4TGdEniOVVubcDUedCX9kkhYYY69ejq00y7sGbZQnABZ9N7sYOxyXN1VOo+oISiH7R
-         FU24vSJxTGTcXC9C42x3CKoUhfNM9LNCx2qAUiYuP4WSrEAlLT/+uLVv8VEKepsti7z/
-         Ls90/YuQNDHnAkP/I2CT4E5vR4g5DNPQ6ZOrNlXOFRwZg0bc74UCajaYqZ7sb1Wxjgsa
-         3JkLtl+o8teimJehJScWHcU6MCqKae0gSGz0wO70ydEFOEf7DfR1pOXzrc5OhGkqTYfw
-         tJeg==
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=CA1N44QTqLhlVaroRojZdGi6CcVwoP2KNr1A1UImFq0=;
+        b=h6AZqHkX1OcXuKiWGxhO61tdk+HR2HvTKQEpCCBYcqn6plqrOohI9Okal84aTEN2gJ
+         pcUal3uJknEB+RrEmMmXoyWtFQ8z/VEve2BGMzS/N7pXPIQp0h1NVAva9rDSUnGHjLEJ
+         vx1VU8Uvu79S0JOwGTWgOfWHxd/ASKWGvpXSYxqiyDlRKx/kfa47HynTXrI6mghbfUkz
+         ftvsf604JHZwsEPgj7aK8R+INHqcBEEkFy98bk6arBDrrsX/GZ25q4wQIXVIU1DJAHdt
+         6dh5pUod4MbGUjQOr69py/QRwji6PeGn961MqFFs+Tum9tKKLYMRMp7U9XKdfLOGJDyx
+         zipg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ROnZBNUjavEPATCp1Opo+Fi0jSzmWi2jvW4E1gcmmR8=;
-        b=aIjcd2nj0mTsTqjW//fwo1IwW0QSvj/qtv9RSpHBKhS60Bqgp2CtHgym7nAfzOBSIX
-         dzOtmt1x7VmZ1z0fgRI1N8J+A7fOt2ROSxEUap+TCdW9fSPN5tByN2Mmq1gUMVyTvqeV
-         0F2SwV5P8s3w5LyFF+oFiYos8TOY2hbP+hzAfj9ka6x4YCDxvvzqVB1IO5aYsI4QyTMl
-         KOABjaWnyKN3yCze/GJCvyrw46WL8Jufu7Y+Zm5GrnwWoeUtyrnxOZXWANSfsHDv19n8
-         TBSz9/Xpx0M0u1gFQMgzJhnIDgxY11Tny90S824pfMnq6m7US8AsppL83V8E+kEc7vCM
-         f5rw==
-X-Gm-Message-State: APjAAAWCe1/M63t7AkYTJiLd1Xa+OWfu0uGAhnQiyxvNACRdduo790QZ
-        Rn3YDoZWCkgxwmEb//VHyJRxxz9DcfaBxXVylsw=
-X-Google-Smtp-Source: APXvYqxnsVMo5UM99fUX1eUTegiPxPCSWcQI/OUdYd83fAERf0SMkvw1yLaPmTNFqHa//Hxs45go0UzItmWlHF32tbU=
-X-Received: by 2002:a02:741c:: with SMTP id o28mr21283892jac.144.1557812131236;
- Mon, 13 May 2019 22:35:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <1556081835-12921-1-git-send-email-ley.foon.tan@intel.com> <1556081835-12921-2-git-send-email-ley.foon.tan@intel.com>
-In-Reply-To: <1556081835-12921-2-git-send-email-ley.foon.tan@intel.com>
-From:   Ley Foon Tan <lftan.linux@gmail.com>
-Date:   Tue, 14 May 2019 13:35:20 +0800
-Message-ID: <CAFiDJ59Pi6fxyE=0ifNJRoGc4QBX3XKJ=L7FXjJ_a6Vyh8otMg@mail.gmail.com>
-Subject: Re: [PATCH] PCI: altera-msi: Allow building as module
-To:     Ley Foon Tan <ley.foon.tan@intel.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-kernel@vger.kernel.org,
-        linux-pci <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=CA1N44QTqLhlVaroRojZdGi6CcVwoP2KNr1A1UImFq0=;
+        b=b2spVTDj4KXvSec3c51er0l/X51ThuQsSMig3OAxLWrh03ag1mvzv8KUwq6w9jZvhE
+         IYzvEmup189Gh/q4d41pM036j0tptMJMIlp9759UVXc+xzSyZpHHtwBmLdxZ500AT2ih
+         S1PZvo23E7vqaiCbocRVJigbWnJ+BCcW74o7XZvSmOIUcHxzE0FHCYFzqNLoAEhAvkf/
+         MQRvVuRDi+Ogr1oXkZcWIuzdFQishlj21tXJnXpGu17ey8mDtRwfzrAIe5S5Uz/AWYXb
+         ySm9YfszCpDq0qw90alagL9ZbE/8P9OHMZ2tRWzQuf1bsjLT++jj+tiMHoFEt27+0/9k
+         EViA==
+X-Gm-Message-State: APjAAAVvY5gQ5LnutUf4HpgPjIy42fcNe/8klZY4XK0VPL8Kxhi+3yW0
+        OrrcNji9yhRuVZcvyDaetyJttGOIJ/aSXCM5nRVmOA==
+X-Google-Smtp-Source: APXvYqyBPTv6v4eKPVDjcz6uhAI6teASmDK3xBqeYKpM9SuSjEAG+BViYVdVY5Rrq8TOB5itpc/QrUR1WPgEkoPcFI6QTA==
+X-Received: by 2002:a65:550b:: with SMTP id f11mr35449216pgr.311.1557812616583;
+ Mon, 13 May 2019 22:43:36 -0700 (PDT)
+Date:   Mon, 13 May 2019 22:42:33 -0700
+Message-Id: <20190514054251.186196-1-brendanhiggins@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
+Subject: [PATCH v3 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        keescook@google.com, kieran.bingham@ideasonboard.com,
+        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com,
+        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
+        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
+        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
+        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
+        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
+        Brendan Higgins <brendanhiggins@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 24, 2019 at 12:57 PM Ley Foon Tan <ley.foon.tan@intel.com> wrote:
->
-> Altera MSI IP is a soft IP and is only available after
-> FPGA image is programmed.
->
-> Make driver modulable to support use case FPGA image is programmed
-> after kernel is booted. User proram FPGA image in kernel then only load
-> MSI driver module.
->
-> Signed-off-by: Ley Foon Tan <ley.foon.tan@intel.com>
-> ---
->  drivers/pci/controller/Kconfig           |  2 +-
->  drivers/pci/controller/pcie-altera-msi.c | 10 ++++++++++
->  2 files changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-> index 4b550f9cdd56..920546cb84e2 100644
-> --- a/drivers/pci/controller/Kconfig
-> +++ b/drivers/pci/controller/Kconfig
-> @@ -181,7 +181,7 @@ config PCIE_ALTERA
->           FPGA.
->
->  config PCIE_ALTERA_MSI
-> -       bool "Altera PCIe MSI feature"
-> +       tristate "Altera PCIe MSI feature"
->         depends on PCIE_ALTERA
->         depends on PCI_MSI_IRQ_DOMAIN
->         help
-> diff --git a/drivers/pci/controller/pcie-altera-msi.c b/drivers/pci/controller/pcie-altera-msi.c
-> index 025ef7d9a046..16d938920ca5 100644
-> --- a/drivers/pci/controller/pcie-altera-msi.c
-> +++ b/drivers/pci/controller/pcie-altera-msi.c
-> @@ -10,6 +10,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/irqchip/chained_irq.h>
->  #include <linux/init.h>
-> +#include <linux/module.h>
->  #include <linux/msi.h>
->  #include <linux/of_address.h>
->  #include <linux/of_irq.h>
-> @@ -288,4 +289,13 @@ static int __init altera_msi_init(void)
->  {
->         return platform_driver_register(&altera_msi_driver);
->  }
-> +
-> +static void __exit altera_msi_exit(void)
-> +{
-> +       platform_driver_unregister(&altera_msi_driver);
-> +}
-> +
->  subsys_initcall(altera_msi_init);
-> +MODULE_DEVICE_TABLE(of, altera_msi_of_match);
-> +module_exit(altera_msi_exit);
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.19.0
->
-Hi
+## TLDR
 
-Any comment for this patch?
+I mostly wanted to incorporate feedback I got over the last week and a
+half.
 
-Regards
-Ley Foon
+Biggest things to look out for:
+
+- KUnit core now outputs results in TAP14.
+- Heavily reworked tools/testing/kunit/kunit.py
+  - Changed how parsing works.
+  - Added testing.
+  - Greg, Logan, you might want to re-review this.
+- Added documentation on how to use KUnit on non-UML kernels. You can
+  see the docs rendered here[1].
+
+There is still some discussion going on on the [PATCH v2 00/17] thread,
+but I wanted to get some of these updates out before they got too stale
+(and too difficult for me to keep track of). I hope no one minds.
+
+## Background
+
+This patch set proposes KUnit, a lightweight unit testing and mocking
+framework for the Linux kernel.
+
+Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+it does not require installing the kernel on a test machine or in a VM
+(however, KUnit still allows you to run tests on test machines or in VMs
+if you want) and does not require tests to be written in userspace
+running on a host kernel. Additionally, KUnit is fast: From invocation
+to completion KUnit can run several dozen tests in under a second.
+Currently, the entire KUnit test suite for KUnit runs in under a second
+from the initial invocation (build time excluded).
+
+KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+Googletest/Googlemock for C++. KUnit provides facilities for defining
+unit test cases, grouping related test cases into test suites, providing
+common infrastructure for running tests, mocking, spying, and much more.
+
+## What's so special about unit testing?
+
+A unit test is supposed to test a single unit of code in isolation,
+hence the name. There should be no dependencies outside the control of
+the test; this means no external dependencies, which makes tests orders
+of magnitudes faster. Likewise, since there are no external dependencies,
+there are no hoops to jump through to run the tests. Additionally, this
+makes unit tests deterministic: a failing unit test always indicates a
+problem. Finally, because unit tests necessarily have finer granularity,
+they are able to test all code paths easily solving the classic problem
+of difficulty in exercising error handling code.
+
+## Is KUnit trying to replace other testing frameworks for the kernel?
+
+No. Most existing tests for the Linux kernel are end-to-end tests, which
+have their place. A well tested system has lots of unit tests, a
+reasonable number of integration tests, and some end-to-end tests. KUnit
+is just trying to address the unit test space which is currently not
+being addressed.
+
+## More information on KUnit
+
+There is a bunch of documentation near the end of this patch set that
+describes how to use KUnit and best practices for writing unit tests.
+For convenience I am hosting the compiled docs here[2].
+
+Additionally for convenience, I have applied these patches to a
+branch[3].
+The repo may be cloned with:
+git clone https://kunit.googlesource.com/linux
+This patchset is on the kunit/rfc/v5.1/v3 branch.
+
+## Changes Since Last Version
+
+- Converted KUnit core to print test results in TAP14 format as
+  suggested by Greg and Frank.
+- Heavily reworked tools/testing/kunit/kunit.py
+  - Changed how parsing works.
+  - Added testing.
+- Added documentation on how to use KUnit on non-UML kernels. You can
+  see the docs rendered here[1].
+- Added a new set of EXPECTs and ASSERTs for pointer comparison.
+- Removed more function indirection as suggested by Logan.
+- Added a new patch that adds `kunit_try_catch_throw` to objtool's
+  noreturn list.
+- Fixed a number of minorish issues pointed out by Shuah, Masahiro, and
+  kbuild bot.
+
+[1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+[2] https://google.github.io/kunit-docs/third_party/kernel/docs/
+[3] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.1/v3
+
+-- 
+2.21.0.1020.gf2820cf01a-goog
+
