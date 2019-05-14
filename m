@@ -2,109 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB681E433
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 23:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A42031E461
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 00:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726174AbfENV5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 17:57:04 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:33988 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726134AbfENV5D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 17:57:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D4213374;
-        Tue, 14 May 2019 14:57:00 -0700 (PDT)
-Received: from [192.168.1.124] (usa-sjc-mx-foss1.foss.arm.com [217.140.101.70])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1C9803F703;
-        Tue, 14 May 2019 14:56:57 -0700 (PDT)
-Subject: Re: [PATCH v4 0/8] Allwinner H6 Mali GPU support
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20190512174608.10083-1-peron.clem@gmail.com>
- <20190513151405.GW17751@phenom.ffwll.local>
- <de50a9da-669f-ab25-2ef2-5ffb90f8ee03@baylibre.com>
- <CAJiuCccuEw0BK6MwROR+XUDvu8AJTmZ5tu=pYwZbGAuvO31pgg@mail.gmail.com>
- <CAJiuCccWa5UTML68JDQq6q8SyNZzVWwQWTOL=+84Bh4EMHGC3A@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <3c2c9094-69d4-bace-d5ee-c02b7f56ac82@arm.com>
-Date:   Tue, 14 May 2019 22:56:50 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <CAJiuCccWa5UTML68JDQq6q8SyNZzVWwQWTOL=+84Bh4EMHGC3A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+        id S1726338AbfENWRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 18:17:46 -0400
+Received: from mail-yb1-f202.google.com ([209.85.219.202]:44927 "EHLO
+        mail-yb1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726416AbfENWRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 18:17:40 -0400
+Received: by mail-yb1-f202.google.com with SMTP id 83so516959ybo.11
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 15:17:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=Wtv/g4YDlWnregZkMuB6vGhT6mZK0s7Z+NfaxgtLekE=;
+        b=Q5HMOrwbJNM89YqHu+vD+8sRwSzKie4sE8pkjwQqXKbmvl8uUCrm4SpuFW4UU8JhnY
+         XeejyhCTCS9puS98uTFx8EFmIo2ivhwCloJ/U0p1hceMXJW+JMLxh7E0E2tQeOq2UuzA
+         uZxI0Ym2j+bs+4rerFEZdMmaFjvrOGk6StJ+TQn+bqsoaYxZ80ISDElTpKf5y0SFPk8h
+         VcJ7yADl/NR3VI+Ila1czReqJ0pnzAfR3bA5HRbf56qnKlhiN8U8YpErBnLxR7gClHqR
+         Qbxvzr+zfsgs5Z9UI/MeioiOkmyTPiLUIyzAE8HdShxJSC99+danDDMnvJhADTYyrN5z
+         MBUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=Wtv/g4YDlWnregZkMuB6vGhT6mZK0s7Z+NfaxgtLekE=;
+        b=R4hkM/xSBzrKJUICSob85+f9rqw/A8iQcTagfGnoyNB98fQ2PxvBGBeEulpV55ObrG
+         p04usY0/czk1VE6JEGh/kQ2yDM9kcDD0Sc7jsWHDTj5I6jVPxiiuE/LPjKEbt8goT6F9
+         /twe191pWC+BWSYebvtWwXnCpV12+40YH3gL6XxAOcxcwdwo5VLORZjNRVG/0jfToS6I
+         czF3iGx+os5yyfTtxEzi/3JfcA8wbrUfwP6D0tZFNjwpp69iEBjLqh6dTiHzBe6rvMxq
+         fdXdUFpGOmMWfjTQzhCCWarxc4Mmy7nEjJagRs1paHFtSf9uYM5fxRZnsy2z5Q5oCWzT
+         XjZQ==
+X-Gm-Message-State: APjAAAUK7uOdl+l2+Acx6xT9JYEZERU9ieL4Imu0Ovj5mNnuxvx+cULA
+        /rdyTy3KThDv1AhvEvzygNuniYoaAFHzzqrH8clrOQ==
+X-Google-Smtp-Source: APXvYqzLw2GNR1CD/N7FU0EOf+vQnR8bF44lpYMHhbVCeioD/fNqnQCXEG9eHOkDZWuQz7kMqOBLBdCDFgs1RbGB1Bb/ig==
+X-Received: by 2002:a25:690d:: with SMTP id e13mr18821319ybc.178.1557872259260;
+ Tue, 14 May 2019 15:17:39 -0700 (PDT)
+Date:   Tue, 14 May 2019 15:16:53 -0700
+Message-Id: <20190514221711.248228-1-brendanhiggins@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
+Subject: [PATCH v4 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-05-14 10:22 pm, Clément Péron wrote:
-> Hi,
-> 
-> On Tue, 14 May 2019 at 17:17, Clément Péron <peron.clem@gmail.com> wrote:
->>
->> Hi,
->>
->> On Tue, 14 May 2019 at 12:29, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>
->>> Hi,
->>>
->>> On 13/05/2019 17:14, Daniel Vetter wrote:
->>>> On Sun, May 12, 2019 at 07:46:00PM +0200, peron.clem@gmail.com wrote:
->>>>> From: Clément Péron <peron.clem@gmail.com>
->>>>>
->>>>> Hi,
->>>>>
->>>>> The Allwinner H6 has a Mali-T720 MP2. The drivers are
->>>>> out-of-tree so this series only introduce the dt-bindings.
->>>>
->>>> We do have an in-tree midgard driver now (since 5.2). Does this stuff work
->>>> together with your dt changes here?
->>>
->>> No, but it should be easy to add.
->> I will give it a try and let you know.
-> Added the bus_clock and a ramp delay to the gpu_vdd but the driver
-> fail at probe.
-> 
-> [    3.052919] panfrost 1800000.gpu: clock rate = 432000000
-> [    3.058278] panfrost 1800000.gpu: bus_clock rate = 100000000
-> [    3.179772] panfrost 1800000.gpu: mali-t720 id 0x720 major 0x1
-> minor 0x1 status 0x0
-> [    3.187432] panfrost 1800000.gpu: features: 00000000,10309e40,
-> issues: 00000000,21054400
-> [    3.195531] panfrost 1800000.gpu: Features: L2:0x07110206
-> Shader:0x00000000 Tiler:0x00000809 Mem:0x1 MMU:0x00002821 AS:0xf
-> JS:0x7
-> [    3.207178] panfrost 1800000.gpu: shader_present=0x3 l2_present=0x1
-> [    3.238257] panfrost 1800000.gpu: Fatal error during GPU init
-> [    3.244165] panfrost: probe of 1800000.gpu failed with error -12
-> 
-> The ENOMEM is coming from "panfrost_mmu_init"
-> alloc_io_pgtable_ops(ARM_MALI_LPAE, &pfdev->mmu->pgtbl_cfg,
->                                           pfdev);
-> 
-> Which is due to a check in the pgtable alloc "cfg->ias != 48"
-> arm-lpae io-pgtable: arm_mali_lpae_alloc_pgtable cfg->ias 33 cfg->oas 40
-> 
-> DRI stack is totally new for me, could you give me a little clue about
-> this issue ?
+## TLDR
 
-Heh, this is probably the one bit which doesn't really count as "DRI stack".
+A quick follow up to yesterday's revision. I got some feedback that I
+wanted to incorporate before anyone else read the update. For this
+reason, I will leave a TLDR of the biggest changes since v2.
 
-That's merely a somewhat-conservative sanity check - I'm pretty sure it 
-*should* be fine to change the test to "cfg->ias > 48" (io-pgtable 
-itself ought to cope). You'll just get to be the first to actually test 
-a non-48-bit configuration here :)
+Biggest things to look out for (since v2):
 
-Robin.
+- KUnit core now outputs results in TAP14.
+- Heavily reworked tools/testing/kunit/kunit.py
+  - Changed how parsing works.
+  - Added testing.
+  - Greg, Logan, you might want to re-review this.
+- Added documentation on how to use KUnit on non-UML kernels. You can
+  see the docs rendered here[1].
+
+There is still some discussion going on on the [PATCH v2 00/17] thread,
+but I wanted to get some of these updates out before they got too stale
+(and too difficult for me to keep track of). I hope no one minds.
+
+## Background
+
+This patch set proposes KUnit, a lightweight unit testing and mocking
+framework for the Linux kernel.
+
+Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+it does not require installing the kernel on a test machine or in a VM
+(however, KUnit still allows you to run tests on test machines or in VMs
+if you want) and does not require tests to be written in userspace
+running on a host kernel. Additionally, KUnit is fast: From invocation
+to completion KUnit can run several dozen tests in under a second.
+Currently, the entire KUnit test suite for KUnit runs in under a second
+from the initial invocation (build time excluded).
+
+KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+Googletest/Googlemock for C++. KUnit provides facilities for defining
+unit test cases, grouping related test cases into test suites, providing
+common infrastructure for running tests, mocking, spying, and much more.
+
+## What's so special about unit testing?
+
+A unit test is supposed to test a single unit of code in isolation,
+hence the name. There should be no dependencies outside the control of
+the test; this means no external dependencies, which makes tests orders
+of magnitudes faster. Likewise, since there are no external dependencies,
+there are no hoops to jump through to run the tests. Additionally, this
+makes unit tests deterministic: a failing unit test always indicates a
+problem. Finally, because unit tests necessarily have finer granularity,
+they are able to test all code paths easily solving the classic problem
+of difficulty in exercising error handling code.
+
+## Is KUnit trying to replace other testing frameworks for the kernel?
+
+No. Most existing tests for the Linux kernel are end-to-end tests, which
+have their place. A well tested system has lots of unit tests, a
+reasonable number of integration tests, and some end-to-end tests. KUnit
+is just trying to address the unit test space which is currently not
+being addressed.
+
+## More information on KUnit
+
+There is a bunch of documentation near the end of this patch set that
+describes how to use KUnit and best practices for writing unit tests.
+For convenience I am hosting the compiled docs here[2].
+
+Additionally for convenience, I have applied these patches to a
+branch[3].
+The repo may be cloned with:
+git clone https://kunit.googlesource.com/linux
+This patchset is on the kunit/rfc/v5.1/v4 branch.
+
+## Changes Since Last Version
+
+As I mentioned above, there are a significant number of updates since
+v2:
+- Converted KUnit core to print test results in TAP14 format as
+  suggested by Greg and Frank.
+- Heavily reworked tools/testing/kunit/kunit.py
+  - Changed how parsing works.
+  - Added testing.
+- Added documentation on how to use KUnit on non-UML kernels. You can
+  see the docs rendered here[1].
+- Added a new set of EXPECTs and ASSERTs for pointer comparison.
+- Removed more function indirection as suggested by Logan.
+- Added a new patch that adds `kunit_try_catch_throw` to objtool's
+  noreturn list.
+- Fixed a number of minorish issues pointed out by Shuah, Masahiro, and
+  kbuild bot.
+
+Nevertheless, there are only a couple of minor updates since v3:
+- Added more context to the changelog on the objtool patch, as per
+  Peter's request.
+- Moved all KUnit documentation under the Documentation/dev-tools/
+  directory as per Jonathan's suggestion.
+
+[1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+[2] https://google.github.io/kunit-docs/third_party/kernel/docs/
+[3] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.1/v4
+
+-- 
+2.21.0.1020.gf2820cf01a-goog
+
