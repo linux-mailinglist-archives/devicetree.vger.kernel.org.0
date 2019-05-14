@@ -2,92 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB7671C934
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3211C961
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725916AbfENNKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 09:10:08 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:44519 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726009AbfENNKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 09:10:08 -0400
-Received: by mail-lj1-f194.google.com with SMTP id e13so14224905ljl.11;
-        Tue, 14 May 2019 06:10:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QxULgCJJU6whyZ9y0hS1oF9JuMI5zQD1en38bvt/B04=;
-        b=lN5eWoC/jDjSyyHYjsETGV3wO4lmD1qhUt9I/X6uZg166ukSlKLjDy97fwHc8kdHx7
-         R/Hqx/VUzwjraqdNgeNp8JvxEKpGWnJL4cpmrnyExFklpILKvT8FAzCxutETAECKDLHL
-         NbCWcFBGHRXud7p3a7+wXZHeaqDFlfevh/ENvawZbnS8z9Vn/PuNIYEsKTNrW8MxGumV
-         g1YOmRH/C1ZMIp/IdkKNUMRm/pKKcnlbmFOQopvfHgRraCah1JWGDTv3K15cx1wSryma
-         ckY/KlrLOpWi0Q9D8OdKcVBSIV43FIe4ccRG+nHRTVVHodonNvo2KX6b8kQt/uIFjDZ6
-         si8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QxULgCJJU6whyZ9y0hS1oF9JuMI5zQD1en38bvt/B04=;
-        b=F5FQMCn0efYuqz2iHxWT+wVwTFLxIP/VFgSSnyvAhmmvbuxvF8CoYVn67WUcd2yJUb
-         3ydZwYVuSn4GAVV5faiMXraoC1zB5Yl6t/6nDwELLCOJUO/gXPmtl5vqhFC9QF92QOQp
-         1XqsaR9bTwP/IyBwH8L0S+tX6YvY/pxm3/W3eAgQ5X4tSEaKXKdb9rB+ucRDOjAmfc/p
-         ck32HSfYStWrAQG0XHFWOKcRtxFTcDFzoOxJcLTXGQ5eE2xXdXnOQ/PbeDVeFTJSzBQY
-         gQsdS+RGa2N8Si75upPSc+00DLQsKoDI8C0fVYNVNU3rNFbb6MGkpIt6JF70dbS8S9sO
-         yB8g==
-X-Gm-Message-State: APjAAAVcyyGTpLclmdoHmZTeaUsJO9XbQ7JCJKvwfnbr6H81Tr7fD3Qu
-        lVH9g8/Y0yb8BBJXPPrejPxOlL2lTbPjwQg9fDA=
-X-Google-Smtp-Source: APXvYqznroPJOcau3kywVIDJUSjhKgHyMhu+kPXLeokQZNIPG5akh0m7QdmTeIGkxLnrBgQDylGneEsMLTsOxBwZaVE=
-X-Received: by 2002:a2e:5dcb:: with SMTP id v72mr18139620lje.54.1557839406129;
- Tue, 14 May 2019 06:10:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190513202258.30949-1-angus@akkea.ca> <20190513202258.30949-3-angus@akkea.ca>
-In-Reply-To: <20190513202258.30949-3-angus@akkea.ca>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 14 May 2019 10:10:02 -0300
-Message-ID: <CAOMZO5BXq0nFBXtWb2cXQkqnv672vkWyyC4QoyQE2PyPmXdgUQ@mail.gmail.com>
-Subject: Re: [PATCH v11 2/4] arm64: dts: fsl: librem5: Add a device tree for
- the Librem5 devkit
-To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        id S1725916AbfENN2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 09:28:30 -0400
+Received: from node.akkea.ca ([192.155.83.177]:46908 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725854AbfENN23 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 May 2019 09:28:29 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by node.akkea.ca (Postfix) with ESMTP id C96084E2050;
+        Tue, 14 May 2019 13:28:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1557840508; bh=5HBFueids4z3eEnjEMGCug44sWjx+4Hhi6JBxdM15yU=;
+        h=From:To:Cc:Subject:Date;
+        b=F2pX9QWHVk/DE63/SMiuqqHFjJbEkcGDxQ/FR1NLNzundeR2g0VOMqAoHrIAe4MfC
+         Z9p9nAvtzDQ2a5LTu80qLjUq4QduoH8UZRDAxkzRDBYXWeRmx9wdt45l28uZTgv5Pk
+         7ZanhgjM0WavN/nsjlgZdhXo51d9eXdtumARvztA=
+X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
+Received: from node.akkea.ca ([127.0.0.1])
+        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id NSLmmHFEsuWt; Tue, 14 May 2019 13:28:28 +0000 (UTC)
+Received: from midas.localdomain (S0106788a2041785e.gv.shawcable.net [70.66.86.75])
+        by node.akkea.ca (Postfix) with ESMTPSA id E09424E204B;
+        Tue, 14 May 2019 13:28:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1557840508; bh=5HBFueids4z3eEnjEMGCug44sWjx+4Hhi6JBxdM15yU=;
+        h=From:To:Cc:Subject:Date;
+        b=F2pX9QWHVk/DE63/SMiuqqHFjJbEkcGDxQ/FR1NLNzundeR2g0VOMqAoHrIAe4MfC
+         Z9p9nAvtzDQ2a5LTu80qLjUq4QduoH8UZRDAxkzRDBYXWeRmx9wdt45l28uZTgv5Pk
+         7ZanhgjM0WavN/nsjlgZdhXo51d9eXdtumARvztA=
+From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
+To:     angus.ainslie@puri.sm
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>
+Subject: [PATCH v12 0/4] Add support for the Purism Librem5 devkit
+Date:   Tue, 14 May 2019 06:28:18 -0700
+Message-Id: <20190514132822.27023-1-angus@akkea.ca>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 5:23 PM Angus Ainslie (Purism) <angus@akkea.ca> wrote:
->
-> This is for the development kit board for the Librem 5. The current level
-> of support yields a working console and is able to boot userspace from
-> the network or eMMC.
->
-> Additional subsystems that are active :
->
-> - Both USB ports
-> - SD card socket
-> - WiFi usdhc
-> - WWAN modem
-> - GNSS
-> - GPIO keys
-> - LEDs
-> - gyro
-> - magnetometer
-> - touchscreen
-> - pwm
-> - backlight
-> - haptic motor
->
-> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+The Librem5 devkit is based on the imx8mq from NXP. This is a default
+devicetree to boot the board to a command prompt.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Changes since v11:
+
+Added reviewed-by tags.
+Fixed subject typo.
+
+Changes since v10:
+
+Moved MAINTAINERS entry to "ARM/FREESCALE IMX" section
+
+Changes since v9:
+
+Added a MAINTAINERS entry for arm64 imx devicetree files.
+
+Changes since v8:
+
+Fixed license comment.
+Changed regulators to all lower case.
+Changed clock frequency for NXP errata e7805.
+Dropped blank line.
+
+Changes since v7:
+
+More regulators always on for USB.
+Add vbus regulator.
+Drop vbat regulator.
+Replace legacy "gpio-key,wakeup" with "wakeup-source".
+Add vbus-supply to get rid of warning
+imx8mq-usb-phy 382f0040.usb-phy: 382f0040.usb-phy supply vbus not found,
+using dummy regulator
+
+Changes since v6:
+
+Dropped unused regulators.
+Fix regulator phandles case.
+Dropped extra whitespace.
+
+Changes since v5:
+
+Added reviewed-by tags.
+Moved USB port links to USB controller node.
+
+Changes since v4:
+
+Compiled against linux-next next-20190415.
+Added imx8mq to the arm yaml file.
+Re-arrange regulator nodes to drop undefined supplies.
+Additional ordering for aesthetics.
+Split some long lines.
+Added lots of blank lines.
+Moved pinctl muxes to where they are used.
+Cleaned out reg defintions from regulator nodes.
+
+Changes since v3:
+
+Freshly sorted and pressed nodes.
+Change the backlight to an interpolated scale.
+Dropped i2c2.
+Dropped devkit version number to match debian MR.
+
+Changes since v2:
+
+Fixed incorrect phy-supply for the fsl-fec.
+Dropped unused regulator property.
+Fixup Makefile for linux-next.
+
+Changes since v1:
+
+Dropped config file.
+Updated the board compatible label.
+Changed node names to follow naming conventions.
+Added a more complete regulator hierachy.
+Removed unused nodes.
+Removed unknown devices.
+Fixed comment style.
+Dropped undocumented properties.
+
+Angus Ainslie (Purism) (4):
+  MAINTAINERS: add an entry for for arm64 imx devicetrees
+  arm64: dts: fsl: librem5: Add a device tree for the Librem5 devkit
+  dt-bindings: Add an entry for Purism SPC
+  dt-bindings: arm: fsl: Add the imx8mq boards
+
+ .../devicetree/bindings/arm/fsl.yaml          |   7 +
+ .../devicetree/bindings/vendor-prefixes.txt   |   1 +
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mq-librem5-devkit.dts   | 821 ++++++++++++++++++
+ 5 files changed, 831 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+
+-- 
+2.17.1
+
