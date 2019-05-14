@@ -2,70 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 426401D068
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD5BA1D06D
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726107AbfENURP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 16:17:15 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:36983 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbfENURP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:17:15 -0400
-Received: by mail-oi1-f196.google.com with SMTP id f4so106100oib.4;
-        Tue, 14 May 2019 13:17:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vCIo0PtXohxKjB0d7BJFUlaniBQb1hXlIxL8AXnKx2s=;
-        b=uQxCUp6qCAnbP0LaPEe7DBmr24q0hQ25b6tG6y9/sGc256kAyZor18SqBilWYfGSAD
-         PrP12M/a/uegOWeUpvpBaDxWvU2a3FmLWLy8X0CrL8OHBOrQWtK+g1tY1EsYbimfZhQt
-         tYNh5Bu34LvALWhhUARY6y8VZuD3pFqFcGzDxoGvOhyrNsMxBPbBefbz5bJiZY7rTVQl
-         U05ziQztiHP48muHkjohxRcZ3LUonmogCar08BLMguAAmHMcQhLy3iU5TNISz43JEXrg
-         AtyA9gPWyiw6JXfjbEGqy8wtKQ88ZzDM143fxMfU82DOxj9bWLRlACOE5qIE5Be1gVHJ
-         4eSw==
-X-Gm-Message-State: APjAAAVkMo0f+ZHTpJJvQzzB+QYwSxj4ZnY+sqGolVYTaPkS+jNsujJF
-        jIV+1kHl+BJ1WqSaLpafaw==
-X-Google-Smtp-Source: APXvYqxlzufSIdi94CYyBDo86DA3MUke7A1hx6ju2bPmafSngpVcnhTslU8xbt70Z6gVCOZxeByWsg==
-X-Received: by 2002:aca:6086:: with SMTP id u128mr44867oib.79.1557865033944;
-        Tue, 14 May 2019 13:17:13 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c24sm1979892otm.75.2019.05.14.13.17.13
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 May 2019 13:17:13 -0700 (PDT)
-Date:   Tue, 14 May 2019 15:17:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v2 02/10] dt-bindings: display: bridge: thc63lvd1024:
- Document dual-link operation
-Message-ID: <20190514201712.GA1742@bogus>
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
- <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
+        id S1726338AbfENUTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 16:19:08 -0400
+Received: from casper.infradead.org ([85.118.1.10]:33160 "EHLO
+        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726221AbfENUTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:19:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Is01q5I7Un1/V4HlbxwG1kyytwiirjymaFeQ7+PpAG0=; b=Ld0PLzmmiqhUDFlBxq1fxHRMmk
+        k4i+e4BoQAOBVeDNuvAsCroh4ayNl+jrwn4Or2Xx09XEBeqm6W1Nh/WQzaMnoy2NNHstgoXvSnj5K
+        0heKfx/FlNtVbzhuCzSDy7wlnzuiO63haEMxCQ3QJDqziXUeJYnft8tOO4n246uWL9H7Gw4xsOME8
+        ynOfPcV6g+CM3pzsTalTtO/ROkF9kYCGjqDFYhsI3zyEqlmvRWvD1IIjgU9dwxiPnnfsYJFO4iycC
+        oHhxQrrliOX2ZoC+ZZPobqNqmoSOepIvrs5cKLtsn/e2Deq7hETZJ4+q5ngnXvma54tPV1OoZazuC
+        Un/IkD6w==;
+Received: from [179.179.44.200] (helo=coco.lan)
+        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hQdsx-0000EE-TO; Tue, 14 May 2019 20:18:52 +0000
+Date:   Tue, 14 May 2019 17:18:45 -0300
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v6 13/13] media: tvp5150: make debug output more
+ readable
+Message-ID: <20190514171845.0eafb6f8@coco.lan>
+In-Reply-To: <20190506133905.gvdgrei5n6crbwxc@uno.localdomain>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+        <20190415124413.18456-14-m.felsch@pengutronix.de>
+        <20190506133905.gvdgrei5n6crbwxc@uno.localdomain>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190511210702.18394-3-laurent.pinchart+renesas@ideasonboard.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 May 2019 00:06:54 +0300, Laurent Pinchart wrote:
-> The THC63LVD1024 LVDS decoder can operate in two modes, single-link or
-> dual-link. In dual-link mode both input ports are used to carry even-
-> and odd-numbered pixels separately. Document this in the DT bindings,
-> along with the related rules governing port and usage.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  .../bindings/display/bridge/thine,thc63lvd1024.txt          | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+Em Mon, 6 May 2019 15:39:05 +0200
+Jacopo Mondi <jacopo@jmondi.org> escreveu:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> Hi Marco,
+>   thanks
+> 
+> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+
+Looks ok to me too.
+
+> 
+> On Mon, Apr 15, 2019 at 02:44:13PM +0200, Marco Felsch wrote:
+> > The debug output for tvp5150_selmux() isn't really intuitive. Register
+> > values are printed decimal formatted and the input/output driver states
+> > are printed as enum. Even more the "normal" output enum mapps to zero so
+> > a active output will printing output=0 and a inactive output=1.
+> >
+> > Change this by brinting the register values hex formatted and the states
+> > as more readable string.
+> >
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  drivers/media/i2c/tvp5150.c | 9 ++++++---
+> >  1 file changed, 6 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+> > index c0ee08546643..13ee6d781efb 100644
+> > --- a/drivers/media/i2c/tvp5150.c
+> > +++ b/drivers/media/i2c/tvp5150.c
+> > @@ -302,9 +302,12 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
+> >  		break;
+> >  	}
+> >
+> > -	dev_dbg_lvl(sd->dev, 1, debug, "Selecting video route: route input=%i, output=%i => tvp5150 input=%i, opmode=%i\n",
+> > -			decoder->input, decoder->output,
+> > -			input, opmode);
+> > +	dev_dbg_lvl(sd->dev, 1, debug,
+> > +		    "Selecting video route: route input=%s, output=%s => tvp5150 input=0x%02x, opmode=0x%02x\n",
+> > +		    decoder->input == 0 ? "aip1a" :
+> > +		    decoder->input == 2 ? "aip1b" : "svideo",
+> > +		    decoder->output == 0 ? "normal" : "black-frame-gen",
+> > +		    input, opmode);
+> >
+> >  	regmap_write(decoder->regmap, TVP5150_OP_MODE_CTL, opmode);
+> >  	regmap_write(decoder->regmap, TVP5150_VD_IN_SRC_SEL_1, input);
+> > --
+> > 2.20.1
+> >  
+
+
+
+Thanks,
+Mauro
