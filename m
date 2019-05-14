@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4843F1CE71
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 531921CE8B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726216AbfENSB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 14:01:59 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:39486 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfENSB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:01:58 -0400
-Received: by mail-oi1-f171.google.com with SMTP id v2so9400290oie.6;
-        Tue, 14 May 2019 11:01:58 -0700 (PDT)
+        id S1727584AbfENSFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 14:05:44 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:36875 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726295AbfENSFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:05:41 -0400
+Received: by mail-ot1-f65.google.com with SMTP id r10so15378968otd.4;
+        Tue, 14 May 2019 11:05:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=t9mhk4DbZv4ezakU8Aj7ifnHOKTzwP5mktlWTqgqpME=;
-        b=P8zj6pNOReI3p9Y1u66cd2JONb2ayn5+sL7xWDTRUMD+My55LZGZY4xgzArhbyyve4
-         wdq9MlXNtk6AtJH8jUrAwPJvhwkcfgVAwlbEzoinun1bqUFqYwIoHglViZJbmobp6V/u
-         sn6MwQ0LeszA2Sw8dK7wZ0W9ElfdvEgyQk7DmsqmXqExuYP/hkM/MO4YvXftUvKDQPMz
-         gR4vJeq/lqaonsbtVny+WdFxey2ofjDDPfNwnzJYXLug9tLccj0bWhF3Q8DRQWBsbMIU
-         xrQhlKt0aqQ7glNk3i+sTZd+YCCOj6fkYFGUtKYoJwIEDU+39cHimyn9iNCi8yCNlzUF
-         ADmw==
+        bh=+D/N+r1giXeXDAaGbyLrs8fCnRD/jcuGXeK2jnEOa8o=;
+        b=aMJHVMprRMJ1ROstXctMEViVqeogfaxUVHPAZxxWl6nkAZSwE8NnZmadm8c8ZGWja7
+         xECrK6tb7cTD66LLaTFX2RHjxtVa9Mj9TS8mew4SLaxuezYxim/hjdnSHkx5x71XITQy
+         18bv3P1tzIaadPmZJLANY3dz8bzt8/JZOA1eCdOYPdFVgKoQqDn0Lslpc81WiPWs/SzD
+         6FdMQ/A0D6j6NNE5sA0UdNVMd08grw8arZxoMBch/UwXWp/ge3FXxnisgSFssMjotfIz
+         Dou4UzGDPQ6S14fT/mLjSXNIztmu90TpZwXEoXh+irAV/YHj1wTzrIrAaHeifKWTNEur
+         rlww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=t9mhk4DbZv4ezakU8Aj7ifnHOKTzwP5mktlWTqgqpME=;
-        b=eJLKNk8FbFelSAiWl/WDDiYc6XQ7uoIKQGp94eXRdxPDFoviAxHSbA5lhDnxpnNqqt
-         1318pQZiVYXBALRBzPxIjI3xJKSeDyo2hrW/gq9/hs01E0mo3vRX09n4H54R6PkL2L1F
-         5ozaij8A16eUm1tUmKhHJyt7PCcws6cDOe1GwiEPHVcII/Kf2G1MFATBZMtrGqX/1J28
-         qZ+Sr8kNFV382HaqxB/gCIexMaw7sxyXAYo8dQRXig+INXRpXb0gzbSa5sy2JXIa1rZy
-         Eh1/lht4p8mpUyPd+p0pqoRCE+iaJrWEUZkf/ZG61JxE6HHg+eLxXxiiJ7xS6J6noFWi
-         8V/Q==
-X-Gm-Message-State: APjAAAU8MNw+IgZoKnYr+tuUlb2qMjCaJr1/HRrjwG5ozeUScSNVMYJW
-        wxr/ODHImMvIlinJylRkNfxh89lV7dp902r15Y8=
-X-Google-Smtp-Source: APXvYqwT+H6aWmpM1niIbNpH7TQ0ttX3JE4gN+UGqT0K5hC+dhiYfl1xJg3MXJCBq3QpDVkuiDXGJS4ORmWi6/9Z6H4=
-X-Received: by 2002:aca:5b06:: with SMTP id p6mr3959825oib.129.1557856917885;
- Tue, 14 May 2019 11:01:57 -0700 (PDT)
+        bh=+D/N+r1giXeXDAaGbyLrs8fCnRD/jcuGXeK2jnEOa8o=;
+        b=Qs6IzOwIgfURNGlbthIvJAMPm7+oGNzNkd9q1dFi/hMw3PRROPwN19b87jsf4qH1pr
+         l616uX3lQbfR1ty9jeDqNnI45SVtqycmAG/FFww3oXi/0FAwplX27zWV6kz09UjkR2Pi
+         EWCBSKe+3mVcE3fG/65Bm8mn9scfCfM0qJzXWYEBhgP0FaCWxSFzY1liDbZK3bfg4HRO
+         es346pwLKBkVGpviz7UNP+iJUeu3lDebXC1oZCJgpOInHPAxcoJiaFrh1xkREP3fcLCa
+         gp4EKRcQYETnvxNnZyKITnnc/Dy6tqsJ/PRD42kBejUI6W/NL1/TSKyC+WoIbboq1qML
+         rP6Q==
+X-Gm-Message-State: APjAAAXbukNnI5IB3fzMpclTRliJnXCV4z+KQwje3m2V47l72IsemQIB
+        SjVihn3GjepLwmQLjYoYd5ISuEa1XOhgdPcScfw=
+X-Google-Smtp-Source: APXvYqzWsq8151+UbJ2LbnrNIepcgZ940jijOe83vsRThzaVL6cIRg6qRcoRT17i6RTor2GTk3ILIIITR7bW4w5tGDE=
+X-Received: by 2002:a9d:141:: with SMTP id 59mr21942610otu.158.1557857139636;
+ Tue, 14 May 2019 11:05:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190512205743.24131-1-jbrunet@baylibre.com>
-In-Reply-To: <20190512205743.24131-1-jbrunet@baylibre.com>
+References: <20190513130507.22533-1-jbrunet@baylibre.com>
+In-Reply-To: <20190513130507.22533-1-jbrunet@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 14 May 2019 20:01:47 +0200
-Message-ID: <CAFBinCAoj99eieXogc6OVyttAdZk+5y83B0Ltuv3iLNryOq0rw@mail.gmail.com>
-Subject: Re: [PATCH] clk: meson: fix MPLL 50M binding id typo
+Date:   Tue, 14 May 2019 20:05:28 +0200
+Message-ID: <CAFBinCC+TKf_WO_fwqEu8Gzc7r3od6xkCyN6-9hPz9-0nmEw0g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: nanopi k2: add sd DDR50
 To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 12, 2019 at 10:57 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Mon, May 13, 2019 at 3:05 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> MPLL_5OM (the capital letter o) should indeed be MPLL_50M (the number)
-> Fix this before it gets used.
+> Add UHS ddr50 mode to the nanopi k2
 >
-> Reported-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Fixes: 25db146aa726 ("dt-bindings: clk: meson: add g12a periph clock controller bindings")
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-thank you for taking care of this issue Jerome!
+since I'm curious: is this due to your recent meson-gx-mmc patches?
+this is the first board where we enable the UHS DDR50 mode
+
+
+Martin
