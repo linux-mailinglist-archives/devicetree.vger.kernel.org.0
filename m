@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A9371C92E
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB7671C934
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 15:10:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726174AbfENNIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 09:08:39 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:46599 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725562AbfENNIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 09:08:39 -0400
-Received: by mail-lj1-f193.google.com with SMTP id h21so12486250ljk.13;
-        Tue, 14 May 2019 06:08:37 -0700 (PDT)
+        id S1725916AbfENNKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 09:10:08 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:44519 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726009AbfENNKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 09:10:08 -0400
+Received: by mail-lj1-f194.google.com with SMTP id e13so14224905ljl.11;
+        Tue, 14 May 2019 06:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jGnWaeTdAGYVob1R/TxXevTDDOUSFKjgVCqNbbE/1nI=;
-        b=hz3x2Hx3tvoY4x19hxjgKQPiNUhxFg13owl7/k6Ky6dO4KK2ca5+M2T/ZQAHHSZThe
-         xIwgSLc13QESbL3hNX+o5utV03dRJChs7nOKk6wkDO5elb16VMgToE05vxVoHrSD0yoL
-         wABAYKND66EjSnJljB/B9NcK7jayPwmR0lvS/EA3rYOLZ0RgNQDRysBwK/VkBtP/rZDu
-         fpeYAXJCvJ/wpkfEqBrurLrugaGUcJWi5Gg5sSe+sTbPk7iJLXpCd0hDsQ77PQ5vCPhL
-         Bn/CBBeO0ID0BLatVCRMm/lGrg5qSdZa628QsHlslnMeW58ygsZykh2ii05BeCZeaFJi
-         gQiQ==
+        bh=QxULgCJJU6whyZ9y0hS1oF9JuMI5zQD1en38bvt/B04=;
+        b=lN5eWoC/jDjSyyHYjsETGV3wO4lmD1qhUt9I/X6uZg166ukSlKLjDy97fwHc8kdHx7
+         R/Hqx/VUzwjraqdNgeNp8JvxEKpGWnJL4cpmrnyExFklpILKvT8FAzCxutETAECKDLHL
+         NbCWcFBGHRXud7p3a7+wXZHeaqDFlfevh/ENvawZbnS8z9Vn/PuNIYEsKTNrW8MxGumV
+         g1YOmRH/C1ZMIp/IdkKNUMRm/pKKcnlbmFOQopvfHgRraCah1JWGDTv3K15cx1wSryma
+         ckY/KlrLOpWi0Q9D8OdKcVBSIV43FIe4ccRG+nHRTVVHodonNvo2KX6b8kQt/uIFjDZ6
+         si8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jGnWaeTdAGYVob1R/TxXevTDDOUSFKjgVCqNbbE/1nI=;
-        b=BWR0nYQH05fktCcFwntfwVLMF9UUsEMrP1uiAp9k7etusazA+UH64M7ao3MfsRomgx
-         Yf4Zt8NIwptxv3IzinHOo1CCsB3VlRc/cz8Qt7MnN8WH+K4h0lmmvarlOS1hK836qCpd
-         23NMtXjpgeEDaSw8Xp/EanWnMWwgpNtwBmyIxGbtQkzyu0nmTZSpLcXc5Fw/h0OBWLT3
-         7y8v1weo8c2+08f9FXl++FMAzq0n4mLtxdl4EzFrB4nQUriPzz+I3GpD+Fac1IeMWhZE
-         BiYcqoYVAs11GWNyvwLZIQCEQP8vlOIN/EHMUB16AVDHJtle6EUaVIcFKBqQi1D9p2tQ
-         mj4Q==
-X-Gm-Message-State: APjAAAVmIAtCRNuCoru7KAA3S/T27L9Vk8HJheASRfUdMqCp5tqkeAFn
-        Z3isVjx8RfZf5F5U9j34fLvv6/meSXqGvQwBgFY=
-X-Google-Smtp-Source: APXvYqwGecBzbpfdMXAIjdCxJTDl5Ws8nyl0nWjhHtCf7epuYAKPy0fZvIPVELRzmMR4xkE3iE/POW6O04b/VHIW07o=
-X-Received: by 2002:a2e:2b81:: with SMTP id r1mr15614143ljr.138.1557839316690;
- Tue, 14 May 2019 06:08:36 -0700 (PDT)
+        bh=QxULgCJJU6whyZ9y0hS1oF9JuMI5zQD1en38bvt/B04=;
+        b=F5FQMCn0efYuqz2iHxWT+wVwTFLxIP/VFgSSnyvAhmmvbuxvF8CoYVn67WUcd2yJUb
+         3ydZwYVuSn4GAVV5faiMXraoC1zB5Yl6t/6nDwELLCOJUO/gXPmtl5vqhFC9QF92QOQp
+         1XqsaR9bTwP/IyBwH8L0S+tX6YvY/pxm3/W3eAgQ5X4tSEaKXKdb9rB+ucRDOjAmfc/p
+         ck32HSfYStWrAQG0XHFWOKcRtxFTcDFzoOxJcLTXGQ5eE2xXdXnOQ/PbeDVeFTJSzBQY
+         gQsdS+RGa2N8Si75upPSc+00DLQsKoDI8C0fVYNVNU3rNFbb6MGkpIt6JF70dbS8S9sO
+         yB8g==
+X-Gm-Message-State: APjAAAVcyyGTpLclmdoHmZTeaUsJO9XbQ7JCJKvwfnbr6H81Tr7fD3Qu
+        lVH9g8/Y0yb8BBJXPPrejPxOlL2lTbPjwQg9fDA=
+X-Google-Smtp-Source: APXvYqznroPJOcau3kywVIDJUSjhKgHyMhu+kPXLeokQZNIPG5akh0m7QdmTeIGkxLnrBgQDylGneEsMLTsOxBwZaVE=
+X-Received: by 2002:a2e:5dcb:: with SMTP id v72mr18139620lje.54.1557839406129;
+ Tue, 14 May 2019 06:10:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190513202258.30949-1-angus@akkea.ca> <20190513202258.30949-2-angus@akkea.ca>
-In-Reply-To: <20190513202258.30949-2-angus@akkea.ca>
+References: <20190513202258.30949-1-angus@akkea.ca> <20190513202258.30949-3-angus@akkea.ca>
+In-Reply-To: <20190513202258.30949-3-angus@akkea.ca>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 14 May 2019 10:08:33 -0300
-Message-ID: <CAOMZO5Dn4sVJx3UPo-WXMen9N36CiBvq3i+GosJ_4FGZ7jnTqA@mail.gmail.com>
-Subject: Re: [PATCH v11 1/4] MAINTAINERS: add an entry for for arm63 imx devicetrees
+Date:   Tue, 14 May 2019 10:10:02 -0300
+Message-ID: <CAOMZO5BXq0nFBXtWb2cXQkqnv672vkWyyC4QoyQE2PyPmXdgUQ@mail.gmail.com>
+Subject: Re: [PATCH v11 2/4] arm64: dts: fsl: librem5: Add a device tree for
+ the Librem5 devkit
 To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
 Cc:     angus.ainslie@puri.sm, Shawn Guo <shawnguo@kernel.org>,
         Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
@@ -67,10 +68,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, May 13, 2019 at 5:23 PM Angus Ainslie (Purism) <angus@akkea.ca> wrote:
 >
-> Add an explicit reference to imx* devicetrees
+> This is for the development kit board for the Librem 5. The current level
+> of support yields a working console and is able to boot userspace from
+> the network or eMMC.
+>
+> Additional subsystems that are active :
+>
+> - Both USB ports
+> - SD card socket
+> - WiFi usdhc
+> - WWAN modem
+> - GNSS
+> - GPIO keys
+> - LEDs
+> - gyro
+> - magnetometer
+> - touchscreen
+> - pwm
+> - backlight
+> - haptic motor
 >
 > Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
-
-There is a typo in the Subject: "arm63" --> "arm64".
 
 Reviewed-by: Fabio Estevam <festevam@gmail.com>
