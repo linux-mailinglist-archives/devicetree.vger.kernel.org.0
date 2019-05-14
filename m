@@ -2,121 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6201D0EA
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:54:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC421D0F2
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbfENUyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 16:54:53 -0400
-Received: from mailoutvs12.siol.net ([185.57.226.203]:33943 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726362AbfENUyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:54:53 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 72127521E15;
-        Tue, 14 May 2019 22:54:51 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id pn1ki_A1-MXA; Tue, 14 May 2019 22:54:51 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 11E89521E6F;
-        Tue, 14 May 2019 22:54:51 +0200 (CEST)
-Received: from localhost.localdomain (cpe-86-58-52-202.static.triera.net [86.58.52.202])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id A83ED521E15;
-        Tue, 14 May 2019 22:54:50 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     maxime.ripard@bootlin.com, wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH v2] arm64: dts: allwinner: a64: orangepi-win: Add wifi and bluetooth nodes
-Date:   Tue, 14 May 2019 22:54:45 +0200
-Message-Id: <20190514205445.11591-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.21.0
+        id S1726134AbfENU6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 16:58:37 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:41407 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726036AbfENU6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:58:37 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hQeVI-00059i-2t; Tue, 14 May 2019 22:58:28 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hQeVE-000198-HY; Tue, 14 May 2019 22:58:24 +0200
+Date:   Tue, 14 May 2019 22:58:24 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+        kernel@pengutronix.de, linux-media@vger.kernel.org
+Subject: Re: [PATCH v6 00/13] TVP5150 new features
+Message-ID: <20190514205824.ov6prllx2fp77fur@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
+ <20190514141824.5bd41389@coco.lan>
+ <20190514172028.693ad354@coco.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190514172028.693ad354@coco.lan>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 22:54:32 up 116 days,  1:36, 92 users,  load average: 0.00, 0.04,
+ 0.01
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AP6212 is based on the Broadcom BCM43430 or BCM43438. The WiFi side
-identifies as BCM43430, while the Bluetooth side identifies as BCM43438.
+Hi Mauro,
 
-WiFi is connected to mmc1 and the Bluetooth side is connected to UART1
-in a 4 wire configuration. Same as the WiFi side, due to being the same
-chip and package, DLDO2 provides overall power via VBAT, and DLDO4
-provides I/O power via VDDIO. The RTC clock output provides the LPO low
-power clock at 32.768 kHz.
+On 19-05-14 17:20, Mauro Carvalho Chehab wrote:
+> Em Tue, 14 May 2019 14:18:24 -0300
+> Mauro Carvalho Chehab <mchehab@kernel.org> escreveu:
+> 
+> > Em Mon, 6 May 2019 07:47:13 +0200
+> > Marco Felsch <m.felsch@pengutronix.de> escreveu:
+> > 
+> > > Hi Mauro,
+> > > 
+> > > I know you are busy but can you have a look on it?  
+> > 
+> > You should really trust on the sub-maintainers for such kind of
+> > reviews :-)
 
-This patch enables WiFi and Bluetooth on OrangePi Win boards and adds
-missing LPO clock on the WiFi side. PCM connection also exists for
-Bluetooth audio, but it's not used here.
+I trust all of them and many thanks to Hans and Jacopo for the reviews
+:) I will integrate them this week. The point is that you are the
+maintainer and in that case the one who picks the patches.
 
-Bluetooth UART speed is set to 1.5 MBaud in order to be able transmit
-audio. While module supports even higher speeds, currently sunxi clock
-driver doesn't support higher speed.
+> > 
+> > I'll take a look today.
+> 
+> Done. Please notice that I didn't run any test here.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
-Changes from v1:
-- fix commit log by stating that current clock driver doesn't support
-  higher speeds instead of UART driver
+Thanks for that will integrate it too and prepare a v7.
 
- .../dts/allwinner/sun50i-a64-orangepi-win.dts | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Regards,
+  Marco
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts b/=
-arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-index 510f661229dc..5ef3c62c765e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-@@ -109,6 +109,8 @@
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible =3D "mmc-pwrseq-simple";
- 		reset-gpios =3D <&r_pio 0 8 GPIO_ACTIVE_LOW>; /* PL8 */
-+		clocks =3D <&rtc 1>;
-+		clock-names =3D "ext_clock";
- 	};
- };
-=20
-@@ -170,6 +172,14 @@
- 	bus-width =3D <4>;
- 	non-removable;
- 	status =3D "okay";
-+
-+	brcmf: wifi@1 {
-+		reg =3D <1>;
-+		compatible =3D "brcm,bcm4329-fmac";
-+		interrupt-parent =3D <&r_pio>;
-+		interrupts =3D <0 7 IRQ_TYPE_LEVEL_LOW>; /* PL7 */
-+		interrupt-names =3D "host-wake";
-+	};
- };
-=20
- &ohci0 {
-@@ -342,7 +352,20 @@
- &uart1 {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
- 	status =3D "okay";
-+
-+	bluetooth {
-+		compatible =3D "brcm,bcm43438-bt";
-+		max-speed =3D <1500000>;
-+		clocks =3D <&rtc 1>;
-+		clock-names =3D "lpo";
-+		vbat-supply =3D <&reg_dldo2>;
-+		vddio-supply =3D <&reg_dldo4>;
-+		device-wakeup-gpios =3D <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+		host-wakeup-gpios =3D <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
-+		shutdown-gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
-+	};
- };
-=20
- /* On Pi-2 connector, RTS/CTS optional */
---=20
-2.21.0
+> 
+> > 
+> > > 
+> > > Regards,
+> > >   Marco
+> > > 
+> > > On 19-04-15 14:44, Marco Felsch wrote:  
+> > > > Hi,
+> > > > 
+> > > > many thanks to Hans and Jacopo for the feedack :) this v6 address the
+> > > > comments both made on my v5 [1].
+> > > > 
+> > > > In short this is round fixes just some minor issues rather than major
+> > > > ones so the diff to the v5 is really small. The changed patches contain
+> > > > the changelog so I omit it here.
+> > > > 
+> > > > I've tested it on a custom hardware but I can't test the em28xx usb
+> > > > use-case since I haven't such a device. So other testers are welcome :)
+> > > > 
+> > > > Looking forward for your feedack,
+> > > > 
+> > > > 	Marco
+> > > > 
+> > > > [1] https://patchwork.kernel.org/cover/10886903/
+> > > > 
+> > > > Javier Martinez Canillas (1):
+> > > >   partial revert of "[media] tvp5150: add HW input connectors support"
+> > > > 
+> > > > Marco Felsch (11):
+> > > >   dt-bindings: connector: analog: add tv norms property
+> > > >   media: v4l2-fwnode: add v4l2_fwnode_connector
+> > > >   media: v4l2-fwnode: add initial connector parsing support
+> > > >   media: tvp5150: add input source selection of_graph support
+> > > >   media: dt-bindings: tvp5150: Add input port connectors DT bindings
+> > > >   media: tvp5150: add FORMAT_TRY support for get/set selection handlers
+> > > >   media: tvp5150: add s_power callback
+> > > >   media: dt-bindings: tvp5150: cleanup bindings stlye
+> > > >   media: dt-bindings: tvp5150: add optional tvnorms documentation
+> > > >   media: tvp5150: add support to limit tv norms on connector
+> > > >   media: tvp5150: make debug output more readable
+> > > > 
+> > > > Michael Tretter (1):
+> > > >   media: tvp5150: initialize subdev before parsing device tree
+> > > > 
+> > > >  .../display/connector/analog-tv-connector.txt |   4 +
+> > > >  .../devicetree/bindings/media/i2c/tvp5150.txt | 125 +++-
+> > > >  drivers/media/i2c/tvp5150.c                   | 672 +++++++++++++-----
+> > > >  drivers/media/v4l2-core/v4l2-fwnode.c         | 111 +++
+> > > >  include/dt-bindings/media/tvnorms.h           |  56 ++
+> > > >  include/dt-bindings/media/tvp5150.h           |   2 -
+> > > >  include/media/v4l2-connector.h                |  30 +
+> > > >  include/media/v4l2-fwnode.h                   |  49 ++
+> > > >  8 files changed, 859 insertions(+), 190 deletions(-)
+> > > >  create mode 100644 include/dt-bindings/media/tvnorms.h
+> > > >  create mode 100644 include/media/v4l2-connector.h
+> > > > 
+> > > > -- 
+> > > > 2.20.1
+> > > > 
+> > > > 
+> > > >     
+> > >   
+> > 
+> > 
+> > 
+> > Thanks,
+> > Mauro
+> 
+> 
+> 
+> Thanks,
+> Mauro
+> 
 
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
