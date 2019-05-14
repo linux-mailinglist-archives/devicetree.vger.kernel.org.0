@@ -2,293 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A3D1CF5C
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 433E81CF9B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 21:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727402AbfENSsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 14:48:39 -0400
-Received: from casper.infradead.org ([85.118.1.10]:51582 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727400AbfENSsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:48:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=NQebJdnsOHzBiVghXXwKgMh/0Jtrwf47R7qqFhUaqE4=; b=uns9c7WxKaKi0qZE0B/yBKE97N
-        Xl8HDJOQSGZroupgCe5MEEDy8s7B+XbH7vq1Nai9HyIhYIK9TVlaPrzSNchxoNt4QzcmVVt3hloPq
-        KAdY+3ho9H4nZGQhm+lUUY9iwVXIbZTyhpqaLz6hFnUS0ha8gFBSTZJGgdz8KJGH7X2thUmG5r05S
-        LMTVrfTJ3uSz47B5Q0zL3iZgbDDGBN/u+YaKo8SYffUk9eWE2ypujQV8PxAw4cmEgRA9Yykp+3VwA
-        q7OR2Z4HrYNtVS64yQ7kBNW0SNn0/AQxPyScSXpFgCflH8k5K5qxmiVYKX8QZN1cW2ioaagm6jRl9
-        WgMPS90w==;
-Received: from [179.179.44.200] (helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hQcTU-0004nV-FE; Tue, 14 May 2019 18:48:29 +0000
-Date:   Tue, 14 May 2019 15:48:23 -0300
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v6 07/13] media: tvp5150: add FORMAT_TRY support for
- get/set selection handlers
-Message-ID: <20190514154823.1b8619b2@coco.lan>
-In-Reply-To: <20190415124413.18456-8-m.felsch@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
-        <20190415124413.18456-8-m.felsch@pengutronix.de>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727742AbfENTGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 15:06:44 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:45840 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727671AbfENTGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 15:06:43 -0400
+Received: by mail-lf1-f65.google.com with SMTP id n22so20058lfe.12
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 12:06:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SPWmKpq6VDGUfyOzmQTA3tI7BJu0RPpA6WUx4ql1p0M=;
+        b=MeFq+tmDozlVwHUa/pirnaQUyzHzhiC922oLEAd3VZSh7SQs/8lTjYBKazPc8OI/3f
+         aD8IoPZ8mJx5iLrL+MCV/S9RnL1ffUq9tgdO6ubADK0wQj3lx2tIb2T9eO5FVg9jcnEV
+         l48gJnNLj8cFsXg356nvAolyYevr0DwKfyW0dhSkz3vR3T0wCBP7RPDLfxZt50xi69l5
+         u5zLWcDHJcPmasR54xK+MBfniS3Mh21UfWPTl7N6KLj8pwkK/rhJg8/W7QjH7+ex66Dm
+         OamrI2TSVd9HUuywpc6pkUClP5OK0UHg6vlo0K4S2IF+L5a4DN5OMKLT2ucSF52OXx9s
+         Sxkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=SPWmKpq6VDGUfyOzmQTA3tI7BJu0RPpA6WUx4ql1p0M=;
+        b=VaJCeTkwI8VlHkxQNhwOGiu9oYwC1kVj1gMLUUQLXvMVd7cVlTiY3RyvqqhHO2HYwp
+         X5PIs/c6xW+kCpe/V4ZlA8n4Z0rWH5NDATJMFGmsrX0+zmrJQwOGeZ/E+IkNxpUf3pXr
+         9gipiG+aZ6tl3mgvFEDjr0ddmTdEJAG88tzfqlUu1S2mgV0EtlqPulDPK50hCuZ+g0yF
+         knfs3d7ib9nDoiEYUwomLfIdMYjDWuGmJOC+2AWRwFKARshjy/NwF+i1xO7skvGP+Ngz
+         p74VOYvkwQcyYo3d0yytjSgAGbrIbW2V/C/MHZPPuzZK728l6GMjZy3x3wWHvRuKCjdJ
+         dH3A==
+X-Gm-Message-State: APjAAAUeKxn5dVta8pFZX5nDBi8VyOF+YsWZCWNloiEiQvfUQsdOXgl/
+        Iy9AMZQYBTs43bhNaIF9sD8TwIlMMxA=
+X-Google-Smtp-Source: APXvYqwRZdUgwLeaMIdAgHuhbJILXHkJsRzfX0+TBZ94IjzXws/h3v/fHnQlT4e7PoL8NqcM0zp2iA==
+X-Received: by 2002:a19:1dc3:: with SMTP id d186mr17340891lfd.101.1557860800826;
+        Tue, 14 May 2019 12:06:40 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([31.173.86.127])
+        by smtp.gmail.com with ESMTPSA id j19sm3969610lfj.52.2019.05.14.12.06.38
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 May 2019 12:06:40 -0700 (PDT)
+Subject: Re: [PATCH v9 2/3] spi: Add Renesas R-Car Gen3 RPC-IF SPI controller
+ driver
+To:     masonccyang@mxic.com.tw
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-spi@vger.kernel.org,
+        marek.vasut@gmail.com, mark.rutland@arm.com, robh+dt@kernel.org,
+        zhengxunli@mxic.com.tw
+References: <1553847606-18122-1-git-send-email-masonccyang@mxic.com.tw>
+ <1553847606-18122-3-git-send-email-masonccyang@mxic.com.tw>
+ <1e2bf23d-db39-0d1d-0bcc-6d9cd2935a82@cogentembedded.com>
+ <cdee3d53-6ee3-4435-117e-8ba4a58ca72b@cogentembedded.com>
+ <OF82CE76E9.E6395EF7-ON482583DD.000E37D7-482583DD.000E5077@mxic.com.tw>
+ <3d334751-8fd4-7db1-9deb-e6c94936df13@cogentembedded.com>
+ <OF4ABCC306.B053BA23-ON482583E0.000F480C-482583E0.000FAD4A@mxic.com.tw>
+ <3971c669-9095-9d18-d029-37f9663a54b2@cogentembedded.com>
+ <OF58AAFF49.C4593DEB-ON482583E1.001D551E-482583E1.001F089D@mxic.com.tw>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <9014077e-2648-adad-72c1-baf834f5a511@cogentembedded.com>
+Date:   Tue, 14 May 2019 22:06:37 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <OF58AAFF49.C4593DEB-ON482583E1.001D551E-482583E1.001F089D@mxic.com.tw>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 15 Apr 2019 14:44:07 +0200
-Marco Felsch <m.felsch@pengutronix.de> escreveu:
+Hello!
 
-> Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
-> the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
-> no way to try different selections. The patch adds a helper function to
-> select the correct selection memory space (sub-device file handle or
-> driver state) which will be set/returned.
+On 04/19/2019 08:38 AM, masonccyang@mxic.com.tw wrote:
+
+>> >> >> >> Add a driver for Renesas R-Car Gen3 RPC-IF SPI controller.
+>> >> >> >>
+>> >> >> >> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+>> >> >> >> Signed-off-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+>> >> >> > [...]
+>> >> >> >> diff --git a/drivers/spi/spi-renesas-rpc.c b/drivers/spi/spi-
+>> >> renesas-rpc.c
+>> >> >> >> new file mode 100644
+>> >> >> >> index 0000000..037f273
+>> >> >> >> --- /dev/null
+>> >> >> >> +++ b/drivers/spi/spi-renesas-rpc.c
+>> >> >> > [...]
+>> >> >> >> +static int rpc_spi_probe(struct platform_device *pdev)
+>> >> >> >> +{
+>> >> >> >> +   struct spi_controller *ctlr;
+>> >> >> >> +   struct rpc_mfd *rpc_mfd = dev_get_drvdata(pdev->dev.parent);
+>> >> >> >> +   struct rpc_spi *rpc;
+>> >> >> >> +   int ret;
+>> >> >> >> +
+>> >> >> >> +   ctlr = spi_alloc_master(&pdev->dev, sizeof(*rpc));
+>> >> >> >> +   if (!ctlr)
+>> >> >> >> +      return -ENOMEM;
+>> >> >> >> +
+>> >> >> >> +   platform_set_drvdata(pdev, ctlr);
+>> >> >> >> +
+>> >> >> >> +   rpc = spi_controller_get_devdata(ctlr);
+>> >> >> >> +
+>> >> >> >> +   ctlr->dev.of_node = pdev->dev.of_node;
+>> >> >> > [...]
+>> >> >> >> +
+>> >> >> >> +   pm_runtime_enable(&pdev->dev);
+>> >> >> >> +   ctlr->auto_runtime_pm = true;
+>> >> >> >
+>> >> >> >    I think this line no longer works as expected with the new
+>> >> >> probing scheme.
+>> >>
+>> >>    That's because we added another (SPI) device under our MFD.
+>> >
+>> > Do you mean just to remove one line
+>> > ctlr->auto_runtime_pm = true;
+>> > ?
 > 
-> The TVP5150 AVID will be updated if the 'which' field is FORMAT_ACTIVE
-> and the requested selection rectangle differs from the already set one.
+> how did you test it ?
+> what is your testing flow ?
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Changelog:
+>>    No, you should explicitly call RPM for the MFD (not the SPI device).
 > 
-> v5:
->  - handle stub for v4l2_subdev_get_try_crop() internal since commit
->    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
->    isn't anymore part of this series.
->  - add error handling of __tvp5150_get_pad_crop()
-> v4:
->  - fix merge conflict due to rebase on top of media-tree/master
->  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
+> okay, patch RPM to RPC MFD and will remove SPI RPM enable part.
 > 
->  drivers/media/i2c/tvp5150.c | 130 ++++++++++++++++++++++++++----------
->  1 file changed, 96 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> index 4e3228b2ccbc..9331609425bf 100644
-> --- a/drivers/media/i2c/tvp5150.c
-> +++ b/drivers/media/i2c/tvp5150.c
-> @@ -19,6 +19,7 @@
->  #include <media/v4l2-ctrls.h>
->  #include <media/v4l2-fwnode.h>
->  #include <media/v4l2-mc.h>
-> +#include <media/v4l2-rect.h>
->  
->  #include "tvp5150_reg.h"
->  
-> @@ -997,20 +998,48 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
->  		crop->height = TVP5150_V_MAX_OTHERS;
->  }
->  
-> +static struct v4l2_rect *
-> +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
-> +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
-> +		       enum v4l2_subdev_format_whence which)
-> +{
-> +	switch (which) {
-> +	case V4L2_SUBDEV_FORMAT_TRY:
-> +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
-> +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
-> +#else
-> +		return ERR_PTR(-ENOTTY);
-> +#endif
-> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
-> +		return &decoder->rect;
-> +	default:
-> +		return NULL;
-> +	}
+>>
+>> >> >> > Have you tested reading? v8 patch still works while v9 patches
+>> >> >> > hang on doing:
+>> >> >> >
+>> >> >> > $ cat /dev/mtd<n>...
+>> >> >>
+>> >> >>    Sorry, 'od -x', not 'cat'.
+>> >> >
+>> >> > root@draak:/# cat /proc/mtd
+>> >> > dev:    size   erasesize  name
+>> >> > mtd0: 00040000 00001000 "Bank 1 - Boot parameter"
+>> >> > mtd1: 00140000 00001000 "Bank 1 - Loader-BL2"
+>> >> > mtd2: 00040000 00001000 "Bank 1 - Certification"
+>> >> > mtd3: 00080000 00001000 "Bank 1 - ARM Trusted FW"
+>> >> > mtd4: 00400000 00001000 "Bank 1 - Reserved-1"
+>> >> > mtd5: 00300000 00001000 "Bank 1 - U-Boot"
+>> >> > mtd6: 00200000 00001000 "Bank 1 - Reserved-2"
+>> >> > mtd7: 00480000 00001000 "Bank 1 - Splash"
+>> >> > mtd8: 00040000 00001000 "Bank 1 - Device Tree"
+>> >> > root@draak:/# od -x /dev/mtd1
+>> >> > 0000000 0000 d280 0001 d280 0002 d280 0003 d280
+>> >> > 0000020 0004 d280 0005 d280 0006 d280 0007 d280
+>> >> > 0000040 0008 d280 0009 d280 000a d280 000b d280
+>> >> > 0000060 000c d280 000d d280 000e d280 000f d280
+>> >> > 0000100 0010 d280 0011 d280 0012 d280 0013 d280
+>> >> > 0000120 0014 d280 0015 d280 0016 d280 0017 d280
+>> >> > 0000140 0018 d280 0019 d280 001a d280 001b d280
+>> >> > 0000160 001c d280 001d d280 001e d280 1000 d53e
+>> >> > 0000200 f800 9266 1000 d51e 3fdf d503 3ba0 1005
+>> >>
+>> >>    Still hangs for me. After I patches spi-mem.c and the driver to
+>> >> call RPM for the MFD, it started working again. Perhaps, that clock>> >> is still enabled on your target. What does the following print (for
 
-Same comments as Jacopo: use return ERR_PTR(-EINVAL) instead...
+   Even with these issues worked around, I still see strange behavior on
+writes, e.g. after I mount JFFS2 partition, remove 1 file, unmount, re-mount,
+and mount again, the removed file is back! :-/
 
-> +}
-> +
->  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
->  			    struct v4l2_subdev_pad_config *cfg,
->  			    struct v4l2_subdev_format *format)
->  {
->  	struct v4l2_mbus_framefmt *f;
-> +	struct v4l2_rect *__crop;
->  	struct tvp5150 *decoder = to_tvp5150(sd);
->  
->  	if (!format || (format->pad != TVP5150_PAD_VID_OUT))
->  		return -EINVAL;
->  
->  	f = &format->format;
-> +	__crop = __tvp5150_get_pad_crop(decoder, cfg, format->pad,
-> +					format->which);
-> +	if (IS_ERR_OR_NULL(__crop)) {
-> +		if (!__crop)
-> +			return -EINVAL;
-> +		else
-> +			return PTR_ERR(__crop);
+[...]
 
-And here, return PTR_ERR directly. Same at the similar case below.
+> thanks & best regards,
+> Mason
 
-> +	}
->  
-> -	f->width = decoder->rect.width;
-> -	f->height = decoder->rect.height / 2;
-> +	f->width = __crop->width;
-> +	f->height = __crop->height / 2;
->  
->  	f->code = TVP5150_MBUS_FMT;
->  	f->field = TVP5150_FIELD;
-> @@ -1021,17 +1050,51 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
->  	return 0;
->  }
->  
-> +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
-> +{
-> +	struct tvp5150 *decoder = to_tvp5150(sd);
-> +	v4l2_std_id std;
-> +
-> +	/* Calculate height based on current standard */
-> +	if (decoder->norm == V4L2_STD_ALL)
-> +		std = tvp5150_read_std(sd);
-> +	else
-> +		std = decoder->norm;
-> +
-> +	return (std & V4L2_STD_525_60) ?
-> +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
-> +}
-> +
-> +static inline void
-> +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect rect)
-> +{
-> +	struct tvp5150 *decoder = to_tvp5150(sd);
-> +	unsigned int hmax = tvp5150_get_hmax(sd);
-> +
-> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
-> +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> +		     rect.top + rect.height - hmax);
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> +		     rect.left >> TVP5150_CROP_SHIFT);
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> +		     rect.left | (1 << TVP5150_CROP_SHIFT));
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> +		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
-> +		     TVP5150_CROP_SHIFT);
-> +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> +		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
-> +}
-> +
->  static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  				 struct v4l2_subdev_pad_config *cfg,
->  				 struct v4l2_subdev_selection *sel)
->  {
->  	struct tvp5150 *decoder = to_tvp5150(sd);
->  	struct v4l2_rect rect = sel->r;
-> -	v4l2_std_id std;
-> -	int hmax;
-> +	struct v4l2_rect *__crop;
-> +	unsigned int hmax;
->  
-> -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
-> -	    sel->target != V4L2_SEL_TGT_CROP)
-> +	if (sel->target != V4L2_SEL_TGT_CROP)
->  		return -EINVAL;
->  
->  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
-> @@ -1040,17 +1103,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  	/* tvp5150 has some special limits */
->  	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
->  	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
-> -
-> -	/* Calculate height based on current standard */
-> -	if (decoder->norm == V4L2_STD_ALL)
-> -		std = tvp5150_read_std(sd);
-> -	else
-> -		std = decoder->norm;
-> -
-> -	if (std & V4L2_STD_525_60)
-> -		hmax = TVP5150_V_MAX_525_60;
-> -	else
-> -		hmax = TVP5150_V_MAX_OTHERS;
-> +	hmax = tvp5150_get_hmax(sd);
->  
->  	/*
->  	 * alignments:
-> @@ -1063,20 +1116,23 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
->  			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
->  			      hmax - rect.top, 0, 0);
->  
-> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
-> -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> -		     rect.top + rect.height - hmax);
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> -		     rect.left >> TVP5150_CROP_SHIFT);
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> -		     rect.left | (1 << TVP5150_CROP_SHIFT));
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
-> -		     TVP5150_CROP_SHIFT);
-> -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
-> +	__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
-> +	if (IS_ERR_OR_NULL(__crop)) {
-> +		if (!__crop)
-> +			return -EINVAL;
-> +		else
-> +			return PTR_ERR(__crop);
-> +	}
-> +
-> +	/*
-> +	 * Update output image size if the selection (crop) rectangle size or
-> +	 * position has been modified.
-> +	 */
-> +	if (!v4l2_rect_equal(&rect, __crop))
-> +		if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE)
-> +			__tvp5150_set_selection(sd, rect);
->  
-> -	decoder->rect = rect;
-> +	*__crop = rect;
->  
->  	return 0;
->  }
-> @@ -1086,11 +1142,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
->  				 struct v4l2_subdev_selection *sel)
->  {
->  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
-> +	struct v4l2_rect *__crop;
->  	v4l2_std_id std;
->  
-> -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-> -		return -EINVAL;
-> -
->  	switch (sel->target) {
->  	case V4L2_SEL_TGT_CROP_BOUNDS:
->  		sel->r.left = 0;
-> @@ -1108,7 +1162,15 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
->  			sel->r.height = TVP5150_V_MAX_OTHERS;
->  		return 0;
->  	case V4L2_SEL_TGT_CROP:
-> -		sel->r = decoder->rect;
-> +		__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
-> +						sel->which);
-> +		if (IS_ERR_OR_NULL(__crop)) {
-> +			if (!__crop)
-> +				return -EINVAL;
-> +			else
-> +				return PTR_ERR(__crop);
-> +		}
-> +		sel->r = *__crop;
->  		return 0;
->  	default:
->  		return -EINVAL;
-
-
-
-Thanks,
-Mauro
+MBR, Sergei
