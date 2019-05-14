@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF9991C0EA
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 05:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F36FA1C19A
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 06:57:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726584AbfENDeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 May 2019 23:34:01 -0400
-Received: from mail-eopbgr130044.outbound.protection.outlook.com ([40.107.13.44]:22247
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        id S1726025AbfENE5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 00:57:23 -0400
+Received: from mail-eopbgr10079.outbound.protection.outlook.com ([40.107.1.79]:7343
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726327AbfENDeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 May 2019 23:34:01 -0400
+        id S1725562AbfENE5X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 May 2019 00:57:23 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ijRcvrg3jrVS2khTN8APbzM7uz8GeP5PbXhROHfCRj0=;
- b=FfSIJ9yWbz8NZGuRjpxd/SaCWzFGavsYHBqwY7S5q9oO20zldsLeXlgwxysubWS+JzbQEceFNllHgnfI1TVfn+Ad+6AM/5so2RfLmlypOqm+Qu+x3pvzadQOnl2B4TEXS/o4nh5VsZtHu8ljW1plPf45qvDUEB1bZbjAhi6Utz0=
+ bh=BqZZaUK8JGU40021vzGXy6vggv81RjTCBm81fC9w7+g=;
+ b=ftwWKH/6Un+k0q0cohA7YvMzs9rKVno9XZ15z+Z7fR0CZhPm/7stdlRoCqkpJy4pJRIDig/w9UBd5wBtRkVO6wEA+Bn/Ba+f/Qtz4Q0PUbwv6T6a9jCEsC9hngfEglvCwxb9v4jzzd5GVzL1iwsUsO2wd1h2PDXYRVum/c3t2DE=
 Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3802.eurprd04.prod.outlook.com (52.134.71.150) with Microsoft SMTP
+ DB3PR0402MB3722.eurprd04.prod.outlook.com (52.134.70.141) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.24; Tue, 14 May 2019 03:33:56 +0000
+ 15.20.1878.25; Tue, 14 May 2019 04:57:17 +0000
 Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
  ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
  ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1900.010; Tue, 14 May 2019
- 03:33:56 +0000
+ 04:57:17 +0000
 From:   Anson Huang <anson.huang@nxp.com>
 To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
@@ -31,87 +31,88 @@ To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
         "kernel@pengutronix.de" <kernel@pengutronix.de>,
         "festevam@gmail.com" <festevam@gmail.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: [PATCH] arm64: dts: imx8mq: Add gpio alias
-Thread-Topic: [PATCH] arm64: dts: imx8mq: Add gpio alias
-Thread-Index: AQHVCgXcX4QYJXCP60mxd4H1AV7MJA==
-Date:   Tue, 14 May 2019 03:33:56 +0000
-Message-ID: <1557804533-18194-1-git-send-email-Anson.Huang@nxp.com>
+Subject: [PATCH] arm64: dts: imx8qxp: Add gpio alias
+Thread-Topic: [PATCH] arm64: dts: imx8qxp: Add gpio alias
+Thread-Index: AQHVChGBhvqur/npCUCFDgMod6JPUg==
+Date:   Tue, 14 May 2019 04:57:17 +0000
+Message-ID: <1557809536-749-1-git-send-email-Anson.Huang@nxp.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-mailer: git-send-email 2.7.4
-x-clientproxiedby: HK2PR02CA0180.apcprd02.prod.outlook.com
- (2603:1096:201:21::16) To DB3PR0402MB3916.eurprd04.prod.outlook.com
+x-clientproxiedby: HK2PR02CA0168.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::28) To DB3PR0402MB3916.eurprd04.prod.outlook.com
  (2603:10a6:8:10::18)
 authentication-results: spf=none (sender IP is )
  smtp.mailfrom=anson.huang@nxp.com; 
 x-ms-exchange-messagesentrepresentingtype: 1
 x-originating-ip: [119.31.174.66]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2bf72782-ba51-4e85-f20a-08d6d81cfe4a
+x-ms-office365-filtering-correlation-id: 79b7cc21-1006-45d1-b4ae-08d6d828a33f
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3802;
-x-ms-traffictypediagnostic: DB3PR0402MB3802:
-x-microsoft-antispam-prvs: <DB3PR0402MB38023EB9BE1B07CA7078E490F5080@DB3PR0402MB3802.eurprd04.prod.outlook.com>
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3722;
+x-ms-traffictypediagnostic: DB3PR0402MB3722:
+x-microsoft-antispam-prvs: <DB3PR0402MB3722ECA51717CAF4450D4B68F5080@DB3PR0402MB3722.eurprd04.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:843;
 x-forefront-prvs: 0037FD6480
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(136003)(366004)(396003)(346002)(376002)(199004)(189003)(66556008)(66476007)(73956011)(66946007)(8936002)(486006)(66446008)(6512007)(478600001)(256004)(36756003)(305945005)(4326008)(64756008)(110136005)(2201001)(14454004)(4744005)(8676002)(6436002)(81156014)(81166006)(25786009)(68736007)(71200400001)(6486002)(5660300002)(53936002)(50226002)(7736002)(71190400001)(6506007)(102836004)(3846002)(6116002)(386003)(2616005)(52116002)(26005)(2906002)(316002)(476003)(186003)(7416002)(86362001)(99286004)(66066001)(2501003)(921003)(32563001)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3802;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(366004)(396003)(376002)(39860400002)(346002)(189003)(199004)(52116002)(68736007)(305945005)(316002)(3846002)(6116002)(102836004)(6486002)(8676002)(4326008)(86362001)(6436002)(26005)(2201001)(186003)(71190400001)(6512007)(386003)(6506007)(50226002)(53936002)(5660300002)(71200400001)(110136005)(36756003)(66066001)(8936002)(256004)(2501003)(478600001)(486006)(25786009)(66946007)(66476007)(73956011)(66556008)(81166006)(81156014)(2616005)(64756008)(4744005)(66446008)(99286004)(476003)(2906002)(14454004)(7736002)(32563001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3722;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
 received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: NT+B+BEIGbujM01wjRFFmXIzdmLNuDh8mObe8t8M/2FzbWPaktKgJk7t4B4omTl3EBpLas+WcOnD9y3lSo+LzqD9+2sv/6Onh4KCgKMDrv9j1hjDcsTxnB7EMIfGzSG2wvuoJVFJCW/HtDlvRxjj9xfsqfD0KuUqr6haQ+j+8GiATWzJVXhtF4IEPx2WJFVPysAmKGqwDiLnCBnwELr9r6b/oWV+COLhYgunvFZkJF4kVsJXZNHIBaQFB0B+ECV3BpwHSJYwce15fKyrqyr8jjBHTJdZB/4ZQ1M1a5tIOdbEGBFodk8xunFMN/OOd24KwXAL3GO3jOlvLGc/8eRJQ5deIajOx0a6Ol8pa5jQat0tl1WkGtK+4+QuuO+25icrDN0pU7BN3TE6C+Wky4y2p4hREsGDbKpINHpjsRRTxA0=
+x-microsoft-antispam-message-info: 4V8l0N/tg7DNLYiE7mVV/BrQS6P/XfjaCRPKEiCPUPIx6Hovr/uO6zTZmIKJObRWKk1u6l/J6hRz7lx4zkIQb99//+nW/ndTDLSR7OqI7hxlVN+8RD2O9iESlqnULLYFQjfGcNk+Egf31Z2CTGCQu8aQlRjAHwIpsVJlN/jj1rGcTb6i5u5VXvl6ZZPuX/B6hLdnrF+Bm8IPn+RDNjMFK1cKaLcmHYBc2rA4WPCLE7kjIPR/+tsER3QflsjF1RDqPzhoAq0USPwywlRFmKwm4AcnJeJ7+1ZaowNAIvH2qe9pPkv6N9FdakspsPQTQkP8YPjpruI6jVopCMprY9xSkWaKaUhyf99Gn5U7eVsvq7razdVvxWQekzsySwoP+RON91OfNJCJyzu4Wy6tN5QDlvlWInq7SWbBM5RgzjzvmGs=
 Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <0A018126CD316C4A904C208F9394F50C@eurprd04.prod.outlook.com>
+Content-ID: <14512C07EAFE424A98EC3DACC8F6E91C@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bf72782-ba51-4e85-f20a-08d6d81cfe4a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 03:33:56.1846
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79b7cc21-1006-45d1-b4ae-08d6d828a33f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 04:57:17.5571
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3802
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3722
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8MQ GPIO alias for kernel GPIO driver usage.
+Add i.MX8QXP GPIO alias for kernel GPIO driver usage.
 
 Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dt=
-s/freescale/imx8mq.dtsi
-index 6d635ba..df33672 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -30,6 +30,11 @@
- 		spi0 =3D &ecspi1;
- 		spi1 =3D &ecspi2;
- 		spi2 =3D &ecspi3;
-+		gpio0 =3D &gpio1;
-+		gpio1 =3D &gpio2;
-+		gpio2 =3D &gpio3;
-+		gpio3 =3D &gpio4;
-+		gpio4 =3D &gpio5;
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx8qxp.dtsi
+index b17c22e..923705e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -22,6 +22,14 @@
+ 		mmc2 =3D &usdhc3;
+ 		serial0 =3D &adma_lpuart0;
+ 		mu1 =3D &lsio_mu1;
++		gpio0 =3D &lsio_gpio0;
++		gpio1 =3D &lsio_gpio1;
++		gpio2 =3D &lsio_gpio2;
++		gpio3 =3D &lsio_gpio3;
++		gpio4 =3D &lsio_gpio4;
++		gpio5 =3D &lsio_gpio5;
++		gpio6 =3D &lsio_gpio6;
++		gpio7 =3D &lsio_gpio7;
  	};
 =20
- 	ckil: clock-ckil {
+ 	cpus {
 --=20
 2.7.4
 
