@@ -2,163 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC421D0F2
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED8AA1D0FF
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 23:05:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbfENU6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 16:58:37 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:41407 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726036AbfENU6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:58:37 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hQeVI-00059i-2t; Tue, 14 May 2019 22:58:28 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hQeVE-000198-HY; Tue, 14 May 2019 22:58:24 +0200
-Date:   Tue, 14 May 2019 22:58:24 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
-        kernel@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] TVP5150 new features
-Message-ID: <20190514205824.ov6prllx2fp77fur@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
- <20190514141824.5bd41389@coco.lan>
- <20190514172028.693ad354@coco.lan>
+        id S1726216AbfENVFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 17:05:46 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:46620 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726089AbfENVFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 17:05:45 -0400
+Received: by mail-pf1-f195.google.com with SMTP id y11so121488pfm.13
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 14:05:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references:from
+         :subject:cc:to:message-id:user-agent:date;
+        bh=AWxN5ptvu2yKLcW7Bm5LBMGr1ZVlYaAwhpzhB0nfW30=;
+        b=HNMe7lJXqBT7y/2cp+foZU0p50cuTfYKYZaABdqFDmkYX0VtYXw/Kvo3ZvmvCEzShG
+         WSo8VBK5+qTNJbQ9jH9/9p27q8As73WWcxqiY7ehdNv6hnmu4NF7FABbOlZFSkoE1wV6
+         ToM2vsichYz943+Om1qhsn7V2bTiJylmDMwOs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:from:subject:cc:to:message-id:user-agent
+         :date;
+        bh=AWxN5ptvu2yKLcW7Bm5LBMGr1ZVlYaAwhpzhB0nfW30=;
+        b=tesX/I0IX6k66sVDZMjBq6pKpqzmEBAQgnFPFxi3p4ZHnQXpwxzvWLua9U4gKX0xdN
+         pheLCzw4yTgwzptOylBX5mAqMNNXswY4n+Z3l0qkt8s6rsCywbX0BBPoiYJx2TuSLc7g
+         6VL2me1rR3exkJZGH9rxu6LKQUzku3GRTNctjiHEH5/7Dejd1YuQOaxW/9QWdFWBtTu1
+         PbSU0URBVvd3MV+xHRX9yt1tONn0ozJTkUu8qMfDZQB98imtLXozzLYHq36GmV68jb01
+         EVpjZBP1LszFlsh78i7Kpk/x56mMJ2HSi/w25WTJylVRbovbnZnf4F2fxY7HbeMXFv1u
+         +iBQ==
+X-Gm-Message-State: APjAAAXPQeVGh0w5DrlsHEaW4stLapGRcrTGgWVQzjoOzpJAgBjv7hYu
+        f877Sb1uBDAGnqxrwuoN0Niijg==
+X-Google-Smtp-Source: APXvYqz18bKfEM+qcHPBKQrWe+JFncgiIpoNu7rrAuyxF/9xscQmII8ueAu5RYyZ1oE1cXXVHko4AQ==
+X-Received: by 2002:aa7:8186:: with SMTP id g6mr43384614pfi.126.1557867944834;
+        Tue, 14 May 2019 14:05:44 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id n35sm28281pgl.44.2019.05.14.14.05.43
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 14:05:44 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190514172028.693ad354@coco.lan>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 22:54:32 up 116 days,  1:36, 92 users,  load average: 0.00, 0.04,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
+References: <20190513003819.356-1-hsinyi@chromium.org> <20190513003819.356-2-hsinyi@chromium.org> <20190513085853.GB9271@rapoport-lnx> <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH v2 2/2] amr64: map FDT as RW for early_init_dt_scan()
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kees Cook <keescook@chromium.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Michal Hocko <mhocko@suse.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Mike Rapoport <rppt@linux.ibm.com>
+Message-ID: <155786794318.14659.2925897827978978040@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.8
+Date:   Tue, 14 May 2019 14:05:43 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Quoting Hsin-Yi Wang (2019-05-13 04:14:32)
+> On Mon, May 13, 2019 at 4:59 PM Mike Rapoport <rppt@linux.ibm.com> wrote:
+>=20
+> >
+> > This makes the fdt mapped without the call to meblock_reserve(fdt) which
+> > makes the fdt memory available for memblock allocations.
+> >
+> > Chances that is will be actually allocated are small, but you know, thi=
+ngs
+> > happen.
+> >
+> > IMHO, instead of calling directly __fixmap_remap_fdt() it would be bett=
+er
+> > to add pgprot parameter to fixmap_remap_fdt(). Then here and in kaslr.c=
+ it
+> > can be called with PAGE_KERNEL and below with PAGE_KERNEL_RO.
+> >
+> > There is no problem to call memblock_reserve() for the same area twice,
+> > it's essentially a NOP.
+> >
+> Thanks for the suggestion. Will update fixmap_remap_fdt() in next patch.
+>=20
+> However, I tested on some arm64 platform, if we also call
+> memblock_reserve() in kaslr.c, would cause warning[1] when
+> memblock_reserve() is called again in setup_machine_fdt(). The warning
+> comes from https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L=
+601
+> ```
+> if (type->regions[0].size =3D=3D 0) {
+>   WARN_ON(type->cnt !=3D 1 || type->total_size);
+>   ...
+> ```
+>=20
+> Call memblock_reserve() multiple times after setup_machine_fdt()
+> doesn't have such warning though.
+>=20
+> I didn't trace the real reason causing this. But in this case, maybe
+> don't call memblock_reserve() in kaslr?
+>=20
 
-On 19-05-14 17:20, Mauro Carvalho Chehab wrote:
-> Em Tue, 14 May 2019 14:18:24 -0300
-> Mauro Carvalho Chehab <mchehab@kernel.org> escreveu:
-> 
-> > Em Mon, 6 May 2019 07:47:13 +0200
-> > Marco Felsch <m.felsch@pengutronix.de> escreveu:
-> > 
-> > > Hi Mauro,
-> > > 
-> > > I know you are busy but can you have a look on it?  
-> > 
-> > You should really trust on the sub-maintainers for such kind of
-> > reviews :-)
+Why not just have fixmap_remap_fdt() that maps it as RW and reserves
+memblock once, and then call __fixmap_remap_fdt() with RO after
+early_init_dt_scan() or unflatten_device_tree() is called? Why the
+desire to call memblock_reserve() twice or even three times?
 
-I trust all of them and many thanks to Hans and Jacopo for the reviews
-:) I will integrate them this week. The point is that you are the
-maintainer and in that case the one who picks the patches.
-
-> > 
-> > I'll take a look today.
-> 
-> Done. Please notice that I didn't run any test here.
-
-Thanks for that will integrate it too and prepare a v7.
-
-Regards,
-  Marco
-
-> 
-> > 
-> > > 
-> > > Regards,
-> > >   Marco
-> > > 
-> > > On 19-04-15 14:44, Marco Felsch wrote:  
-> > > > Hi,
-> > > > 
-> > > > many thanks to Hans and Jacopo for the feedack :) this v6 address the
-> > > > comments both made on my v5 [1].
-> > > > 
-> > > > In short this is round fixes just some minor issues rather than major
-> > > > ones so the diff to the v5 is really small. The changed patches contain
-> > > > the changelog so I omit it here.
-> > > > 
-> > > > I've tested it on a custom hardware but I can't test the em28xx usb
-> > > > use-case since I haven't such a device. So other testers are welcome :)
-> > > > 
-> > > > Looking forward for your feedack,
-> > > > 
-> > > > 	Marco
-> > > > 
-> > > > [1] https://patchwork.kernel.org/cover/10886903/
-> > > > 
-> > > > Javier Martinez Canillas (1):
-> > > >   partial revert of "[media] tvp5150: add HW input connectors support"
-> > > > 
-> > > > Marco Felsch (11):
-> > > >   dt-bindings: connector: analog: add tv norms property
-> > > >   media: v4l2-fwnode: add v4l2_fwnode_connector
-> > > >   media: v4l2-fwnode: add initial connector parsing support
-> > > >   media: tvp5150: add input source selection of_graph support
-> > > >   media: dt-bindings: tvp5150: Add input port connectors DT bindings
-> > > >   media: tvp5150: add FORMAT_TRY support for get/set selection handlers
-> > > >   media: tvp5150: add s_power callback
-> > > >   media: dt-bindings: tvp5150: cleanup bindings stlye
-> > > >   media: dt-bindings: tvp5150: add optional tvnorms documentation
-> > > >   media: tvp5150: add support to limit tv norms on connector
-> > > >   media: tvp5150: make debug output more readable
-> > > > 
-> > > > Michael Tretter (1):
-> > > >   media: tvp5150: initialize subdev before parsing device tree
-> > > > 
-> > > >  .../display/connector/analog-tv-connector.txt |   4 +
-> > > >  .../devicetree/bindings/media/i2c/tvp5150.txt | 125 +++-
-> > > >  drivers/media/i2c/tvp5150.c                   | 672 +++++++++++++-----
-> > > >  drivers/media/v4l2-core/v4l2-fwnode.c         | 111 +++
-> > > >  include/dt-bindings/media/tvnorms.h           |  56 ++
-> > > >  include/dt-bindings/media/tvp5150.h           |   2 -
-> > > >  include/media/v4l2-connector.h                |  30 +
-> > > >  include/media/v4l2-fwnode.h                   |  49 ++
-> > > >  8 files changed, 859 insertions(+), 190 deletions(-)
-> > > >  create mode 100644 include/dt-bindings/media/tvnorms.h
-> > > >  create mode 100644 include/media/v4l2-connector.h
-> > > > 
-> > > > -- 
-> > > > 2.20.1
-> > > > 
-> > > > 
-> > > >     
-> > >   
-> > 
-> > 
-> > 
-> > Thanks,
-> > Mauro
-> 
-> 
-> 
-> Thanks,
-> Mauro
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
