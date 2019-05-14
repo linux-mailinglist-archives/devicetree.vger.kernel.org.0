@@ -2,200 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0FB1CEE6
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D67681CEE0
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 20:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727408AbfENSRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 14:17:48 -0400
-Received: from casper.infradead.org ([85.118.1.10]:48620 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726772AbfENSRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:17:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=d5oCW7u5tSYDL5M32/knT8cVQm6uHXOniLjaK5gB9lk=; b=HIqsdIgF8p/icyYPPuta7NXVyo
-        Rv9YUMK4P6htpUQoNX/ntTta+p/bYY2AXEEGHj9euwiwDS0iB4HQTsIk2we5L4WCj+ePoYpR5WANV
-        qQwUyM2Q72ZOPxsK33XegXYFqQlNF6nbVR+hn+zfy1JXUixzIyBfy8XlOzBjiJUqsBRalFBfuPs3u
-        USmxt3mdPbvelQCe+QL9CjjVLW1x5Xr69xqGbEnjYRDwB7sOoDW9EgQNH9wNcUG2zBM9GhPDeXUY0
-        3fC1MsEyIKNKmmd9EPE2l5L8wqHuRCv1GZ35K9vLKt5fBj5vViCqHqg4uoWXuzaoQYJkxWkJeMAcj
-        lJYQI+CQ==;
-Received: from [179.179.44.200] (helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hQbzf-0003eD-2v; Tue, 14 May 2019 18:17:39 +0000
-Date:   Tue, 14 May 2019 15:17:33 -0300
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
-Message-ID: <20190514151733.21acb051@coco.lan>
-In-Reply-To: <c5c4b88d-7977-e253-1242-b9a86228a302@xs4all.nl>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
-        <20190415124413.18456-3-m.felsch@pengutronix.de>
-        <c5c4b88d-7977-e253-1242-b9a86228a302@xs4all.nl>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727202AbfENSRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 14:17:45 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:42240 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726348AbfENSRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 14:17:45 -0400
+Received: by mail-ot1-f68.google.com with SMTP id f23so16145141otl.9;
+        Tue, 14 May 2019 11:17:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=j6KYSa7mFmT8IdJQKzPSI3WBRVrEj+tTk4TrQEJlJp8=;
+        b=TX/6g4d0YEvldhYYnPULVTG85SzqY8fw5AW6hp0/ta7i2TM/Lj5Pj86MY4piFyrS3n
+         xEDW5LWVpD++4YXMBMy+JNs9hqMMsQPnPN8JGZwpGTm277na1V9ct8T/DSMYCHEB9x7g
+         uc2Fk3z77JJtJ3MQqbIFw0IU8JhMho8JfmfzSDjcR6ixtlO5NhQqNjPydBHTORnpmueO
+         jvb/WPZg2UENB5ZuC0zoTaSxBUvcUVCsYHjITE7+mZCFOdDx4PKMPqBaVP5hGaEOufbe
+         /WbjbN4vByObxxyQ2JMSNtAdpnsluKJh2roFwDn/Ub3Zn0bAPlpFSpyAKDcSNFU1zSXD
+         5uxA==
+X-Gm-Message-State: APjAAAVImjiG+flymYzAlGWty1CFAtKkuTQVzxPpUwWTo1LkEF11Q5Rp
+        7w8TlbfLAkSnoPLmdgsYRA==
+X-Google-Smtp-Source: APXvYqxnIsAes2oxtS3pa7msjo6X0Zei3YQDzQ8HtcaPk4a7Y58c4+nemeuTSKJtzH/2q8RiQazUKw==
+X-Received: by 2002:a9d:7c84:: with SMTP id q4mr15400106otn.98.1557857864775;
+        Tue, 14 May 2019 11:17:44 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m63sm6408810otc.76.2019.05.14.11.17.43
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 11:17:43 -0700 (PDT)
+Date:   Tue, 14 May 2019 13:17:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 3/6] dt-bindings: usb: mtu3: add properties about USB
+ Role Switch
+Message-ID: <20190514181743.GA21612@bogus>
+References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1557823643-8616-4-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557823643-8616-4-git-send-email-chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 6 May 2019 11:50:20 +0200
-Hans Verkuil <hverkuil@xs4all.nl> escreveu:
+On Tue, 14 May 2019 16:47:20 +0800, Chunfeng Yun wrote:
+> Now the USB Role Switch is supported, so add properties about it,
+> and modify some description related.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v5 changes
+>  1. modify decription about extcon and vbus-supply properties
+>  2. make this patch depend on [1]
+> 
+>  [1]: [v3] dt-binding: usb: add usb-role-switch property
+>       https://patchwork.kernel.org/patch/10934835/
+> 
+> v4: no changes
+> v3: no changes
+> 
+> v2 changes:
+>   1. fix typo
+>   2. refer new binding about connector property
+> ---
+>  .../devicetree/bindings/usb/mediatek,mtu3.txt          | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
-> On 4/15/19 2:44 PM, Marco Felsch wrote:
-> > Currently every driver needs to parse the connector endpoints by it self.
-> > This is the initial work to make this generic. The generic connector has
-> > some common fields and some connector specific parts. The generic one
-> > includes:
-> >   - type
-> >   - label
-> >   - remote_port (the port where the connector is connected to)
-> >   - remote_id   (the endpoint where the connector is connected to)
-> > 
-> > The specific fields are within a union, since only one of them can be
-> > available at the time. Since this is the initial support the patch adds
-> > only the analog-connector specific ones.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-> > ---
-> > [1] https://patchwork.kernel.org/cover/10794703/
-> > 
-> > v6:
-> > - fix some spelling and style issues
-> > - rm unnecessary comments
-> > - drop vga and dvi connector
-> > 
-> > v2-v4:
-> > - nothing since the patch was squashed from series [1] into this
-> >   series.
-> > 
-> >  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
-> >  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
-> >  2 files changed, 63 insertions(+)
-> >  create mode 100644 include/media/v4l2-connector.h
-> > 
-> > diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
-> > new file mode 100644
-> > index 000000000000..3a951c54f50e
-> > --- /dev/null
-> > +++ b/include/media/v4l2-connector.h
-> > @@ -0,0 +1,30 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * v4l2-connector.h
-> > + *
-> > + * V4L2 connector types.
-> > + *
-> > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> > + */
-> > +
-> > +#ifndef V4L2_CONNECTOR_H
-> > +#define V4L2_CONNECTOR_H
-> > +
-> > +#define V4L2_CONNECTOR_MAX_LABEL 41  
-> 
-> Where does 41 come from? It's a weird number...
-> 
-> > +
-> > +/**
-> > + * enum v4l2_connector_type - connector type
-> > + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration  
-> 
-> typo: connetor -> connector
-> 
-> > + * @V4L2_CON_COMPOSITE: analog composite connector
-> > + * @V4L2_CON_SVIDEO:    analog svideo connector
-> > + * @V4L2_CON_HDMI:      digital hdmi connector
-> > + */
-> > +enum v4l2_connector_type {
-> > +	V4L2_CON_UNKNOWN,
-> > +	V4L2_CON_COMPOSITE,
-> > +	V4L2_CON_SVIDEO,
-> > +	V4L2_CON_HDMI,
-> > +};
-> > +
-> > +#endif /* V4L2_CONNECTOR_H */
-> > +  
-> 
-> Is there a reason to create a new header for this? I think it is perfectly OK to
-> add this define + enum for v4l2-fwnode.h.
-> 
-> > diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
-> > index 6c07825e18b9..f4df1b95c5ef 100644
-> > --- a/include/media/v4l2-fwnode.h
-> > +++ b/include/media/v4l2-fwnode.h
-> > @@ -22,6 +22,7 @@
-> >  #include <linux/list.h>
-> >  #include <linux/types.h>
-> >  
-> > +#include <media/v4l2-connector.h>
-> >  #include <media/v4l2-mediabus.h>
-> >  #include <media/v4l2-subdev.h>
-> >  
-> > @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
-> >  	unsigned int remote_port;
-> >  };
-> >  
-> > +/**
-> > + * struct v4l2_fwnode_connector_analog - analog connector data structure
-> > + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
-> > + *                     if no restrictions are specified.
-> > + */
-> > +struct v4l2_fwnode_connector_analog {
-> > +	v4l2_std_id supported_tvnorms;
-> > +};
-> > +
-> > +/**
-> > + * struct v4l2_fwnode_connector - the connector data structure
-> > + * @remote_port: identifier of the remote endpoint port the connector connects
-> > + *		 to
-> > + * @remote_id: identifier of the remote endpoint the connector connects to
-> > + * @label: connetor label  
-> 
-> Same typo. It's probably a good idea to grep for this typo in this patch series :-)
-
-Except for the points that Hans underlined, patch looks ok to me.
-
-> 
-> > + * @type: connector type
-> > + * @connector: connector configuration
-> > + * @connector.analog: analog connector configuration
-> > + *                    &struct v4l2_fwnode_connector_analog
-> > + */
-> > +struct v4l2_fwnode_connector {
-> > +	unsigned int remote_port;
-> > +	unsigned int remote_id;
-> > +	char label[V4L2_CONNECTOR_MAX_LABEL];
-> > +	enum v4l2_connector_type type;
-> > +
-> > +	union {
-> > +		struct v4l2_fwnode_connector_analog analog;
-> > +		/* future connectors */
-> > +	} connector;
-> > +};
-> > +
-> >  /**
-> >   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
-> >   * @fwnode: pointer to the endpoint's fwnode handle
-> >   
-> 
-> Regards,
-> 
-> 	Hans
-
-
-
-Thanks,
-Mauro
+Reviewed-by: Rob Herring <robh@kernel.org>
