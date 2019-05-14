@@ -2,118 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E84AD1C3FA
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 09:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73B511C44B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 10:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbfENHif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 03:38:35 -0400
-Received: from mail-eopbgr40049.outbound.protection.outlook.com ([40.107.4.49]:57634
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726736AbfENHif (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 03:38:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xA/t+DwhmQgDigCyEDt8f8oU3FMvV/PpHa8ySzP5MSw=;
- b=AtxIr8BpUpboXtlR5Rb0lv6dsL+uY+SDt8UMANpD6Li0RDnTlDO/Ejnobh5EacvHE8yDH3Nu+oQNk3x1oObN3LLpiXReS17R5Gllkyzpysp8jitWtdCY27mkAHyGiYXvdELUp9Y3ww2lsD05sW7azA9EBAd0Q14R2k6WtGTavLM=
-Received: from VI1PR04MB5327.eurprd04.prod.outlook.com (20.177.52.16) by
- VI1PR04MB5392.eurprd04.prod.outlook.com (20.178.120.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Tue, 14 May 2019 07:38:31 +0000
-Received: from VI1PR04MB5327.eurprd04.prod.outlook.com
- ([fe80::4923:8ad8:62c1:3e61]) by VI1PR04MB5327.eurprd04.prod.outlook.com
- ([fe80::4923:8ad8:62c1:3e61%5]) with mapi id 15.20.1878.024; Tue, 14 May 2019
- 07:38:31 +0000
-From:   Peter Chen <peter.chen@nxp.com>
-To:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "balbi@kernel.org" <balbi@kernel.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>, Peter Chen <peter.chen@nxp.com>
-Subject: [PATCH v2 8/8] usb: chipidea: imx: "fsl,usbphy" phandle is not
- mandatory now
-Thread-Topic: [PATCH v2 8/8] usb: chipidea: imx: "fsl,usbphy" phandle is not
- mandatory now
-Thread-Index: AQHVCigGOp2NOmuYaEKjpdSq44w//w==
-Date:   Tue, 14 May 2019 07:38:30 +0000
-Message-ID: <20190514073529.29505-9-peter.chen@nxp.com>
-References: <20190514073529.29505-1-peter.chen@nxp.com>
-In-Reply-To: <20190514073529.29505-1-peter.chen@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.14.1
-x-clientproxiedby: HK0PR03CA0086.apcprd03.prod.outlook.com
- (2603:1096:203:72::26) To VI1PR04MB5327.eurprd04.prod.outlook.com
- (2603:10a6:803:60::16)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peter.chen@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cb695de6-55ab-4f7a-bd8e-08d6d83f290f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5392;
-x-ms-traffictypediagnostic: VI1PR04MB5392:
-x-microsoft-antispam-prvs: <VI1PR04MB5392D081D1B4BDCAE9F123F78B080@VI1PR04MB5392.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2657;
-x-forefront-prvs: 0037FD6480
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(396003)(136003)(376002)(346002)(39860400002)(189003)(199004)(386003)(6506007)(102836004)(7736002)(305945005)(6436002)(66946007)(26005)(316002)(6512007)(73956011)(6486002)(66446008)(64756008)(66556008)(66476007)(76176011)(11346002)(446003)(2906002)(476003)(2616005)(25786009)(4326008)(3846002)(53936002)(186003)(486006)(44832011)(86362001)(6116002)(71190400001)(71200400001)(50226002)(256004)(66066001)(2501003)(4744005)(1076003)(5660300002)(68736007)(8676002)(52116002)(99286004)(14454004)(36756003)(478600001)(8936002)(81156014)(81166006)(110136005)(54906003)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5392;H:VI1PR04MB5327.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: obRvkYZvuyudxmJ9iFH+DVDIeZe7vs2WF7lzSwvWz3gNCSZEu63AX4bFLu/iQmqbRUy6n4FXLZ3ZOsB4wOru7bG3LJKvp4Mrm0au+IblTGuWiJcnY7HV01PRyo8aQfzcWKJUC9lwHYDxwoW6rOUB/KH/6w5jWXuPaB2TDFRSpQgA4m2YR3e28lT0xlj2ZBCEs+SfeOjgSFSz4b3SsS0WDgxUrLW8PktxpOFf4AZJ0nANFCQULf7ZppfwfuCeSjdksqs1SOoFOrEIazYfh2Zd4LLubpuXZC3cXl49UZYEGHoSWJ1Q5zbs6sGO3fID5bUNAn2c23Aoev6bMKVTQanxorL1DUxyRii2GbRVEXh9KXhQrqM0n+df+DwS//nuruyHjJYKceMobRoX+HYFO39Bhd9TjENQz2oeMX1kbMsVRfg=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <72F16C411CA5A34AB2DD1235DDE3DE59@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726218AbfENIAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 04:00:09 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:40413 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726078AbfENIAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 04:00:09 -0400
+Received: by mail-pl1-f196.google.com with SMTP id g69so454325plb.7
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 01:00:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=qmImQs3/7c0LXwB0nTQAxTJYiC8MuoLgE8xIG8Tm5O4=;
+        b=biw/httZ7LNwyRVCMrvBT2zbF+p2oG91jQU+l2SyS/9sV5KK6LiWBnhzEhuwLQsBoW
+         X8kzrG4MVIMA8sfsgcFuhL385pC/79BeeXvxRCN8/3WRJxyaKcJAUH7hvjM/7tL4+JFh
+         GK9jh4I0S6os86Bkh7/5m6eA+2iQZkrxL7buqF1gkBTmVugmfIdWP/BFpPuOsgW3TMyU
+         luNODvSs8vFtWPlLRAsZcPAcvXY5Iu1kYBgWRodUoQOqi6YoJLlvDDerIpNaDzV3TXS4
+         sMndhpe2I2m7gj/QjLR6+OkGviiKoRZuet1JniT6L9yvAo7AEr9fU9zB1eyb9WD+IeB4
+         7wIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=qmImQs3/7c0LXwB0nTQAxTJYiC8MuoLgE8xIG8Tm5O4=;
+        b=HYsIBcyBdIlz73JbWFZfLY12KRlWtVBSSL49Ho9xaQZQsLbHJogC1vsUDAU09qtMQh
+         1ARpGAQKkGRZoPd8KNeDHDO19RX85FQwVlDtO6Uj9HkDWAdJONWYBWHZO17UBJBERbnp
+         Wb7epbpwbKOvCL+Fo+xt2zZ9VFc0JUsrd7m0CF6wJJ7dhuidYbsuVgtcw3WPKfFGP9wr
+         s/3eo6UoSqM8M1l32j92eYZ5cEWZWf6ImIkBr46r+q+Vm49h3ts9S7Y0jjerfNOfReNA
+         i0HMcP0k1UGQCL+J546ufvrs7SotMZUmuroGga49k5p8tVpcEfjxg1Otb0Wwoc/HFHxb
+         rHsw==
+X-Gm-Message-State: APjAAAWehYAdKOjBOTfdBO9QMtv/JaAEwSIhBqPCfYqGHnz+qjDobkZP
+        z8G3LjyOKMbnwoZxOwFVowTUKg==
+X-Google-Smtp-Source: APXvYqwQCipm0AHDaVoG3LWGzF8Wl22z+O5ja+MEZvJAfFUVv/ZE8Gvzk6Ws7guVWw+sDHr1xsmzPA==
+X-Received: by 2002:a17:902:f096:: with SMTP id go22mr37387931plb.49.1557820807750;
+        Tue, 14 May 2019 01:00:07 -0700 (PDT)
+Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
+        by smtp.gmail.com with ESMTPSA id j12sm19128638pff.148.2019.05.14.01.00.05
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 14 May 2019 01:00:05 -0700 (PDT)
+Date:   Tue, 14 May 2019 01:00:00 -0700
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     Knut Omang <knut.omang@oracle.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Theodore Ts'o <tytso@mit.edu>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "Luis R. Rodriguez" <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Shuah Khan <shuah@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Jeff Dike <jdike@addtoit.com>, Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190514080000.GA212892@google.com>
+References: <20190509214233.GA20877@mit.edu>
+ <b09ba170-229b-fde4-3e9a-e50d6ab4c1b5@deltatee.com>
+ <20190509233043.GC20877@mit.edu>
+ <8914afef-1e66-e6e3-f891-5855768d3018@deltatee.com>
+ <6d6e91ec-33d3-830b-4895-4d7a20ba7d45@gmail.com>
+ <a1b88d5add15d43de0468c32d9a2427629337abb.camel@oracle.com>
+ <CAKMK7uFd1xUx8u3xWLwifVSq4OEnMO4S-m0hESe68UzONXnMFg@mail.gmail.com>
+ <CAFd5g47Fvafwgh15JNfxSBRf5qqG2z+V+XGAB2cJtNnHFTiFfQ@mail.gmail.com>
+ <8abaf5f2-dd33-98d0-7b34-b57de7fe7c8b@gmail.com>
+ <a3362d96a6d95d852753739384ded814f5269aac.camel@oracle.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb695de6-55ab-4f7a-bd8e-08d6d83f290f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2019 07:38:31.2337
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5392
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a3362d96a6d95d852753739384ded814f5269aac.camel@oracle.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the chipidea common code support get the USB PHY phandle from
-"phys", the glue layer is not mandatory to get the "fsl,usbphy" phandle
-any more.
+On Sat, May 11, 2019 at 08:43:23AM +0200, Knut Omang wrote:
+> On Fri, 2019-05-10 at 14:59 -0700, Frank Rowand wrote:
+> > On 5/10/19 3:23 AM, Brendan Higgins wrote:
+> > >> On Fri, May 10, 2019 at 7:49 AM Knut Omang <knut.omang@oracle.com> wrote:
+> > >>>
+> > >>> On Thu, 2019-05-09 at 22:18 -0700, Frank Rowand wrote:
+> > >>>> On 5/9/19 4:40 PM, Logan Gunthorpe wrote:
+> > >>>>>
+> > >>>>>
+> > >>>>> On 2019-05-09 5:30 p.m., Theodore Ts'o wrote:
+> > >>>>>> On Thu, May 09, 2019 at 04:20:05PM -0600, Logan Gunthorpe wrote:
+> > >>>>>>>
+> > >>>>>>> The second item, arguably, does have significant overlap with kselftest.
+> > >>>>>>> Whether you are running short tests in a light weight UML environment or
+> > >>>>>>> higher level tests in an heavier VM the two could be using the same
+> > >>>>>>> framework for writing or defining in-kernel tests. It *may* also be valuable
+> > >>>>>>> for some people to be able to run all the UML tests in the heavy VM
+> > >>>>>>> environment along side other higher level tests.
+> > >>>>>>>
+> > >>>>>>> Looking at the selftests tree in the repo, we already have similar items to
+> > >>>>>>> what Kunit is adding as I described in point (2) above. kselftest_harness.h
+> > >>>>>>> contains macros like EXPECT_* and ASSERT_* with very similar intentions to
+> > >>>>>>> the new KUNIT_EXECPT_* and KUNIT_ASSERT_* macros.
+> > >>>>>>>
+> > >>>>>>> However, the number of users of this harness appears to be quite small. Most
+> > >>>>>>> of the code in the selftests tree seems to be a random mismash of scripts
+> > >>>>>>> and userspace code so it's not hard to see it as something completely
+> > >>>>>>> different from the new Kunit:
+> > >>>>>>>
+> > >>>>>>> $ git grep --files-with-matches kselftest_harness.h *
+> > >>>>>>
+> > >>>>>> To the extent that we can unify how tests are written, I agree that
+> > >>>>>> this would be a good thing.  However, you should note that
+> > >>>>>> kselftest_harness.h is currently assums that it will be included in
+> > >>>>>> userspace programs.  This is most obviously seen if you look closely
+> > >>>>>> at the functions defined in the header files which makes calls to
+> > >>>>>> fork(), abort() and fprintf().
+> > >>>>>
+> > >>>>> Ah, yes. I obviously did not dig deep enough. Using kunit for
+> > >>>>> in-kernel tests and kselftest_harness for userspace tests seems like
+> > >>>>> a sensible line to draw to me. Trying to unify kernel and userspace
+> > >>>>> here sounds like it could be difficult so it's probably not worth
+> > >>>>> forcing the issue unless someone wants to do some really fancy work
+> > >>>>> to get it done.
+> > >>>>>
+> > >>>>> Based on some of the other commenters, I was under the impression
+> > >>>>> that kselftests had in-kernel tests but I'm not sure where or if they
+> > >>>>> exist.
+> > >>>>
+> > >>>> YES, kselftest has in-kernel tests.  (Excuse the shouting...)
+> > >>>>
+> > >>>> Here is a likely list of them in the kernel source tree:
+> > >>>>
+> > >>>> $ grep module_init lib/test_*.c
+> > >>>> lib/test_bitfield.c:module_init(test_bitfields)
+> > >>>> lib/test_bitmap.c:module_init(test_bitmap_init);
+> > >>>> lib/test_bpf.c:module_init(test_bpf_init);
+> > >>>> lib/test_debug_virtual.c:module_init(test_debug_virtual_init);
+> > >>>> lib/test_firmware.c:module_init(test_firmware_init);
+> > >>>> lib/test_hash.c:module_init(test_hash_init);  /* Does everything */
+> > >>>> lib/test_hexdump.c:module_init(test_hexdump_init);
+> > >>>> lib/test_ida.c:module_init(ida_checks);
+> > >>>> lib/test_kasan.c:module_init(kmalloc_tests_init);
+> > >>>> lib/test_list_sort.c:module_init(list_sort_test);
+> > >>>> lib/test_memcat_p.c:module_init(test_memcat_p_init);
+> > >>>> lib/test_module.c:static int __init test_module_init(void)
+> > >>>> lib/test_module.c:module_init(test_module_init);
+> > >>>> lib/test_objagg.c:module_init(test_objagg_init);
+> > >>>> lib/test_overflow.c:static int __init test_module_init(void)
+> > >>>> lib/test_overflow.c:module_init(test_module_init);
+> > >>>> lib/test_parman.c:module_init(test_parman_init);
+> > >>>> lib/test_printf.c:module_init(test_printf_init);
+> > >>>> lib/test_rhashtable.c:module_init(test_rht_init);
+> > >>>> lib/test_siphash.c:module_init(siphash_test_init);
+> > >>>> lib/test_sort.c:module_init(test_sort_init);
+> > >>>> lib/test_stackinit.c:module_init(test_stackinit_init);
+> > >>>> lib/test_static_key_base.c:module_init(test_static_key_base_init);
+> > >>>> lib/test_static_keys.c:module_init(test_static_key_init);
+> > >>>> lib/test_string.c:module_init(string_selftest_init);
+> > >>>> lib/test_ubsan.c:module_init(test_ubsan_init);
+> > >>>> lib/test_user_copy.c:module_init(test_user_copy_init);
+> > >>>> lib/test_uuid.c:module_init(test_uuid_init);
+> > >>>> lib/test_vmalloc.c:module_init(vmalloc_test_init)
+> > >>>> lib/test_xarray.c:module_init(xarray_checks);
+> > >>>>
+> > >>>>
+> > >>>>> If they do exists, it seems like it would make sense to
+> > >>>>> convert those to kunit and have Kunit tests run-able in a VM or
+> > >>>>> baremetal instance.
+> > >>>>
+> > >>>> They already run in a VM.
+> > >>>>
+> > >>>> They already run on bare metal.
+> > >>>>
+> > >>>> They already run in UML.
+> > >>>>
+> > >>>> This is not to say that KUnit does not make sense.  But I'm still trying
+> > >>>> to get a better description of the KUnit features (and there are
+> > >>>> some).
+> > >>>
+> > >>> FYI, I have a master student who looks at converting some of these to KTF, such as
+> > for
+> > >>> instance the XArray tests, which lended themselves quite good to a semi-automated
+> > >>> conversion.
+> > >>>
+> > >>> The result is also a somewhat more compact code as well as the flexibility
+> > >>> provided by the Googletest executor and the KTF frameworks, such as running selected
+> > >>> tests, output formatting, debugging features etc.
+> > >>
+> > >> So is KTF already in upstream? Or is the plan to unify the KTF and
+> > > 
+> > > I am not certain about KTF's upstream plans, but I assume that Knut
+> > > would have CC'ed me on the thread if he had started working on it.
+> > > 
+> > >> Kunit in-kernel test harnesses? Because there's tons of these
+> > > 
+> > > No, no plan. Knut and I talked about this a good while ago and it
+> > > seemed that we had pretty fundamentally different approaches both in
+> > > terms of implementation and end goal. Combining them seemed pretty
+> > > infeasible, at least from a technical perspective. Anyway, I am sure
+> > > Knut would like to give him perspective on the matter and I don't want
+> > > to say too much without first giving him a chance to chime in on the
+> > > matter.
+> > > 
+> > > Nevertheless, I hope you don't see resolving this as a condition for
+> > > accepting this patchset. I had several rounds of RFC on KUnit, and no
+> > > one had previously brought this up.
+> > 
+> > I seem to recall a request in reply to the KUnit RFC email threads to
+> > work together.
+> 
+> You recall right.
+> I wanted us to work together to refine a common approach.
 
-Signed-off-by: Peter Chen <peter.chen@nxp.com>
----
- drivers/usb/chipidea/ci_hdrc_imx.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Are you talking about right after we met at LPC in 2017? We talked about
+working together, but I thought you didn't really see much value in what
+I was doing with KUnit.
 
-diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_h=
-drc_imx.c
-index a76708501236..b5abfe89190c 100644
---- a/drivers/usb/chipidea/ci_hdrc_imx.c
-+++ b/drivers/usb/chipidea/ci_hdrc_imx.c
-@@ -398,8 +398,9 @@ static int ci_hdrc_imx_probe(struct platform_device *pd=
-ev)
- 		ret =3D PTR_ERR(data->phy);
- 		/* Return -EINVAL if no usbphy is available */
- 		if (ret =3D=3D -ENODEV)
--			ret =3D -EINVAL;
--		goto err_clk;
-+			data->phy =3D NULL;
-+		else
-+			goto err_clk;
- 	}
-=20
- 	pdata.usb_phy =3D data->phy;
---=20
-2.14.1
+Or are you talking about our fist discussion on the RFC[1]. In this
+case, you seemed to assert that KTF's approach was fundamentally
+different and superior. You also didn't really seem interested in trying
+to merge KTF at the time. The discussion concluded with Luis suggesting
+that we should just keep working on both separately and let individual
+users decide.
 
+What changed since then?
+
+> I still think that's possible.
+
+I hope you aren't asserting that I have been unwilling to work with you.
+At the outset (before I sent out the RFC), I was willing to let you take
+the lead on things, but you didn't seem very interested in anything that
+I brought to the table and most importantly were not interested in
+sending out any code for discussion on the mailing lists.
+
+After I started the RFC, most of your comments were very high level and,
+at least to me, seemed like pretty fundamental philosophical differences
+in our approaches, which is fine! I think Luis recognized that and I
+think that is part of why he suggested for us to continue to work on
+them separately.
+
+I am not trying to be mean, but I don't really know what you expected me
+to do. I don't recall any specific changes you suggested me to make in
+my code (I think you only ever made a single comment on a thread on
+anything other than the cover letter.) And you never proposed any of
+your own code demonstrating an alternative way of doing things.
+
+Nevertheless, you are of course fully welcome to critique anything I
+have proposed, or to propose your own way of doing things, but we need
+to do so here on the mailing lists.
+
+> > However whether that impacts acceptance of this patch set is up to
+> > the maintainer and how she wants to resolve the potential collision
+> > of KUnit and KTF (if there is indeed any sort of collision).
+> 
+> I believe there's overlap and potential for unification and code sharing.
+> My concern is to make sure that that can happen without disrupting too 
+> many test users. I'd really like to get some more time to explore that.
+
+It's possible. Like I said before, our approaches are pretty
+fundamentally different. It sounds like there might be some overlap
+between our expectaion/assertion macros, but we probably cannot use the
+ones from Googletest without introducing C++ into the kernel which is a
+no-no.
+
+> It strikes me that the main difference in the two approaches 
+> lies in the way reporting is done by default. Since KUnit handles all the
+> reporting itself, while KTF relies on Googletest for that, a lot more code 
+> in KUnit revolves around that part, while with KTF we have focused more on 
+> features to enable writing powerful and effective tests.
+
+I have a lot more features on the way, but what is in this initial
+patchset are the absolutely core things needed to produce an MVP, and
+yes, most of that code revolves around reporting and the fundamental
+structure of tests.
+
+Developing cool features is great, but you need to start off on a basis
+that the community will accept. Sometimes you need to play around
+downstream a bit to develop your ideas, but you always want to get
+upstream feedback as early as possible; it's always possible that
+someone might propose something, or point out something that breaks a
+fundamental assumption that all your later features depend on.
+
+> The reporting part can possibly be made configurable: Reporting with printk or reporting 
+> via netlink to user space. In fact, as a KTF debugging option KTF already 
+> supports printk reporting which can be enabled via sysfs.
+
+Yep, I intentionally left an interface so printk (well actually
+vprintk_emit) can be swapped out with another mechanism.
+
+> If macros can have the same syntax, then there's 
+> likely features in KTF that KUnit users would benefit from too. 
+> But this of course have to be tried out.
+
+Cool. Looking forward to hearing about it.
+
+Cheers!
+
+[1] https://lkml.org/lkml/2018/11/24/170
+
+> > >> in-kernel unit tests already, and every merge we get more (Frank's
+> > >> list didn't even look into drivers or anywhere else, e.g. it's missing
+> > >> the locking self tests I worked on in the past), and a more structured
+> > >> approach would really be good.
+> > > 
+> > > Well, that's what I am trying to do. I hope you like it!
+> > > 
+> > > Cheers!
+> > > .
+> > > 
+> > 
+> 
