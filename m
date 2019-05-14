@@ -2,143 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F27E51CE33
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 19:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A7771CE3F
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 19:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726960AbfENRoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 13:44:54 -0400
-Received: from smtp-out.xnet.cz ([178.217.244.18]:44072 "EHLO smtp-out.xnet.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726229AbfENRox (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 13:44:53 -0400
-Received: from meh.true.cz (meh.true.cz [108.61.167.218])
-        (Authenticated sender: petr@true.cz)
-        by smtp-out.xnet.cz (Postfix) with ESMTPSA id 015434A99;
-        Tue, 14 May 2019 19:44:48 +0200 (CEST)
-Received: from localhost (meh.true.cz [local])
-        by meh.true.cz (OpenSMTPD) with ESMTPA id 07473968;
-        Tue, 14 May 2019 19:44:47 +0200 (CEST)
-Date:   Tue, 14 May 2019 19:44:47 +0200
-From:   Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Andy Duan <fugang.duan@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "john@phrozen.org" <john@phrozen.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alban Bedel <albeu@free.fr>, devicetree@vger.kernel.org
-Subject: Re: NVMEM address DT post processing [Was: Re: [PATCH net 0/3] add
- property "nvmem_macaddr_swap" to swap macaddr bytes order]
-Message-ID: <20190514174447.GE93050@meh.true.cz>
-Reply-To: Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
-References: <1557476567-17397-2-git-send-email-fugang.duan@nxp.com>
- <1557476567-17397-1-git-send-email-fugang.duan@nxp.com>
- <20190510112822.GT81826@meh.true.cz>
- <20190510113155.mvpuhe4yzxdaanei@flea>
- <20190511144444.GU81826@meh.true.cz>
- <547abcff-103a-13b8-f42a-c0bd1d910bbc@linaro.org>
- <20190513090700.GW81826@meh.true.cz>
- <8cee0086-7459-24c7-82f9-d559527df6e6@linaro.org>
- <20190513111612.GA21475@meh.true.cz>
- <0c6cb9d4-2da1-00be-b527-5891b8b030a8@linaro.org>
+        id S1726978AbfENRs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 13:48:27 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45468 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726180AbfENRs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 13:48:27 -0400
+Received: by mail-oi1-f196.google.com with SMTP id w144so7282824oie.12;
+        Tue, 14 May 2019 10:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NgsTwqqp4QTELA2VQObpORPn+MSwt+1NAVlS7rJZ1DM=;
+        b=ewXY1DQNTyonbjv+uTp/T9kh8QUq73Y/yojjn/k8dI5sHJfbFDieQe+sL4QVPoQuBN
+         1K4IVk3HQPF5Xur2KlUYUApzaPpx5qQ5pLt/9FMS/f10GwvcepdhPMtXWr+RwfnH3tZD
+         eEoQdSlKXwdPMc4Y1zR78QoDyYqWjxFJgAuEnUgkFn+9rhBEnwuUJwzdnGMbS+eDOFWN
+         zmYR9xiCmg9RcnXOAm/KBdm9mhUJ8lArU4QOmDepTfTPOCw16hBCppqu4vphtFDX8JqR
+         k+BGeZSFdkKzb2PwtxyGo+NUDXZIjNWnQs8o5+p7VrxZ9LJFLS9NQt5B76M5sKKZKewt
+         m1yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NgsTwqqp4QTELA2VQObpORPn+MSwt+1NAVlS7rJZ1DM=;
+        b=mEMFPOWMK1khrzhXB6UW5qp/7q4LSU+Ss5gunT+YCBNyJS8RLGnui/IeDlbTGg3EKS
+         5mwrYJ41YKveLi6cymv0xfwXwLAieeVypEmnTjLd9DWq+5NCiB6e0qEd5r4CylF3bgqh
+         kWurD7hEkmVovA9csGSnxvcYh0j5K8tXzSICxX3F8u6E9mJoco+7Gvs+yBGbk5w3p0ir
+         1WIhNg1nso4mOkQZK1nz+a75o37VGzbs2gnflPxGidQW/KFKGnvL6Ub+KBU91Pn3Eha7
+         oS8kGVlBo9gPqGZu3V2pMwIpCiABg5580bzZuIPAQ/ISeCWmbOZjhDiZ4mCHRN05bJiq
+         RKjA==
+X-Gm-Message-State: APjAAAWI8LvXw8xVQQueK881CezmcfTdWL37KOm+UhJItJZJ5D5wV8es
+        /mBwPP0XPZMoeAGd1lj5+CU++JM+x8Mz8luRsLQ=
+X-Google-Smtp-Source: APXvYqwIlBQE8thnJAT4s73XlbxV7ceTFnF4jCgHAss0Y402uCwVNeNTcBhJBKF3isskLjwDR6meyAZ4ouAt/kG0fR8=
+X-Received: by 2002:aca:240d:: with SMTP id n13mr3609989oic.145.1557856105979;
+ Tue, 14 May 2019 10:48:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0c6cb9d4-2da1-00be-b527-5891b8b030a8@linaro.org>
+References: <20190514155911.6C0AC68B05@newverein.lst.de> <20190514160241.9EAC768C7B@newverein.lst.de>
+In-Reply-To: <20190514160241.9EAC768C7B@newverein.lst.de>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Tue, 14 May 2019 10:48:40 -0700
+Message-ID: <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on Teres-I
+To:     Torsten Duwe <duwe@lst.de>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Archit Taneja <architt@codeaurora.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-14 16:13:22]:
-
-> On 13/05/2019 12:16, Petr Štetiar wrote:
-> > Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 11:06:48]:
-> > 
-> > > On 13/05/2019 10:07, Petr Štetiar wrote:
-> > > > Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 09:25:55]:
-> > > > 
-> > > > > My initial idea was to add compatible strings to the cell so that most of
-> > > > > the encoding information can be derived from it. For example if the encoding
-> > > > > representing in your example is pretty standard or vendor specific we could
-> > > > > just do with a simple compatible like below:
-> > > > 
-> > > > that vendor/compatible list would be quite long[1], there are hundreds of
-> > > 
-> > > You are right just vendor list could be very long, but I was hoping that the
-> > > post-processing would fall in some categories which can be used in
-> > > compatible string.
-> > > 
-> > > Irrespective of which we need to have some sort of compatible string to
-> > > enable nvmem core to know that there is some form of post processing to be
-> > > done on the cells!. Without which there is a danger of continuing to adding
-> > > new properties to the cell bindings which have no relation to each other.
-> > 
-> > makes sense, so something like this would be acceptable?
-> > 
-> >   eth1_addr: eth-mac-addr@18a {
-> >       /* or rather linux,nvmem-post-process ? */
-> >       compatible = "openwrt,nvmem-post-process";
-> 
-> I don't think this would be a correct compatible string to use here.
-> Before we decide on naming, I would like to understand bit more on what are
-> the other possible forms of storing mac address,
-> Here is what I found,
-> 
-> Type 1: Octets in ASCII without delimiters. (Swapped/non-Swapped)
-> Type 2: Octets in ASCII with delimiters like (":", ",", ".", "-"... so on)
-> (Swapped/non-Swapped)
-> Type 3: Is the one which stores mac address in Type1/2 but this has to be
-> incremented to be used on other instances of eth.
-> 
-> Did I miss anything?
-
-Type 4: Octets as bytes/u8, swapped/non-swapped
-
-Currently just type4-non-swapped is supported. Support for type4-swapped was
-goal of this patch series.
-
-I've simply tried to avoid using mac-address for the compatible as this
-provider could be reused by other potential nvmem consumers. The question is,
-how much abstracted it should be then.
-
-> My suggestion for type1 and type2 would be something like this, as long as
-> its okay with DT maintainers
-> 
-> eth1_addr: eth-mac-addr@18a {
-> 	compatible = "ascii-mac-address";
-> 	reg = <0x18a 2>, <0x192 2>, <0x196 2>, <0x200 2>, <0x304 2>, <0x306 2>;
-> 	swap-mac-address;
-> 	delimiter = ":";
-> };
-
-with this reg array, you don't need the delimiter property anymore, do you?
-
-> For type 3:
+On Tue, May 14, 2019 at 9:03 AM Torsten Duwe <duwe@lst.de> wrote:
 >
-> This sounds like very much vendor specific optimization thing which am not
-> 100% sure atm.  If dt maintainers are okay, may be we can add an increment
-> in the "ascii-mac-address" binding itself.
-> 
-> Do you think "increment-at " would ever change?
+> From: Icenowy Zheng <icenowy@aosc.io>
+>
+> TERES-I has an ANX6345 bridge connected to the RGB666 LCD output, and
+> the I2C controlling signals are connected to I2C0 bus.
+>
+> Enable it in the device tree.
+>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Torsten Duwe <duwe@suse.de>
+> ---
+>
+> originally: patchwork.kernel.org/patch/10646867
+>
+> Changed the reset polarity, which is active low,
+> according to the (terse) datasheet, Teres-I and pinebook schematics,
+> and the confusing parts of the linux driver code (not yet included here).
+> Active low -> no more confusion.
+>
+> ---
+>  .../boot/dts/allwinner/sun50i-a64-teres-i.dts | 40 +++++++++++++++++--
+>  1 file changed, 36 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> index c455b24dd079..bc1d0d6c0672 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> @@ -72,20 +72,38 @@
+>         };
+>  };
+>
+> +&de {
+> +       status = "okay";
+> +};
+> +
+>  &ehci1 {
+>         status = "okay";
+>  };
+>
+>
+> -/* The ANX6345 eDP-bridge is on i2c0. There is no linux (mainline)
+> - * driver for this chip at the moment, the bootloader initializes it.
+> - * However it can be accessed with the i2c-dev driver from user space.
+> - */
+>  &i2c0 {
+>         clock-frequency = <100000>;
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&i2c0_pins>;
+>         status = "okay";
+> +
+> +       anx6345: anx6345@38 {
+> +               compatible = "analogix,anx6345";
+> +               reg = <0x38>;
+> +               reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
+> +               dvdd25-supply = <&reg_dldo2>;
+> +               dvdd12-supply = <&reg_dldo3>;
+> +
+> +               port {
+> +                       anx6345_in: endpoint {
+> +                               remote-endpoint = <&tcon0_out_anx6345>;
+> +                       };
+> +               };
 
-Currently there's just one such real world use case in OpenWrt tree[1].
-Probably some vendor decided to increment 4th octet.
+It doesn't comply with bindings document. You need to add out endpoint
+as well, and to do so you need to add bindings for eDP connector first
+and then implement panel driver.
+See Rob's suggestions here: http://patchwork.ozlabs.org/patch/1042593/
 
-> This [1] is what I had suggested at the end, where in its possible to add
-> provider node with its own custom bindings. In above example nvmem_dev would
-> be a proper nvmem provider.
-
-Ok, thanks.
-
-1. https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/ath79/dts/ar9331_embeddedwireless_dorin.dts;h=43bec35fa2860fe4d52880ad24ff7c56f5060a0a;hb=HEAD#l109
-
--- ynezz
+> +       };
+> +};
+> +
+> +&mixer0 {
+> +       status = "okay";
+>  };
+>
+>  &mmc0 {
+> @@ -258,6 +276,20 @@
+>         vcc-hdmi-supply = <&reg_dldo1>;
+>  };
+>
+> +&tcon0 {
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&lcd_rgb666_pins>;
+> +
+> +       status = "okay";
+> +};
+> +
+> +&tcon0_out {
+> +       tcon0_out_anx6345: endpoint@0 {
+> +               reg = <0>;
+> +               remote-endpoint = <&anx6345_in>;
+> +       };
+> +};
+> +
+>  &uart0 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&uart0_pb_pins>;
