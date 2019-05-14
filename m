@@ -2,120 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B551E58F
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 01:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F9A1E5A6
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 01:41:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726296AbfENXZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 19:25:14 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:46252 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726339AbfENXZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 19:25:13 -0400
-Received: by mail-pg1-f196.google.com with SMTP id t187so308747pgb.13
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 16:25:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4Jy0W2AOE8X2G5DhaX0aRTRku/ISFojI4Jx+xxzmku0=;
-        b=MQyJklXnbo6c96JLKB7QksEJHkSpFBHsrJS476t6XQjCpcmGuNq+IaehI46rq7cwoT
-         5/83MudsTcPwLAbJQi+E/WmVnctS8ig6t3ILH9hcfgEVCDySDpa/WBKmvGuT+TW4+eQ/
-         S0mwkFbAjmxc5fsPkl2wQBiW7k+GUPaiQJ2GyWSoGs0PuW8MdgL5cUCvBhefg1tJKEs1
-         qTdCbxKYYLs1akDBll4MhMba7K4eHfr7lI87DpyzfvZwtlscx4zjYkzIKYzvyEhxi2i1
-         yOVJ7B7mk2BP2yJFkPIlDEqeXR3rL1YA08yj2q7YWAYVfzf7Fawslh7NINITcHYKajd3
-         6xGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4Jy0W2AOE8X2G5DhaX0aRTRku/ISFojI4Jx+xxzmku0=;
-        b=tihrm9fIQ9b3LsavMPhoZBh4hUfTEbwSB1RRgq2fT9Koy6UFtqkM9dxis8luvGu0zC
-         iW83U3JZH8mSyMvcIXtN42KRSFAhdGQGdQ+j7yxXTfMAO4jk/tIFslWvsEkOw2bQtggD
-         6A3j0oUKBN+jmV+b1kvSiahUkGNjhZnuPnlfa9eMBMgerG8dekOQ8H7yp0WwWr9fanxs
-         upj5Ja9Qi376ZZjNRpSXmgShPklEOBE5nNvwlk5sEpqt2VC51OgUjGt0DY4c1zl26b1n
-         +KQQ5rvCoD0ENBdL4oaBM6tUogt0HHlnqPhCioRJNrMw4c4HffKXHz+OzvmZAR0gjhNU
-         vxDQ==
-X-Gm-Message-State: APjAAAXoCt9S9uocj2Tg15fuHn7yWiB1K06nvkSAZaJXGe7G+Trofyys
-        wq9wI16nnDENRoDQnGcdqlfnYg==
-X-Google-Smtp-Source: APXvYqwFT36xTe7xIV4JHHBk0GWoU89u5XYlVl2IpbZ1GuRL1xHoENSFO5jHtT0PWOMWGfK71tbjWA==
-X-Received: by 2002:a62:6585:: with SMTP id z127mr4445645pfb.179.1557876312369;
-        Tue, 14 May 2019 16:25:12 -0700 (PDT)
-Received: from google.com ([2620:15c:2cd:2:d714:29b4:a56b:b23b])
-        by smtp.gmail.com with ESMTPSA id 2sm205811pgc.49.2019.05.14.16.25.10
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 14 May 2019 16:25:11 -0700 (PDT)
-Date:   Tue, 14 May 2019 16:25:06 -0700
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com
-Subject: Re: [PATCH v4 16/18] MAINTAINERS: add entry for KUnit the unit
- testing framework
-Message-ID: <20190514232506.GA16788@google.com>
-References: <20190514221711.248228-1-brendanhiggins@google.com>
- <20190514221711.248228-17-brendanhiggins@google.com>
+        id S1726381AbfENXlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 19:41:51 -0400
+Received: from casper.infradead.org ([85.118.1.10]:51344 "EHLO
+        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726246AbfENXlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 19:41:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=dA/46aOQVnKxKfZzCP2pKcdLD3rTbr0ua0bqkF5s0ww=; b=LLuoeXAUYa0p6YXWUEKeuqXe9M
+        F30mnclClxf8WsLlcSjMo0OrJUvqXnpxBsyVvXAzeTYt069oj8807ER3P4UsgbcI6tYQghAOd2T9E
+        bRhsQMFonDsX1gB4mXOeHZnOdbJUyt4Ebo3Lb7SkIeuF1DAv4QmvebzRHDx16Jwnb3sm+MUULuV/T
+        F73Y3khlCiLPiAa6SzLNRoZzV3mh4C0Ag1rcNCUANEBGDYRwSHbYkUMKsyClezsCrsZn5t6I9/O+g
+        MW8oivubgxvDeaOVBS6YSNc4ZU61igDni9v/cFPS+jESVLyFCe0vWH8k43Tvc4g+p17WIkaXFOAIk
+        TDQcwJww==;
+Received: from 179.186.99.85.dynamic.adsl.gvt.net.br ([179.186.99.85] helo=coco.lan)
+        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hQh3B-0007YZ-SS; Tue, 14 May 2019 23:41:38 +0000
+Date:   Tue, 14 May 2019 20:41:30 -0300
+From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+        kernel@pengutronix.de, linux-media@vger.kernel.org
+Subject: Re: [PATCH v6 00/13] TVP5150 new features
+Message-ID: <20190514204130.2c953d97@coco.lan>
+In-Reply-To: <20190514205824.ov6prllx2fp77fur@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+        <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
+        <20190514141824.5bd41389@coco.lan>
+        <20190514172028.693ad354@coco.lan>
+        <20190514205824.ov6prllx2fp77fur@pengutronix.de>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190514221711.248228-17-brendanhiggins@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 03:17:09PM -0700, Brendan Higgins wrote:
-> Add myself as maintainer of KUnit, the Linux kernel's unit testing
-> framework.
-> 
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> ---
->  MAINTAINERS | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2c2fce72e694f..8a91887c8d541 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8448,6 +8448,17 @@ S:	Maintained
->  F:	tools/testing/selftests/
->  F:	Documentation/dev-tools/kselftest*
->  
-> +KERNEL UNIT TESTING FRAMEWORK (KUnit)
-> +M:	Brendan Higgins <brendanhiggins@google.com>
-> +L:	linux-kselftest@vger.kernel.org
-> +L:	kunit-dev@googlegroups.com
-> +W:	https://google.github.io/kunit-docs/third_party/kernel/docs/
-> +S:	Maintained
-> +F:	Documentation/kunit/
+Em Tue, 14 May 2019 22:58:24 +0200
+Marco Felsch <m.felsch@pengutronix.de> escreveu:
 
-Dang it! I forgot to update the documentation path...
-
-Will fix in next revision.
-
-> +F:	include/kunit/
-> +F:	kunit/
-> +F:	tools/testing/kunit/
-> +
->  KERNEL USERMODE HELPER
->  M:	Luis Chamberlain <mcgrof@kernel.org>
->  L:	linux-kernel@vger.kernel.org
-> -- 
-> 2.21.0.1020.gf2820cf01a-goog
+> Hi Mauro,
 > 
+> On 19-05-14 17:20, Mauro Carvalho Chehab wrote:
+> > Em Tue, 14 May 2019 14:18:24 -0300
+> > Mauro Carvalho Chehab <mchehab@kernel.org> escreveu:
+> >   
+> > > Em Mon, 6 May 2019 07:47:13 +0200
+> > > Marco Felsch <m.felsch@pengutronix.de> escreveu:
+> > >   
+> > > > Hi Mauro,
+> > > > 
+> > > > I know you are busy but can you have a look on it?    
+> > > 
+> > > You should really trust on the sub-maintainers for such kind of
+> > > reviews :-)  
+> 
+> I trust all of them and many thanks to Hans and Jacopo for the reviews
+> :) I will integrate them this week. The point is that you are the
+> maintainer and in that case the one who picks the patches.
+
+Actually, Hans is the one that usually picks V4L2 patches after reviewing.
+I pull from his tree and from other media maintainers.
+
+> 
+> > > 
+> > > I'll take a look today.  
+> > 
+> > Done. Please notice that I didn't run any test here.  
+> 
+> Thanks for that will integrate it too and prepare a v7.
+
+Thanks!
+Mauro
+> 
+> Regards,
+>   Marco
+> 
+> >   
+> > >   
+> > > > 
+> > > > Regards,
+> > > >   Marco
+> > > > 
+> > > > On 19-04-15 14:44, Marco Felsch wrote:    
+> > > > > Hi,
+> > > > > 
+> > > > > many thanks to Hans and Jacopo for the feedack :) this v6 address the
+> > > > > comments both made on my v5 [1].
+> > > > > 
+> > > > > In short this is round fixes just some minor issues rather than major
+> > > > > ones so the diff to the v5 is really small. The changed patches contain
+> > > > > the changelog so I omit it here.
+> > > > > 
+> > > > > I've tested it on a custom hardware but I can't test the em28xx usb
+> > > > > use-case since I haven't such a device. So other testers are welcome :)
+> > > > > 
+> > > > > Looking forward for your feedack,
+> > > > > 
+> > > > > 	Marco
+> > > > > 
+> > > > > [1] https://patchwork.kernel.org/cover/10886903/
+> > > > > 
+> > > > > Javier Martinez Canillas (1):
+> > > > >   partial revert of "[media] tvp5150: add HW input connectors support"
+> > > > > 
+> > > > > Marco Felsch (11):
+> > > > >   dt-bindings: connector: analog: add tv norms property
+> > > > >   media: v4l2-fwnode: add v4l2_fwnode_connector
+> > > > >   media: v4l2-fwnode: add initial connector parsing support
+> > > > >   media: tvp5150: add input source selection of_graph support
+> > > > >   media: dt-bindings: tvp5150: Add input port connectors DT bindings
+> > > > >   media: tvp5150: add FORMAT_TRY support for get/set selection handlers
+> > > > >   media: tvp5150: add s_power callback
+> > > > >   media: dt-bindings: tvp5150: cleanup bindings stlye
+> > > > >   media: dt-bindings: tvp5150: add optional tvnorms documentation
+> > > > >   media: tvp5150: add support to limit tv norms on connector
+> > > > >   media: tvp5150: make debug output more readable
+> > > > > 
+> > > > > Michael Tretter (1):
+> > > > >   media: tvp5150: initialize subdev before parsing device tree
+> > > > > 
+> > > > >  .../display/connector/analog-tv-connector.txt |   4 +
+> > > > >  .../devicetree/bindings/media/i2c/tvp5150.txt | 125 +++-
+> > > > >  drivers/media/i2c/tvp5150.c                   | 672 +++++++++++++-----
+> > > > >  drivers/media/v4l2-core/v4l2-fwnode.c         | 111 +++
+> > > > >  include/dt-bindings/media/tvnorms.h           |  56 ++
+> > > > >  include/dt-bindings/media/tvp5150.h           |   2 -
+> > > > >  include/media/v4l2-connector.h                |  30 +
+> > > > >  include/media/v4l2-fwnode.h                   |  49 ++
+> > > > >  8 files changed, 859 insertions(+), 190 deletions(-)
+> > > > >  create mode 100644 include/dt-bindings/media/tvnorms.h
+> > > > >  create mode 100644 include/media/v4l2-connector.h
+> > > > > 
+> > > > > -- 
+> > > > > 2.20.1
+> > > > > 
+> > > > > 
+> > > > >       
+> > > >     
+> > > 
+> > > 
+> > > 
+> > > Thanks,
+> > > Mauro  
+> > 
+> > 
+> > 
+> > Thanks,
+> > Mauro
+> >   
+> 
+
+
+
+Thanks,
+Mauro
