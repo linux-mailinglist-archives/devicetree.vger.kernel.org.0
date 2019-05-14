@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 421711C5D0
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 11:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 064081C5D4
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 11:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726454AbfENJQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 05:16:18 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38494 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726109AbfENJQS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 05:16:18 -0400
-Received: by mail-wm1-f66.google.com with SMTP id f2so1992264wmj.3
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 02:16:17 -0700 (PDT)
+        id S1726084AbfENJQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 05:16:34 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:41793 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726122AbfENJQT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 05:16:19 -0400
+Received: by mail-wr1-f68.google.com with SMTP id d12so18279145wrm.8
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 02:16:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=JBB80kSucULdDTNJYI8igseB69Y8j2lI/J0kpwbCBx0=;
-        b=xc26U9TjeXoczIN1/bNqF4ptrZV+tHSHp/rkfz3AO0zPAh1SCwFrkmrm7aGk7SnG7B
-         7iAH6MWu3gW2vsM1AjElpXvZdW+mN6dOwLdvX/04LxZrZ+v8NDDSHRE6NGbc/9dEgbUa
-         RHA4YJeX+uVhj8XhpiD1jYoClkJ90D3WUwqn5ihjcUaBN+ZwDII5ivOsr/gI69NJi+dn
-         BstGRfIXuMwnOuKuSgHY+aDtkUjRjyC54qoAwYpswpZlPkZosX8x1gPZ3OsM8PTOStTo
-         IZhfto2a3OebGynN38qUnXV5NpekhN1+8Yb/gf0ugmPlBzWdJKpC2fdwCGXAcAnrZDdp
-         8C3A==
+        bh=kpOWVi+iL5/F7dUkDp6tEgosj6/Jy76yQKEnOVON8t8=;
+        b=rC6MRUoAeXcZYcOl6WnfStMHiWZp73qbyzqDaXJhKatvwz034xBBPVSbzBOeGvhVUo
+         0I7dXKeLRZjy2RMWxuKHIuwHB4Zmk0lwjL933lY/A4z1MFE0YkUCgvhLMKntIkLbVoQJ
+         EGhLsHDVR3k75PjeUUMf0aZW4lC3cdppsh3UkMoaWkloqxFdqoeNY2nixkE1TdKWLwZw
+         pV3LhspPkKbSoJ0rBs/mCPk+BnU3nw1+na3WcjIkJSvyqPH4skrYLCJUPUQ05c3EwHA7
+         kMVqJ9I81KGv9SBllGHrxT+DK6C/wpQJ80BaEfsI3N14WnPJydqvxtuL/ByvIlJCWV2l
+         CAww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=JBB80kSucULdDTNJYI8igseB69Y8j2lI/J0kpwbCBx0=;
-        b=mrE+3fdW9oi8KDgACYLtjgpV1POEa8WhQwaPtF2B1UadMixbl6SB3fTI+27HWFDD4b
-         DZwc8M137RSucDLJZN0tvYcCICC45zbz1P0pE4TMEasZnV+lHhmW7HtwKtBVDJOKNyEt
-         /AIyie/f6oEY7ZsrUbQWnyloNYyznsnqC5LdhZ9lPT7E9oxeptm4BB6tjS/qmE1EwcUp
-         zsdgVxGqLIpruZiDybhkSUh2zJy6GipI+iRNbMGgAOcbUTSEK9CdjHR1VJjjCzTLelM/
-         At8ItqzneHyPPR+tZxgCccwPG/GIIOBfkvZ2xCHdni//6WQLAJIscvwqOCCnhdd4mVjy
-         IF8w==
-X-Gm-Message-State: APjAAAV1/bjpxnd3QubMJ7ef94dlFnhJrIJfdTihAN1ocMjCUwSItlkg
-        zaaNar5mayObWrvoHwi1l+C7PQ==
-X-Google-Smtp-Source: APXvYqyT6ZXLbPx0I5XItLqQauM2l+Hgn/0MBaqV7V/d67845C9AKKxuWBgrvAKPlt8+JpfN6RL14Q==
-X-Received: by 2002:a1c:4145:: with SMTP id o66mr19288496wma.68.1557825376492;
-        Tue, 14 May 2019 02:16:16 -0700 (PDT)
+        bh=kpOWVi+iL5/F7dUkDp6tEgosj6/Jy76yQKEnOVON8t8=;
+        b=R76ni9tG+Uhn+xZBltZ23ucAk2z2/Pb4WUKIFOzyn2oNbre0/EINu2g/OmuGAcPHqk
+         2xEtw+3WLKk2RryKv38JekIHlXcp1KrQNw2jMZ8vYE27GBdCzEhlKKhlvOoS4IzHV2Xi
+         w+1+woT2xBJDasJfiaZyaZzyLHTlKTYeVurmG+o9VE72qELxSyFBdBdijHvb/ZbKFFQ2
+         XevkHWdeCUFdWKML4lhgGTtxuZVGb0/DonX+2RvgqC84u8NxagsQP3xcwb9a4T4WWVvL
+         i8FQFmafAmM0kn0WqFeoFITcenSAPSSWFE//jwmo/c6z5i55/PC5rjxj4jJk81h09xfh
+         Urkg==
+X-Gm-Message-State: APjAAAXLgkdpOcRJHXRjxClJDqimzwBsrKmPHaJ1/CgJR1cBAzqyOe4c
+        ySgTGqXFKvkdmeWV2sKC0LUnwg==
+X-Google-Smtp-Source: APXvYqwn4L/qAqXXygIl8woXOselHRrB8K6ajymSdfj0F4Co9xtqHutEwQGEp2tYMAKog9vShqA6bA==
+X-Received: by 2002:adf:ee01:: with SMTP id y1mr2274845wrn.51.1557825377292;
+        Tue, 14 May 2019 02:16:17 -0700 (PDT)
 Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id y40sm17737158wrd.96.2019.05.14.02.16.15
+        by smtp.googlemail.com with ESMTPSA id y40sm17737158wrd.96.2019.05.14.02.16.16
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 May 2019 02:16:15 -0700 (PDT)
+        Tue, 14 May 2019 02:16:16 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: meson: u200: add sd and emmc
-Date:   Tue, 14 May 2019 11:16:10 +0200
-Message-Id: <20190514091611.15278-3-jbrunet@baylibre.com>
+Subject: [PATCH 3/3] arm64: dts: meson: sei510: add sd and emmc
+Date:   Tue, 14 May 2019 11:16:11 +0200
+Message-Id: <20190514091611.15278-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190514091611.15278-1-jbrunet@baylibre.com>
 References: <20190514091611.15278-1-jbrunet@baylibre.com>
@@ -62,18 +62,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable eMMC and SDCard on the g12a u200 board
+Enable eMMC and SDCard on the g12a sei510 board
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-g12a-u200.dts      | 42 +++++++++++++++++++
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    | 42 +++++++++++++++++++
  1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-index 7cc3e2d6a4f1..972926121beb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-@@ -31,6 +31,11 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+index 61fb30047d7f..bb45e3577ff5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -45,6 +45,11 @@
  		};
  	};
  
@@ -85,8 +85,8 @@ index 7cc3e2d6a4f1..972926121beb 100644
  	hdmi-connector {
  		compatible = "hdmi-connector";
  		type = "a";
-@@ -164,6 +169,43 @@
- 	pinctrl-names = "default";
+@@ -161,6 +166,43 @@
+ 	vref-supply = <&vddio_ao1v8>;
  };
  
 +/* SD card */
@@ -122,13 +122,13 @@ index 7cc3e2d6a4f1..972926121beb 100644
 +	disable-wp;
 +
 +	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&emmc_1v8>;
 +};
 +
- &uart_AO {
+ &uart_A {
  	status = "okay";
- 	pinctrl-0 = <&uart_ao_a_pins>;
+ 	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
 -- 
 2.20.1
 
