@@ -2,87 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01E761D0C1
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA231D0D6
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 22:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726449AbfENUk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 16:40:59 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:42959 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726383AbfENUk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:40:57 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 13so100040pfw.9
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 13:40:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZOSFwWR6X/LU0mbE+B8y1nxNZ62szs9hXxH/kMhQXpA=;
-        b=aoywBB6xhd+TEBFb11h+NDf8gP2RwoXM/+RGmp2MQvrX60QVIW9ZQhwvi/GaaBIGlw
-         1nceIjiuGWGD/r7uWcZZeKIQEC4CtIbBD0N/NTiO75PwRgQjtX5bg08om2TWjLdA72ze
-         Wz2mH1m3xdWEN1Lbe3bPVQnp9zQXOgDS2B0wU=
+        id S1726143AbfENUtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 16:49:15 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:40817 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726134AbfENUtO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 16:49:14 -0400
+Received: by mail-oi1-f193.google.com with SMTP id r136so162224oie.7;
+        Tue, 14 May 2019 13:49:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZOSFwWR6X/LU0mbE+B8y1nxNZ62szs9hXxH/kMhQXpA=;
-        b=Cfyjhb2XbLtmiGKWQX6R6NCW+/RlpcS/qIl7Hass+RLRnD7JxdyDYtAFP7sGIZqqhy
-         ZCgV9YsJ0oVjxouzz95xxlE719XgeQz8i0iYH4zZC/p83MDDCR4PM+MDZMh32xe6vkiT
-         eWYjcf2Phe7bpDYYsuwY2akyAMl3ZvZyoeAK5qV6twSu7Vvg9ivhVRl4d6kpiTgd0qJF
-         bCyljQwcguhE8tguKxEQB93TRCVhyl6yD88QQ6pryKRe1iGjVG9fyOAEitf4aJSc/2eO
-         FMxXYJhuoHoUAY6HfMCYz/XWDetFTt8Vg65HJTEcI02TSHqijo0XSWptSPkrKRN+be0T
-         T0MA==
-X-Gm-Message-State: APjAAAVP65BG7Twx+C0U+SpCQYl59YFpSEHc0W+1P6OM/6bxTh0i7mQw
-        hsDzNlAmtbWFLNtfo8Hp3Y76Dg==
-X-Google-Smtp-Source: APXvYqykohH7nNYtYXxpXQh6fvYURqf0hwvpGbFY1xMuuDEjZn5yie249qDHWz/KB5Zp3rAJCwnVfA==
-X-Received: by 2002:a62:2fc6:: with SMTP id v189mr5247034pfv.136.1557866457316;
-        Tue, 14 May 2019 13:40:57 -0700 (PDT)
-Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id p2sm2137pfi.73.2019.05.14.13.40.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 14 May 2019 13:40:56 -0700 (PDT)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v2 3/3] of/fdt: Mark initial_boot_params as __ro_after_init
-Date:   Tue, 14 May 2019 13:40:53 -0700
-Message-Id: <20190514204053.124122-4-swboyd@chromium.org>
-X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
-In-Reply-To: <20190514204053.124122-1-swboyd@chromium.org>
-References: <20190514204053.124122-1-swboyd@chromium.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6T3Ip6O04LTKLd5qWK9Ww230fOKy3msDw8KUYfWmvPM=;
+        b=iUbAM7QVkpgpoEs5CcDQYrjDuiU7qevvs5/5MiHV9I6wywOPNPwdFu9LzxlkKW2M8a
+         ZgU8/4PLCwQ10jbE/4cyahAHMdDFF1mm6H48hg6EGX0HqmyJk2MWiVhJq6++sJqgv1Mn
+         E6w6XsUtbQVG1iGWAtefVo1HFGhAmYhaUiqamv1/ldA4VWHnkIfIRtcdZ5qYrSsLtiyV
+         jLAH1/PxmxFxEuK4zNVR01Ozc63cL5qzVRDe1cagk+WLel+ENBkAoxFzFEbqEFH4KDrW
+         gwcQIvZyqZQSfbnLB8xqvgIYDtbCWq62vOF2bdugMrhyvB1fOKKcQjEATUlIMx9hI6tP
+         fBig==
+X-Gm-Message-State: APjAAAWV+CFoExpfjbut8SMr3UC783FXAEPyJ2Wlm3m7MyGk1TNq9LO5
+        II8qCj5DfxnSo+lLTgRAZg==
+X-Google-Smtp-Source: APXvYqw9r62Myv1ZK5vENIP2ad0ZFC9OJdOjoMmtmV5w3i5Ay9PLbIuaxAG0cmS6uL2JJgGZGo7oTQ==
+X-Received: by 2002:aca:7255:: with SMTP id p82mr372346oic.119.1557866953685;
+        Tue, 14 May 2019 13:49:13 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o124sm1524501oig.23.2019.05.14.13.49.12
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 13:49:12 -0700 (PDT)
+Date:   Tue, 14 May 2019 15:49:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        linux-rockchip@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>, mka@chromium.org,
+        Sean Paul <seanpaul@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 1/5] dt-bindings: drm/bridge/synopsys: dw-hdmi: Add
+ "unwedge" for ddc bus
+Message-ID: <20190514204912.GA25548@bogus>
+References: <20190502225336.206885-1-dianders@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190502225336.206885-1-dianders@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The FDT pointer, i.e. initial_boot_params, shouldn't be changed after
-init. It's only set by boot code and then the only user of the FDT is
-the raw sysfs reading API. Mark this pointer with __ro_after_init so
-that the pointer can't be changed after init.
+On Thu,  2 May 2019 15:53:32 -0700, Douglas Anderson wrote:
+> In certain situations it was seen that we could wedge up the DDC bus
+> on the HDMI adapter on rk3288.  The only way to unwedge was to mux one
+> of the pins over to GPIO output-driven-low temporarily and then
+> quickly mux back.  Full details can be found in the patch
+> ("drm/bridge/synopsys: dw-hdmi: Add "unwedge" for ddc bus").
+> 
+> Since unwedge requires remuxing the pins, we first need to add to the
+> bindings so that we can specify what state the pins should be in for
+> unwedging.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> 
+>  .../bindings/display/rockchip/dw_hdmi-rockchip.txt         | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Cc: Hsin-Yi Wang <hsinyi@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- drivers/of/fdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 93414b89735f..f131a1b8588b 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -516,7 +516,7 @@ EXPORT_SYMBOL_GPL(of_fdt_unflatten_tree);
- int __initdata dt_root_addr_cells;
- int __initdata dt_root_size_cells;
- 
--void *initial_boot_params;
-+void *initial_boot_params __ro_after_init;
- 
- #ifdef CONFIG_OF_EARLY_FLATTREE
- 
--- 
-Sent by a computer through tubes
-
+Reviewed-by: Rob Herring <robh@kernel.org>
