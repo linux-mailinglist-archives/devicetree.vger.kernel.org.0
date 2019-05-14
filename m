@@ -2,108 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FBDC1C560
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 10:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF2D1C569
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 10:53:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726238AbfENIu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 04:50:29 -0400
-Received: from michel.telenet-ops.be ([195.130.137.88]:54392 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726078AbfENIu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 04:50:29 -0400
+        id S1726449AbfENIxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 04:53:23 -0400
+Received: from andre.telenet-ops.be ([195.130.132.53]:37214 "EHLO
+        andre.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725916AbfENIxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 04:53:23 -0400
 Received: from ramsan ([84.194.111.163])
-        by michel.telenet-ops.be with bizsmtp
-        id C8qT2000H3XaVaC068qT9H; Tue, 14 May 2019 10:50:27 +0200
+        by andre.telenet-ops.be with bizsmtp
+        id C8tJ2000i3XaVaC018tJqu; Tue, 14 May 2019 10:53:20 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan with esmtp (Exim 4.90_1)
         (envelope-from <geert@linux-m68k.org>)
-        id 1hQT8j-0000Cv-Ko; Tue, 14 May 2019 10:50:25 +0200
+        id 1hQTBW-0000EN-Kf; Tue, 14 May 2019 10:53:18 +0200
 Received: from geert by rox.of.borg with local (Exim 4.90_1)
         (envelope-from <geert@linux-m68k.org>)
-        id 1hQT8j-0004aR-IQ; Tue, 14 May 2019 10:50:25 +0200
+        id 1hQTBW-0004fH-J4; Tue, 14 May 2019 10:53:18 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: property-units: Sanitize unit naming
-Date:   Tue, 14 May 2019 10:50:24 +0200
-Message-Id: <20190514085024.17587-1-geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: arm-boards: Update pointer to ARM CPU bindings
+Date:   Tue, 14 May 2019 10:53:16 +0200
+Message-Id: <20190514085316.17883-1-geert+renesas@glider.be>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make the naming of units consistent with common practices:
-  - Do not capitalize the first character of units ("Celsius" is
-    special, as it is not the unit name, but a reference to its
-    proposer),
-  - Do not use plural for units,
-  - Do not abbreviate "ampere",
-  - Concatenate prefixes and units (no spaces or hyphens),
-  - Separate units by spaces not hyphens,
-  - "milli" applies to "degree", not to "Celsius".
+The ARM CPU DT bindings were converted from plain text to YAML, but not
+all referrers were updated.
 
+Fixes: 672951cbd1b70a9e ("dt-bindings: arm: Convert cpu binding to json-schema")
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../devicetree/bindings/property-units.txt    | 34 +++++++++----------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+ Documentation/devicetree/bindings/arm/arm-boards | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/property-units.txt b/Documentation/devicetree/bindings/property-units.txt
-index bfd33734facaba73..e9b8360b32880f12 100644
---- a/Documentation/devicetree/bindings/property-units.txt
-+++ b/Documentation/devicetree/bindings/property-units.txt
-@@ -12,32 +12,32 @@ unit prefixes.
- Time/Frequency
- ----------------------------------------
- -mhz		: megahertz
---hz		: Hertz (preferred)
---sec		: seconds
---ms		: milliseconds
---us		: microseconds
---ns		: nanoseconds
-+-hz		: hertz (preferred)
-+-sec		: second
-+-ms		: millisecond
-+-us		: microsecond
-+-ns		: nanosecond
+diff --git a/Documentation/devicetree/bindings/arm/arm-boards b/Documentation/devicetree/bindings/arm/arm-boards
+index b6e810c2781a4ec8..ed51c1f4657c0b26 100644
+--- a/Documentation/devicetree/bindings/arm/arm-boards
++++ b/Documentation/devicetree/bindings/arm/arm-boards
+@@ -199,7 +199,7 @@ The description for the board must include:
+      A detailed description of the bindings used for "psci" nodes is present
+      in the psci.txt file.
+    - a "cpus" node describing the available cores and their associated
+-     "enable-method"s. For more details see cpus.txt file.
++     "enable-method"s. For more details see cpus.yaml file.
  
- Distance
- ----------------------------------------
---mm		: millimeters
-+-mm		: millimeter
+ Example:
  
- Electricity
- ----------------------------------------
---microamp	: micro amps
---microamp-hours : micro amp-hours
---ohms		: Ohms
---micro-ohms	: micro Ohms
---microwatt-hours: micro Watt-hours
---microvolt	: micro volts
---picofarads	: picofarads
---femtofarads	: femtofarads
-+-microamp	: microampere
-+-microamp-hours : microampere hour
-+-ohms		: ohm
-+-micro-ohms	: microohm
-+-microwatt-hours: microwatt hour
-+-microvolt	: microvolt
-+-picofarads	: picofarad
-+-femtofarads	: femtofarad
- 
- Temperature
- ----------------------------------------
---celsius	: Degrees Celsius
---millicelsius	: Degreee milli-Celsius
-+-celsius	: degree Celsius
-+-millicelsius	: millidegree Celsius
- 
- Pressure
- ----------------------------------------
---kpascal	: kiloPascal
-+-kpascal	: kilopascal
 -- 
 2.17.1
 
