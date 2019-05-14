@@ -2,148 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2B41CCCD
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 18:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD9A1CCF1
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2019 18:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726025AbfENQTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 12:19:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49988 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725901AbfENQTw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 May 2019 12:19:52 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7A97320675;
-        Tue, 14 May 2019 16:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1557850790;
-        bh=qzOY5O00XWu9ltpfoa6ZpPJ9ETaX0rvyq0x+5T3QeMY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LDdzJZZR0zPqXRSts4eVzoabG9u/04+N8xqmoyKWmbf9bfLaGGtz9FglclolDmYnc
-         VZhBS8SikBU3vD2X6G3UwTY7OpwuBaiBqtgnyNhSEMA8zvk1JmOurOmilkncQnUGQp
-         2XB0b0giGzlXj8r7kDAJSWMdrI7q6UUb+SC/5rR4=
-Received: by mail-qt1-f173.google.com with SMTP id o7so19707724qtp.4;
-        Tue, 14 May 2019 09:19:50 -0700 (PDT)
-X-Gm-Message-State: APjAAAUheto7O8hskH/P/q72BYGdzGPbcUXAFpX7BCYCP83MQfxm7TT0
-        zJPUMLgN9DgjB3MTtyqRfnksOVwyLbuHOsQ/8A==
-X-Google-Smtp-Source: APXvYqy/kSHQj4PRwOSVHrR1mu6BOErL78nzm6ufh9vWL2uISjxCvFbdDDvbMa+HOHIkfJYRZbIMBn1G+SPJCs366Qo=
-X-Received: by 2002:ac8:610f:: with SMTP id a15mr29576466qtm.257.1557850789752;
- Tue, 14 May 2019 09:19:49 -0700 (PDT)
+        id S1726084AbfENQ3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 12:29:05 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:35338 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725916AbfENQ3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 12:29:05 -0400
+Received: by mail-pl1-f193.google.com with SMTP id g5so8524013plt.2;
+        Tue, 14 May 2019 09:29:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Yj7g1zX5VtWrwoZOWHxMk02AJw3vsxkG/HQMAspuC98=;
+        b=i9AO/zddYqJtxhgFcoe8F5Na4bI9O43hctdsNe4kI3e3NDv++1q5htouXKw5MnRGxC
+         GoGvfIHxsjQzjQNqM6tEjb78jquLfxl8kCUw7MBZV7/vv8+vTBHnoPqqZL6COLZFzq/p
+         s6V+2+Bsit437yDuw7qHdOWZGXBcSZep+APajcggOS2RtZWhpHsLDVIwEO31wrhxguol
+         x8prFK5E06I1cpLnjRjx4hupLjZk8dcEW30Dry3ddJhnxdVeGT/F/8u2oX03X7bV3f1S
+         5Lm8rSUF3Xa1bIAlOFVfdxSi7BmruPqdtizbC8IvS0sA1KHUP3EZE5jHQ8xGr2p/yv9T
+         4tfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Yj7g1zX5VtWrwoZOWHxMk02AJw3vsxkG/HQMAspuC98=;
+        b=P6QK06fiUcDXMIq8oXfuYhbkRHVAc5xEhy6jttVlsZfJDLnBo8CfRMy3pqCnHM7Jmg
+         gmav6D5KMuzYxJcH7nkrGupHq9Gi4rBe6DW4+cvmBiet1M/746FNovnfJ8cti9AJI58Y
+         mowtbIvrF1yLh9shrCPovo11QlWBc2zBDFbALxelcGwGGGib60lcgGfEafeH8nHU9hW1
+         gOS409MOFX8BXxcFHy7Uy3iKCR7Nz0RI2gSo1VmFDhm0fVJonhpPAdy50D6egvfs2dI6
+         84TTRX0fJxQcdkWzuwxjQ2s6nVvO3GAx9WqUzvQVSdJJ5tzsce/mXUDGJJu6XsXBEDjh
+         4aoQ==
+X-Gm-Message-State: APjAAAXSVVxFpnklMuiayWsRG1mCcin9ur8XT/571RZUtpAM7VJGKrS6
+        /4KOMy+E+cQG3SYtCmXNPKI=
+X-Google-Smtp-Source: APXvYqxeRPzrXEVpgMuRnDMSw53AxeQEtchI8snOYaBDxa/Ydc0vjRoHLmr7zl3AcQ3L5HFPxGcSNw==
+X-Received: by 2002:a17:902:7002:: with SMTP id y2mr39331457plk.75.1557851344624;
+        Tue, 14 May 2019 09:29:04 -0700 (PDT)
+Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
+        by smtp.googlemail.com with ESMTPSA id t7sm29751782pfa.42.2019.05.14.09.28.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 May 2019 09:29:03 -0700 (PDT)
+Subject: Re: [PATCH V3 1/8] dt-bindings: memory: tegra: Add external memory
+ controller binding for Tegra210
+To:     Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190510084719.18902-1-josephl@nvidia.com>
+ <20190510084719.18902-2-josephl@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <fd68f906-79b4-6eda-b1fa-abaf3b4c6a12@gmail.com>
+Date:   Tue, 14 May 2019 19:28:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190417104511.21514-1-frederic.chen@mediatek.com>
- <20190417104511.21514-2-frederic.chen@mediatek.com> <20190430011506.GA8514@bogus>
- <1557238925.11663.21.camel@mtksdccf07>
-In-Reply-To: <1557238925.11663.21.camel@mtksdccf07>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 14 May 2019 11:19:38 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKGW9WqyNgqKD0MxsqxYHKZ+VNV5A2p+neGqwmKmiODOQ@mail.gmail.com>
-Message-ID: <CAL_JsqKGW9WqyNgqKD0MxsqxYHKZ+VNV5A2p+neGqwmKmiODOQ@mail.gmail.com>
-Subject: Re: [RFC PATCH V1 1/6] dt-bindings: mt8183: Add binding for DIP
- shared memory
-To:     Frederic Chen <frederic.chen@mediatek.com>
-Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        yuzhao@chromium.org, zwisler@chromium.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        holmes.chiou@mediatek.com,
-        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
-        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org, shik@chromium.org,
-        suleiman@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190510084719.18902-2-josephl@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 7, 2019 at 9:22 AM Frederic Chen <frederic.chen@mediatek.com> wrote:
->
-> Dear Rob,
->
-> I appreciate your comments.
->
-> On Mon, 2019-04-29 at 20:15 -0500, Rob Herring wrote:
-> > On Wed, Apr 17, 2019 at 06:45:06PM +0800, Frederic Chen wrote:
-> > > This patch adds the binding for describing the shared memory
-> > > used to exchange configuration and tuning data between the
-> > > co-processor and Digital Image Processing (DIP) unit of the
-> > > camera ISP system on Mediatek SoCs.
-> > >
-> > > Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-> > > ---
-> > >  .../mediatek,reserve-memory-dip_smem.txt      | 45 +++++++++++++++++++
-> > >  1 file changed, 45 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> > > new file mode 100644
-> > > index 000000000000..64c001b476b9
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-dip_smem.txt
-> > > @@ -0,0 +1,45 @@
-> > > +Mediatek DIP Shared Memory binding
-> > > +
-> > > +This binding describes the shared memory, which serves the purpose of
-> > > +describing the shared memory region used to exchange data between Digital
-> > > +Image Processing (DIP) and co-processor in Mediatek SoCs.
-> > > +
-> > > +The co-processor doesn't have the iommu so we need to use the physical
-> > > +address to access the shared buffer in the firmware.
-> > > +
-> > > +The Digital Image Processing (DIP) can access memory through mt8183 IOMMU so
-> > > +it can use dma address to access the memory region.
-> > > +(See iommu/mediatek,iommu.txt for the detailed description of Mediatek IOMMU)
-> > > +
-> > > +
-> > > +Required properties:
-> > > +
-> > > +- compatible: must be "mediatek,reserve-memory-dip_smem"
-> >
-> > Don't use '_'.
->
-> I got it. I will use "mediatek,reserve-memory-dip-smem" instead in next
-> version of the patch
->
-> >
-> > > +
-> > > +- reg: required for static allocation (see reserved-memory.txt for
-> > > +  the detailed usage)
-> > > +
-> > > +- alloc-range: required for dynamic allocation. The range must
-> > > +  between 0x00000400 and 0x100000000 due to the co-processer's
-> > > +  addressing limitation
-> >
-> > Generally, you should pick either static or dynamic allocation for a
-> > given binding. Static if there's some address restriction or sharing,
-> > dynamic if not.
-> >
-> > Sounds like static in this case.
-> >
->
-> DIP reserved memory has address restriction so it is the static case. I
-> would like to remove the dynamic allocation part and modify the
-> description as following:
->
-> - reg: required for DIP. The range must be between 0x00000400 and
->   0x100000000 due to the co-processor's addressing limitation.
->   The size must be 26MB. Please see reserved-memory.txt for the
->   detailed usage.
+10.05.2019 11:47, Joseph Lo пишет:
+> Add the binding document for the external memory controller (EMC) which
+> communicates with external LPDDR4 devices. It includes the bindings of
+> the EMC node and a sub-node of EMC table which under the reserved memory
+> node. The EMC table contains the data of the rates that EMC supported.
+> 
+> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+> ---
+> v3:
+> - drop the bindings of EMC table
+> - add memory-region and reserved-memory node for EMC table
+> ---
+>  .../nvidia,tegra210-emc.txt                   | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+> new file mode 100644
+> index 000000000000..d65aeef2329c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+> @@ -0,0 +1,55 @@
+> +NVIDIA Tegra210 SoC EMC (external memory controller)
+> +====================================================
+> +
+> +Device node
+> +===========
+> +Required properties :
+> +- compatible : should be "nvidia,tegra210-emc".
+> +- reg : physical base address and length of the controller's registers.
+> +- clocks : phandles of the possible source clocks.
+> +- clock-names : names of the possible source clocks.
+> +- interrupts : Should contain the EMC general interrupt.
+> +- memory-region : phandle to the reserved memory (see
+> +  Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt) which
+> +  contains a sub-node of EMC table.
+> +- nvidia,memory-controller : phandle of the memory controller.
+> +
+> +Reserved memory node
+> +====================
+> +Should contain a sub-node of EMC table with required properties:
+> +- compatible : should be "nvidia,tegra210-emc-table".
+> +- reg : physical address and length of the location of EMC table.
+> +
+> +Example:
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		emc_table: emc-table@8be00000 {
+> +			compatible = "nvidia,tegra210-emc-table";
+> +			reg = <0x0 0x8be00000 0x0 0x10000>;
+> +			status = "okay";
+> +		};
 
-You can use dma-ranges to define addressing translations and
-restrictions like this. That will in turn set the device's dma-mask to
-ensure allocations are done in a region that is addressable.
+You essentially moved the v1 binding into obscure and undocumented blob,
+ignoring previous review comments. This is a very odd move... please
+explain what is going on.
 
-But if you have a known, fixed size, then a carve out with
-reserved-memory is fine.
-
-Rob
+-- 
+Dmitry
