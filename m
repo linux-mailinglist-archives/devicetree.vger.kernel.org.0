@@ -2,129 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0D31F724
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 17:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AEDC1F7BA
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 17:39:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726583AbfEOPJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 11:09:25 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:38484 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726572AbfEOPJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 11:09:24 -0400
-Received: by mail-oi1-f194.google.com with SMTP id u199so19153oie.5;
-        Wed, 15 May 2019 08:09:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FzdAY9eNLFH6q18HeEB4S9VM37pJLDSHQjylPsT3TbY=;
-        b=MjJ+LF+8pBMZJmrf/PUQGYzx6jkAIvZXVOaDkwDUy9j8LjnckyRKVimNt3qRpZ7QXs
-         odt09gcUESirFG4LKGWD8wrs44NwvpmYA2lxf+ihQ7feGSSECN829NXz97xTZk1YqWok
-         35/lGba1azoqDEabJk9bWsU7/bkhsjO9nkRYDhC0oT9sbfj+MNtAHSqEKLAJhOF3S6Rs
-         R+rUWZGYA0dVjK3uQ9i1dVZfPXcCRFzlBj3LZ2YdHmMedSaa4kOtX9v0QZ8SKRLyhu7Z
-         yvA1skM2zKLs6y+yPy3x/+CSXqODR2VRcyLDYU2/3JhylYVvTFrpq49h0oyAJEL7ENkN
-         jPtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FzdAY9eNLFH6q18HeEB4S9VM37pJLDSHQjylPsT3TbY=;
-        b=rSQxCXZ7QavzWRWgkflSEk87bo14SgVlvLzbfqgB0pNmbsdXtnlvhhbQgYBNTv/Sx0
-         F3DP0/7XyPKgyLZ9jxa4H0TcQMuJERs7jSaiSZbCCOSkHBQAE235B2kqm3BhN8hcjdWb
-         /U3QQZTKCMJ3y5G9vLUZZipX2uBSm/rrZdtFDFBk/UHhu0PBamd8FJHBJ7KYCSPoFzzv
-         GTBo0lI9fnFkMt90Z9S6W/JtKkKTMyYHqy8e9ovsn8lpFOyqzrBOZp6Rnrn1ezgxMCnc
-         raqC01dqPPqVhr/jMSln0jl/1wx6hYe3vVg+OIsoJbWdKJ/447hz8OvLBzEnrHu7GGoE
-         WZJA==
-X-Gm-Message-State: APjAAAUhgiW2+wuUBRqtwYfSgvynFpNBA/dUtRIQI3n9ZbMaPH29aoDB
-        6EIgkk6YovpedHN99KIZpDrtsi5S14Ahqr4qKZ0=
-X-Google-Smtp-Source: APXvYqx2op3tX9A4P1hZwzw0eFhbk5CfYg0Tbl3ieHQEQJwA11MZzaowFPPO1ZfSsj+7d5NaD8TUBJpiL4dsKvwOW9o=
-X-Received: by 2002:aca:240d:: with SMTP id n13mr6735433oic.145.1557932964018;
- Wed, 15 May 2019 08:09:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190514155911.6C0AC68B05@newverein.lst.de> <20190514160241.9EAC768C7B@newverein.lst.de>
- <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com> <20190515093141.41016b11@blackhole.lan>
-In-Reply-To: <20190515093141.41016b11@blackhole.lan>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Wed, 15 May 2019 08:08:57 -0700
-Message-ID: <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on Teres-I
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726911AbfEOPjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 11:39:01 -0400
+Received: from pbmsgap01.intersil.com ([192.157.179.201]:47694 "EHLO
+        pbmsgap01.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726335AbfEOPjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 11:39:01 -0400
+Received: from pps.filterd (pbmsgap01.intersil.com [127.0.0.1])
+        by pbmsgap01.intersil.com (8.16.0.27/8.16.0.27) with SMTP id x4FFDbIG024625;
+        Wed, 15 May 2019 11:21:04 -0400
+Received: from pbmxdp03.intersil.corp (pbmxdp03.pb.intersil.com [132.158.200.224])
+        by pbmsgap01.intersil.com with ESMTP id 2sdswykhcu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Wed, 15 May 2019 11:21:04 -0400
+Received: from pbmxdp01.intersil.corp (132.158.200.222) by
+ pbmxdp03.intersil.corp (132.158.200.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.1531.3; Wed, 15 May 2019 11:21:03 -0400
+Received: from localhost.localdomain (132.158.202.108) by
+ pbmxdp01.intersil.corp (132.158.200.222) with Microsoft SMTP Server id
+ 15.1.1531.3 via Frontend Transport; Wed, 15 May 2019 11:21:02 -0400
+From:   Chris Brandt <chris.brandt@renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Harald Geyer <harald@ccbib.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        "Chris Brandt" <chris.brandt@renesas.com>
+Subject: [PATCH v4 00/13] usb: Add host and device support for RZ/A2
+Date:   Wed, 15 May 2019 10:20:35 -0500
+Message-ID: <20190515152048.42363-1-chris.brandt@renesas.com>
+X-Mailer: git-send-email 2.16.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-15_10:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1810050000 definitions=main-1905150094
+X-Proofpoint-Spam-Reason: mlx
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 15, 2019 at 12:32 AM Torsten Duwe <duwe@lst.de> wrote:
->
-> On Tue, 14 May 2019 10:48:40 -0700
-> Vasily Khoruzhick <anarsoul@gmail.com> wrote:
->
-> > > +       anx6345: anx6345@38 {
-> > > +               compatible = "analogix,anx6345";
-> > > +               reg = <0x38>;
-> > > +               reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24
-> > > */
-> > > +               dvdd25-supply = <&reg_dldo2>;
-> > > +               dvdd12-supply = <&reg_dldo3>;
-> > > +
-> > > +               port {
-> > > +                       anx6345_in: endpoint {
-> > > +                               remote-endpoint =
-> > > <&tcon0_out_anx6345>;
-> > > +                       };
-> > > +               };
-> >
-> > It doesn't comply with bindings document. You need to add out endpoint
->
-> It does comply with the bindings. The ports are all optional.
-> As far as DT is concerned, the signal path ends here. This is also the
-> final component _required_ to get the Linux kernel DRI up and running.
 
-Ugh, then bindings should be fixed. It's not optional. It may work if
-bootloader enables power for you, but it won't if you disable display
-driver in u-boot.
-
-> > as well, and to do so you need to add bindings for eDP connector first
-> > and then implement panel driver.
-> > See Rob's suggestions here: http://patchwork.ozlabs.org/patch/1042593/
->
-> Well, one *could* extend the hardware description down to the actual
-> panel if necessary, but on the Teres-I it is not. I assume the panel
-> they ship provides proper EDID to the anx6345, because the display
-> works fine here with this DT.
-
-I guess you're testing it with older version of anx6345. Newer version
-that supports power management [1] needs startup delay for panel.
-Another issue that you're seeing is that backlight is not disabled on
-DPMS events. All in all, you need to describe panel in dts.
-
-[1] https://github.com/anarsoul/linux-2.6/commit/2fbf9c242419c8bda698e8331a02d4312143ae2c
+NOTE 1:
+This series requires the follow patch from Shimoda-san.
+  [PATCH v2] usb: renesas_usbhs: Use specific struct instead of USBHS_TYPE_* enums
 
 
-> Do I understand this correctly that the (3 different?) pinebook panels
-> are not that easy to handle? I try to include the pinebook wherever
-> possible, just because it's so similar, but here I'm a bit lost, so I
-> had to omit these parts.
->
-> Should I also have added a Tested-by: ? ;-)
+NOTE 2:
+The first 2 patches from the V3 series (add USB_X1 clock) were removed from this
+V4 series because Simon already applied them.
 
-I don't have Teres, so I haven't tested these.
 
->
->         Torsten
+
+For the most part, the RZ/A2 has the same USB 2.0 host and device
+HW as the R-Car Gen3, so we can reuse a lot of the code.
+
+However, there are a couple extra register bits, and the CFIFO
+register 8-bit access works a little different.
+
+There is a dedicated DMAC for the RZ/A2 USB Device HW, but we
+have not been able to reliably get that working yet, so device
+operation is pio only at the moment.
+
+On the RZ/A2M eval board, both USB channels can be used as either
+host or device. But, it's not set up for otg (ie, there are jumpers
+and separate connectors). Therefore, below is an example of what it
+would look like to enable USB channel 0 as a device instead of a host.
+
+&usb2_phy0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb0_pins>;
+	dr_mode = "peripheral";
+	status = "okay";
+};
+
+&usbhs0 {
+	status = "okay";
+};
+
+Chris Brandt (13):
+  phy: renesas: rcar-gen3-usb2: detect usb_x1 clock
+  dt-bindings: rcar-gen3-phy-usb2: Document use of usb_x1
+  phy: renesas: rcar-gen3-usb2: Check dr_mode when not using OTG
+  dt-bindings: rcar-gen3-phy-usb2: Document dr_mode
+  dt-bindings: rcar-gen3-phy-usb2: Add r7s9210 support
+  usb: renesas_usbhs: move flags to param
+  usb: renesas_usbhs: add support for CNEN bit
+  usb: renesas_usbhs: support byte addressable CFIFO
+  usb: renesas_usbhs: Add support for RZ/A2
+  dt-bindings: usb: renesas_usbhs: Add support for r7s9210
+  ARM: dts: r7s9210: Add USB Host support
+  ARM: dts: r7s9210: Add USB Device support
+  ARM: dts: rza2mevb: Add USB Host support
+
+ .../devicetree/bindings/phy/rcar-gen3-phy-usb2.txt | 19 +++--
+ .../devicetree/bindings/usb/renesas_usbhs.txt      |  2 +
+ arch/arm/boot/dts/r7s9210-rza2mevb.dts             | 36 +++++++++
+ arch/arm/boot/dts/r7s9210.dtsi                     | 90 ++++++++++++++++++++++
+ drivers/phy/renesas/phy-rcar-gen3-usb2.c           | 26 +++++++
+ drivers/usb/renesas_usbhs/Makefile                 |  2 +-
+ drivers/usb/renesas_usbhs/common.c                 | 44 +++++++----
+ drivers/usb/renesas_usbhs/common.h                 |  3 +-
+ drivers/usb/renesas_usbhs/fifo.c                   |  9 ++-
+ drivers/usb/renesas_usbhs/rza.h                    |  1 +
+ drivers/usb/renesas_usbhs/rza2.c                   | 72 +++++++++++++++++
+ include/linux/usb/renesas_usbhs.h                  |  4 +
+ 12 files changed, 282 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/usb/renesas_usbhs/rza2.c
+
+-- 
+2.16.1
+
