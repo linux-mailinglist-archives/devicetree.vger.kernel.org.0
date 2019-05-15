@@ -2,90 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7CC1F51E
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3F81F556
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727443AbfEONMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 09:12:02 -0400
-Received: from mail-eopbgr1400099.outbound.protection.outlook.com ([40.107.140.99]:38448
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727388AbfEONMC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 09:12:02 -0400
+        id S1727250AbfEONSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 09:18:13 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:34273 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727156AbfEONRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:17:46 -0400
+Received: by mail-wm1-f67.google.com with SMTP id j187so4696768wma.1
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WtG8GOaTYegz1xU/k9K+m0hSrCUOC3OUBU8nTwz+ms0=;
- b=U5UHRFmFo84aMbq5uTgtraBRS5HHvFfmxhpjdb/HntYr9K0lRhSoAWgDTim5kFRxvEvVQpqg3DUEP7nXZ2y8xpGllEmK+pRGXS4QVHKlInwqE9mfJzbivd58FNHKHRGbXYYDFr3Sak6DDpkVD5X3QruQWZ/W53U5S021/TaCVU4=
-Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com (52.133.166.145) by
- TYXPR01MB1885.jpnprd01.prod.outlook.com (52.133.169.17) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Wed, 15 May 2019 13:11:57 +0000
-Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com
- ([fe80::c989:cb4d:b41e:2045]) by TYXPR01MB1568.jpnprd01.prod.outlook.com
- ([fe80::c989:cb4d:b41e:2045%7]) with mapi id 15.20.1900.010; Wed, 15 May 2019
- 13:11:57 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 12/15] dt-bindings: usb: renesas_usbhs: Add support for
- r7s9210
-Thread-Topic: [PATCH v3 12/15] dt-bindings: usb: renesas_usbhs: Add support
- for r7s9210
-Thread-Index: AQHVCmV0XPRlldcJ5E2fJ9gGZbjhzqZr086AgABWmmA=
-Date:   Wed, 15 May 2019 13:11:57 +0000
-Message-ID: <TYXPR01MB1568502702CA9A059F2BC4998A090@TYXPR01MB1568.jpnprd01.prod.outlook.com>
-References: <20190514145605.19112-1-chris.brandt@renesas.com>
- <20190514145605.19112-13-chris.brandt@renesas.com>
- <CAMuHMdVKAB0CtqgEgyeoeFoFrg5sFdm03F_PDHztq224G_ugXg@mail.gmail.com>
-In-Reply-To: <CAMuHMdVKAB0CtqgEgyeoeFoFrg5sFdm03F_PDHztq224G_ugXg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9fb4fe39-d7b4-483c-8758-08d6d936e8f4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TYXPR01MB1885;
-x-ms-traffictypediagnostic: TYXPR01MB1885:
-x-microsoft-antispam-prvs: <TYXPR01MB1885AE2EB143CDB052FB80478A090@TYXPR01MB1885.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-forefront-prvs: 0038DE95A2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(376002)(346002)(136003)(396003)(39860400002)(199004)(189003)(305945005)(7696005)(7736002)(6506007)(76176011)(71190400001)(54906003)(186003)(26005)(71200400001)(229853002)(74316002)(6436002)(6916009)(6246003)(102836004)(7416002)(66446008)(33656002)(64756008)(66556008)(66476007)(558084003)(53936002)(99286004)(66946007)(73956011)(76116006)(52536014)(86362001)(55016002)(9686003)(476003)(11346002)(446003)(8936002)(316002)(4326008)(25786009)(81156014)(81166006)(8676002)(68736007)(256004)(72206003)(5660300002)(14454004)(478600001)(2906002)(486006)(3846002)(66066001)(6116002)(138113003);DIR:OUT;SFP:1102;SCL:1;SRVR:TYXPR01MB1885;H:TYXPR01MB1568.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: zihXO+rcPqccES4H9k3+UdeUhuoVupmL0KTSrSjuUSF+ne8Z36gCnOOjvaxKHi7TeO3MNpUTC+g4yc4ew/YtDUK5XsqIYXes7tIg2f//P0tKesnC8d8LCWHo//vnFoaTI2sbkH9cxI8WPtf8+u4laPRGmoB9hSAutW3b6Jecs2Cany8v8vGP1594AHxTpc2qmItgKFk+wjP4JhPz6ig39uYRBY4sPOekUUYC7sAfctx11V5l+cvuhGHOdS4+LPZV/Epp88Sz5t2HhPvTgVT8vsn+gD7/scbzzziDzJCDaLpDiC+arDDYrkUzDuhpm/L83fGdcxUS8jM2QsKted+mgdreg6b6ud69Lu+CaSsVW1GuEJGSLHKLnXlQiDO1aWPzlxvr3CGXGEBI9spgwU5Kq/O/vx9xbviHWQbCnOJD6CM=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IBIWbSPpc7j2EgIiZbpjBgwSCzEoaoZA6IHHGeyqm0k=;
+        b=MHYcqecCUI/xmN0B4JbfnX7hMUbiXLCSV1mF6rl8tZ2E/n8Dqwl7RFPMQb7BsxJ6Xr
+         kXLbgqR52m/LoSaW6Wmuv+5/eAqFgWZF1kMc/Rd4879C6I95vL8neWipC4GRZqAVr3Pj
+         zYUjZ/FA2xA7QVXfrgynvf+6HEClV+jOcEuav7LiVpqlKa+HNg2QYp5mSpeYRYzqB6lo
+         yuR09cbQFJx5C6/7VhsCQ34CfnrVtre6Nc5j/ou1EZdnJfE9mmq7obbZ0chFH6D/rSp1
+         81DX849ZUfUsN9Q+u0yj2LzxxfQCcM83++Pl3VJOh1S1BaUxAGliBMtJo+5pFLceJ/fR
+         ZMHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IBIWbSPpc7j2EgIiZbpjBgwSCzEoaoZA6IHHGeyqm0k=;
+        b=MozxzJpaxukNnlHexd5YcZb0oMQEEUT/OdrYpd+dqfQvEBcbWbxQ2imdFh8f+bDAS3
+         0+jaUf0BITO3OsJxvqSdkDdyLXUZAvwCoN0TqCyGNALbZuHOSrF8o7fZQ9gwknQTZM/K
+         15beSmpqEvk1y5h8sUXB6gby9CYPf2trRzhdxmq0DPBuRSlnA8Zd6DkeBxuUC4jFLr5j
+         8QHA8pdgpMFd2uzmfySzCq+dC8pFys04dhJlIYuSSDREAXEPsErdFmIiPh85Yp351TCc
+         VNkfO3sFRDa8HrDqGLAS1c51GtR4IaNukX+T8Qfq9BqDoRSq4e8MKJOVxTPh7icp7XBm
+         p/Dg==
+X-Gm-Message-State: APjAAAVPpOmNO3NvcUOCJvNxoWuKDzwmUHbEFiALyi5PNN2bps2xjVRm
+        xQJp+pfUbzyTH7/n3g/ex52pJA==
+X-Google-Smtp-Source: APXvYqztV9ij0IVX8p1xv1SzUN1LERXsJ9a/GZbNdSp+jRn1j2plcZZjBsrB44VGoOhLMEphD5XOIQ==
+X-Received: by 2002:a1c:80c3:: with SMTP id b186mr21232039wmd.43.1557926264158;
+        Wed, 15 May 2019 06:17:44 -0700 (PDT)
+Received: from localhost.localdomain (aputeaux-684-1-11-31.w90-86.abo.wanadoo.fr. [90.86.214.31])
+        by smtp.gmail.com with ESMTPSA id f10sm3268583wrg.24.2019.05.15.06.17.43
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 15 May 2019 06:17:43 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH v3 0/5] mt6392: Add support for MediaTek MT6392 PMIC
+Date:   Wed, 15 May 2019 15:17:36 +0200
+Message-Id: <20190515131741.17294-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fb4fe39-d7b4-483c-8758-08d6d936e8f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 13:11:57.7855
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1885
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNCk9uIFdlZCwgTWF5IDE1LCAyMDE5LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
-dGU6DQo+ID4gKyAgICAgICAtICJyZW5lc2FzLHVzYmhzLXI3czkyMTAiIGZvciByN3M3MjEwMCAo
-UlovQTIpIGNvbXBhdGlibGUgZGV2aWNlDQo+IA0KPiBmb3IgcjdzOTIxMCAuLi4NCg0KDQpUaGFu
-ayB5b3UhDQoNCg0KQ2hyaXMNCg==
+This patch series aims at bringing support for the MediaTek MT6392 PMIC. This
+PMIC is used on the MT8516 Pumpkin board.
+
+This patch series adds support for the following features:
+ * PMIC keys
+ * regulator
+ * RTC
+
+Fabien Parent (5):
+  dt-bindings: regulator: add support for MT6392
+  regulator: mt6392: Add support for MT6392 regulator
+  dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
+  mfd: mt6397: Add support for MT6392 pmic
+  arm64: dts: mt6392: Add PMIC mt6392 dtsi
+
+ .../devicetree/bindings/mfd/mt6397.txt        |  12 +-
+ .../bindings/regulator/mt6392-regulator.txt   | 220 ++++++++
+ arch/arm64/boot/dts/mediatek/mt6392.dtsi      | 208 ++++++++
+ drivers/mfd/mt6397-core.c                     |  55 ++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/mt6392-regulator.c          | 490 ++++++++++++++++++
+ include/linux/mfd/mt6392/core.h               |  42 ++
+ include/linux/mfd/mt6392/registers.h          | 487 +++++++++++++++++
+ include/linux/regulator/mt6392-regulator.h    |  40 ++
+ 10 files changed, 1562 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mt6392-regulator.txt
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
+ create mode 100644 drivers/regulator/mt6392-regulator.c
+ create mode 100644 include/linux/mfd/mt6392/core.h
+ create mode 100644 include/linux/mfd/mt6392/registers.h
+ create mode 100644 include/linux/regulator/mt6392-regulator.h
+
+-- 
+2.20.1
+
