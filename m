@@ -2,106 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E1E1F9ED
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 20:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D34A31F9F8
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 20:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727180AbfEOS0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 14:26:04 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:46585 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726360AbfEOS0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 14:26:04 -0400
-Received: by mail-qk1-f195.google.com with SMTP id a132so573110qkb.13
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:26:03 -0700 (PDT)
+        id S1726475AbfEOSa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 14:30:28 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:39014 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726360AbfEOSa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 14:30:27 -0400
+Received: by mail-ua1-f66.google.com with SMTP id 79so241815uav.6
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:30:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=poorly.run; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=jFj8dh23g2idvSds2JYPP7kaIEok3DfVq0OP/6qEkjo=;
-        b=BmVVmLPDeF0Gh1VuUSf55t4gi1/UnkJVNXU6pn3dvbTIbUr3GxfpIKRwrHu4flb3CG
-         HTKZuXRN+BVDiyYtSqmjpKwFx3Bh00cbTfGG6bOcV9qX9VXnAILuUU7Y1v/0ih30no4w
-         8gkbCH9MFy4Y544krG1rk/QqQmJeKFeOLst+j5q9VQIiRN27xsFJ3otCgPv3RlMQEUIZ
-         tR1VE2Wrv4wzsnARmTsh7skwOd7YDlTtR5DagCMfo4NlY4yXpzS/Dz30DtgVtj6H4Oec
-         JHh86xeV6tAR1Pj/JSY/zUj4zCxOeWJdikDAe/3NxIhDClKJf0UhbFttr3IzSE4bHCBi
-         kSaA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=x1GsAM8bhdilQ74FwqzJHpjAIW1mRUZnatlHpEToBDY=;
+        b=QxhYWoPZ+1PlCeInJqiH5EdtHpzqJylxhCJeEIF6Jo3c2n26Xg9zJvIAjyi21FRb1E
+         shfVV0sjHTkIk+XT0LuVrMEHJjAIGk1WL7tVbohxb8T16rinc4xS01nUc4/e6KTE5MTA
+         PeT9fUG9BtVkJC9XKXysA0q0GuB+i28ib1IbA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jFj8dh23g2idvSds2JYPP7kaIEok3DfVq0OP/6qEkjo=;
-        b=GFmztTlRLcfEfaYvquG144Rh8UzCBODkusaEFer2kch7Mi1cq4YDOzOK34fr0qpWfp
-         MXifKVRn4tPj7PeOtFNdrie66E0KcyC3hAcFtnsDz0kpxn9FbUxIhmL2OZEQTuLjISDP
-         zbENl251wGoTH7SZEjFTP7NcZ1qNyRxFxANaIAxwcgjdykrQ6tju8e9S3mMs2xdih8Pa
-         E0M9g5lCE9W6khWE8FZT/GeiajsgKiLD98pPH2rSPDq2IxMJ/+GMmykLR1PIq3MTuURO
-         zUcy7gLd/WgP6sop+7BRzDkvGiQcQx644MekxnBvQqIdX8xM8GMat5BSct+AdLBQ4oFq
-         cTYA==
-X-Gm-Message-State: APjAAAWClnHGm6xw8auXeJA5uUdKa+VXPAXp2XueeESfb4jUJynQGzUe
-        sX1etjcF6Bzr6jKwm/1++q2AnQ==
-X-Google-Smtp-Source: APXvYqx5lu/OaoclV0DLdEX2WJ5Nw8BWbL4Pl6MEnRYhtodr67RdCqsBRDyDKxOX/wdl9ukhI9O9Wg==
-X-Received: by 2002:a05:620a:3:: with SMTP id j3mr17330454qki.95.1557944763567;
-        Wed, 15 May 2019 11:26:03 -0700 (PDT)
-Received: from localhost ([2620:0:1013:11:89c6:2139:5435:371d])
-        by smtp.gmail.com with ESMTPSA id h17sm1372773qkk.13.2019.05.15.11.26.02
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 May 2019 11:26:03 -0700 (PDT)
-Date:   Wed, 15 May 2019 14:26:02 -0400
-From:   Sean Paul <sean@poorly.run>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>, mka@chromium.org,
-        Sean Paul <seanpaul@chromium.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 5/5] ARM: dts: rockchip: Add HDMI i2c unwedging for
- rk3288-veyron
-Message-ID: <20190515182602.GY17077@art_vandelay>
-References: <20190502225336.206885-1-dianders@chromium.org>
- <20190502225336.206885-5-dianders@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=x1GsAM8bhdilQ74FwqzJHpjAIW1mRUZnatlHpEToBDY=;
+        b=LFVGqPCzToydbwj7O2Erc39nWRgRyaX5oVW/34BSQIJ2Cu+SHNAPq/oIRkmywLbX9J
+         33kDi6WOG6pOVd+ofEqG/i9WML+kJha7XymmqLE6DUqtt5iJxEiIyRMpjN8eoxcdbokx
+         zpykvUX7o1UVHV/blkV5vSOePbEHrxquYtv3/g01K+1+SZSgAJJ35lyxt/TtxxoEMhcK
+         PiKZkcW8iy64iDld0mumvop6OM1RNG3c5MV1rZyExSZ6Ir5CQ3+q8dc9Tan0OWzjT80q
+         mIO/VbvS2elQfZD7jhg03LpS1zh1qGLUAu9x/l4/42NdlIylOZX+Z3tk2yofr7121c6u
+         H8yQ==
+X-Gm-Message-State: APjAAAXNKMD03HQ8GqkLNUumGsPQxvl+SJ+nXvUolc10E5Gqhd5T6AvT
+        gOhJ5HN0Fk2Y72dO3CQ26n/LSFhlER0=
+X-Google-Smtp-Source: APXvYqySuH36f/AeMhLa/iC3rVTCeDSGKC1umcV8wElsg5fHJHnDdr/eRsn1qIEhSkMxwopAJTN0Ug==
+X-Received: by 2002:ab0:44a4:: with SMTP id n33mr20998637uan.17.1557945026263;
+        Wed, 15 May 2019 11:30:26 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id x14sm7098501uae.16.2019.05.15.11.30.24
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 May 2019 11:30:24 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id o5so591434vsq.4
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:30:24 -0700 (PDT)
+X-Received: by 2002:a67:79ca:: with SMTP id u193mr20058967vsc.20.1557945024176;
+ Wed, 15 May 2019 11:30:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190502225336.206885-5-dianders@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190515153127.24626-1-mka@chromium.org> <20190515153127.24626-2-mka@chromium.org>
+In-Reply-To: <20190515153127.24626-2-mka@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 15 May 2019 11:30:12 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XgoG5hiT=vAhNtUF4iVj1-Lmj7S5tvk86ehxB1uUZyxw@mail.gmail.com>
+Message-ID: <CAD=FV=XgoG5hiT=vAhNtUF4iVj1-Lmj7S5tvk86ehxB1uUZyxw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: raise GPU trip point temperature for speedy
+ to 80 degC
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 02, 2019 at 03:53:36PM -0700, Douglas Anderson wrote:
-> Veyron uses the builtin i2c controller that's part of dw-hdmi.  Hook
-> up the unwedging feature.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Hi,
 
-Reviewed-by: Sean Paul <sean@poorly.run>
+On Wed, May 15, 2019 at 8:31 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 
+> Raise the temperature of the GPU thermal trip point for speedy
+> to 80=C2=B0C. This is the value used by the downstream Chrome OS 3.14
+> kernel, the 'official' kernel for speedy.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
-> 
->  arch/arm/boot/dts/rk3288-veyron.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-> index e1bee663d2c5..340b276b6333 100644
-> --- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-> +++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-> @@ -163,8 +163,9 @@
+>  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/rk3288-veyron-speedy.dts b/arch/arm/boot/d=
+ts/rk3288-veyron-speedy.dts
+> index 2ac8748a3a0c..394a9648faee 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron-speedy.dts
+> +++ b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
+> @@ -64,6 +64,10 @@
+>         temperature =3D <70000>;
 >  };
->  
->  &hdmi {
-> -	pinctrl-names = "default";
-> +	pinctrl-names = "default", "unwedge";
->  	pinctrl-0 = <&hdmi_ddc>;
-> +	pinctrl-1 = <&hdmi_ddc_unwedge>;
->  	status = "okay";
->  };
->  
-> -- 
-> 2.21.0.1020.gf2820cf01a-goog
-> 
+>
+> +&gpu_alert0 {
+> +       temperature =3D <80000>;
+> +};
+> +
+>  &edp {
 
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+Similar comments to patch set #1 about sort ordering.
+
+...I'll also notice that if we do end up setting the "critical" to 100
+C for most of veyron then I guess we'll have to switch it back to 90 C
+here for speedy to match downstream?  Maybe that's an argument for
+doing it in this patchset so we don't forget?  I'm somewhat amazed
+that downstream has only 10 C between "alert" and 'critical" for GPU
+for speedy, but I guess it's OK?
+
+-Doug
