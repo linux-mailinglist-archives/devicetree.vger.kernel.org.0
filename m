@@ -2,516 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DFEDC1F904
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 18:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 415AB1F93F
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 19:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726755AbfEOQ5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 12:57:53 -0400
-Received: from plaes.org ([188.166.43.21]:56020 "EHLO plaes.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726681AbfEOQ5x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 12:57:53 -0400
-X-Greylist: delayed 373 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 May 2019 12:57:50 EDT
-Received: from plaes.org (localhost [127.0.0.1])
-        by plaes.org (Postfix) with ESMTPSA id 34932403C4;
-        Wed, 15 May 2019 16:51:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
-        t=1557939096; bh=Z+ecK9DU8ieq1XVDtOc/3RCFi0l8zA8aRTmLMSXLoTs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fy1a6R9hH+6ryP8aHjcM3Gjy3hD9d7L4+cpYOhORJB0ghzL+GpktQkcelzgeLOL3W
-         ya1SDDD3T/3MDoEOoJXLAoiIUg4EtwlydhwXh3dT59+IgXoQqwrqWSlKFfT+2xBMhK
-         ZV601IMBf2zlzZONHZKmSF2hUj5t1id27Rmu3nkzwuk7SvlPpBejofzm5Nh43Y+jVF
-         aeYf5cI/zjdz4d/zG9SXZnsVuRtm8ab81co+fbGZ7rtfJww4S9hYTpjDUF+DdYIIGx
-         dLg05XqDHNYJPQViMdu6ObQBVVBEyKe5gV+DE3ynB58Qc1+0DopMJZ1AGOe+TqFrDl
-         8pjRANiKzIE1Q==
-Date:   Wed, 15 May 2019 16:51:35 +0000
-From:   Priit Laes <plaes@plaes.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, linux-imx@nxp.com,
-        Stefan.Nickl@kontron.com, Gilles.Buloz@kontron.com,
-        Michael.Brunner@kontron.com, thomas.schaefer@kontron.com,
-        frieder.schrempf@kontron.de, kernel@pengutronix.de,
-        devicetree@vger.kernel.org,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>
-Subject: Re: [PATCH 02/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: Add
- iMX6-based Kontron SMARC-sAMX6i module
-Message-ID: <20190515165135.ginuoqxppzq37mzq@plaes.org>
-References: <20190509155834.22838-1-m.felsch@pengutronix.de>
- <20190509155834.22838-3-m.felsch@pengutronix.de>
+        id S1725974AbfEORUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 13:20:09 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:46443 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726261AbfEORUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 13:20:08 -0400
+Received: by mail-wr1-f66.google.com with SMTP id r7so314061wrr.13
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 10:20:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ZrGSccPOQF6rOlAuVqsU5NFL5Iw0mprYmWahtp6H7dQ=;
+        b=A3NKWiUc9MPhGqjrf+TNbgTgHGbvdvdLa4uw2+p0K9jjNaj95OeNXy82z5uRgT3Hha
+         noEHCKaJiNkq/vBw2eLtYUIhzC6SZ1lC6HOWOlHSz61pGV7A4z/OsWzLTq6DNUJI1zJo
+         6A29ZjwXl0y5NtJ1426ZR2uZ8CUIv2q42UhFy3nQiZ2eIozWSC5If3yL2XOJW6oO1YXc
+         2K1Q2C6mTFoIgj9jmuSXS5OsFnTFJ4b3sJm/IHeE2xYfNx7Phr5oyfjdQ0kAhD47tN7x
+         UxcFEiOkScM5YBVueLQ86ptTwh1iee9e5Th98RTQLzcVriyYPs48D9DorrOJ9glAfFip
+         BHJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ZrGSccPOQF6rOlAuVqsU5NFL5Iw0mprYmWahtp6H7dQ=;
+        b=EfYjZHgXEWWQl3xOp45+VNrI6+zX/sX69hc09seFrQiVVxt3zRYV9qwt+sj2RPavwX
+         /W7zxLcwEjXPX1Ryy7JS77Vz6uYZ2TH+YhAxPWoUaiEgTvxSpSBev2vNVyj6fYAlzqnJ
+         PMGTDlWY7mVYb15wxXS9/NwLS4tIUa1Sa+Roj7jKAt4k8cJnPgEgKVyFd/aM3j94IsEU
+         SCRsnW+afiYiJJw5oVndt1jBtm3T8nQGLAupU+FTnOxXS1eqq6idxOq6FLtL5BHiwvMA
+         w52KTdtrZ2nKJOcA1KqCFzs/xtynp3UN85p4P3Fo6Ld0nZVyqXqXcmuIHAkN7lXTCGQ8
+         phEA==
+X-Gm-Message-State: APjAAAX9KxcwzDNH1KETf0XpS+Hcq6nnsQ6oC/KJ9DAwNs3htGVnnlf2
+        +Yv9d3OZmox0qqbiaw+4vf5cycLoomc=
+X-Google-Smtp-Source: APXvYqz+lkfVRwkNbo/qLnLk9lrHJ0I1t07L6bM8YIauVfKH+9VI/IklbZ4puqFVie0FxjhGPQLgtQ==
+X-Received: by 2002:a5d:4d4d:: with SMTP id a13mr10797003wru.18.1557940343120;
+        Wed, 15 May 2019 10:12:23 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id o6sm3874146wrh.55.2019.05.15.10.12.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 May 2019 10:12:21 -0700 (PDT)
+Subject: Re: NVMEM address DT post processing [Was: Re: [PATCH net 0/3] add
+ property "nvmem_macaddr_swap" to swap macaddr bytes order]
+To:     =?UTF-8?Q?Petr_=c5=a0tetiar?= <ynezz@true.cz>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Andy Duan <fugang.duan@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "john@phrozen.org" <john@phrozen.org>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alban Bedel <albeu@free.fr>, devicetree@vger.kernel.org
+References: <1557476567-17397-2-git-send-email-fugang.duan@nxp.com>
+ <1557476567-17397-1-git-send-email-fugang.duan@nxp.com>
+ <20190510112822.GT81826@meh.true.cz> <20190510113155.mvpuhe4yzxdaanei@flea>
+ <20190511144444.GU81826@meh.true.cz>
+ <547abcff-103a-13b8-f42a-c0bd1d910bbc@linaro.org>
+ <20190513090700.GW81826@meh.true.cz>
+ <8cee0086-7459-24c7-82f9-d559527df6e6@linaro.org>
+ <20190513111612.GA21475@meh.true.cz>
+ <0c6cb9d4-2da1-00be-b527-5891b8b030a8@linaro.org>
+ <20190514174447.GE93050@meh.true.cz>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <a4f6888f-8c3d-f80a-f2b5-f9d8860f0de3@linaro.org>
+Date:   Wed, 15 May 2019 18:12:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190509155834.22838-3-m.felsch@pengutronix.de>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190514174447.GE93050@meh.true.cz>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 09, 2019 at 05:58:19PM +0200, Marco Felsch wrote:
-> From: Priit Laes <plaes@plaes.org>
 
-Cool, thanks for picking that up :)
 
-Also, another nice thing to see is that Kontron itself is now involved,
-as back in the day when I was asking for extra information regarding
-this board (latest BSP / Git tree) I was politely told to GTFO ;)
+On 14/05/2019 18:44, Petr Štetiar wrote:
+> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-14 16:13:22]:
+> 
+>> On 13/05/2019 12:16, Petr Štetiar wrote:
+>>> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 11:06:48]:
+>>>
+>>>> On 13/05/2019 10:07, Petr Štetiar wrote:
+>>>>> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> [2019-05-13 09:25:55]:
+>>>>>
+>>>>>> My initial idea was to add compatible strings to the cell so that most of
+>>>>>> the encoding information can be derived from it. For example if the encoding
+>>>>>> representing in your example is pretty standard or vendor specific we could
+>>>>>> just do with a simple compatible like below:
+>>>>>
+>>>>> that vendor/compatible list would be quite long[1], there are hundreds of
+>>>>
+>>>> You are right just vendor list could be very long, but I was hoping that the
+>>>> post-processing would fall in some categories which can be used in
+>>>> compatible string.
+>>>>
+>>>> Irrespective of which we need to have some sort of compatible string to
+>>>> enable nvmem core to know that there is some form of post processing to be
+>>>> done on the cells!. Without which there is a danger of continuing to adding
+>>>> new properties to the cell bindings which have no relation to each other.
+>>>
+>>> makes sense, so something like this would be acceptable?
+>>>
+>>>    eth1_addr: eth-mac-addr@18a {
+>>>        /* or rather linux,nvmem-post-process ? */
+>>>        compatible = "openwrt,nvmem-post-process";
+>>
+>> I don't think this would be a correct compatible string to use here.
+>> Before we decide on naming, I would like to understand bit more on what are
+>> the other possible forms of storing mac address,
+>> Here is what I found,
+>>
+>> Type 1: Octets in ASCII without delimiters. (Swapped/non-Swapped)
+>> Type 2: Octets in ASCII with delimiters like (":", ",", ".", "-"... so on)
+>> (Swapped/non-Swapped)
+>> Type 3: Is the one which stores mac address in Type1/2 but this has to be
+>> incremented to be used on other instances of eth.
+>>
+>> Did I miss anything?
+> 
+> Type 4: Octets as bytes/u8, swapped/non-swapped
+> 
+> Currently just type4-non-swapped is supported. Support for type4-swapped was
+> goal of this patch series.
+> 
 
-> SMARC-sAMX6i is a SMARC (Smart Mobility Architecture) compliant
-> module.
+Can we just get away with swapped/non-swapped by using order of reg dt 
+property?
+If that works for you then we do not need a special compatible string too.
+
+Note that current nvmem core only supports single reg value pair which 
+needs to be extended to support multiple reg value.
+
+> I've simply tried to avoid using mac-address for the compatible as this
+> provider could be reused by other potential nvmem consumers. The question is,
+> how much abstracted it should be then.
 > 
-> Signed-off-by: Priit Laes <plaes@plaes.org>
-> Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Based on patch: https://lore.kernel.org/patchwork/patch/762261/
+>> My suggestion for type1 and type2 would be something like this, as long as
+>> its okay with DT maintainers
+>>
+>> eth1_addr: eth-mac-addr@18a {
+>> 	compatible = "ascii-mac-address";
+>> 	reg = <0x18a 2>, <0x192 2>, <0x196 2>, <0x200 2>, <0x304 2>, <0x306 2>;
+>> 	swap-mac-address;
+>> 	delimiter = ":";
+>> };
 > 
-> v2:
-> - common: adapt commit message
-> - common: add pengutronix copyright
-> - common: use SPDX license header
-> - common: rename it to imx6qdl-smx6.dtsi
-> - common: drop imx6q.dtsi include and model, compatible, memory properties
-> - common: fix comment style
-> - common: drop all unnecessary 'status = "disabled"'
-> - i2c_pfuze: fix sda/scl gpios
-> - i2c_pfuze: s/i2c_pfuze/i2c_intern
-> - i2c_pfuze: use GPIO_* defines
-> - i2c3: fix pinmux
-> - fec: add phy-reset-gpio
-> - iomux: drop default 0x80000000 value
-> - iomux: use unique naming
-> - regulators: drop container node
-> - regulators: add all missing
+> with this reg array, you don't need the delimiter property anymore, do you?
 > 
->  arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 418 ++++++++++++++++++
->  1 file changed, 418 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+You are right we do not need it.
+
+>> For type 3:
+>>
+>> This sounds like very much vendor specific optimization thing which am not
+>> 100% sure atm.  If dt maintainers are okay, may be we can add an increment
+>> in the "ascii-mac-address" binding itself.
+>>
+>> Do you think "increment-at " would ever change?
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-> new file mode 100644
-> index 000000000000..e546d46365f5
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-> @@ -0,0 +1,418 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +/*
-> + * Copyright 2017 (C) Priit Laes <plaes@plaes.org>
-> + * Copyright 2018 (C) Pengutronix, Michael Grzeschik <mgr@pengutronix.de>
-> + * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + *
-> + * Based on initial work by Nikita Yushchenko <nyushchenko at dev.rtsoft.ru>
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	reg_1p0v_s0: regulator-1p0v-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V0_S0";
-> +		regulator-min-microvolt = <1000000>;
-> +		regulator-max-microvolt = <1000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_smarc_suppy>;
-> +	};
-> +
-> +	reg_1p35v_vcoredig_s5: regulator-1p35v-vcoredig-s5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V35_VCOREDIG_S5";
-> +		regulator-min-microvolt = <1350000>;
-> +		regulator-max-microvolt = <1350000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_1p8v_s5: regulator-1p8v-s5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V8_S5";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_3p3v_s0: regulator-3p3v-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_S0";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_3p3v_s0: regulator-3p3v-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_S0";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_3p3v_s5: regulator-3p3v-s5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_S5";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_smarc_suppy>;
-> +	};
-> +
-> +	reg_smarc_rtc: regulator-smarc-rtc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_IN_RTC_BATT";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	/* Module supply range can be 3.00V ... 5.25V */
-> +	reg_smarc_suppy: regulator-smarc-supply {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_IN_WIDE";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	i2c_intern: i2c-gpio-intern {
-> +		compatible = "i2c-gpio";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_i2c_gpio_intern>;
-> +		sda-gpios = <&gpio1 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&gpio1 30 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <2>; /* ~100 kHz */
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
-> +
-> +/* CAN0 */
-> +&can1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +};
-> +
-> +/* CAN1 */
-> +&can2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +};
-> +
-> +/* GBE */
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet>;
-> +	phy-mode = "rgmii";
-> +	phy-reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-> +};
-> +
-> +&i2c_intern {
-> +	pfuze100@08 {
-> +		compatible = "fsl,pfuze100";
-> +		reg = <0x08>;
-> +
-> +		regulators {
-> +			reg_v_core_s0: sw1ab {
-> +				regulator-name = "V_CORE_S0";
-> +				regulator-min-microvolt = <300000>;
-> +				regulator-max-microvolt = <1875000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_vddsoc_s0: sw1c {
-> +				regulator-name = "V_VDDSOC_S0";
-> +				regulator-min-microvolt = <300000>;
-> +				regulator-max-microvolt = <1875000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_3p15v_s0: sw2 {
-> +				regulator-name = "V_3V15_S0";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			/* sw3a/b is used in dual mode, but driver does not
-> +			 * support it. Although, there's no need to control
-> +			 * DDR power - so just leaving dummy entries for sw3a
-> +			 * and sw3b for now.
-> +			 */
-> +			sw3a {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1975000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sw3b {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1975000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_1p8v_s0: sw4 {
-> +				regulator-name = "V_1V8_S0";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			/* Regulator for USB */
-> +			reg_5p0v_s0: swbst {
-> +				regulator-name = "V_5V0_S0";
-> +				regulator-min-microvolt = <5000000>;
-> +				regulator-max-microvolt = <5150000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			reg_vsnvs: vsnvs {
-> +				regulator-min-microvolt = <1000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_vrefddr: vrefddr {
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			/*
-> +			 * Per schematics, of all VGEN's, only VGEN5 has some
-> +			 * usage ... but even that - over DNI resistor
-> +			 */
-> +			vgen1 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1550000>;
-> +			};
-> +
-> +			vgen2 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1550000>;
-> +			};
-> +
-> +			vgen3 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			vgen4 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			reg_2p5v_s0: vgen5 {
-> +				regulator-name = "V_2V5_S0";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			vgen6 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +/* I2C_PM */
-> +&i2c3 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
-> +			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
-> +			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_enet: enetgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_RGMII_TXC__RGMII_TXC       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD0__RGMII_TD0       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD1__RGMII_TD1       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD2__RGMII_TD2       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD3__RGMII_TD3       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL 0x1b0b0
-> +			MX6QDL_PAD_RGMII_RXC__RGMII_RXC       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD0__RGMII_RD0       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD1__RGMII_RD1       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD2__RGMII_RD2       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD3__RGMII_RD3       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL 0x1b0b0
-> +
-> +			MX6QDL_PAD_ENET_MDIO__ENET_MDIO       0x1b0b0
-> +			MX6QDL_PAD_ENET_MDC__ENET_MDC         0x1b0b0
-> +			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK  0x1b0b0
-> +			MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25    0x1b0b0 /* RST_GBE0_PHY# */
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c_gpio_intern: i2c-gpiointerngrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_ENET_TXD0__GPIO1_IO30  0x1b0b0 /* SCL */
-> +			MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28 0x1b0b0 /* SDA */
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_3__I2C3_SCL		0x4001b8b1
-> +			MX6QDL_PAD_GPIO_16__I2C3_SDA		0x4001b8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_pcie: pciegrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_EIM_D18__GPIO3_IO18	0x1b0b0 /* PCI_A_PRSNT# */
-> +			MX6QDL_PAD_EIM_DA13__GPIO3_IO13 0x1b0b0 /* RST_PCIE_A#  */
-> +			MX6QDL_PAD_SD3_DAT6__GPIO6_IO18 0x1b0b0 /* PCIE_WAKE#   */
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA 0x1b0b1
-> +			MX6QDL_PAD_EIM_D20__UART1_RTS_B 0x1b0b1
-> +			MX6QDL_PAD_EIM_D19__UART1_CTS_B 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_EIM_D27__UART2_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_EIM_D26__UART2_TX_DATA 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT13__UART4_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT12__UART4_TX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT16__UART4_RTS_B 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT17__UART4_CTS_B 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart5: uart5grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT15__UART5_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT14__UART5_TX_DATA 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg: usbotggrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_1__USB_OTG_ID 0x1f8b0
-> +			/* power, oc muxed but not used by the driver */
-> +			MX6QDL_PAD_CSI0_PIXCLK__GPIO5_IO18	0x1b0b0 /* USB power */
-> +			MX6QDL_PAD_CSI0_DATA_EN__GPIO5_IO20	0x1b0b0 /* USB OC */
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc4: usdhc4grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_SD4_CLK__SD4_CLK 0x17059
-> +			MX6QDL_PAD_SD4_CMD__SD4_CMD 0x17059
-> +			MX6QDL_PAD_SD4_DAT0__SD4_DATA0 0x17059
-> +			MX6QDL_PAD_SD4_DAT1__SD4_DATA1 0x17059
-> +			MX6QDL_PAD_SD4_DAT2__SD4_DATA2 0x17059
-> +			MX6QDL_PAD_SD4_DAT3__SD4_DATA3 0x17059
-> +			MX6QDL_PAD_SD4_DAT4__SD4_DATA4 0x17059
-> +			MX6QDL_PAD_SD4_DAT5__SD4_DATA5 0x17059
-> +			MX6QDL_PAD_SD4_DAT6__SD4_DATA6 0x17059
-> +			MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x17059
-> +		>;
-> +	};
-> +};
-> +
-> +&pcie {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pcie>;
-> +	wake-up-gpio = <&gpio6 18 GPIO_ACTIVE_HIGH>;
-> +	reset-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
-> +};
-> +
-> +/* SER0 */
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	uart-has-rtscts;
-> +};
-> +
-> +/* SER1 */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +};
-> +
-> +/* SER2 */
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	uart-has-rtscts;
-> +};
-> +
-> +/* SER3 */
-> +&uart5 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart5>;
-> +};
-> +
-> +/* USB0 */
-> +&usbotg {
-> +	/*
-> +	 * no 'imx6-usb-charger-detection'
-> +	 * since USB_OTG_CHD_B pin is not wired
-> +	 */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg>;
-> +};
-> +
-> +/* USB1/2 via hub */
-> +&usbh1 {
-> +	vbus-supply = <&reg_5p0v_s0>;
-> +};
-> +
-> +/* SDMMC */
-> +&usdhc4 {
-> +	/* Internal eMMC, optional on some boards */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc4>;
-> +	bus-width = <8>;
-> +	no-1-8-v;
-> +	non-removable;
-> +};
-> -- 
-> 2.20.1
-> 
+> Currently there's just one such real world use case in OpenWrt tree[1].
+
+If that is the case then we definitely need bindings prefixed with 
+vendor name or something on those lines for this.
+
+
+> Probably some vendor decided to increment 4th octet.
+Incrementing 4th octet does not really make sense!
+
+Thanks,
+srini
