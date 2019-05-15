@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D211F56E
+	by mail.lfdr.de (Postfix) with ESMTP id 819ED1F56F
 	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727992AbfEONTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727917AbfEONTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 15 May 2019 09:19:07 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:34388 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727388AbfEONTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:19:05 -0400
-Received: by mail-wr1-f67.google.com with SMTP id f8so2681661wrt.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:19:04 -0700 (PDT)
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:38131 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727952AbfEONTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:19:06 -0400
+Received: by mail-wr1-f68.google.com with SMTP id d18so2106416wrs.5
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:19:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=2h106Z4/ATcPU1QRPJE9+ZrjCSAT+SxJpUGNW5+ypdI=;
-        b=X1lAu5ZHCCzjYghnscD0OX/jA0eMlPFEIG8XZk5dovfhL4UaTlEOtCBhFZFxVzm/Tx
-         pAuVx3DJBiDzhUUHz/kN5GlFuAml795hgYaBtvabvfgbbSrUquNiIytC02wU6fj3fGpV
-         INbx6MKpj3ZgfAYTSaDK2uVDCHND1QaFcBdR+pzG5vz7wuf9++VSiy/sSnyHl2lnRX4K
-         iD8w9VgD4eEWjD7rTwGUzq2ueadZtVALe0cg3iNfzNm+P/LBrM1AkLpMcCw3Fcdvgogo
-         fQ92LKWlhxnHDQLEc8iLHSjHlbisyKDTjc72ScH+sPXvyRVEgeAlm70JJ+g8h/ZGY0eW
-         KeKg==
+        bh=Qs77ALhE/gKtnduPvCRtEn1+XaA68gtG693yCTv90Vk=;
+        b=zDGPkuHoA+3szCHGN82vW7BAjTdBaU1OEwV8QGKRxUxlc/CvIbHhm/IJhbrHViITb8
+         Msdp/fTbSM4btIYHBKCNaYVZ9n8AnJab4dM4x4ATaPA9r1roYVf93Xdo/bChCE+wWkEF
+         cGZtKlUI9OejPiIb8VyEOg8mXy/XHD6YGtjlzYGbKpIsVSJv5wl2PlyVRCqOl5BZHpN/
+         wTf4ruJlum1SBBQ948AXlntz0/Js3jMwR6yC+lrrFR/UGBPwf1KNKAnPJwoKaGlMcdUp
+         2gKy5rNYaka0c8ojR19pSXOI0kOgsA8uDExnZ4ASqvPi2hzP4gUjXhCDeem7dIDTL5zT
+         wvTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=2h106Z4/ATcPU1QRPJE9+ZrjCSAT+SxJpUGNW5+ypdI=;
-        b=bOLA4verusRujillQnqt544r230rUTuPdxSUQ4FK6wklSZdmx4m8vqoEQKE/kAeadw
-         zf2Xcvsge40cZs+ZVGTD5AgtYAgr9RFXPDnR+Ugg+JexkPmUoqASRAAjvnqTl+b+FZW0
-         ISTvuNAuBMAD6cMfEP+aNHBWBXEUl4+VfgfepjOf9mZmMBBj6B7RWXvduJes87s2I7Ij
-         PSLMU16ve1OifFpJbI2zo+3J5j67DUiYm1n+VCzucqiKslLTdHuzpJl/7iqXx4Os7hMB
-         JH+ruxmeNSsDevqzh3/o3RzcCdpH1Cq+YQL4+h1v9DHpbzbMVnmNNo+1Ar+DSLs1OgkH
-         uyVg==
-X-Gm-Message-State: APjAAAWuFETu87qS0BiTgCwuf20RJII0vM/fFV37EVX5lN1p+GCJ8XQ5
-        Y+ATRKytfZsx3sS2I/r81CM0Gg==
-X-Google-Smtp-Source: APXvYqz/lQB5wpF2+qRrJ4I1Hpnj5Nzq4JBpunwqfTjfsaJ/6TVlW1DUT56LRi4iginnZTHgAhAYZg==
-X-Received: by 2002:adf:f5d1:: with SMTP id k17mr25107467wrp.281.1557926344035;
+        bh=Qs77ALhE/gKtnduPvCRtEn1+XaA68gtG693yCTv90Vk=;
+        b=f8jgCAyXMnZfTBLXbwplcSxADofIvAMimnF/+AOETIDDbwxXeqQqM2FU9ikP5T0+AN
+         tIoyVnNt0bdkYblv3pQSrTDjcNMJ1sOTT/unL273HIl9Ryuib9TopQxg0Y8DzzkaPPeT
+         3GJ27k7cFs+7U0/5w/8/3qdqGwNJ14LwOyKWIlJm1JH81Qpt+wg5HR41aJZBsFJIJrzm
+         4iqFHQnkju/pksg9ijXSIKOj8mz3OW1siQkU/yC+ZqmnMo0hq9c+2TENnam1MHkZwJZe
+         fO9EOgsafTJbBNTC3TgmoTAS/iFOMkJSV+UFUGgPHEMjqTNOXaur/zplMN2iBRpZQER8
+         EZPQ==
+X-Gm-Message-State: APjAAAVwxCPP+MYUVmMlRVV3Q1J08jwxcs9weZHWGFR7XhObVo27J84q
+        8DuARxAaZmT6P/UxT5wT5wrCAw==
+X-Google-Smtp-Source: APXvYqzm4ytAil3rojl8lYKukf8vaRhm+kH45f8n+v0RKH14Kw6A7pvAhM/MdQwtVNK4LuJ6xQgZOw==
+X-Received: by 2002:adf:b641:: with SMTP id i1mr25792669wre.288.1557926344965;
         Wed, 15 May 2019 06:19:04 -0700 (PDT)
 Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id b206sm2789848wmd.28.2019.05.15.06.19.02
+        by smtp.googlemail.com with ESMTPSA id b206sm2789848wmd.28.2019.05.15.06.19.04
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 May 2019 06:19:03 -0700 (PDT)
+        Wed, 15 May 2019 06:19:04 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -51,9 +51,9 @@ To:     Mark Brown <broonie@kernel.org>,
 Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH 1/5] ASoC: meson: axg-card: set link name based on link node name
-Date:   Wed, 15 May 2019 15:18:54 +0200
-Message-Id: <20190515131858.32130-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/5] ASoC: dapm: allow muxes to force a disconnect
+Date:   Wed, 15 May 2019 15:18:55 +0200
+Message-Id: <20190515131858.32130-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190515131858.32130-1-jbrunet@baylibre.com>
 References: <20190515131858.32130-1-jbrunet@baylibre.com>
@@ -65,74 +65,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-So far the link names of the axg sound card was derived from the cpu name
-of the link. Since the dai link must be unique, it works as long as a
-device does not provide more than one cpu dai. However, the 'tohdmitx'
-does provide 2 dais used as cpu on codec-to-codec links
+Let soc_dapm_mux_update_power() accept NULL as 'e' enum.
 
-Instead of cpu name, use the node name of the dai link. DT already enforce
-the uniqueness of this name
+It makes the code a bit more robust and, more importantly, let the calling
+mux force a disconnect of the output path if necessary.
+
+This is useful if the dapm elements following the mux must be off
+while updating the mux, to avoid glitches or force a (re)configuration.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/axg-card.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ sound/soc/soc-dapm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index aa54d2c612c9..5c8deee8d512 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -80,10 +80,11 @@ static int axg_card_parse_dai(struct snd_soc_card *card,
- 
- static int axg_card_set_link_name(struct snd_soc_card *card,
- 				  struct snd_soc_dai_link *link,
-+				  struct device_node *node,
- 				  const char *prefix)
- {
- 	char *name = devm_kasprintf(card->dev, GFP_KERNEL, "%s.%s",
--				    prefix, link->cpu_of_node->full_name);
-+				    prefix, node->full_name);
- 	if (!name)
- 		return -ENOMEM;
- 
-@@ -474,7 +475,7 @@ static int axg_card_set_be_link(struct snd_soc_card *card,
- 		codec++;
- 	}
- 
--	ret = axg_card_set_link_name(card, link, "be");
-+	ret = axg_card_set_link_name(card, link, node, "be");
- 	if (ret)
- 		dev_err(card->dev, "error setting %pOFn link name\n", np);
- 
-@@ -483,6 +484,7 @@ static int axg_card_set_be_link(struct snd_soc_card *card,
- 
- static int axg_card_set_fe_link(struct snd_soc_card *card,
- 				struct snd_soc_dai_link *link,
-+				struct device_node *node,
- 				bool is_playback)
- {
- 	link->dynamic = 1;
-@@ -497,7 +499,7 @@ static int axg_card_set_fe_link(struct snd_soc_card *card,
- 	else
- 		link->dpcm_capture = 1;
- 
--	return axg_card_set_link_name(card, link, "fe");
-+	return axg_card_set_link_name(card, link, node, "fe");
- }
- 
- static int axg_card_cpu_is_capture_fe(struct device_node *np)
-@@ -527,9 +529,9 @@ static int axg_card_add_link(struct snd_soc_card *card, struct device_node *np,
- 		return ret;
- 
- 	if (axg_card_cpu_is_playback_fe(dai_link->cpu_of_node))
--		ret = axg_card_set_fe_link(card, dai_link, true);
-+		ret = axg_card_set_fe_link(card, dai_link, np, true);
- 	else if (axg_card_cpu_is_capture_fe(dai_link->cpu_of_node))
--		ret = axg_card_set_fe_link(card, dai_link, false);
-+		ret = axg_card_set_fe_link(card, dai_link, np, false);
- 	else
- 		ret = axg_card_set_be_link(card, dai_link, np);
- 
+diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
+index 81a7a12196ff..a4d6c068b545 100644
+--- a/sound/soc/soc-dapm.c
++++ b/sound/soc/soc-dapm.c
+@@ -2245,7 +2245,7 @@ static int soc_dapm_mux_update_power(struct snd_soc_card *card,
+ 	dapm_kcontrol_for_each_path(path, kcontrol) {
+ 		found = 1;
+ 		/* we now need to match the string in the enum to the path */
+-		if (!(strcmp(path->name, e->texts[mux])))
++		if (e && !(strcmp(path->name, e->texts[mux])))
+ 			connect = true;
+ 		else
+ 			connect = false;
 -- 
 2.20.1
 
