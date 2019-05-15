@@ -2,106 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 113861F6F9
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 16:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A0D31F724
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 17:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726510AbfEOOyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 10:54:17 -0400
-Received: from mail-eopbgr1410118.outbound.protection.outlook.com ([40.107.141.118]:9440
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726392AbfEOOyQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 10:54:16 -0400
+        id S1726583AbfEOPJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 11:09:25 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38484 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726572AbfEOPJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 11:09:24 -0400
+Received: by mail-oi1-f194.google.com with SMTP id u199so19153oie.5;
+        Wed, 15 May 2019 08:09:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8BFrdef01VgfyTVRQ/GchLoLBjcJ14VYKb4K+NzL1wQ=;
- b=E5juylMqUPNBNRyWfCZTmrJMiKv+XQW+KQGEO2Nle4vLzAI508AisZmn+kced1afrFqFrVc7jxIWWFtER04/8YRjgdErxIZGchEjM6G54XqjzHVNd4UIHqoBHnPuq8lRmB+ki4qDd2e4bvnqy/VnHRviZZ5KCkAJaxJpxdDSwF4=
-Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com (52.133.166.145) by
- TYXPR01MB1677.jpnprd01.prod.outlook.com (52.133.167.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.22; Wed, 15 May 2019 14:54:12 +0000
-Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com
- ([fe80::c989:cb4d:b41e:2045]) by TYXPR01MB1568.jpnprd01.prod.outlook.com
- ([fe80::c989:cb4d:b41e:2045%7]) with mapi id 15.20.1900.010; Wed, 15 May 2019
- 14:54:12 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 15/15] ARM: dts: rza2mevb: Add USB host support
-Thread-Topic: [PATCH v3 15/15] ARM: dts: rza2mevb: Add USB host support
-Thread-Index: AQHVCmWCnsI2dzmQpU69erLMQyE+h6Zr2ZoAgABbaPCAAAxngIAAAQwA
-Date:   Wed, 15 May 2019 14:54:11 +0000
-Message-ID: <TYXPR01MB15684FF367D694BD5C203BB68A090@TYXPR01MB1568.jpnprd01.prod.outlook.com>
-References: <20190514145605.19112-1-chris.brandt@renesas.com>
- <20190514145605.19112-16-chris.brandt@renesas.com>
- <CAMuHMdXx=7v5v3tHwS-01eNnzz6NSfs=M02jU1tNJMdcRbGScg@mail.gmail.com>
- <TYXPR01MB15689E3664801057DFCA09EA8A090@TYXPR01MB1568.jpnprd01.prod.outlook.com>
- <CAMuHMdWLB-JE=2f=Mq9np_b5Wuj6=nB2ywWquBFheoBVxPaAfQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWLB-JE=2f=Mq9np_b5Wuj6=nB2ywWquBFheoBVxPaAfQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d47543ef-b632-4291-b6d9-08d6d9453133
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TYXPR01MB1677;
-x-ms-traffictypediagnostic: TYXPR01MB1677:
-x-microsoft-antispam-prvs: <TYXPR01MB1677529A852BAF100E4F97008A090@TYXPR01MB1677.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0038DE95A2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(396003)(376002)(366004)(39860400002)(136003)(199004)(189003)(85664002)(66446008)(64756008)(66476007)(66556008)(6116002)(316002)(55016002)(7736002)(305945005)(4326008)(74316002)(3846002)(8936002)(81166006)(7416002)(8676002)(81156014)(14454004)(68736007)(478600001)(2906002)(86362001)(72206003)(66066001)(9686003)(53936002)(6436002)(6246003)(5024004)(14444005)(256004)(7696005)(476003)(446003)(11346002)(52536014)(229853002)(54906003)(6916009)(186003)(102836004)(6506007)(26005)(33656002)(73956011)(66946007)(76116006)(25786009)(71190400001)(71200400001)(5660300002)(76176011)(486006)(99286004);DIR:OUT;SFP:1102;SCL:1;SRVR:TYXPR01MB1677;H:TYXPR01MB1568.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 2vNMjUDVzvhqX9gm1CW428vBodV/SmSDczE9dSDZdW2Y6kRn0cfHyJQ1mz9oqQPrTocljX+fKtk33nJzA6ephnS3bghsn1P2QNJx2FXhzXY63CNQruLVtyylrRdgfTK38j5660No/NfLQPTHPwh8ZrEhhVOmEF9q/Yo/tBMhxyoiyMyvLYI5OPxLL47C7FkW+pdb66L5r+wWRXeEm5urkK/BvrlHJzkaj5ropiaqXMQdX/0O1j0Gkwdf0dLTHMEuU9M0wkpjav5qrL7pqGNrP8Au+opQFssVU51crO7zRKuNBY6lLhvAQtQoJ42vGrzmk6mi1WFR2Q4/v5z3QmUFcyVOzChBlqM9V8QzUqrvjMK7ezv94ubU3dyWekAhlTiHOqMNuTSaQDiy9Swg9C2dyZolU3jYdg3ZS6vnQEMo2h8=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FzdAY9eNLFH6q18HeEB4S9VM37pJLDSHQjylPsT3TbY=;
+        b=MjJ+LF+8pBMZJmrf/PUQGYzx6jkAIvZXVOaDkwDUy9j8LjnckyRKVimNt3qRpZ7QXs
+         odt09gcUESirFG4LKGWD8wrs44NwvpmYA2lxf+ihQ7feGSSECN829NXz97xTZk1YqWok
+         35/lGba1azoqDEabJk9bWsU7/bkhsjO9nkRYDhC0oT9sbfj+MNtAHSqEKLAJhOF3S6Rs
+         R+rUWZGYA0dVjK3uQ9i1dVZfPXcCRFzlBj3LZ2YdHmMedSaa4kOtX9v0QZ8SKRLyhu7Z
+         yvA1skM2zKLs6y+yPy3x/+CSXqODR2VRcyLDYU2/3JhylYVvTFrpq49h0oyAJEL7ENkN
+         jPtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FzdAY9eNLFH6q18HeEB4S9VM37pJLDSHQjylPsT3TbY=;
+        b=rSQxCXZ7QavzWRWgkflSEk87bo14SgVlvLzbfqgB0pNmbsdXtnlvhhbQgYBNTv/Sx0
+         F3DP0/7XyPKgyLZ9jxa4H0TcQMuJERs7jSaiSZbCCOSkHBQAE235B2kqm3BhN8hcjdWb
+         /U3QQZTKCMJ3y5G9vLUZZipX2uBSm/rrZdtFDFBk/UHhu0PBamd8FJHBJ7KYCSPoFzzv
+         GTBo0lI9fnFkMt90Z9S6W/JtKkKTMyYHqy8e9ovsn8lpFOyqzrBOZp6Rnrn1ezgxMCnc
+         raqC01dqPPqVhr/jMSln0jl/1wx6hYe3vVg+OIsoJbWdKJ/447hz8OvLBzEnrHu7GGoE
+         WZJA==
+X-Gm-Message-State: APjAAAUhgiW2+wuUBRqtwYfSgvynFpNBA/dUtRIQI3n9ZbMaPH29aoDB
+        6EIgkk6YovpedHN99KIZpDrtsi5S14Ahqr4qKZ0=
+X-Google-Smtp-Source: APXvYqx2op3tX9A4P1hZwzw0eFhbk5CfYg0Tbl3ieHQEQJwA11MZzaowFPPO1ZfSsj+7d5NaD8TUBJpiL4dsKvwOW9o=
+X-Received: by 2002:aca:240d:: with SMTP id n13mr6735433oic.145.1557932964018;
+ Wed, 15 May 2019 08:09:24 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d47543ef-b632-4291-b6d9-08d6d9453133
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 14:54:11.9038
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1677
+References: <20190514155911.6C0AC68B05@newverein.lst.de> <20190514160241.9EAC768C7B@newverein.lst.de>
+ <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com> <20190515093141.41016b11@blackhole.lan>
+In-Reply-To: <20190515093141.41016b11@blackhole.lan>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Wed, 15 May 2019 08:08:57 -0700
+Message-ID: <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on Teres-I
+To:     Torsten Duwe <duwe@lst.de>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNCk9uIFdlZCwgTWF5IDE1LCAyMDE5IDEsIEdlZXJ0IFV5dHRlcmhvZXZlbiB3
-cm90ZToNCj4gPiA+IERvZXMgcmVzaXN0b3IgUjc4IG5lZWQgdG8gYmUgbW91bnRlZCwgdG9vPw0K
-PiA+DQo+ID4gQnkgZGVmYXVsdCwgUjc4IGFuZCBSNzkgYXJlIG5vdCBwb3B1bGF0ZWQgb24gdGhl
-c2UgYm9hcmRzLCBhbmQgYm90aCBIb3N0DQo+ID4gYW5kIEZ1bmN0aW9uIHdvcmsgZmluZSB3aXRo
-b3V0IGJvYXJkIG1vZGlmaWNhdGlvbiwgc28gSSB3b3VsZCBzYXkNCj4gPiBwb3B1bGF0aW5nIFI3
-OCBpcyBub3QgYSByZXF1aXJlbWVudCBhcyBmYXIgYXMgSSBjYW4gdGVsbC4NCj4gDQo+IEkgYXNr
-ZWQgYmVjYXVzZSBhZnRlciByZWFkaW5nIFNlY3Rpb24gMi40IFVTQiBJbnRlcmZhY2UgaW4gdGhl
-IFJaL0EyTSBDUFUNCj4gQm9hcmQgIFVzZXIncyBNYW51YWwsIGl0J3Mgbm90IGNsZWFyIHRvIG1l
-IHdoZW4gb25lIG5lZWRzIHRvDQo+IHBvcHVsYXRlIG9uZSBvZiB0aGVzZSByZXNpc3RvcnMuIEVz
-cGVjaWFsbHkgaW4gcmVsYXRpb24gdG8gSlAzLCB3aGljaA0KPiB0YWxrcyBhYm91dCAyIHBvc3Np
-YmxlIG1vZGVzIChob3N0IHZzLiBmdW5jdGlvbiksIHdoaWxlIHRoZSByZXNpc3Rvcg0KPiBwYXJh
-Z3JhcGggdGFsa3MgYWJvdXQgMyBwb3NzaWJsZSBtb2RlcyAoZHVhbC1yb2xlIHZzLiBob3N0IHZz
-Lg0KPiBmdW5jdGlvbikuDQoNCkhvbmVzdGx5LCBJJ20gbm90IHN1cmUgd2hhdCB0aGV5IHdlcmUg
-dGhpbmtpbmcuDQpUaGV5IHB1dCBvbiBhIFVTQi1DIGNvbm5lY3RvciwgYW5kIHB1dCBvbiBjaXJj
-dWl0cnkgdG8gZGV0ZWN0IGlmIGEgSG9zdCANCm9yIGRldmljZSB3YXMgYXR0YWNoZWQuLi4uYnV0
-IHRoZW4gcHV0IGEgcGh5c2ljYWwganVtcGVyIG9uIHRoZSBib2FyZCB0bw0KY29ubmVjdC9kaXNj
-b25uZWN0IFZCVVMgcG93ZXIuDQoNCg0KPiBQZXJoYXBzIEkganVzdCBuZWVkIHRvIGRyaW5rIG1v
-cmUgVVNCIEtvb2wtQWlkPw0KPiAobm8gS29vbC1BaWQgc29sZCBpbiBsb2NhbCBzaG9wcywgdGhv
-dWdoOyB3ZSBsaXZlIG9uIENva2UgOy0pDQoNCk1heWJlIG5vdCBLb29sLUFpZCBhcyBpdCBzZWVt
-IHRoZXkgd2VyZSAnc21va2luZyBzb21ldGhpbmcnIGluc3RlYWQuIDpvDQoNCg0KQ2hyaXMNCg==
+On Wed, May 15, 2019 at 12:32 AM Torsten Duwe <duwe@lst.de> wrote:
+>
+> On Tue, 14 May 2019 10:48:40 -0700
+> Vasily Khoruzhick <anarsoul@gmail.com> wrote:
+>
+> > > +       anx6345: anx6345@38 {
+> > > +               compatible = "analogix,anx6345";
+> > > +               reg = <0x38>;
+> > > +               reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24
+> > > */
+> > > +               dvdd25-supply = <&reg_dldo2>;
+> > > +               dvdd12-supply = <&reg_dldo3>;
+> > > +
+> > > +               port {
+> > > +                       anx6345_in: endpoint {
+> > > +                               remote-endpoint =
+> > > <&tcon0_out_anx6345>;
+> > > +                       };
+> > > +               };
+> >
+> > It doesn't comply with bindings document. You need to add out endpoint
+>
+> It does comply with the bindings. The ports are all optional.
+> As far as DT is concerned, the signal path ends here. This is also the
+> final component _required_ to get the Linux kernel DRI up and running.
+
+Ugh, then bindings should be fixed. It's not optional. It may work if
+bootloader enables power for you, but it won't if you disable display
+driver in u-boot.
+
+> > as well, and to do so you need to add bindings for eDP connector first
+> > and then implement panel driver.
+> > See Rob's suggestions here: http://patchwork.ozlabs.org/patch/1042593/
+>
+> Well, one *could* extend the hardware description down to the actual
+> panel if necessary, but on the Teres-I it is not. I assume the panel
+> they ship provides proper EDID to the anx6345, because the display
+> works fine here with this DT.
+
+I guess you're testing it with older version of anx6345. Newer version
+that supports power management [1] needs startup delay for panel.
+Another issue that you're seeing is that backlight is not disabled on
+DPMS events. All in all, you need to describe panel in dts.
+
+[1] https://github.com/anarsoul/linux-2.6/commit/2fbf9c242419c8bda698e8331a02d4312143ae2c
+
+
+> Do I understand this correctly that the (3 different?) pinebook panels
+> are not that easy to handle? I try to include the pinebook wherever
+> possible, just because it's so similar, but here I'm a bit lost, so I
+> had to omit these parts.
+>
+> Should I also have added a Tested-by: ? ;-)
+
+I don't have Teres, so I haven't tested these.
+
+>
+>         Torsten
