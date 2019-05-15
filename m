@@ -2,86 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B081F4F5
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3B2B1F4F9
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:03:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727248AbfEONDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 09:03:03 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:41095 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727079AbfEONDD (ORCPT
+        id S1725977AbfEONDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 09:03:08 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:34508 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727218AbfEONDD (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:03:03 -0400
-X-UUID: 6b9a6efe68de46f59b7101830d0bfa55-20190515
-X-UUID: 6b9a6efe68de46f59b7101830d0bfa55-20190515
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <jungo.lin@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 892327141; Wed, 15 May 2019 21:02:57 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 15 May 2019 21:02:55 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 15 May 2019 21:02:55 +0800
-Message-ID: <1557925375.5721.7.camel@mtksdccf07>
-Subject: Re: [RFC,V2,01/11] dt-bindings: mt8183: Add binding for ISP Pass 1
- reserved memory
-From:   Jungo Lin <jungo.lin@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <tfiga@chromium.org>, <hans.verkuil@cisco.com>,
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        <matthias.bgg@gmail.com>, <mchehab@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>, <Sean.Cheng@mediatek.com>,
-        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
-        <frederic.chen@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
-        <frankie.chiu@mediatek.com>, <seraph.huang@mediatek.com>,
-        <ryan.yu@mediatek.com>, <Rynn.Wu@mediatek.com>,
-        <yuzhao@chromium.org>, <zwisler@chromium.org>, <shik@chromium.org>,
-        <suleiman@chromium.org>
-Date:   Wed, 15 May 2019 21:02:55 +0800
-In-Reply-To: <20190514195052.GA3314@bogus>
-References: <jungo.lin@mediatek.com>
-         <20190510015755.51495-2-jungo.lin@mediatek.com>
-         <20190514195052.GA3314@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+Received: by mail-lj1-f194.google.com with SMTP id j24so2458185ljg.1
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:03:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=5EfvjTphEiWxfZkH/SJILym7SxsbhbZY/PCb8VawuUg=;
+        b=ayeka6UTHhnGsyqjF/S0VQygqFcDtLsdyoMY05IN04kMYtr3VGUF7yySk0v64kDxw2
+         F+MmrRhH0WdMFtjh/xHhQYCxTnt03vC32ioECsuFXa3a288soB46gSic3vYe+ahXulrj
+         pZxPJtnbXkpg8j6gw1DCzZTAegenaUjP1XKOQ7QworNc8LK6HOnIb0C7Mtc843clREw6
+         Rehe7xaqhUDjyDAtJramsatSwzA8WKy1nE0gwSPPn/vB59pUjDTpnBzdP863YGr3Qze1
+         tdKlcUfA7oEYORa5+vRRbn48hsZ2eUPCAvzRCXoBUDaTQjet9BvbxFxRrbxXNqnqtUOE
+         mhQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5EfvjTphEiWxfZkH/SJILym7SxsbhbZY/PCb8VawuUg=;
+        b=Wb276PqqoJ6s6pMVbmPTcVT6lys+lQA5rzlkp4B4Sm1OCc7QcDZdeGnFpwEJe4gKu7
+         Z+sZqTFH9KB/YukVN1hw8VuV40t/jxbfj9Jli+TWrqNg+nz6VcV5ora6LwvSC7hy2Cu6
+         FhLEqeNmwdo7x3XueMZduXFXLiFfIwx7PXm5Dcxp0Zsv2EAM/fc6y8fJl28Fyzq8V1gj
+         inByBPt6yMVH/FpLhgXgo+8w3KSBsZhB22BvDLgjCKwMAbHYJJvFE1yS1xhQ7tDFMvOf
+         dYnBUkmJ/6aTUDjiy9mmcSrsZkoW0l1vLBg32eMMhZ4Wqm9uttrUOLGDX+COCFwc3bAf
+         g0VQ==
+X-Gm-Message-State: APjAAAX/O4Xt0EFjnOGTOLZdFAR8V1SIMNwaMLwbT9CgCaTXGDyeVHSr
+        MalW9N/YZ34anujMzVZatqoIog==
+X-Google-Smtp-Source: APXvYqwFzZ8mYcYbxGTpyfsT4epedCPOJ5kwTzY4bpkxtWnhik0432wibEAWxrwHTUyU/3539mcM7Q==
+X-Received: by 2002:a2e:309:: with SMTP id 9mr21863831ljd.114.1557925380569;
+        Wed, 15 May 2019 06:03:00 -0700 (PDT)
+Received: from centauri (m83-185-80-163.cust.tele2.se. [83.185.80.163])
+        by smtp.gmail.com with ESMTPSA id j6sm387581ljc.0.2019.05.15.06.02.58
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 15 May 2019 06:02:59 -0700 (PDT)
+Date:   Wed, 15 May 2019 15:02:56 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCHv1 4/8] arm64: dts: qcom: msm8916: Use more generic idle
+ state names
+Message-ID: <20190515130256.GA27174@centauri>
+References: <cover.1557486950.git.amit.kucheria@linaro.org>
+ <2a0626da4d8d5a1018c351b24b63e5e0d7a45a10.1557486950.git.amit.kucheria@linaro.org>
+ <20190514161220.GC1824@centauri.ideon.se>
+ <CAP245DWgfQakjXSTU2AfhkLOjAue83A-X6Qb40DC1QQj01GogQ@mail.gmail.com>
 MIME-Version: 1.0
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAP245DWgfQakjXSTU2AfhkLOjAue83A-X6Qb40DC1QQj01GogQ@mail.gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob:
-
-Thanks for your comments.
-
-On Tue, 2019-05-14 at 14:50 -0500, Rob Herring wrote:
-> On Fri, May 10, 2019 at 09:57:47AM +0800, Jungo Lin wrote:
-> > This patch adds the binding for describing the reserved
-> > shared memory used to exchange ISP configuration and tuning
-> > data between the co-processor and Pass 1 (P1) unit of the
-> > camera ISP system on Mediatek SoCs.
-> > 
-> > Signed-off-by: Jungo Lin <jungo.lin@mediatek.com>
-> > ---
-> >  .../mediatek,reserve-memory-cam-smem.txt      | 42 +++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,reserve-memory-cam-smem.txt
+On Wed, May 15, 2019 at 03:43:19PM +0530, Amit Kucheria wrote:
+> On Tue, May 14, 2019 at 9:42 PM Niklas Cassel <niklas.cassel@linaro.org> wrote:
+> >
+> > On Fri, May 10, 2019 at 04:59:42PM +0530, Amit Kucheria wrote:
+> > > Instead of using Qualcomm-specific terminology, use generic node names
+> > > for the idle states that are easier to understand. Move the description
+> > > into the "idle-state-name" property.
+> > >
+> > > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/msm8916.dtsi | 11 ++++++-----
+> > >  1 file changed, 6 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > index ded1052e5693..400b609bb3fd 100644
+> > > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > @@ -110,7 +110,7 @@
+> > >                       reg = <0x0>;
+> > >                       next-level-cache = <&L2_0>;
+> > >                       enable-method = "psci";
+> > > -                     cpu-idle-states = <&CPU_SPC>;
+> > > +                     cpu-idle-states = <&CPU_SLEEP_0>;
+> > >                       clocks = <&apcs>;
+> > >                       operating-points-v2 = <&cpu_opp_table>;
+> > >                       #cooling-cells = <2>;
+> > > @@ -122,7 +122,7 @@
+> > >                       reg = <0x1>;
+> > >                       next-level-cache = <&L2_0>;
+> > >                       enable-method = "psci";
+> > > -                     cpu-idle-states = <&CPU_SPC>;
+> > > +                     cpu-idle-states = <&CPU_SLEEP_0>;
+> > >                       clocks = <&apcs>;
+> > >                       operating-points-v2 = <&cpu_opp_table>;
+> > >                       #cooling-cells = <2>;
+> > > @@ -134,7 +134,7 @@
+> > >                       reg = <0x2>;
+> > >                       next-level-cache = <&L2_0>;
+> > >                       enable-method = "psci";
+> > > -                     cpu-idle-states = <&CPU_SPC>;
+> > > +                     cpu-idle-states = <&CPU_SLEEP_0>;
+> > >                       clocks = <&apcs>;
+> > >                       operating-points-v2 = <&cpu_opp_table>;
+> > >                       #cooling-cells = <2>;
+> > > @@ -146,7 +146,7 @@
+> > >                       reg = <0x3>;
+> > >                       next-level-cache = <&L2_0>;
+> > >                       enable-method = "psci";
+> > > -                     cpu-idle-states = <&CPU_SPC>;
+> > > +                     cpu-idle-states = <&CPU_SLEEP_0>;
+> > >                       clocks = <&apcs>;
+> > >                       operating-points-v2 = <&cpu_opp_table>;
+> > >                       #cooling-cells = <2>;
+> > > @@ -160,8 +160,9 @@
+> > >               idle-states {
+> > >                       entry-method="psci";
+> >
+> > Please add a space before and after "=".
+> >
+> > >
+> > > -                     CPU_SPC: spc {
+> > > +                     CPU_SLEEP_0: cpu-sleep-0 {
+> >
+> > While I like your idea of using power state names from
+> > Server Base System Architecture document (SBSA) where applicable,
+> > does each qcom power state have a matching state in SBSA?
+> >
+> > These are the qcom power states:
+> > https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/Documentation/devicetree/bindings/arm/msm/lpm-levels.txt?h=msm-4.4#n53
+> >
+> > Note that qcom defines:
+> > "wfi", "retention", "gdhs", "pc", "fpc"
+> > while SBSA simply defines "idle_standby" (aka wfi), "idle_retention", "sleep".
+> >
+> > Unless you know the equivalent name for each qcom power state
+> > (perhaps several qcom power states are really the same SBSA state?),
+> > I think that you should omit the renaming from this patch series.
 > 
-> See my comments on the other 2 camera related reserved-memory bindings.
+> That is what SLEEP_0, SLEEP_1, SLEEP_2 could be used for.
+
+Ok, sounds good to me.
+
 > 
+> IOW, all these qcom definitions are nicely represented in the
+> state-name and we could simply stick to SLEEP_0, SLEEP_1 for the node
+> names. There is wide variability in the the names of the qcom idle
+> states across SoC families downstream, so I'd argue against using
+> those for the node names.
+> 
+> Just for cpu states (non-wfi) I see the use of the following names
+> downstream across families. The C<num> seems to come from x86
+> world[1]:
+> 
+>  - C4,   standalone power collapse (spc)
+>  - C4,   power collapse (fpc)
+>  - C2D, retention
+>  - C3,   power collapse (pc)
+>  - C4,   rail power collapse (rail-pc)
+> 
+> [1] https://www.hardwaresecrets.com/everything-you-need-to-know-about-the-cpu-c-states-power-saving-modes/
 
-Ok, we will align DIP & FD drivers's implementation.
+Indeed, there seems to be mixed names used, I've also seen "fpc-def".
 
-Best regards,
-
-Jungo
-
-> Rob
+So, you have convinced me.
 
 
+Kind regards,
+Niklas
+
+> 
+> > >                               compatible = "arm,idle-state";
+> > > +                             idle-state-name = "standalone-power-collapse";
+> > >                               arm,psci-suspend-param = <0x40000002>;
+> > >                               entry-latency-us = <130>;
+> > >                               exit-latency-us = <150>;
+> > > --
+> > > 2.17.1
+> > >
