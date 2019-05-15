@@ -2,92 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A91491F638
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 16:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A015A1F663
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 16:18:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbfEOOKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 10:10:17 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:40334 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726292AbfEOOKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 10:10:17 -0400
-Received: by mail-io1-f65.google.com with SMTP id s20so2318338ioj.7;
-        Wed, 15 May 2019 07:10:16 -0700 (PDT)
+        id S1726916AbfEOOSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 10:18:22 -0400
+Received: from mail-eopbgr1400122.outbound.protection.outlook.com ([40.107.140.122]:59173
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725953AbfEOOSW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 May 2019 10:18:22 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:newsgroups:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bJKKiXfZHHaE5DlOGJdlOVX5mGDL68zBtWY0bhW/6uA=;
-        b=MSDWB71CYoxyiah01bf1F5zqjU1MoQmhDvYYLbYgiz8yjIfmtvchCk/Ik5QAOkL6ca
-         IteQJ5g98GBQoEDJjlfSBLCGCsKhkiItE1VylU+ueXbvFHkm5qPHd0Hv66kQ8pE9J33v
-         BxDiKiPvJXa/g8vCAoI5swKl5YZoRrsN5gHZzyLdDySnxWEmrMXXMLgDdf7Nxm8Lqg/W
-         66GtetVRpm0gpUdb9ByHQaFFkLGrwW0Fv6WK/ZnuRa/2KqyrCVg5Jt8K5MpPPsOFt51J
-         ViUlwqK/90ZM78Xz0W2YnrLLKQ4Ard1I8aMS5eTvYCM7TcuAsuumLR183xkjPsowwm2U
-         +Ygg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:newsgroups:references:from
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=bJKKiXfZHHaE5DlOGJdlOVX5mGDL68zBtWY0bhW/6uA=;
-        b=VzuiL5VYxjRMpsso6PDayX697TENZ4JU61v5pzEglCFRWNGIgXDvL6dT+9Fe1J6I3v
-         1s4uzES8GBa4PqRVmn0UNjlLA3XB/YXHsFG1VjEd0UazOysUD6/vIKhDIX8Hy6GSX5Te
-         j74V7af//TmexiNIIwsM9kJcgSVZpzEZoyDiGvDjqHmFOMwApgggx9rtG4A3+7xZOHKi
-         Re+MRWe3aEFJRzCM/6eB/jMOoCOg3azQFH24JkgC6qZWSLAGnAo83cS0WN4R65dhaAgK
-         Obu1nqpYw++j+ofxUtic633CPJ1nvIfKN8UtAgef3EqlUvwQ/pgmEHnJrsBE+9s+jKVN
-         bsgw==
-X-Gm-Message-State: APjAAAWICjXvL/wyyl6Phs34TWumHlWAoghUg0ZXerXtKTWKzv/s1U1i
-        WlQzodHmXUpOdCNCQzobyfQ=
-X-Google-Smtp-Source: APXvYqwcZEQnqPFobfTT9ooD47mXfVeRMSKzq+Qe9T+bm955ynqqx8GiA4Zf3Wzi25ls/NCO/XGe9g==
-X-Received: by 2002:a5d:851a:: with SMTP id q26mr9307591ion.246.1557929416470;
-        Wed, 15 May 2019 07:10:16 -0700 (PDT)
-Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.googlemail.com with ESMTPSA id z18sm697958ioi.33.2019.05.15.07.10.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 07:10:15 -0700 (PDT)
-Subject: Re: [PATCH V3 5/8] memory: tegra: Add EMC scaling support code for
- Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Newsgroups: gmane.linux.ports.arm.kernel,gmane.linux.ports.tegra,gmane.linux.drivers.devicetree,gmane.linux.kernel.clk
-References: <20190510084719.18902-1-josephl@nvidia.com>
- <20190510084719.18902-6-josephl@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <630d7218-3f5f-88bc-1ba4-065a6200265e@gmail.com>
-Date:   Wed, 15 May 2019 17:09:34 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190510084719.18902-6-josephl@nvidia.com>
-Content-Type: text/plain; charset=utf-8
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cLTD93r+R7LeBUO+/zvFX3naY2sFL/83QQ0hqbimby0=;
+ b=Po1PO9ctEiD6GTrimBEDElQ1EnI30fJ1K9l0eUPEfihPlN+4vrgAzxKzAAZdynH88KfC36VZhSLhYRdck4OktIE7rcTeZY7/GDNLAZr97j7/yK+sRpjR5hDjRK0JvXOJFPvErXTnxqy4Sq2kEzUZCuUMCoqB7A0S11YuK8B26gM=
+Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com (52.133.166.145) by
+ TYXPR01MB1664.jpnprd01.prod.outlook.com (52.133.167.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Wed, 15 May 2019 14:18:18 +0000
+Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com
+ ([fe80::c989:cb4d:b41e:2045]) by TYXPR01MB1568.jpnprd01.prod.outlook.com
+ ([fe80::c989:cb4d:b41e:2045%7]) with mapi id 15.20.1900.010; Wed, 15 May 2019
+ 14:18:18 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v3 11/15] usb: renesas_usbhs: Add support for RZ/A2
+Thread-Topic: [PATCH v3 11/15] usb: renesas_usbhs: Add support for RZ/A2
+Thread-Index: AQHVCmVwqsbIgol6iEKvZrJ46ECCEKZr2uSAgABfriA=
+Date:   Wed, 15 May 2019 14:18:18 +0000
+Message-ID: <TYXPR01MB15687A77DA9CEC27D214B17E8A090@TYXPR01MB1568.jpnprd01.prod.outlook.com>
+References: <20190514145605.19112-1-chris.brandt@renesas.com>
+        <20190514145605.19112-12-chris.brandt@renesas.com>
+ <871s106ssi.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <871s106ssi.wl-kuninori.morimoto.gx@renesas.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fbe930bf-fabe-4ea6-82e6-08d6d9402d75
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TYXPR01MB1664;
+x-ms-traffictypediagnostic: TYXPR01MB1664:
+x-microsoft-antispam-prvs: <TYXPR01MB16647739086FDF906E75CB358A090@TYXPR01MB1664.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3383;
+x-forefront-prvs: 0038DE95A2
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(376002)(39860400002)(396003)(366004)(136003)(199004)(189003)(6246003)(6862004)(486006)(66476007)(476003)(86362001)(53936002)(8676002)(81156014)(73956011)(66946007)(76116006)(4326008)(74316002)(316002)(558084003)(72206003)(6636002)(7416002)(66446008)(64756008)(66556008)(14454004)(446003)(26005)(52536014)(8936002)(11346002)(256004)(25786009)(71190400001)(71200400001)(5660300002)(68736007)(81166006)(7736002)(186003)(305945005)(6116002)(3846002)(99286004)(102836004)(9686003)(229853002)(7696005)(76176011)(33656002)(6506007)(54906003)(2906002)(66066001)(478600001)(6436002)(55016002);DIR:OUT;SFP:1102;SCL:1;SRVR:TYXPR01MB1664;H:TYXPR01MB1568.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: TSdEIvpPwj3isQgkAUncP2xZV7WJfP+rmoHaj5tHQRo4G9uHkFPg7Ux19loQ3wO5sKIZ2F43tebmX7B5JZfRuGsdoyll0+/7ZQn6Xls6UVjyRAzynN7aJJPYdta/nPhU5VyllMxOZ8tPVpkKf16Ppe7vT3MPRKRBbZ1imO5pdDd1+PqvTQ8a6TKVs7b/sfGNiZXdvV2BKNQ1x5CXfrXOIuEsMQh0NkxKm0cH8Yjn2bFb2zIuQwGFOlKEU27zhHhPPk01i0Bt8pXUWM5Z6wZlLKr6fm4Ip0xnTsW1mQRLGv9Ao7dF4C8xSNLxVxX3qTdKwkYREauUILigi63aNRbMXNY0DblqAPsLtexSwRYTC0AbWEJTw6v6D+6gNBE/blU5YcWDFy7oPl3QRctwuFhk2wdPNuAbTf7h5yYbH0X/S48=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbe930bf-fabe-4ea6-82e6-08d6d9402d75
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 14:18:18.2364
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1664
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.05.2019 11:47, Joseph Lo пишет:
-> This patch adds the required APIs and variables for the EMC scaling
-> sequence code on Tegra210.
-> 
-> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
-> 
-> Signed-off-by: Joseph Lo <josephl@nvidia.com>
-> ---
+Hi Morimoto-san,
 
-> +int tegra_emc_dt_parse_pdata(struct platform_device *pdev,
-> +			     struct emc_table **tables,
-> +			     struct emc_table **derated_tables,
-> +			     int *num_entries);
-There is no definition for this function. Again, please clean up the
-code properly.
+> > +	if (priv->phy) {
+> > +		phy_put(priv->phy);
+> > +		priv->phy =3D NULL;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+>=20
+> phy_put() will do nothing if priv->phy was NULL.
+> We can remove if() here ?
 
--- 
-Dmitry
+OK. I will remove 'if'.
+
+#I copied Shimoda-san's code from rcar.2  :)
+
+
+Chris
+
