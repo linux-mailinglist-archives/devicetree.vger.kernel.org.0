@@ -2,99 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF4E1F9A8
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 19:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 629851F9E1
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 20:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727428AbfEOR7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 13:59:39 -0400
-Received: from mail-ua1-f67.google.com ([209.85.222.67]:40763 "EHLO
-        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbfEOR7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 13:59:39 -0400
-Received: by mail-ua1-f67.google.com with SMTP id d4so198680uaj.7
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 10:59:38 -0700 (PDT)
+        id S1726422AbfEOSZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 14:25:46 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:38862 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726387AbfEOSZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 14:25:46 -0400
+Received: by mail-qt1-f195.google.com with SMTP id d13so837629qth.5
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VYGv5m3AMILz51Spmrt6yHEEOb39aK0Gg2jo/Bu5BT8=;
-        b=eMSKiMkGDiPhEV6MfHv/8lqxI0ZIJwgTFHaLe+9m7kHkPBaae8ncl6ySq7O3M6a5pL
-         mh4fcV39mHessqaqiXbT86R8AQRmrn+GjnwD1D4DsYF3IXresr7LwJhlyrk7UX9qQFsq
-         yb4nLY9TjQf6qjO/OLDuqrTfslgVfMW0QzmSU=
+        d=poorly.run; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=uevvlYfgOpXcBdOPgi1PLyx6eXxlSuyhw6lRRCuesfo=;
+        b=TqUjzDnCZmv6DWpuf0cnlhe53qd6a/4tumMZ0fZw9U0qgMuucJ5FWPcQ5yJxnopnKT
+         geiPTrEINDWv1Mg13o5dluWxczAZ0EqqzbBXIm7bdy7586rxyBgwBz+B86+nBt9p1Rac
+         wzURb9WAoKStN4ih/1eDy3TDPBr4lJp5mnGxzs491XF91MShcz1ODdMXi/viD0CJUTH0
+         bLLBPYk/lr/wwmP6ubJmA6AoFVkQi6fxI3T9MYR4kt8ZTPR8gyLAzInU8OJUtyssAsVZ
+         jDU21ExK/qtRKXpFZxpNsvRowe+xQeZgmWY8sN9sYBYUfvoTWwX2n7mqIGQxnDgr6FTK
+         DmBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VYGv5m3AMILz51Spmrt6yHEEOb39aK0Gg2jo/Bu5BT8=;
-        b=EMQnaE+Cw7kEgRUbPOqvM/oS9B1pXyPHhEoCaKOAL6XXLFFNQiy8f1aNVH0kUlBWxk
-         oPWA2KU7u9Op6AXOs3HhqkYD25zNdDG1Wg8ku+8bsUtB5gBw/hafeiD8kls7XQdHHyu0
-         CMv45lgCCRMZQgNYLFUrNs80hwYy2ATtAartPsJRzxVC88nBOIGX20LlTT1FWUs3M7P/
-         lu5YTRWurLpaMf2LsSEWqYK7RKx8cUzQSNrDhgCkRFDx4ED5s3L/+f5+BvRtANh7e+s+
-         Xw4lH50h/qMtwYbGmaxMitFINU8w8BHR/MziH6ZxIXj3ldXx43ujTiaDF/0du+Qcq1Iz
-         1X+A==
-X-Gm-Message-State: APjAAAXs5oZH3o5QrE/IKViEzXNh1tKhcKhk6PwH7OC+2gKWAN2TJbzh
-        ByLWpFbEc4vDXEgfI2Jd2FPPy9FZjmc=
-X-Google-Smtp-Source: APXvYqz3Ljsc4J8PARJH0T2uOjm/0KLIoIleH/5lgKlng9w1iL+p84fQtNy4Qh7/uwllVMUekRbUdQ==
-X-Received: by 2002:ab0:25cc:: with SMTP id y12mr21327119uan.9.1557943177742;
-        Wed, 15 May 2019 10:59:37 -0700 (PDT)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
-        by smtp.gmail.com with ESMTPSA id r70sm1800174vke.36.2019.05.15.10.59.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 10:59:36 -0700 (PDT)
-Received: by mail-vk1-f180.google.com with SMTP id d77so245898vke.13
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 10:59:36 -0700 (PDT)
-X-Received: by 2002:a1f:d884:: with SMTP id p126mr20080140vkg.70.1557943175846;
- Wed, 15 May 2019 10:59:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=uevvlYfgOpXcBdOPgi1PLyx6eXxlSuyhw6lRRCuesfo=;
+        b=G4skDIZNhZAZe6bG5KNnDJJ3UcVLcB6Z6dJA8NlMcgtT0paXPpyKikQJsPouxmls/S
+         QQjqnfiixYFYHyHnHCWKHlkRj6aDSQAdcjRUzQq/6WQwGObWpRpuPa+a1ClaygDkfubt
+         bmZGTNYXTalai6N0NAMAtS7uq/udQ+9qHOz/rPSWstmpmdZ1Hxl8woSAACSZjJHdLtAA
+         6VQgnoxYHPcRp0JPijmP2vyrjy0JNTLmrZxnGsa3yoIDeUXGgjPscHeqlMMOxDMdTmlW
+         DVJVK0cHAEyeX1NH12m7hWPQOJMniiIYcAm0fAT0a/kVPSeel+Luj4NW7o/g2ngmDy96
+         d6MA==
+X-Gm-Message-State: APjAAAV6Dc0CjsXZKTa/9VSWluGPBKWgpqPeDd3Lqq/gxYWvW4YO8vJq
+        p5YR1/CoudMdMS7vEjt4kbIAZQ==
+X-Google-Smtp-Source: APXvYqyjVVjWkzvrQizl0QTykiPZBiDOEfoq0Ogb2zru/TMF45dYDtbCR70ikjwUT1A+sxFVf0ucJw==
+X-Received: by 2002:ac8:4a84:: with SMTP id l4mr37683309qtq.374.1557944745132;
+        Wed, 15 May 2019 11:25:45 -0700 (PDT)
+Received: from localhost ([2620:0:1013:11:89c6:2139:5435:371d])
+        by smtp.gmail.com with ESMTPSA id n2sm1272422qkk.43.2019.05.15.11.25.44
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 15 May 2019 11:25:44 -0700 (PDT)
+Date:   Wed, 15 May 2019 14:25:44 -0400
+From:   Sean Paul <sean@poorly.run>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>, mka@chromium.org,
+        Sean Paul <seanpaul@chromium.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/5] ARM: dts: rockchip: Switch to builtin HDMI DDC bus
+ on rk3288-veyron
+Message-ID: <20190515182544.GW17077@art_vandelay>
+References: <20190502225336.206885-1-dianders@chromium.org>
+ <20190502225336.206885-3-dianders@chromium.org>
 MIME-Version: 1.0
-References: <20190424162827.5297-1-mka@chromium.org>
-In-Reply-To: <20190424162827.5297-1-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 15 May 2019 10:59:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W+QGLmhEaqGc-=wNFzmaCr_f4rb5e8KQ4ZmeRaNi_xCw@mail.gmail.com>
-Message-ID: <CAD=FV=W+QGLmhEaqGc-=wNFzmaCr_f4rb5e8KQ4ZmeRaNi_xCw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: rockchip: Add #cooling-cells entry for rk3288 GPU
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190502225336.206885-3-dianders@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, May 02, 2019 at 03:53:34PM -0700, Douglas Anderson wrote:
+> Downstream Chrome OS kernels use the builtin DDC bus from dw_hdmi on
+> veyron.  This is the only way to get them to negotiate HDCP.
+> 
+> Although HDCP isn't currently all supported upstream, it still seems
+> like it makes sense to use dw_hdmi's builtin I2C.  Maybe eventually we
+> can get HDCP negotiation working.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-On Wed, Apr 24, 2019 at 9:28 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+Reviewed-by: Sean Paul <sean@poorly.run>
 
-> The Mali GPU of the rk3288 can be used as cooling device, add
-> a #cooling-cells entry for it.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  arch/arm/boot/dts/rk3288.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-> index ca7d52daa8fb..767e62908a6e 100644
-> --- a/arch/arm/boot/dts/rk3288.dtsi
-> +++ b/arch/arm/boot/dts/rk3288.dtsi
-> @@ -1275,6 +1275,7 @@
->                 interrupt-names = "job", "mmu", "gpu";
->                 clocks = <&cru ACLK_GPU>;
->                 operating-points-v2 = <&gpu_opp_table>;
-> +               #cooling-cells = <2>; /* min followed by max */
->                 power-domains = <&power RK3288_PD_GPU>;
->                 status = "disabled";
->         };
+> 
+>  arch/arm/boot/dts/rk3288-veyron.dtsi | 11 ++---------
+>  1 file changed, 2 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
+> index 1252522392c7..e1bee663d2c5 100644
+> --- a/arch/arm/boot/dts/rk3288-veyron.dtsi
+> +++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
+> @@ -163,7 +163,8 @@
+>  };
+>  
+>  &hdmi {
+> -	ddc-i2c-bus = <&i2c5>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&hdmi_ddc>;
+>  	status = "okay";
+>  };
+>  
+> @@ -334,14 +335,6 @@
+>  	i2c-scl-rising-time-ns = <300>;		/* 225ns measured */
+>  };
+>  
+> -&i2c5 {
+> -	status = "okay";
+> -
+> -	clock-frequency = <100000>;
+> -	i2c-scl-falling-time-ns = <300>;
+> -	i2c-scl-rising-time-ns = <1000>;
+> -};
+> -
+>  &io_domains {
+>  	status = "okay";
+>  
+> -- 
+> 2.21.0.1020.gf2820cf01a-goog
+> 
 
-Seems like a good idea to me.  Presumably we should also add this to
-the bindings?
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-
--Doug
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
