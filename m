@@ -2,95 +2,516 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 280DF1F8B9
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 18:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFEDC1F904
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 18:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727074AbfEOQfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 12:35:07 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:25920 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726283AbfEOQfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 12:35:07 -0400
-X-IronPort-AV: E=Sophos;i="5.60,472,1549897200"; 
-   d="scan'208";a="15828894"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 16 May 2019 01:35:05 +0900
-Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id F349D40158D2;
-        Thu, 16 May 2019 01:35:00 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>
-Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com
-Subject: [PATCH v2 2/2] dt-bindings: arm: renesas: Add HopeRun RZ/G2[M] boards
-Date:   Wed, 15 May 2019 17:34:43 +0100
-Message-Id: <1557938083-25423-3-git-send-email-fabrizio.castro@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1557938083-25423-1-git-send-email-fabrizio.castro@bp.renesas.com>
-References: <1557938083-25423-1-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S1726755AbfEOQ5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 12:57:53 -0400
+Received: from plaes.org ([188.166.43.21]:56020 "EHLO plaes.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726681AbfEOQ5x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 May 2019 12:57:53 -0400
+X-Greylist: delayed 373 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 May 2019 12:57:50 EDT
+Received: from plaes.org (localhost [127.0.0.1])
+        by plaes.org (Postfix) with ESMTPSA id 34932403C4;
+        Wed, 15 May 2019 16:51:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
+        t=1557939096; bh=Z+ecK9DU8ieq1XVDtOc/3RCFi0l8zA8aRTmLMSXLoTs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Fy1a6R9hH+6ryP8aHjcM3Gjy3hD9d7L4+cpYOhORJB0ghzL+GpktQkcelzgeLOL3W
+         ya1SDDD3T/3MDoEOoJXLAoiIUg4EtwlydhwXh3dT59+IgXoQqwrqWSlKFfT+2xBMhK
+         ZV601IMBf2zlzZONHZKmSF2hUj5t1id27Rmu3nkzwuk7SvlPpBejofzm5Nh43Y+jVF
+         aeYf5cI/zjdz4d/zG9SXZnsVuRtm8ab81co+fbGZ7rtfJww4S9hYTpjDUF+DdYIIGx
+         dLg05XqDHNYJPQViMdu6ObQBVVBEyKe5gV+DE3ynB58Qc1+0DopMJZ1AGOe+TqFrDl
+         8pjRANiKzIE1Q==
+Date:   Wed, 15 May 2019 16:51:35 +0000
+From:   Priit Laes <plaes@plaes.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, linux-imx@nxp.com,
+        Stefan.Nickl@kontron.com, Gilles.Buloz@kontron.com,
+        Michael.Brunner@kontron.com, thomas.schaefer@kontron.com,
+        frieder.schrempf@kontron.de, kernel@pengutronix.de,
+        devicetree@vger.kernel.org,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>
+Subject: Re: [PATCH 02/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: Add
+ iMX6-based Kontron SMARC-sAMX6i module
+Message-ID: <20190515165135.ginuoqxppzq37mzq@plaes.org>
+References: <20190509155834.22838-1-m.felsch@pengutronix.de>
+ <20190509155834.22838-3-m.felsch@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190509155834.22838-3-m.felsch@pengutronix.de>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds board HiHope RZ/G2M (the main board, powered by
-the R8A774A1) and board HiHope RZ/G2 EX (the expansion board
-that sits on top of the HiHope RZ/G2M). Both boards are made
-by Jiangsu HopeRun Software Co., Ltd. (a.k.a. HopeRun).
+On Thu, May 09, 2019 at 05:58:19PM +0200, Marco Felsch wrote:
+> From: Priit Laes <plaes@plaes.org>
 
-Useful links:
-http://hihope.org/product/detail/rzg2
-https://item.taobao.com/item.htm?spm=a2oq0.12575281.0.0.6bcf1debQpzkRS&ft=t&id=592177498472
-http://www.hoperun.com/Cn/news/id/379
+Cool, thanks for picking that up :)
 
-We already know that the HiHope RZ/G2 EX will also sit on the
-HiHope RZ/G2N, even though the HiHope RZ/G2N doesn't exist just
-yet.
+Also, another nice thing to see is that Kontron itself is now involved,
+as back in the day when I was asking for extra information regarding
+this board (latest BSP / Git tree) I was politely told to GTFO ;)
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
-
----
-v1->v2:
-* Fixed according to Rob's comments
-
- Documentation/devicetree/bindings/arm/renesas.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-index 19f3798..08c923f 100644
---- a/Documentation/devicetree/bindings/arm/renesas.yaml
-+++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-@@ -106,6 +106,14 @@ properties:
- 
-       - description: RZ/G2M (R8A774A1)
-         items:
-+          - enum:
-+              - hoperun,hihope-rzg2m # HopeRun HiHope RZ/G2M platform
-+          - const: renesas,r8a774a1
-+
-+      - items:
-+          - enum:
-+              - hoperun,hihope-rzg2-ex # HopeRun expansion board for HiHope RZ/G2 platforms
-+          - const: hoperun,hihope-rzg2m
-           - const: renesas,r8a774a1
- 
-       - description: RZ/G2E (R8A774C0)
--- 
-2.7.4
-
+> SMARC-sAMX6i is a SMARC (Smart Mobility Architecture) compliant
+> module.
+> 
+> Signed-off-by: Priit Laes <plaes@plaes.org>
+> Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Based on patch: https://lore.kernel.org/patchwork/patch/762261/
+> 
+> v2:
+> - common: adapt commit message
+> - common: add pengutronix copyright
+> - common: use SPDX license header
+> - common: rename it to imx6qdl-smx6.dtsi
+> - common: drop imx6q.dtsi include and model, compatible, memory properties
+> - common: fix comment style
+> - common: drop all unnecessary 'status = "disabled"'
+> - i2c_pfuze: fix sda/scl gpios
+> - i2c_pfuze: s/i2c_pfuze/i2c_intern
+> - i2c_pfuze: use GPIO_* defines
+> - i2c3: fix pinmux
+> - fec: add phy-reset-gpio
+> - iomux: drop default 0x80000000 value
+> - iomux: use unique naming
+> - regulators: drop container node
+> - regulators: add all missing
+> 
+>  arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 418 ++++++++++++++++++
+>  1 file changed, 418 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> new file mode 100644
+> index 000000000000..e546d46365f5
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> @@ -0,0 +1,418 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR X11
+> +/*
+> + * Copyright 2017 (C) Priit Laes <plaes@plaes.org>
+> + * Copyright 2018 (C) Pengutronix, Michael Grzeschik <mgr@pengutronix.de>
+> + * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> + *
+> + * Based on initial work by Nikita Yushchenko <nyushchenko at dev.rtsoft.ru>
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	reg_1p0v_s0: regulator-1p0v-s0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_1V0_S0";
+> +		regulator-min-microvolt = <1000000>;
+> +		regulator-max-microvolt = <1000000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&reg_smarc_suppy>;
+> +	};
+> +
+> +	reg_1p35v_vcoredig_s5: regulator-1p35v-vcoredig-s5 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_1V35_VCOREDIG_S5";
+> +		regulator-min-microvolt = <1350000>;
+> +		regulator-max-microvolt = <1350000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&reg_3p3v_s5>;
+> +	};
+> +
+> +	reg_1p8v_s5: regulator-1p8v-s5 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_1V8_S5";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&reg_3p3v_s5>;
+> +	};
+> +
+> +	reg_3p3v_s0: regulator-3p3v-s0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_3V3_S0";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&reg_3p3v_s5>;
+> +	};
+> +
+> +	reg_3p3v_s0: regulator-3p3v-s0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_3V3_S0";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&reg_3p3v_s5>;
+> +	};
+> +
+> +	reg_3p3v_s5: regulator-3p3v-s5 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_3V3_S5";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&reg_smarc_suppy>;
+> +	};
+> +
+> +	reg_smarc_rtc: regulator-smarc-rtc {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_IN_RTC_BATT";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	/* Module supply range can be 3.00V ... 5.25V */
+> +	reg_smarc_suppy: regulator-smarc-supply {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "V_IN_WIDE";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	i2c_intern: i2c-gpio-intern {
+> +		compatible = "i2c-gpio";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_i2c_gpio_intern>;
+> +		sda-gpios = <&gpio1 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +		scl-gpios = <&gpio1 30 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +		i2c-gpio,delay-us = <2>; /* ~100 kHz */
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +	};
+> +};
+> +
+> +/* CAN0 */
+> +&can1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan1>;
+> +};
+> +
+> +/* CAN1 */
+> +&can2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan2>;
+> +};
+> +
+> +/* GBE */
+> +&fec {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_enet>;
+> +	phy-mode = "rgmii";
+> +	phy-reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+> +};
+> +
+> +&i2c_intern {
+> +	pfuze100@08 {
+> +		compatible = "fsl,pfuze100";
+> +		reg = <0x08>;
+> +
+> +		regulators {
+> +			reg_v_core_s0: sw1ab {
+> +				regulator-name = "V_CORE_S0";
+> +				regulator-min-microvolt = <300000>;
+> +				regulator-max-microvolt = <1875000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_vddsoc_s0: sw1c {
+> +				regulator-name = "V_VDDSOC_S0";
+> +				regulator-min-microvolt = <300000>;
+> +				regulator-max-microvolt = <1875000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_3p15v_s0: sw2 {
+> +				regulator-name = "V_3V15_S0";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* sw3a/b is used in dual mode, but driver does not
+> +			 * support it. Although, there's no need to control
+> +			 * DDR power - so just leaving dummy entries for sw3a
+> +			 * and sw3b for now.
+> +			 */
+> +			sw3a {
+> +				regulator-min-microvolt = <400000>;
+> +				regulator-max-microvolt = <1975000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			sw3b {
+> +				regulator-min-microvolt = <400000>;
+> +				regulator-max-microvolt = <1975000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_1p8v_s0: sw4 {
+> +				regulator-name = "V_1V8_S0";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* Regulator for USB */
+> +			reg_5p0v_s0: swbst {
+> +				regulator-name = "V_5V0_S0";
+> +				regulator-min-microvolt = <5000000>;
+> +				regulator-max-microvolt = <5150000>;
+> +				regulator-boot-on;
+> +			};
+> +
+> +			reg_vsnvs: vsnvs {
+> +				regulator-min-microvolt = <1000000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_vrefddr: vrefddr {
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/*
+> +			 * Per schematics, of all VGEN's, only VGEN5 has some
+> +			 * usage ... but even that - over DNI resistor
+> +			 */
+> +			vgen1 {
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1550000>;
+> +			};
+> +
+> +			vgen2 {
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1550000>;
+> +			};
+> +
+> +			vgen3 {
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +
+> +			vgen4 {
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +
+> +			reg_2p5v_s0: vgen5 {
+> +				regulator-name = "V_2V5_S0";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +
+> +			vgen6 {
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +/* I2C_PM */
+> +&i2c3 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_flexcan1: flexcan1grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
+> +			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_flexcan2: flexcan2grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
+> +			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_enet: enetgrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_RGMII_TXC__RGMII_TXC       0x1b0b0
+> +			MX6QDL_PAD_RGMII_TD0__RGMII_TD0       0x1b0b0
+> +			MX6QDL_PAD_RGMII_TD1__RGMII_TD1       0x1b0b0
+> +			MX6QDL_PAD_RGMII_TD2__RGMII_TD2       0x1b0b0
+> +			MX6QDL_PAD_RGMII_TD3__RGMII_TD3       0x1b0b0
+> +			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL 0x1b0b0
+> +			MX6QDL_PAD_RGMII_RXC__RGMII_RXC       0x1b0b0
+> +			MX6QDL_PAD_RGMII_RD0__RGMII_RD0       0x1b0b0
+> +			MX6QDL_PAD_RGMII_RD1__RGMII_RD1       0x1b0b0
+> +			MX6QDL_PAD_RGMII_RD2__RGMII_RD2       0x1b0b0
+> +			MX6QDL_PAD_RGMII_RD3__RGMII_RD3       0x1b0b0
+> +			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL 0x1b0b0
+> +
+> +			MX6QDL_PAD_ENET_MDIO__ENET_MDIO       0x1b0b0
+> +			MX6QDL_PAD_ENET_MDC__ENET_MDC         0x1b0b0
+> +			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK  0x1b0b0
+> +			MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25    0x1b0b0 /* RST_GBE0_PHY# */
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c_gpio_intern: i2c-gpiointerngrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_ENET_TXD0__GPIO1_IO30  0x1b0b0 /* SCL */
+> +			MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28 0x1b0b0 /* SDA */
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_GPIO_3__I2C3_SCL		0x4001b8b1
+> +			MX6QDL_PAD_GPIO_16__I2C3_SDA		0x4001b8b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_pcie: pciegrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_EIM_D18__GPIO3_IO18	0x1b0b0 /* PCI_A_PRSNT# */
+> +			MX6QDL_PAD_EIM_DA13__GPIO3_IO13 0x1b0b0 /* RST_PCIE_A#  */
+> +			MX6QDL_PAD_SD3_DAT6__GPIO6_IO18 0x1b0b0 /* PCIE_WAKE#   */
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart1: uart1grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA 0x1b0b1
+> +			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA 0x1b0b1
+> +			MX6QDL_PAD_EIM_D20__UART1_RTS_B 0x1b0b1
+> +			MX6QDL_PAD_EIM_D19__UART1_CTS_B 0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_EIM_D27__UART2_RX_DATA 0x1b0b1
+> +			MX6QDL_PAD_EIM_D26__UART2_TX_DATA 0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart4: uart4grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_CSI0_DAT13__UART4_RX_DATA 0x1b0b1
+> +			MX6QDL_PAD_CSI0_DAT12__UART4_TX_DATA 0x1b0b1
+> +			MX6QDL_PAD_CSI0_DAT16__UART4_RTS_B 0x1b0b1
+> +			MX6QDL_PAD_CSI0_DAT17__UART4_CTS_B 0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart5: uart5grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_CSI0_DAT15__UART5_RX_DATA 0x1b0b1
+> +			MX6QDL_PAD_CSI0_DAT14__UART5_TX_DATA 0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg: usbotggrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_GPIO_1__USB_OTG_ID 0x1f8b0
+> +			/* power, oc muxed but not used by the driver */
+> +			MX6QDL_PAD_CSI0_PIXCLK__GPIO5_IO18	0x1b0b0 /* USB power */
+> +			MX6QDL_PAD_CSI0_DATA_EN__GPIO5_IO20	0x1b0b0 /* USB OC */
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc4: usdhc4grp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_SD4_CLK__SD4_CLK 0x17059
+> +			MX6QDL_PAD_SD4_CMD__SD4_CMD 0x17059
+> +			MX6QDL_PAD_SD4_DAT0__SD4_DATA0 0x17059
+> +			MX6QDL_PAD_SD4_DAT1__SD4_DATA1 0x17059
+> +			MX6QDL_PAD_SD4_DAT2__SD4_DATA2 0x17059
+> +			MX6QDL_PAD_SD4_DAT3__SD4_DATA3 0x17059
+> +			MX6QDL_PAD_SD4_DAT4__SD4_DATA4 0x17059
+> +			MX6QDL_PAD_SD4_DAT5__SD4_DATA5 0x17059
+> +			MX6QDL_PAD_SD4_DAT6__SD4_DATA6 0x17059
+> +			MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x17059
+> +		>;
+> +	};
+> +};
+> +
+> +&pcie {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pcie>;
+> +	wake-up-gpio = <&gpio6 18 GPIO_ACTIVE_HIGH>;
+> +	reset-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
+> +};
+> +
+> +/* SER0 */
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	uart-has-rtscts;
+> +};
+> +
+> +/* SER1 */
+> +&uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart2>;
+> +};
+> +
+> +/* SER2 */
+> +&uart4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart4>;
+> +	uart-has-rtscts;
+> +};
+> +
+> +/* SER3 */
+> +&uart5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart5>;
+> +};
+> +
+> +/* USB0 */
+> +&usbotg {
+> +	/*
+> +	 * no 'imx6-usb-charger-detection'
+> +	 * since USB_OTG_CHD_B pin is not wired
+> +	 */
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usbotg>;
+> +};
+> +
+> +/* USB1/2 via hub */
+> +&usbh1 {
+> +	vbus-supply = <&reg_5p0v_s0>;
+> +};
+> +
+> +/* SDMMC */
+> +&usdhc4 {
+> +	/* Internal eMMC, optional on some boards */
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usdhc4>;
+> +	bus-width = <8>;
+> +	no-1-8-v;
+> +	non-removable;
+> +};
+> -- 
+> 2.20.1
+> 
