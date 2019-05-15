@@ -2,103 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3AFC1F771
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 17:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B871F795
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 17:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727018AbfEOP0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 11:26:54 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:42047 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726911AbfEOP0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 11:26:53 -0400
-Received: by mail-lj1-f193.google.com with SMTP id 188so151052ljf.9;
-        Wed, 15 May 2019 08:26:52 -0700 (PDT)
+        id S1727511AbfEOPbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 11:31:35 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:38131 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727507AbfEOPbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 11:31:35 -0400
+Received: by mail-pl1-f195.google.com with SMTP id f97so51174plb.5
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 08:31:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6cBL5aTouL63mlEBJPFj1RGOe1dEBWdZshtStEgjyl4=;
-        b=gQ5b5R0cTyTWOhDTjkP9WO0SWdB1A53z3VCrlhsLBS0+PRh7ovvr7QE8jfIgbzMWIg
-         XpS+7U2Z5d2Xh3UxCBnJ/QDrt9ec6JQtiWybb37FBDCxIQJswkqHxWln2/z/mQYEVdLF
-         /B+UTIlz+mu5uVm7uD+KHp5GDQz5N27xHw6Ty+QAjcR+zhoPcIwJY+PVEAX60Yjgu0hM
-         JK9Ez/wN4v/uqTQqB2qI2lBMrJV5LRXqDo4JMvgCROiLJT3R5aXOmuasJLVFB480uW8L
-         SThd3R3Ti+TrxWDvdiRGRZL0WD9EFHWExxoFcZn9i/nXMguyXnRvknWFKmuo9/H1Ktoa
-         bTtA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N3PFiqZYr2ENWnUsVIDRAvDI9vPaKjuSp1u756KP9Zc=;
+        b=j/97p16K6USW9gvsVhnnSbeJKIGOU2uRr7jmAEgKinUYFiWyG93vD7TP1OavOB43ii
+         x0SPgsjsCnTt3YLr7odjlnWViICJu2ezBCI5wFhCe/tkhjv0T7I1+3kFjyP4mvx8hQZo
+         3xrjDpWFqq5Y56WcevT7zGob4l8tm/ffewKBQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=6cBL5aTouL63mlEBJPFj1RGOe1dEBWdZshtStEgjyl4=;
-        b=tutVH4U0hrVSjgS7P2hbxmx394yL3mJXYLOIpQp74wVfAM+WArQqTw2990Ok0wa7f8
-         wAirAfDuwhU6TUdaz0zyGHC5qMoeTSVrVwHGA/qoL8iy2haKith0dpNCma0AGTfNE+rU
-         0WJyw4OzIC9e/+39nSbm2A10RUTw53vWHC8DrDEH/ZfsWUd/uHKgJOpOoj9fc94FTuy6
-         GYuLAdRWWPFAmClO0OCmnQiLbVyMSji+0qPxTwdbqJEeuxXwhy2yKQ7XLmd718EzPD/P
-         oKC13oGBLKUfDu+GfCN2/9MT0niKefpeAyKNSvycT9o+K6tHAUTdPnjF/PP6dHXqMvUg
-         lm+w==
-X-Gm-Message-State: APjAAAUW0MFKK9BY7xtoyD7AhT8FMUrmM/TOk0mONvgj16ibKouGWZ//
-        eKE/ejv46BCC2tuSI88l+30=
-X-Google-Smtp-Source: APXvYqx1eXNFS/yKESjwI/+dMTt/Mzw77h/fGs13ul8A07QCq74RGyhn5/lFO1hjsM3brXCAP4ghWQ==
-X-Received: by 2002:a2e:8644:: with SMTP id i4mr7583980ljj.0.1557934011892;
-        Wed, 15 May 2019 08:26:51 -0700 (PDT)
-Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.googlemail.com with ESMTPSA id k81sm399103ljb.77.2019.05.15.08.26.50
+        bh=N3PFiqZYr2ENWnUsVIDRAvDI9vPaKjuSp1u756KP9Zc=;
+        b=FcBEvEyvagdrFP+MZbEtZ07HRlQhYYJNQpUP8hD8NPy3mrXZFdwcowtsRYwY5I9qM6
+         sbgs9Gdt2FN/Jiclp7wd82BARGtGLQBww+UWbVvzNC+mE3QTe10MU87mSVGbH0ovO/mz
+         QT1RmAYUtMXOJKH3XsyRHbGvyyI9GgAqUVDV3rGljTmjHUa/UORqBYXmRWV5BoGWee+B
+         7eHQp7BqYwHimoaWeIpNgdXtZLCZMfqwKkbs9ZNjyrR12XIE6d5+UeGtsgRY9I8XjFa0
+         uqKM3eeKN48sKUUlx07YEbuifAttPn7oVBCSvNy9RujiuKxXrvx3n11tbOcJurDijNp9
+         azOw==
+X-Gm-Message-State: APjAAAW1eS8Lm7b7wt1Xa300opGBlCL/hD4CYE3RN1Lx0sNZyxX9w6Vk
+        URUJ8AxV9LwUp68eHvWb7QrimQ==
+X-Google-Smtp-Source: APXvYqwpHJFwd0RE9EmEOM2wbZSpYfXI5Ha19P2vHpWhNU4WtqcFTMR9WH76eVdT2labGFxPVWZPRQ==
+X-Received: by 2002:a17:902:e683:: with SMTP id cn3mr21744646plb.86.1557934294758;
+        Wed, 15 May 2019 08:31:34 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id c189sm5260671pfg.46.2019.05.15.08.31.33
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 08:26:51 -0700 (PDT)
-Subject: Re: [PATCH V3 5/8] memory: tegra: Add EMC scaling support code for
- Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190510084719.18902-1-josephl@nvidia.com>
- <20190510084719.18902-6-josephl@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <6a42ff62-44fe-c420-7645-d57ecc1defaa@gmail.com>
-Date:   Wed, 15 May 2019 18:26:50 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Wed, 15 May 2019 08:31:34 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH 1/2] dts: rockchip: raise GPU trip point temperature for veyron to 72.5 degC
+Date:   Wed, 15 May 2019 08:31:26 -0700
+Message-Id: <20190515153127.24626-1-mka@chromium.org>
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
 MIME-Version: 1.0
-In-Reply-To: <20190510084719.18902-6-josephl@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.05.2019 11:47, Joseph Lo пишет:
-> This patch adds the required APIs and variables for the EMC scaling
-> sequence code on Tegra210.
-> 
-> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
-> 
-> Signed-off-by: Joseph Lo <josephl@nvidia.com>
-> ---
+This value matches what is used by the downstream Chrome OS 3.14
+kernel, the 'official' kernel for veyron devices.
 
-> +
-> +void do_clock_change(struct tegra_emc *emc, u32 clksrc)
-> +{
-> +	int err;
-> +
-> +	mc_readl(emc->mc, MC_EMEM_ADR_CFG);
-> +	emc_readl(emc, EMC_INTSTATUS);
-> +
-> +	tegra210_clk_emc_update_setting(clksrc);
-> +
-> +	err = wait_for_update(emc, EMC_INTSTATUS,
-> +			      EMC_INTSTATUS_CLKCHANGE_COMPLETE, true, REG_EMC);
-> +	if (err) {
-> +		pr_err("%s: clock change completion error: %d", __func__, err);
-> +		WARN_ON(1);
-> +	}
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+ arch/arm/boot/dts/rk3288-veyron.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Ether WARN(err, ...) or dev_warn, or just dev_err.
-
+diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
+index 1252522392c7..169da06e1c09 100644
+--- a/arch/arm/boot/dts/rk3288-veyron.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
+@@ -446,6 +446,14 @@
+ 	status = "okay";
+ };
+ 
++&gpu_thermal {
++	trips {
++		gpu_alert0: gpu_alert0 {
++			temperature = <72500>; /* millicelsius */
++		};
++	};
++};
++
+ &pinctrl {
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <
 -- 
-Dmitry
+2.21.0.1020.gf2820cf01a-goog
+
