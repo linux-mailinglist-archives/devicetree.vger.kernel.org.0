@@ -2,118 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 248231F9FE
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 20:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 454371FA05
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 20:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbfEOSam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 14:30:42 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:45193 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727004AbfEOSak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 14:30:40 -0400
-Received: by mail-vs1-f65.google.com with SMTP id o10so554549vsp.12
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:30:40 -0700 (PDT)
+        id S1726950AbfEOSdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 14:33:20 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:46091 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726422AbfEOSdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 14:33:20 -0400
+Received: by mail-pg1-f193.google.com with SMTP id t187so183998pgb.13
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:33:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kcBF6F4zgNomYlPRQZzOJ2t4+wjtmmM8eaNQl5KRjbc=;
-        b=nzi7Tz62FN/3PrAYjwJ++Zv1PALOdoOBPyJ4XX1U8AIyDcFe0i1fEKvD9H1x6Ag/2X
-         1EoWcOkUtrM1ICXH7Oz33wBHzE8UdR+QGwDdXu69dg9MCw2GhPZ2xNfQlrmMzR4nd29d
-         oT7q4wYBWTdMI2IrNv/Gsm55qOGS3VsmSNlco=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=KTn4Z+mP+RK9qfYjM/8C+gF7DHUoeVhnhade+GuKjk4=;
+        b=1qr5UW1hGKCD1t9Lva/WBysBSCPPi07jakQMbn5YKqeIpXFI1j60Sqn0793aukY46q
+         CmQAicqUN2t3dlERSLLqZnF3xzjDMU3ojhnsIXn0feXMYgbxasdk8E2h9K+Xtsjx3Kfs
+         PCeZmfQTaJA7sH1py4q+nuMh5ZytiTYn54FamSdbLq1Elg+rNRdGVrFpaG6KI8HrqW2S
+         yyEwTA4pSWJbiaTFJwRZtRPCAZia3yJHaabp+Q353LeX/l/tN807VLhvt+pB1+2utqfM
+         1ECCPRDY+VwvfzTY8VDQExnN8849lbIAEzZjNKP0AZY3X4Zxahe7+M92uJAOozk8ecL8
+         jNuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kcBF6F4zgNomYlPRQZzOJ2t4+wjtmmM8eaNQl5KRjbc=;
-        b=acxWYuttso3na5pui0vIvaYmCtd0P65Ht8SVixOm8mltYmUVKHY4POm3poeMjIOUP2
-         BcEojP240bv0CKVgscfg6JnQzm3lmegjSOudvhdqlPMWMK0CZjDQJU1i8482QTRfK2YL
-         7wWoqq+LYRNRy6Ej3jjydc7kt+YBJwEQvtmkHUj89kN+0ewVs/cdV3VWpESvLQj30FuO
-         fn405m/WRed1cjStWUcoowVGCd/IJQYvo5g2bqKNSLGW4L0Do1h2TF4RdaXlyno8IGXC
-         bBqPrFvRWAkIBq1vkeyQV01Vx2CbZAcVEcDA3UbYwpbY4DyYD0Hxc5cbnGi2cXNXHo/r
-         tVvQ==
-X-Gm-Message-State: APjAAAX4djoMaQaOQksSguvo2XmAiQlTcppgSeV699j7ukz+7+FjvX0/
-        eUR53a3BUqNS3Qo3cfHj/yknAo87QTw=
-X-Google-Smtp-Source: APXvYqwZzNqYxnG15obATquLuIHkK36Kduu6M1aNs4PcifvMjqfzxVgI2+GFt1R5DcTl7BET9bHWMw==
-X-Received: by 2002:a67:ec94:: with SMTP id h20mr21777553vsp.195.1557945038909;
-        Wed, 15 May 2019 11:30:38 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id j78sm883509vkj.47.2019.05.15.11.30.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 11:30:37 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id e2so547851vsc.13
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 11:30:37 -0700 (PDT)
-X-Received: by 2002:a67:b348:: with SMTP id b8mr13692401vsm.144.1557945037046;
- Wed, 15 May 2019 11:30:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=KTn4Z+mP+RK9qfYjM/8C+gF7DHUoeVhnhade+GuKjk4=;
+        b=g1QeIFnkbBXOFqN1APPz6XzX3zyeA/x1lTXp9jqy+960KwgTYNKiQfDwEbccRK3liw
+         hJRZuPlZy0JHG7atfKS06wJ5Fkd7LhVv5aLzwpuSXY6YurTuYAHGAdoK4+mkGGwSJlyV
+         lc93GtB0Op0qBNcgoqh4UuWb510uxeMdxcl6cbKAXWrzsznUgUsV5bLwKiwOWS+s97g4
+         Gs9rK6Flp8PSnkfjUQyLzOg67B4NEjLKgLWYzaPSSVLdM63Rqs7/sg6YBbFxCE1w72lN
+         tRYKF/l8xzW6WZDywf2y4ArAHvMWdtmGbtKZNKgR5hQTKbJz+mawnVqZxQbv0DDpO/fv
+         zAlQ==
+X-Gm-Message-State: APjAAAXvoOmimkaQY3mU+xv3jMfU+Gz6d/YJckl8FGeH/QzbHLVYC4vr
+        i4xUcfmSFb3DCnMX4nIuWC8FUA==
+X-Google-Smtp-Source: APXvYqy/xNuRdj0vQvs/4sL1fODiYHQj+T+AwczqxGkZPytjid2N4wSlezxn8X+oTdH3vdNaXnYwow==
+X-Received: by 2002:a65:480c:: with SMTP id h12mr44587808pgs.266.1557945199335;
+        Wed, 15 May 2019 11:33:19 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:20fc:89b:acbc:4e17])
+        by smtp.googlemail.com with ESMTPSA id q128sm3528980pfb.164.2019.05.15.11.33.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 15 May 2019 11:33:18 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 0/5] ASoC: meson: add hdmitx glue support
+In-Reply-To: <20190515131858.32130-1-jbrunet@baylibre.com>
+References: <20190515131858.32130-1-jbrunet@baylibre.com>
+Date:   Wed, 15 May 2019 11:33:17 -0700
+Message-ID: <7h7eard0uq.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20190515153127.24626-1-mka@chromium.org>
-In-Reply-To: <20190515153127.24626-1-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 15 May 2019 11:30:24 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U19uAGkwTqg-N6_m5WYQ7yMwjQir3TYUsb3SWWOihTOg@mail.gmail.com>
-Message-ID: <CAD=FV=U19uAGkwTqg-N6_m5WYQ7yMwjQir3TYUsb3SWWOihTOg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dts: rockchip: raise GPU trip point temperature for
- veyron to 72.5 degC
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-On Wed, May 15, 2019 at 8:31 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-
-> This value matches what is used by the downstream Chrome OS 3.14
-> kernel, the 'official' kernel for veyron devices.
+> On the Amlogic SoC, there is a glue between the SoC audio outputs and the
+> input of the embedded Synopsys HDMI controller.
 >
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->  arch/arm/boot/dts/rk3288-veyron.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> On the g12a, this glue is mostly a couple of muxes to select the i2s and
+> spdif inputs of the hdmi controller. Each of these inputs may have
+> different hw_params and fmt which makes our life a little bit more
+> interesting, especially when switching between to active inputs.
 >
-> diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-> index 1252522392c7..169da06e1c09 100644
-> --- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-> +++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-> @@ -446,6 +446,14 @@
->         status = "okay";
->  };
+> This glue is modeled as codec driver and uses codec-to-codec links to
+> connect to the Synopsys controller. This allows to use the regular
+> hdmi-codec driver (used by dw-hdmi i2s).
 >
-> +&gpu_thermal {
-> +       trips {
-> +               gpu_alert0: gpu_alert0 {
-> +                       temperature = <72500>; /* millicelsius */
-> +               };
-> +       };
-> +};
-> +
+> To avoid glitches while switching input, the trick is to temporarily
+> force a disconnection of the mux output, which shutdowns the output dai
+> link. This also ensure that the stream parameters and fmt are updated
+> when the output is connected back.
 
-This should be sorted alphabetically.  Thus this should sort right
-after this in rk3288-veyron.dtsi
-
-&gpu {
-  mali-supply = <&vdd_gpu>;
-  status = "okay";
-};
-
-Also you don't need to replicate the whole structure?  I think the
-above should just be:
-
-&gpu_alert0 {
-  temperature = <72500>; /* millicelsius */
-};
-
-NOTE also that that gpu and cpu critical is 100 C downstream.  Should
-we do that too?  Ah, but before we do that I guess we'd need to also
-override the "rockchip,hw-tshut-temp" to 125000 to match downstream.
-I guess that could be a separate series?
-
--Doug
+Tested-by: Kevin Hilman <khilman@baylibre.com>
