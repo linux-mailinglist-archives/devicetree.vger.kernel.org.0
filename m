@@ -2,132 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 684751F2BD
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 14:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C8B1F21D
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 14:03:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729364AbfEOLKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 07:10:09 -0400
-Received: from mail-eopbgr80040.outbound.protection.outlook.com ([40.107.8.40]:15311
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729255AbfEOLKJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 07:10:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iuKaf0YLQKzzPf65tVXQwoD4oJ9AU/hYa0gu93qoVA8=;
- b=cK8aSljNR7iceTUeeXE4r4wwtTxpnocmcudv7RbSlsEscSpcO3L7KqLdQety8Hgxm8REtQZPcLKJegcFUi3gOBtc+9jvPodJF3gcp2om2aHKQCf1/UslsUa2t//I2kEAm1kovWVsFo77JFJrkCC2Ivy492uabuxdH6jbVWLEc7g=
-Received: from VI1PR04MB3310.eurprd04.prod.outlook.com (10.170.231.148) by
- VI1PR04MB5792.eurprd04.prod.outlook.com (20.178.204.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Wed, 15 May 2019 11:09:25 +0000
-Received: from VI1PR04MB3310.eurprd04.prod.outlook.com
- ([fe80::8c6f:6261:7877:9de8]) by VI1PR04MB3310.eurprd04.prod.outlook.com
- ([fe80::8c6f:6261:7877:9de8%4]) with mapi id 15.20.1878.024; Wed, 15 May 2019
- 11:09:25 +0000
-From:   Xiaowei Bao <xiaowei.bao@nxp.com>
-To:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: [PATCHv2] arm64: dts: ls1028a: add flexspi nodes
-Thread-Topic: [PATCHv2] arm64: dts: ls1028a: add flexspi nodes
-Thread-Index: AQHVCw6ogMFRF8ssNEKztKIHvtwUnw==
-Date:   Wed, 15 May 2019 11:09:25 +0000
-Message-ID: <20190515110924.13726-1-xiaowei.bao@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK2PR03CA0052.apcprd03.prod.outlook.com
- (2603:1096:202:17::22) To VI1PR04MB3310.eurprd04.prod.outlook.com
- (2603:10a6:802:f::20)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=xiaowei.bao@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1b8a44bf-5f21-4a2d-a1c4-08d6d925ca5d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5792;
-x-ms-traffictypediagnostic: VI1PR04MB5792:
-x-microsoft-antispam-prvs: <VI1PR04MB5792ABDC2F6BAFB7F6268689F5090@VI1PR04MB5792.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:415;
-x-forefront-prvs: 0038DE95A2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(136003)(396003)(366004)(39860400002)(346002)(199004)(189003)(64756008)(66556008)(66066001)(66946007)(25786009)(256004)(66476007)(2906002)(6436002)(73956011)(66446008)(2201001)(305945005)(86362001)(36756003)(6512007)(316002)(2501003)(102836004)(6506007)(386003)(53936002)(8676002)(50226002)(1076003)(486006)(44832011)(3846002)(6116002)(81156014)(186003)(110136005)(26005)(2616005)(476003)(52116002)(99286004)(5660300002)(68736007)(6486002)(71190400001)(71200400001)(478600001)(4326008)(7736002)(81166006)(8936002)(14454004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5792;H:VI1PR04MB3310.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: FnUyb50JPdpDGYLBOFG5DRG+eSKys5HlXoINpN9bymTOHULFzkBaX/PinaSgl34OTfH/YP2xcZ5TtGc5Z8lvj4jWGzxjuz4p89n5M0vHSm3zup0yxnQ7YDQFvctMIDeyR8eCCr/FRz039Ahph032gc2P+jEt9HZI6KAHEI7kqkzcRde9rl96gVXcn3TK6QUK2gRGPlvnPBG4+LL1PHbcGYG9bYc6Ad6Fs2VWyOrsRehanjz/RD7jRypZH+jKLu5gGhvuS1CgOuHTYAgRnlyV30PjaXUSmNwuLs5bkTHQ4bFLcpAkMDvwROxo/RdwJinGqO6z/WwD+rP4n7fqDY9Y4LTmfwqsPjfwyWeGZaqJg2JOjBQ3plIHGHrbP2n1ywAQIO/bZq3Cs3DLiq6t8j+0A+yoLpGO2DLFQTvVkheDIDo=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1729936AbfEOLNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 07:13:12 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:56526 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729655AbfEOLNL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 07:13:11 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4FBD9OR058630;
+        Wed, 15 May 2019 06:13:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1557918789;
+        bh=1EvbyRlsOqqU6Qy/FHZ8ilhfbNaV4fjqsgFD0Yxvf2A=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=rD3y0QGhw60LU1XY/6XAij8GRBUZDJy42D2GvTRWThdPSiq6tIanINLhC9EIz5GTm
+         o7D9TlkFevQqwpKkjDriajzd9spp5YQ83urcdlqL8ESFasPJzYwjhVzzzGJYTh/K82
+         /T1QtgqD9z0JULaRfuzEzddPxPFlXDABnecu8SIQ=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4FBD9tk040276
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 May 2019 06:13:09 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 15
+ May 2019 06:13:09 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 15 May 2019 06:13:09 -0500
+Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4FBD6dI110173;
+        Wed, 15 May 2019 06:13:07 -0500
+Subject: Re: [PATCH 3/3] regulator: lp87565: Add 4-phase lp87561 regulator
+ support
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>, <t-kristo@ti.com>
+References: <20190515100848.19560-1-j-keerthy@ti.com>
+ <20190515100848.19560-4-j-keerthy@ti.com>
+ <20190515110851.GD5613@sirena.org.uk>
+From:   Keerthy <j-keerthy@ti.com>
+Message-ID: <82581f9a-5aaa-b56c-f9d5-4188b60b3e6b@ti.com>
+Date:   Wed, 15 May 2019 16:43:39 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b8a44bf-5f21-4a2d-a1c4-08d6d925ca5d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 11:09:25.5067
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5792
+In-Reply-To: <20190515110851.GD5613@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQoNCkFkZCBmc3BpIG5vZGUg
-cHJvcGVydHkgZm9yIExTMTAyOEEgU29DIGZvciBGbGV4U1BJIGRyaXZlci4NClByb3BlcnR5IGFk
-ZGVkIGZvciB0aGUgRmxleFNQSSBjb250cm9sbGVyIGFuZCBmb3IgdGhlIGNvbm5lY3RlZA0Kc2xh
-dmUgZGV2aWNlIGZvciB0aGUgTFMxMDI4QVJEQiBhbmQgTFMxMDI4QVFEUyB0YXJnZXQuDQpUaGlz
-IGlzIGhhdmluZyBvbmUgU1BJLU5PUiBmbGFzaCBkZXZpY2UsIG10MzV4dTAyZyBjb25uZWN0ZWQg
-YXQNCkNTMC4NCg0KU2lnbmVkLW9mZi1ieTogWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5j
-b20+DQotLS0NCnYyOg0KIC0gbW9kaWZ5IHRoZSBjb21taXQgbWVzc2FnZSBhbmQgdGhlIGR0cyBm
-b3JtYXQuDQoNCiBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMu
-ZHRzIHwgICAxNSArKysrKysrKysrKysrKysNCiBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2Fs
-ZS9mc2wtbHMxMDI4YS1yZGIuZHRzIHwgICAxNSArKysrKysrKysrKysrKysNCiBhcmNoL2FybTY0
-L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpICAgIHwgICAxMiArKysrKysrKysr
-KysNCiAzIGZpbGVzIGNoYW5nZWQsIDQyIGluc2VydGlvbnMoKyksIDAgZGVsZXRpb25zKC0pDQoN
-CmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1x
-ZHMuZHRzIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcWRzLmR0
-cw0KaW5kZXggNWJjZDQ5MS4uNmUxMjgwNiAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXFkcy5kdHMNCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXFkcy5kdHMNCkBAIC0xNTgsNiArMTU4LDIxIEBADQog
-CX07DQogfTsNCiANCismZnNwaSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJbXQzNXh1MDJnOiBm
-bGFzaEAwIHsNCisJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJI3NpemUtY2VsbHMgPSA8MT47
-DQorCQljb21wYXRpYmxlID0gInNwYW5zaW9uLG0yNXA4MCI7DQorCQltMjVwLGZhc3QtcmVhZDsN
-CisJCXNwaS1tYXgtZnJlcXVlbmN5ID0gPDIwMDAwMDAwPjsNCisJCXJlZyA9IDwwPjsNCisJCS8q
-IFRoZSBmb2xsb3dpbmcgc2V0dGluZyBlbmFibGVzIDEtMS04IChDTUQtQUREUi1EQVRBKSBtb2Rl
-ICovDQorCQlzcGktcngtYnVzLXdpZHRoID0gPDg+OyAvKiA4IFNQSSBSeCBsaW5lcyAqLw0KKwkJ
-c3BpLXR4LWJ1cy13aWR0aCA9IDwxPjsgLyogMSBTUEkgVHggbGluZSAqLw0KKwl9Ow0KK307DQor
-DQogJnNhaTEgew0KIAlzdGF0dXMgPSAib2theSI7DQogfTsNCmRpZmYgLS1naXQgYS9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzIGIvYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cw0KaW5kZXggMjVkMjM3MC4uNWQz
-OTYxNiAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEw
-MjhhLXJkYi5kdHMNCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEw
-MjhhLXJkYi5kdHMNCkBAIC0xMzYsNiArMTM2LDIxIEBADQogCX07DQogfTsNCiANCismZnNwaSB7
-DQorCXN0YXR1cyA9ICJva2F5IjsNCisJbXQzNXh1MDJnOiBmbGFzaEAwIHsNCisJCSNhZGRyZXNz
-LWNlbGxzID0gPDE+Ow0KKwkJI3NpemUtY2VsbHMgPSA8MT47DQorCQljb21wYXRpYmxlID0gInNw
-YW5zaW9uLG0yNXA4MCI7DQorCQltMjVwLGZhc3QtcmVhZDsNCisJCXNwaS1tYXgtZnJlcXVlbmN5
-ID0gPDIwMDAwMDAwPjsNCisJCXJlZyA9IDwwPjsNCisJCS8qIFRoZSBmb2xsb3dpbmcgc2V0dGlu
-ZyBlbmFibGVzIDEtMS04IChDTUQtQUREUi1EQVRBKSBtb2RlICovDQorCQlzcGktcngtYnVzLXdp
-ZHRoID0gPDg+OyAvKiA4IFNQSSBSeCBsaW5lcyAqLw0KKwkJc3BpLXR4LWJ1cy13aWR0aCA9IDwx
-PjsgLyogMSBTUEkgVHggbGluZSAqLw0KKwl9Ow0KK307DQorDQogJmR1YXJ0MCB7DQogCXN0YXR1
-cyA9ICJva2F5IjsNCiB9Ow0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
-YWxlL2ZzbC1sczEwMjhhLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wt
-bHMxMDI4YS5kdHNpDQppbmRleCBiYTcxYTMzLi5hMjdjZDYwIDEwMDY0NA0KLS0tIGEvYXJjaC9h
-cm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRzaQ0KKysrIGIvYXJjaC9hcm02
-NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRzaQ0KQEAgLTEwOSw2ICsxMDksMTgg
-QEANCiAJCX07DQogCX07DQogDQorCWZzcGk6IHNwaUAyMGMwMDAwIHsNCisJCWNvbXBhdGlibGUg
-PSAibnhwLGx4MjE2MGEtZnNwaSIsICJzaW1wbGUtYnVzIjsNCisJCSNhZGRyZXNzLWNlbGxzID0g
-PDE+Ow0KKwkJI3NpemUtY2VsbHMgPSA8MD47DQorCQlyZWcgPSA8MHgwIDB4MjBjMDAwMCAweDAg
-MHgxMDAwMD4sDQorCQkgICAgPDB4MCAweDIwMDAwMDAwIDB4MCAweDEwMDAwMDAwPjsNCisJCXJl
-Zy1uYW1lcyA9ICJGU1BJIiwgIkZTUEktbWVtb3J5IjsNCisJCWludGVycnVwdHMgPSA8MCAyNSAw
-eDQ+OyAvKiBMZXZlbCBoaWdoIHR5cGUgKi8NCisJCWNsb2NrcyA9IDwmY2xvY2tnZW4gNCAzPiwg
-PCZjbG9ja2dlbiA0IDM+Ow0KKwkJY2xvY2stbmFtZXMgPSAiZnNwaV9lbiIsICJmc3BpIjsNCisJ
-fTsNCisNCiAJc29jOiBzb2Mgew0KIAkJY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsNCiAJCSNh
-ZGRyZXNzLWNlbGxzID0gPDI+Ow0KLS0gDQoxLjcuMQ0KDQo=
+
+
+On 15/05/19 4:38 PM, Mark Brown wrote:
+> On Wed, May 15, 2019 at 03:38:48PM +0530, Keerthy wrote:
+> 
+>> @@ -172,6 +178,9 @@ static int lp87565_regulator_probe(struct platform_device *pdev)
+>>   	if (lp87565->dev_type == LP87565_DEVICE_TYPE_LP87565_Q1) {
+>>   		min_idx = LP87565_BUCK_10;
+>>   		max_idx = LP87565_BUCK_23;
+>> +	} else if (lp87565->dev_type == LP87565_DEVICE_TYPE_LP87561_Q1) {
+>> +		min_idx = LP87565_BUCK_3210;
+>> +		max_idx = LP87565_BUCK_3210;
+> 
+> This if/else chain should be a switch statement.
+
+Okay. I will convert that in v2.
+
+Thanks,
+Keerthy
+
+> 
