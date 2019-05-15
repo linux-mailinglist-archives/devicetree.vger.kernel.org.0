@@ -2,170 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F9A1E5A6
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 01:41:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F681E5DB
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 02:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726381AbfENXlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 May 2019 19:41:51 -0400
-Received: from casper.infradead.org ([85.118.1.10]:51344 "EHLO
-        casper.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbfENXlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 19:41:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=dA/46aOQVnKxKfZzCP2pKcdLD3rTbr0ua0bqkF5s0ww=; b=LLuoeXAUYa0p6YXWUEKeuqXe9M
-        F30mnclClxf8WsLlcSjMo0OrJUvqXnpxBsyVvXAzeTYt069oj8807ER3P4UsgbcI6tYQghAOd2T9E
-        bRhsQMFonDsX1gB4mXOeHZnOdbJUyt4Ebo3Lb7SkIeuF1DAv4QmvebzRHDx16Jwnb3sm+MUULuV/T
-        F73Y3khlCiLPiAa6SzLNRoZzV3mh4C0Ag1rcNCUANEBGDYRwSHbYkUMKsyClezsCrsZn5t6I9/O+g
-        MW8oivubgxvDeaOVBS6YSNc4ZU61igDni9v/cFPS+jESVLyFCe0vWH8k43Tvc4g+p17WIkaXFOAIk
-        TDQcwJww==;
-Received: from 179.186.99.85.dynamic.adsl.gvt.net.br ([179.186.99.85] helo=coco.lan)
-        by casper.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hQh3B-0007YZ-SS; Tue, 14 May 2019 23:41:38 +0000
-Date:   Tue, 14 May 2019 20:41:30 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
-        kernel@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v6 00/13] TVP5150 new features
-Message-ID: <20190514204130.2c953d97@coco.lan>
-In-Reply-To: <20190514205824.ov6prllx2fp77fur@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
-        <20190506054713.crxc5pw6j5suvvq7@pengutronix.de>
-        <20190514141824.5bd41389@coco.lan>
-        <20190514172028.693ad354@coco.lan>
-        <20190514205824.ov6prllx2fp77fur@pengutronix.de>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726586AbfEOABo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 May 2019 20:01:44 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:45523 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726265AbfEOABo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 May 2019 20:01:44 -0400
+Received: by mail-pl1-f194.google.com with SMTP id a5so364803pls.12
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2019 17:01:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=pK3FjIHXVmrELjQUSW35gN3WLzKI4J7kVggFfkHpZEc=;
+        b=Xl7AsYqQKlB5zy/wRKUEO0Qd2uouo1vCT1/wb/CGvV8OERDkUy28e4hZ2p3JGUYo2E
+         r1JAbjjCCHJI5dJnbkzzaNinbbjlORDDkn5x5D7ziOixXN/Zli+SCjzsG9tapi3Ah1+l
+         YF+ln5Kg9e1AXnXW+X6cghzxV++UnF1X6T73T1ZL9B7Y31EF2K46iTKp3BztzDfkD21h
+         zgrbwR/vdrTHrND092KZTcMySPGv+Nh3Hk1NnErJj5yyqNfkzX7JhhYDphEHKyzSyxpd
+         5UUrpiDSjxWILvU2uG1JHZc+G3ykLwEN0MO+yvWONg4YOMcr8dKom6QMfuXm1nb1/wf6
+         0doA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=pK3FjIHXVmrELjQUSW35gN3WLzKI4J7kVggFfkHpZEc=;
+        b=tW6lgejIlYtBOixkCvSFlFb5rMkY8lc8Ff0nIlWyGeWCa6YxpF8l1WzBetGNKpWkLC
+         Y2buXThisVuGGleUIF1gnmbNC70ed7HCsdxmSXbAEpGfsZyq06pDeZ/M8igyqZJdkWsK
+         x9dqLHAFvr0kYZmWdy8s3vCl1X0lW0JktxUKyn+usNVpKoWnjkjXfM5ojy9Zt9OvXudw
+         G8Mhhn3feNGBRjQZva4eAA4/OG7WvhjlaV1nfdqri3UNEMJb77qeLIJrGzAGJGka/Tw4
+         XNXzljuXa4BDrjAq31d1rzWhfJ4VcxyX7sjQzXhPhgskZRo3r4engeQ3lesOIOLzqk9i
+         /M7w==
+X-Gm-Message-State: APjAAAUDghKKSucct0cCNIZZYNt+/cUSFxFfvGq91U5w9xf/VO9peYde
+        kLK8jG5BNZ488+enfv+SwZDEkw==
+X-Google-Smtp-Source: APXvYqwA/DfK+7NSW/9CQTfxQs+5NE+m+9VhlUWRaZcnUJR3+QSMWeh19luJ6oTr81L8JvnMeyDraQ==
+X-Received: by 2002:a17:902:e28a:: with SMTP id cf10mr40494068plb.77.1557878503981;
+        Tue, 14 May 2019 17:01:43 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:fd66:a9bc:7c2c:636a])
+        by smtp.googlemail.com with ESMTPSA id d186sm247122pgc.58.2019.05.14.17.01.42
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 14 May 2019 17:01:43 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Subject: Re: [PATCH] arm64: dts: amlogic: remove ethernet-phy-idAAAA.BBBB compatible strings
+In-Reply-To: <20190511195150.GI4889@lunn.ch>
+References: <20190511174534.2403-1-martin.blumenstingl@googlemail.com> <20190511195150.GI4889@lunn.ch>
+Date:   Tue, 14 May 2019 17:01:42 -0700
+Message-ID: <7hv9ycd1qx.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Tue, 14 May 2019 22:58:24 +0200
-Marco Felsch <m.felsch@pengutronix.de> escreveu:
+Andrew Lunn <andrew@lunn.ch> writes:
 
-> Hi Mauro,
-> 
-> On 19-05-14 17:20, Mauro Carvalho Chehab wrote:
-> > Em Tue, 14 May 2019 14:18:24 -0300
-> > Mauro Carvalho Chehab <mchehab@kernel.org> escreveu:
-> >   
-> > > Em Mon, 6 May 2019 07:47:13 +0200
-> > > Marco Felsch <m.felsch@pengutronix.de> escreveu:
-> > >   
-> > > > Hi Mauro,
-> > > > 
-> > > > I know you are busy but can you have a look on it?    
-> > > 
-> > > You should really trust on the sub-maintainers for such kind of
-> > > reviews :-)  
-> 
-> I trust all of them and many thanks to Hans and Jacopo for the reviews
-> :) I will integrate them this week. The point is that you are the
-> maintainer and in that case the one who picks the patches.
+> On Sat, May 11, 2019 at 07:45:34PM +0200, Martin Blumenstingl wrote:
+>> The Ethernet PHY documentation
+>> (Documentation/devicetree/bindings/net/phy.txt) states that:
+>>   If the PHY reports an incorrect ID (or none at all) then the
+>>   "compatible" list may contain an entry with the correct PHY ID in the
+>>   form: "ethernet-phy-idAAAA.BBBB"
+>> 
+>> An older version of the documentation suggested that the compatible
+>> string can be used when the PHY ID is known.
+>> 
+>> Remove the ethernet-phy-id compatible string and add a comment with the
+>> PHY ID instead.
+>> This is a no-op on boards which are shipped with the PHY that was
+>> listed (= all known cases). However, if a board manufacturer decides to
+>> ship a different PHY we will now load and use the correct driver because
+>> we ask the PHY to identify itself.
+>> 
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>  
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Actually, Hans is the one that usually picks V4L2 patches after reviewing.
-I pull from his tree and from other media maintainers.
-
-> 
-> > > 
-> > > I'll take a look today.  
-> > 
-> > Done. Please notice that I didn't run any test here.  
-> 
-> Thanks for that will integrate it too and prepare a v7.
-
-Thanks!
-Mauro
-> 
-> Regards,
->   Marco
-> 
-> >   
-> > >   
-> > > > 
-> > > > Regards,
-> > > >   Marco
-> > > > 
-> > > > On 19-04-15 14:44, Marco Felsch wrote:    
-> > > > > Hi,
-> > > > > 
-> > > > > many thanks to Hans and Jacopo for the feedack :) this v6 address the
-> > > > > comments both made on my v5 [1].
-> > > > > 
-> > > > > In short this is round fixes just some minor issues rather than major
-> > > > > ones so the diff to the v5 is really small. The changed patches contain
-> > > > > the changelog so I omit it here.
-> > > > > 
-> > > > > I've tested it on a custom hardware but I can't test the em28xx usb
-> > > > > use-case since I haven't such a device. So other testers are welcome :)
-> > > > > 
-> > > > > Looking forward for your feedack,
-> > > > > 
-> > > > > 	Marco
-> > > > > 
-> > > > > [1] https://patchwork.kernel.org/cover/10886903/
-> > > > > 
-> > > > > Javier Martinez Canillas (1):
-> > > > >   partial revert of "[media] tvp5150: add HW input connectors support"
-> > > > > 
-> > > > > Marco Felsch (11):
-> > > > >   dt-bindings: connector: analog: add tv norms property
-> > > > >   media: v4l2-fwnode: add v4l2_fwnode_connector
-> > > > >   media: v4l2-fwnode: add initial connector parsing support
-> > > > >   media: tvp5150: add input source selection of_graph support
-> > > > >   media: dt-bindings: tvp5150: Add input port connectors DT bindings
-> > > > >   media: tvp5150: add FORMAT_TRY support for get/set selection handlers
-> > > > >   media: tvp5150: add s_power callback
-> > > > >   media: dt-bindings: tvp5150: cleanup bindings stlye
-> > > > >   media: dt-bindings: tvp5150: add optional tvnorms documentation
-> > > > >   media: tvp5150: add support to limit tv norms on connector
-> > > > >   media: tvp5150: make debug output more readable
-> > > > > 
-> > > > > Michael Tretter (1):
-> > > > >   media: tvp5150: initialize subdev before parsing device tree
-> > > > > 
-> > > > >  .../display/connector/analog-tv-connector.txt |   4 +
-> > > > >  .../devicetree/bindings/media/i2c/tvp5150.txt | 125 +++-
-> > > > >  drivers/media/i2c/tvp5150.c                   | 672 +++++++++++++-----
-> > > > >  drivers/media/v4l2-core/v4l2-fwnode.c         | 111 +++
-> > > > >  include/dt-bindings/media/tvnorms.h           |  56 ++
-> > > > >  include/dt-bindings/media/tvp5150.h           |   2 -
-> > > > >  include/media/v4l2-connector.h                |  30 +
-> > > > >  include/media/v4l2-fwnode.h                   |  49 ++
-> > > > >  8 files changed, 859 insertions(+), 190 deletions(-)
-> > > > >  create mode 100644 include/dt-bindings/media/tvnorms.h
-> > > > >  create mode 100644 include/media/v4l2-connector.h
-> > > > > 
-> > > > > -- 
-> > > > > 2.20.1
-> > > > > 
-> > > > > 
-> > > > >       
-> > > >     
-> > > 
-> > > 
-> > > 
-> > > Thanks,
-> > > Mauro  
-> > 
-> > 
-> > 
-> > Thanks,
-> > Mauro
-> >   
-> 
-
-
+Queuing for v5.3,
 
 Thanks,
-Mauro
+
+Kevin
