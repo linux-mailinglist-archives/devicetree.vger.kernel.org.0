@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E631E811
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 07:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A161E818
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 08:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725876AbfEOF4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 01:56:41 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49822 "EHLO inva020.nxp.com"
+        id S1726084AbfEOGCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 02:02:52 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51096 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725781AbfEOF4l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 01:56:41 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 136EC1A00D6;
-        Wed, 15 May 2019 07:56:40 +0200 (CEST)
+        id S1725871AbfEOGCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 May 2019 02:02:52 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B8162200196;
+        Wed, 15 May 2019 08:02:50 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B23CE1A0035;
-        Wed, 15 May 2019 07:56:36 +0200 (CEST)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0463B200012;
+        Wed, 15 May 2019 08:02:47 +0200 (CEST)
 Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 1F251402C8;
-        Wed, 15 May 2019 13:56:32 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 064C24029A;
+        Wed, 15 May 2019 14:02:41 +0800 (SGT)
 From:   Ran Wang <ran.wang_1@nxp.com>
 To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH] arm64: dts: lx2160a: Enable usb3-lpm-capable for usb3 node
-Date:   Wed, 15 May 2019 13:58:28 +0800
-Message-Id: <20190515055828.33331-1-ran.wang_1@nxp.com>
+        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
+Subject: [RESEND][PATCH] arm64: dts: lx2160a: Enable usb3-lpm-capable for usb3 node
+Date:   Wed, 15 May 2019 14:04:34 +0800
+Message-Id: <20190515060434.33581-1-ran.wang_1@nxp.com>
 X-Mailer: git-send-email 2.17.1
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
