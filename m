@@ -2,141 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4040B1EA6B
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 10:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE331EA97
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 11:04:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725941AbfEOIrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 04:47:45 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:39150 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbfEOIrp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 04:47:45 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4C0961A0171;
-        Wed, 15 May 2019 10:47:43 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9A30A1A006B;
-        Wed, 15 May 2019 10:47:37 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C17CA4029A;
-        Wed, 15 May 2019 16:47:30 +0800 (SGT)
-From:   Yinbo Zhu <yinbo.zhu@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     yinbo.zhu@nxp.com, xiaobo.xie@nxp.com,
+        id S1725912AbfEOJEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 05:04:07 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:44007 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbfEOJEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 05:04:07 -0400
+Received: by mail-vs1-f65.google.com with SMTP id d128so1181649vsc.10;
+        Wed, 15 May 2019 02:04:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gkTbiQzGF1k2N99naRD8r5aIjsz3VLc+98eg7EfqOTI=;
+        b=ucA96ZVdsOdVIsCNX+zdzEELNXcoreMVokEj8OVI1JTMXj4q2Af/NmGDrJmcxa4JRh
+         H/FK07aA6JyaVchhfLb9m6naJ6PpCZP4UIJi+zNXT2BHWiRryBy3z0rxJ7ki2deWHGIW
+         4LlvkKzaqL4v5kHn+TeP5hQCipd6qJ8T1yH7hvNEWwow/65zTiqsgukxyRoSdqHhTXNP
+         DbLPAihpiDiYCvAXMeS9mSM/FNA/Yj8nXfscw11079kfY13cAS6njzJGSVATNcqnasN+
+         jmn7/idcc42rZeUZ82VwP3inDSWft0U3Hosylar472wzq1uF0Z3zTOEpbzztouy+nVtf
+         xbjg==
+X-Gm-Message-State: APjAAAUusjfvWJqpUDR/HIIzRsCayuwJzYtDXHOGk1Gydnyc1+7QXzbO
+        UKyP3+Wi7C0GAzQMIVEDJf2xpivY4cJ3TTy6UdM=
+X-Google-Smtp-Source: APXvYqztnkymczgKnMVRe9ZCvVpmL+kBZMs2zWM/eCWYj13BUyDK4j+nFEPaMRWT1Ux/G56HvMqtlcdU69dOK5Yo7fs=
+X-Received: by 2002:a67:8e03:: with SMTP id q3mr19981536vsd.152.1557911045761;
+ Wed, 15 May 2019 02:04:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190514145605.19112-1-chris.brandt@renesas.com>
+ <20190514145605.19112-5-chris.brandt@renesas.com> <CAMuHMdVVu23_8=8CLwM46QAJsxUbYyN1TYQaAzoE+d2uM3YshQ@mail.gmail.com>
+ <f4ceaadb-62e1-9880-e8e3-4f5bf54ce91e@cogentembedded.com>
+In-Reply-To: <f4ceaadb-62e1-9880-e8e3-4f5bf54ce91e@cogentembedded.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 15 May 2019 11:03:54 +0200
+Message-ID: <CAMuHMdWDr0KwrqukgMC=UiMqW4YLF76sag-Jr_fJFfhkggjeKw@mail.gmail.com>
+Subject: Re: [PATCH v3 04/15] dt-bindings: rcar-gen3-phy-usb2: Document use of usb_x1
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Cc:     Chris Brandt <chris.brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        yangbo.lu@nxp.com, jiafei.pan@nxp.com,
-        Ashish Kumar <Ashish.Kumar@nxp.com>
-Subject: [PATCH v3] arm64: dts: ls1028a: Add esdhc node in dts
-Date:   Wed, 15 May 2019 16:49:25 +0800
-Message-Id: <20190515084925.30155-1-yinbo.zhu@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ashish Kumar <Ashish.Kumar@nxp.com>
+Hi Sergei,
 
-This patch is to add esdhc node and enable SD UHS-I,
-eMMC HS200 for ls1028ardb/ls1028aqds board.
+On Wed, May 15, 2019 at 10:39 AM Sergei Shtylyov
+<sergei.shtylyov@cogentembedded.com> wrote:
+> On 15.05.2019 10:35, Geert Uytterhoeven wrote:
+> >> Document the USB_X1 input and add clock-names to identify
+> >> functional and USB_X1 clocks.
+> >>
+> >> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> >> --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> >> +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
+> >> @@ -28,7 +28,11 @@ Required properties:
+> >>                followed by the generic version.
+> >>
+> >>   - reg: offset and length of the partial USB 2.0 Host register block.
+> >> -- clocks: clock phandle and specifier pair(s).
+> >> +- clocks: clock phandle and specifier pair(s). For SoCs that have a separate
+> >> +          dedicated USB_X1 input for the PLL, that is also listed.
+> >> +- clock-names: Name of the clocks. The functional clock shall be called "fclk"
+> >
+> > Names?
+>
+>     And I think the module clock name was "fck", not "fclk"...
 
-Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
-Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
-Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
----
-Change in v3:
-		replace "esdhc@" with "mmc@"
+Indeed, sorry for missing that.
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts |    8 ++++++
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts |   13 ++++++++++
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    |   27 +++++++++++++++++++++
- 3 files changed, 48 insertions(+), 0 deletions(-)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index 14c79f4..180e5d2 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -42,6 +42,14 @@
- 	status = "okay";
- };
- 
-+&esdhc {
-+	status = "okay";
-+};
-+
-+&esdhc1 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index f86b054..1bfaf42 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -30,6 +30,19 @@
- 	};
- };
- 
-+&esdhc {
-+	status = "okay";
-+	sd-uhs-sdr104;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr12;
-+	};
-+
-+&esdhc1 {
-+	status = "okay";
-+	mmc-hs200-1_8v;
-+	};
-+
- &i2c0 {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 2896bbc..462833c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -274,6 +274,33 @@
- 			status = "disabled";
- 		};
- 
-+		esdhc: mmc@2140000 {
-+			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
-+			reg = <0x0 0x2140000 0x0 0x10000>;
-+			interrupts = <0 28 0x4>; /* Level high type */
-+			clock-frequency = <0>; /* fixed up by bootloader */
-+			clocks = <&clockgen 2 1>;
-+			voltage-ranges = <1800 1800 3300 3300>;
-+			sdhci,auto-cmd12;
-+			little-endian;
-+			bus-width = <4>;
-+			status = "disabled";
-+		};
-+
-+		esdhc1: mmc@2150000 {
-+			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
-+			reg = <0x0 0x2150000 0x0 0x10000>;
-+			interrupts = <0 63 0x4>; /* Level high type */
-+			clock-frequency = <0>; /* fixed up by bootloader */
-+			clocks = <&clockgen 2 1>;
-+			voltage-ranges = <1800 1800 3300 3300>;
-+			sdhci,auto-cmd12;
-+			broken-cd;
-+			little-endian;
-+			bus-width = <4>;
-+			status = "disabled";
-+		};
-+
- 		sata: sata@3200000 {
- 			compatible = "fsl,ls1028a-ahci";
- 			reg = <0x0 0x3200000 0x0 0x10000>,
+                        Geert
+
 -- 
-1.7.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
