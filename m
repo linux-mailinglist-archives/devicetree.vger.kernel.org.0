@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF16B1EA9F
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 11:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CB021EAAB
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 11:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726212AbfEOJF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 05:05:28 -0400
-Received: from mail-ua1-f68.google.com ([209.85.222.68]:41946 "EHLO
-        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725902AbfEOJF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 05:05:28 -0400
-Received: by mail-ua1-f68.google.com with SMTP id s30so734008uas.8;
-        Wed, 15 May 2019 02:05:27 -0700 (PDT)
+        id S1726447AbfEOJHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 05:07:53 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:36594 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbfEOJHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 05:07:53 -0400
+Received: by mail-qt1-f193.google.com with SMTP id a17so2413850qth.3
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 02:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sbQtz0/a90pIaMSCWP84iVzFuP3XKcJmSksz/GcBaK0=;
+        b=M4RbnVlDKOEx9SpprG/yztIqOThSh+PXtYU/A1m2flZulmsPxxYArIr39yKexfC4pA
+         cmwOmpGLegz8F6VpHrz8MeJNeKVNWm3vsNwQztlv6YrT93c6ZMUgkUxH77A1JR0sIt2d
+         49XheDHbU3/+MqkMrzDMV0cYtgGt8H2hAimUM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6lAQ9R3PikvadpZD3xhB2DjQbP5bNLPUHHpdSIWbuTA=;
-        b=VlcFERiAL7VQms2MpJ/72XAA2KAMmw3zo2tetwhe1KGQIG0Kd1xGjBrWlE56ayn50a
-         J4Gutmi0Z5YPvdT0VFikCy/AaTVEUj+iLhOgUzdOYmUo5e5cg+WS1di3MtlosxVbNQLW
-         xs8RMCDfUGEJr4Pr9r3cMTp1DRom6d7LgAKEOE5DTuExfypV0213aTXzxd857lYsdJdh
-         pSoSnLErkkA30NBlk5RfPEZ34a9MN7po76ZmICvg3j3o2BvlvVOAHWwBqPlHw2ZiY9e+
-         3AVPTt60gmczsxK6e7r3SjZnqBdoySG5spZNwoEmPL2/zRtmyzf5jSraNSv/vBv+RpRI
-         PkFA==
-X-Gm-Message-State: APjAAAWZDrfl7DoLZI4c4prjC4/RyMXORHCpIkp1dJyrvRcm7g2Hyqx2
-        XC1aNSt5ZbDriNyGUlUAiJqkjOXHfIfUyjjg0BI=
-X-Google-Smtp-Source: APXvYqzsg6f6DUMuQ7gIu5agOb7uDDuzx96TZohqMK4b0wW1zg94Q0THeqHVr5B2MaEpmig5CszEXqTiRrdDW9W03hM=
-X-Received: by 2002:ab0:42e4:: with SMTP id j91mr15010377uaj.28.1557911126802;
- Wed, 15 May 2019 02:05:26 -0700 (PDT)
+        bh=sbQtz0/a90pIaMSCWP84iVzFuP3XKcJmSksz/GcBaK0=;
+        b=HUWH8xyrd7dXJ9FG7/D75hTA1gHZz1DC0dzPBEhZbOW59O84mgepMoI+US8cwOTa80
+         Dq6m/fcD3LHmzE50k4QBuqVp2oIpogIlbRlzOBxPqLa2yvXLT9Bw7dWazlj+50IUaaS3
+         KmILOfQnp+w6FWgOY6DZNAnhIPAaopIAGt7RpSVVRBcAgunf8E36mrEMGxIKLmcyNrsg
+         HjgBvBESxkks03+c/Px1gEAwTPqhwS4tRq1qeDC06XQobPiFQk3BXZG2c9LmZRbkiSOE
+         mgzchaZdGpcD358LxQJQg1fX5ZQI8GdWb4LVW5LvEl+iUT3OvfeSoNbiRN30RAiyjoES
+         soSw==
+X-Gm-Message-State: APjAAAUSPu69Jndv2DHMxN0rpYVXTct8a1Yw8MhTqDTb2If9hm58tR28
+        G/ATouX5nGrdg1zIR9LZ5aZqU1tY4w+4iuhiT1Miyg==
+X-Google-Smtp-Source: APXvYqyXl9+Efyxlf2al2/kO4uZaNzAovVvLGkNka+wUbkkqJvcl3CuDnIvDXQ6VyY6lb4I0Ezw26J8OV7wIwh0ZW1o=
+X-Received: by 2002:aed:24ae:: with SMTP id t43mr34214820qtc.187.1557911272310;
+ Wed, 15 May 2019 02:07:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190514145605.19112-1-chris.brandt@renesas.com> <20190514145605.19112-14-chris.brandt@renesas.com>
-In-Reply-To: <20190514145605.19112-14-chris.brandt@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 15 May 2019 11:05:14 +0200
-Message-ID: <CAMuHMdW7z-segBTq_9Vjc54GZqKhCwsCFSz559fER=rwbhy7Cg@mail.gmail.com>
-Subject: Re: [PATCH v3 13/15] ARM: dts: r7s9210: Add USB Host support
-To:     Chris Brandt <chris.brandt@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20190513003819.356-1-hsinyi@chromium.org> <CAL_Jsq+Z5+M7fYCrkRKqN1yKTu6uyMKRKh-R4b-cj46y18hXOw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+Z5+M7fYCrkRKqN1yKTu6uyMKRKh-R4b-cj46y18hXOw@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 15 May 2019 17:07:26 +0800
+Message-ID: <CAJMQK-jei0j5R6sgn4GfxnqK127J5dtzcuiw8XP6hzLf_9vRAw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] fdt: add support for rng-seed
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Michal Hocko <mhocko@suse.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 4:58 PM Chris Brandt <chris.brandt@renesas.com> wrote:
-> Add EHCI and OHCI host support for RZ/A2.
+On Mon, May 13, 2019 at 9:14 PM Rob Herring <robh+dt@kernel.org> wrote:
+
+> > +        fdt_nop_property(initial_boot_params, node, "rng-seed");
 >
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
-
-> --- a/arch/arm/boot/dts/r7s9210.dtsi
-> +++ b/arch/arm/boot/dts/r7s9210.dtsi
-> @@ -329,6 +329,72 @@
-
-> +               usb2_phy0: usb-phy@e8218200 {
-> +                       compatible = "renesas,usb2-phy-r7s9210", "renesas,rcar-gen3-usb2-phy";
-> +                       reg = <0xe8218200 0x10>;
-> +                       interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 61>, <&usb_x1_clk>;
-> +                       clock-names = "fclk", "usb_x1";
-
-So this should be "fck" too, probably.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> I'd just delete the property.
+>
+> Also, what about kexec? Don't you need to add a new seed?
+>
+Will update in v3. Thanks.
