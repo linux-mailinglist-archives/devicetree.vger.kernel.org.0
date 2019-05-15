@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C82451FC62
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 23:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5331FC67
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 23:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726381AbfEOVnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 17:43:32 -0400
-Received: from mail-ua1-f68.google.com ([209.85.222.68]:44193 "EHLO
-        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726487AbfEOVna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 17:43:30 -0400
-Received: by mail-ua1-f68.google.com with SMTP id p13so463926uaa.11
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 14:43:29 -0700 (PDT)
+        id S1727035AbfEOVsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 17:48:01 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:44601 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726494AbfEOVsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 17:48:01 -0400
+Received: by mail-io1-f66.google.com with SMTP id f22so832812iol.11
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 14:48:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kjfknf32vTN6dOCTbKM2s4UhXiubagFxAlST3GyPe/4=;
-        b=GR//cp3pkBQCdrHCiA7U78cbGHrhAthjeR/dCjmIIoD5qYQZuteM3NaBSy+HNbvY48
-         IvgNM0VAE85ycebNJSfBDPE3hfaZSJCDQ23VFwYM5vosvYKqaPXIMso4VLQPi1wCqPof
-         nH2b4nPE7GE05LNfkK8yd9VHThgjZlNPDOpZg=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=sWbpZHBe6YpRVe1pQMe2dJ3Y9vgwQ34ZV5GLEWuVB0U=;
+        b=A0HkQWrQJKaLnNmrfgjL/E9/qPkQ5KNszllhY23b3Pf7LUv30duqOeqydt2saWLPj2
+         5cmD3znaPpqshHiIWvtIn+5m9v5HZsPoVO5T0FXibljEZ1/7Us+Pd+VZQF1Rzjzdu4iu
+         uUBiTlXqo+RQIYOCi+GZNkubLOExpLqSVQ5hA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kjfknf32vTN6dOCTbKM2s4UhXiubagFxAlST3GyPe/4=;
-        b=HzbSPk6/ZTxk9Gd3mVpsMX3OT5dyYUujoqQRYZXB7Be26UjVvb2uIpRtjOJtAJm0kC
-         ZIuA2CfRY8lbu15U/6dVkPOS2fhjeVLVWQVyFiWvQoXVlIkthU/g9cR3R/Ji7BplS9SS
-         KH9yuLjrjWb384pKmJS8uqA+TdtX9odRGUTvZlIbZxoyUGh9/5avQMQCn/Q9R3sO1qLa
-         B0gcRUZdMO0LKMacRjSEjfyIC0/kNrCJrHlM0xzDwZqUa5FFww1a3K8f+l+9BqM1Wv4b
-         za0Xx1lnlDp2VxbVXiWSvVP3z6Fxh6A5q9NDMndb6nm4Q3VFw5Mn3fMVMGnFdnoW3QvH
-         ElAg==
-X-Gm-Message-State: APjAAAVpllgL0Q0DEMbmescca09mCV+WRTQcAJBKjPhnur/lrlWrOy0K
-        0uh7HEtaH1LfFhyuPxf8TOP+rWSbL7w=
-X-Google-Smtp-Source: APXvYqwJXKFtY5yh3NoW7IpLxU0qwvbo6jqkY5w2MCjJnCUE0+31FjaEPhdcY0r73x1/nEgLK6n1Ow==
-X-Received: by 2002:ab0:2051:: with SMTP id g17mr8761642ual.117.1557956609050;
-        Wed, 15 May 2019 14:43:29 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id t189sm1483969vke.31.2019.05.15.14.43.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 14:43:26 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id y6so975695vsb.0
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 14:43:26 -0700 (PDT)
-X-Received: by 2002:a67:79ca:: with SMTP id u193mr20557958vsc.20.1557956606068;
- Wed, 15 May 2019 14:43:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190509184415.11592-1-robdclark@gmail.com> <20190509184415.11592-4-robdclark@gmail.com>
-In-Reply-To: <20190509184415.11592-4-robdclark@gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 15 May 2019 14:43:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xa0kAReU7CFvO8QiCRkNxGaQY_JohK+psykqeN9e+QJw@mail.gmail.com>
-Message-ID: <CAD=FV=Xa0kAReU7CFvO8QiCRkNxGaQY_JohK+psykqeN9e+QJw@mail.gmail.com>
-Subject: Re: [RFC 3/3] arm64: dts: qcom: sdm845-cheza: delete zap-shader
-To:     Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=sWbpZHBe6YpRVe1pQMe2dJ3Y9vgwQ34ZV5GLEWuVB0U=;
+        b=b7Z7eqVTOE1dSKZCkxcRia6H+OGYlDiXYxdP4cgHAxOp6YZVb+ZVSuM6fmOaZfmPEA
+         L/M12OuDSZwimSYhjzGmTZQGiZ/tujAFf1SsIuDft7SqCTjvXiA4wFHeAureULNTno1D
+         qiJnQgytHvQNfAX6t2b7eFQbSXWcY6kd/zrzfgkSp7ZVLTj6BHsYOBrge5xDwnijdvm8
+         3FnkQzWnl0ncKUQCktGuC/mo4MqohcADk9KTf4bAzPojwszFkeMqJKeGZ/npZnDMjPjN
+         AICyFWZlQwNw9bXLl23K9RLVFeLPVMjgeMskCk9QDmHeqlr/CKrOITaKIYmzVKa/WXmc
+         Kg0Q==
+X-Gm-Message-State: APjAAAXqhnwPwQKZXjTaJTR+fl+TYsaN9CuYiHpdKKF+AmjLSAh+UB09
+        +NBIrQRZGqHBqTzL3lwgtlMLfA==
+X-Google-Smtp-Source: APXvYqy6zgaN1FSUR13WOZV+36r1jayIO6EfLBjhuM3DJf4NRj+SG1E4CLAkVBleShYTPo7hLzcRmQ==
+X-Received: by 2002:a6b:e20d:: with SMTP id z13mr24726706ioc.92.1557956880412;
+        Wed, 15 May 2019 14:48:00 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id 1sm702105ity.9.2019.05.15.14.47.59
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 15 May 2019 14:47:59 -0700 (PDT)
+Date:   Wed, 15 May 2019 14:47:59 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] ARM: dts: raise GPU trip point temperature for
+ speedy to 80 degC
+Message-ID: <20190515214759.GF40515@google.com>
+References: <20190515153127.24626-1-mka@chromium.org>
+ <20190515153127.24626-2-mka@chromium.org>
+ <CAD=FV=XgoG5hiT=vAhNtUF4iVj1-Lmj7S5tvk86ehxB1uUZyxw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=XgoG5hiT=vAhNtUF4iVj1-Lmj7S5tvk86ehxB1uUZyxw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, May 15, 2019 at 11:30:12AM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Wed, May 15, 2019 at 8:31 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> 
+> > Raise the temperature of the GPU thermal trip point for speedy
+> > to 80°C. This is the value used by the downstream Chrome OS 3.14
+> > kernel, the 'official' kernel for speedy.
+> >
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> >  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/rk3288-veyron-speedy.dts b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
+> > index 2ac8748a3a0c..394a9648faee 100644
+> > --- a/arch/arm/boot/dts/rk3288-veyron-speedy.dts
+> > +++ b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
+> > @@ -64,6 +64,10 @@
+> >         temperature = <70000>;
+> >  };
+> >
+> > +&gpu_alert0 {
+> > +       temperature = <80000>;
+> > +};
+> > +
+> >  &edp {
+> 
+> Similar comments to patch set #1 about sort ordering.
 
-On Thu, May 9, 2019 at 12:08 PM Rob Clark <robdclark@gmail.com> wrote:
+ack
 
-> From: Rob Clark <robdclark@chromium.org>
->
-> This is unused on cheza.  Delete the node to get rid of the reserved-
-> memory section, and to avoid the driver from attempting to load a zap
-> shader that doesn't exist every time it powers up the GPU.
->
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 2 ++
->  arch/arm64/boot/dts/qcom/sdm845.dtsi       | 2 +-
+> ...I'll also notice that if we do end up setting the "critical" to 100
+> C for most of veyron then I guess we'll have to switch it back to 90 C
+> here for speedy to match downstream?
 
-nit: up to Bjorn / Andy, but personally I'd put cheza and non-cheza
-changes in two patches.
+yes
 
+> Maybe that's an argument for doing it in this patchset so we don't
+> forget?
 
->  2 files changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> index 8ccbe246dff4..28c28517b21a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> @@ -175,6 +175,8 @@
->  /delete-node/ &venus_mem;
->  /delete-node/ &cdsp_mem;
->  /delete-node/ &cdsp_pas;
-> +/delete-node/ &zap_shader;
+sounds good to me
 
-nit: I'd probably move the delete of the zap shader to a slightly
-different place just because the rest of the lines here are deleting
-reserved memory regions.
+> I'm somewhat amazed that downstream has only 10 C between "alert"
+> and 'critical" for GPU for speedy, but I guess it's OK?
 
-Other than nits this seems OK to me.  Not that I know anything about
-the zap shader or why a zap shader wouldn't be appropriate for cheza.
-
--Doug
+In tests on other veyron devices I observed gradual temperature
+in response to CPU or GPU load, so unless there's a sudden spike in
+the ambient temperature I think the 10°C delta should be fine with the
+current polling interval of 100ms.
