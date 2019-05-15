@@ -2,53 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E58791E9BD
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 10:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0441E9C5
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 10:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726025AbfEOIFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 04:05:05 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:57690 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725876AbfEOIFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 04:05:05 -0400
-Received: from penelope.horms.nl (ip4dab7138.direct-adsl.nl [77.171.113.56])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 9E1D025AEAD;
-        Wed, 15 May 2019 18:05:02 +1000 (AEST)
-Received: by penelope.horms.nl (Postfix, from userid 7100)
-        id 6B5C5E21335; Wed, 15 May 2019 10:05:00 +0200 (CEST)
-Date:   Wed, 15 May 2019 10:05:00 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Chris Brandt <chris.brandt@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 10/15] usb: renesas_usbhs: support byte addressable
- CFIFO
-Message-ID: <20190515080459.cumjv2ahv4hddhvk@verge.net.au>
-References: <20190514145605.19112-1-chris.brandt@renesas.com>
- <20190514145605.19112-11-chris.brandt@renesas.com>
+        id S1725912AbfEOIFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 04:05:37 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:39781 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725876AbfEOIFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 04:05:37 -0400
+Received: by mail-qk1-f195.google.com with SMTP id z128so931249qkb.6;
+        Wed, 15 May 2019 01:05:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q+ccq2l1YBXRacKh6NL0gv9RFQ3XL6hLCYeRFYOlzPA=;
+        b=UkS/ONOvFGrWAFYD7mnzpauai+AHYBQQNKgOY6g1o8HWGrHG/GAxTmksYfT4sWpuCv
+         iUn6l9lORkUYBNkn2uPo5Yq8LnHw+Mbm2Ynpi4SELKCj/YyTlAoVa3wWlg1vN2IBQ+29
+         4zqKXtDQES5LnLIfV1k4eE4Siq50D7iXV7kDzG8CzGk95OwkQMlLPls6XT/zIJGjsM7w
+         x46DkBZU8V7qXP/CqHrD5meO8RK1l+GWc6IjjDdjNTAwRre/AFg94GLbFM1Nflxf3+4Y
+         CtmlCwpeZuzoXEoh+h8drBZTwvgwM7XjBMk9t0ITcf9cwNSMEHM6abpIdX7SXDysDFpp
+         yr0w==
+X-Gm-Message-State: APjAAAWoYwZlGzDI+cTHGvfiGrPDuYfYHZyEtDH2cF27ZfaBBmkReu0R
+        9wUC+qJw+5U0T28iVvsHe5CRu9DXzeIstOagVCs=
+X-Google-Smtp-Source: APXvYqyIH5XViMS1a+4nEhLjKpZlbMQT/F6wM51bbNHL491ybxO9CDxjXoTFt4avIv9Jz3PVxDBDwzIn6dZ25APRqtI=
+X-Received: by 2002:a37:c441:: with SMTP id h1mr5276612qkm.291.1557907536423;
+ Wed, 15 May 2019 01:05:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190514145605.19112-11-chris.brandt@renesas.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20190515072747.39941-1-xiaowei.bao@nxp.com> <20190515072747.39941-2-xiaowei.bao@nxp.com>
+In-Reply-To: <20190515072747.39941-2-xiaowei.bao@nxp.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 15 May 2019 10:05:19 +0200
+Message-ID: <CAK8P3a3AXRp_v_7hkoJA28tUCiSh1eYzbk4Q4h29OqL6y-KL8A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: ls1028a: Add PCIe controller DT nodes
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Kishon <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        gregkh <gregkh@linuxfoundation.org>,
+        "M.h. Lian" <minghuan.Lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Philippe Ombredanne <pombredanne@nexb.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 09:56:00AM -0500, Chris Brandt wrote:
-> Some SoC have a CFIFO register that is byte addressable. This means
-> when the CFIFO access is set to 32-bit, you can write 8-bit values to
-> addresses CFIFO+0, CFIFO+1, CFIFO+2, CFIFO+3.
-> 
-> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+On Wed, May 15, 2019 at 9:36 AM Xiaowei Bao <xiaowei.bao@nxp.com> wrote:
+> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   52 ++++++++++++++++++++++++
+>  1 files changed, 52 insertions(+), 0 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index b045812..50b579b 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -398,6 +398,58 @@
+>                         status = "disabled";
+>                 };
+>
+> +               pcie@3400000 {
+> +                       compatible = "fsl,ls1028a-pcie";
+> +                       reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
+> +                              0x80 0x00000000 0x0 0x00002000>; /* configuration space */
+> +                       reg-names = "regs", "config";
+> +                       interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                                    <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>; /* aer interrupt */
+> +                       interrupt-names = "pme", "aer";
+> +                       #address-cells = <3>;
+> +                       #size-cells = <2>;
+> +                       device_type = "pci";
+> +                       dma-coherent;
+> +                       num-lanes = <4>;
+> +                       bus-range = <0x0 0xff>;
+> +                       ranges = <0x81000000 0x0 0x00000000 0x80 0x00010000 0x0 0x00010000   /* downstream I/O */
+> +                                 0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
 
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+Are you sure there is no support for 64-bit BARs or prefetchable memory?
+
+Is this a hardware bug, or something that can be fixed in firmware?
+
+       Arnd
