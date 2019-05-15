@@ -2,215 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BDA1F5E7
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B2061F5F3
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728196AbfEONtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 09:49:06 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:42293 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727784AbfEONtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:49:06 -0400
-Received: by mail-qk1-f195.google.com with SMTP id d4so1487413qkc.9
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:49:05 -0700 (PDT)
+        id S1726296AbfEONvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 09:51:16 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:52827 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725953AbfEONvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:51:15 -0400
+Received: by mail-it1-f193.google.com with SMTP id q65so196840itg.2;
+        Wed, 15 May 2019 06:51:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0bU82F+gt2zE3PINH+I2iOdx7/P2Z54mTmX7HD0f23g=;
-        b=Rz/eTH+AhP/E1BbGJwPsapzQcGBCN6AsXcTjNCMhLwf/Y4ROLeWXnzuXXCGskE4ial
-         C6vT5lbVMECErTsbOqncFmph2Tp1d0H7MkmabSVn4yEYTkDH28DQUEmZW/+6q04J8i/T
-         CJuQRVnjMj4PSEctgFELgkj3rPlU7ctawx7IU=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=p/y8JRassq6ldagHFCRqos7/WsoBIbYVcLzev7Ry3W8=;
+        b=KaHZE40aR03wi9RLD9spGr5b93BbQ5DubEQrkywFhVa/nXaUR1JKUW8uo9C3F/L4cf
+         5GRSuGcX6WUjHS72cONwr20aOHsj/qpk/0knlB/TCTMnD1u7F6+VB8A+388jl/AUuEd0
+         pF3fcsHPPc7HU3fF/KFu01x7DWvRFlJwiPbmtlAdUKaRERF9t06ihbQnLpa1TRBADuae
+         R+upDTYboIUgtTjOb4E77GIR9OBSjlu/SO2YVW33vbZLBY5HF+1+b/mJAUgjp9QlcZlJ
+         Sf1SVNMNjb4Gm3WPRdniVtcdObc/IQyzSBx3W1+HfnGYWQq9MwMYQp7GpfUEh22jkXg4
+         kmmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0bU82F+gt2zE3PINH+I2iOdx7/P2Z54mTmX7HD0f23g=;
-        b=U+HOvEL2lfsyxObTYLqfZkFL8U1CPunNkwSv61NDvUCFySo/SWPT0TLSyO62cWcPss
-         REkpKWAWj1gvAhp9eGqJPLw93GfCapip4G0sn4QbuQiEJhWS4vmApABTr861jVCU3n1c
-         c7O0q8UjKDzMg3unzHGwMazLxKtXV9oqeWqpOoX4w2InpAekMnLavWZtkNpyH3arRAcH
-         0ktGEHnzHPsV3OuVyHBJRE2ER60woJFi0FKh8cbCJHIPVKDlBzISHC6JoGgQaCo6RnHS
-         D/VqXKpEhFp7Gl3nYJTLzxO/LDV731zT9GpfCiFZK3Vgm+oq6wYA5O/OAFU8edSAgbQb
-         +0ow==
-X-Gm-Message-State: APjAAAWM2SfOuUlxaSthi+vQhEjKyg3iivwNah08bJQURq98NiPsd1oF
-        4j0eDeYdsmujeSa7Jz9CzSCFzTHkgT+vkgCmRjoE/g==
-X-Google-Smtp-Source: APXvYqwlUOhQfWVG0cDXJfSD77I136CNQYmnycgW7CY0DPgH6v1ONynTfzyo3enPqgR8mXrkE9bC5wWl+/AN2lmlbhE=
-X-Received: by 2002:ae9:f818:: with SMTP id x24mr32636878qkh.329.1557928145116;
- Wed, 15 May 2019 06:49:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <1556336193-15198-1-git-send-email-long.cheng@mediatek.com> <1556336193-15198-5-git-send-email-long.cheng@mediatek.com>
-In-Reply-To: <1556336193-15198-5-git-send-email-long.cheng@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Wed, 15 May 2019 21:48:52 +0800
-Message-ID: <CANMq1KDTyu48joV6uMksGBMz9EmjFH9SEpGAm93YCZ40jxgBpQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] serial: 8250-mtk: modify uart DMA rx
-To:     Long Cheng <long.cheng@mediatek.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=p/y8JRassq6ldagHFCRqos7/WsoBIbYVcLzev7Ry3W8=;
+        b=YRc8Teo8NlUcmksobpM3nPQi0LLgzao7UYYSLIp+6qExbYisLM9Fyan6nBGWnEFLal
+         C7PJ9VZNWuBS5E/St4D+e1T7hXeGCrDWeq0uY1aR3/sJ8VD03BPQVyixAXgVKtAYrkjQ
+         /Xu8Y5OHThleKoPtTkfWBXdRxLTt1YTl4pXt42Tp0VZqGCjiVet9fivQxkJvwxzoPAXo
+         /r0P+aQNZW72iasIDCRVXQiMk+TSH9XdYKvtbtPGMCIazGE0NSVs7dFvbdytXnz1Gu3o
+         LQV16Xp7wsTeaIFuogquuvY6Kp5FdfGPgKGNac9e4vbxrxPFy964bcH2ngPrfYU14fOp
+         bfFg==
+X-Gm-Message-State: APjAAAVz4Lucposd2PDI4r+08nl8rbNI41d+7etR5daemDYfxIv3sq4/
+        7rGaUcRDLcuXOEgBUIzqNTY=
+X-Google-Smtp-Source: APXvYqyUdVq7O/jGC2ASOLVYVe+9UfE6Gezo9Pbls9Qhpg3DCNcoBRXv/sg0AXqtNZTG2PeckYWVYg==
+X-Received: by 2002:a02:c8da:: with SMTP id q26mr28090176jao.0.1557928274570;
+        Wed, 15 May 2019 06:51:14 -0700 (PDT)
+Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
+        by smtp.googlemail.com with ESMTPSA id q16sm615991ior.75.2019.05.15.06.51.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 May 2019 06:51:13 -0700 (PDT)
+Subject: Re: [PATCH V3 1/8] dt-bindings: memory: tegra: Add external memory
+ controller binding for Tegra210
+To:     Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        Sean Wang <sean.wang@mediatek.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-serial@vger.kernel.org,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        YT Shen <yt.shen@mediatek.com>,
-        Zhenbao Liu <zhenbao.liu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190510084719.18902-1-josephl@nvidia.com>
+ <20190510084719.18902-2-josephl@nvidia.com>
+ <fd68f906-79b4-6eda-b1fa-abaf3b4c6a12@gmail.com>
+ <63360b18-6a17-ab3f-6c54-6e11e24885d0@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <c3909c66-5aa4-161b-98d4-02ad20e02c88@gmail.com>
+Date:   Wed, 15 May 2019 16:50:31 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <63360b18-6a17-ab3f-6c54-6e11e24885d0@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 27, 2019 at 11:36 AM Long Cheng <long.cheng@mediatek.com> wrote:
->
-> Modify uart rx and complete for DMA.
+15.05.2019 10:17, Joseph Lo пишет:
+> On 5/15/19 12:28 AM, Dmitry Osipenko wrote:
+>> 10.05.2019 11:47, Joseph Lo пишет:
+>>> Add the binding document for the external memory controller (EMC) which
+>>> communicates with external LPDDR4 devices. It includes the bindings of
+>>> the EMC node and a sub-node of EMC table which under the reserved memory
+>>> node. The EMC table contains the data of the rates that EMC supported.
+>>>
+>>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+>>> ---
+>>> v3:
+>>> - drop the bindings of EMC table
+>>> - add memory-region and reserved-memory node for EMC table
+>>> ---
+>>>   .../nvidia,tegra210-emc.txt                   | 55 +++++++++++++++++++
+>>>   1 file changed, 55 insertions(+)
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+>>>
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+>>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+>>>
+>>> new file mode 100644
+>>> index 000000000000..d65aeef2329c
+>>> --- /dev/null
+>>> +++
+>>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
+>>>
+>>> @@ -0,0 +1,55 @@
+>>> +NVIDIA Tegra210 SoC EMC (external memory controller)
+>>> +====================================================
+>>> +
+>>> +Device node
+>>> +===========
+>>> +Required properties :
+>>> +- compatible : should be "nvidia,tegra210-emc".
+>>> +- reg : physical base address and length of the controller's registers.
+>>> +- clocks : phandles of the possible source clocks.
+>>> +- clock-names : names of the possible source clocks.
+>>> +- interrupts : Should contain the EMC general interrupt.
+>>> +- memory-region : phandle to the reserved memory (see
+>>> + 
+>>> Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt) which
+>>>
+>>> +  contains a sub-node of EMC table.
+>>> +- nvidia,memory-controller : phandle of the memory controller.
+>>> +
+>>> +Reserved memory node
+>>> +====================
+>>> +Should contain a sub-node of EMC table with required properties:
+>>> +- compatible : should be "nvidia,tegra210-emc-table".
+>>> +- reg : physical address and length of the location of EMC table.
+>>> +
+>>> +Example:
+>>> +    reserved-memory {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +        ranges;
+>>> +
+>>> +        emc_table: emc-table@8be00000 {
+>>> +            compatible = "nvidia,tegra210-emc-table";
+>>> +            reg = <0x0 0x8be00000 0x0 0x10000>;
+>>> +            status = "okay";
+>>> +        };
+>>
+>> You essentially moved the v1 binding into obscure and undocumented blob,
+>> ignoring previous review comments. This is a very odd move... please
+>> explain what is going on.
+>>
+> 
+> Discussed with Thierry offline which way we prefer to pass the EMC table
+> to the kernel. Some reasons below we decide to chose this one (via
+> binary blob).
+> 
+> - The EMC table is much bigger than the previous Tegra generations
+> (LPDDR4 v.s. LPDDR2/3). It's harder to settle in the review process. And
+> if there is a new fix of the table in the future, we'll need to go
+> through that again.
 
-I don't know much about the DMA framework, but can you please explain
-why you are making the changes in this CL? I see that you are dropping
-dma_sync_single_for_device calls, for example, why?
+I don't think that this a very good excuse for not documenting the
+blob's structure.
 
->
-> Signed-off-by: Long Cheng <long.cheng@mediatek.com>
-> ---
->  drivers/tty/serial/8250/8250_mtk.c |   53 ++++++++++++++++--------------------
->  1 file changed, 23 insertions(+), 30 deletions(-)
->
-> diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
-> index c1fdbc0..04081a6 100644
-> --- a/drivers/tty/serial/8250/8250_mtk.c
-> +++ b/drivers/tty/serial/8250/8250_mtk.c
-> @@ -30,7 +30,6 @@
->  #define MTK_UART_DMA_EN_TX     0x2
->  #define MTK_UART_DMA_EN_RX     0x5
->
-> -#define MTK_UART_TX_SIZE       UART_XMIT_SIZE
->  #define MTK_UART_RX_SIZE       0x8000
->  #define MTK_UART_TX_TRIGGER    1
->  #define MTK_UART_RX_TRIGGER    MTK_UART_RX_SIZE
-> @@ -64,28 +63,30 @@ static void mtk8250_dma_rx_complete(void *param)
->         struct mtk8250_data *data = up->port.private_data;
->         struct tty_port *tty_port = &up->port.state->port;
->         struct dma_tx_state state;
-> +       int copied, cnt, tmp;
->         unsigned char *ptr;
-> -       int copied;
->
-> -       dma_sync_single_for_cpu(dma->rxchan->device->dev, dma->rx_addr,
-> -                               dma->rx_size, DMA_FROM_DEVICE);
-> +       if (data->rx_status == DMA_RX_SHUTDOWN)
-> +               return;
->
->         dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
-> +       cnt = dma->rx_size - state.residue;
-> +       tmp = cnt;
+> - Because it's LPDDR4 we want to support here, to support higher rates,
+> the devices have must be gone through the training process, which is
+> done in the firmware. Which means We already have the table somewhere in
+> the memory and kernel can just re-use that. No need to convert them back
+> to DT and pass to the kernel. This is much easier to maintain in the
+> future if there is something needs to fix.
+> - With the mechanism above, we don't need to maintain the huge EMC table
+> in the DT file like below.
+> http://patchwork.ozlabs.org/patch/1063886/
+> http://patchwork.ozlabs.org/patch/1063889/
 
-I ponder, maybe we should rename cnt to left? (like, how many bytes
-are left to transfer, in total) Or maybe "total"
-Then maybe rename tmp to cnt.
+The blob's EMC table contains stuff specific to downstream kernel, hence
+it's a not very re-usable downstream software ABI mixed with HW
+description that you're bringing into upstream. This is not very
+welcomed, although I don't see it as a big problem if you'll state that
+all clearly in the commit message with a solid explanation why it is the
+best possible option.
 
->
-> -       if (data->rx_status == DMA_RX_SHUTDOWN)
-> -               return;
-> +       if ((data->rx_pos + cnt) > dma->rx_size)
-> +               tmp = dma->rx_size - data->rx_pos;
+> And sorry, maybe it's not clear at that moment, but I did mention that
+> we want to go with the new method (via binary blob) in the previous review.
+> Please see http://patchwork.ozlabs.org/patch/1084467/
 
-Maybe replace this and the line above:
-tmp = max_t(int, cnt, dma->rx_size - data->rx_pos);
-
->
-> -       if ((data->rx_pos + state.residue) <= dma->rx_size) {
-> -               ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
-> -               copied = tty_insert_flip_string(tty_port, ptr, state.residue);
-> -       } else {
-> -               ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
-> -               copied = tty_insert_flip_string(tty_port, ptr,
-> -                                               dma->rx_size - data->rx_pos);
-> +       ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
-> +       copied = tty_insert_flip_string(tty_port, ptr, tmp);
-> +       data->rx_pos += tmp;
-> +
-> +       if (cnt > tmp) {
->                 ptr = (unsigned char *)(dma->rx_buf);
-> -               copied += tty_insert_flip_string(tty_port, ptr,
-> -                               data->rx_pos + state.residue - dma->rx_size);
-> +               tmp = cnt - tmp;
-> +               copied += tty_insert_flip_string(tty_port, ptr, tmp);
-> +               data->rx_pos = tmp;
->         }
-> +
->         up->port.icount.rx += copied;
->
->         tty_flip_buffer_push(tty_port);
-> @@ -96,9 +97,7 @@ static void mtk8250_dma_rx_complete(void *param)
->  static void mtk8250_rx_dma(struct uart_8250_port *up)
->  {
->         struct uart_8250_dma *dma = up->dma;
-> -       struct mtk8250_data *data = up->port.private_data;
->         struct dma_async_tx_descriptor  *desc;
-> -       struct dma_tx_state      state;
->
->         desc = dmaengine_prep_slave_single(dma->rxchan, dma->rx_addr,
->                                            dma->rx_size, DMA_DEV_TO_MEM,
-> @@ -113,12 +112,6 @@ static void mtk8250_rx_dma(struct uart_8250_port *up)
->
->         dma->rx_cookie = dmaengine_submit(desc);
->
-> -       dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
-> -       data->rx_pos = state.residue;
-> -
-> -       dma_sync_single_for_device(dma->rxchan->device->dev, dma->rx_addr,
-> -                                  dma->rx_size, DMA_FROM_DEVICE);
-> -
->         dma_async_issue_pending(dma->rxchan);
->  }
->
-> @@ -131,13 +124,13 @@ static void mtk8250_dma_enable(struct uart_8250_port *up)
->         if (data->rx_status != DMA_RX_START)
->                 return;
->
-> -       dma->rxconf.direction           = DMA_DEV_TO_MEM;
-> -       dma->rxconf.src_addr_width      = dma->rx_size / 1024;
-> -       dma->rxconf.src_addr            = dma->rx_addr;
-> +       dma->rxconf.direction                           = DMA_DEV_TO_MEM;
-> +       dma->rxconf.src_port_window_size        = dma->rx_size;
-> +       dma->rxconf.src_addr                            = dma->rx_addr;
->
-> -       dma->txconf.direction           = DMA_MEM_TO_DEV;
-> -       dma->txconf.dst_addr_width      = MTK_UART_TX_SIZE / 1024;
-> -       dma->txconf.dst_addr            = dma->tx_addr;
-> +       dma->txconf.direction                           = DMA_MEM_TO_DEV;
-> +       dma->txconf.dst_port_window_size        = UART_XMIT_SIZE;
-> +       dma->txconf.dst_addr                            = dma->tx_addr;
->
->         serial_out(up, UART_FCR, UART_FCR_ENABLE_FIFO | UART_FCR_CLEAR_RCVR |
->                 UART_FCR_CLEAR_XMIT);
-> @@ -217,7 +210,7 @@ static void mtk8250_shutdown(struct uart_port *port)
->          * Mediatek UARTs use an extra highspeed register (UART_MTK_HIGHS)
->          *
->          * We need to recalcualte the quot register, as the claculation depends
-> -        * on the vaule in the highspeed register.
-> +        * on the value in the highspeed register.
-
-Since you're doing some cosmetic changes here, you might as well fix
-recalcualte => recalculate and claculation => calculation on the line
-above.
-
-But technically, this should belong in another patch...
-
->          *
->          * Some baudrates are not supported by the chip, so we use the next
->          * lower rate supported and update termios c_flag.
-> --
-> 1.7.9.5
->
+Okay. It will be better if the discussion happened publicly, at least I
+hope that Rob is involved in it.
