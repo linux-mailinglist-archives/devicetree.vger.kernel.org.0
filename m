@@ -2,143 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ED4C1E7C5
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 07:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B20D61E7EE
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 07:32:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726283AbfEOFBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 01:01:22 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:37572 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725876AbfEOFBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 01:01:21 -0400
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4F4vTcG037975
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 01:01:20 -0400
-Received: from e06smtp07.uk.ibm.com (e06smtp07.uk.ibm.com [195.75.94.103])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2sg7vc1se4-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 01:01:20 -0400
-Received: from localhost
-        by e06smtp07.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <rppt@linux.ibm.com>;
-        Wed, 15 May 2019 06:01:10 +0100
-Received: from b06cxnps4076.portsmouth.uk.ibm.com (9.149.109.198)
-        by e06smtp07.uk.ibm.com (192.168.101.137) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Wed, 15 May 2019 06:01:03 +0100
-Received: from d06av23.portsmouth.uk.ibm.com (d06av23.portsmouth.uk.ibm.com [9.149.105.59])
-        by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x4F512xp42795236
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 15 May 2019 05:01:02 GMT
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8CD14A4057;
-        Wed, 15 May 2019 05:01:02 +0000 (GMT)
-Received: from d06av23.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 36EDBA406E;
-        Wed, 15 May 2019 05:01:01 +0000 (GMT)
-Received: from rapoport-lnx (unknown [9.148.8.112])
-        by d06av23.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
-        Wed, 15 May 2019 05:01:01 +0000 (GMT)
-Date:   Wed, 15 May 2019 08:00:59 +0300
-From:   Mike Rapoport <rppt@linux.ibm.com>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kees Cook <keescook@chromium.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Architecture Mailman List <boot-architecture@lists.linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Michal Hocko <mhocko@suse.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>
-Subject: Re: [PATCH v2 2/2] amr64: map FDT as RW for early_init_dt_scan()
-References: <20190513003819.356-1-hsinyi@chromium.org>
- <20190513003819.356-2-hsinyi@chromium.org>
- <20190513085853.GB9271@rapoport-lnx>
- <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
- <155786794318.14659.2925897827978978040@swboyd.mtv.corp.google.com>
+        id S1726032AbfEOFcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 01:32:11 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:49866 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbfEOFcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 01:32:11 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 5330D60A05; Wed, 15 May 2019 05:32:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557898329;
+        bh=06S3eHHeGJowU5mz+CsunnA1wJOM7wbntuYhHzpkXks=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Zw96L+lLZ1G31THW/ShB1TSvyAIJoROiiAbhhviMAC3IGxiIJsIT0eyEdqX9Cy5Zc
+         gRHRv5S6wc/du5kUMVHL1R1V3CSEU+vKLIH85++rPYm8Z/TOK6HbhhwDbBmCFGaqL+
+         RLbiTN9Egbe6m5UZsqPMWdowa2aB6+KHDEjbSGO8=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 2B51360A05;
+        Wed, 15 May 2019 05:32:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557898328;
+        bh=06S3eHHeGJowU5mz+CsunnA1wJOM7wbntuYhHzpkXks=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=LL7hewrv9e+U16IYkAy0TKhKq+nS9AV9Om3mEzb0u5wMUFd8HXvO0MynsCh96F/bm
+         t5uq+p1mR4W91ItUg5Bu99PevIJnCnMPHRLRAgq/N7NB5HgMOMVR5+LOqObp7Qe0+C
+         Y19mC/LEuH/aY/+VHvj12Y5tZZ2JyKW6EP2CmTuc=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <155786794318.14659.2925897827978978040@swboyd.mtv.corp.google.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-TM-AS-GCONF: 00
-x-cbid: 19051505-0028-0000-0000-0000036DCC02
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19051505-0029-0000-0000-0000242D606A
-Message-Id: <20190515050059.GA4081@rapoport-lnx>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-15_05:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1905150031
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 15 May 2019 11:02:08 +0530
+From:   Balakrishna Godavarthi <bgodavar@codeaurora.org>
+To:     Rocky Liao <rjliao@codeaurora.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, marcel@holtmann.org,
+        johan.hedberg@gmail.com, thierry.escande@linaro.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, hemtang@codeaurora.org
+Subject: Re: [PATCH v4 1/2] Bluetooth: hci_qca: Load customized NVM based on
+ the device property
+In-Reply-To: <1557631148-5120-1-git-send-email-rjliao@codeaurora.org>
+References: <1554888451-17518-1-git-send-email-rjliao@codeaurora.org>
+ <1557631148-5120-1-git-send-email-rjliao@codeaurora.org>
+Message-ID: <50debf59532279fa0d0bf7156b48831a@codeaurora.org>
+X-Sender: bgodavar@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 02:05:43PM -0700, Stephen Boyd wrote:
-> Quoting Hsin-Yi Wang (2019-05-13 04:14:32)
-> > On Mon, May 13, 2019 at 4:59 PM Mike Rapoport <rppt@linux.ibm.com> wrote:
-> > 
-> > >
-> > > This makes the fdt mapped without the call to meblock_reserve(fdt) which
-> > > makes the fdt memory available for memblock allocations.
-> > >
-> > > Chances that is will be actually allocated are small, but you know, things
-> > > happen.
-> > >
-> > > IMHO, instead of calling directly __fixmap_remap_fdt() it would be better
-> > > to add pgprot parameter to fixmap_remap_fdt(). Then here and in kaslr.c it
-> > > can be called with PAGE_KERNEL and below with PAGE_KERNEL_RO.
-> > >
-> > > There is no problem to call memblock_reserve() for the same area twice,
-> > > it's essentially a NOP.
-> > >
-> > Thanks for the suggestion. Will update fixmap_remap_fdt() in next patch.
-> > 
-> > However, I tested on some arm64 platform, if we also call
-> > memblock_reserve() in kaslr.c, would cause warning[1] when
-> > memblock_reserve() is called again in setup_machine_fdt(). The warning
-> > comes from https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L601
-> > ```
-> > if (type->regions[0].size == 0) {
-> >   WARN_ON(type->cnt != 1 || type->total_size);
-> >   ...
-> > ```
-> > 
-> > Call memblock_reserve() multiple times after setup_machine_fdt()
-> > doesn't have such warning though.
-> > 
-> > I didn't trace the real reason causing this. But in this case, maybe
-> > don't call memblock_reserve() in kaslr?
-> > 
+Hi Rocky,
+
+On 2019-05-12 08:49, Rocky Liao wrote:
+> QCA BTSOC NVM is a customized firmware file and different vendors may
+> want to have different BTSOC configuration (e.g. Configure SCO over PCM
+> or I2S, Setting Tx power, etc.) via this file. This patch will allow
+> vendors to download different NVM firmware file by reading a device
+> property "firmware-name".
 > 
-> Why not just have fixmap_remap_fdt() that maps it as RW and reserves
-> memblock once, and then call __fixmap_remap_fdt() with RO after
-> early_init_dt_scan() or unflatten_device_tree() is called? Why the
-> desire to call memblock_reserve() twice or even three times?
+> Signed-off-by: Rocky Liao <rjliao@codeaurora.org>
+> ---
+> Changes in v4:
+>   * rebased the code base and merge with latest code
+> ---
+>  drivers/bluetooth/btqca.c   | 14 ++++++++++----
+>  drivers/bluetooth/btqca.h   |  6 ++++--
+>  drivers/bluetooth/hci_qca.c | 19 ++++++++++++++++++-
+>  3 files changed, 32 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+> index cc12eec..0ea690a 100644
+> --- a/drivers/bluetooth/btqca.c
+> +++ b/drivers/bluetooth/btqca.c
+> @@ -332,7 +332,8 @@ int qca_set_bdaddr_rome(struct hci_dev *hdev,
+> const bdaddr_t *bdaddr)
+>  EXPORT_SYMBOL_GPL(qca_set_bdaddr_rome);
+> 
+>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+> -		   enum qca_btsoc_type soc_type, u32 soc_ver)
+> +		   enum qca_btsoc_type soc_type, u32 soc_ver,
+> +		   const char *firmware_name)
+>  {
+>  	struct rome_config config;
+>  	int err;
+> @@ -368,9 +369,14 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t 
+> baudrate,
+>  	if (qca_is_wcn399x(soc_type))
+>  		snprintf(config.fwname, sizeof(config.fwname),
+>  			 "qca/crnv%02x.bin", rom_ver);
+> -	else
+> -		snprintf(config.fwname, sizeof(config.fwname),
+> -			 "qca/nvm_%08x.bin", soc_ver);
+> +	else {
+> +		if (firmware_name)
+> +			snprintf(config.fwname, sizeof(config.fwname),
+> +				 "qca/%s", firmware_name);
+> +		else
+> +			snprintf(config.fwname, sizeof(config.fwname),
+> +				 "qca/nvm_%08x.bin", soc_ver);
+> +	}
+> 
+[Bala]: Can you make this change  applicable to the wcn399x series chip 
+sets too.
 
-There's no desire to call memblock_reserve() twice. It's just that leaving
-the call for it in kaslr rather than in setup_arch() may end up with
-unreserved FDT because kaslr was disabled or even compiled out.
+        something like this
 
-I've suggested to use fixmap_remap_fdt() everywhere because IMHO this
-improves readability and allows to un-export __fixmap_remap_fdt().
+        if (qca_is_wcn399x(soc_type) && !firmware_name)
+          snprintf(config.fwname, sizeof(config.fwname),
+               "qca/crnv%02x.bin", rom_ver);
+       elseif (firmware_name)
+          snprintf(config.fwname, sizeof(config.fwname),
+             "qca/%s", firmware_name);
+       else
+         snprintf(config.fwname, sizeof(config.fwname),
+               "qca/nvm_%08x.bin", soc_ver);
+
+
+>  	err = qca_download_firmware(hdev, &config);
+>  	if (err < 0) {
+> diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
+> index 4c4fe2b..8c037bb 100644
+> --- a/drivers/bluetooth/btqca.h
+> +++ b/drivers/bluetooth/btqca.h
+> @@ -140,7 +140,8 @@ enum qca_btsoc_type {
+> 
+>  int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdaddr);
+>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+> -		   enum qca_btsoc_type soc_type, u32 soc_ver);
+> +		   enum qca_btsoc_type soc_type, u32 soc_ver,
+> +		   const char *firmware_name);
+>  int qca_read_soc_version(struct hci_dev *hdev, u32 *soc_version);
+>  int qca_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr);
+>  static inline bool qca_is_wcn399x(enum qca_btsoc_type soc_type)
+> @@ -155,7 +156,8 @@ static inline int qca_set_bdaddr_rome(struct
+> hci_dev *hdev, const bdaddr_t *bdad
+>  }
+> 
+>  static inline int qca_uart_setup(struct hci_dev *hdev, uint8_t 
+> baudrate,
+> -				 enum qca_btsoc_type soc_type, u32 soc_ver)
+> +				 enum qca_btsoc_type soc_type, u32 soc_ver,
+> +				 const char *firmware_name)
+>  {
+>  	return -EOPNOTSUPP;
+>  }
+> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
+> index 57322c4..9590602 100644
+> --- a/drivers/bluetooth/hci_qca.c
+> +++ b/drivers/bluetooth/hci_qca.c
+> @@ -169,6 +169,7 @@ struct qca_serdev {
+>  	struct qca_power *bt_power;
+>  	u32 init_speed;
+>  	u32 oper_speed;
+> +	const char *firmware_name;
+>  };
+> 
+>  static int qca_power_setup(struct hci_uart *hu, bool on);
+> @@ -190,6 +191,17 @@ static enum qca_btsoc_type qca_soc_type(struct
+> hci_uart *hu)
+>  	return soc_type;
+>  }
+> 
+> +static const char *qca_get_firmware_name(struct hci_uart *hu)
+> +{
+> +	if (hu->serdev) {
+> +		struct qca_serdev *qsd = serdev_device_get_drvdata(hu->serdev);
+> +
+> +		return qsd->firmware_name;
+> +	} else {
+> +		return NULL;
+> +	}
+> +}
+> +
+>  static void __serial_clock_on(struct tty_struct *tty)
+>  {
+>  	/* TODO: Some chipset requires to enable UART clock on client
+> @@ -1195,6 +1207,7 @@ static int qca_setup(struct hci_uart *hu)
+>  	struct qca_data *qca = hu->priv;
+>  	unsigned int speed, qca_baudrate = QCA_BAUDRATE_115200;
+>  	enum qca_btsoc_type soc_type = qca_soc_type(hu);
+> +	const char *firmware_name = qca_get_firmware_name(hu);
+>  	int ret;
+>  	int soc_ver = 0;
+> 
+> @@ -1245,7 +1258,8 @@ static int qca_setup(struct hci_uart *hu)
+> 
+>  	bt_dev_info(hdev, "QCA controller version 0x%08x", soc_ver);
+>  	/* Setup patch / NVM configurations */
+> -	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, soc_ver);
+> +	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, soc_ver,
+> +			firmware_name);
+>  	if (!ret) {
+>  		set_bit(QCA_IBS_ENABLED, &qca->flags);
+>  		qca_debugfs_init(hdev);
+> @@ -1477,6 +1491,9 @@ static int qca_serdev_probe(struct serdev_device 
+> *serdev)
+>  			return PTR_ERR(qcadev->bt_en);
+>  		}
+> 
+> +		device_property_read_string(&serdev->dev, "firmware-name",
+> +					 &qcadev->firmware_name);
+> +
+>  		qcadev->susclk = devm_clk_get(&serdev->dev, NULL);
+>  		if (IS_ERR(qcadev->susclk)) {
+>  			dev_err(&serdev->dev, "failed to acquire clk\n");
 
 -- 
-Sincerely yours,
-Mike.
-
+Regards
+Balakrishna.
