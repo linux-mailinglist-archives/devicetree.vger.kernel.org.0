@@ -2,99 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A263E1E8C9
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 09:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0B7A1E8CF
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 09:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbfEOHQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 03:16:06 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:34198 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725912AbfEOHQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 03:16:06 -0400
-Received: by mail-wm1-f65.google.com with SMTP id j187so3977418wma.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 00:16:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=bmyHjZNyHivUvoK23ukxv4Nj9Dp9vXFDiA73FJcaCvw=;
-        b=Nx5hfMDZKgnefIIAgQs8SbUtsBCrRfHUUmK1JNJVo0XJCP3elPtIQ6RSayZ/oFUTRo
-         7/AtzjH3EswrK4+R7pP5bEiH+g09w0ptv1SJB7g1VvDQhOa5ULSmouhI70Rv4KtRdvF9
-         ma4Wp88E+xiD5YYSA6QV8rrqIQORAZN/w9cvwCJND5j6Hnn5V30UaYeGUaKnsSsCVQcb
-         j0en7BYL45JLvOLpaBmH7FP1mQY4+PRs+LiIUfVm0HL/65tmJeJ2mjOD8+kmjpJF/adj
-         6xFahwnhKyE+Wbd3vI6nS1OTdlZv2CluVIECy2Nmng5uvw1dVQjFGlz5vAuPQWpN2r4o
-         kR/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=bmyHjZNyHivUvoK23ukxv4Nj9Dp9vXFDiA73FJcaCvw=;
-        b=TyhfRTUUZ8weolM7ph2VZRajxgPcfZqweO6dyPMy6jSiqoK4fvErqyQfUjhNX/OmBi
-         O8Pobw2/7iuvgkrpUU5xUtW5/aboxJQDCqutX6DSYffFsJmj5nnEkxdt2ONTq1JXd4cX
-         QVoOeuwKGOWXPZ3vmvawWK3IPSn4XEsDRafwQ3camL3CdVMFfZuAzmtDkPM2YIa5Non8
-         +/iKJU4oW0u89voFVS/kyV0Vl2ioqMIQgJW7XBYGukzKF47YbestILd79IbmZMo4GSPF
-         duMqiX7Atxd5/CAEmMqf5sekf6wyV7Zg81rANLCbFDolSZyC7IrkMnSR7rlMn1ENo2tZ
-         9lSw==
-X-Gm-Message-State: APjAAAX0HXm5XABeNg4Jggeqo+np5PDkLU8nZI6KuCTO6TGqiDgemlGH
-        +tZAIXCaZGUuo1UQZNbH4TfVjg==
-X-Google-Smtp-Source: APXvYqz7FxqoIBKKh2LSGlm3FW2p5aY8FKk6NC9YycD5Y1bD0YcUqRnXzXKoCONX8MhljKE5ZywNMg==
-X-Received: by 2002:a1c:c5c3:: with SMTP id v186mr17138769wmf.60.1557904564394;
-        Wed, 15 May 2019 00:16:04 -0700 (PDT)
-Received: from dell ([2.27.167.43])
-        by smtp.gmail.com with ESMTPSA id i15sm1290359wre.30.2019.05.15.00.16.03
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 May 2019 00:16:03 -0700 (PDT)
-Date:   Wed, 15 May 2019 08:16:01 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     masonccyang@mxic.com.tw
-Cc:     bbrezillon@kernel.org, broonie@kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-spi@vger.kernel.org, marek.vasut@gmail.com,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        sergei.shtylyov@cogentembedded.com, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v12 2/3] spi: Add Renesas R-Car Gen3 RPC-IF SPI
- controller driver
-Message-ID: <20190515071601.GQ4319@dell>
-References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
- <1556092536-17095-3-git-send-email-masonccyang@mxic.com.tw>
- <20190514065216.GL4319@dell>
- <OF794FCFCD.155B914B-ON482583FB.001EDBB3-482583FB.0020821B@mxic.com.tw>
+        id S1725929AbfEOHR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 03:17:26 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:2339 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725871AbfEOHR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 03:17:26 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cdbbcd60000>; Wed, 15 May 2019 00:16:39 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 15 May 2019 00:17:19 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 15 May 2019 00:17:19 -0700
+Received: from [10.19.108.132] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 15 May
+ 2019 07:17:16 +0000
+Subject: Re: [PATCH V3 1/8] dt-bindings: memory: tegra: Add external memory
+ controller binding for Tegra210
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20190510084719.18902-1-josephl@nvidia.com>
+ <20190510084719.18902-2-josephl@nvidia.com>
+ <fd68f906-79b4-6eda-b1fa-abaf3b4c6a12@gmail.com>
+From:   Joseph Lo <josephl@nvidia.com>
+Message-ID: <63360b18-6a17-ab3f-6c54-6e11e24885d0@nvidia.com>
+Date:   Wed, 15 May 2019 15:17:10 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <OF794FCFCD.155B914B-ON482583FB.001EDBB3-482583FB.0020821B@mxic.com.tw>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <fd68f906-79b4-6eda-b1fa-abaf3b4c6a12@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557904599; bh=rvmmtMaDz2XaVLEijpVuOgwxP0IUeQ7iihHR6HcMzMU=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=a2qSGk4gKxUaZ3GAI9557ok/St7di3j7E+S/1xLLPItkQWok5/yNI9bIcGgy1oPWt
+         flKon0UEMX/TARGfN54tRSRDgwsEIbXiM9nCsZxipiYytw7oG0OX58Q4q4NMsofplv
+         ygRbceZlgrjJl1A65JLdfdMgTOlyYGgSubSOCLiHxLsHIqLmh4ZNBbYuDXMVmC30k4
+         p/XtllqlZ4GwIWGalS/ZYWgrwk+2FJUa0joB37Tr91SjdhcFTv3Nqlxl1HNq3+SKdd
+         sKeE/tsAbvBRst/mOT0Gir54nk+rgr5ylnuIqFOgMwwGm69E+ZfpFcOezckDHatz2s
+         U2jnfk4YYjXKw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 May 2019, masonccyang@mxic.com.tw wrote:
+On 5/15/19 12:28 AM, Dmitry Osipenko wrote:
+> 10.05.2019 11:47, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> Add the binding document for the external memory controller (EMC) which
+>> communicates with external LPDDR4 devices. It includes the bindings of
+>> the EMC node and a sub-node of EMC table which under the reserved memory
+>> node. The EMC table contains the data of the rates that EMC supported.
+>>
+>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+>> ---
+>> v3:
+>> - drop the bindings of EMC table
+>> - add memory-region and reserved-memory node for EMC table
+>> ---
+>>   .../nvidia,tegra210-emc.txt                   | 55 +++++++++++++++++++
+>>   1 file changed, 55 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/memory-controller=
+s/nvidia,tegra210-emc.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia=
+,tegra210-emc.txt b/Documentation/devicetree/bindings/memory-controllers/nv=
+idia,tegra210-emc.txt
+>> new file mode 100644
+>> index 000000000000..d65aeef2329c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra2=
+10-emc.txt
+>> @@ -0,0 +1,55 @@
+>> +NVIDIA Tegra210 SoC EMC (external memory controller)
+>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+>> +
+>> +Device node
+>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> +Required properties :
+>> +- compatible : should be "nvidia,tegra210-emc".
+>> +- reg : physical base address and length of the controller's registers.
+>> +- clocks : phandles of the possible source clocks.
+>> +- clock-names : names of the possible source clocks.
+>> +- interrupts : Should contain the EMC general interrupt.
+>> +- memory-region : phandle to the reserved memory (see
+>> +  Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt=
+) which
+>> +  contains a sub-node of EMC table.
+>> +- nvidia,memory-controller : phandle of the memory controller.
+>> +
+>> +Reserved memory node
+>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> +Should contain a sub-node of EMC table with required properties:
+>> +- compatible : should be "nvidia,tegra210-emc-table".
+>> +- reg : physical address and length of the location of EMC table.
+>> +
+>> +Example:
+>> +	reserved-memory {
+>> +		#address-cells =3D <2>;
+>> +		#size-cells =3D <2>;
+>> +		ranges;
+>> +
+>> +		emc_table: emc-table@8be00000 {
+>> +			compatible =3D "nvidia,tegra210-emc-table";
+>> +			reg =3D <0x0 0x8be00000 0x0 0x10000>;
+>> +			status =3D "okay";
+>> +		};
+>=20
+> You essentially moved the v1 binding into obscure and undocumented blob,
+> ignoring previous review comments. This is a very odd move... please
+> explain what is going on.
+>=20
 
-> Hi Jones,
-> 
-> 
-> > > +
-> > > +struct rpc_spi {
-> > > +   struct rpc_mfd *mfd;
-> > 
-> > The term MFD isn't a real thing.  What you're obtaining below is
-> > driver data and is normally articulated as 'ddata' in drivers.
-> 
-> yes, it's just imply that data is from MFD.
-> 
-> Should I rename "mfd" ?
+Discussed with Thierry offline which way we prefer to pass the EMC table=20
+to the kernel. Some reasons below we decide to chose this one (via=20
+binary blob).
 
-Yes please.
+- The EMC table is much bigger than the previous Tegra generations=20
+(LPDDR4 v.s. LPDDR2/3). It's harder to settle in the review process. And=20
+if there is a new fix of the table in the future, we'll need to go=20
+through that again.
+- Because it's LPDDR4 we want to support here, to support higher rates,=20
+the devices have must be gone through the training process, which is=20
+done in the firmware. Which means We already have the table somewhere in=20
+the memory and kernel can just re-use that. No need to convert them back=20
+to DT and pass to the kernel. This is much easier to maintain in the=20
+future if there is something needs to fix.
+- With the mechanism above, we don't need to maintain the huge EMC table=20
+in the DT file like below.
+http://patchwork.ozlabs.org/patch/1063886/
+http://patchwork.ozlabs.org/patch/1063889/
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+And sorry, maybe it's not clear at that moment, but I did mention that=20
+we want to go with the new method (via binary blob) in the previous review.
+Please see http://patchwork.ozlabs.org/patch/1084467/
+
+Thanks,
+Joseph
