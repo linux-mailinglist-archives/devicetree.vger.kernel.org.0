@@ -2,83 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B10931F5CE
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24BDA1F5E7
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727816AbfEONpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 09:45:51 -0400
-Received: from ms.lwn.net ([45.79.88.28]:51042 "EHLO ms.lwn.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726794AbfEONpu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 09:45:50 -0400
-Received: from lwn.net (localhost [127.0.0.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ms.lwn.net (Postfix) with ESMTPSA id CACC1AAB;
-        Wed, 15 May 2019 13:45:47 +0000 (UTC)
-Date:   Wed, 15 May 2019 07:45:46 -0600
-From:   Jonathan Corbet <corbet@lwn.net>
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        keescook@google.com, kieran.bingham@ideasonboard.com,
-        mcgrof@kernel.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com,
-        dan.j.williams@intel.com, daniel@ffwll.ch, jdike@addtoit.com,
-        joel@jms.id.au, julia.lawall@lip6.fr, khilman@baylibre.com,
-        knut.omang@oracle.com, logang@deltatee.com, mpe@ellerman.id.au,
-        pmladek@suse.com, rdunlap@infradead.org, richard@nod.at,
-        rientjes@google.com, rostedt@goodmis.org, wfg@linux.intel.com,
-        Felix Guo <felixguoxiuping@gmail.com>
-Subject: Re: [PATCH v3 15/18] Documentation: kunit: add documentation for
- KUnit
-Message-ID: <20190515074546.07700142@lwn.net>
-In-Reply-To: <20190514231902.GA12893@google.com>
-References: <20190514054251.186196-1-brendanhiggins@google.com>
-        <20190514054251.186196-16-brendanhiggins@google.com>
-        <20190514073422.4287267c@lwn.net>
-        <20190514180810.GA109557@google.com>
-        <20190514121623.0314bf07@lwn.net>
-        <20190514231902.GA12893@google.com>
-Organization: LWN.net
+        id S1728196AbfEONtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 09:49:06 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:42293 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727784AbfEONtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:49:06 -0400
+Received: by mail-qk1-f195.google.com with SMTP id d4so1487413qkc.9
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0bU82F+gt2zE3PINH+I2iOdx7/P2Z54mTmX7HD0f23g=;
+        b=Rz/eTH+AhP/E1BbGJwPsapzQcGBCN6AsXcTjNCMhLwf/Y4ROLeWXnzuXXCGskE4ial
+         C6vT5lbVMECErTsbOqncFmph2Tp1d0H7MkmabSVn4yEYTkDH28DQUEmZW/+6q04J8i/T
+         CJuQRVnjMj4PSEctgFELgkj3rPlU7ctawx7IU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0bU82F+gt2zE3PINH+I2iOdx7/P2Z54mTmX7HD0f23g=;
+        b=U+HOvEL2lfsyxObTYLqfZkFL8U1CPunNkwSv61NDvUCFySo/SWPT0TLSyO62cWcPss
+         REkpKWAWj1gvAhp9eGqJPLw93GfCapip4G0sn4QbuQiEJhWS4vmApABTr861jVCU3n1c
+         c7O0q8UjKDzMg3unzHGwMazLxKtXV9oqeWqpOoX4w2InpAekMnLavWZtkNpyH3arRAcH
+         0ktGEHnzHPsV3OuVyHBJRE2ER60woJFi0FKh8cbCJHIPVKDlBzISHC6JoGgQaCo6RnHS
+         D/VqXKpEhFp7Gl3nYJTLzxO/LDV731zT9GpfCiFZK3Vgm+oq6wYA5O/OAFU8edSAgbQb
+         +0ow==
+X-Gm-Message-State: APjAAAWM2SfOuUlxaSthi+vQhEjKyg3iivwNah08bJQURq98NiPsd1oF
+        4j0eDeYdsmujeSa7Jz9CzSCFzTHkgT+vkgCmRjoE/g==
+X-Google-Smtp-Source: APXvYqwlUOhQfWVG0cDXJfSD77I136CNQYmnycgW7CY0DPgH6v1ONynTfzyo3enPqgR8mXrkE9bC5wWl+/AN2lmlbhE=
+X-Received: by 2002:ae9:f818:: with SMTP id x24mr32636878qkh.329.1557928145116;
+ Wed, 15 May 2019 06:49:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1556336193-15198-1-git-send-email-long.cheng@mediatek.com> <1556336193-15198-5-git-send-email-long.cheng@mediatek.com>
+In-Reply-To: <1556336193-15198-5-git-send-email-long.cheng@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Wed, 15 May 2019 21:48:52 +0800
+Message-ID: <CANMq1KDTyu48joV6uMksGBMz9EmjFH9SEpGAm93YCZ40jxgBpQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] serial: 8250-mtk: modify uart DMA rx
+To:     Long Cheng <long.cheng@mediatek.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        Sean Wang <sean.wang@mediatek.com>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-serial@vger.kernel.org,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        YT Shen <yt.shen@mediatek.com>,
+        Zhenbao Liu <zhenbao.liu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 May 2019 16:19:02 -0700
-Brendan Higgins <brendanhiggins@google.com> wrote:
+On Sat, Apr 27, 2019 at 11:36 AM Long Cheng <long.cheng@mediatek.com> wrote:
+>
+> Modify uart rx and complete for DMA.
 
-> Hmmm...probably premature to bring this up, but Documentation/dev-tools/
-> is kind of thrown together.
+I don't know much about the DMA framework, but can you please explain
+why you are making the changes in this CL? I see that you are dropping
+dma_sync_single_for_device calls, for example, why?
 
-Wait a minute, man... *I* created that directory, are you impugning my
-work? :)
+>
+> Signed-off-by: Long Cheng <long.cheng@mediatek.com>
+> ---
+>  drivers/tty/serial/8250/8250_mtk.c |   53 ++++++++++++++++--------------------
+>  1 file changed, 23 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
+> index c1fdbc0..04081a6 100644
+> --- a/drivers/tty/serial/8250/8250_mtk.c
+> +++ b/drivers/tty/serial/8250/8250_mtk.c
+> @@ -30,7 +30,6 @@
+>  #define MTK_UART_DMA_EN_TX     0x2
+>  #define MTK_UART_DMA_EN_RX     0x5
+>
+> -#define MTK_UART_TX_SIZE       UART_XMIT_SIZE
+>  #define MTK_UART_RX_SIZE       0x8000
+>  #define MTK_UART_TX_TRIGGER    1
+>  #define MTK_UART_RX_TRIGGER    MTK_UART_RX_SIZE
+> @@ -64,28 +63,30 @@ static void mtk8250_dma_rx_complete(void *param)
+>         struct mtk8250_data *data = up->port.private_data;
+>         struct tty_port *tty_port = &up->port.state->port;
+>         struct dma_tx_state state;
+> +       int copied, cnt, tmp;
+>         unsigned char *ptr;
+> -       int copied;
+>
+> -       dma_sync_single_for_cpu(dma->rxchan->device->dev, dma->rx_addr,
+> -                               dma->rx_size, DMA_FROM_DEVICE);
+> +       if (data->rx_status == DMA_RX_SHUTDOWN)
+> +               return;
+>
+>         dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
+> +       cnt = dma->rx_size - state.residue;
+> +       tmp = cnt;
 
-But yes, "kind of thrown together" is a good description of much of
-Documentation/.  A number of people have been working for years to make
-that better, with some success, but there is a long way to go yet.  The
-dev-tools directory is an improvement over having that stuff scattered all
-over the place — at least it's actually thrown together — but it's not the
-end point.
+I ponder, maybe we should rename cnt to left? (like, how many bytes
+are left to transfer, in total) Or maybe "total"
+Then maybe rename tmp to cnt.
 
-> It would be nice to provide a coherent overview, maybe provide some
-> basic grouping as well.
-> 
-> It would be nice if there was kind of a gentle introduction to the
-> tools, which ones you should be looking at, when, why, etc.
+>
+> -       if (data->rx_status == DMA_RX_SHUTDOWN)
+> -               return;
+> +       if ((data->rx_pos + cnt) > dma->rx_size)
+> +               tmp = dma->rx_size - data->rx_pos;
 
-Total agreement.  All we need is somebody to write it!  :)
+Maybe replace this and the line above:
+tmp = max_t(int, cnt, dma->rx_size - data->rx_pos);
 
-Thanks,
+>
+> -       if ((data->rx_pos + state.residue) <= dma->rx_size) {
+> -               ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
+> -               copied = tty_insert_flip_string(tty_port, ptr, state.residue);
+> -       } else {
+> -               ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
+> -               copied = tty_insert_flip_string(tty_port, ptr,
+> -                                               dma->rx_size - data->rx_pos);
+> +       ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
+> +       copied = tty_insert_flip_string(tty_port, ptr, tmp);
+> +       data->rx_pos += tmp;
+> +
+> +       if (cnt > tmp) {
+>                 ptr = (unsigned char *)(dma->rx_buf);
+> -               copied += tty_insert_flip_string(tty_port, ptr,
+> -                               data->rx_pos + state.residue - dma->rx_size);
+> +               tmp = cnt - tmp;
+> +               copied += tty_insert_flip_string(tty_port, ptr, tmp);
+> +               data->rx_pos = tmp;
+>         }
+> +
+>         up->port.icount.rx += copied;
+>
+>         tty_flip_buffer_push(tty_port);
+> @@ -96,9 +97,7 @@ static void mtk8250_dma_rx_complete(void *param)
+>  static void mtk8250_rx_dma(struct uart_8250_port *up)
+>  {
+>         struct uart_8250_dma *dma = up->dma;
+> -       struct mtk8250_data *data = up->port.private_data;
+>         struct dma_async_tx_descriptor  *desc;
+> -       struct dma_tx_state      state;
+>
+>         desc = dmaengine_prep_slave_single(dma->rxchan, dma->rx_addr,
+>                                            dma->rx_size, DMA_DEV_TO_MEM,
+> @@ -113,12 +112,6 @@ static void mtk8250_rx_dma(struct uart_8250_port *up)
+>
+>         dma->rx_cookie = dmaengine_submit(desc);
+>
+> -       dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
+> -       data->rx_pos = state.residue;
+> -
+> -       dma_sync_single_for_device(dma->rxchan->device->dev, dma->rx_addr,
+> -                                  dma->rx_size, DMA_FROM_DEVICE);
+> -
+>         dma_async_issue_pending(dma->rxchan);
+>  }
+>
+> @@ -131,13 +124,13 @@ static void mtk8250_dma_enable(struct uart_8250_port *up)
+>         if (data->rx_status != DMA_RX_START)
+>                 return;
+>
+> -       dma->rxconf.direction           = DMA_DEV_TO_MEM;
+> -       dma->rxconf.src_addr_width      = dma->rx_size / 1024;
+> -       dma->rxconf.src_addr            = dma->rx_addr;
+> +       dma->rxconf.direction                           = DMA_DEV_TO_MEM;
+> +       dma->rxconf.src_port_window_size        = dma->rx_size;
+> +       dma->rxconf.src_addr                            = dma->rx_addr;
+>
+> -       dma->txconf.direction           = DMA_MEM_TO_DEV;
+> -       dma->txconf.dst_addr_width      = MTK_UART_TX_SIZE / 1024;
+> -       dma->txconf.dst_addr            = dma->tx_addr;
+> +       dma->txconf.direction                           = DMA_MEM_TO_DEV;
+> +       dma->txconf.dst_port_window_size        = UART_XMIT_SIZE;
+> +       dma->txconf.dst_addr                            = dma->tx_addr;
+>
+>         serial_out(up, UART_FCR, UART_FCR_ENABLE_FIFO | UART_FCR_CLEAR_RCVR |
+>                 UART_FCR_CLEAR_XMIT);
+> @@ -217,7 +210,7 @@ static void mtk8250_shutdown(struct uart_port *port)
+>          * Mediatek UARTs use an extra highspeed register (UART_MTK_HIGHS)
+>          *
+>          * We need to recalcualte the quot register, as the claculation depends
+> -        * on the vaule in the highspeed register.
+> +        * on the value in the highspeed register.
 
-jon
+Since you're doing some cosmetic changes here, you might as well fix
+recalcualte => recalculate and claculation => calculation on the line
+above.
+
+But technically, this should belong in another patch...
+
+>          *
+>          * Some baudrates are not supported by the chip, so we use the next
+>          * lower rate supported and update termios c_flag.
+> --
+> 1.7.9.5
+>
