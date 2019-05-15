@@ -2,73 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78A161E818
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 08:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9571E87C
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 08:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726084AbfEOGCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 02:02:52 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:51096 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725871AbfEOGCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 02:02:52 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B8162200196;
-        Wed, 15 May 2019 08:02:50 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0463B200012;
-        Wed, 15 May 2019 08:02:47 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 064C24029A;
-        Wed, 15 May 2019 14:02:41 +0800 (SGT)
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [RESEND][PATCH] arm64: dts: lx2160a: Enable usb3-lpm-capable for usb3 node
-Date:   Wed, 15 May 2019 14:04:34 +0800
-Message-Id: <20190515060434.33581-1-ran.wang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725941AbfEOGrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 02:47:35 -0400
+Received: from twhmllg3.macronix.com ([211.75.127.131]:47370 "EHLO
+        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725902AbfEOGrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 02:47:35 -0400
+Received: from twhfmlp1.macronix.com (twhfm1p1.macronix.com [172.17.20.91])
+        by TWHMLLG3.macronix.com with ESMTP id x4F6k794019550;
+        Wed, 15 May 2019 14:46:07 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.macronix.com [172.17.14.55])
+        by Forcepoint Email with ESMTP id 8F91689F5AB5F1D369B3;
+        Wed, 15 May 2019 14:46:07 +0800 (CST)
+In-Reply-To: <20190512142835.4caddc8e@xps13>
+References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw> <1555320234-15802-2-git-send-email-masonccyang@mxic.com.tw> <20190512142835.4caddc8e@xps13>
+To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        christophe.kerello@st.com, computersforpeace@gmail.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org,
+        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
+        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
+        mark.rutland@arm.com, paul.burton@mips.com, richard@nod.at,
+        robh+dt@kernel.org, stefan@agner.ch, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH v3 1/4]  mfd: Add Macronix MX25F0A MFD controller driver
+MIME-Version: 1.0
+X-KeepSent: 4F52243F:0954FF8C-482583FB:0023B249;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OF4F52243F.0954FF8C-ON482583FB.0023B249-482583FB.00252E6F@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Wed, 15 May 2019 14:46:07 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/05/15 PM 02:46:07,
+        Serialize complete at 2019/05/15 PM 02:46:07
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG3.macronix.com x4F6k794019550
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB3 HW LPM feature for lx2160a and active patch for
-snps erratum A-010131. It will disable U1/U2 temperary when
-initiate U3 request.
 
-Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
----
-Depend on: https://lore.kernel.org/patchwork/patch/870134/
+Hi Miquel,
 
- arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi |    4 ++++
- 1 files changed, 4 insertions(+), 0 deletions(-)
+ 
+> > Add a driver for Macronix MX25F0A multifunction device controller.
+> > 
+> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> > ---
+> >  drivers/mfd/Kconfig              |   9 ++
+> >  drivers/mfd/Makefile             |   1 +
+> >  drivers/mfd/mxic-mx25f0a.c       |  84 +++++++++++++++++++
+> >  include/linux/mfd/mxic-mx25f0a.h | 175 
++++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 269 insertions(+)
+> >  create mode 100644 drivers/mfd/mxic-mx25f0a.c
+> >  create mode 100644 include/linux/mfd/mxic-mx25f0a.h
+> > 
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index 26ad646..7e99e93 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -823,6 +823,15 @@ config MFD_MAX8998
+> >       additional drivers must be enabled in order to use the 
+functionality
+> >       of the device.
+> > 
+> > +config MFD_MXIC_MX25F0A
+> > +   tristate "Macronix mx25f0a multifunction device support"
+> > +   select MFD_CORE
+> > +   help
+> > +     This supports for Macronix mx25f0a multifunction device 
+controller
+> > +     for raw nand or spi. You have to select individual components 
+like
+> 
+> Please use upper case for acronyms in plain English: NAND, SPI
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index 125a8cc..0073df3 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -696,6 +696,8 @@
- 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
- 			dr_mode = "host";
- 			snps,quirk-frame-length-adjustment = <0x20>;
-+			usb3-lpm-capable;
-+			snps,dis-u1u2-when-u3-quirk;
- 			snps,dis_rxdet_inp3_quirk;
- 			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
- 			status = "disabled";
-@@ -707,6 +709,8 @@
- 			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
- 			dr_mode = "host";
- 			snps,quirk-frame-length-adjustment = <0x20>;
-+			usb3-lpm-capable;
-+			snps,dis-u1u2-when-u3-quirk;
- 			snps,dis_rxdet_inp3_quirk;
- 			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
- 			status = "disabled";
--- 
-1.7.1
+okay, will fix.
+
+And I also would like to remove "mx25f0a" char.
+
+patch to:
+------------------------------------------------------------------------
+config MFD_MXIC_FMC
+   tristate "Macronix Flash Memory Controller support"
+   select MFD_CORE
+   help
+     This supports Macronix Flash Memory Controller for raw NAND and SPI.
+     You have to select individual components like raw NAND controller
+     or SPI host controller under the corresponding  menus.
+-------------------------------------------------------------------------
+
+thanks for your review.
+
+best regards,
+Mason
+
+
+
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
