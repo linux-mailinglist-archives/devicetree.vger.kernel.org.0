@@ -2,110 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC911EA4A
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 10:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03AEB1EA56
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 10:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726136AbfEOIj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 04:39:28 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:41078 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfEOIj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 04:39:28 -0400
-Received: by mail-lf1-f68.google.com with SMTP id d8so1321544lfb.8
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 01:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gXgJ2NRdCHpt3L7731q8B8+lovu36p2J096s+Bj8HBk=;
-        b=PdfrWUiwX3+tHhJ2QUOshH8iSM/ncGp6WT+i7VEFJ/frJ/D+PNGnwLF5lCknMAWXNu
-         4/3K8xqKbVaa6FH7HkM8eGFXRo0i0MklFQyJFZgJNxC62/XcoWR90QEyTWYbQJj+NGmu
-         wvDWWG5g19etfnpQTkDfGKSQ+rMqyVC4hUbkst1gCwYltMdRVOMEHnYKODwvFwQXkOzl
-         Yajhx5hO+OAnRSGzmHMY0ItPDgk+RwbR+2ZdfgJrhViS7GdZQip+Voy3kudsJdNmZjpK
-         I5wHg3U+GS7yByun8eCCJqGSLsJR2GdRYlRY1KLE9e/hzAZSyDytcmqyL2HWGD2jn3xk
-         SCsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=gXgJ2NRdCHpt3L7731q8B8+lovu36p2J096s+Bj8HBk=;
-        b=EhTSkzXFluZ3wMuXyESbyPaYpcQ6XQvryKMoXgN6O0FK4FBfAg8yzaqHgAU1SHSQLC
-         dPt04pFNq+xwtm1wGxaEIKmfiWeh5fK4hH9+mG2oKrwLi2+d9kS/l8nv9i8w6wnpQ/+U
-         Sdu77QWHrOpTVY10B8uD5xssHd4l5L0xE9xmCdA8NrM/uurpIo0W2c7Q9t6nogt6kcko
-         judCwq6ZF49JrNrxCLbjpXna92Xz0om7D5Nch8L5ycDquoeQ7vqWdqAw07HkWzU1RUUP
-         FEQLtT1Jaw6rAH7g6XymMVVWIqffjN3EDra3t6KirWl+Jj46qz+r1ToFcb/MtWCPC3SM
-         ZgHA==
-X-Gm-Message-State: APjAAAUMi2wecBpkz15vd+DseO4XMsqC9wHqjRFtKYhDzmGMl63kZ5Lo
-        B2QccieAo/qyd5jI0qZPW9dG5w==
-X-Google-Smtp-Source: APXvYqxEGYNtWpwEh+ZoMBb0iSPv7qGxCbS7X1yKS+hc7NcFIxoAoSdbv7vpmQpd8g21NAf5bSNHDg==
-X-Received: by 2002:ac2:4989:: with SMTP id f9mr20486878lfl.12.1557909566620;
-        Wed, 15 May 2019 01:39:26 -0700 (PDT)
-Received: from [192.168.0.199] ([31.173.86.98])
-        by smtp.gmail.com with ESMTPSA id l16sm267921ljg.90.2019.05.15.01.39.25
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 01:39:25 -0700 (PDT)
-Subject: Re: [PATCH v3 04/15] dt-bindings: rcar-gen3-phy-usb2: Document use of
- usb_x1
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Chris Brandt <chris.brandt@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <20190514145605.19112-1-chris.brandt@renesas.com>
- <20190514145605.19112-5-chris.brandt@renesas.com>
- <CAMuHMdVVu23_8=8CLwM46QAJsxUbYyN1TYQaAzoE+d2uM3YshQ@mail.gmail.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <f4ceaadb-62e1-9880-e8e3-4f5bf54ce91e@cogentembedded.com>
-Date:   Wed, 15 May 2019 11:39:19 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+        id S1726146AbfEOImT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 04:42:19 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:7534 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726098AbfEOImS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 04:42:18 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cdbd0c00000>; Wed, 15 May 2019 01:41:36 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 15 May 2019 01:42:16 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 15 May 2019 01:42:16 -0700
+Received: from [10.19.108.132] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 15 May
+ 2019 08:42:14 +0000
+Subject: Re: [PATCH V3 4/8] memory: tegra: Add Tegra210 EMC clock driver
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20190510084719.18902-1-josephl@nvidia.com>
+ <20190510084719.18902-5-josephl@nvidia.com>
+ <74fad66b-a6e9-ffc9-c1c9-e88b841e9209@gmail.com>
+From:   Joseph Lo <josephl@nvidia.com>
+Message-ID: <648df201-eb63-6d26-3f90-02eba7624921@nvidia.com>
+Date:   Wed, 15 May 2019 16:42:12 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdVVu23_8=8CLwM46QAJsxUbYyN1TYQaAzoE+d2uM3YshQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <74fad66b-a6e9-ffc9-c1c9-e88b841e9209@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557909696; bh=C7xXcozLI+jx0KXwiuZAkErgLLPLVV+AR0ujYOyyXbk=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=FIuXRldTF38OabLIO5+oGDEtJRdXzfSj+3ZspsMc0mvDAWhSUNGSsQp7uIz2NrMw4
+         5nL2LvEdE5K6Uv/fV5w9oOCNRAJYFYnMVc9eBC0ugbXlAMk/Usl7NztCN64YYv8NVa
+         Y9+eLoHaiK4eUlqHMkZk/lCgEuM2RpeSRcL+93ql+gtZ67wfn+XemzaV5SI/Pe1JDH
+         DwAIWBddYAID5jkD7lB6FC1dK+ikb4sqpzS6EtGUiQ6+ldGnl8lmmMCMO+NnYSEPo7
+         Ymwr91ofwCDF4vKjINTXUFXjV7JJU/Tu3Yo8Ki/tr56x0ydP6idWni4hDZPdSgwOl+
+         plTaFBVtVqDRQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
-
-On 15.05.2019 10:35, Geert Uytterhoeven wrote:
-
->> Document the USB_X1 input and add clock-names to identify
->> functional and USB_X1 clocks.
+On 5/15/19 1:04 AM, Dmitry Osipenko wrote:
+> 10.05.2019 11:47, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> This is the initial patch for Tegra210 EMC clock driver, which doesn't
+>> include the support code and detail sequence for clock scaling yet.
 >>
->> Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
->> --- a/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
->> +++ b/Documentation/devicetree/bindings/phy/rcar-gen3-phy-usb2.txt
->> @@ -28,7 +28,11 @@ Required properties:
->>                followed by the generic version.
+>> The driver is designed to support LPDDR4 SDRAM. Because of the LPDDR4
+>> devices need to do initial time training before it can be used, the
+>> firmware will help to do that at early boot stage. Then, the trained
+>> table for the rates we support will pass to the kernel via DT. So the
+>> driver can get the trained table for clock scaling support.
 >>
->>   - reg: offset and length of the partial USB 2.0 Host register block.
->> -- clocks: clock phandle and specifier pair(s).
->> +- clocks: clock phandle and specifier pair(s). For SoCs that have a separate
->> +          dedicated USB_X1 input for the PLL, that is also listed.
->> +- clock-names: Name of the clocks. The functional clock shall be called "fclk"
-> 
-> Names?
+>> For the higher rate support (above 800MHz), the periodic training is
+>> needed for the timing compensation. So basically, two methodologies for
+>> clock scaling are supported, one is following the clock changing
+>> sequence to update the EMC table to EMC registers and another is if the
+>> rate needs periodic training, then we will start a timer to do that
+>> periodically until it scales to the lower rate.
+>>
+>> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
+>>
+>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+>> ---
+>=20
+> [snip]
+>=20
+>> +static int tegra210_emc_probe(struct platform_device *pdev)
+>> +{
+>> +	int i;
+>> +	unsigned long table_rate;
+>> +	unsigned long current_rate;
+>> +	struct device_node *np;
+>> +	struct platform_device *mc;
+>> +	struct tegra_emc *emc;
+>> +	struct clk_init_data init;
+>> +	struct clk *clk;
+>> +	struct resource *r, res;
+>> +	void *table_addr;
+>> +
+>> +	emc =3D devm_kzalloc(&pdev->dev, sizeof(*emc), GFP_KERNEL);
+>> +	if (!emc)
+>> +		return -ENOMEM;
+>> +
+>> +	np =3D of_parse_phandle(pdev->dev.of_node, "nvidia,memory-controller",=
+ 0);
+>> +	if (!np) {
+>> +		dev_err(&pdev->dev, "could not get memory controller\n");
+>> +		return -ENOENT;
+>> +	}
+>> +
+>> +	mc =3D of_find_device_by_node(np);
+>> +	of_node_put(np);
+>> +	if (!mc)
+>> +		return -ENOENT;
+>> +
+>> +	emc->mc =3D platform_get_drvdata(mc);
+>> +	if (!emc->mc)
+>> +		return -EPROBE_DEFER;
+>> +
+>> +	emc->ram_code =3D tegra_read_ram_code();
+>=20
+> emc->ram_code isn't used anywhere in the code.
+>=20
+> I haven't checked other fields. Please remove everything that is unused.
 
-    And I think the module clock name was "fck", not "fclk"...
+Good catch, I missed this when clean up the code for V3.
 
-[...]
-> Gr{oetje,eeting}s,
-> 
->                          Geert
+>=20
+>> +	r =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> +	emc->emc_base[REG_EMC] =3D devm_ioremap_resource(&pdev->dev, r);
+>> +	r =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
+>> +	emc->emc_base[REG_EMC0] =3D devm_ioremap_resource(&pdev->dev, r);
+>> +	r =3D platform_get_resource(pdev, IORESOURCE_MEM, 2);
+>> +	emc->emc_base[REG_EMC1] =3D devm_ioremap_resource(&pdev->dev, r);
+>=20
+> Use devm_platform_ioremap_resource().
+>=20
+>> +	for (i =3D 0; i < TEGRA_EMC_SRC_COUNT; i++) {
+>> +		emc_src[i] =3D devm_clk_get(&pdev->dev,
+>> +						emc_src_names[i]);
+>> +		if (IS_ERR(emc_src[i])) {
+>> +			dev_err(&pdev->dev, "Can not find EMC source clock\n");
+>> +			return -ENODATA;
+>> +		}
+>> +	}
+>> +
+>> +	np =3D of_parse_phandle(pdev->dev.of_node, "memory-region", 0);
+>> +	if (!np) {
+>> +		dev_err(&pdev->dev, "could not find EMC table\n");
+>> +		goto emc_clk_register;
+>> +	}
+>> +
+>> +	if (!of_device_is_compatible(np, "nvidia,tegra210-emc-table") ||
+>> +	    !of_device_is_available(np)) {
+>> +		dev_err(&pdev->dev, "EMC table is invalid\n");
+>> +		goto emc_clk_register;
+>> +	}
+>> +
+>> +	of_address_to_resource(np, 0, &res);
+>> +	table_addr =3D memremap(res.start, resource_size(&res), MEMREMAP_WB);
+>> +	of_node_put(np);
+>> +	if (!table_addr) {
+>> +		dev_err(&pdev->dev, "could not map EMC table\n");
+>> +		goto emc_clk_register;
+>> +	}
+>> +	emc->emc_table =3D (struct emc_table *)table_addr;
+>> +
+>> +	for (i =3D 0; i < TEGRA_EMC_MAX_FREQS; i++)
+>> +		if (emc->emc_table[i].rev !=3D 0)
+>> +			emc->emc_table_size++;
+>> +		else
+>> +			break;
+>> +
+>> +	/* Init EMC rate statistic data */
+>> +	emc_stats.clkchange_count =3D 0;
+>> +	spin_lock_init(&emc_stats.spinlock);
+>> +	emc_stats.last_update =3D get_jiffies_64();
+>> +	emc_stats.last_sel =3D TEGRA_EMC_MAX_FREQS;
+>> +
+>> +	/* Check the supported sequence */
+>> +	while (seq->table_rev) {
+>> +		if (seq->table_rev =3D=3D emc->emc_table[0].rev)
+>> +			break;
+>> +		seq++;
+>> +	}
+>> +	if (!seq->set_clock) {
+>> +		seq =3D NULL;
+>> +		dev_err(&pdev->dev, "Invalid EMC sequence for table Rev. %d\n",
+>> +			emc->emc_table[0].rev);
+>> +		goto emc_clk_register;
+>=20
+> Why do you want to register EMC clock if something fails? KMSG will be
+> flooded with errors coming from clk_set_rate.
+>=20
 
-MBR, Sergei
+See patch 7 in the series, the legacy EMC clock will be removed later,=20
+so we need to register the EMC clock whether the table is ready or not.=20
+In that case, I mean if the table is not available, it will still=20
+register EMC clock at the rate that boot loader configured before kernel=20
+booting. So the MC clock can still work as expected, which is under EMC=20
+clock.
+
+And I did test that, couldn't observe any KMSG in that case.
+
+Thanks,
+Joseph
