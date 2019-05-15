@@ -2,111 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E2F1F240
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 14:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD661F162
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 13:54:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728690AbfEOMBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 08:01:11 -0400
-Received: from mail-eopbgr70052.outbound.protection.outlook.com ([40.107.7.52]:51366
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729410AbfEOLOM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 May 2019 07:14:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i7BGuuaGOnQc9nBqNlL/Om1S/Ms76Y+ujewO4AU7h2c=;
- b=oXaVrloNKQ4B8a2I5UPJZs9OAGKZWNSYKb+MySAEp257/SnMykcRmTOXCIObO426o+mn66tFJ3O4Zc9aWthmE99yfiGLak6dahylkh1S3uW1wa5yt4OLNHGbK7cSAIf/3LioXrQpe3/J+akKVnNJ8sCE0A/gMGuTZpkdHzawuDQ=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3673.eurprd04.prod.outlook.com (52.134.70.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Wed, 15 May 2019 11:14:06 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1900.010; Wed, 15 May 2019
- 11:14:06 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>, Jacky Bai <ping.bai@nxp.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>, Abel Vesa <abel.vesa@nxp.com>
-Subject: RE: [PATCH 1/3] dt-bindings: clock: imx8mm: Add SNVS clock
-Thread-Topic: [PATCH 1/3] dt-bindings: clock: imx8mm: Add SNVS clock
-Thread-Index: AQHVCr2yrHCSJQGcuE+Cdq63vYcty6ZsCLIA
-Date:   Wed, 15 May 2019 11:14:05 +0000
-Message-ID: <DB3PR0402MB39164F45F288EB251D5C10F4F5090@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1557883490-22360-1-git-send-email-Anson.Huang@nxp.com>
- <AM0PR04MB6434DFD7728BD5B105EF2A31EE090@AM0PR04MB6434.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB6434DFD7728BD5B105EF2A31EE090@AM0PR04MB6434.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 70ea0596-93f0-4071-98ff-08d6d92671c4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3673;
-x-ms-traffictypediagnostic: DB3PR0402MB3673:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <DB3PR0402MB367364FD467C714C023798CAF5090@DB3PR0402MB3673.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0038DE95A2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(39860400002)(376002)(396003)(136003)(346002)(13464003)(199004)(189003)(76116006)(66556008)(64756008)(66446008)(52536014)(66476007)(66946007)(68736007)(7736002)(81166006)(446003)(305945005)(11346002)(8676002)(81156014)(66066001)(476003)(102836004)(6116002)(3846002)(44832011)(4326008)(256004)(25786009)(53546011)(6506007)(14444005)(186003)(26005)(76176011)(486006)(6636002)(71200400001)(71190400001)(7696005)(110136005)(54906003)(14454004)(2501003)(99286004)(7416002)(316002)(2906002)(6436002)(53936002)(966005)(2201001)(73956011)(33656002)(86362001)(478600001)(5660300002)(8936002)(6246003)(55016002)(229853002)(74316002)(6306002)(9686003)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3673;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Ln/s82RfGRvJbVZsY8XVAE9J5rY+MqCGo7Kg/II+VlSWJoik8QFFlOg06ZmHTQBrE78gT03hdfGCtQ4GiZhTQpg9kXw94z2wulqRKs4v0Lr3dBad7ODoLteNGqG2rctbIgMwIdAqUufgabytKPMrKKSrEK/B+39TgMoLM4FbGJmIu+5+E3aIe6ZeTXE55TXUKcez1LWgh8EZQVjXVRlOY47nVj/08iFTnlqbaB8BFP92Cgx6ttxUFrRMJojgIUvlgFVD1tBhaNm1uevoNYY2EG0MGeOSK+GoJXadS3DQPkdFjU3BSASu0Alh4IksJkZd2L5JjZ/8qk9QURwEi22QKnuF4yEbUVJePQb/2rMrLJAikZEoJjshgMbNtes+r07txCcx7IgXMtDg1r5vqEq8el4vKCzIvuAiY3GHTdgV6xM=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70ea0596-93f0-4071-98ff-08d6d92671c4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 11:14:05.9137
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3673
+        id S1728516AbfEOLxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 07:53:20 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:36522 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730983AbfEOLTl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 07:19:41 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 3B615611DC; Wed, 15 May 2019 11:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557919179;
+        bh=ttr2xmvM52sCyNpkVv5zDVmk1ljobJDPrByM3R11jRY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=aUFcPFAPLg6qXk44y4Irrk2TF9lEpM3XeQguMeoeLFbdDxdvZOLYKq2yXua0TJzw1
+         Rb3P0KNXUyZ0D+fWBFsEjgn5lrdz390J7dPgPdmtsMLp6rAwum5D7lr3kKp25sWe9d
+         KKMlI+8bDxWE1Lt6+E4bfZpXHPKeLpI3Hu3HAPO8=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from rocky-HP-EliteBook-8460p.wlan.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rjliao@codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7C17960CF1;
+        Wed, 15 May 2019 11:19:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1557919176;
+        bh=ttr2xmvM52sCyNpkVv5zDVmk1ljobJDPrByM3R11jRY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=EdtPLgV75AeYe41YGMg7P/pin5N8SyT+RQ1G2MX8xD2C5vn9honkFsMIpe0w4JDeM
+         LIo1ftqix7yIWHU0+EerWvyjUJl6aEs8G3dzDLqZt9DrtvBXQeIoCCTd/Dyb8eB4tM
+         Q+7Qf0OXWCbtz7oeh5o7GkXW83SIwGHTC06IEAIM=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7C17960CF1
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rjliao@codeaurora.org
+From:   Rocky Liao <rjliao@codeaurora.org>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, marcel@holtmann.org,
+        johan.hedberg@gmail.com, thierry.escande@linaro.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, bgodavar@codeaurora.org,
+        c-hbandi@codeaurora.org, Rocky Liao <rjliao@codeaurora.org>
+Subject: [PATCH v5 1/2] Bluetooth: hci_qca: Load customized NVM based on the device property
+Date:   Wed, 15 May 2019 19:19:21 +0800
+Message-Id: <1557919161-11010-1-git-send-email-rjliao@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1557631148-5120-1-git-send-email-rjliao@codeaurora.org>
+References: <1557631148-5120-1-git-send-email-rjliao@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIExlb25hcmQNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMZW9u
-YXJkIENyZXN0ZXoNCj4gU2VudDogV2VkbmVzZGF5LCBNYXkgMTUsIDIwMTkgNjoxOCBQTQ0KPiBU
-bzogQW5zb24gSHVhbmcgPGFuc29uLmh1YW5nQG54cC5jb20+OyBzaGF3bmd1b0BrZXJuZWwub3Jn
-Ow0KPiBzYm95ZEBrZXJuZWwub3JnOyBKYWNreSBCYWkgPHBpbmcuYmFpQG54cC5jb20+DQo+IENj
-OiByb2JoK2R0QGtlcm5lbC5vcmc7IG1hcmsucnV0bGFuZEBhcm0uY29tOyBzLmhhdWVyQHBlbmd1
-dHJvbml4LmRlOw0KPiBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWlsLmNvbTsg
-bXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb207DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBs
-aW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4LQ0KPiBrZXJuZWxAdmdl
-ci5rZXJuZWwub3JnOyBsaW51eC1jbGtAdmdlci5rZXJuZWwub3JnOyBkbC1saW51eC1pbXggPGxp
-bnV4LQ0KPiBpbXhAbnhwLmNvbT47IEFiZWwgVmVzYSA8YWJlbC52ZXNhQG54cC5jb20+DQo+IFN1
-YmplY3Q6IFJlOiBbUEFUQ0ggMS8zXSBkdC1iaW5kaW5nczogY2xvY2s6IGlteDhtbTogQWRkIFNO
-VlMgY2xvY2sNCj4gDQo+IE9uIDE1LjA1LjIwMTkgMDQ6MjksIEFuc29uIEh1YW5nIHdyb3RlOg0K
-PiA+IEFkZCBtYWNybyBmb3IgdGhlIFNOVlMgY2xvY2sgb2YgdGhlIGkuTVg4TU0uDQo+ID4NCj4g
-PiBTaWduZWQtb2ZmLWJ5OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gPiAt
-LS0NCj4gPiBUaGlzIHBhdGNoIGlzIGJhc2VkIG9uIHBhdGNoOg0KPiA+IGh0dHBzOi8vcGF0Y2h3
-b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTA5Mzk5OTcvDQo+IA0KPiBOdW1iZXJpbmcgYWxzbyBjb25m
-bGljdHMgd2l0aCBvbmUgb2YgbXkgcGF0Y2hlczoNCj4gDQo+IGh0dHBzOi8vcGF0Y2h3b3JrLmtl
-cm5lbC5vcmcvcGF0Y2gvMTA5NDAzMDMvDQo+IA0KPiBUaGUgY29uZmxpY3QgaXMgZWFzeSB0byBy
-ZXNvbHZlIGJ1dCBJIGRvbid0IG1pbmQgcmVzZW5kaW5nIGlmIHlvdXIgcGF0Y2hlcyBnZXQNCj4g
-YWNjZXB0ZWQgZmlyc3QuIElmIHNob3VsZCBwcm9iYWJseSByZXNlbmQgYW55d2F5IHRvIGFsc28g
-YWRkIGdpYyBjbGsgdG8gOG1xLg0KDQpUaGFua3MsIEkgZGlkIE5PVCBub3RpY2UgdGhpcywgZmVl
-bCBmcmVlIGlmIHdhbnQgbWUgdG8gcmVzZW5kIHRoZSBwYXRjaCBzZXQsIGJvdGgNCnRoZSBHUElP
-IGNsb2NrIGFuZCBTTlZTIGNsb2NrIHBhdGNoIHNlcmllcy4NCg0KVGhhbmtzLA0KQW5zb24uDQo+
-IA0KPiBGb3Igc2VyaWVzOg0KPiANCj4gUmV2aWV3ZWQtYnk6IExlb25hcmQgQ3Jlc3RleiA8bGVv
-bmFyZC5jcmVzdGV6QG54cC5jb20+DQo=
+QCA BTSOC NVM is a customized firmware file and different vendors may
+want to have different BTSOC configuration (e.g. Configure SCO over PCM
+or I2S, Setting Tx power, etc.) via this file. This patch will allow
+vendors to download different NVM firmware file by reading a device
+property "firmware-name".
+
+Signed-off-by: Rocky Liao <rjliao@codeaurora.org>
+---
+Changes in v5:
+  * Made the change applicable to the wcn399x series chip sets
+---
+ drivers/bluetooth/btqca.c   |  8 ++++++--
+ drivers/bluetooth/btqca.h   |  6 ++++--
+ drivers/bluetooth/hci_qca.c | 19 ++++++++++++++++++-
+ 3 files changed, 28 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+index cc12eec..a78b80e 100644
+--- a/drivers/bluetooth/btqca.c
++++ b/drivers/bluetooth/btqca.c
+@@ -332,7 +332,8 @@ int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdaddr)
+ EXPORT_SYMBOL_GPL(qca_set_bdaddr_rome);
+ 
+ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+-		   enum qca_btsoc_type soc_type, u32 soc_ver)
++		   enum qca_btsoc_type soc_type, u32 soc_ver,
++		   const char *firmware_name)
+ {
+ 	struct rome_config config;
+ 	int err;
+@@ -365,7 +366,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+ 
+ 	/* Download NVM configuration */
+ 	config.type = TLV_TYPE_NVM;
+-	if (qca_is_wcn399x(soc_type))
++	if (firmware_name)
++		snprintf(config.fwname, sizeof(config.fwname),
++			 "qca/%s", firmware_name);
++	else if (qca_is_wcn399x(soc_type))
+ 		snprintf(config.fwname, sizeof(config.fwname),
+ 			 "qca/crnv%02x.bin", rom_ver);
+ 	else
+diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
+index 4c4fe2b..8c037bb 100644
+--- a/drivers/bluetooth/btqca.h
++++ b/drivers/bluetooth/btqca.h
+@@ -140,7 +140,8 @@ enum qca_btsoc_type {
+ 
+ int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdaddr);
+ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+-		   enum qca_btsoc_type soc_type, u32 soc_ver);
++		   enum qca_btsoc_type soc_type, u32 soc_ver,
++		   const char *firmware_name);
+ int qca_read_soc_version(struct hci_dev *hdev, u32 *soc_version);
+ int qca_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr);
+ static inline bool qca_is_wcn399x(enum qca_btsoc_type soc_type)
+@@ -155,7 +156,8 @@ static inline int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdad
+ }
+ 
+ static inline int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+-				 enum qca_btsoc_type soc_type, u32 soc_ver)
++				 enum qca_btsoc_type soc_type, u32 soc_ver,
++				 const char *firmware_name)
+ {
+ 	return -EOPNOTSUPP;
+ }
+diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
+index 57322c4..9590602 100644
+--- a/drivers/bluetooth/hci_qca.c
++++ b/drivers/bluetooth/hci_qca.c
+@@ -169,6 +169,7 @@ struct qca_serdev {
+ 	struct qca_power *bt_power;
+ 	u32 init_speed;
+ 	u32 oper_speed;
++	const char *firmware_name;
+ };
+ 
+ static int qca_power_setup(struct hci_uart *hu, bool on);
+@@ -190,6 +191,17 @@ static enum qca_btsoc_type qca_soc_type(struct hci_uart *hu)
+ 	return soc_type;
+ }
+ 
++static const char *qca_get_firmware_name(struct hci_uart *hu)
++{
++	if (hu->serdev) {
++		struct qca_serdev *qsd = serdev_device_get_drvdata(hu->serdev);
++
++		return qsd->firmware_name;
++	} else {
++		return NULL;
++	}
++}
++
+ static void __serial_clock_on(struct tty_struct *tty)
+ {
+ 	/* TODO: Some chipset requires to enable UART clock on client
+@@ -1195,6 +1207,7 @@ static int qca_setup(struct hci_uart *hu)
+ 	struct qca_data *qca = hu->priv;
+ 	unsigned int speed, qca_baudrate = QCA_BAUDRATE_115200;
+ 	enum qca_btsoc_type soc_type = qca_soc_type(hu);
++	const char *firmware_name = qca_get_firmware_name(hu);
+ 	int ret;
+ 	int soc_ver = 0;
+ 
+@@ -1245,7 +1258,8 @@ static int qca_setup(struct hci_uart *hu)
+ 
+ 	bt_dev_info(hdev, "QCA controller version 0x%08x", soc_ver);
+ 	/* Setup patch / NVM configurations */
+-	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, soc_ver);
++	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, soc_ver,
++			firmware_name);
+ 	if (!ret) {
+ 		set_bit(QCA_IBS_ENABLED, &qca->flags);
+ 		qca_debugfs_init(hdev);
+@@ -1477,6 +1491,9 @@ static int qca_serdev_probe(struct serdev_device *serdev)
+ 			return PTR_ERR(qcadev->bt_en);
+ 		}
+ 
++		device_property_read_string(&serdev->dev, "firmware-name",
++					 &qcadev->firmware_name);
++
+ 		qcadev->susclk = devm_clk_get(&serdev->dev, NULL);
+ 		if (IS_ERR(qcadev->susclk)) {
+ 			dev_err(&serdev->dev, "failed to acquire clk\n");
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, a Linux Foundation Collaborative Project
+
