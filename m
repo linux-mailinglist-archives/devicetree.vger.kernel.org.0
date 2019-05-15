@@ -2,154 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1F61FA67
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 21:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B95DD1FB65
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 22:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726302AbfEOTYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 15:24:14 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:41148 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726124AbfEOTYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 15:24:13 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3B3926087A; Wed, 15 May 2019 19:24:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1557948252;
-        bh=IhMSDG5a5N0dL5eqitoSAgF0GjbDpoPuc54UFkEWmSM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iOG/8mNjRXLkM0rBqsyyQIiRTecWHPhZPWxeULXedlF5fejT5FWLj1ph2vkHUa9kA
-         ORmhjFsSttyn0Kq1dWGsCyjCxBKx2GCP2odvEa1v4DKrtcLYy6yJPZ7JWaMd9JFNrp
-         5V05iR/GFnIKU6NI+24EzTXwSTl0hiJuQMSiCYPQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jcrouse@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6709360592;
-        Wed, 15 May 2019 19:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1557948251;
-        bh=IhMSDG5a5N0dL5eqitoSAgF0GjbDpoPuc54UFkEWmSM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OV7VyfmBMxvleNQtJng1Lv6XGtvld6L5TIzlbWqdtSjf5WUElLykidfhqPPR1xL/0
-         qjlFI0l1CyL6I1xubXnaaQ76ORsDEPNc1bu6ny8fRd63UFyWl+b0kbgqxGv0aYslUn
-         oENiYl4/sMEIww6gtOGGE52lqUjJ89ijC4sWcFV8=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6709360592
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jcrouse@codeaurora.org
-Date:   Wed, 15 May 2019 13:24:08 -0600
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     Rob Clark <robdclark@chromium.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        Rob Clark <robdclark@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
+        id S1727560AbfEOUMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 16:12:07 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:52760 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726347AbfEOUMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 16:12:07 -0400
+Received: by mail-it1-f193.google.com with SMTP id q65so2298051itg.2
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 13:12:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uxgF9Epfj1leDEBS3SomGteVW5SkqoPzJb/PZ/M3l2g=;
+        b=Ql72fglxXZNNGfPHlceVRZWt4MhCtj4P2XxKtx54et64XHV6OtJShxndeDf/w50v16
+         VACqUhg7nezBlS7+CKhlRwL6xFXy5S2v7/JtzZrfNiDRD/9f81iCOfWye6oKsCB9mlNi
+         hjJI4tbaQvF8v9hGnYewEpVP1gJFL0o43AUJiLa8RcGejNN3KCQbADDw34U5b1H0rY4i
+         bhXxVAB3io94u5qA7ZbDYtJdut8S+MEhiSBKuGE6nzcqWyvIyDUg50bZ6KOW5vCNArwB
+         lbKoGM8nPCA/qTouojN6Ud67IhLOFLbA5jLBTO0lUtHlAMSIJnj20FTRTbJnETSR1CFN
+         JjXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uxgF9Epfj1leDEBS3SomGteVW5SkqoPzJb/PZ/M3l2g=;
+        b=dwMuCOhUDOryMQaTGEGC30ckC4NRO+NtvEZHJTTl3r8jVCh1MsfnmxBtKGlFMsyVry
+         A3qjgORSJlo6hxCMZOENG0X64czdXg+LILTE/ZINy50g/cwdzZjvqwZftt0GBsi0o2PL
+         1bMfe+qi9AuuJ+xT03+dgmA7nEBoCk8Rb9kRKlrof2lE3NrlbigP/BwxruD5qRlx7uRj
+         TMeT3BKjd2vbxmQwqEIVVPmN5X09IVBaXueCMqRj9zwGGwMHIa6h0EHWOahk1LvCoOY3
+         LFutSARXEfg5KbdCDF++S1BL9EdsDArd+puauSlXxlyhlwDiTdO0tuAFaHIQsZMcRY7g
+         FxwQ==
+X-Gm-Message-State: APjAAAWV/BERZmzLqbvBMrU1G72YPmHGJCJqegVGUyBS+kH9PYpqnHrD
+        DOQCNbGlPiXRkGoiDKtk8okAdyvtztfRkAKPVvxMdg==
+X-Google-Smtp-Source: APXvYqy0Is8SYO89R5fPAeulqJ+RzwFzYum+BS3fo8ISTRJ7CEoQ0E5GHFBKq+paLUll3butIDW17EBIp44VGMK9g4E=
+X-Received: by 2002:a24:b342:: with SMTP id z2mr8641253iti.121.1557951125920;
+ Wed, 15 May 2019 13:12:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190513003819.356-1-hsinyi@chromium.org> <20190513003819.356-2-hsinyi@chromium.org>
+ <20190513085853.GB9271@rapoport-lnx> <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
+ <20190514154223.GA11115@rapoport-lnx> <CAJMQK-gMa81kHaTS1kwTcOy+Avt5GsmNcagfscdLdmzS31Tobw@mail.gmail.com>
+In-Reply-To: <CAJMQK-gMa81kHaTS1kwTcOy+Avt5GsmNcagfscdLdmzS31Tobw@mail.gmail.com>
+From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Date:   Wed, 15 May 2019 22:11:53 +0200
+Message-ID: <CAKv+Gu8T-=inrckZmzQLk7abZtvkdE-nK_Qgcn+bbtovubzrkQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] amr64: map FDT as RW for early_init_dt_scan()
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Mike Rapoport <rppt@linux.ibm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC 2/3] arm64: dts: qcom: sdm845-cheza: Re-add reserved memory
-Message-ID: <20190515192408.GD24137@jcrouse1-lnx.qualcomm.com>
-Mail-Followup-To: Rob Clark <robdclark@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Rob Clark <robdclark@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20190509184415.11592-1-robdclark@gmail.com>
- <20190509184415.11592-3-robdclark@gmail.com>
- <CAD=FV=WXW3aApS=c7baxhtfr1Nf-UnBN2s=rEBBkjj4=TCdT+g@mail.gmail.com>
- <CAJs_Fx5PDj+T+DVixzHjun_wCG5fhZsxH8xUqRwmkfwN87UP_A@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJs_Fx5PDj+T+DVixzHjun_wCG5fhZsxH8xUqRwmkfwN87UP_A@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        Kees Cook <keescook@chromium.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Michal Hocko <mhocko@suse.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 09:09:55PM -0700, Rob Clark wrote:
-> On Mon, May 13, 2019 at 3:48 PM Doug Anderson <dianders@chromium.org> wrote:
+On Wed, 15 May 2019 at 12:24, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> On Tue, May 14, 2019 at 11:42 PM Mike Rapoport <rppt@linux.ibm.com> wrote:
+>
+> > I'm not sure if early console is available at the time kaslr_early_init()
+> > is called, but if yes, running with memblock=debug may shed some light.
 > >
-> > Hi,
+> > > I didn't trace the real reason causing this. But in this case, maybe
+> > > don't call memblock_reserve() in kaslr?
 > >
-> > On Thu, May 9, 2019 at 11:44 AM Rob Clark <robdclark@gmail.com> wrote:
+> > My concern that this uncovered a real bug which might hit us later.
 > >
-> > > From: Douglas Anderson <dianders@chromium.org>
-> > >
-> > > Let's fixup the reserved memory to re-add the things we deleted in
-> > > ("CHROMIUM: arm64: dts: qcom: sdm845-cheza: Temporarily delete
-> > > reserved-mem changes") in a way that plays nicely with the new
-> > > upstream definitions.
-> >
-> > The message above makes no sense since that commit you reference isn't
-> > in upstream.
-> >
-> > ...but in any case, why not squash this in with the previous commit?
-> 
-> Yeah, I should have mentioned this was my intention, I just left it
-> unsquashed since (at the time) it was something I had cherry-picked on
-> top of current 4.19 cros kernel..
-> 
-> anyways, I pushed an (unsquashed, converted to fixup!'s) update to:
-> 
-> https://github.com/freedreno/kernel-msm/commits/wip/cheza-dtb-upstreaming
-> 
-> which has updates based on you're review comments (at least assuming I
-> understood them correctly).. plus some unrelated to cheza-dt patches
-> on top to get things actually working (ie. ignore everything on top of
-> the fixup!'s)
-> 
-> I didn't see any comments on the 'delete zap-shader' patch, so
-> hopefully that means what I did there was a sane (or at least not
-> insane) way to handle android/linux tz vs what we have on cheza?
+> Hi Mike,
+> Thanks for the hint. I tried on my device but seems that earlycon
+> happens after the warning call trace, so can't more information.
+>
+> Since on my device kaslr will be runned, I tried call
+> memblock_reserve() in kaslr and not in
+> setup_machine_fdt()#fixmap_remap_fdt, but got following warning
+>
 
-Yeah. In a world where all the 845 firmware is in linux-firmware the best
-differentiating factor would be the absence of the reserved memory or the
-zap-shader node in the device tree. Otherwise we would have to try and fail to
-execute the scm call and then make some sort of educated guess as to if it
-failed for the "right" reasons.
+I realize this is not documented sufficiently in the commit log, but
+the reason I introduced the separate __fixmap_remap_fdt() [which does
+not call memblock_reserve()] was that the KASLR init code should set
+as little global state as possible, given that it is called with the
+kernel mapped at the wrong virtual address.
 
-Jordan
+The KASLR boot sequence is something like
+- map kernel at default [unrandomized] address
+- apply relocations and clear BSS
+- run KASLR init to map and parse the FDT [*]
+- if KASLR is enabled, unmap the kernel and remap it at the randomized address
+- apply relocations and clear BSS
+- proceed with start_kernel()
 
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> > > Signed-off-by: Rob Clark <robdclark@chromium.org>
-> >
-> > Remove Stephen's Reviewed-by.  In general reviews that happen in the
-> > Chrome OS gerrit shouldn't be carried over when things are posted
-> > upstream.
-> >
-> >
-> > > +/* Increase the size from 2MB to 8MB */
-> > > +&rmtfs_mem {
-> > > +       reg = <0 0x88f00000 0 0x800000>;
-> > > +};
-> > > +
-> > > +/ {
-> > > +       reserved-memory {
-> > > +               venus_mem: memory@96000000 {
-> > > +                       reg = <0 0x96000000 0 0x500000>;
-> > > +                       no-map;
-> > > +               };
-> > > +       };
-> > > +};
-> >
-> > nit: blank line?
-> >
-> > -Doug
+The issue you are seeing is caused by the fact that the memblock
+bookkeeping gets into an inconsistent state due to the 2nd clearing of
+BSS.
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+[*] The reason we need to map the FDT this early is to obtain the
+random seed, and to check whether 'nokaslr' was passed on the kernel
+command line. The reason arm64 deviates from other architectures in
+this regard is that we don't have a decompressor, and so there is no
+other execution context available where we can run C code to parse the
+FDT etc before we enter the kernel proper.
+
+
+
+
+> [    0.000000] memblock_remove:
+> [0x0001000000000000-0x0000fffffffffffe] arm64_memblock_init+0x28/0x224
+> [    0.000000] memblock_remove:
+> [0x0000004040000000-0x000000403ffffffe] arm64_memblock_init+0x64/0x224
+> [    0.000000] memblock_reserve:
+> [0x0000000040080000-0x00000000413c3fff]
+> arm64_memblock_init+0x188/0x224
+> [    0.000000] WARNING: CPU: 0 PID: 0 at
+> /mnt/host/source/src/third_party/kernel/v4.19/mm/memblock.c:583
+> memblock_add_range+0x1bc/0x1c8
+> [    0.000000] Modules linked in:
+> [    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 4.19.38 #222
+> [    0.000000] Hardware name: MediaTek kukui rev2 board (DT)
+> [    0.000000] pstate: 60000085 (nZCv daIf -PAN -UAO)
+> [    0.000000] pc : memblock_add_range+0x1bc/0x1c8
+> [    0.000000] lr : memblock_add_range+0x30/0x1c8
+> [    0.000000] sp : ffffffab68603ea0
+> [    0.000000] x29: ffffffab68603ef0 x28: 0000000040954324
+> [    0.000000] x27: 0000000040080000 x26: 0000000000080000
+> [    0.000000] x25: 0000000080127e4b x24: ffffffab68716000
+> [    0.000000] x23: ffffffab680b5000 x22: 0000000001344000
+> [    0.000000] x21: 0000000040080000 x20: 0000000000000000
+> [    0.000000] x19: ffffffab6864bf00 x18: 00000000fffffc94
+> [    0.000000] x17: 000000000000003c x16: ffffffab67d49064
+> [    0.000000] x15: 0000000000000006 x14: 626d656d5f34366d
+> [    0.000000] x13: 7261205d66666633 x12: 0000000000000000
+> [    0.000000] x11: 0000000000000000 x10: ffffffffffffffff
+> [    0.000000] x9 : 0000000000011547 x8 : ffffffab68765690
+> [    0.000000] x7 : 696e695f6b636f6c x6 : ffffffab6875dd41
+> [    0.000000] x5 : 0000000000000000 x4 : 0000000000000000
+> [    0.000000] x3 : ffffffab678a24a0 x2 : 0000000001344000
+> [    0.000000] x1 : 0000000040080000 x0 : ffffffab6864bf00
+> [    0.000000] Call trace:
+> [    0.000000]  memblock_add_range+0x1bc/0x1c8
+> [    0.000000]  memblock_reserve+0x60/0xac
+> [    0.000000]  arm64_memblock_init+0x188/0x224
+> [    0.000000]  setup_arch+0x138/0x19c
+> [    0.000000]  start_kernel+0x68/0x380
+> [    0.000000] random: get_random_bytes called from
+> print_oops_end_marker+0x3c/0x58 with crng_init=0
+> [    0.000000] ---[ end trace ea99802b425f7adf ]---
+> [    0.000000] memblock_reserve:
+> [0x000000005f800000-0x000000005f811536]
+> early_init_dt_reserve_memory_arch+0x38/0x48
+> [    0.000000] memblock_reserve:
+> [0x00000000ffe00000-0x00000000ffffffff]
+> early_init_dt_reserve_memory_arch+0x38/0x48
+>
+> So I guess we just can't call memblock_reserve() in kaslr?
