@@ -2,101 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F35B71F2F4
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 14:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E1CC1F3A6
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 14:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729040AbfEOMJJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 May 2019 08:09:09 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:49093 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729362AbfEOMJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 08:09:09 -0400
-X-Originating-IP: 77.136.197.83
-Received: from xps13 (83.197.136.77.rev.sfr.net [77.136.197.83])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 981291C0013;
-        Wed, 15 May 2019 12:08:59 +0000 (UTC)
-Date:   Wed, 15 May 2019 14:08:58 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     masonccyang@mxic.com.tw
-Cc:     bbrezillon@kernel.org, broonie@kernel.org,
-        christophe.kerello@st.com, computersforpeace@gmail.com,
-        devicetree@vger.kernel.org, dwmw2@infradead.org,
-        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
-        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
-        mark.rutland@arm.com, paul.burton@mips.com, richard@nod.at,
-        robh+dt@kernel.org, stefan@agner.ch, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
- controller
-Message-ID: <20190515140858.77213af9@xps13>
-In-Reply-To: <OF8A566F14.A2F0F576-ON482583FB.002E7E32-482583FB.003068BA@mxic.com.tw>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
-        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
-        <20190512151820.4f2dd9da@xps13>
-        <OF8A566F14.A2F0F576-ON482583FB.002E7E32-482583FB.003068BA@mxic.com.tw>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S1728475AbfEOMQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 08:16:38 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:22171 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728056AbfEOMQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 May 2019 08:16:36 -0400
+X-IronPort-AV: E=Sophos;i="5.60,472,1549897200"; 
+   d="scan'208";a="15815950"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 15 May 2019 21:16:33 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 887D24003864;
+        Wed, 15 May 2019 21:16:30 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v6 0/7] Add USB3.0 and TI HD3SS3220 driver support
+Date:   Wed, 15 May 2019 13:09:05 +0100
+Message-Id: <1557922152-16449-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi masonccyang@mxic.com.tw,
+This series adds USB 3.0 support for the CAT874 platform, including a
+new driver for the TI HD3SS3220 USB Type-C DRP port controller.
 
-masonccyang@mxic.com.tw wrote on Wed, 15 May 2019 16:48:46 +0800:
+This patch series supports:
+1) Host hotplug operation
+2) Device hot plug operation
+3) USB type-C data_role switch
+   (Tested with 2 RZ/G2E boards connected with a Type-C cable)
 
-> Hi Miquel,
-> 
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +//
-> > > +// Copyright (C) 2019 Macronix International Co., Ltd.
-> > > +//
-> > > +// Authors:
-> > > +//   Mason Yang <masonccyang@mxic.com.tw>
-> > > +//   zhengxunli <zhengxunli@mxic.com.tw>  
-> > 
-> > This is not a valid name.
-> > 
-> > Also if he appears here I suppose he should be credited in the
-> > module_authors() macro too.  
-> 
-> I think Li should maintain this NAND driver later, 
+This patchset is based on linux_next next-20190514 branch.
+V5-->V6
+  * Updated bindings patch by using usb-role-switch property
+  * Used graph api's to get role switch supported by the usb-c-connector
+V4-->V5
+  * Incorporated Heikki's review comment.
+    (https://patchwork.kernel.org/patch/10902531/)
+  * Patch 1 is a dependency patch to make the compilation successful.
+    (https://patchwork.kernel.org/patch/10909971/)
+  * Patch 2 is also dependency patch to make the compilation successful.
+    Rebased on top of Patch1 and fixed Heikki's review comments
+    (https://patchwork.kernel.org/patch/10882555/)
+  * Incorporated Shimoda-San's review comment.
+    (https://patchwork.kernel.org/patch/10902535/)
+V3-->V4
+  * Incorporated Chunfeng Yun's review comment
+    (https://patchwork.kernel.org/project/linux-usb/list/?submitter=133171)
+  * Used fwnode API's to get roleswitch handle
 
-This entry is for the authors of the driver.
+V2-->V3
+  * Used the new API to usb_role_switch by node to find the remote endpoint
+    (https://patchwork.kernel.org/patch/10882555/)
+  * Added renesas,usb-role-switch property
+  * Incorporated shimoda-san's review comment
+    (https://patchwork.kernel.org/patch/10852507/)
 
-If he will maintain the driver, then add a new entry in MAINTAINERS.
-
-> > > +}
-> > > +
-> > > +static const struct nand_controller_ops mxic_nand_controller_ops = {
-> > > +   .exec_op = mxic_nand_exec_op,
-> > > +};
-> > > +
-> > > +static int mx25f0a_nand_probe(struct platform_device *pdev)
-> > > +{
-> > > +   struct mtd_info *mtd;
-> > > +   struct mx25f0a_mfd *mfd = dev_get_drvdata(pdev->dev.parent);
-> > > +   struct mxic_nand_ctlr *mxic;
-> > > +   struct nand_chip *nand_chip;
-> > > +   int err;
-> > > +
-> > > +   mxic = devm_kzalloc(&pdev->dev, sizeof(struct mxic_nand_ctlr),
-> > > +             GFP_KERNEL);  
-> > 
-> > mxic for a NAND controller structure is probably not a name meaningful
-> > enough.  
-> 
-> How about *fmc or *mxic_fmc ?
-
-fmc is fine, even if I personally prefer nfc for NAND flash controller.
-Here the 'm' in fmc stands for 'memory' but I am not sure if the
-controller can manage something else than NAND flash anyway?
+V1-->V2
+  * Use USB role class instead of extcon to receive connect and disconnect
+    events and also for the dual role switch.
+  * Dropped patch 6
+  * Squashed patch 8 and patch 9
+  * https://patchwork.kernel.org/cover/10840641/
 
 
-Thanks,
-Miquèl
+Biju Das (7):
+  dt-bindings: usb: hd3ss3220 device tree binding document
+  dt-bindings: usb: renesas_usb3: Document usb role switch support
+  usb: typec: driver for TI HD3SS3220 USB Type-C DRP port controller
+  usb: gadget: udc: renesas_usb3: Add dual role switch support
+  arm64: defconfig: enable TYPEC_HD3SS3220 config option
+  arm64: dts: renesas: r8a774c0-cat874: Enable USB3.0 host/peripheral
+    device node
+  arm64: dts: renesas: r8a774c0-cat874: Enable usb role switch support
+
+ .../devicetree/bindings/usb/renesas_usb3.txt       |  26 ++
+ .../devicetree/bindings/usb/ti,hd3ss3220.txt       |  37 +++
+ arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts    |  56 +++++
+ arch/arm64/configs/defconfig                       |   2 +
+ drivers/usb/gadget/udc/renesas_usb3.c              | 121 +++++++++-
+ drivers/usb/typec/Kconfig                          |  10 +
+ drivers/usb/typec/Makefile                         |   1 +
+ drivers/usb/typec/hd3ss3220.c                      | 263 +++++++++++++++++++++
+ 8 files changed, 509 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
+ create mode 100644 drivers/usb/typec/hd3ss3220.c
+
+-- 
+2.7.4
+
