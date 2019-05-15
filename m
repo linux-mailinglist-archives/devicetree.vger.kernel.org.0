@@ -2,183 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B2061F5F3
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 586B91F5F7
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726296AbfEONvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 09:51:16 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:52827 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725953AbfEONvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:51:15 -0400
-Received: by mail-it1-f193.google.com with SMTP id q65so196840itg.2;
-        Wed, 15 May 2019 06:51:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=p/y8JRassq6ldagHFCRqos7/WsoBIbYVcLzev7Ry3W8=;
-        b=KaHZE40aR03wi9RLD9spGr5b93BbQ5DubEQrkywFhVa/nXaUR1JKUW8uo9C3F/L4cf
-         5GRSuGcX6WUjHS72cONwr20aOHsj/qpk/0knlB/TCTMnD1u7F6+VB8A+388jl/AUuEd0
-         pF3fcsHPPc7HU3fF/KFu01x7DWvRFlJwiPbmtlAdUKaRERF9t06ihbQnLpa1TRBADuae
-         R+upDTYboIUgtTjOb4E77GIR9OBSjlu/SO2YVW33vbZLBY5HF+1+b/mJAUgjp9QlcZlJ
-         Sf1SVNMNjb4Gm3WPRdniVtcdObc/IQyzSBx3W1+HfnGYWQq9MwMYQp7GpfUEh22jkXg4
-         kmmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=p/y8JRassq6ldagHFCRqos7/WsoBIbYVcLzev7Ry3W8=;
-        b=YRc8Teo8NlUcmksobpM3nPQi0LLgzao7UYYSLIp+6qExbYisLM9Fyan6nBGWnEFLal
-         C7PJ9VZNWuBS5E/St4D+e1T7hXeGCrDWeq0uY1aR3/sJ8VD03BPQVyixAXgVKtAYrkjQ
-         /Xu8Y5OHThleKoPtTkfWBXdRxLTt1YTl4pXt42Tp0VZqGCjiVet9fivQxkJvwxzoPAXo
-         /r0P+aQNZW72iasIDCRVXQiMk+TSH9XdYKvtbtPGMCIazGE0NSVs7dFvbdytXnz1Gu3o
-         LQV16Xp7wsTeaIFuogquuvY6Kp5FdfGPgKGNac9e4vbxrxPFy964bcH2ngPrfYU14fOp
-         bfFg==
-X-Gm-Message-State: APjAAAVz4Lucposd2PDI4r+08nl8rbNI41d+7etR5daemDYfxIv3sq4/
-        7rGaUcRDLcuXOEgBUIzqNTY=
-X-Google-Smtp-Source: APXvYqyUdVq7O/jGC2ASOLVYVe+9UfE6Gezo9Pbls9Qhpg3DCNcoBRXv/sg0AXqtNZTG2PeckYWVYg==
-X-Received: by 2002:a02:c8da:: with SMTP id q26mr28090176jao.0.1557928274570;
-        Wed, 15 May 2019 06:51:14 -0700 (PDT)
-Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.googlemail.com with ESMTPSA id q16sm615991ior.75.2019.05.15.06.51.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 06:51:13 -0700 (PDT)
-Subject: Re: [PATCH V3 1/8] dt-bindings: memory: tegra: Add external memory
- controller binding for Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190510084719.18902-1-josephl@nvidia.com>
- <20190510084719.18902-2-josephl@nvidia.com>
- <fd68f906-79b4-6eda-b1fa-abaf3b4c6a12@gmail.com>
- <63360b18-6a17-ab3f-6c54-6e11e24885d0@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <c3909c66-5aa4-161b-98d4-02ad20e02c88@gmail.com>
-Date:   Wed, 15 May 2019 16:50:31 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726790AbfEONvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 09:51:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56442 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725953AbfEONvx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 May 2019 09:51:53 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 62A672166E;
+        Wed, 15 May 2019 13:51:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1557928312;
+        bh=PeQ3v+aUDLOT5wUt7DdAGsAwXfG7pZkDyLgC5I73JRc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TcHrETGBS5RK4vA7Qrv64nPQh0cwDiqgjbiIp8uCc2kwrlGH/yb9DAaM0iZCbuwyu
+         fnpXE0xxj6dj9aGKPtkTWQ6RTovDQIySmxUz9EPy+qFIlajftuLCZOT/wE5R6PNngc
+         JBN5IzmDhqfBcXiTa0x5XNH9tra5Q4QcYL8fMTRo=
+Received: by mail-qt1-f171.google.com with SMTP id y42so3321996qtk.6;
+        Wed, 15 May 2019 06:51:52 -0700 (PDT)
+X-Gm-Message-State: APjAAAVUSAY6vw4WTTBKlq9llS9SHkV09yVJfCwB6hAUVcXOqX5GJKPG
+        f2OAZBzYlumn7RBxF9j2/Ha9Edy/yUdlCULBqQ==
+X-Google-Smtp-Source: APXvYqxt06BGJpuvl0NUUvAZaOE9f10w4Lhh10Lw/WolvqFjTTNJPssHz/Fa2Aey082LghVWTDP5JtVqelqf2Ba6ofo=
+X-Received: by 2002:aed:2471:: with SMTP id s46mr36118156qtc.144.1557928311668;
+ Wed, 15 May 2019 06:51:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <63360b18-6a17-ab3f-6c54-6e11e24885d0@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1557918043-25733-1-git-send-email-stefan.popa@analog.com>
+In-Reply-To: <1557918043-25733-1-git-send-email-stefan.popa@analog.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 15 May 2019 08:51:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKvHBoKiMUaA8=rLtM_kCMas8sQgp+k6DTKgUfpVX3+iQ@mail.gmail.com>
+Message-ID: <CAL_JsqKvHBoKiMUaA8=rLtM_kCMas8sQgp+k6DTKgUfpVX3+iQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: frequency: Add docs for ADF4371 PLL
+To:     Stefan Popa <stefan.popa@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-15.05.2019 10:17, Joseph Lo пишет:
-> On 5/15/19 12:28 AM, Dmitry Osipenko wrote:
->> 10.05.2019 11:47, Joseph Lo пишет:
->>> Add the binding document for the external memory controller (EMC) which
->>> communicates with external LPDDR4 devices. It includes the bindings of
->>> the EMC node and a sub-node of EMC table which under the reserved memory
->>> node. The EMC table contains the data of the rates that EMC supported.
->>>
->>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
->>> ---
->>> v3:
->>> - drop the bindings of EMC table
->>> - add memory-region and reserved-memory node for EMC table
->>> ---
->>>   .../nvidia,tegra210-emc.txt                   | 55 +++++++++++++++++++
->>>   1 file changed, 55 insertions(+)
->>>   create mode 100644
->>> Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>
->>> new file mode 100644
->>> index 000000000000..d65aeef2329c
->>> --- /dev/null
->>> +++
->>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>
->>> @@ -0,0 +1,55 @@
->>> +NVIDIA Tegra210 SoC EMC (external memory controller)
->>> +====================================================
->>> +
->>> +Device node
->>> +===========
->>> +Required properties :
->>> +- compatible : should be "nvidia,tegra210-emc".
->>> +- reg : physical base address and length of the controller's registers.
->>> +- clocks : phandles of the possible source clocks.
->>> +- clock-names : names of the possible source clocks.
->>> +- interrupts : Should contain the EMC general interrupt.
->>> +- memory-region : phandle to the reserved memory (see
->>> + 
->>> Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt) which
->>>
->>> +  contains a sub-node of EMC table.
->>> +- nvidia,memory-controller : phandle of the memory controller.
->>> +
->>> +Reserved memory node
->>> +====================
->>> +Should contain a sub-node of EMC table with required properties:
->>> +- compatible : should be "nvidia,tegra210-emc-table".
->>> +- reg : physical address and length of the location of EMC table.
->>> +
->>> +Example:
->>> +    reserved-memory {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +        ranges;
->>> +
->>> +        emc_table: emc-table@8be00000 {
->>> +            compatible = "nvidia,tegra210-emc-table";
->>> +            reg = <0x0 0x8be00000 0x0 0x10000>;
->>> +            status = "okay";
->>> +        };
->>
->> You essentially moved the v1 binding into obscure and undocumented blob,
->> ignoring previous review comments. This is a very odd move... please
->> explain what is going on.
->>
-> 
-> Discussed with Thierry offline which way we prefer to pass the EMC table
-> to the kernel. Some reasons below we decide to chose this one (via
-> binary blob).
-> 
-> - The EMC table is much bigger than the previous Tegra generations
-> (LPDDR4 v.s. LPDDR2/3). It's harder to settle in the review process. And
-> if there is a new fix of the table in the future, we'll need to go
-> through that again.
+On Wed, May 15, 2019 at 6:00 AM Stefan Popa <stefan.popa@analog.com> wrote:
+>
+> Document support for Analog Devices ADF4371 SPI Wideband Synthesizer.
+>
+> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> ---
+>  .../devicetree/bindings/iio/frequency/adf4371.yaml | 54 ++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
 
-I don't think that this a very good excuse for not documenting the
-blob's structure.
-
-> - Because it's LPDDR4 we want to support here, to support higher rates,
-> the devices have must be gone through the training process, which is
-> done in the firmware. Which means We already have the table somewhere in
-> the memory and kernel can just re-use that. No need to convert them back
-> to DT and pass to the kernel. This is much easier to maintain in the
-> future if there is something needs to fix.
-> - With the mechanism above, we don't need to maintain the huge EMC table
-> in the DT file like below.
-> http://patchwork.ozlabs.org/patch/1063886/
-> http://patchwork.ozlabs.org/patch/1063889/
-
-The blob's EMC table contains stuff specific to downstream kernel, hence
-it's a not very re-usable downstream software ABI mixed with HW
-description that you're bringing into upstream. This is not very
-welcomed, although I don't see it as a big problem if you'll state that
-all clearly in the commit message with a solid explanation why it is the
-best possible option.
-
-> And sorry, maybe it's not clear at that moment, but I did mention that
-> we want to go with the new method (via binary blob) in the previous review.
-> Please see http://patchwork.ozlabs.org/patch/1084467/
-
-Okay. It will be better if the discussion happened publicly, at least I
-hope that Rob is involved in it.
+Reviewed-by: Rob Herring <robh@kernel.org>
