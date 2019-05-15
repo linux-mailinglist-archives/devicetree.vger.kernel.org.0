@@ -2,160 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D09801F59F
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 034011F5B3
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2019 15:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727545AbfEONc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 09:32:59 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:35518 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726567AbfEONc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 09:32:59 -0400
-Received: by mail-wr1-f66.google.com with SMTP id w12so2730560wrp.2
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 06:32:58 -0700 (PDT)
+        id S1726653AbfEONiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 09:38:51 -0400
+Received: from mail-eopbgr1410109.outbound.protection.outlook.com ([40.107.141.109]:32169
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726635AbfEONiv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 May 2019 09:38:51 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=27IAE7Wks+dMK219yk2LbZVal7GDcc13jyTzLKW45iY=;
-        b=od0YKRz9Kouau/54+gp2YgD4pP+188LOMdYqpNdewsAMS4Lu38hKs+dpfwPMQkKmRM
-         YzHgSZZxi+ompodBvoXTkBdA8e7EWBQbrB+48V0HS6rGaQmh9n69PO7SmTz9YsYIyAJG
-         D7Lh+Z/1YLoyZE28v43yJvJXN4EfGXiJcE7IAwCBflbQSgNu4oLH8WStxw0//GCxuJTZ
-         aFx5j65IqQ4sgCxNECE1qfK/PNKziRY1wGHwB5/C22VhGDxQM/u2pY9eh3npayiYPTLO
-         1WJ+1qtbhDO/f3c0Au8WAjgo/M/5Hof44ISYjMv4sH7QTGU1JdmIlFCV+m5xSsbEM2Yi
-         n+dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=27IAE7Wks+dMK219yk2LbZVal7GDcc13jyTzLKW45iY=;
-        b=KoDih/YqYWcG2SgRPreQES4c2nU/h5V3/jz3VpN2v7sKQUoDAJJ+h5yEphnS3Ugh7a
-         Uidcd+cmA+L8X/lacROfNBTlX//pbpj/5KBoJLgLDsj76Jyt0g0NdfZ9s2g37bU9j+XS
-         tEJB0huR1mQEc/WPCvzFDhn9BFdPM6XRgi7f8+gyXUqWbnXl8iiKkJUOvVOby+t0mlPm
-         urol6eNLG9Gg2O5ev9iIEvCbM/3ENYLqcrE78j6YWm/C9aEy6aHbxvXipUreW2yn/wMD
-         U2flgriMCxrUibS1Q7z19EnT35JULO1tnOU4wJkEj4dDrqY06/IE4P+hEzCrrD5PIQHh
-         2niw==
-X-Gm-Message-State: APjAAAVRtFFH1lkZoDCsNmk5HCnqO6b2LzvR/EhFnBoMd5JXX94nHOBZ
-        +6qw6bcrzj16F8x5RpGd3JeH1A==
-X-Google-Smtp-Source: APXvYqz8PVaiHUgy/dyloifcw/qXOIQZunCyVrCksmCSCuaOJOIbms/fIqh9n6kPm+D/b1tXWBZ1kg==
-X-Received: by 2002:adf:e8cf:: with SMTP id k15mr22781328wrn.185.1557927177346;
-        Wed, 15 May 2019 06:32:57 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id e8sm4468676wrc.34.2019.05.15.06.32.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2019 06:32:56 -0700 (PDT)
-Subject: Re: [PATCH 0/5] ASoC: meson: add hdmitx glue support
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190515131858.32130-1-jbrunet@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <f7bafd16-1332-e124-79fb-7f045975aed9@baylibre.com>
-Date:   Wed, 15 May 2019 15:32:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190515131858.32130-1-jbrunet@baylibre.com>
-Content-Type: text/plain; charset=utf-8
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=arqU6Lvr5Sf26j9WAvt51gRgxm6iQ07EzJ2VtoyC/wU=;
+ b=gzXE6cCDY4X7cKH/qyJGoO32qdZ62Ulfx/WG1IwwhWxW3YyzQo1iSpdNGLKUOvKpc78OgY0CyOF1nrdgV21xVudmUOtIvf68F8L6RZoFYn8ebfNE1XPt80P7jLuV62D+TtTTR2UUfgaDYk7D++7ApjU3+sISHpN0OGfwCSAWVJA=
+Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com (52.133.166.145) by
+ TYXPR01MB1485.jpnprd01.prod.outlook.com (52.133.165.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Wed, 15 May 2019 13:38:46 +0000
+Received: from TYXPR01MB1568.jpnprd01.prod.outlook.com
+ ([fe80::c989:cb4d:b41e:2045]) by TYXPR01MB1568.jpnprd01.prod.outlook.com
+ ([fe80::c989:cb4d:b41e:2045%7]) with mapi id 15.20.1900.010; Wed, 15 May 2019
+ 13:38:46 +0000
+From:   Chris Brandt <Chris.Brandt@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Simon Horman <horms@verge.net.au>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v3 13/15] ARM: dts: r7s9210: Add USB Host support
+Thread-Topic: [PATCH v3 13/15] ARM: dts: r7s9210: Add USB Host support
+Thread-Index: AQHVCmV5GV5gsTt0ME28rd2ixcAosqZr02QAgABcqCA=
+Date:   Wed, 15 May 2019 13:38:46 +0000
+Message-ID: <TYXPR01MB1568E1D79AFDB6FF4F5329568A090@TYXPR01MB1568.jpnprd01.prod.outlook.com>
+References: <20190514145605.19112-1-chris.brandt@renesas.com>
+ <20190514145605.19112-14-chris.brandt@renesas.com>
+ <CAMuHMdUU3EBFXHpvw8y_yYf3L1qNNH6HJw+RHP_ioSFwJcd3Vg@mail.gmail.com>
+In-Reply-To: <CAMuHMdUU3EBFXHpvw8y_yYf3L1qNNH6HJw+RHP_ioSFwJcd3Vg@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Chris.Brandt@renesas.com; 
+x-originating-ip: [75.60.247.61]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9bfea68c-3133-4fdf-1405-08d6d93aa7b8
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:TYXPR01MB1485;
+x-ms-traffictypediagnostic: TYXPR01MB1485:
+x-microsoft-antispam-prvs: <TYXPR01MB14858D5C930DD82BB6185D968A090@TYXPR01MB1485.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3631;
+x-forefront-prvs: 0038DE95A2
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(396003)(346002)(376002)(366004)(136003)(189003)(199004)(8936002)(316002)(8676002)(81166006)(81156014)(68736007)(4326008)(25786009)(86362001)(52536014)(446003)(11346002)(476003)(55016002)(9686003)(478600001)(2906002)(486006)(14454004)(3846002)(66066001)(6116002)(256004)(72206003)(5660300002)(26005)(71200400001)(54906003)(71190400001)(186003)(229853002)(305945005)(7736002)(6506007)(76176011)(7696005)(102836004)(7416002)(6246003)(99286004)(66946007)(76116006)(73956011)(66476007)(66556008)(64756008)(33656002)(66446008)(53936002)(558084003)(74316002)(6436002)(6916009);DIR:OUT;SFP:1102;SCL:1;SRVR:TYXPR01MB1485;H:TYXPR01MB1568.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: dTW7m6QCxsp/HUUwxQTgdeUu3E4PRB3f+qYQw+EdiHfr2o/mpc75AObdJ+yzxYWYyJBK02sxYtdd/BxVYeGYvZIsjpVq1VZUKy1TPVoLR2kaP3KcgTWFlCRwhekyYBH+hFKLQ8f6tb1sstxmpdfQ4JHuegeozKiKJtQP9+lfaYSbdozBexoawGVkADmQjwPmQ3V4lSIHmQKrkTCr+vLgP7T5xqxkQpSZQZiCPPyOjPwLkTr7mOlhHaRFHy3KCt6u2mIGUpIS9qk1IwM6kt/GokfqptLjJpYK3Ym6bpmBeL8Rd+6iZzARcoiDqzhDCvmM7AoI6pHtOXhx2OCAyctDMSmsPRFAIYZ53J2dgA8DFkqlnI/MDOIS83AGpDyJIHLLS9lOhKSt6+OzGHBo/Vc8g8/v6lAOKfK2yPMegeMbtOM=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bfea68c-3133-4fdf-1405-08d6d93aa7b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2019 13:38:46.3813
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1485
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2019 15:18, Jerome Brunet wrote:
-> On the Amlogic SoC, there is a glue between the SoC audio outputs and the
-> input of the embedded Synopsys HDMI controller.
-> 
-> On the g12a, this glue is mostly a couple of muxes to select the i2s and
-> spdif inputs of the hdmi controller. Each of these inputs may have
-> different hw_params and fmt which makes our life a little bit more
-> interesting, especially when switching between to active inputs.
-> 
-> This glue is modeled as codec driver and uses codec-to-codec links to
-> connect to the Synopsys controller. This allows to use the regular
-> hdmi-codec driver (used by dw-hdmi i2s).
-> 
-> To avoid glitches while switching input, the trick is to temporarily
-> force a disconnection of the mux output, which shutdowns the output dai
-> link. This also ensure that the stream parameters and fmt are updated
-> when the output is connected back.
-> 
-> Jerome Brunet (5):
->   ASoC: meson: axg-card: set link name based on link node name
->   ASoC: dapm: allow muxes to force a disconnect
->   ASoC: meson: add tohdmitx DT bindings
->   ASoC: meson: axg-card: add basic codec-to-codec link support
->   ASoC: meson: add g12a tohdmitx control
-> 
->  .../bindings/sound/amlogic,g12a-tohdmitx.txt  |  55 +++
->  .../dt-bindings/sound/meson-g12a-tohdmitx.h   |  13 +
->  sound/soc/meson/Kconfig                       |   8 +
->  sound/soc/meson/Makefile                      |   2 +
->  sound/soc/meson/axg-card.c                    |  31 +-
->  sound/soc/meson/g12a-tohdmitx.c               | 413 ++++++++++++++++++
->  sound/soc/soc-dapm.c                          |   2 +-
->  7 files changed, 518 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
->  create mode 100644 include/dt-bindings/sound/meson-g12a-tohdmitx.h
->  create mode 100644 sound/soc/meson/g12a-tohdmitx.c
-> 
-
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+SGkgR2VlcnQsDQoNCk9uIFdlZCwgTWF5IDE1LCAyMDE5LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
+dGU6DQoNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHhlODIxODIwMCAweDEw
+PjsNCj4gDQo+IFdoYXQgYWJvdXQgdGhlIG90aGVyIHJlZ2lzdGVycz8NCj4gT24gUi1DYXIgR2Vu
+Mywgc2l6ZSBpcyAweDcwMC4NCj4gU2FtZSBmb3IgdXNiMl9waHkxLg0KDQpBaGhoLCBnb29kIGNh
+dGNoLg0KDQpDaHJpcw0KDQo=
