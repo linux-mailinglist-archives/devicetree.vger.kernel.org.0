@@ -2,224 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6F5D1FCBE
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 01:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA5A1FD78
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 03:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726363AbfEOXYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 May 2019 19:24:35 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:40075 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726529AbfEOXWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 19:22:34 -0400
-Received: by mail-oi1-f194.google.com with SMTP id r136so1111924oie.7;
-        Wed, 15 May 2019 16:22:34 -0700 (PDT)
+        id S1727058AbfEPBqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 May 2019 21:46:22 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:40402 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726425AbfEOXl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 May 2019 19:41:28 -0400
+Received: by mail-pl1-f196.google.com with SMTP id g69so620930plb.7
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 16:41:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DekUZ017XlDHupokZoz03njj8bKbhio2eWZPwNPjcUk=;
-        b=TW2unDWBNncdq8n3xbltWxzgP3f+WBm2Wwu2p901/hslhXWUx1pzOaey+SEv8I/fHb
-         VBVIYuOZYqS/gzJemgxPhhffOM18B6uwdrD6hooAggFrw18kMreZqYdQZytxSshhpU9o
-         t9z7G9pq8rEljqypIwgDaNWeiHyNpTRU+YQU5skrz1+X6xwn1PwlXrakWgYr5dPp5AuS
-         /zwoiV1DtazDQ+OADaw09/LEnyyJkZcV4ERtLsrcjRI36IKn66m7pc5hagh7iwrQ7Rvg
-         a+8A0a0NaVsNWO/6vCVzOZfoBPsD6BrOQc9sBVWHCT0hFnadetIkE0LPV9pJzWwB8jM5
-         rugw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ZjzAq2AO1sRBqrHJUjIMR4JCd00dysDTYDWKUQqEjMQ=;
+        b=bXMgsHQyNMU2fM0Ue9SNrNhQp2QCv7JSxc5jzX0IZmgsg2OidZNzsm8l3jUm1uE6nJ
+         lWaqMUHtNuGJqztJtHFz8qq0mDt/CiCZpfad5s4Lar/0LSp9YNJ4LfCfOyPKjC1m6mz1
+         3ptuYCoxX+8Jb5kFkHkJRuLa8Cb48QvPHkyzvL/aOFptkBfoE1sfSG/DH75K0zkMGOCk
+         UKLn1z8DM2/dwHP26TVmBpEDMUleMKoGHiO5SPFdigIH4tDV5uYGfhAUHlUkpBA9aeGT
+         zfHAkEmYsHIQ8owAl5TDHSjfDoC//9ZGpi9UGnLUd1nHfq3vJ58bJ/rhc01P05NZBFF2
+         oyyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DekUZ017XlDHupokZoz03njj8bKbhio2eWZPwNPjcUk=;
-        b=uAfegABbFz9gJK7MZZ4D5zvEQy/Bg0nwqQvW5W6Y7vhJjEgKcFy2aP/qd/kD6kTG5J
-         SdvopXNO28UGdIGLnYlU9s1N6tomQDo9JRjGXOgwgPpMZRfIRFzVZqHVhwL1IOYelvzt
-         bQqrqapqZD+c+WFwrmAQ6GwIdsovUtykIFk0kwRcCCu3hP7vtc3rc1rvZecFoKEGLn1J
-         9J8APwI554vE0pRpg1mtR1/OiKsMa8SDuk0FG9KxKeLo7DGFCXNjcDvvqYy3IG25Jvcn
-         808hSi1eRP9wWdQuUqOrNuKhDYbjplMXL0iaiHHdbnquN3/PWUJmAhGCPxLZ2n3fobrx
-         xjUQ==
-X-Gm-Message-State: APjAAAW0EIrHwSq3K/xmaSdkatiShJ5q1WyXZbqLaRxmrW+4aZuAM76U
-        VgKE1C70EHkuOFMkqRfX1HbUJ5kAfCcXOVHcx7E=
-X-Google-Smtp-Source: APXvYqxcJdXBjfI/NQOG54NjdcZMKv2rzobwN/fANlkeKUWtlr4xoy6TQzlw7osgjOY6kacmpcOb0Tz99iKvfhuIlXU=
-X-Received: by 2002:aca:5ed7:: with SMTP id s206mr8333849oib.122.1557962553793;
- Wed, 15 May 2019 16:22:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190512174608.10083-1-peron.clem@gmail.com> <20190513151405.GW17751@phenom.ffwll.local>
- <de50a9da-669f-ab25-2ef2-5ffb90f8ee03@baylibre.com> <CAJiuCccuEw0BK6MwROR+XUDvu8AJTmZ5tu=pYwZbGAuvO31pgg@mail.gmail.com>
- <CAJiuCccWa5UTML68JDQq6q8SyNZzVWwQWTOL=+84Bh4EMHGC3A@mail.gmail.com>
- <3c2c9094-69d4-bace-d5ee-c02b7f56ac82@arm.com> <CAJiuCcd=gCQJ4mxn3wNhHXveOhFLnYSEs+cnOMHcALPvd7bQZw@mail.gmail.com>
-In-Reply-To: <CAJiuCcd=gCQJ4mxn3wNhHXveOhFLnYSEs+cnOMHcALPvd7bQZw@mail.gmail.com>
-From:   Rob Herring <rob.e.herring@gmail.com>
-Date:   Wed, 15 May 2019 18:22:22 -0500
-Message-ID: <CAC=3edbn1yXih5vP0SwsDkqRB0j5q0c4FL0jhCq9DQ9Wt2-hAA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/8] Allwinner H6 Mali GPU support
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ZjzAq2AO1sRBqrHJUjIMR4JCd00dysDTYDWKUQqEjMQ=;
+        b=A+fCqrgtCMnDAJw/M0DZ7CRfSt/qX731bm1eoIpVTwvaI7KQ8nBetkGX8+Q6Jlrv0y
+         w/zN5m/7EydQo1z0ptdtpWMt78Iot/bug5SL8GOWvcU3VH4B0KXm5c6ko4nY7HrD+TPO
+         Y7rG/5oR1ZpV5q9echtRkTNnWF+ZTx9n+DXPUoDkQhIqkNgFA9ad+1RF7nMpkoZp5ZNk
+         vDtMqVs45fKhp6k0JA775SEBVddskwPueP+U9/UNJGn9ksrxsi+lYaNKZ/qcoPwoiurH
+         reXkKsyJRbOcHB1r/8ZLE14+EsOQa99bEmagWmwjwaZ+icDO9dx1BoXyHaQZYFI5jLQA
+         vJXA==
+X-Gm-Message-State: APjAAAVaX2o8UMNw8JYzrcQaoTMLz/ksRkINe4gOYp0YG8t8IC//RiZq
+        NDQi8gFmEeg/6EkYzz1D91wjTg==
+X-Google-Smtp-Source: APXvYqyRpmmXxhxDQ6tCx1u6g4+IFs/LWvWFlwdifLuOAObsUDyvgkOgAz2yesijZ/zlqJKH0WhsiQ==
+X-Received: by 2002:a17:902:2d03:: with SMTP id o3mr11064877plb.309.1557963687169;
+        Wed, 15 May 2019 16:41:27 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id g22sm4011790pfo.28.2019.05.15.16.41.25
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 15 May 2019 16:41:25 -0700 (PDT)
+Date:   Wed, 15 May 2019 16:41:23 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Clark <robdclark@chromium.org>,
+        Rob Clark <robdclark@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC 2/3] arm64: dts: qcom: sdm845-cheza: Re-add reserved memory
+Message-ID: <20190515234123.GP31438@minitux>
+References: <20190509184415.11592-1-robdclark@gmail.com>
+ <20190509184415.11592-3-robdclark@gmail.com>
+ <CAD=FV=WXW3aApS=c7baxhtfr1Nf-UnBN2s=rEBBkjj4=TCdT+g@mail.gmail.com>
+ <CAJs_Fx5PDj+T+DVixzHjun_wCG5fhZsxH8xUqRwmkfwN87UP_A@mail.gmail.com>
+ <CAD=FV=Vgiej=+hCZ_Eekoa4FJfpKxhOge8Wy29EEmtjB8JeF9g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=Vgiej=+hCZ_Eekoa4FJfpKxhOge8Wy29EEmtjB8JeF9g@mail.gmail.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 15, 2019 at 5:06 PM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.c=
-om> wrote:
->
-> Hi Robin,
->
-> On Tue, 14 May 2019 at 23:57, Robin Murphy <robin.murphy@arm.com> wrote:
-> >
-> > On 2019-05-14 10:22 pm, Cl=C3=A9ment P=C3=A9ron wrote:
+On Wed 15 May 14:50 PDT 2019, Doug Anderson wrote:
+
+> Hi,
+> 
+> On Tue, May 14, 2019 at 9:10 PM Rob Clark <robdclark@chromium.org> wrote:
+> 
+> > On Mon, May 13, 2019 at 3:48 PM Doug Anderson <dianders@chromium.org> wrote:
+> > >
 > > > Hi,
 > > >
-> > > On Tue, 14 May 2019 at 17:17, Cl=C3=A9ment P=C3=A9ron <peron.clem@gma=
-il.com> wrote:
-> > >>
-> > >> Hi,
-> > >>
-> > >> On Tue, 14 May 2019 at 12:29, Neil Armstrong <narmstrong@baylibre.co=
-m> wrote:
-> > >>>
-> > >>> Hi,
-> > >>>
-> > >>> On 13/05/2019 17:14, Daniel Vetter wrote:
-> > >>>> On Sun, May 12, 2019 at 07:46:00PM +0200, peron.clem@gmail.com wro=
-te:
-> > >>>>> From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > >>>>>
-> > >>>>> Hi,
-> > >>>>>
-> > >>>>> The Allwinner H6 has a Mali-T720 MP2. The drivers are
-> > >>>>> out-of-tree so this series only introduce the dt-bindings.
-> > >>>>
-> > >>>> We do have an in-tree midgard driver now (since 5.2). Does this st=
-uff work
-> > >>>> together with your dt changes here?
-> > >>>
-> > >>> No, but it should be easy to add.
-> > >> I will give it a try and let you know.
-> > > Added the bus_clock and a ramp delay to the gpu_vdd but the driver
-> > > fail at probe.
+> > > On Thu, May 9, 2019 at 11:44 AM Rob Clark <robdclark@gmail.com> wrote:
 > > >
-> > > [    3.052919] panfrost 1800000.gpu: clock rate =3D 432000000
-> > > [    3.058278] panfrost 1800000.gpu: bus_clock rate =3D 100000000
-> > > [    3.179772] panfrost 1800000.gpu: mali-t720 id 0x720 major 0x1
-> > > minor 0x1 status 0x0
-> > > [    3.187432] panfrost 1800000.gpu: features: 00000000,10309e40,
-> > > issues: 00000000,21054400
-> > > [    3.195531] panfrost 1800000.gpu: Features: L2:0x07110206
-> > > Shader:0x00000000 Tiler:0x00000809 Mem:0x1 MMU:0x00002821 AS:0xf
-> > > JS:0x7
-> > > [    3.207178] panfrost 1800000.gpu: shader_present=3D0x3 l2_present=
-=3D0x1
-> > > [    3.238257] panfrost 1800000.gpu: Fatal error during GPU init
-> > > [    3.244165] panfrost: probe of 1800000.gpu failed with error -12
+> > > > From: Douglas Anderson <dianders@chromium.org>
+> > > >
+> > > > Let's fixup the reserved memory to re-add the things we deleted in
+> > > > ("CHROMIUM: arm64: dts: qcom: sdm845-cheza: Temporarily delete
+> > > > reserved-mem changes") in a way that plays nicely with the new
+> > > > upstream definitions.
 > > >
-> > > The ENOMEM is coming from "panfrost_mmu_init"
-> > > alloc_io_pgtable_ops(ARM_MALI_LPAE, &pfdev->mmu->pgtbl_cfg,
-> > >                                           pfdev);
+> > > The message above makes no sense since that commit you reference isn't
+> > > in upstream.
 > > >
-> > > Which is due to a check in the pgtable alloc "cfg->ias !=3D 48"
-> > > arm-lpae io-pgtable: arm_mali_lpae_alloc_pgtable cfg->ias 33 cfg->oas=
- 40
-> > >
-> > > DRI stack is totally new for me, could you give me a little clue abou=
-t
-> > > this issue ?
+> > > ...but in any case, why not squash this in with the previous commit?
 > >
-> > Heh, this is probably the one bit which doesn't really count as "DRI st=
-ack".
+> > Yeah, I should have mentioned this was my intention, I just left it
+> > unsquashed since (at the time) it was something I had cherry-picked on
+> > top of current 4.19 cros kernel..
 > >
-> > That's merely a somewhat-conservative sanity check - I'm pretty sure it
-> > *should* be fine to change the test to "cfg->ias > 48" (io-pgtable
-> > itself ought to cope). You'll just get to be the first to actually test
-> > a non-48-bit configuration here :)
->
-> Thanks a lot, the probe seems fine now :)
->
-> I try to run glmark2 :
-> # glmark2-es2-drm
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
->     glmark2 2017.07
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
->     OpenGL Information
->     GL_VENDOR:     panfrost
->     GL_RENDERER:   panfrost
->     GL_VERSION:    OpenGL ES 2.0 Mesa 19.1.0-rc2
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-> [build] use-vbo=3Dfalse:
->
-> But it seems that H6 is not so easy to add :(.
->
-> [  345.204813] panfrost 1800000.gpu: mmu irq status=3D1
-> [  345.209617] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
-> 0x0000000002400400
-> [  345.209617] Reason: TODO
-> [  345.209617] raw fault status: 0x800002C1
-> [  345.209617] decoded fault status: SLAVE FAULT
-> [  345.209617] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
-> [  345.209617] access type 0x2: READ
-> [  345.209617] source id 0x8000
-> [  345.729957] panfrost 1800000.gpu: gpu sched timeout, js=3D0,
-> status=3D0x8, head=3D0x2400400, tail=3D0x2400400, sched_job=3D000000009e2=
-04de9
-> [  346.055876] panfrost 1800000.gpu: mmu irq status=3D1
-> [  346.060680] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
-> 0x0000000002C00A00
-> [  346.060680] Reason: TODO
-> [  346.060680] raw fault status: 0x810002C1
-> [  346.060680] decoded fault status: SLAVE FAULT
-> [  346.060680] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
-> [  346.060680] access type 0x2: READ
-> [  346.060680] source id 0x8100
-> [  346.561955] panfrost 1800000.gpu: gpu sched timeout, js=3D1,
-> status=3D0x8, head=3D0x2c00a00, tail=3D0x2c00a00, sched_job=3D00000000b55=
-a9a85
-> [  346.573913] panfrost 1800000.gpu: mmu irq status=3D1
-> [  346.578707] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
-> 0x0000000002C00B80
-> [  346.578707] Reason: TODO
-> [  346.578707] raw fault status: 0x800002C1
-> [  346.578707] decoded fault status: SLAVE FAULT
-> [  346.578707] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
-> [  346.578707] access type 0x2: READ
-> [  346.578707] source id 0x8000
-> [  347.073947] panfrost 1800000.gpu: gpu sched timeout, js=3D0,
-> status=3D0x8, head=3D0x2c00b80, tail=3D0x2c00b80, sched_job=3D00000000cf6=
-af8e8
-> [  347.104125] panfrost 1800000.gpu: mmu irq status=3D1
-> [  347.108930] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
-> 0x0000000002800900
-> [  347.108930] Reason: TODO
-> [  347.108930] raw fault status: 0x810002C1
-> [  347.108930] decoded faultn thi status: SLAVE FAULT
-> [  347.108930] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
-> [  347.108930] access type 0x2: READ
-> [  347.108930] source id 0x8100
-> [  347.617950] panfrost 1800000.gpu: gpu sched timeout, js=3D1,
-> status=3D0x8, head=3D0x2800900, tail=3D0x2800900, sched_job=3D00000000932=
-5fdb7
-> [  347.629902] panfrost 1800000.gpu: mmu irq status=3D1
-> [  347.634696] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
-> 0x0000000002800A80
+> > anyways, I pushed an (unsquashed, converted to fixup!'s) update to:
+> >
+> > https://github.com/freedreno/kernel-msm/commits/wip/cheza-dtb-upstreaming
+> >
+> > which has updates based on you're review comments (at least assuming I
+> > understood them correctly).. plus some unrelated to cheza-dt patches
+> > on top to get things actually working (ie. ignore everything on top of
+> > the fixup!'s)
+> 
+> Looks OK to me.  Are you going to post this?  Bjorn / Andy: do you
+> guys have opinions here?
+> 
 
-Is this 32 or 64 bit userspace? I think 64-bit does not work with
-T7xx. You might need this[1]. You may also be the first to try T720,
-so it could be something else.
+I think this is a good opportunity to get people with Cheza off 4.19, so
+I'm all for landing this upstream.
 
-Rob
+Regards,
+Bjorn
 
-[1] https://gitlab.freedesktop.org/mesa/mesa/merge_requests/650
+> 
+> > I didn't see any comments on the 'delete zap-shader' patch, so
+> > hopefully that means what I did there was a sane (or at least not
+> > insane) way to handle android/linux tz vs what we have on cheza?
+> 
+> I wasn't CCed, so I assumed you were looking for feedback from others
+> on that one.  ;-)  Oh, but I guess Jordan and Bjorn also weren't
+> CCed...  In any case, I replied now.
