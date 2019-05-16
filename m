@@ -2,103 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 800472003D
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F33200AA
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726374AbfEPH2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 03:28:02 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:37390 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726277AbfEPH2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:28:02 -0400
-Received: by mail-pl1-f194.google.com with SMTP id p15so1178965pll.4;
-        Thu, 16 May 2019 00:28:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XGByJB50qhjOEW1MHuUufGyQ+1XNyLAS4RXXQtspXjY=;
-        b=k49M8IvVTT17Qi7G3qbTV82EJr5KBMjNovfVRYiNhVskivzffuKIdnYSspF0YwakAO
-         K2doCcizrxg6kmFm4kcNm0qjMbI1mdPGymttMv/Y86L0U6Bljgjn5KUkw43xSj7M5tOW
-         jlitQQQ6r7NmZUbowmAKp9IC2Zdfp9MJ3W65xK6nDHjOXh3gfPp5ZJgn03U8njHUFW+x
-         YIl5l9W5qaduplsJg30z6HoUZR3FVTyBBOz1x6m8kg0DYzLg6AQPvfkMnTZqk3Hxm4L0
-         TuxVYoTUGSh1mGuInMQZTxmovfQShZXnv31DIaPkFRbJzjaNTMxiOJKExsJDvijjo4jM
-         nryw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=XGByJB50qhjOEW1MHuUufGyQ+1XNyLAS4RXXQtspXjY=;
-        b=bQrp/WW/KbhPvrSQrTtL5Is1wO0Ih+ipFRTKx73E/WUjk7ty0xnioT8iG+Eh2mbp9a
-         JlR7dG/dbj9nUa8Q5jjhnFe0DzJuWHkIl5VKvXF2yuk6omApoa4nmNC2MzBIr1SzVf3N
-         FEj3DhIYNTvJyz/MiDtyvXd6REJsoLMsvlmaIYsv7VOWiPOss2VZtOby0lZybbHMVt9x
-         xeIM7ZNz9YV+XlR9HFh2tXqtMexRo6Xpo3VWzKKwzdsy+FThChaf6mr5uNoATtCc3DqB
-         XOPKpA5PFHs8zS8H3PaL9mgOEXHaF2CL+/PBBCNf5bojruJZdSm0Dd6dhawkDxILlbt9
-         qQOg==
-X-Gm-Message-State: APjAAAW4+MXDg4vUOqLUTGulHLMwh8hjVjnPJpxQfQ0HFJBiszaC9BEP
-        GWlHtSQLdHb2ajTFN3Vtva3PXxtDwXI=
-X-Google-Smtp-Source: APXvYqyEpyV0Gam6SpbSKLLk8Ct8g546tevJNXeRBvS//cl1+2pV9XcXmytOEY5JLMkIPbo42tG4Yw==
-X-Received: by 2002:a17:902:7783:: with SMTP id o3mr11955428pll.21.1557991681457;
-        Thu, 16 May 2019 00:28:01 -0700 (PDT)
-Received: from localhost.localdomain ([107.151.139.128])
-        by smtp.gmail.com with ESMTPSA id f5sm5099124pfn.161.2019.05.16.00.27.59
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 16 May 2019 00:28:00 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>,
-        Weijie Gao <hackpascal@gmail.com>,
+        id S1726473AbfEPHwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 03:52:15 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:7671 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726393AbfEPHwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:52:14 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cdd16840000>; Thu, 16 May 2019 00:51:32 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 16 May 2019 00:52:13 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 16 May 2019 00:52:13 -0700
+Received: from [10.19.108.132] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 16 May
+ 2019 07:52:10 +0000
+Subject: Re: [PATCH V3 4/8] memory: tegra: Add Tegra210 EMC clock driver
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] MIPS: ralink: add mt7621-clk.h for device tree binding
-Date:   Thu, 16 May 2019 15:25:51 +0800
-Message-Id: <20190516072731.21957-1-gch981213@gmail.com>
-X-Mailer: git-send-email 2.21.0
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20190510084719.18902-1-josephl@nvidia.com>
+ <20190510084719.18902-5-josephl@nvidia.com>
+ <74fad66b-a6e9-ffc9-c1c9-e88b841e9209@gmail.com>
+ <648df201-eb63-6d26-3f90-02eba7624921@nvidia.com>
+ <bb2ef045-7d77-02d0-79fb-06f68732c5a5@gmail.com>
+From:   Joseph Lo <josephl@nvidia.com>
+Message-ID: <3afd909c-5be9-370d-e21a-ec57be3b841b@nvidia.com>
+Date:   Thu, 16 May 2019 15:52:02 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <bb2ef045-7d77-02d0-79fb-06f68732c5a5@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557993092; bh=4tYXVDno4KsskhiP9PdJy8YJDFFqRr5SFW0KndO/iBM=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=QRZhD9TaVAD5dOHju+CIHeSqirBQ/Ulz15Kk2FmIblanfUyxPeO4afRI+aW6v0jEC
+         4mxyRVNhhrUOeeW2FTTBVHxKDgWR1UjBsWpWjweH+mpnTomFW1GT6eUxsHonzQOXPL
+         EJfoDq+3orBP52QP16A795sbIOXBv1uiXV1xuOOLmrEX9mHLtNe2CB0b70vh6oAJ0P
+         ZPHe5B+st3dHfzcihktR40rHrR19xKpi53zkIZEhxI9g4nc4UAgitud94aI3vgkT9t
+         UKvCgne+FM3dGLU4H4wdr/wG03I+3ZphrW2ugU6f8T6IMeJPWKV2anjGhs4qhWm/l1
+         F2wt+FurGu0QA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds dt binding header for mediatek,mt7621-pll which
-was added in:
-commit e6046b5e69a0 ("MIPS: ralink: fix cpu clock of mt7621 and add dt clk devices")
+On 5/15/19 11:25 PM, Dmitry Osipenko wrote:
+> 15.05.2019 11:42, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> On 5/15/19 1:04 AM, Dmitry Osipenko wrote:
+>>> 10.05.2019 11:47, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>> This is the initial patch for Tegra210 EMC clock driver, which doesn't
+>>>> include the support code and detail sequence for clock scaling yet.
+>>>>
+>>>> The driver is designed to support LPDDR4 SDRAM. Because of the LPDDR4
+>>>> devices need to do initial time training before it can be used, the
+>>>> firmware will help to do that at early boot stage. Then, the trained
+>>>> table for the rates we support will pass to the kernel via DT. So the
+>>>> driver can get the trained table for clock scaling support.
+>>>>
+>>>> For the higher rate support (above 800MHz), the periodic training is
+>>>> needed for the timing compensation. So basically, two methodologies fo=
+r
+>>>> clock scaling are supported, one is following the clock changing
+>>>> sequence to update the EMC table to EMC registers and another is if th=
+e
+>>>> rate needs periodic training, then we will start a timer to do that
+>>>> periodically until it scales to the lower rate.
+>>>>
+>>>> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
+>>>>
+>>>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+>>>> ---
+snip.
+>>>> +=C2=A0=C2=A0=C2=A0 if (!seq->set_clock) {
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 seq =3D NULL;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_err(&pdev->dev, "Inval=
+id EMC sequence for table Rev. %d\n",
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 em=
+c->emc_table[0].rev);
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto emc_clk_register;
+>>>
+>>> Why do you want to register EMC clock if something fails? KMSG will be
+>>> flooded with errors coming from clk_set_rate.
+>>>
+>>
+>> See patch 7 in the series, the legacy EMC clock will be removed later,
+>> so we need to register the EMC clock whether the table is ready or not> =
+In that case, I mean if the table is not available, it will still
+>> register EMC clock at the rate that boot loader configured before kernel
+>> booting. So the MC clock can still work as expected, which is under EMC
+>> clock.
+>>
+>> And I did test that, couldn't observe any KMSG in that case.
+>=20
+> Looks like it kinda should work in the end.
+>=20
+> Although it's not good that now MC driver relies on the EMC driver
+> presence. Maybe it's not the best variant with moving the clock stuff
+> into the EMC driver?
+>=20
+> What about the backwards compatibility for DT that doesn't have the EMC
+> node?
+>=20
+> What if EMC driver is disabled in the kernel's config?
 
-Signed-off-by: Weijie Gao <hackpascal@gmail.com>
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
+The three questions above are actually one problem here. It's not about=20
+MC clock, because it's still available after these changes. And MC=20
+driver can still get it in the probe function even the EMC driver isn't=20
+there.
 
-checkpatch.pl shows a warning that the line referencing old commit
-is over 75 chars but if I shink it down anyhow it gave me an error
-saying I should use a proper style for commits. So I chose to ignore
-the warning and fix the error.
+The problem is that without EMC driver after these changes. The PLLM=20
+will have no client under it, which will cause the PLLM to be disabled=20
+in the late init call of "clk_disable_unused". So the system will be stuck.
 
- include/dt-bindings/clock/mt7621-clk.h | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 include/dt-bindings/clock/mt7621-clk.h
+>=20
+> And lastly.. what stops the MC driver to probe before the EMC? Looks
+> like MC driver is already in trouble because it's on arch level and the
+> EMC is on subsys, hence MC will get the orphaned clock and won't
+> initialize hardware properly on probe.
 
-diff --git a/include/dt-bindings/clock/mt7621-clk.h b/include/dt-bindings/clock/mt7621-clk.h
-new file mode 100644
-index 000000000000..a29e14ee2efe
---- /dev/null
-+++ b/include/dt-bindings/clock/mt7621-clk.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2018 Weijie Gao <hackpascal@gmail.com>
-+ */
-+
-+#ifndef __DT_BINDINGS_MT7621_CLK_H
-+#define __DT_BINDINGS_MT7621_CLK_H
-+
-+#define MT7621_CLK_CPU		0
-+#define MT7621_CLK_BUS		1
-+
-+#define MT7621_CLK_MAX		2
-+
-+#endif /* __DT_BINDINGS_MT7621_CLK_H */
--- 
-2.21.0
+After this moving, the EMC driver will be always enabled by default. And=20
+the DT change is necessary as well. The blob of EMC table is not=20
+necessary, because it needs a firmware update. We will update the=20
+firmware accordingly after the review settled and release it later.
 
+In case of no EMC table blob, the driver can still be registered, but no=20
+scaling function provided.
+
+>=20
+> BTW, how are you testing the EMC driver? Is there T210 devfreq patches
+> in works? Or what's the user of the EMC on T210?
+>=20
+
+1. Currently, via debugfs.
+2. No, we prefer to use Interconnect framework for that. The evaluation=20
+is ongoing.
+3. With Interconnect, the devices or peripherals can register on it to=20
+request the BW. So we can fine-tune the BW requirements with the latency=20
+allowance registers altogether to get better efficiency.
+
+Thanks,
+Joseph
