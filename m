@@ -2,140 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5B67203D8
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 12:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B407420417
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 13:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbfEPKqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 06:46:36 -0400
-Received: from mail-eopbgr30056.outbound.protection.outlook.com ([40.107.3.56]:8352
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726796AbfEPKqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 06:46:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BZ0NLhMKHR9t/W7fvUSdnYSAwn4/rOJk47JWqBmfgZk=;
- b=oBTNDtQ+cT/O7lslbH8XACk9RJ8MKqAlJuC32b/DBc2hHJSsuxuVoYzB1jxMqj8yBBBTh9B+sUMkM79rx6ghWAH+7y2suaEHY+1BMX5arFHg1o1OXNjuua5Tmfzmv4SaIPYzsTdeF6u7rGeNlfUD85rT2DmaaUOpQkcx7DQOmqI=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3787.eurprd04.prod.outlook.com (52.134.73.25) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Thu, 16 May 2019 10:46:33 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::d035:3bd0:a56a:189d%2]) with mapi id 15.20.1900.010; Thu, 16 May 2019
- 10:46:33 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "rui.zhang@intel.com" <rui.zhang@intel.com>,
-        "edubezval@gmail.com" <edubezval@gmail.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        "horms+renesas@verge.net.au" <horms+renesas@verge.net.au>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "jagan@amarulasolutions.com" <jagan@amarulasolutions.com>,
-        "enric.balletbo@collabora.com" <enric.balletbo@collabora.com>,
-        "marc.w.gonzalez@free.fr" <marc.w.gonzalez@free.fr>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1726569AbfEPLHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 07:07:33 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:37268 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726363AbfEPLHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 07:07:32 -0400
+Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4GAvtBL133141
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 07:07:31 -0400
+Received: from e06smtp07.uk.ibm.com (e06smtp07.uk.ibm.com [195.75.94.103])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 2sh3vr01ca-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 07:07:29 -0400
+Received: from localhost
+        by e06smtp07.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <rppt@linux.ibm.com>;
+        Thu, 16 May 2019 12:07:25 +0100
+Received: from b06cxnps4074.portsmouth.uk.ibm.com (9.149.109.196)
+        by e06smtp07.uk.ibm.com (192.168.101.137) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Thu, 16 May 2019 12:07:20 +0100
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
+        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x4GB7Jc336438152
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 16 May 2019 11:07:19 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 31EFC4C04A;
+        Thu, 16 May 2019 11:07:19 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D1A4E4C044;
+        Thu, 16 May 2019 11:07:17 +0000 (GMT)
+Received: from rapoport-lnx (unknown [9.148.8.112])
+        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
+        Thu, 16 May 2019 11:07:17 +0000 (GMT)
+Date:   Thu, 16 May 2019 14:07:16 +0300
+From:   Mike Rapoport <rppt@linux.ibm.com>
+To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH V12 3/5] thermal: imx_sc: add i.MX system controller
- thermal support
-Thread-Topic: [PATCH V12 3/5] thermal: imx_sc: add i.MX system controller
- thermal support
-Thread-Index: AQHU9AOc8iXKmYQeMUm4+FbUnbYclKY/+ukAgABUQSCALXAcAIAAAa8g
-Date:   Thu, 16 May 2019 10:46:33 +0000
-Message-ID: <DB3PR0402MB3916ABB2E6B07C3AE8AAA9FAF50A0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1555384609-7030-1-git-send-email-Anson.Huang@nxp.com>
- <1555384609-7030-3-git-send-email-Anson.Huang@nxp.com>
- <AM0PR04MB421105BBF1B9A90B255D1F7A80250@AM0PR04MB4211.eurprd04.prod.outlook.com>
- <DB3PR0402MB39163877C25E5BE7E10C96B7F5250@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <AM0PR04MB4211EF0D257E502C3BF917D0800A0@AM0PR04MB4211.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB4211EF0D257E502C3BF917D0800A0@AM0PR04MB4211.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dd1097cb-8905-4e48-95c3-08d6d9ebc30d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3787;
-x-ms-traffictypediagnostic: DB3PR0402MB3787:
-x-microsoft-antispam-prvs: <DB3PR0402MB3787512B9F92D6356D969F2FF50A0@DB3PR0402MB3787.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0039C6E5C5
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(366004)(396003)(39860400002)(136003)(13464003)(189003)(199004)(86362001)(52536014)(186003)(8676002)(66476007)(64756008)(66446008)(305945005)(229853002)(71190400001)(71200400001)(2201001)(76116006)(81166006)(66946007)(73956011)(66556008)(2501003)(14454004)(66066001)(6436002)(81156014)(74316002)(4326008)(7736002)(33656002)(486006)(316002)(3846002)(6116002)(110136005)(53936002)(53546011)(8936002)(44832011)(6506007)(102836004)(7416002)(478600001)(68736007)(76176011)(6246003)(26005)(55016002)(5660300002)(9686003)(256004)(25786009)(2906002)(446003)(11346002)(476003)(7696005)(99286004)(921003)(1121003)(15866825006);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3787;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: SRKf5YGjpmOXU2F+3ANWF6q9un1oLxp0qzduqnQeb2Lkxt5D7A5Uu/eTmHCyHv/uVwXWjY1Dkzjhl3futH9JK2QiVL7WQMr1f0902mg7+ORlsOh+0cAvi4ROWaYDaO23XMHv9lbZYGqHxFb/iHbWOQqdhCPczOHxsdPxXw/A582cOdHaMvdjm3H9DBB34D/4GYC7yWrXPe1yuhsaGNBM6POrBaJtxvRiGLk8vvfuHBzVr36sBSKLqm1HwkCV5E+trvxt8iRdYIJCAXxErdCHe6gqHfU1kRVyWvfCKHlZbZiZtvUiyAx0RRS/Lm3RvNcML5W6b5Uptfte70lYkOj35gas6CJnRT9UWwVHTyqJ9mVniCyrMfS5jHmGw5dxvQ1lhJcyHKsdHR0BJ0Le45uih220nHqV7T0S6WoGN12bXiY=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Architecture Mailman List <boot-architecture@lists.linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Michal Hocko <mhocko@suse.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>
+Subject: Re: [PATCH v2 2/2] amr64: map FDT as RW for early_init_dt_scan()
+References: <20190513003819.356-1-hsinyi@chromium.org>
+ <20190513003819.356-2-hsinyi@chromium.org>
+ <20190513085853.GB9271@rapoport-lnx>
+ <CAJMQK-hKrU2J0_uGe3eO_JTNwM=HRkXbDx2u45izcdD7wqwGeQ@mail.gmail.com>
+ <20190514154223.GA11115@rapoport-lnx>
+ <CAJMQK-gMa81kHaTS1kwTcOy+Avt5GsmNcagfscdLdmzS31Tobw@mail.gmail.com>
+ <CAKv+Gu8T-=inrckZmzQLk7abZtvkdE-nK_Qgcn+bbtovubzrkQ@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd1097cb-8905-4e48-95c3-08d6d9ebc30d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 May 2019 10:46:33.0721
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3787
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKv+Gu8T-=inrckZmzQLk7abZtvkdE-nK_Qgcn+bbtovubzrkQ@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-TM-AS-GCONF: 00
+x-cbid: 19051611-0028-0000-0000-0000036E4F1D
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19051611-0029-0000-0000-0000242DE950
+Message-Id: <20190516110715.GA19122@rapoport-lnx>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-16_09:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1905160074
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQWlzaGVuZyBEb25nDQo+
-IFNlbnQ6IFRodXJzZGF5LCBNYXkgMTYsIDIwMTkgNjo0MCBQTQ0KPiBUbzogQW5zb24gSHVhbmcg
-PGFuc29uLmh1YW5nQG54cC5jb20+OyByb2JoK2R0QGtlcm5lbC5vcmc7DQo+IG1hcmsucnV0bGFu
-ZEBhcm0uY29tOyBzaGF3bmd1b0BrZXJuZWwub3JnOyBzLmhhdWVyQHBlbmd1dHJvbml4LmRlOw0K
-PiBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWlsLmNvbTsgY2F0YWxpbi5tYXJp
-bmFzQGFybS5jb207DQo+IHdpbGwuZGVhY29uQGFybS5jb207IHJ1aS56aGFuZ0BpbnRlbC5jb207
-IGVkdWJlenZhbEBnbWFpbC5jb207DQo+IGRhbmllbC5sZXpjYW5vQGxpbmFyby5vcmc7IHVsZi5o
-YW5zc29uQGxpbmFyby5vcmc7IERhbmllbCBCYWx1dGENCj4gPGRhbmllbC5iYWx1dGFAbnhwLmNv
-bT47IFBlbmcgRmFuIDxwZW5nLmZhbkBueHAuY29tPjsNCj4gaGVpa29Ac250ZWNoLmRlOyBob3Jt
-cytyZW5lc2FzQHZlcmdlLm5ldC5hdTsgYWdyb3NzQGtlcm5lbC5vcmc7DQo+IG9sb2ZAbGl4b20u
-bmV0OyBiam9ybi5hbmRlcnNzb25AbGluYXJvLm9yZzsgamFnYW5AYW1hcnVsYXNvbHV0aW9ucy5j
-b207DQo+IGVucmljLmJhbGxldGJvQGNvbGxhYm9yYS5jb207IG1hcmMudy5nb256YWxlekBmcmVl
-LmZyOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2Vy
-bmVsLm9yZzsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgt
-cG1Admdlci5rZXJuZWwub3JnDQo+IENjOiBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29t
-Pg0KPiBTdWJqZWN0OiBSRTogW1BBVENIIFYxMiAzLzVdIHRoZXJtYWw6IGlteF9zYzogYWRkIGku
-TVggc3lzdGVtIGNvbnRyb2xsZXINCj4gdGhlcm1hbCBzdXBwb3J0DQo+IA0KPiBbLi4uXQ0KPiAN
-Cj4gPiA+ID4gKwkJaWYgKCFzZW5zb3IpDQo+ID4gPiA+ICsJCQlyZXR1cm4gLUVOT01FTTsNCj4g
-PiA+ID4gKw0KPiA+ID4gPiArCQlyZXQgPSB0aGVybWFsX3pvbmVfb2ZfZ2V0X3NlbnNvcl9pZChj
-aGlsZCwNCj4gPiA+ID4gKwkJCQkJCSAgICAmc2Vuc29yX3NwZWNzLA0KPiA+ID4NCj4gPiA+IEl0
-IGxvb2tzIGEgYml0IHN0cmFuZ2Ugd2h5IG5lZWQgc2Vuc29yX3NwZWNzIGFzIHlvdSBldmVuIGRp
-ZCBub3QgdXNlIGl0Lg0KPiA+DQo+ID4gSXQgaXMgYmVjYXVzZSBwYXJzaW5nIHRoZSBwaGFuZGxl
-IGFyZ3VtZW50cyBuZWVkcyBpdCwgc3VjaCBhcyB0aGUNCj4gPiB0aGVybWFsX3pvbmVfb2Zfc2Vu
-c29yX3JlZ2lzdGVyKCkgZnVuY3Rpb24gbmVlZHMgdGhpcyBwb2ludGVyIHRvIGJlDQo+ID4gcGFz
-c2VkIGJhY2sgdG8gY2hlY2sgdGhlIGVsZW1lbnRzIGFyZSB2YWxpZCBvciBOT1QsIHNvIHRoZSBB
-UEkgZG9lcw0KPiA+IE5PVCBkZWZpbmUgaXQgYXMgbG9jYWwgc3RydWN0dXJlLiBUaGUgQVBJIE5P
-VCBqdXN0IHJldHVybiB0aGUgc2Vuc29yDQo+ID4gaWQsIGJ1dCBhbHNvIHRoZSBvZl9waGFuZGxl
-X2FyZ3MgYWRkcmVzcywgYWx0aG91Z2ggd2UgZG8gTk9UIG5lZWQgaXQgYXQgYWxsDQo+IGhlcmUu
-DQo+IA0KPiBUaGUgbWFpbiBwcm9ibGVtIGlzIHRoaXMgb25lIGludHJvZHVjZWQgaW4gMi81IHdo
-aWNoIG5lZWRzIGdldCBhY2sgZnJvbQ0KPiBtYWludGFpbmVyLg0KPiBGb3IgbWUsIEkgd291bGQg
-c3VnZ2VzdCB0byBtYWtlIHNlbnNvcl9zcGVjcyB0cmFuc3BhcmVudCB0byB1c2VyIGlmIGl0J3MN
-Cj4gcmVhbGx5IG5vdCBuZWVkZWQgYnkgdXNlcnMuDQo+IA0KPiBQbGVhc2UgdHJ5IHRvIG1ha2Ug
-aXQgZWl0aGVyIG9wdGlvbmFsIG9yIGhpZGUgdG8gY29yZSB1c2VycyBhcyB3ZWxsLg0KPiBBbmQg
-SSBndWVzcyB0aGUgbGF0ZXIgb25lIGlzIGRvYWJsZSBhZnRlciBhIGdsYW5jZSBhdCB0aGUgY29y
-ZSBjb2RlLg0KDQpPSywgSSB3aWxsIGhpZGUgaXQgdG8gdXNlciBpZiBubyBvdGhlciBkaWZmZXJl
-bnQgY29tbWVudHMuDQoNCkFuc29uLg0KDQo+IA0KPiBSZWdhcmRzDQo+IERvbmcgQWlzaGVuZw0K
+On Wed, May 15, 2019 at 10:11:53PM +0200, Ard Biesheuvel wrote:
+> On Wed, 15 May 2019 at 12:24, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > On Tue, May 14, 2019 at 11:42 PM Mike Rapoport <rppt@linux.ibm.com> wrote:
+> >
+> > > I'm not sure if early console is available at the time kaslr_early_init()
+> > > is called, but if yes, running with memblock=debug may shed some light.
+> > >
+> > > > I didn't trace the real reason causing this. But in this case, maybe
+> > > > don't call memblock_reserve() in kaslr?
+> > >
+> > > My concern that this uncovered a real bug which might hit us later.
+> > >
+> > Hi Mike,
+> > Thanks for the hint. I tried on my device but seems that earlycon
+> > happens after the warning call trace, so can't more information.
+> >
+> > Since on my device kaslr will be runned, I tried call
+> > memblock_reserve() in kaslr and not in
+> > setup_machine_fdt()#fixmap_remap_fdt, but got following warning
+> >
+> 
+> I realize this is not documented sufficiently in the commit log, but
+> the reason I introduced the separate __fixmap_remap_fdt() [which does
+> not call memblock_reserve()] was that the KASLR init code should set
+> as little global state as possible, given that it is called with the
+> kernel mapped at the wrong virtual address.
+> 
+> The KASLR boot sequence is something like
+> - map kernel at default [unrandomized] address
+> - apply relocations and clear BSS
+> - run KASLR init to map and parse the FDT [*]
+> - if KASLR is enabled, unmap the kernel and remap it at the randomized address
+> - apply relocations and clear BSS
+> - proceed with start_kernel()
+>
+> The issue you are seeing is caused by the fact that the memblock
+> bookkeeping gets into an inconsistent state due to the 2nd clearing of
+> BSS.
+
+Ah, now the warning makes perfect sense :)
+Thanks!
+
+> [*] The reason we need to map the FDT this early is to obtain the
+> random seed, and to check whether 'nokaslr' was passed on the kernel
+> command line. The reason arm64 deviates from other architectures in
+> this regard is that we don't have a decompressor, and so there is no
+> other execution context available where we can run C code to parse the
+> FDT etc before we enter the kernel proper.
+> 
+> 
+> 
+> 
+> > [    0.000000] memblock_remove:
+> > [0x0001000000000000-0x0000fffffffffffe] arm64_memblock_init+0x28/0x224
+> > [    0.000000] memblock_remove:
+> > [0x0000004040000000-0x000000403ffffffe] arm64_memblock_init+0x64/0x224
+> > [    0.000000] memblock_reserve:
+> > [0x0000000040080000-0x00000000413c3fff]
+> > arm64_memblock_init+0x188/0x224
+> > [    0.000000] WARNING: CPU: 0 PID: 0 at
+> > /mnt/host/source/src/third_party/kernel/v4.19/mm/memblock.c:583
+> > memblock_add_range+0x1bc/0x1c8
+> > [    0.000000] Modules linked in:
+> > [    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 4.19.38 #222
+> > [    0.000000] Hardware name: MediaTek kukui rev2 board (DT)
+> > [    0.000000] pstate: 60000085 (nZCv daIf -PAN -UAO)
+> > [    0.000000] pc : memblock_add_range+0x1bc/0x1c8
+> > [    0.000000] lr : memblock_add_range+0x30/0x1c8
+> > [    0.000000] sp : ffffffab68603ea0
+> > [    0.000000] x29: ffffffab68603ef0 x28: 0000000040954324
+> > [    0.000000] x27: 0000000040080000 x26: 0000000000080000
+> > [    0.000000] x25: 0000000080127e4b x24: ffffffab68716000
+> > [    0.000000] x23: ffffffab680b5000 x22: 0000000001344000
+> > [    0.000000] x21: 0000000040080000 x20: 0000000000000000
+> > [    0.000000] x19: ffffffab6864bf00 x18: 00000000fffffc94
+> > [    0.000000] x17: 000000000000003c x16: ffffffab67d49064
+> > [    0.000000] x15: 0000000000000006 x14: 626d656d5f34366d
+> > [    0.000000] x13: 7261205d66666633 x12: 0000000000000000
+> > [    0.000000] x11: 0000000000000000 x10: ffffffffffffffff
+> > [    0.000000] x9 : 0000000000011547 x8 : ffffffab68765690
+> > [    0.000000] x7 : 696e695f6b636f6c x6 : ffffffab6875dd41
+> > [    0.000000] x5 : 0000000000000000 x4 : 0000000000000000
+> > [    0.000000] x3 : ffffffab678a24a0 x2 : 0000000001344000
+> > [    0.000000] x1 : 0000000040080000 x0 : ffffffab6864bf00
+> > [    0.000000] Call trace:
+> > [    0.000000]  memblock_add_range+0x1bc/0x1c8
+> > [    0.000000]  memblock_reserve+0x60/0xac
+> > [    0.000000]  arm64_memblock_init+0x188/0x224
+> > [    0.000000]  setup_arch+0x138/0x19c
+> > [    0.000000]  start_kernel+0x68/0x380
+> > [    0.000000] random: get_random_bytes called from
+> > print_oops_end_marker+0x3c/0x58 with crng_init=0
+> > [    0.000000] ---[ end trace ea99802b425f7adf ]---
+> > [    0.000000] memblock_reserve:
+> > [0x000000005f800000-0x000000005f811536]
+> > early_init_dt_reserve_memory_arch+0x38/0x48
+> > [    0.000000] memblock_reserve:
+> > [0x00000000ffe00000-0x00000000ffffffff]
+> > early_init_dt_reserve_memory_arch+0x38/0x48
+> >
+> > So I guess we just can't call memblock_reserve() in kaslr?
+> 
+
+-- 
+Sincerely yours,
+Mike.
+
