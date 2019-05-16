@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAEF420D82
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3AC20D87
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:58:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbfEPQ5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 12:57:30 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:46722 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726317AbfEPQ53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:57:29 -0400
-Received: by mail-vs1-f66.google.com with SMTP id e2so2747336vsc.13
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:57:29 -0700 (PDT)
+        id S1726545AbfEPQ6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 12:58:13 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:33348 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726449AbfEPQ6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:58:12 -0400
+Received: by mail-vs1-f65.google.com with SMTP id y6so2808149vsb.0
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:58:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=XhVy4fV27jq2t1U3j4yj5LOX3kolPCtSSv2ORXGfHzE=;
-        b=nmkNcSzFh5OLOVDoIP1Pa1b3QlFQ9XUYxSji0qAe4uJ8qe8/ySQ0B315ClUKfCMxCI
-         QreA9gJduIu2vRUzTpTojdUotl5e6fJq+SceMidLHwj0AeQMK7NwYdEyur30qezJkGB1
-         6P6pUygJV9C+M4itjNtSHxbE6pyY55gvxIt8M=
+        bh=GQWLFHbMxy0K35NUOa8JBzz6IPOsbH5VHwjdAfW9zU0=;
+        b=egW17PcXO0BjCt7HxJYjB66FokiITWMqtp0008EeL5GbbhpQKonq2gHOFHRGrZ0me5
+         TihY4jgy1laPIDXVBzdJoZ0YexQhL6W55jcDyEERvFOMCdfrqTI14wa/uBSkoCgEekSx
+         1nR/Oufvd/pGx1D8omffLmUof28M5fDBbkk5A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XhVy4fV27jq2t1U3j4yj5LOX3kolPCtSSv2ORXGfHzE=;
-        b=GILQ+2vFOuq9MEutB8WHLQM9mSDbd2DP637Y+0Y2fJbK/orouNvD2VE9oaY9kOgDE8
-         R+Y+Q2mubHetIT/GJfFaC6WqVaFdPjXq3svAQa9Iv627PLYpq1eKc/rMCAFp2fp9rSry
-         72PjUkv007+/LBycLZxnwc4to/q+zhtL72+jxRXSYpSE8snmwTaY9vUFpqYT7oVpVp/s
-         QZ2lXtaF+cEW5HgKjWxr3z7sgtEmvBcpO+QDdZKDci9MqcAt07zDH9WhCVE6/QkhgGQ+
-         YWVBLfI+/kToZBzbx/eu3PuoE4t4QVmh8IKylO+zN8O0Jaud8Zr961Kcxh5vdsXbMYFr
-         btWQ==
-X-Gm-Message-State: APjAAAXpFxqc97wusjDTuwa7QGOJbKcvDV8KtTy8vNFuI9JPUt/V6DwW
-        tNsRtQO3ohTaTZftqLK23Fy8bsyDDak=
-X-Google-Smtp-Source: APXvYqwkEFKV70FLxNL05HkNbXdisdHWWvhJf7O05EJv/OCAXHnlsxcht9RR/fpCgLhKdrnoHf0K8Q==
-X-Received: by 2002:a67:7587:: with SMTP id q129mr23196700vsc.40.1558025848060;
-        Thu, 16 May 2019 09:57:28 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id g3sm5223878vkb.9.2019.05.16.09.57.26
+        bh=GQWLFHbMxy0K35NUOa8JBzz6IPOsbH5VHwjdAfW9zU0=;
+        b=XI/CxiFmJSDKFg4136fW4h0w9Ph4peRz1hr1rqg7zugAqYcwNEsOE0qoKjkN5WneXq
+         OGI2qllKmbM7L7IQ2CPlQwbtO9E0yplAXPZPvk1sZgauVWc2F3+smc1q6nPU5xy2a9cg
+         sWqWxUdGO3LDPeZtv375VHTG/E51KlwHKNNuI8lNUZitc4qyt219M/I56Zu5ZrG/KXk8
+         Cg0Ue0rPF6woiFiEmPQkGylxMIozXVIu3PDuRfSkrXN5l2DZ5V8ycYre9SrYkI40Gzoc
+         PFuCvsjHPUIMdfi6xbk3mCyad/5yjCLIDXsnjFT5kyKNzJ9IegWCxfTkyLRB42Hbxem7
+         xDJw==
+X-Gm-Message-State: APjAAAXi5wuLbF6qhs06IPPmj+lPrUjOg9wYJMl+W2RXnJt2zcBl2NqE
+        dYidMxLKp3qZIzp08VqnyQLA/JbwhXA=
+X-Google-Smtp-Source: APXvYqwqswvRw6IjyqEWqeKEOB3yaO5piSIXHrPcR0xu52KUmcsLfcotRrM26JY+8UWvS4C5hRp7NA==
+X-Received: by 2002:a67:f88f:: with SMTP id h15mr6117406vso.67.1558025891451;
+        Thu, 16 May 2019 09:58:11 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 69sm6498002uas.0.2019.05.16.09.58.10
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 09:57:27 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id a95so1535715uaa.13
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:57:26 -0700 (PDT)
-X-Received: by 2002:a9f:24a3:: with SMTP id 32mr1792277uar.109.1558025846288;
- Thu, 16 May 2019 09:57:26 -0700 (PDT)
+        Thu, 16 May 2019 09:58:10 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id e2so2748835vsc.13
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:58:10 -0700 (PDT)
+X-Received: by 2002:a67:b348:: with SMTP id b8mr16923750vsm.144.1558025889986;
+ Thu, 16 May 2019 09:58:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190516162942.154823-1-mka@chromium.org>
-In-Reply-To: <20190516162942.154823-1-mka@chromium.org>
+References: <20190516162942.154823-1-mka@chromium.org> <20190516162942.154823-2-mka@chromium.org>
+In-Reply-To: <20190516162942.154823-2-mka@chromium.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 16 May 2019 09:57:11 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XtAMJcNCkV=wm1iNcMo3UenmrCDKJkmS6wtxvtpvLrag@mail.gmail.com>
-Message-ID: <CAD=FV=XtAMJcNCkV=wm1iNcMo3UenmrCDKJkmS6wtxvtpvLrag@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: raise CPU trip point
- temperature for veyron to 100 degC
+Date:   Thu, 16 May 2019 09:57:54 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vqpiq4=pt=KnCW7Zpj9QF0v4STHu5s05PZ9G5AyHbX0w@mail.gmail.com>
+Message-ID: <CAD=FV=Vqpiq4=pt=KnCW7Zpj9QF0v4STHu5s05PZ9G5AyHbX0w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] ARM: dts: rockchip: raise GPU trip point
+ temperatures for veyron
 To:     Matthias Kaehlcke <mka@chromium.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -72,21 +72,20 @@ Hi,
 
 On Thu, May 16, 2019 at 9:29 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 
-> This value matches what is used by the downstream Chrome OS 3.14
-> kernel, the 'official' kernel for veyron devices. Keep the temperature
-> for 'speedy' at 90=C2=B0C, as in the downstream kernel.
->
-> Increase the temperature for a hardware shutdown to 125=C2=B0C, which
-> matches the downstream configuration and gives the system a chance
-> to shut down orderly at the criticial trip point.
+> The values match thorse used by the downstream Chrome OS 3.14
+> kernel, the 'official' kernel for veyron devices. Keep the critical
+> trip point for speedy at 90=C2=B0C as in the downstream configuration.
 >
 > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
 > Changes in v2:
-> - patch added to the series
+> - also raise temperature of critical trip point
+> - add entries at position in alphabetical order
+> - added entry to keep critical trip point for speedy at 90=C2=B0C
+> - updated commit message
 > ---
 >  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 4 ++++
->  arch/arm/boot/dts/rk3288-veyron.dtsi       | 5 +++++
->  2 files changed, 9 insertions(+)
+>  arch/arm/boot/dts/rk3288-veyron.dtsi       | 8 ++++++++
+>  2 files changed, 12 insertions(+)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
