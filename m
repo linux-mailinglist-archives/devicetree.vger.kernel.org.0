@@ -2,177 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C1D1FEB8
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 07:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A93E91FEDF
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 07:51:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726604AbfEPFJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 01:09:45 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:40345 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726352AbfEPFJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 01:09:45 -0400
-Received: by mail-pl1-f195.google.com with SMTP id g69so987466plb.7
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2019 22:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=agOsn/FsJEMc+Zf/iAfFT/NhIk1MJBZxFX9gyrs1azc=;
-        b=C7XFLkG1+645K/z9YPQ8jDojz6KnEEmXqDTB1ykI6sc64RJeJDUZR5J5OoM9qn9Gcy
-         5XnW4jrY9Q0qnFQ6klWH7yLSifNUGdW58uS+728vWOTcXgvHgjaQwkRtDStMrRA9xPd1
-         B0VW4LH2mHoLkJ9WKwhZ52YvjhnEhWzy7MhWcCZLQ55JLD9yzPtUhA+7tZRiVaMGrI4g
-         5R0bkfsGDJhpPNha5vbqaPEETH2Qy9xfd9r0Z7CHpnMBVzAi+Uk9sC6+bxFR8O/9i65q
-         1hBPlEJR7AXr9G4F0EayyPMxMdgdA2cWm/mg8TeAtRgA0Ez4/ArhdUhl+36/zuvoweD8
-         petw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=agOsn/FsJEMc+Zf/iAfFT/NhIk1MJBZxFX9gyrs1azc=;
-        b=P+BPMwCuQkukLu8zzz2Kz4tWyfVu0ixykhRcvFX3LIU+EuctwsCybY1TYHN9ehk8L2
-         CBZL+WmX9l+uO/ZQJTRAQbk2Ulh+eCkkL01DB/l1wsDCnFfctNoi5zRxnj+8UXEwbnO1
-         VWvx6U5oTk/ICIBS5izbMKURwB8iSdOs5mV9156aB8WyZ+6Ji+I0hVJ7P4rmYdwPfEet
-         Z9Sd7VV6yGA5Sk98wXca0larevE3zOA+MR8PE31BBAJZm1ATdEUZ4yNvfdCgD7pvMddW
-         qbV/d+CuajdxO7ZZtE3+9rWj2B2p7TRfcHpE1KLlqDSRdBj9GtySvhGb2l9hVXyWUhW+
-         d5LQ==
-X-Gm-Message-State: APjAAAXxwGYn50DsuVENYM1KYmwHf5bu4Wi+m69MxgdmF/l+8J4RxS5I
-        6Z1gsSAgd6vcrx5zgnQ+WhJCaA==
-X-Google-Smtp-Source: APXvYqyOeGqGHbyS1GYeHd3FsJ1ZgTt6oYeWr0jHKsYiJtZNEzr0IKux09yyFHVwkYQTcv7TjxWQsQ==
-X-Received: by 2002:a17:902:2d:: with SMTP id 42mr48829831pla.34.1557983384320;
-        Wed, 15 May 2019 22:09:44 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id u6sm5929531pfa.1.2019.05.15.22.09.40
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 15 May 2019 22:09:43 -0700 (PDT)
-From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
-        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC
-Date:   Thu, 16 May 2019 10:38:40 +0530
-Message-Id: <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
-References: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
+        id S1726336AbfEPFvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 01:51:24 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:8813 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726277AbfEPFvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 01:51:23 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cdcfa610000>; Wed, 15 May 2019 22:51:29 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Wed, 15 May 2019 22:51:22 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Wed, 15 May 2019 22:51:22 -0700
+Received: from [10.24.192.61] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 16 May
+ 2019 05:51:19 +0000
+Subject: Re: [PATCH V3 27/29] PCI: OF: Add of_pci_get_reset_gpio() to parse
+ reset-gpios from DT
+To:     Rob Herring <robh@kernel.org>
+CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
+        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
+        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190513180744.16493-1-mmaddireddy@nvidia.com>
+ <20190513180744.16493-28-mmaddireddy@nvidia.com>
+ <20190514183105.GA32636@bogus>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <2f0aedd3-92b6-f0bb-abab-3ed5fc6fda80@nvidia.com>
+Date:   Thu, 16 May 2019 11:20:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190514183105.GA32636@bogus>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1557985889; bh=6qUpqr1/k7a8ckfkYIZWG1rjoMIPHv1N+KPbX6IkrjA=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=WIbED7NcQVPhaZ1E27NtSANJx69xKv/RbMhEBuIiw2KqBWkf68AnBk3mIFojtlyPa
+         fP4aP6smt/yrBNUdNbCqJJX3PXiftNVODecVst7ksIk7678vd31QUrcD/E2ktSlRM3
+         FrAYj45T3QvB9IWkH0GfFCGRCURXxoyA8HlUP29LhofbppudrIKTxWzQk8oh8RpbEF
+         X1tgXLve6BOgzRbMQ8pr3WUgByG673a8zTgm3TUdKqIRw6WcmEPXXJbupAQSBZ0Jh9
+         KGU//RSy79mX/FIEO5wNY/aH2yNC4+PsP7HR+OLmZGPDM8B64IZSNDg4yKb78PM4XK
+         nNhlSxkpDRS4g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i2c-ocore driver already has a polling mode interface.But it needs
-a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-There is an erratum in FU540 chip that prevents interrupt driven i2c
-transfers from working, and also the I2C controller's interrupt bit
-cannot be cleared if set, due to this the existing i2c polling mode
-interface added in mainline earlier doesn't work, and CPU stall's
-infinitely, when-ever i2c transfer is initiated.
 
-Ref:previous polling mode support in mainline
 
-	commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
+On 15-May-19 12:01 AM, Rob Herring wrote:
+> On Mon, May 13, 2019 at 11:37:42PM +0530, Manikanta Maddireddy wrote:
+>> This new helper function could be used by host drivers to get the reset
+>> GPIO descriptor. If the property isn't assigned, it will return NULL to
+>> the caller.
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> ---
+>> V3: New patch to add helper function to parse "reset-gpios"
+>>
+>>  drivers/pci/of.c       | 18 ++++++++++++++++++
+>>  include/linux/of_pci.h | 10 ++++++++++
+>>  2 files changed, 28 insertions(+)
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index 9454c90980c9..2a0282115ff0 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -6,6 +6,7 @@
+>>   */
+>>  #define pr_fmt(fmt)	"PCI: OF: " fmt
+>>  
+>> +#include <linux/gpio/consumer.h>
+>>  #include <linux/irqdomain.h>
+>>  #include <linux/kernel.h>
+>>  #include <linux/pci.h>
+>> @@ -224,6 +225,23 @@ int of_pci_get_max_link_speed(struct device_node *node)
+>>  }
+>>  EXPORT_SYMBOL_GPL(of_pci_get_max_link_speed);
+>>  
+>> +/**
+>> + * of_pci_get_reset_gpio() - Get PCI reset gpio descriptor.
+>> + *
+>> + * @node: device node
+>> + *
+>> + * Returns PCI reset gpio descriptor from DT, or an ERR_PTR() if the
+>> + * required property is invalid.
+>> + */
+>> +struct gpio_desc *of_pci_get_reset_gpio(struct device *dev,
+>> +					struct device_node *node,
+>> +					int dflags, char *label)
+>> +{
+>> +	return devm_gpiod_get_from_of_node(dev, node, "reset-gpios", 0, dflags,
+>> +					   label);
+>> +}
+> There's nothing PCI specific about this and 'reset-gpios' is pretty 
+> widely used. Either we should have this somewhere common or perhaps not 
+> worth a wrapper to save 1 parameter.
+>
+> Also, I believe you can pass just 'reset' so the deprecated form 
+> 'reset-gpio' can also be supported. 
+>
+> Rob
 
-The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-FU540-COOO SoC.
+I also think that it doesn't need a wrapper to save one parameter.
+I will drop this patch and use devm_gpiod_get_from_of_node() directly
+in pci-tegra driver.
 
-Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
----
- drivers/i2c/busses/i2c-ocores.c | 34 ++++++++++++++++++++++++++++------
- 1 file changed, 28 insertions(+), 6 deletions(-)
+Manikanta
 
-diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
-index aee1d86..00ee45c 100644
---- a/drivers/i2c/busses/i2c-ocores.c
-+++ b/drivers/i2c/busses/i2c-ocores.c
-@@ -27,6 +27,7 @@
- #include <linux/jiffies.h>
- 
- #define OCORES_FLAG_POLL BIT(0)
-+#define OCORES_FLAG_BROKEN_IRQ BIT(2) /* Broken IRQ in HiFive Unleashed */
- 
- /*
-  * 'process_lock' exists because ocores_process() and ocores_process_timeout()
-@@ -239,9 +240,13 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
- 	struct ocores_i2c *i2c = dev_id;
- 	u8 stat = oc_getreg(i2c, OCI2C_STATUS);
- 
--	if (!(stat & OCI2C_STAT_IF))
-+	if (i2c->flags & OCORES_FLAG_BROKEN_IRQ) {
-+		if (stat & OCI2C_STAT_IF)
-+			if (!(stat & OCI2C_STAT_BUSY))
-+				return IRQ_NONE;
-+	} else if (!(stat & OCI2C_STAT_IF)) {
- 		return IRQ_NONE;
--
-+	}
- 	ocores_process(i2c, stat);
- 
- 	return IRQ_HANDLED;
-@@ -356,6 +361,11 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
- 		ret = ocores_isr(-1, i2c);
- 		if (ret == IRQ_NONE)
- 			break; /* all messages have been transferred */
-+		else {
-+			if (i2c->flags & OCORES_FLAG_BROKEN_IRQ)
-+				if (i2c->state == STATE_DONE)
-+					break;
-+		}
- 	}
- }
- 
-@@ -406,7 +416,7 @@ static int ocores_xfer(struct i2c_adapter *adap,
- {
- 	struct ocores_i2c *i2c = i2c_get_adapdata(adap);
- 
--	if (i2c->flags & OCORES_FLAG_POLL)
-+	if ((i2c->flags & (OCORES_FLAG_POLL | OCORES_FLAG_BROKEN_IRQ)))
- 		return ocores_xfer_polling(adap, msgs, num);
- 	return ocores_xfer_core(i2c, msgs, num, false);
- }
-@@ -471,7 +481,7 @@ static u32 ocores_func(struct i2c_adapter *adap)
- 	},
- 	{
- 		.compatible = "sifive,fu540-c000-i2c",
--		.data = (void *)TYPE_SIFIVE_REV0,
-+		.data = (void *)(TYPE_SIFIVE_REV0 | OCORES_FLAG_BROKEN_IRQ),
- 	},
- 	{
- 		.compatible = "sifive,i2c0",
-@@ -601,6 +611,7 @@ static int ocores_i2c_probe(struct platform_device *pdev)
- {
- 	struct ocores_i2c *i2c;
- 	struct ocores_i2c_platform_data *pdata;
-+	const struct of_device_id *match;
- 	struct resource *res;
- 	int irq;
- 	int ret;
-@@ -682,13 +693,24 @@ static int ocores_i2c_probe(struct platform_device *pdev)
- 
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq == -ENXIO) {
--		i2c->flags |= OCORES_FLAG_POLL;
-+		/*
-+		 * Set a OCORES_FLAG_BROKEN_IRQ to enable workaround for
-+		 * FU540-C000 SoC in polling mode interface of i2c-ocore driver.
-+		 * Else enable default polling mode interface for SIFIVE/OCORE
-+		 * device types.
-+		 */
-+		match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
-+		if (match && (long)match->data ==
-+				(TYPE_SIFIVE_REV0 | OCORES_FLAG_BROKEN_IRQ))
-+			i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
-+		else
-+			i2c->flags |= OCORES_FLAG_POLL;
- 	} else {
- 		if (irq < 0)
- 			return irq;
- 	}
- 
--	if (!(i2c->flags & OCORES_FLAG_POLL)) {
-+	if (!(i2c->flags & (OCORES_FLAG_POLL | OCORES_FLAG_BROKEN_IRQ))) {
- 		ret = devm_request_irq(&pdev->dev, irq, ocores_isr, 0,
- 				       pdev->name, i2c);
- 		if (ret) {
--- 
-1.9.1
 
