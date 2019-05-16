@@ -2,107 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B548201C1
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 10:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2AED20229
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 11:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbfEPIy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 04:54:27 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:42753 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726503AbfEPIy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 04:54:26 -0400
-X-Originating-IP: 80.215.246.107
-Received: from localhost (unknown [80.215.246.107])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id D086CFF807;
-        Thu, 16 May 2019 08:54:17 +0000 (UTC)
-Date:   Thu, 16 May 2019 10:54:16 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Archit Taneja <architt@codeaurora.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] arm64: DTS: allwinner: a64: Add pinmux for RGB666 LCD
-Message-ID: <20190516085416.qfrbylku7226rub6@flea>
-References: <20190514155911.6C0AC68B05@newverein.lst.de>
- <20190514160225.AB0D368B20@newverein.lst.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="h2fn4argqt45zmoa"
-Content-Disposition: inline
-In-Reply-To: <20190514160225.AB0D368B20@newverein.lst.de>
-User-Agent: NeoMutt/20180716
+        id S1726742AbfEPJGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 05:06:48 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:58069 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726537AbfEPJGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 05:06:48 -0400
+X-IronPort-AV: E=Sophos;i="5.60,476,1549897200"; 
+   d="scan'208";a="16122335"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 16 May 2019 18:06:46 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 45AB642BEB8E;
+        Thu, 16 May 2019 18:06:44 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH 0/2] Add WLAN/BT support
+Date:   Thu, 16 May 2019 09:59:24 +0100
+Message-Id: <1557997166-63351-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds WLAN/BT support for the CAT874 platform.
 
---h2fn4argqt45zmoa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This patchset is based on renesas dev branch.
 
-On Tue, May 14, 2019 at 06:02:25PM +0200, Torsten Duwe wrote:
-> From: Icenowy Zheng <icenowy@aosc.io>
->
-> Allwinner A64's TCON0 can output RGB666 LCD signal.
->
-> Add its pinmux.
->
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> Signed-off-by: Torsten Duwe <duwe@suse.de>
-> ---
->
-> originally: patchwork.kernel.org/patch/10814179
->
-> Almost trivial, and obviously correct.
-> I added the /omit-if-no-ref/.
->
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> index 2abb335145a6..a8bbee84e7da 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> @@ -559,6 +559,16 @@
->  				function = "i2c1";
->  			};
->
-> +			/omit-if-no-ref/
-> +			lcd_rgb666_pins: lcd-rgb666 {
+Biju Das (2):
+  arm64: dts: renesas: r8a774c0-cat874: Add WLAN support
+  arm64: dts: renesas: r8a774c0-cat874: Add BT support
 
-This should have the -pins suffix
+ arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts | 57 +++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-Maxime
+-- 
+2.7.4
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---h2fn4argqt45zmoa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXN0lOAAKCRDj7w1vZxhR
-xfczAP949KD6LxwvBpLAV424mzw9jhUzLgBNJAOIYxQ1QQ2afAEAqHyh7A4+J2EV
-4OxzrWJXa/IL7TiTlQCvFyhQrynH+AI=
-=R8dD
------END PGP SIGNATURE-----
-
---h2fn4argqt45zmoa--
