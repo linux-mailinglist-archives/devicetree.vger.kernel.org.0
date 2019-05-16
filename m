@@ -2,73 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 440932056D
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 13:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8700C20617
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 13:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728333AbfEPLnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 07:43:52 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:41567 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727869AbfEPLnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 07:43:52 -0400
-Received: by mail-lf1-f66.google.com with SMTP id d8so2366599lfb.8
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 04:43:51 -0700 (PDT)
+        id S1728082AbfEPLqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 07:46:49 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:45315 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727787AbfEPLqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 07:46:48 -0400
+Received: by mail-lj1-f196.google.com with SMTP id r76so2765223lja.12;
+        Thu, 16 May 2019 04:46:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=EwIKElYEI2RR966fZy5tFSUKfG1M7XBGzxkxXp7I5g0=;
-        b=KU8+qcbyvp5kDX7BH7qQNUPqa8Wjd/YMOjRv8hcdVmerdVCscvC/Ksk5Gl1EtQFqMa
-         fFGul94v6PGH2cQ0pTVm0eQm8s2NSnSrFgowjqjHAHfSXiPGSQ0znBeqtWAebuqW8tOx
-         ZUpGbRJd3AV53a/pmg9dHkCPMHKrmnv+Et38yA2VB1lTp5noumCw8f/3wih/xPdGd+3/
-         7mH9ojpwkUIHwEyE6U47MYyHy+yr4shqCFrnFuRsv3FUW+8/tMwGmYteQpxdNLT3gekb
-         lJksJC6z44hMP9mbF4Z4r77g+b2u1hkBgGzlKYXr//WIwiD+qHd8UjY9kdtIiOKZpIzj
-         CAeA==
+        bh=5YTu9UrMZBuGZUICk0h5ufsKKVuAqbM3thnFJkrTeAE=;
+        b=YoYgQMNP2NxEvzHh4e8cmSlEpysOdip71UP8yT1Ghwrc6fEpJX0/7w1FBKsg6wSaX2
+         7JGbu747/mkJzruY9GpL0OWnqSxaAbadcWJprNqD5seyLQggL+iIEl6Fh7goIdzaKZmK
+         CfgaZiWLyQiyO8+UGEuAdcjA+2WcGSuIITZd+u+NIjq2feclXtjHNgGfO+XtnkTiFHRW
+         jQgx2BrXa4fMLehI3OmYOiGFPlqzl2SxS+/jaJtbOuDBzIbMC5MbTr39gtSbrpTx7JBL
+         YHgRpICumkdMvneunyfvGZY2lkti89Qm+CrHdtkNXfR2ZLsEf8HejhZSxdKqPI5PM76W
+         OEkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=EwIKElYEI2RR966fZy5tFSUKfG1M7XBGzxkxXp7I5g0=;
-        b=DeEBWts4dp5Tsql3W35vkdvfvLCx3c7q8kowhs5nDnHU28g2JJb9fTV8+zeu17Km+w
-         IGL/Ab4kC+7be8DweMlxL0P5+LcdTYj0fXSaYv1HeNjyIrL/yeDZxCvk99pPzayzKAdk
-         SfVFanOMifPb4S4khUirvuXZgoQjdxws/HI70bhzrWr8G+9iGctl2alMBEsEOlzEcKF4
-         gFvsz8D28Rr/hIL5+hASu7Li/Te84878UBDY9OiU1fCkOVVDKkxoOFgVg+3/vvW+b/uq
-         UXBEK1QxoHogFKRcswdd1UPZxwHhchUz3s5WriLvXKZqRfjVGTcSLLmt/IRlOPOQAa8+
-         xINA==
-X-Gm-Message-State: APjAAAXEOGQWKpBOmxEbAaTnFaOERmEO5ObGBgl3DWIRiE0qkTT+MnLj
-        U7bqJd4EowkIpt2QoAqHSS0fgbCR13uE2VTVhD4=
-X-Google-Smtp-Source: APXvYqzVuaijyK9HljD5OeF3lV0gb7ydsggrIAcEsHJtU916RXVoenchlsZMBktrOaxKNdUEQKVEohWgrU7E1jqqdXQ=
-X-Received: by 2002:a19:c746:: with SMTP id x67mr23290885lff.152.1558007030527;
- Thu, 16 May 2019 04:43:50 -0700 (PDT)
+        bh=5YTu9UrMZBuGZUICk0h5ufsKKVuAqbM3thnFJkrTeAE=;
+        b=RcSrR0KOq6mhmCf+PaV1xyqqVDZVISwdFK7Vm03e2K3V6QmZn7fpktNVNtLjHbZOd9
+         Ur5wCfGbnW+7W4rX1X/kFGSmdQMv4sq/h9kP/kT4cxUP726Ct6XZRDDkIzWGVquYuKoX
+         aSG1/8eqCQBLuwIS9rSW7MO0ozNUZl4T4jTBXDx4O8hqvRawiNvj7hCLQ95PDf/Db+Zn
+         uCh1gO2e/xWQiAATVi5Rq/gV/X89cI03AfnBLv4QiDhBPGDCojMwf7nDYUdGemxpXrKi
+         eEWStGVyjGcbw1XUMwgMJD00mgkVTHQxittMGXS6LIEZAbRZm+t6bcOl/n8/LB4tIZRD
+         WEig==
+X-Gm-Message-State: APjAAAUvihM3Za9NJ1aESG3X0fplck897DXS3mtUHu3DSuXVNxVnOaoA
+        AerbKX9nD+lm6Tkgv+DxyP8tBtsksppFFBfdQ1dK+O5g
+X-Google-Smtp-Source: APXvYqyOTc7WTRsHVZRRQRytwwDnDnOSVzcOLQVDwUcky2CN7MLQfiAG/p4Ojo7rUwnebX/5KBfJwYRza/rrOsR8DGE=
+X-Received: by 2002:a2e:994:: with SMTP id 142mr15627606ljj.192.1558007206878;
+ Thu, 16 May 2019 04:46:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190509155834.22838-1-m.felsch@pengutronix.de> <20190509155834.22838-12-m.felsch@pengutronix.de>
-In-Reply-To: <20190509155834.22838-12-m.felsch@pengutronix.de>
+References: <3e15abaee348468a69005e4240346822320c7f69.1558006714.git.shengjiu.wang@nxp.com>
+In-Reply-To: <3e15abaee348468a69005e4240346822320c7f69.1558006714.git.shengjiu.wang@nxp.com>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 16 May 2019 08:43:40 -0300
-Message-ID: <CAOMZO5CqbA6VaGhjgTnmmO=VJw1rUz=oReBqJ3HFHmL78vva2w@mail.gmail.com>
-Subject: Re: [PATCH 11/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC
- SPI1 interface
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>, Stefan.Nickl@kontron.com,
-        Gilles.Buloz@kontron.com, Michael.Brunner@kontron.com,
-        thomas.schaefer@kontron.com, frieder.schrempf@kontron.de,
-        Sascha Hauer <kernel@pengutronix.de>,
+Date:   Thu, 16 May 2019 08:46:36 -0300
+Message-ID: <CAOMZO5A7Xtg_pV2VAfmw5NacpRLS=0aGMAazu8p8tOTfa9PrCA@mail.gmail.com>
+Subject: Re: [alsa-devel] [PATCH V5] ASoC: cs42xx8: add reset-gpios in binding document
+To:     "S.j. Wang" <shengjiu.wang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>
+Cc:     "brian.austin@cirrus.com" <brian.austin@cirrus.com>,
+        "Paul.Handrigan@cirrus.com" <Paul.Handrigan@cirrus.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 9, 2019 at 12:59 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+[You should always submit dt-bindings patches to Rob and to the
+devicetree list as indicated by checkpatch]
 
-> +/* SPI1 */
-> +&ecspi2 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_ecspi2>;
-> +       fsl,spi-num-chipselects = <2>;
-> +       cs-gpios = <&gpio2 26 0>, <&gpio2 27 0>;
+On Thu, May 16, 2019 at 8:42 AM S.j. Wang <shengjiu.wang@nxp.com> wrote:
+>
+> Add reset-gpios property, which is optional.
+>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-Same comment as in the other patch.
+> +Optional properties:
+> +
+> +  - reset-gpios : a GPIO spec to define which pin is connected to the chip's
+> +    !RESET pin
+> +
+>  Example:
+>
+>  cs42888: codec@48 {
+> @@ -25,4 +30,5 @@ cs42888: codec@48 {
+>         VD-supply = <&reg_audio>;
+>         VLS-supply = <&reg_audio>;
+>         VLC-supply = <&reg_audio>;
+> +       reset-gpios = <&pca9557_b 1 GPIO_ACTIVE_LOW>;
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
