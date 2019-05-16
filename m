@@ -2,138 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D12272082A
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF402082C
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727587AbfEPN2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:28:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60014 "EHLO mail.kernel.org"
+        id S1726736AbfEPN3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:29:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60316 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726955AbfEPN2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 09:28:09 -0400
-Received: from localhost (50-82-73-190.client.mchsi.com [50.82.73.190])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726528AbfEPN3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 09:29:22 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7720C20815;
-        Thu, 16 May 2019 13:28:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9442920815;
+        Thu, 16 May 2019 13:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558013288;
-        bh=Zv6ZRln99gohm9loMinCpGMe8ABSvr0R7QAANxBD+kc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jBfwdHcf4Po3DSORzgMh2uiY9Ul04pxKYbhMY/zaWlfmyGmYMrWktAkYMR3/g+Zl5
-         QD+ntDpAEK1xbh69SJsqqUrJOze0M+lq5CE9k5BEH4i1YZ48kZLzEOp3Uq2M+X0e1Q
-         by/MDglHyhTFkXEIUWDjKZbIxkpBNpeq0mzZ2ocE=
-Date:   Thu, 16 May 2019 08:28:07 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, kishon@ti.com, catalin.marinas@arm.com,
-        will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V6 02/15] PCI/PME: Export pcie_pme_disable_msi() &
- pcie_pme_no_msi() APIs
-Message-ID: <20190516132807.GB101793@google.com>
-References: <20190513050626.14991-1-vidyas@nvidia.com>
- <20190513050626.14991-3-vidyas@nvidia.com>
+        s=default; t=1558013360;
+        bh=Hl4HG1LTgP0kUdc0fnowH0wQepATuakWlP9UdDaSz2g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=P+5NuyJmvwM/00B4MYXfQxHYVYhFQzrimQN7+B0Nbtaq3T0mp/Eq270v47Vd8pd2U
+         2msw5nuYmnmvJw51UwNzdn2Cgpk9MVib2Td4QWHVEgmLzVbA9S85uDpk4G1TA4thaZ
+         6TjATKtabfWPDh4Xp5GmBx3WIp+KzVM5VtSufJok=
+Received: by mail-qt1-f175.google.com with SMTP id y42so3840290qtk.6;
+        Thu, 16 May 2019 06:29:20 -0700 (PDT)
+X-Gm-Message-State: APjAAAWdkEdk0h/thjAkNAumkYc6K3Ik/NRCFhgNKdoZBYW7klPGppSn
+        IVkBugm5FHbSkknYaTl5tw4XZPCasgOb7lMr5w==
+X-Google-Smtp-Source: APXvYqwjIW/h+6qe3Z6w4/6CXYiZK9DXNUedQdNAsmingAGVHCB7FKDW2qcelU27s0fO/PpE9txe48VBr7h66V3rN8Q=
+X-Received: by 2002:aed:2ca5:: with SMTP id g34mr8040318qtd.76.1558013359842;
+ Thu, 16 May 2019 06:29:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190513050626.14991-3-vidyas@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190516121509.1441-1-alexandru.ardelean@analog.com>
+In-Reply-To: <20190516121509.1441-1-alexandru.ardelean@analog.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 16 May 2019 08:29:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJLEuCJWnD1G5iXdCNcJ+a_0zhoUH2a=4i6VBm8_B9r6w@mail.gmail.com>
+Message-ID: <CAL_JsqJLEuCJWnD1G5iXdCNcJ+a_0zhoUH2a=4i6VBm8_B9r6w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: accel: adxl345: switch to YAML bindings
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 10:36:13AM +0530, Vidya Sagar wrote:
-> Export pcie_pme_disable_msi() & pcie_pme_no_msi() APIs to enable drivers
-> using these APIs be able to build as loadable modules.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-
-Nak, as-is.
-
-1) The argument for why this is needed is unconvincing.  If device
-advertises MSI support, we should be able to use it.
-
-2) If it turns out we really need this, it should be some sort of
-per-device setting rather than a global thing like this.
-
+On Thu, May 16, 2019 at 7:15 AM Alexandru Ardelean
+<alexandru.ardelean@analog.com> wrote:
+>
+> The ADX345 supports both I2C & SPI bindings.
+> This change switches from old text bindings, to YAML bindings, and also
+> tries to make use of the recent multiple-examples support.
+>
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 > ---
-> Changes since [v5]:
-> * Corrected inline implementation of pcie_pme_no_msi() API
-> 
-> Changes since [v4]:
-> * None
-> 
-> Changes since [v3]:
-> * None
-> 
-> Changes since [v2]:
-> * Exported pcie_pme_no_msi() API after making pcie_pme_msi_disabled a static
-> 
-> Changes since [v1]:
-> * This is a new patch in v2 series
-> 
->  drivers/pci/pcie/pme.c     | 14 +++++++++++++-
->  drivers/pci/pcie/portdrv.h | 14 ++------------
->  2 files changed, 15 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/pci/pcie/pme.c b/drivers/pci/pcie/pme.c
-> index 54d593d10396..d5e0ea4a62fc 100644
-> --- a/drivers/pci/pcie/pme.c
-> +++ b/drivers/pci/pcie/pme.c
-> @@ -25,7 +25,19 @@
->   * that using MSI for PCIe PME signaling doesn't play well with PCIe PME-based
->   * wake-up from system sleep states.
->   */
-> -bool pcie_pme_msi_disabled;
-> +static bool pcie_pme_msi_disabled;
+>  .../bindings/iio/accel/adi,adxl345.yaml       | 74 +++++++++++++++++++
+>  .../devicetree/bindings/iio/accel/adxl345.txt | 39 ----------
+>  2 files changed, 74 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/iio/accel/adxl345.txt
+>
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> new file mode 100644
+> index 000000000000..47cdfb3b8182
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl345.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +void pcie_pme_disable_msi(void)
-> +{
-> +	pcie_pme_msi_disabled = true;
-> +}
-> +EXPORT_SYMBOL_GPL(pcie_pme_disable_msi);
+> +title: Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
 > +
-> +bool pcie_pme_no_msi(void)
-> +{
-> +	return pcie_pme_msi_disabled;
-> +}
-> +EXPORT_SYMBOL_GPL(pcie_pme_no_msi);
->  
->  static int __init pcie_pme_setup(char *str)
->  {
-> diff --git a/drivers/pci/pcie/portdrv.h b/drivers/pci/pcie/portdrv.h
-> index 944827a8c7d3..1d441fe26c51 100644
-> --- a/drivers/pci/pcie/portdrv.h
-> +++ b/drivers/pci/pcie/portdrv.h
-> @@ -129,18 +129,8 @@ void pcie_port_bus_unregister(void);
->  struct pci_dev;
->  
->  #ifdef CONFIG_PCIE_PME
-> -extern bool pcie_pme_msi_disabled;
+> +maintainers:
+> +  - Michael Hennerich <michael.hennerich@analog.com>
+> +
+> +description: |
+> +  Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers that supports
+> +  both I2C & SPI interfaces.
+> +    http://www.analog.com/en/products/mems/accelerometers/adxl345.html
+> +    http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adxl345
+> +      - adi,adxl375
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cpol: true
+> +
+> +  interrupt-parent: true
+
+You don't need to document interrupt-parent. It is implied. With that dropped,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a I2C device node */
+> +        accelerometer@2a {
+> +            compatible = "adi,adxl345";
+> +            reg = <0x53>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a SPI device node */
+> +        accelerometer@0 {
+> +            compatible = "adi,adxl345";
+> +            reg = <0>;
+> +            spi-max-frequency = <5000000>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adxl345.txt b/Documentation/devicetree/bindings/iio/accel/adxl345.txt
+> deleted file mode 100644
+> index f9525f6e3d43..000000000000
+> --- a/Documentation/devicetree/bindings/iio/accel/adxl345.txt
+> +++ /dev/null
+> @@ -1,39 +0,0 @@
+> -Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
 > -
-> -static inline void pcie_pme_disable_msi(void)
-> -{
-> -	pcie_pme_msi_disabled = true;
-> -}
+> -http://www.analog.com/en/products/mems/accelerometers/adxl345.html
+> -http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
 > -
-> -static inline bool pcie_pme_no_msi(void)
-> -{
-> -	return pcie_pme_msi_disabled;
-> -}
+> -Required properties:
+> - - compatible : should be one of
+> -               "adi,adxl345"
+> -               "adi,adxl375"
+> - - reg : the I2C address or SPI chip select number of the sensor
 > -
-> +void pcie_pme_disable_msi(void);
-> +bool pcie_pme_no_msi(void);
->  void pcie_pme_interrupt_enable(struct pci_dev *dev, bool enable);
->  #else /* !CONFIG_PCIE_PME */
->  static inline void pcie_pme_disable_msi(void) {}
-> -- 
+> -Required properties for SPI bus usage:
+> - - spi-max-frequency : set maximum clock frequency, must be 5000000
+> - - spi-cpol and spi-cpha : must be defined for adxl345 to enable SPI mode 3
+> -
+> -Optional properties:
+> - - interrupts: interrupt mapping for IRQ as documented in
+> -   Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+> -
+> -Example for a I2C device node:
+> -
+> -       accelerometer@2a {
+> -               compatible = "adi,adxl345";
+> -               reg = <0x53>;
+> -               interrupt-parent = <&gpio1>;
+> -               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> -       };
+> -
+> -Example for a SPI device node:
+> -
+> -       accelerometer@0 {
+> -               compatible = "adi,adxl345";
+> -               reg = <0>;
+> -               spi-max-frequency = <5000000>;
+> -               spi-cpol;
+> -               spi-cpha;
+> -               interrupt-parent = <&gpio1>;
+> -               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> -       };
+> --
 > 2.17.1
-> 
+>
