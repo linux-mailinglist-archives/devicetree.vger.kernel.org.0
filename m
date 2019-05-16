@@ -2,211 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5E4209AC
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:30:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A12C209B3
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:31:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726790AbfEPOaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 10:30:05 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:37486 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726687AbfEPOaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:30:05 -0400
-Received: by mail-io1-f67.google.com with SMTP id u2so2753474ioc.4;
-        Thu, 16 May 2019 07:30:04 -0700 (PDT)
+        id S1726820AbfEPObm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 10:31:42 -0400
+Received: from mail-eopbgr680055.outbound.protection.outlook.com ([40.107.68.55]:40078
+        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726742AbfEPObm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 10:31:42 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zDMRXQtb1GSj4Gdjzq9mKRQfQ/q3AFfPO4hqQhSpupk=;
-        b=HgVWsfLYSOmsqw13uMzbP7LHz5CALHc0sxb6AHROcFeXLV0h180syWKlcFt1mMcrFB
-         5mOf0q3SPo2EI0vxUtCyeFo0NIc5ksqdd4NRsKbwEExe3nTaI8DDI3iMRFZTFKJbM3HV
-         +6qm0s83uZEUepKHNO6jrbgNbBtzyPAAkjc2hEPRhC+h9EyIdMwRkohDjSQZbPU+WydW
-         fNx69jsM1ztOIUZsKjPRRiHoFRHIw/hlgYGuDWTfY9q96LDImOs+8oCWqwx0iXbYNtsE
-         ZyAXz9y4XKTl0eJKDZZI2xIl6eFQyMCydDvfeks7rB18aQ77YqJNe1v0zlQD44QMYJnb
-         ks+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zDMRXQtb1GSj4Gdjzq9mKRQfQ/q3AFfPO4hqQhSpupk=;
-        b=f9F17VKp6b1xAT3w49fvBsthHNbv0B0YK/qMirq/tC29GjynmG5zmT9EYHtD1hAzP9
-         ugrxCMP6A8eUBReiVroUW3EQBOumElh6/mBX8mOaMwp0bd6C/zHm4DvoUg9z8suiR2JV
-         AkRbqiRm6IoRJYUPso2LFgQFLF0oa1jJgLEgTlck8YaKOoWh1tJhCLaMMcYbmRICRVg2
-         5TyP6ncQ7kUkNAbY3DizTGIhlXCaoSHfV8juBDTD2bNCfboQjSj8PgwFCs2cpJazcZsv
-         B/RMr6BBkxM4eygV1QS/DOOPQ4boqSV3gKFi31+dLG7TwwpSuJkHJSURmagBpFN6wI63
-         98Ig==
-X-Gm-Message-State: APjAAAXp0LABVhuoowi6TYd/M9bPp4NOAGpd/HBVxz2xXH7JPgkTD62/
-        sokpjCY7RDfeGBdTgIpCmrnjEOuP
-X-Google-Smtp-Source: APXvYqwN1im0U/bG6ggXuVggmKCKF7ctL0YSpqZoE+5TkEO8LDPdDiHvHzFi5S+EZfDTaQMYFZjETw==
-X-Received: by 2002:a6b:f00c:: with SMTP id w12mr1715986ioc.243.1558017003788;
-        Thu, 16 May 2019 07:30:03 -0700 (PDT)
-Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.googlemail.com with ESMTPSA id i7sm1641733iop.79.2019.05.16.07.30.00
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 07:30:02 -0700 (PDT)
-Subject: Re: [PATCH V3 4/8] memory: tegra: Add Tegra210 EMC clock driver
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190510084719.18902-1-josephl@nvidia.com>
- <20190510084719.18902-5-josephl@nvidia.com>
- <74fad66b-a6e9-ffc9-c1c9-e88b841e9209@gmail.com>
- <648df201-eb63-6d26-3f90-02eba7624921@nvidia.com>
- <bb2ef045-7d77-02d0-79fb-06f68732c5a5@gmail.com>
- <3afd909c-5be9-370d-e21a-ec57be3b841b@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <25e11e09-fab5-4ba5-2612-6af068b21406@gmail.com>
-Date:   Thu, 16 May 2019 17:29:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hzDPj83wiHwhkXUL4Fod6Tqy0nErgzy9LkxBMHX3bk4=;
+ b=kDbHn6MfcMvoMOyiZUsRGpWq50IujHKADSDPrK/j7JgengHffFLYeVK2g09cEVTGTxAI0LQNtQnj5y3osyQP6ymWQEBPLQjLj4lHhSQNVggYyMI8j5zT026gifQmHqzHPQQS+YDrfNuK6Il8GA/X1xiXK5IK/vncMUIoS/F7j3U=
+Received: from DM6PR03CA0054.namprd03.prod.outlook.com (2603:10b6:5:100::31)
+ by CO2PR03MB2262.namprd03.prod.outlook.com (2603:10b6:102:e::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1900.17; Thu, 16 May
+ 2019 14:31:35 +0000
+Received: from BL2NAM02FT030.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::205) by DM6PR03CA0054.outlook.office365.com
+ (2603:10b6:5:100::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1900.17 via Frontend
+ Transport; Thu, 16 May 2019 14:31:35 +0000
+Authentication-Results: spf=pass (sender IP is 137.71.25.55)
+ smtp.mailfrom=analog.com; gmx.de; dkim=none (message not signed)
+ header.d=none;gmx.de; dmarc=bestguesspass action=none header.from=analog.com;
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
+Received: from nwd2mta1.analog.com (137.71.25.55) by
+ BL2NAM02FT030.mail.protection.outlook.com (10.152.77.172) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1900.16
+ via Frontend Transport; Thu, 16 May 2019 14:31:34 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x4GEVYsa027481
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Thu, 16 May 2019 07:31:34 -0700
+Received: from ben-Latitude-E6540.analog.com (10.50.1.133) by
+ NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
+ 14.3.408.0; Thu, 16 May 2019 10:31:33 -0400
+From:   Beniamin Bia <beniamin.bia@analog.com>
+To:     <jic23@kernel.org>
+CC:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
+        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
+        <devel@driverdev.osuosl.org>, <linux-kernel@vger.kernel.org>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <biabeniamin@outlook.com>,
+        Beniamin Bia <beniamin.bia@analog.com>
+Subject: [PATCH 1/5] iio: adc: ad7606: Move oversampling and scale options to chip info
+Date:   Thu, 16 May 2019 17:32:04 +0300
+Message-ID: <20190516143208.19294-1-beniamin.bia@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <3afd909c-5be9-370d-e21a-ec57be3b841b@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(396003)(376002)(346002)(39860400002)(2980300002)(199004)(189003)(6916009)(186003)(26005)(77096007)(478600001)(106002)(8676002)(2351001)(107886003)(53416004)(47776003)(72206003)(16586007)(2906002)(4326008)(8936002)(54906003)(246002)(316002)(50226002)(7416002)(70586007)(305945005)(426003)(5660300002)(86362001)(476003)(126002)(70206006)(2616005)(50466002)(336012)(486006)(356004)(6666004)(36756003)(7696005)(7636002)(14444005)(44832011)(48376002)(1076003)(51416003);DIR:OUT;SFP:1101;SCL:1;SRVR:CO2PR03MB2262;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 22c31e9e-65f6-41d8-659a-08d6da0b32b5
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328);SRVR:CO2PR03MB2262;
+X-MS-TrafficTypeDiagnostic: CO2PR03MB2262:
+X-Microsoft-Antispam-PRVS: <CO2PR03MB2262390F2EB2FBB335D6A376F00A0@CO2PR03MB2262.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 0039C6E5C5
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: QVcCF22YQNw9XFwisnA2wLBAV+knfsFoM2xLMSKyMde744Ttml+ndUO2muyVV31labOHF6INKGTWE3wE+knP9DsbIbnwwFTYCBfk9LIaHDyj7Gu2kx9PqGa6kWroae1oG0AprGTmTZfAQzmUpdxf596PuRfLo9N3Fpg92adCEN4iNQwRLMKofxsZi/DW2np/BHwnQ5Nlwpoz6PV5tQo0U3vy6QM9ODPoi9MzeDPuUgQ5CTYHCkRvVmRsV1hZzCPxO7TcoV+0nrfD2enonGjCq0E/GznwTja6kRj1QxejE3u3stqGv4TeR7AZCZJePHDtA8f89EoYXivJdB3Aw1GubFO6ZolpmSEuoPxER4yoKwUKYG4c49xpr9Xpi8HzJQ6yXmfy8PdMXyaA5PTu44Ws/sM/t/Z4TsCy6DEWuWAtSP4=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2019 14:31:34.8597
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22c31e9e-65f6-41d8-659a-08d6da0b32b5
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR03MB2262
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.05.2019 10:52, Joseph Lo пишет:
-> On 5/15/19 11:25 PM, Dmitry Osipenko wrote:
->> 15.05.2019 11:42, Joseph Lo пишет:
->>> On 5/15/19 1:04 AM, Dmitry Osipenko wrote:
->>>> 10.05.2019 11:47, Joseph Lo пишет:
->>>>> This is the initial patch for Tegra210 EMC clock driver, which doesn't
->>>>> include the support code and detail sequence for clock scaling yet.
->>>>>
->>>>> The driver is designed to support LPDDR4 SDRAM. Because of the LPDDR4
->>>>> devices need to do initial time training before it can be used, the
->>>>> firmware will help to do that at early boot stage. Then, the trained
->>>>> table for the rates we support will pass to the kernel via DT. So the
->>>>> driver can get the trained table for clock scaling support.
->>>>>
->>>>> For the higher rate support (above 800MHz), the periodic training is
->>>>> needed for the timing compensation. So basically, two methodologies
->>>>> for
->>>>> clock scaling are supported, one is following the clock changing
->>>>> sequence to update the EMC table to EMC registers and another is if
->>>>> the
->>>>> rate needs periodic training, then we will start a timer to do that
->>>>> periodically until it scales to the lower rate.
->>>>>
->>>>> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
->>>>>
->>>>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
->>>>> ---
-> snip.
->>>>> +    if (!seq->set_clock) {
->>>>> +        seq = NULL;
->>>>> +        dev_err(&pdev->dev, "Invalid EMC sequence for table Rev.
->>>>> %d\n",
->>>>> +            emc->emc_table[0].rev);
->>>>> +        goto emc_clk_register;
->>>>
->>>> Why do you want to register EMC clock if something fails? KMSG will be
->>>> flooded with errors coming from clk_set_rate.
->>>>
->>>
->>> See patch 7 in the series, the legacy EMC clock will be removed later,
->>> so we need to register the EMC clock whether the table is ready or
->>> not> In that case, I mean if the table is not available, it will still
->>> register EMC clock at the rate that boot loader configured before kernel
->>> booting. So the MC clock can still work as expected, which is under EMC
->>> clock.
->>>
->>> And I did test that, couldn't observe any KMSG in that case.
->>
->> Looks like it kinda should work in the end.
->>
->> Although it's not good that now MC driver relies on the EMC driver
->> presence. Maybe it's not the best variant with moving the clock stuff
->> into the EMC driver?
->>
->> What about the backwards compatibility for DT that doesn't have the EMC
->> node?
->>
->> What if EMC driver is disabled in the kernel's config?
-> 
-> The three questions above are actually one problem here. It's not about
-> MC clock, because it's still available after these changes. And MC
-> driver can still get it in the probe function even the EMC driver isn't
-> there.
+The device dependent options which are going to be different for devices
+which will be supported  in the future by this driver,
+were moved in chip info for a more generic driver. This patch allows
+supporting more devices by the driver. Also, it is an intermediate
+step of adding support for ad7616 in software mode.
 
-No, these are separate problems. MC driver queries the clock rate during
-the probe to configure memory arbitration. In your case the clock rate
-is always zero for MC.
+Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
+---
+ drivers/iio/adc/ad7606.c | 61 +++++++++++++++++++++++++++++-----------
+ drivers/iio/adc/ad7606.h | 15 +++++++++-
+ 2 files changed, 58 insertions(+), 18 deletions(-)
 
-> The problem is that without EMC driver after these changes. The PLLM
-> will have no client under it, which will cause the PLLM to be disabled
-> in the late init call of "clk_disable_unused". So the system will be stuck.
+diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+index 24c70c3cefb4..c66ff22f32d2 100644
+--- a/drivers/iio/adc/ad7606.c
++++ b/drivers/iio/adc/ad7606.c
+@@ -158,7 +158,7 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
+ 		return IIO_VAL_INT;
+ 	case IIO_CHAN_INFO_SCALE:
+ 		*val = 0;
+-		*val2 = st->scale_avail[st->range];
++		*val2 = st->scale_avail[st->range[0]];
+ 		return IIO_VAL_INT_PLUS_MICRO;
+ 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+ 		*val = st->oversampling;
+@@ -194,6 +194,32 @@ static ssize_t in_voltage_scale_available_show(struct device *dev,
+ 
+ static IIO_DEVICE_ATTR_RO(in_voltage_scale_available, 0);
+ 
++static int ad7606_write_scale_hw(struct iio_dev *indio_dev, int ch, int val)
++{
++	struct ad7606_state *st = iio_priv(indio_dev);
++
++	gpiod_set_value(st->gpio_range, val);
++
++	return 0;
++}
++
++static int ad7606_write_os_hw(struct iio_dev *indio_dev, int val)
++{
++	struct ad7606_state *st = iio_priv(indio_dev);
++	DECLARE_BITMAP(values, 3);
++
++	values[0] = val;
++
++	gpiod_set_array_value(ARRAY_SIZE(values), st->gpio_os->desc,
++			      st->gpio_os->info, values);
++
++	/* AD7616 requires a reset to update value */
++	if (st->chip_info->os_req_reset)
++		ad7606_reset(st);
++
++	return 0;
++}
++
+ static int ad7606_write_raw(struct iio_dev *indio_dev,
+ 			    struct iio_chan_spec const *chan,
+ 			    int val,
+@@ -201,15 +227,18 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
+ 			    long mask)
+ {
+ 	struct ad7606_state *st = iio_priv(indio_dev);
+-	DECLARE_BITMAP(values, 3);
+-	int i;
++	int i, ret, ch = 0;
+ 
+ 	switch (mask) {
+ 	case IIO_CHAN_INFO_SCALE:
+ 		mutex_lock(&st->lock);
+ 		i = find_closest(val2, st->scale_avail, st->num_scales);
+-		gpiod_set_value(st->gpio_range, i);
+-		st->range = i;
++		ret = st->write_scale(indio_dev, chan->address, i);
++		if (ret < 0) {
++			mutex_unlock(&st->lock);
++			return ret;
++		}
++		st->range[ch] = i;
+ 		mutex_unlock(&st->lock);
+ 
+ 		return 0;
+@@ -218,17 +247,12 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
+ 			return -EINVAL;
+ 		i = find_closest(val, st->oversampling_avail,
+ 				 st->num_os_ratios);
+-
+-		values[0] = i;
+-
+ 		mutex_lock(&st->lock);
+-		gpiod_set_array_value(ARRAY_SIZE(values), st->gpio_os->desc,
+-				      st->gpio_os->info, values);
+-
+-		/* AD7616 requires a reset to update value */
+-		if (st->chip_info->os_req_reset)
+-			ad7606_reset(st);
+-
++		ret = st->write_os(indio_dev, i);
++		if (ret < 0) {
++			mutex_unlock(&st->lock);
++			return ret;
++		}
+ 		st->oversampling = st->oversampling_avail[i];
+ 		mutex_unlock(&st->lock);
+ 
+@@ -536,7 +560,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+ 	st->bops = bops;
+ 	st->base_address = base_address;
+ 	/* tied to logic low, analog input range is +/- 5V */
+-	st->range = 0;
++	st->range[0] = 0;
+ 	st->oversampling = 1;
+ 	st->scale_avail = ad7606_scale_avail;
+ 	st->num_scales = ARRAY_SIZE(ad7606_scale_avail);
+@@ -589,6 +613,9 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+ 	if (ret)
+ 		dev_warn(st->dev, "failed to RESET: no RESET GPIO specified\n");
+ 
++	st->write_scale = ad7606_write_scale_hw;
++	st->write_os = ad7606_write_os_hw;
++
+ 	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+ 					  indio_dev->name, indio_dev->id);
+ 	if (!st->trig)
+@@ -643,7 +670,7 @@ static int ad7606_resume(struct device *dev)
+ 	struct ad7606_state *st = iio_priv(indio_dev);
+ 
+ 	if (st->gpio_standby) {
+-		gpiod_set_value(st->gpio_range, st->range);
++		gpiod_set_value(st->gpio_range, st->range[0]);
+ 		gpiod_set_value(st->gpio_standby, 1);
+ 		ad7606_reset(st);
+ 	}
+diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+index f9ef52131e74..143c30163df9 100644
+--- a/drivers/iio/adc/ad7606.h
++++ b/drivers/iio/adc/ad7606.h
+@@ -16,6 +16,12 @@
+  *			oversampling ratios.
+  * @oversampling_num	number of elements stored in oversampling_avail array
+  * @os_req_reset	some devices require a reset to update oversampling
++ * @write_scale_sw	pointer to the function which writes the scale via spi
++			in software mode
++ * @write_os_sw		pointer to the function which writes the os via spi
++			in software mode
++ * @sw_mode_config:	pointer to a function which configured the device
++ *			for software mode
+  */
+ struct ad7606_chip_info {
+ 	const struct iio_chan_spec	*channels;
+@@ -23,6 +29,9 @@ struct ad7606_chip_info {
+ 	const unsigned int		*oversampling_avail;
+ 	unsigned int			oversampling_num;
+ 	bool				os_req_reset;
++	int (*write_scale_sw)(struct iio_dev *indio_dev, int ch, int val);
++	int (*write_os_sw)(struct iio_dev *indio_dev, int val);
++	int (*sw_mode_config)(struct iio_dev *indio_dev);
+ };
+ 
+ /**
+@@ -39,6 +48,8 @@ struct ad7606_chip_info {
+  * @oversampling_avail	pointer to the array which stores the available
+  *			oversampling ratios.
+  * @num_os_ratios	number of elements stored in oversampling_avail array
++ * @write_scale		pointer to the function which writes the scale
++ * @write_os		pointer to the function which writes the os
+  * @lock		protect sensor state from concurrent accesses to GPIOs
+  * @gpio_convst	GPIO descriptor for conversion start signal (CONVST)
+  * @gpio_reset		GPIO descriptor for device hard-reset
+@@ -57,13 +68,15 @@ struct ad7606_state {
+ 	const struct ad7606_chip_info	*chip_info;
+ 	struct regulator		*reg;
+ 	const struct ad7606_bus_ops	*bops;
+-	unsigned int			range;
++	unsigned int			range[16];
+ 	unsigned int			oversampling;
+ 	void __iomem			*base_address;
+ 	const unsigned int		*scale_avail;
+ 	unsigned int			num_scales;
+ 	const unsigned int		*oversampling_avail;
+ 	unsigned int			num_os_ratios;
++	int (*write_scale)(struct iio_dev *indio_dev, int ch, int val);
++	int (*write_os)(struct iio_dev *indio_dev, int val);
+ 
+ 	struct mutex			lock; /* protect sensor state */
+ 	struct gpio_desc		*gpio_convst;
+-- 
+2.17.1
 
-This and the above are very compelling reasons to *NOT* register the
-clock from the EMC driver. You shall move all the clock stuff into the
-clock driver. Please see T124 EMC driver and what is done for the
-upcoming T30 EMC driver [1] for the example, borrow parts that fit best
-for T210.
-
-[1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=102688
-
->>
->> And lastly.. what stops the MC driver to probe before the EMC? Looks
->> like MC driver is already in trouble because it's on arch level and the
->> EMC is on subsys, hence MC will get the orphaned clock and won't
->> initialize hardware properly on probe.
-> 
-> After this moving, the EMC driver will be always enabled by default. And
-> the DT change is necessary as well. The blob of EMC table is not
-> necessary, because it needs a firmware update. We will update the
-> firmware accordingly after the review settled and release it later.
-> 
-> In case of no EMC table blob, the driver can still be registered, but no
-> scaling function provided.
-
-Anyone could change the default kernel configuration. Kernel shall boot
-and work fine with older device-tree's and any custom config after
-update. You should not break someones established setup without a good
-reason and you don't have one here.
-
->>
->> BTW, how are you testing the EMC driver? Is there T210 devfreq patches
->> in works? Or what's the user of the EMC on T210?
->>
-> 
-> 1. Currently, via debugfs.
-> 2. No, we prefer to use Interconnect framework for that. The evaluation
-> is ongoing.
-> 3. With Interconnect, the devices or peripherals can register on it to
-> request the BW. So we can fine-tune the BW requirements with the latency
-> allowance registers altogether to get better efficiency.
-
-Devfreq is the driver for the ACTMON hardware unit. This unit tells the
-driver when memory clock rate need to go higher or lower, depending on
-overall memory clients activity. Currently the tegra-devfreq driver
-supports T124 only, it will support T30 starting with v5.3. AFAIK, it
-shouldn't be difficult to add support for T210 as well.
-
-IIRC, the new Interconnect API is another away of conveying different
-requirements between devices. All Tegra's have knobs for memory
-configuration tuning, but there is no real need to change the default
-good-enough configuration for the time being in upstream.
-
-AFAIK, there is only one memory client that is really very sensitive to
-available memory bandwidth - Display Controller. The PM QoS memory
-bandwidth API is more than enough for the easy start and it's all
-internal to kernel, hence it will be possible to replace the PM API with
-something more advanced later on by as-needed basis. That's what I'm
-currently targeting for T20-T124. The PM QoS API could coexist with the
-Interconnect API (or whatever else) without any troubles, so it won't be
-a problem if you'll decide to pull into other direction for T210.
-
-AFAIK, the latency allowance config should be similar on all Tegra's
-starting from T30. Will be awesome if you'll do all the hard job of
-bringing up the fresh new API for T210, it always easier to follow by
-example.
