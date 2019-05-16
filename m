@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7524F20801
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D840020806
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:25:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726736AbfEPNYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:24:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58542 "EHLO mail.kernel.org"
+        id S1726742AbfEPNZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:25:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58844 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726703AbfEPNYL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 09:24:11 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        id S1726717AbfEPNZJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 09:25:09 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BE13B2087B
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 13:24:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2E82020862
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 13:25:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558013050;
-        bh=WC/f5/dSz84BLEkLCwH5U1Ll+l1qX8eGJWnolT70naA=;
+        s=default; t=1558013109;
+        bh=WNuqEHpbsjF3V2nlPtAGov/5DMwCSoLWptkVucGbyVY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mMP7Wzmthjy6/0ck2UaNN4pJP5P8nV7mxvFMGXF/TXYcTLRh/uSIQe7sLPkomaF5P
-         UuK4HcS5R0vgmx2B3+OJsYBGXM4bD2J4a6cEsFeaAZLmsQLxmZcHEIU/Ni+Dbe+Crd
-         OOycWYTzu9X1HBX4OX90uNcziIg7l7XeU9A1xw2M=
-Received: by mail-qt1-f178.google.com with SMTP id a39so3857677qtk.2
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:24:10 -0700 (PDT)
-X-Gm-Message-State: APjAAAWu/38P7UlqFQ2LQON46nu/+IKyWuWOStqDFHkA+yZ2s0ReRheT
-        NhCOhxew8IKXbkV0HP38qVo6a4jLlDOgO8baLg==
-X-Google-Smtp-Source: APXvYqwyjeW+HDz4tETM+qCkBYtyxCUgfVIbX6tfJRijPiTqWWE5F/OFxbxutdZT+809kJ9yZ7QBXnSwzANIq6CG5w4=
-X-Received: by 2002:aed:2471:: with SMTP id s46mr42283987qtc.144.1558013050035;
- Thu, 16 May 2019 06:24:10 -0700 (PDT)
+        b=wzEn6pbNaiEqoysDMjMLeEIiedjNG5ImjbiQPwVntaXLoLda3QCC2w+i9LI9k4DOU
+         C2KElw9E0Kd99Rgn7PTOmiHSCy3SyWGlaHFfGjSasUgzJNHT3Ig8RL0D/M3qXSEGI0
+         OxgBaxmQiI15Yl7Fp9DYiiFOFoQsdYhVuV+fsFNg=
+Received: by mail-qk1-f180.google.com with SMTP id p18so1659580qkk.0
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:25:09 -0700 (PDT)
+X-Gm-Message-State: APjAAAWFu2rZufYLphm3t1t5j+A8htPUU9ty7a7JyINM8rUq2yjDNuQp
+        SIKMTYYyyPqH8/pJayRYjyMX1Hwqt9whdLSVdQ==
+X-Google-Smtp-Source: APXvYqzhI3LC1U9lpGnWZZm7DhGgRFFQYomJQssdXmHE06C6cfyvv1SGkWtW749ihce0y9GQ66xFIrA1wtO+q2ZhKuQ=
+X-Received: by 2002:a37:7fc3:: with SMTP id a186mr37652270qkd.65.1558013108453;
+ Thu, 16 May 2019 06:25:08 -0700 (PDT)
 MIME-Version: 1.0
 References: <706cb97ae45cc9edc49c8709b2189ed786d2c7db.1557993523.git-series.maxime.ripard@bootlin.com>
- <a0558cf83011d21c4f44fecc078dff1e67cdbe9d.1557993523.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <a0558cf83011d21c4f44fecc078dff1e67cdbe9d.1557993523.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <706cb97ae45cc9edc49c8709b2189ed786d2c7db.1557993523.git-series.maxime.ripard@bootlin.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 May 2019 08:23:58 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKKE1XT12SdqG=nUnW0-F9Nb8VNxHq0jwm_AYowRKjJOA@mail.gmail.com>
-Message-ID: <CAL_JsqKKE1XT12SdqG=nUnW0-F9Nb8VNxHq0jwm_AYowRKjJOA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: sound: sun4i-spdif: Document that the
- RX channel can be missing
+Date:   Thu, 16 May 2019 08:24:57 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+4+LD+x-bd9iCwA4bGtRUjdqo7=g4HgGzcYTsZG17KLw@mail.gmail.com>
+Message-ID: <CAL_Jsq+4+LD+x-bd9iCwA4bGtRUjdqo7=g4HgGzcYTsZG17KLw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: sound: Convert Allwinner SPDIF
+ binding to YAML
 To:     Maxime Ripard <maxime.ripard@bootlin.com>
 Cc:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -57,28 +56,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, May 16, 2019 at 2:59 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
-> The H3 and compatibles controllers don't have any reception capabilities,
-> even though it was never documented as such in the binding before.
+> The Allwinner SoCs feature an SPDIF controller across multiple SoC
+> generations.
 >
-> Therefore, on those controllers, we don't have the option to set an RX DMA
-> channel.
+> However, earlier generations were a bit simpler than the subsequent ones,
+> and for example would always have RX and TX capabilities, and no reset
+> lines.
 >
-> This was already done in the DTSI, but the binding itself was never
-> updated. Let's add a special case in the schemas.
+> In order to express this, let's create two YAML schemas instead of the free
+> form text we had before.
 >
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 >
 > ---
 >
 > Changes from v2:
->   - Removed the expanded items description and rely on yaml-bindings tools
->     to fill them
->   - Fix typo in dmas property description
+>   - Add comments
 >
 > Changes from v1:
->   - switch to a draft7 conditional
+>   - Merged the two schemas together and used the draft-7 conditionals
 > ---
->  Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml | 38 ++++++++++++++++++++++++++++----------
->  1 file changed, 28 insertions(+), 10 deletions(-)
+>  Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+>  Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt          |  42 +------------------------------
+>  2 files changed, 101 insertions(+), 42 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt
 
 Reviewed-by: Rob Herring <robh@kernel.org>
