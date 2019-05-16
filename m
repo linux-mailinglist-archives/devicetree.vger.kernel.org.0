@@ -2,125 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 936E520E06
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 19:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 658A420E13
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 19:39:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbfEPRgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 13:36:54 -0400
-Received: from vps.xff.cz ([195.181.215.36]:38042 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726409AbfEPRgx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 13:36:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1558028210; bh=Jbc9aeVDZK4IVUtlH1rcpyyERggWBjuR3RQpcFzD1T0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MlzYyqsQURfuYpPc0op+qkOyLkPN7dYIRo4j+mrkhYHYwLuQlaIADILnCGtJtfM/p
-         RYtugzjmO7W2kVQcT7sWXDmiim8a3h/ixlJwffwkjNodM1ejasX5tJQxeVlwlHpes7
-         kiNj2m5G9DqxzV/jlVa7mK4k/8GmC7OxVxUcO1Fk=
-Date:   Thu, 16 May 2019 19:36:49 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
-        daniel.lezcano@linaro.org, catalin.marinas@arm.com,
-        will.deacon@arm.com, bjorn.andersson@linaro.org,
-        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
-        stefan.wahren@i2se.com, linux-pm@vger.kernel.org, wens@csie.org,
-        jagan@amarulasolutions.com, andy.gross@linaro.org,
-        rui.zhang@intel.com, devicetree@vger.kernel.org,
-        marc.w.gonzalez@free.fr, edubezval@gmail.com,
-        enric.balletbo@collabora.com, robh+dt@kernel.org,
-        Jonathan.Cameron@huawei.com, linux-arm-kernel@lists.infradead.org,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        olof@lixom.net, davem@davemloft.net
-Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
-Message-ID: <20190516173649.5s2s32ol43kbbhzg@core.my.home>
-Mail-Followup-To: Maxime Ripard <maxime.ripard@bootlin.com>,
-        Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
-        daniel.lezcano@linaro.org, catalin.marinas@arm.com,
-        will.deacon@arm.com, bjorn.andersson@linaro.org,
-        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
-        stefan.wahren@i2se.com, linux-pm@vger.kernel.org, wens@csie.org,
-        jagan@amarulasolutions.com, andy.gross@linaro.org,
-        rui.zhang@intel.com, devicetree@vger.kernel.org,
-        marc.w.gonzalez@free.fr, edubezval@gmail.com,
-        enric.balletbo@collabora.com, robh+dt@kernel.org,
-        Jonathan.Cameron@huawei.com, linux-arm-kernel@lists.infradead.org,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        olof@lixom.net, davem@davemloft.net
-References: <20190512082614.9045-1-tiny.windzz@gmail.com>
- <20190512082614.9045-3-tiny.windzz@gmail.com>
- <20190512133930.t5txssl7mou2gljt@flea>
- <20190512214128.qjyys3vfpwdiacib@core.my.home>
- <20190516150252.hf4u3bloo37chy6q@flea>
+        id S1727812AbfEPRjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 13:39:36 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:35438 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726409AbfEPRjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 13:39:36 -0400
+Received: by mail-vs1-f68.google.com with SMTP id q13so2876378vso.2
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 10:39:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=btkYXyszYOl4enkQNj6rF85Z8K5s124rQC98XbJLKTg=;
+        b=Jb1d/6dTS1pvv/Mc3sngMU2XidRneSla0eokNz7UyBI0yOzrq5vCgombW1gG1LdKUz
+         Z5kTaogiXfzaxz4CCpB/AezBDqTNpXyLbqEZlHFmcTaBm69PYrg8A59ElJe/LJnc4gz6
+         GygFEMTkuX9hdSY7oSVpDZbJJBD05Vgp574Ec=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=btkYXyszYOl4enkQNj6rF85Z8K5s124rQC98XbJLKTg=;
+        b=QSUF0+XKETWJsfbErT8d/GsDbwojt3q55i5icWESfNxaKaS/bQPypFt8GpwcEPPK/b
+         9n8HoYVHwmCOGPKdpFtjG2a4mTf3wpfHdvzFXdOmWjU3AfodEPgTFVGfnXRnpuCRNiUQ
+         vIPIuOESLg0zFPJ2ecqSAumMKznSaaQxixfpfE0rsOPfwihWiim2BzDvrD3Otxdsgw97
+         +HeBa9QA46osPWIPvLQaFl3PcJbDcHbF2hsh9/GsiejBQHB1Equz2HdmONq0kvA1wE52
+         nrmF7y+J40/F7uHiLEIVVLs2HEXezPDKvyrl0B/KivYNHa1g9LMp7Y6KYHTn63F5QgfR
+         ck3g==
+X-Gm-Message-State: APjAAAWsnzju723Ky7+GdYyxwgHsMFhQlvfQbPdXe3/8OHmfEHETN6iB
+        2GP7uGEqL+PxdhPE0GyBhxZco79nQ0c=
+X-Google-Smtp-Source: APXvYqxEL6cdW3kELH32k+y798ASE+ZEWrrtRCPKA9GudzZKl32XewE8YuSJ/IKO/zqFEd6YeM3bGA==
+X-Received: by 2002:a67:2ed5:: with SMTP id u204mr5257333vsu.64.1558028375217;
+        Thu, 16 May 2019 10:39:35 -0700 (PDT)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com. [209.85.221.176])
+        by smtp.gmail.com with ESMTPSA id 2sm6802857vke.27.2019.05.16.10.39.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Thu, 16 May 2019 10:39:32 -0700 (PDT)
+Received: by mail-vk1-f176.google.com with SMTP id k1so1265604vkb.2
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 10:39:31 -0700 (PDT)
+X-Received: by 2002:a1f:1e48:: with SMTP id e69mr23173110vke.16.1558028371386;
+ Thu, 16 May 2019 10:39:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190516150252.hf4u3bloo37chy6q@flea>
+References: <20190516172510.181473-1-mka@chromium.org> <20190516172510.181473-3-mka@chromium.org>
+In-Reply-To: <20190516172510.181473-3-mka@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 16 May 2019 10:39:17 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wk0EFO2+c=KAfemo0_w+QEA8==KzOdN-niD0mA_myh=Q@mail.gmail.com>
+Message-ID: <CAD=FV=Wk0EFO2+c=KAfemo0_w+QEA8==KzOdN-niD0mA_myh=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] ARM: dts: rockchip: Use GPU as cooling device for
+ the GPU thermal zone of the rk3288
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Maxime,
+Hi,
 
-On Thu, May 16, 2019 at 05:02:52PM +0200, Maxime Ripard wrote:
-> Hi,
-> 
-> On Sun, May 12, 2019 at 11:41:28PM +0200, Ondřej Jirman wrote:
-> > > > +static int tsens_get_temp(void *data, int *temp)
-> > > > +{
-> > > > +	struct tsensor *s = data;
-> > > > +	struct tsens_device *tmdev = s->tmdev;
-> > > > +	int val;
-> > > > +
-> > > > +	regmap_read(tmdev->regmap, tmdev->chip->temp_data_base +
-> > > > +		    0x4 * s->id, &val);
-> > > > +
-> > > > +	if (unlikely(val == 0))
-> > > > +		return -EBUSY;
-> > >
-> > > I'm not sure why a val equals to 0 would be associated with EBUSY?
-> >
-> > Thermal zone driver can (will) call get_temp before we got the
-> > first interrupt and the thermal data. In that case val will be 0.
-> >
-> > Resulting in:
-> >
-> >  (val + offset) * scale = (-2794) * -67 = 187198
-> >
-> > 187°C and immediate shutdown during boot - based on cirtical
-> > temperature being reached.
-> >
-> > Busy here means, get_temp does not yet have data. Thermal zone
-> > driver just reports any error to dmesg output.
-> 
-> Ah, that makes sense.
-> 
-> I guess if we're switching to an interrupt-based driver, then we can
-> just use a waitqueue, or is get_temp supposed to be atomic?
+On Thu, May 16, 2019 at 10:25 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 
-I'm not entirely sure, because I might have inadverently used a combination of
-interrupt and polling when testing this. It may be that if we set polling-delay
-to 0 in dts, that tz core will not try to call get_temp prematurely at all, and
-will simply wait for temperature update from the interrupt.
+> Currently the CPUs are used as cooling devices of the rk3288 GPU
+> thermal zone. The CPUs are also configured as cooling devices in the
+> CPU thermal zone, which indirectly helps with cooling the GPU thermal
+> zone, since the CPU and GPU temperatures are correlated on the rk3288.
+>
+> Configure the ARM Mali Midgard GPU as cooling device for the GPU
+> thermal zone instead of the CPUs.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> Changes in v2:
+> - patch added to the series
+> ---
+>  arch/arm/boot/dts/rk3288.dtsi | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
 
-I guess this needs to be tested/checked in tz code.
+This makes sense to me unless there is some better way to model the
+intertwined nature of the CPU and GPU temperature.  It's my
+understanding that the original device tree snippet was there because
+it was added before the gpu node existed in the device tree so the
+best we could do is to suggest that the cpu could cool things down.
 
-regards,
-	o.
-
-> Maxime
-> 
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
-
-
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
