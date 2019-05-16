@@ -2,86 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE99320D8E
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 379FA20DDC
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 19:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727319AbfEPQ6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 12:58:48 -0400
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:34459 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727296AbfEPQ6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:58:45 -0400
-Received: by mail-vs1-f66.google.com with SMTP id q64so2791076vsd.1
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:58:45 -0700 (PDT)
+        id S1727069AbfEPRZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 13:25:16 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:43297 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727568AbfEPRZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 13:25:16 -0400
+Received: by mail-pf1-f194.google.com with SMTP id c6so2180814pfa.10
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 10:25:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CIeWtimA7P9rrGuoEHFDb0M7OKtOA8ZV+AgbfX3hOsY=;
-        b=KTu4I3iLkD6d25Qx/9ZfdJuiwwImY8tkog2XfJWMae7fnJz7hMQfsB3YluYGPWvkva
-         W4oEQ+Mw86+nSDZlWZtIs7Vzh74xCnOKR7hFZCSSiAylCoIO5s+qZLGaqJKDS8QblmzJ
-         7+AnU7kiJ3qf5MhmefdogpR3nFeT9Mrs0FqkE=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EVl8ZXN8JPcw2xaHO9ZTYh60UwjcOeEd2LUYV6FNZrQ=;
+        b=L3pOoCaQskb2Fga/dNWke/VSFUUQxbe+nfTUcxUrOmVHH+LzrUUfkyRywEz99Q4nL2
+         m2F69hUS3UQsU1/UYxwbVPnwDiHlZv7R4hJ4RU5sRHW+Kb3kXCOs/SWFZz57Bb7K9hiQ
+         cvV1dfJXk2iCJVks9ckJo5aM/Ys5drogaQYgg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CIeWtimA7P9rrGuoEHFDb0M7OKtOA8ZV+AgbfX3hOsY=;
-        b=dGpjtQGSkdoSzAQo6E3kK3MB4eYyk6Cns8avcK/Z2GSnhriLsfQMc+csGA1yAFqpD9
-         5R+i9myt0vMjzxu39KTYHkND2UV7NHiVCKVPdGUfTX6EwpDZR4fHQsghmVGeLEbsbe02
-         Qg0D1YDSPZCn8ZEkgVj8oe4Uva3J2SjtYG4lpDVjw8iuLwkNdxqxm+IPZhJ43HkrppY0
-         pz/aKmQICcCfeB/xdD/SvaQV9S2udkI1DLl3yS3zRPGebkxWbQslVHuTjf/bacENIbtp
-         Kc8TkAue0cKCDTkgjHkZlxP0tY5bgGNQV6mEV/DdJK6JE6kc9/Sr7dC/2liCPS0ozlE7
-         oKAQ==
-X-Gm-Message-State: APjAAAVNBdqk9W5uaCObBQtk5qI1DveU9PCZAqgKfUiV7q1S5JYsFaHL
-        IwNz6EWzl/IYSHI8dK1R3uxkFdTPd3s=
-X-Google-Smtp-Source: APXvYqzzL8gU1KraA8ZRfoJT6g9uEuYkgkbfhphyNzxVF24Tp/b+t9Ryxl0p8lW0nJk0xuWpV7Xx/w==
-X-Received: by 2002:a67:ed0f:: with SMTP id l15mr24374270vsp.147.1558025923787;
-        Thu, 16 May 2019 09:58:43 -0700 (PDT)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
-        by smtp.gmail.com with ESMTPSA id p185sm661423vkd.40.2019.05.16.09.58.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 09:58:42 -0700 (PDT)
-Received: by mail-vs1-f52.google.com with SMTP id d128so2760456vsc.10
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:58:42 -0700 (PDT)
-X-Received: by 2002:a67:dd8e:: with SMTP id i14mr17782417vsk.149.1558025921921;
- Thu, 16 May 2019 09:58:41 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EVl8ZXN8JPcw2xaHO9ZTYh60UwjcOeEd2LUYV6FNZrQ=;
+        b=hxVWoSFhKY8fFiCcOvU4GY+2eM02bnxl3lRwNARjNn6vBA0Qw8yTVLX0bG0TQyvubj
+         0CvT2imTdHHBof46fbf5XEVw3LZIxS1zLpbJ+rCRZ0pp0qBLNVDhUcXbbdoNrYYwfZhW
+         +GWSNRsDXPLR0VuJffk8dlVSR6+WIQXvpyMiK/b/BPKS8nUvi8g13bWa38PkfISzjwc+
+         Z0Z9Uv3T3OsKqzx9LM1RK1DRTsTi/7UAavSPIQpH6v2ttA7g5yihbi4RV64kD9PCQ3uD
+         /WNB8stKNzv3P7VovcDtnRVRFXACeSV4f6FBbP8J/TlSq9XKBFb1ur+7YAQaUrGtx0Ns
+         IsSw==
+X-Gm-Message-State: APjAAAX3klL2xRgnj3+1fLd6bc5taEZ6nMPMXQx4oU3OKotT0jRsu/eA
+        XH1pZrVplMnS6sl8ABqxYsAb3w==
+X-Google-Smtp-Source: APXvYqwpj3INjdyCcYF7eLRtYgUqjMn2YOU0j2bY43pkolET6jRmQIrQb00jKgHVpRrRAInlDPe5xQ==
+X-Received: by 2002:aa7:9afc:: with SMTP id y28mr55797961pfp.101.1558027515393;
+        Thu, 16 May 2019 10:25:15 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id k63sm9651260pfb.108.2019.05.16.10.25.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 16 May 2019 10:25:14 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v2 1/3] dt-bindings: gpu: add #cooling-cells property to the ARM Mali Midgard GPU binding
+Date:   Thu, 16 May 2019 10:25:08 -0700
+Message-Id: <20190516172510.181473-1-mka@chromium.org>
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
 MIME-Version: 1.0
-References: <20190516162942.154823-1-mka@chromium.org> <20190516162942.154823-3-mka@chromium.org>
-In-Reply-To: <20190516162942.154823-3-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 16 May 2019 09:58:26 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WJrfAPMvK99QycHLuoTqXG8UWWojF+DpGZwB9ijckLig@mail.gmail.com>
-Message-ID: <CAD=FV=WJrfAPMvK99QycHLuoTqXG8UWWojF+DpGZwB9ijckLig@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] ARM: dts: raise GPU trip point temperature for
- speedy to 80 degC
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The GPU can be used as a thermal cooling device, add an optional
+'#cooling-cells' property.
 
-On Thu, May 16, 2019 at 9:29 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+Changes in v2:
+- patch added to the series
+---
+ Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> Raise the temperature of the GPU thermal trip point for speedy
-> to 80=C2=B0C. This is the value used by the downstream Chrome OS 3.14
-> kernel, the 'official' kernel for speedy.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> Changes in v2:
-> - add entry at position in alphabetical order
-> ---
->  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 4 ++++
->  1 file changed, 4 insertions(+)
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+index 18a2cde2e5f3..61fd41a20f99 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+@@ -37,6 +37,8 @@ Optional properties:
+ - operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
+   for details.
+ 
++- #cooling-cells: Refer to Documentation/devicetree/bindings/thermal/thermal.txt
++  for details.
+ 
+ Example for a Mali-T760:
+ 
+@@ -51,6 +53,7 @@ gpu@ffa30000 {
+ 	mali-supply = <&vdd_gpu>;
+ 	operating-points-v2 = <&gpu_opp_table>;
+ 	power-domains = <&power RK3288_PD_GPU>;
++	#cooling-cells = <2>;
+ };
+ 
+ gpu_opp_table: opp_table0 {
+-- 
+2.21.0.1020.gf2820cf01a-goog
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
