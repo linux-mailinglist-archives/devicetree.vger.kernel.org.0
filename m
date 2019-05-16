@@ -2,81 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6AC6209EA
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D627B209FC
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbfEPOjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 10:39:46 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:40723 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726687AbfEPOjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:39:46 -0400
-Received: by mail-ed1-f68.google.com with SMTP id j12so5605370eds.7
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 07:39:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3CyBDin8DCVhqMsm5Y31nNq5E0wYgKjhJ5os3L5pACs=;
-        b=XewtSERXwuRq/hMVzfTTvLn3bup7RL3HYHHiSaecYOcuXF0IYqV7+eahP0uoc2sntm
-         all0N0vBT2cEdbkpmEsZSMOHRpXo6iW0x4s9X85jbF/Gs3irW/ih2LB9XWftHVqFvoxL
-         zLCWkLS84U94nRd2oDZuAQn3I+MZk66knbYg515af60MhANSCel3a9ThgmTA0MVapTqI
-         5zV2XK01YaT/iulH3tvZbCE7lRjnY+IhIzPwTcHf6do6SiNoFYitBpKumOTkoznvSoYZ
-         6KDcV0oC5T1hfz1q7tbHZMWpCM0WYLl0ytkNaqiRTMcFgZuF3edRp1KtFoFaMc9E57Z3
-         le5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3CyBDin8DCVhqMsm5Y31nNq5E0wYgKjhJ5os3L5pACs=;
-        b=CULzKatOiVhi522kf3ok+cKyGyM4pceAyUbiClQPIuxTxZag9XKA8deZQTnDsciFDM
-         oaIU+iONqXDPluN5haWSf/OUeopTzOPdhjVqkgXXndFHBxM6dt9h1RjV0rPYauX3IIvM
-         54ZMskEOWSKgrhCdi3atLVUlBmtV2Xbjr1xX+64aMGXdE43iL2c24AS4KwmIy2IH4dfb
-         9GqvIvsFp4c/G1K8+v57Cj5h+Qq8NW/Z+/ZVd+GaEmGBIXojZ1sR/aH0ockwE8cI4CMQ
-         xwd4UQKpAjeQ9f4qWsCVlxXqQ2MSE5fmkdc0WM62U8v1zHfddg1pM+qKSEgWimxWbKhL
-         1qhA==
-X-Gm-Message-State: APjAAAX28WfMY9Wt+6ibuzXGZMKoF8/pn8w40bENyS/ovhtKZrLip4/+
-        EYHJJ2RyzOArYb1HUxahmPGcl4G9vZl/6bicjz37uA==
-X-Google-Smtp-Source: APXvYqzVw4+DR7PKEpSfxZo2Bdbylhw3TaXpzTsHymAwtO3mmxyKdPyPNxfkAFlXWKqIm8B6CbcVq2T1cTiJkrYtHQs=
-X-Received: by 2002:a17:906:b6c8:: with SMTP id ec8mr39217179ejb.89.1558017584937;
- Thu, 16 May 2019 07:39:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190516102817.188519-1-hsinyi@chromium.org> <20190516102817.188519-2-hsinyi@chromium.org>
- <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
-In-Reply-To: <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
-From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Date:   Thu, 16 May 2019 16:39:32 +0200
-Message-ID: <CAKv+Gu_kgHEhk-p8KoGVgpifdjA67Li-D19_KSLo+1h4ZvL=3g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
+        id S1726801AbfEPOnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 10:43:11 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:48250 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726717AbfEPOnK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 10:43:10 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D5461715;
+        Thu, 16 May 2019 07:43:10 -0700 (PDT)
+Received: from lakrids.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AFD003F71E;
+        Thu, 16 May 2019 07:43:06 -0700 (PDT)
+Date:   Thu, 16 May 2019 15:43:04 +0100
+From:   Mark Rutland <mark.rutland@arm.com>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will.deacon@arm.com>,
         Andrew Morton <akpm@linux-foundation.org>,
         Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
         Miles Chen <miles.chen@mediatek.com>,
         James Morse <james.morse@arm.com>,
         Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
         Chintan Pandya <cpandya@codeaurora.org>,
         Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
         Robin Murphy <robin.murphy@arm.com>,
         Laura Abbott <labbott@redhat.com>,
         Stephen Boyd <swboyd@chromium.org>,
         Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
+Message-ID: <20190516144303.GF43059@lakrids.cambridge.arm.com>
+References: <20190516102817.188519-1-hsinyi@chromium.org>
+ <20190516102817.188519-2-hsinyi@chromium.org>
+ <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
+User-Agent: Mutt/1.11.1+11 (2f07cb52) (2018-12-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 May 2019 at 16:37, Rob Herring <robh+dt@kernel.org> wrote:
->
+On Thu, May 16, 2019 at 09:37:05AM -0500, Rob Herring wrote:
 > On Thu, May 16, 2019 at 5:28 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
 > >
 > > Basically does similar things like __fixmap_remap_fdt(). It's supposed
@@ -89,18 +67,21 @@ On Thu, 16 May 2019 at 16:37, Rob Herring <robh+dt@kernel.org> wrote:
 > >  arch/arm64/kernel/setup.c |  2 ++
 > >  arch/arm64/mm/mmu.c       | 17 +++++++++++++++++
 > >  2 files changed, 19 insertions(+)
->
+> 
 > Why not just map the FDT R/W at the start and change it to RO just
 > before calling unflatten_device_tree? Then all the FDT scanning
 > functions or any future fixups we need can just assume R/W. That is
 > essentially what Stephen suggested. However, there's no need for a
 > weak function as it can all be done within the arch code.
->
+> 
 > However, I'm still wondering why the FDT needs to be RO in the first place.
->
 
-It was RO because it could be RO, and we wanted to ensure that it
-didn't get modified inadvertently (hence the CRC check we added as
-well)
+We want to preserve the original FDT in a pristine form for kexec (and
+when exposed to userspace), and mapping it RO was the easiest way to
+catch it being randomly modified (e.g. without fixups applied).
 
-If there is a need for the FDT to be RW, let's make it RW.
+I'd prefer to keep it RO once we've removed/cleared certain properties
+from the chosen node that don't make sense to pass on for kexec
+
+Thanks,
+Mark.
