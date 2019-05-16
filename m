@@ -2,213 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC46A20A05
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A950620A24
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:51:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726995AbfEPOoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 10:44:32 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:39621 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbfEPOob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:44:31 -0400
-X-Originating-IP: 80.215.79.199
-Received: from localhost (unknown [80.215.79.199])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 32EEFFF81E;
-        Thu, 16 May 2019 14:44:26 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] dt-bindings: mmc: sun4i: Add YAML schemas
-Date:   Thu, 16 May 2019 16:44:19 +0200
-Message-Id: <5e126d3a9be35a288863189854ea3828f7e5ad14.1558017853.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <225e90a94e9558db9f72f64aca05b0951b88c7c5.1558017853.git-series.maxime.ripard@bootlin.com>
-References: <225e90a94e9558db9f72f64aca05b0951b88c7c5.1558017853.git-series.maxime.ripard@bootlin.com>
+        id S1726801AbfEPOvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 10:51:52 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:33029 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726739AbfEPOvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:51:52 -0400
+Received: by mail-qt1-f194.google.com with SMTP id m32so4268968qtf.0
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 07:51:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MS2skw+KrEHdESEF2xxKoDYDGwqEs5RP/vpZUAIc9w8=;
+        b=NHU7KZ5WPgjex7taKMhAcaxSBI0pOFebtIsJGsWl7hh4wR4Jw0JQV+f+8CsLvEZUbF
+         NIDFb/pi21lwTr0YsGzwZJQx6OfWVsu0RwJCS6m/LR7guuYqpXcsMJibNxqnnrzwz29B
+         RxfDU88NXLj6+eFsvDvW+DZy5jnZAcJtqI1Lw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MS2skw+KrEHdESEF2xxKoDYDGwqEs5RP/vpZUAIc9w8=;
+        b=OvZ0XySTjcJEib3cpPoBRrDd/Yi/bSvLFJvPy7GZhz3Cp6u5QLzo1OuDBkrEHU9HAE
+         nML6fOnhmB5z6vYruPhJrplrp76Oor72IOtbHuUbRqT+Jr7ko0YLNfC1usi5ssNpubCr
+         7QHDfNxU3SPX9Sg5YD/m8HDi0nixvXL734qvETuXXD6FcUC2KQp9unmXbMK+6BvgtyFD
+         vLlPZLC/7Y60fWoiN2KZCRWE/O/8uO7fVKM7qpB6oi6eGdFf/RQ1LzlSis59QsNHVHwN
+         AdrriYbTVFc1NkDymdgvjrO1HyxpsGKDCH8kpOITpvY3KRIRzN/ouhyc6VaVr5HDYghL
+         Lw/w==
+X-Gm-Message-State: APjAAAUe8YpGGvC+6Luq/EDVgCOI4/OYgDZ+f7642s/3KVhU+FX/MuFr
+        FWltyxjnNRC2dM3HQmCTIcTF9Gzn6vGdA4HLuT6ciA==
+X-Google-Smtp-Source: APXvYqzVMPGWHrCFhHM2Qm59YhTIVEDyDKb8QkCN50flg0QSHVH1nVxNOjHLPHdaUYliQm5qek/b0gsTg+bhNCIjvIU=
+X-Received: by 2002:ac8:1aa4:: with SMTP id x33mr41119563qtj.69.1558018311752;
+ Thu, 16 May 2019 07:51:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190516102817.188519-1-hsinyi@chromium.org> <20190516102817.188519-2-hsinyi@chromium.org>
+ <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
+In-Reply-To: <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Thu, 16 May 2019 22:51:25 +0800
+Message-ID: <CAJMQK-jrJQri3gM=X6JRD6Rk+B5S4939HJTptrQMY64xEWr1qA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chintan Pandya <cpandya@codeaurora.org>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT binding to a YAML schema to enable the DT validation.
+On Thu, May 16, 2019 at 10:37 PM Rob Herring <robh+dt@kernel.org> wrote:
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml | 98 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
- Documentation/devicetree/bindings/mmc/sunxi-mmc.txt                | 52 +--------------------------------------
- 2 files changed, 98 insertions(+), 52 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
- delete mode 100644 Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
-
-diff --git a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-new file mode 100644
-index 000000000000..df0280edef97
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/allwinner,sun4i-a10-mmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Allwinner A10 MMC Controller Device Tree Bindings
-+
-+allOf:
-+  - $ref: "mmc-controller.yaml"
-+
-+maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
-+  - Maxime Ripard <maxime.ripard@bootlin.com>
-+
-+properties:
-+  "#address-cells": true
-+  "#size-cells": true
-+
-+  compatible:
-+    oneOf:
-+      - const: allwinner,sun4i-a10-mmc
-+      - const: allwinner,sun5i-a13-mmc
-+      - const: allwinner,sun7i-a20-mmc
-+      - const: allwinner,sun8i-a83t-emmc
-+      - const: allwinner,sun9i-a80-mmc
-+      - const: allwinner,sun50i-a64-emmc
-+      - const: allwinner,sun50i-a64-mmc
-+      - items:
-+          - const: allwinner,sun8i-a83t-mmc
-+          - const: allwinner,sun7i-a20-mmc
-+      - items:
-+          - const: allwinner,sun50i-h6-emmc
-+          - const: allwinner,sun50i-a64-emmc
-+      - items:
-+          - const: allwinner,sun50i-h6-mmc
-+          - const: allwinner,sun50i-a64-mmc
-+      - items:
-+          - const: allwinner,sun8i-r40-emmc
-+          - const: allwinner,sun50i-a64-emmc
-+      - items:
-+          - const: allwinner,sun8i-r40-mmc
-+          - const: allwinner,sun50i-a64-mmc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 4
-+    items:
-+      - description: Bus Clock
-+      - description: Module Clock
-+      - description: Output Clock
-+      - description: Sample Clock
-+
-+  clock-names:
-+    minItems: 2
-+    maxItems: 4
-+    items:
-+      - const: ahb
-+      - const: mmc
-+      - const: output
-+      - const: sample
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: ahb
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    mmc0: mmc@1c0f000 {
-+        compatible = "allwinner,sun5i-a13-mmc";
-+        reg = <0x01c0f000 0x1000>;
-+        clocks = <&ahb_gates 8>, <&mmc0_clk>;
-+        clock-names = "ahb", "mmc";
-+        interrupts = <32>;
-+        bus-width = <4>;
-+        cd-gpios = <&pio 7 1 0>;
-+    };
-+
-+# FIXME: We should set it, but it would report all the generic
-+# properties as additional properties.
-+# additionalProperties: false
-+
-+...
-diff --git a/Documentation/devicetree/bindings/mmc/sunxi-mmc.txt b/Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
-deleted file mode 100644
-index e9cb3ec5e502..000000000000
---- a/Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--* Allwinner sunxi MMC controller
--
--The highspeed MMC host controller on Allwinner SoCs provides an interface
--for MMC, SD and SDIO types of memory cards.
--
--Supported maximum speeds are the ones of the eMMC standard 4.5 as well
--as the speed of SD standard 3.0.
--Absolute maximum transfer rate is 200MB/s
--
--Required properties:
-- - compatible : should be one of:
--   * "allwinner,sun4i-a10-mmc"
--   * "allwinner,sun5i-a13-mmc"
--   * "allwinner,sun7i-a20-mmc"
--   * "allwinner,sun8i-a83t-emmc"
--   * "allwinner,sun9i-a80-mmc"
--   * "allwinner,sun50i-a64-emmc"
--   * "allwinner,sun50i-a64-mmc"
--   * "allwinner,sun50i-h6-emmc", "allwinner.sun50i-a64-emmc"
--   * "allwinner,sun50i-h6-mmc", "allwinner.sun50i-a64-mmc"
-- - reg : mmc controller base registers
-- - clocks : a list with 4 phandle + clock specifier pairs
-- - clock-names : must contain "ahb", "mmc", "output" and "sample"
-- - interrupts : mmc controller interrupt
--
--Optional properties:
-- - resets : phandle + reset specifier pair
-- - reset-names : must contain "ahb"
-- - for cd, bus-width and additional generic mmc parameters
--   please refer to mmc.txt within this directory
--
--Examples:
--	- Within .dtsi:
--	mmc0: mmc@1c0f000 {
--		compatible = "allwinner,sun5i-a13-mmc";
--		reg = <0x01c0f000 0x1000>;
--		clocks = <&ahb_gates 8>, <&mmc0_clk>, <&mmc0_output_clk>, <&mmc0_sample_clk>;
--		clock-names = "ahb", "mod", "output", "sample";
--		interrupts = <0 32 4>;
--		status = "disabled";
--	};
--
--	- Within dts:
--	mmc0: mmc@1c0f000 {
--		pinctrl-names = "default", "default";
--		pinctrl-0 = <&mmc0_pins_a>;
--		pinctrl-1 = <&mmc0_cd_pin_reference_design>;
--		bus-width = <4>;
--		cd-gpios = <&pio 7 1 0>; /* PH1 */
--		cd-inverted;
--		status = "okay";
--	};
--- 
-git-series 0.9.1
+>
+> Why not just map the FDT R/W at the start and change it to RO just
+> before calling unflatten_device_tree? Then all the FDT scanning
+> functions or any future fixups we need can just assume R/W. That is
+> essentially what Stephen suggested. However, there's no need for a
+> weak function as it can all be done within the arch code.
+>
+We need to add a new seed for kexec
