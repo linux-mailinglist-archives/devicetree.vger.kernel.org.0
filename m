@@ -2,84 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D840020806
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C612E20808
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726742AbfEPNZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:25:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58844 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726717AbfEPNZJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 09:25:09 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2E82020862
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 13:25:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558013109;
-        bh=WNuqEHpbsjF3V2nlPtAGov/5DMwCSoLWptkVucGbyVY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=wzEn6pbNaiEqoysDMjMLeEIiedjNG5ImjbiQPwVntaXLoLda3QCC2w+i9LI9k4DOU
-         C2KElw9E0Kd99Rgn7PTOmiHSCy3SyWGlaHFfGjSasUgzJNHT3Ig8RL0D/M3qXSEGI0
-         OxgBaxmQiI15Yl7Fp9DYiiFOFoQsdYhVuV+fsFNg=
-Received: by mail-qk1-f180.google.com with SMTP id p18so1659580qkk.0
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:25:09 -0700 (PDT)
-X-Gm-Message-State: APjAAAWFu2rZufYLphm3t1t5j+A8htPUU9ty7a7JyINM8rUq2yjDNuQp
-        SIKMTYYyyPqH8/pJayRYjyMX1Hwqt9whdLSVdQ==
-X-Google-Smtp-Source: APXvYqzhI3LC1U9lpGnWZZm7DhGgRFFQYomJQssdXmHE06C6cfyvv1SGkWtW749ihce0y9GQ66xFIrA1wtO+q2ZhKuQ=
-X-Received: by 2002:a37:7fc3:: with SMTP id a186mr37652270qkd.65.1558013108453;
- Thu, 16 May 2019 06:25:08 -0700 (PDT)
+        id S1727187AbfEPNZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:25:15 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:46946 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726696AbfEPNZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 09:25:14 -0400
+Received: by mail-lj1-f196.google.com with SMTP id h21so3048912ljk.13
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:25:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T7i74xwX9U5ncTUvzhWe57o2tW8tsCxNGT7kMEIaIPk=;
+        b=UZ2HOcb7CW2/11jSTnSPHfiHBasuAf7GrJd1OBF6+iXtAEPjKJR5dDzMbRtLzM4B0l
+         /VkhzqF8QqngYjEeMk13keD+R52PQsWlMoV5kTRyWfoAgz9X9IgjKR6nnUSsEwV0mlvq
+         y+2K3uxFvkCLSlgMAAxkNqa4ewh01JlutozwHyviQURNfG80lV2yU7d+3oyeWqBazhAI
+         kuHMJC9agm5hBYp4WmqgZDYo+Xp7/nQBxPU7o3rG/+09m1MHnx/mOwKZsbFpC+wr6c5S
+         sZFsWoZBbHj9rRsvLHsDi9DOijCG62RpIhgTZ5Oe6FQPq/y2Q6YEKijQk72SopivTngI
+         oXlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T7i74xwX9U5ncTUvzhWe57o2tW8tsCxNGT7kMEIaIPk=;
+        b=GULMjN7xT0c6cf/CR6dWHG2CiU4ukIcWYi6Z2C1LQEyN/mdBkzohLzOyDag5W3JHRp
+         CGisYnC/wMQyYZfQiNSl1dcXc1Pc9iyq3UY7r+0xxRHXz49F0MQh4YTz7ri4+NYNyOv9
+         SAEysG0CwEyfKlUg2aDel/pk2lRcB6+J7Ot+63wkqD5O4jLKszRocJlzoRFIY44P9Eac
+         GGI/Nj+3Z946Wfm3xm/zhtXzzJ/DXnTYOZAk7bXPaLvL/mO8L9epIOyJpQlEclH59skz
+         SdU14EBLZjdQQwaWI287QcNzVuaBfOciWmGtDXDXxwhv6qVm7iCHlvYbY2ujo9an8/85
+         XZ1g==
+X-Gm-Message-State: APjAAAUbR9PmUIZ9Mlg9ZfGCnOkgipRGfV3fK42IqMAUwbWj5dbUdaBV
+        w9cQlFTrxWohuC39tzUsVMdtLfuqQSip3o/1qODqjw==
+X-Google-Smtp-Source: APXvYqypGlrkwcWpkDZqIzkGCG+DJBLuflw6yusCBeidrQObvNv3EKCslo+yOFvLup20kJPOGzeawHtuUNUjQ5uzhwo=
+X-Received: by 2002:a2e:731a:: with SMTP id o26mr21535501ljc.105.1558013113062;
+ Thu, 16 May 2019 06:25:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <706cb97ae45cc9edc49c8709b2189ed786d2c7db.1557993523.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <706cb97ae45cc9edc49c8709b2189ed786d2c7db.1557993523.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 May 2019 08:24:57 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+4+LD+x-bd9iCwA4bGtRUjdqo7=g4HgGzcYTsZG17KLw@mail.gmail.com>
-Message-ID: <CAL_Jsq+4+LD+x-bd9iCwA4bGtRUjdqo7=g4HgGzcYTsZG17KLw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: sound: Convert Allwinner SPDIF
- binding to YAML
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+References: <20190509205955.27842-1-f.fainelli@gmail.com> <20190509205955.27842-2-f.fainelli@gmail.com>
+In-Reply-To: <20190509205955.27842-2-f.fainelli@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 May 2019 15:25:01 +0200
+Message-ID: <CACRpkdZqAi4bbpGO8sTBq573dDRF-VWg9gE8=uGVJ3Jv0MY5bg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: bcm2835-gpio: Document BCM7211 compatible
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Doug Berger <opendmb@gmail.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Lukas Wunner <lukas@wunner.de>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        "open list:PIN CONTROL SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 2:59 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> The Allwinner SoCs feature an SPDIF controller across multiple SoC
-> generations.
->
-> However, earlier generations were a bit simpler than the subsequent ones,
-> and for example would always have RX and TX capabilities, and no reset
-> lines.
->
-> In order to express this, let's create two YAML schemas instead of the free
-> form text we had before.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> ---
->
-> Changes from v2:
->   - Add comments
->
-> Changes from v1:
->   - Merged the two schemas together and used the draft-7 conditionals
-> ---
->  Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
->  Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt          |  42 +------------------------------
->  2 files changed, 101 insertions(+), 42 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt
+On Thu, May 9, 2019 at 11:01 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> BCM7211 has a slightly different block layout and some additional GPIO
+> registers that were added, document the compatible string.
+>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+
+Patch applied for v5.3 with ACKs.
+
+Yours,
+Linus Walleij
