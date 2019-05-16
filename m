@@ -2,107 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFBDE20A93
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D6820AD9
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:13:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726909AbfEPPDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 11:03:04 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:58399 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726687AbfEPPDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 11:03:04 -0400
-Received: from localhost (unknown [80.215.79.199])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 1129E200018;
-        Thu, 16 May 2019 15:02:52 +0000 (UTC)
-Date:   Thu, 16 May 2019 17:02:52 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
-        daniel.lezcano@linaro.org, catalin.marinas@arm.com,
-        will.deacon@arm.com, bjorn.andersson@linaro.org,
-        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
-        stefan.wahren@i2se.com, linux-pm@vger.kernel.org, wens@csie.org,
-        jagan@amarulasolutions.com, andy.gross@linaro.org,
-        rui.zhang@intel.com, devicetree@vger.kernel.org,
-        marc.w.gonzalez@free.fr, edubezval@gmail.com,
-        enric.balletbo@collabora.com, robh+dt@kernel.org,
-        Jonathan.Cameron@huawei.com, linux-arm-kernel@lists.infradead.org,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        olof@lixom.net, davem@davemloft.net
-Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
-Message-ID: <20190516150252.hf4u3bloo37chy6q@flea>
-References: <20190512082614.9045-1-tiny.windzz@gmail.com>
- <20190512082614.9045-3-tiny.windzz@gmail.com>
- <20190512133930.t5txssl7mou2gljt@flea>
- <20190512214128.qjyys3vfpwdiacib@core.my.home>
+        id S1726962AbfEPPNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 11:13:48 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:51631 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726739AbfEPPNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 11:13:47 -0400
+Received: by mail-wm1-f65.google.com with SMTP id c77so2563622wmd.1
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 08:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=izMGsuKh4OaKNtMmoPYzsuIZrqZf/ZhwaQ2KkK7m38Q=;
+        b=O6FAMfy1E00D7rfyyVnNT++z7+nbL/ykgXcd19bJdjprVpRdB+G16c25hH3CCNc6W+
+         2f/MiIs1l2FbyNBVpXESCwpqR7qXnF6Kym2i22WwkpehytRXPXfHRU9iREWYujFsUk5R
+         NMgcqnF0fMSrxSQWVrZc+u3ysgPSoEQD1VwH8EmPByCrBRrT7tydB1KD6BtZR2OMmp+q
+         e6NG1Bm3RXcnqejR21Uexr4xM8Kipef10MfzC2z1cS5HwnfN+wRMEzRFNv6VxsCYFQPi
+         rFknz5FMBYzuuegBU3qlaGwwmro6WEVkPjtQRe/DntnM8H4pdBoLobalW+Y0CBRAhLIp
+         ck9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=izMGsuKh4OaKNtMmoPYzsuIZrqZf/ZhwaQ2KkK7m38Q=;
+        b=K/jjGRtfx8pHtFAmcDeP6TbvR/IYHVn6cqxkLlVZSxIrJly0ma+Y9+LfADzE4UWCs4
+         /9b9WG77/DtNMvB/ImdSuE3zBXxK7Q6/ux2dPYZYuoQxAB0VgWdQv5y5QYslHdY5xpuM
+         /La+ynUvSFTS1dYKWAhLFhZ0mBfPW4gGQM9PgFHmTvRYx97LkgZLD4oj1cvuzY5KQ4Ly
+         /SLQQOIcKDQ/rHUclQergxu3vqtvf6sBiJzKQNQz6sokTHg7YkaRxKdykUkfPXi4wKH6
+         iNpruTFhCPO5CvwcroCYMKnEoSXMtvf3qbb1clr3/IIml1B/sWUI8FUhfD1iZ4VQnyIs
+         IZlQ==
+X-Gm-Message-State: APjAAAWDCUKPfDHlYWa5WK5mCjqdh1cQvUru+dow8FJQY9J+wrc8kRXR
+        pNtI5F752L0PPbJ2hh+InxniUw==
+X-Google-Smtp-Source: APXvYqwDQ8utDUGlwEyZtxj0oqgawoWJGWIrLrB1I0n5YfrN5JX8T21Fx+9+r0xjGOfXvlvWk6uSow==
+X-Received: by 2002:a1c:7a0d:: with SMTP id v13mr15628758wmc.44.1558019625939;
+        Thu, 16 May 2019 08:13:45 -0700 (PDT)
+Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.googlemail.com with ESMTPSA id 17sm6968126wrk.91.2019.05.16.08.13.44
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 16 May 2019 08:13:45 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] pinctrl: meson: pinconf output support
+Date:   Thu, 16 May 2019 17:13:37 +0200
+Message-Id: <20190516151339.25846-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7vj27y3kfhi2ktlo"
-Content-Disposition: inline
-In-Reply-To: <20190512214128.qjyys3vfpwdiacib@core.my.home>
-User-Agent: NeoMutt/20180716
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds output support in the amlogic pinctrl driver.
 
---7vj27y3kfhi2ktlo
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Linus, this patchset is based on the drive strength series from Guillaume
+which you just applied [0]
 
-Hi,
+[0]: https://lkml.kernel.org/r/CACRpkdZ+p-J5Em3rzZcUwpA-a+CVOY91CgLqoRm_QVZP6E4Osw@mail.gmail.com
 
-On Sun, May 12, 2019 at 11:41:28PM +0200, Ond=C5=99ej Jirman wrote:
-> > > +static int tsens_get_temp(void *data, int *temp)
-> > > +{
-> > > +	struct tsensor *s =3D data;
-> > > +	struct tsens_device *tmdev =3D s->tmdev;
-> > > +	int val;
-> > > +
-> > > +	regmap_read(tmdev->regmap, tmdev->chip->temp_data_base +
-> > > +		    0x4 * s->id, &val);
-> > > +
-> > > +	if (unlikely(val =3D=3D 0))
-> > > +		return -EBUSY;
-> >
-> > I'm not sure why a val equals to 0 would be associated with EBUSY?
->
-> Thermal zone driver can (will) call get_temp before we got the
-> first interrupt and the thermal data. In that case val will be 0.
->
-> Resulting in:
->
->  (val + offset) * scale =3D (-2794) * -67 =3D 187198
->
-> 187=C2=B0C and immediate shutdown during boot - based on cirtical
-> temperature being reached.
->
-> Busy here means, get_temp does not yet have data. Thermal zone
-> driver just reports any error to dmesg output.
+Jerome Brunet (2):
+  dt-bindings: pinctrl: meson: add output support in pinconf
+  pinctrl: meson: add output support in pinconf
 
-Ah, that makes sense.
+ .../bindings/pinctrl/meson,pinctrl.txt        |  12 +-
+ drivers/pinctrl/meson/pinctrl-meson.c         | 182 ++++++++++++------
+ 2 files changed, 136 insertions(+), 58 deletions(-)
 
-I guess if we're switching to an interrupt-based driver, then we can
-just use a waitqueue, or is get_temp supposed to be atomic?
+-- 
+2.20.1
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---7vj27y3kfhi2ktlo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXN17nAAKCRDj7w1vZxhR
-xZVgAQDEhhE/FQspXxx58VLtzI/e0Kz9gZa92QnGGjDbVWxBTwEA1iAzA+XGbDtR
-1TM7/Hc1lwDV+qLHJYnbwcFfq+6XBAg=
-=qzgC
------END PGP SIGNATURE-----
-
---7vj27y3kfhi2ktlo--
