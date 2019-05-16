@@ -2,98 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BCE2020C
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 11:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4874E20223
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 11:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727177AbfEPJCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 05:02:49 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:63375 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726821AbfEPJCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 05:02:49 -0400
-X-UUID: c790c055718a4f6bb42bb8e914aa6e8c-20190516
-X-UUID: c790c055718a4f6bb42bb8e914aa6e8c-20190516
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1802110437; Thu, 16 May 2019 17:02:30 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs03n2.mediatek.inc (172.21.101.182) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 16 May 2019 17:02:28 +0800
-Received: from mtkslt302.mediatek.inc (10.21.14.115) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 16 May 2019 17:02:28 +0800
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
-CC:     Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        YT Shen <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh 
-        <dennis-yc.hsimediatek/mtkcam/drv/fdvt/4.0/cam_fdvt_v4l2.cppeh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>, Bibby Hsieh <bibby.hsieh@mediatek.com>
-Subject: [PATCH v6 12/12] arm64: dts: add gce node for mt8183
-Date:   Thu, 16 May 2019 17:02:24 +0800
-Message-ID: <20190516090224.59070-13-bibby.hsieh@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190516090224.59070-1-bibby.hsieh@mediatek.com>
-References: <20190516090224.59070-1-bibby.hsieh@mediatek.com>
+        id S1726503AbfEPJGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 05:06:37 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:57750 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbfEPJGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 05:06:37 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4G96WHt035094;
+        Thu, 16 May 2019 04:06:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1557997592;
+        bh=PtwqDBAcsjYMr3oYa2dKM83AKeivaG/c0gzyWtFMuIc=;
+        h=From:To:CC:Subject:Date;
+        b=HzArvBA8U5hbnavqxIo89ZqnY78zWyfBGEyTbYlzSopXWetA8sdD+YGQAF3KDdzIT
+         ztfdV/MkXwlhfQU5NFwBeZl8eOUAI/bx7OMF/woZ3ZXT6lVhEmKPh4URuW9RHBN6QU
+         nJNRVZE4qIG8+K+qv+zwPqXZHkE3T5hr5OxTR0t4=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4G96WRQ034043
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 May 2019 04:06:32 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 16
+ May 2019 04:06:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 16 May 2019 04:06:32 -0500
+Received: from a0393675ula.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4G96Tg2057199;
+        Thu, 16 May 2019 04:06:30 -0500
+From:   Keerthy <j-keerthy@ti.com>
+To:     <tony@atomide.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <t-kristo@ti.com>, <j-keerthy@ti.com>
+Subject: [PATCH 1/2] arm: dts: dra76-evm: Disable usb4_tm target module
+Date:   Thu, 16 May 2019 14:36:56 +0530
+Message-ID: <20190516090657.25211-1-j-keerthy@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-SNTS-SMTP: EFCA4C3EA52493633BD7C4914AA6C222083A4B814AFF0456FAF2E36FB01D2C6D2000:8
-X-MTK:  N
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add gce device node for mt8183
+usb4_tm is unsed on dra76 and accessing the module
+with ti,sysc is causing a boot crash hence disable its target
+module.
 
-Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+Fixes: 549fce068a3112 ("ARM: dts: dra7: Add l4 interconnect hierarchy and ti-sysc data")
+Signed-off-by: Keerthy <j-keerthy@ti.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm/boot/dts/dra76-evm.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index b36e37fcdfe3..d6d26fa32dd7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/power/mt8183-power.h>
-+#include <dt-bindings/gce/mt8183-gce.h>
- #include "mt8183-pinfunc.h"
- / {
- 	compatible = "mediatek,mt8183";
-@@ -293,6 +294,16 @@
- 			clock-names = "spi", "wrap";
- 		};
+diff --git a/arch/arm/boot/dts/dra76-evm.dts b/arch/arm/boot/dts/dra76-evm.dts
+index 8a57895fd8f3..6607fbe3c67c 100644
+--- a/arch/arm/boot/dts/dra76-evm.dts
++++ b/arch/arm/boot/dts/dra76-evm.dts
+@@ -431,6 +431,10 @@
+ 	phy-names = "pcie-phy0", "pcie-phy1";
+ };
  
-+		gce: gce@10238000 {
-+			compatible = "mediatek,mt8183-gce";
-+			reg = <0 0x10238000 0 0x4000>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			#mbox-cells = <3>;
-+			#subsys-cells = <3>;
-+			clocks = <&infracfg CLK_INFRA_GCE>;
-+			clock-names = "gce";
-+		};
++&usb4_tm {
++	status = "disabled";
++};
 +
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt8183-uart",
- 				     "mediatek,mt6577-uart";
+ &pcie1_ep {
+ 	num-lanes = <2>;
+ 	phys = <&pcie1_phy>, <&pcie2_phy>;
 -- 
-2.18.0
+2.17.1
 
