@@ -2,89 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0CE1FF3A
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 07:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8121FF5A
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 08:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726680AbfEPFyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 01:54:54 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:9005 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726554AbfEPFyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 01:54:54 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cdcfb340000>; Wed, 15 May 2019 22:55:00 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Wed, 15 May 2019 22:54:53 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Wed, 15 May 2019 22:54:53 -0700
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 16 May
- 2019 05:54:53 +0000
-Received: from manikanta-bm2.nvidia.com (10.124.1.5) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Thu, 16 May 2019 05:54:50 +0000
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-To:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <lorenzo.pieralisi@arm.com>,
-        <vidyas@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Subject: [PATCH V4 28/28] PCI: tegra: Change link retry log level to debug
-Date:   Thu, 16 May 2019 11:23:07 +0530
-Message-ID: <20190516055307.25737-29-mmaddireddy@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190516055307.25737-1-mmaddireddy@nvidia.com>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
-X-NVConfidentiality: public
+        id S1726393AbfEPGMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 02:12:36 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:26411 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726315AbfEPGMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 02:12:36 -0400
+X-UUID: 9c6e19ab591b4bdda77bc291f268d520-20190516
+X-UUID: 9c6e19ab591b4bdda77bc291f268d520-20190516
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <jungo.lin@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1194110267; Thu, 16 May 2019 14:12:27 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 16 May 2019 14:12:26 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 16 May 2019 14:12:26 +0800
+Message-ID: <1557987146.5721.12.camel@mtksdccf07>
+Subject: Re: [RFC,V2,03/11] dt-bindings: mt8183: Added camera ISP Pass 1
+From:   Jungo Lin <jungo.lin@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <ryan.yu@mediatek.com>, <frankie.chiu@mediatek.com>,
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        <Rynn.Wu@mediatek.com>, <suleiman@chromium.org>,
+        <Jerry-ch.Chen@mediatek.com>, <hans.verkuil@cisco.com>,
+        <frederic.chen@mediatek.com>, <seraph.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <shik@chromium.org>, <yuzhao@chromium.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <mchehab@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <Sean.Cheng@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <sj.huang@mediatek.com>, <tfiga@chromium.org>,
+        <christie.yu@mediatek.com>, <zwisler@chromium.org>
+Date:   Thu, 16 May 2019 14:12:26 +0800
+In-Reply-To: <20190514195417.GA21726@bogus>
+References: <jungo.lin@mediatek.com>
+         <20190510015755.51495-4-jungo.lin@mediatek.com>
+         <20190514195417.GA21726@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557986100; bh=ODSQ3H6QpjZ33bav4EoCXIZJrO5RM6uGA/a5ICNR0vE=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=gmZYH0p8LKdrtToEEzo+yOgoiLNiILl1C+ST4l5U8rSQIewaGMGyJXH+HqYeT+qEY
-         CXOR7QXW8PpMFqu+D+ws2Ut3Qghx1QQnSI6kCnuWL88gXBEsJ/JXwtX12TY3zCRHKP
-         /Rs43uGP9KOrJYheeBGikIflZ0X8Uf2Qd6OmO/fWhreCoygJwtAius167p70e4IkYZ
-         wQkY/P/8XuCTngPhQUVS+nKWtO/IuF79C7lQfidQq3ZNmLfkaVKMCH92ZCqyh0JviB
-         h+MsJfY5CdB9Me5GvNFhs0JHTqgpbjlpSkfX6wHk27mEV95EoZwoGIFULAUcN2OV/L
-         zJv+/3CYLkujA==
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver checks for link up three times before giving up, each retry attempt
-is printed as an error. Letting users know that PCIe link is down and in the
-process of being brought up again is for debug, not an error condition.
+Hi, Rob:
 
-Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
----
-V4: No change
+Thanks for your comments.
 
-V3: Changed dev_err to dev_dbg
+On Tue, 2019-05-14 at 14:54 -0500, Rob Herring wrote:
+> On Fri, May 10, 2019 at 09:57:52AM +0800, Jungo Lin wrote:
+> > This patch adds DT binding document for the Pass 1 (P1) unit in
+> > Mediatek's camera ISP system. The Pass 1 unit grabs the sensor data
+> > out from the sensor interface, applies ISP image effects from tuning
+> > data and outputs the image data or statistics data to DRAM.
+> > 
+> > Signed-off-by: Jungo Lin <jungo.lin@mediatek.com>
+> > ---
+> >  .../bindings/media/mediatek,camisp.txt        | 92 +++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/mediatek,camisp.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/mediatek,camisp.txt b/Documentation/devicetree/bindings/media/mediatek,camisp.txt
+> > new file mode 100644
+> > index 000000000000..759e55a5dfac
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,camisp.txt
+> > @@ -0,0 +1,92 @@
+> > +* Mediatek Image Signal Processor Pass 1 (ISP P1)
+> > +
+> > +The Pass 1 unit of Mediatek's camera ISP system grabs the sensor data out
+> > +from the sensor interface, applies ISP effects from tuning data and outputs
+> > +the image data and statistics data to DRAM. Furthermore, Pass 1 unit has
+> > +the ability to output two different resolutions frames at the same time to
+> > +increase the performance of the camera application.
+> > +
+> > +Required properties:
+> > +- compatible: Must be "mediatek,mt8183-camisp" for MT8183.
+> > +- reg: Must contain an entry for each entry in reg-names.
+> 
+> Must list reg-names here and define the values. Though, I don't find 
+> cam1, cam2, cam3 to be too useful.
+> 
 
-V2: Updated commit log
+Ok, we will list all our supported reg-names in next patch.
 
- drivers/pci/controller/pci-tegra.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > +- interrupts: interrupt number to the cpu.
+> > +- iommus: shall point to the respective IOMMU block with master port
+> > +  as argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+> > +  for details.
+> 
+> How many entries?
+> 
 
-diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-index 09b4d384ba38..e9420d87363e 100644
---- a/drivers/pci/controller/pci-tegra.c
-+++ b/drivers/pci/controller/pci-tegra.c
-@@ -2372,7 +2372,7 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
- 		} while (--timeout);
- 
- 		if (!timeout) {
--			dev_err(dev, "link %u down, retrying\n", port->index);
-+			dev_dbg(dev, "link %u down, retrying\n", port->index);
- 			goto retry;
- 		}
- 
--- 
-2.17.1
+Basic, we just need to add only one master port for IOMMU property.
+We will revise this and drop the other two ports.
+
+> > +- power-domains : a phandle to the power domain of this local arbiter.
+> > +- clocks: device clocks, see
+> > +  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> > +- clock-names: must be "CAMSYS_CAM_CGPDN" and "CAMSYS_CAMTG_CGPDN".
+> > +- mediatek,larb: must contain the local arbiters in the current SOCs, see
+> > +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> > +  for details.
+> > +- mediatek,scp : the node of system control processor (SCP), see
+> > +  Documentation/devicetree/bindings/remoteproc/mtk,scp.txt for details.
+> > +- memory-region : the reserved shared memory region between Pass 1 unit and
+> > +  system control processor.
+> > +
+> > +Example:
+> > +SoC specific DT entry:
+> > +
+> > +	camisp: camisp@1a000000 {
+> > +		compatible = "mediatek,mt8183-camisp", "syscon";
+> > +		reg = <0 0x1a000000 0 0x1000>,
+> > +		      <0 0x1a003000 0 0x1000>,
+> > +		      <0 0x1a004000 0 0x2000>,
+> > +		      <0 0x1a006000 0 0x2000>;
+> > +		reg-names = "camisp",
+> > +		            "cam1",
+> > +		            "cam2",
+> > +		            "cam3";
+> > +		interrupts = <GIC_SPI 253 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_SPI 254 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_SPI 255 IRQ_TYPE_LEVEL_LOW>;
+> > +		interrupt-names = "cam1",
+> > +				  "cam2",
+> > +				  "cam3";
+> > +		iommus = <&iommu M4U_PORT_CAM_LSCI0>,
+> > +			 <&iommu M4U_PORT_CAM_LSCI1>,
+> > +			 <&iommu M4U_PORT_CAM_BPCI>;
+> > +		#clock-cells = <1>;
+> > +		power-domains = <&scpsys MT8183_POWER_DOMAIN_CAM>;
+> > +		/* Camera CCF */
+> > +		clocks = <&camsys CLK_CAM_CAM>,
+> > +			 <&camsys CLK_CAM_CAMTG>;
+> > +		clock-names = "CAMSYS_CAM_CGPDN",
+> > +			      "CAMSYS_CAMTG_CGPDN";
+> > +		mediatek,larb = <&larb3>,
+> > +				<&larb6>;
+> > +		mediatek,scp = <&scp>;
+> > +		memory-region = <&cam_mem_reserved>;
+> > +	};
+> > +
+> > +Reserved memory specific DT entry (see reserved memory binding for more
+> > +information):
+> > +
+> > +Example:
+> > +SoC specific DT entry:
+> > +
+> > +	cam_mem_reserved: cam_mem_region {
+> > +		compatible = "mediatek,reserve-memory-cam-smem";
+> > +		no-map;
+> > +		size = <0 0x01400000>; / *20 MB share mem size */
+> > +		alignment = <0 0x1000>;
+> > +		alloc-ranges = <0 0x40000000 0 0x10000000>;
+> > +	};
+> > +
+> > +Mediatek ISP P1 supports a single port node with MIPI-CSI2 bus. It should
+> > +contain one 'port' child node with child 'endpoint' node. Please refer to
+> > +the bindings defined in Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +and Documentation/devicetree/bindings/media/mediatek-seninf.txt.
+> > +
+> > +Example:
+> > +Board specific DT entry:
+> 
+> Don't split examples like this.
+> 
+
+Ok, we will keep one example in next patch.
+
+Best regards,
+
+Jungo
+
+> > +
+> > +	&camisp {
+> > +		port@0 {
+> > +			seninf_0: endpoint {
+> > +				remote-endpoint = <&seninf_core>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > -- 
+> > 2.18.0
+> > 
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+
 
