@@ -2,82 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3285420794
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B399207BE
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726726AbfEPNH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:07:26 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:37244 "EHLO vps0.lunn.ch"
+        id S1727418AbfEPNNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:13:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54910 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726537AbfEPNH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 09:07:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=7nw1SCsI0DVhke4eyWVzQZtBh1eZLI/gGCG931c3pxc=; b=YQdezVNFHlhxbv9xNpI/EQAsV+
-        2xP9ZCJsAn1IkuJZq6ih9C+um5dlHI7z5wXEvJoWnZ2LGZHVnR8yrGuT3imfbgcgpYSCkMoOwUBbq
-        mREW/vDo263l6IaCe+MurR0dBxsNUlNn9s7UeVXX3qIliji8IbdccZu9/bjCUpz2qDQo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hRG6S-0003NC-Uq; Thu, 16 May 2019 15:07:20 +0200
-Date:   Thu, 16 May 2019 15:07:20 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        palmer@sifive.com, paul.walmsley@sifive.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC
-Message-ID: <20190516130720.GE14298@lunn.ch>
-References: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
- <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com>
+        id S1726703AbfEPNNA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 09:13:00 -0400
+Received: from localhost (50-82-73-190.client.mchsi.com [50.82.73.190])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 79C2C20848;
+        Thu, 16 May 2019 13:12:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558012379;
+        bh=ZtQao7hvDrKa3RULUBUe6l06x0fudhcp2vfY9dv/TwA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=R74n4upAT6jcFRwHCLqrGU91b4HuDhe6V+oMHyK2HgGs7zE6CGHrz9W2qM/iAl0rN
+         2A7cECUDsaf8EriTHBNsDAo0iNh0xXbWQ2crDRTP+DlUH/sKtKA6ltWxUJ9MekxL2W
+         jzzuQhwSiPmnlurXuRopKEq8UCgRjXm1//zmVeXQ=
+Date:   Thu, 16 May 2019 08:12:57 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        jonathanh@nvidia.com, lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 00/28] Enable Tegra PCIe root port features
+Message-ID: <20190516131257.GA101793@google.com>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 10:38:40AM +0530, Sagar Shrikant Kadam wrote:
-> The i2c-ocore driver already has a polling mode interface.But it needs
-> a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-> There is an erratum in FU540 chip that prevents interrupt driven i2c
-> transfers from working, and also the I2C controller's interrupt bit
-> cannot be cleared if set, due to this the existing i2c polling mode
-> interface added in mainline earlier doesn't work, and CPU stall's
-> infinitely, when-ever i2c transfer is initiated.
-> 
-> Ref:previous polling mode support in mainline
-> 
-> 	commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
-> 
-> The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-> FU540-COOO SoC.
-> 
-> Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-> ---
->  drivers/i2c/busses/i2c-ocores.c | 34 ++++++++++++++++++++++++++++------
->  1 file changed, 28 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
-> index aee1d86..00ee45c 100644
-> --- a/drivers/i2c/busses/i2c-ocores.c
-> +++ b/drivers/i2c/busses/i2c-ocores.c
-> @@ -27,6 +27,7 @@
->  #include <linux/jiffies.h>
->  
->  #define OCORES_FLAG_POLL BIT(0)
-> +#define OCORES_FLAG_BROKEN_IRQ BIT(2) /* Broken IRQ in HiFive Unleashed */
+On Thu, May 16, 2019 at 11:22:39AM +0530, Manikanta Maddireddy wrote:
+> This series of patches adds,
+> - Tegra root port features like Gen2, AER, etc
+> - Power and perf optimizations
+> - Fixes like "power up sequence", "dev_err prints", etc
 
-Hi Sigar
+Please:
 
-BIT(1). Don't leave a gap.
+  1) Put the brakes on.  You posted v3 of these 30 patches on May 13
+     and v4 on May 16.  There's no hurry; the merge window is still
+     open and nothing will be added to -next until at least next week.
+     If you space these out a little, people will have time to digest
+     them.
 
-	Andrew
+  2) Mention in the cover letter what changed between v3 and v4 so
+     people know where to spend their effort.
+
+> This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
+> based Jetson-TX1, T124 based Jetson-TK1 platforms, Tegra20 and Tegra30
+> platforms.
+> 
+> Manikanta Maddireddy (28):
+>   soc/tegra: pmc: Export tegra_powergate_power_on()
+>   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
+>   PCI: tegra: Rearrange Tegra PCIe driver functions
+>   PCI: tegra: Mask AFI_INTR in runtime suspend
+>   PCI: tegra: Fix PCIe host power up sequence
+>   PCI: tegra: Add PCIe Gen2 link speed support
+>   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
+>   PCI: tegra: Program UPHY electrical settings for Tegra210
+>   PCI: tegra: Enable opportunistic UpdateFC and ACK
+>   PCI: tegra: Disable AFI dynamic clock gating
+>   PCI: tegra: Process pending DLL transactions before entering L1 or L2
+>   PCI: tegra: Enable PCIe xclk clock clamping
+>   PCI: tegra: Increase the deskew retry time
+>   PCI: tegra: Add SW fixup for RAW violations
+>   PCI: tegra: Update flow control timer frequency in Tegra210
+>   PCI: tegra: Set target speed as Gen1 before starting LTSSM
+>   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
+>   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
+>   PCI: tegra: Change PRSNT_SENSE IRQ log to debug
+>   PCI: tegra: Use legacy IRQ for port service drivers
+>   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
+>   PCI: tegra: Access endpoint config only if PCIe link is up
+>   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
+>   arm64: tegra: Add PEX DPD states as pinctrl properties
+>   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
+>   PCI: Add DT binding for "reset-gpios" property
+>   PCI: tegra: Add support for GPIO based PERST#
+>   PCI: tegra: Change link retry log level to debug
+> 
+>  .../bindings/pci/nvidia,tegra20-pcie.txt      |   8 +
+>  Documentation/devicetree/bindings/pci/pci.txt |   3 +
+>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
+>  drivers/pci/controller/pci-tegra.c            | 615 +++++++++++++++---
+>  drivers/soc/tegra/pmc.c                       |   1 +
+>  5 files changed, 566 insertions(+), 80 deletions(-)
+> 
+> -- 
+> 2.17.1
+> 
