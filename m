@@ -2,90 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4199320DFF
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 19:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 936E520E06
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 19:36:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727662AbfEPReY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 13:34:24 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:52984 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726409AbfEPReY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 13:34:24 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4CC4419BF;
-        Thu, 16 May 2019 10:34:23 -0700 (PDT)
-Received: from [10.1.196.105] (eglon.cambridge.arm.com [10.1.196.105])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 073003F5AF;
-        Thu, 16 May 2019 10:34:19 -0700 (PDT)
-Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-References: <20190516102817.188519-1-hsinyi@chromium.org>
- <20190516102817.188519-2-hsinyi@chromium.org>
- <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
- <CAJMQK-jrJQri3gM=X6JRD6Rk+B5S4939HJTptrQMY64xEWr1qA@mail.gmail.com>
- <CAL_Jsq+dVg9E_EzpoC4Bz1ytUckDGXUcEJyU5pV2HS6rZuKmHA@mail.gmail.com>
- <CAJMQK-hzjSBf2-QFMn52Sa8fwvm5-gaddzBOudfEc1neR2rwnA@mail.gmail.com>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <5f598806-1c36-7c2a-0f47-da79ec7d28c6@arm.com>
-Date:   Thu, 16 May 2019 18:34:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726652AbfEPRgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 13:36:54 -0400
+Received: from vps.xff.cz ([195.181.215.36]:38042 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726409AbfEPRgx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 13:36:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1558028210; bh=Jbc9aeVDZK4IVUtlH1rcpyyERggWBjuR3RQpcFzD1T0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MlzYyqsQURfuYpPc0op+qkOyLkPN7dYIRo4j+mrkhYHYwLuQlaIADILnCGtJtfM/p
+         RYtugzjmO7W2kVQcT7sWXDmiim8a3h/ixlJwffwkjNodM1ejasX5tJQxeVlwlHpes7
+         kiNj2m5G9DqxzV/jlVa7mK4k/8GmC7OxVxUcO1Fk=
+Date:   Thu, 16 May 2019 19:36:49 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
+        daniel.lezcano@linaro.org, catalin.marinas@arm.com,
+        will.deacon@arm.com, bjorn.andersson@linaro.org,
+        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
+        stefan.wahren@i2se.com, linux-pm@vger.kernel.org, wens@csie.org,
+        jagan@amarulasolutions.com, andy.gross@linaro.org,
+        rui.zhang@intel.com, devicetree@vger.kernel.org,
+        marc.w.gonzalez@free.fr, edubezval@gmail.com,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com, linux-arm-kernel@lists.infradead.org,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        olof@lixom.net, davem@davemloft.net
+Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
+Message-ID: <20190516173649.5s2s32ol43kbbhzg@core.my.home>
+Mail-Followup-To: Maxime Ripard <maxime.ripard@bootlin.com>,
+        Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
+        daniel.lezcano@linaro.org, catalin.marinas@arm.com,
+        will.deacon@arm.com, bjorn.andersson@linaro.org,
+        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
+        stefan.wahren@i2se.com, linux-pm@vger.kernel.org, wens@csie.org,
+        jagan@amarulasolutions.com, andy.gross@linaro.org,
+        rui.zhang@intel.com, devicetree@vger.kernel.org,
+        marc.w.gonzalez@free.fr, edubezval@gmail.com,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com, linux-arm-kernel@lists.infradead.org,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        olof@lixom.net, davem@davemloft.net
+References: <20190512082614.9045-1-tiny.windzz@gmail.com>
+ <20190512082614.9045-3-tiny.windzz@gmail.com>
+ <20190512133930.t5txssl7mou2gljt@flea>
+ <20190512214128.qjyys3vfpwdiacib@core.my.home>
+ <20190516150252.hf4u3bloo37chy6q@flea>
 MIME-Version: 1.0
-In-Reply-To: <CAJMQK-hzjSBf2-QFMn52Sa8fwvm5-gaddzBOudfEc1neR2rwnA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190516150252.hf4u3bloo37chy6q@flea>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hello Maxime,
 
-On 16/05/2019 17:48, Hsin-Yi Wang wrote:
-> On Thu, May 16, 2019 at 11:32 PM Rob Herring <robh+dt@kernel.org> wrote:
->> Doesn't kexec operate on a copy because it already does modifications.
-
-It does!
-
-> This patch is to assist "[PATCH v3 3/3] fdt: add support for rng-seed"
-> (https://lkml.org/lkml/2019/5/16/257). I thought that by default
-> second kernel would use original fdt, so I write new seed back to
-> original fdt. Might be wrong.
+On Thu, May 16, 2019 at 05:02:52PM +0200, Maxime Ripard wrote:
+> Hi,
 > 
-> ** "[PATCH v3 3/3] fdt: add support for rng-seed" is supposed to
-> handle for adding new seed in kexec case, discussed in v2
-> (https://lkml.org/lkml/2019/5/13/425)
+> On Sun, May 12, 2019 at 11:41:28PM +0200, Ondřej Jirman wrote:
+> > > > +static int tsens_get_temp(void *data, int *temp)
+> > > > +{
+> > > > +	struct tsensor *s = data;
+> > > > +	struct tsens_device *tmdev = s->tmdev;
+> > > > +	int val;
+> > > > +
+> > > > +	regmap_read(tmdev->regmap, tmdev->chip->temp_data_base +
+> > > > +		    0x4 * s->id, &val);
+> > > > +
+> > > > +	if (unlikely(val == 0))
+> > > > +		return -EBUSY;
+> > >
+> > > I'm not sure why a val equals to 0 would be associated with EBUSY?
+> >
+> > Thermal zone driver can (will) call get_temp before we got the
+> > first interrupt and the thermal data. In that case val will be 0.
+> >
+> > Resulting in:
+> >
+> >  (val + offset) * scale = (-2794) * -67 = 187198
+> >
+> > 187°C and immediate shutdown during boot - based on cirtical
+> > temperature being reached.
+> >
+> > Busy here means, get_temp does not yet have data. Thermal zone
+> > driver just reports any error to dmesg output.
 > 
-> By default (not considering user defines their own fdt), if second
-> kernel uses copied fdt, when is it copied and can we modify that?
+> Ah, that makes sense.
+> 
+> I guess if we're switching to an interrupt-based driver, then we can
+> just use a waitqueue, or is get_temp supposed to be atomic?
 
-Regular kexec's user-space already updates the dtb for the cmdline and maybe the initrd.
-For KASLR, it generates its own seed with getrandom():
+I'm not entirely sure, because I might have inadverently used a combination of
+interrupt and polling when testing this. It may be that if we set polling-delay
+to 0 in dts, that tz core will not try to call get_temp prematurely at all, and
+will simply wait for temperature update from the interrupt.
 
-https://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git/tree/kexec/arch/arm64/kexec-arm64.c#n483
+I guess this needs to be tested/checked in tz code.
 
-If user-space can do it, user-space should do it!
+regards,
+	o.
+
+> Maxime
+> 
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
 
-Thanks,
 
-James
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
