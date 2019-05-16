@@ -2,72 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E40720008
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 800472003D
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:28:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726447AbfEPHPa convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 May 2019 03:15:30 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:45013 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726363AbfEPHP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:15:29 -0400
-Received: by mail-vs1-f67.google.com with SMTP id j184so1617227vsd.11;
-        Thu, 16 May 2019 00:15:28 -0700 (PDT)
+        id S1726374AbfEPH2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 03:28:02 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:37390 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726277AbfEPH2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:28:02 -0400
+Received: by mail-pl1-f194.google.com with SMTP id p15so1178965pll.4;
+        Thu, 16 May 2019 00:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XGByJB50qhjOEW1MHuUufGyQ+1XNyLAS4RXXQtspXjY=;
+        b=k49M8IvVTT17Qi7G3qbTV82EJr5KBMjNovfVRYiNhVskivzffuKIdnYSspF0YwakAO
+         K2doCcizrxg6kmFm4kcNm0qjMbI1mdPGymttMv/Y86L0U6Bljgjn5KUkw43xSj7M5tOW
+         jlitQQQ6r7NmZUbowmAKp9IC2Zdfp9MJ3W65xK6nDHjOXh3gfPp5ZJgn03U8njHUFW+x
+         YIl5l9W5qaduplsJg30z6HoUZR3FVTyBBOz1x6m8kg0DYzLg6AQPvfkMnTZqk3Hxm4L0
+         TuxVYoTUGSh1mGuInMQZTxmovfQShZXnv31DIaPkFRbJzjaNTMxiOJKExsJDvijjo4jM
+         nryw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=vBPaoFAauCH5+iqFfyzqNMHD69Jtgjzqknm8ZGh1Rho=;
-        b=fGSAUOgg65uvbuXBnBbxz44Dkmu0LWLRVCHUJRLuvv89bK3ZJbI5pNQVABTwxE4LE7
-         o++8qeiHfRLWAivZEtVrSXjo2AArWhHiABEr/uOX0aPrjVAT2NeCof/jzfdLrDGDDWXI
-         r72Lt+iGWLHjZlVQEmkQUUv41go249S8RiAs9ZGuymG9fKsfRNZdp3qWhyquTOzq5sGV
-         F8wE3bvZX/llb3d8Sgv3hAs8tMj/0Wfcjs6OZ1OCH1BhZg/TKWBc6mo4BetWKzbMa7uC
-         cYgbiXGrxPo98vyCVG5qAJtb7gk9Aoz/xLphc+rVn1yHP/H0KWi6AeVL3T7vtXyjLzwA
-         2iJw==
-X-Gm-Message-State: APjAAAWsUgcO4lMN7L+O1QvrO6Zd5HoZi9pvd0+HFN6Gpq0pFBdJRvAs
-        30Z0XQGswteFODDvbG1WfVgiQnl//Biht6hpvBKsF+Ht
-X-Google-Smtp-Source: APXvYqx3lubdb4zhS3ZD+mCp84RPS/GM5QyWhtoYpBVTrzLxaHp6HAB4gJ/WpOZhyHhmWae1oCBKMGqHKgMGV9Tgg58=
-X-Received: by 2002:a67:fdd4:: with SMTP id l20mr18208599vsq.63.1557990928358;
- Thu, 16 May 2019 00:15:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XGByJB50qhjOEW1MHuUufGyQ+1XNyLAS4RXXQtspXjY=;
+        b=bQrp/WW/KbhPvrSQrTtL5Is1wO0Ih+ipFRTKx73E/WUjk7ty0xnioT8iG+Eh2mbp9a
+         JlR7dG/dbj9nUa8Q5jjhnFe0DzJuWHkIl5VKvXF2yuk6omApoa4nmNC2MzBIr1SzVf3N
+         FEj3DhIYNTvJyz/MiDtyvXd6REJsoLMsvlmaIYsv7VOWiPOss2VZtOby0lZybbHMVt9x
+         xeIM7ZNz9YV+XlR9HFh2tXqtMexRo6Xpo3VWzKKwzdsy+FThChaf6mr5uNoATtCc3DqB
+         XOPKpA5PFHs8zS8H3PaL9mgOEXHaF2CL+/PBBCNf5bojruJZdSm0Dd6dhawkDxILlbt9
+         qQOg==
+X-Gm-Message-State: APjAAAW4+MXDg4vUOqLUTGulHLMwh8hjVjnPJpxQfQ0HFJBiszaC9BEP
+        GWlHtSQLdHb2ajTFN3Vtva3PXxtDwXI=
+X-Google-Smtp-Source: APXvYqyEpyV0Gam6SpbSKLLk8Ct8g546tevJNXeRBvS//cl1+2pV9XcXmytOEY5JLMkIPbo42tG4Yw==
+X-Received: by 2002:a17:902:7783:: with SMTP id o3mr11955428pll.21.1557991681457;
+        Thu, 16 May 2019 00:28:01 -0700 (PDT)
+Received: from localhost.localdomain ([107.151.139.128])
+        by smtp.gmail.com with ESMTPSA id f5sm5099124pfn.161.2019.05.16.00.27.59
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 16 May 2019 00:28:00 -0700 (PDT)
+From:   Chuanhong Guo <gch981213@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Chuanhong Guo <gch981213@gmail.com>,
+        Weijie Gao <hackpascal@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] MIPS: ralink: add mt7621-clk.h for device tree binding
+Date:   Thu, 16 May 2019 15:25:51 +0800
+Message-Id: <20190516072731.21957-1-gch981213@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 16 May 2019 09:15:16 +0200
-Message-ID: <CAMuHMdVU5WhL66Lve1qjZx7OGYWbkUmC9JNvYye0SGvtWmawVQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: rcar-{csi2,vin}: Rename bindings
- documentation files
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 3:49 AM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Renesas media binding documentation files uses a naming schema of
-> 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
-> pattern.
->
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+This patch adds dt binding header for mediatek,mt7621-pll which
+was added in:
+commit e6046b5e69a0 ("MIPS: ralink: fix cpu clock of mt7621 and add dt clk devices")
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Weijie Gao <hackpascal@gmail.com>
+Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+---
 
-Gr{oetje,eeting}s,
+checkpatch.pl shows a warning that the line referencing old commit
+is over 75 chars but if I shink it down anyhow it gave me an error
+saying I should use a proper style for commits. So I chose to ignore
+the warning and fix the error.
 
-                        Geert
+ include/dt-bindings/clock/mt7621-clk.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 include/dt-bindings/clock/mt7621-clk.h
 
+diff --git a/include/dt-bindings/clock/mt7621-clk.h b/include/dt-bindings/clock/mt7621-clk.h
+new file mode 100644
+index 000000000000..a29e14ee2efe
+--- /dev/null
++++ b/include/dt-bindings/clock/mt7621-clk.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (C) 2018 Weijie Gao <hackpascal@gmail.com>
++ */
++
++#ifndef __DT_BINDINGS_MT7621_CLK_H
++#define __DT_BINDINGS_MT7621_CLK_H
++
++#define MT7621_CLK_CPU		0
++#define MT7621_CLK_BUS		1
++
++#define MT7621_CLK_MAX		2
++
++#endif /* __DT_BINDINGS_MT7621_CLK_H */
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.21.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
