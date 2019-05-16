@@ -2,127 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7284020A40
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFBDE20A93
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:03:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726696AbfEPOzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 10:55:15 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:39932 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726692AbfEPOzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:55:15 -0400
-Received: by mail-it1-f193.google.com with SMTP id 9so6723339itf.4;
-        Thu, 16 May 2019 07:55:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=II2aVvOkMx3fjlXY4NrDqjsrfVAGmqJjZ4EMQ52ILtE=;
-        b=QI9s0oDwhDFl8oLqw8BkhsHfiXP81XmJSPIuNP2LsqkhxGPCizT6C6BrtrKau+95iQ
-         HEwVAeFV4A3hR3uQfoxZYhVXSnw2HBAFIxlRR7qcTE3HE9dG5ArKvUYgUcrxfJ901pOJ
-         EYEksEV4IDkjAWi5rX6JiFuWofYXfS7y0IoWArWbjQo4B7qaoM2PIqoCbzbiPtT6NG+B
-         W/VyyGEP/vtJDOLwtE+HtNcu/aIIfNave1REE3pYuiJfOql/erp+LalbXdSQoSD99kUh
-         Byb6NW4nzb26fAAObiJQK/CWg6EMz0rZUVeEjPiP/UuPha8s/zNQ1dgmre4VVkKsp/cG
-         Nd4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=II2aVvOkMx3fjlXY4NrDqjsrfVAGmqJjZ4EMQ52ILtE=;
-        b=GYAS9CFUvpSkiSvzVRtcy6aFBBJx+d+ggc5ZcQT1P/fzPfhIJ+ZGQ4v19x9BCA9AfJ
-         FCaq0D63ZBkKC2nw1qxOLivUt3zWfclVj5wdxP11crDfjeNJ4ibIttO8/UalCa7LkX+G
-         YzuwWdsm/w61MYwO2SMYf+Fcvy8SgE0hpdcW7ifjx9EZ6ospgXJVO+fHQ6ldk4mbxSC4
-         DYRqebrUpxdicKRteVFJT/Q/PO5THQ+SO+l4kjLLZVRXj10+Fu/PCOHNvPuRxZHbHwcV
-         zUpxToFxdtFEldWsM+9myE/P/3vNZ46m0ErbNGtiAP+0VmmFWHEtsFonvYBktldFaw6o
-         E8jg==
-X-Gm-Message-State: APjAAAUqJgyL2/Ogd0+VPJdRU9HAW30lxSWKfYwUHCue4Xy9yt6fIUYD
-        dynlouKn180CKA1ehZIK/Rjca3qP
-X-Google-Smtp-Source: APXvYqz+BV3HV37t6+sIkwydMn16eHxVIeUK/39DRMH4CpTNvFDNSbpwz3BieUAIoAb0OQotPcxo7Q==
-X-Received: by 2002:a24:64d0:: with SMTP id t199mr13004949itc.136.1558018514328;
-        Thu, 16 May 2019 07:55:14 -0700 (PDT)
-Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.googlemail.com with ESMTPSA id c91sm314112itd.4.2019.05.16.07.55.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 07:55:13 -0700 (PDT)
-Subject: Re: [PATCH v2 2/4] dt-bindings: memory: Add binding for NVIDIA
- Tegra30 External Memory Controller
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Joseph Lo <josephl@nvidia.com>, devicetree@vger.kernel.org,
-        linux-clk <linux-clk@vger.kernel.org>,
-        linux-tegra@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20190414202009.31268-1-digetx@gmail.com>
- <20190414202009.31268-3-digetx@gmail.com> <20190429220542.GA17924@bogus>
- <137c766e-66f6-828a-5c3b-f526d66d37bd@gmail.com>
- <CAL_JsqKCWytgQEDPLX27xdaDrARtHssbhFcL47RO0zfECm0Gig@mail.gmail.com>
- <27d24f4e-cf4c-b2d1-140a-5dcef021fa40@gmail.com>
- <7b6867f4-54b2-f3b5-2b4e-87ea3000fa44@gmail.com>
-Message-ID: <063f38c2-d594-f584-d2b5-6586b73a2b92@gmail.com>
-Date:   Thu, 16 May 2019 17:55:10 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726909AbfEPPDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 11:03:04 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:58399 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726687AbfEPPDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 11:03:04 -0400
+Received: from localhost (unknown [80.215.79.199])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 1129E200018;
+        Thu, 16 May 2019 15:02:52 +0000 (UTC)
+Date:   Thu, 16 May 2019 17:02:52 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Yangtao Li <tiny.windzz@gmail.com>, mark.rutland@arm.com,
+        daniel.lezcano@linaro.org, catalin.marinas@arm.com,
+        will.deacon@arm.com, bjorn.andersson@linaro.org,
+        mchehab+samsung@kernel.org, paulmck@linux.ibm.com,
+        stefan.wahren@i2se.com, linux-pm@vger.kernel.org, wens@csie.org,
+        jagan@amarulasolutions.com, andy.gross@linaro.org,
+        rui.zhang@intel.com, devicetree@vger.kernel.org,
+        marc.w.gonzalez@free.fr, edubezval@gmail.com,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com, linux-arm-kernel@lists.infradead.org,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        olof@lixom.net, davem@davemloft.net
+Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
+Message-ID: <20190516150252.hf4u3bloo37chy6q@flea>
+References: <20190512082614.9045-1-tiny.windzz@gmail.com>
+ <20190512082614.9045-3-tiny.windzz@gmail.com>
+ <20190512133930.t5txssl7mou2gljt@flea>
+ <20190512214128.qjyys3vfpwdiacib@core.my.home>
 MIME-Version: 1.0
-In-Reply-To: <7b6867f4-54b2-f3b5-2b4e-87ea3000fa44@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7vj27y3kfhi2ktlo"
+Content-Disposition: inline
+In-Reply-To: <20190512214128.qjyys3vfpwdiacib@core.my.home>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-02.05.2019 4:39, Dmitry Osipenko пишет:
-> 02.05.2019 3:52, Dmitry Osipenko пишет:
->> 02.05.2019 3:17, Rob Herring пишет:
->>> On Wed, May 1, 2019 at 7:06 PM Dmitry Osipenko <digetx@gmail.com> wrote:
->>>>
->>>> 30.04.2019 1:05, Rob Herring пишет:
->>>>> On Sun, Apr 14, 2019 at 11:20:07PM +0300, Dmitry Osipenko wrote:
->>>>>> Add device-tree binding for NVIDIA Tegra30 External Memory Controller.
->>>>>> The binding is based on the Tegra124 EMC binding since hardware is
->>>>>> similar, although there are couple significant differences.
->>>>>
->>>>> My comments on Tegra124 binding apply here.
->>>>
->>>> The common timing definition doesn't fully match the definition that is
->>>> used by Tegra's Memory Controller, thus the DQS (data strobe) timing
->>>> parameter is comprised of multiple sub-parameters that describe how to
->>>> generate the strobe in hardware. There are also more additional
->>>> parameters that are specific to Tegra and they are individually
->>>> characterized for each memory model and clock rate. Hence the common
->>>> timing definition isn't usable.
->>>
->>> I don't understand. Every PC in the world can work with any DIMM
->>> (within a given generation) just with SPD data. Why is that not
->>> sufficient here?
->>
->> Because this is not a standard PC, but a custom embedded hardware that
->> is simpler and also doesn't fully follow the standards in some cases.
-> 
-> Even if there is a way to derive at least some of required parameters
-> from the common timing, I don't have information about how to do it and
-> there is pretty much no chance to get it into public.
-> 
-> Rob, please let me know if you're okay with this binding.
-> 
 
-I looked through the Technical Reference Manual a bit more closely and
-it actually has comments about how to convert some of the common timing
-parameters into register values. Some of those parameters are not
-trivial to convert and the doc could be incomplete, and some of the
-parameters are not documented at all.
+--7vj27y3kfhi2ktlo
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The other much more minor reason against the common timing description
-is that all boards come with the memory timing definition in a
-platform-specific form in downstream kernel. We're re-using that
-definition in the device-tree, hence it is easy to port the timings from
-downstream into upstream.
+Hi,
+
+On Sun, May 12, 2019 at 11:41:28PM +0200, Ond=C5=99ej Jirman wrote:
+> > > +static int tsens_get_temp(void *data, int *temp)
+> > > +{
+> > > +	struct tsensor *s =3D data;
+> > > +	struct tsens_device *tmdev =3D s->tmdev;
+> > > +	int val;
+> > > +
+> > > +	regmap_read(tmdev->regmap, tmdev->chip->temp_data_base +
+> > > +		    0x4 * s->id, &val);
+> > > +
+> > > +	if (unlikely(val =3D=3D 0))
+> > > +		return -EBUSY;
+> >
+> > I'm not sure why a val equals to 0 would be associated with EBUSY?
+>
+> Thermal zone driver can (will) call get_temp before we got the
+> first interrupt and the thermal data. In that case val will be 0.
+>
+> Resulting in:
+>
+>  (val + offset) * scale =3D (-2794) * -67 =3D 187198
+>
+> 187=C2=B0C and immediate shutdown during boot - based on cirtical
+> temperature being reached.
+>
+> Busy here means, get_temp does not yet have data. Thermal zone
+> driver just reports any error to dmesg output.
+
+Ah, that makes sense.
+
+I guess if we're switching to an interrupt-based driver, then we can
+just use a waitqueue, or is get_temp supposed to be atomic?
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--7vj27y3kfhi2ktlo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXN17nAAKCRDj7w1vZxhR
+xZVgAQDEhhE/FQspXxx58VLtzI/e0Kz9gZa92QnGGjDbVWxBTwEA1iAzA+XGbDtR
+1TM7/Hc1lwDV+qLHJYnbwcFfq+6XBAg=
+=qzgC
+-----END PGP SIGNATURE-----
+
+--7vj27y3kfhi2ktlo--
