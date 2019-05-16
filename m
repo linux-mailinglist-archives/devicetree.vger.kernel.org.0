@@ -2,98 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 934EB2081D
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D12272082A
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:28:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727218AbfEPN1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:27:54 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:42218 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726736AbfEPN1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 09:27:53 -0400
-Received: by mail-lf1-f65.google.com with SMTP id y13so2629804lfh.9
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:27:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7WxjQCsvVCJYqyumRz+jnewVmeYA5zYY9VNykeSLVi4=;
-        b=cYaJwB40usbpVQi7JB725NH1c2aJJGSyxQSvdM2jZIHDEJrHsmOgi20KVuuo5unVIL
-         5CCZ/gPl95YUInsupxVWgVV6iT+QF+Kw5zttZAATHls+0an8Cunb/+ukCDTaLAQYdgOw
-         +upnD5HLCdC4d+PBExK6UwEPtRltfx4Q5Xrvgusq2WumgfPk4qwaP9UT5X9HjSmF859a
-         KO8fejjCw/x147mbgm50wo6y+jIbj0H/CF9Wa4kALrUwKiwT96T1FDObrDwfRJHH9WOV
-         o6UcWtt1zmQcHhJCRG8iP+08LE77Cx2n4+nvD6HCkR8KKGWxjHY6OPihuGTPs+yp10Ue
-         4PPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7WxjQCsvVCJYqyumRz+jnewVmeYA5zYY9VNykeSLVi4=;
-        b=n2UAkGr2599t0l2hg0RbZ/N5WGfPv0ahKxN8yPF50CSUZSuUe/XhNjrdKoG3dyg+66
-         HMs9zntC0yjXF8OoHLa1PFYC0f5Cf36zNkcaK/S46o5T8x2i0E8Q53qatmzTOTVfXHKG
-         rvCLiOCkJZ9pYCDk8B95cdKfzwS87AcnR5FWpzwQG4NRrz79/iryyddHhj91+jRvC07S
-         3kc9BexP4PQjp1HCEfokNnBYiL1L9B2QrOz1LW3T0m/6QAEgsP04r5e3UPLE8v/gv5uS
-         GSYb+owWYDLOckQSQXiGC9t5p1vStxWM4Nlf9kuKVFkHPW3wLocvfaTOntRZUj0bzYQx
-         9QBw==
-X-Gm-Message-State: APjAAAVCTTiiMgazlzExGyuDXqa061oZRA+994Q7YLdRrAIUpm/+ORGl
-        GpON81TN20xawrRsQvl+6+Tk1Uzx5nMELME8PA3LJg==
-X-Google-Smtp-Source: APXvYqzKRSRZrOSzb8j47r4z5gkvvcvXMc+KXeXLn3AMVGqrIIudEn/2TzBR5TN3TJK02fLAdgUvNPBy8HDUhhbEpdY=
-X-Received: by 2002:ac2:482a:: with SMTP id 10mr10554822lft.51.1558013271860;
- Thu, 16 May 2019 06:27:51 -0700 (PDT)
+        id S1727587AbfEPN2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:28:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60014 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726955AbfEPN2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 09:28:09 -0400
+Received: from localhost (50-82-73-190.client.mchsi.com [50.82.73.190])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7720C20815;
+        Thu, 16 May 2019 13:28:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558013288;
+        bh=Zv6ZRln99gohm9loMinCpGMe8ABSvr0R7QAANxBD+kc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jBfwdHcf4Po3DSORzgMh2uiY9Ul04pxKYbhMY/zaWlfmyGmYMrWktAkYMR3/g+Zl5
+         QD+ntDpAEK1xbh69SJsqqUrJOze0M+lq5CE9k5BEH4i1YZ48kZLzEOp3Uq2M+X0e1Q
+         by/MDglHyhTFkXEIUWDjKZbIxkpBNpeq0mzZ2ocE=
+Date:   Thu, 16 May 2019 08:28:07 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, kishon@ti.com, catalin.marinas@arm.com,
+        will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
+        mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V6 02/15] PCI/PME: Export pcie_pme_disable_msi() &
+ pcie_pme_no_msi() APIs
+Message-ID: <20190516132807.GB101793@google.com>
+References: <20190513050626.14991-1-vidyas@nvidia.com>
+ <20190513050626.14991-3-vidyas@nvidia.com>
 MIME-Version: 1.0
-References: <20190509205955.27842-1-f.fainelli@gmail.com> <20190509205955.27842-4-f.fainelli@gmail.com>
-In-Reply-To: <20190509205955.27842-4-f.fainelli@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 May 2019 15:27:40 +0200
-Message-ID: <CACRpkdY3-yARtO9KQnUUMNefygzLC_c2RRn+ROZUdYfBJkRASQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] pinctrl: bcm2835: bcm7211: Add support for 7211
- pull-up functionality
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Eric Anholt <eric@anholt.net>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Doug Berger <opendmb@gmail.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Lukas Wunner <lukas@wunner.de>,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        "open list:PIN CONTROL SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190513050626.14991-3-vidyas@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 9, 2019 at 11:01 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+On Mon, May 13, 2019 at 10:36:13AM +0530, Vidya Sagar wrote:
+> Export pcie_pme_disable_msi() & pcie_pme_no_msi() APIs to enable drivers
+> using these APIs be able to build as loadable modules.
+> 
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
 
-> From: Al Cooper <alcooperx@gmail.com>
->
-> The 7211 has a new way of selecting the pull-up/pull-down setting
-> for a GPIO pin. The registers used for the bcm2837, GP_PUD and
-> GP_PUDCLKn0, are no longer connected. A new set of registers,
-> GP_GPIO_PUP_PDN_CNTRL_REGx must be used. This commit will add
-> a new compatible string "brcm,bcm7211-gpio" and the kernel
-> driver will use it to select which method is used to select
-> pull-up/pull-down.
->
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Nak, as-is.
 
-Following the discussion with Stefan it appears this patch
-needs more work, but you will only need to resend this
-one patch.
+1) The argument for why this is needed is unconvincing.  If device
+advertises MSI support, we should be able to use it.
 
-Yours,
-Linus Walleij
+2) If it turns out we really need this, it should be some sort of
+per-device setting rather than a global thing like this.
+
+> ---
+> Changes since [v5]:
+> * Corrected inline implementation of pcie_pme_no_msi() API
+> 
+> Changes since [v4]:
+> * None
+> 
+> Changes since [v3]:
+> * None
+> 
+> Changes since [v2]:
+> * Exported pcie_pme_no_msi() API after making pcie_pme_msi_disabled a static
+> 
+> Changes since [v1]:
+> * This is a new patch in v2 series
+> 
+>  drivers/pci/pcie/pme.c     | 14 +++++++++++++-
+>  drivers/pci/pcie/portdrv.h | 14 ++------------
+>  2 files changed, 15 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/pci/pcie/pme.c b/drivers/pci/pcie/pme.c
+> index 54d593d10396..d5e0ea4a62fc 100644
+> --- a/drivers/pci/pcie/pme.c
+> +++ b/drivers/pci/pcie/pme.c
+> @@ -25,7 +25,19 @@
+>   * that using MSI for PCIe PME signaling doesn't play well with PCIe PME-based
+>   * wake-up from system sleep states.
+>   */
+> -bool pcie_pme_msi_disabled;
+> +static bool pcie_pme_msi_disabled;
+> +
+> +void pcie_pme_disable_msi(void)
+> +{
+> +	pcie_pme_msi_disabled = true;
+> +}
+> +EXPORT_SYMBOL_GPL(pcie_pme_disable_msi);
+> +
+> +bool pcie_pme_no_msi(void)
+> +{
+> +	return pcie_pme_msi_disabled;
+> +}
+> +EXPORT_SYMBOL_GPL(pcie_pme_no_msi);
+>  
+>  static int __init pcie_pme_setup(char *str)
+>  {
+> diff --git a/drivers/pci/pcie/portdrv.h b/drivers/pci/pcie/portdrv.h
+> index 944827a8c7d3..1d441fe26c51 100644
+> --- a/drivers/pci/pcie/portdrv.h
+> +++ b/drivers/pci/pcie/portdrv.h
+> @@ -129,18 +129,8 @@ void pcie_port_bus_unregister(void);
+>  struct pci_dev;
+>  
+>  #ifdef CONFIG_PCIE_PME
+> -extern bool pcie_pme_msi_disabled;
+> -
+> -static inline void pcie_pme_disable_msi(void)
+> -{
+> -	pcie_pme_msi_disabled = true;
+> -}
+> -
+> -static inline bool pcie_pme_no_msi(void)
+> -{
+> -	return pcie_pme_msi_disabled;
+> -}
+> -
+> +void pcie_pme_disable_msi(void);
+> +bool pcie_pme_no_msi(void);
+>  void pcie_pme_interrupt_enable(struct pci_dev *dev, bool enable);
+>  #else /* !CONFIG_PCIE_PME */
+>  static inline void pcie_pme_disable_msi(void) {}
+> -- 
+> 2.17.1
+> 
