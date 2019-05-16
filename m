@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9979D1FFB6
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 08:40:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B1A20005
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726722AbfEPGkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 02:40:39 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:4938 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726674AbfEPGki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 02:40:38 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cdd05ec0000>; Wed, 15 May 2019 23:40:44 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Wed, 15 May 2019 23:40:37 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Wed, 15 May 2019 23:40:37 -0700
-Received: from HQMAIL106.nvidia.com (172.18.146.12) by HQMAIL103.nvidia.com
- (172.20.187.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 16 May
- 2019 06:40:36 +0000
-Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL106.nvidia.com
- (172.18.146.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Thu, 16 May 2019 06:40:37 +0000
-Received: from nkristam-ubuntu.nvidia.com (Not Verified[10.19.65.118]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5cdd05e2000b>; Wed, 15 May 2019 23:40:37 -0700
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-To:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Nagarjuna Kristam <nkristam@nvidia.com>
-Subject: [Patch V3 8/8] arm64: defconfig: Enable tegra XUDC driver
-Date:   Thu, 16 May 2019 12:09:32 +0530
-Message-ID: <1557988772-15406-9-git-send-email-nkristam@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
-References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
-X-NVConfidentiality: public
+        id S1726703AbfEPHOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 03:14:04 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:41188 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726277AbfEPHOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:14:04 -0400
+Received: by mail-wr1-f67.google.com with SMTP id g12so1775952wro.8
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 00:14:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VfCCJLVSfHmoPDAPoxVwjeh8RznaZsaWhre6aDFNPIM=;
+        b=hIzpxAqGm2mhKRJYGO+YsjXJtG3/Y3HV1euq2BEEfoOJk4PDOeGY/qCyeApBn8Ueq0
+         V7kJVjFDtawFjNmvTzpxqx1rbpRxVdsqbNJ4cC3WcC6pzlKnLht0aS1u8/PMjDvJnCeK
+         nfzR9L6tlulhvTKK9hFXNqtrubFaHwYa0BhMwPzRgdUFY8HASnBcI9uy1IZLcZJ5NAHp
+         o5lqypEEXV96kU4+iefo6p+9eXh5YLnFPiZRwzx5/06TL77E9tJozgTquElaAF6VA3/S
+         RA9kg3I6agdjesBqj4Is+osqQ9hLHrzxTcs6N5hsuGH3dixd4Mf4NVgIEip32AHIpJ74
+         rVGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VfCCJLVSfHmoPDAPoxVwjeh8RznaZsaWhre6aDFNPIM=;
+        b=iuoRZEc7/H9bSoV5M7N+ms/OgGi0bC/os1+1+wAqNT0b6OJvMwBdsdXQV5HtTFF8Jj
+         3Uxdq57+GihuStZtUtJAvaDqlBWQ/Tn1zQiAViHdG4wHQ5XBtZ1mXkSTLVP5j2Hfb+6B
+         v+CTx4Ec3ehMz7ytzKtkbSSLV8VsmTcEHWUyy7zNxO9d0a1rdETNYhXG2kG3zXV23LUF
+         SwBRxO24klNb3MtSxTys2qDec+o1m+U7NF42ClSwVzUD/CusXVSgEX8+CtCYVn2dTGVo
+         WDQSkft/r341cMR/bDyfUGoaGE1lkB0DeFNdiW4/mf5DTm46AZg60+YNz5wfoCBPjsW8
+         hCJw==
+X-Gm-Message-State: APjAAAW7g2oFzaL8GR1gzVBSlJHTqvaBEl39Z57/aReRE8ouscF9Jns0
+        kTBK6REqwmiPb0oQ/aE5mheU4n5O2wI=
+X-Google-Smtp-Source: APXvYqy6tYfmy3A5aGFSOaSVHlYWAwVjpgeh4xahSE6WzNjqgCYsJB/OQVjBgZAzXUNEhgfdt/0vEQ==
+X-Received: by 2002:a5d:49d0:: with SMTP id t16mr19217158wrs.324.1557990842582;
+        Thu, 16 May 2019 00:14:02 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id x187sm5454331wmb.33.2019.05.16.00.14.01
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 16 May 2019 00:14:02 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: sei510: add bluetooth supplies
+Date:   Thu, 16 May 2019 09:13:55 +0200
+Message-Id: <20190516071355.26938-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557988844; bh=SJ9GL3oTbSiq7TpUURiON93iiOObqYKhQkoJJ6rnBVI=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=lJ7GdhG3qX/g0l6DYv3gOYiwIJCQ3AJ9lEUIFOkRwlaS9Yl00Jh0IL05xVWq9lhOE
-         GlMllGCSVtBE76R9m6DVv0v0Otpe4eCR2UvjWR5RkBg1btmAfzBHt0njbYrpeJQHhO
-         2SraorU1SMoDvV3sZ8NE5FYZp+j6gnv9yxu+QhlOYNlhII12sMqZYU3vGYa66PnTCU
-         6YqA3tpuuD+dcNurDZNGgBexUKjE0gOSAjOzohosWU6HeOk1GLmGsNW0zMJDsnGNU7
-         qtEVp6A3F2Zqeccu3ogr69bDzRAY07oFO721rpWhal95Wy7t23RAtiT2x5bQFsz9S5
-         TGUEv0CO1IQjQ==
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable support for Nvidia XUSB device mode controller driver.
+Add bluetooth vbat and vddio power supplies
 
-Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index b605b7f..bf1437c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -575,6 +575,7 @@ CONFIG_USB_ULPI=y
- CONFIG_USB_GADGET=y
- CONFIG_USB_RENESAS_USBHS_UDC=m
- CONFIG_USB_RENESAS_USB3=m
-+CONFIG_USB_TEGRA_XUDC=y
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=32
- CONFIG_MMC_ARMMMCI=y
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+index 61fb30047d7f..dbfbd50359e5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -170,6 +170,8 @@
+ 	bluetooth {
+ 		compatible = "brcm,bcm43438-bt";
+ 		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		vbat-supply = <&vddao_3v3>;
++		vddio-supply = <&vddio_ao1v8>;
+ 	};
+ };
+ 
 -- 
-2.7.4
+2.20.1
 
