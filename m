@@ -2,125 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F05620759
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 14:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2885520773
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 14:59:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727447AbfEPMyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 08:54:44 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:35650 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727445AbfEPMyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 08:54:44 -0400
-Received: by mail-vs1-f68.google.com with SMTP id q13so2251910vso.2
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 05:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5JFKFzEG0xBUwD7HIYkZnnh9dqUah7E+Ib/gYxU2vLc=;
-        b=VYoxyClJ3IjCVsog1UOHY1j+te4vzK7Zn2KD34QyuMIWoFuDNp2DKcFQsGF7V5m1+7
-         9TjRCmfp8zPch4KoXHkfiEsy94k9AIuh7YLakWy4P/y4oXwuJlYONSjl0JX9V0ajbr6v
-         +0DcWGGJ63IhmWOGKLnbLaXwZa6K0t2YEfKHqwyZrkAIlahHSxIvEmiv8NjKLjsb/Z/s
-         BwwGWbUZWgcHXmcdk1Y858SQGg5Fa9I9UqDHVf2ZLb5pjWASAuLCnZazpDqjQUtKNmww
-         QdbHS9uJTFRRPv2+3ogrqq5IM09zMxLdUcwvpGgFIT/9DjcNWIAGPbYTEiMhAUhA9X4h
-         JNTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5JFKFzEG0xBUwD7HIYkZnnh9dqUah7E+Ib/gYxU2vLc=;
-        b=tT5ZLowGDloevcSLNhFTA8DmaxIGsY7o0WaI28sRXzus7Bz+pc8e1L7G5YY+9koGGW
-         djFIAbed7pRKXzrFh0aNdTSzOIC3cxBgnfzAhTxl7S5VeWemotaP7+rJ/l/97yz2u+dq
-         OHP9LjfWx74I2cJhdss3CteD4p70E4JhHhwmSz5JNb+ALKyDVkHp1uwHSvcRq1snymt/
-         0ElmfML0c33IfSfMrUj0fu3Oa9jE0wIq0P449xijuNp2jNj8+dZpYqUeyDfBuKQK6KI3
-         ah7Pq+SABZdfNM2vZT4OGDPdvCHRbTFEkLgcwIrkUW3JQiNdOhafQSYXngLii9vL8nRc
-         LqRQ==
-X-Gm-Message-State: APjAAAWSAfbDrvxt2XRjlnYtl/AU/3qe5kLS5HQsR6OKtCc755Rlcmv6
-        KHjispmppo/E3DqNdx0aq1ancsKrwKpTP47Rpn/Z4g==
-X-Google-Smtp-Source: APXvYqzDDDWdu9fo9iPHY+ysVVykXsJWlZRil28ig+PCzrEXYHeHo4q5f7yXfu68QdSmpPfaBGotMnL52M7tvXUqMI4=
-X-Received: by 2002:a67:c84:: with SMTP id 126mr8581637vsm.178.1558011283233;
- Thu, 16 May 2019 05:54:43 -0700 (PDT)
+        id S1727533AbfEPM6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 08:58:25 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:53494 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726692AbfEPM6Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 08:58:25 -0400
+Received: from we0524.dip.tu-dresden.de ([141.76.178.12] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hRFxZ-0004u2-Lf; Thu, 16 May 2019 14:58:09 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     allen <allen.chen@ite.com.tw>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Johan Hovold <johan@kernel.org>,
+        Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
+        Koen Kooi <koen@dominion.thruhere.net>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Ben Whitten <ben.whitten@gmail.com>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Guenter Roeck <groeck@google.com>
+Subject: Re: [PATCH 1/3] dt-bindings: Add binding for IT6505.
+Date:   Thu, 16 May 2019 14:58:08 +0200
+Message-ID: <3548960.TAD2hRMT5j@phil>
+In-Reply-To: <1557301722-20827-2-git-send-email-allen.chen@ite.com.tw>
+References: <1557301722-20827-1-git-send-email-allen.chen@ite.com.tw> <1557301722-20827-2-git-send-email-allen.chen@ite.com.tw>
 MIME-Version: 1.0
-References: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
- <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com> <20190516123120.GB14298@lunn.ch>
-In-Reply-To: <20190516123120.GB14298@lunn.ch>
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-Date:   Thu, 16 May 2019 18:24:32 +0530
-Message-ID: <CAARK3H=L2AFtog6wdJGU7rKi7yk-AzDgFdjcjktZgkqdDwnOZQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrew,
+Hi Allen,
 
-On Thu, May 16, 2019 at 6:01 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > @@ -682,13 +693,24 @@ static int ocores_i2c_probe(struct platform_device *pdev)
-> >
-> >       irq = platform_get_irq(pdev, 0);
-> >       if (irq == -ENXIO) {
-> > -             i2c->flags |= OCORES_FLAG_POLL;
-> > +             /*
-> > +              * Set a OCORES_FLAG_BROKEN_IRQ to enable workaround for
-> > +              * FU540-C000 SoC in polling mode interface of i2c-ocore driver.
-> > +              * Else enable default polling mode interface for SIFIVE/OCORE
-> > +              * device types.
-> > +              */
-> > +             match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
-> > +             if (match && (long)match->data ==
-> > +                             (TYPE_SIFIVE_REV0 | OCORES_FLAG_BROKEN_IRQ))
->
-> This looks wrong. You added:
->
-> +       {
-> +               .compatible = "sifive,fu540-c000-i2c",
-> +               .data = (void *)TYPE_SIFIVE_REV0,
-> +       },
-> +       {
-> +               .compatible = "sifive,i2c0",
-> +               .data = (void *)TYPE_SIFIVE_REV0,
-> +       },
->
-> So match->data just has TYPE_SIFIVE_REV0.
-I updated the device_id table into two logically separated patches as follows:-
+Am Mittwoch, 8. Mai 2019, 09:48:40 CEST schrieb allen:
+> From: Allen Chen <allen.chen@ite.com.tw>
+> 
+> Add a DT binding documentation for IT6505.
+> 
+> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+> 
+> ---
+>  .../bindings/display/bridge/ite,it6505.txt         | 30 ++++++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.txt        |  1 +
+>  2 files changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+> new file mode 100644
+> index 0000000..c3506ac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+> @@ -0,0 +1,30 @@
+> +iTE it6505 DP bridge bindings
+> +
+> +Required properties:
+> +        - compatible: "ite,it6505"
+> +        - reg: i2c address of the bridge
+> +        - ovdd-supply: I/O voltage
+> +        - pwr18-supply: Core voltage
+> +        - interrupts: interrupt specifier of INT pin
+> +        - reset-gpios: gpio specifier of RESET pin
+> +
+> +Example:
+> +	it6505dptx: it6505dptx@5c {
+> +                compatible = "ite,it6505";
+> +                status = "okay";
 
-1. Update device id table for Sifive devices
-    [PATCH v3 2/3] i2c-ocore:
-                  .data for sifive,fu540-540-c000 and sifive,i2c0 both
-are for sifive devices hence TYPE_SIFIVE_REV0
-2. Add polling mode workaround fix for fu540-c000 SoC
-    [PATCH v3 3/3] i2c-ocores:
-                  .data for sifive,fu540-540-c000 is of
-TYPE_SIFIVE_REV0 and has a broken IRQ so the flag
-OCORES_FLAG_BROKEN_IRQ is OR'd to data into device id table.
+binding examples should not contain a "status" property.
+Also as this is a board-specific i2c device, you shouldn't need
+a status property in the board dts as well, as the default is
+"okay" anyway.
 
-Please let me know if you feel patch 2 and patch 3 need to be squashed
-together into a single patch.
 
->
-> > +                     i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
-> > +             else
-> > +                     i2c->flags |= OCORES_FLAG_POLL;
->
-> These two don't need to be exclusive. It makes more sense to say
-> SIFIVE needs to poll and it its IRQ is broken. A lot of your other
-> changes then go away.
->
-Other SiFive chip's with Ocore based I2C re-implementation might not
-need the broken IRQ workaround.
-and can use the the existing mainline polling mode interface, using
-OCORES_FLAG_POLL.
+> +                interrupt-parent = <&pio>;
+> +                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
+> +                reg = <0x5c>;
+> +                pinctrl-names = "default";
+> +                pinctrl-0 = <&it6505_pins>;
+> +                ovdd-supply = <&mt6358_vsim1_reg>;
+> +                pwr18-supply = <&it6505_pp18_reg>;
+> +                reset-gpios = <&pio 179 1>;
+> +                hpd-gpios = <&pio 9 0>;
 
-Thanks & BR,
-Sagar Kadam
->        Andrew
+This is missing from the property-list above.
+
+> +                extcon = <&usbc_extcon>;
+
+Not documented as well. Also this looks like it is the same functionality
+as on rk3399-gru devices and circumvents the Type-C subsystem entirely
+when handling the display-port alt-mode of the typec port.
+
+At least on rk3399-gru the extcon from the chromeos-ec delivered the
+status and allowed chaning settings of the hidden type-c controller
+(fusb302 in that case). And while that works for ChromeOS devices this
+makes it impossible for other devices to sanely use the chip as well.
+
+
+The kernels type-c framework did develop a lot more in the meantime,
+so this "hack" should probably not spread to more parts and instead should
+use the type-c framework.
+
+I pestered Guenter last year at ELCE about making cros-ec-pd a part of
+the kernel's type-c subsystem, but I guess nobody had the time so far.
+
+ 
+
+> +                port {
+> +                        it6505_in: endpoint {
+> +                                remote-endpoint = <&dpi_out>;
+
+Ports usage also it not documented above. 
+
+
+Heiko
+
+> +                        };
+> +                };
+> +        };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> index 2c3fc51..c088646 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> @@ -184,6 +184,7 @@ iom	Iomega Corporation
+>  isee	ISEE 2007 S.L.
+>  isil	Intersil
+>  issi	Integrated Silicon Solutions Inc.
+> +ite	iTE Tech. Inc.
+>  itead	ITEAD Intelligent Systems Co.Ltd
+>  iwave  iWave Systems Technologies Pvt. Ltd.
+>  jdi	Japan Display Inc.
+> 
+
+
+
+
