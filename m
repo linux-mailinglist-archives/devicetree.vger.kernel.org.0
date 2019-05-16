@@ -2,181 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C895B209E3
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6AC6209EA
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726742AbfEPOjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 10:39:10 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:53819 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726717AbfEPOjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:39:10 -0400
-Received: by mail-it1-f193.google.com with SMTP id m141so6519481ita.3;
-        Thu, 16 May 2019 07:39:09 -0700 (PDT)
+        id S1726889AbfEPOjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 10:39:46 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:40723 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726687AbfEPOjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:39:46 -0400
+Received: by mail-ed1-f68.google.com with SMTP id j12so5605370eds.7
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 07:39:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xjgQ/5X3nhrZ86421UVwW1lVuND3Gcl5hfZAZ30U0CU=;
-        b=IdxVHb24lDGecKqfp1SzFkQQ8z3y8s7JBR4btUXPBetSjyhmnwGj9u+fdTmj1arlyU
-         A45G5b/Pd2oMh1t/Uy+Vo2DigWlaGNmCNsHIttoRjTYo9xABusepfHDoX/M0k7oqtod0
-         k1HgH5Qk78gkg4tD06vO9v/9vyn4PpvB0OQwc4Xlssy6TLpSQIOT9CQ7T0mez+tAAvzv
-         /Tg317ygwAG5GUDn2Vr6mR1qTZgEnFJBsaE/sbVNL5JDqF1k0rrRe8bFtIdYHoYaG4Wx
-         beF9+dr0iqKJrtP3O3ZQ8dlfwc6SsRhfCoA7SYaOdoE67SerAZiW+KhxjB5tayWtjDIz
-         IKvQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3CyBDin8DCVhqMsm5Y31nNq5E0wYgKjhJ5os3L5pACs=;
+        b=XewtSERXwuRq/hMVzfTTvLn3bup7RL3HYHHiSaecYOcuXF0IYqV7+eahP0uoc2sntm
+         all0N0vBT2cEdbkpmEsZSMOHRpXo6iW0x4s9X85jbF/Gs3irW/ih2LB9XWftHVqFvoxL
+         zLCWkLS84U94nRd2oDZuAQn3I+MZk66knbYg515af60MhANSCel3a9ThgmTA0MVapTqI
+         5zV2XK01YaT/iulH3tvZbCE7lRjnY+IhIzPwTcHf6do6SiNoFYitBpKumOTkoznvSoYZ
+         6KDcV0oC5T1hfz1q7tbHZMWpCM0WYLl0ytkNaqiRTMcFgZuF3edRp1KtFoFaMc9E57Z3
+         le5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xjgQ/5X3nhrZ86421UVwW1lVuND3Gcl5hfZAZ30U0CU=;
-        b=K5TioRgjPW3kKDOQcF3BRIYpiQpWWw8V5RE6udbNqqiNKZm5NRzupADj2ZBI1f7/3P
-         oSf/djHaHooTjmZfGQzeVLudNlywFLtieufJjdJ7atVDzBqod4/BkIGqNvEadPxxjNXe
-         u94cr/urBLLgwELMiKxP82Wj70j58UU+RE22FjLK8a537oJpIoHrHN8IV+ovffi2ZqhI
-         XF6eqpLWg6/79g962bUz/ZRrJEcBeTBlzwSicItle3HXEDTK5W6wmMYSmqfCzC2L3CVq
-         XxSjM8RL7xu9/zYv4x7gQaXo33EyUicH3AWDYVEnjG2PKLQuEkKv7PD9h8wKR2+E6eaD
-         QtGA==
-X-Gm-Message-State: APjAAAWu7nk7Z1VuMogi3OMHFcCyrJcCD5Vbcqfjb4HISJZTv+9EVNNE
-        +pi5tNrMOOV8uxHSx8LzuEg=
-X-Google-Smtp-Source: APXvYqxzHgxzhYqjIbY6HnOMlBWoOVhZoq+onDurYBO0wD4B5R9FAHkMnoXc4RXRRabsenlpzpo35g==
-X-Received: by 2002:a24:3f85:: with SMTP id d127mr12911999ita.38.1558017549373;
-        Thu, 16 May 2019 07:39:09 -0700 (PDT)
-Received: from [192.168.2.145] (ppp94-29-35-107.pppoe.spdop.ru. [94.29.35.107])
-        by smtp.googlemail.com with ESMTPSA id j81sm1942592itj.26.2019.05.16.07.39.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 07:39:08 -0700 (PDT)
-Subject: Re: [PATCH V3 1/8] dt-bindings: memory: tegra: Add external memory
- controller binding for Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190510084719.18902-1-josephl@nvidia.com>
- <20190510084719.18902-2-josephl@nvidia.com>
- <fd68f906-79b4-6eda-b1fa-abaf3b4c6a12@gmail.com>
- <63360b18-6a17-ab3f-6c54-6e11e24885d0@nvidia.com>
- <c3909c66-5aa4-161b-98d4-02ad20e02c88@gmail.com>
- <f1e4ab1e-11b9-ba65-20b8-35c6459d2410@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <1a5b539a-03bb-c326-8ba2-56ea8de97237@gmail.com>
-Date:   Thu, 16 May 2019 17:39:05 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3CyBDin8DCVhqMsm5Y31nNq5E0wYgKjhJ5os3L5pACs=;
+        b=CULzKatOiVhi522kf3ok+cKyGyM4pceAyUbiClQPIuxTxZag9XKA8deZQTnDsciFDM
+         oaIU+iONqXDPluN5haWSf/OUeopTzOPdhjVqkgXXndFHBxM6dt9h1RjV0rPYauX3IIvM
+         54ZMskEOWSKgrhCdi3atLVUlBmtV2Xbjr1xX+64aMGXdE43iL2c24AS4KwmIy2IH4dfb
+         9GqvIvsFp4c/G1K8+v57Cj5h+Qq8NW/Z+/ZVd+GaEmGBIXojZ1sR/aH0ockwE8cI4CMQ
+         xwd4UQKpAjeQ9f4qWsCVlxXqQ2MSE5fmkdc0WM62U8v1zHfddg1pM+qKSEgWimxWbKhL
+         1qhA==
+X-Gm-Message-State: APjAAAX28WfMY9Wt+6ibuzXGZMKoF8/pn8w40bENyS/ovhtKZrLip4/+
+        EYHJJ2RyzOArYb1HUxahmPGcl4G9vZl/6bicjz37uA==
+X-Google-Smtp-Source: APXvYqzVw4+DR7PKEpSfxZo2Bdbylhw3TaXpzTsHymAwtO3mmxyKdPyPNxfkAFlXWKqIm8B6CbcVq2T1cTiJkrYtHQs=
+X-Received: by 2002:a17:906:b6c8:: with SMTP id ec8mr39217179ejb.89.1558017584937;
+ Thu, 16 May 2019 07:39:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <f1e4ab1e-11b9-ba65-20b8-35c6459d2410@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190516102817.188519-1-hsinyi@chromium.org> <20190516102817.188519-2-hsinyi@chromium.org>
+ <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
+In-Reply-To: <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com>
+From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Date:   Thu, 16 May 2019 16:39:32 +0200
+Message-ID: <CAKv+Gu_kgHEhk-p8KoGVgpifdjA67Li-D19_KSLo+1h4ZvL=3g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chintan Pandya <cpandya@codeaurora.org>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.05.2019 12:01, Joseph Lo пишет:
-> On 5/15/19 9:50 PM, Dmitry Osipenko wrote:
->> 15.05.2019 10:17, Joseph Lo пишет:
->>> On 5/15/19 12:28 AM, Dmitry Osipenko wrote:
->>>> 10.05.2019 11:47, Joseph Lo пишет:
->>>>> Add the binding document for the external memory controller (EMC)
->>>>> which
->>>>> communicates with external LPDDR4 devices. It includes the bindings of
->>>>> the EMC node and a sub-node of EMC table which under the reserved
->>>>> memory
->>>>> node. The EMC table contains the data of the rates that EMC supported.
->>>>>
->>>>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
->>>>> ---
->>>>> v3:
->>>>> - drop the bindings of EMC table
->>>>> - add memory-region and reserved-memory node for EMC table
->>>>> ---
->>>>>    .../nvidia,tegra210-emc.txt                   | 55
->>>>> +++++++++++++++++++
->>>>>    1 file changed, 55 insertions(+)
->>>>>    create mode 100644
->>>>> Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>>>
->>>>>
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>>>
->>>>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>>>
->>>>>
->>>>> new file mode 100644
->>>>> index 000000000000..d65aeef2329c
->>>>> --- /dev/null
->>>>> +++
->>>>> b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-emc.txt
->>>>>
->>>>>
->>>>> @@ -0,0 +1,55 @@
->>>>> +NVIDIA Tegra210 SoC EMC (external memory controller)
->>>>> +====================================================
->>>>> +
->>>>> +Device node
->>>>> +===========
->>>>> +Required properties :
->>>>> +- compatible : should be "nvidia,tegra210-emc".
->>>>> +- reg : physical base address and length of the controller's
->>>>> registers.
->>>>> +- clocks : phandles of the possible source clocks.
->>>>> +- clock-names : names of the possible source clocks.
->>>>> +- interrupts : Should contain the EMC general interrupt.
->>>>> +- memory-region : phandle to the reserved memory (see
->>>>> +
->>>>> Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
->>>>> which
->>>>>
->>>>> +  contains a sub-node of EMC table.
->>>>> +- nvidia,memory-controller : phandle of the memory controller.
->>>>> +
->>>>> +Reserved memory node
->>>>> +====================
->>>>> +Should contain a sub-node of EMC table with required properties:
->>>>> +- compatible : should be "nvidia,tegra210-emc-table".
->>>>> +- reg : physical address and length of the location of EMC table.
->>>>> +
->>>>> +Example:
->>>>> +    reserved-memory {
->>>>> +        #address-cells = <2>;
->>>>> +        #size-cells = <2>;
->>>>> +        ranges;
->>>>> +
->>>>> +        emc_table: emc-table@8be00000 {
->>>>> +            compatible = "nvidia,tegra210-emc-table";
->>>>> +            reg = <0x0 0x8be00000 0x0 0x10000>;
->>>>> +            status = "okay";
->>>>> +        };
->>>>
->>>> You essentially moved the v1 binding into obscure and undocumented
->>>> blob,
->>>> ignoring previous review comments. This is a very odd move... please
->>>> explain what is going on.
->>>>
->>>
->>> Discussed with Thierry offline which way we prefer to pass the EMC table
->>> to the kernel. Some reasons below we decide to chose this one (via
->>> binary blob).
->>>
->>> - The EMC table is much bigger than the previous Tegra generations
->>> (LPDDR4 v.s. LPDDR2/3). It's harder to settle in the review process. And
->>> if there is a new fix of the table in the future, we'll need to go
->>> through that again.
->>
->> I don't think that this a very good excuse for not documenting the
->> blob's structure.
-> 
-> The blob's structure is in patch 4 now that we originally wanted to
-> describe below. Basically, the content is the same.
-> http://patchwork.ozlabs.org/patch/1084467/
-> http://patchwork.ozlabs.org/patch/1063879/
+On Thu, 16 May 2019 at 16:37, Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, May 16, 2019 at 5:28 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > Basically does similar things like __fixmap_remap_fdt(). It's supposed
+> > to be called after fixmap_remap_fdt() is called at least once, so region
+> > checking can be skipped. Since it needs to know dt physical address, make
+> > a copy of the value of __fdt_pointer.
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> >  arch/arm64/kernel/setup.c |  2 ++
+> >  arch/arm64/mm/mmu.c       | 17 +++++++++++++++++
+> >  2 files changed, 19 insertions(+)
+>
+> Why not just map the FDT R/W at the start and change it to RO just
+> before calling unflatten_device_tree? Then all the FDT scanning
+> functions or any future fixups we need can just assume R/W. That is
+> essentially what Stephen suggested. However, there's no need for a
+> weak function as it can all be done within the arch code.
+>
+> However, I'm still wondering why the FDT needs to be RO in the first place.
+>
 
-I'm not asking about what exactly it is, but saying that every supported
-blob structure version should be documented in my opinion, otherwise the
-documentation is not really useful.
+It was RO because it could be RO, and we wanted to ensure that it
+didn't get modified inadvertently (hence the CRC check we added as
+well)
+
+If there is a need for the FDT to be RW, let's make it RW.
