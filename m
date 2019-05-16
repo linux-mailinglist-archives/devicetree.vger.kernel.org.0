@@ -2,110 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C84A200C1
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D8C200C5
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726723AbfEPH7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 03:59:07 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:25406 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726363AbfEPH7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:59:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557993542;
-        s=strato-dkim-0002; d=fpond.eu;
-        h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=Fld6kegWQPEsPuDbweEnabf1p3ko9B1BtxGvj5xjvsg=;
-        b=WlXyvNkIB4Z1jfDlKxN1/LZ9vIXtsQ/CqQwe6NTslftH8JQSbbHhF+4n6bEoroy2HE
-        a98yxbLYWSrWJH+eBDagsQLqn3UYz70VRGrfu61TSH75fWOvvmgp76AmPQ5SANeRV2IZ
-        eI2IDyTTRgI23yipDq9yGYAiyPYiVepZAMf4Vfqp8StuuJZSIrh1aWN+tao+PDU3btZR
-        I4X6VNcDLd0T0GTBcw/chSwq1JwrJsafpHug7XNl4W2DXqcGs0EnUurn0aFUYMadnPPu
-        el6W6b/k92kzcQ7aPaD0Xn19raZlepLS55Nskp5exXnZu1LAjcX0WciTwJw/mgk+3deB
-        BYIA==
-X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73amq+g13rqGzmt2bYDnKIKaws6YXTsc4="
-X-RZG-CLASS-ID: mo00
-Received: from oxapp02-01.back.ox.d0m.de
-        by smtp-ox.front (RZmta 44.18 AUTH)
-        with ESMTPSA id y08c83v4G7x2sEL
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-        Thu, 16 May 2019 09:59:02 +0200 (CEST)
-Date:   Thu, 16 May 2019 09:59:02 +0200 (CEST)
-From:   Ulrich Hecht <uli@fpond.eu>
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org
-Message-ID: <1010579666.68696.1557993542697@webmail.strato.com>
-In-Reply-To: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
-Subject: Re: [PATCH] dt-bindings: rcar-{csi2,vin}: Rename bindings
- documentation files
+        id S1726374AbfEPH7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 03:59:38 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:49915 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbfEPH7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:59:38 -0400
+X-Originating-IP: 80.215.246.107
+Received: from localhost (unknown [80.215.246.107])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 5B0CC1C000D;
+        Thu, 16 May 2019 07:59:28 +0000 (UTC)
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     alsa-devel@alsa-project.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 1/2] dt-bindings: sound: Convert Allwinner SPDIF binding to YAML
+Date:   Thu, 16 May 2019 09:59:25 +0200
+Message-Id: <706cb97ae45cc9edc49c8709b2189ed786d2c7db.1557993523.git-series.maxime.ripard@bootlin.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.4-Rev57
-X-Originating-IP: 85.212.214.135
-X-Originating-Client: open-xchange-appsuite
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Allwinner SoCs feature an SPDIF controller across multiple SoC
+generations.
 
-> On May 16, 2019 at 2:38 AM Niklas S=C3=B6derlund <niklas.soderlund+renesa=
-s@ragnatech.se> wrote:
->=20
->=20
-> Renesas media binding documentation files uses a naming schema of
-> 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
-> pattern.
->=20
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
->  .../media/{renesas,rcar-csi2.txt =3D> renesas,csi2.txt}         | 0
->  .../bindings/media/{rcar_vin.txt =3D> renesas,vin.txt}          | 0
->  MAINTAINERS                                                   | 4 ++--
->  3 files changed, 2 insertions(+), 2 deletions(-)
->  rename Documentation/devicetree/bindings/media/{renesas,rcar-csi2.txt =
-=3D> renesas,csi2.txt} (100%)
->  rename Documentation/devicetree/bindings/media/{rcar_vin.txt =3D> renesa=
-s,vin.txt} (100%)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rcar-csi2.tx=
-t b/Documentation/devicetree/bindings/media/renesas,csi2.txt
-> similarity index 100%
-> rename from Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
-> rename to Documentation/devicetree/bindings/media/renesas,csi2.txt
-> diff --git a/Documentation/devicetree/bindings/media/rcar_vin.txt b/Docum=
-entation/devicetree/bindings/media/renesas,vin.txt
-> similarity index 100%
-> rename from Documentation/devicetree/bindings/media/rcar_vin.txt
-> rename to Documentation/devicetree/bindings/media/renesas,vin.txt
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 878588cfb453d83c..c3a23726472d7d4d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9629,8 +9629,8 @@ L:=09linux-media@vger.kernel.org
->  L:=09linux-renesas-soc@vger.kernel.org
->  T:=09git git://linuxtv.org/media_tree.git
->  S:=09Supported
-> -F:=09Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
-> -F:=09Documentation/devicetree/bindings/media/rcar_vin.txt
-> +F:=09Documentation/devicetree/bindings/media/renesas,csi2.txt
-> +F:=09Documentation/devicetree/bindings/media/renesas,vin.txt
->  F:=09drivers/media/platform/rcar-vin/
-> =20
->  MEDIA DRIVERS FOR RENESAS - VSP1
-> --=20
-> 2.21.0
->
+However, earlier generations were a bit simpler than the subsequent ones,
+and for example would always have RX and TX capabilities, and no reset
+lines.
 
-Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
+In order to express this, let's create two YAML schemas instead of the free
+form text we had before.
 
-CU
-Uli
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+
+---
+
+Changes from v2:
+  - Add comments
+
+Changes from v1:
+  - Merged the two schemas together and used the draft-7 conditionals
+---
+ Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt          |  42 +------------------------------
+ 2 files changed, 101 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
+new file mode 100644
+index 000000000000..5d72d48e923e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/allwinner,sun4i-a10-spdif.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner A10 S/PDIF Controller Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Liam Girdwood <lgirdwood@gmail.com>
++  - Mark Brown <broonie@kernel.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++properties:
++  "#sound-dai-cells":
++    const: 0
++
++  compatible:
++    oneOf:
++      - const: allwinner,sun4i-a10-spdif
++      - const: allwinner,sun6i-a31-spdif
++      - const: allwinner,sun8i-h3-spdif
++      - items:
++          - const: allwinner,sun8i-a83t-spdif
++          - const: allwinner,sun8i-h3-spdif
++      - items:
++          - const: allwinner,sun50i-a64-spdif
++          - const: allwinner,sun8i-h3-spdif
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Bus Clock
++      - description: Module Clock
++
++  clock-names:
++    items:
++      - const: apb
++      - const: spdif
++
++  dmas:
++    items:
++      - description: RX DMA Channel
++      - description: TX DMA Channel
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++  # Even though it only applies to subschemas under the conditionals,
++  # not listing them here will trigger a warning because of the
++  # additionalsProperties set to false.
++  resets:
++    maxItems: 1
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - allwinner,sun6i-a31-spdif
++              - allwinner,sun8i-h3-spdif
++
++    then:
++      required:
++        - resets
++
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++
++additionalProperties: false
++
++examples:
++  - |
++    spdif: spdif@1c21000 {
++        #sound-dai-cells = <0>;
++        compatible = "allwinner,sun4i-a10-spdif";
++        reg = <0x01c21000 0x40>;
++        interrupts = <13>;
++        clocks = <&apb0_gates 1>, <&spdif_clk>;
++        clock-names = "apb", "spdif";
++        dmas = <&dma 0 2>, <&dma 0 2>;
++        dma-names = "rx", "tx";
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt b/Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt
+deleted file mode 100644
+index 0c64a209c2e9..000000000000
+--- a/Documentation/devicetree/bindings/sound/sunxi,sun4i-spdif.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Allwinner Sony/Philips Digital Interface Format (S/PDIF) Controller
+-
+-The Allwinner S/PDIF audio block is a transceiver that allows the
+-processor to receive and transmit digital audio via an coaxial cable or
+-a fibre cable.
+-For now only playback is supported.
+-
+-Required properties:
+-
+-  - compatible		: should be one of the following:
+-    - "allwinner,sun4i-a10-spdif": for the Allwinner A10 SoC
+-    - "allwinner,sun6i-a31-spdif": for the Allwinner A31 SoC
+-    - "allwinner,sun8i-h3-spdif": for the Allwinner H3 SoC
+-
+-  - reg			: Offset and length of the register set for the device.
+-
+-  - interrupts		: Contains the spdif interrupt.
+-
+-  - dmas		: Generic dma devicetree binding as described in
+-			  Documentation/devicetree/bindings/dma/dma.txt.
+-
+-  - dma-names		: Two dmas have to be defined, "tx" and "rx".
+-
+-  - clocks		: Contains an entry for each entry in clock-names.
+-
+-  - clock-names		: Includes the following entries:
+-	"apb"		  clock for the spdif bus.
+-	"spdif"		  clock for spdif controller.
+-
+-  - resets		: reset specifier for the ahb reset (A31 and newer only)
+-
+-Example:
+-
+-spdif: spdif@1c21000 {
+-	compatible = "allwinner,sun4i-a10-spdif";
+-	reg = <0x01c21000 0x40>;
+-	interrupts = <13>;
+-	clocks = <&apb0_gates 1>, <&spdif_clk>;
+-	clock-names = "apb", "spdif";
+-	dmas = <&dma 0 2>, <&dma 0 2>;
+-	dma-names = "rx", "tx";
+-};
+
+base-commit: 00c3bc00f0cadbb48f2414370733892676511e79
+-- 
+git-series 0.9.1
