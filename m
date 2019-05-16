@@ -2,121 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 144CE202B3
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 11:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3191202EF
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 11:55:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbfEPJjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 05:39:51 -0400
-Received: from ns.mm-sol.com ([37.157.136.199]:48688 "EHLO extserv.mm-sol.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726374AbfEPJjv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 05:39:51 -0400
-Received: from [192.168.27.209] (unknown [37.157.136.206])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by extserv.mm-sol.com (Postfix) with ESMTPSA id C8124CE6F;
-        Thu, 16 May 2019 12:39:47 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
-        t=1557999587; bh=gtvWMbdQdnb7LYo5ABxwlV32TZDaPlVrBBH+/CofRko=;
-        h=Subject:To:Cc:From:Date:From;
-        b=nK/xIje4UFqTVVEISNtWB6QEO5a8wygY1e2E8Z4m7AUNg13m0ReU4WT9GSKz4Hytj
-         zmXkUJqsSxM4oCkQYsAD00OVwDTXFWH1h3g7n2pC1OgEKo8v6jPdb/sSIYAQ5omiQD
-         DrBhURBmTklidAqq1Mhdq+KizFSJAxNxMfL8f22EizKJVZkFrCBosYnwSoqei7y672
-         k4awo6qwCX7nelgUnfWv4ofToldsoX3K5gay5ZTE/WYH7/axgbMew41U52ZEDur+XH
-         dY1BpCOTsNrkFEASqqp+k1nR0cOtnJhaQEY0WISnPCerI2SnrUET/KOTbkVpvh8DRV
-         vwMfCR2A24YQw==
-Subject: Re: [PATCH v3 3/3] PCI: qcom: Add QCS404 PCIe controller support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190502001955.10575-1-bjorn.andersson@linaro.org>
- <20190502001955.10575-4-bjorn.andersson@linaro.org>
-From:   Stanimir Varbanov <svarbanov@mm-sol.com>
-Message-ID: <d54c6002-496e-c8fb-b67f-e441453c29c6@mm-sol.com>
-Date:   Thu, 16 May 2019 12:39:45 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726537AbfEPJzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 05:55:33 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:50535 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbfEPJzc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 05:55:32 -0400
+Received: by mail-wm1-f68.google.com with SMTP id f204so2947240wme.0
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 02:55:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=NbCFIDlw5KIQUA6YRgT9NFZEo08ec57H2PeCPKckizI=;
+        b=DfvHjDF7Bw264oivfz4jBxBjJFPa705+cUl40w3HPOjjKmdp1RaGlpd2CKL1kixX3G
+         plbVKHgmwQGTvz5K0z9JRxZrXgRKKuBADU3j2ujSNRpJ84Ta7R/fgJnVAm00EZXLud9l
+         XKCYHzCp0YaM4MGtP0unh5w0qYzo5ZnzIHX7d5LyDRZFBlzfBJ9yknQVkgu7RpiRUsEK
+         mHYDx48iudXYvpGXJD3E7zrjpWX0eSntAkbJ83vuBfDXlvfMAk7wYQSeA3OoG6MCxEZL
+         2L6PCeXL+d+N6Oy7UDUFCCuEsH3FOtqENE6EX7OOgkEEwFjQkIWj0b+/HuKkO5o5kUgR
+         nrhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=NbCFIDlw5KIQUA6YRgT9NFZEo08ec57H2PeCPKckizI=;
+        b=A09lpTNQEMsP1UuedEve9Hd1vlB5fMqJiEBDbD1qw6rX6dcD+Yo6hBxGpTjsKcQp0W
+         Ef/PHGA8uNcMknz4ZLPEFHePAUAFefimnGyvJB3QrrS6de7x6H7OEwl271XTyubRsHIU
+         M8Uh+fET9rvoeESDr2wdZNcvh2gPq46XknpDAX1n4M9dYgysb1TYoJ2EXRrtDY5ta33W
+         9FTYapqJvI+k5KTOs8hGXJUOQ9mj5rCkU5TlsOrXmLX9sbKnzr7FYeUWpXtPNKSFYayq
+         GU8Z3Qdy/+qVfapnJB7AsJD6CtxSbXO03mPtzoZtKHwwhbVNdRaCWOGBAhDRZpWdozpQ
+         fhGw==
+X-Gm-Message-State: APjAAAV01zZkoP60+2/IAEJOO0NX5Au+K+/4CUviaR8aRFcLw434vFKi
+        GxHa/BUOwbojd0Cmj+QCPORoUtaLXKdv1JoTWgQ=
+X-Google-Smtp-Source: APXvYqyCX/yGT7eJS3+VePhFBsHxyPOhdg8xcT9aZBtgUwDePqFfhrIm/DeJdS4DscAAqyEJ/haBqzxdd55z3Nz45Zg=
+X-Received: by 2002:a1c:b782:: with SMTP id h124mr27952514wmf.5.1558000530793;
+ Thu, 16 May 2019 02:55:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190502001955.10575-4-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:adf:fad0:0:0:0:0:0 with HTTP; Thu, 16 May 2019 02:55:30
+ -0700 (PDT)
+Reply-To: victoriabenson27@gmail.com
+From:   victoria <lucassessou@gmail.com>
+Date:   Thu, 16 May 2019 10:55:30 +0100
+Message-ID: <CAG=jiTYJ61oCMjddPRoyruOCM6e=6m+NOjkddqWNVLyTULOuRA@mail.gmail.com>
+Subject: Hallo
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On 5/2/19 3:19 AM, Bjorn Andersson wrote:
-> The QCS404 platform contains a PCIe controller of version 2.4.0 and a
-> Qualcomm PCIe2 PHY. The driver already supports version 2.4.0, for the
-> IPQ4019, but this support touches clocks and resets related to the PHY
-> as well, and there's no upstream driver for the PHY.
-> 
-> On QCS404 we must initialize the PHY, so a separate PHY driver is
-> implemented to take care of this and the controller driver is updated to
-> not require the PHY related resources. This is done by relying on the
-> fact that operations in both the clock and reset framework are nops when
-> passed NULL, so we can isolate this change to only the get_resource
-> function.
-> 
-> For QCS404 we also need to enable the AHB (iface) clock, in order to
-> access the register space of the controller, but as this is not part of
-> the IPQ4019 DT binding this is only added for new users of the 2.4.0
-> controller.
-> 
-> Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> Changes since v2:
-> - None
-> 
->  drivers/pci/controller/dwc/pcie-qcom.c | 64 +++++++++++++++-----------
->  1 file changed, 38 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index d740cbe0e56d..d101bc5c0def 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -112,7 +112,7 @@ struct qcom_pcie_resources_2_3_2 {
->  	struct regulator_bulk_data supplies[QCOM_PCIE_2_3_2_MAX_SUPPLY];
->  };
->  
-> -#define QCOM_PCIE_2_4_0_MAX_CLOCKS	3
-> +#define QCOM_PCIE_2_4_0_MAX_CLOCKS	4
->  struct qcom_pcie_resources_2_4_0 {
->  	struct clk_bulk_data clks[QCOM_PCIE_2_4_0_MAX_CLOCKS];
->  	int num_clks;
-> @@ -638,13 +638,16 @@ static int qcom_pcie_get_resources_2_4_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_4_0 *res = &pcie->res.v2_4_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
-> +	bool is_ipq = of_device_is_compatible(dev->of_node, "qcom,pcie-ipq4019");
->  	int ret;
->  
->  	res->clks[0].id = "aux";
->  	res->clks[1].id = "master_bus";
->  	res->clks[2].id = "slave_bus";
-> +	res->clks[3].id = "iface";
->  
-> -	res->num_clks = 3;
-> +	/* qcom,pcie-ipq4019 is defined without "iface" */
-> +	res->num_clks = is_ipq ? 3 : 4;
-
-This is ugly but I don't have better idea except having static const
-resource structures where we can describe num_clks and select the right
-resource from compatible string, but lets leave that for the future.
-
-Otherwise:
-
-Acked-by: Stanimir Varbanov <svarbanov@mm-sol.com>
-
--- 
-regards,
-Stan
+Hallo
+   Meine Namen sind Victoria Benson Ich bin 19 Jahre alt Waisenkind.
+   Ich kontaktiere in Bezug auf mein Erbschaftsgeld das
+   wurde von meinem vater bei der bank of america hinterlegt. ich will
+   Bitte helfen Sie mir, es in Ihre sichere Bankverbindung zu bringen
+  in Ihrem Land. Nach erfolgreicher Reklamation schicken Sie mir Geld
+   in Ihr Land zu kommen, um das Geld bei Ihnen zu investieren und zu begin=
+nen
+  ein neues Leben in Ihrem Land aufbauen. Unten ist meine
+E-Mail-Adresse. Kontaktieren Sie mich f=C3=BCr weitere Informationen
+  Details zum Fortfahren. (victoriabenson27@gmail.com)
