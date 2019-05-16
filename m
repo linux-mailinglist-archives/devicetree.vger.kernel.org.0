@@ -2,193 +2,539 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3375C20D23
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 616E420D48
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726393AbfEPQgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 12:36:50 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:40572 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726342AbfEPQgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:36:50 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 833B22FD;
-        Thu, 16 May 2019 18:36:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1558024608;
-        bh=LxW83Mua8pznRY6+w88tAZIf4/Uu/aMvPBDE/10yr18=;
+        id S1728418AbfEPQot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 12:44:49 -0400
+Received: from plaes.org ([188.166.43.21]:60710 "EHLO plaes.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728424AbfEPQot (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 12:44:49 -0400
+Received: from plaes.org (localhost [127.0.0.1])
+        by plaes.org (Postfix) with ESMTPSA id 795B141144;
+        Thu, 16 May 2019 16:44:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
+        t=1558025084; bh=0r8JsBd2zWarYJWW2dP5sj9WPt7uz6f8XHqKQjWGF7E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HBlZHxeCaXHPE4eJL6pQ4wIDXUl2u1t+yKmHPN1Ozm+POVa9zlAZLGERaPO3U3h1W
-         q15Jhjgu9tYCm1mFY7EXDRi0SffYu1Ah0mPZUZ2VJnInoGDdSWuyM2XSVFOKZCpcJs
-         SbHlmCfs+/cDtpmEoZY4lzG8o9GLT4zkukV6m850=
-Date:   Thu, 16 May 2019 19:36:32 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+        b=J0pSohrCYjteXgCGshtOCIl4vTXkqtNiZEMhG7cNrII3PWAmsvSQUpc0SYqCYblXP
+         IG43YO4pGXtPF8qNw4hn6kc3oTcXia7Fq4uzF5uvwEnIFfqK4+Qa8ACw92GhgOt5g1
+         EqXiefnGamj/dSTeGFGgYU+YOz99gFE5SoSiJWPWttsj2P8PB1Nnyy9xUAQIVE2tJZ
+         yHbYE+JklcGa2tCeOwu1K9r4UD/ZXSzQyIIKDlFRR0WLZcvOB6jJMFGRRpmjB6ZBs2
+         2C5Le0s3NpGoeHtoIYN3oj9FsqdGLpS2/15ox76zIRp1BGpHNFC124H7Ah+wqJyb4+
+         EPofleA3aCCWQ==
+Date:   Thu, 16 May 2019 16:44:43 +0000
+From:   Priit Laes <plaes@plaes.org>
 To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
-Message-ID: <20190516163632.GO14820@pendragon.ideasonboard.com>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-3-m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, linux-imx@nxp.com,
+        Stefan.Nickl@kontron.com, Gilles.Buloz@kontron.com,
+        Michael.Brunner@kontron.com, thomas.schaefer@kontron.com,
+        frieder.schrempf@kontron.de, kernel@pengutronix.de,
+        devicetree@vger.kernel.org,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>
+Subject: Re: [PATCH 02/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: Add
+ iMX6-based Kontron SMARC-sAMX6i module
+Message-ID: <20190516164443.45ipjqtswqrly6us@plaes.org>
+References: <20190509155834.22838-1-m.felsch@pengutronix.de>
+ <20190509155834.22838-3-m.felsch@pengutronix.de>
+ <20190515165135.ginuoqxppzq37mzq@plaes.org>
+ <20190516154711.jqzyqtxtl7innqmo@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190415124413.18456-3-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190516154711.jqzyqtxtl7innqmo@pengutronix.de>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
-
-Thank you for the patch.
-
-On Mon, Apr 15, 2019 at 02:44:02PM +0200, Marco Felsch wrote:
-> Currently every driver needs to parse the connector endpoints by it self.
-
-s/it self/itself/
-
-> This is the initial work to make this generic. The generic connector has
-> some common fields and some connector specific parts. The generic one
-> includes:
->   - type
->   - label
->   - remote_port (the port where the connector is connected to)
->   - remote_id   (the endpoint where the connector is connected to)
-
-This assumes a single connection between a connector and a remote port,
-and a single port on the connector side. Is this guaranteed ? For the
-mini-DIN-4 connectors (often used for S-Video) for instance, I recall
-from the extensive discussions we had in the past that they should be
-modeled with two pins, one for the Y component and one for C components.
-The rationale for this is to support systems where such a connector
-could be used to carry S-Video, but also two composite video signals
-(usually through an external adapter from 2 RCA female connectors to one
-S-Video male connector) that would be routed to two separate video
-decoders (or two different inputs of the same video decoder). Other
-topologies may be possible too.
-
-> The specific fields are within a union, since only one of them can be
-> available at the time. Since this is the initial support the patch adds
-> only the analog-connector specific ones.
+On Thu, May 16, 2019 at 05:47:11PM +0200, Marco Felsch wrote:
+> On 19-05-15 16:51, Priit Laes wrote:
+> > On Thu, May 09, 2019 at 05:58:19PM +0200, Marco Felsch wrote:
+> > > From: Priit Laes <plaes@plaes.org>
+> > 
+> > Cool, thanks for picking that up :)
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-> ---
-> [1] https://patchwork.kernel.org/cover/10794703/
-> 
-> v6:
-> - fix some spelling and style issues
-> - rm unnecessary comments
-> - drop vga and dvi connector
-> 
-> v2-v4:
-> - nothing since the patch was squashed from series [1] into this
->   series.
-> 
->  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
->  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
->  2 files changed, 63 insertions(+)
->  create mode 100644 include/media/v4l2-connector.h
-> 
-> diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
-> new file mode 100644
-> index 000000000000..3a951c54f50e
-> --- /dev/null
-> +++ b/include/media/v4l2-connector.h
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * v4l2-connector.h
-> + *
-> + * V4L2 connector types.
-> + *
-> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + */
-> +
-> +#ifndef V4L2_CONNECTOR_H
-> +#define V4L2_CONNECTOR_H
-> +
-> +#define V4L2_CONNECTOR_MAX_LABEL 41
+> You're welcome ;) Do you have a develboard to test the interfaces I
+> added? Since I don't have it and the kontron guys didn't reply yet.
 
-Hans pointed out this was a weird number. Should you turn the label
-field into a pointer to make this more generic (with a
-v4l2_fwnode_connector_cleanup() function then) ?
+Nope, I had one mil-spec rugged computer for initial prototype
+system that was later exchanged to something else because of
+issues with the baseboard itself.
 
-> +
-> +/**
-> + * enum v4l2_connector_type - connector type
-> + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration
-> + * @V4L2_CON_COMPOSITE: analog composite connector
-> + * @V4L2_CON_SVIDEO:    analog svideo connector
-> + * @V4L2_CON_HDMI:      digital hdmi connector
-> + */
-> +enum v4l2_connector_type {
-> +	V4L2_CON_UNKNOWN,
-> +	V4L2_CON_COMPOSITE,
-> +	V4L2_CON_SVIDEO,
-> +	V4L2_CON_HDMI,
-> +};
-> +
-> +#endif /* V4L2_CONNECTOR_H */
-> +
-> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
-> index 6c07825e18b9..f4df1b95c5ef 100644
-> --- a/include/media/v4l2-fwnode.h
-> +++ b/include/media/v4l2-fwnode.h
-> @@ -22,6 +22,7 @@
->  #include <linux/list.h>
->  #include <linux/types.h>
->  
-> +#include <media/v4l2-connector.h>
->  #include <media/v4l2-mediabus.h>
->  #include <media/v4l2-subdev.h>
->  
-> @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
->  	unsigned int remote_port;
->  };
->  
-> +/**
-> + * struct v4l2_fwnode_connector_analog - analog connector data structure
-> + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
-> + *                     if no restrictions are specified.
-> + */
-> +struct v4l2_fwnode_connector_analog {
-> +	v4l2_std_id supported_tvnorms;
-> +};
-> +
-> +/**
-> + * struct v4l2_fwnode_connector - the connector data structure
-> + * @remote_port: identifier of the remote endpoint port the connector connects
-> + *		 to
-> + * @remote_id: identifier of the remote endpoint the connector connects to
-> + * @label: connetor label
-> + * @type: connector type
-> + * @connector: connector configuration
-> + * @connector.analog: analog connector configuration
-> + *                    &struct v4l2_fwnode_connector_analog
-> + */
-> +struct v4l2_fwnode_connector {
-> +	unsigned int remote_port;
-> +	unsigned int remote_id;
-> +	char label[V4L2_CONNECTOR_MAX_LABEL];
-> +	enum v4l2_connector_type type;
-> +
-> +	union {
-> +		struct v4l2_fwnode_connector_analog analog;
-> +		/* future connectors */
-> +	} connector;
-> +};
-> +
->  /**
->   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
->   * @fwnode: pointer to the endpoint's fwnode handle
-
--- 
-Regards,
-
-Laurent Pinchart
+> 
+> > 
+> > Also, another nice thing to see is that Kontron itself is now involved,
+> > as back in the day when I was asking for extra information regarding
+> > this board (latest BSP / Git tree) I was politely told to GTFO ;)
+> 
+> Regards,
+>   Marco
+> 
+> > 
+> > > SMARC-sAMX6i is a SMARC (Smart Mobility Architecture) compliant
+> > > module.
+> > > 
+> > > Signed-off-by: Priit Laes <plaes@plaes.org>
+> > > Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > ---
+> > > Based on patch: https://lore.kernel.org/patchwork/patch/762261/
+> > > 
+> > > v2:
+> > > - common: adapt commit message
+> > > - common: add pengutronix copyright
+> > > - common: use SPDX license header
+> > > - common: rename it to imx6qdl-smx6.dtsi
+> > > - common: drop imx6q.dtsi include and model, compatible, memory properties
+> > > - common: fix comment style
+> > > - common: drop all unnecessary 'status = "disabled"'
+> > > - i2c_pfuze: fix sda/scl gpios
+> > > - i2c_pfuze: s/i2c_pfuze/i2c_intern
+> > > - i2c_pfuze: use GPIO_* defines
+> > > - i2c3: fix pinmux
+> > > - fec: add phy-reset-gpio
+> > > - iomux: drop default 0x80000000 value
+> > > - iomux: use unique naming
+> > > - regulators: drop container node
+> > > - regulators: add all missing
+> > > 
+> > >  arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 418 ++++++++++++++++++
+> > >  1 file changed, 418 insertions(+)
+> > >  create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> > > 
+> > > diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> > > new file mode 100644
+> > > index 000000000000..e546d46365f5
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> > > @@ -0,0 +1,418 @@
+> > > +// SPDX-License-Identifier: GPL-2.0 OR X11
+> > > +/*
+> > > + * Copyright 2017 (C) Priit Laes <plaes@plaes.org>
+> > > + * Copyright 2018 (C) Pengutronix, Michael Grzeschik <mgr@pengutronix.de>
+> > > + * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > > + *
+> > > + * Based on initial work by Nikita Yushchenko <nyushchenko at dev.rtsoft.ru>
+> > > + */
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +/ {
+> > > +	reg_1p0v_s0: regulator-1p0v-s0 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_1V0_S0";
+> > > +		regulator-min-microvolt = <1000000>;
+> > > +		regulator-max-microvolt = <1000000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		vin-supply = <&reg_smarc_suppy>;
+> > > +	};
+> > > +
+> > > +	reg_1p35v_vcoredig_s5: regulator-1p35v-vcoredig-s5 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_1V35_VCOREDIG_S5";
+> > > +		regulator-min-microvolt = <1350000>;
+> > > +		regulator-max-microvolt = <1350000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		vin-supply = <&reg_3p3v_s5>;
+> > > +	};
+> > > +
+> > > +	reg_1p8v_s5: regulator-1p8v-s5 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_1V8_S5";
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <1800000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		vin-supply = <&reg_3p3v_s5>;
+> > > +	};
+> > > +
+> > > +	reg_3p3v_s0: regulator-3p3v-s0 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_3V3_S0";
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		vin-supply = <&reg_3p3v_s5>;
+> > > +	};
+> > > +
+> > > +	reg_3p3v_s0: regulator-3p3v-s0 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_3V3_S0";
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		vin-supply = <&reg_3p3v_s5>;
+> > > +	};
+> > > +
+> > > +	reg_3p3v_s5: regulator-3p3v-s5 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_3V3_S5";
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		vin-supply = <&reg_smarc_suppy>;
+> > > +	};
+> > > +
+> > > +	reg_smarc_rtc: regulator-smarc-rtc {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_IN_RTC_BATT";
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +	};
+> > > +
+> > > +	/* Module supply range can be 3.00V ... 5.25V */
+> > > +	reg_smarc_suppy: regulator-smarc-supply {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "V_IN_WIDE";
+> > > +		regulator-min-microvolt = <5000000>;
+> > > +		regulator-max-microvolt = <5000000>;
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +	};
+> > > +
+> > > +	i2c_intern: i2c-gpio-intern {
+> > > +		compatible = "i2c-gpio";
+> > > +		pinctrl-names = "default";
+> > > +		pinctrl-0 = <&pinctrl_i2c_gpio_intern>;
+> > > +		sda-gpios = <&gpio1 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > > +		scl-gpios = <&gpio1 30 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> > > +		i2c-gpio,delay-us = <2>; /* ~100 kHz */
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <0>;
+> > > +	};
+> > > +};
+> > > +
+> > > +/* CAN0 */
+> > > +&can1 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_flexcan1>;
+> > > +};
+> > > +
+> > > +/* CAN1 */
+> > > +&can2 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_flexcan2>;
+> > > +};
+> > > +
+> > > +/* GBE */
+> > > +&fec {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_enet>;
+> > > +	phy-mode = "rgmii";
+> > > +	phy-reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+> > > +};
+> > > +
+> > > +&i2c_intern {
+> > > +	pfuze100@08 {
+> > > +		compatible = "fsl,pfuze100";
+> > > +		reg = <0x08>;
+> > > +
+> > > +		regulators {
+> > > +			reg_v_core_s0: sw1ab {
+> > > +				regulator-name = "V_CORE_S0";
+> > > +				regulator-min-microvolt = <300000>;
+> > > +				regulator-max-microvolt = <1875000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			reg_vddsoc_s0: sw1c {
+> > > +				regulator-name = "V_VDDSOC_S0";
+> > > +				regulator-min-microvolt = <300000>;
+> > > +				regulator-max-microvolt = <1875000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			reg_3p15v_s0: sw2 {
+> > > +				regulator-name = "V_3V15_S0";
+> > > +				regulator-min-microvolt = <800000>;
+> > > +				regulator-max-microvolt = <3300000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			/* sw3a/b is used in dual mode, but driver does not
+> > > +			 * support it. Although, there's no need to control
+> > > +			 * DDR power - so just leaving dummy entries for sw3a
+> > > +			 * and sw3b for now.
+> > > +			 */
+> > > +			sw3a {
+> > > +				regulator-min-microvolt = <400000>;
+> > > +				regulator-max-microvolt = <1975000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			sw3b {
+> > > +				regulator-min-microvolt = <400000>;
+> > > +				regulator-max-microvolt = <1975000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			reg_1p8v_s0: sw4 {
+> > > +				regulator-name = "V_1V8_S0";
+> > > +				regulator-min-microvolt = <800000>;
+> > > +				regulator-max-microvolt = <3300000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			/* Regulator for USB */
+> > > +			reg_5p0v_s0: swbst {
+> > > +				regulator-name = "V_5V0_S0";
+> > > +				regulator-min-microvolt = <5000000>;
+> > > +				regulator-max-microvolt = <5150000>;
+> > > +				regulator-boot-on;
+> > > +			};
+> > > +
+> > > +			reg_vsnvs: vsnvs {
+> > > +				regulator-min-microvolt = <1000000>;
+> > > +				regulator-max-microvolt = <3000000>;
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			reg_vrefddr: vrefddr {
+> > > +				regulator-boot-on;
+> > > +				regulator-always-on;
+> > > +			};
+> > > +
+> > > +			/*
+> > > +			 * Per schematics, of all VGEN's, only VGEN5 has some
+> > > +			 * usage ... but even that - over DNI resistor
+> > > +			 */
+> > > +			vgen1 {
+> > > +				regulator-min-microvolt = <800000>;
+> > > +				regulator-max-microvolt = <1550000>;
+> > > +			};
+> > > +
+> > > +			vgen2 {
+> > > +				regulator-min-microvolt = <800000>;
+> > > +				regulator-max-microvolt = <1550000>;
+> > > +			};
+> > > +
+> > > +			vgen3 {
+> > > +				regulator-min-microvolt = <1800000>;
+> > > +				regulator-max-microvolt = <3300000>;
+> > > +			};
+> > > +
+> > > +			vgen4 {
+> > > +				regulator-min-microvolt = <1800000>;
+> > > +				regulator-max-microvolt = <3300000>;
+> > > +			};
+> > > +
+> > > +			reg_2p5v_s0: vgen5 {
+> > > +				regulator-name = "V_2V5_S0";
+> > > +				regulator-min-microvolt = <1800000>;
+> > > +				regulator-max-microvolt = <3300000>;
+> > > +			};
+> > > +
+> > > +			vgen6 {
+> > > +				regulator-min-microvolt = <1800000>;
+> > > +				regulator-max-microvolt = <3300000>;
+> > > +			};
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +/* I2C_PM */
+> > > +&i2c3 {
+> > > +	clock-frequency = <100000>;
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_i2c3>;
+> > > +};
+> > > +
+> > > +&iomuxc {
+> > > +	pinctrl_flexcan1: flexcan1grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
+> > > +			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_flexcan2: flexcan2grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
+> > > +			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_enet: enetgrp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_RGMII_TXC__RGMII_TXC       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_TD0__RGMII_TD0       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_TD1__RGMII_TD1       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_TD2__RGMII_TD2       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_TD3__RGMII_TD3       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL 0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_RXC__RGMII_RXC       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_RD0__RGMII_RD0       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_RD1__RGMII_RD1       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_RD2__RGMII_RD2       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_RD3__RGMII_RD3       0x1b0b0
+> > > +			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL 0x1b0b0
+> > > +
+> > > +			MX6QDL_PAD_ENET_MDIO__ENET_MDIO       0x1b0b0
+> > > +			MX6QDL_PAD_ENET_MDC__ENET_MDC         0x1b0b0
+> > > +			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK  0x1b0b0
+> > > +			MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25    0x1b0b0 /* RST_GBE0_PHY# */
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_i2c_gpio_intern: i2c-gpiointerngrp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_ENET_TXD0__GPIO1_IO30  0x1b0b0 /* SCL */
+> > > +			MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28 0x1b0b0 /* SDA */
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_i2c3: i2c3grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_GPIO_3__I2C3_SCL		0x4001b8b1
+> > > +			MX6QDL_PAD_GPIO_16__I2C3_SDA		0x4001b8b1
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_pcie: pciegrp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_EIM_D18__GPIO3_IO18	0x1b0b0 /* PCI_A_PRSNT# */
+> > > +			MX6QDL_PAD_EIM_DA13__GPIO3_IO13 0x1b0b0 /* RST_PCIE_A#  */
+> > > +			MX6QDL_PAD_SD3_DAT6__GPIO6_IO18 0x1b0b0 /* PCIE_WAKE#   */
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_uart1: uart1grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA 0x1b0b1
+> > > +			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA 0x1b0b1
+> > > +			MX6QDL_PAD_EIM_D20__UART1_RTS_B 0x1b0b1
+> > > +			MX6QDL_PAD_EIM_D19__UART1_CTS_B 0x1b0b1
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_uart2: uart2grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_EIM_D27__UART2_RX_DATA 0x1b0b1
+> > > +			MX6QDL_PAD_EIM_D26__UART2_TX_DATA 0x1b0b1
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_uart4: uart4grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_CSI0_DAT13__UART4_RX_DATA 0x1b0b1
+> > > +			MX6QDL_PAD_CSI0_DAT12__UART4_TX_DATA 0x1b0b1
+> > > +			MX6QDL_PAD_CSI0_DAT16__UART4_RTS_B 0x1b0b1
+> > > +			MX6QDL_PAD_CSI0_DAT17__UART4_CTS_B 0x1b0b1
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_uart5: uart5grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_CSI0_DAT15__UART5_RX_DATA 0x1b0b1
+> > > +			MX6QDL_PAD_CSI0_DAT14__UART5_TX_DATA 0x1b0b1
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_usbotg: usbotggrp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_GPIO_1__USB_OTG_ID 0x1f8b0
+> > > +			/* power, oc muxed but not used by the driver */
+> > > +			MX6QDL_PAD_CSI0_PIXCLK__GPIO5_IO18	0x1b0b0 /* USB power */
+> > > +			MX6QDL_PAD_CSI0_DATA_EN__GPIO5_IO20	0x1b0b0 /* USB OC */
+> > > +		>;
+> > > +	};
+> > > +
+> > > +	pinctrl_usdhc4: usdhc4grp {
+> > > +		fsl,pins = <
+> > > +			MX6QDL_PAD_SD4_CLK__SD4_CLK 0x17059
+> > > +			MX6QDL_PAD_SD4_CMD__SD4_CMD 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT0__SD4_DATA0 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT1__SD4_DATA1 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT2__SD4_DATA2 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT3__SD4_DATA3 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT4__SD4_DATA4 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT5__SD4_DATA5 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT6__SD4_DATA6 0x17059
+> > > +			MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x17059
+> > > +		>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&pcie {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_pcie>;
+> > > +	wake-up-gpio = <&gpio6 18 GPIO_ACTIVE_HIGH>;
+> > > +	reset-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
+> > > +};
+> > > +
+> > > +/* SER0 */
+> > > +&uart1 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_uart1>;
+> > > +	uart-has-rtscts;
+> > > +};
+> > > +
+> > > +/* SER1 */
+> > > +&uart2 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_uart2>;
+> > > +};
+> > > +
+> > > +/* SER2 */
+> > > +&uart4 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_uart4>;
+> > > +	uart-has-rtscts;
+> > > +};
+> > > +
+> > > +/* SER3 */
+> > > +&uart5 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_uart5>;
+> > > +};
+> > > +
+> > > +/* USB0 */
+> > > +&usbotg {
+> > > +	/*
+> > > +	 * no 'imx6-usb-charger-detection'
+> > > +	 * since USB_OTG_CHD_B pin is not wired
+> > > +	 */
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_usbotg>;
+> > > +};
+> > > +
+> > > +/* USB1/2 via hub */
+> > > +&usbh1 {
+> > > +	vbus-supply = <&reg_5p0v_s0>;
+> > > +};
+> > > +
+> > > +/* SDMMC */
+> > > +&usdhc4 {
+> > > +	/* Internal eMMC, optional on some boards */
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_usdhc4>;
+> > > +	bus-width = <8>;
+> > > +	no-1-8-v;
+> > > +	non-removable;
+> > > +};
+> > > -- 
+> > > 2.20.1
+> > > 
+> > 
+> 
+> -- 
+> Pengutronix e.K.                           |                             |
+> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
