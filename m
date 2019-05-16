@@ -2,94 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FF9D20D0A
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3375C20D23
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726587AbfEPQbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 12:31:11 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:58578 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726449AbfEPQbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:31:11 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4GGV5uh071848;
-        Thu, 16 May 2019 11:31:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1558024265;
-        bh=jeIiX1ugKjXjYzjsBh+YQO0SdT7K+s5DLa1X0RRUWts=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=X8vN/6swdvwHTh9ACc6niWQ2Ez3waZcTclkwMa4sMs8hSxlYB7ikUCLHy/ZVQijst
-         OVVdV6CSPkgNlZABhfJHFr7ttwYRa0m9Ju8KoDPFndln1o2msJqih8t7cwTyu6axI3
-         cpZAVpww1aL5jxO763DyWWm3en0OniSD5kUNgohg=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4GGV4mZ102942
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 16 May 2019 11:31:05 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 16
- May 2019 11:31:04 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 16 May 2019 11:31:04 -0500
-Received: from [172.22.219.79] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4GGV27S044457;
-        Thu, 16 May 2019 11:31:02 -0500
-Subject: Re: [PATCH 2/2] arm: dts: dra76-evm: Disable rtc target module
-To:     Tony Lindgren <tony@atomide.com>
-CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>, <t-kristo@ti.com>
-References: <20190516090657.25211-1-j-keerthy@ti.com>
- <20190516090657.25211-2-j-keerthy@ti.com> <20190516161256.GB5447@atomide.com>
-From:   keerthy <j-keerthy@ti.com>
-Message-ID: <f3c2a6cd-b478-cec4-cde6-3eb5b6a11392@ti.com>
-Date:   Thu, 16 May 2019 22:01:01 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726393AbfEPQgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 12:36:50 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:40572 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726342AbfEPQgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:36:50 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 833B22FD;
+        Thu, 16 May 2019 18:36:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1558024608;
+        bh=LxW83Mua8pznRY6+w88tAZIf4/Uu/aMvPBDE/10yr18=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HBlZHxeCaXHPE4eJL6pQ4wIDXUl2u1t+yKmHPN1Ozm+POVa9zlAZLGERaPO3U3h1W
+         q15Jhjgu9tYCm1mFY7EXDRi0SffYu1Ah0mPZUZ2VJnInoGDdSWuyM2XSVFOKZCpcJs
+         SbHlmCfs+/cDtpmEoZY4lzG8o9GLT4zkukV6m850=
+Date:   Thu, 16 May 2019 19:36:32 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
+Message-ID: <20190516163632.GO14820@pendragon.ideasonboard.com>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-3-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20190516161256.GB5447@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190415124413.18456-3-m.felsch@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marco,
 
+Thank you for the patch.
 
-On 5/16/2019 9:42 PM, Tony Lindgren wrote:
-> Hi,
-> 
-> * Keerthy <j-keerthy@ti.com> [190516 09:06]:
->> rtc is fused out on dra76 and accessing target module
->> register is causing a boot crash hence disable it.
-> 
-> So for a fix, can we have a separate dra7 something dtsi file
-> to disable these instead?
-> 
-> Or are there already multiple SoC revisions for the same EVM?
+On Mon, Apr 15, 2019 at 02:44:02PM +0200, Marco Felsch wrote:
+> Currently every driver needs to parse the connector endpoints by it self.
 
-dra76 & dra71 have rtc fused out. So i did not introduce a new dtsi file
-to disable.
+s/it self/itself/
 
-> 
-> Then in the long run, if there are the same EVMs with multiple
-> SoC options, the best thing to do is to would be to detect the
-> SoC type and update the property dynamically to set the features
-> not available on the booted SoC to status = "disabled". Seems
-> like that could be done in the ti-sysc driver probe unless needed
-> earlier.
+> This is the initial work to make this generic. The generic connector has
+> some common fields and some connector specific parts. The generic one
+> includes:
+>   - type
+>   - label
+>   - remote_port (the port where the connector is connected to)
+>   - remote_id   (the endpoint where the connector is connected to)
 
-For now rtc is disabled only in dra71/dra76. So best disable it in the 
-evm.dts? Not sure if we need dynamic disabling as we know at DT level 
-that it is to be disabled.
+This assumes a single connection between a connector and a remote port,
+and a single port on the connector side. Is this guaranteed ? For the
+mini-DIN-4 connectors (often used for S-Video) for instance, I recall
+from the extensive discussions we had in the past that they should be
+modeled with two pins, one for the Y component and one for C components.
+The rationale for this is to support systems where such a connector
+could be used to carry S-Video, but also two composite video signals
+(usually through an external adapter from 2 RCA female connectors to one
+S-Video male connector) that would be routed to two separate video
+decoders (or two different inputs of the same video decoder). Other
+topologies may be possible too.
 
+> The specific fields are within a union, since only one of them can be
+> available at the time. Since this is the initial support the patch adds
+> only the analog-connector specific ones.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> ---
+> [1] https://patchwork.kernel.org/cover/10794703/
+> 
+> v6:
+> - fix some spelling and style issues
+> - rm unnecessary comments
+> - drop vga and dvi connector
+> 
+> v2-v4:
+> - nothing since the patch was squashed from series [1] into this
+>   series.
+> 
+>  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
+>  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 include/media/v4l2-connector.h
+> 
+> diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
+> new file mode 100644
+> index 000000000000..3a951c54f50e
+> --- /dev/null
+> +++ b/include/media/v4l2-connector.h
+> @@ -0,0 +1,30 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * v4l2-connector.h
+> + *
+> + * V4L2 connector types.
+> + *
+> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> + */
+> +
+> +#ifndef V4L2_CONNECTOR_H
+> +#define V4L2_CONNECTOR_H
+> +
+> +#define V4L2_CONNECTOR_MAX_LABEL 41
 
-> 
-> Regards,
-> 
-> Tony
-> 
+Hans pointed out this was a weird number. Should you turn the label
+field into a pointer to make this more generic (with a
+v4l2_fwnode_connector_cleanup() function then) ?
+
+> +
+> +/**
+> + * enum v4l2_connector_type - connector type
+> + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration
+> + * @V4L2_CON_COMPOSITE: analog composite connector
+> + * @V4L2_CON_SVIDEO:    analog svideo connector
+> + * @V4L2_CON_HDMI:      digital hdmi connector
+> + */
+> +enum v4l2_connector_type {
+> +	V4L2_CON_UNKNOWN,
+> +	V4L2_CON_COMPOSITE,
+> +	V4L2_CON_SVIDEO,
+> +	V4L2_CON_HDMI,
+> +};
+> +
+> +#endif /* V4L2_CONNECTOR_H */
+> +
+> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> index 6c07825e18b9..f4df1b95c5ef 100644
+> --- a/include/media/v4l2-fwnode.h
+> +++ b/include/media/v4l2-fwnode.h
+> @@ -22,6 +22,7 @@
+>  #include <linux/list.h>
+>  #include <linux/types.h>
+>  
+> +#include <media/v4l2-connector.h>
+>  #include <media/v4l2-mediabus.h>
+>  #include <media/v4l2-subdev.h>
+>  
+> @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
+>  	unsigned int remote_port;
+>  };
+>  
+> +/**
+> + * struct v4l2_fwnode_connector_analog - analog connector data structure
+> + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
+> + *                     if no restrictions are specified.
+> + */
+> +struct v4l2_fwnode_connector_analog {
+> +	v4l2_std_id supported_tvnorms;
+> +};
+> +
+> +/**
+> + * struct v4l2_fwnode_connector - the connector data structure
+> + * @remote_port: identifier of the remote endpoint port the connector connects
+> + *		 to
+> + * @remote_id: identifier of the remote endpoint the connector connects to
+> + * @label: connetor label
+> + * @type: connector type
+> + * @connector: connector configuration
+> + * @connector.analog: analog connector configuration
+> + *                    &struct v4l2_fwnode_connector_analog
+> + */
+> +struct v4l2_fwnode_connector {
+> +	unsigned int remote_port;
+> +	unsigned int remote_id;
+> +	char label[V4L2_CONNECTOR_MAX_LABEL];
+> +	enum v4l2_connector_type type;
+> +
+> +	union {
+> +		struct v4l2_fwnode_connector_analog analog;
+> +		/* future connectors */
+> +	} connector;
+> +};
+> +
+>  /**
+>   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
+>   * @fwnode: pointer to the endpoint's fwnode handle
+
+-- 
+Regards,
+
+Laurent Pinchart
