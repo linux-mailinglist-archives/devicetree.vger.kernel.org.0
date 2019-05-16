@@ -2,47 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24DFA20B54
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 011C920B69
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727021AbfEPPcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 11:32:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58116 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726692AbfEPPcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 11:32:50 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D728C2087B;
-        Thu, 16 May 2019 15:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558020770;
-        bh=r68WH/4euMEIF03eDgl3acP0UnHdg4XoFgWuEe+zmHI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=zhfDnVk7ujI6CGqluZR6aypzeESD4uPYQ91GeF8Bo5/xBsIX9k94BQ+q2Ia3O8Asf
-         kFFy3DcTaWqWZt6s6iftPXG/MOY5b7tTFqJsjY6BvWTMo+LdZvNeK3AGIFDAR+vTnK
-         P20VCQijmK3M7urTw5uXt0JNAGbnBnc+e/TgXtqo=
-Received: by mail-qt1-f171.google.com with SMTP id y22so4372258qtn.8;
-        Thu, 16 May 2019 08:32:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAUlRaQHVvNpPDZ9PWq6a7fcLUYmFcYN31MC+tI171vR6VtIzjFM
-        xZ45DVUKFBuQCgIbPLtGuEbxIaWadRQmlcv/eQ==
-X-Google-Smtp-Source: APXvYqySyBWIP8bNkRclfMXh66OEqZoiEOpv/b5tK4fL27uelE9OPAmunH3JBsEYv3jZ06Wmkpj7Be8lFtgdVnowH0M=
-X-Received: by 2002:a0c:fe65:: with SMTP id b5mr40835148qvv.106.1558020769085;
- Thu, 16 May 2019 08:32:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190516102817.188519-1-hsinyi@chromium.org> <20190516102817.188519-2-hsinyi@chromium.org>
- <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com> <CAJMQK-jrJQri3gM=X6JRD6Rk+B5S4939HJTptrQMY64xEWr1qA@mail.gmail.com>
-In-Reply-To: <CAJMQK-jrJQri3gM=X6JRD6Rk+B5S4939HJTptrQMY64xEWr1qA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 May 2019 10:32:37 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+dVg9E_EzpoC4Bz1ytUckDGXUcEJyU5pV2HS6rZuKmHA@mail.gmail.com>
-Message-ID: <CAL_Jsq+dVg9E_EzpoC4Bz1ytUckDGXUcEJyU5pV2HS6rZuKmHA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        id S1727188AbfEPPkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 11:40:08 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:55062 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726977AbfEPPkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 11:40:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=PHR0hYYEwPULziU46CMKQKc5SNs9O4WaI8hYyRJBMJY=; b=tmUl4rNa0e8kPfHmpmAiiRHx9
+        ps9QR8Gt8+nO7MO7sYMHwLW55WTc+VdHPlZ+LRyA1BWJ1riXwNU92+JHINbtKi2D69twAz2g5e+rR
+        Uv8ts+rT6CMJ9etGQROToSbN5J52CipEuy4FI2bBfgebVRU4G+dyi5iwld2dOFD4vMScfS59smfuW
+        THcVKoDjdW3iyJ8Sj52mDoRi/zM1QNJJ+h0ay07z7qz3YWT6oMjSpCycObIQImYBrBpZafTJg/F6S
+        R+TukXMxw63UBohzqSeg+nwhn9Ev7S3vTibExMt4CWLx511oULO+eEwcrF32NMmVlHW6PkGOyfYTE
+        VPg0uqBTA==;
+Received: from static-50-53-52-16.bvtn.or.frontiernet.net ([50.53.52.16] helo=midway.dunlab)
+        by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
+        id 1hRIUA-0007tb-37; Thu, 16 May 2019 15:39:58 +0000
+Subject: Re: [PATCH v3 3/3] fdt: add support for rng-seed
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Frank Rowand <frowand.list@gmail.com>,
         Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will.deacon@arm.com>,
@@ -53,30 +41,76 @@ Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
         James Morse <james.morse@arm.com>,
         Andrew Murray <andrew.murray@arm.com>,
         Mark Rutland <mark.rutland@arm.com>,
+        Chintan Pandya <cpandya@codeaurora.org>,
         Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
         Robin Murphy <robin.murphy@arm.com>,
         Laura Abbott <labbott@redhat.com>,
         Stephen Boyd <swboyd@chromium.org>,
         Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+References: <20190516102817.188519-1-hsinyi@chromium.org>
+ <20190516102817.188519-3-hsinyi@chromium.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <932a02f2-a1d3-a8d7-c7a4-2891024d10a2@infradead.org>
+Date:   Thu, 16 May 2019 08:39:56 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190516102817.188519-3-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 9:51 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> On Thu, May 16, 2019 at 10:37 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> >
-> > Why not just map the FDT R/W at the start and change it to RO just
-> > before calling unflatten_device_tree? Then all the FDT scanning
-> > functions or any future fixups we need can just assume R/W. That is
-> > essentially what Stephen suggested. However, there's no need for a
-> > weak function as it can all be done within the arch code.
-> >
-> We need to add a new seed for kexec
+On 5/16/19 3:28 AM, Hsin-Yi Wang wrote:
+> Introducing a chosen node, rng-seed, which is an entropy that can be
+> passed to kernel called very early to increase initial device
+> randomness. Bootloader should provide this entropy and the value is
+> read from /chosen/rng-seed in DT.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> change v2->v3:
+> 1. use arch hook for fdt pgprot change
+> 2. handle CONFIG_KEXEC
+> ---
+>  Documentation/devicetree/bindings/chosen.txt | 14 +++++
+>  drivers/of/fdt.c                             | 55 ++++++++++++++++++++
+>  2 files changed, 69 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+> index 45e79172a646..fef5c82672dc 100644
+> --- a/Documentation/devicetree/bindings/chosen.txt
+> +++ b/Documentation/devicetree/bindings/chosen.txt
+> @@ -28,6 +28,20 @@ mode) when EFI_RNG_PROTOCOL is supported, it will be overwritten by
+>  the Linux EFI stub (which will populate the property itself, using
+>  EFI_RNG_PROTOCOL).
+>  
+> +rng-seed
+> +-----------
+> +
+> +This property served as an entropy to add device randomness. It is parsed
 
-Doesn't kexec operate on a copy because it already does modifications.
+                 serves
 
-Rob
+
+> +as a byte array, e.g.
+> +
+> +/ {
+> +	chosen {
+> +		rng-seed = <0x31 0x95 0x1b 0x3c 0xc9 0xfa 0xb3 ...>;
+> +	};
+> +};
+> +
+> +This random value should be provided by bootloader.
+> +
+>  stdout-path
+>  -----------
+>  
+
+
+
+-- 
+~Randy
