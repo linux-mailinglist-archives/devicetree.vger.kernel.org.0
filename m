@@ -2,142 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94F0820E7B
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 20:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A68020E9C
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 20:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726646AbfEPSOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 14:14:11 -0400
-Received: from mail-it1-f196.google.com ([209.85.166.196]:38344 "EHLO
-        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726314AbfEPSOL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 14:14:11 -0400
-Received: by mail-it1-f196.google.com with SMTP id i63so7830387ita.3;
-        Thu, 16 May 2019 11:14:10 -0700 (PDT)
+        id S1726987AbfEPS0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 14:26:31 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:39081 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726357AbfEPS0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 14:26:31 -0400
+Received: by mail-oi1-f195.google.com with SMTP id v2so3275865oie.6;
+        Thu, 16 May 2019 11:26:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=oYizfKO0iUCkCx87QTv9y+9/yguDDJWHGpNmrjjyMQE=;
-        b=T1a1UQAWEN1zwXTAxJ0W6YsgQvMdJVGrZGrDTxkDkBdftsG7bFuxqMMuyRYIbwpp3N
-         zpUtrb0fyJY34h5ZAqJ5AKxT5uAswqiB8LO5sX7EJZTZgfYEuGvfO/pb8QwJVTKmVOqr
-         MpYvM0qdYL46t4TGTV4SiIP/n20fxoie6h4lu9vHtVeHW6WMLT7uWNa4D7JCmGJdqinU
-         Pff5NHk3/urnJe9KHzJ6+b6680Gwf/AWHqMdWWb+a/6DEl/LFjfmKJv/qzjGlsL+oluN
-         QFRErVrPnqIzZrVDXUDAYofBl17/UhgtMEOjPMZ4uAeyPqGuIKtX1oJjyRayHP/2d5U4
-         lc4Q==
+        bh=0QOmJrz3t+ssW/c0JNL75BVKUs3lWPdi+hPwpLLqj0Y=;
+        b=ZEpH+0epLMFSR18nfhuqzs+K3+pk1JK7FHLTbOUTQfU/wEjw2yw/OkaWvsmN+8euDm
+         cpxhsPk10kP23ZWlHRbBYyqjuoOHCWxMJYUnlvztrx4pNOws3OHeTj/IEaoU3s72GxOH
+         ZcjXTqYUWFIOQDh+ZtpROhV0KGHV+fHYmUSE8TdQHu2i3iO3sFJONBSJSOM6xSXnUWKp
+         hZn1rCsMsGLLa2ctsLGmADOdhQ5tfUOZK5wdYIsBayPnaCHAzt7K37ipbtogV3WTG26v
+         ctxFxluxhtaiN6LA+jEIcXU5x0lQQF1ok0OOcPaZ0wDldQf1BqXMRGl42fbGcfGQ66Cn
+         YqOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=oYizfKO0iUCkCx87QTv9y+9/yguDDJWHGpNmrjjyMQE=;
-        b=aI3BJkR77k41yerUhldC952Lgy/oKTQNv9pFBpp6ZHJXfWHgNppFPPKR63/OgKNvji
-         WOEectIMFLrFFPfkZPpWVc3p+bvNXB7fLNa6FV3/3ZNjO2yw7UW26KV6kxV36U+KWg5U
-         bmlCZOBl7xzdvEVv0lkmUZuT3kxYRUh8ba+ICWZYza8TjF4oCYJbDNVs0w/48Zf6Ie6u
-         xeGx5x3cFESJ2dKxx1GXmfQdsCCB/RMzYNultjszjl/Ux9VUYapFRZ/H6nvcJuLi3IJp
-         J0HnF6EkFzgNjjLUGaEgscd7vcywjSnxUJNUFno03ZVo6wOqQvSShYDvTKkOccxRog08
-         TLeg==
-X-Gm-Message-State: APjAAAXXykYoKxaINn+ab7wg/iSsFv4vFk9F6yssAfPJjgiq8rV5gEe0
-        Ue3/o0J0gJc52+tHt/XwASXbTEd3TW+lgHNXpyQ=
-X-Google-Smtp-Source: APXvYqzg91EbMijFJyKzCeNsU32nhaqbI5CANe+33pKz919XCTOUPyqfIi2K6fq6NPt65fI6+i8jOiwXWRTfBrRl2y4=
-X-Received: by 2002:a05:660c:105:: with SMTP id w5mr1049148itj.37.1558030450144;
- Thu, 16 May 2019 11:14:10 -0700 (PDT)
+        bh=0QOmJrz3t+ssW/c0JNL75BVKUs3lWPdi+hPwpLLqj0Y=;
+        b=HxUvmtEREG/UjaYkpBTphgD6pP94xvwZ/LQU4eXyWbfLwbmrvO/0iilgGTRoHPI7Wm
+         GaArDklQg55RGf6mBVcGlIgW1tMvKe2GIVBXsFCvWSZTz7q387aYfUQv7pD2I+81Qbxe
+         T3y9OwqDfYn6rux4hTqxpKnLTWqVDGlF2gznieGZtpLLj1jAbVu0yUMgjDy1jUfB6m+H
+         Oqdkb9C82iC4NIHyqxDR1G3jOK7Se6ikoXSGQaKHHjESIvG+O6EZIU77gMTDraj5jbo3
+         J0Wv0nNhDvlZiPiQ4TN85iP+mHk6U5CJpi19SM25Hdr+44Vt07GSZignfyarbr9udb37
+         jhdw==
+X-Gm-Message-State: APjAAAW0u2kvW3AZixxFTVrH6Hf+8CHpb1P0ootZqO45PP7W4qJsAUiq
+        XHih/8lu/QRlt0alQP8AjN4axMUGS4RotWFE7sU=
+X-Google-Smtp-Source: APXvYqxtsCkbedLuyoFQPMGbJweEX/2iUWRBGnKBlpw9mcsocW3dkMpvyrQjOnc7DiWR1WpZ0EsRJpTfOtCCQLhwvOE=
+X-Received: by 2002:aca:240d:: with SMTP id n13mr11043400oic.145.1558031190251;
+ Thu, 16 May 2019 11:26:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190512082614.9045-1-tiny.windzz@gmail.com> <20190512082614.9045-4-tiny.windzz@gmail.com>
- <20190512134152.yrletgtiglxncyo4@flea>
-In-Reply-To: <20190512134152.yrletgtiglxncyo4@flea>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Fri, 17 May 2019 02:13:58 +0800
-Message-ID: <CAEExFWvkM86ajB4io8yopkKEOfRE3UObRpqoi=Sq0RtDnuaRWA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: thermal: add binding document for h6
- thermal controller
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>, robh+dt@kernel.org,
+References: <20190514155911.6C0AC68B05@newverein.lst.de> <20190514160241.9EAC768C7B@newverein.lst.de>
+ <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
+ <20190515093141.41016b11@blackhole.lan> <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
+ <20190516154820.GA10431@lst.de> <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com>
+ <20190516164859.GB10431@lst.de>
+In-Reply-To: <20190516164859.GB10431@lst.de>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Thu, 16 May 2019 11:26:45 -0700
+Message-ID: <CA+E=qVdxvU5t9MB447Zd+-MO7rw+qBxxaZApjp4fgDx=W47r-g@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on Teres-I
+To:     Torsten Duwe <duwe@lst.de>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, catalin.marinas@arm.com,
-        will.deacon@arm.com, David Miller <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan.Cameron@huawei.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com, Andy Gross <andy.gross@linaro.org>,
-        olof@lixom.net, bjorn.andersson@linaro.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        marc.w.gonzalez@free.fr, stefan.wahren@i2se.com,
-        enric.balletbo@collabora.com, Linux PM <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 12, 2019 at 9:41 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Thu, May 16, 2019 at 9:49 AM Torsten Duwe <duwe@lst.de> wrote:
 >
-> Hi,
->
-> On Sun, May 12, 2019 at 04:26:14AM -0400, Yangtao Li wrote:
-> > This patch adds binding document for allwinner h6 thermal controller.
+> On Thu, May 16, 2019 at 09:06:41AM -0700, Vasily Khoruzhick wrote:
 > >
-> > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> > ---
-> >  .../bindings/thermal/sun50i-thermal.txt       | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
+> > Driver can talk to the panel over AUX channel only after t1+t3, t1 is
+> > up to 10ms, t3 is up to 200ms.
 >
-> We're starting to convert to YAML for binding descriptions that will
-> allow to validate that all DT are properly using the binding. It would
-> be great if you could use it as well.
+> This is after power-on. The boot loader needs to deal with this.
 
-What have been changed to this now?
+Actually panel driver has to deal with it and not bootloader.
 
+> > It works with older version of driver
+> > that keeps panel always on because it takes a while between driver
+> > probe and pipeline start.
 >
-> > diff --git a/Documentation/devicetree/bindings/thermal/sun50i-thermal.txt b/Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
-> > new file mode 100644
-> > index 000000000000..67eda7794262
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/thermal/sun50i-thermal.txt
-> > @@ -0,0 +1,32 @@
-> > +Binding for Thermal Sensor of Allwinner SOC.
-> > +
-> > +This describes the device tree binding for the Allwinner thermal controller
-> > +which measures the on-SoC temperatures.
-> > +
-> > +Required properties:
-> > +- compatible:
-> > +  - "allwinner,sun50i-h6-ths" : For H6
-> > +- reg: Address range of the thermal controller
-> > +- clocks, clock-names: Clocks needed for the thermal controller.
-> > +                    The required clocks for h6 are: "bus".
->
-> If there's a single clock, then we don't need clock-names
+> No lid switch, no USB, no WiFi, no MMC. If you disable DCDC1 you'll
+> run out of wakeup-sources ;-) IOW: I see no practical way any OS
+> driver can switch this panel voltage off and survive...
 
-Yeah, but, IIRC, H3 have two clk.
-So I'd like to keep it.
+Ouch, looks like someone made a huge mistake in HW design?
 
+> > All in all - you don't need panel timings since there's EDID but you
+> > still need panel delays. Anyway, it's up to you and maintainers.
 >
-> > +- resets, reset-names: Reference to the reset controller controlling
-> > +                    the thermal controller.
+> Let's give it a try.
 >
-> Ditto.
-
-Done.
-
-Thx,
-Yangtao
+>         Torsten
 >
-> > +- nvmem-cells: A phandle to the calibration data provided by a nvmem device. If
-> > +            unspecified default values shall be used.
-> > +- nvmem-cell-names: Should be "calib"
->
-> I thought you said that nvmem support was optional in the
-> driver. Maybe we could make it optional in the DT too?
->
-> Thanks!
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
