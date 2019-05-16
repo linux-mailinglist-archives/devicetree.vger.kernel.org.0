@@ -2,84 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B1A20005
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E40720008
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbfEPHOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 03:14:04 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:41188 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726277AbfEPHOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:14:04 -0400
-Received: by mail-wr1-f67.google.com with SMTP id g12so1775952wro.8
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 00:14:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VfCCJLVSfHmoPDAPoxVwjeh8RznaZsaWhre6aDFNPIM=;
-        b=hIzpxAqGm2mhKRJYGO+YsjXJtG3/Y3HV1euq2BEEfoOJk4PDOeGY/qCyeApBn8Ueq0
-         V7kJVjFDtawFjNmvTzpxqx1rbpRxVdsqbNJ4cC3WcC6pzlKnLht0aS1u8/PMjDvJnCeK
-         nfzR9L6tlulhvTKK9hFXNqtrubFaHwYa0BhMwPzRgdUFY8HASnBcI9uy1IZLcZJ5NAHp
-         o5lqypEEXV96kU4+iefo6p+9eXh5YLnFPiZRwzx5/06TL77E9tJozgTquElaAF6VA3/S
-         RA9kg3I6agdjesBqj4Is+osqQ9hLHrzxTcs6N5hsuGH3dixd4Mf4NVgIEip32AHIpJ74
-         rVGQ==
+        id S1726447AbfEPHPa convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 May 2019 03:15:30 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:45013 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbfEPHP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:15:29 -0400
+Received: by mail-vs1-f67.google.com with SMTP id j184so1617227vsd.11;
+        Thu, 16 May 2019 00:15:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VfCCJLVSfHmoPDAPoxVwjeh8RznaZsaWhre6aDFNPIM=;
-        b=iuoRZEc7/H9bSoV5M7N+ms/OgGi0bC/os1+1+wAqNT0b6OJvMwBdsdXQV5HtTFF8Jj
-         3Uxdq57+GihuStZtUtJAvaDqlBWQ/Tn1zQiAViHdG4wHQ5XBtZ1mXkSTLVP5j2Hfb+6B
-         v+CTx4Ec3ehMz7ytzKtkbSSLV8VsmTcEHWUyy7zNxO9d0a1rdETNYhXG2kG3zXV23LUF
-         SwBRxO24klNb3MtSxTys2qDec+o1m+U7NF42ClSwVzUD/CusXVSgEX8+CtCYVn2dTGVo
-         WDQSkft/r341cMR/bDyfUGoaGE1lkB0DeFNdiW4/mf5DTm46AZg60+YNz5wfoCBPjsW8
-         hCJw==
-X-Gm-Message-State: APjAAAW7g2oFzaL8GR1gzVBSlJHTqvaBEl39Z57/aReRE8ouscF9Jns0
-        kTBK6REqwmiPb0oQ/aE5mheU4n5O2wI=
-X-Google-Smtp-Source: APXvYqy6tYfmy3A5aGFSOaSVHlYWAwVjpgeh4xahSE6WzNjqgCYsJB/OQVjBgZAzXUNEhgfdt/0vEQ==
-X-Received: by 2002:a5d:49d0:: with SMTP id t16mr19217158wrs.324.1557990842582;
-        Thu, 16 May 2019 00:14:02 -0700 (PDT)
-Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id x187sm5454331wmb.33.2019.05.16.00.14.01
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 16 May 2019 00:14:02 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: sei510: add bluetooth supplies
-Date:   Thu, 16 May 2019 09:13:55 +0200
-Message-Id: <20190516071355.26938-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=vBPaoFAauCH5+iqFfyzqNMHD69Jtgjzqknm8ZGh1Rho=;
+        b=fGSAUOgg65uvbuXBnBbxz44Dkmu0LWLRVCHUJRLuvv89bK3ZJbI5pNQVABTwxE4LE7
+         o++8qeiHfRLWAivZEtVrSXjo2AArWhHiABEr/uOX0aPrjVAT2NeCof/jzfdLrDGDDWXI
+         r72Lt+iGWLHjZlVQEmkQUUv41go249S8RiAs9ZGuymG9fKsfRNZdp3qWhyquTOzq5sGV
+         F8wE3bvZX/llb3d8Sgv3hAs8tMj/0Wfcjs6OZ1OCH1BhZg/TKWBc6mo4BetWKzbMa7uC
+         cYgbiXGrxPo98vyCVG5qAJtb7gk9Aoz/xLphc+rVn1yHP/H0KWi6AeVL3T7vtXyjLzwA
+         2iJw==
+X-Gm-Message-State: APjAAAWsUgcO4lMN7L+O1QvrO6Zd5HoZi9pvd0+HFN6Gpq0pFBdJRvAs
+        30Z0XQGswteFODDvbG1WfVgiQnl//Biht6hpvBKsF+Ht
+X-Google-Smtp-Source: APXvYqx3lubdb4zhS3ZD+mCp84RPS/GM5QyWhtoYpBVTrzLxaHp6HAB4gJ/WpOZhyHhmWae1oCBKMGqHKgMGV9Tgg58=
+X-Received: by 2002:a67:fdd4:: with SMTP id l20mr18208599vsq.63.1557990928358;
+ Thu, 16 May 2019 00:15:28 -0700 (PDT)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+References: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 16 May 2019 09:15:16 +0200
+Message-ID: <CAMuHMdVU5WhL66Lve1qjZx7OGYWbkUmC9JNvYye0SGvtWmawVQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rcar-{csi2,vin}: Rename bindings
+ documentation files
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bluetooth vbat and vddio power supplies
+On Thu, May 16, 2019 at 3:49 AM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Renesas media binding documentation files uses a naming schema of
+> 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
+> pattern.
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index 61fb30047d7f..dbfbd50359e5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -170,6 +170,8 @@
- 	bluetooth {
- 		compatible = "brcm,bcm43438-bt";
- 		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddio_ao1v8>;
- 	};
- };
- 
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.20.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
