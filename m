@@ -2,318 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67CDA20AE3
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08E8120AEE
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 17:18:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727454AbfEPPNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 11:13:51 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:34964 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727363AbfEPPNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 11:13:51 -0400
-Received: by mail-wm1-f67.google.com with SMTP id q15so3888492wmj.0
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 08:13:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xwTuo9cmOBgLtYKY6tIim7Qw2ueucrmJKldtrpo1E+Y=;
-        b=UEIXbPkC0myO/R8zz+1+yUD/Q5UNbeXQFQrtPdEteSSLrLwX/C9QqW0eoPGbHdLw1u
-         yL1vNOm1OfYJJUk7Qnvw/ZnCISmv7Agd2/HeO27ECus6Xx1frxbByuv9fnY2YNzkgziz
-         uukXc5YH3b4iGErd0z3e9bqjCn7bQxeTek3vcUxJc//EdAtSI/EoJcg77vTD43pX/+JF
-         pC5oO3hKti5JOrvJe2wzmSWhFckYB2PDxDIm7dr21YXZjc7JC5B/xRrnHSrI3tKH2vvG
-         u8KDzLYHQ5hqU9gqm+fAvS8d5v2LLgQ65I3k5X7WU3M+de19aZOXjJy7FqUjLGfVtlNW
-         D/0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xwTuo9cmOBgLtYKY6tIim7Qw2ueucrmJKldtrpo1E+Y=;
-        b=YNpriHJfkx/5Gz9Md/ITIvpOyhff7ZpasR/jYo7rIsrm1ZD6ab8DAZPbRuDSsHuHXy
-         +7vpevKlBmwaQFgOhvlfL/svuOZT/mm6DwvlfJrRCir3YnVKs0AMsmKyr4jt7jt5oytR
-         oICsAQ1xUAuBFwMQUSdudlz2AKLD6KX451uGhPyu9BYZAD7cmUsdIJH3M8CZL86kbKWP
-         OJyAT+fqmNcqo944XwF+3LPScimPUXNpZEOfHb5ntVOsMuiG/NU2E6cHn2g7PjLOyQNc
-         RpBRgUsJzUhQjdAm1ijr7L2rVtnbFAsHDpMIBQXKy/68qHA2+skxSpl9rZpjzpvraqeD
-         PWIA==
-X-Gm-Message-State: APjAAAUfUbg7Sol1BGV+VH/IMbHNIFXoJD7sp7ELztzejK0QsJo7zTat
-        0RdGBr5BCEK/eTcmLJYFVXHKEQ==
-X-Google-Smtp-Source: APXvYqxtX0A2PAeunKpL7XXFo1SfjQP7HuVm6uvMgg+h/dgz2iYpPyM3craEvwnREeu3sykqjWru0g==
-X-Received: by 2002:a1c:d182:: with SMTP id i124mr7089369wmg.102.1558019628440;
-        Thu, 16 May 2019 08:13:48 -0700 (PDT)
-Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.googlemail.com with ESMTPSA id 17sm6968126wrk.91.2019.05.16.08.13.47
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 16 May 2019 08:13:47 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] pinctrl: meson: add output support in pinconf
-Date:   Thu, 16 May 2019 17:13:39 +0200
-Message-Id: <20190516151339.25846-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190516151339.25846-1-jbrunet@baylibre.com>
-References: <20190516151339.25846-1-jbrunet@baylibre.com>
+        id S1726790AbfEPPSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 11:18:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53290 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726687AbfEPPSK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 11:18:10 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 900CB20833;
+        Thu, 16 May 2019 15:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558019888;
+        bh=ZM7ppt/S5KJwv0acQCOQ76OkA49Aolc34/4ZQeZCdco=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=1O52VzdmaWpclF2Vq5eVFl+XFTl+jyTJm2sXqSL/6DNVKTb2AN2wggy1ABR4GT+Ol
+         zeVFkidsdioXrsnfl0X/+MB44YQbSff6eIy59n/HGd+Ejo+ct3oG7wRujt7w+n9Yo/
+         I9DS4ya12Up8RU8Y2TZULqMiiYMAP1f0k2jCyYxs=
+Received: by mail-qt1-f176.google.com with SMTP id y42so4333841qtk.6;
+        Thu, 16 May 2019 08:18:08 -0700 (PDT)
+X-Gm-Message-State: APjAAAX/RnUhhRPrF0nN8q6buOaTyx4Vz5Jend58MUn3cR9B6qtvEAaF
+        ecX+PywwAl6vmHKEZcLq8T76p5TUWz5/qlCcXA==
+X-Google-Smtp-Source: APXvYqxt++jGtZr/pMp/Bw9IfigV/iGoq2iy4QQBdyF695i72d1q8vmOqdxvkY39gqqmm4cqUNbklT6HdE7Zolbcags=
+X-Received: by 2002:ac8:3862:: with SMTP id r31mr42313002qtb.26.1558019887828;
+ Thu, 16 May 2019 08:18:07 -0700 (PDT)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+References: <20190516102817.188519-1-hsinyi@chromium.org> <20190516102817.188519-2-hsinyi@chromium.org>
+ <CAL_JsqLx1UdjCnZ69aQm0GU_uOdd7tTdD_oM=D7yhDANoQ0fEA@mail.gmail.com> <20190516144303.GF43059@lakrids.cambridge.arm.com>
+In-Reply-To: <20190516144303.GF43059@lakrids.cambridge.arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 16 May 2019 10:17:56 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Tmht+oxdmjtyhzwrYw4NNAkVnimAuEGODC_2fAprSjg@mail.gmail.com>
+Message-ID: <CAL_Jsq+Tmht+oxdmjtyhzwrYw4NNAkVnimAuEGODC_2fAprSjg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] arm64: implement update_fdt_pgprot()
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Chintan Pandya <cpandya@codeaurora.org>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pinconf support for PIN_CONFIG_OUTPUT_ENABLE and PIN_CONFIG_OUTPUT
-in the meson pinctrl driver.
+On Thu, May 16, 2019 at 9:43 AM Mark Rutland <mark.rutland@arm.com> wrote:
+>
+> On Thu, May 16, 2019 at 09:37:05AM -0500, Rob Herring wrote:
+> > On Thu, May 16, 2019 at 5:28 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> > >
+> > > Basically does similar things like __fixmap_remap_fdt(). It's supposed
+> > > to be called after fixmap_remap_fdt() is called at least once, so region
+> > > checking can be skipped. Since it needs to know dt physical address, make
+> > > a copy of the value of __fdt_pointer.
+> > >
+> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > > ---
+> > >  arch/arm64/kernel/setup.c |  2 ++
+> > >  arch/arm64/mm/mmu.c       | 17 +++++++++++++++++
+> > >  2 files changed, 19 insertions(+)
+> >
+> > Why not just map the FDT R/W at the start and change it to RO just
+> > before calling unflatten_device_tree? Then all the FDT scanning
+> > functions or any future fixups we need can just assume R/W. That is
+> > essentially what Stephen suggested. However, there's no need for a
+> > weak function as it can all be done within the arch code.
+> >
+> > However, I'm still wondering why the FDT needs to be RO in the first place.
+>
+> We want to preserve the original FDT in a pristine form for kexec (and
+> when exposed to userspace), and mapping it RO was the easiest way to
+> catch it being randomly modified (e.g. without fixups applied).
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/pinctrl/meson/pinctrl-meson.c | 182 ++++++++++++++++++--------
- 1 file changed, 127 insertions(+), 55 deletions(-)
+The CRC check already existed for this purpose and that works for
+every arch including ones where the FDT is copied.
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 33b4b141baac..410eb7559016 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -174,6 +174,88 @@ int meson_pmx_get_groups(struct pinctrl_dev *pcdev, unsigned selector,
- 	return 0;
- }
- 
-+static int meson_pinconf_set_gpio_bit(struct meson_pinctrl *pc,
-+				      unsigned int pin,
-+				      unsigned int reg_type,
-+				      bool arg)
-+{
-+	struct meson_bank *bank;
-+	unsigned int reg, bit;
-+	int ret;
-+
-+	ret = meson_get_bank(pc, pin, &bank);
-+	if (ret)
-+		return ret;
-+
-+	meson_calc_reg_and_bit(bank, pin, reg_type, &reg, &bit);
-+	return regmap_update_bits(pc->reg_gpio, reg, BIT(bit),
-+				  arg ? BIT(bit) : 0);
-+}
-+
-+static int meson_pinconf_get_gpio_bit(struct meson_pinctrl *pc,
-+				      unsigned int pin,
-+				      unsigned int reg_type)
-+{
-+	struct meson_bank *bank;
-+	unsigned int reg, bit, val;
-+	int ret;
-+
-+	ret = meson_get_bank(pc, pin, &bank);
-+	if (ret)
-+		return ret;
-+
-+	meson_calc_reg_and_bit(bank, pin, reg_type, &reg, &bit);
-+	ret = regmap_read(pc->reg_gpio, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	return BIT(bit) & val ? 1 : 0;
-+}
-+
-+static int meson_pinconf_set_output(struct meson_pinctrl *pc,
-+				    unsigned int pin,
-+				    bool out)
-+{
-+	return meson_pinconf_set_gpio_bit(pc, pin, REG_DIR, !out);
-+}
-+
-+static int meson_pinconf_get_output(struct meson_pinctrl *pc,
-+				    unsigned int pin)
-+{
-+	int ret = meson_pinconf_get_gpio_bit(pc, pin, REG_DIR);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	return !ret;
-+}
-+
-+static int meson_pinconf_set_drive(struct meson_pinctrl *pc,
-+				   unsigned int pin,
-+				   bool high)
-+{
-+	return meson_pinconf_set_gpio_bit(pc, pin, REG_OUT, high);
-+}
-+
-+static int meson_pinconf_get_drive(struct meson_pinctrl *pc,
-+				   unsigned int pin)
-+{
-+	return meson_pinconf_get_gpio_bit(pc, pin, REG_OUT);
-+}
-+
-+static int meson_pinconf_set_output_drive(struct meson_pinctrl *pc,
-+					  unsigned int pin,
-+					  bool high)
-+{
-+	int ret;
-+
-+	ret = meson_pinconf_set_output(pc, pin, true);
-+	if (ret)
-+		return ret;
-+
-+	return meson_pinconf_set_drive(pc, pin, high);
-+}
-+
- static int meson_pinconf_disable_bias(struct meson_pinctrl *pc,
- 				      unsigned int pin)
- {
-@@ -267,39 +349,48 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
- {
- 	struct meson_pinctrl *pc = pinctrl_dev_get_drvdata(pcdev);
- 	enum pin_config_param param;
--	unsigned int drive_strength_ua;
-+	unsigned int arg = 0;
- 	int i, ret;
- 
- 	for (i = 0; i < num_configs; i++) {
- 		param = pinconf_to_config_param(configs[i]);
- 
-+		switch (param) {
-+		case PIN_CONFIG_DRIVE_STRENGTH_UA:
-+		case PIN_CONFIG_OUTPUT_ENABLE:
-+		case PIN_CONFIG_OUTPUT:
-+			arg = pinconf_to_config_argument(configs[i]);
-+			break;
-+
-+		default:
-+			break;
-+		}
-+
- 		switch (param) {
- 		case PIN_CONFIG_BIAS_DISABLE:
- 			ret = meson_pinconf_disable_bias(pc, pin);
--			if (ret)
--				return ret;
- 			break;
- 		case PIN_CONFIG_BIAS_PULL_UP:
- 			ret = meson_pinconf_enable_bias(pc, pin, true);
--			if (ret)
--				return ret;
- 			break;
- 		case PIN_CONFIG_BIAS_PULL_DOWN:
- 			ret = meson_pinconf_enable_bias(pc, pin, false);
--			if (ret)
--				return ret;
- 			break;
- 		case PIN_CONFIG_DRIVE_STRENGTH_UA:
--			drive_strength_ua =
--				pinconf_to_config_argument(configs[i]);
--			ret = meson_pinconf_set_drive_strength
--				(pc, pin, drive_strength_ua);
--			if (ret)
--				return ret;
-+			ret = meson_pinconf_set_drive_strength(pc, pin, arg);
-+			break;
-+		case PIN_CONFIG_OUTPUT_ENABLE:
-+			ret = meson_pinconf_set_output(pc, pin, arg);
-+			break;
-+		case PIN_CONFIG_OUTPUT:
-+			ret = meson_pinconf_set_output_drive(pc, pin, arg);
- 			break;
- 		default:
--			return -ENOTSUPP;
-+			ret = -ENOTSUPP;
- 		}
-+
-+		if (ret)
-+			return ret;
- 	}
- 
- 	return 0;
-@@ -403,6 +494,24 @@ static int meson_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
- 		if (ret)
- 			return ret;
- 		break;
-+	case PIN_CONFIG_OUTPUT_ENABLE:
-+		ret = meson_pinconf_get_output(pc, pin);
-+		if (ret <= 0)
-+			return -EINVAL;
-+		arg = 1;
-+		break;
-+	case PIN_CONFIG_OUTPUT:
-+		ret = meson_pinconf_get_output(pc, pin);
-+		if (ret <= 0)
-+			return -EINVAL;
-+
-+		ret = meson_pinconf_get_drive(pc, pin);
-+		if (ret < 0)
-+			return -EINVAL;
-+
-+		arg = ret;
-+		break;
-+
- 	default:
- 		return -ENOTSUPP;
- 	}
-@@ -447,56 +556,19 @@ static const struct pinconf_ops meson_pinconf_ops = {
- 
- static int meson_gpio_direction_input(struct gpio_chip *chip, unsigned gpio)
- {
--	struct meson_pinctrl *pc = gpiochip_get_data(chip);
--	unsigned int reg, bit;
--	struct meson_bank *bank;
--	int ret;
--
--	ret = meson_get_bank(pc, gpio, &bank);
--	if (ret)
--		return ret;
--
--	meson_calc_reg_and_bit(bank, gpio, REG_DIR, &reg, &bit);
--
--	return regmap_update_bits(pc->reg_gpio, reg, BIT(bit), BIT(bit));
-+	return meson_pinconf_set_output(gpiochip_get_data(chip), gpio, false);
- }
- 
- static int meson_gpio_direction_output(struct gpio_chip *chip, unsigned gpio,
- 				       int value)
- {
--	struct meson_pinctrl *pc = gpiochip_get_data(chip);
--	unsigned int reg, bit;
--	struct meson_bank *bank;
--	int ret;
--
--	ret = meson_get_bank(pc, gpio, &bank);
--	if (ret)
--		return ret;
--
--	meson_calc_reg_and_bit(bank, gpio, REG_DIR, &reg, &bit);
--	ret = regmap_update_bits(pc->reg_gpio, reg, BIT(bit), 0);
--	if (ret)
--		return ret;
--
--	meson_calc_reg_and_bit(bank, gpio, REG_OUT, &reg, &bit);
--	return regmap_update_bits(pc->reg_gpio, reg, BIT(bit),
--				  value ? BIT(bit) : 0);
-+	return meson_pinconf_set_output_drive(gpiochip_get_data(chip),
-+					      gpio, value);
- }
- 
- static void meson_gpio_set(struct gpio_chip *chip, unsigned gpio, int value)
- {
--	struct meson_pinctrl *pc = gpiochip_get_data(chip);
--	unsigned int reg, bit;
--	struct meson_bank *bank;
--	int ret;
--
--	ret = meson_get_bank(pc, gpio, &bank);
--	if (ret)
--		return;
--
--	meson_calc_reg_and_bit(bank, gpio, REG_OUT, &reg, &bit);
--	regmap_update_bits(pc->reg_gpio, reg, BIT(bit),
--			   value ? BIT(bit) : 0);
-+	meson_pinconf_set_drive(gpiochip_get_data(chip), gpio, value);
- }
- 
- static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
--- 
-2.20.1
+BTW, This version of the patchset disables the export to userspace
+since the CRC will be wrong.
 
+> I'd prefer to keep it RO once we've removed/cleared certain properties
+> from the chosen node that don't make sense to pass on for kexec
+
+I want clear rules about when the FDT can be modified or not which are
+not arch specific.
+
+It's really only a question of with what granularity it's made R/W.
+Wrapping every modification seems like overkill to me.
+
+Rob
