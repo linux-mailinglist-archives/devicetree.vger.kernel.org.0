@@ -2,129 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB0820C94
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B16D220C9C
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727087AbfEPQHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 12:07:09 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:44256 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726510AbfEPQHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:07:09 -0400
-Received: by mail-oi1-f196.google.com with SMTP id z65so2896986oia.11;
-        Thu, 16 May 2019 09:07:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=If7DIMq1Gfx6XG6/ApM/VqLufFm2C3KncjrdjTPi5fw=;
-        b=W9HrIa/zrt9i9wWQLsWOgqvOcJ/ZEinVeMjhGTg/M6LgXGdcbPB38gp7CKW1Akzuix
-         FZeEC2qxcJaDiDUQWE144oDzyC6CIY14bFcVik75qRdaFo6gpHvLaXMHScwpez/TBXDE
-         LEJud/rc55JbTq4FLPH0uKppHUcREMpYUO0cWhrffQid3TzgZG0dj9tA79ffwhu7DX1L
-         ARsIgzfa6OlYV0/AUIwNy4TqKQ6NF/L3JtlzigKT31jbr3qBLHxPDUBJIR439EiMSiLt
-         zv6T7X7Lj9kuFbhIBO14quCYdRswsASy27tioqzSIKYGeVZBprXPfyb9dHAXh381oL9i
-         Ed7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=If7DIMq1Gfx6XG6/ApM/VqLufFm2C3KncjrdjTPi5fw=;
-        b=KJSdjYedsUL7N/IsSUCKn+nbO7QWyCAlb60awKoGDU+Er0lKkYfKeqOnna+AIS5x85
-         uWFODuHhFIc3zgGBYlBipfo/5oQijLpjpkxez/kPTyR/jdYpxIAGUDzMQvWVlkAHIO9X
-         1fKDewXzW8FgP4GQ6g7De509kQT4/XwopmnmwEQ93NK1E5jlqhhuE2DeIknDAJlOgFqQ
-         cB6AOIjjmszJB6TJAqa1gP1yLpHRoq836O/esJo3L6ok56L6lTuT9dOWE3JdxlT2IZTG
-         JiBkJ47+UqKHuMWAC3BulJhK9q+uwj4/gE+2lXdeLPIMQUXqFEpWTo4jEZpyACkWE/lo
-         Ozkg==
-X-Gm-Message-State: APjAAAX/AiM1DRiz6aYX9lEOmulMI2FiLGVrwi//IhGjtbIOdLtIwvBi
-        S7Ten5gP07WVqy4R01G1AOSaBdV5kjKokSmdgUE=
-X-Google-Smtp-Source: APXvYqxeWnmWZhffcM9dTuiS/N02EO1l6OnHcvpZADX+xNRI7YfuXCN7riZ/UAUEu9b/pdmZpShaSStxlQVSsRJkIpk=
-X-Received: by 2002:aca:38d4:: with SMTP id f203mr1339419oia.88.1558022828175;
- Thu, 16 May 2019 09:07:08 -0700 (PDT)
+        id S1726791AbfEPQKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 12:10:51 -0400
+Received: from mailoutvs7.siol.net ([185.57.226.198]:37940 "EHLO mail.siol.net"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726715AbfEPQKv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 12:10:51 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 933F1521DFA;
+        Thu, 16 May 2019 18:10:48 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id R4UBf8dj79kQ; Thu, 16 May 2019 18:10:48 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 46AA8522084;
+        Thu, 16 May 2019 18:10:48 +0200 (CEST)
+Received: from localhost.localdomain (cpe-86-58-52-202.static.triera.net [86.58.52.202])
+        (Authenticated sender: 031275009)
+        by mail.siol.net (Postfix) with ESMTPSA id BEFCC521DFA;
+        Thu, 16 May 2019 18:10:46 +0200 (CEST)
+From:   Jernej Skrabec <jernej.skrabec@siol.net>
+To:     maxime.ripard@bootlin.com, wens@csie.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sun8i-h3: Fix wifi in Beelink X2 DT
+Date:   Thu, 16 May 2019 18:10:39 +0200
+Message-Id: <20190516161039.18534-1-jernej.skrabec@siol.net>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190514155911.6C0AC68B05@newverein.lst.de> <20190514160241.9EAC768C7B@newverein.lst.de>
- <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
- <20190515093141.41016b11@blackhole.lan> <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
- <20190516154820.GA10431@lst.de>
-In-Reply-To: <20190516154820.GA10431@lst.de>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Thu, 16 May 2019 09:06:41 -0700
-Message-ID: <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on Teres-I
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Harald Geyer <harald@ccbib.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 8:48 AM Torsten Duwe <duwe@lst.de> wrote:
->
-> On Wed, May 15, 2019 at 08:08:57AM -0700, Vasily Khoruzhick wrote:
-> > On Wed, May 15, 2019 at 12:32 AM Torsten Duwe <duwe@lst.de> wrote:
-> > >
-> > > It does comply with the bindings. The ports are all optional.
-> > > As far as DT is concerned, the signal path ends here. This is also the
-> > > final component _required_ to get the Linux kernel DRI up and running.
-> >
-> > Ugh, then bindings should be fixed. It's not optional. It may work if
-> > bootloader enables power for you, but it won't if you disable display
-> > driver in u-boot.
->
-> I double-checked. On the Teres-I, mentioning the panel _is_ optional.
+mmc1 node where wifi module is connected doesn't have properly defined
+power supplies so wifi module is never powered up. Fix that by
+specifying additional power supplies.
 
-It's not. See power on sequence in
-https://www.olimex.com/Products/DIY-Laptop/SPARE-PARTS/TERES-015-LCD11-6/resources/N116BGE-EA2.pdf
+Additionally, this STB may have either Realtek or Broadcom based wifi
+module. One based on Broadcom module also needs external clock to work
+properly. Fix that by adding clock property to wifi_pwrseq node.
 
-Driver can talk to the panel over AUX channel only after t1+t3, t1 is
-up to 10ms, t3 is up to 200ms. It works with older version of driver
-that keeps panel always on because it takes a while between driver
-probe and pipeline start.
+Fixes: e582b47a9252 ("ARM: dts: sun8i-h3: Add dts for the Beelink X2 STB"=
+)
+Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+---
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-It'll likely break with newer version of driver that turns on panel
-only when bridge is active. You'll see AUX timeouts - it won't be able
-to probe EDID in some cases. Problem can be intermittent and device
-dependent.
+diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dt=
+s/sun8i-h3-beelink-x2.dts
+index 6277f13f3eb3..6a0ac85b4616 100644
+--- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
++++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+@@ -89,7 +89,10 @@
+=20
+ 	wifi_pwrseq: wifi_pwrseq {
+ 		compatible =3D "mmc-pwrseq-simple";
++		pinctrl-names =3D "default";
+ 		reset-gpios =3D <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
++		clocks =3D <&rtc 1>;
++		clock-names =3D "ext_clock";
+ 	};
+=20
+ 	sound_spdif {
+@@ -155,6 +158,8 @@
+=20
+ &mmc1 {
+ 	vmmc-supply =3D <&reg_vcc3v3>;
++	vqmmc-supply =3D <&reg_vcc3v3>;
++	mmc-pwrseq =3D <&wifi_pwrseq>;
+ 	bus-width =3D <4>;
+ 	non-removable;
+ 	status =3D "okay";
+--=20
+2.21.0
 
-All in all - you don't need panel timings since there's EDID but you
-still need panel delays. Anyway, it's up to you and maintainers.
-
-> PD23 powers down panel and backlight as much as possible, see
-> 24bd5d2cb93bc arm64: dts: allwinner: a64: teres-i: enable backlight
-> (currently only in Maxime's repo) and the Teres-I schematics...
->
-> And the driver in your repo neatly guards all accesses with
-> "if (anx6345->panel)" -- good!
-> But I found the Vdds are required, so I added them as such.
->
-> > I guess you're testing it with older version of anx6345. Newer version
-> > that supports power management [1] needs startup delay for panel.
-> > Another issue that you're seeing is that backlight is not disabled on
-> > DPMS events. All in all, you need to describe panel in dts.
-> >
-> > [1] https://github.com/anarsoul/linux-2.6/commit/2fbf9c242419c8bda698e8331a02d4312143ae2c
->
-> > > Should I also have added a Tested-by: ? ;-)
-> >
-> > I don't have Teres, so I haven't tested these.
->
-> *I* have one, and this works. I'll retest with your newer driver,
-> just in case. Nonetheless, the changes in this series should be fine.
-> Sending out v2 in a moment...
->
->         Torsten
->
