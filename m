@@ -2,100 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 090F720753
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 14:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F05620759
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 14:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727182AbfEPMyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 08:54:01 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:41117 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726902AbfEPMyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 08:54:01 -0400
-Received: by mail-lj1-f194.google.com with SMTP id k8so2972659lja.8
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 05:54:00 -0700 (PDT)
+        id S1727447AbfEPMyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 08:54:44 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:35650 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727445AbfEPMyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 08:54:44 -0400
+Received: by mail-vs1-f68.google.com with SMTP id q13so2251910vso.2
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 05:54:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=sifive.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=is+vcG0UlA2yzmtL4LYYh2ozUEoTSqklk60p4mnMQ04=;
-        b=MFfg5EGV3WlcVRL7t42mRGuevg4Dw6jHWVPGT2WaA9U+imkG3qz/ByB3JShhUb2NxO
-         IAAzMFCyoy1azLf5+Q4ThwNIqn4V0/PTTLPDCOt+U7xefvG3qkOt5zG0uB9cx/TNHXE6
-         2+ED85Si4JXqF+cr/iQMckJ2lj+Pl65K1fgbeFkbbY1jSDmv1lN3C2eF4DTCsBjz/Zcb
-         18XkqFVHEYMISKb44tLwMqYKXX9k0mqKfX0i8c6MUWXkuRuMDiTmBFpo8tV0Vx9Wtcb5
-         z9tSgHWa/o0DMzx/TanVLPgRTSHg6HXiBkz+H2H7PQT21r5iYkCS8Z79gfZowJCaFo/z
-         EWyg==
+        bh=5JFKFzEG0xBUwD7HIYkZnnh9dqUah7E+Ib/gYxU2vLc=;
+        b=VYoxyClJ3IjCVsog1UOHY1j+te4vzK7Zn2KD34QyuMIWoFuDNp2DKcFQsGF7V5m1+7
+         9TjRCmfp8zPch4KoXHkfiEsy94k9AIuh7YLakWy4P/y4oXwuJlYONSjl0JX9V0ajbr6v
+         +0DcWGGJ63IhmWOGKLnbLaXwZa6K0t2YEfKHqwyZrkAIlahHSxIvEmiv8NjKLjsb/Z/s
+         BwwGWbUZWgcHXmcdk1Y858SQGg5Fa9I9UqDHVf2ZLb5pjWASAuLCnZazpDqjQUtKNmww
+         QdbHS9uJTFRRPv2+3ogrqq5IM09zMxLdUcwvpGgFIT/9DjcNWIAGPbYTEiMhAUhA9X4h
+         JNTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=is+vcG0UlA2yzmtL4LYYh2ozUEoTSqklk60p4mnMQ04=;
-        b=jyqlnTRP3nfvG7xsuIsUtyoAJjWyl09chxvVn4sCS0SVht/pZ709omXEUjkhEC6oPE
-         1T94vuY6fkvdHs0sZGzf6TxzIVkQGVzVxsOhPKpIm0xSdstjo/ioIE8WFzZcyyICQls8
-         bp7S4GFctlCioF/nC2v7DjJiNZCpqKIch9fsBTOR2EwV2FbZZzRfhbU7LVVnfheUNmqy
-         m51ackhVjBqGifwE3eJEwvLolqwPiQyUziZZvZakNgWx1cyoxoMCVMuuTFkjnkJScnxA
-         vdOcZ2ko2T+i6xFxkZyR9pQTKO2YDUpOmmKZ9AtC9qsCRf9dWli8sshQjZM5i3vJsB2i
-         KjAA==
-X-Gm-Message-State: APjAAAVLOcBwl5swpGKSz5poZekey6SCEcY27HtYelQdEvzifVQzuy+G
-        fbBWXwZ8UnFrhOUpl07CWQzv6gcmhbt+DCCx6xZOOQ==
-X-Google-Smtp-Source: APXvYqwLJEUqsa8XfBzAuJKLBahg71QpFWWEysf/pHtQkxsQuNW8z5xmBuXwRIog/cBAbIfM7m/qozW3wQZmt//QoVw=
-X-Received: by 2002:a2e:9a4f:: with SMTP id k15mr19599643ljj.159.1558011239510;
- Thu, 16 May 2019 05:53:59 -0700 (PDT)
+        bh=5JFKFzEG0xBUwD7HIYkZnnh9dqUah7E+Ib/gYxU2vLc=;
+        b=tT5ZLowGDloevcSLNhFTA8DmaxIGsY7o0WaI28sRXzus7Bz+pc8e1L7G5YY+9koGGW
+         djFIAbed7pRKXzrFh0aNdTSzOIC3cxBgnfzAhTxl7S5VeWemotaP7+rJ/l/97yz2u+dq
+         OHP9LjfWx74I2cJhdss3CteD4p70E4JhHhwmSz5JNb+ALKyDVkHp1uwHSvcRq1snymt/
+         0ElmfML0c33IfSfMrUj0fu3Oa9jE0wIq0P449xijuNp2jNj8+dZpYqUeyDfBuKQK6KI3
+         ah7Pq+SABZdfNM2vZT4OGDPdvCHRbTFEkLgcwIrkUW3JQiNdOhafQSYXngLii9vL8nRc
+         LqRQ==
+X-Gm-Message-State: APjAAAWSAfbDrvxt2XRjlnYtl/AU/3qe5kLS5HQsR6OKtCc755Rlcmv6
+        KHjispmppo/E3DqNdx0aq1ancsKrwKpTP47Rpn/Z4g==
+X-Google-Smtp-Source: APXvYqzDDDWdu9fo9iPHY+ysVVykXsJWlZRil28ig+PCzrEXYHeHo4q5f7yXfu68QdSmpPfaBGotMnL52M7tvXUqMI4=
+X-Received: by 2002:a67:c84:: with SMTP id 126mr8581637vsm.178.1558011283233;
+ Thu, 16 May 2019 05:54:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190508021902.10358-1-leo.yan@linaro.org> <20190508021902.10358-5-leo.yan@linaro.org>
-In-Reply-To: <20190508021902.10358-5-leo.yan@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 May 2019 14:53:48 +0200
-Message-ID: <CACRpkda4aEfgW6e7EfqC=FE_=QzKi5UTDLLzHEryQ6kpcKYzVg@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] ARM: dts: ste: Update coresight DT bindings
-To:     Leo Yan <leo.yan@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>
+References: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
+ <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com> <20190516123120.GB14298@lunn.ch>
+In-Reply-To: <20190516123120.GB14298@lunn.ch>
+From:   Sagar Kadam <sagar.kadam@sifive.com>
+Date:   Thu, 16 May 2019 18:24:32 +0530
+Message-ID: <CAARK3H=L2AFtog6wdJGU7rKi7yk-AzDgFdjcjktZgkqdDwnOZQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] i2c-ocores: sifive: add polling mode workaround
+ for FU540-C000 SoC
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 8, 2019 at 4:20 AM Leo Yan <leo.yan@linaro.org> wrote:
+Hello Andrew,
 
-> CoreSight DT bindings have been updated, thus the old compatible strings
-> are obsolete and the drivers will report warning if DTS uses these
-> obsolete strings.
+On Thu, May 16, 2019 at 6:01 PM Andrew Lunn <andrew@lunn.ch> wrote:
 >
-> This patch switches to the new bindings for CoreSight dynamic funnel and
-> static replicator, so can dismiss warning during initialisation.
+> > @@ -682,13 +693,24 @@ static int ocores_i2c_probe(struct platform_device *pdev)
+> >
+> >       irq = platform_get_irq(pdev, 0);
+> >       if (irq == -ENXIO) {
+> > -             i2c->flags |= OCORES_FLAG_POLL;
+> > +             /*
+> > +              * Set a OCORES_FLAG_BROKEN_IRQ to enable workaround for
+> > +              * FU540-C000 SoC in polling mode interface of i2c-ocore driver.
+> > +              * Else enable default polling mode interface for SIFIVE/OCORE
+> > +              * device types.
+> > +              */
+> > +             match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
+> > +             if (match && (long)match->data ==
+> > +                             (TYPE_SIFIVE_REV0 | OCORES_FLAG_BROKEN_IRQ))
 >
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Leo Yan <leo.yan@linaro.org>
+> This looks wrong. You added:
+>
+> +       {
+> +               .compatible = "sifive,fu540-c000-i2c",
+> +               .data = (void *)TYPE_SIFIVE_REV0,
+> +       },
+> +       {
+> +               .compatible = "sifive,i2c0",
+> +               .data = (void *)TYPE_SIFIVE_REV0,
+> +       },
+>
+> So match->data just has TYPE_SIFIVE_REV0.
+I updated the device_id table into two logically separated patches as follows:-
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+1. Update device id table for Sifive devices
+    [PATCH v3 2/3] i2c-ocore:
+                  .data for sifive,fu540-540-c000 and sifive,i2c0 both
+are for sifive devices hence TYPE_SIFIVE_REV0
+2. Add polling mode workaround fix for fu540-c000 SoC
+    [PATCH v3 3/3] i2c-ocores:
+                  .data for sifive,fu540-540-c000 is of
+TYPE_SIFIVE_REV0 and has a broken IRQ so the flag
+OCORES_FLAG_BROKEN_IRQ is OR'd to data into device id table.
 
-Will I need to carry this patch or will you send it to ARM SoC?
+Please let me know if you feel patch 2 and patch 3 need to be squashed
+together into a single patch.
 
-Yours,
-Linus Walleij
+>
+> > +                     i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
+> > +             else
+> > +                     i2c->flags |= OCORES_FLAG_POLL;
+>
+> These two don't need to be exclusive. It makes more sense to say
+> SIFIVE needs to poll and it its IRQ is broken. A lot of your other
+> changes then go away.
+>
+Other SiFive chip's with Ocore based I2C re-implementation might not
+need the broken IRQ workaround.
+and can use the the existing mainline polling mode interface, using
+OCORES_FLAG_POLL.
+
+Thanks & BR,
+Sagar Kadam
+>        Andrew
