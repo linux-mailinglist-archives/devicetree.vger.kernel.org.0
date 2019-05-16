@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C612E20808
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 967292080E
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727187AbfEPNZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:25:15 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:46946 "EHLO
+        id S1727510AbfEPNZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:25:49 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:42825 "EHLO
         mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726696AbfEPNZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 09:25:14 -0400
-Received: by mail-lj1-f196.google.com with SMTP id h21so3048912ljk.13
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:25:13 -0700 (PDT)
+        with ESMTP id S1726717AbfEPNZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 09:25:49 -0400
+Received: by mail-lj1-f196.google.com with SMTP id 188so3076555ljf.9
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 06:25:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=T7i74xwX9U5ncTUvzhWe57o2tW8tsCxNGT7kMEIaIPk=;
-        b=UZ2HOcb7CW2/11jSTnSPHfiHBasuAf7GrJd1OBF6+iXtAEPjKJR5dDzMbRtLzM4B0l
-         /VkhzqF8QqngYjEeMk13keD+R52PQsWlMoV5kTRyWfoAgz9X9IgjKR6nnUSsEwV0mlvq
-         y+2K3uxFvkCLSlgMAAxkNqa4ewh01JlutozwHyviQURNfG80lV2yU7d+3oyeWqBazhAI
-         kuHMJC9agm5hBYp4WmqgZDYo+Xp7/nQBxPU7o3rG/+09m1MHnx/mOwKZsbFpC+wr6c5S
-         sZFsWoZBbHj9rRsvLHsDi9DOijCG62RpIhgTZ5Oe6FQPq/y2Q6YEKijQk72SopivTngI
-         oXlA==
+        bh=YBQglN9y1UCEoiDsyDKmavv3pTw2avVwHy9wGSr4d+c=;
+        b=GQmbJ3aVkAkxYq4ebWu1xQr82AleFWY5CEch/sBznZ0n1N0TCZv7wWXuBmc5XP4gK9
+         0kz8teIQJnMwKDt4K3j18W4obgX85WUOBdEyFawJHemHKe/k3RiymhPVyQ15zn3EOflo
+         68z0GFwwNB0yuxgeOj4koQP5hlddq3mITwbdTJl1YABN4VIEGYhAAVYgj0LaHQ/e2/3f
+         igDW+NXWmbxv28jV6e2QnJqq+R+z1fq+bQEsXVh4pRMoJVxLNnB2ISHUhoqATTsEUlzq
+         MhKsuF+/P24J230PUDWXeuNC2ijNAiqOyXuNACqs8iMiQsma6XyJtItfunwihjMfiT5s
+         4i5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=T7i74xwX9U5ncTUvzhWe57o2tW8tsCxNGT7kMEIaIPk=;
-        b=GULMjN7xT0c6cf/CR6dWHG2CiU4ukIcWYi6Z2C1LQEyN/mdBkzohLzOyDag5W3JHRp
-         CGisYnC/wMQyYZfQiNSl1dcXc1Pc9iyq3UY7r+0xxRHXz49F0MQh4YTz7ri4+NYNyOv9
-         SAEysG0CwEyfKlUg2aDel/pk2lRcB6+J7Ot+63wkqD5O4jLKszRocJlzoRFIY44P9Eac
-         GGI/Nj+3Z946Wfm3xm/zhtXzzJ/DXnTYOZAk7bXPaLvL/mO8L9epIOyJpQlEclH59skz
-         SdU14EBLZjdQQwaWI287QcNzVuaBfOciWmGtDXDXxwhv6qVm7iCHlvYbY2ujo9an8/85
-         XZ1g==
-X-Gm-Message-State: APjAAAUbR9PmUIZ9Mlg9ZfGCnOkgipRGfV3fK42IqMAUwbWj5dbUdaBV
-        w9cQlFTrxWohuC39tzUsVMdtLfuqQSip3o/1qODqjw==
-X-Google-Smtp-Source: APXvYqypGlrkwcWpkDZqIzkGCG+DJBLuflw6yusCBeidrQObvNv3EKCslo+yOFvLup20kJPOGzeawHtuUNUjQ5uzhwo=
-X-Received: by 2002:a2e:731a:: with SMTP id o26mr21535501ljc.105.1558013113062;
- Thu, 16 May 2019 06:25:13 -0700 (PDT)
+        bh=YBQglN9y1UCEoiDsyDKmavv3pTw2avVwHy9wGSr4d+c=;
+        b=Wq01eox0pwwXS4PZp2vt+KVy9cqXmJBsAsIyE4w2BQCOlbRcqyci2DsAtX2bkqHho1
+         W16s3lEhhDcfNiBnwjtlvwgIiGLMFK1ReOxSInyLwoRNFyUqlEfT/Pub6Cj4ZHPkPv48
+         /HtxJESo2EzXK8Nf1ozHAPGY3Vmhdq1yw5r9FYF2kIfmWGb3A/fg25Htoh/5mYnCDncE
+         aBGoh1tdK/OF4/+Zuoc49bPP4TlyauLuicXPDzKuu+mU8mb1MC8p2DI2LHVS+/bUr3FU
+         uB0jbAIz/EnOS1M5fAw9Q4DhYerQ20tMe/DvtNzvoXHpVPRTEnOadGOt4sE9kLSdehHD
+         gi6w==
+X-Gm-Message-State: APjAAAWh9hOE2UhzyhsMDKPFp4cwz+4rh6adG8wS6/Gkt1OfG2EUot1r
+        9zM9aYGW2cojsL44kvTQGhgU+svT12xSEEjn5IQoYg==
+X-Google-Smtp-Source: APXvYqxyM8uKxGHNJAN6reja+yN/0m8IqjdmaVrInAyROSmFRr/vSpkDGQKVYugaZ4aLVYVtQpPVddOrXFdHM695bek=
+X-Received: by 2002:a2e:60a:: with SMTP id 10mr3406462ljg.126.1558013147786;
+ Thu, 16 May 2019 06:25:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190509205955.27842-1-f.fainelli@gmail.com> <20190509205955.27842-2-f.fainelli@gmail.com>
-In-Reply-To: <20190509205955.27842-2-f.fainelli@gmail.com>
+References: <20190509205955.27842-1-f.fainelli@gmail.com> <20190509205955.27842-3-f.fainelli@gmail.com>
+In-Reply-To: <20190509205955.27842-3-f.fainelli@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 May 2019 15:25:01 +0200
-Message-ID: <CACRpkdZqAi4bbpGO8sTBq573dDRF-VWg9gE8=uGVJ3Jv0MY5bg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: bcm2835-gpio: Document BCM7211 compatible
+Date:   Thu, 16 May 2019 15:25:36 +0200
+Message-ID: <CACRpkdYXp3LMXrSQrndUWWNq0eYb=P22FC9V0__j2AZPGCq0Jw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] pinctrl: bcm: Allow PINCTRL_BCM2835 for ARCH_BRCMSTB
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Doug Berger <opendmb@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -57,7 +58,6 @@ Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         <bcm-kernel-feedback-list@broadcom.com>,
         Eric Anholt <eric@anholt.net>,
         Stefan Wahren <stefan.wahren@i2se.com>,
-        Doug Berger <opendmb@gmail.com>,
         Matheus Castello <matheus@castello.eng.br>,
         =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Lukas Wunner <lukas@wunner.de>,
@@ -77,12 +77,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, May 9, 2019 at 11:01 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
 
-> BCM7211 has a slightly different block layout and some additional GPIO
-> registers that were added, document the compatible string.
+> From: Doug Berger <opendmb@gmail.com>
 >
+> ARCH_BRCMSTB needs to use the BCM2835 pin controller for chips
+> like BCM7211 which adopted that pin controller for GPIO. This
+> commit makes the option menu configurable with default enabled
+> for ARCH_BRCMSTB and ARCH_BCM2835.
+>
+> Signed-off-by: Doug Berger <opendmb@gmail.com>
 > Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 
-Patch applied for v5.3 with ACKs.
+Patch applied for v5.3 with the ACKs.
 
 Yours,
 Linus Walleij
