@@ -2,83 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FB020FB2
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 22:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A9E20FDE
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 23:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726541AbfEPUnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 16:43:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49208 "EHLO mail.kernel.org"
+        id S1728239AbfEPVLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 17:11:54 -0400
+Received: from vps.xff.cz ([195.181.215.36]:39694 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726449AbfEPUnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 16:43:43 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4F7C420818;
-        Thu, 16 May 2019 20:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558039422;
-        bh=gLQlhu/nIee7VpLHO+jNzMX7EzEWYbRmsgoyaEQ2kvk=;
-        h=From:Date:Subject:To:Cc:From;
-        b=pLxNwrntTX7oaMn2J6/MDoK1Lmlw9T4zTvWmXWCXNlXV8W7etSl1vym+9tcr+/1Bg
-         WiaBKrVGmgAhxtMwfIFF3wieKSaHjL3yWYo93U6sqlzUXcOAY7co7f1RwbWI28+EjG
-         3dUB7rAwyWjTSdVcEhh6kb6X7A1Mm+WV3J7xkVjo=
-Received: by mail-qt1-f178.google.com with SMTP id h1so5647865qtp.1;
-        Thu, 16 May 2019 13:43:42 -0700 (PDT)
-X-Gm-Message-State: APjAAAVKkLyd6gBOD/PnTKSefOUEOZ0Jh5zg7ZqBs8xE/XhWX+hb51IW
-        buPtDNae6w0Qnu87U4IoJ7oJJSvNkLNSP3Whdg==
-X-Google-Smtp-Source: APXvYqzuh0y5kOj/3go4aciCPP+1J/ri1ee1q4XSUHZQTrZLsJwcpD8HswNMNZPnAz50cBqLuoTLDXy07fuhNm+zcXc=
-X-Received: by 2002:aed:2471:: with SMTP id s46mr44714316qtc.144.1558039421577;
- Thu, 16 May 2019 13:43:41 -0700 (PDT)
+        id S1728237AbfEPVLy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 17:11:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1558041111; bh=UWj0YrD5goghSNEmjJRSGrmoJDVqz/hOGHbwFS3q6Qs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=E3leZ/bqG3v4DiQd1HKgqnMfkAa7iAxPpIzoIlBCCQj3c66wJJ6OgdrtNC5DtmCNa
+         Cp3h0aZBMHwlX3d5eNFGjc6m7TcqfiXv5VMD65SoK/sQmsXpRcKtskw2OjsUYtitVD
+         0Im+OWUvLKknjoD+fI/QT1jHkX0x9EXUhozhOCzw=
+Date:   Thu, 16 May 2019 23:11:51 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Frank Lee <tiny.windzz@gmail.com>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        bjorn.andersson@linaro.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        paulmck@linux.ibm.com, stefan.wahren@i2se.com,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andy Gross <andy.gross@linaro.org>, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, marc.w.gonzalez@free.fr,
+        Eduardo Valentin <edubezval@gmail.com>,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        olof@lixom.net, David Miller <davem@davemloft.net>
+Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
+Message-ID: <20190516211151.qwac53shdjhlwj4p@core.my.home>
+Mail-Followup-To: Frank Lee <tiny.windzz@gmail.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>, catalin.marinas@arm.com,
+        will.deacon@arm.com, bjorn.andersson@linaro.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        paulmck@linux.ibm.com, stefan.wahren@i2se.com,
+        Linux PM <linux-pm@vger.kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andy Gross <andy.gross@linaro.org>, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, marc.w.gonzalez@free.fr,
+        Eduardo Valentin <edubezval@gmail.com>,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        olof@lixom.net, David Miller <davem@davemloft.net>
+References: <20190512082614.9045-1-tiny.windzz@gmail.com>
+ <20190512082614.9045-3-tiny.windzz@gmail.com>
+ <20190512133930.t5txssl7mou2gljt@flea>
+ <CAEExFWvcMbiCJ4HD0UAtv1P6AuBJ=oUdmhu886BNZhrRz483Ug@mail.gmail.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 16 May 2019 15:43:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLtkGfSX5bdRWy7MXM+opAd-gWzhTorUoVXOpKktN8YKQ@mail.gmail.com>
-Message-ID: <CAL_JsqLtkGfSX5bdRWy7MXM+opAd-gWzhTorUoVXOpKktN8YKQ@mail.gmail.com>
-Subject: [GIT PULL] Devicetree vendor prefix schema for 5.2
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAEExFWvcMbiCJ4HD0UAtv1P6AuBJ=oUdmhu886BNZhrRz483Ug@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hello,
 
-Please pull this 1 additional commit for rc1. This had to wait for all
-the merge window changes to vendor-prefixes.txt to go in to regenerate
-it.
+On Fri, May 17, 2019 at 01:51:56AM +0800, Frank Lee wrote:
+> > > +static int tsens_probe(struct platform_device *pdev)
+> > > +{
+> > > +     struct tsens_device *tmdev;
+> > > +     struct device *dev = &pdev->dev;
+> > > +     int ret;
+> > > +
+> > > +     tmdev = devm_kzalloc(dev, sizeof(*tmdev), GFP_KERNEL);
+> > > +     if (!tmdev)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     tmdev->dev = dev;
+> > > +     tmdev->chip = of_device_get_match_data(&pdev->dev);
+> > > +     if (!tmdev->chip)
+> > > +             return -EINVAL;
+> > > +
+> > > +     ret = tsens_init(tmdev);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     ret = tsens_register(tmdev);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     ret = tmdev->chip->enable(tmdev);
+> > > +     if (ret)
+> > > +             return ret;
+> > >
+> > > +     platform_set_drvdata(pdev, tmdev);
+> >
+> > Your registration should be the very last thing you do. Otherwise, you
+> > have a small window where the get_temp callback can be called, but the
+> > driver will not be functional yet.
+> No. Anyway, ths data qcquisition is ms level.
 
-Rob
+Tz code can change in the future, and call the get_temp callback during
+registration, and this would break. It's better to be correct, than make
+dangerous assumptions. So platform_set_drvdata should be done somewhere 
+prior to init_resource.
 
+Enable should be after register though. Because otherwise you may be calling
+tz update on non-registered tz from an interrupt handler.
 
-The following changes since commit 01be377c62210a8d8fef35be906f9349591bb7cd:
+> > > +     return ret;
+> > > +}
+> > > +
 
-  Merge tag 'media/v5.2-1' of
-git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
-(2019-05-16 11:57:16 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-tags/devicetree-for-5.2-part2
-
-for you to fetch changes up to 8122de54602e30f0a73228ab6459a3654e652b92:
-
-  dt-bindings: Convert vendor prefixes to json-schema (2019-05-16
-15:27:21 -0500)
-
-----------------------------------------------------------------
-Conversion of vendor-prefixes.txt to json-schema
-
-----------------------------------------------------------------
-Rob Herring (1):
-      dt-bindings: Convert vendor prefixes to json-schema
-
- .../devicetree/bindings/vendor-prefixes.txt        | 476 ----------
- .../devicetree/bindings/vendor-prefixes.yaml       | 977 +++++++++++++++++++++
- 2 files changed, 977 insertions(+), 476 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/vendor-prefixes.txt
- create mode 100644 Documentation/devicetree/bindings/vendor-prefixes.yaml
+regards,
+	o.
