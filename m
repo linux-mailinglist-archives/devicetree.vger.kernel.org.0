@@ -2,111 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B014D20677
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 14:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D3C206B9
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 14:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727368AbfEPLy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 07:54:58 -0400
-Received: from mail-vk1-f194.google.com ([209.85.221.194]:44241 "EHLO
-        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727218AbfEPLy6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 07:54:58 -0400
-Received: by mail-vk1-f194.google.com with SMTP id j4so924103vke.11
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 04:54:57 -0700 (PDT)
+        id S1727230AbfEPMP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 08:15:28 -0400
+Received: from mail-eopbgr700063.outbound.protection.outlook.com ([40.107.70.63]:23648
+        "EHLO NAM04-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726864AbfEPMP2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 08:15:28 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gw9Ghc+xQrqh42btkF+tSwScblo1M5MvWvdVH4TT7i0=;
-        b=v26qoU6H8L1eKcYMoea7paIcbwqKfFyFfh4g29/LlGR6+AUpIUNU3bNE8s3wyNQJKd
-         kQCGJb9CAIQ2AgFYlk0SLoUn4HsoNoh0eNBdhek1FO+tVLDcJ5NcdPQjy6BRdvLxlaQK
-         0aIlSfSssyMkTz7GipBksDjARihKegYcNTAz8t5xd/SHkEavzcNuZ/+vIVV1I/nndpea
-         MP06okMhU0f1Athz5O6dl7kceRU43aFcm0qDLB0uMM12eSEiS6XTppcIe0Y4FZn/2rV1
-         GuoBk8CKXPPLoHvogkLGbVn8coLEnYox/LkyrDuG7ZQXRrykgKDd2NWvR7GV7av2PyfU
-         /tCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gw9Ghc+xQrqh42btkF+tSwScblo1M5MvWvdVH4TT7i0=;
-        b=pn+p+eFPHJaimouIhxYw1v24c8VRhmgkzPK83jMLw0R/gtaMcEJz29SbgxqWUjf3V6
-         8IUsHFhN5ZPKWooduYrK6/cjhJihrUFH+T/V6fbf/f5C9b3lHIfqTi58CFhyMNXguKiV
-         ozojtFqd567dBEHfpd9J0qLbAOMp6VS1MrR9lcHLP1zHdN7Grck1kdk+8I8Vt40kO2lF
-         dYfbttBR+HIXzjetmw3I3EA5Ja2vbS6bgeg7jXi+DHYHSdkwcgGNsKx8UlM0AJkTZcGi
-         pp7wNyvmIt+XyKVo6Z4UGZkvPa30uSuWSUFaKmvs1WgmF4mTslrX58SEQdLBzUU8/Xlr
-         LQrA==
-X-Gm-Message-State: APjAAAVdhX2AmxdRnf5/MvxDP+qP9Zs1PwXm30S23L9uqIgXVrSazXK5
-        nbyk2gCl4gL/gr+Htq+59gWO8MKjSgDEwn/9B1lV7w==
-X-Google-Smtp-Source: APXvYqy+0i0NCLJY9mu7r+K0u56+d0TTe1O6WRw/Ai9J8XZgwGaPKyF4TLUj8e80gKzDj9M2oxm9yBWBX3AdrhjAKaY=
-X-Received: by 2002:a1f:812:: with SMTP id 18mr22833450vki.68.1558007696693;
- Thu, 16 May 2019 04:54:56 -0700 (PDT)
+ d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QTkDDJKaIEquOmn8yjs9y6hKy6/tdcibMyb5qC2pFqw=;
+ b=cME2snXXNb3Sx0gX5/UF6Ehx9lG1disSwG6Y1zlKiavJBwGwEm6SDXSc9yZFqd9lvyFiP682/M83IIkL0rBtSxDCxYy32HJLng6OiAX+tHqH1P2mXjxwr06f0JzNxXkk/RTwPNLeq2PpkhxR97zz7A36Qk1D7wvH5L3g2smMaHY=
+Received: from BN3PR03CA0056.namprd03.prod.outlook.com
+ (2a01:111:e400:7a4d::16) by CY1PR03MB2266.namprd03.prod.outlook.com
+ (2a01:111:e400:c637::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1900.16; Thu, 16 May
+ 2019 12:15:12 +0000
+Received: from BL2NAM02FT020.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::208) by BN3PR03CA0056.outlook.office365.com
+ (2a01:111:e400:7a4d::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1900.16 via Frontend
+ Transport; Thu, 16 May 2019 12:15:12 +0000
+Authentication-Results: spf=pass (sender IP is 137.71.25.57)
+ smtp.mailfrom=analog.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=analog.com;
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
+Received: from nwd2mta2.analog.com (137.71.25.57) by
+ BL2NAM02FT020.mail.protection.outlook.com (10.152.77.162) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1900.16
+ via Frontend Transport; Thu, 16 May 2019 12:15:12 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x4GCFBRF024451
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Thu, 16 May 2019 05:15:11 -0700
+Received: from saturn.analog.com (10.50.1.244) by NWD2HUBCAS7.ad.analog.com
+ (10.64.69.107) with Microsoft SMTP Server id 14.3.408.0; Thu, 16 May 2019
+ 08:15:11 -0400
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <robh+dt@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH] dt-bindings: iio: accel: adxl345: switch to YAML bindings
+Date:   Thu, 16 May 2019 15:15:09 +0300
+Message-ID: <20190516121509.1441-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20190114184255.258318-1-mka@chromium.org> <CAHLCerP+F9AP97+qVCMqwu-OMJXRhwZrXd33Wk-vj5eyyw-KyA@mail.gmail.com>
- <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com> <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
-In-Reply-To: <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Thu, 16 May 2019 17:24:45 +0530
-Message-ID: <CAHLCerP69Jw27VyO+ek4Fe3-2fDiOejtz6XZPykPSRA2G1831w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
-To:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(39860400002)(376002)(396003)(346002)(136003)(2980300002)(189003)(199004)(186003)(8676002)(47776003)(486006)(51416003)(110136005)(1076003)(14444005)(6306002)(36756003)(336012)(7696005)(16586007)(305945005)(7636002)(106002)(54906003)(246002)(126002)(426003)(2906002)(316002)(70206006)(44832011)(53376002)(53416004)(48376002)(107886003)(2616005)(966005)(8936002)(4326008)(50466002)(5660300002)(86362001)(70586007)(26005)(77096007)(476003)(356004)(478600001)(50226002);DIR:OUT;SFP:1101;SCL:1;SRVR:CY1PR03MB2266;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;MX:1;A:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e9190f16-475d-4274-8ac6-08d6d9f8255f
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328);SRVR:CY1PR03MB2266;
+X-MS-TrafficTypeDiagnostic: CY1PR03MB2266:
+X-MS-Exchange-PUrlCount: 4
+X-Microsoft-Antispam-PRVS: <CY1PR03MB2266D680DAA9CB400C066517F90A0@CY1PR03MB2266.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Forefront-PRVS: 0039C6E5C5
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: ObL2z75FUh80nrb1B+hcrrrS/UtkiNcsPziQe08Gfb0ZyZNBj5O7wRRA3b4LGzxjeDrVc5OrYQYxuMEtIWGRwiuU6KiYKlq4ZWRv2TJymfoh8nIGxKtWD51zs0eM2PRp3g030NrI+HCDhRHobTpgL78FZAOs7VQYqyotJrj9kIx/XC46N0Wk73PC5bLEo/VC199bT4pPaljMAFSgzariAf+xP0cVKgbl1LhhkEVHb6g09AO6HyGln6nbq06aZvPSe27fh2dS6fDY+A+YkoFGw+ikI45UZdXWUn7B3lMzz3L3XpSuMPzrWyZ800KP0+ONrv1LDNjiHc5rBMqpsdwPLga0eSSqgjxmgm5wI3wgy9gYiVe/Pz/MNDTNull4fEFmgK+nMDvyUNv4K4z1JwMwddv3aANaiRkti8KfezjXa8M=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2019 12:15:12.0638
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9190f16-475d-4274-8ac6-08d6d9f8255f
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR03MB2266
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(cc'ing Andy's correct email address)
+The ADX345 supports both I2C & SPI bindings.
+This change switches from old text bindings, to YAML bindings, and also
+tries to make use of the recent multiple-examples support.
 
-On Wed, May 15, 2019 at 2:46 AM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Amit Kucheria (2019-05-13 04:54:12)
-> > On Mon, May 13, 2019 at 4:31 PM Amit Kucheria <amit.kucheria@linaro.org> wrote:
-> > >
-> > > On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > >
-> > > > The 8 CPU cores of the SDM845 are organized in two clusters of 4 big
-> > > > ("gold") and 4 little ("silver") cores. Add a cpu-map node to the DT
-> > > > that describes this topology.
-> > >
-> > > This is partly true. There are two groups of gold and silver cores,
-> > > but AFAICT they are in a single cluster, not two separate ones. SDM845
-> > > is one of the early examples of ARM's Dynamiq architecture.
-> > >
-> > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > >
-> > > I noticed that this patch sneaked through for this merge window but
-> > > perhaps we can whip up a quick fix for -rc2?
-> > >
-> >
-> > And please find attached a patch to fix this up. Andy, since this
-> > hasn't landed yet (can we still squash this into the original patch?),
-> > I couldn't add a Fixes tag.
-> >
->
-> I had the same concern. Thanks for catching this. I suspect this must
-> cause some problem for IPA given that it can't discern between the big
-> and little "power clusters"?
+Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+---
+ .../bindings/iio/accel/adi,adxl345.yaml       | 74 +++++++++++++++++++
+ .../devicetree/bindings/iio/accel/adxl345.txt | 39 ----------
+ 2 files changed, 74 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/accel/adxl345.txt
 
-Both EAS and IPA, I believe. It influences the scheduler's view of the
-the topology.
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+new file mode 100644
+index 000000000000..47cdfb3b8182
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl345.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
++
++maintainers:
++  - Michael Hennerich <michael.hennerich@analog.com>
++
++description: |
++  Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers that supports
++  both I2C & SPI interfaces.
++    http://www.analog.com/en/products/mems/accelerometers/adxl345.html
++    http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
++
++properties:
++  compatible:
++    enum:
++      - adi,adxl345
++      - adi,adxl375
++
++  reg:
++    maxItems: 1
++
++  spi-cpha: true
++
++  spi-cpol: true
++
++  interrupt-parent: true
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* Example for a I2C device node */
++        accelerometer@2a {
++            compatible = "adi,adxl345";
++            reg = <0x53>;
++            interrupt-parent = <&gpio0>;
++            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++        };
++    };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    spi0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* Example for a SPI device node */
++        accelerometer@0 {
++            compatible = "adi,adxl345";
++            reg = <0>;
++            spi-max-frequency = <5000000>;
++            spi-cpol;
++            spi-cpha;
++            interrupt-parent = <&gpio0>;
++            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/iio/accel/adxl345.txt b/Documentation/devicetree/bindings/iio/accel/adxl345.txt
+deleted file mode 100644
+index f9525f6e3d43..000000000000
+--- a/Documentation/devicetree/bindings/iio/accel/adxl345.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
+-
+-http://www.analog.com/en/products/mems/accelerometers/adxl345.html
+-http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
+-
+-Required properties:
+- - compatible : should be one of
+-		"adi,adxl345"
+-		"adi,adxl375"
+- - reg : the I2C address or SPI chip select number of the sensor
+-
+-Required properties for SPI bus usage:
+- - spi-max-frequency : set maximum clock frequency, must be 5000000
+- - spi-cpol and spi-cpha : must be defined for adxl345 to enable SPI mode 3
+-
+-Optional properties:
+- - interrupts: interrupt mapping for IRQ as documented in
+-   Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+-
+-Example for a I2C device node:
+-
+-	accelerometer@2a {
+-		compatible = "adi,adxl345";
+-		reg = <0x53>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+-
+-Example for a SPI device node:
+-
+-	accelerometer@0 {
+-		compatible = "adi,adxl345";
+-		reg = <0>;
+-		spi-max-frequency = <5000000>;
+-		spi-cpol;
+-		spi-cpha;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+-- 
+2.17.1
 
-> Either way,
->
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-
-Thanks.
-
-Andy/Bjorn, can we squeeze this in for -rc2 as a bugfix?
-
-Regards,
-Amit
