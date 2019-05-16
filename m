@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 711BB20CF8
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A64D120CFC
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 18:30:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726590AbfEPQ3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 12:29:48 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:39631 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726578AbfEPQ3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:29:48 -0400
-Received: by mail-pl1-f193.google.com with SMTP id g9so1877987plm.6
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:29:48 -0700 (PDT)
+        id S1727080AbfEPQ3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 12:29:50 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:44666 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727076AbfEPQ3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 12:29:49 -0400
+Received: by mail-pl1-f194.google.com with SMTP id c5so1865347pll.11
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 09:29:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FOE0cCJQ21ga6g1DChuQ/Qq1kToyjWkdfWiPelD2OC4=;
-        b=ayq0D5zU19MEk0xwhDehYCYeWHoQ08w7g7ZjKSj8+Z7ap0fNQU02iAUi4BNKUwMN5E
-         DaDZsXTk9ac1bORDTuN/XFIeLq4ziTrZmWcEcwPx47BLpRJ937gCOyNca6DcHHrXlOI7
-         n3NMuXxbDIDHBpYxtnrBUtgjXrYN73x/nRozw=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=F+MUix4E2fzDWarwS4nmG/Em5BaLYXIJG0RnslLnuRA=;
+        b=A/QcefCONy0p8hJbO0heZwLqxWZ8lsgdagrHghkE9zjmezGMvjfyieeXactlpqZRRa
+         YLS81uVk2pJdVXGp9xaDmlgMq2U+xIeDeNkcu+gI4czxMzsnQt5Y7DBVdyYnqcLHRHSe
+         /f/w5SMGU32q0oRor5O557Y/iSuZDQryFc1t8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FOE0cCJQ21ga6g1DChuQ/Qq1kToyjWkdfWiPelD2OC4=;
-        b=NpeyleXRyfw7C+Pcpx7CDgXNRA7HDtO3wrZpvpHWlbFzEcvwSn99cbChztMA8EZrvr
-         GRimqwRaCzuYqvUJDWXBOFRiPiuyPfj+6joewYagGiu4ltNhjX/vg4nGYNtcDxjqIlXQ
-         dVCaAIAUB3nDauJuA9X2ittyltfO71emBRqWEHRQrmzYCnG6W3uaSrIxitkEGABxP4tk
-         pu9OUvY7I5kci2tf6U09QtufrbbaxQGKZ1gCG3R5Lr2V9DNrANQn82XXO/DEV6wXkizu
-         I6Um/+jiIIlDYT01U6NCb+moNxW+77eqfEmHvNSkD3WNrE9bpRL2q8cIRBiu9Je1UDi5
-         1WMw==
-X-Gm-Message-State: APjAAAVcyby1UC6I1+nUmDykewQUsHRB9+xr0wT7f+MnGZfEKKMO0rFm
-        uPoHIhUPnXTIXiyzR2xHBG8p5A==
-X-Google-Smtp-Source: APXvYqxrvwtoWK8QdXNAIVHAwc7IGRNSlG4OKmttVtrCs4o4+DbqSeo4gMHXIbJEH9AVCcAMyz3k0w==
-X-Received: by 2002:a17:902:8a83:: with SMTP id p3mr51848281plo.88.1558024187640;
-        Thu, 16 May 2019 09:29:47 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=F+MUix4E2fzDWarwS4nmG/Em5BaLYXIJG0RnslLnuRA=;
+        b=Aqvh+Q+Qmg5JRp+sC7TFHbD5OXzxky3zAcPP54Mqv6soH0EfzBjnBOg2+ZNnBgtK+5
+         Z4FhVKtzoAeRpABHtQQxM0YMf/rTfYU759/rUok46iaOxY1zCM+LF7dgq2jmnGpCE5/9
+         ShuSWCDE3KirgOaqzbDzoq6bL0D3VPC/NtN+4hgzOtk4dP3pDTuGHxuu9CgWm98K1tx/
+         vWRybGDjVtE95Cr98zdZ785QH+7oLTN0FEexDw53djdPjXwNj2nO4vBS1Herf1LWYmTn
+         oQQq3s+zEdLLEbdhYwjmPbUGlVysLSYx/ezggZE5ZTgRuZxcWrz2xMIw/HuI3ci4uW3S
+         giNw==
+X-Gm-Message-State: APjAAAVmqAaoH8GWZnm2qYgkFgTC74aWGe5DWrClWAtA8ctKx8ETc6KU
+        TahRzj6vBgaLqTIMZgkALDgbdg==
+X-Google-Smtp-Source: APXvYqxkK/qfoQgyJc5dgRsnMZtbcRgZDE5QF6K47Pw4/YozjwnhVzeOxcxp4uW/0m6HCYUODwDYOA==
+X-Received: by 2002:a17:902:683:: with SMTP id 3mr9312171plh.209.1558024188932;
+        Thu, 16 May 2019 09:29:48 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id g128sm7168645pfb.131.2019.05.16.09.29.46
+        by smtp.gmail.com with ESMTPSA id d85sm8140067pfd.94.2019.05.16.09.29.48
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 09:29:47 -0700 (PDT)
+        Thu, 16 May 2019 09:29:48 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -49,10 +49,12 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2 1/3] ARM: dts: rockchip: raise CPU trip point temperature for veyron to 100 degC
-Date:   Thu, 16 May 2019 09:29:40 -0700
-Message-Id: <20190516162942.154823-1-mka@chromium.org>
+Subject: [PATCH v2 2/3] ARM: dts: rockchip: raise GPU trip point temperatures for veyron
+Date:   Thu, 16 May 2019 09:29:41 -0700
+Message-Id: <20190516162942.154823-2-mka@chromium.org>
 X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
+In-Reply-To: <20190516162942.154823-1-mka@chromium.org>
+References: <20190516162942.154823-1-mka@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -61,61 +63,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This value matches what is used by the downstream Chrome OS 3.14
-kernel, the 'official' kernel for veyron devices. Keep the temperature
-for 'speedy' at 90°C, as in the downstream kernel.
-
-Increase the temperature for a hardware shutdown to 125°C, which
-matches the downstream configuration and gives the system a chance
-to shut down orderly at the criticial trip point.
+The values match thorse used by the downstream Chrome OS 3.14
+kernel, the 'official' kernel for veyron devices. Keep the critical
+trip point for speedy at 90°C as in the downstream configuration.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
 Changes in v2:
-- patch added to the series
+- also raise temperature of critical trip point
+- add entries at position in alphabetical order
+- added entry to keep critical trip point for speedy at 90°C
+- updated commit message
 ---
  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 4 ++++
- arch/arm/boot/dts/rk3288-veyron.dtsi       | 5 +++++
- 2 files changed, 9 insertions(+)
+ arch/arm/boot/dts/rk3288-veyron.dtsi       | 8 ++++++++
+ 2 files changed, 12 insertions(+)
 
 diff --git a/arch/arm/boot/dts/rk3288-veyron-speedy.dts b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
-index e16421d80d22..ab2a66aa337e 100644
+index ab2a66aa337e..3d2769f1bef2 100644
 --- a/arch/arm/boot/dts/rk3288-veyron-speedy.dts
 +++ b/arch/arm/boot/dts/rk3288-veyron-speedy.dts
-@@ -64,6 +64,10 @@
- 	temperature = <70000>;
+@@ -75,6 +75,10 @@
+ 	force-hpd;
  };
  
-+&cpu_crit {
++&gpu_crit {
 +	temperature = <90000>;
 +};
 +
- &edp {
- 	/delete-property/pinctrl-names;
- 	/delete-property/pinctrl-0;
+ &panel {
+ 	power-supply= <&panel_regulator>;
+ };
 diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index 192dbc089ade..58dc538b5df3 100644
+index 58dc538b5df3..aee8350b2800 100644
 --- a/arch/arm/boot/dts/rk3288-veyron.dtsi
 +++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -99,6 +99,10 @@
- 	cpu0-supply = <&vdd_cpu>;
+@@ -142,6 +142,14 @@
+ 	status = "okay";
  };
  
-+&cpu_crit {
++&gpu_alert0 {
++	temperature = <72500>;
++};
++
++&gpu_crit {
 +	temperature = <100000>;
 +};
 +
- /* rk3288-c used in Veyron Chrome-devices has slightly changed OPPs */
- &cpu_opp_table {
- 	/delete-node/ opp-312000000;
-@@ -371,6 +375,7 @@
- 
- 	rockchip,hw-tshut-mode = <1>; /* tshut mode 0:CRU 1:GPIO */
- 	rockchip,hw-tshut-polarity = <1>; /* tshut polarity 0:LOW 1:HIGH */
-+	rockchip,hw-tshut-temp = <125000>;
- };
- 
- &uart0 {
+ &hdmi {
+ 	ddc-i2c-bus = <&i2c5>;
+ 	status = "okay";
 -- 
 2.21.0.1020.gf2820cf01a-goog
 
