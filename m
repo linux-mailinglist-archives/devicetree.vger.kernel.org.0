@@ -2,105 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ACDBC209CB
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0C45209D0
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 16:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727491AbfEPOc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 10:32:26 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45647 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726943AbfEPOcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:32:25 -0400
-Received: by mail-wr1-f65.google.com with SMTP id b18so3624318wrq.12
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 07:32:24 -0700 (PDT)
+        id S1726979AbfEPOc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 10:32:56 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:32897 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726909AbfEPOcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 10:32:55 -0400
+Received: by mail-pf1-f194.google.com with SMTP id z28so1965344pfk.0;
+        Thu, 16 May 2019 07:32:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MCh2hGUp25ZJxGPePdNkCdsXMQeyI1uh6u/3BErb/Yw=;
-        b=OMEfpFp+KLYfHxBXZQN0DYJBsoAo0sh4lRfrR313ZuB2/XYxZ/vjI6eKK50+gx3Yjw
-         iy/aG0HxJxse2ASHabxUprCKQwTA8S/D9Jbp/D+q6RSfdY/vwPZHD3yNw2YP6SZQLDOx
-         uJOdZbDahQGnPtwFHIFAyPVE6NLig8V9vbihySB31clyVUel3Os3k0hcA+kLwKXzUNqS
-         uJFODNwm8obBwNITLOp+rZ0t76VNSkUFBT8DstnZFCQboxjmJxsgH3AEbja7zzD4+7wM
-         W5qbm0IrBKpwpPVx/zNQO8sDc4DurMp+oNShr2bhF0Vi2T9z/mZrVO8ynoNwX3uuPGXu
-         eA0w==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XzcXovfk6M1ai4anrssUPYvlW9XMFBcxcOHWl/n19fA=;
+        b=mpBn4/QyUX+VBAJzrHdoOr4Ad0i8Vtss/xr/1aGBYMSMYRM38x690fr4c49BWISrCR
+         x1C0XvYrLp94EcjPAL7UdrifA5iGEK/8z5Eo6ILMmgHz+G7RDSRW9kST0+80tOPLXPHM
+         RHfp7btATaGqhESrp6jpJ+6hJZQcwFnKuQAMmdez4LKsMZbRAE+iZXkKJ0NfBhXrlNGc
+         6g+4jAgAMDbSrfFFVemOgSzaWWW7D7jwW+J9PUqk1gYzVTJg2+0PZzYPQEQ8Te7+hZ0I
+         7VjNkNrJZ7kOKxSSo4JBD5d2Uw//x5evUgme/5HUUsgKd/xxuZtDnGiTqgmC5+t733dE
+         7DZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MCh2hGUp25ZJxGPePdNkCdsXMQeyI1uh6u/3BErb/Yw=;
-        b=uQ5s79Nr0raDTgiQn0vdV/z4Ep+WB2HtEaSnJKn/0dWmKeruN00h7ghqTfwTVZEBxr
-         m66K4ArwtonclJ7Ydg42R9w0o7yTbi0UJRZJYh+FncvwVFa+blRHPfGh0tKuN406dJzG
-         q/Ix4wBxjB+3BCsZuc12g2a+mjCDLOkXft4C7k3bylfoyvd1dg8Y+a0AcqtlgalwaE/U
-         EJ/E9wxOj4lesCScmwbh72JVcn7GzzPWgVA77buzlI3RTegm4Oljch0HjUnB9Ov81eld
-         2OmpZ+A+VifEd8YfSyTUkwRPec1LI9t8+pHrdFWSzscvWhXqmvNOeH4GCKDa6cWEuJ9n
-         /nqA==
-X-Gm-Message-State: APjAAAWpIn7kR4zAJZzGQJKtM8bWD7IO1+cbRcSopcCJ/jJGdvDLH2aT
-        lgh3/idnVJLUB2zgSOXurDMv9g==
-X-Google-Smtp-Source: APXvYqxh4XiN4cDh/DoIiPtCPuo2gI4Fpj7ttgza+eSTorRPdi7jF2OwizM5OMIMXOYlejycpeH0jw==
-X-Received: by 2002:a5d:45c7:: with SMTP id b7mr7863823wrs.176.1558017143940;
-        Thu, 16 May 2019 07:32:23 -0700 (PDT)
-Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.googlemail.com with ESMTPSA id h12sm2386548wre.14.2019.05.16.07.32.22
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XzcXovfk6M1ai4anrssUPYvlW9XMFBcxcOHWl/n19fA=;
+        b=sJBvDs/GmcgOTdF4PAQbds2YGc7naxY0oYsFydSQlpnQwtTX5C/iPCMsKhl7LLcrSd
+         stnaHS7ld4xqdORJV4vkza7JVPg+h+wtP6tlANjkGqVE9bjVKZ8VTN0CHP2NzWKo24Pt
+         J7q1hTHKZyzQIrX5v2Hgeb1LJcX71DUU2iGWX5AfYJYJIPC6n269sYdaLw9aGCfNYuf9
+         xO7+3pCIQxzOGXH4jfsJil+akQ7pZDAFfP9q1zdUtrjkHWAQVo6g4jYzIalg7fS1Z5jI
+         5C5KmTRiPtJwJGCpslesqzgX73HwXM3QZfQpKqq+PjBEU+wmcLsEAzOf+f5IR9lsF0mp
+         8NPA==
+X-Gm-Message-State: APjAAAU24A0ysVAxRB1lQcFA6FsGDkP/7uffSa9LhcASPKbelyCeKMza
+        h7/WKVZeshYrOoWGVtEqeAI=
+X-Google-Smtp-Source: APXvYqzCXMn1ygqP4NyyZ/WRS34wxQXP4/PQuk+YoCmahtN9410BzLInVWqebP+iI0+rdPUeeWVPVw==
+X-Received: by 2002:aa7:87c3:: with SMTP id i3mr53019103pfo.85.1558017175090;
+        Thu, 16 May 2019 07:32:55 -0700 (PDT)
+Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id s198sm8312079pfs.34.2019.05.16.07.32.53
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 16 May 2019 07:32:23 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: g12a: add tohdmitx
-Date:   Thu, 16 May 2019 16:32:16 +0200
-Message-Id: <20190516143216.6193-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.20.1
+        Thu, 16 May 2019 07:32:54 -0700 (PDT)
+Date:   Thu, 16 May 2019 07:32:51 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     "Y.b. Lu" <yangbo.lu@nxp.com>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] enetc: add hardware timestamping support
+Message-ID: <20190516143251.akbt3ns6ue2jrhl5@localhost>
+References: <20190516100028.48256-1-yangbo.lu@nxp.com>
+ <20190516100028.48256-2-yangbo.lu@nxp.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190516100028.48256-2-yangbo.lu@nxp.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the hdmitx glue device linking the SoC audio interfaces to the
-embedded Synopsys hdmi controller.
+On Thu, May 16, 2019 at 09:59:08AM +0000, Y.b. Lu wrote:
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+> +config FSL_ENETC_HW_TIMESTAMPING
+> +	bool "ENETC hardware timestamping support"
+> +	depends on FSL_ENETC || FSL_ENETC_VF
+> +	help
+> +	  Enable hardware timestamping support on the Ethernet packets
+> +	  using the SO_TIMESTAMPING API. Because the RX BD ring dynamic
+> +	  allocation hasn't been supported and it's too expensive to use
 
- Hi Kevin,
+s/it's/it is/
 
- The related device driver and dt-binding have been merged in the ASoC
- tree, for-5.3 branch [0]
+> +	  extended RX BDs if timestamping isn't used, the option was used
+> +	  to control hardware timestamping/extended RX BDs to be enabled
+> +	  or not.
 
- This patch is based on the audio series I have just sent [1]. Like the
- patches I have sent this week, they are all based on Linus's master
- branch. This is done so it applies nicely when setup your branch based
- on 5.2-rc1
+..., this option enables extended RX BDs in order to support hardware
+timestamping.
 
-[0]: https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/log/?h=for-5.3
-[1]: https://lkml.kernel.org/r/20190514142649.1127-1-jbrunet@baylibre.com
+>  static bool enetc_clean_tx_ring(struct enetc_bdr *tx_ring, int napi_budget)
+>  {
+>  	struct net_device *ndev = tx_ring->ndev;
+> +	struct enetc_ndev_priv *priv = netdev_priv(ndev);
+>  	int tx_frm_cnt = 0, tx_byte_cnt = 0;
+>  	struct enetc_tx_swbd *tx_swbd;
+> +	union enetc_tx_bd *txbd;
+> +	bool do_tstamp;
+>  	int i, bds_to_clean;
+> +	u64 tstamp = 0;
 
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Please keep in reverse Christmas tree order as much as possible:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 3c92d165621c..90da7cc81681 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -1677,6 +1677,14 @@
- 					clock-names = "pclk", "mclk";
- 					status = "disabled";
- 				};
-+
-+				tohdmitx: audio-controller@744 {
-+					compatible = "amlogic,g12a-tohdmitx";
-+					reg = <0x0 0x744 0x0 0x4>;
-+					#sound-dai-cells = <1>;
-+					sound-name-prefix = "TOHDMITX";
-+					status = "disabled";
-+				};
- 			};
- 
- 			usb3_pcie_phy: phy@46000 {
--- 
-2.20.1
+	union enetc_tx_bd *txbd;
+	int i, bds_to_clean;
+	bool do_tstamp;
+	u64 tstamp = 0;
+  
+>  	i = tx_ring->next_to_clean;
+>  	tx_swbd = &tx_ring->tx_swbd[i];
+>  	bds_to_clean = enetc_bd_ready_count(tx_ring, i);
+>  
+> +	do_tstamp = false;
+> +
+>  	while (bds_to_clean && tx_frm_cnt < ENETC_DEFAULT_TX_WORK) {
+>  		bool is_eof = !!tx_swbd->skb;
+>  
+> +		if (unlikely(tx_swbd->check_wb)) {
+> +			txbd = ENETC_TXBD(*tx_ring, i);
+> +
+> +			if (!(txbd->flags & ENETC_TXBD_FLAGS_W))
+> +				goto no_wb;
+> +
+> +			if (tx_swbd->do_tstamp) {
+> +				enetc_get_tx_tstamp(&priv->si->hw, txbd,
+> +						    &tstamp);
+> +				do_tstamp = true;
+> +			}
+> +		}
+> +no_wb:
 
+This goto seems strange and unnecessary.  How about this instead?
+
+			if (txbd->flags & ENETC_TXBD_FLAGS_W &&
+			    tx_swbd->do_tstamp) {
+				enetc_get_tx_tstamp(&priv->si->hw, txbd, &tstamp);
+				do_tstamp = true;
+			}
+
+>  		enetc_unmap_tx_buff(tx_ring, tx_swbd);
+>  		if (is_eof) {
+> +			if (unlikely(do_tstamp)) {
+> +				enetc_tstamp_tx(tx_swbd->skb, tstamp);
+> +				do_tstamp = false;
+> +			}
+>  			napi_consume_skb(tx_swbd->skb, napi_budget);
+>  			tx_swbd->skb = NULL;
+>  		}
+> @@ -167,6 +169,11 @@ struct enetc_cls_rule {
+>  
+>  #define ENETC_MAX_BDR_INT	2 /* fixed to max # of available cpus */
+>  
+> +enum enetc_hw_features {
+
+This is a poor choice of name.  It sounds like it describes HW
+capabilities, but you use it to track whether a feature is requested
+at run time.
+
+> +	ENETC_F_RX_TSTAMP	= BIT(0),
+> +	ENETC_F_TX_TSTAMP	= BIT(1),
+> +};
+> +
+>  struct enetc_ndev_priv {
+>  	struct net_device *ndev;
+>  	struct device *dev; /* dma-mapping device */
+> @@ -178,6 +185,7 @@ struct enetc_ndev_priv {
+>  	u16 rx_bd_count, tx_bd_count;
+>  
+>  	u16 msg_enable;
+> +	int hw_features;
+
+This is also poorly named.  How about "tstamp_request" instead?
+
+>  
+>  	struct enetc_bdr *tx_ring[16];
+>  	struct enetc_bdr *rx_ring[16];
+
+Thanks,
+Richard
