@@ -2,196 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF402082C
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CA320833
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 15:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726736AbfEPN3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 09:29:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60316 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726528AbfEPN3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 09:29:22 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9442920815;
-        Thu, 16 May 2019 13:29:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558013360;
-        bh=Hl4HG1LTgP0kUdc0fnowH0wQepATuakWlP9UdDaSz2g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=P+5NuyJmvwM/00B4MYXfQxHYVYhFQzrimQN7+B0Nbtaq3T0mp/Eq270v47Vd8pd2U
-         2msw5nuYmnmvJw51UwNzdn2Cgpk9MVib2Td4QWHVEgmLzVbA9S85uDpk4G1TA4thaZ
-         6TjATKtabfWPDh4Xp5GmBx3WIp+KzVM5VtSufJok=
-Received: by mail-qt1-f175.google.com with SMTP id y42so3840290qtk.6;
-        Thu, 16 May 2019 06:29:20 -0700 (PDT)
-X-Gm-Message-State: APjAAAWdkEdk0h/thjAkNAumkYc6K3Ik/NRCFhgNKdoZBYW7klPGppSn
-        IVkBugm5FHbSkknYaTl5tw4XZPCasgOb7lMr5w==
-X-Google-Smtp-Source: APXvYqwjIW/h+6qe3Z6w4/6CXYiZK9DXNUedQdNAsmingAGVHCB7FKDW2qcelU27s0fO/PpE9txe48VBr7h66V3rN8Q=
-X-Received: by 2002:aed:2ca5:: with SMTP id g34mr8040318qtd.76.1558013359842;
- Thu, 16 May 2019 06:29:19 -0700 (PDT)
+        id S1727307AbfEPNbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 09:31:17 -0400
+Received: from mail-eopbgr20047.outbound.protection.outlook.com ([40.107.2.47]:29879
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726528AbfEPNbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 09:31:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NCgt6aJ4FHdlBcWirefvbkbgnsQtFRXZ5rwvzDoRq4A=;
+ b=VtBsh4pw73zPcebTqr+K3LTT6av4XRu4pvrHG6n5g6mnY69fPIinhCh/CJwMZhVsj3xNufODKjMqFcmuAUNx/xNPMm4JZKc9PYPL16KkDBwm2aSEpRy6eypfqzufa4u5OdJMzroi3/HBOslQXpLNy+IpAbF8Lvvmbl6umQbmN20=
+Received: from VI1PR04MB4880.eurprd04.prod.outlook.com (20.177.49.153) by
+ VI1PR04MB5742.eurprd04.prod.outlook.com (20.178.127.84) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Thu, 16 May 2019 13:31:12 +0000
+Received: from VI1PR04MB4880.eurprd04.prod.outlook.com
+ ([fe80::d9de:1be3:e7e6:757f]) by VI1PR04MB4880.eurprd04.prod.outlook.com
+ ([fe80::d9de:1be3:e7e6:757f%3]) with mapi id 15.20.1900.010; Thu, 16 May 2019
+ 13:31:12 +0000
+From:   Claudiu Manoil <claudiu.manoil@nxp.com>
+To:     "Y.b. Lu" <yangbo.lu@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        David Miller <davem@davemloft.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/3] enetc: add hardware timestamping support
+Thread-Topic: [PATCH 1/3] enetc: add hardware timestamping support
+Thread-Index: AQHVC84BpTq18Sng3k254t8Y+2yCUKZtu0bw
+Date:   Thu, 16 May 2019 13:31:12 +0000
+Message-ID: <VI1PR04MB4880C3E6D24AB7A53887D9C9960A0@VI1PR04MB4880.eurprd04.prod.outlook.com>
+References: <20190516100028.48256-1-yangbo.lu@nxp.com>
+ <20190516100028.48256-2-yangbo.lu@nxp.com>
+In-Reply-To: <20190516100028.48256-2-yangbo.lu@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=claudiu.manoil@nxp.com; 
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: af669eba-f862-4790-fd83-08d6da02c36d
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5742;
+x-ms-traffictypediagnostic: VI1PR04MB5742:
+x-microsoft-antispam-prvs: <VI1PR04MB5742891663A18BB2EDD4A25F960A0@VI1PR04MB5742.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 0039C6E5C5
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(346002)(396003)(39860400002)(136003)(376002)(13464003)(199004)(189003)(55016002)(478600001)(6436002)(9686003)(3846002)(4326008)(6116002)(53936002)(64756008)(256004)(33656002)(73956011)(66476007)(66556008)(71190400001)(66946007)(66446008)(76116006)(2906002)(110136005)(6246003)(71200400001)(446003)(2501003)(229853002)(7696005)(76176011)(54906003)(66066001)(26005)(74316002)(102836004)(305945005)(44832011)(486006)(7736002)(6506007)(25786009)(86362001)(99286004)(81156014)(81166006)(186003)(5660300002)(14454004)(11346002)(476003)(68736007)(8936002)(8676002)(316002)(4744005)(52536014);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5742;H:VI1PR04MB4880.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Q10LGT+o1yOJVNPfES/wALUGZNVQgjpq5dbbFUJqf6iH9Ce5/oZPyEMdzsp18cQoFOYY/APOeEV/dk1/gtl4pBnjdmEkMBEc+wkkLX2tK4PsPSy+/6SPdBVODYy7AJ0LF4CELj6ooPLwGDufgrPMrFUi9yYn+T199Yi6vm0LrYF7fz5k4Z3Lhx2mQv5Yj4zkDzK7LevvHbKUSIgznRk5QTfUQRsify8LwA7lSNFEmuqDW7QKM7YKbkrodEVfKF49eBGOajuFdd6u4m1C3fzXBhf5SSQ3tCgYEHvmHLsGsGIH28acyBv/YEXHxr9iQ4Yob/Hxnc6sn0lwVrC5zMTpeQL+SmhYIymtZIT+nupYVU2KbDa2uRaCv/9kiwlX1IVhLrIf1bPg1++kClgZsTqm0tasPbEjLCvYzuKaf5AT9h4=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190516121509.1441-1-alexandru.ardelean@analog.com>
-In-Reply-To: <20190516121509.1441-1-alexandru.ardelean@analog.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 May 2019 08:29:08 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJLEuCJWnD1G5iXdCNcJ+a_0zhoUH2a=4i6VBm8_B9r6w@mail.gmail.com>
-Message-ID: <CAL_JsqJLEuCJWnD1G5iXdCNcJ+a_0zhoUH2a=4i6VBm8_B9r6w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: accel: adxl345: switch to YAML bindings
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af669eba-f862-4790-fd83-08d6da02c36d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 May 2019 13:31:12.2079
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5742
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 7:15 AM Alexandru Ardelean
-<alexandru.ardelean@analog.com> wrote:
->
-> The ADX345 supports both I2C & SPI bindings.
-> This change switches from old text bindings, to YAML bindings, and also
-> tries to make use of the recent multiple-examples support.
->
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> ---
->  .../bindings/iio/accel/adi,adxl345.yaml       | 74 +++++++++++++++++++
->  .../devicetree/bindings/iio/accel/adxl345.txt | 39 ----------
->  2 files changed, 74 insertions(+), 39 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
->  delete mode 100644 Documentation/devicetree/bindings/iio/accel/adxl345.txt
->
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> new file mode 100644
-> index 000000000000..47cdfb3b8182
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl345.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers that supports
-> +  both I2C & SPI interfaces.
-> +    http://www.analog.com/en/products/mems/accelerometers/adxl345.html
-> +    http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adxl345
-> +      - adi,adxl375
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-cpha: true
-> +
-> +  spi-cpol: true
-> +
-> +  interrupt-parent: true
-
-You don't need to document interrupt-parent. It is implied. With that dropped,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* Example for a I2C device node */
-> +        accelerometer@2a {
-> +            compatible = "adi,adxl345";
-> +            reg = <0x53>;
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* Example for a SPI device node */
-> +        accelerometer@0 {
-> +            compatible = "adi,adxl345";
-> +            reg = <0>;
-> +            spi-max-frequency = <5000000>;
-> +            spi-cpol;
-> +            spi-cpha;
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adxl345.txt b/Documentation/devicetree/bindings/iio/accel/adxl345.txt
-> deleted file mode 100644
-> index f9525f6e3d43..000000000000
-> --- a/Documentation/devicetree/bindings/iio/accel/adxl345.txt
-> +++ /dev/null
-> @@ -1,39 +0,0 @@
-> -Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
-> -
-> -http://www.analog.com/en/products/mems/accelerometers/adxl345.html
-> -http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
-> -
-> -Required properties:
-> - - compatible : should be one of
-> -               "adi,adxl345"
-> -               "adi,adxl375"
-> - - reg : the I2C address or SPI chip select number of the sensor
-> -
-> -Required properties for SPI bus usage:
-> - - spi-max-frequency : set maximum clock frequency, must be 5000000
-> - - spi-cpol and spi-cpha : must be defined for adxl345 to enable SPI mode 3
-> -
-> -Optional properties:
-> - - interrupts: interrupt mapping for IRQ as documented in
-> -   Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-> -
-> -Example for a I2C device node:
-> -
-> -       accelerometer@2a {
-> -               compatible = "adi,adxl345";
-> -               reg = <0x53>;
-> -               interrupt-parent = <&gpio1>;
-> -               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> -       };
-> -
-> -Example for a SPI device node:
-> -
-> -       accelerometer@0 {
-> -               compatible = "adi,adxl345";
-> -               reg = <0>;
-> -               spi-max-frequency = <5000000>;
-> -               spi-cpol;
-> -               spi-cpha;
-> -               interrupt-parent = <&gpio1>;
-> -               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> -       };
-> --
-> 2.17.1
->
+Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogWS5iLiBMdQ0KWy4uLl0NCj5TdWJq
+ZWN0OiBbUEFUQ0ggMS8zXSBlbmV0YzogYWRkIGhhcmR3YXJlIHRpbWVzdGFtcGluZyBzdXBwb3J0
+DQo+DQpbLi4uXQ0KDQpIaSBZYW5nYm8sDQoNClRoZXNlIGVuZXRjIHBhdGNoZXMgdGFyZ2V0aW5n
+IG5ldC1uZXh0IHdpbGwgaGF2ZSB0byBiZSByZWJhc2VkIG9uDQp0aGUgbGF0ZXN0IGVuZXRjIG5l
+dC5naXQgY29tbWl0cywgb3RoZXJ3aXNlIHRoZXJlIHdpbGwgYmUgc29tZSBtZXJnZQ0KY29uZmxp
+Y3RzIGZvciBlbmV0Yy5jIGFuZCBlbmV0Y19ldGh0b29sLmMuDQpUaGFua3MsDQpDbGF1ZGl1DQoN
+CnNlZQ0KMjJmYjQzZjM2MDA2ICJlbmV0YzogQWRkIG1pc3NpbmcgbGluayBzdGF0ZSBpbmZvIGZv
+ciBldGh0b29sIg0KZjRhMGJlODRkNzNlICJlbmV0YzogRml4IE5VTEwgZG1hIGFkZHJlc3MgdW5t
+YXAgZm9yIFR4IEJEIGV4dGVuc2lvbnMiDQoNCg==
