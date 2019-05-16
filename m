@@ -2,162 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7F33200AA
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C84A200C1
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2019 09:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfEPHwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 03:52:15 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:7671 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726393AbfEPHwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:52:14 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cdd16840000>; Thu, 16 May 2019 00:51:32 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 16 May 2019 00:52:13 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 16 May 2019 00:52:13 -0700
-Received: from [10.19.108.132] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 16 May
- 2019 07:52:10 +0000
-Subject: Re: [PATCH V3 4/8] memory: tegra: Add Tegra210 EMC clock driver
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20190510084719.18902-1-josephl@nvidia.com>
- <20190510084719.18902-5-josephl@nvidia.com>
- <74fad66b-a6e9-ffc9-c1c9-e88b841e9209@gmail.com>
- <648df201-eb63-6d26-3f90-02eba7624921@nvidia.com>
- <bb2ef045-7d77-02d0-79fb-06f68732c5a5@gmail.com>
-From:   Joseph Lo <josephl@nvidia.com>
-Message-ID: <3afd909c-5be9-370d-e21a-ec57be3b841b@nvidia.com>
-Date:   Thu, 16 May 2019 15:52:02 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726723AbfEPH7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 03:59:07 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:25406 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbfEPH7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 03:59:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557993542;
+        s=strato-dkim-0002; d=fpond.eu;
+        h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=Fld6kegWQPEsPuDbweEnabf1p3ko9B1BtxGvj5xjvsg=;
+        b=WlXyvNkIB4Z1jfDlKxN1/LZ9vIXtsQ/CqQwe6NTslftH8JQSbbHhF+4n6bEoroy2HE
+        a98yxbLYWSrWJH+eBDagsQLqn3UYz70VRGrfu61TSH75fWOvvmgp76AmPQ5SANeRV2IZ
+        eI2IDyTTRgI23yipDq9yGYAiyPYiVepZAMf4Vfqp8StuuJZSIrh1aWN+tao+PDU3btZR
+        I4X6VNcDLd0T0GTBcw/chSwq1JwrJsafpHug7XNl4W2DXqcGs0EnUurn0aFUYMadnPPu
+        el6W6b/k92kzcQ7aPaD0Xn19raZlepLS55Nskp5exXnZu1LAjcX0WciTwJw/mgk+3deB
+        BYIA==
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73amq+g13rqGzmt2bYDnKIKaws6YXTsc4="
+X-RZG-CLASS-ID: mo00
+Received: from oxapp02-01.back.ox.d0m.de
+        by smtp-ox.front (RZmta 44.18 AUTH)
+        with ESMTPSA id y08c83v4G7x2sEL
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Thu, 16 May 2019 09:59:02 +0200 (CEST)
+Date:   Thu, 16 May 2019 09:59:02 +0200 (CEST)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org
+Message-ID: <1010579666.68696.1557993542697@webmail.strato.com>
+In-Reply-To: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
+References: <20190516003803.808-1-niklas.soderlund+renesas@ragnatech.se>
+Subject: Re: [PATCH] dt-bindings: rcar-{csi2,vin}: Rename bindings
+ documentation files
 MIME-Version: 1.0
-In-Reply-To: <bb2ef045-7d77-02d0-79fb-06f68732c5a5@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL108.nvidia.com (172.18.146.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1557993092; bh=4tYXVDno4KsskhiP9PdJy8YJDFFqRr5SFW0KndO/iBM=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=QRZhD9TaVAD5dOHju+CIHeSqirBQ/Ulz15Kk2FmIblanfUyxPeO4afRI+aW6v0jEC
-         4mxyRVNhhrUOeeW2FTTBVHxKDgWR1UjBsWpWjweH+mpnTomFW1GT6eUxsHonzQOXPL
-         EJfoDq+3orBP52QP16A795sbIOXBv1uiXV1xuOOLmrEX9mHLtNe2CB0b70vh6oAJ0P
-         ZPHe5B+st3dHfzcihktR40rHrR19xKpi53zkIZEhxI9g4nc4UAgitud94aI3vgkT9t
-         UKvCgne+FM3dGLU4H4wdr/wG03I+3ZphrW2ugU6f8T6IMeJPWKV2anjGhs4qhWm/l1
-         F2wt+FurGu0QA==
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.4-Rev57
+X-Originating-IP: 85.212.214.135
+X-Originating-Client: open-xchange-appsuite
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/15/19 11:25 PM, Dmitry Osipenko wrote:
-> 15.05.2019 11:42, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> On 5/15/19 1:04 AM, Dmitry Osipenko wrote:
->>> 10.05.2019 11:47, Joseph Lo =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>> This is the initial patch for Tegra210 EMC clock driver, which doesn't
->>>> include the support code and detail sequence for clock scaling yet.
->>>>
->>>> The driver is designed to support LPDDR4 SDRAM. Because of the LPDDR4
->>>> devices need to do initial time training before it can be used, the
->>>> firmware will help to do that at early boot stage. Then, the trained
->>>> table for the rates we support will pass to the kernel via DT. So the
->>>> driver can get the trained table for clock scaling support.
->>>>
->>>> For the higher rate support (above 800MHz), the periodic training is
->>>> needed for the timing compensation. So basically, two methodologies fo=
-r
->>>> clock scaling are supported, one is following the clock changing
->>>> sequence to update the EMC table to EMC registers and another is if th=
-e
->>>> rate needs periodic training, then we will start a timer to do that
->>>> periodically until it scales to the lower rate.
->>>>
->>>> Based on the work of Peter De Schrijver <pdeschrijver@nvidia.com>.
->>>>
->>>> Signed-off-by: Joseph Lo <josephl@nvidia.com>
->>>> ---
-snip.
->>>> +=C2=A0=C2=A0=C2=A0 if (!seq->set_clock) {
->>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 seq =3D NULL;
->>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_err(&pdev->dev, "Inval=
-id EMC sequence for table Rev. %d\n",
->>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 em=
-c->emc_table[0].rev);
->>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto emc_clk_register;
->>>
->>> Why do you want to register EMC clock if something fails? KMSG will be
->>> flooded with errors coming from clk_set_rate.
->>>
->>
->> See patch 7 in the series, the legacy EMC clock will be removed later,
->> so we need to register the EMC clock whether the table is ready or not> =
-In that case, I mean if the table is not available, it will still
->> register EMC clock at the rate that boot loader configured before kernel
->> booting. So the MC clock can still work as expected, which is under EMC
->> clock.
->>
->> And I did test that, couldn't observe any KMSG in that case.
+
+> On May 16, 2019 at 2:38 AM Niklas S=C3=B6derlund <niklas.soderlund+renesa=
+s@ragnatech.se> wrote:
 >=20
-> Looks like it kinda should work in the end.
 >=20
-> Although it's not good that now MC driver relies on the EMC driver
-> presence. Maybe it's not the best variant with moving the clock stuff
-> into the EMC driver?
+> Renesas media binding documentation files uses a naming schema of
+> 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
+> pattern.
 >=20
-> What about the backwards compatibility for DT that doesn't have the EMC
-> node?
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+>  .../media/{renesas,rcar-csi2.txt =3D> renesas,csi2.txt}         | 0
+>  .../bindings/media/{rcar_vin.txt =3D> renesas,vin.txt}          | 0
+>  MAINTAINERS                                                   | 4 ++--
+>  3 files changed, 2 insertions(+), 2 deletions(-)
+>  rename Documentation/devicetree/bindings/media/{renesas,rcar-csi2.txt =
+=3D> renesas,csi2.txt} (100%)
+>  rename Documentation/devicetree/bindings/media/{rcar_vin.txt =3D> renesa=
+s,vin.txt} (100%)
 >=20
-> What if EMC driver is disabled in the kernel's config?
+> diff --git a/Documentation/devicetree/bindings/media/renesas,rcar-csi2.tx=
+t b/Documentation/devicetree/bindings/media/renesas,csi2.txt
+> similarity index 100%
+> rename from Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+> rename to Documentation/devicetree/bindings/media/renesas,csi2.txt
+> diff --git a/Documentation/devicetree/bindings/media/rcar_vin.txt b/Docum=
+entation/devicetree/bindings/media/renesas,vin.txt
+> similarity index 100%
+> rename from Documentation/devicetree/bindings/media/rcar_vin.txt
+> rename to Documentation/devicetree/bindings/media/renesas,vin.txt
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 878588cfb453d83c..c3a23726472d7d4d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9629,8 +9629,8 @@ L:=09linux-media@vger.kernel.org
+>  L:=09linux-renesas-soc@vger.kernel.org
+>  T:=09git git://linuxtv.org/media_tree.git
+>  S:=09Supported
+> -F:=09Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+> -F:=09Documentation/devicetree/bindings/media/rcar_vin.txt
+> +F:=09Documentation/devicetree/bindings/media/renesas,csi2.txt
+> +F:=09Documentation/devicetree/bindings/media/renesas,vin.txt
+>  F:=09drivers/media/platform/rcar-vin/
+> =20
+>  MEDIA DRIVERS FOR RENESAS - VSP1
+> --=20
+> 2.21.0
+>
 
-The three questions above are actually one problem here. It's not about=20
-MC clock, because it's still available after these changes. And MC=20
-driver can still get it in the probe function even the EMC driver isn't=20
-there.
+Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
 
-The problem is that without EMC driver after these changes. The PLLM=20
-will have no client under it, which will cause the PLLM to be disabled=20
-in the late init call of "clk_disable_unused". So the system will be stuck.
-
->=20
-> And lastly.. what stops the MC driver to probe before the EMC? Looks
-> like MC driver is already in trouble because it's on arch level and the
-> EMC is on subsys, hence MC will get the orphaned clock and won't
-> initialize hardware properly on probe.
-
-After this moving, the EMC driver will be always enabled by default. And=20
-the DT change is necessary as well. The blob of EMC table is not=20
-necessary, because it needs a firmware update. We will update the=20
-firmware accordingly after the review settled and release it later.
-
-In case of no EMC table blob, the driver can still be registered, but no=20
-scaling function provided.
-
->=20
-> BTW, how are you testing the EMC driver? Is there T210 devfreq patches
-> in works? Or what's the user of the EMC on T210?
->=20
-
-1. Currently, via debugfs.
-2. No, we prefer to use Interconnect framework for that. The evaluation=20
-is ongoing.
-3. With Interconnect, the devices or peripherals can register on it to=20
-request the BW. So we can fine-tune the BW requirements with the latency=20
-allowance registers altogether to get better efficiency.
-
-Thanks,
-Joseph
+CU
+Uli
