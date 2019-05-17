@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5506821AC7
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 17:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8A221ACD
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 17:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729159AbfEQPkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 11:40:13 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52430 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729168AbfEQPkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 11:40:13 -0400
-Received: by mail-wm1-f67.google.com with SMTP id y3so7388568wmm.2
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 08:40:12 -0700 (PDT)
+        id S1729122AbfEQPlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 11:41:06 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:42941 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728791AbfEQPlG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 11:41:06 -0400
+Received: by mail-wr1-f65.google.com with SMTP id l2so7612262wrb.9
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 08:41:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=A2JLxlWuEH6j0Jh7jAHHHzHa1EMwyEMqpv3GEMW1UVs=;
-        b=OnNLFUnou1xM7X9pYuJqa+LVW0qwSMf+DVBI6GQs7SanL/bRMnBwUzh0kMmXsYqszC
-         Mc1FUipe50YAXj5jxDdDe1nIwoWb900P47imnAlMwtwvZ6EwlhrSaeO1Z1Y7Vy2WLc7k
-         wwXuBikra23V6CL/9FaNnJTwMS0+FBDDfHZzOm2C7I/JnH2n/zELxzvbSxmiaj0ro/8k
-         rjnl49Py8dOupgUfyZYxUpWEBPVYVIHbnl1HD0dV53jf2AtEIhk3lJkmkMlF4nFcbcEG
-         k8R4BJUhGf3f1okowhT5Q4bOmLSVlCxZEdoPmRz4LwSiuaAdMWpuIgFbYOYjNBuvvfjG
-         FoYg==
+        bh=Gj/3k+5YXyOcGv0iXoHljfz8L17O8uPATyM/pLVBy5g=;
+        b=YDxdqNv4ZifPg1Yp3qKd9azdnjATJqAOh1+S48lTJkYpukVf6tSBt8AY8GKRB0nh/v
+         pO/Mm586ywpXC7QFqp0LIZwVf2I+HI8qOQfAPRtj22XuALFEPOcoc2VCT9v9jqe8Jvyg
+         /4PZI9MBy+HuCaNzbHlXvazj8LUiQ7DjcoJX4Oo7g+8BtFH/3uRNfPQHv7oYvDAJ7iB9
+         xeziXpDTrlTutWkZPfjzZGOD+KfZ+SZKAJ9J7xCiOv9F/+e4UqNXwu5VimQzHVBbrioz
+         Lh8UaK7kIWxUgyf3IbMj1teiiEnuENq7+AtzJaCbzmO2uOFP24EjEASBKbZlvo7Ufrqk
+         gwNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=A2JLxlWuEH6j0Jh7jAHHHzHa1EMwyEMqpv3GEMW1UVs=;
-        b=dEpVjTg/dUHNnWC2olMngNzCguKVuRrlfbzIhWuHJNG0Prs0UY6BddGNKn8TYpPpqJ
-         ezRvrZs2LL1uT46zxZm4j/zsBzUowDvUMvUZUtzHzpopVt8WX9pPIB/kEvaQBvGFWp4V
-         sVEXzkOBzMzOItrzQ0gCtDoNvoIJ77wyxb0joIMlBeTcBjnLhJ3IOo0d9ATOfPjGhLJH
-         jcnN0gOOMyh+NYun9YR6kxVFvNY4/rPeOoV32ojD+ua0XsT/tMP/M4ugDG6z7LRwqWHc
-         CytlclREuDRSWaQQen5VmnBCWT98Xz7SjXe/FS1oflroDNjvGTpHGWbp+e4rpmbnUdF5
-         b1Fg==
-X-Gm-Message-State: APjAAAX/5340GQyihhC9uILD2ota4ApQ59Y8FAI7PGREGBo8NbI1Oy5Z
-        DPCu47FMRKE7k+bMgyi5R8ZwsT5Afhk=
-X-Google-Smtp-Source: APXvYqyBEseYF+JOeF1EzQIGYvflNRNaMOYKQCUeq9NX4feFVh2lSJ0/WgBMHsfh9zDaJfJaXKuALA==
-X-Received: by 2002:a1c:65c3:: with SMTP id z186mr2681206wmb.93.1558107611140;
-        Fri, 17 May 2019 08:40:11 -0700 (PDT)
+        bh=Gj/3k+5YXyOcGv0iXoHljfz8L17O8uPATyM/pLVBy5g=;
+        b=Ifm50u0UNzAz/XFMEcrA0H7YtHl/Fi9Bk+1xr2oDvAOsxAGOOHWkvuSAWrOpJM8dXy
+         Y+PbB+DURiB6X6Hr5FJdea9QoXX/1WOcJUmFylohLT+2eVYumh7Z2aiI0yMdID4FXi1a
+         Cxx//sDFv0n/9JiXGDjNjFFlu7pD309Fh8bY1LKyD/siWn1KcefrAw+8VttpnwrKI4ba
+         mMnDxh0/90ohgp52egMKZQFI01XugGaRBqjPXqXopsEVf9eHBVDCP3Mfr3CbKamz3ca/
+         btT+Cy+4x8OflS1ngav/M1oOAO4gI/PCmi7V1rE3bsp13DesvDoSL7J8+VlqidCzmobL
+         6xeQ==
+X-Gm-Message-State: APjAAAXddNDBmJxNDERgeHxXYCNMXAuVNCtwgJx+8WunvTL6DChvm6VJ
+        DBdg1K8ESNbovuCQJ5mi1WK21bbF3ic=
+X-Google-Smtp-Source: APXvYqxpKXi79qSS1349vVVUIg8A1rucfiWHuUhRntac/YUjAckwQmm4o5RYFw85nlDp8nkt1gQsEA==
+X-Received: by 2002:a5d:5381:: with SMTP id d1mr3544035wrv.333.1558107664290;
+        Fri, 17 May 2019 08:41:04 -0700 (PDT)
 Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
-        by smtp.googlemail.com with ESMTPSA id h13sm7028152wrv.6.2019.05.17.08.40.10
+        by smtp.googlemail.com with ESMTPSA id l12sm8244563wmj.0.2019.05.17.08.41.03
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 May 2019 08:40:10 -0700 (PDT)
-Subject: Re: [PATCHv1 3/8] arm64: dts: qcom: msm8916: Add entry-method
- property for the idle-states node
+        Fri, 17 May 2019 08:41:03 -0700 (PDT)
+Subject: Re: [PATCHv1 4/8] arm64: dts: qcom: msm8916: Use more generic idle
+ state names
 To:     Amit Kucheria <amit.kucheria@linaro.org>,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         bjorn.andersson@linaro.org, andy.gross@linaro.org,
@@ -54,14 +54,14 @@ To:     Amit Kucheria <amit.kucheria@linaro.org>,
         Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
 Cc:     devicetree@vger.kernel.org
 References: <cover.1557486950.git.amit.kucheria@linaro.org>
- <030b5d9c6dc2e872466b7132e4fd65c473f9883f.1557486950.git.amit.kucheria@linaro.org>
+ <2a0626da4d8d5a1018c351b24b63e5e0d7a45a10.1557486950.git.amit.kucheria@linaro.org>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <35c77a53-d8cb-0b32-6b60-ce57fabd5243@linaro.org>
-Date:   Fri, 17 May 2019 17:40:09 +0200
+Message-ID: <c4751930-e176-881e-a3dc-cf1a2e8d5257@linaro.org>
+Date:   Fri, 17 May 2019 17:41:02 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <030b5d9c6dc2e872466b7132e4fd65c473f9883f.1557486950.git.amit.kucheria@linaro.org>
+In-Reply-To: <2a0626da4d8d5a1018c351b24b63e5e0d7a45a10.1557486950.git.amit.kucheria@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -71,31 +71,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/05/2019 13:29, Amit Kucheria wrote:
-> The idle-states binding documentation[1] mentions that the
-> 'entry-method' property is required on 64-bit platforms and must be set
-> to "psci".
+> Instead of using Qualcomm-specific terminology, use generic node names
+> for the idle states that are easier to understand. Move the description
+> into the "idle-state-name" property.
 > 
 > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 
 Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
+
 > ---
->  arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index 0803ca8c02da..ded1052e5693 100644
+> index ded1052e5693..400b609bb3fd 100644
 > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -158,6 +158,8 @@
->  		};
->  
+> @@ -110,7 +110,7 @@
+>  			reg = <0x0>;
+>  			next-level-cache = <&L2_0>;
+>  			enable-method = "psci";
+> -			cpu-idle-states = <&CPU_SPC>;
+> +			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			clocks = <&apcs>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			#cooling-cells = <2>;
+> @@ -122,7 +122,7 @@
+>  			reg = <0x1>;
+>  			next-level-cache = <&L2_0>;
+>  			enable-method = "psci";
+> -			cpu-idle-states = <&CPU_SPC>;
+> +			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			clocks = <&apcs>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			#cooling-cells = <2>;
+> @@ -134,7 +134,7 @@
+>  			reg = <0x2>;
+>  			next-level-cache = <&L2_0>;
+>  			enable-method = "psci";
+> -			cpu-idle-states = <&CPU_SPC>;
+> +			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			clocks = <&apcs>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			#cooling-cells = <2>;
+> @@ -146,7 +146,7 @@
+>  			reg = <0x3>;
+>  			next-level-cache = <&L2_0>;
+>  			enable-method = "psci";
+> -			cpu-idle-states = <&CPU_SPC>;
+> +			cpu-idle-states = <&CPU_SLEEP_0>;
+>  			clocks = <&apcs>;
+>  			operating-points-v2 = <&cpu_opp_table>;
+>  			#cooling-cells = <2>;
+> @@ -160,8 +160,9 @@
 >  		idle-states {
-> +			entry-method="psci";
-> +
->  			CPU_SPC: spc {
+>  			entry-method="psci";
+>  
+> -			CPU_SPC: spc {
+> +			CPU_SLEEP_0: cpu-sleep-0 {
 >  				compatible = "arm,idle-state";
+> +				idle-state-name = "standalone-power-collapse";
 >  				arm,psci-suspend-param = <0x40000002>;
+>  				entry-latency-us = <130>;
+>  				exit-latency-us = <150>;
 > 
 
 
