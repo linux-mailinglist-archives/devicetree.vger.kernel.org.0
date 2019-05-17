@@ -2,51 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B59218D6
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2235F218F6
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728940AbfEQNFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 09:05:22 -0400
-Received: from mga09.intel.com ([134.134.136.24]:60150 "EHLO mga09.intel.com"
+        id S1728672AbfEQNNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 09:13:25 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:33838 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728683AbfEQNFW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 09:05:22 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 May 2019 06:05:21 -0700
-X-ExtLoop1: 1
-Received: from kuha.fi.intel.com ([10.237.72.189])
-  by fmsmga001.fm.intel.com with SMTP; 17 May 2019 06:05:12 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 17 May 2019 16:05:11 +0300
-Date:   Fri, 17 May 2019 16:05:11 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by node
-Message-ID: <20190517130511.GA1887@kuha.fi.intel.com>
-References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
- <1557823643-8616-5-git-send-email-chunfeng.yun@mediatek.com>
- <20190517103736.GA1490@kuha.fi.intel.com>
+        id S1728430AbfEQNNN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 09:13:13 -0400
+Received: from iota-build.ysoft.local (unknown [10.1.5.151])
+        by uho.ysoft.cz (Postfix) with ESMTP id 817EFA06FD;
+        Fri, 17 May 2019 15:13:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1558098789;
+        bh=SeFOmzREg76ZG58RfAR8jB6TwSzhC984BntPlNv10bM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=QYgNXO0z3mbMZLwSxTaPCadqJb7wRdFaCikV95bZqGRf5GmBqVL1WOCHDhnlaePWa
+         RhAUBOMmXCVuR43wOkQwjMGCltznVMdofbGWENgHMdwlf+rx0EZGxil0LdsU7OQMkV
+         EJWLW3z9GOaJkNWSSVqMwpXkKDeyBMGWWNOHNAVw=
+From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [RFC PATCH v2 0/4] Input: mpr121-polled: Add polled driver for MPR121
+Date:   Fri, 17 May 2019 15:12:49 +0200
+Message-Id: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190517103736.GA1490@kuha.fi.intel.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -54,92 +46,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Fri, May 17, 2019 at 01:37:36PM +0300, Heikki Krogerus wrote:
-> On Tue, May 14, 2019 at 04:47:21PM +0800, Chunfeng Yun wrote:
-> > Add fwnode_usb_role_switch_get() to make easier to get
-> > usb_role_switch by fwnode which register it.
-> > It's useful when there is not device_connection registered
-> > between two drivers and only knows the fwnode which register
-> > usb_role_switch.
-> > 
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > Tested-by: Biju Das <biju.das@bp.renesas.com>
-> 
-> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+I have to deal with a situation where we have a custom i.MX6 based
+platform in production that uses the MPR121 touchkey controller.
+Unfortunately the chip is connected using only the I2C interface.
+The interrupt line is not used. Back in 2015 (Linux v3.14), my
+colleague modded the existing mpr121_touchkey.c driver to use polling
+instead of interrupt.
 
-Hold on. I just noticed Rob's comment on patch 2/6, where he points out
-that you don't need to use device graph since the controller is the
-parent of the connector. Doesn't that mean you don't really need this
-API?
+For quite some time yet I am in a process of updating the product from
+the ancient Freescale v3.14 kernel to the latest mainline and pushing
+any needed changes upstream. The DT files for our imx6dl-yapp4 platform
+already made it into v5.1-rc.
 
-> > ---
-> > v5 changes:
-> >  1. remove linux/of.h suggested by Biju
-> >  2. add tested by Biju
-> > 
-> > Note: still depends on [1]
-> >  [1]: [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
-> >       https://patchwork.kernel.org/patch/10909971/
-> > 
-> > v4 changes:
-> >   1. use switch_fwnode_match() to find fwnode suggested by Heikki
-> >   2. this patch now depends on [1]
-> > 
-> >  [1] [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
-> >     https://patchwork.kernel.org/patch/10909971/
-> > 
-> > v3 changes:
-> >   1. use fwnodes instead of node suggested by Andy
-> >   2. rebuild the API suggested by Heikki
-> > 
-> > v2 no changes
-> > ---
-> >  drivers/usb/roles/class.c | 24 ++++++++++++++++++++++++
-> >  include/linux/usb/role.h  |  8 ++++++++
-> >  2 files changed, 32 insertions(+)
-> > 
-> > diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
-> > index f45d8df5cfb8..4a1f09a41ec0 100644
-> > --- a/drivers/usb/roles/class.c
-> > +++ b/drivers/usb/roles/class.c
-> > @@ -135,6 +135,30 @@ struct usb_role_switch *usb_role_switch_get(struct device *dev)
-> >  }
-> >  EXPORT_SYMBOL_GPL(usb_role_switch_get);
-> >  
-> > +/**
-> > + * fwnode_usb_role_switch_get - Find USB role switch by it's parent fwnode
-> > + * @fwnode: The fwnode that register USB role switch
-> > + *
-> > + * Finds and returns role switch registered by @fwnode. The reference count
-> > + * for the found switch is incremented.
-> > + */
-> > +struct usb_role_switch *
-> > +fwnode_usb_role_switch_get(struct fwnode_handle *fwnode)
-> > +{
-> > +	struct usb_role_switch *sw;
-> > +	struct device *dev;
-> > +
-> > +	dev = class_find_device(role_class, NULL, fwnode, switch_fwnode_match);
-> > +	if (!dev)
-> > +		return ERR_PTR(-EPROBE_DEFER);
-> > +
-> > +	sw = to_role_switch(dev);
-> > +	WARN_ON(!try_module_get(sw->dev.parent->driver->owner));
-> > +
-> > +	return sw;
-> > +}
-> > +EXPORT_SYMBOL_GPL(fwnode_usb_role_switch_get);
+I rebased and updated our mpr121 patch to the latest mainline.
+It is created as a separate driver, similarly to gpio_keys_polled.
 
-This function only basically converts the fwnode to usb_role_switch,
-but I would actually prefer that we walked through the device graph
-here instead of expecting the caller to do that.
+The I2C device is quite susceptible to ESD. An ESD test quite often
+causes reset of the chip or some register randomly changes its value.
+The [PATCH 3/4] adds a write-through register cache. With the cache
+this state can be detected and the device can be re-initialied.
 
-So this function should probable be called fwnode_to_usb_role_switch()
-and not fwnode_usb_role_switch_get(), but I guess you don't need it
-at all, right?
+The main question is: Is there any chance that such a polled driver
+could be accepted? Is it correct to implement it as a separate driver
+or should it be done as an option in the existing driver? I can not
+really imagine how I would do that though..
+
+There are also certain worries that the MPR121 chip may no longer be
+available in nonspecifically distant future. In case of EOL I will need
+to add a polled driver for an other touchkey chip. May it be already
+in mainline or a completely new one.
+
+I will appreciate any comments. Thank you in advance,
+Michal
 
 
-thanks,
+Michal Vokáč (4):
+  dt-bindings: input: Add support for the MPR121 without interrupt line
+  Input: mpr121-polled: Add polling variant of the MPR121 touchkey
+    driver
+  Input: mpr121-polled: Add write-through cache to detect corrupted
+    registers
+  ARM: dts: imx6dl-yapp4: Enable MPR121 touch keypad on Hydra
+
+ .../bindings/input/mpr121-touchkey-polled.txt      |  26 ++
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi         |  12 +
+ arch/arm/boot/dts/imx6dl-yapp4-hydra.dts           |   4 +
+ drivers/input/keyboard/Kconfig                     |  13 +
+ drivers/input/keyboard/Makefile                    |   1 +
+ drivers/input/keyboard/mpr121_touchkey_polled.c    | 493 +++++++++++++++++++++
+ 6 files changed, 549 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/mpr121-touchkey-polled.txt
+ create mode 100644 drivers/input/keyboard/mpr121_touchkey_polled.c
 
 -- 
-heikki
+2.1.4
+
