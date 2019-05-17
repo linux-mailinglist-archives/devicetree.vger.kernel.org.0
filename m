@@ -2,116 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3E6121C2A
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 19:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C58F321C53
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 19:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726699AbfEQRD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 13:03:56 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:42978 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726462AbfEQRD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 13:03:56 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 0ABD660DAB; Fri, 17 May 2019 17:03:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558112635;
-        bh=4IgcuJFcVBunA66vabPQGLUoMAAyfYOXj6QvXzjcV9I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=HSWvFxn0qtDzSm9PyIPznHPMS+TALkycUaHjcD5iJAgxDLVsfR0Kj6IN2B9DwhzZL
-         C6oMyNLOWq2l7ufhPAoF/zPhDYWvoultb+rJN3Pkbj2rohDU7lHvov6OKhzz4Yedb7
-         JHtJcTkxvt4HesHwsqEzz1XR2HC2PWxAv7eYiIgA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.226.58.28] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jhugo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5A423602F8;
-        Fri, 17 May 2019 17:03:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558112634;
-        bh=4IgcuJFcVBunA66vabPQGLUoMAAyfYOXj6QvXzjcV9I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=k+R2tF9WuUY7eh5PECiRZ0/Qf9PXm5wjZm6I0pUXoXqvxamT22r8qoNZamBUmTc5e
-         VFax+tV3sVJZ8RUoBq93EnftWC7b1GYXfiqoIOplx8CNMt83P4K8kiyl1FuriR2a6j
-         QbBQZOCQO5ALfNYi4RMRKJdCL2gAoyNcnByeWhYM=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5A423602F8
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
-Subject: Re: [PATCH v4 0/9] RPMPD for QCS404 and MSM8998
-To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, agross@kernel.org
-Cc:     david.brown@linaro.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        marc.w.gonzalez@free.fr
-References: <20190513102015.26551-1-sibis@codeaurora.org>
-From:   Jeffrey Hugo <jhugo@codeaurora.org>
-Message-ID: <2d453c99-4ea2-e4f0-1d99-e13d099bfa07@codeaurora.org>
-Date:   Fri, 17 May 2019 11:03:52 -0600
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726547AbfEQRUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 13:20:06 -0400
+Received: from mail-it1-f196.google.com ([209.85.166.196]:51323 "EHLO
+        mail-it1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725933AbfEQRUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 13:20:06 -0400
+Received: by mail-it1-f196.google.com with SMTP id m3so9390802itl.1;
+        Fri, 17 May 2019 10:20:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=qrLPWyXtnI2gfzaw9iUqYTDRhEhLKXZoqwNA1fL2LAQ=;
+        b=PVLNgjcKPNwuCYgyauLWAWQrbFXd/kKCQoF0bXX5cMltLR7fks84XgVP9aZZbfishf
+         qA1LlwrEEXBuZPwQvyocwKzNmRInN+wqQOWAWuG+YIki49m7RHhvCA+F8PBQgKPenhI2
+         qPJ4eUvcWlE6HJ4q0j9W001nsUtte7prJuBZTU1nlQRKwKBlE4odUnnKHBmhRkJLf0ZB
+         l8CYE6vPxhKetIqu7wPGSDrsBoDVinT/sCwDVzrVrhKIND4nJvNzgjJTMAmkFZdcfHYh
+         DIDYAwoZNktDZOAkxRSjcQXkVdiXsZuMSJpjBC882SGpOYDSiZRVl5I32G0xTmBpsrE0
+         fzAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=qrLPWyXtnI2gfzaw9iUqYTDRhEhLKXZoqwNA1fL2LAQ=;
+        b=smMInCgU/7JAPXW9Dx+F2nUCuFzdbBITaSOJ2JRQ/WP0SAR4XhdyHQwg1lV1ep20kU
+         PpFKwddB80De89DkOiid+mPCafw69s/du0m6FvJ++QrqlZSpnmVB+dnWThEQUVr/UQbk
+         d97pu+OboFAhdpsvGyOLJ4FMxCUvTGqlyVyfEMUB+2Ew1M8dqiuV2EQuUZnAXFSTvAfe
+         KPzPa/aqZIed+BZzNhULBvlbgFjxbv1QLR02irpPEz5Kg/e88RRNopaugjhnbc7tgU2O
+         qkkBu3LbA1vxOlEsuOxSIFV8wAf3NW4ET/Sf558u4fa6qJ4IQ7UNn1KLl8YILvP9u5d2
+         Jeng==
+X-Gm-Message-State: APjAAAVNbLAWt8QfZo543aaY0AzL5ibSj8fYq34waoYLNBcHoHvUn9hM
+        JV83mbSyOHSnaxnjgvQSmA+TiV3BbdZN6uyfCik=
+X-Google-Smtp-Source: APXvYqy9MqNMwuRaX+ELq5rB4d1R7KQAB9+kT1JeKI6HQFvZCY3iw6/M+suGjbSFqWtAaTTx+zCY9kBtBlyqxKMmsos=
+X-Received: by 2002:a05:660c:7cd:: with SMTP id e13mr12523632itl.40.1558113605643;
+ Fri, 17 May 2019 10:20:05 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190513102015.26551-1-sibis@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190512082614.9045-1-tiny.windzz@gmail.com> <20190512082614.9045-3-tiny.windzz@gmail.com>
+ <20190512133930.t5txssl7mou2gljt@flea> <20190512214128.qjyys3vfpwdiacib@core.my.home>
+ <20190516150252.hf4u3bloo37chy6q@flea> <CAEExFWu-T2mGQ9Teo7TQOcJsEzXi_dB=S8CFv7MiwHyu5z4-ow@mail.gmail.com>
+ <20190517073151.mz6hcmzubk7iqfre@flea>
+In-Reply-To: <20190517073151.mz6hcmzubk7iqfre@flea>
+From:   Frank Lee <tiny.windzz@gmail.com>
+Date:   Sat, 18 May 2019 01:19:54 +0800
+Message-ID: <CAEExFWtban8Fjw6aZ5gdeC2GNk1vdqFoaJB_o-JtYZ_z70AJcQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        bjorn.andersson@linaro.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        paulmck@linux.ibm.com, stefan.wahren@i2se.com,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andy Gross <andy.gross@linaro.org>, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, marc.w.gonzalez@free.fr,
+        Eduardo Valentin <edubezval@gmail.com>,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        olof@lixom.net, David Miller <davem@davemloft.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/13/2019 4:20 AM, Sibi Sankar wrote:
-> Re-worked the macros of the rpmpd driver. Add power domains support
-> for QCS404 and MSM8998.
+On Fri, May 17, 2019 at 3:32 PM Maxime Ripard <maxime.ripard@bootlin.com> w=
+rote:
+>
+> On Fri, May 17, 2019 at 02:10:47AM +0800, Frank Lee wrote:
+> > > On Sun, May 12, 2019 at 11:41:28PM +0200, Ond=C5=99ej Jirman wrote:
+> > > > > > +static int tsens_get_temp(void *data, int *temp)
+> > > > > > +{
+> > > > > > + struct tsensor *s =3D data;
+> > > > > > + struct tsens_device *tmdev =3D s->tmdev;
+> > > > > > + int val;
+> > > > > > +
+> > > > > > + regmap_read(tmdev->regmap, tmdev->chip->temp_data_base +
+> > > > > > +             0x4 * s->id, &val);
+> > > > > > +
+> > > > > > + if (unlikely(val =3D=3D 0))
+> > > > > > +         return -EBUSY;
+> > > > >
+> > > > > I'm not sure why a val equals to 0 would be associated with EBUSY=
+?
+> > > >
+> > > > Thermal zone driver can (will) call get_temp before we got the
+> > > > first interrupt and the thermal data. In that case val will be 0.
+> > > >
+> > > > Resulting in:
+> > > >
+> > > >  (val + offset) * scale =3D (-2794) * -67 =3D 187198
+> > > >
+> > > > 187=C2=B0C and immediate shutdown during boot - based on cirtical
+> > > > temperature being reached.
+> > > >
+> > > > Busy here means, get_temp does not yet have data. Thermal zone
+> > > > driver just reports any error to dmesg output.
+> > >
+> > > Ah, that makes sense.
+> > >
+> > > I guess if we're switching to an interrupt-based driver, then we can
+> > > just use a waitqueue, or is get_temp supposed to be atomic?
+> >
+> > I think get_temp should not be bloacked.
+>
+> Why not?
 
-For the series:
-Reviewed-by: Jeffrey Hugo <jhugo@codeaurora.org>
+Maybe, I am wrong. I also want to know if we should do this.
 
-> 
-> V4:
-> * fixup fixes tag and commit message in patch 1 [Marc]
-> * fixup typos in qcs404 and msm8998 dt nodes
-> * fixup comments regarding resource type in patch 8 [Marc]
-> 
-> V3:
-> * always send level updates to vfc and vfl in set_performance state
-> * fixup commit messages [Rajendra]
-> * fixup s-o-b ordering
-> 
-> V2:
-> * Add rpmpd support for msm8998
-> * fixup corner/vfc with vlfl/vfl
-> 
-> Bjorn Andersson (4):
->    soc: qcom: rpmpd: Modify corner defining macros
->    dt-bindings: power: Add rpm power domain bindings for qcs404
->    soc: qcom: rpmpd: Add QCS404 power-domains
->    arm64: dts: qcom: qcs404: Add rpmpd node
-> 
-> Sibi Sankar (5):
->    soc: qcom: rpmpd: fixup rpmpd set performance state
->    soc: qcom: rpmpd: Add support to set rpmpd state to max
->    dt-bindings: power: Add rpm power domain bindings for msm8998
->    soc: qcom: rpmpd: Add MSM8998 power-domains
->    arm64: dts: qcom: msm8998: Add rpmpd node
-> 
->   .../devicetree/bindings/power/qcom,rpmpd.txt  |   2 +
->   arch/arm64/boot/dts/qcom/msm8998.dtsi         |  51 +++++++
->   arch/arm64/boot/dts/qcom/qcs404.dtsi          |  55 +++++++
->   drivers/soc/qcom/rpmpd.c                      | 134 ++++++++++++++----
->   include/dt-bindings/power/qcom-rpmpd.h        |  34 +++++
->   5 files changed, 252 insertions(+), 24 deletions(-)
-> 
+Yangtao
 
-
--- 
-Jeffrey Hugo
-Qualcomm Datacenter Technologies as an affiliate of Qualcomm 
-Technologies, Inc.
-Qualcomm Technologies, Inc. is a member of the
-Code Aurora Forum, a Linux Foundation Collaborative Project.
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
