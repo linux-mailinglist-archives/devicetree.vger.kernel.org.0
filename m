@@ -2,103 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28CE921B30
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 18:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D05B21B92
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 18:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729299AbfEQQLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 12:11:47 -0400
-Received: from mout.gmx.net ([212.227.15.15]:59985 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729163AbfEQQLr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 12:11:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1558109490;
-        bh=ObVsCKoy24nyR+PE5lyuwbL6rGIGz6OGgJWXUYTs8Gc=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=fqQDbDarvk1j260RMG1ySbxWBkJAQIhtWUp29JDmoJrZGizSYh620SlDIF13rkOQT
-         t4enlnwpAgGrJ3kuP9k3TRo1xX/qAtpFsMEAkK03M7s1RylbLw7KWPdGT3A6yM91sA
-         IrQLLKxr6F5mp4FMrIApwKuxFBcdtOXp0ozigY8w=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from macchiato.fritz.box ([84.118.159.3]) by mail.gmx.com (mrgmx001
- [212.227.17.184]) with ESMTPSA (Nemesis) id 0MSdNs-1hHjJ00w68-00RWe0; Fri, 17
- May 2019 18:11:30 +0200
-From:   Heinrich Schuchardt <xypron.glpk@gmx.de>
-To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>
-Subject: [PATCH 1/1] arm64: dts: marvell: mcbin: enlarge PCI memory window
-Date:   Fri, 17 May 2019 18:11:23 +0200
-Message-Id: <20190517161123.9293-1-xypron.glpk@gmx.de>
-X-Mailer: git-send-email 2.20.1
+        id S1725902AbfEQQZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 12:25:20 -0400
+Received: from mail-wm1-f53.google.com ([209.85.128.53]:38982 "EHLO
+        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbfEQQZU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 12:25:20 -0400
+Received: by mail-wm1-f53.google.com with SMTP id n25so6936162wmk.4
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 09:25:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8x2Jy6/gxZmiezgdFVn1BQR/C6WvCQ7LwkCWGJtj+hI=;
+        b=QaZHohHYfmwHjH4GvWttm3+9MJWC/0IJ5/Aro3Wu+pdYp7FyBA1SYgTXoWSUFJPpZF
+         yyHQmF+d2nOxFU8JzNBbveifLDji7skAw5dWHCnc+z2dSJGpNvs3685UrWXp7u0fXnd5
+         +mIt8qddf2y4wwI0ffXo+rr3bittdci8FYuzZbEonksAISNEquDZNrkAo5XghTlRP6AX
+         3fgq5Hoc7sWuMARPZuo19SMlYM30mYhupvF9gCXQHLGB0IZkJNwtZzNakL0qdAXdz749
+         nhDmsikrJAlgjjTZb5RDfxAY6A8BNFfIW+kWbROm6RTdRjoxVoQuBEPj3JjnQxchB9xj
+         Wl+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8x2Jy6/gxZmiezgdFVn1BQR/C6WvCQ7LwkCWGJtj+hI=;
+        b=GXfPnrgztImtYjsYk9lWZlxTk4RBTDnLuBOhZk0x0UKQd4uG6faMI33g3QX+pCgLUE
+         BpNitmfHo3kGIa2cuTmXwc9oTE6KG5Sg7PI2ZD4jblef9LqhqUgN0Z4+m7RhUqmc5Fa4
+         ph6fCdGSX+jocONz4wbsu2EUd2RriPi434LmUSrfLaYCx7u66VaS1VBM/yXi0v78cWD3
+         MOQIzJz6C2i9WI192JbOC+ZWCtloCL5eHF/x3NNjowfvX5xrryAaprZwH7lu4cpUN8Ub
+         CM3HZum3/h4cqeeD1vWJGFStcxTZEYUZgVtQBtkpqwaD2G+jtItor0s7S39VjeG4rdUL
+         qCZg==
+X-Gm-Message-State: APjAAAXQMyV5ivCvO12WESDb0sq6Zc7DgML4ITwewMx6Bs1Dr2X0n+KE
+        0sDj6Hm03+JhPa2xxqalqr8gJg==
+X-Google-Smtp-Source: APXvYqwPm5Uo6MeWvcRhGVDqKtnGQIbzB18KIfogvsXWSaBa2KfTjIHRF150v5mcpy4LLvwCUH28FQ==
+X-Received: by 2002:a7b:c344:: with SMTP id l4mr17740012wmj.25.1558110318183;
+        Fri, 17 May 2019 09:25:18 -0700 (PDT)
+Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
+        by smtp.googlemail.com with ESMTPSA id k30sm13228108wrd.0.2019.05.17.09.25.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 May 2019 09:25:17 -0700 (PDT)
+Subject: Re: [PATCHv1 8/8] arm64: dts: qcom: sdm845: Add PSCI cpuidle low
+ power states
+To:     Amit Kucheria <amit.kucheria@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, andy.gross@linaro.org,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
+Cc:     "Raju P.L.S.S.S.N" <rplsssn@codeaurora.org>,
+        devicetree@vger.kernel.org, mkshah@codeaurora.org
+References: <cover.1557486950.git.amit.kucheria@linaro.org>
+ <044cd74e461a1dd7934f44531802f4b557264365.1557486950.git.amit.kucheria@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <2132b7dd-8832-7db3-d05a-69eec3d5f139@linaro.org>
+Date:   Fri, 17 May 2019 18:25:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:hCNjLnr3ec6akbhn/dmwopTmrwD2ngfwxcwNRx8GXCrYkJA0EpJ
- L5UcXsGJelQo6uQlfzMgiqLsfqw3RElPw9lrnRcjjwRR9gJcmj1rrRavn1HvVShlaCU+Enq
- Egozfv7Y/B6s88noZPevX9LpD7kNku6iptetaBWgDjfD10dJMtbxmeENjqoUVoWbJ4oCLar
- XOelF3caKICXi3KXxsccQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:OcrfSlw1JQ8=:GN1/4inuw1Bj7DI4AR2yOE
- kenLvJPUoIGFq7CquaGL3nQdBdCj1yHykf2FsJQJHIPVtxiuL7LbrWOhwMHEzLTNDd6YHMLFM
- py2hQ0SYwIKrHw/1lFlBtN8pJU/FfSJs3RjxBW+ZHwv/uRM0frc2txp2WV8qsNhzvixSLqmeg
- gPPL73apNRQHlv3euqNA+3OzjZBicRpOukofYNwkuzclIkKX4p2KNqyAjUMAxkmbZNIDJ/gTB
- 7EeVZmNC6a8YNC1r5z71uhWM0vPITUuD1/lx6kEnd04y+ftqzyoHriL0y727mJDxItIG/M5Jh
- p5ZxnMHqsC9hhoVnaVdwWHsQhbGgqTi75WnZ/dkSPzj8p52WrUiPdxVLQ3bxQNmxXn68qk6Ki
- sTP0ULeONcC4xgmdPtOPRhFgRh8rb+fN1wshsiZOm/qr+V4tULGYcOoDMmQgdbRf2gG75yW3T
- U+xs7MvfZUyP2RVoIjpciq3uzzq5GPxfCefxFoJgR6dxOP8IpSRPOZHMbtVZJBEhCFKKTd7GD
- aWnaPa6q0LWGlEB9VfBPGngG5MLOZs4TFK4j2RHpui9wxMjwMD9vIaHS2hMIDOHbDwNt7V2Vm
- My4aO7y53osFxqQleVUXmA4n/VvpZW5nxcl2bIx+8xUD3vFEzpaLCY9GaYPCyh4OlYWA+D8Wt
- HYT1DH2/UK7Rd2Pe7yBnfOBgeGe3GWmn7uGpT8dHdT0ofIvRcF/0fYqMhuYko3WLq1hjXmdV8
- lIgJnIEHbHh2ub17m2hQo3yj2OwJFQbwP2XKw0Z1ILw8m+enl7gUZ2m9yoz1XJ24qlJpDHPpS
- fUou0epAwa2ZNgnPHW7SGFA72qMWSnCM20OB+OdgGgoOhF3g6ozC/1buxhkxnLMR5W0jYjSab
- TMvM9yFgotVEQK3OamifYbAg0oV3Pnw2muyxD0dKvNWAru6lHOiybnkKjKUfP3J6ooUKtSjBc
- 6LSRQ7VCs4Jg823WxYvLwdCi4JvvpZCw=
+In-Reply-To: <044cd74e461a1dd7934f44531802f4b557264365.1557486950.git.amit.kucheria@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Running a graphics adapter on the MACCHIATObin fails due to an
-insufficently sized memory window.
+On 10/05/2019 13:29, Amit Kucheria wrote:
+> From: "Raju P.L.S.S.S.N" <rplsssn@codeaurora.org>
+> 
+> Add device bindings for cpuidle states for cpu devices.
+> 
+> [amit: rename the idle-states to more generic names and fixups]
+> 
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <mkshah@codeaurora.org>
+> Signed-off-by: Raju P.L.S.S.S.N <rplsssn@codeaurora.org>
+> Reviewed-by: Evan Green <evgreen@chromium.org>
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 
-Enlarge the memory window for the PCIe slot to 512 MiB.
+Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-With the patch I am able to use a GT710 graphics adapter with 1 GB onboard
-memory.
 
-These are the mapped memory areas that the graphics adapter is actually
-using:
 
-Region 0: Memory at cc000000 (32-bit, non-prefetchable) [size=3D16M]
-Region 1: Memory at c0000000 (64-bit, prefetchable) [size=3D128M]
-Region 3: Memory at c8000000 (64-bit, prefetchable) [size=3D32M]
-Region 5: I/O ports at 1000 [size=3D128]
-Expansion ROM at ca000000 [disabled] [size=3D512K]
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
-=2D--
- arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm=
-64/boot/dts/marvell/armada-8040-mcbin.dtsi
-index 329f8ceeebea..205071b45a32 100644
-=2D-- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-@@ -184,6 +184,8 @@
- 	num-lanes =3D <4>;
- 	num-viewport =3D <8>;
- 	reset-gpios =3D <&cp0_gpio2 20 GPIO_ACTIVE_LOW>;
-+	ranges =3D <0x81000000 0x0 0xf9010000 0x0 0xf9010000 0x0 0x10000
-+		  0x82000000 0x0 0xc0000000 0x0 0xc0000000 0x0 0x20000000>;
- 	status =3D "okay";
- };
-
-=2D-
-2.20.1
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
