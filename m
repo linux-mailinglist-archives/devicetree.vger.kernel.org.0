@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7026F21D9C
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 20:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F96321DA2
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 20:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727401AbfEQSn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 14:43:27 -0400
-Received: from mail-vk1-f193.google.com ([209.85.221.193]:46629 "EHLO
-        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726974AbfEQSn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 14:43:27 -0400
-Received: by mail-vk1-f193.google.com with SMTP id g194so642458vke.13
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 11:43:26 -0700 (PDT)
+        id S1726814AbfEQSrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 14:47:08 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39512 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725933AbfEQSrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 14:47:08 -0400
+Received: by mail-wr1-f68.google.com with SMTP id w8so8166667wrl.6;
+        Fri, 17 May 2019 11:47:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D7Ld6ak/BcDR+qMn0+Bwsy5o52SxdEie1Dd6vVWMNQc=;
-        b=f0K0xxpVCF0ZLjARllhNmUlWPrNzNN5Nc31omR/w66TNZzX+6LZi+uLIHRG3pOjbld
-         Gz5edzdihDaQQN/cpB2qydPoWipFpiGBOL0D0BXOabrGcCiX/KO1sGrfrMjUCGjDWKd7
-         jKY9WFgb8JoT9kHtActzd8jbPHp6fFMTBZJ+s=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vDNkiLJjFXCawT5EirH0tC0q56cBKU4m+h7W3OArVyU=;
+        b=ShU59QoSeaAR7MM+7sLznlllmGxphdG2LuoN/mvYJ3l7U35bfVO6bm+wBNKyK4OK6G
+         93tikl9UxFB8ch6DwSy+eEwqbtuSTlHHqZCd8ZGqc5GTQAS/tc5WYIm01LGqQvgVv1U9
+         Lil/TzFLIcxEtTDgAseMVGvAvVP7oFojlYTEr4hxASIS4sgS9UXbPfpL8hPC/kmUEYHF
+         V4B9dQ60bm2eHS4EzoS24pHXg9ruZd5qWimFlVpKtk7B8MK6Nu/buXaGX3VhCT2HTllm
+         ELDB1+fDfOkSX2Du3QxSDgcADYM00WisukoewX9/rIxEnyKMLbSi2oO43DoEWTeyu/Su
+         vQ/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D7Ld6ak/BcDR+qMn0+Bwsy5o52SxdEie1Dd6vVWMNQc=;
-        b=OzGIOxWuxxgiZ6QSSP6foBBS0zntUqFotdKo1XTcND+OjKonNdTx8Y7ahdaksOygCU
-         k1C2AQzmDxy1OubE/63Ht2o9xQ1Wj1rGBnXvMBYDCCzQPaQGNZ5ArKLZCkFCvQv4z5Ih
-         8JiXWbInNqoAwmRqavLPann7sFi/6IKtvr672AZco930by1IEQzyDZxzW1iLxBNR/fvc
-         8wBa2MwRN4HlhZDonZ4rskYQxflzOHfNbg0NUQFfLUbeph/w3zReq5Xvql6/FQx79yr7
-         A3hkbCk9a7hVz1LxYxcJoGwfWrBOZc0EfvA3ChyfdOhsZ2UQog4FourJ6EE6qR9S7meQ
-         tLZA==
-X-Gm-Message-State: APjAAAXsWfoSspo3zjLF6Gr+HHarHH+MR4hV7L6p+MWAlXYFpnCdwcG3
-        9GunNHQ7cpBUEMviUtbpxCjiGegPD3c=
-X-Google-Smtp-Source: APXvYqwpUXdNsOnafgow3Dmss0sT6aORmt8Cf+VtO2o0VCJHRoYMtlslPhaXMMbYi+pe78faz6NwhQ==
-X-Received: by 2002:a1f:fe81:: with SMTP id l123mr143251vki.51.1558118606180;
-        Fri, 17 May 2019 11:43:26 -0700 (PDT)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id s78sm4189849vke.1.2019.05.17.11.43.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 May 2019 11:43:25 -0700 (PDT)
-Received: by mail-ua1-f50.google.com with SMTP id n7so3051513uap.12
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 11:43:25 -0700 (PDT)
-X-Received: by 2002:a9f:24a3:: with SMTP id 32mr5229332uar.109.1558118110537;
- Fri, 17 May 2019 11:35:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190517015305.23194-1-robdclark@gmail.com>
-In-Reply-To: <20190517015305.23194-1-robdclark@gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 17 May 2019 11:34:59 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XWz9iigg-GWrKZdsYePhH7==d3hZ9kZDXKeEuwLXOhaw@mail.gmail.com>
-Message-ID: <CAD=FV=XWz9iigg-GWrKZdsYePhH7==d3hZ9kZDXKeEuwLXOhaw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-cheza: add initial cheza dt
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Evan Green <evgreen@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Venkat Gopalakrishnan <venkatg@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vDNkiLJjFXCawT5EirH0tC0q56cBKU4m+h7W3OArVyU=;
+        b=hxVr2wUlmaqwiR3qrYV4Yp/g170XCdlzZiWlaPGGn25z8fCXasm+XX6SA0wh1pY7wL
+         IkNdzBaWrMyb4OBMszW/B+ICz/djfYvxE3dyVfWt1yD8cYGkFKZaRnP/xZr8i6aEF6/t
+         0qie3gWML8WBKAtywHwl+6/O1PxgCpBzDrk6pSIFSfNyDk6k/OY+6G64qnPDfleE8MrU
+         zscRBl1YxixvHVyCrAjJEvJmPnxRgPp8W6hc0WnFKTkDrATiiewfXDXB1BbEW4K3Yx9C
+         TPMX5dEHWYaqY3dCB0gjxjECZw7HCucM3jKRWzZ8B/sKS0goxZdm4133CArdlOFlHv6b
+         eLEA==
+X-Gm-Message-State: APjAAAW7/JoB9uYpC6Su2cYOyQXk3QUuGeqM3BjIT/Cn0gSdaJ06MKgV
+        PvU/naQje3Fc87VtyOWH/rM=
+X-Google-Smtp-Source: APXvYqwLBIK/ntjqXde729LnM1cq3YTMK/Br76X9joaZ7paAbpaKGQLbTHmzFx5IuUlAJiCxrcBC4A==
+X-Received: by 2002:adf:f208:: with SMTP id p8mr16535297wro.160.1558118826182;
+        Fri, 17 May 2019 11:47:06 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
+        by smtp.gmail.com with ESMTPSA id v20sm5801112wmj.10.2019.05.17.11.47.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 May 2019 11:47:05 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Steven Price <steven.price@arm.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v5 0/6] Allwinner H6 Mali GPU support
+Date:   Fri, 17 May 2019 20:46:53 +0200
+Message-Id: <20190517184659.18828-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -79,42 +74,84 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Thu, May 16, 2019 at 6:53 PM Rob Clark <robdclark@gmail.com> wrote:
->
-> From: Rob Clark <robdclark@chromium.org>
->
-> This is essentialy a squash of a bunch of history of cheza dt updates
-> from chromium kernel, some of which were themselves squashes of history
-> from older chromium kernels.
->
-> I don't claim any credit other than wanting to more easily boot upstream
-> kernel on cheza to have an easier way to test upstream driver work ;-)
->
-> I've added below in Cc tags all the original actual authors (apologies
-> if I missed any).
->
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Sibi Sankar <sibis@codeaurora.org>
-> Cc: Evan Green <evgreen@chromium.org>
-> Cc: Matthias Kaehlcke <mka@chromium.org>
-> Cc: Abhinav Kumar <abhinavk@codeaurora.org>
-> Cc: Brian Norris <briannorris@chromium.org>
-> Cc: Venkat Gopalakrishnan <venkatg@codeaurora.org>
-> Cc: Rajendra Nayak <rnayak@codeaurora.org>
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> ---
-> Updated from review comments and squashed.  I left out the the patch
-> related to deleting gpu_mem/zap_shader nodes as the corresponding
-> patch that adds them in sdm845.dtsi hasn't landed yet, but once it
-> has we will need to revisit that patch for cheza.
->
->  arch/arm64/boot/dts/qcom/Makefile            |    3 +
->  arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dts |  238 ++++
->  arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dts |  238 ++++
->  arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dts |  174 +++
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi   | 1326 ++++++++++++++++++
->  5 files changed, 1979 insertions(+)
+The Allwinner H6 has a Mali-T720 MP2 which should be supported by
+the new panfrost driver. This series fix two issues and introduce the
+dt-bindings but a simple benchmark show that it's still NOT WORKING.
 
-Looks sane to me.  Thanks!
+I'm pushing it in case someone want to continue the work.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+This has been tested with Mesa3D 19.1.0-RC2 and a GPU bitness patch[1].
+
+One patch is from Icenowy Zheng where I changed the order has required
+by Rob Herring[2].
+
+Thanks,
+Clement
+
+[1] https://gitlab.freedesktop.org/kszaq/mesa/tree/panfrost_64_32
+[2] https://patchwork.kernel.org/patch/10699829/
+
+[  345.204813] panfrost 1800000.gpu: mmu irq status=1
+[  345.209617] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+0x0000000002400400
+[  345.209617] Reason: TODO
+[  345.209617] raw fault status: 0x800002C1
+[  345.209617] decoded fault status: SLAVE FAULT
+[  345.209617] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
+[  345.209617] access type 0x2: READ
+[  345.209617] source id 0x8000
+[  345.729957] panfrost 1800000.gpu: gpu sched timeout, js=0,
+status=0x8, head=0x2400400, tail=0x2400400, sched_job=000000009e204de9
+[  346.055876] panfrost 1800000.gpu: mmu irq status=1
+[  346.060680] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+0x0000000002C00A00
+[  346.060680] Reason: TODO
+[  346.060680] raw fault status: 0x810002C1
+[  346.060680] decoded fault status: SLAVE FAULT
+[  346.060680] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
+[  346.060680] access type 0x2: READ
+[  346.060680] source id 0x8100
+[  346.561955] panfrost 1800000.gpu: gpu sched timeout, js=1,
+status=0x8, head=0x2c00a00, tail=0x2c00a00, sched_job=00000000b55a9a85
+[  346.573913] panfrost 1800000.gpu: mmu irq status=1
+[  346.578707] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+0x0000000002C00B80
+
+Changes in v4:
+ - Add bus_clock probe
+ - Fix sanity check in io-pgtable
+ - Add vramp-delay
+ - Merge all boards into one patch
+ - Remove upstreamed Neil A. patch
+
+Changes in v3 (Thanks to Maxime Ripard):
+ - Reauthor Icenowy for her path
+
+Changes in v2 (Thanks to Maxime Ripard):
+ - Drop GPU OPP Table
+ - Add clocks and clock-names in required
+
+Clément Péron (5):
+  drm: panfrost: add optional bus_clock
+  iommu: io-pgtable: fix sanity check for non 48-bit mali iommu
+  dt-bindings: gpu: mali-midgard: Add H6 mali gpu compatible
+  arm64: dts: allwinner: Add ARM Mali GPU node for H6
+  arm64: dts: allwinner: Add mali GPU supply for H6 boards
+
+Icenowy Zheng (1):
+  dt-bindings: gpu: add bus clock for Mali Midgard GPUs
+
+ .../bindings/gpu/arm,mali-midgard.txt         | 15 ++++++++++-
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  6 +++++
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |  6 +++++
+ .../dts/allwinner/sun50i-h6-orangepi.dtsi     |  6 +++++
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  6 +++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 14 +++++++++++
+ drivers/gpu/drm/panfrost/panfrost_device.c    | 25 ++++++++++++++++++-
+ drivers/gpu/drm/panfrost/panfrost_device.h    |  1 +
+ drivers/iommu/io-pgtable-arm.c                |  2 +-
+ 9 files changed, 78 insertions(+), 3 deletions(-)
+
+-- 
+2.17.1
+
