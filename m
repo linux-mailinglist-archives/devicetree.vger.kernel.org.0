@@ -2,168 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A66521655
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 11:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 423A521682
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 11:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727985AbfEQJda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 05:33:30 -0400
-Received: from twhmllg3.macronix.com ([122.147.135.201]:19583 "EHLO
-        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727758AbfEQJda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 05:33:30 -0400
-Received: from twhfmlp1.macronix.com (twhfm1p1.macronix.com [172.17.20.91])
-        by TWHMLLG3.macronix.com with ESMTP id x4H9ULi6090469;
-        Fri, 17 May 2019 17:30:21 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
-        by Forcepoint Email with ESMTP id 6A6869C38E176687E328;
-        Fri, 17 May 2019 17:30:21 +0800 (CST)
-In-Reply-To: <20190512151820.4f2dd9da@xps13>
-References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw> <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw> <20190512151820.4f2dd9da@xps13>
-To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
-Cc:     bbrezillon@kernel.org, broonie@kernel.org,
-        christophe.kerello@st.com, computersforpeace@gmail.com,
-        devicetree@vger.kernel.org, dwmw2@infradead.org,
-        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
-        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
-        mark.rutland@arm.com, paul.burton@mips.com, richard@nod.at,
-        robh+dt@kernel.org, stefan@agner.ch, zhengxunli@mxic.com.tw
-Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND controller
+        id S1727650AbfEQJrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 05:47:31 -0400
+Received: from verein.lst.de ([213.95.11.211]:36563 "EHLO newverein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727537AbfEQJrb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 05:47:31 -0400
+Received: by newverein.lst.de (Postfix, from userid 2005)
+        id D876F68B02; Fri, 17 May 2019 11:47:08 +0200 (CEST)
+Date:   Fri, 17 May 2019 11:47:08 +0200
+From:   Torsten Duwe <duwe@lst.de>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge
+ on Teres-I
+Message-ID: <20190517094708.GA16858@lst.de>
+References: <20190514160241.9EAC768C7B@newverein.lst.de> <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com> <20190515093141.41016b11@blackhole.lan> <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com> <20190516154820.GA10431@lst.de> <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com> <20190516164859.GB10431@lst.de> <20190517072738.deohh5fly4jxms7k@flea> <20190517101353.3e86d696@blackhole.lan> <20190517090845.oujs33nplbaxcyun@flea>
 MIME-Version: 1.0
-X-KeepSent: 074A1F06:5C1A58BE-482583FD:0031CD95;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Fri, 17 May 2019 17:30:21 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/05/17 PM 05:30:21,
-        Serialize complete at 2019/05/17 PM 05:30:21
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG3.macronix.com x4H9ULi6090469
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190517090845.oujs33nplbaxcyun@flea>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Miquel,
-
-> > +
-> > +static void mxic_nand_select_chip(struct nand_chip *chip, int chipnr)
+On Fri, May 17, 2019 at 11:08:45AM +0200, Maxime Ripard wrote:
+> >
+> > So for all current practical purposes, we can assume the Teres-I panel
+> > to be powered properly and providing valid EDID; nothing to worry about
+> > in software.
 > 
-> _select_target() is preferred now
+> You're creating a generic binding for all the users of that bridge,
+> while considering only the specific case of the Teres-I.
 
-Do you mean I implement mxic_nand_select_target() to control #CS ?
+All I'm saying is that _this_ usage is also valid. Nothing keeps other
+users from defining the output panel; on the contrary: the driver at hand
+already considers an _optional_ panel and handles it, conditionally. So
+driver and binding spec are 100% in sync here.
 
-If so, I need to call mxic_nand_select_target( ) to control #CS ON
-and then #CS OFF in _exec_op() due to nand_select_target()<in nand_base,c>
-is still calling chip->legacy.select_chip ?
+This is much more straightforward than requiring an output and making up
+some dummy code and params because it cannot reasonably be handled.
+(Remember, if there is an output, the driver will make calls to the
+"attached device" driver.)
 
-> 
-> > +{
-> > +   struct mxic_nand_ctlr *mxic = nand_get_controller_data(chip);
-> > +
-> > +   switch (chipnr) {
-> > +   case 0:
-> > +   case 1:
-> > +      writel(HC_EN_BIT, mxic->mfd->regs + HC_EN);
-> > +      writel(HC_CFG_MAN_CS_ASSERT | readl(mxic->mfd->regs + HC_CFG),
-> > +             mxic->mfd->regs + HC_CFG);
-> 
-> In both case I would prefer a:
-> 
->         reg = readl(...);
->         reg &= ~xxx;
->    reg |= yyy;
->    writel(reg, ...);
-> 
-> Much easier to read.
-> 
-> > +      break;
-> > +
-> > +   case -1:
-> > +      writel(~HC_CFG_MAN_CS_ASSERT & readl(mxic->mfd->regs + HC_CFG),
-> > +             mxic->mfd->regs + HC_CFG);
-> > +      writel(0, mxic->mfd->regs + HC_EN);
-> > +      break;
-> > +
-> > +   default:
-> 
-> Error?
-> 
-> > +      break;
-> > +   }
-> > +}
-> > +
-
-> > +static int mx25f0a_nand_probe(struct platform_device *pdev)
-> > +{
-> > +   struct mtd_info *mtd;
-> > +   struct mx25f0a_mfd *mfd = dev_get_drvdata(pdev->dev.parent);
-> > +   struct mxic_nand_ctlr *mxic;
-> > +   struct nand_chip *nand_chip;
-> > +   int err;
-> > +
-> > +   mxic = devm_kzalloc(&pdev->dev, sizeof(struct mxic_nand_ctlr),
-> > +             GFP_KERNEL);
-> 
-> mxic for a NAND controller structure is probably not a name meaningful
-> enough.
-> 
-> > +   if (!mxic)
-> > +      return -ENOMEM;
-> > +
-> > +   nand_chip = &mxic->nand;
-> > +   mtd = nand_to_mtd(nand_chip);
-> > +   mtd->dev.parent = pdev->dev.parent;
-> > +   nand_chip->ecc.priv = NULL;
-> > +   nand_set_flash_node(nand_chip, pdev->dev.parent->of_node);
-> > +   nand_chip->priv = mxic;
-> > +
-> > +   mxic->mfd = mfd;
-> > +
-> > +   nand_chip->legacy.select_chip = mxic_nand_select_chip;
-> 
-> Please don't implement legacy interfaces. You can check in
-> marvell_nand.c how this is handled now:
-> 
-> b25251414f6e mtd: rawnand: marvell: Stop implementing ->select_chip()
-> 
-
-Does it mean chip->legacy.select_chip() will phase-out ?
-
-
-thanks & best regards,
-Mason
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+	Torsten
 
