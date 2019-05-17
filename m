@@ -2,235 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E60AB21BAA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 18:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9EF21BE9
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 18:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbfEQQfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 12:35:11 -0400
-Received: from mail-it1-f195.google.com ([209.85.166.195]:51911 "EHLO
-        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725932AbfEQQfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 12:35:10 -0400
-Received: by mail-it1-f195.google.com with SMTP id m3so9168675itl.1;
-        Fri, 17 May 2019 09:35:10 -0700 (PDT)
+        id S1727446AbfEQQrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 12:47:52 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41843 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727245AbfEQQrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 12:47:51 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q17so3941009pfq.8
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 09:47:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=k3eLPJeFfTPv6TDvaqkmkbLRpKbPkalLozF0uKgDS0w=;
-        b=a655/08pvA5tAEYJxcg8wgkRU0hsAMqB0mXWuqtMtdvgNCbMuUP9B3X6dotZ6kLaiS
-         R1H/lm3y+/WgbsK24NoYfJvZAeVDOJWcXFUkXz5YX8aoOultAe4JHcXGVoEjGx4qTMZC
-         QMRXdkkggogxS/Xfu132Ukr93FYGAXS6w4myVLum3ttDhkTZ3eUivku7XTO4YnKcqpdL
-         2YqucLNb7zrvr46crgHA6h9IG/dFEG82Cehlcp+JqfQalNiLmRqNxNQXKUkX1gmrP4co
-         ggb0iBorZVzcQ9GiqvuNATt/2nSpUpda5btDqL2RpDp+i6C20Fa6Is5119dMApE6oQ9c
-         UEAA==
+        bh=ZEOBQ+tiRCBCDhxOnqUK3ak9dZiYIaMI5j8XdfHoJPo=;
+        b=apNC443IjOu26zOUT73921FGrnZ1n43OPBcwr8RIvJ+ZwA785Xj8ae/wdc1rrNkXDy
+         23fQnlF+WLg7ie94sC7Saky9o7IuCQHw5EtDYIwfJ3Hhg5BFCSLEIgSAq/ijzHWjvVtg
+         gNLSxE2QaGgEAbJZHjlXf9OVihYSzy2yxrfjA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=k3eLPJeFfTPv6TDvaqkmkbLRpKbPkalLozF0uKgDS0w=;
-        b=an9MgPNrAMM/mdG4ACsfNAvm+UFAMTVTIadutAcU8ebyzdn/juOlCOOZbIr5HoaLMb
-         xpA9lSP0yy12YgIteBVQwIQCj/Oen8wqtcsmd9X0BoZuw2gJM/WxeXXPET3uwSNtrgkN
-         T1JwZ3ARiCIeu+xSGJRKKsGIBAJzwNS5jTjYHr0bIatogGzNFLOZSBmlVgPqgGyjv9bX
-         fFqZt+OSiG7Qt7nMBBtOgeOUNtyYcaK584/BTJyVAA5gJ79/HBIHLO6kOyrL5TQs7Cq1
-         OB2E3L5M5XHWzr7eQbXh7KyqKX/Z1c/KzUVQ3ANDTUE8kfzKUf3MfKXLSZvhSP6tNBTV
-         9zuQ==
-X-Gm-Message-State: APjAAAWMaVK51snNA73mgveMklbQJwx8bI4M9SAVTiS2oSkIigPeN5yy
-        zlaNvyi7+FKYUjGDGqjyl12sZKC6uqD/XHW4BYg=
-X-Google-Smtp-Source: APXvYqzDym+y/WmoJ7mUwnMdhz5ZNgY4qEk+9h4TgQdw2Wcyk7OG0owfEtQTfsiZZUF6M67quXcikzQQAqQXIcmZU8w=
-X-Received: by 2002:a24:ac49:: with SMTP id m9mr11819158iti.174.1558110909642;
- Fri, 17 May 2019 09:35:09 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZEOBQ+tiRCBCDhxOnqUK3ak9dZiYIaMI5j8XdfHoJPo=;
+        b=ZPT5wEtwERfW7RyOj84rV4SMkhBxVZ5Sr4vovXyM4lWeJAYUp6XXXZ91RKgVqZKM7T
+         AqwWWWze92bEKrTqvjUH8jvsITBxQNYxKW8xrbQYaQYvCDMAkQ9kIrAsZG8bO6dYrBH3
+         225/GpsDrKnVGfhSHFjS38LEMfG7YRreFxIq9iJolwIqcGVR866R7rmQrUbpNJBDzipV
+         k1d7vq+UAxIxGG4vlHbmH6cQHzr3L0r8alC6lOmIKGOKxPzJ+nRkiD8x70jN3FxtV6ZC
+         PQrY3qLCXP19MZ1jU4QLyqsz/CXnOGMDRzHZtOJKm/1YvTx/R+CdHeCUf+l/ieKFGJz+
+         LakQ==
+X-Gm-Message-State: APjAAAWIPcUYrhBMwJsOwW28CVso+1z0AHnU4u9b6dOavKZXnUMUxN+O
+        MYF9N+3y+/Zi09IjCukdiXHspQ==
+X-Google-Smtp-Source: APXvYqxzWh7+qSyhy1qYyWLoyY4I2do1NdTj92SZJu+yMhoeS1eAS3iHOrpPbfYELyOXmcFNaUiphA==
+X-Received: by 2002:a63:170a:: with SMTP id x10mr56459139pgl.355.1558111671057;
+        Fri, 17 May 2019 09:47:51 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id l141sm12229810pfd.24.2019.05.17.09.47.50
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 May 2019 09:47:50 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Subject: [RFC/PATCH 0/5] Read-only memremap() proposal
+Date:   Fri, 17 May 2019 09:47:41 -0700
+Message-Id: <20190517164746.110786-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
 MIME-Version: 1.0
-References: <20190512082614.9045-1-tiny.windzz@gmail.com> <20190512082614.9045-3-tiny.windzz@gmail.com>
- <20190512221612.ubmknvim4utnqpl4@core.my.home> <CAEExFWv5A5mhpV7afQT=AaYx2ko5QnfbM6HvfuTgT1Na=ssOcw@mail.gmail.com>
- <20190516182936.h6xdzp3gtg4ikave@core.my.home>
-In-Reply-To: <20190516182936.h6xdzp3gtg4ikave@core.my.home>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Sat, 18 May 2019 00:34:57 +0800
-Message-ID: <CAEExFWvDO3wJd6wp1hFudf3EGF0NixgKAwAd5-b1=VLF+7-jCw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
-To:     Frank Lee <tiny.windzz@gmail.com>, rui.zhang@intel.com,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>, robh+dt@kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, catalin.marinas@arm.com,
-        will.deacon@arm.com, David Miller <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan.Cameron@huawei.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com, Andy Gross <andy.gross@linaro.org>,
-        olof@lixom.net, bjorn.andersson@linaro.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        marc.w.gonzalez@free.fr, stefan.wahren@i2se.com,
-        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI,
+This patch series implements a read-only version of memremap() via
+a new MEMREMAP_RO flag. If this is passed in the mapping call, we'll
+try to map the memory region as read-only if it doesn't intersect
+with an existing mapping. Otherwise, we'll try to fallback to other
+flags to try to map the memory that way.
 
-On Fri, May 17, 2019 at 2:29 AM Ond=C5=99ej Jirman <megous@megous.com> wrot=
-e:
->
-> Hi Yangtao,
->
-> thank you for work on this driver.
->
-> On Fri, May 17, 2019 at 02:06:53AM +0800, Frank Lee wrote:
-> > HI Ond=C5=99ej,
-> >
-> > On Mon, May 13, 2019 at 6:16 AM Ond=C5=99ej Jirman <megous@megous.com> =
-wrote:
-> > > > +
-> > > > +/* Temp Unit: millidegree Celsius */
-> > > > +static int tsens_reg2temp(struct tsens_device *tmdev,
-> > > > +                           int reg)
-> > >
-> > > Please name all functions so that they are more clearly identifiable
-> > > in stack traces as belonging to this driver. For example:
-> > >
-> > >   sun8i_ths_reg2temp
-> > >
-> > > The same applies for all tsens_* functions below. tsens_* is too
-> > > generic.
-> >
-> > Done but no sun8i_ths_reg2temp.
-> >
-> > ths_reg2tem() should be a generic func.
-> > I think it should be suitable for all platforms=EF=BC=8C so no platform=
- prefix.
->
-> You've missed my point. The driver name is sun8i_thermal and if you get
-> and oops from the kernel you'll get a stack trace where there are just fu=
-nction
-> names. If you use too generic function names, it will not be clear which
-> driver is oopsing.
->
->   - sun8i_ths_reg2temp will tell you much more clearly where to search th=
-an
->   - ths_reg2temp
->
-> Of course you can always grep, but most thermal drivers are thermal senso=
-r (ths)
-> drivers, and if multiple of them used this too-generic naming scheme you'=
-d
-> have hard time debugging.
->
-> Look at other thermal drivers. They usually encode driver name in the fun=
-ction
-> names to help with identification (even if these are static driver-local
-> functions).
->
+The main use case I have is to map the command-db memory region on
+Qualcomm devices with a read-only mapping. It's already a const marked
+pointer and the API returns const pointers as well, so this series makes
+sure that even stray writes can't modify the memory. To get there we
+introduce a devm version of memremap() for a reserved memory region, add
+a memremap() flag, and implement support for that flag on arm64.
 
-Can we change to sunxi_ths_ prefix?
+Cc: Evan Green <evgreen@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Will Deacon <will.deacon@arm.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
 
-> > > > +static int tsens_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +     struct tsens_device *tmdev;
-> > > > +     struct device *dev =3D &pdev->dev;
-> > > > +     int ret;
-> > > > +
-> > > > +     tmdev =3D devm_kzalloc(dev, sizeof(*tmdev), GFP_KERNEL);
-> > > > +     if (!tmdev)
-> > > > +             return -ENOMEM;
-> > > > +
-> > > > +     tmdev->dev =3D dev;
-> > > > +     tmdev->chip =3D of_device_get_match_data(&pdev->dev);
-> > > > +     if (!tmdev->chip)
-> > > > +             return -EINVAL;
-> > > > +
-> > > > +     ret =3D tsens_init(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D tsens_register(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > >
-> > > Why split this out of probe into separate functions?
-> > >
-> > > > +     ret =3D tmdev->chip->enable(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     platform_set_drvdata(pdev, tmdev);
-> > > > +
-> > > > +     return ret;
-> > > > +}
-> > > > +
-> > > > +static int tsens_remove(struct platform_device *pdev)
-> > > > +{
-> > > > +     struct tsens_device *tmdev =3D platform_get_drvdata(pdev);
-> > > > +
-> > > > +     tmdev->chip->disable(tmdev);
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static int sun50i_thermal_enable(struct tsens_device *tmdev)
-> > > > +{
-> > > > +     int ret, val;
-> > > > +
-> > > > +     ret =3D reset_control_deassert(tmdev->reset);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D clk_prepare_enable(tmdev->bus_clk);
-> > > > +     if (ret)
-> > > > +             goto assert_reset;
-> > > > +
-> > > > +     ret =3D tsens_calibrate(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > >
-> > > If this fails (it may likely fail with EPROBE_DEFER) you are leaving =
-reset
-> > > deasserted, and clock enabled.
-> > >
-> > > Overall, I think, reset/clock management and nvmem reading will be co=
-mmon
-> > > to all the HW variants, so it doesn't make much sense splitting it ou=
-t
-> > > of probe into separate functions, and makes it more error prone.
-> >
-> > Our long-term goal is to support all platforms.
-> > Bacicallt there is a differencr between each generation.
-> > So I feel it necessary to isolate these differences.
-> >
-> > Maybe:
-> > At some point, we can draw a part of the public part and platform
-> > difference into different
-> > files. something like qcom thermal driver.
->
-> I understand, but I wrote ths drivers for H3/H5/A83T and it so far it loo=
-ks like
-> all of them would share these 3 calls.
->
-> You'll be enabling clock/reset and callibrating everywhere. So putting th=
-is to
-> per-SoC function seems premature.
+Stephen Boyd (5):
+  reserved_mem: Add a devm_memremap_reserved_mem() API
+  soc: qcom: cmd-db: Migrate to devm_memremap_reserved_mem()
+  memremap: Add support for read-only memory mappings
+  arm64: Add support for arch_memremap_ro()
+  soc: qcom: cmd-db: Map with read-only mappings
 
-In fact, enalbe and disable are the suspend and resume functions.(PM
-callback will be added in the future)
-When exiting from s2ram, the register will become the initial value.
-We need to do all the work, enabling reset/clk ,calibrating and
-initializing other reg.
+ arch/arm64/include/asm/io.h     |  1 +
+ drivers/of/of_reserved_mem.c    | 45 +++++++++++++++++++++++++++++++++
+ drivers/soc/qcom/cmd-db.c       | 14 +++-------
+ include/linux/io.h              |  1 +
+ include/linux/of_reserved_mem.h |  6 +++++
+ kernel/iomem.c                  | 15 +++++++++--
+ 6 files changed, 70 insertions(+), 12 deletions(-)
 
-So I think it is no need to put enabling reset/clk and calibrating to
-probe func, and I'd like
-to keep enable and disable func.
 
->
-> thank you and regards,
->         o.
->
-> > Regards,
-> > Yangtao
+base-commit: 9e98c678c2d6ae3a17cb2de55d17f69dddaa231b
+prerequisite-patch-id: 62119e27c0c0686e02f0cb55c296b878fb7f5e47
+prerequisite-patch-id: bda32cfc1733c245ae3f141d7c27b18e4adcc628
+prerequisite-patch-id: b8f8097161bd15e87d54dcfbfa67b9ca1abc7204
+-- 
+Sent by a computer through tubes
+
