@@ -2,199 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DFEA121C72
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 19:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E5E21C8C
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 19:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728470AbfEQR1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 13:27:52 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:34241 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728467AbfEQR1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 13:27:52 -0400
-Received: by mail-it1-f193.google.com with SMTP id p18so11470262itm.1;
-        Fri, 17 May 2019 10:27:51 -0700 (PDT)
+        id S1728394AbfEQRex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 13:34:53 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44522 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726092AbfEQRex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 13:34:53 -0400
+Received: by mail-pg1-f193.google.com with SMTP id z16so3597626pgv.11
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 10:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=8ICI9CdfR+Sv6JXgOHP/5oOIpKavCtZL50883X2efRw=;
-        b=f4wV8lPNseh7Fo79RC+jiQD8g9H/sL1IxsS3OB4PaJnsQsdm4AR617fEQuI9BFkj6c
-         f5aDiGoJg91SJxZIBKQ1Y0wsogLz9A8cNw/rYVB5DC6jFHe0bHj1v5oAMKjc1Sminwp6
-         Rr60ashoJRiDEFqwJU+zoFQzmhRClCnhuSlMLPzlfI3Jbb/TUGt8HTKHvjCSji4/upYd
-         rcbmS3KKywLEEOgP2FT5o0lhatDAKBHN4Sse2rBjSEw6e9WQq6x4vX2TiQoL2kh7adl+
-         efVJKln3csKNlFGlAd1lcLSo+zzsAZZIsiuREN+1p9L/NeDOfG1piVexmrO7PrBkzVXU
-         MNNw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=EQJ+i6iyywaiyvPH5Ae01aI539IGazdRX+wyFdAqzQ8=;
+        b=aanZSxafrgKwxWZXR9j39vx1sCu33cNvgPcDwT6PxgjwJRrkJcbhwxhh51PE7RY2mz
+         AY5Iycj6ZTO24RiG3PvHwStotGD451nVBIT6sjLw6Ynr4Ou4WW/nHdGQxnBOVgBrZ5wt
+         ozAo5veCyhAikOq+8aWu4Ey164M3K+n2/Wa+P9oxiTOfyjTCPDn4hdKDtmWCFA86qyo1
+         Axb84Btin+aZNsep3wfDD5JVAmugrkNPhN/KuwEUOBZq2kj1b2YI8MshZNcuDk1JxQjf
+         NjjY5tUquuwM1gJhMUS6g7ErT/4PZfCb0DdUm/Ng7BhHzt3u3Jsd4i59RFgcck4Z4OUL
+         UBvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=8ICI9CdfR+Sv6JXgOHP/5oOIpKavCtZL50883X2efRw=;
-        b=ueih0TehAj4x1xLeIemlreq3Oc/beglmEiG8PUHEiNX+17rF9/oeQdxjgYjpZiYW8Q
-         ti01XAgwCJsBlo+o1Nu1p9u9kv40x5BRA/QF04S3AEjVRTZe/cpig245yov2s4QIUilg
-         vHSJluoIOHO5rDu3Lm5559Fj6KAdx5yco3alsC6DCs54UfE8HgxuGQB7ReVYpeYDCMDz
-         RJl93/7BHD2GkI66sBI/3o/WJQgQVHg0mAdOjPWe7bpeSRbMaXR9DYs1S6D8m2cKBOQ+
-         k5HImIE0zFRyDPUZYeFwafWeFUei/3o2jBwBjK+Wh3JqQIqCYdCBZ1efI7xs1f5w8r8P
-         ++Pw==
-X-Gm-Message-State: APjAAAXDjHbJ2q/fxdsXFjG7ZCu/Nq5YRmYws3pfRFl819W6cmiN9ORu
-        vWeW/pfvNQUAJpyMbVdhlqUfu7fEhilN2qZ7DTg=
-X-Google-Smtp-Source: APXvYqxGGY6AszlnM3hxh5GgSKjuChgf1o9wkHmEJUdEHLYWP1w6j+Lk8W0j7JyVaVmdjCGOzUC6vJPhgT9EpOorAec=
-X-Received: by 2002:a02:a794:: with SMTP id e20mr36184091jaj.12.1558114070786;
- Fri, 17 May 2019 10:27:50 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=EQJ+i6iyywaiyvPH5Ae01aI539IGazdRX+wyFdAqzQ8=;
+        b=fG/171ltf4KuOiKr+Lg/kyv4nfWDkW0S5LFHAOyUpxCvsVjFGIOq30WIMpUfDEdGab
+         0X60wjv4HKatDozThB7hVbjY9fxCMMycYyUa+XG4aG7uOWpJFBOP1U9fEcX4TwBRG43L
+         tAa/w3OwXVhtTGiwhMdvLew+2GT4MrI2aLahQAPkbNzyq5s2iMNyz7VV9Bt7d6RVNZat
+         0Wrwvpk30mCeWbOf56waYVJDibwMObX9yE5se/EicbcWl2a8kAY3rjCY7SsfrVfzMRuV
+         NNG0wuFVK/o3MLhD5wIefxAI32UCehg36uzn08jnpAatvKnRNH4JRjvk+5oUxRez1mrx
+         /kNQ==
+X-Gm-Message-State: APjAAAX95sA0dNCOmLCh8pl31CH/gJRSkeCk6yYYvQbR1MUajvJOHzPO
+        41wQWSMCSgsu7TbLFjR5eszRwIHsCNQ=
+X-Google-Smtp-Source: APXvYqwAR5v9g9Pj7oAhKsdMTbRAYpj8+edIonWgSGveknrjHzEQSgArD/o7pgLUsetiE0m+QRPAzw==
+X-Received: by 2002:aa7:8e59:: with SMTP id d25mr61042439pfr.24.1558114492292;
+        Fri, 17 May 2019 10:34:52 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id p16sm26875608pfq.153.2019.05.17.10.34.50
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 17 May 2019 10:34:51 -0700 (PDT)
+Date:   Fri, 17 May 2019 10:35:14 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Subject: Re: [RFC/PATCH 0/5] Read-only memremap() proposal
+Message-ID: <20190517173514.GM2085@tuxbook-pro>
+References: <20190517164746.110786-1-swboyd@chromium.org>
 MIME-Version: 1.0
-References: <20190512082614.9045-1-tiny.windzz@gmail.com> <20190512082614.9045-3-tiny.windzz@gmail.com>
- <20190512133930.t5txssl7mou2gljt@flea> <CAEExFWvcMbiCJ4HD0UAtv1P6AuBJ=oUdmhu886BNZhrRz483Ug@mail.gmail.com>
- <20190517073634.izdmba3yqvxviyg3@flea>
-In-Reply-To: <20190517073634.izdmba3yqvxviyg3@flea>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Sat, 18 May 2019 01:27:39 +0800
-Message-ID: <CAEExFWtNhTqLR+v3o6vn0Y4L65i_XsrEeiex6DNLEPEkhseCjA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>, robh+dt@kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, catalin.marinas@arm.com,
-        will.deacon@arm.com, David Miller <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan.Cameron@huawei.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com, Andy Gross <andy.gross@linaro.org>,
-        olof@lixom.net, bjorn.andersson@linaro.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        marc.w.gonzalez@free.fr, stefan.wahren@i2se.com,
-        enric.balletbo@collabora.com, Linux PM <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190517164746.110786-1-swboyd@chromium.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 17, 2019 at 3:36 PM Maxime Ripard <maxime.ripard@bootlin.com> w=
-rote:
->
-> On Fri, May 17, 2019 at 01:51:56AM +0800, Frank Lee wrote:
-> > > > +struct sun50i_thermal_chip {
-> > > > +     int     sensor_num;
-> > > > +     int     offset;
-> > > > +     int     scale;
-> > > > +     int     ft_deviation;
-> > > > +     int     temp_calib_base;
-> > > > +     int     temp_data_base;
-> > > > +     int     (*enable)(struct tsens_device *tmdev);
-> > > > +     int     (*disable)(struct tsens_device *tmdev);
-> > > > +};
-> > >
-> > > I'm not super fond of having a lot of quirks that are not needed. If
-> > > we ever need those quirks when adding support for a new SoC, then
-> > > yeah, we should totally have some, but only when and if it's needed.
-> > >
-> > > Otherwise, the driver is more complicated for no particular reason.
-> >
-> > This is unavoidable because of the difference in soc.
->
-> I know, but this isn't my point.
->
-> My point is that at this time of the driver development, we don't know
-> what is going to be needed to support all of those SoCs.
->
-> Some of the parameters you added might not be needed, some parameters
-> might be missing, we don't know. So let's keep it simple for now.
->
-> > > > +static int tsens_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +     struct tsens_device *tmdev;
-> > > > +     struct device *dev =3D &pdev->dev;
-> > > > +     int ret;
-> > > > +
-> > > > +     tmdev =3D devm_kzalloc(dev, sizeof(*tmdev), GFP_KERNEL);
-> > > > +     if (!tmdev)
-> > > > +             return -ENOMEM;
-> > > > +
-> > > > +     tmdev->dev =3D dev;
-> > > > +     tmdev->chip =3D of_device_get_match_data(&pdev->dev);
-> > > > +     if (!tmdev->chip)
-> > > > +             return -EINVAL;
-> > > > +
-> > > > +     ret =3D tsens_init(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D tsens_register(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D tmdev->chip->enable(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > >
-> > > > +     platform_set_drvdata(pdev, tmdev);
-> > >
-> > > Your registration should be the very last thing you do. Otherwise, yo=
-u
-> > > have a small window where the get_temp callback can be called, but th=
-e
-> > > driver will not be functional yet.
-> >
-> > No. Anyway, ths data qcquisition is ms level.
->
-> That's kind of irrelevant. There's nothing preventing get_temp to be
-> called right away.
-As Ond=C5=99ej said,
+On Fri 17 May 09:47 PDT 2019, Stephen Boyd wrote:
 
-Registration after enabling will lead to call tz update on non-registered t=
-z
-from an interrupt handler.
+> This patch series implements a read-only version of memremap() via
+> a new MEMREMAP_RO flag. If this is passed in the mapping call, we'll
+> try to map the memory region as read-only if it doesn't intersect
+> with an existing mapping. Otherwise, we'll try to fallback to other
+> flags to try to map the memory that way.
+> 
+> The main use case I have is to map the command-db memory region on
+> Qualcomm devices with a read-only mapping. It's already a const marked
+> pointer and the API returns const pointers as well, so this series makes
+> sure that even stray writes can't modify the memory. To get there we
+> introduce a devm version of memremap() for a reserved memory region, add
+> a memremap() flag, and implement support for that flag on arm64.
+> 
 
->
-> > > > +     ret =3D tsens_calibrate(tmdev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     /*
-> > > > +      * clkin =3D 24MHz
-> > > > +      * T acquire =3D clkin / (SUN50I_THS_CTRL0_T_ACQ + 1)
-> > > > +      *           =3D 20us
-> > > > +      */
-> > > > +     regmap_write(tmdev->regmap, SUN50I_THS_CTRL0,
-> > > > +                  SUN50I_THS_CTRL0_T_ACQ(479));
-> > > > +     /* average over 4 samples */
-> > > > +     regmap_write(tmdev->regmap, SUN50I_H6_THS_MFC,
-> > > > +                  SUN50I_THS_FILTER_EN |
-> > > > +                  SUN50I_THS_FILTER_TYPE(1));
-> > > > +     /* period =3D (SUN50I_H6_THS_PC_TEMP_PERIOD + 1) * 4096 / clk=
-in; ~10ms */
-> > > > +     regmap_write(tmdev->regmap, SUN50I_H6_THS_PC,
-> > > > +                  SUN50I_H6_THS_PC_TEMP_PERIOD(58));
-> > > > +     /* enable sensor */
-> > > > +     val =3D GENMASK(tmdev->chip->sensor_num - 1, 0);
-> > > > +     regmap_write(tmdev->regmap, SUN50I_H6_THS_ENABLE, val);
-> > > > +
-> > > > +     return 0;
-> > > > +
-> > > > +assert_reset:
-> > > > +     reset_control_assert(tmdev->reset);
-> > > > +
-> > > > +     return ret;
-> > >
-> > > Can't we do that with runtime_pm?
-> >
-> > Saving energy doesn't make much sense compared to system security.
->
-> I'm not sure what you mean by security.
+I have a few places where the first patch will be useful, and the rest
+looks good.
 
-Protect system hardware from damage.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Thx,
-Yangtao
->
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+Regards,
+Bjorn
+
+> Cc: Evan Green <evgreen@chromium.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Andy Gross <agross@kernel.org>
+> Cc: Will Deacon <will.deacon@arm.com>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> 
+> Stephen Boyd (5):
+>   reserved_mem: Add a devm_memremap_reserved_mem() API
+>   soc: qcom: cmd-db: Migrate to devm_memremap_reserved_mem()
+>   memremap: Add support for read-only memory mappings
+>   arm64: Add support for arch_memremap_ro()
+>   soc: qcom: cmd-db: Map with read-only mappings
+> 
+>  arch/arm64/include/asm/io.h     |  1 +
+>  drivers/of/of_reserved_mem.c    | 45 +++++++++++++++++++++++++++++++++
+>  drivers/soc/qcom/cmd-db.c       | 14 +++-------
+>  include/linux/io.h              |  1 +
+>  include/linux/of_reserved_mem.h |  6 +++++
+>  kernel/iomem.c                  | 15 +++++++++--
+>  6 files changed, 70 insertions(+), 12 deletions(-)
+> 
+> 
+> base-commit: 9e98c678c2d6ae3a17cb2de55d17f69dddaa231b
+> prerequisite-patch-id: 62119e27c0c0686e02f0cb55c296b878fb7f5e47
+> prerequisite-patch-id: bda32cfc1733c245ae3f141d7c27b18e4adcc628
+> prerequisite-patch-id: b8f8097161bd15e87d54dcfbfa67b9ca1abc7204
+> -- 
+> Sent by a computer through tubes
+> 
