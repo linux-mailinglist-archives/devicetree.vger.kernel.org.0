@@ -2,188 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1391321DB4
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 20:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6081D21DBC
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 20:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729179AbfEQSrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 14:47:16 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:39223 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729127AbfEQSrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 14:47:15 -0400
-Received: by mail-wm1-f67.google.com with SMTP id n25so7272424wmk.4;
-        Fri, 17 May 2019 11:47:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ip1Ip/bBaI3oGl08+c/jPOf0AEvNzRwc1Jgyw/gygxk=;
-        b=Qt8cxJxOi8qJ77aqBKyjG/lWcVYYzL6/07gSZutuPuFlBoJoe9yuGAZwcmZZLSHMl2
-         YwyJMeCaJwKKUK1oUilHidMuNNn0Z34/PaJSaoJemKOp4QhfVOlfxz+PFpJrrGLq6jCY
-         T/n2HF9paCpLR/Ig0BTK8cH/fuJDirjiXDPsAk7Wp63GSaUMyoCoLuFHXO2iVULQNFX1
-         4BUDjbYEVkDAO9DHEKgRrqi5eUWO7JB3owY86c3Q4pqYmdntLGXl99w2B1l2PMQXy7gs
-         numgqR10zZKf9niYesBego+VhtkRJsOHyd6hdIANTCeHgY5UvNhdC3i7b6JTR72z0ghq
-         BukA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ip1Ip/bBaI3oGl08+c/jPOf0AEvNzRwc1Jgyw/gygxk=;
-        b=Itnk39tTq57FP28d7B4pILysMrUvxvG/XjdNKNGFXGYG9RpGqJzgJGrSIM4FwkoWE3
-         xDSK7EUqlF0Onbmalc9ycjwVOOgQDUBO9xcWmc8mPqQA9i+u9+f+YHNI5h3MkTikW9Yy
-         ygZeTRDJV8OpGN7So4QVg4RDSnEOlHxa5lrSRjnU0AcLgAHKCNw0FNzX2tavq1OL8nVK
-         TTb+alq+5G/Qp80cYITwX6dYqmGQ6JDjzYkZ6ECXLJJzBVuNpmZBEsSFasZHllqyHcKh
-         INhOInZ4KGx3Sb7WQ4KKi0+v5mgxUpLEpyzabcqmDyS1OoE03zTP27PY6+Kvicpq8s0j
-         IIFw==
-X-Gm-Message-State: APjAAAViHl8nUu18wb7xFZXBbFqgKzyQlcyf4NCWkSxCKGoWBX09GlRD
-        9/wIlvEjFJu7xe6pozhYSPM=
-X-Google-Smtp-Source: APXvYqysPSutaA4puP30zGOzEsfbUgHw1Z4xAikm5f80rIquhXkmO9Pv2pFIkeYXnsuBeQvRIr5jOQ==
-X-Received: by 2002:a1c:1f47:: with SMTP id f68mr22674115wmf.57.1558118833163;
-        Fri, 17 May 2019 11:47:13 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id v20sm5801112wmj.10.2019.05.17.11.47.12
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 May 2019 11:47:12 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Steven Price <steven.price@arm.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v5 6/6] arm64: dts: allwinner: Add mali GPU supply for H6 boards
-Date:   Fri, 17 May 2019 20:46:59 +0200
-Message-Id: <20190517184659.18828-7-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190517184659.18828-1-peron.clem@gmail.com>
-References: <20190517184659.18828-1-peron.clem@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1726464AbfEQSsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 14:48:22 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:53562 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726286AbfEQSsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 14:48:22 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id C2F5A61892; Fri, 17 May 2019 18:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1558118900;
+        bh=35zZ5q4uMp/3q4Z0JDCSvFDAAIE0REjNe04GsZlSd9s=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aJziovqK9JqfOz+VdzLUlLoZzJq7MpPBgTKdfPh4KjQN1WlFQdJrcVmdyDgeBFuDn
+         rbo6VsoEGhC0sfP5CHF5kBvY8jSYbN4swXbH29meixv5Pzt7opn32mZcMG/H+WQkhR
+         PsF/k7nTKCeSTHpc3TD7cvKDW401LvWHOmYHnUXY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from isaacm-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: isaacm@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 736716179C;
+        Fri, 17 May 2019 18:48:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1558118891;
+        bh=35zZ5q4uMp/3q4Z0JDCSvFDAAIE0REjNe04GsZlSd9s=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SOz/6r03g7SCcJGbSThbJKQnFy/ydy//GRaazg08v/2nnzbeA2kfwt+7DU/h5VOl4
+         xXmNB0yQSIchcnRZzMOY3UoRMEbtrWtzv2tggQZPxIPf3+VznmC4rVcRLPMToj7grj
+         pn7Xia0PvsazfTd/chmiqRi5k+mz1Ap3FJqYLL18=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 736716179C
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=isaacm@codeaurora.org
+From:   "Isaac J. Manjarres" <isaacm@codeaurora.org>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     "Isaac J. Manjarres" <isaacm@codeaurora.org>, robh+dt@kernel.org,
+        frowand.list@gmail.com, bhelgaas@google.com, joro@8bytes.org,
+        robin.murphy@arm.com, will.deacon@arm.com, kernel-team@android.com,
+        pratikp@codeaurora.org, lmark@codeaurora.org
+Subject: [RFC/PATCH 0/4] Initial support for modular IOMMU drivers
+Date:   Fri, 17 May 2019 11:47:33 -0700
+Message-Id: <1558118857-16912-1-git-send-email-isaacm@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable and add supply to the Mali GPU node on all the
-H6 boards.
+This series adds initial support for being able to use the ARM
+SMMU driver as a loadable kernel module. The series also adds
+to the IOMMU framework, so that it can defer probing for devices
+that depend on an IOMMU driver that may be a loadable module.
 
-Regarding the datasheet the maximum time for supply to reach
-its voltage is 32ms.
+The primary reason behind these changes is that having the ARM
+SMMU driver as a module allows for the same kernel image to be
+used across different platforms. For example, if one platform
+contains an IOMMU that implements one version of the ARM SMMU
+specification, and another platform simply does not have an
+IOMMU, the only way that these platforms can share the same
+kernel image is if the ARM SMMU driver is compiled into the
+kernel image.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts  | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi   | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts    | 6 ++++++
- 4 files changed, 24 insertions(+)
+This solution is not scalable, as it will lead to bloating the
+kernel image with support for several future versions of the
+SMMU specification to maintain a common kernel image that works
+across all platforms. Having the ARM SMMU driver as a module allows
+for a common kernel image to be supported across all platforms,
+while yielding a smaller kernel image size, since the correct
+SMMU driver can be loaded at runtime, if necessary.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 0dc33c90dd60..fe36c6588d8e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -70,6 +70,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &hdmi {
- 	status = "okay";
- };
-@@ -206,6 +211,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index 17d496990108..ea4866b0fa7a 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -58,6 +58,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-@@ -165,6 +170,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-index 62e27948a3fa..ec770f07aa82 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-@@ -55,6 +55,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-@@ -163,6 +168,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-index 4802902e128f..625a29a25c52 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-@@ -85,6 +85,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &hdmi {
- 	status = "okay";
- };
-@@ -215,6 +220,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
+Patchset Summary:
+
+1. Since the ARM SMMU driver depends on symbols being exported from
+several subsystems, the first three patches are dedicated to exporting
+the necessary symbols.
+
+2. Similar to how the pinctrl framework handles deferring probes,
+the subsequent patch makes it so that the IOMMU framework will defer
+probes indefinitely if there is a chance that the IOMMU driver that a
+device is waiting for is a module. Otherwise, it upholds the current
+behavior of stopping probe deferrals once all of the builtin drivers
+have finished probing.
+
+The ARM SMMU driver currently has support for the deprecated
+"mmu-masters" binding, which relies on the notion of initcall
+ordering for setting the bus ops to ensure that all SMMU devices
+have been bound to the driver. This poses a problem with
+making the driver a module, as there is no such notion with
+loadable modules. Will support for this be completely deprecated?
+If not, might it be useful to leverage the device tree ordering,
+and assign a property to the last SMMU device, and set the bus ops
+at that point? Or perhaps have some deferred timer based approach
+to know when to set the bus ops? 
+
+Thanks,
+Isaac
+
+Isaac J. Manjarres (4):
+  of: Export of_phandle_iterator_args() to modules
+  PCI: Export PCI ACS and DMA searching functions to modules
+  iommu: Export core IOMMU functions to kernel modules
+  iommu: Add probe deferral support for IOMMU kernel modules
+
+ drivers/iommu/iommu-sysfs.c | 3 +++
+ drivers/iommu/iommu.c       | 6 ++++++
+ drivers/iommu/of_iommu.c    | 8 ++++++--
+ drivers/of/base.c           | 1 +
+ drivers/pci/pci.c           | 1 +
+ drivers/pci/search.c        | 1 +
+ 6 files changed, 18 insertions(+), 2 deletions(-)
+
 -- 
-2.17.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
