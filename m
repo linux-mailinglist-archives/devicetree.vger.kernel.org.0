@@ -2,97 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF6E621524
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5991321545
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727441AbfEQIPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 04:15:13 -0400
-Received: from verein.lst.de ([213.95.11.211]:36068 "EHLO newverein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727386AbfEQIPN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 04:15:13 -0400
-Received: by newverein.lst.de (Postfix, from userid 107)
-        id 6C01068C4E; Fri, 17 May 2019 10:14:52 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on verein.lst.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=5.0 tests=ALL_TRUSTED,BAYES_50
-        autolearn=disabled version=3.3.1
-Received: from blackhole.lan (p5B33F92B.dip0.t-ipconnect.de [91.51.249.43])
-        by newverein.lst.de (Postfix) with ESMTPSA id DBFF067329;
-        Fri, 17 May 2019 10:14:19 +0200 (CEST)
-Date:   Fri, 17 May 2019 10:14:18 +0200
-From:   Torsten Duwe <duwe@lst.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Harald Geyer <harald@ccbib.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-Message-ID: <20190517101353.3e86d696@blackhole.lan>
-In-Reply-To: <20190517072738.deohh5fly4jxms7k@flea>
-References: <20190514155911.6C0AC68B05@newverein.lst.de>
-        <20190514160241.9EAC768C7B@newverein.lst.de>
-        <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
-        <20190515093141.41016b11@blackhole.lan>
-        <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
-        <20190516154820.GA10431@lst.de>
-        <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com>
-        <20190516164859.GB10431@lst.de>
-        <20190517072738.deohh5fly4jxms7k@flea>
-Organization: LST e.V.
-X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
+        id S1727779AbfEQIT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 04:19:59 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:11795 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726893AbfEQIT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 04:19:59 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cde6eb40000>; Fri, 17 May 2019 01:20:04 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 17 May 2019 01:19:58 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 17 May 2019 01:19:58 -0700
+Received: from [10.24.47.197] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 May
+ 2019 08:19:52 +0000
+Subject: Re: [PATCH V6 02/15] PCI/PME: Export pcie_pme_disable_msi() &
+ pcie_pme_no_msi() APIs
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Christoph Hellwig <hch@infradead.org>, <lorenzo.pieralisi@arm.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
+        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190513050626.14991-1-vidyas@nvidia.com>
+ <20190513050626.14991-3-vidyas@nvidia.com>
+ <20190513072539.GA27708@infradead.org>
+ <3a8cea93-2aeb-e5e2-4d56-f0c6449073c3@nvidia.com>
+ <20190516133426.GC101793@google.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <bd08ccaa-c6ee-f966-91e4-bcd5d99d5cf2@nvidia.com>
+Date:   Fri, 17 May 2019 13:49:49 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190516133426.GC101793@google.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558081204; bh=7E+nwQQsltOhNZTMZRtiT6upSwPTXBC0GyTnK7lGcQc=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=PIZR+FdgqtUqHfH3RaSJwY5WHI0FbtL4N5qOhHWlKa2YHOp7bBX7cWzl4ZxjDJHrG
+         b8kDPynQK0jrZZMrDPYUiDGSdFZsxeoBcfH8vVGuNP8JOXbBNEB47xTBrc2CP2LHlH
+         f9bM30qiw4vC1GyoKCGovtTkgpIFS/7+toa5YKkljDcZ3fCpr4qkw5CT2nl07Nkuxh
+         CYX8t/cEBvFWblrcfcpefgF177Ux3urnY9Wj/cMrbHKErCw3noqYqtuVs9AR4O5UVB
+         ki6lW2NtnGaZI/R78Yi+XM+rpqojgnSAkh6j+a+YZfL4jGO6bHnfC97c81qtzqvufC
+         u+mg3bAalPI4w==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 May 2019 09:27:38 +0200
-Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-
-> On Thu, May 16, 2019 at 06:48:59PM +0200, Torsten Duwe wrote:
-> > On Thu, May 16, 2019 at 09:06:41AM -0700, Vasily Khoruzhick wrote:
-> > >
-> > > Driver can talk to the panel over AUX channel only after t1+t3,
-> > > t1 is up to 10ms, t3 is up to 200ms.
-> >
-> > This is after power-on. The boot loader needs to deal with this.
+On 5/16/2019 7:04 PM, Bjorn Helgaas wrote:
+> On Tue, May 14, 2019 at 09:00:19AM +0530, Vidya Sagar wrote:
+>> On 5/13/2019 12:55 PM, Christoph Hellwig wrote:
+>>> On Mon, May 13, 2019 at 10:36:13AM +0530, Vidya Sagar wrote:
+>>>> Export pcie_pme_disable_msi() & pcie_pme_no_msi() APIs to enable drivers
+>>>> using these APIs be able to build as loadable modules.
+>>>
+>>> But this is a global setting.  If you root port is broken you need
+>>> a per-rootport quirk instead.
+>>>
+>> There is nothing broken in Tegra194 root port as such, rather, this
+>> is more of software configuration choice and we are going with
+>> legacy interrupts than MSI interrupts (as Tegra194 doesn't support
+>> raising PME interrupts through MSI and please note that this doesn't
+>> mean root port is broken).
 > 
-> The bootloader can deal with it, but the kernel will also need to. The
-> bootloader might not be doing this because it's not been updated, the
-> regulator might have been disabled between the time the kernel was
-> started and the time the bridge driver probes, etc.
+> I think the port *is* broken.  PCIe r4.0, sec 6.1.6, says
+> 
+>    If the Root Port is enabled for edge-triggered interrupt signaling
+>    using MSI or MSI-X, an interrupt message must be sent every time the
+>    logical AND of the following conditions transitions from FALSE to
+>    TRUE:
+> 
+>      * The associated vector is unmasked (not applicable if MSI does
+>        not support PVM).
+> 
+>      * The PME Interrupt Enable bit in the Root Control register is set
+>        to 1b.
+> 
+>      * The PME Status bit in the Root Status register is set.
+> 
+> The Tegra194 root port advertises MSI support, so the above should
+> apply.
+I had a discussion with our hardware engineers and we are of the opinion
+that the root port is not really broken w.r.t MSI as spec doesn't clearly
+say that if root port advertises MSI support, it must generate MSI interrupts
+for PME. All that it says is, if MSI is enabled, then MSI should be raised
+for PME events. Here, by 'enable', we understand that as enabling at
+hardware level to generate MSI interrupt which is not the case with Tegra194.
+In Tegra194, root port is enabled to generate MSI only for hot-plug events and
+legacy interrupts are used for PME, AER. Having said that I'm fine to add a
+quick based on Vendor-ID and Device-IDs of root port in Tegra194 to set
+pdev->no_msi to '1'.
 
-No, you cannot practically switch off this voltage. It supports _all_
-the devices I mentioned. In fact, the PMIC needs to enable it initially,
-and then it takes some time before the SoC can access the MMC and read
-the SPL from it, just because of exactly these 3.3V. Then the boot
-loader starts, and later the eDP bridge gets initialised.
+> 
+>> Since Tegra194 has only Synopsys DesignWare core based host
+>> controllers and not any other hosts, I think it is fine to call this
+>> API in driver.
+> 
+> It's fine to add a per-device quirk to set pdev->no_msi or something
+> similar.
+> 
+> Bjorn
+> 
 
-In *theory*, albeit a very daring one, I could imagine a very deep
-sleep mode that can only be ended by pressing the power button, which
-should still work without DCDC1. Only then, a description of the panel
-would be required. But I probably missed something and even this does
-not work.
-
-So for all current practical purposes, we can assume the Teres-I panel
-to be powered properly and providing valid EDID; nothing to worry about
-in software.
-
-HTH,
-	Torsten
