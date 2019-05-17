@@ -2,222 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91033216C2
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 12:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B34121704
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 12:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728484AbfEQKLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 06:11:40 -0400
-Received: from mail-eopbgr00085.outbound.protection.outlook.com ([40.107.0.85]:63630
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727758AbfEQKLj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 06:11:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OV+VUsoPCpPmmynuyb04/YsLIk60FIpNrH/j0ThpVEo=;
- b=Yd8YMfWq/HoEpEJtLWZWAooeCLF7Xt/koes+F7p+uSpxyErQwNwSZNPVI2f1NvnQf5C7WDrxpl8ZxLTBsTtJsSXUgkaCYufxC2hGUn2ZixiRu4Rl7kjNlcnUseY9WI+KV/azTHmE9g4I3oVqevnfO5P5LTR3q5ynp/7WyJW0ctA=
-Received: from VI1PR0401MB2496.eurprd04.prod.outlook.com (10.168.65.10) by
- VI1PR0401MB2206.eurprd04.prod.outlook.com (10.166.44.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1878.22; Fri, 17 May 2019 10:11:35 +0000
-Received: from VI1PR0401MB2496.eurprd04.prod.outlook.com
- ([fe80::3d45:6b81:13ba:88cf]) by VI1PR0401MB2496.eurprd04.prod.outlook.com
- ([fe80::3d45:6b81:13ba:88cf%7]) with mapi id 15.20.1900.010; Fri, 17 May 2019
- 10:11:35 +0000
-From:   Pankaj Bansal <pankaj.bansal@nxp.com>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        id S1727669AbfEQKhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 06:37:43 -0400
+Received: from mga07.intel.com ([134.134.136.100]:18157 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727309AbfEQKhn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 06:37:43 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 May 2019 03:37:42 -0700
+X-ExtLoop1: 1
+Received: from kuha.fi.intel.com ([10.237.72.189])
+  by fmsmga001.fm.intel.com with SMTP; 17 May 2019 03:37:37 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 17 May 2019 13:37:36 +0300
+Date:   Fri, 17 May 2019 13:37:36 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>
-CC:     "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] Documentation: can: flexcan: Add flexcan clocks'
- information
-Thread-Topic: [PATCH v2 1/2] Documentation: can: flexcan: Add flexcan clocks'
- information
-Thread-Index: AQHVC78Yo2UbMSbYHkCzxz1nr7Sue6Zug0gAgACFGWCAABD/AIAAAE4Q
-Date:   Fri, 17 May 2019 10:11:34 +0000
-Message-ID: <VI1PR0401MB249634400CB041CC622B0107F10B0@VI1PR0401MB2496.eurprd04.prod.outlook.com>
-References: <20190516133556.15872-1-pankaj.bansal@nxp.com>
- <20190516133556.15872-2-pankaj.bansal@nxp.com>
- <DB7PR04MB4618432A6FFDE8FDCC5DBAC3E60B0@DB7PR04MB4618.eurprd04.prod.outlook.com>
- <VI1PR0401MB2496DF6A7D91789C723D8014F10B0@VI1PR0401MB2496.eurprd04.prod.outlook.com>
- <DB7PR04MB4618DFD31449B07B5F3A500EE60B0@DB7PR04MB4618.eurprd04.prod.outlook.com>
-In-Reply-To: <DB7PR04MB4618DFD31449B07B5F3A500EE60B0@DB7PR04MB4618.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pankaj.bansal@nxp.com; 
-x-originating-ip: [92.120.0.4]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 41ea88f1-8060-4c27-7cb4-08d6dab00ae5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR0401MB2206;
-x-ms-traffictypediagnostic: VI1PR0401MB2206:
-x-ms-exchange-purlcount: 3
-x-microsoft-antispam-prvs: <VI1PR0401MB22068053EA36E42D99FF362FF10B0@VI1PR0401MB2206.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0040126723
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(396003)(136003)(39860400002)(366004)(376002)(13464003)(189003)(199004)(52536014)(68736007)(966005)(33656002)(81156014)(81166006)(8676002)(2906002)(110136005)(74316002)(55016002)(66446008)(64756008)(66556008)(66476007)(73956011)(76116006)(66946007)(3846002)(6116002)(66066001)(7696005)(5660300002)(45080400002)(8936002)(25786009)(478600001)(11346002)(256004)(86362001)(14444005)(446003)(53936002)(26005)(476003)(6436002)(99286004)(486006)(229853002)(6246003)(71200400001)(71190400001)(4326008)(54906003)(44832011)(14454004)(186003)(6306002)(316002)(9686003)(53546011)(305945005)(7736002)(76176011)(6506007)(102836004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0401MB2206;H:VI1PR0401MB2496.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: SzJCBqY02Erg0EfSvq7WpJ7DnYRfRAOFFREqs8Qq5qhDFYcvZPEAB9FLmIUn1yTQhnadTKaQ3lRupeYNa+tBBrXJPlxVolrgFZLtZBmPI8D0TMOdiB7rsiPk31fyX8AfEuiFBW1b4fPJC0sa/uTq2fmrmXWwFRhYcnV8Q/a1y6tc507Yea9hfaVjkT7wXAsT8pBk1HlbR9za8a9haKpEIJrZ1+dJrJN9bDgxGH2SeAuQivEcu2cp0CRpakdC0FiaFb5XyS5ZG6L2fkW5T3VVMquwCcvTT1ZxyK9e1FLcMr0Cj6Pd5aDWVifSmPCl61HaAnnhye1tyXFk8wls0IPr81WAOIXbI+09v1+vgD1kiSQBm+S6YHAHgjN1sufI0z7WAqHsCXLP9BYzvx3TpEli+meCYPhuhqui4lssX9OWTq0=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by node
+Message-ID: <20190517103736.GA1490@kuha.fi.intel.com>
+References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1557823643-8616-5-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41ea88f1-8060-4c27-7cb4-08d6dab00ae5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2019 10:11:35.0053
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2206
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1557823643-8616-5-git-send-email-chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSm9ha2ltIFpoYW5nDQo+
-IFNlbnQ6IEZyaWRheSwgMTcgTWF5LCAyMDE5IDAzOjM4IFBNDQo+IFRvOiBQYW5rYWogQmFuc2Fs
-IDxwYW5rYWouYmFuc2FsQG54cC5jb20+OyBMZW8gTGkgPGxlb3lhbmcubGlAbnhwLmNvbT47DQo+
-IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBNYXJrIFJ1dGxhbmQgPG1hcmsucnV0
-bGFuZEBhcm0uY29tPjsNCj4gV29sZmdhbmcgR3JhbmRlZ2dlciA8d2dAZ3JhbmRlZ2dlci5jb20+
-OyBNYXJjIEtsZWluZS1CdWRkZQ0KPiA8bWtsQHBlbmd1dHJvbml4LmRlPg0KPiBDYzogbGludXgt
-Y2FuQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVj
-dDogUkU6IFtQQVRDSCB2MiAxLzJdIERvY3VtZW50YXRpb246IGNhbjogZmxleGNhbjogQWRkIGZs
-ZXhjYW4gY2xvY2tzJw0KPiBpbmZvcm1hdGlvbg0KPiANCj4gDQo+ID4gLS0tLS1PcmlnaW5hbCBN
-ZXNzYWdlLS0tLS0NCj4gPiBGcm9tOiBQYW5rYWogQmFuc2FsDQo+ID4gU2VudDogMjAxOeW5tDXm
-nIgxN+aXpSAxNzoxMg0KPiA+IFRvOiBKb2FraW0gWmhhbmcgPHFpYW5ncWluZy56aGFuZ0BueHAu
-Y29tPjsgTGVvIExpDQo+ID4gPGxlb3lhbmcubGlAbnhwLmNvbT47IFJvYiBIZXJyaW5nIDxyb2Jo
-K2R0QGtlcm5lbC5vcmc+OyBNYXJrIFJ1dGxhbmQNCj4gPiA8bWFyay5ydXRsYW5kQGFybS5jb20+
-OyBXb2xmZ2FuZyBHcmFuZGVnZ2VyIDx3Z0BncmFuZGVnZ2VyLmNvbT47DQo+IE1hcmMNCj4gPiBL
-bGVpbmUtQnVkZGUgPG1rbEBwZW5ndXRyb25peC5kZT4NCj4gPiBDYzogbGludXgtY2FuQHZnZXIu
-a2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4gPiBTdWJqZWN0OiBSRTog
-W1BBVENIIHYyIDEvMl0gRG9jdW1lbnRhdGlvbjogY2FuOiBmbGV4Y2FuOiBBZGQgZmxleGNhbiBj
-bG9ja3MnDQo+ID4gaW5mb3JtYXRpb24NCj4gPg0KPiA+DQo+ID4NCj4gPiA+IC0tLS0tT3JpZ2lu
-YWwgTWVzc2FnZS0tLS0tDQo+ID4gPiBGcm9tOiBKb2FraW0gWmhhbmcNCj4gPiA+IFNlbnQ6IEZy
-aWRheSwgMTcgTWF5LCAyMDE5IDA2OjQxIEFNDQo+ID4gPiBUbzogUGFua2FqIEJhbnNhbCA8cGFu
-a2FqLmJhbnNhbEBueHAuY29tPjsgTGVvIExpDQo+ID4gPiA8bGVveWFuZy5saUBueHAuY29tPjsg
-Um9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IE1hcmsgUnV0bGFuZA0KPiA+ID4gPG1h
-cmsucnV0bGFuZEBhcm0uY29tPjsgV29sZmdhbmcgR3JhbmRlZ2dlciA8d2dAZ3JhbmRlZ2dlci5j
-b20+Ow0KPiA+IE1hcmMNCj4gPiA+IEtsZWluZS1CdWRkZSA8bWtsQHBlbmd1dHJvbml4LmRlPg0K
-PiA+ID4gQ2M6IGxpbnV4LWNhbkB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJu
-ZWwub3JnDQo+ID4gPiBTdWJqZWN0OiBSRTogW1BBVENIIHYyIDEvMl0gRG9jdW1lbnRhdGlvbjog
-Y2FuOiBmbGV4Y2FuOiBBZGQgZmxleGNhbg0KPiBjbG9ja3MnDQo+ID4gPiBpbmZvcm1hdGlvbg0K
-PiA+ID4NCj4gPiA+DQo+ID4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiA+
-IEZyb206IGxpbnV4LWNhbi1vd25lckB2Z2VyLmtlcm5lbC5vcmcNCj4gPiA+ID4gPGxpbnV4LWNh
-bi1vd25lckB2Z2VyLmtlcm5lbC5vcmc+IE9uIEJlaGFsZiBPZiBQYW5rYWogQmFuc2FsDQo+ID4g
-PiA+IFNlbnQ6IDIwMTnlubQ15pyIMTbml6UgMTY6MTINCj4gPiA+ID4gVG86IExlbyBMaSA8bGVv
-eWFuZy5saUBueHAuY29tPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47DQo+ID4g
-PiA+IE1hcmsgUnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+OyBXb2xmZ2FuZyBHcmFuZGVn
-Z2VyDQo+ID4gPiA+IDx3Z0BncmFuZGVnZ2VyLmNvbT47IE1hcmMgS2xlaW5lLUJ1ZGRlIDxta2xA
-cGVuZ3V0cm9uaXguZGU+DQo+ID4gPiA+IENjOiBsaW51eC1jYW5Admdlci5rZXJuZWwub3JnOyBk
-ZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiA+ID4gPiBTdWJqZWN0OiBbUEFUQ0ggdjIgMS8y
-XSBEb2N1bWVudGF0aW9uOiBjYW46IGZsZXhjYW46IEFkZCBmbGV4Y2FuIGNsb2NrcycNCj4gPiA+
-ID4gaW5mb3JtYXRpb24NCj4gPiA+ID4NCj4gPiA+ID4gVGhlIGNsb2NraW5nIGluZm9ybWF0aW9u
-IGlzIG1pc3NpbmcgZnJvbSBmbGV4Y2FuIGRldmljZSB0cmVlIGJpbmRpbmdzLg0KPiA+ID4gPiBU
-aGlzIGluZm9ybWF0aW9uIGlzIG5lZWRlZCB0byBiZSBhYmxlIHRvIHVzZSBmbGV4Y2FuLiBEb2N1
-bWVudCB0aGUgc2FtZS4NCj4gPiA+ID4NCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogUGFua2FqIEJh
-bnNhbCA8cGFua2FqLmJhbnNhbEBueHAuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4NCj4gPiA+
-ID4gTm90ZXM6DQo+ID4gPiA+ICAgICBEZXBlbmRlbmNpZXM6DQo+ID4gPiA+ICAgICAtDQo+ID4g
-PiA+IGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1o
-dHRwcyUzQSUyRiUyRg0KPiA+ID4gPiBsbw0KPiA+ID4gPiByZQ0KPiA+ID4gPiAua2VyDQo+ID4g
-Pg0KPiA+IG5lbC5vcmclMkZwYXRjaHdvcmslMkZjb3ZlciUyRjEwMjQ1MzYlMkYmYW1wO2RhdGE9
-MDIlN0MwMSU3Q3FpYQ0KPiA+ID4gPg0KPiA+IG5ncWluZy56aGFuZyU0MG54cC5jb20lN0M0MjYx
-NzU4M2QyYzI0MjUyMWE4ZTA4ZDZkOWQ2M2VlNyU3QzY4DQo+ID4gPiA+DQo+ID4gNmVhMWQzYmMy
-YjRjNmZhOTJjZDk5YzVjMzAxNjM1JTdDMCU3QzAlN0M2MzY5MzU5MTE1MzQ0MDUxODEmYQ0KPiA+
-ID4gPg0KPiA+IG1wO3NkYXRhPVVPQzdtSUhQc25aYksyNzQybVRqWWtMMyUyQm1DN0VxVVA0RTEy
-N1VNNWJXWSUzRCYNCj4gPiA+ID4gYW1wO3Jlc2VydmVkPTANCj4gPiA+ID4NCj4gPiA+ID4gICAg
-IFYyOg0KPiA+ID4gPiAgICAgLSBSZW1vdmVkIGNsb2NrLWZyZXF1ZW5jeSBmcm9tIG9wdGlvbmFs
-IHByb3BlcnRpZXMNCj4gPiA+ID4gICAgIC0gQWRkZWQgRGVwZW5kZW5jaWVzIGluIE5vdGVzDQo+
-ID4gPiA+DQo+ID4gPiA+ICAuLi4vYmluZGluZ3MvbmV0L2Nhbi9mc2wtZmxleGNhbi50eHQgICAg
-ICAgICB8IDQ2ICsrKysrKysrKysrKysrKysrLQ0KPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDQ0
-IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+ID4gPiA+DQo+ID4gPiA+IGRpZmYgLS1n
-aXQNCj4gPiA+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2Nhbi9m
-c2wtZmxleGNhbi50eHQNCj4gPiA+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvbmV0L2Nhbi9mc2wtZmxleGNhbi50eHQNCj4gPiA+ID4gaW5kZXggYTA0MTY4NjA1OTk4Li43
-M2M2MTZjYTBmOWEgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9uZXQvY2FuL2ZzbC1mbGV4Y2FuLnR4dA0KPiA+ID4gPiArKysgYi9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2Nhbi9mc2wtZmxleGNhbi50eHQNCj4gPiA+
-ID4gQEAgLTEyLDkgKzEyLDQyIEBAIFJlcXVpcmVkIHByb3BlcnRpZXM6DQo+ID4gPiA+ICAtIHJl
-ZyA6IE9mZnNldCBhbmQgbGVuZ3RoIG9mIHRoZSByZWdpc3RlciBzZXQgZm9yIHRoaXMgZGV2aWNl
-DQo+ID4gPiA+ICAtIGludGVycnVwdHMgOiBJbnRlcnJ1cHQgdHVwbGUgZm9yIHRoaXMgZGV2aWNl
-DQo+ID4gPiA+DQo+ID4gPiA+IC1PcHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+ID4gPiArQ2xvY2tp
-bmcgaW5mb3JtYXRpb24gaXMgbXVzdCBmb3IgZmxleGNhbi4gcGxlYXNlIHJlZmVyIGJlbG93IGlu
-Zm8NCj4gPiA+ID4gK2ZvciB1bmRlcnN0YW5kaW5nIGNsb2NraW5nIGluIGZsZXhjYW46DQo+ID4g
-PiA+ICsNCj4gPiA+ID4gK+KAoiBUaGUgRkxFWENBTiBtb2R1bGUgaXMgZGl2aWRlZCBpbnRvIHR3
-byBibG9ja3MuIENvbnRyb2xsZXIgaG9zdA0KPiA+ID4gPiAraW50ZXJmYWNlDQo+ID4gPiA+ICsg
-ICgiQ0hJIikgYW5kIFByb3RvY29sIEVuZ2luZSAoIlBFIikg4oCiIEJvdGggdGhlc2UgYmxvY2tz
-IHJlcXVpcmUNCj4gPiA+ID4gK2Nsb2NrLg0KPiA+ID4gPiAr4oCiIENISSBpcyByZXNwb25zaWJs
-ZSBmb3IgcmVnaXN0ZXJzIHJlYWQgd3JpdGUgaW5jbHVkaW5nIE1CIHJlYWQvd3JpdGUuDQo+ID4g
-PiA+ICsgIFdoaWxlIFBFIGlzIHJlc3BvbnNpYmxlIGZvciBUcmFuc2Zlci9yZWNlaXZlIGRhdGEg
-b24gQ0FOIGJ1cy4NCj4gPiA+ID4gK+KAoiBUaGUgY2xvY2tzIGZlZWRpbmcgdG8gdGhlc2UgdHdv
-IGJsb2NrcyBjYW4gYmUgc3luY2hyb25vdXMgKGkuZS4NCj4gPiA+ID4gK3NhbWUNCj4gPiA+ID4g
-K2Nsb2NrKQ0KPiA+ID4gPiArICBvciBhc3luY2hyb25vdXMgKGkuZS4gc2VwYXJhdGUgY2xvY2tz
-KS4NCj4gPiA+ID4gK+KAoiBTZWxlY3Rpb24gaXMgbWFkZSBpbiB0aGUgQ0xLX1NSQyBiaXQgKGJp
-dCAxMykgb2YgQ29udHJvbCAxIFJlZ2lzdGVyLg0KPiA+ID4gPiArICAtIENMS19TUkMgPSAwLCBh
-c3luY2hyb25vdXMgaS5lLiBzZXBhcmF0ZSBjbG9ja3MgZm9yIENISSBhbmQgUEUNCj4gPiA+ID4g
-KyAgLSBDTEtfU1JDID0gMSwgc3luY2hyb25vdXMgaS5lLiBDSEkgY2xvY2sgaXMgdXNlZCBmb3Ig
-UEUgYW5kIFBFDQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgIGNsb2NrIGlzIG5vdCB1c2VkLg0K
-PiA+ID4gPiAr4oCiIElmIHRoaXMgYml0IGlzIG5vdCBpbXBsZW1lbnRlZCBpbiBTT0MsIHRoZW4g
-U09DIG9ubHkgc3VwcG9ydHMNCj4gPiA+ID4gK2FzeW5jaHJvbm91cw0KPiA+ID4gPiArICBjbG9j
-a3MuDQo+ID4gPiA+ICvigKIgRWl0aGVyIG9mIHRoZSBjbG9jayBjYW4gYmUgZ2VuZXJhdGVkIGJ5
-IGFueSBvZiB0aGUgY2xvY2sgc291cmNlLg0KPiA+ID4gPiAr4oCiIFdoZW4gdGhlIHR3byBjbG9j
-a3MgYXJlIGFzeW5jaHJvbm91cywgdGhlbiBmb2xsb3dpbmcNCj4gPiA+ID4gK3Jlc3RyaWN0aW9u
-cyBhcHBseSB0bw0KPiA+ID4gPiArICBQRSBjbG9jay4NCj4gPiA+ID4gKyAgLSBQRSBjbG9jayBt
-dXN0IGJlIGxlc3MgdGhhbiBDSEkgY2xvY2suDQo+ID4gPiA+ICvigKIgSWYgbG93IGppdHRlciBp
-cyByZXF1aXJlZCBvbiBDQU4gYnVzLCBkZWRpY2F0ZWQgb3NjaWxsYXRvciBjYW4NCj4gPiA+ID4g
-K2JlIHVzZWQgdG8NCj4gPiA+ID4gKyAgcHJvdmlkZSBQRSBjbG9jaywgYnV0IGl0IG11c3QgYmUg
-bGVzcyB0aGFuIENISSBjbG9jay4NCj4gPiA+ID4gKw0KPiA+ID4gPiArQmFzZSBvbiBhYm92ZSBp
-bmZvcm1hdGlvbiBjbG9ja2luZyBpbmZvIGluIGZsZXhjYW4gY2FuIGJlIGRlZmluZWQNCj4gPiA+
-ID4gK2luIHR3bw0KPiA+ID4gPiB3YXlzOg0KPiA+ID4gPiArDQo+ID4gPiA+ICtNZXRob2QgMShQ
-cmVmZXJyZWQpOg0KPiA+ID4gPiArICAtIGNsb2NrczogcGhhbmRsZSB0byB0aGUgY2xvY2tzIGZl
-ZWRpbmcgdGhlIGZsZXhjYW4uIFR3byBjYW4gYmUgZ2l2ZW46DQo+ID4gPiA+ICsgICAgLSAiaXBn
-IjogUHJvdG9jb2wgRW5naW5lIGNsb2NrDQo+ID4gPiA+ICsgICAgLSAicGVyIjogQ29udHJvbGxl
-ciBob3N0IGludGVyZmFjZSBjbG9jaw0KPiA+ID4NCj4gPiA+IFtKb2FraW0gWmhhbmddIEluIGZs
-ZXhjYW4gZHJpdmVyIG5vdywgImlwZyIgaXMgZm9yIENISSBjbG9jaywgInBlciINCj4gPiA+IGlz
-IGZvciBQRQ0KPiA+IGNsb2NrLg0KPiA+ID4gSSB0aGluayBpdCdzIHVubmVjZXNzYXJ5IHRvIGV4
-Y2hhbmdlIGhlcmUuDQo+ID4NCj4gPiBJbiBmbGV4Y2FuIGRyaXZlciBub3csIHNhbWUgaXMgY2xv
-Y2sgc3VwcGxpZWQgdG8gYm90aCBDSEkgYW5kIFBFDQo+ID4gYmxvY2tzIHVzaW5nIENUUkxbQ0xL
-X1NSQ10gPSAxDQo+ID4gaHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvdjUuMS4zL3Nv
-dXJjZS9kcml2ZXJzL25ldC9jYW4vZmxleGNhbg0KPiA+IC5jI0wxMzYNCj4gPiA1DQo+ID4NCj4g
-PiBBbmQgY2xvY2tfZnJlcSBpcyBiZWluZyBjYWxjdWxhdGVkIHVzaW5nICJwZXIiLg0KPiA+IGh0
-dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y1LjEuMy9zb3VyY2UvZHJpdmVycy9uZXQv
-Y2FuL2ZsZXhjYW4NCj4gPiAuYyNMMTUxDQo+ID4gNQ0KPiA+DQo+ID4gVGhlcmVmb3JlLCAicGVy
-IiBpcyB0aGUgQ0hJIGNsb2NrIGFuZCAiaXBnIiBpcyBQRSBjbG9jay4NCj4gDQo+IEFzIHlvdSBz
-YWlkLCBjbG9ja19mcmVxIGNhbGN1bGF0ZWQgYnkgInBlciIsIGFuZCB5b3UgY2FuIGZpbmQgdGhh
-dCBwcml2LQ0KPiA+Y2FuLmNsb2NrLmZyZXEgPSBjbG9ja19mcmVxLg0KPiBBbmQgY2FuLmNsb2Nr
-LmZyZXEgaXMgdXNlZCB0byBjYWxjdWxhdGUgVFEuIFlvdSBrbm93IFBFIGNsb2NrIGlzIGZvciBD
-QU4gYnVzLiBTbw0KPiBJIHRoaW5rICJwZXIiIGlzIGZvciBQRS4NCg0KUEVSIGlzIGJlaW5nIHVz
-ZWQgZm9yIENISSBhcyB3ZWxsIGFzIFBFIChiZWNhdXNlIENUUkxbQ0xLX1NSQ10gPSAxIGh0dHBz
-Oi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y1LjEuMy9zb3VyY2UvZHJpdmVycy9uZXQvY2Fu
-L2ZsZXhjYW4uYyNMMTM2KQ0KT05MWSBDSEkgY2xvY2sgY2FuIGJlIHN1cHBsaWVkIHRvIGJvdGgg
-Q0hJIGFuZCBQRS4gKFBFIGNsb2NrIGNhbiBvbmx5IGJlIHN1cHBsaWVkIHRvIFBFIHByb3ZpZGVk
-IENUUkxbQ0xLX1NSQ10gPSAwLCBhbmQgUEUgY2xvY2sgPCBDSEkgY2xvY2sgKQ0KDQo+IA0KPiBE
-aWQgSSBtaXN1bmRlcnN0YW5kPw0KPiANCj4gQmVzdCBSZWdhcmRzLA0KPiBKb2FraW0gWmhhbmcN
-Cj4gPiA+IEJlc3QgUmVnYXJkcywNCj4gPiA+IEpvYWtpbSBaaGFuZw0KPiA+ID4gPiArICAtIGNs
-b2NrLW5hbWVzOiBNdXN0IGNvbnRhaW4gdGhlIGNsb2NrIG5hbWVzIGRlc2NyaWJlZCBqdXN0IGFi
-b3ZlLg0KPiA+ID4gPg0KPiA+ID4gPiAtLSBjbG9jay1mcmVxdWVuY3kgOiBUaGUgb3NjaWxsYXRv
-ciBmcmVxdWVuY3kgZHJpdmluZyB0aGUgZmxleGNhbg0KPiA+ID4gPiBkZXZpY2UNCj4gPiA+ID4g
-K01ldGhvZCAyKE5vdCBQcmVmZXJyZWQpOg0KPiA+ID4gPiArICAtIGNsb2NrLWZyZXF1ZW5jeSA6
-IFRoZSBzeW5jaHJvbm91cyBjbG9jayBmcmVxdWVuY3kgc3VwcGxpZWQgdG8NCj4gPiA+ID4gK2Jv
-dGgNCj4gPiA+ID4gKyAgQ29udHJvbGxlciBob3N0IGludGVyZmFjZSBhbmQgUHJvdG9jb2wgRW5n
-aW5lDQo+ID4gPiA+ICsNCj4gPiA+ID4gK09wdGlvbmFsIHByb3BlcnRpZXM6DQo+ID4gPiA+DQo+
-ID4gPiA+ICAtIHhjZWl2ZXItc3VwcGx5OiBSZWd1bGF0b3IgdGhhdCBwb3dlcnMgdGhlIENBTiB0
-cmFuc2NlaXZlcg0KPiA+ID4gPg0KPiA+ID4gPiBAQCAtNDcsNSArODAsMTQgQEAgRXhhbXBsZToN
-Cj4gPiA+ID4gIAkJaW50ZXJydXB0cyA9IDw0OCAweDI+Ow0KPiA+ID4gPiAgCQlpbnRlcnJ1cHQt
-cGFyZW50ID0gPCZtcGljPjsNCj4gPiA+ID4gIAkJY2xvY2stZnJlcXVlbmN5ID0gPDIwMDAwMDAw
-MD47IC8vIGZpbGxlZCBpbiBieSBib290bG9hZGVyDQo+ID4gPiA+ICsJfTsNCj4gPiA+ID4gKw0K
-PiA+ID4gPiArCWNhbkAyMTgwMDAwIHsNCj4gPiA+ID4gKwkJY29tcGF0aWJsZSA9ICJmc2wsbHgy
-MTYwYXIxLWZsZXhjYW4iOw0KPiA+ID4gPiArCQlyZWcgPSA8MHgwIDB4MjE4MDAwMCAweDAgMHgx
-MDAwMD47DQo+ID4gPiA+ICsJCWludGVycnVwdHMgPSA8R0lDX1NQSSAyMSBJUlFfVFlQRV9MRVZF
-TF9ISUdIPjsNCj4gPiA+ID4gKwkJY2xvY2tzID0gPCZzeXNjbGs+LCA8JmNsb2NrZ2VuIDQgNz47
-DQo+ID4gPiA+ICsJCWNsb2NrLW5hbWVzID0gImlwZyIsICJwZXIiOw0KPiA+ID4gPiAgCQlmc2ws
-Y2xrLXNvdXJjZSA9IDwwPjsgLy8gc2VsZWN0IGNsb2NrIHNvdXJjZSAwIGZvciBQRQ0KPiA+ID4g
-PiArCQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiA+ID4gPiAgCX07DQo+ID4gPiA+IC0tDQo+ID4g
-PiA+IDIuMTcuMQ0KDQo=
+On Tue, May 14, 2019 at 04:47:21PM +0800, Chunfeng Yun wrote:
+> Add fwnode_usb_role_switch_get() to make easier to get
+> usb_role_switch by fwnode which register it.
+> It's useful when there is not device_connection registered
+> between two drivers and only knows the fwnode which register
+> usb_role_switch.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Tested-by: Biju Das <biju.das@bp.renesas.com>
+
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+> ---
+> v5 changes:
+>  1. remove linux/of.h suggested by Biju
+>  2. add tested by Biju
+> 
+> Note: still depends on [1]
+>  [1]: [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
+>       https://patchwork.kernel.org/patch/10909971/
+> 
+> v4 changes:
+>   1. use switch_fwnode_match() to find fwnode suggested by Heikki
+>   2. this patch now depends on [1]
+> 
+>  [1] [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
+>     https://patchwork.kernel.org/patch/10909971/
+> 
+> v3 changes:
+>   1. use fwnodes instead of node suggested by Andy
+>   2. rebuild the API suggested by Heikki
+> 
+> v2 no changes
+> ---
+>  drivers/usb/roles/class.c | 24 ++++++++++++++++++++++++
+>  include/linux/usb/role.h  |  8 ++++++++
+>  2 files changed, 32 insertions(+)
+> 
+> diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
+> index f45d8df5cfb8..4a1f09a41ec0 100644
+> --- a/drivers/usb/roles/class.c
+> +++ b/drivers/usb/roles/class.c
+> @@ -135,6 +135,30 @@ struct usb_role_switch *usb_role_switch_get(struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(usb_role_switch_get);
+>  
+> +/**
+> + * fwnode_usb_role_switch_get - Find USB role switch by it's parent fwnode
+> + * @fwnode: The fwnode that register USB role switch
+> + *
+> + * Finds and returns role switch registered by @fwnode. The reference count
+> + * for the found switch is incremented.
+> + */
+> +struct usb_role_switch *
+> +fwnode_usb_role_switch_get(struct fwnode_handle *fwnode)
+> +{
+> +	struct usb_role_switch *sw;
+> +	struct device *dev;
+> +
+> +	dev = class_find_device(role_class, NULL, fwnode, switch_fwnode_match);
+> +	if (!dev)
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	sw = to_role_switch(dev);
+> +	WARN_ON(!try_module_get(sw->dev.parent->driver->owner));
+> +
+> +	return sw;
+> +}
+> +EXPORT_SYMBOL_GPL(fwnode_usb_role_switch_get);
+> +
+>  /**
+>   * usb_role_switch_put - Release handle to a switch
+>   * @sw: USB Role Switch
+> diff --git a/include/linux/usb/role.h b/include/linux/usb/role.h
+> index da2b9641b877..35d460f9ec40 100644
+> --- a/include/linux/usb/role.h
+> +++ b/include/linux/usb/role.h
+> @@ -48,6 +48,8 @@ int usb_role_switch_set_role(struct usb_role_switch *sw, enum usb_role role);
+>  enum usb_role usb_role_switch_get_role(struct usb_role_switch *sw);
+>  struct usb_role_switch *usb_role_switch_get(struct device *dev);
+>  void usb_role_switch_put(struct usb_role_switch *sw);
+> +struct usb_role_switch *
+> +fwnode_usb_role_switch_get(struct fwnode_handle *fwnode);
+>  
+>  struct usb_role_switch *
+>  usb_role_switch_register(struct device *parent,
+> @@ -72,6 +74,12 @@ static inline struct usb_role_switch *usb_role_switch_get(struct device *dev)
+>  
+>  static inline void usb_role_switch_put(struct usb_role_switch *sw) { }
+>  
+> +static inline struct usb_role_switch *
+> +fwnode_usb_role_switch_get(struct fwnode_handle *fwnode)
+> +{
+> +	return ERR_PTR(-ENODEV);
+> +}
+> +
+>  static inline struct usb_role_switch *
+>  usb_role_switch_register(struct device *parent,
+>  			 const struct usb_role_switch_desc *desc)
+> -- 
+> 2.21.0
+
+thanks,
+
+-- 
+heikki
