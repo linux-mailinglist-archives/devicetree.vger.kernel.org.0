@@ -2,86 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 320FE2156C
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31D121570
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727631AbfEQIhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 04:37:47 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:52783 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727530AbfEQIhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 04:37:47 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hRYN4-000810-P9; Fri, 17 May 2019 10:37:42 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hRYN2-0006zg-OI; Fri, 17 May 2019 10:37:40 +0200
-Date:   Fri, 17 May 2019 10:37:40 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Sascha Hauer <kernel@pengutronix.de>
-Subject: Re: [PATCH v2 1/3] dt-bindings: add vendor prefix for Evervision
- Electronics
-Message-ID: <20190517083740.vykcm7kphvsnmzv7@pengutronix.de>
-References: <20190416100645.21689-1-m.felsch@pengutronix.de>
- <20190416100645.21689-2-m.felsch@pengutronix.de>
- <20190423122612.GN23448@ulmo>
- <CAL_JsqK5jKza61=KOmHCU9SjSsZf-jkstwDZYBr4V-JOa0iSsw@mail.gmail.com>
+        id S1727766AbfEQIjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 04:39:16 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:12616 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727530AbfEQIjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 04:39:15 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cde73380000>; Fri, 17 May 2019 01:39:20 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 17 May 2019 01:39:14 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 17 May 2019 01:39:14 -0700
+Received: from [10.24.192.74] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 May
+ 2019 08:39:10 +0000
+Subject: Re: [PATCH V4 00/28] Enable Tegra PCIe root port features
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
+        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516131257.GA101793@google.com>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <1d6b0b74-5b66-c936-a374-3a19dc7637e5@nvidia.com>
+Date:   Fri, 17 May 2019 14:08:48 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK5jKza61=KOmHCU9SjSsZf-jkstwDZYBr4V-JOa0iSsw@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:37:10 up 118 days, 13:19, 90 users,  load average: 0.10, 0.05,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20190516131257.GA101793@google.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558082360; bh=/jrQrO///siHbFc4ykM7TVozt7ZVpbBa5aVFmESL/8c=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=eBMrJzFeQwkLrPW6pIhZ3QRoBsjaWiRLFLbLhN85urszZ2rI0RMlin2ed3QAe38Jm
+         7UFc01/M99lguZvcA15avzdYYH6SHAekHctZU4YYUVEOxkCuThXh9um/KwBl495FDz
+         voURdvCm10KcQmDRd0QSqlFDVPxEmvcKD+/0gudx2+0p4IFWBWwrgCjj02vUhqqncM
+         hg3Igw68pdAzG98I31X/2HRsnrKuGqs/SMJAHshhCSU5cRwK/Gf06yg1AxNPlXXesK
+         UGu0epPe/QOFjeBlWMgIUqaRv5V/R4TMdj2VvKOm2F8KgMWnl2QxRuAYDAJ0g55mnQ
+         g84eq+tD0/hZw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-05-16 21:38, Rob Herring wrote:
-> On Tue, Apr 23, 2019 at 7:26 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> >
-> > On Tue, Apr 16, 2019 at 12:06:43PM +0200, Marco Felsch wrote:
-> > > Evervision Electronics is a panel manufacturer from Taipei.
-> > > http://www.evervisionlcd.com/index.php?lang=en
-> > >
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
-> > >  1 file changed, 1 insertion(+)
-> >
-> > Applied, thanks.
-> 
-> I've converted this file to json-schema as of v5.2-rc1. See commit
-> 8122de54602e. Applied, but doesn't seem to be in linux-next?
-> 
-> Rob
 
-I tought this patch was already applied?
 
-Regards,
-  Marco
+On 16-May-19 6:42 PM, Bjorn Helgaas wrote:
+> On Thu, May 16, 2019 at 11:22:39AM +0530, Manikanta Maddireddy wrote:
+>> This series of patches adds,
+>> - Tegra root port features like Gen2, AER, etc
+>> - Power and perf optimizations
+>> - Fixes like "power up sequence", "dev_err prints", etc
+> Please:
+>
+>   1) Put the brakes on.  You posted v3 of these 30 patches on May 13
+>      and v4 on May 16.  There's no hurry; the merge window is still
+>      open and nothing will be added to -next until at least next week.
+>      If you space these out a little, people will have time to digest
+>      them.
+>
+>   2) Mention in the cover letter what changed between v3 and v4 so
+>      people know where to spend their effort.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Reason for sending v4 quickly is because one of the patches deviated from
+Rob & Thierry's comments in v2. To address this I published v4 and marked
+v3 series as superseded. 
+
+I will follow these two points from next time, meanwhile updating the
+changes from v3 to v4 below,
+
+Changes from v3 to v4:
+ - Patch [V3,27/29] is dropped
+ - Patch [V3,28/29]: devm_gpiod_get_from_of_node() is directly used in
+   pci-tegra driver instead of of_get_pci* wrapper function defined in
+   Patch [V3,27/29].
+
+Manikanta 
+
+>> This series of patches are tested on Tegra186 based Jetson-TX2, Tegra210
+>> based Jetson-TX1, T124 based Jetson-TK1 platforms, Tegra20 and Tegra30
+>> platforms.
+>>
+>> Manikanta Maddireddy (28):
+>>   soc/tegra: pmc: Export tegra_powergate_power_on()
+>>   PCI: tegra: Handle failure cases in tegra_pcie_power_on()
+>>   PCI: tegra: Rearrange Tegra PCIe driver functions
+>>   PCI: tegra: Mask AFI_INTR in runtime suspend
+>>   PCI: tegra: Fix PCIe host power up sequence
+>>   PCI: tegra: Add PCIe Gen2 link speed support
+>>   PCI: tegra: Advertise PCIe Advanced Error Reporting (AER) capability
+>>   PCI: tegra: Program UPHY electrical settings for Tegra210
+>>   PCI: tegra: Enable opportunistic UpdateFC and ACK
+>>   PCI: tegra: Disable AFI dynamic clock gating
+>>   PCI: tegra: Process pending DLL transactions before entering L1 or L2
+>>   PCI: tegra: Enable PCIe xclk clock clamping
+>>   PCI: tegra: Increase the deskew retry time
+>>   PCI: tegra: Add SW fixup for RAW violations
+>>   PCI: tegra: Update flow control timer frequency in Tegra210
+>>   PCI: tegra: Set target speed as Gen1 before starting LTSSM
+>>   PCI: tegra: Fix PLLE power down issue due to CLKREQ# signal
+>>   PCI: tegra: Program AFI_CACHE* registers only for Tegra20
+>>   PCI: tegra: Change PRSNT_SENSE IRQ log to debug
+>>   PCI: tegra: Use legacy IRQ for port service drivers
+>>   PCI: tegra: Add AFI_PEX2_CTRL reg offset as part of soc struct
+>>   PCI: tegra: Access endpoint config only if PCIe link is up
+>>   dt-bindings: pci: tegra: Document PCIe DPD pinctrl optional prop
+>>   arm64: tegra: Add PEX DPD states as pinctrl properties
+>>   PCI: tegra: Put PEX CLK & BIAS pads in DPD mode
+>>   PCI: Add DT binding for "reset-gpios" property
+>>   PCI: tegra: Add support for GPIO based PERST#
+>>   PCI: tegra: Change link retry log level to debug
+>>
+>>  .../bindings/pci/nvidia,tegra20-pcie.txt      |   8 +
+>>  Documentation/devicetree/bindings/pci/pci.txt |   3 +
+>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  19 +
+>>  drivers/pci/controller/pci-tegra.c            | 615 +++++++++++++++---
+>>  drivers/soc/tegra/pmc.c                       |   1 +
+>>  5 files changed, 566 insertions(+), 80 deletions(-)
+>>
+>> -- 
+>> 2.17.1
+>>
+
