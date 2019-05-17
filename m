@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 824632143D
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 09:29:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 795462143F
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 09:29:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727274AbfEQH3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 03:29:31 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:34874 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfEQH3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 03:29:30 -0400
-Received: by mail-wr1-f66.google.com with SMTP id m3so5791249wrv.2
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 00:29:23 -0700 (PDT)
+        id S1726871AbfEQH3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 03:29:42 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:34949 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727361AbfEQH3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 03:29:41 -0400
+Received: by mail-wm1-f65.google.com with SMTP id q15so5710607wmj.0
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 00:29:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=tMiVqkFR8qh03phVXNwaFmpCcAbZNrOQjfDOxhaGW8I=;
-        b=aqKQMT3B/z5ptdF2LE6Mt13ZFmnCPJAnH3gp0JzAUPztwjlkzJXFvFx5vmVPDxn0o6
-         i04r/RqQjyyaIa3La1RI5nh0nsVY2Beb7EJxTU0LRrcPqxdoZ6et+2QHpxjp2uRMVfMz
-         fFuIEh3uW43QXtTL4Iqrk0+KiP5qjRWuCeVDkUQH+IbtFqajU64HkDg4wJBIS2QNLi8h
-         CImL9iWlutbWZCVyza+qj2wHm8oQsjsIhUh2fdfqXi9TbFGYJypwGlIw/fwmu4KIXelR
-         NAk0AanX5uFjGzMLnJ64KwSF9pp9rFl6axtxYSqLFDA9rHrDqA+6y1bQMavs7PaEKqdD
-         nv1Q==
+        bh=bBE3/bIZmrHWriRrDe4GzbtiuyimiH06oyj88wsfZHE=;
+        b=okO65ncYZeIdnXSsEb1dSBYEStXKS52F4h/zdkgZdjjf7dUIGG0JTh/6RCq+ovVfw6
+         y7xWgwVAUNRkScHSfH2mBvQfoykHh8gjUnchhrWruMF6a2wyF239tS/KGKGccBQRyD34
+         60PoPmbhwiGbgY522iLjGr4xDZ8a9zVtTq+3ZqKNpRYzP7qWPlW/q6BvTHhAjukQw8OD
+         GhIOgKunSo25uD1sFzs1XT2t7r2mxZZytG/ooC0MN9Ly0bmjBWHeDrStj4MIhHbGbyZG
+         4xQHlDgVLtVULHA38r3bdeRwdMRP0LyK6zLDnawpeh9+EEB4Z0bCNWQnReY6DV8QNUs0
+         +9rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=tMiVqkFR8qh03phVXNwaFmpCcAbZNrOQjfDOxhaGW8I=;
-        b=ZdQwt6SLVzRYvb1NYaJslALmNawCwC1xnKXHs4TZtE5PJ04iQp8t/OaF5p90PuAxBu
-         PhdDI/qDYamNZf+WNgLrRIgnRcn1QBCAQezDY7BkJLpxjqvtpFOjjulIY0rGZezBAc0V
-         GdIiXrXgo0t2HKER+t/cbXtYqW0aJMa4QCkezq6bt6Gt4NRpDmaGKrTHBq9tVN8X27i+
-         Ff//gSowhUK+2ij+D69daOfxKvl40wJVmRWtDj9w6Rz8hXNJh2RllNxoNgHLmVFtIhXu
-         NCti4d8DkT0Ra42/cg0zbSZq9gBWgv/B2HFHF6r2hDtHjIosrcwm1DzifiShLtFETrXt
-         CCmA==
-X-Gm-Message-State: APjAAAXhq4zgORBRkyl4q2u+xmvlEkx7vk5yZ60Lz2SedAQ64fLuY9mE
-        FhQl0ql3FoDaTbDUgn9sNxU=
-X-Google-Smtp-Source: APXvYqxNWMAr0PWsGNUxJBmzsGcP4S3svlw+P6hZseOtzgVUfDKbcmENyEYMhuMMqOZw0VJdmnQCuQ==
-X-Received: by 2002:a5d:4e46:: with SMTP id r6mr32647868wrt.290.1558078162088;
-        Fri, 17 May 2019 00:29:22 -0700 (PDT)
+        bh=bBE3/bIZmrHWriRrDe4GzbtiuyimiH06oyj88wsfZHE=;
+        b=QKjVdbPaCNqwOkFvV8izO7rU9BPYTMok8wgXdVS2yGjv+LJb+v+JhAzfulYNR9j3tq
+         xVlI+wGQI9iXzLwq8goSX3taiErqgXjDTzN4qUVytjUfFM8pzYiXNHkhdAX6Av9UFUeQ
+         ha7tUlcW+wSgB2arGw9vouzExCYHTHwhaVuuhIpE6eMMzAIhZssBe0j62IO3NPgn7ppM
+         4MYPMDnEjEPgcJBAcdjym2HXshPkebPlLKrarX76TP3PvD4o7T9Awqm5p/TivkZtgV62
+         mfiZFPTfl9o4Zj8/bamfh7Vzogtgh3P/Srzr6+oBJORl3HuT4GCrG58tJeeXYsXGxK4/
+         KI3g==
+X-Gm-Message-State: APjAAAWuaJe6wSKCJNKJjwg3nzxGnFudd7ts1qzXU7kE6YrM5CxuLjar
+        GDY/1KPLr/1YIF8bVOJp1Wk=
+X-Google-Smtp-Source: APXvYqznu6pDJwboPlRcStAEL1mdA8fCJcvCKwKMUHJ1gHLwxKYaUqj3a3pHFhNQ+oQ7c8T0m8vx+Q==
+X-Received: by 2002:a1c:7d04:: with SMTP id y4mr28950263wmc.123.1558078174081;
+        Fri, 17 May 2019 00:29:34 -0700 (PDT)
 Received: from localhost ([193.47.161.132])
-        by smtp.gmail.com with ESMTPSA id b136sm8597259wmg.1.2019.05.17.00.29.13
+        by smtp.gmail.com with ESMTPSA id 130sm7611634wmd.15.2019.05.17.00.29.22
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 17 May 2019 00:29:21 -0700 (PDT)
+        Fri, 17 May 2019 00:29:33 -0700 (PDT)
 From:   Oliver Graute <oliver.graute@gmail.com>
 To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
         s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
         linux-imx@nxp.com, l.stach@pengutronix.de, oliver.graute@gmail.com,
         Oliver Graute <oliver.graute@kococonnector.com>
-Subject: [PATCH 2/5] clk: added imx8 clk driver interface
-Date:   Fri, 17 May 2019 09:18:10 +0200
-Message-Id: <20190517071813.26674-2-oliver.graute@gmail.com>
+Subject: [PATCH 3/5] arm64: dts: added fsl-imx8qm-device.dtsi
+Date:   Fri, 17 May 2019 09:18:11 +0200
+Message-Id: <20190517071813.26674-3-oliver.graute@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190517071813.26674-1-oliver.graute@gmail.com>
 References: <20190517071813.26674-1-oliver.graute@gmail.com>
@@ -62,175 +62,22 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Oliver Graute <oliver.graute@kococonnector.com>
 
-add interface for imx8qm clock
+add imx8qm device
 
 Signed-off-by: Oliver Graute <oliver.graute@kococonnector.com>
 ---
- drivers/clk/imx/Makefile     |   2 +
- drivers/clk/imx/clk-imx8.h   | 130 +++++
- drivers/clk/imx/clk-imx8qm.c | 950 +++++++++++++++++++++++++++++++++++
- 3 files changed, 1082 insertions(+)
- create mode 100644 drivers/clk/imx/clk-imx8.h
- create mode 100644 drivers/clk/imx/clk-imx8qm.c
+ .../boot/dts/freescale/fsl-imx8qm-device.dtsi | 4393 +++++++++++++++++
+ 1 file changed, 4393 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/fsl-imx8qm-device.dtsi
 
-diff --git a/drivers/clk/imx/Makefile b/drivers/clk/imx/Makefile
-index 05641c64b317..fb4f8e54eaf0 100644
---- a/drivers/clk/imx/Makefile
-+++ b/drivers/clk/imx/Makefile
-@@ -27,6 +27,8 @@ obj-$(CONFIG_MXC_CLK_SCU) += \
- 
- obj-$(CONFIG_CLK_IMX8MM) += clk-imx8mm.o
- obj-$(CONFIG_CLK_IMX8MQ) += clk-imx8mq.o
-+obj-$(CONFIG_CLK_IMX8QM) += clk-imx8qm.o
-+
- obj-$(CONFIG_CLK_IMX8QXP) += clk-imx8qxp.o clk-imx8qxp-lpcg.o
- 
- obj-$(CONFIG_SOC_IMX1)   += clk-imx1.o
-diff --git a/drivers/clk/imx/clk-imx8.h b/drivers/clk/imx/clk-imx8.h
+diff --git a/arch/arm64/boot/dts/freescale/fsl-imx8qm-device.dtsi b/arch/arm64/boot/dts/freescale/fsl-imx8qm-device.dtsi
 new file mode 100644
-index 000000000000..05552b44b507
+index 000000000000..f2c2c27ae0ca
 --- /dev/null
-+++ b/drivers/clk/imx/clk-imx8.h
-@@ -0,0 +1,130 @@
-+#ifndef __IMX8_CLK_H
-+#define __IMX8_CLK_H
-+
-+#include <linux/spinlock.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <soc/imx8/sc/sci.h>
-+
-+extern spinlock_t imx_ccm_lock;
-+extern sc_ipc_t ccm_ipc_handle;
-+
-+int imx8_clk_mu_init(void);
-+bool imx8_clk_is_resource_owned(sc_rsrc_t rsrc);
-+
-+struct clk *imx_clk_divider_scu(const char *name,
-+					sc_rsrc_t rsrc_id, sc_pm_clk_t clk_type);
-+
-+struct clk *imx_clk_divider2_scu(const char *name, const char *parent_name,
-+				sc_rsrc_t rsrc_id, sc_pm_clk_t clk_type);
-+
-+struct clk *imx_clk_divider3_scu(const char *name, const char *parent_name,
-+			sc_rsrc_t rsrc_id, sc_ctrl_t gpr_id);
-+
-+struct clk *clk_register_gate_scu(struct device *dev, const char *name,
-+		const char *parent_name, unsigned long flags,
-+		u8 clk_gate_scu_flags, spinlock_t *lock,
-+		sc_rsrc_t rsrc_id, sc_pm_clk_t clk_type,
-+		void __iomem *reg, u8 bit_idx, bool hw_gate);
-+
-+struct clk *clk_register_gate2_scu(struct device *dev, const char *name,
-+		const char *parent_name, unsigned long flags,
-+		void __iomem *reg, u8 bit_idx,
-+		u8 clk_gate_flags, spinlock_t *lock, const char *pd_name);
-+
-+struct clk *clk_register_mux_scu(struct device *dev, const char *name,
-+		const char **parent_names, u8 num_parents, unsigned long flags,
-+		void __iomem *reg, u8 shift, u8 width,
-+		u8 clk_mux_flags, spinlock_t *lock,
-+		const char *pd_name);
-+
-+struct clk *clk_register_gate3_scu(struct device *dev, const char *name,
-+		const char *parent_name, spinlock_t *lock,
-+		sc_rsrc_t rsrc_id, sc_ctrl_t gpr_id, bool invert_flag);
-+
-+struct clk *clk_register_mux_gpr_scu(struct device *dev, const char *name,
-+		const char **parents, int num_parents, spinlock_t *lock,
-+		sc_rsrc_t rsrc_id, sc_ctrl_t gpr_id);
-+
-+struct clk *clk_register_mux2_scu(struct device *dev, const char *name,
-+		const char **parents, int num_parents, unsigned long flags,
-+		sc_rsrc_t rsrc_id, sc_pm_clk_t clk_type);
-+
-+static inline struct clk *imx_clk_fixed(const char *name, int rate)
-+{
-+	return clk_register_fixed_rate(NULL, name, NULL, 0, rate);
-+}
-+
-+static inline struct clk *imx_clk_gate_scu(const char *name, const char *parent,
-+		sc_rsrc_t rsrc_id, sc_pm_clk_t clk_type,
-+		void __iomem *reg, u8 bit_idx, bool hw_gate)
-+{
-+	return clk_register_gate_scu(NULL, name, parent,
-+			CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE, 0,
-+			&imx_ccm_lock, rsrc_id, clk_type, reg,
-+			bit_idx, hw_gate);
-+}
-+
-+static inline struct clk *imx_clk_gate2_scu(const char *name, const char *parent,
-+		void __iomem *reg, u8 bit_idx, const char *pd_name)
-+{
-+	return clk_register_gate2_scu(NULL, name, parent, 0, reg,
-+			bit_idx, 0, &imx_ccm_lock, pd_name);
-+}
-+
-+static inline struct clk *imx_clk_gate3_scu(const char *name, const char *parent,
-+		sc_rsrc_t rsrc_id, sc_ctrl_t gpr_id, bool invert_flag)
-+{
-+	return clk_register_gate3_scu(NULL, name, parent,
-+			 &imx_ccm_lock, rsrc_id, gpr_id, invert_flag);
-+}
-+
-+static inline struct clk *imx_clk_mux_gpr_scu(const char *name, const char **parents,
-+			int num_parents, sc_rsrc_t rsrc_id, sc_ctrl_t gpr_id)
-+{
-+	return clk_register_mux_gpr_scu(NULL, name, parents, num_parents,
-+			 &imx_ccm_lock, rsrc_id, gpr_id);
-+}
-+
-+static inline struct clk *imx_clk_mux2_scu(const char *name,
-+		const char **parents, int num_parents, sc_rsrc_t rsrc_id,
-+		sc_pm_clk_t clk_type)
-+{
-+	return clk_register_mux2_scu(NULL, name, parents, num_parents,
-+				     CLK_SET_RATE_NO_REPARENT, rsrc_id,
-+				     clk_type);
-+}
-+
-+static inline void imx_clk_set_rate(struct clk *clk, unsigned long rate)
-+{
-+	int ret = clk_set_rate(clk, rate);
-+
-+	if (ret)
-+		pr_err("failed to set rate of clk %s to %ld: %d\n",
-+			__clk_get_name(clk), rate, ret);
-+}
-+
-+static inline struct clk *imx_clk_gate(const char *name, const char *parent,
-+		void __iomem *reg, u8 shift)
-+{
-+	return clk_register_gate(NULL, name, parent, CLK_SET_RATE_PARENT, reg,
-+			shift, 0, &imx_ccm_lock);
-+}
-+
-+static inline struct clk *imx_clk_fixed_factor(const char *name,
-+		const char *parent, unsigned int mult, unsigned int div)
-+{
-+	return clk_register_fixed_factor(NULL, name, parent,
-+			CLK_SET_RATE_PARENT, mult, div);
-+}
-+
-+static inline struct clk *imx_clk_mux_scu(const char *name, void __iomem *reg,
-+		u8 shift, u8 width, const char **parents, int num_parents, const char *pd_name)
-+{
-+	return clk_register_mux_scu(NULL, name, parents, num_parents,
-+			CLK_SET_RATE_NO_REPARENT, reg, shift,
-+			width, 0, &imx_ccm_lock, pd_name);
-+}
-+
-+
-+#endif
-diff --git a/drivers/clk/imx/clk-imx8qm.c b/drivers/clk/imx/clk-imx8qm.c
-new file mode 100644
-index 000000000000..50b20ddb3a50
---- /dev/null
-+++ b/drivers/clk/imx/clk-imx8qm.c
-@@ -0,0 +1,950 @@
++++ b/arch/arm64/boot/dts/freescale/fsl-imx8qm-device.dtsi
+@@ -0,0 +1,4393 @@
 +/*
-+ * Copyright (C) 2016 Freescale Semiconductor, Inc.
-+ * Copyright 2017-2018 NXP
++ * Copyright 2018 NXP
 + *
 + * This program is free software; you can redistribute it and/or
 + * modify it under the terms of the GNU General Public License
@@ -243,941 +90,4385 @@ index 000000000000..50b20ddb3a50
 + * GNU General Public License for more details.
 + */
 +
-+#include <dt-bindings/clock/imx8qm-clock.h>
-+#include <dt-bindings/soc/imx8_pd.h>
-+#include <linux/clk.h>
-+#include <linux/clkdev.h>
-+#include <linux/clk-provider.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <linux/types.h>
++ #include <dt-bindings/clock/imx8qm-clock.h>
 +
-+#include <soc/imx8/imx8qm/lpcg.h>
-+#include <soc/imx8/sc/sci.h>
++/ {
++	imx8qm-pm {
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+#include "clk-imx8.h"
++		pd_dc0: PD_DC_0 {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_DC_0>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+#define STR_VALUE(arg)      #arg
-+#define FUNCTION_NAME(name) STR_VALUE(name)
++			pd_dc0_pll0: PD_DC_0_PLL_0{
++				reg = <IMX_SC_R_DC_0_PLL_0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
 +
-+static const char *aud_clk_sels[] = {
-+	"aud_acm_aud_rec_clk0_clk",
-+	"aud_acm_aud_rec_clk1_clk",
-+	"mlb_clk",
-+	"hdmi_rx_mclk",
-+	"ext_aud_mclk0",
-+	"ext_aud_mclk1",
-+	"esai0_rx_clk",
-+	"esai0_rx_hf_clk",
-+	"esai0_tx_clk",
-+	"esai0_tx_hf_clk",
-+	"esai1_rx_clk",
-+	"esai1_rx_hf_clk",
-+	"esai1_tx_clk",
-+	"esai1_tx_hf_clk",
-+	"spdif0_rx",
-+	"spdif1_rx",
-+	"sai0_rx_bclk",
-+	"sai0_tx_bclk",
-+	"sai1_rx_bclk",
-+	"sai1_tx_bclk",
-+	"sai2_rx_bclk",
-+	"sai3_rx_bclk",
-+	"hdmi_rx_sai0_rx_bclk",
++				pd_dc0_pll1: PD_DC_0_PLL_1{
++					reg = <IMX_SC_R_DC_0_PLL_1>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_dc0_pll0>;
++				};
++			};
++
++			pd_mipi0: PD_MIPI_0_DSI {
++				reg = <IMX_SC_R_MIPI_0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_mipi0_i2c0: PD_MIPI_0_DSI_I2C0 {
++					reg = <IMX_SC_R_MIPI_0_I2C_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_mipi0>;
++				};
++
++				pd_mipi0_i2c1: PD_MIPI_0_DSI_I2C1 {
++					reg = <IMX_SC_R_MIPI_0_I2C_1>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_mipi0>;
++				};
++
++				pd_mipi0_pwm: PD_MIPI_0_DSI_PWM0 {
++					reg = <IMX_SC_R_MIPI_0_PWM_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_mipi0>;
++				};
++			};
++
++			pd_lvds0: PD_LVDS0 {
++				reg = <IMX_SC_R_LVDS_0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_lvds0_i2c0: PD_LVDS0_I2C0 {
++					reg = <IMX_SC_R_LVDS_0_I2C_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_lvds0>;
++				};
++
++				pd_lvds0_pwm: PD_LVDS0_PWM {
++					reg = <IMX_SC_R_LVDS_0_PWM_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_lvds0>;
++				};
++			};
++
++			pd_hdmi: PD_HDMI {
++				reg = <IMX_SC_R_HDMI>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_hdmi_pll0: PD_HDMI_PLL_0{
++					reg = <IMX_SC_R_HDMI_PLL_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_hdmi>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_hdmi_pll1: PD_HDMI_PLL_1{
++						reg = <IMX_SC_R_HDMI_PLL_1>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_hdmi_pll0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						pd_hdmi_i2c0: PD_HDMI_I2C_0 {
++							reg = <IMX_SC_R_HDMI_I2C_0>;
++							#power-domain-cells = <0>;
++							power-domains =<&pd_hdmi_pll1>;
++						};
++
++						pd_hdmi_i2s: PD_HDMI_I2S {
++							reg = <IMX_SC_R_HDMI_I2S>;
++							#power-domain-cells = <0>;
++							power-domains =<&pd_hdmi_pll1>;
++						};
++					};
++				};
++
++			};
++
++		};
++
++		pd_dc1: PD_DC_1 {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_DC_1>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_dc1_pll0: PD_DC_1_PLL_0{
++				reg = <IMX_SC_R_DC_1_PLL_0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_dc1_pll1: PD_DC_1_PLL_1{
++					reg = <IMX_SC_R_DC_1_PLL_1>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_dc1_pll0>;
++				};
++			};
++
++			pd_mipi1: PD_MIPI_1_DSI {
++				reg = <IMX_SC_R_MIPI_1>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_mipi1_i2c0: PD_MIPI_1_DSI_I2C0 {
++					reg = <IMX_SC_R_MIPI_1_I2C_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_mipi1>;
++				};
++
++				pd_mipi1_i2c1: PD_MIPI_1_DSI_I2C1 {
++					reg = <IMX_SC_R_MIPI_1_I2C_1>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_mipi1>;
++				};
++
++				pd_mipi1_pwm: PD_MIPI_1_DSI_PWM {
++					reg = <IMX_SC_R_MIPI_1_PWM_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_mipi1>;
++				};
++			};
++
++			pd_lvds1: PD_LVDS1 {
++				reg = <IMX_SC_R_LVDS_1>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_dc1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_lvds1_i2c0: PD_LVDS1_I2C0 {
++					reg = <IMX_SC_R_LVDS_1_I2C_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_lvds1>;
++				};
++
++				pd_lvds1_pwm: PD_LVDS1_PWM {
++					reg = <IMX_SC_R_LVDS_1_PWM_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_lvds1>;
++				};
++			};
++		};
++
++		pd_lsio: PD_LSIO {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_lsio_pwm0: PD_LSIO_PWM_0 {
++				reg = <IMX_SC_R_PWM_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm1: PD_LSIO_PWM_1 {
++				reg = <IMX_SC_R_PWM_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm2: PD_LSIO_PWM_2 {
++				reg = <IMX_SC_R_PWM_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm3: PD_LSIO_PWM_3 {
++				reg = <IMX_SC_R_PWM_3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm4: PD_LSIO_PWM_4 {
++				reg = <IMX_SC_R_PWM_4>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm5: PD_LSIO_PWM_5 {
++				reg = <IMX_SC_R_PWM_5>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm6: PD_LSIO_PWM_6 {
++				reg = <IMX_SC_R_PWM_6>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_pwm7: PD_LSIO_PWM_7 {
++				reg = <IMX_SC_R_PWM_7>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_kpp: PD_LSIO_KPP {
++				reg = <IMX_SC_R_KPP>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio0: PD_LSIO_GPIO_0 {
++				reg = <IMX_SC_R_GPIO_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio1: PD_LSIO_GPIO_1 {
++				reg = <IMX_SC_R_GPIO_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio2: PD_LSIO_GPIO_2 {
++				reg = <IMX_SC_R_GPIO_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio3: PD_LSIO_GPIO_3 {
++				reg = <IMX_SC_R_GPIO_3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio4: PD_LSIO_GPIO_4 {
++				reg = <IMX_SC_R_GPIO_4>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio5: PD_LSIO_GPIO_5{
++				reg = <IMX_SC_R_GPIO_5>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio6:PD_LSIO_GPIO_6 {
++				reg = <IMX_SC_R_GPIO_6>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpio7: PD_LSIO_GPIO_7 {
++				reg = <IMX_SC_R_GPIO_7>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpt0: PD_LSIO_GPT_0 {
++				reg = <IMX_SC_R_GPT_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpt1: PD_LSIO_GPT_1 {
++				reg = <IMX_SC_R_GPT_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpt2: PD_LSIO_GPT_2 {
++				reg = <IMX_SC_R_GPT_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpt3: PD_LSIO_GPT_3 {
++				reg = <IMX_SC_R_GPT_3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_gpt4: PD_LSIO_GPT_4 {
++				reg = <IMX_SC_R_GPT_4>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_flexspi0: PD_LSIO_FSPI_0 {
++				reg = <IMX_SC_R_FSPI_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_flexspi1: PD_LSIO_FSPI_1{
++				reg = <IMX_SC_R_FSPI_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_mu5a: PD_LSIO_MU5A {
++				reg = <IMX_SC_R_MU_5A>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++			pd_lsio_mu6a: PD_LSIO_MU6A {
++				reg = <IMX_SC_R_MU_6A>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_lsio>;
++			};
++		};
++
++		pd_conn: PD_CONN {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_conn_usbotg0: PD_CONN_USB_0 {
++				reg = <IMX_SC_R_USB_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++				wakeup-irq = <267>;
++			};
++
++			pd_conn_usbotg0_phy: PD_CONN_USB_0_PHY {
++				reg = <IMX_SC_R_USB_0_PHY>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++				wakeup-irq = <267>;
++			};
++
++			pd_conn_usbh1: PD_CONN_USB_1 {
++				reg = <IMX_SC_R_USB_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++				wakeup-irq = <268>;
++			};
++
++			pd_conn_usb2: PD_CONN_USB_2 {
++				reg = <IMX_SC_R_USB_2>;
++				#power-domain-cells = <0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				power-domains = <&pd_conn>;
++				wakeup-irq = <271>;
++
++				pd_conn_usb2_phy: PD_CONN_USB_2_PHY {
++					reg = <IMX_SC_R_USB_2_PHY>;
++					#power-domain-cells = <0>;
++					power-domains = <&pd_conn_usb2>;
++					wakeup-irq = <271>;
++				};
++			};
++			pd_conn_sdch0: PD_CONN_SDHC_0 {
++				reg = <IMX_SC_R_SDHC_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++			};
++			pd_conn_sdch1: PD_CONN_SDHC_1 {
++				reg = <IMX_SC_R_SDHC_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++			};
++			pd_conn_sdch2: PD_CONN_SDHC_2 {
++				reg = <IMX_SC_R_SDHC_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++			};
++			pd_conn_enet0: PD_CONN_ENET_0 {
++				reg = <IMX_SC_R_ENET_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++				wakeup-irq = <258>;
++			};
++			pd_conn_enet1: PD_CONN_ENET_1 {
++				reg = <IMX_SC_R_ENET_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++				fsl,wakeup_irq = <262>;
++			};
++			pd_conn_nand: PD_CONN_NAND {
++				reg = <IMX_SC_R_NAND>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++			};
++			pd_conn_mlb0: PD_CONN_MLB_0 {
++				reg = <IMX_SC_R_MLB_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_conn>;
++			};
++			pd_conn_edma_ch0: PD_CONN_DMA_4_CH0 {
++				reg = <IMX_SC_R_DMA_4_CH0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_conn>;
++			};
++			pd_conn_edma_ch1: PD_CONN_DMA_4_CH1 {
++				reg = <IMX_SC_R_DMA_4_CH1>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_conn>;
++			};
++			pd_conn_edma_ch2: PD_CONN_DMA_4_CH2 {
++				reg = <IMX_SC_R_DMA_4_CH2>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_conn>;
++			};
++			pd_conn_edma_ch3: PD_CONN_DMA_4_CH3 {
++				reg = <IMX_SC_R_DMA_4_CH3>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_conn>;
++			};
++			pd_conn_edma_ch4: PD_CONN_DMA_4_CH4 {
++				reg = <IMX_SC_R_DMA_4_CH4>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_conn>;
++			};
++		};
++
++		pd_hsio: PD_HSIO {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_hsio_gpio: PD_HSIO_GPIO {
++				reg = <IMX_SC_R_HSIO_GPIO>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_hsio>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_serdes0: PD_HSIO_SERDES_0 {
++					reg = <IMX_SC_R_SERDES_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_hsio_gpio>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_pcie0: PD_HSIO_PCIE_A {
++						reg = <IMX_SC_R_PCIE_A>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_serdes0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						pd_pcie1: PD_HSIO_PCIE_B {
++							reg = <IMX_SC_R_PCIE_B>;
++							#power-domain-cells = <0>;
++							power-domains =<&pd_pcie0>;
++							#address-cells = <1>;
++							#size-cells = <0>;
++
++							pd_serdes1: PD_HSIO_SERDES_1 {
++								reg = <IMX_SC_R_SERDES_1>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_pcie1>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sata0: PD_HSIO_SATA_0 {
++									reg = <IMX_SC_R_SATA_0>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_serdes1>;
++								};
++							};
++						};
++					};
++				};
++			};
++		};
++
++		pd_audio: PD_AUDIO {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_audio_pll0: PD_AUD_AUDIO_PLL_0 {
++				reg = <IMX_SC_R_AUDIO_PLL_0>;
++				power-domains =<&pd_audio>;
++				#power-domain-cells = <0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_audio_pll1: PD_AUD_AUDIO_PLL_1 {
++					reg = <IMX_SC_R_AUDIO_PLL_1>;
++					power-domains =<&pd_audio_pll0>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_audio_clk0: PD_AUD_AUDIO_CLK_0 {
++						reg = <IMX_SC_R_AUDIO_CLK_0>;
++						power-domains =<&pd_audio_pll1>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						pd_audio_clk1: PD_AUD_AUDIO_CLK_1 {
++							reg = <IMX_SC_R_AUDIO_CLK_1>;
++							power-domains =<&pd_audio_clk0>;
++							#power-domain-cells = <0>;
++							#address-cells = <1>;
++							#size-cells = <0>;
++
++							pd_dma2_chan0: PD_ASRC_0_RXA {
++								reg = <IMX_SC_R_DMA_2_CH0>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan1: PD_ASRC_0_RXB {
++								reg = <IMX_SC_R_DMA_2_CH1>;
++								power-domains =<&pd_dma2_chan0>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan2: PD_ASRC_0_RXC {
++								reg = <IMX_SC_R_DMA_2_CH2>;
++								power-domains =<&pd_dma2_chan1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan3: PD_ASRC_0_TXA {
++								reg = <IMX_SC_R_DMA_2_CH3>;
++								power-domains =<&pd_dma2_chan2>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan4: PD_ASRC_0_TXB {
++								reg = <IMX_SC_R_DMA_2_CH4>;
++								power-domains =<&pd_dma2_chan3>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan5: PD_ASRC_0_TXC {
++								reg = <IMX_SC_R_DMA_2_CH5>;
++								power-domains =<&pd_dma2_chan4>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_asrc0:PD_AUD_ASRC_0 {
++									reg = <IMX_SC_R_ASRC_0>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan5>;
++								};
++							};
++							};
++							};
++							};
++							};
++							};
++
++							pd_dma3_chan0: PD_ASRC_1_RXA {
++								reg = <IMX_SC_R_DMA_3_CH0>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan1: PD_ASRC_1_RXB {
++								reg = <IMX_SC_R_DMA_3_CH1>;
++								power-domains =<&pd_dma3_chan0>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan2: PD_ASRC_1_RXC {
++								reg = <IMX_SC_R_DMA_3_CH2>;
++								power-domains =<&pd_dma3_chan1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan3: PD_ASRC_1_TXA {
++								reg = <IMX_SC_R_DMA_3_CH3>;
++								power-domains =<&pd_dma3_chan2>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan4: PD_ASRC_1_TXB {
++								reg = <IMX_SC_R_DMA_3_CH4>;
++								power-domains =<&pd_dma3_chan3>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan5: PD_ASRC_1_TXC {
++								reg = <IMX_SC_R_DMA_3_CH5>;
++								power-domains =<&pd_dma3_chan4>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_asrc1: PD_AUD_ASRC_1 {
++									reg = <IMX_SC_R_ASRC_1>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma3_chan5>;
++
++								};
++							};
++							};
++							};
++							};
++							};
++							};
++							pd_dma2_chan6: PD_ESAI_0_RX {
++								reg = <IMX_SC_R_DMA_2_CH6>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan7: PD_ESAI_0_TX {
++								reg = <IMX_SC_R_DMA_2_CH7>;
++								power-domains =<&pd_dma2_chan6>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_esai0: PD_AUD_ESAI_0 {
++									reg = <IMX_SC_R_ESAI_0>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan7>;
++								};
++							};
++							};
++
++							pd_dma3_chan6: PD_ESAI_1_RX {
++								reg = <IMX_SC_R_DMA_3_CH6>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan7: PD_ESAI_1_TX {
++								reg = <IMX_SC_R_DMA_3_CH7>;
++								power-domains =<&pd_dma3_chan6>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_esai1: PD_AUD_ESAI_1 {
++									reg = <IMX_SC_R_ESAI_1>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma3_chan7>;
++								};
++							};
++							};
++							pd_dma2_chan8: PD_SPDIF_0_RX {
++								reg = <IMX_SC_R_DMA_2_CH8>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan9: PD_SPDIF_0_TX {
++								reg = <IMX_SC_R_DMA_2_CH9>;
++								power-domains =<&pd_dma2_chan8>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_spdif0: PD_AUD_SPDIF_0 {
++									reg = <IMX_SC_R_SPDIF_0>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan9>;
++
++								};
++							};
++							};
++							pd_dma2_chan10: PD_SPDIF_1_RX {
++								reg = <IMX_SC_R_DMA_2_CH10>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan11: PD_SPDIF_1_TX {
++								reg = <IMX_SC_R_DMA_2_CH11>;
++								power-domains =<&pd_dma2_chan10>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_spdif1: PD_AUD_SPDIF_1 {
++									reg = <IMX_SC_R_SPDIF_1>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan11>;
++
++								};
++							};
++							};
++							pd_dma2_chan12: PD_SAI_0_RX {
++								reg = <IMX_SC_R_DMA_2_CH12>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan13: PD_SAI_0_TX {
++								reg = <IMX_SC_R_DMA_2_CH13>;
++								power-domains =<&pd_dma2_chan12>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sai0:PD_AUD_SAI_0 {
++									reg = <IMX_SC_R_SAI_0>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan13>;
++								};
++							};
++
++							};
++							pd_dma2_chan14: PD_SAI_1_RX {
++								reg = <IMX_SC_R_DMA_2_CH14>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma2_chan15: PD_SAI_1_TX {
++								reg = <IMX_SC_R_DMA_2_CH15>;
++								power-domains =<&pd_dma2_chan14>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sai1: PD_AUD_SAI_1 {
++									reg = <IMX_SC_R_SAI_1>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan15>;
++								};
++							};
++							};
++							pd_dma2_chan16: PD_SAI_2_RX {
++								reg = <IMX_SC_R_DMA_2_CH16>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++								pd_sai2: PD_AUD_SAI_2 {
++									reg = <IMX_SC_R_SAI_2>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan16>;
++								};
++							};
++							pd_dma2_chan17: PD_SAI_3_RX {
++								reg = <IMX_SC_R_DMA_2_CH17>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sai3: PD_AUD_SAI_3 {
++									reg = <IMX_SC_R_SAI_3>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan17>;
++								};
++							};
++							pd_dma2_chan18: PD_SAI_4_RX {
++								reg = <IMX_SC_R_DMA_2_CH18>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sai4: PD_AUD_SAI_4 {
++									reg = <IMX_SC_R_SAI_4>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan18>;
++								};
++							};
++							pd_dma2_chan19: PD_SAI_5_RX {
++								reg = <IMX_SC_R_DMA_2_CH19>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sai5: PD_AUD_SAI_5 {
++									reg = <IMX_SC_R_SAI_5>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma2_chan19>;
++								};
++							};
++							pd_dma3_chan8: PD_SAI_6_RX {
++								reg = <IMX_SC_R_DMA_3_CH8>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++							pd_dma3_chan9: PD_SAI_6_TX {
++								reg = <IMX_SC_R_DMA_3_CH9>;
++								power-domains =<&pd_dma3_chan8>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++
++								pd_sai6: PD_AUD_SAI_6 {
++									reg = <IMX_SC_R_SAI_6>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma3_chan9>;
++
++								};
++							};
++							};
++							pd_dma3_chan10: PD_SAI_7_TX {
++								reg = <IMX_SC_R_DMA_3_CH10>;
++								power-domains =<&pd_audio_clk1>;
++								#power-domain-cells = <0>;
++								#address-cells = <1>;
++								#size-cells = <0>;
++								pd_sai7: PD_AUD_SAI_7 {
++									reg = <IMX_SC_R_SAI_7>;
++									#power-domain-cells = <0>;
++									power-domains =<&pd_dma3_chan10>;
++								};
++							};
++							pd_gpt5: PD_AUD_GPT_5 {
++								reg = <IMX_SC_R_GPT_5>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_gpt6: PD_AUD_GPT_6 {
++								reg = <IMX_SC_R_GPT_6>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_gpt7: PD_AUD_GPT_7 {
++								reg = <IMX_SC_R_GPT_7>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_gpt8: PD_AUD_GPT_8 {
++								reg = <IMX_SC_R_GPT_8>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_gpt9: PD_AUD_GPT_9 {
++								reg = <IMX_SC_R_GPT_9>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_gpt10: PD_AUD_GPT_10 {
++								reg = <IMX_SC_R_GPT_10>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_amix: PD_AUD_AMIX {
++								reg = <IMX_SC_R_AMIX>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_mqs0: PD_AUD_MQS_0 {
++								reg = <IMX_SC_R_MQS_0>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_mclk_out0: PD_AUD_MCLK_OUT_0 {
++								reg = <IMX_SC_R_MCLK_OUT_0>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++							pd_mclk_out1: PD_AUD_MCLK_OUT_1 {
++								reg = <IMX_SC_R_MCLK_OUT_1>;
++								#power-domain-cells = <0>;
++								power-domains =<&pd_audio_clk1>;
++							};
++						};
++					};
++				};
++			};
++
++			pd_dsp_mu_A: PD_DSP_MU_A {
++				reg = <IMX_SC_R_MU_13A>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_audio>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_dsp_mu_B: PD_DSP_MU_B {
++					reg = <IMX_SC_R_MU_13B>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_dsp_mu_A>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dsp_ram: PD_AUD_OCRAM {
++						reg = <IMX_SC_R_DSP_RAM>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_dsp_mu_B>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						pd_dsp: PD_AUD_DSP {
++							reg = <IMX_SC_R_DSP>;
++							#power-domain-cells = <0>;
++							power-domains =<&pd_dsp_ram>;
++						};
++					};
++				};
++			};
++		};
++
++		pd_dma: PD_DMA {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_dma_flexcan0: PD_DMA_CAN_0 {
++				reg = <IMX_SC_R_CAN_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				wakeup-irq = <235>;
++			};
++			pd_dma_flexcan1: PD_DMA_CAN_1 {
++				reg = <IMX_SC_R_CAN_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				wakeup-irq = <236>;
++			};
++			pd_dma_flexcan2: PD_DMA_CAN_2 {
++				reg = <IMX_SC_R_CAN_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				wakeup-irq = <237>;
++			};
++			pd_dma_ftm0: PD_DMA_FTM_0 {
++				reg = <IMX_SC_R_FTM_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_ftm1: PD_DMA_FTM_1 {
++				reg = <IMX_SC_R_FTM_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_adc0: PD_DMA_ADC_0 {
++				reg = <IMX_SC_R_ADC_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_adc1: PD_DMA_ADC_1 {
++				reg = <IMX_SC_R_ADC_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpi2c0: PD_DMA_I2C_0 {
++				reg = <IMX_SC_R_I2C_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpi2c1: PD_DMA_I2C_1 {
++				reg = <IMX_SC_R_I2C_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpi2c2:PD_DMA_I2C_2 {
++				reg = <IMX_SC_R_I2C_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpi2c3: PD_DMA_I2C_3 {
++				reg = <IMX_SC_R_I2C_3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpi2c4: PD_DMA_I2C_4 {
++				reg = <IMX_SC_R_I2C_4>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpuart0: PD_DMA_UART0 {
++				reg = <IMX_SC_R_UART_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				wakeup-irq = <345>;
++			};
++			pd_dma_lpuart1: PD_DMA_UART1 {
++				reg = <IMX_SC_R_UART_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				wakeup-irq = <346>;
++
++				pd_dma0_chan14: PD_UART1_RX {
++					reg = <IMX_SC_R_DMA_0_CH14>;
++					power-domains =<&pd_dma_lpuart1>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dma0_chan15: PD_UART1_TX {
++						reg = <IMX_SC_R_DMA_0_CH15>;
++						power-domains =<&pd_dma0_chan14>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++					};
++				};
++			};
++			pd_dma_lpuart2: PD_DMA_UART2 {
++				reg = <IMX_SC_R_UART_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				wakeup-irq = <347>;
++
++				pd_dma0_chan16: PD_UART2_RX {
++					reg = <IMX_SC_R_DMA_0_CH16>;
++					power-domains =<&pd_dma_lpuart2>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dma0_chan17: PD_UART2_TX {
++						reg = <IMX_SC_R_DMA_0_CH17>;
++						power-domains =<&pd_dma0_chan16>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++					};
++				};
++			};
++			pd_dma_lpuart3: PD_DMA_UART3 {
++				reg = <IMX_SC_R_UART_3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				wakeup-irq = <348>;
++
++				pd_dma0_chan18: PD_UART3_RX {
++					reg = <IMX_SC_R_DMA_0_CH18>;
++					power-domains =<&pd_dma_lpuart3>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dma0_chan19: PD_UART3_TX {
++						reg = <IMX_SC_R_DMA_0_CH19>;
++						power-domains =<&pd_dma0_chan18>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++					};
++				};
++			};
++			pd_dma_lpuart4: PD_DMA_UART4 {
++				reg = <IMX_SC_R_UART_4>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				wakeup-irq = <349>;
++
++				pd_dma0_chan20: PD_UART4_RX {
++					reg = <IMX_SC_R_DMA_0_CH20>;
++					power-domains =<&pd_dma_lpuart4>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dma0_chan21: PD_UART4_TX {
++						reg = <IMX_SC_R_DMA_0_CH21>;
++						power-domains =<&pd_dma0_chan20>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++					};
++				};
++			};
++			pd_dma_lpspi0: PD_DMA_SPI_0 {
++				reg = <IMX_SC_R_SPI_0>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_dma0_chan0: PD_LPSPI0_RX {
++					reg = <IMX_SC_R_DMA_0_CH0>;
++					power-domains =<&pd_dma_lpspi0>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dma0_chan1: PD_LPSPI0_TX {
++						reg = <IMX_SC_R_DMA_0_CH1>;
++						power-domains =<&pd_dma0_chan0>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++			};
++				};
++			};
++			pd_dma_lpspi1: PD_DMA_SPI_1 {
++				reg = <IMX_SC_R_SPI_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpspi2: PD_DMA_SPI_2 {
++				reg = <IMX_SC_R_SPI_2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++			pd_dma_lpspi3: PD_DMA_SPI_3 {
++				reg = <IMX_SC_R_SPI_3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_dma0_chan6: PD_LPSPI3_RX {
++					reg = <IMX_SC_R_DMA_0_CH6>;
++					power-domains =<&pd_dma_lpspi3>;
++					#power-domain-cells = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_dma0_chan7: PD_LPSPI3_TX {
++						reg = <IMX_SC_R_DMA_0_CH7>;
++						power-domains =<&pd_dma0_chan6>;
++						#power-domain-cells = <0>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++					};
++				};
++			};
++			pd_dma_emvsim0: PD_DMA_EMVSIM_0 {
++				reg = <IMX_SC_R_EMVSIM_0>;
++				power-domains = <&pd_dma>;
++				#power-domain-cells = <0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_ldo1_sim: LDO1_SIM {
++					reg = <IMX_SC_R_BOARD_R2>;
++					#power-domain-cells = <0>;
++					power-domains = <&pd_dma_emvsim0>;
++				};
++			};
++			pd_dma_emvsim1: PD_DMA_EMVSIM_1 {
++				reg = <IMX_SC_R_EMVSIM_1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_dma>;
++			};
++		};
++		pd_gpu: PD_GPU {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_gpu0: PD_GPU0 {
++				reg = <IMX_SC_R_GPU_0_PID0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_gpu>;
++			};
++			pd_gpu1: PD_GPU1 {
++				reg = <IMX_SC_R_GPU_1_PID0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_gpu>;
++			};
++		};
++
++		pd_vpu: vpu-power-domain {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_VPU>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_vpu_mu1_enc: VPU_ENC_MU1 {
++				reg = <IMX_SC_R_VPU_MU_2>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_vpu>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_vpu_enc1: VPU_ENC1 {
++					reg = <IMX_SC_R_VPU_ENC_1>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_vpu_mu1_enc>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_vpu_mu_enc: VPU_ENC_MU {
++						reg = <IMX_SC_R_VPU_MU_1>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_vpu_enc1>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						pd_vpu_enc: VPU_ENC {
++							reg = <IMX_SC_R_VPU_ENC_0>;
++							#power-domain-cells = <0>;
++							power-domains =<&pd_vpu_mu_enc>;
++						};
++					};
++				};
++			};
++
++			pd_vpu_mu_dec: VPU_DEC_MU {
++				reg = <IMX_SC_R_VPU_MU_0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_vpu>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_vpu_dec: VPU_DEC {
++					reg = <IMX_SC_R_VPU_DEC_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_vpu_mu_dec>;
++				};
++			};
++		};
++
++
++		pd_isi_ch0: PD_IMAGING {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_ISI_CH0>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_csi0: PD_MIPI_CSI0 {
++				reg = <IMX_SC_R_CSI_0>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_csi0_i2c0: PD_MIPI_CSI0_I2C0 {
++					reg = <IMX_SC_R_CSI_0_I2C_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_csi0>;
++				};
++
++				pd_csi0_pwm: PD_MIPI_CSI0_PWM {
++					reg = <IMX_SC_R_CSI_0_PWM_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_csi0>;
++				};
++			};
++
++			pd_csi1: PD_MIPI_CSI1 {
++				reg = <IMX_SC_R_CSI_1>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_csi1_i2c0: PD_MIPI_CSI1_I2C0 {
++					reg = <IMX_SC_R_CSI_1_I2C_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_csi1>;
++				};
++
++				pd_csi1_pwm: PD_MIPI_CSI1_PWM {
++					reg = <IMX_SC_R_CSI_1_PWM_0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_csi1>;
++				};
++			};
++
++			pd_hdmi_rx: PD_HDMI_RX {
++				reg = <IMX_SC_R_HDMI_RX>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_hdmi_rx_bypass: PD_HDMI_RX_BYPASS {
++					reg = <IMX_SC_R_HDMI_RX_BYPASS>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_hdmi_rx>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					pd_hdmi_rx_i2c0: PD_HDMI_RX_I2C {
++						reg = <IMX_SC_R_HDMI_RX_I2C_0>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_hdmi_rx_bypass>;
++					};
++
++					pd_hdmi_rx_pwm0: PD_HDMI_RX_PWM {
++						reg = <IMX_SC_R_HDMI_RX_PWM_0>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_hdmi_rx_bypass>;
++					};
++				};
++			};
++
++			pd_isi_ch1: PD_IMAGING_PDMA1 {
++				reg = <IMX_SC_R_ISI_CH1>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_isi_ch2: PD_IMAGING_PDMA2 {
++				reg = <IMX_SC_R_ISI_CH2>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_isi_ch3: PD_IMAGING_PDMA3 {
++				reg = <IMX_SC_R_ISI_CH3>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_isi_ch4: PD_IMAGING_PDMA4 {
++				reg = <IMX_SC_R_ISI_CH4>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_isi_ch5: PD_IMAGING_PDMA5 {
++				reg = <IMX_SC_R_ISI_CH5>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_isi_ch6: PD_IMAGING_PDMA6 {
++				reg = <IMX_SC_R_ISI_CH6>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_isi_ch7: PD_IMAGING_PDMA7 {
++				reg = <IMX_SC_R_ISI_CH7>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++			};
++
++			pd_jpeg_dec_mp: PD_JPEG_DEC_MP {
++				reg = <IMX_SC_R_MJPEG_DEC_MP>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_jpgdec: PD_IMAGING_JPEG_DEC {
++					reg = <IMX_SC_R_MJPEG_DEC_S0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_jpeg_dec_mp>;
++				};
++			};
++
++			pd_jpeg_enc_mp: PD_JPEG_ENC_MP {
++				reg = <IMX_SC_R_MJPEG_ENC_MP>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_isi_ch0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				pd_jpgenc: PD_IMAGING_JPEG_ENC {
++					reg = <IMX_SC_R_MJPEG_ENC_S0>;
++					#power-domain-cells = <0>;
++					power-domains =<&pd_jpeg_enc_mp>;
++				};
++			};
++		};
++
++		pd_cm40: PD_CM40 {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_cm40_i2c: PD_CM40_I2C {
++				reg = <IMX_SC_R_M4_0_I2C>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_cm40>;
++			};
++
++			pd_cm40_intmux: PD_CM40_INTMUX {
++				reg = <IMX_SC_R_M4_0_INTMUX>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_cm40>;
++			};
++		};
++
++		pd_cm41: PD_CM41 {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_cm41_intmux: PD_CM41_INTMUX {
++				reg = <IMX_SC_R_M4_1_INTMUX>;
++				#power-domain-cells = <0>;
++				power-domains =<&pd_cm41>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				early_power_on;
++
++					pd_cm41_i2c: PD_CM41_I2C {
++						reg = <IMX_SC_R_M4_1_I2C>;
++						#power-domain-cells = <0>;
++						power-domains =<&pd_cm41_intmux>;
++					};
++			};
++		};
++
++		pd_caam: PD_CAAM {
++			compatible = "nxp,imx8-pd";
++			reg = <IMX_SC_R_LAST>;
++			#power-domain-cells = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pd_caam_jr1: PD_CAAM_JR1 {
++				reg = <IMX_SC_R_CAAM_JR1>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_caam>;
++			};
++			pd_caam_jr2: PD_CAAM_JR2 {
++				reg = <IMX_SC_R_CAAM_JR2>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_caam>;
++			};
++			pd_caam_jr3: PD_CAAM_JR3 {
++				reg = <IMX_SC_R_CAAM_JR3>;
++				#power-domain-cells = <0>;
++				power-domains = <&pd_caam>;
++			};
++		};
++	};
++
++	tsens: thermal-sensor {
++		compatible = "nxp,imx8qm-sc-tsens";
++		/* number of the temp sensor on the chip */
++		tsens-num = <5>;
++		#thermal-sensor-cells = <1>;
++	};
++
++	thermal_zones: thermal-zones {
++		/* cpu thermal */
++		cpu-thermal0 {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			/*the slope and offset of the temp sensor */
++			thermal-sensors = <&tsens 0>;
++			trips {
++				cpu_alert0: trip0 {
++					temperature = <107000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++				cpu_crit0: trip1 {
++					temperature = <127000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++			cooling-maps {
++				map0 {
++					trip = <&cpu_alert0>;
++					//cooling-device = <&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu-thermal1 {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			thermal-sensors = <&tsens 1>;
++			trips {
++				cpu_alert1: trip0 {
++					temperature = <107000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++				cpu_crit1: trip1 {
++					temperature = <127000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++			cooling-maps {
++				map0 {
++					trip = <&cpu_alert1>;
++					//cooling-device = <&A72_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		gpu-thermal0 {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			thermal-sensors = <&tsens 2>;
++			trips {
++				gpu_alert0: trip0 {
++					temperature = <107000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++				gpu_crit0: trip1 {
++					temperature = <127000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpu-thermal1 {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			thermal-sensors = <&tsens 3>;
++			trips {
++				gpu_alert1: trip0 {
++					temperature = <107000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++				gpu_crit1: trip1 {
++					temperature = <127000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++		};
++
++		drc-thermal0 {
++			polling-delay-passive = <250>;
++			polling-delay = <2000>;
++			thermal-sensors = <&tsens 4>;
++			trips {
++				drc_alert0: trip0 {
++					temperature = <107000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++				drc_crit0: trip1 {
++					temperature = <127000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++		};
++	};
++
++	rtc: rtc {
++		compatible = "fsl,imx-sc-rtc";
++	};
++
++	dpu1_intsteer: dpu_intsteer@56000000 {
++		compatible = "fsl,imx8qm-dpu-intsteer", "syscon";
++		reg = <0x0 0x56000000 0x0 0x10000>;
++	};
++
++	pixel_combiner1: pixel-combiner@56020000 {
++		compatible = "fsl,imx8qm-pixel-combiner";
++		reg = <0x0 0x56020000 0x0 0x10000>;
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg1: prg@56040000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x56040000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG0_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG0_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg2: prg@56050000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x56050000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG1_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG1_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg3: prg@56060000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x56060000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG2_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG2_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg4: prg@56070000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x56070000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG3_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG3_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg5: prg@56080000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x56080000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG4_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG4_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg6: prg@56090000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x56090000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG5_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG5_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg7: prg@560a0000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x560a0000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG6_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG6_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg8: prg@560b0000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x560b0000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG7_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG7_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	prg9: prg@560c0000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x560c0000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC0_PRG8_APB_CLK>,
++			 <&clk IMX8QM_DC0_PRG8_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpr1_channel1: dpr-channel@560d0000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x560d0000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_0_BLIT0>;
++		fsl,prgs = <&prg1>;
++		clocks = <&clk IMX8QM_DC0_DPR0_APB_CLK>,
++			 <&clk IMX8QM_DC0_DPR0_B_CLK>,
++			 <&clk IMX8QM_DC0_RTRAM0_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpr1_channel2: dpr-channel@560e0000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x560e0000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_0_BLIT1>;
++		fsl,prgs = <&prg2>, <&prg1>;
++		clocks = <&clk IMX8QM_DC0_DPR0_APB_CLK>,
++			 <&clk IMX8QM_DC0_DPR0_B_CLK>,
++			 <&clk IMX8QM_DC0_RTRAM0_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpr1_channel3: dpr-channel@560f0000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x560f0000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_0_FRAC0>;
++		fsl,prgs = <&prg3>;
++		clocks = <&clk IMX8QM_DC0_DPR0_APB_CLK>,
++			 <&clk IMX8QM_DC0_DPR0_B_CLK>,
++			 <&clk IMX8QM_DC0_RTRAM0_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpr2_channel1: dpr-channel@56100000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x56100000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_0_VIDEO0>;
++		fsl,prgs = <&prg4>, <&prg5>;
++		clocks = <&clk IMX8QM_DC0_DPR1_APB_CLK>,
++			 <&clk IMX8QM_DC0_DPR1_B_CLK>,
++			 <&clk IMX8QM_DC0_RTRAM1_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpr2_channel2: dpr-channel@56110000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x56110000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_0_VIDEO1>;
++		fsl,prgs = <&prg6>, <&prg7>;
++		clocks = <&clk IMX8QM_DC0_DPR1_APB_CLK>,
++			 <&clk IMX8QM_DC0_DPR1_B_CLK>,
++			 <&clk IMX8QM_DC0_RTRAM1_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpr2_channel3: dpr-channel@56120000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x56120000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_0_WARP>;
++		fsl,prgs = <&prg8>, <&prg9>;
++		clocks = <&clk IMX8QM_DC0_DPR1_APB_CLK>,
++			 <&clk IMX8QM_DC0_DPR1_B_CLK>,
++			 <&clk IMX8QM_DC0_RTRAM1_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc0>;
++		status = "disabled";
++	};
++
++	dpu1: dpu@56180000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "fsl,imx8qm-dpu";
++		reg = <0x0 0x56180000 0x0 0x40000>;
++		intsteer = <&dpu1_intsteer>;
++		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "irq_common",
++				  "irq_stream0a",
++				  "irq_stream0b",	/* to M4? */
++				  "irq_stream1a",
++				  "irq_stream1b",	/* to M4? */
++				  "irq_reserved0",
++				  "irq_reserved1",
++				  "irq_blit",
++				  "irq_dpr0",
++				  "irq_dpr1";
++		clocks = <&clk IMX8QM_DC0_PLL0_CLK>,
++			 <&clk IMX8QM_DC0_PLL1_CLK>,
++			 <&clk IMX8QM_DC0_BYPASS_0_DIV>,
++			 <&clk IMX8QM_DC0_DISP0_SEL>,
++			 <&clk IMX8QM_DC0_DISP1_SEL>,
++			 <&clk IMX8QM_DC0_DISP0_CLK>,
++			 <&clk IMX8QM_DC0_DISP1_CLK>;
++		clock-names = "pll0", "pll1", "bypass0",
++			      "disp0_sel", "disp1_sel", "disp0", "disp1";
++		power-domains = <&pd_dc0_pll1>;
++		fsl,dpr-channels = <&dpr1_channel1>, <&dpr1_channel2>,
++				   <&dpr1_channel3>, <&dpr2_channel1>,
++				   <&dpr2_channel2>, <&dpr2_channel3>;
++		fsl,pixel-combiner = <&pixel_combiner1>;
++		status = "disabled";
++
++		dpu1_disp0: port@0 {
++			reg = <0>;
++
++			dpu1_disp0_hdmi: hdmi-endpoint {
++				remote-endpoint = <&hdmi_disp>;
++			};
++
++			dpu1_disp0_mipi_dsi: mipi-dsi-endpoint {
++				remote-endpoint = <&mipi_dsi1_in>;
++			};
++		};
++
++		dpu1_disp1: port@1 {
++			reg = <1>;
++
++			dpu1_disp1_lvds0: lvds0-endpoint {
++				remote-endpoint = <&ldb1_lvds0>;
++			};
++
++			dpu1_disp1_lvds1: lvds1-endpoint {
++				remote-endpoint = <&ldb1_lvds1>;
++			};
++		};
++	};
++
++	hdmi:hdmi@56268000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x0 0x56268000 0x0 0x100000>, /* HDP Controller */
++				<0x0 0x56261000 0x0 0x1000>; /* HDP SubSystem CSR  */
++		interrupts = <10 IRQ_TYPE_LEVEL_HIGH>,
++						<13 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "plug_in", "plug_out";
++		interrupt-parent = <&irqsteer_hdmi>;
++		status = "disabled";
++		clocks = <&clk IMX8QM_HDMI_DIG_PLL_CLK>,
++				<&clk IMX8QM_HDMI_AV_PLL_CLK>,
++				<&clk IMX8QM_HDMI_IPG_CLK>,
++				<&clk IMX8QM_HDMI_HDP_CORE_CLK>,
++				<&clk IMX8QM_HDMI_PXL_CLK>,
++				<&clk IMX8QM_HDMI_PXL_MUX_CLK>,
++				<&clk IMX8QM_HDMI_PXL_LINK_CLK>,
++				<&clk IMX8QM_HDMI_HDP_CLK>,
++				<&clk IMX8QM_HDMI_HDP_PHY_CLK>,
++				<&clk IMX8QM_HDMI_APB_CLK>,
++				<&clk IMX8QM_HDMI_LIS_IPG_CLK>,
++				<&clk IMX8QM_HDMI_MSI_HCLK>,
++				<&clk IMX8QM_HDMI_PXL_LPCG_CLK>,
++				<&clk IMX8QM_HDMI_PXL_EVEN_CLK>,
++				<&clk IMX8QM_HDMI_PXL_DBL_CLK>,
++				<&clk IMX8QM_HDMI_VIF_CLK>,
++				<&clk IMX8QM_HDMI_APB_MUX_CSR_CLK>,
++				<&clk IMX8QM_HDMI_APB_MUX_CTRL_CLK>,
++				<&clk IMX8QM_HDMI_I2S_CLK>,
++				<&clk IMX8QM_HDMI_I2S_BYPASS_CLK>;
++		clock-names = "dig_pll", "av_pll", "clk_ipg",
++						"clk_core", "clk_pxl", "clk_pxl_mux",
++						"clk_pxl_link", "clk_hdp", "clk_phy",
++						"clk_apb", "clk_lis","clk_msi",
++						"clk_lpcg", "clk_even","clk_dbl",
++						"clk_vif", "clk_apb_csr","clk_apb_ctrl",
++						"clk_i2s", "clk_i2s_bypass";
++		power-domains = <&pd_hdmi_i2s>;
++
++		port@0 {
++			reg = <0>;
++				hdmi_disp: endpoint {
++				remote-endpoint = <&dpu1_disp0_hdmi>;
++				};
++		};
++	};
++
++	irqsteer_dsi0: irqsteer@56220000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x56220000 0x0 0x1000>;
++		interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_MIPI0_LIS_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_mipi0>;
++	};
++
++	i2c0_mipi_dsi0: i2c@56226000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x56226000 0x0 0x1000>;
++		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_dsi0>;
++		clocks = <&clk IMX8QM_MIPI0_I2C0_CLK>,
++			 <&clk IMX8QM_MIPI0_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_MIPI0_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_mipi0_i2c0>;
++		status = "disabled";
++	};
++
++	mipi_dsi_csr1: csr@56221000 {
++		compatible = "fsl,imx8qm-mipi-dsi-csr", "syscon";
++		reg = <0x0 0x56221000 0x0 0x1000>;
++	};
++
++	mipi_dsi_phy1: dsi_phy@56228300 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "mixel,imx8qm-mipi-dsi-phy";
++		reg = <0x0 0x56228300 0x0 0x100>;
++		power-domains = <&pd_mipi0>;
++		#phy-cells = <0>;
++		status = "disabled";
++	};
++
++	mipi_dsi1: mipi_dsi@56228000 {
++		compatible = "fsl,imx8qm-mipi-dsi";
++		clocks =
++			<&clk IMX8QM_MIPI0_PXL_CLK>,
++			<&clk IMX8QM_MIPI0_BYPASS_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "pixel", "bypass", "phy_ref";
++		power-domains = <&pd_mipi0>;
++		csr = <&mipi_dsi_csr1>;
++		phys = <&mipi_dsi_phy1>;
++		phy-names = "dphy";
++		pwr-delay = <100>;
++		status = "disabled";
++
++		port@0 {
++			mipi_dsi1_in: endpoint {
++				remote-endpoint = <&dpu1_disp0_mipi_dsi>;
++			};
++		};
++
++		port@1 {
++			mipi_dsi1_out: endpoint {
++				remote-endpoint = <&mipi_dsi_bridge1_in>;
++			};
++		};
++	};
++
++	mipi_dsi_bridge1: mipi_dsi_bridge@56228000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "nwl,mipi-dsi";
++		reg = <0x0 0x56228000 0x0 0x300>;
++		interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_dsi0>;
++		clocks =
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_MIPI0_DSI_TX_ESC_CLK>,
++			<&clk IMX8QM_MIPI0_DSI_RX_ESC_CLK>;
++		clock-names = "phy_ref", "tx_esc", "rx_esc";
++		assigned-clocks = <&clk IMX8QM_MIPI0_DSI_TX_ESC_DIV>,
++				  <&clk IMX8QM_MIPI0_DSI_RX_ESC_DIV>;
++		assigned-clock-rates = <18000000>, <72000000>;
++		power-domains = <&pd_mipi0>;
++		phys = <&mipi_dsi_phy1>;
++		phy-names = "dphy";
++		status = "disabled";
++
++		port@0 {
++			mipi_dsi_bridge1_in: endpoint {
++				remote-endpoint = <&mipi_dsi1_out>;
++			};
++		};
++	};
++
++	lvds_region1: lvds_region@56240000 {
++		compatible = "fsl,imx8qm-lvds-region", "syscon";
++		reg = <0x0 0x56240000 0x0 0x10000>;
++	};
++
++	ldb1_phy: ldb_phy@56241000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "mixel,lvds-phy";
++		reg = <0x0 0x56241000 0x0 0x100>;
++		clocks = <&clk IMX8QM_LVDS0_PHY_CLK>;
++		clock-names = "phy";
++		power-domains = <&pd_lvds0>;
++		status = "disabled";
++
++		ldb1_phy1: port@0 {
++			reg = <0>;
++			#phy-cells = <0>;
++		};
++
++		ldb1_phy2: port@1 {
++			reg = <1>;
++			#phy-cells = <0>;
++		};
++	};
++
++	ldb1: ldb@562410e0 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "fsl,imx8qm-ldb";
++		clocks = <&clk IMX8QM_LVDS0_PIXEL_CLK>,
++			 <&clk IMX8QM_LVDS0_BYPASS_CLK>;
++		clock-names = "pixel", "bypass";
++		power-domains = <&pd_lvds0>;
++		gpr = <&lvds_region1>;
++		status = "disabled";
++
++		lvds-channel@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			phys = <&ldb1_phy1>;
++			phy-names = "ldb_phy";
++			status = "disabled";
++
++			port@0 {
++				reg = <0>;
++
++				ldb1_lvds0: endpoint {
++					remote-endpoint = <&dpu1_disp1_lvds0>;
++				};
++			};
++		};
++
++		lvds-channel@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			phys = <&ldb1_phy2>;
++			phy-names = "ldb_phy";
++			status = "disabled";
++
++			port@0 {
++				reg = <0>;
++
++				ldb1_lvds1: endpoint {
++					remote-endpoint = <&dpu1_disp1_lvds1>;
++				};
++			};
++		};
++	};
++
++	lvds0_pwm: pwm@56244000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x56244000 0 0x1000>;
++		clocks = <&clk IMX8QM_LVDS0_PWM0_IPG_CLK>,
++			 <&clk IMX8QM_LVDS0_PWM0_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_LVDS0_PWM0_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		power-domains = <&pd_lvds0_pwm>;
++		status = "disabled";
++	};
++
++	dpu2_intsteer: dpu_intsteer@57000000 {
++		compatible = "fsl,imx8qm-dpu-intsteer", "syscon";
++		reg = <0x0 0x57000000 0x0 0x10000>;
++	};
++
++	pixel_combiner2: pixel-combiner@57020000 {
++		compatible = "fsl,imx8qm-pixel-combiner";
++		reg = <0x0 0x57020000 0x0 0x10000>;
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg10: prg@57040000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x57040000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG0_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG0_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg11: prg@57050000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x57050000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG1_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG1_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg12: prg@57060000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x57060000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG2_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG2_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg13: prg@57070000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x57070000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG3_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG3_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg14: prg@57080000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x57080000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG4_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG4_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg15: prg@57090000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x57090000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG5_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG5_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg16: prg@570a0000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x570a0000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG6_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG6_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg17: prg@570b0000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x570b0000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG7_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG7_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	prg18: prg@570c0000 {
++		compatible = "fsl,imx8qm-prg";
++		reg = <0x0 0x570c0000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_DC1_PRG8_APB_CLK>,
++			 <&clk IMX8QM_DC1_PRG8_RTRAM_CLK>;
++		clock-names = "apb", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpr3_channel1: dpr-channel@570d0000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x570d0000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_1_BLIT0>;
++		fsl,prgs = <&prg10>;
++		clocks = <&clk IMX8QM_DC1_DPR0_APB_CLK>,
++			 <&clk IMX8QM_DC1_DPR0_B_CLK>,
++			 <&clk IMX8QM_DC1_RTRAM0_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpr3_channel2: dpr-channel@570e0000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x570e0000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_1_BLIT1>;
++		fsl,prgs = <&prg11>, <&prg10>;
++		clocks = <&clk IMX8QM_DC1_DPR0_APB_CLK>,
++			 <&clk IMX8QM_DC1_DPR0_B_CLK>,
++			 <&clk IMX8QM_DC1_RTRAM0_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpr3_channel3: dpr-channel@570f0000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x570f0000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_1_FRAC0>;
++		fsl,prgs = <&prg12>;
++		clocks = <&clk IMX8QM_DC1_DPR0_APB_CLK>,
++			 <&clk IMX8QM_DC1_DPR0_B_CLK>,
++			 <&clk IMX8QM_DC1_RTRAM0_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpr4_channel1: dpr-channel@57100000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x57100000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_1_VIDEO0>;
++		fsl,prgs = <&prg13>, <&prg14>;
++		clocks = <&clk IMX8QM_DC1_DPR1_APB_CLK>,
++			 <&clk IMX8QM_DC1_DPR1_B_CLK>,
++			 <&clk IMX8QM_DC1_RTRAM1_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpr4_channel2: dpr-channel@57110000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x57110000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_1_VIDEO1>;
++		fsl,prgs = <&prg15>, <&prg16>;
++		clocks = <&clk IMX8QM_DC1_DPR1_APB_CLK>,
++			 <&clk IMX8QM_DC1_DPR1_B_CLK>,
++			 <&clk IMX8QM_DC1_RTRAM1_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpr4_channel3: dpr-channel@56712000 {
++		compatible = "fsl,imx8qm-dpr-channel";
++		reg = <0x0 0x57120000 0x0 0x10000>;
++		fsl,sc-resource = <IMX_SC_R_DC_1_WARP>;
++		fsl,prgs = <&prg17>, <&prg18>;
++		clocks = <&clk IMX8QM_DC1_DPR1_APB_CLK>,
++			 <&clk IMX8QM_DC1_DPR1_B_CLK>,
++			 <&clk IMX8QM_DC1_RTRAM1_CLK>;
++		clock-names = "apb", "b", "rtram";
++		power-domains = <&pd_dc1>;
++		status = "disabled";
++	};
++
++	dpu2: dpu@57180000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "fsl,imx8qm-dpu";
++		reg = <0x0 0x57180000 0x0 0x40000>;
++		intsteer = <&dpu2_intsteer>;
++		interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "irq_common",
++				  "irq_stream0a",
++				  "irq_stream0b",	/* to M4? */
++				  "irq_stream1a",
++				  "irq_stream1b",	/* to M4? */
++				  "irq_reserved0",
++				  "irq_reserved1",
++				  "irq_blit",
++				  "irq_dpr0",
++				  "irq_dpr1";
++		clocks = <&clk IMX8QM_DC1_PLL0_CLK>,
++			 <&clk IMX8QM_DC1_PLL1_CLK>,
++			 <&clk IMX8QM_DC1_BYPASS_0_DIV>,
++			 <&clk IMX8QM_DC1_DISP0_SEL>,
++			 <&clk IMX8QM_DC1_DISP1_SEL>,
++			 <&clk IMX8QM_DC1_DISP0_CLK>,
++			 <&clk IMX8QM_DC1_DISP1_CLK>;
++		clock-names = "pll0", "pll1", "bypass0",
++			      "disp0_sel", "disp1_sel", "disp0", "disp1";
++		power-domains = <&pd_dc1_pll1>;
++		fsl,dpr-channels = <&dpr3_channel1>, <&dpr3_channel2>,
++				   <&dpr3_channel3>, <&dpr4_channel1>,
++				   <&dpr4_channel2>, <&dpr4_channel3>;
++		fsl,pixel-combiner = <&pixel_combiner2>;
++		status = "disabled";
++
++		dpu2_disp0: port@0 {
++			reg = <0>;
++
++			dpu2_disp0_mipi_dsi: mipi-dsi-endpoint {
++				remote-endpoint = <&mipi_dsi2_in>;
++			};
++		};
++
++		dpu2_disp1: port@1 {
++			reg = <1>;
++
++			dpu2_disp1_lvds0: lvds0-endpoint {
++				remote-endpoint = <&ldb2_lvds0>;
++			};
++
++			dpu2_disp1_lvds1: lvds1-endpoint {
++				remote-endpoint = <&ldb2_lvds1>;
++			};
++		};
++	};
++
++	irqsteer_dsi1: irqsteer@57220000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x57220000 0x0 0x1000>;
++		interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_MIPI1_LIS_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_mipi1>;
++	};
++
++	i2c0_mipi_dsi1: i2c@57226000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x57226000 0x0 0x1000>;
++		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_dsi1>;
++		clocks = <&clk IMX8QM_MIPI1_I2C0_CLK>,
++			 <&clk IMX8QM_MIPI1_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_MIPI1_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_mipi1_i2c0>;
++		status = "disabled";
++	};
++
++	mipi_dsi_csr2: csr@57221000 {
++		compatible = "fsl,imx8qm-mipi-dsi-csr", "syscon";
++		reg = <0x0 0x57221000 0x0 0x1000>;
++	};
++
++	mipi_dsi_phy2: mipi_phy@57228300 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "mixel,imx8qm-mipi-dsi-phy";
++		reg = <0x0 0x57228300 0x0 0x100>;
++		power-domains = <&pd_mipi1>;
++		#phy-cells = <0>;
++		status = "disabled";
++	};
++
++	mipi_dsi2: mipi_dsi@57228000 {
++		compatible = "fsl,imx8qm-mipi-dsi";
++		clocks =
++			<&clk IMX8QM_MIPI1_PXL_CLK>,
++			<&clk IMX8QM_MIPI1_BYPASS_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "pixel", "bypass", "phy_ref";
++		power-domains = <&pd_mipi1>;
++		csr = <&mipi_dsi_csr2>;
++		phys = <&mipi_dsi_phy2>;
++		phy-names = "dphy";
++		pwr-delay = <100>;
++		status = "disabled";
++
++		port@0 {
++			mipi_dsi2_in: endpoint {
++				remote-endpoint = <&dpu2_disp0_mipi_dsi>;
++			};
++		};
++
++		port@1 {
++			mipi_dsi2_out: endpoint {
++				remote-endpoint = <&mipi_dsi_bridge2_in>;
++			};
++		};
++	};
++
++	mipi_dsi_bridge2: mipi_dsi_bridge@57228000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "nwl,mipi-dsi";
++		reg = <0x0 0x57228000 0x0 0x300>;
++		interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_dsi1>;
++		clocks =
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_MIPI1_DSI_TX_ESC_CLK>,
++			<&clk IMX8QM_MIPI1_DSI_RX_ESC_CLK>;
++		clock-names = "phy_ref", "tx_esc", "rx_esc";
++		assigned-clocks = <&clk IMX8QM_MIPI1_DSI_TX_ESC_DIV>,
++				  <&clk IMX8QM_MIPI1_DSI_RX_ESC_DIV>;
++		assigned-clock-rates = <18000000>, <72000000>;
++		power-domains = <&pd_mipi1>;
++		phys = <&mipi_dsi_phy2>;
++		phy-names = "dphy";
++		status = "disabled";
++
++		port@0 {
++			mipi_dsi_bridge2_in: endpoint {
++				remote-endpoint = <&mipi_dsi2_out>;
++			};
++		};
++	};
++
++	lvds_region2: lvds_region@57240000 {
++		compatible = "fsl,imx8qm-lvds-region", "syscon";
++		reg = <0x0 0x57240000 0x0 0x10000>;
++	};
++
++	ldb2_phy: ldb_phy@57241000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "mixel,lvds-phy";
++		reg = <0x0 0x57241000 0x0 0x100>;
++		clocks = <&clk IMX8QM_LVDS1_PHY_CLK>;
++		clock-names = "phy";
++		power-domains = <&pd_lvds1>;
++		status = "disabled";
++
++		ldb2_phy1: port@0 {
++			reg = <0>;
++			#phy-cells = <0>;
++		};
++
++		ldb2_phy2: port@1 {
++			reg = <1>;
++			#phy-cells = <0>;
++		};
++	};
++
++	ldb2: ldb@572410e0 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "fsl,imx8qm-ldb";
++		clocks = <&clk IMX8QM_LVDS1_PIXEL_CLK>,
++			 <&clk IMX8QM_LVDS1_BYPASS_CLK>;
++		clock-names = "pixel", "bypass";
++		power-domains = <&pd_lvds1>;
++		gpr = <&lvds_region2>;
++		status = "disabled";
++
++		lvds-channel@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			phys = <&ldb2_phy1>;
++			phy-names = "ldb_phy";
++			status = "disabled";
++
++			port@0 {
++				reg = <0>;
++
++				ldb2_lvds0: endpoint {
++					remote-endpoint = <&dpu2_disp1_lvds0>;
++				};
++			};
++		};
++
++		lvds-channel@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			phys = <&ldb2_phy2>;
++			phy-names = "ldb_phy";
++			status = "disabled";
++
++			port@0 {
++				reg = <0>;
++
++				ldb2_lvds1: endpoint {
++					remote-endpoint = <&dpu2_disp1_lvds1>;
++				};
++			};
++		};
++	};
++
++	lvds1_pwm: pwm@57244000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x57244000 0 0x1000>;
++		clocks = <&clk IMX8QM_LVDS1_PWM0_IPG_CLK>,
++			 <&clk IMX8QM_LVDS1_PWM0_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_LVDS1_PWM0_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		power-domains = <&pd_lvds1_pwm>;
++		status = "disabled";
++	};
++
++	camera: camera {
++		compatible = "fsl,mxc-md", "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		isi_0: isi@58100000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58100000 0x0 0x10000>;
++			interrupts = <0 297 0>;
++			interface = <2 0 2>;  /* <Input MIPI_VCx Output>
++									Input:  0-DC0, 1-DC1, 2-MIPI CSI0, 3-MIPI CSI1, 4-HDMI, 5-MEM
++									VCx:    0-VC0, 1-VC1, 2-VC2, 3-VC3, MIPI CSI only
++									Output: 0-DC0, 1-DC1, 2-MEM */
++			clocks = <&clk IMX8QM_IMG_PDMA_0_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_0_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch0>;
++			status = "disabled";
++		};
++
++		isi_1: isi@58110000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58110000 0x0 0x10000>;
++			interrupts = <0 298 0>;
++			interface = <2 1 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_1_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_1_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch1>;
++			status = "disabled";
++		};
++
++		isi_2: isi@58120000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58120000 0x0 0x10000>;
++			interrupts = <0 299 0>;
++			interface = <2 2 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_2_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_2_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch2>;
++			status = "disabled";
++		};
++
++		isi_3: isi@58130000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58130000 0x0 0x10000>;
++			interrupts = <0 300 0>;
++			interface = <2 3 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_3_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_3_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch3>;
++			status = "disabled";
++		};
++
++		isi_4: isi@58140000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58140000 0x0 0x10000>;
++			interrupts = <0 301 0>;
++			interface = <3 0 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_4_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_4_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch4>;
++			status = "disabled";
++		};
++
++		isi_5: isi@58150000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58150000 0x0 0x10000>;
++			interrupts = <0 302 0>;
++			interface = <3 1 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_5_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_5_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch5>;
++			status = "disabled";
++		};
++
++		isi_6: isi@58160000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58160000 0x0 0x10000>;
++			interrupts = <0 303 0>;
++			interface = <3 2 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_6_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_6_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch6>;
++			status = "disabled";
++		};
++
++		isi_7: isi@58170000 {
++			compatible = "fsl,imx8-isi";
++			reg = <0x0 0x58170000 0x0 0x10000>;
++			interrupts = <0 304 0>;
++			interface = <3 3 2>;
++			clocks = <&clk IMX8QM_IMG_PDMA_7_CLK>;
++			clock-names = "per";
++			assigned-clocks = <&clk IMX8QM_IMG_PDMA_7_CLK>;
++			assigned-clock-rates = <600000000>;
++			power-domains =<&pd_isi_ch7>;
++			status = "disabled";
++		};
++
++		mipi_csi_0: csi@58227000 {
++			compatible = "fsl,mxc-mipi-csi2";
++			reg = <0x0 0x58227000 0x0 0x1000>, /* CSI0 Controler base addr */
++				<0x0 0x58221000 0x0 0x1000>; /* CSI0 Subsystem CSR base addr  */
++			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-parent = <&irqsteer_csi0>;
++			clocks = <&clk IMX8QM_CLK_DUMMY>,
++					<&clk IMX8QM_CSI0_CORE_CLK>,
++					<&clk IMX8QM_CSI0_ESC_CLK>,
++					<&clk IMX8QM_IMG_PXL_LINK_CSI0_CLK>;
++			clock-names = "clk_apb", "clk_core", "clk_esc", "clk_pxl";
++			assigned-clocks = <&clk IMX8QM_CSI0_CORE_CLK>,
++					<&clk IMX8QM_CSI0_ESC_CLK>;
++			assigned-clock-rates = <360000000>, <72000000>;
++			power-domains = <&pd_csi0>;
++			status = "disabled";
++		};
++
++		mipi_csi_1: csi@58247000 {
++			compatible = "fsl,mxc-mipi-csi2";
++			reg = <0x0 0x58247000 0x0 0x1000>, /* CSI1 Controler base addr */
++					<0x0 0x58241000 0x0 0x1000>; /* CSI1 Subsystem CSR base addr  */
++			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-parent = <&irqsteer_csi1>;
++			clocks = <&clk IMX8QM_CLK_DUMMY>,
++					<&clk IMX8QM_CSI1_CORE_CLK>,
++					<&clk IMX8QM_CSI1_ESC_CLK>,
++					<&clk IMX8QM_IMG_PXL_LINK_CSI1_CLK>;
++			clock-names = "clk_apb", "clk_core", "clk_esc", "clk_pxl";
++			assigned-clocks = <&clk IMX8QM_CSI1_CORE_CLK>,
++							<&clk IMX8QM_CSI1_ESC_CLK>;
++			assigned-clock-rates = <360000000>, <72000000>;
++			power-domains = <&pd_csi1>;
++			status = "disabled";
++		};
++
++		hdmi_rx: hdmi_rx@58268000 {
++			compatible = "fsl,imx-hdmi-rx";
++			reg = <0x0 0x58268000 0x0 0x10000>, /* HDP Controller */
++					<0x0 0x58261000 0x0 0x1000>; /* HDP SubSystem CSR  */
++			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>,
++							<13 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "plug_in", "plug_out";
++
++			interrupt-parent = <&irqsteer_hdmi_rx>;
++			clocks = <&clk IMX8QM_HDMI_RX_HD_REF_CLK>,
++						<&clk IMX8QM_HDMI_RX_HD_CORE_CLK>,
++						<&clk IMX8QM_HDMI_RX_PXL_CLK>,
++						<&clk IMX8QM_HDMI_RX_SINK_PCLK>,
++						<&clk IMX8QM_HDMI_RX_SINK_SCLK>,
++						<&clk IMX8QM_HDMI_RX_PXL_ENC_CLK>,
++						<&clk IMX8QM_HDMI_RX_I2S_CLK>,
++						<&clk IMX8QM_HDMI_RX_SPDIF_CLK>,
++						<&clk IMX8QM_IMG_PXL_LINK_HDMI_IN_CLK>;
++			clock-names = "ref_clk", "core_clk", "pxl_clk",
++							"pclk", "sclk", "enc_clk",
++							"i2s_clk", "spdif_clk",
++							"pxl_link_clk";
++			power-domains = <&pd_hdmi_rx_bypass>;
++			status = "disabled";
++		};
++
++		jpegdec: jpegdec@58400000 {
++			compatible = "fsl,imx8-jpgdec";
++			reg = <0x0 0x58400000 0x0 0x00040020 >;
++			interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8QM_IMG_JPEG_DEC_IPG_CLK >,
++					<&clk IMX8QM_IMG_JPEG_DEC_CLK >;
++			clock-names = "ipg", "per";
++			assigned-clocks = <&clk IMX8QM_IMG_JPEG_DEC_IPG_CLK >,
++						<&clk IMX8QM_IMG_JPEG_DEC_CLK >;
++			assigned-clock-rates = <200000000>;
++			power-domains =<&pd_jpgdec>;
++		};
++
++		jpegenc: jpegenc@58450000 {
++			compatible = "fsl,imx8-jpgenc";
++			reg = <0x0 0x58450000 0x0 0x00240020 >;
++			interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8QM_IMG_JPEG_ENC_IPG_CLK >,
++					<&clk IMX8QM_IMG_JPEG_ENC_CLK >;
++			clock-names = "ipg", "per";
++			assigned-clocks = <&clk IMX8QM_IMG_JPEG_ENC_IPG_CLK >,
++						<&clk IMX8QM_IMG_JPEG_ENC_CLK >;
++			assigned-clock-rates = <200000000>;
++			power-domains =<&pd_jpgenc>;
++		};
++	};
++
++	adc0: adc@5a880000 {
++		compatible = "fsl,imx8qxp-adc";
++		reg = <0x0 0x5a880000 0x0 0x10000>;
++		interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_ADC0_CLK>,
++			 <&clk IMX8QM_ADC0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_ADC0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_adc0>;
++		status = "disabled";
++	};
++
++	adc1: adc@5a890000 {
++		compatible = "fsl,imx8qxp-adc";
++		reg = <0x0 0x5a890000 0x0 0x10000>;
++		interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_ADC1_CLK>,
++			 <&clk IMX8QM_ADC1_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_ADC1_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_adc1>;
++		status = "disabled";
++	};
++
++	i2c0: i2c@5a800000 {
++		compatible = "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
++		reg = <0x0 0x5a800000 0x0 0x4000>;
++		interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_I2C0_CLK>,
++			 <&clk IMX8QM_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_lpi2c0>;
++		status = "disabled";
++	};
++
++	i2c1: i2c@5a810000 {
++		compatible = "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
++		reg = <0x0 0x5a810000 0x0 0x4000>;
++		interrupts = <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_I2C1_CLK>,
++			 <&clk IMX8QM_I2C1_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_I2C1_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_lpi2c1>;
++		status = "disabled";
++	};
++
++	i2c2: i2c@5a820000 {
++		compatible = "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
++		reg = <0x0 0x5a820000 0x0 0x4000>;
++		interrupts = <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_I2C2_CLK>,
++			 <&clk IMX8QM_I2C2_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_I2C2_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_lpi2c2>;
++		status = "disabled";
++	};
++
++	i2c3: i2c@5a830000 {
++		compatible = "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
++		reg = <0x0 0x5a830000 0x0 0x4000>;
++		interrupts = <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_I2C3_CLK>,
++			 <&clk IMX8QM_I2C3_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_I2C3_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_lpi2c3>;
++		status = "disabled";
++	};
++
++	i2c4: i2c@5a840000 {
++		compatible = "fsl,imx8qm-lpi2c", "fsl,imx7ulp-lpi2c";
++		reg = <0x0 0x5a840000 0x0 0x4000>;
++		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_I2C4_CLK>,
++			 <&clk IMX8QM_I2C4_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_I2C4_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_dma_lpi2c4>;
++		status = "disabled";
++	};
++
++	i2c0_cm40: i2c@37230000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x37230000 0x0 0x1000>;
++		interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&intmux_cm40>;
++		clocks = <&clk IMX8QM_CM40_I2C_CLK>,
++			 <&clk IMX8QM_CM40_I2C_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_CM40_I2C_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_cm40_i2c>;
++		status = "disabled";
++	};
++
++	i2c0_cm41: i2c@3b230000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x3b230000 0x0 0x1000>;
++		interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&intmux_cm41>;
++		clocks = <&clk IMX8QM_CM41_I2C_CLK>,
++			 <&clk IMX8QM_CM41_I2C_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_CM41_I2C_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_cm41_i2c>;
++		status = "disabled";
++	};
++
++	irqsteer_hdmi: irqsteer@56260000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x56260000 0x0 0x1000>;
++		interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_HDMI_LIS_IPG_CLK>;
++		clock-names = "ipg";
++		assigned-clocks = <&clk IMX8QM_HDMI_DIG_PLL_CLK>,
++							<&clk IMX8QM_HDMI_LIS_IPG_CLK>;
++		assigned-clock-rates = <675000000>, <84375000>;
++		power-domains = <&pd_hdmi>;
++		status = "disabled";
++	};
++
++	irqsteer_hdmi_rx: irqsteer@58260000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x58260000 0x0 0x1000>;
++		interrupts = <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_HDMI_RX_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_hdmi_rx>;
++	};
++
++
++	i2c0_hdmi: i2c@56266000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x56266000 0x0 0x1000>;
++		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_hdmi>;
++		clocks = <&clk IMX8QM_HDMI_I2C0_CLK>,
++			 <&clk IMX8QM_HDMI_I2C_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_HDMI_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_hdmi_i2c0>;
++		status = "disabled";
++	};
++
++	irqsteer_lvds0: irqsteer@562400000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x56240000 0x0 0x1000>;
++		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_LVDS0_LIS_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_lvds0>;
++	};
++
++	flexcan1: can@5a8d0000 {
++		compatible = "fsl,imx8qm-flexcan", "fsl,imx6q-flexcan";
++		reg = <0x0 0x5a8d0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_CAN0_IPG_CLK>,
++			 <&clk IMX8QM_CAN0_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_CAN0_CLK>;
++		assigned-clock-rates = <40000000>;
++		power-domains = <&pd_dma_flexcan0>;
++		status = "disabled";
++	};
++
++	flexcan2: can@5a8e0000 {
++		compatible = "fsl,imx8qm-flexcan", "fsl,imx6q-flexcan";
++		reg = <0x0 0x5a8e0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_CAN1_IPG_CLK>,
++			 <&clk IMX8QM_CAN1_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_CAN1_CLK>;
++		assigned-clock-rates = <40000000>;
++		power-domains = <&pd_dma_flexcan1>;
++		status = "disabled";
++	};
++
++	flexcan3: can@5a8f0000 {
++		compatible = "fsl,imx8qm-flexcan", "fsl,imx6q-flexcan";
++		reg = <0x0 0x5a8f0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_CAN2_IPG_CLK>,
++			 <&clk IMX8QM_CAN2_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_CAN2_CLK>;
++		assigned-clock-rates = <40000000>;
++		power-domains = <&pd_dma_flexcan2>;
++		status = "disabled";
++	};
++
++	i2c1_lvds0: i2c@56247000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x56247000 0x0 0x1000>;
++		interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_lvds0>;
++		clocks = <&clk IMX8QM_LVDS0_I2C0_CLK>,
++			 <&clk IMX8QM_LVDS0_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_LVDS0_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_lvds0_i2c0>;
++		status = "disabled";
++	};
++
++	irqsteer_lvds1: irqsteer@572400000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x57240000 0x0 0x1000>;
++		interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_LVDS1_LIS_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_lvds1>;
++	};
++
++	i2c1_lvds1: i2c@57247000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x57247000 0x0 0x1000>;
++		interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_lvds1>;
++		clocks = <&clk IMX8QM_LVDS1_I2C0_CLK>,
++			 <&clk IMX8QM_LVDS1_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_LVDS1_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_lvds1_i2c0>;
++		status = "disabled";
++	};
++
++	irqsteer_csi0: irqsteer@58220000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x58220000 0x0 0x1000>;
++		interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg";
++		power-domains = <&pd_csi0>;
++	};
++
++	i2c0_mipi_csi0: i2c@58226000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x58226000 0x0 0x1000>;
++		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_csi0>;
++		clocks = <&clk IMX8QM_CSI0_I2C0_CLK>,
++			 <&clk IMX8QM_CSI0_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_CSI0_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_csi0_i2c0>;
++		status = "disabled";
++	};
++
++	irqsteer_csi1: irqsteer@582400000 {
++		compatible = "nxp,imx-irqsteer";
++		reg = <0x0 0x58240000 0x0 0x1000>;
++		interrupts = <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg";
++		power-domains = <&pd_csi1>;
++	};
++
++	i2c0_mipi_csi1: i2c@58246000 {
++		compatible = "fsl,imx8qm-lpi2c";
++		reg = <0x0 0x58246000 0x0 0x1000>;
++		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_csi1>;
++		clocks = <&clk IMX8QM_CSI1_I2C0_CLK>,
++			 <&clk IMX8QM_CSI1_I2C0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_CSI1_I2C0_CLK>;
++		assigned-clock-rates = <24000000>;
++		power-domains = <&pd_csi1_i2c0>;
++		status = "disabled";
++	};
++
++	lpspi0: lpspi@5a000000 {
++		compatible = "fsl,imx7ulp-spi";
++		reg = <0x0 0x5a000000 0x0 0x10000>;
++		interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_SPI0_CLK>,
++			 <&clk IMX8QM_SPI0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_SPI0_CLK>;
++		assigned-clock-rates = <20000000>;
++		power-domains = <&pd_dma0_chan1>;
++		dma-names = "tx","rx";
++		dmas = <&edma0 1 0 0>, <&edma0 0 0 1>;
++		status = "disabled";
++	};
++
++	lpspi3: lpspi@5a030000 {
++		compatible = "fsl,imx7ulp-spi";
++		reg = <0x0 0x5a030000 0x0 0x10000>;
++		interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&gic>;
++		clocks = <&clk IMX8QM_SPI3_CLK>,
++			 <&clk IMX8QM_SPI3_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_SPI3_CLK>;
++		assigned-clock-rates = <60000000>;
++		power-domains = <&pd_dma0_chan7>;
++		dma-names = "tx","rx";
++		dmas = <&edma0 7 0 0>, <&edma0 6 0 1>;
++		status = "disabled";
++	};
++
++	lpuart0: serial@5a060000 {
++		compatible = "fsl,imx8qm-lpuart";
++		reg = <0x0 0x5a060000 0x0 0x1000>;
++		interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_UART0_CLK>,
++			 <&clk IMX8QM_UART0_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_UART0_CLK>;
++		assigned-clock-rates = <80000000>;
++		power-domains = <&pd_dma_lpuart0>;
++		status = "disabled";
++	};
++
++	lpuart1: serial@5a070000 {
++		compatible = "fsl,imx8qm-lpuart";
++		reg = <0x0 0x5a070000 0x0 0x1000>;
++		interrupts = <GIC_SPI 346 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_UART1_CLK>,
++			<&clk IMX8QM_UART1_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_UART1_CLK>;
++		assigned-clock-rates = <80000000>;
++		power-domains = <&pd_dma0_chan15>;
++		dma-names = "tx","rx";
++		dmas = <&edma0 15 0 0>,
++			<&edma0 14 0 1>;
++		status = "disabled";
++	};
++
++	lpuart2: serial@5a080000 {
++		compatible = "fsl,imx8qm-lpuart";
++		reg = <0x0 0x5a080000 0x0 0x1000>;
++		interrupts = <GIC_SPI 347 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_UART2_CLK>,
++			<&clk IMX8QM_UART2_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_UART2_CLK>;
++		assigned-clock-rates = <80000000>;
++		power-domains = <&pd_dma0_chan17>;
++		dma-names = "tx","rx";
++		dmas = <&edma0 17 0 0>,
++			<&edma0 16 0 1>;
++		status = "disabled";
++	};
++
++	lpuart3: serial@5a090000 {
++		compatible = "fsl,imx8qm-lpuart";
++		reg = <0x0 0x5a090000 0x0 0x1000>;
++		interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_UART3_CLK>,
++			<&clk IMX8QM_UART3_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_UART3_CLK>;
++		assigned-clock-rates = <80000000>;
++		power-domains = <&pd_dma0_chan19>;
++		dma-names = "tx","rx";
++		dmas = <&edma0 19 0 0>,
++			<&edma0 18 0 1>;
++		status = "disabled";
++	};
++
++	lpuart4: serial@5a0a0000 {
++		compatible = "fsl,imx8qm-lpuart";
++		reg = <0x0 0x5a0a0000 0x0 0x1000>;
++		interrupts = <GIC_SPI 349 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&wu>;
++		clocks = <&clk IMX8QM_UART4_CLK>,
++			<&clk IMX8QM_UART4_IPG_CLK>;
++		clock-names = "per", "ipg";
++		assigned-clocks = <&clk IMX8QM_UART4_CLK>;
++		assigned-clock-rates = <80000000>;
++		power-domains = <&pd_dma0_chan21>;
++		dma-names = "tx","rx";
++		dmas = <&edma0 21 0 0>,
++			<&edma0 20 0 1>;
++		status = "disabled";
++	};
++
++	ftmpwm0: ftmpwm@0x05a8a0000 {
++		compatible = "fsl,vf610-ftm-pwm";
++		reg = <0 0x5A8A0000 0 0x1000>;
++		#pwm-cells = <3>;
++		clock-names = "ftm_sys", "ftm_ext",
++				"ftm_fix", "ftm_cnt_clk_en", "ipg";
++		clocks = <&clk IMX8QM_FTM0_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_FTM0_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_FTM0_IPG_CLK>;
++		assigned-clocks = <&clk IMX8QM_FTM0_CLK>;
++		assigned-clock-rates = <8000000>;
++		power-domains = <&pd_dma_ftm0>;
++		ftm-has-pwmen-bits;
++		status = "disabled";
++	};
++
++	ftmpwm1: ftmpwm@0x05a8b0000 {
++		compatible = "fsl,vf610-ftm-pwm";
++		reg = <0 0x5A8B0000 0 0x1000>;
++		#pwm-cells = <3>;
++		clock-names = "ftm_sys", "ftm_ext",
++				"ftm_fix", "ftm_cnt_clk_en", "ipg";
++		clocks = <&clk IMX8QM_FTM1_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_FTM1_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_FTM0_IPG_CLK>;
++		assigned-clocks = <&clk IMX8QM_FTM1_CLK>;
++		assigned-clock-rates = <8000000>;
++		power-domains = <&pd_dma_ftm1>;
++		ftm-has-pwmen-bits;
++		status = "disabled";
++	};
++
++	emvsim0: sim0@5a0d0000 {
++		compatible = "fsl,imx8-emvsim";
++		reg = <0x0 0x5a0d0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 230 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_EMVSIM0_CLK>,
++			 <&clk IMX8QM_EMVSIM0_IPG_CLK>;
++		clock-names = "sim", "ipg";
++		power-domains = <&pd_ldo1_sim>;
++		status = "disabled";
++	};
++
++	edma0: dma-controller@5a1f0000 {
++		compatible = "fsl,imx8qm-edma";
++		reg = <0x0 0x5a200000 0x0 0x10000>, /* channel0 LPSPI0 rx */
++		      <0x0 0x5a210000 0x0 0x10000>, /* channel1 LPSPI0 tx */
++		      <0x0 0x5a260000 0x0 0x10000>, /* channel6 LPSPI3 rx */
++		      <0x0 0x5a270000 0x0 0x10000>, /* channel7 LPSPI3 tx */
++		      <0x0 0x5a2c0000 0x0 0x10000>, /* channel12 UART0 rx */
++		      <0x0 0x5a2d0000 0x0 0x10000>, /* channel13 UART0 tx */
++		      <0x0 0x5a2e0000 0x0 0x10000>, /* channel14 UART1 rx */
++		      <0x0 0x5a2f0000 0x0 0x10000>, /* channel15 UART1 tx */
++		      <0x0 0x5a300000 0x0 0x10000>, /* channel16 UART2 rx */
++		      <0x0 0x5a310000 0x0 0x10000>, /* channel17 UART2 tx */
++		      <0x0 0x5a320000 0x0 0x10000>, /* channel18 UART3 rx */
++		      <0x0 0x5a330000 0x0 0x10000>, /* channel19 UART3 tx */
++		      <0x0 0x5a340000 0x0 0x10000>, /* channel20 UART4 rx */
++		      <0x0 0x5a350000 0x0 0x10000>; /* channel21 UART4 tx */
++		#dma-cells = <3>;
++		dma-channels = <14>;
++		interrupts = <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "edma0-chan0-rx", "edma0-chan1-tx",
++				  "edma0-chan6-rx", "edma0-chan7-tx",
++				  "edma0-chan12-rx", "edma0-chan13-tx",
++				  "edma0-chan14-rx", "edma0-chan15-tx",
++				  "edma0-chan16-rx", "edma0-chan17-tx",
++				  "edma0-chan18-rx", "edma0-chan19-tx",
++				  "edma0-chan20-rx", "edma0-chan21-tx";
++		status = "okay";
++	};
++
++	edma2: dma-controller@591F0000 {
++		compatible = "fsl,imx8qm-adma";
++		reg = <0x0 0x59200000 0x0 0x10000>, /* asrc0 */
++			<0x0 0x59210000 0x0 0x10000>,
++			<0x0 0x59220000 0x0 0x10000>,
++			<0x0 0x59230000 0x0 0x10000>,
++			<0x0 0x59240000 0x0 0x10000>,
++			<0x0 0x59250000 0x0 0x10000>,
++			<0x0 0x59260000 0x0 0x10000>, /* esai0 rx */
++			<0x0 0x59270000 0x0 0x10000>, /* esai0 tx */
++			<0x0 0x59280000 0x0 0x10000>, /* spdif0 rx */
++			<0x0 0x59290000 0x0 0x10000>, /* spdif0 tx */
++			<0x0 0x592A0000 0x0 0x10000>, /* spdif1 rx */
++			<0x0 0x592B0000 0x0 0x10000>, /* spdif1 tx */
++			<0x0 0x592c0000 0x0 0x10000>, /* sai0 rx */
++			<0x0 0x592d0000 0x0 0x10000>, /* sai0 tx */
++			<0x0 0x592e0000 0x0 0x10000>, /* sai1 rx */
++			<0x0 0x592f0000 0x0 0x10000>, /* sai1 tx */
++			<0x0 0x59320000 0x0 0x10000>, /* sai4 rx */
++			<0x0 0x59330000 0x0 0x10000>; /* sai5 tx */
++		#dma-cells = <3>;
++		shared-interrupt;
++		dma-channels = <18>;
++		interrupts = <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>, /* asrc0 */
++				<GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>, /* esai0 */
++				<GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>, /* spdif0 */
++				<GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>, /* spdif1 */
++				<GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>, /* sai0 */
++				<GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>, /* sai1 */
++				<GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>, /* sai4 */
++				<GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>; /* sai5 */
++		interrupt-names = "edma2-chan0-rx", "edma2-chan1-rx", /* asrc0 */
++				"edma2-chan2-rx", "edma2-chan3-tx",
++				"edma2-chan4-tx", "edma2-chan5-tx",
++				"edma2-chan6-rx", "edma2-chan7-tx", /* esai0 */
++				"edma2-chan8-rx", "edma2-chan9-tx", /* spdif0 */
++				"edma2-chan10-rx", "edma2-chan11-tx", /* spdif1 */
++				"edma2-chan12-rx", "edma2-chan13-tx", /* sai0 */
++				"edma2-chan14-rx", "edma2-chan15-tx", /* sai1 */
++				"edma2-chan18-rx", "edma2-chan19-tx"; /* sai4, sai5 */
++		status = "okay";
++	};
++
++	edma3: dma-controller@599F0000 {
++		compatible = "fsl,imx8qm-adma";
++		reg = <0x0 0x59A00000 0x0 0x10000>, /* asrc1 */
++			<0x0 0x59A10000 0x0 0x10000>,
++			<0x0 0x59A20000 0x0 0x10000>,
++			<0x0 0x59A30000 0x0 0x10000>,
++			<0x0 0x59A40000 0x0 0x10000>,
++			<0x0 0x59A50000 0x0 0x10000>,
++			<0x0 0x59A80000 0x0 0x10000>, /* sai6 rx */
++			<0x0 0x59A90000 0x0 0x10000>, /* sai6 tx */
++			<0x0 0x59AA0000 0x0 0x10000>; /* sai7 tx */
++		#dma-cells = <3>;
++		shared-interrupt;
++		dma-channels = <9>;
++		interrupts = <GIC_SPI 382 IRQ_TYPE_LEVEL_HIGH>, /* asrc1 */
++				<GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>, /* sai6 */
++				<GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>; /* sai7 */
++		interrupt-names = "edma3-chan0-rx", "edma3-chan1-rx", /* asrc1 */
++				"edma3-chan2-rx", "edma3-chan3-tx",
++				"edma3-chan4-tx", "edma3-chan5-tx",
++				"edma3-chan8-rx", "edma3-chan9-tx", /* sai6 */
++				"edma3-chan10-tx";                 /* sai7 */
++		status = "okay";
++	};
++
++	wu: wu {
++		compatible = "fsl,imx8-wu";
++		interrupt-controller;
++		#interrupt-cells = <3>;
++		interrupt-parent = <&gic>;
++	};
++
++	gpio0: gpio@5d080000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d080000 0x0 0x10000>;
++		interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio0>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio1: gpio@5d090000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d090000 0x0 0x10000>;
++		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio1>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio2: gpio@5d0a0000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d0a0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio2>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio3: gpio@5d0b0000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d0b0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio3>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio4: gpio@5d0c0000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d0c0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio4>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio5: gpio@5d0d0000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d0d0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio5>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio6: gpio@5d0e0000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d0e0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio6>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio7: gpio@5d0f0000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x5d0f0000 0x0 0x10000>;
++		interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		power-domains = <&pd_lsio_gpio7>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
++
++	gpio0_mipi_csi0: gpio@58222000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x58222000 0x0 0x1000>;
++		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_csi0>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		power-domains = <&pd_csi0>;
++		status = "disabled";
++	};
++
++	gpio0_mipi_csi1: gpio@58242000 {
++		compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++		reg = <0x0 0x58242000 0x0 0x1000>;
++		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-parent = <&irqsteer_csi1>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		power-domains = <&pd_csi1>;
++		status = "disabled";
++	};
++
++	gpt0: gpt0@5d140000 {
++		compatible = "fsl,imx8qm-gpt";
++		reg = <0x0 0x5d140000 0x0 0x4000>;
++		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_GPT0_CLK>, <&clk IMX8QM_GPT_3M>;
++		clock-names = "ipg", "per";
++		power-domains = <&pd_lsio_gpt0>;
++	};
++
++	pwm0: pwm@5d000000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d000000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM0_HF_CLK>,
++			 <&clk IMX8QM_PWM0_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM0_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++
++	pwm1: pwm@5d010000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d010000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM1_HF_CLK>,
++			 <&clk IMX8QM_PWM1_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM1_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++	pwm2: pwm@5d020000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d020000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM2_HF_CLK>,
++			 <&clk IMX8QM_PWM2_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM2_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++	pwm3: pwm@5d030000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d030000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM3_HF_CLK>,
++			 <&clk IMX8QM_PWM3_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM3_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++	pwm4: pwm@5d040000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d040000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM4_HF_CLK>,
++			 <&clk IMX8QM_PWM4_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM4_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++	pwm5: pwm@5d050000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d050000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM5_HF_CLK>,
++			 <&clk IMX8QM_PWM5_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM5_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++	pwm6: pwm@5d060000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d060000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM6_HF_CLK>,
++			 <&clk IMX8QM_PWM6_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM6_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++	pwm7: pwm@5d070000 {
++		compatible = "fsl,imx8qm-pwm", "fsl,imx27-pwm";
++		reg = <0x0 0x5d070000 0  0x10000>;
++		clocks = <&clk IMX8QM_PWM7_HF_CLK>,
++			 <&clk IMX8QM_PWM7_HF_CLK>;
++		clock-names = "ipg", "per";
++		assigned-clocks = <&clk IMX8QM_PWM7_HF_CLK>;
++		assigned-clock-rates = <24000000>;
++		#pwm-cells = <2>;
++		status = "disabled";
++	};
++
++
++	gpu_3d0: gpu@53100000 {
++		compatible = "fsl,imx8-gpu";
++		reg = <0x0 0x53100000 0 0x40000>;
++		interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_GPU0_CORE_CLK>, <&clk IMX8QM_GPU0_SHADER_CLK>;
++		clock-names = "core", "shader";
++		assigned-clocks = <&clk IMX8QM_GPU0_CORE_CLK>, <&clk IMX8QM_GPU0_SHADER_CLK>;
++		assigned-clock-rates = <800000000>, <1000000000>;
++		fsl,sc_gpu_pid = <IMX_SC_R_GPU_0_PID0>;
++		power-domains = <&pd_gpu0>;
++		status = "disabled";
++	};
++
++	gpu_3d1: gpu@54100000 {
++		compatible = "fsl,imx8-gpu";
++		reg = <0x0 0x54100000 0x0 0x40000>;
++		interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_GPU1_CORE_CLK>, <&clk IMX8QM_GPU1_SHADER_CLK>;
++		clock-names = "core", "shader";
++		assigned-clocks = <&clk IMX8QM_GPU1_CORE_CLK>, <&clk IMX8QM_GPU1_SHADER_CLK>;
++		assigned-clock-rates = <800000000>, <1000000000>;
++		fsl,sc_gpu_pid = <IMX_SC_R_GPU_1_PID0>;
++		power-domains = <&pd_gpu1>;
++		status = "disabled";
++	};
++
++	imx8_gpu_ss: imx8_gpu_ss {
++		compatible = "fsl,imx8qm-gpu", "fsl,imx8-gpu-ss";
++		cores = <&gpu_3d0>, <&gpu_3d1>;
++		reg = <0x0 0x80000000 0x0 0x80000000>, <0x0 0x0 0x0 0x10000000>;
++		reg-names = "phys_baseaddr", "contiguous_mem";
++		status = "disabled";
++	};
++
++	mlb: mlb@5B060000 {
++		compatible = "fsl,imx6q-mlb150";
++		reg = <0x0 0x5B060000 0x0 0x10000>;
++		interrupt-parent = <&gic>;
++		interrupts = <0 265 IRQ_TYPE_LEVEL_HIGH>,
++			     <0 266 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_MLB_CLK>,
++			 <&clk IMX8QM_MLB_HCLK>,
++			 <&clk IMX8QM_MLB_IPG_CLK>;
++		clock-names = "mlb", "hclk", "ipg";
++		assigned-clocks = <&clk IMX8QM_MLB_CLK>,
++				  <&clk IMX8QM_MLB_HCLK>,
++				  <&clk IMX8QM_MLB_IPG_CLK>;
++		assigned-clock-rates = <333333333>, <333333333>, <83333333>;
++		power-domains = <&pd_conn_mlb0>;
++		status = "disabled";
++	};
++
++	usdhc1: usdhc@5b010000 {
++		compatible = "fsl,imx8qm-usdhc", "fsl,imx6sl-usdhc";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
++		reg = <0x0 0x5b010000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_SDHC0_IPG_CLK>,
++			<&clk IMX8QM_SDHC0_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg", "per", "ahb";
++		assigned-clocks = <&clk IMX8QM_SDHC0_DIV>;
++		assigned-clock-rates = <400000000>;
++		power-domains = <&pd_conn_sdch0>;
++		fsl,tuning-start-tap = <20>;
++		fsl,tuning-step= <2>;
++		iommus = <&smmu 0x11 0x7f80>;
++		status = "disabled";
++	};
++
++	usdhc2: usdhc@5b020000 {
++		compatible = "fsl,imx8qm-usdhc", "fsl,imx6sl-usdhc";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
++		reg = <0x0 0x5b020000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_SDHC1_IPG_CLK>,
++			<&clk IMX8QM_SDHC1_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg", "per", "ahb";
++		assigned-clocks = <&clk IMX8QM_SDHC1_DIV>;
++		assigned-clock-rates = <200000000>;
++		power-domains = <&pd_conn_sdch1>;
++		fsl,tuning-start-tap = <20>;
++		fsl,tuning-step= <2>;
++		iommus = <&smmu 0x11 0x7f80>;
++		status = "disabled";
++	};
++
++	usdhc3: usdhc@5b030000 {
++		compatible = "fsl,imx8qm-usdhc", "fsl,imx6sl-usdhc";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
++		reg = <0x0 0x5b030000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_SDHC2_IPG_CLK>,
++			<&clk IMX8QM_SDHC2_CLK>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg", "per", "ahb";
++		assigned-clocks = <&clk IMX8QM_SDHC2_DIV>;
++		assigned-clock-rates = <200000000>;
++		power-domains = <&pd_conn_sdch2>;
++		iommus = <&smmu 0x11 0x7f80>;
++		status = "disabled";
++	};
++
++	fec1: ethernet@5b040000 {
++		compatible = "fsl,imx8qm-fec";
++		reg = <0x0 0x5b040000 0x0 0x10000>;
++		interrupt-parent = <&wu>;
++		interrupts = <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_ENET0_IPG_CLK>, <&clk IMX8QM_ENET0_AHB_CLK>, <&clk IMX8QM_ENET0_RGMII_TX_CLK>,
++			<&clk IMX8QM_ENET0_PTP_CLK>, <&clk IMX8QM_ENET0_TX_CLK>;
++		clock-names = "ipg", "ahb", "enet_clk_ref", "ptp", "enet_2x_txclk";
++		assigned-clocks = <&clk IMX8QM_ENET0_ROOT_DIV>,
++				  <&clk IMX8QM_ENET0_REF_DIV>;
++		assigned-clock-rates = <250000000>, <125000000>;
++		fsl,num-tx-queues=<3>;
++		fsl,num-rx-queues=<3>;
++		fsl,wakeup_irq = <0>;
++		power-domains = <&pd_conn_enet0>;
++		iommus = <&smmu 0x12 0x7f80>;
++		status = "disabled";
++	};
++
++	fec2: ethernet@5b050000 {
++		compatible = "fsl,imx8qm-fec";
++		reg = <0x0 0x5b050000 0x0 0x10000>;
++		interrupt-parent = <&wu>;
++		interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_ENET1_IPG_CLK>, <&clk IMX8QM_ENET1_AHB_CLK>, <&clk IMX8QM_ENET1_RGMII_TX_CLK>,
++			<&clk IMX8QM_ENET1_PTP_CLK>, <&clk IMX8QM_ENET1_TX_CLK>;
++		clock-names = "ipg", "ahb", "enet_clk_ref", "ptp", "enet_2x_txclk";
++		assigned-clocks = <&clk IMX8QM_ENET1_ROOT_DIV>,
++				  <&clk IMX8QM_ENET1_REF_DIV>;
++		assigned-clock-rates = <250000000>, <125000000>;
++		fsl,num-tx-queues=<3>;
++		fsl,num-rx-queues=<3>;
++		fsl,wakeup_irq = <0>;
++		power-domains = <&pd_conn_enet1>;
++		iommus = <&smmu 0x12 0x7f80>;
++		status = "disabled";
++	};
++
++	usbmisc1: usbmisc@5b0d0200 {
++		#index-cells = <1>;
++		compatible = "fsl,imx7ulp-usbmisc", "fsl,imx6q-usbmisc";
++		reg = <0x0 0x5b0d0200 0x0 0x200>;
++	};
++
++	usbmisc2: usbmisc@5b0e0200 {
++		#index-cells = <1>;
++		compatible = "fsl,imx7ulp-usbmisc", "fsl,imx6q-usbmisc";
++		reg = <0x0 0x5b0e0200 0x0 0x200>;
++	};
++
++	usbphy1: usbphy@0x5b100000 {
++		compatible = "fsl,imx8qm-usbphy", "fsl,imx7ulp-usbphy", "fsl,imx6ul-usbphy", "fsl,imx23-usbphy";
++		reg = <0x0 0x5b100000 0x0 0x1000>;
++		clocks = <&clk IMX8QM_USB2_PHY_IPG_CLK>;
++		power-domains = <&pd_conn_usbotg0_phy>;
++	};
++
++	usbphynop1: usbphynop1 {
++		compatible = "usb-nop-xceiv";
++		clocks = <&clk IMX8QM_USB3_PHY_CLK>;
++		clock-names = "main_clk";
++		power-domains = <&pd_conn_usb2_phy>;
++	};
++
++	usbphynop2: usbphynop2 {
++		compatible = "usb-nop-xceiv";
++		clocks = <&clk IMX8QM_USB2_PHY_IPG_CLK>;
++		clock-names = "main_clk";
++		power-domains = <&pd_conn_usbotg0_phy>;
++	};
++
++	usbotg1: usb@5b0d0000 {
++		compatible = "fsl,imx8qm-usb", "fsl,imx27-usb";
++		reg = <0x0 0x5b0d0000 0x0 0x200>;
++		interrupt-parent = <&wu>;
++		interrupts = <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>;
++		fsl,usbphy = <&usbphy1>;
++		fsl,usbmisc = <&usbmisc1 0>;
++		clocks = <&clk IMX8QM_USB2_OH_AHB_CLK>;
++		ahb-burst-config = <0x0>;
++		tx-burst-size-dword = <0x10>;
++		rx-burst-size-dword = <0x10>;
++		#stream-id-cells = <1>;
++		power-domains = <&pd_conn_usbotg0>;
++		status = "disabled";
++	};
++
++	usbh1: usb@5b0e0000 {
++		compatible = "fsl,imx8qm-usb", "fsl,imx27-usb";
++		reg = <0x0 0x5b0e0000 0x0 0x200>;
++		interrupt-parent = <&wu>;
++		interrupts = <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
++		phy_type = "hsic";
++		dr_mode = "host";
++		fsl,usbphy = <&usbphynop2>;
++		fsl,usbmisc = <&usbmisc2 0>;
++		clocks = <&clk IMX8QM_USB2_OH_AHB_CLK>;
++		ahb-burst-config = <0x0>;
++		tx-burst-size-dword = <0x10>;
++		rx-burst-size-dword = <0x10>;
++		#stream-id-cells = <1>;
++		power-domains = <&pd_conn_usbh1>;
++		status = "disabled";
++	};
++
++	usbotg3: usb3@5b110000 {
++		compatible = "Cadence,usb3";
++		reg = <0x0 0x5B110000 0x0 0x10000>,
++			<0x0 0x5B130000 0x0 0x10000>,
++			<0x0 0x5B140000 0x0 0x10000>,
++			<0x0 0x5B160000 0x0 0x40000>,
++			<0x0 0x5B120000 0x0 0x10000>;
++		interrupt-parent = <&wu>;
++		interrupts = <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_USB3_LPM_CLK>,
++			<&clk IMX8QM_USB3_BUS_CLK>,
++			<&clk IMX8QM_USB3_ACLK>,
++			<&clk IMX8QM_USB3_IPG_CLK>,
++			<&clk IMX8QM_USB3_CORE_PCLK>;
++		clock-names = "usb3_lpm_clk", "usb3_bus_clk", "usb3_aclk",
++			"usb3_ipg_clk", "usb3_core_pclk";
++		power-domains = <&pd_conn_usb2>;
++		cdns3,usbphy = <&usbphynop1>;
++		status = "disabled";
++	};
++
++	ddr_pmu0: ddr_pmu@5c020000 {
++		compatible = "fsl,imx8-ddr-pmu";
++		reg = <0x0 0x5c020000 0x0 0x10000>;
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
++	ddr_pmu1: ddr_pmu@5c120000 {
++		compatible = "fsl,imx8-ddr-pmu";
++		reg = <0x0 0x5c120000 0x0 0x10000>;
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
++	vpu: vpu@2c000000 {
++		compatible = "nxp,imx8qm-vpu", "nxp,imx8x-vpu";
++		reg = <0x0 0x2c000000 0x0 0x1000000>;
++		reg-names = "iobase_vpu";
++		interrupts = <0 464 0x4>;
++		interrupt-names = "irq_vpu";
++		clocks = <&clk IMX8QM_VPU_DDR_CLK>,
++			<&clk IMX8QM_VPU_SYS_CLK>,
++			<&clk IMX8QM_VPU_XUVI_CLK>,
++			<&clk IMX8QM_VPU_UART_CLK>;
++		clock-names = "clk_vpu_ddr", "clk_vpu_sys",
++			"clk_vpu_xuvi", "clk_vpu_uart";
++		assigned-clocks = <&clk IMX8QM_VPU_DDR_CLK>,
++			<&clk IMX8QM_VPU_SYS_CLK>,
++			<&clk IMX8QM_VPU_XUVI_CLK>,
++			<&clk IMX8QM_VPU_UART_CLK>;
++		assigned-clock-rates = <800000000>, <600000000>,
++			<600000000>, <80000000>;
++		power-domains = <&pd_vpu_dec>;
++		status = "disabled";
++	};
++
++	acm:  acm@59e00000 {
++		compatible = "nxp,imx8qm-acm";
++		reg = <0x0 0x59e00000 0x0 0x1D0000>;
++		status = "disabled";
++	};
++
++	dsp: dsp@556e8000 {
++		compatible = "fsl,imx8qxp-dsp";
++		reserved-region = <&dsp_reserved>;
++		reg = <0x0 0x556e8000 0x0 0x88000>;
++		clocks = <&clk IMX8QM_AUD_DSP_IPG>,
++			<&clk IMX8QM_AUD_OCRAM_IPG>,
++			<&clk IMX8QM_AUD_DSP_CORE_CLK>;
++		clock-names = "ipg", "ocram", "core";
++		fsl,dsp-firmware = "imx/dsp/hifi4.bin";
++		fixup-offset = <0x4000000>;
++		power-domains = <&pd_dsp>;
++	};
++
++	esai0: esai@59010000 {
++		compatible = "fsl,imx8qm-esai";
++		reg = <0x0 0x59010000 0x0 0x10000>;
++		interrupts = <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_ESAI_0_IPG>,
++			<&clk IMX8QM_AUD_ESAI_0_EXTAL_IPG>,
++			<&clk IMX8QM_AUD_ESAI_0_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "core", "extal", "fsys", "spba";
++		dmas = <&edma2 6 0 1>, <&edma2 7 0 0>;
++		dma-names = "rx", "tx";
++		power-domains = <&pd_esai0>;
++		status = "disabled";
++	};
++
++	spdif0: spdif@59020000 {
++		compatible = "fsl,imx8qm-spdif";
++		reg = <0x0 0x59020000 0x0 0x10000>;
++		interrupts =  <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>, /* rx */
++			     <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>; /* tx */
++		clocks = <&clk IMX8QM_AUD_SPDIF_0_GCLKW>, /* core */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx0 */
++			<&clk IMX8QM_AUD_SPDIF_0_TX_CLK>, /* rxtx1 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx2 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx3 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx4 */
++			<&clk IMX8QM_IPG_AUD_CLK_ROOT>, /* rxtx5 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx6 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx7 */
++			<&clk IMX8QM_CLK_DUMMY>; /* spba */
++		clock-names = "core", "rxtx0",
++			      "rxtx1", "rxtx2",
++			      "rxtx3", "rxtx4",
++			      "rxtx5", "rxtx6",
++			      "rxtx7", "spba";
++		dmas = <&edma2 8 0 5>, <&edma2 9 0 4>;
++		dma-names = "rx", "tx";
++		power-domains = <&pd_spdif0>;
++		status = "disabled";
++	};
++
++	spdif1: spdif@59030000 {
++		compatible = "fsl,imx8qm-spdif";
++		reg = <0x0 0x59030000 0x0 0x10000>;
++		interrupts =  <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>, /* rx */
++			     <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>; /* tx */
++		clocks = <&clk IMX8QM_AUD_SPDIF_1_GCLKW>, /* core */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx0 */
++			<&clk IMX8QM_AUD_SPDIF_1_TX_CLK>, /* rxtx1 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx2 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx3 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx4 */
++			<&clk IMX8QM_IPG_AUD_CLK_ROOT>, /* rxtx5 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx6 */
++			<&clk IMX8QM_CLK_DUMMY>, /* rxtx7 */
++			<&clk IMX8QM_CLK_DUMMY>; /* spba */
++		clock-names = "core", "rxtx0",
++			      "rxtx1", "rxtx2",
++			      "rxtx3", "rxtx4",
++			      "rxtx5", "rxtx6",
++			      "rxtx7", "spba";
++		dmas = <&edma2 10 0 5>, <&edma2 11 0 4>;
++		dma-names = "rx", "tx";
++		power-domains = <&pd_spdif1>;
++		status = "disabled";
++	};
++
++	sai1: sai@59050000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59050000 0x0 0x10000>;
++		interrupts = <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_1_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_1_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "rx", "tx";
++		dmas = <&edma2 14 0 1>, <&edma2 15 0 0>;
++		status = "disabled";
++		power-domains = <&pd_sai1>;
++	};
++
++
++	sai0: sai@59040000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59040000 0x0 0x10000>;
++		interrupts = <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_0_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_0_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "rx", "tx";
++		dmas = <&edma2 12 0 1>, <&edma2 13 0 0>;
++		status = "disabled";
++		power-domains = <&pd_sai0>;
++	};
++
++	sai2: sai@59060000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59060000 0x0 0x10000>;
++		interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_2_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_2_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "rx";
++		dmas = <&edma2 16 0 1>;
++		status = "disabled";
++		power-domains = <&pd_sai2>;
++	};
++
++	sai3: sai@59070000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59070000 0x0 0x10000>;
++		interrupts = <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_3_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_3_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "rx";
++		dmas = <&edma2 17 0 1>;
++		status = "disabled";
++		power-domains = <&pd_sai3>;
++	};
++
++	sai_hdmi_rx: sai@59080000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59080000 0x0 0x10000>;
++		interrupts = <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_HDMIRX0_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_HDMIRX0_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "rx";
++		dmas = <&edma2 18 0 1>;
++		fsl,dataline = <0 0xf 0x0>;
++		status = "disabled";
++		power-domains = <&pd_sai4>;
++	};
++
++	sai_hdmi_tx: sai@59090000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59090000 0x0 0x10000>;
++		interrupts = <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_HDMITX0_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_HDMITX0_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "tx";
++		dmas = <&edma2 19 0 0>;
++		fsl,dataline = <0 0x0 0xf>;
++		status = "disabled";
++		power-domains = <&pd_sai5>;
++	};
++
++	esai1: esai@59810000 {
++		compatible = "fsl,imx8qm-esai";
++		reg = <0x0 0x59810000 0x0 0x10000>;
++		interrupts = <GIC_SPI 411 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_ESAI_1_IPG>,
++			<&clk IMX8QM_AUD_ESAI_1_EXTAL_IPG>,
++			<&clk IMX8QM_AUD_ESAI_1_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "core", "extal", "fsys", "spba";
++		dmas = <&edma3 6 0 1>, <&edma3 7 0 0>;
++		dma-names = "rx", "tx";
++		status = "disabled";
++		power-domains = <&pd_esai1>;
++	};
++
++	sai6: sai@59820000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59820000 0x0 0x10000>;
++		interrupts = <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_6_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_6_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "rx", "tx";
++		dmas = <&edma3 8 0 1>, <&edma3 9 0 0>;
++		status = "disabled";
++		power-domains = <&pd_sai6>;
++	};
++
++	sai7: sai@59830000 {
++		compatible = "fsl,imx8qm-sai";
++		reg = <0x0 0x59830000 0x0 0x10000>;
++		interrupts = <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_SAI_7_IPG>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_AUD_SAI_7_MCLK>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++		dma-names = "tx";
++		dmas = <&edma3 10 0 0>;
++		status = "disabled";
++		power-domains = <&pd_sai7>;
++	};
++
++	amix: amix@59840000 {
++		compatible = "fsl,imx8qm-amix";
++		reg = <0x0 0x59840000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_AUD_AMIX_IPG>;
++		clock-names = "ipg";
++		power-domains = <&pd_amix>;
++		status = "disabled";
++	};
++
++	asrc0: asrc@59000000 {
++		compatible = "fsl,imx8qm-asrc0";
++		reg = <0x0 0x59000000 0x0 0x10000>;
++		interrupts = <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
++			<GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_ASRC_0_IPG>,
++			<&clk IMX8QM_AUD_ASRC_0_MEM>,
++			<&clk IMX8QM_AUD_ACM_AUD_PLL_CLK0_CLK>,
++			<&clk IMX8QM_AUD_ACM_AUD_PLL_CLK1_CLK>,
++			<&clk IMX8QM_ACM_AUD_CLK0_SEL>,
++			<&clk IMX8QM_ACM_AUD_CLK1_SEL>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg", "mem",
++			"asrck_0", "asrck_1", "asrck_2", "asrck_3",
++			"asrck_4", "asrck_5", "asrck_6", "asrck_7",
++			"asrck_8", "asrck_9", "asrck_a", "asrck_b",
++			"asrck_c", "asrck_d", "asrck_e", "asrck_f",
++			"spba";
++		dmas = <&edma2 0 0 0>, <&edma2 1 0 0>, <&edma2 2 0 0>,
++			<&edma2 3 0 1>, <&edma2 4 0 1>, <&edma2 5 0 1>;
++		dma-names = "rxa", "rxb", "rxc",
++				"txa", "txb", "txc";
++		fsl,asrc-rate  = <8000>;
++		fsl,asrc-width = <16>;
++		power-domains = <&pd_asrc0>;
++		status = "disabled";
++	};
++
++	asrc1: asrc@59800000 {
++		compatible = "fsl,imx8qm-asrc1";
++		reg = <0x0 0x59800000 0x0 0x10000>;
++		interrupts = <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>,
++			<GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_AUD_ASRC_1_IPG>,
++			<&clk IMX8QM_AUD_ASRC_1_MEM>,
++			<&clk IMX8QM_AUD_ACM_AUD_PLL_CLK0_CLK>,
++			<&clk IMX8QM_AUD_ACM_AUD_PLL_CLK1_CLK>,
++			<&clk IMX8QM_ACM_AUD_CLK0_SEL>,
++			<&clk IMX8QM_ACM_AUD_CLK1_SEL>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>,
++			<&clk IMX8QM_CLK_DUMMY>;
++		clock-names = "ipg", "mem",
++			"asrck_0", "asrck_1", "asrck_2", "asrck_3",
++			"asrck_4", "asrck_5", "asrck_6", "asrck_7",
++			"asrck_8", "asrck_9", "asrck_a", "asrck_b",
++			"asrck_c", "asrck_d", "asrck_e", "asrck_f",
++			"spba";
++		dmas = <&edma3 0 0 0>, <&edma3 1 0 0>, <&edma3 2 0 0>,
++			<&edma3 3 0 1>, <&edma3 4 0 1>, <&edma3 5 0 1>;
++		dma-names = "rxa", "rxb", "rxc",
++				"txa", "txb", "txc";
++		fsl,asrc-rate  = <8000>;
++		fsl,asrc-width = <16>;
++		power-domains = <&pd_asrc1>;
++		status = "disabled";
++	};
++
++	mqs: mqs@59850000 {
++		compatible = "fsl,imx8qm-mqs";
++		reg = <0x0 0x59850000 0x0 0x10000>;
++		clocks = <&clk IMX8QM_AUD_MQS_IPG>,
++			<&clk IMX8QM_AUD_MQS_HMCLK>;
++		clock-names = "core", "mclk";
++		power-domains = <&pd_mqs0>;
++		status = "disabled";
++	};
++
++	flexspi0: flexspi@05d120000 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "fsl,imx8qm-flexspi";
++		reg = <0x0 0x5d120000 0x0 0x10000>,
++			<0x0 0x08000000 0x0 0x19ffffff>;
++		reg-names = "FlexSPI", "FlexSPI-memory";
++		interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_FSPI0_CLK>;
++		assigned-clock-rates = <29000000>;
++		power-domains = <&pd_lsio_flexspi0>;
++		clock-names = "fspi";
++		status = "disabled";
++	};
++
++	display: display-subsystem {
++		compatible = "fsl,imx-display-subsystem";
++		ports = <&dpu1_disp0>, <&dpu1_disp1>,
++			<&dpu2_disp0>, <&dpu2_disp1>;
++	};
++
++	dma_cap: dma_cap {
++		compatible = "dma-capability";
++		only-dma-mask32 = <1>;
++	};
++
++	hsio: hsio@5f080000 {
++		compatible = "fsl,imx8qm-hsio", "syscon";
++		reg = <0x0 0x5f080000 0x0 0xF0000>; /* lpcg, csr, msic, gpio */
++	};
++
++	ocotp: ocotp {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "fsl,imx8qm-ocotp", "syscon";
++	};
++
++	pciea: pcie@0x5f000000 {
++		compatible = "fsl,imx8qm-pcie","snps,dw-pcie";
++		reg = <0x0 0x5f000000 0x0 0x10000>, /* Controller reg */
++		      <0x0 0x6ff00000 0x0 0x80000>; /* PCI cfg space */
++		reg-names = "dbi", "config";
++		reserved-region = <&rpmsg_reserved>;
++		#address-cells = <3>;
++		#size-cells = <2>;
++		device_type = "pci";
++		ranges = <0x81000000 0 0x00000000 0x0 0x6ff80000 0 0x00010000 /* downstream I/O */
++			  0x82000000 0 0x60000000 0x0 0x60000000 0 0x0ff00000>; /* non-prefetchable memory */
++		num-lanes = <1>;
++
++		#interrupt-cells = <1>;
++		interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>; /* eDMA */
++		interrupt-names = "msi";
++
++		/*
++		 * Set these clocks in default, then clocks should be
++		 * refined for exact hw design of imx8 pcie.
++		 */
++		clocks = <&clk IMX8QM_HSIO_PCIE_A_MSTR_AXI_CLK>,
++			 <&clk IMX8QM_HSIO_PCIE_A_SLV_AXI_CLK>,
++			 <&clk IMX8QM_HSIO_PHY_X2_PCLK_0>,
++			 <&clk IMX8QM_HSIO_PCIE_X2_PER_CLK>,
++			 <&clk IMX8QM_HSIO_PCIE_A_DBI_AXI_CLK>;
++		clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_per", "pcie_inbound_axi";
++
++		interrupt-map-mask = <0 0 0 0x7>;
++		interrupt-map =  <0 0 0 1 &gic 0 73 4>,
++				 <0 0 0 2 &gic 0 74 4>,
++				 <0 0 0 3 &gic 0 75 4>,
++				 <0 0 0 4 &gic 0 76 4>;
++		power-domains = <&pd_pcie1>;
++		fsl,max-link-speed = <3>;
++		//hsio-cfg = <PCIEAX1PCIEBX1SATA>;
++		hsio = <&hsio>;
++		ctrl-id = <0>; /* pciea */
++		cpu-base-addr = <0x40000000>;
++		status = "disabled";
++	};
++
++	pcieb: pcie@0x5f010000 {
++		compatible = "fsl,imx8qm-pcie","snps,dw-pcie";
++		reg = <0x0 0x5f010000 0x0 0x10000>, /* Controller reg */
++		      <0x0 0x7ff00000 0x0 0x80000>; /* PCI cfg space */
++		reg-names = "dbi", "config";
++		reserved-region = <&rpmsg_reserved>;
++		#address-cells = <3>;
++		#size-cells = <2>;
++		device_type = "pci";
++		ranges = <0x81000000 0 0x00000000 0x0 0x7ff80000 0 0x00010000 /* downstream I/O */
++			  0x82000000 0 0x70000000 0x0 0x70000000 0 0x0ff00000>; /* non-prefetchable memory */
++		num-lanes = <1>;
++
++		#interrupt-cells = <1>;
++		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>; /* eDMA */
++		interrupt-names = "msi";
++
++		/*
++		 * Set these clocks in default, then clocks should be
++		 * refined for exact hw design of imx8 pcie.
++		 */
++		clocks = <&clk IMX8QM_HSIO_PCIE_B_MSTR_AXI_CLK>,
++			 <&clk IMX8QM_HSIO_PCIE_B_SLV_AXI_CLK>,
++			 <&clk IMX8QM_HSIO_PHY_X2_PCLK_1>,
++			 <&clk IMX8QM_HSIO_PCIE_X1_PER_CLK>,
++			 <&clk IMX8QM_HSIO_PCIE_B_DBI_AXI_CLK>;
++		clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_per", "pcie_inbound_axi";
++
++		interrupt-map-mask = <0 0 0 0x7>;
++		interrupt-map =  <0 0 0 1 &gic 0 105 4>,
++				 <0 0 0 2 &gic 0 106 4>,
++				 <0 0 0 3 &gic 0 107 4>,
++				 <0 0 0 4 &gic 0 108 4>;
++		power-domains = <&pd_pcie1>;
++		fsl,max-link-speed = <3>;
++		//hsio-cfg = <PCIEAX1PCIEBX1SATA>;
++		hsio = <&hsio>;
++		ctrl-id = <1>; /* pcieb */
++		cpu-base-addr = <0x80000000>;
++		status = "disabled";
++	};
++
++	sata: sata@5f020000 {
++		compatible = "fsl,imx8qm-ahci";
++		reg = <0x0 0x5f020000 0x0 0x10000>, /* Controller reg */
++			<0x0 0x5f1a0000 0x0 0x10000>; /* PHY reg */
++		reg-names = "ctl", "phy";
++		interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX8QM_HSIO_SATA_CLK>,
++			 <&clk IMX8QM_HSIO_PHY_X1_PCLK>,
++			 <&clk IMX8QM_HSIO_SATA_EPCS_TX_CLK>,
++			 <&clk IMX8QM_HSIO_SATA_EPCS_RX_CLK>,
++			 <&clk IMX8QM_HSIO_PHY_X2_PCLK_0>,
++			 <&clk IMX8QM_HSIO_PHY_X2_PCLK_1>,
++			 <&clk IMX8QM_HSIO_PHY_X1_APB_CLK>;
++		clock-names = "sata", "sata_ref", "epcs_tx", "epcs_rx",
++				"phy_pclk0", "phy_pclk1", "phy_apbclk";
++		hsio = <&hsio>;
++		power-domains = <&pd_sata0>;
++		iommus = <&smmu 0x13 0x7f80>;
++		status = "disabled";
++	};
++
++	intmux_cm40: intmux@37400000 {
++		compatible = "nxp,imx-intmux";
++		reg = <0x0 0x37400000 0x0 0x1000>;
++		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_CM40_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_cm40_intmux>;
++		status = "disabled";
++	};
++
++	intmux_cm41: intmux@3b400000 {
++		compatible = "nxp,imx-intmux";
++		reg = <0x0 0x3b400000 0x0 0x1000>;
++		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		interrupt-parent = <&gic>;
++		#interrupt-cells = <2>;
++		clocks = <&clk IMX8QM_CM41_IPG_CLK>;
++		clock-names = "ipg";
++		power-domains = <&pd_cm41_intmux>;
++		status = "disabled";
++	};
++
++	imx_rpmsg: imx_rpmsg {
++		compatible = "fsl,rpmsg-bus", "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		mu_rpmsg: mu_rpmsg@5d200000 {
++			compatible = "fsl,imx6sx-mu";
++			reg = <0x0 0x5d200000 0x0 0x10000>;
++			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8QM_LSIO_MU5A_IPG_CLK>;
++			clock-names = "ipg";
++			power-domains = <&pd_lsio_mu5a>;
++			status = "okay";
++		};
++
++		rpmsg: rpmsg {
++			compatible = "fsl,imx8qm-rpmsg";
++			power-domains = <&pd_lsio_mu5a>;
++			status = "disabled";
++		};
++
++		mu_rpmsg1: mu_rpmsg1@5d210000 {
++			compatible = "fsl,imx-mu-rpmsg1";
++			reg = <0x0 0x5d210000 0x0 0x10000>;
++			interrupts = <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8QM_LSIO_MU6A_IPG_CLK>;
++			clock-names = "ipg";
++			power-domains = <&pd_lsio_mu6a>;
++			status = "okay";
++		};
++
++		rpmsg1: rpmsg1{
++			compatible = "fsl,imx8qm-rpmsg";
++			multi-core-id = <1>;
++			power-domains = <&pd_lsio_mu6a>;
++			status = "disabled";
++		};
++	};
++
++	crypto: caam@0x31400000 {
++		compatible = "fsl,sec-v4.0";
++		reg = <0 0x31400000 0 0x400000>;
++		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0 0 0x31400000 0x400000>;
++		fsl,first-jr-index = <2>;
++		fsl,sec-era = <9>;
++
++		sec_jr1: jr1@0x20000 {
++			compatible = "fsl,sec-v4.0-job-ring";
++			reg = <0x20000 0x1000>;
++			interrupts = <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&pd_caam_jr1>;
++			status = "disabled";
++		};
++
++		sec_jr2: jr2@30000 {
++			compatible = "fsl,sec-v4.0-job-ring";
++			reg = <0x30000 0x1000>;
++			interrupts = <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&pd_caam_jr2>;
++			status = "okay";
++		};
++
++		sec_jr3: jr3@40000 {
++			compatible = "fsl,sec-v4.0-job-ring";
++			reg = <0x40000 0x1000>;
++			interrupts = <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&pd_caam_jr3>;
++			status = "okay";
++		};
++	};
++
++	caam_sm: caam-sm@31800000 {
++		compatible = "fsl,imx6q-caam-sm";
++		reg = <0 0x31800000 0 0x10000>;
++	};
++
++	sc_pwrkey: sc-powerkey {
++		compatible = "fsl,imx8-pwrkey";
++		linux,keycode = <KEY_POWER>;
++		wakeup-source;
++	};
++
++	wdog: wdog {
++		compatible = "fsl,imx8-wdt";
++	};
 +};
-+
-+static const char *mclk_out_sels[] = {
-+	"aud_acm_aud_rec_clk0_clk",
-+	"aud_acm_aud_rec_clk1_clk",
-+	"mlb_clk",
-+	"hdmi_rx_mclk",
-+	"spdif0_rx",
-+	"spdif1_rx",
-+	"hdmi_rx_sai0_rx_bclk",
-+	"sai6_rx_bclk",
-+};
-+
-+static const char *sai_mclk_sels[] = {
-+	"aud_acm_aud_pll_clk0_clk",
-+	"aud_acm_aud_pll_clk1_clk",
-+	"acm_aud_clk0_clk",
-+	"acm_aud_clk1_clk",
-+};
-+
-+static const char *asrc_mux_clk_sels[] = {
-+	"hdmi_rx_sai0_rx_bclk",
-+	"hdmi_tx_sai0_tx_bclk",
-+	"dummy",
-+	"mlb_clk",
-+};
-+
-+static const char *esai_mclk_sels[] = {
-+	"aud_acm_aud_pll_clk0_clk",
-+	"aud_acm_aud_pll_clk1_clk",
-+	"acm_aud_clk0_clk",
-+	"acm_aud_clk1_clk",
-+};
-+
-+static const char *spdif_mclk_sels[] = {
-+	"aud_acm_aud_pll_clk0_clk",
-+	"aud_acm_aud_pll_clk1_clk",
-+	"acm_aud_clk0_clk",
-+	"acm_aud_clk1_clk",
-+};
-+
-+static const char *mqs_mclk_sels[] = {
-+	"aud_acm_aud_pll_clk0_clk",
-+	"aud_acm_aud_pll_clk1_clk",
-+	"acm_aud_clk0_clk",
-+	"acm_aud_clk1_clk",
-+};
-+
-+static const char *dc0_sels[] = {
-+	"dummy",
-+	"dummy",
-+	"dc0_pll0_clk",
-+	"dc0_pll1_clk",
-+	"dc0_bypass0_div",
-+};
-+
-+static const char *dc1_sels[] = {
-+	"dummy",
-+	"dummy",
-+	"dc1_pll0_clk",
-+	"dc1_pll1_clk",
-+	"dc1_bypass0_div",
-+};
-+
-+static const char *hdmi_sels[] = {
-+	"dummy",
-+	"hdmi_dig_pll_clk",
-+	"dummy",
-+	"dummy",
-+	"hdmi_av_pll_clk",
-+};
-+
-+static const char *hdmi_rx_sels[] = {
-+	"dummy",
-+	"hdmi_rx_dig_pll_clk",
-+	"dummy",
-+	"dummy",
-+	"hdmi_rx_bypass_clk",
-+};
-+
-+
-+static struct clk *clks[IMX8QM_CLK_END];
-+static struct clk_onecell_data clk_data;
-+
-+static const char *enet_sels[] = {"enet_25MHz", "enet_125MHz",};
-+static const char *enet0_rmii_tx_sels[] = {"enet0_ref_div", "dummy",};
-+static const char *enet1_rmii_tx_sels[] = {"enet1_ref_div", "dummy",};
-+
-+#define LPCG_ADDR(arg) ((void __iomem *)(base_lpcg + arg))
-+
-+static int imx8qm_clk_probe(struct platform_device *pdev)
-+{
-+	struct device_node *ccm_node = pdev->dev.of_node;
-+	struct device_node *np_acm;
-+	void __iomem *base_acm;
-+	u64 base_lpcg = 0;
-+	int i, ret;
-+
-+	ret = imx8_clk_mu_init();
-+	if (ret)
-+		return ret;
-+
-+	pr_info("***** imx8qm_clocks_init *****\n");
-+
-+	/* Parse lpcg_base_offset for virtualization cases */
-+	ret = of_property_read_u64(ccm_node, "fsl,lpcg_base_offset", &base_lpcg);
-+	if (ret && ret != -EINVAL) {
-+		dev_err(&pdev->dev, "failed to parse fsl,lpcg_base_offset: %d\n", ret);
-+		return ret;
-+	}
-+
-+	clks[IMX8QM_CLK_DUMMY] = imx_clk_fixed("dummy", 0);
-+
-+	/* ARM core */
-+	clks[IMX8QM_A53_DIV] = imx_clk_divider_scu("a53_div", SC_R_A53, SC_PM_CLK_CPU);
-+	clks[IMX8QM_A72_DIV] = imx_clk_divider_scu("a72_div", SC_R_A72, SC_PM_CLK_CPU);
-+
-+	/* User Defined PLLs dividers */
-+	clks[IMX8QM_AUD_PLL0_DIV] = imx_clk_divider_scu("audio_pll0_div", SC_R_AUDIO_PLL_0, SC_PM_CLK_PLL);
-+	clks[IMX8QM_AUD_PLL1_DIV] = imx_clk_divider_scu("audio_pll1_div", SC_R_AUDIO_PLL_1, SC_PM_CLK_PLL);
-+	clks[IMX8QM_DC0_PLL0_DIV] = imx_clk_divider_scu("dc0_pll0_div", SC_R_DC_0_PLL_0, SC_PM_CLK_PLL);
-+	clks[IMX8QM_DC0_PLL1_DIV] = imx_clk_divider_scu("dc0_pll1_div", SC_R_DC_0_PLL_1, SC_PM_CLK_PLL);
-+	clks[IMX8QM_DC1_PLL1_DIV] = imx_clk_divider_scu("dc1_pll0_div", SC_R_DC_1_PLL_0, SC_PM_CLK_PLL);
-+	clks[IMX8QM_DC1_PLL1_DIV] = imx_clk_divider_scu("dc1_pll1_div", SC_R_DC_1_PLL_1, SC_PM_CLK_PLL);
-+	clks[IMX8QM_HDMI_AV_PLL_DIV] = imx_clk_divider_scu("hdmi_av_pll_div", SC_R_HDMI_PLL_1, SC_PM_CLK_PLL);
-+	clks[IMX8QM_HDMI_DIG_PLL_DIV] = imx_clk_divider_scu("hdmi_dig_pll_div", SC_R_HDMI_PLL_0, SC_PM_CLK_PLL);
-+
-+	/* User Defined PLLs clocks*/
-+	clks[IMX8QM_AUD_PLL0] = imx_clk_gate_scu("audio_pll0_clk", "audio_pll0_div", SC_R_AUDIO_PLL_0, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_AUD_PLL1] = imx_clk_gate_scu("audio_pll1_clk", "audio_pll1_div", SC_R_AUDIO_PLL_1, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_DC0_PLL0_CLK] = imx_clk_gate_scu("dc0_pll0_clk", "dc0_pll0_div", SC_R_DC_0_PLL_0, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_DC0_PLL1_CLK] = imx_clk_gate_scu("dc0_pll1_clk", "dc0_pll1_div", SC_R_DC_0_PLL_1, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_DC1_PLL0_CLK] = imx_clk_gate_scu("dc1_pll0_clk", "dc1_pll0_div", SC_R_DC_1_PLL_0, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_DC1_PLL1_CLK] = imx_clk_gate_scu("dc1_pll1_clk", "dc1_pll1_div", SC_R_DC_1_PLL_1, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_AV_PLL_CLK] = imx_clk_gate_scu("hdmi_av_pll_clk", "hdmi_av_pll_div", SC_R_HDMI_PLL_1, SC_PM_CLK_PLL, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_DIG_PLL_CLK] = imx_clk_gate_scu("hdmi_dig_pll_clk", "hdmi_dig_pll_div", SC_R_HDMI_PLL_0, SC_PM_CLK_PLL, NULL, 0, 0);
-+
-+	/* DMA SS */
-+	clks[IMX8QM_UART0_DIV] = imx_clk_divider_scu("uart0_div", SC_R_UART_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_UART1_DIV] = imx_clk_divider_scu("uart1_div", SC_R_UART_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_UART2_DIV] = imx_clk_divider_scu("uart2_div", SC_R_UART_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_UART3_DIV] = imx_clk_divider_scu("uart3_div", SC_R_UART_3, SC_PM_CLK_PER);
-+	clks[IMX8QM_UART4_DIV] = imx_clk_divider_scu("uart4_div", SC_R_UART_4, SC_PM_CLK_PER);
-+	clks[IMX8QM_SPI0_DIV] = imx_clk_divider_scu("spi0_div", SC_R_SPI_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_SPI1_DIV] = imx_clk_divider_scu("spi1_div", SC_R_SPI_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_SPI2_DIV] = imx_clk_divider_scu("spi2_div", SC_R_SPI_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_SPI3_DIV] = imx_clk_divider_scu("spi3_div", SC_R_SPI_3, SC_PM_CLK_PER);
-+	clks[IMX8QM_EMVSIM0_DIV] = imx_clk_divider_scu("emvsim0_div", SC_R_EMVSIM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_EMVSIM1_DIV] = imx_clk_divider_scu("emvsim1_div", SC_R_EMVSIM_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_CAN0_DIV] = imx_clk_divider_scu("can0_div", SC_R_CAN_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_CAN1_DIV] = imx_clk_divider_scu("can1_div", SC_R_CAN_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_CAN2_DIV] = imx_clk_divider_scu("can2_div", SC_R_CAN_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_I2C0_DIV] = imx_clk_divider_scu("i2c0_div", SC_R_I2C_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_I2C1_DIV] = imx_clk_divider_scu("i2c1_div", SC_R_I2C_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_I2C2_DIV] = imx_clk_divider_scu("i2c2_div", SC_R_I2C_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_I2C3_DIV] = imx_clk_divider_scu("i2c3_div", SC_R_I2C_3, SC_PM_CLK_PER);
-+	clks[IMX8QM_I2C4_DIV] = imx_clk_divider_scu("i2c4_div", SC_R_I2C_4, SC_PM_CLK_PER);
-+	clks[IMX8QM_FTM0_DIV] = imx_clk_divider_scu("ftm0_div", SC_R_FTM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_FTM1_DIV] = imx_clk_divider_scu("ftm1_div", SC_R_FTM_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_ADC0_DIV] = imx_clk_divider_scu("adc0_div", SC_R_ADC_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_ADC1_DIV] = imx_clk_divider_scu("adc1_div", SC_R_ADC_1, SC_PM_CLK_PER);
-+
-+	/* LSIO SS */
-+	clks[IMX8QM_PWM0_DIV] = imx_clk_divider_scu("pwm_0_div", SC_R_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM1_DIV] = imx_clk_divider_scu("pwm_1_div", SC_R_PWM_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM2_DIV] = imx_clk_divider_scu("pwm_2_div", SC_R_PWM_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM3_DIV] = imx_clk_divider_scu("pwm_3_div", SC_R_PWM_3, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM4_DIV] = imx_clk_divider_scu("pwm_4_div", SC_R_PWM_4, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM5_DIV] = imx_clk_divider_scu("pwm_5_div", SC_R_PWM_5, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM6_DIV] = imx_clk_divider_scu("pwm_6_div", SC_R_PWM_6, SC_PM_CLK_PER);
-+	clks[IMX8QM_PWM7_DIV] = imx_clk_divider_scu("pwm_7_div", SC_R_PWM_7, SC_PM_CLK_PER);
-+	clks[IMX8QM_FSPI0_DIV] = imx_clk_divider_scu("fspi_0_div", SC_R_FSPI_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_FSPI1_DIV] = imx_clk_divider_scu("fspi_1_div", SC_R_FSPI_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPT0_DIV] = imx_clk_divider_scu("gpt_0_div", SC_R_GPT_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPT1_DIV] = imx_clk_divider_scu("gpt_1_div", SC_R_GPT_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPT2_DIV] = imx_clk_divider_scu("gpt_2_div", SC_R_GPT_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPT3_DIV] = imx_clk_divider_scu("gpt_3_div", SC_R_GPT_3, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPT4_DIV] = imx_clk_divider_scu("gpt_4_div", SC_R_GPT_4, SC_PM_CLK_PER);
-+
-+	/* lvds subsystem */
-+	clks[IMX8QM_LVDS0_BYPASS_CLK] = imx_clk_divider_scu("lvds0_bypass_clk", SC_R_LVDS_0, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_LVDS0_PIXEL_DIV] = imx_clk_divider_scu("lvds0_pixel_div", SC_R_LVDS_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS0_I2C0_DIV] = imx_clk_divider_scu("lvds0_i2c0_div", SC_R_LVDS_0_I2C_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS0_I2C1_DIV] = imx_clk_divider_scu("lvds0_i2c1_div", SC_R_LVDS_0_I2C_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS0_PWM0_DIV] = imx_clk_divider_scu("lvds0_pwm0_div", SC_R_LVDS_0_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS0_PHY_DIV] = imx_clk_divider_scu("lvds0_phy_div", SC_R_LVDS_0, SC_PM_CLK_PHY);
-+	clks[IMX8QM_LVDS1_BYPASS_CLK] = imx_clk_divider_scu("lvds1_bypass_clk", SC_R_LVDS_1, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_LVDS1_PIXEL_DIV] = imx_clk_divider_scu("lvds1_pixel_div", SC_R_LVDS_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS1_I2C0_DIV] = imx_clk_divider_scu("lvds1_i2c0_div", SC_R_LVDS_1_I2C_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS1_I2C1_DIV] = imx_clk_divider_scu("lvds1_i2c1_div", SC_R_LVDS_1_I2C_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS1_PWM0_DIV] = imx_clk_divider_scu("lvds1_pwm0_div", SC_R_LVDS_1_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_LVDS1_PHY_DIV] = imx_clk_divider_scu("lvds1_phy_div", SC_R_LVDS_1, SC_PM_CLK_PHY);
-+
-+	/* vpu/zpu subsystem */
-+	clks[IMX8QM_VPU_DDR_DIV] = imx_clk_divider_scu("vpu_ddr_div", SC_R_VPU, SC_PM_CLK_SLV_BUS);
-+	clks[IMX8QM_VPU_SYS_DIV] = imx_clk_divider_scu("vpu_sys_div", SC_R_VPU, SC_PM_CLK_MST_BUS);
-+	clks[IMX8QM_VPU_XUVI_DIV] = imx_clk_divider_scu("vpu_xuvi_div", SC_R_VPU, SC_PM_CLK_PER);
-+	clks[IMX8QM_VPU_UART_DIV] = imx_clk_divider_scu("vpu_uart_div", SC_R_VPU_UART, SC_PM_CLK_PER);
-+	clks[IMX8QM_VPU_CORE_DIV] = imx_clk_divider_scu("vpu_core_div", SC_R_VPUCORE, SC_PM_CLK_PER);
-+
-+	/* gpu */
-+	clks[IMX8QM_GPU0_CORE_DIV] = imx_clk_divider_scu("gpu_core0_div", SC_R_GPU_0_PID0, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPU0_SHADER_DIV] = imx_clk_divider_scu("gpu_shader0_div", SC_R_GPU_0_PID0, SC_PM_CLK_MISC);
-+	clks[IMX8QM_GPU1_CORE_DIV] = imx_clk_divider_scu("gpu_core1_div", SC_R_GPU_1_PID0, SC_PM_CLK_PER);
-+	clks[IMX8QM_GPU1_SHADER_DIV] = imx_clk_divider_scu("gpu_shader1_div", SC_R_GPU_1_PID0, SC_PM_CLK_MISC);
-+
-+	/* Connectivity */
-+	clks[IMX8QM_SDHC0_DIV] = imx_clk_divider_scu("sdhc0_div", SC_R_SDHC_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_SDHC1_DIV] = imx_clk_divider_scu("sdhc1_div", SC_R_SDHC_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_SDHC2_DIV] = imx_clk_divider_scu("sdhc2_div", SC_R_SDHC_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_ENET0_ROOT_DIV] = imx_clk_divider_scu("enet0_root_div", SC_R_ENET_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_ENET0_REF_DIV] = imx_clk_divider3_scu("enet0_ref_div", "enet0_root_clk", SC_R_ENET_0, SC_C_CLKDIV);
-+	clks[IMX8QM_ENET1_REF_DIV] = imx_clk_divider3_scu("enet1_ref_div", "enet1_root_clk", SC_R_ENET_1, SC_C_CLKDIV);
-+	clks[IMX8QM_ENET0_BYPASS_DIV] = imx_clk_divider_scu("enet0_bypass_div", SC_R_ENET_0, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_ENET0_RGMII_DIV] = imx_clk_divider_scu("enet0_rgmii_div", SC_R_ENET_0, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_ENET1_ROOT_DIV] = imx_clk_divider_scu("enet1_root_div", SC_R_ENET_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_ENET1_BYPASS_DIV] = imx_clk_divider_scu("enet1_bypass_div", SC_R_ENET_1, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_ENET1_RGMII_DIV] = imx_clk_divider_scu("enet1_rgmii_div", SC_R_ENET_1, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_GPMI_BCH_IO_DIV] = imx_clk_divider_scu("gpmi_io_div", SC_R_NAND, SC_PM_CLK_MST_BUS);
-+	clks[IMX8QM_GPMI_BCH_DIV] = imx_clk_divider_scu("gpmi_bch_div", SC_R_NAND, SC_PM_CLK_PER);
-+	clks[IMX8QM_USB3_ACLK_DIV] = imx_clk_divider_scu("usb3_aclk_div", SC_R_USB_2, SC_PM_CLK_PER);
-+	clks[IMX8QM_USB3_BUS_DIV] = imx_clk_divider_scu("usb3_bus_div", SC_R_USB_2, SC_PM_CLK_MST_BUS);
-+	clks[IMX8QM_USB3_LPM_DIV] = imx_clk_divider_scu("usb3_lpm_div", SC_R_USB_2, SC_PM_CLK_MISC);
-+
-+	/* Audio */
-+	clks[IMX8QM_AUD_ACM_AUD_PLL_CLK0_DIV] = imx_clk_divider2_scu("aud_acm_aud_pll_clk0_div", "audio_pll0_clk", SC_R_AUDIO_PLL_0, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_AUD_ACM_AUD_PLL_CLK1_DIV] = imx_clk_divider2_scu("aud_acm_aud_pll_clk1_div", "audio_pll1_clk", SC_R_AUDIO_PLL_1, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_AUD_ACM_AUD_REC_CLK0_DIV] = imx_clk_divider2_scu("aud_acm_aud_rec_clk0_div", "audio_pll0_clk", SC_R_AUDIO_PLL_0, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_AUD_ACM_AUD_REC_CLK1_DIV] = imx_clk_divider2_scu("aud_acm_aud_rec_clk1_div", "audio_pll1_clk", SC_R_AUDIO_PLL_1, SC_PM_CLK_MISC1);
-+
-+	/* MIPI CSI */
-+	clks[IMX8QM_CSI0_I2C0_DIV] = imx_clk_divider_scu("mipi_csi0_i2c0_div", SC_R_CSI_0_I2C_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_CSI0_PWM0_DIV] = imx_clk_divider_scu("mipi_csi0_pwm0_div", SC_R_CSI_0_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_CSI0_CORE_DIV] = imx_clk_divider_scu("mipi_csi0_core_div", SC_R_CSI_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_CSI0_ESC_DIV] = imx_clk_divider_scu("mipi_csi0_esc_div", SC_R_CSI_0, SC_PM_CLK_MISC);
-+	clks[IMX8QM_CSI1_I2C0_DIV] = imx_clk_divider_scu("mipi_csi1_i2c0_div", SC_R_CSI_1_I2C_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_CSI1_PWM0_DIV] = imx_clk_divider_scu("mipi_csi1_pwm0_div", SC_R_CSI_1_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_CSI1_CORE_DIV] = imx_clk_divider_scu("mipi_csi1_core_div", SC_R_CSI_1, SC_PM_CLK_PER);
-+	clks[IMX8QM_CSI1_ESC_DIV] = imx_clk_divider_scu("mipi_csi1_esc_div", SC_R_CSI_1, SC_PM_CLK_MISC);
-+
-+	/* RX-HDMI */
-+	clks[IMX8QM_HDMI_RX_I2S_BYPASS_CLK] = imx_clk_divider_scu("hdmi_rx_i2s_bypass_clk", SC_R_HDMI_RX_BYPASS, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_HDMI_RX_SPDIF_BYPASS_CLK] = imx_clk_divider_scu("hdmi_rx_spdif_bypass_clk", SC_R_HDMI_RX_BYPASS, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_HDMI_RX_BYPASS_CLK] = imx_clk_divider_scu("hdmi_rx_bypass_clk", SC_R_HDMI_RX_BYPASS, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_HDMI_RX_I2C0_DIV] = imx_clk_divider_scu("hdmi_rx_i2c0_div", SC_R_HDMI_RX_I2C_0, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_HDMI_RX_SPDIF_DIV] = imx_clk_divider_scu("hdmi_rx_spdif_div", SC_R_HDMI_RX, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_HDMI_RX_HD_REF_SEL] = imx_clk_mux2_scu("hdmi_rx_hd_ref_sel", hdmi_rx_sels, ARRAY_SIZE(hdmi_rx_sels), SC_R_HDMI_RX, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_HDMI_RX_HD_REF_DIV] = imx_clk_divider2_scu("hdmi_rx_hd_ref_div", "hdmi_rx_hd_ref_sel", SC_R_HDMI_RX, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_HDMI_RX_HD_CORE_SEL] = imx_clk_mux2_scu("hdmi_rx_hd_core_sel", hdmi_rx_sels, ARRAY_SIZE(hdmi_rx_sels), SC_R_HDMI_RX, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_HDMI_RX_HD_CORE_DIV] = imx_clk_divider2_scu("hdmi_rx_hd_core_div", "hdmi_rx_hd_core_sel", SC_R_HDMI_RX, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_HDMI_RX_PXL_SEL] = imx_clk_mux2_scu("hdmi_rx_pxl_sel", hdmi_rx_sels, ARRAY_SIZE(hdmi_rx_sels), SC_R_HDMI_RX, SC_PM_CLK_MISC3);
-+	clks[IMX8QM_HDMI_RX_PXL_DIV] = imx_clk_divider2_scu("hdmi_rx_pxl_div", "hdmi_rx_pxl_sel", SC_R_HDMI_RX, SC_PM_CLK_MISC3);
-+	clks[IMX8QM_HDMI_RX_I2S_DIV] = imx_clk_divider_scu("hdmi_rx_i2s_div", SC_R_HDMI_RX, SC_PM_CLK_MISC4);
-+	clks[IMX8QM_HDMI_RX_PWM_DIV] = imx_clk_divider_scu("hdmi_rx_pwm_div", SC_R_HDMI_RX_PWM_0, SC_PM_CLK_MISC2);
-+
-+	/* DC SS */
-+	clks[IMX8QM_DC0_DISP0_SEL] = imx_clk_mux2_scu("dc0_disp0_sel", dc0_sels, ARRAY_SIZE(dc0_sels), SC_R_DC_0, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_DC0_DISP0_DIV] = imx_clk_divider2_scu("dc0_disp0_div", "dc0_disp0_sel", SC_R_DC_0, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_DC0_DISP1_SEL] = imx_clk_mux2_scu("dc0_disp1_sel", dc0_sels, ARRAY_SIZE(dc0_sels), SC_R_DC_0, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_DC0_DISP1_DIV] = imx_clk_divider2_scu("dc0_disp1_div", "dc0_disp1_sel", SC_R_DC_0, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_DC0_BYPASS_0_DIV] = imx_clk_divider_scu("dc0_bypass0_div", SC_R_DC_0_VIDEO0, SC_PM_CLK_MISC);
-+	clks[IMX8QM_DC0_BYPASS_1_DIV] = imx_clk_divider_scu("dc0_bypass1_div", SC_R_DC_0_VIDEO1, SC_PM_CLK_MISC);
-+	clks[IMX8QM_DC1_DISP0_SEL] = imx_clk_mux2_scu("dc1_disp0_sel", dc1_sels, ARRAY_SIZE(dc1_sels), SC_R_DC_1, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_DC1_DISP0_DIV] = imx_clk_divider2_scu("dc1_disp0_div", "dc1_disp0_sel", SC_R_DC_1, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_DC1_DISP1_SEL] = imx_clk_mux2_scu("dc1_disp1_sel", dc1_sels, ARRAY_SIZE(dc1_sels), SC_R_DC_1, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_DC1_DISP1_DIV] = imx_clk_divider2_scu("dc1_disp1_div", "dc1_disp1_sel", SC_R_DC_1, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_DC1_BYPASS_0_DIV] = imx_clk_divider_scu("dc1_bypass0_div", SC_R_DC_1_VIDEO0, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_DC1_BYPASS_1_DIV] = imx_clk_divider_scu("dc1_bypass1_div", SC_R_DC_1_VIDEO1, SC_PM_CLK_BYPASS);
-+
-+	/* HDMI SS */
-+	clks[IMX8QM_HDMI_IPG_DIV] = imx_clk_divider_scu("hdmi_ipg_div", SC_R_HDMI, SC_PM_CLK_MISC);
-+	clks[IMX8QM_HDMI_I2S_BYPASS_CLK] = imx_clk_divider_scu("hdmi_i2s_bypass_clk", SC_R_HDMI_I2S, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_HDMI_I2C0_DIV] = imx_clk_divider_scu("hdmi_i2c0_div", SC_R_HDMI_I2C_0, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_HDMI_PXL_SEL] = imx_clk_mux2_scu("hdmi_pxl_sel", hdmi_sels, ARRAY_SIZE(hdmi_sels), SC_R_HDMI, SC_PM_CLK_MISC3);
-+	clks[IMX8QM_HDMI_PXL_DIV] = imx_clk_divider2_scu("hdmi_pxl_div", "hdmi_pxl_sel", SC_R_HDMI, SC_PM_CLK_MISC3);
-+	clks[IMX8QM_HDMI_PXL_LINK_SEL] = imx_clk_mux2_scu("hdmi_pxl_link_sel", hdmi_sels, ARRAY_SIZE(hdmi_sels), SC_R_HDMI, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_HDMI_PXL_LINK_DIV] = imx_clk_divider2_scu("hdmi_pxl_link_div", "hdmi_pxl_link_sel", SC_R_HDMI, SC_PM_CLK_MISC1);
-+	clks[IMX8QM_HDMI_PXL_MUX_SEL] = imx_clk_mux2_scu("hdmi_pxl_mux_sel", hdmi_sels, ARRAY_SIZE(hdmi_sels), SC_R_HDMI, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_HDMI_PXL_MUX_DIV] = imx_clk_divider2_scu("hdmi_pxl_mux_div", "hdmi_pxl_mux_sel", SC_R_HDMI, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_HDMI_I2S_DIV] = imx_clk_divider_scu("hdmi_i2s_div", SC_R_HDMI_I2S, SC_PM_CLK_MISC0);
-+	clks[IMX8QM_HDMI_HDP_CORE_DIV] = imx_clk_divider_scu("hdmi_core_div", SC_R_HDMI, SC_PM_CLK_MISC2);
-+
-+	/* MIPI -DI SS */
-+	clks[IMX8QM_MIPI0_BYPASS_CLK] = imx_clk_divider_scu("mipi0_bypass_clk", SC_R_MIPI_0, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_MIPI0_PWM0_DIV] = imx_clk_divider_scu("mipi0_pwm0_div", SC_R_MIPI_0_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_MIPI0_DSI_TX_ESC_DIV] = imx_clk_divider_scu("mipi0_dsi_tx_esc_div", SC_R_MIPI_0, SC_PM_CLK_MST_BUS);
-+	clks[IMX8QM_MIPI0_DSI_RX_ESC_DIV] = imx_clk_divider_scu("mipi0_dsi_rx_esc_div", SC_R_MIPI_0, SC_PM_CLK_SLV_BUS);
-+	clks[IMX8QM_MIPI0_PXL_DIV] = imx_clk_divider_scu("mipi0_pxl_div", SC_R_MIPI_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_MIPI1_BYPASS_CLK] = imx_clk_divider_scu("mipi1_bypass_clk", SC_R_MIPI_1, SC_PM_CLK_BYPASS);
-+	clks[IMX8QM_MIPI1_PWM0_DIV] = imx_clk_divider_scu("mipi1_pwm0_div", SC_R_MIPI_1_PWM_0, SC_PM_CLK_PER);
-+	clks[IMX8QM_MIPI1_DSI_TX_ESC_DIV] = imx_clk_divider_scu("mipi1_dsi_tx_esc_div", SC_R_MIPI_1, SC_PM_CLK_MST_BUS);
-+	clks[IMX8QM_MIPI1_DSI_RX_ESC_DIV] = imx_clk_divider_scu("mipi1_dsi_rx_esc_div", SC_R_MIPI_1, SC_PM_CLK_SLV_BUS);
-+	clks[IMX8QM_MIPI1_PXL_DIV] = imx_clk_divider_scu("mipi1_pxl_div", SC_R_MIPI_1, SC_PM_CLK_PER);
-+
-+	/* Fixed clocks. */
-+	clks[IMX8QM_IPG_DMA_CLK_ROOT] = imx_clk_fixed("ipg_dma_clk_root", SC_120MHZ);
-+	clks[IMX8QM_IPG_AUD_CLK_ROOT] = imx_clk_fixed("ipg_aud_clk_root", SC_175MHZ);
-+	clks[IMX8QM_AXI_CONN_CLK_ROOT] = imx_clk_fixed("axi_conn_clk_root", SC_333MHZ);
-+	clks[IMX8QM_AHB_CONN_CLK_ROOT] = imx_clk_fixed("ahb_conn_clk_root", SC_166MHZ);
-+	clks[IMX8QM_IPG_CONN_CLK_ROOT] = imx_clk_fixed("ipg_conn_clk_root", SC_83MHZ);
-+	clks[IMX8QM_IPG_MIPI_CSI_CLK_ROOT] = imx_clk_fixed("ipg_mipi_csi_clk_root", SC_120MHZ);
-+	clks[IMX8QM_DC_AXI_EXT_CLK] = imx_clk_fixed("axi_ext_dc_clk_root", SC_800MHZ);
-+	clks[IMX8QM_DC_AXI_INT_CLK] = imx_clk_fixed("axi_int_dc_clk_root", SC_400MHZ);
-+	clks[IMX8QM_DC_CFG_CLK] = imx_clk_fixed("cfg_dc_clk_root", SC_100MHZ);
-+	clks[IMX8QM_LVDS_IPG_CLK] = imx_clk_fixed("ipg_lvds_clk_root", SC_24MHZ);
-+	clks[IMX8QM_IMG_AXI_CLK] = imx_clk_fixed("axi_img_clk_root", SC_400MHZ);
-+	clks[IMX8QM_IMG_IPG_CLK] = imx_clk_fixed("ipg_img_clk_root", SC_200MHZ);
-+	clks[IMX8QM_IMG_PXL_CLK] = imx_clk_fixed("pxl_img_clk_root", SC_600MHZ);
-+	clks[IMX8QM_HSIO_AXI_CLK] = imx_clk_fixed("axi_hsio_clk_root", SC_400MHZ);
-+	clks[IMX8QM_HSIO_PER_CLK] = imx_clk_fixed("per_hsio_clk_root", SC_133MHZ);
-+	clks[IMX8QM_HDMI_RX_IPG_CLK] = imx_clk_fixed("ipg_hdmi_rx_clk_root", SC_200MHZ);
-+	clks[IMX8QM_HDMI_RX_DIG_PLL_CLK] = imx_clk_fixed("hdmi_rx_dig_pll_clk", SC_800MHZ);
-+	clks[IMX8QM_ENET_25MHZ_CLK] = imx_clk_fixed("enet_25MHz", SC_25MHZ);
-+	clks[IMX8QM_ENET_125MHZ_CLK] = imx_clk_fixed("enet_125MHz", SC_125MHZ);
-+	clks[IMX8QM_LSIO_BUS_CLK] = imx_clk_fixed("lsio_bus_clk_root", SC_100MHZ);
-+	clks[IMX8QM_LSIO_MEM_CLK] = imx_clk_fixed("lsio_mem_clk_root", SC_200MHZ);
-+	clks[IMX8QM_24MHZ]    = imx_clk_fixed("xtal_24MHz", 24000000);
-+	clks[IMX8QM_GPT_3M]    = imx_clk_fixed("gpt_3m", 3000000);
-+	clks[IMX8QM_32KHZ]    = imx_clk_fixed("xtal_32KHz", 32768);
-+	clks[IMX8QM_MIPI0_CLK_ROOT] = imx_clk_fixed("mipi0_clk_root", SC_120MHZ);
-+	clks[IMX8QM_MIPI1_CLK_ROOT] = imx_clk_fixed("mipi1_clk_root", SC_120MHZ);
-+
-+	/* Conectivity */
-+	clks[IMX8QM_SDHC0_IPG_CLK] = imx_clk_gate2_scu("sdhc0_ipg_clk", "ipg_conn_clk_root", LPCG_ADDR(USDHC_0_LPCG), 16, FUNCTION_NAME(PD_CONN_SDHC_0));
-+	clks[IMX8QM_SDHC1_IPG_CLK] = imx_clk_gate2_scu("sdhc1_ipg_clk", "ipg_conn_clk_root", LPCG_ADDR(USDHC_1_LPCG), 16, FUNCTION_NAME(PD_CONN_SDHC_1));
-+	clks[IMX8QM_SDHC2_IPG_CLK] = imx_clk_gate2_scu("sdhc2_ipg_clk", "ipg_conn_clk_root", LPCG_ADDR(USDHC_2_LPCG), 16, FUNCTION_NAME(PD_CONN_SDHC_2));
-+	clks[IMX8QM_SDHC0_CLK] = imx_clk_gate_scu("sdhc0_clk", "sdhc0_div", SC_R_SDHC_0, SC_PM_CLK_PER, LPCG_ADDR(USDHC_0_LPCG), 0, 0);
-+	clks[IMX8QM_SDHC1_CLK] = imx_clk_gate_scu("sdhc1_clk", "sdhc1_div", SC_R_SDHC_1, SC_PM_CLK_PER, LPCG_ADDR(USDHC_1_LPCG), 0, 0);
-+	clks[IMX8QM_SDHC2_CLK] = imx_clk_gate_scu("sdhc2_clk", "sdhc2_div", SC_R_SDHC_2, SC_PM_CLK_PER, LPCG_ADDR(USDHC_2_LPCG), 0, 0);
-+	clks[IMX8QM_ENET0_AHB_CLK]   = imx_clk_gate2_scu("enet0_ahb_clk", "axi_conn_clk_root", LPCG_ADDR(ENET_0_LPCG), 8, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET0_IPG_S_CLK] = imx_clk_gate2_scu("enet0_ipg_s_clk", "ipg_conn_clk_root", LPCG_ADDR(ENET_0_LPCG), 20, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET0_IPG_CLK]   = imx_clk_gate2_scu("enet0_ipg_clk", "enet0_ipg_s_clk", LPCG_ADDR(ENET_0_LPCG), 16, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET1_AHB_CLK]   = imx_clk_gate2_scu("enet1_ahb_clk", "axi_conn_clk_root", LPCG_ADDR(ENET_1_LPCG), 8, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET1_IPG_S_CLK] = imx_clk_gate2_scu("enet1_ipg_s_clk", "ipg_conn_clk_root", LPCG_ADDR(ENET_1_LPCG), 20, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET1_IPG_CLK]   = imx_clk_gate2_scu("enet1_ipg_clk", "enet1_ipg_s_clk", LPCG_ADDR(ENET_1_LPCG), 16, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET0_ROOT_CLK] = imx_clk_gate_scu("enet0_root_clk", "enet0_root_div", SC_R_ENET_0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_ENET1_ROOT_CLK] = imx_clk_gate_scu("enet1_root_clk", "enet1_root_div", SC_R_ENET_1, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_ENET0_TX_CLK] = imx_clk_gate2_scu("enet0_tx_2x_clk", "enet0_root_clk", LPCG_ADDR(ENET_0_LPCG), 4, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET1_TX_CLK] = imx_clk_gate2_scu("enet1_tx_2x_clk", "enet1_root_clk", LPCG_ADDR(ENET_1_LPCG), 4, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET0_PTP_CLK] = imx_clk_gate2_scu("enet0_ptp_clk", "enet0_root_clk", LPCG_ADDR(ENET_0_LPCG), 0, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET1_PTP_CLK] = imx_clk_gate2_scu("enet1_ptp_clk", "enet1_root_clk", LPCG_ADDR(ENET_1_LPCG), 0, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET0_REF_25MHZ_125MHZ_SEL] = imx_clk_mux_gpr_scu("enet0_ref_25_125_sel", enet_sels, ARRAY_SIZE(enet_sels), SC_R_ENET_0, SC_C_SEL_125);
-+	clks[IMX8QM_ENET1_REF_25MHZ_125MHZ_SEL] = imx_clk_mux_gpr_scu("enet1_ref_25_125_sel", enet_sels, ARRAY_SIZE(enet_sels), SC_R_ENET_1, SC_C_SEL_125);
-+	clks[IMX8QM_ENET0_RMII_TX_SEL] = imx_clk_mux_gpr_scu("enet0_rmii_tx_sel", enet0_rmii_tx_sels, ARRAY_SIZE(enet0_rmii_tx_sels), SC_R_ENET_0, SC_C_TXCLK);
-+	clks[IMX8QM_ENET1_RMII_TX_SEL] = imx_clk_mux_gpr_scu("enet1_rmii_tx_sel", enet1_rmii_tx_sels, ARRAY_SIZE(enet1_rmii_tx_sels), SC_R_ENET_1, SC_C_TXCLK);
-+	clks[IMX8QM_ENET0_RGMII_TX_CLK] = imx_clk_gate2_scu("enet0_rgmii_tx_clk", "enet0_rmii_tx_sel", LPCG_ADDR(ENET_0_LPCG), 12, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET1_RGMII_TX_CLK] = imx_clk_gate2_scu("enet1_rgmii_tx_clk", "enet1_rmii_tx_sel", LPCG_ADDR(ENET_1_LPCG), 12, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET0_RMII_RX_CLK] = imx_clk_gate2_scu("enet0_rgmii_rx_clk", "enet0_rgmii_div", LPCG_ADDR(ENET_0_LPCG + 0x4), 0, FUNCTION_NAME(PD_CONN_ENET_0));
-+	clks[IMX8QM_ENET1_RMII_RX_CLK] = imx_clk_gate2_scu("enet1_rgmii_rx_clk", "enet1_rgmii_div", LPCG_ADDR(ENET_1_LPCG + 0x4), 0, FUNCTION_NAME(PD_CONN_ENET_1));
-+	clks[IMX8QM_ENET0_REF_25MHZ_125MHZ_CLK] = imx_clk_gate3_scu("enet0_ref_25_125_clk", "enet0_ref_25_125_sel", SC_R_ENET_0, SC_C_DISABLE_125, true);
-+	clks[IMX8QM_ENET1_REF_25MHZ_125MHZ_CLK] = imx_clk_gate3_scu("enet1_ref_25_125_clk", "enet1_ref_25_125_sel", SC_R_ENET_1, SC_C_DISABLE_125, true);
-+	clks[IMX8QM_ENET0_REF_50MHZ_CLK] = imx_clk_gate3_scu("enet0_ref_50_clk", NULL, SC_R_ENET_0, SC_C_DISABLE_50, true);
-+	clks[IMX8QM_ENET1_REF_50MHZ_CLK] = imx_clk_gate3_scu("enet1_ref_50_clk", NULL, SC_R_ENET_1, SC_C_DISABLE_50, true);
-+	clks[IMX8QM_GPMI_APB_CLK]   = imx_clk_gate2_scu("gpmi_apb_clk", "axi_conn_clk_root", LPCG_ADDR(NAND_LPCG), 16, FUNCTION_NAME(PD_CONN_NAND));
-+	clks[IMX8QM_GPMI_APB_BCH_CLK]   = imx_clk_gate2_scu("gpmi_apb_bch_clk", "axi_conn_clk_root", LPCG_ADDR(NAND_LPCG), 20, FUNCTION_NAME(PD_CONN_NAND));
-+	clks[IMX8QM_GPMI_BCH_IO_CLK] = imx_clk_gate_scu("gpmi_io_clk", "gpmi_io_div", SC_R_NAND, SC_PM_CLK_MST_BUS, LPCG_ADDR(NAND_LPCG), 4, 0);
-+	clks[IMX8QM_GPMI_BCH_CLK] = imx_clk_gate_scu("gpmi_bch_clk", "gpmi_bch_div", SC_R_NAND, SC_PM_CLK_PER, LPCG_ADDR(NAND_LPCG), 0, 0);
-+	clks[IMX8QM_APBHDMA_CLK] = imx_clk_gate2_scu("gpmi_clk", "axi_conn_clk_root", LPCG_ADDR(NAND_LPCG + 0x4), 16, FUNCTION_NAME(PD_CONN_NAND));
-+	clks[IMX8QM_USB2_OH_AHB_CLK]   = imx_clk_gate2_scu("usboh3", "ahb_conn_clk_root", LPCG_ADDR(USB_2_LPCG), 24, FUNCTION_NAME(PD_CONN_USB_0));
-+	clks[IMX8QM_USB2_OH_IPG_S_CLK]   = imx_clk_gate2_scu("usboh3_ipg_s", "ipg_conn_clk_root", LPCG_ADDR(USB_2_LPCG), 16, FUNCTION_NAME(PD_CONN_USB_0));
-+	clks[IMX8QM_USB2_OH_IPG_S_PL301_CLK]   = imx_clk_gate2_scu("usboh3_ipg_pl301_s", "ipg_conn_clk_root", LPCG_ADDR(USB_2_LPCG), 20, FUNCTION_NAME(PD_CONN_USB_0));
-+	clks[IMX8QM_USB2_PHY_IPG_CLK]   = imx_clk_gate2_scu("usboh3_phy_clk", "ipg_conn_clk_root", LPCG_ADDR(USB_2_LPCG), 28, FUNCTION_NAME(PD_CONN_USB_0));
-+	clks[IMX8QM_USB3_IPG_CLK]   = imx_clk_gate2_scu("usb3_ipg_clk", "ipg_conn_clk_root", LPCG_ADDR(USB_3_LPCG), 16, FUNCTION_NAME(PD_CONN_USB_2));
-+	clks[IMX8QM_USB3_CORE_PCLK]   = imx_clk_gate2_scu("usb3_core_clk", "ipg_conn_clk_root", LPCG_ADDR(USB_3_LPCG), 20, FUNCTION_NAME(PD_CONN_USB_2));
-+	clks[IMX8QM_USB3_PHY_CLK]   = imx_clk_gate2_scu("usb3_phy_clk", "usb3_ipg_clk", LPCG_ADDR(USB_3_LPCG), 24, FUNCTION_NAME(PD_CONN_USB_2_PHY));
-+	clks[IMX8QM_USB3_ACLK] = imx_clk_gate_scu("usb3_aclk", "usb3_aclk_div", SC_R_USB_2, SC_PM_CLK_PER, LPCG_ADDR(USB_3_LPCG), 28, 0);
-+	clks[IMX8QM_USB3_BUS_CLK] = imx_clk_gate_scu("usb3_bus_clk", "usb3_bus_div", SC_R_USB_2, SC_PM_CLK_MST_BUS, LPCG_ADDR(USB_3_LPCG), 0, 0);
-+	clks[IMX8QM_USB3_LPM_CLK] = imx_clk_gate_scu("usb3_lpm_clk", "usb3_lpm_div", SC_R_USB_2, SC_PM_CLK_MISC, LPCG_ADDR(USB_3_LPCG), 4, 0);
-+	clks[IMX8QM_EDMA_CLK]   = imx_clk_gate2_scu("edma_clk", "axi_conn_clk_root", LPCG_ADDR(EDMA_LPCG), 0, FUNCTION_NAME(PD_CONN_DMA_4_CH0));
-+	clks[IMX8QM_EDMA_IPG_CLK]   = imx_clk_gate2_scu("edma_ipg_clk", "ipg_conn_clk_root", LPCG_ADDR(EDMA_LPCG), 16, FUNCTION_NAME(PD_CONN_DMA_4_CH0));
-+	clks[IMX8QM_MLB_HCLK]   = imx_clk_gate2_scu("mlb_hclk", "axi_conn_clk_root", LPCG_ADDR(MLB_LPCG), 20, FUNCTION_NAME(PD_CONN_MLB_0));
-+	clks[IMX8QM_MLB_CLK]   = imx_clk_gate2_scu("mlb_clk", "mlb_hclk", LPCG_ADDR(MLB_LPCG), 0, FUNCTION_NAME(PD_CONN_MLB_0));
-+	clks[IMX8QM_MLB_IPG_CLK]   = imx_clk_gate2_scu("mlb_ipg_clk", "ipg_conn_clk_root", LPCG_ADDR(MLB_LPCG), 16, FUNCTION_NAME(PD_CONN_MLB_0));
-+
-+	/* DMA */
-+	clks[IMX8QM_UART0_IPG_CLK] = imx_clk_gate2_scu("uart0_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPUART_0_LPCG), 16, FUNCTION_NAME(PD_DMA_UART0));
-+	clks[IMX8QM_UART1_IPG_CLK] = imx_clk_gate2_scu("uart1_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPUART_1_LPCG), 16, FUNCTION_NAME(PD_DMA_UART1));
-+	clks[IMX8QM_UART2_IPG_CLK] = imx_clk_gate2_scu("uart2_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPUART_2_LPCG), 16, FUNCTION_NAME(PD_DMA_UART2));
-+	clks[IMX8QM_UART3_IPG_CLK] = imx_clk_gate2_scu("uart3_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPUART_3_LPCG), 16, FUNCTION_NAME(PD_DMA_UART3));
-+	clks[IMX8QM_UART4_IPG_CLK] = imx_clk_gate2_scu("uart4_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPUART_4_LPCG), 16, FUNCTION_NAME(PD_DMA_UART4));
-+	clks[IMX8QM_UART0_CLK] = imx_clk_gate_scu("uart0_clk", "uart0_div", SC_R_UART_0, SC_PM_CLK_PER, LPCG_ADDR(LPUART_0_LPCG), 0, 0);
-+	clks[IMX8QM_UART1_CLK] = imx_clk_gate_scu("uart1_clk", "uart1_div", SC_R_UART_1, SC_PM_CLK_PER, LPCG_ADDR(LPUART_1_LPCG), 0, 0);
-+	clks[IMX8QM_UART2_CLK] = imx_clk_gate_scu("uart2_clk", "uart2_div", SC_R_UART_2, SC_PM_CLK_PER, LPCG_ADDR(LPUART_2_LPCG), 0, 0);
-+	clks[IMX8QM_UART3_CLK] = imx_clk_gate_scu("uart3_clk", "uart3_div", SC_R_UART_3, SC_PM_CLK_PER, LPCG_ADDR(LPUART_3_LPCG), 0, 0);
-+	clks[IMX8QM_UART4_CLK] = imx_clk_gate_scu("uart4_clk", "uart4_div", SC_R_UART_4, SC_PM_CLK_PER, LPCG_ADDR(LPUART_4_LPCG), 0, 0);
-+	clks[IMX8QM_SPI0_IPG_CLK]   = imx_clk_gate2_scu("spi0_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPSPI_0_LPCG), 16, FUNCTION_NAME(PD_DMA_SPI_0));
-+	clks[IMX8QM_SPI1_IPG_CLK]   = imx_clk_gate2_scu("spi1_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPSPI_1_LPCG), 16, FUNCTION_NAME(PD_DMA_SPI_1));
-+	clks[IMX8QM_SPI2_IPG_CLK]   = imx_clk_gate2_scu("spi2_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPSPI_2_LPCG), 16, FUNCTION_NAME(PD_DMA_SPI_2));
-+	clks[IMX8QM_SPI3_IPG_CLK]   = imx_clk_gate2_scu("spi3_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPSPI_3_LPCG), 16, FUNCTION_NAME(PD_DMA_SPI_3));
-+	clks[IMX8QM_SPI0_CLK] = imx_clk_gate_scu("spi0_clk", "spi0_div", SC_R_SPI_0, SC_PM_CLK_PER, LPCG_ADDR(LPSPI_0_LPCG), 0, 0);
-+	clks[IMX8QM_SPI1_CLK] = imx_clk_gate_scu("spi1_clk", "spi1_div", SC_R_SPI_1, SC_PM_CLK_PER, LPCG_ADDR(LPSPI_1_LPCG), 0, 0);
-+	clks[IMX8QM_SPI2_CLK] = imx_clk_gate_scu("spi2_clk", "spi2_div", SC_R_SPI_2, SC_PM_CLK_PER, LPCG_ADDR(LPSPI_2_LPCG), 0, 0);
-+	clks[IMX8QM_SPI3_CLK] = imx_clk_gate_scu("spi3_clk", "spi3_div", SC_R_SPI_3, SC_PM_CLK_PER, LPCG_ADDR(LPSPI_3_LPCG), 0, 0);
-+	clks[IMX8QM_EMVSIM0_IPG_CLK]   = imx_clk_gate2_scu("emvsim0_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(EMVSIM_0_LPCG), 16, FUNCTION_NAME(PD_DMA_EMVSIM_0));
-+	clks[IMX8QM_EMVSIM1_IPG_CLK]   = imx_clk_gate2_scu("emvsim1_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(EMVSIM_1_LPCG), 16, FUNCTION_NAME(PD_DMA_EMVSIM_1));
-+	clks[IMX8QM_EMVSIM0_CLK] = imx_clk_gate_scu("emvsim0_clk", "emvsim0_div", SC_R_EMVSIM_0, SC_PM_CLK_PER, LPCG_ADDR(EMVSIM_0_LPCG), 0, 0);
-+	clks[IMX8QM_EMVSIM1_CLK] = imx_clk_gate_scu("emvsim1_clk", "emvsim1_div", SC_R_EMVSIM_0, SC_PM_CLK_PER, LPCG_ADDR(EMVSIM_1_LPCG), 0, 0);
-+	clks[IMX8QM_CAN0_IPG_CHI_CLK]   = imx_clk_gate2_scu("can0_ipg_chi_clk", "ipg_dma_clk_root", LPCG_ADDR(FLEX_CAN_0_LPCG), 20, FUNCTION_NAME(PD_DMA_CAN_0));
-+	clks[IMX8QM_CAN0_IPG_CLK]   = imx_clk_gate2_scu("can0_ipg_clk", "can0_ipg_chi_clk", LPCG_ADDR(FLEX_CAN_0_LPCG), 16, FUNCTION_NAME(PD_DMA_CAN_0));
-+	clks[IMX8QM_CAN1_IPG_CHI_CLK]   = imx_clk_gate2_scu("can1_ipg_chi_clk", "ipg_dma_clk_root", LPCG_ADDR(FLEX_CAN_1_LPCG), 20, FUNCTION_NAME(PD_DMA_CAN_1));
-+	clks[IMX8QM_CAN1_IPG_CLK]   = imx_clk_gate2_scu("can1_ipg_clk", "can1_ipg_chi_clk", LPCG_ADDR(FLEX_CAN_1_LPCG), 16, FUNCTION_NAME(PD_DMA_CAN_1));
-+	clks[IMX8QM_CAN2_IPG_CHI_CLK]   = imx_clk_gate2_scu("can2_ipg_chi_clk", "ipg_dma_clk_root", LPCG_ADDR(FLEX_CAN_2_LPCG), 20, FUNCTION_NAME(PD_DMA_CAN_2));
-+	clks[IMX8QM_CAN2_IPG_CLK]   = imx_clk_gate2_scu("can2_ipg_clk", "can2_ipg_chi_clk", LPCG_ADDR(FLEX_CAN_2_LPCG), 16, FUNCTION_NAME(PD_DMA_CAN_2));
-+	clks[IMX8QM_CAN0_CLK] = imx_clk_gate_scu("can0_clk", "can0_div", SC_R_CAN_0, SC_PM_CLK_PER, LPCG_ADDR(FLEX_CAN_0_LPCG), 0, 0);
-+	clks[IMX8QM_CAN1_CLK] = imx_clk_gate_scu("can1_clk", "can1_div", SC_R_CAN_1, SC_PM_CLK_PER, LPCG_ADDR(FLEX_CAN_1_LPCG), 0, 0);
-+	clks[IMX8QM_CAN2_CLK] = imx_clk_gate_scu("can2_clk", "can2_div", SC_R_CAN_2, SC_PM_CLK_PER, LPCG_ADDR(FLEX_CAN_2_LPCG), 0, 0);
-+	clks[IMX8QM_I2C0_IPG_CLK]   = imx_clk_gate2_scu("i2c0_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPI2C_0_LPCG), 16, FUNCTION_NAME(PD_DMA_I2C_0));
-+	clks[IMX8QM_I2C1_IPG_CLK]   = imx_clk_gate2_scu("i2c1_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPI2C_1_LPCG), 16, FUNCTION_NAME(PD_DMA_I2C_1));
-+	clks[IMX8QM_I2C2_IPG_CLK]   = imx_clk_gate2_scu("i2c2_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPI2C_2_LPCG), 16, FUNCTION_NAME(PD_DMA_I2C_2));
-+	clks[IMX8QM_I2C3_IPG_CLK]   = imx_clk_gate2_scu("i2c3_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPI2C_3_LPCG), 16, FUNCTION_NAME(PD_DMA_I2C_3));
-+	clks[IMX8QM_I2C4_IPG_CLK]   = imx_clk_gate2_scu("i2c4_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(LPI2C_4_LPCG), 16, FUNCTION_NAME(PD_DMA_I2C_4));
-+	clks[IMX8QM_I2C0_CLK] = imx_clk_gate_scu("i2c0_clk", "i2c0_div", SC_R_I2C_0, SC_PM_CLK_PER, LPCG_ADDR(LPI2C_0_LPCG), 0, 0);
-+	clks[IMX8QM_I2C1_CLK] = imx_clk_gate_scu("i2c1_clk", "i2c1_div", SC_R_I2C_1, SC_PM_CLK_PER, LPCG_ADDR(LPI2C_1_LPCG), 0, 0);
-+	clks[IMX8QM_I2C2_CLK] = imx_clk_gate_scu("i2c2_clk", "i2c2_div", SC_R_I2C_2, SC_PM_CLK_PER, LPCG_ADDR(LPI2C_2_LPCG), 0, 0);
-+	clks[IMX8QM_I2C3_CLK] = imx_clk_gate_scu("i2c3_clk", "i2c3_div", SC_R_I2C_3, SC_PM_CLK_PER, LPCG_ADDR(LPI2C_3_LPCG), 0, 0);
-+	clks[IMX8QM_I2C4_CLK] = imx_clk_gate_scu("i2c4_clk", "i2c4_div", SC_R_I2C_4, SC_PM_CLK_PER, LPCG_ADDR(LPI2C_4_LPCG), 0, 0);
-+	clks[IMX8QM_FTM0_IPG_CLK] = imx_clk_gate2_scu("ftm0_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(FTM_0_LPCG), 16, FUNCTION_NAME(PD_DMA_FTM_0));
-+	clks[IMX8QM_FTM1_IPG_CLK] = imx_clk_gate2_scu("ftm1_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(FTM_1_LPCG), 16, FUNCTION_NAME(PD_DMA_FTM_1));
-+	clks[IMX8QM_FTM0_CLK] = imx_clk_gate_scu("ftm0_clk", "ftm0_div", SC_R_FTM_0, SC_PM_CLK_PER, LPCG_ADDR(FTM_0_LPCG), 0, 0);
-+	clks[IMX8QM_FTM1_CLK] = imx_clk_gate_scu("ftm1_clk", "ftm1_div", SC_R_FTM_1, SC_PM_CLK_PER, LPCG_ADDR(FTM_1_LPCG), 0, 0);
-+	clks[IMX8QM_ADC0_IPG_CLK] = imx_clk_gate2_scu("adc0_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(ADC_0_LPCG), 16, FUNCTION_NAME(PD_DMA_ADC_0));
-+	clks[IMX8QM_ADC1_IPG_CLK] = imx_clk_gate2_scu("adc1_ipg_clk", "ipg_dma_clk_root", LPCG_ADDR(ADC_1_LPCG), 16, FUNCTION_NAME(PD_DMA_ADC_1));
-+	clks[IMX8QM_ADC0_CLK] = imx_clk_gate_scu("adc0_clk", "adc0_div", SC_R_ADC_0, SC_PM_CLK_PER, LPCG_ADDR(ADC_0_LPCG), 0, 0);
-+	clks[IMX8QM_ADC1_CLK] = imx_clk_gate_scu("adc1_clk", "adc1_div", SC_R_ADC_1, SC_PM_CLK_PER, LPCG_ADDR(ADC_1_LPCG), 0, 0);
-+
-+	/* LSIO SS */
-+	clks[IMX8QM_PWM0_IPG_S_CLK] = imx_clk_gate_scu("pwm_0_ipg_s_clk", "pwm_0_div", SC_R_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(PWM_0_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM0_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_0_ipg_slv_clk", "pwm_0_ipg_s_clk", SC_R_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(PWM_0_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM0_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_0_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_0_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_0));
-+	clks[IMX8QM_PWM0_HF_CLK] = imx_clk_gate_scu("pwm_0_hf_clk", "pwm_0_ipg_slv_clk", SC_R_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(PWM_0_LPCG), 4, 0);
-+	clks[IMX8QM_PWM0_CLK] = imx_clk_gate_scu("pwm_0_clk", "pwm_0_ipg_slv_clk", SC_R_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(PWM_0_LPCG), 0, 0);
-+	clks[IMX8QM_PWM1_IPG_S_CLK] = imx_clk_gate_scu("pwm_1_ipg_s_clk", "pwm_1_div", SC_R_PWM_1, SC_PM_CLK_PER, LPCG_ADDR(PWM_1_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM1_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_1_ipg_slv_clk", "pwm_1_ipg_s_clk", SC_R_PWM_1, SC_PM_CLK_PER, LPCG_ADDR(PWM_1_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM1_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_1_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_1_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_1));
-+	clks[IMX8QM_PWM1_HF_CLK] = imx_clk_gate_scu("pwm_1_hf_clk", "pwm_1_ipg_slv_clk", SC_R_PWM_1, SC_PM_CLK_PER, LPCG_ADDR(PWM_1_LPCG), 4, 0);
-+	clks[IMX8QM_PWM1_CLK] = imx_clk_gate_scu("pwm_1_clk", "pwm_1_ipg_slv_clk", SC_R_PWM_1, SC_PM_CLK_PER, LPCG_ADDR(PWM_1_LPCG), 0, 0);
-+	clks[IMX8QM_PWM2_IPG_S_CLK] = imx_clk_gate_scu("pwm_2_ipg_s_clk", "pwm_2_div", SC_R_PWM_2, SC_PM_CLK_PER, LPCG_ADDR(PWM_2_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM2_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_2_ipg_slv_clk", "pwm_2_ipg_s_clk", SC_R_PWM_2, SC_PM_CLK_PER, LPCG_ADDR(PWM_2_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM2_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_2_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_2_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_2));
-+	clks[IMX8QM_PWM2_HF_CLK] = imx_clk_gate_scu("pwm_2_hf_clk", "pwm_2_ipg_slv_clk", SC_R_PWM_2, SC_PM_CLK_PER, LPCG_ADDR(PWM_2_LPCG), 4, 0);
-+	clks[IMX8QM_PWM2_CLK] = imx_clk_gate_scu("pwm_2_clk", "pwm_2_ipg_slv_clk", SC_R_PWM_2, SC_PM_CLK_PER, LPCG_ADDR(PWM_2_LPCG), 0, 0);
-+	clks[IMX8QM_PWM3_IPG_S_CLK] = imx_clk_gate_scu("pwm_3_ipg_s_clk", "pwm_3_div", SC_R_PWM_3, SC_PM_CLK_PER, LPCG_ADDR(PWM_3_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM3_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_3_ipg_slv_clk", "pwm_3_ipg_s_clk", SC_R_PWM_3, SC_PM_CLK_PER, LPCG_ADDR(PWM_3_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM3_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_3_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_3_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_3));
-+	clks[IMX8QM_PWM3_HF_CLK] = imx_clk_gate_scu("pwm_3_hf_clk", "pwm_3_ipg_slv_clk", SC_R_PWM_3, SC_PM_CLK_PER, LPCG_ADDR(PWM_3_LPCG), 4, 0);
-+	clks[IMX8QM_PWM3_CLK] = imx_clk_gate_scu("pwm_3_clk", "pwm_3_ipg_slv_clk", SC_R_PWM_3, SC_PM_CLK_PER, LPCG_ADDR(PWM_3_LPCG), 0, 0);
-+	clks[IMX8QM_PWM4_IPG_S_CLK] = imx_clk_gate_scu("pwm_4_ipg_s_clk", "pwm_4_div", SC_R_PWM_4, SC_PM_CLK_PER, LPCG_ADDR(PWM_4_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM4_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_4_ipg_slv_clk", "pwm_4_ipg_s_clk", SC_R_PWM_4, SC_PM_CLK_PER, LPCG_ADDR(PWM_4_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM4_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_4_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_4_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_4));
-+	clks[IMX8QM_PWM4_HF_CLK] = imx_clk_gate_scu("pwm_4_hf_clk", "pwm_4_ipg_slv_clk", SC_R_PWM_4, SC_PM_CLK_PER, LPCG_ADDR(PWM_4_LPCG), 4, 0);
-+	clks[IMX8QM_PWM4_CLK] = imx_clk_gate_scu("pwm_4_clk", "pwm_4_ipg_slv_clk", SC_R_PWM_4, SC_PM_CLK_PER, LPCG_ADDR(PWM_4_LPCG), 0, 0);
-+	clks[IMX8QM_PWM5_IPG_S_CLK] = imx_clk_gate_scu("pwm_5_ipg_s_clk", "pwm_5_div", SC_R_PWM_5, SC_PM_CLK_PER, LPCG_ADDR(PWM_5_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM5_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_5_ipg_slv_clk", "pwm_5_ipg_s_clk", SC_R_PWM_5, SC_PM_CLK_PER, LPCG_ADDR(PWM_5_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM5_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_5_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_5_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_5));
-+	clks[IMX8QM_PWM5_HF_CLK] = imx_clk_gate_scu("pwm_5_hf_clk", "pwm_5_ipg_slv_clk", SC_R_PWM_5, SC_PM_CLK_PER, LPCG_ADDR(PWM_5_LPCG), 4, 0);
-+	clks[IMX8QM_PWM5_CLK] = imx_clk_gate_scu("pwm_5_clk", "pwm_5_ipg_slv_clk", SC_R_PWM_5, SC_PM_CLK_PER, LPCG_ADDR(PWM_5_LPCG), 0, 0);
-+	clks[IMX8QM_PWM6_IPG_S_CLK] = imx_clk_gate_scu("pwm_6_ipg_s_clk", "pwm_6_div", SC_R_PWM_6, SC_PM_CLK_PER, LPCG_ADDR(PWM_6_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM6_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_6_ipg_slv_clk", "pwm_6_ipg_s_clk", SC_R_PWM_6, SC_PM_CLK_PER, LPCG_ADDR(PWM_6_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM6_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_6_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_6_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_6));
-+	clks[IMX8QM_PWM6_HF_CLK] = imx_clk_gate_scu("pwm_6_hf_clk", "pwm_6_ipg_slv_clk", SC_R_PWM_6, SC_PM_CLK_PER, LPCG_ADDR(PWM_6_LPCG), 4, 0);
-+	clks[IMX8QM_PWM6_CLK] = imx_clk_gate_scu("pwm_6_clk", "pwm_6_ipg_slv_clk", SC_R_PWM_6, SC_PM_CLK_PER, LPCG_ADDR(PWM_6_LPCG), 0, 0);
-+	clks[IMX8QM_PWM7_IPG_S_CLK] = imx_clk_gate_scu("pwm_7_ipg_s_clk", "pwm_7_div", SC_R_PWM_7, SC_PM_CLK_PER, LPCG_ADDR(PWM_7_LPCG), 0x10, 0);
-+	clks[IMX8QM_PWM7_IPG_SLV_CLK] = imx_clk_gate_scu("pwm_7_ipg_slv_clk", "pwm_7_ipg_s_clk", SC_R_PWM_7, SC_PM_CLK_PER, LPCG_ADDR(PWM_7_LPCG), 0x14, 0);
-+	clks[IMX8QM_PWM7_IPG_MSTR_CLK] = imx_clk_gate2_scu("pwm_7_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(PWM_7_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_PWM_7));
-+	clks[IMX8QM_PWM7_HF_CLK] = imx_clk_gate_scu("pwm_7_hf_clk", "pwm_7_ipg_slv_clk", SC_R_PWM_7, SC_PM_CLK_PER, LPCG_ADDR(PWM_7_LPCG), 4, 0);
-+	clks[IMX8QM_PWM7_CLK] = imx_clk_gate_scu("pwm_7_clk", "pwm_7_ipg_slv_clk", SC_R_PWM_7, SC_PM_CLK_PER, LPCG_ADDR(PWM_7_LPCG), 0, 0);
-+	clks[IMX8QM_GPT0_IPG_S_CLK] = imx_clk_gate_scu("gpt_0_ipg_s_clk", "gpt_0_div", SC_R_GPT_0, SC_PM_CLK_PER, LPCG_ADDR(GPT_0_LPCG), 0x10, 0);
-+	clks[IMX8QM_GPT0_IPG_SLV_CLK] = imx_clk_gate_scu("gpt_0_ipg_slv_clk", "gpt_0_ipg_s_clk", SC_R_GPT_0, SC_PM_CLK_PER, LPCG_ADDR(GPT_0_LPCG), 0x14, 0);
-+	clks[IMX8QM_GPT0_CLK] = imx_clk_gate_scu("gpt_0_clk", "gpt_0_ipg_slv_clk", SC_R_GPT_0, SC_PM_CLK_PER, LPCG_ADDR(GPT_0_LPCG), 0, 0);
-+	clks[IMX8QM_GPT0_IPG_MSTR_CLK] = imx_clk_gate2_scu("gpt_0_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(GPT_0_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_GPT_0));
-+	clks[IMX8QM_GPT0_HF_CLK] = imx_clk_gate_scu("gpt_0_hf_clk", "gpt_0_ipg_slv_clk", SC_R_GPT_0, SC_PM_CLK_PER, LPCG_ADDR(GPT_0_LPCG), 4, 0);
-+	clks[IMX8QM_GPT1_IPG_S_CLK] = imx_clk_gate_scu("gpt_1_ipg_s_clk", "gpt_1_div", SC_R_GPT_1, SC_PM_CLK_PER, LPCG_ADDR(GPT_1_LPCG), 0x10, 0);
-+	clks[IMX8QM_GPT1_IPG_SLV_CLK] = imx_clk_gate_scu("gpt_1_ipg_slv_clk", "gpt_1_ipg_s_clk", SC_R_GPT_1, SC_PM_CLK_PER, LPCG_ADDR(GPT_1_LPCG), 0x14, 0);
-+	clks[IMX8QM_GPT1_CLK] = imx_clk_gate_scu("gpt_1_clk", "gpt_1_ipg_slv_clk", SC_R_GPT_1, SC_PM_CLK_PER, LPCG_ADDR(GPT_1_LPCG), 0, 0);
-+	clks[IMX8QM_GPT1_HF_CLK] = imx_clk_gate_scu("gpt_1_hf_clk", "gpt_1_ipg_slv_clk", SC_R_GPT_1, SC_PM_CLK_PER, LPCG_ADDR(GPT_1_LPCG), 4, 0);
-+	clks[IMX8QM_GPT1_IPG_MSTR_CLK] = imx_clk_gate2_scu("gpt_1_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(GPT_1_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_GPT_1));
-+	clks[IMX8QM_GPT2_IPG_S_CLK] = imx_clk_gate_scu("gpt_2_ipg_s_clk", "gpt_2_div", SC_R_GPT_2, SC_PM_CLK_PER, LPCG_ADDR(GPT_2_LPCG), 0x10, 0);
-+	clks[IMX8QM_GPT2_IPG_SLV_CLK] = imx_clk_gate_scu("gpt_2_ipg_slv_clk", "gpt_2_ipg_s_clk", SC_R_GPT_2, SC_PM_CLK_PER, LPCG_ADDR(GPT_2_LPCG), 0x14, 0);
-+	clks[IMX8QM_GPT2_CLK] = imx_clk_gate_scu("gpt_2_clk", "gpt_2_ipg_slv_clk", SC_R_GPT_2, SC_PM_CLK_PER, LPCG_ADDR(GPT_2_LPCG), 0, 0);
-+	clks[IMX8QM_GPT2_HF_CLK] = imx_clk_gate_scu("gpt_2_hf_clk", "gpt_2_ipg_slv_clk", SC_R_GPT_2, SC_PM_CLK_PER, LPCG_ADDR(GPT_2_LPCG), 4, 0);
-+	clks[IMX8QM_GPT2_IPG_MSTR_CLK] = imx_clk_gate2_scu("gpt_2_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(GPT_2_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_GPT_2));
-+	clks[IMX8QM_GPT3_IPG_S_CLK] = imx_clk_gate_scu("gpt_3_ipg_s_clk", "gpt_3_div", SC_R_GPT_3, SC_PM_CLK_PER, LPCG_ADDR(GPT_3_LPCG), 0x10, 0);
-+	clks[IMX8QM_GPT3_IPG_SLV_CLK] = imx_clk_gate_scu("gpt_3_ipg_slv_clk", "gpt_3_ipg_s_clk", SC_R_GPT_3, SC_PM_CLK_PER, LPCG_ADDR(GPT_3_LPCG), 0x14, 0);
-+	clks[IMX8QM_GPT3_CLK] = imx_clk_gate_scu("gpt_3_clk", "gpt_3_ipg_slv_clk", SC_R_GPT_3, SC_PM_CLK_PER, LPCG_ADDR(GPT_3_LPCG), 0, 0);
-+	clks[IMX8QM_GPT3_HF_CLK] = imx_clk_gate_scu("gpt_3_hf_clk", "gpt_3_ipg_slv_clk", SC_R_GPT_3, SC_PM_CLK_PER, LPCG_ADDR(GPT_3_LPCG), 4, 0);
-+	clks[IMX8QM_GPT3_IPG_MSTR_CLK] = imx_clk_gate2_scu("gpt_3_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(GPT_3_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_GPT_3));
-+	clks[IMX8QM_GPT4_IPG_S_CLK] = imx_clk_gate_scu("gpt_4_ipg_s_clk", "gpt_4_div", SC_R_GPT_4, SC_PM_CLK_PER, LPCG_ADDR(GPT_4_LPCG), 0x10, 0);
-+	clks[IMX8QM_GPT4_IPG_SLV_CLK] = imx_clk_gate_scu("gpt_4_ipg_slv_clk", "gpt_4_ipg_s_clk", SC_R_GPT_4, SC_PM_CLK_PER, LPCG_ADDR(GPT_4_LPCG), 0x14, 0);
-+	clks[IMX8QM_GPT4_CLK] = imx_clk_gate_scu("gpt_4_clk", "gpt_4_ipg_slv_clk", SC_R_GPT_4, SC_PM_CLK_PER, LPCG_ADDR(GPT_4_LPCG), 0, 0);
-+	clks[IMX8QM_GPT4_HF_CLK] = imx_clk_gate_scu("gpt_4_hf_clk", "gpt_4_ipg_slv_clk", SC_R_GPT_4, SC_PM_CLK_PER, LPCG_ADDR(GPT_4_LPCG), 4, 0);
-+	clks[IMX8QM_GPT4_IPG_MSTR_CLK] = imx_clk_gate2_scu("gpt_4_ipg_mstr_clk", "lsio_bus_clk_root", LPCG_ADDR(GPT_4_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_GPT_4));
-+	clks[IMX8QM_FSPI0_HCLK] = imx_clk_gate2_scu("fspi0_hclk_clk", "lsio_mem_clk_root", LPCG_ADDR(FSPI_0_LPCG), 0x10, FUNCTION_NAME(PD_LSIO_FSPI_0));
-+	clks[IMX8QM_FSPI0_IPG_S_CLK] = imx_clk_gate2_scu("fspi0_ipg_s_clk", "lsio_bus_clk_root", LPCG_ADDR(FSPI_0_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_FSPI_0));
-+	clks[IMX8QM_FSPI0_IPG_CLK] = imx_clk_gate2_scu("fspi0_ipg_clk", "fspi0_ipg_s_clk", LPCG_ADDR(FSPI_0_LPCG), 0x14, FUNCTION_NAME(PD_LSIO_FSPI_0));
-+	clks[IMX8QM_FSPI0_CLK] = imx_clk_gate_scu("fspi_0_clk", "fspi_0_div", SC_R_FSPI_0, SC_PM_CLK_PER, LPCG_ADDR(FSPI_0_LPCG), 0, 0);
-+	clks[IMX8QM_FSPI1_HCLK] = imx_clk_gate2_scu("fspi1_hclk_clk", "lsio_mem_clk_root", LPCG_ADDR(FSPI_1_LPCG), 0x10, FUNCTION_NAME(PD_LSIO_FSPI_1));
-+	clks[IMX8QM_FSPI1_IPG_S_CLK] = imx_clk_gate2_scu("fspi1_ipg_s_clk", "lsio_bus_clk_root", LPCG_ADDR(FSPI_1_LPCG), 0x18, FUNCTION_NAME(PD_LSIO_FSPI_1));
-+	clks[IMX8QM_FSPI1_IPG_CLK] = imx_clk_gate2_scu("fspi1_ipg_clk", "fspi1_ipg_s_clk", LPCG_ADDR(FSPI_1_LPCG), 0x14, FUNCTION_NAME(PD_LSIO_FSPI_1));
-+	clks[IMX8QM_FSPI1_CLK] = imx_clk_gate_scu("fspi_1_clk", "fspi_1_div", SC_R_FSPI_1, SC_PM_CLK_PER, LPCG_ADDR(FSPI_1_LPCG), 0, 0);
-+
-+	clks[IMX8QM_LSIO_MU5A_IPG_S_CLK] = imx_clk_gate2_scu("mu5_a_ipg_s_clk", "lsio_bus_clk_root", LPCG_ADDR(MU_5A_LPCG), 0x10, FUNCTION_NAME(PD_LSIO_MU5A));
-+	clks[IMX8QM_LSIO_MU5A_IPG_CLK] = imx_clk_gate2_scu("mu5_a_ipg_clk", "mu5_a_ipg_s_clk",  LPCG_ADDR(MU_5A_LPCG), 0x0, FUNCTION_NAME(PD_LSIO_MU5A));
-+	clks[IMX8QM_LSIO_MU6A_IPG_S_CLK] = imx_clk_gate2_scu("mu6_a_ipg_s_clk", "lsio_bus_clk_root", LPCG_ADDR(MU_6A_LPCG), 0x10, FUNCTION_NAME(PD_LSIO_MU6A));
-+	clks[IMX8QM_LSIO_MU6A_IPG_CLK] = imx_clk_gate2_scu("mu6_a_ipg_clk", "mu6_a_ipg_s_clk",  LPCG_ADDR(MU_6A_LPCG), 0x0, FUNCTION_NAME(PD_LSIO_MU6A));
-+	/* Audio */
-+	clks[IMX8QM_AUD_ACM_AUD_PLL_CLK0_CLK] = imx_clk_gate_scu("aud_acm_aud_pll_clk0_clk", "aud_acm_aud_pll_clk0_div", SC_R_AUDIO_PLL_0, SC_PM_CLK_MISC0, LPCG_ADDR(AUD_PLL_CLK0_LPCG), 0, 0);
-+	clks[IMX8QM_AUD_ACM_AUD_PLL_CLK1_CLK] = imx_clk_gate_scu("aud_acm_aud_pll_clk1_clk", "aud_acm_aud_pll_clk1_div", SC_R_AUDIO_PLL_1, SC_PM_CLK_MISC0, LPCG_ADDR(AUD_PLL_CLK1_LPCG), 0, 0);
-+	clks[IMX8QM_AUD_ACM_AUD_REC_CLK0_CLK] = imx_clk_gate_scu("aud_acm_aud_rec_clk0_clk", "aud_acm_aud_rec_clk0_div", SC_R_AUDIO_PLL_0, SC_PM_CLK_MISC1, LPCG_ADDR(AUD_REC_CLK0_LPCG), 0, 0);
-+	clks[IMX8QM_AUD_ACM_AUD_REC_CLK1_CLK] = imx_clk_gate_scu("aud_acm_aud_rec_clk1_clk", "aud_acm_aud_rec_clk1_div", SC_R_AUDIO_PLL_1, SC_PM_CLK_MISC1, LPCG_ADDR(AUD_REC_CLK1_LPCG), 0, 0);
-+
-+	clks[IMX8QM_HDMI_RX_MCLK]	= imx_clk_fixed("hdmi_rx_mclk", 0);
-+	clks[IMX8QM_EXT_AUD_MCLK0]	= imx_clk_fixed("ext_aud_mclk0", 0);
-+	clks[IMX8QM_EXT_AUD_MCLK1]	= imx_clk_fixed("ext_aud_mclk1", 0);
-+	clks[IMX8QM_ESAI0_RX_CLK]	= imx_clk_fixed("esai0_rx_clk", 0);
-+	clks[IMX8QM_ESAI0_RX_HF_CLK]	= imx_clk_fixed("esai0_rx_hf_clk", 0);
-+	clks[IMX8QM_ESAI0_TX_CLK]	= imx_clk_fixed("esai0_tx_clk", 0);
-+	clks[IMX8QM_ESAI0_TX_HF_CLK]	= imx_clk_fixed("esai0_tx_hf_clk", 0);
-+	clks[IMX8QM_ESAI1_RX_CLK]	= imx_clk_fixed("esai1_rx_clk", 0);
-+	clks[IMX8QM_ESAI1_RX_HF_CLK]	= imx_clk_fixed("esai1_rx_hf_clk", 0);
-+	clks[IMX8QM_ESAI1_TX_CLK]	= imx_clk_fixed("esai1_tx_clk", 0);
-+	clks[IMX8QM_ESAI1_TX_HF_CLK]	= imx_clk_fixed("esai1_tx_hf_clk", 0);
-+	clks[IMX8QM_SPDIF0_RX]		= imx_clk_fixed("spdif0_rx", 0);
-+	clks[IMX8QM_SPDIF1_RX]		= imx_clk_fixed("spdif1_rx", 0);
-+	clks[IMX8QM_SAI0_RX_BCLK]	= imx_clk_fixed("sai0_rx_bclk", 0);
-+	clks[IMX8QM_SAI0_TX_BCLK]	= imx_clk_fixed("sai0_tx_bclk", 0);
-+	clks[IMX8QM_SAI1_RX_BCLK]	= imx_clk_fixed("sai1_rx_bclk", 0);
-+	clks[IMX8QM_SAI1_TX_BCLK]	= imx_clk_fixed("sai1_tx_bclk", 0);
-+	clks[IMX8QM_SAI2_RX_BCLK]	= imx_clk_fixed("sai2_rx_bclk", 0);
-+	clks[IMX8QM_SAI3_RX_BCLK]	= imx_clk_fixed("sai3_rx_bclk", 0);
-+	clks[IMX8QM_HDMI_RX_SAI0_RX_BCLK]  = imx_clk_fixed("hdmi_rx_sai0_rx_bclk", 0);
-+	clks[IMX8QM_SAI6_RX_BCLK]          = imx_clk_fixed("sai6_rx_bclk", 0);
-+	clks[IMX8QM_HDMI_TX_SAI0_TX_BCLK]  = imx_clk_fixed("hdmi_tx_sai0_tx_bclk", 0);
-+	clks[IMX8QM_CM40_IPG_CLK]	= imx_clk_fixed("ipg_cm40_clk_root", SC_132MHZ);
-+	clks[IMX8QM_CM41_IPG_CLK]	= imx_clk_fixed("ipg_cm41_clk_root", SC_132MHZ);
-+
-+	np_acm = of_find_compatible_node(NULL, NULL, "nxp,imx8qm-acm");
-+	if (np_acm) {
-+		base_acm = of_iomap(np_acm, 0);
-+		WARN_ON(!base_acm);
-+
-+		clks[IMX8QM_ACM_AUD_CLK0_SEL] = imx_clk_mux_scu("acm_aud_clk0_sel", base_acm + 0x00000, 0, 5, aud_clk_sels, ARRAY_SIZE(aud_clk_sels), FUNCTION_NAME(PD_AUDIO));
-+		clks[IMX8QM_ACM_AUD_CLK0_CLK] = imx_clk_gate_scu("acm_aud_clk0_clk", "acm_aud_clk0_sel", SC_R_AUDIO_CLK_0, SC_PM_CLK_SLV_BUS, NULL, 0, 0);
-+
-+		clks[IMX8QM_ACM_AUD_CLK1_SEL] = imx_clk_mux_scu("acm_aud_clk1_sel", base_acm + 0x10000, 0, 5, aud_clk_sels, ARRAY_SIZE(aud_clk_sels), FUNCTION_NAME(PD_AUDIO));
-+		clks[IMX8QM_ACM_AUD_CLK1_CLK] = imx_clk_gate_scu("acm_aud_clk1_clk", "acm_aud_clk1_sel", SC_R_AUDIO_CLK_1, SC_PM_CLK_SLV_BUS, NULL, 0, 0);
-+		clks[IMX8QM_ACM_MCLKOUT0_SEL] = imx_clk_mux_scu("acm_mclkout0_sel", base_acm + 0x20000, 0, 3, mclk_out_sels, ARRAY_SIZE(mclk_out_sels), FUNCTION_NAME(PD_AUDIO));
-+		clks[IMX8QM_ACM_MCLKOUT1_SEL] = imx_clk_mux_scu("acm_mclkout1_sel", base_acm + 0x30000, 0, 3, mclk_out_sels, ARRAY_SIZE(mclk_out_sels), FUNCTION_NAME(PD_AUDIO));
-+		clks[IMX8QM_ACM_SAI0_MCLK_SEL] = imx_clk_mux_scu("acm_sai0_mclk_sel", base_acm + 0xE0000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_0));
-+		clks[IMX8QM_ACM_SAI1_MCLK_SEL] = imx_clk_mux_scu("acm_sai1_mclk_sel", base_acm + 0xF0000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_1));
-+		clks[IMX8QM_ACM_SAI2_MCLK_SEL] = imx_clk_mux_scu("acm_sai2_mclk_sel", base_acm + 0x100000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_2));
-+		clks[IMX8QM_ACM_SAI3_MCLK_SEL] = imx_clk_mux_scu("acm_sai3_mclk_sel", base_acm + 0x110000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_3));
-+		clks[IMX8QM_ACM_HDMI_RX_SAI0_MCLK_SEL] = imx_clk_mux_scu("acm_hdmi_rx_sai0_mclk_sel", base_acm + 0x120000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_4));
-+		clks[IMX8QM_ACM_HDMI_TX_SAI0_MCLK_SEL] = imx_clk_mux_scu("acm_hdmi_tx_sai0_mclk_sel", base_acm + 0x130000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_5));
-+		clks[IMX8QM_ACM_SAI6_MCLK_SEL] = imx_clk_mux_scu("acm_sai6_mclk_sel", base_acm + 0x140000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_6));
-+		clks[IMX8QM_ACM_SAI7_MCLK_SEL] = imx_clk_mux_scu("acm_sai7_mclk_sel", base_acm + 0x150000, 0, 2, sai_mclk_sels, ARRAY_SIZE(sai_mclk_sels), FUNCTION_NAME(PD_AUD_SAI_7));
-+		clks[IMX8QM_ACM_SPDIF0_TX_CLK_SEL] = imx_clk_mux_scu("acm_spdif0_mclk_sel", base_acm + 0x1A0000, 0, 2, spdif_mclk_sels, ARRAY_SIZE(spdif_mclk_sels), FUNCTION_NAME(PD_AUD_SPDIF_0));
-+		clks[IMX8QM_ACM_SPDIF1_TX_CLK_SEL] = imx_clk_mux_scu("acm_spdif1_mclk_sel", base_acm + 0x1B0000, 0, 2, spdif_mclk_sels, ARRAY_SIZE(spdif_mclk_sels), FUNCTION_NAME(PD_AUD_SPDIF_1));
-+		clks[IMX8QM_ACM_MQS_TX_CLK_SEL] = imx_clk_mux_scu("acm_mqs_mclk_sel", base_acm + 0x1C0000, 0, 2, mqs_mclk_sels, ARRAY_SIZE(mqs_mclk_sels), FUNCTION_NAME(PD_AUD_MQS_0));
-+		clks[IMX8QM_ACM_ASRC0_MUX_CLK_SEL] = imx_clk_mux_scu("acm_asrc0_mclk_sel", base_acm + 0x40000, 0, 2, asrc_mux_clk_sels, ARRAY_SIZE(asrc_mux_clk_sels), FUNCTION_NAME(PD_AUD_ASRC_0));
-+		clks[IMX8QM_ACM_ASRC1_MUX_CLK_SEL] = imx_clk_mux_scu("acm_asrc1_mclk_sel", base_acm + 0x50000, 0, 2, asrc_mux_clk_sels, ARRAY_SIZE(asrc_mux_clk_sels), FUNCTION_NAME(PD_AUD_ASRC_1));
-+		clks[IMX8QM_ACM_ESAI0_MCLK_SEL] = imx_clk_mux_scu("acm_esai0_mclk_sel", base_acm + 0x60000, 0, 2, esai_mclk_sels, ARRAY_SIZE(esai_mclk_sels), FUNCTION_NAME(PD_AUD_ESAI_0));
-+		clks[IMX8QM_ACM_ESAI1_MCLK_SEL] = imx_clk_mux_scu("acm_esai1_mclk_sel", base_acm + 0x70000, 0, 2, esai_mclk_sels, ARRAY_SIZE(esai_mclk_sels), FUNCTION_NAME(PD_AUD_ESAI_1));
-+	} else
-+		printk("clk-imx8qm: missing acm node, skipping\n");
-+
-+	clks[IMX8QM_AUD_AMIX_IPG] = imx_clk_gate2_scu("aud_amix_ipg_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_AMIX_LPCG), 0, FUNCTION_NAME(PD_AUD_AMIX));
-+	clks[IMX8QM_AUD_ESAI_0_IPG] = imx_clk_gate2_scu("aud_esai0_ipg_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_ESAI_0_LPCG), 0, FUNCTION_NAME(PD_AUD_ESAI_0));
-+	clks[IMX8QM_AUD_ESAI_1_IPG] = imx_clk_gate2_scu("aud_esai1_ipg_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_ESAI_1_LPCG), 0, FUNCTION_NAME(PD_AUD_ESAI_1));
-+	clks[IMX8QM_AUD_ESAI_0_EXTAL_IPG] = imx_clk_gate2_scu("aud_esai0_extal_ipg_clk", "acm_esai0_mclk_sel", LPCG_ADDR(AUD_ESAI_0_LPCG), 16, FUNCTION_NAME(PD_AUD_ESAI_0));
-+	clks[IMX8QM_AUD_ESAI_1_EXTAL_IPG] = imx_clk_gate2_scu("aud_esai1_extal_ipg_clk", "acm_esai1_mclk_sel", LPCG_ADDR(AUD_ESAI_1_LPCG), 16, FUNCTION_NAME(PD_AUD_ESAI_1));
-+	clks[IMX8QM_AUD_SAI_0_IPG_S] = imx_clk_gate2_scu("aud_sai0_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_SAI_0_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_0));
-+	clks[IMX8QM_AUD_SAI_0_IPG] = imx_clk_gate2_scu("aud_sai0_ipg_clk", "aud_sai0_ipg_s_clk", LPCG_ADDR(AUD_SAI_0_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_0));
-+	clks[IMX8QM_AUD_SAI_0_MCLK] = imx_clk_gate2_scu("aud_sai0_mclk_clk", "acm_sai0_mclk_sel", LPCG_ADDR(AUD_SAI_0_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_0));
-+	clks[IMX8QM_AUD_SAI_1_IPG_S] = imx_clk_gate2_scu("aud_sai1_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_SAI_1_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_1));
-+	clks[IMX8QM_AUD_SAI_1_IPG] = imx_clk_gate2_scu("aud_sai1_ipg_clk", "aud_sai1_ipg_s_clk", LPCG_ADDR(AUD_SAI_1_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_1));
-+	clks[IMX8QM_AUD_SAI_1_MCLK] = imx_clk_gate2_scu("aud_sai1_mclk_clk", "acm_sai1_mclk_sel", LPCG_ADDR(AUD_SAI_1_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_1));
-+	clks[IMX8QM_AUD_SAI_2_IPG_S] = imx_clk_gate2_scu("aud_sai2_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_SAI_2_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_2));
-+	clks[IMX8QM_AUD_SAI_2_IPG] = imx_clk_gate2_scu("aud_sai2_ipg_clk", "aud_sai2_ipg_s_clk", LPCG_ADDR(AUD_SAI_2_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_2));
-+	clks[IMX8QM_AUD_SAI_2_MCLK] = imx_clk_gate2_scu("aud_sai2_mclk_clk", "acm_sai2_mclk_sel", LPCG_ADDR(AUD_SAI_2_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_2));
-+	clks[IMX8QM_AUD_SAI_3_IPG_S] = imx_clk_gate2_scu("aud_sai3_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_SAI_3_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_3));
-+	clks[IMX8QM_AUD_SAI_3_IPG] = imx_clk_gate2_scu("aud_sai3_ipg_clk", "aud_sai3_ipg_s_clk", LPCG_ADDR(AUD_SAI_3_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_3));
-+	clks[IMX8QM_AUD_SAI_3_MCLK] = imx_clk_gate2_scu("aud_sai3_mclk_clk", "acm_sai3_mclk_sel", LPCG_ADDR(AUD_SAI_3_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_3));
-+	clks[IMX8QM_AUD_SAI_6_IPG_S] = imx_clk_gate2_scu("aud_sai6_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_SAI_6_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_6));
-+	clks[IMX8QM_AUD_SAI_6_IPG] = imx_clk_gate2_scu("aud_sai6_ipg_clk", "aud_sai6_ipg_s_clk", LPCG_ADDR(AUD_SAI_6_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_6));
-+	clks[IMX8QM_AUD_SAI_6_MCLK] = imx_clk_gate2_scu("aud_sai6_mclk_clk", "acm_sai6_mclk_sel", LPCG_ADDR(AUD_SAI_6_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_6));
-+	clks[IMX8QM_AUD_SAI_7_IPG_S] = imx_clk_gate2_scu("aud_sai7_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_SAI_7_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_7));
-+	clks[IMX8QM_AUD_SAI_7_IPG] = imx_clk_gate2_scu("aud_sai7_ipg_clk", "aud_sai7_ipg_s_clk", LPCG_ADDR(AUD_SAI_7_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_7));
-+	clks[IMX8QM_AUD_SAI_7_MCLK] = imx_clk_gate2_scu("aud_sai7_mclk_clk", "acm_sai7_mclk_sel", LPCG_ADDR(AUD_SAI_7_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_7));
-+	clks[IMX8QM_AUD_SAI_HDMIRX0_IPG_S] = imx_clk_gate2_scu("aud_sai_hdmirx0_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_HDMI_RX_SAI_0_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_4));
-+	clks[IMX8QM_AUD_SAI_HDMIRX0_IPG] = imx_clk_gate2_scu("aud_sai_hdmirx0_ipg_clk", "aud_sai_hdmirx0_ipg_s_clk", LPCG_ADDR(AUD_HDMI_RX_SAI_0_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_4));
-+	clks[IMX8QM_AUD_SAI_HDMIRX0_MCLK] = imx_clk_gate2_scu("aud_sai_hdmirx0_mclk_clk", "acm_hdmi_rx_sai0_mclk_sel", LPCG_ADDR(AUD_HDMI_RX_SAI_0_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_4));
-+	clks[IMX8QM_AUD_SAI_HDMITX0_IPG_S] = imx_clk_gate2_scu("aud_sai_hdmitx0_ipg_s_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_HDMI_TX_SAI_0_LPCG), 8, FUNCTION_NAME(PD_AUD_SAI_5));
-+	clks[IMX8QM_AUD_SAI_HDMITX0_IPG] = imx_clk_gate2_scu("aud_sai_hdmitx0_ipg_clk", "aud_sai_hdmitx0_ipg_s_clk", LPCG_ADDR(AUD_HDMI_TX_SAI_0_LPCG), 0, FUNCTION_NAME(PD_AUD_SAI_5));
-+	clks[IMX8QM_AUD_SAI_HDMITX0_MCLK] = imx_clk_gate2_scu("aud_sai_hdmitx0_mclk_clk", "acm_hdmi_tx_sai0_mclk_sel", LPCG_ADDR(AUD_HDMI_TX_SAI_0_LPCG), 16, FUNCTION_NAME(PD_AUD_SAI_5));
-+	clks[IMX8QM_AUD_MQS_IPG] = imx_clk_gate2_scu("aud_mqs_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_MQS_LPCG), 0, FUNCTION_NAME(PD_AUD_MQS_0));
-+	clks[IMX8QM_AUD_MQS_HMCLK] = imx_clk_gate2_scu("aud_mqs_hm_clk", "acm_mqs_mclk_sel", LPCG_ADDR(AUD_MQS_LPCG), 16, FUNCTION_NAME(PD_AUD_MQS_0));
-+	clks[IMX8QM_AUD_GPT5_IPG_S] = imx_clk_gate2_scu("aud_gpt5_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_GPT_5_LPCG), 0, FUNCTION_NAME(PD_AUD_GPT_5));
-+	clks[IMX8QM_AUD_GPT5_24M_CLK] = imx_clk_gate2_scu("aud_gpt5_24MHz", "xtal_24MHz", LPCG_ADDR(AUD_GPT_5_LPCG), 20, FUNCTION_NAME(PD_AUD_GPT_5));
-+	clks[IMX8QM_AUD_GPT6_IPG_S] = imx_clk_gate2_scu("aud_gpt6_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_GPT_6_LPCG), 0, FUNCTION_NAME(PD_AUD_GPT_6));
-+	clks[IMX8QM_AUD_GPT6_24M_CLK] = imx_clk_gate2_scu("aud_gpt6_24MHz", "xtal_24MHz", LPCG_ADDR(AUD_GPT_6_LPCG), 20, FUNCTION_NAME(PD_AUD_GPT_6));
-+	clks[IMX8QM_AUD_GPT7_IPG_S] = imx_clk_gate2_scu("aud_gpt7_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_GPT_7_LPCG), 0, FUNCTION_NAME(PD_AUD_GPT_7));
-+	clks[IMX8QM_AUD_GPT7_24M_CLK] = imx_clk_gate2_scu("aud_gpt7_24MHz", "xtal_24MHz", LPCG_ADDR(AUD_GPT_7_LPCG), 20, FUNCTION_NAME(PD_AUD_GPT_7));
-+	clks[IMX8QM_AUD_GPT8_IPG_S] = imx_clk_gate2_scu("aud_gpt8_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_GPT_8_LPCG), 0, FUNCTION_NAME(PD_AUD_GPT_8));
-+	clks[IMX8QM_AUD_GPT8_24M_CLK] = imx_clk_gate2_scu("aud_gpt8_24MHz", "xtal_24MHz", LPCG_ADDR(AUD_GPT_8_LPCG), 20, FUNCTION_NAME(PD_AUD_GPT_8));
-+	clks[IMX8QM_AUD_GPT9_IPG_S] = imx_clk_gate2_scu("aud_gpt9_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_GPT_9_LPCG), 0, FUNCTION_NAME(PD_AUD_GPT_9));
-+	clks[IMX8QM_AUD_GPT9_24M_CLK] = imx_clk_gate2_scu("aud_gpt9_24MHz", "xtal_24MHz", LPCG_ADDR(AUD_GPT_9_LPCG), 20, FUNCTION_NAME(PD_AUD_GPT_9));
-+	clks[IMX8QM_AUD_GPT10_IPG_S] = imx_clk_gate2_scu("aud_gpt10_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_GPT_10_LPCG), 0, FUNCTION_NAME(PD_AUD_GPT_9));
-+	clks[IMX8QM_AUD_GPT10_24M_CLK] = imx_clk_gate2_scu("aud_gpt10_24MHz", "xtal_24MHz", LPCG_ADDR(AUD_GPT_10_LPCG), 20, FUNCTION_NAME(PD_AUD_GPT_9));
-+	clks[IMX8QM_AUD_MCLKOUT0] = imx_clk_gate2_scu("aud_mclkout0", "acm_mclkout0_sel", LPCG_ADDR(AUD_MCLKOUT0_LPCG), 0, FUNCTION_NAME(PD_AUDIO));
-+	clks[IMX8QM_AUD_MCLKOUT1] = imx_clk_gate2_scu("aud_mclkout1", "acm_mclkout1_sel", LPCG_ADDR(AUD_MCLKOUT1_LPCG), 0, FUNCTION_NAME(PD_AUDIO));
-+	clks[IMX8QM_AUD_SPDIF_0_IPG_S] = imx_clk_gate2_scu("spdif0_ipg_s", "ipg_aud_clk_root", LPCG_ADDR(AUD_SPDIF_0_LPCG), 0, FUNCTION_NAME(PD_AUD_SPDIF_0));
-+	clks[IMX8QM_AUD_SPDIF_0_GCLKW] = imx_clk_gate2_scu("spdif0_gclkw", "spdif0_ipg_s", LPCG_ADDR(AUD_SPDIF_0_LPCG), 16, FUNCTION_NAME(PD_AUD_SPDIF_0));
-+	clks[IMX8QM_AUD_SPDIF_0_TX_CLK] = imx_clk_gate2_scu("spdif0_tx_clk", "acm_spdif0_mclk_sel", LPCG_ADDR(AUD_SPDIF_0_LPCG), 20, FUNCTION_NAME(PD_AUD_SPDIF_0));
-+	clks[IMX8QM_AUD_SPDIF_1_IPG_S] = imx_clk_gate2_scu("spdif1_ipg_s", "ipg_aud_clk_root", LPCG_ADDR(AUD_SPDIF_1_LPCG), 0, FUNCTION_NAME(PD_AUD_SPDIF_1));
-+	clks[IMX8QM_AUD_SPDIF_1_GCLKW] = imx_clk_gate2_scu("spdif1_gclkw", "spdif1_ipg_s", LPCG_ADDR(AUD_SPDIF_1_LPCG), 16, FUNCTION_NAME(PD_AUD_SPDIF_1));
-+	clks[IMX8QM_AUD_SPDIF_1_TX_CLK] = imx_clk_gate2_scu("spdif1_tx_clk", "acm_spdif1_mclk_sel", LPCG_ADDR(AUD_SPDIF_1_LPCG), 20, FUNCTION_NAME(PD_AUD_SPDIF_1));
-+	clks[IMX8QM_AUD_ASRC_0_IPG] = imx_clk_gate2_scu("aud_asrc0_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_ASRC_0_LPCG), 0, FUNCTION_NAME(PD_AUD_ASRC_0));
-+	clks[IMX8QM_AUD_ASRC_0_MEM] = imx_clk_gate2_scu("aud_asrc0_mem", "ipg_aud_clk_root", LPCG_ADDR(AUD_ASRC_0_LPCG), 8, FUNCTION_NAME(PD_AUD_ASRC_0));
-+	clks[IMX8QM_AUD_ASRC_1_IPG] = imx_clk_gate2_scu("aud_asrc1_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_ASRC_1_LPCG), 0, FUNCTION_NAME(PD_AUD_ASRC_1));
-+	clks[IMX8QM_AUD_ASRC_1_MEM] = imx_clk_gate2_scu("aud_asrc1_mem", "ipg_aud_clk_root", LPCG_ADDR(AUD_ASRC_1_LPCG), 8, FUNCTION_NAME(PD_AUD_ASRC_1));
-+	clks[IMX8QM_ACM_ASRC0_MUX_CLK_CLK] = imx_clk_gate_scu("aud_asrc0_mux_clk", "acm_asrc0_mclk_sel", SC_R_ASRC_0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_ACM_ASRC1_MUX_CLK_CLK] = imx_clk_gate_scu("aud_asrc1_mux_clk", "acm_asrc1_mclk_sel", SC_R_ASRC_1, SC_PM_CLK_PER, NULL, 0, 0);
-+
-+	/* DSP */
-+	clks[IMX8QM_AUD_DSP_ADB_ACLK] = imx_clk_gate2_scu("aud_dsp_adb_aclk", "ipg_aud_clk_root", LPCG_ADDR(AUD_DSP_LPCG), 16, FUNCTION_NAME(PD_AUD_DSP));
-+	clks[IMX8QM_AUD_DSP_IPG] = imx_clk_gate2_scu("aud_dsp_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_DSP_LPCG), 20, FUNCTION_NAME(PD_AUD_DSP));
-+	clks[IMX8QM_AUD_DSP_CORE_CLK] = imx_clk_gate2_scu("aud_dsp_core_clk", "ipg_aud_clk_root", LPCG_ADDR(AUD_DSP_LPCG), 28, FUNCTION_NAME(PD_AUD_DSP));
-+	clks[IMX8QM_AUD_OCRAM_IPG] = imx_clk_gate2_scu("aud_ocram_ipg", "ipg_aud_clk_root", LPCG_ADDR(AUD_OCRAM_LPCG), 16, FUNCTION_NAME(PD_AUD_OCRAM));
-+
-+	/* MIPI CSI */
-+	clks[IMX8QM_CSI0_I2C0_IPG_CLK] = imx_clk_gate2_scu("mipi_csi0_i2c0_ipg_s", "ipg_mipi_csi_clk_root", LPCG_ADDR(MIPI_CSI_0_LPCG + 0x14), 16, FUNCTION_NAME(PD_MIPI_CSI0_I2C0));
-+	clks[IMX8QM_CSI0_I2C0_CLK] = imx_clk_gate_scu("mipi_csi0_i2c0_clk", "mipi_csi0_i2c0_div", SC_R_CSI_0_I2C_0, SC_PM_CLK_PER, LPCG_ADDR(MIPI_CSI_0_LPCG + 0x14), 0, 0);
-+	clks[IMX8QM_CSI0_PWM0_IPG_CLK] = imx_clk_gate2_scu("mipi_csi0_pwm0_ipg_s", "ipg_mipi_csi_clk_root", LPCG_ADDR(MIPI_CSI_0_LPCG + 0x10), 16, FUNCTION_NAME(PD_MIPI_CSI0_PWM));
-+	clks[IMX8QM_CSI0_PWM0_CLK] = imx_clk_gate_scu("mipi_csi0_pwm0_clk", "mipi_csi0_pwm0_div", SC_R_CSI_0_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(MIPI_CSI_0_LPCG + 0x10), 0, 0);
-+	clks[IMX8QM_CSI0_CORE_CLK] = imx_clk_gate_scu("mipi_csi0_core_clk", "mipi_csi0_core_div", SC_R_CSI_0, SC_PM_CLK_PER, LPCG_ADDR(MIPI_CSI_0_LPCG + 0x18), 16, 0);
-+	clks[IMX8QM_CSI0_ESC_CLK] = imx_clk_gate_scu("mipi_csi0_esc_clk", "mipi_csi0_esc_div", SC_R_CSI_0, SC_PM_CLK_MISC, LPCG_ADDR(MIPI_CSI_0_LPCG + 0x1C), 16, 0);
-+	clks[IMX8QM_CSI1_I2C0_IPG_CLK] = imx_clk_gate2_scu("mipi_csi1_i2c0_ipg_s", "ipg_mipi_csi_clk_root", LPCG_ADDR(MIPI_CSI_1_LPCG + 0x14), 16, FUNCTION_NAME(PD_MIPI_CSI1_I2C0));
-+	clks[IMX8QM_CSI1_I2C0_CLK] = imx_clk_gate_scu("mipi_csi1_i2c0_clk", "mipi_csi1_i2c0_div", SC_R_CSI_1_I2C_0, SC_PM_CLK_PER, LPCG_ADDR(MIPI_CSI_1_LPCG + 0x14), 0, 0);
-+	clks[IMX8QM_CSI1_PWM0_IPG_CLK] = imx_clk_gate2_scu("mipi_csi1_pwm0_ipg_s", "ipg_mipi_csi_clk_root", LPCG_ADDR(MIPI_CSI_1_LPCG + 0x10), 16, FUNCTION_NAME(PD_MIPI_CSI0_PWM));
-+	clks[IMX8QM_CSI1_PWM0_CLK] = imx_clk_gate_scu("mipi_csi1_pwm0_clk", "mipi_csi1_pwm0_div", SC_R_CSI_1_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(MIPI_CSI_1_LPCG + 0x10), 0, 0);
-+	clks[IMX8QM_CSI1_CORE_CLK] = imx_clk_gate_scu("mipi_csi1_core_clk", "mipi_csi1_core_div", SC_R_CSI_1, SC_PM_CLK_PER, LPCG_ADDR(MIPI_CSI_1_LPCG + 0x18), 16, 0);
-+	clks[IMX8QM_CSI1_ESC_CLK] = imx_clk_gate_scu("mipi_csi1_esc_clk", "mipi_csi1_esc_div", SC_R_CSI_1, SC_PM_CLK_MISC, LPCG_ADDR(MIPI_CSI_1_LPCG + 0x1C), 16, 0);
-+
-+	/* RX-HDMI */
-+	clks[IMX8QM_HDMI_RX_GPIO_IPG_S_CLK] = imx_clk_gate2_scu("hdmi_rx_gpio_ipg_s_clk", "ipg_hdmi_rx_clk_root", LPCG_ADDR(RX_HDMI_LPCG), 0, FUNCTION_NAME(PD_HDMI_RX));
-+	clks[IMX8QM_HDMI_RX_PWM_IPG_S_CLK] = imx_clk_gate2_scu("hdmi_rx_pwm_ipg_s_clk", "ipg_hdmi_rx_clk_root", LPCG_ADDR(RX_HDMI_LPCG + 0x8), 0, FUNCTION_NAME(PD_HDMI_RX));
-+	clks[IMX8QM_HDMI_RX_PWM_IPG_CLK] = imx_clk_gate2_scu("hdmi_rx_pwm_ipg_clk", "hdmi_rx_pwm_ipg_s_clk", LPCG_ADDR(RX_HDMI_LPCG + 0x4), 0, FUNCTION_NAME(PD_HDMI_RX));
-+	clks[IMX8QM_HDMI_RX_I2C_IPG_S_CLK] = imx_clk_gate2_scu("hdmi_rx_i2c_ipg_s_clk", "ipg_hdmi_rx_clk_root", LPCG_ADDR(RX_HDMI_LPCG + 0x1C), 0, FUNCTION_NAME(PD_HDMI_RX_I2C));
-+	clks[IMX8QM_HDMI_RX_I2C_IPG_CLK] = imx_clk_gate2_scu("hdmi_rx_i2c_ipg_clk", "hdmi_rx_i2c_ipg_s_clk", LPCG_ADDR(RX_HDMI_LPCG + 0x18), 0, FUNCTION_NAME(PD_HDMI_RX_I2C));
-+	clks[IMX8QM_HDMI_RX_I2C_DIV_CLK] = imx_clk_gate2_scu("hdmi_rx_i2c0_div_clk", "hdmi_rx_i2c0_div", LPCG_ADDR(RX_HDMI_LPCG + 0x14), 0, FUNCTION_NAME(PD_HDMI_RX_I2C));
-+	clks[IMX8QM_HDMI_RX_I2C0_CLK] = imx_clk_gate_scu("hdmi_rx_i2c0_clk", "hdmi_rx_i2c0_div_clk", SC_R_HDMI_RX_I2C_0, SC_PM_CLK_MISC2, LPCG_ADDR(RX_HDMI_LPCG + 0x10), 0, 0);
-+	clks[IMX8QM_HDMI_RX_SPDIF_CLK] = imx_clk_gate_scu("hdmi_rx_spdif_clk", "hdmi_rx_spdif_bypass_clk", SC_R_HDMI_RX, SC_PM_CLK_MISC0, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_RX_HD_REF_CLK] = imx_clk_gate_scu("hdmi_rx_hd_ref_clk", "hdmi_rx_hd_ref_div", SC_R_HDMI_RX, SC_PM_CLK_MISC1, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_RX_HD_CORE_CLK] = imx_clk_gate_scu("hdmi_rx_hd_core_clk", "hdmi_rx_hd_core_div", SC_R_HDMI_RX, SC_PM_CLK_MISC2, LPCG_ADDR(RX_HDMI_LPCG + 0x28), 0, 0);
-+	clks[IMX8QM_HDMI_RX_PXL_CLK] = imx_clk_gate_scu("hdmi_rx_pxl_clk", "hdmi_rx_pxl_div", SC_R_HDMI_RX, SC_PM_CLK_MISC3, LPCG_ADDR(RX_HDMI_LPCG + 0x2C), 0, 0);
-+	clks[IMX8QM_HDMI_RX_I2S_CLK] = imx_clk_gate_scu("hdmi_rx_i2s_clk", "hdmi_rx_i2s_bypass_clk", SC_R_HDMI_RX, SC_PM_CLK_MISC4, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_RX_PWM_CLK] = imx_clk_gate_scu("hdmi_rx_pwm_clk", "hdmi_rx_pwm_div", SC_R_HDMI_RX_PWM_0, SC_PM_CLK_MISC2, LPCG_ADDR(RX_HDMI_LPCG + 0xC), 0, 0);
-+	clks[IMX8QM_HDMI_RX_SINK_PCLK] = imx_clk_gate2_scu("hdmi_rx_sink_pclk", "ipg_hdmi_rx_clk_root", LPCG_ADDR(RX_HDMI_LPCG + 0x20), 0, FUNCTION_NAME(PD_HDMI_RX_BYPASS));
-+	clks[IMX8QM_HDMI_RX_SINK_SCLK] = imx_clk_gate2_scu("hdmi_rx_sink_sclk", "ipg_hdmi_rx_clk_root", LPCG_ADDR(RX_HDMI_LPCG + 0x24), 0, FUNCTION_NAME(PD_HDMI_RX_BYPASS));
-+	clks[IMX8QM_HDMI_RX_PXL_ENC_CLK] = imx_clk_gate2_scu("hdmi_rx_sink_enc_clk", "hdmi_rx_pxl_clk", LPCG_ADDR(RX_HDMI_LPCG + 0x30), 0, FUNCTION_NAME(PD_HDMI_RX_BYPASS));
-+
-+	/* MIPI-DI */
-+	clks[IMX8QM_MIPI0_LIS_IPG_CLK] = imx_clk_gate2_scu("mipi0_lis_ipg_clk", "mipi0_clk_root", LPCG_ADDR(MIPI_DSI_0_LPCG + 0x0), 0, FUNCTION_NAME(PD_MIPI_0_DSI));
-+	clks[IMX8QM_MIPI0_I2C0_DIV] = imx_clk_divider_scu("mipi0_i2c0_div", SC_R_MIPI_0_I2C_0, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_MIPI0_I2C0_CLK] = imx_clk_gate_scu("mipi0_i2c0_clk", "mipi0_i2c0_div", SC_R_MIPI_0_I2C_0, SC_PM_CLK_MISC2, LPCG_ADDR(MIPI_DSI_0_LPCG + 0x1c), 0, 0);
-+	clks[IMX8QM_MIPI0_I2C0_IPG_S_CLK] = imx_clk_gate2_scu("mipi0_i2c0_ipg_s", "mipi0_clk_root", LPCG_ADDR(MIPI_DSI_0_LPCG + 0x18), 0, FUNCTION_NAME(PD_MIPI_0_DSI_I2C0));
-+	clks[IMX8QM_MIPI0_I2C0_IPG_CLK] = imx_clk_gate2_scu("mipi0_i2c0_ipg", "mipi0_i2c0_ipg_s", LPCG_ADDR(MIPI_DSI_0_LPCG + 0x14), 0, FUNCTION_NAME(PD_MIPI_0_DSI_I2C0));
-+	clks[IMX8QM_MIPI0_I2C1_DIV] = imx_clk_divider_scu("mipi0_i2c1_div", SC_R_MIPI_0_I2C_1, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_MIPI0_I2C1_CLK] = imx_clk_gate_scu("mipi0_i2c1_clk", "mipi0_i2c1_div", SC_R_MIPI_0_I2C_1, SC_PM_CLK_MISC2, LPCG_ADDR(MIPI_DSI_0_LPCG + 0x2C), 0, 0);
-+	clks[IMX8QM_MIPI0_I2C1_IPG_S_CLK] = imx_clk_gate2_scu("mipi0_i2c1_ipg_s", "mipi0_clk_root", LPCG_ADDR(MIPI_DSI_0_LPCG + 0x28), 0, FUNCTION_NAME(PD_MIPI_0_DSI_I2C1));
-+	clks[IMX8QM_MIPI0_I2C1_IPG_CLK] = imx_clk_gate2_scu("mipi0_i2c1_ipg", "mipi0_i2c1_ipg_s", LPCG_ADDR(MIPI_DSI_0_LPCG + 0x24), 0, FUNCTION_NAME(PD_MIPI_0_DSI_I2C1));
-+	clks[IMX8QM_MIPI0_PWM0_CLK] = imx_clk_gate_scu("mipi0_pwm0_clk", "mipi0_pwm0_div", SC_R_MIPI_0_PWM_0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_MIPI0_DSI_TX_ESC_CLK] = imx_clk_gate_scu("mipi0_dsi_tx_esc_clk", "mipi0_dsi_tx_esc_div", SC_R_MIPI_0, SC_PM_CLK_MST_BUS, NULL, 0, 0);
-+	clks[IMX8QM_MIPI0_DSI_RX_ESC_CLK] = imx_clk_gate_scu("mipi0_dsi_rx_esc_clk", "mipi0_dsi_rx_esc_div", SC_R_MIPI_0, SC_PM_CLK_SLV_BUS, NULL, 0, 0);
-+	clks[IMX8QM_MIPI0_PXL_CLK] = imx_clk_gate_scu("mipi0_pxl_clk", "mipi0_pxl_div", SC_R_MIPI_0, SC_PM_CLK_PER, NULL, 0, 0);
-+
-+	clks[IMX8QM_MIPI1_LIS_IPG_CLK] = imx_clk_gate2_scu("mipi1_lis_ipg_clk", "mipi1_clk_root", LPCG_ADDR(MIPI_DSI_1_LPCG + 0x0), 0, FUNCTION_NAME(PD_MIPI_1_DSI));
-+
-+	clks[IMX8QM_MIPI1_I2C0_DIV] = imx_clk_divider_scu("mipi1_i2c0_div", SC_R_MIPI_1_I2C_0, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_MIPI1_I2C0_CLK] = imx_clk_gate_scu("mipi1_i2c0_clk", "mipi1_i2c0_div", SC_R_MIPI_1_I2C_0, SC_PM_CLK_MISC2, LPCG_ADDR(MIPI_DSI_1_LPCG + 0x1c), 0, 0);
-+	clks[IMX8QM_MIPI1_I2C0_IPG_S_CLK] = imx_clk_gate2_scu("mipi1_i2c0_ipg_s", "mipi1_clk_root", LPCG_ADDR(MIPI_DSI_1_LPCG + 0x18), 0, FUNCTION_NAME(PD_MIPI_1_DSI_I2C0));
-+	clks[IMX8QM_MIPI1_I2C0_IPG_CLK] = imx_clk_gate2_scu("mipi1_i2c0_ipg", "mipi1_i2c0_ipg_s", LPCG_ADDR(MIPI_DSI_1_LPCG + 0x14), 0, FUNCTION_NAME(PD_MIPI_1_DSI_I2C0));
-+	clks[IMX8QM_MIPI1_I2C1_DIV] = imx_clk_divider_scu("mipi1_i2c1_div", SC_R_MIPI_1_I2C_1, SC_PM_CLK_MISC2);
-+	clks[IMX8QM_MIPI1_I2C1_CLK] = imx_clk_gate_scu("mipi1_i2c1_clk", "mipi1_i2c1_div", SC_R_MIPI_1_I2C_1, SC_PM_CLK_MISC2, LPCG_ADDR(MIPI_DSI_1_LPCG + 0x2C), 0, 0);
-+	clks[IMX8QM_MIPI1_I2C1_IPG_S_CLK] = imx_clk_gate2_scu("mipi1_i2c1_ipg_s", "mipi1_clk_root", LPCG_ADDR(MIPI_DSI_1_LPCG + 0x28), 0, FUNCTION_NAME(PD_MIPI_1_DSI_I2C1));
-+	clks[IMX8QM_MIPI1_I2C1_IPG_CLK] = imx_clk_gate2_scu("mipi1_i2c1_ipg", "mipi1_i2c1_ipg_s", LPCG_ADDR(MIPI_DSI_1_LPCG + 0x24), 0, FUNCTION_NAME(PD_MIPI_1_DSI_I2C1));
-+	clks[IMX8QM_MIPI1_PWM0_CLK] = imx_clk_gate_scu("mipi1_pwm0_clk", "mipi1_pwm0_div", SC_R_MIPI_1_PWM_0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_MIPI1_DSI_TX_ESC_CLK] = imx_clk_gate_scu("mipi1_dsi_tx_esc_clk", "mipi1_dsi_tx_esc_div", SC_R_MIPI_1, SC_PM_CLK_MST_BUS, NULL, 0, 0);
-+	clks[IMX8QM_MIPI1_DSI_RX_ESC_CLK] = imx_clk_gate_scu("mipi1_dsi_rx_esc_clk", "mipi1_dsi_rx_esc_div", SC_R_MIPI_1, SC_PM_CLK_SLV_BUS, NULL, 0, 0);
-+	clks[IMX8QM_MIPI1_PXL_CLK] = imx_clk_gate_scu("mipi1_pxl_clk", "mipi1_pxl_div", SC_R_MIPI_1, SC_PM_CLK_PER, NULL, 0, 0);
-+
-+	/* Display controller */
-+	/* DC0 */
-+	clks[IMX8QM_DC0_DISP0_CLK] = imx_clk_gate_scu("dc0_disp0_clk", "dc0_disp0_div", SC_R_DC_0, SC_PM_CLK_MISC0, LPCG_ADDR(DC_0_LPCG), 0, 0);
-+	clks[IMX8QM_DC0_DISP1_CLK] = imx_clk_gate_scu("dc0_disp1_clk", "dc0_disp1_div", SC_R_DC_0, SC_PM_CLK_MISC1, LPCG_ADDR(DC_0_LPCG), 4, 0);
-+	clks[IMX8QM_DC0_PRG0_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg0_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x20), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG0_APB_CLK] = imx_clk_gate2_scu("dc0_prg0_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x20), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG1_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg1_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x24), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG1_APB_CLK] = imx_clk_gate2_scu("dc0_prg1_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x24), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG2_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg2_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x28), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG2_APB_CLK] = imx_clk_gate2_scu("dc0_prg2_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x28), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG3_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg3_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x34), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG3_APB_CLK] = imx_clk_gate2_scu("dc0_prg3_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x34), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG4_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg4_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x38), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG4_APB_CLK] = imx_clk_gate2_scu("dc0_prg4_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x38), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG5_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg5_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x3c), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG5_APB_CLK] = imx_clk_gate2_scu("dc0_prg5_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x3c), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG6_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg6_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x40), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG6_APB_CLK] = imx_clk_gate2_scu("dc0_prg6_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x40), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG7_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg7_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x44), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG7_APB_CLK] = imx_clk_gate2_scu("dc0_prg7_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x44), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG8_RTRAM_CLK] = imx_clk_gate2_scu("dc0_prg8_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x48), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_PRG8_APB_CLK] = imx_clk_gate2_scu("dc0_prg8_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x48), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_DPR0_APB_CLK] = imx_clk_gate2_scu("dc0_dpr0_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x18), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_DPR0_B_CLK] = imx_clk_gate2_scu("dc0_dpr0_b_clk", "axi_ext_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x18), 20, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_DPR1_APB_CLK] = imx_clk_gate2_scu("dc0_dpr1_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x2c), 16, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_DPR1_B_CLK] = imx_clk_gate2_scu("dc0_dpr1_b_clk", "axi_ext_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x2c), 20, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_RTRAM0_CLK] = imx_clk_gate2_scu("dc0_rtrm0_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x1C), 0, FUNCTION_NAME(PD_DC_0));
-+	clks[IMX8QM_DC0_RTRAM1_CLK] = imx_clk_gate2_scu("dc0_rtrm1_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_0_LPCG + 0x30), 0, FUNCTION_NAME(PD_DC_0));
-+	/* DC1 */
-+	clks[IMX8QM_DC1_DISP0_CLK] = imx_clk_gate_scu("dc1_disp0_clk", "dc1_disp0_div", SC_R_DC_1, SC_PM_CLK_MISC0, LPCG_ADDR(DC_1_LPCG), 0, 0);
-+	clks[IMX8QM_DC1_DISP1_CLK] = imx_clk_gate_scu("dc1_disp1_clk", "dc1_disp1_div", SC_R_DC_1, SC_PM_CLK_MISC1, LPCG_ADDR(DC_1_LPCG), 4, 0);
-+	clks[IMX8QM_DC1_PRG0_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg0_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x20), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG0_APB_CLK] = imx_clk_gate2_scu("dc1_prg0_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x20), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG1_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg1_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x24), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG1_APB_CLK] = imx_clk_gate2_scu("dc1_prg1_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x24), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG2_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg2_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x28), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG2_APB_CLK] = imx_clk_gate2_scu("dc1_prg2_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x28), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG3_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg3_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x34), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG3_APB_CLK] = imx_clk_gate2_scu("dc1_prg3_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x34), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG4_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg4_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x38), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG4_APB_CLK] = imx_clk_gate2_scu("dc1_prg4_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x38), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG5_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg5_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x3c), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG5_APB_CLK] = imx_clk_gate2_scu("dc1_prg5_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x3c), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG6_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg6_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x40), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG6_APB_CLK] = imx_clk_gate2_scu("dc1_prg6_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x40), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG7_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg7_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x44), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG7_APB_CLK] = imx_clk_gate2_scu("dc1_prg7_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x44), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG8_RTRAM_CLK] = imx_clk_gate2_scu("dc1_prg8_rtram_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x48), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_PRG8_APB_CLK] = imx_clk_gate2_scu("dc1_prg8_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x48), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_DPR0_APB_CLK] = imx_clk_gate2_scu("dc1_dpr0_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x18), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_DPR0_B_CLK] = imx_clk_gate2_scu("dc1_dpr0_b_clk", "axi_ext_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x18), 20, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_DPR1_APB_CLK] = imx_clk_gate2_scu("dc1_dpr1_apb_clk", "cfg_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x2c), 16, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_DPR1_B_CLK] = imx_clk_gate2_scu("dc1_dpr1_b_clk", "axi_ext_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x2c), 20, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_RTRAM0_CLK] = imx_clk_gate2_scu("dc1_rtrm0_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x1C), 0, FUNCTION_NAME(PD_DC_1));
-+	clks[IMX8QM_DC1_RTRAM1_CLK] = imx_clk_gate2_scu("dc1_rtrm1_clk", "axi_int_dc_clk_root", LPCG_ADDR(DC_1_LPCG + 0x30), 0, FUNCTION_NAME(PD_DC_1));
-+
-+	/* HDMI SS */
-+	clks[IMX8QM_HDMI_IPG_CLK] = imx_clk_gate_scu("ipg_hdmi_clk_root", "hdmi_ipg_div", SC_R_HDMI, SC_PM_CLK_MISC, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_I2C0_CLK] = imx_clk_gate_scu("hdmi_i2c0_clk", "hdmi_i2c0_div", SC_R_HDMI_I2C_0, SC_PM_CLK_MISC2, LPCG_ADDR(DI_HDMI_LPCG), 0, 0);
-+	clks[IMX8QM_HDMI_PXL_MUX_CLK] = imx_clk_gate_scu("hdmi_pxl_mux_clk", "hdmi_pxl_mux_div", SC_R_HDMI, SC_PM_CLK_MISC0, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_PXL_LINK_CLK] = imx_clk_gate_scu("hdmi_pxl_link_clk", "hdmi_pxl_link_div", SC_R_HDMI, SC_PM_CLK_MISC1, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_HDP_CORE_CLK] = imx_clk_gate_scu("hdmi_hdp_core_clk", "hdmi_core_div", SC_R_HDMI, SC_PM_CLK_MISC2, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_PXL_CLK] = imx_clk_gate_scu("hdmi_pxl_clk", "hdmi_pxl_div", SC_R_HDMI, SC_PM_CLK_MISC3, NULL, 0, 0);
-+	clks[IMX8QM_HDMI_I2S_CLK] = imx_clk_gate_scu("hdmi_i2s_clk", "hdmi_i2s_div", SC_R_HDMI_I2S, SC_PM_CLK_MISC0, LPCG_ADDR(DI_HDMI_LPCG + 0xC), 0, 0);
-+	clks[IMX8QM_HDMI_I2C_IPG_CLK] = imx_clk_gate2_scu("hdmi_i2c_ipg_clk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG), 16, FUNCTION_NAME(PD_HDMI_I2C_0));
-+	clks[IMX8QM_HDMI_PWM_IPG_CLK] = imx_clk_gate2_scu("hdmi_pwm_ipg_clk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG + 0x8), 16, FUNCTION_NAME(PD_HDMI_PWM_0));
-+	clks[IMX8QM_HDMI_GPIO_IPG_CLK] = imx_clk_gate2_scu("hdmi_gpio_ipg_clk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG + 0x10), 16, FUNCTION_NAME(PD_HDMI_GPIO_0));
-+	clks[IMX8QM_HDMI_LIS_IPG_CLK] = imx_clk_gate2_scu("hdmi_lis_ipg_clk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG + 0x4), 16, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_MSI_HCLK] = imx_clk_gate2_scu("hdmi_msi_hclk_clk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG + 0x14), 0, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_PXL_LPCG_CLK] = imx_clk_gate2_scu("hdmi_pxl_lpcg_clk", "dummy", LPCG_ADDR(DI_HDMI_LPCG + 0x18), 0, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_PXL_EVEN_CLK] = imx_clk_gate2_scu("hdmi_pxl_even_clk", "hdmi_pxl_lpcg_clk", NULL, 0, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_HDP_CLK] = imx_clk_gate2_scu("hdmi_pxl_odd_clk", "hdmi_pxl_lpcg_clk", NULL, 0, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_PXL_DBL_CLK] = imx_clk_gate2_scu("hdmi_pxl_dbl_clk", "hdmi_pxl_lpcg_clk", NULL, 0, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_VIF_CLK] = imx_clk_gate2_scu("hdmi_vif_clk", "hdmi_pxl_mux_clk", LPCG_ADDR(DI_HDMI_LPCG + 0x1C), 0, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_APB_CLK] = imx_clk_gate2_scu("hdmi_apb_clk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG + 0x28), 16, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_APB_MUX_CSR_CLK] = imx_clk_gate2_scu("hdmi_apb_mux_csr_clk", "hdmi_apb_clk", LPCG_ADDR(DI_HDMI_LPCG + 0x20), 16, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_APB_MUX_CTRL_CLK] = imx_clk_gate2_scu("hdmi_apb_mux_ctrl_clk", "hdmi_apb_clk", LPCG_ADDR(DI_HDMI_LPCG + 0x24), 16, FUNCTION_NAME(PD_HDMI));
-+	clks[IMX8QM_HDMI_HDP_PHY_CLK] = imx_clk_gate2_scu("hdmi_pclk", "ipg_hdmi_clk_root", LPCG_ADDR(DI_HDMI_LPCG + 0x1C), 16, FUNCTION_NAME(PD_HDMI));
-+
-+	/* lvds subsystem */
-+	clks[IMX8QM_LVDS0_PIXEL_CLK] = imx_clk_gate_scu("lvds0_pixel_clk", "lvds0_pixel_div", SC_R_LVDS_0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_LVDS0_I2C0_CLK] = imx_clk_gate_scu("lvds0_i2c0_clk", "lvds0_i2c0_div", SC_R_LVDS_0_I2C_0, SC_PM_CLK_PER, LPCG_ADDR(DI_LVDS_0_LPCG + 0x10), 0, 0);
-+	clks[IMX8QM_LVDS0_I2C1_CLK] = imx_clk_gate_scu("lvds0_i2c1_clk", "lvds0_i2c1_div", SC_R_LVDS_0_I2C_1, SC_PM_CLK_PER, LPCG_ADDR(DI_LVDS_0_LPCG + 0x14), 0, 0);
-+	clks[IMX8QM_LVDS0_PWM0_CLK] = imx_clk_gate_scu("lvds0_pwm0_clk", "lvds0_pwm0_div", SC_R_LVDS_0_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(DI_LVDS_0_LPCG + 0x0C), 0, 0);
-+	clks[IMX8QM_LVDS0_PHY_CLK] = imx_clk_gate_scu("lvds0_phy_clk", "lvds0_phy_div", SC_R_LVDS_0, SC_PM_CLK_PHY, NULL, 0, 0);
-+	clks[IMX8QM_LVDS0_I2C0_IPG_CLK] = imx_clk_gate2_scu("lvds0_i2c0_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_0_LPCG + 0x10), 16, FUNCTION_NAME(PD_LVDS0_I2C0));
-+	clks[IMX8QM_LVDS0_I2C1_IPG_CLK] = imx_clk_gate2_scu("lvds0_i2c1_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_0_LPCG + 0x14), 16, FUNCTION_NAME(PD_LVDS0_I2C1));
-+	clks[IMX8QM_LVDS0_PWM0_IPG_CLK] = imx_clk_gate2_scu("lvds0_pwm0_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_0_LPCG + 0x0C), 16, FUNCTION_NAME(PD_LVDS0_PWM));
-+	clks[IMX8QM_LVDS0_GPIO_IPG_CLK] = imx_clk_gate2_scu("lvds0_gpio_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_0_LPCG + 0x08), 16, FUNCTION_NAME(PD_LVDS0_GPIO));
-+	clks[IMX8QM_LVDS0_LIS_IPG_CLK] = imx_clk_gate2_scu("lvds0_lis_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_0_LPCG + 0x0), 16, FUNCTION_NAME(PD_LVDS0));
-+
-+	clks[IMX8QM_LVDS1_PIXEL_CLK] = imx_clk_gate_scu("lvds1_pixel_clk", "lvds1_pixel_div", SC_R_LVDS_1, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_LVDS1_I2C0_CLK] = imx_clk_gate_scu("lvds1_i2c0_clk", "lvds1_i2c0_div", SC_R_LVDS_1_I2C_0, SC_PM_CLK_PER, LPCG_ADDR(DI_LVDS_1_LPCG + 0x10), 0, 0);
-+	clks[IMX8QM_LVDS1_I2C1_CLK] = imx_clk_gate_scu("lvds1_i2c1_clk", "lvds1_i2c1_div", SC_R_LVDS_1_I2C_1, SC_PM_CLK_PER, LPCG_ADDR(DI_LVDS_1_LPCG + 0x14), 0, 0);
-+	clks[IMX8QM_LVDS1_PWM0_CLK] = imx_clk_gate_scu("lvds1_pwm0_clk", "lvds1_pwm0_div", SC_R_LVDS_1_PWM_0, SC_PM_CLK_PER, LPCG_ADDR(DI_LVDS_1_LPCG + 0x0C), 0, 0);
-+	clks[IMX8QM_LVDS1_PHY_CLK] = imx_clk_gate_scu("lvds1_phy_clk", "lvds1_phy_div", SC_R_LVDS_1, SC_PM_CLK_PHY, NULL, 0, 0);
-+	clks[IMX8QM_LVDS1_I2C0_IPG_CLK] = imx_clk_gate2_scu("lvds1_i2c0_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_1_LPCG + 0x10), 16, FUNCTION_NAME(PD_LVDS1_I2C0));
-+	clks[IMX8QM_LVDS1_I2C1_IPG_CLK] = imx_clk_gate2_scu("lvds1_i2c1_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_1_LPCG + 0x14), 16, FUNCTION_NAME(PD_LVDS1_I2C1));
-+	clks[IMX8QM_LVDS1_PWM0_IPG_CLK] = imx_clk_gate2_scu("lvds1_pwm0_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_1_LPCG + 0x0C), 16, FUNCTION_NAME(PD_LVDS1_PWM));
-+	clks[IMX8QM_LVDS1_GPIO_IPG_CLK] = imx_clk_gate2_scu("lvds1_gpio_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_1_LPCG + 0x08), 16, FUNCTION_NAME(PD_LVDS1_GPIO));
-+	clks[IMX8QM_LVDS1_LIS_IPG_CLK] = imx_clk_gate2_scu("lvds1_lis_ipg_clk", "ipg_lvds_clk_root", LPCG_ADDR(DI_LVDS_1_LPCG + 0x0), 16, FUNCTION_NAME(PD_LVDS1));
-+
-+	/* vpu/zpu subsystem */
-+	clks[IMX8QM_VPU_DDR_CLK] = imx_clk_gate_scu("vpu_ddr_clk", "vpu_ddr_div", SC_R_VPU, SC_PM_CLK_SLV_BUS, NULL, 0, 0);
-+	clks[IMX8QM_VPU_SYS_CLK] = imx_clk_gate_scu("vpu_sys_clk", "vpu_sys_div", SC_R_VPU, SC_PM_CLK_MST_BUS, NULL, 0, 0);
-+	clks[IMX8QM_VPU_XUVI_CLK] = imx_clk_gate_scu("vpu_xuvi_clk", "vpu_xuvi_div", SC_R_VPU, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_VPU_UART_CLK] = imx_clk_gate_scu("vpu_uart_clk", "vpu_uart_div", SC_R_VPU_UART, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_VPU_CORE_CLK] = imx_clk_gate_scu("vpu_core_clk", "vpu_core_div", SC_R_VPUCORE, SC_PM_CLK_PER, NULL, 0, 0);
-+
-+	/* gpu */
-+	clks[IMX8QM_GPU0_CORE_CLK] = imx_clk_gate_scu("gpu_core0_clk", "gpu_core0_div", SC_R_GPU_0_PID0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_GPU0_SHADER_CLK] = imx_clk_gate_scu("gpu_shader0_clk", "gpu_shader0_div", SC_R_GPU_0_PID0, SC_PM_CLK_MISC, NULL, 0, 0);
-+	clks[IMX8QM_GPU1_CORE_CLK] = imx_clk_gate_scu("gpu_core1_clk", "gpu_core1_div", SC_R_GPU_1_PID0, SC_PM_CLK_PER, NULL, 0, 0);
-+	clks[IMX8QM_GPU1_SHADER_CLK] = imx_clk_gate_scu("gpu_shader1_clk", "gpu_shader1_div", SC_R_GPU_1_PID0, SC_PM_CLK_MISC, NULL, 0, 0);
-+
-+	/* Imaging SS */
-+	clks[IMX8QM_IMG_JPEG_ENC_IPG_CLK] = imx_clk_gate2_scu("img_jpeg_enc_ipg_clk", "ipg_img_clk_root", LPCG_ADDR(IMG_JPEG_ENC_LPCG), 16, FUNCTION_NAME(PD_IMAGING_JPEG_ENC));
-+	clks[IMX8QM_IMG_JPEG_ENC_CLK] = imx_clk_gate2_scu("img_jpeg_enc_clk", "img_jpeg_enc_ipg_clk", LPCG_ADDR(IMG_JPEG_ENC_LPCG), 0, FUNCTION_NAME(PD_IMAGING_JPEG_ENC));
-+	clks[IMX8QM_IMG_JPEG_DEC_IPG_CLK] = imx_clk_gate2_scu("img_jpeg_dec_ipg_clk", "ipg_img_clk_root", LPCG_ADDR(IMG_JPEG_DEC_LPCG), 16, FUNCTION_NAME(PD_IMAGING_JPEG_DEC));
-+	clks[IMX8QM_IMG_JPEG_DEC_CLK] = imx_clk_gate2_scu("img_jpeg_dec_clk", "img_jpeg_dec_ipg_clk", LPCG_ADDR(IMG_JPEG_DEC_LPCG), 0, FUNCTION_NAME(PD_IMAGING_JPEG_DEC));
-+	clks[IMX8QM_IMG_PXL_LINK_DC0_CLK] = imx_clk_gate2_scu("img_pxl_link_dc0_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PXL_LINK_DC0_LPCG), 0, FUNCTION_NAME(PD_IMAGING));
-+	clks[IMX8QM_IMG_PXL_LINK_DC1_CLK] = imx_clk_gate2_scu("img_pxl_link_dc1_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PXL_LINK_DC1_LPCG), 0, FUNCTION_NAME(PD_IMAGING));
-+	clks[IMX8QM_IMG_PXL_LINK_CSI0_CLK] = imx_clk_gate2_scu("img_pxl_link_csi0_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PXL_LINK_CSI0_LPCG), 0, FUNCTION_NAME(PD_IMAGING));
-+	clks[IMX8QM_IMG_PXL_LINK_CSI1_CLK] = imx_clk_gate2_scu("img_pxl_link_csi1_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PXL_LINK_CSI1_LPCG), 0, FUNCTION_NAME(PD_IMAGING));
-+	clks[IMX8QM_IMG_PXL_LINK_HDMI_IN_CLK] = imx_clk_gate2_scu("img_pxl_link_hdmi_in_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PXL_LINK_HDMI_LPCG), 0, FUNCTION_NAME(PD_IMAGING));
-+	clks[IMX8QM_IMG_PDMA_0_CLK] = imx_clk_gate2_scu("img_pdma0_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_0_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA0));
-+	clks[IMX8QM_IMG_PDMA_1_CLK] = imx_clk_gate2_scu("img_pdma1_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_1_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA1));
-+	clks[IMX8QM_IMG_PDMA_2_CLK] = imx_clk_gate2_scu("img_pdma2_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_2_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA2));
-+	clks[IMX8QM_IMG_PDMA_3_CLK] = imx_clk_gate2_scu("img_pdma3_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_3_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA3));
-+	clks[IMX8QM_IMG_PDMA_4_CLK] = imx_clk_gate2_scu("img_pdma4_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_4_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA4));
-+	clks[IMX8QM_IMG_PDMA_5_CLK] = imx_clk_gate2_scu("img_pdma5_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_5_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA5));
-+	clks[IMX8QM_IMG_PDMA_6_CLK] = imx_clk_gate2_scu("img_pdma6_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_6_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA6));
-+	clks[IMX8QM_IMG_PDMA_7_CLK] = imx_clk_gate2_scu("img_pdma7_clk", "pxl_img_clk_root", LPCG_ADDR(IMG_PDMA_7_LPCG), 0, FUNCTION_NAME(PD_IMAGING_PDMA7));
-+
-+	/* HSIO */
-+	clks[IMX8QM_HSIO_PCIE_A_MSTR_AXI_CLK] = imx_clk_gate2_scu("hsio_pcieA_mstr_axi_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X2_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_PCIE_A_SLV_AXI_CLK] = imx_clk_gate2_scu("hsio_pcieA_slv_axi_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X2_LPCG), 20, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_PCIE_A_DBI_AXI_CLK] = imx_clk_gate2_scu("hsio_pcieA_dbi_axi_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X2_LPCG), 24, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_PCIE_B_MSTR_AXI_CLK] = imx_clk_gate2_scu("hsio_pcieB_mstr_axi_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X1_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_B));
-+	clks[IMX8QM_HSIO_PCIE_B_SLV_AXI_CLK] = imx_clk_gate2_scu("hsio_pcieB_slv_axi_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X1_LPCG), 20, FUNCTION_NAME(PD_HSIO_PCIE_B));
-+	clks[IMX8QM_HSIO_PCIE_B_DBI_AXI_CLK] = imx_clk_gate2_scu("hsio_pcieB_dbi_axi_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X1_LPCG), 24, FUNCTION_NAME(PD_HSIO_PCIE_B));
-+	clks[IMX8QM_HSIO_PCIE_X1_PER_CLK] = imx_clk_gate2_scu("hsio_pcie_x1_per_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X1_CRR3_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_B));
-+	clks[IMX8QM_HSIO_PCIE_X2_PER_CLK] = imx_clk_gate2_scu("hsio_pcie_x2_per_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PCIE_X2_CRR2_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_SATA_PER_CLK] = imx_clk_gate2_scu("hsio_sata_per_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_SATA_CRR4_LPCG), 16, FUNCTION_NAME(PD_HSIO_SATA_0));
-+	clks[IMX8QM_HSIO_PHY_X1_PER_CLK] = imx_clk_gate2_scu("hsio_phy_x1_per_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PHY_X1_CRR1_LPCG), 16, FUNCTION_NAME(PD_HSIO_SATA_0));
-+	clks[IMX8QM_HSIO_PHY_X2_PER_CLK] = imx_clk_gate2_scu("hsio_phy_x2_per_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PHY_X2_CRR0_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_MISC_PER_CLK] = imx_clk_gate2_scu("hsio_misc_per_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_MISC_LPCG), 16, FUNCTION_NAME(PD_HSIO));
-+	clks[IMX8QM_HSIO_PHY_X1_APB_CLK] = imx_clk_gate2_scu("hsio_phy_x1_apb_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PHY_X1_LPCG), 16, FUNCTION_NAME(PD_HSIO_SATA_0));
-+	clks[IMX8QM_HSIO_PHY_X2_APB_0_CLK] = imx_clk_gate2_scu("hsio_phy_x2_apb_0_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PHY_X2_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_PHY_X2_APB_1_CLK] = imx_clk_gate2_scu("hsio_phy_x2_apb_1_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_PHY_X2_LPCG), 20, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_SATA_CLK] = imx_clk_gate2_scu("hsio_sata_clk", "axi_hsio_clk_root", LPCG_ADDR(HSIO_SATA_LPCG), 16, FUNCTION_NAME(PD_HSIO_SATA_0));
-+	clks[IMX8QM_HSIO_GPIO_CLK] = imx_clk_gate2_scu("hsio_gpio_clk", "per_hsio_clk_root", LPCG_ADDR(HSIO_GPIO_LPCG), 16, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_PHY_X1_PCLK] = imx_clk_gate2_scu("hsio_phy_x1_pclk", "dummy", LPCG_ADDR(HSIO_PHY_X1_LPCG), 0, FUNCTION_NAME(PD_HSIO_SATA_0));
-+	clks[IMX8QM_HSIO_PHY_X2_PCLK_0] = imx_clk_gate2_scu("hsio_phy_x2_pclk_0", "dummy", LPCG_ADDR(HSIO_PHY_X2_LPCG), 0, FUNCTION_NAME(PD_HSIO_PCIE_A));
-+	clks[IMX8QM_HSIO_PHY_X2_PCLK_1] = imx_clk_gate2_scu("hsio_phy_x2_pclk_1", "dummy", LPCG_ADDR(HSIO_PHY_X2_LPCG), 4, FUNCTION_NAME(PD_HSIO_PCIE_B));
-+	clks[IMX8QM_HSIO_SATA_EPCS_RX_CLK] = imx_clk_gate2_scu("hsio_sata_epcs_rx_clk", "dummy", LPCG_ADDR(HSIO_PHY_X1_LPCG), 8, FUNCTION_NAME(PD_HSIO_SATA_0));
-+	clks[IMX8QM_HSIO_SATA_EPCS_TX_CLK] = imx_clk_gate2_scu("hsio_sata_epcs_tx_clk", "dummy", LPCG_ADDR(HSIO_PHY_X1_LPCG), 4, FUNCTION_NAME(PD_HSIO_SATA_0));
-+
-+	/* CM40 */
-+	clks[IMX8QM_CM40_I2C_DIV]	= imx_clk_divider_scu("cm40_i2c_div", SC_R_M4_0_I2C, SC_PM_CLK_PER);
-+	clks[IMX8QM_CM40_I2C_CLK]	= imx_clk_gate_scu("cm40_i2c_clk", "cm40_i2c_div", SC_R_M4_0_I2C, SC_PM_CLK_PER, (void __iomem *)(CM40_I2C_LPCG), 0, 0);
-+	clks[IMX8QM_CM40_I2C_IPG_CLK]	= imx_clk_gate2_scu("cm40_i2c_ipg_clk", "ipg_cm40_clk_root", (void __iomem *)(CM40_I2C_LPCG), 16, FUNCTION_NAME(PD_CM40_I2C));
-+
-+	/* CM41 */
-+	clks[IMX8QM_CM41_I2C_DIV]	= imx_clk_divider_scu("cm41_i2c_div", SC_R_M4_1_I2C, SC_PM_CLK_PER);
-+	clks[IMX8QM_CM41_I2C_CLK]	= imx_clk_gate_scu("cm41_i2c_clk", "cm41_i2c_div", SC_R_M4_1_I2C, SC_PM_CLK_PER, (void __iomem *)(CM41_I2C_LPCG), 0, 0);
-+	clks[IMX8QM_CM41_I2C_IPG_CLK]	= imx_clk_gate2_scu("cm41_i2c_ipg_clk", "ipg_cm41_clk_root", (void __iomem *)(CM41_I2C_LPCG), 16, FUNCTION_NAME(PD_CM41_I2C));
-+
-+	for (i = 0; i < ARRAY_SIZE(clks); i++)
-+		if (IS_ERR(clks[i]) && PTR_ERR(clks[i]) != -ENODEV)
-+			pr_err("i.MX8QM clk %d: register failed with %ld\n",
-+				i, PTR_ERR(clks[i]));
-+
-+	clk_data.clks = clks;
-+	clk_data.clk_num = ARRAY_SIZE(clks);
-+	of_clk_add_provider(ccm_node, of_clk_src_onecell_get, &clk_data);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id imx8qm_match[] = {
-+	{ .compatible = "fsl,imx8qm-clk", },
-+	{ /* sentinel value */ }
-+};
-+
-+static struct platform_driver imx8qm_clk_driver = {
-+	.driver = {
-+		.name = "imx8qm-clk",
-+		.of_match_table = imx8qm_match,
-+	},
-+	.probe = imx8qm_clk_probe,
-+};
-+
-+static int __init imx8qm_clk_init(void)
-+{
-+	return platform_driver_register(&imx8qm_clk_driver);
-+}
-+core_initcall(imx8qm_clk_init);
 -- 
 2.17.1
 
