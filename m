@@ -2,59 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BED3211A2
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 03:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D1E211A5
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 03:13:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726302AbfEQBLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 21:11:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55676 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725929AbfEQBLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 21:11:44 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4C5B3206BF;
-        Fri, 17 May 2019 01:11:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558055503;
-        bh=v8ur96ilx7klTthe7jJO6SMElFMgiokDxbEycSV8fMo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=isBtt1fbeiPbegVIF+v/krAjs6pL1N+Rh4af+stinmvpbnApl+GxnuCELbDJBau6z
-         DW1p7vvl+3q0Fnuyobn598bko7rY3kZbYmJYR1qzvy2NW/SguZ++F9ggcqu6dVIFVf
-         MFUblPPGtoD/4CNTWZcWzav4GaHOIdJfV/2s0Wqw=
-Date:   Fri, 17 May 2019 09:11:02 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH RESEND 1/2] ARM: dts: imx6sl: Assign corresponding clocks
- instead of dummy clock
-Message-ID: <20190517011101.GU15856@dragon>
-References: <1557655028-12654-1-git-send-email-Anson.Huang@nxp.com>
+        id S1726478AbfEQBNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 21:13:47 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50156 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725929AbfEQBNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 21:13:47 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4H1DfKE000709;
+        Thu, 16 May 2019 20:13:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1558055621;
+        bh=gYQRbOj4PndgXS6e8xSmmGTgO0c0lScnBwnPPEdj1a4=;
+        h=From:To:CC:Subject:Date;
+        b=MGSPfh+YFzlms1ebpKBRkGHal9Z8csOP+D9aP/NzjMSk7+oa6fijoiwaIw4hyp1BP
+         KOQh/E1VHJZmXc1bv7/HxZQ0aF3t3ZKWgp25wuiUDhnIWiG2Y54PSy86+OXYSiOwDG
+         cUM+euHzHOWkPkptTIqDj/2QxRQx9mxzhxaaBBE0=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4H1DfHI059319
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 May 2019 20:13:41 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 16
+ May 2019 20:13:40 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 16 May 2019 20:13:40 -0500
+Received: from a0393675ula.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4H1Dcgx032414;
+        Thu, 16 May 2019 20:13:39 -0500
+From:   Keerthy <j-keerthy@ti.com>
+To:     <tony@atomide.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <t-kristo@ti.com>, <j-keerthy@ti.com>
+Subject: [PATCH v2 0/4] dra71/76: Fix boot issues
+Date:   Fri, 17 May 2019 06:44:05 +0530
+Message-ID: <20190517011409.22167-1-j-keerthy@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1557655028-12654-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 12, 2019 at 10:02:10AM +0000, Anson Huang wrote:
-> i.MX6SL's KPP and WDOG use IMX6SL_CLK_IPG as clock root,
-> assign IMX6SL_CLK_IPG to them instead of IMX6SL_CLK_DUMMY.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+This series adds patches that fix boot on dra76/71-evms.
 
-Applied both ,thanks.
+Changes in v2:
+
+  * Pushed the disabling to dra76x and dra71x.dtsi respectively
+
+Keerthy (4):
+  arm: dts: dra76x: Disable rtc target module
+  arm: dts: dra76x: Disable usb4_tm target module
+  arm: dts: dra71x: Disable rtc target module
+  arm: dts: dra71x: Disable usb4_tm target module
+
+ arch/arm/boot/dts/dra7-l4.dtsi  |  2 +-
+ arch/arm/boot/dts/dra71-evm.dts |  2 +-
+ arch/arm/boot/dts/dra71x.dtsi   | 17 +++++++++++++++++
+ arch/arm/boot/dts/dra76x.dtsi   |  8 ++++++++
+ 4 files changed, 27 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm/boot/dts/dra71x.dtsi
+
+-- 
+2.17.1
+
