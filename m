@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1184921206
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 04:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D92421208
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 04:31:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727006AbfEQCbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 22:31:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47180 "EHLO mail.kernel.org"
+        id S1727269AbfEQCb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 22:31:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47360 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726339AbfEQCbT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 May 2019 22:31:19 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        id S1726339AbfEQCb0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 22:31:26 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6F528204EC;
-        Fri, 17 May 2019 02:31:18 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 383AD2087B;
+        Fri, 17 May 2019 02:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558060278;
-        bh=vQ4Wa5ymjGmplDH0Gmjy+pfEetZe0JV1cFhUo2OKzac=;
+        s=default; t=1558060285;
+        bh=2+A5A1BXytEqa5zIBoSTMI9tuxv/jN00Tdx46eTZmoQ=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W2GDsTsB5i6VKxXpSLXv+gLIrVq03gXeks8/fEIr/G/6tC4K13qSyDAGWw3s0JyL0
-         Xm7EjeBzKeuafja1y+uK4hQAFb2r3aD50LuzF5JE09skl+MjmkpbiiL7nIimxE4REx
-         /48Fmj5dp0emZ5ExE7l9JgxIm30jiKFd+3AR0/CM=
-Received: by mail-qt1-f173.google.com with SMTP id t1so6345309qtc.12;
-        Thu, 16 May 2019 19:31:18 -0700 (PDT)
-X-Gm-Message-State: APjAAAXKfT2gk/E2k3OMyMrp3jOtn20AqxI5IzI/ax6AO3/4gmU9XDDK
-        We9I6lFW4GMbgwnmOaQ6RJdaRLoaYKuxD7vKvg==
-X-Google-Smtp-Source: APXvYqzZCG1zgE91dD+Dohm989/r1P6FD2SmJTx55dxqzFCPucgqrkncXUcGtRFu+QIrCLoRMb9pT0y+Z7h+h32iFSk=
-X-Received: by 2002:a0c:f350:: with SMTP id e16mr43845110qvm.72.1558060277713;
- Thu, 16 May 2019 19:31:17 -0700 (PDT)
+        b=yotMRwZ4W+solrrj1jYJMw6aVU6pgmrP+hLdtSkoG2pvNu1ymuBA8jw/nH6faKu7W
+         lRFoyTnwZIwhW2JC8aqjOfiZOwLY1z+0uMpcUxYb+N/8ZFTAiOB1gGlyk7qN6KrgYk
+         aRqW/7B7ygh/P8TE3AWOe2aUlC33OuSyq6eB/Rig=
+Received: by mail-qt1-f181.google.com with SMTP id y42so6398086qtk.6;
+        Thu, 16 May 2019 19:31:25 -0700 (PDT)
+X-Gm-Message-State: APjAAAWSVb2shi1MBBiuYtQhGWGKWq9vST9z1ojk/PwZXMYQ1nkq6Pbr
+        Yy4aiUyYktaKk2EBpeZDXgw1FBDLVB0egsWKUA==
+X-Google-Smtp-Source: APXvYqx/rQhhXbs3Zm1ZaazZt73ewsKquxIsvA5TGLe4WlO6glcLO4+7Y8HWssTf0uDrB5YLL8uyMOMq6PTvVt3CsaI=
+X-Received: by 2002:aed:3f5b:: with SMTP id q27mr44580598qtf.143.1558060284526;
+ Thu, 16 May 2019 19:31:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190513172131.15048-1-m.tretter@pengutronix.de> <20190513172131.15048-4-m.tretter@pengutronix.de>
-In-Reply-To: <20190513172131.15048-4-m.tretter@pengutronix.de>
+References: <20190514132822.27023-1-angus@akkea.ca> <20190514132822.27023-4-angus@akkea.ca>
+In-Reply-To: <20190514132822.27023-4-angus@akkea.ca>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 May 2019 21:31:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKUu083oeQuZwSckT3a3X=Htv2ru02jewGuMFzp=uamNA@mail.gmail.com>
-Message-ID: <CAL_JsqKUu083oeQuZwSckT3a3X=Htv2ru02jewGuMFzp=uamNA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/5] media: dt-bindings: media: Add vendor prefix for allegro
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Dhaval Shah <dshah@xilinx.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>
+Date:   Thu, 16 May 2019 21:31:13 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+p_Hu5hY3XGx168iq8jo+-rD1qu8tbGfQdBXASi7H+mg@mail.gmail.com>
+Message-ID: <CAL_Jsq+p_Hu5hY3XGx168iq8jo+-rD1qu8tbGfQdBXASi7H+mg@mail.gmail.com>
+Subject: Re: [PATCH v12 3/4] dt-bindings: Add an entry for Purism SPC
+To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
+Cc:     angus.ainslie@puri.sm, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 12:21 PM Michael Tretter
-<m.tretter@pengutronix.de> wrote:
+On Tue, May 14, 2019 at 8:28 AM Angus Ainslie (Purism) <angus@akkea.ca> wrote:
 >
-> Add vendor prefix for Allegro DVT, a provider of H.264/AVC, H.265/HEVC,
-> AVS2, VP9 and AV1 compliance test suites and H.264/AVC, H.265/HEVC, and
-> VP9 encoder, codec and decoder hardware (RTL) IPs.
+> Add an entry for Purism, SPC
 >
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
 > Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> v5 -> v6:
-> none
->
-> v5:
-> - new patch
 > ---
 >  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
 >  1 file changed, 1 insertion(+)
