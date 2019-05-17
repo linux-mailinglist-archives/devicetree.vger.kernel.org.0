@@ -2,53 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9562222015
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 00:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13DB322020
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 00:17:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727461AbfEQWIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 18:08:35 -0400
-Received: from mail-yw1-f67.google.com ([209.85.161.67]:44363 "EHLO
-        mail-yw1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726726AbfEQWIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 18:08:35 -0400
-Received: by mail-yw1-f67.google.com with SMTP id e74so3308370ywe.11;
-        Fri, 17 May 2019 15:08:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jft35/5eu7LfpLWAoZ01uRn8po613JLoj7AyHoG1GXA=;
-        b=NYUgiQf/XO3wfHvPfBK9JqBrKKj3Wmowkwt6/vjOgQkCDK/v6jvW0oo1OZnPmZfOd6
-         gXIM2YU1dxM65gHmFxomQBCOUKQV3zVEh6vSfVBe+5Nw1XhNUuyzAv724hOrXXhgW8Cn
-         VQkWNIdZVzet1VOC/zC6hyJHTH5bUEGREk5GN72T5tLuAz7M2PAc55Z2kxM6tQ5SMraJ
-         VZtkn8qK6YLUjTu/4tr0kcNDMPH4zIjSprh5Iy1oYW+ZozjdEZzHGQPDCltQ3I55Bt0/
-         elMkVF9psPDUj7MHeBzCfsRcjwvVTi/HiUpy5OLdflq0g+ead+zvm2UIv6NzBHoYmvym
-         E5XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jft35/5eu7LfpLWAoZ01uRn8po613JLoj7AyHoG1GXA=;
-        b=HJG6RYc+r+RNFn+I7tG9g6zkSw2rH97d0ZQVNv69347sZnDdq/wLtiiOg34eDtPE4L
-         Iu7pII45kz3vUZ9YGeICGU7w9I1L+JPdfOOqMxXPZwhvzdjxC1es6wFKgdbOyIQxQBI1
-         KWP1kJpBeK50XBC6XemOtChkPufKVMqyBCfU5D2Fkue/h+Jl74lRdEs+AbO1iLLNrm/k
-         hEk99Xs/WIWMa54zLkQn97gC5NBBhveP+yNDVUPkIhyYdCnnY8YzItrB7B/PhxRlMwgW
-         01ubhrExSQC35D0MYzwBdxfOy5K/7U9zllooLFylTi1/jTze5ytYdHo5oeKeVcJyrQ91
-         cEqQ==
-X-Gm-Message-State: APjAAAUKFASb3mV1kbz5CRF0a277Xhm0rmFazvEbMszG4CbdwkIOtY/T
-        NxoWOBFTwrbv8LVKUA49seFTaGN2M6d/SMi+W90=
-X-Google-Smtp-Source: APXvYqxcSNmzU/oyHvSUYVr+deObwpxqKqFM5P2fsb0esZnQS0M5F0CXJpjeTYUlAVM4uj0CwId57+uwvLalM45wrhw=
-X-Received: by 2002:a81:9a4b:: with SMTP id r72mr5190935ywg.422.1558130914303;
- Fri, 17 May 2019 15:08:34 -0700 (PDT)
+        id S1728399AbfEQWRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 18:17:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34504 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727001AbfEQWRD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 18:17:03 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 03F802133D;
+        Fri, 17 May 2019 22:17:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558131422;
+        bh=Ub9ywDgQMywBRcVcnaiqdLyL6nucWm3LLTrW2H19UiE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GlQ47fjelVwOIBUNPfQPVtZRplhCOXFbklJArqlwOt3X8cNAekcwtl4ovf9ekowFT
+         rxpRgSRuXfWsJi3oreP7IxF7trBEOA8EwhrlnBkfayec6e1QgrAOOIVTLxn0iIO7Tg
+         lW21oFAasHZtJPuV4K/PqeO4ZKdt5jwVfXM6iDII=
+Received: by mail-qt1-f172.google.com with SMTP id f24so9770819qtk.11;
+        Fri, 17 May 2019 15:17:01 -0700 (PDT)
+X-Gm-Message-State: APjAAAWs12YD0TAKhS1vcYqytWDB44ZwOAv75Ufigd6cxwEK08IOrV/p
+        rojSumpPCUdihhcbhu/G6G2HOGHs9kAFhtSn3Q==
+X-Google-Smtp-Source: APXvYqwEyGCXsMdPpd1yKLh5mRTBHM7bqH+ylSdbW3LBM0kM6/GbLYmB3yx3l3fr7fSVgCiND3V4w1ysUhkmpeQirXM=
+X-Received: by 2002:a0c:8aad:: with SMTP id 42mr48554064qvv.200.1558131421268;
+ Fri, 17 May 2019 15:17:01 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190517184659.18828-1-peron.clem@gmail.com> <20190517184659.18828-2-peron.clem@gmail.com>
- <CAL_JsqKPazGn+g1zS4NMwvQZ_6GcAm0tgcOTqyQA0dz0+2dp3g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKPazGn+g1zS4NMwvQZ_6GcAm0tgcOTqyQA0dz0+2dp3g@mail.gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sat, 18 May 2019 00:08:22 +0200
-Message-ID: <CAJiuCcdMxXAXYk=QpRwsvBUW0tvBVMqXvgx0Y7fAKP=ouyBnKQ@mail.gmail.com>
+ <CAL_JsqKPazGn+g1zS4NMwvQZ_6GcAm0tgcOTqyQA0dz0+2dp3g@mail.gmail.com> <CAJiuCcdMxXAXYk=QpRwsvBUW0tvBVMqXvgx0Y7fAKP=ouyBnKQ@mail.gmail.com>
+In-Reply-To: <CAJiuCcdMxXAXYk=QpRwsvBUW0tvBVMqXvgx0Y7fAKP=ouyBnKQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 17 May 2019 17:16:49 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJgo8NpK00ApBcdtYGW24yuqU=4EMna+r_07=dqceZyyg@mail.gmail.com>
+Message-ID: <CAL_JsqJgo8NpK00ApBcdtYGW24yuqU=4EMna+r_07=dqceZyyg@mail.gmail.com>
 Subject: Re: [PATCH v5 1/6] drm: panfrost: add optional bus_clock
-To:     Rob Herring <robh+dt@kernel.org>
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
 Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
         Maxime Ripard <maxime.ripard@bootlin.com>,
@@ -72,48 +63,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Fri, 17 May 2019 at 22:07, Rob Herring <robh+dt@kernel.org> wrote:
+On Fri, May 17, 2019 at 5:08 PM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.c=
+om> wrote:
 >
-> On Fri, May 17, 2019 at 1:47 PM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail=
-.com> wrote:
-> >
-> > Allwinner H6 has an ARM Mali-T720 MP2 which required a bus_clock.
-> >
-> > Add an optional bus_clock at the init of the panfrost driver.
-> >
-> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > ---
-> >  drivers/gpu/drm/panfrost/panfrost_device.c | 25 +++++++++++++++++++++-
-> >  drivers/gpu/drm/panfrost/panfrost_device.h |  1 +
-> >  2 files changed, 25 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/panfrost/panfrost_device.c b/drivers/gpu/d=
-rm/panfrost/panfrost_device.c
-> > index 3b2bced1b015..8da6e612d384 100644
-> > --- a/drivers/gpu/drm/panfrost/panfrost_device.c
-> > +++ b/drivers/gpu/drm/panfrost/panfrost_device.c
-> > @@ -44,7 +44,8 @@ static int panfrost_clk_init(struct panfrost_device *=
-pfdev)
-> >
-> >         pfdev->clock =3D devm_clk_get(pfdev->dev, NULL);
-> >         if (IS_ERR(pfdev->clock)) {
-> > -               dev_err(pfdev->dev, "get clock failed %ld\n", PTR_ERR(p=
-fdev->clock));
-> > +               dev_err(pfdev->dev, "get clock failed %ld\n",
-> > +                       PTR_ERR(pfdev->clock));
+> Hi Rob,
 >
-> Please drop this whitespace change.
-
-Sorry, I thought it was only a mistake here, I will drop it.
-Why are they so many lines over 80 characters?
-Is there a specific coding style to follow ?
-
-Thanks,
-Clement
-
->
-> >                 return PTR_ERR(pfdev->clock);
-> >         }
+> On Fri, 17 May 2019 at 22:07, Rob Herring <robh+dt@kernel.org> wrote:
 > >
+> > On Fri, May 17, 2019 at 1:47 PM Cl=C3=A9ment P=C3=A9ron <peron.clem@gma=
+il.com> wrote:
+> > >
+> > > Allwinner H6 has an ARM Mali-T720 MP2 which required a bus_clock.
+> > >
+> > > Add an optional bus_clock at the init of the panfrost driver.
+> > >
+> > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > ---
+> > >  drivers/gpu/drm/panfrost/panfrost_device.c | 25 ++++++++++++++++++++=
++-
+> > >  drivers/gpu/drm/panfrost/panfrost_device.h |  1 +
+> > >  2 files changed, 25 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/panfrost/panfrost_device.c b/drivers/gpu=
+/drm/panfrost/panfrost_device.c
+> > > index 3b2bced1b015..8da6e612d384 100644
+> > > --- a/drivers/gpu/drm/panfrost/panfrost_device.c
+> > > +++ b/drivers/gpu/drm/panfrost/panfrost_device.c
+> > > @@ -44,7 +44,8 @@ static int panfrost_clk_init(struct panfrost_device=
+ *pfdev)
+> > >
+> > >         pfdev->clock =3D devm_clk_get(pfdev->dev, NULL);
+> > >         if (IS_ERR(pfdev->clock)) {
+> > > -               dev_err(pfdev->dev, "get clock failed %ld\n", PTR_ERR=
+(pfdev->clock));
+> > > +               dev_err(pfdev->dev, "get clock failed %ld\n",
+> > > +                       PTR_ERR(pfdev->clock));
+> >
+> > Please drop this whitespace change.
+>
+> Sorry, I thought it was only a mistake here, I will drop it.
+> Why are they so many lines over 80 characters?
+
+I'd guess most are prints and/or just slightly over.
+
+> Is there a specific coding style to follow ?
+
+Yes, but generally the 80 character thing is more a guidance. Not
+having unrelated changes in a single commit is more of a hard rule.
+
+Rob
