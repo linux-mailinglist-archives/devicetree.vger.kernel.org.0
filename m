@@ -2,85 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B0F21946
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D0121A20
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 16:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728347AbfEQNi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 09:38:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60534 "EHLO mail.kernel.org"
+        id S1729019AbfEQO5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 10:57:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51180 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726556AbfEQNi1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 09:38:27 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        id S1728396AbfEQO5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 10:57:04 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 468BF217D8;
-        Fri, 17 May 2019 13:38:26 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CB03421743;
+        Fri, 17 May 2019 14:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558100306;
-        bh=pbTJr359FJMy2WUUMG/Lf2r9Lyuh9YLPUqwHd+Wo8VM=;
+        s=default; t=1558105023;
+        bh=8NWJcx3ooQ/0x2P9XpShMBRYpatRIjFujdiQFRhPQ7U=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vctqqeOF41AfIjkmUkCBWXAfSnm+p9DUxehsXrNwgZAO+bPS1LO55NQyEIHxaHsZ3
-         q0XwJDhm1LJR1gHfXandcOp+J48YmQ1h8XDDzfB9Bdz0s6z+dtY+vRQWe+IMTcLE3+
-         gOV+gjRdPhi5Mt9rQmcaiKsQ4Wkqht4HyISHWfCs=
-Received: by mail-qk1-f174.google.com with SMTP id j20so4462731qke.1;
-        Fri, 17 May 2019 06:38:26 -0700 (PDT)
-X-Gm-Message-State: APjAAAX6gQ9xJI3N8LfZ34dD2sVtHWf5Wm/7pveoZ2C81XyBQ8S5GhKJ
-        ePazCP5gVnp02sJoDSnWX6PtdP+S/vmPIVnREQ==
-X-Google-Smtp-Source: APXvYqw49ctY7vjhM+4Z3JnlL9CMKiUL4zKvRdQ04InbXYUNxCMkL8zusPDA6stSF8Q6Xj2NjoygEZEuDR3YGpWMxGY=
-X-Received: by 2002:a05:620a:1107:: with SMTP id o7mr36956035qkk.184.1558100305381;
- Fri, 17 May 2019 06:38:25 -0700 (PDT)
+        b=sHH7dNPs+Ij7ABTDtmkNtRCnGfl0BepHRTE9Sn5RIxZJFk/tv8ReWxQDrvk2a+GVb
+         FRjwzlmLUj7wL4bDDBAg5P6I5HxcJlzbG3MXlXrUCDa/4tk6Cgq/lX8tfujobgmGnU
+         Ev1WX61YA+OHt85jrhg7kFVF7327X5DdrR2lUU2w=
+Received: by mail-qt1-f178.google.com with SMTP id m32so8366393qtf.0;
+        Fri, 17 May 2019 07:57:03 -0700 (PDT)
+X-Gm-Message-State: APjAAAUdR5jINKx9SB6h8gKG3b2VT11FmdnqtqwbaDdxg010y98c8hd0
+        CnT7HfMPceJzTjZ1K1ZFbpJiguO5HA7KEDxL8g==
+X-Google-Smtp-Source: APXvYqwtNHRN41jK8D/vYX5vNqxH+cJahtZpPoZtyIj/f0gwgz5EytXbWp2ggnbV5aRbcJF2mVQdCua+GJxN8TOxzHA=
+X-Received: by 2002:ac8:3884:: with SMTP id f4mr49917057qtc.300.1558105023022;
+ Fri, 17 May 2019 07:57:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <1558085189-22061-1-git-send-email-fabrizio.castro@bp.renesas.com> <1558085189-22061-2-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1558085189-22061-2-git-send-email-fabrizio.castro@bp.renesas.com>
+References: <225e90a94e9558db9f72f64aca05b0951b88c7c5.1558017853.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <225e90a94e9558db9f72f64aca05b0951b88c7c5.1558017853.git-series.maxime.ripard@bootlin.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 17 May 2019 08:38:14 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJCJyRBX+08UriNeYZ01ow0yLv=VjK3sNbjVi1GB5=MQA@mail.gmail.com>
-Message-ID: <CAL_JsqJCJyRBX+08UriNeYZ01ow0yLv=VjK3sNbjVi1GB5=MQA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: Add vendor prefix for HopeRun
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com
+Date:   Fri, 17 May 2019 09:56:51 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+X8uyA6rJFXJWSno8eHz1LAE=Ywvo9DZ4FZTdEEjU=9w@mail.gmail.com>
+Message-ID: <CAL_Jsq+X8uyA6rJFXJWSno8eHz1LAE=Ywvo9DZ4FZTdEEjU=9w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: Add YAML schemas for the generic
+ MMC options
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 17, 2019 at 4:27 AM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
+On Thu, May 16, 2019 at 9:44 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
-> Add "Jiangsu HopeRun Software Co., Ltd." to the list of devicetree
-> vendor prefixes as "hoperun".
+> The MMC controllers have a bunch of generic options that are needed in a
+> device tree. Add a YAML schemas for those.
 >
-> Website: http://www.hoperun.com/en
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 >
 > ---
-> v2->v3:
-> * Moved to vendor-prefixes.yaml
-> * Dropped Reviewed-by Simon as this is a completely new patch and as
->   such it needs a brand new review
-> v1->v2:
-> * No change
+>
+> Changes from v1:
+>
+>   - Added back the cd-inverted and wp-inverted note
+>   - Removed the dependency of cd-inverted and wp-inverted on cd-gpios and
+>     wp-gpios
+>   - Fixed typo in the title
+>   - Fixed default in the bus-width property
+>   - Fixed typo in the wp-inverted property
+>   - Removed redundant type on cd-debounce-delay-ms
+>   - Switched the dsr maximum to hex instead of decimal notation
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 358 +++++++-
+>  Documentation/devicetree/bindings/mmc/mmc.txt             | 177 +---
+>  2 files changed, 358 insertions(+), 177 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc.txt
+
+BTW, in order to avoid updating every reference to mmc.txt, I think it
+is better to leave it with a note 'This file has moved to
+mmc-controller.yaml'. Then we just update the references when we
+convert those bindings.
+
+With that,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
