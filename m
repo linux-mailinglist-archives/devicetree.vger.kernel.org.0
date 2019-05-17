@@ -2,414 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8320D217FB
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 14:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE072183E
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 14:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728087AbfEQMGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 08:06:14 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:39895 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727221AbfEQMGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 08:06:13 -0400
-Received: by mail-ed1-f65.google.com with SMTP id e24so10233359edq.6;
-        Fri, 17 May 2019 05:06:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Xz2LRvxPp0zacQCxOX9WPIoVksCerdgKAkltB9xI7vU=;
-        b=Q710WweXud4xeoDdbDKuewRxMYEvCHccfVW47o4eWpq+HqiDuyHva/46GsGyPG6Fx7
-         v0use1+aguA1w8upPSJjlMRAKWZujt/lp2Cs3xeKN0ezbEUFY6hZwb/v2ZQxlNiveV3e
-         aA+u4y5iPO2JhyaoEIwdhpXqo5A7AIFaecxDQPp/yoWWCcXsJwdeCF0avR3V4aFU6y5Z
-         vYLIwGTAdsZizhMXEXrZjeSAHwjI0YvdasJYuuyCmVjjyI95AThi/Y8HIJWlLsoQORg7
-         n1Ttv6f7ZyuUb/FQf14uU5I6jcOczPTTmpaV+jYT8D/8nSSXMKMObcNuKQckQvEWGNiY
-         vvmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xz2LRvxPp0zacQCxOX9WPIoVksCerdgKAkltB9xI7vU=;
-        b=CRQ8SUo2DstNGknK8APLg4oFs+jGlXNiPtNbzugXAyfHRYqpBNzkDGndN76KFr40fw
-         ZPv/MmF9sDhbV0UpKmpmc8XAx2sbswOqE1Pj4wjrt+uWObJHoIkZObym/GRx9ryP8xgz
-         sFkYzc5qvzq+sgp0ikUVXuCQZMSgZs91xiJlZotSYUCMEZwGqh7cCXfiyVMJjR7JPwug
-         2mcSMvwuBupcJoyVNEBiRNgOOvrkD4Fd1p2UWOeJz+6I4fgJd6cMsCuupAx5Pzn3Sa5u
-         0tfiSy3HJUuDHF9jIGGuWCCfc/jINiUWCAwHzaIwyZS534c8Evejkm+NZpe39xW2fQFu
-         jG2A==
-X-Gm-Message-State: APjAAAUlwL/PgkgrMPzsMGJ5O1rlQrNEC9AW7vUeUmxCTc7x+KCdpK12
-        WOXxqoCJveNGYOgGoETQdHweuVniQXJqv5fYdrs=
-X-Google-Smtp-Source: APXvYqwGS6/wSgFTHe/Cr8SM8sVB9mE54HcByOa3jTreHmIcoCjps+KQZllynZRBtBfo9yZKm6dgH65d32nIvGygh+g=
-X-Received: by 2002:a05:6402:1610:: with SMTP id f16mr57531395edv.171.1558094770961;
- Fri, 17 May 2019 05:06:10 -0700 (PDT)
+        id S1728377AbfEQMjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 08:39:09 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:18913 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728169AbfEQMjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 08:39:09 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cdeab660000>; Fri, 17 May 2019 05:39:02 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Fri, 17 May 2019 05:39:06 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Fri, 17 May 2019 05:39:06 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 May
+ 2019 12:39:06 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Fri, 17 May 2019 12:39:06 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5cdeab640002>; Fri, 17 May 2019 05:39:06 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
+CC:     <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V7 00/15] Add Tegra194 PCIe support
+Date:   Fri, 17 May 2019 18:08:31 +0530
+Message-ID: <20190517123846.3708-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-References: <20190506010800.2433-1-olteanv@gmail.com> <20190517010450.GT15856@dragon>
-In-Reply-To: <20190517010450.GT15856@dragon>
-From:   Vladimir Oltean <olteanv@gmail.com>
-Date:   Fri, 17 May 2019 15:05:59 +0300
-Message-ID: <CA+h21hos=kHRGq089=3Js2pPnW71BBv02rqiMqPcZFe_bzBUHA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: Introduce the NXP LS1021A-TSN board
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558096742; bh=u/4AQVGziCNrQ2xZIY5ClKkgupD/qrSZhq0/kL2pPfY=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=RlvE92GtZrhBCY5g6Zd8L8lpTh6FL8fuplUsYjbi5BSy9ScwKBrvN11R3mRdl9HdH
+         7iQRI8frfo7GYejfKff64JwMbMRDXL1k7B+jHH1coNx4EGm13piclFjAyZC+7+lsVX
+         wW815Q800kLvqm9T30tPDnAnsbcheqr0gR9NPHOcwkDb669Sy3fhhw2eoF8ceI7+3S
+         URa8bN6CYWnfs3RViOT8gzSB6BFtbApcy54NhmIAo/PZw1I1p+eguHOHQ4LJbKp4oI
+         1bPYzm4K21l/5jW7Qhj5jnPNkkdpTvdifqT7FQQmQWA+Qgmp9ahc+LFM/NdblLQLuj
+         FZOyNnlbTjqAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 May 2019 at 04:05, Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Mon, May 06, 2019 at 04:08:00AM +0300, Vladimir Oltean wrote:
-> > The LS1021A-TSN is a development board built by VVDN/Argonboards in
-> > partnership with NXP.
-> >
-> > It features the LS1021A SoC and the first-generation SJA1105T Ethernet
-> > switch for prototyping implementations of a subset of IEEE 802.1 TSN
-> > standards.
-> >
-> > It has two regular Ethernet ports and four switched, TSN-capable ports.
-> >
-> > It also features:
-> > - One Arduino header
-> > - One expansion header
-> > - Two USB 3.0 ports
-> > - One mini PCIe slot
-> > - One SATA interface
-> > - Accelerometer, gyroscope, temperature sensors
-> >
-> > Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/Makefile        |   3 +-
-> >  arch/arm/boot/dts/ls1021a-tsn.dts | 238 ++++++++++++++++++++++++++++++
-> >  2 files changed, 240 insertions(+), 1 deletion(-)
-> >  create mode 100644 arch/arm/boot/dts/ls1021a-tsn.dts
-> >
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index f4f5aeaf3298..529f0150f6b4 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -593,7 +593,8 @@ dtb-$(CONFIG_SOC_IMX7ULP) += \
-> >  dtb-$(CONFIG_SOC_LS1021A) += \
-> >       ls1021a-moxa-uc-8410a.dtb \
-> >       ls1021a-qds.dtb \
-> > -     ls1021a-twr.dtb
-> > +     ls1021a-twr.dtb \
-> > +     ls1021a-tsn.dtb
->
-> Please keep the list alphabetically sorted.  That said, ls1021a-tsn.dtb
-> should go prior to ls1021a-twr.dtb.
->
-> >  dtb-$(CONFIG_SOC_VF610) += \
-> >       vf500-colibri-eval-v3.dtb \
-> >       vf610-bk4.dtb \
-> > diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021a-tsn.dts
-> > new file mode 100644
-> > index 000000000000..5269486699bd
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-> > @@ -0,0 +1,238 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/* Copyright 2016-2018 NXP Semiconductors
-> > + * Copyright 2019 Vladimir Oltean <olteanv@gmail.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "ls1021a.dtsi"
-> > +
-> > +/ {
-> > +     model = "NXP LS1021A-TSN Board";
-> > +
-> > +     sys_mclk: clock-mclk {
-> > +             compatible = "fixed-clock";
-> > +             #clock-cells = <0>;
-> > +             clock-frequency = <24576000>;
-> > +     };
-> > +
-> > +     regulators {
-> > +             compatible = "simple-bus";
-> > +             #address-cells = <1>;
-> > +             #size-cells = <0>;
->
-> This is the old style of organizing fixed regulators, which has been
-> complained by device tree maintainers.  Drop this container node and put
-> the regulator nodes directly under root, using name schema below.
->
->         reg_xxx: regulator-xxx {
->                 ...
->         };
->
-> And thus, 'reg' property in regulator node should be dropped.
->
-> > +
-> > +             reg_3p3v: regulator@0 {
-> > +                     compatible = "regulator-fixed";
-> > +                     reg = <0>;
-> > +                     regulator-name = "3P3V";
-> > +                     regulator-min-microvolt = <3300000>;
-> > +                     regulator-max-microvolt = <3300000>;
-> > +                     regulator-always-on;
-> > +             };
-> > +             reg_2p5v: regulator@1 {
-> > +                     compatible = "regulator-fixed";
-> > +                     reg = <1>;
-> > +                     regulator-name = "2P5V";
-> > +                     regulator-min-microvolt = <2500000>;
-> > +                     regulator-max-microvolt = <2500000>;
-> > +                     regulator-always-on;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&enet0 {
-> > +     tbi-handle = <&tbi0>;
-> > +     phy-handle = <&sgmii_phy2>;
-> > +     phy-mode = "sgmii";
-> > +     status = "ok";
->
-> For sake of consistency, we prefer to use "okay".
->
-> > +};
-> > +
-> > +&enet1 {
-> > +     tbi-handle = <&tbi1>;
-> > +     phy-handle = <&sgmii_phy1>;
-> > +     phy-mode = "sgmii";
-> > +     status = "ok";
-> > +};
-> > +
-> > +/* RGMII delays added via PCB traces */
-> > +&enet2 {
-> > +     phy-mode = "rgmii";
-> > +     status = "ok";
->
-> Please have a newline between property list and child node.
->
-> > +     fixed-link {
-> > +             speed = <1000>;
-> > +             full-duplex;
-> > +     };
-> > +};
-> > +
-> > +&dspi0 {
->
-> Please sort these labeled nodes alphabetically.
->
-> > +     bus-num = <0>;
-> > +     status = "ok";
-> > +
-> > +     /* ADG704BRMZ 1:4 mux/demux */
-> > +     tsn_switch: sja1105@1 {
->
-> Use a generic node name, while label name can be specific.
->
-> > +             reg = <0x1>;
-> > +             #address-cells = <1>;
-> > +             #size-cells = <0>;
-> > +             compatible = "nxp,sja1105t";
->
-> Undocumented compatible?
->
-> > +             /* 12 MHz */
-> > +             spi-max-frequency = <12000000>;
-> > +             /* Sample data on trailing clock edge */
-> > +             spi-cpha;
-> > +             fsl,spi-cs-sck-delay = <1000>;
-> > +             fsl,spi-sck-cs-delay = <1000>;
->
-> Have a newline.
->
-> > +             ports {
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <0>;
->
-> Ditto
->
-> > +                     port@0 {
-> > +                             /* ETH5 written on chassis */
-> > +                             label = "swp5";
-> > +                             phy-handle = <&rgmii_phy6>;
-> > +                             phy-mode = "rgmii-id";
-> > +                             reg = <0>;
-> > +                     };
->
-> Please have a newline between nodes as well.
->
-> > +                     port@1 {
-> > +                             /* ETH2 written on chassis */
-> > +                             label = "swp2";
-> > +                             phy-handle = <&rgmii_phy3>;
-> > +                             phy-mode = "rgmii-id";
-> > +                             reg = <1>;
-> > +                     };
-> > +                     port@2 {
-> > +                             /* ETH3 written on chassis */
-> > +                             label = "swp3";
-> > +                             phy-handle = <&rgmii_phy4>;
-> > +                             phy-mode = "rgmii-id";
-> > +                             reg = <2>;
-> > +                     };
-> > +                     port@3 {
-> > +                             /* ETH4 written on chassis */
-> > +                             phy-handle = <&rgmii_phy5>;
-> > +                             label = "swp4";
-> > +                             phy-mode = "rgmii-id";
-> > +                             reg = <3>;
-> > +                     };
-> > +                     port@4 {
-> > +                             /* Internal port connected to eth2 */
-> > +                             ethernet = <&enet2>;
-> > +                             phy-mode = "rgmii";
-> > +                             reg = <4>;
-> > +                             fixed-link {
-> > +                                     speed = <1000>;
-> > +                                     full-duplex;
-> > +                             };
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&mdio0 {
-> > +     /* AR8031 */
-> > +     sgmii_phy1: ethernet-phy@1 {
-> > +             reg = <0x1>;
-> > +     };
-> > +     /* AR8031 */
-> > +     sgmii_phy2: ethernet-phy@2 {
-> > +             reg = <0x2>;
-> > +     };
-> > +     /* BCM5464 */
-> > +     rgmii_phy3: ethernet-phy@3 {
-> > +             reg = <0x3>;
-> > +     };
-> > +     rgmii_phy4: ethernet-phy@4 {
-> > +             reg = <0x4>;
-> > +     };
-> > +     rgmii_phy5: ethernet-phy@5 {
-> > +             reg = <0x5>;
-> > +     };
-> > +     rgmii_phy6: ethernet-phy@6 {
-> > +             reg = <0x6>;
-> > +     };
-> > +     /* SGMII PCS for enet0 */
-> > +     tbi0: tbi-phy@1f {
-> > +             reg = <0x1f>;
-> > +             device_type = "tbi-phy";
-> > +     };
-> > +};
-> > +
-> > +&mdio1 {
-> > +     /* SGMII PCS for enet1 */
-> > +     tbi1: tbi-phy@1f {
-> > +             reg = <0x1f>;
-> > +             device_type = "tbi-phy";
-> > +     };
-> > +};
-> > +
-> > +&i2c0 {
-> > +     status = "ok";
-> > +
-> > +     /* 3 axis accelerometer */
-> > +     accelerometer@1e {
-> > +             compatible = "fsl,fxls8471";
-> > +             reg = <0x1e>;
-> > +             position = <0>;
-> > +     };
-> > +     /* Gyroscope is at 0x20 but not supported */
-> > +     /* Audio codec (SAI2) */
-> > +     codec@2a {
->
-> audio-codec
->
-> > +             #sound-dai-cells = <0>;
->
-> We usually start properties with 'compatible', so please move it behind.
->
-> > +             compatible = "fsl,sgtl5000";
-> > +             reg = <0x2a>;
-> > +             VDDA-supply = <&reg_3p3v>;
-> > +             VDDIO-supply = <&reg_2p5v>;
-> > +             clocks = <&sys_mclk>;
-> > +     };
-> > +     /* Current sensing circuit for 1V VDDCORE PMIC rail */
-> > +     current-sensor@44 {
-> > +             compatible = "ti,ina220";
-> > +             reg = <0x44>;
-> > +             shunt-resistor = <1000>;
-> > +     };
-> > +     /* Current sensing circuit for 12V VCC rail */
-> > +     current-sensor@45 {
-> > +             compatible = "ti,ina220";
-> > +             reg = <0x45>;
-> > +             shunt-resistor = <1000>;
-> > +     };
-> > +     /* Thermal monitor - case */
-> > +     temperature-sensor@48 {
-> > +             compatible = "national,lm75";
-> > +             reg = <0x48>;
-> > +     };
-> > +     /* Thermal monitor - chip */
-> > +     temperature-sensor@4c {
-> > +             compatible = "ti,tmp451";
-> > +             reg = <0x4c>;
-> > +     };
-> > +     /* 4-channel ADC */
-> > +     adc@49 {
-> > +             compatible = "ad7924";
->
-> Undocumented.
->
-> Shawn
->
-> > +             reg = <0x49>;
-> > +     };
-> > +};
-> > +
-> > +&ifc {
-> > +     status = "disabled";
-> > +};
-> > +
-> > +&esdhc {
-> > +     status = "ok";
-> > +};
-> > +
-> > +&uart0 {
-> > +     status = "ok";
-> > +};
-> > +
-> > +&lpuart0 {
-> > +     status = "ok";
-> > +};
-> > +
-> > +&lpuart3 {
-> > +     status = "ok";
-> > +};
-> > +
-> > +&sai2 {
-> > +     status = "ok";
-> > +};
-> > +
-> > +&sata {
-> > +     status = "ok";
-> > +};
-> > --
-> > 2.17.1
-> >
+Tegra194 has six PCIe controllers based on Synopsys DesignWare core.
+There are two Universal PHY (UPHY) blocks with each supporting 12(HSIO:
+Hisg Speed IO) and 8(NVHS: NVIDIA High Speed) lanes respectively.
+Controllers:0~4 use UPHY lanes from HSIO brick whereas Controller:5 uses
+UPHY lanes from NVHS brick. Lane mapping in HSIO UPHY brick to each PCIe
+controller (0~4) is controlled in XBAR module by BPMP-FW. Since PCIe
+core has PIPE interface, a glue module called PIPE-to-UPHY (P2U) is used
+to connect each UPHY lane (applicable to both HSIO and NVHS UPHY bricks)
+to PCIe controller
+This patch series
+- Adds support for P2U PHY driver
+- Adds support for PCIe host controller
+- Adds device tree nodes each PCIe controllers
+- Enables nodes applicable to p2972-0000 platform
+- Adds helper APIs in Designware core driver to get capability regs offset
+- Adds defines for new feature registers of PCIe spec revision 4
+- Makes changes in DesignWare core driver to get Tegra194 PCIe working
 
-Hi Shawn,
+Testing done on P2972-0000 platform
+- Able to get PCIe link up with on-board Marvel eSATA controller
+- Able to get PCIe link up with NVMe cards connected to M.2 Key-M slot
+- Able to do data transfers with both SATA drives and NVMe cards
 
-Thanks for the feedback!
-Do you want a v2 now (will you merge it for 5.2) or should I send it
-after the merge window closes?
-The "nxp,sja1105t" compatible is not undocumented but belongs to
-drivers/net/dsa/sja1105/ which was recently merged into mainline via
-the netdev tree (hence it's not in your tree yet).
-The situation with "ad7924" is more funny. The compatible is indeed
-undocumented but belongs to drivers/iio/adc/ad7923.c. I don't know why
-it lacks an entry in Documentation/devicetree/bindings/iio/adc/.
-However I mistook the chip and it's not a Analog Devices AD7924 ADC
-with a SPI interface, but a TI ADS7924 ADC with an I2C interface. I
-can remove it from v2 since it does not have a Linux driver as far as
-I can tell.
+Note
+- Enabling x8 slot on P2972-0000 platform requires pinmux driver for Tegra194.
+  It is being worked on currently and hence Controller:5 (i.e. x8 slot) is
+  disabled in this patch series. A future patch series would enable this.
+- This series is based on top of the following series
+  Jisheng's patches to add support to .remove() in Designware sub-system
+  https://patchwork.kernel.org/project/linux-pci/list/?series=98559
+  (Jisheng's patches are now accepted and applied for v5.2)
+  My patches made on top of Jisheng's patches to export various symbols
+  https://patchwork.kernel.org/project/linux-pci/list/?series=101259
 
--Vladimir
+Changes since [v6]:
+* Took care of review comments from Rob
+* Added a quirk to disable MSI for root ports
+* Removed using pcie_pme_disable_msi() API in host controller driver
+
+Changes since [v5]:
+* Removed patch that exports pcie_bus_config symbol
+* Took care of review comments from Thierry and Rob
+
+Changes since [v4]:
+* Removed redundant APIs in pcie-designware-ep.c file after moving them
+  to pcie-designware.c file based on Bjorn's review comments
+
+Changes since [v3]:
+* Rebased on top of linux-next top of the tree
+* Addressed Gustavo's comments and added his Ack for some of the changes.
+
+Changes since [v2]:
+* Addressed review comments from Thierry
+
+Changes since [v1]:
+* Addressed review comments from Bjorn, Thierry, Jonathan, Rob & Kishon
+* Added more patches in v2 series
+
+Vidya Sagar (15):
+  PCI: Add #defines for some of PCIe spec r4.0 features
+  PCI: Disable MSI for Tegra194 root port
+  PCI: dwc: Perform dbi regs write lock towards the end
+  PCI: dwc: Move config space capability search API
+  PCI: dwc: Add ext config space capability search API
+  dt-bindings: PCI: designware: Add binding for CDM register check
+  PCI: dwc: Add support to enable CDM register check
+  dt-bindings: Add PCIe supports-clkreq property
+  dt-bindings: PCI: tegra: Add device tree support for Tegra194
+  dt-bindings: PHY: P2U: Add Tegra194 P2U block
+  arm64: tegra: Add P2U and PCIe controller nodes to Tegra194 DT
+  arm64: tegra: Enable PCIe slots in P2972-0000 board
+  phy: tegra: Add PCIe PIPE2UPHY support
+  PCI: tegra: Add Tegra194 PCIe support
+  arm64: Add Tegra194 PCIe driver to defconfig
+
+ .../bindings/pci/designware-pcie.txt          |    5 +
+ .../bindings/pci/nvidia,tegra194-pcie.txt     |  158 ++
+ Documentation/devicetree/bindings/pci/pci.txt |    5 +
+ .../bindings/phy/phy-tegra194-p2u.txt         |   28 +
+ .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |    2 +-
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts   |   41 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  437 +++++
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/pci/controller/dwc/Kconfig            |   10 +
+ drivers/pci/controller/dwc/Makefile           |    1 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |   37 +-
+ .../pci/controller/dwc/pcie-designware-host.c |   14 +-
+ drivers/pci/controller/dwc/pcie-designware.c  |   88 +
+ drivers/pci/controller/dwc/pcie-designware.h  |   12 +
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 1620 +++++++++++++++++
+ drivers/pci/quirks.c                          |   14 +
+ drivers/phy/tegra/Kconfig                     |    7 +
+ drivers/phy/tegra/Makefile                    |    1 +
+ drivers/phy/tegra/pcie-p2u-tegra194.c         |  109 ++
+ include/uapi/linux/pci_regs.h                 |   22 +-
+ 20 files changed, 2569 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+ create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+ create mode 100644 drivers/phy/tegra/pcie-p2u-tegra194.c
+
+-- 
+2.17.1
+
