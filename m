@@ -2,33 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1998321347
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 06:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AF232135A
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 07:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727349AbfEQE4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 00:56:16 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:45868 "EHLO inva021.nxp.com"
+        id S1727374AbfEQFOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 01:14:42 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:33026 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725929AbfEQE4Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 00:56:16 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1FE9C200015;
-        Fri, 17 May 2019 06:56:14 +0200 (CEST)
+        id S1727089AbfEQFOm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 01:14:42 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EA1A91A000F;
+        Fri, 17 May 2019 07:14:39 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 61AA9200005;
-        Fri, 17 May 2019 06:56:10 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 954871A01E6;
+        Fri, 17 May 2019 07:14:36 +0200 (CEST)
 Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7596E40250;
-        Fri, 17 May 2019 12:56:05 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 1D482402AE;
+        Fri, 17 May 2019 13:14:32 +0800 (SGT)
 From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH v2] arm64: dts: ls1028a: Fix CPU idle fail.
-Date:   Fri, 17 May 2019 12:57:53 +0800
-Message-Id: <20190517045753.3709-1-ran.wang_1@nxp.com>
+Subject: [PATCH v4] arm64: dts: ls1028a: Add USB dt nodes
+Date:   Fri, 17 May 2019 13:16:24 +0800
+Message-Id: <20190517051624.4930-1-ran.wang_1@nxp.com>
 X-Mailer: git-send-email 2.17.1
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
@@ -36,61 +35,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
-indicate CPU State Type: 0 for standby, 1 for power down. In this
-case, we want to select standby for CPU idle feature. But current
-setting wrongly select power down and cause CPU SUSPEND fail every
-time. Need this fix.
+This patch adds USB dt nodes for LS1028A.
 
-Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
 Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   18 +++++++++---------
- 1 files changed, 9 insertions(+), 9 deletions(-)
+Changes in v4:
+  - Move nodes to follow rule of unit-address in the address.
+  - Use macro to replace 'interrupts' values.
+
+Changes in v3:
+  - Add space between label and node name.
+  - Add spcae with properties and '='.
+  - Add SoC specific compatible.
+
+Changes in v2:
+  - Rename node from usb3@... to usb@... to meet DTSpec
+
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   20 ++++++++++++++++++++
+ 1 files changed, 20 insertions(+), 0 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index b045812..bf7f845 100644
+index 8dd3501..e4ed17f 100644
 --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
 +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -28,7 +28,7 @@
- 			enable-method = "psci";
- 			clocks = <&clockgen 1 0>;
- 			next-level-cache = <&l2>;
--			cpu-idle-states = <&CPU_PH20>;
-+			cpu-idle-states = <&CPU_PW20>;
+@@ -294,6 +294,26 @@
+ 			status = "disabled";
  		};
  
- 		cpu1: cpu@1 {
-@@ -38,7 +38,7 @@
- 			enable-method = "psci";
- 			clocks = <&clockgen 1 0>;
- 			next-level-cache = <&l2>;
--			cpu-idle-states = <&CPU_PH20>;
-+			cpu-idle-states = <&CPU_PW20>;
- 		};
- 
- 		l2: l2-cache {
-@@ -53,13 +53,13 @@
- 		 */
- 		entry-method = "arm,psci";
- 
--		CPU_PH20: cpu-ph20 {
--			compatible = "arm,idle-state";
--			idle-state-name = "PH20";
--			arm,psci-suspend-param = <0x00010000>;
--			entry-latency-us = <1000>;
--			exit-latency-us = <1000>;
--			min-residency-us = <3000>;
-+		CPU_PW20: cpu-pw20 {
-+			  compatible = "arm,idle-state";
-+			  idle-state-name = "PW20";
-+			  arm,psci-suspend-param = <0x0>;
-+			  entry-latency-us = <2000>;
-+			  exit-latency-us = <2000>;
-+			  min-residency-us = <6000>;
- 		};
- 	};
- 
++		usb0: usb@3100000 {
++			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
++			reg = <0x0 0x3100000 0x0 0x10000>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++			dr_mode = "host";
++			snps,dis_rxdet_inp3_quirk;
++			snps,quirk-frame-length-adjustment = <0x20>;
++			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++		};
++
++		usb1: usb@3110000 {
++			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
++			reg = <0x0 0x3110000 0x0 0x10000>;
++			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			dr_mode = "host";
++			snps,dis_rxdet_inp3_quirk;
++			snps,quirk-frame-length-adjustment = <0x20>;
++			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++		};
++
+ 		sata: sata@3200000 {
+ 			compatible = "fsl,ls1028a-ahci";
+ 			reg = <0x0 0x3200000 0x0 0x10000>,
 -- 
 1.7.1
 
