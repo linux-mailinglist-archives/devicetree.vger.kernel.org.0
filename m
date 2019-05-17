@@ -2,76 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 129E8214B6
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 09:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF6E621524
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:15:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728494AbfEQHoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 03:44:00 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:40767 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728323AbfEQHn7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 03:43:59 -0400
-X-Originating-IP: 80.215.154.25
-Received: from localhost (unknown [80.215.154.25])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 37CA020009;
-        Fri, 17 May 2019 07:43:51 +0000 (UTC)
-Date:   Fri, 17 May 2019 09:43:50 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Yangtao Li <tiny.windzz@gmail.com>
-Cc:     rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, wens@csie.org, davem@davemloft.net,
-        mchehab+samsung@kernel.org, gregkh@linuxfoundation.org,
-        linus.walleij@linaro.org, Jonathan.Cameron@huawei.com,
-        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] add thermal driver for h6
-Message-ID: <20190517074350.m4wtxn5rgiqkjgnz@flea>
-References: <20190516172633.12607-1-tiny.windzz@gmail.com>
+        id S1727441AbfEQIPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 04:15:13 -0400
+Received: from verein.lst.de ([213.95.11.211]:36068 "EHLO newverein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727386AbfEQIPN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 04:15:13 -0400
+Received: by newverein.lst.de (Postfix, from userid 107)
+        id 6C01068C4E; Fri, 17 May 2019 10:14:52 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on verein.lst.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.2 required=5.0 tests=ALL_TRUSTED,BAYES_50
+        autolearn=disabled version=3.3.1
+Received: from blackhole.lan (p5B33F92B.dip0.t-ipconnect.de [91.51.249.43])
+        by newverein.lst.de (Postfix) with ESMTPSA id DBFF067329;
+        Fri, 17 May 2019 10:14:19 +0200 (CEST)
+Date:   Fri, 17 May 2019 10:14:18 +0200
+From:   Torsten Duwe <duwe@lst.de>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge
+ on Teres-I
+Message-ID: <20190517101353.3e86d696@blackhole.lan>
+In-Reply-To: <20190517072738.deohh5fly4jxms7k@flea>
+References: <20190514155911.6C0AC68B05@newverein.lst.de>
+        <20190514160241.9EAC768C7B@newverein.lst.de>
+        <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
+        <20190515093141.41016b11@blackhole.lan>
+        <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
+        <20190516154820.GA10431@lst.de>
+        <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com>
+        <20190516164859.GB10431@lst.de>
+        <20190517072738.deohh5fly4jxms7k@flea>
+Organization: LST e.V.
+X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uiqnaa7feozmkfnb"
-Content-Disposition: inline
-In-Reply-To: <20190516172633.12607-1-tiny.windzz@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 17 May 2019 09:27:38 +0200
+Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 
---uiqnaa7feozmkfnb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On Thu, May 16, 2019 at 06:48:59PM +0200, Torsten Duwe wrote:
+> > On Thu, May 16, 2019 at 09:06:41AM -0700, Vasily Khoruzhick wrote:
+> > >
+> > > Driver can talk to the panel over AUX channel only after t1+t3,
+> > > t1 is up to 10ms, t3 is up to 200ms.
+> >
+> > This is after power-on. The boot loader needs to deal with this.
+> 
+> The bootloader can deal with it, but the kernel will also need to. The
+> bootloader might not be doing this because it's not been updated, the
+> regulator might have been disabled between the time the kernel was
+> started and the time the bridge driver probes, etc.
 
-Hi,
+No, you cannot practically switch off this voltage. It supports _all_
+the devices I mentioned. In fact, the PMIC needs to enable it initially,
+and then it takes some time before the SoC can access the MMC and read
+the SPL from it, just because of exactly these 3.3V. Then the boot
+loader starts, and later the eDP bridge gets initialised.
 
-On Thu, May 16, 2019 at 01:26:31PM -0400, Yangtao Li wrote:
-> This patchset supprt H6 thermal controller.
+In *theory*, albeit a very daring one, I could imagine a very deep
+sleep mode that can only be ended by pressing the power button, which
+should still work without DCDC1. Only then, a description of the panel
+would be required. But I probably missed something and even this does
+not work.
 
-The discussion is still ongoing on the v1, it would have been better
-to wait a bit on it to settle before sending a new version.
+So for all current practical purposes, we can assume the Teres-I panel
+to be powered properly and providing valid EDID; nothing to worry about
+in software.
 
-Anyway, some comment made there still apply.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---uiqnaa7feozmkfnb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXN5mNgAKCRDj7w1vZxhR
-xdGaAQDw2HatyDwe99md5xjAb+SPPeYer/Zb4obBMYGlhQuO9AEAkn/HI2qNYsxw
-/7OQTPnikOxNibnfTB1JZq1yrq3HeAs=
-=fhoH
------END PGP SIGNATURE-----
-
---uiqnaa7feozmkfnb--
+HTH,
+	Torsten
