@@ -2,107 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6504221887
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 14:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F052B218AA
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 14:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728496AbfEQMlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 08:41:32 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:19117 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728474AbfEQMlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 08:41:32 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cdeabf70000>; Fri, 17 May 2019 05:41:27 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 17 May 2019 05:41:31 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 17 May 2019 05:41:31 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL104.nvidia.com
- (172.18.146.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 May
- 2019 12:41:31 +0000
-Received: from HQMAIL106.nvidia.com (172.18.146.12) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 17 May
- 2019 12:41:31 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL106.nvidia.com
- (172.18.146.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Fri, 17 May 2019 12:41:31 +0000
-Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5cdeabf40001>; Fri, 17 May 2019 05:41:30 -0700
-From:   Vidya Sagar <vidyas@nvidia.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
-CC:     <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
-Subject: [PATCH V7 15/15] arm64: Add Tegra194 PCIe driver to defconfig
-Date:   Fri, 17 May 2019 18:08:46 +0530
-Message-ID: <20190517123846.3708-16-vidyas@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190517123846.3708-1-vidyas@nvidia.com>
-References: <20190517123846.3708-1-vidyas@nvidia.com>
-X-NVConfidentiality: public
+        id S1728724AbfEQM5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 08:57:18 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:55171 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728567AbfEQM5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 08:57:17 -0400
+Received: by mail-wm1-f68.google.com with SMTP id i3so6859936wml.4
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 05:57:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
+        h=message-id:date:mime-version:content-transfer-encoding:subject:to
+         :from:cc;
+        bh=HKfyiyGfXU9AJ72KPmZHXimSLWU7pditklJYTaZHlIE=;
+        b=wE/Ymg2vvkRy+sIyqYSV3Lf6nhRTVMrZ6Rna0Zu51RGb1YO+zMVEjRRM1pneicE/ge
+         qyHB4B4ssqCu6dNQZ5oFRXaDZ2+hzFilwmPa+x6dBEJo+GQ9Orel7u68hUYpOEzaqhzK
+         6cuJqoWZ+iKjBoazBPbXT08bquET5gkuazuqJaA49vPoSNosIuWr/mfdogUZHpqs8c+s
+         5mukGPmMUuEOtOLqxczGkED/i7sQy8GnaYJSezJbQmZkP7yrYUQ2HlgSI3hah9ar9iEF
+         zKnTmcK3kDoslovRx7KYilLCRQ0nU/6n5BBpuBM/hibtnGt5OryzQc5iQqByFrln46z5
+         cSnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:mime-version
+         :content-transfer-encoding:subject:to:from:cc;
+        bh=HKfyiyGfXU9AJ72KPmZHXimSLWU7pditklJYTaZHlIE=;
+        b=DBH7zYakzhafR8cOoUItUe5kjm20LgpPOpteDdgkxUfteV6zGkfvEDVgf97Gsax+Zk
+         HL/t/JV4Qme2tVmkb0yJMZGu1ms/ZgCjP51p4QWCxi/BPxwBWxDYOMtVY/Exd1VAqFKy
+         swJIjO2Q79jN75mToY9u+iiZnq8KWDmyYXcnLz+yihdcd8YU2lW7NsdYIGgGO3RIjXWu
+         /YJHzoTz6iqkog0W5jH6Lm5OexOXh77sr2IF6HepSzSXZWOiSR0l8KesgvMibrXh/opx
+         ezK2twQn6laRfp1VvbPMnfoD87MqIq+DTXC2Tvi7c0GfaRhliZNFWT4/cILpYJhuCgrW
+         JPkw==
+X-Gm-Message-State: APjAAAVYXuONRs5GVCu/MOWU0Z44eJR1pPqXxck9prsweWIiZHhASDHL
+        odLmKIYRIgQ2/kCSODNMoa+Wuw==
+X-Google-Smtp-Source: APXvYqzDaav67ZbIWvC82E0RKgZY08Z323wi9RZ26Bg8AW+Sb3QFy+h84OI8KkljMqbqPaa3x4qJmw==
+X-Received: by 2002:a1c:c8:: with SMTP id 191mr2046884wma.6.1558097834493;
+        Fri, 17 May 2019 05:57:14 -0700 (PDT)
+Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
+        by smtp.gmail.com with ESMTPSA id o6sm14824232wrh.55.2019.05.17.05.57.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 May 2019 05:57:13 -0700 (PDT)
+Message-ID: <5cdeafa9.1c69fb81.10168.6580@mx.google.com>
+Date:   Fri, 17 May 2019 05:57:13 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558096887; bh=3I0dFJgkWUIouEt8VwRg9ELWDkCaZOAqdLpchvKr2cw=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=QVyFuPCYvl/VEkP3fMlCCv6oRIiC0cLnn8vJQRbVguaXX1mpaKfJV7Ir8vM33Sy7z
-         C7R6pZk0P46PJ8F8JQCWMZI0S65Gja4bCzJTMPuy9pRy4W66jppi8PcIO8Nu35mmdc
-         umn1w4K06FhKuzFjXIDJfaV6G0JXiKzcSz7cDjv9NTpCNdeZbJJv3MaglO00Lq6PXL
-         9QsDueoDyaI2hfWDsitseSBe/DD1zVXIVcPqG6lwLXu7figM6tnP3iS3FR+DyL7/j+
-         cVhinCh1h86czn5UgREpA8+LKqtBDd2BTdhiB5xt+DRhBH2P3VU3hVvFEQgT+or/9U
-         IPb0pKfALPSHA==
+Content-Transfer-Encoding: quoted-printable
+X-Kernelci-Report-Type: bisect
+X-Kernelci-Tree: mainline
+X-Kernelci-Lab-Name: lab-baylibre
+X-Kernelci-Branch: master
+X-Kernelci-Kernel: v5.1-12115-g01be377c6221
+Subject: mainline/master boot bisection: v5.1-12115-g01be377c6221 on
+ meson-g12a-x96-max
+To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
+        mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
+        matthew.hart@linaro.org, khilman@baylibre.com,
+        enric.balletbo@collabora.com, Jerome Brunet <jbrunet@baylibre.com>
+From:   "kernelci.org bot" <bot@kernelci.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe host controller driver for DesignWare core based
-PCIe controller IP present in Tegra194.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
----
-Changes since [v6]:
-* None
+mainline/master boot bisection: v5.1-12115-g01be377c6221 on meson-g12a-x96-=
+max
 
-Changes since [v5]:
-* None
+Summary:
+  Start:      01be377c6221 Merge tag 'media/v5.2-1' of git://git.kernel.org=
+/pub/scm/linux/kernel/git/mchehab/linux-media
+  Details:    https://kernelci.org/boot/id/5cde30f059b514110f7a3636
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12115-g01b=
+e377c6221/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot=
+-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12115-g01b=
+e377c6221/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot=
+-meson-g12a-x96-max.html
+  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
+trollers
 
-Changes since [v4]:
-* None
+Checks:
+  revert:     PASS
+  verify:     PASS
 
-Changes since [v3]:
-* None
+Parameters:
+  Tree:       mainline
+  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
+git
+  Branch:     master
+  Target:     meson-g12a-x96-max
+  CPU arch:   arm64
+  Lab:        lab-baylibre
+  Compiler:   gcc-8
+  Config:     defconfig+CONFIG_RANDOMIZE_BASE=3Dy
+  Test suite: boot
 
-Changes since [v2]:
-* None
+Breaking commit found:
 
-Changes since [v1]:
-* Changed CONFIG_PCIE_TEGRA194 from 'y' to 'm'
+---------------------------------------------------------------------------=
+----
+commit 11a7bea17c9e0a36daab934d83e15a760f402147
+Author: Jerome Brunet <jbrunet@baylibre.com>
+Date:   Mon Mar 18 10:58:45 2019 +0100
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+    arm64: dts: meson: g12a: add pinctrl support controllers
+    =
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8871cf7aaba9..52105b2c2418 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -195,6 +195,7 @@ CONFIG_PCIE_QCOM=y
- CONFIG_PCIE_ARMADA_8K=y
- CONFIG_PCIE_KIRIN=y
- CONFIG_PCIE_HISI_STB=y
-+CONFIG_PCIE_TEGRA194=m
- CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
- CONFIG_DEVTMPFS=y
- CONFIG_DEVTMPFS_MOUNT=y
--- 
-2.17.1
+    Add the peripheral and always-on pinctrl controllers to the g12a soc.
+    =
 
+    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/=
+dts/amlogic/meson-g12a.dtsi
+index abfa167751af..5e07e4ca3f4b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -104,6 +104,29 @@
+ 				#address-cells =3D <2>;
+ 				#size-cells =3D <2>;
+ 				ranges =3D <0x0 0x0 0x0 0x34400 0x0 0x400>;
++
++				periphs_pinctrl: pinctrl@40 {
++					compatible =3D "amlogic,meson-g12a-periphs-pinctrl";
++					#address-cells =3D <2>;
++					#size-cells =3D <2>;
++					ranges;
++
++					gpio: bank@40 {
++						reg =3D <0x0 0x40  0x0 0x4c>,
++						      <0x0 0xe8  0x0 0x18>,
++						      <0x0 0x120 0x0 0x18>,
++						      <0x0 0x2c0 0x0 0x40>,
++						      <0x0 0x340 0x0 0x1c>;
++						reg-names =3D "gpio",
++							    "pull",
++							    "pull-enable",
++							    "mux",
++							    "ds";
++						gpio-controller;
++						#gpio-cells =3D <2>;
++						gpio-ranges =3D <&periphs_pinctrl 0 0 86>;
++					};
++				};
+ 			};
+ =
+
+ 			hiu: bus@3c000 {
+@@ -150,6 +173,25 @@
+ 					clocks =3D <&xtal>, <&clkc CLKID_CLK81>;
+ 					clock-names =3D "xtal", "mpeg-clk";
+ 				};
++
++				ao_pinctrl: pinctrl@14 {
++					compatible =3D "amlogic,meson-g12a-aobus-pinctrl";
++					#address-cells =3D <2>;
++					#size-cells =3D <2>;
++					ranges;
++
++					gpio_ao: bank@14 {
++						reg =3D <0x0 0x14 0x0 0x8>,
++						      <0x0 0x1c 0x0 0x8>,
++						      <0x0 0x24 0x0 0x14>;
++						reg-names =3D "mux",
++							    "ds",
++							    "gpio";
++						gpio-controller;
++						#gpio-cells =3D <2>;
++						gpio-ranges =3D <&ao_pinctrl 0 0 15>;
++					};
++				};
+ 			};
+ =
+
+ 			sec_AO: ao-secure@140 {
+---------------------------------------------------------------------------=
+----
+
+
+Git bisection log:
+
+---------------------------------------------------------------------------=
+----
+git bisect start
+# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
+git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
+git bisect good a455eda33faafcaac1effb31d682765b14ef868c
+# bad: [01be377c62210a8d8fef35be906f9349591bb7cd] Merge tag 'media/v5.2-1' =
+of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect bad 01be377c62210a8d8fef35be906f9349591bb7cd
+# bad: [b45da609a02460c6a34c395f03f891f1fb2a021a] Merge tag 'imx-bindings-5=
+.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into ar=
+m/dt
+git bisect bad b45da609a02460c6a34c395f03f891f1fb2a021a
+# bad: [a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad] Merge tag 'socfpga_dts_up=
+dates_for_v5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/l=
+inux into arm/dt
+git bisect bad a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad
+# bad: [bbf7499dc033831ae91125a88a062910cdc62cf2] Merge tag 'aspeed-5.2-dev=
+icetree' of git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed into =
+arm/dt
+git bisect bad bbf7499dc033831ae91125a88a062910cdc62cf2
+# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-=
+dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
+hip into arm/dt
+git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
+# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: A=
+dd CMA reserved memory
+git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
+# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: =
+add pinctrl support controllers
+git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
+# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s9=
+05d-phicomm-n1: add status LED
+git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
+# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a:=
+ add efuse
+git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
+# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a:=
+ Add AO Clock + Reset Controller support
+git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
+# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: =
+meson: g12a: add pinctrl support controllers
+---------------------------------------------------------------------------=
+----
