@@ -2,93 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AE1D21D51
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 20:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7026F21D9C
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 20:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbfEQSdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 14:33:53 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:34581 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726974AbfEQSdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 14:33:53 -0400
-Received: by mail-ed1-f66.google.com with SMTP id p27so11943199eda.1;
-        Fri, 17 May 2019 11:33:52 -0700 (PDT)
+        id S1727401AbfEQSn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 14:43:27 -0400
+Received: from mail-vk1-f193.google.com ([209.85.221.193]:46629 "EHLO
+        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726974AbfEQSn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 14:43:27 -0400
+Received: by mail-vk1-f193.google.com with SMTP id g194so642458vke.13
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 11:43:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=BjD/hLmyWdf0NxPtEyGr7A4l+oVrtiHdbaFge55fb3c=;
-        b=qeuL8zivm3qB3CHSXskrouAD+Q4290zHeWoWT8S731bP1s/SL8tdtcwQcG8xEMwQSN
-         pDY+BENukAGdKHCnMewMyV6H+OZdMB9ud/heH0xx2/OauY2R4PcYscUF/DmfyE8zxlnr
-         24TdmIl+5CDLlR4x359IjFBFTWJ8Impp3IF7V+PMjearxZ6+Fo+NrOUvhZ8MbxrUZKzn
-         uA3+cWRgT32L2ej/JzUhoE9k0AaHkqqiLxJRDkqA2DCuIBzd0G5LgTAC9O1j1e+VDcZQ
-         v3USP7u2LA23o8Zf78nbFoZmK4y0UDjAOVwvwxxqLPS0vLwcepiWBgSH3XgkITvfl0pW
-         +qnA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=D7Ld6ak/BcDR+qMn0+Bwsy5o52SxdEie1Dd6vVWMNQc=;
+        b=f0K0xxpVCF0ZLjARllhNmUlWPrNzNN5Nc31omR/w66TNZzX+6LZi+uLIHRG3pOjbld
+         Gz5edzdihDaQQN/cpB2qydPoWipFpiGBOL0D0BXOabrGcCiX/KO1sGrfrMjUCGjDWKd7
+         jKY9WFgb8JoT9kHtActzd8jbPHp6fFMTBZJ+s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=BjD/hLmyWdf0NxPtEyGr7A4l+oVrtiHdbaFge55fb3c=;
-        b=VT1R5yvWqMwboslEXjHpVX/1sO04fZb6Jq/HyOTafyrErvpL8x4BHZbyxYEwBX1WFs
-         pl/rGbUIRWdh5JTK9Cr7zKJnBM5yg/Nu3HagHjQZk0k2TROKUqpFQVPMPGx3uP0wEHvX
-         as/bOXp4HLNdLE8ekhS2AAmPvQaeSOunEgBRvCRWIjltu79/iM2EJWa33hyLzZuzTdyC
-         AOKwWzuIU8B9m0sSvyrDIW6vVjdX+uUhSwN+5jQS7ymoAII5j3gLw/3uDKQdyuI6gs3q
-         QDUxeNLYUwXjXi2DFv/ubsEiwmU3Mj0PEnPzEJf7HY3PlEXzT0R48JuoRaZ6vEFqsdF/
-         O48g==
-X-Gm-Message-State: APjAAAWSBCdUQOIZJ4Obxs0f2Guc2O2sTNZnBn8qnWoWaWT9BZSTk9oQ
-        h61uv4t/CM6AMxaNVmLUdp4=
-X-Google-Smtp-Source: APXvYqyQrr/jjTQ38l6Sibivrh9zTM+AWzaIkJ3ftnBxf11BDjXBKeRfiQV0gg8ONoYodsh1qvdgvg==
-X-Received: by 2002:a50:d2d4:: with SMTP id q20mr60123979edg.120.1558118031463;
-        Fri, 17 May 2019 11:33:51 -0700 (PDT)
-Received: from mail.broadcom.com ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id q19sm1687127eja.59.2019.05.17.11.33.48
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 May 2019 11:33:50 -0700 (PDT)
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-To:     linux-mtd@lists.infradead.org
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=D7Ld6ak/BcDR+qMn0+Bwsy5o52SxdEie1Dd6vVWMNQc=;
+        b=OzGIOxWuxxgiZ6QSSP6foBBS0zntUqFotdKo1XTcND+OjKonNdTx8Y7ahdaksOygCU
+         k1C2AQzmDxy1OubE/63Ht2o9xQ1Wj1rGBnXvMBYDCCzQPaQGNZ5ArKLZCkFCvQv4z5Ih
+         8JiXWbInNqoAwmRqavLPann7sFi/6IKtvr672AZco930by1IEQzyDZxzW1iLxBNR/fvc
+         8wBa2MwRN4HlhZDonZ4rskYQxflzOHfNbg0NUQFfLUbeph/w3zReq5Xvql6/FQx79yr7
+         A3hkbCk9a7hVz1LxYxcJoGwfWrBOZc0EfvA3ChyfdOhsZ2UQog4FourJ6EE6qR9S7meQ
+         tLZA==
+X-Gm-Message-State: APjAAAXsWfoSspo3zjLF6Gr+HHarHH+MR4hV7L6p+MWAlXYFpnCdwcG3
+        9GunNHQ7cpBUEMviUtbpxCjiGegPD3c=
+X-Google-Smtp-Source: APXvYqwpUXdNsOnafgow3Dmss0sT6aORmt8Cf+VtO2o0VCJHRoYMtlslPhaXMMbYi+pe78faz6NwhQ==
+X-Received: by 2002:a1f:fe81:: with SMTP id l123mr143251vki.51.1558118606180;
+        Fri, 17 May 2019 11:43:26 -0700 (PDT)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id s78sm4189849vke.1.2019.05.17.11.43.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 May 2019 11:43:25 -0700 (PDT)
+Received: by mail-ua1-f50.google.com with SMTP id n7so3051513uap.12
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 11:43:25 -0700 (PDT)
+X-Received: by 2002:a9f:24a3:: with SMTP id 32mr5229332uar.109.1558118110537;
+ Fri, 17 May 2019 11:35:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190517015305.23194-1-robdclark@gmail.com>
+In-Reply-To: <20190517015305.23194-1-robdclark@gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 17 May 2019 11:34:59 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XWz9iigg-GWrKZdsYePhH7==d3hZ9kZDXKeEuwLXOhaw@mail.gmail.com>
+Message-ID: <CAD=FV=XWz9iigg-GWrKZdsYePhH7==d3hZ9kZDXKeEuwLXOhaw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-cheza: add initial cheza dt
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Evan Green <evgreen@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Venkat Gopalakrishnan <venkatg@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: mtd: brcmnand: Make nand-ecc-strength and nand-ecc-step-size optional
-Date:   Fri, 17 May 2019 14:29:54 -0400
-Message-Id: <1558117914-35807-1-git-send-email-kdasu.kdev@gmail.com>
-X-Mailer: git-send-email 1.9.0.138.g2de3478
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-nand-ecc-strength and nand-ecc-step-size can be made optional as
-brcmanand driver can support using the nand_base driver detected
-values.
+Hi,
 
-Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
----
- Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thu, May 16, 2019 at 6:53 PM Rob Clark <robdclark@gmail.com> wrote:
+>
+> From: Rob Clark <robdclark@chromium.org>
+>
+> This is essentialy a squash of a bunch of history of cheza dt updates
+> from chromium kernel, some of which were themselves squashes of history
+> from older chromium kernels.
+>
+> I don't claim any credit other than wanting to more easily boot upstream
+> kernel on cheza to have an easier way to test upstream driver work ;-)
+>
+> I've added below in Cc tags all the original actual authors (apologies
+> if I missed any).
+>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Sibi Sankar <sibis@codeaurora.org>
+> Cc: Evan Green <evgreen@chromium.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Cc: Abhinav Kumar <abhinavk@codeaurora.org>
+> Cc: Brian Norris <briannorris@chromium.org>
+> Cc: Venkat Gopalakrishnan <venkatg@codeaurora.org>
+> Cc: Rajendra Nayak <rnayak@codeaurora.org>
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
+> ---
+> Updated from review comments and squashed.  I left out the the patch
+> related to deleting gpu_mem/zap_shader nodes as the corresponding
+> patch that adds them in sdm845.dtsi hasn't landed yet, but once it
+> has we will need to revisit that patch for cheza.
+>
+>  arch/arm64/boot/dts/qcom/Makefile            |    3 +
+>  arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dts |  238 ++++
+>  arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dts |  238 ++++
+>  arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dts |  174 +++
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi   | 1326 ++++++++++++++++++
+>  5 files changed, 1979 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-index bcda1df..29feaba 100644
---- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-+++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-@@ -101,10 +101,10 @@ Required properties:
-                               number (e.g., 0, 1, 2, etc.)
- - #address-cells            : see partition.txt
- - #size-cells               : see partition.txt
--- nand-ecc-strength         : see nand.txt
--- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
- 
- Optional properties:
-+- nand-ecc-strength         : see nand.txt
-+- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
- - nand-on-flash-bbt         : boolean, to enable the on-flash BBT for this
-                               chip-select. See nand.txt
- - brcm,nand-oob-sector-size : integer, to denote the spare area sector size
--- 
-1.9.0.138.g2de3478
+Looks sane to me.  Thanks!
 
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
