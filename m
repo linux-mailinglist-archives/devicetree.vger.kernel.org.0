@@ -2,68 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B2021921
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B15421929
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728544AbfEQN0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 09:26:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53968 "EHLO mail.kernel.org"
+        id S1728899AbfEQN11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 09:27:27 -0400
+Received: from mga07.intel.com ([134.134.136.100]:27144 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728333AbfEQN0q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 09:26:46 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 13C8420833;
-        Fri, 17 May 2019 13:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558099606;
-        bh=L1T/CjI2CXrURC2xwi9wBISFCiQw8PtNr3cvrnKls5s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TIzksbOW7giCcM+++rVfSgWMogXCiWutl93YyWFUw5XmIPxqpco5nySQVyAlrYERV
-         SsNVuubXH5KuDqNkMyQiftrGolKjit6RlWB2p40xlxCyfweUGPROqLX0iDD8fC7IIR
-         WGvdBE0GY12X5Cq+P7nl1KaF8bVxkMFrCwtLeNEg=
-Date:   Fri, 17 May 2019 21:26:02 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev <netdev@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: Introduce the NXP LS1021A-TSN board
-Message-ID: <20190517132600.GD15856@dragon>
-References: <20190506010800.2433-1-olteanv@gmail.com>
- <20190517010450.GT15856@dragon>
- <CA+h21hos=kHRGq089=3Js2pPnW71BBv02rqiMqPcZFe_bzBUHA@mail.gmail.com>
+        id S1728333AbfEQN11 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 09:27:27 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 May 2019 06:27:26 -0700
+X-ExtLoop1: 1
+Received: from kuha.fi.intel.com ([10.237.72.189])
+  by fmsmga001.fm.intel.com with SMTP; 17 May 2019 06:27:21 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 17 May 2019 16:27:21 +0300
+Date:   Fri, 17 May 2019 16:27:21 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        Yu Chen <chenyu56@huawei.com>, Min Guo <min.guo@mediatek.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>
+Subject: Re: [v3 PATCH] dt-binding: usb: add usb-role-switch property
+Message-ID: <20190517132721.GB1887@kuha.fi.intel.com>
+References: <c3596e996c9ab39c6b9bc14b93309244c4a55014.1557306151.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+h21hos=kHRGq089=3Js2pPnW71BBv02rqiMqPcZFe_bzBUHA@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <c3596e996c9ab39c6b9bc14b93309244c4a55014.1557306151.git.chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 17, 2019 at 03:05:59PM +0300, Vladimir Oltean wrote:
-> Hi Shawn,
+On Wed, May 08, 2019 at 05:17:44PM +0800, Chunfeng Yun wrote:
+> Add a property usb-role-switch to tell the driver that use
+> USB Role Switch framework to handle the role switch,
+> it's useful when the driver has already supported other ways,
+> such as extcon framework etc.
 > 
-> Thanks for the feedback!
-> Do you want a v2 now (will you merge it for 5.2) or should I send it
-> after the merge window closes?
+> Cc: Biju Das <biju.das@bp.renesas.com>
+> Cc: Yu Chen <chenyu56@huawei.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-It's a 5.3 material.
+Who is meant to pick this? Can you include this in your series where
+you introduce that USB Type-B GPIO connector driver?
 
-Shawn
+FWIW:
 
-> The "nxp,sja1105t" compatible is not undocumented but belongs to
-> drivers/net/dsa/sja1105/ which was recently merged into mainline via
-> the netdev tree (hence it's not in your tree yet).
-> The situation with "ad7924" is more funny. The compatible is indeed
-> undocumented but belongs to drivers/iio/adc/ad7923.c. I don't know why
-> it lacks an entry in Documentation/devicetree/bindings/iio/adc/.
-> However I mistook the chip and it's not a Analog Devices AD7924 ADC
-> with a SPI interface, but a TI ADS7924 ADC with an I2C interface. I
-> can remove it from v2 since it does not have a Linux driver as far as
-> I can tell.
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+> ---
+> v3:
+>     add property type, modify description suggested by Heikki
 > 
-> -Vladimir
+> v2:
+>     describe it in terms of h/w functionality suggested by Rob
+> 
+> v1:
+>     the property is discussed in:
+>     [v2,2/7] dt-bindings: usb: renesas_usb3: add usb-role-switch property
+>     https://patchwork.kernel.org/patch/10852497/
+> 
+>     Mediatek and Hisilicon also try to use it:
+>     [v4,3/6] dt-bindings: usb: mtu3: add properties about USB Role Switch
+>     https://patchwork.kernel.org/patch/10918385/
+>     [v4,6/6] usb: mtu3: register a USB Role Switch for dual role mode
+>     https://patchwork.kernel.org/patch/10918367/
+> 
+>     [v6,10/13] usb: dwc3: Registering a role switch in the DRD code
+>     https://patchwork.kernel.org/patch/10909981/
+> ---
+>  Documentation/devicetree/bindings/usb/generic.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
+> index 0a74ab8dfdc2..cf5a1ad456e6 100644
+> --- a/Documentation/devicetree/bindings/usb/generic.txt
+> +++ b/Documentation/devicetree/bindings/usb/generic.txt
+> @@ -30,6 +30,10 @@ Optional properties:
+>  			optional for OTG device.
+>   - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
+>  			optional for OTG device.
+> + - usb-role-switch: boolean, indicates that the device is capable of assigning
+> +			the USB data role (USB host or USB device) for a given
+> +			USB connector, such as Type-C, Type-B(micro).
+> +			see connector/usb-connector.txt.
+>  
+>  This is an attribute to a USB controller such as:
+>  
+> -- 
+> 2.21.0
+
+thanks,
+
+-- 
+heikki
