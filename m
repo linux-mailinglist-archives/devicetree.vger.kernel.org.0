@@ -2,118 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A59C7210D8
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 01:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B9D21156
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 02:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726609AbfEPXAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 May 2019 19:00:12 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:37353 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726975AbfEPXAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 May 2019 19:00:04 -0400
-Received: by mail-pf1-f195.google.com with SMTP id g3so2617737pfi.4
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2019 16:00:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lvg93XkWk/IauY18P9MzBBlRGinky/ZsfgSfGtfzvWE=;
-        b=IrWnxdlePeHzk4plSAn4SitSypwJhfMhyVRFzVajRhwefK/vTtfDyVbKcueIKno2Ov
-         jT6zbh26BxuIW4pNBvtfSUcEVz8djCazhjKU2cYWODdnIiwcJETXjueu1AdTY2Vy4UaH
-         9FEwUwnG58TWdJ+b6VXxLxHhJE5mCkwSbNT+w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=lvg93XkWk/IauY18P9MzBBlRGinky/ZsfgSfGtfzvWE=;
-        b=rsbuU7PPkIZ8UWAA+d1L4KTlx095RmjZlGsU6TnUYB26kUWpBLrD/hubB5Xfw+dica
-         XtHR85uKNEujBxBRXcKN+vhQkU9aDVgk6GqJQhCi03dawZMyowDhx9pq0LmtVyAFapTE
-         OBp/8Q5EjcttN2k9PdBdDjsUQOsOcoAiUHRA0yqVe6+gwy0pPQs/lX1bgwlnF4lfCjTp
-         lL57QQkoP6nvVEHjnmh/mNE64I3FVcscAhDqynp23MK0elTn0ihhln9h6G1zblk5Ccwb
-         nIKhfpBeMnOKJM48ZcJH5DhbFLyChx/A99IHPE6RM/A5VjpS6PZlS0r7utBJEyC0w7hH
-         Uh+Q==
-X-Gm-Message-State: APjAAAVfZWxUf3ldHKsCSXUY0fIkJCA+nmSYJrR3JM0Hiy1renIcfsRv
-        6fb1cCfgBdqXrfLTzxibVgpykw==
-X-Google-Smtp-Source: APXvYqyXmrMlXwbThNdH5OYzM2uXETKw3ITSWk1x8137xR6JOng1E+DtlSZxRvtpsu174gwuzPC5Dw==
-X-Received: by 2002:aa7:8acb:: with SMTP id b11mr57008369pfd.115.1558047603560;
-        Thu, 16 May 2019 16:00:03 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id j64sm1769506pfb.126.2019.05.16.16.00.02
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 May 2019 16:00:02 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Minas Harutyunyan <hminas@synopsys.com>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>, heiko@sntech.de
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Artur Petrosyan <Arthur.Petrosyan@synopsys.com>,
-        amstan@chromium.org, linux-rockchip@lists.infradead.org,
-        William Wu <william.wu@rock-chips.com>,
-        linux-usb@vger.kernel.org, Stefan Wahren <stefan.wahren@i2se.com>,
-        Randy Li <ayaka@soulik.info>, zyw@rock-chips.com,
-        mka@chromium.org, ryandcase@chromium.org,
-        Amelie Delaunay <amelie.delaunay@st.com>, jwerner@chromium.org,
-        dinguyen@opensource.altera.com,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [REPOST PATCH v2 3/3] ARM: dts: rockchip: Allow wakeup from rk3288-veyron's dwc2 USB ports
-Date:   Thu, 16 May 2019 15:59:41 -0700
-Message-Id: <20190516225941.170355-4-dianders@chromium.org>
-X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
-In-Reply-To: <20190516225941.170355-1-dianders@chromium.org>
-References: <20190516225941.170355-1-dianders@chromium.org>
+        id S1726910AbfEQAfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 May 2019 20:35:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47334 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726241AbfEQAfX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 May 2019 20:35:23 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A48A7206BF;
+        Fri, 17 May 2019 00:35:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558053322;
+        bh=7TW9YRtA+zrn9bZVhm3pRMCNMOGMBXRGC3+aYbhED+Q=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=2IVzgl9AIPO++Ch2lD+HPwvhsbPyCjqMp1srxLDmXKAwP6rd65u7Wus1PDx6ERIac
+         JgIJlEX6orOSTCbWhyMS/r6KVO9ATGZRYWIsOwLBH7NuKkS7fRkhmj+govo4YPjBBW
+         njgrIlohapBLa9e+A8WE0GpgY53wrangCoB5QG44=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190514221711.248228-2-brendanhiggins@google.com>
+References: <20190514221711.248228-1-brendanhiggins@google.com> <20190514221711.248228-2-brendanhiggins@google.com>
+Subject: Re: [PATCH v4 01/18] kunit: test: add KUnit test runner core
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+User-Agent: alot/0.8.1
+Date:   Thu, 16 May 2019 17:35:21 -0700
+Message-Id: <20190517003522.A48A7206BF@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to be able to wake from USB if a device is plugged in that
-wants remote wakeup.  Enable it on both dwc2 controllers.
+Quoting Brendan Higgins (2019-05-14 15:16:54)
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> new file mode 100644
+> index 0000000000000..e682ea0e1f9a5
+> --- /dev/null
+> +++ b/include/kunit/test.h
+> @@ -0,0 +1,162 @@
+[..]
+> +/**
+> + * struct kunit - represents a running instance of a test.
+> + * @priv: for user to store arbitrary data. Commonly used to pass data c=
+reated
+> + * in the init function (see &struct kunit_module).
+> + *
+> + * Used to store information about the current context under which the t=
+est is
+> + * running. Most of this data is private and should only be accessed ind=
+irectly
+> + * via public functions; the one exception is @priv which can be used by=
+ the
+> + * test writer to store arbitrary data.
+> + */
+> +struct kunit {
+> +       void *priv;
+> +
+> +       /* private: internal use only. */
+> +       const char *name; /* Read only after initialization! */
+> +       spinlock_t lock; /* Gaurds all mutable test state. */
+> +       bool success; /* Protected by lock. */
 
-NOTE: this is added specifically to veyron and not to rk3288 in
-general since it's not known whether all rk3288 boards are designed to
-support USB wakeup.  It is plausible that some boards could shut down
-important rails in S3.
+Is this all the spinlock protects? Doesn't seem useful if it's just
+protecting access to the variable being set or not because code that
+reads it will have a stale view of the value.
 
-Also note that currently wakeup doesn't seem to happen unless you use
-the "deep" suspend mode (where SDRAM is turned off).  Presumably the
-shallow suspend mode is gating some sort of clock that's important but
-I couldn't easily figure out how to get it working.
+> diff --git a/kunit/test.c b/kunit/test.c
+> new file mode 100644
+> index 0000000000000..86f65ba2bcf92
+> --- /dev/null
+> +++ b/kunit/test.c
+> @@ -0,0 +1,229 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Base unit test (KUnit) API.
+> + *
+> + * Copyright (C) 2019, Google LLC.
+> + * Author: Brendan Higgins <brendanhiggins@google.com>
+> + */
+> +
+> +#include <linux/sched.h>
+> +#include <linux/sched/debug.h>
+> +#include <kunit/test.h>
+> +
+[...]
+> +
+> +size_t kunit_module_counter =3D 1;
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-
-Changes in v2:
-- rk3288-veyron dts patch new for v2.
-
- arch/arm/boot/dts/rk3288-veyron.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index 1252522392c7..1d8bfed7830c 100644
---- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -424,6 +424,7 @@
- 
- &usb_host1 {
- 	status = "okay";
-+	snps,need-phy-for-wake;
- };
- 
- &usb_otg {
-@@ -432,6 +433,7 @@
- 	assigned-clocks = <&cru SCLK_USBPHY480M_SRC>;
- 	assigned-clock-parents = <&usbphy0>;
- 	dr_mode = "host";
-+	snps,need-phy-for-wake;
- };
- 
- &vopb {
--- 
-2.21.0.1020.gf2820cf01a-goog
+static?
 
