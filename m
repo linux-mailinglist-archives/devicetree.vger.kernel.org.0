@@ -2,59 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5415216C3
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 12:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6899A21446
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 09:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728247AbfEQKMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 06:12:49 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:37968 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727758AbfEQKMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 06:12:48 -0400
-X-Greylist: delayed 7493 seconds by postgrey-1.27 at vger.kernel.org; Fri, 17 May 2019 06:12:47 EDT
-Received: from relay7-d.mail.gandi.net (unknown [217.70.183.200])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id A559B3A3615;
-        Fri, 17 May 2019 07:27:50 +0000 (UTC)
+        id S1727561AbfEQHax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 03:30:53 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:32899 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727361AbfEQHax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 03:30:53 -0400
 X-Originating-IP: 80.215.154.25
 Received: from localhost (unknown [80.215.154.25])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 4AABB2000F;
-        Fri, 17 May 2019 07:27:39 +0000 (UTC)
-Date:   Fri, 17 May 2019 09:27:38 +0200
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 3C582E0006;
+        Fri, 17 May 2019 07:30:48 +0000 (UTC)
+Date:   Fri, 17 May 2019 09:30:48 +0200
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Harald Geyer <harald@ccbib.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on
- Teres-I
-Message-ID: <20190517072738.deohh5fly4jxms7k@flea>
-References: <20190514155911.6C0AC68B05@newverein.lst.de>
- <20190514160241.9EAC768C7B@newverein.lst.de>
- <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
- <20190515093141.41016b11@blackhole.lan>
- <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
- <20190516154820.GA10431@lst.de>
- <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com>
- <20190516164859.GB10431@lst.de>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i-h3: Fix wifi in Beelink X2 DT
+Message-ID: <20190517073048.y6mzgbhhryfmuckl@flea>
+References: <20190516161039.18534-1-jernej.skrabec@siol.net>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="f4mha6snzgf75knu"
+        protocol="application/pgp-signature"; boundary="jkbi65rx3dzh424y"
 Content-Disposition: inline
-In-Reply-To: <20190516164859.GB10431@lst.de>
+In-Reply-To: <20190516161039.18534-1-jernej.skrabec@siol.net>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -62,22 +37,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---f4mha6snzgf75knu
+--jkbi65rx3dzh424y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, May 16, 2019 at 06:48:59PM +0200, Torsten Duwe wrote:
-> On Thu, May 16, 2019 at 09:06:41AM -0700, Vasily Khoruzhick wrote:
-> >
-> > Driver can talk to the panel over AUX channel only after t1+t3, t1 is
-> > up to 10ms, t3 is up to 200ms.
->
-> This is after power-on. The boot loader needs to deal with this.
+Hi,
 
-The bootloader can deal with it, but the kernel will also need to. The
-bootloader might not be doing this because it's not been updated, the
-regulator might have been disabled between the time the kernel was
-started and the time the bridge driver probes, etc.
+On Thu, May 16, 2019 at 06:10:39PM +0200, Jernej Skrabec wrote:
+> mmc1 node where wifi module is connected doesn't have properly defined
+> power supplies so wifi module is never powered up. Fix that by
+> specifying additional power supplies.
+>
+> Additionally, this STB may have either Realtek or Broadcom based wifi
+> module. One based on Broadcom module also needs external clock to work
+> properly. Fix that by adding clock property to wifi_pwrseq node.
+>
+> Fixes: e582b47a9252 ("ARM: dts: sun8i-h3: Add dts for the Beelink X2 STB")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> ---
+>  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> index 6277f13f3eb3..6a0ac85b4616 100644
+> --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> @@ -89,7 +89,10 @@
+>
+>  	wifi_pwrseq: wifi_pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+> +		pinctrl-names = "default";
+
+pinctrl-names only make sense with another pinctrl-[0-255]
+property. Did you forgot something here?
 
 Maxime
 
@@ -86,15 +78,15 @@ Maxime Ripard, Bootlin
 Embedded Linux and Kernel engineering
 https://bootlin.com
 
---f4mha6snzgf75knu
+--jkbi65rx3dzh424y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXN5iagAKCRDj7w1vZxhR
-xSOTAQCltYqEUg7d+BcEgl5RN6diNU5EHsL/qXA4yAy1FZI9NwD/epfnmdGcVWie
-o0KQWW6HOXO96Su1afZmNzHrEtQffwQ=
-=zj1P
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXN5jKAAKCRDj7w1vZxhR
+xUr9AP97UzodMbd7XRkMSWOZH5h4GuNferFgLYoAMM0yGXZWrwD6AwhGz1w7cehv
+pfHluFzjaOLCt4LLQWUiDAMaW2+Y0wU=
+=ocrv
 -----END PGP SIGNATURE-----
 
---f4mha6snzgf75knu--
+--jkbi65rx3dzh424y--
