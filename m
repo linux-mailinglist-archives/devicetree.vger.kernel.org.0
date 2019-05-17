@@ -2,77 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5C421A3A
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 17:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5252321A7F
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 17:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728968AbfEQPCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 11:02:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54188 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728935AbfEQPCH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 11:02:07 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2161221773;
-        Fri, 17 May 2019 15:02:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558105326;
-        bh=F2xzjbmPebq5VH3JMx7EEVAsi4CNpDivddgn/1jbBAs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XdxBsIykMyAOabldCz0HuF+LJmO2C5zsJ2+NoTQzHgPcLnVcN9LT7h2Vs4qtynT9k
-         e4urQBoDCEMASdSI0DbYvveILygSgBFQbSb6ehyGgbCD8bltJ923MStVW5SfQ285F6
-         73YYvqSHjccVh/gm/xsZugZbMVy2kPhNAR+z+3pE=
-Received: by mail-qk1-f173.google.com with SMTP id j20so4649577qke.1;
-        Fri, 17 May 2019 08:02:06 -0700 (PDT)
-X-Gm-Message-State: APjAAAWszdF/J/fGFw96rbeAgTqrr9eY7TuyI1g2iadCFhk1aJhlb9cO
-        hzTshMn/x0IMm22ZHuogGoWNhKAxs2fd3gGWiA==
-X-Google-Smtp-Source: APXvYqxJ4ypnBJ3cGt4vROxwCij49/tt947ZHeY9PErfDKK8wU2HrMDkPhuoMSAUYqKiKLM0ASN0u5gpEYnHgxklVDA=
-X-Received: by 2002:a37:a8d7:: with SMTP id r206mr32659301qke.264.1558105325399;
- Fri, 17 May 2019 08:02:05 -0700 (PDT)
+        id S1729252AbfEQP0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 11:26:21 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:37760 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729244AbfEQP0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 11:26:20 -0400
+Received: by mail-oi1-f193.google.com with SMTP id f4so5455498oib.4;
+        Fri, 17 May 2019 08:26:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xu5A8L7ffk/VuZGGKLFuV6FJUYoNh1BlyhIBaFYJKc8=;
+        b=fnGDVA/CPKgszzyvVNGPqdLlo3j4aBFjTJaRyaTzUsUqqtk3Ma/fdvvR6u0jV1QpnS
+         ODbWVtFHuGlSkV64ydsIhDYXqWgNvxd9hUKbNVi5azAzpVFWM1JIDuYaGNdd8Pf7kLvX
+         gOWTKjEWmmd5+7p/9sWiB9SWvYBGUPrXCEKwk5+wh97ypDgkeA/yPNjXzolAz6em//4Y
+         QpgLVf7kpkbMl5b/Ilzqoh78hJdNKJDZRf2yAEaDS8wriC7brnX2Mbko/37I/M5hGoS6
+         H4iTDp7tO94GqQ+BaRhwoGNj18Nk/9lxuceTbcsD1wfLtP0skneXJODVFpDmJzqZhHFJ
+         vlyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xu5A8L7ffk/VuZGGKLFuV6FJUYoNh1BlyhIBaFYJKc8=;
+        b=L2vOs/Mci6avbkPZqtCdNGOWtw0dp/SMpg8KYbnR/mnbrczCUe8LZKDZ3mzFFGSiIv
+         Z/uyz1d7PrAzurzBGsHVUsEqlre/evS6bEZSqmuvFZSZwPcc47LPWMdzadK75P3RrTa6
+         R4je9/fjk7jeQCu/qJwnE+am6BH2vm6amJ3ETTEwfsNMOXK6q4QhSlfe5F9VbKExClMU
+         FlO7rlcbCWbTZaFQCCxNrGGBqQ2S3zLUpnpBfOwPW+4kILJm0C7mwouzkMUCPdUU65Be
+         Y3nawfFA0AK9VN8+HYpd4FJBEpNT6jeVEd3P1ZCDTiGwhjPVmoX35DQLySqQtkSElWow
+         3Srw==
+X-Gm-Message-State: APjAAAUdBjeRpAaahpzeO0aRzinFFalmv5LXEMx7Rqb3pD2gVWnaeXWE
+        13thMmbkpfJ1aWlbzd49oKg1GgZV64aGYXCvF9Y=
+X-Google-Smtp-Source: APXvYqwYlZSL66GeSU4TZbz+0EZuctc8xlZi5TZE8nl8m8iVOM29zqacKrtT9w5oMHvLig9tG04NA6RK4P6OxABQH90=
+X-Received: by 2002:aca:38d4:: with SMTP id f203mr5209080oia.88.1558106779678;
+ Fri, 17 May 2019 08:26:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <225e90a94e9558db9f72f64aca05b0951b88c7c5.1558017853.git-series.maxime.ripard@bootlin.com>
- <5e126d3a9be35a288863189854ea3828f7e5ad14.1558017853.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <5e126d3a9be35a288863189854ea3828f7e5ad14.1558017853.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 17 May 2019 10:01:54 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLOKBhfu3D=pN4ZOzouAGVL_T=W0hE+LudEOGxJXTBhUQ@mail.gmail.com>
-Message-ID: <CAL_JsqLOKBhfu3D=pN4ZOzouAGVL_T=W0hE+LudEOGxJXTBhUQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: mmc: sun4i: Add YAML schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+References: <20190514160241.9EAC768C7B@newverein.lst.de> <CA+E=qVfuKBzWK7dpM_eabjU8mLdzOw3zCnYk6Tc1oXdavH7CNA@mail.gmail.com>
+ <20190515093141.41016b11@blackhole.lan> <CA+E=qVf6K_0T0x2Hsfp6EDqM-ok6xiAzeZPvp6SRg0yt010pKA@mail.gmail.com>
+ <20190516154820.GA10431@lst.de> <CA+E=qVe5NkAvHXPvVc7iTbZn5sKeoRm0166zPW_s83c2gk7B+g@mail.gmail.com>
+ <20190516164859.GB10431@lst.de> <20190517072738.deohh5fly4jxms7k@flea>
+ <20190517101353.3e86d696@blackhole.lan> <20190517090845.oujs33nplbaxcyun@flea>
+ <20190517094708.GA16858@lst.de>
+In-Reply-To: <20190517094708.GA16858@lst.de>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Fri, 17 May 2019 08:25:53 -0700
+Message-ID: <CA+E=qVcpMeFfC0EEZRpp3Hc_yBGFMv6cGKGSQENpUTw_ZH7UwQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: DTS: allwinner: a64: enable ANX6345 bridge on Teres-I
+To:     Torsten Duwe <duwe@lst.de>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Chen-Yu Tsai <wens@csie.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 9:44 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Fri, May 17, 2019 at 2:47 AM Torsten Duwe <duwe@lst.de> wrote:
 >
-> Switch the DT binding to a YAML schema to enable the DT validation.
+> On Fri, May 17, 2019 at 11:08:45AM +0200, Maxime Ripard wrote:
+> > >
+> > > So for all current practical purposes, we can assume the Teres-I panel
+> > > to be powered properly and providing valid EDID; nothing to worry about
+> > > in software.
+> >
+> > You're creating a generic binding for all the users of that bridge,
+> > while considering only the specific case of the Teres-I.
 >
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml | 98 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
->  Documentation/devicetree/bindings/mmc/sunxi-mmc.txt                | 52 +--------------------------------------
->  2 files changed, 98 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sunxi-mmc.txt
+> All I'm saying is that _this_ usage is also valid. Nothing keeps other
+> users from defining the output panel; on the contrary: the driver at hand
+> already considers an _optional_ panel and handles it, conditionally. So
+> driver and binding spec are 100% in sync here.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Well, endpoint is not necessarily a panel. It can be another bridge or
+connector - that's why panel can be optional in driver. But it don't
+think that you can just omit an endpoint.
 
-> +# FIXME: We should set it, but it would report all the generic
-> +# properties as additional properties.
-> +# additionalProperties: false
+> This is much more straightforward than requiring an output and making up
+> some dummy code and params because it cannot reasonably be handled.
+> (Remember, if there is an output, the driver will make calls to the
+> "attached device" driver.)
 
-BTW, I expect this issue will be fixed with the new
-unevaluatedProperties in draft8.
+They aren't dummy. Moreover you have to attach backlight somewhere (to
+panel) so it can be disabled when output is disabled.
 
-Rob
+Try 'xrandr --output eDP-1 --off' on teres with your current code and
+see that backlight stays on.
+
+>
+>         Torsten
+>
