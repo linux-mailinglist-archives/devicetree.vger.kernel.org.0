@@ -2,221 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D586821AE8
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 17:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AEA521B01
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 17:55:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729011AbfEQPo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 11:44:58 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:55727 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729214AbfEQPo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 11:44:58 -0400
-Received: by mail-wm1-f66.google.com with SMTP id x64so7379741wmb.5;
-        Fri, 17 May 2019 08:44:56 -0700 (PDT)
+        id S1728896AbfEQPzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 11:55:25 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:39661 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728830AbfEQPzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 11:55:25 -0400
+Received: by mail-wm1-f65.google.com with SMTP id n25so6847046wmk.4
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 08:55:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=h4O+JRlbWeC+gbeDKXavJ2OzVFIPFbBGitJDrGVsGfA=;
-        b=k61PYtg5BO6fmjdBURTaAanXbkQMhA4N1gvTbaxBfVz80Xgl6irEBj1Sr3XTkI9nv3
-         /7n8ci6pzasWZJM9tXjjxk5Z0mYhSbIi9kaDuWnVUSnBGmR/UCssFM66tNG2cIKkRMEs
-         xMU/Y4h1E+WxB+/yfAIm4aPZJFJ/+Pxui9UQDK2WnL+hGogkcjelGXdI1byuHSyVEPGM
-         RCPqVcOAutpjsma3CWapyGR3i+IYRQo/psgIgGntkqAzQUJh4nFBLbCQWy9yFCENAodX
-         8eRHnLL73dd11gDu8zTmkBjsorrg7xcoWLofN+93+ljKkfPxX2onbCOQAzO3qZTXpfRy
-         9BxQ==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9n65JKv2XtPRLEdFty+JHya3Hjv0VqsllvETqv34x3s=;
+        b=eqtMLehkSuVpZWU8YmbIdTgq3l1bQgg7oenIJACGfzp0n0gA5cHySNoLpfqW61V6FE
+         yg2edrtMPTNl6grlRjM5KMn21ohd4hQe/V20GWefTBh4O/PMQ27z9LcQhn2TRsUtw5Uc
+         vC9v22wkaQ+lQKYMwV6o6PaHmDcT4bu0pRDAtjqirQPLYYZ6/hCKGwLzRD6edyJKLbd3
+         npy+XyhvE/qrQ8Mq1+XDZeGRUAV8kYZnqNRJwBOXCAWAuykziVlRlesQ8myaci4ZtXU/
+         VuChTSL1DYUSbpb+YjgdVEf3CdmFiesBd4yQh0pXUMIxlyYyMALfLwGCpkS8yHEq7plt
+         YO3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=h4O+JRlbWeC+gbeDKXavJ2OzVFIPFbBGitJDrGVsGfA=;
-        b=RqCVxku4XSlobdlg6c6TpJ+4MNrvT/mx+kNoVuogKsPDrps+MYj7/OsbjnGNsA+BUO
-         6fXN5D21PJjvD17t6iNkg4gprVJ1xPaSXuLjYZXD8soaYlJsSrzQMyB3+to+GNL8SbMV
-         wzw3DuLRU+AhL0yfZM1VOoX7mW4t7N/SPyn2sMnPznCjn3ODd95T2YRh+xuasb+ond3l
-         xgggPXTf4XAV8gFnukwyDh0+oGb3kb4ThsmZdttqhyedAVzhxfRlmO7RyyfEGrhTpJuy
-         SajbCcUK2yuxDXZJ2tmGdbi4hYbmZIUpI5j+HgVlbuFEE0QjGQUTzKiTZkYnj/d4yfxg
-         5zaQ==
-X-Gm-Message-State: APjAAAXYcaRc7c14A3579KfmCbJ76rArVAbKjub0IaBsdBwWWP6ZpavT
-        dw26QXnKTxb6mQXJI16uu8WpNXSL230=
-X-Google-Smtp-Source: APXvYqw41bURtZLYfBBPOA5OOH6/i37/WFkVDSWAUxCEAvCc3F3kC/ozMsd37kJWrzv+VR8lpVD7ug==
-X-Received: by 2002:a1c:7312:: with SMTP id d18mr2741689wmb.147.1558107895135;
-        Fri, 17 May 2019 08:44:55 -0700 (PDT)
-Received: from localhost.localdomain ([188.24.21.151])
-        by smtp.gmail.com with ESMTPSA id k63sm1503312wmf.35.2019.05.17.08.44.53
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9n65JKv2XtPRLEdFty+JHya3Hjv0VqsllvETqv34x3s=;
+        b=rA0WJrrsbnJpNfbgVyP7rQ2ExwHJYFbe/rZthPGogeaORcdMNTczu66JoUO6N7mApS
+         lgmSY4LfXFcISe7fl/Bv81pdqezl+Jdq/WdTP7SOqT15Xq4PlUHsvsg8GOCxsLOZQgOx
+         4t307K8/zhrxpjF9Ap9jXqs8iXXdO5Hj50pasA81Is4ToCfVnmexR9xWdIL74qR+OaaT
+         o6DVzibaV77Bq4Q9canrV9ZhUYAByBRtNXWjVtTlYEvp0Y4LnWodY2HScum1aLU1vWoG
+         rAqT54JcUCPG+joHCe2k0WvYIfk1N4xYLsIIsZP0YlFUtEGh/7quTkljntyrBPfLorlQ
+         MD6Q==
+X-Gm-Message-State: APjAAAUKI0tcx3Q4408dHd4JmE95w9BBruS8rOiaFHScAomG+tjYvmWu
+        g0m6lTJ6ZUETxBLZ+gq0bZDaK4H52+8=
+X-Google-Smtp-Source: APXvYqxyD1MoKJab3x0ukgsHx31lbCyhH+uK861VI4R8nx43jO0xg/nPl2AK0Cj1rIQtnP3UUpZLng==
+X-Received: by 2002:a1c:9eca:: with SMTP id h193mr23434703wme.125.1558108522628;
+        Fri, 17 May 2019 08:55:22 -0700 (PDT)
+Received: from [192.168.0.41] (sju31-1-78-210-255-2.fbx.proxad.net. [78.210.255.2])
+        by smtp.googlemail.com with ESMTPSA id z7sm7544362wme.26.2019.05.17.08.55.21
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 May 2019 08:44:54 -0700 (PDT)
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH][V3] dt-bindings: iio: accel: adxl345: switch to YAML bindings
-Date:   Fri, 17 May 2019 18:44:41 +0300
-Message-Id: <20190517154441.27080-1-ardeleanalex@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190516133609.10975-1-alexandru.ardelean@analog.com>
-References: <20190516133609.10975-1-alexandru.ardelean@analog.com>
+        Fri, 17 May 2019 08:55:21 -0700 (PDT)
+Subject: Re: [PATCHv1 6/8] arm64: dts: qcom: msm8996: Add PSCI cpuidle low
+ power states
+To:     Amit Kucheria <amit.kucheria@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, andy.gross@linaro.org,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org
+References: <cover.1557486950.git.amit.kucheria@linaro.org>
+ <8648ba97d49a9f731001e4b36611be9650e37f37.1557486950.git.amit.kucheria@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <b488bd2a-5544-4f7e-3f5f-8ce1b686ce87@linaro.org>
+Date:   Fri, 17 May 2019 17:55:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <8648ba97d49a9f731001e4b36611be9650e37f37.1557486950.git.amit.kucheria@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandru Ardelean <alexandru.ardelean@analog.com>
+On 10/05/2019 13:29, Amit Kucheria wrote:
+> Add device bindings for cpuidle states for cpu devices.
+> 
+> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 28 +++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index c761269caf80..b615bcb9e351 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -95,6 +95,7 @@
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x0>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&LITTLE_CPU_PD>;
 
-The ADX345 supports both I2C & SPI bindings.
-This change switches from old text bindings, to YAML bindings, and also
-tries to make use of the recent multiple-examples support.
+It is the same micro architecture, the CPUS differ by their max OPP.
+Shall we call it really little?
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+I take the opportunity to report the capacity-dmips-mhz attribute is
+missing. The max capacity computation is not triggered, thus the
+scheduler see the same capacity for both cluster even if one has less
+OPP. Adding capacity-dmips-mhz = <1024>; to all CPUs will fix it.
 
-Changelog v1 -> v2:
-* dropped interrupt-parent from DT, as suggested by Rob
+>  			next-level-cache = <&L2_0>;
+>  			L2_0: l2-cache {
+>  			      compatible = "cache";
+> @@ -107,6 +108,7 @@
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x1>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&LITTLE_CPU_PD>;
+>  			next-level-cache = <&L2_0>;
+>  		};
+>  
+> @@ -115,6 +117,7 @@
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x100>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&BIG_CPU_PD>;
+>  			next-level-cache = <&L2_1>;
+>  			L2_1: l2-cache {
+>  			      compatible = "cache";
+> @@ -127,6 +130,7 @@
+>  			compatible = "qcom,kryo";
+>  			reg = <0x0 0x101>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&BIG_CPU_PD>;
+>  			next-level-cache = <&L2_1>;
+>  		};
+>  
+> @@ -151,6 +155,30 @@
+>  				};
+>  			};
+>  		};
+> +
+> +		idle-states {
+> +			entry-method="psci";
+> +
+> +			LITTLE_CPU_PD: little-power-down {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "standalone-power-collapse";
+> +				arm,psci-suspend-param = <0x00000004>;
+> +				entry-latency-us = <40>;
+> +				exit-latency-us = <40>;
+> +				min-residency-us = <300>;
+> +				local-timer-stop;
+> +			};
+> +
+> +			BIG_CPU_PD: big-power-down {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "standalone-power-collapse";
+> +				arm,psci-suspend-param = <0x00000004>;
+> +				entry-latency-us = <40>;
+> +				exit-latency-us = <40>;
+> +				min-residency-us = <300>;
+> +				local-timer-stop;
+> +			};
+> +		};
+>  	};
+>  
+>  	thermal-zones {
+> 
 
-Changelog v2 -> v3:
-* add Rob's Reviewed-by tag
-* add YAML file to MAINTAINERS - main reason for this V3
 
- .../bindings/iio/accel/adi,adxl345.yaml       | 72 +++++++++++++++++++
- .../devicetree/bindings/iio/accel/adxl345.txt | 39 ----------
- MAINTAINERS                                   |  1 +
- 3 files changed, 73 insertions(+), 39 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
- delete mode 100644 Documentation/devicetree/bindings/iio/accel/adxl345.txt
-
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-new file mode 100644
-index 000000000000..7ba167e2e1ea
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl345.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+
-+description: |
-+  Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers that supports
-+  both I2C & SPI interfaces.
-+    http://www.analog.com/en/products/mems/accelerometers/adxl345.html
-+    http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adxl345
-+      - adi,adxl375
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* Example for a I2C device node */
-+        accelerometer@2a {
-+            compatible = "adi,adxl345";
-+            reg = <0x53>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* Example for a SPI device node */
-+        accelerometer@0 {
-+            compatible = "adi,adxl345";
-+            reg = <0>;
-+            spi-max-frequency = <5000000>;
-+            spi-cpol;
-+            spi-cpha;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/iio/accel/adxl345.txt b/Documentation/devicetree/bindings/iio/accel/adxl345.txt
-deleted file mode 100644
-index f9525f6e3d43..000000000000
---- a/Documentation/devicetree/bindings/iio/accel/adxl345.txt
-+++ /dev/null
-@@ -1,39 +0,0 @@
--Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
--
--http://www.analog.com/en/products/mems/accelerometers/adxl345.html
--http://www.analog.com/en/products/sensors-mems/accelerometers/adxl375.html
--
--Required properties:
-- - compatible : should be one of
--		"adi,adxl345"
--		"adi,adxl375"
-- - reg : the I2C address or SPI chip select number of the sensor
--
--Required properties for SPI bus usage:
-- - spi-max-frequency : set maximum clock frequency, must be 5000000
-- - spi-cpol and spi-cpha : must be defined for adxl345 to enable SPI mode 3
--
--Optional properties:
-- - interrupts: interrupt mapping for IRQ as documented in
--   Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
--
--Example for a I2C device node:
--
--	accelerometer@2a {
--		compatible = "adi,adxl345";
--		reg = <0x53>;
--		interrupt-parent = <&gpio1>;
--		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
--	};
--
--Example for a SPI device node:
--
--	accelerometer@0 {
--		compatible = "adi,adxl345";
--		reg = <0>;
--		spi-max-frequency = <5000000>;
--		spi-cpol;
--		spi-cpha;
--		interrupt-parent = <&gpio1>;
--		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 43a9cebb2c19..54c8e14fae98 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -551,6 +551,7 @@ W:	http://wiki.analog.com/ADXL345
- W:	http://ez.analog.com/community/linux-device-drivers
- S:	Supported
- F:	drivers/input/misc/adxl34x.c
-+F:	Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
- 
- ADXL372 THREE-AXIS DIGITAL ACCELEROMETER DRIVER
- M:	Stefan Popa <stefan.popa@analog.com>
 -- 
-2.17.1
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
