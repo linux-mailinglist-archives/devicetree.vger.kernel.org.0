@@ -2,118 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0013621585
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A28F215D0
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 10:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728213AbfEQIml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 04:42:41 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:65356 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728142AbfEQIma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 04:42:30 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4H8bogK025564;
-        Fri, 17 May 2019 10:42:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=CTjBmZ/8Y8sJIntk4HY3GIldUOqlwVPxpqC9dk1e2Xg=;
- b=G/PiZd7z5KUU5PMAnzNhU3Dft+T4aENocyHsKOxqSEtQFCeM/f2YVFrHxNlhFv10Zzkl
- LxF2twnLWbhHNTkNBixinxyfq3NMu+Btu6RYo7h+OPlf6SYQcDNNIUijARzN3tCR2rge
- 4epWlQF8H74Bgbg5FuPhAVDxjnKi/YGmwjMsi1wqlZqhx7XJVfHhjrncYjt8FyM40tlK
- 6CNWOMRZ+NJ7st2o4W/iIT1ybhNniqi/+9dsBu3OuO/DzkXys8nxLIAy5fY+NIS/i9HR
- j56P30iE9LkAJ0AAkmS0E2BBu37EtLyfwEhtCh33dGUyNLTJOkvG+My8zT70UHvBnvIO SA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2sdkv0cf0s-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 17 May 2019 10:42:17 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BC7303F;
-        Fri, 17 May 2019 08:42:14 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag5node2.st.com [10.75.127.14])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5EFD9246D;
-        Fri, 17 May 2019 08:42:14 +0000 (GMT)
-Received: from localhost (10.75.127.49) by SFHDAG5NODE2.st.com (10.75.127.14)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 17 May 2019 10:42:13
- +0200
-From:   Pierre-Yves MORDRET <pierre-yves.mordret@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
+        id S1727831AbfEQI6z convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 May 2019 04:58:55 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:43033 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727826AbfEQI6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 04:58:55 -0400
+Received: by mail-qt1-f194.google.com with SMTP id i26so7087045qtr.10;
+        Fri, 17 May 2019 01:58:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=lUdOq+gx0nXT1b9GsinnX5s7hPrX6YoGJqW2/FU2LMQ=;
+        b=RpFOr0oULuR1MRqxeLyOGuqnuiWmU7o6cdQmtSQp/pycQhETac42PTjvn6/ofo1spL
+         Daby4SFcb06zg15P6ZQF2Rz6H6NpLXDUgJCa4dj7VLi5MTJwMNUFyeqSFE5CJ92px9Ea
+         5PI3QaoE+c/QzQipbrGJC88aCXF2V9/7Jf5SxHFZgcuebS4/crD996H4bhSIeAJyH40+
+         xD54ooqmEtJrjVAMmN/goOX0OYwSLQAh/d2g+vk4/dM6vTYnq69KmcefPCbVyDsN+NFz
+         dlTjl7SbXa4A4pn6bVvV9xoMCBUZOIMWS1FZm9VYQgOqiTEfjEWRbicHlnXyUctHzGBa
+         KE6w==
+X-Gm-Message-State: APjAAAXzbiusdx1c0HgvWDtVkYxDT+WrPOb4RW53MWOVLFRCHoQcQXPu
+        K3+Uc+JtSwgGx8KNe36Jorai0/woxKU8/Qo3/rw=
+X-Google-Smtp-Source: APXvYqwNxbxFr/vzS1RXQZDBTDKL/hVCvagOotGDm724YF5ym/q8RL/him/sN27hB8O1MZtVcEFf95bHEOo3m0FhXo8=
+X-Received: by 2002:ac8:2a05:: with SMTP id k5mr30063052qtk.304.1558083534352;
+ Fri, 17 May 2019 01:58:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190515072747.39941-1-xiaowei.bao@nxp.com> <20190515072747.39941-2-xiaowei.bao@nxp.com>
+ <CAK8P3a3AXRp_v_7hkoJA28tUCiSh1eYzbk4Q4h29OqL6y-KL8A@mail.gmail.com> <AM5PR04MB329934765FB8EB1828743D79F50B0@AM5PR04MB3299.eurprd04.prod.outlook.com>
+In-Reply-To: <AM5PR04MB329934765FB8EB1828743D79F50B0@AM5PR04MB3299.eurprd04.prod.outlook.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 17 May 2019 10:58:37 +0200
+Message-ID: <CAK8P3a0kKb7njiJvUkwJYwf-yc-hEyErSiWcvbdf0XnMoctzrg@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH 2/3] arm64: dts: ls1028a: Add PCIe controller DT nodes
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Pierre-Yves MORDRET <pierre-yves.mordret@st.com>
-Subject: [RESEND v2 3/3] ARM: dts: stm32: enable Vivante GPU support on stm32mp157a-dk1 board
-Date:   Fri, 17 May 2019 10:42:08 +0200
-Message-ID: <1558082528-12889-4-git-send-email-pierre-yves.mordret@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1558082528-12889-1-git-send-email-pierre-yves.mordret@st.com>
-References: <1558082528-12889-1-git-send-email-pierre-yves.mordret@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG4NODE1.st.com (10.75.127.10) To SFHDAG5NODE2.st.com
- (10.75.127.14)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-17_04:,,
- signatures=0
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Kishon <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        gregkh <gregkh@linuxfoundation.org>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Philippe Ombredanne <pombredanne@nexb.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Vivante GPU driver for stm32mp157a-dk1 and dk2 boards.
+On Fri, May 17, 2019 at 5:21 AM Xiaowei Bao <xiaowei.bao@nxp.com> wrote:
+> -----Original Message-----
+> From: Arnd Bergmann <arnd@arndb.de>
+> On Wed, May 15, 2019 at 9:36 AM Xiaowei Bao <xiaowei.bao@nxp.com> wrote:
+> > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   52 ++++++++++++++++++++++++
+> >  1 files changed, 52 insertions(+), 0 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > index b045812..50b579b 100644
+> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> > @@ -398,6 +398,58 @@
+> >                         status = "disabled";
+> >                 };
+> >
+> > +               pcie@3400000 {
+> > +                       compatible = "fsl,ls1028a-pcie";
+> > +                       reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
+> > +                              0x80 0x00000000 0x0 0x00002000>; /* configuration space */
+> > +                       reg-names = "regs", "config";
+> > +                       interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> > +                                    <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>; /* aer interrupt */
+> > +                       interrupt-names = "pme", "aer";
+> > +                       #address-cells = <3>;
+> > +                       #size-cells = <2>;
+> > +                       device_type = "pci";
+> > +                       dma-coherent;
+> > +                       num-lanes = <4>;
+> > +                       bus-range = <0x0 0xff>;
+> > +                       ranges = <0x81000000 0x0 0x00000000 0x80 0x00010000 0x0 0x00010000   /* downstream I/O */
+> > +                                 0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+>
+> Are you sure there is no support for 64-bit BARs or prefetchable memory?
+> [Xiaowei Bao] sorry for late reply, Thought that our Layerscape platform has not added prefetchable memory support in DTS, so this platform has not been added, I will submit a separate patch to add prefetchable memory support for all Layerscape platforms.
 
-Signed-off-by: Pierre-Yves MORDRET <pierre-yves.mordret@st.com>
----
-  Version history:
-    v2:
-       * move GPU reserved memeory out of bottom DDR to let free this area for
-         U-Boot
-    v1:
-       * Initial
----
----
- arch/arm/boot/dts/stm32mp157a-dk1.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Ok, thanks.
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-index 1b1886d..bd06f7b 100644
---- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-@@ -27,6 +27,17 @@
- 		reg = <0xc0000000 0x20000000>;
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		gpu_reserved: gpu@d4000000 {
-+			reg = <0xd4000000 0x4000000>;
-+			no-map;
-+		};
-+	};
-+
- 	led {
- 		compatible = "gpio-leds";
- 		blue {
-@@ -69,6 +80,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	contiguous-area = <&gpu_reserved>;
-+	status = "okay";
-+};
-+
- &iwdg2 {
- 	timeout-sec = <32>;
- 	status = "okay";
--- 
-2.7.4
+> Of course, the prefetchable PCIE device can work in our boards, because the RC will
+> assign non-prefetchable memory for this device. We reserve 1G no-prefetchable
+> memory for PCIE device, it is enough for general devices.
 
+Sure, many devices work just fine, this is mostly a question of supporting those
+devices that do require multiple gigabytes, or that need prefetchable memory
+semantics to get the expected performance. GPUs are the obvious example,
+but I think there are others (infiniband?).
+
+      Arnd
