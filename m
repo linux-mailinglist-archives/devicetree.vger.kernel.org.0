@@ -2,213 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA5D421308
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 06:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1998321347
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 06:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727294AbfEQE0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 00:26:33 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:48378 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726755AbfEQE0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 00:26:33 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id C0C1760DA8; Fri, 17 May 2019 04:26:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558067191;
-        bh=IbDX8lLKkmrbMMScNIrGA8uD1ioXtQEK203WKkXTUT0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=dTGmC+qNl2FUVV+7qBdEdAjItTQsseVKSWf95tfccyNE1BxfqrTygEVFXd7NO/GWQ
-         jDBFBQOOkHHudfJP4ujWXnoudeljtfX3ReNKpBBbeKO6UnXYQLWvpGnHx7D+70zCIB
-         FHNKwG0JOenyB8WWtc6W8nZQ32WzHg0DTpO4/IRs=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 4B63960A24;
-        Fri, 17 May 2019 04:26:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558067190;
-        bh=IbDX8lLKkmrbMMScNIrGA8uD1ioXtQEK203WKkXTUT0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=LUhHEH9FOfejyMct2qG5JfNqdbHSCyCc85invtgoc3ed/holhaFywPZZ/qDfcGzO2
-         nNvx3skH4PpWKqbih7Zmd271uvLaqfSk/46wF6swOypbzDlL2hTrEe8gT/c/Ps0z7k
-         Ms3t7Yb8OyVvZEeymVo2S3+duvPx6Evpwbws/AkU=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 17 May 2019 09:56:30 +0530
-From:   Harish Bandi <c-hbandi@codeaurora.org>
-To:     Balakrishna Godavarthi <bgodavar@codeaurora.org>
-Cc:     Rocky Liao <rjliao@codeaurora.org>, robh+dt@kernel.org,
-        mark.rutland@arm.com, marcel@holtmann.org, johan.hedberg@gmail.com,
-        thierry.escande@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Hemantg <hemantg@codeaurora.org>,
-        linux-bluetooth-owner@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] Bluetooth: hci_qca: Load customized NVM based on
- the device property
-In-Reply-To: <178d2a3454399cfad0e61e72a13ea19a@codeaurora.org>
-References: <1557631148-5120-1-git-send-email-rjliao@codeaurora.org>
- <1557919161-11010-1-git-send-email-rjliao@codeaurora.org>
- <178d2a3454399cfad0e61e72a13ea19a@codeaurora.org>
-Message-ID: <d3e2f431a8e2ef00d7bd8c1cebe5dfc1@codeaurora.org>
-X-Sender: c-hbandi@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+        id S1727349AbfEQE4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 00:56:16 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:45868 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725929AbfEQE4Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 00:56:16 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1FE9C200015;
+        Fri, 17 May 2019 06:56:14 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 61AA9200005;
+        Fri, 17 May 2019 06:56:10 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7596E40250;
+        Fri, 17 May 2019 12:56:05 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v2] arm64: dts: ls1028a: Fix CPU idle fail.
+Date:   Fri, 17 May 2019 12:57:53 +0800
+Message-Id: <20190517045753.3709-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-05-17 08:13, Balakrishna Godavarthi wrote:
-> Hi Rocky,
-> 
-> On 2019-05-15 16:49, Rocky Liao wrote:
->> QCA BTSOC NVM is a customized firmware file and different vendors may
->> want to have different BTSOC configuration (e.g. Configure SCO over 
->> PCM
->> or I2S, Setting Tx power, etc.) via this file. This patch will allow
->> vendors to download different NVM firmware file by reading a device
->> property "firmware-name".
->> 
->> Signed-off-by: Rocky Liao <rjliao@codeaurora.org>
->> ---
->> Changes in v5:
->>   * Made the change applicable to the wcn399x series chip sets
->> ---
->>  drivers/bluetooth/btqca.c   |  8 ++++++--
->>  drivers/bluetooth/btqca.h   |  6 ++++--
->>  drivers/bluetooth/hci_qca.c | 19 ++++++++++++++++++-
->>  3 files changed, 28 insertions(+), 5 deletions(-)
->> 
->> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
->> index cc12eec..a78b80e 100644
->> --- a/drivers/bluetooth/btqca.c
->> +++ b/drivers/bluetooth/btqca.c
->> @@ -332,7 +332,8 @@ int qca_set_bdaddr_rome(struct hci_dev *hdev,
->> const bdaddr_t *bdaddr)
->>  EXPORT_SYMBOL_GPL(qca_set_bdaddr_rome);
->> 
->>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->> -		   enum qca_btsoc_type soc_type, u32 soc_ver)
->> +		   enum qca_btsoc_type soc_type, u32 soc_ver,
->> +		   const char *firmware_name)
->>  {
->>  	struct rome_config config;
->>  	int err;
->> @@ -365,7 +366,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t 
->> baudrate,
->> 
->>  	/* Download NVM configuration */
->>  	config.type = TLV_TYPE_NVM;
->> -	if (qca_is_wcn399x(soc_type))
->> +	if (firmware_name)
->> +		snprintf(config.fwname, sizeof(config.fwname),
->> +			 "qca/%s", firmware_name);
->> +	else if (qca_is_wcn399x(soc_type))
->>  		snprintf(config.fwname, sizeof(config.fwname),
->>  			 "qca/crnv%02x.bin", rom_ver);
->>  	else
->> diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
->> index 4c4fe2b..8c037bb 100644
->> --- a/drivers/bluetooth/btqca.h
->> +++ b/drivers/bluetooth/btqca.h
->> @@ -140,7 +140,8 @@ enum qca_btsoc_type {
->> 
->>  int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t 
->> *bdaddr);
->>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->> -		   enum qca_btsoc_type soc_type, u32 soc_ver);
->> +		   enum qca_btsoc_type soc_type, u32 soc_ver,
->> +		   const char *firmware_name);
->>  int qca_read_soc_version(struct hci_dev *hdev, u32 *soc_version);
->>  int qca_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr);
->>  static inline bool qca_is_wcn399x(enum qca_btsoc_type soc_type)
->> @@ -155,7 +156,8 @@ static inline int qca_set_bdaddr_rome(struct
->> hci_dev *hdev, const bdaddr_t *bdad
->>  }
->> 
->>  static inline int qca_uart_setup(struct hci_dev *hdev, uint8_t 
->> baudrate,
->> -				 enum qca_btsoc_type soc_type, u32 soc_ver)
->> +				 enum qca_btsoc_type soc_type, u32 soc_ver,
->> +				 const char *firmware_name)
->>  {
->>  	return -EOPNOTSUPP;
->>  }
->> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
->> index 57322c4..9590602 100644
->> --- a/drivers/bluetooth/hci_qca.c
->> +++ b/drivers/bluetooth/hci_qca.c
->> @@ -169,6 +169,7 @@ struct qca_serdev {
->>  	struct qca_power *bt_power;
->>  	u32 init_speed;
->>  	u32 oper_speed;
->> +	const char *firmware_name;
->>  };
->> 
->>  static int qca_power_setup(struct hci_uart *hu, bool on);
->> @@ -190,6 +191,17 @@ static enum qca_btsoc_type qca_soc_type(struct
->> hci_uart *hu)
->>  	return soc_type;
->>  }
->> 
->> +static const char *qca_get_firmware_name(struct hci_uart *hu)
->> +{
->> +	if (hu->serdev) {
->> +		struct qca_serdev *qsd = serdev_device_get_drvdata(hu->serdev);
->> +
->> +		return qsd->firmware_name;
->> +	} else {
->> +		return NULL;
->> +	}
->> +}
->> +
->>  static void __serial_clock_on(struct tty_struct *tty)
->>  {
->>  	/* TODO: Some chipset requires to enable UART clock on client
->> @@ -1195,6 +1207,7 @@ static int qca_setup(struct hci_uart *hu)
->>  	struct qca_data *qca = hu->priv;
->>  	unsigned int speed, qca_baudrate = QCA_BAUDRATE_115200;
->>  	enum qca_btsoc_type soc_type = qca_soc_type(hu);
->> +	const char *firmware_name = qca_get_firmware_name(hu);
->>  	int ret;
->>  	int soc_ver = 0;
->> 
->> @@ -1245,7 +1258,8 @@ static int qca_setup(struct hci_uart *hu)
->> 
->>  	bt_dev_info(hdev, "QCA controller version 0x%08x", soc_ver);
->>  	/* Setup patch / NVM configurations */
->> -	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, soc_ver);
->> +	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, soc_ver,
->> +			firmware_name);
->>  	if (!ret) {
->>  		set_bit(QCA_IBS_ENABLED, &qca->flags);
->>  		qca_debugfs_init(hdev);
->> @@ -1477,6 +1491,9 @@ static int qca_serdev_probe(struct serdev_device 
->> *serdev)
->>  			return PTR_ERR(qcadev->bt_en);
->>  		}
->> 
->> +		device_property_read_string(&serdev->dev, "firmware-name",
->> +					 &qcadev->firmware_name);
->> +
->>  		qcadev->susclk = devm_clk_get(&serdev->dev, NULL);
->>  		if (IS_ERR(qcadev->susclk)) {
->>  			dev_err(&serdev->dev, "failed to acquire clk\n");
-> 
-> Thanks for doing it for wcn399x series too.
-> 
-> Change look fine to me.
-> 
-> Reviewed-by: Balakrishna Godavarthi <bgodavar@codeaurora.org>
+PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
+indicate CPU State Type: 0 for standby, 1 for power down. In this
+case, we want to select standby for CPU idle feature. But current
+setting wrongly select power down and cause CPU SUSPEND fail every
+time. Need this fix.
 
-Tested for WCN3998.
+Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   18 +++++++++---------
+ 1 files changed, 9 insertions(+), 9 deletions(-)
 
-Tested-by: Harish Bandi <c-hbandi@codeaurora.org>
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index b045812..bf7f845 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -28,7 +28,7 @@
+ 			enable-method = "psci";
+ 			clocks = <&clockgen 1 0>;
+ 			next-level-cache = <&l2>;
+-			cpu-idle-states = <&CPU_PH20>;
++			cpu-idle-states = <&CPU_PW20>;
+ 		};
+ 
+ 		cpu1: cpu@1 {
+@@ -38,7 +38,7 @@
+ 			enable-method = "psci";
+ 			clocks = <&clockgen 1 0>;
+ 			next-level-cache = <&l2>;
+-			cpu-idle-states = <&CPU_PH20>;
++			cpu-idle-states = <&CPU_PW20>;
+ 		};
+ 
+ 		l2: l2-cache {
+@@ -53,13 +53,13 @@
+ 		 */
+ 		entry-method = "arm,psci";
+ 
+-		CPU_PH20: cpu-ph20 {
+-			compatible = "arm,idle-state";
+-			idle-state-name = "PH20";
+-			arm,psci-suspend-param = <0x00010000>;
+-			entry-latency-us = <1000>;
+-			exit-latency-us = <1000>;
+-			min-residency-us = <3000>;
++		CPU_PW20: cpu-pw20 {
++			  compatible = "arm,idle-state";
++			  idle-state-name = "PW20";
++			  arm,psci-suspend-param = <0x0>;
++			  entry-latency-us = <2000>;
++			  exit-latency-us = <2000>;
++			  min-residency-us = <6000>;
+ 		};
+ 	};
+ 
+-- 
+1.7.1
 
-Thanks,
-Harish
