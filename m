@@ -2,109 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B15421929
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B0F21946
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 15:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728899AbfEQN11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 09:27:27 -0400
-Received: from mga07.intel.com ([134.134.136.100]:27144 "EHLO mga07.intel.com"
+        id S1728347AbfEQNi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 09:38:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60534 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728333AbfEQN11 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 May 2019 09:27:27 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 May 2019 06:27:26 -0700
-X-ExtLoop1: 1
-Received: from kuha.fi.intel.com ([10.237.72.189])
-  by fmsmga001.fm.intel.com with SMTP; 17 May 2019 06:27:21 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 17 May 2019 16:27:21 +0300
-Date:   Fri, 17 May 2019 16:27:21 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Yu Chen <chenyu56@huawei.com>, Min Guo <min.guo@mediatek.com>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>
-Subject: Re: [v3 PATCH] dt-binding: usb: add usb-role-switch property
-Message-ID: <20190517132721.GB1887@kuha.fi.intel.com>
-References: <c3596e996c9ab39c6b9bc14b93309244c4a55014.1557306151.git.chunfeng.yun@mediatek.com>
+        id S1726556AbfEQNi1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 09:38:27 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 468BF217D8;
+        Fri, 17 May 2019 13:38:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558100306;
+        bh=pbTJr359FJMy2WUUMG/Lf2r9Lyuh9YLPUqwHd+Wo8VM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vctqqeOF41AfIjkmUkCBWXAfSnm+p9DUxehsXrNwgZAO+bPS1LO55NQyEIHxaHsZ3
+         q0XwJDhm1LJR1gHfXandcOp+J48YmQ1h8XDDzfB9Bdz0s6z+dtY+vRQWe+IMTcLE3+
+         gOV+gjRdPhi5Mt9rQmcaiKsQ4Wkqht4HyISHWfCs=
+Received: by mail-qk1-f174.google.com with SMTP id j20so4462731qke.1;
+        Fri, 17 May 2019 06:38:26 -0700 (PDT)
+X-Gm-Message-State: APjAAAX6gQ9xJI3N8LfZ34dD2sVtHWf5Wm/7pveoZ2C81XyBQ8S5GhKJ
+        ePazCP5gVnp02sJoDSnWX6PtdP+S/vmPIVnREQ==
+X-Google-Smtp-Source: APXvYqw49ctY7vjhM+4Z3JnlL9CMKiUL4zKvRdQ04InbXYUNxCMkL8zusPDA6stSF8Q6Xj2NjoygEZEuDR3YGpWMxGY=
+X-Received: by 2002:a05:620a:1107:: with SMTP id o7mr36956035qkk.184.1558100305381;
+ Fri, 17 May 2019 06:38:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c3596e996c9ab39c6b9bc14b93309244c4a55014.1557306151.git.chunfeng.yun@mediatek.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <1558085189-22061-1-git-send-email-fabrizio.castro@bp.renesas.com> <1558085189-22061-2-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1558085189-22061-2-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 17 May 2019 08:38:14 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJCJyRBX+08UriNeYZ01ow0yLv=VjK3sNbjVi1GB5=MQA@mail.gmail.com>
+Message-ID: <CAL_JsqJCJyRBX+08UriNeYZ01ow0yLv=VjK3sNbjVi1GB5=MQA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: Add vendor prefix for HopeRun
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 08, 2019 at 05:17:44PM +0800, Chunfeng Yun wrote:
-> Add a property usb-role-switch to tell the driver that use
-> USB Role Switch framework to handle the role switch,
-> it's useful when the driver has already supported other ways,
-> such as extcon framework etc.
-> 
-> Cc: Biju Das <biju.das@bp.renesas.com>
-> Cc: Yu Chen <chenyu56@huawei.com>
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-
-Who is meant to pick this? Can you include this in your series where
-you introduce that USB Type-B GPIO connector driver?
-
-FWIW:
-
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
+On Fri, May 17, 2019 at 4:27 AM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+>
+> Add "Jiangsu HopeRun Software Co., Ltd." to the list of devicetree
+> vendor prefixes as "hoperun".
+>
+> Website: http://www.hoperun.com/en
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+>
 > ---
-> v3:
->     add property type, modify description suggested by Heikki
-> 
-> v2:
->     describe it in terms of h/w functionality suggested by Rob
-> 
-> v1:
->     the property is discussed in:
->     [v2,2/7] dt-bindings: usb: renesas_usb3: add usb-role-switch property
->     https://patchwork.kernel.org/patch/10852497/
-> 
->     Mediatek and Hisilicon also try to use it:
->     [v4,3/6] dt-bindings: usb: mtu3: add properties about USB Role Switch
->     https://patchwork.kernel.org/patch/10918385/
->     [v4,6/6] usb: mtu3: register a USB Role Switch for dual role mode
->     https://patchwork.kernel.org/patch/10918367/
-> 
->     [v6,10/13] usb: dwc3: Registering a role switch in the DRD code
->     https://patchwork.kernel.org/patch/10909981/
+> v2->v3:
+> * Moved to vendor-prefixes.yaml
+> * Dropped Reviewed-by Simon as this is a completely new patch and as
+>   such it needs a brand new review
+> v1->v2:
+> * No change
 > ---
->  Documentation/devicetree/bindings/usb/generic.txt | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
-> index 0a74ab8dfdc2..cf5a1ad456e6 100644
-> --- a/Documentation/devicetree/bindings/usb/generic.txt
-> +++ b/Documentation/devicetree/bindings/usb/generic.txt
-> @@ -30,6 +30,10 @@ Optional properties:
->  			optional for OTG device.
->   - adp-disable: tells OTG controllers we want to disable OTG ADP, ADP is
->  			optional for OTG device.
-> + - usb-role-switch: boolean, indicates that the device is capable of assigning
-> +			the USB data role (USB host or USB device) for a given
-> +			USB connector, such as Type-C, Type-B(micro).
-> +			see connector/usb-connector.txt.
->  
->  This is an attribute to a USB controller such as:
->  
-> -- 
-> 2.21.0
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-thanks,
-
--- 
-heikki
+Reviewed-by: Rob Herring <robh@kernel.org>
