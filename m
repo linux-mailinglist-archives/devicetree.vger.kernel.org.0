@@ -2,157 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB52021728
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 12:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1321E217C1
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2019 13:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728326AbfEQKog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 06:44:36 -0400
-Received: from mail-it1-f195.google.com ([209.85.166.195]:40053 "EHLO
-        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728235AbfEQKog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 06:44:36 -0400
-Received: by mail-it1-f195.google.com with SMTP id g71so11200146ita.5
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 03:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Ae6y0KuXzMG1pHLjgX5VAMMTwD/mpdbSQHyUYqpGa1Y=;
-        b=R6RUDRe47ZibIlkhxQWfsIgH9dt5pFYOUAFW/3Asfdh4QE7ekEXvUMeji89niTUt1k
-         ThSHvMS8k3bXzi1VUy39vktMv6CElxov+TYUYhnWCWo/JeHIl+5X5uTCE/JPXOr9SNxF
-         itX9zP/rxln7zlf7HwFmVYDMS5/xp2TFIkV0GGNN+/7PfpTnpEPE+hJBb0z/BNOLkuD8
-         fM8SBe/WyYf0Wg2moOirFS03wLy6/d548Y2nMjbiOokDeRXQUbUn7dr6gtDP/bnIa6mx
-         aaatnT+JDGwhVfUdZh/oAQz/iZ67xf1VLuE9Sq/dNCVBEWfSOEzycF2eMKOKgKqVT9/q
-         Fw2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ae6y0KuXzMG1pHLjgX5VAMMTwD/mpdbSQHyUYqpGa1Y=;
-        b=HEjJeQeD+G6w/gdslxeX4MnfYI13YOv5hEjgb1eRL74TEUcUQKflZI+XcHZQLes/pa
-         zFjC0X4S2RY+Jk2z+MoTpQqoAoUDCBOgGGGnicjH/8RxaWxVH9w1TBXykW34pVsiX0iM
-         5fqBbN4LjeeuSsSPfhkuYvGk047APPvp2OCsL0lQqtPxXhq53x/ZFWO8FVVv0jFPm++a
-         cslkiLHWh/PDRvNe89fPYdNDVMxs6DqrV6bd2Dg0WT7b6X3I/QlF1WVvA+CtVAfGhX7B
-         F1++C+HR1wqLtmpmflJDyPDcH6uu8nAqfz4DO8FANIt25ChShlPYhWf7/LoMbrrdDy0V
-         EcCg==
-X-Gm-Message-State: APjAAAXPjs5vPVYU3LtW9ZzdAyQfR4JxQvGYrGfHA7IixspNI0FhpEvB
-        RASu7HQUWY22LXmENaaNkX3EGhX+sGW8R7fwbf0bnA==
-X-Google-Smtp-Source: APXvYqx3JP27Nk1tvOQBMDUThEQjHMC4TS5L3KtmWKuKzLoARJahORDrcr3fbLBY/dMbMzQj6L5PkULqhdgPoVo6Vr4=
-X-Received: by 2002:a02:1dc7:: with SMTP id 190mr34241024jaj.62.1558089874890;
- Fri, 17 May 2019 03:44:34 -0700 (PDT)
+        id S1728659AbfEQLaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 May 2019 07:30:04 -0400
+Received: from mail-eopbgr130050.outbound.protection.outlook.com ([40.107.13.50]:47110
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728336AbfEQLaE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 May 2019 07:30:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hLGBACUNgaJbwlaseeNZvxS77wDYZplHZuh9h2bEmuQ=;
+ b=fsCTq+Q82c5RkowvpBU6ZM+m/vDm8vM3/kcN8SLiINEzZBbgxBc8Dy5stVLQhDtMD1TXaTvvXGQkPsB4aX7ms23oqCcSQpWp4R84KJBkDBp9P7LGqhjqhBVV0AYCBySR7UDFc+LmcdkUpWcormi8o5mixqMXA58ntCVCIl/xn0I=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB6082.eurprd04.prod.outlook.com (20.179.32.213) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.18; Fri, 17 May 2019 11:29:59 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::c415:3cab:a042:2e13%6]) with mapi id 15.20.1900.010; Fri, 17 May 2019
+ 11:29:59 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Oliver Graute <oliver.graute@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Oliver Graute <oliver.graute@kococonnector.com>
+Subject: RE: [PATCH 1/5] clk: add imx8 clk defines
+Thread-Topic: [PATCH 1/5] clk: add imx8 clk defines
+Thread-Index: AQHVDII7FGokB8QeB06r9iPg0nmfkaZvLf8A
+Date:   Fri, 17 May 2019 11:29:59 +0000
+Message-ID: <AM0PR04MB4211706D24BBF3F9FB6CAF28800B0@AM0PR04MB4211.eurprd04.prod.outlook.com>
+References: <20190517071813.26674-1-oliver.graute@gmail.com>
+In-Reply-To: <20190517071813.26674-1-oliver.graute@gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b5adf9f5-1b45-4c30-416e-08d6dabaff12
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6082;
+x-ms-traffictypediagnostic: AM0PR04MB6082:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <AM0PR04MB6082F9BBD95EB80756E60271800B0@AM0PR04MB6082.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1107;
+x-forefront-prvs: 0040126723
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(366004)(396003)(136003)(346002)(376002)(189003)(199004)(446003)(11346002)(305945005)(71190400001)(71200400001)(33656002)(229853002)(66066001)(476003)(76176011)(6506007)(256004)(486006)(44832011)(7736002)(74316002)(102836004)(86362001)(6306002)(2906002)(66556008)(64756008)(66446008)(81156014)(81166006)(66946007)(110136005)(54906003)(52536014)(76116006)(66476007)(26005)(55016002)(99286004)(9686003)(7696005)(4744005)(7416002)(2201001)(8936002)(6436002)(73956011)(316002)(8676002)(25786009)(6116002)(3846002)(5660300002)(53936002)(68736007)(186003)(6246003)(2501003)(4326008)(478600001)(14454004)(966005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6082;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: abFa3uLB8GnCqieznt/hpjOmR6DXEoGOrR7rP96Da046o7n05VniESbNObEHAF789HWxTZiG92oe1FeXC84ZB9c8UKFJBE71QmeIgh/7+NUyO/mFpAn1ixH4K1fHIsDnJNiGmamULRKV61eAquIFm9Tl9v1B4tobwF0E/XA3qlFoRQs2vbyzlP9j3UBmpRrcXg9MG9ByGm2WwhgmdZbWRl9e8C7a/34p9RXzaxCSB6XGIeyGs70KM2s+C+IsFd2UQ5iKuivVGjBWlamKDOF5sJlSaaty6YBTkZXUPAjIPdCrMtZBgMpdQ3Q9/BQNWhGQQ0tABJDax5aUpqiCRUd8NiZZm7U8erg22vMBGHSNK34IB8J/cb1QHeW7rI5ap4bKU5LIR3Z/MPYn3QyXMGiIca97RqHVIXCPuZbplfX51OA=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190515072747.39941-1-xiaowei.bao@nxp.com> <20190515072747.39941-2-xiaowei.bao@nxp.com>
- <CAK8P3a3AXRp_v_7hkoJA28tUCiSh1eYzbk4Q4h29OqL6y-KL8A@mail.gmail.com>
- <AM5PR04MB329934765FB8EB1828743D79F50B0@AM5PR04MB3299.eurprd04.prod.outlook.com>
- <CAK8P3a0kKb7njiJvUkwJYwf-yc-hEyErSiWcvbdf0XnMoctzrg@mail.gmail.com>
-In-Reply-To: <CAK8P3a0kKb7njiJvUkwJYwf-yc-hEyErSiWcvbdf0XnMoctzrg@mail.gmail.com>
-From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Date:   Fri, 17 May 2019 12:44:22 +0200
-Message-ID: <CAKv+Gu-WVcVvqPoH3gsz8G3Dwizne81MAQAUGNnGrpthvUiSnw@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH 2/3] arm64: dts: ls1028a: Add PCIe controller DT nodes
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Xiaowei Bao <xiaowei.bao@nxp.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Roy Zang <roy.zang@nxp.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Kishon <kishon@ti.com>, "M.h. Lian" <minghuan.lian@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Philippe Ombredanne <pombredanne@nexb.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5adf9f5-1b45-4c30-416e-08d6dabaff12
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2019 11:29:59.7332
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6082
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 May 2019 at 10:59, Arnd Bergmann <arnd@arndb.de> wrote:
->
-> On Fri, May 17, 2019 at 5:21 AM Xiaowei Bao <xiaowei.bao@nxp.com> wrote:
-> > -----Original Message-----
-> > From: Arnd Bergmann <arnd@arndb.de>
-> > On Wed, May 15, 2019 at 9:36 AM Xiaowei Bao <xiaowei.bao@nxp.com> wrote=
-:
-> > > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   52 ++++++++++++++=
-++++++++++
-> > >  1 files changed, 52 insertions(+), 0 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/ar=
-m64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > > index b045812..50b579b 100644
-> > > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> > > @@ -398,6 +398,58 @@
-> > >                         status =3D "disabled";
-> > >                 };
-> > >
-> > > +               pcie@3400000 {
-> > > +                       compatible =3D "fsl,ls1028a-pcie";
-> > > +                       reg =3D <0x00 0x03400000 0x0 0x00100000   /* =
-controller registers */
-> > > +                              0x80 0x00000000 0x0 0x00002000>; /* co=
-nfiguration space */
-> > > +                       reg-names =3D "regs", "config";
-> > > +                       interrupts =3D <GIC_SPI 108 IRQ_TYPE_LEVEL_HI=
-GH>, /* PME interrupt */
-> > > +                                    <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH=
->; /* aer interrupt */
-> > > +                       interrupt-names =3D "pme", "aer";
-> > > +                       #address-cells =3D <3>;
-> > > +                       #size-cells =3D <2>;
-> > > +                       device_type =3D "pci";
-> > > +                       dma-coherent;
-> > > +                       num-lanes =3D <4>;
-> > > +                       bus-range =3D <0x0 0xff>;
-> > > +                       ranges =3D <0x81000000 0x0 0x00000000 0x80 0x=
-00010000 0x0 0x00010000   /* downstream I/O */
-> > > +                                 0x82000000 0x0 0x40000000 0x80 0x40=
-000000 0x0 0x40000000>; /* non-prefetchable memory */
-> >
-> > Are you sure there is no support for 64-bit BARs or prefetchable memory=
-?
-> > [Xiaowei Bao] sorry for late reply, Thought that our Layerscape platfor=
-m has not added prefetchable memory support in DTS, so this platform has no=
-t been added, I will submit a separate patch to add prefetchable memory sup=
-port for all Layerscape platforms.
->
-> Ok, thanks.
->
-> > Of course, the prefetchable PCIE device can work in our boards, because=
- the RC will
-> > assign non-prefetchable memory for this device. We reserve 1G no-prefet=
-chable
-> > memory for PCIE device, it is enough for general devices.
->
-> Sure, many devices work just fine, this is mostly a question of supportin=
-g those
-> devices that do require multiple gigabytes, or that need prefetchable mem=
-ory
-> semantics to get the expected performance. GPUs are the obvious example,
-> but I think there are others (infiniband?).
->
-
-Some implementations of the Synopsys dw PCIe IP contain a 'root port'
-(within quotes because it is not actually a root port but an arbitrary
-set of MMIO registers that looks like a type 01 config region) that
-does not permit the prefetchable bridge window BAR to be written (a
-thing which is apparently permitted by the PCIe spec). So while the
-host bridge is capable of supporting more than one MMIO BAR window,
-the OS visible software interface does not expose this functionality
-
-In practice, it probably doesn't matter, since the driver uses the
-same iATU attributes for prefetchable and non-prefetchable windows,
-but I guess 1 GB of MMIO BAR space is a bit restrictive for modern
-systems.
+SGkgT2xpdmVyLA0KDQo+IEZyb206IE9saXZlciBHcmF1dGUgW21haWx0bzpvbGl2ZXIuZ3JhdXRl
+QGdtYWlsLmNvbV0NCj4gU2VudDogRnJpZGF5LCBNYXkgMTcsIDIwMTkgMzoxOCBQTQ0KPiANCj4g
+RnJvbTogT2xpdmVyIEdyYXV0ZSA8b2xpdmVyLmdyYXV0ZUBrb2NvY29ubmVjdG9yLmNvbT4NCj4g
+DQo+IGFkZGVkIGhlYWRlciBkZWZpbmVzIGZvciBpbXg4cW0gY2xvY2sNCj4gDQo+IFNpZ25lZC1v
+ZmYtYnk6IE9saXZlciBHcmF1dGUgPG9saXZlci5ncmF1dGVAa29jb2Nvbm5lY3Rvci5jb20+DQoN
+Ckl0IHNlZW1zIHlvdSBtaXNzZWQgdGhpcyBvbmUuDQpbMDAvMTRdIGFybTY0OiBkdHM6IGlteDg6
+IGFyY2hpdGVjdHVyZSBpbXByb3ZlbWVudCBhbmQgYWRkaW5nIGlteDhxbSBzdXBwb3J0DQpodHRw
+czovL3BhdGNod29yay5rZXJuZWwub3JnL2NvdmVyLzEwODI0NTM3Lw0KDQpSZWdhcmRzDQpEb25n
+IEFpc2hlbmcNCg==
