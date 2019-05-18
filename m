@@ -2,282 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 214F822234
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 10:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C5AF2227A
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 11:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726867AbfERIWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 May 2019 04:22:43 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:36192 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725468AbfERIWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 04:22:43 -0400
-X-UUID: e505f59c1e654d9ab661621bcf6e7202-20190518
-X-UUID: e505f59c1e654d9ab661621bcf6e7202-20190518
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 382929378; Sat, 18 May 2019 16:22:37 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33DR.mediatek.inc
- (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 18 May
- 2019 16:22:35 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (172.27.4.253) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Sat, 18 May 2019 16:22:34 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Jitao Shi <jitao.shi@mediatek.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <ck.hu@mediatek.com>, <stonea168@163.com>
-Subject: [v3 3/3] drm/mediatek: add mipi_tx driver for mt8183
-Date:   Sat, 18 May 2019 16:22:27 +0800
-Message-ID: <20190518082227.14507-4-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190518082227.14507-1-jitao.shi@mediatek.com>
-References: <20190518082227.14507-1-jitao.shi@mediatek.com>
+        id S1729385AbfERJHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 05:07:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43086 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729334AbfERJHJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 May 2019 05:07:09 -0400
+Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA7F22082C;
+        Sat, 18 May 2019 09:07:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558170427;
+        bh=V/N3v/RosUyGL8IU7cZJSSH3/EJGtiJb3+z6/FziRYk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=iF9e/7JPrDWa1JlamnEdSTDgz2vFBAscyfUbMgd0TXb2tn53Midt+obHkFEvMa6Ti
+         +GxjIATVI5vq4HC3275RZ/64YKobv7NVU6K4UUyDOctrGyaAhjn3KJjsI1X2jaFbaf
+         X6USg0rRTX9R/CLMhyYmFP1u2QjCjSBvS9s+cTv8=
+Date:   Sat, 18 May 2019 10:07:02 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
+        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        charles-antoine.couret@essensium.com, devicetree@vger.kernel.org,
+        brandon.maier@rockwellcollins.com,
+        clayton.shotwell@rockwellcollins.com
+Subject: Re: [PATCH v3 2/5] iio: ad7949: Support internal Vref
+Message-ID: <20190518100702.6deadd3f@archlinux>
+In-Reply-To: <1557759185-167857-2-git-send-email-adam.michaelis@rockwellcollins.com>
+References: <1557759185-167857-1-git-send-email-adam.michaelis@rockwellcollins.com>
+        <1557759185-167857-2-git-send-email-adam.michaelis@rockwellcollins.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add mt8183 mipi_tx driver.
-And also support other chips that use the same binding and driver.
+On Mon, 13 May 2019 09:53:02 -0500
+Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
- drivers/gpu/drm/mediatek/Makefile             |   1 +
- drivers/gpu/drm/mediatek/mtk_mipi_tx.c        |   2 +
- drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |   1 +
- drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c | 160 ++++++++++++++++++
- 4 files changed, 164 insertions(+)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
+> Adding configurable (via device tree) options to select one of the two
+> external reference voltages (REFIN as default, original implementation)
+> or one of the two internal reference voltages provided by the AD7949
+> part family.
+> 
+> Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Hi Adam,
 
-diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-index 2c8de1f5a5ee..8067a4be8311 100644
---- a/drivers/gpu/drm/mediatek/Makefile
-+++ b/drivers/gpu/drm/mediatek/Makefile
-@@ -13,6 +13,7 @@ mediatek-drm-y := mtk_disp_color.o \
- 		  mtk_dsi.o \
- 		  mtk_mipi_tx.o \
- 		  mtk_mt8173_mipi_tx.o \
-+		  mtk_mt8183_mipi_tx.o \
- 		  mtk_dpi.o
- 
- obj-$(CONFIG_DRM_MEDIATEK) += mediatek-drm.o
-diff --git a/drivers/gpu/drm/mediatek/mtk_mipi_tx.c b/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-index 46bc02cfe85c..66b3c2efe013 100644
---- a/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-+++ b/drivers/gpu/drm/mediatek/mtk_mipi_tx.c
-@@ -182,6 +182,8 @@ static const struct of_device_id mtk_mipi_tx_match[] = {
- 	  .data = &mt2701_mipitx_data },
- 	{ .compatible = "mediatek,mt8173-mipi-tx",
- 	  .data = &mt8173_mipitx_data },
-+	{ .compatible = "mediatek,mt8183-mipi-tx",
-+	  .data = &mt8183_mipitx_data },
- 	{ },
- };
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_mipi_tx.h b/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-index 660726924992..3fd24563952e 100644
---- a/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-+++ b/drivers/gpu/drm/mediatek/mtk_mipi_tx.h
-@@ -45,5 +45,6 @@ unsigned long mtk_mipi_tx_pll_recalc_rate(struct clk_hw *hw,
- 
- extern const struct mtk_mipitx_data mt2701_mipitx_data;
- extern const struct mtk_mipitx_data mt8173_mipitx_data;
-+extern const struct mtk_mipitx_data mt8183_mipitx_data;
- 
- #endif
-diff --git a/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c b/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-new file mode 100644
-index 000000000000..00652ca5c0c8
---- /dev/null
-+++ b/drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-@@ -0,0 +1,160 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ * Author: jitao.shi <jitao.shi@mediatek.com>
-+ */
-+
-+#include "mtk_mipi_tx.h"
-+
-+#define MIPITX_LANE_CON		0x000c
-+#define RG_DSI_CPHY_T1DRV_EN		BIT(0)
-+#define RG_DSI_ANA_CK_SEL		BIT(1)
-+#define RG_DSI_PHY_CK_SEL		BIT(2)
-+#define RG_DSI_CPHY_EN			BIT(3)
-+#define RG_DSI_PHYCK_INV_EN		BIT(4)
-+#define RG_DSI_PWR04_EN			BIT(5)
-+#define RG_DSI_BG_LPF_EN		BIT(6)
-+#define RG_DSI_BG_CORE_EN		BIT(7)
-+#define RG_DSI_PAD_TIEL_SEL		BIT(8)
-+
-+#define MIPITX_PLL_PWR	0x0028
-+#define MIPITX_PLL_CON0	0x002c
-+#define MIPITX_PLL_CON1	0x0030
-+#define MIPITX_PLL_CON2	0x0034
-+#define MIPITX_PLL_CON3	0x0038
-+#define MIPITX_PLL_CON4	0x003c
-+#define RG_DSI_PLL_IBIAS		(3 << 10)
-+
-+#define MIPITX_D2_SW_CTL_EN	0x0144
-+#define MIPITX_D0_SW_CTL_EN	0x0244
-+#define MIPITX_CK_CKMODE_EN	0x0328
-+#define DSI_CK_CKMODE_EN		BIT(0)
-+#define MIPITX_CK_SW_CTL_EN	0x0344
-+#define MIPITX_D1_SW_CTL_EN	0x0444
-+#define MIPITX_D3_SW_CTL_EN	0x0544
-+#define DSI_SW_CTL_EN			BIT(0)
-+#define AD_DSI_PLL_SDM_PWR_ON		BIT(0)
-+#define AD_DSI_PLL_SDM_ISO_EN		BIT(1)
-+
-+#define RG_DSI_PLL_EN			BIT(4)
-+#define RG_DSI_PLL_POSDIV		(0x7 << 8)
-+
-+static int mtk_mipi_tx_pll_prepare(struct clk_hw *hw)
-+{
-+	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-+	unsigned int txdiv, txdiv0;
-+	u64 pcw;
-+	int ret;
-+
-+	dev_dbg(mipi_tx->dev, "prepare: %u bps\n", mipi_tx->data_rate);
-+
-+	if (mipi_tx->data_rate >= 2000000000) {
-+		txdiv = 1;
-+		txdiv0 = 0;
-+	} else if (mipi_tx->data_rate >= 1000000000) {
-+		txdiv = 2;
-+		txdiv0 = 1;
-+	} else if (mipi_tx->data_rate >= 500000000) {
-+		txdiv = 4;
-+		txdiv0 = 2;
-+	} else if (mipi_tx->data_rate > 250000000) {
-+		txdiv = 8;
-+		txdiv0 = 3;
-+	} else if (mipi_tx->data_rate >= 125000000) {
-+		txdiv = 16;
-+		txdiv0 = 4;
-+	} else {
-+		return -EINVAL;
-+	}
-+
-+	ret = clk_prepare_enable(mipi_tx->ref_clk);
-+	if (ret < 0) {
-+		dev_err(mipi_tx->dev,
-+			"can't prepare and enable mipi_tx ref_clk %d\n", ret);
-+		return ret;
-+	}
-+
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON4, RG_DSI_PLL_IBIAS);
-+
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-+	usleep_range(30, 100);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-+	pcw = div_u64(((u64)mipi_tx->data_rate * txdiv) << 24, 26000000);
-+	writel(pcw, mipi_tx->regs + MIPITX_PLL_CON0);
-+	mtk_mipi_tx_update_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV,
-+				txdiv0 << 8);
-+	usleep_range(1000, 2000);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-+
-+	return 0;
-+}
-+
-+static void mtk_mipi_tx_pll_unprepare(struct clk_hw *hw)
-+{
-+	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-+
-+	dev_dbg(mipi_tx->dev, "unprepare\n");
-+
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-+
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-+	clk_disable_unprepare(mipi_tx->ref_clk);
-+}
-+
-+static long mtk_mipi_tx_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-+				       unsigned long *prate)
-+{
-+	return clamp_val(rate, 50000000, 1600000000);
-+}
-+
-+static const struct clk_ops mtk_mipi_tx_pll_ops = {
-+	.prepare = mtk_mipi_tx_pll_prepare,
-+	.unprepare = mtk_mipi_tx_pll_unprepare,
-+	.round_rate = mtk_mipi_tx_pll_round_rate,
-+	.set_rate = mtk_mipi_tx_pll_set_rate,
-+	.recalc_rate = mtk_mipi_tx_pll_recalc_rate,
-+};
-+
-+static void mtk_mipi_tx_power_on_signal(struct phy *phy)
-+{
-+	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
-+
-+	/* BG_LPF_EN / BG_CORE_EN */
-+	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN,
-+	       mipi_tx->regs + MIPITX_LANE_CON);
-+	usleep_range(30, 100);
-+	writel(RG_DSI_BG_CORE_EN | RG_DSI_BG_LPF_EN,
-+	       mipi_tx->regs + MIPITX_LANE_CON);
-+
-+	/* Switch OFF each Lane */
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
-+
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_CK_CKMODE_EN, DSI_CK_CKMODE_EN);
-+}
-+
-+static void mtk_mipi_tx_power_off_signal(struct phy *phy)
-+{
-+	struct mtk_mipi_tx *mipi_tx = phy_get_drvdata(phy);
-+
-+	/* Switch ON each Lane */
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D0_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D1_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D2_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_D3_SW_CTL_EN, DSI_SW_CTL_EN);
-+	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_CK_SW_CTL_EN, DSI_SW_CTL_EN);
-+
-+	writel(RG_DSI_PAD_TIEL_SEL | RG_DSI_BG_CORE_EN,
-+	       mipi_tx->regs + MIPITX_LANE_CON);
-+	writel(RG_DSI_PAD_TIEL_SEL, mipi_tx->regs + MIPITX_LANE_CON);
-+}
-+
-+const struct mtk_mipitx_data mt8183_mipitx_data = {
-+	.mipi_tx_clk_ops = &mtk_mipi_tx_pll_ops,
-+	.mipi_tx_enable_signal = mtk_mipi_tx_power_on_signal,
-+	.mipi_tx_disable_signal = mtk_mipi_tx_power_off_signal,
-+};
--- 
-2.21.0
+One comment inline but it's trivial.
+
+I'd not realised before that the external buffered and unbuffered
+references were on different pins.  One possibility would be
+to use different regulator names for each of them, but that is
+probably an unnecessary and perhaps confusing step.
+
+So in conclusion I'm happy with this approach
+
+After an Analog review though before applying this.
+For personal reference if there should be another version.
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+
+
+Jonathan
+
+
+> ---
+> 	V2:
+> 	- Add some defines to reduce use of magic numbers.
+> 	V3:
+> 	- Add bitfield.h macros throughout.
+> 	- Re-think usage of device tree parameter to focus on the
+> 	actual reference sources instead of the raw hardware
+> 	configuration.
+> ---
+>  drivers/iio/adc/ad7949.c | 138 +++++++++++++++++++++++++++++++++++++----------
+>  1 file changed, 111 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index c7fe27aa2519..b648b1ab9559 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -11,12 +11,23 @@
+>  #include <linux/module.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+> -
+> -#define AD7949_MASK_CHANNEL_SEL		GENMASK(9, 7)
+> -#define AD7949_MASK_TOTAL		GENMASK(13, 0)
+> -#define AD7949_OFFSET_CHANNEL_SEL	7
+> -#define AD7949_CFG_READ_BACK		0x1
+> -#define AD7949_CFG_REG_SIZE_BITS	14
+> +#include <linux/of.h>
+> +#include <linux/bitfield.h>
+> +
+> +#define AD7949_CFG_REG_SIZE_BITS           14
+> +#define AD7949_CFG_MASK_TOTAL              GENMASK(13, 0)
+> +#define AD7949_CFG_APPLY                   BIT(13)
+> +#define AD7949_CFG_CHAN_CFG                GENMASK(12, 10)
+> +#define AD7949_CFG_CHAN_CFG_UNIPOLAR_GND   0x7
+> +#define AD7949_CFG_CHAN_SEL                GENMASK(9, 7)
+> +#define AD7949_CFG_BW                      BIT(6)
+> +#define AD7949_CFG_BW_FULL                 1
+> +#define AD7949_CFG_REF_SEL                 GENMASK(5, 3)
+> +#define AD7949_CFG_SEQ                     GENMASK(2, 1)
+> +#define AD7949_CFG_SEQ_DISABLED            0x0
+> +#define AD7949_CFG_READBACK                BIT(0)
+> +#define AD7949_CFG_READBACK_EN             0
+> +#define AD7949_CFG_READBACK_DIS            1
+>  
+>  enum {
+>  	ID_AD7949 = 0,
+> @@ -24,6 +35,18 @@ enum {
+>  	ID_AD7689,
+>  };
+>  
+> +enum ad7949_ref_sel {
+> +	AD7949_REF_2V5 = 0, /* 2.5V internal ref + temp sensor */
+> +	AD7949_REF_4V0, /* 4.096V internal ref + temp sensor */
+> +	AD7949_REF_EXT_TEMP, /* REF + temp sensor */
+> +	AD7949_REF_EXT_TEMP_BUF, /* REFIN + temp sensor */
+> +	AD7949_REF_RSRV_4,
+> +	AD7949_REF_RSRV_5,
+> +	AD7949_REF_EXT, /* REF, no temp */
+> +	AD7949_REF_EXT_BUF, /* REFIN, no temp */
+> +	AD7949_REF_MAX,
+> +};
+> +
+>  struct ad7949_adc_spec {
+>  	u8 num_channels;
+>  	u8 resolution;
+> @@ -41,6 +64,7 @@ struct ad7949_adc_spec {
+>   * @vref: regulator generating Vref
+>   * @iio_dev: reference to iio structure
+>   * @spi: reference to spi structure
+> + * @ref_sel: selected reference voltage source
+>   * @resolution: resolution of the chip
+>   * @cfg: copy of the configuration register
+>   * @current_channel: current channel in use
+> @@ -51,6 +75,7 @@ struct ad7949_adc_chip {
+>  	struct regulator *vref;
+>  	struct iio_dev *indio_dev;
+>  	struct spi_device *spi;
+> +	enum ad7949_ref_sel ref_sel;
+>  	u8 resolution;
+>  	u16 cfg;
+>  	unsigned int current_channel;
+> @@ -59,7 +84,7 @@ struct ad7949_adc_chip {
+>  
+>  static bool ad7949_spi_cfg_is_read_back(struct ad7949_adc_chip *ad7949_adc)
+>  {
+> -	if (!(ad7949_adc->cfg & AD7949_CFG_READ_BACK))
+> +	if (!(ad7949_adc->cfg & AD7949_CFG_READBACK))
+>  		return true;
+>  
+>  	return false;
+> @@ -91,7 +116,7 @@ static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
+>  	};
+>  
+>  	ad7949_adc->cfg = (val & mask) | (ad7949_adc->cfg & ~mask);
+> -	ad7949_adc->buffer = ad7949_adc->cfg << shift;
+> +	ad7949_adc->buffer = (ad7949_adc->cfg & AD7949_CFG_MASK_TOTAL) << shift;
+>  	spi_message_init_with_transfers(&msg, tx, 1);
+>  	ret = spi_sync(ad7949_adc->spi, &msg);
+>  
+> @@ -136,8 +161,8 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  	};
+>  
+>  	ret = ad7949_spi_write_cfg(ad7949_adc,
+> -				   channel << AD7949_OFFSET_CHANNEL_SEL,
+> -				   AD7949_MASK_CHANNEL_SEL);
+> +				   FIELD_PREP(AD7949_CFG_CHAN_SEL, channel),
+> +				   AD7949_CFG_CHAN_SEL);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -204,11 +229,20 @@ static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
+>  		return IIO_VAL_INT;
+>  
+>  	case IIO_CHAN_INFO_SCALE:
+> -		ret = regulator_get_voltage(ad7949_adc->vref);
+> -		if (ret < 0)
+> -			return ret;
+> +		if (ad7949_adc->vref) {
+> +			ret = regulator_get_voltage(ad7949_adc->vref);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			*val = ret / 5000;
+> +		} else if (ad7949_adc->ref_sel == AD7949_REF_2V5) {
+> +			*val = 2500;
+> +		} else if (ad7949_adc->ref_sel == AD7949_REF_4V0) {
+> +			*val = 4096;
+> +		} else {
+> +			return -EINVAL;
+> +		}
+>  
+> -		*val = ret / 5000;
+>  		return IIO_VAL_INT;
+>  	}
+>  
+> @@ -226,7 +260,8 @@ static int ad7949_spi_reg_access(struct iio_dev *indio_dev,
+>  		*readval = ad7949_adc->cfg;
+>  	else
+>  		ret = ad7949_spi_write_cfg(ad7949_adc,
+> -			writeval & AD7949_MASK_TOTAL, AD7949_MASK_TOTAL);
+> +			writeval & AD7949_CFG_MASK_TOTAL,
+> +			AD7949_CFG_MASK_TOTAL);
+>  
+>  	return ret;
+>  }
+> @@ -240,10 +275,24 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>  {
+>  	int ret;
+>  	int val;
+> +	u16 adc_config = 0;
+>  
+> -	/* Sequencer disabled, CFG readback disabled, IN0 as default channel */
+>  	ad7949_adc->current_channel = 0;
+> -	ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
+> +	ad7949_adc->cfg = 0;
+> +
+> +	adc_config |= FIELD_PREP(AD7949_CFG_APPLY, 1);
+> +	adc_config |= FIELD_PREP(AD7949_CFG_CHAN_CFG,
+> +			AD7949_CFG_CHAN_CFG_UNIPOLAR_GND);
+> +	adc_config |= FIELD_PREP(AD7949_CFG_CHAN_SEL,
+> +			ad7949_adc->current_channel);
+> +	adc_config |= FIELD_PREP(AD7949_CFG_BW, AD7949_CFG_BW_FULL);
+> +	adc_config |= FIELD_PREP(AD7949_CFG_REF_SEL, ad7949_adc->ref_sel);
+> +	adc_config |= FIELD_PREP(AD7949_CFG_SEQ, AD7949_CFG_SEQ_DISABLED);
+> +	adc_config |= FIELD_PREP(AD7949_CFG_READBACK, AD7949_CFG_READBACK_DIS);
+> +
+> +	ret = ad7949_spi_write_cfg(ad7949_adc,
+> +			adc_config,
+> +			AD7949_CFG_MASK_TOTAL);
+>  
+>  	/*
+>  	 * Do a dummy conversion to apply the first configuration setting.
+> @@ -261,6 +310,7 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  	struct ad7949_adc_chip *ad7949_adc;
+>  	struct iio_dev *indio_dev;
+>  	int ret;
+> +	u32 temp;
+>  
+>  	indio_dev = devm_iio_device_alloc(dev, sizeof(*ad7949_adc));
+>  	if (!indio_dev) {
+> @@ -279,21 +329,53 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  	ad7949_adc = iio_priv(indio_dev);
+>  	ad7949_adc->indio_dev = indio_dev;
+>  	ad7949_adc->spi = spi;
+> +	ad7949_adc->vref = NULL;
+>  
+>  	spec = &ad7949_adc_spec[spi_get_device_id(spi)->driver_data];
+>  	indio_dev->num_channels = spec->num_channels;
+>  	ad7949_adc->resolution = spec->resolution;
+>  
+> -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+> -	if (IS_ERR(ad7949_adc->vref)) {
+> -		dev_err(dev, "fail to request regulator\n");
+> -		return PTR_ERR(ad7949_adc->vref);
+> +	ret = of_property_read_u32(ad7949_adc->indio_dev->dev.of_node,
+> +			"adi,reference-select",
+> +			&temp);
+> +	if (ret == 0) {
+> +		switch (temp) {
+> +		case 0:
+> +			ad7949_adc->ref_sel = AD7949_REF_2V5;
+> +			break;
+> +		case 1:
+> +			ad7949_adc->ref_sel = AD7949_REF_4V0;
+> +			break;
+> +		case 2:
+> +			ad7949_adc->ref_sel = AD7949_REF_EXT;
+> +			break;
+> +		case 3:
+> +			ad7949_adc->ref_sel = AD7949_REF_EXT_BUF;
+> +			break;
+> +		default:
+> +			ad7949_adc->ref_sel = AD7949_REF_EXT_BUF;
+> +			dev_warn(dev,
+> +				"unknown reference-select value, using REFIN external Vref (3) by default\n");
+> +		}
+> +	} else {
+> +		ad7949_adc->ref_sel = AD7949_REF_EXT_BUF;
+> +		dev_warn(dev, "using external Vref by default\n");
+>  	}
+>  
+> -	ret = regulator_enable(ad7949_adc->vref);
+> -	if (ret < 0) {
+> -		dev_err(dev, "fail to enable regulator\n");
+> -		return ret;
+> +	/* Check whether using external Vref */
+> +	if ((ad7949_adc->ref_sel != AD7949_REF_2V5) &&
+> +			(ad7949_adc->ref_sel != AD7949_REF_4V0)) {
+That is 'interesting' alignment...
+
+> +		ad7949_adc->vref = devm_regulator_get(dev, "vref");
+> +		if (IS_ERR(ad7949_adc->vref)) {
+> +			dev_err(dev, "fail to request regulator\n");
+> +			return PTR_ERR(ad7949_adc->vref);
+> +		}
+> +
+> +		ret = regulator_enable(ad7949_adc->vref);
+> +		if (ret < 0) {
+> +			dev_err(dev, "fail to enable regulator\n");
+> +			return ret;
+> +		}
+>  	}
+>  
+>  	mutex_init(&ad7949_adc->lock);
+> @@ -314,7 +396,8 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  
+>  err:
+>  	mutex_destroy(&ad7949_adc->lock);
+> -	regulator_disable(ad7949_adc->vref);
+> +	if (ad7949_adc->vref)
+> +		regulator_disable(ad7949_adc->vref);
+>  
+>  	return ret;
+>  }
+> @@ -326,7 +409,8 @@ static int ad7949_spi_remove(struct spi_device *spi)
+>  
+>  	iio_device_unregister(indio_dev);
+>  	mutex_destroy(&ad7949_adc->lock);
+> -	regulator_disable(ad7949_adc->vref);
+> +	if (ad7949_adc->vref)
+> +		regulator_disable(ad7949_adc->vref);
+>  
+>  	return 0;
+>  }
 
