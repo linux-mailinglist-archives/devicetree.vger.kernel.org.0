@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D66CB221B2
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 07:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9392220E
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 09:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726419AbfERFSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 May 2019 01:18:48 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45274 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725268AbfERFSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 01:18:48 -0400
-Received: by mail-wr1-f65.google.com with SMTP id b18so9034603wrq.12
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 22:18:45 -0700 (PDT)
+        id S1725996AbfERHco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 03:32:44 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:51126 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725942AbfERHco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 03:32:44 -0400
+Received: by mail-wm1-f67.google.com with SMTP id f204so8828161wme.0
+        for <devicetree@vger.kernel.org>; Sat, 18 May 2019 00:32:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=kernelci-org.20150623.gappssmtp.com; s=20150623;
         h=message-id:date:mime-version:content-transfer-encoding:subject:to
          :from:cc;
-        bh=FdTczlBBVa9u+WV7Y3o/VG0d13GnIMDeCYtn2Nanml4=;
-        b=F1zfWMdRgS6aonOqLALhrSo+SyB4+e0YJqXqynv/i3/qPBQf/XXDnhPbqBKxYRQZiz
-         S8ujokRw+sZ8gpEG0r/sqzCtbRLMEWbnAOWCRP/YvIVR8rdMH22YtSsZB8HGQFmDrbGd
-         MjKCAMONJPBnABOtf9XTXbB8QyJCzD30yc9wGBT2syOFI9Mx/wVMlR/kl72NNslvQkc0
-         z7onZq/tS9DFecIgbdFccvdkDKg7l1PIdSXBqMCmCG2+rsAvFL+aRCsJhrjAZYjG9zth
-         JrCM8prGC6/8wXVYk1+UHv2GKpnyZpJtx8vJdZ1t8xKyJKWKz0goQ2ksTil2qJsXAKAM
-         AU1A==
+        bh=F7rW9WR+hkCVM8z35uvk7p1boAzUi+cOuWV+wfxrZHg=;
+        b=LCHDHE9Gb2lzCFWTyFebacpMQftGQo+veVRAK9HIA5heN6aUKqGXbkTiqAYCvHWF6w
+         CesFpgTq8tzMOUNw034xpKljI5L34idjQvfSJdY9DODpq/S7qtWviNQeaRwYIlWf1mNC
+         8hLghlWeRjJXbv4Ct0ev5fu/IgSNKMrNpBLsLn2amNBA/U8GYyyhK95rMiZHnGmtXJWW
+         LOoIpej/L5DpTsL7dhgj2nwfpZ0yXv/QC04EJaIaYTPftJS4+ImI3rI5zNobLLwhR8Z5
+         iGZeIMz2mv/iDovAuhasxRcRWphwIPNJF1hZIg11niQsp94uEjZ1zclQDk2Svxwahn3K
+         GmLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:date:mime-version
          :content-transfer-encoding:subject:to:from:cc;
-        bh=FdTczlBBVa9u+WV7Y3o/VG0d13GnIMDeCYtn2Nanml4=;
-        b=ivWQcCnZSf+l10h94Ve/7BT300OyMB7iI9g/Rf1B0MHnMwvi1XHsClit6NiSTkJJL6
-         ptxADwGH//gFadvr4qQ2GcypBuff70d0luWJ4CUEFQwPIZRoU4CLMuO3GP55G+xLiMGt
-         2A8wQWxc7vZ672MNWt5GVL7MrOt72U0GSYbCPVzmhczGSZouReRgHrQVWGZOQ+UlkB6m
-         nmP3yEYFs+WKHH87XyzQED24j5JKlikWL11QGSGPh3Qh6e/n1IRI1MNYnz7QfoizwwaO
-         j1DW313DPgOOJRCaJ5nraU2CbdyhHdk3Gt9g504cRGxfhW528qshTDnFNlGyD+v4HmU1
-         pJbA==
-X-Gm-Message-State: APjAAAXGzTVdPfDQXEzrVwiqIOXwgBGDO7tozRwfm+MiFhb71CDTA3Aw
-        3WxrmAjI0YfllVV0WnYjlObkGA==
-X-Google-Smtp-Source: APXvYqyKs/VAHBOML+lvp5PP0kJwVtEuyjECXDM+qa9/C+RbEsVzF763x/DTJy2CzXp5JXcWVGKPwQ==
-X-Received: by 2002:a5d:4e50:: with SMTP id r16mr11753300wrt.197.1558156725277;
-        Fri, 17 May 2019 22:18:45 -0700 (PDT)
+        bh=F7rW9WR+hkCVM8z35uvk7p1boAzUi+cOuWV+wfxrZHg=;
+        b=TLN18BfvAXM1v1xsHtI/qiY/6eC06QJd0xG2abA7xJuc5vg2xsqEO9kr4xjQJgWlqN
+         ZH1bxXak/ktjNhxW36jzoy1+EYGkO3FzOpvXBRnhTgJ4zGRXx3cim9o044uBizIcPikM
+         DgxZOW4TubTBHCP/M/b9b/jmCLNV9IgD0b4mVMii2SG8N5dbKeWF/EUjeZ5EIVpAu3eV
+         JNcI1RAvbGieCbPmhje/+bY1iuV4UPp445LQdqIHLJWqd85RyZMMSZ9k0nq06Y9Ps24T
+         SmuFxxLrtNWN/ib9k863q6o2x/CgvrbyluU7BDorHJGown4yo5jG80tWVR8B2igJTXCd
+         8tqg==
+X-Gm-Message-State: APjAAAWBgs7U5hw5llY/ITBgyPKOE3HkaDMFDgSaWzT06RvAwxVozyh3
+        h8ql/TPpvalwiBqiUX22WYA1/Q==
+X-Google-Smtp-Source: APXvYqwzOs9zWoOynUSNBQBi9WKTk4BqTL3+X4aIZAQv2sWvAzSx6S0uTZK4di0cFT5VaCDV/Pu3Yg==
+X-Received: by 2002:a1c:3d87:: with SMTP id k129mr8365984wma.21.1558164761492;
+        Sat, 18 May 2019 00:32:41 -0700 (PDT)
 Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
-        by smtp.gmail.com with ESMTPSA id r3sm9672144wrn.5.2019.05.17.22.18.44
+        by smtp.gmail.com with ESMTPSA id c131sm11669555wma.31.2019.05.18.00.32.40
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 May 2019 22:18:44 -0700 (PDT)
-Message-ID: <5cdf95b4.1c69fb81.808ef.7543@mx.google.com>
-Date:   Fri, 17 May 2019 22:18:44 -0700 (PDT)
+        Sat, 18 May 2019 00:32:40 -0700 (PDT)
+Message-ID: <5cdfb518.1c69fb81.7d28c.30a0@mx.google.com>
+Date:   Sat, 18 May 2019 00:32:40 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -53,8 +53,8 @@ X-Kernelci-Report-Type: bisect
 X-Kernelci-Tree: mainline
 X-Kernelci-Lab-Name: lab-baylibre
 X-Kernelci-Branch: master
-X-Kernelci-Kernel: v5.1-12505-g0ef0fd351550
-Subject: mainline/master boot bisection: v5.1-12505-g0ef0fd351550 on
+X-Kernelci-Kernel: v5.1-12511-g72cf0b07418a
+Subject: mainline/master boot bisection: v5.1-12511-g72cf0b07418a on
  meson-g12a-x96-max
 To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
         mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
@@ -80,19 +80,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 * Hope this helps!                                              *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-mainline/master boot bisection: v5.1-12505-g0ef0fd351550 on meson-g12a-x96-=
+mainline/master boot bisection: v5.1-12511-g72cf0b07418a on meson-g12a-x96-=
 max
 
 Summary:
-  Start:      0ef0fd351550 Merge tag 'for-linus' of git://git.kernel.org/pu=
-b/scm/virt/kvm/kvm
-  Details:    https://kernelci.org/boot/id/5cdf275859b514bb847a3628
-  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12505-g0ef=
-0fd351550/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot=
--meson-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12505-g0ef=
-0fd351550/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot=
--meson-g12a-x96-max.html
+  Start:      72cf0b07418a Merge tag 'sound-fix-5.2-rc1' of git://git.kerne=
+l.org/pub/scm/linux/kernel/git/tiwai/sound
+  Details:    https://kernelci.org/boot/id/5cdf4cc359b514ce467a362a
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12511-g72c=
+f0b07418a/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12511-g72c=
+f0b07418a/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
   Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
 trollers
 
@@ -109,7 +107,7 @@ git
   CPU arch:   arm64
   Lab:        lab-baylibre
   Compiler:   gcc-8
-  Config:     defconfig+CONFIG_RANDOMIZE_BASE=3Dy
+  Config:     defconfig
   Test suite: boot
 
 Breaking commit found:
@@ -205,9 +203,9 @@ git bisect start
 # good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
 git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
 git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [0ef0fd351550130129bbdb77362488befd7b69d2] Merge tag 'for-linus' of =
-git://git.kernel.org/pub/scm/virt/kvm/kvm
-git bisect bad 0ef0fd351550130129bbdb77362488befd7b69d2
+# bad: [72cf0b07418a9c8349aa9137194b1ccba6e54a9d] Merge tag 'sound-fix-5.2-=
+rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+git bisect bad 72cf0b07418a9c8349aa9137194b1ccba6e54a9d
 # bad: [89f4f128ea535acaabf7d5bddc30ddda0fb7a70a] Merge tag 'imx-dt64-5.2' =
 of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
 git bisect bad 89f4f128ea535acaabf7d5bddc30ddda0fb7a70a
