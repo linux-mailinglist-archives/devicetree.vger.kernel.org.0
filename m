@@ -2,245 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D9392220E
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 09:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE78022221
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 09:51:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725996AbfERHco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 May 2019 03:32:44 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:51126 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725942AbfERHco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 03:32:44 -0400
-Received: by mail-wm1-f67.google.com with SMTP id f204so8828161wme.0
-        for <devicetree@vger.kernel.org>; Sat, 18 May 2019 00:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
-        h=message-id:date:mime-version:content-transfer-encoding:subject:to
-         :from:cc;
-        bh=F7rW9WR+hkCVM8z35uvk7p1boAzUi+cOuWV+wfxrZHg=;
-        b=LCHDHE9Gb2lzCFWTyFebacpMQftGQo+veVRAK9HIA5heN6aUKqGXbkTiqAYCvHWF6w
-         CesFpgTq8tzMOUNw034xpKljI5L34idjQvfSJdY9DODpq/S7qtWviNQeaRwYIlWf1mNC
-         8hLghlWeRjJXbv4Ct0ev5fu/IgSNKMrNpBLsLn2amNBA/U8GYyyhK95rMiZHnGmtXJWW
-         LOoIpej/L5DpTsL7dhgj2nwfpZ0yXv/QC04EJaIaYTPftJS4+ImI3rI5zNobLLwhR8Z5
-         iGZeIMz2mv/iDovAuhasxRcRWphwIPNJF1hZIg11niQsp94uEjZ1zclQDk2Svxwahn3K
-         GmLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:mime-version
-         :content-transfer-encoding:subject:to:from:cc;
-        bh=F7rW9WR+hkCVM8z35uvk7p1boAzUi+cOuWV+wfxrZHg=;
-        b=TLN18BfvAXM1v1xsHtI/qiY/6eC06QJd0xG2abA7xJuc5vg2xsqEO9kr4xjQJgWlqN
-         ZH1bxXak/ktjNhxW36jzoy1+EYGkO3FzOpvXBRnhTgJ4zGRXx3cim9o044uBizIcPikM
-         DgxZOW4TubTBHCP/M/b9b/jmCLNV9IgD0b4mVMii2SG8N5dbKeWF/EUjeZ5EIVpAu3eV
-         JNcI1RAvbGieCbPmhje/+bY1iuV4UPp445LQdqIHLJWqd85RyZMMSZ9k0nq06Y9Ps24T
-         SmuFxxLrtNWN/ib9k863q6o2x/CgvrbyluU7BDorHJGown4yo5jG80tWVR8B2igJTXCd
-         8tqg==
-X-Gm-Message-State: APjAAAWBgs7U5hw5llY/ITBgyPKOE3HkaDMFDgSaWzT06RvAwxVozyh3
-        h8ql/TPpvalwiBqiUX22WYA1/Q==
-X-Google-Smtp-Source: APXvYqwzOs9zWoOynUSNBQBi9WKTk4BqTL3+X4aIZAQv2sWvAzSx6S0uTZK4di0cFT5VaCDV/Pu3Yg==
-X-Received: by 2002:a1c:3d87:: with SMTP id k129mr8365984wma.21.1558164761492;
-        Sat, 18 May 2019 00:32:41 -0700 (PDT)
-Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
-        by smtp.gmail.com with ESMTPSA id c131sm11669555wma.31.2019.05.18.00.32.40
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 18 May 2019 00:32:40 -0700 (PDT)
-Message-ID: <5cdfb518.1c69fb81.7d28c.30a0@mx.google.com>
-Date:   Sat, 18 May 2019 00:32:40 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1728519AbfERHvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 03:51:47 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:16528 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725268AbfERHvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 03:51:46 -0400
+X-UUID: 00c64ad0c4ba40d7b189bc49fad75e26-20190518
+X-UUID: 00c64ad0c4ba40d7b189bc49fad75e26-20190518
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1821289005; Sat, 18 May 2019 15:51:38 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs01n1.mediatek.inc
+ (172.21.101.68) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 18 May
+ 2019 15:51:36 +0800
+Received: from [10.16.6.141] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 18 May 2019 15:51:33 +0800
+Message-ID: <1558165892.7681.8.camel@mszsdaap41>
+Subject: Re: [v2 3/3] drm/mediatek: add mipi_tx driver for mt8183
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        "Rahul Sharma" <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Russell King" <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <stonea168@163.com>
+Date:   Sat, 18 May 2019 15:51:32 +0800
+In-Reply-To: <1557134258.5345.5.camel@mtksdaap41>
+References: <20190416054217.75387-1-jitao.shi@mediatek.com>
+         <20190416054217.75387-4-jitao.shi@mediatek.com>
+         <1557134258.5345.5.camel@mtksdaap41>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Kernelci-Report-Type: bisect
-X-Kernelci-Tree: mainline
-X-Kernelci-Lab-Name: lab-baylibre
-X-Kernelci-Branch: master
-X-Kernelci-Kernel: v5.1-12511-g72cf0b07418a
-Subject: mainline/master boot bisection: v5.1-12511-g72cf0b07418a on
- meson-g12a-x96-max
-To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
-        mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
-        matthew.hart@linaro.org, khilman@baylibre.com,
-        enric.balletbo@collabora.com, Jerome Brunet <jbrunet@baylibre.com>
-From:   "kernelci.org bot" <bot@kernelci.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-amlogic@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+On Mon, 2019-05-06 at 17:17 +0800, CK Hu wrote:
+> Hi, Jitao:
+> 
+> On Tue, 2019-04-16 at 13:42 +0800, Jitao Shi wrote:
+> > This patch add mt8183 mipi_tx driver.
+> > And also support other chips that use the same binding and driver.
+> > 
+> > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/Makefile             |   1 +
+> >  drivers/gpu/drm/mediatek/mtk_mipi_tx.c        |   2 +
+> >  drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |   1 +
+> >  drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c | 154 ++++++++++++++++++
+> >  4 files changed, 158 insertions(+)
+> >  create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
+> > 
+> 
+> [snip]
+> 
+> > +
+> > +static int mtk_mipi_tx_pll_prepare(struct clk_hw *hw)
+> > +{
+> > +	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
+> > +	unsigned int txdiv, txdiv0;
+> > +	u64 pcw;
+> > +	int ret;
+> > +
+> > +	dev_dbg(mipi_tx->dev, "prepare: %u bps\n", mipi_tx->data_rate);
+> > +
+> > +	if (mipi_tx->data_rate >= 2000000000) {
+> > +		txdiv = 1;
+> > +		txdiv0 = 0;
+> > +	} else if (mipi_tx->data_rate >= 1000000000) {
+> > +		txdiv = 2;
+> > +		txdiv0 = 1;
+> > +	} else if (mipi_tx->data_rate >= 500000000) {
+> > +		txdiv = 4;
+> > +		txdiv0 = 2;
+> > +	} else if (mipi_tx->data_rate > 250000000) {
+> > +		txdiv = 8;
+> > +		txdiv0 = 3;
+> > +	} else if (mipi_tx->data_rate >= 125000000) {
+> > +		txdiv = 16;
+> > +		txdiv0 = 4;
+> > +	} else {
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(mipi_tx->ref_clk);
+> > +	if (ret < 0) {
+> > +		dev_err(mipi_tx->dev,
+> > +			"can't prepare and enable mipi_tx ref_clk %d\n", ret);
+> > +		return ret;
+> > +	}
+> 
+> You enable the parent clock when prepare this clock here, this behavior
+> looks strange. I think the flow should be:
+> 
+> 1. Parent clock prepare
+> 2. This clock prepare
+> 3. Parent clock enable
+> 4. This clock enable
+> 
+> Maybe you should implement 'enable callback' so that parent clock would
+> be already enabled.
+> 
+> One question is, mipi_tx_pll is used by dsi driver, but I does not see
+> dsi prepare_enable() mipi_tx_pll, how does this work?
+> 
+> Regards,
+> CK
+> 
 
-mainline/master boot bisection: v5.1-12511-g72cf0b07418a on meson-g12a-x96-=
-max
+The mipi_tx can be accessed after clk_prepare_enable(mipi_tx->ref_clk);
 
-Summary:
-  Start:      72cf0b07418a Merge tag 'sound-fix-5.2-rc1' of git://git.kerne=
-l.org/pub/scm/linux/kernel/git/tiwai/sound
-  Details:    https://kernelci.org/boot/id/5cdf4cc359b514ce467a362a
-  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12511-g72c=
-f0b07418a/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12511-g72c=
-f0b07418a/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
-  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
-trollers
+So place the clk_prepare_enable(mipi_tx->ref_clk) before accessing
+mipitx.
 
-Checks:
-  revert:     PASS
-  verify:     PASS
+mipi_tx_pll is enable by mtk_mipi_tx_power_on() in mtk_mip_tx.c.
+clk_prepare_enable(mipi_tx->pll) will enable mipi_tx_pll.
 
-Parameters:
-  Tree:       mainline
-  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
-git
-  Branch:     master
-  Target:     meson-g12a-x96-max
-  CPU arch:   arm64
-  Lab:        lab-baylibre
-  Compiler:   gcc-8
-  Config:     defconfig
-  Test suite: boot
+Beset Regards
+Jitao
 
-Breaking commit found:
-
----------------------------------------------------------------------------=
-----
-commit 11a7bea17c9e0a36daab934d83e15a760f402147
-Author: Jerome Brunet <jbrunet@baylibre.com>
-Date:   Mon Mar 18 10:58:45 2019 +0100
-
-    arm64: dts: meson: g12a: add pinctrl support controllers
-    =
-
-    Add the peripheral and always-on pinctrl controllers to the g12a soc.
-    =
-
-    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/=
-dts/amlogic/meson-g12a.dtsi
-index abfa167751af..5e07e4ca3f4b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -104,6 +104,29 @@
- 				#address-cells =3D <2>;
- 				#size-cells =3D <2>;
- 				ranges =3D <0x0 0x0 0x0 0x34400 0x0 0x400>;
-+
-+				periphs_pinctrl: pinctrl@40 {
-+					compatible =3D "amlogic,meson-g12a-periphs-pinctrl";
-+					#address-cells =3D <2>;
-+					#size-cells =3D <2>;
-+					ranges;
-+
-+					gpio: bank@40 {
-+						reg =3D <0x0 0x40  0x0 0x4c>,
-+						      <0x0 0xe8  0x0 0x18>,
-+						      <0x0 0x120 0x0 0x18>,
-+						      <0x0 0x2c0 0x0 0x40>,
-+						      <0x0 0x340 0x0 0x1c>;
-+						reg-names =3D "gpio",
-+							    "pull",
-+							    "pull-enable",
-+							    "mux",
-+							    "ds";
-+						gpio-controller;
-+						#gpio-cells =3D <2>;
-+						gpio-ranges =3D <&periphs_pinctrl 0 0 86>;
-+					};
-+				};
- 			};
- =
-
- 			hiu: bus@3c000 {
-@@ -150,6 +173,25 @@
- 					clocks =3D <&xtal>, <&clkc CLKID_CLK81>;
- 					clock-names =3D "xtal", "mpeg-clk";
- 				};
-+
-+				ao_pinctrl: pinctrl@14 {
-+					compatible =3D "amlogic,meson-g12a-aobus-pinctrl";
-+					#address-cells =3D <2>;
-+					#size-cells =3D <2>;
-+					ranges;
-+
-+					gpio_ao: bank@14 {
-+						reg =3D <0x0 0x14 0x0 0x8>,
-+						      <0x0 0x1c 0x0 0x8>,
-+						      <0x0 0x24 0x0 0x14>;
-+						reg-names =3D "mux",
-+							    "ds",
-+							    "gpio";
-+						gpio-controller;
-+						#gpio-cells =3D <2>;
-+						gpio-ranges =3D <&ao_pinctrl 0 0 15>;
-+					};
-+				};
- 			};
- =
-
- 			sec_AO: ao-secure@140 {
----------------------------------------------------------------------------=
-----
+> > +
+> > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON4, RG_DSI_PLL_IBIAS);
+> > +
+> > +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
+> > +	usleep_range(30, 100);
+> > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
+> > +	pcw = div_u64(((u64)mipi_tx->data_rate * txdiv) << 24, 26000000);
+> > +	writel(pcw, mipi_tx->regs + MIPITX_PLL_CON0);
+> > +	mtk_mipi_tx_update_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV,
+> > +				txdiv0 << 8);
+> > +	usleep_range(1000, 2000);
+> > +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void mtk_mipi_tx_pll_unprepare(struct clk_hw *hw)
+> > +{
+> > +	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
+> > +
+> > +	dev_dbg(mipi_tx->dev, "unprepare\n");
+> > +
+> > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
+> > +
+> > +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
+> > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
+> > +	clk_disable_unprepare(mipi_tx->ref_clk);
+> > +}
+> > +
+> 
+> 
 
 
-Git bisection log:
-
----------------------------------------------------------------------------=
-----
-git bisect start
-# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
-git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
-git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [72cf0b07418a9c8349aa9137194b1ccba6e54a9d] Merge tag 'sound-fix-5.2-=
-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
-git bisect bad 72cf0b07418a9c8349aa9137194b1ccba6e54a9d
-# bad: [89f4f128ea535acaabf7d5bddc30ddda0fb7a70a] Merge tag 'imx-dt64-5.2' =
-of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
-git bisect bad 89f4f128ea535acaabf7d5bddc30ddda0fb7a70a
-# bad: [f5d6e8c077915c84d8b544bc02e3df2f0910c193] Merge tag 'sunxi-dt-for-5=
-.2' of https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux into arm=
-/dt
-git bisect bad f5d6e8c077915c84d8b544bc02e3df2f0910c193
-# bad: [6d918e09331e63593b7827ea1a718f0da03b7fb0] Merge tag 'omap-for-v5.2/=
-dt-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-om=
-ap into arm/dt
-git bisect bad 6d918e09331e63593b7827ea1a718f0da03b7fb0
-# bad: [2fe743c27f064d637df7f989333c153f8d4b0e65] Merge tag 'renesas-arm64-=
-dt-for-v5.2' of https://git.kernel.org/pub/scm/linux/kernel/git/horms/renes=
-as into arm/dt
-git bisect bad 2fe743c27f064d637df7f989333c153f8d4b0e65
-# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-=
-dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
-hip into arm/dt
-git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
-# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: A=
-dd CMA reserved memory
-git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
-# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: =
-add pinctrl support controllers
-git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
-# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s9=
-05d-phicomm-n1: add status LED
-git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
-# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a:=
- add efuse
-git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
-# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a:=
- Add AO Clock + Reset Controller support
-git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
-# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: =
-meson: g12a: add pinctrl support controllers
----------------------------------------------------------------------------=
-----
