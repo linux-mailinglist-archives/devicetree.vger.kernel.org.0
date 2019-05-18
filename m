@@ -2,94 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 482B3223E3
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 17:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D30F4223EE
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 17:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728516AbfERPYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 May 2019 11:24:08 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:45164 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729849AbfERPYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 11:24:07 -0400
-Received: by mail-wr1-f68.google.com with SMTP id b18so9961813wrq.12;
-        Sat, 18 May 2019 08:24:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hGVC97kr/8/BngU9FjmbWaxR7LHVSKdzb8qIb3rfhLw=;
-        b=BtXqZsPgI4WM70yIJTRcoOW/v1fHPTQ93blqEPfY62Z0eCoo1omvj12jxcouniHVav
-         RWUwM8ayTu/1lelHgxgyVv/r3oNEOc80PvKVxuCHjdnBpDeDYklt51R5ttVrCYjW9wfy
-         VBta0i3i+wa4GqaxtZGskmdJHQPoTLX4k4oAaghWp8yCaddmmJm5Ea5MqcX0iZIbYqxe
-         cJ1lGMTQltgYA4KHE+Djl8LQl/X8Tz+IJs5WfJ6LrgPQRTJ7ztQHBaaEhYmOr5JH3q1P
-         VWEjaCVhqAW5Fi1bRATi2/ScbR5HrO86rLKXlvxN68pNKXvBM/rnR/7GnmOFYghOr8Hd
-         vUaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hGVC97kr/8/BngU9FjmbWaxR7LHVSKdzb8qIb3rfhLw=;
-        b=Asz0xwt3naytOmQnfvWOW/imngOiEAHTykI9m5e2sSZY656bhS+KlZSJ15WvyQ2f5e
-         X7aK7uFsjRn8b0tO11KbT8ViQZa+QFBrJU1E60K4uYxNFxTWKREp3sJ4cLj0N+x4ders
-         BoHecfdjwUtIwXx4jIqN+ouVUc4/pjLjV4FyFQKxjReLHfBRwRbE89bxLafGt0TprqSJ
-         dMe3McHwRV6hAQv5a5AXbCHnOazqHaROd2BDMz1jnI6uIB1TRdOadFsTxgNgZWZduELg
-         32oyBGZqujHW2gNs8g5SjcyWv1KiiYCXsx2vOlEmfyS4SkW3sTWJm3t57YxjGfhk75+f
-         Sm6g==
-X-Gm-Message-State: APjAAAVMoQ8oRJ1nSZhWqerDeWBIKpj+5DMHeo3idWxD9ppw2i8JslhV
-        oUtyWzMoxPIw+0BXwuieSFE=
-X-Google-Smtp-Source: APXvYqxWCD6w353QbYqhVWkd+Dn2oVl6fxAxPkAkutmksHJUDijWPOUywy0u0pjrcZn1TcL3nbhdyg==
-X-Received: by 2002:adf:cf0e:: with SMTP id o14mr3328031wrj.230.1558193046204;
-        Sat, 18 May 2019 08:24:06 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id j190sm12934836wmb.19.2019.05.18.08.24.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 18 May 2019 08:24:05 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v3 4/4] arm64: defconfig: enable sunxi watchdog
-Date:   Sat, 18 May 2019 17:23:55 +0200
-Message-Id: <20190518152355.11134-5-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190518152355.11134-1-peron.clem@gmail.com>
-References: <20190518152355.11134-1-peron.clem@gmail.com>
+        id S1728458AbfERPkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 11:40:22 -0400
+Received: from mailoutvs56.siol.net ([185.57.226.247]:48283 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727594AbfERPkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 11:40:22 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTP id 102F7520B82;
+        Sat, 18 May 2019 17:40:20 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id PuM_LcnyTvqU; Sat, 18 May 2019 17:40:19 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTPS id BB40A520BDC;
+        Sat, 18 May 2019 17:40:19 +0200 (CEST)
+Received: from localhost.localdomain (cpe-86-58-52-202.static.triera.net [86.58.52.202])
+        (Authenticated sender: 031275009)
+        by mail.siol.net (Zimbra) with ESMTPSA id 65006520B82;
+        Sat, 18 May 2019 17:40:19 +0200 (CEST)
+From:   Jernej Skrabec <jernej.skrabec@siol.net>
+To:     maxime.ripard@bootlin.com, wens@csie.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: sun8i-h3: Fix wifi in Beelink X2 DT
+Date:   Sat, 18 May 2019 17:40:14 +0200
+Message-Id: <20190518154014.28998-1-jernej.skrabec@siol.net>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SUNXI_WATCHDOG option is required to make the
-watchdog available on Allwinner H6.
+mmc1 node where wifi module is connected doesn't have properly defined
+power supplies so wifi module is never powered up. Fix that by
+specifying additional power supplies.
 
-Enable this option as a module.
+Additionally, this STB may have either Realtek or Broadcom based wifi
+module. One based on Broadcom module also needs external clock to work
+properly. Fix that by adding clock property to wifi_pwrseq node.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
+Fixes: e582b47a9252 ("ARM: dts: sun8i-h3: Add dts for the Beelink X2 STB"=
+)
+Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Changes from v1:
+- removed unneeded pinctrl-names node
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4d583514258c..fc51dd4decb1 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -420,6 +420,7 @@ CONFIG_UNIPHIER_THERMAL=y
- CONFIG_WATCHDOG=y
- CONFIG_ARM_SP805_WATCHDOG=y
- CONFIG_S3C2410_WATCHDOG=y
-+CONFIG_SUNXI_WATCHDOG=m
- CONFIG_IMX2_WDT=y
- CONFIG_MESON_GXBB_WATCHDOG=m
- CONFIG_MESON_WATCHDOG=m
--- 
-2.17.1
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dt=
+s/sun8i-h3-beelink-x2.dts
+index 6277f13f3eb3..ac9e26b1d906 100644
+--- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
++++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+@@ -90,6 +90,8 @@
+ 	wifi_pwrseq: wifi_pwrseq {
+ 		compatible =3D "mmc-pwrseq-simple";
+ 		reset-gpios =3D <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
++		clocks =3D <&rtc 1>;
++		clock-names =3D "ext_clock";
+ 	};
+=20
+ 	sound_spdif {
+@@ -155,6 +157,8 @@
+=20
+ &mmc1 {
+ 	vmmc-supply =3D <&reg_vcc3v3>;
++	vqmmc-supply =3D <&reg_vcc3v3>;
++	mmc-pwrseq =3D <&wifi_pwrseq>;
+ 	bus-width =3D <4>;
+ 	non-removable;
+ 	status =3D "okay";
+--=20
+2.21.0
 
