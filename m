@@ -2,132 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B62223BB
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 16:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F338F223C2
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 17:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729612AbfEROp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 May 2019 10:45:28 -0400
-Received: from mail-yb1-f194.google.com ([209.85.219.194]:42752 "EHLO
-        mail-yb1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727260AbfEROp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 10:45:28 -0400
-Received: by mail-yb1-f194.google.com with SMTP id a21so3838208ybg.9;
-        Sat, 18 May 2019 07:45:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=77OQ/lkmsml6JIGkNy6mI1RRxZHIM2FsvrIfk0LDVxY=;
-        b=AdfBwGcWiRp4t6iFzrle+NFQHOHvRbIYZrm7PG3CY9l5UcF25lNq5vlnLeAfP2591b
-         G/yZTVDvUCuwq4ZxuLok25gP1xkPMFYYLWfKQ1D9Ehx09f3Lhk6tXhAU3tQNo083NFB8
-         qnyP08CcF7XzMcjiJclm7q90np3/pNgT8uzZYfUzrqk6hfmiYU292fvtjB5dyI2OHe86
-         4GGnQgRt88WUNSzckjwnDrhZlDw8p47U/U1Idw1JUZ0BjkFWXKO5HM9IUQsLOkKeXyrT
-         rr809uMQ85jA3zuC2J0S6ZMZJ4KwFrgUE/dPyY8t8Eo+S/Z9710uagbZD2xSt4Cp5RP2
-         WJQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=77OQ/lkmsml6JIGkNy6mI1RRxZHIM2FsvrIfk0LDVxY=;
-        b=LQFCN3kcByUkb+li26Gj4cswAl49delbDK4OC33UN47mlk6c4e7wS4wMOKl4SAN9ED
-         DKPSvxTtpNCfWpIHhrpMgCWeEYNeSTtDbm/nAgy+ANf22lBJfcibP0wfX4LJCGCRlCp6
-         pQUgiFyuSPfAZCN65yfEtg4iWtVN6H9fmp8qoFvnTqkcSN/77OsvHylvjVxRh/Kekbwl
-         /Z/RC06zVSkPefv+agEKwlSE8p8tnAicCb9S6NCi/Uos+MHt5czLR0rJhk7cLX9Yyx8m
-         O+rqljijDjJ/Mw3yxmFUcUiYPRalxEaykoXLKFlnaD06GVrLlZtDgJn8ve8IvURnUc96
-         J0bQ==
-X-Gm-Message-State: APjAAAW/BT86biHLmpVTD/S2UVwkLbRNy3cxV0F7FFSvfUIXEyAfADKi
-        jxa+BgAdOJ7YHaDkmNNt+p0odO5mCEENXA/JJxi1ZVlhXCM=
-X-Google-Smtp-Source: APXvYqz8Ud0fDXY9JxGkS+dy5NJLMTqLdeb9pIIxVKprfYnVIb0d0/+pRo/C+qYP+AaKVJMDPptDy2GlVYMckN6N6oE=
-X-Received: by 2002:a25:b10f:: with SMTP id g15mr10782445ybj.82.1558190727257;
- Sat, 18 May 2019 07:45:27 -0700 (PDT)
+        id S1728540AbfERPHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 11:07:17 -0400
+Received: from mailoutvs17.siol.net ([185.57.226.208]:54194 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728516AbfERPHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 11:07:16 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 0CAD3520CA6;
+        Sat, 18 May 2019 17:07:13 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id 5YviEmiBTKUs; Sat, 18 May 2019 17:07:12 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id B1759520CBE;
+        Sat, 18 May 2019 17:07:12 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-86-58-52-202.static.triera.net [86.58.52.202])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id E64AC520CA6;
+        Sat, 18 May 2019 17:07:11 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i-h3: Fix wifi in Beelink X2 DT
+Date:   Sat, 18 May 2019 17:07:11 +0200
+Message-ID: <36237813.UWQAqNRFN9@jernej-laptop>
+In-Reply-To: <20190517073048.y6mzgbhhryfmuckl@flea>
+References: <20190516161039.18534-1-jernej.skrabec@siol.net> <20190517073048.y6mzgbhhryfmuckl@flea>
 MIME-Version: 1.0
-References: <20190517184659.18828-1-peron.clem@gmail.com> <20190517184659.18828-2-peron.clem@gmail.com>
- <CAL_JsqKPazGn+g1zS4NMwvQZ_6GcAm0tgcOTqyQA0dz0+2dp3g@mail.gmail.com>
- <CAJiuCcdMxXAXYk=QpRwsvBUW0tvBVMqXvgx0Y7fAKP=ouyBnKQ@mail.gmail.com> <CAL_JsqJgo8NpK00ApBcdtYGW24yuqU=4EMna+r_07=dqceZyyg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJgo8NpK00ApBcdtYGW24yuqU=4EMna+r_07=dqceZyyg@mail.gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sat, 18 May 2019 16:45:10 +0200
-Message-ID: <CAJiuCcfjEqS8BdYdwD22W4hhD27TTs7DPsiEErF_Xt+5Gdkewg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/6] drm: panfrost: add optional bus_clock
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Steven Price <steven.price@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Dne petek, 17. maj 2019 ob 09:30:48 CEST je Maxime Ripard napisal(a):
+> Hi,
+> 
+> On Thu, May 16, 2019 at 06:10:39PM +0200, Jernej Skrabec wrote:
+> > mmc1 node where wifi module is connected doesn't have properly defined
+> > power supplies so wifi module is never powered up. Fix that by
+> > specifying additional power supplies.
+> > 
+> > Additionally, this STB may have either Realtek or Broadcom based wifi
+> > module. One based on Broadcom module also needs external clock to work
+> > properly. Fix that by adding clock property to wifi_pwrseq node.
+> > 
+> > Fixes: e582b47a9252 ("ARM: dts: sun8i-h3: Add dts for the Beelink X2 STB")
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > ---
+> > 
+> >  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> > b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts index
+> > 6277f13f3eb3..6a0ac85b4616 100644
+> > --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> > +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
+> > @@ -89,7 +89,10 @@
+> > 
+> >  	wifi_pwrseq: wifi_pwrseq {
+> >  	
+> >  		compatible = "mmc-pwrseq-simple";
+> > 
+> > +		pinctrl-names = "default";
+> 
+> pinctrl-names only make sense with another pinctrl-[0-255]
+> property. Did you forgot something here?
 
-On Sat, 18 May 2019 at 00:17, Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Fri, May 17, 2019 at 5:08 PM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail=
-.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Fri, 17 May 2019 at 22:07, Rob Herring <robh+dt@kernel.org> wrote:
-> > >
-> > > On Fri, May 17, 2019 at 1:47 PM Cl=C3=A9ment P=C3=A9ron <peron.clem@g=
-mail.com> wrote:
-> > > >
-> > > > Allwinner H6 has an ARM Mali-T720 MP2 which required a bus_clock.
-> > > >
-> > > > Add an optional bus_clock at the init of the panfrost driver.
-> > > >
-> > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > > > ---
-> > > >  drivers/gpu/drm/panfrost/panfrost_device.c | 25 ++++++++++++++++++=
-+++-
-> > > >  drivers/gpu/drm/panfrost/panfrost_device.h |  1 +
-> > > >  2 files changed, 25 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/panfrost/panfrost_device.c b/drivers/g=
-pu/drm/panfrost/panfrost_device.c
-> > > > index 3b2bced1b015..8da6e612d384 100644
-> > > > --- a/drivers/gpu/drm/panfrost/panfrost_device.c
-> > > > +++ b/drivers/gpu/drm/panfrost/panfrost_device.c
-> > > > @@ -44,7 +44,8 @@ static int panfrost_clk_init(struct panfrost_devi=
-ce *pfdev)
-> > > >
-> > > >         pfdev->clock =3D devm_clk_get(pfdev->dev, NULL);
-> > > >         if (IS_ERR(pfdev->clock)) {
-> > > > -               dev_err(pfdev->dev, "get clock failed %ld\n", PTR_E=
-RR(pfdev->clock));
-> > > > +               dev_err(pfdev->dev, "get clock failed %ld\n",
-> > > > +                       PTR_ERR(pfdev->clock));
-> > >
-> > > Please drop this whitespace change.
-> >
-> > Sorry, I thought it was only a mistake here, I will drop it.
-> > Why are they so many lines over 80 characters?
->
-> I'd guess most are prints and/or just slightly over.
->
-> > Is there a specific coding style to follow ?
->
-> Yes, but generally the 80 character thing is more a guidance. Not
-> having unrelated changes in a single commit is more of a hard rule.
+No, I just took BananaPi M2+ as a example, which has pinctrl-names property 
+too and no "pinctrl-*". But digging through history of this DT, it seems that 
+this is just leftover which somebody forgot to remove.
 
-Ok, thanks for the clarification.
+I'll send v2.
 
-Cl=C3=A9ment
+Best regards,
+Jernej
 
->
-> Rob
+
