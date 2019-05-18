@@ -2,201 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE3C12212F
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 03:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D66CB221B2
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 07:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727065AbfERB6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 May 2019 21:58:41 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:8445 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726519AbfERB6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 May 2019 21:58:41 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cdf66d00000>; Fri, 17 May 2019 18:58:41 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 17 May 2019 18:58:39 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 17 May 2019 18:58:39 -0700
-Received: from [10.25.74.217] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 18 May
- 2019 01:58:32 +0000
-Subject: Re: [PATCH V6 02/15] PCI/PME: Export pcie_pme_disable_msi() &
- pcie_pme_no_msi() APIs
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     Christoph Hellwig <hch@infradead.org>, <lorenzo.pieralisi@arm.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
-        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190513050626.14991-1-vidyas@nvidia.com>
- <20190513050626.14991-3-vidyas@nvidia.com>
- <20190513072539.GA27708@infradead.org>
- <3a8cea93-2aeb-e5e2-4d56-f0c6449073c3@nvidia.com>
- <20190516133426.GC101793@google.com>
- <bd08ccaa-c6ee-f966-91e4-bcd5d99d5cf2@nvidia.com>
- <20190517132453.GA30700@google.com>
- <ba611a45-9589-8dce-58e1-d99dd463265d@nvidia.com>
- <20190517185545.GB49425@google.com>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <bf220eba-f9d7-81f3-6b75-db463c74fbfa@nvidia.com>
-Date:   Sat, 18 May 2019 07:28:29 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726419AbfERFSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 01:18:48 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:45274 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725268AbfERFSs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 01:18:48 -0400
+Received: by mail-wr1-f65.google.com with SMTP id b18so9034603wrq.12
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2019 22:18:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
+        h=message-id:date:mime-version:content-transfer-encoding:subject:to
+         :from:cc;
+        bh=FdTczlBBVa9u+WV7Y3o/VG0d13GnIMDeCYtn2Nanml4=;
+        b=F1zfWMdRgS6aonOqLALhrSo+SyB4+e0YJqXqynv/i3/qPBQf/XXDnhPbqBKxYRQZiz
+         S8ujokRw+sZ8gpEG0r/sqzCtbRLMEWbnAOWCRP/YvIVR8rdMH22YtSsZB8HGQFmDrbGd
+         MjKCAMONJPBnABOtf9XTXbB8QyJCzD30yc9wGBT2syOFI9Mx/wVMlR/kl72NNslvQkc0
+         z7onZq/tS9DFecIgbdFccvdkDKg7l1PIdSXBqMCmCG2+rsAvFL+aRCsJhrjAZYjG9zth
+         JrCM8prGC6/8wXVYk1+UHv2GKpnyZpJtx8vJdZ1t8xKyJKWKz0goQ2ksTil2qJsXAKAM
+         AU1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:mime-version
+         :content-transfer-encoding:subject:to:from:cc;
+        bh=FdTczlBBVa9u+WV7Y3o/VG0d13GnIMDeCYtn2Nanml4=;
+        b=ivWQcCnZSf+l10h94Ve/7BT300OyMB7iI9g/Rf1B0MHnMwvi1XHsClit6NiSTkJJL6
+         ptxADwGH//gFadvr4qQ2GcypBuff70d0luWJ4CUEFQwPIZRoU4CLMuO3GP55G+xLiMGt
+         2A8wQWxc7vZ672MNWt5GVL7MrOt72U0GSYbCPVzmhczGSZouReRgHrQVWGZOQ+UlkB6m
+         nmP3yEYFs+WKHH87XyzQED24j5JKlikWL11QGSGPh3Qh6e/n1IRI1MNYnz7QfoizwwaO
+         j1DW313DPgOOJRCaJ5nraU2CbdyhHdk3Gt9g504cRGxfhW528qshTDnFNlGyD+v4HmU1
+         pJbA==
+X-Gm-Message-State: APjAAAXGzTVdPfDQXEzrVwiqIOXwgBGDO7tozRwfm+MiFhb71CDTA3Aw
+        3WxrmAjI0YfllVV0WnYjlObkGA==
+X-Google-Smtp-Source: APXvYqyKs/VAHBOML+lvp5PP0kJwVtEuyjECXDM+qa9/C+RbEsVzF763x/DTJy2CzXp5JXcWVGKPwQ==
+X-Received: by 2002:a5d:4e50:: with SMTP id r16mr11753300wrt.197.1558156725277;
+        Fri, 17 May 2019 22:18:45 -0700 (PDT)
+Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
+        by smtp.gmail.com with ESMTPSA id r3sm9672144wrn.5.2019.05.17.22.18.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 May 2019 22:18:44 -0700 (PDT)
+Message-ID: <5cdf95b4.1c69fb81.808ef.7543@mx.google.com>
+Date:   Fri, 17 May 2019 22:18:44 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190517185545.GB49425@google.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558144721; bh=imsCMc9pMzH0x1z4chiZIBu4CmzKLhdBfR9mkxX2haY=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=F6Be5xwQ3sFV2qa8WB9r7Ltw4gVLIxaSajqybSA7oEB10RFkn954eRlW5Ll/kmoIq
-         KSHQxtwJz+qxy1ycXWhHXsKxnaRCTCHLYd8R9zYmt+OI6pba+IiJL2aBqV4W0/Ri7I
-         PAmNgZDNZnxNQg6lfWJUUsJiuRQvnv5Tha0JVNm4GRPQqA5WQ9PEl+YSU1F8iORF+K
-         IlHPLLL3c/k/BZvlMR753FbXavW+Edp4hcK4eOWh5kksCUVE1jiRj70WNMC/vVZJcv
-         PFJO5gMnnqPSCZDuinj05v1CiSwbo1RMiEkIVjX3iiJl8VDuTYWLgPq/go9zS5ueZP
-         K6+QYFNA2Ehsg==
+Content-Transfer-Encoding: quoted-printable
+X-Kernelci-Report-Type: bisect
+X-Kernelci-Tree: mainline
+X-Kernelci-Lab-Name: lab-baylibre
+X-Kernelci-Branch: master
+X-Kernelci-Kernel: v5.1-12505-g0ef0fd351550
+Subject: mainline/master boot bisection: v5.1-12505-g0ef0fd351550 on
+ meson-g12a-x96-max
+To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
+        mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
+        matthew.hart@linaro.org, khilman@baylibre.com,
+        enric.balletbo@collabora.com, Jerome Brunet <jbrunet@baylibre.com>
+From:   "kernelci.org bot" <bot@kernelci.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/18/2019 12:25 AM, Bjorn Helgaas wrote:
-> On Fri, May 17, 2019 at 11:23:36PM +0530, Vidya Sagar wrote:
->> On 5/17/2019 6:54 PM, Bjorn Helgaas wrote:
->>> Do you have "lspci -vvxxx" output for the root ports handy?
->>>
->>> If there's some clue in the standard config space that would tell us
->>> that MSI works for some events but not others, we could make the PCI
->>> core pay attention it.  That would be the best solution because it
->>> wouldn't require Tegra-specific code.
->>
->> Here is the output of 'lspci vvxxx' for one of Tegra194's root ports.
-> 
-> Thanks!
-> 
-> This port advertises both MSI and MSI-X, and neither one is enabled.
-> This particular port doesn't have a slot, so hotplug isn't applicable
-> to it.
-> 
-> But if I understand correctly, if MSI or MSI-X were enabled and the
-> port had a slot, the port would generate MSI/MSI-X hotplug interrupts.
-> But PME and AER events would still cause INTx interrupts (even with
-> MSI or MSI-X enabled).
-> 
-> Do I have that right?  I just want to make sure that the reason for
-> PME being INTx is a permanent hardware choice and that it's not
-> related to MSI and MSI-X currently being disabled.
-Yes. Thats right. Its hardware choice that our hardware engineers made to
-use INTx for PME instead of MSI irrespective of MSI/MSI-X enabled/disabled
-in the root port.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-> 
->> 0005:00:00.0 PCI bridge: NVIDIA Corporation Device 1ad0 (rev a1) (prog-if 00 [Normal decode])
->> 	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR+ FastB2B- DisINTx-
->> 	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
->> 	Latency: 0
->> 	Interrupt: pin A routed to IRQ 50
->> 	Bus: primary=00, secondary=01, subordinate=ff, sec-latency=0
->> 	I/O behind bridge: None
->> 	Memory behind bridge: 40000000-400fffff [size=1M]
->> 	Prefetchable memory behind bridge: None
->> 	Secondary status: 66MHz- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- <SERR- <PERR-
->> 	BridgeCtl: Parity- SERR+ NoISA- VGA- VGA16- MAbort- >Reset- FastB2B-
->> 		PriDiscTmr- SecDiscTmr- DiscTmrStat- DiscTmrSERREn-
->> 	Capabilities: [40] Power Management version 3
->> 		Flags: PMEClk- DSI- D1- D2- AuxCurrent=375mA PME(D0+,D1-,D2-,D3hot+,D3cold+)
->> 		Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
->> 	Capabilities: [50] MSI: Enable- Count=1/1 Maskable+ 64bit+
->> 		Address: 0000000000000000  Data: 0000
->> 		Masking: 00000000  Pending: 00000000
->> 	Capabilities: [70] Express (v2) Root Port (Slot-), MSI 00
->> 		DevCap:	MaxPayload 256 bytes, PhantFunc 0
->> 			ExtTag- RBE+
->> 		DevCtl:	CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
->> 			RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
->> 			MaxPayload 128 bytes, MaxReadReq 512 bytes
->> 		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr+ TransPend-
->> 		LnkCap:	Port #0, Speed 16GT/s, Width x8, ASPM L0s L1, Exit Latency L0s <1us, L1 <64us
->> 			ClockPM- Surprise+ LLActRep+ BwNot+ ASPMOptComp+
->> 		LnkCtl:	ASPM Disabled; RCB 64 bytes Disabled- CommClk+
->> 			ExtSynch- ClockPM- AutWidDis- BWInt+ AutBWInt-
->> 		LnkSta:	Speed 5GT/s (downgraded), Width x1 (downgraded)
->> 			TrErr- Train- SlotClk+ DLActive+ BWMgmt+ ABWMgmt+
->> 		RootCtl: ErrCorrectable- ErrNon-Fatal- ErrFatal- PMEIntEna+ CRSVisible+
->> 		RootCap: CRSVisible+
->> 		RootSta: PME ReqID 0000, PMEStatus- PMEPending-
->> 		DevCap2: Completion Timeout: Range ABCD, TimeoutDis+, LTR+, OBFF Not Supported ARIFwd-
->> 			 AtomicOpsCap: Routing- 32bit- 64bit- 128bitCAS-
->> 		DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR+, OBFF Disabled ARIFwd-
->> 			 AtomicOpsCtl: ReqEn- EgressBlck-
->> 		LnkCtl2: Target Link Speed: 16GT/s, EnterCompliance- SpeedDis-
->> 			 Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
->> 			 Compliance De-emphasis: -6dB
->> 		LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete-, EqualizationPhase1-
->> 			 EqualizationPhase2-, EqualizationPhase3-, LinkEqualizationRequest-
->> 	Capabilities: [b0] MSI-X: Enable- Count=8 Masked-
->> 		Vector table: BAR=2 offset=00000000
->> 		PBA: BAR=2 offset=00010000
->> 	Capabilities: [100 v2] Advanced Error Reporting
->> 		UESta:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
->> 		UEMsk:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
->> 		UESvrt:	DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+ ECRC- UnsupReq- ACSViol-
->> 		CESta:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr-
->> 		CEMsk:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+
->> 		AERCap:	First Error Pointer: 00, ECRCGenCap+ ECRCGenEn- ECRCChkCap+ ECRCChkEn-
->> 			MultHdrRecCap+ MultHdrRecEn- TLPPfxPres- HdrLogCap-
->> 		HeaderLog: 00000000 00000000 00000000 00000000
->> 		RootCmd: CERptEn+ NFERptEn+ FERptEn+
->> 		RootSta: CERcvd- MultCERcvd- UERcvd- MultUERcvd-
->> 			 FirstFatal- NonFatalMsg- FatalMsg- IntMsg 0
->> 		ErrorSrc: ERR_COR: 0000 ERR_FATAL/NONFATAL: 0000
->> 	Capabilities: [148 v1] Secondary PCI Express <?>
->> 	Capabilities: [168 v1] Physical Layer 16.0 GT/s <?>
->> 	Capabilities: [190 v1] Lane Margining at the Receiver <?>
->> 	Capabilities: [1c0 v1] L1 PM Substates
->> 		L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2+ ASPM_L1.1+ L1_PM_Substates+
->> 			  PortCommonModeRestoreTime=60us PortTPowerOnTime=40us
->> 		L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
->> 			   T_CommonMode=10us LTR1.2_Threshold=0ns
->> 		L1SubCtl2: T_PwrOn=10us
->> 	Capabilities: [1d0 v1] Vendor Specific Information: ID=0002 Rev=4 Len=100 <?>
->> 	Capabilities: [2d0 v1] Vendor Specific Information: ID=0001 Rev=1 Len=038 <?>
->> 	Capabilities: [308 v1] Data Link Feature <?>
->> 	Capabilities: [314 v1] Precision Time Measurement
->> 		PTMCap: Requester:+ Responder:+ Root:+
->> 		PTMClockGranularity: 16ns
->> 		PTMControl: Enabled:- RootSelected:-
->> 		PTMEffectiveGranularity: Unknown
->> 	Capabilities: [320 v1] Vendor Specific Information: ID=0004 Rev=1 Len=054 <?>
->> 	Kernel driver in use: pcieport
->> 00: de 10 d0 1a 07 01 10 00 a1 00 04 06 00 00 01 00
->> 10: 00 00 00 00 00 00 00 00 00 01 ff 00 f0 00 00 00
->> 20: 00 40 00 40 f1 ff 01 00 00 00 00 00 00 00 00 00
->> 30: 00 00 00 00 40 00 00 00 00 00 00 00 32 01 02 00
->> 40: 01 50 c3 c9 08 00 00 00 00 00 00 00 00 00 00 00
->> 50: 05 70 80 01 00 00 00 00 00 00 00 00 00 00 00 00
->> 60: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->> 70: 10 b0 42 00 01 80 00 00 1f 28 10 00 84 4c 7b 00
->> 80: 40 04 12 f0 00 00 00 00 c0 03 40 00 18 00 01 00
->> 90: 00 00 00 00 1f 0c 01 00 00 04 00 00 1e 00 80 01
->> a0: 04 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00
->> b0: 11 00 07 00 02 00 00 00 02 00 01 00 00 00 00 00
->> c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->> d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->> e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->> f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+mainline/master boot bisection: v5.1-12505-g0ef0fd351550 on meson-g12a-x96-=
+max
 
+Summary:
+  Start:      0ef0fd351550 Merge tag 'for-linus' of git://git.kernel.org/pu=
+b/scm/virt/kvm/kvm
+  Details:    https://kernelci.org/boot/id/5cdf275859b514bb847a3628
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12505-g0ef=
+0fd351550/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot=
+-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12505-g0ef=
+0fd351550/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot=
+-meson-g12a-x96-max.html
+  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
+trollers
+
+Checks:
+  revert:     PASS
+  verify:     PASS
+
+Parameters:
+  Tree:       mainline
+  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
+git
+  Branch:     master
+  Target:     meson-g12a-x96-max
+  CPU arch:   arm64
+  Lab:        lab-baylibre
+  Compiler:   gcc-8
+  Config:     defconfig+CONFIG_RANDOMIZE_BASE=3Dy
+  Test suite: boot
+
+Breaking commit found:
+
+---------------------------------------------------------------------------=
+----
+commit 11a7bea17c9e0a36daab934d83e15a760f402147
+Author: Jerome Brunet <jbrunet@baylibre.com>
+Date:   Mon Mar 18 10:58:45 2019 +0100
+
+    arm64: dts: meson: g12a: add pinctrl support controllers
+    =
+
+    Add the peripheral and always-on pinctrl controllers to the g12a soc.
+    =
+
+    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/=
+dts/amlogic/meson-g12a.dtsi
+index abfa167751af..5e07e4ca3f4b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -104,6 +104,29 @@
+ 				#address-cells =3D <2>;
+ 				#size-cells =3D <2>;
+ 				ranges =3D <0x0 0x0 0x0 0x34400 0x0 0x400>;
++
++				periphs_pinctrl: pinctrl@40 {
++					compatible =3D "amlogic,meson-g12a-periphs-pinctrl";
++					#address-cells =3D <2>;
++					#size-cells =3D <2>;
++					ranges;
++
++					gpio: bank@40 {
++						reg =3D <0x0 0x40  0x0 0x4c>,
++						      <0x0 0xe8  0x0 0x18>,
++						      <0x0 0x120 0x0 0x18>,
++						      <0x0 0x2c0 0x0 0x40>,
++						      <0x0 0x340 0x0 0x1c>;
++						reg-names =3D "gpio",
++							    "pull",
++							    "pull-enable",
++							    "mux",
++							    "ds";
++						gpio-controller;
++						#gpio-cells =3D <2>;
++						gpio-ranges =3D <&periphs_pinctrl 0 0 86>;
++					};
++				};
+ 			};
+ =
+
+ 			hiu: bus@3c000 {
+@@ -150,6 +173,25 @@
+ 					clocks =3D <&xtal>, <&clkc CLKID_CLK81>;
+ 					clock-names =3D "xtal", "mpeg-clk";
+ 				};
++
++				ao_pinctrl: pinctrl@14 {
++					compatible =3D "amlogic,meson-g12a-aobus-pinctrl";
++					#address-cells =3D <2>;
++					#size-cells =3D <2>;
++					ranges;
++
++					gpio_ao: bank@14 {
++						reg =3D <0x0 0x14 0x0 0x8>,
++						      <0x0 0x1c 0x0 0x8>,
++						      <0x0 0x24 0x0 0x14>;
++						reg-names =3D "mux",
++							    "ds",
++							    "gpio";
++						gpio-controller;
++						#gpio-cells =3D <2>;
++						gpio-ranges =3D <&ao_pinctrl 0 0 15>;
++					};
++				};
+ 			};
+ =
+
+ 			sec_AO: ao-secure@140 {
+---------------------------------------------------------------------------=
+----
+
+
+Git bisection log:
+
+---------------------------------------------------------------------------=
+----
+git bisect start
+# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
+git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
+git bisect good a455eda33faafcaac1effb31d682765b14ef868c
+# bad: [0ef0fd351550130129bbdb77362488befd7b69d2] Merge tag 'for-linus' of =
+git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect bad 0ef0fd351550130129bbdb77362488befd7b69d2
+# bad: [89f4f128ea535acaabf7d5bddc30ddda0fb7a70a] Merge tag 'imx-dt64-5.2' =
+of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
+git bisect bad 89f4f128ea535acaabf7d5bddc30ddda0fb7a70a
+# bad: [f5d6e8c077915c84d8b544bc02e3df2f0910c193] Merge tag 'sunxi-dt-for-5=
+.2' of https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux into arm=
+/dt
+git bisect bad f5d6e8c077915c84d8b544bc02e3df2f0910c193
+# bad: [6d918e09331e63593b7827ea1a718f0da03b7fb0] Merge tag 'omap-for-v5.2/=
+dt-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-om=
+ap into arm/dt
+git bisect bad 6d918e09331e63593b7827ea1a718f0da03b7fb0
+# bad: [2fe743c27f064d637df7f989333c153f8d4b0e65] Merge tag 'renesas-arm64-=
+dt-for-v5.2' of https://git.kernel.org/pub/scm/linux/kernel/git/horms/renes=
+as into arm/dt
+git bisect bad 2fe743c27f064d637df7f989333c153f8d4b0e65
+# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-=
+dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
+hip into arm/dt
+git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
+# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: A=
+dd CMA reserved memory
+git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
+# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: =
+add pinctrl support controllers
+git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
+# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s9=
+05d-phicomm-n1: add status LED
+git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
+# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a:=
+ add efuse
+git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
+# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a:=
+ Add AO Clock + Reset Controller support
+git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
+# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: =
+meson: g12a: add pinctrl support controllers
+---------------------------------------------------------------------------=
+----
