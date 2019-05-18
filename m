@@ -2,89 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F338F223C2
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 17:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2CB223D4
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2019 17:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728540AbfERPHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 May 2019 11:07:17 -0400
-Received: from mailoutvs17.siol.net ([185.57.226.208]:54194 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728516AbfERPHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 11:07:16 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 0CAD3520CA6;
-        Sat, 18 May 2019 17:07:13 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 5YviEmiBTKUs; Sat, 18 May 2019 17:07:12 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id B1759520CBE;
-        Sat, 18 May 2019 17:07:12 +0200 (CEST)
-Received: from jernej-laptop.localnet (cpe-86-58-52-202.static.triera.net [86.58.52.202])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id E64AC520CA6;
-        Sat, 18 May 2019 17:07:11 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: sun8i-h3: Fix wifi in Beelink X2 DT
-Date:   Sat, 18 May 2019 17:07:11 +0200
-Message-ID: <36237813.UWQAqNRFN9@jernej-laptop>
-In-Reply-To: <20190517073048.y6mzgbhhryfmuckl@flea>
-References: <20190516161039.18534-1-jernej.skrabec@siol.net> <20190517073048.y6mzgbhhryfmuckl@flea>
+        id S1729334AbfERPYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 May 2019 11:24:04 -0400
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:33798 "EHLO
+        mail-wr1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728028AbfERPYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 May 2019 11:24:04 -0400
+Received: by mail-wr1-f48.google.com with SMTP id f8so3617252wrt.1;
+        Sat, 18 May 2019 08:24:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f2Vajn+WWPZ6MItypnKB1zIVfCo1eg6EMXVoRfUSJVM=;
+        b=P1f/xHK9z2ASDeMG8Rzksn0vI1MGfuEQXGKk3710zKCYHxOYESPUf73r6VwYnjzbTk
+         1o/TSTXo0NtMUmJWcyuX2eeOErUp6aomh0v/X2+X3RA+ZdgU9QpQV7oahfjAvufOu29V
+         DuPSygnxL0KH+04sJpqmsWEAQZV2oXT/xd4hkQYDHR8RYg4NsUBhsu6sHf2goI6srsdC
+         2IlabTPuksycgJ6cMvFRhtkkS5ioRs4ayZKquE+zUmgKuCcTGnVv3I6x/jTMrjMUkJYo
+         jz/6/5TRH9AUE9AiTw8w0OsvIaoxzUasblbdmTCz6e6Ugn74YoZC7+dDK3lxwbdPjhVn
+         +NyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f2Vajn+WWPZ6MItypnKB1zIVfCo1eg6EMXVoRfUSJVM=;
+        b=NbTLBlQWBe0YekQ3CByIVgNiT9ouvz/nh0pqwqgwf5x5h7ITSSazncZcWPHLO+Wn8Q
+         pbhqKUBky3nFT1GbjOuWse3PGrqQS4viIYMvhJjglVEj+xzyedbSv0Dh24STtZNwr7b8
+         T15HYlif1JIz52SZV/oI3WQ2WhhX4FdsXvsFTh+ihMv/DvRLOhd+YpDAPZFKlU4LxPEs
+         zVISEE4EoxR4GCu63cGYnZ6uwWdC9LKwgih04iva4yAqJsaudrpZj52pXX4m3Df+O0l2
+         IDIFFyAKKBpXqMF0ocyCZ+f9va1RgQHR11G5mV6SLppGhS/uW9C59V0avTqT1b1lEbXO
+         HA4g==
+X-Gm-Message-State: APjAAAUd+5KRdTgcHSn74ND2Q0WTYf41uhWwgSf8dWWC+l2jwt2SsFdu
+        vOwKW7P+JNGRW/9uVt2OgTQ=
+X-Google-Smtp-Source: APXvYqzsDebP4qfKcCv/S2MxLOaouK3ST+Az6tGNP9Vg56BOffbfysrpOufFkiafcP3Gw5Nk90jQBA==
+X-Received: by 2002:a5d:468b:: with SMTP id u11mr1787944wrq.276.1558193041864;
+        Sat, 18 May 2019 08:24:01 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
+        by smtp.gmail.com with ESMTPSA id j190sm12934836wmb.19.2019.05.18.08.24.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 18 May 2019 08:24:01 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v3 0/4] Allwinner H6 watchdog support
+Date:   Sat, 18 May 2019 17:23:51 +0200
+Message-Id: <20190518152355.11134-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 17. maj 2019 ob 09:30:48 CEST je Maxime Ripard napisal(a):
-> Hi,
-> 
-> On Thu, May 16, 2019 at 06:10:39PM +0200, Jernej Skrabec wrote:
-> > mmc1 node where wifi module is connected doesn't have properly defined
-> > power supplies so wifi module is never powered up. Fix that by
-> > specifying additional power supplies.
-> > 
-> > Additionally, this STB may have either Realtek or Broadcom based wifi
-> > module. One based on Broadcom module also needs external clock to work
-> > properly. Fix that by adding clock property to wifi_pwrseq node.
-> > 
-> > Fixes: e582b47a9252 ("ARM: dts: sun8i-h3: Add dts for the Beelink X2 STB")
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > ---
-> > 
-> >  arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts index
-> > 6277f13f3eb3..6a0ac85b4616 100644
-> > --- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > +++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-> > @@ -89,7 +89,10 @@
-> > 
-> >  	wifi_pwrseq: wifi_pwrseq {
-> >  	
-> >  		compatible = "mmc-pwrseq-simple";
-> > 
-> > +		pinctrl-names = "default";
-> 
-> pinctrl-names only make sense with another pinctrl-[0-255]
-> property. Did you forgot something here?
+Hi,
 
-No, I just took BananaPi M2+ as a example, which has pinctrl-names property 
-too and no "pinctrl-*". But digging through history of this DT, it seems that 
-this is just leftover which somebody forgot to remove.
+Allwinner H6 SoC has two watchdogs.
 
-I'll send v2.
+As we are not sure that both A64 and H6 are stricly identical, I have
+introduced the H6 bindings.
 
-Best regards,
-Jernej
+After investigation it seems that on some boards the first watchdog doesn't
+make it properly reboot. Please see details in the commit log.
 
+I think it's proper to add it with a comment anyway.
+
+The r_watchdog is still available and usable on all the H6 boards.
+
+Maybe it would be proper to introduce a "allwinner,sun50i-h6-r-wdt" bindings?
+
+Thanks,
+Clément
+
+Changes since v2:
+ - Reintroduce H6 bindings
+ - Add watchdog Maintainters / ML
+ - Add Martin Ayotte test results
+
+Changes since v1:
+ - Use A64 compatible instead of H6
+ - Remove dt-bindings patch
+ - Change watchdog status to disabled
+ - Add r_watchdog node patch
+ - Add enable sunxi watchdog patch
+
+Clément Péron (4):
+  dt-bindings: watchdog: add Allwinner H6 watchdog
+  arm64: dts: allwinner: h6: add watchdog node
+  arm64: dts: allwinner: h6: add r_watchog node
+  arm64: defconfig: enable sunxi watchdog
+
+ .../devicetree/bindings/watchdog/sunxi-wdt.txt | 10 ++++++----
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi   | 18 ++++++++++++++++++
+ arch/arm64/configs/defconfig                   |  1 +
+ 3 files changed, 25 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
 
