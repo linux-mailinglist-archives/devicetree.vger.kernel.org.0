@@ -2,216 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 200842275A
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2019 18:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D6422776
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2019 19:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726005AbfESQ5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 12:57:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55166 "EHLO mail.kernel.org"
+        id S1726137AbfESRG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 13:06:28 -0400
+Received: from smtp-out.xnet.cz ([178.217.244.18]:22240 "EHLO smtp-out.xnet.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725769AbfESQ5W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 May 2019 12:57:22 -0400
-Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net [81.96.234.148])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B90A22184C;
-        Sun, 19 May 2019 11:32:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558265534;
-        bh=xIfjBwAnlTWBS0xxGQD5dBqlbiDtOuwak7rtI6d9ews=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=GPMTJt0OBU4YMg/nWSbx2+7UgvG3DnR4qCJII+CBIyI66geFnRx9GAkLjEYWAJ98v
-         dtRFiITp+iIsLVEhnO+T9MfoSz9mipx67cuXIQHAeV05mlu0Ky+HyNwFaYnCl/3xEA
-         kl6f+j19GOty2U876rxE1FXCZwbtDAwUSBDbOZCc=
-Date:   Sun, 19 May 2019 12:32:08 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Renato Lui Geh <renatogeh@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, knaack.h@gmx.de,
-        pmeerw@pmeerw.net, gregkh@linuxfoundation.org,
-        stefan.popa@analog.com, alexandru.Ardelean@analog.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-iio@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org, kernel-usp@googlegroups.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: add adi,ad7780.yaml binding
-Message-ID: <20190519123208.26c864ce@archlinux>
-In-Reply-To: <9992a318aec777b9b7788bb40d976aa89e5963fe.1558219042.git.renatogeh@gmail.com>
-References: <9992a318aec777b9b7788bb40d976aa89e5963fe.1558219042.git.renatogeh@gmail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1725777AbfESRG2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 May 2019 13:06:28 -0400
+Received: from meh.true.cz (meh.true.cz [108.61.167.218])
+        (Authenticated sender: petr@true.cz)
+        by smtp-out.xnet.cz (Postfix) with ESMTPSA id 0E4444ACA;
+        Sun, 19 May 2019 14:19:01 +0200 (CEST)
+Received: by meh.true.cz (OpenSMTPD) with ESMTP id d9c28ecb;
+        Sun, 19 May 2019 14:18:59 +0200 (CEST)
+From:   =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>,
+        Mirko Lindner <mlindner@marvell.com>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] of_net: fix of_get_mac_address retval if compiled without CONFIG_OF
+Date:   Sun, 19 May 2019 14:18:44 +0200
+Message-Id: <1558268324-5596-1-git-send-email-ynezz@true.cz>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 18 May 2019 19:41:12 -0300
-Renato Lui Geh <renatogeh@gmail.com> wrote:
+of_get_mac_address prior to commit d01f449c008a ("of_net: add NVMEM
+support to of_get_mac_address") could return only valid pointer or NULL,
+after this change it could return only valid pointer or ERR_PTR encoded
+error value, but I've forget to change the return value of
+of_get_mac_address in case where the kernel is compiled without
+CONFIG_OF, so I'm doing so now.
 
-> This patch adds a YAML binding for the Analog Devices AD7780/1 and
-> AD7170/1 analog-to-digital converters.
-> 
-> Signed-off-by: Renato Lui Geh <renatogeh@gmail.com>
-One comment inline.  I'll also be needing an ack from Analog on this,
-preferably Michael's.
+Cc: Mirko Lindner <mlindner@marvell.com>
+Cc: Stephen Hemminger <stephen@networkplumber.org>
+Fixes: d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
+Reported-by: Octavio Alvarez <octallk1@alvarezp.org>
+Signed-off-by: Petr Štetiar <ynezz@true.cz>
+---
+ include/linux/of_net.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
-
-Jonathan
-> ---
->  .../bindings/iio/adc/adi,ad7780.txt           | 48 -----------
->  .../bindings/iio/adc/adi,ad7780.yaml          | 85 +++++++++++++++++++
->  2 files changed, 85 insertions(+), 48 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt b/Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt
-> deleted file mode 100644
-> index 440e52555349..000000000000
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt
-> +++ /dev/null
-> @@ -1,48 +0,0 @@
-> -* Analog Devices AD7170/AD7171/AD7780/AD7781
-> -
-> -Data sheets:
-> -
-> -- AD7170:
-> -	* https://www.analog.com/media/en/technical-documentation/data-sheets/AD7170.pdf
-> -- AD7171:
-> -	* https://www.analog.com/media/en/technical-documentation/data-sheets/AD7171.pdf
-> -- AD7780:
-> -	* https://www.analog.com/media/en/technical-documentation/data-sheets/ad7780.pdf
-> -- AD7781:
-> -	* https://www.analog.com/media/en/technical-documentation/data-sheets/AD7781.pdf
-> -
-> -Required properties:
-> -
-> -- compatible: should be one of
-> -	* "adi,ad7170"
-> -	* "adi,ad7171"
-> -	* "adi,ad7780"
-> -	* "adi,ad7781"
-> -- reg: spi chip select number for the device
-> -- vref-supply: the regulator supply for the ADC reference voltage
-> -
-> -Optional properties:
-> -
-> -- powerdown-gpios:  must be the device tree identifier of the PDRST pin. If
-> -		    specified, it will be asserted during driver probe. As the
-> -		    line is active high, it should be marked GPIO_ACTIVE_HIGH.
-> -- adi,gain-gpios:   must be the device tree identifier of the GAIN pin. Only for
-> -		    the ad778x chips. If specified, it will be asserted during
-> -		    driver probe. As the line is active low, it should be marked
-> -		    GPIO_ACTIVE_LOW.
-> -- adi,filter-gpios: must be the device tree identifier of the FILTER pin. Only
-> -		    for the ad778x chips. If specified, it will be asserted
-> -		    during driver probe. As the line is active low, it should be
-> -		    marked GPIO_ACTIVE_LOW.
-> -
-> -Example:
-> -
-> -adc@0 {
-> -	compatible =  "adi,ad7780";
-> -	reg =	      <0>;
-> -	vref-supply = <&vdd_supply>
-> -
-> -	powerdown-gpios  = <&gpio 12 GPIO_ACTIVE_HIGH>;
-> -	adi,gain-gpios   = <&gpio  5 GPIO_ACTIVE_LOW>;
-> -	adi,filter-gpios = <&gpio 15 GPIO_ACTIVE_LOW>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
-> new file mode 100644
-> index 000000000000..931bc4f8ec04
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7780.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7170/AD7171/AD7780/AD7781 analog to digital converters
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  The ad7780 is a sigma-delta analog to digital converter. This driver provides
-> +  reading voltage values and status bits from both the ad778x and ad717x series.
-> +  Its interface also allows writing on the FILTER and GAIN GPIO pins on the
-> +  ad778x.
-> +
-> +  Specifications on the converters can be found at:
-> +    AD7170:
-> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7170.pdf
-> +    AD7171:
-> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7171.pdf
-> +    AD7780:
-> +      https://www.analog.com/media/en/technical-documentation/data-sheets/ad7780.pdf
-> +    AD7781:
-> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7781.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7170
-> +      - adi,ad7171
-> +      - adi,ad7780
-> +      - adi,ad7781
-> +
-> +  reg:
-> +    description:
-> +      Chip select number for the device
-> +    maxItems: 1
-> +
-> +  vref-supply:
-> +    description:
-> +      The regulator supply for the ADC reference voltage
-> +    maxItems: 1
-> +
-> +  powerdown-gpios:
-> +    description:
-> +      Must be the device tree identifier of the PDRST pin. If
-> +      specified, it will be asserted during driver probe. As the
-> +      line is active high, it should be marked GPIO_ACTIVE_HIGH.
-> +    maxItems: 1
-> +
-> +  adi,gain-gpios:
-> +    description:
-> +      Must be the device tree identifier of the GAIN pin. Only for
-> +      the ad778x chips. If specified, it will be asserted during
-> +      driver probe. As the line is active low, it should be marked
-> +      GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +  adi,filter-gpios:
-> +    description:
-> +      Must be the device tree identifier of the FILTER pin. Only
-> +      for the ad778x chips. If specified, it will be asserted
-> +      during driver probe. As the line is active low, it should be
-> +      marked GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vref-supply
-Is that actually true?  I'd imagine it'll use a stub regulator if
-it isn't supplied.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    adc@0 {
-> +      compatible =  "adi,ad7780";
-> +      reg = <0>;
-> +      vref-supply = <&vdd_supply>;
-> +
-> +      powerdown-gpios  = <&gpio0 12 GPIO_ACTIVE_HIGH>;
-> +      adi,gain-gpios   = <&gpio1  5 GPIO_ACTIVE_LOW>;
-> +      adi,filter-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>;
-> +    };
+diff --git a/include/linux/of_net.h b/include/linux/of_net.h
+index 9cd72aab76fe..0f0346e6829c 100644
+--- a/include/linux/of_net.h
++++ b/include/linux/of_net.h
+@@ -22,7 +22,7 @@ static inline int of_get_phy_mode(struct device_node *np)
+ 
+ static inline const void *of_get_mac_address(struct device_node *np)
+ {
+-	return NULL;
++	return ERR_PTR(-ENODEV);
+ }
+ 
+ static inline struct net_device *of_find_net_device_by_node(struct device_node *np)
+-- 
+1.9.1
 
