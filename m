@@ -2,33 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 048B222936
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2019 23:32:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E8E222937
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2019 23:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729000AbfESVcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 17:32:51 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:59850 "EHLO
+        id S1727456AbfESVfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 17:35:00 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:59876 "EHLO
         atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725784AbfESVcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 May 2019 17:32:51 -0400
+        with ESMTP id S1725784AbfESVe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 May 2019 17:34:59 -0400
 Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id BC55A80378; Sun, 19 May 2019 23:32:39 +0200 (CEST)
-Date:   Sun, 19 May 2019 23:32:49 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     oss@c-mauderer.de
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v4 2/2] leds: spi-byte: add single byte SPI LED driver
-Message-ID: <20190519213249.GF31403@amd>
-References: <20190513193307.11591-1-oss@c-mauderer.de>
- <20190513193307.11591-2-oss@c-mauderer.de>
+        id A5A4180378; Sun, 19 May 2019 23:34:47 +0200 (CEST)
+Date:   Sun, 19 May 2019 23:34:57 +0200
+From:   Pavel Machek <pavel@denx.de>
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH V2 1/3] PM: wakeup: Add routine to help fetch wakeup
+ source object.
+Message-ID: <20190519213457.GG31403@amd>
+References: <20190517033946.30763-1-ran.wang_1@nxp.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="Mjqg7Yu+0hL22rav"
+        protocol="application/pgp-signature"; boundary="sLx0z+5FKKtIVDwd"
 Content-Disposition: inline
-In-Reply-To: <20190513193307.11591-2-oss@c-mauderer.de>
+In-Reply-To: <20190517033946.30763-1-ran.wang_1@nxp.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -36,36 +40,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Mjqg7Yu+0hL22rav
+--sLx0z+5FKKtIVDwd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon 2019-05-13 21:33:07, oss@c-mauderer.de wrote:
-> From: Christian Mauderer <oss@c-mauderer.de>
->=20
-> This driver adds support for simple SPI based LED controller which use
-> only one byte for setting the brightness.
->=20
-> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
 
-Acked-by: Pavel Machek <pavel@ucw.cz>
+> --- a/include/linux/pm_wakeup.h
+
+> @@ -70,6 +71,7 @@ struct wakeup_source {
+>  	unsigned long		wakeup_count;
+>  	bool			active:1;
+>  	bool			autosleep_enabled:1;
+> +	struct device	*attached_dev;
+>  };
+> =20
+>  #ifdef CONFIG_PM_SLEEP
+
+You might want to format this similary to the rest...
+									Pavel
 
 --=20
 (english) http://www.livejournal.com/~pavelmachek
 (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
 g.html
 
---Mjqg7Yu+0hL22rav
+--sLx0z+5FKKtIVDwd
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iEYEARECAAYFAlzhy4EACgkQMOfwapXb+vKDKACgxNRyxY6xzXQ/1E9RBsSMlnt7
-9HAAn0XbUsYArq2KtoyTCD4ZYUNL/aKK
-=spwh
+iEYEARECAAYFAlzhzAEACgkQMOfwapXb+vJFYwCfWepB4p66NbXEV3e8W5ZictQ/
+Es8AmgKZXmLs30UjIBYDFKic2DbgBegF
+=KZ5b
 -----END PGP SIGNATURE-----
 
---Mjqg7Yu+0hL22rav--
+--sLx0z+5FKKtIVDwd--
