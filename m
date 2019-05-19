@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A618D2277D
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2019 19:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF36E2277F
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2019 19:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725935AbfESRJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 13:09:07 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:41907 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725838AbfESRJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 May 2019 13:09:07 -0400
-Received: by mail-pf1-f196.google.com with SMTP id q17so6031192pfq.8
-        for <devicetree@vger.kernel.org>; Sun, 19 May 2019 10:09:07 -0700 (PDT)
+        id S1725838AbfESRJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 13:09:47 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:34787 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725766AbfESRJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 May 2019 13:09:46 -0400
+Received: by mail-pf1-f194.google.com with SMTP id n19so6058955pfa.1
+        for <devicetree@vger.kernel.org>; Sun, 19 May 2019 10:09:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gCFKWEfomzC/p8Cp2zu9+tMCVjDMCf+wEVZ+N8bS+5w=;
-        b=T/7IReFvKjKaF14U1oGtHscyU/22SyS4d7KmRC5r07CtvxiAbogbfeuIroE/8H2wz0
-         nLTWIIZriLKgXnWDXlyBKjqUAsl9SsAMjTTs4IMZaZBFvDrupg39ZL7WTW3wXN2yB8aj
-         f8BzAcUBvMPTNeGH08JCB9Xs2xfvt2oFwNK1Q=
+        bh=w75P38v9z8QHVdxS6R3Brz2jpMYqR+5eP/w8pQb1nPA=;
+        b=myLhk+2HXFCrC8o/7PfbYOhTcA2jCqzU4GnMO+/qE7+tzW5/ihlU7K3wVqAd3P3qFp
+         xICCMbgzhgD631AA2NeQrSpXLwscwnDUO0aBm5iHLE0zRWfGzEbHCzknrCjQkhuHMmxX
+         hGH4+kQwZHWBpzmD1p050soj0o6GVYepZs0Mw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gCFKWEfomzC/p8Cp2zu9+tMCVjDMCf+wEVZ+N8bS+5w=;
-        b=pRn27mV2jomx5p6IblTOUjOBBmDj6wjpg28vwZwxr9V5egMOAc3yq15rtoQgRbHvaf
-         AKTIJ2ufU38CxKqqQwpsX7CNv9J0RGKDNwNHyYEwo5StuuUKKK9OId2Ph2ByIjoVAHG3
-         AUKg61ghCUcfsnheOdk0LaOL6hr/cIk6o/xgi1UQK6kyRH2EwbxhujHY5Xw2idXTAMEa
-         XepYdoWd4OzDhOiTVkKw3RPV57Ez0D9eSBrLxPQAakNVzosB/1ePmGKl/UaU5Uv6c8HP
-         JY0ZA+KlQWHi4OQO6qBtTGqdWjBj4s53bFMmLrYJEsYUxz+frpRHoSYpj5X0REKjCcfh
-         agmw==
-X-Gm-Message-State: APjAAAV8m4hB3w9jpN66c4JXvH/AC2ZO68VV98bJmrtmbqxRYyaXEKXd
-        QnQ8JPsnfa5dxOC9zgZOfrnC6YjJr1jU7w==
-X-Google-Smtp-Source: APXvYqy+Gmvo5+tw39P1k0XyadavsTQNx3uwPq73xdTjt//OfTcVKyZMNiRhgh9F9ySQ8HBIePPR/g==
-X-Received: by 2002:a63:a08:: with SMTP id 8mr69721219pgk.46.1558281910923;
-        Sun, 19 May 2019 09:05:10 -0700 (PDT)
+        bh=w75P38v9z8QHVdxS6R3Brz2jpMYqR+5eP/w8pQb1nPA=;
+        b=jzSIuQPCHVR7A17ZeL9irmYcZWWQy9P2YtoR5Rt8AvoU3b7ZI09YSU0DagY6qmupM5
+         Wl8q5E5fooOyoSNil/V+RXhpAm0E5W2BoBe3IqFV/wFXYIqbZWzCGz9GRDSVC6LPF5bm
+         2wzWy22m+0o3Q9H8Za1KMGLFeI4jAZ8aGcsJiD8tN4ZcXwPGWH5Phofix/Lh9Jr13dGa
+         9MzmWJT4p+JQizXjL2mHOjekJGeoUctly4p6T2F4RJ8K0VMcg1DdErQAQ58vepd03uUR
+         4QVDan8AcZKBnZrjRZWQ+GR/TfkAOLDhV8zhqNbPnoHCwjtjUdQTVurUDxpqOO4zrKTX
+         xTAg==
+X-Gm-Message-State: APjAAAXnK1nb7uGnnWcd0YnluzcpH5qtSOmfpg4OWMSRB0eYk3vajypR
+        184mQEUEJYwPwK19LqqVaZX8tA==
+X-Google-Smtp-Source: APXvYqwrm3lDeGRnJx7g5EY5lJ5ZBzglEq7ClMbsGc6X8fVoF80Kv6SGb8mBvxA9elUTdo5UIIKIrw==
+X-Received: by 2002:a63:6884:: with SMTP id d126mr70417545pgc.154.1558281916225;
+        Sun, 19 May 2019 09:05:16 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:b852:bd51:9305:4261])
-        by smtp.gmail.com with ESMTPSA id b23sm17547007pfi.6.2019.05.19.09.05.07
+        by smtp.gmail.com with ESMTPSA id b23sm17547007pfi.6.2019.05.19.09.05.12
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sun, 19 May 2019 09:05:10 -0700 (PDT)
+        Sun, 19 May 2019 09:05:15 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
@@ -61,9 +61,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Laura Abbott <labbott@redhat.com>,
         Stephen Boyd <swboyd@chromium.org>,
         Kees Cook <keescook@chromium.org>
-Subject: [PATCH v4 2/3] fdt: add support for rng-seed
-Date:   Mon, 20 May 2019 00:04:45 +0800
-Message-Id: <20190519160446.320-2-hsinyi@chromium.org>
+Subject: [PATCH v4 3/3] arm64: kexec_file: add rng-seed support
+Date:   Mon, 20 May 2019 00:04:46 +0800
+Message-Id: <20190519160446.320-3-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190519160446.320-1-hsinyi@chromium.org>
 References: <20190519160446.320-1-hsinyi@chromium.org>
@@ -74,81 +74,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introducing a chosen node, rng-seed, which is an entropy that can be
-passed to kernel called very early to increase initial device
-randomness. Bootloader should provide this entropy and the value is
-read from /chosen/rng-seed in DT.
+Adding "rng-seed" to dtb. It's fine to add this property if original
+fdt doesn't contain it. Since original seed will be deleted after
+read, so use a default size 128 bytes here.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
-change log v2->v4:
-* v3 abandoned
-* fix doc error
+* Will add corresponding part to userspace kexec-tools if this is accepted.
 ---
- Documentation/devicetree/bindings/chosen.txt | 14 ++++++++++++++
- drivers/of/fdt.c                             | 10 ++++++++++
- 2 files changed, 24 insertions(+)
+ arch/arm64/kernel/machine_kexec_file.c | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
-index 45e79172a646..678e81bc4383 100644
---- a/Documentation/devicetree/bindings/chosen.txt
-+++ b/Documentation/devicetree/bindings/chosen.txt
-@@ -28,6 +28,20 @@ mode) when EFI_RNG_PROTOCOL is supported, it will be overwritten by
- the Linux EFI stub (which will populate the property itself, using
- EFI_RNG_PROTOCOL).
+diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
+index 58871333737a..d40fde72a023 100644
+--- a/arch/arm64/kernel/machine_kexec_file.c
++++ b/arch/arm64/kernel/machine_kexec_file.c
+@@ -27,6 +27,8 @@
+ #define FDT_PROP_INITRD_END	"linux,initrd-end"
+ #define FDT_PROP_BOOTARGS	"bootargs"
+ #define FDT_PROP_KASLR_SEED	"kaslr-seed"
++#define FDT_PROP_RNG_SEED	"rng-seed"
++#define RNG_SEED_SIZE		128
  
-+rng-seed
-+-----------
+ const struct kexec_file_ops * const kexec_file_loaders[] = {
+ 	&kexec_image_ops,
+@@ -102,6 +104,23 @@ static int setup_dtb(struct kimage *image,
+ 				FDT_PROP_KASLR_SEED);
+ 	}
+ 
++	/* add rng-seed */
++	if (rng_is_initialized()) {
++		void *rng_seed = kmalloc(RNG_SEED_SIZE, GFP_ATOMIC);
++		get_random_bytes(rng_seed, RNG_SEED_SIZE);
 +
-+This property serves as an entropy to add device randomness. It is parsed
-+as a byte array, e.g.
++		ret = fdt_setprop(dtb, off, FDT_PROP_RNG_SEED, rng_seed,
++				RNG_SEED_SIZE);
++		kfree(rng_seed);
 +
-+/ {
-+	chosen {
-+		rng-seed = <0x31 0x95 0x1b 0x3c 0xc9 0xfa 0xb3 ...>;
-+	};
-+};
++		if (ret)
++			goto out;
 +
-+This random value should be provided by bootloader.
-+
- stdout-path
- -----------
- 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index de893c9616a1..7f3d72921b23 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -24,6 +24,7 @@
- #include <linux/debugfs.h>
- #include <linux/serial_core.h>
- #include <linux/sysfs.h>
-+#include <linux/random.h>
- 
- #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
- #include <asm/page.h>
-@@ -1079,6 +1080,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
- {
- 	int l;
- 	const char *p;
-+	const void *rng_seed;
- 
- 	pr_debug("search \"chosen\", depth: %d, uname: %s\n", depth, uname);
- 
-@@ -1113,6 +1115,14 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
- 
- 	pr_debug("Command line is: %s\n", (char*)data);
- 
-+	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
-+	if (rng_seed && l > 0) {
-+		add_device_randomness(rng_seed, l);
-+
-+		/* try to clear seed so it won't be found. */
-+		fdt_delprop(initial_boot_params, node, "rng-seed");
++	} else {
++		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
++				FDT_PROP_RNG_SEED);
 +	}
 +
- 	/* break now */
- 	return 1;
+ out:
+ 	if (ret)
+ 		return (ret == -FDT_ERR_NOSPACE) ? -ENOMEM : -EINVAL;
+@@ -110,7 +129,8 @@ static int setup_dtb(struct kimage *image,
  }
+ 
+ /*
+- * More space needed so that we can add initrd, bootargs and kaslr-seed.
++ * More space needed so that we can add initrd, bootargs, kaslr-seed, and
++ * rng-seed.
+  */
+ #define DTB_EXTRA_SPACE 0x1000
+ 
 -- 
 2.20.1
 
