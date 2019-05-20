@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E3B24144
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:33:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EF324153
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726201AbfETTdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 15:33:14 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:33916 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725554AbfETTdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 15:33:14 -0400
-Received: by mail-lf1-f67.google.com with SMTP id v18so11223975lfi.1;
-        Mon, 20 May 2019 12:33:13 -0700 (PDT)
+        id S1725776AbfETToF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 15:44:05 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:40958 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725554AbfETToF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 15:44:05 -0400
+Received: by mail-wr1-f66.google.com with SMTP id f10so513570wre.7;
+        Mon, 20 May 2019 12:44:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Yz8Y8j4LrokiV0kHGKvYwP2NDd57XNHFUFDJFy1gO6M=;
-        b=OlhGz3hX9ttMhH0DBkznm5Hzb3CE0esiN2TGXVrnCfKVux3ap139WFhixnnjcuj8Uw
-         eXfMa/kv7mROD0/mhmUVGiRFJwtePrDwcTQW7/B/tdXhnmcv0QRvMMF5zbF9/p9/bmDr
-         O1urDaNv5xouz1I+cXyIvUiYBkyh0pZpgFD/ERUY5IQWB/faVMwohjpZScS/W80vTgjC
-         0lAlN3/Q4/RgH2mIerMYYoR7EKIakurSrEltaxgdnPPpzSPS7FlgWElxwaNYnYP2sOJs
-         qIo+ZrKfZI26iPV840NnsVDgC0DKNm5+uBngJcrDG92FN930DQaAv1onmvWe4Kd9v06n
-         SeFQ==
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hVta5xB/O0QdvUGc5eYkdvpzELli1ZpHwr59R5nENcw=;
+        b=U+BzZHbeO1KY+dPmw/oGi3XSWlv90ycsDjx9KXI1IOImK13sc2HFLTbDBRkR1LHxH6
+         +if9w9trTLebLbFzw3M2MkHFy67mF0vIIMh9//saXEcs78CYk6pfEuM2T+Yo/SbreWdx
+         AUUgrkT+kPv4wm0NkTZmHzygH6OHSaOC0iGu1JsRjSWS8IK6o8lKSygaqCQIPSB9wnCd
+         SQ5+pRE308Avd7zKs4DRKUUYXogC/Ay3rtZU00hDgCKcErpndPWlTi89LYl5r8fVPjvi
+         O6X8lAzlYYv2egbSv9M2ilcFmWDuOVKlX/BQGBGwc91NrmxKpNuizf6i/JBen7cCTP7l
+         BPmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Yz8Y8j4LrokiV0kHGKvYwP2NDd57XNHFUFDJFy1gO6M=;
-        b=TPYxaHQsfHI5rGl0kAF/E0b3cW/wayTSO5w3cLNQ8AGKRtnT2cZt5yS7GXbZ9iLscD
-         3hvd14Gbebqm5FfjbDVDMCryU6HQxw9U8XiFAhiWNBFEr9/N38RrpddxxIQFoGtT2kkG
-         /x0RggAS+Q/F6cJULfuoxbGqSwPj8EMXsU5i++g4KL2j+qzm89rUsJv/j20Qsfj/Jy/i
-         6BI4G44EkUDnCkmljwoSmM+0c8c07aX+VpPKfdcr9mII/AatiLgx89ZU+YZikdX8gIfI
-         +1KFPecZu93+pLrSiNKuSg8nvj17qPOYu49Fq/DGSsHiTQATdGiB8nbb3sNIrmrQ0+F2
-         XlTw==
-X-Gm-Message-State: APjAAAVLuYf20QR6aMV1zpJE3kvzbNvlnCkrXJgscavcppEMC5tzpQ+r
-        GZj9VZUTvQNsv/B0l9hIGnp58ronfPp6LlTrGHo=
-X-Google-Smtp-Source: APXvYqwMGtpeI+8XdPSNDz1LKzf/YqJGUe9ectHzyz4W3M6PXY5URxGKWcyo6ZNyMSayfoXCbU+EFQIkzQAGe+lFTsk=
-X-Received: by 2002:a19:a50b:: with SMTP id o11mr24145346lfe.2.1558380792220;
- Mon, 20 May 2019 12:33:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hVta5xB/O0QdvUGc5eYkdvpzELli1ZpHwr59R5nENcw=;
+        b=rRDYQbpYhV6FXafwA6vasbSDPaFq3pw0F8UYJyzN/ktXSgiVJmnNNMu0BxLBFTtx7S
+         6b6/j0B3H4s/GA09637rsfjXDOud8KftOprsAxCBZUM8Spl9NqDvQ+ws6mgXrrx6BwIi
+         zsUtK8otxpBH3LhyDbM1ZU30Q3ohj/zqtPHUXzcb+XPT7ax8FsR2yWvOP25napx6SDCf
+         8jnqlhhtXYU4rghRs6MF+Te/vFWqJuzHw3etYkNmrie0cGX1IQ9n8bHSLIWoy59uc/Bk
+         qQuY7E/hYO3Jm5RNVGBlkHBPxTym2lYe7SUvee8Svu5VRpJNUAEhGozk7nWrGuAFQH6+
+         RnxA==
+X-Gm-Message-State: APjAAAU9ajs35dPEmyuJY1ptUvflYTSLGOycwzODIfBC1yI+MP0HUQzf
+        XX6OZWwqR56zYnB21NKB2qU=
+X-Google-Smtp-Source: APXvYqynMyqoH9GhYe+AN/gAgwqbO94OY9y/bT/SijzrVrRAbf9a6+TW6auDD4ShFC3FSuOOiz30pg==
+X-Received: by 2002:a5d:6b03:: with SMTP id v3mr2725642wrw.309.1558381443684;
+        Mon, 20 May 2019 12:44:03 -0700 (PDT)
+Received: from blackbox.darklights.net (p200300F133EE71009C356FA1F0E19AF9.dip0.t-ipconnect.de. [2003:f1:33ee:7100:9c35:6fa1:f0e1:9af9])
+        by smtp.googlemail.com with ESMTPSA id p8sm9135352wro.0.2019.05.20.12.44.02
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 May 2019 12:44:02 -0700 (PDT)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     linux-amlogic@lists.infradead.org, khilman@baylibre.com,
+        mjourdan@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 0/5] 32-bit Meson: add the canvas module
+Date:   Mon, 20 May 2019 21:43:48 +0200
+Message-Id: <20190520194353.24445-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190515144210.25596-1-daniel.baluta@nxp.com> <20190515144210.25596-2-daniel.baluta@nxp.com>
- <CAOMZO5Avmjf9GpGWBbMJrOxWdvdBTyXMoOPQw_uOQHhCayuHtg@mail.gmail.com>
-In-Reply-To: <CAOMZO5Avmjf9GpGWBbMJrOxWdvdBTyXMoOPQw_uOQHhCayuHtg@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 20 May 2019 16:33:07 -0300
-Message-ID: <CAOMZO5BO7fXFX=qQh29P7Eji7WaAVsjR++BwiyRbkO9EtfNWxg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: imx8mm: Add SAI nodes
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 3:33 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> Hi Daniel,
->
-> On Wed, May 15, 2019 at 11:42 AM Daniel Baluta <daniel.baluta@nxp.com> wrote:
-> >
-> > i.MX8MM has 5 SAI instances with the following base
-> > addresses according to RM.
-> >
-> > SAI1 base address: 3001_0000h
-> > SAI2 base address: 3002_0000h
-> > SAI3 base address: 3003_0000h
-> > SAI5 base address: 3005_0000h
-> > SAI6 base address: 3006_0000h
->
-> No SAI4?
->
-> I know the RM does not show the SAI4 in the memory map, but the clock
-> driver does show a SAI4 clock gate.
->
-> So it seems we have a contradiction in the reference manual. Could you
-> please double check with the internal folks?
+This adds the canvas module on Meson8, Meson8b and Meson8m2. The canvas
+IP is used by the video decoder hardware as well as the VPU (video
+output) hardware.
 
-Despite the SAI4 confusion, the current patch correctly describe the
-SAI interfaces as per the Reference Manual, so:
+Neither the VPU nor the video decoder driver support the 32-bit SoCs
+yet. However, we can still add the canvas module to have it available
+once these drivers gain support for the older SoCs.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+I have tested this on my Meson8m2 board by hacking the VPU driver to
+not re-initialize the VPU (and to use the configuration set by u-boot).
+With that hack I could get some image out of the CVBS connector. No
+changes to the canvas driver were required.
+
+Due to lack of hardware I could not test Meson8, but I'm following (as
+always) what the Amlogic 3.10 vendor kernel uses.
+Meson8b is also not tested because u-boot of my EC-100 doesn't have
+video output enabled (so I couldn't use the same hack I used on my
+Meson8m2 board).
+
+This series meant to be applied on top of "Meson8b: add support for the
+RTC on EC-100 and Odroid-C1" from [0]
+
+
+changes since v1 at [1]:
+- added new bindings for the 32-bit SoCs because they don't support the
+  "endianness" configuration (new patch #1, thanks to Maxime Jourdan
+  for pointing this out)
+- update the driver to reject the "endianness" configuration on the
+  32-bit SoCs (new patch #2)
+- patches #3 to #5 haven't changed compared to v1
+
+
+[0] https://patchwork.kernel.org/cover/10899509/
+[1] https://patchwork.kernel.org/cover/10899565/
+
+
+Martin Blumenstingl (5):
+  dt-bindings: soc: amlogic: canvas: document support for Meson8/8b/8m2
+  soc: amlogic: canvas: add support for Meson8, Meson8b and Meson8m2
+  ARM: dts: meson8: add the canvas module
+  ARM: dts: meson8m2: update the offset of the canvas module
+  ARM: dts: meson8b: add the canvas module
+
+ .../bindings/soc/amlogic/amlogic,canvas.txt   | 10 ++++++---
+ arch/arm/boot/dts/meson8.dtsi                 | 22 +++++++++++++++++++
+ arch/arm/boot/dts/meson8b.dtsi                | 22 +++++++++++++++++++
+ arch/arm/boot/dts/meson8m2.dtsi               | 10 +++++++++
+ drivers/soc/amlogic/meson-canvas.c            | 14 +++++++++++-
+ 5 files changed, 74 insertions(+), 4 deletions(-)
+
+-- 
+2.21.0
+
