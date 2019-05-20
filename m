@@ -2,62 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF22622C03
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 08:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB49322C43
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 08:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730253AbfETGZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 02:25:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32878 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730223AbfETGZ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 02:25:28 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C6775206B6;
-        Mon, 20 May 2019 06:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558333528;
-        bh=cHtPiNNVfcFAjX+nwUKdfSPkv8k0K9dC/wDPLIYqoC4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tO924fTYxBOLlVpLQTgBUHdUpSksa7C+1caY+Yic32c0eHlI4Wq10XAsaatQ2e/qG
-         UKtEJdEDTlrNOWHE3hddUghhe9uhPW1ziiDvWorEAmV0hELjBZoVPmGHAKhlmYe705
-         Gq02YDxXaW5SOWfLXnJptkL8IHdJgnEDiQ7CBCOQ=
-Date:   Mon, 20 May 2019 14:24:35 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1729765AbfETGrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 02:47:32 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:27037 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729657AbfETGrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 02:47:32 -0400
+X-UUID: 51613d8a8e634b58a4335f57e3397874-20190520
+X-UUID: 51613d8a8e634b58a4335f57e3397874-20190520
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <chun-hung.wu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 101237753; Mon, 20 May 2019 14:47:26 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs03n2.mediatek.inc (172.21.101.182) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 20 May 2019 14:47:24 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 20 May 2019 14:47:24 +0800
+Message-ID: <1558334844.13182.7.camel@mtkswgap22>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: mediatek: Add document for
+ mt6765
+From:   Chun-Hung Wu <chun-hung.wu@mediatek.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH RESEND 1/3] dt-bindings: clock: imx8mm: Add GPIO clocks
-Message-ID: <20190520062433.GO15856@dragon>
-References: <1557655926-12915-1-git-send-email-Anson.Huang@nxp.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <peter.wang@mediatek.com>, <kuohong.wang@mediatek.com>,
+        <jg_poxu@mediatek.com>
+Date:   Mon, 20 May 2019 14:47:24 +0800
+In-Reply-To: <20190518113356.1cf99a31@archlinux>
+References: <1557994247-16739-1-git-send-email-chun-hung.wu@mediatek.com>
+         <1557994247-16739-2-git-send-email-chun-hung.wu@mediatek.com>
+         <20190518113356.1cf99a31@archlinux>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1557655926-12915-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-TM-SNTS-SMTP: 136E65FE89BA7E502B30A204F640972BA020EFA250DD3943DEB1B7A03C25AD6D2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 12, 2019 at 10:17:08AM +0000, Anson Huang wrote:
-> Add macro for the GPIO clocks of the i.MX8MM.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+Hi Jonathan,
 
-Applied all, thanks.
+On Sat, 2019-05-18 at 11:33 +0100, Jonathan Cameron wrote:
+> On Thu, 16 May 2019 16:10:44 +0800
+> Chun-Hung Wu <chun-hung.wu@mediatek.com> wrote:
+> 
+> > Add compatible node for mt6765 auxadc
+> > 
+> > Signed-off-by: Chun-Hung Wu <chun-hung.wu@mediatek.com>
+> Applied, but in numeric order.  There was also another clashing patch
+> that caused some fuzz.
+No problem, thanks!
+
+regards,
+Chun-Hung
+> 
+> thanks,
+> 
+> Jonathan
+> 
+> > ---
+> >  Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt b/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt
+> > index 0df9bef..ab7efab 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt
+> > +++ b/Documentation/devicetree/bindings/iio/adc/mt6577_auxadc.txt
+> > @@ -15,6 +15,7 @@ Required properties:
+> >      - "mediatek,mt2712-auxadc": For MT2712 family of SoCs
+> >      - "mediatek,mt7622-auxadc": For MT7622 family of SoCs
+> >      - "mediatek,mt8173-auxadc": For MT8173 family of SoCs
+> > +    - "mediatek,mt6765-auxadc": For MT6765 family of SoCs
+> >    - reg: Address range of the AUXADC unit.
+> >    - clocks: Should contain a clock specifier for each entry in clock-names
+> >    - clock-names: Should contain "main".
+> 
+
+
