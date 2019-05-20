@@ -2,105 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5BA229E0
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 04:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F027229E6
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 04:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729980AbfETCPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 22:15:55 -0400
-Received: from mail-eopbgr30084.outbound.protection.outlook.com ([40.107.3.84]:32482
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726062AbfETCPz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 May 2019 22:15:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Leql0F4HY/Qi8RQupnp9smr0mCdyoDM/R5FK7F/0AUg=;
- b=iYO1AG+VzPCb79eIu5+LP7u0A1B7z0wMRg1jejiXnOel5jiSpUwp4Cw8MEKuUiYBjLIM+Odf8san5KT/2WMcsVx2hrv4e6x+dqf5qUEOz9Aonf9x0aY4uwKht1lw/6C/wqqqH8dH3RpjsCqJ3WI8aoO1Mlvaagy701EXQbHcR+8=
-Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
- AM5PR0402MB2820.eurprd04.prod.outlook.com (10.175.40.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Mon, 20 May 2019 02:15:50 +0000
-Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
- ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
- ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1900.020; Mon, 20 May 2019
- 02:15:50 +0000
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Pavel Machek <pavel@denx.de>
-CC:     Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-Subject: RE: [PATCH V2 1/3] PM: wakeup: Add routine to help fetch wakeup
- source object.
-Thread-Topic: [PATCH V2 1/3] PM: wakeup: Add routine to help fetch wakeup
- source object.
-Thread-Index: AQHVDGHy6riuNjMX8Emng4J8Z2yFlqZy/KSAgABOAOA=
-Date:   Mon, 20 May 2019 02:15:50 +0000
-Message-ID: <AM5PR0402MB2865ED4DFB84BF2AE85EF0ABF1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
-References: <20190517033946.30763-1-ran.wang_1@nxp.com>
- <20190519213457.GG31403@amd>
-In-Reply-To: <20190519213457.GG31403@amd>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ran.wang_1@nxp.com; 
-x-originating-ip: [92.121.36.198]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cb738bf7-bd63-4a94-d47c-08d6dcc91457
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2820;
-x-ms-traffictypediagnostic: AM5PR0402MB2820:
-x-microsoft-antispam-prvs: <AM5PR0402MB28209683DF9DC204FB00E4D2F1060@AM5PR0402MB2820.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2043;
-x-forefront-prvs: 004395A01C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(346002)(396003)(136003)(366004)(189003)(199004)(66476007)(66446008)(76116006)(66556008)(64756008)(66946007)(11346002)(446003)(6506007)(53546011)(4744005)(486006)(73956011)(476003)(305945005)(7696005)(26005)(99286004)(186003)(76176011)(66066001)(81166006)(81156014)(8676002)(54906003)(102836004)(7736002)(8936002)(68736007)(9686003)(6436002)(229853002)(478600001)(55016002)(14454004)(14444005)(5024004)(53936002)(316002)(25786009)(256004)(33656002)(2906002)(7416002)(3846002)(6116002)(4326008)(52536014)(71200400001)(74316002)(5660300002)(71190400001)(6246003)(86362001)(6916009);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2820;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: VP2r1rc65WSFI5jZupwR6kx226WYNoqlBtLUPFzb0NGGbxb+WP1wUwPjj5jxW/qxxvClnav/lD1AZXuv0dkYHf3pUs6mMzh0vW2+psB3yAT2nA0DKeQmT60V8//8ezP4N0M/xPjkaRxS/1KHB8iVvLRSBSz0d8FMY2430eBoaX8MXJdTr1ERSC1H41hheEkcPoMO02JQseBVnNu5QG8hSETAK86ehdfUZwI162En03HdmfljIdWQ6ZTXTAK3P+3fjQ1gUMJN8yynTqC+/rmBtypW5u/mlS1ger7s70uYCQAHv9nKHA+qXBzHTee1UfRimqbaWKgxJM0n8Qs0NhH2vOXL312Lr51n5++8m3XRkNIXhdOiQZTPJPPryIVKiOUhSW3Jhsv50NZoAP2VnB6ZiG/pLuAZjDK3d7aE5J3+GC4=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726791AbfETCRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 22:17:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33746 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726062AbfETCRa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 May 2019 22:17:30 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B43E420644;
+        Mon, 20 May 2019 02:17:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558318649;
+        bh=SamDfQKzE33INYIskToyQhZeFatpaqPghjeVbsFxhbQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VFiw1Q6juzEO6hW47NKCSA/Pxm0uVIm+QIKtd1box7ezl9H+7Ths7vCV+8/MeUc3a
+         HfWMhJpZwkTYXltsu3H/8OtzzSF1yXKVKwo+sRM7MORhnNbbFZ+Ch+/6y0nn536RGc
+         k8pxzyKJQOfr7KFHAbB8jIF6PiN/oc4PImfAInr4=
+Date:   Mon, 20 May 2019 10:16:40 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, linux-imx@nxp.com, Stefan.Nickl@kontron.com,
+        Gilles.Buloz@kontron.com, Michael.Brunner@kontron.com,
+        thomas.schaefer@kontron.com, frieder.schrempf@kontron.de,
+        kernel@pengutronix.de, devicetree@vger.kernel.org
+Subject: Re: [PATCH 00/17] Add Support for Kontron SMARC-sAMX6i
+Message-ID: <20190520021639.GG15856@dragon>
+References: <20190509155834.22838-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb738bf7-bd63-4a94-d47c-08d6dcc91457
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2019 02:15:50.5690
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2820
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190509155834.22838-1-m.felsch@pengutronix.de>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+On Thu, May 09, 2019 at 05:58:17PM +0200, Marco Felsch wrote:
+> Hi,
+> 
+> this series adds the Kontron SoM 'SMARC-sAMX6i' which is compatible to
+> the SMARC 1.1 standard [1]. Most of the muxing can be done within the
+> SoM dtsi since the standard defines a unique SoM hardware interface.
+> 
+> This series is based on Priit Laes initial commit [2] which adds the
+> initial support. I addressed the comments and changed the copyright
+> since there where a lot of fixes.
+> 
+> Testers are welcome :) since I used a custome baseboard which doesn't
+> use all of the interfaces.
+> 
+> [1] https://sget.org/standards/smarc
+> [2] https://lore.kernel.org/patchwork/patch/762261/
+> 
+> Marco Felsch (14):
+>   dt-bindings: add Kontron vendor prefix
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SDIO interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC LCD interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Management pins
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC GPIO interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC HDMI interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC CSI Camera interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC I2S interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI1 interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Watchdog
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC module eeprom
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add power management support
+>   ARCH: arm: dts: imx6q-kontron-samx6i: add Kontron SMARC Quad/Dual SoM
+>   ARCH: arm: dts: imx6dl-kontron-samx6i: add Kontron SMARC
+>     Dual-Lite/Solo SoM
+> 
+> Michael Grzeschik (2):
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI0 interface
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: add boot spi-nor
+> 
+> Priit Laes (1):
+>   ARCH: arm: dts: imx6qdl-kontron-samx6i: Add iMX6-based Kontron
+>     SMARC-sAMX6i module
 
-On Monday, May 20, 2019 05:35, Pavel Machek wrote:
->=20
-> > --- a/include/linux/pm_wakeup.h
->=20
-> > @@ -70,6 +71,7 @@ struct wakeup_source {
-> >  	unsigned long		wakeup_count;
-> >  	bool			active:1;
-> >  	bool			autosleep_enabled:1;
-> > +	struct device	*attached_dev;
-> >  };
-> >
-> >  #ifdef CONFIG_PM_SLEEP
->=20
-> You might want to format this similary to the rest...
+Do we really need so many patches for adding a single board support, or
+can we squash some of them?
 
-OK, will update, thanks.
+Shawn
 
-Regards,
-Ran
+> 
+>  .../devicetree/bindings/vendor-prefixes.txt   |   1 +
+>  arch/arm/boot/dts/imx6dl-kontron-samx6i.dtsi  |  12 +
+>  arch/arm/boot/dts/imx6q-kontron-samx6i.dtsi   |  36 +
+>  arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 812 ++++++++++++++++++
+>  4 files changed, 861 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6dl-kontron-samx6i.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx6q-kontron-samx6i.dtsi
+>  create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> 
+> -- 
+> 2.20.1
+> 
