@@ -2,83 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C14F2429B
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8C49242C2
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726330AbfETVSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 17:18:37 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41491 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725978AbfETVSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:18:37 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q17so7831242pfq.8
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:18:36 -0700 (PDT)
+        id S1726879AbfETVVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 17:21:04 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:35207 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726761AbfETVVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:21:03 -0400
+Received: by mail-pg1-f195.google.com with SMTP id t1so5959385pgc.2
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:21:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=KwAzvLOrsGrLdW37rNbsYgX7kOv9ZoeLzS/6hKC6W6g=;
-        b=avfP3RQdwhppd/vstRNn/zdW5SsXvba3ffCdxGlgjEJ1y6rQJXDbRpyDlYvvwGXY98
-         bJj0wY65p9eLbsYplwq5bLdQryZ/HRWp4gPRCsLmiQIkmnZkf2Y3wDlXMhktx9hMKHUo
-         i7XrrouEq2/wvpTqBya5HHdVLVGid1h0UVlwEZtP9McnxzbBZzRUuiQdHPYHNKqANb/L
-         /aZCjVMDIf9vegrCIhgarS6AUHfdKAjkb3IAsP/CdlxCVymAoX63nc02FRwDDFs0SZxB
-         t8HuXTOw65xD1U1yggoT7YqcVQRONJ1JXbeiGKtRgL/FPs6iD9qU0FTcx0lAMcY3g/Yt
-         1uQw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=ancjtzq6elCyj2UruyD0ZmMo8pzIwOlqJRkQDWD0+Q4=;
+        b=Ra1/NDHLCkHjBDWAQ/jViNFoVW0b3IxT96gXTCODELWtAKgg1lkNuII+jnLv5j4Teo
+         640nloVeyk2sSL3B0cPg5gaPNrgeMGAbytdo8Np/1g/H8h5KBoIZIphwZ4GQcFi9BSlb
+         9o3GTLE3vFvoqjaPr2B41+y0m6SfPg5hGYHkg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=KwAzvLOrsGrLdW37rNbsYgX7kOv9ZoeLzS/6hKC6W6g=;
-        b=p/u3ZfaC0Ias3ubv0ot8C6gFMndhG6vx1s6jeIJJG4D+oJhB0f35CWqoZZcpaNlzz/
-         AszjiqWimLpUrKNIm0ba12VJRJsp+LRYu/mn365zHWY/S5ECVYK3kPaWFWCN7lEUGf38
-         6J70PvzzOxn4P0H9dAwAnGUIRmjHYYI5GjBAgSVsMhUGYDmiZYL5hsKwvGHIGGFxF9Ul
-         KPBLsHOzN4cLzgTvNVvARtKGyjv4siNfEIxHHyjGQnzA7Cn5c8CWTkODjmq6axyMCLkz
-         TPa5e3KYHqR5dgyNHyx4iXCFo9Y9FXdgNTOo+FRYPqb1Suewnr2X5sG6aSpcfvq/2O0m
-         YYSw==
-X-Gm-Message-State: APjAAAVxflHrKC2eimGNrNrM6Q28zkuLSQpq80UcAflXxk8ktYr/IA9S
-        mPrXactawnTfUwkKqqDXzH4KeQ==
-X-Google-Smtp-Source: APXvYqzSIOWReUBiSn5i9wiYls/tM3XVkbWOxHp5XkIIqOVylQGiSjT/FlLpBfs58MuEO6WmTc0QOw==
-X-Received: by 2002:a62:fb10:: with SMTP id x16mr18663984pfm.112.1558387116318;
-        Mon, 20 May 2019 14:18:36 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:e483:1cc0:e2c2:140d])
-        by smtp.googlemail.com with ESMTPSA id c15sm22024029pfi.172.2019.05.20.14.18.35
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=ancjtzq6elCyj2UruyD0ZmMo8pzIwOlqJRkQDWD0+Q4=;
+        b=ZJnwjgk2Syx6NE35jVaWZT32C4qb41n+r3QxfoUn4a+fE/8gxkvZ4lM1PxsvfRjwgQ
+         B2CgP8+gLG8v1KixCDagPWWOIUrcXcFUfmA4Dt+mPBeHxy20U7eljZV3fxEaQ8zcfH4W
+         xDh/5wT9iRrmRXq6zKavkddr7opRflVUVug83BfvZhTgV4ijf/PNJXa940kFlqJa7Nkp
+         ncBwrIM6dcAW9PnCVUj5XlQ4vgzHjzZdd4plnqG76I9DY/ixzF7vkZkPc69h9IAgmjwv
+         ebVC4u5Yq+qgjDOpiGdGnaUsMVN29U3MUbHjmWesb1hdBaApVh9ziJvOgedl09MRegJc
+         NUWg==
+X-Gm-Message-State: APjAAAX3Zc5lbLlQQntQcGsW3wAwjop2BHJidpb7JurQhkrex2XE4XLI
+        uNV2MELJ9c7ZPdY057+eQ3BIrw==
+X-Google-Smtp-Source: APXvYqw9S1yPYrd1SlaEZuoSglSNY/CGY6wMOXe8ZG9S0Iy0ayQfjzKwK/uXFS+P+TQk+jsW4OUzLA==
+X-Received: by 2002:a63:6dca:: with SMTP id i193mr75790021pgc.353.1558387263271;
+        Mon, 20 May 2019 14:21:03 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id a26sm34931443pfl.177.2019.05.20.14.21.02
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 14:18:35 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: g12a: add tohdmitx
-In-Reply-To: <20190516143216.6193-1-jbrunet@baylibre.com>
-References: <20190516143216.6193-1-jbrunet@baylibre.com>
-Date:   Mon, 20 May 2019 14:18:34 -0700
-Message-ID: <7hr28s7rkl.fsf@baylibre.com>
+        Mon, 20 May 2019 14:21:02 -0700 (PDT)
+Date:   Mon, 20 May 2019 14:21:02 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] ARM: dts: rockchip: Configure the GPU thermal zone
+ for mickey
+Message-ID: <20190520212102.GH40515@google.com>
+References: <20190520170132.91571-1-mka@chromium.org>
+ <20190520170132.91571-2-mka@chromium.org>
+ <CAD=FV=Vr2thgHYTH_khqka27_SdGcSEShpSRp+u2E=O5eyxLMQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=Vr2thgHYTH_khqka27_SdGcSEShpSRp+u2E=O5eyxLMQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+On Mon, May 20, 2019 at 01:21:33PM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Mon, May 20, 2019 at 10:01 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > mickey crams a lot of hardware into a tiny package, which requires
+> > more aggressive thermal throttling than for devices with a larger
+> > footprint. Configure the GPU thermal zone to throttle the GPU
+> > progressively at temperatures >= 60°C. Heat dissipated by the
+> > CPUs also affects the GPU temperature, hence we cap the CPU
+> > frequency to 1.4 GHz for temperatures above 65°C. Further throttling
+> > of the CPUs may be performed by the CPU thermal zone.
+> >
+> > The configuration matches that of the downstram Chrome OS 3.14
+> 
+> s/downstram/downstream
 
-> Add the hdmitx glue device linking the SoC audio interfaces to the
-> embedded Synopsys hdmi controller.
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+ack
 
-Queued for v5.3,
+> 
+> > +       cooling-maps {
+> > +               /* After 1st level throttle the GPU down to as low as 400 MHz */
+> > +               gpu_warmish_limit_gpu {
+> > +                       trip = <&gpu_alert_warmish>;
+> > +                       cooling-device = <&gpu THERMAL_NO_LIMIT 1>;
+> 
+> As per my comment in patch #1, you are probably ending up throttling
+> to 500 MHz, not 400 MHz.  Below will all have similar problems unless
+> we actually delete the 500 MHz operating point.
 
->  Hi Kevin,
->
->  The related device driver and dt-binding have been merged in the ASoC
->  tree, for-5.3 branch [0]
->
->  This patch is based on the audio series I have just sent [1]. Like the
->  patches I have sent this week, they are all based on Linus's master
->  branch. This is done so it applies nicely when setup your branch based
->  on 5.2-rc1
+Thanks for pointing that out. As per disussion on patch #1 we'll
+disable the 500 MHz OPP to stay in sync with downstream and avoid
+problems in case someone decides to re-purpose NPLL.
 
-Thanks, for the detailed description,
+> > +               };
+> > +
+> > +               /*
+> > +                * Slightly after we throttle the GPU, we'll also make sure that
+> > +                * the CPU can't go faster than 1.4 GHz.  Note that we won't
+> > +                * throttle the CPU lower than 1.4 GHz due to GPU heat--we'll
+> > +                * let the CPU do the rest itself.
+> > +                */
+> > +               gpu_warm_limit_cpu {
+> > +                       trip = <&gpu_alert_warm>;
+> > +                       cooling-device = <&cpu0 4 4>;
+> 
+> Shouldn't you list cpu1, cpu2, and cpu3 too?  That'd match what
+> upstream did elsewhere in this file?
 
-Kevin
+ack, should have noticed, I 'yelled' at others before for not doing this ...
