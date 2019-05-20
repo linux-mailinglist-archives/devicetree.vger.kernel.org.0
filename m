@@ -2,80 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B3C22FFC
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 11:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EFDD23006
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 11:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731922AbfETJQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 05:16:12 -0400
-Received: from mailgate1.rohmeurope.com ([178.15.145.194]:57332 "EHLO
-        mailgate1.rohmeurope.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730677AbfETJQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 05:16:11 -0400
-X-AuditID: c0a8fbf4-501ff700000014c1-76-5ce2705a2d97
-Received: from smtp.reu.rohmeu.com (will-cas002.reu.rohmeu.com [192.168.251.178])
-        by mailgate1.rohmeurope.com (Symantec Messaging Gateway) with SMTP id 19.E3.05313.A5072EC5; Mon, 20 May 2019 11:16:10 +0200 (CEST)
-Received: from WILL-MAIL001.REu.RohmEu.com ([fe80::2915:304f:d22c:c6ba]) by
- WILL-CAS002.REu.RohmEu.com ([fe80::fc24:4cbc:e287:8659%12]) with mapi id
- 14.03.0439.000; Mon, 20 May 2019 11:15:58 +0200
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     "leonard.crestez@nxp.com" <leonard.crestez@nxp.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>
-CC:     "aisheng.dong@nxp.com" <aisheng.dong@nxp.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        id S1730873AbfETJSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 05:18:03 -0400
+Received: from mail-eopbgr10071.outbound.protection.outlook.com ([40.107.1.71]:17579
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729598AbfETJSD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 05:18:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wjq3w45GRiFI2//a7t647tCKQUdF8+Ggx6O/vEK4e64=;
+ b=AAZiQse/9fx1IdhbxGlYWJ2xnUx3C4b3lKPUTLS3pHBeoZI3NREuShxXWZqsfW9T7kNct6zPqXAPHw3chSsVPGd/n7Ic4qEVWDaLYVtmrMhipHWsc+IbHiuXWzGErMbogezjWGwaRVvga1IBixjFjL/Bu1E9jznqexUHp6Mh+mY=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2833.eurprd04.prod.outlook.com (10.175.41.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Mon, 20 May 2019 09:17:59 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1900.020; Mon, 20 May 2019
+ 09:17:59 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Pavel Machek <pavel@denx.de>
+CC:     Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "yibin.gong@nxp.com" <yibin.gong@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: Document short/long press
- duration for bd718x7
-Thread-Topic: [PATCH 2/3] dt-bindings: mfd: Document short/long press
- duration for bd718x7
-Thread-Index: AQHVDunRCadIZXhO4kmv1F92tFVodqZzmfCA
-Date:   Mon, 20 May 2019 09:15:57 +0000
-Message-ID: <79db32fef865216dc51d40b8bed81b45943b2687.camel@fi.rohmeurope.com>
-References: <cover.1558341613.git.leonard.crestez@nxp.com>
-         <6983773421a6d89b7c206a71684a95c83eef118b.1558341613.git.leonard.crestez@nxp.com>
-In-Reply-To: <6983773421a6d89b7c206a71684a95c83eef118b.1558341613.git.leonard.crestez@nxp.com>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: RE: [PATCH V2 3/3] soc: fsl: add RCPM driver
+Thread-Topic: [PATCH V2 3/3] soc: fsl: add RCPM driver
+Thread-Index: AQHVDGHzIQrvIPzRX0ytn5pxhdLuLqZy/bMAgACX+4CAACV3gIAAANBwgAACRYCAAAHg8A==
+Date:   Mon, 20 May 2019 09:17:59 +0000
+Message-ID: <AM5PR0402MB2865E28B2E2296CB878ACEA2F1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20190517033946.30763-1-ran.wang_1@nxp.com>
+ <20190517033946.30763-3-ran.wang_1@nxp.com> <20190519213844.GH31403@amd>
+ <AM5PR0402MB2865EC5E1EF12C6C1D3C5566F1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+ <20190520085647.GA9748@amd>
+ <AM5PR0402MB2865F4574B19761848B001F9F1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+ <20190520090748.GB9748@amd>
+In-Reply-To: <20190520090748.GB9748@amd>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [213.255.186.46]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <802EDE242BBF104DA2859AA9C0EA6AB1@de.rohmeurope.com>
-Content-Transfer-Encoding: base64
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-originating-ip: [92.121.36.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b0451e86-49ec-44c6-b934-08d6dd040d87
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2833;
+x-ms-traffictypediagnostic: AM5PR0402MB2833:
+x-microsoft-antispam-prvs: <AM5PR0402MB283301A6038AA2B3C9115EDFF1060@AM5PR0402MB2833.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 004395A01C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(366004)(346002)(376002)(136003)(396003)(189003)(199004)(7696005)(2906002)(99286004)(86362001)(6246003)(14454004)(74316002)(53546011)(229853002)(6506007)(11346002)(9686003)(68736007)(446003)(476003)(55016002)(6116002)(3846002)(305945005)(102836004)(76176011)(486006)(53936002)(6916009)(6436002)(7736002)(66476007)(66556008)(64756008)(66446008)(5660300002)(66066001)(33656002)(66946007)(73956011)(8936002)(7416002)(316002)(25786009)(186003)(76116006)(54906003)(71190400001)(26005)(478600001)(81166006)(4326008)(8676002)(71200400001)(256004)(81156014)(52536014);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2833;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: /ImH+jFa5VWy3XrIpi+JhjHUOysWf7NmzT8XE2im6LtT3xp4u6FcHv9ZtYjXfnKaIks2K4mNNmtdR4PTYOTOY/gvOjvn6fO9cTKxd9eWdyc+hBtomrxrahv6fwXIaJ81f2BM2YFY290fT/+UW77feNt8GNYfVXu/j14+1UpENd9LjquMTspSrlVF4usRimpKrEdAt/YMg4fU1vt1gTs7wE+bBfFzcKSJtX8W16JvE2cwe1SicBo3a7mIFqpT2u1VTx1UvYgToqpNrH1k+Fk/UWZpQGi2o6/+PJ8Rka58LM5Bkas3Mu03HH3sLT4t80K5JTA3L2PfoIewHsyUVuEcMU/pCFpxoCfrp+hWb/e6e0m4ZqXLZQlcbrWQMkchxCHM16+Y3/y79LZbGopZbMAa6qMRYqJX3HQQzg7jbj0dSg4=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA01TWUwTURT1zVKG2iHPWu2zKpFGcRdQEyeRqD8mox+ERIwJVnGQkRK6OVMI
-        6IcQ0cQaxQWINKKILBUxysgHEBCsENDEBReMqQqliDtGxJWgzlAUvt6599xzz73JfRSuvaUy
-        UGk2Jy/YOItRpSZaPSPS8kRHnym6ZUjLDBc24kygxweYQn+/ijnfdo9kaq/7CKa6sIFger62
-        A8bz4jPJSIFuknH9uoQzFU+7MOZQc1sI86ZOzxy9dhdsCGMLXR7A1pyrAaxUfUTFPu9uUrHX
-        yw+wtYP1GJs/Gs1+kcLjqcSpscmcM3NLWqotat2uqebeph+Yow7Pym0rw3KAB3eBUArB1ejl
-        hwrMBdSUFnYDlFc6RAaDToAKqjpCXICiVDAWuZ6FKHkdPA1Q/+UAUAIcXiLQqTw3obSaDrej
-        rvxbY1gHTeib9AQE8Uo00lswlifgAnQjcCxEwTSMQxc/VY5b5wNU3NI8VhQKd6ILPj+pYADn
-        oiM5g5iCcahH0sB3Mjg3ROVN98d3mIHeBn6P542o+aefUKbG4WJ0tTEqKN2ApMNniCCOQAVH
-        /eMzTEO3i/uJE2Cme5KDe0LtnqR2T1K7J6lLAVkNkJVLs6RyTj5mhcBnrBDsZqv87LZbJRA8
-        g+F68Me7yQsgBYwaWpPeZ9KSXKaYbfWCWRRmnEF/P+03acOS7SnZZk40JwkZFl70AkThRh29
-        amGPSUuncNn7eMH+j5pNEUY9PdJ406SFinM6zzt44R87h6KMiN5vk32mCXwqn7UnzeKcoDEq
-        VGmuNuhE3pbCC1yG05yk3EuSKB+MQmlk322KnBYdnFXOBqV3wFKqtcxfglMfb74uwbWEzW7j
-        DXp6wCqXQqXUnGH7b/QO6OV9p9P3lUYa+Wf87/NOtsBki3UJYxZOboIy5ID0V1FE+/p5DZmn
-        iKJ4a/KehMu978MXbZ4bdaNGvSaxclZu1yAWF9lijvR6fml2vF+8zK+rbQxX95GdAzXHrexo
-        WIIl2tfwsCOwqMHXGlHfJL0qzh+NW5sgwpSNAycfPWhvdjwevbK3ipttsMfM3HXw5Pzy5IN5
-        bVOEs1tji94kkkZCNHMxS3BB5P4CUZ6PHtYDAAA=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0451e86-49ec-44c6-b934-08d6dd040d87
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2019 09:17:59.4418
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2833
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhhbmtzIExlb25hcmQhDQoNClRoaXMgaXMgaG93IGl0IHNob3VsZCd2ZSBiZWVuIGRvbmUgZnJv
-bSB0aGUgYmVnaW5uaW5nID0pDQoNCk9uIE1vbiwgMjAxOS0wNS0yMCBhdCAwODo1NSArMDAwMCwg
-TGVvbmFyZCBDcmVzdGV6IHdyb3RlOg0KPiBUaGVzZSB2YWxldXMgY2FuIGJlIG92ZXJ3cml0dGVu
-IGF0IHByb2JlIHRpbWUuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBMZW9uYXJkIENyZXN0ZXogPGxl
-b25hcmQuY3Jlc3RlekBueHAuY29tPg0KQWNrZWQtQnk6IE1hdHRpIFZhaXR0aW5lbiA8bWF0dGku
-dmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUuY29tPg0KDQo=
+Hi Pavel,
+
+On Monday, May 20, 2019 17:08 Pavel Machek wrote:
+> > > Hi!
+> > >
+> > > > > > +static int rcpm_pm_prepare(struct device *dev) {
+> > > > > > +	struct device_node *np =3D dev->of_node;
+> > > > > > +	struct wakeup_source *ws;
+> > > > > > +	struct rcpm *rcpm;
+> > > > > > +	u32 value[RCPM_WAKEUP_CELL_MAX_SIZE + 1], tmp;
+> > > > > > +	int i, ret;
+> > > > > > +
+> > > > > > +	rcpm =3D dev_get_drvdata(dev);
+> > > > > > +	if (!rcpm)
+> > > > > > +		return -EINVAL;
+> > > > > > +
+> > > > > > +	/* Begin with first registered wakeup source */
+> > > > > > +	ws =3D wakeup_source_get_next(NULL);
+> > > > > > +	while (ws) {
+> > > > >
+> > > > > while (ws =3D wakeup_source_get_next(NULL)) ?
+> > > >
+> > > > Actually, we only pass NULL to wakeup_source_get_next() at very
+> > > > first call to get 1st wakeup source. Then in the while loop, we
+> > > > will fetch next source but not 1st, that's different. I am afraid
+> > > > your suggestion is not quite correct.
+> > >
+> > > Sorry, I seen your next version before seeing this explanation.
+> > >
+> > > You are right, but the current code is "interesting". What about
+> > >
+> > >     ws =3D NULL;
+> > >     while (ws =3D wakeup_source_get_next(NULL)) ...
+> > >
+> > > then?
+> >
+> > Did you mean:
+> >      ws =3D NULL;
+> >      while (ws =3D wakeup_source_get_next(ws)) ...
+> >
+> >    Yes, that will be the same to my original logic, do you recommend
+> > to change to this? :)
+>=20
+> Yes please. It will be less confusing to the reader.
+
+OK, if no other comment, I will work out v4, fix this and extra ','
+=20
+> Thanks (and sorry for cross-talk),
+
+That's OK, thanks for your time.
+
+Regards,
+Ran
