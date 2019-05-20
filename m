@@ -2,241 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7737322A64
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 05:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0CB822A9E
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 06:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728932AbfETDZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 23:25:51 -0400
-Received: from mail-eopbgr140072.outbound.protection.outlook.com ([40.107.14.72]:45896
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726014AbfETDZv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 May 2019 23:25:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v5a04ww42klEVPu7XYt2J5twDiXBZiE5QRxS1J7a/MQ=;
- b=ESFJroydoSbPDStFExshrPJ4JBrKKlf0nV+b7PRmADLBY+TJqp5UudQ+OUI79R6QukywTrAXj1Pe8uds4C7w5bbLtA6YuVaZ4kPU6dNKm5SRGZwCLInOeDk5S6lgGAUSC6kb+k6TClx1QiFBRPuy3WhAi6eCoRoVoIBMdw+EqJs=
-Received: from VI1PR0401MB2237.eurprd04.prod.outlook.com (10.169.132.138) by
- VI1PR0401MB2366.eurprd04.prod.outlook.com (10.169.134.151) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.16; Mon, 20 May 2019 03:25:45 +0000
-Received: from VI1PR0401MB2237.eurprd04.prod.outlook.com
- ([fe80::b091:6395:e853:5986]) by VI1PR0401MB2237.eurprd04.prod.outlook.com
- ([fe80::b091:6395:e853:5986%3]) with mapi id 15.20.1900.020; Mon, 20 May 2019
- 03:25:45 +0000
-From:   "Y.b. Lu" <yangbo.lu@nxp.com>
-To:     Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Richard Cochran <richardcochran@gmail.com>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 1/3] enetc: add hardware timestamping support
-Thread-Topic: [PATCH 1/3] enetc: add hardware timestamping support
-Thread-Index: AQHVC/xYQ2w4Gq0RdEuPdLhmipvA1KZzXh8A
-Date:   Mon, 20 May 2019 03:25:45 +0000
-Message-ID: <VI1PR0401MB22377C6B1B8C35F133E86DB4F8060@VI1PR0401MB2237.eurprd04.prod.outlook.com>
-References: <20190516100028.48256-1-yangbo.lu@nxp.com>
- <20190516100028.48256-2-yangbo.lu@nxp.com>
- <20190516143251.akbt3ns6ue2jrhl5@localhost>
- <VI1PR04MB4880B9B346D29E0EFC715D28960A0@VI1PR04MB4880.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB4880B9B346D29E0EFC715D28960A0@VI1PR04MB4880.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yangbo.lu@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0791374d-a918-40ba-62a0-08d6dcd2d8d6
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR0401MB2366;
-x-ms-traffictypediagnostic: VI1PR0401MB2366:
-x-microsoft-antispam-prvs: <VI1PR0401MB2366CDAE4B7F22EA6BBFCB04F8060@VI1PR0401MB2366.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 004395A01C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(136003)(376002)(366004)(346002)(396003)(52314003)(13464003)(199004)(189003)(486006)(66946007)(76116006)(66476007)(66556008)(256004)(68736007)(446003)(11346002)(476003)(8676002)(81156014)(81166006)(8936002)(52536014)(66446008)(73956011)(14444005)(64756008)(71190400001)(71200400001)(5660300002)(186003)(110136005)(102836004)(6506007)(6436002)(53546011)(33656002)(26005)(99286004)(54906003)(76176011)(7696005)(229853002)(316002)(55016002)(478600001)(66066001)(14454004)(7736002)(305945005)(74316002)(53936002)(6246003)(25786009)(3846002)(6116002)(9686003)(4326008)(86362001)(2906002)(309714004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0401MB2366;H:VI1PR0401MB2237.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Ci6XAUG2OaWnwCzIv9y55P5+/auSPPuWyxRjywbb2zhgZAbA4/Eo4PycaQo4zBxB81XuHPAPzuKUKdl6MZaoozplSP6Yh1ZLMSz0m8QHwPm70PgrlsQWk1KRTnSx1RghhdS+WAqMiJ2h+A40tsdh8vKrk3DvJEgv/cUW9amLcCplVEXR57Dug4oy2AEvIAasV2+pA3QMgwNEafmY2S++0DU/gNRoF+5TStGY2BfGSLAjU4lzch+w66RJx7CwGv6BVpgWqzIg1Y8bzL+Iyxce8s+MMT0Ggqtypv7iQ6Bbd/Y32nQhTbNGEpvfuhXkI93orLO/ZD2kpu+UBYWquBboKohkoX+J7OvHAwxEVam4PBvV9ZrQmPsUYNewhTwj4bF8ZvvRj6/6ZP1xo8R18veVqejLLAl6hYBh/QNz/fu4t6Q=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726194AbfETEUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 00:20:33 -0400
+Received: from mail-vk1-f193.google.com ([209.85.221.193]:35065 "EHLO
+        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726053AbfETEUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 00:20:33 -0400
+Received: by mail-vk1-f193.google.com with SMTP id k1so3540255vkb.2
+        for <devicetree@vger.kernel.org>; Sun, 19 May 2019 21:20:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k6ZY4dlYUgWC9xMv7mBWW2Rp/GiH/mIF5ibb01bxTfc=;
+        b=lkT5TGTLMDU8vkjvDn8uYnIiEn1Srn/zCq28Bk3yu05hPFzq/J9WIfb1mz/Cnl3ddv
+         1SUJ9vdF+sPLGGg3qdcdoozj6BxD1t8bKnXJpIYaQdqFm9s8ewTI4a5Fxioq385OYrx5
+         0B/w+2wh4wkMzgXigoUZ4YNWOae2ih6l6lL0J3Eg+aHFKYI1BbNhqg+zUtcChHcI+gCY
+         P3+ZBuoQ8WxqSUb719V21IJFT6itZqAOgUhVHuZiHfBbYfOENKusS4d2DfNk6ErmVxT3
+         4dnSK7TYrBATk/uNDMzrgemZzr+oTrcIfN/AJCeMiCRcg/E8H6IKyNvVJLKeiMLE4d/I
+         rOlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k6ZY4dlYUgWC9xMv7mBWW2Rp/GiH/mIF5ibb01bxTfc=;
+        b=gibbJLRATohYz4S+0ao8GueDk8JWQGXETZMSzcyai/eN0rhVtb0KMoeHERp/5owtDV
+         GnrzLKoGSq0nSSmUpywY9vHicfSoq5zngFrm4CrenVEEiL8oc2HgOuv3nb0UW/uK9PWK
+         HPznzoEagWK5XiTFrJV9/4iOkyQCoYdIiYuQTQJqw5ZxmBNpCBXhu/e8NGmVmjxiKVKQ
+         F/cE6HS5Lz6x7I9J5s5eIusTBWx4nX6RuBg7ekqv7DM+OPo++wrTG3u6IBJTmLpVWnc6
+         3nW0CFKZPzajSOsgTomwOEaFhV0nm0PqiYFzyUrTeFOwbBmPV6Lwgpvn7XDauOZ+j6m/
+         F2IQ==
+X-Gm-Message-State: APjAAAXNQbEaDzgbHHGxcY3xrqkQ3pqdhEkdh8YRLLEMIackEAV0hwcD
+        cAH0Flsm4B21xxnY2jZTf6E+vX/2Qzgl8i2gCHmGiw==
+X-Google-Smtp-Source: APXvYqy7AMlG3BgYDRhZy+4VIWVyd9wPF+kIWSEqvT5b9pFPI1+c1u6xaot/nbRBfv0yjmLCjltat2Eli5Yy4dPibj8=
+X-Received: by 2002:a1f:3dc9:: with SMTP id k192mr5787006vka.74.1558326032043;
+ Sun, 19 May 2019 21:20:32 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0791374d-a918-40ba-62a0-08d6dcd2d8d6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2019 03:25:45.7504
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2366
+References: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
+ <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com> <20190516130720.GE14298@lunn.ch>
+In-Reply-To: <20190516130720.GE14298@lunn.ch>
+From:   Sagar Kadam <sagar.kadam@sifive.com>
+Date:   Mon, 20 May 2019 09:50:21 +0530
+Message-ID: <CAARK3HkPuvsoVh=b2Kn43ubhME6vqpFLoboBM8OGOnb-d3FN8A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] i2c-ocores: sifive: add polling mode workaround
+ for FU540-C000 SoC
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Andrew,
 
-> -----Original Message-----
-> From: Claudiu Manoil
-> Sent: Thursday, May 16, 2019 11:31 PM
-> To: Richard Cochran <richardcochran@gmail.com>; Y.b. Lu
-> <yangbo.lu@nxp.com>
-> Cc: netdev@vger.kernel.org; David Miller <davem@davemloft.net>; Shawn
-> Guo <shawnguo@kernel.org>; Rob Herring <robh+dt@kernel.org>;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> linux-kernel@vger.kernel.org
-> Subject: RE: [PATCH 1/3] enetc: add hardware timestamping support
->=20
->=20
-> >-----Original Message-----
-> >From: Richard Cochran <richardcochran@gmail.com>
-> >Sent: Thursday, May 16, 2019 5:33 PM
-> >To: Y.b. Lu <yangbo.lu@nxp.com>
-> >Cc: netdev@vger.kernel.org; David Miller <davem@davemloft.net>; Claudiu
-> >Manoil <claudiu.manoil@nxp.com>; Shawn Guo <shawnguo@kernel.org>;
-> Rob
-> >Herring <robh+dt@kernel.org>; devicetree@vger.kernel.org; linux-arm-
-> >kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> >Subject: Re: [PATCH 1/3] enetc: add hardware timestamping support
+On Thu, May 16, 2019 at 6:37 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Thu, May 16, 2019 at 10:38:40AM +0530, Sagar Shrikant Kadam wrote:
+> > The i2c-ocore driver already has a polling mode interface.But it needs
+> > a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
+> > There is an erratum in FU540 chip that prevents interrupt driven i2c
+> > transfers from working, and also the I2C controller's interrupt bit
+> > cannot be cleared if set, due to this the existing i2c polling mode
+> > interface added in mainline earlier doesn't work, and CPU stall's
+> > infinitely, when-ever i2c transfer is initiated.
 > >
-> >On Thu, May 16, 2019 at 09:59:08AM +0000, Y.b. Lu wrote:
+> > Ref:previous polling mode support in mainline
 > >
-> [...]
+> >       commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
 > >
-> >>  static bool enetc_clean_tx_ring(struct enetc_bdr *tx_ring, int
-> >> napi_budget)  {
-> >>  	struct net_device *ndev =3D tx_ring->ndev;
-> >> +	struct enetc_ndev_priv *priv =3D netdev_priv(ndev);
-> >>  	int tx_frm_cnt =3D 0, tx_byte_cnt =3D 0;
-> >>  	struct enetc_tx_swbd *tx_swbd;
-> >> +	union enetc_tx_bd *txbd;
-> >> +	bool do_tstamp;
-> >>  	int i, bds_to_clean;
-> >> +	u64 tstamp =3D 0;
+> > The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
+> > FU540-COOO SoC.
 > >
-> >Please keep in reverse Christmas tree order as much as possible:
->=20
-> For the xmass tree part, Yangbo, better move the priv and txbd declaratio=
-ns
-> inside the scope of the if() {} block where they are actually used, i.e.:
->=20
-> 		if (unlikely(tx_swbd->check_wb)) {
-> 			struct enetc_ndev_priv *priv =3D netdev_priv(ndev);
-> 			union enetc_tx_bd *txbd;
-> 			[...]
-> 		}
->=20
+> > Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+> > ---
+> >  drivers/i2c/busses/i2c-ocores.c | 34 ++++++++++++++++++++++++++++------
+> >  1 file changed, 28 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
+> > index aee1d86..00ee45c 100644
+> > --- a/drivers/i2c/busses/i2c-ocores.c
+> > +++ b/drivers/i2c/busses/i2c-ocores.c
+> > @@ -27,6 +27,7 @@
+> >  #include <linux/jiffies.h>
+> >
+> >  #define OCORES_FLAG_POLL BIT(0)
+> > +#define OCORES_FLAG_BROKEN_IRQ BIT(2) /* Broken IRQ in HiFive Unleashed */
+>
+> Hi Sigar
+>
+> BIT(1). Don't leave a gap.
 
-[Y.b. Lu] Will do that.
+I will remove the gap and update this in V4.
 
-> >
-> >	union enetc_tx_bd *txbd;
-> >	int i, bds_to_clean;
-> >	bool do_tstamp;
-> >	u64 tstamp =3D 0;
-> >
-> >>  	i =3D tx_ring->next_to_clean;
-> >>  	tx_swbd =3D &tx_ring->tx_swbd[i];
-> >>  	bds_to_clean =3D enetc_bd_ready_count(tx_ring, i);
-> >>
-> >> +	do_tstamp =3D false;
-> >> +
-> >>  	while (bds_to_clean && tx_frm_cnt < ENETC_DEFAULT_TX_WORK) {
-> >>  		bool is_eof =3D !!tx_swbd->skb;
-> >>
-> >> +		if (unlikely(tx_swbd->check_wb)) {
-> >> +			txbd =3D ENETC_TXBD(*tx_ring, i);
-> >> +
-> >> +			if (!(txbd->flags & ENETC_TXBD_FLAGS_W))
-> >> +				goto no_wb;
-> >> +
-> >> +			if (tx_swbd->do_tstamp) {
-> >> +				enetc_get_tx_tstamp(&priv->si->hw, txbd,
-> >> +						    &tstamp);
-> >> +				do_tstamp =3D true;
-> >> +			}
-> >> +		}
-> >> +no_wb:
-> >
-> >This goto seems strange and unnecessary.  How about this instead?
-> >
-> >			if (txbd->flags & ENETC_TXBD_FLAGS_W &&
-> >			    tx_swbd->do_tstamp) {
-> >				enetc_get_tx_tstamp(&priv->si->hw, txbd, &tstamp);
-> >				do_tstamp =3D true;
-> >			}
-> >
->=20
-> Absolutely, somehow I missed this.  I guess the intention was to be able =
-to
-> support multiple
-> if() blocks for the writeback case (W flag set) but the code is much bett=
-er off
-> without the goto.
-
-[Y.b. Lu] Will use this to support current single tstamp writeback case.
-
->=20
-> >>  		enetc_unmap_tx_buff(tx_ring, tx_swbd);
-> >>  		if (is_eof) {
-> >> +			if (unlikely(do_tstamp)) {
-> >> +				enetc_tstamp_tx(tx_swbd->skb, tstamp);
-> >> +				do_tstamp =3D false;
-> >> +			}
-> >>  			napi_consume_skb(tx_swbd->skb, napi_budget);
-> >>  			tx_swbd->skb =3D NULL;
-> >>  		}
-> >> @@ -167,6 +169,11 @@ struct enetc_cls_rule {
-> >>
-> >>  #define ENETC_MAX_BDR_INT	2 /* fixed to max # of available cpus */
-> >>
-> >> +enum enetc_hw_features {
-> >
-> >This is a poor choice of name.  It sounds like it describes HW
-> >capabilities, but you use it to track whether a feature is requested at
-> >run time.
-> >
-> >> +	ENETC_F_RX_TSTAMP	=3D BIT(0),
-> >> +	ENETC_F_TX_TSTAMP	=3D BIT(1),
-> >> +};
-> >> +
-> >>  struct enetc_ndev_priv {
-> >>  	struct net_device *ndev;
-> >>  	struct device *dev; /* dma-mapping device */ @@ -178,6 +185,7 @@
-> >> struct enetc_ndev_priv {
-> >>  	u16 rx_bd_count, tx_bd_count;
-> >>
-> >>  	u16 msg_enable;
-> >> +	int hw_features;
-> >
-> >This is also poorly named.  How about "tstamp_request" instead?
-> >
->=20
-> This ndev_priv variable was intended to gather flags for all the active h=
-/w
-> related features, i.e. keeping count of what h/w offloads are enabled for=
- the
-> current device (at least for those that don't have already a netdev_featu=
-res_t
-> flag).
-> I wouldn't waste an int for 2 timestamp flags, I'd rather have a more gen=
-eric
-> name.
-> Maybe active_offloads then?
->=20
-> Anyway, the name can be changed later too, when other offloads will be
-> added.
-
-[Y.b. Lu] How about using active_offloads, and add TODO comments in enum en=
-etc_active_offloads?
-
->=20
-> Thanks,
-> Claudiu
+Thanks,
+Sagar
+>
+>         Andrew
