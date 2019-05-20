@@ -2,99 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE50237DA
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 15:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7FE237DF
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 15:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387599AbfETNOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 09:14:15 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39652 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387534AbfETNOP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 09:14:15 -0400
-Received: by mail-wm1-f65.google.com with SMTP id n25so12590963wmk.4
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 06:14:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=m47c/l62ndl1BZoIquVCAdRz64Yquba0Nph44qgFKpU=;
-        b=a9+TNBgqnV2CrEHXljT0uw9ovdO7ia1lACaaNVfaHCiyWMp9hbktkPEO4xtWN1wlZN
-         /OBe+lIsQLHY/0oZNXeEgz7oYLTwoFmTtfqvfznfqiPjmj41i2mcgXCmFoBBwI4Btee5
-         Yc5+MbcTTrqcHSdI2/CUu9w4m+/+ikRZoCEZWuRv8I/cqhW3DcRvommSzq8FCT5dGrc6
-         GwT053sPmg6D496MIDo1xNreR+nnWNVKCVDwzRp23MROzcQNcgMc5WnB/MK4ZjUrVQvX
-         8vF8a6r0j8rUGlCKW+pLIqfIY0IAryRP1rUldHXTX42E9n3Gai9fok4OSqOL0CA62yFi
-         22cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=m47c/l62ndl1BZoIquVCAdRz64Yquba0Nph44qgFKpU=;
-        b=GGoRixKdb5u/C84hoAoPUvCaRkw6O49/IiTxcqwZtESbmcGLIU4vN857bqMxr5M85d
-         1C4q5MRFbwXy2HrNz7KnWEwreECMuX03vB/FpE6iR12txbSWjIabM3IGTI316/jSZIbT
-         iL/dmPP+fBqoCqRtiut0nRx0MnKxOv3D5A8SjUloL9s4TL2/pisqZmXYeyiYCICTxBJt
-         fYKYhjhrg38jbSoW96B7o36KRyzY4arI92/HreRtSAzUOXNi1FaWYLssCMaGkTNOvScj
-         WqqLtjG46+xI4zVKJNCJKogIyFR/jyI82PZWAgRUCXNg9c8+HCci7jU32+9pVXU4PSge
-         YI7w==
-X-Gm-Message-State: APjAAAUp2SOc+0eiCdqA4UctfqsdNi/ah/tmgiBHmiBJhDtHNKcK9yOo
-        xHq9jsmxaitP2piKqtmTMq0q1Q==
-X-Google-Smtp-Source: APXvYqxLfvHVZc8cuXZUlVVEnCemwaArTi91A2WfQOsaaIfxLFsAdBOHU81+/ps8QxtzRG1xz26+Ng==
-X-Received: by 2002:a1c:cb82:: with SMTP id b124mr12189669wmg.107.1558358053429;
-        Mon, 20 May 2019 06:14:13 -0700 (PDT)
-Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id z8sm18054284wrh.48.2019.05.20.06.14.12
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 06:14:12 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: meson: sei510: add network support
-Date:   Mon, 20 May 2019 15:14:01 +0200
-Message-Id: <20190520131401.11804-6-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190520131401.11804-1-jbrunet@baylibre.com>
-References: <20190520131401.11804-1-jbrunet@baylibre.com>
+        id S2387697AbfETNOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 09:14:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48592 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387633AbfETNOR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 09:14:17 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AEFB3217D7;
+        Mon, 20 May 2019 13:14:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558358056;
+        bh=ArhYqFidQbDseOeh6RGnVwM2C9x89IIUj6IxarCU9Xo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lvQIveQUQlHl8qUCg4Mt9xmQCilab7e4NlHCUz729LxcZ3xS7QcfrjYUGVOGctIGN
+         1cBCrrX9hkEuEJfzgMjmKGHA3hdCC+IJdBvOr5ZOKEpvpOrQBfBHcSKD3F6hY0wJe8
+         Cw2arMGuA2eiaYQG/5C6YjlESDKbTMQQaDaiCYXs=
+Received: by mail-qt1-f182.google.com with SMTP id t1so16135581qtc.12;
+        Mon, 20 May 2019 06:14:16 -0700 (PDT)
+X-Gm-Message-State: APjAAAUDS9e+FeEG8AdeLh6Vdz6CoENmJzSuerkEJFeyCVaZoBLsx/3/
+        FTYqX/xsUiXM4dOp9qPqT0GCOW6y4v8Pdilphw==
+X-Google-Smtp-Source: APXvYqxS8HQm36uvnppBXzxLCzjnnzulxIHDgL8ac9/Ttgr/OjP7pC28xyb4pOndJeMh7bl1mZwE0tcaXjAw+ocCAzE=
+X-Received: by 2002:ac8:3884:: with SMTP id f4mr64856728qtc.300.1558358055837;
+ Mon, 20 May 2019 06:14:15 -0700 (PDT)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+References: <20190520085846.22320-1-masneyb@onstation.org>
+In-Reply-To: <20190520085846.22320-1-masneyb@onstation.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 20 May 2019 08:14:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLcycH5e=YT-4AQFo-8O0bosjU7oagCRS5CMTfQNBLrcg@mail.gmail.com>
+Message-ID: <CAL_JsqLcycH5e=YT-4AQFo-8O0bosjU7oagCRS5CMTfQNBLrcg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: backlight: lm3630a: correct schema validation
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>, Jonathan Marek <jonathan@marek.ca>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the network interface of the SEI510 which use the internal PHY.
+On Mon, May 20, 2019 at 3:59 AM Brian Masney <masneyb@onstation.org> wrote:
+>
+> The '#address-cells' and '#size-cells' properties were not defined in
+> the lm3630a bindings and would cause the following error when
+> attempting to validate the examples against the schema:
+>
+> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
+> '#address-cells', '#size-cells' do not match any of the regexes:
+> '^led@[01]$', 'pinctrl-[0-9]+'
+>
+> Correct this by adding those two properties.
+>
+> While we're here, move the ti,linear-mapping-mode property to the
+> led@[01] child nodes to correct the following validation error:
+>
+> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
+> led@0: 'ti,linear-mapping-mode' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
+>
+> Fixes: 32fcb75c66a0 ("dt-bindings: backlight: Add lm3630a bindings")
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
+> Reported-by: Rob Herring <robh+dt@kernel.org>
+> ---
+>  .../leds/backlight/lm3630a-backlight.yaml     | 20 +++++++++++++------
+>  1 file changed, 14 insertions(+), 6 deletions(-)
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index 484b93ef11d8..be1d9ed6d521 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -29,6 +29,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-@@ -149,6 +150,12 @@
- 	};
- };
- 
-+&ethmac {
-+	status = "okay";
-+	phy-handle = <&internal_ephy>;
-+	phy-mode = "rmii";
-+};
-+
- &hdmi_tx {
- 	status = "okay";
- 	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
--- 
-2.20.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
