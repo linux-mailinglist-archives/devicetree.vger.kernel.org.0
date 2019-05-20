@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3115A24296
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C14F2429B
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:18:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726169AbfETVQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 17:16:43 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:33602 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725763AbfETVQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:16:43 -0400
-Received: by mail-pg1-f196.google.com with SMTP id h17so7388490pgv.0
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:16:42 -0700 (PDT)
+        id S1726330AbfETVSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 17:18:37 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41491 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725978AbfETVSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:18:37 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q17so7831242pfq.8
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:18:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
          :mime-version;
-        bh=mSeWmAuOKlZVmpo2pczi5ZmRRFlzkHQwhkOlfdVHPfk=;
-        b=1RqUfQjz3U6YoLJOOFgB2FdZaaMQEWRYLKKg4UDiBW+LDw81+lTqX3N0SidkIp5zCR
-         nbuDu9D4+f65KyqesYzFHcrmL/Uk2swKnm37G9oiveD8Aao3tT7PeHfyxRmJj59Rd0r9
-         J5+WUVAkF41l1EuEWZMqCP2EnOPUPcCuFUg+xdNOlM0juOESc2cH0h+jl4zVPa80h7t6
-         ug6NNZXk6kg+TZdpV9SRwZQZSfJ7RmEaRCZb7JG2vSkWk8Pjz17BVAc/VnTDKewSuQv/
-         Y8Ngygm52u4d7g9IYPGmlQUWT8xaHEC8zw5KF3V0QiI9GDT+SsyxZkO2OEIYwWjO1EHb
-         jUoA==
+        bh=KwAzvLOrsGrLdW37rNbsYgX7kOv9ZoeLzS/6hKC6W6g=;
+        b=avfP3RQdwhppd/vstRNn/zdW5SsXvba3ffCdxGlgjEJ1y6rQJXDbRpyDlYvvwGXY98
+         bJj0wY65p9eLbsYplwq5bLdQryZ/HRWp4gPRCsLmiQIkmnZkf2Y3wDlXMhktx9hMKHUo
+         i7XrrouEq2/wvpTqBya5HHdVLVGid1h0UVlwEZtP9McnxzbBZzRUuiQdHPYHNKqANb/L
+         /aZCjVMDIf9vegrCIhgarS6AUHfdKAjkb3IAsP/CdlxCVymAoX63nc02FRwDDFs0SZxB
+         t8HuXTOw65xD1U1yggoT7YqcVQRONJ1JXbeiGKtRgL/FPs6iD9qU0FTcx0lAMcY3g/Yt
+         1uQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
          :message-id:mime-version;
-        bh=mSeWmAuOKlZVmpo2pczi5ZmRRFlzkHQwhkOlfdVHPfk=;
-        b=Hg6cbc6PKXMsb7LIkWVf5vQAxLFk7O9DZJpUQrOOYnLCXjWySJBUIdQkPnD2+lnohM
-         Wch4DOzhk1d70tLruni8uL5s4gJxI8+LZovwLsQOKEpEArHIcRw6bf2LshHcOdQLaq1r
-         8iMKPQeS4VHRDmNPBCEtSlblnHlCjc51KSUiPLxoW7qpb+aYhcnlJIQtAAT1rpwiJQ7t
-         xb1GnZUJThu2OQxfoV+LfdKTWW7VMHitNAHewA5gvWWWGsqeuJCsApPWWLKdxOQX/zR3
-         1Zd82DD00DygEalCmHaiwZdziFDg6sWq7i0gKIqt+CPomQmmz5iTRywAtJGbtw0m8LjX
-         fGVA==
-X-Gm-Message-State: APjAAAVCXKL4tDgIV6kVP0bHq2Yt5xeif6hCkjG2Q3J3H5WYd6rUw0Cg
-        RV7aEqLduAcGRxpTrViSv35/zQ==
-X-Google-Smtp-Source: APXvYqxGMg21ATGkIdFaHGjIbfxae232bkGRG8oHvdyiiN419sfsu9Uihg4c/RC/H/TL6S4zC/VVMA==
-X-Received: by 2002:a63:ce43:: with SMTP id r3mr2349874pgi.368.1558387002476;
-        Mon, 20 May 2019 14:16:42 -0700 (PDT)
+        bh=KwAzvLOrsGrLdW37rNbsYgX7kOv9ZoeLzS/6hKC6W6g=;
+        b=p/u3ZfaC0Ias3ubv0ot8C6gFMndhG6vx1s6jeIJJG4D+oJhB0f35CWqoZZcpaNlzz/
+         AszjiqWimLpUrKNIm0ba12VJRJsp+LRYu/mn365zHWY/S5ECVYK3kPaWFWCN7lEUGf38
+         6J70PvzzOxn4P0H9dAwAnGUIRmjHYYI5GjBAgSVsMhUGYDmiZYL5hsKwvGHIGGFxF9Ul
+         KPBLsHOzN4cLzgTvNVvARtKGyjv4siNfEIxHHyjGQnzA7Cn5c8CWTkODjmq6axyMCLkz
+         TPa5e3KYHqR5dgyNHyx4iXCFo9Y9FXdgNTOo+FRYPqb1Suewnr2X5sG6aSpcfvq/2O0m
+         YYSw==
+X-Gm-Message-State: APjAAAVxflHrKC2eimGNrNrM6Q28zkuLSQpq80UcAflXxk8ktYr/IA9S
+        mPrXactawnTfUwkKqqDXzH4KeQ==
+X-Google-Smtp-Source: APXvYqzSIOWReUBiSn5i9wiYls/tM3XVkbWOxHp5XkIIqOVylQGiSjT/FlLpBfs58MuEO6WmTc0QOw==
+X-Received: by 2002:a62:fb10:: with SMTP id x16mr18663984pfm.112.1558387116318;
+        Mon, 20 May 2019 14:18:36 -0700 (PDT)
 Received: from localhost ([2601:602:9200:a1a5:e483:1cc0:e2c2:140d])
-        by smtp.googlemail.com with ESMTPSA id u66sm21840095pfb.76.2019.05.20.14.16.41
+        by smtp.googlemail.com with ESMTPSA id c15sm22024029pfi.172.2019.05.20.14.18.35
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 14:16:41 -0700 (PDT)
+        Mon, 20 May 2019 14:18:35 -0700 (PDT)
 From:   Kevin Hilman <khilman@baylibre.com>
 To:     Jerome Brunet <jbrunet@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: sei510: add bluetooth supplies
-In-Reply-To: <20190516071355.26938-1-jbrunet@baylibre.com>
-References: <20190516071355.26938-1-jbrunet@baylibre.com>
-Date:   Mon, 20 May 2019 14:16:41 -0700
-Message-ID: <7hv9y47rnq.fsf@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson: g12a: add tohdmitx
+In-Reply-To: <20190516143216.6193-1-jbrunet@baylibre.com>
+References: <20190516143216.6193-1-jbrunet@baylibre.com>
+Date:   Mon, 20 May 2019 14:18:34 -0700
+Message-ID: <7hr28s7rkl.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
@@ -62,10 +62,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> Add bluetooth vbat and vddio power supplies
+> Add the hdmitx glue device linking the SoC audio interfaces to the
+> embedded Synopsys hdmi controller.
 >
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
 Queued for v5.3,
+
+>  Hi Kevin,
+>
+>  The related device driver and dt-binding have been merged in the ASoC
+>  tree, for-5.3 branch [0]
+>
+>  This patch is based on the audio series I have just sent [1]. Like the
+>  patches I have sent this week, they are all based on Linus's master
+>  branch. This is done so it applies nicely when setup your branch based
+>  on 5.2-rc1
+
+Thanks, for the detailed description,
 
 Kevin
