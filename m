@@ -2,89 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C247E23E15
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745D423E48
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392744AbfETRKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 13:10:23 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:44341 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392741AbfETRKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 13:10:23 -0400
-Received: by mail-pg1-f194.google.com with SMTP id n2so404959pgp.11
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 10:10:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=I7O1t0HTMIayhEjL+JB+8Z7qxurHkXoWUdusDgjI/aw=;
-        b=QZgNI45DOAwYaDO1iHICnzp4zHKGESb3mm7wGS2JhmkSoAYChyrynGZrvsxv2RRwFV
-         O5jOc+IVUU3xphkbgMuIIJBamG/nurDaVgvwodpNwYOXcQomCmQDTu5SpbYpzcNXuD9Y
-         6P2mIgfpgnkVSVjWYL6H9vtosiFubgEEcgjE0fv5qHKs5AQ0Xf1efIiGcx62oznUyjIs
-         AcSLpXr98N7w+pcE0juLeZxwWhIXxSf1wCbg58+6vO2cWDwaQ0xK6eXP1kOCR7sen0Oc
-         WOCF1P4/bsM5Q6CIyzvQu2h1HQp/LP4ZLD0aBF+7YIVJmDzaLvHfXNQYCew9RFUjM+DO
-         +DoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=I7O1t0HTMIayhEjL+JB+8Z7qxurHkXoWUdusDgjI/aw=;
-        b=WeLuceW/W3QJ3nP7TkkEt/4UyGCEr2dY/Zh1k7BlTwsjZv1SjuetQVwAsZ3rB2GQL5
-         6WZlUSvSXFzrwHadKpUDBenJlyagfGJBfQC04QzJ2k9KgxTe5/24W5t32vkLcK44WPet
-         xEkPqGY/R/8kzXGG/d8SI7IM8334zjf/tuS6v5oOeI+nTfGhFUOM1s8RFEBkaEAYlDwq
-         zU09HxXB4dJdauGMbXHMeQQVFgiMADnU6MNyKJncfK1KZqFF3Y+u1KuhO7YnDMzvjxxk
-         Djappin61YAO6Qo5bZdc6hYGVmEBSFjT4ewEQLFfhkMvPll3QEAN9ZBa4sLP8sZpExmR
-         PqkA==
-X-Gm-Message-State: APjAAAW4BrwlqqvJdv0gFBmSBQcRsb+q2MWFnwfaBi1vtQvTyvuiKDl/
-        dLlj6cuVKSiJdaBL9EZ+BU/AQg==
-X-Google-Smtp-Source: APXvYqzaOlQqLS/+QC42OQ5Qr8ZY2ncGO7QbGmE1r8wBifQgCAbuNUputplZ7iTSIWjw5VjtKCNaTQ==
-X-Received: by 2002:aa7:92da:: with SMTP id k26mr36518157pfa.70.1558372222724;
-        Mon, 20 May 2019 10:10:22 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:e483:1cc0:e2c2:140d])
-        by smtp.googlemail.com with ESMTPSA id e10sm37432545pfm.137.2019.05.20.10.10.22
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 10:10:22 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Carlo Caione <carlo@caione.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: amlogic: Move 'amlogic,meson-gx-ao-secure' binding to its own file
-In-Reply-To: <draft-7hsgt9842a.fsf@baylibre.com>
-References: <draft-7hsgt9842a.fsf@baylibre.com>
-Date:   Mon, 20 May 2019 10:10:21 -0700
-Message-ID: <7hmujh832a.fsf@baylibre.com>
+        id S2390057AbfETRTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 13:19:07 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:43473 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1733201AbfETRTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 13:19:07 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id C23A0238276A;
+        Mon, 20 May 2019 19:19:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1558372744;
+        bh=kxIJG27u7eVKtYS4db3xT3wLRcFHn7Lvz4p6qFUlz+I=; l=1593;
+        h=Subject:To:From;
+        b=wDxdv7u4l7MyCgkBom+hx+EOAgwngc3f+IEhC+oFKOCFiDrViMV44j0uJs2TAO/Wr
+         K5/zGrMyMpCjLghNlFZYrF6qz7KmxxvjnDbAdrsaSpzIYzQxbZZJwlpxYRj6NQGIp1
+         JLEwqFsGfkJ7lEVd+eTScYOtuGnd1uopjj2LoDfA=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190513193307.11591-1-oss@c-mauderer.de>
+ <20190519212501.GC31403@amd>
+From:   Christian Mauderer <oss@c-mauderer.de>
+Message-ID: <1850ba07-2c0c-2624-4ff3-fd507e49439f@c-mauderer.de>
+Date:   Mon, 20 May 2019 19:19:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20190519212501.GC31403@amd>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-PPP-Message-ID: <155837274415.37172.7452360277010363700@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
-
-> Rob Herring <robh@kernel.org> writes:
->
->> It is best practice to have 1 binding per file, so board level bindings
->> should be separate for various misc SoC bindings.
+On 19/05/2019 23:25, Pavel Machek wrote:
+> Hi!
+> 
+>> From: Christian Mauderer <oss@c-mauderer.de>
 >>
->> Cc: Mark Rutland <mark.rutland@arm.com>
->> Cc: Carlo Caione <carlo@caione.org>
->> Cc: Kevin Hilman <khilman@baylibre.com>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-amlogic@lists.infradead.org
->> Signed-off-by: Rob Herring <robh@kernel.org>
+>> This patch adds the binding documentation for a simple SPI based LED
+>> controller which use only one byte for setting the brightness.
+>>
+>> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
 >> ---
->> It seems this one fell thru the cracks and didn't get applied.
->
-> Feel free to apply directly.
->
-> Acked-by: Kevin Hilman <khilman@baylibre.com>
+> 
+>> diff --git a/Documentation/devicetree/bindings/leds/leds-spi-byte.txt b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+>> new file mode 100644
+>> index 000000000000..28b6b2d9091e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+>> @@ -0,0 +1,44 @@
+>> +* Single Byte SPI LED Device Driver.
+> 
+>> +The driver can be used for controllers with a very simple SPI protocol:
+>> +- one LED is controlled by a single byte on MOSI
+>> +- the value of the byte gives the brightness between two values (lowest to
+>> +  highest)
+>> +- no return value is necessary (no MISO signal)
+> 
+> I'd expect this file to be named acb-spi-led.txt, or something, and
+> talk about that u-controller, not its device driver -- as devicetree
+> binding describes hardware, not driver.
+> 
+> But you already have an ack from rob, so...
+> 									Pavel
+> 									
 
-On second that, we're going to have dependencies on that for the v5.3
-cycle, so I'll queue these up.
+So basically it would have been better to move the description that I
+added to the c-file as "supported devices" in the device tree file?
 
-Kevin
+With both commits already acked: Rob and Pavel: Should I change that?
+
+If you both say yes, I would rename the file in the binding like
+suggested and move the detailed protocol description from the driver to
+the binding.
+
+Best regards
+
+Christian
+
+
+
+
+
