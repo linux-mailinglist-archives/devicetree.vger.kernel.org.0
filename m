@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 080FF240AC
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 20:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F50240D9
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbfETSua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 14:50:30 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:39460 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726532AbfETSu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 14:50:29 -0400
-Received: by mail-pg1-f196.google.com with SMTP id w22so7193854pgi.6
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 11:50:29 -0700 (PDT)
+        id S1726199AbfETTGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 15:06:03 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:44587 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725536AbfETTGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 15:06:03 -0400
+Received: by mail-ed1-f65.google.com with SMTP id b8so25376985edm.11;
+        Mon, 20 May 2019 12:06:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=Mv8Qa01JCZ4+I7YNJRvGCUwkERJCFxGoPpOGVqFUsYA=;
-        b=LzRo5Nb6F7TFwyy5bp3FMP6UKmKwdrKZBYV8OY2LiLicrsrHoaULjsXjHJUAzLZd8k
-         akZ3bPYdZmgJHme2EODuIbrNd27cGXCSVd3r9GC7LhchRa04f6VzMH8AkZpMUIT4rm/g
-         aZ20HGwlSiT8tpEYkKhXuRRoqPdu6dO1WOBM/xXpenFNiYXmu2wsIMYj4eGk9ecb4gCv
-         tExdPIBkotN5XCXJpRIP2iv0ohdLdY4JCioDie7Bb/G3f3M2PsZA1faLwLJ3J8hIS5gE
-         CC/1Wqmcu34gckeSxDEtpR4JXa3n7ubgRnvoeysbbPATSjhpkHNwLJi8CQqwC/kjvEBg
-         a2ag==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=QLcESIrpuKvmGLuYzNttnrvxoFbU5Wzb2EEq5RaQWcI=;
+        b=bvEQWMOcSw18XS8JoBz0bG4i2ezv+hVW585GGY5YJPSTvmuCLYqn1fNBPYsb8Ymg4B
+         NhpnWTr2rwIvjX0dw1cwM408YbXHiQVGgwh8XbKzbd3prPdn4OQhGfNSeBB5GnR/F3XT
+         64vcExWjTl5djcEgJWho45n+pRl4xeVRK580K6LPTelNw/5aac4JLR2kiUTdGb6wWot8
+         139YRlWWFt8Jg9ySuN8k99GoOKa1SvtYa+MCgMC+9nlfIaCnS9sjFQgdxgEJiQoI8OSp
+         RfiJfH8HZlSqKLfBa+1AiZn+cvrErjtV98LAqy62N580ls1EbNj6xgc5PUOBPrxm79ar
+         yn6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=Mv8Qa01JCZ4+I7YNJRvGCUwkERJCFxGoPpOGVqFUsYA=;
-        b=XSkGSsje1r6A4uK2Z7w8uyJNOGgpjDZOTStETOCpwq8VamauEa8US2B4CARA1UsCXo
-         dqYjHUM1o+c2Hy5fClO3NJMqeQrMq3A4+2YCYJhlrWiDn0NJc1Xy5kmL5NFFv+0NjGko
-         bCOk4e2E1rw+ZIIWtCtuqvKCqyifABKbjoKr//3e4JuOFGkHQBt/O2bSke2kKzg59lxT
-         ksptqeub0P6p0P4ydJqAh7K/d0CXpMwOYPG5QZmeUBEBfzVV4rb5XgDBbaK0klPYUpbc
-         pz1b8AbQzsR+/wd4ewV3A+fyWgtrSP1vvR6bTgFSKfJS0zajBdr3bvuVaQeSUqe3TI99
-         G0Iw==
-X-Gm-Message-State: APjAAAWGEkTNOkN47S3z9jeBEhUbRH507nHFJOqrcmIhv0xsI6eS832Z
-        ChK36pwpitLYEUVbz3ZBEz7kKA==
-X-Google-Smtp-Source: APXvYqyeVgJuq88BvtgUgTuL8byweGUANYm5SR4s6iLuwa5yxXyYVn/e5ZPLOh/EoEtmF45cm1pG+Q==
-X-Received: by 2002:a63:5964:: with SMTP id j36mr76640076pgm.384.1558378229131;
-        Mon, 20 May 2019 11:50:29 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:e483:1cc0:e2c2:140d])
-        by smtp.googlemail.com with ESMTPSA id n184sm25492567pfn.21.2019.05.20.11.50.28
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 11:50:28 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] arm64: dts: meson: g12a: add ethernet support
-In-Reply-To: <7himu58195.fsf@baylibre.com>
-References: <20190520131401.11804-1-jbrunet@baylibre.com> <7himu58195.fsf@baylibre.com>
-Date:   Mon, 20 May 2019 11:50:27 -0700
-Message-ID: <7hd0kd7yfg.fsf@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QLcESIrpuKvmGLuYzNttnrvxoFbU5Wzb2EEq5RaQWcI=;
+        b=Y7jf38yWDBXidrly3CM/1q/SWO/ifAFWE5BUIs7ESEbq4ODz16EXmmwF0KT+819x7q
+         1sXV1lxMTlc7v0coHXi8xe0j5lrKvuRCjvY6dQ/acoR3EF0nWPvJwP1Fgy1F/9/ZHkVf
+         49FnfRLR/scCi5gX+7JpvEmXXt9o01cSiUblwFTYA2+ZpBdHtm1AYnb+YkTRZDpBDQ2k
+         1hNZcw0qLqzY3iC521gNX4qEVAriwm/OFfIMD9CQsoju1SZzM/d7b2O4gs0of+ARECQG
+         hD1yTI62cV1lItNg6SHBf43pSd3YZfsqODkMKD9/sSaqydkQ42PgQC2LlyeAQg3B0fsh
+         2rtA==
+X-Gm-Message-State: APjAAAXUR7B4OIU/aGRKXVxxObr3+1tYe2e1tN7z5ejQeC7Q09wnSEiQ
+        lB+ubumf9BxheW5SKvPCfXI=
+X-Google-Smtp-Source: APXvYqy1cvBYRYvUUPBq3x7QnOhRgMyNfx+sQ7tJyAHNBw0AcvHwtSZToEfucyN4dWcRcWP70hRsnA==
+X-Received: by 2002:a50:b487:: with SMTP id w7mr79029009edd.45.1558379161539;
+        Mon, 20 May 2019 12:06:01 -0700 (PDT)
+Received: from mail.broadcom.com ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id 11sm3201967ejv.64.2019.05.20.12.05.59
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 May 2019 12:06:00 -0700 (PDT)
+From:   Kamal Dasu <kdasu.kdev@gmail.com>
+To:     linux-mtd@lists.infradead.org
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: mtd: brcmnand: Make nand-ecc-strength and nand-ecc-step-size optional
+Date:   Mon, 20 May 2019 15:05:11 -0400
+Message-Id: <1558379144-28283-1-git-send-email-kdasu.kdev@gmail.com>
+X-Mailer: git-send-email 1.9.0.138.g2de3478
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
+nand-ecc-strength and nand-ecc-step-size can be made optional as
+brcmnand driver can support using raw NAND layer detected values.
 
-> Jerome Brunet <jbrunet@baylibre.com> writes:
->
->> Add network support to the g12a SoC family
->>
->> This is series is based on 5.2-rc1 and the patches I already sent last
->> week. If this is not convient for you, please let me know, I'll rebase.
->
-> Could you apply this on top of the "consistently order nodes" patches
-> that are already in my v5.3/dt64 branch?
+Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+---
+ Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Nevermind, I mis-read the above and thought it was on v5.2-rc1, but now
-see that it's on -rc1 + all your other series, so it's all good.
+diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+index bcda1df..29feaba 100644
+--- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
++++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+@@ -101,10 +101,10 @@ Required properties:
+                               number (e.g., 0, 1, 2, etc.)
+ - #address-cells            : see partition.txt
+ - #size-cells               : see partition.txt
+-- nand-ecc-strength         : see nand.txt
+-- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
+ 
+ Optional properties:
++- nand-ecc-strength         : see nand.txt
++- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
+ - nand-on-flash-bbt         : boolean, to enable the on-flash BBT for this
+                               chip-select. See nand.txt
+ - brcm,nand-oob-sector-size : integer, to denote the spare area sector size
+-- 
+1.9.0.138.g2de3478
 
-Kevin
