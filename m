@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DFA23EFE
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 900DE23F05
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387524AbfETR3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 13:29:31 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:33474 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391117AbfETR3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 13:29:30 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 66so13782304otq.0;
-        Mon, 20 May 2019 10:29:30 -0700 (PDT)
+        id S2392770AbfETRaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 13:30:06 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36263 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730952AbfETRaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 13:30:06 -0400
+Received: by mail-oi1-f193.google.com with SMTP id y124so6294505oiy.3;
+        Mon, 20 May 2019 10:30:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=MpVsPzn7fqjajsRVSaLIebq0yUptaINVy1fHJtkXPPE=;
-        b=Zl4gAnpq82J5MFlntHb0LMgdoq5VDUJmwbDPgV+pzvh/R1GUJdW+JYwH3lZimVSguZ
-         M8Ql72g3Sr5ruIVtEKBSvYyQ9D6/Jd5h/xypTp/2Eb2qyG2llH1yF0wrwQHGN9/W12xM
-         jflYhcAs12hzCdqv9HDH8rDiUmU6+6zSni6Ed0Nke4aidDeeoqK6ZFrjtqWhw4L4/ZeW
-         a5/nJYfzGgixmsy38y0di6MNhvIdwlEANel8J6OK4UxIJjZ010+w7CFwHY9HSYTkRYsp
-         sAqiyXLwFjJaTYnbsGVznOGn4nBIo8JLhE5v9rXdZvHyBFYEvTmRuzsLtWA0xT+1ptSk
-         Y34Q==
+        bh=w3D3DH3Fu6zPGdy8wXa33dC2jEvuVr+iNnwQmfWSS0A=;
+        b=RwQKQ5Lzjd/yuajL0a8TD5eYFALJmVy/l4WPHaAm0uvSnsPctQQgAw6d+FL53P3XO+
+         tVH/dmHBr4tWoRSg0D2+O9YID9dkErHYkq+waO0kd16D9M0Rw1Ptd87/76eph2FxXs2Q
+         J2nuASsdqC60DP8hC3iA70GusQQ51PrrtW8tJcMteBoZX9KekgZE9gXFRUXv+ods5KUS
+         pdxTei3UpwOKry8OecT22OkNIkvN3fV/tvppl6ThiKEy5lPTjgND6MoMQgZk0x4G4GLd
+         XajQXeHS3FsHndEwTJ+6xe76ednJEIN4T/23dCy32gNlhrZJ/UOUhodFA2A/BLnDXnft
+         yNyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MpVsPzn7fqjajsRVSaLIebq0yUptaINVy1fHJtkXPPE=;
-        b=NieRsqoNkDTsRy1QekS10xU/Lrhn1IK/ZJC14ysBUEnOUH/HJ+ZDU7Jw60iwwdQNwE
-         6m5THig5y89tkrZJQC+q0PjdRdxF/z01ZNzirL1gJfJjLsRF01lOAb9hi2MAydVHSiqI
-         oAYsTpXw3+prk+4NDdGmqfF3yqrkgkAC1ey3BVvFY35qe/vs5gAmrbHimTlRlwLTzIN3
-         5r6I8fE+iSVYUjVaXh98JkDPGMOw5nexjY/R7nKkCHKBj5+WRx2QlR03ymv2nj6/4g8j
-         3xpfjwIqEdNstrFLpsclElj5irEKw3e1bAuxv9SvG/12/pwQDEB5/K96Szihlar8wSU/
-         YOBw==
-X-Gm-Message-State: APjAAAUNzu8VG8x0jUOnX04d1YISyfw2ZiYaTuzEBSFJzS14RYxma+HF
-        9RzHxxDjp0tlnsabxyuZfPcVP5imF46lhYdlKzTcuKMgNbs=
-X-Google-Smtp-Source: APXvYqy4fRDdNCMFLSSJ4ARTkpXPXphsa/ThOeZsGf2fWAEnDHoL1pf0F5r3Bjtzvtx9joN495LmCIFtAQ3r2hD01c8=
-X-Received: by 2002:a9d:69c8:: with SMTP id v8mr46369281oto.6.1558373369442;
- Mon, 20 May 2019 10:29:29 -0700 (PDT)
+        bh=w3D3DH3Fu6zPGdy8wXa33dC2jEvuVr+iNnwQmfWSS0A=;
+        b=EJbwaNS+rDyaeyLfxihVqUrZk+mnqnoJcfhzs4pn1Vk14/PELdaws3h2+sWCYm6TmX
+         nsKvwebI/YilTFdnUwLx+Kr1IpKLLW7MPR+hx1w+NQR7QpTaXe0AyV6QlpbRLkyUTQIF
+         gEFPxUVnmGrmKZ7/mO8k93KQK03Ikf2KAN6VZ1x7RN84yxjQs7MM36BX0VtNSBa2k3ME
+         ZBOPUzCei6SRnZX9fQkGITbrLDzbrB/eQ0ICtKix6eqTVhAEr0CUx7M35ehyX3sxhyAW
+         2n6exoV8nWqAAfJ5wZlg0Ia2yuZpsSbsbQjOfeNHNNKWS63SEb59c4R82vnGwAnYfJgi
+         vU8A==
+X-Gm-Message-State: APjAAAUoFxSexVTJTH6YAWWhdIEYs8daGgtuV17RIuiXnCiQht3yETA3
+        PDr9vyqZqsyDMr19asEVAo65eGfd8Oapfhzk40GLUQAQptU=
+X-Google-Smtp-Source: APXvYqyLRbhJiUJnsx/pAcLvvDyXpHCdWvCHHLtXqlVfdYX4QYuiPeY9+IVY0NVqnhXOrfr7IAkrogU21iwbgyH6EcU=
+X-Received: by 2002:aca:ed0a:: with SMTP id l10mr216571oih.39.1558373405148;
+ Mon, 20 May 2019 10:30:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190520131401.11804-1-jbrunet@baylibre.com> <20190520131401.11804-2-jbrunet@baylibre.com>
-In-Reply-To: <20190520131401.11804-2-jbrunet@baylibre.com>
+References: <20190520131401.11804-1-jbrunet@baylibre.com> <20190520131401.11804-3-jbrunet@baylibre.com>
+In-Reply-To: <20190520131401.11804-3-jbrunet@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 20 May 2019 19:29:18 +0200
-Message-ID: <CAFBinCDR_eYBEtbkvF3mF4VdsNuTuWEirAzViYrwVvfjYNpymQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] arm64: dts: meson: g12a: add ethernet mac controller
+Date:   Mon, 20 May 2019 19:29:54 +0200
+Message-ID: <CAFBinCAGDwqYcTGvj0d2Pvazj406HbB6+_S8fOSPD+AOZy6vzQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] arm64: dts: meson: g12a: add ethernet pinctrl definitions
 To:     Jerome Brunet <jbrunet@baylibre.com>
 Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
@@ -58,7 +58,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, May 20, 2019 at 3:14 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> Add the synopsys ethernet mac controller embedded in the g12a SoC family.
+> Add the ethernet pinctrl settings for RMII, RGMII and internal phy leds
 >
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
