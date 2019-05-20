@@ -2,104 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DEEF241EE
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA3B8241F1
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725995AbfETUSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 16:18:31 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:46818 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725971AbfETUSb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 16:18:31 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4579Fd08YGz1rC8T;
-        Mon, 20 May 2019 22:18:29 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4579Fc6rrvz1qqkK;
-        Mon, 20 May 2019 22:18:28 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id A6TefYW26iX6; Mon, 20 May 2019 22:18:27 +0200 (CEST)
-X-Auth-Info: T9LOcCiFr0FYTWiL1tsOXrNxwJxcOBz+l3fyL58e8hc=
-Received: from kurokawa.lan (ip-86-49-110-70.net.upcbroadband.cz [86.49.110.70])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Mon, 20 May 2019 22:18:27 +0200 (CEST)
-From:   Marek Vasut <marex@denx.de>
-To:     linux-media@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
-Date:   Mon, 20 May 2019 22:18:11 +0200
-Message-Id: <20190520201812.7937-1-marex@denx.de>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726384AbfETUTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 16:19:42 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:43558 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725978AbfETUTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 16:19:42 -0400
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4KK7ulm011303
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 16:19:41 -0400
+Received: from e17.ny.us.ibm.com (e17.ny.us.ibm.com [129.33.205.207])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2sm2m314bs-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 16:19:41 -0400
+Received: from localhost
+        by e17.ny.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <eajames@linux.ibm.com>;
+        Mon, 20 May 2019 21:19:40 +0100
+Received: from b01cxnp22033.gho.pok.ibm.com (9.57.198.23)
+        by e17.ny.us.ibm.com (146.89.104.204) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Mon, 20 May 2019 21:19:36 +0100
+Received: from b01ledav003.gho.pok.ibm.com (b01ledav003.gho.pok.ibm.com [9.57.199.108])
+        by b01cxnp22033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x4KKJZOX32047344
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 20 May 2019 20:19:35 GMT
+Received: from b01ledav003.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 2D63AB2064;
+        Mon, 20 May 2019 20:19:35 +0000 (GMT)
+Received: from b01ledav003.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 85AE9B2066;
+        Mon, 20 May 2019 20:19:34 +0000 (GMT)
+Received: from talon7.ibm.com (unknown [9.41.179.222])
+        by b01ledav003.gho.pok.ibm.com (Postfix) with ESMTP;
+        Mon, 20 May 2019 20:19:34 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-aspeed@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, arnd@arndb.de, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org, joel@jms.id.au,
+        andrew@aj.id.au, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v2 0/7] drivers/soc: Add Aspeed XDMA Engine Driver
+Date:   Mon, 20 May 2019 15:19:18 -0500
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+x-cbid: 19052020-0040-0000-0000-000004F20AFE
+X-IBM-SpamModules-Scores: 
+X-IBM-SpamModules-Versions: BY=3.00011132; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000286; SDB=6.01206180; UDB=6.00633347; IPR=6.00987139;
+ MB=3.00026974; MTD=3.00000008; XFM=3.00000015; UTC=2019-05-20 20:19:38
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19052020-0041-0000-0000-000008FE1DFB
+Message-Id: <1558383565-11821-1-git-send-email-eajames@linux.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-20_08:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=898 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1905200126
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Intersil ISL7998x BT656-to-MIPI-CSI2 decoder.
+The XDMA engine embedded in the AST2500 SOC performs PCI DMA operations
+between the SOC (acting as a BMC) and a host processor in a server.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-To: linux-media@vger.kernel.org
----
- .../bindings/media/i2c/isl7998x.txt           | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/isl7998x.txt
+This series adds a driver to control the XDMA engine in order to easily
+perform DMA operations to and from the host processor.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/isl7998x.txt b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
-new file mode 100644
-index 000000000000..c21703983360
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
-@@ -0,0 +1,37 @@
-+Intersil ISL7998x BT656-to-MIPI-CSI2 decoder
-+
-+The Intersil ISL7998x is a BT656-to-MIPI-CSI decoder which, capable of
-+receiving up to four analog stream and multiplexing them into up to four
-+MIPI CSI2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
-+
-+Required Properties:
-+- compatible: value should be "isil,isl79987"
-+- pd-gpios: a GPIO spec for the Power Down pin (active high)
-+
-+Option Properties:
-+- isil,num-inputs: Number of connected inputs (1, 2 or 4)
-+
-+For further reading on port node refer to
-+Documentation/devicetree/bindings/media/video-interfaces.txt.
-+
-+Example:
-+
-+	i2c_master {
-+		isl7998x_mipi@44 {
-+			compatible = "isil,isl79987";
-+			reg = <0x44>;
-+			isil,num-inputs = <4>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinctrl_videoadc>;
-+			pd-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-+			status = "okay";
-+
-+			port {
-+				isl79987_to_mipi_csi2: endpoint {
-+					remote-endpoint = <&mipi_csi2_in>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2>;
-+				};
-+			};
-+		};
-+	};
+I previously sent this series v1 to drivers/misc, but I'm now fairly certain
+it belongs in drivers/soc, especially since the other Aspeed drivers have been
+moved to soc.
+
+Changes since v1:
+ - Correct the XDMA command pitch
+ - Don't use packed for the aspeed_xdma_op structure
+ - Correct the SCU PCI config change
+
+Eddie James (7):
+  dt-bindings: soc: Add Aspeed XDMA engine binding documentation
+  drivers/soc: Add Aspeed XDMA Engine Driver
+  drivers/soc: xdma: Add user interface
+  drivers/soc: xdma: Add PCI device configuration sysfs
+  drivers/soc: xdma: Add debugfs entries
+  ARM: dts: aspeed: Add XDMA Engine
+  ARM: dts: aspeed: witherspoon: Enable XDMA Engine
+
+ .../devicetree/bindings/soc/aspeed/xdma.txt        |  23 +
+ MAINTAINERS                                        |   9 +
+ arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts   |   4 +
+ arch/arm/boot/dts/aspeed-g5.dtsi                   |   8 +
+ drivers/soc/aspeed/Kconfig                         |   8 +
+ drivers/soc/aspeed/Makefile                        |   1 +
+ drivers/soc/aspeed/aspeed-xdma.c                   | 944 +++++++++++++++++++++
+ include/uapi/linux/aspeed-xdma.h                   |  26 +
+ 8 files changed, 1023 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+ create mode 100644 drivers/soc/aspeed/aspeed-xdma.c
+ create mode 100644 include/uapi/linux/aspeed-xdma.h
+
 -- 
-2.20.1
+1.8.3.1
 
