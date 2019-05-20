@@ -2,213 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B7022B22
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 07:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED3422BA6
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 08:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729782AbfETFag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 01:30:36 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:17657 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729816AbfETFag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 01:30:36 -0400
-X-UUID: 56a159adc43646f3889b476e3beae217-20190520
-X-UUID: 56a159adc43646f3889b476e3beae217-20190520
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 255121144; Mon, 20 May 2019 13:30:29 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS33DR.mediatek.inc (172.27.6.106) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 20 May 2019 13:30:26 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 20 May 2019 13:30:27 +0800
-Message-ID: <1558330227.7311.14.camel@mtksdaap41>
-Subject: Re: [v2 3/3] drm/mediatek: add mipi_tx driver for mt8183
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        "Rahul Sharma" <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King" <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Mon, 20 May 2019 13:30:27 +0800
-In-Reply-To: <1558165892.7681.8.camel@mszsdaap41>
-References: <20190416054217.75387-1-jitao.shi@mediatek.com>
-         <20190416054217.75387-4-jitao.shi@mediatek.com>
-         <1557134258.5345.5.camel@mtksdaap41> <1558165892.7681.8.camel@mszsdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+        id S1730573AbfETGBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 02:01:24 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:59294 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730578AbfETGBX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 02:01:23 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6052120016C;
+        Mon, 20 May 2019 08:01:21 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 91E6D200188;
+        Mon, 20 May 2019 08:01:15 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 39802402DF;
+        Mon, 20 May 2019 14:01:08 +0800 (SGT)
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, benh@kernel.crashing.org,
+        paulus@samba.org, mpe@ellerman.id.au, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        minghuan.lian@nxp.com, mingkai.hu@nxp.com, zhiqiang.hou@nxp.com,
+        leoyang.li@nxp.com
+Cc:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: [PATCH] powerpc: dts: Fix the bug that intx interrupt not work in P1010RDB-PB
+Date:   Mon, 20 May 2019 13:53:08 +0800
+Message-Id: <20190520055308.43907-1-xiaowei.bao@nxp.com>
+X-Mailer: git-send-email 2.14.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2019-05-18 at 15:51 +0800, Jitao Shi wrote:
-> On Mon, 2019-05-06 at 17:17 +0800, CK Hu wrote:
-> > Hi, Jitao:
-> > 
-> > On Tue, 2019-04-16 at 13:42 +0800, Jitao Shi wrote:
-> > > This patch add mt8183 mipi_tx driver.
-> > > And also support other chips that use the same binding and driver.
-> > > 
-> > > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> > > ---
-> > >  drivers/gpu/drm/mediatek/Makefile             |   1 +
-> > >  drivers/gpu/drm/mediatek/mtk_mipi_tx.c        |   2 +
-> > >  drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |   1 +
-> > >  drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c | 154 ++++++++++++++++++
-> > >  4 files changed, 158 insertions(+)
-> > >  create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
-> > > 
-> > 
-> > [snip]
-> > 
-> > > +
-> > > +static int mtk_mipi_tx_pll_prepare(struct clk_hw *hw)
-> > > +{
-> > > +	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-> > > +	unsigned int txdiv, txdiv0;
-> > > +	u64 pcw;
-> > > +	int ret;
-> > > +
-> > > +	dev_dbg(mipi_tx->dev, "prepare: %u bps\n", mipi_tx->data_rate);
-> > > +
-> > > +	if (mipi_tx->data_rate >= 2000000000) {
-> > > +		txdiv = 1;
-> > > +		txdiv0 = 0;
-> > > +	} else if (mipi_tx->data_rate >= 1000000000) {
-> > > +		txdiv = 2;
-> > > +		txdiv0 = 1;
-> > > +	} else if (mipi_tx->data_rate >= 500000000) {
-> > > +		txdiv = 4;
-> > > +		txdiv0 = 2;
-> > > +	} else if (mipi_tx->data_rate > 250000000) {
-> > > +		txdiv = 8;
-> > > +		txdiv0 = 3;
-> > > +	} else if (mipi_tx->data_rate >= 125000000) {
-> > > +		txdiv = 16;
-> > > +		txdiv0 = 4;
-> > > +	} else {
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	ret = clk_prepare_enable(mipi_tx->ref_clk);
-> > > +	if (ret < 0) {
-> > > +		dev_err(mipi_tx->dev,
-> > > +			"can't prepare and enable mipi_tx ref_clk %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > 
-> > You enable the parent clock when prepare this clock here, this behavior
-> > looks strange. I think the flow should be:
-> > 
-> > 1. Parent clock prepare
-> > 2. This clock prepare
-> > 3. Parent clock enable
-> > 4. This clock enable
-> > 
-> > Maybe you should implement 'enable callback' so that parent clock would
-> > be already enabled.
-> > 
-> > One question is, mipi_tx_pll is used by dsi driver, but I does not see
-> > dsi prepare_enable() mipi_tx_pll, how does this work?
-> > 
-> > Regards,
-> > CK
-> > 
-> 
-> The mipi_tx can be accessed after clk_prepare_enable(mipi_tx->ref_clk);
-> 
-> So place the clk_prepare_enable(mipi_tx->ref_clk) before accessing
-> mipitx.
-> 
-> mipi_tx_pll is enable by mtk_mipi_tx_power_on() in mtk_mip_tx.c.
-> clk_prepare_enable(mipi_tx->pll) will enable mipi_tx_pll.
+Due to the INTA is shared with the active-low PHY2 interrupt on P1010RDB-PA
+board, so configure P1010RDB-PA's INTA with polarity as active-low, the
+P1010RDB-PB board is used separately, so configure P1010RDB-PB's INTA with
+polarity as active-high.
+The INTX in P1010RDB-PB do not work because of the pcie@0 node fixup will be
+overwrited by p1010si-post.dtsi file, so we move the pcie@0 node fixup to
+p1010rdb-pb.dts and p1010rdb-pb_36b.dts.
 
-OK, so it start from dsi driver. The callstack is:
+Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+---
+ arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts     |   16 ++++++++++++++++
+ arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts |   16 ++++++++++++++++
+ arch/powerpc/boot/dts/fsl/p1010rdb.dtsi       |   16 ----------------
+ 3 files changed, 32 insertions(+), 16 deletions(-)
 
-phy_power_on(dsi->phy);
--> mtk_mipi_tx_power_on()
---> clk_prepare_enable(mipi_tx->pll);
----> mtk_mipi_tx_pll_prepare();
-
-In clk_prepare_enable(), it separately call clk_prepare() and
-clk_enable(). When clk_prepare(), it prepare the parent clock then
-prepare this clock. When clk_enable(), it enable the parent clock then
-enable this clock. So this would result in the sequence:
-
-1. Prepare mipi_tx->ref_clk
-2. Prepare mipi_tx->pll
-3. Enable mipi_tx->ref_clk
-4. Enable mipi_tx->pll
-
-You say 'So place the clk_prepare_enable(mipi_tx->ref_clk) before
-accessing mipitx.', so the step 1 and step 3 is equal to
-clk_prepare_enable(mipi_tx->ref_clk), so I require you to access mipitx
-in step 4, not in step 2.
-
-Regards,
-CK
-
-> 
-> Beset Regards
-> Jitao
-> 
-> > > +
-> > > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON4, RG_DSI_PLL_IBIAS);
-> > > +
-> > > +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-> > > +	usleep_range(30, 100);
-> > > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-> > > +	pcw = div_u64(((u64)mipi_tx->data_rate * txdiv) << 24, 26000000);
-> > > +	writel(pcw, mipi_tx->regs + MIPITX_PLL_CON0);
-> > > +	mtk_mipi_tx_update_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_POSDIV,
-> > > +				txdiv0 << 8);
-> > > +	usleep_range(1000, 2000);
-> > > +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void mtk_mipi_tx_pll_unprepare(struct clk_hw *hw)
-> > > +{
-> > > +	struct mtk_mipi_tx *mipi_tx = mtk_mipi_tx_from_clk_hw(hw);
-> > > +
-> > > +	dev_dbg(mipi_tx->dev, "unprepare\n");
-> > > +
-> > > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_CON1, RG_DSI_PLL_EN);
-> > > +
-> > > +	mtk_mipi_tx_set_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_ISO_EN);
-> > > +	mtk_mipi_tx_clear_bits(mipi_tx, MIPITX_PLL_PWR, AD_DSI_PLL_SDM_PWR_ON);
-> > > +	clk_disable_unprepare(mipi_tx->ref_clk);
-> > > +}
-> > > +
-> > 
-> > 
-> 
-> 
-
+diff --git a/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts b/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts
+index 37681fd..6d75e5f 100644
+--- a/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts
++++ b/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts
+@@ -33,3 +33,19 @@
+ };
+ 
+ /include/ "p1010si-post.dtsi"
++
++&pci0 {
++	pcie@0 {
++		interrupt-map = <
++			/* IDSEL 0x0 */
++			/*
++			 *irq[4:5] are active-high
++			 *irq[6:7] are active-low
++			 */
++			0000 0x0 0x0 0x1 &mpic 0x4 0x2 0x0 0x0
++			0000 0x0 0x0 0x2 &mpic 0x5 0x2 0x0 0x0
++			0000 0x0 0x0 0x3 &mpic 0x6 0x1 0x0 0x0
++			0000 0x0 0x0 0x4 &mpic 0x7 0x1 0x0 0x0
++			>;
++	};
++};
+diff --git a/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts b/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts
+index 4cf255f..8359035 100644
+--- a/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts
++++ b/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts
+@@ -56,3 +56,19 @@
+ };
+ 
+ /include/ "p1010si-post.dtsi"
++
++&pci0 {
++	pcie@0 {
++		interrupt-map = <
++			/* IDSEL 0x0 */
++			/*
++			 *irq[4:5] are active-high
++			 *irq[6:7] are active-low
++			 */
++			0000 0x0 0x0 0x1 &mpic 0x4 0x2 0x0 0x0
++			0000 0x0 0x0 0x2 &mpic 0x5 0x2 0x0 0x0
++			0000 0x0 0x0 0x3 &mpic 0x6 0x1 0x0 0x0
++			0000 0x0 0x0 0x4 &mpic 0x7 0x1 0x0 0x0
++			>;
++	};
++};
+diff --git a/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi b/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi
+index 2ca9cee..ef49a7d 100644
+--- a/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi
+@@ -215,19 +215,3 @@
+ 		phy-connection-type = "sgmii";
+ 	};
+ };
+-
+-&pci0 {
+-	pcie@0 {
+-		interrupt-map = <
+-			/* IDSEL 0x0 */
+-			/*
+-			 *irq[4:5] are active-high
+-			 *irq[6:7] are active-low
+-			 */
+-			0000 0x0 0x0 0x1 &mpic 0x4 0x2 0x0 0x0
+-			0000 0x0 0x0 0x2 &mpic 0x5 0x2 0x0 0x0
+-			0000 0x0 0x0 0x3 &mpic 0x6 0x1 0x0 0x0
+-			0000 0x0 0x0 0x4 &mpic 0x7 0x1 0x0 0x0
+-			>;
+-	};
+-};
+-- 
+1.7.1
 
