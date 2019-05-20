@@ -2,255 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE6BE2423B
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 879D024286
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:12:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726164AbfETUvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 16:51:17 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:46727 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726067AbfETUvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 16:51:17 -0400
-Received: by mail-ot1-f68.google.com with SMTP id j49so14243399otc.13
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 13:51:17 -0700 (PDT)
+        id S1726853AbfETVMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 17:12:17 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:40316 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726823AbfETVMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:12:17 -0400
+Received: by mail-pg1-f196.google.com with SMTP id d30so7367704pgm.7
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:12:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xX33wYQ67BtuLkYMr+xwu06mBddsySPu3x4wvepJkq0=;
-        b=VBygtDimWlxiSshmooC0IL60kWo+ww+p0YIcnyIyT2jgCllNeE0M/Y4QMmho24DWWZ
-         QiOjPNi2E03oRxh9D46TyFNULT/3BFbop1NXR+n8Sm9MoRzXEXWW8KEEYPZN8G85IE+e
-         7qeQfXPKgVac0jQMMXr5VbiCgCzJMESBeQUH0=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=tvhovIH1bm4mrgIUbDfWITwSqOMdeKUwkQsZnjBp6SQ=;
+        b=mJn/emhBX8c/yxwZ7hQePgijl18XX1s/vRudt4ZscYNY1Or30y2GLnLv/dqNjy9che
+         21GPsFxyOk3+0Gj3ngYYYLEw8b6ONRvN28APdutqSlt7lem2kqTCJaESPFZscGBNntoH
+         dBtkthnI1bc2WDhax+S9lIdKVIVaITT2kjxco=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xX33wYQ67BtuLkYMr+xwu06mBddsySPu3x4wvepJkq0=;
-        b=BxnklBM5hYV6XDw31pQM8WNy2kr5IDJYxn62/U4eCUeNwwaO8+08BZ4vnaqxRqxCCo
-         RMdSiX+CnaAW2lUh6Wgm53hPDGFfAocx7aQ4r4+3DuwoLh77Vr32AcOwQaCQnPZa4bwS
-         lPcFEvYLFEUeqW+D+0nZwaMpMdij6Vjh894GlNXI2e47XEoWbLGrk0MazsECJjkjed3z
-         hNTJ54rAn5QgaBuu+jJc5+5JNoGcnmESdLUhle77U/pjFAVT9GMmJPOL7Pp3gdSmHC+l
-         LwD3pHv7w4VyCwW0l918q1Fa+ChPjSD5gX9n0HCfO8K0Rfu00mSeety3xSG2zjEZzQL2
-         kTwg==
-X-Gm-Message-State: APjAAAWeG1ZfC9JwCpcvdGVWHoBOxggepWtM1jpXT3bna32LIskM8Qpl
-        EiCsb/aMKzYUdb3MKLy2OKMN3kPJ/J3wRCrng5JO5g==
-X-Google-Smtp-Source: APXvYqwz/n+U8mN/3YqxKA4t9a9YLtbp9CRxHd/+W9i5b9zpl48GPLah04km34FANYnTc1u71D0UTWakADsPbJV06o4=
-X-Received: by 2002:a9d:a6e:: with SMTP id 101mr17212527otg.356.1558385476481;
- Mon, 20 May 2019 13:51:16 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=tvhovIH1bm4mrgIUbDfWITwSqOMdeKUwkQsZnjBp6SQ=;
+        b=A7ZUAIlXzGWdkhcZ9ifTYUAbOhCOFRAJy9P37TCAXnPLI0AOfq7kVesoUFxkrDsXaK
+         IK/xU5VODHgza0LYRB8opO8r51L1SPgVhwW8r7plemG/ydyvo/hhaIkcnh0fJB9FHJ67
+         XKUkqEoWjrMdNnACD09keg+QTagB4ESe62VOE+Pi2fvDZSaDhlHURsVYRGq70EGi7xP9
+         lLhn7/Qgokd2CGWW1F12bOxtyIbAbfzJjckzVo5bKy38tw776p8PJNE9gWgA+7GZShB6
+         VHVCADvwSPPrLmd6JDIg1K7ufDiyxvgqbjsFVTZXJJ/3atuFpSQm9KG27RC+cZy4zmQc
+         Mp8w==
+X-Gm-Message-State: APjAAAW50WWmdEi0tRLHnh3g/e4BmvHD9+uqHQnksPbm2n9Mzx0xzMpa
+        XH5nlt8Obae85GSg9w70EIiwTA==
+X-Google-Smtp-Source: APXvYqzB6kYa9tbEkVpPfd33Hr9ccQ26203/RLTGWxFCSb+WR8HAGD3cPwwEDsdADL80Gr948V9KYg==
+X-Received: by 2002:a63:1d05:: with SMTP id d5mr76991884pgd.157.1558386736752;
+        Mon, 20 May 2019 14:12:16 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id e16sm33603662pfj.77.2019.05.20.14.12.15
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 20 May 2019 14:12:15 -0700 (PDT)
+Date:   Mon, 20 May 2019 14:12:15 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] ARM: dts: rockchip: Limit GPU frequency on veyron
+ mickey to 300 MHz when the CPU gets very hot
+Message-ID: <20190520211215.GG40515@google.com>
+References: <20190520170132.91571-1-mka@chromium.org>
+ <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190429224143.192506-1-sjg@chromium.org> <CAL_JsqL3HrX5K4A3bLBrkR7LKNTCSj+--ip7z-xiCrgpmdZN6A@mail.gmail.com>
-In-Reply-To: <CAL_JsqL3HrX5K4A3bLBrkR7LKNTCSj+--ip7z-xiCrgpmdZN6A@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Mon, 20 May 2019 14:51:04 -0600
-Message-ID: <CAPnjgZ1YXUK1+hXgLf_GoS=WybnR+qhEpLPys+ikbQ-_epzUWQ@mail.gmail.com>
-Subject: Re: [PATCH] RFC: Example schema files written in Python
-To:     Rob Herring <robh@kernel.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Devicetree Discuss <devicetree@vger.kernel.org>,
-        Grant Likely <grant.likely@secretlab.ca>,
-        Frank Rowand <frank.rowand@sony.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Wed, 8 May 2019 at 13:21, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Apr 29, 2019 at 5:41 PM Simon Glass <sjg@chromium.org> wrote:
+On Mon, May 20, 2019 at 01:16:46PM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Mon, May 20, 2019 at 10:01 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 > >
-> > Most of these are hand-written, but xilinx-xadc.py is auto-generated by
-> > binding_to_py.py as an example of the use of that tool.
+> > On rk3288 the CPU and GPU temperatures are correlated. Limit the GPU
+> > frequency on veyron mickey to 300 MHz for CPU temperatures >= 85°C.
 > >
-> > This is part of a proof-of-concept device-tree validator. See the patch
-> > on the dtc mailing list for details:
->
-> Honestly, we are pretty far down the path of using json-schema to
-> consider changing to something else. We've already gone thru plenty of
-> concepts over the years with different languages for the schema.
-
-I don't think I saw much of that. I did hear that others has suggested
-such options but the yaml/json design is the only one I'm aware of.
-
-Anyway, it sounds like things are pretty set in stone right now. Even
-so, I'll reply to this email.
-
->
-> While I think there are some cases where being able to do schema with
-> code is useful or necessary, the vast majority of cases can be handled
-> just fine with structured data. I'd rather see how we could augment
-> the data with code. Maybe that's snippets of code within the schema or
-> making the validation code more modular. I would like to see the dtc
-> checks infrastructure be extendable without modifying dtc. That could
-> include supporting checks written in python.
->
-> One example where we need more than just schema data is validating
-> properties that depend on a provider #.*-cells property. We can't
-> really do that with json-schema. At least the number of cells being
-> correct is covered by dtc already. So it would really be how do we
-> validate the cell data itself. OTOH, I think that is pretty far down
-> the list in priorities of things to validate. There's already
-> thousands of warnings generated by dtc and the json-schema which are
-> slow to get fixed (though some are really subjective and more what to
-> avoid for new users).
->
+> > This matches the configuration of the downstream Chrome OS 3.14 kernel,
+> > the 'official' kernel for mickey.
 > >
-> >    RFC: Python-based device-tree validation
-> >
-> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > > ---
->
-> I'll use this one to comment on. Comments are most around goals for
-> the binding doc format.
->
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.py b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.py
-> > new file mode 100644
-> > index 0000000000000..9f55f48f7cde7
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.py
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: GPL-2.0+
-> > +#
+> > Note: this patch depends on "ARM: dts: rockchip: Add #cooling-cells
+> > entry for rk3288 GPU" (https://lore.kernel.org/patchwork/patch/1075005/)
+> > ---
+> >  arch/arm/boot/dts/rk3288-veyron-mickey.dts | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/rk3288-veyron-mickey.dts b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
+> > index d889ab3c8235..f118d92a49d0 100644
+> > --- a/arch/arm/boot/dts/rk3288-veyron-mickey.dts
+> > +++ b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
+> > @@ -125,6 +125,12 @@
+> >                                          <&cpu2 8 THERMAL_NO_LIMIT>,
+> >                                          <&cpu3 8 THERMAL_NO_LIMIT>;
+> >                 };
 > > +
-> > +# Xilinx XADC device driver
->
-> Having some defined structure at the top-level is beneficial for
-> extracting data and automating review checks.
+> > +               /* At very hot, don't let GPU go over 300 MHz */
+> > +               cpu_very_hot_limit_gpu {
+> > +                       trip = <&cpu_alert_very_hot>;
+> > +                       cooling-device = <&gpu 2 2>;
+> > +               };
+> 
+> Two things:
+> 
+> A) If I'm reading things properly, you're actually limiting things to
+> 400 MHz.  This is because you don't have <https://crrev.com/c/1574579>
+> which deletes the 500 MHz GPU operating point.  So on upstream the
+> available points are:
+> 
+> 0: 600 MHz
+> 1: 500 MHz
+> 2: 400 MHz
+> 3: 300 MHz
+> 4: 200 MHz
+> 5: 100 MHz
+> 
+> ...and downstream:
+> 
+> 0: 600 MHz
+> 1: 400 MHz
+> 2: 300 MHz
+> 3: 200 MHz
+> 4: 100 MHz
 
-What does this refer to?
+Thanks spotting this!
 
->
-> > +
-> > +from kschema import NodeDesc, PropBool, PropClocks, PropInt, PropIntList, PropInterrupts, PropReg, PropStringList
-> > +
-> > +schema = [
-> > +    NodeDesc('xilinx-xadc', ['xlnx,zynq-xadc-1.00.a', 'xlnx,axi-xadc-1.00.a'], False, desc=
->
-> If one desires to generate a list of all possible compatible strings
-> (to find undocumented ones), how would you do that?
+> Thinking about it more, I bet Heiko would actually be OK deleting the
+> 500 MHz GPU operating point for veyron.  Technically it's not needed
+> upstream because upstream doesn't have our hacks to allow re-purposing
+> NPLL for HDMI (so they _can_ make 500 MHz) but maybe we can make the
+> argument that these laptops have only ever been tested with the 500
+> MHz operating point removed and also that eventually someonje will
+> probably figure out a way to re-purpose NPLL for HDMI even upstream...
 
-Read in all the schema files and then walk through the entire schema
-looking for compatible strings.
+Looks like Heiko is indeed ok with it, so let's remove the OPP and be
+in sync with downstream on this.
 
->
-> > +            'This binding document describes the bindings for both of them since the'
-> > +            'bindings are very similar. The Xilinx XADC is a ADC that can be found in the'
-> > +            'series 7 FPGAs from Xilinx. The XADC has a DRP interface for communication.'
-> > +            'Currently two different frontends for the DRP interface exist. One that is only'
-> > +            'available on the ZYNQ family as a hardmacro in the SoC portion of the ZYNQ. The'
-> > +            'other one is available on all series 7 platforms and is a softmacro with a AXI'
-> > +            'interface. This binding document describes the bindings for both of them since'
-> > +            'the bindings are very similar.', elements=[
->
-> One goal with the schema (at least core ones) is to generate
-> documentation from it. That would need to be a format such as rST so
-> we can have formatting. And we'd want to be able to parse the
-> properties and generate tables from them.
+> B) It seems like in the same patch you'd want to introduce
+> "cpu_warm_limit_gpu", AKA:
+> 
+> cpu_warm_limit_gpu {
+>   trip = <&cpu_alert_warm>;
+>   cooling-device =
+>   <&gpu 1 1>;
+> };
 
-The docs above are taken verbatim from the binding, so there is no
-formatting really, except for blank lines.1
-
->
-> If someone really gets an itch, we'll rewrite sections of the DT spec
-> in schema.
->
-> > +        PropReg(required=True,
-> > +            desc='Address and length of the register set for the device'),
->
-> For any standard property, we'd have to create the class before
-> bindings can use it.
-
-There is a 'generic' property (PropDesc) which is the base class for
-all properties. So most properties would not have their own class.
-
->
-> > +        PropInterrupts(required=True,
->
-> How would you handle a property being conditionally required?
-
-The cond_props dictionary is attached to each property. See
-ElementPresent for the implementation.
-
->
-> > +            desc='Interrupt for the XADC control interface.'),
-> > +        PropClocks(required=True,
-> > +            desc='When using the ZYNQ this must be the ZYNQ PCAP clock,'
-> > +            'when using the AXI-XADC pcore this must be the clock that provides the'
-> > +            'clock to the AXI bus interface of the core.'),
-> > +        PropStringList('xlnx,external-mux', str_pattern='none|single|dual',
-> > +            desc=''),
-> > +        PropIntList('xlnx,external-mux-channel', valid_list='0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|16|1|2|3|4|5|6|8',
-> > +            desc='Configures which pair of pins is used to'
-> > +            'sample data in external mux mode.'
-> > +            'Valid values for single external multiplexer mode are:'
-> > +            'Valid values for dual external multiplexer mode are:'
-> > +            ''
-> > +            'This property needs to be present if the device is configured for'
-> > +            'external multiplexer mode (either single or dual). If the device is'
-> > +            'not using external multiplexer mode the property is ignored.'),
-> > +        NodeDesc('xlnx,channels', None, False, desc=
-> > +                'List of external channels that are connected to the ADC', elements=[
-> > +            PropInt('#address-cells', required=True,
-> > +                desc='Should be 1.'),
-> > +            PropInt('#size-cells', required=True,
-> > +                desc='Should be 0.'),
-> > +            NodeDesc('None', None, False, desc=
-> > +                    'The child nodes of this node represent the external channels which are'
-> > +                    'connected to the ADC. If the property is no present no external'
-> > +                    'channels will be assumed to be connected.', elements=[
-> > +                NodeDesc('None', None, False, desc=
-> > +                        'Each child node represents one channel and has the following'
-> > +                        'properties:', elements=[
-> > +                    PropIntList('reg', required=True, valid_list='0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|16',
->
-> We need a different method or arg for every possible way we need to
-> express constraints? For example, say the value must be a power of 2.
-
-That's one of the nice things about Python is that it is easy to code
-up a custom validator. See the Validate() method in each class.
-
-At some point it might worth putting this sort of thing into its own
-validator class. How is this done with yaml?
-
->
-> > +                        desc='Pair of pins the channel is connected to.'
-> > +                        'Note each channel number should only be used at most'
-> > +                        'once.'),
-> > +                    PropBool('xlnx,bipolar',
-> > +                        desc='If set the channel is used in bipolar'
-> > +                        'mode.'),
-> > +                    ]),
-> > +                ]),
-> > +            ]),
-> > +        ]),
-> > +    ]
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
-> > index e0e0755cabd8a..24def33e6d6b8 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
-> > +++ b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
-> > @@ -32,24 +32,26 @@ Optional properties:
-> >         - xlnx,external-mux-channel: Configures which pair of pins is used to
-> >           sample data in external mux mode.
-> >           Valid values for single external multiplexer mode are:
-> > -               0: VP/VN
-> > -               1: VAUXP[0]/VAUXN[0]
-> > -               2: VAUXP[1]/VAUXN[1]
-> > +               * 0: VP/VN
-> > +               * 1: VAUXP[0]/VAUXN[0]
-> > +               * 2: VAUXP[1]/VAUXN[1]
->
-> Not really automatic conversion if you have to tweak the source. Is
-> your thought we'd make the txt files more structured to do automatic
-> conversions or we'd commit the python files?
-
-I was hoping to fix up the binding files a little, such that automatic
-conversion is good enough, make sure that the Python file can emit the
-original binding (in whatever format is chosen) then commit the Python
-files as the source of truth.
-
-Regards,
-Simon
+Makes sense to do it in the same patch, will add it in v2.
