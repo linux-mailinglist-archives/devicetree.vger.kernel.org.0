@@ -2,106 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 817252422A
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:37:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6BE2423B
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726010AbfETUhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 16:37:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52596 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725951AbfETUhd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 16:37:33 -0400
-Received: from localhost (173-25-83-245.client.mchsi.com [173.25.83.245])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7B6CA21019;
-        Mon, 20 May 2019 20:37:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558384652;
-        bh=uVbjxAUWgCbC+3W6qUA4GM+o+g6rMmmsC7o/66teuCg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p8eQOUOSP4VPav8rhVBRjLttgRZQ9uFqptDiDuCLlAxvIb7mQ5ZQoPB7mJKMabxf3
-         0CRkwsnHenKlW4ZhoSOnWXc3OJZSnFxke+708NryVmv7GcXTP3ordbOVmbiYPjJmiJ
-         fBK1TpkRYOX5kw88+elCoKaFCTGG+fybOZ8CTC+0=
-Date:   Mon, 20 May 2019 15:37:31 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        jonathanh@nvidia.com, lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V4 20/28] PCI: tegra: Use legacy IRQ for port service
- drivers
-Message-ID: <20190520203731.GA54609@google.com>
-References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
- <20190516055307.25737-21-mmaddireddy@nvidia.com>
+        id S1726164AbfETUvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 16:51:17 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46727 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726067AbfETUvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 16:51:17 -0400
+Received: by mail-ot1-f68.google.com with SMTP id j49so14243399otc.13
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 13:51:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xX33wYQ67BtuLkYMr+xwu06mBddsySPu3x4wvepJkq0=;
+        b=VBygtDimWlxiSshmooC0IL60kWo+ww+p0YIcnyIyT2jgCllNeE0M/Y4QMmho24DWWZ
+         QiOjPNi2E03oRxh9D46TyFNULT/3BFbop1NXR+n8Sm9MoRzXEXWW8KEEYPZN8G85IE+e
+         7qeQfXPKgVac0jQMMXr5VbiCgCzJMESBeQUH0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xX33wYQ67BtuLkYMr+xwu06mBddsySPu3x4wvepJkq0=;
+        b=BxnklBM5hYV6XDw31pQM8WNy2kr5IDJYxn62/U4eCUeNwwaO8+08BZ4vnaqxRqxCCo
+         RMdSiX+CnaAW2lUh6Wgm53hPDGFfAocx7aQ4r4+3DuwoLh77Vr32AcOwQaCQnPZa4bwS
+         lPcFEvYLFEUeqW+D+0nZwaMpMdij6Vjh894GlNXI2e47XEoWbLGrk0MazsECJjkjed3z
+         hNTJ54rAn5QgaBuu+jJc5+5JNoGcnmESdLUhle77U/pjFAVT9GMmJPOL7Pp3gdSmHC+l
+         LwD3pHv7w4VyCwW0l918q1Fa+ChPjSD5gX9n0HCfO8K0Rfu00mSeety3xSG2zjEZzQL2
+         kTwg==
+X-Gm-Message-State: APjAAAWeG1ZfC9JwCpcvdGVWHoBOxggepWtM1jpXT3bna32LIskM8Qpl
+        EiCsb/aMKzYUdb3MKLy2OKMN3kPJ/J3wRCrng5JO5g==
+X-Google-Smtp-Source: APXvYqwz/n+U8mN/3YqxKA4t9a9YLtbp9CRxHd/+W9i5b9zpl48GPLah04km34FANYnTc1u71D0UTWakADsPbJV06o4=
+X-Received: by 2002:a9d:a6e:: with SMTP id 101mr17212527otg.356.1558385476481;
+ Mon, 20 May 2019 13:51:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190516055307.25737-21-mmaddireddy@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190429224143.192506-1-sjg@chromium.org> <CAL_JsqL3HrX5K4A3bLBrkR7LKNTCSj+--ip7z-xiCrgpmdZN6A@mail.gmail.com>
+In-Reply-To: <CAL_JsqL3HrX5K4A3bLBrkR7LKNTCSj+--ip7z-xiCrgpmdZN6A@mail.gmail.com>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Mon, 20 May 2019 14:51:04 -0600
+Message-ID: <CAPnjgZ1YXUK1+hXgLf_GoS=WybnR+qhEpLPys+ikbQ-_epzUWQ@mail.gmail.com>
+Subject: Re: [PATCH] RFC: Example schema files written in Python
+To:     Rob Herring <robh@kernel.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Devicetree Discuss <devicetree@vger.kernel.org>,
+        Grant Likely <grant.likely@secretlab.ca>,
+        Frank Rowand <frank.rowand@sony.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 11:22:59AM +0530, Manikanta Maddireddy wrote:
-> Tegra signals PCIe services like AER, PME, etc. over legacy IRQ line.
-> By default, service drivers register interrupt routine over MSI IRQ line.
-> Use pcie_pme_disable_msi() function to disable MSI for service drivers.
+Hi Rob,
 
-I think this device is not quite spec-compliant:
+On Wed, 8 May 2019 at 13:21, Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Apr 29, 2019 at 5:41 PM Simon Glass <sjg@chromium.org> wrote:
+> >
+> > Most of these are hand-written, but xilinx-xadc.py is auto-generated by
+> > binding_to_py.py as an example of the use of that tool.
+> >
+> > This is part of a proof-of-concept device-tree validator. See the patch
+> > on the dtc mailing list for details:
+>
+> Honestly, we are pretty far down the path of using json-schema to
+> consider changing to something else. We've already gone thru plenty of
+> concepts over the years with different languages for the schema.
 
-  https://lore.kernel.org/linux-pci/20190520175729.GC49425@google.com/
+I don't think I saw much of that. I did hear that others has suggested
+such options but the yaml/json design is the only one I'm aware of.
 
-and you should work around this with a quirk that sets pdev->no_msi so
-we don't use MSI for it at all.
+Anyway, it sounds like things are pretty set in stone right now. Even
+so, I'll reply to this email.
 
-> PME and AER interrupts registered to MSI without this change,
-> cat /proc/interrupts | grep -i pci
-> 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
-> 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
-> 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
-> 
-> PME and AER interrupts registered to legacy IRQ with this change,
-> cat /proc/interrupts | grep -i pci
-> 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
-> 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
-> 
-> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> ---
-> V4: No change
-> 
-> V3: Corrected typo in commit log
-> 
-> V2: No change
-> 
->  drivers/pci/controller/pci-tegra.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-> index ac57c5badd9b..0024bc42b400 100644
-> --- a/drivers/pci/controller/pci-tegra.c
-> +++ b/drivers/pci/controller/pci-tegra.c
-> @@ -41,6 +41,7 @@
->  #include <soc/tegra/pmc.h>
->  
->  #include "../pci.h"
-> +#include "../pcie/portdrv.h"
->  
->  #define INT_PCI_MSI_NR (8 * 32)
->  
-> @@ -2725,6 +2726,9 @@ static int tegra_pcie_probe(struct platform_device *pdev)
->  		goto put_resources;
->  	}
->  
-> +	/* Switch to legacy IRQ for PCIe services like AER, PME*/
-> +	pcie_pme_disable_msi();
-> +
->  	pm_runtime_enable(pcie->dev);
->  	err = pm_runtime_get_sync(pcie->dev);
->  	if (err) {
-> -- 
-> 2.17.1
-> 
+>
+> While I think there are some cases where being able to do schema with
+> code is useful or necessary, the vast majority of cases can be handled
+> just fine with structured data. I'd rather see how we could augment
+> the data with code. Maybe that's snippets of code within the schema or
+> making the validation code more modular. I would like to see the dtc
+> checks infrastructure be extendable without modifying dtc. That could
+> include supporting checks written in python.
+>
+> One example where we need more than just schema data is validating
+> properties that depend on a provider #.*-cells property. We can't
+> really do that with json-schema. At least the number of cells being
+> correct is covered by dtc already. So it would really be how do we
+> validate the cell data itself. OTOH, I think that is pretty far down
+> the list in priorities of things to validate. There's already
+> thousands of warnings generated by dtc and the json-schema which are
+> slow to get fixed (though some are really subjective and more what to
+> avoid for new users).
+>
+> >
+> >    RFC: Python-based device-tree validation
+> >
+> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > ---
+>
+> I'll use this one to comment on. Comments are most around goals for
+> the binding doc format.
+>
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.py b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.py
+> > new file mode 100644
+> > index 0000000000000..9f55f48f7cde7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.py
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: GPL-2.0+
+> > +#
+> > +
+> > +# Xilinx XADC device driver
+>
+> Having some defined structure at the top-level is beneficial for
+> extracting data and automating review checks.
+
+What does this refer to?
+
+>
+> > +
+> > +from kschema import NodeDesc, PropBool, PropClocks, PropInt, PropIntList, PropInterrupts, PropReg, PropStringList
+> > +
+> > +schema = [
+> > +    NodeDesc('xilinx-xadc', ['xlnx,zynq-xadc-1.00.a', 'xlnx,axi-xadc-1.00.a'], False, desc=
+>
+> If one desires to generate a list of all possible compatible strings
+> (to find undocumented ones), how would you do that?
+
+Read in all the schema files and then walk through the entire schema
+looking for compatible strings.
+
+>
+> > +            'This binding document describes the bindings for both of them since the'
+> > +            'bindings are very similar. The Xilinx XADC is a ADC that can be found in the'
+> > +            'series 7 FPGAs from Xilinx. The XADC has a DRP interface for communication.'
+> > +            'Currently two different frontends for the DRP interface exist. One that is only'
+> > +            'available on the ZYNQ family as a hardmacro in the SoC portion of the ZYNQ. The'
+> > +            'other one is available on all series 7 platforms and is a softmacro with a AXI'
+> > +            'interface. This binding document describes the bindings for both of them since'
+> > +            'the bindings are very similar.', elements=[
+>
+> One goal with the schema (at least core ones) is to generate
+> documentation from it. That would need to be a format such as rST so
+> we can have formatting. And we'd want to be able to parse the
+> properties and generate tables from them.
+
+The docs above are taken verbatim from the binding, so there is no
+formatting really, except for blank lines.1
+
+>
+> If someone really gets an itch, we'll rewrite sections of the DT spec
+> in schema.
+>
+> > +        PropReg(required=True,
+> > +            desc='Address and length of the register set for the device'),
+>
+> For any standard property, we'd have to create the class before
+> bindings can use it.
+
+There is a 'generic' property (PropDesc) which is the base class for
+all properties. So most properties would not have their own class.
+
+>
+> > +        PropInterrupts(required=True,
+>
+> How would you handle a property being conditionally required?
+
+The cond_props dictionary is attached to each property. See
+ElementPresent for the implementation.
+
+>
+> > +            desc='Interrupt for the XADC control interface.'),
+> > +        PropClocks(required=True,
+> > +            desc='When using the ZYNQ this must be the ZYNQ PCAP clock,'
+> > +            'when using the AXI-XADC pcore this must be the clock that provides the'
+> > +            'clock to the AXI bus interface of the core.'),
+> > +        PropStringList('xlnx,external-mux', str_pattern='none|single|dual',
+> > +            desc=''),
+> > +        PropIntList('xlnx,external-mux-channel', valid_list='0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|16|1|2|3|4|5|6|8',
+> > +            desc='Configures which pair of pins is used to'
+> > +            'sample data in external mux mode.'
+> > +            'Valid values for single external multiplexer mode are:'
+> > +            'Valid values for dual external multiplexer mode are:'
+> > +            ''
+> > +            'This property needs to be present if the device is configured for'
+> > +            'external multiplexer mode (either single or dual). If the device is'
+> > +            'not using external multiplexer mode the property is ignored.'),
+> > +        NodeDesc('xlnx,channels', None, False, desc=
+> > +                'List of external channels that are connected to the ADC', elements=[
+> > +            PropInt('#address-cells', required=True,
+> > +                desc='Should be 1.'),
+> > +            PropInt('#size-cells', required=True,
+> > +                desc='Should be 0.'),
+> > +            NodeDesc('None', None, False, desc=
+> > +                    'The child nodes of this node represent the external channels which are'
+> > +                    'connected to the ADC. If the property is no present no external'
+> > +                    'channels will be assumed to be connected.', elements=[
+> > +                NodeDesc('None', None, False, desc=
+> > +                        'Each child node represents one channel and has the following'
+> > +                        'properties:', elements=[
+> > +                    PropIntList('reg', required=True, valid_list='0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|16',
+>
+> We need a different method or arg for every possible way we need to
+> express constraints? For example, say the value must be a power of 2.
+
+That's one of the nice things about Python is that it is easy to code
+up a custom validator. See the Validate() method in each class.
+
+At some point it might worth putting this sort of thing into its own
+validator class. How is this done with yaml?
+
+>
+> > +                        desc='Pair of pins the channel is connected to.'
+> > +                        'Note each channel number should only be used at most'
+> > +                        'once.'),
+> > +                    PropBool('xlnx,bipolar',
+> > +                        desc='If set the channel is used in bipolar'
+> > +                        'mode.'),
+> > +                    ]),
+> > +                ]),
+> > +            ]),
+> > +        ]),
+> > +    ]
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
+> > index e0e0755cabd8a..24def33e6d6b8 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
+> > +++ b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
+> > @@ -32,24 +32,26 @@ Optional properties:
+> >         - xlnx,external-mux-channel: Configures which pair of pins is used to
+> >           sample data in external mux mode.
+> >           Valid values for single external multiplexer mode are:
+> > -               0: VP/VN
+> > -               1: VAUXP[0]/VAUXN[0]
+> > -               2: VAUXP[1]/VAUXN[1]
+> > +               * 0: VP/VN
+> > +               * 1: VAUXP[0]/VAUXN[0]
+> > +               * 2: VAUXP[1]/VAUXN[1]
+>
+> Not really automatic conversion if you have to tweak the source. Is
+> your thought we'd make the txt files more structured to do automatic
+> conversions or we'd commit the python files?
+
+I was hoping to fix up the binding files a little, such that automatic
+conversion is good enough, make sure that the Python file can emit the
+original binding (in whatever format is chosen) then commit the Python
+files as the source of truth.
+
+Regards,
+Simon
