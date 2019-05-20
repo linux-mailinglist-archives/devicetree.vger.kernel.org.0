@@ -2,146 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F028D23990
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 16:13:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B42B239A6
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 16:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390140AbfETONH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 10:13:07 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:38302 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390001AbfETONG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 10:13:06 -0400
-Received: by mail-pl1-f196.google.com with SMTP id f97so6780761plb.5
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 07:13:06 -0700 (PDT)
+        id S2390498AbfETOPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 10:15:12 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:45422 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732112AbfETOPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 10:15:12 -0400
+Received: by mail-lf1-f67.google.com with SMTP id n22so10413949lfe.12
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 07:15:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=KECfzIlIxEDfVdyErNUrjun4OGvSgTJTFJXl1TIJwHg=;
-        b=Io8Djg5IajMWP4jrjZz+XJT0xkaQiY/xIrp3FP/B/kghGek0Q/EEW9Itb8Ti2zjMmi
-         nOu3fLxeW0Rdqh/vA/JlG1/RiCGKxBs7n4aNh5O2rR+/mADH0YJCAYkBtkzS1D2Oiefl
-         gPUWRIvc/LWxfW/8yRG745QLWWOKS5RRINiqT+q/JbAuSsb56bIeGRdStsNYnsQFK/AJ
-         xnzH2cMLcr9HkXuP1i0yfFu4Yk0d5vGu9tlZ2IJIxxvAnfzffcF4njZHkljSccFgIsuB
-         6jDqZaI25gW5Co/g2Z6S6uhig1ZxS/TtkwJTIH125L0NmvtvkHeSvRvW+ZNq7hHdNrKN
-         CtnQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kx/yDCCQeU2zSUDnAgFXJPUZkTY1cxoc8n3EZ4sTOjE=;
+        b=EoxUvv0mIQcNhvjP+Qu+GqfrXzw0d8cOaZVGQzsmsxub9Y7STNcWepuuTahEzm1miN
+         fkU4XPKgsEVcL/9rSkavL8X6llQAcq/D4dJ6PONAMmSoU58y7Sy7zHHK20A1v2ipDW7V
+         DckwV5XoFQPDbMCogGwK7kFUqw5ppEBvI6U7FN3wHEmJ2XVwdPRtqxZ3JydWajBvK58U
+         dgbw+gmSDQQwD5KFCnN7atwuyM1Gqm9B5GKXuSGytz8PhevwyCu2s7zWgIjgetiIqccL
+         gdFbwWP4QJ9owqQg0VwP4D4GyymfP989R2g31IRvXUYIik52vbOg4hOrVdD7lg9fb1l7
+         JrDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=KECfzIlIxEDfVdyErNUrjun4OGvSgTJTFJXl1TIJwHg=;
-        b=JgibMSVpBOz6XUKZgyKuGjvopwgzdGaPTeOQU4yR2ux2mlBPVqg56kCRnYEI57Zn01
-         QJaEtWPuixp5kAG4XLhCjwQsGdjRFOZslHy1vBpXG2zxIyi0i91uGms6tuckCiQSd3BR
-         bxnPjH+1IuZJkJZET6G4oUtrPNmxhMG8GrLa6AKkkqvyyC6J0n0fcsJhZjLZtM2zdz7q
-         IS40du8iHLlfz48nZR3uYjIgjcmrteRb3SkiwWrSo7lOU10O4bVTtxZ+sDUAw+8rgceV
-         uETt8Cltwvrvvj6uPQKrgnFalkqG+qvRNquEmiwWQtHSawnwvY5kPPovUdS1AQ0Av15z
-         ciVw==
-X-Gm-Message-State: APjAAAVv2ekqKl0DVPg+IYKAZLmigSJEvw6RdKkhL1U1Nx90exx5N/jO
-        KwlxARlDjhPsdNTKiPYaIB/5mQ==
-X-Google-Smtp-Source: APXvYqzr5Do1Q2Uusd8GpZ+9iK5oqKiy872Tx3Ms8RWbPMtHje6T82nYT6m4tFsbLCdVefsHrX6nNQ==
-X-Received: by 2002:a17:902:3283:: with SMTP id z3mr49834232plb.278.1558361586328;
-        Mon, 20 May 2019 07:13:06 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id a9sm26388248pgw.72.2019.05.20.07.13.02
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 20 May 2019 07:13:05 -0700 (PDT)
-From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
-        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/3] i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC.
-Date:   Mon, 20 May 2019 19:41:18 +0530
-Message-Id: <1558361478-4381-4-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1558361478-4381-1-git-send-email-sagar.kadam@sifive.com>
-References: <1558361478-4381-1-git-send-email-sagar.kadam@sifive.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kx/yDCCQeU2zSUDnAgFXJPUZkTY1cxoc8n3EZ4sTOjE=;
+        b=Yirg+g6fIbdhRV889XOQF2t2zpxVecYMBcb3oA5F0yak6KB8QHdBUKMmQ/SyWgrTdB
+         9YetCgEyhZjLQGEFDOKty3ZTEqOf2uQu9qSCrt0ecUxjQNnByUoZslLVA7EawRThEb85
+         auQeUKfsZznzp4EjJ/9NiqLMa+WHJjvqX5Y7MpEVhmHGHHjIKVF01eOVfA1+xAxVq2cF
+         TPaa/sXZdoeqax9HsqeKhsglprtt9uFZOADHAoWAGfyMEBhCkg+WZxJz3SsYpiBQ83K3
+         OeRx4uwuJ4NPvu1DOsIpRvoynxPs9TBAaqLTDVBICPjZc3MqfDsiZG3ppd7rDAwflkTJ
+         ONWg==
+X-Gm-Message-State: APjAAAUF03UPhSvNqZ1T1WyXKXQ2JGL6aqow+LYYAWXO7aSrOSFN1p8S
+        qmV3Zjb9vKZNXkWLgjUShStG4Go/Xz3X8mHvZio=
+X-Google-Smtp-Source: APXvYqwj2ceWM4YhBGOmRZ5pwdB4eeUEm451Mh2+mQCIK/u8TVo9Vx194481PuU6lljVZ2NujjW+Y1mSVpW26MDyGzk=
+X-Received: by 2002:ac2:5317:: with SMTP id c23mr12114501lfh.115.1558361710485;
+ Mon, 20 May 2019 07:15:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190219002706.20077-1-festevam@gmail.com> <20190423110336.GB23448@ulmo>
+In-Reply-To: <20190423110336.GB23448@ulmo>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 20 May 2019 11:15:05 -0300
+Message-ID: <CAOMZO5C4YKcUGJ9wDJHQE04278Cr6ujYnYwPs-yhCyKumbruqg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: Add vendor prefix for VXT Ltd
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Otavio Salvador <otavio.salvador@ossystems.com.br>,
+        John Weber <john.weber@technexion.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i2c-ocore driver already has a polling mode interface.But it needs
-a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-There is an erratum in FU540 chip that prevents interrupt driven i2c
-transfers from working, and also the I2C controller's interrupt bit
-cannot be cleared if set, due to this the existing i2c polling mode
-interface added in mainline earlier doesn't work, and CPU stall's
-infinitely, when-ever i2c transfer is initiated.
+On Tue, Apr 23, 2019 at 8:03 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+>
+> On Mon, Feb 18, 2019 at 09:27:04PM -0300, Fabio Estevam wrote:
+> > VXT Ltd is a manufacturer of projected capacitive touch panel
+> > and display solutions: http://www.vxt.com.tw/
+> >
+> > Reviewed-by: Otavio Salvador <otavio@ossystems.com.br>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> > ---
+> > Changes since v1:
+> > - None
+> >
+> >  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+>
+> Applied all three patches, thanks.
 
-Ref:previous polling mode support in mainline
+I don't see any of these patches applied in linux-next nor 5.2-rc1.
 
-	commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
-
-The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-FU540-COOO SoC.
-
-Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
----
- drivers/i2c/busses/i2c-ocores.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
-index aee1d86..c3bc97d 100644
---- a/drivers/i2c/busses/i2c-ocores.c
-+++ b/drivers/i2c/busses/i2c-ocores.c
-@@ -27,6 +27,7 @@
- #include <linux/jiffies.h>
- 
- #define OCORES_FLAG_POLL BIT(0)
-+#define OCORES_FLAG_BROKEN_IRQ BIT(1) /* Broken IRQ for FU540-C000 SoC */
- 
- /*
-  * 'process_lock' exists because ocores_process() and ocores_process_timeout()
-@@ -239,9 +240,13 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
- 	struct ocores_i2c *i2c = dev_id;
- 	u8 stat = oc_getreg(i2c, OCI2C_STATUS);
- 
--	if (!(stat & OCI2C_STAT_IF))
-+	if (i2c->flags & OCORES_FLAG_BROKEN_IRQ) {
-+		if (stat & OCI2C_STAT_IF)
-+			if (!(stat & OCI2C_STAT_BUSY))
-+				return IRQ_NONE;
-+	} else if (!(stat & OCI2C_STAT_IF)) {
- 		return IRQ_NONE;
--
-+	}
- 	ocores_process(i2c, stat);
- 
- 	return IRQ_HANDLED;
-@@ -356,6 +361,11 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
- 		ret = ocores_isr(-1, i2c);
- 		if (ret == IRQ_NONE)
- 			break; /* all messages have been transferred */
-+		else {
-+			if (i2c->flags & OCORES_FLAG_BROKEN_IRQ)
-+				if (i2c->state == STATE_DONE)
-+					break;
-+		}
- 	}
- }
- 
-@@ -601,6 +611,7 @@ static int ocores_i2c_probe(struct platform_device *pdev)
- {
- 	struct ocores_i2c *i2c;
- 	struct ocores_i2c_platform_data *pdata;
-+	const struct of_device_id *match;
- 	struct resource *res;
- 	int irq;
- 	int ret;
-@@ -683,6 +694,13 @@ static int ocores_i2c_probe(struct platform_device *pdev)
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq == -ENXIO) {
- 		i2c->flags |= OCORES_FLAG_POLL;
-+		/*
-+		 * Set in OCORES_FLAG_BROKEN_IRQ to enable workaround for
-+		 * FU540-C000 SoC in polling mode.
-+		 */
-+		match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
-+		if (match && (long)match->data == TYPE_SIFIVE_REV0)
-+			i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
- 	} else {
- 		if (irq < 0)
- 			return irq;
--- 
-1.9.1
-
+What is the issue here?
