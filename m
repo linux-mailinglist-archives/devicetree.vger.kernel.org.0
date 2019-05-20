@@ -2,112 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 237A82415C
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9C824175
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726566AbfETToL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 15:44:11 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53314 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726441AbfETToL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 15:44:11 -0400
-Received: by mail-wm1-f66.google.com with SMTP id 198so539776wme.3;
-        Mon, 20 May 2019 12:44:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cerp4BVz6jg3tc4rdBJfzN6XOYaVzz+u0Df3uTDWRZE=;
-        b=kyYql0N/INbJltmfL4wFEOR+NsMXKiaRLatSdnJCMyxaA4MIIcyUUCEHtSsgERHE7/
-         S/hoOwAe1IXGGrqMuJ4LFzQ//JAB8NAAT9hcwrAMLJk5ca+nMQiCNDdjJ/eg0h4wPqmk
-         ad84lRW4KWxKwTNWjd6i9rn+LXgH70sP+aO9K4aZfogHpeE13o6TdQQPqLQ2H2FN/FVt
-         0vnpHxxu5ly+oVB03lXLmvCBoNjgr7HlM0hDVBc/OTRYdxBUjHly+K/W5Spbb08tGYo1
-         LWvKe8pPuKhXH9+/krespj+/cG2GWWN4nDzWRdFqVrpDddLVhtYUJvvxBOIBt8Nx2RmD
-         n89Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cerp4BVz6jg3tc4rdBJfzN6XOYaVzz+u0Df3uTDWRZE=;
-        b=JYFSCbL3kbMikdTsMXG76U1yq428ZYsuVxl819hFKoyaPtyzpxGNfUPGTOzf6+MU7L
-         QgnUcTLyQGE+EfIkT2CEU/zbMYtiNkTzITijlzEvYlTMsj9BD3yW8odulISsqgmS72nH
-         6JJDqXE8gLl1zdkvq9wSVndgjlsfXwnn/CXQt/OsJikEtjUzl2Am/NfcCWWwM5zUFIF2
-         lzmyRW+GjhtJhnFL/rDYQFvWTBax7akgr5MISyGc9iGgjpnDqDO22puZgimm59+C9XZB
-         tkUJRSAqjHg1sZUEmsEUevQ/yUnXmR4z/q3fuaO0xHNWVnr6Q/iF41SWMU47IXIfPcUS
-         r49A==
-X-Gm-Message-State: APjAAAVSNr6mVPejhPjUYka2IqMSod9Z3Cl7FhyVpX01Q0crbvBF1/go
-        U6HVYLBsWGST7xBtUpKtBb4=
-X-Google-Smtp-Source: APXvYqz6TjOgiMXyvvY45YMYM5QAQd+aEkZPv3dGBlfGkdv3uVfPB9l0UQz9qje2U4+bNqxrMirqJg==
-X-Received: by 2002:a7b:c939:: with SMTP id h25mr612524wml.7.1558381449221;
-        Mon, 20 May 2019 12:44:09 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133EE71009C356FA1F0E19AF9.dip0.t-ipconnect.de. [2003:f1:33ee:7100:9c35:6fa1:f0e1:9af9])
-        by smtp.googlemail.com with ESMTPSA id p8sm9135352wro.0.2019.05.20.12.44.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 12:44:08 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-amlogic@lists.infradead.org, khilman@baylibre.com,
-        mjourdan@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 5/5] ARM: dts: meson8b: add the canvas module
-Date:   Mon, 20 May 2019 21:43:53 +0200
-Message-Id: <20190520194353.24445-6-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190520194353.24445-1-martin.blumenstingl@googlemail.com>
-References: <20190520194353.24445-1-martin.blumenstingl@googlemail.com>
+        id S1725776AbfETTqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 15:46:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33840 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725554AbfETTqZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 15:46:25 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4283D21019
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 19:46:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558381584;
+        bh=uu3wErwhcw0wslwLMybmkGYaO/ZJDf6TXCa+47Zue50=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=wi7kzTzgPolu43HW9ABtZZW2M/bhvdKnC6UOvqPtFu3ad7XUz9FrzPnFmmcUlr7rz
+         qbC4TH27x1u9HxECMR2y0bc/v65GWfkejPNu7Uq/Ues98aLyHP9spbbIgZRm363jet
+         Dt+vE9sJBjBmaKp6wipD/xewYVr66yvWxefMmu8Y=
+Received: by mail-qk1-f178.google.com with SMTP id g190so9572465qkf.8
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 12:46:24 -0700 (PDT)
+X-Gm-Message-State: APjAAAWY5Ig1ZUMt+YWq8T3E9/0VZHnrxcY3I9EBg7BkYWLmz4noo8xZ
+        2uAJjbAvGGh4icuKWWIVEZ0t/XdJs33dCjVYPQ==
+X-Google-Smtp-Source: APXvYqx5lF7MuceHa4XKg31nYlIkX1RB9DChxiqcJBiwxFPamVEefS4AQVC24ekASzW97hb76X00JsLaUGGwtBeAvVw=
+X-Received: by 2002:a05:620a:1107:: with SMTP id o7mr52311850qkk.184.1558381583482;
+ Mon, 20 May 2019 12:46:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190520155127.cdc6dofoqckwsrrb@flea>
+In-Reply-To: <20190520155127.cdc6dofoqckwsrrb@flea>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 20 May 2019 14:46:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJhBji40AnA=ND116N0+DkvzhX=Rt-wa=DX3Fd3uQRdAw@mail.gmail.com>
+Message-ID: <CAL_JsqJhBji40AnA=ND116N0+DkvzhX=Rt-wa=DX3Fd3uQRdAw@mail.gmail.com>
+Subject: Re: Device Tree nodes ending with -supply
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the canvas module to Meson8b because it's required for the VPU
-(video output) and video decoders.
+On Mon, May 20, 2019 at 10:51 AM Maxime Ripard
+<maxime.ripard@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> I've noticed that you recently added support to validate the *-supply
+> properties in the dt-schema tools.
+>
+> However, we have a family of PMIC that are exposing a bunch of power
+> supplies (battery, AC, USB, etc) to know what is currently powering
+> the board.
+>
+> All these various supplies are exposed as children nodes of the PMIC
+> itself, and they are named *-power-supply. For an example, you can
+> look at:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/axp209.dtsi#n56
+>
+> Now, those are obviously not properties, and yet the current dt-schema
+> schemas are trying to validate them.
+>
+> I'm not really sure how to fix that. Changing the node names seems
+> like an obvious solution, but they seem to be what they should be. Can
+> we reduce the scope of the validation to only match properties (ie
+> arrays?) and not the nodes (objects?)
 
-The canvas module is located inside the "DMC bus" (where also some of
-the memory controller registers are located). The "DMC bus" itself is
-part of the so-called "MMC bus".
+While I'd prefer to avoid that node name, I fixed it with the fancy
+new if/then schema:
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+  ".*-supply$":
+    if:
+      not: { type: object }
+    then:
+      $ref: "types.yaml#/definitions/phandle"
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index ec67f49116d9..e4134c63a48c 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -205,6 +205,28 @@
- 		};
- 	};
- 
-+	mmcbus: bus@c8000000 {
-+		compatible = "simple-bus";
-+		reg = <0xc8000000 0x8000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0xc8000000 0x8000>;
-+
-+		dmcbus: bus@6000 {
-+			compatible = "simple-bus";
-+			reg = <0x6000 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x6000 0x400>;
-+
-+			canvas: video-lut@48 {
-+				compatible = "amlogic,meson8b-canvas",
-+					     "amlogic,canvas";
-+				reg = <0x48 0x14>;
-+			};
-+		};
-+	};
-+
- 	apb: bus@d0000000 {
- 		compatible = "simple-bus";
- 		reg = <0xd0000000 0x200000>;
--- 
-2.21.0
+I'll push it out shortly.
 
+Rob
