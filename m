@@ -2,127 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9734023116
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 12:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 403C62311C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 12:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731342AbfETKNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 06:13:04 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:45674 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732537AbfETKNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 06:13:02 -0400
-Received: by mail-pl1-f196.google.com with SMTP id a5so6476210pls.12
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 03:13:02 -0700 (PDT)
+        id S1730374AbfETKNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 06:13:55 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:33651 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728819AbfETKNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 06:13:55 -0400
+Received: by mail-pg1-f195.google.com with SMTP id h17so6590125pgv.0
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 03:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=ap6Go4OzNxJ532m09L3XvGYt1ETDxtVIslcDJHxqhh8=;
-        b=dg9voSlkL9Tcl87q88SNV55S8GA0JmQ0duHA+37dyzDY6OcpNFosrqe5mS3YzRmQOK
-         KPzF/tT9V0EzWBhy2zsLMNsoshKCx2xZyxd4iwz9E9Z+2nn92gIHu5ZHF9a2rvSKpInj
-         ca0v4q6NwLwD/s3f1bL/W4RAqzlQCYCkHWlRExJXrGi1L4hv02Om0lUPuSKo3CmzH1mz
-         d34F0kjxLbephXWC09QvmFZSnEu6Ekd6KSVve5DHXWh8KKISDCiIzD1Vjtqw0xlrah4s
-         Fmbp7jB3XlkVoe7T9o5bHTcpAiwbDpZHyq8FlWAt8RUnDgGdDJmKqnmM8+kdwtqJT8jL
-         8bLw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gSl0hdak9nrx3AjRA/ypcoIYXLtCzaU4jnEbvPcvNt8=;
+        b=JRFd3PDnga0E3LWtPoEqEV/39WriE8SzZ1OaF7n/NU7nJdlpwBoLgwLmjKEJpAvjPX
+         XZ1SmHbXXZ193KXruJGSbPsK93YJQfC5wXGkZOU3cIdhtTLLZLncciU/VgFYv4ypoWcA
+         UiHM6mh2RtiZrTevU5N3B6/lVDmfAWk6wlP9NRY324hi0FxwNsGhi9wdsu0rHb0Vhx/n
+         MGClOrhlg89rFShwBGqLaf99mD6KezVo7RAEdSWVDA5RW2t3yQjpL46CSYkkwWwS81n8
+         YTa9BrWd0ZSm0L2gZBK3heWtESBBTKDrSRGtSF/T6+IdbseVqzVpkKLX6PPaHhg3PXvH
+         S4cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=ap6Go4OzNxJ532m09L3XvGYt1ETDxtVIslcDJHxqhh8=;
-        b=d2XIBLP3hXi6gydoIkIVumD3fDLcaiNKVM8TzsI39OddOzyVXvtiFvFI2luh8V0sfc
-         MdzYht7+9u9VXClkkQNiM+3PAedpvOPkoqb99crwHcQOIjM2TNqkuTnyOxpX5vo0JpUL
-         uVj07dooWvBM1tzdCei9MnItzaCv+l2JA4fyUXFLUHZwUS84nEPd2h2l5u94za7rbade
-         dpmyCxFrE2KU9v96l4QJOPCBB+r1XRQvf3Y3uDVrpj4IuzxbmIVamt7j5DZb9hWfdPly
-         c5oueExDS3Jtz8hlknZjVMZ5ypke5A09UA158IxiuCWn13z7cLUYfCMvNNUkbXmBkbk0
-         yRCQ==
-X-Gm-Message-State: APjAAAVvSGtu+hoswHWEe/Jeaq27dWfjCh/EquX3+tzE0wSITlleJDar
-        oLJ2j8qarBev6FkAruPv9fqKgA==
-X-Google-Smtp-Source: APXvYqz/VZ5IYWao7ZtNYoD6jisYi4sIXfq0npMXqR3qxjBzeqk+s2PVbN80bOiH+xksI9cdfVZ8gQ==
-X-Received: by 2002:a17:902:bb06:: with SMTP id l6mr16803820pls.78.1558347182324;
-        Mon, 20 May 2019 03:13:02 -0700 (PDT)
-Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id b3sm30098127pfr.146.2019.05.20.03.12.58
-        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 20 May 2019 03:13:01 -0700 (PDT)
-From:   Baolin Wang <baolin.wang@linaro.org>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, arnd@arndb.de, olof@lixom.net
-Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org, arm@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 9/9] arm64: dts: sprd: Add Spreadtrum SD host controller support
-Date:   Mon, 20 May 2019 18:12:02 +0800
-Message-Id: <7fc6cd63966bda900b07ac9b2156e313a6f2ac17.1558346019.git.baolin.wang@linaro.org>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1558346019.git.baolin.wang@linaro.org>
-References: <cover.1558346019.git.baolin.wang@linaro.org>
-In-Reply-To: <cover.1558346019.git.baolin.wang@linaro.org>
-References: <cover.1558346019.git.baolin.wang@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gSl0hdak9nrx3AjRA/ypcoIYXLtCzaU4jnEbvPcvNt8=;
+        b=P+WSh2wNx3C7jCu39TjC4PN5qe8qcJKXQ/9QGc59+PWRUV/G+IVykJ+5CvGOG9jgKV
+         a1JgL/kPBoypx8qBuFZez7q8+0gkc628zpna5KPK1Hc7JESuwmwnJcA9e62sDr5OwTY2
+         EYi2Q7XTxU5duxBZQtm+4xuSMr6Yb+h0k9QLDOkHq3H5GlQT+C6j48DVwuO+0JM2j/4I
+         gfEuUhOoX160QjkxrmHAJS+0x9eqv5bu0VCCd+rVM+EsodS4Vdjfsj8cQDbUfD0Ldcgx
+         0eEoA077BwHFnyfNobOAdGGQH9dRM3Gq1add0/LABWmVaheWhz3Te4pLKnyhBTlD/uqT
+         5dyA==
+X-Gm-Message-State: APjAAAVJO0C0Wtt/q8KQAGxijUg7EWz6TXWMQkouZmpBNYlCqFGoyvfF
+        7xdozOuTbeMSktMPvtE2YQwk8w==
+X-Google-Smtp-Source: APXvYqyOW0QZtrH8O3rgAfo54rMSqrN3OZdfxdsodXTr+NokNvxXkGxPwDt1wmWe8pWIuVP0SPHygA==
+X-Received: by 2002:a62:1ec3:: with SMTP id e186mr33157231pfe.197.1558347234346;
+        Mon, 20 May 2019 03:13:54 -0700 (PDT)
+Received: from localhost ([122.172.118.99])
+        by smtp.gmail.com with ESMTPSA id i17sm22287324pfo.103.2019.05.20.03.13.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 May 2019 03:13:52 -0700 (PDT)
+Date:   Mon, 20 May 2019 15:43:51 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Leonard Crestez <leonard.crestez@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 0/5] cpufreq: Add imx-cpufreq-dt driver for speed
+ grading
+Message-ID: <20190520101351.huda4rmpdzaegnj7@vireshk-i7>
+References: <cover.1557742902.git.leonard.crestez@nxp.com>
+ <20190514071322.avosfk4fzz2hzzx6@vireshk-i7>
+ <20190520071417.GU15856@dragon>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190520071417.GU15856@dragon>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add one Spreadtrum SD host controller to support eMMC card for Spreadtrum
-SC9860 platform.
+On 20-05-19, 15:14, Shawn Guo wrote:
+> On Tue, May 14, 2019 at 12:43:22PM +0530, Viresh Kumar wrote:
+> > On 13-05-19, 11:01, Leonard Crestez wrote:
+> > > Right now in upstream imx8m cpufreq support just lists a common subset
+> > > of OPPs because the higher ones should only be attempted after checking
+> > > speed grading in fuses.
+> > > 
+> > > Driver reads from nvmem and calls dev_pm_opp_set_supported_hw before
+> > > registering cpufreq-dt.
+> > 
+> > Who will apply patches 3-5 ?
+> 
+> Me.  Will apply them after the first two get applied.
 
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
----
- arch/arm64/boot/dts/sprd/whale2.dtsi |   35 ++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Applied just now.
 
-diff --git a/arch/arm64/boot/dts/sprd/whale2.dtsi b/arch/arm64/boot/dts/sprd/whale2.dtsi
-index b5c5dce..86ec2b0 100644
---- a/arch/arm64/boot/dts/sprd/whale2.dtsi
-+++ b/arch/arm64/boot/dts/sprd/whale2.dtsi
-@@ -168,6 +168,34 @@
- 				vdd-supply = <&vddusb33>;
- 				sprd,vdd-voltage = <3300000>;
- 			};
-+
-+			sdio3: sdio@50430000 {
-+				compatible  = "sprd,sdhci-r11";
-+				reg = <0 0x50430000 0 0x1000>;
-+				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				clock-names = "sdio", "enable", "2x_enable";
-+				clocks = <&aon_prediv CLK_EMMC_2X>,
-+				       <&apahb_gate CLK_EMMC_EB>,
-+				       <&aon_gate CLK_EMMC_2X_EN>;
-+				assigned-clocks = <&aon_prediv CLK_EMMC_2X>;
-+				assigned-clock-parents = <&clk_l0_409m6>;
-+
-+				sprd,phy-delay-mmc-hs400 = <0x44 0x7f 0x2e 0x2e>;
-+				sprd,phy-delay-mmc-hs200 = <0x0 0x8c 0x8c 0x8c>;
-+				sprd,phy-delay-mmc-ddr52 = <0x3f 0x75 0x14 0x14>;
-+				sprd,phy-delay-mmc-hs400es = <0x3f 0x3f 0x2e 0x2e>;
-+				vmmc-supply = <&vddemmccore>;
-+				bus-width = <8>;
-+				non-removable;
-+				no-sdio;
-+				no-sd;
-+				cap-mmc-hw-reset;
-+				mmc-hs400-enhanced-strobe;
-+				mmc-hs400-1_8v;
-+				mmc-hs200-1_8v;
-+				mmc-ddr-1_8v;
-+			};
- 		};
- 
- 		aon {
-@@ -310,4 +338,11 @@
- 		clock-frequency = <100000000>;
- 		clock-output-names = "ext-rco-100m";
- 	};
-+
-+	clk_l0_409m6: clk_l0_409m6 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <409600000>;
-+		clock-output-names = "ext-409m6";
-+	};
- };
 -- 
-1.7.9.5
-
+viresh
