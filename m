@@ -2,147 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A084241E8
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DEEF241EE
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725971AbfETURB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 16:17:01 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:46115 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725951AbfETURA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 16:17:00 -0400
-Received: by mail-ua1-f66.google.com with SMTP id a95so5737150uaa.13
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 13:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=6B2h64c7BAIXdqgTD3mb8/lcaBqFTG1vyJC0fwpx6wE=;
-        b=KQMm8dHlW0EX+V6h+USfLko9QjquRn3QzW/5J7l+0b/pQy5Dvztidqe8NZWI0647aR
-         L+PuY1rYGscMwG+2Fo1tk6DfjcAF7p0K4i5eFnOfAg7Bpnw5pktbNUrmUsFEF+4M1AQW
-         bDUzBrJzXsa9FJ/B/992ypQfJjcTM2UtqhbRU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=6B2h64c7BAIXdqgTD3mb8/lcaBqFTG1vyJC0fwpx6wE=;
-        b=um8VWqRIv5GfCwttxapDSZbUpDm7Vc3Nf5toi3FBptXiWJ4tI2hkHOxZTlZvuZNNBS
-         4pLrIiG1DN1iXgrYfLe+G8YickAmL2sXN8u13Pi9q09M4Ay6u7EyHpdGFchJyjskuqwG
-         ipJm5LYx5Lt/oCHZ5+vZ8Opew6QzHPPmJIO3F78Rg2Q3ydypAOHcx0ReMAAEzPb7J9Ym
-         S028eDLtbAuKVpUn9Y8QU/dv19lULe1NQ6I+LOo1pYOLB0ghMullWuety61s5VP01xUk
-         A4tByqsm2mMGaXauKAHYrLk4ZJssZxyaySKtEzOTnPjwJCxkG3PGfWvudxcliJMtrvIR
-         KMFQ==
-X-Gm-Message-State: APjAAAXFD/qoI0umcR2jgQYHY2rNE/Mhmfj+8Ojt7OGsAvI5m6itk/Y8
-        jYopphK7DESAU0CMso5zrWMeyecgf6E=
-X-Google-Smtp-Source: APXvYqw+GIJcWr7GaPanf6qJwwZBzfh+wIEOcxOXTq5X3XWzZIEMM6lllnugKSs1EHC/6CqeVEJ3Jw==
-X-Received: by 2002:a9f:3045:: with SMTP id i5mr24785240uab.81.1558383418964;
-        Mon, 20 May 2019 13:16:58 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id o66sm6612011vke.17.2019.05.20.13.16.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 13:16:58 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id x8so5825792vsx.13
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 13:16:58 -0700 (PDT)
-X-Received: by 2002:a67:dd8e:: with SMTP id i14mr31757112vsk.149.1558383417594;
- Mon, 20 May 2019 13:16:57 -0700 (PDT)
+        id S1725995AbfETUSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 16:18:31 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:46818 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725971AbfETUSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 16:18:31 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4579Fd08YGz1rC8T;
+        Mon, 20 May 2019 22:18:29 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4579Fc6rrvz1qqkK;
+        Mon, 20 May 2019 22:18:28 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id A6TefYW26iX6; Mon, 20 May 2019 22:18:27 +0200 (CEST)
+X-Auth-Info: T9LOcCiFr0FYTWiL1tsOXrNxwJxcOBz+l3fyL58e8hc=
+Received: from kurokawa.lan (ip-86-49-110-70.net.upcbroadband.cz [86.49.110.70])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Mon, 20 May 2019 22:18:27 +0200 (CEST)
+From:   Marek Vasut <marex@denx.de>
+To:     linux-media@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
+Date:   Mon, 20 May 2019 22:18:11 +0200
+Message-Id: <20190520201812.7937-1-marex@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190520170132.91571-1-mka@chromium.org>
-In-Reply-To: <20190520170132.91571-1-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 20 May 2019 13:16:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
-Message-ID: <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: rockchip: Limit GPU frequency on veyron
- mickey to 300 MHz when the CPU gets very hot
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add bindings for the Intersil ISL7998x BT656-to-MIPI-CSI2 decoder.
 
-On Mon, May 20, 2019 at 10:01 AM Matthias Kaehlcke <mka@chromium.org> wrote=
-:
->
-> On rk3288 the CPU and GPU temperatures are correlated. Limit the GPU
-> frequency on veyron mickey to 300 MHz for CPU temperatures >=3D 85=C2=B0C=
-.
->
-> This matches the configuration of the downstream Chrome OS 3.14 kernel,
-> the 'official' kernel for mickey.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> Note: this patch depends on "ARM: dts: rockchip: Add #cooling-cells
-> entry for rk3288 GPU" (https://lore.kernel.org/patchwork/patch/1075005/)
-> ---
->  arch/arm/boot/dts/rk3288-veyron-mickey.dts | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/rk3288-veyron-mickey.dts b/arch/arm/boot/d=
-ts/rk3288-veyron-mickey.dts
-> index d889ab3c8235..f118d92a49d0 100644
-> --- a/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> +++ b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> @@ -125,6 +125,12 @@
->                                          <&cpu2 8 THERMAL_NO_LIMIT>,
->                                          <&cpu3 8 THERMAL_NO_LIMIT>;
->                 };
-> +
-> +               /* At very hot, don't let GPU go over 300 MHz */
-> +               cpu_very_hot_limit_gpu {
-> +                       trip =3D <&cpu_alert_very_hot>;
-> +                       cooling-device =3D <&gpu 2 2>;
-> +               };
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+To: linux-media@vger.kernel.org
+---
+ .../bindings/media/i2c/isl7998x.txt           | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/isl7998x.txt
 
-Two things:
+diff --git a/Documentation/devicetree/bindings/media/i2c/isl7998x.txt b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
+new file mode 100644
+index 000000000000..c21703983360
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
+@@ -0,0 +1,37 @@
++Intersil ISL7998x BT656-to-MIPI-CSI2 decoder
++
++The Intersil ISL7998x is a BT656-to-MIPI-CSI decoder which, capable of
++receiving up to four analog stream and multiplexing them into up to four
++MIPI CSI2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
++
++Required Properties:
++- compatible: value should be "isil,isl79987"
++- pd-gpios: a GPIO spec for the Power Down pin (active high)
++
++Option Properties:
++- isil,num-inputs: Number of connected inputs (1, 2 or 4)
++
++For further reading on port node refer to
++Documentation/devicetree/bindings/media/video-interfaces.txt.
++
++Example:
++
++	i2c_master {
++		isl7998x_mipi@44 {
++			compatible = "isil,isl79987";
++			reg = <0x44>;
++			isil,num-inputs = <4>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&pinctrl_videoadc>;
++			pd-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
++			status = "okay";
++
++			port {
++				isl79987_to_mipi_csi2: endpoint {
++					remote-endpoint = <&mipi_csi2_in>;
++					clock-lanes = <0>;
++					data-lanes = <1 2>;
++				};
++			};
++		};
++	};
+-- 
+2.20.1
 
-A) If I'm reading things properly, you're actually limiting things to
-400 MHz.  This is because you don't have <https://crrev.com/c/1574579>
-which deletes the 500 MHz GPU operating point.  So on upstream the
-available points are:
-
-0: 600 MHz
-1: 500 MHz
-2: 400 MHz
-3: 300 MHz
-4: 200 MHz
-5: 100 MHz
-
-...and downstream:
-
-0: 600 MHz
-1: 400 MHz
-2: 300 MHz
-3: 200 MHz
-4: 100 MHz
-
-Thinking about it more, I bet Heiko would actually be OK deleting the
-500 MHz GPU operating point for veyron.  Technically it's not needed
-upstream because upstream doesn't have our hacks to allow re-purposing
-NPLL for HDMI (so they _can_ make 500 MHz) but maybe we can make the
-argument that these laptops have only ever been tested with the 500
-MHz operating point removed and also that eventually someonje will
-probably figure out a way to re-purpose NPLL for HDMI even upstream...
-
-
-B) It seems like in the same patch you'd want to introduce
-"cpu_warm_limit_gpu", AKA:
-
-cpu_warm_limit_gpu {
-  trip =3D <&cpu_alert_warm>;
-  cooling-device =3D
-  <&gpu 1 1>;
-};
-
-
--Doug
