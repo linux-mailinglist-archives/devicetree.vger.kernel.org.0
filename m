@@ -2,125 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B76AC2421C
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 817252422A
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:37:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725902AbfETU2G convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 May 2019 16:28:06 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:58048 "EHLO gloria.sntech.de"
+        id S1726010AbfETUhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 16:37:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52596 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725989AbfETU2G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 16:28:06 -0400
-Received: from ip5f5a6320.dynamic.kabel-deutschland.de ([95.90.99.32] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hSot6-0008TP-VJ; Mon, 20 May 2019 22:28:01 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] ARM: dts: rockchip: Limit GPU frequency on veyron mickey to 300 MHz when the CPU gets very hot
-Date:   Mon, 20 May 2019 22:28:00 +0200
-Message-ID: <1695268.0xytyHHoPs@diego>
-In-Reply-To: <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
-References: <20190520170132.91571-1-mka@chromium.org> <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
+        id S1725951AbfETUhd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 16:37:33 -0400
+Received: from localhost (173-25-83-245.client.mchsi.com [173.25.83.245])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7B6CA21019;
+        Mon, 20 May 2019 20:37:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558384652;
+        bh=uVbjxAUWgCbC+3W6qUA4GM+o+g6rMmmsC7o/66teuCg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=p8eQOUOSP4VPav8rhVBRjLttgRZQ9uFqptDiDuCLlAxvIb7mQ5ZQoPB7mJKMabxf3
+         0CRkwsnHenKlW4ZhoSOnWXc3OJZSnFxke+708NryVmv7GcXTP3ordbOVmbiYPjJmiJ
+         fBK1TpkRYOX5kw88+elCoKaFCTGG+fybOZ8CTC+0=
+Date:   Mon, 20 May 2019 15:37:31 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        jonathanh@nvidia.com, lorenzo.pieralisi@arm.com, vidyas@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 20/28] PCI: tegra: Use legacy IRQ for port service
+ drivers
+Message-ID: <20190520203731.GA54609@google.com>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-21-mmaddireddy@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190516055307.25737-21-mmaddireddy@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 20. Mai 2019, 22:16:46 CEST schrieb Doug Anderson:
-> Hi,
-> 
-> On Mon, May 20, 2019 at 10:01 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > On rk3288 the CPU and GPU temperatures are correlated. Limit the GPU
-> > frequency on veyron mickey to 300 MHz for CPU temperatures >= 85°C.
-> >
-> > This matches the configuration of the downstream Chrome OS 3.14 kernel,
-> > the 'official' kernel for mickey.
-> >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Note: this patch depends on "ARM: dts: rockchip: Add #cooling-cells
-> > entry for rk3288 GPU" (https://lore.kernel.org/patchwork/patch/1075005/)
-> > ---
-> >  arch/arm/boot/dts/rk3288-veyron-mickey.dts | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/rk3288-veyron-mickey.dts b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> > index d889ab3c8235..f118d92a49d0 100644
-> > --- a/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> > +++ b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> > @@ -125,6 +125,12 @@
-> >                                          <&cpu2 8 THERMAL_NO_LIMIT>,
-> >                                          <&cpu3 8 THERMAL_NO_LIMIT>;
-> >                 };
-> > +
-> > +               /* At very hot, don't let GPU go over 300 MHz */
-> > +               cpu_very_hot_limit_gpu {
-> > +                       trip = <&cpu_alert_very_hot>;
-> > +                       cooling-device = <&gpu 2 2>;
-> > +               };
-> 
-> Two things:
-> 
-> A) If I'm reading things properly, you're actually limiting things to
-> 400 MHz.  This is because you don't have <https://crrev.com/c/1574579>
-> which deletes the 500 MHz GPU operating point.  So on upstream the
-> available points are:
-> 
-> 0: 600 MHz
-> 1: 500 MHz
-> 2: 400 MHz
-> 3: 300 MHz
-> 4: 200 MHz
-> 5: 100 MHz
-> 
-> ...and downstream:
-> 
-> 0: 600 MHz
-> 1: 400 MHz
-> 2: 300 MHz
-> 3: 200 MHz
-> 4: 100 MHz
-> 
-> Thinking about it more, I bet Heiko would actually be OK deleting the
-> 500 MHz GPU operating point for veyron.  Technically it's not needed
-> upstream because upstream doesn't have our hacks to allow re-purposing
-> NPLL for HDMI (so they _can_ make 500 MHz) but maybe we can make the
-> argument that these laptops have only ever been tested with the 500
-> MHz operating point removed and also that eventually someonje will
-> probably figure out a way to re-purpose NPLL for HDMI even upstream...
+On Thu, May 16, 2019 at 11:22:59AM +0530, Manikanta Maddireddy wrote:
+> Tegra signals PCIe services like AER, PME, etc. over legacy IRQ line.
+> By default, service drivers register interrupt routine over MSI IRQ line.
+> Use pcie_pme_disable_msi() function to disable MSI for service drivers.
 
-Yeah. Dropping the opp sounds sensible ... for the npll-related thing
-and also if you're really running into thermal constraints it might be
-good to give the system a bit more breathing room?
+I think this device is not quite spec-compliant:
 
+  https://lore.kernel.org/linux-pci/20190520175729.GC49425@google.com/
 
-Heiko
+and you should work around this with a quirk that sets pdev->no_msi so
+we don't use MSI for it at all.
 
-
-> B) It seems like in the same patch you'd want to introduce
-> "cpu_warm_limit_gpu", AKA:
+> PME and AER interrupts registered to MSI without this change,
+> cat /proc/interrupts | grep -i pci
+> 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
+> 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
+> 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
 > 
-> cpu_warm_limit_gpu {
->   trip = <&cpu_alert_warm>;
->   cooling-device =
->   <&gpu 1 1>;
-> };
+> PME and AER interrupts registered to legacy IRQ with this change,
+> cat /proc/interrupts | grep -i pci
+> 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
+> 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
 > 
+> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> Acked-by: Thierry Reding <treding@nvidia.com>
+> ---
+> V4: No change
 > 
-> -Doug
-
-
-
-
+> V3: Corrected typo in commit log
+> 
+> V2: No change
+> 
+>  drivers/pci/controller/pci-tegra.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+> index ac57c5badd9b..0024bc42b400 100644
+> --- a/drivers/pci/controller/pci-tegra.c
+> +++ b/drivers/pci/controller/pci-tegra.c
+> @@ -41,6 +41,7 @@
+>  #include <soc/tegra/pmc.h>
+>  
+>  #include "../pci.h"
+> +#include "../pcie/portdrv.h"
+>  
+>  #define INT_PCI_MSI_NR (8 * 32)
+>  
+> @@ -2725,6 +2726,9 @@ static int tegra_pcie_probe(struct platform_device *pdev)
+>  		goto put_resources;
+>  	}
+>  
+> +	/* Switch to legacy IRQ for PCIe services like AER, PME*/
+> +	pcie_pme_disable_msi();
+> +
+>  	pm_runtime_enable(pcie->dev);
+>  	err = pm_runtime_get_sync(pcie->dev);
+>  	if (err) {
+> -- 
+> 2.17.1
+> 
