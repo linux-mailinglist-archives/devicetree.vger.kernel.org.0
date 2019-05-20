@@ -2,123 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F12F02432E
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A31924345
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 00:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726023AbfETVvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 17:51:14 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:36296 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725776AbfETVvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:51:14 -0400
-Received: by mail-wm1-f65.google.com with SMTP id j187so801138wmj.1
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:51:12 -0700 (PDT)
+        id S1726879AbfETWA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 18:00:59 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:46814 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725776AbfETWA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 18:00:59 -0400
+Received: by mail-pl1-f194.google.com with SMTP id r18so7324615pls.13
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 15:00:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=suG0F0UoWiaM1rg1kA32ZVwY8eEO38Fk254vRSf8mBg=;
-        b=10gtItmO4VM4P1eUEBvLxn2dalHadbbCVYyxG+5wqFl6o7xBJEF1GodNxN7/DKFY+e
-         EgSUO11pCntSYZVWb3SQeoXYQfyJYrQ1ApRPWeHpSHnshIL663Dwz4id0LJHhH4fLb7k
-         FFivLYNEc/QQOHW6HlMix2bSCey96AxYoTFsNUC/ZFzc+Mw0fJfx7ZJmQzxuXdL7MMwK
-         0czeVM9YR/LbUd7STCqRasjeuvSDkZvWN36/rr0vrwuZnCmqhRUASStu9xJkdj+T4BMX
-         2ciigQmSWhiWZBB9OxTMZwmH/+bAnEpuG7ws2502Y4aXxO9pv/AbbHyr35zAIgfS9OWd
-         Il9A==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vtpw37UMclFgwsWmb0g3/F0Vs7Vu7ExQy0ncbvkEDZU=;
+        b=EPZ0X+O4Hu/F2sATps1IWhS7QDdC7Am72erJCLSgGeemHLtkKl4v4yxKaEToIFQPwB
+         N61A4R5TXNaf6/W06obkK79GwzeGrQB9FKapiEMCltkOH9tPsYwgegqkRv19LSHTA3AQ
+         RB7232HKfLvJ0y1uqXxOZmTLCRdGvCWWqo4Cc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=suG0F0UoWiaM1rg1kA32ZVwY8eEO38Fk254vRSf8mBg=;
-        b=Z7ZuM+TPEj37TnDSf3iUHDnzgdzY4fEw/u/pLTdj26AGaby6MJDfZLtY5+Ga11TYh/
-         l5gNS8korva2P9JOzZBSLfsVxFk79MA/GCsHPkcBxMtr1EPPP2EFXVcefqnqaz+rCC62
-         dtOYGSvG/+XIv78BuffOxHI4FxDdOUS7Z9y9BTDdpJGKZmmsUSyKVXYM3rpNVZjPVxSg
-         gNLtQbp4+L8UEi5KkL8l3ew97XTniXe6Yb8GxYAk9OENGSxK95sWg/QWUzOdsemFOps7
-         4xo4BAn0YXjwT6oyZZt41ylQkoANe5VZ5yNVJSYrQ7i9VaLXxmZlsiLcfYFHlZykQsvQ
-         uSIw==
-X-Gm-Message-State: APjAAAX/myV48q6kxilrs0Mh+OSRibEPeW7+h/N7BOLQdC01oSqG+zw2
-        LZ7DUo6HEmKgmnVpnLoCdkZ4NA==
-X-Google-Smtp-Source: APXvYqzyO1M/CnCLWf6cAnnORJuCPlXz906OZjZZljzCcjQtkTxx24tsTI99NINeG4zlq2iYc88zJQ==
-X-Received: by 2002:a1c:f009:: with SMTP id a9mr832063wmb.110.1558389071947;
-        Mon, 20 May 2019 14:51:11 -0700 (PDT)
-Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.gmail.com with ESMTPSA id m13sm18131299wrs.87.2019.05.20.14.51.10
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 20 May 2019 14:51:11 -0700 (PDT)
-Message-ID: <97cde329c44eade402deb517211a15fd70103f01.camel@baylibre.com>
-Subject: Re: [PATCH v2 3/5] arm64: dts: meson: g12a: add mdio multiplexer
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        f.fainelli@gmail.com, hkallweit1@gmail.com
-Date:   Mon, 20 May 2019 23:51:09 +0200
-In-Reply-To: <20190520190533.GF22024@lunn.ch>
-References: <20190520131401.11804-1-jbrunet@baylibre.com>
-         <20190520131401.11804-4-jbrunet@baylibre.com>
-         <CAFBinCA_XE86eqCMpEFc3xMZDH8J7wVQPRj7bFZyqDxQx-w-qw@mail.gmail.com>
-         <20190520190533.GF22024@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vtpw37UMclFgwsWmb0g3/F0Vs7Vu7ExQy0ncbvkEDZU=;
+        b=D7VY2XN3jL5WfRS4GSJwjH+KBUhPGgVGkePe4yPlxsmlwv68oad8+5XEQ3kiHUfXlr
+         WJ3/ct+7jl2htXeyH5b94+k4Rzg6DkuuvJI1me6IlVIZw9hyTu6n8+WNPnSFhaRQZ1MC
+         PI3h15RLMdek2lgl9YT8UzOSbTjkix8AL8OXBCziYOBmvMNms4h2OhoS4VEuOTrZ/0DI
+         z/96XHN/IuAC6v/J/u/t0dRwicMbd6o7aGvr0lcPUHA3BY1H7WEBBPpspG38UQmI/3QR
+         VTZj1pMI3tuo2dy/rw/wxP8PNl0z6XpylyNiaT2jcnOw9nUSJnzYtBawbiA8vdX5NEr6
+         WgFQ==
+X-Gm-Message-State: APjAAAVCo1n+rD6dtG8ToGVKt7rZHupNn/XgNBlt81/IzHLvCBN5bDsB
+        37ky6MZUieMs80bIoHR+j7wU+w==
+X-Google-Smtp-Source: APXvYqzLoewKhT1vDuz7GtTRsQScroD7YBJPCR6KbPfxnrP99Cz3ZYVhsa75U2HjYsoh8F23esun7g==
+X-Received: by 2002:a17:902:aa97:: with SMTP id d23mr78594959plr.313.1558389658649;
+        Mon, 20 May 2019 15:00:58 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id k192sm18805998pga.20.2019.05.20.15.00.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 May 2019 15:00:58 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v2 1/3] ARM: dts: rockchip: disable GPU 500 MHz OPP for veyron
+Date:   Mon, 20 May 2019 15:00:49 -0700
+Message-Id: <20190520220051.54847-1-mka@chromium.org>
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-05-20 at 21:05 +0200, Andrew Lunn wrote:
-> > > +                               int_mdio: mdio@1 {
-> > > +                                       reg = <1>;
-> > > +                                       #address-cells = <1>;
-> > > +                                       #size-cells = <0>;
-> > > +
-> > > +                                       internal_ephy: ethernet_phy@8 {
-> > > +                                               compatible = "ethernet-phy-id0180.3301",
-> > > +                                                            "ethernet-phy-ieee802.3-c22";
-> > Based on your comment on v1 of this patch [0] the Ethernet PHY ID is
-> > defined by this "mdio-multiplexer" (write arbitrary value to a
-> > register then that's the PHY ID which will show up on the bus)
-> > I'm fine with explicitly listing the ID which the PHY driver binds to
-> > because I don't know a better way.
+The NPLL is the only safe way to generate 500 MHz for the GPU. The
+downstream Chrome OS 3.14 kernel ('official' kernel for veyron
+devices) re-purposes NPLL to HDMI and hence disables the OPP for
+the GPU (see https://crrev.com/c/1574579). Disable it here as well
+to keep in sync and avoid problems in case someone decides to
+re-purpose NPLL.
 
-... 
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+Changes in v2:
+- patch added to the series
+---
+ arch/arm/boot/dts/rk3288-veyron.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-> 
-> Does reading the ID registers give the correct ID, once you have poked
-> registers in the mdio-multiplexer? If so, you don't need this
-> compatible string.
-
-Hi Andrew,
-
-In 5.1 the mdio-mux set a wrong simply because I got it wrong. I pushed a
-fix for that, and maybe it has already hit mainline.
-
-As I pointed to Martin on v1, this situation just shows that this setting is
-weaker than the usual phy setup.
-
-I do understand why we don't want to put the PHY id in DT. If the PHY fitted on
-the board changes, we want to pick it up. This particular phy is embedded in
-SoC, we know it won't change for this SoC, whatever the mdio-mux sets.
-
-So yes it should (soon) work as usual, setting this id is not strictly
-necessary but it nicely reflect that this particular phy is integrated in
-the SoC and we know which driver to use. 
-
-So, if this is ok with you, I'd prefer to keep this particular id around.
-
-> 
-> If the read is giving the wrong ID, then yes, you do want this. But
-> then please add a comment in the DT blob. This is very unusual, so
-> should have some explanation why it is needed.
-
-Sure, can add a comment. I suggest to do it in follow-up. At least it keeps
-things aligned between the gxl, which has been like this for quite a while now,
-and g12a.
-
-
-> 
-> Thanks
-> 	Andrew
-
+diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
+index 90c8312d01ff..ec10ce4fcf04 100644
+--- a/arch/arm/boot/dts/rk3288-veyron.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
+@@ -174,6 +174,14 @@
+ 	temperature = <100000>;
+ };
+ 
++/*
++ * Remove 500 MHz since the only way to make 500 MHz is via the NPLL
++ * which might be used for HDMI.
++ */
++&gpu_opp_table {
++	/delete-node/ opp-500000000;
++};
++
+ &hdmi {
+ 	ddc-i2c-bus = <&i2c5>;
+ 	status = "okay";
+-- 
+2.21.0.1020.gf2820cf01a-goog
 
