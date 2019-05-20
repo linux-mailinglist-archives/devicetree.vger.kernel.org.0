@@ -2,101 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E6F23C97
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F1423CC3
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387645AbfETPyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 11:54:21 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:53239 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732031AbfETPyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 11:54:21 -0400
-X-Originating-IP: 90.88.22.185
-Received: from windsurf (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: thomas.petazzoni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id E5F2D20011;
-        Mon, 20 May 2019 15:54:10 +0000 (UTC)
-Date:   Mon, 20 May 2019 17:54:10 +0200
-From:   Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
-Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: marvell: mcbin: enlarge PCI memory
- window
-Message-ID: <20190520175410.4c941bfc@windsurf>
-In-Reply-To: <20190517161123.9293-1-xypron.glpk@gmx.de>
-References: <20190517161123.9293-1-xypron.glpk@gmx.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S2389348AbfETP6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 11:58:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35330 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388657AbfETP6B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 11:58:01 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A839F2177B;
+        Mon, 20 May 2019 15:58:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558367880;
+        bh=nVZuwAchej3cX/jxaYPaCpxQLGe12Ikr7j7t0ajgtX4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=In/s90sCuJU2/LDfbSq/ltM7BfsjqY+JC5P2+zcho3XSeY3kl5p1Yn3dN/yqSzmu7
+         tSPr8LQB+T3vkyBSwKzWnc94WQUbQgrYEEBui8kDu+PZKCnpIJz09DTB4R9zADWXvm
+         q0axqoDMtcASUYKeiulDpEZMnuXbabQ/R2lAX+40=
+Received: by mail-qt1-f178.google.com with SMTP id z19so16814705qtz.13;
+        Mon, 20 May 2019 08:58:00 -0700 (PDT)
+X-Gm-Message-State: APjAAAXlZPlk803hMmoRBMGPOYZihMLfFDN6G6E8m6fHQRWUDyc0PuCM
+        vh/Wi0vTTVgNZLy+QZ27ktv+rCmTQmYPkRt1ug==
+X-Google-Smtp-Source: APXvYqwjPogqJnNMzhVG/Dty4EXEP0hrNsUGqneE2/2Dsx/rQulk+faBwMb9O26bpFgnUShEIqJNS7TiLLwC6XChE1Y=
+X-Received: by 2002:ac8:2d48:: with SMTP id o8mr64152978qta.136.1558367879826;
+ Mon, 20 May 2019 08:57:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <cover.1558362030.git.mchehab+samsung@kernel.org> <66231286de0f11b45075292216a939858de8c3e5.1558362030.git.mchehab+samsung@kernel.org>
+In-Reply-To: <66231286de0f11b45075292216a939858de8c3e5.1558362030.git.mchehab+samsung@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 20 May 2019 10:57:47 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKGzNBjxhvY2Vq9v8SXiND+7sjmsOwKkeu+gEM=2Y-n_A@mail.gmail.com>
+Message-ID: <CAL_JsqKGzNBjxhvY2Vq9v8SXiND+7sjmsOwKkeu+gEM=2Y-n_A@mail.gmail.com>
+Subject: Re: [PATCH 08/10] dt: fix refs that were renamed to json with the
+ same file name
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        devicetree@vger.kernel.org, linux-clk <linux-clk@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Heinrich,
+On Mon, May 20, 2019 at 9:48 AM Mauro Carvalho Chehab
+<mchehab+samsung@kernel.org> wrote:
+>
+> This file was converted to json, but the references weren't
 
-On Fri, 17 May 2019 18:11:23 +0200
-Heinrich Schuchardt <xypron.glpk@gmx.de> wrote:
+Technically, converted to json-schema (the language) or yaml (the format).
 
-> Running a graphics adapter on the MACCHIATObin fails due to an
-> insufficently sized memory window.
-> 
-> Enlarge the memory window for the PCIe slot to 512 MiB.
-> 
-> With the patch I am able to use a GT710 graphics adapter with 1 GB onboard
-> memory.
-> 
-> These are the mapped memory areas that the graphics adapter is actually
-> using:
-> 
-> Region 0: Memory at cc000000 (32-bit, non-prefetchable) [size=16M]
-> Region 1: Memory at c0000000 (64-bit, prefetchable) [size=128M]
-> Region 3: Memory at c8000000 (64-bit, prefetchable) [size=32M]
-> Region 5: I/O ports at 1000 [size=128]
-> Expansion ROM at ca000000 [disabled] [size=512K]
-> 
-> Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+> renamed.
+>
+> Fixes: 66ed144f147a ("dt-bindings: interrupt-controller: Convert ARM GIC to json-schema")
+> (and other similar commits)
+>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 > ---
->  arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-> index 329f8ceeebea..205071b45a32 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-> @@ -184,6 +184,8 @@
->  	num-lanes = <4>;
->  	num-viewport = <8>;
->  	reset-gpios = <&cp0_gpio2 20 GPIO_ACTIVE_LOW>;
-> +	ranges = <0x81000000 0x0 0xf9010000 0x0 0xf9010000 0x0 0x10000
-> +		  0x82000000 0x0 0xc0000000 0x0 0xc0000000 0x0 0x20000000>;
+>  Documentation/devicetree/bindings/arm/omap/crossbar.txt       | 2 +-
+>  .../devicetree/bindings/clock/samsung,s5pv210-clock.txt       | 2 +-
+>  .../bindings/interrupt-controller/marvell,odmi-controller.txt | 2 +-
+>  Documentation/devicetree/bindings/leds/irled/spi-ir-led.txt   | 2 +-
+>  MAINTAINERS                                                   | 4 ++--
+>  5 files changed, 6 insertions(+), 6 deletions(-)
 
-While I understand the change, I find it is a bit of a "one-off"
-solution, which will only work specifically for the MacchiatoBin. But
-admittedly, there isn't really a good generic solution: depending on
-the number of PCIe ports and what you connect to them, you will need
-windows of different sizes.
+FYI, I'm actively looking for this in conversions now as we've had a
+few of these. For cases where we have a lot of references, I'm fixing
+this by keeping the .txt file with a reference to the .yaml file.
 
-On older Armada platforms, it works a bit better because we have a
-single PCIe MEM aperture and a single PCIe I/O aperture, from which all
-PCIe ports allocate: each PCIe interface is a child bus of an emulated
-root port.
+I'll pick up the DT patches in the series.
 
-Unfortunately, on Armada 7K/8K, each PCIe interface is seen as an
-independent root complex, so we have one PCIe I/O aperture and one PCIe
-MEM aperture for each.
-
-Thomas
--- 
-Thomas Petazzoni, CTO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Rob
