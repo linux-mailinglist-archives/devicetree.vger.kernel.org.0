@@ -2,107 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0CB822A9E
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 06:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D64022AE9
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 06:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726194AbfETEUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 00:20:33 -0400
-Received: from mail-vk1-f193.google.com ([209.85.221.193]:35065 "EHLO
-        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726053AbfETEUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 00:20:33 -0400
-Received: by mail-vk1-f193.google.com with SMTP id k1so3540255vkb.2
-        for <devicetree@vger.kernel.org>; Sun, 19 May 2019 21:20:32 -0700 (PDT)
+        id S1728771AbfETElL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 00:41:11 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:46182 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727539AbfETElL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 00:41:11 -0400
+Received: by mail-pl1-f195.google.com with SMTP id r18so6077083pls.13;
+        Sun, 19 May 2019 21:41:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=k6ZY4dlYUgWC9xMv7mBWW2Rp/GiH/mIF5ibb01bxTfc=;
-        b=lkT5TGTLMDU8vkjvDn8uYnIiEn1Srn/zCq28Bk3yu05hPFzq/J9WIfb1mz/Cnl3ddv
-         1SUJ9vdF+sPLGGg3qdcdoozj6BxD1t8bKnXJpIYaQdqFm9s8ewTI4a5Fxioq385OYrx5
-         0B/w+2wh4wkMzgXigoUZ4YNWOae2ih6l6lL0J3Eg+aHFKYI1BbNhqg+zUtcChHcI+gCY
-         P3+ZBuoQ8WxqSUb719V21IJFT6itZqAOgUhVHuZiHfBbYfOENKusS4d2DfNk6ErmVxT3
-         4dnSK7TYrBATk/uNDMzrgemZzr+oTrcIfN/AJCeMiCRcg/E8H6IKyNvVJLKeiMLE4d/I
-         rOlg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=hQw5aECgY9hKK5rZ7g8MBM09I6jNL0ROWQsBCMlAOrQ=;
+        b=CHlsGg1p7a9hc3+KkJoUw8ok0htU3vc27YzRVP8CMdqBhgkmGeNP91gS+yuP3utt5G
+         oRlTos/xF2Rejcsd0BkEVMmQrs7XKf/dae6xidzWuR+xFI5AILwFC0Hlk5g0UvwEkbzW
+         1iZdLSnjXW9taDvh8QeuNJmhAT1sawmbt2Pf0k75DF7p1fs8uZA4cI+YDo/ekFDDS72w
+         onIWHPVbYxSv7jLjDoRrXA+L2q5UJH/WIyaj2D6PFQccc65Ma5Vf/ZVcs+1OxyWsjq1D
+         MpNfsnRt/2BBgrbsH9ZIil3AoE5FMa0lZKhAo1p4GsQTR9eWVhx2LNBmJ50+FQR2Mjst
+         SqaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=k6ZY4dlYUgWC9xMv7mBWW2Rp/GiH/mIF5ibb01bxTfc=;
-        b=gibbJLRATohYz4S+0ao8GueDk8JWQGXETZMSzcyai/eN0rhVtb0KMoeHERp/5owtDV
-         GnrzLKoGSq0nSSmUpywY9vHicfSoq5zngFrm4CrenVEEiL8oc2HgOuv3nb0UW/uK9PWK
-         HPznzoEagWK5XiTFrJV9/4iOkyQCoYdIiYuQTQJqw5ZxmBNpCBXhu/e8NGmVmjxiKVKQ
-         F/cE6HS5Lz6x7I9J5s5eIusTBWx4nX6RuBg7ekqv7DM+OPo++wrTG3u6IBJTmLpVWnc6
-         3nW0CFKZPzajSOsgTomwOEaFhV0nm0PqiYFzyUrTeFOwbBmPV6Lwgpvn7XDauOZ+j6m/
-         F2IQ==
-X-Gm-Message-State: APjAAAXNQbEaDzgbHHGxcY3xrqkQ3pqdhEkdh8YRLLEMIackEAV0hwcD
-        cAH0Flsm4B21xxnY2jZTf6E+vX/2Qzgl8i2gCHmGiw==
-X-Google-Smtp-Source: APXvYqy7AMlG3BgYDRhZy+4VIWVyd9wPF+kIWSEqvT5b9pFPI1+c1u6xaot/nbRBfv0yjmLCjltat2Eli5Yy4dPibj8=
-X-Received: by 2002:a1f:3dc9:: with SMTP id k192mr5787006vka.74.1558326032043;
- Sun, 19 May 2019 21:20:32 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=hQw5aECgY9hKK5rZ7g8MBM09I6jNL0ROWQsBCMlAOrQ=;
+        b=n1D80zL2FLEzoy/SEBJd/0SDkpxgckWHEQzRKeii1OQsiDdUOgPNS6bWNbGYgkM3ZH
+         gBSB1E0Xs2DZ+cWQpVkzM9OdgK8iAW9XdaweEyo/7coSZTCJWL8Gzh0mKevuLongYRr+
+         tt8iOQPepsRriVgLw+ZR5/S7UrSFXV4P664MQpNfBpLaTeuH8F7LYmISchdBAIiU/Zub
+         b5ezv3ICl+rvQK98Dwu/T6Kj26msOHO2ERgnZW34ll/kXLg0BJp0VG/+pD2mhwaU7zU1
+         1AEvEXIsNZ1/jCct1xans6nTG60aXNwHBGSVviBjzg5dbEhY0CVJft8gu22vsyKvJ7XP
+         tAAQ==
+X-Gm-Message-State: APjAAAW2hI3+RfWqDeETWfq8yEFpYa5Fz5ITzo/2hGW+LZ/eQq4dTdJA
+        oz91+5uQHJy29qcplugT9LU=
+X-Google-Smtp-Source: APXvYqygdq7byHUUQ6kGF5vwKhQcPMMTp8G+OKse6Q0yeghSrgx1i3NizEAosJMWB5h7sP2z/RCo7g==
+X-Received: by 2002:a17:902:6b03:: with SMTP id o3mr23433791plk.85.1558327270669;
+        Sun, 19 May 2019 21:41:10 -0700 (PDT)
+Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id m123sm21780054pfm.39.2019.05.19.21.41.09
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 19 May 2019 21:41:09 -0700 (PDT)
+Date:   Sun, 19 May 2019 21:41:07 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     "Y.b. Lu" <yangbo.lu@nxp.com>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [EXT] Re: [PATCH 1/3] enetc: add hardware timestamping support
+Message-ID: <20190520044107.ugro6zb7vkveyjw5@localhost>
+References: <20190516100028.48256-1-yangbo.lu@nxp.com>
+ <20190516100028.48256-2-yangbo.lu@nxp.com>
+ <20190516143251.akbt3ns6ue2jrhl5@localhost>
+ <VI1PR0401MB2237FB387B3F5ABC70EE4285F8060@VI1PR0401MB2237.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <1557983320-14461-1-git-send-email-sagar.kadam@sifive.com>
- <1557983320-14461-4-git-send-email-sagar.kadam@sifive.com> <20190516130720.GE14298@lunn.ch>
-In-Reply-To: <20190516130720.GE14298@lunn.ch>
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-Date:   Mon, 20 May 2019 09:50:21 +0530
-Message-ID: <CAARK3HkPuvsoVh=b2Kn43ubhME6vqpFLoboBM8OGOnb-d3FN8A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VI1PR0401MB2237FB387B3F5ABC70EE4285F8060@VI1PR0401MB2237.eurprd04.prod.outlook.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On Mon, May 20, 2019 at 03:20:23AM +0000, Y.b. Lu wrote:
+> > > +config FSL_ENETC_HW_TIMESTAMPING
+> > > +     bool "ENETC hardware timestamping support"
+> > > +     depends on FSL_ENETC || FSL_ENETC_VF
+> > > +     help
+> > > +       Enable hardware timestamping support on the Ethernet packets
+> > > +       using the SO_TIMESTAMPING API. Because the RX BD ring dynamic
+> > > +       allocation hasn't been supported and it's too expensive to use
+> > 
+> > s/it's/it is/
+> 
+> [Y.b. Lu] Will modify it. BTW, may I know what's the purpose of dropping single quote character? For searching, script checking, or something else?
 
-On Thu, May 16, 2019 at 6:37 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Thu, May 16, 2019 at 10:38:40AM +0530, Sagar Shrikant Kadam wrote:
-> > The i2c-ocore driver already has a polling mode interface.But it needs
-> > a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-> > There is an erratum in FU540 chip that prevents interrupt driven i2c
-> > transfers from working, and also the I2C controller's interrupt bit
-> > cannot be cleared if set, due to this the existing i2c polling mode
-> > interface added in mainline earlier doesn't work, and CPU stall's
-> > infinitely, when-ever i2c transfer is initiated.
-> >
-> > Ref:previous polling mode support in mainline
-> >
-> >       commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
-> >
-> > The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-> > FU540-COOO SoC.
-> >
-> > Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-> > ---
-> >  drivers/i2c/busses/i2c-ocores.c | 34 ++++++++++++++++++++++++++++------
-> >  1 file changed, 28 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
-> > index aee1d86..00ee45c 100644
-> > --- a/drivers/i2c/busses/i2c-ocores.c
-> > +++ b/drivers/i2c/busses/i2c-ocores.c
-> > @@ -27,6 +27,7 @@
-> >  #include <linux/jiffies.h>
-> >
-> >  #define OCORES_FLAG_POLL BIT(0)
-> > +#define OCORES_FLAG_BROKEN_IRQ BIT(2) /* Broken IRQ in HiFive Unleashed */
->
-> Hi Sigar
->
-> BIT(1). Don't leave a gap.
-
-I will remove the gap and update this in V4.
+Simply because "it's" is informal speech, but the Kconfig help is
+formal technical documentation.  (Or at least it should be!)
 
 Thanks,
-Sagar
->
->         Andrew
+Richard
