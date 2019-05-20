@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 253F7240D6
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA2722413C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 21:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726010AbfETTFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 15:05:42 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:40921 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725536AbfETTFm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 15:05:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=hr/1iGRppucKUPs7Jd/NpqKBvJMNwEtcN7Vo/hR52/Y=; b=d1TmZCCktRBG0kT3B2zm851Rcq
-        Oq8vGbMMGgpwEBZ9ZdSa5IHBD/v5MLv5h9tM6dI1VVWjQlDc5+N8VGv7b95g762H67pv4Xw0v0852
-        hrkH2UWVrEPyYE7JTy1tlvY2fDG41ksB4Nyk7ShaeXNwLx6lYORQHCHkvryzT9ximM2M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hSnbJ-0002qk-7O; Mon, 20 May 2019 21:05:33 +0200
-Date:   Mon, 20 May 2019 21:05:33 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, f.fainelli@gmail.com,
-        hkallweit1@gmail.com
-Subject: Re: [PATCH v2 3/5] arm64: dts: meson: g12a: add mdio multiplexer
-Message-ID: <20190520190533.GF22024@lunn.ch>
-References: <20190520131401.11804-1-jbrunet@baylibre.com>
- <20190520131401.11804-4-jbrunet@baylibre.com>
- <CAFBinCA_XE86eqCMpEFc3xMZDH8J7wVQPRj7bFZyqDxQx-w-qw@mail.gmail.com>
+        id S1725776AbfETTcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 15:32:21 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:38027 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725554AbfETTcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 15:32:21 -0400
+Received: by mail-lj1-f194.google.com with SMTP id 14so13595129ljj.5;
+        Mon, 20 May 2019 12:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5CJy2dAeiox6uSZJUrT6ntHN0iGf8wFFMkB5gRGvXDA=;
+        b=P7jgFUeHCs7+AjBG2AuXEKKQm5HcQoiMOoF6dgnHtTQWgFTGB3HAfSrc5U2ov3Em/L
+         b79q/0mf/FFYJypHSacZs8WRGrSlp9cgw+zcrCpOR1ntwuDY9EATpN8iT/YRz8P1qNqe
+         KIEARqWbHtJzyNCTJ+khfi+ZXKBl2rHzEAuxO4BXV22mIkN7ySEi+NjY9qUeAja/cVA/
+         IDIm81sG289xyiGnqBYD47UafLoPCgUfglPwxPv6xusBU9eeho31r7FzUMJXfJzGZ4v/
+         eCQRo9ES5JkNExo4UiGGqj6LyOtYicz7ScHR6Ntt86Si15X7J2ciD+kGPYXxIm8l7ZyI
+         A3pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5CJy2dAeiox6uSZJUrT6ntHN0iGf8wFFMkB5gRGvXDA=;
+        b=gyyMBS5NYDxI31y//yhFcUgm/Y2OUeXLgJvTa9Q0uWVXGZiRVbSEHL1MxWND4xjB4D
+         ZRAsWPDlrV+D3UuQrG6shyrCgnYyEiyQujmWAvMpxGRc2GtZZkZC/08CO2c3Pea2u1HG
+         h4xA1zkvzbpH+0xLumGHSqVZvz5StW46yGPATIS8LsRaYOitTlEy3KKCvdCQSgQguqSZ
+         FzIdjMnLF8RJkbE9KTbR0ZohIoJJy7ycmhxje+kdYqhMc0wc70KMKnIM7h1cQVAKYWxi
+         vjXqGmir+f6W1ff0sSkguDNXRBmUgPCgw797LYDvj2ZF369aVoXrcV7zq79U5emVZgke
+         f7qg==
+X-Gm-Message-State: APjAAAWh7VzlNx2m90fMq00r7Z1NXRmrqDXDMGXGwPui2KI6OyWVp62W
+        x1ubBgHKJKpk5dcb3Tt0sRYGUecLYb+t/39fFb4=
+X-Google-Smtp-Source: APXvYqway49cEPUGdvZjJ+hP18SCMMVwpRB8TXHDrRQznMNpDxg0nRMzVHOAdVngIuP5ja63eqiL/FnRQg2ZgigufaQ=
+X-Received: by 2002:a2e:1f02:: with SMTP id f2mr37741905ljf.86.1558380739291;
+ Mon, 20 May 2019 12:32:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFBinCA_XE86eqCMpEFc3xMZDH8J7wVQPRj7bFZyqDxQx-w-qw@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20190515144210.25596-1-daniel.baluta@nxp.com> <20190515144210.25596-3-daniel.baluta@nxp.com>
+ <CAOMZO5A6Gv5k3up0AtKrhQPyMLMe_8SXift68KEP2J+j8D_cJg@mail.gmail.com>
+In-Reply-To: <CAOMZO5A6Gv5k3up0AtKrhQPyMLMe_8SXift68KEP2J+j8D_cJg@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 20 May 2019 16:32:14 -0300
+Message-ID: <CAOMZO5BTqwnun6d7G1vcHUu_Rs+xfvgxTzamWnBPy76W7eeF_A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx8mm-evk: Enable audio codec wm8524
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +                               int_mdio: mdio@1 {
-> > +                                       reg = <1>;
-> > +                                       #address-cells = <1>;
-> > +                                       #size-cells = <0>;
-> > +
-> > +                                       internal_ephy: ethernet_phy@8 {
-> > +                                               compatible = "ethernet-phy-id0180.3301",
-> > +                                                            "ethernet-phy-ieee802.3-c22";
-> Based on your comment on v1 of this patch [0] the Ethernet PHY ID is
-> defined by this "mdio-multiplexer" (write arbitrary value to a
-> register then that's the PHY ID which will show up on the bus)
-> I'm fine with explicitly listing the ID which the PHY driver binds to
-> because I don't know a better way.
+On Thu, May 16, 2019 at 3:35 PM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> On Wed, May 15, 2019 at 11:42 AM Daniel Baluta <daniel.baluta@nxp.com> wrote:
+>
+> > +               simple-audio-card,codec {
+> > +                       sound-dai = <&wm8524>;
+> > +                       clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
+>
+> IMX8MM_CLK_SAI3_ROOT is the internal clock that drives the SAI3
+> interface, not an external clock that feeds the codec.
+>
+> It seems you should remove this 'clocks' entry.
 
-Does reading the ID registers give the correct ID, once you have poked
-registers in the mdio-multiplexer? If so, you don't need this
-compatible string.
+Just checked the schematics and the SAI3_MCLK pin clocks the codec, so
+the representation is correct:
 
-If the read is giving the wrong ID, then yes, you do want this. But
-then please add a comment in the DT blob. This is very unusual, so
-should have some explanation why it is needed.
-
-Thanks
-	Andrew
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
