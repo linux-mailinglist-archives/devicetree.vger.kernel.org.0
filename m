@@ -2,87 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0C1235EA
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 14:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 323082366B
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 14:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390249AbfETMlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 08:41:19 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:40167 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390361AbfETMlS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 08:41:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=nBnRj/EK3sEUMzbkUvHuqcjTW3RRt/lB/8667Tiwik0=; b=PIxO99nwMHUosViOpBy5S6+McG
-        ntWcm8Dksr3pquMWAWjk9qa209ixnC3c1CT3RDC6L5i3oOI50Mnw3LqOhXldniCOjNl4xM5RR/yon
-        ZufQiR/rE0WR96qFsheL83jH77gJjfvhDVA19cEmP+Jja4plYPVovfuxOX1XIVQKHQsY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hShbH-0006pg-IA; Mon, 20 May 2019 14:41:07 +0200
-Date:   Mon, 20 May 2019 14:41:07 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        palmer@sifive.com, paul.walmsley@sifive.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC
-Message-ID: <20190520124107.GA25785@lunn.ch>
-References: <1558354817-12034-1-git-send-email-sagar.kadam@sifive.com>
- <1558354817-12034-4-git-send-email-sagar.kadam@sifive.com>
+        id S2389730AbfETMpr convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 May 2019 08:45:47 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:48803 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388920AbfETMpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 08:45:47 -0400
+Received: from xps13 (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 6AD63100003;
+        Mon, 20 May 2019 12:45:43 +0000 (UTC)
+Date:   Mon, 20 May 2019 14:45:42 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Kamal Dasu <kdasu.kdev@gmail.com>
+Cc:     linux-mtd@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: brcmnand: Make nand-ecc-strength
+ and nand-ecc-step-size optional
+Message-ID: <20190520144542.05d10e4b@xps13>
+In-Reply-To: <1558117914-35807-1-git-send-email-kdasu.kdev@gmail.com>
+References: <1558117914-35807-1-git-send-email-kdasu.kdev@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1558354817-12034-4-git-send-email-sagar.kadam@sifive.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> @@ -406,7 +416,7 @@ static int ocores_xfer(struct i2c_adapter *adap,
->  {
->  	struct ocores_i2c *i2c = i2c_get_adapdata(adap);
+Hi Kamal,
+
+Kamal Dasu <kdasu.kdev@gmail.com> wrote on Fri, 17 May 2019 14:29:54
+-0400:
+
+> nand-ecc-strength and nand-ecc-step-size can be made optional as
+> brcmanand driver can support using the nand_base driver detected
+
+      ^ typo                             raw NAND layer
+
+> values.
+> 
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> ---
+
+With this addressed:
+
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+>  Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+> index bcda1df..29feaba 100644
+> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+> @@ -101,10 +101,10 @@ Required properties:
+>                                number (e.g., 0, 1, 2, etc.)
+>  - #address-cells            : see partition.txt
+>  - #size-cells               : see partition.txt
+> -- nand-ecc-strength         : see nand.txt
+> -- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
 >  
-> -	if (i2c->flags & OCORES_FLAG_POLL)
-> +	if ((i2c->flags & (OCORES_FLAG_POLL | OCORES_FLAG_BROKEN_IRQ)))
->  		return ocores_xfer_polling(adap, msgs, num);
->  	return ocores_xfer_core(i2c, msgs, num, false);
->  }
+>  Optional properties:
+> +- nand-ecc-strength         : see nand.txt
+> +- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
+>  - nand-on-flash-bbt         : boolean, to enable the on-flash BBT for this
+>                                chip-select. See nand.txt
+>  - brcm,nand-oob-sector-size : integer, to denote the spare area sector size
 
-You are not listening to what i said. All you need to know here is
-that you must poll. It does not matter if the IRQ is broken or not.
 
->  	irq = platform_get_irq(pdev, 0);
->  	if (irq == -ENXIO) {
-> -		i2c->flags |= OCORES_FLAG_POLL;
-
-If there is no interrupt, you need to poll. So keep this line.
-
-> +		/*
-> +		 * Set a OCORES_FLAG_BROKEN_IRQ to enable workaround for
-> +		 * FU540-C000 SoC in polling mode interface of i2c-ocore driver.
-> +		 * Else enable default polling mode interface for SIFIVE/OCORE
-> +		 * device types.
-> +		 */
-> +		match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
-> +		if (match && (long)match->data == TYPE_SIFIVE_REV0)
-> +			i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
-
-If it is a OCORE, IRQ is broken, so OR in OCORES_FLAG_BROKEN_IRQ.
-
->  
-> -	if (!(i2c->flags & OCORES_FLAG_POLL)) {
-> +	if (!(i2c->flags & (OCORES_FLAG_POLL | OCORES_FLAG_BROKEN_IRQ))) {
->  		ret = devm_request_irq(&pdev->dev, irq, ocores_isr, 0,
->  				       pdev->name, i2c);
-
-Here you just need to know if you are polling. Broken IRQ does not
-matter.
-
-	Andrew
+Thanks,
+Miquèl
