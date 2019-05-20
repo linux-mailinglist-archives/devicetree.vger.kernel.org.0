@@ -2,111 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 780F323B5A
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 16:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAFF023B5F
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 16:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730485AbfETO5W convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 May 2019 10:57:22 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:46424 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730351AbfETO5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 10:57:21 -0400
-Received: by mail-ed1-f66.google.com with SMTP id f37so24258152edb.13;
-        Mon, 20 May 2019 07:57:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+tTKrGaZbZAWn5dajRxbdafRjHqzlUJiRVVSR6xwRss=;
-        b=dAP55o4sap/ep1EL2VRkswg8vqjB94gaDu6x4YlfB0lVTEq28FYy5+7U7Il8+nttW3
-         KjnDwDZPzU+MNZAZ0bvkL7buMlZCcsT/F0uTytmwjm+GB6spN5869OeZI7UyaTO9wJZH
-         SsL+yotjsb15EIenBv6upKRapq7G9o07APH2ebO4wf4coK15jmdJ00hcVns7TX2f1hSF
-         sGndOPiRluN2E8lDLrkB0JgeXKs8LCS1jTZX+rTORzgrCqvIbwH16R8p9gWcNoBgD6jQ
-         ScKOSghsdo+LdOjJBOaY1PstAXD0lypl4KSiNM36lgya3waVTzabAt4EOdyvsEzlK+hv
-         ozoQ==
-X-Gm-Message-State: APjAAAVvlEiaOW40EyDIYdOE48j4xyXGnZh1VkWLkFnxc5gbqXGDrBDc
-        NdvimJp3ZGCnXT+6KqZ0CYE172/g5WQ=
-X-Google-Smtp-Source: APXvYqwYUltTtgEaV/LPP1or7X7oyVvUT72UbUlSiW5yHKeCauyoECqqWOVIjNg8uYwe3UGiQR55cw==
-X-Received: by 2002:a50:9056:: with SMTP id z22mr76319431edz.72.1558364239098;
-        Mon, 20 May 2019 07:57:19 -0700 (PDT)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
-        by smtp.gmail.com with ESMTPSA id hb11sm3161651ejb.43.2019.05.20.07.57.16
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 07:57:17 -0700 (PDT)
-Received: by mail-wm1-f44.google.com with SMTP id 198so13641380wme.3;
-        Mon, 20 May 2019 07:57:16 -0700 (PDT)
-X-Received: by 2002:a1c:80c3:: with SMTP id b186mr12164236wmd.43.1558364236763;
- Mon, 20 May 2019 07:57:16 -0700 (PDT)
+        id S1730921AbfETO6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 10:58:44 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:35329 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730351AbfETO6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 10:58:44 -0400
+X-Originating-IP: 90.66.53.80
+Received: from localhost (lfbn-1-3034-80.w90-66.abo.wanadoo.fr [90.66.53.80])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 51DB540017;
+        Mon, 20 May 2019 14:58:37 +0000 (UTC)
+Date:   Mon, 20 May 2019 16:58:30 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        devicetree@vger.kernel.org,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: at91: Avoid colliding 'display' node and
+ property names
+Message-ID: <20190520145830.GE3274@piout.net>
+References: <20190516225614.1458-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20190518152355.11134-1-peron.clem@gmail.com> <20190518152355.11134-3-peron.clem@gmail.com>
- <20190520073652.itk452vrpnicta5v@flea> <CAJiuCceEL9xH45P6Gj99YTir_1tkyraf5HefDNfm9p+UtdLs8w@mail.gmail.com>
- <20190520144404.zprbuqt3d7uuxgr2@flea>
-In-Reply-To: <20190520144404.zprbuqt3d7uuxgr2@flea>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 20 May 2019 22:57:04 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65P1tne+-FuJ-tLTRMaPdBPYd9eJS+rS5TXaAULNCLBZg@mail.gmail.com>
-Message-ID: <CAGb2v65P1tne+-FuJ-tLTRMaPdBPYd9eJS+rS5TXaAULNCLBZg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] arm64: dts: allwinner: h6: add watchdog node
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-watchdog@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190516225614.1458-1-robh@kernel.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 10:44 PM Maxime Ripard
-<maxime.ripard@bootlin.com> wrote:
->
-> On Mon, May 20, 2019 at 10:21:40AM +0200, Clément Péron wrote:
-> > Hi,
-> >
-> > On Mon, 20 May 2019 at 09:36, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > On Sat, May 18, 2019 at 05:23:53PM +0200, Clément Péron wrote:
-> > > > Allwinner H6 has a watchog node which seems broken
-> > > > on some boards.
-> > > >
-> > > > Test has been performed on several boards.
-> > > >
-> > > > Chen-Yu Tsai boards:
-> > > > Pine H64 - H6448BA 7782 => OK
-> > > > OrangePi Lite 2 - H8068BA 61C2 => KO
-> > > >
-> > > > Martin Ayotte boards:
-> > > > Pine H64 - H8069BA 6892 => OK
-> > > > OrangePi 3 - HA047BA 69W2 => KO
-> > > > OrangePi One Plus - H7310BA 6842 => KO
-> > > > OrangePi Lite2 - H6448BA 6662 => KO
-> > > >
-> > > > Clément Péron board:
-> > > > Beelink GS1 - H7309BA 6842 => KO
-> > > >
-> > > > As it seems not fixable for now, declare the node
-> > > > but leave it disable with a comment.
-> > > >
-> > > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> > >
-> > > If it doesn't work most boards, then why do we need to merge that
-> > > patch in the first place?
-> >
-> > My personnal opinion, is that having the IP declared and disabled with
-> > a comment saying "it's broken on some boards" in the device-tree is
-> > better than not having at all.
-> >
-> > This will explicit say "the IP exist but don't use it!".
-> > Maybe some people with a functionnal board would like to explicitly
-> > use it on their dts.
->
-> Yeah, that makes sense. Chen-Yu, any opinion on the matter?
+On 16/05/2019 17:56:14-0500, Rob Herring wrote:
+> While properties and child nodes with the same name are valid DT, the
+> practice is not encouraged.
 
-Works for me.
+I don't see anything mentioning that in the devicetree specification. I
+think this is something you should add if you don't want that to happen
+again.
+
+> Furthermore, the collision is problematic for
+> YAML encoded DT. Let's just avoid the issue and rename the nodes.
+> 
+
+Or maybe you should fix the tool ;)
+
+Do you plan to enforce it at some point? How close are you?
+
+> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
+> ---
+>  arch/arm/boot/dts/at91sam9261ek.dts    | 2 +-
+>  arch/arm/boot/dts/at91sam9263ek.dts    | 2 +-
+>  arch/arm/boot/dts/at91sam9m10g45ek.dts | 2 +-
+>  arch/arm/boot/dts/at91sam9rlek.dts     | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/at91sam9261ek.dts b/arch/arm/boot/dts/at91sam9261ek.dts
+> index f681cd727010..02b116b48c3b 100644
+> --- a/arch/arm/boot/dts/at91sam9261ek.dts
+> +++ b/arch/arm/boot/dts/at91sam9261ek.dts
+> @@ -49,7 +49,7 @@
+>  			atmel,power-control-gpio = <&pioA 12 GPIO_ACTIVE_LOW>;
+>  			status = "okay";
+>  
+> -			display0: display {
+> +			display0: panel {
+>  				bits-per-pixel = <16>;
+>  				atmel,lcdcon-backlight;
+>  				atmel,dmacon = <0x1>;
+> diff --git a/arch/arm/boot/dts/at91sam9263ek.dts b/arch/arm/boot/dts/at91sam9263ek.dts
+> index 13d415c22a69..924fe563f6fa 100644
+> --- a/arch/arm/boot/dts/at91sam9263ek.dts
+> +++ b/arch/arm/boot/dts/at91sam9263ek.dts
+> @@ -111,7 +111,7 @@
+>  			display = <&display0>;
+>  			status = "okay";
+>  
+> -			display0: display {
+> +			display0: panel {
+>  				bits-per-pixel = <16>;
+>  				atmel,lcdcon-backlight;
+>  				atmel,dmacon = <0x1>;
+> diff --git a/arch/arm/boot/dts/at91sam9m10g45ek.dts b/arch/arm/boot/dts/at91sam9m10g45ek.dts
+> index 46107c2f1ab9..5226e952a729 100644
+> --- a/arch/arm/boot/dts/at91sam9m10g45ek.dts
+> +++ b/arch/arm/boot/dts/at91sam9m10g45ek.dts
+> @@ -236,7 +236,7 @@
+>  			display = <&display0>;
+>  			status = "okay";
+>  
+> -			display0: display {
+> +			display0: panel {
+>  				bits-per-pixel = <32>;
+>  				atmel,lcdcon-backlight;
+>  				atmel,dmacon = <0x1>;
+> diff --git a/arch/arm/boot/dts/at91sam9rlek.dts b/arch/arm/boot/dts/at91sam9rlek.dts
+> index 27d8a1f44233..a000a459f17b 100644
+> --- a/arch/arm/boot/dts/at91sam9rlek.dts
+> +++ b/arch/arm/boot/dts/at91sam9rlek.dts
+> @@ -37,7 +37,7 @@
+>  			display = <&display0>;
+>  			status = "okay";
+>  
+> -			display0: display {
+> +			display0: panel {
+>  				bits-per-pixel = <16>;
+>  				atmel,lcdcon-backlight;
+>  				atmel,dmacon = <0x1>;
+> -- 
+> 2.20.1
+> 
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
