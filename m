@@ -2,88 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFE7423B34
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 16:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C656123B42
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 16:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387826AbfETOvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 10:51:03 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:57851 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732937AbfETOvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 10:51:03 -0400
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id A2A3C10000A;
-        Mon, 20 May 2019 14:50:59 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: [PATCH v3 4/4] ARM: dts: sun6i: Add default address and size cells for SPI
-Date:   Mon, 20 May 2019 16:50:36 +0200
-Message-Id: <622e3d2ece14e5b84a7975026bb1a981228ee3ab.1558363790.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <f53ee257855c6499fd783dc8665558f7670312f6.1558363790.git-series.maxime.ripard@bootlin.com>
-References: <f53ee257855c6499fd783dc8665558f7670312f6.1558363790.git-series.maxime.ripard@bootlin.com>
+        id S2391602AbfETOw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 10:52:27 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:40524 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732283AbfETOw1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 10:52:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=OR15pTh8PFO24Zv20KODF6WGQGNAYqpGzpNwW8lu2Bo=; b=rH4MGkXJHTS2o50pH7iaU/CF3n
+        OO3sTW15OBk/JpauvSShmMxCoCseHm4wc8OxuD/+yA+uox2hXWGzxRU5iAFwgdjHyi/MEKqPCxzjp
+        +/8+/XKlMQ3OiFbXKT4o1BoTN4tHeU5+EEzKELb+FofkPr5CVj/Jk/BQIVIhEsH3NoTQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hSjeC-0000Cv-Td; Mon, 20 May 2019 16:52:16 +0200
+Date:   Mon, 20 May 2019 16:52:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
+        palmer@sifive.com, paul.walmsley@sifive.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] i2c-ocores: sifive: add polling mode workaround
+ for FU540-C000 SoC.
+Message-ID: <20190520145216.GD22024@lunn.ch>
+References: <1558361478-4381-1-git-send-email-sagar.kadam@sifive.com>
+ <1558361478-4381-4-git-send-email-sagar.kadam@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1558361478-4381-4-git-send-email-sagar.kadam@sifive.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SPI controller bindings require an address cell size of 1, and a size
-cell size of 0. Let's put it at the DTSI level to make sure that's properly
-enforced.
+On Mon, May 20, 2019 at 07:41:18PM +0530, Sagar Shrikant Kadam wrote:
+> The i2c-ocore driver already has a polling mode interface.But it needs
+> a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
+> There is an erratum in FU540 chip that prevents interrupt driven i2c
+> transfers from working, and also the I2C controller's interrupt bit
+> cannot be cleared if set, due to this the existing i2c polling mode
+> interface added in mainline earlier doesn't work, and CPU stall's
+> infinitely, when-ever i2c transfer is initiated.
+> 
+> Ref:previous polling mode support in mainline
+> 
+> 	commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
+> 
+> The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
+> FU540-COOO SoC.
+> 
+> Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- arch/arm/boot/dts/sun6i-a31.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Much better, thanks.
 
-diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi b/arch/arm/boot/dts/sun6i-a31.dtsi
-index c04efad81bbc..a57cbf33c12f 100644
---- a/arch/arm/boot/dts/sun6i-a31.dtsi
-+++ b/arch/arm/boot/dts/sun6i-a31.dtsi
-@@ -987,6 +987,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI0>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		spi1: spi@1c69000 {
-@@ -999,6 +1001,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI1>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		spi2: spi@1c6a000 {
-@@ -1011,6 +1015,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI2>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		spi3: spi@1c6b000 {
-@@ -1023,6 +1029,8 @@
- 			dma-names = "rx", "tx";
- 			resets = <&ccu RST_AHB1_SPI3>;
- 			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 		};
- 
- 		gic: interrupt-controller@1c81000 {
--- 
-git-series 0.9.1
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
