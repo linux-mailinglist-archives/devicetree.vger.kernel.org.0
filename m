@@ -2,131 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B82823068
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 11:33:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA942307B
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 11:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730615AbfETJdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 05:33:40 -0400
-Received: from mail-eopbgr40088.outbound.protection.outlook.com ([40.107.4.88]:5302
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730588AbfETJdj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 05:33:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bC1v7WL/In1X8Bj8Y7sCQQm/Z+fLIAOQv2tt/i/palw=;
- b=jfFCNwKM2i5w/KAF+j2xYcPZCsoPV1LqRQExzjOp8kIvSbWGCG0BtEtG8vSD1BrM/487+fsY4f6SglES/Xk09bc6AjeYdrkD6zG5V9X7+HAXpxM/wR07/lc2iWrxhU0KsA02LEKrbr/QxRpzjuxxSknT/6BShrrlI8PmcxHyhfo=
-Received: from AM0PR04MB6434.eurprd04.prod.outlook.com (20.179.252.215) by
- AM0PR04MB4225.eurprd04.prod.outlook.com (52.134.91.154) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.18; Mon, 20 May 2019 09:33:36 +0000
-Received: from AM0PR04MB6434.eurprd04.prod.outlook.com
- ([fe80::19be:75a:9fe:7cec]) by AM0PR04MB6434.eurprd04.prod.outlook.com
- ([fe80::19be:75a:9fe:7cec%7]) with mapi id 15.20.1900.020; Mon, 20 May 2019
- 09:33:36 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Peng Fan <peng.fan@nxp.com>,
-        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-CC:     "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
-Thread-Topic: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
-Thread-Index: AQHVDrkIcB6j+hDf/kC51b4HJvSviA==
-Date:   Mon, 20 May 2019 09:33:36 +0000
-Message-ID: <AM0PR04MB643466338B440374D97F2805EE060@AM0PR04MB6434.eurprd04.prod.outlook.com>
-References: <20190520032020.7920-1-peng.fan@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6ec81502-04ff-42b7-bbd5-08d6dd063bd0
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4225;
-x-ms-traffictypediagnostic: AM0PR04MB4225:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <AM0PR04MB4225EF76794F0A4A3CCD3ADFEE060@AM0PR04MB4225.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 004395A01C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(346002)(39860400002)(366004)(376002)(136003)(199004)(189003)(316002)(52536014)(7416002)(8936002)(86362001)(81156014)(81166006)(8676002)(446003)(486006)(6306002)(53936002)(6246003)(9686003)(110136005)(44832011)(66066001)(476003)(6436002)(7696005)(26005)(102836004)(99286004)(33656002)(71190400001)(76176011)(54906003)(7736002)(74316002)(71200400001)(186003)(305945005)(66946007)(73956011)(76116006)(91956017)(55016002)(66476007)(66556008)(64756008)(66446008)(4326008)(25786009)(6506007)(53546011)(68736007)(256004)(14444005)(229853002)(478600001)(966005)(5660300002)(2501003)(2201001)(6116002)(3846002)(14454004)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4225;H:AM0PR04MB6434.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: xocE+hJKpi6ZmBJ1cS8ppTdyiP3gdUnzjUqU8kFuJFltkZGYmKv+nNRfVc0MkJUDhuP2Qxu3/G+WTjul9uIvTiw6eU/f8CZlsv1rWRNrlOvvWVhLMEcahpRgNsbkpsL+Fxw6fedSUpaFb2Z7N1WLlmEsf6lG/8p4lO7CHeTHgo6w12YnJ4Gp8pOE8PcQXwPqd6V5FNhSN5BDCmHcc9M0+cEf08YtkIaiVA+DtbpeOsJ52klyZhMvQNhed1fp7pmdg7d3NSMGflDmI9wbRsNwCxyTfmi6zUfo/RNH6vLvVRkPwSJaUur8ny9cEVhNuHSQlfVvdcy1g31iP/l61EzBJ2mD8Bo7bjaha/4So3v//QVsFfYOXKTCDKJDZcfX36eS5F2IabednVfTTrMxUTi+ngXXi5nEqzCDzBqCMMY8O4E=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1732184AbfETJg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 05:36:59 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:40818 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731478AbfETJg6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 05:36:58 -0400
+Received: by mail-lj1-f193.google.com with SMTP id q62so2289246ljq.7
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 02:36:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SVmG+KgAS/L8zReuTwf2tG62bM9a7Io4idy5Ia1ZZIw=;
+        b=CItiLuntAhzOMGH2VJ//VLpv/1cTB8FN7h7gueSZp7+ondzT4GAkchg89CIMQlKFCH
+         +PTP10KnFd3DEk6wgkzuQkb6WmUByoW1S17NW/sqSFxs/pJAl0n1/KOiI5NwUo53VuN/
+         3WhWE0Fo0J0Aw6fOq1nQ8XXjwhj9eeTaEnllHzRAz3S2QVQ8NX0gp02/99F/FWQnHm2o
+         qk7JJ1qPEtuOeMjLcCwP+/Ht+TvyGGm6x5OONe8RshUFKQIwvWXfR4rJ/+NbLE5fz4qO
+         59F+Ga0fmI6oNS5NlIUbmYUQ9/00bX0wh08LL65062trdQZW43TGqsruRXx6pgzJ0AQx
+         IKEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SVmG+KgAS/L8zReuTwf2tG62bM9a7Io4idy5Ia1ZZIw=;
+        b=JRcJ9zBe0XfI3Kna2Sw6Uug0Ee5SEJtvMe9r7PYFIJ+akO2dIOvZnATjgAP5hCc4oj
+         75RRKB2irNZCc9hn/DyOoZ7aH1vCaYUz91duqvIUTPViOPoh5I8o216CWOESqk3nvs6d
+         7lAeBgU2ON8j88cgsVx6DZTDGbBhwJnkjX/myh6ayQhgsLD/AYGAOAgcMELgSZZbR6Yr
+         rRDMXVrvuI7EcmPf6X5v0WKko68tJ8v8nmzWbhSHZSkFbJY+nTepxm3b1koUoKaDb68D
+         xRXAJqIWwasI+J/DY5daHpD1/7rGUMoymxFkFlUBAjN7ticVVxkbRAdy0bTSfuz2Nf4b
+         GngQ==
+X-Gm-Message-State: APjAAAXruMobqSfFfcn6d051/8Pk5N9IfHCh4mHfV8GnmXheV0dGi+40
+        uZqpLqMFaPnLn1zMvfRZEIWmHA==
+X-Google-Smtp-Source: APXvYqwaXw2NIta4ydW0the9uuNpiHIG2CIaAvFEtua7oAjOr+r4sGkRe1H8tyT2JKQhRZXwIrjRmg==
+X-Received: by 2002:a2e:9410:: with SMTP id i16mr7604284ljh.152.1558345016801;
+        Mon, 20 May 2019 02:36:56 -0700 (PDT)
+Received: from [192.168.0.199] ([31.173.81.27])
+        by smtp.gmail.com with ESMTPSA id h25sm3594162ljb.80.2019.05.20.02.36.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 May 2019 02:36:56 -0700 (PDT)
+Subject: Re: [PATCH] of_net: fix of_get_mac_address retval if compiled without
+ CONFIG_OF
+To:     =?UTF-8?Q?Petr_=c5=a0tetiar?= <ynezz@true.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Mirko Lindner <mlindner@marvell.com>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1558268324-5596-1-git-send-email-ynezz@true.cz>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <421e4a76-dbd7-73ac-d8cd-af0bcd789a03@cogentembedded.com>
+Date:   Mon, 20 May 2019 12:36:50 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ec81502-04ff-42b7-bbd5-08d6dd063bd0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2019 09:33:36.1372
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4225
+In-Reply-To: <1558268324-5596-1-git-send-email-ynezz@true.cz>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.05.2019 06:06, Peng Fan wrote:=0A=
-> Introduce fusable-node property for i.MX OCOTP driver.=0A=
-> The property will only be used by Firmware(eg. U-Boot) to=0A=
-> runtime disable the nodes.=0A=
-> =0A=
-> Take i.MX6ULL for example, there are several parts that only=0A=
-> have limited modules enabled controlled by OCOTP fuse. It is=0A=
-> not flexible to provide several dts for the serval parts, instead=0A=
-> we could provide one device tree and let Firmware to runtime disable=0A=
-> the device tree nodes for those modules that are disable(fused).=0A=
-> =0A=
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>=0A=
-> ---=0A=
-> =0A=
-> Currently NXP vendor use U-Boot to set status to disabled for devices=0A=
-> that could not function,=0A=
-> https://source.codeaurora.org/external/imx/uboot-imx/tree/arch/arm/mach-i=
-mx/mx6/module_fuse.c?h=3Dimx_v2018.03_4.14.98_2.0.0_ga#n149=0A=
-> But this approach is will not work if kernel dts node path changed.=0A=
-> =0A=
-> There are two approaches to resolve:=0A=
-> =0A=
-> 1. This patch is to add a fusable-node property, and Firmware will parse=
-=0A=
->     the property and read fuse to decide whether to disable or keeep enab=
-le=0A=
->     the nodes.=0A=
-> =0A=
-> 2. There is another approach is that add nvmem-cells for all nodes that=
-=0A=
->     could be disabled(fused). Then in each linux driver to use nvmem=0A=
->     api to detect fused or not, or in linux driver common code to check=
-=0A=
->     device functionable or not with nvmem API.=0A=
-> =0A=
-> =0A=
-> To make it easy to work, we choose [1] here. Please advise whether=0A=
-> it is acceptable, because the property is not used by linux driver in=0A=
-> approach [1]. Or you prefer [2] or please advise if any better solution.=
-=0A=
-=0A=
-Couldn't firmware parse nvmem-cells? Even without a full nvmem subsystem =
-=0A=
-it would be possible for imx-specific code to walk the entire device =0A=
-tree, parse nvmem-cells and disable nodes which are disabled by fuse.=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+Hello!
+
+On 19.05.2019 15:18, Petr Štetiar wrote:
+
+> of_get_mac_address prior to commit d01f449c008a ("of_net: add NVMEM
+> support to of_get_mac_address") could return only valid pointer or NULL,
+> after this change it could return only valid pointer or ERR_PTR encoded
+> error value, but I've forget to change the return value of
+
+    It's either "I've forgotten" or just "I forgot".
+
+> of_get_mac_address in case where the kernel is compiled without
+> CONFIG_OF, so I'm doing so now.
+
+    Well, better late... :-)
+
+> Cc: Mirko Lindner <mlindner@marvell.com>
+> Cc: Stephen Hemminger <stephen@networkplumber.org>
+> Fixes: d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
+> Reported-by: Octavio Alvarez <octallk1@alvarezp.org>
+> Signed-off-by: Petr Štetiar <ynezz@true.cz>
+[...]
+
+MBR, Sergei
