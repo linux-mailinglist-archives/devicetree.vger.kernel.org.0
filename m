@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0625E243EA
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 01:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53A5024442
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 01:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbfETXIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 19:08:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726107AbfETXIP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 19:08:15 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DED602173E;
-        Mon, 20 May 2019 23:08:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558393695;
-        bh=ADrBNYwjJaQRdD8qP6L3ZncT4kT3HxR4MJLlIgRo1fw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QDEaFDw4x2j8sWPdkyEZ1Gc/aTUCHVN17mXVua90r6wy6VVcJZlLguJdTsRDWlsms
-         kfZTrCGxDTc4JCu9vFiNg4ww4LhJ1U5LNEQbSmli3itLi65i48W+f7Z3W1eV5qaEFO
-         DfTycFiMXIt2iVa8ZXrlMFW2yhotvsHI6nTLJhjc=
-Received: by mail-qt1-f181.google.com with SMTP id h1so18404529qtp.1;
-        Mon, 20 May 2019 16:08:14 -0700 (PDT)
-X-Gm-Message-State: APjAAAX52h0oUXf5DGArLxGBV/t5waD/gWpOXVRF1+9vBLX/wLjUxniJ
-        TavOxmATG+PCgTT6vIROKS8d3/YEvXFy21gNbw==
-X-Google-Smtp-Source: APXvYqwbvpvnRbI++0UunGJk2DioJdUwpLpIyA/fbn7qfEvVnN8HhjmnIthfVEA4znX5UdjOIGfKuO58qc+BGQfRS+4=
-X-Received: by 2002:a0c:929a:: with SMTP id b26mr61995364qvb.148.1558393694150;
- Mon, 20 May 2019 16:08:14 -0700 (PDT)
+        id S1725941AbfETXYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 19:24:37 -0400
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:34606 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726913AbfETXYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 19:24:37 -0400
+Received: by mail-ua1-f66.google.com with SMTP id 7so555475uah.1
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 16:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZR/L7Hf828I4020IYpCxcxcft8SiYhAJProPc5vXrzU=;
+        b=Wl9L0AJOEI10bssx6lat9jgrA3rPKbO8BogUuRNHLDN7Ve5zvOpZnNKVUMTpQBBSvA
+         p/ROLEzSFq3wxGQ6g2TbkeeBcO4ve3Y+PyFFmeHbkUyvbi63Vy39FzWnFqQ/iYDf8s83
+         1rVab5Txti5C4wfalrdFVBqPk8IPgB+yp/yHQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZR/L7Hf828I4020IYpCxcxcft8SiYhAJProPc5vXrzU=;
+        b=MWDeQ59IAemhJivWvHr6kxkOszod0zOWY0wybjimS3RbX5S+jzEtBsMOD6UfTsTOeX
+         Cr9eglIx1fTT2NdfKBc8bb9jG9LJycocXtVQ5tGwmLWcOeowdt1A8Dzgel6aGfPuddsW
+         NHTUxNgfldbGLe3fLBCURA2e2+hEzU3sRm6wa2uVkhpB8B5ca1gG48V01ukAQS8qYUNS
+         nlYukNc0YxLEca9OGyHM+sl3XIGzD/pOtQAu/PhTj+j5GHcLJaR22jQTHnHUuXhdPpea
+         /aKkXFb5Xk6XzqGApGrQsmS3+hzKwMPZ7dy2QsqJjv/HTioOd/xZFKY7ixXl1Rt0CRN+
+         BkUg==
+X-Gm-Message-State: APjAAAXEfgrBf+5QtBzPN52iO2ZF1kT2WvcFO7ZL8/e9HTkRiEA6rBHL
+        AkfCwNZYgSwlMKUsJLU7RZXU3CUG6Ac=
+X-Google-Smtp-Source: APXvYqymtmK6hXEl4FH6EvYQO4CpKSnB7ErQ0DgJl1i53u8kLP8J3bj+hBzXhqt7aclZy7XSbJsjYQ==
+X-Received: by 2002:ab0:3058:: with SMTP id x24mr8769ual.95.1558394676161;
+        Mon, 20 May 2019 16:24:36 -0700 (PDT)
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
+        by smtp.gmail.com with ESMTPSA id w9sm3801132vkh.53.2019.05.20.16.24.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 May 2019 16:24:35 -0700 (PDT)
+Received: by mail-vs1-f49.google.com with SMTP id x8so6100939vsx.13
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 16:24:34 -0700 (PDT)
+X-Received: by 2002:a67:f60b:: with SMTP id k11mr31398691vso.111.1558394674402;
+ Mon, 20 May 2019 16:24:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <f53ee257855c6499fd783dc8665558f7670312f6.1558363790.git-series.maxime.ripard@bootlin.com>
- <682af95d93f4065ee7ab6a5d6f226c848f6a7da8.1558363790.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <682af95d93f4065ee7ab6a5d6f226c848f6a7da8.1558363790.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 20 May 2019 18:08:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK4aj4tNoHpnhkJfw_2+sf=EZkZ14vC=nnUDTM0Ogp20A@mail.gmail.com>
-Message-ID: <CAL_JsqK4aj4tNoHpnhkJfw_2+sf=EZkZ14vC=nnUDTM0Ogp20A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: spi: sun6i: Add YAML schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-spi <linux-spi@vger.kernel.org>
+References: <20190520220051.54847-1-mka@chromium.org>
+In-Reply-To: <20190520220051.54847-1-mka@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 20 May 2019 16:24:21 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WxhL3FLYWvOoys3GOB68WVKinfgjTVK5byyzyTzVsyBw@mail.gmail.com>
+Message-ID: <CAD=FV=WxhL3FLYWvOoys3GOB68WVKinfgjTVK5byyzyTzVsyBw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: disable GPU 500 MHz OPP for veyron
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 9:51 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Switch the DT binding to a YAML schema to enable the DT validation.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> ---
->
-> Changes from v1:
->   - Fix the slave device regex
-> ---
->  Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml | 106 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
->  Documentation/devicetree/bindings/spi/spi-sun6i.txt                |  44 +------------------------------
->  2 files changed, 106 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-sun6i.txt
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, May 20, 2019 at 3:01 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The NPLL is the only safe way to generate 500 MHz for the GPU. The
+> downstream Chrome OS 3.14 kernel ('official' kernel for veyron
+> devices) re-purposes NPLL to HDMI and hence disables the OPP for
+> the GPU (see https://crrev.com/c/1574579). Disable it here as well
+> to keep in sync and avoid problems in case someone decides to
+> re-purpose NPLL.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> Changes in v2:
+> - patch added to the series
+> ---
+>  arch/arm/boot/dts/rk3288-veyron.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
