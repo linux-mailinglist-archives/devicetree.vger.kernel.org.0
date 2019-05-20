@@ -2,152 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0ECD2296F
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 01:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7C802298A
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 02:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728993AbfESX6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 19:58:01 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:37708 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726739AbfESX6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 May 2019 19:58:00 -0400
-Received: by mail-qk1-f194.google.com with SMTP id d10so7814834qko.4
-        for <devicetree@vger.kernel.org>; Sun, 19 May 2019 16:58:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=doV3v4rh7HRUjJmLbCEHgl+MmgHA5lzEGEyVEOx1UDY=;
-        b=HLIYYQBC1OSzB/VEFY3lneCtGDjIBYUYBOWMow+F6FQWpZbr05UH83MoQlJX3cvlF4
-         LN1OOVQ7Cfe43RWifImVn1akors29h1C1fVZWa+Iw+C5UgIAItQgUVmgrc9nJDv+4hHq
-         HCx2sicJNasbOPfqz1nAvp4HxTIwyNoTIGzcM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=doV3v4rh7HRUjJmLbCEHgl+MmgHA5lzEGEyVEOx1UDY=;
-        b=nQvyRi3sZ28uzpLN190aZ0xSxkG1KoUSAeAsDz81MbmEACUv/udJd6LT+O8KyTPaAX
-         cCoJZgCUWdmwVG7sEELGjVIhcxO6OHFQFfmoL4/rLcNCRAnsdSHuQOonN/7ESSSPcbWf
-         TuSzgDHcvGnmY6XknSEYF0SIxHr0C8fuWeGTmLLxGwQWS+/u0nhWbteNgUeA493VHi9N
-         OM/0oes7trWtu4ihNV04xy3L+wFnwKBQWiJSdhc3cGmBvsBS64avid4GMBN6qQzcowIN
-         qll1d2pj8s9q6e53+Uc1MCTAGZZ4Qr9y299wU7uXw9gli8tVoXiqFaaUQ90magg6z/mk
-         +K9w==
-X-Gm-Message-State: APjAAAW+kY/o9BXpa7gvNhNMQHZTKenqTz7pUA4HRW7d2KiL+Qa6kr9m
-        QZ7JcuZy6zcRMdVQI8F0OZiKfX/ZtaNsrdrNL3XWOA==
-X-Google-Smtp-Source: APXvYqz+TXeYWMr7RQzoFtrV4mkErBeVaXoHL1oYIIA6PtSpcn5DA5jnt/IgKPeQCwUwN8PmuOmcCFULHhoCEqyY5NM=
-X-Received: by 2002:a37:952:: with SMTP id 79mr52690407qkj.201.1558310279581;
- Sun, 19 May 2019 16:57:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190519160446.320-1-hsinyi@chromium.org>
-In-Reply-To: <20190519160446.320-1-hsinyi@chromium.org>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Mon, 20 May 2019 07:57:48 +0800
-Message-ID: <CANMq1KC74peKmwdHzb83n2kyXgqarAiu1PGnPCNLYtrdYJF77A@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] amr64: map FDT as RW for early_init_dt_scan()
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
+        id S1729739AbfETAdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 20:33:19 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:39472 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729737AbfETAdS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 May 2019 20:33:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=MUOX718qoN0nr8jmwyI3xtQbOr7oQTYpKc2V8gTbMCE=; b=rX5m0x0B3yqk7j3YWZWw1w/LhH
+        SlGAFNt6/pKCaSkIN+ieVBcYPaWPQPcdgDvofTmUYcVaD0idFyMDLyYaMQj5W+wnc0E0WI4rf9ShT
+        77TRnTNU3OkWpPR5OxveuytkNo8WW20Z7iutJcigyBDlpRMjniJ3lu5aD9QXODpnRPqQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hSWEg-00016b-BC; Mon, 20 May 2019 02:33:02 +0200
+Date:   Mon, 20 May 2019 02:33:02 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        James Hogan <jhogan@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Chris Snook <chris.snook@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Felix Fietkau <nbd@nbd.name>, netdev@vger.kernel.org,
+        Chuanhong Guo <gch981213@gmail.com>,
+        info@freifunk-bad-gandersheim.net
+Subject: Re: [PATCH v4 3/3] net: ethernet: add ag71xx driver
+Message-ID: <20190520003302.GA1695@lunn.ch>
+References: <20190519080304.5811-1-o.rempel@pengutronix.de>
+ <20190519080304.5811-4-o.rempel@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190519080304.5811-4-o.rempel@pengutronix.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-s/amr64/arm64/ in the commit title.
+Hi Oleksij
 
-On Mon, May 20, 2019 at 1:09 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> Currently in arm64, FDT is mapped to RO before it's passed to
-> early_init_dt_scan(). However, there might be some code that needs
-> to modify FDT during init.
-
-I'd give a specific example (i.e. mention the next commit that
-introduces rng-seed).
-
-> Map FDT to RW until unflatten DT.
->
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
-> change log v2->v4:
-> * v3 abandoned
-> * add an arg pgprot_t to fixmap_remap_fdt()
-> ---
->  arch/arm64/include/asm/mmu.h | 2 +-
->  arch/arm64/kernel/setup.c    | 5 ++++-
->  arch/arm64/mm/mmu.c          | 4 ++--
->  3 files changed, 7 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/include/asm/mmu.h b/arch/arm64/include/asm/mmu.h
-> index 67ef25d037ea..4499cb00ece7 100644
-> --- a/arch/arm64/include/asm/mmu.h
-> +++ b/arch/arm64/include/asm/mmu.h
-> @@ -137,7 +137,7 @@ extern void init_mem_pgprot(void);
->  extern void create_pgd_mapping(struct mm_struct *mm, phys_addr_t phys,
->                                unsigned long virt, phys_addr_t size,
->                                pgprot_t prot, bool page_mappings_only);
-> -extern void *fixmap_remap_fdt(phys_addr_t dt_phys);
-> +extern void *fixmap_remap_fdt(phys_addr_t dt_phys, pgprot_t prot);
->  extern void mark_linear_text_alias_ro(void);
->
->  #define INIT_MM_CONTEXT(name)  \
-> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-> index 413d566405d1..064df3de1d14 100644
-> --- a/arch/arm64/kernel/setup.c
-> +++ b/arch/arm64/kernel/setup.c
-> @@ -181,7 +181,7 @@ static void __init smp_build_mpidr_hash(void)
->
->  static void __init setup_machine_fdt(phys_addr_t dt_phys)
->  {
-> -       void *dt_virt = fixmap_remap_fdt(dt_phys);
-> +       void *dt_virt = fixmap_remap_fdt(dt_phys, PAGE_KERNEL);
->         const char *name;
->
->         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
-> @@ -320,6 +320,9 @@ void __init setup_arch(char **cmdline_p)
->         /* Parse the ACPI tables for possible boot-time configuration */
->         acpi_boot_table_init();
->
-> +       /* remap fdt to RO */
-> +       fixmap_remap_fdt(__fdt_pointer, PAGE_KERNEL_RO);
+> +static int ag71xx_mdio_mii_read(struct mii_bus *bus, int addr, int reg)
+> +{
+> +	struct ag71xx *ag = bus->priv;
+> +	struct net_device *ndev = ag->ndev;
+> +	int err;
+> +	int ret;
 > +
->         if (acpi_disabled)
->                 unflatten_device_tree();
->
-> diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-> index a170c6369a68..29648e86f7e5 100644
-> --- a/arch/arm64/mm/mmu.c
-> +++ b/arch/arm64/mm/mmu.c
-> @@ -940,12 +940,12 @@ void *__init __fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot)
->         return dt_virt;
->  }
->
-> -void *__init fixmap_remap_fdt(phys_addr_t dt_phys)
-> +void *__init fixmap_remap_fdt(phys_addr_t dt_phys, pgprot_t prot)
->  {
->         void *dt_virt;
->         int size;
->
-> -       dt_virt = __fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
-> +       dt_virt = __fixmap_remap_fdt(dt_phys, &size, prot);
->         if (!dt_virt)
->                 return NULL;
->
-> --
-> 2.20.1
->
+> +	err = ag71xx_mdio_wait_busy(ag);
+> +	if (err)
+> +		return err;
+> +
+> +	ag71xx_wr(ag, AG71XX_REG_MII_CMD, MII_CMD_WRITE);
+
+It looks like you have not removed this.
+
+> +	ag71xx_wr(ag, AG71XX_REG_MII_ADDR,
+> +			((addr & 0xff) << MII_ADDR_SHIFT) | (reg & 0xff));
+> +	ag71xx_wr(ag, AG71XX_REG_MII_CMD, MII_CMD_READ);
+> +
+> +	err = ag71xx_mdio_wait_busy(ag);
+> +	if (err)
+> +		return err;
+> +
+> +	ret = ag71xx_rr(ag, AG71XX_REG_MII_STATUS);
+> +	/*
+> +	 * ar9331 doc: bits 31:16 are reserved and must be must be written
+> +	 * with zero.
+> +	 */
+> +	ret &= 0xffff;
+> +	ag71xx_wr(ag, AG71XX_REG_MII_CMD, MII_CMD_WRITE);
+
+Or this.
+
+> +
+> +	netif_dbg(ag, link, ndev, "mii_read: addr=%04x, reg=%04x, value=%04x\n",
+> +		  addr, reg, ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ag71xx_mdio_mii_write(struct mii_bus *bus, int addr, int reg,
+> +				 u16 val)
+> +{
+> +	struct ag71xx *ag = bus->priv;
+> +	struct net_device *ndev = ag->ndev;
+> +
+> +	netif_dbg(ag, link, ndev, "mii_write: addr=%04x, reg=%04x, value=%04x\n",
+> +		  addr, reg, val);
+> +
+> +	ag71xx_wr(ag, AG71XX_REG_MII_ADDR,
+> +			((addr & 0xff) << MII_ADDR_SHIFT) | (reg & 0xff));
+
+addr have the vale 0-31. So a mask of 0xff is a couple of bits too
+big.
+
+> +	ag71xx_wr(ag, AG71XX_REG_MII_CTRL, val);
+> +
+> +	return ag71xx_mdio_wait_busy(ag);
+> +}
+
+> +static void ag71xx_link_adjust(struct ag71xx *ag, bool update)
+> +{
+> +	struct net_device *ndev = ag->ndev;
+> +	struct phy_device *phydev = ndev->phydev;
+> +	u32 cfg2;
+> +	u32 ifctl;
+> +	u32 fifo5;
+> +
+> +	if (!phydev->link && update) {
+> +		ag71xx_hw_stop(ag);
+> +		netif_carrier_off(ag->ndev);
+
+phylib will take care of the carrier for you.
+
+       Andrew
