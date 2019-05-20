@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA8F022A0F
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 04:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A305822A16
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 04:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727841AbfETCyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 22:54:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42074 "EHLO mail.kernel.org"
+        id S1729234AbfETCzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 22:55:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42500 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727087AbfETCyM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 May 2019 22:54:12 -0400
+        id S1727087AbfETCzz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 May 2019 22:55:55 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B5DE620644;
-        Mon, 20 May 2019 02:54:06 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 70C5B20644;
+        Mon, 20 May 2019 02:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558320851;
-        bh=+g4e3b9eEUCN0L+u953TbAQRbNQcFr58iPoiy/FcfxQ=;
+        s=default; t=1558320954;
+        bh=8BpeCF0fdOm1m1OcdQX6KdbUacYxfjUW3ylkXKDorQc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V05ZVw2Vl7FzAsocbUrTF0YIaxJr6PFjmbgjR7GS4tMvPliBoYP5WRInjHKnqNPrB
-         4jkEWypFuiyKne2/BrJsbMBvv4Clu3rXVwWZSRjHcDpTPrScTOwwTZ58xuc/+YlO+H
-         RFYn6su8hExdGV8Vf1qG6AY4FegxrQJANaKbFhI0=
-Date:   Mon, 20 May 2019 10:53:21 +0800
+        b=WPWGhUPy/QNIJfz+MQNLhTPf2Xi6QEnDYnO1LG5uDwtCI6eJlayPJHKHCqZRqCX83
+         1dM/GYtVl1kpyAym/jCfwPUQ9YVe1qVyQ4jbc7w+UHqEjbcf87QN/rKapRwHAuv93z
+         AdUJ8zheqpZLoVxWKilv03EMhnsvTzph71EcyuVs=
+Date:   Mon, 20 May 2019 10:55:03 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Pramod Kumar <pramod.kumar_1@nxp.com>
 Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
@@ -36,217 +36,67 @@ Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: nxp: add ls1046a-frwy board support
-Message-ID: <20190520025319.GJ15856@dragon>
+        Ashish Kumar <ashish.kumar@nxp.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: nxp: frwy-ls1046a: add support for
+ micron nor flash
+Message-ID: <20190520025502.GK15856@dragon>
 References: <20190510130207.14330-1-pramod.kumar_1@nxp.com>
- <20190510130207.14330-3-pramod.kumar_1@nxp.com>
+ <20190510130207.14330-4-pramod.kumar_1@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190510130207.14330-3-pramod.kumar_1@nxp.com>
+In-Reply-To: <20190510130207.14330-4-pramod.kumar_1@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 10, 2019 at 01:00:20PM +0000, Pramod Kumar wrote:
-> ls1046afrwy board is based on nxp ls1046a SoC.
-> Board support's 4GB ddr memory, i2c, microSD card,
-> serial console,qspi nor flash,ifc nand flash,qsgmii network interface,
-> usb 3.0 and serdes interface to support two x1gen3 pcie interface.
+On Fri, May 10, 2019 at 01:00:24PM +0000, Pramod Kumar wrote:
+> add micron nor flash support for ls1046a frwy board.
 > 
-> Signed-off-by: Vabhav Sharma <vabhav.sharma@nxp.com>
+> Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
 > Signed-off-by: Pramod Kumar <pramod.kumar_1@nxp.com>
+
+Prefix 'arm64: dts: frwy-ls1046a: ...' would be good enough.
+
 > ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../boot/dts/freescale/fsl-ls1046a-frwy.dts   | 156 ++++++++++++++++++
->  2 files changed, 157 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
+>  .../boot/dts/freescale/fsl-ls1046a-frwy.dts     | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 13604e558dc1..84ff6995b41e 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-rdb.dtb
-> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-frwy.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-qds.dtb
 > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-> new file mode 100644
-> index 000000000000..de0d19c02944
-> --- /dev/null
+> index de0d19c02944..890f07122dd0 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
 > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-> @@ -0,0 +1,156 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree Include file for Freescale Layerscape-1046A family SoC.
-> + *
-> + * Copyright 2019 NXP.
-> + *
-> + */
+> @@ -113,6 +113,23 @@
+>  
+>  };
+>  
 > +
-> +/dts-v1/;
-> +
-> +#include "fsl-ls1046a.dtsi"
-> +
-> +/ {
-> +	model = "LS1046A FRWY Board";
-> +	compatible = "fsl,ls1046a-frwy", "fsl,ls1046a";
-> +
-> +	aliases {
-> +		serial0 = &duart0;
-> +		serial1 = &duart1;
-> +		serial2 = &duart2;
-> +		serial3 = &duart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	sb_3v3: regulator-sb3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LT8642SEV-3.3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&duart0 {
-> +	status = "okay";
-> +};
-> +
-> +&duart1 {
-> +	status = "okay";
-> +};
-> +
-> +&duart2 {
-> +	status = "okay";
-> +};
-> +
-> +&duart3 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	i2c-mux@77 {
-> +		compatible = "nxp,pca9546";
-> +		reg = <0x77>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-mux-never-disable;
 
-Undocumented property?
-
-> +
-> +		i2c@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +
-> +			eeprom@52 {
-> +				compatible = "atmel,24c512";
-> +				reg = <0x52>;
-> +			};
-> +
-> +			eeprom@53 {
-> +				compatible = "atmel,24c512";
-> +				reg = <0x53>;
-> +			};
-> +
-> +			power-monitor@40 {
-
-Sort the nodes in unit-address.
+Unnecessary newline.
 
 Shawn
 
-> +				compatible = "ti,ina220";
-> +				reg = <0x40>;
-> +				shunt-resistor = <1000>;
-> +			};
-> +
-> +			rtc@51 {
-> +				compatible = "nxp,pcf2129";
-> +				reg = <0x51>;
-> +			};
-> +
-> +			temperature-sensor@4c {
-> +				compatible = "nxp,sa56004";
-> +				reg = <0x4c>;
-> +				vcc-supply = <&sb_3v3>;
-> +			};
-> +
-> +		};
-> +	};
-> +};
-> +
-> +&ifc {
-> +	#address-cells = <2>;
-> +	#size-cells = <1>;
-> +	/* NAND Flash */
-> +	ranges = <0x0 0x0 0x0 0x7e800000 0x00010000>;
+> +&qspi {
+> +	num-cs = <1>;
+> +	bus-num = <0>;
 > +	status = "okay";
 > +
-> +	nand@0,0 {
-> +		compatible = "fsl,ifc-nand";
+> +	qflash0: flash@0 {
+> +		compatible = "jedec,spi-nor";
 > +		#address-cells = <1>;
 > +		#size-cells = <1>;
-> +		reg = <0x0 0x0 0x10000>;
-> +	};
-> +
-> +};
-> +
-> +#include "fsl-ls1046-post.dtsi"
-> +
-> +&fman0 {
-> +	ethernet@e0000 {
-> +		phy-handle = <&qsgmii_phy4>;
-> +		phy-connection-type = "qsgmii";
-> +	};
-> +
-> +	ethernet@e8000 {
-> +		phy-handle = <&qsgmii_phy2>;
-> +		phy-connection-type = "qsgmii";
-> +	};
-> +
-> +	ethernet@ea000 {
-> +		phy-handle = <&qsgmii_phy1>;
-> +		phy-connection-type = "qsgmii";
-> +	};
-> +
-> +	ethernet@f2000 {
-> +		phy-handle = <&qsgmii_phy3>;
-> +		phy-connection-type = "qsgmii";
-> +	};
-> +
-> +	mdio@fd000 {
-> +		qsgmii_phy1: ethernet-phy@1c {
-> +			reg = <0x1c>;
-> +		};
-> +
-> +		qsgmii_phy2: ethernet-phy@1d {
-> +			reg = <0x1d>;
-> +		};
-> +
-> +		qsgmii_phy3: ethernet-phy@1e {
-> +			reg = <0x1e>;
-> +		};
-> +
-> +		qsgmii_phy4: ethernet-phy@1f {
-> +			reg = <0x1f>;
-> +		};
+> +		spi-max-frequency = <50000000>;
+> +		reg = <0>;
+> +		spi-rx-bus-width = <4>;
+> +		spi-tx-bus-width = <4>;
 > +	};
 > +};
+> +
+>  #include "fsl-ls1046-post.dtsi"
+>  
+>  &fman0 {
 > -- 
 > 2.17.1
 > 
