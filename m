@@ -2,173 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D6722C4C
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 08:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B259C22C6D
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 08:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727336AbfETGsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 02:48:45 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:41107 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726052AbfETGsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 02:48:45 -0400
-X-UUID: df6bf8f9060a436fbbf524ddfc74a8a6-20190520
-X-UUID: df6bf8f9060a436fbbf524ddfc74a8a6-20190520
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1552444152; Mon, 20 May 2019 14:48:30 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS33N1.mediatek.inc (172.27.4.75) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 20 May 2019 14:48:29 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 20 May 2019 14:48:28 +0800
-Message-ID: <1558334909.7311.27.camel@mtksdaap41>
-Subject: Re: [v4 4/5] drm/mediatek: control dpi pins dpi or gpio mode in on
- or off
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        "Rahul Sharma" <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King" <rmk+kernel@arm.linux.org.uk>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
-        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
-        <stonea168@163.com>
-Date:   Mon, 20 May 2019 14:48:29 +0800
-In-Reply-To: <20190518095618.18454-5-jitao.shi@mediatek.com>
-References: <20190518095618.18454-1-jitao.shi@mediatek.com>
-         <20190518095618.18454-5-jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+        id S1727399AbfETG4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 02:56:45 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:60062 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725944AbfETG4o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 02:56:44 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BEF9320017C;
+        Mon, 20 May 2019 08:56:41 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B7F7220016F;
+        Mon, 20 May 2019 08:56:35 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5FA54402A2;
+        Mon, 20 May 2019 14:56:28 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v3 1/3] PM: wakeup: Add routine to help fetch wakeup source object.
+Date:   Mon, 20 May 2019 14:58:14 +0800
+Message-Id: <20190520065816.32360-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
+Some user might want to go through all registered wakeup sources
+and doing things accordingly. For example, SoC PM driver might need to
+do HW programming to prevent powering down specific IP which wakeup
+source depending on. And is user's responsibility to identify if this
+wakeup source he is interested in.
 
-On Sat, 2019-05-18 at 17:56 +0800, Jitao Shi wrote:
-> Pull dpi pins low when dpi has nothing to display. Aovid leakage
-> current from some dpi pins (Hsync Vsync DE ... ).
-> 
-> Some chips have dpi pins, but there are some chip don't have pins.
-> So this function is controlled by chips driver data.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 35 +++++++++++++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 77e6e0f99188..0c4ba0a2be27 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -17,10 +17,12 @@
->  #include <drm/drm_of.h>
->  #include <linux/kernel.h>
->  #include <linux/component.h>
-> -#include <linux/platform_device.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/of_gpio.h>
->  #include <linux/of_graph.h>
-> +#include <linux/pinctrl/consumer.h>
-> +#include <linux/platform_device.h>
->  #include <linux/interrupt.h>
->  #include <linux/types.h>
->  #include <linux/clk.h>
-> @@ -79,6 +81,9 @@ struct mtk_dpi {
->  	enum mtk_dpi_out_yc_map yc_map;
->  	enum mtk_dpi_out_bit_num bit_num;
->  	enum mtk_dpi_out_channel_swap channel_swap;
-> +	struct pinctrl *pinctrl;
-> +	struct pinctrl_state *pins_default;
-> +	struct pinctrl_state *pins_dpi;
->  	int refcount;
->  };
->  
-> @@ -118,6 +123,7 @@ struct mtk_dpi_conf {
->  	u32 reg_h_fre_con;
->  	bool edge_sel_en;
->  	bool dual_edge;
-> +	bool dpi_pin_ctrl;
->  };
->  
->  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32 mask)
-> @@ -392,6 +398,9 @@ static void mtk_dpi_power_off(struct mtk_dpi *dpi)
->  	if (--dpi->refcount != 0)
->  		return;
->  
-> +	if (dpi->conf->dpi_pin_ctrl)
-> +		pinctrl_select_state(dpi->pinctrl, dpi->pins_default);
-> +
->  	mtk_dpi_disable(dpi);
->  	clk_disable_unprepare(dpi->pixel_clk);
->  	clk_disable_unprepare(dpi->engine_clk);
-> @@ -416,6 +425,9 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
->  		goto err_pixel;
->  	}
->  
-> +	if (dpi->conf->dpi_pin_ctrl)
-> +		pinctrl_select_state(dpi->pinctrl, dpi->pins_dpi);
-> +
->  	mtk_dpi_enable(dpi);
->  	return 0;
->  
-> @@ -724,6 +736,27 @@ static int mtk_dpi_probe(struct platform_device *pdev)
->  	dpi->dev = dev;
->  	dpi->conf = (struct mtk_dpi_conf *)of_device_get_match_data(dev);
->  
-> +	if (dpi->conf->dpi_pin_ctrl) {
-> +		dpi->pinctrl = devm_pinctrl_get(&pdev->dev);
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+---
+Change in v3:
+	- Adjust indentation of *attached_dev;.
 
-Please describe this in binding document.
+Change in v2:
+	- None.
 
-Regards,
-CK
+ drivers/base/power/wakeup.c |   18 ++++++++++++++++++
+ include/linux/pm_wakeup.h   |    3 +++
+ 2 files changed, 21 insertions(+), 0 deletions(-)
 
-> +		if (IS_ERR(dpi->pinctrl)) {
-> +			dev_err(&pdev->dev, "Cannot find pinctrl!\n");
-> +			return PTR_ERR(dpi->pinctrl);
-> +		}
-> +
-> +		dpi->pins_default = pinctrl_lookup_state(dpi->pinctrl,
-> +							 "default");
-> +		if (IS_ERR(dpi->pins_default)) {
-> +			dev_err(&pdev->dev, "Cannot find pinctrl default!\n");
-> +			return PTR_ERR(dpi->pins_default);
-> +		}
-> +
-> +		dpi->pins_dpi = pinctrl_lookup_state(dpi->pinctrl, "dpimode");
-> +		if (IS_ERR(dpi->pins_dpi)) {
-> +			dev_err(&pdev->dev, "Cannot find pinctrl dpimode!\n");
-> +			return PTR_ERR(dpi->pins_dpi);
-> +		}
-> +	}
-> +
->  	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	dpi->regs = devm_ioremap_resource(dev, mem);
->  	if (IS_ERR(dpi->regs)) {
-
+diff --git a/drivers/base/power/wakeup.c b/drivers/base/power/wakeup.c
+index 5b2b6a0..6904485 100644
+--- a/drivers/base/power/wakeup.c
++++ b/drivers/base/power/wakeup.c
+@@ -14,6 +14,7 @@
+ #include <linux/suspend.h>
+ #include <linux/seq_file.h>
+ #include <linux/debugfs.h>
++#include <linux/of_device.h>
+ #include <linux/pm_wakeirq.h>
+ #include <trace/events/power.h>
+ 
+@@ -226,6 +227,22 @@ void wakeup_source_unregister(struct wakeup_source *ws)
+ 	}
+ }
+ EXPORT_SYMBOL_GPL(wakeup_source_unregister);
++/**
++ * wakeup_source_get_next - Get next wakeup source from the list
++ * @ws: Previous wakeup source object, null means caller want first one.
++ */
++struct wakeup_source *wakeup_source_get_next(struct wakeup_source *ws)
++{
++	struct list_head *ws_head = &wakeup_sources;
++
++	if (ws)
++		return list_next_or_null_rcu(ws_head, &ws->entry,
++				struct wakeup_source, entry);
++	else
++		return list_entry_rcu(ws_head->next,
++				struct wakeup_source, entry);
++}
++EXPORT_SYMBOL_GPL(wakeup_source_get_next);
+ 
+ /**
+  * device_wakeup_attach - Attach a wakeup source object to a device object.
+@@ -242,6 +259,7 @@ static int device_wakeup_attach(struct device *dev, struct wakeup_source *ws)
+ 		return -EEXIST;
+ 	}
+ 	dev->power.wakeup = ws;
++	ws->attached_dev = dev;
+ 	if (dev->power.wakeirq)
+ 		device_wakeup_attach_irq(dev, dev->power.wakeirq);
+ 	spin_unlock_irq(&dev->power.lock);
+diff --git a/include/linux/pm_wakeup.h b/include/linux/pm_wakeup.h
+index 0ff134d..913b2fb 100644
+--- a/include/linux/pm_wakeup.h
++++ b/include/linux/pm_wakeup.h
+@@ -50,6 +50,7 @@
+  * @wakeup_count: Number of times the wakeup source might abort suspend.
+  * @active: Status of the wakeup source.
+  * @has_timeout: The wakeup source has been activated with a timeout.
++ * @attached_dev: The device it attached to
+  */
+ struct wakeup_source {
+ 	const char 		*name;
+@@ -70,6 +71,7 @@ struct wakeup_source {
+ 	unsigned long		wakeup_count;
+ 	bool			active:1;
+ 	bool			autosleep_enabled:1;
++	struct device		*attached_dev;
+ };
+ 
+ #ifdef CONFIG_PM_SLEEP
+@@ -101,6 +103,7 @@ static inline void device_set_wakeup_path(struct device *dev)
+ extern void wakeup_source_remove(struct wakeup_source *ws);
+ extern struct wakeup_source *wakeup_source_register(const char *name);
+ extern void wakeup_source_unregister(struct wakeup_source *ws);
++extern struct wakeup_source *wakeup_source_get_next(struct wakeup_source *ws);
+ extern int device_wakeup_enable(struct device *dev);
+ extern int device_wakeup_disable(struct device *dev);
+ extern void device_set_wakeup_capable(struct device *dev, bool capable);
+-- 
+1.7.1
 
