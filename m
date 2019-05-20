@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F7423DF0
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2748023DF3
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390002AbfETRBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 13:01:40 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:38462 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389270AbfETRBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 13:01:39 -0400
-Received: by mail-io1-f68.google.com with SMTP id x24so11610584ion.5
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 10:01:39 -0700 (PDT)
+        id S2392640AbfETRBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 13:01:42 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:55494 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388204AbfETRBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 13:01:41 -0400
+Received: by mail-it1-f195.google.com with SMTP id g24so154451iti.5
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 10:01:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=x6v5cZ4d3IbzzHyX9tB5SggAe9a0MLVJDqe4K+VrolY=;
-        b=DgcBl8Smh89XruihvIIqo2/jwlRNXKwzhoakXmLzoUDPce90oG/GyzQ8l/jtA2OL0i
-         SEXXSDe8NSrl1QM7MqUwkOtgDOh2Gr66AcXniCOv8ZqSJbDbxRvzXncS4+WdSFomASNH
-         WfY30ET7xT7NYiS1Z1z8P77Zabz6rKiUmME9A=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=qokhmyg9AkiB7tKMWMX8AGwwTlpK4uMhtkgK3NBAxgg=;
+        b=kMN/Oml37u7vJbRpOT0j2yTOznwnEEooNyxt25SS3DcSRXTuB1xPm0P7e8vbR20kre
+         LT8ziTh1f2zXBnsymYXwKEQ3FpYPOvslMACY7YqTwRwlNJ/edFwO+SiIjkhMWNGqKUcj
+         fp/rHmkPpnAylQNQMEAa4u2Vi0qYh0nDsHqXU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=x6v5cZ4d3IbzzHyX9tB5SggAe9a0MLVJDqe4K+VrolY=;
-        b=nMD5bu0rShfNFSmptiYcO2r1Xmmf1MuqgQPprikf25rdWFfWzPFQyS1cmp20GpnvnQ
-         m9qI5x4u/EoY61XnxE0qxtZBZbF59nh/awy7givu0ooWnGWNiY5zOX4Uph9XnRNzAQcN
-         ehJs9kaeKik3x2ZqYFHzEN8NTHowR478ACxKpDhT991Gk2gYJOnxE8NiEqv0EmvSR1C+
-         RGr/om5uZWcFX3baviSvSAaxB9TY6VlKFM+4w048DhY+WOAxtTMF9pHrV0D+QA5wQD6O
-         XXEmKvRjz/DiqQIWYkm1tJ/qKdOAdTcNL8nsTHU2qEELRny5dj/vNPJopScyH98FEZEA
-         //3A==
-X-Gm-Message-State: APjAAAUC9b55O1v523jU++py31G6FMBecYQcI21exlibemZmHnL1OacK
-        vbPvQZXnUh1IjjPMh+WuNjwJUW8vqN0=
-X-Google-Smtp-Source: APXvYqy0W2gpclxj4ZGsAs2T9LwfcoVY4dorBvuLBx7NxPHNi4Rs1l+AN5UkFsEt4Xy4HrBvwIlWAw==
-X-Received: by 2002:a6b:2c94:: with SMTP id s142mr25278871ios.302.1558371699238;
-        Mon, 20 May 2019 10:01:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=qokhmyg9AkiB7tKMWMX8AGwwTlpK4uMhtkgK3NBAxgg=;
+        b=JxK0tTl+uq21LYjIuSNwa9Tv1+KM05Kj2xOYAPRydby/UN0lgM+EoWCyWMMZ/paUPA
+         jwPYHQ0lCQBXQNJ/TbffDthhKBo3xDXx0ayRMnQItgiZTBcO802cVnm94IItGQIcsutb
+         DAS/KwubVCwQ/KoYnZ98nt2z2K0wXeW2rp+OwCnx1ikCUK6IP+4gwC1LzjFMbr/hnNQn
+         nBIR92ON5VNavie7srEaDiQbktdvqClsJzr99VJRFYQUT3btZxkFCoq3yz1ooanmzlTu
+         1sV9HRjjqR6IK6Z0brbyjjaCnc3EaMnF/eDE6sofjgdGEH9F7k1XKq1an5ms+vDFS4po
+         TTBA==
+X-Gm-Message-State: APjAAAWsOWyzM3K721kHBmfoW3Pmz4g7C2JBLSL1meVWOCsnffnzF4m8
+        yoolrkjDC6FFniIbOd/j12YAhg==
+X-Google-Smtp-Source: APXvYqyHAk2xbHN0WR5VjQgADInV80IQzivFF7mpA00fOKKjAmpbUTNHpk3Rj+5wPik797i+kj5q4A==
+X-Received: by 2002:a02:c818:: with SMTP id p24mr3087274jao.100.1558371701136;
+        Mon, 20 May 2019 10:01:41 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id v202sm25015itb.38.2019.05.20.10.01.38
+        by smtp.gmail.com with ESMTPSA id s4sm6118340ioc.76.2019.05.20.10.01.39
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 10:01:38 -0700 (PDT)
+        Mon, 20 May 2019 10:01:40 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -49,10 +49,12 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH 1/2] ARM: dts: rockchip: Limit GPU frequency on veyron mickey to 300 MHz when the CPU gets very hot
-Date:   Mon, 20 May 2019 10:01:31 -0700
-Message-Id: <20190520170132.91571-1-mka@chromium.org>
+Subject: [PATCH 2/2] ARM: dts: rockchip: Configure the GPU thermal zone for mickey
+Date:   Mon, 20 May 2019 10:01:32 -0700
+Message-Id: <20190520170132.91571-2-mka@chromium.org>
 X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
+In-Reply-To: <20190520170132.91571-1-mka@chromium.org>
+References: <20190520170132.91571-1-mka@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -61,37 +63,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On rk3288 the CPU and GPU temperatures are correlated. Limit the GPU
-frequency on veyron mickey to 300 MHz for CPU temperatures >= 85°C.
+mickey crams a lot of hardware into a tiny package, which requires
+more aggressive thermal throttling than for devices with a larger
+footprint. Configure the GPU thermal zone to throttle the GPU
+progressively at temperatures >= 60°C. Heat dissipated by the
+CPUs also affects the GPU temperature, hence we cap the CPU
+frequency to 1.4 GHz for temperatures above 65°C. Further throttling
+of the CPUs may be performed by the CPU thermal zone.
 
-This matches the configuration of the downstream Chrome OS 3.14 kernel,
-the 'official' kernel for mickey.
+The configuration matches that of the downstram Chrome OS 3.14
+kernel, the 'official' kernel for mickey.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
 Note: this patch depends on "ARM: dts: rockchip: Add #cooling-cells
 entry for rk3288 GPU" (https://lore.kernel.org/patchwork/patch/1075005/)
 ---
- arch/arm/boot/dts/rk3288-veyron-mickey.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/rk3288-veyron-mickey.dts | 64 ++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
 
 diff --git a/arch/arm/boot/dts/rk3288-veyron-mickey.dts b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-index d889ab3c8235..f118d92a49d0 100644
+index f118d92a49d0..f0b83afa2a60 100644
 --- a/arch/arm/boot/dts/rk3288-veyron-mickey.dts
 +++ b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-@@ -125,6 +125,12 @@
- 					 <&cpu2 8 THERMAL_NO_LIMIT>,
- 					 <&cpu3 8 THERMAL_NO_LIMIT>;
- 		};
-+
-+		/* At very hot, don't let GPU go over 300 MHz */
-+		cpu_very_hot_limit_gpu {
-+			trip = <&cpu_alert_very_hot>;
-+			cooling-device = <&gpu 2 2>;
-+		};
- 	};
+@@ -138,6 +138,70 @@
+ 	/delete-property/mmc-hs200-1_8v;
  };
  
++&gpu_thermal {
++	/delete-node/ trips;
++	/delete-node/ cooling-maps;
++
++	trips {
++		gpu_alert_warmish: gpu_alert_warmish {
++			temperature = <60000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "passive";
++		};
++		gpu_alert_warm: gpu_alert_warm {
++			temperature = <65000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "passive";
++		};
++		gpu_alert_hotter: gpu_alert_hotter {
++			temperature = <84000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "passive";
++		};
++		gpu_alert_very_very_hot: gpu_alert_very_very_hot {
++			temperature = <86000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "passive";
++		};
++		gpu_crit: gpu_crit {
++			temperature = <90000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "critical";
++		};
++	};
++
++	cooling-maps {
++		/* After 1st level throttle the GPU down to as low as 400 MHz */
++		gpu_warmish_limit_gpu {
++			trip = <&gpu_alert_warmish>;
++			cooling-device = <&gpu THERMAL_NO_LIMIT 1>;
++		};
++
++		/*
++		 * Slightly after we throttle the GPU, we'll also make sure that
++		 * the CPU can't go faster than 1.4 GHz.  Note that we won't
++		 * throttle the CPU lower than 1.4 GHz due to GPU heat--we'll
++		 * let the CPU do the rest itself.
++		 */
++		gpu_warm_limit_cpu {
++			trip = <&gpu_alert_warm>;
++			cooling-device = <&cpu0 4 4>;
++		};
++
++		/* When hot, GPU goes down to 300 MHz */
++		gpu_hotter_limit_gpu {
++			trip = <&gpu_alert_hotter>;
++			cooling-device = <&gpu 2 2>;
++		};
++
++		/* When really hot, don't let GPU go _above_ 300 MHz */
++		gpu_very_very_hot_limit_gpu {
++			trip = <&gpu_alert_very_very_hot>;
++			cooling-device = <&gpu 2 THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &i2c2 {
+ 	status = "disabled";
+ };
 -- 
 2.21.0.1020.gf2820cf01a-goog
 
