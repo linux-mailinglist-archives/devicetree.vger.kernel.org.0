@@ -2,128 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED3422BA6
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 08:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C399522B7A
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 07:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730573AbfETGBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 02:01:24 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:59294 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730578AbfETGBX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 02:01:23 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6052120016C;
-        Mon, 20 May 2019 08:01:21 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 91E6D200188;
-        Mon, 20 May 2019 08:01:15 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 39802402DF;
-        Mon, 20 May 2019 14:01:08 +0800 (SGT)
-From:   Xiaowei Bao <xiaowei.bao@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, benh@kernel.crashing.org,
-        paulus@samba.org, mpe@ellerman.id.au, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        minghuan.lian@nxp.com, mingkai.hu@nxp.com, zhiqiang.hou@nxp.com,
-        leoyang.li@nxp.com
-Cc:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: [PATCH] powerpc: dts: Fix the bug that intx interrupt not work in P1010RDB-PB
-Date:   Mon, 20 May 2019 13:53:08 +0800
-Message-Id: <20190520055308.43907-1-xiaowei.bao@nxp.com>
-X-Mailer: git-send-email 2.14.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1730357AbfETF47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 01:56:59 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:58710 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725829AbfETF47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 01:56:59 -0400
+X-UUID: 05bdecd6d289420d988b3d3773fce335-20190520
+X-UUID: 05bdecd6d289420d988b3d3773fce335-20190520
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1874507480; Mon, 20 May 2019 13:56:54 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS33N2.mediatek.inc (172.27.4.76) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 20 May 2019 13:56:53 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 20 May 2019 13:56:46 +0800
+Message-ID: <1558331806.7311.26.camel@mtksdaap41>
+Subject: Re: [v4 2/5] drm/mediatek: dpi dual edge support
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        Kumar Gala <galak@codeaurora.org>, <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        "Ajay Kumar" <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        "Rahul Sharma" <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Russell King" <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <stonea168@163.com>
+Date:   Mon, 20 May 2019 13:56:46 +0800
+In-Reply-To: <20190518095618.18454-3-jitao.shi@mediatek.com>
+References: <20190518095618.18454-1-jitao.shi@mediatek.com>
+         <20190518095618.18454-3-jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the INTA is shared with the active-low PHY2 interrupt on P1010RDB-PA
-board, so configure P1010RDB-PA's INTA with polarity as active-low, the
-P1010RDB-PB board is used separately, so configure P1010RDB-PB's INTA with
-polarity as active-high.
-The INTX in P1010RDB-PB do not work because of the pcie@0 node fixup will be
-overwrited by p1010si-post.dtsi file, so we move the pcie@0 node fixup to
-p1010rdb-pb.dts and p1010rdb-pb_36b.dts.
+Hi, Jitao:
 
-Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
----
- arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts     |   16 ++++++++++++++++
- arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts |   16 ++++++++++++++++
- arch/powerpc/boot/dts/fsl/p1010rdb.dtsi       |   16 ----------------
- 3 files changed, 32 insertions(+), 16 deletions(-)
+On Sat, 2019-05-18 at 17:56 +0800, Jitao Shi wrote:
+> DPI sample the data both rising and falling edge.
+> It can reduce half data io pins.
 
-diff --git a/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts b/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts
-index 37681fd..6d75e5f 100644
---- a/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts
-+++ b/arch/powerpc/boot/dts/fsl/p1010rdb-pb.dts
-@@ -33,3 +33,19 @@
- };
- 
- /include/ "p1010si-post.dtsi"
-+
-+&pci0 {
-+	pcie@0 {
-+		interrupt-map = <
-+			/* IDSEL 0x0 */
-+			/*
-+			 *irq[4:5] are active-high
-+			 *irq[6:7] are active-low
-+			 */
-+			0000 0x0 0x0 0x1 &mpic 0x4 0x2 0x0 0x0
-+			0000 0x0 0x0 0x2 &mpic 0x5 0x2 0x0 0x0
-+			0000 0x0 0x0 0x3 &mpic 0x6 0x1 0x0 0x0
-+			0000 0x0 0x0 0x4 &mpic 0x7 0x1 0x0 0x0
-+			>;
-+	};
-+};
-diff --git a/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts b/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts
-index 4cf255f..8359035 100644
---- a/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts
-+++ b/arch/powerpc/boot/dts/fsl/p1010rdb-pb_36b.dts
-@@ -56,3 +56,19 @@
- };
- 
- /include/ "p1010si-post.dtsi"
-+
-+&pci0 {
-+	pcie@0 {
-+		interrupt-map = <
-+			/* IDSEL 0x0 */
-+			/*
-+			 *irq[4:5] are active-high
-+			 *irq[6:7] are active-low
-+			 */
-+			0000 0x0 0x0 0x1 &mpic 0x4 0x2 0x0 0x0
-+			0000 0x0 0x0 0x2 &mpic 0x5 0x2 0x0 0x0
-+			0000 0x0 0x0 0x3 &mpic 0x6 0x1 0x0 0x0
-+			0000 0x0 0x0 0x4 &mpic 0x7 0x1 0x0 0x0
-+			>;
-+	};
-+};
-diff --git a/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi b/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi
-index 2ca9cee..ef49a7d 100644
---- a/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/p1010rdb.dtsi
-@@ -215,19 +215,3 @@
- 		phy-connection-type = "sgmii";
- 	};
- };
--
--&pci0 {
--	pcie@0 {
--		interrupt-map = <
--			/* IDSEL 0x0 */
--			/*
--			 *irq[4:5] are active-high
--			 *irq[6:7] are active-low
--			 */
--			0000 0x0 0x0 0x1 &mpic 0x4 0x2 0x0 0x0
--			0000 0x0 0x0 0x2 &mpic 0x5 0x2 0x0 0x0
--			0000 0x0 0x0 0x3 &mpic 0x6 0x1 0x0 0x0
--			0000 0x0 0x0 0x4 &mpic 0x7 0x1 0x0 0x0
--			>;
--	};
--};
--- 
-1.7.1
+All the registers which you control in this patch exist in MT8173. So I
+think this is not a SoC-level feature. This feature depends on how much
+io pins you want to use in this platform. Could we get the io pins
+information from device tree or calling any driver's api to get? If
+there is no way to get this information, I could just temporarily apply
+this patch and need plan to fix this temporary solution.
+
+Regards,
+CK
+
+> 
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index 22e68a100e7b..ccef3ac1c560 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -117,6 +117,7 @@ struct mtk_dpi_conf {
+>  	unsigned int (*cal_factor)(int clock);
+>  	u32 reg_h_fre_con;
+>  	bool edge_sel_en;
+> +	bool dual_edge;
+>  };
+>  
+>  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val, u32 mask)
+> @@ -353,6 +354,13 @@ static void mtk_dpi_config_disable_edge(struct mtk_dpi *dpi)
+>  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0, EDGE_SEL_EN);
+>  }
+>  
+> +static void mtk_dpi_enable_dual_edge(struct mtk_dpi *dpi)
+> +{
+> +	mtk_dpi_mask(dpi, DPI_DDR_SETTING, DDR_EN | DDR_4PHASE,
+> +		     DDR_EN | DDR_4PHASE);
+> +	mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, EDGE_SEL, EDGE_SEL);
+> +}
+> +
+>  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+>  					enum mtk_dpi_out_color_format format)
+>  {
+> @@ -444,7 +452,8 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
+>  	pll_rate = clk_get_rate(dpi->tvd_clk);
+>  
+>  	vm.pixelclock = pll_rate / factor;
+> -	clk_set_rate(dpi->pixel_clk, vm.pixelclock);
+> +	clk_set_rate(dpi->pixel_clk,
+> +		     vm.pixelclock * (dpi->conf->dual_edge ? 2 : 1));
+>  	vm.pixelclock = clk_get_rate(dpi->pixel_clk);
+>  
+>  	dev_dbg(dpi->dev, "Got  PLL %lu Hz, pixel clock %lu Hz\n",
+> @@ -509,6 +518,8 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
+>  	mtk_dpi_config_color_format(dpi, dpi->color_format);
+>  	mtk_dpi_config_2n_h_fre(dpi);
+>  	mtk_dpi_config_disable_edge(dpi);
+> +	if (dpi->conf->dual_edge)
+> +		mtk_dpi_enable_dual_edge(dpi);
+>  	mtk_dpi_sw_reset(dpi, false);
+>  
+>  	return 0;
+
 
