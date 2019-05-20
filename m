@@ -2,147 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 879D024286
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8122428E
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 23:14:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726853AbfETVMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 17:12:17 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:40316 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726823AbfETVMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:12:17 -0400
-Received: by mail-pg1-f196.google.com with SMTP id d30so7367704pgm.7
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:12:17 -0700 (PDT)
+        id S1726928AbfETVO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 17:14:28 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:32780 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbfETVO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 17:14:28 -0400
+Received: by mail-pl1-f196.google.com with SMTP id y3so7315226plp.0
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 14:14:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=tvhovIH1bm4mrgIUbDfWITwSqOMdeKUwkQsZnjBp6SQ=;
-        b=mJn/emhBX8c/yxwZ7hQePgijl18XX1s/vRudt4ZscYNY1Or30y2GLnLv/dqNjy9che
-         21GPsFxyOk3+0Gj3ngYYYLEw8b6ONRvN28APdutqSlt7lem2kqTCJaESPFZscGBNntoH
-         dBtkthnI1bc2WDhax+S9lIdKVIVaITT2kjxco=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=e9DHapnp+Qtf77YR6olJPsTc8cKNqjeLv8Q9DilZXqg=;
+        b=rW1xFXB/h+J/6RxYeiTn+/Q6pKGTEUVgsyJgniYwvDoIGXrx0B91WocP0iGbPkT3CO
+         SxRBw2F4+HmqMrYzKl+Q6iHvx1CgT/sl/Gw2emNF/WpioKaJFb6o2G2tVwAIMUMcPZKs
+         +gesDMpmDiigfgs2Ay3imhvQBB2T3M6d3Ge+5U30mvTx07z6EaPYwYoQ55uqv0q/wVi4
+         C++USRuxnvy3BhcpZSOcByFVb5CJyJeNYFLymZ5IfbTT26fmKeHv4MTX+7aJwjlqteYu
+         GSyWa/dPpb7+GhrHZkvRCqFA1oJMu9ymiumxDyopFuYUQpkQLnhYVBWOP0MzQpBY2fSf
+         wtXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=tvhovIH1bm4mrgIUbDfWITwSqOMdeKUwkQsZnjBp6SQ=;
-        b=A7ZUAIlXzGWdkhcZ9ifTYUAbOhCOFRAJy9P37TCAXnPLI0AOfq7kVesoUFxkrDsXaK
-         IK/xU5VODHgza0LYRB8opO8r51L1SPgVhwW8r7plemG/ydyvo/hhaIkcnh0fJB9FHJ67
-         XKUkqEoWjrMdNnACD09keg+QTagB4ESe62VOE+Pi2fvDZSaDhlHURsVYRGq70EGi7xP9
-         lLhn7/Qgokd2CGWW1F12bOxtyIbAbfzJjckzVo5bKy38tw776p8PJNE9gWgA+7GZShB6
-         VHVCADvwSPPrLmd6JDIg1K7ufDiyxvgqbjsFVTZXJJ/3atuFpSQm9KG27RC+cZy4zmQc
-         Mp8w==
-X-Gm-Message-State: APjAAAW50WWmdEi0tRLHnh3g/e4BmvHD9+uqHQnksPbm2n9Mzx0xzMpa
-        XH5nlt8Obae85GSg9w70EIiwTA==
-X-Google-Smtp-Source: APXvYqzB6kYa9tbEkVpPfd33Hr9ccQ26203/RLTGWxFCSb+WR8HAGD3cPwwEDsdADL80Gr948V9KYg==
-X-Received: by 2002:a63:1d05:: with SMTP id d5mr76991884pgd.157.1558386736752;
-        Mon, 20 May 2019 14:12:16 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id e16sm33603662pfj.77.2019.05.20.14.12.15
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=e9DHapnp+Qtf77YR6olJPsTc8cKNqjeLv8Q9DilZXqg=;
+        b=m75vJWXuD8XMDdyoXZCjnumLzRCw2+/ditrRLwXiLyeU0c2srOgq7J/zK3bXULIZCl
+         Avgyc+RYRYp3Cq7T3iYuD+x3AXf1E4fKyhiN1IH5C6a8PLHGsPp75UuPEWi3AGva5cJc
+         UuyCSttSsKPsPP18dFzjTlEshP12PTGn8Xh2EZ7X+Z6mB3nj480S3u1QYCHKMHmFKSDH
+         O5y+B7JghR48Ubk0dyvqTPRxkHhacsIgGUvsAl/mbbhBxZg7rfLowxiXNdZkAMi82cjZ
+         LdyXR3FOGhIjEdP5UsEWv0wLxTsIERCC0CC5kckbUzPIsVlXG7moUzv/lbiza6o64/Pq
+         rUFw==
+X-Gm-Message-State: APjAAAWTZcW69m9vofar1cwQk8I6sqIlI+N6A7eaeZ9aQ4kCcQhOFgOM
+        qxWvdzwb/PDOkdXivV3T/RuoIdz2wXmlTw==
+X-Google-Smtp-Source: APXvYqyHMN/K1s6B7b8p3IGNVlLCHVQU7SaaC8OyYAZAD0EsLuxuKwtszvPEIFa0iiSPXHKYTdOj5g==
+X-Received: by 2002:a17:902:46a:: with SMTP id 97mr50159186ple.66.1558386867639;
+        Mon, 20 May 2019 14:14:27 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:e483:1cc0:e2c2:140d])
+        by smtp.googlemail.com with ESMTPSA id y10sm15075030pfm.68.2019.05.20.14.14.26
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 14:12:15 -0700 (PDT)
-Date:   Mon, 20 May 2019 14:12:15 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] ARM: dts: rockchip: Limit GPU frequency on veyron
- mickey to 300 MHz when the CPU gets very hot
-Message-ID: <20190520211215.GG40515@google.com>
-References: <20190520170132.91571-1-mka@chromium.org>
- <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
+        Mon, 20 May 2019 14:14:26 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] arm64: dts: meson: g12a: add i2c
+In-Reply-To: <20190514101237.13969-1-jbrunet@baylibre.com>
+References: <20190514101237.13969-1-jbrunet@baylibre.com>
+Date:   Mon, 20 May 2019 14:14:25 -0700
+Message-ID: <7h7eak96by.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=VGA_i=vM4_OrqXnv0WC__Fcdced3oOZjzcPO=i8Q+SdA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 01:16:46PM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Mon, May 20, 2019 at 10:01 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > On rk3288 the CPU and GPU temperatures are correlated. Limit the GPU
-> > frequency on veyron mickey to 300 MHz for CPU temperatures >= 85°C.
-> >
-> > This matches the configuration of the downstream Chrome OS 3.14 kernel,
-> > the 'official' kernel for mickey.
-> >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Note: this patch depends on "ARM: dts: rockchip: Add #cooling-cells
-> > entry for rk3288 GPU" (https://lore.kernel.org/patchwork/patch/1075005/)
-> > ---
-> >  arch/arm/boot/dts/rk3288-veyron-mickey.dts | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/rk3288-veyron-mickey.dts b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> > index d889ab3c8235..f118d92a49d0 100644
-> > --- a/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> > +++ b/arch/arm/boot/dts/rk3288-veyron-mickey.dts
-> > @@ -125,6 +125,12 @@
-> >                                          <&cpu2 8 THERMAL_NO_LIMIT>,
-> >                                          <&cpu3 8 THERMAL_NO_LIMIT>;
-> >                 };
-> > +
-> > +               /* At very hot, don't let GPU go over 300 MHz */
-> > +               cpu_very_hot_limit_gpu {
-> > +                       trip = <&cpu_alert_very_hot>;
-> > +                       cooling-device = <&gpu 2 2>;
-> > +               };
-> 
-> Two things:
-> 
-> A) If I'm reading things properly, you're actually limiting things to
-> 400 MHz.  This is because you don't have <https://crrev.com/c/1574579>
-> which deletes the 500 MHz GPU operating point.  So on upstream the
-> available points are:
-> 
-> 0: 600 MHz
-> 1: 500 MHz
-> 2: 400 MHz
-> 3: 300 MHz
-> 4: 200 MHz
-> 5: 100 MHz
-> 
-> ...and downstream:
-> 
-> 0: 600 MHz
-> 1: 400 MHz
-> 2: 300 MHz
-> 3: 200 MHz
-> 4: 100 MHz
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Thanks spotting this!
+> Add the i2c controllers and pinctrl definitions to the g12a DT then
+> the busses present on the u200 and sei510.
+>
+> Notice the use of the pinconf DT property 'drive-strength-microamp'.
+> Support for this property is not yet merged in meson pinctrl driver but
+> the DT part as been acked by the DT maintainer [0] so it should be safe
+> to use.
 
-> Thinking about it more, I bet Heiko would actually be OK deleting the
-> 500 MHz GPU operating point for veyron.  Technically it's not needed
-> upstream because upstream doesn't have our hacks to allow re-purposing
-> NPLL for HDMI (so they _can_ make 500 MHz) but maybe we can make the
-> argument that these laptops have only ever been tested with the 500
-> MHz operating point removed and also that eventually someonje will
-> probably figure out a way to re-purpose NPLL for HDMI even upstream...
+Queued for v5.3,
 
-Looks like Heiko is indeed ok with it, so let's remove the OPP and be
-in sync with downstream on this.
+Thanks,
 
-> B) It seems like in the same patch you'd want to introduce
-> "cpu_warm_limit_gpu", AKA:
-> 
-> cpu_warm_limit_gpu {
->   trip = <&cpu_alert_warm>;
->   cooling-device =
->   <&gpu 1 1>;
-> };
-
-Makes sense to do it in the same patch, will add it in v2.
+Kevin
