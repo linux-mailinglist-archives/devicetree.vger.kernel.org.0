@@ -2,101 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 745D423E48
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61DFA23EFE
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 19:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390057AbfETRTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 13:19:07 -0400
-Received: from hamsrv800.servertools24.de ([213.238.32.28]:43473 "EHLO
-        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1733201AbfETRTH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 13:19:07 -0400
-Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
-        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id C23A0238276A;
-        Mon, 20 May 2019 19:19:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
-        s=default; t=1558372744;
-        bh=kxIJG27u7eVKtYS4db3xT3wLRcFHn7Lvz4p6qFUlz+I=; l=1593;
-        h=Subject:To:From;
-        b=wDxdv7u4l7MyCgkBom+hx+EOAgwngc3f+IEhC+oFKOCFiDrViMV44j0uJs2TAO/Wr
-         K5/zGrMyMpCjLghNlFZYrF6qz7KmxxvjnDbAdrsaSpzIYzQxbZZJwlpxYRj6NQGIp1
-         JLEwqFsGfkJ7lEVd+eTScYOtuGnd1uopjj2LoDfA=
-Authentication-Results: hamsrv800.servertools24.de;
-        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
-Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add binding for spi-byte LED.
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20190513193307.11591-1-oss@c-mauderer.de>
- <20190519212501.GC31403@amd>
-From:   Christian Mauderer <oss@c-mauderer.de>
-Message-ID: <1850ba07-2c0c-2624-4ff3-fd507e49439f@c-mauderer.de>
-Date:   Mon, 20 May 2019 19:19:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2387524AbfETR3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 13:29:31 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33474 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391117AbfETR3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 13:29:30 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 66so13782304otq.0;
+        Mon, 20 May 2019 10:29:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MpVsPzn7fqjajsRVSaLIebq0yUptaINVy1fHJtkXPPE=;
+        b=Zl4gAnpq82J5MFlntHb0LMgdoq5VDUJmwbDPgV+pzvh/R1GUJdW+JYwH3lZimVSguZ
+         M8Ql72g3Sr5ruIVtEKBSvYyQ9D6/Jd5h/xypTp/2Eb2qyG2llH1yF0wrwQHGN9/W12xM
+         jflYhcAs12hzCdqv9HDH8rDiUmU6+6zSni6Ed0Nke4aidDeeoqK6ZFrjtqWhw4L4/ZeW
+         a5/nJYfzGgixmsy38y0di6MNhvIdwlEANel8J6OK4UxIJjZ010+w7CFwHY9HSYTkRYsp
+         sAqiyXLwFjJaTYnbsGVznOGn4nBIo8JLhE5v9rXdZvHyBFYEvTmRuzsLtWA0xT+1ptSk
+         Y34Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MpVsPzn7fqjajsRVSaLIebq0yUptaINVy1fHJtkXPPE=;
+        b=NieRsqoNkDTsRy1QekS10xU/Lrhn1IK/ZJC14ysBUEnOUH/HJ+ZDU7Jw60iwwdQNwE
+         6m5THig5y89tkrZJQC+q0PjdRdxF/z01ZNzirL1gJfJjLsRF01lOAb9hi2MAydVHSiqI
+         oAYsTpXw3+prk+4NDdGmqfF3yqrkgkAC1ey3BVvFY35qe/vs5gAmrbHimTlRlwLTzIN3
+         5r6I8fE+iSVYUjVaXh98JkDPGMOw5nexjY/R7nKkCHKBj5+WRx2QlR03ymv2nj6/4g8j
+         3xpfjwIqEdNstrFLpsclElj5irEKw3e1bAuxv9SvG/12/pwQDEB5/K96Szihlar8wSU/
+         YOBw==
+X-Gm-Message-State: APjAAAUNzu8VG8x0jUOnX04d1YISyfw2ZiYaTuzEBSFJzS14RYxma+HF
+        9RzHxxDjp0tlnsabxyuZfPcVP5imF46lhYdlKzTcuKMgNbs=
+X-Google-Smtp-Source: APXvYqy4fRDdNCMFLSSJ4ARTkpXPXphsa/ThOeZsGf2fWAEnDHoL1pf0F5r3Bjtzvtx9joN495LmCIFtAQ3r2hD01c8=
+X-Received: by 2002:a9d:69c8:: with SMTP id v8mr46369281oto.6.1558373369442;
+ Mon, 20 May 2019 10:29:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190519212501.GC31403@amd>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-PPP-Message-ID: <155837274415.37172.7452360277010363700@hamsrv800.servertools24.de>
-X-PPP-Vhost: c-mauderer.de
+References: <20190520131401.11804-1-jbrunet@baylibre.com> <20190520131401.11804-2-jbrunet@baylibre.com>
+In-Reply-To: <20190520131401.11804-2-jbrunet@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 20 May 2019 19:29:18 +0200
+Message-ID: <CAFBinCDR_eYBEtbkvF3mF4VdsNuTuWEirAzViYrwVvfjYNpymQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] arm64: dts: meson: g12a: add ethernet mac controller
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2019 23:25, Pavel Machek wrote:
-> Hi!
-> 
->> From: Christian Mauderer <oss@c-mauderer.de>
->>
->> This patch adds the binding documentation for a simple SPI based LED
->> controller which use only one byte for setting the brightness.
->>
->> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
->> ---
-> 
->> diff --git a/Documentation/devicetree/bindings/leds/leds-spi-byte.txt b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
->> new file mode 100644
->> index 000000000000..28b6b2d9091e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
->> @@ -0,0 +1,44 @@
->> +* Single Byte SPI LED Device Driver.
-> 
->> +The driver can be used for controllers with a very simple SPI protocol:
->> +- one LED is controlled by a single byte on MOSI
->> +- the value of the byte gives the brightness between two values (lowest to
->> +  highest)
->> +- no return value is necessary (no MISO signal)
-> 
-> I'd expect this file to be named acb-spi-led.txt, or something, and
-> talk about that u-controller, not its device driver -- as devicetree
-> binding describes hardware, not driver.
-> 
-> But you already have an ack from rob, so...
-> 									Pavel
-> 									
-
-So basically it would have been better to move the description that I
-added to the c-file as "supported devices" in the device tree file?
-
-With both commits already acked: Rob and Pavel: Should I change that?
-
-If you both say yes, I would rename the file in the binding like
-suggested and move the detailed protocol description from the driver to
-the binding.
-
-Best regards
-
-Christian
-
-
-
-
-
+On Mon, May 20, 2019 at 3:14 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+> Add the synopsys ethernet mac controller embedded in the g12a SoC family.
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
