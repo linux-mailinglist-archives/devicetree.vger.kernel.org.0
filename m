@@ -2,68 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3C323C43
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B71B723C48
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391788AbfETPh2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 May 2019 11:37:28 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:50827 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732280AbfETPh2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 11:37:28 -0400
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 569C11C000B;
-        Mon, 20 May 2019 15:37:12 +0000 (UTC)
-Date:   Mon, 20 May 2019 17:37:04 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Liang Yang <liang.yang@amlogic.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 09/10] dt: fix broken references to nand.txt
-Message-ID: <20190520173704.202cd65d@xps13>
-In-Reply-To: <ce7602ba4d42e094a8b7fcf1dc2a01d25192a602.1558362030.git.mchehab+samsung@kernel.org>
-References: <cover.1558362030.git.mchehab+samsung@kernel.org>
-        <ce7602ba4d42e094a8b7fcf1dc2a01d25192a602.1558362030.git.mchehab+samsung@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2392212AbfETPhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 11:37:45 -0400
+Received: from muru.com ([72.249.23.125]:50176 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730766AbfETPhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 11:37:45 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 676CB806C;
+        Mon, 20 May 2019 15:38:04 +0000 (UTC)
+Date:   Mon, 20 May 2019 08:37:42 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, t-kristo@ti.com
+Subject: Re: [PATCH v2 0/4] dra71/76: Fix boot issues
+Message-ID: <20190520153742.GF5447@atomide.com>
+References: <20190517011409.22167-1-j-keerthy@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190517011409.22167-1-j-keerthy@ti.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
-
-Mauro Carvalho Chehab <mchehab+samsung@kernel.org> wrote on Mon, 20 May
-2019 11:47:38 -0300:
-
-> The Documentation/devicetree/bindings/mtd/nand.txt were both renamed
-> and converted to YAML on a single patch, without updating references
-> to it. That caused several cross-references to break.
+* Keerthy <j-keerthy@ti.com> [190516 18:14]:
+> This series adds patches that fix boot on dra76/71-evms.
 > 
-> Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
+> Changes in v2:
 > 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+>   * Pushed the disabling to dra76x and dra71x.dtsi respectively
 
-Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Thanks applying into fixes.
 
-Thanks for fixing it,
-Miquèl
+Regards,
+
+Tony
