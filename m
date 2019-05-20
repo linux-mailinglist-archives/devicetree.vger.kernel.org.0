@@ -2,171 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C85022407D
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 20:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 080FF240AC
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 20:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726330AbfETSf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 14:35:58 -0400
-Received: from mail-vk1-f196.google.com ([209.85.221.196]:34535 "EHLO
-        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725601AbfETSf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 14:35:58 -0400
-Received: by mail-vk1-f196.google.com with SMTP id d7so4138109vkf.1
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 11:35:58 -0700 (PDT)
+        id S1726547AbfETSua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 14:50:30 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:39460 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726532AbfETSu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 14:50:29 -0400
+Received: by mail-pg1-f196.google.com with SMTP id w22so7193854pgi.6
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 11:50:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=rJByBVnGlp63e7yCKsZ7SDuzR3kRoRVQ2u81Jed5J5c=;
-        b=SXkXCP1GPoj17g4AfmKPdPV0NMDi4QcPSc930K1MaUzykox1V/AWM7p2qi1vBMUV6A
-         59guNLCDAi9jEpOeuMIHyL4RMfZYpZB5w864pCNBczZY7zbrSjAe4aT6y3rUL1H7rohE
-         f828A3dpBu61qyr0ohzqi8XBPtXz4sf44/Wug=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=Mv8Qa01JCZ4+I7YNJRvGCUwkERJCFxGoPpOGVqFUsYA=;
+        b=LzRo5Nb6F7TFwyy5bp3FMP6UKmKwdrKZBYV8OY2LiLicrsrHoaULjsXjHJUAzLZd8k
+         akZ3bPYdZmgJHme2EODuIbrNd27cGXCSVd3r9GC7LhchRa04f6VzMH8AkZpMUIT4rm/g
+         aZ20HGwlSiT8tpEYkKhXuRRoqPdu6dO1WOBM/xXpenFNiYXmu2wsIMYj4eGk9ecb4gCv
+         tExdPIBkotN5XCXJpRIP2iv0ohdLdY4JCioDie7Bb/G3f3M2PsZA1faLwLJ3J8hIS5gE
+         CC/1Wqmcu34gckeSxDEtpR4JXa3n7ubgRnvoeysbbPATSjhpkHNwLJi8CQqwC/kjvEBg
+         a2ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rJByBVnGlp63e7yCKsZ7SDuzR3kRoRVQ2u81Jed5J5c=;
-        b=A9pdQFnf2wMxjzqcIPOSjQyu6dSFVmS4Zi/0nHs2S8vEU7GiuHx2pXz2pd1CXut9vb
-         6mOx8NanaRV8IDVOle2ep9+P/rr0oqXem3gTQG1AD+5A5xruiXBrxM6GouDm/Rc4qrfe
-         Kc7+N63VjWluBKyYiYAPRciwc3/Y9TOkZBuYD1lEdH1ziu3JqmDFNfwYq+VRS+45EsBe
-         7dKSb1ZSLNncANku02ty60gf3shSNlA50ySvky5i1PL+Yw7DdhX2iN4p7wpHdJS+m9qI
-         kDolBkQBmm0C5b0EtZ3xfyyXmnpeN7kJMAHYGGw8AXewT6uodRapPy8XeKA+7/9oFKiz
-         LKuQ==
-X-Gm-Message-State: APjAAAUcrf8yNDtqs+GTSPNEwj3anv8t/T7h84Q1RM3HNNg8fcWne9oj
-        QuyJWyUdThyHE1lc3iIpTGbbzCcupdg=
-X-Google-Smtp-Source: APXvYqys0+f3k6iN/71dUAg9e3zhOqQWTbSZD7jBnOKGUtdmEZUqdycdFXP1lqlXP5lTCYl5nlBuag==
-X-Received: by 2002:a1f:ee09:: with SMTP id m9mr8870637vkh.82.1558377357579;
-        Mon, 20 May 2019 11:35:57 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id n68sm25011773vkd.0.2019.05.20.11.35.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 11:35:55 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id x8so5610027vsx.13
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 11:35:55 -0700 (PDT)
-X-Received: by 2002:a67:dd8e:: with SMTP id i14mr31065192vsk.149.1558377354571;
- Mon, 20 May 2019 11:35:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=Mv8Qa01JCZ4+I7YNJRvGCUwkERJCFxGoPpOGVqFUsYA=;
+        b=XSkGSsje1r6A4uK2Z7w8uyJNOGgpjDZOTStETOCpwq8VamauEa8US2B4CARA1UsCXo
+         dqYjHUM1o+c2Hy5fClO3NJMqeQrMq3A4+2YCYJhlrWiDn0NJc1Xy5kmL5NFFv+0NjGko
+         bCOk4e2E1rw+ZIIWtCtuqvKCqyifABKbjoKr//3e4JuOFGkHQBt/O2bSke2kKzg59lxT
+         ksptqeub0P6p0P4ydJqAh7K/d0CXpMwOYPG5QZmeUBEBfzVV4rb5XgDBbaK0klPYUpbc
+         pz1b8AbQzsR+/wd4ewV3A+fyWgtrSP1vvR6bTgFSKfJS0zajBdr3bvuVaQeSUqe3TI99
+         G0Iw==
+X-Gm-Message-State: APjAAAWGEkTNOkN47S3z9jeBEhUbRH507nHFJOqrcmIhv0xsI6eS832Z
+        ChK36pwpitLYEUVbz3ZBEz7kKA==
+X-Google-Smtp-Source: APXvYqyeVgJuq88BvtgUgTuL8byweGUANYm5SR4s6iLuwa5yxXyYVn/e5ZPLOh/EoEtmF45cm1pG+Q==
+X-Received: by 2002:a63:5964:: with SMTP id j36mr76640076pgm.384.1558378229131;
+        Mon, 20 May 2019 11:50:29 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:e483:1cc0:e2c2:140d])
+        by smtp.googlemail.com with ESMTPSA id n184sm25492567pfn.21.2019.05.20.11.50.28
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 20 May 2019 11:50:28 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] arm64: dts: meson: g12a: add ethernet support
+In-Reply-To: <7himu58195.fsf@baylibre.com>
+References: <20190520131401.11804-1-jbrunet@baylibre.com> <7himu58195.fsf@baylibre.com>
+Date:   Mon, 20 May 2019 11:50:27 -0700
+Message-ID: <7hd0kd7yfg.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-2-dianders@chromium.org> <20190408103240.GF6644@ulmo> <CAD=FV=UJXLeEDPRAHY5-f2D4qJ4rq0LmKUDf4MANrb5KOm_x=g@mail.gmail.com>
-In-Reply-To: <CAD=FV=UJXLeEDPRAHY5-f2D4qJ4rq0LmKUDf4MANrb5KOm_x=g@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 20 May 2019 11:35:43 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WKkfhS8q2Wnx6PfHyq8m6oGhu=RideOykdTQ4dJrwfUg@mail.gmail.com>
-Message-ID: <CAD=FV=WKkfhS8q2Wnx6PfHyq8m6oGhu=RideOykdTQ4dJrwfUg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/7] dt-bindings: Add panel-timing subnode to simple-panel
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Eric Anholt <eric@anholt.net>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thierry,
+Kevin Hilman <khilman@baylibre.com> writes:
 
-On Mon, Apr 8, 2019 at 7:39 AM Doug Anderson <dianders@chromium.org> wrote:
+> Jerome Brunet <jbrunet@baylibre.com> writes:
 >
-> Thierry,
+>> Add network support to the g12a SoC family
+>>
+>> This is series is based on 5.2-rc1 and the patches I already sent last
+>> week. If this is not convient for you, please let me know, I'll rebase.
 >
-> On Mon, Apr 8, 2019 at 3:32 AM Thierry Reding <thierry.reding@gmail.com> =
-wrote:
-> >
-> > On Mon, Apr 01, 2019 at 10:17:18AM -0700, Douglas Anderson wrote:
-> > > From: Sean Paul <seanpaul@chromium.org>
-> > >
-> > > This patch adds a new subnode to simple-panel allowing us to override
-> > > the typical timing expressed in the panel's display_timing.
-> > >
-> > > Changes in v2:
-> > >  - Split out the binding into a new patch (Rob)
-> > >  - display-timings is a new section (Rob)
-> > >  - Use the full display-timings subnode instead of picking the timing
-> > >    out (Rob/Thierry)
-> > > Changes in v3:
-> > >  - Go back to using the timing subnode directly, but rename to
-> > >    panel-timing (Rob)
-> > > Changes in v4:
-> > >  - Simplify desc. for when override should be used (Thierry/Laurent)
-> > >  - Removed Rob H review since it's been a year and wording changed
-> > > Changes in v5:
-> > >  - Removed bit about OS may ignore (Rob/Ezequiel)
-> > >
-> > > Cc: Doug Anderson <dianders@chromium.org>
-> > > Cc: Eric Anholt <eric@anholt.net>
-> > > Cc: Heiko Stuebner <heiko@sntech.de>
-> > > Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: St=C3=A9phane Marchesin <marcheu@chromium.org>
-> > > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Cc: linux-rockchip@lists.infradead.org
-> > > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > ---
-> > >
-> > >  .../bindings/display/panel/simple-panel.txt   | 22 +++++++++++++++++=
-++
-> > >  1 file changed, 22 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/simple-p=
-anel.txt b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
-> > > index b2b872c710f2..93882268c0b9 100644
-> > > --- a/Documentation/devicetree/bindings/display/panel/simple-panel.tx=
-t
-> > > +++ b/Documentation/devicetree/bindings/display/panel/simple-panel.tx=
-t
-> > > @@ -15,6 +15,16 @@ Optional properties:
-> > >    (hot plug detect) signal, but the signal isn't hooked up so we sho=
-uld
-> > >    hardcode the max delay from the panel spec when powering up the pa=
-nel.
-> > >
-> > > +panel-timing subnode
-> >
-> > Is there any reason why we need the panel- prefix? This is already part
-> > of a panel definition, so it's completely redundant. Why not just name
-> > the subnode "timing"?
->
-> It was a really long time ago since this patch series was idle for a
-> while, but you previous had similar feedback in v3 but ended up OK
-> with it.  See:
->
-> https://patchwork.kernel.org/patch/10207583/
->
-> I believe the original node name came out of some back and forth
-> between Rob and Sean.  As far as I can tell, the context is back in
-> <https://patchwork.kernel.org/patch/10203483/>.  I think Rob wanted it
-> to follow other similar node names.
->
->
-> That all being said, if you feel strongly about it being called
-> "timing" and Rob's OK w/ that too then I'll re-spin the series.
+> Could you apply this on top of the "consistently order nodes" patches
+> that are already in my v5.3/dt64 branch?
 
-With 5.2-rc1 out, maybe this series is ready to land?  If you'd like
-me to change things as per above I can.  ...but it feels like keeping
-the already-agreed-upon name might be easiest / best?  Presumably
-you'd land patches 1, 2, 4, and 5 and then Heiko could land the dts
-patches?
+Nevermind, I mis-read the above and thought it was on v5.2-rc1, but now
+see that it's on -rc1 + all your other series, so it's all good.
 
-Thanks!
-
--Doug
+Kevin
