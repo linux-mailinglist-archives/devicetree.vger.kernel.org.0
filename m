@@ -2,62 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B535E23C8C
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0E6F23C97
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388874AbfETPvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 11:51:35 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:36553 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388243AbfETPvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 11:51:35 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 6EBF0E0015;
-        Mon, 20 May 2019 15:51:28 +0000 (UTC)
-Date:   Mon, 20 May 2019 17:51:27 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        id S2387645AbfETPyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 11:54:21 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:53239 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732031AbfETPyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 11:54:21 -0400
+X-Originating-IP: 90.88.22.185
+Received: from windsurf (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
+        (Authenticated sender: thomas.petazzoni@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id E5F2D20011;
+        Mon, 20 May 2019 15:54:10 +0000 (UTC)
+Date:   Mon, 20 May 2019 17:54:10 +0200
+From:   Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
+Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org
-Subject: Device Tree nodes ending with -supply
-Message-ID: <20190520155127.cdc6dofoqckwsrrb@flea>
+Subject: Re: [PATCH 1/1] arm64: dts: marvell: mcbin: enlarge PCI memory
+ window
+Message-ID: <20190520175410.4c941bfc@windsurf>
+In-Reply-To: <20190517161123.9293-1-xypron.glpk@gmx.de>
+References: <20190517161123.9293-1-xypron.glpk@gmx.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hello Heinrich,
 
-I've noticed that you recently added support to validate the *-supply
-properties in the dt-schema tools.
+On Fri, 17 May 2019 18:11:23 +0200
+Heinrich Schuchardt <xypron.glpk@gmx.de> wrote:
 
-However, we have a family of PMIC that are exposing a bunch of power
-supplies (battery, AC, USB, etc) to know what is currently powering
-the board.
+> Running a graphics adapter on the MACCHIATObin fails due to an
+> insufficently sized memory window.
+> 
+> Enlarge the memory window for the PCIe slot to 512 MiB.
+> 
+> With the patch I am able to use a GT710 graphics adapter with 1 GB onboard
+> memory.
+> 
+> These are the mapped memory areas that the graphics adapter is actually
+> using:
+> 
+> Region 0: Memory at cc000000 (32-bit, non-prefetchable) [size=16M]
+> Region 1: Memory at c0000000 (64-bit, prefetchable) [size=128M]
+> Region 3: Memory at c8000000 (64-bit, prefetchable) [size=32M]
+> Region 5: I/O ports at 1000 [size=128]
+> Expansion ROM at ca000000 [disabled] [size=512K]
+> 
+> Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> index 329f8ceeebea..205071b45a32 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+> @@ -184,6 +184,8 @@
+>  	num-lanes = <4>;
+>  	num-viewport = <8>;
+>  	reset-gpios = <&cp0_gpio2 20 GPIO_ACTIVE_LOW>;
+> +	ranges = <0x81000000 0x0 0xf9010000 0x0 0xf9010000 0x0 0x10000
+> +		  0x82000000 0x0 0xc0000000 0x0 0xc0000000 0x0 0x20000000>;
 
-All these various supplies are exposed as children nodes of the PMIC
-itself, and they are named *-power-supply. For an example, you can
-look at:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/axp209.dtsi#n56
+While I understand the change, I find it is a bit of a "one-off"
+solution, which will only work specifically for the MacchiatoBin. But
+admittedly, there isn't really a good generic solution: depending on
+the number of PCIe ports and what you connect to them, you will need
+windows of different sizes.
 
-Now, those are obviously not properties, and yet the current dt-schema
-schemas are trying to validate them.
+On older Armada platforms, it works a bit better because we have a
+single PCIe MEM aperture and a single PCIe I/O aperture, from which all
+PCIe ports allocate: each PCIe interface is a child bus of an emulated
+root port.
 
-I'm not really sure how to fix that. Changing the node names seems
-like an obvious solution, but they seem to be what they should be. Can
-we reduce the scope of the validation to only match properties (ie
-arrays?) and not the nodes (objects?)
+Unfortunately, on Armada 7K/8K, each PCIe interface is seen as an
+independent root complex, so we have one PCIe I/O aperture and one PCIe
+MEM aperture for each.
 
-Thanks!
-Maxime
-
---
-Maxime Ripard, Bootlin
+Thomas
+-- 
+Thomas Petazzoni, CTO, Bootlin
 Embedded Linux and Kernel engineering
 https://bootlin.com
