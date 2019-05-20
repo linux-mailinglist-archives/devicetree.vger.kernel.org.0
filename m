@@ -2,136 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E42C23BBA
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C09723BD0
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733027AbfETPKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 11:10:07 -0400
-Received: from vps.xff.cz ([195.181.215.36]:54942 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731033AbfETPKH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 11:10:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1558365003; bh=8nCbuBb8AQYXYxa/0A6aE2P2rf6UNECJI6ZQ3RM4O4s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MRX9WqxNodPeHwXsP4QSCQe787L8IZiRWDj4v4DP7Lp8fp5wsoxbbq+5AkoHEN7fl
-         /5/RfXuSI0p9l/ZB2m2yZUQ1ncOLA4igNcBYBKvIcskxHYbT/7wrVS/4eSU9mpCkX6
-         TY7gnn18kr+fNhSYjct+LUD0IuX88Jl6/DISY0eU=
-Date:   Mon, 20 May 2019 17:10:03 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Chen-Yu Tsai <wens@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S1732846AbfETPQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 11:16:38 -0400
+Received: from mail-yb1-f194.google.com ([209.85.219.194]:34656 "EHLO
+        mail-yb1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730475AbfETPQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 11:16:38 -0400
+Received: by mail-yb1-f194.google.com with SMTP id v78so5838975ybv.1;
+        Mon, 20 May 2019 08:16:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=39pc0LYY2SOLC+Eab1jH/LHKWZC4F4vmwoS5+aTUN+8=;
+        b=FRzFebtGvRzGumqr5/EOZMft8/BWyHD6J6b4Z9ZwYcf9Sle5L3/dS0JH8ZFX9ODkm/
+         cZF4ZKffFotK/pNY52v4dL69ZDldsGJ1oZVQtNMPkHuPjkovD6x3wvOWtx/toYy7SsJ7
+         DOpNjJA6rgc3vK52YLl+aQqPuOs5L2Mcu0rpk70QWwQs5WTExgBaG+TnapM/U9FHgNGM
+         u5wb2zy0aHDXNwvCMkvTzy6K6M8KqpRlrIstB8TMcDkkV83MBWFQVTnWKxH6bpZdlAZb
+         hkGTvHaKocyyQsV9f1UN915n+tYk9S15RMUFJx0ryNZ1zCDAL8a2g3w+Lgahs7JV4dv9
+         pWVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=39pc0LYY2SOLC+Eab1jH/LHKWZC4F4vmwoS5+aTUN+8=;
+        b=GX9UCLo9JhL81le64zPePhagGQCAmzmsb1H2W7A4vQ906OIgRm/kgnSQNwlWDAtkD3
+         K0NhiY3DuSBL2nHijItvtpGpNAbkaIMBreG1jhjIjMQeuNFVOYHch4dZ43qdMUHQ1UgD
+         sld/+ty7egkSXHsMKuKjbRldIkv2gL3RrxugfjNDAhNAzv2/bI/vJyUkagaanrePHce3
+         49xtyd0ZSpmtvcG/Qq74tzLb2d/1qj9O8PIFcVcyWuH3uZPgyLfJBQItiJzZBh7f0Ngx
+         A4v1eZLE+zFItuzAbCoBC80PcjjsPyYP/7jpZLhZqfDS9XMJY4dmmHcl8YHkVnFHojwa
+         ef8w==
+X-Gm-Message-State: APjAAAUTvOC8Vg4UIWTwMGf1jnkWyiHjVQKfA7g8cVayCKphuH7dKujJ
+        7uCacUBLg+6ZpV7QJR/AaNAbbU50b1ESjhAejdOs84TVVIc=
+X-Google-Smtp-Source: APXvYqzow3lQOqwpzptZIX0AC+6atUp95ha3AFYPDLnPZl03o6N6jBbz43DrPfl2QMoZUmG26GkF95me2V3vml881DI=
+X-Received: by 2002:a25:10c2:: with SMTP id 185mr33170384ybq.379.1558365396955;
+ Mon, 20 May 2019 08:16:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190518152355.11134-1-peron.clem@gmail.com> <20190518152355.11134-2-peron.clem@gmail.com>
+ <20190520073529.nxptfbibexrqyzfi@flea> <CAJiuCcdrW7RcEKePCr1DaL-be8dA5oOjvHdxYkiu=h37z2e7tw@mail.gmail.com>
+ <20190520144258.eauhvvwfxuhiczie@flea>
+In-Reply-To: <20190520144258.eauhvvwfxuhiczie@flea>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Mon, 20 May 2019 17:16:25 +0200
+Message-ID: <CAJiuCccUQ0grMo_RC4DN1AfzSPQq14KjUbNpFFvfQ+GBWDvG+w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: watchdog: add Allwinner H6 watchdog
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] ARM: sun8i: a83t: Support Camera Sensor Interface
- controller
-Message-ID: <20190520151003.uklhhak5clxi5zpf@core.my.home>
-Mail-Followup-To: Chen-Yu Tsai <wens@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-References: <20190520150637.23557-1-megous@megous.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190520150637.23557-1-megous@megous.com>
+        Chen-Yu Tsai <wens@csie.org>, linux-watchdog@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 05:06:34PM +0200, verejna wrote:
-> From: Ondrej Jirman <megous@megous.com>
-> 
-> This is a re-send of Chen-Yu's A83T CSI patch series with review tags
-> applied and removed address/size cells from csi_in port. Already applied
-> patches from v1  were dropped.
-> 
-> The series is ready to be merged:
-> 
->   Patch 1 and 2 via sunxi tree
->   Patch 3 via media tree
+On Mon, 20 May 2019 at 16:43, Maxime Ripard <maxime.ripard@bootlin.com> wro=
+te:
+>
+> On Mon, May 20, 2019 at 10:14:10AM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > >
+> > > > +     - "allwinner,sun4i-a10-wdt"
+> > > > +     - "allwinner,sun50i-a64-wdt","allwinner,sun6i-a31-wdt"
+> > > > +     - "allwinner,sun50i-h6-wdt","allwinner,sun50i-a64-wdt",
+> > > > +       "allwinner,sun6i-a31-wdt"
+> > >
+> > > Is there a reason to keep the A64 compatible?
+> >
+> > Yes, A64 and H6 has the exact same memory mapping looking at the datash=
+eet.
+> > So if there is an errata or a new feature for the A64, it should be
+> > also compatible with the H6.
+> > Which is not the case with A31 (WDT_KEY_FIELD is not preset)
+>
+> The thing is, if you use those three compatibles, then you're saying
+> that it's ok for the OS to use first the H6 driver, then the A64
+> driver, and then the A31 driver.
+>
+> If the A31 isn't compatible, then it shouldn't be listed there. And if
+> it is, then you can skip the A64 compatible.
 
-Sorry, wrong numbers. 2 is for media tree, 3 is for sunxi, 1 is a dt-bindings
-patch, where I'm not sure.
+Hi Maxime,
 
-thanks,
-	Ondrej
+I'm just supposing that A31 is the version 1.0 of the IP, A64 is the
+version 1.1 and H6 is 1.2.
+And if an issue is found for A64 there is more chance that we will
+have to fix it also for H6.
+But bindings the driver with :
+"allwinner,sun50i-h6-wdt","allwinner,sun50i-a31-wdt" is also fine for
+me.
 
-> v2:
-> - dropped address/size cells from csi_in port
-> - added review tags
-> 
-> Please take a look and merge.
-> 
-> Thank you,
-> 	Ondrej
-> 
-> --------------------------
-> Original description:
-> 
-> Hi everyone,
-> 
-> This series adds support for the camera sensor interface controller
-> found on the Allwinner A83T SoC. The controller is similar to the one
-> found on  the H3, with the addition of a MIPI CSI-2 interface. However,
-> this series only supports parallel and BT.656 interfaces, based on the
-> existing driver.
-> 
-> Patch 1 adds an undocumented clock parent of the CSI MCLK. This was
-> found after finding the default value to sometimes work and sometimes
-> not, and then comparing against BSP code.
-> 
-> Patch 2 adds a compatible string for the A83T variant.
-> 
-> Patch 3 adds support for the A83T variant to the existing sun6i-csi
-> driver.
-> 
-> Patch 4 adds a device node for the controller, as well as commonly
-> used pin muxing options.
-> 
-> Patch 5 adds a pin muxing option for I2C1 on the PE pins, used in
-> conjunction with the CSI pins.
-> 
-> Patch 6 provides an example usage of the CSI controller: the Bananapi M3
-> with its camera module attached.
-> 
-> Please have a look.
-> 
-> Regards
-> ChenYu
-> 
-> Chen-Yu Tsai (3):
->   dt-bindings: media: sun6i-csi: Add compatible string for A83T variant
->   media: sun6i: Support A83T variant
->   ARM: dts: sun8i: a83t: Add device node for CSI (Camera Sensor
->     Interface)
-> 
->  .../devicetree/bindings/media/sun6i-csi.txt   |  1 +
->  arch/arm/boot/dts/sun8i-a83t.dtsi             | 29 +++++++++++++++++++
->  .../platform/sunxi/sun6i-csi/sun6i_csi.c      |  1 +
->  3 files changed, 31 insertions(+)
-> 
-> -- 
-> 2.21.0
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Regards,
+Clement
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
