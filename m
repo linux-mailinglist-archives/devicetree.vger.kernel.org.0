@@ -2,116 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D8424209
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D99DB2420F
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 22:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725978AbfETUVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 16:21:48 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:46501 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725763AbfETUVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 16:21:47 -0400
-Received: by mail-vs1-f68.google.com with SMTP id x8so5836012vsx.13
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 13:21:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+cwBfmNJOYYnLoNWnVRRnVYNxdiZh0AA2x8O10NbLoM=;
-        b=UUk3ytbRvoMJoCb1BDVV+bhMWyNCfP4VAtjMhf1lzGoGdYLBnk+w1DzR1J257pctAl
-         Z1sIhOH/IrWFoh7qnyLcIMvuCkh8fkDTGFrKquN9TP9ipVXj2ksMpQf/2h+xNxqCH3K2
-         oiIVhVB2Wc5K/vc4KJ88h0vfB7fgjFsM3M9kY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+cwBfmNJOYYnLoNWnVRRnVYNxdiZh0AA2x8O10NbLoM=;
-        b=SM2Zcd7lMQsmIL0WA4H3QoFCIN5q7vGezVjDT6t0JmTTMjpOPH2+fCnepR4X8jeiBl
-         0a8EVtCQH/ZoQwaaAzSj84Wm0qG/mBLbMa8ekIwJZP42wEkN00Zlid6JOIJWIK8mEAGN
-         kbWSmAYT6Cpdlw+3bqFGqOgnfzADlLWplxzbnY9UAHV3bBSxo5GVkwc3u1PL4kN9CjY0
-         qVHdFdax7YwNERYtExUj1ehl2SmjbavHB9bHcJfZnKI7ISRsONP51bCJnONpXJF18hJe
-         xULKom6KuJ/NB83wY9Fklii2S0Sx/Oho5NDYI2pt4Sbr5E5o2JZhSw4OzsSm7/V325Ko
-         e/2g==
-X-Gm-Message-State: APjAAAVU9leKQYqFzhHVSD3j3MzIhZvnxNeeLHkH4aExlXHaSv1ygbXP
-        vJPVz4tjYOwdonBfUrScNMyDGuH2cag=
-X-Google-Smtp-Source: APXvYqznW5O4wXhJ5pX2N3t1Zjkgfat0L1/6NFq6/9JOsDne+jl1+Z9IY113AVIbspgZcGeaOCoJDQ==
-X-Received: by 2002:a67:edc8:: with SMTP id e8mr37629686vsp.190.1558383706476;
-        Mon, 20 May 2019 13:21:46 -0700 (PDT)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id l22sm5175204vkl.2.2019.05.20.13.21.45
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 13:21:45 -0700 (PDT)
-Received: by mail-vs1-f53.google.com with SMTP id g187so9745881vsc.8
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 13:21:45 -0700 (PDT)
-X-Received: by 2002:a67:dd8e:: with SMTP id i14mr31790963vsk.149.1558383705071;
- Mon, 20 May 2019 13:21:45 -0700 (PDT)
+        id S1725971AbfETUWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 16:22:53 -0400
+Received: from hamsrv800.servertools24.de ([213.238.32.28]:42125 "EHLO
+        hamsrv800.servertools24.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725601AbfETUWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 16:22:53 -0400
+Received: from christian-pc.localdomain (p54A59A9B.dip0.t-ipconnect.de [84.165.154.155])
+        by hamsrv800.servertools24.de (Postfix) with ESMTPSA id 0B3A8238274F;
+        Mon, 20 May 2019 22:22:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-mauderer.de;
+        s=default; t=1558383771;
+        bh=2xmSXtEnwV/n5ZpGUhtornq8eO64bo93MsQ8UFlWxSM=; l=2438;
+        h=Subject:To:From;
+        b=OusKKBR57cog9wTWGLZ5/doUeqpVagX+/qOoR3Q9hcBU5t3+aoAJL01z6tDGVSwlV
+         esKrj5f1LEPSzuzd7PD2HRiOC63laQpWgBBlodXQBpEoV0L1YUYekiUVr0CSFivZEi
+         91ab/mXWGp2ASXlWLoTYCkgAJenvxOOy/uWO8KKc=
+Authentication-Results: hamsrv800.servertools24.de;
+        spf=pass (sender IP is 84.165.154.155) smtp.mailfrom=oss@c-mauderer.de smtp.helo=christian-pc.localdomain
+Received-SPF: pass (hamsrv800.servertools24.de: connection is authenticated)
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add binding for spi-byte LED.
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+References: <20190513193307.11591-1-oss@c-mauderer.de>
+ <20190519212501.GC31403@amd>
+ <1850ba07-2c0c-2624-4ff3-fd507e49439f@c-mauderer.de>
+ <99283573-2711-08b6-b95e-27732c175bb4@gmail.com>
+From:   Christian Mauderer <oss@c-mauderer.de>
+Message-ID: <b2315969-eef3-ad08-7551-c25a54049b28@c-mauderer.de>
+Date:   Mon, 20 May 2019 22:22:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190520170132.91571-1-mka@chromium.org> <20190520170132.91571-2-mka@chromium.org>
-In-Reply-To: <20190520170132.91571-2-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 20 May 2019 13:21:33 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vr2thgHYTH_khqka27_SdGcSEShpSRp+u2E=O5eyxLMQ@mail.gmail.com>
-Message-ID: <CAD=FV=Vr2thgHYTH_khqka27_SdGcSEShpSRp+u2E=O5eyxLMQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: rockchip: Configure the GPU thermal zone
- for mickey
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <99283573-2711-08b6-b95e-27732c175bb4@gmail.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <155838377135.51259.5421918138714938503@hamsrv800.servertools24.de>
+X-PPP-Vhost: c-mauderer.de
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Jacek, Pavel, Rob, Dan and everyone who I might have missed,
 
-On Mon, May 20, 2019 at 10:01 AM Matthias Kaehlcke <mka@chromium.org> wrote=
-:
->
-> mickey crams a lot of hardware into a tiny package, which requires
-> more aggressive thermal throttling than for devices with a larger
-> footprint. Configure the GPU thermal zone to throttle the GPU
-> progressively at temperatures >=3D 60=C2=B0C. Heat dissipated by the
-> CPUs also affects the GPU temperature, hence we cap the CPU
-> frequency to 1.4 GHz for temperatures above 65=C2=B0C. Further throttling
-> of the CPUs may be performed by the CPU thermal zone.
->
-> The configuration matches that of the downstram Chrome OS 3.14
+thanks for the great feedback, the patience while reviewing my patches
+and for accepting it.
 
-s/downstram/downstream
+Although it needed a longer discussion than I expected (partially due to
+my rush creating new versions at the beginning) it was a quite positive
+experience and I'm quite ready to repeat it if some other opportunity
+arises.
 
+Best regards
 
-> +       cooling-maps {
-> +               /* After 1st level throttle the GPU down to as low as 400=
- MHz */
-> +               gpu_warmish_limit_gpu {
-> +                       trip =3D <&gpu_alert_warmish>;
-> +                       cooling-device =3D <&gpu THERMAL_NO_LIMIT 1>;
+Christian
 
-As per my comment in patch #1, you are probably ending up throttling
-to 500 MHz, not 400 MHz.  Below will all have similar problems unless
-we actually delete the 500 MHz operating point.
-
-
-> +               };
-> +
-> +               /*
-> +                * Slightly after we throttle the GPU, we'll also make su=
-re that
-> +                * the CPU can't go faster than 1.4 GHz.  Note that we wo=
-n't
-> +                * throttle the CPU lower than 1.4 GHz due to GPU heat--w=
-e'll
-> +                * let the CPU do the rest itself.
-> +                */
-> +               gpu_warm_limit_cpu {
-> +                       trip =3D <&gpu_alert_warm>;
-> +                       cooling-device =3D <&cpu0 4 4>;
-
-Shouldn't you list cpu1, cpu2, and cpu3 too?  That'd match what
-upstream did elsewhere in this file?
+On 20/05/2019 22:15, Jacek Anaszewski wrote:
+> Hi Christian,
+> 
+> On 5/20/19 7:19 PM, Christian Mauderer wrote:
+>> On 19/05/2019 23:25, Pavel Machek wrote:
+>>> Hi!
+>>>
+>>>> From: Christian Mauderer <oss@c-mauderer.de>
+>>>>
+>>>> This patch adds the binding documentation for a simple SPI based LED
+>>>> controller which use only one byte for setting the brightness.
+>>>>
+>>>> Signed-off-by: Christian Mauderer <oss@c-mauderer.de>
+>>>> ---
+>>>
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+>>>> b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+>>>> new file mode 100644
+>>>> index 000000000000..28b6b2d9091e
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/leds/leds-spi-byte.txt
+>>>> @@ -0,0 +1,44 @@
+>>>> +* Single Byte SPI LED Device Driver.
+>>>
+>>>> +The driver can be used for controllers with a very simple SPI
+>>>> protocol:
+>>>> +- one LED is controlled by a single byte on MOSI
+>>>> +- the value of the byte gives the brightness between two values
+>>>> (lowest to
+>>>> +  highest)
+>>>> +- no return value is necessary (no MISO signal)
+>>>
+>>> I'd expect this file to be named acb-spi-led.txt, or something, and
+>>> talk about that u-controller, not its device driver -- as devicetree
+>>> binding describes hardware, not driver.
+>>>
+>>> But you already have an ack from rob, so...
+>>>                                     Pavel
+>>>                                    
+>>
+>> So basically it would have been better to move the description that I
+>> added to the c-file as "supported devices" in the device tree file?
+>>
+>> With both commits already acked: Rob and Pavel: Should I change that?
+>>
+>> If you both say yes, I would rename the file in the binding like
+>> suggested and move the detailed protocol description from the driver to
+>> the binding.
+> 
+> Let's not ramble on it. It is good as is.
+> 
+> Patch set applied to the for-next branch of linux-leds.git.
+> 
+> Thank you for your work.
+> 
