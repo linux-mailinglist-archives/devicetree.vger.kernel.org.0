@@ -2,104 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 150B122F82
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 10:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88ABE22F96
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 10:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730820AbfETI4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 04:56:50 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:47730 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725372AbfETI4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 04:56:50 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 197348021D; Mon, 20 May 2019 10:56:38 +0200 (CEST)
-Date:   Mon, 20 May 2019 10:56:47 +0200
-From:   Pavel Machek <pavel@denx.de>
-To:     Ran Wang <ran.wang_1@nxp.com>
-Cc:     Pavel Machek <pavel@denx.de>, Leo Li <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <len.brown@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH V2 3/3] soc: fsl: add RCPM driver
-Message-ID: <20190520085647.GA9748@amd>
-References: <20190517033946.30763-1-ran.wang_1@nxp.com>
- <20190517033946.30763-3-ran.wang_1@nxp.com>
- <20190519213844.GH31403@amd>
- <AM5PR0402MB2865EC5E1EF12C6C1D3C5566F1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+        id S1731096AbfETI7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 04:59:02 -0400
+Received: from onstation.org ([52.200.56.107]:50840 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730385AbfETI7C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 04:59:02 -0400
+Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 622303E8D7;
+        Mon, 20 May 2019 08:59:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1558342741;
+        bh=Xgy3+Rs3yBvZB0BUXAIyl2U75vWOzK4nucJwFwG9y2o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FUo5HUbTH+MqwO7mv9H2UE6JE1Sw2F8UVEDBoN+IxsVWDh5m9P5Ab0zxNHG9foqtj
+         olCdm1bIrFG8JpiNW0bUFdGMKcEHtgLUvdPv/dg0f5OHVNQ2cmNIeI6Rtssn/XNhZP
+         dY0Z915b7AkymZkdCxWHtrd6AX+cLnqC/KZZasJA=
+From:   Brian Masney <masneyb@onstation.org>
+To:     robh+dt@kernel.org, lee.jones@linaro.org
+Cc:     daniel.thompson@linaro.org, jingoohan1@gmail.com,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
+        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        dmurphy@ti.com, jonathan@marek.ca
+Subject: [PATCH] dt-bindings: backlight: lm3630a: correct schema validation
+Date:   Mon, 20 May 2019 04:58:46 -0400
+Message-Id: <20190520085846.22320-1-masneyb@onstation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="nFreZHaLTZJo0R7j"
-Content-Disposition: inline
-In-Reply-To: <AM5PR0402MB2865EC5E1EF12C6C1D3C5566F1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The '#address-cells' and '#size-cells' properties were not defined in
+the lm3630a bindings and would cause the following error when
+attempting to validate the examples against the schema:
 
---nFreZHaLTZJo0R7j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
+'#address-cells', '#size-cells' do not match any of the regexes:
+'^led@[01]$', 'pinctrl-[0-9]+'
 
-Hi!
+Correct this by adding those two properties.
 
-> > > +static int rcpm_pm_prepare(struct device *dev) {
-> > > +	struct device_node *np =3D dev->of_node;
-> > > +	struct wakeup_source *ws;
-> > > +	struct rcpm *rcpm;
-> > > +	u32 value[RCPM_WAKEUP_CELL_MAX_SIZE + 1], tmp;
-> > > +	int i, ret;
-> > > +
-> > > +	rcpm =3D dev_get_drvdata(dev);
-> > > +	if (!rcpm)
-> > > +		return -EINVAL;
-> > > +
-> > > +	/* Begin with first registered wakeup source */
-> > > +	ws =3D wakeup_source_get_next(NULL);
-> > > +	while (ws) {
-> >=20
-> > while (ws =3D wakeup_source_get_next(NULL)) ?
->=20
-> Actually, we only pass NULL to wakeup_source_get_next() at very first
-> call to get 1st wakeup source. Then in the while loop, we will fetch
-> next source but not 1st, that's different. I am afraid your suggestion
-> is not quite correct.
+While we're here, move the ti,linear-mapping-mode property to the
+led@[01] child nodes to correct the following validation error:
 
-Sorry, I seen your next version before seeing this explanation.
+Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
+led@0: 'ti,linear-mapping-mode' does not match any of the regexes:
+'pinctrl-[0-9]+'
 
-You are right, but the current code is "interesting". What about
+Fixes: 32fcb75c66a0 ("dt-bindings: backlight: Add lm3630a bindings")
+Signed-off-by: Brian Masney <masneyb@onstation.org>
+Reported-by: Rob Herring <robh+dt@kernel.org>
+---
+ .../leds/backlight/lm3630a-backlight.yaml     | 20 +++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-    ws =3D NULL;
-    while (ws =3D wakeup_source_get_next(NULL)) ...
+diff --git a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+index 4d61fe0a98a4..f0855e248ae5 100644
+--- a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
++++ b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+@@ -23,16 +23,17 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  ti,linear-mapping-mode:
+-    description: |
+-      Enable linear mapping mode. If disabled, then it will use exponential
+-      mapping mode in which the ramp up/down appears to have a more uniform
+-      transition to the human eye.
+-    type: boolean
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
+ 
+ required:
+   - compatible
+   - reg
++  - '#address-cells'
++  - '#size-cells'
+ 
+ patternProperties:
+   "^led@[01]$":
+@@ -73,6 +74,13 @@ patternProperties:
+         minimum: 0
+         maximum: 255
+ 
++      ti,linear-mapping-mode:
++        description: |
++          Enable linear mapping mode. If disabled, then it will use exponential
++          mapping mode in which the ramp up/down appears to have a more uniform
++          transition to the human eye.
++        type: boolean
++
+     required:
+       - reg
+ 
+-- 
+2.20.1
 
-then?
-
-Best regards,
-								Pavel
---=20
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-
---nFreZHaLTZJo0R7j
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlzia88ACgkQMOfwapXb+vLCHQCdEiZVnts+sVGDltC60TnL3F9y
-ltIAn0M2k/oHNFq1zm74JskvAw6PG/L7
-=/fdT
------END PGP SIGNATURE-----
-
---nFreZHaLTZJo0R7j--
