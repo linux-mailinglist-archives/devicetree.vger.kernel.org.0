@@ -2,116 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D42222D21
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 09:32:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D662E22D6E
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 09:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726120AbfETHcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 03:32:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54516 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726741AbfETHcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 03:32:50 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 66FE520859;
-        Mon, 20 May 2019 07:32:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558337570;
-        bh=6QOCM2O+jWvHVBPgbiBamyy5qsUSAwzS4Pgp+OQcfCQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CdouxzEdd8cyXWd3DiYv4x5o/lA8dl5aA+asetl1A2C2qVuPFrggQf7RYSIQlAlcK
-         t2UjMyKptbE/yoO77zVHymC1Mo5H4cbc+PjVKHMQJgSvKPGj+QGwLlgREFBYtWt9Sm
-         edlBGboFsWfDZXEmZBiftYZishId+M8xEmFnRzWM=
-Date:   Mon, 20 May 2019 15:31:59 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     "balbi@kernel.org" <balbi@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v2 6/8] ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
-Message-ID: <20190520073157.GW15856@dragon>
-References: <20190514073529.29505-1-peter.chen@nxp.com>
- <20190514073529.29505-7-peter.chen@nxp.com>
+        id S1730425AbfETHxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 03:53:01 -0400
+Received: from 9.mo179.mail-out.ovh.net ([46.105.76.148]:45756 "EHLO
+        9.mo179.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727319AbfETHxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 03:53:01 -0400
+Received: from player760.ha.ovh.net (unknown [10.108.42.176])
+        by mo179.mail-out.ovh.net (Postfix) with ESMTP id C5D8B131226
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 09:34:09 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player760.ha.ovh.net (Postfix) with ESMTPSA id 064FF5F24312;
+        Mon, 20 May 2019 07:33:54 +0000 (UTC)
+Subject: Re: [PATCH RE-RESEND 1/2] drm/panel: Add support for Armadeus ST0700
+ Adapt
+To:     Sam Ravnborg <sam@ravnborg.org>
+References: <20190507152713.27494-1-sebastien.szymanski@armadeus.com>
+ <CAOMZO5B2nMsVNO6O_D+YTSjux=-DjNPGxhkEi3AQquOZVODumA@mail.gmail.com>
+ <20190507161950.GA24879@ravnborg.org>
+ <20190508083303.GR17751@phenom.ffwll.local>
+ <20190508090612.GT17751@phenom.ffwll.local>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        stable <stable@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Openpgp: preference=signencrypt
+Message-ID: <0c5d70db-e7c1-5d02-9c33-65dabd431a68@armadeus.com>
+Date:   Mon, 20 May 2019 09:34:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190514073529.29505-7-peter.chen@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20190508090612.GT17751@phenom.ffwll.local>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 6372874948130854140
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddruddtjedguddvgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 14, 2019 at 07:38:21AM +0000, Peter Chen wrote:
-> Add imx7ulp USBOTG1 support.
-> 
-> Signed-off-by: Peter Chen <peter.chen@nxp.com>
-> ---
->  arch/arm/boot/dts/imx7ulp.dtsi | 31 +++++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-> index fca6e50f37c8..60c9ea116d0a 100644
-> --- a/arch/arm/boot/dts/imx7ulp.dtsi
-> +++ b/arch/arm/boot/dts/imx7ulp.dtsi
-> @@ -30,6 +30,7 @@
->  		serial1 = &lpuart5;
->  		serial2 = &lpuart6;
->  		serial3 = &lpuart7;
-> +		usbphy0 = &usbphy1;
->  	};
->  
->  	cpus {
-> @@ -133,6 +134,36 @@
->  			clock-names = "ipg", "per";
->  		};
->  
-> +		usbotg1: usb@40330000 {
-> +			compatible = "fsl,imx7ulp-usb", "fsl,imx6ul-usb",
-> +				"fsl,imx27-usb";
-> +			reg = <0x40330000 0x200>;
-> +			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&pcc2 IMX7ULP_CLK_USB0>;
-> +			phys = <&usbphy1>;
-> +			fsl,usbmisc = <&usbmisc1 0>;
-> +			ahb-burst-config = <0x0>;
-> +			tx-burst-size-dword = <0x8>;
-> +			rx-burst-size-dword = <0x8>;
-> +			status = "disabled";
-> +		};
-> +
-> +		usbmisc1: usbmisc@40330200 {
-> +			#index-cells = <1>;
+Hello Sam,
 
-Nit: we usually start with 'compatible', so can we move it behind?
-
-Shawn
-
-> +			compatible = "fsl,imx7ulp-usbmisc", "fsl,imx7d-usbmisc",
-> +				"fsl,imx6q-usbmisc";
-> +			reg = <0x40330200 0x200>;
-> +		};
-> +
-> +		usbphy1: usbphy@0x40350000 {
-> +			compatible = "fsl,imx7ulp-usbphy",
-> +				"fsl,imx6ul-usbphy", "fsl,imx23-usbphy";
-> +			reg = <0x40350000 0x1000>;
-> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&pcc2 IMX7ULP_CLK_USB_PHY>;
-> +			#phy-cells = <0>;
-> +		};
-> +
->  		usdhc0: mmc@40370000 {
->  			compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
->  			reg = <0x40370000 0x10000>;
-> -- 
-> 2.14.1
+On 5/8/19 11:06 AM, Daniel Vetter wrote:
+> On Wed, May 08, 2019 at 10:33:03AM +0200, Daniel Vetter wrote:
+>> On Tue, May 07, 2019 at 06:19:50PM +0200, Sam Ravnborg wrote:
+>>> Hi Fabio
+>>>
+>>> On Tue, May 07, 2019 at 12:33:39PM -0300, Fabio Estevam wrote:
+>>>> [Adding Sam, who is helping to review/collect panel-simple patches]
+>>>>
+>>>> On Tue, May 7, 2019 at 12:27 PM Sébastien Szymanski
+>>>> <sebastien.szymanski@armadeus.com> wrote:
+>>>>>
+>>>>> This patch adds support for the Armadeus ST0700 Adapt. It comes with a
+>>>>> Santek ST0700I5Y-RBSLW 7.0" WVGA (800x480) TFT and an adapter board so
+>>>>> that it can be connected on the TFT header of Armadeus Dev boards.
+>>>>>
+>>>>> Cc: stable@vger.kernel.org # v4.19
+>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+>>> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+>>>
+>>> If you wil lresend the patch I can apply it.
+>>> I have lost the original mail.
+>>
+>> Usually patchwork should have it already (and you can pipe the raw
+>> patchwork mbox into dim apply), but somehow it's not there either.
+>> Not sure why, sometimes this is because mails are stuck in moderation,
+>> sometimes because people do interesting things with their mails (e.g. smtp
+>> servers mangling formatting).
 > 
+> patchwork was just a bit slow, it's there now:
+> 
+> https://patchwork.freedesktop.org/series/60408/
+> 
+
+Will you take the patch from patchwork or should I resent it ?
+
+Regards,
+
+> Cheers, Daniel
+> 
+
+
+-- 
+Sébastien Szymanski
+Software engineer, Armadeus Systems
+Tel: +33 (0)9 72 29 41 44
+Fax: +33 (0)9 72 28 79 26
