@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6371823111
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 12:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA5C23103
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 12:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732457AbfETKMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 06:12:41 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:43772 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732444AbfETKMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 06:12:37 -0400
-Received: by mail-pf1-f196.google.com with SMTP id c6so6975712pfa.10
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 03:12:36 -0700 (PDT)
+        id S1732445AbfETKMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 06:12:44 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35243 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732460AbfETKMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 06:12:42 -0400
+Received: by mail-pl1-f195.google.com with SMTP id p1so1124336plo.2
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 03:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :in-reply-to:references;
-        bh=HpWLJW0AsyMzUk7aFfWV1G46hR6bm2Fq1Ta1KdUw0ic=;
-        b=DTIHo9/mhznHhmMPsPg2GreBFfHF6EqewzBibeH6J1rwd6xeG3CJaiSCAzzM0YX1tO
-         rDYGkQdhqxkOfEx0wELCbz7sxgZ+bOojR87F94462mSYPW3J5rhmvbmhzad45atYa0WH
-         9hO34uiRK2xFzSLn3r61HSZ0Ru7VfMkZcb3mClqKzRsMRRr9QQ8RtgBlhpuWyVBDiIRm
-         enY5MU3j77jwUVAX0AOhzawX9LeWp4YlatlPNLWMFrmF2sBHw97X6F6PS++hkNI1XozR
-         PNaWJDkBBRlDIPXBgEIjqdEHxh6uIZLsAT3Zqhjy0nijV3nkFeIYannK9MLNIPhACU2C
-         l+yw==
+        bh=eMFBxEvVv73muoLZwkqzMu7EIBYQwUE2J5IELje2f28=;
+        b=yhDed4i3RBqLUdnBe0hSuSFflewfmbhjRUNIe2b4fdBam6M4LQXIcG30ecgTYWvlC+
+         9dU9LfmgcnAP8zsReUaDsEr5Xkmyy+W+pifErnX2xqlkaoUVT84a6aehb3b8pawL92iR
+         tQ54TONm22Ktua4YOvnugQXU4KlKB/1aAcPyvWXSuSW64HljYJCqgd1DWuOatqdmXFRj
+         6fwiys1x5GW60TDPFElDeyOzqvrhUcpcfeidDVdlaDIaMX7F8nJhoUWFquwJiMN01rG0
+         u66gGoyroNQY7cRQKDV72UuHYZm6w3oFXuDHMj6WbC0ofrey3hgNjnN5j00zbksct8+W
+         nhvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:in-reply-to:references;
-        bh=HpWLJW0AsyMzUk7aFfWV1G46hR6bm2Fq1Ta1KdUw0ic=;
-        b=Et6Vi9H2nvFU9lAJAwajTkHczPLlm/Gib+xKL/al60i6nAO7s15qgx8l3Bgl4wUA64
-         sR1z4xAKH1D+RH03qP0zX1h+pOMp26x2/AEFqDxoVQnEx3ex/vTgjbK5g7q6sxE+E+3M
-         CZh86YCpjuS/5NbQhHGLmkpKtDps5AVP9XefqS7ysipUI1dgqkHh0E9owiYUSZdQMX/l
-         mlYWRQaxhHKBJFzgohZykhgRvS5YoZjyxohlTtYZKQhuDR9dt5314gdecQ2WWdbicbhY
-         Q2RoPKhOorVS6fbKDCKgJq5wT44sPbG9O1n1EDMB7EdY7I3weqFhhj42bHXBomTjMsLN
-         S9MQ==
-X-Gm-Message-State: APjAAAU4twhw6cvZ0YjjRVsrZXt6NGDECXfdUuyNn3RFKMzzr+A/l3KR
-        WpzlIxnvxmkXNjOIxgUSsitouA==
-X-Google-Smtp-Source: APXvYqyKn94vJ5CsjPXp5irkHGu4cvwA/ruoAz5XoeRBKKfQeXMWlb5PC2WjqcZmRCe9cINHLnP+jA==
-X-Received: by 2002:a63:e451:: with SMTP id i17mr74906860pgk.312.1558347156596;
-        Mon, 20 May 2019 03:12:36 -0700 (PDT)
+        bh=eMFBxEvVv73muoLZwkqzMu7EIBYQwUE2J5IELje2f28=;
+        b=eOIghndFbZJ4wE+QhyVatQoyrb+ZEl1hZxA0RMXQScrQJfO/UrG/g5Lui1tnBkLezM
+         SbJC6pNlqhpFsOFzOHJfRCgwq2D9ja8rncPWoPvDQmVipE4RTksnm44u4utaWkB7f0rT
+         VaO54Lt7serm0yHulr0NHJDRhITQeH0rBaXgg6d6wFnyCAxGSQw/2YJgye5etZ8ngHcZ
+         uzHaFbhQlwvZWunpyfGjAmiZfQyDwRy10lKPCKCRRSHC/imMIazY1SoxEQwAQR968bNN
+         qJPnIoeJVzzmdb7RBa6vZOjPPL8wWeVc869bqwX9fFtr9cPjR4Ro2XwMek5k4g+l3dKO
+         /Axg==
+X-Gm-Message-State: APjAAAVI/Dt9ynrWJhXCcXTSzO+obUoXYtBN3QoUshcyOH0HqH4c/Mef
+        qAI5yWFb21VHsClGHbYS1oXcbQ==
+X-Google-Smtp-Source: APXvYqyagoopJB9p1BnqQ6YN0ozqRnIvUdoq5+OupDz9YCTaL4q6kZYz7+VmAylRGHVAI+KKkgG4KA==
+X-Received: by 2002:a17:902:6ac6:: with SMTP id i6mr75225533plt.336.1558347160980;
+        Mon, 20 May 2019 03:12:40 -0700 (PDT)
 Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id b3sm30098127pfr.146.2019.05.20.03.12.32
+        by smtp.gmail.com with ESMTPSA id b3sm30098127pfr.146.2019.05.20.03.12.36
         (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 20 May 2019 03:12:36 -0700 (PDT)
+        Mon, 20 May 2019 03:12:40 -0700 (PDT)
 From:   Baolin Wang <baolin.wang@linaro.org>
 To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
         zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
@@ -51,9 +51,9 @@ To:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
 Cc:     baolin.wang@linaro.org, vincent.guittot@linaro.org, arm@kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/9] mmc: sdhci-sprd: Add optional gate clock support
-Date:   Mon, 20 May 2019 18:11:56 +0800
-Message-Id: <16b895cf30c235dc656eeed5888069b6266ab5f8.1558346019.git.baolin.wang@linaro.org>
+Subject: [PATCH 4/9] mmc: sdhci-sprd: Implement the get_max_timeout_count() interface
+Date:   Mon, 20 May 2019 18:11:57 +0800
+Message-Id: <ae6e23d4de6bb25cd697412f1402036d5ecc9843.1558346019.git.baolin.wang@linaro.org>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1558346019.git.baolin.wang@linaro.org>
 References: <cover.1558346019.git.baolin.wang@linaro.org>
@@ -64,109 +64,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the Spreadtrum SC9860 platform, we should enable another gate clock
-'2x_enable' to make the SD host controller work well.
+Implement the get_max_timeout_count() interface to set the Spredtrum SD
+host controller actual maximum timeout count.
 
 Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
 ---
- drivers/mmc/host/sdhci-sprd.c |   35 +++++++++++++++++++++++++++++------
- 1 file changed, 29 insertions(+), 6 deletions(-)
+ drivers/mmc/host/sdhci-sprd.c |    7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-index e741491..31ba7d6 100644
+index 31ba7d6..d91281d 100644
 --- a/drivers/mmc/host/sdhci-sprd.c
 +++ b/drivers/mmc/host/sdhci-sprd.c
-@@ -60,6 +60,7 @@ struct sdhci_sprd_host {
- 	u32 version;
- 	struct clk *clk_sdio;
- 	struct clk *clk_enable;
-+	struct clk *clk_2x_enable;
- 	u32 base_rate;
- 	int flags; /* backup of host attribute */
+@@ -285,6 +285,12 @@ static void sdhci_sprd_hw_reset(struct sdhci_host *host)
+ 	usleep_range(300, 500);
+ }
+ 
++static unsigned int sdhci_sprd_get_max_timeout_count(struct sdhci_host *host)
++{
++	/* The Spredtrum controller actual maximum timeout count is 1 << 31 */
++	return 1 << 31;
++}
++
+ static struct sdhci_ops sdhci_sprd_ops = {
+ 	.read_l = sdhci_sprd_readl,
+ 	.write_l = sdhci_sprd_writel,
+@@ -296,6 +302,7 @@ static void sdhci_sprd_hw_reset(struct sdhci_host *host)
+ 	.reset = sdhci_reset,
+ 	.set_uhs_signaling = sdhci_sprd_set_uhs_signaling,
+ 	.hw_reset = sdhci_sprd_hw_reset,
++	.get_max_timeout_count = sdhci_sprd_get_max_timeout_count,
  };
-@@ -364,6 +365,10 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
- 	}
- 	sprd_host->clk_enable = clk;
  
-+	clk = devm_clk_get(&pdev->dev, "2x_enable");
-+	if (!IS_ERR(clk))
-+		sprd_host->clk_2x_enable = clk;
-+
- 	ret = clk_prepare_enable(sprd_host->clk_sdio);
- 	if (ret)
- 		goto pltfm_free;
-@@ -372,6 +377,10 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto clk_disable;
- 
-+	ret = clk_prepare_enable(sprd_host->clk_2x_enable);
-+	if (ret)
-+		goto clk_disable2;
-+
- 	sdhci_sprd_init_config(host);
- 	host->version = sdhci_readw(host, SDHCI_HOST_VERSION);
- 	sprd_host->version = ((host->version & SDHCI_VENDOR_VER_MASK) >>
-@@ -408,6 +417,9 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
- 	pm_runtime_disable(&pdev->dev);
- 	pm_runtime_set_suspended(&pdev->dev);
- 
-+	clk_disable_unprepare(sprd_host->clk_2x_enable);
-+
-+clk_disable2:
- 	clk_disable_unprepare(sprd_host->clk_enable);
- 
- clk_disable:
-@@ -427,6 +439,7 @@ static int sdhci_sprd_remove(struct platform_device *pdev)
- 	mmc_remove_host(mmc);
- 	clk_disable_unprepare(sprd_host->clk_sdio);
- 	clk_disable_unprepare(sprd_host->clk_enable);
-+	clk_disable_unprepare(sprd_host->clk_2x_enable);
- 
- 	mmc_free_host(mmc);
- 
-@@ -449,6 +462,7 @@ static int sdhci_sprd_runtime_suspend(struct device *dev)
- 
- 	clk_disable_unprepare(sprd_host->clk_sdio);
- 	clk_disable_unprepare(sprd_host->clk_enable);
-+	clk_disable_unprepare(sprd_host->clk_2x_enable);
- 
- 	return 0;
- }
-@@ -459,19 +473,28 @@ static int sdhci_sprd_runtime_resume(struct device *dev)
- 	struct sdhci_sprd_host *sprd_host = TO_SPRD_HOST(host);
- 	int ret;
- 
--	ret = clk_prepare_enable(sprd_host->clk_enable);
-+	ret = clk_prepare_enable(sprd_host->clk_2x_enable);
- 	if (ret)
- 		return ret;
- 
-+	ret = clk_prepare_enable(sprd_host->clk_enable);
-+	if (ret)
-+		goto clk_2x_disable;
-+
- 	ret = clk_prepare_enable(sprd_host->clk_sdio);
--	if (ret) {
--		clk_disable_unprepare(sprd_host->clk_enable);
--		return ret;
--	}
-+	if (ret)
-+		goto clk_disable;
- 
- 	sdhci_runtime_resume_host(host);
--
- 	return 0;
-+
-+clk_disable:
-+	clk_disable_unprepare(sprd_host->clk_enable);
-+
-+clk_2x_disable:
-+	clk_disable_unprepare(sprd_host->clk_2x_enable);
-+
-+	return ret;
- }
- #endif
- 
+ static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
 -- 
 1.7.9.5
 
