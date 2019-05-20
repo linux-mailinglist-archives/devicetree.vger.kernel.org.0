@@ -2,115 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC3B923C14
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3C323C43
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 17:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392131AbfETP1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 11:27:54 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:36667 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388209AbfETP1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 11:27:53 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4KFLfDZ012618;
-        Mon, 20 May 2019 17:27:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=Wcu5oEUF6XRVV7E1tKSPLsOlMzvEqIXsC6he8uYfnbE=;
- b=m+eyy6w4Mbf9I9nvYPMkZncCtVYKi4Q2vWUovXFOesGoLrtByXHN/nAi4KaJL3QzB1zC
- h87cRd3iPYuBS5oTZ+fzoKumjOivkw/5jMIwSNl1OpxXnpHTfiwcpJeqYk2KhD0reYPr
- EEeP/lG7PTJS6NSlmUM2E3Koe+qTuFYhJPLFd4pNo/5B4n6o1SkEte2RjKrtzogb8ZZw
- UQzzDvXMdx3z3s+6ZOGP2fxPWpYntd9OYZ3T9QU3p2QkHwcnla9HkW+c2vlTVZifvm1/
- fia4DeIkgaOcw9Zcde2iJGUMZzHJg5OGGU/1CGEEhlq3680osi5YFsMjmuMpHDgok7HW 6Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2sj7ttv8tq-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 20 May 2019 17:27:19 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2EFB23F;
-        Mon, 20 May 2019 15:27:19 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0A4C12BAC;
-        Mon, 20 May 2019 15:27:19 +0000 (GMT)
-Received: from SFHDAG5NODE1.st.com (10.75.127.13) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 20 May
- 2019 17:27:18 +0200
-Received: from SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6]) by
- SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6%20]) with mapi id
- 15.00.1347.000; Mon, 20 May 2019 17:27:18 +0200
-From:   Gerald BAEZA <gerald.baeza@st.com>
-To:     "will.deacon@arm.com" <will.deacon@arm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "horms+renesas@verge.net.au" <horms+renesas@verge.net.au>,
-        "arnd@arndb.de" <arnd@arndb.de>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Gerald BAEZA <gerald.baeza@st.com>
-Subject: [PATCH v2 5/5] ARM: dts: stm32: add ddrperfm on stm32mp157c
-Thread-Topic: [PATCH v2 5/5] ARM: dts: stm32: add ddrperfm on stm32mp157c
-Thread-Index: AQHVDyCCaooiUmBaFEePA6987tY5VA==
-Date:   Mon, 20 May 2019 15:27:18 +0000
-Message-ID: <1558366019-24214-6-git-send-email-gerald.baeza@st.com>
-References: <1558366019-24214-1-git-send-email-gerald.baeza@st.com>
-In-Reply-To: <1558366019-24214-1-git-send-email-gerald.baeza@st.com>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.45]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S2391788AbfETPh2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 May 2019 11:37:28 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:50827 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732280AbfETPh2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 11:37:28 -0400
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 569C11C000B;
+        Mon, 20 May 2019 15:37:12 +0000 (UTC)
+Date:   Mon, 20 May 2019 17:37:04 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Liang Yang <liang.yang@amlogic.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Mans Rullgard <mans@mansr.com>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 09/10] dt: fix broken references to nand.txt
+Message-ID: <20190520173704.202cd65d@xps13>
+In-Reply-To: <ce7602ba4d42e094a8b7fcf1dc2a01d25192a602.1558362030.git.mchehab+samsung@kernel.org>
+References: <cover.1558362030.git.mchehab+samsung@kernel.org>
+        <ce7602ba4d42e094a8b7fcf1dc2a01d25192a602.1558362030.git.mchehab+samsung@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-20_07:,,
- signatures=0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DDRPERFM is the DDR Performance Monitor embedded
-in STM32MP1 SOC.
+Hi Mauro,
 
-Signed-off-by: Gerald Baeza <gerald.baeza@st.com>
----
- arch/arm/boot/dts/stm32mp157c.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Mauro Carvalho Chehab <mchehab+samsung@kernel.org> wrote on Mon, 20 May
+2019 11:47:38 -0300:
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp=
-157c.dtsi
-index 2afeee6..7dad246 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -1198,6 +1198,15 @@
- 			};
- 		};
-=20
-+		ddrperfm: perf@5a007000 {
-+			compatible =3D "st,stm32-ddr-pmu";
-+			reg =3D <0x5a007000 0x400>;
-+			clocks =3D <&rcc DDRPERFM>, <&rcc PLL2_R>;
-+			clock-names =3D "bus", "ddr";
-+			resets =3D <&rcc DDRPERFM_R>;
-+			status =3D "okay";
-+		};
-+
- 		usart1: serial@5c000000 {
- 			compatible =3D "st,stm32h7-uart";
- 			reg =3D <0x5c000000 0x400>;
---=20
-2.7.4
+> The Documentation/devicetree/bindings/mtd/nand.txt were both renamed
+> and converted to YAML on a single patch, without updating references
+> to it. That caused several cross-references to break.
+> 
+> Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+
+Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+Thanks for fixing it,
+Miquèl
