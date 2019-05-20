@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C7FE237DF
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 15:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DE94237ED
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 15:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387697AbfETNOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 09:14:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48592 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387633AbfETNOR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 May 2019 09:14:17 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AEFB3217D7;
-        Mon, 20 May 2019 13:14:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558358056;
-        bh=ArhYqFidQbDseOeh6RGnVwM2C9x89IIUj6IxarCU9Xo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lvQIveQUQlHl8qUCg4Mt9xmQCilab7e4NlHCUz729LxcZ3xS7QcfrjYUGVOGctIGN
-         1cBCrrX9hkEuEJfzgMjmKGHA3hdCC+IJdBvOr5ZOKEpvpOrQBfBHcSKD3F6hY0wJe8
-         Cw2arMGuA2eiaYQG/5C6YjlESDKbTMQQaDaiCYXs=
-Received: by mail-qt1-f182.google.com with SMTP id t1so16135581qtc.12;
-        Mon, 20 May 2019 06:14:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAUDS9e+FeEG8AdeLh6Vdz6CoENmJzSuerkEJFeyCVaZoBLsx/3/
-        FTYqX/xsUiXM4dOp9qPqT0GCOW6y4v8Pdilphw==
-X-Google-Smtp-Source: APXvYqxS8HQm36uvnppBXzxLCzjnnzulxIHDgL8ac9/Ttgr/OjP7pC28xyb4pOndJeMh7bl1mZwE0tcaXjAw+ocCAzE=
-X-Received: by 2002:ac8:3884:: with SMTP id f4mr64856728qtc.300.1558358055837;
- Mon, 20 May 2019 06:14:15 -0700 (PDT)
+        id S1732154AbfETNSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 09:18:50 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:39103 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727319AbfETNSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 09:18:50 -0400
+X-Originating-IP: 90.88.22.185
+Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id F2F5F1C0013;
+        Mon, 20 May 2019 13:18:46 +0000 (UTC)
+Date:   Mon, 20 May 2019 15:18:46 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Convert vendor prefixes to json-schema
+Message-ID: <20190520131846.tqx7h7sjyw6sgka5@flea>
+References: <20190510194018.28206-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20190520085846.22320-1-masneyb@onstation.org>
-In-Reply-To: <20190520085846.22320-1-masneyb@onstation.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 20 May 2019 08:14:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLcycH5e=YT-4AQFo-8O0bosjU7oagCRS5CMTfQNBLrcg@mail.gmail.com>
-Message-ID: <CAL_JsqLcycH5e=YT-4AQFo-8O0bosjU7oagCRS5CMTfQNBLrcg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: backlight: lm3630a: correct schema validation
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>, Jonathan Marek <jonathan@marek.ca>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="26jxfkzgkqsicu7x"
+Content-Disposition: inline
+In-Reply-To: <20190510194018.28206-1-robh@kernel.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 3:59 AM Brian Masney <masneyb@onstation.org> wrote:
->
-> The '#address-cells' and '#size-cells' properties were not defined in
-> the lm3630a bindings and would cause the following error when
-> attempting to validate the examples against the schema:
->
-> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
-> '#address-cells', '#size-cells' do not match any of the regexes:
-> '^led@[01]$', 'pinctrl-[0-9]+'
->
-> Correct this by adding those two properties.
->
-> While we're here, move the ti,linear-mapping-mode property to the
-> led@[01] child nodes to correct the following validation error:
->
-> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
-> led@0: 'ti,linear-mapping-mode' does not match any of the regexes:
-> 'pinctrl-[0-9]+'
->
-> Fixes: 32fcb75c66a0 ("dt-bindings: backlight: Add lm3630a bindings")
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
-> Reported-by: Rob Herring <robh+dt@kernel.org>
-> ---
->  .../leds/backlight/lm3630a-backlight.yaml     | 20 +++++++++++++------
->  1 file changed, 14 insertions(+), 6 deletions(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--26jxfkzgkqsicu7x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Rob,
+
+On Fri, May 10, 2019 at 02:40:18PM -0500, Rob Herring wrote:
+> Convert the vendor prefix registry to a schema. This will enable checking
+> that new vendor prefixes are added (in addition to the less than perfect
+> checkpatch.pl check) and will also check against adding other prefixes
+> which are not vendors.
+>
+> Converted vendor-prefixes.txt using the following sed script:
+>
+> sed -e 's/\([a-zA-Z0-9\-]*\)[[:space:]]*\([a-zA-Z0-9].*\)/  "^\1,\.\*\":\n    description: \2/'
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> As vendor prefix updates come in via multiple trees, I plan to merge
+> this before -rc1 to avoid cross tree conflicts.
+
+I just tried this with the 5.2-rc1 release, and this very
+significantly slows down the validation.
+
+With a dtbs_check run on (arm's) sunxi_defconfig, on my core-i5 with 4
+threads, I go from 1.30 minutes to more than 12.
+
+Should we improve the dt-validate tool before merging this patch?
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--26jxfkzgkqsicu7x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOKpNgAKCRDj7w1vZxhR
+xaU/AP4sEcxQ75aEnI0xMbq88t3BZzAEW0xMBgZRESwC/0YwUwEA3Wu9L5Uir8PG
+cDc3z03Kswww+O1DXoE+XNDbc1gMHwc=
+=aMcg
+-----END PGP SIGNATURE-----
+
+--26jxfkzgkqsicu7x--
