@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7C5422EE6
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 10:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29F1922EE9
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 10:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731153AbfETIbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 04:31:39 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:39268 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728931AbfETIbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 04:31:39 -0400
-Received: by mail-pg1-f196.google.com with SMTP id w22so6437853pgi.6
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 01:31:39 -0700 (PDT)
+        id S1729325AbfETIbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 04:31:44 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:42254 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731406AbfETIbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 04:31:44 -0400
+Received: by mail-pg1-f194.google.com with SMTP id 145so6430875pgg.9
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 01:31:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=OrAQvth9DS0BbK/1+rVAaMvZOv12ORH6Kc00AQPR8j8=;
-        b=dm6WPKZxmB25DrwGg++fHJm7U4ZvExHZBZbglSw4gklBHn7XmbHZWA7UhRO/EXoyj+
-         yVYK0JxaNy//NoByPOPnQfEzIYErYUuyDkY6JMY2G/QSE4zTSu10r0DDGslwPlyj/WbN
-         0jq8VTC+UPGw5vAKD//RW6rMlEBZsK0/215Ds7ewPT/vCTfNV4K3qt6zl7Ft/IKXVyfQ
-         bMotSTi4Kb0snz8HhVPyWs/7WmOVyzZskCG/iehWSgBdHYoAaZIeS9dfGD51TZEV9KFt
-         Kc6RsMQoTX2XSJC4zPr9f5VnZosnYQF+nUQ5NmnBTfUmMd/GZ1cB62pJaMX67wocQsu9
-         mNIQ==
+        bh=wZmd2sSqxBswncIP49DIhHiOiWPLqbCT+QWxEkOy/co=;
+        b=wYliaoykTkMBfrBtk1tyMUrq5pCqug2hVNjNDCjfWMPgRZxZ6r8MN4oCs0as2iaX94
+         l49bbHxM/Ti/+pMIToe0NVyxo05Q8o0gotf2D7drpAiFeSQyPFce7ouk2hWMIO2ewDcH
+         JC6lsKRqIABuvaVlrXyQqTXmgbzAWszMlw2xm1zaJUoJFg4G7hfuhMLQ9iRwbHUhtoM9
+         lj3mGApdgSgzKfp+rtMsHkY1r/mdKPtaLoBvgCZlvTPz3/Dza8DVB6dRnSx3bBJi6tTW
+         OWmmmVXz7I6sDmRs1+j8SrGk7+yGW4Pknp8FJigwuR1P747ZiuG9Xsu2ZmtYbaJSdj7i
+         UaKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=OrAQvth9DS0BbK/1+rVAaMvZOv12ORH6Kc00AQPR8j8=;
-        b=aCYRCpOXy+PZjYWNFY+CLIw17iK02Ys50QYZ6G4sNx1JhsU2i6kP+QXFLk7yrkP4D+
-         ydpG7etqeI+oHCaNyeb8gFYWh1jNUlIi/w075gC5vIKZrW4M9DV7pzFeaDibDHBOGILq
-         kHUCFgPER/2bQ22V6eovTlZCV47hw059OlXv0treF3pFspo1qJXYVIimcuVU75xwgRry
-         Qr/0IewJiCpFiTUkeXBok7gzaJ9/x2oBBzgZ075Yx5iEJD7JhoW0yzb6KGHdmIbHRvq1
-         ltD/g+unj1tKAzu/WNQXBE+mO+yLJoRJwLaFRazXgPqtErfN+RfmjBbdPvoIzcVgatw/
-         IEQw==
-X-Gm-Message-State: APjAAAUUC/1yncoXp6i2hckKS/MPqXOEADRiEwWnyMm1l1j+WZd6cO+z
-        DHUqga3Cw+bBZKpTe77qz9td
-X-Google-Smtp-Source: APXvYqxlNxMxliZvGQnWI7hiYwknDuVpqWTz56n4dwrL+kw4jWmgFG2uUze8ln+HnIIVYkjxXZEk4A==
-X-Received: by 2002:a65:64da:: with SMTP id t26mr74512781pgv.322.1558341098785;
-        Mon, 20 May 2019 01:31:38 -0700 (PDT)
+        bh=wZmd2sSqxBswncIP49DIhHiOiWPLqbCT+QWxEkOy/co=;
+        b=TnS8iWo3ivi3Awot2jNXYN6xrkoJwvRDV3tvkraTqXXGgImf52deublk/ebuP2ZQgb
+         ckF5jWUS//9nVynHEirIqGEgydksuJAWAhW0R8DqWRgbYfpC7T968zsCxE46TGpVrbOn
+         DLsUedvWWao5FNctChISn0NS+4wk050KwPDzoD7hYeHGdeAZC4XZhvp2njaKD3HqXjms
+         5a8IuLtkZQ3KybOuNZUc8S0iZdR1UbS8+FxCECPHFK2DjLbBFKR+DafGtc+Cf7iLfWwB
+         phv2C91K3EmFprTimRa3Q6j9M8fgYIPefWlbY0GcJ1DlyUJMXGm0UNjbEaVaBWwiL3LC
+         DQOg==
+X-Gm-Message-State: APjAAAVD798KkqZppW7D5Ckyn1sXSbvlJBoZPzMg23REicGqv27+PLCt
+        J8HV7bfF1ukliudCnuM6yBcwYhzv0g==
+X-Google-Smtp-Source: APXvYqxtgRk9hUYeKzUqFkTBf75l2tsN0xCN0ekdZ9P/6ymdT9+k/j2ax6QYys17dUs7LvLpFXwXGQ==
+X-Received: by 2002:a62:86c4:: with SMTP id x187mr77900616pfd.34.1558341103495;
+        Mon, 20 May 2019 01:31:43 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:7203:2717:7d22:7fdb:b76e:242c])
-        by smtp.gmail.com with ESMTPSA id s72sm24068220pgc.65.2019.05.20.01.31.33
+        by smtp.gmail.com with ESMTPSA id s72sm24068220pgc.65.2019.05.20.01.31.39
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 20 May 2019 01:31:38 -0700 (PDT)
+        Mon, 20 May 2019 01:31:43 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     linus.walleij@linaro.org, robh+dt@kernel.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         haitao.suo@bitmain.com, darren.tsao@bitmain.com,
         linux-gpio@vger.kernel.org, alec.lin@bitmain.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 4/5] dt-bindings: pinctrl: Document pinconf bindings for BM1880 SoC
-Date:   Mon, 20 May 2019 14:01:00 +0530
-Message-Id: <20190520083101.10229-5-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 5/5] pinctrl: Add pinconf support for BM1880 SoC
+Date:   Mon, 20 May 2019 14:01:01 +0530
+Message-Id: <20190520083101.10229-6-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190520083101.10229-1-manivannan.sadhasivam@linaro.org>
 References: <20190520083101.10229-1-manivannan.sadhasivam@linaro.org>
@@ -60,50 +60,174 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document pinconf bindings for Bitmain BM1880 SoC.
+Add pinconf support for Bitmain BM1880 SoC. Pinconf support includes
+pin bias, slew rate and schmitt trigger. Drive strength support will
+be added later.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- .../pinctrl/bitmain,bm1880-pinctrl.txt        | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+ drivers/pinctrl/pinctrl-bm1880.c | 134 +++++++++++++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/bitmain,bm1880-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/bitmain,bm1880-pinctrl.txt
-index cc9a89aa4170..4eb089bcb5f3 100644
---- a/Documentation/devicetree/bindings/pinctrl/bitmain,bm1880-pinctrl.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/bitmain,bm1880-pinctrl.txt
-@@ -14,7 +14,8 @@ phrase "pin configuration node".
- The pin configuration nodes act as a container for an arbitrary number of
- subnodes. Each of these subnodes represents some desired configuration for a
- pin, a group, or a list of pins or groups. This configuration for BM1880 SoC
--includes only pinmux as there is no pinconf support available in SoC.
-+includes pinmux and various pin configuration parameters, such as pull-up,
-+slew rate etc...
+diff --git a/drivers/pinctrl/pinctrl-bm1880.c b/drivers/pinctrl/pinctrl-bm1880.c
+index bddb705ea142..1aaed46d5c30 100644
+--- a/drivers/pinctrl/pinctrl-bm1880.c
++++ b/drivers/pinctrl/pinctrl-bm1880.c
+@@ -4,6 +4,8 @@
+  *
+  * Copyright (c) 2019 Linaro Ltd.
+  * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
++ *
++ * TODO: Drive strength support
+  */
  
- Each configuration node can consist of multiple nodes describing the pinmux
- options. The name of each subnode is not important; all subnodes should be
-@@ -84,6 +85,22 @@ Required Properties:
-                   gpio66, gpio67, eth1, i2s0, i2s0_mclkin, i2s1, i2s1_mclkin,
-                   spi0
+ #include <linux/io.h>
+@@ -872,6 +874,137 @@ static int bm1880_pinmux_set_mux(struct pinctrl_dev *pctldev,
+ 	return 0;
+ }
  
-+Optional Properties:
++#define BM1880_PINCONF(pin, idx) ((!((pin + 1) & 1) << 4) + idx)
++#define BM1880_PINCONF_PULLCTRL(pin)	BM1880_PINCONF(pin, 0)
++#define BM1880_PINCONF_PULLUP(pin)	BM1880_PINCONF(pin, 1)
++#define BM1880_PINCONF_PULLDOWN(pin)	BM1880_PINCONF(pin, 2)
++#define BM1880_PINCONF_SCHMITT(pin)	BM1880_PINCONF(pin, 9)
++#define BM1880_PINCONF_SLEW(pin)	BM1880_PINCONF(pin, 10)
 +
-+- bias-disable:  No arguments. Disable pin bias.
-+- bias-pull-down: No arguments. The specified pins should be configured as
-+                  pull down.
-+- bias-pull-up:   No arguments. The specified pins should be configured as
-+                  pull up.
-+- input-schmitt-enable: No arguments: Enable schmitt trigger for the specified
-+                  pins
-+- input-schmitt-disable: No arguments: Disable schmitt trigger for the specified
-+                  pins
-+- slew-rate:      Integer. Sets slew rate for the specified pins.
-+                  Valid values are:
-+                  <0>  - Slow
-+                  <1>  - Fast
++static int bm1880_pinconf_cfg_get(struct pinctrl_dev *pctldev,
++				  unsigned int pin,
++				  unsigned long *config)
++{
++	struct bm1880_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
++	unsigned int param = pinconf_to_config_param(*config);
++	unsigned int arg = 0;
++	u32 regval, offset, bit_offset;
 +
- Example:
-         pinctrl: pinctrl@400 {
-                 compatible = "bitmain,bm1880-pinctrl";
++	offset = (pin >> 1) << 2;
++	regval = readl_relaxed(pctrl->base + BM1880_REG_MUX + offset);
++
++	switch (param) {
++	case PIN_CONFIG_BIAS_PULL_UP:
++		bit_offset = BM1880_PINCONF_PULLUP(pin);
++		arg = !!(regval & BIT(bit_offset));
++		break;
++	case PIN_CONFIG_BIAS_PULL_DOWN:
++		bit_offset = BM1880_PINCONF_PULLDOWN(pin);
++		arg = !!(regval & BIT(bit_offset));
++		break;
++	case PIN_CONFIG_BIAS_DISABLE:
++		bit_offset = BM1880_PINCONF_PULLCTRL(pin);
++		arg = !!(regval & BIT(bit_offset));
++		break;
++	case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
++		bit_offset = BM1880_PINCONF_SCHMITT(pin);
++		arg = !!(regval & BIT(bit_offset));
++		break;
++	case PIN_CONFIG_SLEW_RATE:
++		bit_offset = BM1880_PINCONF_SLEW(pin);
++		arg = !!(regval & BIT(bit_offset));
++		break;
++	default:
++		return -ENOTSUPP;
++	}
++
++	*config = pinconf_to_config_packed(param, arg);
++
++	return 0;
++}
++
++static int bm1880_pinconf_cfg_set(struct pinctrl_dev *pctldev,
++				  unsigned int pin,
++				  unsigned long *configs,
++				  unsigned int num_configs)
++{
++	struct bm1880_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
++	u32 regval, offset, bit_offset;
++	int i;
++
++	offset = (pin >> 1) << 2;
++	regval = readl_relaxed(pctrl->base + BM1880_REG_MUX + offset);
++
++	for (i = 0; i < num_configs; i++) {
++		unsigned int param = pinconf_to_config_param(configs[i]);
++		unsigned int arg = pinconf_to_config_argument(configs[i]);
++
++		switch (param) {
++		case PIN_CONFIG_BIAS_PULL_UP:
++			bit_offset = BM1880_PINCONF_PULLUP(pin);
++			regval |= BIT(bit_offset);
++			break;
++		case PIN_CONFIG_BIAS_PULL_DOWN:
++			bit_offset = BM1880_PINCONF_PULLDOWN(pin);
++			regval |= BIT(bit_offset);
++			break;
++		case PIN_CONFIG_BIAS_DISABLE:
++			bit_offset = BM1880_PINCONF_PULLCTRL(pin);
++			regval |= BIT(bit_offset);
++			break;
++		case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
++			bit_offset = BM1880_PINCONF_SCHMITT(pin);
++			if (arg)
++				regval |= BIT(bit_offset);
++			else
++				regval &= ~BIT(bit_offset);
++			break;
++		case PIN_CONFIG_SLEW_RATE:
++			bit_offset = BM1880_PINCONF_SLEW(pin);
++			if (arg)
++				regval |= BIT(bit_offset);
++			else
++				regval &= ~BIT(bit_offset);
++			break;
++		default:
++			dev_warn(pctldev->dev,
++				 "unsupported configuration parameter '%u'\n",
++				 param);
++			continue;
++		}
++
++		writel_relaxed(regval, pctrl->base + BM1880_REG_MUX + offset);
++	}
++
++	return 0;
++}
++
++static int bm1880_pinconf_group_set(struct pinctrl_dev *pctldev,
++				    unsigned int selector,
++				    unsigned long *configs,
++				    unsigned int  num_configs)
++{
++	int i, ret;
++	struct bm1880_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
++	const struct bm1880_pctrl_group *pgrp = &pctrl->groups[selector];
++
++	for (i = 0; i < pgrp->npins; i++) {
++		ret = bm1880_pinconf_cfg_set(pctldev, pgrp->pins[i], configs,
++					     num_configs);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static const struct pinconf_ops bm1880_pinconf_ops = {
++	.is_generic = true,
++	.pin_config_get = bm1880_pinconf_cfg_get,
++	.pin_config_set = bm1880_pinconf_cfg_set,
++	.pin_config_group_set = bm1880_pinconf_group_set,
++};
++
+ static const struct pinmux_ops bm1880_pinmux_ops = {
+ 	.get_functions_count = bm1880_pmux_get_functions_count,
+ 	.get_function_name = bm1880_pmux_get_function_name,
+@@ -885,6 +1018,7 @@ static struct pinctrl_desc bm1880_desc = {
+ 	.npins = ARRAY_SIZE(bm1880_pins),
+ 	.pctlops = &bm1880_pctrl_ops,
+ 	.pmxops = &bm1880_pinmux_ops,
++	.confops = &bm1880_pinconf_ops,
+ 	.owner = THIS_MODULE,
+ };
+ 
 -- 
 2.17.1
 
