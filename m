@@ -2,514 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33044229DC
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 04:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5BA229E0
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2019 04:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbfETCMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 May 2019 22:12:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60110 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726062AbfETCMO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 May 2019 22:12:14 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 886D520644;
-        Mon, 20 May 2019 02:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558318332;
-        bh=2zyreul6KZvacTDkwxe4/dcwo6Kx7dH9i64g184tu6Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EY+wekzac8CxrUWDEb6SWC7ntoed2WvDBTQrT16yJ8kl7UBn11WDY/HxoThaHOQpA
-         fLIGq7wo1fgn8iYvI0Ef90/syEnj7XjY2KgNjei+pM4sdpgSxSyGfiMgXykxKWyIfh
-         Cml1k1UZ0MtADK1AgrLxagZ4xUhsXxA4lPIXh/vU=
-Date:   Mon, 20 May 2019 10:11:20 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, linux-imx@nxp.com, Stefan.Nickl@kontron.com,
-        Gilles.Buloz@kontron.com, Michael.Brunner@kontron.com,
-        thomas.schaefer@kontron.com, frieder.schrempf@kontron.de,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        Priit Laes <plaes@plaes.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>
-Subject: Re: [PATCH 02/17] ARCH: arm: dts: imx6qdl-kontron-samx6i: Add
- iMX6-based Kontron SMARC-sAMX6i module
-Message-ID: <20190520021118.GF15856@dragon>
-References: <20190509155834.22838-1-m.felsch@pengutronix.de>
- <20190509155834.22838-3-m.felsch@pengutronix.de>
+        id S1729980AbfETCPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 May 2019 22:15:55 -0400
+Received: from mail-eopbgr30084.outbound.protection.outlook.com ([40.107.3.84]:32482
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726062AbfETCPz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 May 2019 22:15:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Leql0F4HY/Qi8RQupnp9smr0mCdyoDM/R5FK7F/0AUg=;
+ b=iYO1AG+VzPCb79eIu5+LP7u0A1B7z0wMRg1jejiXnOel5jiSpUwp4Cw8MEKuUiYBjLIM+Odf8san5KT/2WMcsVx2hrv4e6x+dqf5qUEOz9Aonf9x0aY4uwKht1lw/6C/wqqqH8dH3RpjsCqJ3WI8aoO1Mlvaagy701EXQbHcR+8=
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com (10.175.44.16) by
+ AM5PR0402MB2820.eurprd04.prod.outlook.com (10.175.40.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Mon, 20 May 2019 02:15:50 +0000
+Received: from AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51]) by AM5PR0402MB2865.eurprd04.prod.outlook.com
+ ([fe80::d8ed:b418:4ee9:a51%9]) with mapi id 15.20.1900.020; Mon, 20 May 2019
+ 02:15:50 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Pavel Machek <pavel@denx.de>
+CC:     Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: RE: [PATCH V2 1/3] PM: wakeup: Add routine to help fetch wakeup
+ source object.
+Thread-Topic: [PATCH V2 1/3] PM: wakeup: Add routine to help fetch wakeup
+ source object.
+Thread-Index: AQHVDGHy6riuNjMX8Emng4J8Z2yFlqZy/KSAgABOAOA=
+Date:   Mon, 20 May 2019 02:15:50 +0000
+Message-ID: <AM5PR0402MB2865ED4DFB84BF2AE85EF0ABF1060@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20190517033946.30763-1-ran.wang_1@nxp.com>
+ <20190519213457.GG31403@amd>
+In-Reply-To: <20190519213457.GG31403@amd>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-originating-ip: [92.121.36.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cb738bf7-bd63-4a94-d47c-08d6dcc91457
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR0402MB2820;
+x-ms-traffictypediagnostic: AM5PR0402MB2820:
+x-microsoft-antispam-prvs: <AM5PR0402MB28209683DF9DC204FB00E4D2F1060@AM5PR0402MB2820.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2043;
+x-forefront-prvs: 004395A01C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(39860400002)(346002)(396003)(136003)(366004)(189003)(199004)(66476007)(66446008)(76116006)(66556008)(64756008)(66946007)(11346002)(446003)(6506007)(53546011)(4744005)(486006)(73956011)(476003)(305945005)(7696005)(26005)(99286004)(186003)(76176011)(66066001)(81166006)(81156014)(8676002)(54906003)(102836004)(7736002)(8936002)(68736007)(9686003)(6436002)(229853002)(478600001)(55016002)(14454004)(14444005)(5024004)(53936002)(316002)(25786009)(256004)(33656002)(2906002)(7416002)(3846002)(6116002)(4326008)(52536014)(71200400001)(74316002)(5660300002)(71190400001)(6246003)(86362001)(6916009);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR0402MB2820;H:AM5PR0402MB2865.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: VP2r1rc65WSFI5jZupwR6kx226WYNoqlBtLUPFzb0NGGbxb+WP1wUwPjj5jxW/qxxvClnav/lD1AZXuv0dkYHf3pUs6mMzh0vW2+psB3yAT2nA0DKeQmT60V8//8ezP4N0M/xPjkaRxS/1KHB8iVvLRSBSz0d8FMY2430eBoaX8MXJdTr1ERSC1H41hheEkcPoMO02JQseBVnNu5QG8hSETAK86ehdfUZwI162En03HdmfljIdWQ6ZTXTAK3P+3fjQ1gUMJN8yynTqC+/rmBtypW5u/mlS1ger7s70uYCQAHv9nKHA+qXBzHTee1UfRimqbaWKgxJM0n8Qs0NhH2vOXL312Lr51n5++8m3XRkNIXhdOiQZTPJPPryIVKiOUhSW3Jhsv50NZoAP2VnB6ZiG/pLuAZjDK3d7aE5J3+GC4=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190509155834.22838-3-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb738bf7-bd63-4a94-d47c-08d6dcc91457
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2019 02:15:50.5690
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2820
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 09, 2019 at 05:58:19PM +0200, Marco Felsch wrote:
-> From: Priit Laes <plaes@plaes.org>
-> 
-> SMARC-sAMX6i is a SMARC (Smart Mobility Architecture) compliant
-> module.
-> 
-> Signed-off-by: Priit Laes <plaes@plaes.org>
-> Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Based on patch: https://lore.kernel.org/patchwork/patch/762261/
-> 
-> v2:
-> - common: adapt commit message
-> - common: add pengutronix copyright
-> - common: use SPDX license header
-> - common: rename it to imx6qdl-smx6.dtsi
-> - common: drop imx6q.dtsi include and model, compatible, memory properties
-> - common: fix comment style
-> - common: drop all unnecessary 'status = "disabled"'
-> - i2c_pfuze: fix sda/scl gpios
-> - i2c_pfuze: s/i2c_pfuze/i2c_intern
-> - i2c_pfuze: use GPIO_* defines
-> - i2c3: fix pinmux
-> - fec: add phy-reset-gpio
-> - iomux: drop default 0x80000000 value
-> - iomux: use unique naming
-> - regulators: drop container node
-> - regulators: add all missing
-> 
->  arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 418 ++++++++++++++++++
->  1 file changed, 418 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-> new file mode 100644
-> index 000000000000..e546d46365f5
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
-> @@ -0,0 +1,418 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +/*
-> + * Copyright 2017 (C) Priit Laes <plaes@plaes.org>
-> + * Copyright 2018 (C) Pengutronix, Michael Grzeschik <mgr@pengutronix.de>
-> + * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + *
-> + * Based on initial work by Nikita Yushchenko <nyushchenko at dev.rtsoft.ru>
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	reg_1p0v_s0: regulator-1p0v-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V0_S0";
-> +		regulator-min-microvolt = <1000000>;
-> +		regulator-max-microvolt = <1000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_smarc_suppy>;
-> +	};
-> +
-> +	reg_1p35v_vcoredig_s5: regulator-1p35v-vcoredig-s5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V35_VCOREDIG_S5";
-> +		regulator-min-microvolt = <1350000>;
-> +		regulator-max-microvolt = <1350000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_1p8v_s5: regulator-1p8v-s5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V8_S5";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_3p3v_s0: regulator-3p3v-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_S0";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_3p3v_s0: regulator-3p3v-s0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_S0";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_3p3v_s5>;
-> +	};
-> +
-> +	reg_3p3v_s5: regulator-3p3v-s5 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_S5";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&reg_smarc_suppy>;
-> +	};
-> +
-> +	reg_smarc_rtc: regulator-smarc-rtc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_IN_RTC_BATT";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	/* Module supply range can be 3.00V ... 5.25V */
-> +	reg_smarc_suppy: regulator-smarc-supply {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_IN_WIDE";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	i2c_intern: i2c-gpio-intern {
-> +		compatible = "i2c-gpio";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_i2c_gpio_intern>;
-> +		sda-gpios = <&gpio1 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		scl-gpios = <&gpio1 30 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +		i2c-gpio,delay-us = <2>; /* ~100 kHz */
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
-> +
-> +/* CAN0 */
-> +&can1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +};
-> +
-> +/* CAN1 */
-> +&can2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +};
-> +
-> +/* GBE */
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet>;
-> +	phy-mode = "rgmii";
-> +	phy-reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-> +};
-> +
-> +&i2c_intern {
-> +	pfuze100@08 {
+Hi Pavel,
 
-pfuze100: pmic@8
+On Monday, May 20, 2019 05:35, Pavel Machek wrote:
+>=20
+> > --- a/include/linux/pm_wakeup.h
+>=20
+> > @@ -70,6 +71,7 @@ struct wakeup_source {
+> >  	unsigned long		wakeup_count;
+> >  	bool			active:1;
+> >  	bool			autosleep_enabled:1;
+> > +	struct device	*attached_dev;
+> >  };
+> >
+> >  #ifdef CONFIG_PM_SLEEP
+>=20
+> You might want to format this similary to the rest...
 
-Shawn
+OK, will update, thanks.
 
-> +		compatible = "fsl,pfuze100";
-> +		reg = <0x08>;
-> +
-> +		regulators {
-> +			reg_v_core_s0: sw1ab {
-> +				regulator-name = "V_CORE_S0";
-> +				regulator-min-microvolt = <300000>;
-> +				regulator-max-microvolt = <1875000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_vddsoc_s0: sw1c {
-> +				regulator-name = "V_VDDSOC_S0";
-> +				regulator-min-microvolt = <300000>;
-> +				regulator-max-microvolt = <1875000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_3p15v_s0: sw2 {
-> +				regulator-name = "V_3V15_S0";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			/* sw3a/b is used in dual mode, but driver does not
-> +			 * support it. Although, there's no need to control
-> +			 * DDR power - so just leaving dummy entries for sw3a
-> +			 * and sw3b for now.
-> +			 */
-> +			sw3a {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1975000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sw3b {
-> +				regulator-min-microvolt = <400000>;
-> +				regulator-max-microvolt = <1975000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_1p8v_s0: sw4 {
-> +				regulator-name = "V_1V8_S0";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			/* Regulator for USB */
-> +			reg_5p0v_s0: swbst {
-> +				regulator-name = "V_5V0_S0";
-> +				regulator-min-microvolt = <5000000>;
-> +				regulator-max-microvolt = <5150000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			reg_vsnvs: vsnvs {
-> +				regulator-min-microvolt = <1000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			reg_vrefddr: vrefddr {
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			/*
-> +			 * Per schematics, of all VGEN's, only VGEN5 has some
-> +			 * usage ... but even that - over DNI resistor
-> +			 */
-> +			vgen1 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1550000>;
-> +			};
-> +
-> +			vgen2 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1550000>;
-> +			};
-> +
-> +			vgen3 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			vgen4 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			reg_2p5v_s0: vgen5 {
-> +				regulator-name = "V_2V5_S0";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			vgen6 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +/* I2C_PM */
-> +&i2c3 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
-> +			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
-> +			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_enet: enetgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_RGMII_TXC__RGMII_TXC       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD0__RGMII_TD0       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD1__RGMII_TD1       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD2__RGMII_TD2       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD3__RGMII_TD3       0x1b0b0
-> +			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL 0x1b0b0
-> +			MX6QDL_PAD_RGMII_RXC__RGMII_RXC       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD0__RGMII_RD0       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD1__RGMII_RD1       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD2__RGMII_RD2       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD3__RGMII_RD3       0x1b0b0
-> +			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL 0x1b0b0
-> +
-> +			MX6QDL_PAD_ENET_MDIO__ENET_MDIO       0x1b0b0
-> +			MX6QDL_PAD_ENET_MDC__ENET_MDC         0x1b0b0
-> +			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK  0x1b0b0
-> +			MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25    0x1b0b0 /* RST_GBE0_PHY# */
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c_gpio_intern: i2c-gpiointerngrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_ENET_TXD0__GPIO1_IO30  0x1b0b0 /* SCL */
-> +			MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28 0x1b0b0 /* SDA */
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_3__I2C3_SCL		0x4001b8b1
-> +			MX6QDL_PAD_GPIO_16__I2C3_SDA		0x4001b8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_pcie: pciegrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_EIM_D18__GPIO3_IO18	0x1b0b0 /* PCI_A_PRSNT# */
-> +			MX6QDL_PAD_EIM_DA13__GPIO3_IO13 0x1b0b0 /* RST_PCIE_A#  */
-> +			MX6QDL_PAD_SD3_DAT6__GPIO6_IO18 0x1b0b0 /* PCIE_WAKE#   */
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA 0x1b0b1
-> +			MX6QDL_PAD_EIM_D20__UART1_RTS_B 0x1b0b1
-> +			MX6QDL_PAD_EIM_D19__UART1_CTS_B 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_EIM_D27__UART2_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_EIM_D26__UART2_TX_DATA 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT13__UART4_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT12__UART4_TX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT16__UART4_RTS_B 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT17__UART4_CTS_B 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart5: uart5grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT15__UART5_RX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT14__UART5_TX_DATA 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg: usbotggrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_1__USB_OTG_ID 0x1f8b0
-> +			/* power, oc muxed but not used by the driver */
-> +			MX6QDL_PAD_CSI0_PIXCLK__GPIO5_IO18	0x1b0b0 /* USB power */
-> +			MX6QDL_PAD_CSI0_DATA_EN__GPIO5_IO20	0x1b0b0 /* USB OC */
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc4: usdhc4grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_SD4_CLK__SD4_CLK 0x17059
-> +			MX6QDL_PAD_SD4_CMD__SD4_CMD 0x17059
-> +			MX6QDL_PAD_SD4_DAT0__SD4_DATA0 0x17059
-> +			MX6QDL_PAD_SD4_DAT1__SD4_DATA1 0x17059
-> +			MX6QDL_PAD_SD4_DAT2__SD4_DATA2 0x17059
-> +			MX6QDL_PAD_SD4_DAT3__SD4_DATA3 0x17059
-> +			MX6QDL_PAD_SD4_DAT4__SD4_DATA4 0x17059
-> +			MX6QDL_PAD_SD4_DAT5__SD4_DATA5 0x17059
-> +			MX6QDL_PAD_SD4_DAT6__SD4_DATA6 0x17059
-> +			MX6QDL_PAD_SD4_DAT7__SD4_DATA7 0x17059
-> +		>;
-> +	};
-> +};
-> +
-> +&pcie {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pcie>;
-> +	wake-up-gpio = <&gpio6 18 GPIO_ACTIVE_HIGH>;
-> +	reset-gpio = <&gpio3 13 GPIO_ACTIVE_HIGH>;
-> +};
-> +
-> +/* SER0 */
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	uart-has-rtscts;
-> +};
-> +
-> +/* SER1 */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +};
-> +
-> +/* SER2 */
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	uart-has-rtscts;
-> +};
-> +
-> +/* SER3 */
-> +&uart5 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart5>;
-> +};
-> +
-> +/* USB0 */
-> +&usbotg {
-> +	/*
-> +	 * no 'imx6-usb-charger-detection'
-> +	 * since USB_OTG_CHD_B pin is not wired
-> +	 */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg>;
-> +};
-> +
-> +/* USB1/2 via hub */
-> +&usbh1 {
-> +	vbus-supply = <&reg_5p0v_s0>;
-> +};
-> +
-> +/* SDMMC */
-> +&usdhc4 {
-> +	/* Internal eMMC, optional on some boards */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc4>;
-> +	bus-width = <8>;
-> +	no-1-8-v;
-> +	non-removable;
-> +};
-> -- 
-> 2.20.1
-> 
+Regards,
+Ran
