@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9584256B1
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 19:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DDC5256BD
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 19:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728515AbfEUR1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 13:27:35 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:43954 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728667AbfEUR1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 13:27:34 -0400
-Received: by mail-oi1-f196.google.com with SMTP id t187so13402392oie.10;
-        Tue, 21 May 2019 10:27:34 -0700 (PDT)
+        id S1727898AbfEURai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 13:30:38 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:46136 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726900AbfEURah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 13:30:37 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j49so17042867otc.13;
+        Tue, 21 May 2019 10:30:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TayEp1ksFcqXBm82oIipJqb5D8UI8dYtdKg/emIUJLo=;
-        b=kZByJbH2mc8eeETLvwO5waL7KS6N+JCa4Orr7jguque/5C1bHCOj6z0WH+gicoHa/I
-         JHu5YAWXcXn25mUu+LtrzzyjChJ1mP0xXEgVR5R3EC84GlLf2AKLEsVzEUtqGMhgqUhC
-         iG39xsYxQolPC5wJYaXa4aprxlAfE11mcZOQ/cMPJ0rHuyHi1+YrCFu/pBkAD6c9HhTk
-         mU8T1Eo69zGX1G2nY0/jV1VuwyLwW831BQ5NyUNfpzq1zj7KpTInFCiG7/6WeAFhn+W+
-         G6F9hrSEHn9lczssdA73ZaAr0M4BwP3vkTC3DzicALdQQSKnbS0moqp6VN6wOojM+yIN
-         fgRg==
+        bh=/9NBxGWR7DQfsNAp+UB8rtdlEFycVGIN+18JmsiYGuc=;
+        b=vUhtS+rYX9L7zrYqAWyLBRvFFbqk/RHqIizF7drZi52M8bmoLwhxK4PSijJ+uUIfqF
+         rLP0jDniA9pfsOBlUmWsEtXBAeUc1/niCJfPqU/iQiqGl6XIF7sWJAeexI80nUwKxjqx
+         r3VEK1k81IkqsPC9VXBMoA/saHdq63zxZm4P5HjLjTRJgzWb4q2u5xNYii0rJrYQnyNQ
+         wCyxAfC9ULgZjosiglk7uTRpT1QrC+aeOEt7ShH1+Ys9v7DYYutg4H7xnBBhO8QkqDxW
+         kABm7cXkC3E4ala2PojMu41af8nsStfOwQ/3KIKerkFrJzQpyHjiK4yZVUB7ducP0Gar
+         IukQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TayEp1ksFcqXBm82oIipJqb5D8UI8dYtdKg/emIUJLo=;
-        b=cFnwHSI5yKnvIIe4/xQK72F226FmVLJEz5a/MenrQI33DjrN1AQCe/uI7xRDzKlwse
-         YUxJbiJdp3MR3StqsNA1JZUf4PesYaEbQ5YsN5ERraRn3nL3eLcJSDDWGSoAEV/omsZI
-         5pUMvcgLiwwiFgsShSKBmDjzwUDw9qbD8YkAjtDr4hybtIGCGNtvtfz3z0cfYLtfqvTv
-         5UCJcVp1lNxSP9fjJnc5yxfTcmYaLj1c2wbD+V4roQm8ac0TiDFFzpf75KibUndsgStj
-         9YBoBi0M/dpDl3Hrorumlw2yAjM+pNxVEiXnsb6uTRPoTmY6213CAcmqrNuEwuFLTWF+
-         DHbg==
-X-Gm-Message-State: APjAAAVyk4i/NPSZN+wkMQsc9b+nZVWpf8Vej0ussrx+nVBC72XIwPRJ
-        UKzw4SQGCk8+mzTlSNRGY+aQANo04OfXYJfIgHI=
-X-Google-Smtp-Source: APXvYqwBydkTAgIPGsBBBTU6zoHGfizVaMAtfM9QlyULjdJhMvL8xcCdDFr72f/jNhNO17+7gmDznI34NCAH4vu2Pw0=
-X-Received: by 2002:aca:5b06:: with SMTP id p6mr410085oib.129.1558459654071;
- Tue, 21 May 2019 10:27:34 -0700 (PDT)
+        bh=/9NBxGWR7DQfsNAp+UB8rtdlEFycVGIN+18JmsiYGuc=;
+        b=GAyvY5kSI59JnPwphWr9uQP41wUdi+ecoN0GLJcdUuCMy1XgdMCqY8yMXJX9+rnmie
+         qTVD1LlaxbD89aKbY9MTfyqDvGuqDDgJYredu0GhzrBhXgUSQc4txplXp90GAOoL/Qzt
+         uZTx8qSvjKdSeUPBzvSl8RAy9r0eU0pqVC+EIO8eeGwBMK+89gp0QixtWAg7bMz5NCJC
+         urH1cV8VXMTlxytR2ockY2wU6H1nt/Jiu1EdjQSdPERXwHeNH5uAsgensvVjgJgLFWvu
+         JzfMxtQKNVI7o+p0nI5lcr2K10wO/QFNF2zs/oIn1689PNpe20tdmwm7SQOk6bP2wm2a
+         3bag==
+X-Gm-Message-State: APjAAAUE0uHW6aAZS8TL6J/WqjSPBjNez6J2czfxLb+KyAGHhB9rdHB9
+        0xFdeh0Z3u9v2YGnvKm6P/DnMwlm3NKzkxMJ5Lw=
+X-Google-Smtp-Source: APXvYqz3bsCqphTyB2v13j/v7Ohjzl6D44cpTCYwzD61Mga35oYp7a+Bu3LOVZ458XKaNJoA+kmPDHcyl1gOxohdNA8=
+X-Received: by 2002:a9d:32a6:: with SMTP id u35mr37879265otb.81.1558459836920;
+ Tue, 21 May 2019 10:30:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190521151952.2779-1-narmstrong@baylibre.com> <20190521151952.2779-2-narmstrong@baylibre.com>
-In-Reply-To: <20190521151952.2779-2-narmstrong@baylibre.com>
+References: <20190521150130.31684-1-narmstrong@baylibre.com> <20190521150130.31684-2-narmstrong@baylibre.com>
+In-Reply-To: <20190521150130.31684-2-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 21 May 2019 19:27:23 +0200
-Message-ID: <CAFBinCDbQAMHT-g7arJLZNf0OGfjYTDdqsnMXN_njamhPYHBvg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: amlogic: add G12B bindings
+Date:   Tue, 21 May 2019 19:30:26 +0200
+Message-ID: <CAFBinCAwD7W1zQ2YZgecowZUEnoVpGXyGQnOKhB5T3OvOvvbkg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clk: meson: add g12b periph clock
+ controller bindings
 To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
+Cc:     jbrunet@baylibre.com, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 21, 2019 at 5:19 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Tue, May 21, 2019 at 5:02 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Add compatible for the Amlogic G12B SoC, sharing most of the
-> features and architecture with the G12A SoC.
+> Update the documentation to support clock driver for the Amlogic G12B SoC.
+>
+> G12B clock driver is very close, the main differences are :
+> - the clock tree is duplicated for the both clusters, and the
+>   SYS_PLL are swapped between the clusters
+> - G12A has additional clocks like for CSI an other components
+I missed this in v1, it should be G12B?
+
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
-> Rob, Martin,
->
-> I converted the patch you acked in yaml, I kept the Reviewed-by,
-> is it ok for you ?
-yes, it's fine
+with above typo fixed (assuming it is one):
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
