@@ -2,100 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6C1247D1
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E525247D3
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726041AbfEUGLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 02:11:40 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:13599 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725835AbfEUGLk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 02:11:40 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce396980000>; Mon, 20 May 2019 23:11:36 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Mon, 20 May 2019 23:11:39 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Mon, 20 May 2019 23:11:39 -0700
-Received: from [10.19.108.117] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
- 2019 06:11:36 +0000
-Subject: Re: [Patch V3 6/8] arm64: tegra: Enable xudc on Jetson TX1
-To:     Nagarjuna Kristam <nkristam@nvidia.com>, <balbi@kernel.org>,
-        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
- <1557988772-15406-7-git-send-email-nkristam@nvidia.com>
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <f9ee9726-3621-83ba-d07f-4592e5d4ad10@nvidia.com>
-Date:   Tue, 21 May 2019 14:11:35 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1725885AbfEUGMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 02:12:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49188 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725798AbfEUGMl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 02:12:41 -0400
+Received: from localhost (unknown [106.201.107.13])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DDFC920863;
+        Tue, 21 May 2019 06:12:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558419160;
+        bh=4VC9bKP9QU7iVDFMtdo9WoMzmY1tJYqXCWxT9T/NUpY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lJzLTxcVnQlcC8g5MlkXWsEtukxQJremgG+7zcGYuVRwfHSSl/CjVbwp62oapFxjZ
+         RB3v+k7IXX6G0ix1zRMQJ2OvmqFFR1LCVcZnUWQFvAHionw5nVJu6KU8/EW2X/ujcW
+         XyM9/dqc3r3hrt7uRZc5BRuGjG8gjJF0yevCkmSg=
+Date:   Tue, 21 May 2019 11:42:36 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Robin Gong <yibin.gong@nxp.com>
+Cc:     "robh@kernel.org" <robh@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "plyatov@gmail.com" <plyatov@gmail.com>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: Re: Re: [PATCH v3 11/14] dmaengine: imx-sdma: fix ecspi1 rx dma
+ not work on i.mx8mm
+Message-ID: <20190521061236.GA15118@vkoul-mobl>
+References: <VI1PR04MB4543DEEC702531ED69616B8C89070@VI1PR04MB4543.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <1557988772-15406-7-git-send-email-nkristam@nvidia.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558419096; bh=V8jtuTDmL5o+6sv9+K24ZKBOp1hdrT/nLOP/Sa/HG6k=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=iFIH049Id9O/SHficoCWT/iTenfIOlED0ecG8/Il7g7RWN4zcOVpSDQK03PMOiaGL
-         72Qdw5AOObXu44HKH2QPTLBP39pCBdnirftkkGovCqb5Yt2PZtGcZdixZK4XGBDWWq
-         +yrnMN3DoF5uKlo66QXxZz632CYfY235drKob/KpE8HFaQy8IomOE25bh2KAUy93Ce
-         H3tnLupzqsESdMgV2rYMni4JPYdnsPR2LKbeyESeY0jB4p3BQP6uNaeSUnXWmTaqsa
-         tbJtq0zdYvqsRyG1rGFL+D/8Sg1taLqzwEQR3J8+PgdmVo+FYBOGPM0awImRZoDijV
-         Ki6e8lthWaUeg==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <VI1PR04MB4543DEEC702531ED69616B8C89070@VI1PR04MB4543.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: JC Kuo <jckuo@nvidia.com>
+On 21-05-19, 05:41, Robin Gong wrote:
+> > -----Original Message-----
+> > From: Vinod Koul <vkoul@kernel.org>
+> > Sent: 2019年5月21日 13:13
+> > 
+> > On 21-05-19, 04:58, Robin Gong wrote:
+> > > > -----Original Message-----
+> > > > From: Vinod Koul <vkoul@kernel.org>
+> > > > Sent: 2019年5月21日 12:18
+> > > >
+> > > > On 07-05-19, 09:16, Robin Gong wrote:
+> > > > > Because the number of ecspi1 rx event on i.mx8mm is 0, the
+> > > > > condition check ignore such special case without dma channel
+> > > > > enabled, which caused
+> > > > > ecspi1 rx works failed. Actually, no need to check event_id0,
+> > > > > checking
+> > > > > event_id1 is enough for DEV_2_DEV case because it's so lucky that
+> > > > > event_id1 never be 0.
+> > > >
+> > > > Well is that by chance or design that event_id1 will be never 0?
+> > > >
+> > > That's by chance. DEV_2_DEV is just for Audio case and non-zero for
+> > event_id1 on current i.MX family.
+> > 
+> > Then it wont be fgood to rely on chance :)
+> Yes, I knew that. May I create another independent patch for event_id1 since that's potential issue is not related with this ecspi patch set?
 
-Thanks,
+Sure a patch should change one thing but I think it should come before
+this one. The log for this should be fixed up as well
 
-JC
-
-On 5/16/19 2:39 PM, Nagarjuna Kristam wrote:
-> Enable XUSB device mode driver for USB0 slot on Jetson TX1.
->
-> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> ---
->   arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> index a7dc319..e0e67cd 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> @@ -1483,6 +1483,20 @@
->   		vmmc-supply = <&vdd_3v3_sd>;
->   	};
->   
-> +	xudc@700d0000 {
-> +		phys = <&{/padctl@7009f000/pads/usb2/lanes/usb2-0}>;
-> +		phy-names = "usb2";
-> +		avddio-usb-supply = <&vdd_3v3_sys>;
-> +		hvdd-usb-supply = <&vdd_1v8>;
-> +		extcon = <&extcon_usb>;
-> +		status = "okay";
-> +	};
-> +
-> +	extcon_usb: extcon_vbus {
-> +		compatible = "linux,extcon-usb-gpio";
-> +		vbus-gpio = <&gpio TEGRA_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-> +	};
-> +
->   	regulators {
->   		compatible = "simple-bus";
->   		#address-cells = <1>;
+-- 
+~Vinod
