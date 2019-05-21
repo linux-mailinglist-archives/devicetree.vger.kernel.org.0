@@ -2,134 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9171245E4
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 04:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09924245F2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 04:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727579AbfEUCQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 22:16:56 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:11616 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726325AbfEUCQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 22:16:56 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce35f950000>; Mon, 20 May 2019 19:16:54 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Mon, 20 May 2019 19:16:53 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Mon, 20 May 2019 19:16:53 -0700
-Received: from [10.19.108.117] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
- 2019 02:16:51 +0000
-Subject: Re: [Patch V3 1/8] phy: tegra: xusb: t210: add XUSB dual mode support
-To:     Nagarjuna Kristam <nkristam@nvidia.com>, <balbi@kernel.org>,
-        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
- <1557988772-15406-2-git-send-email-nkristam@nvidia.com>
-From:   jckuo <jckuo@nvidia.com>
-Message-ID: <b0c36707-a198-8996-f2c5-c8c410bf5450@nvidia.com>
-Date:   Tue, 21 May 2019 10:16:50 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727047AbfEUC2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 22:28:43 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:1639 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726548AbfEUC2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 22:28:42 -0400
+X-UUID: 68376b50b3bf48ceaaa06f0e1ae8df25-20190521
+X-UUID: 68376b50b3bf48ceaaa06f0e1ae8df25-20190521
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 729639825; Tue, 21 May 2019 10:28:39 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 21 May 2019 10:28:37 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 21 May 2019 10:28:37 +0800
+Message-ID: <1558405717.25526.1.camel@mtksdaap41>
+Subject: Re: [PATCH v7 07/12] soc: mediatek: cmdq: reorder the parameter
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Kurtz <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "YT Shen" <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <ginny.chen@mediatek.com>
+Date:   Tue, 21 May 2019 10:28:37 +0800
+In-Reply-To: <20190521011108.40428-8-bibby.hsieh@mediatek.com>
+References: <20190521011108.40428-1-bibby.hsieh@mediatek.com>
+         <20190521011108.40428-8-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <1557988772-15406-2-git-send-email-nkristam@nvidia.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558405014; bh=hTNWfpPzKc+o2LhadCsahKcFEzKIn4MCvixm6q/cOJY=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=oJXcu5fJMrbsInh4v9x3uWYlXw34mx2n9AzroLDs7PSYWo/HUlV3mWo/OZPtUlTJQ
-         l+W0g18C+d75kWR4R5tb3VuDJ3FVsp5AonCmWVdBzOikK4KLQZwt5ZEYIu6oux4MGe
-         OiygHEYoLBxOcHavkK6oxWo+PIVk1thA+HB/gR4wtVCJgDUGk7liLCBG7nyDsfahjh
-         seJZHlIZoRlQKa37QUdV5Cu0eFJ+dhiBLarFXA5dHpn0kkf1QXogmNiQveouV0nvrN
-         4kPG68exwlM5+5KTJXQ7fCTVQyZDEZl5Ny1v0nwW+MsGNABnIcmg5RQoROJPYttu6r
-         +xVbg1Lwvqh2Q==
+X-TM-SNTS-SMTP: CB6BA5088D12BC8A5407696EA9FC8AAD7872A46B82C40CA30EDB3956441E95332000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: JC Kuo <jckuo@nvidia.com>
+Hi, Bibby:
 
+On Tue, 2019-05-21 at 09:11 +0800, Bibby Hsieh wrote:
+> The order of instructions gce knowed is [subsys offset value]
+> so reorder the parameter of cmdq_pkt_write_mask
+> and cmdq_pkt_write function.
+> 
 
-On 5/16/19 2:39 PM, Nagarjuna Kristam wrote:
-> Configure the port capabilities based on usb_dr_mode settings.
->
-> Based on work by JC Kuo <jckuo@nvidia.com>.
->
-> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+Except the word 'knowed',
+
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > ---
->   drivers/phy/tegra/xusb-tegra210.c | 22 +++++++++++++++++++---
->   1 file changed, 19 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
-> index 05bee32..4beebcc 100644
-> --- a/drivers/phy/tegra/xusb-tegra210.c
-> +++ b/drivers/phy/tegra/xusb-tegra210.c
-> @@ -1,5 +1,5 @@
->   /*
-> - * Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
-> + * Copyright (c) 2014-2019, NVIDIA CORPORATION.  All rights reserved.
->    * Copyright (C) 2015 Google, Inc.
->    *
->    * This program is free software; you can redistribute it and/or modify it
-> @@ -47,7 +47,10 @@
->   #define XUSB_PADCTL_USB2_PAD_MUX_USB2_BIAS_PAD_XUSB 0x1
->   
->   #define XUSB_PADCTL_USB2_PORT_CAP 0x008
-> +#define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DISABLED(x) (0x0 << ((x) * 4))
->   #define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_HOST(x) (0x1 << ((x) * 4))
-> +#define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DEVICE(x) (0x2 << ((x) * 4))
-> +#define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_OTG(x) (0x3 << ((x) * 4))
->   #define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_MASK(x) (0x3 << ((x) * 4))
->   
->   #define XUSB_PADCTL_SS_PORT_MAP 0x014
-> @@ -72,6 +75,7 @@
->   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(x) (0x084 + (x) * 0x40)
->   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT 7
->   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_MASK 0x3
-> +#define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_VAL 0x1
->   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_FIX18 (1 << 6)
->   
->   #define XUSB_PADCTL_USB2_OTG_PADX_CTL0(x) (0x088 + (x) * 0x40)
-> @@ -965,7 +969,14 @@ static int tegra210_usb2_phy_power_on(struct phy *phy)
->   
->   	value = padctl_readl(padctl, XUSB_PADCTL_USB2_PORT_CAP);
->   	value &= ~XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_MASK(index);
-> -	value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_HOST(index);
-> +	if (port->mode == USB_DR_MODE_UNKNOWN)
-> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DISABLED(index);
-> +	else if (port->mode == USB_DR_MODE_PERIPHERAL)
-> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DEVICE(index);
-> +	else if (port->mode == USB_DR_MODE_HOST)
-> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_HOST(index);
-> +	else if (port->mode == USB_DR_MODE_OTG)
-> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_OTG(index);
->   	padctl_writel(padctl, value, XUSB_PADCTL_USB2_PORT_CAP);
->   
->   	value = padctl_readl(padctl, XUSB_PADCTL_USB2_OTG_PADX_CTL0(index));
-> @@ -997,7 +1008,12 @@ static int tegra210_usb2_phy_power_on(struct phy *phy)
->   			     XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
->   	value &= ~(XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_MASK <<
->   		   XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT);
-> -	value |= XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_FIX18;
-> +	if (port->mode == USB_DR_MODE_HOST)
-> +		value |= XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_FIX18;
-> +	else
-> +		value |=
-> +		      XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_VAL <<
-> +		      XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT;
->   	padctl_writel(padctl, value,
->   		      XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
->   
+>  drivers/soc/mediatek/mtk-cmdq-helper.c |  6 +++---
+>  include/linux/soc/mediatek/mtk-cmdq.h  | 10 +++++-----
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> index ff9fef5a032b..082b8978651e 100644
+> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> @@ -136,7 +136,7 @@ static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
+>  	return 0;
+>  }
+>  
+> -int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 value, u32 subsys, u32 offset)
+> +int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 subsys, u32 offset, u32 value)
+>  {
+>  	u32 arg_a = (offset & CMDQ_ARG_A_WRITE_MASK) |
+>  		    (subsys << CMDQ_SUBSYS_SHIFT);
+> @@ -145,8 +145,8 @@ int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 value, u32 subsys, u32 offset)
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_write);
+>  
+> -int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 value,
+> -			u32 subsys, u32 offset, u32 mask)
+> +int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 subsys,
+> +			u32 offset, u32 value, u32 mask)
+>  {
+>  	u32 offset_mask = offset;
+>  	int err = 0;
+> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
+> index 4e8899972db4..39d813dde4b4 100644
+> --- a/include/linux/soc/mediatek/mtk-cmdq.h
+> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
+> @@ -60,26 +60,26 @@ void cmdq_pkt_destroy(struct cmdq_pkt *pkt);
+>  /**
+>   * cmdq_pkt_write() - append write command to the CMDQ packet
+>   * @pkt:	the CMDQ packet
+> - * @value:	the specified target register value
+>   * @subsys:	the CMDQ sub system code
+>   * @offset:	register offset from CMDQ sub system
+> + * @value:	the specified target register value
+>   *
+>   * Return: 0 for success; else the error code is returned
+>   */
+> -int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 value, u32 subsys, u32 offset);
+> +int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 subsys, u32 offset, u32 value);
+>  
+>  /**
+>   * cmdq_pkt_write_mask() - append write command with mask to the CMDQ packet
+>   * @pkt:	the CMDQ packet
+> - * @value:	the specified target register value
+>   * @subsys:	the CMDQ sub system code
+>   * @offset:	register offset from CMDQ sub system
+> + * @value:	the specified target register value
+>   * @mask:	the specified target register mask
+>   *
+>   * Return: 0 for success; else the error code is returned
+>   */
+> -int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 value,
+> -			u32 subsys, u32 offset, u32 mask);
+> +int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 subsys,
+> +			u32 offset, u32 value, u32 mask);
+>  
+>  /**
+>   * cmdq_pkt_wfe() - append wait for event command to the CMDQ packet
+
+
