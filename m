@@ -2,133 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A6D424CB8
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:30:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1D6C24CC2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727408AbfEUKaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 06:30:03 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35210 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726466AbfEUKaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 06:30:03 -0400
-Received: by mail-wm1-f65.google.com with SMTP id q15so2328714wmj.0;
-        Tue, 21 May 2019 03:30:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rELwzUOME0nlXCIo3VT64vICZ+hEYunauyHNK3UtMYc=;
-        b=J49fNcrbf1jjE+Q+vGOqxez9Ao4CNjCedtLwf1SqxU2wwJOJKoEYvdGCMsmwCz5pL9
-         xTpqIcvF7Wx3LOP2kDfW7apVSfpppmMEZvS8lMzps3oqI0/3rvePn3lLR5DV5/pjdd2R
-         cIuia49ANqKngtTbH9uckKIHfjSSgxKseNLmwXgyp/qTqs/HhIeJ7iNuGtlOUVHxDJ7L
-         0ZkLI17STbKVMfw/4ee1VIoJ2g/71jb6CUofBaab+xqeGNXs9keyqznSjYnS5mc60ZGz
-         1RUiPGOIK8q5rnIVWhH7x1p00o9689XH6293wxwtIVRo1mYzvo/ZSkz/+qSxvHNcH0vC
-         Z5qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rELwzUOME0nlXCIo3VT64vICZ+hEYunauyHNK3UtMYc=;
-        b=tQ5hQjtM0lZ1izLfZuNd9Lvm6wDwpECRUdMpGlNgjOap7dKT+7OOTUIZxC+SNmDSaX
-         N/DbiGu/RjxFewS7WHbycSTaSnKl3eG3f59kXOPMhWroWfX6XiJ8bm7tXZTSpN1idyW5
-         /ekg/G0k+1f7e5/Sdlwf0f4ZOUhQ7Bt7ZS84AorBJ1129bKV3bRr682QVg62cUVtCjoS
-         B/x6dLgTpu8RM0rtbPENBTZANtD0a3uqAsztVfrK6ZILmIfloB4zJhJybuzJ/nZCVdov
-         tN1lrJ8AkO8kU7xVet/FEwDr25XMk5+eef6QCF5NB4cbUju0E2P4dCRDrf67urw0hvI5
-         WmUA==
-X-Gm-Message-State: APjAAAUwL8IJ6YpU0WFpENfDMFr7jsWqo2V4cBjdg3HwpZ/wGKfmlXa0
-        zIj4Q4/YVwNAk7bHDf4z6J4=
-X-Google-Smtp-Source: APXvYqy9UeRYtG1/M1PRspNpKIbKeyoSPzcQxlWSbDUvnaFhZtLU4xlrNZOzT2PDdg4PlNIhhN+Jkg==
-X-Received: by 2002:a1c:ef05:: with SMTP id n5mr2922416wmh.149.1558434600856;
-        Tue, 21 May 2019 03:30:00 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id h17sm2683157wrq.79.2019.05.21.03.29.59
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 May 2019 03:30:00 -0700 (PDT)
-Date:   Tue, 21 May 2019 12:29:59 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V7 04/15] PCI: dwc: Move config space capability search
- API
-Message-ID: <20190521102959.GD29166@ulmo>
-References: <20190517123846.3708-1-vidyas@nvidia.com>
- <20190517123846.3708-5-vidyas@nvidia.com>
+        id S1726138AbfEUKdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 06:33:12 -0400
+Received: from mga06.intel.com ([134.134.136.31]:22182 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726006AbfEUKdL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 06:33:11 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 May 2019 03:33:10 -0700
+X-ExtLoop1: 1
+Received: from kuha.fi.intel.com ([10.237.72.189])
+  by fmsmga001.fm.intel.com with SMTP; 21 May 2019 03:33:05 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 21 May 2019 13:33:04 +0300
+Date:   Tue, 21 May 2019 13:33:04 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by node
+Message-ID: <20190521103304.GJ1887@kuha.fi.intel.com>
+References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1557823643-8616-5-git-send-email-chunfeng.yun@mediatek.com>
+ <20190517103736.GA1490@kuha.fi.intel.com>
+ <20190517130511.GA1887@kuha.fi.intel.com>
+ <1558319951.10179.352.camel@mhfsdcap03>
+ <20190520080359.GC1887@kuha.fi.intel.com>
+ <OSBPR01MB2103385D996762FA54F8E437B8060@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+ <20190520083601.GE1887@kuha.fi.intel.com>
+ <OSBPR01MB2103C4C8920C40E42BC1B2A9B8060@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+ <1558424104.10179.365.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5p8PegU4iirBW1oA"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190517123846.3708-5-vidyas@nvidia.com>
+In-Reply-To: <1558424104.10179.365.camel@mhfsdcap03>
 User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 21, 2019 at 03:35:04PM +0800, Chunfeng Yun wrote:
+> Hi,
+> On Mon, 2019-05-20 at 09:45 +0000, Biju Das wrote:
+> > 
+> > Hi Heikki,
+> > 
+> > Thanks for the feedback.
+> > 
+> > > Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by
+> > > node
+> > > 
+> > > On Mon, May 20, 2019 at 08:06:41AM +0000, Biju Das wrote:
+> > > > Hi Heikki,
+> > > >
+> > > > > Subject: Re: [PATCH v5 4/6] usb: roles: add API to get
+> > > > > usb_role_switch by node
+> > > > >
+> > > > > On Mon, May 20, 2019 at 10:39:11AM +0800, Chunfeng Yun wrote:
+> > > > > > Hi,
+> > > > > > On Fri, 2019-05-17 at 16:05 +0300, Heikki Krogerus wrote:
+> > > > > > > Hi,
+> > > > > > >
+> > > > > > > On Fri, May 17, 2019 at 01:37:36PM +0300, Heikki Krogerus wrote:
+> > > > > > > > On Tue, May 14, 2019 at 04:47:21PM +0800, Chunfeng Yun wrote:
+> > > > > > > > > Add fwnode_usb_role_switch_get() to make easier to get
+> > > > > > > > > usb_role_switch by fwnode which register it.
+> > > > > > > > > It's useful when there is not device_connection registered
+> > > > > > > > > between two drivers and only knows the fwnode which register
+> > > > > > > > > usb_role_switch.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > > > > > > > Tested-by: Biju Das <biju.das@bp.renesas.com>
+> > > > > > > >
+> > > > > > > > Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > > > > > >
+> > > > > > > Hold on. I just noticed Rob's comment on patch 2/6, where he
+> > > > > > > points out that you don't need to use device graph since the
+> > > > > > > controller is the parent of the connector. Doesn't that mean you
+> > > > > > > don't really need this API?
+> > > > > > No, I still need it.
+> > > > > > The change is about the way how to get fwnode; when use device
+> > > > > > graph, get fwnode by of_graph_get_remote_node(); but now will get
+> > > > > > fwnode by of_get_parent();
+> > > > >
+> > > > > OK, I get that, but I'm still not convinced about if something like
+> > > > > this function is needed at all. I also have concerns regarding how
+> > > > > you are using the function. I'll explain in comment to the patch 5/6 in this
+> > > series...
+> > > >
+> > > > FYI, Currently  I am also using this api in my patch series.
+> > > > https://patchwork.kernel.org/patch/10944637/
+> > > 
+> > > Yes, and I have the same question for you I jusb asked in comment I added
+> > > to the patch 5/6 of this series. Why isn't usb_role_switch_get() enough?
+> > 
+> > Currently no issue. It will work with this api as well, since the port node is part of controller node.
+> > For eg:-
+> > https://patchwork.kernel.org/patch/10944627/
+> > 
+> > However if any one adds port node inside the connector node, then this api may won't work as expected.
+> > Currently I get below error
+> > 
+> > [    2.299703] OF: graph: no port node found in /soc/i2c@e6500000/hd3ss3220@47
+> > 
+> > For eg:-
+> > 
+> > 	hd3ss3220@47 {
+> > 		compatible = "ti,hd3ss3220";
+> > 		...
+> > 		....
+> > 		usb_con: connector {
+> >                                      ....
+> >                                      ....
+> > 			port {
+> > 				hd3ss3220_ep: endpoint@0 {
+> > 					reg = <0>;
+> > 					remote-endpoint = <&usb3peri_role_switch>;
+> > 				};
+> > 			};
+> > 		};
+> > 	};
+> > 
+> > Regards,
+> > Biju
+> 
+> I tested 3 cases:
+> 
+> case 1:
+> 
+> connector {
+>     compatible = "linux,typeb-conn-gpio", "usb-b-connector";
+>     label = "micro-USB";
+>     type = "micro";
+>     id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
+>     vbus-supply = <&usb_p0_vbus>;
+> 
+>     port {
+>         bconn_ep: endpoint@0 {
+>             remote-endpoint = <&usb_role_sw>;
+>         };
+>     };
+> };
+> 
+> &mtu3 {
+>     usb-role-switch;
+> 
+>     port {
+>         usb_role_sw: endpoint@0 {
+>             remote-endpoint = <&bconn_ep>;
+>         };
+>     };
+> };
+> 
+> the driver of connector could use usb_role_switch_get(dev) to get
+> mtu3's USB Role Switch. (dev is the device of connector)
+> 
+> case 2:
+> 
+> &mtu3 {
+>     usb-role-switch;
+> 
+>     connector {
+>         compatible = "linux,typeb-conn-gpio", "usb-b-connector";
+>         label = "micro-USB";
+>         type = "micro";
+>         id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
+>         vbus-supply = <&usb_p0_vbus>;
+>     };
+> };
+> 
+> the driver of connector using usb_role_switch_get(dev) failed to get
+> mtu3's USB Role Switch.
+> error log:
+> #OF: graph: no port node found in /usb@11271000/connector
+> this is because connector hasn't child node connected to remote
+> endpoint which register USB Role Switch
+> 
+> case 3:
+> 
+> rsw_iddig: role_sw_iddig {
+>     compatible = "linux,typeb-conn-gpio";
+>     status = "okay";
+> 
+>     connector {
+>         compatible = "usb-b-connector";
+>         label = "micro-USB";
+>         type = "micro";
+>         id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
+>         vbus-supply = <&usb_p0_vbus>;
+> 
+>         port {
+>             bconn_ep: endpoint@0 {
+>                 remote-endpoint = <&usb_role_sw>;
+>             };
+>         };
+>     };
+> };
+> 
+> &mtu3 {
+>     usb-role-switch;
+> 
+>     port {
+>         usb_role_sw: endpoint@0 {
+>             remote-endpoint = <&bconn_ep>;
+>         };
+>     };
+> };
+> 
+> 
+> the driver of connector using usb_role_switch_get(dev) also failed to
+> get mtu3's USB Role Switch. Because usb_role_switch_get() only search
+> its child nodes (connector node), but not child's child (port node)
+> This case is the same as Biju's
+> 
+> Usually type-c is similar with case 3;
+> the next version v6 of this series will use case 2 as Rob suggested,
+> see [v5, 2/6]
+> 
+> for case 2, will need the new API fwnode_usb_role_switch_get();
 
---5p8PegU4iirBW1oA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the explanation.
 
-On Fri, May 17, 2019 at 06:08:35PM +0530, Vidya Sagar wrote:
-> Move PCIe config space capability search API to common DesignWare file
-> as this can be used by both host and ep mode codes.
->=20
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> Acked-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> ---
-> Changes since [v6]:
-> * Exported dw_pcie_find_capability() API
->=20
-> Changes since [v5]:
-> * None
->=20
-> Changes since [v4]:
-> * Removed redundant APIs in pcie-designware-ep.c file after moving them
->   to pcie-designware.c file based on Bjorn's comments.
->=20
-> Changes since [v3]:
-> * Rebased to linux-next top of the tree
->=20
-> Changes since [v2]:
-> * None
->=20
-> Changes since [v1]:
-> * Removed dw_pcie_find_next_ext_capability() API from here and made a
->   separate patch for that
->=20
->  .../pci/controller/dwc/pcie-designware-ep.c   | 37 +----------------
->  drivers/pci/controller/dwc/pcie-designware.c  | 40 +++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
->  3 files changed, 44 insertions(+), 35 deletions(-)
+In this case, if I understood this correctly, the USB controller, which
+is also the role switch, is the parent of the connector. So shouldn't
+we simply consider that in the current API?
 
-Reviewed-by: Thierry Reding <treding@nvidia.com>
+diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
+index f45d8df5cfb8..2f898167b99a 100644
+--- a/drivers/usb/roles/class.c
++++ b/drivers/usb/roles/class.c
+@@ -125,6 +125,13 @@ struct usb_role_switch *usb_role_switch_get(struct device *dev)
+ {
+        struct usb_role_switch *sw;
 
---5p8PegU4iirBW1oA
-Content-Type: application/pgp-signature; name="signature.asc"
++       /*
++        * Simplest case is that a connector is looking for the controller,
++        * which is its parent.
++        */
++       if (device_property_present(dev->parent, "usb-role-switch"))
++               return to_role_switch(dev->parent);
++
+        sw = device_connection_find_match(dev, "usb-role-switch", NULL,
+                                          usb_role_switch_match);
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzj0ycACgkQ3SOs138+
-s6Et4BAAkzOyahrHoqB04OU7kbCFa+2VAYqoXjgDQvu1RjouQbsh+UdAzNrLWTeX
-ChYzsu6i3jeymB0oD/WAOCtHx9SbLP/4YEwlBQ5Y9U5SoHy16bSiC1fJ2+IrTKoj
-2G50K3ILtwZHuDFBL9D/NRtwdrGxu4txjtB6ch6sJDKRvr8UbtXvLO1Rija3oaut
-31nP2HoCqZ8ZW+Ku7D15BPxdcLYidJJqWELWw251PitQkixGV2JEjv/MYoKBMIhD
-jCIo+b5o1yS36PUf5I0Piuz4vbDmiJOUjKsjMbkKniN+l9bBtNwPepBdSxxYl+CN
-QbYbDw1mPUBLP/mlhEsMgBGDUp+auR+vMrCsXaK+BQIoLHQeslhKpWwIsGOBZDka
-5iNo8zxXK2FC8yHNjgz7sIWI9dfA4dX+8YJEnEVRjuhcQG+aE5B5NXDrqtTMYN1Z
-Hoe+q16UNDLmsq2siAD6r7ENyzUVzaCdjg/q/P8v3H7PZWFgPO49v+xZdDq37cqi
-j/Z5/gTH0v07hu5dtXQLfQ5+8KszcexKRfkGlYCBYG8BFVTdMmF3sR7XIY4tE2lt
-muOCI7ajeYAq/bDP9vibl1O7o7Myry716uTwfGGAB8w9/g+Fm7BKpa+Wj9MuZWtW
-CYi8auqMTnAh11SDNQeakXNHranXpLvBhMKpfIBfNYaUDFbjdd8=
-=LWc3
------END PGP SIGNATURE-----
+> for case 3, use the new API, or need modify usb_role_switch_get();
 
---5p8PegU4iirBW1oA--
+I did not completely understand this case, but isn't it the same as
+case 2 in the end, after you change it as Rob suggested?
+
+
+thanks,
+
+-- 
+heikki
