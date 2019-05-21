@@ -2,317 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02EF324C48
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B38324C55
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726557AbfEUKIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 06:08:21 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:39139 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726296AbfEUKIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 06:08:21 -0400
-Received: by mail-wm1-f66.google.com with SMTP id n25so414455wmk.4
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 03:08:19 -0700 (PDT)
+        id S1726740AbfEUKLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 06:11:23 -0400
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:25115 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726242AbfEUKLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 06:11:22 -0400
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="Claudiu.Beznea@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
+X-IronPort-AV: E=Sophos;i="5.60,494,1549954800"; 
+   d="scan'208";a="34203048"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/DHE-RSA-AES256-SHA; 21 May 2019 03:11:21 -0700
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.76.105) with Microsoft SMTP Server (TLS) id
+ 14.3.352.0; Tue, 21 May 2019 03:11:21 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VsuiNfhD6cTEPIrP5fuSU9SSelaUEWtyObkVv+KuuOQ=;
-        b=kzlzjoaRZmH6MdC2uye1GyI5WDTgK8jq5eMOg0hBYml2sR2U0z7xisKlBPmOV2B8rK
-         y1XzxQW/Td/UPmSxpkVYmNhp0Z1BPGdc1Bgod1NyvYA/QhtcFBvBx/EIqsetv+UG4exB
-         9bqiB2TD/dFSdYOJSaCD+1DZj0T45XTTUZUpEvds1mmkeNohcu2hzidjy2eqSaQNoNya
-         3jHyi8xStSGBj+yyMnuPcdcQ+/H+rKogicvaKNKKCuBOW0Nt5ykiD1NqWHStJ8a2koa7
-         lskybMsWl8X8ENLlwLMasjzkcoyPAFHCIQg/En7tSa/j3lZign6cRfhtcvx4Yso7HNEB
-         SRlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VsuiNfhD6cTEPIrP5fuSU9SSelaUEWtyObkVv+KuuOQ=;
-        b=ZM/Q2OojNbleZdE1a6xPkSGx8g6iqETZiqw7a2HBHQz64ueS8QkWoxEoLzXUZCR1GA
-         z7RYC5FI++BX6vxa7m2lADGrDxOUg5HIhB8eZMv8mpTob0tIfi++BZxpIbIcr2IhSl09
-         HI+EOO7NDdSOs+NDPAH/k9+QEygQIZySp1faTwGwVDlfvJJYAzHqkHgzdBylvFPYV1YU
-         1peYy7lS5jeKhTLp8qMjHOJLynQGdDq9yadYqG7bGsl9nh//j7daMoZpZGM+053HrSO2
-         N25iXdOptTYpsvcGShYTniHG+5QoUzNdue4Om6zM8V0/un0K2XXtn3OhqP+HOhF4++cS
-         b3UQ==
-X-Gm-Message-State: APjAAAV0w6TjInkePO6MBEE0LPXGy1Xup/VXFIeil8WF7oocV5DU3bbr
-        oW5UZA50QKYPPs2T4ByZykeBDpKi1o8xFw==
-X-Google-Smtp-Source: APXvYqynzHV4zuEV50W2KUKRJRd9K/JQXVkXN50YOkKy5y/5OsN7ywSLY/W0n1xRITmqd9ZxosESbg==
-X-Received: by 2002:a7b:cb85:: with SMTP id m5mr2812204wmi.85.1558433298172;
-        Tue, 21 May 2019 03:08:18 -0700 (PDT)
-Received: from [10.1.203.87] (nat-wifi.sssup.it. [193.205.81.22])
-        by smtp.googlemail.com with ESMTPSA id 67sm3826052wmd.38.2019.05.21.03.08.17
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 03:08:17 -0700 (PDT)
-Subject: Re: [PATCH v4 2/2] driver: clocksource: Add nxp system counter timer
- driver support
-To:     Jacky Bai <ping.bai@nxp.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20190521072355.12928-1-ping.bai@nxp.com>
- <20190521072355.12928-2-ping.bai@nxp.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <5823cd07-312b-600c-1b78-dc5bff2a12eb@linaro.org>
-Date:   Tue, 21 May 2019 12:08:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190521072355.12928-2-ping.bai@nxp.com>
-Content-Type: text/plain; charset=utf-8
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector1-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=68M/FY+nUw7WESU5pU5vZ3ng2vQhHkhfsJX4tSNLKcM=;
+ b=Q4toLZly0khkWSn439UXBnLsjPI3pUM94rCYYFOtDmBBh/3TD8qYa4ONQ2vHczymE5jnGAEM65CbvZaf+Bp5TUjRKtmWEfkp85Vo0KrFFKAKqLrNEXJsIyzKTQZTAlHMzMs/wgewj+a03VLTBi1WRMcU3NkPV/FmtOmVFhkbRA8=
+Received: from MWHPR11MB1549.namprd11.prod.outlook.com (10.172.54.17) by
+ MWHPR11MB1949.namprd11.prod.outlook.com (10.175.54.136) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.16; Tue, 21 May 2019 10:11:19 +0000
+Received: from MWHPR11MB1549.namprd11.prod.outlook.com
+ ([fe80::f01a:9325:7a65:cdb4]) by MWHPR11MB1549.namprd11.prod.outlook.com
+ ([fe80::f01a:9325:7a65:cdb4%4]) with mapi id 15.20.1900.020; Tue, 21 May 2019
+ 10:11:19 +0000
+From:   <Claudiu.Beznea@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <Ludovic.Desroches@microchip.com>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Claudiu.Beznea@microchip.com>
+Subject: [PATCH v4 0/4] add slow clock support for SAM9X60
+Thread-Topic: [PATCH v4 0/4] add slow clock support for SAM9X60
+Thread-Index: AQHVD72I8ZRJakzxaEW9m+CIsi0IRA==
+Date:   Tue, 21 May 2019 10:11:18 +0000
+Message-ID: <1558433454-27971-1-git-send-email-claudiu.beznea@microchip.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: LO2P265CA0254.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:8a::26) To MWHPR11MB1549.namprd11.prod.outlook.com
+ (2603:10b6:301:c::17)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.7.4
+x-originating-ip: [94.177.32.154]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 12c155bb-6f04-4684-b878-08d6ddd4aac5
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:MWHPR11MB1949;
+x-ms-traffictypediagnostic: MWHPR11MB1949:
+x-microsoft-antispam-prvs: <MWHPR11MB194929C60E2344A12EE8113C87070@MWHPR11MB1949.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0044C17179
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(396003)(366004)(136003)(39860400002)(346002)(189003)(199004)(66446008)(66556008)(81156014)(486006)(66476007)(102836004)(14454004)(2906002)(64756008)(316002)(73956011)(72206003)(26005)(476003)(68736007)(66066001)(2616005)(186003)(25786009)(99286004)(50226002)(66946007)(52116002)(6636002)(2501003)(81166006)(8936002)(6436002)(86362001)(386003)(7736002)(4326008)(110136005)(54906003)(5660300002)(3846002)(6116002)(6506007)(6512007)(36756003)(107886003)(14444005)(256004)(71200400001)(6486002)(478600001)(53936002)(305945005)(71190400001)(8676002);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR11MB1949;H:MWHPR11MB1549.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: +4WJX2+fL/B6OMr/u1bZK46DOx4f1XNXb+R5AxMI1oLk4TidjF1/plNmgdAXYtRnbo6H55bo/hKDo9XD+ovmbnkZ+Th8VsxYZ98gWY+mQ/hdNKy3J/zxIb+KUR4uNhghx91jT2VEAq/XHGcu7wo3SI/fGyonh658D+jQxhIcAJy/Uo2TF2koa9TcSRZm4mEXJgjB72O3lcpveE2urIepOH5EDjSwFXjiWSuKe6Q7V8rtb6kEc2ArSfg6SR9/GGXEIsHqyz/dZoKCO//8UnMbNsXbLrv3Ikdi3FlJzuS0LOP5zv++WB32VSkmTy0ZfCWkVwnBjqOEr0kgzCN4ClreNcLOjBG/oEcJ7vuTeotNOKCUVHQiNSZiA1mCwwRjLPLbynxQfriRYWtWR/3iK/K5VvCLej/fkItzCyof5aDx4es=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12c155bb-6f04-4684-b878-08d6ddd4aac5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2019 10:11:18.9555
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1949
+X-OriginatorOrg: microchip.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2019 09:18, Jacky Bai wrote:
-> From: Bai Ping <ping.bai@nxp.com>
-> 
-> The system counter (sys_ctr) is a programmable system counter
-> which provides a shared time base to the Cortex A15, A7, A53 etc cores.
-> It is intended for use in applications where the counter is always
-> powered on and supports multiple, unrelated clocks. The sys_ctr hardware
-> supports:
->  - 56-bit counter width (roll-over time greater than 40 years)
-
-The benefit of using more than 32bits on a 32bits system is not proven.
-
-The function to read and build the 56bits value can have a very
-significant impact on the performance of your platform.
-
-Using a 32bits counter can be enough if it does not wrap too fast.
-
-Can you consider a 32 bits counter ?
-
->  - compare frame(64-bit compare value) contains programmable interrupt
->    generation when compare value <= counter value.
-> 
-> Signed-off-by: Bai Ping <ping.bai@nxp.com>
-> ---
-> change v1->v2:
->  - no change 
-> change v2->v3:
->  - remove the clocksource, we only need to use this module for timer purpose,
->    so register it as clockevent is enough.
->  - use the timer_of_init to init the irq, clock, etc.
->  - remove some unnecessary comments.
-> change v3->v4:
->  - use cached value for CMPCR,
->  - remove unnecessary timer enabe from set_state_oneshot function.
-> ---
->  drivers/clocksource/Kconfig            |   7 ++
->  drivers/clocksource/Makefile           |   1 +
->  drivers/clocksource/timer-imx-sysctr.c | 146 +++++++++++++++++++++++++
->  3 files changed, 154 insertions(+)
->  create mode 100644 drivers/clocksource/timer-imx-sysctr.c
-> 
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index 6bcaa4e2e72c..ee48620a4561 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -616,6 +616,13 @@ config CLKSRC_IMX_TPM
->  	  Enable this option to use IMX Timer/PWM Module (TPM) timer as
->  	  clocksource.
->  
-> +config TIMER_IMX_SYS_CTR
-> +	bool "i.MX system counter timer" if COMPILE_TEST
-> +	depends on ARCH_MXC
-
-Do you really need this dep?
-
-> +	select TIMER_OF
-> +	help
-> +	  Enable this option to use i.MX system counter timer for clockevent.
-> +
->  config CLKSRC_ST_LPC
->  	bool "Low power clocksource found in the LPC" if COMPILE_TEST
->  	select TIMER_OF if OF
-> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-> index 236858fa7fbf..5fba39e81a40 100644
-> --- a/drivers/clocksource/Makefile
-> +++ b/drivers/clocksource/Makefile
-> @@ -74,6 +74,7 @@ obj-$(CONFIG_CLKSRC_MIPS_GIC)		+= mips-gic-timer.o
->  obj-$(CONFIG_CLKSRC_TANGO_XTAL)		+= timer-tango-xtal.o
->  obj-$(CONFIG_CLKSRC_IMX_GPT)		+= timer-imx-gpt.o
->  obj-$(CONFIG_CLKSRC_IMX_TPM)		+= timer-imx-tpm.o
-> +obj-$(CONFIG_TIMER_IMX_SYS_CTR)		+= timer-imx-sysctr.o
->  obj-$(CONFIG_ASM9260_TIMER)		+= asm9260_timer.o
->  obj-$(CONFIG_H8300_TMR8)		+= h8300_timer8.o
->  obj-$(CONFIG_H8300_TMR16)		+= h8300_timer16.o
-> diff --git a/drivers/clocksource/timer-imx-sysctr.c b/drivers/clocksource/timer-imx-sysctr.c
-> new file mode 100644
-> index 000000000000..d0428d3189f8
-> --- /dev/null
-> +++ b/drivers/clocksource/timer-imx-sysctr.c
-> @@ -0,0 +1,146 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Copyright 2017-2019 NXP
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/clockchips.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-> +
-> +#include "timer-of.h"
-> +
-> +#define CMP_OFFSET	0x10000
-> +
-> +#define CNTCV_LO	0x8
-> +#define CNTCV_HI	0xc
-> +#define CMPCV_LO	(CMP_OFFSET + 0x20)
-> +#define CMPCV_HI	(CMP_OFFSET + 0x24)
-> +#define CMPCR		(CMP_OFFSET + 0x2c)
-> +
-> +#define SYS_CTR_EN		0x1
-> +#define SYS_CTR_IRQ_MASK	0x2
-> +
-> +static void __iomem *sys_ctr_base;
-> +static u32 cmpcr;
-> +
-> +static void sysctr_timer_enable(bool enable)
-> +{
-> +	cmpcr &= ~SYS_CTR_EN;
-
-Do the computation after reading the value in the init function...
-
-> +	if (enable)
-> +		cmpcr |= SYS_CTR_EN;
-
-... then
-
-writel(enable ? cmpcr | SYS_CTR_EN : cmpcr, sys_ctr_base);
-
-> +	writel(cmpcr, sys_ctr_base + CMPCR);
-> +}
-> +
-> +static void sysctr_irq_acknowledge(void)
-> +{
-> +	/*
-> +	 * clear the enable bit(EN =0) will clear
-> +	 * the status bit(ISTAT = 0), then the interrupt
-> +	 * signal will be negated(acknowledged).
-> +	 */
-> +	sysctr_timer_enable(false);
-> +}
-> +
-> +static inline u64 sysctr_read_counter(void)
-> +{
-> +	u32 cnt_hi, tmp_hi, cnt_lo;
-> +
-> +	do {
-> +		cnt_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
-> +		cnt_lo = readl_relaxed(sys_ctr_base + CNTCV_LO);
-> +		tmp_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
-> +	} while (tmp_hi != cnt_hi);
-> +
-> +	return  ((u64) cnt_hi << 32) | cnt_lo;
-> +}
-> +
-> +static int sysctr_set_next_event(unsigned long delta,
-> +				 struct clock_event_device *evt)
-> +{
-> +	u32 cmp_hi, cmp_lo;
-> +	u64 next;
-> +
-> +	sysctr_timer_enable(false);
-> +
-> +	next = sysctr_read_counter();
-> +
-> +	next += delta;
-> +
-> +	cmp_hi = (next >> 32) & 0x00fffff;
-> +	cmp_lo = next & 0xffffffff;
-> +
-> +	writel_relaxed(cmp_hi, sys_ctr_base + CMPCV_HI);
-> +	writel_relaxed(cmp_lo, sys_ctr_base + CMPCV_LO);
-> +
-> +	sysctr_timer_enable(true);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sysctr_set_state_oneshot(struct clock_event_device *evt)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int sysctr_set_state_shutdown(struct clock_event_device *evt)
-> +{
-> +	sysctr_timer_enable(false);
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t sysctr_timer_interrupt(int irq, void *dev_id)
-> +{
-> +	struct clock_event_device *evt = dev_id;
-> +
-> +	sysctr_irq_acknowledge();
-> +
-> +	evt->event_handler(evt);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static struct timer_of to_sysctr = {
-> +	.flags = TIMER_OF_IRQ | TIMER_OF_CLOCK | TIMER_OF_BASE,
-> +	.clkevt = {
-> +		.name			= "i.MX system counter timer",
-> +		.features		= CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_DYNIRQ,
-> +		.set_state_oneshot	= sysctr_set_state_oneshot,
-> +		.set_next_event		= sysctr_set_next_event,
-> +		.set_state_shutdown	= sysctr_set_state_shutdown,
-> +		.rating			= 200,
-> +	},
-> +	.of_irq = {
-> +		.handler		= sysctr_timer_interrupt,
-> +		.flags			= IRQF_TIMER | IRQF_IRQPOLL,
-> +	},
-> +	.of_clk = {
-> +		.name = "per",
-> +	},
-> +};
-> +
-> +static void __init sysctr_clockevent_init(void)
-> +{
-> +	to_sysctr.clkevt.cpumask = cpumask_of(0);
-> +
-> +	clockevents_config_and_register(&to_sysctr.clkevt, timer_of_rate(&to_sysctr),
-> +					0xff, 0x7fffffff);
-> +}
-> +
-> +static int __init sysctr_timer_init(struct device_node *np)
-> +{
-> +	int ret = 0;
-> +
-> +	ret = timer_of_init(np, &to_sysctr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	sys_ctr_base = timer_of_base(&to_sysctr);
-> +	cmpcr = readl(sys_ctr_base + CMPCR);
-> +
-> +	sysctr_clockevent_init();
-> +
-> +	return 0;
-> +}
-> +TIMER_OF_DECLARE(sysctr_timer, "nxp,sysctr-timer", sysctr_timer_init);
-> 
-
-
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+RnJvbTogQ2xhdWRpdSBCZXpuZWEgPGNsYXVkaXUuYmV6bmVhQG1pY3JvY2hpcC5jb20+DQoNCkhp
+LA0KDQpUaGlzIHNlcmllcyBhZGQgc2xvdyBjbG9jayBzdXBwb3J0IGZvciBTQU05WDYwLiBBcGFy
+dCBmcm9tIHByZXZpb3VzIElQcywgdGhpcw0Kb25lIHVzZXMgZGlmZmVyZW50IG9mZnNldHMgaW4g
+Y29udHJvbCByZWdpc3RlciBmb3IgZGlmZmVyZW50IGZ1bmN0aW9uYWxpdGllcy4NClRoZSBzZXJp
+ZXMgYWRhcHQgY3VycmVudCBkcml2ZXIgdG8gd29yayBmb3IgYWxsIElQcyB1c2luZyBwZXIgSVAN
+CmNvbmZpZ3VyYXRpb25zIGluaXRpYWxpemVkIGF0IHByb2JlLg0KDQpUaGFuayB5b3UsDQpDbGF1
+ZGl1IEJlem5lYQ0KDQpDaGFuZ2VzIGluIHY0Og0KLSByZW1vdmUgbWFjcm9zIHdoaWNoIHdlcmUg
+dXNlZCB0byBhY2Nlc3MgSVAgc3BlY2lmaWMgYml0cyBmb3IgY29udHJvbA0KICByZWdpc3Rlcg0K
+LSBjb2xsZWN0IEFja2VkLWJ5LCBSZXZpZXdlZC1ieSB0YWdzDQoNCkNoYW5nZXMgaW4gdjM6DQot
+IGFkZCBwYXRjaCAxLzEgdGhhdCByZW1vdmUgYnlwYXNzIGNvZGUgaW4gdGhlIGNvZGUgc3BlY2lm
+aWMgdG8gU0FNQTVENA0KICAodGhlcmUgaXMgbm8gYnlwYXNzIHN1cHBvcnQgb24gU0FNQTVENCkN
+Ci0gYWRhcHQgcmV2aWV3IGNvbW1lbnRzDQotIHJlZ2lzdGVyIGNsb2NrIHdpdGggb2ZfY2xrX2h3
+X29uZWNlbGxfZ2V0IHRvIGVtcGhhc2l6ZSB0aGF0IHRoaXMgSVAgaGFzDQogIDIgb3V0cHV0IGNs
+b2NrcyBNRF9TTEtDIGFuZCBURF9TTENLIChJIGNvbnNpZGVyZWQgbm90IG5lY2Vzc2FyeSB0bw0K
+ICBpbnRyb2R1Y2UgbmV3IGNvbnN0YW50cyB0byBiZSBzaGFyZWQgYi93IGRyaXZlciBhbmQgRFQg
+YmluZGluZ3M7IGlmDQogIHlvdSBjb25zaWRlciBvdGhlcndpc2UsIGxldCBtZSBrbm93KQ0KLSBh
+ZGFwdCBkdC1iaW5kaW5nIHBhdGNoIHdpdGggY2xvY2stY2VsbHMgY2hhbmdlcyAodGh1cyBkaWRu
+J3QgaW50cm9kdWNlZA0KICBSZXZpZXdlZC1ieSB0YWcpDQotIHJlbmFtZWQgc3RydWN0IGNsa19z
+bG93X29mZnNldHMgdG8gc3RydWN0IGNsa19zbG93X2JpdHMgYW5kIHRoZQ0KICBjb3JyZXNwb25k
+aW5nIGluc3RhbmNlcyBvZiBpdA0KDQpDaGFuZ2VzIGluIHYyOg0KLSBzcGxpdCBwYXRjaCAxLzEg
+ZnJvbSB2MSBpbiAyIHBhdGNoZXM6IG9uZSBhZGRpbmcgcmVnaXN0ZXIgYml0IG9mZnNldHMNCiAg
+c3VwcG9ydCAocGF0Y2ggMS8zIGZyb20gdGhpcyBzZXJpZXMpLCBvbmUgYWRkaW5nIHN1cHBvcnQg
+Zm9yIFNBTTlYNjANCiAgKHBhdGNoIDIvMyBmcm9tIHRoaXMgc2VyaWVzKQ0KLSBmaXggY29tcGF0
+aWJsZSBzdHJpbmcgZnJvbSAibWljcm9jaGlwLGF0OTFzYW05eDYwLXNja2MiIHRvDQogICJtaWNy
+b2NoaXAsc2FtOXg2MC1zY2tjIg0KDQpDbGF1ZGl1IEJlem5lYSAoNCk6DQogIGNsazogYXQ5MTog
+c2NrYzogc2FtYTVkNCBoYXMgbm8gYnlwYXNzIHN1cHBvcnQNCiAgY2xrOiBhdDkxOiBzY2tjOiBh
+ZGQgc3VwcG9ydCB0byBzcGVjaWZ5IHJlZ2lzdGVycyBiaXQgb2Zmc2V0cw0KICBkdC1iaW5kaW5n
+czogY2xrOiBhdDkxOiBhZGQgYmluZGluZ3MgZm9yIFNBTTlYNjAncyBzbG93IGNsb2NrDQogICAg
+Y29udHJvbGxlcg0KICBjbGs6IGF0OTE6IHNja2M6IGFkZCBzdXBwb3J0IGZvciBTQU05WDYwDQoN
+CiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9hdDkxLWNsb2NrLnR4dCAgICAgICB8ICAg
+NyArLQ0KIGRyaXZlcnMvY2xrL2F0OTEvc2NrYy5jICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHwgMTczICsrKysrKysrKysrKysrKystLS0tLQ0KIDIgZmlsZXMgY2hhbmdlZCwgMTM5IGluc2Vy
+dGlvbnMoKyksIDQxIGRlbGV0aW9ucygtKQ0KDQotLSANCjIuNy40DQoNCg==
