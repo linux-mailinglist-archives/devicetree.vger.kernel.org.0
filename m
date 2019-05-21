@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6638A245FE
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 04:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F02EB2460F
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 04:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727599AbfEUCaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 22:30:30 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:9611 "EHLO
+        id S1727078AbfEUCsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 22:48:11 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:9478 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727613AbfEUCaa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 22:30:30 -0400
-X-UUID: aaf9d9b149044d459b9dfb05ac2c860e-20190521
-X-UUID: aaf9d9b149044d459b9dfb05ac2c860e-20190521
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        with ESMTP id S1726511AbfEUCsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 22:48:11 -0400
+X-UUID: e6d0df765aa1460b99c87b31c6b4cfdc-20190521
+X-UUID: e6d0df765aa1460b99c87b31c6b4cfdc-20190521
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1668941089; Tue, 21 May 2019 10:30:23 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs03n2.mediatek.inc (172.21.101.182) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 21 May 2019 10:30:21 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+        with ESMTP id 1610734910; Tue, 21 May 2019 10:48:07 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs03n1.mediatek.inc (172.21.101.181) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 21 May 2019 10:48:05 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 21 May 2019 10:30:21 +0800
-Message-ID: <1558405821.25526.2.camel@mtksdaap41>
-Subject: Re: [PATCH v7 08/12] soc: mediatek: cmdq: change the type of input
- parameter
+ Transport; Tue, 21 May 2019 10:48:05 +0800
+Message-ID: <1558406885.25526.3.camel@mtksdaap41>
+Subject: Re: [PATCH v7 09/12] soc: mediatek: cmdq: define the instruction
+ struct
 From:   CK Hu <ck.hu@mediatek.com>
 To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
 CC:     Jassi Brar <jassisinghbrar@gmail.com>,
@@ -46,15 +46,14 @@ CC:     Jassi Brar <jassisinghbrar@gmail.com>,
         Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
         Houlong Wei <houlong.wei@mediatek.com>,
         <ginny.chen@mediatek.com>
-Date:   Tue, 21 May 2019 10:30:21 +0800
-In-Reply-To: <20190521011108.40428-9-bibby.hsieh@mediatek.com>
+Date:   Tue, 21 May 2019 10:48:05 +0800
+In-Reply-To: <20190521011108.40428-10-bibby.hsieh@mediatek.com>
 References: <20190521011108.40428-1-bibby.hsieh@mediatek.com>
-         <20190521011108.40428-9-bibby.hsieh@mediatek.com>
+         <20190521011108.40428-10-bibby.hsieh@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: E88ADBB64ED6F6756962BB9AC0D0364B8ABFDF368B7F2FE8B55D8484F273F8A92000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -64,103 +63,210 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi, Bibby:
 
 On Tue, 2019-05-21 at 09:11 +0800, Bibby Hsieh wrote:
-> According to the cmdq hardware design, the subsys is u8,
-> the offset is u16 and the event id is u16.
-> This patch changes the type of subsys, offset and event id
-> to the correct type.
+> Define an instruction structure for gce driver to append command.
+> This structure can make the client's code more readability.
 
 Reviewed-by: CK Hu <ck.hu@mediatek.com>
 
 > 
 > Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > ---
->  drivers/soc/mediatek/mtk-cmdq-helper.c | 10 +++++-----
->  include/linux/soc/mediatek/mtk-cmdq.h  | 10 +++++-----
->  2 files changed, 10 insertions(+), 10 deletions(-)
+>  drivers/soc/mediatek/mtk-cmdq-helper.c   | 103 +++++++++++++++--------
+>  include/linux/mailbox/mtk-cmdq-mailbox.h |   2 +
+>  2 files changed, 72 insertions(+), 33 deletions(-)
 > 
 > diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> index 082b8978651e..7aa0517ff2f3 100644
+> index 7aa0517ff2f3..0886c4967ca4 100644
 > --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
 > +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> @@ -136,7 +136,7 @@ static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
->  	return 0;
+> @@ -9,12 +9,24 @@
+>  #include <linux/mailbox_controller.h>
+>  #include <linux/soc/mediatek/mtk-cmdq.h>
+>  
+> -#define CMDQ_ARG_A_WRITE_MASK	0xffff
+>  #define CMDQ_WRITE_ENABLE_MASK	BIT(0)
+>  #define CMDQ_EOC_IRQ_EN		BIT(0)
+>  #define CMDQ_EOC_CMD		((u64)((CMDQ_CODE_EOC << CMDQ_OP_CODE_SHIFT)) \
+>  				<< 32 | CMDQ_EOC_IRQ_EN)
+>  
+> +struct cmdq_instruction {
+> +	union {
+> +		u32 value;
+> +		u32 mask;
+> +	};
+> +	union {
+> +		u16 offset;
+> +		u16 event;
+> +	};
+> +	u8 subsys;
+> +	u8 op;
+> +};
+> +
+>  static void cmdq_client_timeout(struct timer_list *t)
+>  {
+>  	struct cmdq_client *client = from_timer(client, t, timer);
+> @@ -110,10 +122,8 @@ void cmdq_pkt_destroy(struct cmdq_pkt *pkt)
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_destroy);
+>  
+> -static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
+> -				   u32 arg_a, u32 arg_b)
+> +static struct cmdq_instruction *cmdq_pkt_append_command(struct cmdq_pkt *pkt)
+>  {
+> -	u64 *cmd_ptr;
+>  
+>  	if (unlikely(pkt->cmd_buf_size + CMDQ_INST_SIZE > pkt->buf_size)) {
+>  		/*
+> @@ -127,81 +137,108 @@ static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
+>  		pkt->cmd_buf_size += CMDQ_INST_SIZE;
+>  		WARN_ONCE(1, "%s: buffer size %u is too small !\n",
+>  			__func__, (u32)pkt->buf_size);
+> -		return -ENOMEM;
+> +		return NULL;
+>  	}
+> -	cmd_ptr = pkt->va_base + pkt->cmd_buf_size;
+> -	(*cmd_ptr) = (u64)((code << CMDQ_OP_CODE_SHIFT) | arg_a) << 32 | arg_b;
+> +
+>  	pkt->cmd_buf_size += CMDQ_INST_SIZE;
+>  
+> -	return 0;
+> +	return pkt->va_base + pkt->cmd_buf_size - CMDQ_INST_SIZE;
 >  }
 >  
-> -int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 subsys, u32 offset, u32 value)
-> +int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value)
+>  int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value)
 >  {
->  	u32 arg_a = (offset & CMDQ_ARG_A_WRITE_MASK) |
->  		    (subsys << CMDQ_SUBSYS_SHIFT);
-> @@ -145,8 +145,8 @@ int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 subsys, u32 offset, u32 value)
+> -	u32 arg_a = (offset & CMDQ_ARG_A_WRITE_MASK) |
+> -		    (subsys << CMDQ_SUBSYS_SHIFT);
+> +	struct cmdq_instruction *inst;
+> +
+> +	inst = cmdq_pkt_append_command(pkt);
+> +	if (!inst)
+> +		return -ENOMEM;
+> +
+> +	inst->op = CMDQ_CODE_WRITE;
+> +	inst->value = value;
+> +	inst->offset = offset;
+> +	inst->subsys = subsys;
+>  
+> -	return cmdq_pkt_append_command(pkt, CMDQ_CODE_WRITE, arg_a, value);
+> +	return 0;
 >  }
 >  EXPORT_SYMBOL(cmdq_pkt_write);
 >  
-> -int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 subsys,
-> -			u32 offset, u32 value, u32 mask)
-> +int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
-> +			u16 offset, u32 value, u32 mask)
+>  int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
+>  			u16 offset, u32 value, u32 mask)
 >  {
+> +	struct cmdq_instruction *inst;
 >  	u32 offset_mask = offset;
->  	int err = 0;
-> @@ -161,7 +161,7 @@ int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 subsys,
+> -	int err = 0;
+>  
+>  	if (mask != 0xffffffff) {
+> -		err = cmdq_pkt_append_command(pkt, CMDQ_CODE_MASK, 0, ~mask);
+> +		inst = cmdq_pkt_append_command(pkt);
+> +		if (!inst)
+> +			return -ENOMEM;
+> +
+> +		inst->op = CMDQ_CODE_MASK;
+> +		inst->mask = ~mask;
+>  		offset_mask |= CMDQ_WRITE_ENABLE_MASK;
+>  	}
+> -	err |= cmdq_pkt_write(pkt, value, subsys, offset_mask);
+>  
+> -	return err;
+> +	return cmdq_pkt_write(pkt, subsys, offset_mask, value);
 >  }
 >  EXPORT_SYMBOL(cmdq_pkt_write_mask);
 >  
-> -int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u32 event)
-> +int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event)
+>  int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event)
 >  {
->  	u32 arg_b;
+> -	u32 arg_b;
+> +	struct cmdq_instruction *inst;
 >  
-> @@ -181,7 +181,7 @@ int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u32 event)
+>  	if (event >= CMDQ_MAX_EVENT)
+>  		return -EINVAL;
+>  
+> -	/*
+> -	 * WFE arg_b
+> -	 * bit 0-11: wait value
+> -	 * bit 15: 1 - wait, 0 - no wait
+> -	 * bit 16-27: update value
+> -	 * bit 31: 1 - update, 0 - no update
+> -	 */
+> -	arg_b = CMDQ_WFE_UPDATE | CMDQ_WFE_WAIT | CMDQ_WFE_WAIT_VALUE;
+> +	inst = cmdq_pkt_append_command(pkt);
+> +	if (!inst)
+> +		return -ENOMEM;
+> +
+> +	inst->op = CMDQ_CODE_WFE;
+> +	inst->value = CMDQ_WFE_OPTION;
+> +	inst->event = event;
+>  
+> -	return cmdq_pkt_append_command(pkt, CMDQ_CODE_WFE, event, arg_b);
+> +	return 0;
 >  }
 >  EXPORT_SYMBOL(cmdq_pkt_wfe);
 >  
-> -int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u32 event)
-> +int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event)
+>  int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event)
 >  {
+> +	struct cmdq_instruction *inst;
+> +
 >  	if (event >= CMDQ_MAX_EVENT)
 >  		return -EINVAL;
-> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
-> index 39d813dde4b4..9618debb9ceb 100644
-> --- a/include/linux/soc/mediatek/mtk-cmdq.h
-> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
-> @@ -66,7 +66,7 @@ void cmdq_pkt_destroy(struct cmdq_pkt *pkt);
->   *
->   * Return: 0 for success; else the error code is returned
->   */
-> -int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 subsys, u32 offset, u32 value);
-> +int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value);
 >  
->  /**
->   * cmdq_pkt_write_mask() - append write command with mask to the CMDQ packet
-> @@ -78,8 +78,8 @@ int cmdq_pkt_write(struct cmdq_pkt *pkt, u32 subsys, u32 offset, u32 value);
->   *
->   * Return: 0 for success; else the error code is returned
->   */
-> -int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 subsys,
-> -			u32 offset, u32 value, u32 mask);
-> +int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
-> +			u16 offset, u32 value, u32 mask);
+> -	return cmdq_pkt_append_command(pkt, CMDQ_CODE_WFE, event,
+> -				       CMDQ_WFE_UPDATE);
+> +	inst = cmdq_pkt_append_command(pkt);
+> +	if (!inst)
+> +		return -ENOMEM;
+> +
+> +	inst->op = CMDQ_CODE_WFE;
+> +	inst->value = CMDQ_WFE_UPDATE;
+> +	inst->event = event;
+> +
+> +	return 0;
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_clear_event);
 >  
->  /**
->   * cmdq_pkt_wfe() - append wait for event command to the CMDQ packet
-> @@ -88,7 +88,7 @@ int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u32 subsys,
->   *
->   * Return: 0 for success; else the error code is returned
->   */
-> -int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u32 event);
-> +int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event);
+>  static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
+>  {
+> -	int err;
+> +	struct cmdq_instruction *inst;
+> +
+> +	inst = cmdq_pkt_append_command(pkt);
+> +	if (!inst)
+> +		return -ENOMEM;
 >  
->  /**
->   * cmdq_pkt_clear_event() - append clear event command to the CMDQ packet
-> @@ -97,7 +97,7 @@ int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u32 event);
->   *
->   * Return: 0 for success; else the error code is returned
->   */
-> -int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u32 event);
-> +int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event);
+> -	/* insert EOC and generate IRQ for each command iteration */
+> -	err = cmdq_pkt_append_command(pkt, CMDQ_CODE_EOC, 0, CMDQ_EOC_IRQ_EN);
+> +	inst->op = CMDQ_CODE_EOC;
+> +	inst->value = CMDQ_EOC_IRQ_EN;
 >  
->  /**
->   * cmdq_pkt_flush_async() - trigger CMDQ to asynchronously execute the CMDQ
+> -	/* JUMP to end */
+> -	err |= cmdq_pkt_append_command(pkt, CMDQ_CODE_JUMP, 0, CMDQ_JUMP_PASS);
+> +	inst = cmdq_pkt_append_command(pkt);
+> +	if (!inst)
+> +		return -ENOMEM;
+> +
+> +	inst->op = CMDQ_CODE_JUMP;
+> +	inst->value = CMDQ_JUMP_PASS;
+>  
+> -	return err;
+> +	return 0;
+>  }
+>  
+>  static void cmdq_pkt_flush_async_cb(struct cmdq_cb_data data)
+> diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> index 911475da7a53..c8adedefaf42 100644
+> --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
+> +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> @@ -19,6 +19,8 @@
+>  #define CMDQ_WFE_UPDATE			BIT(31)
+>  #define CMDQ_WFE_WAIT			BIT(15)
+>  #define CMDQ_WFE_WAIT_VALUE		0x1
+> +#define CMDQ_WFE_OPTION			(CMDQ_WFE_UPDATE | CMDQ_WFE_WAIT | \
+> +					CMDQ_WFE_WAIT_VALUE)
+>  /** cmdq event maximum */
+>  #define CMDQ_MAX_EVENT			0x3ff
+>  
 
 
