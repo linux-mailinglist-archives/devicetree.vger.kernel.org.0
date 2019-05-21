@@ -2,137 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A0B24C7D
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC1324C91
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbfEUKOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 06:14:34 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33402 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726344AbfEUKOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 06:14:34 -0400
-Received: by mail-wm1-f67.google.com with SMTP id c66so1966173wme.0
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 03:14:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3voex/jBEW9v9dc4oWg0TTQi5rLILcSF0U6L8KVM4UE=;
-        b=PIkr1V2QTJYmRpwDqmjYbI060u3HF5TNMycLref/026rLmSbRIE7Ka3CfSC0T7nhMP
-         10OOJQR+wKMIaENtCO/He9lOoeuV1e7tS4/PJhUadKYY8cy4LqVtbdZoY3xnfvRV6exh
-         q3WKxM1k+H5UeCAgy93LelnODqeoDVHq7C4BBV1n3d/nEsoXVFMIYX3lnI5LyY2fY9M2
-         ZnVmKYnuDFAxRTk+74a99dxd4+MLk6YTBY0J9yXVG3DCgKFXEOTJMhxwoRw5y781v4+l
-         +I5uN3TJ7tbHnAo2YJx6a4UQftob+IwzxxhotKsYiuiqN3fsdtHC3aZuyGmOWNtC0Cw8
-         QnnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3voex/jBEW9v9dc4oWg0TTQi5rLILcSF0U6L8KVM4UE=;
-        b=kbhkQYyfh7ExdY2HN6AUDZxW02XVVGEvKydUDnr2KqpgoQQ3ksy54rjhnb5yx/FINN
-         b7vEmZSkDIUNHJyTkfLKJfdix1u6joYpUpG14JdiFMBoyO7fkrx2jJoUhG/A1rYiU5f+
-         wZzHeY/OZvZM+55cix+pTGQ831Ecdh/So/9LC9wsSxH1CagynceOY9FFEpLQ1eoKSArf
-         aF1VQYbR9aEqtspmAIozfwdM5pTZPwbOu+Eeq9zJXJLVHrdMbDQy6xcQmgGmlokJBGBm
-         /U5/jZ1OzELsWpwlGQi52oi5fEsZMRFmjwndkIsCnI+OS4R7KQE1HQYxw5HOYaUyDDc6
-         qBUg==
-X-Gm-Message-State: APjAAAUKgotM2FxiF2WNMt9ifLjYUBVi2mOi6vBPZYB02lICuLjUw4rx
-        BstHiu1RvKovomiYPBHg8tdkxT5o/8QltQ==
-X-Google-Smtp-Source: APXvYqyo+0aEb88Qh52g+hWsQkGu2zF7ZMonwwWcENIiggHq3E+mgnk4XyzZ4R3uURr+ZjJHGnE9Bw==
-X-Received: by 2002:a7b:ca4c:: with SMTP id m12mr2717082wml.31.1558433671197;
-        Tue, 21 May 2019 03:14:31 -0700 (PDT)
-Received: from [10.1.203.87] (nat-wifi.sssup.it. [193.205.81.22])
-        by smtp.googlemail.com with ESMTPSA id 20sm3441976wmj.36.2019.05.21.03.14.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 03:14:30 -0700 (PDT)
-Subject: Re: [PATCH v2 9/9] arm64: dts: msm8996: Add proper capacity scaling
- for the cpus
-To:     Amit Kucheria <amit.kucheria@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        niklas.cassel@linaro.org, marc.w.gonzalez@free.fr,
-        sibis@codeaurora.org, Andy Gross <andy.gross@linaro.org>,
-        David Brown <david.brown@linaro.org>,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org
-References: <cover.1558430617.git.amit.kucheria@linaro.org>
- <5224535a7ef5b257e3baa698991bf6deeefccc36.1558430617.git.amit.kucheria@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <6636af52-4f29-2869-7f9f-6d6277af6712@linaro.org>
-Date:   Tue, 21 May 2019 12:14:29 +0200
+        id S1726138AbfEUKWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 06:22:18 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:36139 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726006AbfEUKWR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 06:22:17 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4LAC0jl012556;
+        Tue, 21 May 2019 12:22:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
+ : from : message-id : date : mime-version : in-reply-to : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=uBeTxmf+H4C1rTAhfKgga+Zi5F1l6OoU1pJr8tM6Vkw=;
+ b=rfNoC2Oq1Jrf+4wUp+9/dXRC+gN5yQWchGC1N7jqWp5ZLRTH2Uo3GAV3B9liim8ihTaI
+ WNmwmu7hIW+SlHUBzC3ROixRqzRjJ/id/M44gp6wnXUmhnvFIEKcrZff/N8y0FhXY4Cq
+ Tns0q54stxItIPQprzVsO/ftovA+HHZbHoR4ETl053LF9UbdAkAqZb6kzRNb9lhySzS3
+ CpuOsSr0UTDPYJY5QWSsvXECNJ+pGtUHP8b0ZKDvAUj3hTVR0KnyC4NlAxzJ8LTV9TaL
+ 64LhytZtpsuddaooSGJAvmFWy9iXpU7e10n9D91LpwT3iqxFn4mHNtROPeMkqFR5XItE Ww== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2sj7tu0qsj-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 21 May 2019 12:22:06 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2713334;
+        Tue, 21 May 2019 10:22:06 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 05B862649;
+        Tue, 21 May 2019 10:22:06 +0000 (GMT)
+Received: from [10.48.0.204] (10.75.127.50) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 May
+ 2019 12:22:05 +0200
+Subject: Re: [PATCH v1 0/2] enable display on stm32mp157c-dk1 board
+To:     =?UTF-8?Q?Yannick_Fertr=c3=a9?= <yannick.fertre@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+References: <1553863438-6720-1-git-send-email-yannick.fertre@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <5864f09f-4cd3-cadc-2210-4946142e582d@st.com>
+Date:   Tue, 21 May 2019 12:22:04 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <5224535a7ef5b257e3baa698991bf6deeefccc36.1558430617.git.amit.kucheria@linaro.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1553863438-6720-1-git-send-email-yannick.fertre@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG8NODE3.st.com (10.75.127.24) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-21_01:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2019 11:35, Amit Kucheria wrote:
-> msm8996 features 4 cpus - 2 in each cluster. However, all cpus implement
-> the same microarchitecture and the two clusters only differ in the
-> maximum frequency attainable by the CPUs.
-> 
-> Add capacity-dmips-mhz property to allow the topology code to determine
-> the actual capacity by taking into account the highest frequency for
-> each CPU.
-> 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> Suggested-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Hi Yannick
 
-Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
+On 3/29/19 1:43 PM, Yannick Fertré wrote:
+> Enable display on stm32mp157c-dk1 board. I2c node must be created first.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 4f2fb7885f39..e0e8f30ce11a 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -96,6 +96,7 @@
->  			reg = <0x0 0x0>;
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_0>;
->  			L2_0: l2-cache {
->  			      compatible = "cache";
-> @@ -109,6 +110,7 @@
->  			reg = <0x0 0x1>;
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_0>;
->  		};
->  
-> @@ -118,6 +120,7 @@
->  			reg = <0x0 0x100>;
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_1>;
->  			L2_1: l2-cache {
->  			      compatible = "cache";
-> @@ -131,6 +134,7 @@
->  			reg = <0x0 0x101>;
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_1>;
->  		};
->  
+> Yannick Fertré (2):
+>    ARM: dts: stm32: Add I2C 1 and 4 config for stm32mp157a-dk1
+>    ARM: dts: stm32: enable display on stm32mp157c-dk1 board
+> 
+>   arch/arm/boot/dts/stm32mp157a-dk1.dts | 78 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 78 insertions(+)
+> 
+> --
+> 2.7.4
 > 
 
+Series applied on stm32-next.
 
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Regards
+Alex
