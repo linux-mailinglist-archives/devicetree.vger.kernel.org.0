@@ -2,70 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B32C25045
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 15:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 695A52504C
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 15:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728431AbfEUN2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 09:28:15 -0400
-Received: from mx1.redhat.com ([209.132.183.28]:49766 "EHLO mx1.redhat.com"
+        id S1727812AbfEUNaQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 May 2019 09:30:16 -0400
+Received: from unicorn.mansr.com ([81.2.72.234]:37392 "EHLO unicorn.mansr.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728415AbfEUN2P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 09:28:15 -0400
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com [10.5.11.12])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mx1.redhat.com (Postfix) with ESMTPS id C878D300BEAA;
-        Tue, 21 May 2019 13:28:14 +0000 (UTC)
-Received: from plouf.redhat.com (ovpn-116-49.ams2.redhat.com [10.36.116.49])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id 2ECE6610A1;
-        Tue, 21 May 2019 13:28:10 +0000 (UTC)
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        KT Liao <kt.liao@emc.com.tw>, Rob Herring <robh+dt@kernel.org>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Subject: [PATCH v2 10/10] Input: elantech: remove P52 from SMBus blacklist
-Date:   Tue, 21 May 2019 15:27:12 +0200
-Message-Id: <20190521132712.2818-11-benjamin.tissoires@redhat.com>
-In-Reply-To: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
-References: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
+        id S1726995AbfEUNaQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 09:30:16 -0400
+Received: by unicorn.mansr.com (Postfix, from userid 51770)
+        id 6E34217102; Tue, 21 May 2019 14:30:14 +0100 (BST)
+From:   =?iso-8859-1?Q?M=E5ns_Rullg=E5rd?= <mans@mansr.com>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     linux-usb@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/5] Exynos EHCI/OHCI: resolve conflict with the generic USB device bindings
+References: <CGME20190521120015eucas1p1da2f3f32d6b8af8cb550463686fd4e12@eucas1p1.samsung.com>
+        <20190521115849.9882-1-m.szyprowski@samsung.com>
+Date:   Tue, 21 May 2019 14:30:14 +0100
+In-Reply-To: <20190521115849.9882-1-m.szyprowski@samsung.com> (Marek
+        Szyprowski's message of "Tue, 21 May 2019 13:58:44 +0200")
+Message-ID: <yw1xk1ekszo9.fsf@mansr.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/25.3 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.40]); Tue, 21 May 2019 13:28:14 +0000 (UTC)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The P52 now works correctly over SMBus. Let's use this driver so we can
-update all five fingers every 8ms.
+Marek Szyprowski <m.szyprowski@samsung.com> writes:
 
-Signed-off-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> Dear All,
+>
+> Commit 69bec7259853 ("USB: core: let USB device know device node") added
+> support for attaching devicetree node for USB devices. Those nodes are
+> children of their USB host controller. However Exynos EHCI and OHCI
+> driver bindings already define child-nodes for each physical root hub
+> port and assigns respective PHY controller and parameters to them. This
+> leads to the conflict. A workaround for it has been merged as commit
+> 01d4071486fe ("usb: exynos: add workaround for the USB device bindings
+> conflict"), but it disabled support for USB device binding for Exynos
+> EHCI/OHCI controllers.
+>
+> This patchset tries to resolve this binding conflict by changing Exynos
+> EHCI/OHCI bindings: PHYs are moved from the sub-nodes to a standard array
+> under the 'phys' property. Such solution has been suggested by Måns
+> Rullgård in the following thread: https://lkml.org/lkml/2019/5/13/228
+>
+> To keep everything working during the transitional time, the changes has
+> been split into 2 steps. First step (patches 1-3) need to be merged before
+> the second one (patches 4-5). Patches from each step can be merged to
+> respective trees without any dependencies - the only requirement is that
+> second step has to be merged after merging all patches from the first one.
+>
+> This patchset has been tested on various Exynos4 boards with different
+> USB host controller configurations (Odroids family: X2, U3, XU3).
+>
+> Best regards
+> Marek Szyprowski
+> Samsung R&D Institute Poland
+>
+> Marek Szyprowski (5):
+>   dt-bindings: switch Exynos EHCI/OHCI bindings to use array of generic
+>     PHYs
+>   ARM: dts: exynos: Add array of generic PHYs to EHCI/OHCI devices
+>   usb: exynos: add support for getting PHYs from the standard dt array
+>   ARM: dts: exynos: Remove obsolete port sub-nodes from EHCI/OHCI
+>     devices
+>   usb: exynos: Remove support for legacy PHY bindings
 
---
+You could retain compatibility with old devicetrees (which may be
+useful) by using the "phys" property if it exists and falling back
+on the old method if it doesn't.  Then you would get this sequence
+of changes:
 
-new in v2
----
- drivers/input/mouse/elantech.c | 2 --
- 1 file changed, 2 deletions(-)
+1. Update binding definition.
+2. Support new binding in driver, with fallback to old.
+3. Switch dts files to new binding.
 
-diff --git a/drivers/input/mouse/elantech.c b/drivers/input/mouse/elantech.c
-index ca10fd97d9d5..4a41e5f3074e 100644
---- a/drivers/input/mouse/elantech.c
-+++ b/drivers/input/mouse/elantech.c
-@@ -1779,8 +1779,6 @@ static const char * const i2c_blacklist_pnp_ids[] = {
- 	 * These are known to not be working properly as bits are missing
- 	 * in elan_i2c.
- 	 */
--	"LEN2131", /* ThinkPad P52 w/ NFC */
--	"LEN2132", /* ThinkPad P52 */
- 	"LEN2133", /* ThinkPad P72 w/ NFC */
- 	"LEN2134", /* ThinkPad P72 */
- 	NULL
 -- 
-2.21.0
-
+Måns Rullgård
