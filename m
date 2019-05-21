@@ -2,162 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74188258B8
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AED74258D3
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727222AbfEUUPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 16:15:00 -0400
-Received: from mail-eopbgr140059.outbound.protection.outlook.com ([40.107.14.59]:57189
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727046AbfEUUPA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 16:15:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=igtS1UARn+GG/zHkLD/vh5/T59TX0yavbU/VEOUS60I=;
- b=lOHlEvCEduUseJpjuhHzv2TFf6ZYW7Y3iQCis2CRKqML+vQMfJ658VEFWwdW//jUDe/E1WuWvOaxZA4EtqAr096PYEJB7mL/mp7rI2pnEU0LN87sPYMS8ddFrNxNPgPIpKN26SXlGuTJ8o3spnlvbt1XfNbncHa3IZrKIh6SWho=
-Received: from AM6PR04MB5863.eurprd04.prod.outlook.com (20.179.1.11) by
- AM6PR04MB5079.eurprd04.prod.outlook.com (20.177.34.143) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.18; Tue, 21 May 2019 20:14:53 +0000
-Received: from AM6PR04MB5863.eurprd04.prod.outlook.com
- ([fe80::29f1:bb22:4881:3cbd]) by AM6PR04MB5863.eurprd04.prod.outlook.com
- ([fe80::29f1:bb22:4881:3cbd%4]) with mapi id 15.20.1900.020; Tue, 21 May 2019
- 20:14:53 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Chuanhua Han <chuanhua.han@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ying Zhang <ying.zhang22455@nxp.com>
-Subject: RE: [EXT] Re: [PATCH] arm64: dts: ls1028a: fix watchdog device node
-Thread-Topic: [EXT] Re: [PATCH] arm64: dts: ls1028a: fix watchdog device node
-Thread-Index: AQHVBjWLXx4zf+tY20C9RmzfaaLbEqZupocAgAA7pYCAAQj3MIAFssaAgAB4RGA=
-Date:   Tue, 21 May 2019 20:14:53 +0000
-Message-ID: <AM6PR04MB58631458E6D851E4D83A77ED8F070@AM6PR04MB5863.eurprd04.prod.outlook.com>
-References: <20190509070657.18281-1-chuanhua.han@nxp.com>
- <20190517023728.GA15856@dragon>
- <AM6PR04MB4357C78FCEBA1B00AA42ED2E970B0@AM6PR04MB4357.eurprd04.prod.outlook.com>
- <AM6PR04MB586341334E62A663EE5E8BD18F0B0@AM6PR04MB5863.eurprd04.prod.outlook.com>
- <AM6PR04MB435758E1498B6A2BE0C0ACE397070@AM6PR04MB4357.eurprd04.prod.outlook.com>
-In-Reply-To: <AM6PR04MB435758E1498B6A2BE0C0ACE397070@AM6PR04MB4357.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leoyang.li@nxp.com; 
-x-originating-ip: [64.157.242.222]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 72ead77c-158e-4233-19c6-08d6de28fca1
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB5079;
-x-ms-traffictypediagnostic: AM6PR04MB5079:
-x-microsoft-antispam-prvs: <AM6PR04MB507979268FE077D860B1ADAD8F070@AM6PR04MB5079.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1332;
-x-forefront-prvs: 0044C17179
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(39860400002)(396003)(346002)(376002)(136003)(13464003)(189003)(199004)(54906003)(25786009)(74316002)(110136005)(53936002)(4326008)(86362001)(6506007)(102836004)(7696005)(6116002)(3846002)(53546011)(6436002)(52536014)(76176011)(476003)(81156014)(81166006)(305945005)(8676002)(486006)(7736002)(6246003)(256004)(14444005)(8936002)(66066001)(11346002)(446003)(66476007)(76116006)(73956011)(66446008)(64756008)(66556008)(66946007)(186003)(316002)(5660300002)(68736007)(33656002)(26005)(14454004)(71190400001)(71200400001)(55016002)(9686003)(478600001)(99286004)(2906002)(229853002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB5079;H:AM6PR04MB5863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: fJcSXDC9cb2CiSDs7nUj3t/mXRmC07LwUDpSU6MkQaJhvby2GR5tsDPYxlM6Fq0tUeXzsa91FII1Sz28mlSpm9gr/RF6jiLJ6tVd5x9gM+RtyQiE9VBgQv7l/OS+gmKD4+IgKszv3TCTvWNA83p25NHi6FAWonZ5HHX/0v6HHL1QDJmceTS8waMbGpffvbVhd96fTIpaX6NqAIDM4OA/C4Uv5NFIZw+fBmSD+mYvkgC9xM7+T+jSpCM5nY13Y3OCHK+RUpWsZx4yq91zwQuE3tew5sowNDCc2nupXFs/SYKOO88LOQC9a6H0EfoefZuJ0KCkVo9lAisLxncgz5IVnsU6QZa3VImKuhDbNgYW4X9qyFBylNWfHyNisI16SwqQHDyYGOuz23bArztWxLVMun9w5abthpaYsLqO794wn34=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S1727046AbfEUU1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 16:27:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35302 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726766AbfEUU1M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 16:27:12 -0400
+Received: from [192.168.1.31] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F0C952173E;
+        Tue, 21 May 2019 20:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558470431;
+        bh=NhGLw2Ikh5q3GlmFeSktzM0LUjFzNE+SdEyuV/5YM9Y=;
+        h=Subject:To:References:From:Date:In-Reply-To:From;
+        b=Zv6bBsgfRf0MH613LawudX65UPE5LVztvysa+lDoDbQN0fV8oOI2RMIcIhYC5Rv9W
+         IRWpu8UxnoWboLt9NnC8vqdN3Rp5vCSsapihRShxpWhXplwEtqPqygI9fQCi8xMgJk
+         sn/P2qECrOzlWkmjEWS0dEn/kkJ/896m8DQTKadc=
+Subject: Re: [PATCH 3/3] ARM64: dts: stratix10: Add stmmac ptp_ref clock
+To:     dalon.westergreen@linux.intel.com, thor.thayer@linux.intel.com,
+        devicetree@vger.kernel.org
+References: <20190515162058.32368-1-dalon.westergreen@linux.intel.com>
+ <20190515162058.32368-3-dalon.westergreen@linux.intel.com>
+ <cff8dd7f-c617-af6c-cf22-2baa077a9bbb@linux.intel.com>
+ <c444aff8281593bedaa90193dbabefcfd31a187d.camel@linux.intel.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <06397243-94ea-47db-16c1-a4c11e08c3b1@kernel.org>
+Date:   Tue, 21 May 2019 15:27:09 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72ead77c-158e-4233-19c6-08d6de28fca1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2019 20:14:53.6489
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5079
+In-Reply-To: <c444aff8281593bedaa90193dbabefcfd31a187d.camel@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQ2h1YW5odWEgSGFuDQo+
-IFNlbnQ6IFR1ZXNkYXksIE1heSAyMSwgMjAxOSA4OjAwIEFNDQo+IFRvOiBMZW8gTGkgPGxlb3lh
-bmcubGlAbnhwLmNvbT47IFNoYXduIEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz4NCj4gQ2M6IG1h
-cmsucnV0bGFuZEBhcm0uY29tOyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7
-DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwu
-b3JnOyBZaW5nIFpoYW5nDQo+IDx5aW5nLnpoYW5nMjI0NTVAbnhwLmNvbT4NCj4gU3ViamVjdDog
-UkU6IFtFWFRdIFJlOiBbUEFUQ0hdIGFybTY0OiBkdHM6IGxzMTAyOGE6IGZpeCB3YXRjaGRvZyBk
-ZXZpY2Ugbm9kZQ0KPiANCj4gDQo+IA0KPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
-ID4gRnJvbTogTGVvIExpDQo+ID4gU2VudDogMjAxOcTqNdTCMTjI1SA2OjAxDQo+ID4gVG86IENo
-dWFuaHVhIEhhbiA8Y2h1YW5odWEuaGFuQG54cC5jb20+OyBTaGF3biBHdW8NCj4gPiA8c2hhd25n
-dW9Aa2VybmVsLm9yZz4NCj4gPiBDYzogbWFyay5ydXRsYW5kQGFybS5jb207IGxpbnV4LWFybS1r
-ZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
-ZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgWWluZyBaaGFuZw0KPiA+IDx5aW5nLnpo
-YW5nMjI0NTVAbnhwLmNvbT4NCj4gPiBTdWJqZWN0OiBSRTogW0VYVF0gUmU6IFtQQVRDSF0gYXJt
-NjQ6IGR0czogbHMxMDI4YTogZml4IHdhdGNoZG9nDQo+ID4gZGV2aWNlIG5vZGUNCj4gPg0KPiA+
-DQo+ID4NCj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiBGcm9tOiBDaHVh
-bmh1YSBIYW4NCj4gPiA+IFNlbnQ6IEZyaWRheSwgTWF5IDE3LCAyMDE5IDE6MTEgQU0NCj4gPiA+
-IFRvOiBTaGF3biBHdW8gPHNoYXduZ3VvQGtlcm5lbC5vcmc+DQo+ID4gPiBDYzogTGVvIExpIDxs
-ZW95YW5nLmxpQG54cC5jb20+OyBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsgbGludXgtYXJtLQ0KPiA+
-ID4ga2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
-OyBsaW51eC0NCj4gPiA+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IFlpbmcgWmhhbmcgPHlpbmcu
-emhhbmcyMjQ1NUBueHAuY29tPg0KPiA+ID4gU3ViamVjdDogUkU6IFtFWFRdIFJlOiBbUEFUQ0hd
-IGFybTY0OiBkdHM6IGxzMTAyOGE6IGZpeCB3YXRjaGRvZw0KPiA+ID4gZGV2aWNlIG5vZGUNCj4g
-PiA+DQo+ID4gPg0KPiA+ID4NCj4gPiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4g
-PiA+ID4gRnJvbTogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPiA+ID4gPiBTZW50
-OiAyMDE5xOo11MIxN8jVIDEwOjM4DQo+ID4gPiA+IFRvOiBDaHVhbmh1YSBIYW4gPGNodWFuaHVh
-LmhhbkBueHAuY29tPg0KPiA+ID4gPiBDYzogTGVvIExpIDxsZW95YW5nLmxpQG54cC5jb20+OyBt
-YXJrLnJ1dGxhbmRAYXJtLmNvbTsNCj4gPiA+ID4gbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZy
-YWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsNCj4gPiA+ID4gbGludXgta2Vy
-bmVsQHZnZXIua2VybmVsLm9yZzsgWWluZyBaaGFuZyA8eWluZy56aGFuZzIyNDU1QG54cC5jb20+
-DQo+ID4gPiA+IFN1YmplY3Q6IFtFWFRdIFJlOiBbUEFUQ0hdIGFybTY0OiBkdHM6IGxzMTAyOGE6
-IGZpeCB3YXRjaGRvZw0KPiA+ID4gPiBkZXZpY2Ugbm9kZQ0KPiA+ID4gPg0KPiA+ID4gPiBDYXV0
-aW9uOiBFWFQgRW1haWwNCj4gPiA+ID4NCj4gPiA+ID4gT24gVGh1LCBNYXkgMDksIDIwMTkgYXQg
-MDM6MDY6NTdQTSArMDgwMCwgQ2h1YW5odWEgSGFuIHdyb3RlOg0KPiA+ID4gPiA+IGxzMTAyOGEg
-cGxhdGZvcm0gdXNlcyBzcDgwNSB3YXRjaGRvZywgYW5kIHVzZSAxLzE2IHBsYXRmb3JtDQo+ID4g
-PiA+ID4gY2xvY2sgYXMgdGltZXIgY2xvY2ssIHRoaXMgcGF0Y2ggZml4IGRldmljZSB0cmVlIG5v
-ZGUuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBaaGFuZyBZaW5nLTIyNDU1
-IDx5aW5nLnpoYW5nMjI0NTVAbnhwLmNvbT4NCj4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVh
-bmh1YSBIYW4gPGNodWFuaHVhLmhhbkBueHAuY29tPg0KPiA+ID4gPiA+IC0tLQ0KPiA+ID4gPiA+
-ICAuLi4vYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kgfCAxOQ0KPiA+
-ID4gPiA+ICsrKysrKysrKysrKy0tLS0tLS0NCj4gPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEy
-IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBkaWZm
-IC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRzaQ0K
-PiA+ID4gPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRz
-aQ0KPiA+ID4gPiA+IGluZGV4IGIwNDU4MTI0OWYwYi4uMTUxMGIxODU4MjQ2IDEwMDY0NA0KPiA+
-ID4gPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0
-c2kNCj4gPiA+ID4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMx
-MDI4YS5kdHNpDQo+ID4gPiA+ID4gQEAgLTI4NSwxMyArMjg1LDE4IEBADQo+ID4gPiA+ID4gICAg
-ICAgICAgICAgICAgICAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8Mj47DQo+ID4gPiA+ID4gICAg
-ICAgICAgICAgICB9Ow0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gLSAgICAgICAgICAgICB3ZG9nMDog
-d2F0Y2hkb2dAMjNjMDAwMCB7DQo+ID4gPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgIGNvbXBh
-dGlibGUgPSAiZnNsLGxzMTAyOGEtd2R0IiwgImZzbCxpbXgyMS13ZHQiOw0KPiA+ID4gPiA+IC0g
-ICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHgwIDB4MjNjMDAwMCAweDAgMHgxMDAwMD47DQo+
-ID4gPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSA1OQ0K
-PiA+IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ID4gPiA+IC0gICAgICAgICAgICAgICAgICAg
-ICBjbG9ja3MgPSA8JmNsb2NrZ2VuIDQgMT47DQo+ID4gPiA+ID4gLSAgICAgICAgICAgICAgICAg
-ICAgIGJpZy1lbmRpYW47DQo+ID4gPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgIHN0YXR1cyA9
-ICJkaXNhYmxlZCI7DQo+ID4gPiA+ID4gKyAgICAgICAgICAgICBjbHVzdGVyMV9jb3JlMF93YXRj
-aGRvZzogd2R0QGMwMDAwMDAgew0KPiA+ID4gPg0KPiA+ID4gPiBLZWVwICd3YXRjaGRvZycgYXMg
-dGhlIG5vZGUgbmFtZSwNCj4gPiA+IFRoYW5rcyBmb3IgeW91ciByZXBsYXkNCj4gPiA+IERvIHlv
-dSBtZWFuIHJlcGxhY2UgdGhlIKGud2R0oa8gd2l0aCChrndhdGNoZG9noa8/DQo+ID4gPiBhbmQg
-a2VlcCBub2RlcyBzb3J0IGluIHVuaXQtYWRkcmVzcy4NCj4gPiA+IFdoYXQgZG9lcyB0aGlzIG1l
-YW4/DQo+ID4NCj4gPiBUaGF0IG1lYW5zIG9yZGVyIHRoZSBub2RlcyBieSB0aGUgYWRkcmVzc2Vz
-IChlLmcuIGMwMDAwMDAsIGMwMTAwMDApDQo+IFRoZSBjdXJyZW50IG9yZGVyIGlzIGNvcnJlY3Sj
-qFRoZSBmaXJzdCBpcyBjMDAwMDAwLCB0aGVuIGMwMDAwMDCjqS4NCg0KQnV0IHRoZXkgYXJlIGFk
-ZGVkIGFmdGVyIGdwaW9AMjMyMDAwMCBhbmQgYmVmb3JlIHNhdGFAMzIwMDAwMC4NCg0KPiA+DQo+
-ID4gPiA+DQo+ID4gPiA+IFNoYXduDQo+ID4gPiA+DQo+ID4gPiA+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLHNwODA1IiwgImFybSxwcmltZWNlbGwiOw0KPiA+ID4g
-PiA+ICsgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MHgwIDB4YzAwMDAwMCAweDAgMHgxMDAw
-PjsNCj4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZjbG9ja2dlbiA0
-IDE1PiwgPCZjbG9ja2dlbiA0IDE1PjsNCj4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAg
-Y2xvY2stbmFtZXMgPSAiYXBiX3BjbGsiLCAid2RvZ19jbGsiOw0KPiA+ID4gPiA+ICsgICAgICAg
-ICAgICAgfTsNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gKyAgICAgICAgICAgICBjbHVzdGVyMV9j
-b3JlMV93YXRjaGRvZzogd2R0QGMwMTAwMDAgew0KPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICBjb21wYXRpYmxlID0gImFybSxzcDgwNSIsICJhcm0scHJpbWVjZWxsIjsNCj4gPiA+ID4g
-PiArICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MCAweGMwMTAwMDAgMHgwIDB4MTAwMD47
-DQo+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmY2xvY2tnZW4gNCAx
-NT4sIDwmY2xvY2tnZW4gNCAxNT47DQo+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgIGNs
-b2NrLW5hbWVzID0gImFwYl9wY2xrIiwgIndkb2dfY2xrIjsNCj4gPiA+ID4gPiAgICAgICAgICAg
-ICAgIH07DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiAgICAgICAgICAgICAgIHNhdGE6IHNhdGFAMzIw
-MDAwMCB7DQo+ID4gPiA+ID4gLS0NCj4gPiA+ID4gPiAyLjE3LjENCj4gPiA+ID4gPg0K
+
+
+On 5/21/19 8:09 AM, Dalon L Westergreen wrote:
+> On Mon, 2019-05-20 at 11:39 -0500, Thor Thayer wrote:
+>> On 5/15/19 11:20 AM, Dalon Westergreen wrote:
+>>> Add the default stmmac ptp_ref clock for stratix10.  The stmmac
+>>> driver defaults the ptp_ref clock to the main stmmac clock
+>>> if the ptp_ref clock is not set in the devicetree.  This is
+>>> inappropriate for the stratix10.  The default ptp_ref clock is
+>>> STRATIX10_PERI_EMAC_PTP_CLK in the clock manager.
+>>>
+>>> Signed-off-by: Dalon Westergreen <
+>>> dalon.westergreen@linux.intel.com
+>>>>
+>>> ---
+>>>   arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 12 ++++++------
+>>>   1 file changed, 6 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> index adedd563125a..f464e7ba3402 100644
+>>> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> @@ -160,8 +160,8 @@
+>>>   			mac-address = [00 00 00 00 00 00];
+>>>   			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
+>>>   			reset-names = "stmmaceth", "stmmaceth-ocp";
+>>> -			clocks = <&clkmgr STRATIX10_EMAC0_CLK>;
+>>> -			clock-names = "stmmaceth";
+>>> +			clocks = <&clkmgr STRATIX10_EMAC0_CLK>, <&clkmgr
+>>> STRATIX10_PERI_EMAC_PTP_CLK>;
+>>> +			clock-names = "stmmaceth", "ptp_ref";
+>>>   			tx-fifo-depth = <16384>;
+>>>   			rx-fifo-depth = <16384>;
+>>>   			snps,multicast-filter-bins = <256>;
+>>> @@ -176,8 +176,8 @@
+>>>   			mac-address = [00 00 00 00 00 00];
+>>>   			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
+>>>   			reset-names = "stmmaceth", "stmmaceth-ocp";
+>>> -			clocks = <&clkmgr STRATIX10_EMAC1_CLK>;
+>>> -			clock-names = "stmmaceth";
+>>> +			clocks = <&clkmgr STRATIX10_EMAC1_CLK>, <&clkmgr
+>>> STRATIX10_PERI_EMAC_PTP_CLK>;
+>>> +			clock-names = "stmmaceth", "ptp_ref";
+>>>   			tx-fifo-depth = <16384>;
+>>>   			rx-fifo-depth = <16384>;
+>>>   			snps,multicast-filter-bins = <256>;
+>>> @@ -192,8 +192,8 @@
+>>>   			mac-address = [00 00 00 00 00 00];
+>>>   			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
+>>>   			reset-names = "stmmaceth", "stmmaceth-ocp";
+>>> -			clocks = <&clkmgr STRATIX10_EMAC2_CLK>;
+>>> -			clock-names = "stmmaceth";
+>>> +			clocks = <&clkmgr STRATIX10_EMAC2_CLK>, <&clkmgr
+>>> STRATIX10_PERI_EMAC_PTP_CLK>;
+>>> +			clock-names = "stmmaceth", "ptp_ref";
+>>>   			tx-fifo-depth = <16384>;
+>>>   			rx-fifo-depth = <16384>;
+>>>   			snps,multicast-filter-bins = <256>;
+>>>
+>>
+>> Should STRATIX10_EMAC_PTP_CLK be used instead of 
+>> STRATIX10_PERI_EMAC_PTP_CLK since this is the gate of the clkgmr?
+>>
+> 
+> Either can be used, but the default in the hps configuration is the
+> peripheral pll output and not the main pll output.
+> 
+
+I think it should be the emac_ptp_clk. If you look at the clock tree,
+the emac_ptp_clk(50 MHz) and is derived from the peri_emac_ptp_clk(200
+MHz).
+
+You can look at the clock tree by doing a 'cat
+/sys/kernel/debug/clk/clk_summary'.
+
+Dinh
