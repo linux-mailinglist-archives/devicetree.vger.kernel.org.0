@@ -2,283 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D082462C
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 05:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD69C24644
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 05:22:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727047AbfEUDAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 23:00:48 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:3131 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727026AbfEUDAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 23:00:48 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce369df0000>; Mon, 20 May 2019 20:00:47 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 20 May 2019 20:00:46 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 20 May 2019 20:00:46 -0700
-Received: from [10.19.108.117] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
- 2019 03:00:43 +0000
-Subject: Re: [Patch V3 2/8] phy: tegra: xusb: t210: add usb3 port fake support
-To:     Nagarjuna Kristam <nkristam@nvidia.com>, <balbi@kernel.org>,
-        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
- <1557988772-15406-3-git-send-email-nkristam@nvidia.com>
-From:   jckuo <jckuo@nvidia.com>
-Message-ID: <3e9c1919-c3d6-2d08-ca83-c600f4fd60f9@nvidia.com>
-Date:   Tue, 21 May 2019 11:00:42 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <1557988772-15406-3-git-send-email-nkristam@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558407647; bh=xzd8K7QatPf5UqKD5Worin1mwSmT7Lcu3b/WfKZo2i4=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=KwHlzubNLFuQgyg5lvxYpxawyizNIkmXDpf2cbSLe8nfYml8WB47JBbnYdXfZtk5U
-         JT30RjxSzq32CZlVft0NRIRABs3z4pFANEHkxHLG+ZrTvnFim5KYUf5nEc80y8bI3C
-         d3wGEas1Ch1Q3L9bSPPNlymE+uyKB7pg8ithvB9YXsrNYU6hnOTA401L/E8VVaMyni
-         1MjnEG2avfe8EvX+3iyaHATgz8sVXWgLKDP+8akiupxp5koNeGKzPLC9mp2UVUq9JJ
-         fjcSdhGPClcWYrxNn6ze3Wra4Yy9ix1s70TOJLrMPs2WSy55uGG1dCiy/qiAVzL2Do
-         PMQNaY2lroyiA==
+        id S1726511AbfEUDWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 23:22:21 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:38389 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726392AbfEUDWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 May 2019 23:22:20 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 52AF7221CF;
+        Mon, 20 May 2019 23:22:19 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Mon, 20 May 2019 23:22:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm2; bh=UVgcWUJS9f40pxdUbWT1JD35Tkgldj9
+        6FABjCh189ug=; b=jW1u63ms9YqIXPLEzx3rKlhLLDYvaYJxmannWvpNLBK18iN
+        5DyozbtufVn1iI+hKFkA/HZIgLt9Y9zYp8VoPnTE+L1u/x6sxHgYm+akZeoXT4/Y
+        JUJOmeTz8b9if0YvFyNZ/FIXpv3Rn4fShcODEA7mi2oWsHpiBx7xJE0Dbm6eJK3c
+        q6Mo0QCZ6S2KbZJgONjuvsH4gYl5fNi/opfsdFbSPrGkaXIn/zi8Cf6kEAsanIx2
+        +tUIriiMRO/sdPoq4sCbx7MMdpGo4mm/rsm2GbzkJVQLPaNGAJVhMJwRKrRzxR/S
+        KXuAbZk84wcHhA8GFb8Zuel23LcFQtczR5SmbuA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=UVgcWU
+        JS9f40pxdUbWT1JD35Tkgldj96FABjCh189ug=; b=ncP9gO4BlWGhaNUDfq1aBb
+        tkkOO1eVuMkadaj9BqRwpX+PufKn+Ow/xekCqyyw2ZzY4nhFJOVSqL9f9wb2yvCM
+        W0/aA+XWD5j5oQ9gbZJIqj35cF2qiaUQaXgtr/Dp85LsS5SyTVbVFdlZpz/mlNbW
+        sKruVrqr7XifqjwWH3CobFrtb7gDrJ+sLS7buaxUp8+QCxfpVfwE3zqDd9Bxv2xL
+        JTuH7JpUnuNrubu4Q4B2vyDJ7BdGBbvr+82/cbKhiMfCzNAvRYqTh79gPvwMEdZ6
+        5yNGPvByATdY1WXzGdFtzIRrnLOTVOCukSytANm911KdK5zTNXP0+tFlm6UINcsw
+        ==
+X-ME-Sender: <xms:6W7jXKNvTtpOTFyrad9YVX8RIPrgIVg46wYky7wFYNh6DTezF3R3XA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddtledgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:6W7jXGraUVmHsZOZe8vx8p_8-9747PQvB1G_ZzxcQsz04VGlHSwISQ>
+    <xmx:6W7jXJUiXEbaHEdLJ3Ky_h4oZ3HVqRlD4IXrcKwmatmYWTUlG7AoOg>
+    <xmx:6W7jXDF6GQ_io9EglVQ11dFMxJXkd1LqPT5XGOxTN261HCWztjKziw>
+    <xmx:627jXAIN5F0KWrJ09QA8bgk-Q8CZkJEHvJUI2NXQJpGDIQDEYmLp-A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 9D2677C1B1; Mon, 20 May 2019 23:22:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-550-g29afa21-fmstable-20190520v1
+Mime-Version: 1.0
+Message-Id: <e7592bb9-c455-4eca-9c42-2ab16d04a57f@www.fastmail.com>
+In-Reply-To: <1558383565-11821-5-git-send-email-eajames@linux.ibm.com>
+References: <1558383565-11821-1-git-send-email-eajames@linux.ibm.com>
+ <1558383565-11821-5-git-send-email-eajames@linux.ibm.com>
+Date:   Tue, 21 May 2019 12:52:17 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Eddie James" <eajames@linux.ibm.com>,
+        linux-aspeed@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, "Arnd Bergmann" <arnd@arndb.de>,
+        "Rob Herring" <robh+dt@kernel.org>, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, "Joel Stanley" <joel@jms.id.au>
+Subject: =?UTF-8?Q?Re:_[PATCH_v2_4/7]_drivers/soc:_xdma:_Add_PCI_device_configura?=
+ =?UTF-8?Q?tion_sysfs?=
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nagarjuna,
 
-Please check tegra_xusb_update_usb3_fake_port().
 
-Thanks,
-
-JC
-
-On 5/16/19 2:39 PM, Nagarjuna Kristam wrote:
-> On Tegra210, usb2 only otg/peripheral ports dont work in device mode.
-> They need an assosciated usb3 port to work in device mode. Identify
-> an unused usb3 port and assign it as a fake USB3 port to USB2 only
-> port whose mode is otg/peripheral.
->
-> Based on work by BH Hsieh <bhsieh@nvidia.com>.
->
-> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+On Tue, 21 May 2019, at 05:51, Eddie James wrote:
+> The AST2500 has two PCI devices embedded. The XDMA engine can use either
+> device to perform DMA transfers. Users need the capability to choose
+> which device to use. This commit therefore adds two sysfs files that
+> toggle the AST2500 and XDMA engine between the two PCI devices.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
->   drivers/phy/tegra/xusb-tegra210.c | 56 +++++++++++++++++++++++++++++++
->   drivers/phy/tegra/xusb.c          | 69 +++++++++++++++++++++++++++++++++++++++
->   drivers/phy/tegra/xusb.h          |  2 ++
->   3 files changed, 127 insertions(+)
->
-> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
-> index 4beebcc..829aca5 100644
-> --- a/drivers/phy/tegra/xusb-tegra210.c
-> +++ b/drivers/phy/tegra/xusb-tegra210.c
-> @@ -58,6 +58,7 @@
->   #define XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP_SHIFT(x) ((x) * 5)
->   #define XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP_MASK(x) (0x7 << ((x) * 5))
->   #define XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP(x, v) (((v) & 0x7) << ((x) * 5))
-> +#define XUSB_PADCTL_SS_PORT_MAP_PORT_DISABLED 0x7
->   
->   #define XUSB_PADCTL_ELPG_PROGRAM1 0x024
->   #define XUSB_PADCTL_ELPG_PROGRAM1_AUX_MUX_LP0_VCORE_DOWN (1 << 31)
-> @@ -952,6 +953,34 @@ static int tegra210_usb2_phy_power_on(struct phy *phy)
->   
->   	priv = to_tegra210_xusb_padctl(padctl);
->   
-> +	if (port->usb3_port_fake != -1) {
-> +		value = padctl_readl(padctl, XUSB_PADCTL_SS_PORT_MAP);
-> +		value &= ~XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP_MASK(
-> +					port->usb3_port_fake);
-> +		value |= XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP(
-> +					port->usb3_port_fake, index);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_SS_PORT_MAP);
-> +
-> +		value = padctl_readl(padctl, XUSB_PADCTL_ELPG_PROGRAM1);
-> +		value &= ~XUSB_PADCTL_ELPG_PROGRAM1_SSPX_ELPG_VCORE_DOWN(
-> +					port->usb3_port_fake);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_ELPG_PROGRAM1);
-> +
-> +		usleep_range(100, 200);
-> +
-> +		value = padctl_readl(padctl, XUSB_PADCTL_ELPG_PROGRAM1);
-> +		value &= ~XUSB_PADCTL_ELPG_PROGRAM1_SSPX_ELPG_CLAMP_EN_EARLY(
-> +					port->usb3_port_fake);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_ELPG_PROGRAM1);
-> +
-> +		usleep_range(100, 200);
-> +
-> +		value = padctl_readl(padctl, XUSB_PADCTL_ELPG_PROGRAM1);
-> +		value &= ~XUSB_PADCTL_ELPG_PROGRAM1_SSPX_ELPG_CLAMP_EN(
-> +					port->usb3_port_fake);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_ELPG_PROGRAM1);
-> +	}
-> +
->   	value = padctl_readl(padctl, XUSB_PADCTL_USB2_BIAS_PAD_CTL0);
->   	value &= ~((XUSB_PADCTL_USB2_BIAS_PAD_CTL0_HS_SQUELCH_LEVEL_MASK <<
->   		    XUSB_PADCTL_USB2_BIAS_PAD_CTL0_HS_SQUELCH_LEVEL_SHIFT) |
-> @@ -1086,6 +1115,32 @@ static int tegra210_usb2_phy_power_off(struct phy *phy)
->   
->   	mutex_lock(&padctl->lock);
->   
-> +	if (port->usb3_port_fake != -1) {
-> +		value = padctl_readl(padctl, XUSB_PADCTL_ELPG_PROGRAM1);
-> +		value |= XUSB_PADCTL_ELPG_PROGRAM1_SSPX_ELPG_CLAMP_EN_EARLY(
-> +					port->usb3_port_fake);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_ELPG_PROGRAM1);
-> +
-> +		usleep_range(100, 200);
-> +
-> +		value = padctl_readl(padctl, XUSB_PADCTL_ELPG_PROGRAM1);
-> +		value |= XUSB_PADCTL_ELPG_PROGRAM1_SSPX_ELPG_CLAMP_EN(
-> +					port->usb3_port_fake);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_ELPG_PROGRAM1);
-> +
-> +		usleep_range(250, 350);
-> +
-> +		value = padctl_readl(padctl, XUSB_PADCTL_ELPG_PROGRAM1);
-> +		value |= XUSB_PADCTL_ELPG_PROGRAM1_SSPX_ELPG_VCORE_DOWN(
-> +					port->usb3_port_fake);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_ELPG_PROGRAM1);
-> +
-> +		value = padctl_readl(padctl, XUSB_PADCTL_SS_PORT_MAP);
-> +		value |= XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP(port->usb3_port_fake,
-> +					XUSB_PADCTL_SS_PORT_MAP_PORT_DISABLED);
-> +		padctl_writel(padctl, value, XUSB_PADCTL_SS_PORT_MAP);
-> +	}
-> +
->   	if (WARN_ON(pad->enable == 0))
->   		goto out;
->   
-> @@ -2051,6 +2106,7 @@ const struct tegra_xusb_padctl_soc tegra210_xusb_padctl_soc = {
->   		},
->   	},
->   	.ops = &tegra210_xusb_padctl_ops,
-> +	.need_fake_usb3_port = true,
->   };
->   EXPORT_SYMBOL_GPL(tegra210_xusb_padctl_soc);
->   
-> diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
-> index 0417213..6618db7 100644
-> --- a/drivers/phy/tegra/xusb.c
-> +++ b/drivers/phy/tegra/xusb.c
-> @@ -808,9 +808,66 @@ static void __tegra_xusb_remove_ports(struct tegra_xusb_padctl *padctl)
->   	}
->   }
->   
-> +static int tegra_xusb_find_unused_usb3_port(struct tegra_xusb_padctl *padctl)
+>  drivers/soc/aspeed/aspeed-xdma.c | 64 ++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/drivers/soc/aspeed/aspeed-xdma.c 
+> b/drivers/soc/aspeed/aspeed-xdma.c
+> index 2162ca0..002b571 100644
+> --- a/drivers/soc/aspeed/aspeed-xdma.c
+> +++ b/drivers/soc/aspeed/aspeed-xdma.c
+> @@ -667,6 +667,64 @@ static void aspeed_xdma_free_vga_blks(struct 
+> aspeed_xdma *ctx)
+>  	}
+>  }
+>  
+> +static int aspeed_xdma_change_pcie_conf(struct aspeed_xdma *ctx, u32 conf)
 > +{
-> +	struct device_node *np;
-> +	unsigned int i;
+> +	int rc;
 > +
-> +	for (i = 0; i < padctl->soc->ports.usb3.count; i++) {
-> +		np = tegra_xusb_find_port_node(padctl, "usb3", i);
-> +		if (!np || !of_device_is_available(np))
-> +			return i;
+> +	mutex_lock(&ctx->start_lock);
+> +	rc = wait_event_interruptible_timeout(ctx->wait,
+> +					      !test_bit(XDMA_IN_PRG,
+> +							&ctx->flags),
+> +					      msecs_to_jiffies(1000));
+> +	if (rc < 0) {
+> +		mutex_unlock(&ctx->start_lock);
+> +		return -EINTR;
 > +	}
 > +
-> +	return -ENODEV;
-> +}
+> +	/* previous op didn't complete, wake up waiters anyway */
+> +	if (!rc)
+> +		wake_up_interruptible_all(&ctx->wait);
 > +
-> +static bool tegra_xusb_usb3_port_has_companion(struct tegra_xusb_padctl *padctl,
-> +							     unsigned int index)
-> +{
-> +	unsigned int i;
-> +	struct tegra_xusb_usb3_port *usb3;
+> +	reset_control_assert(ctx->reset);
+> +	msleep(10);
 > +
-> +	for (i = 0; i < padctl->soc->ports.usb3.count; i++) {
-> +		usb3 = tegra_xusb_find_usb3_port(padctl, i);
-> +		if (usb3 && usb3->port == index)
-> +			return true;
-> +	}
+> +	aspeed_scu_pcie_write(ctx, conf);
+> +	msleep(10);
 > +
-> +	return false;
-> +}
+> +	reset_control_deassert(ctx->reset);
+> +	msleep(10);
 > +
-> +static int tegra_xusb_update_usb3_fake_port(struct tegra_xusb_usb2_port *usb2)
-> +{
-> +	int fake;
+> +	aspeed_xdma_init_eng(ctx);
 > +
-> +	/* Disable usb3_port_fake usage by default and assign if needed */
-> +	usb2->usb3_port_fake = -1;
-> +
-> +	if ((usb2->mode == USB_DR_MODE_OTG ||
-> +	     usb2->mode == USB_DR_MODE_PERIPHERAL) &&
-> +		!tegra_xusb_usb3_port_has_companion(usb2->base.padctl,
-> +						    usb2->base.index)) {
-> +		fake = tegra_xusb_find_unused_usb3_port(usb2->base.padctl);
-> +
-> +		if (fake < 0) {
-> +			dev_err(&usb2->base.dev, "no unused USB3 ports available\n");
-> +			return -ENODEV;
-> +		}
-> +
-> +		dev_dbg(&usb2->base.dev, "Found unused usb3 port: %d\n",
-> +					 fake);
-> +		usb2->usb3_port_fake = fake;
-> +		tegra_xusb_find_unused_usb3_port(usb2->base.padctl);
-This looks redundant to me.
-> +	}
+> +	mutex_unlock(&ctx->start_lock);
 > +
 > +	return 0;
 > +}
 > +
->   static int tegra_xusb_setup_ports(struct tegra_xusb_padctl *padctl)
->   {
->   	struct tegra_xusb_port *port;
-> +	struct tegra_xusb_usb2_port *usb2;
->   	unsigned int i;
->   	int err = 0;
->   
-> @@ -840,6 +897,18 @@ static int tegra_xusb_setup_ports(struct tegra_xusb_padctl *padctl)
->   			goto remove_ports;
->   	}
->   
-> +	if (padctl->soc->need_fake_usb3_port) {
-> +		for (i = 0; i < padctl->soc->ports.usb2.count; i++) {
-> +			usb2 = tegra_xusb_find_usb2_port(padctl, i);
-> +			if (!usb2)
-> +				continue;
+> +static ssize_t aspeed_xdma_use_bmc(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   const char *buf, size_t count)
+> +{
+> +	int rc;
+> +	struct aspeed_xdma *ctx = dev_get_drvdata(dev);
 > +
-> +			err = tegra_xusb_update_usb3_fake_port(usb2);
-> +			if (err < 0)
-> +				goto remove_ports;
-> +		}
-> +	}
+> +	rc = aspeed_xdma_change_pcie_conf(ctx, aspeed_xdma_bmc_pcie_conf);
+> +	return rc ?: count;
+> +}
+> +static DEVICE_ATTR(use_bmc, 0200, NULL, aspeed_xdma_use_bmc);
 > +
->   	list_for_each_entry(port, &padctl->ports, list) {
->   		err = port->ops->enable(port);
->   		if (err < 0)
-> diff --git a/drivers/phy/tegra/xusb.h b/drivers/phy/tegra/xusb.h
-> index e0028b9f..26dd6d2 100644
-> --- a/drivers/phy/tegra/xusb.h
-> +++ b/drivers/phy/tegra/xusb.h
-> @@ -299,6 +299,7 @@ struct tegra_xusb_usb2_port {
->   	struct regulator *supply;
->   	enum usb_dr_mode mode;
->   	bool internal;
-> +	int usb3_port_fake;
->   };
->   
->   static inline struct tegra_xusb_usb2_port *
-> @@ -397,6 +398,7 @@ struct tegra_xusb_padctl_soc {
->   
->   	const char * const *supply_names;
->   	unsigned int num_supplies;
-> +	bool need_fake_usb3_port;
->   };
->   
->   struct tegra_xusb_padctl {
+> +static ssize_t aspeed_xdma_use_vga(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   const char *buf, size_t count)
+> +{
+> +	int rc;
+> +	struct aspeed_xdma *ctx = dev_get_drvdata(dev);
+> +
+> +	rc = aspeed_xdma_change_pcie_conf(ctx, aspeed_xdma_vga_pcie_conf);
+> +	return rc ?: count;
+> +}
+> +static DEVICE_ATTR(use_vga, 0200, NULL, aspeed_xdma_use_vga);
+> +
+>  static int aspeed_xdma_probe(struct platform_device *pdev)
+>  {
+>  	int irq;
+> @@ -745,6 +803,9 @@ static int aspeed_xdma_probe(struct platform_device *pdev)
+>  		return rc;
+>  	}
+>  
+> +	device_create_file(dev, &dev_attr_use_bmc);
+> +	device_create_file(dev, &dev_attr_use_vga);
+
+Two attributes is a broken approach IMO. This gives the false representation of 4
+states (neither, vga, bmc, both) when really there are only two (vga and bmc). I
+think we should have one attribute that reacts to "vga" and "bmc" writes.
+
+Andrew
+
+> +
+>  	return 0;
+>  }
+>  
+> @@ -752,6 +813,9 @@ static int aspeed_xdma_remove(struct platform_device *pdev)
+>  {
+>  	struct aspeed_xdma *ctx = platform_get_drvdata(pdev);
+>  
+> +	device_remove_file(ctx->dev, &dev_attr_use_vga);
+> +	device_remove_file(ctx->dev, &dev_attr_use_bmc);
+> +
+>  	misc_deregister(&ctx->misc);
+>  
+>  	aspeed_xdma_free_vga_blks(ctx);
+> -- 
+> 1.8.3.1
+> 
+>
