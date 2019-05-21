@@ -2,89 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97FD924B93
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5419B24BA4
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726296AbfEUJcZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 May 2019 05:32:25 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:37889 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726242AbfEUJcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:32:25 -0400
-Received: from xps13 (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 2C2FE100015;
-        Tue, 21 May 2019 09:32:14 +0000 (UTC)
-Date:   Tue, 21 May 2019 11:32:14 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>
-Cc:     Kamal Dasu <kdasu.kdev@gmail.com>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "Richard Weinberger" <richard@nod.at>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "bcm-kernel-feedback-list@broadcom.com" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: brcmnand: Make
- nand-ecc-strength and nand-ecc-step-size optional
-Message-ID: <20190521113214.35e1edd0@xps13>
-In-Reply-To: <5986da5d-2a61-b98d-9d44-d972a19ab732@kontron.de>
-References: <1558379144-28283-1-git-send-email-kdasu.kdev@gmail.com>
-        <5986da5d-2a61-b98d-9d44-d972a19ab732@kontron.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S1726900AbfEUJfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 05:35:25 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:37979 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726347AbfEUJfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:35:25 -0400
+Received: by mail-pl1-f195.google.com with SMTP id f97so8158937plb.5
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 02:35:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=BcrBjNA9Tz5dGFNp5fZjQydBqPzFfr7sOnV00Q/kGKk=;
+        b=mHnuGqwcHVA9QzUzGRIKoiCvFyVfKiGJP6H7y0Cp2QQlhUyM7G/saLc/IHsxYHTwMY
+         4NHNLLxX0/CHcCb59QKSUsrh+dU0H9NtQU1pBkpJxgnEfT4P45oEwHv0wYxRaJdhv3NU
+         TFl9+8FakXz2Thwqfqr/KfUXeGW6/+d7V7R38raqQZ7Nx4rZvhq8z+QhMkK7aMpVxYXV
+         xriAdfsqiPih9oqpc4JGK9eN3MX2A+UFHjUPvp6XEivePvPVIhzPaxeLWAykvb/D9wMG
+         /FCr2p84dKHyzkV18sbme240jtTPFIwQz1VQeFEW4RYTBXspZ5lPkuNIIg5YRz+ELfAa
+         1IQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=BcrBjNA9Tz5dGFNp5fZjQydBqPzFfr7sOnV00Q/kGKk=;
+        b=azj5QMU/WQnF8IrTicnnzN17SKwCEoMmaVdslkdf5i378clqZt49+Z/4jOe3ddLrZq
+         m5KuF3893qUJrYcm8PAHw8QHZUgnYLwB9tGKHp5y+fvonoqCgKwZFY5+pZRpHFbMF9Ux
+         YGc4hzfuQbfJ2uddrBNfOBQHjB6GbY22jofVuZEsUWWx/7S0pte9YECwBOfd3UDCGhrb
+         V6SsgvyrDXVbMdffQ5ahfZ+XdFxtjYnYZEfU/mhlrLB7eJ6z0X1KOzC9mUMsUrVFK9wx
+         ofJ0keDDKlYMHbGr24+Ixj1SDeAshygp+XwQ3X70nZBdJbH9WVRWEGafMTlhAkYw+JcL
+         Ww+A==
+X-Gm-Message-State: APjAAAU2/p/qATlqSi65Xhfja2RsLulpjLleQoYOTWMJXuB7UBm5oDOW
+        n+WIT44vr2VCCRODUmJJAsNtkg==
+X-Google-Smtp-Source: APXvYqwXbni4FmWu8cVHkn7REQOdZWicQVyH7AbWOk5ATCaQQKLGT8i5VShHXpOcZkUcef7q6DJpGA==
+X-Received: by 2002:a17:902:4481:: with SMTP id l1mr68079415pld.121.1558431324465;
+        Tue, 21 May 2019 02:35:24 -0700 (PDT)
+Received: from localhost ([49.248.189.249])
+        by smtp.gmail.com with ESMTPSA id k22sm16995349pfk.54.2019.05.21.02.35.23
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 21 May 2019 02:35:23 -0700 (PDT)
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        niklas.cassel@linaro.org, marc.w.gonzalez@free.fr,
+        sibis@codeaurora.org, daniel.lezcano@linaro.org,
+        Andy Gross <andy.gross@linaro.org>,
+        David Brown <david.brown@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/9] qcom: Add cpuidle to some platforms
+Date:   Tue, 21 May 2019 15:05:10 +0530
+Message-Id: <cover.1558430617.git.amit.kucheria@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v1:
+ - Reworded changes to the idle-state documentation on Sudeep's feedback.
+ - Renamed several idle-state node names to be homogeneous across qcom
+   platforms. We now use cpu_sleep_0_0 format for the node name while using
+   LITTLE_CPU_SLEEP_0 format for labels to help differentiate the different
+   states for different CPU types.
+ - Add a new patch to add capacity-dmips-mhz property for msm8996 to allow
+   topology code to find its true capacity.
+ - Add power-collapse state to msm8998 in additon to the retention state.
+ - Added acks
 
-Schrempf Frieder <frieder.schrempf@kontron.de> wrote on Tue, 21 May
-2019 09:31:04 +0000:
+MSM8998 changes are untested for v2 because I couldn't access the mtp I
+usually have access to. Hopefully Marc and Sibi can help with testing.
 
-> Hi Kamal,
-> 
-> On 20.05.19 21:05, Kamal Dasu wrote:
-> > nand-ecc-strength and nand-ecc-step-size can be made optional as
-> > brcmnand driver can support using raw NAND layer detected values.
-> > 
-> > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
-> > ---
-> >   Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 4 ++--
-> >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-> > index bcda1df..29feaba 100644
-> > --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-> > +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-> > @@ -101,10 +101,10 @@ Required properties:
-> >                                 number (e.g., 0, 1, 2, etc.)
-> >   - #address-cells            : see partition.txt
-> >   - #size-cells               : see partition.txt
-> > -- nand-ecc-strength         : see nand.txt
-> > -- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
-> >   
-> >   Optional properties:
-> > +- nand-ecc-strength         : see nand.txt
-> > +- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
-> >   - nand-on-flash-bbt         : boolean, to enable the on-flash BBT for this
-> >                                 chip-select. See nand.txt
-> >   - brcm,nand-oob-sector-size : integer, to denote the spare area sector size  
-> 
-> I think you also need to change all references to nand.txt. This file 
-> was recently moved to nand-controller.yaml.
-> 
+Description
+-----------
+Fix up a few entry-method="psci" issues and then add cpuidle low power
+states for msm8996, msm8998, qcs404, sdm845. All these have been tested
+to only make sure that the C-states are entered from Linux point-of-view.
 
-Oops, completely forgot about that *again*. Thanks for pointing it
-Frieder!
+We will continue to add more states and make power measurements to tweak
+some of these numbers, but getting these merged will allow other people to
+use these platforms to work on cpuidle, eas and related topics.
 
-Miquèl
+
+Amit Kucheria (7):
+  arm64: dts: fsl: ls1028a: Fix entry-method property to reflect
+    documentation
+  Documentation: arm: Link idle-states binding to "enable-method"
+    property
+  arm64: dts: qcom: msm8916: Add entry-method property for the
+    idle-states node
+  arm64: dts: qcom: msm8916: Use more generic idle state names
+  arm64: dts: qcom: msm8996: Add PSCI cpuidle low power states
+  arm64: dts: qcom: msm8998: Add PSCI cpuidle low power states
+  arm64: dts: msm8996: Add proper capacity scaling for the cpus
+
+Niklas Cassel (1):
+  arm64: dts: qcom: qcs404: Add PSCI cpuidle low power states
+
+Raju P.L.S.S.S.N (1):
+  arm64: dts: qcom: sdm845: Add PSCI cpuidle low power states
+
+ .../devicetree/bindings/arm/idle-states.txt   | 13 +++-
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  2 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         | 13 ++--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         | 21 ++++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         | 50 ++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          | 18 +++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 69 +++++++++++++++++++
+ 7 files changed, 177 insertions(+), 9 deletions(-)
+
+-- 
+2.17.1
+
