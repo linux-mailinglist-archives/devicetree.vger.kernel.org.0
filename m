@@ -2,83 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C0924764
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 07:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7B52478D
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 07:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727680AbfEUFMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 01:12:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58566 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725798AbfEUFMy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 01:12:54 -0400
-Received: from localhost (unknown [106.201.107.13])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D867D21743;
-        Tue, 21 May 2019 05:12:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558415573;
-        bh=yRdHJ2XmIK1WbEUMMgmxiCl4z/bvxpUafqfuQkwnoXY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LVwjL/13xrfaEJ6AUBwZQFm+fa/btvzfRm/Y8CBLxx/5AoMRHbrbnsRRTHdWq8A+B
-         6T40TTcYmIo6qFDmhzoTdegDWImPKepEQAkT+lfqy2H7mC97xyNji7IBtdE04bEq1u
-         quivMZvg2u2AG9QBormnpyQNetqMXa1KkJD1lM3A=
-Date:   Tue, 21 May 2019 10:42:50 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     "robh@kernel.org" <robh@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "plyatov@gmail.com" <plyatov@gmail.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: Re: [PATCH v3 11/14] dmaengine: imx-sdma: fix ecspi1 rx dma not
- work on i.mx8mm
-Message-ID: <20190521051250.GY15118@vkoul-mobl>
-References: <VI1PR04MB45436C98D70C16635CF3CFDE89070@VI1PR04MB4543.eurprd04.prod.outlook.com>
+        id S1725885AbfEUFda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 01:33:30 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:35391 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725794AbfEUFda (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 01:33:30 -0400
+Received: by mail-it1-f193.google.com with SMTP id u186so2791279ith.0;
+        Mon, 20 May 2019 22:33:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=qcWDyowsodXm2n1MA4A4w11yolgybnYMAxlyc/yC8j0=;
+        b=D+FJZ/ioVAn3il7oubScsGsHjyKgmNIp/wW6n4Z0RPrXKeHTvReYIkj4rzjeOqdxNq
+         OaUFNB9WmAAO8GtGeyjwxGqVHPcYvqsw3EYjKKGzPWzXQL8l7FHxkdI7LBWM6ttKlGqk
+         uBbE3XKy++H/fA+DceSKv3zd5Tgk+xA0HIIK3mQTtsepDh0Ip3joXh0IYHSlUMsOGJuE
+         BepdX7O0UuddBTM2suqB2t1l3GJfpAMFCTuQ6ZMjw1y+BicS1zFnUct9Ma42N5i2Tj0y
+         TXqxLMUOwrRu03dWOAMMFSRJq5wCbFHbLyurRbQ3R3+s2fCxUSlMtSZy3OBCm4FQeB59
+         hOGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=qcWDyowsodXm2n1MA4A4w11yolgybnYMAxlyc/yC8j0=;
+        b=koovTRHrto5TJZZ5Szg93X7hGZiP2qleGbpPAPaB3v45cvcfqS+emlRIOsJoBulJMd
+         qbOzcqL+ztaPqF/ee7RkLoh/PbH/AbtAOQ7J7MQreYMAz+EaLtTw8fA7zhHVs7E/Iqe3
+         Iv8Uabhpt+Rr3NOl89H7w2zyBfvryuokEKQARY6Zzz5d2QZt3e4WmRCf/EWN6GjNNxhD
+         uwitjPxkXeaytfgaUP9kwSrkcY6kCHuuTrROCNmiO48rGQzisZbpEEMF069unXT6cxpI
+         vyf+qb3SqWRUPcBm/i5iQUe80uc+SerF+EHkTuGfbSLytTLhWqTKVkX1r+AYWmgX+jtS
+         k7+w==
+X-Gm-Message-State: APjAAAW/VVO0Le8mssxYAQw+5yTDaZAHeXd3kaHHtUFKLCdkpGQ4XPuA
+        pA6t/71E7zaj3hWdRGxNuBA=
+X-Google-Smtp-Source: APXvYqwPYwHr/YQ2WmprWTuIFOzV4XdX0OHol3uLhuIJVtrlmaC09Af+Hyl7uVOum1dQMiuuZLsRIw==
+X-Received: by 2002:a02:a615:: with SMTP id c21mr2603061jam.67.1558416808904;
+        Mon, 20 May 2019 22:33:28 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id c185sm924149itc.17.2019.05.20.22.33.27
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 20 May 2019 22:33:28 -0700 (PDT)
+Date:   Mon, 20 May 2019 22:33:26 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     stefano.manni@gmail.com
+Cc:     nick@shmanahar.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] Input: atmel_mxt_ts - add wakeup support
+Message-ID: <20190521053326.GH183429@dtor-ws>
+References: <20190517211741.8906-1-stefano.manni@gmail.com>
+ <20190517213016.GA93581@dtor-ws>
+ <6f94097bb9192424f92e055e8af8062b2ae3e19f.camel@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <VI1PR04MB45436C98D70C16635CF3CFDE89070@VI1PR04MB4543.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <6f94097bb9192424f92e055e8af8062b2ae3e19f.camel@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-05-19, 04:58, Robin Gong wrote:
-> > -----Original Message-----
-> > From: Vinod Koul <vkoul@kernel.org>
-> > Sent: 2019年5月21日 12:18
+On Sat, May 18, 2019 at 06:55:10PM +0200, stefano.manni@gmail.com wrote:
+> Hi Dmitry,
+> 
+> On Fri, 2019-05-17 at 14:30 -0700, Dmitry Torokhov wrote:
+> > Hi Sefano,
 > > 
-> > On 07-05-19, 09:16, Robin Gong wrote:
-> > > Because the number of ecspi1 rx event on i.mx8mm is 0, the condition
-> > > check ignore such special case without dma channel enabled, which
-> > > caused
-> > > ecspi1 rx works failed. Actually, no need to check event_id0, checking
-> > > event_id1 is enough for DEV_2_DEV case because it's so lucky that
-> > > event_id1 never be 0.
+> > On Fri, May 17, 2019 at 11:17:40PM +0200, Stefano Manni wrote:
+> > > Add wakeup support to the maxtouch driver.
+> > > The device can wake up the system from suspend,
+> > > mark the IRQ as wakeup capable, so that device
+> > > irq is not disabled during system suspend.
 > > 
-> > Well is that by chance or design that event_id1 will be never 0?
+> > This should already be handled by I2C core, see lines after "if
+> > (client->flags & I2C_CLIENT_WAKE)" in drivers/i2c/i2c-core-base.c.
 > > 
-> That's by chance. DEV_2_DEV is just for Audio case and non-zero for event_id1 on current i.MX family.
+> > Unless there is dedicated wakeup interrupt we configure main
+> > interrupt
+> > as wake source.
+> > 
+> 
+> what's about the other drivers (e.g. ili210x.c) doing like this?
+> Shall they be purged?
 
-Then it wont be fgood to rely on chance :)
+They were likely done before I2C and driver core were enhanced to handle
+wakeup automatically. We might want to clean them up, as long as we
+verify that they keep working.
+
+Thanks.
 
 -- 
-~Vinod
+Dmitry
