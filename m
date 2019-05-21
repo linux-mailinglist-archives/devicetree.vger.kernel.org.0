@@ -2,101 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B11B24AF9
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 10:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECD1A24B24
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727181AbfEUI6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 04:58:07 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:38554 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726448AbfEUI6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 04:58:07 -0400
-Received: by mail-ua1-f66.google.com with SMTP id r19so5727562uap.5
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 01:58:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ASCK5QEsgPSM1g1u7FGizuNcDI5mfe6ouhE1b8rzrSY=;
-        b=OGaKD9fkwz/Uh1otcyfhnq5/11wcGhDIMBsJWSCFGVzL84pS/hohwFfTIPr0f3C7Ss
-         TCzV+PrZ/UE1xdmLWaFz6PlGI/iF3RtRcVfLUtdvGvPDcDjQ6ZWUuw7/hqHnzw4aVDq1
-         T+TY5Hf5SwxBmY4jlUIN7MgSgWIeGv9WeCgHuKRb6Ws8uWAfz87GnLQtfCKnhwCm5Ijl
-         7AT6oOuPUrKCta8mX1J86JEXXy7ICqIg+BDY8PRPDNIGX4oA5flVrgmU0Joi7mCEt2Wr
-         R+xJmID9TmfovxsKCZZJ9RzeZZ/7PNIBdrrTxN3UIyhoLQvh5nHJEXpJfG6LmHecnXdD
-         QFTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ASCK5QEsgPSM1g1u7FGizuNcDI5mfe6ouhE1b8rzrSY=;
-        b=XBY+V1sF0kfL1SviBQwsWM4AlluV2czZ8F/UbvD9dBAW7avQclcYjgTdKdlZAMl8bZ
-         IOmVeMeCjzSJLlHq8lcWUotdtnKwMMkw+U/85rQdOGqmtf5P3slanhSCWPdjMHq7iWz7
-         XpgZ0BGma6dTHXEkUioMBEB30bwYaX8ja9ByZI/G6QbTRlwDOnz7Kx7TeGLZf3ws9mN2
-         KaA2kJgO2x4T/9NDcOg0kMZo+zHGBfZTZrFyrxh9xdIi8W2rRGx0brA8avYHXdjHQxWJ
-         RHgFf1Ta0DR76l1H+xItPgSEqvIPH13nUabpyOdIsaCslqExbbtuzOLGfQdEV57IquDb
-         4LVw==
-X-Gm-Message-State: APjAAAVQ6xg5eye8bVB3+TH8RNgsuhroKV6NOGSdGXNoidEGZFUMlRXn
-        SbgR2sstTI7nJ5mAOny16S3Y5uLcEfEMm9syrh2WjA==
-X-Google-Smtp-Source: APXvYqzkKcNaCd+xd63rL6haTKxCeW8/LcqpqGKBrmCWjM1IJegwyk74C67ww1GqqytfFzxidHgluiDjyzYYhL10aqk=
-X-Received: by 2002:ab0:45e9:: with SMTP id u96mr17987279uau.75.1558429085797;
- Tue, 21 May 2019 01:58:05 -0700 (PDT)
+        id S1726296AbfEUJH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 05:07:28 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:15932 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726259AbfEUJH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:07:28 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ce3bfcf0000>; Tue, 21 May 2019 02:07:27 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 21 May 2019 02:07:27 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 21 May 2019 02:07:27 -0700
+Received: from [10.24.192.74] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
+ 2019 09:07:23 +0000
+Subject: Re: [PATCH V4 20/28] PCI: tegra: Use legacy IRQ for port service
+ drivers
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <jonathanh@nvidia.com>,
+        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190516055307.25737-1-mmaddireddy@nvidia.com>
+ <20190516055307.25737-21-mmaddireddy@nvidia.com>
+ <20190520203731.GA54609@google.com>
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Message-ID: <41397458-c97b-fb38-49ba-8f3bb9ec3ded@nvidia.com>
+Date:   Tue, 21 May 2019 14:37:00 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <1558361478-4381-1-git-send-email-sagar.kadam@sifive.com>
- <1558361478-4381-4-git-send-email-sagar.kadam@sifive.com> <mvm7eakjjf7.fsf@suse.de>
-In-Reply-To: <mvm7eakjjf7.fsf@suse.de>
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-Date:   Tue, 21 May 2019 14:27:54 +0530
-Message-ID: <CAARK3Hn4-amRV-knDa5UR8J68DKxWaBnC3O98KvciNpbwbsAGA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC.
-To:     Andreas Schwab <schwab@suse.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190520203731.GA54609@google.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558429647; bh=YH9+7V7n0rvwG/qLHf412QIldM73k0ye/xO6T188+V8=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:
+         Content-Transfer-Encoding:Content-Language;
+        b=RXxA38OOkYUgl3RMYLatODXVk8IdOwNWbC90iUR3WUp9rHWyYQDLTeE7VQXD7b+dc
+         gGxjqCibHRo0ixmmrRyi7lqV9Mqiv37ydR5EVehxUO3I8kKWIshnR532opPPkCykmE
+         ZBCo8qgvLzWcqSPT6LTgQ3BhVIdjkrpDyoT84P9bGE4A2x/eT0Qf4H9OqFY08Jh9II
+         k5okmNuP79tl/t83countd7vBsz2ioEoKsP8GHEyJsZHHzMtjNuEURkqG9u6Swvsta
+         NAuBOUE8neYHnuJAvoJa1Pkj9YxuEzzbMRpN4thxoQCOo8pSgEykOUuKWWhcTP14BJ
+         SZ4v9AnXJWTgA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Andreas,
-Yes, I rebased to v5.2-rc1 and observed that there have been changes
-in polling interface, and i2c->flags is not longer being used for
-setting the polling mode. I am working on a way to hook in the fix for
-broken IRQ and will submit it in v6.
 
-Thanks & BR,
-Sagar Kadam
 
-On Tue, May 21, 2019 at 2:03 PM Andreas Schwab <schwab@suse.de> wrote:
+On 21-May-19 2:07 AM, Bjorn Helgaas wrote:
+> On Thu, May 16, 2019 at 11:22:59AM +0530, Manikanta Maddireddy wrote:
+>> Tegra signals PCIe services like AER, PME, etc. over legacy IRQ line.
+>> By default, service drivers register interrupt routine over MSI IRQ line.
+>> Use pcie_pme_disable_msi() function to disable MSI for service drivers.
+> I think this device is not quite spec-compliant:
 >
-> On Mai 20 2019, Sagar Shrikant Kadam <sagar.kadam@sifive.com> wrote:
+>   https://lore.kernel.org/linux-pci/20190520175729.GC49425@google.com/
 >
-> > The i2c-ocore driver already has a polling mode interface.But it needs
-> > a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-> > There is an erratum in FU540 chip that prevents interrupt driven i2c
-> > transfers from working, and also the I2C controller's interrupt bit
-> > cannot be cleared if set, due to this the existing i2c polling mode
-> > interface added in mainline earlier doesn't work, and CPU stall's
-> > infinitely, when-ever i2c transfer is initiated.
-> >
-> > Ref:previous polling mode support in mainline
-> >
-> >       commit 69c8c0c0efa8 ("i2c: ocores: add polling interface")
-> >
-> > The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-> > FU540-COOO SoC.
+> and you should work around this with a quirk that sets pdev->no_msi so
+> we don't use MSI for it at all.
+
+OK, I will update in next version. 
+
+Manikanta
+
 >
-> After commit dd7dbf0eb090 this no longer fits.
->
-> Andreas.
->
-> --
-> Andreas Schwab, SUSE Labs, schwab@suse.de
-> GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
-> "And now for something completely different."
+>> PME and AER interrupts registered to MSI without this change,
+>> cat /proc/interrupts | grep -i pci
+>> 36: 21 0 0 0 0 0 GICv2 104 Level       PCIE
+>> 37: 35 0 0 0 0 0 GICv2 105 Level       Tegra PCIe MSI
+>> 76: 0  0 0 0 0 0 Tegra PCIe MSI 0 Edge PCIe PME, aerdrv, PCIe BW notif
+>>
+>> PME and AER interrupts registered to legacy IRQ with this change,
+>> cat /proc/interrupts | grep -i pci
+>> 36: 33 0 0 0 0 0 GICv2 104 Level      PCIE, PCIe PME, aerdrv, PCIe BW notif
+>> 37: 52 0 0 0 0 0 GICv2 105 Level      Tegra PCIe MSI
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> Acked-by: Thierry Reding <treding@nvidia.com>
+>> ---
+>> V4: No change
+>>
+>> V3: Corrected typo in commit log
+>>
+>> V2: No change
+>>
+>>  drivers/pci/controller/pci-tegra.c | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+>> index ac57c5badd9b..0024bc42b400 100644
+>> --- a/drivers/pci/controller/pci-tegra.c
+>> +++ b/drivers/pci/controller/pci-tegra.c
+>> @@ -41,6 +41,7 @@
+>>  #include <soc/tegra/pmc.h>
+>>  
+>>  #include "../pci.h"
+>> +#include "../pcie/portdrv.h"
+>>  
+>>  #define INT_PCI_MSI_NR (8 * 32)
+>>  
+>> @@ -2725,6 +2726,9 @@ static int tegra_pcie_probe(struct platform_device *pdev)
+>>  		goto put_resources;
+>>  	}
+>>  
+>> +	/* Switch to legacy IRQ for PCIe services like AER, PME*/
+>> +	pcie_pme_disable_msi();
+>> +
+>>  	pm_runtime_enable(pcie->dev);
+>>  	err = pm_runtime_get_sync(pcie->dev);
+>>  	if (err) {
+>> -- 
+>> 2.17.1
+>>
+
