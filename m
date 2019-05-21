@@ -2,129 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 938DA255EC
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D970E255FB
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728103AbfEUQok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 12:44:40 -0400
-Received: from foss.arm.com ([217.140.101.70]:38642 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727990AbfEUQok (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 12:44:40 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7D50715A2;
-        Tue, 21 May 2019 09:44:39 -0700 (PDT)
-Received: from e110467-lin.cambridge.arm.com (e110467-lin.cambridge.arm.com [10.1.196.75])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6D88F3F73F;
-        Tue, 21 May 2019 09:44:38 -0700 (PDT)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: arm: Clean up CPU binding examples
-Date:   Tue, 21 May 2019 17:44:27 +0100
-Message-Id: <fe070f591d5e07042062b6b07a701feab324ee2c.1558456785.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.21.0.dirty
-In-Reply-To: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
-References: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
+        id S1727969AbfEUQrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 12:47:36 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:1173 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727965AbfEUQrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:47:36 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ce42ba70000>; Tue, 21 May 2019 09:47:35 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Tue, 21 May 2019 09:47:34 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Tue, 21 May 2019 09:47:34 -0700
+Received: from [10.25.72.115] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
+ 2019 16:47:29 +0000
+Subject: Re: [PATCH V7 02/15] PCI: Disable MSI for Tegra194 root port
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
+        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
+        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190517123846.3708-1-vidyas@nvidia.com>
+ <20190517123846.3708-3-vidyas@nvidia.com> <20190521102729.GB29166@ulmo>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <f63051b0-a220-125b-219e-25156d65ea6d@nvidia.com>
+Date:   Tue, 21 May 2019 22:17:26 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190521102729.GB29166@ulmo>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558457255; bh=BlKoVyxfa3/PhGnDYxQwviA1iVDUS1wMLF49XD5WLTo=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=EeQpa9fitk/OpoQb5fgRexaj/4U0V03Hh0lFLdmYSKWSxWr0BxeUY1pOsh3perPWB
+         SVrQaG2Es6cVEJE9EcAkpzaUoe60SPjdpXy08bnbbNt9SXoNgvTk4Zh9/BoEqEtNSW
+         NPLtiibkt0oh3/H2R3pz2t8h0xyFRQ0W9hxD4848k7pI4sY8vWFWGltTlk8aT8G5wQ
+         NdeLJpPeJqt0Z9aq2LNe77mtwWiM3EwVsYl7NZCFrZfxwU0pFW6XX/hp7Cet/gZsnm
+         yjcGWIB56i2lBnp8u4z42Li1AYeei5ZBUCmPodnipCn0mPZNdyRypL1GmUo5PaUvx8
+         /rRw7QYrXZMww==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following commit 31af04cd60d3 ("arm64: dts: Remove inconsistent use of
-'arm,armv8' compatible string"), clean up these binding examples in case
-anyone is tempted to copy them.
-
-CC: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- Documentation/devicetree/bindings/arm/arm-boards     |  4 ++--
- .../devicetree/bindings/arm/cpu-capacity.txt         | 12 ++++++------
- 2 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/arm-boards b/Documentation/devicetree/bindings/arm/arm-boards
-index b6e810c2781a..abff8d834a6a 100644
---- a/Documentation/devicetree/bindings/arm/arm-boards
-+++ b/Documentation/devicetree/bindings/arm/arm-boards
-@@ -216,7 +216,7 @@ Example:
- 		#size-cells = <0>;
- 
- 		A57_0: cpu@0 {
--			compatible = "arm,cortex-a57","arm,armv8";
-+			compatible = "arm,cortex-a57";
- 			reg = <0x0 0x0>;
- 			device_type = "cpu";
- 			enable-method = "psci";
-@@ -225,7 +225,7 @@ Example:
- 		.....
- 
- 		A53_0: cpu@100 {
--			compatible = "arm,cortex-a53","arm,armv8";
-+			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x100>;
- 			device_type = "cpu";
- 			enable-method = "psci";
-diff --git a/Documentation/devicetree/bindings/arm/cpu-capacity.txt b/Documentation/devicetree/bindings/arm/cpu-capacity.txt
-index 96fa46cb133c..380e21c5fc7e 100644
---- a/Documentation/devicetree/bindings/arm/cpu-capacity.txt
-+++ b/Documentation/devicetree/bindings/arm/cpu-capacity.txt
-@@ -118,7 +118,7 @@ cpus {
- 	};
- 
- 	A57_0: cpu@0 {
--		compatible = "arm,cortex-a57","arm,armv8";
-+		compatible = "arm,cortex-a57";
- 		reg = <0x0 0x0>;
- 		device_type = "cpu";
- 		enable-method = "psci";
-@@ -129,7 +129,7 @@ cpus {
- 	};
- 
- 	A57_1: cpu@1 {
--		compatible = "arm,cortex-a57","arm,armv8";
-+		compatible = "arm,cortex-a57";
- 		reg = <0x0 0x1>;
- 		device_type = "cpu";
- 		enable-method = "psci";
-@@ -140,7 +140,7 @@ cpus {
- 	};
- 
- 	A53_0: cpu@100 {
--		compatible = "arm,cortex-a53","arm,armv8";
-+		compatible = "arm,cortex-a53";
- 		reg = <0x0 0x100>;
- 		device_type = "cpu";
- 		enable-method = "psci";
-@@ -151,7 +151,7 @@ cpus {
- 	};
- 
- 	A53_1: cpu@101 {
--		compatible = "arm,cortex-a53","arm,armv8";
-+		compatible = "arm,cortex-a53";
- 		reg = <0x0 0x101>;
- 		device_type = "cpu";
- 		enable-method = "psci";
-@@ -162,7 +162,7 @@ cpus {
- 	};
- 
- 	A53_2: cpu@102 {
--		compatible = "arm,cortex-a53","arm,armv8";
-+		compatible = "arm,cortex-a53";
- 		reg = <0x0 0x102>;
- 		device_type = "cpu";
- 		enable-method = "psci";
-@@ -173,7 +173,7 @@ cpus {
- 	};
- 
- 	A53_3: cpu@103 {
--		compatible = "arm,cortex-a53","arm,armv8";
-+		compatible = "arm,cortex-a53";
- 		reg = <0x0 0x103>;
- 		device_type = "cpu";
- 		enable-method = "psci";
--- 
-2.21.0.dirty
+On 5/21/2019 3:57 PM, Thierry Reding wrote:
+> On Fri, May 17, 2019 at 06:08:33PM +0530, Vidya Sagar wrote:
+>> Tegra194 rootports don't generate MSI interrupts for PME events and hence
+>> MSI needs to be disabled for them to avoid root ports service drivers
+>> registering their respective ISRs with MSI interrupt.
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>> Changes since [v6]:
+>> * This is a new patch
+>>
+>>   drivers/pci/quirks.c | 14 ++++++++++++++
+>>   1 file changed, 14 insertions(+)
+>>
+>> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+>> index 0f16acc323c6..28f9a0380df5 100644
+>> --- a/drivers/pci/quirks.c
+>> +++ b/drivers/pci/quirks.c
+>> @@ -2592,6 +2592,20 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA,
+>>   			PCI_DEVICE_ID_NVIDIA_NVENET_15,
+>>   			nvenet_msi_disable);
+>>   
+>> +/*
+>> + * Tegra194's PCIe root ports don't generate MSI interrupts for PME events
+>> + * instead legacy interrupts are generated. Hence, to avoid service drivers
+>> + * registering their respective ISRs for MSIs, need to disable MSI interrupts
+>> + * for root ports.
+>> + */
+>> +static void disable_tegra194_rp_msi(struct pci_dev *dev)
+>> +{
+>> +	dev->no_msi = 1;
+>> +}
+>> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA, 0x1ad0, disable_tegra194_rp_msi);
+>> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA, 0x1ad1, disable_tegra194_rp_msi);
+>> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA, 0x1ad2, disable_tegra194_rp_msi);
+>> +
+> 
+> Later functions in this file seem to use a more consistent naming
+> pattern, according to which the name for this would become:
+> 
+> 	pci_quirk_nvidia_tegra194_disable_rp_msi
+> 
+> Might be worth considering making this consistent.
+> 
+> This could also be moved to the DWC driver to restrict this to where it
+> is needed. In either case, this seems like a good solution, so:
+> 
+> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> 
+Ok. I'll move it to DWC driver along with name change for the quirk API.
 
