@@ -2,158 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA5742491A
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 09:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F43124927
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 09:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726193AbfEUHiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 03:38:24 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:44452 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726006AbfEUHiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 03:38:24 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4L7VAiP003069;
-        Tue, 21 May 2019 09:38:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=VO62M0H+Pp6PuHe4pwdgIh9u2uQFEKGsAdpei4nIXQM=;
- b=WOZMqST6Q+Cbk+rRQt5qd7OyxYoG4vgoyOT1cv3TjQMD1V+RmQfS8fNp/cdCGduWP3sK
- sSeLo1axEdDF1nsjR5NWrW4G6n/IGIHqc8y+mt5ZkjFbLX67KyZhr8PY8x5XDabJQTF2
- QVKbosocLnIOUkA2SCuLix9piKZjk4HAeItiOoFTpC+ZFOuNxtDHY/8SE0ECmdAR2hhq
- D7sE/lsmp+sMU39CsyxG/O0KiF3oFYWEbg+pKA6VHqd39t3r1MaZX0cT4jjlVqoX5wmS
- X102+33jF34intAYJLv5itfafcPGRT/TjdDI/aSy2z8KFIdgGsJq1Mql7SeSkMXZG/n9 1g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2sj8xg7tsr-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Tue, 21 May 2019 09:38:10 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 79C1731;
-        Tue, 21 May 2019 07:38:09 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 16F6515E9;
-        Tue, 21 May 2019 07:38:09 +0000 (GMT)
-Received: from [10.48.0.237] (10.75.127.46) by SFHDAG6NODE1.st.com
- (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 May
- 2019 09:38:08 +0200
-Subject: Re: [PATCH V2 0/5] mmc: mmci: add busy detect for stm32 sdmmc variant
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
+        id S1726227AbfEUHlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 03:41:36 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:46563 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726193AbfEUHlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 03:41:36 -0400
+X-Originating-IP: 90.88.22.185
+Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 329F5240014;
+        Tue, 21 May 2019 07:41:22 +0000 (UTC)
+Date:   Tue, 21 May 2019 09:41:22 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Frank Lee <tiny.windzz@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        bjorn.andersson@linaro.org,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        paulmck@linux.ibm.com, stefan.wahren@i2se.com,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andy Gross <andy.gross@linaro.org>, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, marc.w.gonzalez@free.fr,
+        Eduardo Valentin <edubezval@gmail.com>,
+        enric.balletbo@collabora.com, robh+dt@kernel.org,
+        Jonathan.Cameron@huawei.com,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1556264798-18540-1-git-send-email-ludovic.Barre@st.com>
- <CAPDyKFqbn=UcbwoH_z+yjrjvHQZaMtmsD=n0yrBV7DAK5VRJEQ@mail.gmail.com>
- <74b91eb4-e5a3-38b2-f732-29cdd058eb6a@st.com>
- <CAPDyKFoURwnai1hbCbO+Uh6+hc7A4dYHjWkqeFAEgMQET-BzwA@mail.gmail.com>
-From:   Ludovic BARRE <ludovic.barre@st.com>
-Message-ID: <e884b614-14d4-1cae-5b77-c6aacabb764a@st.com>
-Date:   Tue, 21 May 2019 09:38:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        olof@lixom.net, David Miller <davem@davemloft.net>
+Subject: Re: [PATCH 2/3] thermal: sun50i: add thermal driver for h6
+Message-ID: <20190521074122.syyctwvfsorl45dv@flea>
+References: <20190512082614.9045-1-tiny.windzz@gmail.com>
+ <20190512082614.9045-3-tiny.windzz@gmail.com>
+ <20190512133930.t5txssl7mou2gljt@flea>
+ <20190512214128.qjyys3vfpwdiacib@core.my.home>
+ <20190516150252.hf4u3bloo37chy6q@flea>
+ <CAEExFWu-T2mGQ9Teo7TQOcJsEzXi_dB=S8CFv7MiwHyu5z4-ow@mail.gmail.com>
+ <20190517073151.mz6hcmzubk7iqfre@flea>
+ <CAEExFWtban8Fjw6aZ5gdeC2GNk1vdqFoaJB_o-JtYZ_z70AJcQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFoURwnai1hbCbO+Uh6+hc7A4dYHjWkqeFAEgMQET-BzwA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG5NODE1.st.com (10.75.127.13) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-21_01:,,
- signatures=0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="oyv7cdm2vd7as2px"
+Content-Disposition: inline
+In-Reply-To: <CAEExFWtban8Fjw6aZ5gdeC2GNk1vdqFoaJB_o-JtYZ_z70AJcQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Ulf
 
-Just a "gentleman ping" about the rest of series.
-"mmc: mmci: add busy detect for stm32 sdmmc variant"
+--oyv7cdm2vd7as2px
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards
-Ludo
+Hi,
 
-On 5/3/19 3:29 PM, Ulf Hansson wrote:
-> On Tue, 30 Apr 2019 at 14:06, Ludovic BARRE <ludovic.barre@st.com> wrote:
->>
->>
->>
->> On 4/30/19 1:13 PM, Ulf Hansson wrote:
->>> On Fri, 26 Apr 2019 at 09:46, Ludovic Barre <ludovic.Barre@st.com> wrote:
->>>>
->>>> From: Ludovic Barre <ludovic.barre@st.com>
->>>>
->>>> This patch series adds busy detect for stm32 sdmmc variant.
->>>> Some adaptations are required:
->>>> -Avoid to check and poll busy status when is not expected.
->>>> -Clear busy status bit if busy_detect_flag and busy_detect_mask are
->>>>    different.
->>>> -Add hardware busy timeout with MMCIDATATIMER register.
->>>>
->>>> V2:
->>>> -mmci_cmd_irq cleanup in separate patch.
->>>> -simplify the busy_detect_flag exclude
->>>> -replace sdmmc specific comment in
->>>> "mmc: mmci: avoid fake busy polling in mmci_irq"
->>>> to focus on common behavior
->>>>
->>>> Ludovic Barre (5):
->>>>     mmc: mmci: cleanup mmci_cmd_irq for busy detect feature
->>>>     mmc: mmci: avoid fake busy polling in mmci_irq
->>>>     mmc: mmci: fix clear of busy detect status
->>>>     mmc: mmci: add hardware busy timeout feature
->>>>     mmc: mmci: add busy detect for stm32 sdmmc variant
->>>>
->>>>    drivers/mmc/host/mmci.c | 61 ++++++++++++++++++++++++++++++++++++++-----------
->>>>    drivers/mmc/host/mmci.h |  3 +++
->>>>    2 files changed, 51 insertions(+), 13 deletions(-)
->>>>
->>>> --
->>>> 2.7.4
->>>>
->>>
->>> Ludovic, just wanted to let you know that I am reviewing and testing
->>> this series.
->>>
->>> However, while running some tests on Ux500 for validating the busy
->>> detection code, even without your series applied, I encounter some odd
->>> behaviors. I am looking into the problem to understand better and will
->>> let you know as soon as I have some more data to share.
->>
->> Oops, don't hesitate to share your status, if I could help.
-> 
-> Thanks! Good and bad news here, then.
-> 
-> I now understand what is going on - and there is certainly room for
-> improvements here, but more importantly the actual mmci busy detection
-> works as expected.
-> 
-> When it comes to improvements, the main issue I have found is how we
-> treat DATA WRITES. In many cases we simply don't use the HW busy
-> detection at all, but instead rely on the mmc core to send CMD13 in a
-> loop to poll. Well, then if the polling would have consisted of a
-> couple of CMD13s that wouldn't be an issue, but my observations is
-> rather that the numbers of CMD13 sent to poll is in the range or
-> hundreds/thousands - per each WRITE request!
-> 
-> I am going to send a patch (or two) that improves the behavior. It
-> might even involve changing parts in core layer, not sure how the end
-> result will look like yet.
-> 
-> In any case, I have applied patch 1 and patch2 for next, as the tests
-> turned out well at my side. I also took the liberty of updating some
-> of the comments/changelogs, please have look and tell if there is
-> something you want to change.
-> 
-> I will continue with the rest of series next week.
-> 
-> Kind regards
-> Uffe
-> 
+On Sat, May 18, 2019 at 01:19:54AM +0800, Frank Lee wrote:
+> On Fri, May 17, 2019 at 3:32 PM Maxime Ripard <maxime.ripard@bootlin.com>=
+ wrote:
+> >
+> > On Fri, May 17, 2019 at 02:10:47AM +0800, Frank Lee wrote:
+> > > > On Sun, May 12, 2019 at 11:41:28PM +0200, Ond=C5=99ej Jirman wrote:
+> > > > > > > +static int tsens_get_temp(void *data, int *temp)
+> > > > > > > +{
+> > > > > > > + struct tsensor *s =3D data;
+> > > > > > > + struct tsens_device *tmdev =3D s->tmdev;
+> > > > > > > + int val;
+> > > > > > > +
+> > > > > > > + regmap_read(tmdev->regmap, tmdev->chip->temp_data_base +
+> > > > > > > +             0x4 * s->id, &val);
+> > > > > > > +
+> > > > > > > + if (unlikely(val =3D=3D 0))
+> > > > > > > +         return -EBUSY;
+> > > > > >
+> > > > > > I'm not sure why a val equals to 0 would be associated with EBU=
+SY?
+> > > > >
+> > > > > Thermal zone driver can (will) call get_temp before we got the
+> > > > > first interrupt and the thermal data. In that case val will be 0.
+> > > > >
+> > > > > Resulting in:
+> > > > >
+> > > > >  (val + offset) * scale =3D (-2794) * -67 =3D 187198
+> > > > >
+> > > > > 187=C2=B0C and immediate shutdown during boot - based on cirtical
+> > > > > temperature being reached.
+> > > > >
+> > > > > Busy here means, get_temp does not yet have data. Thermal zone
+> > > > > driver just reports any error to dmesg output.
+> > > >
+> > > > Ah, that makes sense.
+> > > >
+> > > > I guess if we're switching to an interrupt-based driver, then we can
+> > > > just use a waitqueue, or is get_temp supposed to be atomic?
+> > >
+> > > I think get_temp should not be bloacked.
+> >
+> > Why not?
+>
+> Maybe, I am wrong. I also want to know if we should do this.
+
+I guess it really all depends on whether you can sleep or not in
+get_temps. If you can, then you should wait for the value to be
+converted and the THS raising an interrupt.
+
+If you can't, then we should ask what the thermal frameworks expects
+in such a case.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--oyv7cdm2vd7as2px
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOOrogAKCRDj7w1vZxhR
+xULTAQC1mWNEVwrK+oid9JOzl0rrU7ybLUMo5gBPlvdd1iIu+QEAzEe9pVgCRCN6
+Z8AqbAjBGsyR2h/P/5jg1jYC4d/GBQg=
+=MglJ
+-----END PGP SIGNATURE-----
+
+--oyv7cdm2vd7as2px--
