@@ -2,156 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC6224C13
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B99D24C25
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 12:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726344AbfEUJ6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 05:58:46 -0400
-Received: from mga02.intel.com ([134.134.136.20]:35815 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726242AbfEUJ6q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 05:58:46 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 May 2019 02:58:45 -0700
-X-ExtLoop1: 1
-Received: from kuha.fi.intel.com ([10.237.72.189])
-  by fmsmga001.fm.intel.com with SMTP; 21 May 2019 02:58:40 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 21 May 2019 12:58:39 +0300
-Date:   Tue, 21 May 2019 12:58:39 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        id S1726363AbfEUKEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 06:04:06 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:51708 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726242AbfEUKEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 06:04:06 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4LA2dvX025126;
+        Tue, 21 May 2019 12:03:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=DnSyyYeMPo/Rj8IttHG/PRL144k6IF0UugMb5dguwto=;
+ b=X8moGV0rKXL8AO+QlnbiNcn5/jyDNgN0YBqNpyYLCk09Gt9HZDooVSWLOvbtv0mX5d2g
+ Wd6tbe52dF2Tv2BliOtW+j5sf8LNl9Fmm3CqZBKz88BLL1D9AynI6TkLLXIx18sb9BUV
+ jMoleQzC1Dtca8wyDZOLPSnw80bxN8vrC/H2R2YtwZhrydob6lMO1AktMH+B/RlthHAO
+ pqd3/WWO8fU2lxzXhrOZZcBR/VOXzFU2j4T4fFHGFNqUuhTNXyZTylMKipkUb6MRY7aD
+ gsqHgSpDeflshYkgMg4qjWnY5JLgKz2Ln+xmNGdILETJ0bjVQWUsWjuudUTZgEvGIQqC 7A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2sj8xg8kb6-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 21 May 2019 12:03:57 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AD49E38;
+        Tue, 21 May 2019 10:03:56 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8ECDC25A3;
+        Tue, 21 May 2019 10:03:56 +0000 (GMT)
+Received: from [10.48.0.204] (10.75.127.49) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 May
+ 2019 12:03:55 +0200
+Subject: Re: [PATCH 0/4] Enable stm32mp1 camera support
+To:     Hugues Fruchet <hugues.fruchet@st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by node
-Message-ID: <20190521095839.GI1887@kuha.fi.intel.com>
-References: <1557823643-8616-1-git-send-email-chunfeng.yun@mediatek.com>
- <1557823643-8616-5-git-send-email-chunfeng.yun@mediatek.com>
- <20190517103736.GA1490@kuha.fi.intel.com>
- <20190517130511.GA1887@kuha.fi.intel.com>
- <1558319951.10179.352.camel@mhfsdcap03>
- <20190520080359.GC1887@kuha.fi.intel.com>
- <OSBPR01MB2103385D996762FA54F8E437B8060@OSBPR01MB2103.jpnprd01.prod.outlook.com>
- <20190520083601.GE1887@kuha.fi.intel.com>
- <OSBPR01MB2103C4C8920C40E42BC1B2A9B8060@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <1551363945-19497-1-git-send-email-hugues.fruchet@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <6ba8698f-0c05-5293-4811-2f632bf1b047@st.com>
+Date:   Tue, 21 May 2019 12:03:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <OSBPR01MB2103C4C8920C40E42BC1B2A9B8060@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <1551363945-19497-1-git-send-email-hugues.fruchet@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-21_01:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 09:45:46AM +0000, Biju Das wrote:
-> 
-> 
-> Hi Heikki,
-> 
-> Thanks for the feedback.
-> 
-> > Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by
-> > node
-> > 
-> > On Mon, May 20, 2019 at 08:06:41AM +0000, Biju Das wrote:
-> > > Hi Heikki,
-> > >
-> > > > Subject: Re: [PATCH v5 4/6] usb: roles: add API to get
-> > > > usb_role_switch by node
-> > > >
-> > > > On Mon, May 20, 2019 at 10:39:11AM +0800, Chunfeng Yun wrote:
-> > > > > Hi,
-> > > > > On Fri, 2019-05-17 at 16:05 +0300, Heikki Krogerus wrote:
-> > > > > > Hi,
-> > > > > >
-> > > > > > On Fri, May 17, 2019 at 01:37:36PM +0300, Heikki Krogerus wrote:
-> > > > > > > On Tue, May 14, 2019 at 04:47:21PM +0800, Chunfeng Yun wrote:
-> > > > > > > > Add fwnode_usb_role_switch_get() to make easier to get
-> > > > > > > > usb_role_switch by fwnode which register it.
-> > > > > > > > It's useful when there is not device_connection registered
-> > > > > > > > between two drivers and only knows the fwnode which register
-> > > > > > > > usb_role_switch.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > > > > > > Tested-by: Biju Das <biju.das@bp.renesas.com>
-> > > > > > >
-> > > > > > > Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> > > > > >
-> > > > > > Hold on. I just noticed Rob's comment on patch 2/6, where he
-> > > > > > points out that you don't need to use device graph since the
-> > > > > > controller is the parent of the connector. Doesn't that mean you
-> > > > > > don't really need this API?
-> > > > > No, I still need it.
-> > > > > The change is about the way how to get fwnode; when use device
-> > > > > graph, get fwnode by of_graph_get_remote_node(); but now will get
-> > > > > fwnode by of_get_parent();
-> > > >
-> > > > OK, I get that, but I'm still not convinced about if something like
-> > > > this function is needed at all. I also have concerns regarding how
-> > > > you are using the function. I'll explain in comment to the patch 5/6 in this
-> > series...
-> > >
-> > > FYI, Currently  I am also using this api in my patch series.
-> > > https://patchwork.kernel.org/patch/10944637/
-> > 
-> > Yes, and I have the same question for you I jusb asked in comment I added
-> > to the patch 5/6 of this series. Why isn't usb_role_switch_get() enough?
-> 
-> Currently no issue. It will work with this api as well, since the port node is part of controller node.
-> For eg:-
-> https://patchwork.kernel.org/patch/10944627/
-> 
-> However if any one adds port node inside the connector node, then this api may won't work as expected.
-> Currently I get below error
-> 
-> [    2.299703] OF: graph: no port node found in /soc/i2c@e6500000/hd3ss3220@47
+Dear Hugues,
 
-We need to understand why is that happening?
-
-It looks like we have an issue somewhere in the code, and instead of
-fixing that, you are working around it. Let's not do that.
-
-> For eg:-
+On 2/28/19 3:25 PM, Hugues Fruchet wrote:
+> This patchset serie enables camera of stm32mp157c evaluation board.
+> To do so, both stm32mp157c DCMI camera interface driver and OV5640 camera
+> module driver are enabled in devicetree.
 > 
-> 	hd3ss3220@47 {
-> 		compatible = "ti,hd3ss3220";
-> 		...
-> 		....
-> 		usb_con: connector {
->                                      ....
->                                      ....
-> 			port {
-> 				hd3ss3220_ep: endpoint@0 {
-> 					reg = <0>;
-> 					remote-endpoint = <&usb3peri_role_switch>;
-> 				};
-> 			};
-> 		};
-> 	};
+> DCMI camera interface driver is enabled by default in multi_v7 configuration
+> but OV5640 driver remains to be selected at kernel configuration time.
 > 
-> Regards,
-> Biju
+> This patchset depends on STMicroelectronics Multi-Function eXpander
+> (STMFX) support [1].
+> 
+> [1] https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg1944108.html
+> 
+> Hugues Fruchet (4):
+>    ARM: dts: stm32: add 2v8 fixed regulator for stm32mp157c-ed1 board
+>    ARM: dts: stm32: add DCMI camera interface support on stm32mp157c
+>    ARM: dts: stm32: add DCMI pins to stm32mp157c
+>    ARM: dts: stm32: enable OV5640 camera on stm32mp157c-ev1 board
+> 
+>   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 41 ++++++++++++++++++++++
+>   arch/arm/boot/dts/stm32mp157c-ed1.dts     |  8 +++++
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts     | 56 +++++++++++++++++++++++++++++++
+>   arch/arm/boot/dts/stm32mp157c.dtsi        | 12 +++++++
+>   4 files changed, 117 insertions(+)
+> 
 
-thanks,
+Patch 2 to 4 applied on stm32-next. Patch 1 is no longer needed as 
+regulators are now provided by PMIC.
 
--- 
-heikki
+thanks
+Alex
