@@ -2,297 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4277D255C2
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEBF7255E0
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727898AbfEUQiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 12:38:12 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:35330 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727817AbfEUQiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:38:11 -0400
-Received: by mail-pg1-f196.google.com with SMTP id t1so7434768pgc.2;
-        Tue, 21 May 2019 09:38:11 -0700 (PDT)
+        id S1728928AbfEUQm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 12:42:59 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35563 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728800AbfEUQm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:42:58 -0400
+Received: by mail-pl1-f195.google.com with SMTP id p1so3323839plo.2
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 09:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bJ1VLlUgsXHPx9YVjm4Gzuz0+Et8Khm+/V044LMPG6M=;
-        b=LkLChq3BOc6/t3SDMr3DP8B5DY3sAFl4TsgVRVob/VgOx6YYZzOOK00jISPylMP15p
-         XeY8Jg15zNMZublBHC8Bd2+UwNjsFL5c+TLF3NM1kqeFQv1RUIsCLfi413jvz+hBdQj5
-         lkHU1rAyUs4qkfKkKoo4Odsq7LsK3LhqWXQjWX5B+SpUV44K+oYS0SBpt8wSr3EB+8KJ
-         S3ks5DlTaYEinszWqjWPmdTRYLiggwi7JLLGqIRMaGSg+aQaJn1SB+ZzE3BI64Ccjbi9
-         8L3jnCNbefhDw8weKF8azFUgUaA2SCpdpzbYFzlfGGnJL5N58BwShVrKEaPiC+Gjy62g
-         CPHw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=WtZw+fdpaZbjOuInBI+L534tlDp+rXop9p/+kf7XV9Y=;
+        b=hFNtdVKEgvRPdSC5PDgOq8ZO64S/5OEgXmRLL+urCT25WMrrztgtN7uEjQhFZ0x1q9
+         472j6PCFOpSu9GCbELpRPLoXI8edMyQZO9oXOOQOa+9qDynglftR9FIBF2samkT3ZMRl
+         sHNelQEizfXadKEq6bQQCkKPxdxLXYjIq0ztKCNXaEOYZ0aDxKy95VjgvSjCPhavUKDZ
+         +PovVhwCZCVANcIkrWpNQS53G5pOdvhUXu1EEYb/M9G+qQAg75c48u5RSg3Lz8TP6JSQ
+         N9oToM2QuyrevbIkGevB/nzQC9E5I4kcBx49z+Zp5GdyivvaLDDlAX5AJ9+4j/bVAoKG
+         ueeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bJ1VLlUgsXHPx9YVjm4Gzuz0+Et8Khm+/V044LMPG6M=;
-        b=VIRyv+VndSVKNWvr172F2wpaU0jHxdRxsUBHu1F8x75RnOyvE8fCdbq9QclnNijapu
-         fxFH69gFmCoLe83nJxQ3wPT03PUNSCW3zxOhHnb7+0JNFugfTRErYtocOHpCGGEpEuOk
-         +jbQmIoTLKs9OUY9Ys+neK7G50B2aq6c2vhJUNRO2/SQU0xHO9kY3FxgMzcsqRWJVLY1
-         juzE6XUG/5eq9YO6QeH9/Ti1L/brFAskbNEPSAsXt3Ws2SYqYeOjhTiokKXxSwgfbTl+
-         WQ4B2ds3lrfZzyG2BD3iTSjGZAbXHabG+wsr9HZ+Aai2uZqslLQ9bt9S4eafKM4VxQu3
-         L8zg==
-X-Gm-Message-State: APjAAAWhQjWyj3+bULFSVkA5EvF5zkPFl8Ssut+PVXjrh6mp6vWCamk5
-        W65z6/i1+IObmcGXeRyN1+U4AzE9zPIkexSDQVg=
-X-Google-Smtp-Source: APXvYqzGHQSSm0GGnsuAe73YbyFJXfQFXLw7B7XFFchYQo7Y35cJ9YEqjldDq8tASVvCJBb7pWzRrqVutGGPaBrqM58=
-X-Received: by 2002:a63:e645:: with SMTP id p5mr82954583pgj.4.1558456690936;
- Tue, 21 May 2019 09:38:10 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WtZw+fdpaZbjOuInBI+L534tlDp+rXop9p/+kf7XV9Y=;
+        b=IBdjE0F50iPzocNpNKxL07GpZLDoY2CBBD+a97QXDTj98EBdmiTm5k/TQF2u6xltuJ
+         HbEC5cP+fvNi8Ki3t+pYZ4CtdG1CEML47APzaIayAYGsyiGdCqPzz9p/m4EJGtRC1lI+
+         sD22KTFRckaiwnVan1O2K619Bb2DIYePFyhFpdTqEpMCqTYRdXj865/yLEyYHUWrE/qq
+         hPh5pfbulgGi/3djNu5GdF/0BpWTIeijIqOQtYOMR6CaH29J3C0pTKwUoFsW4JqWpgzQ
+         c9fm8zdjUxauk4GCRLH2cq0+DiU8SHEldp/kegVMbExh8yIuhX68Cxcg6pHYntFWm3nf
+         2NHQ==
+X-Gm-Message-State: APjAAAW03aNG9ChOk3Mc6SWl9DUvchOUzAJhJ2zYplcYVT3ALTtODXfx
+        ThZPoHV7BG+qUXhq+1OigPDx4A==
+X-Google-Smtp-Source: APXvYqz6hkQggncGw2amqhWyINM+2IIHUlaiyyx3bhaLSiib6GgTf9AkL4kdRJODyIfrRQHDBRKiyw==
+X-Received: by 2002:a17:902:20ca:: with SMTP id v10mr44805389plg.296.1558456977499;
+        Tue, 21 May 2019 09:42:57 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id t78sm46216148pfa.154.2019.05.21.09.42.56
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 21 May 2019 09:42:56 -0700 (PDT)
+Date:   Tue, 21 May 2019 09:43:24 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     dmitry.torokhov@gmail.com, jikos@kernel.org,
+        benjamin.tissoires@redhat.com, lee.jones@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, agross@kernel.org,
+        david.brown@linaro.org, hdegoede@redhat.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] HID: quirks: Refactor ELAN 400 and 401 handling
+Message-ID: <20190521164324.GA2085@tuxbook-pro>
+References: <20190423160543.9922-1-jeffrey.l.hugo@gmail.com>
+ <20190423160605.9970-1-jeffrey.l.hugo@gmail.com>
 MIME-Version: 1.0
-References: <20190521115958.22504-1-masahisa.kojima@linaro.org> <20190521115958.22504-4-masahisa.kojima@linaro.org>
-In-Reply-To: <20190521115958.22504-4-masahisa.kojima@linaro.org>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 21 May 2019 19:38:00 +0300
-Message-ID: <CAHp75VdJLB6Tqu7z-o++44TfWnY3ghfSn=Kb=nAtxdFggOxBnw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer platform
-To:     Masahisa Kojima <masahisa.kojima@linaro.org>
-Cc:     linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Trent Piepho <tpiepho@impinj.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        okamoto.satoru@socionext.com, osaki.yoshitoyo@socionext.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190423160605.9970-1-jeffrey.l.hugo@gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 21, 2019 at 3:00 PM Masahisa Kojima
-<masahisa.kojima@linaro.org> wrote:
->
-> This patch adds support for controller found on synquacer platforms.
+On Tue 23 Apr 09:06 PDT 2019, Jeffrey Hugo wrote:
 
-> +       case 8:
-> +               {
-> +               u8 *buf = sspi->rx_buf;
-> +
-> +               readsb(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
-> +               sspi->rx_buf = buf + len;
-> +               break;
-> +               }
+> There needs to be coordination between hid-quirks and the elan_i2c driver
+> about which devices are handled by what drivers.  Currently, both use
+> whitelists, which results in valid devices being unhandled by default,
+> when they should not be rejected by hid-quirks.  This is quickly becoming
+> an issue.
+> 
+> Since elan_i2c has a maintained whitelist of what devices it will handle,
+> use that to implement a blacklist in hid-quirks so that only the devices
+> that need to be handled by elan_i2c get rejected by hid-quirks, and
+> everything else is handled by default.  The downside is the whitelist and
+> blacklist need to be kept in sync.
+> 
 
-Slightly better style
-case FOO: {
-  ...
-}
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> +       /* Full Duplex only on 1-bit wide bus */
-> +       if (xfer->rx_buf && xfer->tx_buf &&
-> +           (xfer->rx_nbits != 1 || xfer->tx_nbits != 1)) {
-> +               dev_err(sspi->dev,
-> +                       "RX and TX bus widths must match for Full-Duplex!\n");
+Jiri, the two patches in this series doesn't have a build time
+dependency, so if you take this one through your tree I'll take 2/2
+through arm-soc.
 
-The message is not telling full truth. Not only match, but also be equal 1.
+Regards,
+Bjorn
 
-> +               return -EINVAL;
-> +       }
-
-> +static int synquacer_spi_transfer_one(struct spi_master *master,
-> +                                     struct spi_device *spi,
-> +                                     struct spi_transfer *xfer)
-> +{
-> +       struct synquacer_spi *sspi = spi_master_get_devdata(master);
-> +       int ret;
-> +       int status = 0;
-> +       unsigned int words;
-> +       u8 bpw;
-> +       u32 val;
-> +
-> +       val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-> +       val |= SYNQUACER_HSSPI_FIFOCFG_RX_FLUSH;
-> +       val |= SYNQUACER_HSSPI_FIFOCFG_TX_FLUSH;
-> +       writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-> +
-> +       /*
-> +        * See if we can transfer 4-bytes as 1 word
-> +        * to maximize the FIFO buffer effficiency
-
-Typo here, and period is missed.
-
-> +        */
-
-> +       case 8:
-> +               words = xfer->len;
-> +               break;
-> +       case 16:
-> +               words = xfer->len / 2;
-> +               break;
-> +       default:
-> +               words = xfer->len / 4;
-> +               break;
-
-Hmm... Shouldn't be rather "less then or equal" comparisons?
-
-> +       unsigned int retries = 0xfffff;
-
-Hmm... better to use decimal value.
-
-> +       /* Disable module */
-> +       writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_MCTRL);
-
-> +       while ((readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_MCTRL) &
-> +               SYNQUACER_HSSPI_MCTRL_MES) && --retries)
-> +               cpu_relax();
-> +       if (!retries)
-> +               return -EBUSY;
-
-And here something like
-do {
-} while (--retries)
-
-would look slightly better due to understanding that we do at least
-one iteration.
-
-Also, can readx_poll_timeout be used here?
-
-> +static irqreturn_t sq_spi_tx_handler(int irq, void *priv)
-> +{
-> +       uint32_t val;
-> +       struct synquacer_spi *sspi = priv;
-> +
-> +       val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_TXF);
-> +
-> +       if (val & SYNQUACER_HSSPI_TXF_FIFO_EMPTY) {
-> +               if (sspi->tx_words == 0) {
-> +                       writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-> +                       complete(&sspi->transfer_done);
-
-> +                       return 0;
-
-irqreturn_t type, please. We have corresponding defines.
-
-> +               }
-> +               write_fifo(sspi);
-> +       }
-> +
-> +       return 0;
-
-Ditto.
-
-> +}
-
-> +static int synquacer_spi_probe(struct platform_device *pdev)
-> +{
-> +       struct device_node *np = pdev->dev.of_node;
-> +       struct spi_master *master;
-> +       struct synquacer_spi *sspi;
-> +       struct resource *res;
-> +       int ret;
-> +       int rx_irq, tx_irq;
-> +
-> +       master = spi_alloc_master(&pdev->dev, sizeof(*sspi));
-> +       if (!master)
-> +               return -ENOMEM;
-> +
-> +       platform_set_drvdata(pdev, master);
-> +
-> +       sspi = spi_master_get_devdata(master);
-> +       sspi->dev = &pdev->dev;
-> +
-
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       sspi->regs = devm_ioremap_resource(sspi->dev, res);
-
-devm_platform_ioremap_resource()
-
-> +       if (IS_ERR(sspi->regs)) {
-> +               ret = PTR_ERR(sspi->regs);
-> +               goto put_spi;
-> +       }
-
-> +       } else {
-> +               dev_err(&pdev->dev, "specified wrong clock source\n");
-> +               ret = -EINVAL;
-> +               goto put_spi;
-> +       }
-
-Not an issue for ACPI.
-
-> +       if (IS_ERR(sspi->clk)) {
-> +               dev_err(&pdev->dev, "clock not found\n");
-> +               ret = PTR_ERR(sspi->clk);
-> +               goto put_spi;
-> +       }
-> +
-> +       sspi->aces = of_property_read_bool(np, "socionext,set-aces");
-> +       sspi->rtm = of_property_read_bool(np, "socionext,use-rtm");
-> +
-> +       master->num_chipselect = SYNQUACER_HSSPI_NUM_CHIP_SELECT;
-> +
-> +       init_completion(&sspi->transfer_done);
-> +
-> +       rx_irq = platform_get_irq(pdev, 0);
-> +       if (rx_irq < 0)
-> +               dev_err(&pdev->dev, "get rx_irq failed\n");
-> +
-> +       tx_irq = platform_get_irq(pdev, 1);
-> +       if (tx_irq < 0)
-> +               dev_err(&pdev->dev, "get tx_irq failed\n");
-> +
-> +       ret = devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
-> +                               0, "synquacer-spi-rx", sspi);
-> +       ret = devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
-> +                               0, "synquacer-spi-tx", sspi);
-> +
-> +       ret = clk_prepare_enable(sspi->clk);
-> +       if (ret)
-> +               goto put_spi;
-> +
-> +       master->dev.of_node = np;
-> +       master->auto_runtime_pm = true;
-> +       master->bus_num = pdev->id;
-> +
-> +       master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_TX_DUAL | SPI_RX_DUAL |
-> +                           SPI_TX_QUAD | SPI_RX_QUAD;
-> +       master->bits_per_word_mask = SPI_BPW_MASK(32) | SPI_BPW_MASK(24) |
-> +                                    SPI_BPW_MASK(16) | SPI_BPW_MASK(8);
-> +
-> +       master->max_speed_hz = clk_get_rate(sspi->clk);
-> +       master->min_speed_hz = master->max_speed_hz / 254;
-> +
-> +       master->set_cs = synquacer_spi_set_cs;
-> +       master->transfer_one = synquacer_spi_transfer_one;
-> +
-> +       ret = synquacer_spi_enable(master);
-> +       if (ret)
-> +               goto fail_enable;
-> +
-> +       pm_runtime_set_active(sspi->dev);
-> +       pm_runtime_enable(sspi->dev);
-> +
-> +       ret = devm_spi_register_master(sspi->dev, master);
-> +       if (ret)
-> +               goto disable_pm;
-> +
-> +       return 0;
-> +
-> +disable_pm:
-> +       pm_runtime_disable(sspi->dev);
-> +fail_enable:
-> +       clk_disable_unprepare(sspi->clk);
-> +put_spi:
-> +       spi_master_put(master);
-> +
-> +       return ret;
-> +}
-
-
-> +       if (!pm_runtime_suspended(dev))
-
-This is not enough to check.
-
-> +       if (!pm_runtime_suspended(dev)) {
-
-Ditto.
-
--- 
-With Best Regards,
-Andy Shevchenko
+> Suggested-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> ---
+>  drivers/hid/hid-quirks.c            | 64 ++++++++++++++++++++++++-----
+>  drivers/input/mouse/elan_i2c_core.c |  4 ++
+>  2 files changed, 58 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/hid/hid-quirks.c b/drivers/hid/hid-quirks.c
+> index 77ffba48cc73..656485e08eb7 100644
+> --- a/drivers/hid/hid-quirks.c
+> +++ b/drivers/hid/hid-quirks.c
+> @@ -987,17 +987,61 @@ bool hid_ignore(struct hid_device *hdev)
+>  		break;
+>  	case USB_VENDOR_ID_ELAN:
+>  		/*
+> -		 * Many Elan devices have a product id of 0x0401 and are handled
+> -		 * by the elan_i2c input driver. But the ACPI HID ELAN0800 dev
+> -		 * is not (and cannot be) handled by that driver ->
+> -		 * Ignore all 0x0401 devs except for the ELAN0800 dev.
+> +		 * Blacklist of everything that gets handled by the elan_i2c
+> +		 * input driver.  This should be kept in sync with the whitelist
+> +		 * that exists in that driver.  This avoids disabling valid
+> +		 * touchpads and other ELAN devices.
+>  		 */
+> -		if (hdev->product == 0x0401 &&
+> -		    strncmp(hdev->name, "ELAN0800", 8) != 0)
+> -			return true;
+> -		/* Same with product id 0x0400 */
+> -		if (hdev->product == 0x0400 &&
+> -		    strncmp(hdev->name, "QTEC0001", 8) != 0)
+> +		if ((hdev->product == 0x0401 || hdev->product == 0x0400) &&
+> +		   (strncmp(hdev->name, "ELAN0000", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0100", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0600", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0601", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0602", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0603", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0604", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0605", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0606", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0607", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0608", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0609", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN060B", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN060C", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN060F", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0610", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0611", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0612", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0613", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0614", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0615", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0616", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0617", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0618", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0619", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN061A", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN061B", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN061C", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN061D", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN061E", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN061F", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0620", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0621", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0622", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0623", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0624", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0625", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0626", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0627", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0628", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0629", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN062A", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN062B", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN062C", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN062D", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0631", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN0632", 8) == 0 ||
+> +		    strncmp(hdev->name, "ELAN1000", 8) == 0 ||
+> +		    strncmp(hdev->name, "elan,ekth3000", 13) == 0))
+>  			return true;
+>  		break;
+>  	}
+> diff --git a/drivers/input/mouse/elan_i2c_core.c b/drivers/input/mouse/elan_i2c_core.c
+> index f9525d6f0bfe..3ded19528cd4 100644
+> --- a/drivers/input/mouse/elan_i2c_core.c
+> +++ b/drivers/input/mouse/elan_i2c_core.c
+> @@ -1332,6 +1332,10 @@ static const struct i2c_device_id elan_id[] = {
+>  };
+>  MODULE_DEVICE_TABLE(i2c, elan_id);
+>  
+> +/*
+> + * when these whtielists get updated, the corresponding blacklist in hid-quirks
+> + * needs to be updated to match.
+> + */
+>  #ifdef CONFIG_ACPI
+>  static const struct acpi_device_id elan_acpi_id[] = {
+>  	{ "ELAN0000", 0 },
+> -- 
+> 2.17.1
+> 
