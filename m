@@ -2,14 +2,14 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 168F4258FF
+	by mail.lfdr.de (Postfix) with ESMTP id 8108A25900
 	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727979AbfEUUdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727428AbfEUUdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 21 May 2019 16:33:09 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:38616 "EHLO
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:38620 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727376AbfEUUdI (ORCPT
+        with ESMTP id S1727911AbfEUUdI (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 16:33:08 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
@@ -17,28 +17,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=WYXLR7ZS6jDTWKfU4LheraNWdGPA7/wxWnPkHZQHF5k=; b=HQtwaysftys3
-        IKkP1WzONpOu/70j3HEIS3i9HRBiKl7J0b/OBN+qE6M8SNvr3Cji9uxdl5nH01HjSvmZD8BK3ioid
-        WJs8crY6S8+sfZDb6Pz7W4HjnLeMKDDvGCt7q5bXF+l6M52U5Istb/UUgGy1i/SwmbcmFFfBDDnWM
-        BizYw=;
+        List-Archive; bh=7t01hKARnYEqKrxLkzCGU8GKhNFY7FCn6M/pLrWr+JI=; b=MhGxENPA2/if
+        pBdP3Qc8EQZV6g4KoECATFBSykE1AgjMgSh4fPIITPVNQbMPKnIVGL1bLs0wLcS6srbfE/Qq0ADzj
+        RdpdYVxL+CThV0J9esLtQGv0c6KYDqdNScsj6yKXxxFXXB/IOaVTdyLemAeLR8V/uR5Qke2G7wkmF
+        8xSLE=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hTBRX-000221-Nj; Tue, 21 May 2019 20:33:03 +0000
+        id 1hTBRX-00021z-Nl; Tue, 21 May 2019 20:33:03 +0000
 Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id CDEFC1126D16; Tue, 21 May 2019 21:32:59 +0100 (BST)
+        id 1463A1126D17; Tue, 21 May 2019 21:33:00 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     broonie@kernel.org, Charles Keepax <ckeepax@opensource.cirrus.com>,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        mark.rutland@arm.com, patches@opensource.cirrus.com,
-        robh+dt@kernel.org
-Subject: Applied "regulator: arizona-ldo1: Add support for Cirrus Logic Madera codecs" to the regulator tree
-In-Reply-To: <20190521100439.27383-2-ckeepax@opensource.cirrus.com>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>, mark.rutland@arm.com,
+        patches@opensource.cirrus.com, robh+dt@kernel.org
+Subject: Applied "regulator: arizona: Update device tree binding to support Madera CODECs" to the regulator tree
+In-Reply-To: <20190521100439.27383-1-ckeepax@opensource.cirrus.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190521203259.CDEFC1126D16@debutante.sirena.org.uk>
-Date:   Tue, 21 May 2019 21:32:59 +0100 (BST)
+Message-Id: <20190521203300.1463A1126D17@debutante.sirena.org.uk>
+Date:   Tue, 21 May 2019 21:33:00 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -46,7 +45,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   regulator: arizona-ldo1: Add support for Cirrus Logic Madera codecs
+   regulator: arizona: Update device tree binding to support Madera CODECs
 
 has been applied to the regulator tree at
 
@@ -71,163 +70,36 @@ to this mail.
 Thanks,
 Mark
 
-From 1f5f11e7370c6a55da1a37351b0cfb5f86f0cb6d Mon Sep 17 00:00:00 2001
-From: Richard Fitzgerald <rf@opensource.cirrus.com>
-Date: Tue, 21 May 2019 11:04:38 +0100
-Subject: [PATCH] regulator: arizona-ldo1: Add support for Cirrus Logic Madera
- codecs
+From 46f4050a6587ea3e59e6f47f06513c00689b9d40 Mon Sep 17 00:00:00 2001
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+Date: Tue, 21 May 2019 11:04:37 +0100
+Subject: [PATCH] regulator: arizona: Update device tree binding to support
+ Madera CODECs
 
-This adds a new driver identity "madera-ldo1" and probe function
-so that this driver can be used to control the LDO1 regulator on
-some Cirrus Logic Madera codecs.
+The Arizona regulator drivers are now also used by the Cirrus Logic
+Madera audio CODECs, update the binding document to link to the primary
+binding document for these as well as the existing Arizona document.
 
-Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
 Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/regulator/Kconfig        |  8 +--
- drivers/regulator/arizona-ldo1.c | 83 +++++++++++++++++++++++++++++++-
- 2 files changed, 86 insertions(+), 5 deletions(-)
+ .../devicetree/bindings/regulator/arizona-regulator.txt        | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 5e3a9e6547b0..5827aace014b 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -135,12 +135,12 @@ config REGULATOR_AB8500
- 	  signal AB8500 PMIC
+diff --git a/Documentation/devicetree/bindings/regulator/arizona-regulator.txt b/Documentation/devicetree/bindings/regulator/arizona-regulator.txt
+index 443564d7784f..69bf41949b01 100644
+--- a/Documentation/devicetree/bindings/regulator/arizona-regulator.txt
++++ b/Documentation/devicetree/bindings/regulator/arizona-regulator.txt
+@@ -5,7 +5,8 @@ of analogue I/O.
  
- config REGULATOR_ARIZONA_LDO1
--	tristate "Wolfson Arizona class devices LDO1"
--	depends on MFD_ARIZONA
-+	tristate "Cirrus Madera and Wolfson Arizona class devices LDO1"
-+	depends on MFD_ARIZONA || MFD_MADERA
- 	depends on SND_SOC
- 	help
--	  Support for the LDO1 regulators found on Wolfson Arizona class
--	  devices.
-+	  Support for the LDO1 regulators found on Cirrus Logic Madera codecs
-+	  and Wolfson Microelectronic Arizona codecs.
+ This document lists regulator specific bindings, see the primary binding
+ document:
+-  ../mfd/arizona.txt
++  For Wolfson Microelectronic Arizona codecs: ../mfd/arizona.txt
++  For Cirrus Logic Madera codecs: ../mfd/madera.txt
  
- config REGULATOR_ARIZONA_MICSUPP
- 	tristate "Wolfson Arizona class devices MICSUPP"
-diff --git a/drivers/regulator/arizona-ldo1.c b/drivers/regulator/arizona-ldo1.c
-index e4bc7b1e5ccd..1a3d7b720f5e 100644
---- a/drivers/regulator/arizona-ldo1.c
-+++ b/drivers/regulator/arizona-ldo1.c
-@@ -25,6 +25,10 @@
- #include <linux/mfd/arizona/pdata.h>
- #include <linux/mfd/arizona/registers.h>
- 
-+#include <linux/mfd/madera/core.h>
-+#include <linux/mfd/madera/pdata.h>
-+#include <linux/mfd/madera/registers.h>
-+
- struct arizona_ldo1 {
- 	struct regulator_dev *regulator;
- 	struct regmap *regmap;
-@@ -158,6 +162,31 @@ static const struct regulator_init_data arizona_ldo1_wm5110 = {
- 	.num_consumer_supplies = 1,
- };
- 
-+static const struct regulator_desc madera_ldo1 = {
-+	.name = "LDO1",
-+	.supply_name = "LDOVDD",
-+	.type = REGULATOR_VOLTAGE,
-+	.ops = &arizona_ldo1_ops,
-+
-+	.vsel_reg = MADERA_LDO1_CONTROL_1,
-+	.vsel_mask = MADERA_LDO1_VSEL_MASK,
-+	.min_uV = 900000,
-+	.uV_step = 25000,
-+	.n_voltages = 13,
-+	.enable_time = 3000,
-+
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct regulator_init_data madera_ldo1_default = {
-+	.constraints = {
-+		.min_uV = 1200000,
-+		.max_uV = 1200000,
-+		.valid_ops_mask = REGULATOR_CHANGE_STATUS,
-+	},
-+	.num_consumer_supplies = 1,
-+};
-+
- static int arizona_ldo1_of_get_pdata(struct arizona_ldo1_pdata *pdata,
- 				     struct regulator_config *config,
- 				     const struct regulator_desc *desc,
-@@ -320,6 +349,32 @@ static int arizona_ldo1_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static int madera_ldo1_probe(struct platform_device *pdev)
-+{
-+	struct madera *madera = dev_get_drvdata(pdev->dev.parent);
-+	struct arizona_ldo1 *ldo1;
-+	bool external_dcvdd;
-+	int ret;
-+
-+	ldo1 = devm_kzalloc(&pdev->dev, sizeof(*ldo1), GFP_KERNEL);
-+	if (!ldo1)
-+		return -ENOMEM;
-+
-+	ldo1->regmap = madera->regmap;
-+
-+	ldo1->init_data = madera_ldo1_default;
-+
-+	ret = arizona_ldo1_common_init(pdev, ldo1, &madera_ldo1,
-+				       &madera->pdata.ldo1,
-+				       &external_dcvdd);
-+	if (ret)
-+		return ret;
-+
-+	madera->internal_dcvdd = !external_dcvdd;
-+
-+	return 0;
-+}
-+
- static struct platform_driver arizona_ldo1_driver = {
- 	.probe = arizona_ldo1_probe,
- 	.remove = arizona_ldo1_remove,
-@@ -328,10 +383,36 @@ static struct platform_driver arizona_ldo1_driver = {
- 	},
- };
- 
--module_platform_driver(arizona_ldo1_driver);
-+static struct platform_driver madera_ldo1_driver = {
-+	.probe = madera_ldo1_probe,
-+	.remove = arizona_ldo1_remove,
-+	.driver		= {
-+		.name	= "madera-ldo1",
-+	},
-+};
-+
-+static struct platform_driver * const madera_ldo1_drivers[] = {
-+	&arizona_ldo1_driver,
-+	&madera_ldo1_driver,
-+};
-+
-+static int __init arizona_ldo1_init(void)
-+{
-+	return platform_register_drivers(madera_ldo1_drivers,
-+					 ARRAY_SIZE(madera_ldo1_drivers));
-+}
-+module_init(arizona_ldo1_init);
-+
-+static void __exit madera_ldo1_exit(void)
-+{
-+	platform_unregister_drivers(madera_ldo1_drivers,
-+				    ARRAY_SIZE(madera_ldo1_drivers));
-+}
-+module_exit(madera_ldo1_exit);
- 
- /* Module information */
- MODULE_AUTHOR("Mark Brown <broonie@opensource.wolfsonmicro.com>");
- MODULE_DESCRIPTION("Arizona LDO1 driver");
- MODULE_LICENSE("GPL");
- MODULE_ALIAS("platform:arizona-ldo1");
-+MODULE_ALIAS("platform:madera-ldo1");
+ Optional properties:
+   - wlf,ldoena : GPIO specifier for the GPIO controlling LDOENA
 -- 
 2.20.1
 
