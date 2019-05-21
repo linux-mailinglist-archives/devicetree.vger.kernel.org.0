@@ -2,76 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4568224DD9
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 13:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BACB824E07
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 13:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727969AbfEUL0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 07:26:52 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33887 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726525AbfEUL0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 07:26:52 -0400
-Received: by mail-wr1-f68.google.com with SMTP id f8so11782836wrt.1
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 04:26:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=sGys3Iol5dLtdbxkyfPp6BlafjDFlyvcTnF3At5Y2mY=;
-        b=xa+Fjufbb1lWW90PQCIg5/2U9zdLS45WWo284k/724/94OQArbEEdhI/a5ceLz5BqQ
-         HDJxwMdbf9ZqeaCxJr4pSLAdMLyyGogqX9KXyrPMQcznwEaOzNvZ5HGhNMgRoCPUgCr3
-         Di9zgN6DxWACkL3qM55JjMKXdPnxBjt0hHo3iFfupTGIC84YrZNvrorSSol8pCumbxfm
-         Ix8Ry0dJi87fXjYcZWVfk397WxTeISlVtOirazL2iLflcXfQ4gMDA4TRw+EizoNnwIS2
-         JdGGoDXwcpPOxIgiefi0BgUhoI+jQVf6XANV3wPxfj96YHNXPmGb5DfQIiwtQ2gHOxCP
-         YxiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=sGys3Iol5dLtdbxkyfPp6BlafjDFlyvcTnF3At5Y2mY=;
-        b=sDbytug8PUFTtMiBrOlX4fqHEyloSwrH6PLnmNx2FafJS22jldeFJUnC0AuEf7e3YY
-         yc9I1oNf8FW6DC2/t2gTJHQLWwnTUPh7dI6Magsme+fCY7ngrDZhsZ++o+WS+yPKs27z
-         bFnf2A23o2qzMVEkwfLmgkfgZtwvk7xGDEgC+ZzdH9CF4BwqrAQ5vpGwyBsezxgQOZzS
-         hVb9IDp84bjnirF+EheDwTZ6jlpXVbZuzwATOtNKpEEnCkrCwTp2ZNg5CP8oCRNvLJRd
-         4V/KdWGee5pj9rQKiTkOu16zsXqKfBjH66aLR0VBoHls7+ozq3tyyvBA6b50dhh9wE47
-         M3Sw==
-X-Gm-Message-State: APjAAAWaLOMgC5ciVEEVaRySO2bWpa2+t7CLVB+lGRBzOUoCRPxmgnnf
-        G7l2DbZx6GHP7QTuAuSZOMCV/A==
-X-Google-Smtp-Source: APXvYqy2jCv/tcKI8+hfC11XMcNd1yvILVIneSyvMJ+o/81tlqCa0r3Pmi7nB08kvuSCuvJysQ6YWA==
-X-Received: by 2002:adf:f34e:: with SMTP id e14mr30178782wrp.215.1558438010594;
-        Tue, 21 May 2019 04:26:50 -0700 (PDT)
-Received: from [192.168.0.31] (abo-99-183-68.mtp.modulonet.fr. [85.68.183.99])
-        by smtp.gmail.com with ESMTPSA id b10sm49421373wrh.59.2019.05.21.04.26.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 04:26:50 -0700 (PDT)
-Subject: Re: [PATCH v2 1/5] dt-bindings: soc: amlogic: canvas: document
- support for Meson8/8b/8m2
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org, khilman@baylibre.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190520194353.24445-1-martin.blumenstingl@googlemail.com>
- <20190520194353.24445-2-martin.blumenstingl@googlemail.com>
-From:   Maxime Jourdan <mjourdan@baylibre.com>
-Message-ID: <5b2d9cf4-aaaf-706e-3a0a-96cd3c003e52@baylibre.com>
-Date:   Tue, 21 May 2019 13:26:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728024AbfEULjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 07:39:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41304 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726692AbfEULji (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 07:39:38 -0400
+Received: from localhost (unknown [106.51.107.214])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 528C520862;
+        Tue, 21 May 2019 11:39:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558438778;
+        bh=ReFAdyWrKRD7BGj/7Cy0+dRZJceMz9zOiOfU+eJeyaM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vx8LHB/5pSK8emSZW8au9utY1uOslIxXWXlYmw/rRUwtCJ3sOJa7rFKFksAoARXy9
+         drVF3MhAjyk/dTAf7SvbppmuPgRcmF570wfSXQodW+Om2KCaYn7fr+g5fcf/A4AC62
+         wZJxi25ZSIlodYbPj1s0Z2hD5Y/jZ+k0tIHU6X48=
+Date:   Tue, 21 May 2019 17:09:33 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, agross@kernel.org,
+        david.brown@linaro.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        marc.w.gonzalez@free.fr
+Subject: Re: [PATCH v4 1/9] soc: qcom: rpmpd: fixup rpmpd set performance
+ state
+Message-ID: <20190521113933.GJ15118@vkoul-mobl>
+References: <20190513102015.26551-1-sibis@codeaurora.org>
+ <20190513102015.26551-2-sibis@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20190520194353.24445-2-martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: tl
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190513102015.26551-2-sibis@codeaurora.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13-05-19, 15:50, Sibi Sankar wrote:
+> Remoteproc q6v5-mss calls set_performace_state with INT_MAX on
 
+s/performace/performance
 
-On 20/05/2019 21:43, Martin Blumenstingl wrote:
+> rpmpd. This is currently ignored since it is greater than the
+> max supported state. Fixup rpmpd state to max if the required
+> state is greater than all the supported states.
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Maxime Jourdan <mjourdan@baylibre.com>
+> Fixes: 075d3db8d10d ("soc: qcom: rpmpd: Add support for get/set performance state")
+> 
+> Reviewed-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
+>  drivers/soc/qcom/rpmpd.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/qcom/rpmpd.c b/drivers/soc/qcom/rpmpd.c
+> index 005326050c23..235d01870dd8 100644
+> --- a/drivers/soc/qcom/rpmpd.c
+> +++ b/drivers/soc/qcom/rpmpd.c
+> @@ -226,7 +226,7 @@ static int rpmpd_set_performance(struct generic_pm_domain *domain,
+>  	struct rpmpd *pd = domain_to_rpmpd(domain);
+>  
+>  	if (state > MAX_RPMPD_STATE)
+> -		goto out;
+> +		state = MAX_RPMPD_STATE;
+>  
+>  	mutex_lock(&rpmpd_lock);
+>  
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+
+-- 
+~Vinod
