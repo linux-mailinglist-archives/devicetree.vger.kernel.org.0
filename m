@@ -2,157 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E059625062
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 15:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5676525128
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 15:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728289AbfEUNdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 09:33:31 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:42800 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728340AbfEUNdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 09:33:31 -0400
-Received: by mail-pl1-f196.google.com with SMTP id x15so8465936pln.9
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 06:33:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=q9ZIgayitHYinuwIIIQjmbyGj4R/0KKMdcZ9auHzvr8=;
-        b=VlOYu1drdYLZpHJV9yk0qWwSSx5N4LCVyuAnvbVQ2maCo9bVARUiY89bZ1yKPhQCcH
-         uNvDtxSgCuPt3Ou37gyoxRCm/9qexGEjOWipubkYFzvm6+F4Fazk2Q5S1WHGsW3SOYis
-         C7cPoFIqYa4MEZ1trtTOhUXsiHoAjNl4bkEJe06N6edwmKhwXdq5wWmH2yEKnVMIaKR4
-         AwbUMSTsfTlj43zrdVGSUl2wkrPrzteOPZScOYgg/PEXBq8b2vzftNajJPqmkNpNfcxq
-         gF1EJ26O7OCpQEhcta7+PRX1PRcD7FZzYeHylUeNWK4DQk8rBl7ohWSoPx9cIVRf/1Sd
-         fHqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=q9ZIgayitHYinuwIIIQjmbyGj4R/0KKMdcZ9auHzvr8=;
-        b=inLnMf1a/a/XlxQFW0RFBnofaZsiJDZAJUjSwmBWl4Wj3aHDgrKyCNKI5ldQwHkRy5
-         DK4HDC5krQ1hoRhEc9t6mKjX04uvvtWwryNEaVyiSIab5N3GAO2UWayEAuFX4G9bKiBG
-         bW6o2eFwp6zCL1D+tIkopcpi2OTqZSoXn1ImCtJOtH+mMCw6yJ8X6kTEHH/RJfQYRyOC
-         Da3qo+TqlAYMH/hLPt9HhM5Q+Y5nF4YhkZvn3Q2JljUhaewoTnD7/WZ0ZTUnLkNpKqS7
-         /dNayzilOtAvjbiYI53823PTr3xu0EhhtWGDK+6TzapBj2Kt7OWisNfCp1JRW+8gUiV5
-         C1Aw==
-X-Gm-Message-State: APjAAAXwodJnsOLTyZs4XjBUpm4mpaljH3/bO6Gt8o0P5H8CAbsUIUUQ
-        ByoDQMsiHuPknrqnXmAd6qhAHw==
-X-Google-Smtp-Source: APXvYqwosybVnv92iOwCWSgxiLTjp16vqLrYP4NZArVA1GDu0mXZO7aPxnIG51uYXApdUCoO0dkHxQ==
-X-Received: by 2002:a17:902:2aa6:: with SMTP id j35mr503646plb.189.1558445610576;
-        Tue, 21 May 2019 06:33:30 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id d15sm65368906pfm.186.2019.05.21.06.33.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 21 May 2019 06:33:29 -0700 (PDT)
-From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
-        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 3/3] i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC.
-Date:   Tue, 21 May 2019 19:02:54 +0530
-Message-Id: <1558445574-16471-4-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1558445574-16471-1-git-send-email-sagar.kadam@sifive.com>
-References: <1558445574-16471-1-git-send-email-sagar.kadam@sifive.com>
+        id S1728155AbfEUNw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 09:52:56 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:54378 "EHLO mail.z3ntu.xyz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727819AbfEUNw4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 09:52:56 -0400
+Received: from [172.27.227.142] (unknown [185.69.244.31])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id A1BC1C1489;
+        Tue, 21 May 2019 13:52:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1558446773; bh=T5HvSzh7U58yDS/HdAzE5Y5CTmjj27w0sEugeGRIUTs=;
+        h=Date:In-Reply-To:References:Subject:To:CC:From;
+        b=Dr3t4YCm2LWkf3tR2qCVQGR+EU4Ucnmn4iXcRC8dZBZWD1NEGFCiwiMI82PU34vN3
+         rESl6X/w3cD4bxNdZFhyT9Nc/wwKKeOVAmZczVIY9J25+Hq9XFOBK/9NLDljl0ZZ9L
+         rE+SaKlq3RLTuo58/ediIVunL1YOnBQD9Ag6mdl0=
+Date:   Tue, 21 May 2019 15:52:47 +0200
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20190521130955.3omqwpx3i7njsb3t@flea>
+References: <20190518170929.24789-1-luca@z3ntu.xyz> <20190520110742.ykgxwaabzzwovgpl@flea> <9B2B83DF-2C91-4DDA-B707-664A792A8BCF@z3ntu.xyz> <20190521130955.3omqwpx3i7njsb3t@flea>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Autocrypt: addr=luca@z3ntu.xyz; keydata=
+ mQINBFgc0/QBEACzBE9TBfe+O2TARphhmhVgMd2zo3lkvjWdohb9mg9+NvUq7swQR2l8davgwaTN
+ VwDUA9jdzfjp4GShf0VFnqqFGouEc3OMeuHFdtjG4RoYGW+XvEoAcTWgY6glANmMZMi33D+2wnQQ
+ Qziie3LMTQ7Tlpk8at8Ck4ShmmGTmek9LNFq1eHs3IHK5eH0fDA/rYvPxFMmwbHRDjdwtXjZlXBC
+ nxEXK8CJkNG58G+RbtPU0I8Iu02TDOkr9x6KwLT1lJmq03wCkuQEXrDAzo6kkeAMhzWBtBtxTB1M
+ byOZqNlbzEtxOTK9iA74U6POyN//876ESQ87LicFS4mgoyHL0Vt7ro9CSH7Imzv96Ae8HDZqIcBy
+ Bn9YMBswjy4JOsC9JP/oDhr71y40nnrVvgx4ZesJM0PL9J1JYQWJQ22GoinnDwSB11Re51OYsK+l
+ xEqph38N+AjcNYm+l85O/l+BkkULC+0kHWG6wQCv67KyeYCJJhNqJucXj2gXXaKyv2ltWPwHgK6w
+ OAtN9QbimcYV2PUgfx6hl5r7buwc3tefp9ccmtoLq74mgrKiLurHqa4pKCa1uqfhBEN5/Os5tMrX
+ IGa2sRvKHK0Pn7iyJQyuclyOp4r9W+QUw2DENm4n6ovkl7rfriL6ibBgVLcnexdG/8LZRaWFV96G
+ YY3VCcRlz8SCwQARAQABtBtMdWNhIFdlaXNzIDxsdWNhQHozbnR1Lnh5ej6JAj0EEwEIACcFAlgc
+ 0/QCGy8FCQWjmoAFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQ+vac9s0tAs3X3BAAo6F00XKQ
+ LAvQl/nTK4+2EHjtFUF0OnUK0rIN1b1l5WMVHFF8njcVqG1Qc7CKyYCS6mN6bbYkXsj3TXy8Vx9R
+ P4ek8UoxEnVXYeayF5D+ke7yCmOJjSEBZVh/meA2jYOnPXEXR7bTT+PNaCTIgS6MucYous3ngiIL
+ kDT9Q09ESjs9xhoqbpBr19fqE9HpuWCaVGi5tt8EQAVq32kfq9DFqanjuaz18/I3VV1fMKWoNZBu
+ qJKveh9oDmkKe32PTVV8ak1tpWYNRhoIL8jZgJkzG8cMPdi6fi8xy7wIaT49py+0rndGF7i79nAx
+ Sq3vlt6dMgcOlMYTZMw1O8Y28eiHm5DCzyPR5FkQvQ1xY2TPTZh9H4zukBLBkctDtccosGwZt3tb
+ uoQ2Nelm12ldf4kdbGmWdSIEgTWLJb8LfiNe4PIPnWU2Ho0EbHs2RBa81Y83NEZpXYWpYLwUafkE
+ 5GG4E6tG1aUU2g/HSf+3BaHYVZ7vv2Zc7DmCkeYS5VyzZvajmVWj4pjPY5RrNbDKWOIIOc5ow+5e
+ eLFX6wHWFlgM3zPr4IU/XqKhDUydx8pyRHEfDUTRJHokP4Ga3DyvfqtfF8zQQwIGbc+D8Tdt9JbM
+ Op7ZhZwmE0J3q5DUuYVXFO9kWT5Rf2QvNNmbBNQnpXXUirwztbKA6BWoygQDVvVgdrQ=
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Add lradc node
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+CC:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/Allwinner sunXi SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+From:   luca@z3ntu.xyz
+Message-ID: <EF411F71-D257-41FC-9248-B0E3F686B6B9@z3ntu.xyz>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i2c-ocore driver already has a polling mode interface.But it needs
-a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-There is an erratum in FU540 chip that prevents interrupt driven i2c
-transfers from working, and also the I2C controller's interrupt bit
-cannot be cleared if set, due to this the existing i2c polling mode
-interface added in mainline earlier doesn't work, and CPU stall's
-infinitely, when-ever i2c transfer is initiated.
+On May 21, 2019 3:09:55 PM GMT+02:00, Maxime Ripard <maxime=2Eripard@bootli=
+n=2Ecom> wrote:
+>On Tue, May 21, 2019 at 08:43:45AM +0200, luca@z3ntu=2Exyz wrote:
+>> On May 20, 2019 1:07:42 PM GMT+02:00, Maxime Ripard
+><maxime=2Eripard@bootlin=2Ecom> wrote:
+>> >On Sat, May 18, 2019 at 07:09:30PM +0200, Luca Weiss wrote:
+>> >> Add a node describing the KEYADC on the A64=2E
+>> >>
+>> >> Signed-off-by: Luca Weiss <luca@z3ntu=2Exyz>
+>> >> ---
+>> >>  arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi | 7 +++++++
+>> >>  1 file changed, 7 insertions(+)
+>> >>
+>> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> >b/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> >> index 7734f70e1057=2E=2Edc1bf8c1afb5 100644
+>> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> >> @@ -704,6 +704,13 @@
+>> >>  			status =3D "disabled";
+>> >>  		};
+>> >>
+>> >> +		lradc: lradc@1c21800 {
+>> >> +			compatible =3D "allwinner,sun4i-a10-lradc-keys";
+>> >> +			reg =3D <0x01c21800 0x100>;
+>> >> +			interrupts =3D <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+>> >> +			status =3D "disabled";
+>> >> +		};
+>> >> +
+>> >
+>> >The controller is pretty different on the A64 compared to the A10=2E
+>The
+>> >A10 has two channels for example, while the A64 has only one=2E
+>> >
+>> >It looks like the one in the A83t though, so you can use that
+>> >compatible instead=2E
+>>
+>> Looking at the patch for the A83t, the only difference is that it
+>> uses a 3/4 instead of a 2/3 voltage divider, nothing is changed with
+>> the channels=2E
+>
+>I guess you can reuse the A83t compatible here then, and a more
+>specific a64 compatible in case we ever need to fix this=2E
+>
+>> But I'm also not sure which one (or a different one)
+>> is used from looking at the "A64 User Manual"=2E
+>
+>I'm sorry, what are you referring to with "one" in that sentence?
+>
+>Maxime
+>
+>--
+>Maxime Ripard, Bootlin
+>Embedded Linux and Kernel engineering
+>https://bootlin=2Ecom
 
-Ref:
-	commit dd7dbf0eb090 ("i2c: ocores: refactor setup for polling")
+Hi,
 
-The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-FU540-COOO SoC.
+Sorry, I meant I didn't find anything in the A64 user manual whether a 3/4=
+ or a 2/3 voltage divider (or one with different values) is used on the A64=
+=2E
 
-The polling function identifies a SiFive device based on the device node
-and enables the workaround.
-
-Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
----
- drivers/i2c/busses/i2c-ocores.c | 38 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 33 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
-index b334fa2..3175c72 100644
---- a/drivers/i2c/busses/i2c-ocores.c
-+++ b/drivers/i2c/busses/i2c-ocores.c
-@@ -84,6 +84,10 @@ struct ocores_i2c {
- #define TYPE_GRLIB		1
- #define TYPE_SIFIVE_REV0	2
- 
-+#define OCORES_FLAG_BROKEN_IRQ BIT(1) /* Broken IRQ for FU540-C000 SoC */
-+
-+static const struct of_device_id ocores_i2c_match[];
-+
- static void oc_setreg_8(struct ocores_i2c *i2c, int reg, u8 value)
- {
- 	iowrite8(value, i2c->base + (reg << i2c->reg_shift));
-@@ -236,9 +240,13 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
- 	struct ocores_i2c *i2c = dev_id;
- 	u8 stat = oc_getreg(i2c, OCI2C_STATUS);
- 
--	if (!(stat & OCI2C_STAT_IF))
-+	if (irq == OCORES_FLAG_BROKEN_IRQ) {
-+		if (stat & OCI2C_STAT_IF)
-+			if (!(stat & OCI2C_STAT_BUSY))
-+				return IRQ_NONE;
-+	} else if (!(stat & OCI2C_STAT_IF)) {
- 		return IRQ_NONE;
--
-+	}
- 	ocores_process(i2c, stat);
- 
- 	return IRQ_HANDLED;
-@@ -340,6 +348,10 @@ static int ocores_poll_wait(struct ocores_i2c *i2c)
-  */
- static void ocores_process_polling(struct ocores_i2c *i2c)
- {
-+	const struct of_device_id *match;
-+
-+	match = of_match_node(ocores_i2c_match, i2c->adap.dev.of_node);
-+
- 	while (1) {
- 		irqreturn_t ret;
- 		int err;
-@@ -350,9 +362,25 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
- 			break; /* timeout */
- 		}
- 
--		ret = ocores_isr(-1, i2c);
--		if (ret == IRQ_NONE)
--			break; /* all messages have been transferred */
-+		/*
-+		 * If it's a SiFive Device(FU540-C000 SoC ) use
-+		 * OCORES_FLAG_BROKEN_IRQ to enable workaround in
-+		 * polling mode.
-+		 */
-+		if (match && (long)match->data == TYPE_SIFIVE_REV0) {
-+			ret = ocores_isr(OCORES_FLAG_BROKEN_IRQ, i2c);
-+			if (ret == IRQ_NONE)
-+				break; /* all messages have been transferred */
-+			else
-+				if (i2c->state == STATE_DONE)
-+					break;
-+		} else {
-+			ret = ocores_isr(-1, i2c);
-+			if (ret == IRQ_NONE)
-+				break; /* all messages have been transferred */
-+
-+		}
-+
- 	}
- }
- 
--- 
-1.9.1
-
+Luca
