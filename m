@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC833258ED
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:32:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D71258EF
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727493AbfEUUcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727046AbfEUUcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 21 May 2019 16:32:41 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:55025 "EHLO
+Received: from mail-it1-f193.google.com ([209.85.166.193]:39325 "EHLO
         mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727341AbfEUUcl (ORCPT
+        with ESMTP id S1727350AbfEUUcl (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 16:32:41 -0400
-Received: by mail-it1-f193.google.com with SMTP id h20so4840366itk.4
+Received: by mail-it1-f193.google.com with SMTP id 9so6803904itf.4
         for <devicetree@vger.kernel.org>; Tue, 21 May 2019 13:32:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TL0Rco+HJb/XdiRCUNcHvK2NcbT9epjRSGpGsvVbQoI=;
-        b=QBq9fahcLU2tgJhshCN0dwVdL0HE77OlAbTaVT8QDvwmSf17Ll5gBABBcZbQPKSgI8
-         wPLldHhQueXNBElEdaeVQGucuCyfo4uJDJwgYvxXvlJB+Ro8K+sPZp03zZ6h3jcX+Zwn
-         8KN7ULMXhj+3tDAZroKu43AHQM5IoJZShiDBU=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=eQ2r5PQ0vvjlMI5kpOVHnGlsdtagsJZCtwtZAIF6wsM=;
+        b=jfXEHCzvUcv7X9RSwEbvGDRkOdVJyAJuHgS/ha5PpxQEQxLd7aI8p8zITCJWQYvgWv
+         kY0qQaJLquIEjt40FFKt/TRlAG0EAlfPnMWQeYOCx6yiphf4mROdATbunECkw4YwxI1W
+         varGpt1jUIIahlRNDo0ElzGp4fcD0Hx+V3FYo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TL0Rco+HJb/XdiRCUNcHvK2NcbT9epjRSGpGsvVbQoI=;
-        b=mPbm5h1MCDnC71HH6gddIIW6/f7YIg15gd3IA4NjYtQEOAUMRrIOr1aELhAHPj9ikv
-         UCgGgW7frS8cP6tpt0WnKTO+EaO5TSg8lXIk2b/aedJ/ADLLkFuOgGLCEUrOQElu3S+E
-         5hUhnztAmBPeJok7RnJZeBWE/dHHRVCJ4nz285ttXyAATz33dkNJelIU6Vza0byuRdFY
-         WxWDSsQYMQAAYOL5OyV5EdHZWWBUodrYtMKz2KMpEmGp2LKZZcQqLheXiMdFwDXov3uW
-         BCsPKSFA2xR3RA8sEbSraQvzlef/Pk97EIBXYkOgKLIApfTTiSLEhLFBcQtIWCLmlYCT
-         Qm7Q==
-X-Gm-Message-State: APjAAAWnS/0ZMKrDkTnphtEw1LDx+chuVOKMH0PTrxcBXf6xb/LpATKh
-        7LMMUouF3JUD4wIUHO13mnePKg==
-X-Google-Smtp-Source: APXvYqzMgS+2Y+L54Bugxjb3Y7W5RtvSETPi7Pcr1ybp84tqKgN8/mOHXp8N4/4GVoMpgsDaegyHyg==
-X-Received: by 2002:a24:278c:: with SMTP id g134mr4385454ita.49.1558470759345;
-        Tue, 21 May 2019 13:32:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=eQ2r5PQ0vvjlMI5kpOVHnGlsdtagsJZCtwtZAIF6wsM=;
+        b=N9h/+hoqlf2JFt5psHLVLbBtAvn+lzaOaJFG+pNQYzavCJswVLcaDlEtvLJOZbJikU
+         1ctx00Psqha42ydiFkS+egUO8YHlLF96cvwgrzo0DqYfq9EJiTD4ayqfzkEcsJk33JAE
+         flkgxoevgn9vkR5//l14zr2kl8MwP6RtkUack0Xxw5nq/1E9a7yBmmX4KJVQE6Zm3ByT
+         ZAgnzvDbC35hI5lDigxVywEAyZBwwvosI7yD1cy9YW9yNYd91NuhJgA5cAvhc1fHYq+k
+         4YSICNZxeiLsw0mrOeVXBCrj3tzb1J1LY/Xr37nftTaNP1MnhuBKAvYJaZcF3IzhyaEq
+         5iIg==
+X-Gm-Message-State: APjAAAVlrPJObIeQZf/QhGMl2MhXoXFu0BP5QbzwiaHPAW+XQx05uSF6
+        b3KkWObwOM6vFTIQdMuU79fvJQ==
+X-Google-Smtp-Source: APXvYqxSz/8n9XxlYkdxr6ciXmid1JAcD9hFZpzXZV5KyhgrDbitGBVY4l2Wvb/tr6ZfkWjRGGs9ZQ==
+X-Received: by 2002:a02:80e:: with SMTP id 14mr53391656jac.71.1558470760572;
+        Tue, 21 May 2019 13:32:40 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id e22sm7205710ioe.45.2019.05.21.13.32.38
+        by smtp.gmail.com with ESMTPSA id e22sm7205710ioe.45.2019.05.21.13.32.39
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 13:32:38 -0700 (PDT)
+        Tue, 21 May 2019 13:32:40 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Heiko Stuebner <heiko@sntech.de>
 Cc:     briannorris@chromium.org, ryandcase@chromium.org, mka@chromium.org,
@@ -50,10 +50,12 @@ Cc:     briannorris@chromium.org, ryandcase@chromium.org, mka@chromium.org,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/2] ARM: dts: rockchip: Add pin names for rk3288-veyron-minnie
-Date:   Tue, 21 May 2019 13:32:14 -0700
-Message-Id: <20190521203215.234898-1-dianders@chromium.org>
+Subject: [PATCH 2/2] ARM: dts: rockchip: Add pin names for rk3288-veyron-jerry
+Date:   Tue, 21 May 2019 13:32:15 -0700
+Message-Id: <20190521203215.234898-2-dianders@chromium.org>
 X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
+In-Reply-To: <20190521203215.234898-1-dianders@chromium.org>
+References: <20190521203215.234898-1-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -61,38 +63,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now use the "gpio-line-names" property to provide the names for
-all the pins on a board.  Let's use this to provide the names for all
-the pins on rk3288-veyron-minnie.
-
-In general the names here come straight from the schematic.  That
-means even if the schematic name is weird / doesn't have consistent
-naming conventions / has typos I still haven't made any changes.
-
-The exception here is for two pins: the recovery switch and the write
-protect detection pin.  These two pins need to have standardized names
-since crossystem (a Chrome OS tool) uses these names to query the
-pins.  In downstream kernels crossystem used an out-of-tree driver to
-do this but it has now been moved to the gpiod API and needs the
-standardized names.
-
-It's expected that other rk3288-veyron boards will get similar patches
-shortly.
-
-NOTE: I have sorted the "gpio" section to be next to the "pinctrl"
-section since it seems to logically make the most sense there.
+This is like the same change for rk3288-veyron-minnie.  See that patch
+for more details.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
- arch/arm/boot/dts/rk3288-veyron-minnie.dts | 212 +++++++++++++++++++++
- 1 file changed, 212 insertions(+)
+ arch/arm/boot/dts/rk3288-veyron-jerry.dts | 207 ++++++++++++++++++++++
+ 1 file changed, 207 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-index ce57881625ec..a65099b4aef1 100644
---- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
-@@ -184,6 +184,218 @@
+diff --git a/arch/arm/boot/dts/rk3288-veyron-jerry.dts b/arch/arm/boot/dts/rk3288-veyron-jerry.dts
+index b1613af83d5d..164561f04c1d 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-jerry.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-jerry.dts
+@@ -103,6 +103,213 @@
  	pinctrl-0 = <&vcc50_hdmi_en>;
  };
  
@@ -116,7 +100,7 @@ index ce57881625ec..a65099b4aef1 100644
 +			  "HOST1_PWR_EN",
 +			  "USBOTG_PWREN_H",
 +			  "AP_WARM_RESET_H",
-+			  "nFALUT2",
++			  "nFAULT2",
 +			  "I2C0_SDA_PMIC",
 +
 +			  "I2C0_SCL_PMIC",
@@ -134,17 +118,12 @@ index ce57881625ec..a65099b4aef1 100644
 +			  "",
 +			  "CONFIG3",
 +
-+			  "PROCHOT#",
++			  "",
 +			  "EMMC_RST_L",
 +			  "",
 +			  "",
 +			  "BL_PWR_EN",
-+			  "AVDD_1V8_DISP_EN",
-+			  "TOUCH_INT",
-+			  "TOUCH_RST",
-+
-+			  "I2C3_SCL_TP",
-+			  "I2C3_SDA_TP";
++			  "AVDD_1V8_DISP_EN";
 +};
 +
 +&gpio3 {
@@ -201,7 +180,7 @@ index ce57881625ec..a65099b4aef1 100644
 +
 +			  "SDIO0_CMD",
 +			  "SDIO0_CLK",
-+			  "dev_wake",
++			  "BT_DEV_WAKE",
 +			  "",
 +			  "WIFI_ENABLE_H",
 +			  "BT_ENABLE_L",
@@ -221,8 +200,8 @@ index ce57881625ec..a65099b4aef1 100644
 +
 +			  "",
 +			  "",
-+			  "Volum_Up#",
-+			  "Volum_Down#",
++			  "",
++			  "",
 +			  "SPI0_CLK",
 +			  "SPI0_CS0",
 +			  "SPI0_TXD",
@@ -276,11 +255,11 @@ index ce57881625ec..a65099b4aef1 100644
 +			  "EC_INT",
 +
 +			  "CPU_NMI",
-+			  "DVS_OK",
-+			  "SDMMC_WP",
++			  "DVSOK",
++			  "",
 +			  "EDP_HPD",
 +			  "DVS1",
-+			  "nFALUT1",
++			  "nFAULT1",
 +			  "LCD_EN",
 +			  "DVS2",
 +
