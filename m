@@ -2,115 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC8C24844
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0B62485A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:47:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726740AbfEUGoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 02:44:01 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:43554 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726247AbfEUGoB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 02:44:01 -0400
-Received: from [172.27.227.142] (unknown [185.69.244.31])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id C4E31C59C4;
-        Tue, 21 May 2019 06:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1558421037; bh=dvaJRPAFRepM6HgXr2hIRVw7xqblQwDjcz3JJFlmUQ8=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From;
-        b=HCR66knYPdrhHpKFMowayhtCwu0h0E7c81aKIrfEcX5IFfDcF0wdgv5h5wxTmIhKh
-         rSeWV2vvL7N/yrBvMF7ztJaMpw0tzAbsWKLDTKwX0uZAe0JQ/Edg1ww5BeXGCz/bz4
-         hgr8yLLrutP/uoHkbey6T/Xku++ah100IHnk+4sA=
-Date:   Tue, 21 May 2019 08:43:45 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20190520110742.ykgxwaabzzwovgpl@flea>
-References: <20190518170929.24789-1-luca@z3ntu.xyz> <20190520110742.ykgxwaabzzwovgpl@flea>
+        id S1726883AbfEUGrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 02:47:16 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36363 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726318AbfEUGrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 02:47:16 -0400
+Received: by mail-wm1-f68.google.com with SMTP id j187so1590509wmj.1
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 23:47:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Dtcdsu0fUtok0q96jnMGpWM0fc0NoVZ6NVYcC/TU3EI=;
+        b=KeH2Aa8UGeY3ald/vMtEvRNEPoOZgF6ZxP+nhAsZupukHiOm8t0PXqEZS/WBoeHG/0
+         7vTSdr7BTbtHz2o2Jqvx7wMH1SmkqwzYd5Gdg/w0hH3eL/OlPpzUlozsZ4rN6E/h7sMd
+         bMdDLCwW+K7eQEPgfsVVK5lh7g25N8mZ7wUgg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Dtcdsu0fUtok0q96jnMGpWM0fc0NoVZ6NVYcC/TU3EI=;
+        b=QlaXFuGqJlvEZNXQ7GqnBfFrD33mxFvb7+I7quoE3vQ7AmJO1LD9mfHK9rNTK81Oir
+         k1zK5upjpPkfcWSvX35uf2R5U0E/INUM3YwJvPEOnJSQG10ie1Bp+9mZ6C4B+va6GKZO
+         fHZzSDpRiENEYbNHpv4bmKazHAKMLeUTJ3A5mspcIWOFfVZ7QshznBjiFJ2Dncj62yNh
+         R6ESsrwXO2+afcSVZ1+3ssgLMtlvDlypLz08mmy89+oPJs9CQDMoTG2TzNdlfZVJRhcN
+         kaxsC/MR/INbd1CiRVUAn3BW0VKifQRmR/KNiCmF0zQQSimdJl8pzltiAZVhYPCjp56h
+         6iyA==
+X-Gm-Message-State: APjAAAUfCZw/ZMzdoWI4MP3fqwHUg9HgfsFo84AJKIkdG3VlV3wyDLqt
+        5xGD1Z6If2aLn+ItFjh6HrSm3ziOvPhWNLzbs4B5/A==
+X-Google-Smtp-Source: APXvYqzfKKX+FWJFZbOOtvY+5rX4F4OJzEUSEX+qaWWcrbh0PkdH/kOZOIQuqFdUHG1hJoLc5d9aCY/fi8EkfoSZ+9Y=
+X-Received: by 2002:a1c:7310:: with SMTP id d16mr1907943wmb.65.1558421233660;
+ Mon, 20 May 2019 23:47:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Autocrypt: addr=luca@z3ntu.xyz; keydata=
- mQINBFgc0/QBEACzBE9TBfe+O2TARphhmhVgMd2zo3lkvjWdohb9mg9+NvUq7swQR2l8davgwaTN
- VwDUA9jdzfjp4GShf0VFnqqFGouEc3OMeuHFdtjG4RoYGW+XvEoAcTWgY6glANmMZMi33D+2wnQQ
- Qziie3LMTQ7Tlpk8at8Ck4ShmmGTmek9LNFq1eHs3IHK5eH0fDA/rYvPxFMmwbHRDjdwtXjZlXBC
- nxEXK8CJkNG58G+RbtPU0I8Iu02TDOkr9x6KwLT1lJmq03wCkuQEXrDAzo6kkeAMhzWBtBtxTB1M
- byOZqNlbzEtxOTK9iA74U6POyN//876ESQ87LicFS4mgoyHL0Vt7ro9CSH7Imzv96Ae8HDZqIcBy
- Bn9YMBswjy4JOsC9JP/oDhr71y40nnrVvgx4ZesJM0PL9J1JYQWJQ22GoinnDwSB11Re51OYsK+l
- xEqph38N+AjcNYm+l85O/l+BkkULC+0kHWG6wQCv67KyeYCJJhNqJucXj2gXXaKyv2ltWPwHgK6w
- OAtN9QbimcYV2PUgfx6hl5r7buwc3tefp9ccmtoLq74mgrKiLurHqa4pKCa1uqfhBEN5/Os5tMrX
- IGa2sRvKHK0Pn7iyJQyuclyOp4r9W+QUw2DENm4n6ovkl7rfriL6ibBgVLcnexdG/8LZRaWFV96G
- YY3VCcRlz8SCwQARAQABtBtMdWNhIFdlaXNzIDxsdWNhQHozbnR1Lnh5ej6JAj0EEwEIACcFAlgc
- 0/QCGy8FCQWjmoAFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQ+vac9s0tAs3X3BAAo6F00XKQ
- LAvQl/nTK4+2EHjtFUF0OnUK0rIN1b1l5WMVHFF8njcVqG1Qc7CKyYCS6mN6bbYkXsj3TXy8Vx9R
- P4ek8UoxEnVXYeayF5D+ke7yCmOJjSEBZVh/meA2jYOnPXEXR7bTT+PNaCTIgS6MucYous3ngiIL
- kDT9Q09ESjs9xhoqbpBr19fqE9HpuWCaVGi5tt8EQAVq32kfq9DFqanjuaz18/I3VV1fMKWoNZBu
- qJKveh9oDmkKe32PTVV8ak1tpWYNRhoIL8jZgJkzG8cMPdi6fi8xy7wIaT49py+0rndGF7i79nAx
- Sq3vlt6dMgcOlMYTZMw1O8Y28eiHm5DCzyPR5FkQvQ1xY2TPTZh9H4zukBLBkctDtccosGwZt3tb
- uoQ2Nelm12ldf4kdbGmWdSIEgTWLJb8LfiNe4PIPnWU2Ho0EbHs2RBa81Y83NEZpXYWpYLwUafkE
- 5GG4E6tG1aUU2g/HSf+3BaHYVZ7vv2Zc7DmCkeYS5VyzZvajmVWj4pjPY5RrNbDKWOIIOc5ow+5e
- eLFX6wHWFlgM3zPr4IU/XqKhDUydx8pyRHEfDUTRJHokP4Ga3DyvfqtfF8zQQwIGbc+D8Tdt9JbM
- Op7ZhZwmE0J3q5DUuYVXFO9kWT5Rf2QvNNmbBNQnpXXUirwztbKA6BWoygQDVvVgdrQ=
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Add lradc node
+References: <20190418141658.10868-1-jagan@amarulasolutions.com> <20190418145641.q23tupopz2czjzc5@flea>
+In-Reply-To: <20190418145641.q23tupopz2czjzc5@flea>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Tue, 21 May 2019 08:47:02 +0200
+Message-ID: <CAOf5uwn8CtRs8cx0KC-bxNoRP4TiDrHi8F83QfjsZhueLDYFJg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64-oceanic-5205-5inmfd: Enable CAN
 To:     Maxime Ripard <maxime.ripard@bootlin.com>
-CC:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/Allwinner sunXi SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-From:   luca@z3ntu.xyz
-Message-ID: <9B2B83DF-2C91-4DDA-B707-664A792A8BCF@z3ntu.xyz>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On May 20, 2019 1:07:42 PM GMT+02:00, Maxime Ripard <maxime=2Eripard@bootli=
-n=2Ecom> wrote:
->Hi!
->
->On Sat, May 18, 2019 at 07:09:30PM +0200, Luca Weiss wrote:
->> Add a node describing the KEYADC on the A64=2E
->>
->> Signed-off-by: Luca Weiss <luca@z3ntu=2Exyz>
->> ---
->>  arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
->b/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
->> index 7734f70e1057=2E=2Edc1bf8c1afb5 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
->> @@ -704,6 +704,13 @@
->>  			status =3D "disabled";
->>  		};
->>
->> +		lradc: lradc@1c21800 {
->> +			compatible =3D "allwinner,sun4i-a10-lradc-keys";
->> +			reg =3D <0x01c21800 0x100>;
->> +			interrupts =3D <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->> +			status =3D "disabled";
->> +		};
->> +
->
->The controller is pretty different on the A64 compared to the A10=2E The
->A10 has two channels for example, while the A64 has only one=2E
->
->It looks like the one in the A83t though, so you can use that
->compatible instead=2E
->
->Maxime
->
->--
->Maxime Ripard, Bootlin
->Embedded Linux and Kernel engineering
->https://bootlin=2Ecom
+Hi Maxime
 
-Hi,
-Looking at the patch for the A83t, the only difference is that it uses a 3=
-/4 instead of a 2/3 voltage divider, nothing is changed with the channels=
-=2E But I'm also not sure which one (or a different one) is used from looki=
-ng at the "A64 User Manual"=2E
+On Thu, Apr 18, 2019 at 4:56 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Thu, Apr 18, 2019 at 07:46:58PM +0530, Jagan Teki wrote:
+> > Oceanic 5205 5inMFD has MCP2515 CAN device connected via SPI1.
+> >
+> > - via SPI1 bus
+> > - vdd supplied by 5V supply along with PL2 enable pin
+> > - xceiver supply same as vdd
+> > - can oscillator connected at 20MHz
+> > - PB2 gpio as interrupt pin
+> > - PD6 gpio as RX_BUF1_CAN0
+> > - PD7 gpio as RX_BUF0_CAN0
+> >
+> > Tested-by: Tamas Papp <tamas@osukl.com>
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> >  .../sun50i-a64-oceanic-5205-5inmfd.dts        | 43 +++++++++++++++++++
+> >  1 file changed, 43 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
+> > index f0cd6587f619..22535a297f51 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
+> > @@ -21,6 +21,24 @@
+> >       chosen {
+> >               stdout-path = "serial0:115200n8";
+> >       };
+> > +
+> > +     can_osc: can-osc {
+> > +             compatible = "fixed-clock";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <20000000>;
+> > +     };
+> > +
+> > +     reg_can_v5v: reg-can-v5v {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "reg-can-v5v";
+> > +             regulator-min-microvolt = <5000000>;
+> > +             regulator-max-microvolt = <5000000>;
+> > +             regulator-boot-on;
+> > +             enable-active-high;
+> > +             gpio = <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* CAN_3V3_EN: PL2 */
+> > +             status = "okay";
+>
+> You don't need the status property here.
+>
 
-Thanks, Luca
+Correct, need to be dropped
+
+> > +     };
+> > +
+> >  };
+> >
+> >  &ehci0 {
+> > @@ -77,6 +95,31 @@
+> >       status = "okay";
+> >  };
+> >
+> > +&pio {
+> > +     can_pins: can-pins {
+> > +             pins = "PD6",                   /* RX_BUF1_CAN0 */
+> > +                    "PD7";                   /* RX_BUF0_CAN0 */
+> > +             function = "gpio_in";
+> > +     };
+> > +};
+>
+> That isn't needed. What are they used for, you're not tying them to
+> anything?
+
+Mux of their function is correct. They are connected in the schematics
+but not used right now.
+I can garantee that kernel wlll always configurred in the right way
+and if I want I can export in userspace
+for debug purpose
+
+Michael
+
+
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+
+
+--
+| Michael Nazzareno Trimarchi                     Amarula Solutions BV |
+| COO  -  Founder                                      Cruquiuskade 47 |
+| +31(0)851119172                                 Amsterdam 1018 AM NL |
+|                  [`as] http://www.amarulasolutions.com               |
