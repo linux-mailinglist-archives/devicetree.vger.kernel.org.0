@@ -2,100 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 524ED245B6
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 03:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9171245E4
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 04:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727599AbfEUBo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 21:44:58 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:44857 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727347AbfEUBo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 21:44:58 -0400
-Received: by mail-lj1-f196.google.com with SMTP id e13so14238436ljl.11
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 18:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VX3ZJ4+LsHQk247sTXsicTDtr9mvWdG7A6UkuCw4jPw=;
-        b=uscLW5X0zjMF567R9Z9XjkmSsRTEaJNNQeU1Ua2eLKV2NBMf4bTkvZEGOVIAAKNwOV
-         DvA/Qf+e0Y6xS45rQcMU67Wuan0DmAfggwDDd+KQjnCqGx5hUFFMCx1qePGhPFhOJDVB
-         Mo6xAji/8X49dY1b1oirD76btsWgM6zyv/3PqBCFuKEvEgTXEsJOEy5U+82/Xa2NRakP
-         PX7yl627cPK4xe0c4JVg7SsEq8fQiu/260x73USf0FERmZMhLOlgbph3zyaErnWh8Ik/
-         ZqTNl1F7NocGxuIyyAQ3mdRGqHdaCqRuUyu15poVxpt/VP5VDOh4MXg05M3m2xgZGqlb
-         Y+NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VX3ZJ4+LsHQk247sTXsicTDtr9mvWdG7A6UkuCw4jPw=;
-        b=EFbZ8YQWMfOLBhXxJi3gp68n5Dg/jDgafRTenHlEyV2F1VrKEQu0HkGhxN2v8Qy3rX
-         R72GRnqmulG+Rm1dBOttMqrZAmRbsxnBRLiE/6WGr5UD80MK8uDBgoMhNIXow39NeQ/A
-         nyNX0o7G2+8HmvyGeOuD8SutwR9XmU3/CTQ4yFyMgiVm00wDNcAtNFfy99Mr1kdh3/Mv
-         Wx2gAs6dbOO5EnvMY5Q4qZYOhZqqIAKkTIpXjRQtdHCRsnryurtxi0aGBBCMkNA2NAYo
-         GWQukBqkD0nW2jRCaBDv4haixsx1A+AkQ13pmrtRuF7Jk/7yKU/573cv+zU+fN6L8qfL
-         XJCA==
-X-Gm-Message-State: APjAAAW9AksJzmCQXbzpaIupCl+jg4SAf8a1QkIi93BTyPf42lSR5uWQ
-        1jtI757IKxoouRqma2doXyfeIw==
-X-Google-Smtp-Source: APXvYqwCcWx8eAzjMczA+atZCyrD29Hy/di6q3UMSOpZsmy/ZXo4QLz760QkM0nUZNFBfIekbSdaNg==
-X-Received: by 2002:a2e:9b93:: with SMTP id z19mr9312223lji.96.1558403096613;
-        Mon, 20 May 2019 18:44:56 -0700 (PDT)
-Received: from localhost.localdomain (c-d2cd225c.014-348-6c756e10.bbcust.telenor.se. [92.34.205.210])
-        by smtp.gmail.com with ESMTPSA id z11sm4232194ljb.68.2019.05.20.18.44.55
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 20 May 2019 18:44:55 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH 2/9 RESEND 2] mtd: partitions: Add AFS partitions DT bindings
-Date:   Tue, 21 May 2019 03:42:21 +0200
-Message-Id: <20190521014230.18463-5-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190521014230.18463-1-linus.walleij@linaro.org>
-References: <20190521014230.18463-1-linus.walleij@linaro.org>
+        id S1727579AbfEUCQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 22:16:56 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:11616 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726325AbfEUCQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 22:16:56 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ce35f950000>; Mon, 20 May 2019 19:16:54 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Mon, 20 May 2019 19:16:53 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Mon, 20 May 2019 19:16:53 -0700
+Received: from [10.19.108.117] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
+ 2019 02:16:51 +0000
+Subject: Re: [Patch V3 1/8] phy: tegra: xusb: t210: add XUSB dual mode support
+To:     Nagarjuna Kristam <nkristam@nvidia.com>, <balbi@kernel.org>,
+        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
+ <1557988772-15406-2-git-send-email-nkristam@nvidia.com>
+From:   jckuo <jckuo@nvidia.com>
+Message-ID: <b0c36707-a198-8996-f2c5-c8c410bf5450@nvidia.com>
+Date:   Tue, 21 May 2019 10:16:50 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1557988772-15406-2-git-send-email-nkristam@nvidia.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558405014; bh=hTNWfpPzKc+o2LhadCsahKcFEzKIn4MCvixm6q/cOJY=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=oJXcu5fJMrbsInh4v9x3uWYlXw34mx2n9AzroLDs7PSYWo/HUlV3mWo/OZPtUlTJQ
+         l+W0g18C+d75kWR4R5tb3VuDJ3FVsp5AonCmWVdBzOikK4KLQZwt5ZEYIu6oux4MGe
+         OiygHEYoLBxOcHavkK6oxWo+PIVk1thA+HB/gR4wtVCJgDUGk7liLCBG7nyDsfahjh
+         seJZHlIZoRlQKa37QUdV5Cu0eFJ+dhiBLarFXA5dHpn0kkf1QXogmNiQveouV0nvrN
+         4kPG68exwlM5+5KTJXQ7fCTVQyZDEZl5Ny1v0nwW+MsGNABnIcmg5RQoROJPYttu6r
+         +xVbg1Lwvqh2Q==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for ARM Firmware Suite
-flash partitioning used in NOR flashes on ARM reference
-designs.
+Reviewed-by: JC Kuo <jckuo@nvidia.com>
 
-Cc: devicetree@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../mtd/partitions/arm,arm-firmware-suite.txt   | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
 
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
-new file mode 100644
-index 000000000000..d5c5616f6db5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
-@@ -0,0 +1,17 @@
-+ARM AFS - ARM Firmware Suite Partitions
-+=======================================
-+
-+The ARM Firmware Suite is a flash partitioning system found on the
-+ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
-+Versatile PB, the RealView family, Versatile Express and Juno.
-+
-+Required properties:
-+- compatible : (required) must be "arm,arm-firmware-suite"
-+
-+Example:
-+
-+flash@0 {
-+	partitions {
-+		compatible = "arm,arm-firmware-suite";
-+	};
-+};
--- 
-2.20.1
-
+On 5/16/19 2:39 PM, Nagarjuna Kristam wrote:
+> Configure the port capabilities based on usb_dr_mode settings.
+>
+> Based on work by JC Kuo <jckuo@nvidia.com>.
+>
+> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+> ---
+>   drivers/phy/tegra/xusb-tegra210.c | 22 +++++++++++++++++++---
+>   1 file changed, 19 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
+> index 05bee32..4beebcc 100644
+> --- a/drivers/phy/tegra/xusb-tegra210.c
+> +++ b/drivers/phy/tegra/xusb-tegra210.c
+> @@ -1,5 +1,5 @@
+>   /*
+> - * Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+> + * Copyright (c) 2014-2019, NVIDIA CORPORATION.  All rights reserved.
+>    * Copyright (C) 2015 Google, Inc.
+>    *
+>    * This program is free software; you can redistribute it and/or modify it
+> @@ -47,7 +47,10 @@
+>   #define XUSB_PADCTL_USB2_PAD_MUX_USB2_BIAS_PAD_XUSB 0x1
+>   
+>   #define XUSB_PADCTL_USB2_PORT_CAP 0x008
+> +#define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DISABLED(x) (0x0 << ((x) * 4))
+>   #define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_HOST(x) (0x1 << ((x) * 4))
+> +#define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DEVICE(x) (0x2 << ((x) * 4))
+> +#define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_OTG(x) (0x3 << ((x) * 4))
+>   #define XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_MASK(x) (0x3 << ((x) * 4))
+>   
+>   #define XUSB_PADCTL_SS_PORT_MAP 0x014
+> @@ -72,6 +75,7 @@
+>   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(x) (0x084 + (x) * 0x40)
+>   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT 7
+>   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_MASK 0x3
+> +#define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_VAL 0x1
+>   #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_FIX18 (1 << 6)
+>   
+>   #define XUSB_PADCTL_USB2_OTG_PADX_CTL0(x) (0x088 + (x) * 0x40)
+> @@ -965,7 +969,14 @@ static int tegra210_usb2_phy_power_on(struct phy *phy)
+>   
+>   	value = padctl_readl(padctl, XUSB_PADCTL_USB2_PORT_CAP);
+>   	value &= ~XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_MASK(index);
+> -	value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_HOST(index);
+> +	if (port->mode == USB_DR_MODE_UNKNOWN)
+> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DISABLED(index);
+> +	else if (port->mode == USB_DR_MODE_PERIPHERAL)
+> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_DEVICE(index);
+> +	else if (port->mode == USB_DR_MODE_HOST)
+> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_HOST(index);
+> +	else if (port->mode == USB_DR_MODE_OTG)
+> +		value |= XUSB_PADCTL_USB2_PORT_CAP_PORTX_CAP_OTG(index);
+>   	padctl_writel(padctl, value, XUSB_PADCTL_USB2_PORT_CAP);
+>   
+>   	value = padctl_readl(padctl, XUSB_PADCTL_USB2_OTG_PADX_CTL0(index));
+> @@ -997,7 +1008,12 @@ static int tegra210_usb2_phy_power_on(struct phy *phy)
+>   			     XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
+>   	value &= ~(XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_MASK <<
+>   		   XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT);
+> -	value |= XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_FIX18;
+> +	if (port->mode == USB_DR_MODE_HOST)
+> +		value |= XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_FIX18;
+> +	else
+> +		value |=
+> +		      XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_VAL <<
+> +		      XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT;
+>   	padctl_writel(padctl, value,
+>   		      XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(index));
+>   
