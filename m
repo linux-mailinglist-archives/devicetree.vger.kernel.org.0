@@ -2,112 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9862547E
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 17:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7CE254B7
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728271AbfEUPvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 11:51:54 -0400
-Received: from foss.arm.com ([217.140.101.70]:37432 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727941AbfEUPvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 11:51:54 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B0B37374;
-        Tue, 21 May 2019 08:51:53 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DD9323F575;
-        Tue, 21 May 2019 08:51:48 -0700 (PDT)
-Subject: Re: [PATCH v4 09/10] irqchip/irq-mvebu-icu: Remove the double SATA
- ports interrupt hack
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S1728114AbfEUQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 12:03:40 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38667 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727999AbfEUQDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:03:39 -0400
+Received: by mail-wr1-f66.google.com with SMTP id d18so19271344wrs.5;
+        Tue, 21 May 2019 09:03:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nDVM5JY0UCQQWnTrJayIQkK7SrKOctqqMDMV9spSsxw=;
+        b=EYxZgIO5dsxx3yD9fsqj6fe4T+XzTC5VXoGkGvuywXp8yJRU754xsd8K0OEXIy4UCP
+         g7WTSgirP243yLYV6r0iHdDyQjtQE9zP7Bb5BNSQoll1ld1h4eBB2i/xrNmezqhql3/C
+         nfkGZF04ZpAdquZuprZSg0EOzQFn5b4sA8Pad2z1LwRf5X7OZcVA3hE63IqkRX9dJdqa
+         ax2LdGe+7nTI0JUBsgJw1oIaGXKyS4SOGjtpiMb9f+CWQUyRfM7ALbzDKK7a/UuB0Q1D
+         hLBwRLokrdeLuI6j+34idK2cpYRzi4SBMtYnMoqlVFGTg96NsFRq9fVt1i3U6eLNCM1e
+         BPMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nDVM5JY0UCQQWnTrJayIQkK7SrKOctqqMDMV9spSsxw=;
+        b=SqGADpYO1NqOLTEKzYbrGPv/nKM9PaMbtnYvHsIy77GVBi0YmQkyQe8uubm9qE0+SL
+         bD96OFoY/SnGvANlKcoissKV2FX2YoGWJoY8lrJHY8whG2dC/Y8qEk+7pDP4S92JhqyA
+         d3024ryLUJ24k028u3ncxCleAIvyACKdiAsOZdvDgC8jT8w3Ym+lHthHfGQMMuSvXvc0
+         WbXzdIsTdgQqzVodTO4fdgqaAi8b7piVYPWLmBsTkx0CAMfZZLAgPzvLMgkOw96DDVqN
+         YwjPKbqgtb2URFeQL7WTPcRl8TjNdgnVXQcayhH6oRyECHvyjoEYUc9G7YugElCdcl8e
+         SmBQ==
+X-Gm-Message-State: APjAAAUnC7adAXP9EcCsuqIO8ezJOMRhlRr6eVzr9Ni1MVQ1N3EL6Bqr
+        4J1HOCnwADWK1/GOXlBQSGQRsIDpBlskVg==
+X-Google-Smtp-Source: APXvYqw//oVHVQE8dOkatKRTfxOnljBLeM0nGz32xgOKSjeongOCRNazNj5zD0dXglyd7R3Kdi2Jdg==
+X-Received: by 2002:adf:fc8f:: with SMTP id g15mr52594055wrr.122.1558454617669;
+        Tue, 21 May 2019 09:03:37 -0700 (PDT)
+Received: from localhost.localdomain (18.189-60-37.rdns.acropolistelecom.net. [37.60.189.18])
+        by smtp.gmail.com with ESMTPSA id g11sm6853811wrq.89.2019.05.21.09.03.36
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 May 2019 09:03:36 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-ide@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Baruch Siach <baruch@tkos.co.il>
-References: <20190521143023.31810-1-miquel.raynal@bootlin.com>
- <20190521143023.31810-10-miquel.raynal@bootlin.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- mQINBE6Jf0UBEADLCxpix34Ch3kQKA9SNlVQroj9aHAEzzl0+V8jrvT9a9GkK+FjBOIQz4KE
- g+3p+lqgJH4NfwPm9H5I5e3wa+Scz9wAqWLTT772Rqb6hf6kx0kKd0P2jGv79qXSmwru28vJ
- t9NNsmIhEYwS5eTfCbsZZDCnR31J6qxozsDHpCGLHlYym/VbC199Uq/pN5gH+5JHZyhyZiNW
- ozUCjMqC4eNW42nYVKZQfbj/k4W9xFfudFaFEhAf/Vb1r6F05eBP1uopuzNkAN7vqS8XcgQH
- qXI357YC4ToCbmqLue4HK9+2mtf7MTdHZYGZ939OfTlOGuxFW+bhtPQzsHiW7eNe0ew0+LaL
- 3wdNzT5abPBscqXWVGsZWCAzBmrZato+Pd2bSCDPLInZV0j+rjt7MWiSxEAEowue3IcZA++7
- ifTDIscQdpeKT8hcL+9eHLgoSDH62SlubO/y8bB1hV8JjLW/jQpLnae0oz25h39ij4ijcp8N
- t5slf5DNRi1NLz5+iaaLg4gaM3ywVK2VEKdBTg+JTg3dfrb3DH7ctTQquyKun9IVY8AsxMc6
- lxl4HxrpLX7HgF10685GG5fFla7R1RUnW5svgQhz6YVU33yJjk5lIIrrxKI/wLlhn066mtu1
- DoD9TEAjwOmpa6ofV6rHeBPehUwMZEsLqlKfLsl0PpsJwov8TQARAQABtCNNYXJjIFp5bmdp
- ZXIgPG1hcmMuenluZ2llckBhcm0uY29tPokCOwQTAQIAJQIbAwYLCQgHAwIGFQgCCQoLBBYC
- AwECHgECF4AFAk6NvYYCGQEACgkQI9DQutE9ekObww/+NcUATWXOcnoPflpYG43GZ0XjQLng
- LQFjBZL+CJV5+1XMDfz4ATH37cR+8gMO1UwmWPv5tOMKLHhw6uLxGG4upPAm0qxjRA/SE3LC
- 22kBjWiSMrkQgv5FDcwdhAcj8A+gKgcXBeyXsGBXLjo5UQOGvPTQXcqNXB9A3ZZN9vS6QUYN
- TXFjnUnzCJd+PVI/4jORz9EUVw1q/+kZgmA8/GhfPH3xNetTGLyJCJcQ86acom2liLZZX4+1
- 6Hda2x3hxpoQo7pTu+XA2YC4XyUstNDYIsE4F4NVHGi88a3N8yWE+Z7cBI2HjGvpfNxZnmKX
- 6bws6RQ4LHDPhy0yzWFowJXGTqM/e79c1UeqOVxKGFF3VhJJu1nMlh+5hnW4glXOoy/WmDEM
- UMbl9KbJUfo+GgIQGMp8mwgW0vK4HrSmevlDeMcrLdfbbFbcZLNeFFBn6KqxFZaTd+LpylIH
- bOPN6fy1Dxf7UZscogYw5Pt0JscgpciuO3DAZo3eXz6ffj2NrWchnbj+SpPBiH4srfFmHY+Y
- LBemIIOmSqIsjoSRjNEZeEObkshDVG5NncJzbAQY+V3Q3yo9og/8ZiaulVWDbcpKyUpzt7pv
- cdnY3baDE8ate/cymFP5jGJK++QCeA6u6JzBp7HnKbngqWa6g8qDSjPXBPCLmmRWbc5j0lvA
- 6ilrF8m5Ag0ETol/RQEQAM/2pdLYCWmf3rtIiP8Wj5NwyjSL6/UrChXtoX9wlY8a4h3EX6E3
- 64snIJVMLbyr4bwdmPKULlny7T/R8dx/mCOWu/DztrVNQiXWOTKJnd/2iQblBT+W5W8ep/nS
- w3qUIckKwKdplQtzSKeE+PJ+GMS+DoNDDkcrVjUnsoCEr0aK3cO6g5hLGu8IBbC1CJYSpple
- VVb/sADnWF3SfUvJ/l4K8Uk4B4+X90KpA7U9MhvDTCy5mJGaTsFqDLpnqp/yqaT2P7kyMG2E
- w+eqtVIqwwweZA0S+tuqput5xdNAcsj2PugVx9tlw/LJo39nh8NrMxAhv5aQ+JJ2I8UTiHLX
- QvoC0Yc/jZX/JRB5r4x4IhK34Mv5TiH/gFfZbwxd287Y1jOaD9lhnke1SX5MXF7eCT3cgyB+
- hgSu42w+2xYl3+rzIhQqxXhaP232t/b3ilJO00ZZ19d4KICGcakeiL6ZBtD8TrtkRiewI3v0
- o8rUBWtjcDRgg3tWx/PcJvZnw1twbmRdaNvsvnlapD2Y9Js3woRLIjSAGOijwzFXSJyC2HU1
- AAuR9uo4/QkeIrQVHIxP7TJZdJ9sGEWdeGPzzPlKLHwIX2HzfbdtPejPSXm5LJ026qdtJHgz
- BAb3NygZG6BH6EC1NPDQ6O53EXorXS1tsSAgp5ZDSFEBklpRVT3E0NrDABEBAAGJAh8EGAEC
- AAkFAk6Jf0UCGwwACgkQI9DQutE9ekMLBQ//U+Mt9DtFpzMCIHFPE9nNlsCm75j22lNiw6mX
- mx3cUA3pl+uRGQr/zQC5inQNtjFUmwGkHqrAw+SmG5gsgnM4pSdYvraWaCWOZCQCx1lpaCOl
- MotrNcwMJTJLQGc4BjJyOeSH59HQDitKfKMu/yjRhzT8CXhys6R0kYMrEN0tbe1cFOJkxSbV
- 0GgRTDF4PKyLT+RncoKxQe8lGxuk5614aRpBQa0LPafkirwqkUtxsPnarkPUEfkBlnIhAR8L
- kmneYLu0AvbWjfJCUH7qfpyS/FRrQCoBq9QIEcf2v1f0AIpA27f9KCEv5MZSHXGCdNcbjKw1
- 39YxYZhmXaHFKDSZIC29YhQJeXWlfDEDq6nIhvurZy3mSh2OMQgaIoFexPCsBBOclH8QUtMk
- a3jW/qYyrV+qUq9Wf3SKPrXf7B3xB332jFCETbyZQXqmowV+2b3rJFRWn5hK5B+xwvuxKyGq
- qDOGjof2dKl2zBIxbFgOclV7wqCVkhxSJi/QaOj2zBqSNPXga5DWtX3ekRnJLa1+ijXxmdjz
- hApihi08gwvP5G9fNGKQyRETePEtEAWt0b7dOqMzYBYGRVr7uS4uT6WP7fzOwAJC4lU7ZYWZ
- yVshCa0IvTtp1085RtT3qhh9mobkcZ+7cQOY+Tx2RGXS9WeOh2jZjdoWUv6CevXNQyOUXMM=
-Organization: ARM Ltd
-Message-ID: <31d75a17-858f-e289-5542-be7e6a0a4e5e@arm.com>
-Date:   Tue, 21 May 2019 16:51:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v4 0/5] Allwinner H6 watchdog support
+Date:   Tue, 21 May 2019 18:03:25 +0200
+Message-Id: <20190521160330.28402-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190521143023.31810-10-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2019 15:30, Miquel Raynal wrote:
-> When writing the driver, a hack was introduced to configure both SATA
-> interrupts regardless of the port in use to overcome a limitation in
-> the SATA core. Now that this limitation has been addressed and the
-> hack moved in the (historically) responsible SATA driver,
-> ahci_{platform,mvebu}.c, let's clean this driver section.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Hi,
 
-Acked-by: Marc Zyngier <marc.zyngier@arm.com>
+Allwinner H6 SoC has two watchdogs.
 
-	M.
+As we are not sure that both A64 and H6 are stricly identical, I have
+introduced the H6 bindings.
+
+After investigation it seems that on some boards the first watchdog doesn't
+make it properly reboot. Please see details in the commit log.
+
+I think it's proper to add it with a comment anyway.
+
+The r_watchdog is still available and usable on all the H6 boards.
+
+Thanks,
+Clément
+
+Changes since v3:
+ - Remove A64 compatible
+ - Introduce specific bindings for r-wdt
+
+Changes since v2:
+ - Reintroduce H6 bindings
+ - Add watchdog Maintainters / ML
+ - Add Martin Ayotte test results
+
+Changes since v1:
+ - Use A64 compatible instead of H6
+ - Remove dt-bindings patch
+ - Change watchdog status to disabled
+ - Add r_watchdog node patch
+ - Add enable sunxi watchdog patch
+
+Clément Péron (5):
+  dt-bindings: watchdog: add Allwinner H6 watchdog
+  arm64: dts: allwinner: h6: add watchdog node
+  dt-bindings: watchdog: add Allwinner H6 r_watchdog
+  arm64: dts: allwinner: h6: add r_watchog node
+  arm64: defconfig: enable sunxi watchdog
+
+ .../devicetree/bindings/watchdog/sunxi-wdt.txt   |  2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi     | 16 ++++++++++++++++
+ arch/arm64/configs/defconfig                     |  1 +
+ 3 files changed, 19 insertions(+)
+
 -- 
-Jazz is not dead. It just smells funny...
+2.17.1
+
