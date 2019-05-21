@@ -2,126 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BCAC25A66
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 00:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E62925A6A
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 00:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726363AbfEUWnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 18:43:20 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:54853 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbfEUWnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 18:43:20 -0400
-Received: by mail-wm1-f68.google.com with SMTP id i3so213939wml.4
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 15:43:18 -0700 (PDT)
+        id S1726017AbfEUWr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 18:47:26 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:35805 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725797AbfEUWr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 18:47:26 -0400
+Received: by mail-pl1-f194.google.com with SMTP id p1so59854plo.2;
+        Tue, 21 May 2019 15:47:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Rh5zhmB9pIXrzawqY8AKtcg1nijof3Pl+JZMPvAKIzI=;
-        b=sBHQ9lvYYxn/XTvH7+SdJa/IDZqqFTmcRI3bdiKSLSVdBpU9GaM3Bu6X25o8dM/3a2
-         qI1wkOioqEXX2qHB++OCUs/P4XIPejw/FJK9z8V50OKPZaEa4bzEWIJ+ToAP9P85LVid
-         KHU+joijWlZm0cGtqdgbRK9mSKz6GJvrKcjt/Tt735dU3Hx7+CJquNnwAH/ggWevEV1C
-         kHweFjDll9zVhB0K4XL9QTFLrZPq19CamY5CNdgnYa5Nff+/ZSAGgQ0BAt09x9KCujos
-         PbBWhTCh8P8lBLPGjiKULHPCwYUSajJ5WnP2Fm8BpQuB+dT/5dF0ue/9iT4Q7jAU23lR
-         V/7g==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=CotgpyzHvMKFTZ/K9lN0mdRgMD7feyc9SXYeONncL/o=;
+        b=o4a5cYRy18GFiA/2I/gKRgwNPhCgij27hCMQ5jVz+doF8MVtQfcd5wXj/lCZS6OiX9
+         CfHvWZRy57PtzaQmKFzYqM4yL4sil1cuGmxYoApTxCfkRbf3oD/iUaB0nbNs6UI5ZwIx
+         DyERHNaf3QhF1nOhPMXSsLk80+5syIjibTz7R5FXrBAqk9owxBEFFMcq2hcY6sr5YI9X
+         DnXCdJ17rwv1nOC849Mu1+dMXO19I3M0zmoUXyo69U4LHV+0ZKMjsguQ/uJbaGJYGwoo
+         y9ViikeRvDX3UMMb1Ws5+ieWinHLUXEntALlsjHVeuST6wofF298Fk6oCW8tJWM+Q0dS
+         8esg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Rh5zhmB9pIXrzawqY8AKtcg1nijof3Pl+JZMPvAKIzI=;
-        b=l/2vkPhzt6ISL9T2LkA7ZP6EAuM0m9BcSxV8gub+8qF+HnLd9wuqxohHdEAekhzlzG
-         JRvCWhvfSMYUb0eLZsBsb8qyJq1uDOpHN5WcbQg3bZsvZh7KOqtIztQMqIq4oWaG4esh
-         Ims/eJLZhni/29RzxJZynRtHIWH+u0Kgi1Ft/qsk6n8X6B2MStC7mM+7wDqHm7F4QQgX
-         6CvDDpni8G7ZEslAY41/nxG2ypraMhi9UUThErEsqfgiinKpqT89b/WAf69JAo4cgtky
-         KQdDkAwVzD9D/nUQpuJ1lZQza9KwP+7ibqan4mfkSTp53nQbOW95N94y2HQ3F+ltcWNf
-         jVIA==
-X-Gm-Message-State: APjAAAVi49v0jfAgIjo4/LzxNq7CMUeHRPsE9/K1qnCklTyt4w43YeH7
-        tyVn4XTxlZORkL0oKMa+ZG6Q4oFgghlKZRSPZnCp
-X-Google-Smtp-Source: APXvYqwGSHyBn5RiOCFkhuZPXWdleQytgHyzzVkjLADG8gu+JFArhym1azbwi1YXhYp8TCGjSWX5MV989/0Pk0bWPJE=
-X-Received: by 2002:a1c:6783:: with SMTP id b125mr4851689wmc.79.1558478597215;
- Tue, 21 May 2019 15:43:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521130357.20803-1-miquel.raynal@bootlin.com> <20190521130357.20803-3-miquel.raynal@bootlin.com>
-In-Reply-To: <20190521130357.20803-3-miquel.raynal@bootlin.com>
-From:   Bjorn Helgaas <bhelgaas@google.com>
-Date:   Tue, 21 May 2019 17:43:05 -0500
-Message-ID: <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] clk: mvebu: armada-37xx-periph: change
- suspend/resume time
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=CotgpyzHvMKFTZ/K9lN0mdRgMD7feyc9SXYeONncL/o=;
+        b=oKaZVNA13cqA8vf7fP7hM6nL5aa50SG5Zj/6QvMGPZquRgsJ8teGfJSmPoWWaBHulI
+         vMNHmLuwPKWM/iA+A6GSi1hbX7ApyG/WUikFwQt2roLoa4eI95XUWcc5Uk2Q7D6r4TyJ
+         x486f781oZcksLzmnTK9Op4BABCmuMXVjIvzVMcGBIWp8ZD3kQE0xNxE2AV0D5A6hzWC
+         PP0Opa3pUrU+Qe1ZtM/XGoe4PB/pMJqAjzONzHXpzcf0i25tvXz4L8l7K3VhDeb+bS6Y
+         fbR9I8A9doegZm4qHmu6r7sPdJ7klKTrGh8FWP6oOk2966Hhs/2lPNYG6XY4EZ4UUiuh
+         Ct3Q==
+X-Gm-Message-State: APjAAAWdEkToErfqv9OwZHS7Std558ieqZUXLSKW1KB50nl2y4mO6Mdi
+        pITVpYZB73wafjcR3PX6i5YAxF9j
+X-Google-Smtp-Source: APXvYqwIXd0Rr3JbWRcSCnSpFyYAJ4zlDzmi4QaXNGllka+plJyS/cN3mblpxlsf3gDGP2EA90Xb1Q==
+X-Received: by 2002:a17:902:4481:: with SMTP id l1mr73044372pld.121.1558478845497;
+        Tue, 21 May 2019 15:47:25 -0700 (PDT)
+Received: from localhost.localdomain (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id r29sm34122419pgn.14.2019.05.21.15.47.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 May 2019 15:47:24 -0700 (PDT)
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     David Miller <davem@davemloft.net>, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Miroslav Lichvar <mlichvar@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Willem de Bruijn <willemb@google.com>
+Subject: [PATCH V3 net-next 0/6] Peer to Peer One-Step time stamping
+Date:   Tue, 21 May 2019 15:47:17 -0700
+Message-Id: <20190521224723.6116-1-richardcochran@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Tue, May 21, 2019 at 8:04 AM
-To: Michael Turquette, Stephen Boyd, Rob Herring, Mark Rutland
-Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>, Thomas
-Petazzoni, Antoine Tenart, Gregory Clement, Maxime Chevallier, Nadav
-Haklai, Bjorn Helgaas, Rafael J . Wysocki, <linux-pm@vger.kernel.org>,
-Miquel Raynal
+This series adds support for PTP (IEEE 1588) P2P one-step time
+stamping along with a driver for a hardware device that supports this.
 
-> Armada 3700 PCIe IP relies on the PCIe clock managed by this
-> driver. For reasons related to the PCI core's organization when
-> suspending/resuming, PCI host controller drivers must reconfigure
-> their register at suspend_noirq()/resume_noirq() which happens after
-> suspend()/suspend_late() and before resume_early()/resume().
+If the hardware supports p2p one-step, it subtracts the ingress time
+stamp value from the Pdelay_Request correction field.  The user space
+software stack then simply copies the correction field into the
+Pdelay_Response, and on transmission the hardware adds the egress time
+stamp into the correction field.
 
-"For reasons related to the PCI core's organization" manages to
-suggest that this change wouldn't be needed if only the PCI core did
-something differently, without actually being specific about what it
-would need to do differently.
+This new functionality extends CONFIG_NETWORK_PHY_TIMESTAMPING to
+cover MII snooping devices, but it still depends on phylib, just as
+that option does.  Expanding beyond phylib is not within the scope of
+the this series.
 
-Is there something the PCI core could do better to make this easier?
-Or is it just something like "the PCI core needs to access registers
-after suspend_late()"?  You mention the host controller, but of course
-that's not itself a PCI device, so the PCI core doesn't have much to
-do with it directly.
+User space support is available in the current linuxptp master branch.
 
-s/register/registers/ ?
+- Patch 1 adds the new option.
+- Patches 2-5 add support for MII time stamping in non-PHY devices.
+- Patch 6 adds a driver implementing the new option.
 
-> Device link support in the clock framework enforce that the clock
-> driver's resume() callback will be called before the PCIe
-> driver's. But, any resume_noirq() callback will be called before all
-> the registered resume() callbacks.
->
-> The solution to support PCIe resume operation is to change the
-> "priority" of this clock driver PM callbacks to "_noirq()".
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  drivers/clk/mvebu/armada-37xx-periph.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/mvebu/armada-37xx-periph.c b/drivers/clk/mvebu/armada-37xx-periph.c
-> index 1e18c5a875bd..bee45e43a85f 100644
-> --- a/drivers/clk/mvebu/armada-37xx-periph.c
-> +++ b/drivers/clk/mvebu/armada-37xx-periph.c
-> @@ -715,8 +715,8 @@ static int __maybe_unused armada_3700_periph_clock_resume(struct device *dev)
->  }
->
->  static const struct dev_pm_ops armada_3700_periph_clock_pm_ops = {
-> -       SET_SYSTEM_SLEEP_PM_OPS(armada_3700_periph_clock_suspend,
-> -                               armada_3700_periph_clock_resume)
-> +       SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(armada_3700_periph_clock_suspend,
-> +                                     armada_3700_periph_clock_resume)
->  };
->
->  static int armada_3700_periph_clock_probe(struct platform_device *pdev)
-> --
-> 2.19.1
->
+Thanks,
+Richard
+
+Changed in v3:
+~~~~~~~~~~~~~~
+
+- Simplify the device tree binding and document the time stamping
+  phandle by itself.
+
+Changed in v2:
+~~~~~~~~~~~~~~
+
+- Per the v1 review, changed the modeling of MII time stamping
+  devices.  They are no longer a kind of mdio device.
+
+
+Richard Cochran (6):
+  net: Introduce peer to peer one step PTP time stamping.
+  net: Introduce a new MII time stamping interface.
+  net: Add a layer for non-PHY MII time stamping drivers.
+  dt-bindings: ptp: Introduce MII time stamping devices.
+  net: mdio: of: Register discovered MII time stampers.
+  ptp: Add a driver for InES time stamping IP core.
+
+ Documentation/devicetree/bindings/ptp/ptp-ines.txt |  35 +
+ .../devicetree/bindings/ptp/timestamper.txt        |  41 +
+ drivers/net/ethernet/broadcom/bnx2x/bnx2x_main.c   |   1 +
+ drivers/net/phy/Makefile                           |   2 +
+ drivers/net/phy/dp83640.c                          |  47 +-
+ drivers/net/phy/mii_timestamper.c                  | 121 +++
+ drivers/net/phy/phy.c                              |   4 +-
+ drivers/net/phy/phy_device.c                       |   5 +
+ drivers/of/of_mdio.c                               |  24 +
+ drivers/ptp/Kconfig                                |  10 +
+ drivers/ptp/Makefile                               |   1 +
+ drivers/ptp/ptp_ines.c                             | 870 +++++++++++++++++++++
+ include/linux/mii_timestamper.h                    | 116 +++
+ include/linux/phy.h                                |  25 +-
+ include/uapi/linux/net_tstamp.h                    |   8 +
+ net/8021q/vlan_dev.c                               |   4 +-
+ net/Kconfig                                        |   7 +-
+ net/core/dev_ioctl.c                               |   1 +
+ net/core/ethtool.c                                 |   4 +-
+ net/core/timestamping.c                            |  20 +-
+ 20 files changed, 1289 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ptp/ptp-ines.txt
+ create mode 100644 Documentation/devicetree/bindings/ptp/timestamper.txt
+ create mode 100644 drivers/net/phy/mii_timestamper.c
+ create mode 100644 drivers/ptp/ptp_ines.c
+ create mode 100644 include/linux/mii_timestamper.h
+
+-- 
+2.11.0
+
