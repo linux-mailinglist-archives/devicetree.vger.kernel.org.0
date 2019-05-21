@@ -2,190 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4673A25759
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 20:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CC9A2575C
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 20:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727990AbfEUSQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 14:16:25 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:39654 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727969AbfEUSQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 14:16:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=HVziMftjpXjB+N5SeRAwtXlbBDBepO/NfMJehWTXQiA=; b=eNSG8jGAB3IfSzFMyboVP5a1y
-        /bd11oH0QO2VWNxho3ZAKocdHVNn/wTmoWlQaZFil91VOLlt8koG19JJ9bBkQp/SqOW0yes88bq0i
-        j+eK+Sy+MvejGK8RE/dJWjE36bmxBxR8bckFLdc27VMEvfQoq59Aj9YyaFJc2V8n3EGM4=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hT9J7-0000TI-In; Tue, 21 May 2019 18:16:13 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id 922F71126D13; Tue, 21 May 2019 19:16:09 +0100 (BST)
-Date:   Tue, 21 May 2019 19:16:09 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Masahisa Kojima <masahisa.kojima@linaro.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        geert@linux-m68k.org, tpiepho@impinj.com,
-        andy.shevchenko@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, ard.biesheuvel@linaro.org,
-        jaswinder.singh@linaro.org, masami.hiramatsu@linaro.org,
-        okamoto.satoru@socionext.com, osaki.yoshitoyo@socionext.com
-Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer
- platform
-Message-ID: <20190521181609.GB16633@sirena.org.uk>
-References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
- <20190521115958.22504-4-masahisa.kojima@linaro.org>
+        id S1729212AbfEUSQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 14:16:27 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:41641 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727969AbfEUSQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 14:16:27 -0400
+Received: by mail-pf1-f196.google.com with SMTP id q17so9459178pfq.8
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 11:16:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=kWn23uPSMxDFn2qGTs4o2rEa3INC2eoWBUd16xA7XV8=;
+        b=StpYFVZSovK25IyEPqkVrilukmqVU8wqhQsBBJXhzVWPRyObGv3Y0sE/foiPAP1dLY
+         u+5cRVaM2aXyHOZbDnvo5CixYT3pDTGkwkastTAD9csANh4Kq53CAYqdt3BU542IHDWo
+         GL5I6q2Z4PZP3D28tm1mOHEUFcPTPaXw5u/4PmkRk1zyWJvXlJA1+y01Eb56nO8IuZZZ
+         7O7OzNNw+gXkyyEWTk9bN4QuYEOEFrAk7OSvc5rGDby3rnQqpeuTXTMHw/HMugDrt6SQ
+         sJExt/iFymWshqalcGbMGMqXuAuxB6kf0qmYF9UKfVF8w5mMat09dUmFZKf+frzxamE0
+         dGbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=kWn23uPSMxDFn2qGTs4o2rEa3INC2eoWBUd16xA7XV8=;
+        b=WtiyVNwa2oogrYDA6Hw/zMKj+mteJBu38iOMm83xtPIJ6L45gNKdzXvgBScKudMi3B
+         OcGSQxgaCaQjvYm5kM8QbNVGBUhLMXYziYhrBEhSDNjWw/+Qsixm8UXoeqp9CdlDQ01S
+         rYsFiWQHtZwey+XTaYwV6Tdt0/XfNkOFiMCm7h0fgdgs9vZczLcopyrPoWx7BfxBq7uW
+         WVKvDF9VRfw7OZHcJQfSgEa3cJrFuMxmv4Me758HWPr/xOfqXtuBD84LQVm/3coqQ+uc
+         2744dWboUczQYsAfbtJRZLgKRreq/Hj408UTSdBVQySbmj71AC6cEK+O3FqDO2cRG3LW
+         cniA==
+X-Gm-Message-State: APjAAAVEesDjW5PWoOs2kFflpD83i9h9kPRNvu6GDu7Z5Y+90XoRy1mE
+        gcjLOEaVeqO2esaO+1/5iYrAOQ==
+X-Google-Smtp-Source: APXvYqzNDTddr3qSb0H+nAtgW+HjSihhmwcLS/tOoKNIQOseOHwP64iiNXN2WRg9soFejjy2u6Ne/A==
+X-Received: by 2002:a63:484d:: with SMTP id x13mr56974pgk.275.1558462586195;
+        Tue, 21 May 2019 11:16:26 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id i17sm27598969pfo.103.2019.05.21.11.16.24
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 21 May 2019 11:16:25 -0700 (PDT)
+Date:   Tue, 21 May 2019 11:16:52 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, david.brown@linaro.org, jcrouse@codeaurora.org,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: msm8998-mtp: Add pm8005_s1 regulator
+Message-ID: <20190521181652.GC2085@tuxbook-pro>
+References: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
+ <20190521165341.14428-1-jeffrey.l.hugo@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qcHopEYAB45HaUaB"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190521115958.22504-4-masahisa.kojima@linaro.org>
-X-Cookie: Do I have a lifestyle yet?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190521165341.14428-1-jeffrey.l.hugo@gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue 21 May 09:53 PDT 2019, Jeffrey Hugo wrote:
 
---qcHopEYAB45HaUaB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> The pm8005_s1 is VDD_GFX, and needs to be on to enable the GPU.
+> This should be hooked up to the GPU CPR, but we don't have support for that
+> yet, so until then, just turn on the regulator and keep it on so that we
+> can focus on basic GPU bringup.
+> 
 
-On Tue, May 21, 2019 at 08:59:58PM +0900, Masahisa Kojima wrote:
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> +	switch (sspi->bpw) {
-> +	case 8:
-
-> +		{
-> +		u8 *buf =3D sspi->rx_buf;
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+> index f09f3e03f708..108667ce4f31 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
+> @@ -27,6 +27,23 @@
+>  	status = "okay";
+>  };
+>  
+> +&pm8005_lsid1 {
+> +	pm8005-regulators {
+> +		compatible = "qcom,pm8005-regulators";
 > +
-> +		readsb(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
-> +		sspi->rx_buf =3D buf + len;
-> +		break;
-> +		}
-
-Please indent these properly.
-
-> +	default:
-> +		{
-> +		u32 *buf =3D sspi->rx_buf;
+> +		vdd_s1-supply = <&vph_pwr>;
 > +
-> +		readsl(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
-> +		sspi->rx_buf =3D buf + len;
-> +		break;
-> +		}
-
-It'd be better to explicitly list the values this works for and return
-an error otherwise.
-
-> +	if (sspi->rx_words) {
-> +		val =3D SYNQUACER_HSSPI_RXE_FIFO_MORE_THAN_THRESHOLD |
-> +		      SYNQUACER_HSSPI_RXE_SLAVE_RELEASED;
-> +		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-> +		status =3D wait_for_completion_timeout(&sspi->transfer_done,
-> +			msecs_to_jiffies(SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC));
-> +		writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-> +	}
+> +		pm8005_s1: s1 { /* VDD_GFX supply */
+> +			regulator-min-microvolt = <524000>;
+> +			regulator-max-microvolt = <1100000>;
+> +			regulator-enable-ramp-delay = <500>;
 > +
-> +	if (xfer->tx_buf) {
-> +		val =3D SYNQUACER_HSSPI_TXE_FIFO_EMPTY;
-> +		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-> +		status =3D wait_for_completion_timeout(&sspi->transfer_done,
-> +			msecs_to_jiffies(SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC));
-> +		writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-> +	}
-
-I guess the TX will complete before the RX usually so I'd kind of expect
-the waits to be in the other order?
-
-> +	if (status < 0) {
-> +		dev_err(sspi->dev, "failed to transfer\n");
-> +		return status;
-> +	}
-
-Printing the error code could be helpful for users.
-
-> +static void synquacer_spi_set_cs(struct spi_device *spi, bool enable)
-> +{
-> +	struct synquacer_spi *sspi =3D spi_master_get_devdata(spi->master);
-> +	u32 val;
+> +			/* hack until we rig up the gpu consumer */
+> +			regulator-always-on;
+> +		};
+> +	};
+> +};
 > +
-> +	val =3D readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-> +	val &=3D ~(SYNQUACER_HSSPI_DMPSEL_CS_MASK <<
-> +		 SYNQUACER_HSSPI_DMPSEL_CS_SHIFT);
-> +	val |=3D spi->chip_select << SYNQUACER_HSSPI_DMPSEL_CS_SHIFT;
-> +
-> +	if (enable) {
-> +		val |=3D SYNQUACER_HSSPI_DMSTOP_STOP;
-> +		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-> +
-> +		if (sspi->rx_buf) {
-> +			u32 buf[SYNQUACER_HSSPI_FIFO_DEPTH];
-> +
-> +			sspi->rx_buf =3D buf;
-> +			sspi->rx_words =3D SYNQUACER_HSSPI_FIFO_DEPTH;
-> +			read_fifo(sspi);
-> +		}
-
-This is doing things with the FIFO, that's completely inappropriate for
-a set_cs() operation.  The set_cs() operation should set the chip select
-and nothing else.
-
-> +static irqreturn_t sq_spi_rx_handler(int irq, void *priv)
-> +{
-> +	uint32_t val;
-> +	struct synquacer_spi *sspi =3D priv;
-> +
-> +	val =3D readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_RXF);
-> +	if ((val & SYNQUACER_HSSPI_RXF_SLAVE_RELEASED) ||
-> +	    (val & SYNQUACER_HSSPI_RXF_FIFO_MORE_THAN_THRESHOLD))
-> +		read_fifo(sspi);
-> +
-> +	if (sspi->rx_words =3D=3D 0) {
-> +		writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-> +		complete(&sspi->transfer_done);
-> +	}
-> +
-> +	return 0;
-> +}
-
-0 is not a valid return from an interrupt handler, IRQ_HANDLED or
-IRQ_NONE.
-
-> +	ret =3D devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
-> +				0, "synquacer-spi-rx", sspi);
-> +	ret =3D devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
-> +				0, "synquacer-spi-tx", sspi);
-
-The code looked awfully like we depend on having interrupts? =20
-
-> +	master->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_TX_DUAL | SPI_RX_DUAL |
-> +			    SPI_TX_QUAD | SPI_RX_QUAD;
-
-I don't see any code in the driver that configures dual or quad mode
-support other than setting _PCC_SAFESYNC, I'm not clear how the driver
-supports these modes?
-
---qcHopEYAB45HaUaB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzkQGgACgkQJNaLcl1U
-h9DBFgf/ZEJY1USHsPodtkdrIPFyI+tpdBqpdq1nNiRh/Z9QYJvumdtxpKGNXxAG
-m0vWwh3fdnW/W/1pilOmJgHiwp24KlhH31/SnLbbWR+svp+2wIHfbsfJMVTm1VwM
-EYyVW0ZRtsuwbrdblt9wml1hX510CiWeKPJNqRXtCcQ8xYzD9Q/qsDfDQJ7ReAVW
-eNft6Mhry1hBxORGnL15fO/1VLMHZoHysHnVDPiL4XYull++R0Lj3buayT6YKnRq
-p8bQUbujSLw/5Z6IgKCMJ5yXgF8PGOqlmsc/n8OUqA0OOzkQrbWTGDJBDDAgN6ft
-e678yeROZpZZmej8VRifwwLeDJc8xA==
-=zAHJ
------END PGP SIGNATURE-----
-
---qcHopEYAB45HaUaB--
+>  &qusb2phy {
+>  	status = "okay";
+>  
+> -- 
+> 2.17.1
+> 
