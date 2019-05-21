@@ -2,848 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0DB24E76
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 14:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17C7E24E7D
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 14:01:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728057AbfEUMAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 08:00:46 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:39224 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728047AbfEUMAq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 08:00:46 -0400
-Received: by mail-pf1-f195.google.com with SMTP id z26so8965447pfg.6
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 05:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=dkncqCXO55SGa1MBMzGOr5xAs9kuJOojD6dsGVSaW2U=;
-        b=NTTCevJFplPDaQN+2b3EnvsMaBuQrL9XyK6aO7vXBN7Kr9cck7t4jK9DgZuHJpLbBU
-         DTpJvfTVaP6NQtUkm0Sp4usRQFQiCyWObf9vYn2SaRXhuBMDm2gYmBiQJieuxY2Xs32T
-         MWD5J4phJ6y7Q5UuHboAV85dKBW9RpxnDtQ6qWfXnhqHeTc/IaZahZxy45qdHeSZesRr
-         dTN/XdpsGEtMnS2m3MDVqC4Ly01rkh7DmnqXQprv9WxcHpSMuWXOnfO3yYy9D7km26Mx
-         3f5bC/8fO5csWZ/Sy2AsJ+wgJ3fW135fhia4qGcxhX4Rf5fR0623ZQwOQQkOx6SHLxdy
-         Xj8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=dkncqCXO55SGa1MBMzGOr5xAs9kuJOojD6dsGVSaW2U=;
-        b=NHjY29bJ9eZ3QdNutAkfWfF9UwTY+N5Vil+2Qdsc2W6xe6Pv6wYXU5myG1C+raUmDt
-         gsqlAcox4RMjV5M7o6YKIYRzynJOWVJWcAVDq3h7P68Q5EPFJJY8eFUkM3a0SzIuJgxC
-         /9s1o+2t76u5vh8gcbgMTpVAloJ4NW9UrIIJd/+oeEBXQAPz+96BEFw2ojC5JTfSwnKn
-         MGbmoomLeFvYOpgCV/r1jBOtBM7uwDbgFDGaaV1yhoZoWn1ex3suDU4z+VlbHm/EKTrQ
-         c2WFQX0EzK1UiZ/DNF6DRX2B9wAe1YE9JTcV+WsjmvnqNoMmtfxTb6M/96BecgSAtWj5
-         76Tw==
-X-Gm-Message-State: APjAAAWzXO6IhhLwXhpwd/NEl6n8sr79r0MjBFG/fifn3ordu5PpBu4b
-        oTb8iBNqy2/IKtyDAHSkx6dR5Q==
-X-Google-Smtp-Source: APXvYqzu4fhSX/yiuDh+3WZeyA0xWXIiBaZsGtb3/Ros0SK1M+Q4rI8fhNEK26tNnlVJR0+S87Q7bQ==
-X-Received: by 2002:a63:5742:: with SMTP id h2mr80561532pgm.194.1558440044493;
-        Tue, 21 May 2019 05:00:44 -0700 (PDT)
-Received: from localhost ([121.95.100.191])
-        by smtp.gmail.com with ESMTPSA id s77sm41968590pfa.63.2019.05.21.05.00.43
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 May 2019 05:00:43 -0700 (PDT)
-From:   Masahisa Kojima <masahisa.kojima@linaro.org>
-To:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     broonie@kernel.org, geert@linux-m68k.org, tpiepho@impinj.com,
-        andy.shevchenko@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, ard.biesheuvel@linaro.org,
-        jaswinder.singh@linaro.org, masami.hiramatsu@linaro.org,
-        okamoto.satoru@socionext.com, osaki.yoshitoyo@socionext.com,
-        Masahisa Kojima <masahisa.kojima@linaro.org>
-Subject: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer platform
-Date:   Tue, 21 May 2019 20:59:58 +0900
-Message-Id: <20190521115958.22504-4-masahisa.kojima@linaro.org>
-X-Mailer: git-send-email 2.14.2
-In-Reply-To: <20190521115958.22504-1-masahisa.kojima@linaro.org>
-References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
+        id S1727251AbfEUMBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 08:01:55 -0400
+Received: from mail-eopbgr60060.outbound.protection.outlook.com ([40.107.6.60]:25316
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726705AbfEUMBy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 08:01:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rnezodcR6yhaBBZe8sQYFsREyg7Rk0OBPLXOJgQ8ZVY=;
+ b=nXpW//YTwP2jmT6pVUlT9l53xxgijs4nYdc5StXQQnNa+4xkejuoRICCjQ5umglzAL1vvLRGGOtS7vGHoDa8zwSo8jDP2SRwQXrkzPZmthRcGZ5GYxiHzVAKOzQVTY43tj4sGQ8A5ICi/t/flMphEBIzxHKNU44Xvd26ujfh2M4=
+Received: from VI1PR0402MB3519.eurprd04.prod.outlook.com (52.134.4.24) by
+ VI1PR0402MB3631.eurprd04.prod.outlook.com (52.134.7.22) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.17; Tue, 21 May 2019 12:01:47 +0000
+Received: from VI1PR0402MB3519.eurprd04.prod.outlook.com
+ ([fe80::2417:67da:c1aa:29f3]) by VI1PR0402MB3519.eurprd04.prod.outlook.com
+ ([fe80::2417:67da:c1aa:29f3%7]) with mapi id 15.20.1900.020; Tue, 21 May 2019
+ 12:01:47 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH v4 2/2] driver: clocksource: Add nxp system counter timer
+ driver support
+Thread-Topic: [PATCH v4 2/2] driver: clocksource: Add nxp system counter timer
+ driver support
+Thread-Index: AQHVD6VyGxyzK/K+Ck6OWhJMa/LQ6aZ1WusAgAAZ3gA=
+Date:   Tue, 21 May 2019 12:01:47 +0000
+Message-ID: <VI1PR0402MB3519B14C5AF93F246907F03A87070@VI1PR0402MB3519.eurprd04.prod.outlook.com>
+References: <20190521072355.12928-1-ping.bai@nxp.com>
+ <20190521072355.12928-2-ping.bai@nxp.com>
+ <5823cd07-312b-600c-1b78-dc5bff2a12eb@linaro.org>
+In-Reply-To: <5823cd07-312b-600c-1b78-dc5bff2a12eb@linaro.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ping.bai@nxp.com; 
+x-originating-ip: [117.81.146.122]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c4423140-0fc4-4ae6-7bc5-08d6dde419ea
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB3631;
+x-ms-traffictypediagnostic: VI1PR0402MB3631:
+x-microsoft-antispam-prvs: <VI1PR0402MB36319E585BDD89ECE50CF9E787070@VI1PR0402MB3631.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 0044C17179
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(39860400002)(136003)(396003)(376002)(366004)(199004)(189003)(13464003)(71200400001)(71190400001)(14454004)(7736002)(8936002)(81166006)(305945005)(2906002)(5660300002)(86362001)(478600001)(486006)(66446008)(26005)(73956011)(76116006)(74316002)(186003)(66556008)(6436002)(66476007)(66946007)(81156014)(25786009)(66066001)(229853002)(52536014)(256004)(316002)(64756008)(68736007)(8676002)(76176011)(6636002)(53936002)(110136005)(54906003)(53546011)(33656002)(6506007)(6246003)(102836004)(55016002)(11346002)(3846002)(4326008)(99286004)(7696005)(6116002)(9686003)(2501003)(476003)(446003);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3631;H:VI1PR0402MB3519.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: yqNVL/FUv7hcfn9TmoFtfxGxiLCutiFzei6yRymynoyAFWqEpswesEmvPgsB3dqt768BKZ90Gf7FDQtV4acjM6NBYqjr9/xPKA8/MfBdDbKfy//xtYqfSzsz3hDlqV+ELiab0Kj5re1B95cw8uQa3YpT+pHXJe2RRIYM7x+qFpP9iPSyYpN125vRi+laxi4Qzs5IIHhOop1xeELVcgj8UOuG3qmEz9cCfNPu4Q8YQN7DIdGYFd/ty/tpogLTdvsiX3m7S472vZewdnBjEgCh/5Auiu5B2ezX6E/3jmB5jRHjFaTQQHAvObhZMF8Dm4IE5sW1PRmNAv9+bWodKLbl87N2awFMa/R3R42lSGFfq0Dp0nNZQoc6tLFtplsqAzMHNa6kO2F2odwkh/Ae49ZF7Cer5kUXA9Fe/PQSLKrE/ME=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4423140-0fc4-4ae6-7bc5-08d6dde419ea
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2019 12:01:47.4684
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3631
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for controller found on synquacer platforms.
-
-Signed-off-by: Masahisa Kojima <masahisa.kojima@linaro.org>
-Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
----
- drivers/spi/Kconfig         |  11 +
- drivers/spi/Makefile        |   1 +
- drivers/spi/spi-synquacer.c | 731 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 743 insertions(+)
- create mode 100644 drivers/spi/spi-synquacer.c
-
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 0fba8f400c59..24a3eac72d12 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -732,6 +732,17 @@ config SPI_SUN6I
- 	help
- 	  This enables using the SPI controller on the Allwinner A31 SoCs.
- 
-+config SPI_SYNQUACER
-+	tristate "Socionext's Synquacer HighSpeed SPI controller"
-+	depends on ARCH_SYNQUACER || COMPILE_TEST
-+	select SPI_BITBANG
-+	help
-+	  SPI driver for Socionext's High speed SPI controller which provides
-+	  various operating modes for interfacing to serial peripheral devices
-+	  that use the de-facto standard SPI protocol.
-+
-+	  It also supports the new dual-bit and quad-bit SPI protocol.
-+
- config SPI_MXIC
-         tristate "Macronix MX25F0A SPI controller"
-         depends on SPI_MASTER
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index f2f78d03dc28..63dcab552bcb 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -106,6 +106,7 @@ obj-$(CONFIG_SPI_STM32_QSPI) 		+= spi-stm32-qspi.o
- obj-$(CONFIG_SPI_ST_SSC4)		+= spi-st-ssc4.o
- obj-$(CONFIG_SPI_SUN4I)			+= spi-sun4i.o
- obj-$(CONFIG_SPI_SUN6I)			+= spi-sun6i.o
-+obj-$(CONFIG_SPI_SYNQUACER)		+= spi-synquacer.o
- obj-$(CONFIG_SPI_TEGRA114)		+= spi-tegra114.o
- obj-$(CONFIG_SPI_TEGRA20_SFLASH)	+= spi-tegra20-sflash.o
- obj-$(CONFIG_SPI_TEGRA20_SLINK)		+= spi-tegra20-slink.o
-diff --git a/drivers/spi/spi-synquacer.c b/drivers/spi/spi-synquacer.c
-new file mode 100644
-index 000000000000..04ba76609a12
---- /dev/null
-+++ b/drivers/spi/spi-synquacer.c
-@@ -0,0 +1,731 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Synquacer HSSPI controller driver
-+//
-+// Copyright (c) 2015-2018 Socionext Inc.
-+// Copyright (c) 2018-2019 Linaro Ltd.
-+//
-+
-+#include <linux/delay.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/scatterlist.h>
-+#include <linux/slab.h>
-+#include <linux/spi/spi.h>
-+#include <linux/spinlock.h>
-+#include <linux/clk.h>
-+
-+/* HSSPI register address definitions */
-+#define SYNQUACER_HSSPI_REG_MCTRL	0x00
-+#define SYNQUACER_HSSPI_REG_PCC0	0x04
-+#define SYNQUACER_HSSPI_REG_PCC(n)	(SYNQUACER_HSSPI_REG_PCC0 + (n) * 4)
-+#define SYNQUACER_HSSPI_REG_TXF		0x14
-+#define SYNQUACER_HSSPI_REG_TXE		0x18
-+#define SYNQUACER_HSSPI_REG_TXC		0x1C
-+#define SYNQUACER_HSSPI_REG_RXF		0x20
-+#define SYNQUACER_HSSPI_REG_RXE		0x24
-+#define SYNQUACER_HSSPI_REG_RXC		0x28
-+#define SYNQUACER_HSSPI_REG_FAULTF	0x2C
-+#define SYNQUACER_HSSPI_REG_FAULTC	0x30
-+#define SYNQUACER_HSSPI_REG_DMCFG	0x34
-+#define SYNQUACER_HSSPI_REG_DMSTART	0x38
-+#define SYNQUACER_HSSPI_REG_DMBCC	0x3C
-+#define SYNQUACER_HSSPI_REG_DMSTATUS	0x40
-+#define SYNQUACER_HSSPI_REG_FIFOCFG	0x4C
-+#define SYNQUACER_HSSPI_REG_TX_FIFO	0x50
-+#define SYNQUACER_HSSPI_REG_RX_FIFO	0x90
-+#define SYNQUACER_HSSPI_REG_MID		0xFC
-+
-+/* HSSPI register bit definitions */
-+#define SYNQUACER_HSSPI_MCTRL_MEN			BIT(0)
-+#define SYNQUACER_HSSPI_MCTRL_COMMAND_SEQUENCE_EN	BIT(1)
-+#define SYNQUACER_HSSPI_MCTRL_CDSS			BIT(3)
-+#define SYNQUACER_HSSPI_MCTRL_MES			BIT(4)
-+#define SYNQUACER_HSSPI_MCTRL_SYNCON			BIT(5)
-+
-+#define SYNQUACER_HSSPI_PCC_CPHA		BIT(0)
-+#define SYNQUACER_HSSPI_PCC_CPOL		BIT(1)
-+#define SYNQUACER_HSSPI_PCC_ACES		BIT(2)
-+#define SYNQUACER_HSSPI_PCC_RTM			BIT(3)
-+#define SYNQUACER_HSSPI_PCC_SSPOL		BIT(4)
-+#define SYNQUACER_HSSPI_PCC_SDIR		BIT(7)
-+#define SYNQUACER_HSSPI_PCC_SENDIAN		BIT(8)
-+#define SYNQUACER_HSSPI_PCC_SAFESYNC		BIT(16)
-+#define SYNQUACER_HSSPI_PCC_SS2CD_SHIFT		5
-+#define SYNQUACER_HSSPI_PCC_CDRS_MASK		0x7f
-+#define SYNQUACER_HSSPI_PCC_CDRS_SHIFT		9
-+
-+#define SYNQUACER_HSSPI_TXF_FIFO_FULL		BIT(0)
-+#define SYNQUACER_HSSPI_TXF_FIFO_EMPTY		BIT(1)
-+#define SYNQUACER_HSSPI_TXF_SLAVE_RELEASED	BIT(6)
-+
-+#define SYNQUACER_HSSPI_TXE_FIFO_FULL		BIT(0)
-+#define SYNQUACER_HSSPI_TXE_FIFO_EMPTY		BIT(1)
-+#define SYNQUACER_HSSPI_TXE_SLAVE_RELEASED	BIT(6)
-+
-+#define SYNQUACER_HSSPI_RXF_FIFO_MORE_THAN_THRESHOLD		BIT(5)
-+#define SYNQUACER_HSSPI_RXF_SLAVE_RELEASED			BIT(6)
-+
-+#define SYNQUACER_HSSPI_RXE_FIFO_MORE_THAN_THRESHOLD		BIT(5)
-+#define SYNQUACER_HSSPI_RXE_SLAVE_RELEASED			BIT(6)
-+
-+#define SYNQUACER_HSSPI_DMCFG_SSDC		BIT(1)
-+#define SYNQUACER_HSSPI_DMCFG_MSTARTEN		BIT(2)
-+
-+#define SYNQUACER_HSSPI_DMSTART_START		BIT(0)
-+#define SYNQUACER_HSSPI_DMSTOP_STOP		BIT(8)
-+#define SYNQUACER_HSSPI_DMPSEL_CS_MASK		0x3
-+#define SYNQUACER_HSSPI_DMPSEL_CS_SHIFT		16
-+#define SYNQUACER_HSSPI_DMTRP_BUS_WIDTH_SHIFT	24
-+#define SYNQUACER_HSSPI_DMTRP_DATA_MASK		0x3
-+#define SYNQUACER_HSSPI_DMTRP_DATA_SHIFT	26
-+#define SYNQUACER_HSSPI_DMTRP_DATA_TXRX		0
-+#define SYNQUACER_HSSPI_DMTRP_DATA_RX		1
-+#define SYNQUACER_HSSPI_DMTRP_DATA_TX		2
-+
-+#define SYNQUACER_HSSPI_DMSTATUS_RX_DATA_MASK	0x1f
-+#define SYNQUACER_HSSPI_DMSTATUS_RX_DATA_SHIFT	8
-+#define SYNQUACER_HSSPI_DMSTATUS_TX_DATA_MASK	0x1f
-+#define SYNQUACER_HSSPI_DMSTATUS_TX_DATA_SHIFT	16
-+
-+#define SYNQUACER_HSSPI_FIFOCFG_RX_THRESHOLD_MASK	0xf
-+#define SYNQUACER_HSSPI_FIFOCFG_RX_THRESHOLD_SHIFT	0
-+#define SYNQUACER_HSSPI_FIFOCFG_TX_THRESHOLD_MASK	0xf
-+#define SYNQUACER_HSSPI_FIFOCFG_TX_THRESHOLD_SHIFT	4
-+#define SYNQUACER_HSSPI_FIFOCFG_FIFO_WIDTH_MASK		0x3
-+#define SYNQUACER_HSSPI_FIFOCFG_FIFO_WIDTH_SHIFT	8
-+#define SYNQUACER_HSSPI_FIFOCFG_RX_FLUSH		BIT(11)
-+#define SYNQUACER_HSSPI_FIFOCFG_TX_FLUSH		BIT(12)
-+
-+#define SYNQUACER_HSSPI_FIFO_DEPTH		16
-+#define SYNQUACER_HSSPI_FIFO_TX_THRESHOLD	4
-+#define SYNQUACER_HSSPI_FIFO_RX_THRESHOLD \
-+	(SYNQUACER_HSSPI_FIFO_DEPTH - SYNQUACER_HSSPI_FIFO_TX_THRESHOLD)
-+
-+#define SYNQUACER_HSSPI_TRANSFER_MODE_TX	BIT(1)
-+#define SYNQUACER_HSSPI_TRANSFER_MODE_RX	BIT(2)
-+#define SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC	2000
-+
-+#define SYNQUACER_HSSPI_CLOCK_SRC_IHCLK		0
-+#define SYNQUACER_HSSPI_CLOCK_SRC_IPCLK		1
-+
-+#define SYNQUACER_HSSPI_NUM_CHIP_SELECT		4
-+
-+struct synquacer_spi {
-+	struct device *dev;
-+	struct completion transfer_done;
-+	unsigned int cs;
-+	unsigned int bpw;
-+	unsigned int mode;
-+	unsigned int speed;
-+	bool aces, rtm;
-+	void *rx_buf;
-+	const void *tx_buf;
-+	struct clk *clk;
-+	int clk_src_type;
-+	void __iomem *regs;
-+	unsigned int tx_words, rx_words;
-+	unsigned int bus_width;
-+	unsigned int transfer_mode;
-+};
-+
-+static void read_fifo(struct synquacer_spi *sspi)
-+{
-+	u32 len = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTATUS);
-+
-+	len = (len >> SYNQUACER_HSSPI_DMSTATUS_RX_DATA_SHIFT) &
-+	       SYNQUACER_HSSPI_DMSTATUS_RX_DATA_MASK;
-+	len = min_t(unsigned int, len, sspi->rx_words);
-+
-+	switch (sspi->bpw) {
-+	case 8:
-+		{
-+		u8 *buf = sspi->rx_buf;
-+
-+		readsb(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
-+		sspi->rx_buf = buf + len;
-+		break;
-+		}
-+	case 16:
-+		{
-+		u16 *buf = sspi->rx_buf;
-+
-+		readsw(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
-+		sspi->rx_buf = buf + len;
-+		break;
-+		}
-+	default:
-+		{
-+		u32 *buf = sspi->rx_buf;
-+
-+		readsl(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
-+		sspi->rx_buf = buf + len;
-+		break;
-+		}
-+	}
-+
-+	sspi->rx_words -= len;
-+}
-+
-+static void write_fifo(struct synquacer_spi *sspi)
-+{
-+	u32 len = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTATUS);
-+
-+	len = (len >> SYNQUACER_HSSPI_DMSTATUS_TX_DATA_SHIFT) &
-+	       SYNQUACER_HSSPI_DMSTATUS_TX_DATA_MASK;
-+	len = min_t(unsigned int, SYNQUACER_HSSPI_FIFO_DEPTH - len,
-+		    sspi->tx_words);
-+
-+	switch (sspi->bpw) {
-+	case 8:
-+		{
-+		const u8 *buf = sspi->tx_buf;
-+
-+		writesb(sspi->regs + SYNQUACER_HSSPI_REG_TX_FIFO, buf, len);
-+		sspi->tx_buf = buf + len;
-+		break;
-+		}
-+	case 16:
-+		{
-+		const u16 *buf = sspi->tx_buf;
-+
-+		writesw(sspi->regs + SYNQUACER_HSSPI_REG_TX_FIFO, buf, len);
-+		sspi->tx_buf = buf + len;
-+		break;
-+		}
-+	default:
-+		{
-+		const u32 *buf = sspi->tx_buf;
-+
-+		writesl(sspi->regs + SYNQUACER_HSSPI_REG_TX_FIFO, buf, len);
-+		sspi->tx_buf = buf + len;
-+		break;
-+		}
-+	}
-+	sspi->tx_words -= len;
-+}
-+
-+static int synquacer_spi_config(struct spi_master *master,
-+				struct spi_device *spi,
-+				struct spi_transfer *xfer)
-+{
-+	struct synquacer_spi *sspi = spi_master_get_devdata(master);
-+	unsigned int speed, mode, bpw, cs, bus_width, transfer_mode;
-+	u32 rate, val, div;
-+
-+	/* Full Duplex only on 1-bit wide bus */
-+	if (xfer->rx_buf && xfer->tx_buf &&
-+	    (xfer->rx_nbits != 1 || xfer->tx_nbits != 1)) {
-+		dev_err(sspi->dev,
-+			"RX and TX bus widths must match for Full-Duplex!\n");
-+		return -EINVAL;
-+	}
-+
-+	if (xfer->tx_buf) {
-+		bus_width = xfer->tx_nbits;
-+		transfer_mode = SYNQUACER_HSSPI_TRANSFER_MODE_TX;
-+	} else {
-+		bus_width = xfer->rx_nbits;
-+		transfer_mode = SYNQUACER_HSSPI_TRANSFER_MODE_RX;
-+	}
-+
-+	mode = spi->mode;
-+	cs = spi->chip_select;
-+	speed = xfer->speed_hz;
-+	bpw = xfer->bits_per_word;
-+
-+	/* return if nothing to change */
-+	if (speed == sspi->speed &&
-+		bus_width == sspi->bus_width && bpw == sspi->bpw &&
-+		mode == sspi->mode && cs == sspi->cs &&
-+		transfer_mode == sspi->transfer_mode) {
-+		return 0;
-+	}
-+
-+	sspi->transfer_mode = transfer_mode;
-+	rate = master->max_speed_hz;
-+
-+	div = DIV_ROUND_UP(rate, speed);
-+	if (div > 254) {
-+		dev_err(sspi->dev, "Requested rate too low (%u)\n",
-+			sspi->speed);
-+		return -EINVAL;
-+	}
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_PCC(cs));
-+	val &= ~SYNQUACER_HSSPI_PCC_SAFESYNC;
-+	if (bpw == 8 &&	(mode & (SPI_TX_DUAL | SPI_RX_DUAL)) && div < 3)
-+		val |= SYNQUACER_HSSPI_PCC_SAFESYNC;
-+	if (bpw == 8 &&	(mode & (SPI_TX_QUAD | SPI_RX_QUAD)) && div < 6)
-+		val |= SYNQUACER_HSSPI_PCC_SAFESYNC;
-+	if (bpw == 16 && (mode & (SPI_TX_QUAD | SPI_RX_QUAD)) && div < 3)
-+		val |= SYNQUACER_HSSPI_PCC_SAFESYNC;
-+
-+	if (mode & SPI_CPHA)
-+		val |= SYNQUACER_HSSPI_PCC_CPHA;
-+	else
-+		val &= ~SYNQUACER_HSSPI_PCC_CPHA;
-+
-+	if (mode & SPI_CPOL)
-+		val |= SYNQUACER_HSSPI_PCC_CPOL;
-+	else
-+		val &= ~SYNQUACER_HSSPI_PCC_CPOL;
-+
-+	if (mode & SPI_CS_HIGH)
-+		val |= SYNQUACER_HSSPI_PCC_SSPOL;
-+	else
-+		val &= ~SYNQUACER_HSSPI_PCC_SSPOL;
-+
-+	if (mode & SPI_LSB_FIRST)
-+		val |= SYNQUACER_HSSPI_PCC_SDIR;
-+	else
-+		val &= ~SYNQUACER_HSSPI_PCC_SDIR;
-+
-+	if (sspi->aces)
-+		val |= SYNQUACER_HSSPI_PCC_ACES;
-+	else
-+		val &= ~SYNQUACER_HSSPI_PCC_ACES;
-+
-+	if (sspi->rtm)
-+		val |= SYNQUACER_HSSPI_PCC_RTM;
-+	else
-+		val &= ~SYNQUACER_HSSPI_PCC_RTM;
-+
-+	val |= (3 << SYNQUACER_HSSPI_PCC_SS2CD_SHIFT);
-+	val |= SYNQUACER_HSSPI_PCC_SENDIAN;
-+
-+	val &= ~(SYNQUACER_HSSPI_PCC_CDRS_MASK <<
-+		 SYNQUACER_HSSPI_PCC_CDRS_SHIFT);
-+	val |= ((div >> 1) << SYNQUACER_HSSPI_PCC_CDRS_SHIFT);
-+
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_PCC(cs));
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-+	val &= ~(SYNQUACER_HSSPI_FIFOCFG_FIFO_WIDTH_MASK <<
-+		 SYNQUACER_HSSPI_FIFOCFG_FIFO_WIDTH_SHIFT);
-+	val |= ((bpw / 8 - 1) << SYNQUACER_HSSPI_FIFOCFG_FIFO_WIDTH_SHIFT);
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+	val &= ~(SYNQUACER_HSSPI_DMTRP_DATA_MASK <<
-+		 SYNQUACER_HSSPI_DMTRP_DATA_SHIFT);
-+
-+	if (xfer->rx_buf)
-+		val |= (SYNQUACER_HSSPI_DMTRP_DATA_RX <<
-+			SYNQUACER_HSSPI_DMTRP_DATA_SHIFT);
-+	else
-+		val |= (SYNQUACER_HSSPI_DMTRP_DATA_TX <<
-+			SYNQUACER_HSSPI_DMTRP_DATA_SHIFT);
-+
-+	val &= ~(3 << SYNQUACER_HSSPI_DMTRP_BUS_WIDTH_SHIFT);
-+	val |= ((bus_width >> 1) << SYNQUACER_HSSPI_DMTRP_BUS_WIDTH_SHIFT);
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+
-+	sspi->bpw = bpw;
-+	sspi->mode = mode;
-+	sspi->speed = speed;
-+	sspi->cs = spi->chip_select;
-+	sspi->bus_width = bus_width;
-+
-+	return 0;
-+}
-+
-+static int synquacer_spi_transfer_one(struct spi_master *master,
-+				      struct spi_device *spi,
-+				      struct spi_transfer *xfer)
-+{
-+	struct synquacer_spi *sspi = spi_master_get_devdata(master);
-+	int ret;
-+	int status = 0;
-+	unsigned int words;
-+	u8 bpw;
-+	u32 val;
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-+	val |= SYNQUACER_HSSPI_FIFOCFG_RX_FLUSH;
-+	val |= SYNQUACER_HSSPI_FIFOCFG_TX_FLUSH;
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-+
-+	/*
-+	 * See if we can transfer 4-bytes as 1 word
-+	 * to maximize the FIFO buffer effficiency
-+	 */
-+	bpw = xfer->bits_per_word;
-+	if (bpw == 8 && !(xfer->len % 4) && !(spi->mode & SPI_LSB_FIRST))
-+		xfer->bits_per_word = 32;
-+
-+	ret = synquacer_spi_config(master, spi, xfer);
-+
-+	/* restore */
-+	xfer->bits_per_word = bpw;
-+
-+	if (ret)
-+		return ret;
-+
-+	reinit_completion(&sspi->transfer_done);
-+
-+	sspi->tx_buf = xfer->tx_buf;
-+	sspi->rx_buf = xfer->rx_buf;
-+
-+	switch (sspi->bpw) {
-+	case 8:
-+		words = xfer->len;
-+		break;
-+	case 16:
-+		words = xfer->len / 2;
-+		break;
-+	default:
-+		words = xfer->len / 4;
-+		break;
-+	}
-+
-+	if (xfer->tx_buf)
-+		sspi->tx_words = words;
-+	else
-+		sspi->tx_words = 0;
-+
-+	if (xfer->rx_buf)
-+		sspi->rx_words = words;
-+	else
-+		sspi->rx_words = 0;
-+
-+	if (xfer->tx_buf)
-+		write_fifo(sspi);
-+
-+	if (xfer->rx_buf) {
-+		val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-+		val &= ~(SYNQUACER_HSSPI_FIFOCFG_RX_THRESHOLD_MASK <<
-+			 SYNQUACER_HSSPI_FIFOCFG_RX_THRESHOLD_SHIFT);
-+		val |= ((sspi->rx_words > SYNQUACER_HSSPI_FIFO_DEPTH ?
-+			SYNQUACER_HSSPI_FIFO_RX_THRESHOLD : sspi->rx_words) <<
-+			SYNQUACER_HSSPI_FIFOCFG_RX_THRESHOLD_SHIFT);
-+		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
-+	}
-+
-+	writel_relaxed(~0, sspi->regs + SYNQUACER_HSSPI_REG_TXC);
-+	writel_relaxed(~0, sspi->regs + SYNQUACER_HSSPI_REG_RXC);
-+
-+	/* Trigger */
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+	val |= SYNQUACER_HSSPI_DMSTART_START;
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+
-+	if (sspi->rx_words) {
-+		val = SYNQUACER_HSSPI_RXE_FIFO_MORE_THAN_THRESHOLD |
-+		      SYNQUACER_HSSPI_RXE_SLAVE_RELEASED;
-+		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-+		status = wait_for_completion_timeout(&sspi->transfer_done,
-+			msecs_to_jiffies(SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC));
-+		writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-+	}
-+
-+	if (xfer->tx_buf) {
-+		val = SYNQUACER_HSSPI_TXE_FIFO_EMPTY;
-+		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-+		status = wait_for_completion_timeout(&sspi->transfer_done,
-+			msecs_to_jiffies(SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC));
-+		writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-+	}
-+
-+	if (status < 0) {
-+		dev_err(sspi->dev, "failed to transfer\n");
-+		return status;
-+	}
-+
-+	return 0;
-+}
-+
-+static void synquacer_spi_set_cs(struct spi_device *spi, bool enable)
-+{
-+	struct synquacer_spi *sspi = spi_master_get_devdata(spi->master);
-+	u32 val;
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+	val &= ~(SYNQUACER_HSSPI_DMPSEL_CS_MASK <<
-+		 SYNQUACER_HSSPI_DMPSEL_CS_SHIFT);
-+	val |= spi->chip_select << SYNQUACER_HSSPI_DMPSEL_CS_SHIFT;
-+
-+	if (enable) {
-+		val |= SYNQUACER_HSSPI_DMSTOP_STOP;
-+		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+
-+		if (sspi->rx_buf) {
-+			u32 buf[SYNQUACER_HSSPI_FIFO_DEPTH];
-+
-+			sspi->rx_buf = buf;
-+			sspi->rx_words = SYNQUACER_HSSPI_FIFO_DEPTH;
-+			read_fifo(sspi);
-+		}
-+	} else {
-+		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+
-+		val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+		val &= ~SYNQUACER_HSSPI_DMSTOP_STOP;
-+		writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
-+	}
-+}
-+
-+static int synquacer_spi_enable(struct spi_master *master)
-+{
-+	struct synquacer_spi *sspi = spi_master_get_devdata(master);
-+	u32 val;
-+	unsigned int retries = 0xfffff;
-+
-+	/* Disable module */
-+	writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_MCTRL);
-+	while ((readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_MCTRL) &
-+		SYNQUACER_HSSPI_MCTRL_MES) && --retries)
-+		cpu_relax();
-+	if (!retries)
-+		return -EBUSY;
-+
-+	writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-+	writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-+	writel_relaxed(~0, sspi->regs + SYNQUACER_HSSPI_REG_TXC);
-+	writel_relaxed(~0, sspi->regs + SYNQUACER_HSSPI_REG_RXC);
-+	writel_relaxed(~0, sspi->regs + SYNQUACER_HSSPI_REG_FAULTC);
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMCFG);
-+	val &= ~SYNQUACER_HSSPI_DMCFG_SSDC;
-+	val &= ~SYNQUACER_HSSPI_DMCFG_MSTARTEN;
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMCFG);
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_MCTRL);
-+	if (sspi->clk_src_type == SYNQUACER_HSSPI_CLOCK_SRC_IPCLK)
-+		val |= SYNQUACER_HSSPI_MCTRL_CDSS;
-+	else
-+		val &= ~SYNQUACER_HSSPI_MCTRL_CDSS;
-+
-+	val &= ~SYNQUACER_HSSPI_MCTRL_COMMAND_SEQUENCE_EN;
-+	val |= SYNQUACER_HSSPI_MCTRL_MEN;
-+	val |= SYNQUACER_HSSPI_MCTRL_SYNCON;
-+	writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_MCTRL);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t sq_spi_rx_handler(int irq, void *priv)
-+{
-+	uint32_t val;
-+	struct synquacer_spi *sspi = priv;
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_RXF);
-+	if ((val & SYNQUACER_HSSPI_RXF_SLAVE_RELEASED) ||
-+	    (val & SYNQUACER_HSSPI_RXF_FIFO_MORE_THAN_THRESHOLD))
-+		read_fifo(sspi);
-+
-+	if (sspi->rx_words == 0) {
-+		writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
-+		complete(&sspi->transfer_done);
-+	}
-+
-+	return 0;
-+}
-+
-+static irqreturn_t sq_spi_tx_handler(int irq, void *priv)
-+{
-+	uint32_t val;
-+	struct synquacer_spi *sspi = priv;
-+
-+	val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_TXF);
-+
-+	if (val & SYNQUACER_HSSPI_TXF_FIFO_EMPTY) {
-+		if (sspi->tx_words == 0) {
-+			writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
-+			complete(&sspi->transfer_done);
-+			return 0;
-+		}
-+		write_fifo(sspi);
-+	}
-+
-+	return 0;
-+}
-+
-+static int synquacer_spi_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct spi_master *master;
-+	struct synquacer_spi *sspi;
-+	struct resource *res;
-+	int ret;
-+	int rx_irq, tx_irq;
-+
-+	master = spi_alloc_master(&pdev->dev, sizeof(*sspi));
-+	if (!master)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, master);
-+
-+	sspi = spi_master_get_devdata(master);
-+	sspi->dev = &pdev->dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	sspi->regs = devm_ioremap_resource(sspi->dev, res);
-+	if (IS_ERR(sspi->regs)) {
-+		ret = PTR_ERR(sspi->regs);
-+		goto put_spi;
-+	}
-+
-+	if (of_property_match_string(np, "clock-names", "iHCLK") >= 0) {
-+		sspi->clk_src_type = SYNQUACER_HSSPI_CLOCK_SRC_IHCLK;
-+		sspi->clk = devm_clk_get(sspi->dev, "iHCLK");
-+	} else if (of_property_match_string(np, "clock-names", "iPCLK") >= 0) {
-+		sspi->clk_src_type = SYNQUACER_HSSPI_CLOCK_SRC_IPCLK;
-+		sspi->clk = devm_clk_get(sspi->dev, "iPCLK");
-+	} else {
-+		dev_err(&pdev->dev, "specified wrong clock source\n");
-+		ret = -EINVAL;
-+		goto put_spi;
-+	}
-+	if (IS_ERR(sspi->clk)) {
-+		dev_err(&pdev->dev, "clock not found\n");
-+		ret = PTR_ERR(sspi->clk);
-+		goto put_spi;
-+	}
-+
-+	sspi->aces = of_property_read_bool(np, "socionext,set-aces");
-+	sspi->rtm = of_property_read_bool(np, "socionext,use-rtm");
-+
-+	master->num_chipselect = SYNQUACER_HSSPI_NUM_CHIP_SELECT;
-+
-+	init_completion(&sspi->transfer_done);
-+
-+	rx_irq = platform_get_irq(pdev, 0);
-+	if (rx_irq < 0)
-+		dev_err(&pdev->dev, "get rx_irq failed\n");
-+
-+	tx_irq = platform_get_irq(pdev, 1);
-+	if (tx_irq < 0)
-+		dev_err(&pdev->dev, "get tx_irq failed\n");
-+
-+	ret = devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
-+				0, "synquacer-spi-rx", sspi);
-+	ret = devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
-+				0, "synquacer-spi-tx", sspi);
-+
-+	ret = clk_prepare_enable(sspi->clk);
-+	if (ret)
-+		goto put_spi;
-+
-+	master->dev.of_node = np;
-+	master->auto_runtime_pm = true;
-+	master->bus_num = pdev->id;
-+
-+	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_TX_DUAL | SPI_RX_DUAL |
-+			    SPI_TX_QUAD | SPI_RX_QUAD;
-+	master->bits_per_word_mask = SPI_BPW_MASK(32) | SPI_BPW_MASK(24) |
-+				     SPI_BPW_MASK(16) | SPI_BPW_MASK(8);
-+
-+	master->max_speed_hz = clk_get_rate(sspi->clk);
-+	master->min_speed_hz = master->max_speed_hz / 254;
-+
-+	master->set_cs = synquacer_spi_set_cs;
-+	master->transfer_one = synquacer_spi_transfer_one;
-+
-+	ret = synquacer_spi_enable(master);
-+	if (ret)
-+		goto fail_enable;
-+
-+	pm_runtime_set_active(sspi->dev);
-+	pm_runtime_enable(sspi->dev);
-+
-+	ret = devm_spi_register_master(sspi->dev, master);
-+	if (ret)
-+		goto disable_pm;
-+
-+	return 0;
-+
-+disable_pm:
-+	pm_runtime_disable(sspi->dev);
-+fail_enable:
-+	clk_disable_unprepare(sspi->clk);
-+put_spi:
-+	spi_master_put(master);
-+
-+	return ret;
-+}
-+
-+static int synquacer_spi_remove(struct platform_device *pdev)
-+{
-+	struct spi_master *master = platform_get_drvdata(pdev);
-+	struct synquacer_spi *sspi = spi_master_get_devdata(master);
-+
-+	pm_runtime_disable(sspi->dev);
-+	clk_disable_unprepare(sspi->clk);
-+	return 0;
-+}
-+
-+static int __maybe_unused synquacer_spi_suspend(struct device *dev)
-+{
-+	struct spi_master *master = dev_get_drvdata(dev);
-+	struct synquacer_spi *sspi = spi_master_get_devdata(master);
-+	int ret;
-+
-+	ret = spi_master_suspend(master);
-+	if (ret)
-+		return ret;
-+
-+	if (!pm_runtime_suspended(dev))
-+		clk_disable_unprepare(sspi->clk);
-+
-+	return ret;
-+}
-+
-+static int __maybe_unused synquacer_spi_resume(struct device *dev)
-+{
-+	struct spi_master *master = dev_get_drvdata(dev);
-+	struct synquacer_spi *sspi = spi_master_get_devdata(master);
-+	int ret;
-+
-+	if (!pm_runtime_suspended(dev)) {
-+		/* Ensure reconfigure during next xfer */
-+		sspi->speed = 0;
-+
-+		ret = clk_prepare_enable(sspi->clk);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable clk (%d)\n", ret);
-+			return ret;
-+		}
-+
-+		ret = synquacer_spi_enable(master);
-+		if (ret) {
-+			dev_err(dev, "failed to enable spi (%d)\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+	ret = spi_master_resume(master);
-+	if (ret < 0)
-+		clk_disable_unprepare(sspi->clk);
-+
-+	return ret;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(synquacer_spi_pm_ops, synquacer_spi_suspend,
-+			 synquacer_spi_resume);
-+
-+static const struct of_device_id synquacer_spi_of_match[] = {
-+	{.compatible = "socionext,synquacer-spi"},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, synquacer_spi_of_match);
-+
-+static struct platform_driver synquacer_spi_driver = {
-+	.driver = {
-+		.name = "synquacer-spi",
-+		.pm = &synquacer_spi_pm_ops,
-+		.of_match_table = synquacer_spi_of_match,
-+	},
-+	.probe = synquacer_spi_probe,
-+	.remove = synquacer_spi_remove,
-+};
-+module_platform_driver(synquacer_spi_driver);
-+
-+MODULE_DESCRIPTION("Socionext Synquacer HS-SPI controller driver");
-+MODULE_AUTHOR("Masahisa Kojima <masahisa.kojima@linaro.org>");
-+MODULE_AUTHOR("Jassi Brar <jaswinder.singh@linaro.org>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.14.2
-
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IERhbmllbCBMZXpjYW5vIFtt
+YWlsdG86ZGFuaWVsLmxlemNhbm9AbGluYXJvLm9yZ10NCj4gU2VudDogVHVlc2RheSwgTWF5IDIx
+LCAyMDE5IDY6MDggUE0NCj4gVG86IEphY2t5IEJhaSA8cGluZy5iYWlAbnhwLmNvbT47IHRnbHhA
+bGludXRyb25peC5kZTsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBzaGF3bmd1b0BrZXJuZWwub3Jn
+OyBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsgQWlzaGVuZyBEb25nDQo+IDxhaXNoZW5nLmRvbmdAbnhw
+LmNvbT4NCj4gQ2M6IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdl
+ci5rZXJuZWwub3JnOyBkbC1saW51eC1pbXgNCj4gPGxpbnV4LWlteEBueHAuY29tPg0KPiBTdWJq
+ZWN0OiBSZTogW1BBVENIIHY0IDIvMl0gZHJpdmVyOiBjbG9ja3NvdXJjZTogQWRkIG54cCBzeXN0
+ZW0gY291bnRlciB0aW1lcg0KPiBkcml2ZXIgc3VwcG9ydA0KPiANCj4gT24gMjEvMDUvMjAxOSAw
+OToxOCwgSmFja3kgQmFpIHdyb3RlOg0KPiA+IEZyb206IEJhaSBQaW5nIDxwaW5nLmJhaUBueHAu
+Y29tPg0KPiA+DQo+ID4gVGhlIHN5c3RlbSBjb3VudGVyIChzeXNfY3RyKSBpcyBhIHByb2dyYW1t
+YWJsZSBzeXN0ZW0gY291bnRlciB3aGljaA0KPiA+IHByb3ZpZGVzIGEgc2hhcmVkIHRpbWUgYmFz
+ZSB0byB0aGUgQ29ydGV4IEExNSwgQTcsIEE1MyBldGMgY29yZXMuDQo+ID4gSXQgaXMgaW50ZW5k
+ZWQgZm9yIHVzZSBpbiBhcHBsaWNhdGlvbnMgd2hlcmUgdGhlIGNvdW50ZXIgaXMgYWx3YXlzDQo+
+ID4gcG93ZXJlZCBvbiBhbmQgc3VwcG9ydHMgbXVsdGlwbGUsIHVucmVsYXRlZCBjbG9ja3MuIFRo
+ZSBzeXNfY3RyDQo+ID4gaGFyZHdhcmUNCj4gPiBzdXBwb3J0czoNCj4gPiAgLSA1Ni1iaXQgY291
+bnRlciB3aWR0aCAocm9sbC1vdmVyIHRpbWUgZ3JlYXRlciB0aGFuIDQwIHllYXJzKQ0KPiANCj4g
+VGhlIGJlbmVmaXQgb2YgdXNpbmcgbW9yZSB0aGFuIDMyYml0cyBvbiBhIDMyYml0cyBzeXN0ZW0g
+aXMgbm90IHByb3Zlbi4NCj4gDQoNCkl0IGlzIG1haW5seSB1c2VkIG9uIDY0Yml0IEFSTXY4IHN5
+c3RlbS4NCg0KPiBUaGUgZnVuY3Rpb24gdG8gcmVhZCBhbmQgYnVpbGQgdGhlIDU2Yml0cyB2YWx1
+ZSBjYW4gaGF2ZSBhIHZlcnkgc2lnbmlmaWNhbnQNCj4gaW1wYWN0IG9uIHRoZSBwZXJmb3JtYW5j
+ZSBvZiB5b3VyIHBsYXRmb3JtLg0KPiANCj4gVXNpbmcgYSAzMmJpdHMgY291bnRlciBjYW4gYmUg
+ZW5vdWdoIGlmIGl0IGRvZXMgbm90IHdyYXAgdG9vIGZhc3QuDQo+IA0KPiBDYW4geW91IGNvbnNp
+ZGVyIGEgMzIgYml0cyBjb3VudGVyID8NCg0KdGhpcyBjb3VudGVyIGlzIEFSTXY4IGFyY2ggdGlt
+ZXIncyBjb3VudGVyIHNvdXJjZS4gQXMgaXQgYWxzbyBoYXMgdGltZXIgZnVuY3Rpb24sIHNvIEkg
+Y2hvb3NlIGl0DQp0byBhY3QgYXMgYSBicm9hZGNhc3QgdGltZXIgZm9yIGNwdWlkbGUuIFRoZSB0
+aW1lciBpbnRlcnJ1cHQgY2FuIG9ubHkgYmUgdHJpZ2dlcmVkIHdoZW4gJ2NvbXBhcmVbNTU6MF0g
+PD0gY291bnRlcls1NTowXScuDQpTbyB5b3UgbWVhbiB0aGF0IG9ubHkgdXNlIHRoZSBsb3dlciAz
+MmJpdCB0byBpbXBsZW1lbnQgdGhpcyB0aW1lcj8gSWYgc28sIEkgY2FuIGNoYW5nZSB0byB1c2Ug
+b25seSB0aGUgbG93ZXIgMzJiaXQuDQoNCj4gDQo+ID4gIC0gY29tcGFyZSBmcmFtZSg2NC1iaXQg
+Y29tcGFyZSB2YWx1ZSkgY29udGFpbnMgcHJvZ3JhbW1hYmxlIGludGVycnVwdA0KPiA+ICAgIGdl
+bmVyYXRpb24gd2hlbiBjb21wYXJlIHZhbHVlIDw9IGNvdW50ZXIgdmFsdWUuDQo+ID4NCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBCYWkgUGluZyA8cGluZy5iYWlAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiBj
+aGFuZ2UgdjEtPnYyOg0KPiA+ICAtIG5vIGNoYW5nZQ0KPiA+IGNoYW5nZSB2Mi0+djM6DQo+ID4g
+IC0gcmVtb3ZlIHRoZSBjbG9ja3NvdXJjZSwgd2Ugb25seSBuZWVkIHRvIHVzZSB0aGlzIG1vZHVs
+ZSBmb3IgdGltZXINCj4gcHVycG9zZSwNCj4gPiAgICBzbyByZWdpc3RlciBpdCBhcyBjbG9ja2V2
+ZW50IGlzIGVub3VnaC4NCj4gPiAgLSB1c2UgdGhlIHRpbWVyX29mX2luaXQgdG8gaW5pdCB0aGUg
+aXJxLCBjbG9jaywgZXRjLg0KPiA+ICAtIHJlbW92ZSBzb21lIHVubmVjZXNzYXJ5IGNvbW1lbnRz
+Lg0KPiA+IGNoYW5nZSB2My0+djQ6DQo+ID4gIC0gdXNlIGNhY2hlZCB2YWx1ZSBmb3IgQ01QQ1Is
+DQo+ID4gIC0gcmVtb3ZlIHVubmVjZXNzYXJ5IHRpbWVyIGVuYWJlIGZyb20gc2V0X3N0YXRlX29u
+ZXNob3QgZnVuY3Rpb24uDQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvY2xvY2tzb3VyY2UvS2NvbmZp
+ZyAgICAgICAgICAgIHwgICA3ICsrDQo+ID4gIGRyaXZlcnMvY2xvY2tzb3VyY2UvTWFrZWZpbGUg
+ICAgICAgICAgIHwgICAxICsNCj4gPiAgZHJpdmVycy9jbG9ja3NvdXJjZS90aW1lci1pbXgtc3lz
+Y3RyLmMgfCAxNDYNCj4gPiArKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIDMgZmlsZXMg
+Y2hhbmdlZCwgMTU0IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZl
+cnMvY2xvY2tzb3VyY2UvdGltZXItaW14LXN5c2N0ci5jDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9jbG9ja3NvdXJjZS9LY29uZmlnIGIvZHJpdmVycy9jbG9ja3NvdXJjZS9LY29uZmln
+DQo+ID4gaW5kZXggNmJjYWE0ZTJlNzJjLi5lZTQ4NjIwYTQ1NjEgMTAwNjQ0DQo+ID4gLS0tIGEv
+ZHJpdmVycy9jbG9ja3NvdXJjZS9LY29uZmlnDQo+ID4gKysrIGIvZHJpdmVycy9jbG9ja3NvdXJj
+ZS9LY29uZmlnDQo+ID4gQEAgLTYxNiw2ICs2MTYsMTMgQEAgY29uZmlnIENMS1NSQ19JTVhfVFBN
+DQo+ID4gIAkgIEVuYWJsZSB0aGlzIG9wdGlvbiB0byB1c2UgSU1YIFRpbWVyL1BXTSBNb2R1bGUg
+KFRQTSkgdGltZXIgYXMNCj4gPiAgCSAgY2xvY2tzb3VyY2UuDQo+ID4NCj4gPiArY29uZmlnIFRJ
+TUVSX0lNWF9TWVNfQ1RSDQo+ID4gKwlib29sICJpLk1YIHN5c3RlbSBjb3VudGVyIHRpbWVyIiBp
+ZiBDT01QSUxFX1RFU1QNCj4gPiArCWRlcGVuZHMgb24gQVJDSF9NWEMNCj4gDQo+IERvIHlvdSBy
+ZWFsbHkgbmVlZCB0aGlzIGRlcD8NCj4gDQoNCk5vdCByZWFsbHkgbmVjZXNzYXJ5LCBJIGNhbiBy
+ZW1vdmUgaXQuDQoNCj4gPiArCXNlbGVjdCBUSU1FUl9PRg0KPiA+ICsJaGVscA0KPiA+ICsJICBF
+bmFibGUgdGhpcyBvcHRpb24gdG8gdXNlIGkuTVggc3lzdGVtIGNvdW50ZXIgdGltZXIgZm9yIGNs
+b2NrZXZlbnQuDQo+ID4gKw0KPiA+ICBjb25maWcgQ0xLU1JDX1NUX0xQQw0KPiA+ICAJYm9vbCAi
+TG93IHBvd2VyIGNsb2Nrc291cmNlIGZvdW5kIGluIHRoZSBMUEMiIGlmIENPTVBJTEVfVEVTVA0K
+PiA+ICAJc2VsZWN0IFRJTUVSX09GIGlmIE9GDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvY2xv
+Y2tzb3VyY2UvTWFrZWZpbGUNCj4gPiBiL2RyaXZlcnMvY2xvY2tzb3VyY2UvTWFrZWZpbGUgaW5k
+ZXggMjM2ODU4ZmE3ZmJmLi41ZmJhMzllODFhNDAgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9j
+bG9ja3NvdXJjZS9NYWtlZmlsZQ0KPiA+ICsrKyBiL2RyaXZlcnMvY2xvY2tzb3VyY2UvTWFrZWZp
+bGUNCj4gPiBAQCAtNzQsNiArNzQsNyBAQCBvYmotJChDT05GSUdfQ0xLU1JDX01JUFNfR0lDKQkJ
+Kz0NCj4gbWlwcy1naWMtdGltZXIubw0KPiA+ICBvYmotJChDT05GSUdfQ0xLU1JDX1RBTkdPX1hU
+QUwpCQkrPSB0aW1lci10YW5nby14dGFsLm8NCj4gPiAgb2JqLSQoQ09ORklHX0NMS1NSQ19JTVhf
+R1BUKQkJKz0gdGltZXItaW14LWdwdC5vDQo+ID4gIG9iai0kKENPTkZJR19DTEtTUkNfSU1YX1RQ
+TSkJCSs9IHRpbWVyLWlteC10cG0ubw0KPiA+ICtvYmotJChDT05GSUdfVElNRVJfSU1YX1NZU19D
+VFIpCQkrPSB0aW1lci1pbXgtc3lzY3RyLm8NCj4gPiAgb2JqLSQoQ09ORklHX0FTTTkyNjBfVElN
+RVIpCQkrPSBhc205MjYwX3RpbWVyLm8NCj4gPiAgb2JqLSQoQ09ORklHX0g4MzAwX1RNUjgpCQkr
+PSBoODMwMF90aW1lcjgubw0KPiA+ICBvYmotJChDT05GSUdfSDgzMDBfVE1SMTYpCQkrPSBoODMw
+MF90aW1lcjE2Lm8NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbG9ja3NvdXJjZS90aW1lci1p
+bXgtc3lzY3RyLmMNCj4gPiBiL2RyaXZlcnMvY2xvY2tzb3VyY2UvdGltZXItaW14LXN5c2N0ci5j
+DQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmQwNDI4
+ZDMxODlmOA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9kcml2ZXJzL2Nsb2Nrc291cmNl
+L3RpbWVyLWlteC1zeXNjdHIuYw0KPiA+IEBAIC0wLDAgKzEsMTQ2IEBADQo+ID4gKy8vIFNQRFgt
+TGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKw0KPiA+ICsvLw0KPiA+ICsvLyBDb3B5cmlnaHQg
+MjAxNy0yMDE5IE5YUA0KPiA+ICsNCj4gPiArI2luY2x1ZGUgPGxpbnV4L2ludGVycnVwdC5oPg0K
+PiA+ICsjaW5jbHVkZSA8bGludXgvY2xvY2tjaGlwcy5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgv
+b2ZfYWRkcmVzcy5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvb2ZfaXJxLmg+DQo+ID4gKw0KPiA+
+ICsjaW5jbHVkZSAidGltZXItb2YuaCINCj4gPiArDQo+ID4gKyNkZWZpbmUgQ01QX09GRlNFVAkw
+eDEwMDAwDQo+ID4gKw0KPiA+ICsjZGVmaW5lIENOVENWX0xPCTB4OA0KPiA+ICsjZGVmaW5lIENO
+VENWX0hJCTB4Yw0KPiA+ICsjZGVmaW5lIENNUENWX0xPCShDTVBfT0ZGU0VUICsgMHgyMCkNCj4g
+PiArI2RlZmluZSBDTVBDVl9ISQkoQ01QX09GRlNFVCArIDB4MjQpDQo+ID4gKyNkZWZpbmUgQ01Q
+Q1IJCShDTVBfT0ZGU0VUICsgMHgyYykNCj4gPiArDQo+ID4gKyNkZWZpbmUgU1lTX0NUUl9FTgkJ
+MHgxDQo+ID4gKyNkZWZpbmUgU1lTX0NUUl9JUlFfTUFTSwkweDINCj4gPiArDQo+ID4gK3N0YXRp
+YyB2b2lkIF9faW9tZW0gKnN5c19jdHJfYmFzZTsNCj4gPiArc3RhdGljIHUzMiBjbXBjcjsNCj4g
+PiArDQo+ID4gK3N0YXRpYyB2b2lkIHN5c2N0cl90aW1lcl9lbmFibGUoYm9vbCBlbmFibGUpIHsN
+Cj4gPiArCWNtcGNyICY9IH5TWVNfQ1RSX0VOOw0KPiANCj4gRG8gdGhlIGNvbXB1dGF0aW9uIGFm
+dGVyIHJlYWRpbmcgdGhlIHZhbHVlIGluIHRoZSBpbml0IGZ1bmN0aW9uLi4uDQo+IA0KPiA+ICsJ
+aWYgKGVuYWJsZSkNCj4gPiArCQljbXBjciB8PSBTWVNfQ1RSX0VOOw0KPiANCj4gLi4uIHRoZW4N
+Cj4gDQo+IHdyaXRlbChlbmFibGUgPyBjbXBjciB8IFNZU19DVFJfRU4gOiBjbXBjciwgc3lzX2N0
+cl9iYXNlKTsNCj4gDQoNCk9rLCB0aGFuayB5b3UuDQoNCkJSDQpKYWNreSBCYWkNCg0KPiA+ICsJ
+d3JpdGVsKGNtcGNyLCBzeXNfY3RyX2Jhc2UgKyBDTVBDUik7IH0NCj4gPiArDQo+ID4gK3N0YXRp
+YyB2b2lkIHN5c2N0cl9pcnFfYWNrbm93bGVkZ2Uodm9pZCkgew0KPiA+ICsJLyoNCj4gPiArCSAq
+IGNsZWFyIHRoZSBlbmFibGUgYml0KEVOID0wKSB3aWxsIGNsZWFyDQo+ID4gKwkgKiB0aGUgc3Rh
+dHVzIGJpdChJU1RBVCA9IDApLCB0aGVuIHRoZSBpbnRlcnJ1cHQNCj4gPiArCSAqIHNpZ25hbCB3
+aWxsIGJlIG5lZ2F0ZWQoYWNrbm93bGVkZ2VkKS4NCj4gPiArCSAqLw0KPiA+ICsJc3lzY3RyX3Rp
+bWVyX2VuYWJsZShmYWxzZSk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbmxpbmUgdTY0
+IHN5c2N0cl9yZWFkX2NvdW50ZXIodm9pZCkgew0KPiA+ICsJdTMyIGNudF9oaSwgdG1wX2hpLCBj
+bnRfbG87DQo+ID4gKw0KPiA+ICsJZG8gew0KPiA+ICsJCWNudF9oaSA9IHJlYWRsX3JlbGF4ZWQo
+c3lzX2N0cl9iYXNlICsgQ05UQ1ZfSEkpOw0KPiA+ICsJCWNudF9sbyA9IHJlYWRsX3JlbGF4ZWQo
+c3lzX2N0cl9iYXNlICsgQ05UQ1ZfTE8pOw0KPiA+ICsJCXRtcF9oaSA9IHJlYWRsX3JlbGF4ZWQo
+c3lzX2N0cl9iYXNlICsgQ05UQ1ZfSEkpOw0KPiA+ICsJfSB3aGlsZSAodG1wX2hpICE9IGNudF9o
+aSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuICAoKHU2NCkgY250X2hpIDw8IDMyKSB8IGNudF9sbzsg
+fQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBzeXNjdHJfc2V0X25leHRfZXZlbnQodW5zaWduZWQg
+bG9uZyBkZWx0YSwNCj4gPiArCQkJCSBzdHJ1Y3QgY2xvY2tfZXZlbnRfZGV2aWNlICpldnQpDQo+
+ID4gK3sNCj4gPiArCXUzMiBjbXBfaGksIGNtcF9sbzsNCj4gPiArCXU2NCBuZXh0Ow0KPiA+ICsN
+Cj4gPiArCXN5c2N0cl90aW1lcl9lbmFibGUoZmFsc2UpOw0KPiA+ICsNCj4gPiArCW5leHQgPSBz
+eXNjdHJfcmVhZF9jb3VudGVyKCk7DQo+ID4gKw0KPiA+ICsJbmV4dCArPSBkZWx0YTsNCj4gPiAr
+DQo+ID4gKwljbXBfaGkgPSAobmV4dCA+PiAzMikgJiAweDAwZmZmZmY7DQo+ID4gKwljbXBfbG8g
+PSBuZXh0ICYgMHhmZmZmZmZmZjsNCj4gPiArDQo+ID4gKwl3cml0ZWxfcmVsYXhlZChjbXBfaGks
+IHN5c19jdHJfYmFzZSArIENNUENWX0hJKTsNCj4gPiArCXdyaXRlbF9yZWxheGVkKGNtcF9sbywg
+c3lzX2N0cl9iYXNlICsgQ01QQ1ZfTE8pOw0KPiA+ICsNCj4gPiArCXN5c2N0cl90aW1lcl9lbmFi
+bGUodHJ1ZSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0
+YXRpYyBpbnQgc3lzY3RyX3NldF9zdGF0ZV9vbmVzaG90KHN0cnVjdCBjbG9ja19ldmVudF9kZXZp
+Y2UgKmV2dCkgew0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBp
+bnQgc3lzY3RyX3NldF9zdGF0ZV9zaHV0ZG93bihzdHJ1Y3QgY2xvY2tfZXZlbnRfZGV2aWNlICpl
+dnQpDQo+ID4gK3sNCj4gPiArCXN5c2N0cl90aW1lcl9lbmFibGUoZmFsc2UpOw0KPiA+ICsNCj4g
+PiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaXJxcmV0dXJuX3Qgc3lz
+Y3RyX3RpbWVyX2ludGVycnVwdChpbnQgaXJxLCB2b2lkICpkZXZfaWQpIHsNCj4gPiArCXN0cnVj
+dCBjbG9ja19ldmVudF9kZXZpY2UgKmV2dCA9IGRldl9pZDsNCj4gPiArDQo+ID4gKwlzeXNjdHJf
+aXJxX2Fja25vd2xlZGdlKCk7DQo+ID4gKw0KPiA+ICsJZXZ0LT5ldmVudF9oYW5kbGVyKGV2dCk7
+DQo+ID4gKw0KPiA+ICsJcmV0dXJuIElSUV9IQU5ETEVEOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtz
+dGF0aWMgc3RydWN0IHRpbWVyX29mIHRvX3N5c2N0ciA9IHsNCj4gPiArCS5mbGFncyA9IFRJTUVS
+X09GX0lSUSB8IFRJTUVSX09GX0NMT0NLIHwgVElNRVJfT0ZfQkFTRSwNCj4gPiArCS5jbGtldnQg
+PSB7DQo+ID4gKwkJLm5hbWUJCQk9ICJpLk1YIHN5c3RlbSBjb3VudGVyIHRpbWVyIiwNCj4gPiAr
+CQkuZmVhdHVyZXMJCT0gQ0xPQ0tfRVZUX0ZFQVRfT05FU0hPVCB8DQo+IENMT0NLX0VWVF9GRUFU
+X0RZTklSUSwNCj4gPiArCQkuc2V0X3N0YXRlX29uZXNob3QJPSBzeXNjdHJfc2V0X3N0YXRlX29u
+ZXNob3QsDQo+ID4gKwkJLnNldF9uZXh0X2V2ZW50CQk9IHN5c2N0cl9zZXRfbmV4dF9ldmVudCwN
+Cj4gPiArCQkuc2V0X3N0YXRlX3NodXRkb3duCT0gc3lzY3RyX3NldF9zdGF0ZV9zaHV0ZG93biwN
+Cj4gPiArCQkucmF0aW5nCQkJPSAyMDAsDQo+ID4gKwl9LA0KPiA+ICsJLm9mX2lycSA9IHsNCj4g
+PiArCQkuaGFuZGxlcgkJPSBzeXNjdHJfdGltZXJfaW50ZXJydXB0LA0KPiA+ICsJCS5mbGFncwkJ
+CT0gSVJRRl9USU1FUiB8IElSUUZfSVJRUE9MTCwNCj4gPiArCX0sDQo+ID4gKwkub2ZfY2xrID0g
+ew0KPiA+ICsJCS5uYW1lID0gInBlciIsDQo+ID4gKwl9LA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAr
+c3RhdGljIHZvaWQgX19pbml0IHN5c2N0cl9jbG9ja2V2ZW50X2luaXQodm9pZCkgew0KPiA+ICsJ
+dG9fc3lzY3RyLmNsa2V2dC5jcHVtYXNrID0gY3B1bWFza19vZigwKTsNCj4gPiArDQo+ID4gKwlj
+bG9ja2V2ZW50c19jb25maWdfYW5kX3JlZ2lzdGVyKCZ0b19zeXNjdHIuY2xrZXZ0LA0KPiB0aW1l
+cl9vZl9yYXRlKCZ0b19zeXNjdHIpLA0KPiA+ICsJCQkJCTB4ZmYsIDB4N2ZmZmZmZmYpOw0KPiA+
+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IF9faW5pdCBzeXNjdHJfdGltZXJfaW5pdChzdHJ1
+Y3QgZGV2aWNlX25vZGUgKm5wKSB7DQo+ID4gKwlpbnQgcmV0ID0gMDsNCj4gPiArDQo+ID4gKwly
+ZXQgPSB0aW1lcl9vZl9pbml0KG5wLCAmdG9fc3lzY3RyKTsNCj4gPiArCWlmIChyZXQpDQo+ID4g
+KwkJcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKwlzeXNfY3RyX2Jhc2UgPSB0aW1lcl9vZl9iYXNl
+KCZ0b19zeXNjdHIpOw0KPiA+ICsJY21wY3IgPSByZWFkbChzeXNfY3RyX2Jhc2UgKyBDTVBDUik7
+DQo+ID4gKw0KPiA+ICsJc3lzY3RyX2Nsb2NrZXZlbnRfaW5pdCgpOw0KPiA+ICsNCj4gPiArCXJl
+dHVybiAwOw0KPiA+ICt9DQo+ID4gK1RJTUVSX09GX0RFQ0xBUkUoc3lzY3RyX3RpbWVyLCAibnhw
+LHN5c2N0ci10aW1lciIsDQo+ID4gK3N5c2N0cl90aW1lcl9pbml0KTsNCj4gPg0KPiANCj4gDQo+
+IC0tDQo=
