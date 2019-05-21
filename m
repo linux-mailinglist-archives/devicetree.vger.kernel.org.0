@@ -2,230 +2,341 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE8212571E
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 19:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C04225729
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 20:01:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729135AbfEUR5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 13:57:20 -0400
-Received: from mail-eopbgr70040.outbound.protection.outlook.com ([40.107.7.40]:15178
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726900AbfEUR5T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 13:57:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5y1IeBYTLnbg+knLLFWgEtY4avbKrIceBCWhWQY8MRg=;
- b=VeOfkZovtM6mWdmABi1kpAqWnFKOri3x6rUyp+j09ALFWG6dmB523t/Iv2EP2ntI2hXJS8UCr8Pu3M5567rFUJ22xljx/aXq/4p+W+Q3jCpKeOo3GmUabV0KnnMI1tqfujpAdzOBZbPeOSeU8PID6HrFdXDdX0lywy3mEh3Zx2s=
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
- AM0PR04MB4369.eurprd04.prod.outlook.com (52.135.148.11) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.18; Tue, 21 May 2019 17:57:13 +0000
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::c415:3cab:a042:2e13]) by AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::c415:3cab:a042:2e13%6]) with mapi id 15.20.1900.020; Tue, 21 May 2019
- 17:57:13 +0000
-From:   Aisheng Dong <aisheng.dong@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
- parse clocks from device tree
-Thread-Topic: [PATCH V2 1/2] dt-bindings: firmware: imx-scu: new binding to
- parse clocks from device tree
-Thread-Index: AQHVAVBb7f0cb5nI7Uu+7uASdidwZ6ZZfT8AgADmL2CABZgoAIAAo1zAgAjJzwCADGzqsA==
-Date:   Tue, 21 May 2019 17:57:13 +0000
-Message-ID: <AM0PR04MB4211C4F27C9D1DEC29B1600E80070@AM0PR04MB4211.eurprd04.prod.outlook.com>
-References: <1556846821-8581-1-git-send-email-aisheng.dong@nxp.com>
- <1556846821-8581-2-git-send-email-aisheng.dong@nxp.com>
- <CAL_JsqLJ+Lc_3huQizy4BVFgVV94Yg8KsOOgXLv4dQU8H=WfWw@mail.gmail.com>
- <AM0PR04MB4211B2F21350CAE370D7A93780360@AM0PR04MB4211.eurprd04.prod.outlook.com>
- <CAL_JsqLNRnYxUGyhpiL2OFxOT1wXZH2LG4XUH7qf14TpA5Dk=A@mail.gmail.com>
- <AM0PR04MB421180CD45226B30082BDE4D80320@AM0PR04MB4211.eurprd04.prod.outlook.com>
- <20190513180004.GA26344@bogus>
-In-Reply-To: <20190513180004.GA26344@bogus>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=aisheng.dong@nxp.com; 
-x-originating-ip: [180.171.81.226]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2b63748e-406a-485f-caf0-08d6de15c13f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4369;
-x-ms-traffictypediagnostic: AM0PR04MB4369:
-x-microsoft-antispam-prvs: <AM0PR04MB436939E6906628F9F139276380070@AM0PR04MB4369.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0044C17179
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(366004)(39860400002)(136003)(376002)(396003)(199004)(189003)(52314003)(6916009)(76116006)(66946007)(73956011)(3846002)(53936002)(6116002)(66476007)(66556008)(64756008)(66446008)(54906003)(6506007)(7696005)(71190400001)(71200400001)(2906002)(33656002)(14444005)(99286004)(6246003)(7736002)(256004)(8676002)(81166006)(81156014)(229853002)(305945005)(478600001)(68736007)(14454004)(4326008)(316002)(52536014)(74316002)(6436002)(66066001)(25786009)(9686003)(8936002)(55016002)(44832011)(476003)(446003)(86362001)(102836004)(486006)(11346002)(26005)(5660300002)(186003)(76176011);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4369;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 2Q4PBtECxZV86H5/FsfWo6m3Iw+ccur63MAPf27G3hyRle6OFXN3HnNkeiHL6+zZQsgpsirtgFl1IUVb5l40XICKMhGxFQILE215GU5aspyjDDNGnoy1clswfwBTC5iNnNNldwWlm2rK56rfMPA1dMKDPVaVWusiKD3+xCJ2y/IQfKocNUSSOVQ4k0/TMMQXjENte4hWFdhJHNY/xPqIcPa4kbvakoDmL3PCyt+9uVzM+Ir6ZjYVdIBfOxPwl7VKLmqhoiV6cT0c0lRQTBisCtj0dYqgJs0FUH/YOhAl/XNPa+F5KSMgxGX+vWUhS8IbTVKGa8GMysKs9kJY9ljmRlr5C4VsoOsJ+fGd64zx0AnYeCp05SmmCFHR8IhK5QcJlUohPHoq3zf4FS9n5s7CUYBLTvEXprxOFi4a5umt3fw=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1728103AbfEUSBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 14:01:11 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:7455 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727898AbfEUSBL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 14:01:11 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ce43ce40003>; Tue, 21 May 2019 11:01:08 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Tue, 21 May 2019 11:01:08 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Tue, 21 May 2019 11:01:08 -0700
+Received: from [10.25.72.115] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
+ 2019 18:00:59 +0000
+Subject: Re: [PATCH V7 09/15] dt-bindings: PCI: tegra: Add device tree support
+ for Tegra194
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
+        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
+        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190517123846.3708-1-vidyas@nvidia.com>
+ <20190517123846.3708-10-vidyas@nvidia.com> <20190521105155.GI29166@ulmo>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <685e2d5e-e89a-6ebe-16d8-7866a7b3b877@nvidia.com>
+Date:   Tue, 21 May 2019 23:30:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b63748e-406a-485f-caf0-08d6de15c13f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2019 17:57:13.6077
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4369
+In-Reply-To: <20190521105155.GI29166@ulmo>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558461668; bh=Diq89/qQO4m9nwaaQMPCoztM6NXrKjoxUvNHoWtzgBg=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=J0vHYpz3PBl3BYskr7kmIK0yoCgOyN4ctH8M3PDOy5FWyysSMEa7euhXdTsatAKS1
+         jpxk6cQA+3hNl476S8VZNqgPFrd9LYLIoZgYTEor9MddZb9r21FNfBQv/KfSDK9aAY
+         +udZ4rz2OaiKulwlgcRk3jnwT5cKrr1dBpC9TzjBrnW2vcRD2VCferkXsVdIbKqKAG
+         lklNWQnIW917m+BohBZn/rxA6oFHOBUbTBzDE43/Hu23iOGVRH7S4YZ5QfeIDuv8+h
+         l5b/g43uQ6m2Lo7d1sInscvZWvC8HFfnTTzxwch71ZTc7gk/t0su5/gAdipLfim/RG
+         xeuTiCM7ipKSA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQpbLi4uXQ0KDQo+ID4gPiA+IEZvciBTQ1UgYmFzZWQgcGxhdGZvcm1zLCB0aGUg
-cmVzb3VyY2UgYXZhaWxhYmlsaXR5IChlLmcuDQo+ID4gPiA+IGRldmljZS9jbG9ja3MvcG93ZXIp
-IGFyZSBjb25maWd1cmFibGUgYnkgU0NVIGZpcm13YXJlIGFjY29yZGluZyB0bw0KPiA+ID4gPiB0
-aGUNCj4gPiA+IGRpZmZlcmVudCBTVyBleGVjdXRpb24gcGFydGl0aW9uIGNvbmZpZ3VyYXRpb24u
-DQo+ID4gPiA+IGUuZy4gQWNjb3JkaW5nIHRvIGN1c3RvbWVyJ3MgcmVxdWlyZW1lbnRzLCB3ZSBt
-YXkgYWxsb2NhdGUgc29tZQ0KPiA+ID4gPiByZXNvdXJjZXMgdG8gTTQgcGFydGl0aW9uIGxpa2Ug
-c29tZSBJMkMsIENBTiwgYXVkaW8gcmVzb3VyY2VzDQo+ID4gPiA+IHdoaWNoIGNhbid0IGJlDQo+
-ID4gPiBhY2Nlc3NlZCBieSBBIGNvcmUuDQo+ID4gPiA+IEFuZCB3ZSBtYXkgYWxsb2NhdGUgZXZl
-biBtb3JlIGZvciB2aXJ0dWFsIG1hY2hpbmVzIHJ1bm5pbmcgYXQNCj4gPiA+ID4gYW5vdGhlciBD
-UFUNCj4gPiA+IGNvcmUuDQo+ID4gPiA+IFRodXMsIGRlZmluaW5nIGFsbCB0aGUgY2xvY2sgc291
-cmNlcyAoZml4ZWQpIGluIGRldmljZSB0cmVlIGZvciBBDQo+ID4gPiA+IGNvcmUgc2VlbXMgdG8g
-YmUgYSBsaXR0bGUgYml0IG1lYW5pbmdsZXNzIGFuZCBpdCBhbHNvIGNhdXNlcyB1cw0KPiA+ID4g
-PiBoYXJkIHRvIGV4dGVuZCBmb3IgYQ0KPiA+ID4gbmV3IFNvQy4NCj4gPiA+DQo+ID4gPiBJJ20g
-bm90IHN1Z2dlc3RpbmcgdGhhdC4gSXQncyByZWFsbHkganVzdCByZS1hcnJhbmdpbmcgYWxsIHRo
-ZSBzYW1lDQo+ID4gPiBkYXRhIGZyb20gYSBidW5jaCBvZiBjaGlsZCBub2RlcyB0byBhIHNpbmds
-ZSBub2RlLiBHcmFudGVkLCBpdCBtYXkNCj4gPiA+IGJlIGVhc2llciB0byBhZGQvZGVsZXRlIG5v
-ZGVzIHRoYW4gYWRkL2RlbGV0ZSBlbGVtZW50cyBmcm9tIGFuIGFycmF5DQo+ID4gPiBvZiBwcm9w
-ZXJ0eSB2YWx1ZXMsIGJ1dCByZWFsbHkgdGhhdCdzIGp1c3QgYSB0b29saW5nIHByb2JsZW0NCj4g
-PiA+DQo+ID4NCj4gPiBPa2F5LCB1bmRlcnN0b29kLg0KPiA+IFNvIGl0IHNlZW1zIHdlIGNvdWxk
-IHN0aWxsIGhhdmUgYSBzZXBhcmF0ZSBjbG9jayBjb250cm9sbGVyIG5vZGUgZm9yDQo+ID4gZWFj
-aCBTUyBidXQgbWVyZ2UgYWxsIHRoZSBzYW1lIGRhdGEgb2YgY2hpbGQgbm9kZXMgZGF0YSBpbnRv
-IGl0Lg0KPiA+DQo+ID4gSG93ZXZlciwgd2Ugc3RpbGwgaGF2ZSBvbmUgY29uY2Vybi4NCj4gPiBU
-YWtpbmcgTVg4UVhQIERNQSBTUyBhcyBleGFtcGxlLCB3aXRoIG9uZSBub2RlIGRlc2NyaXB0aW9u
-LCBpdCBtYXkgYmUNCj4gPiBzb21ldGhpbmcgbGlrZSBiZWxvdzoNCj4gPiBkbWFfc2N1X2Nsazog
-ZG1hLXNjdS1jbG9jay1jb250cm9sbGVyIHsNCj4gPiAgICAgICAgIGNvbXBhdGlibGUgPSAiZnNs
-LGlteDhxeHAtc2N1LXBkIiwgImZzbCxzY3UtY2xrIjsNCj4gPiAgICAgICAgICNjbG9jay1jZWxs
-cyA9IDwxPjsNCj4gPiAgICAgICAgIGNsb2NrLWluZGljZXMgPSA8SU1YX1NDVV9DTEtfSUQoSU1Y
-X1NDX1JfQURDXzAsDQo+IElNWF9TQ19QTV9DTEtfUEVSKT4sDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX0NBTl8wLA0KPiBJTVhfU0NfUE1fQ0xL
-X1BFUik+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIDxJTVhfU0NVX0NMS19JRChJTVhf
-U0NfUl9GVE1fMCwNCj4gSU1YX1NDX1BNX0NMS19QRVIpPiwNCj4gPiAgICAgICAgICAgICAgICAg
-ICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfRlRNXzEsDQo+IElNWF9TQ19QTV9DTEtf
-UEVSKT4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9T
-Q19SX0kyQ18wLA0KPiBJTVhfU0NfUE1fQ0xLX1BFUik+LA0KPiA+ICAgICAgICAgICAgICAgICAg
-ICAgICAgIDxJTVhfU0NVX0NMS19JRChJTVhfU0NfUl9JMkNfMSwNCj4gSU1YX1NDX1BNX0NMS19Q
-RVIpPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1ND
-X1JfSTJDXzIsDQo+IElNWF9TQ19QTV9DTEtfUEVSKT4sDQo+ID4gICAgICAgICAgICAgICAgICAg
-ICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX0kyQ18zLA0KPiBJTVhfU0NfUE1fQ0xLX1BF
-Uik+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIDxJTVhfU0NVX0NMS19JRChJTVhfU0Nf
-Ul9MQ0RfMCwNCj4gSU1YX1NDX1BNX0NMS19QRVIpPiwNCj4gPiAgICAgICAgICAgICAgICAgICAg
-ICAgICA8SU1YX1NDVV9DTEtfSUQoSU1YX1NDX1JfTENEXzBfUFdNXzAsDQo+IElNWF9TQ19QTV9D
-TEtfUEVSKT4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElN
-WF9TQ19SX1NQSV8wLA0KPiBJTVhfU0NfUE1fQ0xLX1BFUik+LA0KPiA+ICAgICAgICAgICAgICAg
-ICAgICAgICAgIDxJTVhfU0NVX0NMS19JRChJTVhfU0NfUl9TUElfMSwNCj4gSU1YX1NDX1BNX0NM
-S19QRVIpPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1Y
-X1NDX1JfU1BJXzIsDQo+IElNWF9TQ19QTV9DTEtfUEVSKT4sDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX1NQSV8zLA0KPiBJTVhfU0NfUE1fQ0xL
-X1BFUik+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIDxJTVhfU0NVX0NMS19JRChJTVhf
-U0NfUl9VQVJUXzAsDQo+IElNWF9TQ19QTV9DTEtfUEVSKT4sDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgPElNWF9TQ1VfQ0xLX0lEKElNWF9TQ19SX1VBUlRfMSwNCj4gSU1YX1NDX1BNX0NM
-S19QRVIpPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICA8SU1YX1NDVV9DTEtfSUQoSU1Y
-X1NDX1JfVUFSVF8yLA0KPiBJTVhfU0NfUE1fQ0xLX1BFUik+LA0KPiA+ICAgICAgICAgICAgICAg
-ICAgICAgICAgIDxJTVhfU0NVX0NMS19JRChJTVhfU0NfUl9VQVJUXzMsDQo+IElNWF9TQ19QTV9D
-TEtfUEVSKT47DQo+ID4gICAgICAgICBjbG9jay1vdXRwdXQtbmFtZXMgPSAiYWRjMF9jbGsiLA0K
-PiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImNhbjBfY2xrIiwNCj4gPiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICJmdG0wX2NsayIsDQo+ID4gICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAiZnRtMV9jbGsiLA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ImkyYzBfY2xrIiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJpMmMxX2NsayIs
-DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiaTJjMl9jbGsiLA0KPiA+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgImkyYzNfY2xrIiwNCj4gPiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICJsY2QwX2NsayIsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAibGNkMF9wd20wX2NsayIsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAic3Bp
-MF9jbGsiLA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInNwaTFfY2xrIiwNCj4g
-PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJzcGkyX2NsayIsDQo+ID4gICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAic3BpM19jbGsiLA0KPiA+ICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgInVhcnQwX2NsayIsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAi
-dWFydDFfY2xrIiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJ1YXJ0Ml9jbGsi
-LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInVhcnQzX2NsayI7DQo+ID4gICAg
-ICAgICBwb3dlci1kb21haW5zID0gPCZwZCBJTVhfU0NfUl9BRENfMD4sDQo+ID4gICAgICAgICAg
-ICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9DQU5fMD4sDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgPCZwZCBJTVhfU0NfUl9GVE1fMD4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAg
-ICAgPCZwZCBJTVhfU0NfUl9GVE1fMT4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZw
-ZCBJTVhfU0NfUl9JMkNfMD4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhf
-U0NfUl9JMkNfMT4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9J
-MkNfMj4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9JMkNfMz4s
-DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9MQ0RfMD4sDQo+ID4g
-ICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9MQ0RfMF9QV01fMD4sDQo+ID4g
-ICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9TUElfMD4sDQo+ID4gICAgICAg
-ICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9TUElfMT4sDQo+ID4gICAgICAgICAgICAg
-ICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9TUElfMj4sDQo+ID4gICAgICAgICAgICAgICAgICAg
-ICAgICAgPCZwZCBJTVhfU0NfUl9TUElfMz4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAg
-PCZwZCBJTVhfU0NfUl9VQVJUXzA+LA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQg
-SU1YX1NDX1JfVUFSVF8xPiwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICA8JnBkIElNWF9T
-Q19SX1VBUlRfMj4sDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgPCZwZCBJTVhfU0NfUl9V
-QVJUXzM+OyB9Ow0KPiA+DQo+ID4gRm9yIE1YOFFNLCBldmVuIGlmIHdlIGhhdmUgb25lIG1vcmUg
-VUFSVF80LCB0aGVuIHdlIHN0aWxsIGhhdmUgdG8NCj4gPiB3cml0ZSBhbGwgdGhlIHNhbWUgdGhp
-bmdzIGFnYWluIHdpdGggYW4gZXh0cmEgVUFSVF80LiBJdCBzZWVtcyBpdCdzIGENCj4gPiBiaXQg
-dmlvbGF0ZSBvdXIgZGVzaWduIHRoYXQgdXNpbmcgYSBzaGFyZWQgb25lIGFuZCBkbyBpbmNyZW1l
-bnRhbCBjaGFuZ2VzIGZvcg0KPiBuZXcgU29Dcy4NCj4gPiBEbyB5b3UgdGhpbmsgaWYgdGhpcyBp
-cyBhY2NlcHRhYmxlIHRvIHlvdT8NCj4gDQo+IFllcywgYXMgaXQgc2hvdWxkIGJlIGEgb25lIHRp
-bWUgdGhpbmcgdG8gZG8gcGVyIFNvQy4NCj4gDQoNCkkgZm91bmQgd2UgbWF5IHN0aWxsIGNhbid0
-IHVzZSB0aGlzIG5ldyB3YXkgYWZ0ZXIgZ2l2aW5nIGEgdHJ5Lg0KT25lIGtub3cgaXNzdWUgaXMg
-dGhhdCBpdCBjYW4ndCBzdXBwb3J0IGNsb2NrIHBhcmVudCBzZXR0aW5nIHdlbGwgd2l0aCB0aGlz
-IGJpbmRpbmcNCklmIG1lcmdlZCBhbGwgc3ViIGNsb2NrcyBpbnRvIGEgc2luZ2xlIG5vZGUuDQpI
-YXJkIHRvIGRlc2NyaWJlIHBhcmVudCBjbG9ja3MgZm9yIGVhY2ggY2xvY2sgd2l0aGluIHRoZSBz
-YW1lIGJpZyBhcnJheS4NCg0KRm9yIGV4YW1wbGUgaW4gTVg4IEFETUEgU1MsIHRoZXJlJ3JlIGFu
-b3RoZXIgTENEIFBMTCB3aGljaCBjYW4gYmUgb3B0aW9uYWwgcGFyZW50IGNsb2Nrcw0KdG8gb3Ro
-ZXJzIHBlcmlwaGVyYWxzLiANCklmIHdlIGxpc3QgdGhlbSBhbGwgaW4gdGhlIHNhbWUgYXJyYXks
-IHdlIGNhbid0IGRlc2NyaWJlIExDRCBiYXVkL3BpeGVsIGNsb2NrIHBhcmVudHMuDQpkbWFfc2N1
-X2NsazogZG1hLXNjdS1jbG9jay1jb250cm9sbGVyIHsNCiAgICAgICAgY29tcGF0aWJsZSA9ICJm
-c2wsaW14OHF4cC1zY3UtcGQiLCAiZnNsLHNjdS1jbGsiOw0KICAgICAgICAjY2xvY2stY2VsbHMg
-PSA8MT47DQogICAgICAgIGNsb2NrLWluZGljZXMgPSA8U0NfUl9FTENESUZfUExMIElNWF9TQ19Q
-TV9DTEtfUExMPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDxTQ19SX0xDRF8wIElNWF9TQ19Q
-TV9DTEtfUEVSPiwgICAgICAgICAvKiBsY2QgYmF1ZCAqLw0KICAgICAgICAgICAgICAgICAgICAg
-ICAgPFNDX1JfTENEXzAgSU1YX1NDX1BNX0NMS19TTFZfQlVTPiwgICAgIC8qIFBpeGVsIExpbmsg
-Ki8NCiAgICAgICAgICAgICAgICAgICAgICAgIC4uLg0KICAgICAgICBjbG9jay1vdXRwdXQtbmFt
-ZXMgPSAibGNkaWZfcGxsIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImxjZGlmX2Jh
-dWRfY2xrIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImxjZGlmX3BpeGVsX2NsayIs
-DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC4uLg0KICAgICAgICBwb3dlci1kb21h
-aW5zID0gPCZwZCBJTVhfU0NfUl9MQ0RfMD4sDQogICAgICAgICAgICAgICAgICAgICAgICA8JnBk
-IElNWF9TQ19SX0xDRF8wPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmcGQgSU1YX1NDX1Jf
-TENEXzA+LA0KICAgICAgICAgICAgICAgICAgICAgICAgLi4uDQp9Ow0KDQpBbmQgb3RoZXIgcGVy
-aXBoZXJhbHMgbWlnaHQgaGF2ZSBkaWZmZXJlbnQgcGFyZW50cyB3aXRoaW4gdGhlIHNhbWUgYXJy
-YXkuDQoNClRoZSBvbGQgd2F5IGRvZXMgbm90IGhhdmUgdGhpcyBpc3N1ZSBiZWNhdXNlIGl0J3Mg
-Y2FwYWJsZSBvZiBjb25maWd1cmluZyBwYXJlbnRzDQpyZXNwZWN0aXZlbHkgZm9yIGVhY2ggc3Vi
-IGNsb2Nrcy4NCi8qIFNDVSBjbG9ja3MgKi8NCmRtYV9zY3VfY2xrOiBjbG9jay1jb250cm9sbGVy
-LXNjdS1kbWEgew0KICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCiAgICAgICAgI3NpemUt
-Y2VsbHMgPSA8MD47DQoNCiAgICAgICAgbGNkX3BsbDogY2xvY2stc2N1QDMyMyB7DQogICAgICAg
-ICAgICAgICAgcmVnID0gPDMyMz47DQogICAgICAgICAgICAgICAgI2Nsb2NrLWNlbGxzID0gPDE+
-Ow0KICAgICAgICAgICAgICAgIGNsb2NrLWluZGljZXMgPSA8SU1YX1NDX1BNX0NMS19QTEw+Ow0K
-ICAgICAgICAgICAgICAgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJsY2RfcGxsIjsNCiAgICAgICAg
-ICAgICAgICBwb3dlci1kb21haW5zID0gPCZwZCBJTVhfU0NfUl9FTENESUZfUExMPjsNCiAgICAg
-ICAgfTsNCg0KICAgICAgICBsY2QwX2NsazogY2xvY2stc2N1QDE4NyB7DQogICAgICAgICAgICAg
-ICAgcmVnID0gPDE4Nz47DQogICAgICAgICAgICAgICAgI2Nsb2NrLWNlbGxzID0gPDE+Ow0KICAg
-ICAgICAgICAgICAgIC8qIHBhcmVudCBjbG9ja3Mgc2hvdWxkIG1hdGNoIEhXIHByb2dyYW1pbmcg
-b3JkZXIgKi8NCiAgICAgICAgICAgICAgICBjbG9ja3MgPSA8JmR1bW15X2NsayAmZHVtbXlfY2xr
-ICZkdW1teV9jbGsgJmR1bW15X2NsayAmbGNkX3BsbD47DQogICAgICAgICAgICAgICAgY2xvY2st
-aW5kaWNlcyA9IDxJTVhfU0NfUE1fQ0xLX1BFUj47DQogICAgICAgICAgICAgICAgY2xvY2stb3V0
-cHV0LW5hbWVzID0gImxjZDBfY2xrIjsNCiAgICAgICAgICAgICAgICBwb3dlci1kb21haW5zID0g
-PCZwZCBJTVhfU0NfUl9MQ0RfMD47DQogICAgICAgIH07DQogICAgICAgIC4uLg0KfTsNCg0KSSBk
-b3VibGUgY2hlY2tlZCBvdGhlciBTUyBsaWtlIEF1ZGlvLCBEQywgTUlQSSwgUEkgd2hpY2ggaGF2
-ZSB0aGUgc2FtZSBpc3N1ZS4gDQpJIHJlYWxseSBkb24ndCBrbm93IGlmIHRoZXJlIHdpbGwgYmUg
-YSB3YXkgb3V0IGlmIHVzaW5nIHRoZSBvbmUgc2luZ2xlIG5vZGUgd2F5Lg0KQW5kIEknbSBhbHNv
-IGEgYml0IHdvcnJ5aW5nIHdoZXRoZXIgaXQgbWF5IGNhdXNlIG1vcmUgaXNzdWVzIGR1ZSB0byBp
-dHMNCmxvc2luZyBvZiB0aGUgZmxleGliaWxpdHkgYW5kIGNhdXNlcyBwb3RlbnRpYWwgaXNzdWVz
-Lg0KDQpEbyB5b3UgdGhpbmsgaWYgd2UgY2FuIHN0aWxsIGdvIGJhY2sgdG8gdGhlIG9sZCB3YXkg
-d2hpY2ggaXMgcHJvcG9zZWQNCkluIHRoaXMgcGF0Y2ggc2V0Pw0KQXMgaXQgY2FuIHBlcmZlY3Rs
-eSBtZWV0IG91ciByZXF1aXJlbWVudHMgYW5kIGFsc28gZWFzZSB0aGUgZHJpdmVyDQppbXBsZW1l
-bnRhdGlvbi4NCg0KSG9wZSB5b3UgY2FuIGhlbHAgc2hlZCBzb21lIGxpZ2h0cyBhcyB3ZSdyZSBw
-ZW5kaW5nIG9uIGl0IGZvciBhIGxvbmcgdGltZS4NCg0KUmVnYXJkcw0KRG9uZyBBaXNoZW5nDQoN
-Cj4gPiBCdXQgaWYgZGVzY3JpYmUgdGhlbSBwZXIgbm9kZXMsIHdlIGRvIG5vdCBoYXZlIHN1Y2gg
-aXNzdWUuDQo+ID4NCj4gPiBBbnl3YXksIHBsZWFzZSB0ZWxsIG1lIHlvdXIgY2hvaWNlLCB0aGVu
-IEkgd2lsbCBmb2xsb3cuDQo+ID4NCj4gPiBCVFcsIEkgZG9uJ3Qga25vdyBob3cgYSB0b29sIGNh
-biBhZGRyZXNzIHRoaXMgaXNzdWUuDQo+IA0KPiBJIG1lYW50IHlvdSBjb3VsZCB3cml0ZSBvbmUg
-dGhhdCB1bmRlcnN0YW5kcyB0aGUgYmluZGluZy4gSXQncyBhIGJpdCBtb3JlDQo+IGNvbXBsaWNh
-dGVkIGhhdmluZyB0byBwYXJzZSBhbmQgdXBkYXRlIHByb3BlcnRpZXMgY29tcGFyZWQgdG8gYWRk
-aW5nIG9yDQo+IHJlbW92aW5nIG5vZGVzLCBidXQgaXQgY2FuIHN0aWxsIGJlIGRvbmUuDQo+IA0K
-PiBSb2INCg==
+On 5/21/2019 4:21 PM, Thierry Reding wrote:
+> On Fri, May 17, 2019 at 06:08:40PM +0530, Vidya Sagar wrote:
+>> Add support for Tegra194 PCIe controllers. These controllers are based
+>> on Synopsys DesignWare core IP.
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>> Changes since [v6]:
+>> * Changed description of the property "nvidia,bpmp".
+>> * Removed property "nvidia,disable-aspm-states".
+>>
+>> Changes since [v5]:
+>> * Removed 'max-link-speed' as it is going to be a common sub-system property
+>> * Removed 'nvidia,init-link-speed' as there isn't much value addition
+>> * Removed 'nvidia,wake-gpios' for now
+>> * Addressed review comments from Thierry and Rob in general
+>>
+>> Changes since [v4]:
+>> * None
+>>
+>> Changes since [v3]:
+>> * None
+>>
+>> Changes since [v2]:
+>> * Using only 'Cx' (x-being controller number) format to represent a controller
+>> * Changed to 'value: description' format where applicable
+>> * Changed 'nvidia,init-speed' to 'nvidia,init-link-speed'
+>> * Provided more documentation for 'nvidia,init-link-speed' property
+>> * Changed 'nvidia,pex-wake' to 'nvidia,wake-gpios'
+>>
+>> Changes since [v1]:
+>> * Added documentation for 'power-domains' property
+>> * Removed 'window1' and 'window2' properties
+>> * Removed '_clk' and '_rst' from clock and reset names
+>> * Dropped 'pcie' from phy-names
+>> * Added entry for BPMP-FW handle
+>> * Removed offsets for some of the registers and added them in code and would be pickedup based on
+>>    controller ID
+>> * Changed 'nvidia,max-speed' to 'max-link-speed' and is made as an optional
+>> * Changed 'nvidia,disable-clock-request' to 'supports-clkreq' with inverted operation
+>> * Added more documentation for 'nvidia,update-fc-fixup' property
+>> * Removed 'nvidia,enable-power-down' and 'nvidia,plat-gpios' properties
+>> * Added '-us' to all properties that represent time in microseconds
+>> * Moved P2U documentation to a separate file
+>>
+>>   .../bindings/pci/nvidia,tegra194-pcie.txt     | 158 ++++++++++++++++++
+>>   1 file changed, 158 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+>> new file mode 100644
+>> index 000000000000..0119f40bbd11
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+>> @@ -0,0 +1,158 @@
+>> +NVIDIA Tegra PCIe controller (Synopsys DesignWare Core based)
+>> +
+>> +This PCIe host controller is based on the Synopsis Designware PCIe IP
+>> +and thus inherits all the common properties defined in designware-pcie.txt.
+>> +
+>> +Required properties:
+>> +- compatible: For Tegra19x, must contain "nvidia,tegra194-pcie".
+>> +- device_type: Must be "pci"
+>> +- power-domains: A phandle to the node that controls power to the respective
+>> +  PCIe controller and a specifier name for the PCIe controller. Following are
+>> +  the specifiers for the different PCIe controllers
+>> +    TEGRA194_POWER_DOMAIN_PCIEX8B: C0
+>> +    TEGRA194_POWER_DOMAIN_PCIEX1A: C1
+>> +    TEGRA194_POWER_DOMAIN_PCIEX1A: C2
+>> +    TEGRA194_POWER_DOMAIN_PCIEX1A: C3
+>> +    TEGRA194_POWER_DOMAIN_PCIEX4A: C4
+>> +    TEGRA194_POWER_DOMAIN_PCIEX8A: C5
+>> +  these specifiers are defined in
+>> +  "include/dt-bindings/power/tegra194-powergate.h" file.
+>> +- reg: A list of physical base address and length pairs for each set of
+>> +  controller registers. Must contain an entry for each entry in the reg-names
+>> +  property.
+>> +- reg-names: Must include the following entries:
+>> +  "appl": Controller's application logic registers
+>> +  "config": As per the definition in designware-pcie.txt
+>> +  "atu_dma": iATU and DMA registers. This is where the iATU (internal Address
+>> +             Translation Unit) registers of the PCIe core are made available
+>> +             for SW access.
+>> +  "dbi": The aperture where root port's own configuration registers are
+>> +         available
+>> +- interrupts: A list of interrupt outputs of the controller. Must contain an
+>> +  entry for each entry in the interrupt-names property.
+>> +- interrupt-names: Must include the following entries:
+>> +  "intr": The Tegra interrupt that is asserted for controller interrupts
+>> +  "msi": The Tegra interrupt that is asserted when an MSI is received
+>> +- bus-range: Range of bus numbers associated with this controller
+>> +- #address-cells: Address representation for root ports (must be 3)
+>> +  - cell 0 specifies the bus and device numbers of the root port:
+>> +    [23:16]: bus number
+>> +    [15:11]: device number
+>> +  - cell 1 denotes the upper 32 address bits and should be 0
+>> +  - cell 2 contains the lower 32 address bits and is used to translate to the
+>> +    CPU address space
+>> +- #size-cells: Size representation for root ports (must be 2)
+>> +- ranges: Describes the translation of addresses for root ports and standard
+>> +  PCI regions. The entries must be 7 cells each, where the first three cells
+>> +  correspond to the address as described for the #address-cells property
+>> +  above, the fourth and fifth cells are for the physical CPU address to
+>> +  translate to and the sixth and seventh cells are as described for the
+>> +  #size-cells property above.
+>> +  - Entries setup the mapping for the standard I/O, memory and
+>> +    prefetchable PCI regions. The first cell determines the type of region
+>> +    that is setup:
+>> +    - 0x81000000: I/O memory region
+>> +    - 0x82000000: non-prefetchable memory region
+>> +    - 0xc2000000: prefetchable memory region
+>> +  Please refer to the standard PCI bus binding document for a more detailed
+>> +  explanation.
+>> +- #interrupt-cells: Size representation for interrupts (must be 1)
+>> +- interrupt-map-mask and interrupt-map: Standard PCI IRQ mapping properties
+>> +  Please refer to the standard PCI bus binding document for a more detailed
+>> +  explanation.
+>> +- clocks: Must contain an entry for each entry in clock-names.
+>> +  See ../clocks/clock-bindings.txt for details.
+>> +- clock-names: Must include the following entries:
+>> +  - core
+>> +- resets: Must contain an entry for each entry in reset-names.
+>> +  See ../reset/reset.txt for details.
+>> +- reset-names: Must include the following entries:
+>> +  - core_apb
+> 
+> Perhaps leave away the "core_" prefix here and simply call this "apb"?
+Ok.
+  
+> 
+>> +  - core
+>> +- phys: Must contain a phandle to P2U PHY for each entry in phy-names.
+>> +- phy-names: Must include an entry for each active lane.
+>> +  "p2u-N": where N ranges from 0 to one less than the total number of lanes
+>> +- nvidia,bpmp: Must contain a pair of phandle to BPMP controller node followed
+>> +  by controller-id. Following are the controller ids for each controller.
+>> +    0: C0
+>> +    1: C1
+>> +    2: C2
+>> +    3: C3
+>> +    4: C4
+>> +    5: C5
+>> +- vddio-pex-ctl-supply: Regulator supply for PCIe side band signals
+>> +
+>> +Optional properties:
+>> +- supports-clkreq: Refer to Documentation/devicetree/bindings/pci/pci.txt
+>> +- nvidia,update-fc-fixup: This is a boolean property and needs to be present to
+>> +    improve perf when a platform is designed in such a way that it satisfies at
+> 
+> This is a descriptive text, so it makes sense to spell out "performance"
+> for better readability.
+Done.
+
+> 
+>> +    least one of the following conditions thereby enabling root port to
+>> +    exchange optimum number of FC (Flow Control) credits with downstream devices
+>> +    1. If C0/C4/C5 run at x1/x2 link widths (irrespective of speed and MPS)
+>> +    2. If C0/C1/C2/C3/C4/C5 operate at their respective max link widths and
+>> +       a) speed is Gen-2 and MPS is 256B
+>> +       b) speed is >= Gen-3 with any MPS
+> 
+> I'm not sure if I asked this before, but can we not determine that the
+> configuration matches one of these conditions and select FC fixup mode
+> at runtime in that case?
+Yes. This was answered before. The thing is, this programming should take place before
+link up and these parameters can't be found out until after link up. Hence, this
+configuration info needs to be passed through device tree.
+
+> 
+>> +- "nvidia,aspm-cmrt-us": Common Mode Restore time for proper operation of ASPM
+> 
+> You can drop the quotes around the property names. Also, perhaps also
+> capitalize "Time" since it's part of the acronym expansion for CMRT.
+Done.
+
+> 
+>> +   to be specified in microseconds
+>> +- "nvidia,aspm-pwr-on-t-us": Power On time for proper operation of ASPM to be
+>> +   specified in microseconds
+>> +- "nvidia,aspm-l0s-entrance-latency-us": ASPM L0s entrance latency to be
+>> +   specified in microseconds
+>> +
+>> +Examples:
+>> +=========
+>> +
+>> +Tegra194:
+>> +--------
+>> +
+>> +SoC DTSI:
+> 
+> The example below looks like it's got board specific bits in it, so
+> perhaps just drop the "SoC DTSI:" caption.
+Done.
+
+> 
+>> +
+>> +	pcie@14180000 {
+>> +		compatible = "nvidia,tegra194-pcie", "snps,dw-pcie";
+>> +		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX8B>;
+>> +		reg = <0x00 0x14180000 0x0 0x00020000   /* appl registers (128K)      */
+>> +		       0x00 0x38000000 0x0 0x00040000   /* configuration space (256K) */
+>> +		       0x00 0x38040000 0x0 0x00040000>; /* iATU_DMA reg space (256K)  */
+>> +		reg-names = "appl", "config", "atu_dma";
+>> +
+>> +		#address-cells = <3>;
+>> +		#size-cells = <2>;
+>> +		device_type = "pci";
+>> +		num-lanes = <8>;
+>> +		linux,pci-domain = <0>;
+>> +
+>> +		clocks = <&bpmp TEGRA194_CLK_PEX0_CORE_0>;
+>> +		clock-names = "core";
+>> +
+>> +		resets = <&bpmp TEGRA194_RESET_PEX0_CORE_0_APB>,
+>> +			 <&bpmp TEGRA194_RESET_PEX0_CORE_0>;
+>> +		reset-names = "core_apb", "core";
+>> +
+>> +		interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,	/* controller interrupt */
+>> +			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;	/* MSI interrupt */
+>> +		interrupt-names = "intr", "msi";
+>> +
+>> +		#interrupt-cells = <1>;
+>> +		interrupt-map-mask = <0 0 0 0>;
+>> +		interrupt-map = <0 0 0 0 &gic 0 72 0x04>;
+> 
+> Use the symbolic definitions GIC_SPI and IRQ_TYPE_LEVEL_HIGH here as
+> well.
+Done.
+
+> 
+>> +
+>> +		nvidia,bpmp = <&bpmp>;
+> 
+> This should contain a controller ID according to the bindings.
+> 
+>> +
+>> +		supports-clkreq;
+>> +		nvidia,disable-aspm-states = <0xf>;
+> 
+> This is no longer documented above.
+Removed.
+
+> 
+>> +		nvidia,controller-id = <0>;
+> 
+> This is no longer documented above.
+Removed.
+
+> 
+>> +		nvidia,aspm-cmrt-us = <60>;
+>> +		nvidia,aspm-pwr-on-t-us = <20>;
+>> +		nvidia,aspm-l0s-entrance-latency-us = <3>;
+>> +
+>> +		bus-range = <0x0 0xff>;
+>> +		ranges = <0x81000000 0x0 0x38100000 0x0 0x38100000 0x0 0x00100000      /* downstream I/O (1MB) */
+>> +			  0x82000000 0x0 0x38200000 0x0 0x38200000 0x0 0x01E00000      /* non-prefetchable memory (30MB) */
+>> +			  0xc2000000 0x18 0x00000000 0x18 0x00000000 0x4 0x00000000>;  /* prefetchable memory (16GB) */
+> 
+> Perhaps align the individual cells to make this more readable?
+Done. Extended the same to dtsi file as well.
+
+> 
+>> +
+>> +		vddio-pex-ctl-supply = <&vdd_1v8ao>;
+>> +
+>> +		phys = <&p2u_hsio_2>, <&p2u_hsio_3>, <&p2u_hsio_4>,
+>> +		       <&p2u_hsio_5>;
+>> +		phy-names = "p2u-0", "p2u-1", "p2u-2", "p2u-3";
+>> +	};
+> 
+> Thanks,
+> Thierry
+> 
+
