@@ -2,166 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AED74258D3
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC833258ED
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 22:32:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727046AbfEUU1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 16:27:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35302 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726766AbfEUU1M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 16:27:12 -0400
-Received: from [192.168.1.31] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F0C952173E;
-        Tue, 21 May 2019 20:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558470431;
-        bh=NhGLw2Ikh5q3GlmFeSktzM0LUjFzNE+SdEyuV/5YM9Y=;
-        h=Subject:To:References:From:Date:In-Reply-To:From;
-        b=Zv6bBsgfRf0MH613LawudX65UPE5LVztvysa+lDoDbQN0fV8oOI2RMIcIhYC5Rv9W
-         IRWpu8UxnoWboLt9NnC8vqdN3Rp5vCSsapihRShxpWhXplwEtqPqygI9fQCi8xMgJk
-         sn/P2qECrOzlWkmjEWS0dEn/kkJ/896m8DQTKadc=
-Subject: Re: [PATCH 3/3] ARM64: dts: stratix10: Add stmmac ptp_ref clock
-To:     dalon.westergreen@linux.intel.com, thor.thayer@linux.intel.com,
-        devicetree@vger.kernel.org
-References: <20190515162058.32368-1-dalon.westergreen@linux.intel.com>
- <20190515162058.32368-3-dalon.westergreen@linux.intel.com>
- <cff8dd7f-c617-af6c-cf22-2baa077a9bbb@linux.intel.com>
- <c444aff8281593bedaa90193dbabefcfd31a187d.camel@linux.intel.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <06397243-94ea-47db-16c1-a4c11e08c3b1@kernel.org>
-Date:   Tue, 21 May 2019 15:27:09 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727493AbfEUUcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 16:32:41 -0400
+Received: from mail-it1-f193.google.com ([209.85.166.193]:55025 "EHLO
+        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727341AbfEUUcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 16:32:41 -0400
+Received: by mail-it1-f193.google.com with SMTP id h20so4840366itk.4
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 13:32:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TL0Rco+HJb/XdiRCUNcHvK2NcbT9epjRSGpGsvVbQoI=;
+        b=QBq9fahcLU2tgJhshCN0dwVdL0HE77OlAbTaVT8QDvwmSf17Ll5gBABBcZbQPKSgI8
+         wPLldHhQueXNBElEdaeVQGucuCyfo4uJDJwgYvxXvlJB+Ro8K+sPZp03zZ6h3jcX+Zwn
+         8KN7ULMXhj+3tDAZroKu43AHQM5IoJZShiDBU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TL0Rco+HJb/XdiRCUNcHvK2NcbT9epjRSGpGsvVbQoI=;
+        b=mPbm5h1MCDnC71HH6gddIIW6/f7YIg15gd3IA4NjYtQEOAUMRrIOr1aELhAHPj9ikv
+         UCgGgW7frS8cP6tpt0WnKTO+EaO5TSg8lXIk2b/aedJ/ADLLkFuOgGLCEUrOQElu3S+E
+         5hUhnztAmBPeJok7RnJZeBWE/dHHRVCJ4nz285ttXyAATz33dkNJelIU6Vza0byuRdFY
+         WxWDSsQYMQAAYOL5OyV5EdHZWWBUodrYtMKz2KMpEmGp2LKZZcQqLheXiMdFwDXov3uW
+         BCsPKSFA2xR3RA8sEbSraQvzlef/Pk97EIBXYkOgKLIApfTTiSLEhLFBcQtIWCLmlYCT
+         Qm7Q==
+X-Gm-Message-State: APjAAAWnS/0ZMKrDkTnphtEw1LDx+chuVOKMH0PTrxcBXf6xb/LpATKh
+        7LMMUouF3JUD4wIUHO13mnePKg==
+X-Google-Smtp-Source: APXvYqzMgS+2Y+L54Bugxjb3Y7W5RtvSETPi7Pcr1ybp84tqKgN8/mOHXp8N4/4GVoMpgsDaegyHyg==
+X-Received: by 2002:a24:278c:: with SMTP id g134mr4385454ita.49.1558470759345;
+        Tue, 21 May 2019 13:32:39 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
+        by smtp.gmail.com with ESMTPSA id e22sm7205710ioe.45.2019.05.21.13.32.38
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 May 2019 13:32:38 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     briannorris@chromium.org, ryandcase@chromium.org, mka@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] ARM: dts: rockchip: Add pin names for rk3288-veyron-minnie
+Date:   Tue, 21 May 2019 13:32:14 -0700
+Message-Id: <20190521203215.234898-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.21.0.1020.gf2820cf01a-goog
 MIME-Version: 1.0
-In-Reply-To: <c444aff8281593bedaa90193dbabefcfd31a187d.camel@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+We can now use the "gpio-line-names" property to provide the names for
+all the pins on a board.  Let's use this to provide the names for all
+the pins on rk3288-veyron-minnie.
 
+In general the names here come straight from the schematic.  That
+means even if the schematic name is weird / doesn't have consistent
+naming conventions / has typos I still haven't made any changes.
 
-On 5/21/19 8:09 AM, Dalon L Westergreen wrote:
-> On Mon, 2019-05-20 at 11:39 -0500, Thor Thayer wrote:
->> On 5/15/19 11:20 AM, Dalon Westergreen wrote:
->>> Add the default stmmac ptp_ref clock for stratix10.  The stmmac
->>> driver defaults the ptp_ref clock to the main stmmac clock
->>> if the ptp_ref clock is not set in the devicetree.  This is
->>> inappropriate for the stratix10.  The default ptp_ref clock is
->>> STRATIX10_PERI_EMAC_PTP_CLK in the clock manager.
->>>
->>> Signed-off-by: Dalon Westergreen <
->>> dalon.westergreen@linux.intel.com
->>>>
->>> ---
->>>   arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 12 ++++++------
->>>   1 file changed, 6 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
->>> b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
->>> index adedd563125a..f464e7ba3402 100644
->>> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
->>> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
->>> @@ -160,8 +160,8 @@
->>>   			mac-address = [00 00 00 00 00 00];
->>>   			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
->>>   			reset-names = "stmmaceth", "stmmaceth-ocp";
->>> -			clocks = <&clkmgr STRATIX10_EMAC0_CLK>;
->>> -			clock-names = "stmmaceth";
->>> +			clocks = <&clkmgr STRATIX10_EMAC0_CLK>, <&clkmgr
->>> STRATIX10_PERI_EMAC_PTP_CLK>;
->>> +			clock-names = "stmmaceth", "ptp_ref";
->>>   			tx-fifo-depth = <16384>;
->>>   			rx-fifo-depth = <16384>;
->>>   			snps,multicast-filter-bins = <256>;
->>> @@ -176,8 +176,8 @@
->>>   			mac-address = [00 00 00 00 00 00];
->>>   			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
->>>   			reset-names = "stmmaceth", "stmmaceth-ocp";
->>> -			clocks = <&clkmgr STRATIX10_EMAC1_CLK>;
->>> -			clock-names = "stmmaceth";
->>> +			clocks = <&clkmgr STRATIX10_EMAC1_CLK>, <&clkmgr
->>> STRATIX10_PERI_EMAC_PTP_CLK>;
->>> +			clock-names = "stmmaceth", "ptp_ref";
->>>   			tx-fifo-depth = <16384>;
->>>   			rx-fifo-depth = <16384>;
->>>   			snps,multicast-filter-bins = <256>;
->>> @@ -192,8 +192,8 @@
->>>   			mac-address = [00 00 00 00 00 00];
->>>   			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
->>>   			reset-names = "stmmaceth", "stmmaceth-ocp";
->>> -			clocks = <&clkmgr STRATIX10_EMAC2_CLK>;
->>> -			clock-names = "stmmaceth";
->>> +			clocks = <&clkmgr STRATIX10_EMAC2_CLK>, <&clkmgr
->>> STRATIX10_PERI_EMAC_PTP_CLK>;
->>> +			clock-names = "stmmaceth", "ptp_ref";
->>>   			tx-fifo-depth = <16384>;
->>>   			rx-fifo-depth = <16384>;
->>>   			snps,multicast-filter-bins = <256>;
->>>
->>
->> Should STRATIX10_EMAC_PTP_CLK be used instead of 
->> STRATIX10_PERI_EMAC_PTP_CLK since this is the gate of the clkgmr?
->>
-> 
-> Either can be used, but the default in the hps configuration is the
-> peripheral pll output and not the main pll output.
-> 
+The exception here is for two pins: the recovery switch and the write
+protect detection pin.  These two pins need to have standardized names
+since crossystem (a Chrome OS tool) uses these names to query the
+pins.  In downstream kernels crossystem used an out-of-tree driver to
+do this but it has now been moved to the gpiod API and needs the
+standardized names.
 
-I think it should be the emac_ptp_clk. If you look at the clock tree,
-the emac_ptp_clk(50 MHz) and is derived from the peri_emac_ptp_clk(200
-MHz).
+It's expected that other rk3288-veyron boards will get similar patches
+shortly.
 
-You can look at the clock tree by doing a 'cat
-/sys/kernel/debug/clk/clk_summary'.
+NOTE: I have sorted the "gpio" section to be next to the "pinctrl"
+section since it seems to logically make the most sense there.
 
-Dinh
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 212 +++++++++++++++++++++
+ 1 file changed, 212 insertions(+)
+
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index ce57881625ec..a65099b4aef1 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -184,6 +184,218 @@
+ 	pinctrl-0 = <&vcc50_hdmi_en>;
+ };
+ 
++&gpio0 {
++	gpio-line-names = "PMIC_SLEEP_AP",
++			  "DDRIO_PWROFF",
++			  "DDRIO_RETEN",
++			  "TS3A227E_INT_L",
++			  "PMIC_INT_L",
++			  "PWR_KEY_L",
++			  "AP_LID_INT_L",
++			  "EC_IN_RW",
++
++			  "AC_PRESENT_AP",
++			  /*
++			   * RECOVERY_SW_L is Chrome OS ABI.  Schematics call
++			   * it REC_MODE_L.
++			   */
++			  "RECOVERY_SW_L",
++			  "OTP_OUT",
++			  "HOST1_PWR_EN",
++			  "USBOTG_PWREN_H",
++			  "AP_WARM_RESET_H",
++			  "nFALUT2",
++			  "I2C0_SDA_PMIC",
++
++			  "I2C0_SCL_PMIC",
++			  "SUSPEND_L",
++			  "USB_INT";
++};
++
++&gpio2 {
++	gpio-line-names = "CONFIG0",
++			  "CONFIG1",
++			  "CONFIG2",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "CONFIG3",
++
++			  "PROCHOT#",
++			  "EMMC_RST_L",
++			  "",
++			  "",
++			  "BL_PWR_EN",
++			  "AVDD_1V8_DISP_EN",
++			  "TOUCH_INT",
++			  "TOUCH_RST",
++
++			  "I2C3_SCL_TP",
++			  "I2C3_SDA_TP";
++};
++
++&gpio3 {
++	gpio-line-names = "FLASH0_D0",
++			  "FLASH0_D1",
++			  "FLASH0_D2",
++			  "FLASH0_D3",
++			  "FLASH0_D4",
++			  "FLASH0_D5",
++			  "FLASH0_D6",
++			  "FLASH0_D7",
++
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "FLASH0_CS2/EMMC_CMD",
++			  "",
++			  "FLASH0_DQS/EMMC_CLKO";
++};
++
++&gpio4 {
++	gpio-line-names = "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "UART0_RXD",
++			  "UART0_TXD",
++			  "UART0_CTS",
++			  "UART0_RTS",
++			  "SDIO0_D0",
++			  "SDIO0_D1",
++			  "SDIO0_D2",
++			  "SDIO0_D3",
++
++			  "SDIO0_CMD",
++			  "SDIO0_CLK",
++			  "dev_wake",
++			  "",
++			  "WIFI_ENABLE_H",
++			  "BT_ENABLE_L",
++			  "WIFI_HOST_WAKE",
++			  "BT_HOST_WAKE";
++};
++
++&gpio5 {
++	gpio-line-names = "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "",
++			  "",
++			  "Volum_Up#",
++			  "Volum_Down#",
++			  "SPI0_CLK",
++			  "SPI0_CS0",
++			  "SPI0_TXD",
++			  "SPI0_RXD",
++
++			  "",
++			  "",
++			  "",
++			  "VCC50_HDMI_EN";
++};
++
++&gpio6 {
++	gpio-line-names = "I2S0_SCLK",
++			  "I2S0_LRCK_RX",
++			  "I2S0_LRCK_TX",
++			  "I2S0_SDI",
++			  "I2S0_SDO0",
++			  "HP_DET_H",
++			  "",
++			  "INT_CODEC",
++
++			  "I2S0_CLK",
++			  "I2C2_SDA",
++			  "I2C2_SCL",
++			  "MICDET",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "SDMMC_D0",
++			  "SDMMC_D1",
++			  "SDMMC_D2",
++			  "SDMMC_D3",
++			  "SDMMC_CLK",
++			  "SDMMC_CMD";
++};
++
++&gpio7 {
++	gpio-line-names = "LCDC_BL",
++			  "PWM_LOG",
++			  "BL_EN",
++			  "TRACKPAD_INT",
++			  "TPM_INT_H",
++			  "SDMMC_DET_L",
++			  /*
++			   * AP_FLASH_WP_L is Chrome OS ABI.  Schematics call
++			   * it FW_WP_AP.
++			   */
++			  "AP_FLASH_WP_L",
++			  "EC_INT",
++
++			  "CPU_NMI",
++			  "DVS_OK",
++			  "SDMMC_WP",
++			  "EDP_HPD",
++			  "DVS1",
++			  "nFALUT1",
++			  "LCD_EN",
++			  "DVS2",
++
++			  "VCC5V_GOOD_H",
++			  "I2C4_SDA_TP",
++			  "I2C4_SCL_TP",
++			  "I2C5_SDA_HDMI",
++			  "I2C5_SCL_HDMI",
++			  "5V_DRV",
++			  "UART2_RXD",
++			  "UART2_TXD";
++};
++
++&gpio8 {
++	gpio-line-names = "RAM_ID0",
++			  "RAM_ID1",
++			  "RAM_ID2",
++			  "RAM_ID3",
++			  "I2C1_SDA_TPM",
++			  "I2C1_SCL_TPM",
++			  "SPI2_CLK",
++			  "SPI2_CS0",
++
++			  "SPI2_RXD",
++			  "SPI2_TXD";
++};
++
+ &pinctrl {
+ 	backlight {
+ 		bl_pwr_en: bl_pwr_en {
+-- 
+2.21.0.1020.gf2820cf01a-goog
+
