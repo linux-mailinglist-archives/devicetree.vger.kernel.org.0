@@ -2,106 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0651924FC3
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 15:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4944024FC4
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 15:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727812AbfEUNJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 09:09:54 -0400
-Received: from mga09.intel.com ([134.134.136.24]:13387 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727624AbfEUNJy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 09:09:54 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 May 2019 06:09:53 -0700
-X-ExtLoop1: 1
-Received: from dwesterg-mobl1.an.intel.com ([10.122.128.164])
-  by FMSMGA003.fm.intel.com with ESMTP; 21 May 2019 06:09:53 -0700
-Message-ID: <c444aff8281593bedaa90193dbabefcfd31a187d.camel@linux.intel.com>
-Subject: Re: [PATCH 3/3] ARM64: dts: stratix10: Add stmmac ptp_ref clock
-From:   Dalon L Westergreen <dalon.westergreen@linux.intel.com>
-Reply-To: dalon.westergreen@linux.intel.com
-To:     thor.thayer@linux.intel.com, dinguyen@kernel.org,
-        devicetree@vger.kernel.org
-Date:   Tue, 21 May 2019 06:09:52 -0700
-In-Reply-To: <cff8dd7f-c617-af6c-cf22-2baa077a9bbb@linux.intel.com>
-References: <20190515162058.32368-1-dalon.westergreen@linux.intel.com>
-         <20190515162058.32368-3-dalon.westergreen@linux.intel.com>
-         <cff8dd7f-c617-af6c-cf22-2baa077a9bbb@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
+        id S1728057AbfEUNJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 09:09:59 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:56543 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727624AbfEUNJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 09:09:59 -0400
+X-Originating-IP: 90.88.22.185
+Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 2E4871C000A;
+        Tue, 21 May 2019 13:09:55 +0000 (UTC)
+Date:   Tue, 21 May 2019 15:09:55 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     luca@z3ntu.xyz
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/Allwinner sunXi SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Add lradc node
+Message-ID: <20190521130955.3omqwpx3i7njsb3t@flea>
+References: <20190518170929.24789-1-luca@z3ntu.xyz>
+ <20190520110742.ykgxwaabzzwovgpl@flea>
+ <9B2B83DF-2C91-4DDA-B707-664A792A8BCF@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="o4dueejzfmmapbjw"
+Content-Disposition: inline
+In-Reply-To: <9B2B83DF-2C91-4DDA-B707-664A792A8BCF@z3ntu.xyz>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-05-20 at 11:39 -0500, Thor Thayer wrote:
-> On 5/15/19 11:20 AM, Dalon Westergreen wrote:
-> > Add the default stmmac ptp_ref clock for stratix10.  The stmmac
-> > driver defaults the ptp_ref clock to the main stmmac clock
-> > if the ptp_ref clock is not set in the devicetree.  This is
-> > inappropriate for the stratix10.  The default ptp_ref clock is
-> > STRATIX10_PERI_EMAC_PTP_CLK in the clock manager.
-> > 
-> > Signed-off-by: Dalon Westergreen <
-> > dalon.westergreen@linux.intel.com
-> > >
-> > ---
-> >   arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 12 ++++++------
-> >   1 file changed, 6 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> > b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> > index adedd563125a..f464e7ba3402 100644
-> > --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> > +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> > @@ -160,8 +160,8 @@
-> >   			mac-address = [00 00 00 00 00 00];
-> >   			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
-> >   			reset-names = "stmmaceth", "stmmaceth-ocp";
-> > -			clocks = <&clkmgr STRATIX10_EMAC0_CLK>;
-> > -			clock-names = "stmmaceth";
-> > +			clocks = <&clkmgr STRATIX10_EMAC0_CLK>, <&clkmgr
-> > STRATIX10_PERI_EMAC_PTP_CLK>;
-> > +			clock-names = "stmmaceth", "ptp_ref";
-> >   			tx-fifo-depth = <16384>;
-> >   			rx-fifo-depth = <16384>;
-> >   			snps,multicast-filter-bins = <256>;
-> > @@ -176,8 +176,8 @@
-> >   			mac-address = [00 00 00 00 00 00];
-> >   			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
-> >   			reset-names = "stmmaceth", "stmmaceth-ocp";
-> > -			clocks = <&clkmgr STRATIX10_EMAC1_CLK>;
-> > -			clock-names = "stmmaceth";
-> > +			clocks = <&clkmgr STRATIX10_EMAC1_CLK>, <&clkmgr
-> > STRATIX10_PERI_EMAC_PTP_CLK>;
-> > +			clock-names = "stmmaceth", "ptp_ref";
-> >   			tx-fifo-depth = <16384>;
-> >   			rx-fifo-depth = <16384>;
-> >   			snps,multicast-filter-bins = <256>;
-> > @@ -192,8 +192,8 @@
-> >   			mac-address = [00 00 00 00 00 00];
-> >   			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
-> >   			reset-names = "stmmaceth", "stmmaceth-ocp";
-> > -			clocks = <&clkmgr STRATIX10_EMAC2_CLK>;
-> > -			clock-names = "stmmaceth";
-> > +			clocks = <&clkmgr STRATIX10_EMAC2_CLK>, <&clkmgr
-> > STRATIX10_PERI_EMAC_PTP_CLK>;
-> > +			clock-names = "stmmaceth", "ptp_ref";
-> >   			tx-fifo-depth = <16384>;
-> >   			rx-fifo-depth = <16384>;
-> >   			snps,multicast-filter-bins = <256>;
-> > 
-> 
-> Should STRATIX10_EMAC_PTP_CLK be used instead of 
-> STRATIX10_PERI_EMAC_PTP_CLK since this is the gate of the clkgmr?
-> 
 
-Either can be used, but the default in the hps configuration is the
-peripheral pll output and not the main pll output.
+--o4dueejzfmmapbjw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---dalon
+On Tue, May 21, 2019 at 08:43:45AM +0200, luca@z3ntu.xyz wrote:
+> On May 20, 2019 1:07:42 PM GMT+02:00, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >On Sat, May 18, 2019 at 07:09:30PM +0200, Luca Weiss wrote:
+> >> Add a node describing the KEYADC on the A64.
+> >>
+> >> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> >> ---
+> >>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 7 +++++++
+> >>  1 file changed, 7 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> >b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> >> index 7734f70e1057..dc1bf8c1afb5 100644
+> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> >> @@ -704,6 +704,13 @@
+> >>  			status = "disabled";
+> >>  		};
+> >>
+> >> +		lradc: lradc@1c21800 {
+> >> +			compatible = "allwinner,sun4i-a10-lradc-keys";
+> >> +			reg = <0x01c21800 0x100>;
+> >> +			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+> >> +			status = "disabled";
+> >> +		};
+> >> +
+> >
+> >The controller is pretty different on the A64 compared to the A10. The
+> >A10 has two channels for example, while the A64 has only one.
+> >
+> >It looks like the one in the A83t though, so you can use that
+> >compatible instead.
+>
+> Looking at the patch for the A83t, the only difference is that it
+> uses a 3/4 instead of a 2/3 voltage divider, nothing is changed with
+> the channels.
 
+I guess you can reuse the A83t compatible here then, and a more
+specific a64 compatible in case we ever need to fix this.
+
+> But I'm also not sure which one (or a different one)
+> is used from looking at the "A64 User Manual".
+
+I'm sorry, what are you referring to with "one" in that sentence?
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--o4dueejzfmmapbjw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOP4owAKCRDj7w1vZxhR
+xZkvAQCd5wzD/xjw3laO9nxjD2QxKl1qIHQW5BZeiCHbM1DA5wD/VtDKwN19wKfS
+efcYJj1jUOQM495DpaIysQG3XvYg3AA=
+=08Dd
+-----END PGP SIGNATURE-----
+
+--o4dueejzfmmapbjw--
