@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E5B25A38
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 00:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A40FD25A56
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 00:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727275AbfEUWGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 18:06:10 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:45340 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727222AbfEUWGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 18:06:10 -0400
-Received: by mail-pf1-f195.google.com with SMTP id s11so135598pfm.12
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 15:06:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=E1DrzXtGDj3hfWXv7sO+LUDSb752frj/M4xDQFuIKdI=;
-        b=ZLPsZLBQfDkyWlMuSQTbZZPvBJjcaZBc5GER2rRMijZOokHJ8ij+fr/bcT9/7dIdwb
-         1CFYM1rB+bmDU7tm+jgEoq12FdcKNURyTwvdtiHep+LL3Xo6UxzSyCjVo/6qm5NuNPHh
-         LxP/IBMmJY9UGDj19FA28SdZ9JsowKVLe5C+A=
+        id S1726083AbfEUWeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 18:34:23 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:42614 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725797AbfEUWeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 18:34:23 -0400
+Received: by mail-ot1-f66.google.com with SMTP id i2so273054otr.9;
+        Tue, 21 May 2019 15:34:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=E1DrzXtGDj3hfWXv7sO+LUDSb752frj/M4xDQFuIKdI=;
-        b=oRJ7VmITmTVGq+H1Nfjj4MY89iNWZrz+NABDmGmVZajoPuIMT/7O96Txl4WxrPf+5p
-         P+q2pTL+kQ16cD5KTv+rH/JtduIsU57W8qTJofmCU6GWpUdg6aJHN/TBbTrC2tL/Aysz
-         3qbkPTY2oRkKtO18MZxSuzdy1c5lN4RXWz3bem6wKAdOHy3L6qfVvnpRdeEpw584fLwB
-         b03oZlyaRTox04UVR9wD//dchiQ/OJ7GcvoELhYvATYnb+/OYcwF7GiYzNlfL5jOakNg
-         XDyuglq9Pw+5WKRxL2DV4zky/+HPMhp8bRbbORguA571jhIFJFCbhjAmvyTQBjjGjJkM
-         /2iw==
-X-Gm-Message-State: APjAAAVf0Ucivp/ZhIGyTcUHgxyLVzDykRjN6LDMZl16aZsSp80NTvcS
-        GFLHqH68KHXsAiXT5SU47Y6DrA==
-X-Google-Smtp-Source: APXvYqzQz7ZxAp6T6WnMzgzo44oFO/MH3Fqa55WCIqK5Qkpj/XDsVrW00b0XB9chQs/5VLWCkFpbsQ==
-X-Received: by 2002:a63:2c4a:: with SMTP id s71mr68633329pgs.343.1558476369987;
-        Tue, 21 May 2019 15:06:09 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id f17sm22771652pgv.16.2019.05.21.15.06.09
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 May 2019 15:06:09 -0700 (PDT)
-Date:   Tue, 21 May 2019 15:06:08 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, briannorris@chromium.org,
-        ryandcase@chromium.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] ARM: dts: rockchip: Add pin names for
- rk3288-veyron-jerry
-Message-ID: <20190521220608.GK40515@google.com>
-References: <20190521203215.234898-1-dianders@chromium.org>
- <20190521203215.234898-2-dianders@chromium.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dwXcIawwOJbg33tAciXd9w9L8qNu8uCxICVV/lS1QUA=;
+        b=t0Lcf3liHv9ae8DXNAJ+MTrJgXlCiOw35oSFAGEReMrN9t9/zd/n2OuxzotS5kpygK
+         wgfTFf7gN4CEWJyK053fq7iHeNPB91mk+cm5vtzX4Jk53ZTW6GABcpxL43Q8VLAMnEFR
+         3uRRgIj84MVHGu8gLVBH0Hifa8fMfWUFcT831/FBucOlJapvC01ZG8W+V2GRENLtOHv4
+         CwZpziVASfNc3/vLntmPsfLVduFw/XRhH8AbHW9Nsix8+WBh7cDpEM6tEf57Y8vkPTbF
+         y7YujWQFwq7N3CVHDUaiznO+RkxFk+MY1kKxq/AS0QxFZGsCQutOzVQnYc3hqvmvDbWo
+         bjkA==
+X-Gm-Message-State: APjAAAUsb5jYozkvNPnWuk++IvJdAr9nFikJecJdfOIYAOxTlHnXuxAO
+        jBrrilgM/DgbTeWFMXS8TMsdUk4=
+X-Google-Smtp-Source: APXvYqwkfMhDNn37GikrZ0INjRQJDy89xtYIPA3fNsJFoltHFKIiwE/kfRTckATxDJL0yTh8zJZBMg==
+X-Received: by 2002:a05:6830:1389:: with SMTP id d9mr571115otq.329.1558478062679;
+        Tue, 21 May 2019 15:34:22 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id d70sm8764783oih.18.2019.05.21.15.34.21
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 21 May 2019 15:34:22 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        linux-kbuild@vger.kernel.org
+Subject: [PATCH] dt-bindings: Pass binding directory to validation tools
+Date:   Tue, 21 May 2019 17:34:21 -0500
+Message-Id: <20190521223421.10514-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190521203215.234898-2-dianders@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 21, 2019 at 01:32:15PM -0700, Douglas Anderson wrote:
-> This is like the same change for rk3288-veyron-minnie.  See that patch
-> for more details.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+In order to have $ref's to schema files within the kernel, we need to
+pass the base path of bindings to the schema validation tools.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc: Michal Marek <michal.lkml@markovi.net>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kbuild@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile | 2 +-
+ scripts/Makefile.lib                       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 63b139f9ae28..8a2774b5834b 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -5,7 +5,7 @@ DT_MK_SCHEMA ?= dt-mk-schema
+ DT_MK_SCHEMA_FLAGS := $(if $(DT_SCHEMA_FILES), -u)
+ 
+ quiet_cmd_chk_binding = CHKDT   $(patsubst $(srctree)/%,%,$<)
+-      cmd_chk_binding = $(DT_DOC_CHECKER) $< ; \
++      cmd_chk_binding = $(DT_DOC_CHECKER) -u $(srctree)/$(src) $< ; \
+                         $(DT_EXTRACT_EX) $< > $@
+ 
+ $(obj)/%.example.dts: $(src)/%.yaml FORCE
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 1b412d4394ae..f1f38c8cdc74 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -298,7 +298,7 @@ DT_BINDING_DIR := Documentation/devicetree/bindings
+ DT_TMP_SCHEMA := $(objtree)/$(DT_BINDING_DIR)/processed-schema.yaml
+ 
+ quiet_cmd_dtb_check =	CHECK   $@
+-      cmd_dtb_check =	$(DT_CHECKER) -p $(DT_TMP_SCHEMA) $@ ;
++      cmd_dtb_check =	$(DT_CHECKER) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@ ;
+ 
+ define rule_dtc_dt_yaml
+ 	$(call cmd_and_fixdep,dtc,yaml)
+-- 
+2.20.1
+
