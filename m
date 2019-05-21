@@ -2,91 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8376224D75
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 13:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2DD24D96
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 13:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727044AbfEULCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 07:02:02 -0400
-Received: from mailgate1.rohmeurope.com ([178.15.145.194]:51106 "EHLO
-        mailgate1.rohmeurope.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726138AbfEULCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 07:02:02 -0400
-X-AuditID: c0a8fbf4-519ff700000014c1-ea-5ce3daa70e1e
-Received: from smtp.reu.rohmeu.com (will-cas002.reu.rohmeu.com [192.168.251.178])
-        by mailgate1.rohmeurope.com (Symantec Messaging Gateway) with SMTP id 28.9E.05313.7AAD3EC5; Tue, 21 May 2019 13:01:59 +0200 (CEST)
-Received: from WILL-MAIL001.REu.RohmEu.com ([fe80::2915:304f:d22c:c6ba]) by
- WILL-CAS002.REu.RohmEu.com ([fe80::fc24:4cbc:e287:8659%12]) with mapi id
- 14.03.0439.000; Tue, 21 May 2019 13:01:54 +0200
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>
-CC:     "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "sre@kernel.org" <sre@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "Haikola, Heikki" <Heikki.Haikola@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v14 0/8] support ROHM BD70528 PMIC
-Thread-Topic: [PATCH v14 0/8] support ROHM BD70528 PMIC
-Thread-Index: AQHVAMcZ2S9oIqrnW0ecnOWL7FvEJaZ1ZiIA
-Date:   Tue, 21 May 2019 11:01:53 +0000
-Message-ID: <3a78cc77499d5027f527be51a7c40f6c5d70338c.camel@fi.rohmeurope.com>
-References: <cover.1556787930.git.matti.vaittinen@fi.rohmeurope.com>
-In-Reply-To: <cover.1556787930.git.matti.vaittinen@fi.rohmeurope.com>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [213.255.186.46]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <431A5F4502DF11498E73A4ADCF92A350@de.rohmeurope.com>
-Content-Transfer-Encoding: base64
+        id S1727910AbfEULI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 07:08:27 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36003 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727880AbfEULIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 07:08:25 -0400
+Received: by mail-wr1-f68.google.com with SMTP id s17so18125458wru.3
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 04:08:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mBS6HWr/GffYzp43R5kVqhTrERprItS/d4aXOx6tYbU=;
+        b=qs55+I47fIDia0uwHqXxnq4cQTewSNeUP/6omcb5+qs0nKaYk7oGY6NYOOl8ofDFc6
+         OUXvM97JqwtXQwpndLn4H0GRVozTLlSlIJHbGzQOwbI14jhyNOdbr1Zs2EwTVOZBDcyb
+         FGcc2nUSDR18jboyFEO6tk/UOxJUEYJsVgv0s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mBS6HWr/GffYzp43R5kVqhTrERprItS/d4aXOx6tYbU=;
+        b=LwXQ5PG795B6O1jUZB52NMS2RqzakEI5eVVHXetXOJYofWTUrTunTPp4XmhTR1alCJ
+         cti8gdO3UxdQd8HpJCLGucw1hCCIaabTQQAWy0tfH4Wj4bXS5/d1IXlxlwEHVaAGapOF
+         +AdNYhIjpO9eI85kWTVpANnsy1Yzar2qDaE1tGSqPz1z3SvgiPSl+ga3RtGziNydCf0e
+         LZ9t4rKT46D+oI8XQP2qC1MZCA0DP/27eYk7meTJo/anFKqN/yII2U37VxHAyhXY6MhX
+         U182cnMDoqBTdHAidIQEFphOCuRpv7Q06PvuAZNjUlutxWk+sJkZldNfEzJCOqTvmIzO
+         gZRA==
+X-Gm-Message-State: APjAAAW5JcVTgtL/Spu3geEUMgps9dMP3mo6LKZJspnI3/n78XLLBnhy
+        HAJqsBk8AkDFBK85w5m0FC1szG1sAFhgK7VeDOnWHg==
+X-Google-Smtp-Source: APXvYqzVlWiHrmG++c18iLZr+/EeWm5l0AOZnhEmmkXMdNCxfOZ6cpmzHxti9dv2vFcXgV4vwIgiEhUsPm77NDcpFoE=
+X-Received: by 2002:adf:8189:: with SMTP id 9mr47758810wra.71.1558436903636;
+ Tue, 21 May 2019 04:08:23 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTVxzOuff23lvgboeCcsTHtAkzkiiyEDkGY3Qb2dX4SkzMRkjqVa5c
-        sj7YbWuoJqZmMyrMhWSYzYqABvBVN+iimwUUmmIQVEKGtSiotQ2I8RlUomK3e1sU/jnnO7/v
-        fN/3O8nvsKTuNZ3OlphtomwWjHo6gWo/9c6z+OTtcOHSwDjG9X03Gbz/aSODXx7rpvDhUITG
-        tf4bGnzvVSfAr/sPELhq4iSBX/x8V4P/qp0A+F9vNY3HDvkBvnK2n8bBPy4xOHL8GoEbbvUR
-        uLqhi8J93fl4X5ufwdFAM4V7Wmw4PBolV83k3TVuwD8L7mP4Gvdu/qJriOE9Zw7S/GCgleZP
-        u90a/uK4k+F/q3lD8GOeeZsSChJXbBNsOzeXFJuzVm5NlEarA3SpX1M23Plc4wRNmnKgZRHM
-        QQ17WxScwOpgAKCR0NDkoQuga9VHmXLAsjRcgcoHYjAVLkfNfcmqloS9WlTb+KmKU+Ay1Om9
-        TKk4Feai812DZBx/gSp/amJUTMEMdNdZGbvDwQ3oeNUgULEOfo1GLjhj9lqYj5rqYq0BOBcd
-        dD4l4lFpyDM8PtkyRPWtvWQcz0Cj4ehkXY/a3oQo1YaEi9Cf3qy4dBWaOHV10mYBqqoIMfEO
-        ktHVIxGqEsx0TUtwTald09SuaWrXNHUd0JwByCSUGIsFm5i9RBbtS2SLZFK27RaTB8Rn5uU/
-        4D/fGh+ALNAncVFfuFCnEXZaHSYfmMUS+hncoSyl9Mk2S5FDEqySQbYbRasPIJbUp3I93Q8K
-        dVyR4NglypYP1GyW0qdx77wdhTqoJn8viqWi/IGdw7J6xJUOKKbJslgslu0oMdqmaILVquYJ
-        6alW0VwkyoLdJhnUUTFYlVlRqSQld2NQkXPWUsGkVOPSbpDNtp8IHSPZJx0jylo38LaG1FFm
-        i1lMT+NWqnlQFUh288e4RyBNeXUKt1hlk5TP9NHtkRJEKEFzmViQTZii0p3gx105Be3mzzPs
-        kSZ/8PCzxN9zf2hd+/B579Bq03BOSsTw9qvArS/n9OfJxr+9dWDPXu+6aNl364ce99dGzha3
-        NebeyV6zNm+sucVm6DgibeIrte+jT77dcv/90usVwfz5mXnLTOduN4YLPlvO8q7MigwHAo6F
-        wYauJKNU/8uv33T26CmrJGRnkrJV+B/6QzoeCQQAAA==
+References: <20190418141658.10868-1-jagan@amarulasolutions.com>
+ <20190418145641.q23tupopz2czjzc5@flea> <CAOf5uwn8CtRs8cx0KC-bxNoRP4TiDrHi8F83QfjsZhueLDYFJg@mail.gmail.com>
+ <20190521081001.zjq3gnlvyuyexz6m@flea>
+In-Reply-To: <20190521081001.zjq3gnlvyuyexz6m@flea>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Tue, 21 May 2019 13:08:09 +0200
+Message-ID: <CAOf5uwnhXjur=2NezCydaCxP5d33S+AwdD9WTDtp2EUJr4UTgg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64-oceanic-5205-5inmfd: Enable CAN
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8gQWxsLA0KDQpPbiBUaHUsIDIwMTktMDUtMDIgYXQgMTI6MTEgKzAzMDAsIE1hdHRpIFZh
-aXR0aW5lbiB3cm90ZToNCj4gUGF0Y2ggc2VyaWVzIGludHJvZHVjaW5nIHN1cHBvcnQgZm9yIFJP
-SE0gQkQ3MDUyOCBQTUlDDQo+IA0KSnVzdCB0aG91Z2h0IEknZCBhc2sgaWYgdGhlcmUncyBhbnkg
-Y2hhbmNlcyB0byBnZXQgdGhpcyBzZXJpZXMgaW4gNS4yPw0KSXQgc2VlbXMgdG8gbWUgdGhlIFdE
-VCBwYXJ0IChwYXRjaCA4KSB3YXMgYWxyZWFkeSBtZXJnZWQgaW4gYnV0IHJlc3Qgb2YNCnRoZSBw
-YXRjaGVzIHNlZW0gdG8gYmUgaW4gbGltYm8gc29tZXdoZXJlIDopDQoNCkkgZ3Vlc3MgbW9zdCBv
-ZiB0aGUgcGF0Y2hlcyBoYXZlIHJlbGV2YW50IGFja3MgLSBzbyB3b25kZXIgaWYgdGhlIHJlc3QN
-CmNhbiBnbyB0aHJvdWdoIExlZSdzIHRyZWU/IEkgYWRtaXQgSSBhbSBnZXR0aW5nIHNsaWdodGx5
-IGltcGF0aWVudCAtDQpzb3JyeSBmb3IgdGhhdCA6XQ0KDQpCciwNCglNYXR0aSBWYWl0dGluZW4N
-Cg==
+Hi Maxime
+
+On Tue, May 21, 2019 at 10:10 AM Maxime Ripard
+<maxime.ripard@bootlin.com> wrote:
+>
+> On Tue, May 21, 2019 at 08:47:02AM +0200, Michael Nazzareno Trimarchi wrote:
+> > > > +     };
+> > > > +
+> > > >  };
+> > > >
+> > > >  &ehci0 {
+> > > > @@ -77,6 +95,31 @@
+> > > >       status = "okay";
+> > > >  };
+> > > >
+> > > > +&pio {
+> > > > +     can_pins: can-pins {
+> > > > +             pins = "PD6",                   /* RX_BUF1_CAN0 */
+> > > > +                    "PD7";                   /* RX_BUF0_CAN0 */
+> > > > +             function = "gpio_in";
+> > > > +     };
+> > > > +};
+> > >
+> > > That isn't needed. What are they used for, you're not tying them to
+> > > anything?
+> >
+> > Mux of their function is correct. They are connected in the schematics
+> > but not used right now.
+>
+> Then describe the whole thing or don't?
+>
+
+Ok
+
+> And that's kind of missing my point. If that pin group isn't related
+> to any device, the pin muxing will not be changed. So that group, in
+> itself, has strictly no effect.
+>
+> Moreover, you don't need a pin group in the first place to mux pins in
+> GPIOs, the GPIO API will make sure that is the case when you request
+> it.
+
+This is correct on sunxi. Is this valid for sunxi or in general in all the SoC?
+Anyway make sense to have pins configured and place in the right
+state, just suppose if the
+booting stage is wrong or anything that make those pins in the wrong
+configuration
+
+>
+> > I can garantee that kernel wlll always configurred in the right way
+> > and if I want I can export in userspace
+> > for debug purpose
+
+Correct if you start to use it but if you want them right configured
+the right place
+is in the default state e/o initstate if this can be a problem of the hardware
+
+Default state: the state the pinctrl handle shall be put
+ *      into as default, usually this means the pins are up and ready to
+ *      be used by the device driver. This state is commonly used by
+ *      hogs to configure muxing and pins at boot, and also as a state
+ *      to go into when returning from sleep and idle in
+ *      .pm_runtime_resume() or ordinary .resume() for example.
+
+Now the pins are connected to the canbus as should be and they are
+configured and usually
+put in the right state.
+
++               compatible = "microchip,mcp2515";
++               reg = <0>;
++               spi-max-frequency = <10000000>;
++               pinctrl-names = "default";
++               pinctrl-0 = <&can_pins>;
+
+>
+> Yes, because the API does it, not your change
+>
+
+Do you prefer to drop the pinmux? or update the commit message
+
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+
+
+-- 
+| Michael Nazzareno Trimarchi                     Amarula Solutions BV |
+| COO  -  Founder                                      Cruquiuskade 47 |
+| +31(0)851119172                                 Amsterdam 1018 AM NL |
+|                  [`as] http://www.amarulasolutions.com               |
