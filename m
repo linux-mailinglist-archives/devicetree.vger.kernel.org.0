@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 640F42569F
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 19:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CBC256AA
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 19:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728103AbfEUR0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 13:26:13 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:44608 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727142AbfEUR0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 13:26:13 -0400
-Received: by mail-pf1-f196.google.com with SMTP id g9so9388109pfo.11
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 10:26:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Ji0VdzU5OHK1F6Sbp+YSXpK8rtBxFsIqpzSG7ymRqzo=;
-        b=R8RGyzYX+KVy8m3zJtD+38A1CQR4ZeKD7IZ8knX4UBdcazCt+USKTWOEB5MTkdw/Fd
-         f7WTG412wUr9M4tY1MwLdCYXU6mls6g0h6SjAl87o5Sbg45Q6T+ILmFXeg1SiNZF+J2+
-         ms3TSb7ib9ND/W7bLRjuENhi8gH2ZooMHWYrdw2pkJMTOeCyXMNp4xWd+c+GCHg5LgO6
-         odQztXqLSb63vlLYPkqUvg/k5+WXoxmJE0alaqzhkDfeCD4L5vvTLe49ZQGxICd2tXUL
-         Tr7hW4wirXJwpclHYlkq2VP7GHXvJ5Y1PFcsWqwgS14g5h+A8XLIgwtj9Dw8OhyMQrIu
-         mc8A==
+        id S1729139AbfEUR0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 13:26:54 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:41884 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728103AbfEUR0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 13:26:54 -0400
+Received: by mail-ua1-f68.google.com with SMTP id l14so2166219uah.8;
+        Tue, 21 May 2019 10:26:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ji0VdzU5OHK1F6Sbp+YSXpK8rtBxFsIqpzSG7ymRqzo=;
-        b=Dh6fAAgYtWH+xjyc3QWGp6qVRY0vcL/xXW2wK2DjlkqEnnmDpCmFRWTAlZ5jhlxoDU
-         Uc2mwOWYeW+KQLImJYxxAUFvLfOruue+jr4964rljYoC9iuSCF6kqmdlCFLQJTC1OPgA
-         r6RtqW3DAvn4+OH4Z+s3mAC9s8IJuSMpfL/xRtn4vsTW0hkN05GEAc7zlW/Ln6KXHNqo
-         P/JOJcW0sHQYhNU2Y0zAXaysWECQ1mA5SsVSKSt2LdvXshtMcYWhrn/WTLMNhG1j96wp
-         ASGu1etUAFOnz3bt5LnrnGoMq6GRg7RAc9okA9vLt8vqVdjCKGEfsf1kHMN7G6QdEaEw
-         aKeA==
-X-Gm-Message-State: APjAAAV1sOlgYRFuEm9VrRLXR7utT+C8rVTvzew+L/FcYm0Xw1N+XbJx
-        MCxlxQFOEFK/jvt9mXawKOMKVQ==
-X-Google-Smtp-Source: APXvYqxHPRhrUt8LyBPdVgl0BaXABlTIZ1JBG/HpULhXJEwb7w0zzAA5be0uaHu+Y/y1a/7Kx3iCuQ==
-X-Received: by 2002:a63:ea42:: with SMTP id l2mr81880080pgk.19.1558459572511;
-        Tue, 21 May 2019 10:26:12 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id k192sm21751525pga.20.2019.05.21.10.26.11
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 May 2019 10:26:11 -0700 (PDT)
-Date:   Tue, 21 May 2019 10:26:39 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, agross@kernel.org, david.brown@linaro.org,
-        jcrouse@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: qcom_spmi: Document PM8005 regulators
-Message-ID: <20190521172639.GB2085@tuxbook-pro>
-References: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
- <20190521165244.14321-1-jeffrey.l.hugo@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j/D4S8gscS9O5c3uaJM3GMPcWAFs73eJxSabr8rEv64=;
+        b=QT0j3j29qWa/x0m2K93TDsoDCfrlPgImAbQ2q5dBX6rPvWp8EFPEqYjoKfr347do/d
+         yIqwoCf/x39uxSYppepW13s8wJCBNNPeUuj5iKEK6LkhUIWUCuxq1f/J8ES1imNRdlQT
+         KO3o09T8BsY+YrdVy/1HHz1z59soHt5BHRtbFnmS0kzLv1rAlcVFD6/kU4CHpR98G4qz
+         sExWWjL/DNTTRY0CHODsLsUohm4xXr2Si2SzbkAip6NqM9WBFCaMHs2Ay2d+PEwSEnK/
+         yKUfJZaQqN+0Xf0M7i1r3AbkfJzhAyWyIbJqyHgaC26X+1rAJezJirhUVubXLalpAJ8R
+         yD9g==
+X-Gm-Message-State: APjAAAWsCmY84ko4VA6VDEHBtGm/0vugyB2k9Ld4uGa+mx+ZdUnP9fUU
+        lecde47DuyQ3eyHkAJ1IrZUkJ3l3RpEG+j6hmek=
+X-Google-Smtp-Source: APXvYqysyxm55xleL0rx9VDMV6dsPqbittwUJtB8QdH4/nvrqrBzTnE59SW4g42cc//Ox7iDuuIHLNPdPK69/1OXvZU=
+X-Received: by 2002:ab0:3119:: with SMTP id e25mr1726168ual.96.1558459613075;
+ Tue, 21 May 2019 10:26:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190521165244.14321-1-jeffrey.l.hugo@gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
+In-Reply-To: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 21 May 2019 19:26:41 +0200
+Message-ID: <CAMuHMdWLwN1mGq5TFgdPYDcJFd8_0YvmoO_tmUf7hF791CAq1Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a774c0: Clean up CPU compatibles
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 21 May 09:52 PDT 2019, Jeffrey Hugo wrote:
+On Tue, May 21, 2019 at 6:44 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> Apparently this DTS crossed over with commit 31af04cd60d3 ("arm64: dts:
+> Remove inconsistent use of 'arm,armv8' compatible string") and missed
+> out on the cleanup, so put it right.
+>
+> CC: Simon Horman <horms@verge.net.au>
+> CC: Magnus Damm <magnus.damm@gmail.com>
+> CC: linux-renesas-soc@vger.kernel.org
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 
-> Document the dt bindings for the PM8005 regulators which are usually used
-> for VDD of standalone blocks on a SoC like the GPU.
-> 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Gr{oetje,eeting}s,
 
-> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-> ---
->  .../devicetree/bindings/regulator/qcom,spmi-regulator.txt     | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
-> index 406f2e570c50..ba94bc2d407a 100644
-> --- a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
-> +++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
-> @@ -4,6 +4,7 @@ Qualcomm SPMI Regulators
->  	Usage: required
->  	Value type: <string>
->  	Definition: must be one of:
-> +			"qcom,pm8005-regulators"
->  			"qcom,pm8841-regulators"
->  			"qcom,pm8916-regulators"
->  			"qcom,pm8941-regulators"
-> @@ -120,6 +121,9 @@ The regulator node houses sub-nodes for each regulator within the device. Each
->  sub-node is identified using the node's name, with valid values listed for each
->  of the PMICs below.
->  
-> +pm8005:
-> +	s1, s2, s3, s4
-> +
->  pm8841:
->  	s1, s2, s3, s4, s5, s6, s7, s8
->  
-> -- 
-> 2.17.1
-> 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
