@@ -2,106 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D79F24869
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCAF9248D2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 09:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726193AbfEUGvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 02:51:21 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:46984 "EHLO uho.ysoft.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725920AbfEUGvU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 02:51:20 -0400
-Received: from [10.1.8.111] (unknown [10.1.8.111])
-        by uho.ysoft.cz (Postfix) with ESMTP id 01578A0321;
-        Tue, 21 May 2019 08:51:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1558421478;
-        bh=yKuLFO5c0pIATImt1F6opFt/j/RZIkm+UdT3+v1Lrt8=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=V+Aq01Nl//1U31g13yaQWyymSWwTobre2xlitCsrsCLZXLyl5vJROlWjekK48eMNw
-         pcOAeytozucET5skYDo8acxUTUsVUsxrtcHbs1k+pxRTopzLHfmg16/y+Wt+9AMhmg
-         ddh3AXsxTAPWVi6wLW/pb+GIU7oT2J8HS+oD3Vz8=
-Subject: Re: [RFC PATCH v2 0/4] Input: mpr121-polled: Add polled driver for
- MPR121
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
- <20190521053705.GI183429@dtor-ws>
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Message-ID: <ef172b24-cd27-5bb0-d8b1-718f835d0647@ysoft.com>
-Date:   Tue, 21 May 2019 08:51:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
-MIME-Version: 1.0
-In-Reply-To: <20190521053705.GI183429@dtor-ws>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1725997AbfEUHSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 03:18:52 -0400
+Received: from mail-eopbgr130040.outbound.protection.outlook.com ([40.107.13.40]:24549
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725809AbfEUHSw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 03:18:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rLSoyxDF/NxRomskbWHPjlyCS+nIJ17FhxuPWCFFmrY=;
+ b=R2vQogFbyKWzO/swQEem8Gu/lV0rbmWopmggcZMO9DwuzljO3bVC/lEy42sQYA9+OskfswmjG5W9UbQmNJOhj7Z0B7D50fREEiqJaxvsjTYjoBhPtz2UNcsI90sSKo+N/lRtfGPOXye6x6fyFBgSkscNEUkM58H/V9rNsLe0KEI=
+Received: from VI1PR0402MB3519.eurprd04.prod.outlook.com (52.134.4.24) by
+ VI1PR0402MB3327.eurprd04.prod.outlook.com (52.134.8.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1878.22; Tue, 21 May 2019 07:18:48 +0000
+Received: from VI1PR0402MB3519.eurprd04.prod.outlook.com
+ ([fe80::2417:67da:c1aa:29f3]) by VI1PR0402MB3519.eurprd04.prod.outlook.com
+ ([fe80::2417:67da:c1aa:29f3%7]) with mapi id 15.20.1900.020; Tue, 21 May 2019
+ 07:18:48 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: [PATCH v4 1/2] dt-bindings: timer: Add binding doc for nxp system
+ counter timer
+Thread-Topic: [PATCH v4 1/2] dt-bindings: timer: Add binding doc for nxp
+ system counter timer
+Thread-Index: AQHVD6Vu663GNkqRPk6dV5orvLvwbg==
+Date:   Tue, 21 May 2019 07:18:48 +0000
+Message-ID: <20190521072355.12928-1-ping.bai@nxp.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.21.0
+x-clientproxiedby: HK2PR02CA0215.apcprd02.prod.outlook.com
+ (2603:1096:201:20::27) To VI1PR0402MB3519.eurprd04.prod.outlook.com
+ (2603:10a6:803:8::24)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ping.bai@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e24c026a-ec08-4f89-18e2-08d6ddbc9126
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB3327;
+x-ms-traffictypediagnostic: VI1PR0402MB3327:
+x-microsoft-antispam-prvs: <VI1PR0402MB3327A2E17FCCDA6BDAE7A71487070@VI1PR0402MB3327.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 0044C17179
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(346002)(396003)(366004)(39860400002)(136003)(189003)(199004)(8676002)(25786009)(478600001)(14454004)(2906002)(8936002)(36756003)(53936002)(186003)(81156014)(81166006)(2501003)(316002)(6486002)(73956011)(6436002)(4326008)(6636002)(26005)(66946007)(305945005)(7736002)(66556008)(64756008)(66446008)(66476007)(68736007)(66066001)(86362001)(71200400001)(71190400001)(2616005)(110136005)(14444005)(54906003)(476003)(486006)(256004)(99286004)(5660300002)(52116002)(386003)(6506007)(6116002)(102836004)(1076003)(6512007)(50226002)(3846002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3327;H:VI1PR0402MB3519.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: KtJQA1cVLSkZdabXkf5HdK/H+9AcKACVdhJ53f38YBd7rDlU4WUFde85hteD5NuwOwNKY6HMYIFjdIPFKU0XRFQXGJX1Ekm51sIrbs7SmeTdqN7d0RdK0diVeCDvfcv5unpyCf+2eUnHpbYemrvRIvwqsxn4PX1ftN+t4pjh1kRDAjQ7Yb5TqGIYbTsYxb6fIzeGWA2p+MyZ1TmyhqG1q4m/8ud40xCUG2dtGFNU7vAmCPR73QNwpYE50Qas3Nfz3D8gGWjNCnMklWmXuiH1ugUBnEKw//t+uEuyXUEl9JZoCfx71aU21UllR+Z39xP0lEtQB2U8eTKNqKFj0JPvQjIj9WUbaUqPEcEOYMtQyCVTF4c6ReGd3CZydP6fvRtQkrF8O5bgbXMU1zsfth0TmeUNuYBUkFsiTWDOiN2z1r4=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <EC89990D38395545B1C0999B3062C664@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e24c026a-ec08-4f89-18e2-08d6ddbc9126
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2019 07:18:48.2184
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3327
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21. 05. 19 7:37, Dmitry Torokhov wrote:
-> Hi Michal,
-> 
-> On Fri, May 17, 2019 at 03:12:49PM +0200, Michal Vokáč wrote:
->> Hi,
->>
->> I have to deal with a situation where we have a custom i.MX6 based
->> platform in production that uses the MPR121 touchkey controller.
->> Unfortunately the chip is connected using only the I2C interface.
->> The interrupt line is not used. Back in 2015 (Linux v3.14), my
->> colleague modded the existing mpr121_touchkey.c driver to use polling
->> instead of interrupt.
->>
->> For quite some time yet I am in a process of updating the product from
->> the ancient Freescale v3.14 kernel to the latest mainline and pushing
->> any needed changes upstream. The DT files for our imx6dl-yapp4 platform
->> already made it into v5.1-rc.
->>
->> I rebased and updated our mpr121 patch to the latest mainline.
->> It is created as a separate driver, similarly to gpio_keys_polled.
->>
->> The I2C device is quite susceptible to ESD. An ESD test quite often
->> causes reset of the chip or some register randomly changes its value.
->> The [PATCH 3/4] adds a write-through register cache. With the cache
->> this state can be detected and the device can be re-initialied.
->>
->> The main question is: Is there any chance that such a polled driver
->> could be accepted? Is it correct to implement it as a separate driver
->> or should it be done as an option in the existing driver? I can not
->> really imagine how I would do that though..
->>
->> There are also certain worries that the MPR121 chip may no longer be
->> available in nonspecifically distant future. In case of EOL I will need
->> to add a polled driver for an other touchkey chip. May it be already
->> in mainline or a completely new one.
-> 
-> I think that my addition of input_polled_dev was ultimately a wrong
-> thing to do. I am looking into enabling polling mode for regular input
-> devices as we then can enable polling mode in existing drivers.
+From: Bai Ping <ping.bai@nxp.com>
 
-OK, that sounds good. Especially when one needs to switch from one chip
-to another that is already in tree, the need for a whole new polling
-driver is eliminated.
+Add the binding doc for nxp system counter timer module.
 
-I am still quite a novice in all kernel areas as I literally jump from
-one subsystem to another to fix issues related to our platform. Anyway,
-do you see any opportunity to help with that work?
+Signed-off-by: Bai Ping <ping.bai@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+change v1->v2
+ - remove the blank line at EOF
+change v2->v3
+ - update the binding example based on the driver change
+change v3->v4
+ - no change
+---
+ .../bindings/timer/nxp,sysctr-timer.txt       | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/nxp,sysctr-time=
+r.txt
 
-> As far as gpio-keys vs gpio-key-polled, I feel that the capabilities of
-> polling driver is sufficiently different from interrupt-driven one, so
-> we will likely keep them separate.
+diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt b=
+/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
+new file mode 100644
+index 000000000000..d57659996d62
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
+@@ -0,0 +1,25 @@
++NXP System Counter Module(sys_ctr)
++
++The system counter(sys_ctr) is a programmable system counter which provide=
+s
++a shared time base to Cortex A15, A7, A53, A73, etc. it is intended for us=
+e in
++applications where the counter is always powered and support multiple,
++unrelated clocks. The compare frame inside can be used for timer purpose.
++
++Required properties:
++
++- compatible :      should be "nxp,sysctr-timer"
++- reg :             Specifies the base physical address and size of the co=
+mapre
++                    frame and the counter control, read & compare.
++- interrupts :      should be the first compare frames' interrupt
++- clocks : 	    Specifies the counter clock.
++- clock-names: 	    Specifies the clock's name of this module
++
++Example:
++
++	system_counter: timer@306a0000 {
++		compatible =3D "nxp,sysctr-timer";
++		reg =3D <0x306a0000 0x20000>;/* system-counter-rd & compare */
++		clocks =3D <&clk_8m>;
++		clock-names =3D "per";
++		interrupts =3D <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++	};
+--=20
+2.21.0
 
-OK, understand.
-
-Thank you,
-Michal
