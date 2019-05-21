@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D970E255FB
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4AE25605
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727969AbfEUQrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 12:47:36 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:1173 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727965AbfEUQrg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:47:36 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce42ba70000>; Tue, 21 May 2019 09:47:35 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Tue, 21 May 2019 09:47:34 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Tue, 21 May 2019 09:47:34 -0700
-Received: from [10.25.72.115] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 21 May
- 2019 16:47:29 +0000
-Subject: Re: [PATCH V7 02/15] PCI: Disable MSI for Tegra194 root port
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
-        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
-        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190517123846.3708-1-vidyas@nvidia.com>
- <20190517123846.3708-3-vidyas@nvidia.com> <20190521102729.GB29166@ulmo>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <f63051b0-a220-125b-219e-25156d65ea6d@nvidia.com>
-Date:   Tue, 21 May 2019 22:17:26 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190521102729.GB29166@ulmo>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558457255; bh=BlKoVyxfa3/PhGnDYxQwviA1iVDUS1wMLF49XD5WLTo=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=EeQpa9fitk/OpoQb5fgRexaj/4U0V03Hh0lFLdmYSKWSxWr0BxeUY1pOsh3perPWB
-         SVrQaG2Es6cVEJE9EcAkpzaUoe60SPjdpXy08bnbbNt9SXoNgvTk4Zh9/BoEqEtNSW
-         NPLtiibkt0oh3/H2R3pz2t8h0xyFRQ0W9hxD4848k7pI4sY8vWFWGltTlk8aT8G5wQ
-         NdeLJpPeJqt0Z9aq2LNe77mtwWiM3EwVsYl7NZCFrZfxwU0pFW6XX/hp7Cet/gZsnm
-         yjcGWIB56i2lBnp8u4z42Li1AYeei5ZBUCmPodnipCn0mPZNdyRypL1GmUo5PaUvx8
-         /rRw7QYrXZMww==
+        id S1728318AbfEUQth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 12:49:37 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:35905 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727817AbfEUQth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:49:37 -0400
+Received: by mail-pl1-f193.google.com with SMTP id d21so8722314plr.3;
+        Tue, 21 May 2019 09:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=v2SnYdg7A+KRf1CirjBXBSRjCuSa5ZCNOU/wWwgCIfk=;
+        b=Ddep7DyHe5OsovWNiAt9kTIMBQlef/9LvJA19PYauVxiR02nikKb24vzLGi03F7nsN
+         T2V6VOpn+2U+RJicJhJatRRwwq+azLcIwsHclxn81zlRcai3UATILn6cxNnxzZV/5ehR
+         Bu3VpJ6zqJUnJD1T7k2/U+eJTy4iNZg4xoSO25YWBpbTJW9MizL1zJb0hfYqcBUbh1om
+         UTxzOpSjyh9aorCUnS7hb3qFRtytTckbMZugXBTXBLRcTpIwnsM/pLy9FuLME7FYojIK
+         hA/YL9CdX9tR3PrsCv5SI7noKMNDtvgGrxWGXve6/d66D0l3XoTicIH89o1pUS7QchMo
+         bNVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=v2SnYdg7A+KRf1CirjBXBSRjCuSa5ZCNOU/wWwgCIfk=;
+        b=LZbjSW/Ytxhz7PXEaWtzcDNCaoYMweuTamvfijHAY3fLMiVS12tvRz0cLBp8h+nbwt
+         VvomViT4z2LrV56DO0V9/c8aFE8qdXMNfz9BZqMTY63FZGhERC8jRwmQ5rlQEMJNMMFr
+         xrrRX5MtJS8swqnWA0NMRaQdi8z8BtHTG/3OWTyu4pMjMeWGLI3Y1bRL8rdquWIpK1q1
+         9ARs+1TBMPiu+/t1XwXCCXeZCl3haZlEC5dkIEFTxZ86D7qhbJZdNIIeGjDDXv0PShTj
+         DPXHgc3fjjP1RugqXRAp7m1yGwRt8K+0B5dRJUzaFsUs1H1ECnR2yFihRAlCZJ1w8sFE
+         H/Xg==
+X-Gm-Message-State: APjAAAVNRLCI/x7zpXQgp2D0xN/0L1JId7H988JKGGFlOK6RPOO4qfyt
+        u8PBgBJ7MGpD/qpCG7dZb6Y=
+X-Google-Smtp-Source: APXvYqzvYTYoKR4keXPH4jiYbPWg9Rfb6ADPPLBY7qhfTOKHapIWHpV+sbFumzLUsWLGsvVb034/Ng==
+X-Received: by 2002:a17:902:2a2b:: with SMTP id i40mr83744999plb.170.1558457376769;
+        Tue, 21 May 2019 09:49:36 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id o7sm32411008pfp.168.2019.05.21.09.49.35
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 May 2019 09:49:36 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, david.brown@linaro.org,
+        bjorn.andersson@linaro.org, jcrouse@codeaurora.org,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH 0/3] PM8005 regulator support for msm8998 GPU
+Date:   Tue, 21 May 2019 09:49:32 -0700
+Message-Id: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/21/2019 3:57 PM, Thierry Reding wrote:
-> On Fri, May 17, 2019 at 06:08:33PM +0530, Vidya Sagar wrote:
->> Tegra194 rootports don't generate MSI interrupts for PME events and hence
->> MSI needs to be disabled for them to avoid root ports service drivers
->> registering their respective ISRs with MSI interrupt.
->>
->> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->> ---
->> Changes since [v6]:
->> * This is a new patch
->>
->>   drivers/pci/quirks.c | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
->>
->> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
->> index 0f16acc323c6..28f9a0380df5 100644
->> --- a/drivers/pci/quirks.c
->> +++ b/drivers/pci/quirks.c
->> @@ -2592,6 +2592,20 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA,
->>   			PCI_DEVICE_ID_NVIDIA_NVENET_15,
->>   			nvenet_msi_disable);
->>   
->> +/*
->> + * Tegra194's PCIe root ports don't generate MSI interrupts for PME events
->> + * instead legacy interrupts are generated. Hence, to avoid service drivers
->> + * registering their respective ISRs for MSIs, need to disable MSI interrupts
->> + * for root ports.
->> + */
->> +static void disable_tegra194_rp_msi(struct pci_dev *dev)
->> +{
->> +	dev->no_msi = 1;
->> +}
->> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA, 0x1ad0, disable_tegra194_rp_msi);
->> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA, 0x1ad1, disable_tegra194_rp_msi);
->> +DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA, 0x1ad2, disable_tegra194_rp_msi);
->> +
-> 
-> Later functions in this file seem to use a more consistent naming
-> pattern, according to which the name for this would become:
-> 
-> 	pci_quirk_nvidia_tegra194_disable_rp_msi
-> 
-> Might be worth considering making this consistent.
-> 
-> This could also be moved to the DWC driver to restrict this to where it
-> is needed. In either case, this seems like a good solution, so:
-> 
-> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> 
-Ok. I'll move it to DWC driver along with name change for the quirk API.
+The MSM8998 MTP reference platform supplies VDD_GFX from s1 of the
+pm8005 PMIC.  VDD_GFX is needed to turn on the GPU.  As we are looking
+to bring up the GPU, add the support for pm8005 and wire up s1 in a
+basic manner so that we have this dependency out of the way and can
+focus on enabling the GPU driver.
+
+Jeffrey Hugo (3):
+  dt-bindings: qcom_spmi: Document PM8005 regulators
+  regulator: qcom_spmi: Add support for PM8005
+  arm64: dts: msm8998-mtp: Add pm8005_s1 regulator
+
+ .../regulator/qcom,spmi-regulator.txt         |   4 +
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi     |  17 ++
+ drivers/regulator/qcom_spmi-regulator.c       | 203 +++++++++++++++++-
+ 3 files changed, 219 insertions(+), 5 deletions(-)
+
+-- 
+2.17.1
 
