@@ -2,130 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A62252D8
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 16:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 358B52533D
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 17:00:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728959AbfEUOwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 10:52:34 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:48020 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728316AbfEUOwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 10:52:34 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 7DA1D60E5A; Tue, 21 May 2019 14:52:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558450352;
-        bh=SrPfq8MUViUv+XabaPgjbbiYPwSPr5D7GfKJjGwPG+I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=gi979lmu16tGOEOTilt7ENiKg7rFcuOTfFLuR+c4mUCM/Erh3fSjEoeQnjmPvTwlH
-         dJV0V8+OWwXaZsrnn64uinhEM20+yhbMBCFwI3fegy/pObPwt0G7/y4A38x63Rxop4
-         /pUn38KW6NJodHSvOO0+TFpZmOteK5IPy8aMExiM=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.226.58.28] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jhugo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id ED10D6021C;
-        Tue, 21 May 2019 14:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558450351;
-        bh=SrPfq8MUViUv+XabaPgjbbiYPwSPr5D7GfKJjGwPG+I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=I8ukjk4VvZ1URFh1a1CnLlOUQgcflGA2KQX4W7UDU0PS4dhXqM/Fw0r195XSmtXEc
-         OFC9lEihjflZtu/u2C+5Zl3hMUNX6d/m9Y8yGmDJvKAyvNU6M+VBgPne5tcXM82ixH
-         hV8zbiK6KoKwcZX2VEUvx8q8vXpEUlDNeLO1fqU4=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org ED10D6021C
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
-Subject: Re: [PATCH v4 0/6] MSM8998 Multimedia Clock Controller
-To:     sboyd@kernel.org
-Cc:     david.brown@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, marc.w.gonzalez@free.fr,
-        mturquette@baylibre.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1558449843-19971-1-git-send-email-jhugo@codeaurora.org>
-From:   Jeffrey Hugo <jhugo@codeaurora.org>
-Message-ID: <933023a0-10fd-fedf-6715-381dae174ad9@codeaurora.org>
-Date:   Tue, 21 May 2019 08:52:28 -0600
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1727969AbfEUPAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 11:00:48 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:45115 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728748AbfEUPAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 11:00:48 -0400
+Received: by mail-wr1-f67.google.com with SMTP id b18so18947030wrq.12;
+        Tue, 21 May 2019 08:00:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vyK/mPyRJOdcHJJCImc+aiGr+T+jcqi6u6xDwEP/lVw=;
+        b=qIrsm3PA+ie9ByYZGnDHhdENmckxt9Wn3Zpm4I9oeebpgQYv3j29+6DT+BIQKOnrjx
+         9cgi6T39TSV04E4Lhu7Adq4u/Lo4LYGJj7+yuFpd+cF6ioNsrJi48uY0I/TM7jTidbfa
+         L3hlrWXDR4FqeTYnK7uDOoZ5MO8xMLecI+Fs2QahMVsfX+DE7uqvl+DLe1w3PR+yoWOy
+         iaCVsFp3VpXqsQk4a++yW0wPZg7bVR9XxeP+5XLbs4fmdpE89Q4dZFObo/Lf3m87iEa/
+         +q7kzTtPMnVhpMpROlp4DsWcdsH4s5NsTNwt+4QgUwJ3hz6/H/DVhZ05jWJST+PptrTd
+         yvHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vyK/mPyRJOdcHJJCImc+aiGr+T+jcqi6u6xDwEP/lVw=;
+        b=fBbhvteaUrAGtDr6s9resNbkjejaoO3RaeUqGPzyFSuWucvZ+Qd7TzMKveFMHDCApd
+         lXJvu9Nn5QNiU4WxJO+Br+Be65s8RBrTgkrC7brUlosez8o3U7mHwueM2PRRFiFF98qR
+         zA8Lra2uFzXlXh/Nwtm+JvEKvZyJSb/gXyRx1ALjhFspddCTt0UWs9UrJIm+rO/KWx8j
+         HgfSOe5ViTHXN3/80GABv78a7gKc6w9NQIE/zEhMAl39ZEcpxug0DSmm5EL4H8Oku0zn
+         7ZCnc8V8DCEI+q6YosTcKcJcrt7GCFf23TREmHq7YoccHRmZsPITENTybKrU064QbHG5
+         mWCg==
+X-Gm-Message-State: APjAAAV1AbK3Tlnq5hW0DA6IQq1HhbTsWAMdOwYyDhXgcPvZuxthDqA+
+        8vJJHFaXbH2e9wiSILuHTP4=
+X-Google-Smtp-Source: APXvYqwiC5nPtcRDsTzuXv+IiYZ2EjEjqlmSAdKy4NhHJ3M5HUK029K3c5V+FHD/e2eb0BRkOjxWeQ==
+X-Received: by 2002:adf:83c5:: with SMTP id 63mr20838465wre.33.1558450846486;
+        Tue, 21 May 2019 08:00:46 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id u2sm32242993wra.82.2019.05.21.08.00.45
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 21 May 2019 08:00:45 -0700 (PDT)
+Date:   Tue, 21 May 2019 17:00:44 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: phy: tegra-xusb: List PLL power supplies
+Message-ID: <20190521150044.GA7098@ulmo>
+References: <20190425153444.6281-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1558449843-19971-1-git-send-email-jhugo@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
+Content-Disposition: inline
+In-Reply-To: <20190425153444.6281-1-thierry.reding@gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/21/2019 8:44 AM, Jeffrey Hugo wrote:
-> The multimedia clock controller (mmcc) is the main clock controller for
-> the multimedia subsystem and is required to enable things like display and
-> camera.
 
-Stephen, I think this series is good to go, and I have display/gpu stuff 
-I'm polishing that will depend on this.  Would you kindly pickup patches 
-1, 3, 4, and 5 for 5.3?  I can work with Bjorn to pick up patches 2 and 6.
+--cNdxnHkX5QqsyA0e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> v4:
-> -fix makefile to use correct config item
-> -pick up tags
-> -fix ordering of clocks and clock-names in dt
-> -drop MODULE_ALIAS
-> -wait for xo in mmcc since that was found to be useful in some debug configs
-> 
-> v3:
-> -Rebase onto linux-next to get the final version of the clk parent rewrite
-> series
-> -Moved the bindings header to the bindings patch per Rob
-> -Made xo manditory for GCC to work around the lack of clk orphan probe defer
-> to avoid the uart console glitch
-> 
-> v2:
-> -Rebased on the "Rewrite clk parent handling" series and updated to the clk init
-> mechanisms introduced there.
-> -Marked XO clk as CLK_IGNORE_UNUSED to avoid the concern about the XO going away
-> "incorrectly" during late init
-> -Corrected the name of the XO clock to "xo"
-> -Dropped the fake XO clock in GCC to prevent a namespace conflict
-> -Fully enumerated the external clocks (DSI PLLs, etc) in the DT binding
-> -Cleaned up the weird newlines in the added DT node
-> -Added DT header file to msm8998 DT for future clients
-> 
-> Jeffrey Hugo (6):
->    dt-bindings: clock: Document external clocks for MSM8998 gcc
->    arm64: dts: msm8998: Add xo clock to gcc node
->    clk: qcom: smd: Add XO clock for MSM8998
->    dt-bindings: clock: Add support for the MSM8998 mmcc
->    clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver
->    arm64: dts: qcom: msm8998: Add mmcc node
-> 
->   .../devicetree/bindings/clock/qcom,gcc.txt    |   10 +
->   .../devicetree/bindings/clock/qcom,mmcc.txt   |   21 +
->   arch/arm64/boot/dts/qcom/msm8998.dtsi         |   16 +
->   drivers/clk/qcom/Kconfig                      |    9 +
->   drivers/clk/qcom/Makefile                     |    1 +
->   drivers/clk/qcom/clk-smd-rpm.c                |   24 +-
->   drivers/clk/qcom/gcc-msm8998.c                |   29 +-
->   drivers/clk/qcom/mmcc-msm8998.c               | 2915 +++++++++++++++++
->   include/dt-bindings/clock/qcom,mmcc-msm8998.h |  210 ++
->   9 files changed, 3214 insertions(+), 21 deletions(-)
->   create mode 100644 drivers/clk/qcom/mmcc-msm8998.c
->   create mode 100644 include/dt-bindings/clock/qcom,mmcc-msm8998.h
-> 
+On Thu, Apr 25, 2019 at 05:34:42PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> These power supplies provide power for various PLLs that are set up and
+> driven by the XUSB pad controller. These power supplies were previously
+> improperly added to the PCIe and XUSB controllers, but depending on the
+> driver probe order, power to the PLLs will not be supplied soon enough
+> and cause initialization to fail.
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> This was previously reviewed here:
+>=20
+>     https://patchwork.ozlabs.org/patch/1077153/
+>=20
+>  .../bindings/phy/nvidia,tegra124-xusb-padctl.txt     | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 
+Hi Kishon,
 
--- 
-Jeffrey Hugo
-Qualcomm Datacenter Technologies as an affiliate of Qualcomm 
-Technologies, Inc.
-Qualcomm Technologies, Inc. is a member of the
-Code Aurora Forum, a Linux Foundation Collaborative Project.
+do you have any comments on this series. It's fairly straightforward but
+is required in order to make XUSB work properly on Jetson Nano for which
+support was merged in v5.2-rc1.
+
+Thanks,
+Thierry
+
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-p=
+adctl.txt b/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padc=
+tl.txt
+> index daedb15f322e..9fb682e47c29 100644
+> --- a/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.t=
+xt
+> +++ b/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.t=
+xt
+> @@ -42,6 +42,18 @@ Required properties:
+>  - reset-names: Must include the following entries:
+>    - "padctl"
+> =20
+> +For Tegra124:
+> +- avdd-pll-utmip-supply: UTMI PLL power supply. Must supply 1.8 V.
+> +- avdd-pll-erefe-supply: PLLE reference PLL power supply. Must supply 1.=
+05 V.
+> +- avdd-pex-pll-supply: PCIe/USB3 PLL power supply. Must supply 1.05 V.
+> +- hvdd-pex-pll-e-supply: High-voltage PLLE power supply. Must supply 3.3=
+ V.
+> +
+> +For Tegra210:
+> +- avdd-pll-utmip-supply: UTMI PLL power supply. Must supply 1.8 V.
+> +- avdd-pll-uerefe-supply: PLLE reference PLL power supply. Must supply 1=
+=2E05 V.
+> +- dvdd-pex-pll-supply: PCIe/USB3 PLL power supply. Must supply 1.05 V.
+> +- hvdd-pex-pll-e-supply: High-voltage PLLE power supply. Must supply 1.8=
+ V.
+> +
+>  For Tegra186:
+>  - avdd-pll-erefeut-supply: UPHY brick and reference clock as well as UTM=
+I PHY
+>    power supply. Must supply 1.8 V.
+> --=20
+> 2.21.0
+>=20
+
+--cNdxnHkX5QqsyA0e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzkEpwACgkQ3SOs138+
+s6GifhAAoCiCcvnoALjMNw+bcAVupWuDb+KWFF59YbxHzUKtctPi36CiVZrsdKqO
+l3p+Mp23SKd/F/NlNDuU6n0HHSCYCOT/o1Fyy8bF1B056wPomE39k4RxZ/bmdp2D
+VHsLW66+WajZf/cYYAY7m8koEL8Nk2h2kJS7rDZ6dKQWxnx0NUNJyxH1HLLsk2d+
+egRa8aeaPFvMEFsHDgX+Ux6/kRglG/pXfe+eulrR9DJzKeISBKc3SC43iYisll9t
+Z+r28EO1jOWemRr9s0ezjorVw/JApiijSe5B1czBFnGd/1PN7IwPeNjsgFaZ2IS5
+QTdP1r5Mot9v3Rkv3nlxApI0YmpeewqNXgUf86MJuu/TTEqGuiZjf4Afse0MNiJx
+z7vBiWhESttcvbB4qVVUyC/lEadJuUAADxAdgUQFGb1UoMCHkF7CdPQuhgNFvMi3
+tvDv6W/I3s24fZkQ3U9smc5lLYAAR/zqlz3lG3c4mkpBuF1BneiINa4mfusJ6LzB
+T0TdAe8AtP6Vk3A4jNG0zEdiXKp66uTHwaBj2AxIJMm623a5WJPesNf5HAvTV4q7
+zT3nJxH/KG5iZNPjEK/I7+XWFzpOaD956tojDFQ5qv+MuSKakkp/rUqPoz+BHsJO
+99cCv4ObZHJmzVRj7+FjetkLR6euXlUDm2dxu2geowjPKXfAbJU=
+=u4HU
+-----END PGP SIGNATURE-----
+
+--cNdxnHkX5QqsyA0e--
