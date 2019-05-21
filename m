@@ -2,137 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BAC624B66
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F068F24B78
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:27:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726741AbfEUJZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 05:25:49 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:41997 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726525AbfEUJZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:25:49 -0400
-Received: by mail-lj1-f196.google.com with SMTP id 188so1001996ljf.9
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 02:25:48 -0700 (PDT)
+        id S1726766AbfEUJ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 05:27:34 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:34251 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726242AbfEUJ1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:27:34 -0400
+Received: by mail-lj1-f195.google.com with SMTP id j24so15236518ljg.1
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 02:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=CkcirGX3QvjLhz9moY6Imqk+qItJBJo6soSbUqVfWnQ=;
-        b=KPVsE6tbmoozmtanxFIcLRZ6t1QsqfMa3iEgemxmZvJCVg3YSyfhz+CWOYIPn0z+kY
-         524LHkx3uTbLNW0a9Bl8sjLjp9ktTb+7R7bqyH+QgCptPcvc9ZophZDDPdlNs/xeSF7U
-         j4J9EGZ/mU8uv6wsxOsnY4zzJWe9mp04gIuNNcH1qSt4Oq2aMb3yMVsub/9Swq8bqmLm
-         VEJP0jlpCLr3ns9M+fimlkhyx5MkOdIJs6LEhZGXU30FJFAzQ+7BRQAWIiNZ3w0edpuu
-         C8//mxCK9vsrcJ5Y/NGIoVB7X1R1mOdaHqMoNLZTXcVPxj6gEyDC5uUnC5Os6oKuWGrl
-         XGoQ==
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5Xy6KpBMf4VElfSxI8JZgNkIn+5swVz4A7VXhYDp2D4=;
+        b=gi0FnqEmcboPROS3aUYX2FmzKmldrXp2Xd53Cs+z0s80NF/1tJ+89FLSOmuykkWh0a
+         Bseps+m7BHSnZFk5NVsRLKcGhVs10u9VBXuk7ZFWImQxcj/UfGSJbg6gJGqG3M6Eryu0
+         +6VMdvaQODEdkEjm10eVWCg6HQioXvq/vhckhU8CXA37bZxImLyV9zUqEhECALNCOSWj
+         Io7qmy3Kwb5wIloKJURrXpWb2PPdq2gW5p7a9/ShaO6loZBFBAo1n7iTGu7RKvdGnRAu
+         5KIh2bLGig4OqmPNCI6RFNpRPS27XWQk6PKwqmubBBllN7izvBcvS8lnUx17EQ9e1BYP
+         sbbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CkcirGX3QvjLhz9moY6Imqk+qItJBJo6soSbUqVfWnQ=;
-        b=Q/f9UQOdetOYyhp1rpFL8SEQrLrpnZSN0eGFx8d7IfUaZIBD1ZxpImB8ORbc9oIj++
-         ts7IQAzi/LyGRHoI5qzDd/w816zl0/7y46TeRzvRMp6qT4k8fzYvvgIwU03hJKOILsGc
-         HsXikEb8KNA2UTpZzYvFGc71vzHaAXw7SjMhKWD1SOeQfCy7ZC4q7IF/FaCY0X5bRnpk
-         O/T/7x5gALyxscMzizZy5q21z31r7QEVmJGI9WpNXS8PDNu9C8JLSL9p4dD5Z8Ik32h3
-         MmEM9fAtlgQ4O0+nscQkYn3uU2Qru+B8e2xlBNNPSwWKMAA5XGYuIWYWWOudPKtIMtX7
-         4GtA==
-X-Gm-Message-State: APjAAAViipC1HXeMuqeHqdW1NB1+2pHzqiHOGgvLoAm+KaV9r0vVVgd8
-        0x4DaSPAzC19uAhVniFkEjgih65ftWU=
-X-Google-Smtp-Source: APXvYqyREgv4vGHN0qpoxZgnvPbSHQF4hl4/zB2vk3nwAFQr5ASD4uiHBCK/ox3Af/hHK+UEStkOEA==
-X-Received: by 2002:a2e:731a:: with SMTP id o26mr543653ljc.105.1558430747246;
-        Tue, 21 May 2019 02:25:47 -0700 (PDT)
-Received: from centauri (m83-185-80-163.cust.tele2.se. [83.185.80.163])
-        by smtp.gmail.com with ESMTPSA id i1sm38409lfc.86.2019.05.21.02.25.46
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 21 May 2019 02:25:46 -0700 (PDT)
-Date:   Tue, 21 May 2019 11:25:44 +0200
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Stop using legacy clock names
-Message-ID: <20190521092544.GB22910@centauri>
-References: <20190503232442.1530-1-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5Xy6KpBMf4VElfSxI8JZgNkIn+5swVz4A7VXhYDp2D4=;
+        b=gKnrlz4Qxd1XpHUDJkBxO+/wCPWLyzrn9DSkqZUPSfz4LQbO/xEDYTJHYcPRGbPG98
+         PT523O8w2vzBVMS3F2wQzZGH+GUEJnBit8ugg4jnffuWa2U4oFWV57Ywt+i28jdUGwy5
+         ZY3N//4r/45Pf0Q1gRDMtVyMlvFVBthPsrdrEOOu0M3/Y9m9/5v8hSqj4oWdBr1UcryV
+         nZRx7nnVhp0RMwBeLbCAHDLSYRVV7M71GPa8Gex94SlYpQDAQ/9dE2mpTydZpEaQgikX
+         vlK0OMxR5iNlq+yA/KBCevRnDrJm4UMqa7W3PbqSu0hHzqAIxRCTzuSwNj0/7o72k6pB
+         4fOw==
+X-Gm-Message-State: APjAAAVVxzD5vZiJ1qlAb5zkFUG+JR4Sf147wLAET1JvDznXaTjNexgq
+        qDQp6WhJF4yqk0S2ivkCTQDmHg==
+X-Google-Smtp-Source: APXvYqz2W9cUR77wBpFQtxU/OEIMqFs1dqOYZh2m5bXIMOiU7pDh+NaARFsIcqKmxsWQZ0msZguFsQ==
+X-Received: by 2002:a2e:60a:: with SMTP id 10mr3542802ljg.126.1558430852654;
+        Tue, 21 May 2019 02:27:32 -0700 (PDT)
+Received: from [192.168.0.199] ([31.173.81.21])
+        by smtp.gmail.com with ESMTPSA id u128sm1039382lja.23.2019.05.21.02.27.30
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 21 May 2019 02:27:31 -0700 (PDT)
+Subject: Re: [PATCH v5 2/6] net: stmmac: sun8i: force select external PHY when
+ no internal one
+To:     megous@megous.com, linux-sunxi@googlegroups.com,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Icenowy Zheng <icenowy@aosc.io>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20190520235009.16734-1-megous@megous.com>
+ <20190520235009.16734-3-megous@megous.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Message-ID: <4e031eeb-2819-a97f-73bf-af84b04aa7b2@cogentembedded.com>
+Date:   Tue, 21 May 2019 12:27:24 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190503232442.1530-1-bjorn.andersson@linaro.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <20190520235009.16734-3-megous@megous.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 03, 2019 at 04:24:42PM -0700, Bjorn Andersson wrote:
-> MDSS and its friends complain about the DTS is using legacy clock names,
-> update these to silence the warnings.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 26 +++++++++++++-------------
->  1 file changed, 13 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index a988edabe474..3d861f1d836c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -1678,7 +1678,7 @@
->  			#interrupt-cells = <1>;
->  
->  			clocks = <&mmcc MDSS_AHB_CLK>;
-> -			clock-names = "iface_clk";
-> +			clock-names = "iface";
->  
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> @@ -1697,11 +1697,11 @@
->  					 <&mmcc MDSS_MDP_CLK>,
->  					 <&mmcc SMMU_MDP_AXI_CLK>,
->  					 <&mmcc MDSS_VSYNC_CLK>;
-> -				clock-names = "iface_clk",
-> -					      "bus_clk",
-> -					      "core_clk",
-> -					      "iommu_clk",
-> -					      "vsync_clk";
-> +				clock-names = "iface",
-> +					      "bus",
-> +					      "core",
-> +					      "iommu",
-> +					      "vsync";
->  
->  				iommus = <&mdp_smmu 0>;
->  
-> @@ -1736,11 +1736,11 @@
->  					 <&mmcc MDSS_HDMI_AHB_CLK>,
->  					 <&mmcc MDSS_EXTPCLK_CLK>;
->  				clock-names =
-> -					"mdp_core_clk",
-> -					"iface_clk",
-> -					"core_clk",
-> -					"alt_iface_clk",
-> -					"extp_clk";
-> +					"mdp_core",
-> +					"iface",
-> +					"core",
-> +					"alt_iface",
-> +					"extp";
->  
->  				phys = <&hdmi_phy>;
->  				phy-names = "hdmi_phy";
-> @@ -1777,8 +1777,8 @@
->  
->  				clocks = <&mmcc MDSS_AHB_CLK>,
->  					 <&gcc GCC_HDMI_CLKREF_CLK>;
-> -				clock-names = "iface_clk",
-> -					      "ref_clk";
-> +				clock-names = "iface",
-> +					      "ref";
->  			};
->  		};
->  	};
-> -- 
-> 2.18.0
-> 
+Hello!
 
-Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
+On 21.05.2019 2:50, megous@megous.com wrote:
+
+> From: Icenowy Zheng <icenowy@aosc.io>
+> 
+> The PHY selection bit also exists on SoCs without an internal PHY; if it's
+> set to 1 (internal PHY, default value) then the MAC will not make use of
+> any PHY such SoCs.
+          ^ "on" or "with" missing?
+
+> This problem appears when adapting for H6, which has no real internal PHY
+> (the "internal PHY" on H6 is not on-die, but on a co-packaged AC200 chip,
+> connected via RMII interface at GPIO bank A).
+> 
+> Force the PHY selection bit to 0 when the SOC doesn't have an internal PHY,
+> to address the problem of a wrong default value.
+> 
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
+[...]
+
+MBR, Sergei
