@@ -2,155 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0B62485A
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D79F24869
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:51:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726883AbfEUGrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 02:47:16 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:36363 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726318AbfEUGrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 02:47:16 -0400
-Received: by mail-wm1-f68.google.com with SMTP id j187so1590509wmj.1
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 23:47:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Dtcdsu0fUtok0q96jnMGpWM0fc0NoVZ6NVYcC/TU3EI=;
-        b=KeH2Aa8UGeY3ald/vMtEvRNEPoOZgF6ZxP+nhAsZupukHiOm8t0PXqEZS/WBoeHG/0
-         7vTSdr7BTbtHz2o2Jqvx7wMH1SmkqwzYd5Gdg/w0hH3eL/OlPpzUlozsZ4rN6E/h7sMd
-         bMdDLCwW+K7eQEPgfsVVK5lh7g25N8mZ7wUgg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Dtcdsu0fUtok0q96jnMGpWM0fc0NoVZ6NVYcC/TU3EI=;
-        b=QlaXFuGqJlvEZNXQ7GqnBfFrD33mxFvb7+I7quoE3vQ7AmJO1LD9mfHK9rNTK81Oir
-         k1zK5upjpPkfcWSvX35uf2R5U0E/INUM3YwJvPEOnJSQG10ie1Bp+9mZ6C4B+va6GKZO
-         fHZzSDpRiENEYbNHpv4bmKazHAKMLeUTJ3A5mspcIWOFfVZ7QshznBjiFJ2Dncj62yNh
-         R6ESsrwXO2+afcSVZ1+3ssgLMtlvDlypLz08mmy89+oPJs9CQDMoTG2TzNdlfZVJRhcN
-         kaxsC/MR/INbd1CiRVUAn3BW0VKifQRmR/KNiCmF0zQQSimdJl8pzltiAZVhYPCjp56h
-         6iyA==
-X-Gm-Message-State: APjAAAUfCZw/ZMzdoWI4MP3fqwHUg9HgfsFo84AJKIkdG3VlV3wyDLqt
-        5xGD1Z6If2aLn+ItFjh6HrSm3ziOvPhWNLzbs4B5/A==
-X-Google-Smtp-Source: APXvYqzfKKX+FWJFZbOOtvY+5rX4F4OJzEUSEX+qaWWcrbh0PkdH/kOZOIQuqFdUHG1hJoLc5d9aCY/fi8EkfoSZ+9Y=
-X-Received: by 2002:a1c:7310:: with SMTP id d16mr1907943wmb.65.1558421233660;
- Mon, 20 May 2019 23:47:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190418141658.10868-1-jagan@amarulasolutions.com> <20190418145641.q23tupopz2czjzc5@flea>
-In-Reply-To: <20190418145641.q23tupopz2czjzc5@flea>
-From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date:   Tue, 21 May 2019 08:47:02 +0200
-Message-ID: <CAOf5uwn8CtRs8cx0KC-bxNoRP4TiDrHi8F83QfjsZhueLDYFJg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: a64-oceanic-5205-5inmfd: Enable CAN
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1726193AbfEUGvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 02:51:21 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:46984 "EHLO uho.ysoft.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725920AbfEUGvU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 02:51:20 -0400
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id 01578A0321;
+        Tue, 21 May 2019 08:51:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1558421478;
+        bh=yKuLFO5c0pIATImt1F6opFt/j/RZIkm+UdT3+v1Lrt8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=V+Aq01Nl//1U31g13yaQWyymSWwTobre2xlitCsrsCLZXLyl5vJROlWjekK48eMNw
+         pcOAeytozucET5skYDo8acxUTUsVUsxrtcHbs1k+pxRTopzLHfmg16/y+Wt+9AMhmg
+         ddh3AXsxTAPWVi6wLW/pb+GIU7oT2J8HS+oD3Vz8=
+Subject: Re: [RFC PATCH v2 0/4] Input: mpr121-polled: Add polled driver for
+ MPR121
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
+ <20190521053705.GI183429@dtor-ws>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Message-ID: <ef172b24-cd27-5bb0-d8b1-718f835d0647@ysoft.com>
+Date:   Tue, 21 May 2019 08:51:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
+MIME-Version: 1.0
+In-Reply-To: <20190521053705.GI183429@dtor-ws>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime
+On 21. 05. 19 7:37, Dmitry Torokhov wrote:
+> Hi Michal,
+> 
+> On Fri, May 17, 2019 at 03:12:49PM +0200, Michal Vokáč wrote:
+>> Hi,
+>>
+>> I have to deal with a situation where we have a custom i.MX6 based
+>> platform in production that uses the MPR121 touchkey controller.
+>> Unfortunately the chip is connected using only the I2C interface.
+>> The interrupt line is not used. Back in 2015 (Linux v3.14), my
+>> colleague modded the existing mpr121_touchkey.c driver to use polling
+>> instead of interrupt.
+>>
+>> For quite some time yet I am in a process of updating the product from
+>> the ancient Freescale v3.14 kernel to the latest mainline and pushing
+>> any needed changes upstream. The DT files for our imx6dl-yapp4 platform
+>> already made it into v5.1-rc.
+>>
+>> I rebased and updated our mpr121 patch to the latest mainline.
+>> It is created as a separate driver, similarly to gpio_keys_polled.
+>>
+>> The I2C device is quite susceptible to ESD. An ESD test quite often
+>> causes reset of the chip or some register randomly changes its value.
+>> The [PATCH 3/4] adds a write-through register cache. With the cache
+>> this state can be detected and the device can be re-initialied.
+>>
+>> The main question is: Is there any chance that such a polled driver
+>> could be accepted? Is it correct to implement it as a separate driver
+>> or should it be done as an option in the existing driver? I can not
+>> really imagine how I would do that though..
+>>
+>> There are also certain worries that the MPR121 chip may no longer be
+>> available in nonspecifically distant future. In case of EOL I will need
+>> to add a polled driver for an other touchkey chip. May it be already
+>> in mainline or a completely new one.
+> 
+> I think that my addition of input_polled_dev was ultimately a wrong
+> thing to do. I am looking into enabling polling mode for regular input
+> devices as we then can enable polling mode in existing drivers.
 
-On Thu, Apr 18, 2019 at 4:56 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> On Thu, Apr 18, 2019 at 07:46:58PM +0530, Jagan Teki wrote:
-> > Oceanic 5205 5inMFD has MCP2515 CAN device connected via SPI1.
-> >
-> > - via SPI1 bus
-> > - vdd supplied by 5V supply along with PL2 enable pin
-> > - xceiver supply same as vdd
-> > - can oscillator connected at 20MHz
-> > - PB2 gpio as interrupt pin
-> > - PD6 gpio as RX_BUF1_CAN0
-> > - PD7 gpio as RX_BUF0_CAN0
-> >
-> > Tested-by: Tamas Papp <tamas@osukl.com>
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> >  .../sun50i-a64-oceanic-5205-5inmfd.dts        | 43 +++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-> > index f0cd6587f619..22535a297f51 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-> > @@ -21,6 +21,24 @@
-> >       chosen {
-> >               stdout-path = "serial0:115200n8";
-> >       };
-> > +
-> > +     can_osc: can-osc {
-> > +             compatible = "fixed-clock";
-> > +             #clock-cells = <0>;
-> > +             clock-frequency = <20000000>;
-> > +     };
-> > +
-> > +     reg_can_v5v: reg-can-v5v {
-> > +             compatible = "regulator-fixed";
-> > +             regulator-name = "reg-can-v5v";
-> > +             regulator-min-microvolt = <5000000>;
-> > +             regulator-max-microvolt = <5000000>;
-> > +             regulator-boot-on;
-> > +             enable-active-high;
-> > +             gpio = <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* CAN_3V3_EN: PL2 */
-> > +             status = "okay";
->
-> You don't need the status property here.
->
+OK, that sounds good. Especially when one needs to switch from one chip
+to another that is already in tree, the need for a whole new polling
+driver is eliminated.
 
-Correct, need to be dropped
+I am still quite a novice in all kernel areas as I literally jump from
+one subsystem to another to fix issues related to our platform. Anyway,
+do you see any opportunity to help with that work?
 
-> > +     };
-> > +
-> >  };
-> >
-> >  &ehci0 {
-> > @@ -77,6 +95,31 @@
-> >       status = "okay";
-> >  };
-> >
-> > +&pio {
-> > +     can_pins: can-pins {
-> > +             pins = "PD6",                   /* RX_BUF1_CAN0 */
-> > +                    "PD7";                   /* RX_BUF0_CAN0 */
-> > +             function = "gpio_in";
-> > +     };
-> > +};
->
-> That isn't needed. What are they used for, you're not tying them to
-> anything?
+> As far as gpio-keys vs gpio-key-polled, I feel that the capabilities of
+> polling driver is sufficiently different from interrupt-driven one, so
+> we will likely keep them separate.
 
-Mux of their function is correct. They are connected in the schematics
-but not used right now.
-I can garantee that kernel wlll always configurred in the right way
-and if I want I can export in userspace
-for debug purpose
+OK, understand.
 
-Michael
-
-
->
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
-
-
---
-| Michael Nazzareno Trimarchi                     Amarula Solutions BV |
-| COO  -  Founder                                      Cruquiuskade 47 |
-| +31(0)851119172                                 Amsterdam 1018 AM NL |
-|                  [`as] http://www.amarulasolutions.com               |
+Thank you,
+Michal
