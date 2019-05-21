@@ -2,112 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B188D24665
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 05:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F912467A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 05:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726338AbfEUDkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 May 2019 23:40:19 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:19944 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726335AbfEUDkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 23:40:19 -0400
-X-UUID: 33c3fde398294b73ab9909cf30ce4232-20190521
-X-UUID: 33c3fde398294b73ab9909cf30ce4232-20190521
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <erin.lo@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 367033608; Tue, 21 May 2019 11:40:14 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 21 May 2019 11:40:12 +0800
-Received: from mtkslt303.mediatek.inc (10.21.14.116) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 21 May 2019 11:40:12 +0800
-From:   Erin Lo <erin.lo@mediatek.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>
-Subject: [PATCH] clk: mediatek: Remove MT8183 unused clock
-Date:   Tue, 21 May 2019 11:40:01 +0800
-Message-ID: <20190521034001.53365-1-erin.lo@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S1727059AbfEUDtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 May 2019 23:49:06 -0400
+Received: from mail-vk1-f194.google.com ([209.85.221.194]:41841 "EHLO
+        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726392AbfEUDtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 May 2019 23:49:06 -0400
+Received: by mail-vk1-f194.google.com with SMTP id l73so4437177vkl.8
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2019 20:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1VJfytKtR9301TV4yIigfBHhzzdmP/kCJaWly5NeECw=;
+        b=Tip/FqOiERotBvWP2/5JdfK5MKgkhbOetw5IpnGG6GB1rCsnDF4eLROn4GeoYTMCSg
+         dEugoOTBsKD2q3zQZ3GPRZMxCRNPWm7AA811r/wN7dy3L+ZGu04kVRLLfu3zStBqr+EV
+         HSiqCWR2bmAQpBSUDlTc/RiYF+ctH2wm1aFsi5c3JJ5XrpNTgyjQHbYDOF9r6Va9z6YM
+         N94YjJOiv2urqeIs7ORU0FStujqPeKkLb/QcVTJZgoPj7Z4I8GExrb25Ba0XaA1A0KiE
+         uztqjl3nwthDFJ0BseEzxoCQ7073q0I1Mi7pPu3O6lAb5EdhVPGK+jC/nitcmkHtsqdr
+         j2jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1VJfytKtR9301TV4yIigfBHhzzdmP/kCJaWly5NeECw=;
+        b=XJ+TZInX/3+nsL88gKB/89QueRRot71Xmm4PACK7YRd8jM7yeLFFhVy72lbPcWN2e4
+         Fg4bjFAr6HZNYksNbU4x3Nm3RayBbQxkyGRWNjH/asEv6SYE5pv9l9aHLsgd5IO84pxk
+         e3MY0Trbd/sX1pwgu30zYY6WlbDBoUaw9FEX7H8Nk7bKgFsVjrOhTRWq+A5Pomk6EUrI
+         9gXY8AOdNZymixDYAfr7A3z28p91Rs6Z1d8QFq5GYlLQQcRsc6+cbi+HS7OpG3XnQcKN
+         Mdg+fr4af7NjQyAhIooFEvByskF3vF41cXuwGK1bq61OFl5Iu4UZ8ZtBgDPJdc6YMV3s
+         uhDA==
+X-Gm-Message-State: APjAAAU4275ytB0zff9kx8G5/wBz3nXCh8/RB7jE1z7204mTz3gnv187
+        5DkaM3He8jhBKbDV91sn+AMuRmVB9iLiTWr0ANBz9g==
+X-Google-Smtp-Source: APXvYqwQ65FRNGritwePEx9wWUtaVGZcdGrhdKHmI16kPdoGImAc/AQd+++yJLNFjIZklQ1Umq8LWsXocXHX7KpUscE=
+X-Received: by 2002:a1f:ae4b:: with SMTP id x72mr9339745vke.10.1558410545214;
+ Mon, 20 May 2019 20:49:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 97CAF9D7C80D56F8BE6033CF8E65B654151A3B10C79D90FE75D003E4E7EEA6182000:8
-X-MTK:  N
+References: <1558361478-4381-1-git-send-email-sagar.kadam@sifive.com>
+ <1558361478-4381-2-git-send-email-sagar.kadam@sifive.com> <CAL_Jsq+6uL+wqi=5cp1X9JdBfmLDzGz5UjwfqKCCESyhsemnhQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+6uL+wqi=5cp1X9JdBfmLDzGz5UjwfqKCCESyhsemnhQ@mail.gmail.com>
+From:   Sagar Kadam <sagar.kadam@sifive.com>
+Date:   Tue, 21 May 2019 09:18:53 +0530
+Message-ID: <CAARK3HkkjOzubSQzHc5aMy8yyZaBwn6AuFJ-yMLdQDK6Vh7vdw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: i2c: extend existing opencore bindings.
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+        peter@korsgaard.com, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@sifive.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove MT8183 sspm clock
+Hi Rob,
 
-Signed-off-by: Erin Lo <erin.lo@mediatek.com>
----
-This clock should only be set in secure world.
----
- drivers/clk/mediatek/clk-mt8183.c | 19 -------------------
- 1 file changed, 19 deletions(-)
 
-diff --git a/drivers/clk/mediatek/clk-mt8183.c b/drivers/clk/mediatek/clk-mt8183.c
-index 9d8651033ae9..1aa5f4059251 100644
---- a/drivers/clk/mediatek/clk-mt8183.c
-+++ b/drivers/clk/mediatek/clk-mt8183.c
-@@ -395,14 +395,6 @@ static const char * const atb_parents[] = {
- 	"syspll_d5"
- };
- 
--static const char * const sspm_parents[] = {
--	"clk26m",
--	"univpll_d2_d4",
--	"syspll_d2_d2",
--	"univpll_d2_d2",
--	"syspll_d3"
--};
--
- static const char * const dpi0_parents[] = {
- 	"clk26m",
- 	"tvdpll_d2",
-@@ -606,9 +598,6 @@ static const struct mtk_mux top_muxes[] = {
- 	MUX_GATE_CLR_SET_UPD(CLK_TOP_MUX_ATB, "atb_sel",
- 		atb_parents, 0xa0,
- 		0xa4, 0xa8, 0, 2, 7, 0x004, 24),
--	MUX_GATE_CLR_SET_UPD(CLK_TOP_MUX_SSPM, "sspm_sel",
--		sspm_parents, 0xa0,
--		0xa4, 0xa8, 8, 3, 15, 0x004, 25),
- 	MUX_GATE_CLR_SET_UPD(CLK_TOP_MUX_DPI0, "dpi0_sel",
- 		dpi0_parents, 0xa0,
- 		0xa4, 0xa8, 16, 4, 23, 0x004, 26),
-@@ -947,12 +936,8 @@ static const struct mtk_gate infra_clks[] = {
- 		"fufs_sel", 13),
- 	GATE_INFRA2(CLK_INFRA_MD32_BCLK, "infra_md32_bclk",
- 		"axi_sel", 14),
--	GATE_INFRA2(CLK_INFRA_SSPM, "infra_sspm",
--		"sspm_sel", 15),
- 	GATE_INFRA2(CLK_INFRA_UNIPRO_MBIST, "infra_unipro_mbist",
- 		"axi_sel", 16),
--	GATE_INFRA2(CLK_INFRA_SSPM_BUS_HCLK, "infra_sspm_bus_hclk",
--		"axi_sel", 17),
- 	GATE_INFRA2(CLK_INFRA_I2C5, "infra_i2c5",
- 		"i2c_sel", 18),
- 	GATE_INFRA2(CLK_INFRA_I2C5_ARBITER, "infra_i2c5_arbiter",
-@@ -986,10 +971,6 @@ static const struct mtk_gate infra_clks[] = {
- 		"msdc50_0_sel", 1),
- 	GATE_INFRA3(CLK_INFRA_MSDC2_SELF, "infra_msdc2_self",
- 		"msdc50_0_sel", 2),
--	GATE_INFRA3(CLK_INFRA_SSPM_26M_SELF, "infra_sspm_26m_self",
--		"f_f26m_ck", 3),
--	GATE_INFRA3(CLK_INFRA_SSPM_32K_SELF, "infra_sspm_32k_self",
--		"f_f26m_ck", 4),
- 	GATE_INFRA3(CLK_INFRA_UFS_AXI, "infra_ufs_axi",
- 		"axi_sel", 5),
- 	GATE_INFRA3(CLK_INFRA_I2C6, "infra_i2c6",
--- 
-2.18.0
+On Mon, May 20, 2019 at 8:07 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, May 20, 2019 at 9:12 AM Sagar Shrikant Kadam
+> <sagar.kadam@sifive.com> wrote:
+> >
+> > Add FU540-C000 specific device tree bindings to already
+> > available i2-ocores file. This device is available on
+> > HiFive Unleashed Rev A00 board. Move interrupt and interrupt
+> > parents under optional property list as these can be optional.
+> >
+> > The FU540-C000 SoC from sifive, has an Opencore's I2C block
+> > reimplementation.
+> >
+> > The DT compatibility string for this IP is present in HDL and available at.
+> > https://github.com/sifive/sifive-blocks/blob/master/src/main/scala/devices/i2c/I2C.scala#L73
+> >
+> > Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+> > ---
+> >  Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+> > index 17bef9a..b73960e 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+> > @@ -2,8 +2,11 @@ Device tree configuration for i2c-ocores
+> >
+> >  Required properties:
+> >  - compatible      : "opencores,i2c-ocores" or "aeroflexgaisler,i2cmst"
+> > +                    "sifive,fu540-c000-i2c" or "sifive,i2c0".
+>
+> It's not an OR because both are required. Please reformat to 1 valid
+> combination per line.
+Yes, will rectify it in V6.
 
+> > +                   for Opencore based I2C IP block reimplemented in
+> > +                   FU540-C000 SoC.Please refer sifive-blocks-ip-versioning.txt
+> > +                   for additional details.
+> >  - reg             : bus address start and address range size of device
+> > -- interrupts      : interrupt number
+> >  - clocks          : handle to the controller clock; see the note below.
+> >                      Mutually exclusive with opencores,ip-clock-frequency
+> >  - opencores,ip-clock-frequency: frequency of the controller clock in Hz;
+> > @@ -12,6 +15,8 @@ Required properties:
+> >  - #size-cells     : should be <0>
+> >
+> >  Optional properties:
+> > +- interrupt-parent: handle to interrupt controller.
+>
+> Drop this. interrupt-parent is implied.
+>
+Sure, will exclude it in v6.
+
+> > +- interrupts      : interrupt number.
+> >  - clock-frequency : frequency of bus clock in Hz; see the note below.
+> >                      Defaults to 100 KHz when the property is not specified
+> >  - reg-shift       : device register offsets are shifted by this value
+> > --
+> > 1.9.1
+> >
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+Thanks,
+Sagar
