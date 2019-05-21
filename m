@@ -2,95 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A155D24B29
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6F8724B3A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726296AbfEUJJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 05:09:53 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:5894 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726289AbfEUJJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 05:09:53 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4L97hoe017768;
-        Tue, 21 May 2019 11:09:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
- : from : message-id : date : mime-version : in-reply-to : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=lanOOaJJhF0ZBJh2G1RjFUX4Qzrh7K+TLtAOvfetblM=;
- b=bRe5RYF7j5mqLmuY9w5O4gw2YTeWuQsf0Yas7I8oqr5kIb/Afh3Tb2KdNndOsQ0c9jZ6
- YxvrwN0FJ1LquPYJZZA8u4T79Y0uMMv0Ec8dehaccLUDmAgXIvy0n5bMwZ/A+sRIUxjo
- u9pLG3l9p3NRyxT16VfNwX5vtUxC4vYp0cgBgqKZClFi57CeufA3uwPWMw7FcyWqJgaw
- BpLteRODvp+WvY1T3GvDdAX0DEsEA2SF7Tr7NHjI/nPqb5KMCbhYjUW0L6ES/uANOQjr
- vfH7tCyzqNN74F7vA/Jugg6Ko1ytcrbIf1YnUpnLqauMurEEAv0lmiWtBzngS1LN9iJG hg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2sj7740qgk-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Tue, 21 May 2019 11:09:38 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 44ADA38;
-        Tue, 21 May 2019 09:09:37 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CFB4824D3;
-        Tue, 21 May 2019 09:09:36 +0000 (GMT)
-Received: from [10.48.0.204] (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 21 May
- 2019 11:09:36 +0200
-Subject: Re: [RESEND v2 0/3] Add Vivante GPU support on STM32MP157c
-To:     Pierre-Yves MORDRET <pierre-yves.mordret@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        id S1726417AbfEUJKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 05:10:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53702 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726296AbfEUJKz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 05:10:55 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 17195216B7;
+        Tue, 21 May 2019 09:10:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558429854;
+        bh=C7Rp8wqYBXqZ6fFn2WYWodrvowsp7TonAqKyhtYkULc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PewuD7bWJaE45Jz4ZUpufsZWbKYpS40BRFVcsxx40r10NLzxS//kXp/Pb7F9zd+Z6
+         2KLO6/ScDrLRVLPz4SxG3bYO5lu5U6sz2NImkfjpdf74Wj5CFfCvIFt8EnUq635lcv
+         JAmx7r1jQHBrZ3kk1BcfJY8rlYEZLjbpNAeBelBI=
+Date:   Tue, 21 May 2019 17:09:57 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Anson Huang <anson.huang@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1558082528-12889-1-git-send-email-pierre-yves.mordret@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <c565693a-a7fe-4361-0e1f-6bf09e2d8b84@st.com>
-Date:   Tue, 21 May 2019 11:09:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH V2] arm64: dts: imx8qxp: Add gpio alias
+Message-ID: <20190521090956.GF15856@dragon>
+References: <1558426311-14082-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <1558082528-12889-1-git-send-email-pierre-yves.mordret@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-21_01:,,
- signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1558426311-14082-1-git-send-email-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre-Yves,
-
-On 5/17/19 10:42 AM, Pierre-Yves MORDRET wrote:
-> Add and enable Vivante GPU on stm32mp157c for ED1, DK1 and DK2 boards.
-> ---
->    Version history:
->      v2:
->         * move GPU reserved memeory out of bottom DDR to let free this area for
->           U-Boot
->      v1:
->         * Initial
-> ---
-> Pierre-Yves MORDRET (3):
->    ARM: dts: stm32: Add Vivante GPU support on STM32MP157c
->    ARM: dts: stm32: enable Vivante GPU support on stm32mp157c-ed1 board
->    ARM: dts: stm32: enable Vivante GPU support on stm32mp157a-dk1 board
+On Tue, May 21, 2019 at 08:17:02AM +0000, Anson Huang wrote:
+> Add i.MX8QXP GPIO alias for kernel GPIO driver usage.
 > 
->   arch/arm/boot/dts/stm32mp157a-dk1.dts | 16 ++++++++++++++++
->   arch/arm/boot/dts/stm32mp157c-ed1.dts | 16 ++++++++++++++++
->   arch/arm/boot/dts/stm32mp157c.dtsi    | 10 ++++++++++
->   3 files changed, 42 insertions(+)
-> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-Series applied on stm32-next.
-
-Thanks
-Alex
+Applied, thanks.
