@@ -2,102 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F068F24B78
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A57A324BCD
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 11:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726766AbfEUJ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 05:27:34 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:34251 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726242AbfEUJ1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:27:34 -0400
-Received: by mail-lj1-f195.google.com with SMTP id j24so15236518ljg.1
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 02:27:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=5Xy6KpBMf4VElfSxI8JZgNkIn+5swVz4A7VXhYDp2D4=;
-        b=gi0FnqEmcboPROS3aUYX2FmzKmldrXp2Xd53Cs+z0s80NF/1tJ+89FLSOmuykkWh0a
-         Bseps+m7BHSnZFk5NVsRLKcGhVs10u9VBXuk7ZFWImQxcj/UfGSJbg6gJGqG3M6Eryu0
-         +6VMdvaQODEdkEjm10eVWCg6HQioXvq/vhckhU8CXA37bZxImLyV9zUqEhECALNCOSWj
-         Io7qmy3Kwb5wIloKJURrXpWb2PPdq2gW5p7a9/ShaO6loZBFBAo1n7iTGu7RKvdGnRAu
-         5KIh2bLGig4OqmPNCI6RFNpRPS27XWQk6PKwqmubBBllN7izvBcvS8lnUx17EQ9e1BYP
-         sbbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=5Xy6KpBMf4VElfSxI8JZgNkIn+5swVz4A7VXhYDp2D4=;
-        b=gKnrlz4Qxd1XpHUDJkBxO+/wCPWLyzrn9DSkqZUPSfz4LQbO/xEDYTJHYcPRGbPG98
-         PT523O8w2vzBVMS3F2wQzZGH+GUEJnBit8ugg4jnffuWa2U4oFWV57Ywt+i28jdUGwy5
-         ZY3N//4r/45Pf0Q1gRDMtVyMlvFVBthPsrdrEOOu0M3/Y9m9/5v8hSqj4oWdBr1UcryV
-         nZRx7nnVhp0RMwBeLbCAHDLSYRVV7M71GPa8Gex94SlYpQDAQ/9dE2mpTydZpEaQgikX
-         vlK0OMxR5iNlq+yA/KBCevRnDrJm4UMqa7W3PbqSu0hHzqAIxRCTzuSwNj0/7o72k6pB
-         4fOw==
-X-Gm-Message-State: APjAAAVVxzD5vZiJ1qlAb5zkFUG+JR4Sf147wLAET1JvDznXaTjNexgq
-        qDQp6WhJF4yqk0S2ivkCTQDmHg==
-X-Google-Smtp-Source: APXvYqz2W9cUR77wBpFQtxU/OEIMqFs1dqOYZh2m5bXIMOiU7pDh+NaARFsIcqKmxsWQZ0msZguFsQ==
-X-Received: by 2002:a2e:60a:: with SMTP id 10mr3542802ljg.126.1558430852654;
-        Tue, 21 May 2019 02:27:32 -0700 (PDT)
-Received: from [192.168.0.199] ([31.173.81.21])
-        by smtp.gmail.com with ESMTPSA id u128sm1039382lja.23.2019.05.21.02.27.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 02:27:31 -0700 (PDT)
-Subject: Re: [PATCH v5 2/6] net: stmmac: sun8i: force select external PHY when
- no internal one
-To:     megous@megous.com, linux-sunxi@googlegroups.com,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Icenowy Zheng <icenowy@aosc.io>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20190520235009.16734-1-megous@megous.com>
- <20190520235009.16734-3-megous@megous.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <4e031eeb-2819-a97f-73bf-af84b04aa7b2@cogentembedded.com>
-Date:   Tue, 21 May 2019 12:27:24 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190520235009.16734-3-megous@megous.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1726259AbfEUJhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 05:37:04 -0400
+Received: from skedge03.snt-world.com ([91.208.41.68]:39980 "EHLO
+        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727015AbfEUJhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 05:37:04 -0400
+X-Greylist: delayed 355 seconds by postgrey-1.27 at vger.kernel.org; Tue, 21 May 2019 05:37:02 EDT
+Received: from sntmail14r.snt-is.com (unknown [10.203.32.184])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by skedge03.snt-world.com (Postfix) with ESMTPS id 67FAE712765;
+        Tue, 21 May 2019 11:31:05 +0200 (CEST)
+Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail14r.snt-is.com
+ (10.203.32.184) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 21 May
+ 2019 11:31:04 +0200
+Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
+ sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
+ 15.01.1713.004; Tue, 21 May 2019 11:31:04 +0200
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Kamal Dasu <kdasu.kdev@gmail.com>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        "Richard Weinberger" <richard@nod.at>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "bcm-kernel-feedback-list@broadcom.com" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        David Woodhouse <dwmw2@infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: brcmnand: Make nand-ecc-strength
+ and nand-ecc-step-size optional
+Thread-Topic: [PATCH v2 1/2] dt-bindings: mtd: brcmnand: Make
+ nand-ecc-strength and nand-ecc-step-size optional
+Thread-Index: AQHVDz8jb5hF1+WcOEmTRsDzDEmg4aZ1L8wA
+Date:   Tue, 21 May 2019 09:31:04 +0000
+Message-ID: <5986da5d-2a61-b98d-9d44-d972a19ab732@kontron.de>
+References: <1558379144-28283-1-git-send-email-kdasu.kdev@gmail.com>
+In-Reply-To: <1558379144-28283-1-git-send-email-kdasu.kdev@gmail.com>
+Accept-Language: de-DE, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.9.193]
+x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B54EE96B077D034D931F5F0990D55015@snt-world.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SnT-MailScanner-Information: Please contact the ISP for more information
+X-SnT-MailScanner-ID: 67FAE712765.AEBDC
+X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
+X-SnT-MailScanner-SpamCheck: 
+X-SnT-MailScanner-From: frieder.schrempf@kontron.de
+X-SnT-MailScanner-To: bcm-kernel-feedback-list@broadcom.com,
+        computersforpeace@gmail.com, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, kdasu.kdev@gmail.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, mark.rutland@arm.com,
+        miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
+        vigneshr@ti.com
+X-Spam-Status: No
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
-
-On 21.05.2019 2:50, megous@megous.com wrote:
-
-> From: Icenowy Zheng <icenowy@aosc.io>
-> 
-> The PHY selection bit also exists on SoCs without an internal PHY; if it's
-> set to 1 (internal PHY, default value) then the MAC will not make use of
-> any PHY such SoCs.
-          ^ "on" or "with" missing?
-
-> This problem appears when adapting for H6, which has no real internal PHY
-> (the "internal PHY" on H6 is not on-die, but on a co-packaged AC200 chip,
-> connected via RMII interface at GPIO bank A).
-> 
-> Force the PHY selection bit to 0 when the SOC doesn't have an internal PHY,
-> to address the problem of a wrong default value.
-> 
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-[...]
-
-MBR, Sergei
+SGkgS2FtYWwsDQoNCk9uIDIwLjA1LjE5IDIxOjA1LCBLYW1hbCBEYXN1IHdyb3RlOg0KPiBuYW5k
+LWVjYy1zdHJlbmd0aCBhbmQgbmFuZC1lY2Mtc3RlcC1zaXplIGNhbiBiZSBtYWRlIG9wdGlvbmFs
+IGFzDQo+IGJyY21uYW5kIGRyaXZlciBjYW4gc3VwcG9ydCB1c2luZyByYXcgTkFORCBsYXllciBk
+ZXRlY3RlZCB2YWx1ZXMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBLYW1hbCBEYXN1IDxrZGFzdS5r
+ZGV2QGdtYWlsLmNvbT4NCj4gLS0tDQo+ICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL210ZC9icmNtLGJyY21uYW5kLnR4dCB8IDQgKystLQ0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAy
+IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9icmNtLGJyY21uYW5kLnR4dCBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvYnJjbSxicmNtbmFuZC50eHQNCj4gaW5k
+ZXggYmNkYTFkZi4uMjlmZWFiYSAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL210ZC9icmNtLGJyY21uYW5kLnR4dA0KPiArKysgYi9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvbXRkL2JyY20sYnJjbW5hbmQudHh0DQo+IEBAIC0xMDEsMTAg
+KzEwMSwxMCBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIG51bWJlciAoZS5nLiwgMCwgMSwgMiwgZXRjLikNCj4gICAtICNhZGRyZXNzLWNl
+bGxzICAgICAgICAgICAgOiBzZWUgcGFydGl0aW9uLnR4dA0KPiAgIC0gI3NpemUtY2VsbHMgICAg
+ICAgICAgICAgICA6IHNlZSBwYXJ0aXRpb24udHh0DQo+IC0tIG5hbmQtZWNjLXN0cmVuZ3RoICAg
+ICAgICAgOiBzZWUgbmFuZC50eHQNCj4gLS0gbmFuZC1lY2Mtc3RlcC1zaXplICAgICAgICA6IG11
+c3QgYmUgNTEyIG9yIDEwMjQuIFNlZSBuYW5kLnR4dA0KPiAgIA0KPiAgIE9wdGlvbmFsIHByb3Bl
+cnRpZXM6DQo+ICstIG5hbmQtZWNjLXN0cmVuZ3RoICAgICAgICAgOiBzZWUgbmFuZC50eHQNCj4g
+Ky0gbmFuZC1lY2Mtc3RlcC1zaXplICAgICAgICA6IG11c3QgYmUgNTEyIG9yIDEwMjQuIFNlZSBu
+YW5kLnR4dA0KPiAgIC0gbmFuZC1vbi1mbGFzaC1iYnQgICAgICAgICA6IGJvb2xlYW4sIHRvIGVu
+YWJsZSB0aGUgb24tZmxhc2ggQkJUIGZvciB0aGlzDQo+ICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgY2hpcC1zZWxlY3QuIFNlZSBuYW5kLnR4dA0KPiAgIC0gYnJjbSxuYW5kLW9vYi1z
+ZWN0b3Itc2l6ZSA6IGludGVnZXIsIHRvIGRlbm90ZSB0aGUgc3BhcmUgYXJlYSBzZWN0b3Igc2l6
+ZQ0KDQpJIHRoaW5rIHlvdSBhbHNvIG5lZWQgdG8gY2hhbmdlIGFsbCByZWZlcmVuY2VzIHRvIG5h
+bmQudHh0LiBUaGlzIGZpbGUgDQp3YXMgcmVjZW50bHkgbW92ZWQgdG8gbmFuZC1jb250cm9sbGVy
+LnlhbWwuDQoNClJlZ2FyZHMsDQpGcmllZGVy
