@@ -2,60 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB4F92480E
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC8C24844
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 08:44:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726252AbfEUG3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 02:29:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55458 "EHLO mail.kernel.org"
+        id S1726740AbfEUGoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 02:44:01 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:43554 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726193AbfEUG3O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 02:29:14 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AC7B8217D8;
-        Tue, 21 May 2019 06:29:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558420154;
-        bh=bN37WpgUZd6TY579JnL+mvLtP9wubXMAhz5jf7nWpRo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WqkXl/djcwAkRr+JrG4uDcfEphZStfHScyT0pZzJZpJ5EKWYh1uejyuKH9N/6ANCJ
-         ylSAc0/7CeY4BABS5i52904oi1dgWmm54U+LFtFL4sAgKzeUideHAyqT2Nw+oahAxw
-         O1AeKxFnZeiWyhADcJr708rtrKleL+KEASpfzFis=
-Date:   Tue, 21 May 2019 08:29:11 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Weitao Hou <houweitaoo@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] usb: fix typos in code comments
-Message-ID: <20190521062911.GA5791@kroah.com>
-References: <20190519035542.22094-1-houweitaoo@gmail.com>
+        id S1726247AbfEUGoB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 02:44:01 -0400
+Received: from [172.27.227.142] (unknown [185.69.244.31])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id C4E31C59C4;
+        Tue, 21 May 2019 06:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1558421037; bh=dvaJRPAFRepM6HgXr2hIRVw7xqblQwDjcz3JJFlmUQ8=;
+        h=Date:In-Reply-To:References:Subject:To:CC:From;
+        b=HCR66knYPdrhHpKFMowayhtCwu0h0E7c81aKIrfEcX5IFfDcF0wdgv5h5wxTmIhKh
+         rSeWV2vvL7N/yrBvMF7ztJaMpw0tzAbsWKLDTKwX0uZAe0JQ/Edg1ww5BeXGCz/bz4
+         hgr8yLLrutP/uoHkbey6T/Xku++ah100IHnk+4sA=
+Date:   Tue, 21 May 2019 08:43:45 +0200
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20190520110742.ykgxwaabzzwovgpl@flea>
+References: <20190518170929.24789-1-luca@z3ntu.xyz> <20190520110742.ykgxwaabzzwovgpl@flea>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190519035542.22094-1-houweitaoo@gmail.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Autocrypt: addr=luca@z3ntu.xyz; keydata=
+ mQINBFgc0/QBEACzBE9TBfe+O2TARphhmhVgMd2zo3lkvjWdohb9mg9+NvUq7swQR2l8davgwaTN
+ VwDUA9jdzfjp4GShf0VFnqqFGouEc3OMeuHFdtjG4RoYGW+XvEoAcTWgY6glANmMZMi33D+2wnQQ
+ Qziie3LMTQ7Tlpk8at8Ck4ShmmGTmek9LNFq1eHs3IHK5eH0fDA/rYvPxFMmwbHRDjdwtXjZlXBC
+ nxEXK8CJkNG58G+RbtPU0I8Iu02TDOkr9x6KwLT1lJmq03wCkuQEXrDAzo6kkeAMhzWBtBtxTB1M
+ byOZqNlbzEtxOTK9iA74U6POyN//876ESQ87LicFS4mgoyHL0Vt7ro9CSH7Imzv96Ae8HDZqIcBy
+ Bn9YMBswjy4JOsC9JP/oDhr71y40nnrVvgx4ZesJM0PL9J1JYQWJQ22GoinnDwSB11Re51OYsK+l
+ xEqph38N+AjcNYm+l85O/l+BkkULC+0kHWG6wQCv67KyeYCJJhNqJucXj2gXXaKyv2ltWPwHgK6w
+ OAtN9QbimcYV2PUgfx6hl5r7buwc3tefp9ccmtoLq74mgrKiLurHqa4pKCa1uqfhBEN5/Os5tMrX
+ IGa2sRvKHK0Pn7iyJQyuclyOp4r9W+QUw2DENm4n6ovkl7rfriL6ibBgVLcnexdG/8LZRaWFV96G
+ YY3VCcRlz8SCwQARAQABtBtMdWNhIFdlaXNzIDxsdWNhQHozbnR1Lnh5ej6JAj0EEwEIACcFAlgc
+ 0/QCGy8FCQWjmoAFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQ+vac9s0tAs3X3BAAo6F00XKQ
+ LAvQl/nTK4+2EHjtFUF0OnUK0rIN1b1l5WMVHFF8njcVqG1Qc7CKyYCS6mN6bbYkXsj3TXy8Vx9R
+ P4ek8UoxEnVXYeayF5D+ke7yCmOJjSEBZVh/meA2jYOnPXEXR7bTT+PNaCTIgS6MucYous3ngiIL
+ kDT9Q09ESjs9xhoqbpBr19fqE9HpuWCaVGi5tt8EQAVq32kfq9DFqanjuaz18/I3VV1fMKWoNZBu
+ qJKveh9oDmkKe32PTVV8ak1tpWYNRhoIL8jZgJkzG8cMPdi6fi8xy7wIaT49py+0rndGF7i79nAx
+ Sq3vlt6dMgcOlMYTZMw1O8Y28eiHm5DCzyPR5FkQvQ1xY2TPTZh9H4zukBLBkctDtccosGwZt3tb
+ uoQ2Nelm12ldf4kdbGmWdSIEgTWLJb8LfiNe4PIPnWU2Ho0EbHs2RBa81Y83NEZpXYWpYLwUafkE
+ 5GG4E6tG1aUU2g/HSf+3BaHYVZ7vv2Zc7DmCkeYS5VyzZvajmVWj4pjPY5RrNbDKWOIIOc5ow+5e
+ eLFX6wHWFlgM3zPr4IU/XqKhDUydx8pyRHEfDUTRJHokP4Ga3DyvfqtfF8zQQwIGbc+D8Tdt9JbM
+ Op7ZhZwmE0J3q5DUuYVXFO9kWT5Rf2QvNNmbBNQnpXXUirwztbKA6BWoygQDVvVgdrQ=
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Add lradc node
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+CC:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/Allwinner sunXi SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+From:   luca@z3ntu.xyz
+Message-ID: <9B2B83DF-2C91-4DDA-B707-664A792A8BCF@z3ntu.xyz>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 19, 2019 at 11:55:42AM +0800, Weitao Hou wrote:
-> fix lenght to length
-> 
-> Signed-off-by: Weitao Hou <houweitaoo@gmail.com>
-> ---
->  Documentation/devicetree/bindings/usb/s3c2410-usb.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On May 20, 2019 1:07:42 PM GMT+02:00, Maxime Ripard <maxime=2Eripard@bootli=
+n=2Ecom> wrote:
+>Hi!
+>
+>On Sat, May 18, 2019 at 07:09:30PM +0200, Luca Weiss wrote:
+>> Add a node describing the KEYADC on the A64=2E
+>>
+>> Signed-off-by: Luca Weiss <luca@z3ntu=2Exyz>
+>> ---
+>>  arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>b/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> index 7734f70e1057=2E=2Edc1bf8c1afb5 100644
+>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64=2Edtsi
+>> @@ -704,6 +704,13 @@
+>>  			status =3D "disabled";
+>>  		};
+>>
+>> +		lradc: lradc@1c21800 {
+>> +			compatible =3D "allwinner,sun4i-a10-lradc-keys";
+>> +			reg =3D <0x01c21800 0x100>;
+>> +			interrupts =3D <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+>> +			status =3D "disabled";
+>> +		};
+>> +
+>
+>The controller is pretty different on the A64 compared to the A10=2E The
+>A10 has two channels for example, while the A64 has only one=2E
+>
+>It looks like the one in the A83t though, so you can use that
+>compatible instead=2E
+>
+>Maxime
+>
+>--
+>Maxime Ripard, Bootlin
+>Embedded Linux and Kernel engineering
+>https://bootlin=2Ecom
 
-You sent 2 different patches that do different things, yet have
-identical subject lines :(
+Hi,
+Looking at the patch for the A83t, the only difference is that it uses a 3=
+/4 instead of a 2/3 voltage divider, nothing is changed with the channels=
+=2E But I'm also not sure which one (or a different one) is used from looki=
+ng at the "A64 User Manual"=2E
 
-Please fix that up and resend these as a patch series, with unique
-subjects.
-
-thanks,
-
-greg k-h
+Thanks, Luca
