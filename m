@@ -2,63 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2699249BD
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 10:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 850A3249C1
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 10:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726204AbfEUIGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 04:06:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60668 "EHLO mail.kernel.org"
+        id S1726227AbfEUIHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 04:07:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32988 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726138AbfEUIGh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 04:06:37 -0400
+        id S1726201AbfEUIHq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 04:07:46 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DE0E02173C;
-        Tue, 21 May 2019 08:06:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BD7C42173E;
+        Tue, 21 May 2019 08:07:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558425996;
-        bh=MQ3McYQXBfnnitV5UugimIm9+g/BgiQEMZ2KBhgW8k4=;
+        s=default; t=1558426065;
+        bh=cXDVFSlb57fPfk0PC+Emw8wXNYseTi94AoTHkoGNkfM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rtjVCR1QXT45KERGeG+d2YG5BbJgTSTUpxDwHUPhnNHdAjoi7Nc0/Ez18NF+f2riA
-         96qPsj4+Sacz1uw8zytBRs2JY+y52BmZkyajF77/uffgxEQf0+I/4yYPhrk/SECY4Z
-         D2UVmIStfK5UzXgmyMRUmpiaF8ve5nBeZFpsm5Zo=
-Date:   Tue, 21 May 2019 16:05:36 +0800
+        b=DXoQ94HdhRBUrmRldOQZnx18GE/O5x95W8s7rh/tU6K00RhOK1mt14ZuKqYUZNDTv
+         tw5Z1Wd/A67dDXLDogh4dq+2jJ4ahWN1cbX/dLOS+p+3mBEXZSeYvp+8mTyny6P7i3
+         QXEAmDMA/B7WRwhtQ18Kw2kwHC0++6GQ4/wFjKP8=
+Date:   Tue, 21 May 2019 16:06:48 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
+To:     Anson Huang <anson.huang@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
         "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 5/5] arm64: defconfig: ARM_IMX_CPUFREQ_DT=m
-Message-ID: <20190521080535.GA15856@dragon>
-References: <cover.1557742902.git.leonard.crestez@nxp.com>
- <675eb0dd54855126ea6f70804c84372d386878bb.1557742902.git.leonard.crestez@nxp.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mq: Add gpio alias
+Message-ID: <20190521080647.GB15856@dragon>
+References: <1557804533-18194-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <675eb0dd54855126ea6f70804c84372d386878bb.1557742902.git.leonard.crestez@nxp.com>
+In-Reply-To: <1557804533-18194-1-git-send-email-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 11:01:44AM +0000, Leonard Crestez wrote:
-> For imx8m we need a separate small driver to read "speed grading"
-> information from fuses and determine which OPPs are supported.
+On Tue, May 14, 2019 at 03:33:56AM +0000, Anson Huang wrote:
+> Add i.MX8MQ GPIO alias for kernel GPIO driver usage.
 > 
-> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 6d635ba..df33672 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -30,6 +30,11 @@
+>  		spi0 = &ecspi1;
+>  		spi1 = &ecspi2;
+>  		spi2 = &ecspi3;
+> +		gpio0 = &gpio1;
 
-Applied, thanks.
+Please keep the list alphabetically sorted.
+
+Shawn
+
+> +		gpio1 = &gpio2;
+> +		gpio2 = &gpio3;
+> +		gpio3 = &gpio4;
+> +		gpio4 = &gpio5;
+>  	};
+>  
+>  	ckil: clock-ckil {
+> -- 
+> 2.7.4
+> 
