@@ -2,188 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA83254FE
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9355E2558B
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 18:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728968AbfEUQLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 12:11:22 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:40928 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728994AbfEUQLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:11:17 -0400
-Received: by mail-wr1-f68.google.com with SMTP id f10so3873742wre.7;
-        Tue, 21 May 2019 09:11:15 -0700 (PDT)
+        id S1727965AbfEUQ13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 12:27:29 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:38922 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727932AbfEUQ13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 12:27:29 -0400
+Received: by mail-pf1-f196.google.com with SMTP id z26so9327617pfg.6;
+        Tue, 21 May 2019 09:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ip1Ip/bBaI3oGl08+c/jPOf0AEvNzRwc1Jgyw/gygxk=;
-        b=h+NTyOQl+TEZLatjt6/a4g2R3AMJacJWXFbf2ZmYrIGSFQCJi4uPljnwGSwgmmGSXh
-         q+dpQUWud2oF76sb6BcbO5jnr/hX3M+t2lyopkcBTBo4zTkdZy1e+2qt+fzrMJ9zTofB
-         aNReptxCaUUZiuLivNOiJlF6U2eWDnpacZ+APXCdXzFQcfHNVF+QQaHhauHH53xiECI6
-         mhH/uPN2t54FSMwNEL+0ki3T1hOCvQkochF3w7oMvtDXDvpCJnwbboa0KJBiJCrTSAA9
-         PLx83f6WUo1tjNIJjNkeNLzwfPMLQADkQqUiUP3Ga5iaUjDId+FULk5SV1wSczYgTf5p
-         acVw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1KdNzkB02hCw0gTx5J78D1RziQV2In86W7l7xwN50vM=;
+        b=NRAnCoY75887mJx98L+K97F0yu4Uh44Geb3eNn5ftcmyFTGAopnSnujnFd53azc5b7
+         XuKNkE0+0yTxxYDt3e1tIpVX2eYlWMNRoDF+F6sSDvPsDAS3i+oFWyf2ShYi8zZ221DE
+         r1HlFX+vnGBO1uYT0UYk/wWI30E7DeJte/YADAA3Uv9mdnQqKBb8mK/cRrblUwesRVrp
+         A2Kf1w+K9kz5v2kwPKrBWWTRMGrQOayyOjQeJzSLfzhMvpqoWDrnLc2qq09PCObNS8PP
+         rX4pg4AAXXl1YTAZy2r5D/+PDj85jm2qF/YBgbAfQG67l2jJwuFrePCSYAvyvI2CLzxm
+         55Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ip1Ip/bBaI3oGl08+c/jPOf0AEvNzRwc1Jgyw/gygxk=;
-        b=DRmjwgixnJKCqLUsslvuNJavLbI6N7xowuTGlS6CYhDsl8VjJ2KeS15wDEADRL5sZV
-         7s5k9fNA2NsYCIlhNRMpsWuRz7UYuwNcwYmaaZAdpkJFczcMs9kfPJSVid5thg/trQpq
-         Fb0BY2Vq6bl7TyoTturzuJrLqx6tzeYCwBtQiO1OAw3a12O2rZ85D1NB3SnkXWl5KDpJ
-         sjA4MGX5gZ8YKGdn1GB8uVP2DjugiygUeOEsqOI+YPTM81puLKybi2cQsf812l2Y0ghT
-         RUrVu30KAHyYeDIyDDswhezd7dOfoCCAWxM03OkmSOc9/cTyZgBeruXnb/b/sp0000FX
-         CIrA==
-X-Gm-Message-State: APjAAAX9NLC+v3mgXC4qUW5ig6QaCZcYyQmqp1Y7jzROkW8Lsko3KAay
-        uudUyH/XZs7nD75fiR+ENAk=
-X-Google-Smtp-Source: APXvYqy20A9dEOCcgXXitDLonYuo4h0Gko7h5PXdbB6eJStF5KSNRpJPD3LRRJAFRt/SXZ1+Ym8Efg==
-X-Received: by 2002:adf:e80a:: with SMTP id o10mr22701577wrm.79.1558455075148;
-        Tue, 21 May 2019 09:11:15 -0700 (PDT)
-Received: from localhost.localdomain (18.189-60-37.rdns.acropolistelecom.net. [37.60.189.18])
-        by smtp.gmail.com with ESMTPSA id n63sm3891094wmn.38.2019.05.21.09.11.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 09:11:14 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1KdNzkB02hCw0gTx5J78D1RziQV2In86W7l7xwN50vM=;
+        b=tWmOI2wNrkY3W4C9kVjn+8EnCnZ50QYFSLsLhtDNii0QvcpssJ/CKZwKnsds8PmdDr
+         OoySG35VZ4LjUB39MxaXbZjSkpZBWh0qB3tATWZemoVHPJr5LCeVAHwlTaU+Sys06eM6
+         CZkPi7/sjneu4/R+NFsz2zBQCkcUHNLXiajce71YgdjaqM5zEuICFMR9LskkBpSFrLIt
+         vX8N8rjSmcrckpZy/EwcDn84jYjhKYAO5p1+nO+OOu8a2hHAixnO8I/Z4RoCXxo0RRqa
+         N3uGGiLSy2MvphThWlsqrH2FiHgGvpMCzKykd1C2MT/Rx62ttp7HsRLvlpiI9ELiz3GJ
+         NxTw==
+X-Gm-Message-State: APjAAAUnCgAb3ZpxHzgUpIErtk42GBma15CJjdM0/KK6DiZR4awVkq1w
+        JFtbcsNg9fdYjsEwulUl0Zc2LcqvOWytehwYnR8=
+X-Google-Smtp-Source: APXvYqyPJtS767MY11vacdaFoYBFftgMDGiDu3J3VKXwIw6xeQ3Zm9WTOznkcOCWloBqHrIP5niZgHtbNSL4ZE+CK4U=
+X-Received: by 2002:a63:2c14:: with SMTP id s20mr65656635pgs.182.1558456048495;
+ Tue, 21 May 2019 09:27:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
+ <20190521115958.22504-4-masahisa.kojima@linaro.org> <CAKv+Gu8zhymKrbuNo+KU58svKyBO2cyLw-wKcKwgON2sDYBK7A@mail.gmail.com>
+In-Reply-To: <CAKv+Gu8zhymKrbuNo+KU58svKyBO2cyLw-wKcKwgON2sDYBK7A@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 21 May 2019 19:27:17 +0300
+Message-ID: <CAHp75Vdo3io9eDuuSJnt1VcEDSi7+pnQW8V+ter37GwH1be2JQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer platform
+To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Cc:     Masahisa Kojima <masahisa.kojima@linaro.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Trent Piepho <tpiepho@impinj.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Steven Price <steven.price@arm.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v6 6/6] arm64: dts: allwinner: Add mali GPU supply for H6 boards
-Date:   Tue, 21 May 2019 18:11:02 +0200
-Message-Id: <20190521161102.29620-7-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190521161102.29620-1-peron.clem@gmail.com>
-References: <20190521161102.29620-1-peron.clem@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Jaswinder Singh <jaswinder.singh@linaro.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Satoru Okamoto <okamoto.satoru@socionext.com>,
+        Yoshitoyo Osaki <osaki.yoshitoyo@socionext.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable and add supply to the Mali GPU node on all the
-H6 boards.
+On Tue, May 21, 2019 at 4:55 PM Ard Biesheuvel
+<ard.biesheuvel@linaro.org> wrote:
+> On Tue, 21 May 2019 at 13:00, Masahisa Kojima
+> <masahisa.kojima@linaro.org> wrote:
 
-Regarding the datasheet the maximum time for supply to reach
-its voltage is 32ms.
+> > +       ret = clk_prepare_enable(sspi->clk);
+> > +       if (ret)
+> > +               goto put_spi;
+> > +
+>
+> Make this depend on DT probing
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts  | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi   | 6 ++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts    | 6 ++++++
- 4 files changed, 24 insertions(+)
+We may use devm_clk_get_optional() and drop dependencies.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 0dc33c90dd60..fe36c6588d8e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -70,6 +70,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &hdmi {
- 	status = "okay";
- };
-@@ -206,6 +211,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index 17d496990108..ea4866b0fa7a 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -58,6 +58,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-@@ -165,6 +170,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-index 62e27948a3fa..ec770f07aa82 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi
-@@ -55,6 +55,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_cldo1>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-@@ -163,6 +168,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-index 4802902e128f..625a29a25c52 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-@@ -85,6 +85,11 @@
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
- &hdmi {
- 	status = "okay";
- };
-@@ -215,6 +220,7 @@
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
- 				regulator-name = "vdd-gpu";
 -- 
-2.17.1
-
+With Best Regards,
+Andy Shevchenko
