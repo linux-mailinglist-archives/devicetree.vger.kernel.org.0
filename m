@@ -2,100 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22860252B3
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 16:50:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F392725307
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 16:53:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727999AbfEUOuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 10:50:50 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:58885 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727969AbfEUOuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 10:50:50 -0400
-X-Originating-IP: 90.88.22.185
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 033AB60006;
-        Tue, 21 May 2019 14:50:47 +0000 (UTC)
-Date:   Tue, 21 May 2019 16:50:47 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: Convert vendor prefixes to json-schema
-Message-ID: <20190521145047.dyfvrzxviqchmxp2@flea>
-References: <20190510194018.28206-1-robh@kernel.org>
- <20190520131846.tqx7h7sjyw6sgka5@flea>
- <CAL_JsqLbuuO9YHYwTXV5ZEGOjzZHgVsWD=TCYk4cYpm0v1zHkQ@mail.gmail.com>
- <CAL_JsqKAP85+KnQtq-xaOdX-BetB0pA7+LT8vd6w=Yz4VWnQJg@mail.gmail.com>
+        id S1728646AbfEUOvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 10:51:53 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:40542 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728176AbfEUOvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 10:51:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1558450308; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:references; bh=b6cNyZTTMg6XoewfuupHh0Xe//2fA9yI3hOT3hVf6/g=;
+        b=K5Zz3WIVZN/9klmA/YfwJX9tXnR/lB1SGYiASFWOjRpC9BHydEzTeUnFW6CoVGEYWD8atn
+        SMw9BEctrNMjGn3d7SO+MeA06yLEk124HQafjCjdOvFZf1BHd9VRRBSugLJzgQCBx+/she
+        z7DJkJKrgACm1VxMmr3qKxx185k76Zg=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Lee Jones <lee.jones@linaro.org>
+Cc:     Mathieu Malaterre <malat@debian.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-clk@vger.kernel.org, od@zcrc.me
+Subject: Ingenic Timer/Counter Unit (TCU) patchset v12
+Date:   Tue, 21 May 2019 16:51:28 +0200
+Message-Id: <20190521145141.9813-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="chpalzxqydzs6tku"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKAP85+KnQtq-xaOdX-BetB0pA7+LT8vd6w=Yz4VWnQJg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---chpalzxqydzs6tku
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Here's the V12 of my patchset to add support for the Timer/Counter Unit
+(TCU) present on the JZ47xx SoCs from Ingenic.
 
-On Mon, May 20, 2019 at 04:23:20PM -0500, Rob Herring wrote:
-> On Mon, May 20, 2019 at 11:35 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, May 20, 2019 at 8:18 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Fri, May 10, 2019 at 02:40:18PM -0500, Rob Herring wrote:
-> > > > Convert the vendor prefix registry to a schema. This will enable checking
-> > > > that new vendor prefixes are added (in addition to the less than perfect
-> > > > checkpatch.pl check) and will also check against adding other prefixes
-> > > > which are not vendors.
-> > > >
-> > > > Converted vendor-prefixes.txt using the following sed script:
-> > > >
-> > > > sed -e 's/\([a-zA-Z0-9\-]*\)[[:space:]]*\([a-zA-Z0-9].*\)/  "^\1,\.\*\":\n    description: \2/'
-> > > >
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > > ---
-> > > > As vendor prefix updates come in via multiple trees, I plan to merge
-> > > > this before -rc1 to avoid cross tree conflicts.
-> > >
-> > > I just tried this with the 5.2-rc1 release, and this very
-> > > significantly slows down the validation.
-> > >
-> > > With a dtbs_check run on (arm's) sunxi_defconfig, on my core-i5 with 4
-> > > threads, I go from 1.30 minutes to more than 12.
-> >
-> > Indeed. 6 min to 45 min for allmodconfig. However, it's only 5 min to
-> > run checks with only this file. I'd expect a more linear hit. Maybe
-> > we're exceeding some cache size and thrashing.
->
-> Looks like the problem is a cache. The python regex cache. Changing
-> re._MAXCACHE from 512 to 4096 fixes the problem. I can set this in the
-> dtschema lib.
+This patchset is much shorter at only 13 patches vs. 27 patches in V11;
+the remaining patches will be sent in parallel (if applicable) or as a
+follow-up patchset once this one is merged.
 
-Awesome, thanks!
-Maxime
+In V11 the clocksource maintainers weren't happy with the size of the
+ingenic-timer driver, which included clocks and irqchip setup code.
+On the other hand, devicetree maintainers wanted one single node for
+the TCU hardware since it's effectively just one hardware block.
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+In this patchset the functionality is cut in four different drivers:
+a MFD one to provide the regmap, probe the children and which provides
+several API functions; a clocks driver; a irqchip driver; a clocksource
+driver. All these drivers work with the same regmap, have the same
+compatible strings, and will probe _with the same devicetree node_.
 
---chpalzxqydzs6tku
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+-Paul
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOQQRwAKCRDj7w1vZxhR
-xdQuAP439mUERuocEuZCT95DT2OAX3WDau0S9oAgoQyBNYQh4gEAlvtU2tFlk5CI
-wEVaeMJC4qe2gEhqPEta9eBgwK33NQM=
-=JAGU
------END PGP SIGNATURE-----
-
---chpalzxqydzs6tku--
