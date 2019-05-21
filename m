@@ -2,129 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D65257C7
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 20:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA19257CC
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 20:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728175AbfEUSvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 14:51:04 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41260 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727990AbfEUSvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 14:51:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=uyW5JgqktOeQEaUw+A116CMaNFtMso5q/Jn1XmiRdLk=; b=dDdIXaNASaq3WoLuurvMj9md7
-        p/iCtcLueRbPFYhFf0qk0VBRZWlhE5Aqp7tYt6UcvEUf6Tb5msHtjIncicKr2PpEcj4FlFzAv/dwH
-        uyMFgIiKCI/cZQ7iFeglH7xxmiEBlishs+UuXJv/3+LNnC3icSCCPBwRg7RQrMJYcBJCM=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hT9qk-0000WF-5e; Tue, 21 May 2019 18:50:58 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id 8B8F51126D13; Tue, 21 May 2019 19:50:54 +0100 (BST)
-Date:   Tue, 21 May 2019 19:50:54 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     lgirdwood@gmail.com, agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, jcrouse@codeaurora.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Subject: Re: [PATCH 2/3] regulator: qcom_spmi: Add support for PM8005
-Message-ID: <20190521185054.GD16633@sirena.org.uk>
-References: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
- <20190521165315.14379-1-jeffrey.l.hugo@gmail.com>
+        id S1729284AbfEUSw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 14:52:58 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:45706 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727990AbfEUSw5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 14:52:57 -0400
+Received: by mail-pf1-f194.google.com with SMTP id s11so9505164pfm.12;
+        Tue, 21 May 2019 11:52:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=zFfzCQm5vYmPTxj3YDGvmk4x2lGzmz6fEr37wIaaihs=;
+        b=CVfGrzHJDM8iQTQjLbNHqZiW36/MRZKk6uVcUe3qo/5NTRtlVa1VC4tSERh3Jp6KLH
+         IyhfKCdjKsDbdvagRatObBK8n71eBSPyNtsTc9sGnewSKPK0zd2T88nWvJrHAeeUaoi4
+         9nbYdM5XDgq88ALH5AvGosmeafteRuxY9SNYwiNIfCrBj9jWSxF8mGIT0pku5Z1VsSwJ
+         ZvgcP7YmKWUMQhjI2OYo3OdUGT9qFgavEsy+zvPFLKV6ILM+CcJYH8PGY6FVwrnaOCRG
+         rhKNUGb7nj0fiwK4FMcZy/pomO16KJ3hOWXRUy4RXdscsxZjJLMp+VCOzguEUL3xAbV6
+         EbPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=zFfzCQm5vYmPTxj3YDGvmk4x2lGzmz6fEr37wIaaihs=;
+        b=LMj0f+bl7NrJ3ASLYK33znazLG+AhpbJgnamELj1OWy5o49fK42l0nD5vJv0p7t2eZ
+         Fc1IJUl/0KG7VkNunFtBJVkhVjxPWL4v9tK4rHmD7JSGIwHxlFEgWblcG2vSEEwmtztA
+         rzLpiTs2JC4v/MhkABZYBIshh5IXtmo0PL4TaDyfNadRnUmRBMFsiMzNEfSLr0GtGshe
+         cN7PmXAorqQolSmyyiaLxvaHEKpdRcR56GA7QXMW3Q+kgiTmAguGE5yuzSBscBU/p7oC
+         mA+1+J0ggjWqA5xGmXgMQB8CYlXbFdbibd26n241V6kGxntSet/vqYhJa188SJ4MVsRJ
+         AfvA==
+X-Gm-Message-State: APjAAAVWXMrz36mbuMbP3qMIUWrp5z+MU0AA02v4nKCjfMv3ezPdJ9wh
+        gZpgtY7wmSgT4oJ+2t3nX08=
+X-Google-Smtp-Source: APXvYqx41timVbIM6JdvlYYI5X7nI948bZFGXxSBw9utsd8rrQPX/l5X6qvgwhRtaoODo0lIWwKj4g==
+X-Received: by 2002:a63:a55:: with SMTP id z21mr84618129pgk.440.1558464776851;
+        Tue, 21 May 2019 11:52:56 -0700 (PDT)
+Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id v16sm5187591pfc.26.2019.05.21.11.52.55
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 21 May 2019 11:52:55 -0700 (PDT)
+Date:   Tue, 21 May 2019 11:52:53 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        David Miller <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Miroslav Lichvar <mlichvar@redhat.com>,
+        Willem de Bruijn <willemb@google.com>
+Subject: Re: [PATCH V2 net-next 5/5] ptp: Add a driver for InES time stamping
+ IP core.
+Message-ID: <20190521185253.xxcvpx4dqd6htszj@localhost>
+References: <20181007173823.21590-6-richardcochran@gmail.com>
+ <20181012204256.GA16019@bogus>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="C+ts3FVlLX8+P6JN"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190521165315.14379-1-jeffrey.l.hugo@gmail.com>
-X-Cookie: Do I have a lifestyle yet?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20181012204256.GA16019@bogus>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 12, 2018 at 03:42:57PM -0500, Rob Herring wrote:
+> On Sun, Oct 07, 2018 at 10:38:23AM -0700, Richard Cochran wrote:
+> > +
+> > +Required properties of the control node:
+> > +
+> > +- compatible:		"ines,ptp-ctrl"
+> 
+> ines is not registered vendor prefix. Should it be 'zhaw' instead?
 
---C+ts3FVlLX8+P6JN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I am preparing V3.  Can you explain what you mean by "registered
+vendor prefix" please?
 
-On Tue, May 21, 2019 at 09:53:15AM -0700, Jeffrey Hugo wrote:
+This IP Core comes from the ZHAW School of Engineering, Institute of
+Embedded Systems (InES).
 
-> -	spmi_vreg_read(vreg, SPMI_COMMON_REG_VOLTAGE_RANGE, &range_sel, 1);
-> +	/* second common devices don't have VOLTAGE_RANGE register */
-> +	if (vreg->logical_type == SPMI_REGULATOR_LOGICAL_TYPE_FTSMPS2) {
-> +		spmi_vreg_read(vreg, SPMI_COMMON2_REG_VOLTAGE_LSB, &lsb, 1);
-> +		spmi_vreg_read(vreg, SPMI_COMMON2_REG_VOLTAGE_MSB, &msb, 1);
-> +
-> +		uV = (((int)msb << 8) | (int)lsb) * 1000;
+ZHAW stands for "Zürcher Hochschule für Angewandte Wissenschaften."
 
-This overlaps with some changes that Jorge (CCed) was sending for the
-PMS405.  As I was saying to him rather than shoving special cases for
-different regulator types into the ops (especially ones that don't have
-any of the range stuff) it'd be better to just define separate ops for
-the regulators that look quite different to the existing ones.
-
-> +static int spmi_regulator_common_list_voltage(struct regulator_dev *rdev,
-> +					      unsigned selector);
-> +
-> +static int spmi_regulator_common2_set_voltage(struct regulator_dev *rdev,
-> +					      unsigned selector)
-
-Eeew, can we not have better names?
-
-> +static unsigned int spmi_regulator_common2_get_mode(struct regulator_dev *rdev)
-> +{
-> +	struct spmi_regulator *vreg = rdev_get_drvdata(rdev);
-> +	u8 reg;
-> +
-> +	spmi_vreg_read(vreg, SPMI_COMMON2_REG_MODE, &reg, 1);
-> +
-> +	if (reg == SPMI_COMMON2_MODE_HPM_MASK)
-> +		return REGULATOR_MODE_NORMAL;
-> +
-> +	if (reg == SPMI_COMMON2_MODE_AUTO_MASK)
-> +		return REGULATOR_MODE_FAST;
-> +
-> +	return REGULATOR_MODE_IDLE;
-> +}
-
-This looks like you want to write a switch statement.
-
-> +spmi_regulator_common2_set_mode(struct regulator_dev *rdev, unsigned int mode)
-> +{
-> +	struct spmi_regulator *vreg = rdev_get_drvdata(rdev);
-> +	u8 mask = SPMI_COMMON2_MODE_MASK;
-> +	u8 val = SPMI_COMMON2_MODE_LPM_MASK;
-> +
-> +	if (mode == REGULATOR_MODE_NORMAL)
-> +		val = SPMI_COMMON2_MODE_HPM_MASK;
-> +	else if (mode == REGULATOR_MODE_FAST)
-> +		val = SPMI_COMMON2_MODE_AUTO_MASK;
-
-This needs to be a switch statement, then it can have a default case to
-catch errors too.
-
---C+ts3FVlLX8+P6JN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzkSI0ACgkQJNaLcl1U
-h9D4Pwf+N0VEAMaUrHu9DiDBqWU4jYSrQlR7BPtYN4DHzRzhYd/GSW4c1RhNMsz4
-og7GQSz83ppbsfv22Sf1/2ivsR/0VihEhoOVduEnH2MJcowZwd4vUnNfTvOuAcvN
-nN/THjD7Nz4GpP9QBetIwsInrafl+bbpMedq0fI/u6EsUSNOmoHnFxgJM8aXxYJQ
-WzquUkwu8XTUi5UNspFDXXTRYmjfKAiY0fYSsATVZOZHtSCktsijI35IN77oxvSB
-l2UT7XH3xXPQ7UyeF64U4Yp7L+NeYrh7eX6qZGb5NaUq1k/CiruEZK/OUkNkkNsR
-sQWT5yGgYmgS2BOIlXy3SsNbouafeQ==
-=vCWU
------END PGP SIGNATURE-----
-
---C+ts3FVlLX8+P6JN--
+Thanks,
+Richard
