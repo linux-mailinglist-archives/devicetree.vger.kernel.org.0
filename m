@@ -2,95 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD14B2526F
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 16:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2BE42527E
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 16:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728175AbfEUOol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 10:44:41 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:44978 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727534AbfEUOol (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 10:44:41 -0400
-Received: by mail-pl1-f195.google.com with SMTP id c5so8530155pll.11;
-        Tue, 21 May 2019 07:44:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=5hSVFJBohFjK9FSeZbvc1XbTRHdPXQ9DePHe1SZpJps=;
-        b=EgF2gub7T32hGBYch+5cag0ZHP3ftygxoSFTghzmsNn/7gpMaWPzWBT/hsD1KGrUAe
-         GqFIr7bTRXjgk9pJRFBfcmZ2TgJEnFJFzxET9by/Nv16VQ/vpPg6CUr0kTFbESqb+uuo
-         rsoo3PnXAMRqZrrB6KEaH+p9eeKUA8FEauSpG8IrB1tMG6omnk39ivcyPQnLKICAY/Vq
-         jTyFOLlJjDStRXaxZEeuPEc/oJ1wZLbCNmRcJBJEjuZBMZvpWR+bDmuvrlUzTvgjRBPy
-         NT/1D5F0Ru7j8gsRKQJnyFb+H07quREQS/uXsrfbaZzLxRI+1HVlT+sxohAt/c6gVTnQ
-         H6bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=5hSVFJBohFjK9FSeZbvc1XbTRHdPXQ9DePHe1SZpJps=;
-        b=NU3samsVtuu6+udNrCeZ2Qs7/PcihohxgXbzQRB338L0E1ZZZ/9AMqkBMZitLSR2Mz
-         3S7A8odk4W54tshlhTHIXF9JuLFSvMuyhC2A9chobPllJZjaV/tmyClb4T3Z8A4s1MSb
-         8VKjsSyr2hmVdK7I4jxmFj/zroWsTDxh/GdkeO/h3MUSWJxRSQfb+LhvKw3ZmdS2hvZB
-         rrYGPnLTTBkGSDtj62Oa46GoD+Onad2xMQ3qtgbYkNoowfLop4QRf0EvizAiC4WfKGfm
-         x9qnZEhPaKytoYMPOvnYV1R6TdtH7cGjeNoDRRAngTxb9z7KpBMa69gmke4UIZhi9VZe
-         /rTQ==
-X-Gm-Message-State: APjAAAWBYfKqaoVLpSOv+UgTwuIQEWlcnbknXgXYqSuG0s0l2GA8NM3z
-        5CyvMDTOWTvX1dy/dlzstlU=
-X-Google-Smtp-Source: APXvYqwN5M46bLj4p1rW2xAHz/GQgxgVKlmBJe3gqKesdGm7yuComflkxTKuJS1Bz2EF1upSxW6XBQ==
-X-Received: by 2002:a17:902:521:: with SMTP id 30mr44314557plf.62.1558449880398;
-        Tue, 21 May 2019 07:44:40 -0700 (PDT)
-Received: from mail.broadcom.com ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id g17sm13227945pfb.56.2019.05.21.07.44.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 21 May 2019 07:44:39 -0700 (PDT)
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-To:     linux-mtd@lists.infradead.org
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: mtd: brcmnand: Make nand-ecc-strength and nand-ecc-step-size optional
-Date:   Tue, 21 May 2019 10:44:21 -0400
-Message-Id: <1558449865-36852-1-git-send-email-kdasu.kdev@gmail.com>
-X-Mailer: git-send-email 1.9.0.138.g2de3478
+        id S1727999AbfEUOqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 10:46:47 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:44166 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727044AbfEUOqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 10:46:46 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id D677F60795; Tue, 21 May 2019 14:46:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1558450005;
+        bh=58fFmYhPIocjStRpbEhyiTY5BBN3Wu7usU0JI7t0dMM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=V9zV7vPpj4+k2OwsbLcNbbrUpidQKcXhLjGcvAg0ip4ZB6irUaHrD9iIvXmYtVhBT
+         dnPwuSPE1p01MIrAJcCEx18QPMYbqQ+oO9WwLbHEwaa4b/fNLu2/1D8E3kAjVcktki
+         Mja75BPH1riGM6RmmWMjlN3dbvql7EdcDBiNLzAY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from jhugo-perf-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jhugo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1BD186021C;
+        Tue, 21 May 2019 14:46:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1558450005;
+        bh=58fFmYhPIocjStRpbEhyiTY5BBN3Wu7usU0JI7t0dMM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=V9zV7vPpj4+k2OwsbLcNbbrUpidQKcXhLjGcvAg0ip4ZB6irUaHrD9iIvXmYtVhBT
+         dnPwuSPE1p01MIrAJcCEx18QPMYbqQ+oO9WwLbHEwaa4b/fNLu2/1D8E3kAjVcktki
+         Mja75BPH1riGM6RmmWMjlN3dbvql7EdcDBiNLzAY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1BD186021C
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
+From:   Jeffrey Hugo <jhugo@codeaurora.org>
+To:     mturquette@baylibre.com, sboyd@kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        marc.w.gonzalez@free.fr, david.brown@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeffrey Hugo <jhugo@codeaurora.org>
+Subject: [PATCH v4 1/6] dt-bindings: clock: Document external clocks for MSM8998 gcc
+Date:   Tue, 21 May 2019 08:46:33 -0600
+Message-Id: <1558449993-20902-1-git-send-email-jhugo@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1558449843-19971-1-git-send-email-jhugo@codeaurora.org>
+References: <1558449843-19971-1-git-send-email-jhugo@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-nand-ecc-strength and nand-ecc-step-size can be made optional as
-brcmnand driver can support using raw NAND layer detected values.
+The global clock controller on MSM8998 can consume a number of external
+clocks.  Document them.
 
-Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+Signed-off-by: Jeffrey Hugo <jhugo@codeaurora.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/clock/qcom,gcc.txt | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-index bcda1df..0d952af 100644
---- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-+++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
-@@ -101,12 +101,12 @@ Required properties:
-                               number (e.g., 0, 1, 2, etc.)
- - #address-cells            : see partition.txt
- - #size-cells               : see partition.txt
--- nand-ecc-strength         : see nand.txt
--- nand-ecc-step-size        : must be 512 or 1024. See nand.txt
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.txt b/Documentation/devicetree/bindings/clock/qcom,gcc.txt
+index 8661c3c..7d45323 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc.txt
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc.txt
+@@ -28,6 +28,16 @@ Required properties :
+ - #clock-cells : shall contain 1
+ - #reset-cells : shall contain 1
  
- Optional properties:
-+- nand-ecc-strength         : see nand-controller.yaml
-+- nand-ecc-step-size        : must be 512 or 1024. See nand-controller.yaml
- - nand-on-flash-bbt         : boolean, to enable the on-flash BBT for this
--                              chip-select. See nand.txt
-+                              chip-select. See nand-controller.yaml
- - brcm,nand-oob-sector-size : integer, to denote the spare area sector size
-                               expected for the ECC layout in use. This size, in
-                               addition to the strength and step-size,
++For MSM8998 only:
++	- clocks: a list of phandles and clock-specifier pairs,
++		  one for each entry in clock-names.
++	- clock-names: "xo" (required)
++		       "usb3_pipe" (optional)
++		       "ufs_rx_symbol0" (optional)
++		       "ufs_rx_symbol1" (optional)
++		       "ufs_tx_symbol0" (optional)
++		       "pcie0_pipe" (optional)
++
+ Optional properties :
+ - #power-domain-cells : shall contain 1
+ - Qualcomm TSENS (thermal sensor device) on some devices can
 -- 
-1.9.0.138.g2de3478
+Qualcomm Datacenter Technologies as an affiliate of Qualcomm Technologies, Inc.
+Qualcomm Technologies, Inc. is a member of the
+Code Aurora Forum, a Linux Foundation Collaborative Project.
 
