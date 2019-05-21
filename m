@@ -2,174 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD0A24A53
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 10:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60FA924A5C
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 10:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726344AbfEUI1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 04:27:33 -0400
-Received: from mail-eopbgr1410098.outbound.protection.outlook.com ([40.107.141.98]:58544
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726201AbfEUI1d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 04:27:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oxJufPD7Sj64eiG5Amc2+rjEXND/O7dxYk+LELzdG0g=;
- b=V+8TXPGVAc6sJa9SaPhAxJETiMuGihgYvsUocCo8rSf9HjQ8QHMOBpbv+0XR2km15wzkeMfovTtXw3YPq/Wdjb546YuavhSAtWi1UsGiYBQsQcd0tkIeMC9dsBSl2vCq7LdOzprlpS+7FdgnsZBV1BoR9GqrYVuJbfUP77QvpnU=
-Received: from OSAPR01MB3089.jpnprd01.prod.outlook.com (52.134.247.150) by
- OSAPR01MB2481.jpnprd01.prod.outlook.com (52.134.245.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.17; Tue, 21 May 2019 08:27:24 +0000
-Received: from OSAPR01MB3089.jpnprd01.prod.outlook.com
- ([fe80::4597:5353:28fb:cfd8]) by OSAPR01MB3089.jpnprd01.prod.outlook.com
- ([fe80::4597:5353:28fb:cfd8%7]) with mapi id 15.20.1900.020; Tue, 21 May 2019
- 08:27:24 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Biju Das <biju.das@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Biju Das <biju.das@bp.renesas.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v6 2/7] dt-bindings: usb: renesas_usb3: Document usb role
- switch support
-Thread-Topic: [PATCH v6 2/7] dt-bindings: usb: renesas_usb3: Document usb role
- switch support
-Thread-Index: AQHVCxgOYVTacbZXFUG//sel1YhPLKZ1QuVg
-Date:   Tue, 21 May 2019 08:27:23 +0000
-Message-ID: <OSAPR01MB308934C379A9759841E58043D8070@OSAPR01MB3089.jpnprd01.prod.outlook.com>
-References: <1557922152-16449-1-git-send-email-biju.das@bp.renesas.com>
- <1557922152-16449-3-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1557922152-16449-3-git-send-email-biju.das@bp.renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
-x-originating-ip: [124.210.22.195]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d069454e-c445-431f-e310-08d6ddc626a2
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSAPR01MB2481;
-x-ms-traffictypediagnostic: OSAPR01MB2481:
-x-microsoft-antispam-prvs: <OSAPR01MB24813A79A0A17D59C4FDD227D8070@OSAPR01MB2481.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0044C17179
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(39860400002)(396003)(366004)(376002)(136003)(189003)(199004)(486006)(6246003)(6116002)(7416002)(66066001)(53936002)(6436002)(476003)(81166006)(81156014)(9686003)(68736007)(25786009)(4326008)(8676002)(55016002)(8936002)(5660300002)(11346002)(446003)(229853002)(478600001)(52536014)(54906003)(86362001)(14454004)(316002)(110136005)(305945005)(71200400001)(76176011)(66446008)(14444005)(256004)(33656002)(102836004)(6506007)(3846002)(64756008)(76116006)(186003)(7736002)(73956011)(71190400001)(26005)(7696005)(74316002)(66556008)(66476007)(66946007)(55236004)(2906002)(99286004);DIR:OUT;SFP:1102;SCL:1;SRVR:OSAPR01MB2481;H:OSAPR01MB3089.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: ANPJlg8Yj+l+9rt8Tww79NZKo7hfVB1fG4MFU11WDcNyRqvHGg73c+wm0uaYa8vYlNTQ5i6kgYlO9B5NzTRjRAmY5JhJSXeiMba6Gjxp/7ZOUx8RaRAZ2YrXXEK2L0w3329T0u7qrs+Bc12jaJUU+R77hA02RTQkmemYkJRzy8OY5FrhgLyk73R8K2Wb5Li1jXheoOq78mGleV9klRcXCZj8pS11Uxd7duA1AXRvbmGdztwjiq9S2FuJO9kcARcOhcYDFbom0jDXdQVsf2X1APjQvzB4mwGx/zm3IVYMIjTYoszgWOoxef94hDq2Kq0NADq9OO+Dauocaq0WoH/9ZvKcjp2R9/88Pnmu3Rqfs2Vu84uZo3G1qaxNHQvG07CCGbCNdEVNzc+EMHl5mrYtm8xVy9sYZ0d9SRooh8KJilw=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726344AbfEUI3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 04:29:09 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:51885 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726247AbfEUI3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 04:29:09 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hT08u-0001RM-C0; Tue, 21 May 2019 10:29:04 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hT08t-00058Z-Jy; Tue, 21 May 2019 10:29:03 +0200
+Date:   Tue, 21 May 2019 10:29:03 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     robh+dt@kernel.org, linux-imx@nxp.com, Stefan.Nickl@kontron.com,
+        Gilles.Buloz@kontron.com, Michael.Brunner@kontron.com,
+        thomas.schaefer@kontron.com, frieder.schrempf@kontron.de,
+        kernel@pengutronix.de, devicetree@vger.kernel.org
+Subject: Re: [PATCH 00/17] Add Support for Kontron SMARC-sAMX6i
+Message-ID: <20190521082903.xsc643uvgqjg5ue7@pengutronix.de>
+References: <20190509155834.22838-1-m.felsch@pengutronix.de>
+ <20190520021639.GG15856@dragon>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d069454e-c445-431f-e310-08d6ddc626a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2019 08:27:23.9608
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2481
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190520021639.GG15856@dragon>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:27:14 up 3 days, 14:45, 29 users,  load average: 0.04, 0.06, 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju-san,
+Hi Shawn,
 
-Thank you for the patch!
+On 19-05-20 10:16, Shawn Guo wrote:
+> On Thu, May 09, 2019 at 05:58:17PM +0200, Marco Felsch wrote:
+> > Hi,
+> > 
+> > this series adds the Kontron SoM 'SMARC-sAMX6i' which is compatible to
+> > the SMARC 1.1 standard [1]. Most of the muxing can be done within the
+> > SoM dtsi since the standard defines a unique SoM hardware interface.
+> > 
+> > This series is based on Priit Laes initial commit [2] which adds the
+> > initial support. I addressed the comments and changed the copyright
+> > since there where a lot of fixes.
+> > 
+> > Testers are welcome :) since I used a custome baseboard which doesn't
+> > use all of the interfaces.
+> > 
+> > [1] https://sget.org/standards/smarc
+> > [2] https://lore.kernel.org/patchwork/patch/762261/
+> > 
+> > Marco Felsch (14):
+> >   dt-bindings: add Kontron vendor prefix
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SDIO interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC LCD interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Management pins
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC GPIO interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC HDMI interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC CSI Camera interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC I2S interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI1 interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Watchdog
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC module eeprom
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add power management support
+> >   ARCH: arm: dts: imx6q-kontron-samx6i: add Kontron SMARC Quad/Dual SoM
+> >   ARCH: arm: dts: imx6dl-kontron-samx6i: add Kontron SMARC
+> >     Dual-Lite/Solo SoM
+> > 
+> > Michael Grzeschik (2):
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI0 interface
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add boot spi-nor
+> > 
+> > Priit Laes (1):
+> >   ARCH: arm: dts: imx6qdl-kontron-samx6i: Add iMX6-based Kontron
+> >     SMARC-sAMX6i module
+> 
+> Do we really need so many patches for adding a single board support, or
+> can we squash some of them?
 
-> From: Biju Das, Sent: Wednesday, May 15, 2019 9:09 PM
->=20
-> Update the DT bindings documentation to support usb role switch
-> for USB Type-C connector using USB role switch class framework.
->=20
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> ---
->  V5-->V6
->   * Updated description
->   * Added usb-role-switch-property
->  V4-->V5
->   * No Change
->  V3-->V4
->   * No Change
->  V2-->V3
->   * Added optional renesas,usb-role-switch property.
->  V1-->V2
->   * Added usb-role-switch-property
->   * Updated the example with usb-role-switch property.
-> ---
->  .../devicetree/bindings/usb/renesas_usb3.txt       | 26 ++++++++++++++++=
-++++++
->  1 file changed, 26 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/renesas_usb3.txt
-> b/Documentation/devicetree/bindings/usb/renesas_usb3.txt
-> index 35039e7..ea6c63c 100644
-> --- a/Documentation/devicetree/bindings/usb/renesas_usb3.txt
-> +++ b/Documentation/devicetree/bindings/usb/renesas_usb3.txt
-> @@ -22,6 +22,11 @@ Required properties:
->  Optional properties:
->    - phys: phandle + phy specifier pair
->    - phy-names: must be "usb"
-> +  - usb-role-switch: support role switch. see usb/generic.txt
-> +
-> +Sub-nodes:
-> +The port would be added as a subnode if the "usb-role-switch" property i=
-s used.
-> +	see graph.txt
+I wanted to keep them logical ordered but I can squash them if you want.
 
-I think we should describe which type of a subnode is needed.
-I made an example below. This is based on the usb-connector.txt.
----
-Sub-nodes:
-- any connector to the data bus of this controller should be modeled using =
-the OF graph
-  bindings specified in bindings/graph.txt.
----
+Regards,
+  Marco
 
->  Example of R-Car H3 ES1.x:
->  	usb3_peri0: usb@ee020000 {
-> @@ -39,3 +44,24 @@ Example of R-Car H3 ES1.x:
->  		interrupts =3D <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
->  		clocks =3D <&cpg CPG_MOD 327>;
->  	};
-> +
-> +Example of RZ/G2E:
-> +	usb3_peri0: usb@ee020000 {
-> +		compatible =3D "renesas,r8a774c0-usb3-peri",
-> +			     "renesas,rcar-gen3-usb3-peri";
-> +		reg =3D <0 0xee020000 0 0x400>;
-> +		interrupts =3D <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks =3D <&cpg CPG_MOD 328>;
-> +		companion =3D <&xhci0>;
-> +		usb-role-switch;
-> +
-> +		port {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			usb3peri_role_switch: endpoint@0 {
-> +				reg =3D <0>;
+> Shawn
+> 
+> > 
+> >  .../devicetree/bindings/vendor-prefixes.txt   |   1 +
+> >  arch/arm/boot/dts/imx6dl-kontron-samx6i.dtsi  |  12 +
+> >  arch/arm/boot/dts/imx6q-kontron-samx6i.dtsi   |  36 +
+> >  arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 812 ++++++++++++++++++
+> >  4 files changed, 861 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/imx6dl-kontron-samx6i.dtsi
+> >  create mode 100644 arch/arm/boot/dts/imx6q-kontron-samx6i.dtsi
+> >  create mode 100644 arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+> > 
+> > -- 
+> > 2.20.1
+> > 
+> 
 
-I'm not sure, but I don't think this endpoint@0 and reg =3D <0> are needed.
-In other words, can we use have following node?
-			usb3peri_role_switch: endpoint {
-				remote-endpoint =3D <&hd3ss3220_ep>;
-			};
-
-Best regards,
-Yoshihiro Shimoda
-
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
