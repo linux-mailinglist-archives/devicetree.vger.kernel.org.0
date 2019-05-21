@@ -2,153 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD9D24E47
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 13:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A4124E6A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 13:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726740AbfEULqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 07:46:22 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51117 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726318AbfEULqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 07:46:22 -0400
-X-Originating-IP: 90.88.22.185
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id A025C2000B;
-        Tue, 21 May 2019 11:46:11 +0000 (UTC)
-Date:   Tue, 21 May 2019 13:46:11 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     megous@megous.com
-Cc:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v5 5/6] drm: sun4i: Add support for enabling DDC I2C bus
- to sun8i_dw_hdmi glue
-Message-ID: <20190521114611.ylmbo2oqeanveil4@flea>
-References: <20190520235009.16734-1-megous@megous.com>
- <20190520235009.16734-6-megous@megous.com>
+        id S1726995AbfEUL6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 07:58:52 -0400
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:45796 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726692AbfEUL6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 07:58:52 -0400
+Received: by mail-qt1-f195.google.com with SMTP id t1so20029749qtc.12;
+        Tue, 21 May 2019 04:58:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RG1Hs0ESwnRVet51hMjdxLPwpJh7ZatYL2HtJdlc+r8=;
+        b=IMwxDwwr2miOaP1CeewH6LpikLF1W5Xo9zhcT3+12zTeekbq9Ls0RGDD2/rzCFOIUc
+         IGGCDAZHXl1CU2Uka/WADFOZdLVOwDoBwjJ74/MhoiQpnlLS/rsk3A8GG4EWxdk7VJ0l
+         6WBPBgHydRAZ9HB16bk7HFFIgiP/Ok01Zyd+S3rhnGIMlZV4vBVQoJMrPrAobUqU5CWO
+         JsZyVFwREkQ9AkYtyxn8ErnYR7ol1J6DYWYs1jax+GeUa78iuWBFSOdy6TRjRdCfJLHJ
+         XVLVlOe2ozuSwGwhIUUpXJdUAW8+6JNkyRcivALBWSOYnAJ3ocipu5PrsoS09Y6t9GYf
+         TP2w==
+X-Gm-Message-State: APjAAAVwMKC/3T5p7qKK1YDvqqvDSoQt8humGyXucyK0QZAnBBXqjkDa
+        3dfHe5WHTrKOuz1lDFC3VbSjdbQYmeuC7/Vimh0nP9EJIvQ=
+X-Google-Smtp-Source: APXvYqypDXVBS4ifbaE5zemqBahreul8x/ODVifparRdwfQ7naR5cZfsaWocJlLatNxgSqyZ9gsjCSMSIipNIKjRplI=
+X-Received: by 2002:a0c:9e55:: with SMTP id z21mr65483709qve.45.1558439930891;
+ Tue, 21 May 2019 04:58:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="rjlukvbwopyqxnek"
-Content-Disposition: inline
-In-Reply-To: <20190520235009.16734-6-megous@megous.com>
-User-Agent: NeoMutt/20180716
+References: <1558383565-11821-1-git-send-email-eajames@linux.ibm.com> <1558383565-11821-6-git-send-email-eajames@linux.ibm.com>
+In-Reply-To: <1558383565-11821-6-git-send-email-eajames@linux.ibm.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 21 May 2019 13:58:34 +0200
+Message-ID: <CAK8P3a0W=kUxTU7M5diSL3pcFQydXbB0ABwqj6NUhKj2hQC_wg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] drivers/soc: xdma: Add debugfs entries
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-aspeed@lists.ozlabs.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 20, 2019 at 10:19 PM Eddie James <eajames@linux.ibm.com> wrote:
 
---rjlukvbwopyqxnek
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi,
-
-On Tue, May 21, 2019 at 01:50:08AM +0200, megous@megous.com wrote:
-> From: Ondrej Jirman <megous@megous.com>
->
-> Orange Pi 3 board requires enabling a voltage shifting circuit via GPIO
-> for the DDC bus to be usable.
->
-> Add support for hdmi-connector node's optional ddc-en-gpios property to
-> support this use case.
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c | 55 +++++++++++++++++++++++++--
->  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h |  3 ++
->  2 files changed, 55 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c b/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
-> index 39d8509d96a0..59b81ba02d96 100644
-> --- a/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
-> +++ b/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
-> @@ -98,6 +98,30 @@ static u32 sun8i_dw_hdmi_find_possible_crtcs(struct drm_device *drm,
->  	return crtcs;
+>  struct aspeed_xdma_client {
+> @@ -656,6 +662,92 @@ static int aspeed_xdma_init_mem(struct aspeed_xdma *ctx)
+>         return 0;
 >  }
 >
-> +static int sun8i_dw_hdmi_find_connector_pdev(struct device *dev,
-> +					     struct platform_device **pdev_out)
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +static ssize_t aspeed_xdma_debugfs_vga_read(struct file *file,
+> +                                           char __user *buf, size_t len,
+> +                                           loff_t *offset)
 > +{
-> +	struct platform_device *pdev;
-> +	struct device_node *remote;
-> +
-> +	remote = of_graph_get_remote_node(dev->of_node, 1, -1);
-> +	if (!remote)
-> +		return -ENODEV;
-> +
-> +	if (!of_device_is_compatible(remote, "hdmi-connector")) {
-> +		of_node_put(remote);
-> +		return -ENODEV;
-> +	}
-> +
-> +	pdev = of_find_device_by_node(remote);
-> +	of_node_put(remote);
-> +	if (!pdev)
-> +		return -ENODEV;
-> +
-> +	*pdev_out = pdev;
-> +	return 0;
-> +}
-> +
->  static int sun8i_dw_hdmi_bind(struct device *dev, struct device *master,
->  			      void *data)
->  {
-> @@ -151,16 +175,29 @@ static int sun8i_dw_hdmi_bind(struct device *dev, struct device *master,
->  		return PTR_ERR(hdmi->regulator);
->  	}
->
-> +	ret = sun8i_dw_hdmi_find_connector_pdev(dev, &hdmi->connector_pdev);
-> +	if (!ret) {
-> +		hdmi->ddc_en = gpiod_get_optional(&hdmi->connector_pdev->dev,
-> +						  "ddc-en", GPIOD_OUT_HIGH);
-> +		if (IS_ERR(hdmi->ddc_en)) {
-> +			platform_device_put(hdmi->connector_pdev);
-> +			dev_err(dev, "Couldn't get ddc-en gpio\n");
-> +			return PTR_ERR(hdmi->ddc_en);
-> +		}
-> +	}
-> +
->  	ret = regulator_enable(hdmi->regulator);
->  	if (ret) {
->  		dev_err(dev, "Failed to enable regulator\n");
-> -		return ret;
-> +		goto err_unref_ddc_en;
->  	}
->
-> +	gpiod_set_value(hdmi->ddc_en, 1);
-> +
+> +       int rc;
 
-Do you really need this to be done all the time? I'm guessing you
-would only need this when running .get_modes, right?
 
-Maxime
+I think it would be more readable to move the IS_ENABLED()
+check into the function and do
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+         if (!IS_ENABLED(CONFIG_DEBUG_FS))
+                  return;
 
---rjlukvbwopyqxnek
-Content-Type: application/pgp-signature; name="signature.asc"
+in the init_debugfs() function.
 
------BEGIN PGP SIGNATURE-----
+> +       struct inode *inode = file_inode(file);
+> +       struct aspeed_xdma *ctx = inode->i_private;
+> +       void __iomem *vga = ioremap(ctx->vga_phys, ctx->vga_size);
+> +       loff_t offs = *offset;
+> +       void *tmp;
+> +
+> +       if (!vga)
+> +               return -ENOMEM;
+> +
+> +       if (len + offs > ctx->vga_size) {
+> +               iounmap(vga);
+> +               return -EINVAL;
+> +       }
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOPlAwAKCRDj7w1vZxhR
-xXfLAPkBCXreeTOBxlliLT+vNeIHXqJAXge39oQ9DnnSMZXH+QEA8gYAqMyb5uND
-MB0Ogchlc9aPOpC+/ynIMTSFjk0AgQU=
-=yRtx
------END PGP SIGNATURE-----
+The usual read() behavior is to use truncate the
+read at the maximum size, rather than return an
+error for an access beyond the end of file.
 
---rjlukvbwopyqxnek--
+> +
+> +       tmp = kzalloc(len, GFP_KERNEL);
+> +       if (!tmp) {
+> +               iounmap(vga);
+> +               return -ENOMEM;
+> +       }
+
+Use 'goto out;' to consolidate the unmap/free here?
+
+> +static void aspeed_xdma_init_debugfs(struct aspeed_xdma *ctx)
+> +{
+> +       ctx->debugfs_dir = debugfs_create_dir(DEVICE_NAME, NULL);
+> +       if (IS_ERR_OR_NULL(ctx->debugfs_dir)) {
+
+debugfs_create_dir() never returns NULL.
+
+Usually if you have to use IS_ERR_OR_NULL() in your code, that
+is a bug, or a very badly defined interface.
+
+      Arnd
