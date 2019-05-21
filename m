@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 269A625346
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 17:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83F6A25361
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2019 17:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728817AbfEUPBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 11:01:38 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:33580 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728786AbfEUPBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 11:01:37 -0400
-Received: by mail-wr1-f67.google.com with SMTP id d9so6049336wrx.0
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 08:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cOkHldzyBFH9X/HosQWb1+4hRM7Ru7GoP6WYL8SoxXY=;
-        b=iLz1uYNNrP1wzBd0TtjfZdiiXyUgafCaZPWzdqW1C7AyvgRQwNgYlnaB2oVq1fgvGC
-         zUJGOHNaStkp5rxJtlAiNrMXntlQnmnlSNVHbdeiXtMKsI1xEPZ3yFVAYaB2QsoMHTcF
-         4ptUEp+iYLSvFypp9o1FJ+OcsMQyC7ODhArXmCmmoY+3uaCQMNAk8MQea/UiDncY2VT5
-         Hc3i1oAruKqXtJMHCwrwwjIzxbeycv14H5cmoulfEKDUZAPLikUWDFGVYxFa7vndnoDU
-         c7UISO884tWxdVq/zw4M0UAHznZmVPLLg9vjY0yKsdHQ1D4C39VeZj4WvM/X/kkHB+Jc
-         s8Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cOkHldzyBFH9X/HosQWb1+4hRM7Ru7GoP6WYL8SoxXY=;
-        b=m8xHqcaKRqTyRwSsN7x/lQUor2RBLWqjN3adKS8EvircXckcUkJq7XigK6NQMxFI1t
-         MSawgVVbOaTuDfuzLCNGTc4z1Iv4EX6QaA/34MBy5B3pA3dzb+fhW9Nj3TMmMJi2ZqXC
-         VvmZEBDG03dnfFS4a/bI4R5IrylKT1ALxqRJIKXfTW3yTTQPzgGRDq7nZJ44w87rrqw9
-         Ccu3DCKprW3l3LTwUGA9il+xOwxNtrIoVN5xKjKFMl/ilhn3lKiTUU2pfz8kXbs11KGA
-         EyupKUzzM7zQR6N/6KmZDHA7xSiG+C9DbmXyikq+pa4dIu87T+XEZkUJrux+OAV97DsT
-         ybMA==
-X-Gm-Message-State: APjAAAWB+mwTQ2omzyT8pKQwU8l2eZmsbAd2tCZaz/LM2WoFc353iubQ
-        oWxUVnSi7TSl4dCalPFowQDsaizy36DxmA==
-X-Google-Smtp-Source: APXvYqyIk/qrN/n0dkOKQIYiCuXs1z6aYIvyyVnYqLMYI9XDoGTJxEnIDige/eKJnv1im9nxaSSdxQ==
-X-Received: by 2002:adf:b611:: with SMTP id f17mr52412220wre.162.1558450895175;
-        Tue, 21 May 2019 08:01:35 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id b194sm3407505wmb.23.2019.05.21.08.01.34
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 21 May 2019 08:01:34 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH 1/3] dt-bindings: clk: meson: add g12b periph clock controller bindings
-Date:   Tue, 21 May 2019 17:01:28 +0200
-Message-Id: <20190521150130.31684-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190521150130.31684-1-narmstrong@baylibre.com>
-References: <20190521150130.31684-1-narmstrong@baylibre.com>
+        id S1728589AbfEUPDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 11:03:44 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:25802 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728505AbfEUPDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 11:03:44 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4LEuoq6020124;
+        Tue, 21 May 2019 17:03:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=nq7D1bNWeTgr7MKVNaV3palhDHMi3cg+ormhUszIkDA=;
+ b=PpW3x0ymcnUZ/0c0dfYbfMZXrKlhgx/d+/39TwL3UFhz58hr6/EOYLV/Qbsh3vXnnJ5i
+ JLgHTmGh2Mk7LtVtTtpXLevTq/GHHs/TXVOp2Rk/1cbpRSwtSnrmw9LrCLS9MpdcRvAU
+ v1bZBT50KYk907XY50A0NSfcbsc4zmlvQGXyGCL0kMlqC758Mq8CK6YpqK7sasUTatuE
+ +aMAuqcb/BPxaS5Qwulo7rG+L++aENNczIBcHpJAQr2Ki6En8oF7OFUjZgDl+Tczh+Tw
+ l6RYbGWu72bhq9oWwaSX+CXez5LsOe6zbrEsekF/UlJJGjrP1S7dZpbP8RIBUUyQootB bw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2sj7742m3c-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 21 May 2019 17:03:26 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 257F23A;
+        Tue, 21 May 2019 15:03:26 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F11662BFE;
+        Tue, 21 May 2019 15:03:25 +0000 (GMT)
+Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by Safex1hubcas22.st.com
+ (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 21 May
+ 2019 17:03:25 +0200
+Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 21 May 2019 17:03:25
+ +0200
+From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [PATCH] ARM: dts: stm32: add power supply of rm68200 on stm32mp157c-ev1
+Date:   Tue, 21 May 2019 17:03:18 +0200
+Message-ID: <1558450998-13451-1-git-send-email-yannick.fertre@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.23.97]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-21_03:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the documentation to support clock driver for the Amlogic G12B SoC.
+This patch adds a new property (power-supply) to panel rm68200 (raydium)
+on stm32mp157c-ev1.
 
-G12B clock driver is very close, the main differences are :
-- the clock tree is duplicated for the both clusters, and the
-  SYS_PLL are swapped between the clusters
-- G12A has additional clocks like for CSI an other components
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
 ---
- Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 1 +
+ arch/arm/boot/dts/stm32mp157c-ev1.dts | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-index 5c8b105be4d6..6eaa52092313 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-+++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-@@ -10,6 +10,7 @@ Required Properties:
- 		"amlogic,gxl-clkc" for GXL and GXM SoC,
- 		"amlogic,axg-clkc" for AXG SoC.
- 		"amlogic,g12a-clkc" for G12A SoC.
-+		"amlogic,g12b-clkc" for G12B SoC.
- - clocks : list of clock phandle, one for each entry clock-names.
- - clock-names : should contain the following:
-   * "xtal": the platform xtal
+diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+index 8ef2cb0..50f3263 100644
+--- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+@@ -127,6 +127,7 @@
+ 		reg = <0>;
+ 		reset-gpios = <&gpiof 15 GPIO_ACTIVE_LOW>;
+ 		backlight = <&panel_backlight>;
++		power-supply = <&v3v3>;
+ 		status = "okay";
+ 
+ 		port {
 -- 
-2.21.0
+2.7.4
 
