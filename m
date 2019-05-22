@@ -2,88 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C189626477
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4B70264F1
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729071AbfEVNTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 09:19:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56770 "EHLO mail.kernel.org"
+        id S1728491AbfEVNqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 09:46:03 -0400
+Received: from node.akkea.ca ([192.155.83.177]:49316 "EHLO node.akkea.ca"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729003AbfEVNTX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 09:19:23 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C7AC52187F;
-        Wed, 22 May 2019 13:19:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558531162;
-        bh=xZL000OlxXJ3Olb6ufE2AzjLi7N4hMQu+kQzQcbFNCE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0mYeaIOisZLB0e2XA+n2+3BIXH94kWanrOCk0grtqaLO+lZvxY3UI7XggEwxwuQqh
-         vq/62sb27M9TkomToLDrAOJEMM7ci1rjoij0f3S6+ILn1ARCEMG0aZLvAXz4U57nd3
-         Bsy2TjvX8AeZkQy1Oa+uXn9+h2LRBrcSTjcCeEdI=
-Received: by mail-qt1-f174.google.com with SMTP id y42so2243463qtk.6;
-        Wed, 22 May 2019 06:19:22 -0700 (PDT)
-X-Gm-Message-State: APjAAAVdCVFds0Fnq6jTA+xS8dQbFcl39IMXD0oq4ZXUVTQJCCCGcGPs
-        g4ixs+6wButiDXtvq3O1ACJkXJv0FgWQYbwyzQ==
-X-Google-Smtp-Source: APXvYqyvYTuRn9kxbS1Z4NqODKeovcHPYdzWdAvI9bwxOBcedkYyTwND/I5vtUvsg9uaG6kVGsaTqAdvJBL/eqFqgL8=
-X-Received: by 2002:a0c:929a:: with SMTP id b26mr70772394qvb.148.1558531161859;
- Wed, 22 May 2019 06:19:21 -0700 (PDT)
+        id S1728159AbfEVNqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 09:46:03 -0400
+Received: by node.akkea.ca (Postfix, from userid 33)
+        id CACA44E204B; Wed, 22 May 2019 13:46:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1558532762; bh=7yenqbpr2XCwDV8Mlbh8CEblalOVAjTP8mc9IslVsTA=;
+        h=To:Subject:Date:From:Cc:In-Reply-To:References;
+        b=inhZwtg40oBX+LxLUEoqRhVavTXOdAGgGF5Ms3/JiFTkWA95fC7hziW90SWMK0bkS
+         n4sW72/bPG1wUcDbgdfaGgraHdDR9dMOvh2AQaTdIKm7ML0ogPMdk9bybluoeNre76
+         7dngbxxlTEPlegbTtEs/g4CsK4ysIKIS2DRB1MNY=
+To:     Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v12 1/4] MAINTAINERS: add an entry for for arm64 imx  devicetrees
+X-PHP-Originating-Script: 1000:rcube.php
 MIME-Version: 1.0
-References: <1558466890-45471-1-git-send-email-kdasu.kdev@gmail.com>
-In-Reply-To: <1558466890-45471-1-git-send-email-kdasu.kdev@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 22 May 2019 08:19:09 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKd53W1E33YdtJwagi4=7DrVQ5+N3rSY=Rxo5J0RiW46g@mail.gmail.com>
-Message-ID: <CAL_JsqKd53W1E33YdtJwagi4=7DrVQ5+N3rSY=Rxo5J0RiW46g@mail.gmail.com>
-Subject: Re: [PATCH] dt: bindings: mtd: replace references to nand.txt with nand-controller.yaml
-To:     Kamal Dasu <kdasu.kdev@gmail.com>
-Cc:     MTD Maling List <linux-mtd@lists.infradead.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Liang Yang <liang.yang@amlogic.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 22 May 2019 06:46:02 -0700
+From:   Angus Ainslie <angus@akkea.ca>
+Cc:     angus.ainslie@puri.sm, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20190522083051.GB9261@dragon>
+References: <20190514132822.27023-1-angus@akkea.ca>
+ <20190514132822.27023-2-angus@akkea.ca> <20190522083051.GB9261@dragon>
+Message-ID: <cd02331f028e70c0ddacc6e6dcff502e@www.akkea.ca>
+X-Sender: angus@akkea.ca
+User-Agent: Roundcube Webmail/1.1.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 21, 2019 at 2:28 PM Kamal Dasu <kdasu.kdev@gmail.com> wrote:
->
-> nand-controller.yaml replaced nand.txt however the references to it were
-> not updated. This change updates these references wherever it appears in
-> bindings documentation.
->
-> Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
->
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+Hi Shawn
 
-Mauro already sent a similar patch.
+On 2019-05-22 01:30, Shawn Guo wrote:
+> On Tue, May 14, 2019 at 06:28:19AM -0700, Angus Ainslie (Purism) wrote:
+>> Add an explicit reference to imx* devicetrees
+>> 
+>> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+>> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+>> ---
+>>  MAINTAINERS | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 7707c28628b9..9fc30f82ab81 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -1624,6 +1624,7 @@ R:	NXP Linux Team <linux-imx@nxp.com>
+>>  L:	linux-arm-kernel@lists.infradead.org (moderated for 
+>> non-subscribers)
+>>  S:	Maintained
+>>  T:	git 
+>> git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
+>> +F:	arch/arm64/boot/dts/freescale/imx*
+> 
+> This is partially reverting commit da8b7f0fb02b ("MAINTAINERS: add all
+> files matching "imx" and "mxs" to the IMX entry").  I'm not sure that 
+> we
+> want it.
+> 
 
-Rob
+Ok, I can drop it from my patchset and it will get sorted out somewhere 
+else ?
+
+Thanks
+Angus
+
+> Shawn
+> 
+>>  N:	imx
+>>  N:	mxs
+>>  X:	drivers/media/i2c/
+>> --
+>> 2.17.1
+>> 
+
