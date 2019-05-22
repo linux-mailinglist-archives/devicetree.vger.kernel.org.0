@@ -2,171 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB04425F7C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 10:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7125925EC5
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 09:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728542AbfEVI25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 04:28:57 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:49356 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726552AbfEVI25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 04:28:57 -0400
-X-Greylist: delayed 3003 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 May 2019 04:28:55 EDT
-Received: from [109.168.11.45] (port=47788 helo=[192.168.101.64])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.91)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1hTLpp-001bvJ-Jg; Wed, 22 May 2019 09:38:49 +0200
-Subject: Re: [RFC 0/4] TI camera serdes - I2C address translation draft
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     linux-media@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        jacopo mondi <jacopo@jmondi.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Hans Verkuil <hverkuil@xs4all.nl>
-References: <20190108223953.9969-1-luca@lucaceresoli.net>
- <20190521144034.100f9f8b@coco.lan>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <f3346136-1fba-dd85-8448-ce8d0580f0d3@lucaceresoli.net>
-Date:   Wed, 22 May 2019 09:38:48 +0200
+        id S1726552AbfEVHnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 03:43:15 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:36360 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725850AbfEVHnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 03:43:14 -0400
+Received: by mail-wm1-f65.google.com with SMTP id j187so1061600wmj.1
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 00:43:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=XVAzE2mPSq2iELTRLQJsJ55Y/zl8OiIKZaLHjoW/g7s=;
+        b=kdoZgF9F4RY9J2M0JWrE8wS1Y5nlfa6PNIaz2gMwVc3XwzPMSxGcQ2JReDL26dnlN9
+         2m2tNSKIrphss4IG2dtxeNaK7asLHUvg6yYrqLKqSCaQKVW++Db2S+qg9W1pjTy94XMH
+         WuqlCmwF4h4VcpsLAbCRHh1nwBh/YyqFYQx/tmS1eH6KFaGYCcaBTkdVcFAdLJOeX24o
+         FJkNRbUsEBAZkIVbASl7UZmtk3/JWUJ3pJH+5oN3AqgwReloq4yyVsRGCLUMxDlgiii8
+         pZDE87HEsJBtgWGKEtW1DV0a4fudJpZNc9atir5NUCy5qToOIPMcpIDQ+tSgkqHoJaHH
+         hxhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=XVAzE2mPSq2iELTRLQJsJ55Y/zl8OiIKZaLHjoW/g7s=;
+        b=mRG47pj6aY0zFA5WM8Z/dvbFyfoUk31Y765iUJkkmApGTHumS1uz5pM6r6HGHhuLkT
+         07al2PgpXMC6/eJrVYFo6RFZ2HyXas3uO7SUQpU3ily8TIzDEjhnjv45mYz4jcuH6hvt
+         2zdxCQDH4nLENXEY02i2CbKvQHlVg8buxbb5qAYVJxpu17DneHFIbw4cTTPboM5ct3Ur
+         MPl1Hz1ujbmAKmmUbS0BXIfGzqv/hECzxbQl6Y+iq82uN5Lu+CUW8X5RG4AxJTkCLppQ
+         Dh+/ukN3bgcOobaXRMnZrJRl0VWE50XWVcXKzVwogE0Xe3ctBY78s9sltUVJhEvIcTdV
+         hqPw==
+X-Gm-Message-State: APjAAAXjlIZz0SmG1bJIUpIXCigmoE0K/4gK2G/ytfxsKO3YVAgPW7/+
+        FHgIjUPM68Bu9DKs1cEx6UdrIQ==
+X-Google-Smtp-Source: APXvYqzaRnIdXa2efRdrsK5iGuhhQxi4Nb9tMOKzFZsE9E40jQExb5Mz5bA45zqormN/VU57ePAqhA==
+X-Received: by 2002:a7b:c084:: with SMTP id r4mr5973825wmh.14.1558510990897;
+        Wed, 22 May 2019 00:43:10 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id y18sm6472624wmd.29.2019.05.22.00.43.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 May 2019 00:43:10 -0700 (PDT)
+Subject: Re: [PATCH 1/3] dt-bindings: clk: meson: add g12b periph clock
+ controller bindings
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     jbrunet@baylibre.com, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20190521150130.31684-1-narmstrong@baylibre.com>
+ <20190521150130.31684-2-narmstrong@baylibre.com>
+ <CAFBinCAwD7W1zQ2YZgecowZUEnoVpGXyGQnOKhB5T3OvOvvbkg@mail.gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <6354e9f9-6c0e-68d9-93e9-a92d874f452a@baylibre.com>
+Date:   Wed, 22 May 2019 09:43:09 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190521144034.100f9f8b@coco.lan>
+In-Reply-To: <CAFBinCAwD7W1zQ2YZgecowZUEnoVpGXyGQnOKhB5T3OvOvvbkg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 21/05/2019 19:30, Martin Blumenstingl wrote:
+> On Tue, May 21, 2019 at 5:02 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> Update the documentation to support clock driver for the Amlogic G12B SoC.
+>>
+>> G12B clock driver is very close, the main differences are :
+>> - the clock tree is duplicated for the both clusters, and the
+>>   SYS_PLL are swapped between the clusters
+>> - G12A has additional clocks like for CSI an other components
+> I missed this in v1, it should be G12B?
 
-On 21/05/19 19:40, Mauro Carvalho Chehab wrote:
-> Em Tue,  8 Jan 2019 23:39:49 +0100
-> Luca Ceresoli <luca@lucaceresoli.net> escreveu:
+Yes, thanks for spotting this
+
 > 
->> Hi,
 >>
->> there has been some discussion on linux-media about video
->> serializer/deserializer chipsets with remote I2C capabilities from TI
->> [0] and Maxim [1]. I took part discussing how the remote I2C feature
->> of such chips could be best implemented in Linux while I was
->> implementing a driver for the Texas Instruments DS90UB954-Q1 video
->> deserializer. My approach is different from both the one used by
->> Vladimir Zapolskiy on other TI chips, which look similar to the
->> DS90UB954 in their I2C management, and the one used by Kieran Bingham
->> with Maxim chips, which have a different and simpler I2C management.
->>
->> After that I had to stop that work, so it is unfinished and I have no
->> plan to continue it. Upon suggestion by some linux-media developers
->> I'm sending my patches as RFC in the hope that they bring additional
->> material for the discussion.
->>
->> I2C management is quite complete in my patches, and it shows how I
->> envisioned I2C management. For the rest the code is in large part
->> incomplete. Don't consider the V4L2, GPIO and other sections as ready
->> for any review.
->>
->> The whole idea is structured around a central node, called the ATR
->> (Address Translator). It is similar to an I2C mux except it changes
->> the I2C addresses of transactions with an "alias" address for each
->> remote chip. Patch 2 has a detailed description of this process.
->>
->>
->> A typical setup looks like:
->>
->>                           Slave X @ 0x10
->>                   .-----.   |
->>       .-----.     |     |---+---- B
->>       | CPU |--A--| ATR |
->>       `-----'     |     |---+---- C
->>                   `-----'   |
->>                           Slave Y @ 0x10
->>
->>   A = "local" bus
->>   B = "remote" bus 0
->>   C = "remote" bus 1
->>
->> In patch 2 I enriched the i2c-mux to also act as an ATR. However the
->> implementation grew larger than I desired, so now I think it would
->> make sense to leave i2c-mux as is, and add a new i2c-atr.c which has
->> ATR features without much of the MUX code. However the implementation
->> would not change too much, so you can look at i2c-mux to see how I
->> implemented the ATR.
->>
->> In the ATR (i2c-mux.c) I implemented the logic needed to remap slave
->> addresses according to a table. Choosing appropriate aliases and
->> filling that table is driver-specific, so in this case it is done by
->> ds90ub954.c. The ATR driver needs to know when a new client appears on
->> the remote bus to setup translation and when it gets disconnected to
->> undo it. So I added a callback pair, attach_client and detach_client,
->> from i2c-core to i2c-mux and from there to the ATR driver. When
->> getting the callback the ATR driver chooses an alias to be used on the
->> local bus for the new chip, configures the ATR (perhaps setting some
->> registers) returns the alias back to the ATR which sill add the new
->> chip-alias pair to its table. The ATR (i2c-mux) then will do the
->> translation for each message, so that the alias will be used on the
->> local bus and the physical chip address on the remote bus.
->>
->> The alias address for a new client is chosen from an alias pool that
->> must be defined in device tree. It is the responsibility of the DT
->> writer to fill the pool with addresses that are otherwise unused on
->> the local bus. The pool could not be filled automatically because
->> there might be conflicting chips on the local bus that are unknown to
->> the software, or that are just connected later.
->>
->> The alias pool and the mapping done at runtime allow to model
->> different camera modules [or display or other modules] similarly to
->> beaglebone capes or rpi hats, up to a model where:
->>
->>  1. there can be different camera modules being designed over time
->>  2. there can be different base boards being designed over time
->>  3. there is a standard interconnection between them (mechanical,
->>     electrical, communication bus)
->>  4. camera modules and base boards are designed and sold independently
->>     (thanks to point 3)
->>
->> The implementation is split in the following patches:
->>  * Patch 1 adds the attach_client() and detach_client() callbacks to
->>    i2c-core
->>  * Patch 2 adds similar callbacks for the use of device drivers and,
->>    most importantly, implements the ATR engine
->>  * Patch 3 adds a farily complete DT bindings document, including the
->>    alias map
->>  * Patch 4 adds the DS90UB954-Q1 dual deserializer driver
->>
->> There is no serializer driver here. The one I have is just a skeleton
->> setting a few registers, just enough to work on the deserializer
->> driver.
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> with above typo fixed (assuming it is one):
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
-> Not sure what to do here... I guess I'll just mark the patches as
-> RFC at media patchwork, as someone has to need support for it and need
-> to finish its implementation.
 
-I just did it.
-
-As I wrote in the cover letter, I was not actively working on the topic
-and sent these patches as an additional input for the discussion about
-I2C address translation and serdes chips in general.
-
--- 
-Luca
