@@ -2,130 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FE5262A2
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 12:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B64A1262AE
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 13:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728925AbfEVK7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 06:59:55 -0400
-Received: from mail-eopbgr1400099.outbound.protection.outlook.com ([40.107.140.99]:6114
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728743AbfEVK7z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 06:59:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e+PpPvTnS6Yfv85x9wGvxFaul7LNejjMe/lwF/a08lg=;
- b=p9wGBcR7hj28GAA6g2FO/Uf5aVPla3VpAFk5E9tQVxDDS0uAgpHBli7P9/W8HGqLDe9qBfXwuXaBWcOMRd7gp5u8uWwz8784IHu6JwCBcxONNO4uaMnfolxGRlEBdp5MbN5C2fbFLWNH88zrlcytC0BPCNdV2h6rZ4CS07YaAgE=
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
- OSBPR01MB2197.jpnprd01.prod.outlook.com (52.134.243.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1900.17; Wed, 22 May 2019 10:59:47 +0000
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::a146:39f0:5df9:11bc]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::a146:39f0:5df9:11bc%7]) with mapi id 15.20.1900.020; Wed, 22 May 2019
- 10:59:47 +0000
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree binding
- document
-Thread-Topic: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree binding
- document
-Thread-Index: AQHVCxgM+eh9qHNmG0u9jtRSG8piA6Z1QSmAgAABdICAAXvewA==
-Date:   Wed, 22 May 2019 10:59:46 +0000
-Message-ID: <OSBPR01MB2103B7A7CF5F9CDDC40B9A2BB8000@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-References: <1557922152-16449-1-git-send-email-biju.das@bp.renesas.com>
-        <1557922152-16449-2-git-send-email-biju.das@bp.renesas.com>
-        <OSAPR01MB30899C8C3E0F316FF37DAE3AD8070@OSAPR01MB3089.jpnprd01.prod.outlook.com>
- <877eaktf8i.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <877eaktf8i.wl-kuninori.morimoto.gx@renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biju.das@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 929b81f1-c2c4-454d-c034-08d6dea49ab1
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB2197;
-x-ms-traffictypediagnostic: OSBPR01MB2197:
-x-microsoft-antispam-prvs: <OSBPR01MB2197487FC0DE5C9A909B6F2DB8000@OSBPR01MB2197.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 0045236D47
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(136003)(346002)(376002)(366004)(39860400002)(199004)(189003)(51914003)(6116002)(446003)(11346002)(476003)(26005)(73956011)(64756008)(186003)(3846002)(25786009)(66446008)(66556008)(76116006)(52536014)(305945005)(74316002)(6246003)(8936002)(68736007)(66946007)(7736002)(66476007)(44832011)(53936002)(4744005)(2906002)(86362001)(256004)(486006)(5024004)(5660300002)(478600001)(99286004)(76176011)(7696005)(102836004)(54906003)(110136005)(6506007)(316002)(14454004)(33656002)(71200400001)(55016002)(8676002)(81166006)(66066001)(71190400001)(6436002)(4326008)(7416002)(9686003)(81156014)(229853002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB2197;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: hZsRVlnrlezt/qX+7xZ62qKSrB4UFS6q4tq5rzzpTXQrfrYMDkVyuH7xjTzndTzETjxGNLMXXfQEypnf43anUyCwWz3X+lbUKCDcBTheWz2fTCmu/3cvf4WlRhf04zrYSNl/XhGOPn/u6iw3kjRAGKfwxWJMwh1gQuVdp0icY5293iHxKnpjNZupBfqSG53MiEULqKGlaci8a2f0df6zCeAPZ4/qMUWq9mux5O7hb4mmecLJQSFFajJrTXJeZhfFdUhJ9J1Wvv4TUq9QD2iVaIvL5UpRLznTQF9rAEboYapGNM5qpOISPPEyqvnaCGHIErBpRrx93yhTuITLpP7yaT6o5RSYpbPEZr2DFdxn7ombQTraPAgeydfzKuiOnOQO29HtxGDEQxDp8oG8aJY6cqF5J2vKemdLFYvEyeUnLCs=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1728680AbfEVLBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 07:01:18 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55612 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728406AbfEVLBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 07:01:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=zayKSYs/1H7s0xB/BM7u3QdiVVXr8vKW/624+3am8oI=; b=lBsZPNdl+N8oAgIkMsLdVrTnR
+        szN9nikklbIFhthxDf+7g9jkQU3hMZP0jTjniUsU2bUIUR8FCKydeCfHZ2YYXMCsjWG7T99RN+jjv
+        XCLG1c/qnj2jWwbvjAWB8553rHe7VwZMyoewf5+3MDRqQMna/HHUKeAPpMUWYk5pOp8Tc=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hTOzf-00043C-2o; Wed, 22 May 2019 11:01:11 +0000
+Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
+        id 678611126D0E; Wed, 22 May 2019 12:01:07 +0100 (BST)
+Date:   Wed, 22 May 2019 12:01:07 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jeffrey Hugo <jhugo@codeaurora.org>
+Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, lgirdwood@gmail.com,
+        agross@kernel.org, david.brown@linaro.org,
+        bjorn.andersson@linaro.org, jcrouse@codeaurora.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+Subject: Re: [PATCH 2/3] regulator: qcom_spmi: Add support for PM8005
+Message-ID: <20190522110107.GB8582@sirena.org.uk>
+References: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
+ <20190521165315.14379-1-jeffrey.l.hugo@gmail.com>
+ <20190521185054.GD16633@sirena.org.uk>
+ <51caaee4-dfc9-5b5a-07c7-b1406c178ca3@codeaurora.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 929b81f1-c2c4-454d-c034-08d6dea49ab1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2019 10:59:46.8778
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2197
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ftEhullJWpWg/VHq"
+Content-Disposition: inline
+In-Reply-To: <51caaee4-dfc9-5b5a-07c7-b1406c178ca3@codeaurora.org>
+X-Cookie: Does the name Pavlov ring a bell?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi Morimoto-San and Shimoda-San,
+--ftEhullJWpWg/VHq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for the feedback.
+On Tue, May 21, 2019 at 05:16:06PM -0600, Jeffrey Hugo wrote:
+> On 5/21/2019 12:50 PM, Mark Brown wrote:
 
-> Subject: Re: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree bindi=
-ng
-> document
->=20
->=20
-> Hi
->=20
-> > > +Required properties:
-> > > + - compatible: Must be "ti,hd3ss3220".
-> > > + - reg: I2C slave address, must be 0x47 or 0x67 based on ADDR pin.
-> > > + - interrupts: <a b> where a is the interrupt number and b represent=
-s an
-> > > +   encoding of the sense and level information for the interrupt.
+> > > +static int spmi_regulator_common_list_voltage(struct regulator_dev *rdev,
+> > > +					      unsigned selector);
 > > > +
-> > > +Required sub-node:
-> > > + - connector : The "usb-c-connector" attached to the hd3ss3220
-> > > +chip. The
-> >
-> > s/connector :/connector:/
->=20
-> Maybe it is for alignment ?
+> > > +static int spmi_regulator_common2_set_voltage(struct regulator_dev *rdev,
+> > > +					      unsigned selector)
 
-Yes, I need to fix the extra space.
+> > Eeew, can we not have better names?
 
-> > According to the connector/usb-connector.txt, should the connector
-> > node have ports, port@1 and an endpoint nodes like below?
->=20
-> "ports" is needed if it has multiple "port", otherwise, single port is al=
-lowed
-> from OF-graph point of view.
+> I'm open to suggestions.  Apparently there are two register common register
+> schemes - the old one and the new one.  PMIC designs after some random point
+> in time are all the new register scheme per the documentation I see.
 
-OK. I will use single port on  the next patch series.
+> As far as I an aware, the FT426 design is the first design to be added to
+> this driver to make use of the new scheme, but I expect more to be supported
+> in future, thus I'm reluctant to make these ft426 specific in the name.
 
-Regards,
-Biju
+If there's a completely new register map why are these even in the same
+driver?
+
+> > > +	if (reg == SPMI_COMMON2_MODE_HPM_MASK)
+> > > +		return REGULATOR_MODE_NORMAL;
+> > > +
+> > > +	if (reg == SPMI_COMMON2_MODE_AUTO_MASK)
+> > > +		return REGULATOR_MODE_FAST;
+> > > +
+> > > +	return REGULATOR_MODE_IDLE;
+> > > +}
+
+> > This looks like you want to write a switch statement.
+
+> It follows the existing style in the driver, but sure I can make this a
+> switch.
+
+Please fix the rest of the driver as well then.
+
+--ftEhullJWpWg/VHq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlK/IACgkQJNaLcl1U
+h9AXBAf+Mto6O8QugYdL/55lY+O0vvNOPBrb59BAFs7716IWtNgDrcYMV26RZQSH
+BzgdRdziDxkoGHoN5SW0+SMI4M3+P/z2H/27sIzWS9XVN1Sa2FWpY/YXuLbH2CZi
+X9ghBPTYAzoMuBUmYLFGtLIRdiO9010etKXNciGD2gFJfNNadNKO3J8hC3OqDgTZ
+bMxyC5g7MC3I9htRJ9yafXbbXHqahv65Ef6qJglqAab9l8lEYZUsinLDr0+RsDjA
+VK6zsNXyfMwkdUUWvLpzObIWE3LYAys1o/c62/nPfPdJp39K5ZVaN8oAKAQlcULk
+rvwI3qh/T/+DFRxCMIU+w/Hp9MLa5g==
+=jGLx
+-----END PGP SIGNATURE-----
+
+--ftEhullJWpWg/VHq--
