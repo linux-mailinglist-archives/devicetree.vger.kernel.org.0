@@ -2,92 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25DC326AB7
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 21:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F6E926E35
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 21:47:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729762AbfEVTSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 15:18:39 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52534 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728533AbfEVTSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 15:18:38 -0400
-Received: by mail-wm1-f67.google.com with SMTP id y3so3351993wmm.2
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 12:18:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:user-agent:date
-         :message-id:mime-version;
-        bh=oMdcno1bN7UGFXmlvdsH86j5M8DSKBM+CBX05MLBto4=;
-        b=IiHh0OkjSBhfeEaplOxktSUxiYE6QnxnBWhAnRpE+MfxpLOpFOmxtbpEOeQC7+Gn3d
-         StdAwsHQOC5dtEQofdiP+h3EiWwWNjcVtQoOOGu6woXz5s7vKdugOPyxHdDXSHySSOqB
-         nP8Xwa1vEktW6I1veR341reZCVR3xswoiN16Chzh5tLTx0sTXlMbdG4intN0XDRaXMNy
-         xxSWtkhkj4h7m4hE25rTekhhjjIwDmJXS9uImPQI83vibg7paTg7QUoI8iltmNQXeE1M
-         SO+hxzfHVw41Ybgq0SzLg/23yF3FWgALlMQMfDxujKMxxQ5BoIdCDbA7Cb/4AAaUF2wP
-         bKuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references
-         :user-agent:date:message-id:mime-version;
-        bh=oMdcno1bN7UGFXmlvdsH86j5M8DSKBM+CBX05MLBto4=;
-        b=odKvgSUs5OMiZq9F+hLOZ+jfqNAYhuE25TE9uyx6QObr66eJf4zTdPCeEE662ayRq6
-         VVTNqpCwGjq5wTde4FtNSs23F5F9guAIyb/Gm/gDItN0JCfb0vJPJtVb7BKS/YWSYWDR
-         RGxmqNeC3L941t7mOtQeNDMzwQLPKQWHWyIQwTBJsUgQNeUfonUhQOBRob1TUNMUTOX8
-         arSaR6QEa/sl2z979GBwNwLzk0eviei9chRKiP6MPXykpXWUe0RjgYgdyVtBCjN/vn+5
-         S3NpFhdp6fRZ53YDbb6zYfC6hB2BXxh8JW1nWacj4Wp22qx4dE9rtMrmWuX3LyKbRY/A
-         uxCA==
-X-Gm-Message-State: APjAAAU9xgykm8xfa98m5xRNiFE4xkvrKwqnO4gTzoej9FfxfNZSN75m
-        wDc9GrEQfLiKNR7hlW4VfRsbsA==
-X-Google-Smtp-Source: APXvYqwJkoMFDjSKM1Xceo+2NVH2eEaNn1h+0mvTxstEwWDLuXSNqLr+xgh+7QN1+3tmDHssAXHjNg==
-X-Received: by 2002:a1c:40c6:: with SMTP id n189mr8955328wma.65.1558552716735;
-        Wed, 22 May 2019 12:18:36 -0700 (PDT)
-Received: from localhost ([2a01:cb1d:12c:8800:1e45:34e8:9e5f:f03])
-        by smtp.gmail.com with ESMTPSA id y40sm47697179wrd.96.2019.05.22.12.18.35
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 22 May 2019 12:18:35 -0700 (PDT)
-From:   Loys Ollivier <lollivier@baylibre.com>
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-Cc:     linux-kernel@vger.kernel.org, Atish Patra <atish.patra@wdc.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Paul Walmsley <paul@pwsan.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH 1/6] arch: riscv: add support for building DTB files from DT source data
-In-Reply-To: <20190411084304.5072-2-paul.walmsley@sifive.com> (Paul Walmsley's
-        message of "Thu, 11 Apr 2019 01:42:59 -0700")
-References: <20190411084304.5072-2-paul.walmsley@sifive.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/25.3 (gnu/linux)
-Date:   Wed, 22 May 2019 21:18:33 +0200
-Message-ID: <868suyb8mu.fsf@baylibre.com>
+        id S1731164AbfEVTrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 15:47:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49422 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731228AbfEVT1U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 15:27:20 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D5163217D9;
+        Wed, 22 May 2019 19:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558553240;
+        bh=hlAVIiOpRcQkmn1FUyVhG2T73UvpIg1zkjRYmBGZFbY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iJ9rpfbd2rv6v3D4lAjk3XAx6LiuJ1QwweDrobD9sc2Rq9jjukvgLxtf9Z6bsyYvl
+         h7svq0ygKqIntZoPr6aG5/rmJQzL4gL6dXYn/n/Kgb8bOsMZ2oq3/B6kedC79uwqyK
+         z6dhugAon3gLUC97OTzeg0GfrOQs/ZoISnlsFDLg=
+Received: by mail-qt1-f169.google.com with SMTP id i26so3809871qtr.10;
+        Wed, 22 May 2019 12:27:19 -0700 (PDT)
+X-Gm-Message-State: APjAAAVU/2A1WRw+JkuA+ygz+g9tfuhON6rfRTxfaNZbETtqXhEYT5D3
+        wRTuXO/eoPm246JV1OBFHBfyv5nI1nNaDIy4Mw==
+X-Google-Smtp-Source: APXvYqy+PeJM7o3ppEVTbfv/xeDCVQT0aKFYAppgCGRW5RshOFOrnfI1FkipG2N2RO8u2GCiHsgMEikYAzbvgjw3ptY=
+X-Received: by 2002:ac8:7688:: with SMTP id g8mr48798907qtr.224.1558553239094;
+ Wed, 22 May 2019 12:27:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20190521161102.29620-1-peron.clem@gmail.com>
+In-Reply-To: <20190521161102.29620-1-peron.clem@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 22 May 2019 14:27:07 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+86nNEBzjbf_GLWWrAN91jwU+JQ7zrEoFaT_dxUzVv4A@mail.gmail.com>
+Message-ID: <CAL_Jsq+86nNEBzjbf_GLWWrAN91jwU+JQ7zrEoFaT_dxUzVv4A@mail.gmail.com>
+Subject: Re: [PATCH v6 0/6] Allwinner H6 Mali GPU support
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Steven Price <steven.price@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 11 Apr 2019 at 01:42, Paul Walmsley <paul.walmsley@sifive.com> wrote:
-
-> Similar to ARM64, add support for building DTB files from DT source
-> data for RISC-V boards.
+On Tue, May 21, 2019 at 11:11 AM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.=
+com> wrote:
 >
-> This patch starts with the infrastructure needed for SiFive boards.
-> Boards from other vendors would add support here in a similar form.
+> Hi,
 >
-> Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
-> Signed-off-by: Paul Walmsley <paul@pwsan.com>
-> Cc: Palmer Dabbelt <palmer@sifive.com>
-> Cc: Albert Ou <aou@eecs.berkeley.edu>
+> The Allwinner H6 has a Mali-T720 MP2 which should be supported by
+> the new panfrost driver. This series fix two issues and introduce the
+> dt-bindings but a simple benchmark show that it's still NOT WORKING.
+>
+> I'm pushing it in case someone want to continue the work.
+>
+> This has been tested with Mesa3D 19.1.0-RC2 and a GPU bitness patch[1].
+>
+> One patch is from Icenowy Zheng where I changed the order as required
+> by Rob Herring[2].
+>
+> Thanks,
+> Clement
+>
+> [1] https://gitlab.freedesktop.org/kszaq/mesa/tree/panfrost_64_32
+> [2] https://patchwork.kernel.org/patch/10699829/
+>
+>
+> [  345.204813] panfrost 1800000.gpu: mmu irq status=3D1
+> [  345.209617] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+> 0x0000000002400400
+> [  345.209617] Reason: TODO
+> [  345.209617] raw fault status: 0x800002C1
+> [  345.209617] decoded fault status: SLAVE FAULT
+> [  345.209617] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
+> [  345.209617] access type 0x2: READ
+> [  345.209617] source id 0x8000
+> [  345.729957] panfrost 1800000.gpu: gpu sched timeout, js=3D0,
+> status=3D0x8, head=3D0x2400400, tail=3D0x2400400, sched_job=3D000000009e2=
+04de9
+> [  346.055876] panfrost 1800000.gpu: mmu irq status=3D1
+> [  346.060680] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+> 0x0000000002C00A00
+> [  346.060680] Reason: TODO
+> [  346.060680] raw fault status: 0x810002C1
+> [  346.060680] decoded fault status: SLAVE FAULT
+> [  346.060680] exception type 0xC1: TRANSLATION_FAULT_LEVEL1
+> [  346.060680] access type 0x2: READ
+> [  346.060680] source id 0x8100
+> [  346.561955] panfrost 1800000.gpu: gpu sched timeout, js=3D1,
+> status=3D0x8, head=3D0x2c00a00, tail=3D0x2c00a00, sched_job=3D00000000b55=
+a9a85
+> [  346.573913] panfrost 1800000.gpu: mmu irq status=3D1
+> [  346.578707] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+> 0x0000000002C00B80
+>
+> Change in v5:
+>  - Remove fix indent
+>
+> Changes in v4:
+>  - Add bus_clock probe
+>  - Fix sanity check in io-pgtable
+>  - Add vramp-delay
+>  - Merge all boards into one patch
+>  - Remove upstreamed Neil A. patch
+>
+> Change in v3 (Thanks to Maxime Ripard):
+>  - Reauthor Icenowy for her path
+>
+> Changes in v2 (Thanks to Maxime Ripard):
+>  - Drop GPU OPP Table
+>  - Add clocks and clock-names in required
+>
+> Cl=C3=A9ment P=C3=A9ron (5):
+>   drm: panfrost: add optional bus_clock
+>   iommu: io-pgtable: fix sanity check for non 48-bit mali iommu
+>   dt-bindings: gpu: mali-midgard: Add H6 mali gpu compatible
+>   arm64: dts: allwinner: Add ARM Mali GPU node for H6
+>   arm64: dts: allwinner: Add mali GPU supply for H6 boards
+>
+> Icenowy Zheng (1):
+>   dt-bindings: gpu: add bus clock for Mali Midgard GPUs
 
-Tested-by: Loys Ollivier <lollivier@baylibre.com>
+I've applied patches 1 and 3 to drm-misc. I was going to do patch 4
+too, but it doesn't apply.
 
-Tested the whole patch series using FSBL+BBL.
-Did basic boot testing and uart validation.
+Patch 2 can go in via the iommu tree and the rest via the allwinner tree.
 
-The actual testing process is quite cumbersome.
-One needs to rebuild the BBL to update the dtb loaded.
-
-Would you have an idea of the delta between bbl and u-boot ?
-I tried booting the same kernel + dtb with U-Boot but ran into
-errors related to plic.
-
-Loys
+Rob
