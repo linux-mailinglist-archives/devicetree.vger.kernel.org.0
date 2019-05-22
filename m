@@ -2,117 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4FD42629A
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 12:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49FE5262A2
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 12:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728406AbfEVK5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 06:57:42 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:33385 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727464AbfEVK5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 06:57:42 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hTOwG-00025w-C7; Wed, 22 May 2019 12:57:40 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hTOwF-0006RR-Ls; Wed, 22 May 2019 12:57:39 +0200
-Date:   Wed, 22 May 2019 12:57:39 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, Gilles.Buloz@kontron.com,
-        Michael.Brunner@kontron.com, frieder.schrempf@kontron.de,
-        thomas.schaefer@kontron.com, robh+dt@kernel.org,
-        Stefan.Nickl@kontron.com, linux-imx@nxp.com, kernel@pengutronix.de
-Subject: Re: [PATCH 00/17] Add Support for Kontron SMARC-sAMX6i
-Message-ID: <20190522105739.tp2mlxel2w7tdvv7@pengutronix.de>
-References: <20190509155834.22838-1-m.felsch@pengutronix.de>
- <20190520021639.GG15856@dragon>
- <20190521082903.xsc643uvgqjg5ue7@pengutronix.de>
- <20190521091110.GG15856@dragon>
+        id S1728925AbfEVK7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 06:59:55 -0400
+Received: from mail-eopbgr1400099.outbound.protection.outlook.com ([40.107.140.99]:6114
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728743AbfEVK7z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 06:59:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e+PpPvTnS6Yfv85x9wGvxFaul7LNejjMe/lwF/a08lg=;
+ b=p9wGBcR7hj28GAA6g2FO/Uf5aVPla3VpAFk5E9tQVxDDS0uAgpHBli7P9/W8HGqLDe9qBfXwuXaBWcOMRd7gp5u8uWwz8784IHu6JwCBcxONNO4uaMnfolxGRlEBdp5MbN5C2fbFLWNH88zrlcytC0BPCNdV2h6rZ4CS07YaAgE=
+Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
+ OSBPR01MB2197.jpnprd01.prod.outlook.com (52.134.243.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1900.17; Wed, 22 May 2019 10:59:47 +0000
+Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
+ ([fe80::a146:39f0:5df9:11bc]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
+ ([fe80::a146:39f0:5df9:11bc%7]) with mapi id 15.20.1900.020; Wed, 22 May 2019
+ 10:59:47 +0000
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree binding
+ document
+Thread-Topic: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree binding
+ document
+Thread-Index: AQHVCxgM+eh9qHNmG0u9jtRSG8piA6Z1QSmAgAABdICAAXvewA==
+Date:   Wed, 22 May 2019 10:59:46 +0000
+Message-ID: <OSBPR01MB2103B7A7CF5F9CDDC40B9A2BB8000@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+References: <1557922152-16449-1-git-send-email-biju.das@bp.renesas.com>
+        <1557922152-16449-2-git-send-email-biju.das@bp.renesas.com>
+        <OSAPR01MB30899C8C3E0F316FF37DAE3AD8070@OSAPR01MB3089.jpnprd01.prod.outlook.com>
+ <877eaktf8i.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <877eaktf8i.wl-kuninori.morimoto.gx@renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=biju.das@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 929b81f1-c2c4-454d-c034-08d6dea49ab1
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB2197;
+x-ms-traffictypediagnostic: OSBPR01MB2197:
+x-microsoft-antispam-prvs: <OSBPR01MB2197487FC0DE5C9A909B6F2DB8000@OSBPR01MB2197.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 0045236D47
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(136003)(346002)(376002)(366004)(39860400002)(199004)(189003)(51914003)(6116002)(446003)(11346002)(476003)(26005)(73956011)(64756008)(186003)(3846002)(25786009)(66446008)(66556008)(76116006)(52536014)(305945005)(74316002)(6246003)(8936002)(68736007)(66946007)(7736002)(66476007)(44832011)(53936002)(4744005)(2906002)(86362001)(256004)(486006)(5024004)(5660300002)(478600001)(99286004)(76176011)(7696005)(102836004)(54906003)(110136005)(6506007)(316002)(14454004)(33656002)(71200400001)(55016002)(8676002)(81166006)(66066001)(71190400001)(6436002)(4326008)(7416002)(9686003)(81156014)(229853002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB2197;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: hZsRVlnrlezt/qX+7xZ62qKSrB4UFS6q4tq5rzzpTXQrfrYMDkVyuH7xjTzndTzETjxGNLMXXfQEypnf43anUyCwWz3X+lbUKCDcBTheWz2fTCmu/3cvf4WlRhf04zrYSNl/XhGOPn/u6iw3kjRAGKfwxWJMwh1gQuVdp0icY5293iHxKnpjNZupBfqSG53MiEULqKGlaci8a2f0df6zCeAPZ4/qMUWq9mux5O7hb4mmecLJQSFFajJrTXJeZhfFdUhJ9J1Wvv4TUq9QD2iVaIvL5UpRLznTQF9rAEboYapGNM5qpOISPPEyqvnaCGHIErBpRrx93yhTuITLpP7yaT6o5RSYpbPEZr2DFdxn7ombQTraPAgeydfzKuiOnOQO29HtxGDEQxDp8oG8aJY6cqF5J2vKemdLFYvEyeUnLCs=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190521091110.GG15856@dragon>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:56:23 up 4 days, 17:14, 27 users,  load average: 0.25, 0.11, 0.04
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 929b81f1-c2c4-454d-c034-08d6dea49ab1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2019 10:59:46.8778
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2197
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-05-21 17:11, Shawn Guo wrote:
-> On Tue, May 21, 2019 at 10:29:03AM +0200, Marco Felsch wrote:
-> > Hi Shawn,
-> > 
-> > On 19-05-20 10:16, Shawn Guo wrote:
-> > > On Thu, May 09, 2019 at 05:58:17PM +0200, Marco Felsch wrote:
-> > > > Hi,
-> > > > 
-> > > > this series adds the Kontron SoM 'SMARC-sAMX6i' which is compatible to
-> > > > the SMARC 1.1 standard [1]. Most of the muxing can be done within the
-> > > > SoM dtsi since the standard defines a unique SoM hardware interface.
-> > > > 
-> > > > This series is based on Priit Laes initial commit [2] which adds the
-> > > > initial support. I addressed the comments and changed the copyright
-> > > > since there where a lot of fixes.
-> > > > 
-> > > > Testers are welcome :) since I used a custome baseboard which doesn't
-> > > > use all of the interfaces.
-> > > > 
-> > > > [1] https://sget.org/standards/smarc
-> > > > [2] https://lore.kernel.org/patchwork/patch/762261/
-> > > > 
-> > > > Marco Felsch (14):
-> > > >   dt-bindings: add Kontron vendor prefix
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SDIO interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC LCD interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Management pins
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC GPIO interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC HDMI interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC CSI Camera interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC I2S interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI1 interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC Watchdog
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC module eeprom
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add power management support
-> > > >   ARCH: arm: dts: imx6q-kontron-samx6i: add Kontron SMARC Quad/Dual SoM
-> > > >   ARCH: arm: dts: imx6dl-kontron-samx6i: add Kontron SMARC
-> > > >     Dual-Lite/Solo SoM
-> > > > 
-> > > > Michael Grzeschik (2):
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add SMARC SPI0 interface
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: add boot spi-nor
-> > > > 
-> > > > Priit Laes (1):
-> > > >   ARCH: arm: dts: imx6qdl-kontron-samx6i: Add iMX6-based Kontron
-> > > >     SMARC-sAMX6i module
-> > > 
-> > > Do we really need so many patches for adding a single board support, or
-> > > can we squash some of them?
-> > 
-> > I wanted to keep them logical ordered but I can squash them if you want.
-> 
-> Please squash, thanks.
 
-Okay, last question. Should I keep Priit Laes patch seperate and add one
-patch above or should I squash all of them?
+Hi Morimoto-San and Shimoda-San,
+
+Thanks for the feedback.
+
+> Subject: Re: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree bindi=
+ng
+> document
+>=20
+>=20
+> Hi
+>=20
+> > > +Required properties:
+> > > + - compatible: Must be "ti,hd3ss3220".
+> > > + - reg: I2C slave address, must be 0x47 or 0x67 based on ADDR pin.
+> > > + - interrupts: <a b> where a is the interrupt number and b represent=
+s an
+> > > +   encoding of the sense and level information for the interrupt.
+> > > +
+> > > +Required sub-node:
+> > > + - connector : The "usb-c-connector" attached to the hd3ss3220
+> > > +chip. The
+> >
+> > s/connector :/connector:/
+>=20
+> Maybe it is for alignment ?
+
+Yes, I need to fix the extra space.
+
+> > According to the connector/usb-connector.txt, should the connector
+> > node have ports, port@1 and an endpoint nodes like below?
+>=20
+> "ports" is needed if it has multiple "port", otherwise, single port is al=
+lowed
+> from OF-graph point of view.
+
+OK. I will use single port on  the next patch series.
 
 Regards,
-  Marco
-
-> 
-> Shawn
-> 
-
+Biju
