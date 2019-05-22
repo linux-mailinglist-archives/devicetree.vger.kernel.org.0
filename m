@@ -2,212 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B6E26501
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B622650C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729433AbfEVNtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 09:49:00 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54431 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726770AbfEVNtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 09:49:00 -0400
-Received: by mail-wm1-f67.google.com with SMTP id i3so2306939wml.4;
-        Wed, 22 May 2019 06:48:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=SnKhUBZrT/sPuCdV1Uv2QnIPymrUbdqHNXKAWe9qXx0=;
-        b=tc9v4nSBpMS7KH8OcDKfw9mE24cGP7vo4U5ys9Bsb6j1xdlQj5d5eyk9K4WsRAMU5G
-         JGAbivJF1QcHu10RfRUvkNTFA1LcMy5Lve2RTFrcNg6EYU2/OCJWeqLryddoQ8gzfKEr
-         OnDOD3EW9Im73HGQAkxhsSBmR+KNkVwkB1QtVchg6p+8CZZha8TIdkELcdcRQ1Ul/7Bm
-         6zI3vZigEptpEkpvZJ2KHLNN0as+VxWQtT/y0LU0A0f84ijXIkY3K5Cg6oIyQtYEYla+
-         x0r+EjSGD0ONdygV+aFyQaMNWrFC9wDjgDAlnCRTKe8KhPIWL55K5ep1NntIvz9h1Mhu
-         xrHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SnKhUBZrT/sPuCdV1Uv2QnIPymrUbdqHNXKAWe9qXx0=;
-        b=GQZyKdi/Tq0DoSeZl2Hg/U4HUzmheD6wbKaQY/xVMd7KygzGSWugHkbGnZecTnlphQ
-         Y0EcCQhGByV2gdLKSHVZ0sdByfi3chzjskBDORbTVf77WHGQaoNvBobif9wBTls8wHng
-         7VlfxTDv2ylDx8v6LesemCGa+mYGNDHkew0AQcirvt+PBWXvgAPQRnpz+j53NzBzZ/4k
-         nfBFxGaJF2uEJuCpL+s01PcYov5BN6froXLv1lJS5zvj2FQznbvjyEDYMrOdr/vCklRg
-         kJTJmjmhOm+xiAAHMccxf63FA27TUjlg9vWEeMCi2lhtfmdQqftTiV0ZhzloWHV4Sj2W
-         ac7g==
-X-Gm-Message-State: APjAAAV68/iamrydpxGuZVnjyBylLB24Vo5osWg7AhkH14GSnvgRJcBf
-        0GHqQ5Ei1k4ZvIyRfio7FtA=
-X-Google-Smtp-Source: APXvYqyoUq0PiLCevdgg8MU0+OYTj4c8Uv/Is0aaVHA/cmny/YgEluTqa5TutJOH9d6+bzbC3brOgg==
-X-Received: by 2002:a05:600c:21d7:: with SMTP id x23mr8018674wmj.87.1558532936965;
-        Wed, 22 May 2019 06:48:56 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
-        by smtp.gmail.com with ESMTPSA id n1sm4623910wmc.19.2019.05.22.06.48.55
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 22 May 2019 06:48:56 -0700 (PDT)
-Date:   Wed, 22 May 2019 15:48:55 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V7 12/15] arm64: tegra: Enable PCIe slots in P2972-0000
- board
-Message-ID: <20190522134855.GQ30938@ulmo>
-References: <20190517123846.3708-1-vidyas@nvidia.com>
- <20190517123846.3708-13-vidyas@nvidia.com>
- <20190521105455.GK29166@ulmo>
- <6a2c0a9a-1c37-3e32-535a-aaf0db2f101d@nvidia.com>
+        id S1728491AbfEVNtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 09:49:50 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:50147 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726770AbfEVNtu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 09:49:50 -0400
+Received: from litschi.hi.pengutronix.de ([2001:67c:670:100:feaa:14ff:fe6a:8db5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <m.tretter@pengutronix.de>)
+        id 1hTRco-0003CL-7M; Wed, 22 May 2019 15:49:46 +0200
+Date:   Wed, 22 May 2019 15:49:45 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, robh+dt@kernel.org, mchehab@kernel.org,
+        tfiga@chromium.org, dshah@xilinx.com
+Subject: Re: [PATCH v6 0/5] Add ZynqMP VCU/Allegro DVT H.264 encoder driver
+Message-ID: <20190522154945.54ac67d7@litschi.hi.pengutronix.de>
+In-Reply-To: <23de1fe8-f868-d13d-4217-05bc007fab13@xs4all.nl>
+References: <20190513172131.15048-1-m.tretter@pengutronix.de>
+        <23de1fe8-f868-d13d-4217-05bc007fab13@xs4all.nl>
+Organization: Pengutronix
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="aNvCJ41Feu8IgPyB"
-Content-Disposition: inline
-In-Reply-To: <6a2c0a9a-1c37-3e32-535a-aaf0db2f101d@nvidia.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:feaa:14ff:fe6a:8db5
+X-SA-Exim-Mail-From: m.tretter@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 22 May 2019 14:04:23 +0200, Hans Verkuil wrote:
+> On 5/13/19 7:21 PM, Michael Tretter wrote:
+> > This is v6 of the Allegro DVT H.264 encoder driver found in the EV
+> > family of the Xilinx ZynqMP platform.
+> > 
+> > Only minor changes this time. I dropped the implementation of the
+> > selection api, removed all references mentioning the decoder, and fixed
+> > a few issues reported by sparse and smatch.
+> > 
+> > The v4l2-compliance result using the current vicodec branch is
+> > 
+> > v4l2-compliance SHA: c2ad13e4b7aef9ae160303189c67a91e1775f025, 64 bits
+> > 
+> > Compliance test for allegro device /dev/video4:
+[...]
+> > I observed that the "MMAP (select)" test occasionally fails, because the
+> > test did not receive an V4L2_EVENT_EOS when dequeuing a buffer with
+> > V4L2_BUF_FLAG_LAST being set. The driver always queues the event before
+> > returning the last buffer and the "MMAP (epoll)" does not fail. Thus, I
+> > decided to send the series anyway.  
+> 
+> Where exactly does v4l2-compliance fail? This is weird, and I believe
+> this warrants a bit more debugging. I recommend adding a debug
+> statement in allegro_channel_buf_done() to see when a buffer is marked
+> LAST.
 
---aNvCJ41Feu8IgPyB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v4l2-compliance fails in line 1074
 
-On Tue, May 21, 2019 at 11:47:45PM +0530, Vidya Sagar wrote:
-> On 5/21/2019 4:24 PM, Thierry Reding wrote:
-> > On Fri, May 17, 2019 at 06:08:43PM +0530, Vidya Sagar wrote:
-> > > Enable PCIe controller nodes to enable respective PCIe slots on
-> > > P2972-0000 board. Following is the ownership of slots by different
-> > > PCIe controllers.
-> > > Controller-0 : M.2 Key-M slot
-> > > Controller-1 : On-board Marvell eSATA controller
-> > > Controller-3 : M.2 Key-E slot
-> > >=20
-> > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> > > ---
-> > > Changes since [v6]:
-> > > * None
-> > >=20
-> > > Changes since [v5]:
-> > > * Arranged PCIe nodes in the order of their addresses
-> > >=20
-> > > Changes since [v4]:
-> > > * None
-> > >=20
-> > > Changes since [v3]:
-> > > * None
-> > >=20
-> > > Changes since [v2]:
-> > > * Changed P2U label names to reflect new format that includes 'hsio'/=
-'nvhs'
-> > >    strings to reflect UPHY brick they belong to
-> > >=20
-> > > Changes since [v1]:
-> > > * Dropped 'pcie-' from phy-names property strings
-> > >=20
-> > >   .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |  2 +-
-> > >   .../boot/dts/nvidia/tegra194-p2972-0000.dts   | 41 ++++++++++++++++=
-+++
-> > >   2 files changed, 42 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/ar=
-m64/boot/dts/nvidia/tegra194-p2888.dtsi
-> > > index 0fd5bd29fbf9..30a83d4c5b69 100644
-> > > --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> > > +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> > > @@ -191,7 +191,7 @@
-> > >   						regulator-boot-on;
-> > >   					};
-> > > -					sd3 {
-> > > +					vdd_1v8ao: sd3 {
-> > >   						regulator-name =3D "VDD_1V8AO";
-> > >   						regulator-min-microvolt =3D <1800000>;
-> > >   						regulator-max-microvolt =3D <1800000>;
-> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arc=
-h/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> > > index 73801b48d1d8..a22704e76a84 100644
-> > > --- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> > > +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-> > > @@ -167,4 +167,45 @@
-> > >   			};
-> > >   		};
-> > >   	};
-> > > +
-> > > +	pcie@14100000 {
-> > > +		status =3D "okay";
-> > > +
-> > > +		vddio-pex-ctl-supply =3D <&vdd_1v8ao>;
-> > > +
-> > > +		phys =3D <&p2u_hsio_0>;
-> > > +		phy-names =3D "p2u-0";
-> > > +	};
-> > > +
-> > > +	pcie@14140000 {
-> > > +		status =3D "okay";
-> > > +
-> > > +		vddio-pex-ctl-supply =3D <&vdd_1v8ao>;
-> > > +
-> > > +		phys =3D <&p2u_hsio_7>;
-> > > +		phy-names =3D "p2u-0";
-> > > +	};
-> > > +
-> > > +	pcie@14180000 {
-> > > +		status =3D "okay";
-> > > +
-> > > +		vddio-pex-ctl-supply =3D <&vdd_1v8ao>;
-> > > +
-> > > +		phys =3D <&p2u_hsio_2>, <&p2u_hsio_3>, <&p2u_hsio_4>,
-> > > +		       <&p2u_hsio_5>;
-> > > +		phy-names =3D "p2u-0", "p2u-1", "p2u-2", "p2u-3";
-> > > +	};
-> > > +
-> > > +	pcie@141a0000 {
-> > > +		status =3D "disabled";
-> > > +
-> > > +		vddio-pex-ctl-supply =3D <&vdd_1v8ao>;
-> > > +
-> > > +		phys =3D <&p2u_nvhs_0>, <&p2u_nvhs_1>, <&p2u_nvhs_2>,
-> > > +		       <&p2u_nvhs_3>, <&p2u_nvhs_4>, <&p2u_nvhs_5>,
-> > > +		       <&p2u_nvhs_6>, <&p2u_nvhs_7>;
-> > > +
-> > > +		phy-names =3D "p2u-0", "p2u-1", "p2u-2", "p2u-3", "p2u-4",
-> > > +			    "p2u-5", "p2u-6", "p2u-7";
-> > > +	};
-> >=20
-> > This last controller is disabled by default. Why do we need to include
-> > all of this if it's not going to be used anyway?
-> I want to keep this entry ready by populating all the required fields. Wh=
-en pinctrl
-> driver is ready, I'll send out patches to enable this node as well.
+	fail: v4l2-test-buffers.cpp(1074): !got_eos && !got_source_change
 
-Okay, makes sense.
+The corresponding code in v4l2-compliance is
 
-Thierry
+	if (buf.g_flags() & V4L2_BUF_FLAG_LAST) {
+		fail_on_test(buf.dqbuf(node) != EPIPE);
+>		fail_on_test(!got_eos && !got_source_change);
+		if (!count)
+			break;
+		fail_on_test(node->streamoff(m2m_q.g_type()));
+		m2m_q.munmap_bufs(node);
 
---aNvCJ41Feu8IgPyB
-Content-Type: application/pgp-signature; name="signature.asc"
+When the test fails, the select/epoll_wait returns with readable data,
+but without readable events on the last buffer. If the test is
+successful, data and events are available. This looks like a race
+between the event and the LAST buffer and if the LAST buffer comes
+first, the test fails.
 
------BEGIN PGP SIGNATURE-----
+As said, the driver always queues the EOS event before calling
+v4l2_m2m_buf_done() on the LAST buffer. Right now, I don't understand
+how this can happen, but I will continue debugging.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzlU0QACgkQ3SOs138+
-s6H22w/+NtFf3N+erJ1kmeI6iADQ1aPCyQLeYyKJnlpmga3nBTGjnWKcMOMvvKWJ
-dd5BJVw/2y4WG/4MPOHVwNWqgikVwh9bWC1hvozWqOCVTgLfKmuJFDCuhYeEbRvo
-IYvQ+1NC+9VOrsL/L4g9LprbvZaIcCjIRKlVJBuTddpjq9fKeNQq8eAuuronYKj4
-ahrHQ4Xahni/Qe8R2crqo8qltCHwd4qWVPnTwJ0N90seqIh2sB6ZyPTUhb8WKeiL
-NoGYw5w3VAVxgV8g6nXnWPcSbhV3lM7ju0M8g1d482EpNARag+nuFMyiKkBhO3uB
-SQJQuXSJaclaThtJmdRKoL/HGd3efiJQBysjmdOyTHLPZ4Kth3Rtk7JHXJgiRmsD
-zuh+P0KOe2aYUY4ZIx6jOG2SEHGghntBpGUpyZCpPoaVhmckstaRLxObmQAd/Q9a
-tBwzjs2D1uSRLvGPYnA7BmGxzuEVq0gkg+a7EIESiEiNnuht4eIyfpaNLXaTAafU
-RwDop6KWQk7Itcpt73agmOsXf5UyLJQpf6fT4yXX1kac4YdEr3gNLo2R0rENXgp+
-THNyLcvLPPZGeS2oScl0wvhTObeAPoM42ELGLrIoZl8S8LrGYueIVjmThbsTIX1P
-QuPXkfgLQNU6KQMzDMC9Dwa0+8lAH+ofvoEqihJkSre0uBwIMqY=
-=SO5k
------END PGP SIGNATURE-----
+> 
+> These tests really should not fail, and it is a strong indication of a
+> bug somewhere.
+> 
+> I don't want to merge a driver that has a FAIL in v4l2-compliance without
+> at the very least understanding why that happens. Ignoring it defeats the
+> purpose of v4l2-compliance.
 
---aNvCJ41Feu8IgPyB--
+Totally agreed.
+
+Michael
+
+> 
+> Regards,
+> 
+> 	Hans
+> 
