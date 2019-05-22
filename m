@@ -2,69 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9533D26DF5
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 21:46:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92CB426F75
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 21:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732656AbfEVTpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 15:45:40 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:43775 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387826AbfEVTpk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 15:45:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=XNbOGS4rvkgdUZMHxmhjwr36ofxZ/LCzsygeLRYsvOg=; b=ZDl33/CAORcP7yl3ULlzFAQI8L
-        JOJdOn2+59ezvFK21YTIlmlziHliJKAvIV1dqoBczKcThUkRms3/jx7OJSNEKejqWgnGB92gCidUb
-        /yMZQQkxp14fp+ZmkJx0s4hl1yK44PjIQ1AUMKXgcUNOGjwFiKH37iwAZ4N2HT09W3sM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hTXB3-0003JC-Ds; Wed, 22 May 2019 21:45:29 +0200
-Date:   Wed, 22 May 2019 21:45:29 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
-        palmer@sifive.com, paul.walmsley@sifive.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] i2c-ocores: sifive: add polling mode workaround
- for FU540-C000 SoC.
-Message-ID: <20190522194529.GJ7281@lunn.ch>
-References: <1558515574-11155-1-git-send-email-sagar.kadam@sifive.com>
- <1558515574-11155-4-git-send-email-sagar.kadam@sifive.com>
+        id S1731463AbfEVT4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 15:56:24 -0400
+Received: from mail-wr1-f43.google.com ([209.85.221.43]:38632 "EHLO
+        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731634AbfEVT4V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 15:56:21 -0400
+Received: by mail-wr1-f43.google.com with SMTP id d18so3654771wrs.5;
+        Wed, 22 May 2019 12:56:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=TXzPq9ByGbIEa7un2WIzM+92nsCFrJqr2Aqe90VKILo=;
+        b=AqxRCmlgWHvArBECjQiVJRP357/rnXIZFzYJDtyAwhx7Ho4QkydaJgm6yk97nwG47t
+         bVZsNdR1R8oPcdFZIlNJM4YXo9uBmIE4s72LlxXBpx6q3sCffnXPp+c+XqleQAE/azsu
+         CFFX6js9dQ23jMnoF3bYBnPykWBQ6mESzdgJIDSqMzwIesXOb2v22kIBr/7xOovwkKSN
+         bOjdfAX3knaPx+TfefQQ9Q9VaOOxoqMjLmTW8TJ0ppOAr8oYkk41MTxMt0tJzPQ/XQ9Z
+         U+WZd9MfdW4f29XwRJe6RCl9bpYjI6SWFYkTS4FtpQ4lF1ViOEhTRt4iKXXTiGzy1fg5
+         kn8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=TXzPq9ByGbIEa7un2WIzM+92nsCFrJqr2Aqe90VKILo=;
+        b=EJTu64A75TGQ7vKj9+ca+Xi6q96XyM/qqeoCSQttL8NaNOaDnPZeB+2dAaeuVlk1lr
+         cQf7WZGqqAP0BGSTh62cIieXDmpNqRWLVOekp7z1VsPs866mEF3r/r1rGQTInX+BWZ1r
+         +ugfJ+IG4vEQorOqGoQ0ZySgrVjklg3ESduNpA3A38kkp3VBJIgq6mBa8BRD1bpe9Xk7
+         Sx7YX9RrWxifnRgPyiXKj3FRGzATn7v0fanBaQvsL+r2WyZ+V4416csnv6xLcw0VCJ5Q
+         dV6eQrBBYq5ZMPQMe2wliXzpcHl1EmePqV6vdeoRSAJ0UTr6aYibR6LEyCBou2ff2Umr
+         9vPg==
+X-Gm-Message-State: APjAAAUDUXWOHr5kIW13lhM2dBcA4hfI3ive4PFKcjhpL5P3ox65BqHE
+        nFzirhGlxg1F+aqDPy/grQLj9Y53
+X-Google-Smtp-Source: APXvYqzQxBhqoXXqVF4VRrFGNN/1HQc8l/EO2jZXf2HK6L3MxHaF9vVX+8cdnVIIOWYmLEQ02K1GXg==
+X-Received: by 2002:adf:e90e:: with SMTP id f14mr18836096wrm.166.1558554979553;
+        Wed, 22 May 2019 12:56:19 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8bd4:5700:3029:8954:1431:dc1e? (p200300EA8BD45700302989541431DC1E.dip0.t-ipconnect.de. [2003:ea:8bd4:5700:3029:8954:1431:dc1e])
+        by smtp.googlemail.com with ESMTPSA id a128sm6606735wma.23.2019.05.22.12.56.18
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 May 2019 12:56:18 -0700 (PDT)
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Madalin-cristian Bucur <madalin.bucur@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        David Miller <davem@davemloft.net>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH net-next 0/2] net: phy: add interface mode
+ PHY_INTERFACE_MODE_USXGMII
+Message-ID: <110a1e45-56a7-a646-7b63-f39fe3083c28@gmail.com>
+Date:   Wed, 22 May 2019 21:56:14 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1558515574-11155-4-git-send-email-sagar.kadam@sifive.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 22, 2019 at 02:29:34PM +0530, Sagar Shrikant Kadam wrote:
-> The i2c-ocore driver already has a polling mode interface.But it needs
-> a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
-> There is an erratum in FU540 chip that prevents interrupt driven i2c
-> transfers from working, and also the I2C controller's interrupt bit
-> cannot be cleared if set, due to this the existing i2c polling mode
-> interface added in mainline earlier doesn't work, and CPU stall's
-> infinitely, when-ever i2c transfer is initiated.
-> 
-> Ref:
-> 	commit dd7dbf0eb090 ("i2c: ocores: refactor setup for polling")
-> 
-> The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
-> FU540-COOO SoC.
-> 
-> The polling function identifies a SiFive device based on the device node
-> and enables the workaround.
-> 
-> Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+Add mode USXGMII and change places where so far (incorrectly) XGMII
+was used instead.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Heiner Kallweit (2):
+  net: phy: add interface mode PHY_INTERFACE_MODE_USXGMII
+  net: phy: aquantia: add USXGMII support
 
-    Andrew
+ arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dts | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts | 2 +-
+ drivers/net/phy/aquantia_main.c                   | 6 +++++-
+ include/linux/phy.h                               | 3 +++
+ 4 files changed, 10 insertions(+), 3 deletions(-)
+
+-- 
+2.21.0
+
