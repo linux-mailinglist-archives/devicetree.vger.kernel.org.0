@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B64A1262AE
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 13:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8EA4262C6
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 13:09:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728680AbfEVLBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 07:01:18 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55612 "EHLO
+        id S1729092AbfEVLJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 07:09:17 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40812 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728406AbfEVLBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 07:01:17 -0400
+        with ESMTP id S1728743AbfEVLJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 07:09:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=zayKSYs/1H7s0xB/BM7u3QdiVVXr8vKW/624+3am8oI=; b=lBsZPNdl+N8oAgIkMsLdVrTnR
-        szN9nikklbIFhthxDf+7g9jkQU3hMZP0jTjniUsU2bUIUR8FCKydeCfHZ2YYXMCsjWG7T99RN+jjv
-        XCLG1c/qnj2jWwbvjAWB8553rHe7VwZMyoewf5+3MDRqQMna/HHUKeAPpMUWYk5pOp8Tc=;
+         bh=nzhXhsNahZAD2GGHFwC63OYGOeO5cNATHP2gOm+rReY=; b=wE0k9QLii9XBjOkByBbs3BCdJ
+        HVjZA/0mGJxXPDJnD1o8MbK8YM4cxCG9D7mfHWKl+OGpkc9q/chMbPyhrvYZhkmrGXOt0sl6+FFrS
+        BVpyJbnHZOSeuQL7r/QTA20mvMv5K+NofHh8iCHmGpgQ2bZejn/QqycqQ1hpu1LiCn25M=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hTOzf-00043C-2o; Wed, 22 May 2019 11:01:11 +0000
+        id 1hTP7K-000454-Ly; Wed, 22 May 2019 11:09:06 +0000
 Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id 678611126D0E; Wed, 22 May 2019 12:01:07 +0100 (BST)
-Date:   Wed, 22 May 2019 12:01:07 +0100
+        id 390091126D0E; Wed, 22 May 2019 12:09:06 +0100 (BST)
+Date:   Wed, 22 May 2019 12:09:06 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Jeffrey Hugo <jhugo@codeaurora.org>
-Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, lgirdwood@gmail.com,
-        agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, jcrouse@codeaurora.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Subject: Re: [PATCH 2/3] regulator: qcom_spmi: Add support for PM8005
-Message-ID: <20190522110107.GB8582@sirena.org.uk>
-References: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
- <20190521165315.14379-1-jeffrey.l.hugo@gmail.com>
- <20190521185054.GD16633@sirena.org.uk>
- <51caaee4-dfc9-5b5a-07c7-b1406c178ca3@codeaurora.org>
+To:     Masahisa Kojima <masahisa.kojima@linaro.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        geert@linux-m68k.org, tpiepho@impinj.com,
+        andy.shevchenko@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Satoru Okamoto <okamoto.satoru@socionext.com>,
+        Yoshitoyo Osaki <osaki.yoshitoyo@socionext.com>
+Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer
+ platform
+Message-ID: <20190522110906.GD8582@sirena.org.uk>
+References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
+ <20190521115958.22504-4-masahisa.kojima@linaro.org>
+ <20190521181609.GB16633@sirena.org.uk>
+ <CADQ0-X9yKQ2akerpxKfjxOxmRhPiaaxe7ALDO7VQiH+-+SHo3w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ftEhullJWpWg/VHq"
+        protocol="application/pgp-signature"; boundary="3Pql8miugIZX0722"
 Content-Disposition: inline
-In-Reply-To: <51caaee4-dfc9-5b5a-07c7-b1406c178ca3@codeaurora.org>
+In-Reply-To: <CADQ0-X9yKQ2akerpxKfjxOxmRhPiaaxe7ALDO7VQiH+-+SHo3w@mail.gmail.com>
 X-Cookie: Does the name Pavlov ring a bell?
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
@@ -55,61 +57,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ftEhullJWpWg/VHq
+--3Pql8miugIZX0722
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, May 21, 2019 at 05:16:06PM -0600, Jeffrey Hugo wrote:
-> On 5/21/2019 12:50 PM, Mark Brown wrote:
+On Wed, May 22, 2019 at 05:27:23PM +0900, Masahisa Kojima wrote:
+> On Wed, 22 May 2019 at 03:16, Mark Brown <broonie@kernel.org> wrote:
+> > On Tue, May 21, 2019 at 08:59:58PM +0900, Masahisa Kojima wrote:
 
-> > > +static int spmi_regulator_common_list_voltage(struct regulator_dev *rdev,
-> > > +					      unsigned selector);
-> > > +
-> > > +static int spmi_regulator_common2_set_voltage(struct regulator_dev *rdev,
-> > > +					      unsigned selector)
+> > > +     ret = devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
+> > > +                             0, "synquacer-spi-rx", sspi);
+> > > +     ret = devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
+> > > +                             0, "synquacer-spi-tx", sspi);
 
-> > Eeew, can we not have better names?
+> > The code looked awfully like we depend on having interrupts?
 
-> I'm open to suggestions.  Apparently there are two register common register
-> schemes - the old one and the new one.  PMIC designs after some random point
-> in time are all the new register scheme per the documentation I see.
+> I"m not sure I correctly understand what this comment means,
+> should driver assume the case interrupt is not available?
+> Do I need to support both interrupt and polling handling?
 
-> As far as I an aware, the FT426 design is the first design to be added to
-> this driver to make use of the new scheme, but I expect more to be supported
-> in future, thus I'm reluctant to make these ft426 specific in the name.
+If the driver requires interrupts it should not just ignore errors when
+it requests interrupts.
 
-If there's a completely new register map why are these even in the same
-driver?
-
-> > > +	if (reg == SPMI_COMMON2_MODE_HPM_MASK)
-> > > +		return REGULATOR_MODE_NORMAL;
-> > > +
-> > > +	if (reg == SPMI_COMMON2_MODE_AUTO_MASK)
-> > > +		return REGULATOR_MODE_FAST;
-> > > +
-> > > +	return REGULATOR_MODE_IDLE;
-> > > +}
-
-> > This looks like you want to write a switch statement.
-
-> It follows the existing style in the driver, but sure I can make this a
-> switch.
-
-Please fix the rest of the driver as well then.
-
---ftEhullJWpWg/VHq
+--3Pql8miugIZX0722
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlK/IACgkQJNaLcl1U
-h9AXBAf+Mto6O8QugYdL/55lY+O0vvNOPBrb59BAFs7716IWtNgDrcYMV26RZQSH
-BzgdRdziDxkoGHoN5SW0+SMI4M3+P/z2H/27sIzWS9XVN1Sa2FWpY/YXuLbH2CZi
-X9ghBPTYAzoMuBUmYLFGtLIRdiO9010etKXNciGD2gFJfNNadNKO3J8hC3OqDgTZ
-bMxyC5g7MC3I9htRJ9yafXbbXHqahv65Ef6qJglqAab9l8lEYZUsinLDr0+RsDjA
-VK6zsNXyfMwkdUUWvLpzObIWE3LYAys1o/c62/nPfPdJp39K5ZVaN8oAKAQlcULk
-rvwI3qh/T/+DFRxCMIU+w/Hp9MLa5g==
-=jGLx
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlLdEACgkQJNaLcl1U
+h9Bxtgf+O7Ql3XV1v0OFmPYGNxKhM7hKmFIojgupkf2VbuPOioXJq+YR4xqGXDpQ
+b05un6ESQyyilrI/JXIY3m8pRYbBQh0AMscC/OxWEOThmZCVafXJS3WRxCeFhIqu
+i3fA94KsTpAjgOOGhkDfOiBsthK9je+SMrE1S7eNqGRTi82IfmBVoGr4ecQPKFn9
+dV8QHIcHuzqHKs4iCC+kYpTYpCH6s4VJk5ZkElABX6ewekbot17FBe5bFJp9pWni
+uFC8d1xp66heSVTwc4lA7SbDqWY1zZbhJyeJDjw0Uv2PauyH3HgnN1MKFRCvGBRL
++ZO4mmN5t1jhZ90vlxbwPkyvODb+6A==
+=mko4
 -----END PGP SIGNATURE-----
 
---ftEhullJWpWg/VHq--
+--3Pql8miugIZX0722--
