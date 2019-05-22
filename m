@@ -2,80 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2FA326706
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 17:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDC2267D7
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 18:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729483AbfEVPfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 11:35:36 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36228 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729472AbfEVPfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 11:35:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=zh8hGcmZTNKAIQnav7doHJn1oBv4am+LNeGlrek06I0=; b=N68q3uVaZYlhhRFEQ+rt7Hith
-        rhH9zNy58U1wb4zvS8Ynz1+uoLwV1bLpwC1gXZwsGnmgYQoEVpgO6+iqfuwjMUVlFUuWi1JENXCG/
-        yW0rfEE4XRnDhJYR544V5Ah5C95uwU/LhZVkdjfIJ91/Rd/je8grUmdMB0g6r/+qgCSr0=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hTTH9-0004dA-TL; Wed, 22 May 2019 15:35:31 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id 7144011226BC; Wed, 22 May 2019 16:35:28 +0100 (BST)
-Date:   Wed, 22 May 2019 16:35:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Keerthy <j-keerthy@ti.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, t-kristo@ti.com
-Subject: Re: [PATCH v2 3/3] regulator: lp87565: Add 4-phase lp87561 regulator
- support
-Message-ID: <20190522153528.GG8582@sirena.org.uk>
-References: <20190516043218.8222-1-j-keerthy@ti.com>
- <20190516043218.8222-4-j-keerthy@ti.com>
+        id S1729986AbfEVQPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 12:15:39 -0400
+Received: from mail-yb1-f196.google.com ([209.85.219.196]:43527 "EHLO
+        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729576AbfEVQPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 12:15:39 -0400
+Received: by mail-yb1-f196.google.com with SMTP id n145so1065079ybg.10;
+        Wed, 22 May 2019 09:15:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=H2QOYmtrbMv2RwSsZzKZlIgE2lZOebGHxtRTWGwCUK8=;
+        b=TsIh23HRLdI8hEqPtQ30fFSZzK3/A1tyuR7wi8bJAddsbCkyN0GMgWgPVR3rgKILCq
+         FrjrSON1dGlThNxb6/6otMCvetSODgQPtK+wCIUhqMULhi+c8WlRIZmlkJ0P+HcMxQ8u
+         7yPysCT0YucMkd14fGXTR2A7RsGbxmWl/6v+RXwx++xvoi7fJRqw6R9i/QHjVz9JM1Jo
+         Q1Qlo/bOw4egn1BpoPLWvnMrKgLZ9NEiLUWJNYq/Hj2xcoWn3Q2P8krIEgqDVbCR0vtm
+         ArAa3hmhxNyAeVNo3DWT2VcBqjFu3i1zmzbnIZkNrRlh0EMNdQuROjTN9nfPKbOQ4oNO
+         DeeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=H2QOYmtrbMv2RwSsZzKZlIgE2lZOebGHxtRTWGwCUK8=;
+        b=Qi3y8e5hcaBOpW/ZPT5d35OlBGA8YAhnnRZiBDYrTV4Li3wmH35jBiXAIo+Y7tBW8X
+         1kiZ8zKzdVyEpdKNfqDm12e6eEMD1ocSDNHeK04M9pncR7b/ugY0zQjsoixqDvyPbnmw
+         HiSseIlfn//zb77d3YQ7v+T3qxv8y9YXIIV00MmQHwbCDeHfXMNu24yQ4JY4EROdDHIm
+         6J+I3jGvdfbnEa6xC0x1l6x7h+nn6Q7EnCdTMYHUfPxGIa2buClkUac4tblNpnnKOuxP
+         d600gnv3lsXl8Movzr15k7nOnx3pMbJCcnPXKT3z5pVTB9Wn57cklE++TNdlN+rgpULN
+         6Tnw==
+X-Gm-Message-State: APjAAAVzfr7qsZ5uHBbuTD+pLy5xSTTU/G0OJa3z1WZBIC+PkuMMRAZH
+        INUal63bVuVPd8O7AZeZ/BK6BojjQ/idJevMLtU=
+X-Google-Smtp-Source: APXvYqyPQIgHEnxdgVx+UouRSudO6JPKLPIolrSmSVfkcCwrLtqxxyhpQn1v2Hu8mH5g9waksx4+zTXkVOk8H8NtNxI=
+X-Received: by 2002:a25:ae22:: with SMTP id a34mr6825427ybj.438.1558541737775;
+ Wed, 22 May 2019 09:15:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="p7qwJlK53pWzbayA"
-Content-Disposition: inline
-In-Reply-To: <20190516043218.8222-4-j-keerthy@ti.com>
-X-Cookie: Does the name Pavlov ring a bell?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190521160330.28402-1-peron.clem@gmail.com> <20190521160330.28402-4-peron.clem@gmail.com>
+ <20190522103243.mmrfato5p2mhtf4j@flea>
+In-Reply-To: <20190522103243.mmrfato5p2mhtf4j@flea>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Wed, 22 May 2019 18:15:26 +0200
+Message-ID: <CAJiuCcdaZVLQyupEf8HPaUySakufXXAhzundo6VeyQaAyZ8Trw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: watchdog: add Allwinner H6 r_watchdog
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>, linux-watchdog@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Maxime,
 
---p7qwJlK53pWzbayA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 22 May 2019 at 12:32, Maxime Ripard <maxime.ripard@bootlin.com> wro=
+te:
+>
+> On Tue, May 21, 2019 at 06:03:28PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Allwinner H6 has a second watchdog on the r-blocks which is
+> > compatible with the A31.
+> >
+> > This commit add the H6 compatible for the r_watchdog.
+> >
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+>
+> Unless you have some evidence that the two blocks are different, then
+> you should just reuse the same one.
 
-On Thu, May 16, 2019 at 10:02:18AM +0530, Keerthy wrote:
-> The LP8756x family has a single output 4-phase regulator
-> configuration. Add support for the same. The control
-> lies in the master buck which is buck0 for 4-phase
-> configuration. Enable/disable/voltage set happen via
-> buck0 registers.
+I have no evidence it's different nor identical, it's not documented
+in the user manual.
+I thought it would better to have separate bindings in case there is a
+difference.
+Than don't have and find later that we have to introduce one.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+But as you prefer.
 
---p7qwJlK53pWzbayA
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Cl=C3=A9ment
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlbD8ACgkQJNaLcl1U
-h9Alygf9F5WNeDtw1PhBSqAc0Si59+B44/gYO/ffBTyuP2A3hzVd3VvhrYSk1+gO
-gGPdCGdyRMIcs83ijz02XKwWIDhrazQcDQhyVCd0QpbPAB6CpgJnj43DQMgFzAHS
-2i5le6Ossnsc/aPGDgumb26OIL2v6H/mgmTSGEUynKl+0Z3M5MgQHgWmzTNMytLH
-at5abgsiKSt8MCEXReN3AY83M6IdCew01AtsRUAklTLEkC8ggDXrTT8kAYn5mvb+
-a0VpR9W2JNJ8Dxc3i82UY3vrQ35UnIP5/SnUH+apbWcVIcbO46RtXAkHC4yo8tZz
-vBpiIoYfUBSL6hPKnfzob+ryXb8EFA==
-=k1Kg
------END PGP SIGNATURE-----
 
---p7qwJlK53pWzbayA--
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
