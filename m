@@ -2,256 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3ECE26356
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 14:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DF702635E
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 14:03:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728466AbfEVMBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 08:01:24 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:40074 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727975AbfEVMBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 08:01:23 -0400
-Received: by mail-it1-f193.google.com with SMTP id h11so2606797itf.5
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 05:01:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=a0sgS6JiPQaMdmqr0pmDguVAsGhTr/YF3Eo5mOXHScw=;
-        b=duXL9btWJwwi+wIeMidO21e/PYLqCPnvpseC4tuFVlunBET+P86h4wWHns03Omsey+
-         auG5o28oXmMSQ9x0BMuI3HHM1tShs0xrJtA92QfB05yn529qjxCxysO3pRt0cPknUezE
-         tPS80c1NMwufr3mogOJ/7VZPgFMc7CGvw/ad8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=a0sgS6JiPQaMdmqr0pmDguVAsGhTr/YF3Eo5mOXHScw=;
-        b=RzRlFlPavX8I2VSpbcFM1IZPKj6B6/Att634ctmCLmkqHbMN8AvCy3oQkJCnkwK4WY
-         REiChU78R3Cx+zunfqygCrRniQlLNv9ix8XvG7bI4XqXVIvuq1o4rQSCJdItqxb9ZTOW
-         PK+5g39WstTK9HGf0bEfStjyHsgNPuilTP1UbxdzIbUafccrzAO/OE5fvCvX3g+/7Xhz
-         X7YvRu6Dqtl4tkzCW5Q+fLpDg/FJSHbHYJTrz7eB9stYCDBznK2BVh9VoOlLo93wl0sW
-         jqq6xpMRk+Y+oN+jj5IgF0bIjteO3yeZxyWUrHAGQqAVCS6Yp8MSZLPY951tJghJiplA
-         LjMw==
-X-Gm-Message-State: APjAAAU+hTdIzutTQJRgSyAESf2yFaFbwHT43GKo38ll3D0Ns+7cDJ8U
-        WPtgszS0lM9zokp3Ufd9x+hfR4BrJDbPn4EP9sQpcw==
-X-Google-Smtp-Source: APXvYqxmTssug6sa7NiW2YWZql6kODBlYCZUD1kCFBempFTb+E4be0jz47x+9V2Yy9CA5auFDdC4/zjMd5z+PrC42vU=
-X-Received: by 2002:a24:590f:: with SMTP id p15mr7744336itb.12.1558526482322;
- Wed, 22 May 2019 05:01:22 -0700 (PDT)
+        id S1728584AbfEVMDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 08:03:23 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:42630 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728466AbfEVMDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 08:03:23 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id D656B25AD6C;
+        Wed, 22 May 2019 22:03:20 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id DE72194053F; Wed, 22 May 2019 14:03:18 +0200 (CEST)
+Date:   Wed, 22 May 2019 14:03:18 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a774c0: Clean up CPU
+ compatibles
+Message-ID: <20190522120318.mwcp7a6wr3lq6kcm@verge.net.au>
+References: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
 MIME-Version: 1.0
-References: <20190315130825.9005-1-jagan@amarulasolutions.com>
- <20190315130825.9005-4-jagan@amarulasolutions.com> <c232d5620d6a3272a6064ce9ccdec5c86a3a7950.camel@bootlin.com>
-In-Reply-To: <c232d5620d6a3272a6064ce9ccdec5c86a3a7950.camel@bootlin.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 22 May 2019 17:31:10 +0530
-Message-ID: <CAMty3ZC=cLNbJAeDBGCyYrknB5LWriL-pisk7j=jXQ54bse7XQ@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 3/6] drm/sun4i: dsi: Add bridge support
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul and Maxime,
+On Tue, May 21, 2019 at 05:44:26PM +0100, Robin Murphy wrote:
+> Apparently this DTS crossed over with commit 31af04cd60d3 ("arm64: dts:
+> Remove inconsistent use of 'arm,armv8' compatible string") and missed
+> out on the cleanup, so put it right.
+> 
+> CC: Simon Horman <horms@verge.net.au>
+> CC: Magnus Damm <magnus.damm@gmail.com>
+> CC: linux-renesas-soc@vger.kernel.org
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 
-On Fri, Mar 15, 2019 at 7:03 PM Paul Kocialkowski
-<paul.kocialkowski@bootlin.com> wrote:
->
-> Hi,
->
-> On Fri, 2019-03-15 at 18:38 +0530, Jagan Teki wrote:
-> > Some display panels would come up with a non-DSI output which
-> > can have an option to connect DSI interface by means of bridge
-> > convertor.
-> >
-> > This DSI to non-DSI bridge convertor would require a bridge
-> > driver that would communicate the DSI controller for bridge
-> > functionalities.
-> >
-> > So, add support for bridge functionalities in Allwinner DSI
-> > controller.
->
-> See a few comments below.
->
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 65 +++++++++++++++++++-------
-> >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  1 +
-> >  2 files changed, 49 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> > index 0960b96b62cc..64d74313b842 100644
-> > --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> > +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> > @@ -781,6 +781,9 @@ static void sun6i_dsi_encoder_enable(struct drm_encoder *encoder)
-> >       if (!IS_ERR(dsi->panel))
-> >               drm_panel_prepare(dsi->panel);
-> >
-> > +     if (!IS_ERR(dsi->bridge))
-> > +             drm_bridge_pre_enable(dsi->bridge);
-> > +
-> >       /*
-> >        * FIXME: This should be moved after the switch to HS mode.
-> >        *
-> > @@ -796,6 +799,9 @@ static void sun6i_dsi_encoder_enable(struct drm_encoder *encoder)
-> >       if (!IS_ERR(dsi->panel))
-> >               drm_panel_enable(dsi->panel);
-> >
-> > +     if (!IS_ERR(dsi->bridge))
-> > +             drm_bridge_enable(dsi->bridge);
-> > +
-> >       sun6i_dsi_start(dsi, DSI_START_HSC);
-> >
-> >       udelay(1000);
-> > @@ -812,6 +818,9 @@ static void sun6i_dsi_encoder_disable(struct drm_encoder *encoder)
-> >       if (!IS_ERR(dsi->panel)) {
-> >               drm_panel_disable(dsi->panel);
-> >               drm_panel_unprepare(dsi->panel);
-> > +     } else if (!IS_ERR(dsi->bridge)) {
-> > +             drm_bridge_disable(dsi->bridge);
-> > +             drm_bridge_post_disable(dsi->bridge);
-> >       }
-> >
-> >       phy_power_off(dsi->dphy);
-> > @@ -973,11 +982,16 @@ static int sun6i_dsi_attach(struct mipi_dsi_host *host,
-> >       struct sun6i_dsi *dsi = host_to_sun6i_dsi(host);
-> >
-> >       dsi->device = device;
-> > -     dsi->panel = of_drm_find_panel(device->dev.of_node);
-> > -     if (IS_ERR(dsi->panel))
-> > -             return PTR_ERR(dsi->panel);
-> >
-> > -     dev_info(host->dev, "Attached device %s\n", device->name);
-> > +     dsi->bridge = of_drm_find_bridge(device->dev.of_node);
-> > +     if (!dsi->bridge) {
->
-> You are using IS_ERR to check that the bridge is alive in the changes
-> above, but switch to checking that it's non-NULL at this point.
->
-> Are both guaranteed to be interchangeable?
->
-> > +             dsi->panel = of_drm_find_panel(device->dev.of_node);
-> > +             if (IS_ERR(dsi->panel))
-> > +                     return PTR_ERR(dsi->panel);
-> > +     }
->
-> You should probably use drm_of_find_panel_or_bridge instead of
-> duplicating the logic here.
+Thanks Robin,
 
-True, In-fact I did try this API. but pipeline were unable to bound.
-Usually the panel and bridge were attached first and then the pipeline
-bound would start from front-end (in A33) But in my below cases I have
-seen only panel or bridge attached but no pipeline bound at all.
-
-And I'm using drm_of_find_panel_or_bridge(host->dev->of_node, 1, 0,
-&dsi->panel, &dsi->bridge); in dsi attach API.
-
-Case-1, panel:
-
-&dsi {
-    vcc-dsi-supply = <&reg_dcdc1>;        /* VCC3V3-DSI */
-    status = "okay";
-
-    ports {
-        dsi_out: port@1 {
-            reg = <1>;
-
-            dsi_out_panel: endpoint {
-                remote-endpoint = <&panel_out_dsi>;
-            };
-        };
-    };
-
-    panel@0 {
-        compatible = "bananapi,s070wv20-ct16-icn6211";
-        reg = <0>;
-        enable-gpios = <&pio 1 7 GPIO_ACTIVE_HIGH>; /* LCD-PWR-EN: PB7 */
-        reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* LCD-RST: PL5 */
-        backlight = <&backlight>;
-
-        port {
-            panel_out_dsi: endpoint {
-                remote-endpoint = <&dsi_out_panel>;
-            };
-        };
-    };
-};
-
-Case-2, bridge:
-
-    panel {
-        compatible = "bananapi,s070wv20-ct16", "simple-panel";
-        enable-gpios = <&pio 1 7 GPIO_ACTIVE_HIGH>; /* LCD-PWR-EN: PB7 */
-        backlight = <&backlight>;
-
-        port {
-
-            panel_out_bridge: endpoint {
-                remote-endpoint = <&bridge_out_panel>;
-            };
-        };
-    };
-
-&dsi {
-    vcc-dsi-supply = <&reg_dcdc1>;        /* VCC-DSI */
-    status = "okay";
-
-    ports {
-        dsi_out: port@1 {
-            reg = <1>;
-
-            dsi_out_bridge: endpoint {
-                remote-endpoint = <&bridge_out_dsi>;
-            };
-        };
-    };
-
-    bridge@0 {
-        reg = <0>;
-        compatible = "bananapi,icn6211", "chipone,icn6211";
-        reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* LCD-RST: PL5 */
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        ports {
-            #address-cells = <1>;
-            #size-cells = <0>;
-
-            bridge_in: port@0 {
-                reg = <0>;
-
-                bridge_out_dsi: endpoint {
-                    remote-endpoint = <&dsi_out_bridge>;
-                };
-            };
-
-            bridge_out: port@1 {
-                reg = <1>;
-
-                bridge_out_panel: endpoint {
-                    remote-endpoint = <&panel_out_bridge>;
-                };
-            };
-        };
-    };
-};
-
-I think, I'm sure about the pipeline connections as per my
-understanding. but something loosely missed here or in the code.
-Please do let me know for any suggestions.
-
-Jagan.
+applied for inclusion in v5.3.
