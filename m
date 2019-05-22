@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00869263EB
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 14:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3449426407
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 14:50:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728744AbfEVMfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 08:35:03 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:45732 "EHLO gloria.sntech.de"
+        id S1729323AbfEVMt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 08:49:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40788 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728438AbfEVMfC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 08:35:02 -0400
-Received: from we0524.dip.tu-dresden.de ([141.76.178.12] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hTQSR-0000lq-OK; Wed, 22 May 2019 14:34:59 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        huangtao@rock-chips.com, Linux PM list <linux-pm@vger.kernel.org>,
-        xxx@rock-chips.com, xf@rock-chips.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Doug Anderson <dianders@chromium.org>, vicencb@gmail.com
-Subject: Re: [PATCH v3 1/3] thermal: rockchip: fix up the tsadc pinctrl setting error
-Date:   Wed, 22 May 2019 14:34:58 +0200
-Message-ID: <1805430.MCm2xJzUXA@phil>
-In-Reply-To: <f0581341-126a-5733-3c4b-8e6f67bfc32e@linaro.org>
-References: <1556618986-18923-1-git-send-email-zhangqing@rock-chips.com> <2174314.1vfUlvne1O@phil> <f0581341-126a-5733-3c4b-8e6f67bfc32e@linaro.org>
+        id S1728744AbfEVMt6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 08:49:58 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B1EC2184E;
+        Wed, 22 May 2019 12:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558529397;
+        bh=5ZGoJi7NkwXVR/OD6kRE/4231NNk5lVLqumccNmisaM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=P/Xi9UJqmeYRdPazqEcKP9IuQTWCddd6kst1SKQ3qjtCiUCMbvuOEEDFicZv/pk63
+         NeV63sW+AFY9dTKnLz1Lreb0QxFX4AC9RFKcvXTXt1ZrMWRDQBPXZKLqEvEDUM4vwH
+         QT+r59SQPi1NU1B28D+wbB9ZjFloODaKSgvs63xA=
+Received: by mail-qt1-f176.google.com with SMTP id l3so2117819qtj.5;
+        Wed, 22 May 2019 05:49:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAWgIyM8BMsyZnX/4MYJ8PqkHZq5xjOzjYEdpm1Io3t19gHUAHMF
+        UcE59Zt4y1/JJ/VW0C0ExMivMPm8k9Kup2H2tQ==
+X-Google-Smtp-Source: APXvYqxJyh8gPJdSllFYvlfTjnDcRfyrin0i7k2617dS8CfKNsSi0ccmNnsl8crgC8wL+I59VDGEoYxEPmonj9M9fPU=
+X-Received: by 2002:ac8:3884:: with SMTP id f4mr75987199qtc.300.1558529396825;
+ Wed, 22 May 2019 05:49:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20190521212325.16639-1-robh@kernel.org> <20190522104226.nwcvx33akt6q576m@flea>
+In-Reply-To: <20190522104226.nwcvx33akt6q576m@flea>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 22 May 2019 07:49:44 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+JimAYW9GiPz6_hNJfnA+8bnN=kPDOEJFPyt+57bwriw@mail.gmail.com>
+Message-ID: <CAL_Jsq+JimAYW9GiPz6_hNJfnA+8bnN=kPDOEJFPyt+57bwriw@mail.gmail.com>
+Subject: Re: [PATCH] spi: dt-bindings: Convert Arm pl022 to json-schema
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 22. Mai 2019, 14:30:16 CEST schrieb Daniel Lezcano:
-> On 22/05/2019 14:27, Heiko Stuebner wrote:
-> 
-> [ ... ]
-> 
-> >> As this change is now in mainline and is causing veyron to hang I'd
-> >> suggest reverting this change for now. Even fixing the root cause
-> >> (maybe the one I pointed above) after this patch we will have the
-> >> thermal driver to fail because "gpio" and "otpout" states are not
-> >> defined nor documented (a change on this will need some reviews and
-> >> acks and time I guess).
-> > 
-> > I definitly agree here. Handling + checking the binding change
-> > as well as needed fallback code is definitly not material for -rc-kernels
-> > so we should just revert for now and let Elaine fix the issues for 5.3.
-> > 
-> > Anyone volunteering for sending a revert-patch to Eduardo? :-)
-> 
-> I can't right now :/
+On Wed, May 22, 2019 at 5:42 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> On Tue, May 21, 2019 at 04:23:24PM -0500, Rob Herring wrote:
+> > +allOf:
+> > +  - $ref: "spi-controller.yaml#"
+>
+> You're using a different construct on the spi-gpio binding you just
+> sent (/schemas/spi/spi-controller.yaml).
+>
+> Is that on purpose?
 
-ok, I'll do the revert patch then, so that we get this sorted.
+No. This one is correct (though both work).
 
-
-Heiko
-
-
+Rob
