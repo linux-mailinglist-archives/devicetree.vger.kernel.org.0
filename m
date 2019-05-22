@@ -2,107 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F10FB25E9E
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 09:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB04425F7C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 10:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728608AbfEVHVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 03:21:23 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:10060 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728501AbfEVHVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 03:21:23 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce4f86f0000>; Wed, 22 May 2019 00:21:19 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 22 May 2019 00:21:22 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 22 May 2019 00:21:22 -0700
-Received: from [10.24.229.31] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 22 May
- 2019 07:21:20 +0000
-Subject: Re: [PATCH] of: resered-memory: ignore disabled memory-region nodes
-To:     Thierry Reding <treding@nvidia.com>
-CC:     <pantelis.antoniou@konsulko.com>, <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, <vdumpa@nvidia.com>,
-        <snikam@nvidia.com>
-References: <1558503353-13179-1-git-send-email-puneets@nvidia.com>
- <1558503353-13179-2-git-send-email-puneets@nvidia.com>
- <20190522063812.GA24329@ulmo>
-From:   puneet saxena <puneets@nvidia.com>
-Message-ID: <2f89938b-7795-3d93-b23f-4eca2b678483@nvidia.com>
-Date:   Wed, 22 May 2019 12:51:10 +0530
+        id S1728542AbfEVI25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 04:28:57 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:49356 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726552AbfEVI25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 04:28:57 -0400
+X-Greylist: delayed 3003 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 May 2019 04:28:55 EDT
+Received: from [109.168.11.45] (port=47788 helo=[192.168.101.64])
+        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.91)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1hTLpp-001bvJ-Jg; Wed, 22 May 2019 09:38:49 +0200
+Subject: Re: [RFC 0/4] TI camera serdes - I2C address translation draft
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     linux-media@vger.kernel.org,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        jacopo mondi <jacopo@jmondi.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Hans Verkuil <hverkuil@xs4all.nl>
+References: <20190108223953.9969-1-luca@lucaceresoli.net>
+ <20190521144034.100f9f8b@coco.lan>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <f3346136-1fba-dd85-8448-ce8d0580f0d3@lucaceresoli.net>
+Date:   Wed, 22 May 2019 09:38:48 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190522063812.GA24329@ulmo>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20190521144034.100f9f8b@coco.lan>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558509679; bh=6tW5N3+OCYTm9eciD4JP3qAVfuqvmmBtrqKdrETHXpA=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=U15Gl1emoQYGK0KFP32k/FhMWU3RocvVdC4XLI/kLAlWZPmIPmNM78zsKeGqrBsDm
-         oxpJQ5II1xOH0BLEqdBUPDBqjAgE2rguc+FBzN77vW6zU4gstkJp6pcWha7SXdyh9x
-         sxa/hNUhdnRRTlQLcB/LYU3umzPCOrmb3sVdDXdzJTDStAtlbN1Who0odOv7REb6Hu
-         4W0dxflEo5BMCa4CFxABKPZChTTX0HHZtDjWJ/rj/QtrzY/joKkggFNnB5xgLRGJRC
-         8N+qHf6A3cmbJLdM21kIFSiUecp3uqaphoTu089tIThiv0YizNdcPrqDv8tcSIaw8n
-         kT+lxelmCUvhQ==
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Yes, of_device_is_available() will work here. Will incorporate in next PS.
+Hi,
 
-Thanks.
+On 21/05/19 19:40, Mauro Carvalho Chehab wrote:
+> Em Tue,  8 Jan 2019 23:39:49 +0100
+> Luca Ceresoli <luca@lucaceresoli.net> escreveu:
+> 
+>> Hi,
+>>
+>> there has been some discussion on linux-media about video
+>> serializer/deserializer chipsets with remote I2C capabilities from TI
+>> [0] and Maxim [1]. I took part discussing how the remote I2C feature
+>> of such chips could be best implemented in Linux while I was
+>> implementing a driver for the Texas Instruments DS90UB954-Q1 video
+>> deserializer. My approach is different from both the one used by
+>> Vladimir Zapolskiy on other TI chips, which look similar to the
+>> DS90UB954 in their I2C management, and the one used by Kieran Bingham
+>> with Maxim chips, which have a different and simpler I2C management.
+>>
+>> After that I had to stop that work, so it is unfinished and I have no
+>> plan to continue it. Upon suggestion by some linux-media developers
+>> I'm sending my patches as RFC in the hope that they bring additional
+>> material for the discussion.
+>>
+>> I2C management is quite complete in my patches, and it shows how I
+>> envisioned I2C management. For the rest the code is in large part
+>> incomplete. Don't consider the V4L2, GPIO and other sections as ready
+>> for any review.
+>>
+>> The whole idea is structured around a central node, called the ATR
+>> (Address Translator). It is similar to an I2C mux except it changes
+>> the I2C addresses of transactions with an "alias" address for each
+>> remote chip. Patch 2 has a detailed description of this process.
+>>
+>>
+>> A typical setup looks like:
+>>
+>>                           Slave X @ 0x10
+>>                   .-----.   |
+>>       .-----.     |     |---+---- B
+>>       | CPU |--A--| ATR |
+>>       `-----'     |     |---+---- C
+>>                   `-----'   |
+>>                           Slave Y @ 0x10
+>>
+>>   A = "local" bus
+>>   B = "remote" bus 0
+>>   C = "remote" bus 1
+>>
+>> In patch 2 I enriched the i2c-mux to also act as an ATR. However the
+>> implementation grew larger than I desired, so now I think it would
+>> make sense to leave i2c-mux as is, and add a new i2c-atr.c which has
+>> ATR features without much of the MUX code. However the implementation
+>> would not change too much, so you can look at i2c-mux to see how I
+>> implemented the ATR.
+>>
+>> In the ATR (i2c-mux.c) I implemented the logic needed to remap slave
+>> addresses according to a table. Choosing appropriate aliases and
+>> filling that table is driver-specific, so in this case it is done by
+>> ds90ub954.c. The ATR driver needs to know when a new client appears on
+>> the remote bus to setup translation and when it gets disconnected to
+>> undo it. So I added a callback pair, attach_client and detach_client,
+>> from i2c-core to i2c-mux and from there to the ATR driver. When
+>> getting the callback the ATR driver chooses an alias to be used on the
+>> local bus for the new chip, configures the ATR (perhaps setting some
+>> registers) returns the alias back to the ATR which sill add the new
+>> chip-alias pair to its table. The ATR (i2c-mux) then will do the
+>> translation for each message, so that the alias will be used on the
+>> local bus and the physical chip address on the remote bus.
+>>
+>> The alias address for a new client is chosen from an alias pool that
+>> must be defined in device tree. It is the responsibility of the DT
+>> writer to fill the pool with addresses that are otherwise unused on
+>> the local bus. The pool could not be filled automatically because
+>> there might be conflicting chips on the local bus that are unknown to
+>> the software, or that are just connected later.
+>>
+>> The alias pool and the mapping done at runtime allow to model
+>> different camera modules [or display or other modules] similarly to
+>> beaglebone capes or rpi hats, up to a model where:
+>>
+>>  1. there can be different camera modules being designed over time
+>>  2. there can be different base boards being designed over time
+>>  3. there is a standard interconnection between them (mechanical,
+>>     electrical, communication bus)
+>>  4. camera modules and base boards are designed and sold independently
+>>     (thanks to point 3)
+>>
+>> The implementation is split in the following patches:
+>>  * Patch 1 adds the attach_client() and detach_client() callbacks to
+>>    i2c-core
+>>  * Patch 2 adds similar callbacks for the use of device drivers and,
+>>    most importantly, implements the ATR engine
+>>  * Patch 3 adds a farily complete DT bindings document, including the
+>>    alias map
+>>  * Patch 4 adds the DS90UB954-Q1 dual deserializer driver
+>>
+>> There is no serializer driver here. The one I have is just a skeleton
+>> setting a few registers, just enough to work on the deserializer
+>> driver.
+> 
+> Not sure what to do here... I guess I'll just mark the patches as
+> RFC at media patchwork, as someone has to need support for it and need
+> to finish its implementation.
 
-On 22/05/19 12:08 PM, Thierry Reding wrote:
-> On Wed, May 22, 2019 at 11:05:53AM +0530, Puneet Saxena wrote:
->> From: Krishna Reddy <vdumpa@nvidia.com>
->>
->> Ignore disabled nodes in the memory-region nodes list and continue
->> to initialize the rest of enabled nodes.
->>
->> Signed-off-by: Krishna Reddy <vdumpa@nvidia.com>
->> ---
->>   drivers/of/of_reserved_mem.c | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
->> index 1977ee0adcb1..58d95d774e3b 100644
->> --- a/drivers/of/of_reserved_mem.c
->> +++ b/drivers/of/of_reserved_mem.c
->> @@ -314,6 +314,7 @@ int of_reserved_mem_device_init_by_idx(struct device *dev,
->>   	struct device_node *target;
->>   	struct reserved_mem *rmem;
->>   	int ret;
->> +	const char *status;
->>   
->>   	if (!np || !dev)
->>   		return -EINVAL;
->> @@ -322,6 +323,10 @@ int of_reserved_mem_device_init_by_idx(struct device *dev,
->>   	if (!target)
->>   		return -ENODEV;
->>   
->> +	status = of_get_property(target, "status", NULL);
->> +	if (status && strcmp(status, "okay") != 0 && strcmp(status, "ok") != 0)
->> +		return 0;
->> +
-> Does of_device_is_available() not work? Other than that, looks fine to
-> me.
->
-> Thierry
+I just did it.
 
------------------------------------------------------------------------------------
-This email message is for the sole use of the intended recipient(s) and may contain
-confidential information.  Any unauthorized review, use, disclosure or distribution
-is prohibited.  If you are not the intended recipient, please contact the sender by
-reply email and destroy all copies of the original message.
------------------------------------------------------------------------------------
+As I wrote in the cover letter, I was not actively working on the topic
+and sent these patches as an additional input for the discussion about
+I2C address translation and serdes chips in general.
+
+-- 
+Luca
