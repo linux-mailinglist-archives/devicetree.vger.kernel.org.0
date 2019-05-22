@@ -2,68 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3449426407
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 14:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4166426465
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729323AbfEVMt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 08:49:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40788 "EHLO mail.kernel.org"
+        id S1728827AbfEVNPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 09:15:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54930 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728744AbfEVMt6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 08:49:58 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        id S1728744AbfEVNPk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 09:15:40 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9B1EC2184E;
-        Wed, 22 May 2019 12:49:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9EA9D217D9
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 13:15:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558529397;
-        bh=5ZGoJi7NkwXVR/OD6kRE/4231NNk5lVLqumccNmisaM=;
+        s=default; t=1558530939;
+        bh=LybLgEqAOQX5cXSMz7BU6qWkV66dzvXQQOcoYms5Qjs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=P/Xi9UJqmeYRdPazqEcKP9IuQTWCddd6kst1SKQ3qjtCiUCMbvuOEEDFicZv/pk63
-         NeV63sW+AFY9dTKnLz1Lreb0QxFX4AC9RFKcvXTXt1ZrMWRDQBPXZKLqEvEDUM4vwH
-         QT+r59SQPi1NU1B28D+wbB9ZjFloODaKSgvs63xA=
-Received: by mail-qt1-f176.google.com with SMTP id l3so2117819qtj.5;
-        Wed, 22 May 2019 05:49:57 -0700 (PDT)
-X-Gm-Message-State: APjAAAWgIyM8BMsyZnX/4MYJ8PqkHZq5xjOzjYEdpm1Io3t19gHUAHMF
-        UcE59Zt4y1/JJ/VW0C0ExMivMPm8k9Kup2H2tQ==
-X-Google-Smtp-Source: APXvYqxJyh8gPJdSllFYvlfTjnDcRfyrin0i7k2617dS8CfKNsSi0ccmNnsl8crgC8wL+I59VDGEoYxEPmonj9M9fPU=
-X-Received: by 2002:ac8:3884:: with SMTP id f4mr75987199qtc.300.1558529396825;
- Wed, 22 May 2019 05:49:56 -0700 (PDT)
+        b=KJh9BOS7TZt72l+NOmvG/wj+xz2gnTcD099CqXtyjrNbjT433RyNnn5CfaEi9Mc3X
+         Zl4YOlM3zfVthGhsJXJyCObDSLekjIpRJGewdPQQn9wNcsn2WoWQ+G6Jvw5eqGO9QL
+         /H4kAj4fxR0dr0lNgbvUimETIZfT9CyRVf3WEppk=
+Received: by mail-qt1-f170.google.com with SMTP id i26so2206652qtr.10
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 06:15:39 -0700 (PDT)
+X-Gm-Message-State: APjAAAUpfLNKyv/RUNwhpbt4d0bLB3keouk2YNJKSPwE+sna4K91inVo
+        TZ8K7M+3hBOiohOtRly74uUvVxdvBNEk4Dy4bg==
+X-Google-Smtp-Source: APXvYqwe/U7YiI1Ggwaht2mNfidlcYL5slSsEfYTadt4joC/F4IL6mIqQDJev3LbSmg7Fkkxvfxh18tgqlOpfF9wFZ0=
+X-Received: by 2002:aed:3f5b:: with SMTP id q27mr73453374qtf.143.1558530938871;
+ Wed, 22 May 2019 06:15:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190521212325.16639-1-robh@kernel.org> <20190522104226.nwcvx33akt6q576m@flea>
-In-Reply-To: <20190522104226.nwcvx33akt6q576m@flea>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 22 May 2019 07:49:44 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+JimAYW9GiPz6_hNJfnA+8bnN=kPDOEJFPyt+57bwriw@mail.gmail.com>
-Message-ID: <CAL_Jsq+JimAYW9GiPz6_hNJfnA+8bnN=kPDOEJFPyt+57bwriw@mail.gmail.com>
-Subject: Re: [PATCH] spi: dt-bindings: Convert Arm pl022 to json-schema
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+References: <20190521143518.32416-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20190521143518.32416-1-miquel.raynal@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 22 May 2019 08:15:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ=gFK604Wbd0D4NN__L4ZfKDO7+j8OGh_buq06oA6deQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ=gFK604Wbd0D4NN__L4ZfKDO7+j8OGh_buq06oA6deQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: phy: mvebu-comphy: Update references to
+ CP110 nodes
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 22, 2019 at 5:42 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Tue, May 21, 2019 at 9:35 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 >
-> Hi Rob,
+> From: Grzegorz Jaszczyk <jaz@semihalf.com>
 >
-> On Tue, May 21, 2019 at 04:23:24PM -0500, Rob Herring wrote:
-> > +allOf:
-> > +  - $ref: "spi-controller.yaml#"
->
-> You're using a different construct on the spi-gpio binding you just
-> sent (/schemas/spi/spi-controller.yaml).
->
-> Is that on purpose?
+> The CP110 DT nodes references have changed, reflect these changes in
+> COMPHY documentation.
 
-No. This one is correct (though both work).
+This change isn't necessary. The examples are just examples. They
+don't have to match anything exactly.
 
-Rob
+>
+> Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../devicetree/bindings/phy/phy-mvebu-comphy.txt          | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt b/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
+> index cf2cd86db267..af2402c18513 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
+> +++ b/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
+> @@ -35,19 +35,19 @@ Required properties (child nodes):
+>
+>  Examples:
+>
+> -       cpm_comphy: phy@120000 {
+> +       CP110_LABEL(comphy): phy@120000 {
+
+Also, as we convert bindings to schema, the examples are compiled and
+this won't without CP110_LABEL defined.
+
+>                 compatible = "marvell,comphy-cp110";
+>                 reg = <0x120000 0x6000>;
+> -               marvell,system-controller = <&cpm_syscon0>;
+> +               marvell,system-controller = <&CP110_LABEL(syscon0)>;
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>
+> -               cpm_comphy0: phy@0 {
+> +               CP110_LABEL(comphy0): phy@0 {
+>                         reg = <0>;
+>                         #phy-cells = <1>;
+>                 };
+>
+> -               cpm_comphy1: phy@1 {
+> +               CP110_LABEL(comphy1): phy@1 {
+>                         reg = <1>;
+>                         #phy-cells = <1>;
+>                 };
+> --
+> 2.19.1
+>
