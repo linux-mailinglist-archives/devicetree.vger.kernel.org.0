@@ -2,96 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8EA4262C6
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 13:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A92F6262DA
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 13:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729092AbfEVLJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 07:09:17 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40812 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728743AbfEVLJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 07:09:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=nzhXhsNahZAD2GGHFwC63OYGOeO5cNATHP2gOm+rReY=; b=wE0k9QLii9XBjOkByBbs3BCdJ
-        HVjZA/0mGJxXPDJnD1o8MbK8YM4cxCG9D7mfHWKl+OGpkc9q/chMbPyhrvYZhkmrGXOt0sl6+FFrS
-        BVpyJbnHZOSeuQL7r/QTA20mvMv5K+NofHh8iCHmGpgQ2bZejn/QqycqQ1hpu1LiCn25M=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hTP7K-000454-Ly; Wed, 22 May 2019 11:09:06 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id 390091126D0E; Wed, 22 May 2019 12:09:06 +0100 (BST)
-Date:   Wed, 22 May 2019 12:09:06 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Masahisa Kojima <masahisa.kojima@linaro.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        geert@linux-m68k.org, tpiepho@impinj.com,
-        andy.shevchenko@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Satoru Okamoto <okamoto.satoru@socionext.com>,
-        Yoshitoyo Osaki <osaki.yoshitoyo@socionext.com>
-Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer
- platform
-Message-ID: <20190522110906.GD8582@sirena.org.uk>
-References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
- <20190521115958.22504-4-masahisa.kojima@linaro.org>
- <20190521181609.GB16633@sirena.org.uk>
- <CADQ0-X9yKQ2akerpxKfjxOxmRhPiaaxe7ALDO7VQiH+-+SHo3w@mail.gmail.com>
+        id S1728827AbfEVLQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 07:16:08 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:51226 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728808AbfEVLQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 07:16:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1558523764; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=sQdb4SEQMtDupMwnwP5hhbNOdCtEsnxGtObeHTAK/0M=;
+        b=DTEguJ7zyqElohAzti93m/3BAwwsnCvQLJQky7KXrv4BOsGGbIYbbX06Tp0r+HHg8+gl/0
+        FWjVWlCvoR7xSo7xFjdE2/Vf6nzOrlnChOVK0p0K+iyUU2qQgbIj3fK4H0fZH9m1wQQSRw
+        6K5IwZT/5Mg1H0sT0geJn+xK/vO3ZQ0=
+Date:   Wed, 22 May 2019 13:15:56 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v12 09/13] MIPS: jz4740: Add DTS nodes for the TCU drivers
+To:     Mathieu Malaterre <malat@debian.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-mips@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-clk@vger.kernel.org, od@zcrc.me
+Message-Id: <1558523756.3066.0@crapouillou.net>
+In-Reply-To: <CA+7wUsxe4DLmAGNnnXZ3UokguMJ0cOGtu=opQpuAPvN_SH4KUw@mail.gmail.com>
+References: <20190521145141.9813-1-paul@crapouillou.net>
+        <20190521145141.9813-10-paul@crapouillou.net>
+        <CA+7wUsxe4DLmAGNnnXZ3UokguMJ0cOGtu=opQpuAPvN_SH4KUw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3Pql8miugIZX0722"
-Content-Disposition: inline
-In-Reply-To: <CADQ0-X9yKQ2akerpxKfjxOxmRhPiaaxe7ALDO7VQiH+-+SHo3w@mail.gmail.com>
-X-Cookie: Does the name Pavlov ring a bell?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3Pql8miugIZX0722
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Wed, May 22, 2019 at 05:27:23PM +0900, Masahisa Kojima wrote:
-> On Wed, 22 May 2019 at 03:16, Mark Brown <broonie@kernel.org> wrote:
-> > On Tue, May 21, 2019 at 08:59:58PM +0900, Masahisa Kojima wrote:
+On Wed, May 22, 2019 at 11:21 AM, Mathieu Malaterre <malat@debian.org> 
+wrote:
+> On Tue, May 21, 2019 at 4:52 PM Paul Cercueil <paul@crapouillou.net> 
+> wrote:
+>> 
+>>  Add DTS nodes for the JZ4780, JZ4770 and JZ4740 devicetree files.
+>> 
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>> 
+>>  Notes:
+>>      v5: New patch
+>> 
+>>      v6: Fix register lengths in watchdog/pwm nodes
+>> 
+>>      v7: No change
+>> 
+>>      v8: - Fix wrong start address for PWM node
+>>          - Add system timer and clocksource sub-nodes
+>> 
+>>      v9: Drop timer and clocksource sub-nodes
+>> 
+>>      v10-v11: No change
+>> 
+>>      v12: Drop PWM/watchdog/OST sub-nodes, for now.
+>> 
+>>   arch/mips/boot/dts/ingenic/jz4740.dtsi | 22 ++++++++++++++++++++++
+>>   arch/mips/boot/dts/ingenic/jz4770.dtsi | 21 +++++++++++++++++++++
+>>   arch/mips/boot/dts/ingenic/jz4780.dtsi | 21 +++++++++++++++++++++
+>>   3 files changed, 64 insertions(+)
+>> 
+>>  diff --git a/arch/mips/boot/dts/ingenic/jz4740.dtsi 
+>> b/arch/mips/boot/dts/ingenic/jz4740.dtsi
+>>  index 2beb78a62b7d..807d9702d4cf 100644
+>>  --- a/arch/mips/boot/dts/ingenic/jz4740.dtsi
+>>  +++ b/arch/mips/boot/dts/ingenic/jz4740.dtsi
+>>  @@ -53,6 +53,28 @@
+>>                  clock-names = "rtc";
+>>          };
+>> 
+>>  +       tcu: timer@10002000 {
+>>  +               compatible = "ingenic,jz4740-tcu";
+>>  +               reg = <0x10002000 0x1000>;
+>>  +               #address-cells = <1>;
+>>  +               #size-cells = <1>;
+>>  +               ranges = <0x0 0x10002000 0x1000>;
+>>  +
+>>  +               #clock-cells = <1>;
+>>  +
+>>  +               clocks = <&cgu JZ4740_CLK_RTC
+>>  +                         &cgu JZ4740_CLK_EXT
+>>  +                         &cgu JZ4740_CLK_PCLK
+>>  +                         &cgu JZ4740_CLK_TCU>;
+>>  +               clock-names = "rtc", "ext", "pclk", "tcu";
+>>  +
+>>  +               interrupt-controller;
+>>  +               #interrupt-cells = <1>;
+>>  +
+>>  +               interrupt-parent = <&intc>;
+>>  +               interrupts = <23 22 21>;
+>>  +       };
+>>  +
+>>          rtc_dev: rtc@10003000 {
+>>                  compatible = "ingenic,jz4740-rtc";
+>>                  reg = <0x10003000 0x40>;
+>>  diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi 
+>> b/arch/mips/boot/dts/ingenic/jz4770.dtsi
+>>  index 49ede6c14ff3..70932fd90902 100644
+>>  --- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
+>>  +++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
+>>  @@ -46,6 +46,27 @@
+>>                  #clock-cells = <1>;
+>>          };
+>> 
+>>  +       tcu: timer@10002000 {
+>>  +               compatible = "ingenic,jz4770-tcu";
+>>  +               reg = <0x10002000 0x1000>;
+>>  +               #address-cells = <1>;
+>>  +               #size-cells = <1>;
+>>  +               ranges = <0x0 0x10002000 0x1000>;
+>>  +
+>>  +               #clock-cells = <1>;
+>>  +
+>>  +               clocks = <&cgu JZ4770_CLK_RTC
+>>  +                         &cgu JZ4770_CLK_EXT
+>>  +                         &cgu JZ4770_CLK_PCLK>;
+>>  +               clock-names = "rtc", "ext", "pclk";
+>>  +
+>>  +               interrupt-controller;
+>>  +               #interrupt-cells = <1>;
+>>  +
+>>  +               interrupt-parent = <&intc>;
+>>  +               interrupts = <27 26 25>;
+>>  +       };
+>>  +
+>>          pinctrl: pin-controller@10010000 {
+>>                  compatible = "ingenic,jz4770-pinctrl";
+>>                  reg = <0x10010000 0x600>;
+>>  diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi 
+>> b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+>>  index b03cdec56de9..495082ce7fc5 100644
+>>  --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+>>  +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+>>  @@ -46,6 +46,27 @@
+>>                  #clock-cells = <1>;
+>>          };
+>> 
+>>  +       tcu: timer@10002000 {
+> 
+> With W=1, I see:
+> 
+> ../arch/mips/boot/dts/ingenic/jz4780.dtsi:64.22-83.4: Warning
+> (unique_unit_address): /timer@10002000: duplicate unit-address (also
+> used in node /watchdog@1000
+> 2000)
 
-> > > +     ret = devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
-> > > +                             0, "synquacer-spi-rx", sspi);
-> > > +     ret = devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
-> > > +                             0, "synquacer-spi-tx", sspi);
+That didn't happen in V11 because there I was also migrating the
+watchdog and PWM drivers to children nodes of the TCU. It was more
+atomic, but it also was a 27-patches bomb touching a lot of
+subsystems that nobody was ever going to merge.
 
-> > The code looked awfully like we depend on having interrupts?
+Is the address conflict OK, knowing that the watchdog node will
+move out of the way as soon as this patchset is merged?
 
-> I"m not sure I correctly understand what this comment means,
-> should driver assume the case interrupt is not available?
-> Do I need to support both interrupt and polling handling?
+Should I add an extra patch to remove the watchdog node instead?
 
-If the driver requires interrupts it should not just ignore errors when
-it requests interrupts.
+(and yes, devicetree ABI will break, which is sort-of OK in this
+case - as on Ingenic boards the devicetree blobs are always
+compiled within the kernel, so I think we should make this
+much-needed change while we still can).
 
---3Pql8miugIZX0722
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+>>  +               compatible = "ingenic,jz4770-tcu";
+>>  +               reg = <0x10002000 0x1000>;
+>>  +               #address-cells = <1>;
+>>  +               #size-cells = <1>;
+>>  +               ranges = <0x0 0x10002000 0x1000>;
+>>  +
+>>  +               #clock-cells = <1>;
+>>  +
+>>  +               clocks = <&cgu JZ4780_CLK_RTCLK
+>>  +                         &cgu JZ4780_CLK_EXCLK
+>>  +                         &cgu JZ4780_CLK_PCLK>;
+>>  +               clock-names = "rtc", "ext", "pclk";
+>>  +
+>>  +               interrupt-controller;
+>>  +               #interrupt-cells = <1>;
+>>  +
+>>  +               interrupt-parent = <&intc>;
+>>  +               interrupts = <27 26 25>;
+>>  +       };
+>>  +
+>>          rtc_dev: rtc@10003000 {
+>>                  compatible = "ingenic,jz4780-rtc";
+>>                  reg = <0x10003000 0x4c>;
+>>  --
+>>  2.21.0.593.g511ec345e18
+>> 
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlLdEACgkQJNaLcl1U
-h9Bxtgf+O7Ql3XV1v0OFmPYGNxKhM7hKmFIojgupkf2VbuPOioXJq+YR4xqGXDpQ
-b05un6ESQyyilrI/JXIY3m8pRYbBQh0AMscC/OxWEOThmZCVafXJS3WRxCeFhIqu
-i3fA94KsTpAjgOOGhkDfOiBsthK9je+SMrE1S7eNqGRTi82IfmBVoGr4ecQPKFn9
-dV8QHIcHuzqHKs4iCC+kYpTYpCH6s4VJk5ZkElABX6ewekbot17FBe5bFJp9pWni
-uFC8d1xp66heSVTwc4lA7SbDqWY1zZbhJyeJDjw0Uv2PauyH3HgnN1MKFRCvGBRL
-+ZO4mmN5t1jhZ90vlxbwPkyvODb+6A==
-=mko4
------END PGP SIGNATURE-----
 
---3Pql8miugIZX0722--
