@@ -2,109 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2D425B60
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 02:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C7AB25B69
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 02:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbfEVAyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 20:54:09 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:51918 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726466AbfEVAyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 20:54:09 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4M0rrNi104919;
-        Tue, 21 May 2019 19:53:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1558486433;
-        bh=64tMQrAiwm3hei2eRN/7GchhSAwDNydo9l0KJu+r9+U=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dF1ZqMn2aoGlrvNL4lHcpk79UeWJYebjo1j/YywbCyhukwMNBLotx+PDPNVeUNxzb
-         mwM6HTEJZsHDJ2O8aXSG5G2tdmpfH2l5QcC6QDKbNzQJBDV8oX8BcHxZwL3Jf3duAn
-         Ufi2WPfcCaskqh9SCCAiSNLL+j0OQvP3CCjaB9VY=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4M0rr6i049645
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 May 2019 19:53:53 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 21
- May 2019 19:53:53 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 21 May 2019 19:53:53 -0500
-Received: from [10.250.90.63] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4M0rq2m075698;
-        Tue, 21 May 2019 19:53:52 -0500
-Subject: Re: [PATCH] dt-bindings: backlight: lm3630a: correct schema
- validation
-To:     Daniel Thompson <daniel.thompson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Brian Masney <masneyb@onstation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>,
+        id S1726466AbfEVA63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 20:58:29 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:42645 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726083AbfEVA63 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 20:58:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=uH7z7SdNeyDoUf5r859hF8EPzjC5LH/pj2/RE9xsuW4=; b=rsV8Zr0cStPXks7/iFjwDPyLzm
+        9c9e9ctybxet2iqxwcYEfRbQnTOk7XWtymsH7PKGSjgAH/32jZh5ypkzbrxea4viukvSU6OlXGq3b
+        LbdbN5aGkvT5yX5X83iSOHv3/1gV+C+buzRYJtWNz/giaXlqqD3whL+mKvK+tEhduprk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hTFaJ-0008Qv-Jx; Wed, 22 May 2019 02:58:23 +0200
+Date:   Wed, 22 May 2019 02:58:23 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Richard Cochran <richardcochran@gmail.com>
+Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>
-References: <20190520085846.22320-1-masneyb@onstation.org>
- <CAL_JsqLcycH5e=YT-4AQFo-8O0bosjU7oagCRS5CMTfQNBLrcg@mail.gmail.com>
- <20190520133007.gymbonmq635gp73b@holly.lan>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <6bc54c69-0c7b-69e5-6dce-aef631e20247@ti.com>
-Date:   Tue, 21 May 2019 19:53:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Miroslav Lichvar <mlichvar@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Willem de Bruijn <willemb@google.com>
+Subject: Re: [PATCH V3 net-next 2/6] net: Introduce a new MII time stamping
+ interface.
+Message-ID: <20190522005823.GD6577@lunn.ch>
+References: <20190521224723.6116-3-richardcochran@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190520133007.gymbonmq635gp73b@holly.lan>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190521224723.6116-3-richardcochran@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> -static int dp83640_hwtstamp(struct phy_device *phydev, struct ifreq *ifr)
+> +static int dp83640_hwtstamp(struct mii_timestamper *mii_ts, struct ifreq *ifr)
+>  {
+> -	struct dp83640_private *dp83640 = phydev->priv;
+> +	struct dp83640_private *dp83640 =
+> +		container_of(mii_ts, struct dp83640_private, mii_ts);
+>  	struct hwtstamp_config cfg;
+>  	u16 txcfg0, rxcfg0;
 
+Hi Richard
 
-On 5/20/19 8:30 AM, Daniel Thompson wrote:
-> On Mon, May 20, 2019 at 08:14:03AM -0500, Rob Herring wrote:
->> On Mon, May 20, 2019 at 3:59 AM Brian Masney <masneyb@onstation.org> wrote:
->>>
->>> The '#address-cells' and '#size-cells' properties were not defined in
->>> the lm3630a bindings and would cause the following error when
->>> attempting to validate the examples against the schema:
->>>
->>> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
->>> '#address-cells', '#size-cells' do not match any of the regexes:
->>> '^led@[01]$', 'pinctrl-[0-9]+'
->>>
->>> Correct this by adding those two properties.
->>>
->>> While we're here, move the ti,linear-mapping-mode property to the
->>> led@[01] child nodes to correct the following validation error:
->>>
->>> Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
->>> led@0: 'ti,linear-mapping-mode' does not match any of the regexes:
->>> 'pinctrl-[0-9]+'
->>>
->>> Fixes: 32fcb75c66a0 ("dt-bindings: backlight: Add lm3630a bindings")
->>> Signed-off-by: Brian Masney <masneyb@onstation.org>
->>> Reported-by: Rob Herring <robh+dt@kernel.org>
->>> ---
->>>  .../leds/backlight/lm3630a-backlight.yaml     | 20 +++++++++++++------
->>>  1 file changed, 14 insertions(+), 6 deletions(-)
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-> 
+David might complain about reverse christmas tree. Maybe define a
+macro, to_dp83640() which takes mii_ts?
 
-Acked-by: Dan Murphy <dmurphy@ti.com>
+> +/**
+> + * struct mii_timestamper - Callback interface to MII time stamping devices.
+> + *
+> + * @rxtstamp:	Requests a Rx timestamp for 'skb'.  If the skb is accepted,
+> + *		the MII time stamping device promises to deliver it using
+> + *		netif_rx() as soon as a timestamp becomes available. One of
+> + *		the PTP_CLASS_ values is passed in 'type'.  The function
+> + *		must return true if the skb is accepted for delivery.
+> + *
+> + * @txtstamp:	Requests a Tx timestamp for 'skb'.  The MII time stamping
+> + *		device promises to deliver it using skb_complete_tx_timestamp()
+> + *		as soon as a timestamp becomes available. One of the PTP_CLASS_
+> + *		values is passed in 'type'.
+> + *
+> + * @hwtstamp:	Handles SIOCSHWTSTAMP ioctl for hardware time stamping.
+> + * @link_state:	Allows the device to respond to changes in the link state.
+> + * @ts_info:	Handles ethtool queries for hardware time stamping.
+> + *
+> + * Drivers for PHY time stamping devices should embed their
+> + * mii_timestamper within a private structure, obtaining a reference
+> + * to it using container_of().
+> + */
+
+I wonder if it is worth mentioning that link_state() is called with
+the phy lock held, but none of the others are?
+
+Otherwise this looks good.
+
+	  Andrew
