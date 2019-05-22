@@ -2,85 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7136F26524
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C55D2653A
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728744AbfEVNvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 09:51:31 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:34344 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726770AbfEVNva (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 09:51:30 -0400
-Received: by mail-ot1-f65.google.com with SMTP id l17so2138838otq.1;
-        Wed, 22 May 2019 06:51:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WNC2JYWG7tWES9f64iNfx+WaqJ4vmOCp/0J1TeLz0p4=;
-        b=qvDEVPVqzuWN4+F1oBQDNBoUDdISpYKkJKEo2Cs6N45xy8S1Qpgw5EubdZDx2rAj6L
-         UErOCz8Oqxz5cnCMHZ0dtTO2laJzV+/lgvrymruRQ8MHh2sMklXJ0GuST0uUh1m+NSc/
-         uC0xWDV4Vr4ZggrxRWDE8JR31c04MeE65QiIC1vsQCQW2ZSP5ALRzQ4U8A/Kw7kdZvt/
-         GkDUmPxTCqJLm7VzhCH5FOYixAwKYtLS/dq0MWLq+jOyVG0+qOI/9IJxt2ehj6Wmp6As
-         0l+CggYmYmHtb+12+uL+zVm8Gz2DkkeOCg/aGZM4inOjHxeIcgKFAUzKRGW8KuU2sLqz
-         9f1w==
-X-Gm-Message-State: APjAAAX8TUFhDNgH6qjeyogUqQq5iBDzhAwUAieSbYJkiowI77w0tuAX
-        BcLFsp4pbtVJzdALtQjYug==
-X-Google-Smtp-Source: APXvYqyruJO4hpb5ERYDyy8YFYJg7Z8ngUs0aEUiTimEwLTJsVuVZ4S1t245qpR8qtmb7mfA8CLAFA==
-X-Received: by 2002:a05:6830:11ce:: with SMTP id v14mr23382616otq.184.1558533089709;
-        Wed, 22 May 2019 06:51:29 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e8sm4849679otk.13.2019.05.22.06.51.28
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 22 May 2019 06:51:29 -0700 (PDT)
-Date:   Wed, 22 May 2019 08:51:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     "robh@kernel.org" <robh@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "plyatov@gmail.com" <plyatov@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v4 10/14] dma: imx-sdma: add i.mx6ul/6sx compatible name
-Message-ID: <20190522135128.GA24987@bogus>
-References: <1558548188-1155-1-git-send-email-yibin.gong@nxp.com>
- <1558548188-1155-11-git-send-email-yibin.gong@nxp.com>
+        id S1728744AbfEVN4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 09:56:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47154 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726770AbfEVN4G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 09:56:06 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8C4C92173C;
+        Wed, 22 May 2019 13:56:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558533365;
+        bh=CpWRPFDFDeEz2FasTJpU7xC9m9MJZ5sBPRt83HEYgfo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=duF47EnJ1olpUVNwqtjHV8UOkB/JftPjhDIWWr5H4ZMBt7IDtYQ1C/3BKouXzaL0v
+         f3jygMikKv5/BWPNiA3P92IWbjeorOYEupad+Hlhua/d6y7btM+ZP6HzFBgM/1PR/F
+         gF+k03o4CdD3kYEN6+YfFHKpbwJPIm2lkyOB1Qxs=
+Received: by mail-qk1-f173.google.com with SMTP id c15so1524668qkl.2;
+        Wed, 22 May 2019 06:56:05 -0700 (PDT)
+X-Gm-Message-State: APjAAAVS2HAzJ89IMmVXZJFQTXH+JWOPkg1sTUSD4T7X9LIXYH+2RVkw
+        gw6+ea53cbBEIOVLw2eAzSgI2jGGCX9/tfGk6A==
+X-Google-Smtp-Source: APXvYqzvt+EFGiFr6y2zsSRBs4qOUs7e+/z+bJpZu4CMkQbtQjvYCr7ioBnDYS6ibBsbagsPUO0sVjALMvR6IRu+67E=
+X-Received: by 2002:a37:dc03:: with SMTP id v3mr70538862qki.151.1558533364775;
+ Wed, 22 May 2019 06:56:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1558548188-1155-11-git-send-email-yibin.gong@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1558466890-45471-1-git-send-email-kdasu.kdev@gmail.com> <CAL_JsqKd53W1E33YdtJwagi4=7DrVQ5+N3rSY=Rxo5J0RiW46g@mail.gmail.com>
+In-Reply-To: <CAL_JsqKd53W1E33YdtJwagi4=7DrVQ5+N3rSY=Rxo5J0RiW46g@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 22 May 2019 08:55:53 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ+zNQ3CeBh8K=oBiZZsiBQ8w1w=6vs8zOQeqUf_qhqcg@mail.gmail.com>
+Message-ID: <CAL_JsqJ+zNQ3CeBh8K=oBiZZsiBQ8w1w=6vs8zOQeqUf_qhqcg@mail.gmail.com>
+Subject: Re: [PATCH] dt: bindings: mtd: replace references to nand.txt with nand-controller.yaml
+To:     Kamal Dasu <kdasu.kdev@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     MTD Maling List <linux-mtd@lists.infradead.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Liang Yang <liang.yang@amlogic.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Mans Rullgard <mans@mansr.com>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org,
+        linux-oxnas@groups.io,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019 10:00:38 +0000, Robin Gong wrote:
-> Add i.mx6ul and i.mx6sx compatible name in binding doc.
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> ---
->  Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On Wed, May 22, 2019 at 8:19 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Tue, May 21, 2019 at 2:28 PM Kamal Dasu <kdasu.kdev@gmail.com> wrote:
+> >
+> > nand-controller.yaml replaced nand.txt however the references to it were
+> > not updated. This change updates these references wherever it appears in
+> > bindings documentation.
+> >
+> > Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
+> >
+> > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+>
+> Mauro already sent a similar patch.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Actually, Mauro's patch missed a bunch of cases that aren't full
+paths, so I'll take this one.
 
-If a tag was not added on purpose, please state why and what changed.
+Rob
