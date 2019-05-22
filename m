@@ -2,147 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1304A25FE7
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 10:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9724125FEA
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 10:59:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728547AbfEVI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 04:58:45 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:45332 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727796AbfEVI6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 04:58:44 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A999374;
-        Wed, 22 May 2019 01:58:44 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.72.51.249])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E9E33F718;
-        Wed, 22 May 2019 01:58:39 -0700 (PDT)
-Subject: Re: [PATCH v4 04/10] ata: ahci: mvebu: Rename a platform data flag
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-ide@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Baruch Siach <baruch@tkos.co.il>
-References: <20190521143023.31810-1-miquel.raynal@bootlin.com>
- <20190521143023.31810-5-miquel.raynal@bootlin.com>
-From:   Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
-Organization: ARM Ltd
-Message-ID: <75a0a155-88cd-9392-1fb6-75ad4498aff5@arm.com>
-Date:   Wed, 22 May 2019 09:58:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190521143023.31810-5-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1728690AbfEVI7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 04:59:47 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:41316 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727796AbfEVI7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 04:59:46 -0400
+Received: by mail-pf1-f196.google.com with SMTP id q17so970144pfq.8
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 01:59:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:subject:date:message-id;
+        bh=csdVERX8dSQ7qyBeUMoSzLfDNYik/H197bs1aUHpWEE=;
+        b=Yfz27RdeWay5eXTrkNYzPidWfd1s5Nxyvs2H5Kq5i0xkKQrLOgLeKpE9lAgXxRfbR4
+         MNKDjq3c22egxUNKz3/I44a0VD7WA32q3CLY/pqOVMMWfS442/5r16T5rkoME2VJXy68
+         dw+n0m8NKOPyXgzhXq8fmqCIR6GOMocxTs/iPS45cvwmSgLVzvh0m1lTeUAvOaDnhet2
+         8xfrtQsiDsyPMIOy1eK4MwJwYrg9c452iD1SRSyd+YpYVYbEUEwry36HeHnr9N6PFYQN
+         Lv7B73ooWsMXmdeKLHMyc+5rngow4IDFgfW1Nwg2pQL7lE/D8E+nGYirKURrvjiRb7IY
+         oaRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=csdVERX8dSQ7qyBeUMoSzLfDNYik/H197bs1aUHpWEE=;
+        b=JhbXK7REP1JDa9Ce+aNOgijBKHpcksPkbAIPbprq/Hr3gp5P+nopL3cqZOLEkZe/a1
+         nBSVXT9Qg3MUR8wHzMzPWLl4vgTGZRqajg8z6X2ZdxltLA5dVAORdRakS63t8krZb8eo
+         7VkYJwXpLCFOuIW6ekBnoQnMji5Se+ysRZ5G/X2YyEkCx1agvx8nTyel7b6RtalcL47I
+         rHeJs8tQAjJ9nLIt5rZnKO3AxG9LIG5eeMQpm1R+gKFn2ETTGc4Y6In58AaYPWUXBALv
+         FEFx5UyGGJppvTzfuR88qoOr1N2CKYvyomQF7iDmQPbio2m6FYw5+1Bcj80/KPuLGZ/f
+         FXVA==
+X-Gm-Message-State: APjAAAWe9PWPL4O3SECsYyiadG5mVrvy+15VvaVxnvpYR4xQMBQMEmW4
+        IqHXEntRbop+qINd4TLquSO14w==
+X-Google-Smtp-Source: APXvYqzrS8Uu+raOf+5M2t7dHWXbMQZRQgl34nRj+XRx9eTVexFa5TS9MoWstoGp26MSi8ECnOxjhA==
+X-Received: by 2002:a63:1354:: with SMTP id 20mr87126477pgt.356.1558515586071;
+        Wed, 22 May 2019 01:59:46 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id z6sm42465905pfr.135.2019.05.22.01.59.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 22 May 2019 01:59:45 -0700 (PDT)
+From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
+        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
+        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] Extend dt bindings to support I2C on sifive devices and a fix broken IRQ in polling mode.
+Date:   Wed, 22 May 2019 14:29:31 +0530
+Message-Id: <1558515574-11155-1-git-send-email-sagar.kadam@sifive.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2019 15:30, Miquel Raynal wrote:
-> Before adding more entries in the platform data structure, rename the
-> flags entry to be more precise and name it host_flags.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  drivers/ata/ahci_mvebu.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/ata/ahci_mvebu.c b/drivers/ata/ahci_mvebu.c
-> index d4bba3ace45d..43bb2db59698 100644
-> --- a/drivers/ata/ahci_mvebu.c
-> +++ b/drivers/ata/ahci_mvebu.c
-> @@ -30,7 +30,7 @@
->  
->  struct ahci_mvebu_plat_data {
->  	int (*plat_config)(struct ahci_host_priv *hpriv);
-> -	unsigned int flags;
-> +	unsigned int host_flags;
->  };
->  
->  static void ahci_mvebu_mbus_config(struct ahci_host_priv *hpriv,
-> @@ -196,7 +196,7 @@ static int ahci_mvebu_probe(struct platform_device *pdev)
->  	if (IS_ERR(hpriv))
->  		return PTR_ERR(hpriv);
->  
-> -	hpriv->flags |= pdata->flags;
-> +	hpriv->flags |= pdata->host_flags;
->  	hpriv->plat_data = (void *)pdata;
->  
->  	rc = ahci_platform_enable_resources(hpriv);
-> @@ -227,7 +227,7 @@ static const struct ahci_mvebu_plat_data ahci_mvebu_armada_380_plat_data = {
->  
->  static const struct ahci_mvebu_plat_data ahci_mvebu_armada_3700_plat_data = {
->  	.plat_config = ahci_mvebu_armada_3700_config,
-> -	.flags = AHCI_HFLAG_SUSPEND_PHYS,
-> +	.host_flags = AHCI_HFLAG_SUSPEND_PHYS,
->  };
->  
->  static const struct of_device_id ahci_mvebu_of_match[] = {
-> 
+The patch is based on mainline v5.2-rc1 and extends DT-bindings for Opencore based I2C IP block reimplemented
+in FU540 SoC, available on HiFive unleashed board (Rev A00), and also provides a workaround for broken IRQ
+which affects the already available I2C polling mode interface in mainline, for FU540-C000 chipsets.
 
-If, as I suspect, you don't need resource_flags in patch 8, then this
-patch becomes a bit pointless.
+The polling mode workaround patch fixes the CPU stall issue, when-ever i2c transfer are initiated.
 
-Thanks,
+This workaround checks if it's a FU540 chipset based on device tree information, and check's for open
+core's IF(interrupt flag) and BUSY flags to break from the polling loop upon completion of transfer.
 
-	M.
+To test the patch, a PMOD-AD2 sensor is connected to HiFive Unleashed board over J1 connector, and
+appropriate device node is added into board specific device tree as per the information provided in
+dt-bindings in Documentation/devicetree/bindings/i2c/i2c-ocores.txt.
+Without this workaround, the CPU stall's infinitely.
+
+Busybox i2c utilities used to verify workaround : i2cdetect, i2cdump, i2cset, i2cget
+
+
+Patch History:
+V6<->V7:
+-Rectified space and tab issue in dt bindings strings.
+-Implemented workaround based on i2c->flags, as per review comment on v6.
+
+V5<->V6:
+-Incorporated suggestions on v5 patch as follows:
+-Reformatted compatibility strings in dt doc with one valid combination on each line.
+-Removed interrupt-parents from optional property list. 
+-With rebase to v5.2-rc1, the v5 variant of polling workaround PATCH becomes in-compatible.
+ Till kernel v5.1 the polling mode was enabled based on i2c->flags, wherease in kernel v5.2-rc1 polling mode is set as
+ master transfer algorithim at probe time itself, and i2c->flags checks are removed.
+-Modified v5 to check for SiFive device type in polling function and include the workaround/fix for broken IRQ.
+
+v4<->V5:
+-Removed un-necessary checks of OCORES_FLAG_BROKEN_IRQ.
+
+V3<->V4:
+-Incorporated suggestions on v3 patch as follows:
+-OCORES_FLAG_BROKEN_IRQ BIT position rectified.
+-Updated BORKEN_IRQ flag checks such that if sifive device (Fu540-C000) is identified,then use polling mode as IRQ is broken.
+
+V2<->V3:
+-Incorporated review comments on v2 patch as follows:
+-Rectified compatibility string sequence with the most specific one at the first (dt bindings). 
+-Moved interrupts and interrupt-parent under optional property list (dt-bindings).
+-Updated reference to sifive-blocks-ip-versioning.txt and URL to IP repository used (dt-bindings).
+-Removed example for i2c0 device node from binding doc (dt-bindings).
+-Included sifive,i2c0 device under compatibility table in i2c-ocores driver (i2c-ocores).
+-Updated polling mode hooks for SoC specific fix to handle broken IRQ (i2c-ocores).
+
+
+V1<->V2:
+-Incorporate review comments from Andrew
+-Extend dt bindings into i2c-ocores.txt instead of adding new file
+-Rename SIFIVE_FLAG_POLL to OCORES_FLAG_BROKEN_IRQ
+
+V1:
+-Update dt bindings for sifive i2c devices
+-Fix broken IRQ affecting i2c polling mode interface.
+
+
+
+Sagar Shrikant Kadam (3):
+  dt-bindings: i2c: extend existing opencore bindings.
+  i2c-ocores: sifive: add support for i2c device on FU540-c000 SoC.
+  i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC.
+
+ .../devicetree/bindings/i2c/i2c-ocores.txt         |  9 ++++--
+ drivers/i2c/busses/i2c-ocores.c                    | 33 ++++++++++++++++++++--
+ 2 files changed, 38 insertions(+), 4 deletions(-)
+
 -- 
-Jazz is not dead. It just smells funny...
+1.9.1
+
