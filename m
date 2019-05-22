@@ -2,109 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B622650C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7136F26524
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728491AbfEVNtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 09:49:50 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:50147 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726770AbfEVNtu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 09:49:50 -0400
-Received: from litschi.hi.pengutronix.de ([2001:67c:670:100:feaa:14ff:fe6a:8db5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <m.tretter@pengutronix.de>)
-        id 1hTRco-0003CL-7M; Wed, 22 May 2019 15:49:46 +0200
-Date:   Wed, 22 May 2019 15:49:45 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, robh+dt@kernel.org, mchehab@kernel.org,
-        tfiga@chromium.org, dshah@xilinx.com
-Subject: Re: [PATCH v6 0/5] Add ZynqMP VCU/Allegro DVT H.264 encoder driver
-Message-ID: <20190522154945.54ac67d7@litschi.hi.pengutronix.de>
-In-Reply-To: <23de1fe8-f868-d13d-4217-05bc007fab13@xs4all.nl>
-References: <20190513172131.15048-1-m.tretter@pengutronix.de>
-        <23de1fe8-f868-d13d-4217-05bc007fab13@xs4all.nl>
-Organization: Pengutronix
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+        id S1728744AbfEVNvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 09:51:31 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34344 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726770AbfEVNva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 09:51:30 -0400
+Received: by mail-ot1-f65.google.com with SMTP id l17so2138838otq.1;
+        Wed, 22 May 2019 06:51:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WNC2JYWG7tWES9f64iNfx+WaqJ4vmOCp/0J1TeLz0p4=;
+        b=qvDEVPVqzuWN4+F1oBQDNBoUDdISpYKkJKEo2Cs6N45xy8S1Qpgw5EubdZDx2rAj6L
+         UErOCz8Oqxz5cnCMHZ0dtTO2laJzV+/lgvrymruRQ8MHh2sMklXJ0GuST0uUh1m+NSc/
+         uC0xWDV4Vr4ZggrxRWDE8JR31c04MeE65QiIC1vsQCQW2ZSP5ALRzQ4U8A/Kw7kdZvt/
+         GkDUmPxTCqJLm7VzhCH5FOYixAwKYtLS/dq0MWLq+jOyVG0+qOI/9IJxt2ehj6Wmp6As
+         0l+CggYmYmHtb+12+uL+zVm8Gz2DkkeOCg/aGZM4inOjHxeIcgKFAUzKRGW8KuU2sLqz
+         9f1w==
+X-Gm-Message-State: APjAAAX8TUFhDNgH6qjeyogUqQq5iBDzhAwUAieSbYJkiowI77w0tuAX
+        BcLFsp4pbtVJzdALtQjYug==
+X-Google-Smtp-Source: APXvYqyruJO4hpb5ERYDyy8YFYJg7Z8ngUs0aEUiTimEwLTJsVuVZ4S1t245qpR8qtmb7mfA8CLAFA==
+X-Received: by 2002:a05:6830:11ce:: with SMTP id v14mr23382616otq.184.1558533089709;
+        Wed, 22 May 2019 06:51:29 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e8sm4849679otk.13.2019.05.22.06.51.28
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 22 May 2019 06:51:29 -0700 (PDT)
+Date:   Wed, 22 May 2019 08:51:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Robin Gong <yibin.gong@nxp.com>
+Cc:     "robh@kernel.org" <robh@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "plyatov@gmail.com" <plyatov@gmail.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v4 10/14] dma: imx-sdma: add i.mx6ul/6sx compatible name
+Message-ID: <20190522135128.GA24987@bogus>
+References: <1558548188-1155-1-git-send-email-yibin.gong@nxp.com>
+ <1558548188-1155-11-git-send-email-yibin.gong@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:feaa:14ff:fe6a:8db5
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1558548188-1155-11-git-send-email-yibin.gong@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019 14:04:23 +0200, Hans Verkuil wrote:
-> On 5/13/19 7:21 PM, Michael Tretter wrote:
-> > This is v6 of the Allegro DVT H.264 encoder driver found in the EV
-> > family of the Xilinx ZynqMP platform.
-> > 
-> > Only minor changes this time. I dropped the implementation of the
-> > selection api, removed all references mentioning the decoder, and fixed
-> > a few issues reported by sparse and smatch.
-> > 
-> > The v4l2-compliance result using the current vicodec branch is
-> > 
-> > v4l2-compliance SHA: c2ad13e4b7aef9ae160303189c67a91e1775f025, 64 bits
-> > 
-> > Compliance test for allegro device /dev/video4:
-[...]
-> > I observed that the "MMAP (select)" test occasionally fails, because the
-> > test did not receive an V4L2_EVENT_EOS when dequeuing a buffer with
-> > V4L2_BUF_FLAG_LAST being set. The driver always queues the event before
-> > returning the last buffer and the "MMAP (epoll)" does not fail. Thus, I
-> > decided to send the series anyway.  
+On Wed, 22 May 2019 10:00:38 +0000, Robin Gong wrote:
+> Add i.mx6ul and i.mx6sx compatible name in binding doc.
 > 
-> Where exactly does v4l2-compliance fail? This is weird, and I believe
-> this warrants a bit more debugging. I recommend adding a debug
-> statement in allegro_channel_buf_done() to see when a buffer is marked
-> LAST.
-
-v4l2-compliance fails in line 1074
-
-	fail: v4l2-test-buffers.cpp(1074): !got_eos && !got_source_change
-
-The corresponding code in v4l2-compliance is
-
-	if (buf.g_flags() & V4L2_BUF_FLAG_LAST) {
-		fail_on_test(buf.dqbuf(node) != EPIPE);
->		fail_on_test(!got_eos && !got_source_change);
-		if (!count)
-			break;
-		fail_on_test(node->streamoff(m2m_q.g_type()));
-		m2m_q.munmap_bufs(node);
-
-When the test fails, the select/epoll_wait returns with readable data,
-but without readable events on the last buffer. If the test is
-successful, data and events are available. This looks like a race
-between the event and the LAST buffer and if the LAST buffer comes
-first, the test fails.
-
-As said, the driver always queues the EOS event before calling
-v4l2_m2m_buf_done() on the LAST buffer. Right now, I don't understand
-how this can happen, but I will continue debugging.
-
+> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> These tests really should not fail, and it is a strong indication of a
-> bug somewhere.
-> 
-> I don't want to merge a driver that has a FAIL in v4l2-compliance without
-> at the very least understanding why that happens. Ignoring it defeats the
-> purpose of v4l2-compliance.
 
-Totally agreed.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Michael
-
-> 
-> Regards,
-> 
-> 	Hans
-> 
+If a tag was not added on purpose, please state why and what changed.
