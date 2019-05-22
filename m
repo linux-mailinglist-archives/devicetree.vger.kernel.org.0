@@ -2,107 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 876CE26976
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 19:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA13269AE
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 20:14:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727984AbfEVR6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 13:58:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42360 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727975AbfEVR6P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 13:58:15 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1EFC520879;
-        Wed, 22 May 2019 17:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558547894;
-        bh=INW20+ikZwugtd34smfJ8t4TPEcl7sqNQVMpnXYKjng=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CWwwoMPrOQQqyB9NHaCXz7vkV9LltxZxYY8+qUjM5nAG29Cxr6Mz5BZZNy9MptT9D
-         fMP6wwm1MukOrCzn9fIZi7r9hZ68DIkiAlZSDqIYy1JameMpqzyxTT7C9W66a8fTb7
-         jGDjS7idQrVYqVqj0DQzp3L8E5H3AMZM763Lo42A=
-Received: by mail-qt1-f169.google.com with SMTP id j53so3443383qta.9;
-        Wed, 22 May 2019 10:58:14 -0700 (PDT)
-X-Gm-Message-State: APjAAAVxtz5v1F0TIUJIZLdl4zccucthwV74rpsexWM1WaZq80+Gy/Y7
-        SN+kk6KmQhbzt70JaKd3Rnx8ZyaRLyTant0L/Q==
-X-Google-Smtp-Source: APXvYqylnJxhtwHVEWUGDZrgq7EJJLVJ6f3T95DdKNmDWAXJ34MG+yGATgDFrKtubelaMl8Dl0Vu3vC7T0LebZIo/Sc=
-X-Received: by 2002:ac8:2d48:: with SMTP id o8mr75886909qta.136.1558547893390;
- Wed, 22 May 2019 10:58:13 -0700 (PDT)
+        id S1729430AbfEVSN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 14:13:59 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:34981 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729003AbfEVSN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 14:13:59 -0400
+Received: by mail-vk1-f196.google.com with SMTP id k1so744428vkb.2
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 11:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=als0AafCzNcwDpUysRFXNRE8h4TvypenDMJfaAg3x3M=;
+        b=Vkv0JYag5RXjIyQv9tMB50n4hClGqOqpOhB2GGfs8w4zpDNVkiYMS8ZJDnx0wvP5XB
+         F92PsIOC6CoRrTLnhridwl8W06XlPQzWSBucGXbUj0XK8y4FlsyM1ZIF6ySGv9hgOIJN
+         N3J3A51yuRx/HD8R01BubkDaT1q5W+xw/9QRY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=als0AafCzNcwDpUysRFXNRE8h4TvypenDMJfaAg3x3M=;
+        b=L+EhgutcvwzwQLH+ONRNUCwa6tix6DP1XLTykuT04oqLySqJFhBB3ygVG9BjTu6UZi
+         09dmTSOrJ2rHNQi4Ufm9/ZFaZzl71Et64Dw/O3X1PN1+FtB4vXlBWc+H/X0VYrR3kGs+
+         b4ttyzM2uaYW3hqEmb4/hDbU97Eula7Db70kcJK8F1Owh3Yt3sK87XxuUDlxicUaAVEp
+         2wcGAavgIjIHV5dzRBvPbzrXYjtHhZAWgfNbpFyiIa9YP2IuGlDwAu7XLiS/88U0mrUy
+         eVOlm27CXAPda2FrnjYvIY0a3XZ1mE5zWvxtcc+vacCK4hP8SXt/oQUeT2WyN0U3Qwzf
+         mnSA==
+X-Gm-Message-State: APjAAAXT5HLaC5yMia+tSZ0++o62Srbe2MznKqgns8KGqYGIhgH6KeDE
+        d0KsTe0SHfe9cPHzU9yeSNX/8jnKU6M=
+X-Google-Smtp-Source: APXvYqwxmuYwXNqAijPM6f6fCeeJUBk8Tl2MvGqoqSBYH46SjP8+WyaQZVgcz56zGq+QRyl3/aw+4A==
+X-Received: by 2002:a1f:9390:: with SMTP id v138mr15974820vkd.48.1558548838212;
+        Wed, 22 May 2019 11:13:58 -0700 (PDT)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
+        by smtp.gmail.com with ESMTPSA id v141sm29434014vsc.8.2019.05.22.11.13.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 May 2019 11:13:57 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id z11so1972142vsq.9
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 11:13:56 -0700 (PDT)
+X-Received: by 2002:a67:ebd6:: with SMTP id y22mr28744866vso.87.1558548836544;
+ Wed, 22 May 2019 11:13:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190522151238.25176-1-robh@kernel.org> <2b4878de1404e71d3085ee4832a5abc3526f2cdf.camel@perches.com>
-In-Reply-To: <2b4878de1404e71d3085ee4832a5abc3526f2cdf.camel@perches.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 22 May 2019 12:58:01 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLQ6jEU1JR05cxim6zwDM_acmA8z3CvcjhDAnZ276NDrQ@mail.gmail.com>
-Message-ID: <CAL_JsqLQ6jEU1JR05cxim6zwDM_acmA8z3CvcjhDAnZ276NDrQ@mail.gmail.com>
-Subject: Re: [PATCH] checkpatch.pl: Update DT vendor prefix check
-To:     Joe Perches <joe@perches.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
+References: <20190520220051.54847-1-mka@chromium.org> <3108277.JP5bvJISVS@phil>
+In-Reply-To: <3108277.JP5bvJISVS@phil>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 22 May 2019 11:13:45 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Ww5pYOdknESUC4S06FvPzZ03Z-tW098r2N+9tbHNx7Vw@mail.gmail.com>
+Message-ID: <CAD=FV=Ww5pYOdknESUC4S06FvPzZ03Z-tW098r2N+9tbHNx7Vw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: disable GPU 500 MHz OPP for veyron
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 22, 2019 at 12:16 PM Joe Perches <joe@perches.com> wrote:
->
-> On Wed, 2019-05-22 at 10:12 -0500, Rob Herring wrote:
-> > In commit 8122de54602e ("dt-bindings: Convert vendor prefixes to
-> > json-schema"), vendor-prefixes.txt has been converted to a DT schema.
-> > Update the checkpatch.pl DT check to extract vendor prefixes from the new
-> > vendor-prefixes.yaml file.
-> >
-> > Fixes: 8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
-> > Cc: Joe Perches <joe@perches.com>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  scripts/checkpatch.pl | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> > index bb28b178d929..073051a4471b 100755
-> > --- a/scripts/checkpatch.pl
-> > +++ b/scripts/checkpatch.pl
-> > @@ -3027,7 +3027,7 @@ sub process {
-> >                       my @compats = $rawline =~ /\"([a-zA-Z0-9\-\,\.\+_]+)\"/g;
-> >
-> >                       my $dt_path = $root . "/Documentation/devicetree/bindings/";
-> > -                     my $vp_file = $dt_path . "vendor-prefixes.txt";
-> > +                     my $vp_file = $dt_path . "vendor-prefixes.yaml";
-> >
-> >                       foreach my $compat (@compats) {
-> >                               my $compat2 = $compat;
-> > @@ -3042,7 +3042,7 @@ sub process {
-> >
-> >                               next if $compat !~ /^([a-zA-Z0-9\-]+)\,/;
-> >                               my $vendor = $1;
-> > -                             `grep -Eq "^$vendor\\b" $vp_file`;
-> > +                             `grep -oE "\\"\\^[a-zA-Z0-9]+" $vp_file | grep -q "$vendor"`;
->
-> I think this does't work well as it loses the -
-> in various vendor prefixes:
->
->   "^active-semi,.*":
->   "^asahi-kasei,.*":
->   "^ebs-systart,.*":
->   "^inside-secure,.*":
->   "^multi-inno,.*":
->   "^netron-dy,.*":
->   "^si-en,.*":
->   "^si-linux,.*":
->   "^tbs-biometrics,.*":
->   "^u-blox,.*":
->   "^x-powers,.*":
+Hi,
 
-Ah, indeed.
-
-> Perhaps the grep should be something like: (untested)
+On Wed, May 22, 2019 at 2:14 AM Heiko Stuebner <heiko@sntech.de> wrote:
 >
->         `grep -Eq "\\"\\^\Q$vendor\E,\\.\\*\\":" $vp_file`;
+> Am Dienstag, 21. Mai 2019, 00:00:49 CEST schrieb Matthias Kaehlcke:
+> > The NPLL is the only safe way to generate 500 MHz for the GPU. The
+> > downstream Chrome OS 3.14 kernel ('official' kernel for veyron
+> > devices) re-purposes NPLL to HDMI and hence disables the OPP for
+> > the GPU (see https://crrev.com/c/1574579). Disable it here as well
+> > to keep in sync and avoid problems in case someone decides to
+> > re-purpose NPLL.
+> >
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+>
+> I was actually expecting to just drop the 500MHz opp from all
+> of rk3288 ;-) .
+>
+> To not have to respin, I just modified your patch accordingly,
+> see [0] and please holler if you disagree :-D .
 
-That works. Thanks.
+Seems fine to me, thanks!
 
-Rob
+-Doug
