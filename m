@@ -2,106 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F762265B7
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 16:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A41F2663F
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 16:47:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728491AbfEVO2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 10:28:45 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36820 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728388AbfEVO2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 10:28:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=OXmLc8bSIMLSQIDMwLhc+SaxU3Xuanb61bHQ8Mozh7o=; b=qmZLcTK8t7jPXa0FqM0B9E5MO
-        wDrieXAdFArXgdtkDHZ4mCXR1lV0Q/8uRyaAu4qo8VgqfFcZP7/hOOOL0vB5jf5l+BPbbz9zGjBQ6
-        co/VRh2OA1pANEq6vc8joBOa70B/q9kt2Kik0LB+Ne4BIXOzOz/F5dkZXXrRue8sxjTJA=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hTSER-0004Un-9o; Wed, 22 May 2019 14:28:39 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id DFE3911226BC; Wed, 22 May 2019 15:28:37 +0100 (BST)
-Date:   Wed, 22 May 2019 15:28:37 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jeffrey Hugo <jhugo@codeaurora.org>
-Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, lgirdwood@gmail.com,
-        agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, jcrouse@codeaurora.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Subject: Re: [PATCH 2/3] regulator: qcom_spmi: Add support for PM8005
-Message-ID: <20190522142837.GE8582@sirena.org.uk>
-References: <20190521164932.14265-1-jeffrey.l.hugo@gmail.com>
- <20190521165315.14379-1-jeffrey.l.hugo@gmail.com>
- <20190521185054.GD16633@sirena.org.uk>
- <51caaee4-dfc9-5b5a-07c7-b1406c178ca3@codeaurora.org>
- <20190522110107.GB8582@sirena.org.uk>
- <4e5bdf77-3141-bff6-e5b9-a81a5c73b4e4@codeaurora.org>
+        id S1729510AbfEVOrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 10:47:51 -0400
+Received: from mga09.intel.com ([134.134.136.24]:57985 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729491AbfEVOru (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 10:47:50 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 May 2019 07:47:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.60,499,1549958400"; 
+   d="scan'208";a="174412657"
+Received: from dwesterg-mobl1.an.intel.com ([10.122.128.164])
+  by fmsmga002.fm.intel.com with ESMTP; 22 May 2019 07:47:49 -0700
+Message-ID: <c5363d7f1de4a24b31662f034d5241eba4fa0dc6.camel@linux.intel.com>
+Subject: Re: [PATCH 3/3] ARM64: dts: stratix10: Add stmmac ptp_ref clock
+From:   Dalon L Westergreen <dalon.westergreen@linux.intel.com>
+Reply-To: dalon.westergreen@linux.intel.com
+To:     Dinh Nguyen <dinguyen@kernel.org>, thor.thayer@linux.intel.com,
+        devicetree@vger.kernel.org
+Date:   Wed, 22 May 2019 07:47:49 -0700
+In-Reply-To: <06397243-94ea-47db-16c1-a4c11e08c3b1@kernel.org>
+References: <20190515162058.32368-1-dalon.westergreen@linux.intel.com>
+         <20190515162058.32368-3-dalon.westergreen@linux.intel.com>
+         <cff8dd7f-c617-af6c-cf22-2baa077a9bbb@linux.intel.com>
+         <c444aff8281593bedaa90193dbabefcfd31a187d.camel@linux.intel.com>
+         <06397243-94ea-47db-16c1-a4c11e08c3b1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="maH1Gajj2nflutpK"
-Content-Disposition: inline
-In-Reply-To: <4e5bdf77-3141-bff6-e5b9-a81a5c73b4e4@codeaurora.org>
-X-Cookie: Does the name Pavlov ring a bell?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2019-05-21 at 15:27 -0500, Dinh Nguyen wrote:
+> 
+> On 5/21/19 8:09 AM, Dalon L Westergreen wrote:
+> > On Mon, 2019-05-20 at 11:39 -0500, Thor Thayer wrote:
+> > > On 5/15/19 11:20 AM, Dalon Westergreen wrote:
+> > > > Add the default stmmac ptp_ref clock for stratix10.  The stmmac
+> > > > driver defaults the ptp_ref clock to the main stmmac clock
+> > > > if the ptp_ref clock is not set in the devicetree.  This is
+> > > > inappropriate for the stratix10.  The default ptp_ref clock is
+> > > > STRATIX10_PERI_EMAC_PTP_CLK in the clock manager.
+> > > > 
+> > > > Signed-off-by: Dalon Westergreen <
+> > > > dalon.westergreen@linux.intel.com
+> > > > 
+> > > > 
+> > > > ---
+> > > >   arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 12 ++++++------
+> > > >   1 file changed, 6 insertions(+), 6 deletions(-)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> > > > b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> > > > index adedd563125a..f464e7ba3402 100644
+> > > > --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> > > > +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> > > > @@ -160,8 +160,8 @@
+> > > >   			mac-address = [00 00 00 00 00 00];
+> > > >   			resets = <&rst EMAC0_RESET>, <&rst
+> > > > EMAC0_OCP_RESET>;
+> > > >   			reset-names = "stmmaceth", "stmmaceth-ocp";
+> > > > -			clocks = <&clkmgr STRATIX10_EMAC0_CLK>;
+> > > > -			clock-names = "stmmaceth";
+> > > > +			clocks = <&clkmgr STRATIX10_EMAC0_CLK>, <&clkmgr
+> > > > STRATIX10_PERI_EMAC_PTP_CLK>;
+> > > > +			clock-names = "stmmaceth", "ptp_ref";
+> > > >   			tx-fifo-depth = <16384>;
+> > > >   			rx-fifo-depth = <16384>;
+> > > >   			snps,multicast-filter-bins = <256>;
+> > > > @@ -176,8 +176,8 @@
+> > > >   			mac-address = [00 00 00 00 00 00];
+> > > >   			resets = <&rst EMAC1_RESET>, <&rst
+> > > > EMAC1_OCP_RESET>;
+> > > >   			reset-names = "stmmaceth", "stmmaceth-ocp";
+> > > > -			clocks = <&clkmgr STRATIX10_EMAC1_CLK>;
+> > > > -			clock-names = "stmmaceth";
+> > > > +			clocks = <&clkmgr STRATIX10_EMAC1_CLK>, <&clkmgr
+> > > > STRATIX10_PERI_EMAC_PTP_CLK>;
+> > > > +			clock-names = "stmmaceth", "ptp_ref";
+> > > >   			tx-fifo-depth = <16384>;
+> > > >   			rx-fifo-depth = <16384>;
+> > > >   			snps,multicast-filter-bins = <256>;
+> > > > @@ -192,8 +192,8 @@
+> > > >   			mac-address = [00 00 00 00 00 00];
+> > > >   			resets = <&rst EMAC2_RESET>, <&rst
+> > > > EMAC2_OCP_RESET>;
+> > > >   			reset-names = "stmmaceth", "stmmaceth-ocp";
+> > > > -			clocks = <&clkmgr STRATIX10_EMAC2_CLK>;
+> > > > -			clock-names = "stmmaceth";
+> > > > +			clocks = <&clkmgr STRATIX10_EMAC2_CLK>, <&clkmgr
+> > > > STRATIX10_PERI_EMAC_PTP_CLK>;
+> > > > +			clock-names = "stmmaceth", "ptp_ref";
+> > > >   			tx-fifo-depth = <16384>;
+> > > >   			rx-fifo-depth = <16384>;
+> > > >   			snps,multicast-filter-bins = <256>;
+> > > > 
+> > > 
+> > > Should STRATIX10_EMAC_PTP_CLK be used instead of 
+> > > STRATIX10_PERI_EMAC_PTP_CLK since this is the gate of the clkgmr?
+> > > 
+> > 
+> > Either can be used, but the default in the hps configuration is the
+> > peripheral pll output and not the main pll output.
+> > 
+> 
+> I think it should be the emac_ptp_clk. If you look at the clock tree,
+> the emac_ptp_clk(50 MHz) and is derived from the peri_emac_ptp_clk(200
+> MHz).
+> 
+> You can look at the clock tree by doing a 'cat
+> /sys/kernel/debug/clk/clk_summary'.
+> 
+> Dinh
+> 
+I dont disagree, but this devicetree is a representation of what was implemented
+in the devkit no?  Should we first request that this is changed in the design?
+or should i set this to STRATIX10_EMAC_PTP_CLK and overide it in the top level
+socdk devicetree?
 
---maH1Gajj2nflutpK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+dalon
 
-On Wed, May 22, 2019 at 08:16:38AM -0600, Jeffrey Hugo wrote:
-> On 5/22/2019 5:01 AM, Mark Brown wrote:
-> > On Tue, May 21, 2019 at 05:16:06PM -0600, Jeffrey Hugo wrote:
 
-> > > I'm open to suggestions.  Apparently there are two register common register
-> > > schemes - the old one and the new one.  PMIC designs after some random point
-> > > in time are all the new register scheme per the documentation I see.
-
-> > > As far as I an aware, the FT426 design is the first design to be added to
-> > > this driver to make use of the new scheme, but I expect more to be supported
-> > > in future, thus I'm reluctant to make these ft426 specific in the name.
-
-> > If there's a completely new register map why are these even in the same
-> > driver?
-
-> Its not completely new, its a derivative of the old scheme.  Of the 104
-> registers, approximately 5 have been modified, therefore the new scheme is
-> 95% compatible with the old one.  Duplicating a 1883 line driver to handle a
-> change in 5% of the register space seems less than ideal. Particularly
-> considering your previous comments seem to indicate that you feel its pretty
-> trivial to handle the quirks associated with the changes in this driver.
-
-Ah, so it's not a completely new scheme but rather just a couple of
-registers that have changed.  Sharing the driver is fine then.  Ideally
-there would be some documentation from the vendor about this, a mention
-of IP revisions or some such.  If not what the DT bindings do for names
-is use the first chip things were found in.
-
---maH1Gajj2nflutpK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlXJUACgkQJNaLcl1U
-h9C+ZQf/TqQlF1ddY6Pa7ieCP0TCY5fWm5JoIZlTG/2Rm+N9ucuHg0yY69ufYHfx
-2/um2JJBej0FYI2l20kRcV+D5Mgzi9fr7bM2HHWc0eMUpDcSgxAsPE5yMPwTELwt
-u59c+J7YyFL4I0ZZsLvFl/tLvf+eEAOgluj/wjMHXbE6rjjwujGnz7MTljY50EQB
-+z/EfHzhJQj93txkYaEYmIdAUWLIqzgMlxYvfcvqU3/5af3FAyk43ytzT19MB3Ty
-+rC6IkooIfmgFJnRfCjbxu6igpsVl6vTGgRwL9UnLOz86RK4yhvrQ9zdlgYoWViK
-4aIBU4bxP1MI3uscDoP+YyNoKjE7Yw==
-=yQnz
------END PGP SIGNATURE-----
-
---maH1Gajj2nflutpK--
