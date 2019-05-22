@@ -2,258 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21C88271C3
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 23:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 538EA27302
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 01:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729898AbfEVVjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 17:39:03 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:43873 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730341AbfEVVjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 17:39:02 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t187so2785845oie.10
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 14:39:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X8iUa3mR7n1QUqI0vPloid9MGvfKcIGgUfFxnULZ5+U=;
-        b=GDelsoqQolX8vZ500TJnYRTrvx7UvzJ51bjddO3LDssDGEV/KLjn45OPSK1LoHb+pt
-         vMc4fO10d8rFO9cUXhUOasQS1z00mtA/aaww0itHgEjxtv6/EtX/A5C4yrS8r08gyITU
-         TA04J0efipr8o8Xl0BPEGjp/KEY0bIEgjzBYUxRrb7zqAvNHGycq9491MnB/928cEorF
-         vcRKUxoGSumKvZMwAn4LVEhN0I/8thaBrCFiTKXFw9vQen81eDnsqy70p43bZYFnR6bP
-         AEdEBccKUY3heoXvT17IcKdkpcaihfJ0EloODJeeR+bHCXp13wWqqLlXuKmTMbFs7kR8
-         kJzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X8iUa3mR7n1QUqI0vPloid9MGvfKcIGgUfFxnULZ5+U=;
-        b=srMmoOby0zZAWoNpTY6EULNvYr1axjg/WbyJxteEkfVgE8qGSTzOFtZBpH44q4V1Hu
-         a8+W0WDN16Yd8MrJ8YZAKi/NhUz0l4qpAWcOvN+qpTLuD34uo3GxbKZSeEtHqo2B2e11
-         6RGX9Ymwie84aNzBF7ceICE1gIAoFq7r/QuL7sZ+j1iAYlZ5evknD/TeiMebxX7p8/lr
-         MUQPO5EcUUx1s6ZONtM6Z+oRf1PmYr4lXM6UFNYtNFT69/yMT4/ydk60rzfM/kecKXNi
-         Xl5MltO2Ho0GDzClNFxSbiy4o1VSdtPiZT5M6hdc9M8HiMB3wxZkkYgzs8ZjwqLTXDti
-         u5Ow==
-X-Gm-Message-State: APjAAAWksdA4MQqGftSjGvrrm8zx+BkNPcU4l9iOelhxuwzE9eyYnGrw
-        dRlLz8KLiqe1deOz3lgkB7TPfJF5TvmyJLL5DKuFwDXw1a22vg==
-X-Google-Smtp-Source: APXvYqwhyT9IyVUG9lkFu5kWtgvlKVPb/Q03tyBe4vbXVaiSv8N9Jry7yPQvyfivwOs/aXwiHN39BhvkHSSieLsYpPE=
-X-Received: by 2002:aca:55d6:: with SMTP id j205mr565451oib.137.1558561141083;
- Wed, 22 May 2019 14:39:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190509133551.GD29703@mit.edu> <ECADFF3FD767C149AD96A924E7EA6EAF9770D591@USCULXMSG01.am.sony.com>
- <875c546d-9713-bb59-47e4-77a1d2c69a6d@gmail.com> <20190509214233.GA20877@mit.edu>
- <80c72e64-2665-bd51-f78c-97f50f9a53ba@gmail.com> <20190511173344.GA8507@mit.edu>
- <20190513144451.GQ17751@phenom.ffwll.local> <20190514060433.GA181462@google.com>
- <CAKMK7uHqtSF_sazJTbFL+xmQJRk4iwukCKZHoDHhsKkLXk=ECQ@mail.gmail.com>
- <20190514183618.GC109557@google.com> <20190515074141.GY17751@phenom.ffwll.local>
-In-Reply-To: <20190515074141.GY17751@phenom.ffwll.local>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Wed, 22 May 2019 14:38:48 -0700
-Message-ID: <CAFd5g476Hc+6jL5sV=VJamXCbqGebwHqqN9N9RppQYMCoo052Q@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "Luis R. Rodriguez" <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Shuah Khan <shuah@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Jeff Dike <jdike@addtoit.com>, Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727809AbfEVXhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 19:37:41 -0400
+Received: from outgoing4.flk.host-h.net ([188.40.0.90]:40251 "EHLO
+        outgoing4.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726215AbfEVXhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 19:37:41 -0400
+X-Greylist: delayed 2659 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 May 2019 19:37:40 EDT
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam1-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1hTa6n-0000bT-Bw; Thu, 23 May 2019 00:53:18 +0200
+Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
+        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.84_2)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1hTa6c-0007fD-EJ; Thu, 23 May 2019 00:53:06 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/rockchip: dw_hdmi: add basic rk3228 support
+Date:   Wed, 22 May 2019 22:46:29 +0000
+Message-Id: <20190522224631.25164-1-justin.swartz@risingedge.co.za>
+X-Mailer: git-send-email 2.11.0
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear (ClamAV 0.100.3/25457/Wed May 22 09:57:31 2019)
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.000718690605145)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0fHWENUdqj+4JDN3TQDP3eCpSDasLI4SayDByyq9LIhVur86TwL7jsv5
+ m6+fjp/sxETNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0h/RxVysY5Ye6+GGw0VqdJD7ren9RtRNyYim5e3GD8LGfWrcbYvelpuN/Pk
+ qhBpvAyWwieZyauFYqHkIbFa+ipF21HJWO60ZqrvKy/1AXUV5oXt6ymoFHaG7BQtEYvFCSo5O9aO
+ OPCZx1b2uMC/zMc3aAOV7ICS29ZskdEzgnmWc6FyCw2oLKHJClAYHcXyktNZ2XmZE6Ulo3Sg6/fH
+ CWNxoaEnuBtnt6GUDDzwi0xE9ujBdjBi/EW6wTMO5aPWRLvv8qeRWs1kOo/p5GKJkWYAO3Aa5n+U
+ cgHka3/viXjzcoj1m7f+vTE4JStv6WwSOoIjjjxJx7TjfIl9lT02e+bLG5tY/17Am1+3t6saIBBg
+ jLL9CBTChXJpl1nl23cKb/28qAHF3ayYxbGdFos0fpCN/Zqe7k8tOuyC0ezetWWw8nL3mjAyuRnY
+ YfqoF0qwBaWr31abV7tmT2g84edke3MdOkNjooab3HXOpUJdeB9FrcmwwJhZoFj1JrH8+3dIKm8T
+ aJbF/DJ9xG35AyqkelXaj1B5NGYLZCD5qc9WTEIS3cJCoM1jZKVSdLKiMKeae175VNiXOYUQ+bYR
+ OTnFZniyHwlqvaI+zok/BsKQK4gft9MTokp23oPCMeUu86GfQl/coNq5LDsD+gmtrHR34ik+dbYb
+ 9IXfYGRpVS/0hA4MwqmkYLLjcD7HaYjxiQBclDtVrfG8Zd+nzbonxrsMSs4uYqsuNEW45+y/2kiU
+ pWy9c+XovTjsJstHtBoNlKIuslv0d6pyfV7QOE1hL9j5OVSXNVTcvF4bYNCxBEiOkhGolglPmh6a
+ ILJqM6WsXf7aQnmpO2ydeyFd1pMxtzaLrgiAa1jZ449c5QOSXHeR3E0E19yXIdNHJDPRcm8rLb1r
+ h0PyzIaTXD+uKJkHA4nFPinpYeLTxNigHOV5GQgWJq64bnCnflZnbjDB2+RGRgaXth0ZHRqQruFr
+ G/GlTGRDUHWt54s410cgWo1fMD6i15+WgVsQdC9uGg5IeWmPBYt4N47WgJgyTfy73B/Plf7FmTDV
+ qY+pQN3pVbMWvtuGUnEh3DwJWw42swm4bO6gacpMpzKjPCVKQvBNmkphbV+6LqpSOVpogBsPfG5h
+ jLRjd6kxWF4VLgIZIkTm0juO6rHlP/TihjA708Lg3Y2gXyaf+rItBxw1SWz0NFi7GeT33MAvp0E4
+ hZvaIK8zWrz4lb7RoCsWna0PdfWBYPgYUN6vj8NApCcRaz+idK1HZy9Txmtmp2+U8T3Kfj7tHuHD
+ vXqVSlU=
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Bjorn Helgaas
+Like the RK3328, RK322x SoCs offer a Synopsis DesignWare HDMI transmitter
+and an Innosilicon HDMI PHY.
 
-On Wed, May 15, 2019 at 12:41 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> On Tue, May 14, 2019 at 11:36:18AM -0700, Brendan Higgins wrote:
-> > On Tue, May 14, 2019 at 02:05:05PM +0200, Daniel Vetter wrote:
-> > > On Tue, May 14, 2019 at 8:04 AM Brendan Higgins
-> > > <brendanhiggins@google.com> wrote:
-> > > >
-> > > > On Mon, May 13, 2019 at 04:44:51PM +0200, Daniel Vetter wrote:
-> > > > > On Sat, May 11, 2019 at 01:33:44PM -0400, Theodore Ts'o wrote:
-> > > > > > On Fri, May 10, 2019 at 02:12:40PM -0700, Frank Rowand wrote:
-> > > > > > > However, the reply is incorrect.  Kselftest in-kernel tests (which
-> > > > > > > is the context here) can be configured as built in instead of as
-> > > > > > > a module, and built in a UML kernel.  The UML kernel can boot,
-> > > > > > > running the in-kernel tests before UML attempts to invoke the
-> > > > > > > init process.
-> > > > > >
-> > > > > > Um, Citation needed?
-> > > > > >
-> > > > > > I don't see any evidence for this in the kselftest documentation, nor
-> > > > > > do I see any evidence of this in the kselftest Makefiles.
-> > > > > >
-> > > > > > There exists test modules in the kernel that run before the init
-> > > > > > scripts run --- but that's not strictly speaking part of kselftests,
-> > > > > > and do not have any kind of infrastructure.  As noted, the
-> > > > > > kselftests_harness header file fundamentally assumes that you are
-> > > > > > running test code in userspace.
-> > > > >
-> > > > > Yeah I really like the "no userspace required at all" design of kunit,
-> > > > > while still collecting results in a well-defined way (unless the current
-> > > > > self-test that just run when you load the module, with maybe some
-> > > > > kselftest ad-hoc wrapper around to collect the results).
-> > > > >
-> > > > > What I want to do long-term is to run these kernel unit tests as part of
-> > > > > the build-testing, most likely in gitlab (sooner or later, for drm.git
-> > > >
-> > > > Totally! This is part of the reason I have been insisting on a minimum
-> > > > of UML compatibility for all unit tests. If you can suffiently constrain
-> > > > the environment that is required for tests to run in, it makes it much
-> > > > easier not only for a human to run your tests, but it also makes it a
-> > > > lot easier for an automated service to be able to run your tests.
-> > > >
-> > > > I actually have a prototype presubmit already working on my
-> > > > "stable/non-upstream" branch. You can checkout what presubmit results
-> > > > look like here[1][2].
-> > >
-> > > ug gerrit :-)
-> >
-> > Yeah, yeah, I know, but it is a lot easier for me to get a project set
-> > up here using Gerrit, when we already use that for a lot of other
-> > projects.
-> >
-> > Also, Gerrit has gotten a lot better over the last two years or so. Two
-> > years ago, I wouldn't touch it with a ten foot pole. It's not so bad
-> > anymore, at least if you are used to using a web UI to review code.
->
-> I was somewhat joking, I'm just not used to gerrit ... And seems to indeed
-> be a lot more polished than last time I looked at it seriously.
+Add a new dw_hdmi_plat_data struct, rk3228_hdmi_drv_data.
+Assign a set of mostly generic rk3228_hdmi_phy_ops functions.
+Add dw_hdmi_rk3228_setup_hpd() to enable the HDMI HPD and DDC lines.
 
-I mean, it is still not perfect, but I think it has finally gotten to
-the point where I prefer it over reviewing by email for high context
-patches where you don't expect a lot of deep discussion.
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+---
+ .../bindings/display/rockchip/dw_hdmi-rockchip.txt |  1 +
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 53 ++++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
 
-Still not great for patches where you want to have a lot of discussion.
+diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+index 39143424a..703503103 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
++++ b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
+@@ -12,6 +12,7 @@ following device-specific properties.
+ Required properties:
+ 
+ - compatible: should be one of the following:
++		"rockchip,rk3228-dw-hdmi"
+ 		"rockchip,rk3288-dw-hdmi"
+ 		"rockchip,rk3328-dw-hdmi"
+ 		"rockchip,rk3399-dw-hdmi"
+diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+index 4cdc9f86c..182a852af 100644
+--- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+@@ -23,6 +23,14 @@
+ #include "rockchip_drm_drv.h"
+ #include "rockchip_drm_vop.h"
+ 
++#define RK3228_GRF_SOC_CON2		0x0408
++#define RK3228_HDMI_SDAIN_MSK		BIT(14)
++#define RK3228_HDMI_SCLIN_MSK		BIT(13)
++#define RK3228_GRF_SOC_CON6		0x0418
++#define RK3228_HDMI_HPD_VSEL		BIT(6)
++#define RK3228_HDMI_SDA_VSEL		BIT(5)
++#define RK3228_HDMI_SCL_VSEL		BIT(4)
++
+ #define RK3288_GRF_SOC_CON6		0x025C
+ #define RK3288_HDMI_LCDC_SEL		BIT(4)
+ #define RK3328_GRF_SOC_CON2		0x0408
+@@ -325,6 +333,25 @@ static void dw_hdmi_rockchip_genphy_disable(struct dw_hdmi *dw_hdmi, void *data)
+ 	phy_power_off(hdmi->phy);
+ }
+ 
++static void dw_hdmi_rk3228_setup_hpd(struct dw_hdmi *dw_hdmi, void *data)
++{
++	struct rockchip_hdmi *hdmi = (struct rockchip_hdmi *)data;
++
++	dw_hdmi_phy_setup_hpd(dw_hdmi, data);
++
++	regmap_write(hdmi->regmap,
++		RK3228_GRF_SOC_CON6,
++		HIWORD_UPDATE(RK3228_HDMI_HPD_VSEL | RK3228_HDMI_SDA_VSEL |
++			      RK3228_HDMI_SCL_VSEL,
++			      RK3228_HDMI_HPD_VSEL | RK3228_HDMI_SDA_VSEL |
++			      RK3228_HDMI_SCL_VSEL));
++
++	regmap_write(hdmi->regmap,
++		RK3228_GRF_SOC_CON2,
++		HIWORD_UPDATE(RK3228_HDMI_SDAIN_MSK | RK3228_HDMI_SCLIN_MSK,
++			      RK3228_HDMI_SDAIN_MSK | RK3228_HDMI_SCLIN_MSK));
++}
++
+ static enum drm_connector_status
+ dw_hdmi_rk3328_read_hpd(struct dw_hdmi *dw_hdmi, void *data)
+ {
+@@ -370,6 +397,29 @@ static void dw_hdmi_rk3328_setup_hpd(struct dw_hdmi *dw_hdmi, void *data)
+ 			      RK3328_HDMI_HPD_IOE));
+ }
+ 
++static const struct dw_hdmi_phy_ops rk3228_hdmi_phy_ops = {
++	.init		= dw_hdmi_rockchip_genphy_init,
++	.disable	= dw_hdmi_rockchip_genphy_disable,
++	.read_hpd	= dw_hdmi_phy_read_hpd,
++	.update_hpd	= dw_hdmi_phy_update_hpd,
++	.setup_hpd	= dw_hdmi_rk3228_setup_hpd,
++};
++
++static struct rockchip_hdmi_chip_data rk3228_chip_data = {
++	.lcdsel_grf_reg = -1,
++};
++
++static const struct dw_hdmi_plat_data rk3228_hdmi_drv_data = {
++	.mode_valid = dw_hdmi_rockchip_mode_valid,
++	.mpll_cfg = rockchip_mpll_cfg,
++	.cur_ctr = rockchip_cur_ctr,
++	.phy_config = rockchip_phy_config,
++	.phy_data = &rk3228_chip_data,
++	.phy_ops = &rk3228_hdmi_phy_ops,
++	.phy_name = "inno_dw_hdmi_phy2",
++	.phy_force_vendor = true,
++};
++
+ static struct rockchip_hdmi_chip_data rk3288_chip_data = {
+ 	.lcdsel_grf_reg = RK3288_GRF_SOC_CON6,
+ 	.lcdsel_big = HIWORD_UPDATE(0, RK3288_HDMI_LCDC_SEL),
+@@ -422,6 +472,9 @@ static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
+ };
+ 
+ static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
++	{ .compatible = "rockchip,rk3228-dw-hdmi",
++	  .data = &rk3228_hdmi_drv_data
++	},
+ 	{ .compatible = "rockchip,rk3288-dw-hdmi",
+ 	  .data = &rk3288_hdmi_drv_data
+ 	},
+-- 
+2.11.0
 
-> > > > > only ofc). So that people get their pull requests (and patch series, we
-> > > > > have some ideas to tie this into patchwork) automatically tested for this
-> > > >
-> > > > Might that be Snowpatch[3]? I talked to Russell, the creator of Snowpatch,
-> > > > and he seemed pretty open to collaboration.
-> > > >
-> > > > Before I heard about Snowpatch, I had an intern write a translation
-> > > > layer that made Prow (the presubmit service that I used in the prototype
-> > > > above) work with LKML[4].
-> > >
-> > > There's about 3-4 forks/clones of patchwork. snowpatch is one, we have
-> > > a different one on freedesktop.org. It's a bit a mess :-/
-
-I think Snowpatch is an ozlabs project; at least the maintainer works at IBM.
-
-Patchwork originally was a ozlabs project, right?
-
-Has any discussion taken place trying to consolidate some of the forks?
-
-Presubmit clearly seems like a feature that a number of people want.
-
-> > Oh, I didn't realize that. I found your patchwork instance here[5], but
-> > do you have a place where I can see the changes you have added to
-> > support presubmit?
->
-> Ok here's a few links. Aside from the usual patch view we've also added a
-> series view:
->
-> https://patchwork.freedesktop.org/project/intel-gfx/series/?ordering=-last_updated
->
-> This ties the patches + cover letter together, and it even (tries to at
-> least) track revisions. Here's an example which is currently at revision
-> 9:
->
-> https://patchwork.freedesktop.org/series/57232/
-
-Oooh, nice! That looks awesome! Looks like you have a number of presubmits too.
-
-> Below the patch list for each revision we also have the test result list.
-> If you click on the grey bar it'll expand with the summary from CI, the
-> "See full logs" is link to the full results from our CI. This is driven
-> with some REST api from our jenkins.
->
-> Patchwork also sends out mails for these results.
-
-Nice! There are obviously a lot of other bots on various kernel
-mailing lists. Do you think people would object to sending presubmit
-results to the mailing lists by default?
-
-> Source is on gitlab: https://gitlab.freedesktop.org/patchwork-fdo
-
-Err, looks like you forked from the ozlab's repo a good while ago.
-
-Still, this all looks great!
-
-> > > > I am not married to either approach, but I think between the two of
-> > > > them, most of the initial legwork has been done to make presubmit on
-> > > > LKML a reality.
-> > >
-> > > We do have presubmit CI working already with our freedesktop.org
-> > > patchwork. The missing glue is just tying that into gitlab CI somehow
-> > > (since we want to unify build testing more and make it easier for
-> > > contributors to adjust things).
-> >
-> > I checked out a couple of your projects on your patchwork instance: AMD
-> > X.Org drivers, DRI devel, and Wayland. I saw the tab you added for
-> > tests, but none of them actually had any test results. Can you point me
-> > at one that does?
->
-> Atm we use the CI stuff only on intel-gfx, with the our gpu CI farm, see
-> links above.
->
-> Cheers, Daniel
->
-> >
-> > Cheers!
-> >
-> > [5] https://patchwork.freedesktop.org/
-> >
-> > > > > super basic stuff.
-> > > >
-> > > > I am really excited to hear back on what you think!
-> > > >
-> > > > Cheers!
-> > > >
-> > > > [1] https://kunit-review.googlesource.com/c/linux/+/1509/10#message-7bfa40efb132e15c8388755c273837559911425c
-> > > > [2] https://kunit-review.googlesource.com/c/linux/+/1509/10#message-a6784496eafff442ac98fb068bf1a0f36ee73509
-> > > > [3] https://developer.ibm.com/open/projects/snowpatch/
-> > > > [4] https://kunit.googlesource.com/prow-lkml/
-> > > > _______________________________________________
-> > > > dri-devel mailing list
-> > > > dri-devel@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
-Cheers!
