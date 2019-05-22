@@ -2,101 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDC2267D7
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 18:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3CD2680D
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 18:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729986AbfEVQPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 12:15:39 -0400
-Received: from mail-yb1-f196.google.com ([209.85.219.196]:43527 "EHLO
-        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729576AbfEVQPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 12:15:39 -0400
-Received: by mail-yb1-f196.google.com with SMTP id n145so1065079ybg.10;
-        Wed, 22 May 2019 09:15:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=H2QOYmtrbMv2RwSsZzKZlIgE2lZOebGHxtRTWGwCUK8=;
-        b=TsIh23HRLdI8hEqPtQ30fFSZzK3/A1tyuR7wi8bJAddsbCkyN0GMgWgPVR3rgKILCq
-         FrjrSON1dGlThNxb6/6otMCvetSODgQPtK+wCIUhqMULhi+c8WlRIZmlkJ0P+HcMxQ8u
-         7yPysCT0YucMkd14fGXTR2A7RsGbxmWl/6v+RXwx++xvoi7fJRqw6R9i/QHjVz9JM1Jo
-         Q1Qlo/bOw4egn1BpoPLWvnMrKgLZ9NEiLUWJNYq/Hj2xcoWn3Q2P8krIEgqDVbCR0vtm
-         ArAa3hmhxNyAeVNo3DWT2VcBqjFu3i1zmzbnIZkNrRlh0EMNdQuROjTN9nfPKbOQ4oNO
-         DeeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=H2QOYmtrbMv2RwSsZzKZlIgE2lZOebGHxtRTWGwCUK8=;
-        b=Qi3y8e5hcaBOpW/ZPT5d35OlBGA8YAhnnRZiBDYrTV4Li3wmH35jBiXAIo+Y7tBW8X
-         1kiZ8zKzdVyEpdKNfqDm12e6eEMD1ocSDNHeK04M9pncR7b/ugY0zQjsoixqDvyPbnmw
-         HiSseIlfn//zb77d3YQ7v+T3qxv8y9YXIIV00MmQHwbCDeHfXMNu24yQ4JY4EROdDHIm
-         6J+I3jGvdfbnEa6xC0x1l6x7h+nn6Q7EnCdTMYHUfPxGIa2buClkUac4tblNpnnKOuxP
-         d600gnv3lsXl8Movzr15k7nOnx3pMbJCcnPXKT3z5pVTB9Wn57cklE++TNdlN+rgpULN
-         6Tnw==
-X-Gm-Message-State: APjAAAVzfr7qsZ5uHBbuTD+pLy5xSTTU/G0OJa3z1WZBIC+PkuMMRAZH
-        INUal63bVuVPd8O7AZeZ/BK6BojjQ/idJevMLtU=
-X-Google-Smtp-Source: APXvYqyPQIgHEnxdgVx+UouRSudO6JPKLPIolrSmSVfkcCwrLtqxxyhpQn1v2Hu8mH5g9waksx4+zTXkVOk8H8NtNxI=
-X-Received: by 2002:a25:ae22:: with SMTP id a34mr6825427ybj.438.1558541737775;
- Wed, 22 May 2019 09:15:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521160330.28402-1-peron.clem@gmail.com> <20190521160330.28402-4-peron.clem@gmail.com>
- <20190522103243.mmrfato5p2mhtf4j@flea>
-In-Reply-To: <20190522103243.mmrfato5p2mhtf4j@flea>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Wed, 22 May 2019 18:15:26 +0200
-Message-ID: <CAJiuCcdaZVLQyupEf8HPaUySakufXXAhzundo6VeyQaAyZ8Trw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] dt-bindings: watchdog: add Allwinner H6 r_watchdog
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728638AbfEVQVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 12:21:18 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:49362 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730067AbfEVQVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 12:21:09 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4MGKdr8102263;
+        Wed, 22 May 2019 11:20:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1558542039;
+        bh=Gpb1vaUdYj+cDL8YzUJEgAabIosE4tzV3esirEzT5bc=;
+        h=From:To:CC:Subject:Date;
+        b=hJkryzLGiqUHyZsDkaWVfinO/co2x5l0xtABReY1fM9yvC2pLvFu68aNHRfIE+j6m
+         3F7pCq5vpxFYQFEzOAVSxEvQdhG1wqbQ5LEZp6+UwLGDUFHKJpfFRz0gEYZNs2fwoK
+         Gk5/RUivXFH7r8IUST5s9Bwwqi6WT76wgNQHdpao=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4MGKdFP099352
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 May 2019 11:20:39 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 22
+ May 2019 11:20:38 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 22 May 2019 11:20:38 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4MGKceh104530;
+        Wed, 22 May 2019 11:20:38 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-watchdog@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-serial@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH 0/6] arm64: Initial support Texas Instrument's J721E Platform
+Date:   Wed, 22 May 2019 11:19:15 -0500
+Message-ID: <20190522161921.20750-1-nm@ti.com>
+X-Mailer: git-send-email 2.21.0.777.g83232e38648b
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Hi,
 
-On Wed, 22 May 2019 at 12:32, Maxime Ripard <maxime.ripard@bootlin.com> wro=
-te:
->
-> On Tue, May 21, 2019 at 06:03:28PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> > Allwinner H6 has a second watchdog on the r-blocks which is
-> > compatible with the A31.
-> >
-> > This commit add the H6 compatible for the r_watchdog.
-> >
-> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
->
-> Unless you have some evidence that the two blocks are different, then
-> you should just reuse the same one.
+This series adds support for the latest new SoC, J721E, from Texas Instruments.
 
-I have no evidence it's different nor identical, it's not documented
-in the user manual.
-I thought it would better to have separate bindings in case there is a
-difference.
-Than don't have and find later that we have to introduce one.
+The series is an based off v5.2-rc1 and has the following driver
+dependencies for a successful boot:
+1.  https://lore.kernel.org/lkml/20190429131533.25122-1-afd@ti.com (for newer firmware)
+2.  https://lore.kernel.org/linux-arm-kernel/1555093342-428-1-git-send-email-t-kristo@ti.com/
+    - Clock IDs cannot be guarenteed to be sequential, has to be
+      discovered from hardware description in dts
+    - Clock IDs on this massive chip also exceeds 255, so, the support
+      for the same is expected in follow on patches.
 
-But as you prefer.
+The full series is available here (including dependencies):
+https://github.com/nmenon/linux-2.6-playground/commits/upstream/v5.2-rc1/j7es-base-v1
 
-Regards,
-Cl=C3=A9ment
+Boot Log: https://pastebin.ubuntu.com/p/j3NtfF8FQr/
 
+NOTE:
+ - If Greg is ok, we can pick up the uart compatibility via the k3 tree,
+   else, I can spawn it off the series.
+ - I will resubmit patch 6 (defconfig update) separately once again once
+   patches 1-5 hit the next tree or for 5.3-rc2 which ever is convenient.
 
+The J721E SoC belongs to the K3 Multicore SoC architecture platform
+for automotive applications such as infotainment, cluster, premium
+Audio, Gateway, industrial and a range of broad market applications.
+This SoC is designed around reducing the system cost by eliminating
+the need of an external system MCU and is targeted towards ASIL-B/C
+certification/requirements in addition to allowing complex software
+and system use-cases.
 
->
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+The Linux development follows AM654 in most of the configurations, but
+adds new capabilities (details in follow on patches).
+
+See J721E Technical Reference Manual (SPRUIL1, May 2019)
+for further details: http://www.ti.com/lit/pdf/spruil1
+
+Nishanth Menon (6):
+  dt-bindings: arm: ti: Add bindings for J721E SoC
+  dt-bindings: serial: 8250_omap: Add compatible for J721E UART
+    controller
+  arm64: dts: ti: Add Support for J721E SoC
+  soc: ti: Add Support for J721E SoC config option
+  arm64: dts: ti: Add support for J721E Common Processor Board
+  arm64: defconfig: Enable TI's J721E SoC platform
+
+ .../devicetree/bindings/arm/ti/k3.txt         |   3 +
+ .../bindings/serial/omap_serial.txt           |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  50 +++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 202 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  72 +++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi   |  29 +++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi          | 176 +++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/soc/ti/Kconfig                        |   5 +
+ 10 files changed, 541 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e.dtsi
+
+-- 
+2.21.0.777.g83232e38648b
+
