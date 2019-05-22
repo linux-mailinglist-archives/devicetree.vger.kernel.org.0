@@ -2,85 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7832266B9
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 17:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2FA326706
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 17:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729630AbfEVPMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 11:12:42 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38560 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729159AbfEVPMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 11:12:41 -0400
-Received: by mail-oi1-f196.google.com with SMTP id u199so1876435oie.5;
-        Wed, 22 May 2019 08:12:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZvZ/Z9P3tq4Qk/f3lvJYbii/kSuP8i21CYwYXU54vt4=;
-        b=l+FvUDsYoeABexJD/pugCeI/SomugXQ6pFWu7PJD+pKsgbm+oVV8gFms+20EZsqinm
-         kOmN2uMkqUmNh1PmSy9gyQrwNkf3SFjlMZegcP7JKtS+V58Wl7cW/hUKP/j1vVVuNzh/
-         8wL6Uoru7qdhOxKuFaOXYtgJF1no/Be1MGg5vwdjMjmNlBTZItGSf8DPVNhuHFmDkZK5
-         InITJjD2Kn6JwrH2xHXoM4PQxr6+1a92vHdR9QenAtEuMVp5fyVL8X/vOTEmGz80bRM2
-         DgVemTLatdyuMXFpwmiLxGdczRcsLjsD+oJaovRKGAaxsfDJcNA8GCwzdvSUAJnmvyqy
-         hCaA==
-X-Gm-Message-State: APjAAAWmb/O9ygtP8k+BmVFuLK1igSqZnQv0bx4gjG4E9qcVqGj/Kz4U
-        TNZYw35jxFjg1CMwyNf/zrCrsOU=
-X-Google-Smtp-Source: APXvYqzB/u8EsswyyPjrl0040B6L99NyH8CWlM34/gU5VUFzx3TvVGAVYjD5VwhDfXQnSDcmbQsASA==
-X-Received: by 2002:aca:5ed7:: with SMTP id s206mr7282343oib.122.1558537960561;
-        Wed, 22 May 2019 08:12:40 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id k83sm321026oia.10.2019.05.22.08.12.39
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 22 May 2019 08:12:39 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, Joe Perches <joe@perches.com>
-Subject: [PATCH] checkpatch.pl: Update DT vendor prefix check
-Date:   Wed, 22 May 2019 10:12:38 -0500
-Message-Id: <20190522151238.25176-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1729483AbfEVPfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 11:35:36 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36228 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729472AbfEVPfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 11:35:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=zh8hGcmZTNKAIQnav7doHJn1oBv4am+LNeGlrek06I0=; b=N68q3uVaZYlhhRFEQ+rt7Hith
+        rhH9zNy58U1wb4zvS8Ynz1+uoLwV1bLpwC1gXZwsGnmgYQoEVpgO6+iqfuwjMUVlFUuWi1JENXCG/
+        yW0rfEE4XRnDhJYR544V5Ah5C95uwU/LhZVkdjfIJ91/Rd/je8grUmdMB0g6r/+qgCSr0=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hTTH9-0004dA-TL; Wed, 22 May 2019 15:35:31 +0000
+Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
+        id 7144011226BC; Wed, 22 May 2019 16:35:28 +0100 (BST)
+Date:   Wed, 22 May 2019 16:35:28 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, t-kristo@ti.com
+Subject: Re: [PATCH v2 3/3] regulator: lp87565: Add 4-phase lp87561 regulator
+ support
+Message-ID: <20190522153528.GG8582@sirena.org.uk>
+References: <20190516043218.8222-1-j-keerthy@ti.com>
+ <20190516043218.8222-4-j-keerthy@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p7qwJlK53pWzbayA"
+Content-Disposition: inline
+In-Reply-To: <20190516043218.8222-4-j-keerthy@ti.com>
+X-Cookie: Does the name Pavlov ring a bell?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In commit 8122de54602e ("dt-bindings: Convert vendor prefixes to
-json-schema"), vendor-prefixes.txt has been converted to a DT schema.
-Update the checkpatch.pl DT check to extract vendor prefixes from the new
-vendor-prefixes.yaml file.
 
-Fixes: 8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
-Cc: Joe Perches <joe@perches.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- scripts/checkpatch.pl | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+--p7qwJlK53pWzbayA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-index bb28b178d929..073051a4471b 100755
---- a/scripts/checkpatch.pl
-+++ b/scripts/checkpatch.pl
-@@ -3027,7 +3027,7 @@ sub process {
- 			my @compats = $rawline =~ /\"([a-zA-Z0-9\-\,\.\+_]+)\"/g;
- 
- 			my $dt_path = $root . "/Documentation/devicetree/bindings/";
--			my $vp_file = $dt_path . "vendor-prefixes.txt";
-+			my $vp_file = $dt_path . "vendor-prefixes.yaml";
- 
- 			foreach my $compat (@compats) {
- 				my $compat2 = $compat;
-@@ -3042,7 +3042,7 @@ sub process {
- 
- 				next if $compat !~ /^([a-zA-Z0-9\-]+)\,/;
- 				my $vendor = $1;
--				`grep -Eq "^$vendor\\b" $vp_file`;
-+				`grep -oE "\\"\\^[a-zA-Z0-9]+" $vp_file | grep -q "$vendor"`;
- 				if ( $? >> 8 ) {
- 					WARN("UNDOCUMENTED_DT_STRING",
- 					     "DT compatible string vendor \"$vendor\" appears un-documented -- check $vp_file\n" . $herecurr);
--- 
-2.20.1
+On Thu, May 16, 2019 at 10:02:18AM +0530, Keerthy wrote:
+> The LP8756x family has a single output 4-phase regulator
+> configuration. Add support for the same. The control
+> lies in the master buck which is buck0 for 4-phase
+> configuration. Enable/disable/voltage set happen via
+> buck0 registers.
 
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--p7qwJlK53pWzbayA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzlbD8ACgkQJNaLcl1U
+h9Alygf9F5WNeDtw1PhBSqAc0Si59+B44/gYO/ffBTyuP2A3hzVd3VvhrYSk1+gO
+gGPdCGdyRMIcs83ijz02XKwWIDhrazQcDQhyVCd0QpbPAB6CpgJnj43DQMgFzAHS
+2i5le6Ossnsc/aPGDgumb26OIL2v6H/mgmTSGEUynKl+0Z3M5MgQHgWmzTNMytLH
+at5abgsiKSt8MCEXReN3AY83M6IdCew01AtsRUAklTLEkC8ggDXrTT8kAYn5mvb+
+a0VpR9W2JNJ8Dxc3i82UY3vrQ35UnIP5/SnUH+apbWcVIcbO46RtXAkHC4yo8tZz
+vBpiIoYfUBSL6hPKnfzob+ryXb8EFA==
+=k1Kg
+-----END PGP SIGNATURE-----
+
+--p7qwJlK53pWzbayA--
