@@ -2,94 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C55D2653A
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B4426546
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 15:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728744AbfEVN4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 09:56:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47154 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726770AbfEVN4G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 09:56:06 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8C4C92173C;
-        Wed, 22 May 2019 13:56:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558533365;
-        bh=CpWRPFDFDeEz2FasTJpU7xC9m9MJZ5sBPRt83HEYgfo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=duF47EnJ1olpUVNwqtjHV8UOkB/JftPjhDIWWr5H4ZMBt7IDtYQ1C/3BKouXzaL0v
-         f3jygMikKv5/BWPNiA3P92IWbjeorOYEupad+Hlhua/d6y7btM+ZP6HzFBgM/1PR/F
-         gF+k03o4CdD3kYEN6+YfFHKpbwJPIm2lkyOB1Qxs=
-Received: by mail-qk1-f173.google.com with SMTP id c15so1524668qkl.2;
-        Wed, 22 May 2019 06:56:05 -0700 (PDT)
-X-Gm-Message-State: APjAAAVS2HAzJ89IMmVXZJFQTXH+JWOPkg1sTUSD4T7X9LIXYH+2RVkw
-        gw6+ea53cbBEIOVLw2eAzSgI2jGGCX9/tfGk6A==
-X-Google-Smtp-Source: APXvYqzvt+EFGiFr6y2zsSRBs4qOUs7e+/z+bJpZu4CMkQbtQjvYCr7ioBnDYS6ibBsbagsPUO0sVjALMvR6IRu+67E=
-X-Received: by 2002:a37:dc03:: with SMTP id v3mr70538862qki.151.1558533364775;
- Wed, 22 May 2019 06:56:04 -0700 (PDT)
+        id S1728370AbfEVN5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 09:57:21 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:45895 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728881AbfEVN5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 09:57:19 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w144so1637148oie.12
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 06:57:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Ufc5xAkTgGElLwGV3th2QQhKqTN82tIInC0mh/mr/zI=;
+        b=OjkchTJOWz4cAxIIsVry5RcHL1fwqOD0r9Y51/rVY+9UU7WXZNEJ6yKqLm/wPbzP6o
+         +icztKW8LWx7qXwMC2SJK1i4pLhf4GWNcaLf/MUO1/ZfmoUczMLOcyUYUwqGh8M4FQkA
+         feXnSjeEA/dUnBynp1jhhIoDrdRS9SnxR+SyrdRRyOwa+HhP+bemFkIDRw3vncaw4x7w
+         cze441zqjtzHJdoPLX1OQ09q28cxGLgOz2/3+PbPDuhr9ow/vA67xDAIGLOhJvLJK6Vv
+         KHBM61cgaUfG2Au5Qz3EPm24f9pqJjchDCoHcw6pHnRsYt1EeZeU+7PSC8HCPEklstIF
+         6DxQ==
+X-Gm-Message-State: APjAAAUm1QNx6T4WJ48big+0FFwMdA2snDQx2PbpQUQECcw4a/7Ia360
+        N7OSqLCaTRpOPXGRzfeubpN5LjY=
+X-Google-Smtp-Source: APXvYqxi4uaUalBhrHYmE19XVGTw8ZehARzdqVww9dDisYp5w60DNiLvbox7RynSvNzpoP7eq2gAVA==
+X-Received: by 2002:aca:b255:: with SMTP id b82mr7227466oif.52.1558533437666;
+        Wed, 22 May 2019 06:57:17 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i5sm2253114otf.26.2019.05.22.06.57.16
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 22 May 2019 06:57:17 -0700 (PDT)
+Date:   Wed, 22 May 2019 08:57:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 2/2] dt-bindings: arm: Clean up CPU binding examples
+Message-ID: <20190522135716.GA4030@bogus>
+References: <50fbe259ee5951e32221af457737b7d970be9f32.1558456785.git.robin.murphy@arm.com>
+ <fe070f591d5e07042062b6b07a701feab324ee2c.1558456785.git.robin.murphy@arm.com>
 MIME-Version: 1.0
-References: <1558466890-45471-1-git-send-email-kdasu.kdev@gmail.com> <CAL_JsqKd53W1E33YdtJwagi4=7DrVQ5+N3rSY=Rxo5J0RiW46g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKd53W1E33YdtJwagi4=7DrVQ5+N3rSY=Rxo5J0RiW46g@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 22 May 2019 08:55:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ+zNQ3CeBh8K=oBiZZsiBQ8w1w=6vs8zOQeqUf_qhqcg@mail.gmail.com>
-Message-ID: <CAL_JsqJ+zNQ3CeBh8K=oBiZZsiBQ8w1w=6vs8zOQeqUf_qhqcg@mail.gmail.com>
-Subject: Re: [PATCH] dt: bindings: mtd: replace references to nand.txt with nand-controller.yaml
-To:     Kamal Dasu <kdasu.kdev@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     MTD Maling List <linux-mtd@lists.infradead.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Liang Yang <liang.yang@amlogic.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fe070f591d5e07042062b6b07a701feab324ee2c.1558456785.git.robin.murphy@arm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 22, 2019 at 8:19 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Tue, May 21, 2019 at 2:28 PM Kamal Dasu <kdasu.kdev@gmail.com> wrote:
-> >
-> > nand-controller.yaml replaced nand.txt however the references to it were
-> > not updated. This change updates these references wherever it appears in
-> > bindings documentation.
-> >
-> > Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
-> >
-> > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
->
-> Mauro already sent a similar patch.
+On Tue, 21 May 2019 17:44:27 +0100, Robin Murphy wrote:
+> Following commit 31af04cd60d3 ("arm64: dts: Remove inconsistent use of
+> 'arm,armv8' compatible string"), clean up these binding examples in case
+> anyone is tempted to copy them.
+> 
+> CC: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/arm-boards     |  4 ++--
+>  .../devicetree/bindings/arm/cpu-capacity.txt         | 12 ++++++------
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+> 
 
-Actually, Mauro's patch missed a bunch of cases that aren't full
-paths, so I'll take this one.
+Applied, thanks.
 
 Rob
