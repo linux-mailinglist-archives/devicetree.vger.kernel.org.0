@@ -2,89 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 589EF25F67
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 10:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1353725F75
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 10:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728710AbfEVIXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 04:23:50 -0400
-Received: from onstation.org ([52.200.56.107]:34656 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728653AbfEVIXu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 04:23:50 -0400
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 48C913E85B;
-        Wed, 22 May 2019 08:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1558513429;
-        bh=VwsPQeEkjtUDvFbRrWrenVq9dKv37ynzaHzSyE0Crp8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o5D9rWiTzK5SazUOVnMsNJa++g8OkgtQ5DIDryBZ7KXXnYVT9vrfRceZP2zDDGW21
-         O6Gces4yVyJjU4jmKWkJmx41XaPtqkHntbQHrZF069Zms4VeCuYL4PbLJ5EaqUlgaQ
-         R4EvKMF5gGwjBfOaR7VsB6DUgxuUDhHOvOigeVRs=
-Date:   Wed, 22 May 2019 04:23:48 -0400
-From:   Brian Masney <masneyb@onstation.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] ARM: dts: qcom: msm8974-hammerhead: add device
- tree bindings for vibrator
-Message-ID: <20190522082348.GA15793@basecamp>
-References: <20190516085018.2207-1-masneyb@onstation.org>
- <20190520142149.D56DA214AE@mail.kernel.org>
+        id S1728653AbfEVI1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 04:27:37 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:36093 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728406AbfEVI1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 04:27:37 -0400
+Received: by mail-lf1-f68.google.com with SMTP id y10so1013148lfl.3
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 01:27:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=svB5nl3fT0U7Ej+HdK0cpAaD6HsRDyQv724K7n/Iu1I=;
+        b=XPEPKyJ/KUpL4GASg/fc1AhnAc89hB55UzTCv9GAfj0URH6kzxw1eUYfGBG11VQ5At
+         2dDshoZQA6fnD+mZpwP70GzbAms/pdzL36VN2lPl90cEPt8W393ZARceZbc1TIs6QvFw
+         +ILMXpZtnTQWokmfGyiVSDuidVlODHO+sMZIsEi5cBwQlHYkmIrzaILUEi8i0m4Zs1EN
+         9w4YokIDB6SDoq7kLJckccU33keqVAJqW93QXNpPpdhAn5euH+BGv9+2+7TTL5zDz66L
+         p/ZVtJ0CFkuL84QdMI6GKd127tuSHPMHF1jhuyMpV362gjXoTeV3ykTx/2+MhqpLpQg1
+         5YYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=svB5nl3fT0U7Ej+HdK0cpAaD6HsRDyQv724K7n/Iu1I=;
+        b=QMjLXI4ftB5WbBkWnrAvw9xcqSsz9L2sA0FUpm449xRShqK3cqS/3EDt+MWqt6CVLn
+         pH3+O6xX/+tayQeJsoffc/1vIJ5N/H450iVhV/IBquZX9LU0T+cb6PUg2Ek4i7C58wjc
+         wGtZqFh4f8h+7IbOti3aGBepR8EMBuIR0mEsGHVCVAW0dRc1/OhdpDtPKuMfKNlzh27F
+         u6f2UFth82LSeWQUSHlMWZ80m+IhZbzNnL6/syfgd6yO6+GAia6LRDPdpAmeYY4ok330
+         vKKhSi0zPBZe/IzhKXlkDugcyRRMinJ/JuSBGeRV94ntNMNNHkvK4wddpm4syBtoiqsM
+         DjHA==
+X-Gm-Message-State: APjAAAWRlOpOjrh6jDsJ2kh5Ej9TWBqIAJxb6FSw22P73sTcu6rqjitM
+        tCw3ZkXxOrn7HkgJGjEprwwv4Vt8cRAZswFyz02FHQ==
+X-Google-Smtp-Source: APXvYqxCkbgEFxI6SZaBp54bJgBFxf7xmKlK2jv+sAoeqTCvs9thEtMgg1qBHJrg2aSXpeqTY1a8wnY5n7yq2u03Dps=
+X-Received: by 2002:ac2:4c93:: with SMTP id d19mr24078559lfl.116.1558513654796;
+ Wed, 22 May 2019 01:27:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190520142149.D56DA214AE@mail.kernel.org>
+References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
+ <20190521115958.22504-4-masahisa.kojima@linaro.org> <20190521181609.GB16633@sirena.org.uk>
+In-Reply-To: <20190521181609.GB16633@sirena.org.uk>
+From:   Masahisa Kojima <masahisa.kojima@linaro.org>
+Date:   Wed, 22 May 2019 17:27:23 +0900
+Message-ID: <CADQ0-X9yKQ2akerpxKfjxOxmRhPiaaxe7ALDO7VQiH+-+SHo3w@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer platform
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        geert@linux-m68k.org, tpiepho@impinj.com,
+        andy.shevchenko@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Satoru Okamoto <okamoto.satoru@socionext.com>,
+        Yoshitoyo Osaki <osaki.yoshitoyo@socionext.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Thank you very much for your comments.
 
-On Mon, May 20, 2019 at 07:21:49AM -0700, Stephen Boyd wrote:
-> Quoting Brian Masney (2019-05-16 01:50:18)
-> > @@ -306,6 +307,36 @@
-> >                                 input-enable;
-> >                         };
-> >                 };
+On Wed, 22 May 2019 at 03:16, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Tue, May 21, 2019 at 08:59:58PM +0900, Masahisa Kojima wrote:
+>
+> > +     switch (sspi->bpw) {
+> > +     case 8:
+>
+> > +             {
+> > +             u8 *buf = sspi->rx_buf;
 > > +
-> > +               vibrator_pin: vibrator {
-> > +                       pwm {
-> > +                               pins = "gpio27";
-> > +                               function = "gp1_clk";
+> > +             readsb(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
+> > +             sspi->rx_buf = buf + len;
+> > +             break;
+> > +             }
+>
+> Please indent these properly.
+>
+> > +     default:
+> > +             {
+> > +             u32 *buf = sspi->rx_buf;
 > > +
-> > +                               drive-strength = <6>;
-> > +                               bias-disable;
-> > +                       };
+> > +             readsl(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
+> > +             sspi->rx_buf = buf + len;
+> > +             break;
+> > +             }
+>
+> It'd be better to explicitly list the values this works for and return
+> an error otherwise.
+>
+> > +     if (sspi->rx_words) {
+> > +             val = SYNQUACER_HSSPI_RXE_FIFO_MORE_THAN_THRESHOLD |
+> > +                   SYNQUACER_HSSPI_RXE_SLAVE_RELEASED;
+> > +             writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
+> > +             status = wait_for_completion_timeout(&sspi->transfer_done,
+> > +                     msecs_to_jiffies(SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC));
+> > +             writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
+> > +     }
 > > +
-> > +                       enable {
-> > +                               pins = "gpio60";
-> > +                               function = "gpio";
-> > +                       };
-> > +               };
-> > +       };
+> > +     if (xfer->tx_buf) {
+> > +             val = SYNQUACER_HSSPI_TXE_FIFO_EMPTY;
+> > +             writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
+> > +             status = wait_for_completion_timeout(&sspi->transfer_done,
+> > +                     msecs_to_jiffies(SYNQUACER_HSSPI_TRANSFER_TMOUT_MSEC));
+> > +             writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
+> > +     }
+>
+> I guess the TX will complete before the RX usually so I'd kind of expect
+> the waits to be in the other order?
+>
+> > +     if (status < 0) {
+> > +             dev_err(sspi->dev, "failed to transfer\n");
+> > +             return status;
+> > +     }
+>
+> Printing the error code could be helpful for users.
+>
+> > +static void synquacer_spi_set_cs(struct spi_device *spi, bool enable)
+> > +{
+> > +     struct synquacer_spi *sspi = spi_master_get_devdata(spi->master);
+> > +     u32 val;
 > > +
-> > +       vibrator@fd8c3450 {
-> > +               compatible = "qcom,msm8974-vibrator";
-> > +               reg = <0xfd8c3450 0x400>;
-> 
-> This is inside the multimedia clk controller. The resource reservation
-> mechanism should be complaining loudly here. Is the driver writing
-> directly into clk controller registers to adjust a duty cycle of the
-> camera's general purpose clk?
-> 
-> Can you add support for duty cycle to the qcom clk driver's RCGs and
-> then write a generic clk duty cycle vibrator driver that adjusts the
-> duty cycle of the clk? That would be better than reaching into the clk
-> controller registers to do this.
+> > +     val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
+> > +     val &= ~(SYNQUACER_HSSPI_DMPSEL_CS_MASK <<
+> > +              SYNQUACER_HSSPI_DMPSEL_CS_SHIFT);
+> > +     val |= spi->chip_select << SYNQUACER_HSSPI_DMPSEL_CS_SHIFT;
+> > +
+> > +     if (enable) {
+> > +             val |= SYNQUACER_HSSPI_DMSTOP_STOP;
+> > +             writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
+> > +
+> > +             if (sspi->rx_buf) {
+> > +                     u32 buf[SYNQUACER_HSSPI_FIFO_DEPTH];
+> > +
+> > +                     sspi->rx_buf = buf;
+> > +                     sspi->rx_words = SYNQUACER_HSSPI_FIFO_DEPTH;
+> > +                     read_fifo(sspi);
+> > +             }
+>
+> This is doing things with the FIFO, that's completely inappropriate for
+> a set_cs() operation.  The set_cs() operation should set the chip select
+> and nothing else.
+>
+> > +static irqreturn_t sq_spi_rx_handler(int irq, void *priv)
+> > +{
+> > +     uint32_t val;
+> > +     struct synquacer_spi *sspi = priv;
+> > +
+> > +     val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_RXF);
+> > +     if ((val & SYNQUACER_HSSPI_RXF_SLAVE_RELEASED) ||
+> > +         (val & SYNQUACER_HSSPI_RXF_FIFO_MORE_THAN_THRESHOLD))
+> > +             read_fifo(sspi);
+> > +
+> > +     if (sspi->rx_words == 0) {
+> > +             writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_RXE);
+> > +             complete(&sspi->transfer_done);
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+>
+> 0 is not a valid return from an interrupt handler, IRQ_HANDLED or
+> IRQ_NONE.
+>
+> > +     ret = devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
+> > +                             0, "synquacer-spi-rx", sspi);
+> > +     ret = devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
+> > +                             0, "synquacer-spi-tx", sspi);
+>
+> The code looked awfully like we depend on having interrupts?
 
-I don't see any complaints in dmesg about this, however I'll work on a
-new clk duty cycle vibrator driver.
+I"m not sure I correctly understand what this comment means,
+should driver assume the case interrupt is not available?
+Do I need to support both interrupt and polling handling?
 
-Brian
+> > +     master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_TX_DUAL | SPI_RX_DUAL |
+> > +                         SPI_TX_QUAD | SPI_RX_QUAD;
+>
+> I don't see any code in the driver that configures dual or quad mode
+> support other than setting _PCC_SAFESYNC, I'm not clear how the driver
+> supports these modes?
+
+Configuring single, dual and quad mode is depending on
+the spi_transfer member from upper driver.
+
++static int synquacer_spi_config(struct spi_master *master,
+
+ <snip>
+
++       if (xfer->tx_buf) {
++               bus_width = xfer->tx_nbits;
++               transfer_mode = SYNQUACER_HSSPI_TRANSFER_MODE_TX;
++       } else {
++               bus_width = xfer->rx_nbits;
++               transfer_mode = SYNQUACER_HSSPI_TRANSFER_MODE_RX;
++       }
+
+ <snip>
+
++       val &= ~(3 << SYNQUACER_HSSPI_DMTRP_BUS_WIDTH_SHIFT);
++       val |= ((bus_width >> 1) << SYNQUACER_HSSPI_DMTRP_BUS_WIDTH_SHIFT);
++       writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_DMSTART);
