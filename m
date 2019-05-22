@@ -2,126 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFC1C25C78
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 06:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D3D25D0E
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 06:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725802AbfEVED5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 00:03:57 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:34304 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725808AbfEVED5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 00:03:57 -0400
-Received: by mail-pf1-f194.google.com with SMTP id n19so600635pfa.1
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 21:03:57 -0700 (PDT)
+        id S1727816AbfEVEwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 00:52:00 -0400
+Received: from mail-vs1-f54.google.com ([209.85.217.54]:38353 "EHLO
+        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725796AbfEVEwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 00:52:00 -0400
+Received: by mail-vs1-f54.google.com with SMTP id x184so620007vsb.5
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 21:52:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=b2k9DyGZqJa/jdZhHVNji1ocJUEeDsRNZidrVHXyJZw=;
-        b=qjAZ09gg0Rrjya6KQlEp15vtXmiAQqlMm621QpuxmBs5IgOqFr0JewOUsNLNdDhaDL
-         ACA6PDIU1IEPfn6k/McNb3BOJ+fuNA62UlkBtAwVr7D78DMiPH2nHOJz6LyKdShdFnp6
-         RsrqwOUKraVMiJ73QYAjEUk2noNQqxDEjmNMD0seJlr4NGCieMn1xmsMMRoZNS25j4bQ
-         BlV25HcLeKw181OlB2L8PL4BQkrfIumlUDFCjuxT0pn/NVmhb7+YFZBxRxYGq2PCFvgT
-         xFDI5/6gmr+hKwIV8nlz1jBIKDH9wD8Z0pjND2mudmkPgtS5x/XwTleVdsZU/72OCQKl
-         xVtA==
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zM2tRxvUf7NSwKdxRr5bB44PMs0jXxiNemDXs7iz74s=;
+        b=EHT9JbHp1/Wa9RK9jVA4OK5kq2Umqvo7DXotXmfDEtVX21PiUHOUZ7autAocu1Z3DI
+         6ZRzqyXAzb53gUg4yp/9LcfDmApaECzDSf9bA/g+e11hacYU5wNPzj15Auf5iJplAEtJ
+         wZeJSYFMKDpxZEjRnn6nJNQ1Slzdsq0eQQ8ufZoihNbert9VvIhORIZzgty3g3W+bE25
+         T3DmsGv84wTy2AsU5rwySyDsgDziJjHHyl+mkLCG9iem3r/ql3ytMZslrTQPrdotdQ7p
+         RY9dGGRkvsixSFKzdHePNcTAiXJOMlQXS6jGUd0Y6QcTaO76OQ0naSFaKcI1KonGInxP
+         csKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=b2k9DyGZqJa/jdZhHVNji1ocJUEeDsRNZidrVHXyJZw=;
-        b=iGTJE3e5UHxC08W771nJe1GUDwOzV/8qqN6DOrslEc1P8Mwsqs73qYGZIJrHyIrbiG
-         bZBfFwLtQrZVmar8NXz2hWZ1bzP2SaalwZECkORzLd2HAn0cqyEHc61HTS4/wEBRu1eN
-         kieDzoMygQp+Tw/vxg+NU6LJhWH5WmDOlmJsBerUF8q/y7htlVGDpnElgZ5VlDehI7G9
-         saTkUGiJ5GoXeOdn50O5drXy9MmwqfMqsg/F4b1x36y92aUoKSe7g1G/FdLruTo2B7Zt
-         WI4QlrxdxNItvcmdp1ezlgF6uJ4ftEYXJEAE7Tkr1ebfaA/tAMJwRhcWIFHzD4faGh+E
-         l7Tg==
-X-Gm-Message-State: APjAAAU0rKCKej7PmsaLZU6gCZV/UjnXHO7pRWh/ejOYFvUXxXMlM4Oz
-        oNGFI/hQ4Jankt/+pGVALXsi8Q==
-X-Google-Smtp-Source: APXvYqy9GggK8gImhFMFaCFuwhcm0H5a066GPyfk6o4SuUl03GnvkcsWmLSDc0nGga9HJ9TJ7746MA==
-X-Received: by 2002:a63:1f55:: with SMTP id q21mr26777395pgm.51.1558497836781;
-        Tue, 21 May 2019 21:03:56 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id x18sm21770173pfo.8.2019.05.21.21.03.54
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 May 2019 21:03:55 -0700 (PDT)
-Date:   Tue, 21 May 2019 21:03:53 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH] arm64: dts: sdm845: Add CPU topology
-Message-ID: <20190522040353.GP3137@builder>
-References: <20190114184255.258318-1-mka@chromium.org>
- <CAHLCerP+F9AP97+qVCMqwu-OMJXRhwZrXd33Wk-vj5eyyw-KyA@mail.gmail.com>
- <CAHLCerPZ0Y-rkeMa_7BJWtR4g5af2vwfPY9FgOuvpUTJG3rf7g@mail.gmail.com>
- <155786856719.14659.2902538189660269078@swboyd.mtv.corp.google.com>
- <CAHLCerP69Jw27VyO+ek4Fe3-2fDiOejtz6XZPykPSRA2G1831w@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zM2tRxvUf7NSwKdxRr5bB44PMs0jXxiNemDXs7iz74s=;
+        b=oGBaMHcBQesxyUwKuvNcPF2PAVWbilDboDGce/BYnlbS6bqofQLLF+3v+YMt5Y4CgE
+         cYfWHaWLqACncDRJGfMAtkmLsUV4ZQoGI4D8MljfNjRZCjbTvwhQFtLp1H/lnWxTt7iB
+         bLp9te7I5VebFCzcpIeeA+kREm+cksnM4aQCz/ZOcYNbSdXogPGDAj6FvL2HAzGqHREu
+         5v/RQfMOameMCWdecXvmKEaBRhtnh4h7ZNLtTIuX0UAw8nSz+KopdO5TrlUQaZAdtjG0
+         /X2YzSF6U/944zP0ajd2SC+sQ3ZrPVZiVg/rQmhULrPfhN+xEuyK4YlWkkfmKxSeS1L6
+         +LQw==
+X-Gm-Message-State: APjAAAXKYXNYgVvJS+UXjEB+1RvVrgR0ty66JjhSUXZVV7iNlBPJJCpm
+        Yj8u7ahT+zkup19vSL/x0USz+4GrizjzVgiEo3MfWA==
+X-Google-Smtp-Source: APXvYqzzpsKJ4iLQ7BqaYnxLEeUZsLQq9FfHMG3CB4djAfIFwCnnOLRgOAk2mwGbLwgnxYcQMlY4DKeohWMasNEvt+c=
+X-Received: by 2002:a05:6102:247:: with SMTP id a7mr16894374vsq.229.1558500719859;
+ Tue, 21 May 2019 21:51:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHLCerP69Jw27VyO+ek4Fe3-2fDiOejtz6XZPykPSRA2G1831w@mail.gmail.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+References: <1558445574-16471-1-git-send-email-sagar.kadam@sifive.com>
+ <1558445574-16471-2-git-send-email-sagar.kadam@sifive.com> <20190521135625.GN22024@lunn.ch>
+In-Reply-To: <20190521135625.GN22024@lunn.ch>
+From:   Sagar Kadam <sagar.kadam@sifive.com>
+Date:   Wed, 22 May 2019 10:21:47 +0530
+Message-ID: <CAARK3HmAYjnBH6Aa_R_uKQPs5JAdBAEt1=dvPz1mLmGaKKpP9w@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: i2c: extend existing opencore bindings.
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 16 May 04:54 PDT 2019, Amit Kucheria wrote:
+Hi Andrew,
 
-> (cc'ing Andy's correct email address)
-> 
-> On Wed, May 15, 2019 at 2:46 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Amit Kucheria (2019-05-13 04:54:12)
-> > > On Mon, May 13, 2019 at 4:31 PM Amit Kucheria <amit.kucheria@linaro.org> wrote:
-> > > >
-> > > > On Tue, Jan 15, 2019 at 12:13 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > > >
-> > > > > The 8 CPU cores of the SDM845 are organized in two clusters of 4 big
-> > > > > ("gold") and 4 little ("silver") cores. Add a cpu-map node to the DT
-> > > > > that describes this topology.
-> > > >
-> > > > This is partly true. There are two groups of gold and silver cores,
-> > > > but AFAICT they are in a single cluster, not two separate ones. SDM845
-> > > > is one of the early examples of ARM's Dynamiq architecture.
-> > > >
-> > > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > > >
-> > > > I noticed that this patch sneaked through for this merge window but
-> > > > perhaps we can whip up a quick fix for -rc2?
-> > > >
-> > >
-> > > And please find attached a patch to fix this up. Andy, since this
-> > > hasn't landed yet (can we still squash this into the original patch?),
-> > > I couldn't add a Fixes tag.
-> > >
-> >
-> > I had the same concern. Thanks for catching this. I suspect this must
-> > cause some problem for IPA given that it can't discern between the big
-> > and little "power clusters"?
-> 
-> Both EAS and IPA, I believe. It influences the scheduler's view of the
-> the topology.
-> 
-> > Either way,
-> >
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> 
-> Thanks.
-> 
-> Andy/Bjorn, can we squeeze this in for -rc2 as a bugfix?
-> 
+On Tue, May 21, 2019 at 7:26 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> >  Required properties:
+> > -- compatible      : "opencores,i2c-ocores" or "aeroflexgaisler,i2cmst"
+> > +- compatible      : "opencores,i2c-ocores",
+> > +                 "aeroflexgaisler,i2cmst",
+> > +                    "sifive,fu540-c000-i2c","sifive,i2c0".
+> > +                 For Opencore based I2C IP block reimplemented in
+>
+> It looks like there are some tabs vs space issues here.
 
-Yes, I've picked this up among a few other fixes.
+Ohh. It was not catched in checkpatch.pl. I will update it.
 
-Regards,
-Bjorn
+Thanks,
+Sagar Kadam
+
+
+>    Andrew
