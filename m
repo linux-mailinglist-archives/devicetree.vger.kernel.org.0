@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC34E2694B
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 19:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 876CE26976
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 19:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728674AbfEVRpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 13:45:01 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:45142 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727984AbfEVRpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 13:45:01 -0400
-Received: by mail-vs1-f67.google.com with SMTP id k187so1908506vsk.12;
-        Wed, 22 May 2019 10:45:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NYrm0bUv2G3ou+xt7BepsnZBkRyzFtIlpVXDYxrwa2Q=;
-        b=KXOlc/8KKFqolD3OGK4kKqUTySf5bhzXFx/VoG34zC5623elVDu0hnNYRnr7xpGoFu
-         znhCDewCEPki0tbKQNnveLQk+NLjo//mmOGFf22bi3wCRB8TeeHmu1U9vj+ZP1pS5wOH
-         IBcKVcxW2UGCfNAnNizP6vejPNkk8ffiqFRWGUOX6r8vQeHOjQ1GSoU0BfQCq+RoPI6+
-         dOVVBWdXFda80kxuP1Vlihlv362Iu17Ydj4WINA1SA4vbHjZZnH9Nhquz4nzXcQ769nA
-         mxlcphaeEj91CcOee4yZ8lZ7/8YAAp34F4apajyfmajXP5tSC06/0qt3SLLC98KgfaMj
-         Wkeg==
-X-Gm-Message-State: APjAAAV2YMRnOYDUy1/YwmucUsKyaB2ukvHmceT0zkKXmddhB8ngWKxi
-        1j6GI1kpTnAdRYM9f6f/7GAjTYRTU/2ZSgpxkRg=
-X-Google-Smtp-Source: APXvYqzqwQrsBtqfMle90gQW8BOkmF0HFDIu/8ONkuwk3qh3X7b+zian9ggE6ZPD1Oo1QC7Wfgqqi4MKUY046NTd658=
-X-Received: by 2002:a67:f589:: with SMTP id i9mr12970338vso.152.1558547100195;
- Wed, 22 May 2019 10:45:00 -0700 (PDT)
+        id S1727984AbfEVR6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 13:58:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42360 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727975AbfEVR6P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 13:58:15 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1EFC520879;
+        Wed, 22 May 2019 17:58:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558547894;
+        bh=INW20+ikZwugtd34smfJ8t4TPEcl7sqNQVMpnXYKjng=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CWwwoMPrOQQqyB9NHaCXz7vkV9LltxZxYY8+qUjM5nAG29Cxr6Mz5BZZNy9MptT9D
+         fMP6wwm1MukOrCzn9fIZi7r9hZ68DIkiAlZSDqIYy1JameMpqzyxTT7C9W66a8fTb7
+         jGDjS7idQrVYqVqj0DQzp3L8E5H3AMZM763Lo42A=
+Received: by mail-qt1-f169.google.com with SMTP id j53so3443383qta.9;
+        Wed, 22 May 2019 10:58:14 -0700 (PDT)
+X-Gm-Message-State: APjAAAVxtz5v1F0TIUJIZLdl4zccucthwV74rpsexWM1WaZq80+Gy/Y7
+        SN+kk6KmQhbzt70JaKd3Rnx8ZyaRLyTant0L/Q==
+X-Google-Smtp-Source: APXvYqylnJxhtwHVEWUGDZrgq7EJJLVJ6f3T95DdKNmDWAXJ34MG+yGATgDFrKtubelaMl8Dl0Vu3vC7T0LebZIo/Sc=
+X-Received: by 2002:ac8:2d48:: with SMTP id o8mr75886909qta.136.1558547893390;
+ Wed, 22 May 2019 10:58:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <1556092536-17095-1-git-send-email-masonccyang@mxic.com.tw>
- <20190424212356.GA27103@bogus> <65853dc2-6f3c-1494-7e72-54877797cdd2@gmail.com>
- <20190507125730.GD29524@dell> <OF08A5650B.8AE8977C-ON482583F4.000E5B1E-482583F4.000F7215@mxic.com.tw>
- <d229b19e-351c-c576-b5c4-716d10dad1a0@gmail.com> <20190508061119.GB7627@dell>
- <OFE86674B9.06D723A0-ON482583F5.000AD50C-482583F5.000BA075@mxic.com.tw>
- <a05cff8f-7df2-1938-c0e7-f9366bece607@cogentembedded.com> <OFB19BCE91.6EBBAA77-ON482583F6.000234E2-482583F6.00061290@mxic.com.tw>
- <CAMuHMdUP8KU3Dbv6cwOvrY0hWOcm1xqVcsi20+GvazYMDLGGZg@mail.gmail.com>
- <OFD932ABFC.E3FFCEB8-ON482583F9.003412B1-482583F9.0034D5CA@mxic.com.tw>
- <b51d1cb7-b3b5-208f-ab4c-145ecb57805d@cogentembedded.com> <44bc8f0a-cbdc-db4a-9a46-b8bae5cc37a2@cogentembedded.com>
- <OF5AF00898.3CE87C98-ON48258400.00259B16-48258400.0028A4F5@mxic.com.tw>
- <5e718d9f-3aeb-c2ef-0723-400497b2b98f@cogentembedded.com> <CAMuHMdUWNqkZz5DEWFJsoHLmC86ziLjWKHpz=A-EmvMDDgnSNQ@mail.gmail.com>
- <bba153f8-051c-9880-eacf-2ff698cc0171@cogentembedded.com>
-In-Reply-To: <bba153f8-051c-9880-eacf-2ff698cc0171@cogentembedded.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 22 May 2019 19:44:48 +0200
-Message-ID: <CAMuHMdVBF82cUYFR3+K1bKhK16qCxNhyFXykp2c_CLffUq4i1w@mail.gmail.com>
-Subject: Re: [PATCH v12 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3
- RPC-IF MFD bindings
-To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Cc:     Mason Yang <masonccyang@mxic.com.tw>,
-        Lee Jones <lee.jones@linaro.org>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>, juliensu@mxic.com.tw,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh@kernel.org>, zhengxunli@mxic.com.tw,
-        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20190522151238.25176-1-robh@kernel.org> <2b4878de1404e71d3085ee4832a5abc3526f2cdf.camel@perches.com>
+In-Reply-To: <2b4878de1404e71d3085ee4832a5abc3526f2cdf.camel@perches.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 22 May 2019 12:58:01 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLQ6jEU1JR05cxim6zwDM_acmA8z3CvcjhDAnZ276NDrQ@mail.gmail.com>
+Message-ID: <CAL_JsqLQ6jEU1JR05cxim6zwDM_acmA8z3CvcjhDAnZ276NDrQ@mail.gmail.com>
+Subject: Re: [PATCH] checkpatch.pl: Update DT vendor prefix check
+To:     Joe Perches <joe@perches.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergei,
-
-On Wed, May 22, 2019 at 7:23 PM Sergei Shtylyov
-<sergei.shtylyov@cogentembedded.com> wrote:
-> On 05/22/2019 08:05 PM, Geert Uytterhoeven wrote:
-> >> On 05/20/2019 10:23 AM, masonccyang@mxic.com.tw wrote:
-> >>> +- clocks: should contain 1 entries for the module's clock
-> >>
-> >>    1 entry (clock node phandle and specifier).
-> >
-> > Doesn't "specifier" mean "phandle + optional arguments"?
+On Wed, May 22, 2019 at 12:16 PM Joe Perches <joe@perches.com> wrote:
 >
->    No.
->    E.g. when specifying the IRQs, the "interrupts" prop contains one or more
-> interrupt specifiers, the phandle is specified in the "interrupt-parent"
-> prop (see the DT spec).
+> On Wed, 2019-05-22 at 10:12 -0500, Rob Herring wrote:
+> > In commit 8122de54602e ("dt-bindings: Convert vendor prefixes to
+> > json-schema"), vendor-prefixes.txt has been converted to a DT schema.
+> > Update the checkpatch.pl DT check to extract vendor prefixes from the new
+> > vendor-prefixes.yaml file.
+> >
+> > Fixes: 8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
+> > Cc: Joe Perches <joe@perches.com>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  scripts/checkpatch.pl | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > index bb28b178d929..073051a4471b 100755
+> > --- a/scripts/checkpatch.pl
+> > +++ b/scripts/checkpatch.pl
+> > @@ -3027,7 +3027,7 @@ sub process {
+> >                       my @compats = $rawline =~ /\"([a-zA-Z0-9\-\,\.\+_]+)\"/g;
+> >
+> >                       my $dt_path = $root . "/Documentation/devicetree/bindings/";
+> > -                     my $vp_file = $dt_path . "vendor-prefixes.txt";
+> > +                     my $vp_file = $dt_path . "vendor-prefixes.yaml";
+> >
+> >                       foreach my $compat (@compats) {
+> >                               my $compat2 = $compat;
+> > @@ -3042,7 +3042,7 @@ sub process {
+> >
+> >                               next if $compat !~ /^([a-zA-Z0-9\-]+)\,/;
+> >                               my $vendor = $1;
+> > -                             `grep -Eq "^$vendor\\b" $vp_file`;
+> > +                             `grep -oE "\\"\\^[a-zA-Z0-9]+" $vp_file | grep -q "$vendor"`;
+>
+> I think this does't work well as it loses the -
+> in various vendor prefixes:
+>
+>   "^active-semi,.*":
+>   "^asahi-kasei,.*":
+>   "^ebs-systart,.*":
+>   "^inside-secure,.*":
+>   "^multi-inno,.*":
+>   "^netron-dy,.*":
+>   "^si-en,.*":
+>   "^si-linux,.*":
+>   "^tbs-biometrics,.*":
+>   "^u-blox,.*":
+>   "^x-powers,.*":
 
-Mea culpa, I stand corrected.
+Ah, indeed.
 
-Gr{oetje,eeting}s,
+> Perhaps the grep should be something like: (untested)
+>
+>         `grep -Eq "\\"\\^\Q$vendor\E,\\.\\*\\":" $vp_file`;
 
-                        Geert
+That works. Thanks.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
