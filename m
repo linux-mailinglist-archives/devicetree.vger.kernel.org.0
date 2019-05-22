@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC98225B9E
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 03:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8F825BB1
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 03:42:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727466AbfEVBWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 21:22:30 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:42684 "EHLO vps0.lunn.ch"
+        id S1727208AbfEVBm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 21:42:26 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:42700 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726703AbfEVBW3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 May 2019 21:22:29 -0400
+        id S1726466AbfEVBmZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 May 2019 21:42:25 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
         Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
         Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
         :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
         List-Post:List-Owner:List-Archive;
-        bh=F/vekzvwEmTmUVLJ188rgE4OvEloUFG1J7wMKhPC69I=; b=E2S5XFswpOJLwfXb5tmiYPkUs7
-        RosQSFSVBV8sdwA/hy0smQCGDPmCI05Ftex3ylIQnA3Jds0Yyg6nGdFDB5ICHgLbL3qQpgyGyf1do
-        8kx7ObANAsmq9fRX5CcgvZTZ+NWulSB+XhVEBTdoZON+OuG7IRYA4nXaL8uqdQIFIBic=;
+        bh=V0i6rM8f3vkwwfHsfAG/etWncROxG9KmVrmT3HvPC0A=; b=ZnZoS6zy61UtpRmvt+fzFYMOP/
+        YmzrirAZKmbrqifFoH1onGdmBpBWs9n1fJnt+fjzk1fEjj6diLC4Y64I4fD6RdQJc9l56phO7Z/m0
+        3+x8qES87NDLrkU4kVIR7cAswpEKdqiUaAkjfwE+EbhNkbDJjhDVoNQteMAUK/E4c8LY=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
         (envelope-from <andrew@lunn.ch>)
-        id 1hTFxb-0000EC-GO; Wed, 22 May 2019 03:22:27 +0200
-Date:   Wed, 22 May 2019 03:22:27 +0200
+        id 1hTGGq-0000OK-IW; Wed, 22 May 2019 03:42:20 +0200
+Date:   Wed, 22 May 2019 03:42:20 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Richard Cochran <richardcochran@gmail.com>
 Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
@@ -34,60 +34,64 @@ Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
         Miroslav Lichvar <mlichvar@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Willem de Bruijn <willemb@google.com>
-Subject: Re: [PATCH V3 net-next 5/6] net: mdio: of: Register discovered MII
- time stampers.
-Message-ID: <20190522012227.GA734@lunn.ch>
-References: <20190521224723.6116-6-richardcochran@gmail.com>
+Subject: Re: [PATCH V3 net-next 6/6] ptp: Add a driver for InES time stamping
+ IP core.
+Message-ID: <20190522014220.GB734@lunn.ch>
+References: <20190521224723.6116-7-richardcochran@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190521224723.6116-6-richardcochran@gmail.com>
+In-Reply-To: <20190521224723.6116-7-richardcochran@gmail.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +struct mii_timestamper *of_find_mii_timestamper(struct device_node *node)
-> +{
-> +	struct of_phandle_args arg;
-> +	int err;
-> +
-> +	err = of_parse_phandle_with_fixed_args(node, "timestamper", 1, 0, &arg);
-> +
-> +	if (err == -ENOENT)
-> +		return NULL;
-> +	else if (err)
-> +		return ERR_PTR(err);
-> +
-> +	if (arg.args_count != 1)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	return register_mii_timestamper(arg.np, arg.args[0]);
-> +}
-> +
->  static int of_mdiobus_register_phy(struct mii_bus *mdio,
->  				    struct device_node *child, u32 addr)
->  {
-> +	struct mii_timestamper *mii_ts;
->  	struct phy_device *phy;
->  	bool is_c45;
->  	int rc;
->  	u32 phy_id;
->  
-> +	mii_ts = of_find_mii_timestamper(child);
-> +	if (IS_ERR(mii_ts))
-> +		return PTR_ERR(mii_ts);
-> +
->  	is_c45 = of_device_is_compatible(child,
->  					 "ethernet-phy-ieee802.3-c45");
->  
+> +static bool ines_match(struct sk_buff *skb, unsigned int ptp_class,
+> +		       struct ines_timestamp *ts);
+> +static int ines_rxfifo_read(struct ines_port *port);
+> +static u64 ines_rxts64(struct ines_port *port, unsigned int words);
+> +static bool ines_timestamp_expired(struct ines_timestamp *ts);
+> +static u64 ines_txts64(struct ines_port *port, unsigned int words);
+> +static void ines_txtstamp_work(struct work_struct *work);
+> +static bool is_sync_pdelay_resp(struct sk_buff *skb, int type);
+> +static u8 tag_to_msgtype(u8 tag);
 
 Hi Richard
 
-There can be errors after this, e.g. of_irq_get() returns
--EPROBE_DEFER, or from phy_device_register().
+I don't know about the PTP subsystem, but in general, forward
+declarations are frowned upon, and it is generally requested to
+reorder the functions to remove them.
 
-Shouldn't unregister_mii_timestamper() be called on error?
+> +static struct platform_driver ines_ptp_ctrl_driver = {
+> +	.probe  = ines_ptp_ctrl_probe,
+> +	.remove = ines_ptp_ctrl_remove,
+> +	.driver = {
+> +		.name = "ines_ptp_ctrl",
+> +		.of_match_table = of_match_ptr(ines_ptp_ctrl_of_match),
+> +	},
+> +};
+> +
+> +static int __init ines_ptp_init(void)
+> +{
+> +	return platform_driver_register(&ines_ptp_ctrl_driver);
+> +}
+> +
+> +static void __exit ines_ptp_cleanup(void)
+> +{
+> +	platform_driver_unregister(&ines_ptp_ctrl_driver);
+> +}
 
-	  Andrew
+include/linux/platform_device.h:
+
+/* module_platform_driver() - Helper macro for drivers that don't do
+ * anything special in module init/exit.  This eliminates a lot of
+ * boilerplate.  Each module may only use this macro once, and
+ * calling it replaces module_init() and module_exit()
+ */
+#define module_platform_driver(__platform_driver) \
+        module_driver(__platform_driver, platform_driver_register, \
+                        platform_driver_unregister)
+
+	Andrew
