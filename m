@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B5C25C59
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 05:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35EBE25C70
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 05:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728359AbfEVDuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 May 2019 23:50:32 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:38477 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728184AbfEVDub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 23:50:31 -0400
-Received: by mail-pl1-f196.google.com with SMTP id f97so375408plb.5
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 20:50:31 -0700 (PDT)
+        id S1728031AbfEVD7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 May 2019 23:59:51 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:35572 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727816AbfEVD7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 May 2019 23:59:50 -0400
+Received: by mail-pl1-f195.google.com with SMTP id p1so391409plo.2
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2019 20:59:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=T7Biagvh6d4wrBsXZmdQpJBIYqCgkhGLw5kNc+TIy7I=;
-        b=DoJbCJ7LcTJv/2630kZj1+P9sznq9t9odB/UFqEtILVxEiqhGDoiUhzxjoATb3BvdZ
-         eWhpn7j3D2bK4yxTPSA05UcTXgNixl4QfnMx0iRQWT3vOZSnAFgw5ucAvqD4it+5C0y0
-         ECK3i0iWLv6e2BsCChu9LXYHnASqVgsVfpHfcHz7iu9VlpoDskoQ/g8Hb7NkS2sE51n2
-         KD8roIiwMS1zpPOcUjA+mzPeQx3PwoZb+NQXvqoR/tzWfyqXsgi6UbGu3BFEezgdkwI1
-         XmNi4QR2ljf51GIQJtcU44dyxY5bbvHhwnlPE/GF56za24MjKguKpEf66bbfovipgsnZ
-         WbxQ==
+        bh=4mGp/RVFJWnTD/Q9wDJvqePP0STvNYmZjwcAHTYvGuA=;
+        b=lmvy3Lil+GnYr+FE7U2+jS9pdx2E8qSCKzedcOVr2rTy/BvwqQPNKeArOrGk2F1hAT
+         vlLTJwTIpuQ8Ze6IajIJ/J2yzjpOoET5dX8xnHQf49XILpP8ZMgvE750UBMR+7HXWtdo
+         8MY9W5HbnnFdAzNsT/mgl2pqZoM9acxeah349NLcYXMi1282OUlzcDUd32oJ0F/HA9EB
+         PbxhEoCBvICEIVQQma69HWM9qNveB+wnnJPtTyALqZgKThyU3rFQo5Bzr/wGO57A/S7H
+         8+N5UH3ewRr04bd9mLjkOH/qI2NbwVOSOhgXnFkz/mAxWlf3gMynTezFAH7OAsB/9xxs
+         OBRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=T7Biagvh6d4wrBsXZmdQpJBIYqCgkhGLw5kNc+TIy7I=;
-        b=sEYW4KNgK8HbB7lohh15kdCFTq/HXsnmoi2pfvdBMRCn3m3FkGpbYQj/qe6Olbrpjv
-         U2yaDKmnGSMuNoWFfHlhzaRp3qlSDtMBTPKOx8W/QI1s9yuXGPoYZNPTD3h/ide+uowK
-         qFT7A4U18I2k0YACuMB54rQe1Xr/laAFZUISPm1IV4T8T652vJ2bKQyjqlP1gMRNqo3k
-         IfrdCVYnUT2UBda0w3SMFI64njakq5Dk44JmhLGFM898AZaeHNZmy4RecvHDuTeoiJMz
-         sb/hLCX8V3iYDFS+jcfdi+eCMdFg4zvdVH/nCJQ1jBuay9fjWBGOkrdkKGaarQsVoSw8
-         Ak6Q==
-X-Gm-Message-State: APjAAAV82hSrvZuT9GCEgiNapiBQE+vLyCZxmfYezkhfcYud0d9GOOdo
-        0XfaY8EAnOoWyhyV9aH8Bv13hA==
-X-Google-Smtp-Source: APXvYqwt+6GFj/6qsn+20G3WhDulea0NuX31G2lC09L7iKXZ97YCD+AR8K2z+YCPHEa1qaQEhUbQPA==
-X-Received: by 2002:a17:902:158b:: with SMTP id m11mr46473194pla.268.1558497031162;
-        Tue, 21 May 2019 20:50:31 -0700 (PDT)
+        bh=4mGp/RVFJWnTD/Q9wDJvqePP0STvNYmZjwcAHTYvGuA=;
+        b=lXvVif4got7vzVevPC74ZmPFdy23p/inh6wUue3pywaXzcwK6KhHn08cpEJypR8f6y
+         Gp+mszLbAMxoomI22oKqo/eDFa6weuvNNwXRn4Cv51TARqwr4GuzPXoAnUmRRbaoUnvJ
+         QTgF1um4ZCYCrUlZly5MMjcjZn5Bt43D4dtU3ACj559XEqO2kc7BRT5ObskS5FYreI0/
+         DAn3ayE0sG0HVy1xPP9kTvbfxWB6GqBkWfOcGpftctREIH/4CMZKDu60nEjY2p69q6mc
+         AjRb0PImbYjl6veUrCUE6KYP5UUW2AGkLddxuGV+rX0Y/YFjIZpxajJfvhINO+7RmhYI
+         qKUA==
+X-Gm-Message-State: APjAAAXty+G51FMhI+3iqv/fCc/+uhZL2H45TKPk2jxpOTcQSSfvIrDI
+        R1T/KrNlbAxpG4Wfj/DaQeX9kQ==
+X-Google-Smtp-Source: APXvYqyxxgJtz0RRTL/pQYza0WCLUQaNTlpMqxmvsJFET/Ui7aM8FDqi8e7gpNNk3DXDhdkuhAaqhw==
+X-Received: by 2002:a17:902:2aab:: with SMTP id j40mr64546756plb.238.1558497590003;
+        Tue, 21 May 2019 20:59:50 -0700 (PDT)
 Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id g8sm282837pgq.33.2019.05.21.20.50.29
+        by smtp.gmail.com with ESMTPSA id h13sm23043665pgk.55.2019.05.21.20.59.48
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 May 2019 20:50:30 -0700 (PDT)
-Date:   Tue, 21 May 2019 20:50:28 -0700
+        Tue, 21 May 2019 20:59:49 -0700 (PDT)
+Date:   Tue, 21 May 2019 20:59:46 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Amit Kucheria <amit.kucheria@linaro.org>
 Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
@@ -53,16 +53,17 @@ Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         daniel.lezcano@linaro.org, Andy Gross <andy.gross@linaro.org>,
         David Brown <david.brown@linaro.org>,
         Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        "Raju P.L.S.S.S.N" <rplsssn@codeaurora.org>, mkshah@codeaurora.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] arm64: dts: msm8996: Add proper capacity scaling
- for the cpus
-Message-ID: <20190522035028.GN3137@builder>
+Subject: Re: [PATCH v2 8/9] arm64: dts: qcom: sdm845: Add PSCI cpuidle low
+ power states
+Message-ID: <20190522035946.GO3137@builder>
 References: <cover.1558430617.git.amit.kucheria@linaro.org>
- <5224535a7ef5b257e3baa698991bf6deeefccc36.1558430617.git.amit.kucheria@linaro.org>
+ <67d61032221b069082222347fb56effe17d4a7c3.1558430617.git.amit.kucheria@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5224535a7ef5b257e3baa698991bf6deeefccc36.1558430617.git.amit.kucheria@linaro.org>
+In-Reply-To: <67d61032221b069082222347fb56effe17d4a7c3.1558430617.git.amit.kucheria@linaro.org>
 User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -71,62 +72,162 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue 21 May 02:35 PDT 2019, Amit Kucheria wrote:
 
-> msm8996 features 4 cpus - 2 in each cluster. However, all cpus implement
-> the same microarchitecture and the two clusters only differ in the
-> maximum frequency attainable by the CPUs.
+> From: "Raju P.L.S.S.S.N" <rplsssn@codeaurora.org>
 > 
-> Add capacity-dmips-mhz property to allow the topology code to determine
-> the actual capacity by taking into account the highest frequency for
-> each CPU.
+> Add device bindings for cpuidle states for cpu devices.
 > 
+> Cc: <mkshah@codeaurora.org>
+> Signed-off-by: Raju P.L.S.S.S.N <rplsssn@codeaurora.org>
+> Reviewed-by: Evan Green <evgreen@chromium.org>
+> [amit: rename the idle-states to more generic names and fixups]
 > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> Suggested-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
 
 Applied
 
-Regards,
+Thanks,
 Bjorn
 
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 69 ++++++++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 4f2fb7885f39..e0e8f30ce11a 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -96,6 +96,7 @@
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 5308f1671824..a0ae6bf033ee 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -119,6 +119,7 @@
+>  			compatible = "qcom,kryo385";
 >  			reg = <0x0 0x0>;
 >  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
+> +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			#cooling-cells = <2>;
 >  			next-level-cache = <&L2_0>;
->  			L2_0: l2-cache {
->  			      compatible = "cache";
-> @@ -109,6 +110,7 @@
->  			reg = <0x0 0x1>;
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_0>;
->  		};
->  
-> @@ -118,6 +120,7 @@
+> @@ -136,6 +137,8 @@
+>  			compatible = "qcom,kryo385";
 >  			reg = <0x0 0x100>;
 >  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_1>;
->  			L2_1: l2-cache {
->  			      compatible = "cache";
-> @@ -131,6 +134,7 @@
->  			reg = <0x0 0x101>;
+> +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_100>;
+> @@ -150,6 +153,8 @@
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x200>;
 >  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			capacity-dmips-mhz = <1024>;
->  			next-level-cache = <&L2_1>;
+> +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_200>;
+> @@ -164,6 +169,8 @@
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x300>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_300>;
+> @@ -178,6 +185,8 @@
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x400>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_400>;
+> @@ -192,6 +201,8 @@
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x500>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_500>;
+> @@ -206,6 +217,8 @@
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x600>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_600>;
+> @@ -220,6 +233,8 @@
+>  			compatible = "qcom,kryo385";
+>  			reg = <0x0 0x700>;
+>  			enable-method = "psci";
+> +			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1
+> +					   &CLUSTER_SLEEP_0>;
+>  			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			#cooling-cells = <2>;
+>  			next-level-cache = <&L2_700>;
+> @@ -228,6 +243,60 @@
+>  				next-level-cache = <&L3_0>;
+>  			};
 >  		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +
+> +			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "little-power-down";
+> +				arm,psci-suspend-param = <0x40000003>;
+> +				entry-latency-us = <350>;
+> +				exit-latency-us = <461>;
+> +				min-residency-us = <1890>;
+> +				local-timer-stop;
+> +			};
+> +
+> +			LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "little-rail-power-down";
+> +				arm,psci-suspend-param = <0x40000004>;
+> +				entry-latency-us = <360>;
+> +				exit-latency-us = <531>;
+> +				min-residency-us = <3934>;
+> +				local-timer-stop;
+> +			};
+> +
+> +			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "big-power-down";
+> +				arm,psci-suspend-param = <0x40000003>;
+> +				entry-latency-us = <264>;
+> +				exit-latency-us = <621>;
+> +				min-residency-us = <952>;
+> +				local-timer-stop;
+> +			};
+> +
+> +			BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "big-rail-power-down";
+> +				arm,psci-suspend-param = <0x40000004>;
+> +				entry-latency-us = <702>;
+> +				exit-latency-us = <1061>;
+> +				min-residency-us = <4488>;
+> +				local-timer-stop;
+> +			};
+> +
+> +			CLUSTER_SLEEP_0: cluster-sleep-0 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "cluster-power-down";
+> +				arm,psci-suspend-param = <0x400000F4>;
+> +				entry-latency-us = <3263>;
+> +				exit-latency-us = <6562>;
+> +				min-residency-us = <9987>;
+> +				local-timer-stop;
+> +			};
+> +		};
+>  	};
 >  
+>  	pmu {
 > -- 
 > 2.17.1
 > 
