@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6350C26A22
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 20:51:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C82026A28
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2019 20:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729565AbfEVSvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 14:51:11 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:43602 "EHLO vps0.lunn.ch"
+        id S1729562AbfEVSyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 14:54:03 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:43609 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728674AbfEVSvL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 May 2019 14:51:11 -0400
+        id S1728533AbfEVSyD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 14:54:03 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
         Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
         Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
         :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
         List-Post:List-Owner:List-Archive;
-        bh=unw5Kx+EnTIGktZp88SvhPqi10+Ihz3WkP0ztD4tlVY=; b=JMRpmABNnZaInh5lzEGOo9rRpN
-        fV/Ci6IJAMUD/gWQ1oX5vN/T0jfCGdhN++Dvg56WYSeiriZLehd0Vpv47dDW1E2j/gGUr6M/VUyxW
-        5dYmfunT5Hu5uUtFcwvujdzHTJPVC4UW13sPGX5blW4ON8emki/fSV4uSkZhXS2dFhYA=;
+        bh=2+tji27/C7eRJxFWD6jg8abA+FF+0YMzibI9AbiqiLg=; b=pneoZ8aT1sXmD/0Upi2m1wmSvj
+        0GuIWoWD0XFqod3U4d/JmKOkrQzwJvif3I4/lygQ6aQtKMTscxu613xWro8FxsFB+y4BWR9481Y8v
+        e4blfLJG+lT6Lh8PX2OFX9pvRPan/tJugKw97N6bGcuuMgreWcFRMCjVJBa8P72BXobY=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
         (envelope-from <andrew@lunn.ch>)
-        id 1hTWKS-00023C-Qe; Wed, 22 May 2019 20:51:08 +0200
-Date:   Wed, 22 May 2019 20:51:08 +0200
+        id 1hTWNE-00026e-VR; Wed, 22 May 2019 20:54:00 +0200
+Date:   Wed, 22 May 2019 20:54:00 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Trent Piepho <tpiepho@impinj.com>
 Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH net-next v2 3/8] net: phy: dp83867: Add ability to
- disable output clock
-Message-ID: <20190522185108.GA7281@lunn.ch>
+Subject: Re: [PATCH net-next v2 4/8] net: phy: dp83867: Rework delay rgmii
+ delay handling
+Message-ID: <20190522185400.GB7281@lunn.ch>
 References: <20190522184255.16323-1-tpiepho@impinj.com>
- <20190522184255.16323-3-tpiepho@impinj.com>
+ <20190522184255.16323-4-tpiepho@impinj.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190522184255.16323-3-tpiepho@impinj.com>
+In-Reply-To: <20190522184255.16323-4-tpiepho@impinj.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 22, 2019 at 06:43:22PM +0000, Trent Piepho wrote:
-> Generally, the output clock pin is only used for testing and only serves
-> as a source of RF noise after this.  It could be used to daisy-chain
-> PHYs, but this is uncommon.  Since the PHY can disable the output, make
-> doing so an option.  I do this by adding another enumeration to the
-> allowed values of ti,clk-output-sel.
+On Wed, May 22, 2019 at 06:43:23PM +0000, Trent Piepho wrote:
+> The code was assuming the reset default of the delay control register
+> was to have delay disabled.  This is what the datasheet shows as the
+> register's initial value.  However, that's not actually true: the
+> default is controlled by the PHY's pin strapping.
 > 
-> The code was not using the value DP83867_CLK_O_SEL_REF_CLK as one might
-> expect: to select the REF_CLK as the output.  Rather it meant "keep
-> clock output setting as is", which, depending on PHY strapping, might
-> not be outputting REF_CLK.
+> If the interface mode is selected as RX or TX delay only, insure the
+> other direction's delay is disabled.
 > 
-> Change this so DP83867_CLK_O_SEL_REF_CLK means enable REF_CLK output.
-> Omitting the property will leave the setting as is (which was the
-> previous behavior in this case).
+> If the interface mode is just "rgmii", with neither TX or RX internal
+> delay, one might expect that the driver should disable both delays.  But
+> this is not what the driver does.  It leaves the setting at the PHY's
+> strapping's default.  And that default, for no pins with strapping
+> resistors, is to have delay enabled and 2.00 ns.
 > 
-> Out of range values were silently converted into
-> DP83867_CLK_O_SEL_REF_CLK.  Change this so they generate an error.
+> Rather than change this behavior, I've kept it the same and documented
+> it.  No delay will most likely not work and will break ethernet on any
+> board using "rgmii" mode.  If the board is strapped to have a delay and
+> is configured to use "rgmii" mode a warning is generated that "rgmii-id"
+> should have been used.
+> 
+> Also validate the delay values and fail if they are not in range.
 > 
 > Cc: Andrew Lunn <andrew@lunn.ch>
 > Cc: Florian Fainelli <f.fainelli@gmail.com>
