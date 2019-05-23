@@ -2,178 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C7ED28641
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 21:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 243D828B0D
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 21:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387443AbfEWTDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 15:03:42 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:35510 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387414AbfEWTDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 15:03:42 -0400
-Received: by mail-pf1-f196.google.com with SMTP id d126so1550738pfd.2
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 12:03:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=im5wAsqOPNS931rpYbyT5hlh62m2CH14bT+VTX4iFi8=;
-        b=RlkSfawB6Tvp5PVs0RZeAovH/9G7JM9zTU/uREplPlpKkKRhJC8+1SgmGs1ojpexJC
-         unerpaqfCG1W30Ow61ehhZEDTQehxhBipf6KSh/blo/DjVNa0UxIpTpB8ZebBnH7nylW
-         wwXq5nxW7bPh05ldVyU5j+9F4fLepvTz8Fot7IEABAFidlS9CXdtSY1C1oM9lvy6FO50
-         sBXTy9BvdeVQwHSF1zrI2FdZ+r9Pfh2qNZW/8C8J7YawnL0RHT4izwKa1UM50IzuRFbx
-         zhIi8MEApWcwXP4DQqZe0tai7vElfRLD/VHcinMdAi/tUR1o9RcjW+/9UDYLFdEY4YB9
-         M7Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=im5wAsqOPNS931rpYbyT5hlh62m2CH14bT+VTX4iFi8=;
-        b=QeDqZpzOk9n4vBg5QRDMADKsL8+s0doRb6Y6R0qLjLp5ReVD/jCCh1Neb5LqYm61HN
-         +BbnvwRNPkKr+ckTkb8Dfu3fAthYaseoS9X8M1kz6ILcTw/wPOgdY8YVwmhGXbfhv6JM
-         96VKi2hS/LY0/VnUmQ+d9ctgWFcFMeliQcXf6f8ce+tSiENO71rhrgiPe38ue5Rm0Mj8
-         CbAHP8RIWKvJ6bu39BqKFjxuOjtEuyB6hMDofOFJtPVuewSr5ovfTpNFR4wMCM6kvS2v
-         NmzDMPu3K+hp4TIy9NLfRrxDYMn+ECYdr45HFcgMnsNMRBJR3eYPq9RZ1LAJ4my6z2hM
-         WJWQ==
-X-Gm-Message-State: APjAAAXjuM8MgaAkiKSHWyR52JSAXVpeFbSqZalfUfCtcva3Agmut4ZH
-        fpnznaZ0gWnlFUqjBwBGB15Hgg==
-X-Google-Smtp-Source: APXvYqwUezZglFJTkVqKMfs/5cMfpnZQCtviFEOwA6H6Iww//+PsP5Mjj+zlaHjBoZtuyERN4e3lLw==
-X-Received: by 2002:a63:d816:: with SMTP id b22mr98259664pgh.16.1558638221127;
-        Thu, 23 May 2019 12:03:41 -0700 (PDT)
-Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id a37sm110542pga.67.2019.05.23.12.03.39
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 23 May 2019 12:03:40 -0700 (PDT)
-Date:   Thu, 23 May 2019 12:03:38 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 2/4] soc: qcom: Add AOSS QMP driver
-Message-ID: <20190523190338.GT31438@minitux>
-References: <20190501043734.26706-1-bjorn.andersson@linaro.org>
- <20190501043734.26706-3-bjorn.andersson@linaro.org>
- <CAD=FV=VVxKSp6e=j8YM8JBrhsF+T=0=8xDjd_817hphOMWHVFA@mail.gmail.com>
+        id S2387431AbfEWTwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 15:52:01 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:56298 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731840AbfEWTIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 15:08:42 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4NJ8bcv092481;
+        Thu, 23 May 2019 14:08:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1558638517;
+        bh=pVZocLlK6FwBNcQR7i4409JPN7kIWTMb5k5JK/XjDDY=;
+        h=From:To:CC:Subject:Date;
+        b=oo4cMjTq51aQlWO2MQlLJ86GWlh+lt9R0+VZlVOf2tk4nHQDOaTRNPcFOc6y5svx0
+         vBlNWCY5joaXrsZmnzNHBu9bzPkNzmYVNzr3sV3o4owJ3E6cbQLcuV+YfjXU7i7OUD
+         Sswrrb5C99NzKbfX6HXnsItESnxXnoBExhIGibnc=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4NJ8bnd123847
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 May 2019 14:08:37 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 23
+ May 2019 14:08:36 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 23 May 2019 14:08:36 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4NJ8a3A027514;
+        Thu, 23 May 2019 14:08:36 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH v3 0/9] Multicolor Framework update
+Date:   Thu, 23 May 2019 14:08:11 -0500
+Message-ID: <20190523190820.29375-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a983
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=VVxKSp6e=j8YM8JBrhsF+T=0=8xDjd_817hphOMWHVFA@mail.gmail.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 23 May 09:38 PDT 2019, Doug Anderson wrote:
+Hello
 
-> Hi,
-> 
-> On Tue, Apr 30, 2019 at 9:38 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > +static int qmp_qdss_clk_prepare(struct clk_hw *hw)
-> > +{
-> > +       struct qmp *qmp = container_of(hw, struct qmp, qdss_clk);
-> > +       char buf[QMP_MSG_LEN] = "{class: clock, res: qdss, val: 1}";
-> 
-> nit: "static const" the buf?  No need to copy it to the stack each
-> time.  In qmp_qdss_clk_unprepare() too.
-> 
+In this series I have done quite a bit of rework and since there was not to
+many review comments we can pretty much treat this as unreviewed.
 
-Thanks, that makes sense.
+I have removed the brightness-model definition from this series as it is an
+enhancement to the multi color framework but is not required in the initial
+submission.  And this seems to be the biggest source of contention in the patch
+set.  So the idea is to get the base MC FW in place and let developers play with
+it.
 
-> ...your string is also now fixed at 34 bytes big (including the '\0').
-> Do we still need to send exactly 96 bytes, or can we dumb this down to
-> 36?  We'll get a compile error if we overflow, right?  If this truly
-> needs to be exactly 96 bytes maybe qmp_send()'s error checks should
-> check for things being exactly 96 bytes instead of checking for > and
-> % 4.
-> 
+I have converted the LP5523 to use the MC framework and will update a couple
+more drivers once I have the test harnesses to verify the implementation.
 
-I double checked with my contacts and the only requirement here is that
-memory has to be word-accessed, so I'll figure out a sane way to write
-this.
+The biggest change to this series is that the parent brightness file now controls
+all the color LEDs brightness within the directory.
 
-> 
-> > +static int qmp_qdss_clk_add(struct qmp *qmp)
-> > +{
-> > +       struct clk_init_data qdss_init = {
-> > +               .ops = &qmp_qdss_clk_ops,
-> > +               .name = "qdss",
-> > +       };
-> 
-> Can't qdss_init be "static const"?  That had the advantage of not
-> needing to construct it on the stack and also of it having a longer
-> lifetime.  It looks like clk_register() stores the "hw" pointer in its
-> structure and the "hw" structure will have a pointer here.  While I
-> can believe that it never looks at it again, it's nice if that pointer
-> doesn't point somewhere on an old stack.
-> 
+I have written a script that writes brightness values to the colors and then
+proceeds to write the parent brightness from 0->255 and then back to 0.
+Basically pulsing the LED group.  I found that the color is uniform across the
+brightness ranges.
 
-The purpose here was for clk_hw_register() to consume it and never look
-back, but I agree that it's a bit fragile. I'll review Stephen's
-proposed patch.
+Dan
 
-> I suppose we could go the other way and try to mark more stuff in this
-> module as __init and __initdata, but even then at least the pointer
-> won't be onto a stack.  ;-)
-> 
-> 
-> > +       int ret;
-> > +
-> > +       qmp->qdss_clk.init = &qdss_init;
-> > +       ret = clk_hw_register(qmp->dev, &qmp->qdss_clk);
-> > +       if (ret < 0) {
-> > +               dev_err(qmp->dev, "failed to register qdss clock\n");
-> > +               return ret;
-> > +       }
-> > +
-> > +       return of_clk_add_hw_provider(qmp->dev->of_node, of_clk_hw_simple_get,
-> > +                                     &qmp->qdss_clk);
-> 
-> devm_clk_hw_register() and devm_of_clk_add_hw_provider()?  If you're
-> worried about ordering you could always throw in
-> devm_add_action_or_reset() to handle the qmp_pd_remove(), qmp_close()
-> and mbox_free_channel().
-> 
-> ...with that you could fully get rid of qmp_remove() and also your
-> setting of drvdata.
-> 
+Dan Murphy (9):
+  leds: multicolor: Add sysfs interface definition
+  dt: bindings: Add multicolor class dt bindings documention
+  documention: leds: Add multicolor class documentation
+  dt-bindings: leds: Add multicolor ID to the color ID  list
+  leds: Add multicolor ID to the color ID list
+  leds: multicolor: Introduce a multicolor class definition
+  dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers
+  leds: lp50xx: Add the LP50XX family of the RGB LED driver
+  leds: Update the lp55xx to use the multi color framework
 
-Yeah, I was worried about qmp_close() before unregistering the clock.
-I'll take another look, will at least have to fix the error handling on
-of_clk_add_hw_provider()
+ .../ABI/testing/sysfs-class-led-multicolor    |  57 ++
+ .../bindings/leds/leds-class-multicolor.txt   |  97 +++
+ .../devicetree/bindings/leds/leds-lp50xx.txt  | 142 ++++
+ Documentation/leds/leds-class-multicolor.txt  |  99 +++
+ drivers/leds/Kconfig                          |  17 +
+ drivers/leds/Makefile                         |   2 +
+ drivers/leds/led-class-multicolor.c           | 421 +++++++++++
+ drivers/leds/led-core.c                       |   1 +
+ drivers/leds/leds-lp50xx.c                    | 714 ++++++++++++++++++
+ drivers/leds/leds-lp5523.c                    |  13 +
+ drivers/leds/leds-lp55xx-common.c             | 133 +++-
+ drivers/leds/leds-lp55xx-common.h             |  10 +
+ include/dt-bindings/leds/common.h             |   3 +-
+ include/linux/led-class-multicolor.h          |  95 +++
+ include/linux/platform_data/leds-lp55xx.h     |   5 +
+ 15 files changed, 1789 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-class-multicolor.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-lp50xx.txt
+ create mode 100644 Documentation/leds/leds-class-multicolor.txt
+ create mode 100644 drivers/leds/led-class-multicolor.c
+ create mode 100644 drivers/leds/leds-lp50xx.c
+ create mode 100644 include/linux/led-class-multicolor.h
 
-> 
-> > +static void qmp_pd_remove(struct qmp *qmp)
-> > +{
-> > +       struct genpd_onecell_data *data = &qmp->pd_data;
-> > +       struct device *dev = qmp->dev;
-> > +       int i;
-> > +
-> > +       of_genpd_del_provider(dev->of_node);
-> > +
-> > +       for (i = 0; i < data->num_domains; i++)
-> > +               pm_genpd_remove(data->domains[i]);
-> 
-> Still feels like the above loop would be better as:
->   for (i = data->num_domains - 1; i >= 0; i--)
-> 
+-- 
+2.21.0.5.gaeb582a983
 
-To me this carries a message that the removal order is significant,
-which I'm unable to convince myself that it is.
-
-> 
-> (BTW: any way you could add me to the CC list for future patches so I
-> notice them earlier?)
-> 
-
-Yes of course, thanks for your review.
-
-Regards,
-Bjorn
