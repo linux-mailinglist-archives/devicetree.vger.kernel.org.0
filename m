@@ -2,89 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D6F727D10
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C12A27E10
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 15:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729962AbfEWMpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 08:45:34 -0400
-Received: from verein.lst.de ([213.95.11.211]:46617 "EHLO newverein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729698AbfEWMpd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 08:45:33 -0400
-Received: by newverein.lst.de (Postfix, from userid 2005)
-        id 139CB68AFE; Thu, 23 May 2019 14:45:09 +0200 (CEST)
-Date:   Thu, 23 May 2019 14:45:08 +0200
-From:   Torsten Duwe <duwe@lst.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/6] drm/bridge: Add Analogix anx6345 support
-Message-ID: <20190523124508.GC15685@lst.de>
-References: <20190523065013.2719D68B05@newverein.lst.de> <20190523065356.0734568BFE@newverein.lst.de> <20190523075041.GC4745@pendragon.ideasonboard.com>
+        id S1730323AbfEWNZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 09:25:57 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:56674 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730081AbfEWNZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 09:25:57 -0400
+Received: from relay11.mail.gandi.net (unknown [217.70.178.231])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 2FAA73ACB8F;
+        Thu, 23 May 2019 12:46:01 +0000 (UTC)
+Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id CD9B2100022;
+        Thu, 23 May 2019 12:45:46 +0000 (UTC)
+Date:   Thu, 23 May 2019 14:45:46 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Jose Abreu <Jose.Abreu@synopsys.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>
+Subject: Re: [PATCH 6/8] dt-bindings: net: stmmac: Convert the binding to a
+ schemas
+Message-ID: <20190523124546.6agw7fu5qteag3ol@flea>
+References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
+ <ba1a5d8ad34a8c9ab99f504c04fbe65bde42081b.1558605170.git-series.maxime.ripard@bootlin.com>
+ <78EB27739596EE489E55E81C33FEC33A0B92B864@DE02WEMBXB.internal.synopsys.com>
+ <20190523110715.ckyzpec3quxr26cp@flea>
+ <78EB27739596EE489E55E81C33FEC33A0B92BA5B@DE02WEMBXB.internal.synopsys.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="tf5grxv2ddxyomh6"
 Content-Disposition: inline
-In-Reply-To: <20190523075041.GC4745@pendragon.ideasonboard.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <78EB27739596EE489E55E81C33FEC33A0B92BA5B@DE02WEMBXB.internal.synopsys.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 10:50:41AM +0300, Laurent Pinchart wrote:
-> Hi Torsten,
-> 
-> Thank you for the patch.
 
-Thank you for the thorough review!
+--tf5grxv2ddxyomh6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> On Thu, May 23, 2019 at 08:53:56AM +0200, Torsten Duwe wrote:
-> > +{
-> > +	struct anx6345 *anx6345 = connector_to_anx6345(connector);
-> > +	int err, num_modes = 0;
-> > +	bool power_off = false;
-> > +
-> > +	mutex_lock(&anx6345->lock);
-> > +
-> > +	if (!anx6345->edid) {
-> 
-> Could the chip be used with a hot-pluggable display, or is it guaranteed
-> that EDID will never change ?
+On Thu, May 23, 2019 at 11:25:09AM +0000, Jose Abreu wrote:
+> From: Maxime Ripard <maxime.ripard@bootlin.com>
+> Date: Thu, May 23, 2019 at 12:07:15
+>
+> > You can then run make dtbs_check, and those YAML files will be used to
+> > validate that any devicetree using those properties are doing it
+> > properly. That implies having the right node names, properties, types,
+> > ranges of values when relevant, and so on.
+>
+> Thanks but how can one that's developing know which bindings it shall use?
 
-The chip itself is capable of (e)DP hot-plugging, so the signals suggest.
-See the previous discussions about what to expect on the output side.
-Currently, the driver does not handle hot-plugging.
+I'm not quite sure what you mean here. Are you talking about which
+file to use, or which property are required, or something else?
 
-> > +
-> > +	err = drm_of_find_panel_or_bridge(client->dev.of_node, 1, 0,
-> > +					  &anx6345->panel, NULL);
-> > +	if (err == -EPROBE_DEFER)
-> > +		return err;
-> > +
-> > +	if (err)
-> > +		DRM_DEBUG("No panel found\n");
-> 
-> Shouldn't this be fatal ?
+> Is this not parsed/prettified and displayed in some kind of webpage ?
 
-No, basically same as above. On the output side, there can be a panel,
-another bridge, or some eDP plug. If the DT didn't explicitly specify
-a panel or a bridge, we can still generate video output as soon as
-there is valid EDID data.
+Not at the moment, but it's one of the things that are made much
+easier by using a formal data format.
 
-Your other points went straight onto my TODO list.
+> Just that now that the TXT is gone its kind of "strange" to look at YAML
+> instead of plain text and develop/use the bindings.
 
-	Torsten
+Well, it's kind of the point though. Free-form text was impossible to
+parse in a generic way, and you couldn't build any generic tools upon
+it. YAML provides that.
 
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--tf5grxv2ddxyomh6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOaV+gAKCRDj7w1vZxhR
+xbIiAQDiQ/YoNNi0GkGaqteHf9TnQ2HqpEptDspMMmoMtI/iUQD9GIkc5JePBFh2
+kcr5Fwff9irX+EB/TCiw12tiyLODug8=
+=9C+d
+-----END PGP SIGNATURE-----
+
+--tf5grxv2ddxyomh6--
