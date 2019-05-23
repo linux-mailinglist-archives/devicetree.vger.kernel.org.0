@@ -2,97 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D7F284CB
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 19:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 259B8284DC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 19:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731276AbfEWRUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 13:20:39 -0400
-Received: from mail-eopbgr770103.outbound.protection.outlook.com ([40.107.77.103]:46599
-        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
+        id S1731095AbfEWRZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 13:25:00 -0400
+Received: from mail-eopbgr00045.outbound.protection.outlook.com ([40.107.0.45]:2678
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731121AbfEWRUj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 13:20:39 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
- b=sx4ggxpacaPJ6hNUy1Eu4ShOVLq7N6/+Vl7ZR0/6FDz4J2+p0KB+1ExBOUflwGcnEIDkpDJwdLJnyjdBh+W9PJ4+YR4L95C0b3ePnAzXzhlfmKfhxAVOsR1gCsQzgb/GtxCFtXQ7DhOpJmTb8zVdEycnyB6hJhLaHcHncoJ0PxU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=testarcselector01;
+        id S1731075AbfEWRZA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 13:25:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n8M3k1xYYiKmn5XfjEsrxirQ7S0PPQBYDLQy+HW8AAQ=;
- b=mN0ff5Fxaw1NgajXwqHezEcV3FJLRpbUVN4F5G3a0icnjixthBDkeD2sRPohO44qY7ZSiG7S9EfngiUuuYCEHK9GAf4AH8qIVgqdsz86qWrakBFzZWnfUXIwEwj835/U+kWYs8pRDUzg8Q2phfu/hYRZaUpM1fUmJFGfc3wJK10=
-ARC-Authentication-Results: i=1; test.office365.com
- 1;spf=none;dmarc=none;dkim=none;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n8M3k1xYYiKmn5XfjEsrxirQ7S0PPQBYDLQy+HW8AAQ=;
- b=N2A3v/pjQyJET5y7bxtWnmuDiiZQvpnB7GUC5k3G73AI7lm82+e8pxTGy584MYIS4E3uPxZZt/2OpNZy8tm6Cdx2oQNQQFUssPJELnhlLjbUVfGsfsV1ROpiSRJH4UVJ1ag0WDcgCh/L4+QKxDYMYv/BvlL+0ag27Zk7o7VadRI=
-Received: from CY4PR21MB0279.namprd21.prod.outlook.com (2603:10b6:903:bb::17)
- by CY4PR21MB0742.namprd21.prod.outlook.com (2603:10b6:903:b2::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1943.6; Thu, 23 May
- 2019 17:20:36 +0000
-Received: from CY4PR21MB0279.namprd21.prod.outlook.com
- ([fe80::9843:add4:f5b:8fc1]) by CY4PR21MB0279.namprd21.prod.outlook.com
- ([fe80::9843:add4:f5b:8fc1%5]) with mapi id 15.20.1943.007; Thu, 23 May 2019
- 17:20:36 +0000
-From:   Rui Zhao <ruizhao@microsoft.com>
-To:     James Morse <james.morse@arm.com>,
-        Lei Wang <leiwang_git@outlook.com>
-CC:     "bp@alien8.de" <bp@alien8.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "Lei Wang (BSP)" <Wang.Lei@microsoft.com>,
-        Rui Zhao <ruizhao@outlook.com>
-Subject: RE: [PATCH v3 2/2] EDAC: add EDAC driver for DMC520
-Thread-Topic: [PATCH v3 2/2] EDAC: add EDAC driver for DMC520
-Thread-Index: AQHVEYUGdXz32HFNiUaYdLQDHxz2DaZ48+Lg
-Date:   Thu, 23 May 2019 17:20:36 +0000
-Message-ID: <CY4PR21MB0279BB0E40B86CEA485CF19AB3010@CY4PR21MB0279.namprd21.prod.outlook.com>
-References: <CY1PR0401MB1244FDD9E720C9D9C1F41FEE860A0@CY1PR0401MB1244.namprd04.prod.outlook.com>
- <b1e360bc-2329-3f8b-3c93-65380f62d6fd@arm.com>
-In-Reply-To: <b1e360bc-2329-3f8b-3c93-65380f62d6fd@arm.com>
+ bh=J8wk3axRcofJU6ok/pWR27a5nb5ggUShxHLNcMX3vps=;
+ b=OnL3Sz/mKG0lgevhfyhD3gwtzFXqzzOnlsD1iW12Tkd5HrrRnsm+FTMb4X0bbCp0nqjdIV09pRclABOTpkiydrHDhQ7bMoX2Ag085/RJGuPRoXQMBQeFd3i4JZJYc947yt/0L6Sth2//1Chd+oC0LvZFNPDGukpW1Tksbdk+yjOo1Qi7Tza0fNiKbazRkz1e+ptSiy3xAiX51bFQmnTifhMjILnO6raEyl+P16YOsAWTD0/UTn0R/sav+wYPrE3znqrmfnsEQ7vjhVYcbvYJ25LzWW+MO8rnUMFeSMCulugujc7RtznAOVMSI4/TOSRycdvyd22SS96IAwfgs5JIsA==
+Received: from AM0PR03MB4148.eurprd03.prod.outlook.com (20.176.214.210) by
+ AM0PR03MB3538.eurprd03.prod.outlook.com (52.134.80.155) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.16; Thu, 23 May 2019 17:24:57 +0000
+Received: from AM0PR03MB4148.eurprd03.prod.outlook.com
+ ([fe80::55c5:599a:1f80:208a]) by AM0PR03MB4148.eurprd03.prod.outlook.com
+ ([fe80::55c5:599a:1f80:208a%3]) with mapi id 15.20.1900.020; Thu, 23 May 2019
+ 17:24:57 +0000
+From:   Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+CC:     Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>,
+        "trivial@kernel.org" <trivial@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm: fix the document ID for SCMI protocol
+ documentation
+Thread-Topic: [PATCH] dt-bindings: arm: fix the document ID for SCMI protocol
+ documentation
+Thread-Index: AQHVEVn2U05P8CKPx0+q1JYvuEenTaZ48eYAgAAERwA=
+Date:   Thu, 23 May 2019 17:24:56 +0000
+Message-ID: <877eah84nr.fsf@epam.com>
+References: <20190523112312.24529-1-volodymyr_babchuk@epam.com>
+ <20190523170938.GC4224@e107155-lin>
+In-Reply-To: <20190523170938.GC4224@e107155-lin>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ruizhao@microsoft.com; 
-x-originating-ip: [2001:4898:80e8:1:657c:5a11:ce39:5653]
+ smtp.mailfrom=Volodymyr_Babchuk@epam.com; 
+x-originating-ip: [85.223.209.22]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 84afae33-da0a-4b98-78f6-08d6dfa2f866
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:CY4PR21MB0742;
-x-ms-traffictypediagnostic: CY4PR21MB0742:
-x-microsoft-antispam-prvs: <CY4PR21MB0742A254223DF979E595B0A3B3010@CY4PR21MB0742.namprd21.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1824;
+x-ms-office365-filtering-correlation-id: ce5af6ac-c988-4821-aa76-08d6dfa393b3
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:AM0PR03MB3538;
+x-ms-traffictypediagnostic: AM0PR03MB3538:
+x-microsoft-antispam-prvs: <AM0PR03MB35386A23C82FD6C09E3527FFE6010@AM0PR03MB3538.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1775;
 x-forefront-prvs: 00462943DE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(366004)(396003)(346002)(136003)(376002)(199004)(189003)(66476007)(6116002)(66946007)(73956011)(64756008)(10090500001)(66446008)(305945005)(7736002)(66556008)(99286004)(76116006)(8990500004)(33656002)(74316002)(68736007)(6436002)(14454004)(4326008)(53936002)(8936002)(478600001)(10290500003)(558084003)(316002)(6246003)(52396003)(7696005)(229853002)(102836004)(25786009)(55016002)(2906002)(81166006)(81156014)(76176011)(8676002)(9686003)(53546011)(6506007)(486006)(446003)(22452003)(110136005)(86612001)(256004)(476003)(14444005)(52536014)(11346002)(54906003)(46003)(71190400001)(5660300002)(71200400001)(86362001)(186003);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR21MB0742;H:CY4PR21MB0279.namprd21.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: microsoft.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(366004)(136003)(346002)(39860400002)(396003)(189003)(199004)(36756003)(6506007)(446003)(2616005)(72206003)(11346002)(25786009)(316002)(486006)(14454004)(186003)(86362001)(7736002)(71200400001)(305945005)(71190400001)(55236004)(5660300002)(102836004)(99286004)(2906002)(4744005)(76176011)(6246003)(4326008)(54906003)(6512007)(53936002)(229853002)(508600001)(66066001)(256004)(3846002)(6116002)(26005)(81156014)(66476007)(6916009)(73956011)(76116006)(6486002)(8936002)(66446008)(66556008)(6436002)(64756008)(80792005)(66946007)(81166006)(8676002)(68736007)(476003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR03MB3538;H:AM0PR03MB4148.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: epam.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: QSo/ACmgMCHjIorpBaNxwiSuKuiadXM7xvWYjeDtFbCPoR2itkcHs1R2t/9ua9wV4SWzqdAOeMp+X4XJbpGDsFsy/aK0bALj12G6e4Gj1r6buPRUA895bnl7zGNYI3WS2j7gpTq2tse+2OcCMngt2S1sOCLUvKgrjyWL3RjuzKpnJ0QA7jnMCigvI+BSZFB0HSbeolPIex8XghhR/Grg3755hC16nPlG+PckYPbfHlHSYtXhrzqtFPeONnMxsuGce9qfDsZVNo36yzj0IXw3a1EFtdCqe9Bk6Ks39DTJRfEBRY5xBSg3Y4/KX6LESVcpVMgFb4YBhw9aHrewLgqSXqlvo7cUfZa8lmQYiFfK6ayQzvxCOKJ4as0usHBsJM0VkTsrUga0xDpr9JukI4mLAGAQE6zXL0WVljvbiKonrzg=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: 1No+QT6wopdUwh54m4lwCZFfBOQKV0PChUWeFK+DxpRdXrhfsWer7RLHbiHJht0qXB7Jo2Vz4jcm4TyUgL2kgOcp/+eLqMJANnONDQ7KeU6Qlazbbo9qTd1qNu041VFqae8NZPq3Es0mrJYyQ9mTtnkDen10VxF4Rz8Cmbblpbzm6AeMyLktTyw52ZXfLYn4Qron8naYm1pcKjJWllMfVImtIROcsFDuCux/nsk/Wm67RmFxSmx07x3q86lR9DRc1X4RYVfRuu5IqYNKBLI2fgLbXxlO6iUE/6TGHimOemLq1v1ReGJHADxpd5tgd7+yigDbvI1G3y0dS+9mptsExdfyawvzK1bqsWK+1iqPcfrgTbUhuS2RWP09Qed1YsIzUmqbI+RvN1DeP4k+1yB8/dqUlF/PiZaS3dQme9adinE=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: microsoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84afae33-da0a-4b98-78f6-08d6dfa2f866
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 17:20:36.3223
+X-OriginatorOrg: epam.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce5af6ac-c988-4821-aa76-08d6dfa393b3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 17:24:56.8463
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ruizhao@microsoft.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR21MB0742
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR03MB3538
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgSmFtZXMsDQoNCk9uIFRodXJzZGF5LCBNYXkgMjMsIDIwMTkgOTozMiBBTSwgSmFtZXMgTW9y
-c2Ugd3JvdGU6DQoNCj4gSG1tLCB5b3UncmUgbGlzdGluZyBzb21lb25lIGVsc2UgYXMgbWFpbnRh
-aW5lciBvZiB0aGlzIGRyaXZlci4NCj4gSSB0aGluayB3ZSdkIG5lZWQgdG8gc2VlIGFuIEFjayBm
-cm9tIFJ1aSBaaGFvLi4uDQoNCkkgY2FuIGNvbmZpcm0gdGhhdCBMZWkgaXMgYSBtYWludGFpbmVy
-IGZvciB0aGlzIGRyaXZlci4NCg0KVGhhbmtzLA0KUnVpDQoNCg==
+
+Hi,
+
+Sudeep Holla writes:
+
+> On Thu, May 23, 2019 at 11:23:35AM +0000, Volodymyr Babchuk wrote:
+>> From: Volodymyr Babchuk <volodymyr_babchuk@epam.com
+
+I accidentally deleted ending ">" symbol in the line above, so "git
+send-email" decided to move that line from headers to the message body.
+
+>> arm,scmi.txt used the wrong document identifier. "ARM DUI 0922B" is
+>> the "ARM Compute Subsystem SCP, Message Interface Protocols". What we
+>> need is the ARM DEN 0056A - "ARM System Control and Management
+>> Interface Platform Design Document".
+>>
+>
+> Indeed, it's most stupid copy-paste mistake. Thanks for fixing this.
+> Applied now.
+It happens all the time. I also did stupid mistake in my patch file. It
+is described above. Could you please ensure that this line will be not
+in the resulting commit message? Thank you.
+
+--=20
+Best regards,Volodymyr Babchuk=
