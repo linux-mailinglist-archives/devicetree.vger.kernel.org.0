@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EACFF27E9F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 15:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B9827EA1
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 15:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730684AbfEWNsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 09:48:37 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44112 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730495AbfEWNsg (ORCPT
+        id S1730751AbfEWNsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 09:48:36 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:43174 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730684AbfEWNsg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 09:48:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=X6yLgBlALTmm8f+P1P/St4oPtsvR1/9CNsOiFiXV8xg=; b=KQ6R6tGNyApe5h8pwVsVlYGGZ
-        NOR2ifx6p/cw3HqGvkJUeYMNLd0l4wHKzmL+jm/XlTB6BAXT0PfMNpDMBsX1f1ZRJv/8zwR+8Q6U2
-        Y7ugrn80U037qfUn8jDKCssIerp3fWltxBuFlYgmscfhxJwQqOezW9qjZf8sDmVLHpmPg=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hTo59-0000Do-Ab; Thu, 23 May 2019 13:48:31 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id 36A361126D24; Thu, 23 May 2019 14:48:27 +0100 (BST)
-Date:   Thu, 23 May 2019 14:48:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+Received: by mail-pl1-f195.google.com with SMTP id gn7so2783965plb.10;
+        Thu, 23 May 2019 06:48:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+gf6TK/DBZkbbPD59gjM5EzSFnmu0bkE4KJafULy65Y=;
+        b=rnsqyg44lH8m7taWbuklaTCCz+35oJR/l6Qvu3nboiWywtVJszAN5r1JZZHNf22TlL
+         EC6rzSjYQa/QR0ivyeZMdANgKAjULdQ8jZm65iQGs+q82LE2KLJ5xf+OjAK4S7BR91Es
+         b5zTbN82WIaV6D95qOmUz/zqRV7tuLDrhiG4juw5hDWhRZyiifIizk4b+8z67j38wZKR
+         roz6c8S7JRou1K+Hp2d8pEigq64HClfp+59fhiSKhLvwcIhL+H00WgbMyFXI9TPHSfoD
+         ZXrtrGkrt/NwdtN+K0dNuzbfEX4sRH8aTyhUQJBSLp3RtWGgpvzEhwJlbNbAH95jHOjo
+         K+7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+gf6TK/DBZkbbPD59gjM5EzSFnmu0bkE4KJafULy65Y=;
+        b=AeTmkADzHbtVlUbypbQ0DsRaKOyI5KwW387d/01TKDiAQNf3Inkq8FVyDIvI0HdtJS
+         U059whISItvkzcK5wSPV1T/l8KGPXLGohlfGuF0GpcQhl/7ikV5qfEaoraWpfGAlLg3E
+         +VpclBQQbHObMXT6MSFtqF9G7m1NO5dwA8aMxkdm/EsSJ6eih6+vBBax49vlKQOWjtbz
+         fPdSzqkiRGEma36BDyVQMXRwOihitChga+qDVUMAlR0n8s/uF9EkaSZ2QGnRpfqWuJF2
+         uq6pQHZgwbR4GDCsWy/IbAHzMOHlPaCDia5GFxmu5Ovxr0Q63YbFA1um9x53wzIAzBgT
+         nFYA==
+X-Gm-Message-State: APjAAAXqRDl9ZEW/hYnx5C6AcWh/tjPMEwygoD8CVAw9buYye4/v4irW
+        HTl/af+Gbnb5HIaVb/SU6Cw=
+X-Google-Smtp-Source: APXvYqwKUTsNLMMZr3WT+JsRYI+XStFLzKHLL4taI1RlLURXHZmDRyhRh2+PrNYZ032j2fi3xT6L8g==
+X-Received: by 2002:a17:902:728f:: with SMTP id d15mr24384602pll.167.1558619315442;
+        Thu, 23 May 2019 06:48:35 -0700 (PDT)
+Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id y191sm2667986pfb.179.2019.05.23.06.48.34
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 23 May 2019 06:48:34 -0700 (PDT)
+Date:   Thu, 23 May 2019 06:48:32 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     "Y.b. Lu" <yangbo.lu@nxp.com>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: spi-fsl-qspi: Add bindings of
- ls1088a and ls1012a
-Message-ID: <20190523134827.GH17245@sirena.org.uk>
-References: <20190522070133.24953-1-kuldeep.singh@nxp.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v2, 0/4] ENETC: support hardware timestamping
+Message-ID: <20190523134832.xzupnwvhhlljtoyh@localhost>
+References: <20190523023451.2933-1-yangbo.lu@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9sSKoi6Rw660DLir"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190522070133.24953-1-kuldeep.singh@nxp.com>
-X-Cookie: I brake for chezlogs!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190523023451.2933-1-yangbo.lu@nxp.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 23, 2019 at 02:33:24AM +0000, Y.b. Lu wrote:
+> This patch-set is to support hardware timestamping for ENETC
+> and also to add ENETC 1588 timer device tree node for ls1028a.
 
---9sSKoi6Rw660DLir
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Please, in the future, summarize the changes from the last series in
+the cover letter.  It helps the reviewers to focus.
 
-On Wed, May 22, 2019 at 07:00:32AM +0000, Kuldeep Singh wrote:
-> Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
-> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
-> ---
-> Update v2:
-> 	Convert to patch series and rebasing done on top of tree
-
-These still don't apply against current code (for-5.3 or for-next of
-git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git).  Please
-check and resend.
-
-Please use subject lines matching the style for the subsystem.  This
-makes it easier for people to identify relevant patches.
-
---9sSKoi6Rw660DLir
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzmpKoACgkQJNaLcl1U
-h9AeXgf+K/fyUAneVeSKJB2PlpJY0/l0sSrrEho/KS2x1MPK84BO5He4Q7R56mZ4
-qPJSsRMJwhj62P5Zj8SoxbLdWKGYqs8AAwzvVztBMhOKmj3vbYeIK/2/ArKc1xLQ
-GVYEcU8HpbFCQcxhsjpUQKDpBurkZUJ2+soa7IufJM2CF9+xXopqZt6bTcbIR8/P
-bGg17RQIpq6Oukz30eyRDUVoTzTyCxEFK/M34nb/+O5wK0K2cKN6NWxGxoZNFNAx
-jcFXRP/k3i9aZPISHZe3nCzIyPDoq7Z1Ez5o1Xd9rSy2VajZOdaDAPxlxbEbkYIx
-eiSXwFFZvSye+r7wPu1w5NDriw7MYg==
-=isZA
------END PGP SIGNATURE-----
-
---9sSKoi6Rw660DLir--
+Thanks,
+Richard
