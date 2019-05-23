@@ -2,162 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B179627898
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD3E278A0
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728184AbfEWI46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 04:56:58 -0400
-Received: from mail-eopbgr1400101.outbound.protection.outlook.com ([40.107.140.101]:38814
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726230AbfEWI46 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 04:56:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u73Lr6WRkohx8JxEQ2CDY6LJvcwJfGIjXIzaQ7fMwUk=;
- b=Pl006vamNtEa+mUNgVkIsfM3QgbOEihWQ2Jm2Jj5M/EneeojYjWGIqNQiAkOSnBd76/YGlz1MoeXLuGK5gsUDnZ42iVIpBXEKwW9eK1MVskd7BrUEJ6uFfklLbZGpOQMXmL1a+jlqSWCLM3rQ1q/QEMLk/zBscyKwqEo5EZIHas=
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com (52.134.242.17) by
- OSBPR01MB4454.jpnprd01.prod.outlook.com (20.179.181.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.17; Thu, 23 May 2019 08:56:51 +0000
-Received: from OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::a146:39f0:5df9:11bc]) by OSBPR01MB2103.jpnprd01.prod.outlook.com
- ([fe80::a146:39f0:5df9:11bc%7]) with mapi id 15.20.1922.018; Thu, 23 May 2019
- 08:56:51 +0000
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree binding
- document
-Thread-Topic: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree binding
- document
-Thread-Index: AQHVCxgM+eh9qHNmG0u9jtRSG8piA6Z1QSmAgAABdICAAXvewIABeSGAgAA6YPA=
-Date:   Thu, 23 May 2019 08:56:51 +0000
-Message-ID: <OSBPR01MB2103449C227E75781E857368B8010@OSBPR01MB2103.jpnprd01.prod.outlook.com>
-References: <1557922152-16449-1-git-send-email-biju.das@bp.renesas.com>
-        <1557922152-16449-2-git-send-email-biju.das@bp.renesas.com>
-        <OSAPR01MB30899C8C3E0F316FF37DAE3AD8070@OSAPR01MB3089.jpnprd01.prod.outlook.com>
- <877eaktf8i.wl-kuninori.morimoto.gx@renesas.com>
- <OSBPR01MB2103B7A7CF5F9CDDC40B9A2BB8000@OSBPR01MB2103.jpnprd01.prod.outlook.com>
- <OSAPR01MB308947DD6A61047728A1BFEDD8010@OSAPR01MB3089.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSAPR01MB308947DD6A61047728A1BFEDD8010@OSAPR01MB3089.jpnprd01.prod.outlook.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biju.das@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 06669ea0-e849-4bbf-abd3-08d6df5c9929
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:OSBPR01MB4454;
-x-ms-traffictypediagnostic: OSBPR01MB4454:
-x-microsoft-antispam-prvs: <OSBPR01MB44544EA1197E1163ED6D988CB8010@OSBPR01MB4454.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 00462943DE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(396003)(366004)(346002)(136003)(39860400002)(51914003)(189003)(199004)(102836004)(66066001)(186003)(478600001)(26005)(74316002)(8936002)(76176011)(316002)(14454004)(7696005)(14444005)(68736007)(256004)(486006)(446003)(6506007)(476003)(86362001)(11346002)(33656002)(44832011)(71190400001)(71200400001)(3846002)(6116002)(7736002)(5660300002)(2906002)(55016002)(6436002)(9686003)(305945005)(53936002)(6246003)(25786009)(64756008)(66556008)(66476007)(66446008)(54906003)(110136005)(52536014)(73956011)(76116006)(66946007)(229853002)(4326008)(8676002)(81156014)(81166006)(99286004)(7416002);DIR:OUT;SFP:1102;SCL:1;SRVR:OSBPR01MB4454;H:OSBPR01MB2103.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Dm9AHwUaEqG71Gyu84zqoCPzHdSZxR0bsJ1yu/qh3BalpO2l8U3AMubEFlGeyfTal+h+uEI2B/bCd6sFAcdRR5ZBhE9kBag8ZyiKtxV9agHIfkRLNv5maKe8IZvt7Z1L4AUPNA7mBL0MrWemTYkUSpQWx+bOaj71d8SoM3KMj8thJ3kmiduKyP8SI7KKx8vfstJzXp2ge7UvFCb52oapI6Gpu949VnYKUroQzDuoMX7sScjMWsHmU+el11HjtIwWulA1YUzJrVQhuyjv0mnS3IQfuJ/r++teqcmUb7RESvblINskPh5jH2eUIOX6f1hUmOmST9+N8TWRivb2PrhfE+EtGi//+eChntZz33Jb6YV+V57enabd8h5OrsUExSPZ22Dr7kO7O13CVB+p6elg9wZ07j7xuiQPa9ZC6RewxOg=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726913AbfEWI7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 04:59:42 -0400
+Received: from twhmllg4.macronix.com ([211.75.127.132]:49019 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725814AbfEWI7m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 04:59:42 -0400
+Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
+        by TWHMLLG4.macronix.com with ESMTP id x4N8w1Kv035351;
+        Thu, 23 May 2019 16:58:01 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id 84B201FAC184BC8B8955;
+        Thu, 23 May 2019 16:58:01 +0800 (CST)
+In-Reply-To: <20190520142333.390091d5@xps13>
+References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw> <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
+        <20190512151820.4f2dd9da@xps13> <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw> <20190520142333.390091d5@xps13>
+To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        christophe.kerello@st.com, computersforpeace@gmail.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org,
+        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
+        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
+        mark.rutland@arm.com, paul.burton@mips.com, richard@nod.at,
+        robh+dt@kernel.org, stefan@agner.ch, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND controller
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06669ea0-e849-4bbf-abd3-08d6df5c9929
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 08:56:51.6955
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: biju.das@bp.renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB4454
+X-KeepSent: ADC47344:0F9941B2-48258403:002336E3;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Thu, 23 May 2019 16:58:02 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/05/23 PM 04:58:01,
+        Serialize complete at 2019/05/23 PM 04:58:01
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG4.macronix.com x4N8w1Kv035351
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-San,
 
-Thanks for the feedback.
+Hi Miquel,
 
-> Subject: RE: [PATCH v6 1/7] dt-bindings: usb: hd3ss3220 device tree bindi=
-ng
-> document
->=20
-> Hi Biju-san, Morimoto-san,
->=20
-> > From: Biju Das, Sent: Wednesday, May 22, 2019 8:00 PM
-> <snip>
-> > > > According to the connector/usb-connector.txt, should the connector
-> > > > node have ports, port@1 and an endpoint nodes like below?
-> > >
-> > > "ports" is needed if it has multiple "port", otherwise, single port
-> > > is allowed from OF-graph point of view.
-> >
-> > OK. I will use single port on  the next patch series.
->=20
-> According to the connector/usb-connector.txt [1], even if this device use=
-s a
-> single port, we should describe ports node and port@1 (for SuperSpeed)
-> subnode like usb/typec-tcpci.txt.
+> > 
+> > > > +
+> > > > +static void mxic_nand_select_chip(struct nand_chip *chip, int 
+chipnr) 
+> > > 
+> > > _select_target() is preferred now 
+> > 
+> > Do you mean I implement mxic_nand_select_target() to control #CS ?
+> > 
+> > If so, I need to call mxic_nand_select_target( ) to control #CS ON
+> > and then #CS OFF in _exec_op() due to nand_select_target()<in 
+nand_base,c>
+> > is still calling chip->legacy.select_chip ?
+> 
+> You must forget about the ->select_chip() callback. Now it should be
+> handled directly from the controller driver. Please have a look at the
+> commit pointed against the marvell_nand.c driver.
 
-OK.  I will update the example like below.
+I have no Marvell NFC datasheet and have one question.
 
-hd3ss3220@47 {
-	compatible =3D "ti,hd3ss3220";
-	reg =3D <0x47>;
-	interrupt-parent =3D <&gpio6>;
-	interrupts =3D <3 IRQ_TYPE_LEVEL_LOW>;
+In marvell_nand.c, there is no xxx_deselect_target() or 
+something like that doing #CS OFF.
+marvell_nfc_select_target() seems always to make one of chip or die
+#CS keep low.
 
-	usb_con: connector {
-		compatible =3D "usb-c-connector";
-		label =3D "USB-C";
-		data-role =3D "dual";
+Is it right ?
 
-		ports {
-			#address-cells =3D <1>;
-			#size-cells =3D <0>;
+How to make all #CS keep high for NAND to enter 
+low-power standby mode if driver don't use "legacy.select_chip()" ?
 
-			port@1 {
-				reg =3D <1>;
-				hd3ss3220_ep: endpoint {
-					remote-endpoint =3D <&usb3_role_switch>;
-				};
-			};
-		};
-	};
-};
+thanks & best regards,
+Mason
 
-Regards,
-Biju
+CONFIDENTIALITY NOTE:
 
-> [1]
-> Required nodes:
-> - any data bus to the connector should be modeled using the OF graph
-> bindings
->   specified in bindings/graph.txt, unless the bus is between parent node =
-and
->   the connector. Since single connector can have multiple data buses ever=
-y
-> bus
->   has assigned OF graph port number as follows:
->     0: High Speed (HS), present in all connectors,
->     1: Super Speed (SS), present in SS capable connectors,
->     2: Sideband use (SBU), present in USB-C.
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
