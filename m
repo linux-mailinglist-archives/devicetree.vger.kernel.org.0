@@ -2,169 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6362771A
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 09:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8BF27746
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 09:39:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726222AbfEWHfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 03:35:23 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:39391 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726081AbfEWHfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 03:35:22 -0400
-X-UUID: 6e2832516f8746e5ba414606f3f850cf-20190523
-X-UUID: 6e2832516f8746e5ba414606f3f850cf-20190523
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <long.cheng@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 523751359; Thu, 23 May 2019 15:35:16 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs03n2.mediatek.inc (172.21.101.182) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 23 May 2019 15:35:15 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 23 May 2019 15:35:14 +0800
-From:   Long Cheng <long.cheng@mediatek.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Dan Williams <dan.j.williams@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        YT Shen <yt.shen@mediatek.com>,
-        Zhenbao Liu <zhenbao.liu@mediatek.com>,
-        Long Cheng <long.cheng@mediatek.com>
-Subject: [PATCH 2/2] serial: 8250-mtk: modify uart DMA rx
-Date:   Thu, 23 May 2019 15:35:09 +0800
-Message-ID: <1558596909-14084-3-git-send-email-long.cheng@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1558596909-14084-1-git-send-email-long.cheng@mediatek.com>
-References: <1558596909-14084-1-git-send-email-long.cheng@mediatek.com>
+        id S1730616AbfEWHiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 03:38:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39228 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726310AbfEWHit (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 03:38:49 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A8E482075E;
+        Thu, 23 May 2019 07:38:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558597128;
+        bh=PDeQ/R6EFXXI6bmG+2plkabUTkZx6Xpn/gVapHNA3DQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A7DoqJN2tSJu1utHXlZ/Uk9R23K9mhPPKEIMvUAwL23Qfy5vM6Xr98X0r923XXkRE
+         wy7k9kJcj2h3C5v20tYNfAQ34HDISe6d248XLL5gQ+D32V1phD/sXMaBTIvhRxu0hf
+         8SRKuiWIwfdzus11Ls+EacvJN1RcPhaRs1MbU2Ko=
+Date:   Thu, 23 May 2019 15:37:45 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        xiaobo.xie@nxp.com, Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        yangbo.lu@nxp.com, jiafei.pan@nxp.com,
+        Ashish Kumar <Ashish.Kumar@nxp.com>
+Subject: Re: [PATCH v2] arm64: dts: ls1028a: Add esdhc node in dts
+Message-ID: <20190523073744.GG9261@dragon>
+References: <20190515040046.9230-1-yinbo.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 2482CA85B661DC8764D4515A4275E8B6BC1A308EAB7BD6FB1D1E48C73F6E41C32000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190515040046.9230-1-yinbo.zhu@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify uart rx and complete for DMA
+On Wed, May 15, 2019 at 12:00:46PM +0800, Yinbo Zhu wrote:
+> From: Ashish Kumar <Ashish.Kumar@nxp.com>
+> 
+> This patch is to add esdhc node and enable SD UHS-I,
+> eMMC HS200 for ls1028ardb/ls1028aqds board.
+> 
+> Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
+> Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
+> ---
+> Change in v2:
+> 		Update the patch title
+> 		Add a commont in dts code
+> 
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts |    8 ++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts |   13 ++++++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    |   27 +++++++++++++++++++++
+>  3 files changed, 48 insertions(+), 0 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> index 14c79f4..180e5d2 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> @@ -42,6 +42,14 @@
+>  	status = "okay";
+>  };
+>  
+> +&esdhc {
+> +	status = "okay";
+> +};
+> +
+> +&esdhc1 {
+> +	status = "okay";
+> +};
+> +
+>  &i2c0 {
+>  	status = "okay";
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> index f86b054..1bfaf42 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> @@ -30,6 +30,19 @@
+>  	};
+>  };
+>  
+> +&esdhc {
+> +	status = "okay";
 
-Signed-off-by: Long Cheng <long.cheng@mediatek.com>
----
- drivers/tty/serial/8250/8250_mtk.c |   49 +++++++++++++++---------------------
- 1 file changed, 20 insertions(+), 29 deletions(-)
+We usually put 'status' at the end of property list.
 
-diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
-index 417c7c8..f470ded 100644
---- a/drivers/tty/serial/8250/8250_mtk.c
-+++ b/drivers/tty/serial/8250/8250_mtk.c
-@@ -47,7 +47,6 @@
- #define MTK_UART_DMA_EN_RX	0x5
- 
- #define MTK_UART_ESCAPE_CHAR	0x77	/* Escape char added under sw fc */
--#define MTK_UART_TX_SIZE	UART_XMIT_SIZE
- #define MTK_UART_RX_SIZE	0x8000
- #define MTK_UART_TX_TRIGGER	1
- #define MTK_UART_RX_TRIGGER	MTK_UART_RX_SIZE
-@@ -89,28 +88,30 @@ static void mtk8250_dma_rx_complete(void *param)
- 	struct mtk8250_data *data = up->port.private_data;
- 	struct tty_port *tty_port = &up->port.state->port;
- 	struct dma_tx_state state;
-+	int copied, total, cnt;
- 	unsigned char *ptr;
--	int copied;
- 
--	dma_sync_single_for_cpu(dma->rxchan->device->dev, dma->rx_addr,
--				dma->rx_size, DMA_FROM_DEVICE);
-+	if (data->rx_status == DMA_RX_SHUTDOWN)
-+		return;
- 
- 	dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
-+	total = dma->rx_size - state.residue;
-+	cnt = total;
- 
--	if (data->rx_status == DMA_RX_SHUTDOWN)
--		return;
-+	if ((data->rx_pos + cnt) > dma->rx_size)
-+		cnt = dma->rx_size - data->rx_pos;
- 
--	if ((data->rx_pos + state.residue) <= dma->rx_size) {
--		ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
--		copied = tty_insert_flip_string(tty_port, ptr, state.residue);
--	} else {
--		ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
--		copied = tty_insert_flip_string(tty_port, ptr,
--						dma->rx_size - data->rx_pos);
-+	ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
-+	copied = tty_insert_flip_string(tty_port, ptr, cnt);
-+	data->rx_pos += cnt;
-+
-+	if (total > cnt) {
- 		ptr = (unsigned char *)(dma->rx_buf);
--		copied += tty_insert_flip_string(tty_port, ptr,
--				data->rx_pos + state.residue - dma->rx_size);
-+		cnt = total - cnt;
-+		copied += tty_insert_flip_string(tty_port, ptr, cnt);
-+		data->rx_pos = cnt;
- 	}
-+
- 	up->port.icount.rx += copied;
- 
- 	tty_flip_buffer_push(tty_port);
-@@ -121,9 +122,7 @@ static void mtk8250_dma_rx_complete(void *param)
- static void mtk8250_rx_dma(struct uart_8250_port *up)
- {
- 	struct uart_8250_dma *dma = up->dma;
--	struct mtk8250_data *data = up->port.private_data;
- 	struct dma_async_tx_descriptor	*desc;
--	struct dma_tx_state	 state;
- 
- 	desc = dmaengine_prep_slave_single(dma->rxchan, dma->rx_addr,
- 					   dma->rx_size, DMA_DEV_TO_MEM,
-@@ -138,12 +137,6 @@ static void mtk8250_rx_dma(struct uart_8250_port *up)
- 
- 	dma->rx_cookie = dmaengine_submit(desc);
- 
--	dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
--	data->rx_pos = state.residue;
--
--	dma_sync_single_for_device(dma->rxchan->device->dev, dma->rx_addr,
--				   dma->rx_size, DMA_FROM_DEVICE);
--
- 	dma_async_issue_pending(dma->rxchan);
- }
- 
-@@ -156,13 +149,11 @@ static void mtk8250_dma_enable(struct uart_8250_port *up)
- 	if (data->rx_status != DMA_RX_START)
- 		return;
- 
--	dma->rxconf.direction		= DMA_DEV_TO_MEM;
--	dma->rxconf.src_addr_width	= dma->rx_size / 1024;
--	dma->rxconf.src_addr		= dma->rx_addr;
-+	dma->rxconf.src_port_window_size	= dma->rx_size;
-+	dma->rxconf.src_addr				= dma->rx_addr;
- 
--	dma->txconf.direction		= DMA_MEM_TO_DEV;
--	dma->txconf.dst_addr_width	= MTK_UART_TX_SIZE / 1024;
--	dma->txconf.dst_addr		= dma->tx_addr;
-+	dma->txconf.dst_port_window_size	= UART_XMIT_SIZE;
-+	dma->txconf.dst_addr				= dma->tx_addr;
- 
- 	serial_out(up, UART_FCR, UART_FCR_ENABLE_FIFO | UART_FCR_CLEAR_RCVR |
- 		UART_FCR_CLEAR_XMIT);
--- 
-1.7.9.5
+> +	sd-uhs-sdr104;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr12;
+> +	};
 
+Bad indentation.
+
+> +
+> +&esdhc1 {
+> +	status = "okay";
+> +	mmc-hs200-1_8v;
+> +	};
+> +
+>  &i2c0 {
+>  	status = "okay";
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 2896bbc..5c7546f 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -274,6 +274,33 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		esdhc: esdhc@2140000 {
+
+'mmc' for node name, and the node should be sorted in unit-address.
+
+> +			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
+> +			reg = <0x0 0x2140000 0x0 0x10000>;
+> +			interrupts = <0 28 0x4>; /* Level high type */
+
+interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+
+> +			clock-frequency = <0>; /* fixed up by bootloader */
+> +			clocks = <&clockgen 2 1>;
+> +			voltage-ranges = <1800 1800 3300 3300>;
+> +			sdhci,auto-cmd12;
+> +			little-endian;
+> +			bus-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		esdhc1: esdhc@2150000 {
+> +			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
+> +			reg = <0x0 0x2150000 0x0 0x10000>;
+> +			interrupts = <0 63 0x4>; /* Level high type */
+> +			clock-frequency = <0>; /* fixed up by bootloader */
+> +			clocks = <&clockgen 2 1>;
+> +			voltage-ranges = <1800 1800 3300 3300>;
+> +			sdhci,auto-cmd12;
+> +			broken-cd;
+
+Shouldn't this one be a board level property?
+
+Shawn
+
+> +			little-endian;
+> +			bus-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+>  		sata: sata@3200000 {
+>  			compatible = "fsl,ls1028a-ahci";
+>  			reg = <0x0 0x3200000 0x0 0x10000>,
+> -- 
+> 1.7.1
+> 
