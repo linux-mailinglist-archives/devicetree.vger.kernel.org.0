@@ -2,239 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7DB628018
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 16:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018062800E
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 16:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730897AbfEWOpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 10:45:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46980 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730709AbfEWOpF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 10:45:05 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 08C8221851;
-        Thu, 23 May 2019 14:45:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558622704;
-        bh=UJ6x3F7sdFiOx8Qz/M2AGY26AYeMGeaR3viNAzUA7p4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JUBp0myiJ7iWl85P2mfSxSP+8boBDZ0T0Qznd0KYDovFON67XvzlmO5HI2uwS3yGM
-         4jCxZsd5xuKN7Fsuc/LcspQVTm4izKpyKkRnHC7yUxgno7WpMQVNP7pdSpN/IpXX5v
-         gMITLGxP3+FH+QMPFqgYsHoWszMEnP6mv62g2Vy4=
-Received: by mail-qk1-f181.google.com with SMTP id t64so3754563qkh.1;
-        Thu, 23 May 2019 07:45:03 -0700 (PDT)
-X-Gm-Message-State: APjAAAXCql+sWrZzAcMKzrk9WgzlegTj+EkiRGL39npv552i7mKC6aT6
-        PJ7re9oyfgvxbQ3vdPfZYQ/gNz4KRhIRNi3xSw==
-X-Google-Smtp-Source: APXvYqyW7iDCtnwbv4EZaFOhy7TBsqR2kCrTlF0HdyA4uTDUp13t2mH2O1gAJ3Mc9pvOziiL7skpu0AaShDUQLHjP+s=
-X-Received: by 2002:ae9:c208:: with SMTP id j8mr2382677qkg.264.1558622703175;
- Thu, 23 May 2019 07:45:03 -0700 (PDT)
+        id S1730916AbfEWOoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 10:44:44 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:37317 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730910AbfEWOon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 10:44:43 -0400
+Received: by mail-pl1-f196.google.com with SMTP id p15so2858680pll.4
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 07:44:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=2Ky1NhTh6Sjvjan+qNl8ZXCfOCQ4Wh0D7lNZmX1Rk4s=;
+        b=rP6Xyj/q6gZKJRtGHb4s/nLwR57MhxbnQuw2lmcL3adCpoU5QQdXse548sY7W/zuGp
+         g3z9l8KWVy7T+jhAfzH4EGz7LVMEhKk/jgOsuOOZH6LVaBZp6ItlLieciyelHwkQi9vq
+         cyPa0I+iCP/5H0+wSOBK/+c68CkvPwr3dBsB3qkom9Zz39aMQ4lSgMFjNYrwKAk72L59
+         Er36+iRGksE9wtmaMGeW2U70CWZsgcLznWLbkqm42rTFioB6CT7z7+7rjDHBKi3I3NyA
+         rWeniayWC+nTUj/whE5g/LNk+Pqo2fUqzuNWP72MxRJjvYw2MjwFBpjGVQAA+vlkllFN
+         8k2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2Ky1NhTh6Sjvjan+qNl8ZXCfOCQ4Wh0D7lNZmX1Rk4s=;
+        b=Et2+xUSG56RGma5aOnd84Wi59BroUdfJiYwafPgfVCT9XgeT2jzIXsaj7ANkAikHou
+         cb9jMQwqAM7aLmKAFIZ60ju14Z2HqQc1Tf73P4wyrUvdHMOTy+NO0qf3598fVXk3M6Yx
+         dVjv2w9PUjqwj9DwsqBJ19K54wOvhCGD4Taqx8gbAaOvJo39sN0agPRoGYEyBQAJIj5A
+         sZWQrWxh0QgWehYKpzx0SBekCYetP+zQK2/1rXgkPGAujnI5GiZekNS+vOifONacug7e
+         yHEfBONLmNYcM7rDJSMWujDQXtJpF8st9CJMK6hAaEwUs0X0xzv3U5hcw9x7Dj4cZXm5
+         JQKQ==
+X-Gm-Message-State: APjAAAUZn0OJSykBujyNR4yPAgvY7V/0oBTxVHdwUeSeSfE6KNxM4COz
+        kGpypy7GD+NNeq4qeMJn7uefRA==
+X-Google-Smtp-Source: APXvYqzchItDvd9Ubge8eLDuQHoQswRIRqB8pGOfnTf4Aha7Nu59oyxPz1vEnqnJxz47wckbg4GLYQ==
+X-Received: by 2002:a17:902:2aab:: with SMTP id j40mr75540236plb.238.1558622682710;
+        Thu, 23 May 2019 07:44:42 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id c129sm39219824pfg.178.2019.05.23.07.44.41
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 23 May 2019 07:44:41 -0700 (PDT)
+Date:   Thu, 23 May 2019 07:45:08 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] soc: qcom: apr: Don't use reg for domain id
+Message-ID: <20190523144508.GH2085@tuxbook-pro>
+References: <20190522015342.29501-1-bjorn.andersson@linaro.org>
+ <e7046725-578d-8854-872b-a7837d0fc20a@linaro.org>
 MIME-Version: 1.0
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <aa5ec90854429c2d9e2c565604243e1b10cfd94b.1558605170.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <aa5ec90854429c2d9e2c565604243e1b10cfd94b.1558605170.git-series.maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 23 May 2019 09:44:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJvgUAmON5Vew-mnwkFjNuRkx_f7quiy_7Rv_55JpzOOA@mail.gmail.com>
-Message-ID: <CAL_JsqJvgUAmON5Vew-mnwkFjNuRkx_f7quiy_7Rv_55JpzOOA@mail.gmail.com>
-Subject: Re: [PATCH 2/8] dt-bindings: net: Add a YAML schemas for the generic
- PHY options
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7046725-578d-8854-872b-a7837d0fc20a@linaro.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 4:57 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> The networking PHYs have a number of available device tree properties that
-> can be used in their device tree node. Add a YAML schemas for those.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 148 +++++++++-
->  Documentation/devicetree/bindings/net/phy.txt           |  80 +-----
->  2 files changed, 149 insertions(+), 79 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/ethernet-phy.yaml
->
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> new file mode 100644
-> index 000000000000..eb79ee6db977
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/ethernet-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ethernet PHY Generic Binding
-> +
-> +maintainers:
-> +  - David S. Miller <davem@davemloft.net>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^ethernet-phy(@[a-f0-9])?$"
-> +
-> +  compatible:
-> +    oneOf:
-> +      - const: ethernet-phy-ieee802.3-c22
-> +        description: PHYs that implement IEEE802.3 clause 22
-> +      - const: ethernet-phy-ieee802.3-c45
-> +        description: PHYs that implement IEEE802.3 clause 45
-> +      - pattern: "^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$"
-> +        description:
-> +          The first group of digits is the 16 bit Phy Identifier 1
-> +          register, this is the chip vendor OUI bits 3:18. The
-> +          second group of digits is the Phy Identifier 2 register,
-> +          this is the chip vendor OUI bits 19:24, followed by 10
-> +          bits of a vendor specific ID.
-> +
-> +  reg:
-> +    maxItems: 1
-> +    minimum: 0
-> +    maximum: 31
+On Thu 23 May 07:38 PDT 2019, Srinivas Kandagatla wrote:
 
-min/max need to be under 'items'. I don't think these would ever be
-valid if the type is an array.
+> 
+> 
+> On 22/05/2019 02:53, Bjorn Andersson wrote:
+> > The reg property represents the address and size on the bus that a
+> > device lives, but for APR the parent is a rpmsg bus, which does not have
+> > numerical addresses. Simply defining #address/#size-cells to 1 and 0,
+> > respectively, to silence the compiler is not an appropriate solution.
+> > 
+> I agree.
+> 
+> > Replace the use of "reg" with an APR specific property.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> Can you also change the example too.
+> 
 
-I've modified the meta-schema to catch this.
+Of course, sorry for missing that.
 
-> +    description:
-> +      The ID number for the PHY.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  max-speed:
-> +    enum:
-> +      - 10
-> +      - 100
-> +      - 1000
-> +    description:
-> +      Maximum PHY supported speed in Mbits / seconds.
-> +
-> +  broken-turn-around:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      If set, indicates the PHY device does not correctly release
-> +      the turn around line low at the end of a MDIO transaction.
-> +
-> +  enet-phy-lane-swap:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      If set, indicates the PHY will swap the TX/RX lanes to
-> +      compensate for the board being designed with the lanes
-> +      swapped.
-> +
-> +  eee-broken-100tx:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Mark the corresponding energy efficient ethernet mode as
-> +      broken and request the ethernet to stop advertising it.
-> +
-> +  eee-broken-1000t:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Mark the corresponding energy efficient ethernet mode as
-> +      broken and request the ethernet to stop advertising it.
-> +
-> +  eee-broken-10gt:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Mark the corresponding energy efficient ethernet mode as
-> +      broken and request the ethernet to stop advertising it.
-> +
-> +  eee-broken-1000kx:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Mark the corresponding energy efficient ethernet mode as
-> +      broken and request the ethernet to stop advertising it.
-> +
-> +  eee-broken-10gkx4:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Mark the corresponding energy efficient ethernet mode as
-> +      broken and request the ethernet to stop advertising it.
-> +
-> +  eee-broken-10gkr:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Mark the corresponding energy efficient ethernet mode as
-> +      broken and request the ethernet to stop advertising it.
-> +
-> +  phy-is-integrated:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      If set, indicates that the PHY is integrated into the same
-> +      physical package as the Ethernet MAC. If needed, muxers
-> +      should be configured to ensure the integrated PHY is
-> +      used. The absence of this property indicates the muxers
-> +      should be configured so that the external PHY is used.
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: phy
-> +
-> +  reset-gpios:
-> +    description:
-> +      The GPIO phandle and specifier for the PHY reset signal.
+> other than that am okay with the change.
+> 
+> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> 
 
-maxItems: 1
+Thanks,
+Bjorn
 
-I have a meta-schema change to catch this, but It will require updates
-to some existing cases.
-
-
-> +
-> +  reset-assert-us:
-> +    description:
-> +      Delay after the reset was asserted in microseconds. If this
-> +      property is missing the delay will be skipped.
-> +
-> +  reset-deassert-us:
-> +    description:
-> +      Delay after the reset was deasserted in microseconds. If
-> +      this property is missing the delay will be skipped.
-> +
-> +required:
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    ethernet {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet-phy@0 {
-> +            compatible = "ethernet-phy-id0141.0e90", "ethernet-phy-ieee802.3-c22";
-> +            interrupt-parent = <&PIC>;
-> +            interrupts = <35 1>;
-> +            reg = <0>;
-> +
-> +            resets = <&rst 8>;
-> +            reset-names = "phy";
-> +            reset-gpios = <&gpio1 4 1>;
-> +            reset-assert-us = <1000>;
-> +            reset-deassert-us = <2000>;
-> +        };
-> +    };
+> --srini
+> > 
+> > The APR device was recently added to msm8996.dtsi, but this is still
+> > depending on working SMMU to provide functional audio support.
+> > 
+> >   Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt | 2 +-
+> >   drivers/soc/qcom/apr.c                                  | 2 +-
+> >   2 files changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+> > index bcc612cc7423..38d3c06abc41 100644
+> > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+> > @@ -9,7 +9,7 @@ used for audio/voice services on the QDSP.
+> >   	Value type: <stringlist>
+> >   	Definition: must be "qcom,apr-v<VERSION-NUMBER>", example "qcom,apr-v2"
+> > -- reg
+> > +- qcom,apr-domain
+> >   	Usage: required
+> >   	Value type: <u32>
+> >   	Definition: Destination processor ID.
+> > diff --git a/drivers/soc/qcom/apr.c b/drivers/soc/qcom/apr.c
+> > index 74f8b9607daa..b83d71b2e0a4 100644
+> > --- a/drivers/soc/qcom/apr.c
+> > +++ b/drivers/soc/qcom/apr.c
+> > @@ -276,7 +276,7 @@ static int apr_probe(struct rpmsg_device *rpdev)
+> >   	if (!apr)
+> >   		return -ENOMEM;
+> > -	ret = of_property_read_u32(dev->of_node, "reg", &apr->dest_domain_id);
+> > +	ret = of_property_read_u32(dev->of_node, "qcom,apr-domain", &apr->dest_domain_id);
+> >   	if (ret) {
+> >   		dev_err(dev, "APR Domain ID not specified in DT\n");
+> >   		return ret;
+> > 
