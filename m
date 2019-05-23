@@ -2,365 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 656C927B81
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C7B727BAC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728277AbfEWLOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 07:14:51 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:14214 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727466AbfEWLOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 07:14:51 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce680a80000>; Thu, 23 May 2019 04:14:48 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 23 May 2019 04:14:47 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 23 May 2019 04:14:47 -0700
-Received: from [10.24.193.7] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 23 May
- 2019 11:14:44 +0000
-Subject: Re: [Patch V3 2/8] phy: tegra: xusb: t210: add usb3 port fake support
-To:     jckuo <jckuo@nvidia.com>, <balbi@kernel.org>,
-        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
- <1557988772-15406-3-git-send-email-nkristam@nvidia.com>
- <3e9c1919-c3d6-2d08-ca83-c600f4fd60f9@nvidia.com>
-X-Nvconfidentiality: public
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-Message-ID: <5e83a371-d56b-72ef-be6e-f4112711f3e9@nvidia.com>
-Date:   Thu, 23 May 2019 16:46:00 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <3e9c1919-c3d6-2d08-ca83-c600f4fd60f9@nvidia.com>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
+        id S1730404AbfEWLXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 07:23:41 -0400
+Received: from mail-eopbgr70040.outbound.protection.outlook.com ([40.107.7.40]:58151
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729934AbfEWLXl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 07:23:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ed32Chka+6thbE9sFwHyq6Y69WFt2xNaPXh/EdResLo=;
+ b=oQm+uwUhOChqWiXMiyHk/Bo0POzG/55pUsSiD2FBCuvoLX7hMinj1ceimkr9ykREYaI3LU9+581zm4kgkSNEdVy+d4yAZcikIUs/jcLq3tbt1DkU09Ne0dqYXtB/gIQjDVQdyCLuN1RPD27BfaqWn38ErAebeBRbPkdYdH62lDiwD9VkkV5XZniqUQ1eZrpXzdGkchQpiHEwIOq+vxzxIkpo4Gz7ALSEDiC8G4YFqy6iL5g0fvPAJR0ixUHZWM35nN2066qPpPu7L264arkNrQFEIe1ymNFmUmMRDmA0BpMWkROifYFPgXW0nsDcMjgYrg/WvC2cpOov1iex6ZJV5g==
+Received: from AM0PR03MB4148.eurprd03.prod.outlook.com (20.176.214.210) by
+ AM0PR03MB4097.eurprd03.prod.outlook.com (52.135.145.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.16; Thu, 23 May 2019 11:23:35 +0000
+Received: from AM0PR03MB4148.eurprd03.prod.outlook.com
+ ([fe80::55c5:599a:1f80:208a]) by AM0PR03MB4148.eurprd03.prod.outlook.com
+ ([fe80::55c5:599a:1f80:208a%3]) with mapi id 15.20.1900.020; Thu, 23 May 2019
+ 11:23:35 +0000
+From:   Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+CC:     Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>,
+        "trivial@kernel.org" <trivial@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH] dt-bindings: arm: fix the document ID for SCMI protocol
+ documentation
+Thread-Topic: [PATCH] dt-bindings: arm: fix the document ID for SCMI protocol
+ documentation
+Thread-Index: AQHVEVn2U05P8CKPx0+q1JYvuEenTQ==
+Date:   Thu, 23 May 2019 11:23:35 +0000
+Message-ID: <20190523112312.24529-1-volodymyr_babchuk@epam.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Volodymyr_Babchuk@epam.com; 
+x-originating-ip: [85.223.209.22]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2ff935c0-f8c9-43a9-d420-08d6df7118ba
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);SRVR:AM0PR03MB4097;
+x-ms-traffictypediagnostic: AM0PR03MB4097:
+x-microsoft-antispam-prvs: <AM0PR03MB40974CAFCF458D85FD153078E6010@AM0PR03MB4097.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 00462943DE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(346002)(39860400002)(396003)(136003)(366004)(189003)(199004)(71200400001)(66066001)(71190400001)(14444005)(2906002)(6506007)(72206003)(4744005)(26005)(86362001)(7736002)(256004)(3846002)(305945005)(186003)(316002)(80792005)(36756003)(54906003)(6916009)(6512007)(6486002)(8936002)(91956017)(66556008)(64756008)(66446008)(73956011)(76116006)(508600001)(66946007)(66476007)(25786009)(486006)(476003)(6436002)(1076003)(2616005)(8676002)(81156014)(53936002)(102836004)(81166006)(4326008)(14454004)(5660300002)(99286004)(55236004)(6116002)(68736007);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR03MB4097;H:AM0PR03MB4148.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: epam.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: gtKwsS3K30wIPVTa4jZasgER5FVv/HiaAE9l9PIMPUGjifB6CoPxlZbDwHnn4O8B/l2TrNZMqXlv3lx8vYaYhHlcP5iEhy7Kl24CEjRgqiS19l7HtnK3IKjKwz8WSaUnJIU/LbIUIPxZmKeQzKo68M8Sw03uUFTq8YVKBp9/YkEG8d0ZlSLEjufjpbRRESGD/u5tEHFNE0bZLapn6Cy72QIykTOQJnqBoLNGM75ZQTLmgyWYJ3VBTdD3Jz5gopdNiOKXFaG0uaYw4Jh/yGh01RyIjhK2oFOs8Hm5kHW3bULoI1wA+D9z3RKVsL46qRmcqsXxcd+ml7DAmjKUUP0aPJFgCiFre5vQxWJ/pwLbh8s4yhO0zdzEJDjfuH2hmNcIafa/b8/eA2upDpMJNto9gfCgiPjARl4qeuQtohv6Ye0=
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558610088; bh=IcX/5+7rdh5+2ub+oT4bNMyM65ADgLtjrOwKDUQXxzo=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=M5kI+hROqopTJdB50ZptYeUmsYCmOy7RmKWgHThNqJSroac0DuT5pQoKKvwEWceQb
-         1rQXEb3NgdgXcYWB/zWsYusUKP8FxJEOERZDX3B73GqUUdwVKGAfDzA/nSlBKJrv4E
-         xh7qs8FcVccZR9kmcPVLza0Pb/rRVDmkW88knR0cpkv8KF+q4dzpBcCiRbdS1Opm7d
-         rrj5ZmqNySSpQ1Qyl+UQzEd/ULIH1IvCVmxzS4nqCP8aI/YUW8C919lrqvNa3+0Cj/
-         M7dFdipybOaIjhG3QQKngLO2/M3aXgAisasbEdpwgGtneqxzv/pesMSU3bVVz2TSKE
-         cVXePBk912Q1A==
+MIME-Version: 1.0
+X-OriginatorOrg: epam.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ff935c0-f8c9-43a9-d420-08d6df7118ba
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 11:23:35.7760
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR03MB4097
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Volodymyr Babchuk <volodymyr_babchuk@epam.com
 
+arm,scmi.txt used the wrong document identifier. "ARM DUI 0922B" is
+the "ARM Compute Subsystem SCP, Message Interface Protocols". What we
+need is the ARM DEN 0056A - "ARM System Control and Management
+Interface Platform Design Document".
 
-On 21-05-2019 08:30, jckuo wrote:
-> Hi Nagarjuna,
->=20
-> Please check tegra_xusb_update_usb3_fake_port().
->=20
-> Thanks,
->=20
-> JC
->=20
-> On 5/16/19 2:39 PM, Nagarjuna Kristam wrote:
->> On Tegra210, usb2 only otg/peripheral ports dont work in device mode.
->> They need an assosciated usb3 port to work in device mode. Identify
->> an unused usb3 port and assign it as a fake USB3 port to USB2 only
->> port whose mode is otg/peripheral.
->>
->> Based on work by BH Hsieh <bhsieh@nvidia.com>.
->>
->> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
->> ---
->> =C2=A0 drivers/phy/tegra/xusb-tegra210.c | 56 ++++++++++++++++++++++++++=
-+++++
->> =C2=A0 drivers/phy/tegra/xusb.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 69 +++++++++++++++++++++++++++++++++++++++
->> =C2=A0 drivers/phy/tegra/xusb.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 2 ++
->> =C2=A0 3 files changed, 127 insertions(+)
->>
->> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-=
-tegra210.c
->> index 4beebcc..829aca5 100644
->> --- a/drivers/phy/tegra/xusb-tegra210.c
->> +++ b/drivers/phy/tegra/xusb-tegra210.c
->> @@ -58,6 +58,7 @@
->> =C2=A0 #define XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP_SHIFT(x) ((x) * 5)
->> =C2=A0 #define XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP_MASK(x) (0x7 << ((x) * =
-5))
->> =C2=A0 #define XUSB_PADCTL_SS_PORT_MAP_PORTX_MAP(x, v) (((v) & 0x7) << (=
-(x) * 5))
->> +#define XUSB_PADCTL_SS_PORT_MAP_PORT_DISABLED 0x7
->> =C2=A0 =C2=A0 #define XUSB_PADCTL_ELPG_PROGRAM1 0x024
->> =C2=A0 #define XUSB_PADCTL_ELPG_PROGRAM1_AUX_MUX_LP0_VCORE_DOWN (1 << 31=
-)
->> @@ -952,6 +953,34 @@ static int tegra210_usb2_phy_power_on(struct phy *p=
-hy)
->> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 priv =3D to_tegra210_xusb_padctl(p=
-adctl);
->> =C2=A0 +=C2=A0=C2=A0=C2=A0 if (port->usb3_port_fake !=3D -1) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_SS_PORT_MAP);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value &=3D ~XUSB_PADCTL_SS_P=
-ORT_MAP_PORTX_MAP_MASK(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value |=3D XUSB_PADCTL_SS_PO=
-RT_MAP_PORTX_MAP(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake, index);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_SS_PORT_MAP);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value &=3D ~XUSB_PADCTL_ELPG=
-_PROGRAM1_SSPX_ELPG_VCORE_DOWN(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_ELPG_PROGRAM1);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usleep_range(100, 200);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value &=3D ~XUSB_PADCTL_ELPG=
-_PROGRAM1_SSPX_ELPG_CLAMP_EN_EARLY(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_ELPG_PROGRAM1);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usleep_range(100, 200);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value &=3D ~XUSB_PADCTL_ELPG=
-_PROGRAM1_SSPX_ELPG_CLAMP_EN(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padctl, XUSB_PADCT=
-L_USB2_BIAS_PAD_CTL0);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value &=3D ~((XUSB_PADCTL_USB2_BIAS_PAD_C=
-TL0_HS_SQUELCH_LEVEL_MASK <<
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 XUSB_PADCTL_USB2_BIAS_PAD_CTL0_HS_SQUELCH_LEVEL_SHIFT) |
->> @@ -1086,6 +1115,32 @@ static int tegra210_usb2_phy_power_off(struct phy=
- *phy)
->> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_lock(&padctl->lock);
->> =C2=A0 +=C2=A0=C2=A0=C2=A0 if (port->usb3_port_fake !=3D -1) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value |=3D XUSB_PADCTL_ELPG_=
-PROGRAM1_SSPX_ELPG_CLAMP_EN_EARLY(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_ELPG_PROGRAM1);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usleep_range(100, 200);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value |=3D XUSB_PADCTL_ELPG_=
-PROGRAM1_SSPX_ELPG_CLAMP_EN(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_ELPG_PROGRAM1);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usleep_range(250, 350);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_ELPG_PROGRAM1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value |=3D XUSB_PADCTL_ELPG_=
-PROGRAM1_SSPX_ELPG_VCORE_DOWN(
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 port->usb3_port_fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_ELPG_PROGRAM1);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value =3D padctl_readl(padct=
-l, XUSB_PADCTL_SS_PORT_MAP);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 value |=3D XUSB_PADCTL_SS_PO=
-RT_MAP_PORTX_MAP(port->usb3_port_fake,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 XUSB_PADCTL_SS_PORT_MAP_PORT_=
-DISABLED);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 padctl_writel(padctl, value,=
- XUSB_PADCTL_SS_PORT_MAP);
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (WARN_ON(pad->enable =3D=3D 0))
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto out;
->> =C2=A0 @@ -2051,6 +2106,7 @@ const struct tegra_xusb_padctl_soc tegra210=
-_xusb_padctl_soc =3D {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 },
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 },
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .ops =3D &tegra210_xusb_padctl_ops,
->> +=C2=A0=C2=A0=C2=A0 .need_fake_usb3_port =3D true,
->> =C2=A0 };
->> =C2=A0 EXPORT_SYMBOL_GPL(tegra210_xusb_padctl_soc);
->> =C2=A0 diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
->> index 0417213..6618db7 100644
->> --- a/drivers/phy/tegra/xusb.c
->> +++ b/drivers/phy/tegra/xusb.c
->> @@ -808,9 +808,66 @@ static void __tegra_xusb_remove_ports(struct tegra_=
-xusb_padctl *padctl)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> =C2=A0 }
->> =C2=A0 +static int tegra_xusb_find_unused_usb3_port(struct tegra_xusb_pa=
-dctl *padctl)
->> +{
->> +=C2=A0=C2=A0=C2=A0 struct device_node *np;
->> +=C2=A0=C2=A0=C2=A0 unsigned int i;
->> +
->> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < padctl->soc->ports.usb3.count; i++=
-) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 np =3D tegra_xusb_find_port_=
-node(padctl, "usb3", i);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!np || !of_device_is_ava=
-ilable(np))
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retu=
-rn i;
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> +=C2=A0=C2=A0=C2=A0 return -ENODEV;
->> +}
->> +
->> +static bool tegra_xusb_usb3_port_has_companion(struct tegra_xusb_padctl=
- *padctl,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int index)
->> +{
->> +=C2=A0=C2=A0=C2=A0 unsigned int i;
->> +=C2=A0=C2=A0=C2=A0 struct tegra_xusb_usb3_port *usb3;
->> +
->> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < padctl->soc->ports.usb3.count; i++=
-) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usb3 =3D tegra_xusb_find_usb=
-3_port(padctl, i);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (usb3 && usb3->port =3D=
-=3D index)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retu=
-rn true;
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> +=C2=A0=C2=A0=C2=A0 return false;
->> +}
->> +
->> +static int tegra_xusb_update_usb3_fake_port(struct tegra_xusb_usb2_port=
- *usb2)
->> +{
->> +=C2=A0=C2=A0=C2=A0 int fake;
->> +
->> +=C2=A0=C2=A0=C2=A0 /* Disable usb3_port_fake usage by default and assig=
-n if needed */
->> +=C2=A0=C2=A0=C2=A0 usb2->usb3_port_fake =3D -1;
->> +
->> +=C2=A0=C2=A0=C2=A0 if ((usb2->mode =3D=3D USB_DR_MODE_OTG ||
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usb2->mode =3D=3D USB_=
-DR_MODE_PERIPHERAL) &&
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !tegra_xusb_usb3_port_has_co=
-mpanion(usb2->base.padctl,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 usb2->base.index)) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fake =3D tegra_xusb_find_unu=
-sed_usb3_port(usb2->base.padctl);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (fake < 0) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_=
-err(&usb2->base.dev, "no unused USB3 ports available\n");
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retu=
-rn -ENODEV;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(&usb2->base.dev, "Fo=
-und unused usb3 port: %d\n",
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fake);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usb2->usb3_port_fake =3D fak=
-e;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_xusb_find_unused_usb3_=
-port(usb2->base.padctl);
-> This looks redundant to me.
-Yes, will remove the same
+Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
+---
+ Documentation/devicetree/bindings/arm/arm,scmi.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
--Nagarjuna
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> +=C2=A0=C2=A0=C2=A0 return 0;
->> +}
->> +
->> =C2=A0 static int tegra_xusb_setup_ports(struct tegra_xusb_padctl *padct=
-l)
->> =C2=A0 {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_xusb_port *port;
->> +=C2=A0=C2=A0=C2=A0 struct tegra_xusb_usb2_port *usb2;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int i;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int err =3D 0;
->> =C2=A0 @@ -840,6 +897,18 @@ static int tegra_xusb_setup_ports(struct teg=
-ra_xusb_padctl *padctl)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 goto remove_ports;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> =C2=A0 +=C2=A0=C2=A0=C2=A0 if (padctl->soc->need_fake_usb3_port) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < padctl->so=
-c->ports.usb2.count; i++) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usb2=
- =3D tegra_xusb_find_usb2_port(padctl, i);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (=
-!usb2)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 continue;
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =
-=3D tegra_xusb_update_usb3_fake_port(usb2);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (=
-err < 0)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 goto remove_ports;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 list_for_each_entry(port, &padctl->ports,=
- list) {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D port->ops=
-->enable(port);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err < 0)
->> diff --git a/drivers/phy/tegra/xusb.h b/drivers/phy/tegra/xusb.h
->> index e0028b9f..26dd6d2 100644
->> --- a/drivers/phy/tegra/xusb.h
->> +++ b/drivers/phy/tegra/xusb.h
->> @@ -299,6 +299,7 @@ struct tegra_xusb_usb2_port {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct regulator *supply;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum usb_dr_mode mode;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool internal;
->> +=C2=A0=C2=A0=C2=A0 int usb3_port_fake;
->> =C2=A0 };
->> =C2=A0 =C2=A0 static inline struct tegra_xusb_usb2_port *
->> @@ -397,6 +398,7 @@ struct tegra_xusb_padctl_soc {
->> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const char * const *supply_names;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int num_supplies;
->> +=C2=A0=C2=A0=C2=A0 bool need_fake_usb3_port;
->> =C2=A0 };
->> =C2=A0 =C2=A0 struct tegra_xusb_padctl {
+diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documenta=
+tion/devicetree/bindings/arm/arm,scmi.txt
+index 5f3719ab7075..317a2fc3667a 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+@@ -6,7 +6,7 @@ that are provided by the hardware platform it is running on=
+, including power
+ and performance functions.
+=20
+ This binding is intended to define the interface the firmware implementing
+-the SCMI as described in ARM document number ARM DUI 0922B ("ARM System Co=
+ntrol
++the SCMI as described in ARM document number ARM DEN 0056A ("ARM System Co=
+ntrol
+ and Management Interface Platform Design Document")[0] provide for OSPM in
+ the device tree.
+=20
+--=20
+2.21.0
