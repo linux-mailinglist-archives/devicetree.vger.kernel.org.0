@@ -2,635 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19B3B28086
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 17:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D2C28099
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 17:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730719AbfEWPGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 11:06:21 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:17290 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730708AbfEWPGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 11:06:21 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4NF1gUL015469;
-        Thu, 23 May 2019 17:05:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=h7OSY8B4dK5iSIbELxyjbV1vqwOSDTJy33ZuJ573DGw=;
- b=f1QjiHlHj7o/V6vHmmUrjdSd+Qps5znZ0ZgFXxVctefgC2O6KREP3g+HVTzlnnjPcZw1
- sCCStdjBBYFpeccSvwsMHotx8Q+F1KGubzpRuQ1nRQ0JISvwwkplj5bmc2l3MT8Tr6lJ
- 7k+NQ3Ad4Al+zzafgz5Ac3AwVz57Qexsgz67XhziueKson7/2usGSg3osI0Czj3zmOIr
- r4pXvmDxY9SQ+cGh0YCbzEKSf8G155LmkaSxW5VGOPkgwH1Yhq/l/p3AnjeGkNtjEcNi
- SQSZYHHH2SaGbS6amuk3VzXvUpIVw/eRyvcpakKOo4xQyjCkO2Ij6qCkv2rIsWcZ/gyT Bg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2snrve1xsp-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Thu, 23 May 2019 17:05:54 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 78D8838;
-        Thu, 23 May 2019 15:05:53 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 168EE2D58;
-        Thu, 23 May 2019 15:05:53 +0000 (GMT)
-Received: from [10.48.0.204] (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 23 May
- 2019 17:05:52 +0200
-Subject: Re: [PATCH 6/8] dt-bindings: net: stmmac: Convert the binding to a
- schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1730783AbfEWPK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 11:10:58 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:46002 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730756AbfEWPK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 11:10:58 -0400
+Received: by mail-wr1-f65.google.com with SMTP id b18so6665197wrq.12;
+        Thu, 23 May 2019 08:10:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lG50LjNdtMd0GMcXEgVx+Uoijbx7K9hNxSLBW/EgKhU=;
+        b=ldNHsFevoUJI+m4FbTi2UMH8wljD73iVyxptd+ijSL15+l+rvV27f4AhOfD6Zithsz
+         WHb2N7G1npz9JSFRbdGPfYOgGBC0e9w0H9CXu1nBFbBWtdq43KJ+vRiBbMmpxNw9KI4S
+         Aep6RVyaD/KsRv+ZWnTUzNufFG+S8xl+kI8jsyzurpZGX262YD6X/LM6Hwe1FT0zDZXU
+         SKQeh+duhFV4XN7daCUxIws7h8BRcEK3oGdbGeAJblBk/DV5iFfMf+TJAnpzMNzmokQP
+         rbhFXAqrhe3S1YPlLEklIZ7ksp7mHOESuCYvGE5DJiGKehx2Ifyo5fOyiYFAXuRrF106
+         aAQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lG50LjNdtMd0GMcXEgVx+Uoijbx7K9hNxSLBW/EgKhU=;
+        b=Bqzhz6fMEoOC+nSzSGddgW9jAwV9MJOP3N+JxS/FC/+6LLktL2BVZ2HF49qjfyRSrB
+         a/DG/+K6cPnQgpApU1YOaLs4a290Fhncw41Up1ETy30GozXE/A6T2QAqqi1N0aQ2C8wT
+         /QtLazp4C0wSk5oHg1N+sLj10T/MTIO7nkv/Ncr/c4qJfxIIzIYn8/bytBiTjtH0WYtJ
+         2Kp3QaQwz7AhUuNGJuYsQ7sf53Al2nDRv+y44tbv8195LJhw5UCj/tBcr/Jvdi3eSQl+
+         nBiU/pJfoHlQ/VxRm0byEWjywx6Et3gZd4aDPlt0rsJDEsdXNSfmp42OUrtxYNLCroNY
+         Zsjg==
+X-Gm-Message-State: APjAAAU25wD6sX2esBLb7x0dKCgHuLqb0MFswPBLAAf/Os3ggjqrYH9T
+        RFj7aC5OfBtSQAPEFOeNE2Sx2xTTlUZngQ==
+X-Google-Smtp-Source: APXvYqwCg24QiXYaWltw5JOWO6jVdtF8z8XW5AMyTqUcKape8p/MJ1d+TsrXsWEg5OIeBmZrAPWruA==
+X-Received: by 2002:adf:cf0e:: with SMTP id o14mr3337336wrj.230.1558624256003;
+        Thu, 23 May 2019 08:10:56 -0700 (PDT)
+Received: from localhost.localdomain (18.189-60-37.rdns.acropolistelecom.net. [37.60.189.18])
+        by smtp.gmail.com with ESMTPSA id q15sm11436324wrr.19.2019.05.23.08.10.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 May 2019 08:10:55 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
         Chen-Yu Tsai <wens@csie.org>
-CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?Q?Antoine_T=c3=a9nart?= <antoine.tenart@bootlin.com>
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <ba1a5d8ad34a8c9ab99f504c04fbe65bde42081b.1558605170.git-series.maxime.ripard@bootlin.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <9094f39f-0e26-55dd-9b47-9a55089400da@st.com>
-Date:   Thu, 23 May 2019 17:05:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v5 0/4] Allwinner H6 watchdog support
+Date:   Thu, 23 May 2019 17:10:46 +0200
+Message-Id: <20190523151050.27302-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <ba1a5d8ad34a8c9ab99f504c04fbe65bde42081b.1558605170.git-series.maxime.ripard@bootlin.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG7NODE2.st.com (10.75.127.20) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-23_12:,,
- signatures=0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime
+Hi,
 
-On 5/23/19 11:56 AM, Maxime Ripard wrote:
-> Switch the STMMAC / Synopsys DesignWare MAC controller binding to a YAML
-> schema to enable the DT validation.
-> 
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
+Allwinner H6 SoC has two watchdogs.
 
-First, thanks a lot for this patch. Just one question:
-We could add ranges for some properties in order to avoid "bad value" 
-for a property. If I understand correctly you do it only for 
-snps,dwxgmac, snps,dwxgmac-2.10 and st,spear600-gmac. Why not do it for 
-all supported IPs ? (Maybe it is something that we could add later)
+As we are not sure that both A64 and H6 are stricly identical, I have
+introduced the H6 bindings.
 
+After investigation it seems that on some boards the first watchdog doesn't
+make it properly reboot. Please see details in the commit log.
 
+I think it's proper to add it with a comment anyway.
 
->   Documentation/devicetree/bindings/net/snps,dwmac.yaml | 344 +++++++++++-
->   Documentation/devicetree/bindings/net/stmmac.txt      | 179 +------
->   2 files changed, 345 insertions(+), 178 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> new file mode 100644
-> index 000000000000..be3ada5121e1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -0,0 +1,344 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare MAC Device Tree Bindings
-> +
-> +maintainers:
-> +  - Alexandre Torgue <alexandre.torgue@st.com>
-> +  - Giuseppe Cavallaro <peppe.cavallaro@st.com>
-> +  - Jose Abreu <joabreu@synopsys.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: snps,dwmac
-> +      - const: snps,dwmac-3.50a
-> +      - const: snps,dwmac-3.610
-> +      - const: snps,dwmac-3.70a
-> +      - const: snps,dwmac-3.710
-> +      - const: snps,dwmac-4.00
-> +      - const: snps,dwmac-4.10a
-> +      - const: snps,dwxgmac
-> +      - const: snps,dwxgmac-2.10
-> +      - const: st,spear600-gmac
-> +        description: Deprecated
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 3
-> +    items:
-> +      - description: Combined signal for various interrupt events
-> +      - description: The interrupt to manage the remote wake-up packet detection
-> +      - description: The interrupt that occurs when Rx exits the LPI state
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 3
-> +    items:
-> +      - const: macirq
-> +      - const: eth_wake_irq
-> +      - const: eth_lpi
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +    items:
-> +      - description: GMAC main clock
-> +      - description: Peripheral registers interface clock
-> +      - description:
-> +          PTP reference clock. This clock is used for programming the
-> +          Timestamp Addend Register. If not passed then the system
-> +          clock will be used and this is fine on some platforms.
-> +
-> +  clock-names:
-> +    additionalItems: true
-> +    contains:
-> +      enum:
-> +        - stmmaceth
-> +        - pclk
-> +        - ptp_ref
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description:
-> +      MAC Reset signal.
-> +
-> +  reset-names:
-> +    const: stmmaceth
-> +
-> +  snps,axi-config:
-> +    $ref: /schemas/types.yaml#definitions/phandle
-> +    description:
-> +      AXI BUS Mode parameters. Phandle to a node that can contain the
-> +      following properties
-> +        * snps,lpi_en, enable Low Power Interface
-> +        * snps,xit_frm, unlock on WoL
-> +        * snps,wr_osr_lmt, max write outstanding req. limit
-> +        * snps,rd_osr_lmt, max read outstanding req. limit
-> +        * snps,kbbe, do not cross 1KiB boundary.
-> +        * snps,blen, this is a vector of supported burst length.
-> +        * snps,fb, fixed-burst
-> +        * snps,mb, mixed-burst
-> +        * snps,rb, rebuild INCRx Burst
-> +
-> +  snps,mtl-rx-config:
-> +    $ref: /schemas/types.yaml#definitions/phandle
-> +    description:
-> +      Multiple RX Queues parameters. Phandle to a node that can
-> +      contain the following properties
-> +        * snps,rx-queues-to-use, number of RX queues to be used in the
-> +          driver
-> +        * Choose one of these RX scheduling algorithms
-> +          * snps,rx-sched-sp, Strict priority
-> +          * snps,rx-sched-wsp, Weighted Strict priority
-> +        * For each RX queue
-> +          * Choose one of these modes
-> +            * snps,dcb-algorithm, Queue to be enabled as DCB
-> +            * snps,avb-algorithm, Queue to be enabled as AVB
-> +          * snps,map-to-dma-channel, Channel to map
-> +          * Specifiy specific packet routing
-> +            * snps,route-avcp, AV Untagged Control packets
-> +            * snps,route-ptp, PTP Packets
-> +            * snps,route-dcbcp, DCB Control Packets
-> +            * snps,route-up, Untagged Packets
-> +            * snps,route-multi-broad, Multicast & Broadcast Packets
-> +          * snps,priority, RX queue priority (Range 0x0 to 0xF)
-> +
-> +  snps,mtl-tx-config:
-> +    $ref: /schemas/types.yaml#definitions/phandle
-> +    description:
-> +      Multiple TX Queues parameters. Phandle to a node that can
-> +      contain the following properties
-> +        * snps,tx-queues-to-use, number of TX queues to be used in the
-> +          driver
-> +        * Choose one of these TX scheduling algorithms
-> +          * snps,tx-sched-wrr, Weighted Round Robin
-> +          * snps,tx-sched-wfq, Weighted Fair Queuing
-> +          * snps,tx-sched-dwrr, Deficit Weighted Round Robin
-> +          * snps,tx-sched-sp, Strict priority
-> +        * For each TX queue
-> +          * snps,weight, TX queue weight (if using a DCB weight
-> +            algorithm)
-> +          * Choose one of these modes
-> +            * snps,dcb-algorithm, TX queue will be working in DCB
-> +            * snps,avb-algorithm, TX queue will be working in AVB
-> +              [Attention] Queue 0 is reserved for legacy traffic
-> +                          and so no AVB is available in this queue.
-> +          * Configure Credit Base Shaper (if AVB Mode selected)
-> +            * snps,send_slope, enable Low Power Interface
-> +            * snps,idle_slope, unlock on WoL
-> +            * snps,high_credit, max write outstanding req. limit
-> +            * snps,low_credit, max read outstanding req. limit
-> +          * snps,priority, TX queue priority (Range 0x0 to 0xF)
-> +
-> +  snps,reset-gpio:
-> +    description:
-> +      PHY Reset GPIO
-> +
-> +  snps,reset-active-low:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Indicates that the PHY Reset is active low
-> +
-> +  snps,reset-delay-us:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#definitions/uint32-array
-> +      - minItems: 3
-> +        maxItems: 3
-> +    description:
-> +      Triplet of delays. The 1st cell is reset pre-delay in micro
-> +      seconds. The 2nd cell is reset pulse in micro seconds. The 3rd
-> +      cell is reset post-delay in micro seconds.
-> +
-> +  snps,aal:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Use Address-Aligned Beats
-> +
-> +  snps,fixed-burst:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Program the DMA to use the fixed burst mode
-> +
-> +  snps,mixed-burst:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Program the DMA to use the mixed burst mode
-> +
-> +  snps,force_thresh_dma_mode:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Force DMA to use the threshold mode for both tx and rx
-> +
-> +  snps,force_sf_dma_mode:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Force DMA to use the Store and Forward mode for both tx and
-> +      rx. This flag is ignored if force_thresh_dma_mode is set.
-> +
-> +  snps,en-tx-lpi-clockgating:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description:
-> +      Enable gating of the MAC TX clock during TX low-power mode
-> +
-> +  snps,multicast-filter-bins:
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    description:
-> +      Number of multicast filter hash bins supported by this device
-> +      instance
-> +
-> +  snps,perfect-filter-entries:
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    description:
-> +      Number of perfect filter entries supported by this device
-> +      instance
-> +
-> +  snps,ps-speed:
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    description:
-> +      Port selection speed that can be passed to the core when PCS
-> +      is supported. For example, this is used in case of SGMII and
-> +      MAC2MAC connection.
-> +
-> +  mdio:
-> +    type: object
-> +    description:
-> +      Creates and registers an MDIO bus.
-> +
-> +    properties:
-> +      compatible:
-> +        const: snps,dwmac-mdio
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - phy-mode
-> +
-> +dependencies:
-> +  snps,reset-active-low: ["snps,reset-gpio"]
-> +  snps,reset-delay-us: ["snps,reset-gpio"]
-> +
-> +allOf:
-> +  - $ref: "ethernet-controller.yaml#"
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - snps,dwxgmac
-> +            - snps,dwxgmac-2.10
-> +            - st,spear600-gmac
-> +
-> +    then:
-> +      properties:
-> +        snps,pbl:
-> +          allOf:
-> +            - $ref: /schemas/types.yaml#definitions/uint32-array
-> +            - enum: [2, 4, 8]
-> +          description:
-> +            Programmable Burst Length (tx and rx)
-> +
-> +        snps,txpbl:
-> +          allOf:
-> +            - $ref: /schemas/types.yaml#definitions/uint32-array
-> +            - enum: [2, 4, 8]
-> +          description:
-> +            Tx Programmable Burst Length. If set, DMA tx will use this
-> +            value rather than snps,pbl.
-> +
-> +        snps,rxpbl:
-> +          allOf:
-> +            - $ref: /schemas/types.yaml#definitions/uint32-array
-> +            - enum: [2, 4, 8]
-> +          description:
-> +            Rx Programmable Burst Length. If set, DMA rx will use this
-> +            value rather than snps,pbl.
-> +
-> +        snps,no-pbl-x8:
-> +          $ref: /schemas/types.yaml#definitions/flag
-> +          description:
-> +            Don\'t multiply the pbl/txpbl/rxpbl values by 8. For core
-> +            rev < 3.50, don\'t multiply the values by 4.
-> +
-> +        snps,tso:
-> +          $ref: /schemas/types.yaml#definitions/flag
-> +          description:
-> +            Enables the TSO feature otherwise it will be managed by
-> +            MAC HW capability register. Only for GMAC4 and newer.
+The r_watchdog is still available and usable on all the H6 boards.
 
-TSO is also available for snps,dwmac-4.00 and snps,dwmac-4.10a
+Thanks,
+Clément
 
+Changes since v4:
+ - Delete specific bindings for r-wdt
 
-> +
-> +examples:
-> +  - |
-> +    stmmac_axi_setup: stmmac-axi-config {
-> +        snps,wr_osr_lmt = <0xf>;
-> +        snps,rd_osr_lmt = <0xf>;
-> +        snps,blen = <256 128 64 32 0 0 0>;
-> +    };
-> +
-> +    mtl_rx_setup: rx-queues-config {
-> +        snps,rx-queues-to-use = <1>;
-> +        snps,rx-sched-sp;
-> +        queue0 {
-> +            snps,dcb-algorithm;
-> +            snps,map-to-dma-channel = <0x0>;
-> +            snps,priority = <0x0>;
-> +        };
-> +    };
-> +
-> +    mtl_tx_setup: tx-queues-config {
-> +        snps,tx-queues-to-use = <2>;
-> +        snps,tx-sched-wrr;
-> +        queue0 {
-> +            snps,weight = <0x10>;
-> +            snps,dcb-algorithm;
-> +            snps,priority = <0x0>;
-> +        };
-> +
-> +        queue1 {
-> +            snps,avb-algorithm;
-> +            snps,send_slope = <0x1000>;
-> +            snps,idle_slope = <0x1000>;
-> +            snps,high_credit = <0x3E800>;
-> +            snps,low_credit = <0xFFC18000>;
-> +            snps,priority = <0x1>;
-> +        };
-> +    };
-> +
-> +    gmac0: ethernet@e0800000 {
-> +        compatible = "st,spear600-gmac";
-> +        reg = <0xe0800000 0x8000>;
-> +        interrupt-parent = <&vic1>;
-> +        interrupts = <24 23 22>;
-> +        interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> +        mac-address = [000000000000]; /* Filled in by U-Boot */
-> +        max-frame-size = <3800>;
-> +        phy-mode = "gmii";
-> +        snps,multicast-filter-bins = <256>;
-> +        snps,perfect-filter-entries = <128>;
-> +        rx-fifo-depth = <16384>;
-> +        tx-fifo-depth = <16384>;
-> +        clocks = <&clock>;
-> +        clock-names = "stmmaceth";
-> +        snps,axi-config = <&stmmac_axi_setup>;
-> +        snps,mtl-rx-config = <&mtl_rx_setup>;
-> +        snps,mtl-tx-config = <&mtl_tx_setup>;
-> +        mdio0 {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "snps,dwmac-mdio";
-> +            phy1: ethernet-phy@0 {
-> +            };
-> +        };
-> +    };
-> +
-> +# FIXME: We should set it, but it would report all the generic
-> +# properties as additional properties.
-> +# additionalProperties: false
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/net/stmmac.txt b/Documentation/devicetree/bindings/net/stmmac.txt
-> index cb694062afff..7d48782767cb 100644
-> --- a/Documentation/devicetree/bindings/net/stmmac.txt
-> +++ b/Documentation/devicetree/bindings/net/stmmac.txt
-> @@ -1,178 +1 @@
-> -* STMicroelectronics 10/100/1000/2500/10000 Ethernet (GMAC/XGMAC)
-> -
-> -Required properties:
-> -- compatible: Should be "snps,dwmac-<ip_version>", "snps,dwmac" or
-> -	"snps,dwxgmac-<ip_version>", "snps,dwxgmac".
-> -	For backwards compatibility: "st,spear600-gmac" is also supported.
-> -- reg: Address and length of the register set for the device
-> -- interrupts: Should contain the STMMAC interrupts
-> -- interrupt-names: Should contain a list of interrupt names corresponding to
-> -	the interrupts in the interrupts property, if available.
-> -	Valid interrupt names are:
-> -  - "macirq" (combined signal for various interrupt events)
-> -  - "eth_wake_irq" (the interrupt to manage the remote wake-up packet detection)
-> -  - "eth_lpi" (the interrupt that occurs when Rx exits the LPI state)
-> -- phy-mode: See ethernet.txt file in the same directory.
-> -- snps,reset-gpio 	gpio number for phy reset.
-> -- snps,reset-active-low boolean flag to indicate if phy reset is active low.
-> -- snps,reset-delays-us  is triplet of delays
-> -	The 1st cell is reset pre-delay in micro seconds.
-> -	The 2nd cell is reset pulse in micro seconds.
-> -	The 3rd cell is reset post-delay in micro seconds.
-> -
-> -Optional properties:
-> -- resets: Should contain a phandle to the STMMAC reset signal, if any
-> -- reset-names: Should contain the reset signal name "stmmaceth", if a
-> -	reset phandle is given
-> -- max-frame-size: See ethernet.txt file in the same directory
-> -- clocks: If present, the first clock should be the GMAC main clock and
-> -  the second clock should be peripheral's register interface clock. Further
-> -  clocks may be specified in derived bindings.
-> -- clock-names: One name for each entry in the clocks property, the
-> -  first one should be "stmmaceth" and the second one should be "pclk".
-> -- ptp_ref: this is the PTP reference clock; in case of the PTP is available
-> -  this clock is used for programming the Timestamp Addend Register. If not
-> -  passed then the system clock will be used and this is fine on some
-> -  platforms.
-> -- tx-fifo-depth: See ethernet.txt file in the same directory
-> -- rx-fifo-depth: See ethernet.txt file in the same directory
-> -- snps,pbl		Programmable Burst Length (tx and rx)
-> -- snps,txpbl		Tx Programmable Burst Length. Only for GMAC and newer.
-> -			If set, DMA tx will use this value rather than snps,pbl.
-> -- snps,rxpbl		Rx Programmable Burst Length. Only for GMAC and newer.
-> -			If set, DMA rx will use this value rather than snps,pbl.
-> -- snps,no-pbl-x8	Don't multiply the pbl/txpbl/rxpbl values by 8.
-> -			For core rev < 3.50, don't multiply the values by 4.
-> -- snps,aal		Address-Aligned Beats
-> -- snps,fixed-burst	Program the DMA to use the fixed burst mode
-> -- snps,mixed-burst	Program the DMA to use the mixed burst mode
-> -- snps,force_thresh_dma_mode	Force DMA to use the threshold mode for
-> -				both tx and rx
-> -- snps,force_sf_dma_mode	Force DMA to use the Store and Forward
-> -				mode for both tx and rx. This flag is
-> -				ignored if force_thresh_dma_mode is set.
-> -- snps,en-tx-lpi-clockgating	Enable gating of the MAC TX clock during
-> -				TX low-power mode
-> -- snps,multicast-filter-bins:	Number of multicast filter hash bins
-> -				supported by this device instance
-> -- snps,perfect-filter-entries:	Number of perfect filter entries supported
-> -				by this device instance
-> -- snps,ps-speed: port selection speed that can be passed to the core when
-> -		 PCS is supported. For example, this is used in case of SGMII
-> -		 and MAC2MAC connection.
-> -- snps,tso: this enables the TSO feature otherwise it will be managed by
-> -		 MAC HW capability register. Only for GMAC4 and newer.
-> -- AXI BUS Mode parameters: below the list of all the parameters to program the
-> -			   AXI register inside the DMA module:
-> -	- snps,lpi_en: enable Low Power Interface
-> -	- snps,xit_frm: unlock on WoL
-> -	- snps,wr_osr_lmt: max write outstanding req. limit
-> -	- snps,rd_osr_lmt: max read outstanding req. limit
-> -	- snps,kbbe: do not cross 1KiB boundary.
-> -	- snps,blen: this is a vector of supported burst length.
-> -	- snps,fb: fixed-burst
-> -	- snps,mb: mixed-burst
-> -	- snps,rb: rebuild INCRx Burst
-> -- mdio: with compatible = "snps,dwmac-mdio", create and register mdio bus.
-> -- Multiple RX Queues parameters: below the list of all the parameters to
-> -				 configure the multiple RX queues:
-> -	- snps,rx-queues-to-use: number of RX queues to be used in the driver
-> -	- Choose one of these RX scheduling algorithms:
-> -		- snps,rx-sched-sp: Strict priority
-> -		- snps,rx-sched-wsp: Weighted Strict priority
-> -	- For each RX queue
-> -		- Choose one of these modes:
-> -			- snps,dcb-algorithm: Queue to be enabled as DCB
-> -			- snps,avb-algorithm: Queue to be enabled as AVB
-> -		- snps,map-to-dma-channel: Channel to map
-> -		- Specifiy specific packet routing:
-> -			- snps,route-avcp: AV Untagged Control packets
-> -			- snps,route-ptp: PTP Packets
-> -			- snps,route-dcbcp: DCB Control Packets
-> -			- snps,route-up: Untagged Packets
-> -			- snps,route-multi-broad: Multicast & Broadcast Packets
-> -		- snps,priority: RX queue priority (Range: 0x0 to 0xF)
-> -- Multiple TX Queues parameters: below the list of all the parameters to
-> -				 configure the multiple TX queues:
-> -	- snps,tx-queues-to-use: number of TX queues to be used in the driver
-> -	- Choose one of these TX scheduling algorithms:
-> -		- snps,tx-sched-wrr: Weighted Round Robin
-> -		- snps,tx-sched-wfq: Weighted Fair Queuing
-> -		- snps,tx-sched-dwrr: Deficit Weighted Round Robin
-> -		- snps,tx-sched-sp: Strict priority
-> -	- For each TX queue
-> -		- snps,weight: TX queue weight (if using a DCB weight algorithm)
-> -		- Choose one of these modes:
-> -			- snps,dcb-algorithm: TX queue will be working in DCB
-> -			- snps,avb-algorithm: TX queue will be working in AVB
-> -			  [Attention] Queue 0 is reserved for legacy traffic
-> -			  and so no AVB is available in this queue.
-> -		- Configure Credit Base Shaper (if AVB Mode selected):
-> -			- snps,send_slope: enable Low Power Interface
-> -			- snps,idle_slope: unlock on WoL
-> -			- snps,high_credit: max write outstanding req. limit
-> -			- snps,low_credit: max read outstanding req. limit
-> -		- snps,priority: TX queue priority (Range: 0x0 to 0xF)
-> -Examples:
-> -
-> -	stmmac_axi_setup: stmmac-axi-config {
-> -		snps,wr_osr_lmt = <0xf>;
-> -		snps,rd_osr_lmt = <0xf>;
-> -		snps,blen = <256 128 64 32 0 0 0>;
-> -	};
-> -
-> -	mtl_rx_setup: rx-queues-config {
-> -		snps,rx-queues-to-use = <1>;
-> -		snps,rx-sched-sp;
-> -		queue0 {
-> -			snps,dcb-algorithm;
-> -			snps,map-to-dma-channel = <0x0>;
-> -			snps,priority = <0x0>;
-> -		};
-> -	};
-> -
-> -	mtl_tx_setup: tx-queues-config {
-> -		snps,tx-queues-to-use = <2>;
-> -		snps,tx-sched-wrr;
-> -		queue0 {
-> -			snps,weight = <0x10>;
-> -			snps,dcb-algorithm;
-> -			snps,priority = <0x0>;
-> -		};
-> -
-> -		queue1 {
-> -			snps,avb-algorithm;
-> -			snps,send_slope = <0x1000>;
-> -			snps,idle_slope = <0x1000>;
-> -			snps,high_credit = <0x3E800>;
-> -			snps,low_credit = <0xFFC18000>;
-> -			snps,priority = <0x1>;
-> -		};
-> -	};
-> -
-> -	gmac0: ethernet@e0800000 {
-> -		compatible = "st,spear600-gmac";
-> -		reg = <0xe0800000 0x8000>;
-> -		interrupt-parent = <&vic1>;
-> -		interrupts = <24 23 22>;
-> -		interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> -		mac-address = [000000000000]; /* Filled in by U-Boot */
-> -		max-frame-size = <3800>;
-> -		phy-mode = "gmii";
-> -		snps,multicast-filter-bins = <256>;
-> -		snps,perfect-filter-entries = <128>;
-> -		rx-fifo-depth = <16384>;
-> -		tx-fifo-depth = <16384>;
-> -		clocks = <&clock>;
-> -		clock-names = "stmmaceth";
-> -		snps,axi-config = <&stmmac_axi_setup>;
-> -		mdio0 {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -			compatible = "snps,dwmac-mdio";
-> -			phy1: ethernet-phy@0 {
-> -			};
-> -		};
-> -		snps,mtl-rx-config = <&mtl_rx_setup>;
-> -		snps,mtl-tx-config = <&mtl_tx_setup>;
-> -	};
-> +This file has moved to snps,dwmac.yaml.
-> 
+Changes since v3:
+ - Remove A64 compatible
+ - Introduce specific bindings for r-wdt
+
+Changes since v2:
+ - Reintroduce H6 bindings
+ - Add watchdog Maintainters / ML
+ - Add Martin Ayotte test results
+
+Changes since v1:
+ - Use A64 compatible instead of H6
+ - Remove dt-bindings patch
+ - Change watchdog status to disabled
+ - Add r_watchdog node patch
+ - Add enable sunxi watchdog patch
+
+Clément Péron (4):
+  dt-bindings: watchdog: add Allwinner H6 watchdog
+  arm64: dts: allwinner: h6: add watchdog node
+  arm64: dts: allwinner: h6: add r_watchog node
+  arm64: defconfig: enable sunxi watchdog
+
+ .../devicetree/bindings/watchdog/sunxi-wdt.txt   |  1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi     | 16 ++++++++++++++++
+ arch/arm64/configs/defconfig                     |  1 +
+ 3 files changed, 18 insertions(+)
+
+-- 
+2.20.1
+
