@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CD8827CE2
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B67A927CF3
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728309AbfEWMbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 08:31:05 -0400
-Received: from verein.lst.de ([213.95.11.211]:46548 "EHLO newverein.lst.de"
+        id S1730493AbfEWMeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 08:34:50 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:44902 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729934AbfEWMbF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 08:31:05 -0400
-Received: by newverein.lst.de (Postfix, from userid 2005)
-        id 97A7A68AFE; Thu, 23 May 2019 14:30:41 +0200 (CEST)
-Date:   Thu, 23 May 2019 14:30:41 +0200
-From:   Torsten Duwe <duwe@lst.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] dt-bindings: Add ANX6345 DP/eDP transmitter binding
-Message-ID: <20190523123041.GB15685@lst.de>
-References: <20190523065013.2719D68B05@newverein.lst.de> <20190523065400.BD9EB68B05@newverein.lst.de> <20190523090540.nhxrjpz3scx6jt23@flea>
+        id S1728309AbfEWMeu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 08:34:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=kzTgxZupA7hbLq4h+ysA5lKtx8rooCtnoiPerHmRDtk=; b=mX7hFCnVVU5gXlZVbtQV49J0RR
+        1RbakI/TLZCKmqLaacEyYJ89p+DRzCD5Y02/I/M0nJEUBx9PvbzzPMkfUxBCyxmXymxh5zukjiFm+
+        sbZ7x9/W3PvlXcqbZk+ZfWXa/rKsghXXbFlM4lKtuk7JkbWkKx8+ITUHy1V2H4LOlwUY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hTmvb-000474-HJ; Thu, 23 May 2019 14:34:35 +0200
+Date:   Thu, 23 May 2019 14:34:35 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sagar Kadam <sagar.kadam@sifive.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/3] i2c-ocores: sifive: add polling mode workaround
+ for FU540-C000 SoC.
+Message-ID: <20190523123435.GA15531@lunn.ch>
+References: <1558515574-11155-1-git-send-email-sagar.kadam@sifive.com>
+ <1558515574-11155-4-git-send-email-sagar.kadam@sifive.com>
+ <20190522194529.GJ7281@lunn.ch>
+ <CAARK3HmMVibudG2CFLBoMSAqnraXyirTL6CXYo1T_XJEuGJy7Q@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190523090540.nhxrjpz3scx6jt23@flea>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <CAARK3HmMVibudG2CFLBoMSAqnraXyirTL6CXYo1T_XJEuGJy7Q@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 11:05:40AM +0200, Maxime Ripard wrote:
-> > +Optional properties:
-> > +
-> > + - Video ports for RGB input and eDP output using the DT bindings
-> > +   defined in [1]
-> 
-> The output node can be optional, but the input one is probably going
-> to be needed all the time, since otherwise you won't be able to fill
-> the output port of the upstream device in the graph.
+> Thank you Andrew for reviewing the patch set.
+> Can you please let me know weather you or Peter will be pick up the patch
+> for v5.3 or they  should go in via some other tree?
 
-I guess so. A sibling product brief (anx9804)
-https://www.analogix.com/en/ttlconvertersbridges
-references it as
-| LVTTL to DisplayPort 1.2 _transmitter_
-so it will probably always be used on the output side.
+Hi Sagar
 
-	Torsten
+Wolfram Sang should pick the patchset up.
 
+	Andrew
