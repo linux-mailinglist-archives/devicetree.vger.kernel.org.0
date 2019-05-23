@@ -2,117 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C070427D1F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 391CE27D22
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730028AbfEWMtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 08:49:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53894 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729962AbfEWMtK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 08:49:10 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B3F3821019;
-        Thu, 23 May 2019 12:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558615749;
-        bh=g7j2U62ETM/CfVTkfqNEarGmBDOCA3a/rrw2qe9DprM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PPW/6mG7vewO2NbAd0kFIjtyYvLRGdmge0Ey2nJ2ExENJxDwn1c3MKM6ZRxm1eknj
-         gE/CRIT0hQ2bcizugjxoty17Y8C6NcLKmte0W8iKuw93ZJJzHOOwSP//JsU8BhA+bn
-         eeZJ+LN928b4znRYwQpNUiKH09Klj/ZnJd9T+1WU=
-Date:   Thu, 23 May 2019 20:48:06 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Pankaj Bansal <pankaj.bansal@nxp.com>
-Cc:     Leo Li <leoyang.li@nxp.com>, Mingkai Hu <mingkai.hu@nxp.com>,
-        Rajesh Bhagat <rajesh.bhagat@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: fsl: ls1046: Modify the qspi flash frequency
-Message-ID: <20190523124806.GU9261@dragon>
-References: <20190521150336.8409-1-pankaj.bansal@nxp.com>
+        id S1729430AbfEWMtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 08:49:19 -0400
+Received: from mx2.suse.de ([195.135.220.15]:38954 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728309AbfEWMtT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 08:49:19 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 0EDE5AEBB;
+        Thu, 23 May 2019 12:49:18 +0000 (UTC)
+From:   Andreas Schwab <schwab@suse.de>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, nicolas.ferre@microchip.com,
+        palmer@sifive.com, aou@eecs.berkeley.edu, ynezz@true.cz,
+        paul.walmsley@sifive.com, sachin.ghadi@sifive.com
+Subject: Re: [PATCH 0/2] net: macb: Add support for SiFive FU540-C000
+References: <1558611952-13295-1-git-send-email-yash.shah@sifive.com>
+X-Yow:  Don't worry, nobody really LISTENS to lectures in MOSCOW, either!
+ ..  FRENCH, HISTORY, ADVANCED CALCULUS, COMPUTER PROGRAMMING,
+ BLACK STUDIES, SOCIOBIOLOGY!..  Are there any QUESTIONS??
+Date:   Thu, 23 May 2019 14:49:16 +0200
+In-Reply-To: <1558611952-13295-1-git-send-email-yash.shah@sifive.com> (Yash
+        Shah's message of "Thu, 23 May 2019 17:15:50 +0530")
+Message-ID: <mvmwoihfi9f.fsf@suse.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190521150336.8409-1-pankaj.bansal@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 21, 2019 at 09:40:09AM +0000, Pankaj Bansal wrote:
-> The qspi flash in ls1046a based QDS and RDB boards can operate
-> at 50MHz frequency.
-> Therefore, update the maximum supported freq in their respective
-> dts files.
-> 
-> Signed-off-by: Pankaj Bansal <pankaj.bansal@nxp.com>
+On Mai 23 2019, Yash Shah <yash.shah@sifive.com> wrote:
 
-Do not use base64 encoding for patch posting.
+> On FU540, the management IP block is tightly coupled with the Cadence
+> MACB IP block. It manages many of the boundary signals from the MACB IP
+> This patchset controls the tx_clk input signal to the MACB IP. It
+> switches between the local TX clock (125MHz) and PHY TX clocks. This
+> is necessary to toggle between 1Gb and 100/10Mb speeds.
 
-Shawn
+Doesn't work for me:
 
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts | 4 ++--
->  arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts | 5 +++--
->  2 files changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> index eec62c63dafe..e441dbfbfb81 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> @@ -3,7 +3,7 @@
->   * Device Tree Include file for Freescale Layerscape-1046A family SoC.
->   *
->   * Copyright 2016 Freescale Semiconductor, Inc.
-> - * Copyright 2018 NXP
-> + * Copyright 2018-2019 NXP
->   *
->   * Shaohui Xie <Shaohui.Xie@nxp.com>
->   */
-> @@ -169,7 +169,7 @@
->  		compatible = "spansion,m25p80";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		spi-max-frequency = <20000000>;
-> +		spi-max-frequency = <50000000>;
->  		spi-rx-bus-width = <4>;
->  		spi-tx-bus-width = <4>;
->  		reg = <0>;
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> index 6a6514d0e5a9..6f5411d09bb9 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> @@ -3,6 +3,7 @@
->   * Device Tree Include file for Freescale Layerscape-1046A family SoC.
->   *
->   * Copyright 2016 Freescale Semiconductor, Inc.
-> + * Copyright 2019 NXP
->   *
->   * Mingkai Hu <mingkai.hu@nxp.com>
->   */
-> @@ -105,7 +106,7 @@
->  		compatible = "spansion,m25p80";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		spi-max-frequency = <20000000>;
-> +		spi-max-frequency = <50000000>;
->  		spi-rx-bus-width = <4>;
->  		spi-tx-bus-width = <4>;
->  		reg = <0>;
-> @@ -115,7 +116,7 @@
->  		compatible = "spansion,m25p80";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		spi-max-frequency = <20000000>;
-> +		spi-max-frequency = <50000000>;
->  		spi-rx-bus-width = <4>;
->  		spi-tx-bus-width = <4>;
->  		reg = <1>;
-> -- 
-> 2.17.1
-> 
+[  365.842801] macb: probe of 10090000.ethernet failed with error -17
+
+Andreas.
+
+-- 
+Andreas Schwab, SUSE Labs, schwab@suse.de
+GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
+"And now for something completely different."
