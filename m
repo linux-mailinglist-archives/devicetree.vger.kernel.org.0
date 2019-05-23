@@ -2,140 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CDC9278E6
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 11:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832CF27901
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 11:16:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730248AbfEWJJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 05:09:45 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:44919 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726299AbfEWJJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 05:09:45 -0400
-Received: by mail-qt1-f196.google.com with SMTP id f24so5804868qtk.11
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 02:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ZDRg3ieis6hoh/yJ9a80gOidWlG1G6Pw/YGxgRuSE94=;
-        b=kA31TSrggwsJxxWDnJJPIOo3MgixNqwLlwlFlwOzYC28Qzv9rkp8BWwHIdODxR99Nt
-         d7IFt6+f5xHBItXGp2Eu/3CYh18PpggLnYDWOPGEhC58NLAK8u/eOGkbZkra0hb+DjIW
-         5fb8+ypRJRIiFczeHfu1xVkpxzf1gcGRUnImDzPZUWqkbSgL6KAMHL9W7a8Fu8M5DujO
-         90V5srCCUOkBo351510PYMPxAxjqB4JtbYWAJ2PHaAarEBwCMnecaut6HWHq4qz/oqfM
-         qo2HNtUzDfnS3OXjBi1JU+j+hPnA/OKdCeWoN/pvQm7TpUNlroxutZ/9RIUPko5fruIR
-         BCcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ZDRg3ieis6hoh/yJ9a80gOidWlG1G6Pw/YGxgRuSE94=;
-        b=etqIuhdPwDMt5qctcISSduZjbbpEd/hAU3lV4qBzQXk8cFGh5Kk/N1wsGsOoFH4gj0
-         G0Y6zF+xSH683zKYMlzTY8qrh+99LI8jGGBUssF5NF2nOx9pNGNoH0Metc4dUZDyKl42
-         Qy0wTg+TNT4+51PE5fjw1P9APOv+hMFvawQliyTiGyh6Bcp9kCc8dhABcYZ198Yjy+RV
-         mUD0hsXRX6IGO1w39tOZQtRsPsz707as+yvoVRDReMTPwXv6bfU0O11799Frq20joG0g
-         Iyr0K2FKu+Yo6gonoFRWC80dGeXYvNyMxL6obsbFC2F6IUvF9VX4AFHHh4a74OnsmEIX
-         lrGA==
-X-Gm-Message-State: APjAAAUjU8Vj1N2ZGe+POO6pWjJiVNibH8yYX0SqxQnXEoQQqJWx8bCy
-        GoojxA7UjORFlXbLSkqKAGHVDXRJQQrKilJ8wpiB+w==
-X-Google-Smtp-Source: APXvYqzPHWai2cPVbmyi53PtZyW+rD0M2Kck+rs0vgo/buY2HBfBi20KQ1+3WaNRxJAeDdyBzyejy/NHzp/5Y2dGtco=
-X-Received: by 2002:ac8:352d:: with SMTP id y42mr78662075qtb.209.1558602584218;
- Thu, 23 May 2019 02:09:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <1555580267-29299-1-git-send-email-fabrice.gasnier@st.com> <45e934af-d677-d7d4-09ea-3ed01872dab6@st.com>
-In-Reply-To: <45e934af-d677-d7d4-09ea-3ed01872dab6@st.com>
-From:   Benjamin Gaignard <benjamin.gaignard@linaro.org>
-Date:   Thu, 23 May 2019 11:09:33 +0200
-Message-ID: <CA+M3ks5O9YpZ-4f3x=bFn_LxJu+6i3pu7jsWv_93pe14y8V71w@mail.gmail.com>
-Subject: Re: [RESEND PATCH v5 0/3] Add PM support to STM32 LP Timer drivers
-To:     Fabrice Gasnier <fabrice.gasnier@st.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1726846AbfEWJQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 05:16:56 -0400
+Received: from twhmllg4.macronix.com ([122.147.135.202]:52423 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726363AbfEWJQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 05:16:56 -0400
+Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
+        by TWHMLLG4.macronix.com with ESMTP id x4N9G2se058184;
+        Thu, 23 May 2019 17:16:02 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.macronix.com [172.17.14.55])
+        by Forcepoint Email with ESMTP id 9068031A9482045BD690;
+        Thu, 23 May 2019 17:16:02 +0800 (CST)
+In-Reply-To: <0e2994d6-6efc-9f36-f681-609199f20b9f@cogentembedded.com>
+References: <1558423174-10748-1-git-send-email-masonccyang@mxic.com.tw> <1558423174-10748-4-git-send-email-masonccyang@mxic.com.tw> <0e2994d6-6efc-9f36-f681-609199f20b9f@cogentembedded.com>
+To:     "Sergei Shtylyov" <sergei.shtylyov@cogentembedded.com>
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
         devicetree@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Loic PALLARDY <loic.pallardy@st.com>, tduszyns@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        u.kleine-koenig@pengutronix.de,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        "Simon Horman" <horms@verge.net.au>, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-spi@vger.kernel.org,
+        marek.vasut@gmail.com, mark.rutland@arm.com,
+        miquel.raynal@bootlin.com, robh+dt@kernel.org
+Subject: Re: [PATCH v13 3/3] dt-bindings: mfd: Document Renesas R-Car Gen3 RPC-IF
+ controller bindings
+MIME-Version: 1.0
+X-KeepSent: B9416C97:8812436C-48258403:00329D12;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OFB9416C97.8812436C-ON48258403.00329D12-48258403.0032E82E@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Thu, 23 May 2019 17:16:03 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/05/23 PM 05:16:02,
+        Serialize complete at 2019/05/23 PM 05:16:02
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG4.macronix.com x4N9G2se058184
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le ven. 10 mai 2019 =C3=A0 09:51, Fabrice Gasnier <fabrice.gasnier@st.com> =
-a =C3=A9crit :
->
-> On 4/18/19 11:37 AM, Fabrice Gasnier wrote:
-> > This patch series adds power management support for STM32 LP Timer:
-> > - PWM driver
-> > - Document the pinctrl states for sleep mode
-> >
-> > It also adds device link between the PWM consumer and the PWM provider.
-> > This allows proper sequencing for suspend/resume (e.g. user will likely
-> > do a pwm_disable() before the PWM provider suspend executes), see [1].
-> >
-> > [1] https://lkml.org/lkml/2019/2/5/770
-> >
->
-> Hi Thierry,
->
-> Please let me know if you have some more comments on this series. It's
-> been under review since quite some time now.
->
 
-Hi Thierry,
+Hi Sergei,
 
-Does something is blocking on this series ?
-How can we progress on it ?
-
-Regards,
-Benjamin
-
-> Thanks in advance,
-> Best Regards,
-> Fabrice
->
+> On 05/21/2019 10:19 AM, Mason Yang wrote:
+> 
+> > Document the bindings used by the Renesas R-Car Gen3 RPC-IF 
+controller.
+> > 
+> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
 > > ---
-> > resend v5:
-> > - update collected acks
-> >
-> > Changes in v5:
-> > - improve a warning message, fix a style issue.
-> >
-> > Changes in v4:
-> > - improve error handling when adding the PWM consumer device link.
-> >
-> > Changes in v3:
-> > - Move the device_link_add() call to of_pwm_get() as discussed with Uwe=
-.
-> >
-> > Changes in v2:
-> > - Don't disable PWM channel in PWM provider: rather refuse to suspend
-> >   and report an error as suggested by Uwe and Thierry.
-> > - Add patch 3/3 to propose device link addition.
-> > - No updates for STM32 LP Timer IIO driver. Patches can be send separat=
-ely.
-> >
-> > Fabrice Gasnier (3):
-> >   dt-bindings: pwm-stm32-lp: document pinctrl sleep state
-> >   pwm: stm32-lp: Add power management support
-> >   pwm: core: add consumer device link
-> >
-> >  .../devicetree/bindings/pwm/pwm-stm32-lp.txt       |  9 ++--
-> >  drivers/pwm/core.c                                 | 50 ++++++++++++++=
-++++++--
-> >  drivers/pwm/pwm-stm32-lp.c                         | 25 +++++++++++
-> >  include/linux/pwm.h                                |  6 ++-
-> >  4 files changed, 82 insertions(+), 8 deletions(-)
-> >
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> >  .../devicetree/bindings/mfd/renesas-rpc-if.txt     | 65 
+++++++++++++++++++++++
+> >  1 file changed, 65 insertions(+)
+> >  create mode 100644 
+Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt 
+b/
+> Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt
+> > new file mode 100644
+> > index 0000000..20ec85b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/renesas-rpc-if.txt
+> > @@ -0,0 +1,65 @@
+> > +Renesas R-Car Gen3 RPC-IF controller Device Tree Bindings
+> > +---------------------------------------------------------
+> > +
+> > +RPC-IF supports both SPI NOR and HyperFlash (CFI-compliant flash)
+> > +
+> > +Required properties:
+> > +- compatible: should be an SoC-specific compatible value, followed by
+> > +      "renesas,rcar-gen3-rpc" as a fallback.
+> > +      supported SoC-specific values are:
+> > +      "renesas,r8a77995-rpc"   (R-Car D3)
+> > +- reg: should contain three register areas:
+> > +   first for RPC-IF registers,
+> > +   second for the direct mapping read mode and
+> > +   third for the write buffer area.
+> > +- reg-names: should contain "regs", "dirmap" and "wbuf"
+> > +- clocks: should contain 1 entries for the module's clock
+> > +- clock-names: should contain "rpc"
+> > +- power-domains: should contain system-controller(sysc) for 
+power-domain-cell
+> > +- resets: should contain clock pulse generator(cpg) for reset-cell,
+> > +     power-domain-cell and clock-cell
+> 
+>    That's just some nonsense, sorry...
+>    I suggest that you stop reposting your patches as I'm going to post
+> my version of this patchset RSN (based on your patches, of course) and 
+I'm
+> going to take care of fixing this file as well.
+
+okay, just let me know your patch then.
+
+thanks & best regards,
+Mason
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
