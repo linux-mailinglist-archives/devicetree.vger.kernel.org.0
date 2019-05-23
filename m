@@ -2,172 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3CA027864
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F371227879
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726363AbfEWItJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 04:49:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33690 "EHLO mail.kernel.org"
+        id S1726230AbfEWIwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 04:52:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34272 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726309AbfEWItJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 04:49:09 -0400
+        id S1726081AbfEWIwE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 04:52:04 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D319D20675;
-        Thu, 23 May 2019 08:49:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9633220675;
+        Thu, 23 May 2019 08:52:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558601348;
-        bh=PS2f+sHObdC4FV6JGNeQEnURnd3HAy/JuIONSll3wz0=;
+        s=default; t=1558601523;
+        bh=GvIxnz2QDkzaDXhCwkyYIbh58BouSz387m9539g/2A8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JPEd3OX0NqUTxUXqY/bw3cMOUuoiflmsHC66la0O7wPNYEs3c0Mat9kqJLlQNeMd4
-         kKrzGPqTy+1s/HfD2hic5L4k6ZnUjK/MSiozU4mgZfF0dMnfyfqYK8PJGOySNAMnZU
-         1S5CUDgL9trsqYuhhuSXONiH5EMx+wGTaRPP36FU=
-Date:   Thu, 23 May 2019 16:48:09 +0800
+        b=cGQ/xj15H4e7wzpcSW5LwgkL0k2fAuxUfKby8GOqJq7U+CObYxAh8WO4TLHsuSU42
+         5OmnsByuClenpeucDd2R6GXBQ9Q2yBeqlfsJP9xf/abAQ4i3T1VngiNyi/Mf833qTw
+         +QEBNS3NTcj3UbMAhjKZ/c3iC5Hv1hkYAHSrkH3c=
+Date:   Thu, 23 May 2019 16:51:04 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: Re: [PATCH] arm64: dts: ls1088a: Add QSPI support
-Message-ID: <20190523084808.GO9261@dragon>
-References: <20190516114807.30817-1-kuldeep.singh@nxp.com>
- <20190516114807.30817-3-kuldeep.singh@nxp.com>
+To:     Ran Wang <ran.wang_1@nxp.com>,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: ls1028a: Fix CPU idle fail.
+Message-ID: <20190523085104.GP9261@dragon>
+References: <20190517045753.3709-1-ran.wang_1@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190516114807.30817-3-kuldeep.singh@nxp.com>
+In-Reply-To: <20190517045753.3709-1-ran.wang_1@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 11:47:07AM +0000, Kuldeep Singh wrote:
-> QSPI support is added for kernel version greater than 5.0 and supports
-> quad mode defined by
-> TX-WIDTH = <4>, RX-WIDTH = <4>
+On Fri, May 17, 2019 at 12:57:53PM +0800, Ran Wang wrote:
+> PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
+> indicate CPU State Type: 0 for standby, 1 for power down. In this
+> case, we want to select standby for CPU idle feature. But current
+> setting wrongly select power down and cause CPU SUSPEND fail every
+> time. Need this fix.
 > 
-> RDB/QDS has two 64MB flash from SPANSION(s25fs512s)
-> 
-> Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
-> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
-> ---
-> Dependency on https://patchwork.ozlabs.org/patch/1100471/
-> Dependency on https://patchwork.ozlabs.org/patch/1100472/
+> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 
-Please send dts changes only after dependencies get accepted.
+Leo, Bhaskar,
+
+Do you guys agree with it?
 
 Shawn
 
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   18 +++++++++---------
+>  1 files changed, 9 insertions(+), 9 deletions(-)
 > 
->  .../boot/dts/freescale/fsl-ls1088a-qds.dts    | 26 +++++++++++++++++++
->  .../boot/dts/freescale/fsl-ls1088a-rdb.dts    | 26 +++++++++++++++++++
->  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 13 ++++++++++
->  3 files changed, 65 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dts
-> index 6f48d21b97c0..f01f7fca9df7 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dts
-> @@ -98,6 +98,32 @@
->  	};
->  };
->  
-> +&qspi {
-> +	status = "okay";
-> +
-> +	qflash0: flash@0 {
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		m25p,fast-read;
-> +		spi-max-frequency = <20000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		reg = <0>;
-> +	};
-> +
-> +	qflash1: flash@1 {
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		m25p,fast-read;
-> +		spi-max-frequency = <20000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		reg = <1>;
-> +	};
-> +};
-> +
->  &duart0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-> index 8e925df6c01c..bdec7e996dbe 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-> @@ -74,6 +74,32 @@
->  	};
->  };
->  
-> +&qspi {
-> +	status = "okay";
-> +
-> +	qflash0: flash@0 {
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		m25p,fast-read;
-> +		spi-max-frequency = <20000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		reg = <0>;
-> +	};
-> +
-> +	qflash1: flash@1  {
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		m25p,fast-read;
-> +		spi-max-frequency = <20000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		reg = <1>;
-> +	};
-> +};
-> +
->  &duart0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 661137ffa319..96424fd9cd2e 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -318,6 +318,19 @@
->  			status = "disabled";
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index b045812..bf7f845 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -28,7 +28,7 @@
+>  			enable-method = "psci";
+>  			clocks = <&clockgen 1 0>;
+>  			next-level-cache = <&l2>;
+> -			cpu-idle-states = <&CPU_PH20>;
+> +			cpu-idle-states = <&CPU_PW20>;
 >  		};
 >  
-> +		qspi: spi@20c0000 {
-> +			status = "disabled";
-> +			compatible = "fsl,ls2080a-qspi", "fsl,ls1088a-qspi";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x0 0x20c0000 0x0 0x10000>,
-> +			      <0x0 0x20000000 0x0 0x10000000>;
-> +			reg-names = "QuadSPI", "QuadSPI-memory";
-> +			interrupts = <0 25 0x4>; /* Level high type */
-> +			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-> +			clock-names = "qspi_en", "qspi";
-> +		};
-> +
->  		i2c0: i2c@2000000 {
->  			compatible = "fsl,vf610-i2c";
->  			#address-cells = <1>;
+>  		cpu1: cpu@1 {
+> @@ -38,7 +38,7 @@
+>  			enable-method = "psci";
+>  			clocks = <&clockgen 1 0>;
+>  			next-level-cache = <&l2>;
+> -			cpu-idle-states = <&CPU_PH20>;
+> +			cpu-idle-states = <&CPU_PW20>;
+>  		};
+>  
+>  		l2: l2-cache {
+> @@ -53,13 +53,13 @@
+>  		 */
+>  		entry-method = "arm,psci";
+>  
+> -		CPU_PH20: cpu-ph20 {
+> -			compatible = "arm,idle-state";
+> -			idle-state-name = "PH20";
+> -			arm,psci-suspend-param = <0x00010000>;
+> -			entry-latency-us = <1000>;
+> -			exit-latency-us = <1000>;
+> -			min-residency-us = <3000>;
+> +		CPU_PW20: cpu-pw20 {
+> +			  compatible = "arm,idle-state";
+> +			  idle-state-name = "PW20";
+> +			  arm,psci-suspend-param = <0x0>;
+> +			  entry-latency-us = <2000>;
+> +			  exit-latency-us = <2000>;
+> +			  min-residency-us = <6000>;
+>  		};
+>  	};
+>  
 > -- 
-> 2.17.1
+> 1.7.1
 > 
