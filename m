@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 466E9281DB
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 17:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 246AA281E7
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 17:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730790AbfEWPzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 11:55:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46362 "EHLO mail.kernel.org"
+        id S1730949AbfEWPzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 11:55:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46686 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730752AbfEWPzR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 11:55:17 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        id S1730752AbfEWPzw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 11:55:52 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7D071217F9;
-        Thu, 23 May 2019 15:55:16 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 984E82175B;
+        Thu, 23 May 2019 15:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558626916;
-        bh=JUOPRAHlxD37cj7X5mjXujgKukJ+EI5g3Of9neklXRc=;
+        s=default; t=1558626951;
+        bh=V4ZP2/dLscXLDqbQgJUnoACFi9scmweeDdhvMUiUVh4=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Ocp40sto8Gq6/0uRuAdHyZHHkF2oG0CIBODLzqqtKumSJxpWuCby6vxTFj19gf+eG
-         9FIWW+5EJzp220GZ5j8OH62sdyNyEuCD+eRtoGun/U2S9jWpB4JlUEt4bCAxHyel/w
-         mZK/3l5p6LCRP+bLZqB9mlMk2s0vqj6Wz6G6CFcM=
-Received: by mail-qt1-f178.google.com with SMTP id y42so7315177qtk.6;
-        Thu, 23 May 2019 08:55:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAUJ1Ge1xsbBmY44FJDZ8D2eFqS4uXMmq5mgoTW+4u246I65MU22
-        j6wFwbZkFkIGly6g68LIDx1AQxZWss69dj26zQ==
-X-Google-Smtp-Source: APXvYqwEEihkSXSYkUOGNw6QZNJ7c5VF8WdzMUhYcRqzxhUuKrUfiTJdsCIvlXDQgQ80MHzHtm0PBbhB4PgJSALMZ1k=
-X-Received: by 2002:ac8:6b14:: with SMTP id w20mr60341941qts.110.1558626915748;
- Thu, 23 May 2019 08:55:15 -0700 (PDT)
+        b=R1S7fOzWe8tdEyXVX7h19w9DQxhcSM92aUWdB/iADTIYN0XEIgRAggtOg4hqkL9M5
+         Dm3q0yUpkHcv/Uu16ehRFFLNnzELyOQawj+f0RVr8Jp7FIH7lc4INPCAQlua1KZAyA
+         /pE+WzEwXsUudS1sX0d6S+EbYVwYZCg3nBx8umPw=
+Received: by mail-qt1-f173.google.com with SMTP id a17so7337101qth.3;
+        Thu, 23 May 2019 08:55:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAXcHt6z9MXinuWmGRdxfDnZgv/2WbvvcTJhORm601JdGppYuHwl
+        s79NM8lkVENi2WWnLkT18FqpPwRge63gh7I3qQ==
+X-Google-Smtp-Source: APXvYqxzVHY9bCwMYV6NnW1uDWYDuENIPBg7zeYyQdXiHoh8OpVci9+JMjFdbOqPVhnY0iofHv0h/fEWtKyl/RUYnFI=
+X-Received: by 2002:a0c:8aad:: with SMTP id 42mr78521685qvv.200.1558626950891;
+ Thu, 23 May 2019 08:55:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <6f16585ffdc75af4e023c4d3ebba68feb65cc26e.1558605170.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <6f16585ffdc75af4e023c4d3ebba68feb65cc26e.1558605170.git-series.maxime.ripard@bootlin.com>
+References: <20190522131550.9034-1-manivannan.sadhasivam@linaro.org> <20190522131550.9034-2-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190522131550.9034-2-manivannan.sadhasivam@linaro.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 23 May 2019 10:55:04 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+PMT99aw5bkp515XDpKELdpXB2BH_n6e-BwQS+KAHy0Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+PMT99aw5bkp515XDpKELdpXB2BH_n6e-BwQS+KAHy0Q@mail.gmail.com>
-Subject: Re: [PATCH 7/8] dt-bindings: net: sun7i-gmac: Convert the binding to
- a schemas
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>,
+Date:   Thu, 23 May 2019 10:55:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKeiY=k8n+d_7ug_DG=qZdj_cAPSCeSU-37Ds3ogKQZmg@mail.gmail.com>
+Message-ID: <CAL_JsqKeiY=k8n+d_7ug_DG=qZdj_cAPSCeSU-37Ds3ogKQZmg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Document 96Boards Meerkat96
+ devicetree binding
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        =?UTF-8?Q?Antoine_T=C3=A9nart?= <antoine.tenart@bootlin.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Peter Robinson <pbrobinson@gmail.com>, yossi@novtech.com,
+        nazik@novtech.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 4:57 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Wed, May 22, 2019 at 8:16 AM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
 >
-> Switch our Allwinner A20 GMAC controller binding to a YAML schema to enable
-> the DT validation. Since that controller is based on a Synopsys IP, let's
-> add the validation to that schemas with a bunch of conditionals.
+> Document 96Boards Meerkat96 devicetree binding based on i.MX7D SoC.
 >
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.txt | 27 ---------------------------
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml              | 45 +++++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 45 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.txt
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-I think it would be better to keep these as separate files and either
-include snps,dwmac.yaml from it or only add the compatible to
-snps,dwmac.yaml.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
