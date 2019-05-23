@@ -2,106 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C12A27E10
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 15:25:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C070427D1F
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730323AbfEWNZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 09:25:57 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:56674 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730081AbfEWNZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 09:25:57 -0400
-Received: from relay11.mail.gandi.net (unknown [217.70.178.231])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 2FAA73ACB8F;
-        Thu, 23 May 2019 12:46:01 +0000 (UTC)
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id CD9B2100022;
-        Thu, 23 May 2019 12:45:46 +0000 (UTC)
-Date:   Thu, 23 May 2019 14:45:46 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jose Abreu <Jose.Abreu@synopsys.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        id S1730028AbfEWMtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 08:49:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53894 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729962AbfEWMtK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 08:49:10 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B3F3821019;
+        Thu, 23 May 2019 12:49:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558615749;
+        bh=g7j2U62ETM/CfVTkfqNEarGmBDOCA3a/rrw2qe9DprM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PPW/6mG7vewO2NbAd0kFIjtyYvLRGdmge0Ey2nJ2ExENJxDwn1c3MKM6ZRxm1eknj
+         gE/CRIT0hQ2bcizugjxoty17Y8C6NcLKmte0W8iKuw93ZJJzHOOwSP//JsU8BhA+bn
+         eeZJ+LN928b4znRYwQpNUiKH09Klj/ZnJd9T+1WU=
+Date:   Thu, 23 May 2019 20:48:06 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Pankaj Bansal <pankaj.bansal@nxp.com>
+Cc:     Leo Li <leoyang.li@nxp.com>, Mingkai Hu <mingkai.hu@nxp.com>,
+        Rajesh Bhagat <rajesh.bhagat@nxp.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>
-Subject: Re: [PATCH 6/8] dt-bindings: net: stmmac: Convert the binding to a
- schemas
-Message-ID: <20190523124546.6agw7fu5qteag3ol@flea>
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <ba1a5d8ad34a8c9ab99f504c04fbe65bde42081b.1558605170.git-series.maxime.ripard@bootlin.com>
- <78EB27739596EE489E55E81C33FEC33A0B92B864@DE02WEMBXB.internal.synopsys.com>
- <20190523110715.ckyzpec3quxr26cp@flea>
- <78EB27739596EE489E55E81C33FEC33A0B92BA5B@DE02WEMBXB.internal.synopsys.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: fsl: ls1046: Modify the qspi flash frequency
+Message-ID: <20190523124806.GU9261@dragon>
+References: <20190521150336.8409-1-pankaj.bansal@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tf5grxv2ddxyomh6"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <78EB27739596EE489E55E81C33FEC33A0B92BA5B@DE02WEMBXB.internal.synopsys.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190521150336.8409-1-pankaj.bansal@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 21, 2019 at 09:40:09AM +0000, Pankaj Bansal wrote:
+> The qspi flash in ls1046a based QDS and RDB boards can operate
+> at 50MHz frequency.
+> Therefore, update the maximum supported freq in their respective
+> dts files.
+> 
+> Signed-off-by: Pankaj Bansal <pankaj.bansal@nxp.com>
 
---tf5grxv2ddxyomh6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Do not use base64 encoding for patch posting.
 
-On Thu, May 23, 2019 at 11:25:09AM +0000, Jose Abreu wrote:
-> From: Maxime Ripard <maxime.ripard@bootlin.com>
-> Date: Thu, May 23, 2019 at 12:07:15
->
-> > You can then run make dtbs_check, and those YAML files will be used to
-> > validate that any devicetree using those properties are doing it
-> > properly. That implies having the right node names, properties, types,
-> > ranges of values when relevant, and so on.
->
-> Thanks but how can one that's developing know which bindings it shall use?
+Shawn
 
-I'm not quite sure what you mean here. Are you talking about which
-file to use, or which property are required, or something else?
-
-> Is this not parsed/prettified and displayed in some kind of webpage ?
-
-Not at the moment, but it's one of the things that are made much
-easier by using a formal data format.
-
-> Just that now that the TXT is gone its kind of "strange" to look at YAML
-> instead of plain text and develop/use the bindings.
-
-Well, it's kind of the point though. Free-form text was impossible to
-parse in a generic way, and you couldn't build any generic tools upon
-it. YAML provides that.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---tf5grxv2ddxyomh6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOaV+gAKCRDj7w1vZxhR
-xbIiAQDiQ/YoNNi0GkGaqteHf9TnQ2HqpEptDspMMmoMtI/iUQD9GIkc5JePBFh2
-kcr5Fwff9irX+EB/TCiw12tiyLODug8=
-=9C+d
------END PGP SIGNATURE-----
-
---tf5grxv2ddxyomh6--
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts | 4 ++--
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts | 5 +++--
+>  2 files changed, 5 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
+> index eec62c63dafe..e441dbfbfb81 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
+> @@ -3,7 +3,7 @@
+>   * Device Tree Include file for Freescale Layerscape-1046A family SoC.
+>   *
+>   * Copyright 2016 Freescale Semiconductor, Inc.
+> - * Copyright 2018 NXP
+> + * Copyright 2018-2019 NXP
+>   *
+>   * Shaohui Xie <Shaohui.Xie@nxp.com>
+>   */
+> @@ -169,7 +169,7 @@
+>  		compatible = "spansion,m25p80";
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> -		spi-max-frequency = <20000000>;
+> +		spi-max-frequency = <50000000>;
+>  		spi-rx-bus-width = <4>;
+>  		spi-tx-bus-width = <4>;
+>  		reg = <0>;
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> index 6a6514d0e5a9..6f5411d09bb9 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> @@ -3,6 +3,7 @@
+>   * Device Tree Include file for Freescale Layerscape-1046A family SoC.
+>   *
+>   * Copyright 2016 Freescale Semiconductor, Inc.
+> + * Copyright 2019 NXP
+>   *
+>   * Mingkai Hu <mingkai.hu@nxp.com>
+>   */
+> @@ -105,7 +106,7 @@
+>  		compatible = "spansion,m25p80";
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> -		spi-max-frequency = <20000000>;
+> +		spi-max-frequency = <50000000>;
+>  		spi-rx-bus-width = <4>;
+>  		spi-tx-bus-width = <4>;
+>  		reg = <0>;
+> @@ -115,7 +116,7 @@
+>  		compatible = "spansion,m25p80";
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+> -		spi-max-frequency = <20000000>;
+> +		spi-max-frequency = <50000000>;
+>  		spi-rx-bus-width = <4>;
+>  		spi-tx-bus-width = <4>;
+>  		reg = <1>;
+> -- 
+> 2.17.1
+> 
