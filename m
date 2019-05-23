@@ -2,81 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 23379277D2
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD45C27803
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727232AbfEWIRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 04:17:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51756 "EHLO mail.kernel.org"
+        id S1726070AbfEWIcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 04:32:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56828 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726070AbfEWIRt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 04:17:49 -0400
+        id S1725814AbfEWIcr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 04:32:47 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 93A922070D;
-        Thu, 23 May 2019 08:17:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C35BD20879;
+        Thu, 23 May 2019 08:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558599468;
-        bh=NnkwAg/YpYzmsV5gEgSTLJOum3MFjnwTcfMyU/RxFd4=;
+        s=default; t=1558600366;
+        bh=3/axH3G7pHsCnkzfqiVoyOAsmcfLuAmvjYG7M5n4EVE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ewmsl7bUlQBSCNM43YojeCadG02W2pPb2VnIZCtlqjJ7dyLLaN49yif69QA4/tfhP
-         Mr+dGy6ISYnQukwbAF1ecPpAscL3+oG3Toi74Ux/m55biAZh2ts/jGkg/SVcpKNMxz
-         bUV7ADy2BQjDCPbZNo32c+RJRgaNQuDjbGtIbaPo=
-Date:   Thu, 23 May 2019 16:16:47 +0800
+        b=h4rb0O0GzEdufAFPJo6x3Cql6QSr/ijUmuBngWWAHMGsRpeCglXH06VAbC2rWMKar
+         Iy12NbWwfBlXgvKsZYsIbSRG4LwQqlRS/4hvlqtA6IJeyNOBwn5XUFg+ShOhIrXFwL
+         amdtlFq/T5BXjVHMMmbK5RrIGyQ6QjqdIvXqo+lk=
+Date:   Thu, 23 May 2019 16:31:49 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Ran Wang <ran.wang_1@nxp.com>
-Cc:     Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND][PATCH] arm64: dts: lx2160a: Enable usb3-lpm-capable for
- usb3 node
-Message-ID: <20190523081646.GK9261@dragon>
-References: <20190515060434.33581-1-ran.wang_1@nxp.com>
- <20190523074300.GH9261@dragon>
- <AM5PR0402MB2865A81EB93DBAC90DB22E87F1010@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx: Avoid colliding 'display' node and
+ property names
+Message-ID: <20190523083148.GL9261@dragon>
+References: <20190516225525.32605-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM5PR0402MB2865A81EB93DBAC90DB22E87F1010@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+In-Reply-To: <20190516225525.32605-1-robh@kernel.org>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 07:51:41AM +0000, Ran Wang wrote:
-> Hi Shawn,
+On Thu, May 16, 2019 at 05:55:25PM -0500, Rob Herring wrote:
+> While properties and child nodes with the same name are valid DT, the
+> practice is not encouraged. Furthermore, the collision is problematic for
+> YAML encoded DT. Let's just avoid the issue and rename the nodes.
 > 
-> On Thursday, May 23, 2019 15:43, Shawn Guo wrote:
-> > 
-> > On Wed, May 15, 2019 at 02:04:34PM +0800, Ran Wang wrote:
-> > > Enable USB3 HW LPM feature for lx2160a and active patch for snps
-> > > erratum A-010131. It will disable U1/U2 temperary when initiate U3
-> > > request.
-> > >
-> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> > > ---
-> > > Depend on:
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore
-> > > .kernel.org%2Fpatchwork%2Fpatch%2F870134%2F&amp;data=02%7C01%7Cr
-> > an.wan
-> > >
-> > g_1%40nxp.com%7Cc6df41748bc243397d3008d6df526c04%7C686ea1d3bc2b4c
-> > 6fa92
-> > >
-> > cd99c5c301635%7C0%7C0%7C636941942428322802&amp;sdata=NR2zs8BE%2
-> > FNn8KdP
-> > > do6%2FsNwJJdx2VgaQTy5H4bAlTJgw%3D&amp;reserved=0
-> > 
-> > Is the dependency accepted?
-> 
-> No, I got no comment for that post since then.
-> lore.kernel.org/patchwork/patch/870134/
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Please post dts patch only after dependency gets accepted.
-
-Shawn
+Applied, thanks.
