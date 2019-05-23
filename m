@@ -2,110 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 932F627A49
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 12:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C431527A74
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 12:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730102AbfEWKWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 06:22:32 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:14964 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729949AbfEWKWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 06:22:32 -0400
-X-UUID: 0f132aa81f0e462aa2f0c2bc6a3cb5eb-20190523
-X-UUID: 0f132aa81f0e462aa2f0c2bc6a3cb5eb-20190523
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <dongchun.zhu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1460626260; Thu, 23 May 2019 18:22:26 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 23 May 2019 18:22:19 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 23 May 2019 18:22:18 +0800
-From:   <dongchun.zhu@mediatek.com>
-To:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <matthias.bgg@gmail.com>, <bingbu.cao@intel.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <louis.kuo@mediatek.com>, <menghui.lin@mediatek.com>,
-        <shengnan.wang@mediatek.com>, <dongchun.zhu@mediatek.com>
-Subject: [PATCH 3/3] media: dt-bindings: media: i2c: Add bindings for ov02a10
-Date:   Thu, 23 May 2019 18:22:04 +0800
-Message-ID: <20190523102204.24112-4-dongchun.zhu@mediatek.com>
-X-Mailer: git-send-email 2.9.2
-In-Reply-To: <20190523102204.24112-1-dongchun.zhu@mediatek.com>
-References: <20190523102204.24112-1-dongchun.zhu@mediatek.com>
+        id S1728184AbfEWK0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 06:26:10 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34317 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727434AbfEWK0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 06:26:10 -0400
+Received: by mail-wr1-f66.google.com with SMTP id f8so5673004wrt.1;
+        Thu, 23 May 2019 03:26:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=qFC5SrExE3ziUojUjgB24ZUk3BEaqL7m9QR0bld0BkM=;
+        b=RqtKI/vPi9UwhL2g9FW+D+zuyKRGS+pacgVIfmWu1gpQdiuW4J+QHTAlrG7/HyKp2z
+         pMa1Uj/DUlJmL3jmrDoTPrc0vnhjIWHb2iub63z4X3soQfv6+343SJaP8cKgA0u/nfeL
+         R1naioUF0NrdSn18lg16GlTzOlrzlGgYNstBCrYWMrgHwWlwi23z/RxPzgLXqO2E0Z/+
+         JsBeYHK2e0SDGz3594u95mtyHDV0wAiAWn+uixmREeh/pz/0alWgiUte/pH9IVq1sfo0
+         W6qQlQqsqPEhJq37QUkVQIK/H5q3gl0+zFXd7DuMM+ahulTEj0OcGBpqt8Ffu7a0+LU1
+         6b0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=qFC5SrExE3ziUojUjgB24ZUk3BEaqL7m9QR0bld0BkM=;
+        b=NghzuoqsCrTM2hTqKoga7NmQokzjHLXPOUCm4ZGQCgWmqM0axIZxQDnqEu8Ua3reRQ
+         UkCLVsdx01Ou6RKWpgcCEqzNMGPceU1UwNKuFUkrrAK0QlzpXzVzZWQ4komPdKIPTsht
+         Fu/u9i8hLlJpo2z7wzqKEL3lcMY6ZMwShdnLt6P3N5iNrZremIcuVoe2wSqV29mhhEZy
+         xNrMIkMOyw3O7nypAPURKoSaRgMA3h8ZbPL2H8xs3AAjb1pPVlwQV3Z1DBQgtI2PuX5h
+         XVI52o2ZBUPHdxLpOBhpJ8MKCQ7p1ubPp3fqXqTS1qGLxXzO1zEfroJ/x4ARO9fNOEhn
+         F0Nw==
+X-Gm-Message-State: APjAAAWKfNtFgaPIQ83R+/guOJDmz6QTuX10w0lAMlweWQhAOW+K5UL9
+        ycCWUHeGpU8+49HmJaTHCgo4veIaHX0=
+X-Google-Smtp-Source: APXvYqyrsrguH6setE9UOtuWl7arQ0j0JqlR21SDAGfF8QvM3fElNI2ehfHkIDXpJe68HxiEJ/i1Pg==
+X-Received: by 2002:a5d:6b03:: with SMTP id v3mr14753858wrw.309.1558607168706;
+        Thu, 23 May 2019 03:26:08 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+        by smtp.gmail.com with ESMTPSA id w13sm8917257wmk.0.2019.05.23.03.26.07
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 23 May 2019 03:26:07 -0700 (PDT)
+Date:   Thu, 23 May 2019 12:26:06 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Nagarjuna Kristam <nkristam@nvidia.com>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, jonathanh@nvidia.com,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [Patch V3 7/8] usb: gadget: Add UDC driver for tegra XUSB device
+ mode controller
+Message-ID: <20190523102606.GF30331@ulmo>
+References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
+ <1557988772-15406-8-git-send-email-nkristam@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 8A6218DB89CF0F70A5DDA7529D5B525741C6C125BBA8720B2BC3CFF484D05CAB2000:8
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="aPdhxNJGSeOG9wFI"
+Content-Disposition: inline
+In-Reply-To: <1557988772-15406-8-git-send-email-nkristam@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dongchun Zhu <dongchun.zhu@mediatek.com>
 
-Add device tree binding documentation for the OV02A10 CMOS image sensor.
+--aPdhxNJGSeOG9wFI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
----
- .../devicetree/bindings/media/i2c/ov02a10.txt      | 43 ++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+On Thu, May 16, 2019 at 12:09:31PM +0530, Nagarjuna Kristam wrote:
+> This patch adds UDC driver for tegra XUSB 3.0 device mode controller.
+> XUSB device mode controller supports SS, HS and FS modes
+>=20
+> Based on work by:
+>   Mark Kuo <mkuo@nvidia.com>
+>   Andrew Bresticker <abrestic@chromium.org>
+>=20
+> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+> ---
+>  drivers/usb/gadget/udc/Kconfig      |   10 +
+>  drivers/usb/gadget/udc/Makefile     |    1 +
+>  drivers/usb/gadget/udc/tegra_xudc.c | 3807 +++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 3818 insertions(+)
+>  create mode 100644 drivers/usb/gadget/udc/tegra_xudc.c
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov02a10.txt b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
-new file mode 100644
-index 0000000..fdc2904
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
-@@ -0,0 +1,43 @@
-+* Omnivision OV02A10 MIPI CSI-2 sensor
-+
-+Required Properties:
-+- compatible: shall be "ovti,ov02a10"
-+- clocks: reference to the xvclk input clock
-+- clock-names: shall be "xvclk"
-+- avdd-supply: Analog voltage supply, 2.8 volts
-+- dovdd-supply: Digital I/O voltage supply, 1.8 volts
-+- dvdd-supply: Digital core voltage supply, 1.8 volts
-+- reset-gpios: Low active reset gpio
-+
-+The device node shall contain one 'port' child node with an
-+'endpoint' subnode for its digital output video port,
-+in accordance with the video interface bindings defined in
-+Documentation/devicetree/bindings/media/video-interfaces.txt.
-+The endpoint optional property 'data-lanes' shall be "<1>".
-+
-+Example:
-+&i2c4 {
-+	sensor_sub: sensor_sub {
-+		compatible = "ovti,ov02a10";
-+		reg = <0x3d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&camera_pins_cam1_mclk_on>;
-+
-+		clocks = <&topckgen CLK_TOP_MUX_CAMTG2>,
-+			<&topckgen CLK_TOP_UNIVP_192M_D8>;
-+		clock-names = "xvclk", "freq_mux";
-+
-+		avdd-supply = <&mt6358_vcama1_reg>;
-+		dvdd-supply = <&mt6358_vcn18_reg>;
-+		dovdd-supply = <&mt6358_vcamio_reg>;
-+		pwdn-gpios = <&pio 107 1>;
-+		reset-gpios = <&pio 109 1>;
-+
-+		port@0 {
-+		   ov02a10_core: endpoint {
-+		       remote-endpoint = <&ov02a10_0>;
-+			   data-lanes = <1>;
-+		   };
-+		};
-+	};
-+};
--- 
-2.9.2
+Looks good to me, but please address Chunfeng's comments:
 
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--aPdhxNJGSeOG9wFI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzmdTwACgkQ3SOs138+
+s6HsmBAAs3zsZ3R7r94PXVAXdD0EvYx1TgGb0Xp/1R/e6nLD85CHeYOwwZ5OJnGH
+fmsVUPYAM9S1I3NocnOgMf/eBl5fUCNY8g5EOgfh55j7svLM0hX+yIv8omje8AA4
+e745dH6K369HN6bRf7JBrRQmg7P1gf7WUxDJbryUHWg+/aCgNCrVpOquswDczYFa
+ThfkYWO6XnfdMeszP5oVQGlguDhBFAzpIs2pEtXR2YGzF3IbM8WzR22vTJtybAif
+2HvvM7/lYsCgs3T21S2qEoHDz9i0MwQgFg9vT89iCgo2jsWL+V8Xq0cUPSEkHU40
+yx6tsMZ96gwLg6kG8agN1gdXyXEDmueszhRwYcWCZZAHu4XflbtiO0mAN1KSZxNh
+X4BeybKLkSUM/iqO1tDgtRU/46TZQKWNwO+bCUpMzntyfi76DbNdQH4Ltt49o3aH
+5PkPkG/oc/sfFQx5ikNII+urMhHJIxzAS9+sNRMptQCCrzg4RB/RGyQdyb7fk6Je
+pt0t4AM1HHGN1BdZ1ij1Q8m6cz6wyaZUjl1HKJFrZmaaFCkHchfGyvqJOSbH+iig
+gJEm6rk12boPc3PzGgL9JsKx4S6P0TUnfQ92c5+DyeA3BTnpC6duvGopVT/yMDZq
+BS7+1vbwYb+0XAtfEeEkPrnwG8k6MV0q0QYHHLZ+nE1HdR9APpc=
+=vI9Z
+-----END PGP SIGNATURE-----
+
+--aPdhxNJGSeOG9wFI--
