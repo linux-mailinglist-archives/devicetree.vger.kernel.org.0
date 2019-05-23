@@ -2,79 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6140227B5D
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4C227B78
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728309AbfEWLHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 07:07:23 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:33441 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726429AbfEWLHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 07:07:23 -0400
-X-Originating-IP: 90.88.22.185
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 13C8C1BF211;
-        Thu, 23 May 2019 11:07:15 +0000 (UTC)
-Date:   Thu, 23 May 2019 13:07:15 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jose Abreu <Jose.Abreu@synopsys.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>
-Subject: Re: [PATCH 6/8] dt-bindings: net: stmmac: Convert the binding to a
- schemas
-Message-ID: <20190523110715.ckyzpec3quxr26cp@flea>
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <ba1a5d8ad34a8c9ab99f504c04fbe65bde42081b.1558605170.git-series.maxime.ripard@bootlin.com>
- <78EB27739596EE489E55E81C33FEC33A0B92B864@DE02WEMBXB.internal.synopsys.com>
+        id S1729962AbfEWLMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 07:12:20 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:14081 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728518AbfEWLMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 07:12:20 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ce680130001>; Thu, 23 May 2019 04:12:19 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 23 May 2019 04:12:18 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 23 May 2019 04:12:18 -0700
+Received: from [10.24.193.7] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 23 May
+ 2019 11:12:15 +0000
+Subject: Re: [Patch V3 3/8] phy: tegra: xusb: t210: add vbus override support
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
+ <1557988772-15406-4-git-send-email-nkristam@nvidia.com>
+ <20190523100333.GC30331@ulmo>
+X-Nvconfidentiality: public
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+Message-ID: <aecd9cff-9b1f-9a9d-4345-761788ad438c@nvidia.com>
+Date:   Thu, 23 May 2019 16:43:28 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <78EB27739596EE489E55E81C33FEC33A0B92B864@DE02WEMBXB.internal.synopsys.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190523100333.GC30331@ulmo>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL103.nvidia.com (172.20.187.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558609939; bh=1QcL6Qjh2O2xjy6a+l+mTNrRUATVWByCaoXPv0qKifk=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=L6kTKy/dFSrO0X5FQ4fK3rYAsIeRqQqmSzuzdFm28YaTKNL0O/F5GvLJld3Zatsgz
+         tSJvntpFZb4qAu3CK93nFgGI18NdcmcZRuvUoPuPKBa4+F896qjzbRQPuMk3ps9pbk
+         jgUCnJgFNw4wH76UpbvgIREowUPNsAjO1X3EiFPz3oXtac/sytqnjKBTa3HSjzveQc
+         k5uoSWao+ertb0P5E6WsMLTP27o3yzux1Ucw3IcgSv7knoxKTBby3HQ/nviBGlCpm3
+         YlQ7gSvX/VD/GdbTX+cQ1FW99H9DOmzlyr1td+AoCw9b0jaGSAKZXGg9KNLtDBwdpv
+         j9h8GSirKBw9g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
 
-On Thu, May 23, 2019 at 10:11:39AM +0000, Jose Abreu wrote:
-> From: Maxime Ripard <maxime.ripard@bootlin.com>
-> Date: Thu, May 23, 2019 at 10:56:49
->
-> > Switch the STMMAC / Synopsys DesignWare MAC controller binding to a YAML
-> > schema to enable the DT validation.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> How exactly can I see the final results of this ? Do you have any link ?
-> (I'm no expert in YAML at all).
 
-You need some extra tooling, that you can find here:
-https://github.com/devicetree-org/dt-schema
+On 23-05-2019 15:33, Thierry Reding wrote:
+> On Thu, May 16, 2019 at 12:09:27PM +0530, Nagarjuna Kristam wrote:
+>> Tegra XUSB device control driver needs to control vbus override
+>> during its operations, add API for the support.
+>>
+>> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+>> ---
+>>  drivers/phy/tegra/xusb-tegra210.c | 59 +++++++++++++++++++++++++++++++++++++++
+>>  drivers/phy/tegra/xusb.c          | 22 +++++++++++++++
+>>  drivers/phy/tegra/xusb.h          |  2 ++
+>>  include/linux/phy/tegra/xusb.h    |  6 ++--
+>>  4 files changed, 87 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
+>> index 829aca5..363d2aa 100644
+>> --- a/drivers/phy/tegra/xusb-tegra210.c
+>> +++ b/drivers/phy/tegra/xusb-tegra210.c
+>> @@ -73,6 +73,10 @@
+>>  #define XUSB_PADCTL_USB3_PAD_MUX_PCIE_IDDQ_DISABLE(x) (1 << (1 + (x)))
+>>  #define XUSB_PADCTL_USB3_PAD_MUX_SATA_IDDQ_DISABLE(x) (1 << (8 + (x)))
+>>  
+>> +#define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL0(x) (0x080 + (x) * 0x40)
+>> +#define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL0_ZIP (1 << 18)
+>> +#define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL0_ZIN (1 << 22)
+>> +
+>>  #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL1(x) (0x084 + (x) * 0x40)
+>>  #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_SHIFT 7
+>>  #define XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL1_VREG_LEV_MASK 0x3
+>> @@ -235,6 +239,12 @@
+>>  #define XUSB_PADCTL_UPHY_USB3_PADX_ECTL6(x) (0xa74 + (x) * 0x40)
+>>  #define XUSB_PADCTL_UPHY_USB3_PAD_ECTL6_RX_EQ_CTRL_H_VAL 0xfcf01368
+>>  
+>> +#define XUSB_PADCTL_USB2_VBUS_ID 0xc60
+>> +#define XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_VBUS_ON (1 << 14)
+>> +#define XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_SHIFT 18
+>> +#define XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_MASK 0xf
+>> +#define XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_FLOATING 8
+>> +
+>>  struct tegra210_xusb_fuse_calibration {
+>>  	u32 hs_curr_level[4];
+>>  	u32 hs_term_range_adj;
+>> @@ -2024,6 +2034,53 @@ static const struct tegra_xusb_port_ops tegra210_usb3_port_ops = {
+>>  	.map = tegra210_usb3_port_map,
+>>  };
+>>  
+>> +static int tegra210_xusb_padctl_vbus_override(struct tegra_xusb_padctl *padctl,
+>> +					      bool status)
+>> +{
+>> +	u32 value;
+>> +
+>> +	dev_dbg(padctl->dev, "%s vbus override\n", status ? "set" : "clear");
+>> +
+>> +	value = padctl_readl(padctl, XUSB_PADCTL_USB2_VBUS_ID);
+>> +
+>> +	if (status) {
+>> +		value |= XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_VBUS_ON;
+>> +		value &= ~(XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_MASK <<
+>> +			   XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_SHIFT);
+>> +		value |= XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_FLOATING <<
+>> +			 XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_SHIFT;
+>> +	} else
+>> +		value &= ~XUSB_PADCTL_USB2_VBUS_ID_OVERRIDE_VBUS_ON;
+>> +
+>> +	padctl_writel(padctl, value, XUSB_PADCTL_USB2_VBUS_ID);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tegra210_utmi_port_reset(struct phy *phy)
+>> +{
+>> +	struct tegra_xusb_padctl *padctl;
+>> +	struct tegra_xusb_lane *lane;
+>> +	struct device *dev;
+>> +	u32 value;
+>> +
+>> +	lane = phy_get_drvdata(phy);
+>> +	padctl = lane->pad->padctl;
+>> +	dev = padctl->dev;
+> 
+> dev seems unused. Is this debugging leftover?
+> 
+> Thierry
+> 
+Yes, will clear this in next series
 
-You can then run make dtbs_check, and those YAML files will be used to
-validate that any devicetree using those properties are doing it
-properly. That implies having the right node names, properties, types,
-ranges of values when relevant, and so on.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-Nagarjuna
+>> +
+>> +	value = padctl_readl(padctl,
+>> +			     XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPADX_CTL0(0));
+>> +
+>> +	if ((value & XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL0_ZIP) ||
+>> +	    (value & XUSB_PADCTL_USB2_BATTERY_CHRG_OTGPAD_CTL0_ZIN)) {
+>> +		tegra210_xusb_padctl_vbus_override(padctl, false);
+>> +		tegra210_xusb_padctl_vbus_override(padctl, true);
+>> +		return 1;
+>> +	}
+>> -- 
+>> 2.7.4
+>>
