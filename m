@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58996277C8
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871B9277CC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:16:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727466AbfEWIOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 04:14:22 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:54225 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727708AbfEWIOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 04:14:22 -0400
-X-Originating-IP: 90.88.22.185
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 89C4160011;
-        Thu, 23 May 2019 08:14:16 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: [PATCH] dt-bindings: Add vendor prefix for Espressif
-Date:   Thu, 23 May 2019 10:14:15 +0200
-Message-Id: <20190523081415.29870-1-maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
+        id S1726081AbfEWIQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 04:16:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51130 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726070AbfEWIQe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 04:16:34 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2970920665;
+        Thu, 23 May 2019 08:16:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558599393;
+        bh=NZf4YLD4LHzsJ7Iw0Ui8Zne1NY8VX4JKe1guPQ0sIXs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=w0FJxcelTJh94Ds1oI87eUSzKc7ByFngW438dgYJnRvVoSdEPHHoX5VfYgyAtKB4j
+         MxulVl3rGw6Non02hQG2DmpTpK6O3kc9Qrj8hcOylDuyquvMQ/DxvWzO9O0Q0Z9Uul
+         g+Xx2ocuExBRfGkJyQ3hF/nqrNOkbetNiOPQ9sRk=
+Date:   Thu, 23 May 2019 16:15:34 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [EXT] Re: [PATCHv2] arm64: dts: ls1028a: add flexspi nodes
+Message-ID: <20190523081533.GJ9261@dragon>
+References: <20190515110924.13726-1-xiaowei.bao@nxp.com>
+ <20190523080049.GI9261@dragon>
+ <AM5PR04MB32997EA37551AFC88FCBE2C6F5010@AM5PR04MB3299.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM5PR04MB32997EA37551AFC88FCBE2C6F5010@AM5PR04MB3299.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Espressif Systems DT vendor prefix. That prefix has been used for quite
-some time for WiFi chips, but has never been documented.
+On Thu, May 23, 2019 at 08:06:42AM +0000, Xiaowei Bao wrote:
+> > +             compatible = "nxp,lx2160a-fspi", "simple-bus";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +             reg = <0x0 0x20c0000 0x0 0x10000>,
+> > +                 <0x0 0x20000000 0x0 0x10000000>;
+> 
+> Fix the indentation to git it aligned with above '<'.
+> [Xiaowei Bao] this is aligned, I don't know why it is not aligned in email. Thanks.
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+That's fine then.
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index c0881d51aa91..19cc3240a445 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -277,6 +277,8 @@ patternProperties:
-     description: Ecole Polytechnique Fédérale de Lausanne
-   "^epson,.*":
-     description: Seiko Epson Corp.
-+  "^esp,.*":
-+    description: Espressif Systems Co. Ltd.
-   "^est,.*":
-     description: ESTeem Wireless Modems
-   "^ettus,.*":
--- 
-2.21.0
-
+Shawn
