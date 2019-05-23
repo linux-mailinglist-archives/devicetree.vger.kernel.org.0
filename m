@@ -2,224 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 109EE284F3
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 19:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 978D52854C
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 19:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731053AbfEWRbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 13:31:03 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:39072 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730904AbfEWRbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 13:31:02 -0400
-Received: by mail-wr1-f65.google.com with SMTP id w8so7182014wrl.6;
-        Thu, 23 May 2019 10:31:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MnmPtd13D8a9dFFGhJ+iINcRL6VlzTwwNXyGnOS9P8s=;
-        b=AXdFNh6zjPSns6vq7L/S6ful1yMtAzmegpn26bTknvORaI3URXxBUTv8Xp/k4eubP6
-         572Qnk6DlmF8notkypYg3qMKzwyzheEvET23blhLTPjyLZao14XoIgYyaKXRnWJavZbs
-         oTgSzsLfWZH6Y5nmN4IBWZ3iwjZP7b7+l0+d1cjHXkanDW36krMMuZDvD6t8uz2O6Bp9
-         6OG0It76CRnenkjwAYf2+BSWrn5Ef7LZikxi9id66Q4A5RENR+V3wL4jlgZLNUQHaold
-         /BFBmTz7D8g1Nwl5AoOUwKrDoi6NsxhG+FDk20IDm0dxfD9AEU2WTJOKKxq72HMYaH0F
-         Jtig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=MnmPtd13D8a9dFFGhJ+iINcRL6VlzTwwNXyGnOS9P8s=;
-        b=D77wuDQuz/MDYxgRd24UPrinC+ITsv1S0SMRM3rqFxOkwChiWiQs9feUrFfGSXnBC3
-         hX6xkHR4I8xYpl+TQqOAshil1KcNoRIrVobLgeGuUjocvDIuXXC4oLXPkc9IK5k1PZk6
-         idpcQRarqCAyUezE3ykGmX6d1HjcByoa0aJt4CTKbTDvji1T56QcpQFFEoxXHKF+c98/
-         TD+P9QM8QuFkINn89iqbjuzwx26Ug3Ig+4KCeIHJzpwSss/Xf4jH1NLSmzK3Sp4T2c2w
-         3QUxIso6u1fP5CUg/2RQaEF7Lm+910CNWrEaV74+KBXBDWYdrFfb4pHNzdjWbDh4Nc8B
-         ahQQ==
-X-Gm-Message-State: APjAAAUBwZpcfdYHlEwr42WlRDCMGJoF0srRLNQfrlJeN4KuEidsheyo
-        jQw/oY+wc5Pv5P7eXHYzAng=
-X-Google-Smtp-Source: APXvYqyg8dtvzFR12TyR+1NJ1FkLY5vjomXq5yABkYnmStYL0Loj3lA2u14z5zQGYJBYaWvRji7YEA==
-X-Received: by 2002:adf:dfd0:: with SMTP id q16mr4819351wrn.235.1558632660309;
-        Thu, 23 May 2019 10:31:00 -0700 (PDT)
-Received: from [10.67.49.213] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id a124sm243837wmh.3.2019.05.23.10.30.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 23 May 2019 10:30:59 -0700 (PDT)
-Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
-To:     Peng Fan <peng.fan@nxp.com>,
+        id S1731182AbfEWRvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 13:51:55 -0400
+Received: from mail-eopbgr730090.outbound.protection.outlook.com ([40.107.73.90]:11392
+        "EHLO NAM05-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730928AbfEWRvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 13:51:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
+ b=yOwyZSUksOx9KxLIo5CrD+4bl8GF+yuZ+EOu9t2BKcr17jHiH5Q3U5fCLJjuSDqQdwl3LFGCzkr1Jro5KO2wz90jP1j8SS5LvZo8akHDp18STSjx/+YKJS/LCm47SziKCokc92C6CnJPibWXMzuVU0QO4GyOdWZ5bK0OGwB5wco=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=testarcselector01;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O1gtWwZvKHrCTwBPtZVN+DvvUZS0a8xh+/uzA+bC2nk=;
+ b=uAHTmHYPDvhpZZo4rJPjh0OCnnOz8KGT7yagN+cj+X8EEivi6hbFL2tQi+cettfNID6dex7U3Mb19FPhxK3/gW6vKlDYwBNW2tkUNvQD3noyQmmFanuJ0qTMPhDKLowL7VphYwJEJJhHx1XpeaYHr8qVoIjInj3f4R9kamc9WjQ=
+ARC-Authentication-Results: i=1; test.office365.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O1gtWwZvKHrCTwBPtZVN+DvvUZS0a8xh+/uzA+bC2nk=;
+ b=kdt5X+qn6hWsnOW6I5P043tmlmqErOJwmHmoOgrfIdfJJ3jmglhYx3oTAZps7b2/dsM+Jhy6kmtwRKVpgA6Byl81LZ6pe0IBlpZNKskH8mefRgF/TvxRJPRsKzwCs/Qbv7Qo5Soa2FifR2/4hJDCFgYZwZHytkEScCFe5WMCH6k=
+Received: from BYAPR21MB1319.namprd21.prod.outlook.com (2603:10b6:a03:115::9)
+ by BYAPR21MB1191.namprd21.prod.outlook.com (2603:10b6:a03:105::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1922.3; Thu, 23 May
+ 2019 17:51:49 +0000
+Received: from BYAPR21MB1319.namprd21.prod.outlook.com
+ ([fe80::e9a9:224d:3961:2088]) by BYAPR21MB1319.namprd21.prod.outlook.com
+ ([fe80::e9a9:224d:3961:2088%8]) with mapi id 15.20.1943.006; Thu, 23 May 2019
+ 17:51:49 +0000
+From:   "Lei Wang (BSP)" <Wang.Lei@microsoft.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Lei Wang <leiwang_git@outlook.com>
+CC:     "bp@alien8.de" <bp@alien8.de>,
+        "james.morse@arm.com" <james.morse@arm.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190523060437.11059-1-peng.fan@nxp.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <4ba2b243-5622-bb27-6fc3-cd9457430e54@gmail.com>
-Date:   Thu, 23 May 2019 10:30:50 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190523060437.11059-1-peng.fan@nxp.com>
-Content-Type: text/plain; charset=utf-8
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        Rui Zhao <ruizhao@microsoft.com>,
+        Hang Li <hangl@microsoft.com>,
+        Sasha Levin <Alexander.Levin@microsoft.com>
+Subject: RE: [PATCH v3 1/2] dt-bindings: edac: arm-dmc520.txt
+Thread-Topic: [PATCH v3 1/2] dt-bindings: edac: arm-dmc520.txt
+Thread-Index: AQHVC5AR4+AcLYu1eESQ1uQyoWKNiaZ4+muAgAAKjAA=
+Date:   Thu, 23 May 2019 17:51:49 +0000
+Message-ID: <BYAPR21MB1319BC4D079B918AB038A4D590010@BYAPR21MB1319.namprd21.prod.outlook.com>
+References: <CY1PR0401MB1244062C1738B09D6100F202860A0@CY1PR0401MB1244.namprd04.prod.outlook.com>
+ <20190523165841.GD7523@lakrids.cambridge.arm.com>
+In-Reply-To: <20190523165841.GD7523@lakrids.cambridge.arm.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Enabled=True;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SiteId=72f988bf-86f1-41af-91ab-2d7cd011db47;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Owner=lewan@microsoft.com;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SetDate=2019-05-23T17:51:47.9288836Z;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Name=General;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Application=Microsoft Azure
+ Information Protection;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ActionId=12189b5c-1702-4376-aa08-110460eab1f4;
+ MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Extended_MSFT_Method=Automatic
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Wang.Lei@microsoft.com; 
+x-originating-ip: [2001:4898:80e8:0:74f8:b538:8cb0:8ca0]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ec2f4537-2761-43cc-1b08-08d6dfa754b8
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:BYAPR21MB1191;
+x-ms-traffictypediagnostic: BYAPR21MB1191:
+x-microsoft-antispam-prvs: <BYAPR21MB1191D206046F24D18444C6D090010@BYAPR21MB1191.namprd21.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 00462943DE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(366004)(376002)(136003)(346002)(396003)(199004)(189003)(13464003)(8990500004)(6246003)(22452003)(10290500003)(107886003)(5660300002)(53936002)(52536014)(76176011)(7696005)(4326008)(2906002)(102836004)(68736007)(52396003)(6116002)(99286004)(6506007)(53546011)(229853002)(72206003)(86612001)(8676002)(486006)(478600001)(54906003)(25786009)(256004)(110136005)(6436002)(316002)(8936002)(186003)(55016002)(10090500001)(11346002)(9686003)(7736002)(476003)(446003)(305945005)(14454004)(71190400001)(71200400001)(81156014)(46003)(81166006)(86362001)(73956011)(66946007)(66446008)(76116006)(33656002)(64756008)(66556008)(66476007)(74316002);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR21MB1191;H:BYAPR21MB1319.namprd21.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: microsoft.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: NRZGK2QaAq79EuKfAN4cXWfPDYw2vu/o6hgBvfJy5ULU9ICrN3P+llWqP/lt//h8XD2vGGpqt+Dxf1Auc+apTP66+i8jKDhuni7RqJB6HLvgAlJn+dQqo6J9gxpUgnglw2z9/Sc0mPD7RN+7+Dx8aN32F8hNlWyANkVAhE9xONlOH4t6pRTdMgoSgxGSE6PfwK83J/UvP2o81MBMpzeOYEfZdsJ//diRDFpdgpf19KrD29G3udyFIH9XAlTOearUS71zxg+gKGLpkwZB59MlToDIXqe/JxFvdWjmvzoGut7UsKuIUckWeJ/z2E5wlGLu2XiZpeK3hskA3PBoF7f7gGeYxnuKfF8gbsmkP11IwiXyBTlh5E42pLk7b4Cjvfa46ucxUE1R2MggdPtGa94Txx2tXxOvzh7/HYkyH6tMxDk=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: microsoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec2f4537-2761-43cc-1b08-08d6dfa754b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 17:51:49.1715
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lewan@microsoft.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR21MB1191
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+(+Rui/Hang/Sasha)
 
-On 5/22/19 10:50 PM, Peng Fan wrote:
-> This is a modified version from Andre Przywara's patch series
-> https://lore.kernel.org/patchwork/cover/812997/.
-> [1] is a draft implementation of i.MX8MM SCMI ATF implementation that
-> use smc as mailbox, power/clk is included, but only part of clk has been
-> implemented to work with hardware, power domain only supports get name
-> for now.
-> 
-> The traditional Linux mailbox mechanism uses some kind of dedicated hardware
-> IP to signal a condition to some other processing unit, typically a dedicated
-> management processor.
-> This mailbox feature is used for instance by the SCMI protocol to signal a
-> request for some action to be taken by the management processor.
-> However some SoCs does not have a dedicated management core to provide
-> those services. In order to service TEE and to avoid linux shutdown
-> power and clock that used by TEE, need let firmware to handle power
-> and clock, the firmware here is ARM Trusted Firmware that could also
-> run SCMI service.
-> 
-> The existing SCMI implementation uses a rather flexible shared memory
-> region to communicate commands and their parameters, it still requires a
-> mailbox to actually trigger the action.
+Hi Mark, please see inline with "[Lei]" tag. Thanks! -Lei
 
-We have had something similar done internally with a couple of minor
-differences:
+-----Original Message-----
+From: Mark Rutland <mark.rutland@arm.com>=20
+Sent: Thursday, May 23, 2019 9:59 AM
+To: Lei Wang <leiwang_git@outlook.com>
+Cc: bp@alien8.de; james.morse@arm.com; robh+dt@kernel.org; devicetree@vger.=
+kernel.org; linux-kernel@vger.kernel.org; linux-edac@vger.kernel.org; Lei W=
+ang (BSP) <Wang.Lei@microsoft.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: edac: arm-dmc520.txt
 
-- a SGI is used to send SCMI notifications/delayed replies to support
-asynchronism (patches are in the works to actually add that to the Linux
-SCMI framework). There is no good support for SGI in the kernel right
-now so we hacked up something from the existing SMP code and adding the
-ability to register our own IPI handlers (SHAME!). Using a PPI should
-work and should allow for using request_irq() AFAICT.
+On Thu, May 16, 2019 at 02:35:47AM +0000, Lei Wang wrote:
+> From: Lei Wang <leiwang_git@outlook.com>
+>=20
+> This is the device tree bindings for new EDAC driver dmc520_edac.c.
+>=20
+> Signed-off-by: Lei Wang <leiwang_git@outlook.com>
+> ---
+>  .../devicetree/bindings/edac/arm-dmc520.txt        | 26 ++++++++++++++++=
+++++++
+>  1 file changed, 26 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/arm-dmc520.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/edac/arm-dmc520.txt b/Docu=
+mentation/devicetree/bindings/edac/arm-dmc520.txt
+> new file mode 100644
+> index 0000000..71e7aa3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/edac/arm-dmc520.txt
+> @@ -0,0 +1,26 @@
+> +* ARM DMC-520 EDAC node
+> +
+> +Required properties:
+> +- compatible		: "brcm,dmc-520", "arm,dmc-520".
+> +- reg			: Address range of the DMC-520 registers.
+> +- interrupts		: DMC-520 interrupt numbers. The example below specifies
+> +			  two interrupt lines for dram_ecc_errc_int and
+> +			  dram_ecc_errd_int.
+> +- interrupt-config	: This is an array of interrupt masks. For each of th=
+e
+> +			  above interrupt line, add one interrupt mask element to
+> +			  it. That is, there is a 1:1 mapping from each interrupt
+> +			  line to an interrupt mask. An interrupt mask can represent
+> +			  multiple interrupts being enabled. Refer to interrupt_control
+> +			  register in DMC-520 TRM for interrupt mapping. In the example
+> +			  below, the interrupt configuration enables dram_ecc_errc_int
+> +			  and dram_ecc_errd_int. And each interrupt is connected to
+> +			  a separate interrupt line.
 
-- the mailbox identifier is indicated as part of the SMC call such that
-we can have multiple SCMI mailboxes serving both standard protocols and
-non-standard (in the 0x80 and above) range, also they may have different
-throughput (in hindsight, these could simply be different channels)
+Generally we use interrupt-names to distinguish interrupts.
 
-Your patch series looks both good and useful to me, I would just put a
-provision in the binding to support an optional interrupt such that
-asynchronism gets reasonably easy to plug in when it is available (and
-desirable).
+Do you really have arbitary subsets of lines muxed together?
 
-> 
-> This patch series provides a Linux mailbox compatible service which uses
-> smc calls to invoke firmware code, for instance taking care of SCMI requests.
-> The actual requests are still communicated using the standard SCMI way of
-> shared memory regions, but a dedicated mailbox hardware IP can be replaced via
-> this new driver.
-> 
-> This simple driver uses the architected SMC calling convention to trigger
-> firmware services, also allows for using "HVC" calls to call into hypervisors
-> or firmware layers running in the EL2 exception level.
-> 
-> Patch 1 contains the device tree binding documentation, patch 2 introduces
-> the actual mailbox driver.
-> 
-> Please note that this driver just provides a generic mailbox mechanism,
-> though this is synchronous and one-way only (triggered by the OS only,
-> without providing an asynchronous way of triggering request from the
-> firmware).
-> And while providing SCMI services was the reason for this exercise, this
-> driver is in no way bound to this use case, but can be used generically
-> where the OS wants to signal a mailbox condition to firmware or a
-> hypervisor.
-> Also the driver is in no way meant to replace any existing firmware
-> interface, but actually to complement existing interfaces.
-> 
-> [1] https://github.com/MrVan/arm-trusted-firmware/tree/scmi
-> 
-> Peng Fan (2):
->   DT: mailbox: add binding doc for the ARM SMC mailbox
->   mailbox: introduce ARM SMC based mailbox
-> 
->  .../devicetree/bindings/mailbox/arm-smc.txt        |  96 +++++++++++++
->  drivers/mailbox/Kconfig                            |   7 +
->  drivers/mailbox/Makefile                           |   2 +
->  drivers/mailbox/arm-smc-mailbox.c                  | 154 +++++++++++++++++++++
->  include/linux/mailbox/arm-smc-mailbox.h            |  10 ++
->  5 files changed, 269 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.txt
->  create mode 100644 drivers/mailbox/arm-smc-mailbox.c
->  create mode 100644 include/linux/mailbox/arm-smc-mailbox.h
-> 
+-----------------------------------------------
+[Lei] Yes it is possible to mux multiple interrupt sources into one interru=
+pt line for dmc520. For example, in this particular brcm implementation,=20
 
+Line 841: source dram_ecc_errc_int
+Line 843: source dram_ecc_errd_int
+Line 839: source dram_ecc_errc_int and dram_ecc_errd_int
 
--- 
-Florian
+There are two possibilities for implementing ecc counts for ce/ue. And we c=
+hose to use the single source line. But it's possible to implement using th=
+e combined-source line too. This dt binding can support both by modifying t=
+he properties.
+-------------------------------------------------
+
+Thanks,
+Mark.
+
+> +
+> +Example:
+> +
+> +dmc0: dmc@200000 {
+> +	compatible =3D "brcm,dmc-520", "arm,dmc-520";
+> +	reg =3D <0x200000 0x80000>;
+> +	interrupts =3D <0x0 0x349 0x4>, <0x0 0x34B 0x4>;
+> +	interrupt-config =3D <0x4>, <0x8>;
+> +};
+> --=20
+> 2.7.4
+>=20
