@@ -2,94 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D2428051
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 16:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49EAC28064
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 17:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730741AbfEWO5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 10:57:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54732 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730709AbfEWO5f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 10:57:35 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 014C92175B
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 14:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558623455;
-        bh=86U584cfMubHTeQeRMyMXYE9myTkMGFnLep8+DNHTsg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aSXkLHzfTb0OmpCplI/3bhak/9Lsrvq2yyrquEaUuMGB1/8jpk8DzAsqPJQqPT4ew
-         OHgWaWwiHYS/zvZw8T7lfAqEE1Kmc3wgjouMnuJ7JkePo6pvCXvT12od8v8ZVDNK7y
-         nyEn196C7ogTI3IUgEWfmG7X1CPGZs1Evtq8vsuM=
-Received: by mail-qt1-f177.google.com with SMTP id l3so7078629qtj.5
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 07:57:34 -0700 (PDT)
-X-Gm-Message-State: APjAAAWwrl0P1XEwWos34WfTneDeKuBKMDb4blgWQjHQi/o5YdJL7Ogc
-        bcebvKlgzA/pBIKfcWe2mhYVUARvJK6JZWzy+g==
-X-Google-Smtp-Source: APXvYqzGpjupC7iWkpzfQkDSijO5KdYs627pb5zV6oWOI+jJmQlbjWDJ665tprytzZnQhCdokhfGu+oWljV/B2CIJhw=
-X-Received: by 2002:ac8:7688:: with SMTP id g8mr53598235qtr.224.1558623454253;
- Thu, 23 May 2019 07:57:34 -0700 (PDT)
+        id S1730782AbfEWPAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 11:00:25 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:35057 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730741AbfEWPAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 11:00:25 -0400
+Received: by mail-oi1-f196.google.com with SMTP id a132so4618320oib.2;
+        Thu, 23 May 2019 08:00:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qeElCV+Nxu7+CjCipGaoQ8bPDQ/OvLxQiVOvXHGO8wU=;
+        b=akLkGPnb5jcklOwOikBbzeKdN4MhmgNNvcC31lc16knee4JUvBRHr12oVT8QBa++Tw
+         LWT7OocUINANzTc/5lbDncqm5NVs5+moYTfGmrPfkyh88SWdc5IlCpGnsvRgaIVYGroU
+         ZZPiKz/V6N8sPhS+7P8zCcAt8z2JU76Av4sRvhn+lFacw84/i35XNTKpTNgIN19PIHcz
+         Fto8cf7v2hC40aPoXgj9kEQgNDhCi3FBanxjH0UkLLydreBCjMLDH5ngo6ScB77Xpk1V
+         hUU5/HmXTnqQlg6MDN8vPUK2sUABAkb4WlIkjlMf9I4WzaPRhV8R4iWEyka7VvaLJCJy
+         IYVg==
+X-Gm-Message-State: APjAAAX8Eguj6YfFh07OI4aiF+CfTK2d/7KPZ3FIdAdGIy2C/kYPq0sb
+        v+61XbT64FBr3RnmMx4Ne4rVE1E=
+X-Google-Smtp-Source: APXvYqw+Zx4Tu7B3lsgAaVXYIU6YlWQRJGzzP06SV1533OP9OPc7wxuh08Z0YveCkf05D3ocehL3hw==
+X-Received: by 2002:aca:7552:: with SMTP id q79mr3041138oic.85.1558623623408;
+        Thu, 23 May 2019 08:00:23 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id f5sm9256735oto.67.2019.05.23.08.00.22
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 23 May 2019 08:00:22 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Joe Perches <joe@perches.com>
+Subject: [PATCH v2] checkpatch.pl: Update DT vendor prefix check
+Date:   Thu, 23 May 2019 10:00:22 -0500
+Message-Id: <20190523150022.2747-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190523081415.29870-1-maxime.ripard@bootlin.com>
-In-Reply-To: <20190523081415.29870-1-maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 23 May 2019 09:57:22 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKLVkM6ygAmLsgF+rxAOxdiqBP2i+J1wLNfDeYrPd2JcA@mail.gmail.com>
-Message-ID: <CAL_JsqKLVkM6ygAmLsgF+rxAOxdiqBP2i+J1wLNfDeYrPd2JcA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Add vendor prefix for Espressif
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 3:14 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Add Espressif Systems DT vendor prefix. That prefix has been used for quite
-> some time for WiFi chips, but has never been documented.
+In commit 8122de54602e ("dt-bindings: Convert vendor prefixes to
+json-schema"), vendor-prefixes.txt has been converted to a DT schema.
+Update the checkpatch.pl DT check to extract vendor prefixes from the new
+vendor-prefixes.yaml file.
 
-Just 1 of about 100...
-
-Here's a script to generate a schema for compatible string checks. Not
-yet sure what to do with it or how to integrate it in.
-
-#!/bin/sh
-
-vnd_file="Documentation/devicetree/bindings/vendor-prefixes.yaml"
-
-vendor_pattern="$(sed -n -e 's/.*\^\([-a-zA-Z0-9]*\),.*/
-\1\|\\/p' ${vnd_file})"
-
-cat << EOF
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-%YAML 1.2
+Fixes: 8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
+Cc: Joe Perches <joe@perches.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-\$id: http://devicetree.org/schemas/compatible-vendor-prefixes.yaml#
-\$schema: http://devicetree.org/meta-schemas/base.yaml#
+v2: Handle vendor prefixes with '-' using Joe's reworked grep
 
-title: Devicetree Vendor Prefix Registry
+ scripts/checkpatch.pl | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-maintainers:
-  - Rob Herring <robh@kernel.org>
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index bb28b178d929..342c7c781ba5 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -3027,7 +3027,7 @@ sub process {
+ 			my @compats = $rawline =~ /\"([a-zA-Z0-9\-\,\.\+_]+)\"/g;
+ 
+ 			my $dt_path = $root . "/Documentation/devicetree/bindings/";
+-			my $vp_file = $dt_path . "vendor-prefixes.txt";
++			my $vp_file = $dt_path . "vendor-prefixes.yaml";
+ 
+ 			foreach my $compat (@compats) {
+ 				my $compat2 = $compat;
+@@ -3042,7 +3042,7 @@ sub process {
+ 
+ 				next if $compat !~ /^([a-zA-Z0-9\-]+)\,/;
+ 				my $vendor = $1;
+-				`grep -Eq "^$vendor\\b" $vp_file`;
++				`grep -Eq "\\"\\^\Q$vendor\E,\\.\\*\\":" $vp_file`;
+ 				if ( $? >> 8 ) {
+ 					WARN("UNDOCUMENTED_DT_STRING",
+ 					     "DT compatible string vendor \"$vendor\" appears un-documented -- check $vp_file\n" . $herecurr);
+-- 
+2.20.1
 
-select: true
-
-properties:
-  compatible:
-    maxItems: 32
-    items:
-      if:
-        allOf:
-          - pattern: ","
-          - not: { pattern: "^usb[0-9a-f]+," }
-      then:
-        pattern: "^(\\
-${vendor_pattern}
-          ),"
-
-EOF
