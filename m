@@ -2,220 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7A8927EAE
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 15:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9247927ED3
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 15:53:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730920AbfEWNtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 09:49:11 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45154 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730706AbfEWNtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 09:49:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=XNfOmz3mv1HI9Hoz2nuwSlZ+6AVMa+i0bbmtNTX06rY=; b=vYclXzO/lJeo
-        5I3MA1p+mhNuW9aJRR1b0h4FIWti7rFeFjRJZVNr0v8sVisTaD2+tKTmUPrLGpvOv7Mmd9hzLneV+
-        /ls7ALHv2GolE9ROmBJQcZR5dPmhsqRPbS87GCgKmL3oOAfmPmLjG76vVoCjv3+eZqcwgAIzi2V1W
-        Egfiw=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=debutante.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hTo5k-0000FQ-CM; Thu, 23 May 2019 13:49:08 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
-        id C162C1126D28; Thu, 23 May 2019 14:49:07 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Subject: Applied "spi: dt-bindings: Convert spi-gpio binding to json-schema" to the spi tree
-In-Reply-To: <20190521212325.16639-2-robh@kernel.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20190523134907.C162C1126D28@debutante.sirena.org.uk>
-Date:   Thu, 23 May 2019 14:49:07 +0100 (BST)
+        id S1730697AbfEWNxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 09:53:53 -0400
+Received: from sauhun.de ([88.99.104.3]:54498 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730323AbfEWNxx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 09:53:53 -0400
+Received: from localhost (p54B333B6.dip0.t-ipconnect.de [84.179.51.182])
+        by pokefinder.org (Postfix) with ESMTPSA id 90F8E2C0398;
+        Thu, 23 May 2019 15:53:50 +0200 (CEST)
+Date:   Thu, 23 May 2019 15:53:50 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Sagar Kadam <sagar.kadam@sifive.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/3] i2c-ocores: sifive: add polling mode workaround
+ for FU540-C000 SoC.
+Message-ID: <20190523135350.GA4985@kunai>
+References: <1558515574-11155-1-git-send-email-sagar.kadam@sifive.com>
+ <1558515574-11155-4-git-send-email-sagar.kadam@sifive.com>
+ <20190522194529.GJ7281@lunn.ch>
+ <CAARK3HmMVibudG2CFLBoMSAqnraXyirTL6CXYo1T_XJEuGJy7Q@mail.gmail.com>
+ <20190523123435.GA15531@lunn.ch>
+ <CAARK3H=BPT3aGUGiQvov5aqFRNVTSeyqJ-bNGw6uEoU7c8iiJg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZPt4rx8FFjLCG7dd"
+Content-Disposition: inline
+In-Reply-To: <CAARK3H=BPT3aGUGiQvov5aqFRNVTSeyqJ-bNGw6uEoU7c8iiJg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
 
-   spi: dt-bindings: Convert spi-gpio binding to json-schema
+--ZPt4rx8FFjLCG7dd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-has been applied to the spi tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.3
+> Ok, Great. Do we need to write to him about this patchset?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+Nope. Hint: You can dig in the mail archives studying older patches to
+see how things work. I do this as well because things may work
+differently per subsystem.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+--ZPt4rx8FFjLCG7dd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Mark
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlzmpeYACgkQFA3kzBSg
+KbZ50xAAimynxr0PJx8ptAPr43eEclJl1OQihcsB1bfsNnwPm0VKds2AQLP2dYHC
+BISTG9B+IPj/7E9E/1D8UnmP1KQU9sYaZUS7HFnx1sSowG3Uy0ppnfhEDphLb34q
+Upt3domZHzvBwz2uDM4dI0RCUtB0wM+bGDqYp0PA9XL82KUCLdDOD4mEkwb8GrYd
+HKbij71iHnHZymVM1ESn2hp0t9dYOGw8JnPE1SXk2CxjVRJrguLKMR9AMZjhS/eJ
+ASDTDStxqRl60v6HrMYgHZEfACZcx42627191pHOp+e12aftKm3jArMyN9oWMLZM
+W5tdlvcYHk9zWtBOm9ICQLoUENdzZE0/p4xPqjCvYlWJ8a+RPKdgAYq9jQ8u32qF
+VsABTkJV3wMV+LfQxPY9lZ/8VVtfAIzxsFcCb3Z8eRFxXqXm+snIZ36Cd5MCKMXq
+iVh/VNvVCfku76W6wcHH0wZwoBacDjkv+it4bR5zVoEOXpgXuw45rzzNroNssxQ9
+ITj5IcJh1xQ3CyqxoTCNqLHbznNgdN5cG6ZXVP5P3badfY134i1C7plwLSG4EhMr
+qE6pgVZxp/cCpvAKxfq6hbz8XqKmmRDT14ENK9h3uBK2n7nwlm4MhBXpFBzSbJM6
+qe2KzVv56JSG61v1tjAFjGgVb7lsGQzlNV+eNsMXeZzZBLbM4Mk=
+=171K
+-----END PGP SIGNATURE-----
 
-From 97266c4d05345f9b500d10c3caa1070249e895e7 Mon Sep 17 00:00:00 2001
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 21 May 2019 16:23:25 -0500
-Subject: [PATCH] spi: dt-bindings: Convert spi-gpio binding to json-schema
-
-Convert the spi-gpio binding to DT schema format.
-
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-spi@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/spi/spi-gpio.txt      | 43 -----------
- .../devicetree/bindings/spi/spi-gpio.yaml     | 72 +++++++++++++++++++
- 2 files changed, 72 insertions(+), 43 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/spi-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/spi/spi-gpio.yaml
-
-diff --git a/Documentation/devicetree/bindings/spi/spi-gpio.txt b/Documentation/devicetree/bindings/spi/spi-gpio.txt
-deleted file mode 100644
-index 52db562f17a4..000000000000
---- a/Documentation/devicetree/bindings/spi/spi-gpio.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--SPI-GPIO devicetree bindings
--
--This represents a group of 3-n GPIO lines used for bit-banged SPI on dedicated
--GPIO lines.
--
--Required properties:
--
-- - compatible: should be set to "spi-gpio"
-- - #address-cells: should be set to <0x1>
-- - ranges
-- - sck-gpios: GPIO spec for the SCK line to use
-- - miso-gpios: GPIO spec for the MISO line to use
-- - mosi-gpios: GPIO spec for the MOSI line to use
-- - cs-gpios: GPIOs to use for chipselect lines.
--             Not needed if num-chipselects = <0>.
-- - num-chipselects: Number of chipselect lines. Should be <0> if a single device
--                    with no chip select is connected.
--
--Deprecated bindings:
--
--These legacy GPIO line bindings can alternatively be used to define the
--GPIO lines used, they should not be used in new device trees.
--
-- - gpio-sck: GPIO spec for the SCK line to use
-- - gpio-miso: GPIO spec for the MISO line to use
-- - gpio-mosi: GPIO spec for the MOSI line to use
--
--Example:
--
--	spi {
--		compatible = "spi-gpio";
--		#address-cells = <0x1>;
--		ranges;
--
--		sck-gpios = <&gpio 95 0>;
--		miso-gpios = <&gpio 98 0>;
--		mosi-gpios = <&gpio 97 0>;
--		cs-gpios = <&gpio 125 0>;
--		num-chipselects = <1>;
--
--		/* clients */
--	};
--
-diff --git a/Documentation/devicetree/bindings/spi/spi-gpio.yaml b/Documentation/devicetree/bindings/spi/spi-gpio.yaml
-new file mode 100644
-index 000000000000..55c4f1705f07
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/spi-gpio.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SPI-GPIO devicetree bindings
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+
-+description:
-+  This represents a group of 3-n GPIO lines used for bit-banged SPI on
-+  dedicated GPIO lines.
-+
-+allOf:
-+  - $ref: "/schemas/spi/spi-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    const: spi-gpio
-+
-+  sck-gpios:
-+    description: GPIO spec for the SCK line to use
-+    maxItems: 1
-+
-+  miso-gpios:
-+    description: GPIO spec for the MISO line to use
-+    maxItems: 1
-+
-+  mosi-gpios:
-+    description: GPIO spec for the MOSI line to use
-+    maxItems: 1
-+
-+  cs-gpios:
-+    description: GPIOs to use for chipselect lines.
-+      Not needed if num-chipselects = <0>.
-+    minItems: 1
-+    maxItems: 1024
-+
-+  num-chipselects:
-+    description: Number of chipselect lines. Should be <0> if a single device
-+      with no chip select is connected.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+
-+  # Deprecated properties
-+  gpio-sck: false
-+  gpio-miso: false
-+  gpio-mosi: false
-+
-+required:
-+  - compatible
-+  - num-chipselects
-+  - sck-gpios
-+
-+examples:
-+  - |
-+    spi {
-+      compatible = "spi-gpio";
-+      #address-cells = <0x1>;
-+      #size-cells = <0x0>;
-+
-+      sck-gpios = <&gpio 95 0>;
-+      miso-gpios = <&gpio 98 0>;
-+      mosi-gpios = <&gpio 97 0>;
-+      cs-gpios = <&gpio 125 0>;
-+      num-chipselects = <1>;
-+
-+      /* clients */
-+    };
-+
-+...
--- 
-2.20.1
-
+--ZPt4rx8FFjLCG7dd--
