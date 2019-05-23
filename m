@@ -2,186 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 538EA27302
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 01:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47AB427312
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 02:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727809AbfEVXhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 19:37:41 -0400
-Received: from outgoing4.flk.host-h.net ([188.40.0.90]:40251 "EHLO
-        outgoing4.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726215AbfEVXhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 19:37:41 -0400
-X-Greylist: delayed 2659 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 May 2019 19:37:40 EDT
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-        by antispam1-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.89)
-        (envelope-from <justin.swartz@risingedge.co.za>)
-        id 1hTa6n-0000bT-Bw; Thu, 23 May 2019 00:53:18 +0200
-Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
-        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.84_2)
-        (envelope-from <justin.swartz@risingedge.co.za>)
-        id 1hTa6c-0007fD-EJ; Thu, 23 May 2019 00:53:06 +0200
-From:   Justin Swartz <justin.swartz@risingedge.co.za>
-To:     Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/rockchip: dw_hdmi: add basic rk3228 support
-Date:   Wed, 22 May 2019 22:46:29 +0000
-Message-Id: <20190522224631.25164-1-justin.swartz@risingedge.co.za>
-X-Mailer: git-send-email 2.11.0
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear (ClamAV 0.100.3/25457/Wed May 22 09:57:31 2019)
-X-Originating-IP: 188.40.1.173
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.000718690605145)
-X-Recommended-Action: accept
-X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0fHWENUdqj+4JDN3TQDP3eCpSDasLI4SayDByyq9LIhVur86TwL7jsv5
- m6+fjp/sxETNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
- mAX8Bxy/iUu0ThNZg0h/RxVysY5Ye6+GGw0VqdJD7ren9RtRNyYim5e3GD8LGfWrcbYvelpuN/Pk
- qhBpvAyWwieZyauFYqHkIbFa+ipF21HJWO60ZqrvKy/1AXUV5oXt6ymoFHaG7BQtEYvFCSo5O9aO
- OPCZx1b2uMC/zMc3aAOV7ICS29ZskdEzgnmWc6FyCw2oLKHJClAYHcXyktNZ2XmZE6Ulo3Sg6/fH
- CWNxoaEnuBtnt6GUDDzwi0xE9ujBdjBi/EW6wTMO5aPWRLvv8qeRWs1kOo/p5GKJkWYAO3Aa5n+U
- cgHka3/viXjzcoj1m7f+vTE4JStv6WwSOoIjjjxJx7TjfIl9lT02e+bLG5tY/17Am1+3t6saIBBg
- jLL9CBTChXJpl1nl23cKb/28qAHF3ayYxbGdFos0fpCN/Zqe7k8tOuyC0ezetWWw8nL3mjAyuRnY
- YfqoF0qwBaWr31abV7tmT2g84edke3MdOkNjooab3HXOpUJdeB9FrcmwwJhZoFj1JrH8+3dIKm8T
- aJbF/DJ9xG35AyqkelXaj1B5NGYLZCD5qc9WTEIS3cJCoM1jZKVSdLKiMKeae175VNiXOYUQ+bYR
- OTnFZniyHwlqvaI+zok/BsKQK4gft9MTokp23oPCMeUu86GfQl/coNq5LDsD+gmtrHR34ik+dbYb
- 9IXfYGRpVS/0hA4MwqmkYLLjcD7HaYjxiQBclDtVrfG8Zd+nzbonxrsMSs4uYqsuNEW45+y/2kiU
- pWy9c+XovTjsJstHtBoNlKIuslv0d6pyfV7QOE1hL9j5OVSXNVTcvF4bYNCxBEiOkhGolglPmh6a
- ILJqM6WsXf7aQnmpO2ydeyFd1pMxtzaLrgiAa1jZ449c5QOSXHeR3E0E19yXIdNHJDPRcm8rLb1r
- h0PyzIaTXD+uKJkHA4nFPinpYeLTxNigHOV5GQgWJq64bnCnflZnbjDB2+RGRgaXth0ZHRqQruFr
- G/GlTGRDUHWt54s410cgWo1fMD6i15+WgVsQdC9uGg5IeWmPBYt4N47WgJgyTfy73B/Plf7FmTDV
- qY+pQN3pVbMWvtuGUnEh3DwJWw42swm4bO6gacpMpzKjPCVKQvBNmkphbV+6LqpSOVpogBsPfG5h
- jLRjd6kxWF4VLgIZIkTm0juO6rHlP/TihjA708Lg3Y2gXyaf+rItBxw1SWz0NFi7GeT33MAvp0E4
- hZvaIK8zWrz4lb7RoCsWna0PdfWBYPgYUN6vj8NApCcRaz+idK1HZy9Txmtmp2+U8T3Kfj7tHuHD
- vXqVSlU=
-X-Report-Abuse-To: spam@antispammaster.host-h.net
+        id S1727305AbfEWAAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 20:00:30 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:45594 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726218AbfEWAA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 20:00:29 -0400
+Received: by mail-qt1-f193.google.com with SMTP id t1so4650300qtc.12
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2019 17:00:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=D32ZOKFRLW3jAQLYe8MxTrM9BtRmyZsAFpuUM0kn1Ds=;
+        b=JS8A+Bj/AWAzLMo3ePM3T1UaSpb1eFU4LIWakq8i+KUmlgr835lr1xpsWj2Uj7x2MB
+         PqJJTfd06T/sk14XCzrScM5CEvQU5Jq9efppNRs1FFYUgGDSUh1OXcZpYJy7IlH+PKQh
+         q5kvokXUAgCQNYrPmGygRhBdWXPdihNDXxR42nnHvt0juMn7iLRbRnTC38Lo12QwanDg
+         3sN0VNr0XKwBQQKqe99tYKMVRYqbqdTcOdMsRNCBntYbbsAU/4NSEIXE4FhWv5d5gxQq
+         lqFruq00bv9lW3y7lxOSisbTemJ0JgQqHAlySmn5jF/k93YXIpKDV5et1tSARvTIY1n8
+         Lstw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=D32ZOKFRLW3jAQLYe8MxTrM9BtRmyZsAFpuUM0kn1Ds=;
+        b=mwb7Jna5MEbhZ9wYbj0aRHT0bvbF+QAXxm9ghHyCu4E40R916AzgkO9nvdnlNfXMod
+         16k80VzKpa6mVQ7i8nyFRBuAKwDsdYO9mRAVxzztbNUjH6NbT9xfeDxZUWbs3cuzN66u
+         ZTD1mLCSeI72eT8RfQhqoZiii2zc2cV0X4vfI20IqafLwzrmWUf1xjHls1aZ3g0oIpFF
+         06eIbaN05wpSGEcHvGIu7XdTMzysDfpqR4KpHCQgGPSuhhhblTF2fnhUTiqdrv399NIS
+         QN0YXaKqaVEHtlpDVfrAmXwCKtunJH/89Db22oDZ8c7CK///jQCSVkxGw0Z/QZKrQW+B
+         bUuQ==
+X-Gm-Message-State: APjAAAWlUwwaPoCO/KKmhwaql8R87kq9H1jUTkUbD9XD8uV1Lroa6BGy
+        tksUIxDe3f2S9jGpHyXCKzw=
+X-Google-Smtp-Source: APXvYqwCoN7DDPqrWOVld8/7JP9cFARTCBUDwI2ne42/vUAqE2OwpkZjxFm9lOvdj0+yKh06/hUEpw==
+X-Received: by 2002:ac8:32d1:: with SMTP id a17mr12803234qtb.111.1558569628805;
+        Wed, 22 May 2019 17:00:28 -0700 (PDT)
+Received: from ?IPv6:2601:153:900:ebb:74b5:9fcf:6f1f:201d? ([2601:153:900:ebb:74b5:9fcf:6f1f:201d])
+        by smtp.gmail.com with ESMTPSA id c32sm17735525qte.2.2019.05.22.17.00.28
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 May 2019 17:00:28 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: set TX PBL for rk3328-roc-cc gmac
+To:     "Leonidas P. Papadakos" <papadakospan@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Jose Abreu <jose.abreu@synopsys.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <20190417210059.26262-1-papadakospan@gmail.com>
+ <8865b046-fb3a-4071-335c-66abb344d7f4@gmail.com>
+ <1555915435.1262.1@gmail.com>
+ <9a5c62b4-ea75-de4f-9b71-ffa42cb8eaac@gmail.com>
+ <1555938803.1241.1@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Message-ID: <8ded737d-1fd5-3609-ca2e-cfeba63b2d95@gmail.com>
+Date:   Wed, 22 May 2019 20:00:27 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <1555938803.1241.1@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Like the RK3328, RK322x SoCs offer a Synopsis DesignWare HDMI transmitter
-and an Innosilicon HDMI PHY.
 
-Add a new dw_hdmi_plat_data struct, rk3228_hdmi_drv_data.
-Assign a set of mostly generic rk3228_hdmi_phy_ops functions.
-Add dw_hdmi_rk3228_setup_hpd() to enable the HDMI HPD and DDC lines.
 
-Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
----
- .../bindings/display/rockchip/dw_hdmi-rockchip.txt |  1 +
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 53 ++++++++++++++++++++++
- 2 files changed, 54 insertions(+)
+On 4/22/2019 9:13 AM, Leonidas P. Papadakos wrote:
+> 
+> Indeed, at least with that first patch users won't have a crappy 
+> experience by default (ssh lags and the like)
+> 
+> 
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-index 39143424a..703503103 100644
---- a/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-+++ b/Documentation/devicetree/bindings/display/rockchip/dw_hdmi-rockchip.txt
-@@ -12,6 +12,7 @@ following device-specific properties.
- Required properties:
- 
- - compatible: should be one of the following:
-+		"rockchip,rk3228-dw-hdmi"
- 		"rockchip,rk3288-dw-hdmi"
- 		"rockchip,rk3328-dw-hdmi"
- 		"rockchip,rk3399-dw-hdmi"
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index 4cdc9f86c..182a852af 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -23,6 +23,14 @@
- #include "rockchip_drm_drv.h"
- #include "rockchip_drm_vop.h"
- 
-+#define RK3228_GRF_SOC_CON2		0x0408
-+#define RK3228_HDMI_SDAIN_MSK		BIT(14)
-+#define RK3228_HDMI_SCLIN_MSK		BIT(13)
-+#define RK3228_GRF_SOC_CON6		0x0418
-+#define RK3228_HDMI_HPD_VSEL		BIT(6)
-+#define RK3228_HDMI_SDA_VSEL		BIT(5)
-+#define RK3228_HDMI_SCL_VSEL		BIT(4)
-+
- #define RK3288_GRF_SOC_CON6		0x025C
- #define RK3288_HDMI_LCDC_SEL		BIT(4)
- #define RK3328_GRF_SOC_CON2		0x0408
-@@ -325,6 +333,25 @@ static void dw_hdmi_rockchip_genphy_disable(struct dw_hdmi *dw_hdmi, void *data)
- 	phy_power_off(hdmi->phy);
- }
- 
-+static void dw_hdmi_rk3228_setup_hpd(struct dw_hdmi *dw_hdmi, void *data)
-+{
-+	struct rockchip_hdmi *hdmi = (struct rockchip_hdmi *)data;
-+
-+	dw_hdmi_phy_setup_hpd(dw_hdmi, data);
-+
-+	regmap_write(hdmi->regmap,
-+		RK3228_GRF_SOC_CON6,
-+		HIWORD_UPDATE(RK3228_HDMI_HPD_VSEL | RK3228_HDMI_SDA_VSEL |
-+			      RK3228_HDMI_SCL_VSEL,
-+			      RK3228_HDMI_HPD_VSEL | RK3228_HDMI_SDA_VSEL |
-+			      RK3228_HDMI_SCL_VSEL));
-+
-+	regmap_write(hdmi->regmap,
-+		RK3228_GRF_SOC_CON2,
-+		HIWORD_UPDATE(RK3228_HDMI_SDAIN_MSK | RK3228_HDMI_SCLIN_MSK,
-+			      RK3228_HDMI_SDAIN_MSK | RK3228_HDMI_SCLIN_MSK));
-+}
-+
- static enum drm_connector_status
- dw_hdmi_rk3328_read_hpd(struct dw_hdmi *dw_hdmi, void *data)
- {
-@@ -370,6 +397,29 @@ static void dw_hdmi_rk3328_setup_hpd(struct dw_hdmi *dw_hdmi, void *data)
- 			      RK3328_HDMI_HPD_IOE));
- }
- 
-+static const struct dw_hdmi_phy_ops rk3228_hdmi_phy_ops = {
-+	.init		= dw_hdmi_rockchip_genphy_init,
-+	.disable	= dw_hdmi_rockchip_genphy_disable,
-+	.read_hpd	= dw_hdmi_phy_read_hpd,
-+	.update_hpd	= dw_hdmi_phy_update_hpd,
-+	.setup_hpd	= dw_hdmi_rk3228_setup_hpd,
-+};
-+
-+static struct rockchip_hdmi_chip_data rk3228_chip_data = {
-+	.lcdsel_grf_reg = -1,
-+};
-+
-+static const struct dw_hdmi_plat_data rk3228_hdmi_drv_data = {
-+	.mode_valid = dw_hdmi_rockchip_mode_valid,
-+	.mpll_cfg = rockchip_mpll_cfg,
-+	.cur_ctr = rockchip_cur_ctr,
-+	.phy_config = rockchip_phy_config,
-+	.phy_data = &rk3228_chip_data,
-+	.phy_ops = &rk3228_hdmi_phy_ops,
-+	.phy_name = "inno_dw_hdmi_phy2",
-+	.phy_force_vendor = true,
-+};
-+
- static struct rockchip_hdmi_chip_data rk3288_chip_data = {
- 	.lcdsel_grf_reg = RK3288_GRF_SOC_CON6,
- 	.lcdsel_big = HIWORD_UPDATE(0, RK3288_HDMI_LCDC_SEL),
-@@ -422,6 +472,9 @@ static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
- };
- 
- static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
-+	{ .compatible = "rockchip,rk3228-dw-hdmi",
-+	  .data = &rk3228_hdmi_drv_data
-+	},
- 	{ .compatible = "rockchip,rk3288-dw-hdmi",
- 	  .data = &rk3288_hdmi_drv_data
- 	},
--- 
-2.11.0
+I apologize for taking so long at this, but I wanted to make sure I had 
+it right.
 
+So far I've found a few things that seem to help, and would like y'all 
+to test them when you get the chance.
+
+Adding snps,aal (configures DMA for address alignment) appears to make a 
+massive improvement to stability, although the the snps,txpbl = <0x4> is 
+still necessary for this to work.
+
+Second, I added snps,rxpbl = <0x4> as well, which seems to help with my 
+RX issues a bit.
+The biggest improvement with these two settings is more stable transmit 
+and receive.
+Currently I'm getting about 800mbps on tx and 400 mbps on rx.
+
+Please test when you get the chance and provide feedback.
