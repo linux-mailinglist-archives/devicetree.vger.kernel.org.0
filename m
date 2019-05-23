@@ -2,63 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 832FE27C39
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66FC72862A
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 20:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729934AbfEWLws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 07:52:48 -0400
-Received: from verein.lst.de ([213.95.11.211]:46327 "EHLO newverein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729863AbfEWLws (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 07:52:48 -0400
-Received: by newverein.lst.de (Postfix, from userid 2005)
-        id 79A4768AFE; Thu, 23 May 2019 13:52:24 +0200 (CEST)
-Date:   Thu, 23 May 2019 13:52:24 +0200
-From:   Torsten Duwe <duwe@lst.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/6] drm/bridge: extract some Analogix I2C DP common
- code
-Message-ID: <20190523115224.GA15685@lst.de>
-References: <20190523065013.2719D68B05@newverein.lst.de> <20190523065352.8FD7668B05@newverein.lst.de> <CAGb2v66+1+goJfnY7nWTGN2fupqMUm5o+gkPdUW6nxcwQEDwog@mail.gmail.com> <20190523075035.GA5971@pendragon.ideasonboard.com>
+        id S1731459AbfEWSwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 14:52:33 -0400
+Received: from toryburch.com ([198.23.132.45]:49521 "EHLO timesharemyths.com"
+        rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731443AbfEWSwd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 14:52:33 -0400
+X-Greylist: delayed 3608 seconds by postgrey-1.27 at vger.kernel.org; Thu, 23 May 2019 14:52:31 EDT
+To:     devicetree@vger.kernel.org
+Subject: Logo products for your company
+Message-ID: <40163475b49d2d02d971e80e5cff4b55@lucastirepros.com>
+Date:   Thu, 23 May 2019 13:53:40 +0200
+From:   "Stacy" <ryan@tanschmidit.tech>
+Reply-To: lucas@tanschmidit.tech
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190523075035.GA5971@pendragon.ideasonboard.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+Content-Type: text/plain; format=flowed; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 10:50:35AM +0300, Laurent Pinchart wrote:
-> On Thu, May 23, 2019 at 03:40:25PM +0800, Chen-Yu Tsai wrote:
-> > 
-> > If this was simple code movement, then the original copyright still applies.
-> > A different copyright notice should not be used. I suppose the same applies
-> > to the module author.
-> 
-> And likely to patch 2/6 too.
+Hi,
 
-Absolutely correct. Wdiff does not lie.
-Re-evaluating...
+I am following up on my previous attempt to contact you.
+We wanted to check to see if you need any LOGO promotional products for
+your business?
 
-	Torsten
+Our company manufactures USB Flash Drives that are custom printed with your
+logo.
+They make the perfect marketing tool for your business or organization.
+
+Looking for other items with your logo?   We can supply anything with your
+logo…
+
+Most Popular Items right now:
+- T-shirts, Hoodies
+- Table Covers printed with your brand
+- Pens
+- Water Bottles
+- Banners…
+- You name it we can make it and print on it for you!
+
+Our USB Pricing is at an ALL TIME LOW.
+We offer low minimum quantities and all memory sizes.
+
+Over 150 Stock Models as well as 100 % custom shaped USB drives in the
+shape of your Logo or
+product or just about anything else you can imagine!
+Ask about our End of the Year Promotions!
+
+We can pre-load your media files, images, presentations and files onto the
+drives for you.
+These are ideal handouts for trade shows, branding, corporate gifts and
+employees.
+
+* Please reply back and let me know what quantity and memory size you need
+for a Fast Quote!
+
+Are you a school or nonprofit?  Please let us know for even further
+discounts.
+
+Let us send you a quote!   We will EARN your business!
+
+Regards,
+
+Stacy Williams
+Custom Logo Products
+Whatsapp: +8617199402387
 
