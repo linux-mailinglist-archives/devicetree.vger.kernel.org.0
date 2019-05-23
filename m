@@ -2,111 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F371227879
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 279B127886
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbfEWIwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 04:52:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34272 "EHLO mail.kernel.org"
+        id S1726309AbfEWIyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 04:54:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34778 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726081AbfEWIwE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 04:52:04 -0400
+        id S1725814AbfEWIyI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 04:54:08 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9633220675;
-        Thu, 23 May 2019 08:52:00 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 167402075E;
+        Thu, 23 May 2019 08:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558601523;
-        bh=GvIxnz2QDkzaDXhCwkyYIbh58BouSz387m9539g/2A8=;
+        s=default; t=1558601647;
+        bh=JbDM8FwHo1HybCGoYonzmVnotF3j/4CKLTn/H6y5uKQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cGQ/xj15H4e7wzpcSW5LwgkL0k2fAuxUfKby8GOqJq7U+CObYxAh8WO4TLHsuSU42
-         5OmnsByuClenpeucDd2R6GXBQ9Q2yBeqlfsJP9xf/abAQ4i3T1VngiNyi/Mf833qTw
-         +QEBNS3NTcj3UbMAhjKZ/c3iC5Hv1hkYAHSrkH3c=
-Date:   Thu, 23 May 2019 16:51:04 +0800
+        b=uVlYz6CNnSq1BnpwFzgECTGlr0+MHZBp5av8sgTXxLHNojhV7AhV1I61FTP3Le5Rp
+         bdBMKwDdgv2HHTMRqzfmeewRrJr73rjBfP/+ahkGO9/0ZX58bXx4Ak8Lewx4mL4PNO
+         4s6KHoy9QjJDLuw/HMR0cQif03XuBhw3M5Bfn00M=
+Date:   Thu, 23 May 2019 16:53:07 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Ran Wang <ran.wang_1@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>
+To:     Ran Wang <ran.wang_1@nxp.com>
 Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: ls1028a: Fix CPU idle fail.
-Message-ID: <20190523085104.GP9261@dragon>
-References: <20190517045753.3709-1-ran.wang_1@nxp.com>
+Subject: Re: [PATCH v4] arm64: dts: ls1028a: Add USB dt nodes
+Message-ID: <20190523085306.GQ9261@dragon>
+References: <20190517051624.4930-1-ran.wang_1@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190517045753.3709-1-ran.wang_1@nxp.com>
+In-Reply-To: <20190517051624.4930-1-ran.wang_1@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 17, 2019 at 12:57:53PM +0800, Ran Wang wrote:
-> PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
-> indicate CPU State Type: 0 for standby, 1 for power down. In this
-> case, we want to select standby for CPU idle feature. But current
-> setting wrongly select power down and cause CPU SUSPEND fail every
-> time. Need this fix.
+On Fri, May 17, 2019 at 01:16:24PM +0800, Ran Wang wrote:
+> This patch adds USB dt nodes for LS1028A.
 > 
-> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
 > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 
-Leo, Bhaskar,
-
-Do you guys agree with it?
-
-Shawn
-
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   18 +++++++++---------
->  1 files changed, 9 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> index b045812..bf7f845 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> @@ -28,7 +28,7 @@
->  			enable-method = "psci";
->  			clocks = <&clockgen 1 0>;
->  			next-level-cache = <&l2>;
-> -			cpu-idle-states = <&CPU_PH20>;
-> +			cpu-idle-states = <&CPU_PW20>;
->  		};
->  
->  		cpu1: cpu@1 {
-> @@ -38,7 +38,7 @@
->  			enable-method = "psci";
->  			clocks = <&clockgen 1 0>;
->  			next-level-cache = <&l2>;
-> -			cpu-idle-states = <&CPU_PH20>;
-> +			cpu-idle-states = <&CPU_PW20>;
->  		};
->  
->  		l2: l2-cache {
-> @@ -53,13 +53,13 @@
->  		 */
->  		entry-method = "arm,psci";
->  
-> -		CPU_PH20: cpu-ph20 {
-> -			compatible = "arm,idle-state";
-> -			idle-state-name = "PH20";
-> -			arm,psci-suspend-param = <0x00010000>;
-> -			entry-latency-us = <1000>;
-> -			exit-latency-us = <1000>;
-> -			min-residency-us = <3000>;
-> +		CPU_PW20: cpu-pw20 {
-> +			  compatible = "arm,idle-state";
-> +			  idle-state-name = "PW20";
-> +			  arm,psci-suspend-param = <0x0>;
-> +			  entry-latency-us = <2000>;
-> +			  exit-latency-us = <2000>;
-> +			  min-residency-us = <6000>;
->  		};
->  	};
->  
-> -- 
-> 1.7.1
-> 
+Applied, thanks.
