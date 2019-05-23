@@ -2,227 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EAA127C13
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9AA27C18
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 13:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730589AbfEWLqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 07:46:38 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:41369 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730571AbfEWLqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 07:46:37 -0400
-Received: by mail-pf1-f196.google.com with SMTP id q17so3107656pfq.8
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 04:46:37 -0700 (PDT)
+        id S1729972AbfEWLrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 07:47:18 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35848 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729949AbfEWLrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 07:47:17 -0400
+Received: by mail-ot1-f68.google.com with SMTP id c3so5120687otr.3;
+        Thu, 23 May 2019 04:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=LEifsqwnL2BjXCVuqDW5HukFRG14FiPFkC5knaitSp8=;
-        b=Lvt9jRIK0RxPlPR9Ydlr2C/j77GrQptj8vSfAUw8rYMnhtJa2cDk84ixTSGctwKty2
-         7nz5mlHIUD9kRcsLQScD+TJU1Dcp1leEw+1SGih4l+elbSJL3p4bHk7YbrJqWO7YvZZW
-         HZOecpMOYn/eWKc2zdp17ipfC+L5hZeG8NJUlCkPE7oRmJSNv3ltNYXnNqhkzZO4Uejd
-         Hw1tQSAunCp0MojMPQ5QkDfziBEmOKiyaeeAWMkJx1z9iQ5iF1O73qfg6T8QPavedq++
-         LOuw5PPoXzLkI8T52+98iKNiLjVcuxGrGfevv4SZm6YF/sp50q0k+ForMnDkWkLQcYu/
-         xptA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rGBgzoOZoDnFHzdz7CD5+adtzMXvR/o9pLCWlsfPtRo=;
+        b=WNuGPSbGfgHm4nL9GFLVdZ+AkDfdime+NAnnisR9zQdInVswQBhM4PHfYCVFgaGQs3
+         OJtZGZWtWF8lPmF9fnAFcYpPaM7bgBKewrhAv1uuRgjbz6SVx7SKnxknARRjd1iflIly
+         pyjB9Tw3lH+0Q6mi7DFpR5dhWxb/bvUY6KVA3OHdT1MopwFnNY+40cFElU/tZoy5Osrn
+         DHpIla774HSf0o6Bjkikk/swO+TFK3YTzSmFfgcOgLfVxLSq9+c/Hu5fFfC3rpQ+6NzX
+         aXMuyzNjnzDy/ZWCPW/7d/1YmdXONlC6nBR78gI5X40s4enWa035aDGU3m5NziGnYR73
+         6FvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=LEifsqwnL2BjXCVuqDW5HukFRG14FiPFkC5knaitSp8=;
-        b=SAl3lbVCeJN8xxQ2pQJzLPlOSFFcLQbbpgAMwzuThVIt8w1qJ2voCTcp/OLyGTzq0y
-         y7rrejtyPICSeTZEnI2ThuQsgcKtjyONeqZmXoekiX923uyYzxCMulZNYqzVyYgxSHBe
-         gMIN13oy3sephJzAcjwxDg0cd+ILIbMayJf5TFo9Q+5y+hvBSQ/YJQcZEPAR5JlpCJu3
-         jj/sS2hiY/8zAEpuC+DFOkVyfZXl5Kmcc6HVbHVU7D6NTqHikL/jTAjWjTzAcQCGttz9
-         1/Rc+EgG7oAy0mlaXJNpRDasFW5RJBQtQByLImDV2KLjpNA08TbDGUpPFAHzWPBE7prI
-         +asg==
-X-Gm-Message-State: APjAAAVGKxihwkqOt86/R2hbt7Fyd7OqPCMMsWZCC7kN2g156+dqkX56
-        j5X7VVVbg+TSNGlwsNuu8L/Idw==
-X-Google-Smtp-Source: APXvYqwMvfCi1UIzA9Dds+oEz5UVeF7cNdI5wIi6tZxo8UilpLvQEX9DwAhALre6fjnUlMXi6ouUiA==
-X-Received: by 2002:a63:2ac9:: with SMTP id q192mr26316526pgq.144.1558611997020;
-        Thu, 23 May 2019 04:46:37 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id l43sm565045pjb.7.2019.05.23.04.46.31
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 23 May 2019 04:46:36 -0700 (PDT)
-From:   Yash Shah <yash.shah@sifive.com>
-To:     davem@davemloft.net, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, palmer@sifive.com,
-        aou@eecs.berkeley.edu, ynezz@true.cz, paul.walmsley@sifive.com,
-        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH 2/2] net: macb: Add support for SiFive FU540-C000
-Date:   Thu, 23 May 2019 17:15:52 +0530
-Message-Id: <1558611952-13295-3-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1558611952-13295-1-git-send-email-yash.shah@sifive.com>
-References: <1558611952-13295-1-git-send-email-yash.shah@sifive.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rGBgzoOZoDnFHzdz7CD5+adtzMXvR/o9pLCWlsfPtRo=;
+        b=tp8nL09lGXlYoTeC6tyNmUXfoeAEbvoqW8YG0zWIObq0RQnfnTBbTQ9nLhVQlkAMLl
+         Na/bWEi+eYi3mfukOh1vNuopiAjSsAAYT3c4Qb74QU579XrG4hrzcjNxBK26CflzaAfb
+         hfPXM5QmNZANlZ7ryUfSaAts3UNcG1jdg0i6xdB9Gt40JaQLf4oWvepPYA/TdQosR4E1
+         njtmkmI1vUaz+5FaaYm6By+F9zpV18u8ffo97/GjdRGo+jN1a/mhcsQ5PKiA0+gD9zO5
+         IJ8v3TBvcedgLJsI2aRGq1+wHYNKa8E6uBFbIZtBwdoWcQ5FxSCGTmuabA0azlIHBLyH
+         TQlA==
+X-Gm-Message-State: APjAAAUbXFm3zn8uBNjP7E57EcaqMOMNS8JUlEkKrBn2tJkYv+7r65nU
+        z1+MALwXpCDnIfH3lHQ2nStXtM7BPA7XS57j+HNgGMoEGTs=
+X-Google-Smtp-Source: APXvYqx20uLH85/82ftTJ7ioOCikdEVaNQ31qSpq+DNHXYYSXr+s/E6A8Pm+IfABj47y7f1UCs+eSKiOwNZwLgg0fe4=
+X-Received: by 2002:a9d:dca:: with SMTP id 68mr57493850ots.119.1558612036874;
+ Thu, 23 May 2019 04:47:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <1557759185-167857-1-git-send-email-adam.michaelis@rockwellcollins.com>
+In-Reply-To: <1557759185-167857-1-git-send-email-adam.michaelis@rockwellcollins.com>
+From:   Alexandru Ardelean <ardeleanalex@gmail.com>
+Date:   Thu, 23 May 2019 14:47:05 +0300
+Message-ID: <CA+U=DsoHuzt27CnwFK-2tdLhNMea1JttncdhZaBjRpfticgfEg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] iio: ad7949: Fix dummy read cycle placement
+To:     Adam Michaelis <adam.michaelis@rockwellcollins.com>
+Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <michael.hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        charles-antoine.couret@essensium.com, devicetree@vger.kernel.org,
+        brandon.maier@rockwellcollins.com,
+        clayton.shotwell@rockwellcollins.com,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The management IP block is tightly coupled with the Cadence MACB IP
-block on the FU540, and manages many of the boundary signals from the
-MACB IP. This patch only controls the tx_clk input signal to the MACB
-IP. Future patches may add support for monitoring or controlling other
-IP boundary signals.
+On Mon, May 13, 2019 at 7:18 PM Adam Michaelis
+<adam.michaelis@rockwellcollins.com> wrote:
+>
+> The AD7949 requires two conversion cycles following the first
+> configuration change, and one extra cycle following any other
+> configuration change (including changing the analog channel being
+> sampled). Therefore, adding a dummy read cycle when config is changed
+> and removing the extra cycle at initial configuration (the first dummy
+> cycle is now performed as part of applying the configuration change).
+>
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
----
- drivers/net/ethernet/cadence/macb_main.c | 118 +++++++++++++++++++++++++++++++
- 1 file changed, 118 insertions(+)
+CC-ing my work email.
+And Stefan as well.
 
-diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index c049410..a9e5227 100644
---- a/drivers/net/ethernet/cadence/macb_main.c
-+++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -10,6 +10,7 @@
- 
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/crc32.h>
- #include <linux/module.h>
- #include <linux/moduleparam.h>
-@@ -40,6 +41,15 @@
- #include <linux/pm_runtime.h>
- #include "macb.h"
- 
-+/* This structure is only used for MACB on SiFive FU540 devices */
-+struct sifive_fu540_macb_mgmt {
-+	void __iomem *reg;
-+	unsigned long rate;
-+	struct clk_hw hw;
-+};
-+
-+static struct sifive_fu540_macb_mgmt *mgmt;
-+
- #define MACB_RX_BUFFER_SIZE	128
- #define RX_BUFFER_MULTIPLE	64  /* bytes */
- 
-@@ -3903,6 +3913,113 @@ static int at91ether_init(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static unsigned long fu540_macb_tx_recalc_rate(struct clk_hw *hw,
-+					       unsigned long parent_rate)
-+{
-+	return mgmt->rate;
-+}
-+
-+static long fu540_macb_tx_round_rate(struct clk_hw *hw, unsigned long rate,
-+				     unsigned long *parent_rate)
-+{
-+	if (WARN_ON(rate < 2500000))
-+		return 2500000;
-+	else if (rate == 2500000)
-+		return 2500000;
-+	else if (WARN_ON(rate < 13750000))
-+		return 2500000;
-+	else if (WARN_ON(rate < 25000000))
-+		return 25000000;
-+	else if (rate == 25000000)
-+		return 25000000;
-+	else if (WARN_ON(rate < 75000000))
-+		return 25000000;
-+	else if (WARN_ON(rate < 125000000))
-+		return 125000000;
-+	else if (rate == 125000000)
-+		return 125000000;
-+
-+	WARN_ON(rate > 125000000);
-+
-+	return 125000000;
-+}
-+
-+static int fu540_macb_tx_set_rate(struct clk_hw *hw, unsigned long rate,
-+				  unsigned long parent_rate)
-+{
-+	rate = fu540_macb_tx_round_rate(hw, rate, &parent_rate);
-+	iowrite32(rate != 125000000, mgmt->reg);
-+	mgmt->rate = rate;
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops fu540_c000_ops = {
-+	.recalc_rate = fu540_macb_tx_recalc_rate,
-+	.round_rate = fu540_macb_tx_round_rate,
-+	.set_rate = fu540_macb_tx_set_rate,
-+};
-+
-+static int fu540_c000_clk_init(struct platform_device *pdev, struct clk **pclk,
-+			       struct clk **hclk, struct clk **tx_clk,
-+			       struct clk **rx_clk, struct clk **tsu_clk)
-+{
-+	struct clk_init_data init;
-+	int err = 0;
-+
-+	err = macb_clk_init(pdev, pclk, hclk, tx_clk, rx_clk, tsu_clk);
-+	if (err)
-+		return err;
-+
-+	mgmt = devm_kzalloc(&pdev->dev, sizeof(*mgmt), GFP_KERNEL);
-+	if (!mgmt)
-+		return -ENOMEM;
-+
-+	init.name = "sifive-gemgxl-mgmt";
-+	init.ops = &fu540_c000_ops;
-+	init.flags = 0;
-+	init.num_parents = 0;
-+
-+	mgmt->rate = 0;
-+	mgmt->hw.init = &init;
-+
-+	*tx_clk = clk_register(NULL, &mgmt->hw);
-+	if (IS_ERR(*tx_clk))
-+		return PTR_ERR(*tx_clk);
-+
-+	err = clk_prepare_enable(*tx_clk);
-+	if (err)
-+		dev_err(&pdev->dev, "failed to enable tx_clk (%u)\n", err);
-+	else
-+		dev_info(&pdev->dev, "Registered clk switch '%s'\n", init.name);
-+
-+	return 0;
-+}
-+
-+static int fu540_c000_init(struct platform_device *pdev)
-+{
-+	struct resource *res;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-+	if (!res)
-+		return -ENODEV;
-+
-+	mgmt->reg = ioremap(res->start, resource_size(res));
-+	if (!mgmt->reg)
-+		return -ENOMEM;
-+
-+	return macb_init(pdev);
-+}
-+
-+static const struct macb_config fu540_c000_config = {
-+	.caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_JUMBO |
-+		MACB_CAPS_GEM_HAS_PTP,
-+	.dma_burst_length = 16,
-+	.clk_init = fu540_c000_clk_init,
-+	.init = fu540_c000_init,
-+	.jumbo_max_len = 10240,
-+};
-+
- static const struct macb_config at91sam9260_config = {
- 	.caps = MACB_CAPS_USRIO_HAS_CLKEN | MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII,
- 	.clk_init = macb_clk_init,
-@@ -3980,6 +4097,7 @@ static int at91ether_init(struct platform_device *pdev)
- 	{ .compatible = "cdns,at32ap7000-macb" },
- 	{ .compatible = "cdns,at91sam9260-macb", .data = &at91sam9260_config },
- 	{ .compatible = "cdns,macb" },
-+	{ .compatible = "cdns,fu540-macb", .data = &fu540_c000_config },
- 	{ .compatible = "cdns,np4-macb", .data = &np4_config },
- 	{ .compatible = "cdns,pc302-gem", .data = &pc302gem_config },
- 	{ .compatible = "cdns,gem", .data = &pc302gem_config },
--- 
-1.9.1
+We'll have to try this driver & changes internally a bit.
+Hopefully we have a compatible device around the office.
+Since it wasn't written by us, we're also unsure about things just by
+looking at the code.
 
+> Signed-off-by: Adam Michaelis <adam.michaelis@rockwellcollins.com>
+> ---
+>         V2:
+>         - Add some defines to reduce use of magic numbers.
+>         V3:
+>         - Switch back to using a u32 data buffer.
+>         - Add-back the second dummy cycle on initialization.
+>         - Move to first patch in series.
+> ---
+>  drivers/iio/adc/ad7949.c | 20 ++++++++++++++++++--
+>  1 file changed, 18 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index ac0ffff6c5ae..c7fe27aa2519 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -100,6 +100,23 @@ static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
+>          * send a new command to the device
+>          */
+>         udelay(2);
+> +
+> +       /*
+> +        * Perform extra read cycle to allow configuration, acquisition,
+> +        * and conversion sequences to complete for new configuration.
+> +        */
+> +       ad7949_adc->buffer = 0;
+> +
+> +       spi_message_init_with_transfers(&msg, tx, 1);
+> +
+> +       ret = spi_sync(ad7949_adc->spi, &msg);
+> +
+> +       /*
+> +        * This delay is to avoid a new request before the required time
+> +        * to send a new command to the device.
+> +        */
+> +       udelay(2);
+> +
+
+Is this needed if the channel doesn't change ?
+If it isn't, maybe add a check in ad7949_spi_read_channel() to skip
+the call to ad7949_spi_write_cfg().
+
+We should also take performance into account when doing SPI
+transactions to the device, and if we can skip some of them, all the
+better.
+This change, introduces a performance penalty by doing this extra read + udelay.
+
+>         return ret;
+>  }
+>
+> @@ -229,11 +246,10 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>         ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
+>
+>         /*
+> -        * Do two dummy conversions to apply the first configuration setting.
+> +        * Do a dummy conversion to apply the first configuration setting.
+>          * Required only after the start up of the device.
+>          */
+>         ad7949_spi_read_channel(ad7949_adc, &val, ad7949_adc->current_channel);
+> -       ad7949_spi_read_channel(ad7949_adc, &val, ad7949_adc->current_channel);
+
+The datasheet mentions that 2 dummy conversions are needed on power-up / init.
+
+The way, this was done here was a bit easier to follow (or
+straightforward) with the datasheet.
+
+This isn't to say that this is bad, but if we need to do an extra SPI
+read (and skip the SPI write part), then I would just add an SPI read
+function, instead of moving it completely into ad7949_spi_write_cfg(),
+which would then compact things in ad7949_spi_read_channel().
+
+>
+>         return ret;
+>  }
+> --
+> 1.9.1
+>
