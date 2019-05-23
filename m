@@ -2,191 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 411F028582
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 20:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E87B28591
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 20:06:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731243AbfEWSFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 14:05:03 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:36878 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731169AbfEWSFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 14:05:03 -0400
-Received: by mail-pl1-f194.google.com with SMTP id p15so3063645pll.4
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 11:05:02 -0700 (PDT)
+        id S2387477AbfEWSGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 14:06:18 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:41912 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387459AbfEWSGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 14:06:18 -0400
+Received: by mail-wr1-f68.google.com with SMTP id u16so3395013wrn.8;
+        Thu, 23 May 2019 11:06:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:from:cc:to:user-agent:date;
-        bh=6pE6kWKLMNmCAMtPKUOMVO4s8yEu+hqlcvsuOOg16Yg=;
-        b=kmZfodkwj6bZG7b3e8M5lAMf6j/Emh+52RL0DK5E7X56QD5/fAcEXbOc7ha00H6GBw
-         LYTSXodR7fhho/tgzc7Z5Lybb/5ZIuzlJdyrT1rF4G6gg8mjTj+n2x5qxZOuI/XQx+fD
-         Q0XrCpXSboO2bsh7qDWbsnXfsXgH7KJhfVdzQ=
+        d=gmail.com; s=20161025;
+        h=from:subject:to:cc:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=Kmj1SfRwUw9u9puwf4cpgVRacLw8HccKeSb6z3yZrWA=;
+        b=fpFi2bU4KezKy9w+iThls3IxbCD6Mte2c+I79JHI/ElfTMKj3/3LRh648w+SpvBnyY
+         9zcRq5B9tWPIhkXwy96KPsveApq/X1AbKCoBhjnbySa7BzIUZYAGzXC8Ym1UOe8BUydz
+         SGLzUtauv/Idi0QD88S+jMy+VinRjky38aOWPw0a+qnDLt2w60RJYHSayQk6TNYXKUIV
+         Fo0MIaRDe51JjNNGIg1RQ4bCcJ7Ajjm+xI0pQnnaQfNz0j4XiWinutoZNCikUGH7dxYA
+         y8AaSdthKzqJuC1Q4ymFOq3+vplekJ3GgCpV5rIZ9YQ7is7dUUNQcbFMf0Vh8UJ+fuQj
+         5rmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
-         :user-agent:date;
-        bh=6pE6kWKLMNmCAMtPKUOMVO4s8yEu+hqlcvsuOOg16Yg=;
-        b=FE2eCVfRgNNBEIUaSwnf8LV6VUYx7op8luQGgUIUd03VLGZUIUBJZgX1YnIMSBHWp5
-         l0HAXeB72k9nwjJYx4mcI7G6FQ4AaT8P4eVVN4dVLwzQlQMUQVEFwBB8f+SFu6lzOz4e
-         PTkVBaw4DNxx8u0vKNhXcR4HINDg+w69VbVk+R7ky7eoToxBKDBBrdwRq89tCOTpUdzR
-         nnsuIcqamifOs2mYfWTeFJJgk4xQhkL6KFLDWqbuSRP8UtBvDV5n74ZpQ9Xsg7jJ2Jlq
-         Ku7RjxfTdu+Xhkf0Z1W0zFGkiCXhPubK7CxsOdXqX5wFl5CfJk+SFy0SIz3e+as2m/x/
-         wuHg==
-X-Gm-Message-State: APjAAAW+c0PEDr6eiD3Y0iuIE99hN6WR7zi40ODRjPUDf48X2HQN2hBE
-        FA4pp2sMuRyzeWFT8rIVjXBPHg==
-X-Google-Smtp-Source: APXvYqz59jHYdmyOQnuk3n1IYDdWW3SY+/oJmtXkWN3L9jer4VKjVzx9nW+3mkcRp8iYvw7CDOy+ew==
-X-Received: by 2002:a17:902:2e81:: with SMTP id r1mr84043412plb.0.1558634702161;
-        Thu, 23 May 2019 11:05:02 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id z9sm46636pgs.28.2019.05.23.11.05.01
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 23 May 2019 11:05:01 -0700 (PDT)
-Message-ID: <5ce6e0cd.1c69fb81.9a03e.0260@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAD=FV=VVxKSp6e=j8YM8JBrhsF+T=0=8xDjd_817hphOMWHVFA@mail.gmail.com>
-References: <20190501043734.26706-1-bjorn.andersson@linaro.org> <20190501043734.26706-3-bjorn.andersson@linaro.org> <CAD=FV=VVxKSp6e=j8YM8JBrhsF+T=0=8xDjd_817hphOMWHVFA@mail.gmail.com>
-Subject: Re: [PATCH v7 2/4] soc: qcom: Add AOSS QMP driver
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
+        h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=Kmj1SfRwUw9u9puwf4cpgVRacLw8HccKeSb6z3yZrWA=;
+        b=AUG6mCl3gfBZh599WhTnfOZnANXRXjL3b3uylhlY9Ga+4pdVlq1MYwMHTRD9nEtQcT
+         gIzsTX1nsa+m8qcajvrZBVeH0UEO/KCQ8aTBJAVea35dYxFumwQk7g1QNjpG208twTs1
+         IB3iunwgNzlhy9fYcJqIQ1gZbDd1CR+iCBQQmhoU1FeL0BMEkpbnaJ6jTrZlAxswSolC
+         2nTxsiQ4koTAYnRr0nnY8XrdjNBipTuEn3UOXkz2bdjgYiWwNfjDix/7NDJ2MIQt0U6G
+         lFFUK8EBIH+yu3IlzRSKNf4ZprJ5JzKRLg9wyvqhcNMC6+1T6F+m6JC5iNg/TSZVTswl
+         wkHg==
+X-Gm-Message-State: APjAAAXQ8cjHPM1FI3gE1ttmFWyTSQvSXoK5jN4IXiBfyQjpY4QIIqWE
+        amwLcN7nFDqEhbfh0q+FlI5Ix3Oh
+X-Google-Smtp-Source: APXvYqyAN4LtfivBu324JAIFzsV9rNdYkmUQmvr7cU+zLh1m7y0XYm5wA5lO3KlKdXT9bze/AeU2WA==
+X-Received: by 2002:a5d:4907:: with SMTP id x7mr47122036wrq.199.1558634776314;
+        Thu, 23 May 2019 11:06:16 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8be9:7a00:3cd1:e8fe:d810:b3f0? (p200300EA8BE97A003CD1E8FED810B3F0.dip0.t-ipconnect.de. [2003:ea:8be9:7a00:3cd1:e8fe:d810:b3f0])
+        by smtp.googlemail.com with ESMTPSA id w185sm189225wma.39.2019.05.23.11.06.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 May 2019 11:06:15 -0700 (PDT)
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH net-next v2 0/3] net: phy: add interface mode
+ PHY_INTERFACE_MODE_USXGMII
+To:     Madalin-cristian Bucur <madalin.bucur@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>
-User-Agent: alot/0.8.1
-Date:   Thu, 23 May 2019 11:05:00 -0700
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        David Miller <davem@davemloft.net>
+Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Message-ID: <9d284f4d-93ee-fb27-e386-80825f92adc8@gmail.com>
+Date:   Thu, 23 May 2019 20:06:10 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Doug Anderson (2019-05-23 09:38:13)
-> Hi,
->=20
-> On Tue, Apr 30, 2019 at 9:38 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
->=20
-> > +static int qmp_qdss_clk_add(struct qmp *qmp)
-> > +{
-> > +       struct clk_init_data qdss_init =3D {
-> > +               .ops =3D &qmp_qdss_clk_ops,
-> > +               .name =3D "qdss",
-> > +       };
->=20
-> Can't qdss_init be "static const"?  That had the advantage of not
-> needing to construct it on the stack and also of it having a longer
-> lifetime.  It looks like clk_register() stores the "hw" pointer in its
-> structure and the "hw" structure will have a pointer here.  While I
-> can believe that it never looks at it again, it's nice if that pointer
-> doesn't point somewhere on an old stack.
->=20
-> I suppose we could go the other way and try to mark more stuff in this
-> module as __init and __initdata, but even then at least the pointer
-> won't be onto a stack.  ;-)
->=20
+Add support for interface mode USXGMII.
 
-Const would be nice, but otherwise making it static isn't a good idea.
-The clk_init_data structure is all copied over, although we do leave a
-dangling pointer to it stored inside the clk_hw structure we don't use
-it after clk registration. Maybe we should overwrite the pointer with
-NULL once we're done in clk_register() so that clk providers can't use
-it. It might break somebody but would at least clarify this point.
+On Freescale boards LS1043A and LS1046A a warning may pop up now
+because mode xgmii should be changed to usxgmii (as the used
+Aquantia PHY doesn't support XGMII).
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index aa51756fd4d6..56997a974408 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -3438,9 +3438,9 @@ static int clk_cpy_name(const char **dst_p, const cha=
-r *src, bool must_exist)
- 	return 0;
- }
-=20
--static int clk_core_populate_parent_map(struct clk_core *core)
-+static int clk_core_populate_parent_map(struct clk_core *core,
-+					const struct clk_init_data *init)
- {
--	const struct clk_init_data *init =3D core->hw->init;
- 	u8 num_parents =3D init->num_parents;
- 	const char * const *parent_names =3D init->parent_names;
- 	const struct clk_hw **parent_hws =3D init->parent_hws;
-@@ -3520,6 +3520,14 @@ __clk_register(struct device *dev, struct device_nod=
-e *np, struct clk_hw *hw)
- {
- 	int ret;
- 	struct clk_core *core;
-+	const struct clk_init_data *init =3D hw->init;
-+
-+	/*
-+	 * The init data is not supposed to be used outside of registration path.
-+	 * Set it to NULL so that provider drivers can't use it either and so that
-+	 * we catch use of hw->init early on in the core.
-+	 */
-+	hw->init =3D NULL;
-=20
- 	core =3D kzalloc(sizeof(*core), GFP_KERNEL);
- 	if (!core) {
-@@ -3527,17 +3535,17 @@ __clk_register(struct device *dev, struct device_no=
-de *np, struct clk_hw *hw)
- 		goto fail_out;
- 	}
-=20
--	core->name =3D kstrdup_const(hw->init->name, GFP_KERNEL);
-+	core->name =3D kstrdup_const(init->name, GFP_KERNEL);
- 	if (!core->name) {
- 		ret =3D -ENOMEM;
- 		goto fail_name;
- 	}
-=20
--	if (WARN_ON(!hw->init->ops)) {
-+	if (WARN_ON(!init->ops)) {
- 		ret =3D -EINVAL;
- 		goto fail_ops;
- 	}
--	core->ops =3D hw->init->ops;
-+	core->ops =3D init->ops;
-=20
- 	if (dev && pm_runtime_enabled(dev))
- 		core->rpm_enabled =3D true;
-@@ -3546,13 +3554,13 @@ __clk_register(struct device *dev, struct device_no=
-de *np, struct clk_hw *hw)
- 	if (dev && dev->driver)
- 		core->owner =3D dev->driver->owner;
- 	core->hw =3D hw;
--	core->flags =3D hw->init->flags;
--	core->num_parents =3D hw->init->num_parents;
-+	core->flags =3D init->flags;
-+	core->num_parents =3D init->num_parents;
- 	core->min_rate =3D 0;
- 	core->max_rate =3D ULONG_MAX;
- 	hw->core =3D core;
-=20
--	ret =3D clk_core_populate_parent_map(core);
-+	ret =3D clk_core_populate_parent_map(core, init);
- 	if (ret)
- 		goto fail_parents;
-=20
+Heiner Kallweit (3):
+  net: phy: add interface mode PHY_INTERFACE_MODE_USXGMII
+  dt-bindings: net: document new usxgmii phy mode
+  net: phy: aquantia: add USXGMII support and warn if XGMII mode is set
 
->=20
->=20
-> > +static void qmp_pd_remove(struct qmp *qmp)
-> > +{
-> > +       struct genpd_onecell_data *data =3D &qmp->pd_data;
-> > +       struct device *dev =3D qmp->dev;
-> > +       int i;
-> > +
-> > +       of_genpd_del_provider(dev->of_node);
-> > +
-> > +       for (i =3D 0; i < data->num_domains; i++)
-> > +               pm_genpd_remove(data->domains[i]);
->=20
-> Still feels like the above loop would be better as:
->   for (i =3D data->num_domains - 1; i >=3D 0; i--)
->=20
+ Documentation/devicetree/bindings/net/ethernet.txt | 1 +
+ drivers/net/phy/aquantia_main.c                    | 8 ++++++++
+ include/linux/phy.h                                | 3 +++
+ 3 files changed, 12 insertions(+)
 
-Reason being to remove in reverse order? Otherwise this looks like an
-opinion.
+-- 
+2.21.0
+
