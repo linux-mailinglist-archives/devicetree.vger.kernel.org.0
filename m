@@ -2,238 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D5427408
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 03:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F7722741B
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 03:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727802AbfEWBey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 May 2019 21:34:54 -0400
-Received: from regular1.263xmail.com ([211.150.70.200]:44536 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727305AbfEWBex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 May 2019 21:34:53 -0400
-Received: from zhangqing?rock-chips.com (unknown [192.168.167.243])
-        by regular1.263xmail.com (Postfix) with ESMTP id 3637E32F;
-        Thu, 23 May 2019 09:34:41 +0800 (CST)
-X-263anti-spam: KSV:0;BIG:0;
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-KSVirus-check: 0
-X-ADDR-CHECKED4: 1
-X-ABS-CHECKED: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.236] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P9439T139953098970880S1558575278592295_;
-        Thu, 23 May 2019 09:34:40 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <0e1d8dc2cb0969a06cf6b0c8eac81de2>
-X-RL-SENDER: zhangqing@rock-chips.com
-X-SENDER: zhangqing@rock-chips.com
-X-LOGIN-NAME: zhangqing@rock-chips.com
-X-FST-TO: vicencb@gmail.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-Subject: Re: [PATCH v3 1/3] thermal: rockchip: fix up the tsadc pinctrl
- setting error
-To:     Heiko Stuebner <heiko@sntech.de>,
-        Enric Balletbo Serra <eballetbo@gmail.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1729300AbfEWBs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 May 2019 21:48:27 -0400
+Received: from mail-eopbgr40086.outbound.protection.outlook.com ([40.107.4.86]:24853
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727305AbfEWBs1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 May 2019 21:48:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=npPU9WFO4GFYAixvY2NBx7WIkmuJ91uDW1b6L0Jvwsg=;
+ b=EXSdI4g81dMn0StMsIGAaadVcwTfh5WwPm0wGTo4nb3b9gnfx0zCpZlhsbLiTK4HNx+IFLVNfHirexqJLmIiwCsh1rkQIoYgNMG5MuZYg4f4vIYbV2PWleGxz5wilLMjxoGLOJwPs5pIJxS+s2KthPbKfGZO8SOi0vXNfEuWlvU=
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
+ AM5PR04MB3044.eurprd04.prod.outlook.com (10.173.254.147) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.17; Thu, 23 May 2019 01:47:43 +0000
+Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::15e3:bb28:7e33:1adb]) by AM5PR04MB3299.eurprd04.prod.outlook.com
+ ([fe80::15e3:bb28:7e33:1adb%7]) with mapi id 15.20.1922.017; Thu, 23 May 2019
+ 01:47:43 +0000
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        huangtao@rock-chips.com, Linux PM list <linux-pm@vger.kernel.org>,
-        xxx@rock-chips.com, xf@rock-chips.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Doug Anderson <dianders@chromium.org>, vicencb@gmail.com
-References: <1556618986-18923-1-git-send-email-zhangqing@rock-chips.com>
- <785392a0-282a-1e51-a4d6-a6d5ca478949@linaro.org>
- <CAFqH_53nbiwzQKctNa7MBzgCcsRFn1p8g31Xgvo3E9k6eA8AKw@mail.gmail.com>
- <2174314.1vfUlvne1O@phil>
-From:   "elaine.zhang" <zhangqing@rock-chips.com>
-Organization: rockchip
-Message-ID: <a6780f8f-4144-f817-b4b8-c40f6aa5e806@rock-chips.com>
-Date:   Thu, 23 May 2019 09:34:37 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <2174314.1vfUlvne1O@phil>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: [PATCHv3] arm64: dts: ls1028a: add flexspi nodes
+Thread-Topic: [PATCHv3] arm64: dts: ls1028a: add flexspi nodes
+Thread-Index: AQHVEQmDureenWGIPkqqXMOejO/D4g==
+Date:   Thu, 23 May 2019 01:47:42 +0000
+Message-ID: <20190523014921.15020-1-xiaowei.bao@nxp.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HK2P15301CA0021.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::31) To AM5PR04MB3299.eurprd04.prod.outlook.com
+ (2603:10a6:206:d::30)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=xiaowei.bao@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.17.1
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b6b682a0-c735-416e-cd54-08d6df20a54a
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:AM5PR04MB3044;
+x-ms-traffictypediagnostic: AM5PR04MB3044:
+x-microsoft-antispam-prvs: <AM5PR04MB3044EE04B44779BE9A9C0029F5010@AM5PR04MB3044.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 00462943DE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(136003)(39860400002)(366004)(346002)(376002)(189003)(199004)(14454004)(6486002)(5660300002)(6436002)(26005)(73956011)(66946007)(305945005)(64756008)(7736002)(81166006)(66476007)(66556008)(81156014)(66446008)(8676002)(66066001)(186003)(1076003)(256004)(8936002)(50226002)(6512007)(53936002)(478600001)(2906002)(386003)(6506007)(2501003)(36756003)(25786009)(99286004)(486006)(102836004)(4326008)(2616005)(110136005)(71200400001)(71190400001)(44832011)(476003)(3846002)(316002)(86362001)(52116002)(2201001)(68736007)(6116002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3044;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: XggY+XlbRQos+BGWFNcg7Lep9tYHdSHaGN6LlRFzb7lbUH7buqeFlK/JFrpU10Y9Jq+z2A3RfiRmL2LsuSZIUiYPHJsWec8T0soLqpIHtSvceWTu1qWTLKb7YPVPXSRLu9DyE81OTWI0KcbnrUkjShELslPFGKyFZFriyuNQLMFd+J3OKMF0l1A1z4zu6UUMb3Kq7ZziUamfjczJ7nnAG6+wHP2iD13gwM/XkInI0FuSpdqZtsSF0hcVW3V2D/z8sc+Pm2OEmMceu+/0vxTb7oWw1CEfICgZM0nLQD8gn/y4S98wJVeK3N0EfhpEiahdrVSZdl+0MYvEOaEtuCGrzKNN4DQCNf9PooCafEDYEytsVbLXB5TohdxgOLgPrcuYwoXyuR8W7b/b3T1x/8sHmocSbg9xK/j+4r1Lao0fLi0=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6b682a0-c735-416e-cd54-08d6df20a54a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 01:47:43.0230
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xiaowei.bao@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3044
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi, Heiko & Enric:
-
-在 2019/5/22 下午8:27, Heiko Stuebner 写道:
-> Hi Enric,
->
-> Am Montag, 20. Mai 2019, 15:38:32 CEST schrieb Enric Balletbo Serra:
->> Hi all,
->>
->> As pointed by [1] and [2] this commit, that now is upstream, breaks
->> veyron (rk3288) and kevin (rk3399) boards. The problem is especially
->> critical for veyron boards because they don't boot anymore.
->>
->> I didn't look deep at the problem but I have some concerns about this
->> patch, see below.
->>
->> [1] https://www.spinics.net/lists/linux-rockchip/msg24657.html
->> [2] https://www.spinics.net/lists/linux-rockchip/msg24735.html
->>
->> Missatge de Daniel Lezcano <daniel.lezcano@linaro.org> del dia dt., 30
->> d’abr. 2019 a les 15:39:
->>> On 30/04/2019 12:09, Elaine Zhang wrote:
->>>> Explicitly use the pinctrl to set/unset the right mode
->>>> instead of relying on the pinctrl init mode.
->>>> And it requires setting the tshut polarity before select pinctrl.
->>>>
->>>> When the temperature sensor mode is set to 0, it will automatically
->>>> reset the board via the Clock-Reset-Unit (CRU) if the over temperature
->>>> threshold is reached. However, when the pinctrl initializes, it does a
->>>> transition to "otp_out" which may lead the SoC restart all the time.
->>>>
->>>> "otp_out" IO may be connected to the RESET circuit on the hardware.
->>>> If the IO is in the wrong state, it will trigger RESET.
->>>> (similar to the effect of pressing the RESET button)
->>>> which will cause the soc to restart all the time.
->>>>
->>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->>> Reviewed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->>>
->>>
->>>
->>>> ---
->>>>   drivers/thermal/rockchip_thermal.c | 36 +++++++++++++++++++++++++++++++++---
->>>>   1 file changed, 33 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
->>>> index 9c7643d62ed7..6dc7fc516abf 100644
->>>> --- a/drivers/thermal/rockchip_thermal.c
->>>> +++ b/drivers/thermal/rockchip_thermal.c
->>>> @@ -172,6 +172,9 @@ struct rockchip_thermal_data {
->>>>        int tshut_temp;
->>>>        enum tshut_mode tshut_mode;
->>>>        enum tshut_polarity tshut_polarity;
->>>> +     struct pinctrl *pinctrl;
->>>> +     struct pinctrl_state *gpio_state;
->>>> +     struct pinctrl_state *otp_state;
->>>>   };
->>>>
->>>>   /**
->>>> @@ -1242,6 +1245,8 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
->>>>                return error;
->>>>        }
->>>>
->>>> +     thermal->chip->control(thermal->regs, false);
->>>> +
->> That's the line that causes the hang. Commenting this makes the veyron
->> boot again. Probably this needs to go after chip->initialize?
-> It needs to go after the clk_enable calls.
-> At this point the tsadc may still be unclocked.
-
-The clk is enable by default.
-
-
-The reason for this modification:
-
-The otp Pin polarity setting for tsadc must be set when tsadc is turned off.
-
-The order:
-
-Close the tsadc->Set the otp pin polarity ->Set the pinctrl->initialize 
-the tsadc->Open the tsadc
-
-
-As for the problem you mentioned, I guess: The default polarity of otp 
-does not match the default state, that is, the otp is triggered by 
-default, and then the reset circuit of the hardware takes effect and is 
-restarted all the time.
-Modification:
-1. For this hardware, otp pin default state is modified.
-2. The mode of using CRU is rockchip,hw-tshut-mode = <0> in DTS;
-/* tshut mode 0:CRU 1:GPIO */
-
-Recommended use method 2. You can try it.
-
->
->>>>        error = clk_prepare_enable(thermal->clk);
->>>>        if (error) {
->>>>                dev_err(&pdev->dev, "failed to enable converter clock: %d\n",
->>>> @@ -1267,6 +1272,30 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
->>>>        thermal->chip->initialize(thermal->grf, thermal->regs,
->>>>                                  thermal->tshut_polarity);
->>>>
->>>> +     if (thermal->tshut_mode == TSHUT_MODE_GPIO) {
->>>> +             thermal->pinctrl = devm_pinctrl_get(&pdev->dev);
->>>> +             if (IS_ERR(thermal->pinctrl)) {
->>>> +                     dev_err(&pdev->dev, "failed to find thermal pinctrl\n");
->>>> +                     return PTR_ERR(thermal->pinctrl);
->>>> +             }
->>>> +
->>>> +             thermal->gpio_state = pinctrl_lookup_state(thermal->pinctrl,
->>>> +                                                        "gpio");
->> Shouldn't this mode be documented properly in the binding first?
-> More importantly, it should be _backwards-compatible_, aka work with
-> old devicetrees without that property and not break thermal handling for
-> them entirely.
-If need  _backwards-compatible_,  It's can't return 
-PTR_ERR(thermal->pinctrl) when get
-
-devm_pinctrl_get failed.
-
->
->> The binding [3] talks about init, default and sleep states but *not*
->> gpio and otpout. The patch series looks incomplete to me or not using
->> the proper names.
->>
->> [3] https://elixir.bootlin.com/linux/v5.2-rc1/source/Documentation/devicetree/bindings/thermal/rockchip-thermal.txt
->>
->>>> +             if (IS_ERR_OR_NULL(thermal->gpio_state)) {
->>>> +                     dev_err(&pdev->dev, "failed to find thermal gpio state\n");
->>>> +                     return -EINVAL;
->>>> +             }
->>>> +
->>>> +             thermal->otp_state = pinctrl_lookup_state(thermal->pinctrl,
->>>> +                                                       "otpout");
->>>> +             if (IS_ERR_OR_NULL(thermal->otp_state)) {
->>>> +                     dev_err(&pdev->dev, "failed to find thermal otpout state\n");
->>>> +                     return -EINVAL;
->>>> +             }
->>>> +
->> Same here otpout is not a documented.
->>
->> As this change is now in mainline and is causing veyron to hang I'd
->> suggest reverting this change for now. Even fixing the root cause
->> (maybe the one I pointed above) after this patch we will have the
->> thermal driver to fail because "gpio" and "otpout" states are not
->> defined nor documented (a change on this will need some reviews and
->> acks and time I guess).
-> I definitly agree here. Handling + checking the binding change
-> as well as needed fallback code is definitly not material for -rc-kernels
-> so we should just revert for now and let Elaine fix the issues for 5.3.
->
-> Anyone volunteering for sending a revert-patch to Eduardo? :-)
-
-I agree to revert the patch,and I will correct it and push it later.
-
-Do I need to commit the revert the patch now?@Heiko
-
->
-> Heiko
->
->
->
->
->
->
->
-
-
+RnJvbTogWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQoNCkFkZCBmc3BpIG5vZGUg
+cHJvcGVydHkgZm9yIExTMTAyOEEgU29DIGZvciBGbGV4U1BJIGRyaXZlci4NClByb3BlcnR5IGFk
+ZGVkIGZvciB0aGUgRmxleFNQSSBjb250cm9sbGVyIGFuZCBmb3IgdGhlIGNvbm5lY3RlZA0Kc2xh
+dmUgZGV2aWNlIGZvciB0aGUgTFMxMDI4QVJEQiBhbmQgTFMxMDI4QVFEUyB0YXJnZXQuDQpUaGlz
+IGlzIGhhdmluZyBvbmUgU1BJLU5PUiBmbGFzaCBkZXZpY2UsIG10MzV4dTAyZyBjb25uZWN0ZWQg
+YXQNCkNTMC4NCg0KU2lnbmVkLW9mZi1ieTogWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5j
+b20+DQotLS0NCnYzOg0KIC0gbW92ZSB0aGUgInNwYW5zaW9uLG0yNXA4MCIgY29tcGF0aWJsZSBw
+cm9wZXJ0eSB0byB0aGUgdG9wLg0KDQogYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNs
+LWxzMTAyOGEtcWRzLmR0cyB8ICAgMTUgKysrKysrKysrKysrKysrDQogYXJjaC9hcm02NC9ib290
+L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cyB8ICAgMTUgKysrKysrKysrKysrKysr
+DQogYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRzaSAgICB8ICAg
+MTIgKysrKysrKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCA0MiBpbnNlcnRpb25zKCspLCAwIGRl
+bGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
+ZnNsLWxzMTAyOGEtcWRzLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1s
+czEwMjhhLXFkcy5kdHMNCmluZGV4IDVjM2ZmNDMuLmI4Y2FiZDMgMTAwNjQ0DQotLS0gYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQorKysgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQpAQCAtMTY2LDYg
+KzE2NiwyMSBAQA0KIAl9Ow0KIH07DQogDQorJmZzcGkgew0KKwlzdGF0dXMgPSAib2theSI7DQor
+CW10MzV4dTAyZzogZmxhc2hAMCB7DQorCQljb21wYXRpYmxlID0gInNwYW5zaW9uLG0yNXA4MCI7
+DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDE+Ow0KKwkJbTI1
+cCxmYXN0LXJlYWQ7DQorCQlzcGktbWF4LWZyZXF1ZW5jeSA9IDwyMDAwMDAwMD47DQorCQlyZWcg
+PSA8MD47DQorCQkvKiBUaGUgZm9sbG93aW5nIHNldHRpbmcgZW5hYmxlcyAxLTEtOCAoQ01ELUFE
+RFItREFUQSkgbW9kZSAqLw0KKwkJc3BpLXJ4LWJ1cy13aWR0aCA9IDw4PjsgLyogOCBTUEkgUngg
+bGluZXMgKi8NCisJCXNwaS10eC1idXMtd2lkdGggPSA8MT47IC8qIDEgU1BJIFR4IGxpbmUgKi8N
+CisJfTsNCit9Ow0KKw0KICZzYWkxIHsNCiAJc3RhdHVzID0gIm9rYXkiOw0KIH07DQpkaWZmIC0t
+Z2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cyBi
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXJkYi5kdHMNCmluZGV4
+IGY3ZDRkYTYuLmI1ZTA1MmMgMTAwNjQ0DQotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQpAQCAtMTUyLDYgKzE1MiwyMSBAQA0KIAl9Ow0KIH07
+DQogDQorJmZzcGkgew0KKwlzdGF0dXMgPSAib2theSI7DQorCW10MzV4dTAyZzogZmxhc2hAMCB7
+DQorCQljb21wYXRpYmxlID0gInNwYW5zaW9uLG0yNXA4MCI7DQorCQkjYWRkcmVzcy1jZWxscyA9
+IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDE+Ow0KKwkJbTI1cCxmYXN0LXJlYWQ7DQorCQlzcGkt
+bWF4LWZyZXF1ZW5jeSA9IDwyMDAwMDAwMD47DQorCQlyZWcgPSA8MD47DQorCQkvKiBUaGUgZm9s
+bG93aW5nIHNldHRpbmcgZW5hYmxlcyAxLTEtOCAoQ01ELUFERFItREFUQSkgbW9kZSAqLw0KKwkJ
+c3BpLXJ4LWJ1cy13aWR0aCA9IDw4PjsgLyogOCBTUEkgUnggbGluZXMgKi8NCisJCXNwaS10eC1i
+dXMtd2lkdGggPSA8MT47IC8qIDEgU1BJIFR4IGxpbmUgKi8NCisJfTsNCit9Ow0KKw0KICZkdWFy
+dDAgew0KIAlzdGF0dXMgPSAib2theSI7DQogfTsNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jv
+b3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvZnNsLWxzMTAyOGEuZHRzaQ0KaW5kZXggZTgwOTVjZi4uMDZkOWM5MCAxMDA2NDQN
+Ci0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kNCisr
+KyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLmR0c2kNCkBAIC0x
+ODksNiArMTg5LDE4IEBADQogCQkJc25wcyxpbmNyLWJ1cnN0LXR5cGUtYWRqdXN0bWVudCA9IDwx
+PiwgPDQ+LCA8OD4sIDwxNj47DQogCQl9Ow0KIA0KKwkJZnNwaTogc3BpQDIwYzAwMDAgew0KKwkJ
+CWNvbXBhdGlibGUgPSAibnhwLGx4MjE2MGEtZnNwaSI7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8
+MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVnID0gPDB4MCAweDIwYzAwMDAgMHgw
+IDB4MTAwMDA+LA0KKwkJCSAgICAgIDwweDAgMHgyMDAwMDAwMCAweDAgMHgxMDAwMDAwMD47DQor
+CQkJcmVnLW5hbWVzID0gIkZTUEkiLCAiRlNQSS1tZW1vcnkiOw0KKwkJCWludGVycnVwdHMgPSA8
+MCAyNSAweDQ+OyAvKiBMZXZlbCBoaWdoIHR5cGUgKi8NCisJCQljbG9ja3MgPSA8JmNsb2NrZ2Vu
+IDQgMz4sIDwmY2xvY2tnZW4gNCAzPjsNCisJCQljbG9jay1uYW1lcyA9ICJmc3BpX2VuIiwgImZz
+cGkiOw0KKwkJfTsNCisNCiAJCWkyYzA6IGkyY0AyMDAwMDAwIHsNCiAJCQljb21wYXRpYmxlID0g
+ImZzbCx2ZjYxMC1pMmMiOw0KIAkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KLS0gDQoxLjcuMQ0K
+DQo=
