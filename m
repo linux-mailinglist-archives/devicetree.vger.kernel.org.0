@@ -2,102 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 951D327D62
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94E5E27D2A
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 14:51:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729972AbfEWM5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 08:57:21 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:45715 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbfEWM5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 08:57:20 -0400
-X-Originating-IP: 90.88.22.185
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr [90.88.22.185])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id CD843C0010;
-        Thu, 23 May 2019 12:57:16 +0000 (UTC)
-Date:   Thu, 23 May 2019 14:57:16 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-watchdog@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 3/5] dt-bindings: watchdog: add Allwinner H6 r_watchdog
-Message-ID: <20190523125716.g4euwplfsvw4vqzl@flea>
-References: <20190521160330.28402-1-peron.clem@gmail.com>
- <20190521160330.28402-4-peron.clem@gmail.com>
- <20190522103243.mmrfato5p2mhtf4j@flea>
- <CAJiuCcdaZVLQyupEf8HPaUySakufXXAhzundo6VeyQaAyZ8Trw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wdtcxmlg6dhvhpqj"
-Content-Disposition: inline
-In-Reply-To: <CAJiuCcdaZVLQyupEf8HPaUySakufXXAhzundo6VeyQaAyZ8Trw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+        id S1730534AbfEWMvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 08:51:15 -0400
+Received: from mga11.intel.com ([192.55.52.93]:27649 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726310AbfEWMvP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 08:51:15 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 May 2019 05:51:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.60,503,1549958400"; 
+   d="scan'208";a="174743420"
+Received: from marshy.an.intel.com ([10.122.105.159])
+  by fmsmga002.fm.intel.com with ESMTP; 23 May 2019 05:51:14 -0700
+From:   richard.gong@linux.intel.com
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, dinguyen@kernel.org, atull@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        sen.li@intel.com, richard.gong@linux.intel.com,
+        Richard Gong <richard.gong@intel.com>
+Subject: [PATCHv3 0/4] add Intel Stratix10 remote system update driver
+Date:   Thu, 23 May 2019 08:03:26 -0500
+Message-Id: <1558616610-499-1-git-send-email-richard.gong@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Richard Gong <richard.gong@intel.com>
 
---wdtcxmlg6dhvhpqj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Since version 2 submission is too late for kernel 5.2, I submit version 3
+of Intel Stratix10 Remote System Update (RSU) drive for kernel 5.3.
 
-On Wed, May 22, 2019 at 06:15:26PM +0200, Cl=E9ment P=E9ron wrote:
-> Hi Maxime,
->
-> On Wed, 22 May 2019 at 12:32, Maxime Ripard <maxime.ripard@bootlin.com> w=
-rote:
-> >
-> > On Tue, May 21, 2019 at 06:03:28PM +0200, Cl=E9ment P=E9ron wrote:
-> > > Allwinner H6 has a second watchdog on the r-blocks which is
-> > > compatible with the A31.
-> > >
-> > > This commit add the H6 compatible for the r_watchdog.
-> > >
-> > > Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
-> >
-> > Unless you have some evidence that the two blocks are different, then
-> > you should just reuse the same one.
->
-> I have no evidence it's different nor identical, it's not documented
-> in the user manual.
-> I thought it would better to have separate bindings in case there is a
-> difference.
-> Than don't have and find later that we have to introduce one.
+There is only one additional change in version 3 patch sets, which updates
+kernel version to 5.3 in sysfs interface document.
 
-It's a tradeoff. Pushing your logic to the limit, we would have a
-compatible for each controller embedded in an SoC.
+Intel Stratix10 remote system update driver patches have been reviewed by
+Alan Tull and other colleagues at Intel.
 
-This would be unmaintainable, and slightly useless since that case is
-very unlikely.
+The Intel Stratix10 Remote System Update driver exposes interfaces
+access through the Intel Stratix10 Service Layer to user space via sysfs
+interface. The RSU interfaces report and control some of the optional RSU
+features on Intel Stratix 10 SoC.
 
-However, having differences between SoCs is quite common, hence why we
-have different compatibles for each SoC.
+The RSU feature provides a way for customers to update the boot
+configuration of a Intel Stratix 10 SoC device with significantly reduced
+risk of corrupting the bitstream storage and bricking the system.
 
-Maxime
+v3: changed kernel version from 5.2 to 5.3 in RSU sysfs interface document
+v2: removed compatible = "intel,stratix10-rsu"
+    added intel stratix10 RSU device
+    changed to support RSU in handling watchdog timeout
+    s/attr_group/ATTRIBUTE_GROUPS, use devm_device_add_groups() and
+    devm_device_remove_groups()
+    added check the return value from rsu_send_msg()
+    removed RSU binding text file
+    other corrections/changes 
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Richard Gong (4):
+  firmware: stratix10-svc: extend svc to support RSU notify and WD
+    features
+  firmware: add Intel Stratix10 remote system update driver
+  firmware: rsu: document sysfs interface
+  MAINTAINERS: add maintainer for Intel Stratix10 FW drivers
 
---wdtcxmlg6dhvhpqj
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../testing/sysfs-devices-platform-stratix10-rsu   | 100 +++++
+ MAINTAINERS                                        |  11 +
+ drivers/firmware/Kconfig                           |  18 +
+ drivers/firmware/Makefile                          |   1 +
+ drivers/firmware/stratix10-rsu.c                   | 409 +++++++++++++++++++++
+ drivers/firmware/stratix10-svc.c                   |  74 +++-
+ include/linux/firmware/intel/stratix10-smc.h       |  48 ++-
+ .../linux/firmware/intel/stratix10-svc-client.h    |  12 +-
+ 8 files changed, 663 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-devices-platform-stratix10-rsu
+ create mode 100644 drivers/firmware/stratix10-rsu.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.7.4
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOaYrAAKCRDj7w1vZxhR
-xUPnAPsGJnjqxtkcj8BFHo1UbY6rBrhE114RafzPUtXuJD8o4QEAmWfFGwayxZZ0
-63T2ZEyt/CbXZE9fTnSFpRsi3BkzQA4=
-=Frvc
------END PGP SIGNATURE-----
-
---wdtcxmlg6dhvhpqj--
