@@ -2,115 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B9E27860
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 333642785A
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2019 10:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbfEWIsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 04:48:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33466 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726070AbfEWIsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 04:48:08 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0CFD20881;
-        Thu, 23 May 2019 08:48:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558601287;
-        bh=ZpO820+HRCThlTiYwTEWDIq9N5/gK8HjH0ZTj3YuZcU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pCrNfEmobtn2AALu+kG8hm28tzxm2DL3MrfxfS5hkbJK7MM2I3DIO8Oz+BObtk8M5
-         AJzK7vWJ/rwPgjdH0P3GniVtNsVIZR3DCOohHQjEvqx+n15ryS7UDXBvFiMBMscpSH
-         GXTbFZ/pBI7X3TE14i1bs6gvmx6A1VXnNjkXBk2s=
-Date:   Thu, 23 May 2019 16:47:07 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        id S1730049AbfEWIrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 04:47:14 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38693 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730029AbfEWIrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 04:47:14 -0400
+Received: by mail-wm1-f68.google.com with SMTP id t5so4874446wmh.3
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 01:47:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aZ6D2XlEYwvXZbrqEbjpu9yY579r2bu6ODvrfx8X08w=;
+        b=d/AwauIsWqkqiCoDbAJXJ2gr/ROX0wC1/pvbCDuEAyUEFJTeXaTGNfkqW+HnaWJLZG
+         xTqX/l4Dr2wnzdj8Oc4Ettwl2MFFi4RnOORMIATXUs6TAh0sMgllhBIlVv4FKPpgXrom
+         YeX5+p6SLjDFjMEdUDRN39wh4SdgQqYsGlp3ronpw0C0X/S/bBMY6hvUF8IwGbYjwfjI
+         JnfuoujmII2Mwv5rZefh4lig6DI1WoAWJKtOO5IhG7M/vE0WfkUudQVE7nF2n0cz3ZJr
+         sPYxuNChtsrgf3Ff+keozDK82BvMgfZ25S93uWy1yoCseq6/Y/HKrxE29TTito+D3nxs
+         Y+fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aZ6D2XlEYwvXZbrqEbjpu9yY579r2bu6ODvrfx8X08w=;
+        b=H/XnRf8zJluy4fF6+ZXPBQGKC57yMpaf5PZeIJud7a21fh0382CoffrZcltVdoM+Ae
+         05l8gVk2aH+zfXbHhHAGAz1BpSnzSHVcCBkkDpHbj4EmOlsJPqcHp63BQvURq0h+Afx6
+         Wfu1S7gss741j31ZhSdcqYuT1taJsmMbj17gEZYnpXdWwHySX1YxsBg9u10C3+fywpdn
+         sukoT4+qLuKnC6wpaGEq8Fxh4dKxsgPktxqA0Vr6beJ+m3e2KnyErnjSUzjq8+w+f1G0
+         CSMDf4Od/GY9S84h6BsdY1hUivT57FIqaoqyLAWt9rtbWRupw8csf0TwX8lFM83QwdAq
+         jpOg==
+X-Gm-Message-State: APjAAAVog9Yt+LpGBbJaWg6/d8xJgGTOUaU23fUCFWAR4H7+XuEBTkf/
+        sejOB3nbFhZPACo3kVDSwGhjSA==
+X-Google-Smtp-Source: APXvYqx8tWRko1FYV9WAi+gy510WGFSXJ0v+a5meO/JBL7cf8aVxNVPDnvTwo4K8Biw+MXULEpH5ag==
+X-Received: by 2002:a05:600c:110a:: with SMTP id b10mr9686753wma.125.1558601232286;
+        Thu, 23 May 2019 01:47:12 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id 34sm48072636wre.32.2019.05.23.01.47.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 May 2019 01:47:11 -0700 (PDT)
+Subject: Re: [PATCH V3 RESEND 2/4] nvmem: imx: add i.MX8 nvmem driver
+To:     Peng Fan <peng.fan@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: Re: [PATCH] arm64: dts: ls1046a: Fast read m25p60
-Message-ID: <20190523084707.GN9261@dragon>
-References: <20190516114807.30817-1-kuldeep.singh@nxp.com>
- <20190516114807.30817-2-kuldeep.singh@nxp.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20190522020040.30283-1-peng.fan@nxp.com>
+ <20190522020040.30283-2-peng.fan@nxp.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <9d8ea55c-e9e7-82f5-45be-53bc86e59f69@linaro.org>
+Date:   Thu, 23 May 2019 09:47:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190516114807.30817-2-kuldeep.singh@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20190522020040.30283-2-peng.fan@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 11:47:06AM +0000, Kuldeep Singh wrote:
-> QSPI support is added for kernel version greater than 5.0 and supports
-> quad mode defined by
-> TX-WIDTH = <4>, RX-WIDTH = <4>
+
+
+On 22/05/2019 02:46, Peng Fan wrote:
+> This patch adds i.MX8 nvmem ocotp driver to access fuse via
+> RPC to i.MX8 system controller.
 > 
-> RDB/QDS has two 64MB flash from SPANSION(s25fs512s)
-> 
-> Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
-> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
-
-Please do not send patch in message encoding with base64.  I do not
-apply it.
-
-Shawn
-
+> Cc: Srinivas Kandagatla<srinivas.kandagatla@linaro.org>
+> Cc: Shawn Guo<shawnguo@kernel.org>
+> Cc: Sascha Hauer<s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team<kernel@pengutronix.de>
+> Cc: Fabio Estevam<festevam@gmail.com>
+> Cc: NXP Linux Team<linux-imx@nxp.com>
+> Cc:linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Peng Fan<peng.fan@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts | 3 ++-
->  arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts | 6 ++++--
->  2 files changed, 6 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> index eec62c63dafe..43a5ef6357d5 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> @@ -166,9 +166,10 @@
->  	status = "okay";
->  
->  	qflash0: flash@0 {
-> -		compatible = "spansion,m25p80";
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> +		m25p,fast-read;
->  		spi-max-frequency = <20000000>;
->  		spi-rx-bus-width = <4>;
->  		spi-tx-bus-width = <4>;
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> index 6a6514d0e5a9..85105a20fc04 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> @@ -102,9 +102,10 @@
->  	status = "okay";
->  
->  	qflash0: flash@0 {
-> -		compatible = "spansion,m25p80";
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> +		m25p,fast-read;
->  		spi-max-frequency = <20000000>;
->  		spi-rx-bus-width = <4>;
->  		spi-tx-bus-width = <4>;
-> @@ -112,9 +113,10 @@
->  	};
->  
->  	qflash1: flash@1 {
-> -		compatible = "spansion,m25p80";
-> +		compatible = "spansion,m25p80", "jedec,spi-nor";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> +		m25p,fast-read;
->  		spi-max-frequency = <20000000>;
->  		spi-rx-bus-width = <4>;
->  		spi-tx-bus-width = <4>;
-> -- 
-> 2.17.1
+> V3:
+>   Use imx_sc_msg_misc_fuse_read for req/resp
+>   Drop uneccessary check
+>   Drop the unnecessary type conversion
+>   Minor fixes according to v2 comments
 > 
+> V2:
+>   Add "scu" or "SCU", Add imx_sc_misc_otp_fuse_read, minor fixes
+> 
+>   drivers/nvmem/Kconfig         |   7 ++
+>   drivers/nvmem/Makefile        |   2 +
+>   drivers/nvmem/imx-ocotp-scu.c | 161 ++++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 170 insertions(+)
+>   create mode 100644 drivers/nvmem/imx-ocotp-scu.c
+
+Applied 1/4 and 2/4 patches.
+defconfig and dts changes should go via arm-soc tree.
+
+Thanks,
+srini
