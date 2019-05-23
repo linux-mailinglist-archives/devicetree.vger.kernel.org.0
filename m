@@ -2,125 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC4F28D7E
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 00:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A9E28DE4
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 01:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388090AbfEWWzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 18:55:40 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:42564 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387997AbfEWWzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 18:55:39 -0400
-Received: by mail-pl1-f195.google.com with SMTP id go2so3314545plb.9;
-        Thu, 23 May 2019 15:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=27oT/4g6iIria1a8VEGy3UQ4sbwIVeCLLiSd/9UWd04=;
-        b=jCSgmtO/BeBcWImt8/iAItnN7kht6k+7osXxzhQ5D+QB3xNgbz/FUSfC2LqQsBvr/l
-         f/m/mIk+7UiQYMVNV9DbXH7qBc/ob629H/7t2a8T9ntAdPOek5vvBGBDONPOUMDBLlns
-         dh1+VzJQtPTTP1cQqvxlZ4WtacETA6cjUTNhVCOeVsRjgcE/WEESOjA9RP3AhK37dp/H
-         F84INqJDbjsvX9PCQR4ZEoCKMzMbWz772ZGl7hYs20W71s/hD9fPnGKyCtmWO8G2Ke5v
-         7EoJCL2YdufhAItIV0ORSdrLPYaHwE+gZV1Nkb9akjyDTUeySjI6RmGJB63xy9dfjdd2
-         UnPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=27oT/4g6iIria1a8VEGy3UQ4sbwIVeCLLiSd/9UWd04=;
-        b=kg+62q168Ms6khzvYlTzgbWSO/jWhM/5Z5o6UGQ4zJsuzexHTWtkXp1wkZjpg/mFYj
-         FS3alAGsXCd45JuQ/vGH4swOnr4P+gIMhnKTRBAvrkoeMhhz8FyDfHm918HjvdsRli7z
-         crrgwxbh4JSUzMfkU01Ga63XKq0nKY8AEry2s9Dw6yLAqxZV8h243zdq09SwEV21hZQj
-         tiP05YrF54A8644bwoAXD5mL3wWVagY3kq1TrWjAXLyfUXThqxS890tM+wYY4PXHdtJA
-         fw8q20pxCZUjd+URx4HwipN3op/6SE+CpIqygE+Pocm9xKQqXxEHQjdXDzI/Dslg2Pxq
-         1A0g==
-X-Gm-Message-State: APjAAAVSI3wq+gg94np27gVcel0mviagEEJ27ydEUYAFT7JhzGBij18g
-        mheMlTh064JVRLd17rJnc+E=
-X-Google-Smtp-Source: APXvYqzt75vj9/47EIZfhyd7iAELswjMnv1hgg/C1pxBoiot4mdCedfhyicycjbWVTlRBPtDNFgzpg==
-X-Received: by 2002:a17:902:9343:: with SMTP id g3mr101257298plp.260.1558652138370;
-        Thu, 23 May 2019 15:55:38 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
-        by smtp.gmail.com with ESMTPSA id u134sm504276pfc.61.2019.05.23.15.55.37
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 23 May 2019 15:55:37 -0700 (PDT)
-Date:   Thu, 23 May 2019 15:55:36 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, matthias.bgg@gmail.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] input: keyboard: mtk-pmic-keys: add MT6392 support
-Message-ID: <20190523225536.GE176265@dtor-ws>
-References: <20190513142120.6527-1-fparent@baylibre.com>
- <20190513142120.6527-2-fparent@baylibre.com>
+        id S2388137AbfEWXhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 19:37:08 -0400
+Received: from esa4.hgst.iphmx.com ([216.71.154.42]:18804 "EHLO
+        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387693AbfEWXhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 19:37:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1558654627; x=1590190627;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=ZIhhpIGFD7zJj6WDIZ2agldWpQH1V2HpIRQEJrRB3ck=;
+  b=i59hc2z/qyMdrAM63way0n5DFLPti32C9GiLp25QBWclKJFmCMZ5fKqo
+   eOaaycI7YVwkrqBjmg7Pdzeao0/zlsj8oQ7GI8RSG46jpOYKCLOWxDUvf
+   9kJRkboi3JJCa+rg10wHzJvxyARwgzYDcQ2//U6HmJhgfTOyBRRRND5Fe
+   HFolz+UiRkZ7YQ8yFUp2cY71p8pCeyg0RVc4HZYMI9MGBxwaueSAOfPDf
+   JvdpzwNl/Bb8wf2oYpXZ87VeupTtZP7dunzC3pKWyRjR6Vek00pr2gUAv
+   N2HZTYZp4wvSju/HOF35XmhvqhEprNqg3FkepR94pvLslr609oCf+xP+y
+   A==;
+X-IronPort-AV: E=Sophos;i="5.60,505,1549900800"; 
+   d="scan'208";a="108974742"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 24 May 2019 07:37:06 +0800
+IronPort-SDR: +3RhTfe9odXqRThB7qektL5KbWpr0Kv4a3xE2wXYfNhXLj20d/cX+nVx8PsXuDaIDQyTFWIrdU
+ 6krLrpf7AkQBFD5Fur13/LfBkEdebOslUwwiUvEH7O6pYxpD4lAr68+aegSUK73YEIsavFRieA
+ CVrnZltDQnb/GPplQtpK+g3ZwnTxy9ZVjZA07js6wsoGMxDVfhv0FL1m2C4ZaP7Z6RW9RAwNW5
+ pLZ/f4Y2rwN7Z07Ja2Ot5UGnmL0JrEwuEmZ1hVpm7iR3SUuiTpCumrx/ARL28DlM+O9SBEH7ok
+ H14jr2X333vJbKhcd0ASoI83
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP; 23 May 2019 16:14:47 -0700
+IronPort-SDR: db2blUkD4RtcGdB4eRBhiFkHDDBUCRe9NZ6lRc2cEw51pgA69avNI/0gV7G0cCNMoVH6IUItxj
+ qY6QXRyY93vwoPtjtTE6KxRM9pnikVpk9yOcQ6CxFgEpGT1L45i1uNOXQVvLLaEL3KPTP2LNE0
+ dcqLTJ59s9xphjvNYHVh+QkRotxKo/s+Ly6C57bWzGn+QdBt+Z24CSiFJnD/QA591TENp0+65G
+ Dh2JalP7gVh8cGzipTk8+9G3QxylCtxuoRS0bZ/i3KYAZQE/ddfFhlQS+smfzVLwX6eXJBy69s
+ 1Pg=
+Received: from r6220.sdcorp.global.sandisk.com (HELO [192.168.1.6]) ([10.196.157.143])
+  by uls-op-cesaip02.wdc.com with ESMTP; 23 May 2019 16:37:05 -0700
+Subject: Re: [RFT PATCH v4 3/5] cpu-topology: Move cpu topology code to common
+ code.
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jeffrey Hugo <jhugo@codeaurora.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andreas Schwab <schwab@suse.de>,
+        Anup Patel <anup@brainfault.org>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190428002529.14229-1-atish.patra@wdc.com>
+ <20190428002529.14229-4-atish.patra@wdc.com>
+ <20190523093549.GA13560@e107155-lin>
+From:   Atish Patra <atish.patra@wdc.com>
+Message-ID: <935ee66e-d303-5e0f-bbf9-20139ba79d77@wdc.com>
+Date:   Thu, 23 May 2019 16:34:48 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190513142120.6527-2-fparent@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190523093549.GA13560@e107155-lin>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 13, 2019 at 04:21:20PM +0200, Fabien Parent wrote:
-> Add support for MT6392 PMIC's keys.
+On 5/23/19 2:36 AM, Sudeep Holla wrote:
+> On Sat, Apr 27, 2019 at 05:25:27PM -0700, Atish Patra wrote:
+>> Both RISC-V & ARM64 are using cpu-map device tree to describe
+>> their cpu topology. It's better to move the relevant code to
+>> a common place instead of duplicate code.
+>>
+>> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+>> Tested-by: Jeffrey Hugo <jhugo@codeaurora.org>
+>> ---
+>>   arch/arm64/include/asm/topology.h |  23 ---
+>>   arch/arm64/kernel/topology.c      | 303 +-----------------------------
+>>   drivers/base/arch_topology.c      | 298 ++++++++++++++++++++++++++++-
+>>   drivers/base/topology.c           |   1 +
+>>   include/linux/arch_topology.h     |  28 +++
+>>   5 files changed, 330 insertions(+), 323 deletions(-)
+>>
+>> -void store_cpu_topology(unsigned int cpuid);
+> [...]
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-
-Apparently this depends on not-yet merged MT6392 support in MFD, so
-please merge through MFD tree with the rest of it.
-
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
-> ---
->  drivers/input/keyboard/mtk-pmic-keys.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
 > 
-> diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-> index 8e6ebab05ab4..aaf68cbf7e5b 100644
-> --- a/drivers/input/keyboard/mtk-pmic-keys.c
-> +++ b/drivers/input/keyboard/mtk-pmic-keys.c
-> @@ -18,6 +18,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/kernel.h>
->  #include <linux/mfd/mt6323/registers.h>
-> +#include <linux/mfd/mt6392/registers.h>
->  #include <linux/mfd/mt6397/core.h>
->  #include <linux/mfd/mt6397/registers.h>
->  #include <linux/module.h>
-> @@ -83,6 +84,16 @@ static const struct mtk_pmic_regs mt6323_regs = {
->  	.pmic_rst_reg = MT6323_TOP_RST_MISC,
->  };
->  
-> +static const struct mtk_pmic_regs mt6392_regs = {
-> +	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
-> +		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
-> +		0x2, MT6392_INT_MISC_CON, 0x10),
-> +	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
-> +		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
-> +		0x4, MT6392_INT_MISC_CON, 0x8),
-> +	.pmic_rst_reg = MT6392_TOP_RST_MISC,
-> +};
-> +
->  struct mtk_pmic_keys_info {
->  	struct mtk_pmic_keys *keys;
->  	const struct mtk_pmic_keys_regs *regs;
-> @@ -238,6 +249,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
->  	}, {
->  		.compatible = "mediatek,mt6323-keys",
->  		.data = &mt6323_regs,
-> +	}, {
-> +		.compatible = "mediatek,mt6392-keys",
-> +		.data = &mt6392_regs,
->  	}, {
->  		/* sentinel */
->  	}
-> -- 
-> 2.20.1
+>> diff --git a/drivers/base/arch_topology.c b/drivers/base/arch_topology.c
+>> index edfcf8d982e4..2b0758c01cee 100644
+>> --- a/drivers/base/arch_topology.c
+>> +++ b/drivers/base/arch_topology.c
+>> @@ -6,8 +6,8 @@
+>>    * Written by: Juri Lelli, ARM Ltd.
+>>    */
+>>
+>> -#include <linux/acpi.h>
+>>   #include <linux/arch_topology.h>
+>> +#include <linux/acpi.h>
 > 
+> I assume this was to avoid compilation errors, when I rebased I got
+> conflict and I ordered them back alphabetically as before and hit the
+> compilation error.
+> 
+> The actual fix would be to include linux/arch_topology.h in linux/topology.h
+> as you are moving contents of asm/topology.h which it includes.
+> 
+> I did the change and get it tested by kbuild. See [1]
+> 
+
+Thanks for pointing that out. I think we can remove arch_topology.h 
+include in base/arch_topology.c and base/topology.c as they already 
+include sched/topology.h or linux/topology.h.
+
+I will send out v5 soon.
+
+> Regards,
+> Sudeep
+> 
+> [1] https://git.kernel.org/sudeep.holla/linux/h/cpu_topology
+> 
+
 
 -- 
-Dmitry
+Regards,
+Atish
