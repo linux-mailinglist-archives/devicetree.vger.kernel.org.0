@@ -2,115 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6713228CD7
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 00:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC4F28D7E
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 00:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387734AbfEWWGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 18:06:13 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:46442 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387616AbfEWWGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 18:06:13 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 02EB0803D1; Fri, 24 May 2019 00:06:00 +0200 (CEST)
-Date:   Fri, 24 May 2019 00:06:10 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Angus Ainslie <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH v13 2/4] arm64: dts: fsl: librem5: Add a device tree for
-  the Librem5 devkit
-Message-ID: <20190523220610.GB15523@amd>
-References: <20190520142330.3556-1-angus@akkea.ca>
- <20190520142330.3556-3-angus@akkea.ca>
- <20190523191922.GA3803@xo-6d-61-c0.localdomain>
- <9626cd324eaaab2b49c37cf3c824aa5e@www.akkea.ca>
+        id S2388090AbfEWWzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 18:55:40 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:42564 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387997AbfEWWzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 18:55:39 -0400
+Received: by mail-pl1-f195.google.com with SMTP id go2so3314545plb.9;
+        Thu, 23 May 2019 15:55:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=27oT/4g6iIria1a8VEGy3UQ4sbwIVeCLLiSd/9UWd04=;
+        b=jCSgmtO/BeBcWImt8/iAItnN7kht6k+7osXxzhQ5D+QB3xNgbz/FUSfC2LqQsBvr/l
+         f/m/mIk+7UiQYMVNV9DbXH7qBc/ob629H/7t2a8T9ntAdPOek5vvBGBDONPOUMDBLlns
+         dh1+VzJQtPTTP1cQqvxlZ4WtacETA6cjUTNhVCOeVsRjgcE/WEESOjA9RP3AhK37dp/H
+         F84INqJDbjsvX9PCQR4ZEoCKMzMbWz772ZGl7hYs20W71s/hD9fPnGKyCtmWO8G2Ke5v
+         7EoJCL2YdufhAItIV0ORSdrLPYaHwE+gZV1Nkb9akjyDTUeySjI6RmGJB63xy9dfjdd2
+         UnPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=27oT/4g6iIria1a8VEGy3UQ4sbwIVeCLLiSd/9UWd04=;
+        b=kg+62q168Ms6khzvYlTzgbWSO/jWhM/5Z5o6UGQ4zJsuzexHTWtkXp1wkZjpg/mFYj
+         FS3alAGsXCd45JuQ/vGH4swOnr4P+gIMhnKTRBAvrkoeMhhz8FyDfHm918HjvdsRli7z
+         crrgwxbh4JSUzMfkU01Ga63XKq0nKY8AEry2s9Dw6yLAqxZV8h243zdq09SwEV21hZQj
+         tiP05YrF54A8644bwoAXD5mL3wWVagY3kq1TrWjAXLyfUXThqxS890tM+wYY4PXHdtJA
+         fw8q20pxCZUjd+URx4HwipN3op/6SE+CpIqygE+Pocm9xKQqXxEHQjdXDzI/Dslg2Pxq
+         1A0g==
+X-Gm-Message-State: APjAAAVSI3wq+gg94np27gVcel0mviagEEJ27ydEUYAFT7JhzGBij18g
+        mheMlTh064JVRLd17rJnc+E=
+X-Google-Smtp-Source: APXvYqzt75vj9/47EIZfhyd7iAELswjMnv1hgg/C1pxBoiot4mdCedfhyicycjbWVTlRBPtDNFgzpg==
+X-Received: by 2002:a17:902:9343:: with SMTP id g3mr101257298plp.260.1558652138370;
+        Thu, 23 May 2019 15:55:38 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id u134sm504276pfc.61.2019.05.23.15.55.37
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 23 May 2019 15:55:37 -0700 (PDT)
+Date:   Thu, 23 May 2019 15:55:36 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, matthias.bgg@gmail.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] input: keyboard: mtk-pmic-keys: add MT6392 support
+Message-ID: <20190523225536.GE176265@dtor-ws>
+References: <20190513142120.6527-1-fparent@baylibre.com>
+ <20190513142120.6527-2-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="+g7M9IMkV8truYOl"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9626cd324eaaab2b49c37cf3c824aa5e@www.akkea.ca>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20190513142120.6527-2-fparent@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 13, 2019 at 04:21:20PM +0200, Fabien Parent wrote:
+> Add support for MT6392 PMIC's keys.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
---+g7M9IMkV8truYOl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Apparently this depends on not-yet merged MT6392 support in MFD, so
+please merge through MFD tree with the rest of it.
 
-Hi!
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-> >>This is for the development kit board for the Librem 5. The current
-> >>level
-> >>of support yields a working console and is able to boot userspace from
-> >>the network or eMMC.
-> >>
-> >>Additional subsystems that are active :
-> >
-> >>- haptic motor
-> >
-> >Haptic motor is not a LED. It should be controlled by input subsystem.
-> >
-> >>+	pwmleds {
-> >>+		compatible =3D "pwm-leds";
-> >>+
-> >>+		haptic {
-> >>+			label =3D "librem5::haptic";
-> >>+			pwms =3D <&pwm2 0 200000>;
-> >>+			active-low;
-> >>+			max-brightness =3D <255>;
-> >>+			power-supply =3D <&reg_3v3_p>;
-> >>+		};
-> >>+	};
-> >
-> >You can take a look at N900, that has reasonable interface.
->=20
-> I wanted to control the haptic with the pwm-vibra driver but "fsl,imx27-p=
-wm"
-> doesn't seem to respect the PWM_POLARITY_INVERTED flag so when I start the
-> system the vibrator is full on.
+> ---
+>  drivers/input/keyboard/mtk-pmic-keys.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
+> index 8e6ebab05ab4..aaf68cbf7e5b 100644
+> --- a/drivers/input/keyboard/mtk-pmic-keys.c
+> +++ b/drivers/input/keyboard/mtk-pmic-keys.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mfd/mt6323/registers.h>
+> +#include <linux/mfd/mt6392/registers.h>
+>  #include <linux/mfd/mt6397/core.h>
+>  #include <linux/mfd/mt6397/registers.h>
+>  #include <linux/module.h>
+> @@ -83,6 +84,16 @@ static const struct mtk_pmic_regs mt6323_regs = {
+>  	.pmic_rst_reg = MT6323_TOP_RST_MISC,
+>  };
+>  
+> +static const struct mtk_pmic_regs mt6392_regs = {
+> +	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
+> +		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
+> +		0x2, MT6392_INT_MISC_CON, 0x10),
+> +	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
+> +		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
+> +		0x4, MT6392_INT_MISC_CON, 0x8),
+> +	.pmic_rst_reg = MT6392_TOP_RST_MISC,
+> +};
+> +
+>  struct mtk_pmic_keys_info {
+>  	struct mtk_pmic_keys *keys;
+>  	const struct mtk_pmic_keys_regs *regs;
+> @@ -238,6 +249,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
+>  	}, {
+>  		.compatible = "mediatek,mt6323-keys",
+>  		.data = &mt6323_regs,
+> +	}, {
+> +		.compatible = "mediatek,mt6392-keys",
+> +		.data = &mt6392_regs,
+>  	}, {
+>  		/* sentinel */
+>  	}
+> -- 
+> 2.20.1
+> 
 
-Ok, lets fix that :-).
-
-> I could use gpio-vibrator but that seemed like a waste when the device is
-> connected to pwm.
->=20
-> I figured the using the pwm-leds interface was a reasonable compromise un=
-til
-> I had an opportunity to make changes the the imx27-pwm driver.
-
-I guess in such case it would be best to leave out this section for
-now... or keep it disabled / something. We don't want incorrect device
-trees to stick around.
-
-Thanks,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---+g7M9IMkV8truYOl
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlznGVIACgkQMOfwapXb+vKN/gCfWaysTUeuBj2xcwWEq2OylDMS
-zFsAnRLEFwUNhwGErAbVlCaxo8N8aM47
-=iExp
------END PGP SIGNATURE-----
-
---+g7M9IMkV8truYOl--
+-- 
+Dmitry
