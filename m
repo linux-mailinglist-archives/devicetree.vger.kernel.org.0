@@ -2,343 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B96FB2999B
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 16:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F39FD299B2
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 16:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403964AbfEXOD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 10:03:28 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:53176 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403864AbfEXOD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 10:03:27 -0400
-Received: by mail-wm1-f65.google.com with SMTP id y3so9544091wmm.2
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 07:03:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=G/bTQ/ecWQ5ps1+vCCtFklRZsUYqapfXdu2OlnxEmEY=;
-        b=AQ8NIukI4NzDXN4WjG4QXdnvkku3PgVux0BOEKbQf+rTn8OcmysE8CLGZjx+yxLnnd
-         DgMeEzLVukI6CTD5ss+PFrqntLse16+kZ49JmEDnA/Zotg70eiyGFhy9bYbA/Xq5Okge
-         NF3uiVyxD5PaPCig4NVKKOBZV2KAMwgK9s8x0fEVOnuECqgZNOI9jl/m6V+8BD/w6Rzz
-         3ZZNaQ96iYf/LrRZWph19CUyW7uq7jiRC7gndPszPtwTNcwqrCT7kl5vlFuDl0yAMzaz
-         VPcaj1k0ouuCqWm6w1Xx7vsLoAE/j5Neir+RGucwyUMbKuc/NX+nH6uV/ZvAy+7uwcDI
-         befw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=G/bTQ/ecWQ5ps1+vCCtFklRZsUYqapfXdu2OlnxEmEY=;
-        b=AJPm8gk86wa26YlaYlBWeTX0mCOMCHsy7VBdhfx3udorNe/C+xVDhLUJtFEAYJt/OC
-         UTwDw7VkMxNRk7cTf0fZviienEJusFSqGRpFKUCdg4+RAf+w9q+xym71xA3swB4GGzhe
-         B7uGqmmo2rlpXMULob0JtM5ojeXcfl6Kq3Szftr86JyeX2SfIwXCW8isc1zsMK/AQh/M
-         wWMsMU8q7JSQqKz7isAxqinJv6vOZczeGZSwLZarhhQ5yTFqI1WWGdny/LOybCB2a6we
-         k/5ljgxuBrpnp/NZoCSh2BYoR6eacQwF2b9Q8zN3p3hwlI8wz/gAsxXGoLB6vM4b4CpK
-         ZxSA==
-X-Gm-Message-State: APjAAAX4t35E8ZaQ+idjlJqUDalCjouD92FdXXaRfEWEEwC1PqPtywq3
-        x0EWR40J86UUnxp9fm89Xx1Caw==
-X-Google-Smtp-Source: APXvYqxJIGgLt2Dm15XiY/DujxFETKhcmXMGqehYiTZ84Pf1JDBLO1be3iiESfD8el8QJmlp6Av2kw==
-X-Received: by 2002:a7b:c118:: with SMTP id w24mr23922wmi.158.1558706605414;
-        Fri, 24 May 2019 07:03:25 -0700 (PDT)
-Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id t7sm2797114wrq.76.2019.05.24.07.03.24
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 24 May 2019 07:03:24 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: meson: sei510: add sound card
-Date:   Fri, 24 May 2019 16:03:18 +0200
-Message-Id: <20190524140318.17608-3-jbrunet@baylibre.com>
+        id S2404083AbfEXOFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 10:05:31 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:52617 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404086AbfEXOFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 10:05:31 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.pengutronix.de.)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hUAp3-0002Dk-4U; Fri, 24 May 2019 16:05:25 +0200
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     linux-media@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH 00/10] Rename Rockchip VPU driver to Hantro, add initial i.MX8M support
+Date:   Fri, 24 May 2019 16:04:49 +0200
+Message-Id: <20190524140459.4002-1-p.zabel@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190524140318.17608-1-jbrunet@baylibre.com>
-References: <20190524140318.17608-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the sound card on the sei510:
-* TDM interface A is connected to an external DAC and a speaker installed
-  on the device.
-* HDMI is expected to use TDM B. It can also use TDM A but will be
-  limited to 2 channels, as accepted by the external DAC.
-* 2 Built in PDM mics through the PDM interface.
-* Both TDM outputs may use HW loopback.
+There are several other SoCs that contain Hantro IP based VPUs, such as
+NXP i.MX8MQ (Hantro G1 and G2) and i.MX8MM (Hantro G1, G2, and H1). To
+maximize code sharing, add initial support for these SoCs to the
+Rockchip VPU driver, after renaming it to Hantro VPU.
 
-The internal DAC connected to audio jack will be added later on, when
-driver support is added.
+This series is based on the for-v5.2i tag, commit 70e9b4cf6655
+("rockchip/vpu: Add support for MPEG-2 decoding on RK3288") and
+supports MPEG-2 decoding on i.MX8MQ. MPEG-2 decoding and JPEG encoding
+on i.MX8MM may or may not work, I don't have the hardware to test.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../boot/dts/amlogic/meson-g12a-sei510.dts    | 202 +++++++++++++++++-
- 1 file changed, 201 insertions(+), 1 deletion(-)
+regards
+Philipp
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index c6d032ed9a8b..9275df73c9f0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -9,6 +9,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
- 
- / {
- 	compatible = "seirobotics,sei510", "amlogic,g12a";
-@@ -32,13 +33,22 @@
- 		ethernet0 = &ethmac;
- 	};
- 
--	mono_dac: audio-codec {
-+	mono_dac: audio-codec-0 {
- 		compatible = "maxim,max98357a";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "U16";
- 		sdmode-gpios = <&gpio GPIOX_8 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	dmics: audio-codec-1 {
-+		#sound-dai-cells = <0>;
-+		compatible = "dmic-codec";
-+		num-channels = <2>;
-+		wakeup-delay-ms = <50>;
-+		status = "okay";
-+		sound-name-prefix = "MIC";
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -135,6 +145,124 @@
- 			no-map;
- 		};
- 	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "G12A-SEI510";
-+		audio-aux-devs = <&tdmout_a>, <&tdmout_b>,
-+				 <&tdmin_a>, <&tdmin_b>;
-+		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
-+				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-+				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-+				"TDM_A Playback", "TDMOUT_A OUT",
-+				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TODDR_A IN 4", "PDM Capture",
-+				"TODDR_B IN 4", "PDM Capture",
-+				"TODDR_C IN 4", "PDM Capture",
-+				"TDMIN_A IN 0", "TDM_A Capture",
-+				"TDMIN_A IN 3", "TDM_A Loopback",
-+				"TDMIN_B IN 0", "TDM_A Capture",
-+				"TDMIN_B IN 3", "TDM_A Loopback",
-+				"TDMIN_A IN 1", "TDM_B Capture",
-+				"TDMIN_A IN 4", "TDM_B Loopback",
-+				"TDMIN_B IN 1", "TDM_B Capture",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TODDR_A IN 0", "TDMIN_A OUT",
-+				"TODDR_B IN 0", "TDMIN_A OUT",
-+				"TODDR_C IN 0", "TDMIN_A OUT",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/* internal speaker interface */
-+		dai-link-6 {
-+			sound-dai = <&tdmif_a>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&mono_dac>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
-+			};
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-7 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec@0 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* internal digital mics */
-+		dai-link-8 {
-+			sound-dai = <&pdm>;
-+
-+			codec {
-+				sound-dai = <&dmics>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-9 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
- };
- 
- &cec_AO {
-@@ -151,6 +279,10 @@
- 	hdmi-phandle = <&hdmi_tx>;
- };
- 
-+&clkc_audio {
-+	status = "okay";
-+};
-+
- &cvbs_vdac_port {
- 	cvbs_vdac_out: endpoint {
- 		remote-endpoint = <&cvbs_connector_in>;
-@@ -163,6 +295,18 @@
- 	phy-mode = "rmii";
- };
- 
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
- &hdmi_tx {
- 	status = "okay";
- 	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-@@ -181,6 +325,14 @@
- 	pinctrl-names = "default";
- };
- 
-+&pdm {
-+	pinctrl-0 = <&pdm_din0_z_pins>, <&pdm_din1_z_pins>,
-+		    <&pdm_din2_z_pins>, <&pdm_din3_z_pins>,
-+		    <&pdm_dclk_z_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &saradc {
- 	status = "okay";
- 	vref-supply = <&vddio_ao1v8>;
-@@ -223,6 +375,54 @@
- 	vqmmc-supply = <&emmc_1v8>;
- };
- 
-+&tdmif_a {
-+	pinctrl-0 = <&tdm_a_dout0_pins>, <&tdm_a_fs_pins>, <&tdm_a_sclk_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD0>,
-+			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD0>;
-+	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+				 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
-+	assigned-clock-rates = <0>, <0>;
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmin_a {
-+	status = "okay";
-+};
-+
-+&tdmin_b {
-+	status = "okay";
-+};
-+
-+&tdmout_a {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&toddr_a {
-+	status = "okay";
-+};
-+
-+&toddr_b {
-+	status = "okay";
-+};
-+
-+&toddr_c {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
- &uart_A {
- 	status = "okay";
- 	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+Philipp Zabel (10):
+  rockchip/vpu: remove unused declarations
+  rockchip/vpu: rename from rockchip to hantro
+  media: hantro: print video device name in addition to device node
+  media: hantro: add PM runtime resume callback
+  media: hantro: make irq names configurable
+  media: hantro: add support for named register ranges
+  media: hantro: add support for separate control block
+  media: dt-bindings: Document i.MX8MQ and i.MX8MM VPU bindings
+  media: hantro: add initial i.MX8MQ support
+  media: hantro: add initial i.MX8MM support (untested)
+
+ .../devicetree/bindings/media/imx8m-vpu.txt   |  56 +++
+ MAINTAINERS                                   |   4 +-
+ drivers/staging/media/Kconfig                 |   2 +-
+ drivers/staging/media/Makefile                |   2 +-
+ drivers/staging/media/hantro/Kconfig          |  15 +
+ drivers/staging/media/hantro/Makefile         |  14 +
+ .../media/{rockchip/vpu => hantro}/TODO       |   0
+ .../vpu/rockchip_vpu.h => hantro/hantro.h}    | 154 +++++----
+ drivers/staging/media/hantro/hantro_common.h  |  24 ++
+ .../hantro_drv.c}                             | 327 +++++++++---------
+ .../hantro_g1_mpeg2_dec.c}                    |  57 ++-
+ .../hantro_h1_jpeg_enc.c}                     |  44 +--
+ drivers/staging/media/hantro/hantro_hw.h      | 103 ++++++
+ .../hantro_jpeg.c}                            |  18 +-
+ drivers/staging/media/hantro/hantro_jpeg.h    |  13 +
+ .../hantro_mpeg2.c}                           |  14 +-
+ .../hantro_v4l2.c}                            | 223 ++++++------
+ .../hantro_v4l2.h}                            |  16 +-
+ drivers/staging/media/hantro/imx8m_vpu_hw.c   | 301 ++++++++++++++++
+ .../{rockchip/vpu => hantro}/rk3288_vpu_hw.c  |  69 ++--
+ .../vpu => hantro}/rk3288_vpu_regs.h          |   2 +-
+ .../{rockchip/vpu => hantro}/rk3399_vpu_hw.c  |  65 ++--
+ .../vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c   |  32 +-
+ .../vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c  |  39 +--
+ .../vpu => hantro}/rk3399_vpu_regs.h          |   2 +-
+ drivers/staging/media/rockchip/vpu/Kconfig    |  14 -
+ drivers/staging/media/rockchip/vpu/Makefile   |  13 -
+ .../media/rockchip/vpu/rockchip_vpu_common.h  |  49 ---
+ .../media/rockchip/vpu/rockchip_vpu_hw.h      | 102 ------
+ .../media/rockchip/vpu/rockchip_vpu_jpeg.h    |  14 -
+ 30 files changed, 1071 insertions(+), 717 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/imx8m-vpu.txt
+ create mode 100644 drivers/staging/media/hantro/Kconfig
+ create mode 100644 drivers/staging/media/hantro/Makefile
+ rename drivers/staging/media/{rockchip/vpu => hantro}/TODO (100%)
+ rename drivers/staging/media/{rockchip/vpu/rockchip_vpu.h => hantro/hantro.h} (67%)
+ create mode 100644 drivers/staging/media/hantro/hantro_common.h
+ rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_drv.c => hantro/hantro_drv.c} (69%)
+ rename drivers/staging/media/{rockchip/vpu/rk3288_vpu_hw_mpeg2_dec.c => hantro/hantro_g1_mpeg2_dec.c} (87%)
+ rename drivers/staging/media/{rockchip/vpu/rk3288_vpu_hw_jpeg_enc.c => hantro/hantro_h1_jpeg_enc.c} (76%)
+ create mode 100644 drivers/staging/media/hantro/hantro_hw.h
+ rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_jpeg.c => hantro/hantro_jpeg.c} (95%)
+ create mode 100644 drivers/staging/media/hantro/hantro_jpeg.h
+ rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_mpeg2.c => hantro/hantro_mpeg2.c} (79%)
+ rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.c => hantro/hantro_v4l2.c} (69%)
+ rename drivers/staging/media/{rockchip/vpu/rockchip_vpu_v4l2.h => hantro/hantro_v4l2.h} (53%)
+ create mode 100644 drivers/staging/media/hantro/imx8m_vpu_hw.c
+ rename drivers/staging/media/{rockchip/vpu => hantro}/rk3288_vpu_hw.c (66%)
+ rename drivers/staging/media/{rockchip/vpu => hantro}/rk3288_vpu_regs.h (99%)
+ rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw.c (68%)
+ rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_jpeg_enc.c (86%)
+ rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_hw_mpeg2_dec.c (91%)
+ rename drivers/staging/media/{rockchip/vpu => hantro}/rk3399_vpu_regs.h (99%)
+ delete mode 100644 drivers/staging/media/rockchip/vpu/Kconfig
+ delete mode 100644 drivers/staging/media/rockchip/vpu/Makefile
+ delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_common.h
+ delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_hw.h
+ delete mode 100644 drivers/staging/media/rockchip/vpu/rockchip_vpu_jpeg.h
+
 -- 
 2.20.1
 
