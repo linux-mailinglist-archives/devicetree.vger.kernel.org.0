@@ -2,47 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B67B528E6F
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 03:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4663828E76
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 03:02:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731637AbfEXBBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 21:01:31 -0400
-Received: from mail-oi1-f201.google.com ([209.85.167.201]:54233 "EHLO
-        mail-oi1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731632AbfEXBBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 21:01:31 -0400
-Received: by mail-oi1-f201.google.com with SMTP id k66so3039605oib.20
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 18:01:31 -0700 (PDT)
+        id S2388065AbfEXBBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 21:01:35 -0400
+Received: from mail-yw1-f73.google.com ([209.85.161.73]:50894 "EHLO
+        mail-yw1-f73.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731731AbfEXBBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 21:01:34 -0400
+Received: by mail-yw1-f73.google.com with SMTP id s145so6994314ywg.17
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 18:01:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=DkFNL0Lxas2CTOjiDN2hgVYuR42qb65M2nUWhRx2AoU=;
-        b=naestgbM/OBAVNz1Xr0RTA3sfhmM/mtWyEzsKef0nniKmd4+t3sffScnviOf+ToOj6
-         tOIX9Jge830iP/Qx3nWIBsT8gyLyq4siWX5dSrDzdKj7S0sovydIwoRpms5YDKIf0pfy
-         Gfw6wg0xhvM5vCghXWxI3jyAGUQjQNf8Ntyyl+EpioqdjVPKohz9Oq7Sk2BdKxtAatvj
-         ZNfUn9e16UZMg6/VenRWfxWqJQpFpfVP18gBAZbTlH0PjloOC7QPwAKxqfbnpg7zL8Li
-         uf77Up71hdyzInQEJZGuBaGhLPHn294TJ4vkoyLWorucJzEFC5rlxbYimg8mt6U0Gily
-         eqkw==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=oMHoMPQmhEqS1OrwCj/awDAcMj4261wJxPL5IX32+TA=;
+        b=N6xGWh38j089YENdGB1y1toAjMbL0Tk0p0HgQT4dENUnm11Y/lPTT6d0n6nNe4H/27
+         0K0BlNPORCwSJS03Q+N/YpqDi1xomO4mMcuadIzfwxz+77+EpE2Jz0zSQf3XCwfSkHoH
+         3/gooWaHO/6vlbwRImifLRtjDK0qc+OC12V+k7gT67ZEeSVy8okg+5MrpnEhtLXfIpWw
+         2qxvTf8QybPXKhLsA4AqS9N1dt7ue9D8TJirG4SJYJB+Skow8kqgwEKqqn2JCCG2u9O3
+         LFzW188Y5jh0ZQXRhHRIV7GXG80N68zkDJluePvhC6dkv+eoGakcP/+oXLz3+WU7b2an
+         hYxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=DkFNL0Lxas2CTOjiDN2hgVYuR42qb65M2nUWhRx2AoU=;
-        b=TUNrdYcCrMDHzbtuR5fggcLN24A4LxbblXoA1QNM9ojwquwFOvUhjZsiKwEAo3Zlxv
-         ImbltDXkOQbKFotrmCGpJKe5JiBFGgPr2retphdMwxNx9N5M9MduJikBWxrSidoLKlkG
-         at9u2Bj1FyQASsVqkqhd5H0rLUCxi89jLJY/n8TqcNF/7OXP2fXy4HRQ0qGGHhHVhuBS
-         oTGsYZbp9ftmz+hE/VR0BqtgHRGKNNPV3tyv3Rcp2JiO8tFZWRGi+Ai6dJqMNmu/FJDG
-         wSm55394qNphz+cf6Qar5tJy+kdm00rttl02gdCrU6vUY/dJCkIHFVyMroyBu3lNfDTq
-         lqjA==
-X-Gm-Message-State: APjAAAUasXUfjtFqVnZ9EjSl9qwfVxVxFueIny7bSWetnhyyepDIymkF
-        RlKKXRmKfm5r04k8Ev2Z6rXdDrXg7ztsxX8=
-X-Google-Smtp-Source: APXvYqyyUsxe0pTs83AlvyQk++6cV7rA90W86NXVfY7I+5cJbG44NrjLHC9M9WVuTGQO48znvQvvCcBGRwOGSPc=
-X-Received: by 2002:a9d:7acd:: with SMTP id m13mr12297317otn.336.1558659690736;
- Thu, 23 May 2019 18:01:30 -0700 (PDT)
-Date:   Thu, 23 May 2019 18:01:11 -0700
-Message-Id: <20190524010117.225219-1-saravanak@google.com>
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=oMHoMPQmhEqS1OrwCj/awDAcMj4261wJxPL5IX32+TA=;
+        b=HWq0YtesnkHN3UM0ue+BN3ammIDXZpkg6ldrLd+ILpvFX8gHF6/Uyo3LRoGbg2Frdj
+         DqwePPT3IyoKs6qVH8zRW1Z1I9m6SvC3N3ZJRawkUD0Y32VBzg2kKNjtfV+R9gX3SDzC
+         Xjm94GgMdcGrvYpLS8Zwja2tGsQHiOwKftrQ2ccFFz6SAYT8C8qyxiMA/AfiAkYF3EEo
+         Vrb9Ag5WIRgIiap2YdSiEFf0xwSJAHkwhercUOZHFK1y2bsq7eEyb9ghjdptjvKa60SP
+         OiL3vdNjajFpFFZ3+Wm8Ll2HnS5RslN9BVetyr51nEDLmOwuG/Vgn8RK551sgVZzvYgK
+         mtbQ==
+X-Gm-Message-State: APjAAAWSx5ZXhH9cZSni2wgZxXUeW4O5RoJ7/ZF41xufS+TtoSnhkoYu
+        U/ll1vmrxvuGEKNBc08y313j6oioGMnEgFc=
+X-Google-Smtp-Source: APXvYqz/KBoDXeBFvZyUJHa1QtM335Lv75rS2hBvoULIzAtt0sqft2b2tmszS1FvwmAQ8QyxcHusgdhCY2g6JUw=
+X-Received: by 2002:a25:9b86:: with SMTP id v6mr11146780ybo.342.1558659693863;
+ Thu, 23 May 2019 18:01:33 -0700 (PDT)
+Date:   Thu, 23 May 2019 18:01:12 -0700
+In-Reply-To: <20190524010117.225219-1-saravanak@google.com>
+Message-Id: <20190524010117.225219-2-saravanak@google.com>
 Mime-Version: 1.0
+References: <20190524010117.225219-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
-Subject: [PATCH v1 0/5] Solve postboot supplier cleanup and optimize probe ordering
+Subject: [PATCH v1 1/5] of/platform: Speed up of_find_device_by_node()
 From:   Saravana Kannan <saravanak@google.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -57,83 +61,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a generic "depends-on" property that allows specifying mandatory
-functional dependencies between devices. Add device-links after the
-devices are created (but before they are probed) by looking at this
-"depends-on" property.
+Add a pointer from device tree node to the device created from it.
+This allows us to find the device corresponding to a device tree node
+without having to loop through all the platform devices.
 
-This property is used instead of existing DT properties that specify
-phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
-is because not all resources referred to by existing DT properties are
-mandatory functional dependencies. Some devices/drivers might be able
-to operate with reduced functionality when some of the resources
-aren't available. For example, a device could operate in polling mode
-if no IRQ is available, a device could skip doing power management if
-clock or voltage control isn't available and they are left on, etc.
+However, fallback to looping through the platform devices to handle
+any devices that might set their own of_node.
 
-So, adding mandatory functional dependency links between devices by
-looking at referred phandles in DT properties won't work as it would
-prevent probing devices that could be probed. By having an explicit
-depends-on property, we can handle these cases correctly.
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+---
+ drivers/of/platform.c | 20 +++++++++++++++++++-
+ include/linux/of.h    |  3 +++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
 
-Having functional dependencies explicitly called out in DT and
-automatically added before the devices are probed, provides the
-following benefits:
-
-- Optimizes device probe order and avoids the useless work of
-  attempting probes of devices that will not probe successfully
-  (because their suppliers aren't present or haven't probed yet).
-
-  For example, in a commonly available mobile SoC, registering just
-  one consumer device's driver at an initcall level earlier than the
-  supplier device's driver causes 11 failed probe attempts before the
-  consumer device probes successfully. This was with a kernel with all
-  the drivers statically compiled in. This problem gets a lot worse if
-  all the drivers are loaded as modules without direct symbol
-  dependencies.
-
-- Supplier devices like clock providers, regulators providers, etc
-  need to keep the resources they provide active and at a particular
-  state(s) during boot up even if their current set of consumers don't
-  request the resource to be active. This is because the rest of the
-  consumers might not have probed yet and turning off the resource
-  before all the consumers have probed could lead to a hang or
-  undesired user experience.
-
-  Some frameworks (Eg: regulator) handle this today by turning off
-  "unused" resources at late_initcall_sync and hoping all the devices
-  have probed by then. This is not a valid assumption for systems with
-  loadable modules. Other frameworks (Eg: clock) just don't handle
-  this due to the lack of a clear signal for when they can turn off
-  resources. This leads to downstream hacks to handle cases like this
-  that can easily be solved in the upstream kernel.
-
-  By linking devices before they are probed, we give suppliers a clear
-  count of the number of dependent consumers. Once all of the
-  consumers are active, the suppliers can turn off the unused
-  resources without making assumptions about the number of consumers.
-
-By default we just add device-links to track "driver presence" (probe
-succeeded) of the supplier device. If any other functionality provided
-by device-links are needed, it is left to the consumer/supplier
-devices to change the link when they probe.
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 04ad312fd85b..1115a8d80a33 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
+ 	return dev->of_node == data;
+ }
  
-
-Saravana Kannan (5):
-  of/platform: Speed up of_find_device_by_node()
-  driver core: Add device links support for pending links to suppliers
-  dt-bindings: Add depends-on property
-  of/platform: Add functional dependency link from "depends-on" property
-  driver core: Add sync_state driver/bus callback
-
- .../devicetree/bindings/depends-on.txt        |  26 +++++
- drivers/base/core.c                           | 106 ++++++++++++++++++
- drivers/of/platform.c                         |  75 ++++++++++++-
- include/linux/device.h                        |  24 ++++
- include/linux/of.h                            |   3 +
- 5 files changed, 233 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/depends-on.txt
-
++static DEFINE_SPINLOCK(of_dev_lock);
++
+ /**
+  * of_find_device_by_node - Find the platform_device associated with a node
+  * @np: Pointer to device tree node
+@@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+ {
+ 	struct device *dev;
+ 
+-	dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
++	/*
++	 * Spinlock needed to make sure np->dev doesn't get freed between NULL
++	 * check inside and kref count increment inside get_device(). This is
++	 * achieved by grabbing the spinlock before setting np->dev = NULL in
++	 * of_platform_device_destroy().
++	 */
++	spin_lock(&of_dev_lock);
++	dev = get_device(np->dev);
++	spin_unlock(&of_dev_lock);
++	if (!dev)
++		dev = bus_find_device(&platform_bus_type, NULL, np,
++				      of_dev_node_match);
+ 	return dev ? to_platform_device(dev) : NULL;
+ }
+ EXPORT_SYMBOL(of_find_device_by_node);
+@@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
+ 		platform_device_put(dev);
+ 		goto err_clear_flag;
+ 	}
++	np->dev = &dev->dev;
+ 
+ 	return dev;
+ 
+@@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
+ 	if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
+ 		device_for_each_child(dev, NULL, of_platform_device_destroy);
+ 
++	/* Spinlock is needed for of_find_device_by_node() to work */
++	spin_lock(&of_dev_lock);
++	dev->of_node->dev = NULL;
++	spin_unlock(&of_dev_lock);
+ 	of_node_clear_flag(dev->of_node, OF_POPULATED);
+ 	of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
+ 
+diff --git a/include/linux/of.h b/include/linux/of.h
+index 0cf857012f11..f2b4912cbca1 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -48,6 +48,8 @@ struct property {
+ struct of_irq_controller;
+ #endif
+ 
++struct device;
++
+ struct device_node {
+ 	const char *name;
+ 	phandle phandle;
+@@ -68,6 +70,7 @@ struct device_node {
+ 	unsigned int unique_id;
+ 	struct of_irq_controller *irq_trans;
+ #endif
++	struct device *dev;		/* Device created from this node */
+ };
+ 
+ #define MAX_PHANDLE_ARGS 16
 -- 
 2.22.0.rc1.257.g3120a18244-goog
 
