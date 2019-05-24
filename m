@@ -2,111 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68DC129BB4
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3900229BD1
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389710AbfEXQDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 12:03:15 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38780 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389706AbfEXQDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 12:03:15 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4OG2N36065251;
-        Fri, 24 May 2019 11:02:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1558713743;
-        bh=82zkqOODzgXEEfhiAtp0BSNOoGMWl3VWrMQOdMYRK6U=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=a1QoxT9HOVb0yKW/r/Z18wbv7GGr4dP3coCINnIzlQLAN0T3Y2O0X/EMQaLSnGc9O
-         +y+hwl21RjJuf9ktK/lW4hk49OV/UQ4dS3QyUDxwoimujA06OpUgYabXlrRzA8lITO
-         Js4SrKIH2CLNRU/uOzrQttmE1xq4ReAj+43IW4Tc=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4OG2NBY019968
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 May 2019 11:02:23 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 24
- May 2019 11:02:23 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 24 May 2019 11:02:23 -0500
-Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4OG2GWg025692;
-        Fri, 24 May 2019 11:02:17 -0500
-Subject: Re: [PATCH v11 2/2] phy: Add driver for mixel mipi dphy found on
- NXP's i.MX8 SoCs
-To:     Fabio Estevam <festevam@gmail.com>,
-        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S2390099AbfEXQJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 12:09:05 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:36980 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2390003AbfEXQJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 12:09:05 -0400
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4OG6mMY124034
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 12:09:04 -0400
+Received: from e34.co.us.ibm.com (e34.co.us.ibm.com [32.97.110.152])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 2spjmp417p-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 12:09:04 -0400
+Received: from localhost
+        by e34.co.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <eajames@linux.vnet.ibm.com>;
+        Fri, 24 May 2019 17:09:03 +0100
+Received: from b03cxnp08027.gho.boulder.ibm.com (9.17.130.19)
+        by e34.co.us.ibm.com (192.168.1.134) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Fri, 24 May 2019 17:08:59 +0100
+Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x4OG8wS918678078
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 24 May 2019 16:08:58 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A97FF136051;
+        Fri, 24 May 2019 16:08:58 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1A81013605D;
+        Fri, 24 May 2019 16:08:58 +0000 (GMT)
+Received: from [9.41.179.222] (unknown [9.41.179.222])
+        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Fri, 24 May 2019 16:08:57 +0000 (GMT)
+Subject: Re: [PATCH v2 2/7] drivers/soc: Add Aspeed XDMA Engine Driver
+To:     Arnd Bergmann <arnd@arndb.de>, Eddie James <eajames@linux.ibm.com>
+Cc:     linux-aspeed@lists.ozlabs.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thierry Reding <treding@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Hovold <johan@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-References: <cover.1557657814.git.agx@sigxcpu.org>
- <2000bc4564175abd7966207a5e9fbb9bb7d82059.1557657814.git.agx@sigxcpu.org>
- <CAOMZO5BaFYJxh1v46n2mdPyc+-jg6LgvoGR1rTE+yHZg_0Z8PA@mail.gmail.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <69fcb327-8b51-df9e-12d9-d75751974bce@ti.com>
-Date:   Fri, 24 May 2019 21:31:02 +0530
+        DTML <devicetree@vger.kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>
+References: <1558383565-11821-1-git-send-email-eajames@linux.ibm.com>
+ <1558383565-11821-3-git-send-email-eajames@linux.ibm.com>
+ <CAK8P3a2HSOsw33VhAk4Z8ARiYn4jG68Ec7fynKbrFWUNDo37Wg@mail.gmail.com>
+From:   Eddie James <eajames@linux.vnet.ibm.com>
+Date:   Fri, 24 May 2019 11:08:57 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAOMZO5BaFYJxh1v46n2mdPyc+-jg6LgvoGR1rTE+yHZg_0Z8PA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <CAK8P3a2HSOsw33VhAk4Z8ARiYn4jG68Ec7fynKbrFWUNDo37Wg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-TM-AS-GCONF: 00
+x-cbid: 19052416-0016-0000-0000-000009B95DC6
+X-IBM-SpamModules-Scores: 
+X-IBM-SpamModules-Versions: BY=3.00011155; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000286; SDB=6.01207976; UDB=6.00634444; IPR=6.00988965;
+ MB=3.00027034; MTD=3.00000008; XFM=3.00000015; UTC=2019-05-24 16:09:01
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19052416-0017-0000-0000-00004359C69F
+Message-Id: <687e4a77-0df1-4982-1edd-9d0559c489fe@linux.vnet.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-05-24_06:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1905240106
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 24/05/19 5:53 PM, Fabio Estevam wrote:
-> Hi Kishon,
-> 
-> On Sun, May 12, 2019 at 7:49 AM Guido Günther <agx@sigxcpu.org> wrote:
->>
->> This adds support for the Mixel DPHY as found on i.MX8 CPUs but since
->> this is an IP core it will likely be found on others in the future. So
->> instead of adding this to the nwl host driver make it a generic PHY
->> driver.
->>
->> The driver supports the i.MX8MQ. Support for i.MX8QM and i.MX8QXP can be
->> added once the necessary system controller bits are in via
->> mixel_dphy_devdata.
->>
->> Signed-off-by: Guido Günther <agx@sigxcpu.org>
->> Co-developed-by: Robert Chiras <robert.chiras@nxp.com>
->> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
->> Reviewed-by: Fabio Estevam <festevam@gmail.com>
->> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> Would you have any comments on this series, please?
+On 5/21/19 7:02 AM, Arnd Bergmann wrote:
+> On Mon, May 20, 2019 at 10:19 PM Eddie James <eajames@linux.ibm.com> wrote:
+>> diff --git a/include/uapi/linux/aspeed-xdma.h b/include/uapi/linux/aspeed-xdma.h
+>> new file mode 100644
+>> index 0000000..2a4bd13
+>> --- /dev/null
+>> +++ b/include/uapi/linux/aspeed-xdma.h
+>> @@ -0,0 +1,26 @@
+>> +/* SPDX-License-Identifier: GPL-2.0+ */
+>> +/* Copyright IBM Corp 2019 */
+>> +
+>> +#ifndef _UAPI_LINUX_ASPEED_XDMA_H_
+>> +#define _UAPI_LINUX_ASPEED_XDMA_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +/*
+>> + * aspeed_xdma_op
+>> + *
+>> + * upstream: boolean indicating the direction of the DMA operation; upstream
+>> + *           means a transfer from the BMC to the host
+>> + *
+>> + * host_addr: the DMA address on the host side, typically configured by PCI
+>> + *            subsystem
+>> + *
+>> + * len: the size of the transfer in bytes; it should be a multiple of 16 bytes
+>> + */
+>> +struct aspeed_xdma_op {
+>> +       __u32 upstream;
+>> +       __u64 host_addr;
+>> +       __u32 len;
+>> +};
+>> +
+>> +#endif /* _UAPI_LINUX_ASPEED_XDMA_H_ */
+> If this is a user space interface, please remove the holes in the
+> data structure.
 
-I don't have any comments. I'll queue this once I start queuing patches for the
-next merge window.
 
-Thanks
-Kishon
+Surely it's 4-byte aligned and there won't be holes??
+
+
+>
+> I don't see how this is actually used in this patch, maybe you meant
+> the definition to be part of another patch?
+
+
+The structure is used in this patch as an argument to aspeed_xdma_start().
+
+
+Thanks,
+
+Eddie
+
+
+>
+>      Arnd
+>
+
