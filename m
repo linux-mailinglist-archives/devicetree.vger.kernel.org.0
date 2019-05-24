@@ -2,116 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAA8029611
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5708229616
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390312AbfEXKlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 06:41:50 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43781 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390578AbfEXKlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 06:41:49 -0400
-Received: by mail-pg1-f196.google.com with SMTP id f25so4848032pgv.10
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 03:41:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Y5swjDHGKG+ezs/+w53g29T0/qBVH9yKlg23nn55c5E=;
-        b=U3C+2Pkv2aIG9zWer39/ZGLeS4wd7ty00L8nRwq2xSL9FzpzYmJ8/WtIyJFRadmuQc
-         DTP0KxyKCLyYHEAPVI55+6VrkoniAOF48Vl9Wj50Veq/wZPJat9/g22LGvoecBk8SR7s
-         r9+EN1shbjhX2kn0bCjSZ2tUp8JHkSf1kS7r8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Y5swjDHGKG+ezs/+w53g29T0/qBVH9yKlg23nn55c5E=;
-        b=ddc2GbktvowfFuVZeAhsoLeNaWiaKEyFf/Mm5bedSFTt8xWlEbwlf5iUWxnsf741yd
-         lLez0romTk1ZjWSEcMZYjUrK2YoPViIqHjeSooZxIPUP1yPEyVpIEl0eXXiSbw8ueVm7
-         J2uy+jVvVyxSzpz5n39kHbeTxY8Q26wjBS5zg0YAbfl3ORjO0G6OPtZMYYkdRGiLIflZ
-         4YOpVm6hf6r+5qf0rL7PwbrrtfvdgweWnCU02EEu5Ami4nTgP9bL3GB3vldtx6akD3GZ
-         9anTwdiUdIKS0zEW5NMpOrSczVIpSPbIHFNbNdPcC27u2LTu3VuBRMCAy96+Djx4S6IR
-         0xnA==
-X-Gm-Message-State: APjAAAUGS0qo9z0VR6CKYZNBWSrxhuv9hvFrCDN21/wWzVaDpdrWIjAc
-        rOfSEAHjSdc+Q5cqOqGCDiExDg==
-X-Google-Smtp-Source: APXvYqyvPrCWj4wLzn1Yd+9CbYrQKIVeghMZMryVtTFYZMAHt18ZSgOULimYpUVkB3YXKeqkBNPeBw==
-X-Received: by 2002:a63:9d8d:: with SMTP id i135mr104296236pgd.245.1558694509078;
-        Fri, 24 May 2019 03:41:49 -0700 (PDT)
-Received: from localhost.localdomain ([183.82.227.60])
-        by smtp.gmail.com with ESMTPSA id m72sm6550113pjb.7.2019.05.24.03.41.43
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 May 2019 03:41:48 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v2 1/6] drm/sun4i: dsi: Use drm panel_or_bridge call
-Date:   Fri, 24 May 2019 16:11:10 +0530
-Message-Id: <20190524104115.20161-2-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
-In-Reply-To: <20190524104115.20161-1-jagan@amarulasolutions.com>
-References: <20190524104115.20161-1-jagan@amarulasolutions.com>
+        id S2390230AbfEXKmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 06:42:11 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:37910 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2390268AbfEXKmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 06:42:11 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4OAdRlQ005113;
+        Fri, 24 May 2019 05:42:00 -0500
+Authentication-Results: ppops.net;
+        spf=none smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from mail3.cirrus.com ([87.246.76.56])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2sjefn0pcn-1;
+        Fri, 24 May 2019 05:42:00 -0500
+Received: from EDIEX02.ad.cirrus.com (ediex02.ad.cirrus.com [198.61.84.81])
+        by mail3.cirrus.com (Postfix) with ESMTP id CC86B611DAE4;
+        Fri, 24 May 2019 05:42:39 -0500 (CDT)
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 24 May
+ 2019 11:41:58 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Fri, 24 May 2019 11:41:58 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D5EB544;
+        Fri, 24 May 2019 11:41:58 +0100 (BST)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <lee.jones@linaro.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH 1/5] ASoC: madera: Add DT bindings for Cirrus Logic Madera codecs
+Date:   Fri, 24 May 2019 11:41:54 +0100
+Message-ID: <20190524104158.30731-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
+ definitions=main-1905240073
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Right now the driver is finding the panel using of_drm_find_panel,
-replace the same with drm_of_find_panel_or_bridge which would help
-to find the panel or bridge on the same call if bridge support added
-in future.
+From: Richard Fitzgerald <rf@opensource.cirrus.com>
 
-Added NULL in bridge argument, same will replace with bridge parameter
-once bridge supported.
+The Cirrus Logic Madera codecs are a family of related codecs with
+extensive digital and analogue I/O, digital mixing and routing,
+signal processing and programmable DSPs.
 
-Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/sound/madera.txt | 67 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ include/dt-bindings/sound/madera.h                 | 29 ++++++++++
+ 3 files changed, 97 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/madera.txt
+ create mode 100644 include/dt-bindings/sound/madera.h
 
-diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-index 65771e9a343a..ae2fe31b05b1 100644
---- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-+++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-@@ -21,6 +21,7 @@
- #include <drm/drmP.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_of.h>
- #include <drm/drm_panel.h>
- #include <drm/drm_probe_helper.h>
- 
-@@ -964,11 +965,13 @@ static int sun6i_dsi_attach(struct mipi_dsi_host *host,
- 			    struct mipi_dsi_device *device)
- {
- 	struct sun6i_dsi *dsi = host_to_sun6i_dsi(host);
-+	int ret;
- 
- 	dsi->device = device;
--	dsi->panel = of_drm_find_panel(device->dev.of_node);
--	if (IS_ERR(dsi->panel))
--		return PTR_ERR(dsi->panel);
-+	ret = drm_of_find_panel_or_bridge(host->dev->of_node, 0, 0,
-+					  &dsi->panel, NULL);
-+	if (ret)
-+		return ret;
- 
- 	dev_info(host->dev, "Attached device %s\n", device->name);
- 
+diff --git a/Documentation/devicetree/bindings/sound/madera.txt b/Documentation/devicetree/bindings/sound/madera.txt
+new file mode 100644
+index 0000000000000..1114fcf1aa4c2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/madera.txt
+@@ -0,0 +1,67 @@
++Cirrus Logic Madera class audio codecs
++
++This describes audio configuration bindings for these codecs.
++
++See also the core bindings for the parent MFD driver:
++See Documentation/devicetree/bindings/mfd/madera.txt
++
++and defines for values used in these bindings:
++include/dt-bindings/sound/madera.h
++
++These properties are all contained in the parent MFD node.
++
++Optional properties:
++  - cirrus,dmic-ref : Indicates how the MICBIAS pins have been externally
++    connected to DMICs on each input, one cell per input.
++    <IN1 IN2 IN3 ...>
++    A value of 0 indicates MICVDD and is the default, other values depend on the
++    codec:
++    For CS47L35 one of the CS47L35_DMIC_REF_xxx values
++    For all other codecs one of the MADERA_DMIC_REF_xxx values
++    Also see the datasheet for a description of the INn_DMIC_SUP field.
++
++  - cirrus,inmode : A list of input mode settings for each input. A maximum of
++    16 cells, with four cells per input in the order INnAL, INnAR INnBL INnBR.
++    For non-muxed inputs the first two cells for that input set the mode for
++    the left and right channel and the second two cells must be 0.
++    For muxed inputs the first two cells for that input set the mode of the
++    left and right A inputs and the second two cells set the mode of the left
++    and right B inputs.
++    Valid mode values are one of the MADERA_INMODE_xxx. If the array is shorter
++    than the number of inputs the unspecified inputs default to
++    MADERA_INMODE_DIFF.
++
++  - cirrus,out-mono : Mono bit for each output, must contain six cells if
++    specified. A non-zero value indicates the corresponding output is mono.
++
++  - cirrus,max-channels-clocked : Maximum number of channels that I2S clocks
++    will be generated for. Useful when clock master for systems where the I2S
++    bus has multiple data lines.
++    One cell for each AIF, use a value of zero for AIFs that should be handled
++    normally.
++
++  - cirrus,pdm-fmt : PDM speaker data format, must contain 2 cells
++    (OUT5 and OUT6). See the PDM_SPKn_FMT field in the datasheet for a
++    description of this value.
++    The second cell is ignored for codecs that do not have OUT6.
++
++  - cirrus,pdm-mute : PDM mute format, must contain 2 cells
++    (OUT5 and OUT6). See the PDM_SPKn_CTRL_1 register in the datasheet for a
++    description of this value.
++    The second cell is ignored for codecs that do not have OUT6.
++
++Example:
++
++cs47l35@0 {
++	compatible = "cirrus,cs47l35";
++
++	cirrus,dmic-ref = <0 0 CS47L35_DMIC_REF_MICBIAS1B 0>;
++	cirrus,inmode = <
++		MADERA_INMODE_DMIC MADERA_INMODE_DMIC /* IN1A digital */
++		MADERA_INMODE_SE   MADERA_INMODE_SE   /* IN1B single-ended */
++		MADERA_INMODE_DIFF MADERA_INMODE_DIFF /* IN2 differential */
++		0 0 	/* not used on this codec */
++	>;
++	cirrus,out-mono = <0 0 0 0 0 0>;
++	cirrus,max-channels-clocked = <2 0 0>;
++};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5cfbea4ce5750..642cb5610dd50 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3915,6 +3915,7 @@ W:	https://github.com/CirrusLogic/linux-drivers/wiki
+ S:	Supported
+ F:	Documentation/devicetree/bindings/mfd/madera.txt
+ F:	Documentation/devicetree/bindings/pinctrl/cirrus,madera-pinctrl.txt
++F:	include/dt-bindings/sound/madera*
+ F:	include/linux/irqchip/irq-madera*
+ F:	include/linux/mfd/madera/*
+ F:	drivers/gpio/gpio-madera*
+diff --git a/include/dt-bindings/sound/madera.h b/include/dt-bindings/sound/madera.h
+new file mode 100644
+index 0000000000000..9ff4eae5259b0
+--- /dev/null
++++ b/include/dt-bindings/sound/madera.h
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Device Tree defines for Madera codecs
++ *
++ * Copyright (C) 2016-2017 Cirrus Logic, Inc. and
++ *                         Cirrus Logic International Semiconductor Ltd.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ */
++
++#ifndef DT_BINDINGS_SOUND_MADERA_H
++#define DT_BINDINGS_SOUND_MADERA_H
++
++#define MADERA_INMODE_DIFF		0
++#define MADERA_INMODE_SE		1
++#define MADERA_INMODE_DMIC		2
++
++#define MADERA_DMIC_REF_MICVDD		0
++#define MADERA_DMIC_REF_MICBIAS1	1
++#define MADERA_DMIC_REF_MICBIAS2	2
++#define MADERA_DMIC_REF_MICBIAS3	3
++
++#define CS47L35_DMIC_REF_MICBIAS1B	1
++#define CS47L35_DMIC_REF_MICBIAS2A	2
++#define CS47L35_DMIC_REF_MICBIAS2B	3
++
++#endif
 -- 
-2.18.0.321.gffc6fa0e3
+2.11.0
 
