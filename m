@@ -2,144 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3466F29178
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 09:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60562291DC
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 09:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388957AbfEXHFt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 24 May 2019 03:05:49 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:36973 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388872AbfEXHFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 03:05:49 -0400
-Received: by mail-qk1-f193.google.com with SMTP id d10so5927147qko.4
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 00:05:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=awBE3R6MaFliHdZCh3cBgGkjYreG0txG8Lteb87Xiyg=;
-        b=nOjXCqYv0IZ7d3vkFC/l1YhrL4ECsbH3pZskS78L3UxBgnGWDMZha3qTh8NMYfrRN7
-         +8abSpfHGzNR6QHpVofnF45jed2ikETfxlppKzgXsGDBROdLLtmGl1v10KhlwX6tcY4P
-         yvQCzwxeJBlYxCIR8evWDzPS1g5bH7cSXmX/MXkISODcSw+F9TQZuVbRvlW0vNbKKxvX
-         QU9ml2kLIoai+q4aRdq9qes9CW0YUIX1Y7DpAGQeEgA3Ijmcerg75De2Hzo65Gr2hGs/
-         PQi1zoeeVqxhQDNk7LqhkDZBGKgjpNTBkFJYIAE0IszsQmjMPRwV/edyGcYiydCKLVyl
-         rSbQ==
-X-Gm-Message-State: APjAAAVT8/rYbQlLkwy+u/XGKKG9gZK7x5ax3rO2F27cDf3SvNAvkkRX
-        TU4MXuaUOcxi+NBlIMVeBNmOk70gMBNySK0e9me7pA==
-X-Google-Smtp-Source: APXvYqzEqHGLSARrvwBrdDvw232GTj/gPZc+E9LYUyp/feCZjZOmnGjw6Y+kT9XzG0LrToqWr9SAYN8MvMLXYZNpFlw=
-X-Received: by 2002:ac8:875:: with SMTP id x50mr83396994qth.345.1558681548800;
- Fri, 24 May 2019 00:05:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
- <20190521132712.2818-10-benjamin.tissoires@redhat.com> <003d01d511de$9da229c0$d8e67d40$@emc.com.tw>
-In-Reply-To: <003d01d511de$9da229c0$d8e67d40$@emc.com.tw>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Fri, 24 May 2019 09:05:37 +0200
-Message-ID: <CAO-hwJLnjxVxdodqAkKdQpqjAPGV1QYnugM+9t_86xRD92WJ-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] Input: elan_i2c - correct the width/size base value
-To:     =?UTF-8?B?5buW5bSH5qau?= <kt.liao@emc.com.tw>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        id S2388970AbfEXHi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 03:38:29 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:49652 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388911AbfEXHi3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 03:38:29 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A10551A03C2;
+        Fri, 24 May 2019 09:38:27 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DF5E61A03B4;
+        Fri, 24 May 2019 09:38:23 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E6199402E0;
+        Fri, 24 May 2019 15:38:18 +0800 (SGT)
+From:   Peng Ma <peng.ma@nxp.com>
+To:     shawnguo@kernel.org, leoyang.li@nxp.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Ma <peng.ma@nxp.com>
+Subject: [PATCH] arm64: dts: ls1028a: Enable sata.
+Date:   Fri, 24 May 2019 15:30:22 +0800
+Message-Id: <20190524073022.32174-1-peng.ma@nxp.com>
+X-Mailer: git-send-email 2.14.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 5:13 AM 廖崇榮 <kt.liao@emc.com.tw> wrote:
->
-> Hi Benjamin,
->
-> Thanks so much for all you do for Elan touchpad.
->
-> For the width_*, I have a question for it.
-> Our antenna sensors fully occupied the whole touchpad PCB.
->
-> The Gap between 2 sensors are 7.5 mil (0.19mm).
-> That's why we did not minus one trace.
+Change the sata node to enable sata.
 
-So, with the P52 I have:
-[  +0.000009] max:    (3045,1731) drivers/input/mouse/elan_i2c_core.c:428
-[  +0.000003] traces: (24,14) drivers/input/mouse/elan_i2c_core.c:429
-[  +0.000002] size:   (98,55) drivers/input/mouse/elan_i2c_core.c:430
-[  +0.000001] res:    (31,31) drivers/input/mouse/elan_i2c_core.c:431
+Signed-off-by: Peng Ma <peng.ma@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts |    4 ++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts |    4 ++++
+ 2 files changed, 8 insertions(+), 0 deletions(-)
 
-calculated size (max/res): 98 x 56 mm
-true size, as measured: 101 x 60 mm
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+index b359068..4ed1828 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+@@ -153,3 +153,7 @@
+ &sai1 {
+ 	status = "okay";
+ };
++
++&sata {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+index f9c272f..4a203f7 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+@@ -151,3 +151,7 @@
+ &sai4 {
+ 	status = "okay";
+ };
++
++&sata {
++	status = "okay";
++};
+-- 
+1.7.1
 
-Which gives (without the minus 1):
-width_x = max_x / x_traces = 3045 / 24 = 126.875 -> 3.9885 mm
-width_y = max_y / y_traces = 1731 / 14 = 123.643 -> 4.0927 mm
-
--> this gives a total size of the touchpad of: 96 x 57 mm (width_x *
-24, width_y * 14)
-
-With the minus 1:
-width_x = max_x / x_traces = 3045 / 23 = 132.391 -> 4.2707 mm
-width_y = max_y / y_traces = 1731 / 14 = 133.154 -> 4.2953 mm
-
--> this gives a total size of the touchpad of: 102 x 60 mm (width_x *
-24, width_y * 14)
-and considering traces-1: 98 x 56 mm
-
-Removing 1 to the number of traces gave a squarer values in rows and
-columns, and this is what is done in the PS/2 driver.
-Also, going back to the size of the touchpad gives a better value when
-removing 1 on the *traces.
-So maybe when forwarding the properties we should remove one there in
-the PS/2 driver?
-
-Cheers,
-Benjamin
-
->
->
-> Thanks
-> KT
-> -----Original Message-----
-> From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
-> Sent: Tuesday, May 21, 2019 9:27 PM
-> To: Dmitry Torokhov; KT Liao; Rob Herring; Aaron Ma; Hans de Goede
-> Cc: linux-input@vger.kernel.org; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org; Benjamin Tissoires
-> Subject: [PATCH v2 09/10] Input: elan_i2c - correct the width/size base
-> value
->
-> *_traces are the number of antennas. width_* is thus the space between 2
-> antennas. Which means, we should subtract 1 to the number of antennas to
-> divide the touchpad by the number of holes between each antenna.
->
-> Signed-off-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
->
-> --
->
-> new in v2
-> ---
->  drivers/input/mouse/elan_i2c_core.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/input/mouse/elan_i2c_core.c
-> b/drivers/input/mouse/elan_i2c_core.c
-> index 6f4feedb7765..3375eaa9a72e 100644
-> --- a/drivers/input/mouse/elan_i2c_core.c
-> +++ b/drivers/input/mouse/elan_i2c_core.c
-> @@ -398,8 +398,8 @@ static int elan_query_device_parameters(struct
-> elan_tp_data *data)
->                 if (error)
->                         return error;
->         }
-> -       data->width_x = data->max_x / x_traces;
-> -       data->width_y = data->max_y / y_traces;
-> +       data->width_x = data->max_x / (x_traces - 1);
-> +       data->width_y = data->max_y / (y_traces - 1);
->
->         if (device_property_read_u32(&client->dev,
->                                      "touchscreen-x-mm", &x_mm) ||
-> --
-> 2.21.0
->
