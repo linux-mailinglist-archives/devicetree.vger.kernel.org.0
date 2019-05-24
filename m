@@ -2,51 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8DDA29881
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 15:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA072988B
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 15:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391045AbfEXNGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 09:06:32 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:34061 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391193AbfEXNGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 09:06:32 -0400
+        id S2391357AbfEXNHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 09:07:47 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:51989 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391609AbfEXNHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 09:07:46 -0400
 Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id C20A420000F;
-        Fri, 24 May 2019 13:06:23 +0000 (UTC)
-Date:   Fri, 24 May 2019 15:06:23 +0200
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 4294A240004;
+        Fri, 24 May 2019 13:07:43 +0000 (UTC)
+Date:   Fri, 24 May 2019 15:07:42 +0200
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 6/6] arm64: dts: allwinner: a64: enable ANX6345 bridge on
- Teres-I
-Message-ID: <20190524130623.dpkg5z5rdyc2bno4@flea>
-References: <20190523065013.2719D68B05@newverein.lst.de>
- <20190523065404.BB60F68B20@newverein.lst.de>
- <CA+E=qVdh-=C5zOYWYj95jLN51EaXFS6B+CQ101-f64q5QmgN3g@mail.gmail.com>
- <20190524121359.GE15685@lst.de>
+        Chen-Yu Tsai <wens@csie.org>, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/4] Allwinner H6 watchdog support
+Message-ID: <20190524130742.blyckr74erre3ekk@flea>
+References: <20190523151050.27302-1-peron.clem@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fsxi6i2r62yvgbvk"
+        protocol="application/pgp-signature"; boundary="kp5yz4xxxfd2wshh"
 Content-Disposition: inline
-In-Reply-To: <20190524121359.GE15685@lst.de>
+In-Reply-To: <20190523151050.27302-1-peron.clem@gmail.com>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -54,35 +40,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---fsxi6i2r62yvgbvk
-Content-Type: text/plain; charset=us-ascii
+--kp5yz4xxxfd2wshh
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 24, 2019 at 02:13:59PM +0200, Torsten Duwe wrote:
-> On Thu, May 23, 2019 at 07:48:03AM -0700, Vasily Khoruzhick wrote:
-> > On Wed, May 22, 2019 at 11:54 PM Torsten Duwe <duwe@lst.de> wrote:
-> > >
-> > >
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> > > @@ -65,6 +65,21 @@
-> > >                 };
-> > >         };
-> > >
-> > > +       panel: panel {
-> > > +               compatible ="innolux,n116bge", "simple-panel";
-> >
-> > IIRC Rob wanted it to be edp-connector, not simple-panel. Also you
-> > need to introduce edp-connector binding.
+On Thu, May 23, 2019 at 05:10:46PM +0200, Cl=E9ment P=E9ron wrote:
+> Hi,
 >
-> This line is identically found in
-> arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi and
-> arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
+> Allwinner H6 SoC has two watchdogs.
+>
+> As we are not sure that both A64 and H6 are stricly identical, I have
+> introduced the H6 bindings.
+>
+> After investigation it seems that on some boards the first watchdog doesn=
+'t
+> make it properly reboot. Please see details in the commit log.
+>
+> I think it's proper to add it with a comment anyway.
+>
+> The r_watchdog is still available and usable on all the H6 boards.
 
-That's not really an argument though. These are using rather old
-bindings, and realising that they are flawed and fixing these flaws is
-a natural process.
-
+Applied all 4, thanks!
 Maxime
 
 --
@@ -90,15 +69,15 @@ Maxime Ripard, Bootlin
 Embedded Linux and Kernel engineering
 https://bootlin.com
 
---fsxi6i2r62yvgbvk
+--kp5yz4xxxfd2wshh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOfsTwAKCRDj7w1vZxhR
-xRybAP9iKNkCqyhXQ6xIsRZgZ0sNXT+q0aHuuuRwgIKZaEJwkwEAqakTF1EIu2Pr
-7DcRHe8aaX/5zfuRYUOdKKZ/wNaOdQ0=
-=Mlxd
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOfsngAKCRDj7w1vZxhR
+xZhmAP9dNnhILxNK6etNTB+zKw2FWxx3f+hVuDnWL6dnrZudwwD8DkKLz0P5oKZC
+vjDzU3AcRPlmS3ZNQi7CpQqMK2tE8wg=
+=FvXk
 -----END PGP SIGNATURE-----
 
---fsxi6i2r62yvgbvk--
+--kp5yz4xxxfd2wshh--
