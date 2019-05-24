@@ -2,113 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A63A29C35
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EADF229C94
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390702AbfEXQ1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 12:27:46 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:41452 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390731AbfEXQ1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 12:27:46 -0400
-Received: by mail-wr1-f65.google.com with SMTP id u16so6736042wrn.8
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 09:27:45 -0700 (PDT)
+        id S2390511AbfEXQ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 12:58:20 -0400
+Received: from mail-it1-f195.google.com ([209.85.166.195]:52346 "EHLO
+        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390210AbfEXQ6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 12:58:16 -0400
+Received: by mail-it1-f195.google.com with SMTP id t184so16900086itf.2
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 09:58:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Alb5MD+7zgNY6i+eIAuzgu3fZmuChz+Dlfg+Rb4j+90=;
-        b=QEepWdCASVfvEWNv6Rv1rxZy0HWeJ1GhFotAuxSfFkpLSXgru4BgCqy+hvOJbN/wmn
-         yfi4O6JFqIdd+WyuL56/W884rUwiKE30mlFjThO9IEmN4CRW58h+T8BDkevBc+oRj7li
-         nIY4Qq6T+tDprJ7XhtgRMKM6QLyEHUnc6iHkhPz/eFqzExHdY3ZiA/Iq7HpQHeqe4xkT
-         Ugckq0St+ovwJmUVW1pyquLuVGEHcwtaB/U28C+1r+715+HEYsB3tz9RkYONPorS93Vl
-         JWqgpaKZZrToEQJMJUJfY8yrjj8/+cXBlGGrc9YNO/1brrSp9CbYZoc83G5Yi1tHIUGt
-         o2wA==
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=MoMLCOnVhZSHe+BQlTmS5wevE0lJU4Hf7dR7NZTK0SA=;
+        b=fPQsvYSJ7q6ZkPN90gdwNY/gQFwW2BaNnP1VwwHH5cSJOM97xQcxAYi/ejEfDdwLUF
+         trMZf7pzYgvhyTAZInqDKQOFn1cyKxmEpjkQK/1MUgGJc0EAk98MHydqd/Rdfqiv4HO9
+         0rzP7L2tUL2e9UyqcDSFdQltXMrBWBEkqmq1WYe0nGW3kz2bpvkXi25HzKwgIlvyH5RA
+         VhfUn2vUXnc2+nxXtlMk7B4ydxKMwlCRIVALMRSTz1D28y7y0KGdSVXiZ4HuPtqH4r8F
+         fXM8PL4o8NK3EDm4JmW8FvSjtq3NyfUr4q7VH32Jc1vVX7mKV+4JyWwiGh+JRSiP6zOn
+         JKbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Alb5MD+7zgNY6i+eIAuzgu3fZmuChz+Dlfg+Rb4j+90=;
-        b=cmYD9MxRBVmYto6DeJ5SugjvYMsM03mYUJ5wc2CjGl4e4cvY9F3d0vHnQzjSJ2JZ9P
-         FXBnrtLr96zJZ+QfNeqk97pr0pn4iLKvMp3K/VyqnKnP06Lo9ze8kbSwx2ckPvj38SNP
-         dV+NsgcyGnMMjXT7hAvcepKuCr2n7oJWTh9zIgeVBh4O7ED021tt8DXPGtZMST/RUOny
-         BS+LIL1kaUQXsxv6Lu5jbhL/xY1WGAkSYqkQzW6lsX7HK5FBgvjlrQNuLrGlTlGSFCca
-         8kxZ9s/bDCBxl4LN1PRSxNolK7lL9sh9W+W/qhbwYDup4/sWkaKNRaU21bBHePFJTQVZ
-         oiDA==
-X-Gm-Message-State: APjAAAXYYvKFtdWe8OZJbZ4WXxNhEA4pdVXERtI8OJ7Z2yrgQIfpQXWQ
-        z+Z5lVxr2cY/nzG+BPE/y69RjA==
-X-Google-Smtp-Source: APXvYqx1pPfHAuutLd2yAz6r4sxF2ZwPOYA0wuuRKKtw9QN6hpkhYPA2NT8zlW4qBmk2A3EjHWSbkQ==
-X-Received: by 2002:a5d:4a92:: with SMTP id o18mr8765887wrq.80.1558715264435;
-        Fri, 24 May 2019 09:27:44 -0700 (PDT)
-Received: from sudo.home ([2a01:cb1d:112:6f00:2042:d8f2:ded8:fa95])
-        by smtp.gmail.com with ESMTPSA id l6sm2200320wmi.24.2019.05.24.09.27.43
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 May 2019 09:27:43 -0700 (PDT)
-From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
-To:     linux-crypto@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>
-Subject: [PATCH v2 6/6] dt-bindings: move Atmel ECC508A I2C crypto processor to trivial-devices
-Date:   Fri, 24 May 2019 18:26:51 +0200
-Message-Id: <20190524162651.28189-7-ard.biesheuvel@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
-References: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=MoMLCOnVhZSHe+BQlTmS5wevE0lJU4Hf7dR7NZTK0SA=;
+        b=G/PUTK+eqj74hnM2sxQr8tSOOOkuXTkSK8KsTd+pTPrBmFEwSpwWiVxzWF5c8E/tWQ
+         ozmsY7WOPgD98pwFK0rZ99yVO5Bzj9mgKS/JbEEaYlPDYlxV+2hX3PR1a6+X0WMrYxWA
+         XJpLCDAMkkYbGSHSIUrytR0jDE1tuh4FUjzCXPlDWijwgn15v3OVBHnuI094Ea8v5GMQ
+         vRiTngTwMShAqNuV455JlNE4ueQPhP8tLFfeuBDenp9eirRsLxY5WlNoLcbZphFXcbqN
+         eEtB2XPkqpSB4S5YjuYUtwlYdd6httIMlZ5RsPtZaqnXtUCesyMUFMSsN9wRzJJyTa+D
+         GWlA==
+X-Gm-Message-State: APjAAAX8K3ieDFUv2Nx/MdI4BfxL+M4klKaDxm+n+oFqWfHfBmZWjojO
+        dT2cKDUM8VuRMptt+l8b8tHkePotxgLgh7hM7h583w==
+X-Google-Smtp-Source: APXvYqzKAKOCGT1463jp43t7UOHxZ8/WT2omEyVHLyOVE3HNbV4Ak5HVMslMSUYhRfOX/SuzDLSdg7lxhnGTI3w9lSk=
+X-Received: by 2002:a05:6638:233:: with SMTP id f19mr6778463jaq.24.1558717095212;
+ Fri, 24 May 2019 09:58:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190417152701.23391-1-brgl@bgdev.pl> <20190417152701.23391-5-brgl@bgdev.pl>
+ <CAHCN7xKVaYqd5LLvRx7i8ik+JnTFdpexZf2WXt0R2N1W1skOJA@mail.gmail.com> <CAMpxmJW9yWcQ8497OwOhMN8wj-Cmc3-UP7Rh-yoU_uDaQkVVSw@mail.gmail.com>
+In-Reply-To: <CAMpxmJW9yWcQ8497OwOhMN8wj-Cmc3-UP7Rh-yoU_uDaQkVVSw@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 24 May 2019 18:58:04 +0200
+Message-ID: <CAMRc=Me9hwsLdpDVfs+cb_rqrWs=+bJOa9nEFY+xs_vs5LAXXA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/5] ARM: dts: da850-evm: enable cpufreq
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Adam Ford <aford173@gmail.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Lechner <david@lechnology.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the binding for the discrete Atmel I2C Elliptic Curve h/w crypto
-module to trivial-devices.yaml, as it doesn't belong in atmel-crypto
-which describes unrelated on-SoC peripherals.
+wt., 23 kwi 2019 o 11:15 Bartosz Golaszewski
+<bgolaszewski@baylibre.com> napisa=C5=82(a):
+>
+> =C5=9Br., 17 kwi 2019 o 19:09 Adam Ford <aford173@gmail.com> napisa=C5=82=
+(a):
+> >
+> > On Wed, Apr 17, 2019 at 10:27 AM Bartosz Golaszewski <brgl@bgdev.pl> wr=
+ote:
+> > >
+> > > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > >
+> > > Enable cpufreq-dt support for da850-evm. The cvdd is supplied by the
+> > > tps65070 pmic with configurable output voltage. By default da850-evm
+> > > boards support frequencies up to 375MHz so enable this operating
+> > > point.
+> >
+> > Have you done any testing with the LCD on any of the devices you have?
+> >
+> > I enabled the ondemand governor, and I got a bunch of splat from the
+> > LCD controller:
+> >
+> > tilcdc 1e13000.display: effective pixel clock rate (50000000Hz)
+> > differs from the calculated rate (54000000Hz)
+> > tilcdc 1e13000.display: tilcdc_crtc_irq(0x00000161): FIFO underflow
+> > tilcdc 1e13000.display: tilcdc_crtc_irq(0x00000161): FIFO underflow
+> > ... [ snip]
+> > tilcdc 1e13000.display: effective pixel clock rate (50000000Hz)
+> > differs from the calculated rate (54000000Hz)
+> > tilcdc 1e13000.display: effective pixel clock rate (50000000Hz)
+> > differs from the calculated rate (54000000Hz)
+> > tilcdc 1e13000.display: tilcdc_crtc_irq(0x00000161): FIFO underflow
+> >
+> > It appears to go on forever.  I don't necessarily want to hold it up,
+> > but I don't know the clocking system well enough to know where to go
+> > investigate it.  I can certainly live without ondemand.  Using
+> > userspace as the default governor is fine for me for now.
+> >
+> > adam
+>
+> Hi Adam,
+>
+> I did test the tilcdc on da850-lcdk. The only message I'm getting
+> during transitions is a single:
+>
+> tilcdc <name>: tilcdc_crtc_irq(<address>): FIFO underflow
+>
+> but this is fairly normal - we also get this during modeset and it
+> doesn't affect the display.
+>
+> The problem with the pixel clock may come from the bootloader - are
+> you using a recent version of u-boot?
+>
+> Bart
+>
+> > >
+> > > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > > Reviewed-by: Adam Ford <aford173@gmail.com>
+> > > ---
+> > >  arch/arm/boot/dts/da850-evm.dts | 13 +++++++++++++
+> > >  1 file changed, 13 insertions(+)
+> > >
+> > > diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da85=
+0-evm.dts
+> > > index f04bc3e15332..f94bb38fdad9 100644
+> > > --- a/arch/arm/boot/dts/da850-evm.dts
+> > > +++ b/arch/arm/boot/dts/da850-evm.dts
+> > > @@ -191,6 +191,19 @@
+> > >         };
+> > >  };
+> > >
+> > > +&cpu {
+> > > +       cpu-supply =3D <&vdcdc3_reg>;
+> > > +};
+> > > +
+> > > +/*
+> > > + * The standard da850-evm kits and SOM's are 375MHz so enable this o=
+perating
+> > > + * point by default. Higher frequencies must be enabled for custom b=
+oards with
+> > > + * other variants of the SoC.
+> > > + */
+> > > +&opp_375 {
+> > > +       status =3D "okay";
+> > > +};
+> > > +
+> > >  &sata {
+> > >         status =3D "okay";
+> > >  };
+> > > --
+> > > 2.21.0
+> > >
 
-Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
----
- Documentation/devicetree/bindings/crypto/atmel-crypto.txt | 13 -------------
- Documentation/devicetree/bindings/trivial-devices.yaml    |  2 ++
- 2 files changed, 2 insertions(+), 13 deletions(-)
+Hi Adam,
 
-diff --git a/Documentation/devicetree/bindings/crypto/atmel-crypto.txt b/Documentation/devicetree/bindings/crypto/atmel-crypto.txt
-index 6b458bb2440d..f2aab3dc2b52 100644
---- a/Documentation/devicetree/bindings/crypto/atmel-crypto.txt
-+++ b/Documentation/devicetree/bindings/crypto/atmel-crypto.txt
-@@ -66,16 +66,3 @@ sha@f8034000 {
- 	dmas = <&dma1 2 17>;
- 	dma-names = "tx";
- };
--
--* Eliptic Curve Cryptography (I2C)
--
--Required properties:
--- compatible : must be "atmel,atecc508a".
--- reg: I2C bus address of the device.
--- clock-frequency: must be present in the i2c controller node.
--
--Example:
--atecc508a@c0 {
--	compatible = "atmel,atecc508a";
--	reg = <0xC0>;
--};
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index a572c3468226..2e742d399e87 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -54,6 +54,8 @@ properties:
-           - atmel,at97sc3204t
-             # i2c h/w symmetric crypto module
-           - atmel,atsha204a
-+            # i2c h/w elliptic curve crypto module
-+          - atmel,atecc508a
-             # CM32181: Ambient Light Sensor
-           - capella,cm32181
-             # CM3232: Ambient Light Sensor
--- 
-2.20.1
+did you figure out the problem by chance? Are you OK with merging this seri=
+es?
 
+Bart
