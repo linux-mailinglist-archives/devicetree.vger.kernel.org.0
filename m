@@ -2,57 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A16DD29035
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 06:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 718ED2903A
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 06:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbfEXEyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 00:54:53 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:35174 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726401AbfEXEyu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 00:54:50 -0400
-Received: by mail-lj1-f193.google.com with SMTP id h11so7488048ljb.2
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 21:54:48 -0700 (PDT)
+        id S1726439AbfEXE5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 00:57:11 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:38934 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726156AbfEXE5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 00:57:11 -0400
+Received: by mail-lf1-f68.google.com with SMTP id f1so6047396lfl.6
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 21:57:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0p20JZOm8Q5zL+TRyVFEg8a2DDLhMZrB4Tuc8+bGlVs=;
-        b=NdLlu5FyOM02giIhSKVTGqrQ9mhGuv6PA0VT3iSCPaW8gw95H7I7/ye4/yJQ/doBe+
-         P3PKfm/STHksEBlqaXdsRxbVZhAUmKQlkVcOQJes9jBlOssmnfWcQo3sZTy1fXSXKC4x
-         3HpUTQuwdDAe2NEQRIsIBBpcDgeU8kW7pY7gWOk++jtNIDdBxy1TsJcssLIa1CSReK1f
-         OwjdlzjjuVrT0rWaZc/WAKIWBOzGBgefCexjSCfUNFpNr5AcTa4H4+o1Bh546B3Mbnxh
-         51qENYczplF8E3vogRwa8U2fHQ7hK8WKdu+9/ETb86swbsAdzty14xuWE3J3kk5iF0Yf
-         dl/g==
+        bh=G+qCr2MdO19dY/8onl90bo6ep9ea9k6Z+aDecmV1lDU=;
+        b=NJeg0VK+SWxhX3lS74jS+A9OVcoe/UK1VhVitVIHaQDI/w8aKHpyEeAUqNJtX5YVL+
+         N4Bp7sCjMU+Zm2+0EbHO5aOHag9ssQl0W3Wr5VuvaJgnbLEAnKiBjGy222kI85wRHCmQ
+         zFOtk7hZFD5U+deEEv6F6RO49WvqPKidKACPt1wuixwcT64OwvFGEP9oiYWEKnRHHdJg
+         /z/UDgaWFDz7+bhzzUQlOn7Ar+j/L3ymuoZ8yPTG7yJ0GVRGCKrafrBl0nmYfbjXmQy5
+         bLI40Kyo6L92zfxeNiuJEV34T7De+BjuBUwdBpqwzGwlRZxlH0135f3JQCzLOgo3CZf+
+         M+Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0p20JZOm8Q5zL+TRyVFEg8a2DDLhMZrB4Tuc8+bGlVs=;
-        b=QQXkaxgM3+gKCr7JlpWagE4dmGDDObi3mNoXBL0gcSsLKcmMCh1eltXiFKf6mU82a/
-         8v0rSNPt8aM9xP8zwnNt4Gq9lafs+sfV3KNm7/qKhXBecuNGVjqben3DHD9QcuxOnD9j
-         gvKxGAXMGCRDh32nyK14cqG4W5IVjfpvSj4naQ81wBNEW8pt1/u+yoWTZiphNuAktODT
-         /3l0rxF9Sv9FLJNDUtdeuG/cgLTd12kmMhknUU5GzUo+EyHQGHvN7F8gj7CSuV5CfBBI
-         PsEoUZ32VohmIlvpkgDZXE5leeDaijdR8un9eT6d48qsoWqcfva437GB1fiY6csxZhIg
-         /lEw==
-X-Gm-Message-State: APjAAAXjQo0O1iyKkwaefiqfGBzz99+QOWYLUVkMxYCEdVImHzpndNg9
-        O8JtieYaA1QNW84/S2pma+gSM2TT/j8AqlxQ3Cuw1w==
-X-Google-Smtp-Source: APXvYqw+GBX6IR44aYeJSdzjL+ZaEIKJ61JkR+OOuDdlscXdQs1cdp/fSEKXTniJ9Nxq/1Q2fX0A2wBUzHx8TJZBgtM=
-X-Received: by 2002:a2e:86c2:: with SMTP id n2mr18578922ljj.23.1558673687971;
- Thu, 23 May 2019 21:54:47 -0700 (PDT)
+        bh=G+qCr2MdO19dY/8onl90bo6ep9ea9k6Z+aDecmV1lDU=;
+        b=daLCqgfFOf8IE3UZjqOJsHWi7nqH/rT9qkZfGVoXJxH9MUluDK5PzgqZZc0Sqj1ZET
+         uvjfETfpiEr47U1BYGF4Jrg7PR1KmmCf8PzDVZQMC6TTu6pKCVd2q4fcw5nfsq86wabZ
+         25aLagygPkV4tsvjOZ6iGwGn20arUlvGu/a2ELDawTV+5C3dk72esDy2joLD39sXrLy7
+         +ni73ujWVB5eCWL5t0NoiH22ga21GWfrntjHPErSKevjnLHwtsNPL17NKEHSl+UcyB+s
+         Y/JbPYV/GjkKSdbde8IKpkSI1dwKQ8bU7bktzKueQTj2tuvd2rmH1k+NuJymaUIZN8zz
+         fQTA==
+X-Gm-Message-State: APjAAAVOQIS4cU5+9Ot/iE4wlbm6bVQQ4mDnoDHsTXyYCb5KEfZu4mnG
+        JS0XiLQdfrPIdqkl/PAqlnFE2TZJTFwxREvI+VHrwQ==
+X-Google-Smtp-Source: APXvYqwRkhSZNZodU87MNix/BTrEDGt12SfhEiNeQb7LL1hUJoV2OadkJavkiG2qnAzTw1tidLRoSrRs3E9/C+Q5K9Q=
+X-Received: by 2002:ac2:4a6e:: with SMTP id q14mr12821755lfp.46.1558673829099;
+ Thu, 23 May 2019 21:57:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <1558611952-13295-1-git-send-email-yash.shah@sifive.com> <20190523.092825.2184612182055559835.davem@davemloft.net>
-In-Reply-To: <20190523.092825.2184612182055559835.davem@davemloft.net>
+References: <1558611952-13295-1-git-send-email-yash.shah@sifive.com>
+ <1558611952-13295-2-git-send-email-yash.shah@sifive.com> <CAL_Jsq+p5PnTDgxuh9_Aw1RvTk4aTYjKxyMq7DPczLzQVv8_ew@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+p5PnTDgxuh9_Aw1RvTk4aTYjKxyMq7DPczLzQVv8_ew@mail.gmail.com>
 From:   Yash Shah <yash.shah@sifive.com>
-Date:   Fri, 24 May 2019 10:24:11 +0530
-Message-ID: <CAJ2_jOHPbFYtLYoCD0jtpLEyDM9is9gr7sbF+yZCHyfERZc48A@mail.gmail.com>
-Subject: Re: [PATCH 0/2] net: macb: Add support for SiFive FU540-C000
-To:     David Miller <davem@davemloft.net>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+Date:   Fri, 24 May 2019 10:26:32 +0530
+Message-ID: <CAJ2_jOEErFdK=n7Brk5A_950vfikdFcxcRri4HXgJWqf0-zR=w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] net/macb: bindings doc: add sifive fu540-c000 binding
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, Palmer Dabbelt <palmer@sifive.com>,
-        aou@eecs.berkeley.edu, ynezz@true.cz,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        =?UTF-8?Q?Petr_=C5=A0tetiar?= <ynezz@true.cz>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Sachin Ghadi <sachin.ghadi@sifive.com>
 Content-Type: text/plain; charset="UTF-8"
@@ -61,13 +66,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 9:58 PM David Miller <davem@davemloft.net> wrote:
+On Fri, May 24, 2019 at 2:20 AM Rob Herring <robh+dt@kernel.org> wrote:
 >
+> On Thu, May 23, 2019 at 6:46 AM Yash Shah <yash.shah@sifive.com> wrote:
+> >
+> > Add the compatibility string documentation for SiFive FU540-C0000
+> > interface.
+> > On the FU540, this driver also needs to read and write registers in a
+> > management IP block that monitors or drives boundary signals for the
+> > GEMGXL IP block that are not directly mapped to GEMGXL registers.
+> > Therefore, add additional range to "reg" property for SiFive GEMGXL
+> > management IP registers.
+> >
+> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/macb.txt | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/macb.txt b/Documentation/devicetree/bindings/net/macb.txt
+> > index 9c5e944..91a2a66 100644
+> > --- a/Documentation/devicetree/bindings/net/macb.txt
+> > +++ b/Documentation/devicetree/bindings/net/macb.txt
+> > @@ -4,6 +4,7 @@ Required properties:
+> >  - compatible: Should be "cdns,[<chip>-]{macb|gem}"
+> >    Use "cdns,at91rm9200-emac" Atmel at91rm9200 SoC.
+> >    Use "cdns,at91sam9260-macb" for Atmel at91sam9 SoCs.
+> > +  Use "cdns,fu540-macb" for SiFive FU540-C000 SoC.
 >
-> Please be consistent in your subsystem prefixes used in your Subject lines.
-> You use "net: macb:" then "net/macb:"  Really, plain "macb: " is sufficient.
+> This pattern that Atmel started isn't really correct. The vendor
+> prefix here should be sifive. 'cdns' would be appropriate for a
+> fallback.
 
-Sure, Will take care of this in the next revision of this patch.
+Ok sure. WIll change it to "sifive,fu540-macb"
+
 Thanks for your comment.
-
 - Yash
