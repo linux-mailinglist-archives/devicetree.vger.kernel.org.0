@@ -2,76 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE00728E37
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 02:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 197D828E55
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 02:29:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388792AbfEXAHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 20:07:44 -0400
-Received: from esa4.hgst.iphmx.com ([216.71.154.42]:37268 "EHLO
-        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388695AbfEXAHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 20:07:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1558656450; x=1590192450;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=1SdLFPXetAg3nrR1IO1V0QDUQiFziWocOM5xU46X9ZA=;
-  b=rPjpMQQRVORrbh3Vpl23/a7TrpbKlWygVD2c0BxzF4Qr4sJtVkfjny63
-   nAqYJ/sdD6vJnj8RBxXsI0Q7KK0T3GrRGz2RisIY5Ntgrg8z9jG8x0aWi
-   Rbeck+F8Q4r26YAp90zgSRRSi25yRlUqAUmMFsQR0DLu3ocJMnlJwyw4A
-   L6kuSA1BCfJDCOksVb49Uc52s7kqN+ajjlP8STGbtQ9GF6ztdJC+MbS5J
-   4dpGxE3r6pCYeO/ZfAjzdliv3WIJKQAcmZf+w0OMtjH5KhXJJntxSxvOs
-   3MbZOwxH5bTj7mYDeooehWBBLUMlPDQe8DHptENl5UupksXAKJYlXQEmd
-   A==;
-X-IronPort-AV: E=Sophos;i="5.60,505,1549900800"; 
-   d="scan'208";a="108976467"
-Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 24 May 2019 08:07:29 +0800
-IronPort-SDR: CwSFiBJC1pzGKT2S0VQjGTixSsPh9VZfZHW7/xiqbp4PJy0LI03N55eqCfh4HYKD09zFvJ1hnx
- HlZaVUfGamU9iUsNAlLgn5kL9PqiFQ2RfgeKWfJh92Sk6Y91jmuiZKpzdZ4E9ST0mfH7OKGU0d
- r8EMfDN2LshObVIKwIHgBAz//8CKM3WcYqx0XKqS/Vy8Vm8g8MJber0+8t01pUeLD0HjCfLimD
- +IYb3cQzfhyJK6zDiNwQqrxNDM0yKOsTj4G7iEAWgJh4xodmuV6hlzL48AKprNEh2czYv5071C
- F/DEzipTnYiSCkVvpponpnFR
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP; 23 May 2019 16:45:10 -0700
-IronPort-SDR: vXZ4XSK9LUBf5ZWszJwtTb4rMMV3fmbYhZ9isZM07tLp+6dAKXjytTd62sv0dWJ8c/dczi8vdf
- mzOOjmZgY3QlclHixf+HXkdq/yoR0AAbYKM2dyB0enq32mtvDtDj/iv39I9tTxD0TwXPKbzLnY
- nejq/gMxiXVGbT+s3f6f5QVmYuhcmRDsmCJaaflh2xH9uibLsniWOkerekb7gLCcDpL0yO7uEH
- lE4RMqeetQG8MqlLY9aZUB6cyQ18OzEzucsr75+tYmSsQi2IYQFYVLxJLHzZ5M667YzZbAS4Ae
- p/Q=
-Received: from jedi-01.sdcorp.global.sandisk.com (HELO jedi-01.int.fusionio.com) ([10.11.143.218])
-  by uls-op-cesaip02.wdc.com with ESMTP; 23 May 2019 17:07:28 -0700
-From:   Atish Patra <atish.patra@wdc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andreas Schwab <schwab@suse.de>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH v5 5/5] RISC-V: Parse cpu topology during boot.
-Date:   Thu, 23 May 2019 17:06:52 -0700
-Message-Id: <20190524000653.13005-6-atish.patra@wdc.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190524000653.13005-1-atish.patra@wdc.com>
-References: <20190524000653.13005-1-atish.patra@wdc.com>
+        id S1731724AbfEXA3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 20:29:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35792 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727435AbfEXA3C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 20:29:02 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 192BE2133D;
+        Fri, 24 May 2019 00:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558657741;
+        bh=GJSQsLGKFEw/q14NqFuVkMJI/P9w7wVpGKEWFUnovSM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fRlHLsclounchpuyRBndvCb3T2UJBq5RhzHPs+zM9LbqL/H9X/OvY2OwPhjnH234a
+         8eTswoD+8X09pRhlHjToE2GmKXbATX+eqrs/DjoC3SwfPXRbG4p+DO4+JxVtSem5bz
+         H8UIlkaxJaK0IvP3Q7gHeN6/Zf1qUKA7QeGcZq1g=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     dmaengine@vger.kernel.org
+Cc:     dinguyen@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org
+Subject: [PATCH 1/2] dt-bindings: pl330: document the optional resets property
+Date:   Thu, 23 May 2019 19:28:46 -0500
+Message-Id: <20190524002847.30961-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -79,66 +38,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, there are no topology defined for RISC-V.
-Parse the cpu-map node from device tree and setup the
-cpu topology.
+Add the optional resets property the pl330 dma node.
 
-CPU topology after applying the patch.
-$cat /sys/devices/system/cpu/cpu2/topology/core_siblings_list
-0-3
-$cat /sys/devices/system/cpu/cpu3/topology/core_siblings_list
-0-3
-$cat /sys/devices/system/cpu/cpu3/topology/physical_package_id
-0
-$cat /sys/devices/system/cpu/cpu3/topology/core_id
-3
-
-Signed-off-by: Atish Patra <atish.patra@wdc.com>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/riscv/Kconfig          | 1 +
- arch/riscv/kernel/smpboot.c | 3 +++
- 2 files changed, 4 insertions(+)
+ Documentation/devicetree/bindings/dma/arm-pl330.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index ee32c66e1af3..be319d902275 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -46,6 +46,7 @@ config RISCV
- 	select PCI_MSI if PCI
- 	select RISCV_TIMER
- 	select GENERIC_IRQ_MULTI_HANDLER
-+	select GENERIC_ARCH_TOPOLOGY if SMP
- 	select ARCH_HAS_PTE_SPECIAL
- 	select ARCH_HAS_MMIOWB
- 	select HAVE_EBPF_JIT if 64BIT
-diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
-index 7a0b62252524..54f89d5b19ba 100644
---- a/arch/riscv/kernel/smpboot.c
-+++ b/arch/riscv/kernel/smpboot.c
-@@ -16,6 +16,7 @@
-  * GNU General Public License for more details.
-  */
+diff --git a/Documentation/devicetree/bindings/dma/arm-pl330.txt b/Documentation/devicetree/bindings/dma/arm-pl330.txt
+index db7e2260f9c5..2c7fd1941abb 100644
+--- a/Documentation/devicetree/bindings/dma/arm-pl330.txt
++++ b/Documentation/devicetree/bindings/dma/arm-pl330.txt
+@@ -16,6 +16,9 @@ Optional properties:
+   - dma-channels: contains the total number of DMA channels supported by the DMAC
+   - dma-requests: contains the total number of DMA requests supported by the DMAC
+   - arm,pl330-broken-no-flushp: quirk for avoiding to execute DMAFLUSHP
++  - resets: contains an entry for each entry in reset-names.
++	    See ../reset/reset.txt for details.
++  - reset-names: must contain at least "dma", and optional is "dma-ocp".
  
-+#include <linux/arch_topology.h>
- #include <linux/module.h>
- #include <linux/init.h>
- #include <linux/kernel.h>
-@@ -43,6 +44,7 @@ static DECLARE_COMPLETION(cpu_running);
+ Example:
  
- void __init smp_prepare_boot_cpu(void)
- {
-+	init_cpu_topology();
- }
- 
- void __init smp_prepare_cpus(unsigned int max_cpus)
-@@ -146,6 +148,7 @@ asmlinkage void __init smp_callin(void)
- 
- 	trap_init();
- 	notify_cpu_starting(smp_processor_id());
-+	update_siblings_masks(smp_processor_id());
- 	set_cpu_online(smp_processor_id(), 1);
- 	/*
- 	 * Remote TLB flushes are ignored while the CPU is offline, so emit
 -- 
-2.21.0
+2.20.0
 
