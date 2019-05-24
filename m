@@ -2,109 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A76022988D
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 15:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE612298FA
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 15:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391305AbfEXNI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 09:08:26 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:33206 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391124AbfEXNI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 09:08:26 -0400
-Received: by mail-wr1-f66.google.com with SMTP id d9so9987111wrx.0
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 06:08:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OgQG33xuk/EhzH06wld3kb9oAEYUVKAKXc70PtpZrC8=;
-        b=owRAgPfGikxZtUG1BQRct8nWEQoZ+vHOSKdD7iOhXd8OMGFf32ex0MPT6DfeY3lxuy
-         bhWjO3JH8oYEAla3+xVUmPAW7EyA7Bh+ag6nXRT7NIlhZ13NHoZgF2L1mcLF2kiS7m0N
-         kTKmcvO2AzJUcwMHMThCxt2n7Hf7/NvxDM7hBBzxrD4kdtYP/CKwvGyIF/eFdbNaJJ7q
-         2pKwUSQGwHrbYFfPTImyiZ/JAFlLnntm6NCYFJ6bUruR5T+zUWT8ukMR66zJ4fwTwLrW
-         8Dbv4MEKoW2GXHd++IyIwDxs0gxoDLL4zOG1bRfeArEaZSgmJ/Gaih3eBfnmGmrcEYXK
-         K29g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OgQG33xuk/EhzH06wld3kb9oAEYUVKAKXc70PtpZrC8=;
-        b=q8OYOLgK5kk0t1bld/okN/iXVqok4L9DMPRq70Cb8aQmbbFcsA2EvkTlh+9Mz+2dYM
-         MUU05YQ4Xb+LIchisXFOycFl2/W3pFQN6yMsf57oPL/JLsOyUxXa3f+MB1kYAtss4iS0
-         /CsjHKu3bzXDoZUoY2PWP4BsnsclDRdQu7Wlov6nteFM6nCxyVrtgyphdiNXnLP/GUHH
-         DlYiX2I/g5uip4ibgQLziLQuERZkjnendigRjtv46n6vsJ92kCqBpYlOtXyQzm+iJwD4
-         pidPIvSTB4YBKkuDh7dGcyiUZVddlVWxV9Xa+LsAUfcbNNmO3e4uBTq6bQOrDnnFb+/o
-         iqzA==
-X-Gm-Message-State: APjAAAXVRG0EXIE5DjgG2RBVPIAvpZJNsXaCnZqKM4UkkaBRYftW73BO
-        fECoZ855qjClk6JlkF2RvIEkiw==
-X-Google-Smtp-Source: APXvYqzR+reL4mcAcIjGdB6vyMDbG1N7JQb5wDwT7uZCcD0jOl7OaN2viGm0Xl/fbGghcGMUsqIY/w==
-X-Received: by 2002:adf:e408:: with SMTP id g8mr30766656wrm.143.1558703304789;
-        Fri, 24 May 2019 06:08:24 -0700 (PDT)
-Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id f65sm3557698wmg.45.2019.05.24.06.08.23
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 24 May 2019 06:08:24 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: add dwmac-3.70a to ethmac compatible list
-Date:   Fri, 24 May 2019 15:08:17 +0200
-Message-Id: <20190524130817.18920-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+        id S2391529AbfEXNfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 09:35:06 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:55736 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391470AbfEXNfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 09:35:06 -0400
+X-Greylist: delayed 901 seconds by postgrey-1.27 at vger.kernel.org; Fri, 24 May 2019 09:35:05 EDT
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1558704004; x=1561296004;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=jPoVpk+zVTSpotGP0l1Y3MACc9eibOInf/vk2LwICuI=;
+        b=cXsXs5d5sAmEN1AZWOspozi92wtU91/ZI3MCQKlbkaSLpz5wDaTONahH1X2+d1dI
+        NKCP9xp49uABt1VKiVAg5BDJyC7jR5N15aBYplfMbkthZRKZC8KFQ1v3f4+72tBv
+        9A8ByArkuQFRejWHo2udnOqcZSKx82L3Ft+E7DMmOJY=;
+X-AuditID: c39127d2-6d5ff70000000df6-b9-5ce7ef84550b
+Received: from idefix.phytec.de (idefix.phytec.de [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 0A.81.03574.48FE7EC5; Fri, 24 May 2019 15:20:04 +0200 (CEST)
+Received: from augenblix2.phytec.de ([172.16.21.122])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2019052415200349-20932 ;
+          Fri, 24 May 2019 15:20:03 +0200 
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Daniel Schultz <d.schultz@phytec.de>
+Subject: [PATCH 0/7] AM335x Phytec boards update
+Date:   Fri, 24 May 2019 15:19:56 +0200
+Message-Id: <1558704003-393769-1-git-send-email-t.remmet@phytec.de>
+X-Mailer: git-send-email 2.7.4
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 24.05.2019 15:20:03,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 24.05.2019 15:20:03,
+        Serialize complete at 24.05.2019 15:20:03
+X-TNEFEvaluated: 1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupkluLIzCtJLcpLzFFi42JZI8DApdvy/nmMwelNTBZ35v9ltZh/5Byr
+        xabH11gtZi/pZ7FYev0ik0Xr3iPsFvuveDmwe6yZt4bR49vXSSwe72+0sntsWtXJ5rF5Sb3H
+        501yAWxRXDYpqTmZZalF+nYJXBmP33cxFfznqph4ci5LA+Myji5GTg4JAROJn/8fsXcxcnEI
+        CexglGjoXMcM4VxglDi3vIEdpIpNQEPi6YrTTF2MHBwiAgkSt14KgdQwC5xhlLjbv4wNpEZY
+        wEBi3kOIehYBVYn3vx4xg9i8As4Si6b2MUNsk5O4ea4TbIGEQCOTxPbnp6ASQhKnF59lnsDI
+        s4CRYRWjUG5mcnZqUWa2XkFGZUlqsl5K6iZGYAAdnqh+aQdj3xyPQ4wCHIxKPLwJl5/HCLEm
+        lhVX5h5ilOBgVhLhjd3/LEaINyWxsiq1KD++qDQntfgQozQHi5I47wbekjAhgfTEktTs1NSC
+        1CKYLBMHp1QD476rbaVrtxd8/GZxsOfICq53yUt8/zM71sSemjVvG3P9opiesL3+xwV5zt7s
+        m8MlYBCwpL7r6YcvD82axEqK2KpD18UvWNQb9GrhYqfoq7oTJjaVT95feyt1p9W6kBKpf3MZ
+        gm/sPCSbd3ljjOLO67m1qWEJsRvbvLmleJZPcbiwbEq1/MR3qkosxRmJhlrMRcWJAHaLO4oc
+        AgAA
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After discussing with Amlogic, the Synopsys GMAC version used by
-the gx and axg family is the 3.70a. Set this is in DT
+Hello,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+this series adds basic support for phyCORE-AM335x EMMC and
+adds device tree for phyBOARD-REGOR AM335x. Also fixes issues
+like removing outdated eth phy delay settings and mmc cd active level.
 
- Hi,
+Teresa
 
- The same should be true for the meson8 families but I did not test
- it which is why only the patch only address the 64bits SoC families
+Daniel Schultz (1):
+  ARM: dts: am335x-phycore-som: Add emmc node
 
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 +++-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 4 +++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+Teresa Remmet (6):
+  ARM: dts: am335x phytec boards: Fix cd-gpios active level
+  ARM: dts: am335x phytec boards: Remove regulator node
+  ARM: dts: am335x-phycore-som: Enable gpmc node in dts files
+  ARM: dts: am335x-pcm-953: Update user led names
+  ARM: dts: am335x-pcm-953: Remove eth phy delay
+  ARM: dts: Add support for phyBOARD-REGOR-AM335x
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 38169c85e91f..6219337033a0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -171,7 +171,9 @@
- 		ranges;
- 
- 		ethmac: ethernet@ff3f0000 {
--			compatible = "amlogic,meson-axg-dwmac", "snps,dwmac";
-+			compatible = "amlogic,meson-axg-dwmac",
-+				     "snps,dwmac-3.70a",
-+				     "snps,dwmac";
- 			reg = <0x0 0xff3f0000 0x0 0x10000
- 			       0x0 0xff634540 0x0 0x8>;
- 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 6772709b9e19..74d03fc706be 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -486,7 +486,9 @@
- 		};
- 
- 		ethmac: ethernet@c9410000 {
--			compatible = "amlogic,meson-gx-dwmac", "amlogic,meson-gxbb-dwmac", "snps,dwmac";
-+			compatible = "amlogic,meson-gxbb-dwmac",
-+				     "snps,dwmac-3.70a",
-+				     "snps,dwmac";
- 			reg = <0x0 0xc9410000 0x0 0x10000
- 			       0x0 0xc8834540 0x0 0x4>;
- 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ .../devicetree/bindings/arm/omap/omap.txt          |   3 +
+ arch/arm/boot/dts/Makefile                         |   1 +
+ arch/arm/boot/dts/am335x-pcm-953.dtsi              |  24 +--
+ arch/arm/boot/dts/am335x-phycore-rdk.dts           |   4 +
+ arch/arm/boot/dts/am335x-phycore-som.dtsi          |  47 +++--
+ arch/arm/boot/dts/am335x-regor-rdk.dts             |  24 +++
+ arch/arm/boot/dts/am335x-regor.dtsi                | 223 +++++++++++++++++++++
+ arch/arm/boot/dts/am335x-wega-rdk.dts              |   4 +
+ arch/arm/boot/dts/am335x-wega.dtsi                 |  18 +-
+ 9 files changed, 304 insertions(+), 44 deletions(-)
+ create mode 100644 arch/arm/boot/dts/am335x-regor-rdk.dts
+ create mode 100644 arch/arm/boot/dts/am335x-regor.dtsi
+
 -- 
-2.20.1
+2.7.4
 
