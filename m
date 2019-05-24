@@ -2,81 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B96CB2A0C5
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 23:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59E472A0CD
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 23:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404351AbfEXV44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 17:56:56 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33563 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404259AbfEXV44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 17:56:56 -0400
-Received: by mail-ot1-f68.google.com with SMTP id 66so10043412otq.0;
-        Fri, 24 May 2019 14:56:56 -0700 (PDT)
+        id S2404346AbfEXV6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 17:58:40 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:41988 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404259AbfEXV6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 17:58:40 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w9so8097552oic.9;
+        Fri, 24 May 2019 14:58:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ho8YvTqp0rATg7l+txR/qg/9Dte5oTGHToN5b94uwag=;
-        b=DJ5n5whxSS/c3bDQXYbF2pxt+Hwm8GASO+NWPhkX0gq80t3lGLfk5Gyx0IYS9kZR8f
-         vFuctPpOyFY5wz+rBdXd3lhRYHKXvf90ooWL1I3GaWUC80g92Ru3cUYKB19NbQA43Kr1
-         APBjFGqhUWmtTzpIzzi/u4XuUGswyYa3KAA3k9QRP1fptCAGZ5ycOVH9iscxH9+c210z
-         DcC5D+cGQdlG3QKmv13oa0cubHgk7nXoMh4xtEOl1xPcXBYEMQ0PFM1V2jDy566bB9nc
-         iKVF0X/XI3YNprfT1H6zURfWAtAry4TF6HKLbtvTYuPl3P2/GmaDPdUdGgfyq0T3p6LZ
-         aPkg==
-X-Gm-Message-State: APjAAAXttStZWNAP22st/Pk2zyYlSF4yF+9pj659m8yAceUj40pyB7s3
-        4QqNp/dZoQarnmIJGbp7Rg==
-X-Google-Smtp-Source: APXvYqwNL/0FgdI+TnsnkddnX1osuGlQibiQd+IDZ28cDtbOtb/DaqZmuifSiFaX3pdWvLKsmpm92Q==
-X-Received: by 2002:a9d:6b99:: with SMTP id b25mr41053536otq.242.1558735015676;
-        Fri, 24 May 2019 14:56:55 -0700 (PDT)
+        bh=FX0nAAQKdK8gCwAelke8YNA0bB3X71pjYoDs2aHxEiE=;
+        b=LkKY2TLTIBDLMpOFtQjVSNEgz9+tvvxbpPSUvIPuNIFG/QSM1YLLoeWVh4/XyYRkeM
+         o1kmkcGqKs21KdG8jNKs3mBUp4p8E90rumR2cc+zxOdKWmXBomsVnH26gJJDxAOFgCns
+         XNh3fL3r9xErE5A4ZqQ7PVsWSKjeSkW9gp4/u9y5J/QImkVBCOUmMJdMHeLgcB1K8cgo
+         u/5lDHBN4YSLRV6ANjTAxsdGkc2Gxu2AR0e7xdWuIk2aZJdqk18E5p8ehclN/ZgB+4Gz
+         tOPQgo01IYdAV1UcR+LTgKV8T/RuOlxrLj5eWUjs/NTtGCZljMveDXH41E9fLgJDwrCU
+         6u+A==
+X-Gm-Message-State: APjAAAUBjlP6BwfqCDbha/CQVpGpDC4yY6LpdNU/2R38JGXoMzox8YPm
+        6M3FXnYMEuQl8jPTuEZnqA==
+X-Google-Smtp-Source: APXvYqytH+9RhKlZb9pctda4btXYaKYVWztG+4GxfJz4UGzSbQyRu3Kkka4gSAaGipt9f8+8R7wEFg==
+X-Received: by 2002:aca:4bd2:: with SMTP id y201mr7159994oia.12.1558735119348;
+        Fri, 24 May 2019 14:58:39 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 37sm1345038oti.45.2019.05.24.14.56.54
+        by smtp.gmail.com with ESMTPSA id x72sm1442794oif.50.2019.05.24.14.58.38
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 24 May 2019 14:56:55 -0700 (PDT)
-Date:   Fri, 24 May 2019 16:56:54 -0500
+        Fri, 24 May 2019 14:58:38 -0700 (PDT)
+Date:   Fri, 24 May 2019 16:58:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Lukasz Majewski <lukma@denx.de>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Thierry Reding <treding@nvidia.com>,
-        Lukasz Majewski <lukma@denx.de>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display/panel: Add KOE tx14d24vm1bpa
- display description
-Message-ID: <20190524215654.GA16085@bogus>
-References: <20180412143715.6828-1-lukma@denx.de>
- <20190515160428.6114-1-lukma@denx.de>
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Subject: Re: [PATCH v4 1/3] amr64: map FDT as RW for early_init_dt_scan()
+Message-ID: <20190524215838.GA16271@bogus>
+References: <20190519160446.320-1-hsinyi@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190515160428.6114-1-lukma@denx.de>
+In-Reply-To: <20190519160446.320-1-hsinyi@chromium.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 May 2019 18:04:28 +0200, Lukasz Majewski wrote:
-> This commit adds documentation entry description for KOE's 5.7" display.
-> 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> 
-> ---
-> Previous discussion (and Rob's Reviewed-by) about this patch
-> https://patchwork.kernel.org/patch/10339595/
-> 
-> Changes for v4:
-> - Rebase on top of newest mainline
-> SHA1: 5ac94332248ee017964ba368cdda4ce647e3aba7
-> 
-> Changes for v3 :
-> - New patch
-> ---
->  .../bindings/display/panel/koe,tx14d24vm1bpa.txt   | 42 ++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/koe,tx14d24vm1bpa.txt
-> 
+On Mon, May 20, 2019 at 12:04:44AM +0800, Hsin-Yi Wang wrote:
+> Currently in arm64, FDT is mapped to RO before it's passed to
+> early_init_dt_scan(). However, there might be some code that needs
+> to modify FDT during init. Map FDT to RW until unflatten DT.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+typo in the subject.
+
+Otherwise, this one seems fine to me.
+
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> change log v2->v4:
+> * v3 abandoned
+> * add an arg pgprot_t to fixmap_remap_fdt()
+> ---
+>  arch/arm64/include/asm/mmu.h | 2 +-
+>  arch/arm64/kernel/setup.c    | 5 ++++-
+>  arch/arm64/mm/mmu.c          | 4 ++--
+>  3 files changed, 7 insertions(+), 4 deletions(-)
