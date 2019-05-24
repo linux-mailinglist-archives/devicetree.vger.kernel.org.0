@@ -2,123 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 127D32A114
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 00:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7452A14E
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 00:32:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404267AbfEXWUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 18:20:46 -0400
-Received: from node.akkea.ca ([192.155.83.177]:58206 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404176AbfEXWUp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 May 2019 18:20:45 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id 734D24E204B; Fri, 24 May 2019 22:20:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1558736445; bh=p20jB4BQU4AvtbWwn3XeTjPaRii6ZgAKH7/dXJoEJig=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=bv+fvRCEnBF18NNZaLElZPetLVBlma51ewNgSeJNF1Qvp7gLdBtgiTJau8DCU5HMK
-         tQ1T5dyWfnVgopujkczBCJZ4f2vyPlhBNzBh5raJh2ecZaxp81wzQVtcNnjWx4PCXv
-         gJUumLG5Tk7k9rsX4g57s2Io3/u5jqyQvRd7EouY=
-To:     Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v13 2/4] arm64: dts: fsl: librem5: Add a device tree for  the Librem5 devkit
-X-PHP-Originating-Script: 1000:rcube.php
+        id S2404287AbfEXWcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 18:32:11 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35339 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404176AbfEXWcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 18:32:10 -0400
+Received: by mail-ot1-f68.google.com with SMTP id n14so10107588otk.2;
+        Fri, 24 May 2019 15:32:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MVeRAKhCRQ02qZS9WMOT7P0FRvYl1V3YDTvinSJEfGc=;
+        b=QYpqU2LNG33XuZDh3KHkAfGzoCU/ce312YNG6R47+HxEGgFE6YIqczhQMpd9nVW0bl
+         eAuRS4PQCOBBOpeYNlANAe07HhRYm1zJ0o4FM/1Qij62+RuH0neM/MFIJhLn8EKg6kIe
+         QNZWkY1pgQVEfOm78tYhG9G6j5ywqvDmgXAYBhTFN3B/VfNWYgnryE/vRpMPCAPt8lAI
+         BgTNxs2y0+lxPBqQWqgURABMGwTsD33VeSye41HXENiqbw5Ev9uoGVAOCc1JZEw/IMpr
+         ltWAHVT3xuuTa1/CTGj72Mg0DHH1jd4FgGQTHxqGXjVRLZTlH3hUX8m0TuO3ykkHoZEP
+         Kacw==
+X-Gm-Message-State: APjAAAVtxusubqHky5JcFupYUIBykA4giTFDuOIndTN8fXDCgF9iZRnl
+        bc7ruIuPjhLKOOZQMSuwbeiLltUtpyg=
+X-Google-Smtp-Source: APXvYqygcOrEBg6geV/M3/I/lozE/24T1Vv3zX1xouapOwgVnoX3RrTYQbQ+5plBUTkonD0gey6l5g==
+X-Received: by 2002:a9d:6e17:: with SMTP id e23mr35208419otr.258.1558737129778;
+        Fri, 24 May 2019 15:32:09 -0700 (PDT)
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com. [209.85.167.172])
+        by smtp.gmail.com with ESMTPSA id v134sm1403132oie.54.2019.05.24.15.32.08
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 May 2019 15:32:09 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id 203so8129437oid.13;
+        Fri, 24 May 2019 15:32:08 -0700 (PDT)
+X-Received: by 2002:aca:5f07:: with SMTP id t7mr2665286oib.175.1558737128772;
+ Fri, 24 May 2019 15:32:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 24 May 2019 15:20:45 -0700
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
+References: <20190524012151.31840-1-andy.tang@nxp.com>
+In-Reply-To: <20190524012151.31840-1-andy.tang@nxp.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Fri, 24 May 2019 17:31:57 -0500
+X-Gmail-Original-Message-ID: <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
+Message-ID: <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor node
+To:     Yuantian Tang <andy.tang@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1e6c0664949f38452b8f14b901bff513@www.akkea.ca>
-References: <20190520142330.3556-1-angus@akkea.ca>
- <20190520142330.3556-3-angus@akkea.ca>
- <20190523191926.GB3803@xo-6d-61-c0.localdomain>
- <1e6c0664949f38452b8f14b901bff513@www.akkea.ca>
-Message-ID: <64cc01b6cc6590e328e7b488bedb9dc8@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+On Thu, May 23, 2019 at 8:30 PM Yuantian Tang <andy.tang@nxp.com> wrote:
+>
+> Add nxp sa56004 chip node for temperature monitor.
+>
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 5 +++++
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 5 +++++
+>  2 files changed, 10 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> index b359068d9605..31fd626dd344 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> @@ -131,6 +131,11 @@
+>                                 compatible = "atmel,24c512";
+>                                 reg = <0x57>;
+>                         };
+> +
+> +                       temp@4c {
 
-On 2019-05-24 15:00, Angus Ainslie wrote:
-> Hi Pavel,
-> 
-> On 2019-05-23 12:19, Pavel Machek wrote:
->> Hi!
->> 
->>> - LEDs
->>> - gyro
->>> - magnetometer
->> 
->>> +	leds {
->>> +		compatible = "gpio-leds";
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&pinctrl_gpio_leds>;
->>> +
->>> +		led1 {
->>> +			label = "LED 1";
->> 
->> So, what kind of LED do you have, and what color is it? label should
->> probably be something like
->> notify:green.
->> 
-> 
-> As we don't have a specific use for these yet does it really matter if
-> there is a colour or a number associated with them ?
-> 
->>> +	charger@6b { /* bq25896 */
->>> +		compatible = "ti,bq25890";
->>> +		reg = <0x6b>;
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&pinctrl_charger>;
->>> +		interrupt-parent = <&gpio3>;
->>> +		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
->>> +		ti,battery-regulation-voltage = <4192000>; /* 4.192V */
->>> +		ti,charge-current = <1600000>; /* 1.6 A */
->> 
->> No space before A, for consistency.
->> 
->>> +		ti,termination-current = <66000>;  /* 66mA */
->>> +		ti,precharge-current = <1300000>; /* 1.3A */
->> 
->> I thought precharge is usually something low, because you are not yet
->> sure of battery health...?
->> 
-> 
-> I think I put that in incorrectly. The intention was 130mA.
-> 
->>> +		ti,minimum-sys-voltage = <2750000>; /* 2.75V */
->> 
->> Are you sure? Normally systems shut down at 3.2V, 3V or so. Li-ion
->> batteries don't
->> really like to be discharged _this_ deep.
-> 
-> You are correct. I'll fix it for the next version.
-> 
+The recommended name for temperature senor in dts spec is temperature-sensor.
 
-Looking into it further Sanyo and Panasonic get over 300 cycles bringing 
-the NCR18650 down to 2.5V so 2.75V should be fine.
+> +                               compatible = "nxp,sa56004";
 
-http://www.batteryonestop.com/baotongusa/products/datasheets/li-ion/SANYO-NCR18650B-3400mAh.pdf
-https://industrial.panasonic.com/ww/products/batteries/secondary-batteries/lithium-ion/cylindrical-type/NCR18650PF
+The binding says the following property is required.  If it is not the
+case, probably we should update the binding.
+- vcc-supply: vcc regulator for the supply voltage.
 
-Angus
-
-> Thanks
-> Angus
-> 
->> 
->> 										Pavel
-
+> +                               reg = <0x4c>;
+> +                       };
+>                 };
+>
+>                 i2c@5 {
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> index f9c272fb0738..012b3f8696b7 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> @@ -119,6 +119,11 @@
+>                                 compatible = "nxp,pcf2129";
+>                                 reg = <0x51>;
+>                         };
+> +
+> +                       temp@4c {
+> +                               compatible = "nxp,sa56004";
+> +                               reg = <0x4c>;
+> +                       };
+>                 };
+>         };
+>  };
+> --
+> 2.17.1
+>
