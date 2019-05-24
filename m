@@ -2,163 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EADF229C94
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E9BB29CC9
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 19:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390511AbfEXQ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 12:58:20 -0400
-Received: from mail-it1-f195.google.com ([209.85.166.195]:52346 "EHLO
-        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390210AbfEXQ6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 12:58:16 -0400
-Received: by mail-it1-f195.google.com with SMTP id t184so16900086itf.2
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 09:58:15 -0700 (PDT)
+        id S1731849AbfEXRYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 13:24:19 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:46329 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726381AbfEXRYS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 13:24:18 -0400
+Received: by mail-lj1-f196.google.com with SMTP id m15so9292595ljg.13;
+        Fri, 24 May 2019 10:24:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=MoMLCOnVhZSHe+BQlTmS5wevE0lJU4Hf7dR7NZTK0SA=;
-        b=fPQsvYSJ7q6ZkPN90gdwNY/gQFwW2BaNnP1VwwHH5cSJOM97xQcxAYi/ejEfDdwLUF
-         trMZf7pzYgvhyTAZInqDKQOFn1cyKxmEpjkQK/1MUgGJc0EAk98MHydqd/Rdfqiv4HO9
-         0rzP7L2tUL2e9UyqcDSFdQltXMrBWBEkqmq1WYe0nGW3kz2bpvkXi25HzKwgIlvyH5RA
-         VhfUn2vUXnc2+nxXtlMk7B4ydxKMwlCRIVALMRSTz1D28y7y0KGdSVXiZ4HuPtqH4r8F
-         fXM8PL4o8NK3EDm4JmW8FvSjtq3NyfUr4q7VH32Jc1vVX7mKV+4JyWwiGh+JRSiP6zOn
-         JKbQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ssbN1TdbzNBmflVEU1aQ4WjQYnrmIvlJ3fJbTkCYEoc=;
+        b=R80k6ZW4+477eCiLEWOyECzHViN14QHa/kc5EGUKydeVagXzDJWmZ7z+meczBLoeyW
+         pCQ94EWNunx6Ta5bYQhRIv+Tbr9vPSBTilIF7022NToesQ6zbpz1t8U9aQdmTL06UXrU
+         QbmcWcCG2K0J+Ra4eYS4j8KpamYnZNDi4svTSO6b1kF7Ej4PxQRHNOmtFQjd8CntkQwY
+         Xr24AmDUKHzhmdQjIVN4Z1cG0NO7KwBj0T3ohcgoKFbYL+9VEs3sG++iM8fDYEOwKwUE
+         wB11Dk5zVbzxI8hdpsXFtaDD+tHTA13o2lLmym5uznvx4DGncqPXtDWjKz3P2H/qcjFR
+         LFXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=MoMLCOnVhZSHe+BQlTmS5wevE0lJU4Hf7dR7NZTK0SA=;
-        b=G/PUTK+eqj74hnM2sxQr8tSOOOkuXTkSK8KsTd+pTPrBmFEwSpwWiVxzWF5c8E/tWQ
-         ozmsY7WOPgD98pwFK0rZ99yVO5Bzj9mgKS/JbEEaYlPDYlxV+2hX3PR1a6+X0WMrYxWA
-         XJpLCDAMkkYbGSHSIUrytR0jDE1tuh4FUjzCXPlDWijwgn15v3OVBHnuI094Ea8v5GMQ
-         vRiTngTwMShAqNuV455JlNE4ueQPhP8tLFfeuBDenp9eirRsLxY5WlNoLcbZphFXcbqN
-         eEtB2XPkqpSB4S5YjuYUtwlYdd6httIMlZ5RsPtZaqnXtUCesyMUFMSsN9wRzJJyTa+D
-         GWlA==
-X-Gm-Message-State: APjAAAX8K3ieDFUv2Nx/MdI4BfxL+M4klKaDxm+n+oFqWfHfBmZWjojO
-        dT2cKDUM8VuRMptt+l8b8tHkePotxgLgh7hM7h583w==
-X-Google-Smtp-Source: APXvYqzKAKOCGT1463jp43t7UOHxZ8/WT2omEyVHLyOVE3HNbV4Ak5HVMslMSUYhRfOX/SuzDLSdg7lxhnGTI3w9lSk=
-X-Received: by 2002:a05:6638:233:: with SMTP id f19mr6778463jaq.24.1558717095212;
- Fri, 24 May 2019 09:58:15 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ssbN1TdbzNBmflVEU1aQ4WjQYnrmIvlJ3fJbTkCYEoc=;
+        b=Zi4Qye3R529K/7zL92/0BNGkcw1NhMoU3DsyuL1iZx0pzk80Yiljz54l+NTSzctLzd
+         RT443tXg1HiFd5KrWI5MZacufOxWHqLXiQPPdh/8eDjraQ/w7ez1lzaMQ/ss+ID3UtFv
+         DZIKJY86k5ukgVnvPE2pEYObDTKCB5b9pHrhzD2VcMH5OJxz3dx+QZaIJa6eFlrkNEdS
+         5A6/pLdKomSDPdaaen/F5UtED2omDyqGGuqkuDwte8ssKwne4heSzaoZJm91M66zNRrz
+         zptj+vQQtdhszsv3+1KiKrTQSjo1/pmIrRHtt9BUJrj+JzldtjiF9oMtFTWtkZmvTiDW
+         3RQQ==
+X-Gm-Message-State: APjAAAXZYbzDFh2W/4ehycs2IzXrS/rWYx3dSd6rA5py6ty5H5LgqaBR
+        n6WFxrTebDHG2dcnjONexTk=
+X-Google-Smtp-Source: APXvYqzyc1Puq1aWXJFdGKsz3v4v+LL6XzFiaqiieBRLRqI9otzuddshUBYwjZTlBA/waQu/xMB7vw==
+X-Received: by 2002:a2e:9acb:: with SMTP id p11mr24038393ljj.129.1558718655086;
+        Fri, 24 May 2019 10:24:15 -0700 (PDT)
+Received: from localhost.localdomain ([94.29.35.141])
+        by smtp.gmail.com with ESMTPSA id d13sm196957lfm.27.2019.05.24.10.24.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 May 2019 10:24:13 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/8] memory: tegra: Introduce Tegra30 EMC driver
+Date:   Fri, 24 May 2019 20:23:45 +0300
+Message-Id: <20190524172353.29087-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190417152701.23391-1-brgl@bgdev.pl> <20190417152701.23391-5-brgl@bgdev.pl>
- <CAHCN7xKVaYqd5LLvRx7i8ik+JnTFdpexZf2WXt0R2N1W1skOJA@mail.gmail.com> <CAMpxmJW9yWcQ8497OwOhMN8wj-Cmc3-UP7Rh-yoU_uDaQkVVSw@mail.gmail.com>
-In-Reply-To: <CAMpxmJW9yWcQ8497OwOhMN8wj-Cmc3-UP7Rh-yoU_uDaQkVVSw@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 24 May 2019 18:58:04 +0200
-Message-ID: <CAMRc=Me9hwsLdpDVfs+cb_rqrWs=+bJOa9nEFY+xs_vs5LAXXA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/5] ARM: dts: da850-evm: enable cpufreq
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Adam Ford <aford173@gmail.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Lechner <david@lechnology.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-wt., 23 kwi 2019 o 11:15 Bartosz Golaszewski
-<bgolaszewski@baylibre.com> napisa=C5=82(a):
->
-> =C5=9Br., 17 kwi 2019 o 19:09 Adam Ford <aford173@gmail.com> napisa=C5=82=
-(a):
-> >
-> > On Wed, Apr 17, 2019 at 10:27 AM Bartosz Golaszewski <brgl@bgdev.pl> wr=
-ote:
-> > >
-> > > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > >
-> > > Enable cpufreq-dt support for da850-evm. The cvdd is supplied by the
-> > > tps65070 pmic with configurable output voltage. By default da850-evm
-> > > boards support frequencies up to 375MHz so enable this operating
-> > > point.
-> >
-> > Have you done any testing with the LCD on any of the devices you have?
-> >
-> > I enabled the ondemand governor, and I got a bunch of splat from the
-> > LCD controller:
-> >
-> > tilcdc 1e13000.display: effective pixel clock rate (50000000Hz)
-> > differs from the calculated rate (54000000Hz)
-> > tilcdc 1e13000.display: tilcdc_crtc_irq(0x00000161): FIFO underflow
-> > tilcdc 1e13000.display: tilcdc_crtc_irq(0x00000161): FIFO underflow
-> > ... [ snip]
-> > tilcdc 1e13000.display: effective pixel clock rate (50000000Hz)
-> > differs from the calculated rate (54000000Hz)
-> > tilcdc 1e13000.display: effective pixel clock rate (50000000Hz)
-> > differs from the calculated rate (54000000Hz)
-> > tilcdc 1e13000.display: tilcdc_crtc_irq(0x00000161): FIFO underflow
-> >
-> > It appears to go on forever.  I don't necessarily want to hold it up,
-> > but I don't know the clocking system well enough to know where to go
-> > investigate it.  I can certainly live without ondemand.  Using
-> > userspace as the default governor is fine for me for now.
-> >
-> > adam
->
-> Hi Adam,
->
-> I did test the tilcdc on da850-lcdk. The only message I'm getting
-> during transitions is a single:
->
-> tilcdc <name>: tilcdc_crtc_irq(<address>): FIFO underflow
->
-> but this is fairly normal - we also get this during modeset and it
-> doesn't affect the display.
->
-> The problem with the pixel clock may come from the bootloader - are
-> you using a recent version of u-boot?
->
-> Bart
->
-> > >
-> > > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > > Reviewed-by: Adam Ford <aford173@gmail.com>
-> > > ---
-> > >  arch/arm/boot/dts/da850-evm.dts | 13 +++++++++++++
-> > >  1 file changed, 13 insertions(+)
-> > >
-> > > diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da85=
-0-evm.dts
-> > > index f04bc3e15332..f94bb38fdad9 100644
-> > > --- a/arch/arm/boot/dts/da850-evm.dts
-> > > +++ b/arch/arm/boot/dts/da850-evm.dts
-> > > @@ -191,6 +191,19 @@
-> > >         };
-> > >  };
-> > >
-> > > +&cpu {
-> > > +       cpu-supply =3D <&vdcdc3_reg>;
-> > > +};
-> > > +
-> > > +/*
-> > > + * The standard da850-evm kits and SOM's are 375MHz so enable this o=
-perating
-> > > + * point by default. Higher frequencies must be enabled for custom b=
-oards with
-> > > + * other variants of the SoC.
-> > > + */
-> > > +&opp_375 {
-> > > +       status =3D "okay";
-> > > +};
-> > > +
-> > >  &sata {
-> > >         status =3D "okay";
-> > >  };
-> > > --
-> > > 2.21.0
-> > >
+Hello,
 
-Hi Adam,
+This series introduces driver for the External Memory Controller (EMC)
+found on Tegra30 chips, it controls the external DRAM on the board. The
+purpose of this driver is to program memory timing for external memory on
+the EMC clock rate change. The driver was tested using the ACTMON devfreq
+driver that performs memory frequency scaling based on memory-usage load.
 
-did you figure out the problem by chance? Are you OK with merging this seri=
-es?
+Changelog:
 
-Bart
+v3: - Addressed review comments that were made by Stephen Boyd to v2 by
+      adding explicit typing for the callback variable, by including
+      "clk-provider.h" directly in the code and by dropping __clk_lookup
+      usage where possible.
+
+      Added more patches into this series:
+
+        memory: tegra20-emc: Drop setting EMC rate to max on probe
+        memory: tegra20-emc: Adapt for clock driver changes
+        memory: tegra20-emc: Include io.h instead of iopoll.h
+        memory: tegra20-emc: Replace clk_get_sys with devm_clk_get
+
+      Initially I was going to include these patches into other patchset,
+      but changed my mind after rearranging things a tad. The "Adapt for
+      clock driver changes" patch is directly related to the clock changes
+      done in the first patch of this series, the rest are minor cleanups
+      that are fine to include here as well.
+
+      Added some more words to the commit message of "Add binding for NVIDIA
+      Tegra30 External Memory Controller" patch, clarifying why common DDR
+      timing device-tree form isn't suitable for Tegra30.
+
+      The Tegra30 EMC driver now explicitly selects the registers access
+      mode (EMC_DBG mux), not relying on the setting left from bootloader.
+
+v2: - Added support for changing MC clock diver configuration based on
+      Memory Controller (MC) configuration which is part of the memory
+      timing.
+
+    - Merged the "Add custom EMC clock implementation" patch into this
+      series because the "Introduce Tegra30 EMC driver" patch directly
+      depends on it. Please note that Tegra20 EMC driver will need to be
+      adapted for the clock changes as well, I'll send out the Tegra20
+      patches after this series will be applied because of some other
+      dependencies (devfreq) and because the temporary breakage won't
+      be critical (driver will just error out on probe).
+
+    - EMC driver now performs MC configuration validation by checking
+      that the number of MC / EMC timings matches and that the timings
+      rate is the same.
+
+    - EMC driver now supports timings that want to change the MC clock
+      configuration.
+
+    - Other minor prettifying changes of the code.
+
+Dmitry Osipenko (8):
+  clk: tegra20/30: Add custom EMC clock implementation
+  memory: tegra20-emc: Drop setting EMC rate to max on probe
+  memory: tegra20-emc: Adapt for clock driver changes
+  memory: tegra20-emc: Include io.h instead of iopoll.h
+  memory: tegra20-emc: Replace clk_get_sys with devm_clk_get
+  dt-bindings: memory: Add binding for NVIDIA Tegra30 External Memory
+    Controller
+  memory: tegra: Introduce Tegra30 EMC driver
+  ARM: dts: tegra30: Add External Memory Controller node
+
+ .../memory-controllers/nvidia,tegra30-emc.txt |  249 ++++
+ arch/arm/boot/dts/tegra30.dtsi                |   11 +
+ drivers/clk/tegra/Makefile                    |    2 +
+ drivers/clk/tegra/clk-tegra20-emc.c           |  299 +++++
+ drivers/clk/tegra/clk-tegra20.c               |   55 +-
+ drivers/clk/tegra/clk-tegra30.c               |   38 +-
+ drivers/clk/tegra/clk.h                       |    6 +
+ drivers/memory/tegra/Kconfig                  |   10 +
+ drivers/memory/tegra/Makefile                 |    1 +
+ drivers/memory/tegra/mc.c                     |    3 -
+ drivers/memory/tegra/mc.h                     |   30 +-
+ drivers/memory/tegra/tegra20-emc.c            |   94 +-
+ drivers/memory/tegra/tegra30-emc.c            | 1165 +++++++++++++++++
+ drivers/memory/tegra/tegra30.c                |   44 +
+ include/linux/clk/tegra.h                     |   14 +
+ 15 files changed, 1903 insertions(+), 118 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.txt
+ create mode 100644 drivers/clk/tegra/clk-tegra20-emc.c
+ create mode 100644 drivers/memory/tegra/tegra30-emc.c
+
+-- 
+2.21.0
+
