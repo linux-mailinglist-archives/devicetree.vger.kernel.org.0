@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1FC62959B
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D35F2960B
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:41:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389782AbfEXKVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 06:21:50 -0400
-Received: from mail-eopbgr720061.outbound.protection.outlook.com ([40.107.72.61]:8032
-        "EHLO NAM05-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2389448AbfEXKVt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 May 2019 06:21:49 -0400
+        id S2390363AbfEXKlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 06:41:35 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:42603 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389448AbfEXKlf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 06:41:35 -0400
+Received: by mail-pf1-f193.google.com with SMTP id r22so2227683pfh.9
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 03:41:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OBGRAchov8McEUo4wsoFXcPR3NM+rkOltDE1yLx6KkI=;
- b=YQ12KJ5lEnnlThPQ9F4KYM/CTlUQLBQURE74yuAOwGLtosm74b7SsHvR4/P/JisMzQpQL6ZiekG+8CkW+DarZpBK0WJ4GoBd9HLuFj1Div7MvvWKs+ItcY9ZHwP+orU+Bru/WEDMZ6PvYb+vatC+vCs9MfE6SKW/F7OKsGP77sA=
-Received: from BN8PR03CA0023.namprd03.prod.outlook.com (2603:10b6:408:94::36)
- by DM2PR03MB559.namprd03.prod.outlook.com (2a01:111:e400:241d::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1922.18; Fri, 24 May
- 2019 10:21:46 +0000
-Received: from CY1NAM02FT008.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::204) by BN8PR03CA0023.outlook.office365.com
- (2603:10b6:408:94::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1922.16 via Frontend
- Transport; Fri, 24 May 2019 10:21:46 +0000
-Authentication-Results: spf=pass (sender IP is 137.71.25.55)
- smtp.mailfrom=analog.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=analog.com;
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
-Received: from nwd2mta1.analog.com (137.71.25.55) by
- CY1NAM02FT008.mail.protection.outlook.com (10.152.75.59) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1922.16
- via Frontend Transport; Fri, 24 May 2019 10:21:45 +0000
-Received: from NWD2HUBCAS9.ad.analog.com (nwd2hubcas9.ad.analog.com [10.64.69.109])
-        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x4OALhq9006318
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Fri, 24 May 2019 03:21:43 -0700
-Received: from NWD2MBX5.ad.analog.com ([fe80::49e:7a9f:284e:1a49]) by
- NWD2HUBCAS9.ad.analog.com ([fe80::44a2:871b:49ab:ea47%12]) with mapi id
- 14.03.0415.000; Fri, 24 May 2019 06:21:43 -0400
-From:   "Popa, Stefan Serban" <StefanSerban.Popa@analog.com>
-To:     "lucasseikioshiro@gmail.com" <lucasseikioshiro@gmail.com>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rodrigorsdc@gmail.com" <rodrigorsdc@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "kernel-usp@googlegroups.com" <kernel-usp@googlegroups.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: iio: accel: adxl372: switch to YAML
- bindings
-Thread-Topic: [PATCH] dt-bindings: iio: accel: adxl372: switch to YAML
- bindings
-Thread-Index: AQHVDcR5Mci+C5pEPkCeH1oSCxQ8+aZ6XHsA
-Date:   Fri, 24 May 2019 10:21:42 +0000
-Message-ID: <1558693302.3462.1.camel@analog.com>
-References: <20190518215542.25140-1-lucasseikioshiro@gmail.com>
-In-Reply-To: <20190518215542.25140-1-lucasseikioshiro@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.32.224.122]
-x-adiroutedonprem: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1C53913FE1EB7043B92DC25F23B0CAC3@analog.com>
-Content-Transfer-Encoding: base64
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c0MxRnTCE9BXc+WmYpS8NriHcx2Lj8b3YSmcOc81bkk=;
+        b=KhdkuwhLGFTGUIzjnoSXCcjRF1xudF+4rTPCNkNPO+riBV5qj6+YN/XmRVEm/HCRG5
+         3Jn3cbkMmq2gMiGJaV6ndJJmu2lKue5pniic1qpViALZjk/6h4ANhWXPElMRyGyMwj0I
+         jC9ZZh4aHfKNKmJ4whJ1tmXgtD1aztJzyF9N4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c0MxRnTCE9BXc+WmYpS8NriHcx2Lj8b3YSmcOc81bkk=;
+        b=YbrmyM3V4q5FPc5j6g3VhErx4v+nc4FawlvRLQjPjm6pM4iGrYUx2yzpQPutX/wtmp
+         W0iY1qxuKLrEOf+B6vi/KpFoqMxA/MXwvTKQ/jZ1JGW4C0zX5Pj68yl/qSElmW7LoDvx
+         tqzrnG8sC4jlSG+SCIfPV8SFkXW3XtJ2ewIFb94tEd/DYqgavFJJqlTc+053sHeoxXvL
+         yr+Nxe7VC5+rOeFkrJjm1Kl8LoPpJyA1hAPULy/YGw9XPdnFNDcinHAbXRIkZRklu2Mc
+         vxw8uTMBoItlEwM0Ov88B9HidywAu7n4hV+ZyovRW5Lg+1NTKv9BptNA56nQPK48u0yL
+         rkTw==
+X-Gm-Message-State: APjAAAVf/nNU/86/9wOmCMBLUXVSHVe7ZsPn1CktM09cpaBTkQL5vb5r
+        gTTXkQltuQOy9IjJ7KyovWPahQ==
+X-Google-Smtp-Source: APXvYqz44Tfpkk+GdZoxymyVgoEhAr6weX4O6ILp2GFIiVeKdz6RAp1tuYQbqrGK2N425gP+pUQjVw==
+X-Received: by 2002:a63:4a4f:: with SMTP id j15mr8692927pgl.338.1558694493926;
+        Fri, 24 May 2019 03:41:33 -0700 (PDT)
+Received: from localhost.localdomain ([183.82.227.60])
+        by smtp.gmail.com with ESMTPSA id m72sm6550113pjb.7.2019.05.24.03.41.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 May 2019 03:41:33 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v2 0/6] drm/bridge: Add ICN6211 MIPI-DSI/RGB bridge
+Date:   Fri, 24 May 2019 16:11:09 +0530
+Message-Id: <20190524104115.20161-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(39860400002)(396003)(376002)(346002)(2980300002)(199004)(189003)(356004)(14454004)(4744005)(7696005)(2201001)(72206003)(76176011)(86362001)(478600001)(4326008)(2501003)(23676004)(47776003)(50466002)(7416002)(5660300002)(106002)(2486003)(36756003)(8936002)(446003)(8676002)(11346002)(6116002)(3846002)(110136005)(476003)(436003)(2906002)(486006)(426003)(2616005)(70206006)(70586007)(126002)(54906003)(336012)(102836004)(186003)(7736002)(7636002)(246002)(6246003)(229853002)(316002)(103116003)(305945005)(26005);DIR:OUT;SFP:1101;SCL:1;SRVR:DM2PR03MB559;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c707a740-9775-4ded-6528-08d6e0319fbe
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328)(7193020);SRVR:DM2PR03MB559;
-X-MS-TrafficTypeDiagnostic: DM2PR03MB559:
-X-Microsoft-Antispam-PRVS: <DM2PR03MB559EC87CBE7CAF5F97098709D020@DM2PR03MB559.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
-X-Forefront-PRVS: 0047BC5ADE
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: vtCwws6f0h+/LNkCf9fAR3AToe7pY2+FHu6ERXib3h8AH+GQzBvf8/oaTJHo/lMf0xHWhH5KmDLD+KQzopqqnEIHXmWnr1WpnrJHJOzSWe0Eh4YsDAy5VApGV6eT5vnKjxYf0MHG6yqRwPRdRRsfKYZiS7OjxiyHrJ3NWeuVff5rdOulMp/qgq5fIsD6iDQQhqP1i46o/RY3mN/eSQgI1hP7bmSqK0/aAd9JzZXrUiGu8YiNaTTgvIizhmX5fKHF9vq1M+FKkZNc/HROKNZrSd83eHFwAqCYcsmsnHAiQh9wtlk5YmlyQIYQRniWEjXHqEGqgFvhm6LaULoRC3v24G2MPQqrpERNIADZJOelMJsGsRvrb100iqXeFT00QMHEAVkyCECmefQrWq8zYKp4MW9G2k44+wPbE5+6h+1pGyU=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2019 10:21:45.0042
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c707a740-9775-4ded-6528-08d6e0319fbe
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR03MB559
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU2IsIDIwMTktMDUtMTggYXQgMTg6NTUgLTAzMDAsIEx1Y2FzIE9zaGlybyB3cm90ZToNCj4g
-W0V4dGVybmFsXQ0KPiANCj4gDQo+IENvbnZlcnQgdGhlIG9sZCBkZXZpY2UgdHJlZSBkb2N1bWVu
-dGF0aW9uIHRvIHlhbWwgZm9ybWF0Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgT3NoaXJv
-IDxsdWNhc3NlaWtpb3NoaXJvQGdtYWlsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogUm9kcmlnbyBS
-aWJlaXJvIDxyb2RyaWdvcnNkY0BnbWFpbC5jb20+DQo+IENvLWRldmVsb3BlZC1ieTogUm9kcmln
-byBSaWJlaXJvIDxyb2RyaWdvcnNkY0BnbWFpbC5jb20+DQo+IC0tLQ0KPiANCj4gSGVsbG8sDQo+
-IFdlJ3ZlIGFkZGVkIFN0ZWZhbiBQb3BhIGFzIG1haW50YWluZXIgb2YgdGhlIHlhbWwgZG9jdW1l
-bnRhdGlvbiBvZiB0aGlzDQo+IGRyaXZlcg0KPiBiZWNhdXNlIHdlIGZvdW5kIHRocm91Z2ggZ2l0
-IHRoYXQgaGUgd2FzIHRoZSBhdXRob3Igb2YgdGhlIG9sZGVyDQo+IGRvY3VtZW50YXRpb24uDQoN
-CkFja2VkLWJ5OiBTdGVmYW4gUG9wYSA8c3RlZmFuLnBvcGFAYW5hbG9nLmNvbT4=
+drm/bridge: Add ICN6211 MIPI-DSI/RGB bridge
+
+This is v2 series for supporting Chipone ICN6211 DSI/RGB bridge,
+here is the previous version set[1]
+
+The overlay patch, has Bananapi panel which would depends on,
+previous MIPI DSI fixes series[2] to make the panel works.
+
+Changes for v2:
+- use panel_or_bridge for finding panel and bridge
+- add panel overlay dts patch for port based panel enablement
+- update the bridge sequence dynamically, by getting mode
+  timings from panel-simple
+- correct the brinding compatible
+- add more information in binding example
+- replace the bridge detach with proper ops
+- add bridge overlay dts patch for port based panel enablement
+
+[2] https://patchwork.freedesktop.org/series/60847/
+[1] https://patchwork.freedesktop.org/series/58060/
+
+Any inputs?
+Jagan.
+
+Jagan Teki (6):
+  drm/sun4i: dsi: Use drm panel_or_bridge call
+  [DO NOT MERGE] ARM: dts: sun8i: bananapi-m2m: Enable Bananapi S070WV20-CT16 DSI panel
+  drm/sun4i: dsi: Add bridge support
+  dt-bindings: display: bridge: Add ICN6211 MIPI-DSI to RGB converter bridge
+  drm/bridge: Add Chipone ICN6211 MIPI-DSI/RGB converter bridge
+  [DO NOT MERGE] ARM: dts: sun8i: bananapi-m2m: Enable Bananapi S070WV20-CT16 DSI panel
+
+ .../display/bridge/chipone,icn6211.txt        |  78 ++++
+ MAINTAINERS                                   |   6 +
+ arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts  |  86 +++++
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/chipone-icn6211.c      | 344 ++++++++++++++++++
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c        |  67 +++-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h        |   1 +
+ 8 files changed, 575 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/chipone,icn6211.txt
+ create mode 100644 drivers/gpu/drm/bridge/chipone-icn6211.c
+
+-- 
+2.18.0.321.gffc6fa0e3
+
