@@ -2,89 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA82B29242
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1470E2925A
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:04:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389039AbfEXIAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 04:00:07 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:18881 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389021AbfEXIAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 04:00:07 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce7a4860001>; Fri, 24 May 2019 01:00:06 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Fri, 24 May 2019 01:00:06 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Fri, 24 May 2019 01:00:06 -0700
-Received: from [10.24.193.7] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 24 May
- 2019 08:00:03 +0000
-Subject: Re: [Patch V3 8/8] arm64: defconfig: Enable tegra XUDC driver
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
- <1557988772-15406-9-git-send-email-nkristam@nvidia.com>
- <20190523103042.GH30331@ulmo>
-X-Nvconfidentiality: public
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-Message-ID: <0b7508f4-584e-0193-6415-bbe4d9a4db42@nvidia.com>
-Date:   Fri, 24 May 2019 13:31:19 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2389183AbfEXIEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 04:04:46 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:44993 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389056AbfEXIEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 04:04:45 -0400
+Received: by mail-qk1-f194.google.com with SMTP id w25so6093665qkj.11
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 01:04:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LBXfo3f3VBxQHXcdRSMKfsobC/cqHl7OlQRiXsV30VE=;
+        b=Up8QcnJHOhogEiKKRZBk7rIW48oCZIkD0YdLLu9spajcuW7/MYtWd3epuGdovq00P/
+         SUbc99vqX5gDHrPGwN7Dolt/v7jcwDTPibqK8zKHGAFtJqYgHfxoBXw0+0oNALI2mIfE
+         KUT7oul7kXsOiTjUSfdzkVzzqJ1UInOsTxARo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LBXfo3f3VBxQHXcdRSMKfsobC/cqHl7OlQRiXsV30VE=;
+        b=LA3U4SPnbIRi8TONtREH5bs1LDc6cwBMyygM81rXityJ/ntEUDfT3YQQBTl0pNqKPh
+         eD0u2cCRQktU0jRK9IxLRXthMWMaBfjXabrX64Eug6VRjtYNRNEJV5gP9UXxX3V7QHYX
+         lqpOiOXbJaNkp61CVG7Bj8O4M7SweMr8BYHz3Vc5QFy0+M/5JYCMq4kjteGRIS8J8FUe
+         WZIiqyhnBtc2XQn6LeqKtN7FnoouoaUBDorwkogdbUYxn3ra4U44sLfaKpf7j20reh2b
+         RSIu7KFQaAF0QtmO/pjevL3azc2SplvQveh1K2ErklhdE3HMkRUZP49lZUPMEZrDvMq0
+         Qkzw==
+X-Gm-Message-State: APjAAAUsRZ83pS2cDwrH2oINnDoC7q6v1Lk5RkgU3AU4hL4U+8AXrdHu
+        wx5zH/OmsgEilJIjNgSoGJD0kEKcuNnLNsbiBhEBBw==
+X-Google-Smtp-Source: APXvYqyB85ubtcUVl583XzKJZMZmxA4tCmm7+GDK24kIDpdUoaqG/G/G21Le/PPOJRIOpUavh90Nb+rOMBaAuEwQaXA=
+X-Received: by 2002:aed:3512:: with SMTP id a18mr85921585qte.181.1558685084516;
+ Fri, 24 May 2019 01:04:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190523103042.GH30331@ulmo>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558684806; bh=FlLewyOu6/LhepYQjOXtri6Fy7Jtb8D5m5LOrENMcbo=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=WG2gV/8KHMONDicQHrbJ9dAxC+iUFTRoQe6JUvcfYTLzoBHQpX+czg2zzvKc2KXUv
-         iD7rghwWbFQridS8BjaiJe/Qo9Tay0EetYRjoFia1TsF7fXtAgFfFzb8C3lM/R9ksb
-         4hzkB1PXb2HWLo3gnJ6/fEXw4BerEVFNhgUc+PDaIMSUtKeM9ilyXG3rvmFERFiaKD
-         8FWeC8nbR7VC6FuJfDequbFOk7URL10lELwS62yR7NtI+gbiRu2IIYEON6mGr4xDh9
-         NemA8bbGCS3AYoqrPkysuZVbdzaqTwx3EKtIY/gyJ36v5zLVRm30DDkRzX6B/oegVB
-         Ljt80EQKVUDTg==
+References: <1557997725-12178-1-git-send-email-andrew-sh.cheng@mediatek.com> <1557997725-12178-9-git-send-email-andrew-sh.cheng@mediatek.com>
+In-Reply-To: <1557997725-12178-9-git-send-email-andrew-sh.cheng@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 24 May 2019 16:04:18 +0800
+Message-ID: <CAJMQK-hF3RT7wPRunE8q4uaEVaS1wkvmQO5t28Poz9ztiJ5Rmg@mail.gmail.com>
+Subject: Re: [PATCH 8/8] devfreq: mediatek: cci devfreq register opp
+ notification for SVS support
+To:     "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        linux-pm@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        fan.chen@mediatek.com, linux-mediatek@lists.infradead.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 23-05-2019 16:00, Thierry Reding wrote:
-> On Thu, May 16, 2019 at 12:09:32PM +0530, Nagarjuna Kristam wrote:
->> Enable support for Nvidia XUSB device mode controller driver.
->>
->> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
->> ---
->>  arch/arm64/configs/defconfig | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->> index b605b7f..bf1437c 100644
->> --- a/arch/arm64/configs/defconfig
->> +++ b/arch/arm64/configs/defconfig
->> @@ -575,6 +575,7 @@ CONFIG_USB_ULPI=y
->>  CONFIG_USB_GADGET=y
->>  CONFIG_USB_RENESAS_USBHS_UDC=m
->>  CONFIG_USB_RENESAS_USB3=m
->> +CONFIG_USB_TEGRA_XUDC=y
-> 
-> This driver is fairly large, do we really want to make it built-in by
-> default? Are there any downsides to making this a loadable module?
-> 
-> Thierry
-> 
- No downsides to make it as a module, will update change to mark it as module.
+On Thu, May 16, 2019 at 9:08 AM Andrew-sh.Cheng
+<andrew-sh.cheng@mediatek.com> wrote:
+>
+> From: "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+>
+> SVS will change the voltage of opp item.
+> CCI devfreq need to react to change frequency.
+>
+> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> ---
+>  drivers/devfreq/mt8183-cci-devfreq.c | 63 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>
+> diff --git a/drivers/devfreq/mt8183-cci-devfreq.c b/drivers/devfreq/mt8183-cci-devfreq.c
+> index 818a167c442f..250c963789f3 100644
+> --- a/drivers/devfreq/mt8183-cci-devfreq.c
+> +++ b/drivers/devfreq/mt8183-cci-devfreq.c
+> @@ -19,7 +19,10 @@ struct cci_devfreq {
+>         struct regulator *proc_reg;
+>         unsigned long proc_reg_uV;
+>         struct clk *cci_clk;
+> +       unsigned long freq;
+>         struct notifier_block nb;
+> +       struct notifier_block opp_nb;
+> +       int cci_min_freq;
+>  };
+>
+>  static int cci_devfreq_regulator_notifier(struct notifier_block *nb,
+> @@ -65,17 +68,62 @@ static int cci_devfreq_regulator_notifier(struct notifier_block *nb,
+>         return 0;
+>  }
+>
+> +static int ccidevfreq_opp_notifier(struct notifier_block *nb,
+> +unsigned long event, void *data)
+> +{
+> +       int ret;
+> +       struct dev_pm_opp *opp = data;
+> +       struct cci_devfreq *cci_df = container_of(nb, struct cci_devfreq,
+> +                                                 opp_nb);
+> +       unsigned long   freq, volt, cur_volt;
+> +
+> +       if (event == OPP_EVENT_ADJUST_VOLTAGE) {
+> +               freq = dev_pm_opp_get_freq(opp);
+> +               /* current opp item is changed */
+> +               if (freq == cci_df->freq) {
+> +                       volt = dev_pm_opp_get_voltage(opp);
+> +                       cur_volt = regulator_get_voltage(cci_df->proc_reg);
+> +
+> +                       if (volt > cur_volt) {
+> +                               /* need reduce freq */
+> +                               mutex_lock(&cci_df->devfreq->lock);
+> +                               ret = update_devfreq(cci_df->devfreq);
+> +                               if (ret)
+> +                                       pr_err("Fail to reduce cci frequency by opp notification: %d\n",
+This line is too long
+> +                                              ret);
+> +                               mutex_unlock(&cci_df->devfreq->lock);
+> +                       }
+> +               }
+> +
+> +               if (freq == cci_df->cci_min_freq) {
+> +                       volt = dev_pm_opp_get_voltage(opp);
+> +                       regulator_set_voltage(cci_df->proc_reg, volt, INT_MAX);
+> +               }
+> +       } else if (event == OPP_EVENT_DISABLE) {
+Is this case handled? If not, is this branch needed?
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +
+>  static int mtk_cci_governor_get_target(struct devfreq *devfreq,
+>                                        unsigned long *freq)
+>  {
+>         struct cci_devfreq *cci_df;
+>         struct dev_pm_opp *opp;
+> +       int ret;
+>
+>         cci_df = dev_get_drvdata(devfreq->dev.parent);
+>
+>         /* find available frequency */
+>         opp = dev_pm_opp_find_freq_ceil_by_volt(devfreq->dev.parent,
+>                                                 cci_df->proc_reg_uV);
+> +       ret = PTR_ERR_OR_ZERO(opp);
+> +       if (ret) {
+> +               pr_err("%s[%d], cannot find opp with voltage=%d: %d\n",
+> +                      __func__, __LINE__, cci_df->proc_reg_uV, ret);
+> +               return ret;
+> +       }
+>         *freq = dev_pm_opp_get_freq(opp);
+>
+>         return 0;
+> @@ -87,9 +135,11 @@ static int mtk_cci_governor_event_handler(struct devfreq *devfreq,
+>         int ret;
+>         struct cci_devfreq *cci_df;
+>         struct notifier_block *nb;
+> +       struct notifier_block *opp_nb;
+>
+>         cci_df = dev_get_drvdata(devfreq->dev.parent);
+>         nb = &cci_df->nb;
+> +       opp_nb = &cci_df->opp_nb;
+>
+>         switch (event) {
+>         case DEVFREQ_GOV_START:
+> @@ -100,6 +150,8 @@ static int mtk_cci_governor_event_handler(struct devfreq *devfreq,
+>                 if (ret)
+>                         pr_err("%s: failed to add governor: %d\n", __func__,
+>                                ret);
+> +               opp_nb->notifier_call = ccidevfreq_opp_notifier;
+> +               dev_pm_opp_register_notifier(devfreq->dev.parent, opp_nb);
+>                 break;
+>
+>         case DEVFREQ_GOV_STOP:
+> @@ -141,6 +193,8 @@ static int mtk_cci_devfreq_target(struct device *dev, unsigned long *freq,
+>                 return ret;
+>         }
+>
+> +       cci_df->freq = *freq;
+> +
+>         return 0;
+>  }
+>
+> @@ -152,6 +206,8 @@ static int mtk_cci_devfreq_probe(struct platform_device *pdev)
+>  {
+>         struct device *cci_dev = &pdev->dev;
+>         struct cci_devfreq *cci_df;
+> +       unsigned long freq, volt;
+> +       struct dev_pm_opp *opp;
+>         int ret;
+>
+>         cci_df = devm_kzalloc(cci_dev, sizeof(*cci_df), GFP_KERNEL);
+> @@ -181,6 +237,13 @@ static int mtk_cci_devfreq_probe(struct platform_device *pdev)
+>                 return ret;
+>         }
+>
+> +       /* set voltage lower bound */
+> +       freq = 1;
+> +       opp = dev_pm_opp_find_freq_ceil(cci_dev, &freq);
+> +       cci_df->cci_min_freq = dev_pm_opp_get_freq(opp);
+> +       volt = dev_pm_opp_get_voltage(opp);
+> +       dev_pm_opp_put(opp);
+> +
+>         platform_set_drvdata(pdev, cci_df);
+>
+>         cci_df->devfreq = devm_devfreq_add_device(cci_dev,
