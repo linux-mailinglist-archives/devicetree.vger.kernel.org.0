@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF37529C28
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D0129C2B
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 18:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390627AbfEXQ1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 12:27:38 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:53955 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390337AbfEXQ1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 12:27:38 -0400
-Received: by mail-wm1-f65.google.com with SMTP id 198so10006045wme.3
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 09:27:37 -0700 (PDT)
+        id S2390318AbfEXQ1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 12:27:40 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:55693 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390623AbfEXQ1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 12:27:39 -0400
+Received: by mail-wm1-f66.google.com with SMTP id x64so9993953wmb.5
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 09:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PW1SRGUIIosnHzTIT8oKHW+BHMniX6kJc68l082Nb68=;
-        b=JlhIiBr0LN+EnwR1yra8h8TfNP6AP5PihbHAG9CnLQaVbccxa0gL7XOEb/qPhw6xw2
-         21kLfpqUhTCojwj+D/mGusUKs1jjVDGZkz3LyvpjNo1f2NpWouYSEFgNjb88fjsgv8mL
-         DFLkoc+BPr3wl3/HYo7l/01oJB4c4rb0UtJ6Qy/7LkGxaxf+dyC5mTwsnvKUy3b/Dtsh
-         /P9qWaIzy+l2zGV3aFtyeAOq9GU001faEsS2NFsTAZDM0A978menzvnuZlzVr5h3mazT
-         i5FN0VuhV+N5XaldGyHhNDVl648ByGwe16b4tRcdlbaVE3pVIcTICNpEb3pCFCJ0ByCv
-         ygkw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=feMTK1ALuDcB6ANRh60ilE7eIkZ7WZWllXS4rnIjAYY=;
+        b=etyGkcerFFK63wVJPJo3fAK6GJwu4arL3yT6oqa6tEDzNWodmPXx8J2hDmjVU+s/62
+         FtW5cwEZJvReJiIYHfu52g9IpnAl08zsoHEFzpa2JM9Pder9hqhyDJyIZ4NyNThF/tUg
+         rCPo4rXpUSl5n6mc6zDip9MwBZNeqsypfSKfgnSjx21B/wtM9RQIfnPIf0RC/o8zxzrh
+         2aeIBX35HY3ROFBAKKQc993TzUfCK5nfErFt0nEISY9TOec9UhC5dL4+d1/aoxDfcHuh
+         oiWITzP1MVuIJ/4NVbuD/NRzTqImYz3GpVMkqZU01a9H8Y7kBHgtR0EN0DHrk43ROwar
+         DHJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PW1SRGUIIosnHzTIT8oKHW+BHMniX6kJc68l082Nb68=;
-        b=FxFd9wjIBrbYz0aQv9JCg1DCqp3CjziL9UwTHrolP2uGQoQcEfWATFD0dku3zTZQCS
-         V0jU4AJaUM1OQrs3Prwnjgp9mPVJP/WS3ReqO33GrogURJc4z4sP8qpuIL1phBFwfF1K
-         Ivrg2N52mLRP2Y25hfowbR20+X02T27KAB4i/zadM9i/KBag9Yl1A/Hbr0kOPETdxl54
-         sHg0grJAw0ipS564s94TKKCCd6zzuy4SwDQejNb7kIKhLzNm/C60yIru1Cd39QOeEZSA
-         lhiZKs3sap3LByqZLTQl3USbg/dEbzK5ba8S5fqn34RdhxaK75rlp7vvU1ac74QpvGwY
-         9kLA==
-X-Gm-Message-State: APjAAAWFOm6x7/vaRj2SBaneJlz5k2yy7FOLvlX1yBghAlE1KWEeA2QW
-        mavg/W0xQ64+nD+8NFUO0Lnzk4+OnXQCKili
-X-Google-Smtp-Source: APXvYqzFigln+kJPy+/t7Xbc8DEEH5LN8284rdnJjkHyVa5UHTzba6b6EgaPOigSNNHqYBAD5qkMHg==
-X-Received: by 2002:a1c:38c5:: with SMTP id f188mr507266wma.9.1558715256725;
-        Fri, 24 May 2019 09:27:36 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=feMTK1ALuDcB6ANRh60ilE7eIkZ7WZWllXS4rnIjAYY=;
+        b=jedrjO7FG/KKZksU8A8PX6WKV0JaNenlZXqKzvpRv1PHhSzO1QlvZKw8oke820kENh
+         tA6Hsv5GrNDt8chWU3LtgPJMlW6Ia8gm4xXS6Ce+nkAQ+2YuyDbkubdwIjAjGEUqYt7Z
+         Z1+Lvo7TwRj/KhJc505tfbuVxy5Hgn5P49plTX/4NRaYSUY3xGiZSkE82XKad1wFaawS
+         wV/8+PoyIrSXTZZqJ3JEWUDWQnGAVhsmnXzp8/1iGX3BK4fdyUXYvM2CNBXQVitmQEsc
+         Ugk5eSYX+Mw/d1t9Zdjf5hIfU5ZGPxLlWJGGSc+LXjPGeuiXWda38rY4E5L7D05fFMBS
+         fWpQ==
+X-Gm-Message-State: APjAAAVN9109u0qDsKwzVWEnnnjbkMBjXaRay1Up960+lw6b+mDJYoBk
+        tAmKcvxfmfgY5jX2G6Xf3PqPMQ==
+X-Google-Smtp-Source: APXvYqzhbxBbK42/fNaR/5q/csolUj2TBckrr0JZCetN7bH6brmrHm8o+kekNYDecz00m0FcQC71TQ==
+X-Received: by 2002:a1c:f507:: with SMTP id t7mr17188238wmh.149.1558715258061;
+        Fri, 24 May 2019 09:27:38 -0700 (PDT)
 Received: from sudo.home ([2a01:cb1d:112:6f00:2042:d8f2:ded8:fa95])
-        by smtp.gmail.com with ESMTPSA id l6sm2200320wmi.24.2019.05.24.09.27.34
+        by smtp.gmail.com with ESMTPSA id l6sm2200320wmi.24.2019.05.24.09.27.36
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 May 2019 09:27:35 -0700 (PDT)
+        Fri, 24 May 2019 09:27:37 -0700 (PDT)
 From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
 To:     linux-crypto@vger.kernel.org
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -52,10 +52,12 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Tudor Ambarus <tudor.ambarus@microchip.com>,
         Linus Walleij <linus.walleij@linaro.org>,
         Mika Westerberg <mika.westerberg@linux.intel.com>
-Subject: [PATCH v2 0/6] crypto - wire up Atmel SHA204A as RNG in DT and ACPI mode
-Date:   Fri, 24 May 2019 18:26:45 +0200
-Message-Id: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
+Subject: [PATCH v2 1/6] i2c: acpi: permit bus speed to be discovered after enumeration
+Date:   Fri, 24 May 2019 18:26:46 +0200
+Message-Id: <20190524162651.28189-2-ard.biesheuvel@linaro.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
+References: <20190524162651.28189-1-ard.biesheuvel@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -63,54 +65,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Socionext SynQuacer based 96boards DeveloperBox platform does not
-incorporate a random number generator, but it does have a 96boards low
-speed connector which supports extension boards such as the Secure96,
-which has a TPM and some crypto accelerators, one of which incorporates
-a random number generator.
+Currently, the I2C ACPI enumeration code only permits the max bus rate
+to be discovered before enumerating the slaves on the bus. In some
+cases, drivers for slave devices may require this information, e.g.,
+some ATmel crypto drivers need to generate a so-called wake token
+of a fixed duration, regardless of the bus rate.
 
-This series implements support for the RNG part, which is one of several
-functions of the Atmel SHA204A I2C crypto accelerator, and wires it up so
-both DT and ACPI based boot methods can use the device.
+So tweak the code so i2c_acpi_lookup_speed() is able to obtain this
+information after enumeration as well.
 
-v2:
-- update DT binding patches so the SHA204A and ECC508A module bindings are
-  in trivial-devices.yaml.
-- add acks from Linus and Mika
+Acked-by: Mika Westerberg <mika.westerberg@linux.intel.com>
+Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+---
+ drivers/i2c/i2c-core-acpi.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Assuming Rob is ok now with the DT binding patches, can we please take
-this through the crypto tree?
-
-Cc: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: Tudor Ambarus <tudor.ambarus@microchip.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
-
-Ard Biesheuvel (6):
-  i2c: acpi: permit bus speed to be discovered after enumeration
-  crypto: atmel-ecc: add support for ACPI probing on non-AT91 platforms
-  crypto: atmel-ecc: factor out code that can be shared
-  crypto: atmel-i2c: add support for SHA204A random number generator
-  dt-bindings: add Atmel SHA204A I2C crypto processor
-  dt-bindings: move Atmel ECC508A I2C crypto processor to
-    trivial-devices
-
- Documentation/devicetree/bindings/crypto/atmel-crypto.txt |  13 -
- Documentation/devicetree/bindings/trivial-devices.yaml    |   4 +
- drivers/crypto/Kconfig                                    |  19 +-
- drivers/crypto/Makefile                                   |   2 +
- drivers/crypto/atmel-ecc.c                                | 403 ++------------------
- drivers/crypto/atmel-ecc.h                                | 116 ------
- drivers/crypto/atmel-i2c.c                                | 364 ++++++++++++++++++
- drivers/crypto/atmel-i2c.h                                | 196 ++++++++++
- drivers/crypto/atmel-sha204a.c                            | 171 +++++++++
- drivers/i2c/i2c-core-acpi.c                               |   6 +-
- 10 files changed, 781 insertions(+), 513 deletions(-)
- delete mode 100644 drivers/crypto/atmel-ecc.h
- create mode 100644 drivers/crypto/atmel-i2c.c
- create mode 100644 drivers/crypto/atmel-i2c.h
- create mode 100644 drivers/crypto/atmel-sha204a.c
-
+diff --git a/drivers/i2c/i2c-core-acpi.c b/drivers/i2c/i2c-core-acpi.c
+index 272800692088..7240cc07abb4 100644
+--- a/drivers/i2c/i2c-core-acpi.c
++++ b/drivers/i2c/i2c-core-acpi.c
+@@ -115,8 +115,7 @@ static int i2c_acpi_do_lookup(struct acpi_device *adev,
+ 	struct list_head resource_list;
+ 	int ret;
+ 
+-	if (acpi_bus_get_status(adev) || !adev->status.present ||
+-	    acpi_device_enumerated(adev))
++	if (acpi_bus_get_status(adev) || !adev->status.present)
+ 		return -EINVAL;
+ 
+ 	if (acpi_match_device_ids(adev, i2c_acpi_ignored_device_ids) == 0)
+@@ -151,6 +150,9 @@ static int i2c_acpi_get_info(struct acpi_device *adev,
+ 	lookup.info = info;
+ 	lookup.index = -1;
+ 
++	if (acpi_device_enumerated(adev))
++		return -EINVAL;
++
+ 	ret = i2c_acpi_do_lookup(adev, &lookup);
+ 	if (ret)
+ 		return ret;
 -- 
 2.20.1
 
