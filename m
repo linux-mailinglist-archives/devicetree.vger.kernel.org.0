@@ -2,213 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1470E2925A
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9D529280
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389183AbfEXIEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 04:04:46 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:44993 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389056AbfEXIEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 04:04:45 -0400
-Received: by mail-qk1-f194.google.com with SMTP id w25so6093665qkj.11
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 01:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LBXfo3f3VBxQHXcdRSMKfsobC/cqHl7OlQRiXsV30VE=;
-        b=Up8QcnJHOhogEiKKRZBk7rIW48oCZIkD0YdLLu9spajcuW7/MYtWd3epuGdovq00P/
-         SUbc99vqX5gDHrPGwN7Dolt/v7jcwDTPibqK8zKHGAFtJqYgHfxoBXw0+0oNALI2mIfE
-         KUT7oul7kXsOiTjUSfdzkVzzqJ1UInOsTxARo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LBXfo3f3VBxQHXcdRSMKfsobC/cqHl7OlQRiXsV30VE=;
-        b=LA3U4SPnbIRi8TONtREH5bs1LDc6cwBMyygM81rXityJ/ntEUDfT3YQQBTl0pNqKPh
-         eD0u2cCRQktU0jRK9IxLRXthMWMaBfjXabrX64Eug6VRjtYNRNEJV5gP9UXxX3V7QHYX
-         lqpOiOXbJaNkp61CVG7Bj8O4M7SweMr8BYHz3Vc5QFy0+M/5JYCMq4kjteGRIS8J8FUe
-         WZIiqyhnBtc2XQn6LeqKtN7FnoouoaUBDorwkogdbUYxn3ra4U44sLfaKpf7j20reh2b
-         RSIu7KFQaAF0QtmO/pjevL3azc2SplvQveh1K2ErklhdE3HMkRUZP49lZUPMEZrDvMq0
-         Qkzw==
-X-Gm-Message-State: APjAAAUsRZ83pS2cDwrH2oINnDoC7q6v1Lk5RkgU3AU4hL4U+8AXrdHu
-        wx5zH/OmsgEilJIjNgSoGJD0kEKcuNnLNsbiBhEBBw==
-X-Google-Smtp-Source: APXvYqyB85ubtcUVl583XzKJZMZmxA4tCmm7+GDK24kIDpdUoaqG/G/G21Le/PPOJRIOpUavh90Nb+rOMBaAuEwQaXA=
-X-Received: by 2002:aed:3512:: with SMTP id a18mr85921585qte.181.1558685084516;
- Fri, 24 May 2019 01:04:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <1557997725-12178-1-git-send-email-andrew-sh.cheng@mediatek.com> <1557997725-12178-9-git-send-email-andrew-sh.cheng@mediatek.com>
-In-Reply-To: <1557997725-12178-9-git-send-email-andrew-sh.cheng@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 24 May 2019 16:04:18 +0800
-Message-ID: <CAJMQK-hF3RT7wPRunE8q4uaEVaS1wkvmQO5t28Poz9ztiJ5Rmg@mail.gmail.com>
-Subject: Re: [PATCH 8/8] devfreq: mediatek: cci devfreq register opp
- notification for SVS support
-To:     "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+        id S2389215AbfEXIK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 04:10:56 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:42643 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389142AbfEXIKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 04:10:55 -0400
+X-Originating-IP: 90.88.147.134
+Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 2CBD3FF80B;
+        Fri, 24 May 2019 08:10:50 +0000 (UTC)
+Date:   Fri, 24 May 2019 10:10:49 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        linux-pm@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        fan.chen@mediatek.com, linux-mediatek@lists.infradead.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
+        netdev@vger.kernel.org,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/8] dt-bindings: net: Add a YAML schemas for the generic
+ PHY options
+Message-ID: <20190524081049.6obsqdeywmx4io4k@flea>
+References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
+ <aa5ec90854429c2d9e2c565604243e1b10cfd94b.1558605170.git-series.maxime.ripard@bootlin.com>
+ <e39b7a35-3235-6040-b3c1-648897fabc70@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nhmqncggqckfikyo"
+Content-Disposition: inline
+In-Reply-To: <e39b7a35-3235-6040-b3c1-648897fabc70@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 9:08 AM Andrew-sh.Cheng
-<andrew-sh.cheng@mediatek.com> wrote:
+
+--nhmqncggqckfikyo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Florian,
+
+On Thu, May 23, 2019 at 11:16:55AM -0700, Florian Fainelli wrote:
+> On 5/23/19 2:56 AM, Maxime Ripard wrote:
+> > The networking PHYs have a number of available device tree properties that
+> > can be used in their device tree node. Add a YAML schemas for those.
+> >
+> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 148 +++++++++-
+> >  Documentation/devicetree/bindings/net/phy.txt           |  80 +-----
+> >  2 files changed, 149 insertions(+), 79 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/net/ethernet-phy.yaml
 >
-> From: "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
->
-> SVS will change the voltage of opp item.
-> CCI devfreq need to react to change frequency.
->
-> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
-> ---
->  drivers/devfreq/mt8183-cci-devfreq.c | 63 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
->
-> diff --git a/drivers/devfreq/mt8183-cci-devfreq.c b/drivers/devfreq/mt8183-cci-devfreq.c
-> index 818a167c442f..250c963789f3 100644
-> --- a/drivers/devfreq/mt8183-cci-devfreq.c
-> +++ b/drivers/devfreq/mt8183-cci-devfreq.c
-> @@ -19,7 +19,10 @@ struct cci_devfreq {
->         struct regulator *proc_reg;
->         unsigned long proc_reg_uV;
->         struct clk *cci_clk;
-> +       unsigned long freq;
->         struct notifier_block nb;
-> +       struct notifier_block opp_nb;
-> +       int cci_min_freq;
->  };
->
->  static int cci_devfreq_regulator_notifier(struct notifier_block *nb,
-> @@ -65,17 +68,62 @@ static int cci_devfreq_regulator_notifier(struct notifier_block *nb,
->         return 0;
->  }
->
-> +static int ccidevfreq_opp_notifier(struct notifier_block *nb,
-> +unsigned long event, void *data)
-> +{
-> +       int ret;
-> +       struct dev_pm_opp *opp = data;
-> +       struct cci_devfreq *cci_df = container_of(nb, struct cci_devfreq,
-> +                                                 opp_nb);
-> +       unsigned long   freq, volt, cur_volt;
-> +
-> +       if (event == OPP_EVENT_ADJUST_VOLTAGE) {
-> +               freq = dev_pm_opp_get_freq(opp);
-> +               /* current opp item is changed */
-> +               if (freq == cci_df->freq) {
-> +                       volt = dev_pm_opp_get_voltage(opp);
-> +                       cur_volt = regulator_get_voltage(cci_df->proc_reg);
-> +
-> +                       if (volt > cur_volt) {
-> +                               /* need reduce freq */
-> +                               mutex_lock(&cci_df->devfreq->lock);
-> +                               ret = update_devfreq(cci_df->devfreq);
-> +                               if (ret)
-> +                                       pr_err("Fail to reduce cci frequency by opp notification: %d\n",
-This line is too long
-> +                                              ret);
-> +                               mutex_unlock(&cci_df->devfreq->lock);
-> +                       }
-> +               }
-> +
-> +               if (freq == cci_df->cci_min_freq) {
-> +                       volt = dev_pm_opp_get_voltage(opp);
-> +                       regulator_set_voltage(cci_df->proc_reg, volt, INT_MAX);
-> +               }
-> +       } else if (event == OPP_EVENT_DISABLE) {
-Is this case handled? If not, is this branch needed?
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +
->  static int mtk_cci_governor_get_target(struct devfreq *devfreq,
->                                        unsigned long *freq)
->  {
->         struct cci_devfreq *cci_df;
->         struct dev_pm_opp *opp;
-> +       int ret;
->
->         cci_df = dev_get_drvdata(devfreq->dev.parent);
->
->         /* find available frequency */
->         opp = dev_pm_opp_find_freq_ceil_by_volt(devfreq->dev.parent,
->                                                 cci_df->proc_reg_uV);
-> +       ret = PTR_ERR_OR_ZERO(opp);
-> +       if (ret) {
-> +               pr_err("%s[%d], cannot find opp with voltage=%d: %d\n",
-> +                      __func__, __LINE__, cci_df->proc_reg_uV, ret);
-> +               return ret;
-> +       }
->         *freq = dev_pm_opp_get_freq(opp);
->
->         return 0;
-> @@ -87,9 +135,11 @@ static int mtk_cci_governor_event_handler(struct devfreq *devfreq,
->         int ret;
->         struct cci_devfreq *cci_df;
->         struct notifier_block *nb;
-> +       struct notifier_block *opp_nb;
->
->         cci_df = dev_get_drvdata(devfreq->dev.parent);
->         nb = &cci_df->nb;
-> +       opp_nb = &cci_df->opp_nb;
->
->         switch (event) {
->         case DEVFREQ_GOV_START:
-> @@ -100,6 +150,8 @@ static int mtk_cci_governor_event_handler(struct devfreq *devfreq,
->                 if (ret)
->                         pr_err("%s: failed to add governor: %d\n", __func__,
->                                ret);
-> +               opp_nb->notifier_call = ccidevfreq_opp_notifier;
-> +               dev_pm_opp_register_notifier(devfreq->dev.parent, opp_nb);
->                 break;
->
->         case DEVFREQ_GOV_STOP:
-> @@ -141,6 +193,8 @@ static int mtk_cci_devfreq_target(struct device *dev, unsigned long *freq,
->                 return ret;
->         }
->
-> +       cci_df->freq = *freq;
-> +
->         return 0;
->  }
->
-> @@ -152,6 +206,8 @@ static int mtk_cci_devfreq_probe(struct platform_device *pdev)
->  {
->         struct device *cci_dev = &pdev->dev;
->         struct cci_devfreq *cci_df;
-> +       unsigned long freq, volt;
-> +       struct dev_pm_opp *opp;
->         int ret;
->
->         cci_df = devm_kzalloc(cci_dev, sizeof(*cci_df), GFP_KERNEL);
-> @@ -181,6 +237,13 @@ static int mtk_cci_devfreq_probe(struct platform_device *pdev)
->                 return ret;
->         }
->
-> +       /* set voltage lower bound */
-> +       freq = 1;
-> +       opp = dev_pm_opp_find_freq_ceil(cci_dev, &freq);
-> +       cci_df->cci_min_freq = dev_pm_opp_get_freq(opp);
-> +       volt = dev_pm_opp_get_voltage(opp);
-> +       dev_pm_opp_put(opp);
-> +
->         platform_set_drvdata(pdev, cci_df);
->
->         cci_df->devfreq = devm_devfreq_add_device(cci_dev,
+> Updating the PHY Library section of the MAINTAINERS file to include that
+> binding document (not sure why it was not there) would be nice.
+
+Sure, I'll do it, thanks!
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nhmqncggqckfikyo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOenCQAKCRDj7w1vZxhR
+xUgbAP9wwE5sdteTuWzmvFDeY+ZJM3sYeePKoRl395ve/Qr3oAD9F9BoZLzYs5Ni
+OuDix3LenJQC4xZN88XtLfwtItIvAgA=
+=k8+g
+-----END PGP SIGNATURE-----
+
+--nhmqncggqckfikyo--
