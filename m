@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D70229D97
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 19:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 524B729D9E
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 19:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727558AbfEXR42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 13:56:28 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:45009 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726071AbfEXR42 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 13:56:28 -0400
-Received: by mail-pl1-f194.google.com with SMTP id c5so4452446pll.11;
-        Fri, 24 May 2019 10:56:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+4dUJ/hnokGjsx8/lVgqKqVKEuRSybVsaRBnvdF4Ydg=;
-        b=PC0DnxCHpyrvI07oguIz4W11H2VDPektdbmFePYqnjzMliY0lltRJdJSzJGNLoxp/r
-         RZM/1MDsMz1LfbTV5sYnoUjwkX82g18a8OFj+EiJZJswueh4vKKyiwrSAoD58NrReBiG
-         Zrs6JhXhwwnCO5sHvhbRj2HN6thomEdazjjlPAhWdo67k5rcqiqL8k3/uaUBL8TEr3+B
-         DuFbbcA5dhzncKSiWHjKGGjQzXxjtySena2FWmhyO2ftN8Cg1BZIVinsN3Ne2YpJwIbz
-         7acpfnI4XCuRg1C/PZJ0R8EVtvDHR+c49+COWujXiJKsn+Hsy+2mGWJu6a/zL3HnXlIv
-         BWxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+4dUJ/hnokGjsx8/lVgqKqVKEuRSybVsaRBnvdF4Ydg=;
-        b=SR0fUTkAGelmj170fwOJqOPqIDcxtoGRboT1uC7qiqUbctOM6zKOscXpBZDZKJRcd9
-         ufC+S3Cd98xOTGbrZu9LoRNoQbhGoTbjFwFC5Uj1wAAAEMIhVhvJr6gNDmQ/lFo9uuiU
-         aO/iy5H7X8S534s05qXGlXxzDoTrUF1sw01uJNLhRQrGs/6Lnu46Z8XIIHMc8npC76B+
-         RauLzML4fsaGvKJVxF7P1tOScBM+I7s/9mXqKsZskFQV2E+XGaUiZH3UDhOFXQovEQSk
-         UJirmUEH0W/jpTDkWsX3AapPkmc2kO5eps8N1T0bUwPKkkHGUoyi/TEkD289MChXwviJ
-         uqxg==
-X-Gm-Message-State: APjAAAUBwdt/kbiXCjmsAHr/jksDoDJ7DHlkzNzoDIvl4+JO+IF0vRc5
-        207HxcNfFIzzNg9lXOyoKvc=
-X-Google-Smtp-Source: APXvYqwzVVKjKnOJmUq2+WW5KCVQvlDb85InX65Q39KvGOBxb4ZTvqsmrD/jrcKi/v0YIbrwiVPJLw==
-X-Received: by 2002:a17:902:f081:: with SMTP id go1mr60870708plb.211.1558720587159;
-        Fri, 24 May 2019 10:56:27 -0700 (PDT)
-Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
-        by smtp.gmail.com with ESMTPSA id f2sm2631944pgs.83.2019.05.24.10.56.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 May 2019 10:56:26 -0700 (PDT)
-Subject: Re: [PATCH v1 1/5] of/platform: Speed up of_find_device_by_node()
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-References: <20190524010117.225219-1-saravanak@google.com>
- <20190524010117.225219-2-saravanak@google.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <6f4ca588-106f-93d1-8579-9e8d32c8031d@gmail.com>
-Date:   Fri, 24 May 2019 10:56:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726758AbfEXR5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 13:57:10 -0400
+Received: from foss.arm.com ([217.140.101.70]:48016 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726071AbfEXR5K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 13:57:10 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9C1C4A78;
+        Fri, 24 May 2019 10:57:09 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1E1993F703;
+        Fri, 24 May 2019 10:57:06 -0700 (PDT)
+Date:   Fri, 24 May 2019 18:56:58 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "van.freenix@gmail.com" <van.freenix@gmail.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
+Message-ID: <20190524175658.GA5045@e107155-lin>
+References: <20190523060437.11059-1-peng.fan@nxp.com>
+ <4ba2b243-5622-bb27-6fc3-cd9457430e54@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190524010117.225219-2-saravanak@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ba2b243-5622-bb27-6fc3-cd9457430e54@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sarvana,
+On Thu, May 23, 2019 at 10:30:50AM -0700, Florian Fainelli wrote:
+> Hi,
+>
+> On 5/22/19 10:50 PM, Peng Fan wrote:
+> > This is a modified version from Andre Przywara's patch series
+> > https://lore.kernel.org/patchwork/cover/812997/.
+> > [1] is a draft implementation of i.MX8MM SCMI ATF implementation that
+> > use smc as mailbox, power/clk is included, but only part of clk has been
+> > implemented to work with hardware, power domain only supports get name
+> > for now.
+> >
+> > The traditional Linux mailbox mechanism uses some kind of dedicated hardware
+> > IP to signal a condition to some other processing unit, typically a dedicated
+> > management processor.
+> > This mailbox feature is used for instance by the SCMI protocol to signal a
+> > request for some action to be taken by the management processor.
+> > However some SoCs does not have a dedicated management core to provide
+> > those services. In order to service TEE and to avoid linux shutdown
+> > power and clock that used by TEE, need let firmware to handle power
+> > and clock, the firmware here is ARM Trusted Firmware that could also
+> > run SCMI service.
+> >
+> > The existing SCMI implementation uses a rather flexible shared memory
+> > region to communicate commands and their parameters, it still requires a
+> > mailbox to actually trigger the action.
+>
+> We have had something similar done internally with a couple of minor
+> differences:
+>
+> - a SGI is used to send SCMI notifications/delayed replies to support
+> asynchronism (patches are in the works to actually add that to the Linux
+> SCMI framework). There is no good support for SGI in the kernel right
+> now so we hacked up something from the existing SMP code and adding the
+> ability to register our own IPI handlers (SHAME!). Using a PPI should
+> work and should allow for using request_irq() AFAICT.
+>
 
-I'm not reviewing patches 1-5 in any detail, given my reply to patch 0.
+We have been thinking this since we were asked if SMC can be transport.
+Generally out of 16 SGIs, 8 are reserved for secure side and non-secure
+has 8. Of these 8, IIUC 7 is already being used by kernel. So unless we
+manage to get the last one reserved exclusive to SCMI, it makes it
+difficult to add SGI support in SCMI.
 
-But I had already skimmed through this patch before I received the
-email for patch 0, so I want to make one generic comment below,
-to give some feedback as you continue thinking through possible
-implementations to solve the underlying problems.
+We have been telling partners/vendors about this limitation if they
+use SMC as transport and need to have dedicated h/w interrupt for the
+notifications.
 
+Another issue could be with virtualisation(using HVC) and EL handling
+so called SCMI SGI. We need to think about those too. I will try to get
+more info on this and come back on this.
 
-On 5/23/19 6:01 PM, Saravana Kannan wrote:
-> Add a pointer from device tree node to the device created from it.
-> This allows us to find the device corresponding to a device tree node
-> without having to loop through all the platform devices.
-> 
-> However, fallback to looping through the platform devices to handle
-> any devices that might set their own of_node.
-> 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/of/platform.c | 20 +++++++++++++++++++-
->  include/linux/of.h    |  3 +++
->  2 files changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 04ad312fd85b..1115a8d80a33 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
->  	return dev->of_node == data;
->  }
->  
-> +static DEFINE_SPINLOCK(of_dev_lock);
-> +
->  /**
->   * of_find_device_by_node - Find the platform_device associated with a node
->   * @np: Pointer to device tree node
-> @@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
->  {
->  	struct device *dev;
->  
-> -	dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
-> +	/*
-> +	 * Spinlock needed to make sure np->dev doesn't get freed between NULL
-> +	 * check inside and kref count increment inside get_device(). This is
-> +	 * achieved by grabbing the spinlock before setting np->dev = NULL in
-> +	 * of_platform_device_destroy().
-> +	 */
-> +	spin_lock(&of_dev_lock);
-> +	dev = get_device(np->dev);
-> +	spin_unlock(&of_dev_lock);
-> +	if (!dev)
-> +		dev = bus_find_device(&platform_bus_type, NULL, np,
-> +				      of_dev_node_match);
->  	return dev ? to_platform_device(dev) : NULL;
->  }
->  EXPORT_SYMBOL(of_find_device_by_node);
-> @@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
->  		platform_device_put(dev);
->  		goto err_clear_flag;
->  	}
-> +	np->dev = &dev->dev;
->  
->  	return dev;
->  
-> @@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
->  	if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
->  		device_for_each_child(dev, NULL, of_platform_device_destroy);
->  
-> +	/* Spinlock is needed for of_find_device_by_node() to work */
-> +	spin_lock(&of_dev_lock);
-> +	dev->of_node->dev = NULL;
-> +	spin_unlock(&of_dev_lock);
->  	of_node_clear_flag(dev->of_node, OF_POPULATED);
->  	of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
->  
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 0cf857012f11..f2b4912cbca1 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -48,6 +48,8 @@ struct property {
->  struct of_irq_controller;
->  #endif
->  
-> +struct device;
-> +
->  struct device_node {
->  	const char *name;
->  	phandle phandle;
-> @@ -68,6 +70,7 @@ struct device_node {
->  	unsigned int unique_id;
->  	struct of_irq_controller *irq_trans;
->  #endif
-> +	struct device *dev;		/* Device created from this node */
-
-We have actively been working on shrinking the size of struct device_node,
-as part of reducing the devicetree memory usage.  As such, we need strong
-justification for adding anything to this struct.  For example, proof that
-there is a performance problem that can only be solved by increasing the
-memory usage.
-
--Frank
-
-
->  };
->  
->  #define MAX_PHANDLE_ARGS 16
-> 
-
+--
+Regards,
+Sudeep
