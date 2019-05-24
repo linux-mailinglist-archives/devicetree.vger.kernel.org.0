@@ -2,89 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8EA292B1
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C19929337
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:35:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388959AbfEXINh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 04:13:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50702 "EHLO mail.kernel.org"
+        id S2389046AbfEXIfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 04:35:41 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:37286 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389327AbfEXINg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 May 2019 04:13:36 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EA4A420665;
-        Fri, 24 May 2019 08:13:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558685615;
-        bh=YsDeliNo7Ubh4SkmiIuonqt/fecM2XRoPtu9XHwJW1g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xlJxGxBq//CNpb3pQoACWgIZn0+lfdCRzeG2tFHdG5TYsZEUxhCPhMMlh9ZOYQaPU
-         rxCD1Q+zZ5XZsAjdyLUV/JX3ZEPgblvIXsLuUHbJcpqogKUA/2i/oY4Z0iWgRRQzkO
-         fH4FD9e/fO+lCMOSA3vck3M6ZkZf85KmAuqvMA4c=
-Date:   Fri, 24 May 2019 10:13:33 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Jeffrey Hugo <jhugo@codeaurora.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andreas Schwab <schwab@suse.de>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        linux-riscv@lists.infradead.org,
+        id S2389514AbfEXIfl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 04:35:41 -0400
+Received: from g550jk.localnet (80-110-121-20.cgn.dynamic.surfer.at [80.110.121.20])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 6D2B1C1D14;
+        Fri, 24 May 2019 08:35:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1558686937; bh=8QxbOGfJLKmBY8BnGjqJHLbP9D2w96jkIDyZThAA41g=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Ojaeizz5pLdCcF0xdLCfW2ni1k4DaVA/6/5fp3iYD4hTrR7fARGyYCfz5XnQRDoHI
+         7h/ZuL2OpPXI3J+LHDxh1JlHJgpGe2DJBb1PlzoBfqK8WFhvQ3wa5it0XQv1AD4S2X
+         FKdfKRnUKtB9iNVgwby3tNXv0SssAzJNxWfoQYqE=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFT PATCH v5 3/5] cpu-topology: Move cpu topology code to
- common code.
-Message-ID: <20190524081333.GA15566@kroah.com>
-References: <20190524000653.13005-1-atish.patra@wdc.com>
- <20190524000653.13005-4-atish.patra@wdc.com>
+        "moderated list:ARM/Allwinner sunXi SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Add lradc node
+Date:   Fri, 24 May 2019 10:35:36 +0200
+Message-ID: <4343071.IDWclfcoxo@g550jk>
+In-Reply-To: <20190521142544.ma2xfu77bamk4hvc@flea>
+References: <20190518170929.24789-1-luca@z3ntu.xyz> <EF411F71-D257-41FC-9248-B0E3F686B6B9@z3ntu.xyz> <20190521142544.ma2xfu77bamk4hvc@flea>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190524000653.13005-4-atish.patra@wdc.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 05:06:50PM -0700, Atish Patra wrote:
-> Both RISC-V & ARM64 are using cpu-map device tree to describe
-> their cpu topology. It's better to move the relevant code to
-> a common place instead of duplicate code.
+On Dienstag, 21. Mai 2019 16:25:44 CEST Maxime Ripard wrote:
+> On Tue, May 21, 2019 at 03:52:47PM +0200, luca@z3ntu.xyz wrote:
+> > On May 21, 2019 3:09:55 PM GMT+02:00, Maxime Ripard 
+<maxime.ripard@bootlin.com> wrote:
+> > >On Tue, May 21, 2019 at 08:43:45AM +0200, luca@z3ntu.xyz wrote:
+> > >> On May 20, 2019 1:07:42 PM GMT+02:00, Maxime Ripard
+> > >
+> > ><maxime.ripard@bootlin.com> wrote:
+> > >> >On Sat, May 18, 2019 at 07:09:30PM +0200, Luca Weiss wrote:
+> > >> >> Add a node describing the KEYADC on the A64.
+> > >> >> 
+> > >> >> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > >> >> ---
+> > >> >> 
+> > >> >>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 7 +++++++
+> > >> >>  1 file changed, 7 insertions(+)
+> > >> >> 
+> > >> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > >> >
+> > >> >b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > >> >
+> > >> >> index 7734f70e1057..dc1bf8c1afb5 100644
+> > >> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > >> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+> > >> >> @@ -704,6 +704,13 @@
+> > >> >> 
+> > >> >>  			status = "disabled";
+> > >> >>  		
+> > >> >>  		};
+> > >> >> 
+> > >> >> +		lradc: lradc@1c21800 {
+> > >> >> +			compatible = "allwinner,sun4i-a10-lradc-
+keys";
+> > >> >> +			reg = <0x01c21800 0x100>;
+> > >> >> +			interrupts = <GIC_SPI 30 
+IRQ_TYPE_LEVEL_HIGH>;
+> > >> >> +			status = "disabled";
+> > >> >> +		};
+> > >> >> +
+> > >> >
+> > >> >The controller is pretty different on the A64 compared to the A10.
+> > >
+> > >The
+> > >
+> > >> >A10 has two channels for example, while the A64 has only one.
+> > >> >
+> > >> >It looks like the one in the A83t though, so you can use that
+> > >> >compatible instead.
+> > >> 
+> > >> Looking at the patch for the A83t, the only difference is that it
+> > >> uses a 3/4 instead of a 2/3 voltage divider, nothing is changed with
+> > >> the channels.
+> > >
+> > >I guess you can reuse the A83t compatible here then, and a more
+> > >specific a64 compatible in case we ever need to fix this.
+> > >
+> > >> But I'm also not sure which one (or a different one)
+> > >> is used from looking at the "A64 User Manual".
+> > >
+> > >I'm sorry, what are you referring to with "one" in that sentence?
+> > 
+> > Sorry, I meant I didn't find anything in the A64 user manual whether
+> > a 3/4 or a 2/3 voltage divider (or one with different values) is
+> > used on the A64.
 > 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> Tested-by: Jeffrey Hugo <jhugo@codeaurora.org>
-> ---
->  arch/arm64/include/asm/topology.h |  23 ---
->  arch/arm64/kernel/topology.c      | 303 +-----------------------------
->  drivers/base/arch_topology.c      | 296 +++++++++++++++++++++++++++++
->  include/linux/arch_topology.h     |  28 +++
->  include/linux/topology.h          |   1 +
->  5 files changed, 329 insertions(+), 322 deletions(-)
+> Ok :)
+> 
+> I guess you can just reuse the A83t compatible then, together with the
+> A64's.
+> 
+> Maxime
+> 
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
-What, now _I_ have to maintain drivers/base/arch_topology.c?  That's
-nice for everyone else, but not me :(
+Hi Maxime,
+I'd submit a v2 with these changes to v1 then:
+                lradc: lradc@1c21800 {
+-                       compatible = "allwinner,sun4i-a10-lradc-keys";
+-                       reg = <0x01c21800 0x100>;
++                       compatible = "allwinner,sun50i-a64-lradc-keys",
++                                    "allwinner,sun8i-a83t-r-lradc";
++                       reg = <0x01c21800 0x400>;
+                        interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+                        status = "disabled";
+                };
+Does that look okay?
+The reg change is due to me not spotting the address being 0x01C2 
+1800---0x01C2 1BFF, so the size should be 0x400 and not 0x100.
 
-Ugh.
+Thanks for the feedback,
+Luca
 
-Anyway, what are you wanting to happen to this series?  I think we need
-some ARM people to sign off on it before I can take the whole thing,
-right?
 
-thanks,
-
-greg k-h
