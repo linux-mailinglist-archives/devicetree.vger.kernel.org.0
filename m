@@ -2,146 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DBE729F36
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 21:41:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7ED29F43
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 21:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730084AbfEXTlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 15:41:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52784 "EHLO mail.kernel.org"
+        id S2391706AbfEXTmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 15:42:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53582 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729597AbfEXTlv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 May 2019 15:41:51 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        id S2391705AbfEXTmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 15:42:54 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A36732184E;
-        Fri, 24 May 2019 19:41:49 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7194621871;
+        Fri, 24 May 2019 19:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558726909;
-        bh=CkGzYYO+vGgbv0d+nRAEF3GYLYvk85XbDtSLeEjkPq4=;
+        s=default; t=1558726973;
+        bh=P4F0yOxDnt7KgIgixW6cWq/d7ndhyoPDVMiTUzFfBsA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=wJ2EFxVFh2WeG6rUfgp6P/V3ObUJVG290SC5oaznWPy/Ay1wlCEXjZdD/HBD4uAv7
-         2Lw0EPluNUS3LjELueSW6G41HIGvz7obiqUTCCCW4cbKBUGxjHt97L1OM1LciQWqin
-         IUaKG2tThRXdDXZ3Tqk6jv4dNm0vSciLeKZZQ/oU=
-Received: by mail-qk1-f173.google.com with SMTP id p26so6660365qkj.5;
-        Fri, 24 May 2019 12:41:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAXrl1ZEnarCX7K7yKGCwb5ezDflgbmxYtkZ2VWsg2DriqPP7phC
-        BHoLXpD1gL8l/Dca1Q3egDrke3tCuYevk/2SdA==
-X-Google-Smtp-Source: APXvYqw9CzhKv4gwvm0e+yC8SQI5HZrcGpsWEfdqVf/JQYaDYeEHbOhQseeOXnlPKf/EjH1EIdSLrtfahMdHnv9GdQQ=
-X-Received: by 2002:ac8:7688:: with SMTP id g8mr59817341qtr.224.1558726908834;
- Fri, 24 May 2019 12:41:48 -0700 (PDT)
+        b=SFwIDF4Aw3Jd2KfBBerNI895AiBx9F1rWeur2SqXk3w1aiv7VZv6/fqCeVLf/CSxf
+         kmvVoELfJgGout+uePXkYNs86jDeyaz4q6NZQp3NbUcDYCsM5NaPrDDn+kRM2P+meO
+         3qzh4XVC8UGpU65Jp9qWaIUBYz9HOcjkmnWruQRY=
+Received: by mail-qk1-f171.google.com with SMTP id m18so9211362qki.8;
+        Fri, 24 May 2019 12:42:53 -0700 (PDT)
+X-Gm-Message-State: APjAAAX4+vM+xN3GG5i0S5MpSuTfIw0Vsrg/E56vX4U7/VdaRlFre+01
+        qjB9J1N2IFxRMXDM6t0hiiZSvHJvJREkVPURcw==
+X-Google-Smtp-Source: APXvYqxP2ozbNjdQZTI8z07dp169gKEcH3wTgMaVgZJd+xk2XZr48eTlRy8nhRjK7gAAZkNfMHlatuL1g+sO3Rt6VYs=
+X-Received: by 2002:aed:3f5b:: with SMTP id q27mr86664137qtf.143.1558726972684;
+ Fri, 24 May 2019 12:42:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190524162229.9185-1-linus.walleij@linaro.org>
-In-Reply-To: <20190524162229.9185-1-linus.walleij@linaro.org>
+References: <20190524162651.28189-1-ard.biesheuvel@linaro.org> <20190524162651.28189-6-ard.biesheuvel@linaro.org>
+In-Reply-To: <20190524162651.28189-6-ard.biesheuvel@linaro.org>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 24 May 2019 14:41:36 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+bZsJ+SBiJa2hzXU9RkTNBhDk_Uv_Fk6V6DqRGh-xPRg@mail.gmail.com>
-Message-ID: <CAL_Jsq+bZsJ+SBiJa2hzXU9RkTNBhDk_Uv_Fk6V6DqRGh-xPRg@mail.gmail.com>
-Subject: Re: [PATCH 7/8] net: ethernet: ixp4xx: Add DT bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     netdev <netdev@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Krzysztof Halasa <khalasa@piap.pl>, devicetree@vger.kernel.org
+Date:   Fri, 24 May 2019 14:42:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJZwRkq7ciOw101wyHCq1gbWBCZ-PKyLZajgRg_wLG0Vg@mail.gmail.com>
+Message-ID: <CAL_JsqJZwRkq7ciOw101wyHCq1gbWBCZ-PKyLZajgRg_wLG0Vg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/6] dt-bindings: add Atmel SHA204A I2C crypto processor
+To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Cc:     "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 11:22 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Fri, May 24, 2019 at 11:27 AM Ard Biesheuvel
+<ard.biesheuvel@linaro.org> wrote:
 >
-> This adds device tree bindings for the IXP4xx ethernet.
+> Add a compatible string for the Atmel SHA204A I2C crypto processor.
 >
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
 > ---
->  .../bindings/net/intel,ixp4xx-ethernet.yaml   | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
->
-> diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-> new file mode 100644
-> index 000000000000..4575a7e5aa4a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2018 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/net/intel-ixp4xx-ethernet.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Intel IXP4xx ethernet
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  The Intel IXP4xx ethernet makes use of the IXP4xx NPE (Network
-> +  Processing Engine) and the IXP4xx Queue Mangager to process
-> +  the ethernet frames. It can optionally contain an MDIO bus to
-> +  talk to PHYs.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - const: intel,ixp4xx-ethernet
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-You can drop the oneOf and items.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: Ethernet MMIO address range
-> +
-> +  queue-rx:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-
-This doesn't actually do what you think it is doing. A $ref plus
-additional constraints need to be under an 'allOf' list.
-
-> +    description: phandle to the RX queue on the NPE
-
-But this is a phandle plus 1 cell, right?
-
-- allOf:
-    - $ref: '/schemas/types.yaml#/definitions/phandle-array'
-    - items:
-        - items:
-            - description: phandle to the RX queue on the NPE
-            - description: whatever the cell contains
-              enum: [ 1, 2, 3, 4 ] # any constraints you can put on the cell
-
-This implicitly says you have 1 of a phandle + 1 cell.
-
-I need to add this to example-schema.yaml...
-
-> +
-> +  queue-txready:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    maxItems: 1
-> +    description: phandle to the TX READY queue on the NPE
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - queue-rx
-> +  - queue-txready
-> +
-> +examples:
-> +  - |
-> +    ethernet@c8009000 {
-> +        compatible = "intel,ixp4xx-ethernet";
-> +        reg = <0xc8009000 0x1000>;
-> +        status = "disabled";
-
-Don't show status in examples.
-
-> +        queue-rx = <&qmgr 3>;
-> +        queue-txready = <&qmgr 20>;
-> +    };
-> --
-> 2.20.1
->
+Reviewed-by: Rob Herring <robh@kernel.org>
