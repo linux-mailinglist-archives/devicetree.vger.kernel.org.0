@@ -2,134 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8214F28E56
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 02:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B67B528E6F
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 03:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731725AbfEXA3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 20:29:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35810 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731722AbfEXA3D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 20:29:03 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E3A072184B;
-        Fri, 24 May 2019 00:29:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558657742;
-        bh=uGkMtxhX7YO2eDhvf7fl/k0LrtSWRIv+eGoSDqaqQOY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UNQDL0H+2M7TjaEQi1B8bX6lLpqV4Y9WkDSUwHbeJPcWeDbLRxkluFvdBrJaBF9a0
-         Oo5nSF50ZTDOuT/6kPDGgNZztGZF76NF7PYi28942nKarwY1R5Vszr/pd8qFW58bLl
-         a4Rm0eYvluA3yfjyx6ni6KwMFjAtezETzuNExl24=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     dmaengine@vger.kernel.org
-Cc:     dinguyen@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, vkoul@kernel.org
-Subject: [PATCH 2/2] dmagengine: pl330: add code to get reset property
-Date:   Thu, 23 May 2019 19:28:47 -0500
-Message-Id: <20190524002847.30961-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
-In-Reply-To: <20190524002847.30961-1-dinguyen@kernel.org>
-References: <20190524002847.30961-1-dinguyen@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1731637AbfEXBBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 21:01:31 -0400
+Received: from mail-oi1-f201.google.com ([209.85.167.201]:54233 "EHLO
+        mail-oi1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731632AbfEXBBb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 May 2019 21:01:31 -0400
+Received: by mail-oi1-f201.google.com with SMTP id k66so3039605oib.20
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2019 18:01:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=DkFNL0Lxas2CTOjiDN2hgVYuR42qb65M2nUWhRx2AoU=;
+        b=naestgbM/OBAVNz1Xr0RTA3sfhmM/mtWyEzsKef0nniKmd4+t3sffScnviOf+ToOj6
+         tOIX9Jge830iP/Qx3nWIBsT8gyLyq4siWX5dSrDzdKj7S0sovydIwoRpms5YDKIf0pfy
+         Gfw6wg0xhvM5vCghXWxI3jyAGUQjQNf8Ntyyl+EpioqdjVPKohz9Oq7Sk2BdKxtAatvj
+         ZNfUn9e16UZMg6/VenRWfxWqJQpFpfVP18gBAZbTlH0PjloOC7QPwAKxqfbnpg7zL8Li
+         uf77Up71hdyzInQEJZGuBaGhLPHn294TJ4vkoyLWorucJzEFC5rlxbYimg8mt6U0Gily
+         eqkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=DkFNL0Lxas2CTOjiDN2hgVYuR42qb65M2nUWhRx2AoU=;
+        b=TUNrdYcCrMDHzbtuR5fggcLN24A4LxbblXoA1QNM9ojwquwFOvUhjZsiKwEAo3Zlxv
+         ImbltDXkOQbKFotrmCGpJKe5JiBFGgPr2retphdMwxNx9N5M9MduJikBWxrSidoLKlkG
+         at9u2Bj1FyQASsVqkqhd5H0rLUCxi89jLJY/n8TqcNF/7OXP2fXy4HRQ0qGGHhHVhuBS
+         oTGsYZbp9ftmz+hE/VR0BqtgHRGKNNPV3tyv3Rcp2JiO8tFZWRGi+Ai6dJqMNmu/FJDG
+         wSm55394qNphz+cf6Qar5tJy+kdm00rttl02gdCrU6vUY/dJCkIHFVyMroyBu3lNfDTq
+         lqjA==
+X-Gm-Message-State: APjAAAUasXUfjtFqVnZ9EjSl9qwfVxVxFueIny7bSWetnhyyepDIymkF
+        RlKKXRmKfm5r04k8Ev2Z6rXdDrXg7ztsxX8=
+X-Google-Smtp-Source: APXvYqyyUsxe0pTs83AlvyQk++6cV7rA90W86NXVfY7I+5cJbG44NrjLHC9M9WVuTGQO48znvQvvCcBGRwOGSPc=
+X-Received: by 2002:a9d:7acd:: with SMTP id m13mr12297317otn.336.1558659690736;
+ Thu, 23 May 2019 18:01:30 -0700 (PDT)
+Date:   Thu, 23 May 2019 18:01:11 -0700
+Message-Id: <20190524010117.225219-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.rc1.257.g3120a18244-goog
+Subject: [PATCH v1 0/5] Solve postboot supplier cleanup and optimize probe ordering
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DMA controller on some SoCs can be held in reset, and thus requires
-the reset signal(s) to deasserted. Most SoCs will have just one reset
-signal, but there are others, i.e. Arria10/Stratix10 will have an
-additional reset signal, referred to as the OCP.
+Add a generic "depends-on" property that allows specifying mandatory
+functional dependencies between devices. Add device-links after the
+devices are created (but before they are probed) by looking at this
+"depends-on" property.
 
-Add code to get the reset property from the device tree for deassert and
-assert.
+This property is used instead of existing DT properties that specify
+phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
+is because not all resources referred to by existing DT properties are
+mandatory functional dependencies. Some devices/drivers might be able
+to operate with reduced functionality when some of the resources
+aren't available. For example, a device could operate in polling mode
+if no IRQ is available, a device could skip doing power management if
+clock or voltage control isn't available and they are left on, etc.
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- drivers/dma/pl330.c | 38 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+So, adding mandatory functional dependency links between devices by
+looking at referred phandles in DT properties won't work as it would
+prevent probing devices that could be probed. By having an explicit
+depends-on property, we can handle these cases correctly.
 
-diff --git a/drivers/dma/pl330.c b/drivers/dma/pl330.c
-index 6e6837214210..6018c43e785d 100644
---- a/drivers/dma/pl330.c
-+++ b/drivers/dma/pl330.c
-@@ -29,6 +29,7 @@
- #include <linux/err.h>
- #include <linux/pm_runtime.h>
- #include <linux/bug.h>
-+#include <linux/reset.h>
+Having functional dependencies explicitly called out in DT and
+automatically added before the devices are probed, provides the
+following benefits:
+
+- Optimizes device probe order and avoids the useless work of
+  attempting probes of devices that will not probe successfully
+  (because their suppliers aren't present or haven't probed yet).
+
+  For example, in a commonly available mobile SoC, registering just
+  one consumer device's driver at an initcall level earlier than the
+  supplier device's driver causes 11 failed probe attempts before the
+  consumer device probes successfully. This was with a kernel with all
+  the drivers statically compiled in. This problem gets a lot worse if
+  all the drivers are loaded as modules without direct symbol
+  dependencies.
+
+- Supplier devices like clock providers, regulators providers, etc
+  need to keep the resources they provide active and at a particular
+  state(s) during boot up even if their current set of consumers don't
+  request the resource to be active. This is because the rest of the
+  consumers might not have probed yet and turning off the resource
+  before all the consumers have probed could lead to a hang or
+  undesired user experience.
+
+  Some frameworks (Eg: regulator) handle this today by turning off
+  "unused" resources at late_initcall_sync and hoping all the devices
+  have probed by then. This is not a valid assumption for systems with
+  loadable modules. Other frameworks (Eg: clock) just don't handle
+  this due to the lack of a clear signal for when they can turn off
+  resources. This leads to downstream hacks to handle cases like this
+  that can easily be solved in the upstream kernel.
+
+  By linking devices before they are probed, we give suppliers a clear
+  count of the number of dependent consumers. Once all of the
+  consumers are active, the suppliers can turn off the unused
+  resources without making assumptions about the number of consumers.
+
+By default we just add device-links to track "driver presence" (probe
+succeeded) of the supplier device. If any other functionality provided
+by device-links are needed, it is left to the consumer/supplier
+devices to change the link when they probe.
  
- #include "dmaengine.h"
- #define PL330_MAX_CHAN		8
-@@ -500,6 +501,9 @@ struct pl330_dmac {
- 	unsigned int num_peripherals;
- 	struct dma_pl330_chan *peripherals; /* keep at end */
- 	int quirks;
-+
-+	struct reset_control	*rstc;
-+	struct reset_control	*rstc_ocp;
- };
- 
- static struct pl330_of_quirks {
-@@ -3028,6 +3032,30 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
- 
- 	amba_set_drvdata(adev, pl330);
- 
-+	pl330->rstc = devm_reset_control_get_optional(&adev->dev, "dma");
-+	if (IS_ERR(pl330->rstc)) {
-+		dev_err(&adev->dev, "No reset controller specified.\n");
-+		return PTR_ERR(pl330->rstc);
-+	} else {
-+		ret = reset_control_deassert(pl330->rstc);
-+		if (ret) {
-+			dev_err(&adev->dev, "Couldn't deassert the device from reset!\n");
-+			return ret;
-+		}
-+	}
-+
-+	pl330->rstc_ocp = devm_reset_control_get_optional(&adev->dev, "dma-ocp");
-+	if (IS_ERR(pl330->rstc_ocp)) {
-+		dev_err(&adev->dev, "No reset controller specified.\n");
-+		return PTR_ERR(pl330->rstc_ocp);
-+	} else {
-+		ret = reset_control_deassert(pl330->rstc_ocp);
-+		if (ret) {
-+			dev_err(&adev->dev, "Couldn't deassert the device from OCP reset!\n");
-+			return ret;
-+		}
-+	}
-+
- 	for (i = 0; i < AMBA_NR_IRQS; i++) {
- 		irq = adev->irq[i];
- 		if (irq) {
-@@ -3168,6 +3196,11 @@ pl330_probe(struct amba_device *adev, const struct amba_id *id)
- probe_err2:
- 	pl330_del(pl330);
- 
-+	if (pl330->rstc_ocp)
-+		reset_control_assert(pl330->rstc_ocp);
-+
-+	if (pl330->rstc)
-+		reset_control_assert(pl330->rstc);
- 	return ret;
- }
- 
-@@ -3206,6 +3239,11 @@ static int pl330_remove(struct amba_device *adev)
- 
- 	pl330_del(pl330);
- 
-+	if (pl330->rstc_ocp)
-+		reset_control_assert(pl330->rstc_ocp);
-+
-+	if (pl330->rstc)
-+		reset_control_assert(pl330->rstc);
- 	return 0;
- }
- 
+
+Saravana Kannan (5):
+  of/platform: Speed up of_find_device_by_node()
+  driver core: Add device links support for pending links to suppliers
+  dt-bindings: Add depends-on property
+  of/platform: Add functional dependency link from "depends-on" property
+  driver core: Add sync_state driver/bus callback
+
+ .../devicetree/bindings/depends-on.txt        |  26 +++++
+ drivers/base/core.c                           | 106 ++++++++++++++++++
+ drivers/of/platform.c                         |  75 ++++++++++++-
+ include/linux/device.h                        |  24 ++++
+ include/linux/of.h                            |   3 +
+ 5 files changed, 233 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/depends-on.txt
+
 -- 
-2.20.0
+2.22.0.rc1.257.g3120a18244-goog
 
