@@ -2,128 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5703129877
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 15:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8DDA29881
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 15:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391219AbfEXNEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 09:04:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57588 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391193AbfEXNEz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 May 2019 09:04:55 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 762912184E;
-        Fri, 24 May 2019 13:04:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558703094;
-        bh=l4t6CtyS8OAuOzB3K8zNqJtlqJ5eH46BJbroNn6tWdo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=B5GkERmExuEsL0nNeOynZFaOkUNEmjjvC5mPYRnQCgCbA4lWg6zPzs9Ir/UW90vI/
-         i7tb8OciJvD6Bl2srehW9BPgaGOOJsa1wbhPn/YRnDvmE8gfh3R4MwYv58j41IxwnB
-         IjMj2kAKQHlpg2Xafx6ZDVO4tUGM9LnYWgn7oEko=
-Received: by mail-qk1-f173.google.com with SMTP id t64so7204572qkh.1;
-        Fri, 24 May 2019 06:04:54 -0700 (PDT)
-X-Gm-Message-State: APjAAAWS16+CGTnerKdIVi3/0Q41b22p3gWFFAFzRZCaE1eO5BFjUIAL
-        NuO0XDDo25QIXRuNuc966cZw2sh8DZiHwjLlAg==
-X-Google-Smtp-Source: APXvYqzttVxi8ocThZlAkAUMLzwoMvppPQwP1Jl3JDk64KXopdTDxe6RTxzWqF0DCJ3fC4NAQRjG2PeZppcG4AEApO0=
-X-Received: by 2002:a0c:ad23:: with SMTP id u32mr46430375qvc.39.1558703093679;
- Fri, 24 May 2019 06:04:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190524010117.225219-1-saravanak@google.com>
-In-Reply-To: <20190524010117.225219-1-saravanak@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 24 May 2019 08:04:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKiXEKECMZpZR3j+uRqnsec5f0vN301tagT687HRhu6Nw@mail.gmail.com>
-Message-ID: <CAL_JsqKiXEKECMZpZR3j+uRqnsec5f0vN301tagT687HRhu6Nw@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] Solve postboot supplier cleanup and optimize probe ordering
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+        id S2391045AbfEXNGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 09:06:32 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:34061 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391193AbfEXNGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 09:06:32 -0400
+Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id C20A420000F;
+        Fri, 24 May 2019 13:06:23 +0000 (UTC)
+Date:   Fri, 24 May 2019 15:06:23 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Torsten Duwe <duwe@lst.de>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Harald Geyer <harald@ccbib.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/6] arm64: dts: allwinner: a64: enable ANX6345 bridge on
+ Teres-I
+Message-ID: <20190524130623.dpkg5z5rdyc2bno4@flea>
+References: <20190523065013.2719D68B05@newverein.lst.de>
+ <20190523065404.BB60F68B20@newverein.lst.de>
+ <CA+E=qVdh-=C5zOYWYj95jLN51EaXFS6B+CQ101-f64q5QmgN3g@mail.gmail.com>
+ <20190524121359.GE15685@lst.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="fsxi6i2r62yvgbvk"
+Content-Disposition: inline
+In-Reply-To: <20190524121359.GE15685@lst.de>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 8:01 PM Saravana Kannan <saravanak@google.com> wrote:
+
+--fsxi6i2r62yvgbvk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Fri, May 24, 2019 at 02:13:59PM +0200, Torsten Duwe wrote:
+> On Thu, May 23, 2019 at 07:48:03AM -0700, Vasily Khoruzhick wrote:
+> > On Wed, May 22, 2019 at 11:54 PM Torsten Duwe <duwe@lst.de> wrote:
+> > >
+> > >
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+> > > @@ -65,6 +65,21 @@
+> > >                 };
+> > >         };
+> > >
+> > > +       panel: panel {
+> > > +               compatible ="innolux,n116bge", "simple-panel";
+> >
+> > IIRC Rob wanted it to be edp-connector, not simple-panel. Also you
+> > need to introduce edp-connector binding.
 >
-> Add a generic "depends-on" property that allows specifying mandatory
-> functional dependencies between devices. Add device-links after the
-> devices are created (but before they are probed) by looking at this
-> "depends-on" property.
+> This line is identically found in
+> arch/arm/boot/dts/rk3288-veyron-chromebook.dtsi and
+> arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
 
-The DT already has dependency information. A node with 'clocks'
-property has its dependency right there. We should use that. We don't
-need to duplicate the information.
+That's not really an argument though. These are using rather old
+bindings, and realising that they are flawed and fixing these flaws is
+a natural process.
 
-> This property is used instead of existing DT properties that specify
-> phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
-> is because not all resources referred to by existing DT properties are
-> mandatory functional dependencies. Some devices/drivers might be able
-> to operate with reduced functionality when some of the resources
-> aren't available. For example, a device could operate in polling mode
-> if no IRQ is available, a device could skip doing power management if
-> clock or voltage control isn't available and they are left on, etc.
+Maxime
 
-Yeah, but none of these examples are typically what you'd want to
-happen. These cases are a property of the OS, not the DT. For example,
-until recently, If you added pinctrl bindings to your DT, the kernel
-would no longer boot because it would be looking for pinctrl driver.
-That's wrong because the DT should not be coupled to the OS like that.
-Adding this property will cause the same problem.
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-> So, adding mandatory functional dependency links between devices by
-> looking at referred phandles in DT properties won't work as it would
-> prevent probing devices that could be probed. By having an explicit
-> depends-on property, we can handle these cases correctly.
->
-> Having functional dependencies explicitly called out in DT and
-> automatically added before the devices are probed, provides the
-> following benefits:
->
-> - Optimizes device probe order and avoids the useless work of
->   attempting probes of devices that will not probe successfully
->   (because their suppliers aren't present or haven't probed yet).
->
->   For example, in a commonly available mobile SoC, registering just
->   one consumer device's driver at an initcall level earlier than the
->   supplier device's driver causes 11 failed probe attempts before the
->   consumer device probes successfully. This was with a kernel with all
->   the drivers statically compiled in. This problem gets a lot worse if
->   all the drivers are loaded as modules without direct symbol
->   dependencies.
+--fsxi6i2r62yvgbvk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Do you have data on how much time is spent. Past 'smarter probing'
-attempts have not shown a significant difference.
+-----BEGIN PGP SIGNATURE-----
 
-> - Supplier devices like clock providers, regulators providers, etc
->   need to keep the resources they provide active and at a particular
->   state(s) during boot up even if their current set of consumers don't
->   request the resource to be active. This is because the rest of the
->   consumers might not have probed yet and turning off the resource
->   before all the consumers have probed could lead to a hang or
->   undesired user experience.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOfsTwAKCRDj7w1vZxhR
+xRybAP9iKNkCqyhXQ6xIsRZgZ0sNXT+q0aHuuuRwgIKZaEJwkwEAqakTF1EIu2Pr
+7DcRHe8aaX/5zfuRYUOdKKZ/wNaOdQ0=
+=Mlxd
+-----END PGP SIGNATURE-----
 
-We already know generally what devices are dependencies because you
-just listed them. Why don't we make the kernel smarter by
-instantiating these core devices/drivers first instead of relying on
-initcall and link order.
-
->   Some frameworks (Eg: regulator) handle this today by turning off
->   "unused" resources at late_initcall_sync and hoping all the devices
->   have probed by then. This is not a valid assumption for systems with
->   loadable modules. Other frameworks (Eg: clock) just don't handle
->   this due to the lack of a clear signal for when they can turn off
->   resources. This leads to downstream hacks to handle cases like this
->   that can easily be solved in the upstream kernel.
-
-IMO, we should get rid of this auto disabling.
-
-Rob
+--fsxi6i2r62yvgbvk--
