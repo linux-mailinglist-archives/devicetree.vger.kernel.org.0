@@ -2,91 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9D529280
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:11:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8EA292B1
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:13:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389215AbfEXIK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 04:10:56 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:42643 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389142AbfEXIKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 04:10:55 -0400
-X-Originating-IP: 90.88.147.134
-Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 2CBD3FF80B;
-        Fri, 24 May 2019 08:10:50 +0000 (UTC)
-Date:   Fri, 24 May 2019 10:10:49 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+        id S2388959AbfEXINh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 04:13:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50702 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389327AbfEXINg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 04:13:36 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EA4A420665;
+        Fri, 24 May 2019 08:13:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558685615;
+        bh=YsDeliNo7Ubh4SkmiIuonqt/fecM2XRoPtu9XHwJW1g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=xlJxGxBq//CNpb3pQoACWgIZn0+lfdCRzeG2tFHdG5TYsZEUxhCPhMMlh9ZOYQaPU
+         rxCD1Q+zZ5XZsAjdyLUV/JX3ZEPgblvIXsLuUHbJcpqogKUA/2i/oY4Z0iWgRRQzkO
+         fH4FD9e/fO+lCMOSA3vck3M6ZkZf85KmAuqvMA4c=
+Date:   Fri, 24 May 2019 10:13:33 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Atish Patra <atish.patra@wdc.com>
+Cc:     linux-kernel@vger.kernel.org, Jeffrey Hugo <jhugo@codeaurora.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andreas Schwab <schwab@suse.de>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>,
-        netdev@vger.kernel.org,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/8] dt-bindings: net: Add a YAML schemas for the generic
- PHY options
-Message-ID: <20190524081049.6obsqdeywmx4io4k@flea>
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <aa5ec90854429c2d9e2c565604243e1b10cfd94b.1558605170.git-series.maxime.ripard@bootlin.com>
- <e39b7a35-3235-6040-b3c1-648897fabc70@gmail.com>
+Subject: Re: [RFT PATCH v5 3/5] cpu-topology: Move cpu topology code to
+ common code.
+Message-ID: <20190524081333.GA15566@kroah.com>
+References: <20190524000653.13005-1-atish.patra@wdc.com>
+ <20190524000653.13005-4-atish.patra@wdc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nhmqncggqckfikyo"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e39b7a35-3235-6040-b3c1-648897fabc70@gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190524000653.13005-4-atish.patra@wdc.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 23, 2019 at 05:06:50PM -0700, Atish Patra wrote:
+> Both RISC-V & ARM64 are using cpu-map device tree to describe
+> their cpu topology. It's better to move the relevant code to
+> a common place instead of duplicate code.
+> 
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> Tested-by: Jeffrey Hugo <jhugo@codeaurora.org>
+> ---
+>  arch/arm64/include/asm/topology.h |  23 ---
+>  arch/arm64/kernel/topology.c      | 303 +-----------------------------
+>  drivers/base/arch_topology.c      | 296 +++++++++++++++++++++++++++++
+>  include/linux/arch_topology.h     |  28 +++
+>  include/linux/topology.h          |   1 +
+>  5 files changed, 329 insertions(+), 322 deletions(-)
 
---nhmqncggqckfikyo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+What, now _I_ have to maintain drivers/base/arch_topology.c?  That's
+nice for everyone else, but not me :(
 
-Hi Florian,
+Ugh.
 
-On Thu, May 23, 2019 at 11:16:55AM -0700, Florian Fainelli wrote:
-> On 5/23/19 2:56 AM, Maxime Ripard wrote:
-> > The networking PHYs have a number of available device tree properties that
-> > can be used in their device tree node. Add a YAML schemas for those.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 148 +++++++++-
-> >  Documentation/devicetree/bindings/net/phy.txt           |  80 +-----
-> >  2 files changed, 149 insertions(+), 79 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/ethernet-phy.yaml
->
-> Updating the PHY Library section of the MAINTAINERS file to include that
-> binding document (not sure why it was not there) would be nice.
+Anyway, what are you wanting to happen to this series?  I think we need
+some ARM people to sign off on it before I can take the whole thing,
+right?
 
-Sure, I'll do it, thanks!
-Maxime
+thanks,
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nhmqncggqckfikyo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOenCQAKCRDj7w1vZxhR
-xUgbAP9wwE5sdteTuWzmvFDeY+ZJM3sYeePKoRl395ve/Qr3oAD9F9BoZLzYs5Ni
-OuDix3LenJQC4xZN88XtLfwtItIvAgA=
-=k8+g
------END PGP SIGNATURE-----
-
---nhmqncggqckfikyo--
+greg k-h
