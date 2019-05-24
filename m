@@ -2,150 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 358372A0FE
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 00:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 127D32A114
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 00:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730068AbfEXWKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 18:10:07 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:40191 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727091AbfEXWKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 18:10:07 -0400
-Received: by mail-oi1-f193.google.com with SMTP id r136so8127502oie.7
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 15:10:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LisRJTREeElarjcXKZC7fl+vtn+Mo2sCNeHPnzLj33A=;
-        b=QDI3F29CT2xbd8l417LVX21hqEO0X4lbbyLIBh0TCAA5kKQ8nKiaXLQBylAT+wZ1nH
-         a34kWCwnrpYG8/8D6uU97/7/hznFs/oQQfCu+AJjRHNeLchLjaILjqbK3mxoWWlu7gGL
-         J9HDm5/OlGkklpyLrQdrMb+bnvYfwbPHR99QyXgGqlvT8a0M5KP7PZDCEcFiWmWdKnxQ
-         WEHYXi3SOtdc9S6KyPBm8IoHiLlR95MdpU4daZSOA5aoaTC91qOMdfRpuNLAjGU4IRc3
-         kcDE8WnJyjwLlL5sweduBFnAq5N1JHTeRI1XG7gEZXM+GvfAWITapVtq+flu+teb2cHH
-         V38Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LisRJTREeElarjcXKZC7fl+vtn+Mo2sCNeHPnzLj33A=;
-        b=ebZEmmKr+SEiXQZ0F61fk9TuuSljgI85tS5yXfF/Hf5T0qn0ThYlhVbyNN+E2jlRZf
-         gDVAO/7nnaSTbkQ/e8L6XjLYgQs3kAZmFb7J+7LRgAYa85oloxokVyRqQa+A+0O7HGk2
-         AHKaDzP+x0O3tbFwNZwtl2mxnflv69kdRYPgJ+QsBxxPGtH5sUETDMxS/mG5uduDHsAp
-         DYk4+CzmYNH7FwbB7fmAXJh3WcFZymcJ3lVwl8HFQPmWAVp4K5PNTtGMgTzLQDnJg+TO
-         lZwBNDiBlOdnrv2l8SADO8mR+tstZkrXf44wle6Li1Oq1QH7UiFlHk/EESKRWJszgoub
-         XHkw==
-X-Gm-Message-State: APjAAAVwI48gxeKgC7OzGnAVzD7IVknX/fYD+3Jx917TVCdLKkGAJv+M
-        VOrrH0nqlqqkO2V+5g4fPesCxsiKo+IuXpUvubekrw==
-X-Google-Smtp-Source: APXvYqyZdhjdDutgv+h5FjevhFuR56ah0TQQGzA79IF2t7jctEwDhWSQrdnxSQUtwR3A8RGA0+aWb56kya2cx3qLdG8=
-X-Received: by 2002:aca:da45:: with SMTP id r66mr1131120oig.24.1558735805773;
- Fri, 24 May 2019 15:10:05 -0700 (PDT)
+        id S2404267AbfEXWUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 18:20:46 -0400
+Received: from node.akkea.ca ([192.155.83.177]:58206 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404176AbfEXWUp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 18:20:45 -0400
+Received: by node.akkea.ca (Postfix, from userid 33)
+        id 734D24E204B; Fri, 24 May 2019 22:20:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1558736445; bh=p20jB4BQU4AvtbWwn3XeTjPaRii6ZgAKH7/dXJoEJig=;
+        h=To:Subject:Date:From:Cc:In-Reply-To:References;
+        b=bv+fvRCEnBF18NNZaLElZPetLVBlma51ewNgSeJNF1Qvp7gLdBtgiTJau8DCU5HMK
+         tQ1T5dyWfnVgopujkczBCJZ4f2vyPlhBNzBh5raJh2ecZaxp81wzQVtcNnjWx4PCXv
+         gJUumLG5Tk7k9rsX4g57s2Io3/u5jqyQvRd7EouY=
+To:     Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH v13 2/4] arm64: dts: fsl: librem5: Add a device tree for  the Librem5 devkit
+X-PHP-Originating-Script: 1000:rcube.php
 MIME-Version: 1.0
-References: <20190524010117.225219-1-saravanak@google.com> <20190524010117.225219-4-saravanak@google.com>
- <20190524150135.GD15566@lakrids.cambridge.arm.com>
-In-Reply-To: <20190524150135.GD15566@lakrids.cambridge.arm.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 24 May 2019 15:09:28 -0700
-Message-ID: <CAGETcx-DgM2M2iA7x=2nsGu4LVcFAN+o=Wgg+tP+fOUv+D-vLQ@mail.gmail.com>
-Subject: Re: [PATCH v1 3/5] dt-bindings: Add depends-on property
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 24 May 2019 15:20:45 -0700
+From:   Angus Ainslie <angus@akkea.ca>
+Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1e6c0664949f38452b8f14b901bff513@www.akkea.ca>
+References: <20190520142330.3556-1-angus@akkea.ca>
+ <20190520142330.3556-3-angus@akkea.ca>
+ <20190523191926.GB3803@xo-6d-61-c0.localdomain>
+ <1e6c0664949f38452b8f14b901bff513@www.akkea.ca>
+Message-ID: <64cc01b6cc6590e328e7b488bedb9dc8@www.akkea.ca>
+X-Sender: angus@akkea.ca
+User-Agent: Roundcube Webmail/1.1.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 8:01 AM Mark Rutland <mark.rutland@arm.com> wrote:
->
-> On Thu, May 23, 2019 at 06:01:14PM -0700, Saravana Kannan wrote:
-> > The depends-on property is used to list the mandatory functional
-> > dependencies of a consumer device on zero or more supplier devices.
-> >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  .../devicetree/bindings/depends-on.txt        | 26 +++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/depends-on.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/depends-on.txt b/Documentation/devicetree/bindings/depends-on.txt
-> > new file mode 100644
-> > index 000000000000..1cbddd11cf17
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/depends-on.txt
-> > @@ -0,0 +1,26 @@
-> > +Functional dependency linking
-> > +=============================
-> > +
-> > +Apart from parent-child relationships, devices (consumers) often have
-> > +functional dependencies on other devices (suppliers). Common examples of
-> > +suppliers are clock, regulators, pinctrl, etc. However not all of them are
-> > +dependencies with well defined devicetree bindings.
->
-> For clocks, regualtors, and pinctrl, that dependency is already implicit
-> in the consumer node's properties. We should be able to derive those
-> dependencies within the kernel.
->
-> Can you give an example of where a dependency is not implicit in an
-> existing binding?
+Hi Pavel,
 
-I already gave the IRQ example. But if that's not good I replied to
-other emails with a clock providers example that's based on real
-hardware.
+On 2019-05-24 15:00, Angus Ainslie wrote:
+> Hi Pavel,
+> 
+> On 2019-05-23 12:19, Pavel Machek wrote:
+>> Hi!
+>> 
+>>> - LEDs
+>>> - gyro
+>>> - magnetometer
+>> 
+>>> +	leds {
+>>> +		compatible = "gpio-leds";
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&pinctrl_gpio_leds>;
+>>> +
+>>> +		led1 {
+>>> +			label = "LED 1";
+>> 
+>> So, what kind of LED do you have, and what color is it? label should
+>> probably be something like
+>> notify:green.
+>> 
+> 
+> As we don't have a specific use for these yet does it really matter if
+> there is a colour or a number associated with them ?
+> 
+>>> +	charger@6b { /* bq25896 */
+>>> +		compatible = "ti,bq25890";
+>>> +		reg = <0x6b>;
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&pinctrl_charger>;
+>>> +		interrupt-parent = <&gpio3>;
+>>> +		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>>> +		ti,battery-regulation-voltage = <4192000>; /* 4.192V */
+>>> +		ti,charge-current = <1600000>; /* 1.6 A */
+>> 
+>> No space before A, for consistency.
+>> 
+>>> +		ti,termination-current = <66000>;  /* 66mA */
+>>> +		ti,precharge-current = <1300000>; /* 1.3A */
+>> 
+>> I thought precharge is usually something low, because you are not yet
+>> sure of battery health...?
+>> 
+> 
+> I think I put that in incorrectly. The intention was 130mA.
+> 
+>>> +		ti,minimum-sys-voltage = <2750000>; /* 2.75V */
+>> 
+>> Are you sure? Normally systems shut down at 3.2V, 3V or so. Li-ion
+>> batteries don't
+>> really like to be discharged _this_ deep.
+> 
+> You are correct. I'll fix it for the next version.
+> 
 
-> > Also, not all functional
-> > +dependencies are mandatory as the device might be able to operate in a limited
-> > +mode without some of the dependencies.
->
-> Whether something is a mandatory dependency will depend on the driver
-> and dynamic runtime details more than it will depend on the hardware.
->
-> For example, assume I have an IP block that functions as both a
-> clocksource and a watchdog that can reset the system, with those two
-> functions derived from separate input clocks.
->
-> I could use the device as just a clocksource, or as just a watchdog, and
-> neither feature in isolation is necessarily mandatory for the device to
-> be somewhat useful to the OS.
+Looking into it further Sanyo and Panasonic get over 300 cycles bringing 
+the NCR18650 down to 2.5V so 2.75V should be fine.
 
-Aren't you talking about the supplier here? I don't see any issues so far.
+http://www.batteryonestop.com/baotongusa/products/datasheets/li-ion/SANYO-NCR18650B-3400mAh.pdf
+https://industrial.panasonic.com/ww/products/batteries/secondary-batteries/lithium-ion/cylindrical-type/NCR18650PF
 
-You could have consumers that try to use both the features of this IP
-you mention (although I'm hard pressed to see how a watchdog is a
-mandatory dependency but let's assume it is). So lets say consumer A
-adds depends-on to your IP block for the clock and consumer B adds
-depends-on your IP block for the watchdog.
+Angus
 
-If your driver is incomplete and provides only the watchdog feature,
-then consumer A and B will attempt to probe once your device probes,
-but consumer A will never probe successfully because it'll keep
-getting -EPROBE_DEFER or an error. Your driver will never get a
-sync_state() callback and that's fine because you don't know how to
-use or turn off the clock source.
+> Thanks
+> Angus
+> 
+>> 
+>> 										Pavel
 
-If the situation is reversed and your driver provides only the clock
-feature, then consumer B will never probe because it'll never be able
-to "get()" or whatever it tries to do with the watchdog feature. And
-your driver will never get a sync_state() callback and you can never
-turn off your clock. But that's the best you'll get till you send a
-patch to add the watchdog support to your driver :)
-
-> We need better ways of dynamically providing and managing this
-> information. For example, if a driver could register its dynamic
-> dependencies at probe (or some new pre-probe callback), we'd be able to
-> notify it immediately when its dependencies are available.
-
-We can't depend on the drivers to notify the core framework because
-that doesn't work on a system with modules. The example I gave in the
-commit text for the last patch is a good one. If your driver is
-supplying power to the screen backlight and the backlight module is
-never loaded, you can never turn off the supply to the backlight ever.
-That use case has to work and it won't work if you depend on the
-backlight driver to tell you what it depends on.
-
--Saravana
