@@ -2,104 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE43291F2
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 09:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA82B29242
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 10:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389059AbfEXHmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 03:42:51 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:27286 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2388960AbfEXHmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 03:42:51 -0400
-X-UUID: d50e7404e6a24342ab317cff1f4924c2-20190524
-X-UUID: d50e7404e6a24342ab317cff1f4924c2-20190524
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1760047958; Fri, 24 May 2019 15:42:37 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 24 May 2019 15:42:34 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 24 May 2019 15:42:34 +0800
-Message-ID: <1558683754.5671.4.camel@mtkswgap22>
-Subject: Re: [PATCH 3/3] hwrng: add mt67xx-rng driver
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        Stephan Mueller <smueller@chronox.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "mpm@selenic.com" <mpm@selenic.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        Crystal Guo =?UTF-8?Q?=28=E9=83=AD=E6=99=B6=29?= 
-        <Crystal.Guo@mediatek.com>, Neal Liu <neal.liu@mediatek.com>
-Date:   Fri, 24 May 2019 15:42:34 +0800
-In-Reply-To: <20190510063915.kwqy3e5urs6j7ity@gondor.apana.org.au>
-References: <1557287937-2410-1-git-send-email-neal.liu@mediatek.com>
-         <1557287937-2410-4-git-send-email-neal.liu@mediatek.com>
-         <12193108.aNnqf5ydOJ@tauon.chronox.de>
-         <1557311737.11818.11.camel@mtkswgap22>
-         <20190509052649.xfkgb3qd7rhcgktj@gondor.apana.org.au>
-         <1557413686.23445.6.camel@mtkswgap22>
-         <20190510063915.kwqy3e5urs6j7ity@gondor.apana.org.au>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S2389039AbfEXIAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 04:00:07 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:18881 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389021AbfEXIAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 04:00:07 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5ce7a4860001>; Fri, 24 May 2019 01:00:06 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Fri, 24 May 2019 01:00:06 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Fri, 24 May 2019 01:00:06 -0700
+Received: from [10.24.193.7] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 24 May
+ 2019 08:00:03 +0000
+Subject: Re: [Patch V3 8/8] arm64: defconfig: Enable tegra XUDC driver
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
+        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1557988772-15406-1-git-send-email-nkristam@nvidia.com>
+ <1557988772-15406-9-git-send-email-nkristam@nvidia.com>
+ <20190523103042.GH30331@ulmo>
+X-Nvconfidentiality: public
+From:   Nagarjuna Kristam <nkristam@nvidia.com>
+Message-ID: <0b7508f4-584e-0193-6415-bbe4d9a4db42@nvidia.com>
+Date:   Fri, 24 May 2019 13:31:19 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 89ED3B40815DB6F837B8DBB2E0E3948F37DDFAA36A07D69CF4F4116AD8AC13F82000:8
-X-MTK:  N
+In-Reply-To: <20190523103042.GH30331@ulmo>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1558684806; bh=FlLewyOu6/LhepYQjOXtri6Fy7Jtb8D5m5LOrENMcbo=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=WG2gV/8KHMONDicQHrbJ9dAxC+iUFTRoQe6JUvcfYTLzoBHQpX+czg2zzvKc2KXUv
+         iD7rghwWbFQridS8BjaiJe/Qo9Tay0EetYRjoFia1TsF7fXtAgFfFzb8C3lM/R9ksb
+         4hzkB1PXb2HWLo3gnJ6/fEXw4BerEVFNhgUc+PDaIMSUtKeM9ilyXG3rvmFERFiaKD
+         8FWeC8nbR7VC6FuJfDequbFOk7URL10lELwS62yR7NtI+gbiRu2IIYEON6mGr4xDh9
+         NemA8bbGCS3AYoqrPkysuZVbdzaqTwx3EKtIY/gyJ36v5zLVRm30DDkRzX6B/oegVB
+         Ljt80EQKVUDTg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Herbert,
-	Could you kindly help to review our patches?
-	Thanks
-
-From	Neal Liu <>
-Subject	[PATCH 0/3] MT67XX random number generator support
-Date	Wed, 8 May 2019 11:58:54 +0800
-share
-These patch series introduce a generic rng driver for Trustzone
-based kernel driver which would like to communicate with ATF
-SIP services.
-
-Patch #1 initials SMC fid table for Mediatek SIP interfaces and
-adds HWRNG related SMC call.
-
-Patch #2..3 adds mt67xx-rng kernel driver for Trustzone based SoCs.
-For Mediatek SoCs on ARMv8 with TrustZone enabled, peripherals like
-entropy sources is not accessible from normal world (linux) and
-rather accessible from secure world (ATF/TEE) only. This driver aims
-to provide a generic interface to ATF rng service.
-
-Neal Liu (3):
-  soc: mediatek: add SMC fid table for SIP interface
-  dt-bindings: rng: update bindings for MT67xx SoCs
-  hwrng: add mt67xx-rng driver
-
- Documentation/devicetree/bindings/rng/mtk-rng.txt |   13 ++-
- drivers/char/hw_random/Kconfig                    |   16 ++++
- drivers/char/hw_random/Makefile                   |    1 +
- drivers/char/hw_random/mt67xx-rng.c               |  104
-+++++++++++++++++++++
- include/linux/soc/mediatek/mtk_sip_svc.h          |   55 +++++++++++
- 5 files changed, 186 insertions(+), 3 deletions(-)
- create mode 100644 drivers/char/hw_random/mt67xx-rng.c
- create mode 100644 include/linux/soc/mediatek/mtk_sip_svc.h
-
--- 
-1.7.9.5
-
-Best Regards,
--Neal Liu
 
 
+On 23-05-2019 16:00, Thierry Reding wrote:
+> On Thu, May 16, 2019 at 12:09:32PM +0530, Nagarjuna Kristam wrote:
+>> Enable support for Nvidia XUSB device mode controller driver.
+>>
+>> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+>> ---
+>>  arch/arm64/configs/defconfig | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+>> index b605b7f..bf1437c 100644
+>> --- a/arch/arm64/configs/defconfig
+>> +++ b/arch/arm64/configs/defconfig
+>> @@ -575,6 +575,7 @@ CONFIG_USB_ULPI=y
+>>  CONFIG_USB_GADGET=y
+>>  CONFIG_USB_RENESAS_USBHS_UDC=m
+>>  CONFIG_USB_RENESAS_USB3=m
+>> +CONFIG_USB_TEGRA_XUDC=y
+> 
+> This driver is fairly large, do we really want to make it built-in by
+> default? Are there any downsides to making this a loadable module?
+> 
+> Thierry
+> 
+ No downsides to make it as a module, will update change to mark it as module.
