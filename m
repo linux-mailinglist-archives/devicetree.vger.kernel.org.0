@@ -2,191 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73D2329DF7
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 20:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C675B29DFE
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 20:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728836AbfEXSWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 14:22:10 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:41838 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726071AbfEXSWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 14:22:10 -0400
-Received: by mail-oi1-f194.google.com with SMTP id y10so7719486oia.8
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 11:22:09 -0700 (PDT)
+        id S1728410AbfEXS1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 14:27:34 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:33233 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727157AbfEXS1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 14:27:33 -0400
+Received: by mail-pg1-f193.google.com with SMTP id h17so5500091pgv.0
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 11:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AzsUvNhNmYGXh2gveKRsBtTMYNDsbt9ziXNPjdB7M3w=;
-        b=VT1xGEAc/iHBTFQl7pGVdO6yQIUBfThvbSMqKAyp4s+0paXIeVbLzTs0Cnq+ntzjKF
-         KIF0eEmk7HwUm7QdOseVndHUZ2oZKT6xA+V0utgk8fFOxTIgg5NyAQCQM2IGihJ6gQh7
-         iWMKuBsgxfmDMMp5TI5GyOAO8YnTTSTK2+w7IuFFWB4GnZBGPeb0DAf8Qk06NNJpjWl1
-         vUczYe1W68fyBvNxXfEefjptaOXRaKpbBoEDDBWT6wzxVc0mJ3qDCb+RTqc1PZGwWmgQ
-         SlvD+zna1fvUolanJK7g4rs9Uq5FQJbRJsBP2+5HTww8zr+L9TN7ACgOzTqH7h5lMrD9
-         C0CQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=KBFXSMu5iFYrk4qlfdMwTaqYNBRexORCw0HxEB88ViI=;
+        b=N6/cibxJqoyRlASaCOA2LueJDOi4C9QLztjn5TkmTwrk0rGe/Hoq1gXbJIJJQSo4cN
+         lWVbWl0eDEcbzHHgLZG5pa0XA2F6zW039A5KfSwxiWBSGlBzt4heC6aPO5KZYaABaPeU
+         rzmSWyJABn1huhi+0Og2D9yy63uFN1xpEuKeVK7Sv6slAGO2a3+DY6mR3r1ClotkmfA3
+         OidS9rX7ynb06yrKIKqeVbvVf+a6ZPmxyB7CleU7/AeQpch9cRjJPqNbI5xAFDnGWqNc
+         iRqeZfjTs8EYih/Bha5dKtUbhVYimXhuxx7zUS+hcME/M80tEUxh8cdCOzrlBWfdx23E
+         /3Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AzsUvNhNmYGXh2gveKRsBtTMYNDsbt9ziXNPjdB7M3w=;
-        b=GV8OzIXW5BEOkjQVptbcSpVY2FPI/riVOgLyRRauymC+c9Q2A12y6Q4VSL+3nIT4uB
-         nassEknJs0d2V+qGjL/fHmrKhQkIaPAqBDxXTXc0NdZjkaZJR/HEauEBE9KHCT+SfuMr
-         BI1ltc1JygvOuYm5AzVwGybLm6DfB9p57JjW1oHEkzWt72IgLyVYEEuBl9aq/OUfMxrw
-         X1VQO8LWB8s48LdWvm9O267aUzPRh94ASSvWcIBQeuvasLUCNVfsI1R99tj2/nmfWSN9
-         TrDNuKEZY8pPn6PijqmWmik7zrx8Zr6xrgRp3+ql+RTfGYl8De6bmYQ0nrlBFQmWc0BR
-         TvYA==
-X-Gm-Message-State: APjAAAVNt4Aga9vpng7YgWlRALJAPvO7GyyRePea9MQgZxCts1SIVmYi
-        lt6tcNK2QUhSRN0GY/4HO/uU6LPojdnWnTAawwhFWQ==
-X-Google-Smtp-Source: APXvYqzkQClO4XvpXZ50ceCMrYCltgGccwvH2j5Q3vXCGfEu+lWclzI1rD7nuR63YZMKN0fre4w/3W8l5M4GQOFqSw4=
-X-Received: by 2002:aca:da45:: with SMTP id r66mr561054oig.24.1558722129326;
- Fri, 24 May 2019 11:22:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190524010117.225219-1-saravanak@google.com> <20190524010117.225219-2-saravanak@google.com>
- <6f4ca588-106f-93d1-8579-9e8d32c8031d@gmail.com>
-In-Reply-To: <6f4ca588-106f-93d1-8579-9e8d32c8031d@gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 24 May 2019 11:21:33 -0700
-Message-ID: <CAGETcx9zgMs5ne3jPa+6xR+EHR=+QuF7XfRb1gpenh-3ZQwV+w@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] of/platform: Speed up of_find_device_by_node()
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=KBFXSMu5iFYrk4qlfdMwTaqYNBRexORCw0HxEB88ViI=;
+        b=rzjSaaWNnbG31/j8oW1HWYDwNHA09qXeUz0t8+EnF4AKJU49/xOU5w8++y5n3xnyLU
+         mSeF/PhOJpQ/p7KPVyTkcrWceEQjeVqlL8PDSjeb1Bq5weRPC1j7VpW61wG8MKrQCV+l
+         LkyIoveaPNeZfwQaqKfnUCXYIlJV3p4BYTlp8uWhIsglZvPWu0ETpGMRaqRqrCJ3Zt7l
+         4uIqPyYyo6GjlVOoB3qp0yK0AF3cP/CtMWHNTqYslXAxfCshxWyNyvCKCATGUkSoJdHO
+         I5Pv9akqEFIjj9tGqBKOsnBNpt1vwQpnKZ4mojHqnLqBfXigmCjsKen5Q2M9IDpc09dC
+         gkiQ==
+X-Gm-Message-State: APjAAAUlmPA/7WYwxr+8ygc1AH5eXh8cdUzu1DRy9SQHlt8BnHFgv3Yi
+        elEwt/tCz2REkFQqYkbAE+4zig==
+X-Google-Smtp-Source: APXvYqzA1SAKKSIPwwZfDByTrKcnhebFoSdI+UmO8LD/ZPqhT5EFhsWiDk0n/ghktX76tHjhcfRtcg==
+X-Received: by 2002:a63:6fce:: with SMTP id k197mr108309512pgc.140.1558722453153;
+        Fri, 24 May 2019 11:27:33 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:ed4f:2717:3604:bb3f])
+        by smtp.googlemail.com with ESMTPSA id 85sm4639910pgb.52.2019.05.24.11.27.32
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 24 May 2019 11:27:32 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Guillaume Tucker <guillaume.tucker@collabora.com>
+Cc:     tomeu.vizoso@collabora.com, mgalka@collabora.com,
+        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
+        matthew.hart@linaro.org, enric.balletbo@collabora.com,
+        Jerome Brunet <jbrunet@baylibre.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: mainline/master boot bisection: v5.2-rc1-172-g4dde821e4296 on meson-g12a-x96-max
+In-Reply-To: <f01b812e-ee18-528b-1859-620dd8f0fb53@collabora.com>
+References: <5ce78689.1c69fb81.58097.eacf@mx.google.com> <7hmujc0xnp.fsf@baylibre.com> <f01b812e-ee18-528b-1859-620dd8f0fb53@collabora.com>
+Date:   Fri, 24 May 2019 11:27:31 -0700
+Message-ID: <7hh89j1ze4.fsf@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 10:56 AM Frank Rowand <frowand.list@gmail.com> wrote:
+Guillaume Tucker <guillaume.tucker@collabora.com> writes:
+
+> On 24/05/2019 14:50, Kevin Hilman wrote:
+>> "kernelci.org bot" <bot@kernelci.org> writes:
+>> 
+>>> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+>>> * This automated bisection report was sent to you on the basis  *
+>>> * that you may be involved with the breaking commit it has      *
+>>> * found.  No manual investigation has been done to verify it,   *
+>>> * and the root cause of the problem may be somewhere else.      *
+>>> * Hope this helps!                                              *
+>>> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+>>>
+>>> mainline/master boot bisection: v5.2-rc1-172-g4dde821e4296 on meson-g12a-x96-max
+>>>
+>>> Summary:
+>>>   Start:      4dde821e4296 Merge tag 'xfs-5.2-fixes-1' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+>>>   Details:    https://kernelci.org/boot/id/5ce72c6259b514ed817a3640
+>>>   Plain log:  https://storage.kernelci.org//mainline/master/v5.2-rc1-172-g4dde821e4296/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
+>>>   HTML log:   https://storage.kernelci.org//mainline/master/v5.2-rc1-172-g4dde821e4296/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
+>>>   Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support controllers
+>> 
+>> False alarm.
+>> 
+>> This one is failing in one lab but passing in another:
+>> https://kernelci.org/boot/all/job/mainline/branch/master/kernel/v5.2-rc1-172-g4dde821e4296/
+>> 
+>> I'll look into what's the difference between labs.
 >
-> Hi Sarvana,
->
-> I'm not reviewing patches 1-5 in any detail, given my reply to patch 0.
->
-> But I had already skimmed through this patch before I received the
-> email for patch 0, so I want to make one generic comment below,
-> to give some feedback as you continue thinking through possible
-> implementations to solve the underlying problems.
+> Thanks for clarifying this.  I guess we should fix the logic
+> which detects regressions to discard cases where there is a
+> conflict between results in different labs.
 
-Appreciate the feedback Frank!
+Yes, we should.  If there are conflicts between labs, it's almost
+certainly not worth the effort to automatically bisect (or at least not
+worth it to send out the email.)
 
->
->
-> On 5/23/19 6:01 PM, Saravana Kannan wrote:
-> > Add a pointer from device tree node to the device created from it.
-> > This allows us to find the device corresponding to a device tree node
-> > without having to loop through all the platform devices.
-> >
-> > However, fallback to looping through the platform devices to handle
-> > any devices that might set their own of_node.
-> >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  drivers/of/platform.c | 20 +++++++++++++++++++-
-> >  include/linux/of.h    |  3 +++
-> >  2 files changed, 22 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index 04ad312fd85b..1115a8d80a33 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
-> >       return dev->of_node == data;
-> >  }
-> >
-> > +static DEFINE_SPINLOCK(of_dev_lock);
-> > +
-> >  /**
-> >   * of_find_device_by_node - Find the platform_device associated with a node
-> >   * @np: Pointer to device tree node
-> > @@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
-> >  {
-> >       struct device *dev;
-> >
-> > -     dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
-> > +     /*
-> > +      * Spinlock needed to make sure np->dev doesn't get freed between NULL
-> > +      * check inside and kref count increment inside get_device(). This is
-> > +      * achieved by grabbing the spinlock before setting np->dev = NULL in
-> > +      * of_platform_device_destroy().
-> > +      */
-> > +     spin_lock(&of_dev_lock);
-> > +     dev = get_device(np->dev);
-> > +     spin_unlock(&of_dev_lock);
-> > +     if (!dev)
-> > +             dev = bus_find_device(&platform_bus_type, NULL, np,
-> > +                                   of_dev_node_match);
-> >       return dev ? to_platform_device(dev) : NULL;
-> >  }
-> >  EXPORT_SYMBOL(of_find_device_by_node);
-> > @@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
-> >               platform_device_put(dev);
-> >               goto err_clear_flag;
-> >       }
-> > +     np->dev = &dev->dev;
-> >
-> >       return dev;
-> >
-> > @@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
-> >       if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
-> >               device_for_each_child(dev, NULL, of_platform_device_destroy);
-> >
-> > +     /* Spinlock is needed for of_find_device_by_node() to work */
-> > +     spin_lock(&of_dev_lock);
-> > +     dev->of_node->dev = NULL;
-> > +     spin_unlock(&of_dev_lock);
-> >       of_node_clear_flag(dev->of_node, OF_POPULATED);
-> >       of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
-> >
-> > diff --git a/include/linux/of.h b/include/linux/of.h
-> > index 0cf857012f11..f2b4912cbca1 100644
-> > --- a/include/linux/of.h
-> > +++ b/include/linux/of.h
-> > @@ -48,6 +48,8 @@ struct property {
-> >  struct of_irq_controller;
-> >  #endif
-> >
-> > +struct device;
-> > +
-> >  struct device_node {
-> >       const char *name;
-> >       phandle phandle;
-> > @@ -68,6 +70,7 @@ struct device_node {
-> >       unsigned int unique_id;
-> >       struct of_irq_controller *irq_trans;
-> >  #endif
-> > +     struct device *dev;             /* Device created from this node */
->
-> We have actively been working on shrinking the size of struct device_node,
-> as part of reducing the devicetree memory usage.  As such, we need strong
-> justification for adding anything to this struct.  For example, proof that
-> there is a performance problem that can only be solved by increasing the
-> memory usage.
-
-I didn't mean for people to focus on the deferred probe optimization.
-In reality that was just a added side benefit of this series. The main
-problem to solve is that of suppliers having to know when all their
-consumers are up and managing the resources actively, especially in a
-system with loadable modules where we can't depend on the driver to
-notify the supplier because the consumer driver module might not be
-available or loaded until much later.
-
-Having said that, I'm not saying we should go around and waste space
-willy-nilly. But, isn't the memory usage going to increase based on
-the number of DT nodes present in DT? I'd think as the number of DT
-nodes increase it's more likely for those devices have more memory? So
-at least in this specific case I think adding the field is justified.
-
-Also, right now the look up is O(n) complexity and if we are trying to
-add device links to most of the devices, that whole process becomes
-O(n^2). Having this field makes the look up a O(1) and the entire
-linking process a O(n) process. I think the memory usage increase is
-worth the efficiency improvement.
-
-And if people are still strongly against it, we could make this a config option.
-
--Saravana
+Kevin
