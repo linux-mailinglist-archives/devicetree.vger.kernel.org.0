@@ -2,106 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EE39291D1
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 09:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EE43291F2
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 09:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388929AbfEXHfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 03:35:04 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:55577 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388927AbfEXHfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 03:35:03 -0400
-X-Originating-IP: 90.88.147.134
-Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id EDB8E40011;
-        Fri, 24 May 2019 07:34:55 +0000 (UTC)
-Date:   Fri, 24 May 2019 09:34:55 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Antoine =?utf-8?Q?T=C3=A9nart?= <antoine.tenart@bootlin.com>
-Subject: Re: [PATCH 6/8] dt-bindings: net: stmmac: Convert the binding to a
- schemas
-Message-ID: <20190524073455.46auhvhwb5no6ebp@flea>
-References: <74d98cc3c744d53710c841381efd41cf5f15e656.1558605170.git-series.maxime.ripard@bootlin.com>
- <ba1a5d8ad34a8c9ab99f504c04fbe65bde42081b.1558605170.git-series.maxime.ripard@bootlin.com>
- <9094f39f-0e26-55dd-9b47-9a55089400da@st.com>
+        id S2389059AbfEXHmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 03:42:51 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:27286 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2388960AbfEXHmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 03:42:51 -0400
+X-UUID: d50e7404e6a24342ab317cff1f4924c2-20190524
+X-UUID: d50e7404e6a24342ab317cff1f4924c2-20190524
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1760047958; Fri, 24 May 2019 15:42:37 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 24 May 2019 15:42:34 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 24 May 2019 15:42:34 +0800
+Message-ID: <1558683754.5671.4.camel@mtkswgap22>
+Subject: Re: [PATCH 3/3] hwrng: add mt67xx-rng driver
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>,
+        Stephan Mueller <smueller@chronox.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "mpm@selenic.com" <mpm@selenic.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        Crystal Guo =?UTF-8?Q?=28=E9=83=AD=E6=99=B6=29?= 
+        <Crystal.Guo@mediatek.com>, Neal Liu <neal.liu@mediatek.com>
+Date:   Fri, 24 May 2019 15:42:34 +0800
+In-Reply-To: <20190510063915.kwqy3e5urs6j7ity@gondor.apana.org.au>
+References: <1557287937-2410-1-git-send-email-neal.liu@mediatek.com>
+         <1557287937-2410-4-git-send-email-neal.liu@mediatek.com>
+         <12193108.aNnqf5ydOJ@tauon.chronox.de>
+         <1557311737.11818.11.camel@mtkswgap22>
+         <20190509052649.xfkgb3qd7rhcgktj@gondor.apana.org.au>
+         <1557413686.23445.6.camel@mtkswgap22>
+         <20190510063915.kwqy3e5urs6j7ity@gondor.apana.org.au>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="23ickihnik62sivg"
-Content-Disposition: inline
-In-Reply-To: <9094f39f-0e26-55dd-9b47-9a55089400da@st.com>
-User-Agent: NeoMutt/20180716
+X-TM-SNTS-SMTP: 89ED3B40815DB6F837B8DBB2E0E3948F37DDFAA36A07D69CF4F4116AD8AC13F82000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Herbert,
+	Could you kindly help to review our patches?
+	Thanks
 
---23ickihnik62sivg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From	Neal Liu <>
+Subject	[PATCH 0/3] MT67XX random number generator support
+Date	Wed, 8 May 2019 11:58:54 +0800
+share
+These patch series introduce a generic rng driver for Trustzone
+based kernel driver which would like to communicate with ATF
+SIP services.
 
-Hi Alexandre,
+Patch #1 initials SMC fid table for Mediatek SIP interfaces and
+adds HWRNG related SMC call.
 
-On Thu, May 23, 2019 at 05:05:51PM +0200, Alexandre Torgue wrote:
-> Hi Maxime
->
-> On 5/23/19 11:56 AM, Maxime Ripard wrote:
-> > Switch the STMMAC / Synopsys DesignWare MAC controller binding to a YAML
-> > schema to enable the DT validation.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > ---
->
-> First, thanks a lot for this patch. Just one question:
-> We could add ranges for some properties in order to avoid "bad value" for a
-> property. If I understand correctly you do it only for snps,dwxgmac,
-> snps,dwxgmac-2.10 and st,spear600-gmac. Why not do it for all supported IPs
-> ? (Maybe it is something that we could add later)
->
+Patch #2..3 adds mt67xx-rng kernel driver for Trustzone based SoCs.
+For Mediatek SoCs on ARMv8 with TrustZone enabled, peripherals like
+entropy sources is not accessible from normal world (linux) and
+rather accessible from secure world (ATF/TEE) only. This driver aims
+to provide a generic interface to ATF rng service.
 
-We definitely can do that. It wasn't really obvious to me what the
-limits were by reading the previous documentation, but if you can
-provide them we can definitely add them.
+Neal Liu (3):
+  soc: mediatek: add SMC fid table for SIP interface
+  dt-bindings: rng: update bindings for MT67xx SoCs
+  hwrng: add mt67xx-rng driver
 
-> > +        snps,tso:
-> > +          $ref: /schemas/types.yaml#definitions/flag
-> > +          description:
-> > +            Enables the TSO feature otherwise it will be managed by
-> > +            MAC HW capability register. Only for GMAC4 and newer.
->
-> TSO is also available for snps,dwmac-4.00 and snps,dwmac-4.10a
+ Documentation/devicetree/bindings/rng/mtk-rng.txt |   13 ++-
+ drivers/char/hw_random/Kconfig                    |   16 ++++
+ drivers/char/hw_random/Makefile                   |    1 +
+ drivers/char/hw_random/mt67xx-rng.c               |  104
++++++++++++++++++++++
+ include/linux/soc/mediatek/mtk_sip_svc.h          |   55 +++++++++++
+ 5 files changed, 186 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/char/hw_random/mt67xx-rng.c
+ create mode 100644 include/linux/soc/mediatek/mtk_sip_svc.h
 
-Ack, I'll change it.
+-- 
+1.7.9.5
 
-Thanks!
-Maxime
+Best Regards,
+-Neal Liu
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
---23ickihnik62sivg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOeenwAKCRDj7w1vZxhR
-xeATAQCcQsgy7vfEdnFVRTUYXu4cQi7yVev/HZ6IHxvhXUxohQEAlunQSSosiD+q
-hCssuxFFbw2++ejr0HSjYCaQvSZesQA=
-=FrHP
------END PGP SIGNATURE-----
-
---23ickihnik62sivg--
