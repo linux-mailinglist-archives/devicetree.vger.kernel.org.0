@@ -2,129 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7168429090
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 07:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BC329110
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 08:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388622AbfEXFw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 01:52:26 -0400
-Received: from mail-eopbgr00058.outbound.protection.outlook.com ([40.107.0.58]:58892
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388260AbfEXFwZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 May 2019 01:52:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eKwEL0hsIp12CnwV2oHYus+JsvYqct60cA6cWG8I7AY=;
- b=ZR073CzpG6/dmkwaQ1/vCkOOLBPW/0S+1H84bIjQ65jR5+4MRw7DHI9d1/uEsSlgBcnfYE/XcxLVlSqUIYJloas+sFBYaR6oeiEvAPWJmjMc4aRmZuqq19jmZ9YrIk+Bn0iQKqFWAvlVhDNncCJozAGjdb+AA6/CDvVP0DzTFj0=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3721.eurprd04.prod.outlook.com (52.134.67.141) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.16; Fri, 24 May 2019 05:52:21 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec%5]) with mapi id 15.20.1922.017; Fri, 24 May 2019
- 05:52:21 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 3/3] arm64: dts: imx8mq: add clock for SNVS RTC node
-Thread-Topic: [PATCH 3/3] arm64: dts: imx8mq: add clock for SNVS RTC node
-Thread-Index: AQHVCrrcUP74CkLHLE+NNE1EMv+PBqZ38P8AgAHi6yA=
-Date:   Fri, 24 May 2019 05:52:21 +0000
-Message-ID: <DB3PR0402MB391655657A8BE5E812F01C8FF5020@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1557882259-3353-1-git-send-email-Anson.Huang@nxp.com>
- <1557882259-3353-3-git-send-email-Anson.Huang@nxp.com>
- <20190523010243.GD16359@dragon>
-In-Reply-To: <20190523010243.GD16359@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: baa9a513-5da4-45ac-0c7f-08d6e00bfced
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3721;
-x-ms-traffictypediagnostic: DB3PR0402MB3721:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <DB3PR0402MB3721E06CBBF74329AE5F7860F5020@DB3PR0402MB3721.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:483;
-x-forefront-prvs: 0047BC5ADE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(396003)(346002)(39860400002)(366004)(136003)(13464003)(199004)(189003)(6436002)(76116006)(8676002)(6306002)(44832011)(73956011)(55016002)(68736007)(486006)(7736002)(9686003)(305945005)(7416002)(476003)(33656002)(74316002)(25786009)(81166006)(81156014)(2906002)(8936002)(14454004)(66476007)(446003)(66446008)(64756008)(66556008)(256004)(52536014)(54906003)(71190400001)(71200400001)(66066001)(66946007)(316002)(26005)(4326008)(53546011)(478600001)(6506007)(86362001)(102836004)(966005)(3846002)(6916009)(99286004)(229853002)(11346002)(7696005)(53936002)(6116002)(5660300002)(6246003)(186003)(76176011)(32563001)(299355004);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3721;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1Hl5vOWHTPitA7aKByeNvRap739atBwDilrfWyJzQluuznZoYCmY96DgI+fep+9ZVkW5OWAIS7yyiBBWqV72t3qBBAFGQsud/oYNDJVUxm6VyMBW/MHUbx2FauREX9N5DJ/QTOVTA+Gkurwx9NTRNI6rvQQERWHtMmnuIXFfLBBz/qPF+1sr4CbRWVsnlFTgKDwXYSUVTw6ocbaxxzFTlTYrN7nd+4DzC6xOYZG0RgA5bCKfKm9zS/rt9Jvm/2ceRcZ9NY5LIzQsSnUXYKX9IpcP2GRsotFv5tBsd9J/BiJSItmK6YHqYC0SKCyp7jDhVzmSd+k8NppAf0GQeEbkI/MkWCdbBJsBSgIOHryjyquy927FjK97gzM2R7Dhs6seNefyTUtJYRQqQmO7X4C2B1kNZwiGfdhjrzb4kB2Gqdc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: baa9a513-5da4-45ac-0c7f-08d6e00bfced
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2019 05:52:21.0900
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3721
+        id S2388863AbfEXGhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 02:37:47 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:37564 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387936AbfEXGhr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 02:37:47 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CAA361A0259;
+        Fri, 24 May 2019 08:37:44 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9AF931A013D;
+        Fri, 24 May 2019 08:37:35 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2D587402D6;
+        Fri, 24 May 2019 14:37:24 +0800 (SGT)
+From:   peng.fan@nxp.com
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
+Cc:     linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        van.freenix@gmail.com, Peng Fan <peng.fan@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Olof Johansson <olof@lixom.net>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Subject: [PATCH V3 RESEND AGAIN 1/2] defconfig: arm64: enable i.MX8 SCU octop driver
+Date:   Fri, 24 May 2019 14:39:12 +0800
+Message-Id: <20190524063913.44171-1-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFNoYXduDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU2hhd24g
-R3VvIFttYWlsdG86c2hhd25ndW9Aa2VybmVsLm9yZ10NCj4gU2VudDogVGh1cnNkYXksIE1heSAy
-MywgMjAxOSA5OjAzIEFNDQo+IFRvOiBBbnNvbiBIdWFuZyA8YW5zb24uaHVhbmdAbnhwLmNvbT4N
-Cj4gQ2M6IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207IHMuaGF1ZXJA
-cGVuZ3V0cm9uaXguZGU7DQo+IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgZmVzdGV2YW1AZ21haWwu
-Y29tOyBtdHVycXVldHRlQGJheWxpYnJlLmNvbTsNCj4gc2JveWRAa2VybmVsLm9yZzsgbC5zdGFj
-aEBwZW5ndXRyb25peC5kZTsgQWJlbCBWZXNhDQo+IDxhYmVsLnZlc2FAbnhwLmNvbT47IGFuZHJl
-dy5zbWlybm92QGdtYWlsLmNvbTsgY2NhaW9uZUBiYXlsaWJyZS5jb207DQo+IGFuZ3VzQGFra2Vh
-LmNhOyBhZ3hAc2lneGNwdS5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1h
-cm0tDQo+IGtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJu
-ZWwub3JnOyBsaW51eC0NCj4gY2xrQHZnZXIua2VybmVsLm9yZzsgZGwtbGludXgtaW14IDxsaW51
-eC1pbXhAbnhwLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCAzLzNdIGFybTY0OiBkdHM6IGlt
-eDhtcTogYWRkIGNsb2NrIGZvciBTTlZTIFJUQyBub2RlDQo+IA0KPiBPbiBXZWQsIE1heSAxNSwg
-MjAxOSBhdCAwMTowOTozNkFNICswMDAwLCBBbnNvbiBIdWFuZyB3cm90ZToNCj4gPiBpLk1YOE1R
-IGhhcyBjbG9jayBnYXRlIGZvciBTTlZTIG1vZHVsZSwgYWRkIGNsb2NrIGluZm8gdG8gU05WUyBS
-VEMNCj4gPiBub2RlIGZvciBjbG9jayBtYW5hZ2VtZW50Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1i
-eTogQW5zb24gSHVhbmcgPEFuc29uLkh1YW5nQG54cC5jb20+DQo+IA0KPiBUaGlzIG9uZSBzdGls
-bCBoYXMgcHJvYmxlbSB3aXRoIGVuY29kaW5nIGFuZCB0aHVzIGNhbm5vdCBiZSBhcHBsaWVkLg0K
-PiBIZXJlIGlzIHdoYXQgSSBnZXQsIGFuZCB0aGVyZSBpcyAnPTIwJyBpbiB0aGUgcGF0Y2ggY29u
-dGVudC4NCg0KV2Ugc3dpdGNoIHRvIGFub3RoZXIgc2VydmVyIHdoaWNoIGhhcyBubyBzdWNoIGlz
-c3VlLCBJIHJlc2VudCB0aGUgcGF0Y2gsDQpQbGVhc2UgcGljayB1cCB0aGlzIG9uZSwgc29ycnkg
-Zm9yIHRoZSBpbmNvbnZlbmllbmNlLg0KDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Bh
-dGNoLzEwOTU5MDk3Lw0KDQp0aGFua3MsDQpBbnNvbi4NCg0KPiANCj4gZGlmZiAtLWdpdCBhL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcS5kdHNpDQo+IGIvYXJjaC9hcm02NC9i
-b290L2R0PSBzL2ZyZWVzY2FsZS9pbXg4bXEuZHRzaSBpbmRleCBlNWYzMTMzLi5iNzA2ZGU4DQo+
-IDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXEuZHRz
-aQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXEuZHRzaQ0KPiBA
-QCAtNDM4LDYgKzQzOCw4IEBADQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBvZmZzZXQgPTNEIDwweDM0PjsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGludGVycnVwdHMgPTNEIDxHSUNfU1BJIDE5IElSUV9UWVBFX0xFVkVMX0hJR0g+
-LA0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8R0lD
-X1NQSSAyMCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIGNsb2NrcyA9M0QgPCZjbGsgSU1YOE1RX0NMS19TTlZTX1JPT1Q+Ow0K
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xvY2stbmFtZXMgPTNE
-ICJzbnZzLXJ0YyI7DQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gICAg
-ICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPTIwDQo+IC0tPTIwDQo+IDIuNy40DQoNCg==
+From: Peng Fan <peng.fan@nxp.com>
+
+Build in CONFIG_NVMEM_IMX_OCOTP_SCU.
+
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Will Deacon <will.deacon@arm.com>
+Cc: Shawn Guo <shawn.guo@linaro.org>
+Cc: Andy Gross <andy.gross@linaro.org>
+Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+Cc: Olof Johansson <olof@lixom.net>
+Cc: Jagan Teki <jagan@amarulasolutions.com>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Leonard Crestez <leonard.crestez@nxp.com>
+Cc: Marc Gonzalez <marc.w.gonzalez@free.fr>
+Cc: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+
+V3:
+ No change
+V2:
+ rename patch title, add review tag
+
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 979a95c915b6..32b85102b857 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -748,6 +748,7 @@ CONFIG_HISI_PMU=y
+ CONFIG_QCOM_L2_PMU=y
+ CONFIG_QCOM_L3_PMU=y
+ CONFIG_NVMEM_IMX_OCOTP=y
++CONFIG_NVMEM_IMX_OCOTP_SCU=y
+ CONFIG_QCOM_QFPROM=y
+ CONFIG_ROCKCHIP_EFUSE=y
+ CONFIG_UNIPHIER_EFUSE=y
+-- 
+2.16.4
+
