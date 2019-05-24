@@ -2,84 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A346F2A025
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 22:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 782A32A02E
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 23:01:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728701AbfEXUxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 16:53:37 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40558 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727115AbfEXUxh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 16:53:37 -0400
-Received: by mail-ot1-f65.google.com with SMTP id u11so9885906otq.7;
-        Fri, 24 May 2019 13:53:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=06rJ2oOKojiLBVVks+8FBspxtuNBQL8fyHUzc3BCuBc=;
-        b=bL3pATx4po7/noOwGUGuGmNP4ctU40K9SnxfpNv2Iy8ucfjFxG+19xwFw49JeXWL46
-         tJBvJdr8cHcIU0MkeujORGnlaxJgfyo9pwSTa+njiz4U3T3iXg90NVmfcL0jjyUH7/aM
-         4hwRK7X7aH/4lpIx+qXNdtBgSLnXaxSDkbmnJMxfO0k/jQhHBkrADZ0QaAIEUFiCVWkh
-         0VyAUjn7KKuwA3XT15Li6DTacixokUoxblg0tBCMezYNHK8FGF34+8C6RT0m6S/Skb8c
-         tjrw3zb9ra3TKW/CbNYSjD2we9JsLRH/YWHL8Kb2Mjg8tsoWq7vJXWrEUe8EYxKPeyXS
-         pRIg==
-X-Gm-Message-State: APjAAAXsYAWznAjo49smzvBov5H2K4XKbFbWAhUTMIzMRG5eARWyS1A9
-        vrQIVjaZloKT2YZd8P2rJw==
-X-Google-Smtp-Source: APXvYqzGG5lUSWgq/o6kjQnGmXFXXA5GlptnL5Pce4GN5KDh99a83PbpqEWkdGObCFeN8Kbml7X3AQ==
-X-Received: by 2002:a9d:1b67:: with SMTP id l94mr64169216otl.239.1558731216665;
-        Fri, 24 May 2019 13:53:36 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j18sm1457839oih.45.2019.05.24.13.53.35
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 24 May 2019 13:53:35 -0700 (PDT)
-Date:   Fri, 24 May 2019 15:53:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Puneet Saxena <puneets@nvidia.com>
-Cc:     robh+dt@kernel.org, pantelis.antoniou@konsulko.com,
-        frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, treding@nvidia.com,
-        vdumpa@nvidia.com, snikam@nvidia.com, jonathanh@nvidia.com,
-        Puneet Saxena <puneets@nvidia.com>
-Subject: Re: [PATCH V2] of: reserved-memory: ignore disabled memory-region
- nodes
-Message-ID: <20190524205330.GA23430@bogus>
-References: <1558522031-549-1-git-send-email-puneets@nvidia.com>
- <1558522031-549-2-git-send-email-puneets@nvidia.com>
+        id S2391738AbfEXVBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 17:01:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46232 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391775AbfEXVBe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 17:01:34 -0400
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1435D21848;
+        Fri, 24 May 2019 21:01:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558731693;
+        bh=CFg7XvU9v0lnRjzs+tGDUprgJfAZafgtXU+wVAo1RXg=;
+        h=From:Date:Subject:To:Cc:From;
+        b=01XDmDDflKM0ZAXnpGXenKFx11nBA7t1oh/qqaVBGt7diVR9MGNRs+TfvbQdKBFXy
+         ywQcSb7ytediejVewpRI42hmMLvVYifw3rGMMwOBcD7kBf/cVU/nUwHlaDXEMOnwXJ
+         4+TLEkFuqooCD9uaznNJ4V6k3SVh+E4cUUp7+hkc=
+Received: by mail-qk1-f175.google.com with SMTP id w25so9469258qkj.11;
+        Fri, 24 May 2019 14:01:33 -0700 (PDT)
+X-Gm-Message-State: APjAAAW6LsYzVT0U/K6hbDdl3q/PryBddqa4p7wexZEVBXKyxdqaWnpx
+        PZQhl0CcOnNMHp2i38vGnUQkikS+NAn3Lk8XRQ==
+X-Google-Smtp-Source: APXvYqwEUhcqw9pXlIHiVbMcQAt3k3SQXCATeSGD3gWhAOsmGcLw4ozfuPqUWMMZs4CpKB1KJFfQeQAcYrdD5TVb8ZY=
+X-Received: by 2002:a37:358:: with SMTP id 85mr78983951qkd.174.1558731692319;
+ Fri, 24 May 2019 14:01:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1558522031-549-2-git-send-email-puneets@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 24 May 2019 16:01:21 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKUbPziR3dHi15K-uZUH_D-GtodV_LVqw+EhEGLeZZZHA@mail.gmail.com>
+Message-ID: <CAL_JsqKUbPziR3dHi15K-uZUH_D-GtodV_LVqw+EhEGLeZZZHA@mail.gmail.com>
+Subject: [GIT PULL] Devicetree fixes for 5.2-rc
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019 16:17:11 +0530, Puneet Saxena wrote:
-> From: Krishna Reddy <vdumpa@nvidia.com>
-> 
-> Ignore disabled nodes in the memory-region 
-> nodes list and continue to initialize the rest 
-> of enabled nodes.
-> 
-> Check if the "reserved-memory" node is available
-> and if it's not available, return 0 to ignore the 
-> "reserved-memory" node and continue parsing with 
-> next node in memory-region nodes list.
-> 
-> Signed-off-by: Krishna Reddy <vdumpa@nvidia.com>
-> Signed-off-by: Puneet Saxena <puneets@nvidia.com>
-> ---
-> v2:
-> * Fixed typo in commit message.
-> * Used "of_device_is_available" to check "reserved-memory"
->   nodes are disabled/enabled.
-> 
->  drivers/of/of_reserved_mem.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+Linus,
 
-Applied, thanks.
+Please pull.
 
 Rob
+
+
+The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
+
+  Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+tags/devicetree-fixes-for-5.2
+
+for you to fetch changes up to 852d095d16a6298834839f441593f59d58a31978:
+
+  checkpatch.pl: Update DT vendor prefix check (2019-05-22 14:54:49 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for 5.2:
+
+- Update checkpatch.pl to use DT vendor-prefixes.yaml
+
+- Fix DT binding references to files converted to DT schema
+
+- Clean-up Arm CPU binding examples to match schema
+
+- Add Sifive block versioning scheme documentation
+
+- Pass binding directory base to validation tools for reference lookups
+
+----------------------------------------------------------------
+Kamal Dasu (1):
+      dt: bindings: mtd: replace references to nand.txt with
+nand-controller.yaml
+
+Mauro Carvalho Chehab (1):
+      dt: fix refs that were renamed to json with the same file name
+
+Paul Walmsley (1):
+      dt-bindings: sifive: describe sifive-blocks versioning
+
+Rob Herring (3):
+      dt-bindings: Pass binding directory to validation tools
+      dt-bindings: interrupt-controller: arm,gic: Fix schema errors in example
+      checkpatch.pl: Update DT vendor prefix check
+
+Robin Murphy (1):
+      dt-bindings: arm: Clean up CPU binding examples
+
+ Documentation/devicetree/bindings/Makefile         |  2 +-
+ Documentation/devicetree/bindings/arm/arm-boards   |  4 +--
+ .../devicetree/bindings/arm/cpu-capacity.txt       | 12 +++----
+ .../devicetree/bindings/arm/omap/crossbar.txt      |  2 +-
+ .../bindings/clock/samsung,s5pv210-clock.txt       |  2 +-
+ .../bindings/interrupt-controller/arm,gic.yaml     | 24 +++++++-------
+ .../marvell,odmi-controller.txt                    |  2 +-
+ .../devicetree/bindings/leds/irled/spi-ir-led.txt  |  2 +-
+ .../devicetree/bindings/mtd/amlogic,meson-nand.txt |  2 +-
+ .../devicetree/bindings/mtd/brcm,brcmnand.txt      |  6 ++--
+ .../devicetree/bindings/mtd/denali-nand.txt        |  6 ++--
+ .../devicetree/bindings/mtd/fsmc-nand.txt          |  6 ++--
+ .../devicetree/bindings/mtd/gpmc-nand.txt          |  2 +-
+ .../devicetree/bindings/mtd/hisi504-nand.txt       |  2 +-
+ .../devicetree/bindings/mtd/marvell-nand.txt       | 14 ++++----
+ Documentation/devicetree/bindings/mtd/mxc-nand.txt |  6 ++--
+ .../bindings/mtd/nvidia-tegra20-nand.txt           |  6 ++--
+ .../devicetree/bindings/mtd/oxnas-nand.txt         |  2 +-
+ .../devicetree/bindings/mtd/qcom_nandc.txt         |  4 +--
+ .../devicetree/bindings/mtd/samsung-s3c2410.txt    |  6 ++--
+ .../devicetree/bindings/mtd/stm32-fmc2-nand.txt    |  6 ++--
+ .../devicetree/bindings/mtd/tango-nand.txt         |  2 +-
+ .../devicetree/bindings/mtd/vf610-nfc.txt          |  8 ++---
+ .../sifive/sifive-blocks-ip-versioning.txt         | 38 ++++++++++++++++++++++
+ MAINTAINERS                                        |  4 +--
+ scripts/Makefile.lib                               |  2 +-
+ scripts/checkpatch.pl                              |  4 +--
+ 27 files changed, 108 insertions(+), 68 deletions(-)
+ create mode 100644
+Documentation/devicetree/bindings/sifive/sifive-blocks-ip-versioning.txt
