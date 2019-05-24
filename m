@@ -2,143 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4BF529A38
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 16:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 388F229A69
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 16:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404130AbfEXOqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 10:46:15 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:1840 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403997AbfEXOqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 10:46:15 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5ce803af0000>; Fri, 24 May 2019 07:46:07 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 24 May 2019 07:46:12 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 24 May 2019 07:46:12 -0700
-Received: from [10.25.75.99] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 24 May
- 2019 14:46:07 +0000
-Subject: Re: [PATCH V7 04/15] PCI: dwc: Move config space capability search
- API
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     <lorenzo.pieralisi@arm.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>, <catalin.marinas@arm.com>,
-        <will.deacon@arm.com>, <jingoohan1@gmail.com>,
-        <gustavo.pimentel@synopsys.com>, <mperttunen@nvidia.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190517123846.3708-1-vidyas@nvidia.com>
- <20190517123846.3708-5-vidyas@nvidia.com> <20190521211757.GF57618@google.com>
- <fd164d1f-cf99-fe81-c368-46e3a3742a59@nvidia.com>
- <20190522140235.GB79339@google.com>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <fcd437d6-1bf8-9247-9453-d7769f430cb7@nvidia.com>
-Date:   Fri, 24 May 2019 20:16:04 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2403927AbfEXO4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 10:56:14 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35166 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403917AbfEXO4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 10:56:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=TENqr1fMngoHvuyhpRomsD2bSlLjY/XMfSJp2osjYp4=; b=nqnVJhFe3MUNXc4AumiWPnjSO
+        bvNExmoqNN8PJzl8sPu3oCpyBl/Bj1f2pomFOTYiGLrnlmEeWMkuF8DSv7AGMe0UtBey3w4B1XBW0
+        oZyBL5BpYtpCMEZtUU9EBhv0i3yMPW+s5pid0dDXhS+5npNI1CKvS+5eRmdaAUTD4FzPM=;
+Received: from [2a00:23c4:5d92:2c00:517d:dd40:f2e4:f01a] (helo=finisterre.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hUBc4-0003WC-HA; Fri, 24 May 2019 14:56:04 +0000
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+        id 13CB5440046; Fri, 24 May 2019 15:56:03 +0100 (BST)
+Date:   Fri, 24 May 2019 15:56:03 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        lee.jones@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH 2/5] ASoC: madera: Add common support for Cirrus Logic
+ Madera codecs
+Message-ID: <20190524145603.GE2456@sirena.org.uk>
+References: <20190524104158.30731-1-ckeepax@opensource.cirrus.com>
+ <20190524104158.30731-2-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-In-Reply-To: <20190522140235.GB79339@google.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1558709167; bh=7gQdgrdEH6mUJp+DZg0whOMryAQmbUGCSVJvsmfrn80=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=AP800U3TqwiZEhIKSf/MMHAE4tT2L+6Lh7TylCmBvdpziSNQtgwc19+kqyKzl+u+W
-         IPy/3sFkQudDemRovVMMRvH5Nn8lgEXzzEiw+KpMSbuscFaCwIdxflr3itSzYWZFAd
-         SrbjnQ+sLMjgp9VzleeJP/acStCIHmDfAw9veb0vP6gguPwnWOk875gtaaKLhbqRBz
-         FZu/2cYtLpZJ1pG5Fvd9XdPGMcnSX9YN/eAW+uSRYMy+3j4qHBu7zFmgUqcpZy0oNF
-         yZ6PoK4DEgRIJD7HATD1aLF8usXnZug1p0JLy/wpGiax65BrMk2aBwAb2qMZrwyEe5
-         UB0KhBxh3UaJA==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="WBsA/oQW3eTA3LlM"
+Content-Disposition: inline
+In-Reply-To: <20190524104158.30731-2-ckeepax@opensource.cirrus.com>
+X-Cookie: The other line moves faster.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/22/2019 7:32 PM, Bjorn Helgaas wrote:
-> On Wed, May 22, 2019 at 02:26:08PM +0530, Vidya Sagar wrote:
->> On 5/22/2019 2:47 AM, Bjorn Helgaas wrote:
->>> On Fri, May 17, 2019 at 06:08:35PM +0530, Vidya Sagar wrote:
->>>> Move PCIe config space capability search API to common DesignWare file
->>>> as this can be used by both host and ep mode codes.
-> 
->>>>    .../pci/controller/dwc/pcie-designware-ep.c   | 37 +----------------
->>>>    drivers/pci/controller/dwc/pcie-designware.c  | 40 +++++++++++++++++++
->>>>    drivers/pci/controller/dwc/pcie-designware.h  |  2 +
->>>>    3 files changed, 44 insertions(+), 35 deletions(-)
-> 
->>>> --- a/drivers/pci/controller/dwc/pcie-designware.c
->>>> +++ b/drivers/pci/controller/dwc/pcie-designware.c
->>>> @@ -14,6 +14,46 @@
->>>>    #include "pcie-designware.h"
->>>> +/*
->>>> + * These APIs are different from standard pci_find_*capability() APIs in the
->>>> + * sense that former can only be used post device enumeration as they require
->>>> + * 'struct pci_dev *' pointer whereas these APIs require 'struct dw_pcie *'
->>>> + * pointer and can be used before link up also.
->>>
->>> I think this comment is slightly misleading because it suggests the
->>> reason we need these DW interfaces is because we're doing something
->>> before a pci_dev pointer is available.
->>>
->>> But these DW interfaces are used on devices that will *never* have a
->>> pci_dev pointer because they are not PCI devices.  They're used on
->>> host controller devices, which have a PCIe link on the downstream
->>> side, but the host controller driver operates them using their
->>> upstream, non-PCI interfaces.  Logically, I think they would be
->>> considered parts of Root Complexes, not Root Ports.
->>>
->>> There's actually no reason why that upstream interface should look
->>> anything like PCI; it doesn't need to organize registers into
->>> capability lists at all.  It might be convenient for the hardware to
->>> do that and share things with a Root Port device, which *is* a PCI
->>> device, but it's not required.
->>>
->>> It also really has nothing to do with whether the link is up.  This
->>> code operates on hardware that is upstream from the link, so we can
->>> reach it regardless of the link.
->>
->> I added this comment after receiving a review comment to justify why
->> standard pci_find_*capability() APIs can't be used here. Hence added
->> this.  I understand your comment that DW interface need not have to
->> be a PCI device, but what is present in the hardware is effectively
->> a root port implementation and post enumeration, we get a 'struct
->> pci_dev' created for it, hence I thought it is fine to bring 'struct
->> pci_dev' into picture.
-> 
-> This code operates on the host controller.  It configures the bridge
-> that leads *to* PCI devices.  Since that bridge is not a PCI device,
-> the PCI specs don't say anything about how to program it.
-> 
-> The fact that the host controller programming interface happens to
-> resemble the PCI programming interface is purely coincidental.
-> 
->> Also, I agree that mention of 'link up' is unwarranted and could be
->> reworded in a better way.
->>
->> Do you suggest to remove this comment altogether or reword it s/and
->> can be used before link up also/and can be used before 'struct
->> pci_dev' is available/ ?
-> 
-> Maybe something like this?
-> 
->      These interfaces resemble the pci_find_*capability() interfaces,
->      but these are for configuring host controllers, which are bridges
->      *to* PCI devices but are not PCI devices themselves.
-Ok. Done.
 
-> 
+--WBsA/oQW3eTA3LlM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Fri, May 24, 2019 at 11:41:55AM +0100, Charles Keepax wrote:
+
+> +	/*
+> +	 * Just read a register a few times to ensure the internal
+> +	 * oscillator sends out a few clocks.
+> +	 */
+> +	for (i = 0; i < 4; i++) {
+> +		ret = regmap_read(madera->regmap, MADERA_SOFTWARE_RESET, &val);
+> +		if (ret)
+> +			dev_err(madera->dev,
+> +				"%s Failed to read register: %d (%d)\n",
+> +				__func__, ret, i);
+
+Why use %s to format the __func__ rather than just concatenate?
+
+> +	}
+> +
+> +	udelay(300);
+
+So we read the register a few times then add a few hundred us of delay
+after?  Surely that delay is going to be negligable compared to the time
+spent on I/O?
+
+> +int madera_sysclk_ev(struct snd_soc_dapm_widget *w,
+> +		     struct snd_kcontrol *kcontrol, int event)
+> +{
+> +	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
+> +	struct madera_priv *priv = snd_soc_component_get_drvdata(component);
+> +
+> +	madera_spin_sysclk(priv);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(madera_sysclk_ev);
+
+This will delay both before and after every power up and power down.
+Are you sure that makes sense?
+
+> +
+> +	ret = madera_check_speaker_overheat(madera, &warn, &shutdown);
+> +	if (ret)
+> +		shutdown = true; /* for safety attempt to shutdown on error */
+> +
+> +	if (shutdown) {
+> +		dev_crit(madera->dev, "Thermal shutdown\n");
+> +		ret = regmap_update_bits(madera->regmap,
+> +					 MADERA_OUTPUT_ENABLES_1,
+> +					 MADERA_OUT4L_ENA |
+> +					 MADERA_OUT4R_ENA, 0);
+> +		if (ret != 0)
+> +			dev_crit(madera->dev,
+> +				 "Failed to disable speaker outputs: %d\n",
+> +				 ret);
+> +	} else if (warn) {
+> +		dev_crit(madera->dev, "Thermal warning\n");
+> +	}
+> +
+> +	return IRQ_HANDLED;
+
+We will flag the interrupt as handled if there was neither a warning nor
+a critical overheat?  I'd expect some warning about a spurious interrupt
+at least.
+
+> +static int madera_get_variable_u32_array(struct madera_priv *priv,
+> +					 const char *propname,
+> +					 u32 *dest,
+> +					 int n_max,
+> +					 int multiple)
+> +{
+> +	struct madera *madera = priv->madera;
+> +	int n, ret;
+> +
+> +	n = device_property_read_u32_array(madera->dev, propname, NULL, 0);
+> +	if (n == -EINVAL) {
+> +		return 0;	/* missing, ignore */
+> +	} else if (n < 0) {
+> +		dev_warn(madera->dev, "%s malformed (%d)\n",
+> +			 propname, n);
+> +		return n;
+> +	} else if ((n % multiple) != 0) {
+> +		dev_warn(madera->dev, "%s not a multiple of %d entries\n",
+> +			 propname, multiple);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (n > n_max)
+> +		n = n_max;
+> +
+> +	ret = device_property_read_u32_array(madera->dev, propname, dest, n);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +	else
+> +		return n;
+> +}
+
+This feels like it should perhaps be a generic OF helper function -
+there's nothing driver specific I'm seeing here and arrays that need to
+be a multiple of N entries aren't that uncommon I think.
+
+> +	mutex_lock(&priv->rate_lock);
+> +	cached_rate = priv->adsp_rate_cache[adsp_num];
+> +	mutex_unlock(&priv->rate_lock);
+
+What's this lock protecting?  The value can we read can change as soon
+as the lock is released and we're just reading a single word here rather
+than traversing a data structure that might change under us or
+something.
+
+> +void madera_destroy_bus_error_irq(struct madera_priv *priv, int dsp_num)
+> +{
+> +	struct madera *madera = priv->madera;
+> +
+> +	madera_free_irq(madera,
+> +			madera_dsp_bus_error_irqs[dsp_num],
+> +			&priv->adsp[dsp_num]);
+> +}
+> +EXPORT_SYMBOL_GPL(madera_destroy_bus_error_irq);
+
+We use free rather than destroy normally?
+
+> +static const char * const madera_dfc_width_text[MADERA_DFC_WIDTH_ENUM_SIZE] = {
+> +	"8bit", "16bit", "20bit", "24bit", "32bit",
+> +};
+
+Spaces might make these more readable.
+
+> +static void madera_sleep(unsigned int delay)
+> +{
+> +	if (delay < 20) {
+> +		delay *= 1000;
+> +		usleep_range(delay, delay + 500);
+> +	} else {
+> +		msleep(delay);
+> +	}
+> +}
+
+This feels like it might make sense as a helper function as well - I
+could've sworn there was one already but I can't immediately find it.
+
+--WBsA/oQW3eTA3LlM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlzoBgIACgkQJNaLcl1U
+h9Ax4Qf7BL5pxFNTieQDiYL+ovKvGa4NiGlYXApjC/oMBn2LF5Q716fLD9bkY/Uh
+fdEqSS4nbBZ/apJrPEM4ADrqkQh2ep9Bjmlz6mhjnVEL6owyZQJfcTqKENW3UbZ8
+sTjcxDGIIcom9d18lMpUvZwLrQx8SFNubom4sPcTWIIu+1mYDbDGFyc+woksHCQ+
+mtPOvAHCYGFOxNZrz6euuUXe3g83QhdkTp9VFpPI8BDomTnBgrE/8jF25Dd7vJya
+NmLSDJIxSEFqPb2v3YGVylCvxfQRyzHHHMsxaPB3iz4Lem1MdiLPbyzIq15vJJ1k
+yWGVeeeSGUEcEBtVntTDKLG+C8ZfwA==
+=FHnb
+-----END PGP SIGNATURE-----
+
+--WBsA/oQW3eTA3LlM--
