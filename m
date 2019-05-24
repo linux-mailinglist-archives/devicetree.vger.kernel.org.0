@@ -2,85 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BE6296F9
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 13:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 220E029768
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 13:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390849AbfEXLTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 07:19:41 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:60747 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390743AbfEXLTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 07:19:41 -0400
-X-Originating-IP: 90.88.147.134
-Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 71F01C0006;
-        Fri, 24 May 2019 11:19:29 +0000 (UTC)
-Date:   Fri, 24 May 2019 13:19:28 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH v2 3/6] drm/sun4i: dsi: Add bridge support
-Message-ID: <20190524111928.ourdmraxw7vrhaar@flea>
-References: <20190524104317.20287-1-jagan@amarulasolutions.com>
+        id S2390935AbfEXLia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 07:38:30 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:33868 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390808AbfEXLi3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 07:38:29 -0400
+Received: by mail-qk1-f195.google.com with SMTP id t64so6788141qkh.1
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 04:38:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0lxiGmWfLgl7C0PUBf51UY66oylRUCwuW2L386gQxFM=;
+        b=LUaBU+oQ+7tPBoX/UMmq0HZGaNUxbnS4Li9ZC0bSZJ7gQ9i5S9z2Y2TGSJQ60X+Bki
+         37KF1sRvhwYU42JBaxNqk4Eqn1GJayVPYODxe20VQIWSzDpMqbh8MJjp45HbKdJcc1vk
+         pnjeuZ5OvGdmGOhbaC44nP2tbXRRQOb1mJWvYKyEjDAEl1Obt6lZ/G7NI6GmNocDUBRK
+         2Xr0SjpwW4FnOuCvKUVeEXnWXj740GTgprlcCV47PSyFUBMbMBeFQPZXHLO+psfn24Hu
+         NfEsR+Js97tD3PQlVq9YDIiPVtP070m/YuQ6Y40B3Z9p3A1JaaI75CbnbuN8ANVi+udN
+         mNKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0lxiGmWfLgl7C0PUBf51UY66oylRUCwuW2L386gQxFM=;
+        b=TKd0zsqUq54IUreXTF58y4nCH2q5BYdTsG9IIp/yc6hPkldyE6kELZpf1LSNtq48ZO
+         h28XoqcrzC8bDG57jyQE8W/jEu3E0KFNUAFlmfRgikAIYjB20353RWXp3qPhAPqYtpip
+         10oHFkUbaeNmieNirnE6VtGaoqOeL2A/FJJ4rYEG7AmfS4QKDiDUvloQP5ueLWGsd/HO
+         uS0FCwNI6WOX8+YCYZGw+sBBVT/QvNqQ/Cb7+yLY6I4hW1tRSRaVoP7kFkv5qwRgKCFB
+         A6PgtIUDgJRE35FFeQMtyDI+4KpWtcAmWczJYp2z9W530kge4pmyIVKIp8A5N80AHXsn
+         ac/A==
+X-Gm-Message-State: APjAAAVw01mZkhNKurd5CebqvcjjRQuPtnc79vzQO3WDQBG05921/xgW
+        6pFDgnf+oDoOfrMjr8FSprmXaXk7SVOSQXdW7U53vw==
+X-Google-Smtp-Source: APXvYqwgX2PLA0fSXA7p0azFhUSmOAckdqbzgNqBifI/FEQSkUa/r3EhD7hLuBNm+vM7K0FXzlsJhhdkDC52rf3oPlA=
+X-Received: by 2002:a37:b287:: with SMTP id b129mr70960448qkf.20.1558697909058;
+ Fri, 24 May 2019 04:38:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190524104317.20287-1-jagan@amarulasolutions.com>
-User-Agent: NeoMutt/20180716
+References: <20190514005033.15593-1-robh@kernel.org>
+In-Reply-To: <20190514005033.15593-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 24 May 2019 13:38:17 +0200
+Message-ID: <CACRpkdZabT3_vjkv0PR+GLC0ZXWzpMxfwJU6O9Y+omKJ=6zCaA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: Convert Arm PL061 to json-schema
+To:     Rob Herring <robh@kernel.org>,
+        viresh kumar <viresh.kumar@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, May 14, 2019 at 2:50 AM Rob Herring <robh@kernel.org> wrote:
 
-On Fri, May 24, 2019 at 04:13:14PM +0530, Jagan Teki wrote:
-> Some display panels would come up with a non-DSI output which
-> can have an option to connect DSI interface by means of bridge
-> converter.
+> Convert the Arm PL061 GPIO controller binding to json-schema format.
 >
-> This DSI to non-DSI bridge converter would require a bridge
-> driver that would communicate the DSI controller for bridge
-> functionalities.
+> As I'm the author for all but the gpio-ranges line, make the schema dual
+> GPL/BSD license.
 >
-> So, add support for bridge functionalities in Allwinner DSI
-> controller.
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 60 +++++++++++++++++++-------
->  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  1 +
->  2 files changed, 45 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> index ae2fe31b05b1..2b4b1355a88f 100644
-> --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> @@ -775,6 +775,9 @@ static void sun6i_dsi_encoder_enable(struct drm_encoder *encoder)
->  	if (!IS_ERR(dsi->panel))
->  		drm_panel_prepare(dsi->panel);
->
-> +	if (!IS_ERR(dsi->bridge))
-> +		drm_bridge_pre_enable(dsi->bridge);
-> +
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: linux-gpio@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-drm_panel_bridge provides what's needed to deal with both a panel and
-a bridge, I guess it would make sense to use this instead of
-duplicating everything.
+Patch applied. As you know I am already a big fan of this scheme.
 
-Maxime
+> This warns on a few platforms missing clocks, interrupt-controller
+> and/or #interrupt-cells. We could not make those required, but really
+> they should be IMO. OTOH, it's platforms like Spear and Calxeda which
+> aren't too active, so I don't know that we want to fix them.
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+What works for you works for me.
+
+We could add dummy fixed clocks in the DTS files if
+we wanted I suppose. The #interrupt-cells and interrupt-controller
+things we can just fix, but I wonder what the maintainers of these
+platforms are up to? Isn't Calxeda yours, and could Viresh fix
+up the SPEAr?
+
+Yours,
+Linus Walleij
