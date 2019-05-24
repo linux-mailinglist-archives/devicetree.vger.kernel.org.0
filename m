@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B38297F2
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 14:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA712980A
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 14:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391354AbfEXMXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 08:23:33 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:43677 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391216AbfEXMXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 08:23:33 -0400
-Received: by mail-lf1-f65.google.com with SMTP id u27so6987008lfg.10;
-        Fri, 24 May 2019 05:23:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=C+myfdGRYFPLLSybMtkNtVx2Tt/XQimBNXiCQ/VdObg=;
-        b=hZ0bD/CUdsrgatmNXy5higdZbx3OSCJT8sw3LgkqkYgqbLtDn/gLs9c3g8mirUEDrG
-         l+4o7a9TAxKLDBrPxE1t79fM9XPEqezMkBejfXLFW1INWkfF6OniubiwX8l6JtdYRW5M
-         tFXRga1iZyPaMA5IfgLcUNsVq0/n8CPAA7ngiZ2vlfacytZlLloQGm7izI50MYXleqvm
-         ISGNwOfcAGX8Xe6oTUH7CHfM9HQ/3MXe5c0F3fumRQ20D6mMK9Uiok4uhyMArRoFFH+q
-         u4G3Opyv18dM583Kp0bxWnPFYDg/9AdqBdoV4pWXcATSuvokXHnSxlg9lkFRrlKRVbRQ
-         1utQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=C+myfdGRYFPLLSybMtkNtVx2Tt/XQimBNXiCQ/VdObg=;
-        b=ATbpaZOburacXnUixjr3z/A5JcWc7SrFgtcMouhpbA3rHTkYQH6bQ71mwBmSP3dlJn
-         1L3rKnIdKqI1UqTPvAT3wpC9UcTX6oZfi5dB13yGAr9Xu2isz17jrjBXmmTdM4aQi5x9
-         8w11HwZPYyQUx4Ffg33lF4BQNV2vnek3d9jV6FxouTG5r7u4SmxNxo1GE18tFqhmQHNG
-         2vajgS54+rCdwXrioYJKlE8nJMK6zHgBsS6nr70GA99jlVs12SqchXLLsTwKANWOvRSk
-         ZIssYtL4UACQ3JtZFV80PBjyfdeLA0YhS6N9RLJzhaXxYFftQIN1ZL34k59DquX9MUvF
-         CoJQ==
-X-Gm-Message-State: APjAAAXX9xNq4o0if/ZgrxaSSYIdLoK5keA8MVFOo7CtFXb8glj9wxIg
-        ooo6ecTMCJcv1A3vl0C0uObaFlAYOrqydMHPrDg=
-X-Google-Smtp-Source: APXvYqzNQQPTSEiT9TgbJ91HH92JPe3O9NL20r1waVsd3eYrkSbkO8SrKpooDjZEBXWcbK0tw4yY2uokVzdzBVZa5zc=
-X-Received: by 2002:ac2:4428:: with SMTP id w8mr46274166lfl.99.1558700610795;
- Fri, 24 May 2019 05:23:30 -0700 (PDT)
+        id S2391118AbfEXM3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 08:29:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59220 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389057AbfEXM3d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 08:29:33 -0400
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A10742133D;
+        Fri, 24 May 2019 12:29:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1558700972;
+        bh=kkMeV3Qa9ZecFjYtXsmMBNygjCqjuPUH0BPe7UWSBes=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rGljGda+WHDyJKj+CRGvm+n+fq0a+B/CHmlvdieBNDIC10WNowElnWEy/8HeY5Rzj
+         uxotR1JsdPOU2qe9SaLSPmGgsT5x0EnsIhuBQg9b7SWHkOyiS/BvYvCfqkenmRmf/w
+         vntu/FhMELK1PgnZRm8g+z8aP8Yc4y5luv33kPj0=
+Received: by mail-qk1-f177.google.com with SMTP id q197so7236782qke.7;
+        Fri, 24 May 2019 05:29:32 -0700 (PDT)
+X-Gm-Message-State: APjAAAXG25TUDcnQrM+NQcJlEwKtXwZ0SanzBgFNdA0woCjxnQeo/SsR
+        2iE8B38VOUTbHMa2I0GmG8kedNVnMIHk/ar3oA==
+X-Google-Smtp-Source: APXvYqx2xqDEadQisTg7b1WEJZG9w2R5BeEk8IqwCYl56O2Vztp67RVbSkkhCGkdjSKdSi//kWMqFU8vKJEKBHTFnr4=
+X-Received: by 2002:ac8:6b14:: with SMTP id w20mr64976477qts.110.1558700971929;
+ Fri, 24 May 2019 05:29:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1557657814.git.agx@sigxcpu.org> <2000bc4564175abd7966207a5e9fbb9bb7d82059.1557657814.git.agx@sigxcpu.org>
-In-Reply-To: <2000bc4564175abd7966207a5e9fbb9bb7d82059.1557657814.git.agx@sigxcpu.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 24 May 2019 09:23:30 -0300
-Message-ID: <CAOMZO5BaFYJxh1v46n2mdPyc+-jg6LgvoGR1rTE+yHZg_0Z8PA@mail.gmail.com>
-Subject: Re: [PATCH v11 2/2] phy: Add driver for mixel mipi dphy found on
- NXP's i.MX8 SoCs
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thierry Reding <treding@nvidia.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Hovold <johan@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>, Li Jun <jun.li@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+References: <20190509070657.18281-1-chuanhua.han@nxp.com> <20190517023728.GA15856@dragon>
+ <AM6PR04MB4357C78FCEBA1B00AA42ED2E970B0@AM6PR04MB4357.eurprd04.prod.outlook.com>
+ <AM6PR04MB586341334E62A663EE5E8BD18F0B0@AM6PR04MB5863.eurprd04.prod.outlook.com>
+ <AM6PR04MB435758E1498B6A2BE0C0ACE397070@AM6PR04MB4357.eurprd04.prod.outlook.com>
+ <AM6PR04MB58631458E6D851E4D83A77ED8F070@AM6PR04MB5863.eurprd04.prod.outlook.com>
+ <AM6PR04MB435708872A4DBA92561C772597000@AM6PR04MB4357.eurprd04.prod.outlook.com>
+ <AM6PR04MB5863FA1CE6D1E40F11B2E5008F000@AM6PR04MB5863.eurprd04.prod.outlook.com>
+ <AM6PR04MB4357072E079BDD8D1866595797020@AM6PR04MB4357.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB4357072E079BDD8D1866595797020@AM6PR04MB4357.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 24 May 2019 07:29:20 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+evXqKKyXLFbE+9o8X5BA9NWmcjvZ9-Y1Y7-pwcu8nJg@mail.gmail.com>
+Message-ID: <CAL_Jsq+evXqKKyXLFbE+9o8X5BA9NWmcjvZ9-Y1Y7-pwcu8nJg@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH] arm64: dts: ls1028a: fix watchdog device node
+To:     Chuanhua Han <chuanhua.han@nxp.com>
+Cc:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ying Zhang <ying.zhang22455@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -79,25 +60,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kishon,
-
-On Sun, May 12, 2019 at 7:49 AM Guido G=C3=BCnther <agx@sigxcpu.org> wrote:
+On Fri, May 24, 2019 at 4:48 AM Chuanhua Han <chuanhua.han@nxp.com> wrote:
 >
-> This adds support for the Mixel DPHY as found on i.MX8 CPUs but since
-> this is an IP core it will likely be found on others in the future. So
-> instead of adding this to the nwl host driver make it a generic PHY
-> driver.
+> Hi, Rob Herring
 >
-> The driver supports the i.MX8MQ. Support for i.MX8QM and i.MX8QXP can be
-> added once the necessary system controller bits are in via
-> mixel_dphy_devdata.
->
-> Signed-off-by: Guido G=C3=BCnther <agx@sigxcpu.org>
-> Co-developed-by: Robert Chiras <robert.chiras@nxp.com>
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > -----Original Message-----
+> > From: Leo Li
+> > Sent: 2019=E5=B9=B45=E6=9C=8822=E6=97=A5 14:50
 
-Would you have any comments on this series, please?
 
-Thanks
+> > > > > > > > > -             wdog0: watchdog@23c0000 {
+> > > > > > > > > -                     compatible =3D "fsl,ls1028a-wdt",
+> > > > "fsl,imx21-wdt";
+> > > > > > > > > -                     reg =3D <0x0 0x23c0000 0x0 0x10000>=
+;
+> > > > > > > > > -                     interrupts =3D <GIC_SPI 59
+> > > > > > IRQ_TYPE_LEVEL_HIGH>;
+> > > > > > > > > -                     clocks =3D <&clockgen 4 1>;
+> > > > > > > > > -                     big-endian;
+> > > > > > > > > -                     status =3D "disabled";
+> > > > > > > > > +             cluster1_core0_watchdog: wdt@c000000 {
+> > > > > > > >
+> > > > > > > > Keep 'watchdog' as the node name,
+> > > > > > > Thanks for your replay
+> > > > > > > Do you mean replace the =E2=80=98wdt=E2=80=99 with =E2=80=98w=
+atchdog=E2=80=99?
+> > > > > > > and keep nodes sort in unit-address.
+> > > > > > > What does this mean?
+> > > > > >
+> > > > > > That means order the nodes by the addresses (e.g. c000000,
+> > > > > > c010000)
+> > > > > The current order is correct=EF=BC=88The first is c000000, then c=
+000000=EF=BC=89.
+> > > >
+> > > > But they are added after gpio@2320000 and before sata@3200000.
+> > > I changed and made the second version of the patch, but I found the
+> > > following error when I executed ./scripts/checkpatch.pl xxx.patch to
+> > > check the patch:
+> > >
+> > > WARNING: DT compatible string vendor "arm" appears un-documented --
+> > > check ./Documentation/devicetree/bindings/vendor-prefixes.txt
+> > > #43: FILE: arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi:351:
+> > > + compatible =3D "arm,sp805", "arm,primecell";
+> > >
+> > > However, there is no vendor-prefixes.txt file in the
+> > > ./Documentation/devicetree/bindings/ directory, only vendor-
+> > > prefixes.yaml.
+> > > Moreover, there are =E2=80=98arm=E2=80=99 vendors in vendor-prefixes.=
+yaml.
+> >
+> > Added Rob Herring to the thread.
+> >
+> > > Request help=EF=BC=8Cthanks
+> How can I solve this patch check error? Ask for help, thank you!
+
+Ignore it. A fix to checkpatch.pl is pending.
+
+Rob
