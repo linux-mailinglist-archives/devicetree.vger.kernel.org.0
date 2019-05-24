@@ -2,75 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0418297AF
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 13:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E78E297C3
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 14:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391334AbfEXLyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 07:54:40 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:46779 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391296AbfEXLyk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 07:54:40 -0400
-Received: by mail-lf1-f66.google.com with SMTP id l26so6902170lfh.13
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 04:54:39 -0700 (PDT)
+        id S2391235AbfEXMCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 08:02:39 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:34556 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391244AbfEXMCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 08:02:39 -0400
+Received: by mail-ed1-f66.google.com with SMTP id p27so14089702eda.1
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 05:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/Azj5Mh17Xr9FCaEyv0nk1c3/T309llcqUN9VP/DQik=;
-        b=fcHnoD4vDFTzmg8QamBdu8mV+cYaJtuDyG3kWeofCmb377qqJWF05W/khA8hWMoOsT
-         8wGRqbsDSv4n/+4RSB65JncRdIbGsQnGx7wDjPbZsVJh3k+Bvo4Zl8JGMB9vEz2JUePA
-         KjzrqGUzbXBk46zgSeUUbjk/PjKvkM5M35w5EQhVrIhWTy4QxCDWBjsm4eKFIPeWd7Dj
-         4EsjqzZ2ZulAaBko4yNvM0BI62kMnAd2LykhVsDgS1A7T3m8onYWErWZljVNTCmg9pR1
-         7oRQk+2h0FCEZp5hoFMW5nxkzYSWyiVSquCgbnbXQFmLL4PxmL1jWRKGycSyJ0cTnCi+
-         hBsw==
+        d=essensium-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=EKk/cIwaLyICV+zUNt5nE7tK5hxV2T/gKNg2bYYa8aU=;
+        b=kmZphTPLFDEK6kXZCM3P0Gzre9Zxs0Zc1VUb0swQdOVOQkghpXjjHuYcS/Qa1lsbHN
+         2n+pakxrHnLGZ6KWp7OEDq09goDKrGqePvDSJEve8WOijva+bg4Rh06NqgHaz+GABrfw
+         bwz0V0+FVewN2wiFMrGqHz7tMD7Z5aZPAiSWShLR//h8S72PPpPAZjSqQbstg7zvyNTY
+         Q34V0mqtu3ROc/SErqdoHd8uaFOfk9/eYaTo4uUpNbZ69KDppSfCgzwHuztGsSLg0VxP
+         r9eXxo0/CrHQeiLbeQgWsgc5CgFzDlLZByXOhDSKbQ7UVBF1SrHFUWJrRpATVsqLiArE
+         1a1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/Azj5Mh17Xr9FCaEyv0nk1c3/T309llcqUN9VP/DQik=;
-        b=jFfMbq4rXfw/e4ajFEkzrHhhqRNla5I/YSTnfmtvdmcB0/jEnpfXL8a2vtTyVAhp55
-         IoJCf7oaboIbqkosVMOmBMr4dfUQnWUbOPLoYWGciPa2MGuKqkKDu/kqYrIa3tAcErr+
-         BpPr7bTadobT80pAzxl9P6/aeMz9i87+FDyc/McsdCbDXiBqJ+GXV/HPie40Bp8eFiRi
-         HJh2KHg0D2L1RyFlAyZLsYBTWB9fsJQ9+sjBQQqffdkD2DsJppOHRt+00rfkqcgzcZ6P
-         3HhDP0DfFu6fpP6ffa2Uwud+DqiHaPgt9gfMxcdvIQxzBav7jO8gRcCoauqzch5tzTiw
-         aY+A==
-X-Gm-Message-State: APjAAAWH9bceNHHP0Efkvlfz7kNAV3ogJPsYa3Edh9zuYmaXdLPJyd4P
-        dvDmdZ1AIdxxvUIxXoDuAsm5v11OygJKVVx9oTJcPw==
-X-Google-Smtp-Source: APXvYqwIIZNQbUvjC3/LAYZAUbrO59dxsLsAscijArxf5xAPoLHmlBeI4UgtMCBGZ6OBmRpTsXtE3Yphmj2LJ6hmnmA=
-X-Received: by 2002:ac2:4209:: with SMTP id y9mr11799734lfh.83.1558698878778;
- Fri, 24 May 2019 04:54:38 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=EKk/cIwaLyICV+zUNt5nE7tK5hxV2T/gKNg2bYYa8aU=;
+        b=RPjzFpQLVsUUVoqtwyOqubRu6oqbCyui4gBQgRu09Rh53Z1zFWaJ45X6QNDyPdnDR6
+         uTK5uMITaKzvZiNwbkKlQny7rz5rvmll9jPRlhuj2ARrlEDRS0ZHTe7pmyd4R0q8DsMX
+         2D683rlfEqQiaNmMH2MmBpiwvNomC3WCuhiY0lkzBUpKAb1JXKJqXBr6Wu79vXdL450A
+         eFkb3p/BgFsDXsYNbH32A3ssFTHaD+tLGL/+6Ivn1rCG2nHznib8TvlwOvKyKdWF9i3e
+         sWuGv/bm6uXayagVJYZ8TAG0K1n3u8H4lsEcvgqLIvYSZ+yGONizvhwEn3U/sqLck40j
+         csSw==
+X-Gm-Message-State: APjAAAUKS2pVqzKAZS4AjPU2EpSWGdwNYRRc8QnAfjnmEkmG83BTrKLe
+        4Gqj0+wNb7LDb5fs3is5KE0U9Q==
+X-Google-Smtp-Source: APXvYqzNrNQ34o178qgF58YqCzsN717OWDCY6SXgnER717yhuxeF496z/3libVrM2TkpvMl2rOd6Rg==
+X-Received: by 2002:aa7:c512:: with SMTP id o18mr104340990edq.82.1558699357520;
+        Fri, 24 May 2019 05:02:37 -0700 (PDT)
+Received: from [10.1.0.123] (ip-188-118-3-185.reverse.destiny.be. [188.118.3.185])
+        by smtp.gmail.com with ESMTPSA id t3sm686925edd.49.2019.05.24.05.02.36
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 May 2019 05:02:36 -0700 (PDT)
+Subject: Re: [PATCH v2 3/6] iio: ad7949: Support configuration read-back
+To:     Adam Michaelis <adam.michaelis@collins.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, lars@metafoo.de,
+        michael.hennerich@analog.com, knaack.h@gmx.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org,
+        Brandon Maier <brandon.maier@rockwellcollins.com>,
+        Clayton Shotwell <clayton.shotwell@rockwellcollins.com>
+References: <1556813672-49861-1-git-send-email-adam.michaelis@rockwellcollins.com>
+ <1556813672-49861-3-git-send-email-adam.michaelis@rockwellcollins.com>
+ <20190505154227.1735b1b2@archlinux>
+ <CALMrGWV6rtYQShtm7uBQygtdOpPW30mLnKMxb2Jk8pY68B6yyw@mail.gmail.com>
+From:   Couret Charles-Antoine <charles-antoine.couret@essensium.com>
+Message-ID: <154f2b5c-91e1-41dc-e7c5-a5ec35ca1c05@essensium.com>
+Date:   Fri, 24 May 2019 14:02:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190520083101.10229-1-manivannan.sadhasivam@linaro.org> <20190520083101.10229-6-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20190520083101.10229-6-manivannan.sadhasivam@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 24 May 2019 13:54:27 +0200
-Message-ID: <CACRpkda1a_WSP5rWGHDZPsbU=5mLN+2TPVF05mEHm17R2fM0aQ@mail.gmail.com>
-Subject: Re: [PATCH 5/5] pinctrl: Add pinconf support for BM1880 SoC
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        alec.lin@bitmain.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CALMrGWV6rtYQShtm7uBQygtdOpPW30mLnKMxb2Jk8pY68B6yyw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 10:31 AM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+Le 07/05/2019 à 21:53, Adam Michaelis a écrit :
+> On Sun, May 5, 2019 at 9:42 AM Jonathan Cameron <jic23@kernel.org> wrote:
+>> On Thu,  2 May 2019 11:14:29 -0500
+>> Adam Michaelis <adam.michaelis@rockwellcollins.com> wrote:
+>>
+>>> Adds device tree parameter to set the configuration read-back bit
+>>> in the configuration register to tell the AD7949 to include the value of
+>>> the configuration register at the time the current sample was acquired
+>>> when reading from the part.
+>>>
+>>> Further work must be done to make read-back information available to
+>>> consumer.
+>> This needs some explanation of why it is useful at all. I'm certainly unclear
+>> on why it would be useful to configure this at boot time.
+>>
+>> Code looks fine.
+>>
+>> Jonathan
+>>
+> The configuration read-back feature is being maintained from the
+> original version of this driver. Before adding the device tree entry,
+> there was no way to change this setting other than debugfs raw access
+> to the SPI interface, and there is still no access to the returned
+> configuration data should the feature be enabled. I would be willing
+> to remove the feature altogether, but wanted to tread softly on
+> existing features.
 
-> Add pinconf support for Bitmain BM1880 SoC. Pinconf support includes
-> pin bias, slew rate and schmitt trigger. Drive strength support will
-> be added later.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi,
 
-Patch applied.
+I added this feature for debug purpose but it is not used in our case 
+anymore because the driver and the device are working as expected.
 
-Yours,
-Linus Walleij
+But maybe we can use it the check if the config is correctly applied? I 
+don't know, it is probably useless to keep this feature here.
+
+Regards,
+
+Charles-Antoine Couret
+
