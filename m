@@ -2,221 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4719129637
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C65752966E
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390830AbfEXKoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 06:44:18 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:36581 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390825AbfEXKoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 06:44:17 -0400
-Received: by mail-pf1-f196.google.com with SMTP id v80so5114658pfa.3
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 03:44:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I2TZuRmi80hep26TN0kzkhgc7I9J5j9G8LP4vdObAKA=;
-        b=Y6/TPr4dAmAWl0yxUzh38/rCmUtxW/omfCTV8dq+RbcPTsSd1HVRkatTyfzFAii57t
-         BfV8WUcypTvaCp1oLLG4kiNKbi+JR8xOtbHkYZcjheeMGA/rjVkHysCYMbacTc90AFcy
-         Acb53tu8z0vw5pIclEFWVobYO75ZD5L0bTcFc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I2TZuRmi80hep26TN0kzkhgc7I9J5j9G8LP4vdObAKA=;
-        b=ldv6JP7E1/J7jh9hlc4Wpcot4kFSSlW+FcbNnJvfMwRo0Nh6tSzgdaZYx5ZsOtf3Bj
-         k0M+z+XKWoKqzv7XQTk0/DFtUhSd0hkLsiH2G1MYUt4fsU9InOyfR+M5Y5/XL908CLkH
-         IEFcMv3RbnFDux/Du4ioBV7iDy0YGixghlh57jTwgFv0hDo+oAilLy/w9idbh3zTPiUa
-         EAMOc95ppGQgMzfqDVPbk+0eVM9PJs/xJu4NEniyPz5rlbCSTo26H3Qcd4vR9PZ69+35
-         KP4/QkCP5ry94HeY4v18EPD3IiiMkr7ph6npkATxm89QAgI0arzKAUkF2gV+e4DZeQgU
-         hewA==
-X-Gm-Message-State: APjAAAVII60neMBJa+B+LYtpyKrER8J6gY7P5bTMYdlKg8Z7obT7xzAP
-        hAkRlodZ16EqofpGdeVW9ZfQecb38Uw=
-X-Google-Smtp-Source: APXvYqxLSs8iO1m115oUyVnrdwFq0cnEzH565uo/USlTwFKMKyOMBAIiY/kx7gcZIlu2j9RZRIsZCw==
-X-Received: by 2002:a62:582:: with SMTP id 124mr112332112pff.209.1558694656864;
-        Fri, 24 May 2019 03:44:16 -0700 (PDT)
-Received: from localhost.localdomain ([183.82.227.60])
-        by smtp.gmail.com with ESMTPSA id h11sm2303416pfn.170.2019.05.24.03.44.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 May 2019 03:44:16 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S2390680AbfEXKye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 06:54:34 -0400
+Received: from foss.arm.com ([217.140.101.70]:40152 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390654AbfEXKye (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 06:54:34 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EEA61374;
+        Fri, 24 May 2019 03:54:33 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9814F3F703;
+        Fri, 24 May 2019 03:54:32 -0700 (PDT)
+Date:   Fri, 24 May 2019 11:54:30 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+Cc:     "trivial@kernel.org" <trivial@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [DO NOT MERGE] [PATCH v2 6/6] ARM: dts: sun8i: bananapi-m2m: Enable Bananapi S070WV20-CT16 DSI panel
-Date:   Fri, 24 May 2019 16:13:17 +0530
-Message-Id: <20190524104317.20287-4-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
-In-Reply-To: <20190524104317.20287-1-jagan@amarulasolutions.com>
-References: <20190524104317.20287-1-jagan@amarulasolutions.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH] dt-bindings: arm: fix the document ID for SCMI protocol
+ documentation
+Message-ID: <20190524105430.GB13121@e107155-lin>
+References: <20190523112312.24529-1-volodymyr_babchuk@epam.com>
+ <20190523170938.GC4224@e107155-lin>
+ <877eah84nr.fsf@epam.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <877eah84nr.fsf@epam.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add support for Bananapi S070WV20-CT16 DSI panel to
-BPI-M2M board.
+On Thu, May 23, 2019 at 05:24:56PM +0000, Volodymyr Babchuk wrote:
+> 
+> Hi,
+> 
+> Sudeep Holla writes:
+> 
+> > On Thu, May 23, 2019 at 11:23:35AM +0000, Volodymyr Babchuk wrote:
+> >> From: Volodymyr Babchuk <volodymyr_babchuk@epam.com
+> 
+> I accidentally deleted ending ">" symbol in the line above, so "git
+> send-email" decided to move that line from headers to the message body.
+> 
+> >> arm,scmi.txt used the wrong document identifier. "ARM DUI 0922B" is
+> >> the "ARM Compute Subsystem SCP, Message Interface Protocols". What we
+> >> need is the ARM DEN 0056A - "ARM System Control and Management
+> >> Interface Platform Design Document".
+> >>
+> >
+> > Indeed, it's most stupid copy-paste mistake. Thanks for fixing this.
+> > Applied now.
+> It happens all the time. I also did stupid mistake in my patch file. It
+> is described above. Could you please ensure that this line will be not
+> in the resulting commit message? Thank you.
 
-Bananapi S070WV20-CT16 is a pure RGB output panel with ICN6211 DSI/RGB
-convertor bridge, so enable bridge along with associated panel.
+Ah OK, I didn't notice that, but the applied patch seems fine.
 
-DSI panel connected via board DSI port with,
-- DCDC1 as VCC-DSI supply
-- PL5 gpio for bridge reset gpio pin
-- PB7 gpio for lcd enable gpio pin
-- PL4 gpio for backlight enable pin
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts | 86 ++++++++++++++++++++
- 1 file changed, 86 insertions(+)
-
-diff --git a/arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts b/arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts
-index e1c75f7fa3ca..5f3f9523a03e 100644
---- a/arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts
-+++ b/arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts
-@@ -44,6 +44,7 @@
- #include "sun8i-a33.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pwm/pwm.h>
- 
- / {
- 	model = "BananaPi M2 Magic";
-@@ -61,6 +62,14 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-+		brightness-levels = <1 2 4 8 16 32 64 128 255>;
-+		default-brightness-level = <8>;
-+		enable-gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* LCD-BL-EN: PL4 */
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -81,6 +90,18 @@
- 		};
- 	};
- 
-+	panel {
-+		compatible = "bananapi,s070wv20-ct16", "simple-panel";
-+		enable-gpios = <&pio 1 7 GPIO_ACTIVE_HIGH>; /* LCD-PWR-EN: PB7 */
-+		backlight = <&backlight>;
-+
-+		port {
-+			panel_out_bridge: endpoint {
-+				remote-endpoint = <&bridge_out_panel>;
-+			};
-+		};
-+	};
-+
- 	reg_vcc5v0: vcc5v0 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0";
-@@ -122,6 +143,61 @@
- 	status = "okay";
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
-+&dphy {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	vcc-dsi-supply = <&reg_dcdc1>;		/* VCC-DSI */
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		dsi_out: port@0 {
-+			reg = <0>;
-+
-+			dsi_out_bridge: endpoint {
-+				remote-endpoint = <&bridge_out_dsi>;
-+			};
-+		};
-+	};
-+
-+	bridge@0 {
-+		compatible = "chipone,icn6211";
-+		reg = <0>;
-+		reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* LCD-RST: PL5 */
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			bridge_in: port@0 {
-+				reg = <0>;
-+
-+				bridge_out_dsi: endpoint {
-+					remote-endpoint = <&dsi_out_bridge>;
-+				};
-+			};
-+
-+			bridge_out: port@1 {
-+				reg = <1>;
-+
-+				bridge_out_panel: endpoint {
-+					remote-endpoint = <&panel_out_bridge>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -157,6 +233,12 @@
- 	status = "okay";
- };
- 
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0_pin>;
-+	status = "okay";
-+};
-+
- &r_rsb {
- 	status = "okay";
- 
-@@ -269,6 +351,10 @@
- 	status = "okay";
- };
- 
-+&tcon0 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
--- 
-2.18.0.321.gffc6fa0e3
-
+--
+Regards,
+Sudeep
