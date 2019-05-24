@@ -2,242 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8B2629579
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1FC62959B
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 12:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390457AbfEXKHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 06:07:55 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:46191 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390374AbfEXKHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 06:07:55 -0400
-Received: by mail-io1-f67.google.com with SMTP id q21so7285914iog.13
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 03:07:54 -0700 (PDT)
+        id S2389782AbfEXKVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 06:21:50 -0400
+Received: from mail-eopbgr720061.outbound.protection.outlook.com ([40.107.72.61]:8032
+        "EHLO NAM05-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2389448AbfEXKVt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 May 2019 06:21:49 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TUgAZ6G4gvf+slUqb9uc+iwVC1m/3d6V2K633s4jrTg=;
-        b=TF4cfbuIVUIf/mM/PjvuU2rmu3iPkhWBbwQvKTiRwPaDZyMqpwaKIV/Ucx5tADKIQ2
-         HLgZhqUi739/CEIDRH8pBVVku19c3lIdQQttRRB+KAnl+kisiJ3tkBVxtDROIujKuFJY
-         D29ppmoHxK/mAIUKubq81TwX1b4yPzj94Jlok=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TUgAZ6G4gvf+slUqb9uc+iwVC1m/3d6V2K633s4jrTg=;
-        b=Looro87FlsMXSpMqrXFkIOmeZBCN+FajdOCEzUDxkOGOTOs5aFoEbZmY9G5V/Pbvcn
-         3FF2Ak4UZMrMT9/z5CyYIgcDyWwxlcCEmWr04LzI+9bFP/WxG49rsXDC3JGznLJma6LP
-         41fJrNIm6edxYgqY19QlA6HFXKju8/Q/VaKXnqqrICJPfdlU4MRjD4uemoguVnXpp7VI
-         jxpRUDhSamUa0wsuF179ltbVpYUMz0ssAT690pf5lipNMCzOBjS8FO7K2GJDUAlEfDEJ
-         Bs8jr8JzfL/lWz8UTzORxz4lS/e9frtQeXxPj1sZ4F2Xz23DmBSBMUMFb0GWvfQXua+t
-         BQ3g==
-X-Gm-Message-State: APjAAAWsHSbntlpe2+oejfmm6VF1wyA25Z2Du/02xKvhnM9wxPz2DBC6
-        U5hyuiOYpUqiIfZSBvShP/7mhxZFw6og7FvfrSXdSw==
-X-Google-Smtp-Source: APXvYqwmVWbvA8JWDP7ZREuSZZ6USfKRDsF78w4YD1IvT2iQBryzh6GoPGvJRrLGpAZC28dLBcMDdVE9LG5qi3N05aQ=
-X-Received: by 2002:a5d:994d:: with SMTP id v13mr4961505ios.77.1558692473939;
- Fri, 24 May 2019 03:07:53 -0700 (PDT)
+ d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OBGRAchov8McEUo4wsoFXcPR3NM+rkOltDE1yLx6KkI=;
+ b=YQ12KJ5lEnnlThPQ9F4KYM/CTlUQLBQURE74yuAOwGLtosm74b7SsHvR4/P/JisMzQpQL6ZiekG+8CkW+DarZpBK0WJ4GoBd9HLuFj1Div7MvvWKs+ItcY9ZHwP+orU+Bru/WEDMZ6PvYb+vatC+vCs9MfE6SKW/F7OKsGP77sA=
+Received: from BN8PR03CA0023.namprd03.prod.outlook.com (2603:10b6:408:94::36)
+ by DM2PR03MB559.namprd03.prod.outlook.com (2a01:111:e400:241d::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1922.18; Fri, 24 May
+ 2019 10:21:46 +0000
+Received: from CY1NAM02FT008.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e45::204) by BN8PR03CA0023.outlook.office365.com
+ (2603:10b6:408:94::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1922.16 via Frontend
+ Transport; Fri, 24 May 2019 10:21:46 +0000
+Authentication-Results: spf=pass (sender IP is 137.71.25.55)
+ smtp.mailfrom=analog.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=analog.com;
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
+Received: from nwd2mta1.analog.com (137.71.25.55) by
+ CY1NAM02FT008.mail.protection.outlook.com (10.152.75.59) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1922.16
+ via Frontend Transport; Fri, 24 May 2019 10:21:45 +0000
+Received: from NWD2HUBCAS9.ad.analog.com (nwd2hubcas9.ad.analog.com [10.64.69.109])
+        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x4OALhq9006318
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Fri, 24 May 2019 03:21:43 -0700
+Received: from NWD2MBX5.ad.analog.com ([fe80::49e:7a9f:284e:1a49]) by
+ NWD2HUBCAS9.ad.analog.com ([fe80::44a2:871b:49ab:ea47%12]) with mapi id
+ 14.03.0415.000; Fri, 24 May 2019 06:21:43 -0400
+From:   "Popa, Stefan Serban" <StefanSerban.Popa@analog.com>
+To:     "lucasseikioshiro@gmail.com" <lucasseikioshiro@gmail.com>,
+        "knaack.h@gmx.de" <knaack.h@gmx.de>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "rodrigorsdc@gmail.com" <rodrigorsdc@gmail.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "kernel-usp@googlegroups.com" <kernel-usp@googlegroups.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: iio: accel: adxl372: switch to YAML
+ bindings
+Thread-Topic: [PATCH] dt-bindings: iio: accel: adxl372: switch to YAML
+ bindings
+Thread-Index: AQHVDcR5Mci+C5pEPkCeH1oSCxQ8+aZ6XHsA
+Date:   Fri, 24 May 2019 10:21:42 +0000
+Message-ID: <1558693302.3462.1.camel@analog.com>
+References: <20190518215542.25140-1-lucasseikioshiro@gmail.com>
+In-Reply-To: <20190518215542.25140-1-lucasseikioshiro@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.32.224.122]
+x-adiroutedonprem: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1C53913FE1EB7043B92DC25F23B0CAC3@analog.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190124195900.22620-1-jagan@amarulasolutions.com>
- <20190124195900.22620-12-jagan@amarulasolutions.com> <20190125212433.ni2jg3wvpyjazlxf@flea>
- <CAMty3ZAsH2iZ+JEqTE3D58aXfGuhMSg9YoO56ZhhOeE4c4yQHQ@mail.gmail.com>
- <20190129151348.mh27btttsqcmeban@flea> <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
- <20190201143102.rcvrxstc365mezvx@flea>
-In-Reply-To: <20190201143102.rcvrxstc365mezvx@flea>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Fri, 24 May 2019 15:37:42 +0530
-Message-ID: <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
-Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for PLL_MIPI
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(39860400002)(396003)(376002)(346002)(2980300002)(199004)(189003)(356004)(14454004)(4744005)(7696005)(2201001)(72206003)(76176011)(86362001)(478600001)(4326008)(2501003)(23676004)(47776003)(50466002)(7416002)(5660300002)(106002)(2486003)(36756003)(8936002)(446003)(8676002)(11346002)(6116002)(3846002)(110136005)(476003)(436003)(2906002)(486006)(426003)(2616005)(70206006)(70586007)(126002)(54906003)(336012)(102836004)(186003)(7736002)(7636002)(246002)(6246003)(229853002)(316002)(103116003)(305945005)(26005);DIR:OUT;SFP:1101;SCL:1;SRVR:DM2PR03MB559;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c707a740-9775-4ded-6528-08d6e0319fbe
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4709054)(2017052603328)(7193020);SRVR:DM2PR03MB559;
+X-MS-TrafficTypeDiagnostic: DM2PR03MB559:
+X-Microsoft-Antispam-PRVS: <DM2PR03MB559EC87CBE7CAF5F97098709D020@DM2PR03MB559.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-Forefront-PRVS: 0047BC5ADE
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: vtCwws6f0h+/LNkCf9fAR3AToe7pY2+FHu6ERXib3h8AH+GQzBvf8/oaTJHo/lMf0xHWhH5KmDLD+KQzopqqnEIHXmWnr1WpnrJHJOzSWe0Eh4YsDAy5VApGV6eT5vnKjxYf0MHG6yqRwPRdRRsfKYZiS7OjxiyHrJ3NWeuVff5rdOulMp/qgq5fIsD6iDQQhqP1i46o/RY3mN/eSQgI1hP7bmSqK0/aAd9JzZXrUiGu8YiNaTTgvIizhmX5fKHF9vq1M+FKkZNc/HROKNZrSd83eHFwAqCYcsmsnHAiQh9wtlk5YmlyQIYQRniWEjXHqEGqgFvhm6LaULoRC3v24G2MPQqrpERNIADZJOelMJsGsRvrb100iqXeFT00QMHEAVkyCECmefQrWq8zYKp4MW9G2k44+wPbE5+6h+1pGyU=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2019 10:21:45.0042
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c707a740-9775-4ded-6528-08d6e0319fbe
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR03MB559
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 1, 2019 at 8:01 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> On Tue, Jan 29, 2019 at 11:01:31PM +0530, Jagan Teki wrote:
-> > On Tue, Jan 29, 2019 at 8:43 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > >
-> > > On Mon, Jan 28, 2019 at 03:06:10PM +0530, Jagan Teki wrote:
-> > > > On Sat, Jan 26, 2019 at 2:54 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > >
-> > > > > On Fri, Jan 25, 2019 at 01:28:49AM +0530, Jagan Teki wrote:
-> > > > > > Minimum PLL used for MIPI is 500MHz, as per manual, but
-> > > > > > lowering the min rate by 300MHz can result proper working
-> > > > > > nkms divider with the help of desired dclock rate from
-> > > > > > panel driver.
-> > > > > >
-> > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > > > Acked-by: Stephen Boyd <sboyd@kernel.org>
-> > > > >
-> > > > > Going 200MHz below the minimum doesn't seem really reasonable. What
-> > > > > is the issue that you are trying to fix here?
-> > > > >
-> > > > > It looks like it's picking bad dividers, but if that's the case, this
-> > > > > isn't the proper fix.
-> > > >
-> > > > As I stated in earlier patches, the whole idea is pick the desired
-> > > > dclk divider based dclk rate. So the dotclock, sun4i_dclk_round_rate
-> > > > is unable to get the proper dclk divider at the end, so it eventually
-> > > > picking up wrong divider value and fired vblank timeout.
-> > > >
-> > > > So, we come-up with optimal and working min_rate 300MHz in pll-mipi to
-> > > > get the desired clock something like below.
-> > > > [    2.415773] [drm] No driver support for vblank timestamp query.
-> > > > [    2.424116] sun4i_dclk_round_rate: min_div = 4 max_div = 127, rate = 55000000
-> > > > [    2.424172] ideal = 220000000, rounded = 0
-> > > > [    2.424176] ideal = 275000000, rounded = 0
-> > > > [    2.424194] ccu_nkm_round_rate: rate = 330000000
-> > > > [    2.424197] ideal = 330000000, rounded = 330000000
-> > > > [    2.424201] sun4i_dclk_round_rate: div = 6 rate = 55000000
-> > > > [    2.424205] sun4i_dclk_round_rate: min_div = 4 max_div = 127, rate = 55000000
-> > > > [    2.424209] ideal = 220000000, rounded = 0
-> > > > [    2.424213] ideal = 275000000, rounded = 0
-> > > > [    2.424230] ccu_nkm_round_rate: rate = 330000000
-> > > > [    2.424233] ideal = 330000000, rounded = 330000000
-> > > > [    2.424236] sun4i_dclk_round_rate: div = 6 rate = 55000000
-> > > > [    2.424253] ccu_nkm_round_rate: rate = 330000000
-> > > > [    2.424270] ccu_nkm_round_rate: rate = 330000000
-> > > > [    2.424278] sun4i_dclk_recalc_rate: val = 1, rate = 330000000
-> > > > [    2.424281] sun4i_dclk_recalc_rate: val = 1, rate = 330000000
-> > > > [    2.424306] ccu_nkm_set_rate: rate = 330000000, parent_rate = 297000000
-> > > > [    2.424309] ccu_nkm_set_rate: _nkm.n = 5
-> > > > [    2.424311] ccu_nkm_set_rate: _nkm.k = 2
-> > > > [    2.424313] ccu_nkm_set_rate: _nkm.m = 9
-> > > > [    2.424661] sun4i_dclk_set_rate div 6
-> > > > [    2.424668] sun4i_dclk_recalc_rate: val = 6, rate = 55000000
-> > > >
-> > > > But look like this wouldn't valid for all other dclock rates, say BPI
-> > > > panel has 30MHz clock that would failed with this logic.
-> > > >
-> > > > On the other side Allwinner BSP calculating dclk divider based on the
-> > > > SoC's. for A33 [1] it is fixed dclk divider of 4 and for A64 is is
-> > > > calculated based on the bpp/lanes.
-> > >
-> > > It looks like the A64 has the same divider of 4:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
-> > >
-> > > I think you're confusing it with the ratio between the pixel clock and
-> > > the dotclock, called dsi_div:
-> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L198
-> >
-> > Ahh.. I thought this initially but as far as DSI clock computation is
-> > concern, the L12 tcon_div is local variable which is used for edge0
-> > computation in burst mode and not for the dsi clock computation. Since
-> > the BSP is unable to get the tcon_div during edge0 computation, they
-> > defined it locally I think.
-> >
-> > You can see the lcd_clk_config() code [2], where we can see DSI clock
-> > computation using dsi_div value.
-> >
-> > Here is dump after the in Line 792 which is after computation[3]
-> > [   10.800737] lcd_clk_config: dsi_div = 6, tcon_div = 4, lcd_div = 1
-> > [   10.800743] lcd_clk_config: lcd_dclk_freq = 55, dclk_rate = 55000000
-> > [   10.800749] lcd_clk_config: lcd_rate = 330000000, pll_rate = 330000000
-> >
-> > The above dump the lcd_rate 330MHz is computed with panel clock, 55MHz
-> > into dsi_div 6. So this can be our actual divider values dclk_min_div,
-> > dclk_max_div in sun4i_dclk_round_rate (from
-> > drivers/gpu/drm/sun4i/sun4i_dotclock.c)
->
-> I wish it was in your commit log in the first place, instead of having
-> to exchange multiple mails over this.
->
-> However, I don't think that's quite true, and it might be a bug in
-> Allwinner's implementation (or rather something quite confusing).
->
-> You're right that the lcd_rate and pll_rate seem to be generated from
-> the pixel clock, and it indeed looks like the ratio between the pixel
-> clock and the TCON dotclock is defined through the number of bits per
-> lanes.
->
-> However, in this case, dsi_rate is actually the same than lcd_rate,
-> since pll_rate is going to be divided by dsi_div:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
->
-> Since lcd_div is 1, it also means that in this case, dsi_rate ==
-> dclk_rate.
->
-> The DSI module clock however, is always set to 148.5 MHz. Indeed, if
-> we look at:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
->
-> We can see that the rate in clk_info is used if it's different than
-> 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
-> DSI panel, will hardcode it to 148.5 MHz:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
->
-> So, the DSI clock is set to this here:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
->
-> The TCON *module* clock (the one in the clock controller) has been set
-> to lcd_rate (so the pixel clock times the number of bits per lane) here:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
->
-> And the PLL has been set to the same rate here:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
-
-Let me explain, something more.
-
-According to bsp there are clk_info.tcon_div which I will explain below.
-clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
-is 6 for 24bpp and 4 lanes devices.
-
-PLL rate here depends on dsi_div (not tcon_div)
-
-Code here
-https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
-
-is computing the actual set rate, which depends on dsi_rate.
-
-lcd_rate = dclk_rate * clk_info.dsi_div;
-dsi_rate = pll_rate / clk_info.dsi_div;
-
-Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
-for above link you mentioned.
-
-Here are the evidence with some prints.
-
-https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
-https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
-
->
-> Let's take a step back now: that function we were looking at,
-> lcd_clk_config, is called by lcd_clk_enable, which is in turn called
-> by disp_lcd_enable here:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
->
-> The next function being called is disp_al_lcd_cfg, and that function
-> will hardcode the TCON dotclock divider to 4, here:
-> https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
-
-tcon_div from BSP point-of-view of there are two variants
-00) clk_info.tcon_div which is 4 and same is set the divider position
-in SUN4I_TCON0_DCLK_REG (like above link refer)
-01) tcon_div which is 4 and used for edge timings computation
-https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
-
-The real reason for 01) is again 4 is they set the divider to 4 in 00)
-which is technically wrong because the dividers which used during
-dotclock in above (dsi_div) should be used here as well. Since there
-is no dynamic way of doing this BSP hard-coding these values.
-
-Patches 5,6,7 on this series doing this
-https://patchwork.freedesktop.org/series/60847/
-
-Hope this explanation helps?
+T24gU2IsIDIwMTktMDUtMTggYXQgMTg6NTUgLTAzMDAsIEx1Y2FzIE9zaGlybyB3cm90ZToNCj4g
+W0V4dGVybmFsXQ0KPiANCj4gDQo+IENvbnZlcnQgdGhlIG9sZCBkZXZpY2UgdHJlZSBkb2N1bWVu
+dGF0aW9uIHRvIHlhbWwgZm9ybWF0Lg0KPiANCj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgT3NoaXJv
+IDxsdWNhc3NlaWtpb3NoaXJvQGdtYWlsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogUm9kcmlnbyBS
+aWJlaXJvIDxyb2RyaWdvcnNkY0BnbWFpbC5jb20+DQo+IENvLWRldmVsb3BlZC1ieTogUm9kcmln
+byBSaWJlaXJvIDxyb2RyaWdvcnNkY0BnbWFpbC5jb20+DQo+IC0tLQ0KPiANCj4gSGVsbG8sDQo+
+IFdlJ3ZlIGFkZGVkIFN0ZWZhbiBQb3BhIGFzIG1haW50YWluZXIgb2YgdGhlIHlhbWwgZG9jdW1l
+bnRhdGlvbiBvZiB0aGlzDQo+IGRyaXZlcg0KPiBiZWNhdXNlIHdlIGZvdW5kIHRocm91Z2ggZ2l0
+IHRoYXQgaGUgd2FzIHRoZSBhdXRob3Igb2YgdGhlIG9sZGVyDQo+IGRvY3VtZW50YXRpb24uDQoN
+CkFja2VkLWJ5OiBTdGVmYW4gUG9wYSA8c3RlZmFuLnBvcGFAYW5hbG9nLmNvbT4=
