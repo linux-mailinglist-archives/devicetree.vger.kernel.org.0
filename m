@@ -2,155 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B7DA2A0A9
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 23:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE9C02A0AA
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 23:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404426AbfEXVux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 17:50:53 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43609 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404376AbfEXVux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 17:50:53 -0400
-Received: by mail-ot1-f67.google.com with SMTP id i8so9984573oth.10;
-        Fri, 24 May 2019 14:50:52 -0700 (PDT)
+        id S2404237AbfEXVvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 17:51:52 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33811 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404163AbfEXVvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 17:51:52 -0400
+Received: by mail-oi1-f193.google.com with SMTP id u64so8111487oib.1
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 14:51:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/3kgNn6NL4JYVxHLJQOHqTYeAocP9fpuKYr/bgz9xX4=;
+        b=YJg0ERBgRmU8/PhbbxteKlV3jmW1XQ/qYJ+UMfFuYI07medwvIBJTkYAoT/cj0AqQc
+         rtCAp7LU6Op9rb/cgu58oSr7RO5Tw0/hEf5swzeTpaHuqwu21WXzG4+4oUlBsdZzrqD6
+         sd6KD+WCyYPNt3M7BXKCvSTXvLzEf4iRXBqHORZOPGwq+jxtovbyZ8l2aouj6NbbIivr
+         Xes+QPwYHBvG781JN9HvxjYPL24HEOezBclZXNWTAyfF/3VKhNOTHe/7p8FxpN4D02mk
+         B+sDG1AdTOLfXYh/DBCyx9apCh43/Cvap3gknlPVNTpS1ufvCx9q0GPYFxR+FP315aFQ
+         JHHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ynzlr+cR83hUAA2WeJGtfIvhQbY6Sg6aSP8erYIfj6Y=;
-        b=jsXpZPzGEBLJMU7xx8ZJ3HRJK7ZfTeQnbePZi7sp7qSr6VOXEoPllSCkKFfRCv/2bi
-         Rr5qK+qvr9Z+qKw6tSrnfOY56d7WFF6gBeXqPaKZwzYW3UZUeB0DgOrMOJct1+E6aqqu
-         WIfSK99g7ymav4q8kXSFRFXCIjUCFXnkPwYzx3VsXTuhT/kdkOMx+f6R0r67ryVeAdsW
-         1HCsyvI20yLG5JfyLhp1GahVxIMj+byoAolZRHwnmX/DLNkak6mxDLIGwjq5ZJLAq5xf
-         Co/4EYrTLkpdfI+lN2K8FX3qcMrEdF3n54zXNYo0v0SWTnQ9iwmqBv/wlXVaEvOHdY+G
-         PaWw==
-X-Gm-Message-State: APjAAAUoZaCQ7FuG9SaLofCueLD3rPUP+AwzSE3WG9y4XG/+lZZpt2Fm
-        GXTxpl5uCKNjkl+tPKQkvQ==
-X-Google-Smtp-Source: APXvYqwd1FZNRR1eWSNwVVQUfyV8WZFiIrUMukOpXbXBk3+70U5TgvVBrYcUaLEmV6wks6SNl/n4iw==
-X-Received: by 2002:a9d:67d8:: with SMTP id c24mr18869642otn.190.1558734652305;
-        Fri, 24 May 2019 14:50:52 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e8sm1275939otk.13.2019.05.24.14.50.51
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 24 May 2019 14:50:51 -0700 (PDT)
-Date:   Fri, 24 May 2019 16:50:50 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das@bp.renesas.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/3kgNn6NL4JYVxHLJQOHqTYeAocP9fpuKYr/bgz9xX4=;
+        b=Jy1q5oxi1PCT3gsxnQeYovwoSj8PYLFUG2aZHAtUrjTsYaknDRuv4//IG3RS/0MvmA
+         ajFZeojQPVIzM9bD/WNfH54v6kThu/sbpKc4ZnqzOL+uwsXYZ3O8c5+30dUdnihflLyk
+         sJaDeKFMGupIOQoGPUPT+f1LAuyzumES5RlFND5+/6+NYmF4ogUXwyy5L3sMH5V5RlGa
+         wWp/aenpPWRnSLArWT1MMjhgudL3h4FqbLtU4dmxzPCZ5rEloGXNhhVMeyn382mhb4Ja
+         lXDlBAtcOqq2Sk/Rhxgzrzi+KWhsJB2Rs0JBb+C5CWbsIxeZncPUIutwdof5wIpxZ0WU
+         R4Og==
+X-Gm-Message-State: APjAAAWyGLL+EwbAOZd9RyxlRPaYC4bZlfzuk0dR8Rfzy5IZ5b74jNw4
+        YVaVfF9xG5wyMv1RvM3gr1Qs256/p8CC19lPLQpPAA==
+X-Google-Smtp-Source: APXvYqxAjo5u3tbx8eh2UKBmXVrKKt0S9AqD/I57DzCtyGLtoT/LinXiux6eXqXRMu/lvC8FhHNfz85eZjKQAqew1lw=
+X-Received: by 2002:aca:ec0f:: with SMTP id k15mr7306013oih.43.1558734710979;
+ Fri, 24 May 2019 14:51:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190524010117.225219-1-saravanak@google.com> <CAL_JsqKiXEKECMZpZR3j+uRqnsec5f0vN301tagT687HRhu6Nw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKiXEKECMZpZR3j+uRqnsec5f0vN301tagT687HRhu6Nw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 24 May 2019 14:51:15 -0700
+Message-ID: <CAGETcx-KwwjNgAy7BLv4+1=5N_s-UdmfSnTtHP8V5gc7t48W=Q@mail.gmail.com>
+Subject: Re: [PATCH v1 0/5] Solve postboot supplier cleanup and optimize probe ordering
+To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Mark Rutland <mark.rutland@arm.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a774c0-cat874: Enable usb
- role switch support
-Message-ID: <20190524215050.GA23538@bogus>
-References: <1557922152-16449-1-git-send-email-biju.das@bp.renesas.com>
- <1557922152-16449-8-git-send-email-biju.das@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1557922152-16449-8-git-send-email-biju.das@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 15, 2019 at 01:09:12PM +0100, Biju Das wrote:
-> This patch enables TI HD3SS3220 device and support usb role switch
-> for the CAT 874 platform.
-> 
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
-> ---
-> V5-->V6
->   * No change
-> V4-->V5
->   * No change
-> V3-->V4
->   * No change
-> V2-->V3
->   * Used "renesas,usb-role-switch" instead of generic "usb-role-switch"
->     property
-> V1-->V2
->   * New patch
-> ---
->  arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts | 39 +++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-> index b9ae7db..124ed58 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-> @@ -85,6 +85,34 @@
->  	clock-frequency = <48000000>;
->  };
->  
-> +&i2c0 {
-> +	status = "okay";
-> +	clock-frequency = <100000>;
-> +
-> +	hd3ss3220@47 {
-> +		compatible = "ti,hd3ss3220";
-> +		reg = <0x47>;
-> +		interrupt-parent = <&gpio6>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		usb_con: connector {
-> +			compatible = "usb-c-connector";
-> +			label = "USB-C";
-> +			data-role = "dual";
-> +		};
-> +
-> +		port {
+Before I address all the comments, a friendly reminder: Whatever
+solution we come up with needs to work on a system with loadable
+modules and shouldn't depend on userspace for correctness.
 
-port should be a child of 'connector' node. It should also be port #1 if 
-this is a SuperSpeed controller. Port #0 is HS.
+On Fri, May 24, 2019 at 6:04 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, May 23, 2019 at 8:01 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > Add a generic "depends-on" property that allows specifying mandatory
+> > functional dependencies between devices. Add device-links after the
+> > devices are created (but before they are probed) by looking at this
+> > "depends-on" property.
+>
+> The DT already has dependency information. A node with 'clocks'
+> property has its dependency right there. We should use that. We don't
+> need to duplicate the information.
 
-As there are multiple ports possible, there should be a 'ports' node 
-too.
+So, are you saying all clock bindings are mandatory for a device for
+all possible users of DT + Linux? Do you think if we have a patch that
+makes all clock bindings mandatory dependencies, no one would object
+to that?
 
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			hd3ss3220_ep: endpoint@0 {
-> +				reg = <0>;
+> > This property is used instead of existing DT properties that specify
+> > phandles of other devices (Eg: clocks, pinctrl, regulators, etc). This
+> > is because not all resources referred to by existing DT properties are
+> > mandatory functional dependencies. Some devices/drivers might be able
+> > to operate with reduced functionality when some of the resources
+> > aren't available. For example, a device could operate in polling mode
+> > if no IRQ is available, a device could skip doing power management if
+> > clock or voltage control isn't available and they are left on, etc.
+>
+> Yeah, but none of these examples are typically what you'd want to
+> happen. These cases are a property of the OS, not the DT. For example,
+> until recently, If you added pinctrl bindings to your DT, the kernel
+> would no longer boot because it would be looking for pinctrl driver.
+> That's wrong because the DT should not be coupled to the OS like that.
+> Adding this property will cause the same problem.
 
-Don't need reg when there is only 1. Build your dtb with W=1 as that 
-will tell you this.
+Isn't the a perfect example of the pinctrl being an optional
+dependency in that specific case? The kernel still booted if pinctrl
+wasn't available?
 
-> +				remote-endpoint = <&usb3peri_role_switch>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &i2c1 {
->  	pinctrl-0 = <&i2c1_pins>;
->  	pinctrl-names = "default";
-> @@ -175,6 +203,17 @@
->  &usb3_peri0 {
->  	companion = <&xhci0>;
->  	status = "okay";
-> +	usb-role-switch;
-> +
-> +	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		usb3peri_role_switch: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&hd3ss3220_ep>;
-> +		};
-> +	};
->  };
->  
->  &xhci0 {
-> -- 
-> 2.7.4
-> 
+I don't agree that the dependency is purely a property of the OS. If
+there's no clock to clock the hardware core, then the hardware just
+can't work. There's no question about that. However, there can be
+clock bindings that aren't mandatory for functionality but are needed
+just for performance/power control.
+
+Another perfect example are clock providers. Clock providers often get
+input clocks from multiple other clock providers and even have cyclic
+clock bindings. But only some of them are mandatory for the clock
+provider to work. For example, clock provider A has input clocks from
+clock providers B and C, but it only needs B to function (provides
+root clock to all clocks). Not having C would only affect 4 (out of
+100s of clocks) from clock provider A and those 4 are clocks depend on
+an input clock from C (basically clock from C going to A to have some
+clock gates and dividers added and sent back to C). This isn't even a
+made up scenario -- there are SoCs that actually have this.
+
+The OS could still choose to not probe the device unless full
+functionality is available or it could assume all clocks are left on
+by the bootloader and provide basic functionality. THAT would be the
+property of the OS. But that doesn't remove the fact that some of the
+resources are absolutely mandatory for the hardware to function. I'm
+proposing the depends-on to capture the true hardware dependency --
+not what the SW chooses to do with it.
+
+> > So, adding mandatory functional dependency links between devices by
+> > looking at referred phandles in DT properties won't work as it would
+> > prevent probing devices that could be probed. By having an explicit
+> > depends-on property, we can handle these cases correctly.
+> >
+> > Having functional dependencies explicitly called out in DT and
+> > automatically added before the devices are probed, provides the
+> > following benefits:
+> >
+> > - Optimizes device probe order and avoids the useless work of
+> >   attempting probes of devices that will not probe successfully
+> >   (because their suppliers aren't present or haven't probed yet).
+> >
+> >   For example, in a commonly available mobile SoC, registering just
+> >   one consumer device's driver at an initcall level earlier than the
+> >   supplier device's driver causes 11 failed probe attempts before the
+> >   consumer device probes successfully. This was with a kernel with all
+> >   the drivers statically compiled in. This problem gets a lot worse if
+> >   all the drivers are loaded as modules without direct symbol
+> >   dependencies.
+>
+> Do you have data on how much time is spent. Past 'smarter probing'
+> attempts have not shown a significant difference.
+
+"avoids the useless work attempting probes of devices that will not
+probe successfully" -- I never claimed to save boot up time. Your
+argument about having to save wall clock time is a moot point as a ton
+of kernel features that optimize code won't save wall clock time (the
+CPU would just run faster to make up for the inefficiency). Those
+features just make the kernel less resource hungry and more efficient.
+I'd understand your argument if this patch series is insanely complex
+-- but that's not the case here.
+
+> > - Supplier devices like clock providers, regulators providers, etc
+> >   need to keep the resources they provide active and at a particular
+> >   state(s) during boot up even if their current set of consumers don't
+> >   request the resource to be active. This is because the rest of the
+> >   consumers might not have probed yet and turning off the resource
+> >   before all the consumers have probed could lead to a hang or
+> >   undesired user experience.
+>
+> We already know generally what devices are dependencies because you
+> just listed them. Why don't we make the kernel smarter by
+> instantiating these core devices/drivers first instead of relying on
+> initcall and link order.
+
+That's what this patch series is -- it makes the kernel smarter by
+just using the data from DT instead of relying on manual tweaking of
+initcall and link order.
+
+> >   Some frameworks (Eg: regulator) handle this today by turning off
+> >   "unused" resources at late_initcall_sync and hoping all the devices
+> >   have probed by then. This is not a valid assumption for systems with
+> >   loadable modules. Other frameworks (Eg: clock) just don't handle
+> >   this due to the lack of a clear signal for when they can turn off
+> >   resources. This leads to downstream hacks to handle cases like this
+> >   that can easily be solved in the upstream kernel.
+>
+> IMO, we should get rid of this auto disabling.
+
+Well, you need to back that opinion with reasoning. IMO we should
+disable unused resources so that we don't waste power -- especially on
+devices operating on batteries.
+
+Also, I explicitly said "need to keep the resources they provide
+active and at a particular state(s) during boot up". So it's not even
+about auto disabling. For example, in the case of a voltage regulator
+supplying multiple devices, if the first device probes and says it
+only need the lowest voltage level, you can't just drop the voltage.
+Because the other devices in the same voltage rail haven't probed yet
+and you can crash the system if you just drop the voltage. You need to
+wait for all the devices to be probed and then you can let the voltage
+regulator operate normally. And you can't depend on late_initcall
+because it falls apart on systems with modules.
+
+
+-Saravana
