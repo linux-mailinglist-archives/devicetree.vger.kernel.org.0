@@ -2,135 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC7F28F8D
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 05:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 685AF28F8C
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 05:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731778AbfEXDWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 May 2019 23:22:08 -0400
-Received: from mail-eopbgr60047.outbound.protection.outlook.com ([40.107.6.47]:38126
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731773AbfEXDWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 May 2019 23:22:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j/WfSce1xbDv/ISSEsSYy5O9ACrgYzL2uY79ijl659g=;
- b=b7VWQTx531SdDdTgl1twglfOOyL98Ucz7d99+N5tuWUVKg2QJUZT8XLELcqcYdnm+Ncshas5hSEcKKsbTSV3oygf2j9S0SYurIrS/NVRfZNmXDgs7bVfUwZnF91FPLgZv1egW6C7S6mFVRz6OMnX3q2w08ptw3KkUWICbULaaFs=
-Received: from VI1PR04MB4333.eurprd04.prod.outlook.com (52.134.122.155) by
- VI1SPR01MB0371.eurprd04.prod.outlook.com (20.178.125.78) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.16; Fri, 24 May 2019 03:21:24 +0000
-Received: from VI1PR04MB4333.eurprd04.prod.outlook.com
- ([fe80::497a:768:c7b1:34e0]) by VI1PR04MB4333.eurprd04.prod.outlook.com
- ([fe80::497a:768:c7b1:34e0%6]) with mapi id 15.20.1922.018; Fri, 24 May 2019
- 03:21:24 +0000
-From:   Andy Tang <andy.tang@nxp.com>
-To:     Eduardo Valentin <edubezval@gmail.com>
-CC:     "rui.zhang@intel.com" <rui.zhang@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH] dt-bindings: thermal: Make cooling-maps
- property optional
-Thread-Topic: [EXT] Re: [PATCH] dt-bindings: thermal: Make cooling-maps
- property optional
-Thread-Index: AQHVCwLUH4zad13tsE2wQPY/IOtNWqZ5oNEAgAADyNA=
-Date:   Fri, 24 May 2019 03:21:24 +0000
-Message-ID: <VI1PR04MB4333A37E27148B4295C3E761F3020@VI1PR04MB4333.eurprd04.prod.outlook.com>
-References: <20190515093647.47656-1-andy.tang@nxp.com>
- <20190524025017.GA4146@localhost.localdomain>
-In-Reply-To: <20190524025017.GA4146@localhost.localdomain>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=andy.tang@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3e793d0e-8c6e-4bd1-9c3f-08d6dff6e6da
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);SRVR:VI1SPR01MB0371;
-x-ms-traffictypediagnostic: VI1SPR01MB0371:
-x-microsoft-antispam-prvs: <VI1SPR01MB037137945C99C9C2CE86B2C4F3020@VI1SPR01MB0371.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0047BC5ADE
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(366004)(396003)(39860400002)(136003)(346002)(13464003)(199004)(189003)(55016002)(446003)(74316002)(26005)(102836004)(9686003)(11346002)(86362001)(25786009)(66066001)(53546011)(6506007)(52536014)(6436002)(66946007)(66556008)(316002)(2906002)(73956011)(76116006)(229853002)(186003)(66476007)(66446008)(64756008)(33656002)(44832011)(4326008)(478600001)(8936002)(1411001)(71200400001)(71190400001)(81156014)(81166006)(6916009)(54906003)(53936002)(476003)(76176011)(3846002)(305945005)(6246003)(14454004)(7736002)(5660300002)(68736007)(486006)(256004)(99286004)(7696005)(8676002)(6116002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1SPR01MB0371;H:VI1PR04MB4333.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: JUoun0wIKqd9t/GRlzGFlOmemm6eChiNNt1WUvh18CiEYk3f2q5lSJKyzE/vHU1qbM+IqdNfzlFfyU2Dp+Mmp6EE+YuN7LXkx5h9YMCQjl7HPCS2W3yNyr8aaizdZ4EcsKiKB42d9U3Nzglh5SHP29BBBGNY5++AkY0Tlo84mznWvpdmys2jANfw1Sju96EvDBBt68DzIeV+A/8AYdz2suH45UINk8K18iT8S5ZBsG0PTuj8R8jSG0obQXG9eRvNsGdk/JI/FjMFBn5FGbi1H1/qixy3xAfTxK8a4hl+jzgQr0RXg+s7UM4oh//sHs1A7VMFhdAIdpwBLRpIU7b9fZwoQdGVO0zAFvfjzWSwCsKnQYWmT0VE37zjetMZ60XY7O+j2tjoWmIKUtWWodmNN/touSZOf9tARo6U7UOlSgg=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e793d0e-8c6e-4bd1-9c3f-08d6dff6e6da
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2019 03:21:24.5800
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: andy.tang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1SPR01MB0371
+        id S1731809AbfEXDVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 May 2019 23:21:40 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:53458 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729972AbfEXDVk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 May 2019 23:21:40 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4E3C3200109;
+        Fri, 24 May 2019 05:21:38 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5A65020013F;
+        Fri, 24 May 2019 05:21:34 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 6C4A9402DB;
+        Fri, 24 May 2019 11:21:29 +0800 (SGT)
+From:   Olivia Yin <olivia.yin@nxp.com>
+To:     olivia.yin@nxp.com
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/1] dt-bindings: firmware: imx-scu: new binding to parse clocks from device tree
+Date:   Fri, 24 May 2019 11:23:25 +0800
+Message-Id: <20190524032325.39688-1-olivia.yin@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBFZHVhcmRvIFZhbGVudGluIDxl
-ZHViZXp2YWxAZ21haWwuY29tPg0KPiBTZW50OiAyMDE5xOo11MIyNMjVIDEwOjUwDQo+IFRvOiBB
-bmR5IFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiBDYzogcnVpLnpoYW5nQGludGVsLmNvbTsg
-cm9iaCtkdEBrZXJuZWwub3JnOyBkYW5pZWwubGV6Y2Fub0BsaW5hcm8ub3JnOw0KPiBtYXJrLnJ1
-dGxhbmRAYXJtLmNvbTsgbGludXgtcG1Admdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZn
-ZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBb
-RVhUXSBSZTogW1BBVENIXSBkdC1iaW5kaW5nczogdGhlcm1hbDogTWFrZSBjb29saW5nLW1hcHMg
-cHJvcGVydHkNCj4gb3B0aW9uYWwNCj4gDQo+IENhdXRpb246IEVYVCBFbWFpbA0KPiANCj4gT24g
-V2VkLCBNYXkgMTUsIDIwMTkgYXQgMDU6MzY6NDdQTSArMDgwMCwgWXVhbnRpYW4gVGFuZyB3cm90
-ZToNCj4gPiBUaGVyZSBtYXkgYmUgbm8gY29vbGluZyBkZXZpY2Ugb24gc3lzdGVtLCBvciB0aGVy
-ZSBhcmUgbm8gZW5vdWdoDQo+ID4gY29vbGluZyBkZXZpY2VzIGZvciBlYWNoIHRoZXJtYWwgem9u
-ZSBpbiBtdWx0aXBsZSB0aGVybWFsIHpvbmUgY2FzZXMNCj4gPiBzaW5jZSBjb29saW5nIGRldmlj
-ZXMgY2FuJ3QgYmUgc2hhcmVkLg0KPiA+IFNvIG1ha2UgdGhpcyBwcm9wZXJ0eSBvcHRpb25hbCB0
-byByZW1vdmUgc3VjaCBsaW1pdGF0aW9ucy4NCj4gDQo+IFllYWgsIEkgYW0gIG5vdCBzdXJlIHRo
-YXQgaXMgZW5vdWdoIHJlYXNvbiB0byBtYWtlIHRoaXMgcHJvcGVydHkgb3B0aW9uYWwuDQo+IExl
-dCBtZSBtYXliZSBhc2sgeW91IHdoeSBkbyB5b3UgY2FyZSBjcmVhdGluZyBhIHRoZXJtYWwgem9u
-ZSBpZiB5b3VyIGNvbnRyb2wNCj4gaGFzIG5vIGFjdGlvbnM/IE9yIHJhdGhlciwgd2h5IGJvdGhl
-cmluZyBzZXR0aW5nIHVwIGEgY29udHJvbCB0aGF0IGhhcyBubw0KPiBhY3R1YXRvcnM/DQpObyBj
-b29saW5nLWRldmljZSBtYXAgZG9lc24ndCBtZWFuIE5PIEFDVElPTlMuIFRoZXJlIGNvdWxkIGJl
-IGNyaXRpYyB0cmlwcyB0aGF0IHRyaWdnZXIgQ1BVIHJlc2V0IG9yIHNodXRkb3duLg0KVGhlIHJv
-b3QgY2F1c2UgZm9yIGl0IGhlcmUgaXM6IHRoZXJlIGlzIG5vIGVub3VnaCBjb29saW5nIGRldmlj
-ZSBmb3IgZWFjaCB6b25lIHdoZW4gbXVsdGlwbGUgem9uZSBleGlzdC4NCkZvciBleGFtcGxlLCBm
-b3Igb3VyIGxzMjA4OGEgcGxhdGZvcm0sIHRoZXJlIGFyZSA3IHRoZXJtYWwgem9uZXMsIGJ1dCB3
-ZSBoYXZlIG9ubHkgb25lIGNvb2xpbmcgZGV2aWNlIHdoaWNoIGlzIGNwdWZyZXEuDQpEdWUgdG8g
-dGhpcyBvcHRpb24gbGltaXRhdGlvbiwgbXVsdGlwbGUgem9uZXMgY2FuJ3QgYmUgc3VwcG9ydGVk
-Lg0KSSBiZWxpZXZlIG9uIG1vc3QgcGxhdGZvcm0sIHRoZXJlIGFyZSBvbmx5IHR3byB0eXBlIG9m
-IGNvb2xpbmcgZGV2aWNlcywgY3B1ZnJlcSBhbmQgZmFuLiBTbyBob3cgbWFueSBjb29saW5nIGRl
-dmljZXMgaXQgY291bGQgYmU/DQpTbyBtYWtpbmcgdGhlIHByb3BlcnR5IG9wdGlvbmFsIGlzIHJl
-YXNvbmFibGUuIFdlIGNhbiBhc3NpZ24gY29vbGluZyBkZXZpY2VzIHRvIGNlcnRhaW4gdGhlcm1h
-bCB6b25lcyBhbmQgbGVhdmUgdGhlIHRoZXJtYWwgem9uZSB3aXRoIG5vIGNvb2xpbmcgZGV2aWNl
-IHRha2luZyBkZWZhdWx0IGFjdGlvbnMuDQoNCkJSLA0KQW5keQ0KPiANCj4gPg0KPiA+IFNpZ25l
-ZC1vZmYtYnk6IFl1YW50aWFuIFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+
-ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL3RoZXJtYWwudHh0ICAgICAgICB8ICAg
-IDQgKystLQ0KPiA+ICAxIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlv
-bnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvdGhlcm1hbC90aGVybWFsLnR4dA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3RoZXJtYWwvdGhlcm1hbC50eHQNCj4gPiBpbmRleCBjYTE0YmE5Li42OTRlODM0
-IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aGVy
-bWFsL3RoZXJtYWwudHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL3RoZXJtYWwvdGhlcm1hbC50eHQNCj4gPiBAQCAtMTQyLDExICsxNDIsMTEgQEAgUmVxdWly
-ZWQgcHJvcGVydGllczoNCj4gPiAgLSB0cmlwczogICAgICAgICAgICAgQSBzdWItbm9kZSB3aGlj
-aCBpcyBhIGNvbnRhaW5lciBvZiBvbmx5IHRyaXAgcG9pbnQNCj4gbm9kZXMNCj4gPiAgICBUeXBl
-OiBzdWItbm9kZSAgICAgcmVxdWlyZWQgdG8gZGVzY3JpYmUgdGhlIHRoZXJtYWwgem9uZS4NCj4g
-Pg0KPiA+ICsNCj4gPiArT3B0aW9uYWwgcHJvcGVydHk6DQo+ID4gIC0gY29vbGluZy1tYXBzOiAg
-ICAgICAgICAgICAgQSBzdWItbm9kZSB3aGljaCBpcyBhIGNvbnRhaW5lciBvZiBvbmx5DQo+IGNv
-b2xpbmcgZGV2aWNlDQo+ID4gICAgVHlwZTogc3ViLW5vZGUgICAgIG1hcCBub2RlcywgdXNlZCB0
-byBkZXNjcmliZSB0aGUgcmVsYXRpb24NCj4gYmV0d2VlbiB0cmlwcw0KPiA+ICAgICAgICAgICAg
-ICAgICAgICAgICBhbmQgY29vbGluZyBkZXZpY2VzLg0KPiA+IC0NCj4gPiAtT3B0aW9uYWwgcHJv
-cGVydHk6DQo+ID4gIC0gY29lZmZpY2llbnRzOiAgICAgICAgICAgICAgQW4gYXJyYXkgb2YgaW50
-ZWdlcnMgKG9uZSBzaWduZWQgY2VsbCkNCj4gY29udGFpbmluZw0KPiA+ICAgIFR5cGU6IGFycmF5
-ICAgICAgICAgICAgICAgIGNvZWZmaWNpZW50cyB0byBjb21wb3NlIGEgbGluZWFyIHJlbGF0aW9u
-DQo+IGJldHdlZW4NCj4gPiAgICBFbGVtIHNpemU6IG9uZSBjZWxsICAgICAgICB0aGUgc2Vuc29y
-cyBsaXN0ZWQgaW4gdGhlIHRoZXJtYWwtc2Vuc29ycw0KPiBwcm9wZXJ0eS4NCj4gPiAtLQ0KPiA+
-IDEuNy4xDQo+ID4NCg==
+From: Dong Aisheng <aisheng.dong@nxp.com>
+
+There's a few limitations on the original one cell clock binding
+(#clock-cells = <1>) that we have to define all clock IDs for device
+tree to reference. This may cause troubles if we want to use common
+clock IDs for multi platforms support when the clock of those platforms
+are mostly the same.
+e.g. Current clock IDs name are defined with SS prefix.
+
+However the device may reside in different SS across CPUs, that means the
+SS prefix may not valid anymore for a new SoC. Furthermore, the device
+availability of those clocks may also vary a bit.
+
+For such situation, We formerly planned to add all new IDs for each SS
+and dynamically check availability for different SoC in driver. That can
+be done but that may involve a lot effort and may result in more changes
+and duplicated code in driver, also make device tree upstreaming hard which
+depends on Clock IDs.
+
+To relief this situation, we want to move the clock definition into
+device tree which can fully decouple the dependency of Clock ID definition
+from device tree. This can make us write a full generic clock driver
+for SCU based SoCs. No more frequent changes needed in clock driver
+any more.
+
+In the meanwhile, we can also use the existence of clock nodes in device
+tree to address the device and clock availability differences across
+different SoCs.
+
+For SCU clocks, only two params required. The first one is resource id
+which is encoded in reg property and the second is clock type index
+which is encoded in generic clock-indices property they're not continuously.
+
+And as we also want to support clock set parent function, 'clocks' property
+is also used to pass all the possible input parents.
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <kernel@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+---
+ChangeLog:
+v1->v2:
+ * changed to one cell binding inspired by arm,scpi.txt
+   Documentation/devicetree/bindings/arm/arm,scpi.txt
+   Resource ID is encoded in 'reg' property.
+   Clock type is encoded in generic clock-indices property.
+   Then we don't have to search all the DT nodes to fetch
+   those two value to construct clocks which is relatively
+   low efficiency.
+ * Add required power-domain property as well.
+---
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt  | 45 ++++++++++++++++++----
+ include/dt-bindings/firmware/imx/rsrc.h            | 17 ++++++++
+ 2 files changed, 54 insertions(+), 8 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index 5d7dbab..2f46e89 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -89,6 +89,27 @@ Required properties:
+ 			  "fsl,imx8qm-clock"
+ 			  "fsl,imx8qxp-clock"
+ 			followed by "fsl,scu-clk"
++- #address-cells:	Should be 1.
++- #size-cells:		Should be 0.
++
++Sub nodes are required to represent all available SCU clocks within this
++hardware subsystem and the following properties are needed:
++
++- reg:			Should contain the Resource ID of this SCU clock.
++- #clock-cells:		Should be 1.
++- clock-indices:	Index of all clock types supported by this SCU clock.
++			The order should match the clock-output-names array.
++			Refer to <include/dt-bindings/firmware/imx/rsrc.h> for
++			available clock types supported by SCU.
++- clock-output-names:	Shall be the corresponding names of the outputs.
++- power-domains:	Should contain the power domain used by this SCU clock.
++
++Optional properties:
++- clocks:		Shall be the input parent clock(s) phandle for the clock.
++			For multiplexed clocks, the list order must match the hardware
++			programming order.
++
++Legacy Clock binding (No sub-nodes which is DEPRECATED):
+ - #clock-cells:		Should be 1. Contains the Clock ID value.
+ - clocks:		List of clock specifiers, must contain an entry for
+ 			each required entry in clock-names
+@@ -144,6 +165,21 @@ lsio_mu1: mailbox@5d1c0000 {
+ 	#mbox-cells = <2>;
+ };
+ 
++conn-scu-clock-controller {
++	compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	uart0_clk: clock-scu@57 {
++		reg = <57>;
++		#clock-cells = <1>;
++		clock-indices = <IMX_SC_PM_CLK_PER>;
++		clock-output-names = "uart0_clk";
++		power-domains = <&pd IMX_SC_R_UART_0>;
++	};
++	...
++}
++
+ firmware {
+ 	scu {
+ 		compatible = "fsl,imx-scu";
+@@ -160,11 +196,6 @@ firmware {
+ 			  &lsio_mu1 1 3
+ 			  &lsio_mu1 3 3>;
+ 
+-		clk: clk {
+-			compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+-			#clock-cells = <1>;
+-		};
+-
+ 		iomuxc {
+ 			compatible = "fsl,imx8qxp-iomuxc";
+ 
+@@ -192,8 +223,6 @@ serial@5a060000 {
+ 	...
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_lpuart0>;
+-	clocks = <&clk IMX8QXP_UART0_CLK>,
+-		 <&clk IMX8QXP_UART0_IPG_CLK>;
+-	clock-names = "per", "ipg";
++	clocks = <&uart0_clk IMX_SC_PM_CLK_PER>;
+ 	power-domains = <&pd IMX_SC_R_UART_0>;
+ };
+diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
+index 4e61f64..fbeaca7 100644
+--- a/include/dt-bindings/firmware/imx/rsrc.h
++++ b/include/dt-bindings/firmware/imx/rsrc.h
+@@ -547,4 +547,21 @@
+ #define IMX_SC_R_ATTESTATION		545
+ #define IMX_SC_R_LAST			546
+ 
++/*
++ * Defines for SC PM CLK
++ */
++#define IMX_SC_PM_CLK_SLV_BUS		0	/* Slave bus clock */
++#define IMX_SC_PM_CLK_MST_BUS		1	/* Master bus clock */
++#define IMX_SC_PM_CLK_PER		2	/* Peripheral clock */
++#define IMX_SC_PM_CLK_PHY		3	/* Phy clock */
++#define IMX_SC_PM_CLK_MISC		4	/* Misc clock */
++#define IMX_SC_PM_CLK_MISC0		0	/* Misc 0 clock */
++#define IMX_SC_PM_CLK_MISC1		1	/* Misc 1 clock */
++#define IMX_SC_PM_CLK_MISC2		2	/* Misc 2 clock */
++#define IMX_SC_PM_CLK_MISC3		3	/* Misc 3 clock */
++#define IMX_SC_PM_CLK_MISC4		4	/* Misc 4 clock */
++#define IMX_SC_PM_CLK_CPU		2	/* CPU clock */
++#define IMX_SC_PM_CLK_PLL		4	/* PLL */
++#define IMX_SC_PM_CLK_BYPASS		4	/* Bypass clock */
++
+ #endif /* __DT_BINDINGS_RSCRC_IMX_H */
+-- 
+2.7.4
+
