@@ -2,89 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FA4529D76
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 19:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D70229D97
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2019 19:56:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390955AbfEXRuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 13:50:13 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:40376 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390929AbfEXRuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 13:50:13 -0400
-Received: by mail-ot1-f66.google.com with SMTP id u11so9441938otq.7;
-        Fri, 24 May 2019 10:50:13 -0700 (PDT)
+        id S1727558AbfEXR42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 13:56:28 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:45009 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726071AbfEXR42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 13:56:28 -0400
+Received: by mail-pl1-f194.google.com with SMTP id c5so4452446pll.11;
+        Fri, 24 May 2019 10:56:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UZnc7DcjNL05PZUl35qBgTMmg9YgsiJ/H98z8gpQ+WU=;
-        b=kgfxpZccazO/20c27YqZ/hF+AHYaWjTIKj+4hlpYOmSpYGdq5DSO03BZdAfXSk87zd
-         Xxrb5F0o1lmubo/ft/4hp97LJqex8aPiv8lqDux6558iohZD4moHYTlkQq+kXdfvcD5Q
-         sT2rTkW1eqxEm+dFXn+mfXoU5IVCbKeyvvWzujoJc2lvoTJRauZI9JPTjH4Kw0xNV79v
-         Jcrjj0gLjoOscv2meGBmgwpSR35Dp7jATobUo0Kj1w1WI6DorXaO18b9yQTOnmBU0AEr
-         SzgkVFIXR6fax727+rlfnuTMuUTl02Ht6jvKum9cxTpt0SJb/vBLXie+hZluXmAlJB89
-         CPDQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=+4dUJ/hnokGjsx8/lVgqKqVKEuRSybVsaRBnvdF4Ydg=;
+        b=PC0DnxCHpyrvI07oguIz4W11H2VDPektdbmFePYqnjzMliY0lltRJdJSzJGNLoxp/r
+         RZM/1MDsMz1LfbTV5sYnoUjwkX82g18a8OFj+EiJZJswueh4vKKyiwrSAoD58NrReBiG
+         Zrs6JhXhwwnCO5sHvhbRj2HN6thomEdazjjlPAhWdo67k5rcqiqL8k3/uaUBL8TEr3+B
+         DuFbbcA5dhzncKSiWHjKGGjQzXxjtySena2FWmhyO2ftN8Cg1BZIVinsN3Ne2YpJwIbz
+         7acpfnI4XCuRg1C/PZJ0R8EVtvDHR+c49+COWujXiJKsn+Hsy+2mGWJu6a/zL3HnXlIv
+         BWxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UZnc7DcjNL05PZUl35qBgTMmg9YgsiJ/H98z8gpQ+WU=;
-        b=haA8spQKZln5AH7uhwAHxta0aL81U2p6dSiUpis6YwHJLzhKIWBBtYEDQ9WVXigHxp
-         +bR2tmVCgxK2OAxZlSq9mcjMSyKkHYkboGlZGCT3AaGnzZWtBv1SUohxbh/SQwh7qM0r
-         dZtetENAsIaxU7Ax5a/IAAhCcv/0fvf7sVoBgk5Bk4aJ+DkWRIOTfZeWQnrli0BiyOf7
-         mGJraPRydjOJDdvBY3qXtWmfT3Pb+ATVpR6CGbHp6mOGHqPuamfcUWqUEo5MY5SfVFOK
-         yyqUoCtIZ4kLtK+Rmbss/FsPHhAb3h63UIVJ21y3EPZfQJW6DgdSu6takTfRlGbxSYTh
-         XFEQ==
-X-Gm-Message-State: APjAAAVhX8LAAdXKxrM+ZU79UnFieo1RnG187N5j/JDcNIbLcs7zpnNz
-        ZwVr7ORhASIDX/tiFfaqEtJk+zqCZhgFj7M9ohU=
-X-Google-Smtp-Source: APXvYqy1KkZNIxwuQhPqiSRp1aCJoK85ECorsxpw0StRGFYqPUIJ2pkj+G09V+/85cJ6Wtcv6GjLQ4Bz2FginEM62Ok=
-X-Received: by 2002:a9d:744d:: with SMTP id p13mr41645269otk.96.1558720212750;
- Fri, 24 May 2019 10:50:12 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+4dUJ/hnokGjsx8/lVgqKqVKEuRSybVsaRBnvdF4Ydg=;
+        b=SR0fUTkAGelmj170fwOJqOPqIDcxtoGRboT1uC7qiqUbctOM6zKOscXpBZDZKJRcd9
+         ufC+S3Cd98xOTGbrZu9LoRNoQbhGoTbjFwFC5Uj1wAAAEMIhVhvJr6gNDmQ/lFo9uuiU
+         aO/iy5H7X8S534s05qXGlXxzDoTrUF1sw01uJNLhRQrGs/6Lnu46Z8XIIHMc8npC76B+
+         RauLzML4fsaGvKJVxF7P1tOScBM+I7s/9mXqKsZskFQV2E+XGaUiZH3UDhOFXQovEQSk
+         UJirmUEH0W/jpTDkWsX3AapPkmc2kO5eps8N1T0bUwPKkkHGUoyi/TEkD289MChXwviJ
+         uqxg==
+X-Gm-Message-State: APjAAAUBwdt/kbiXCjmsAHr/jksDoDJ7DHlkzNzoDIvl4+JO+IF0vRc5
+        207HxcNfFIzzNg9lXOyoKvc=
+X-Google-Smtp-Source: APXvYqwzVVKjKnOJmUq2+WW5KCVQvlDb85InX65Q39KvGOBxb4ZTvqsmrD/jrcKi/v0YIbrwiVPJLw==
+X-Received: by 2002:a17:902:f081:: with SMTP id go1mr60870708plb.211.1558720587159;
+        Fri, 24 May 2019 10:56:27 -0700 (PDT)
+Received: from [192.168.1.70] (c-24-6-192-50.hsd1.ca.comcast.net. [24.6.192.50])
+        by smtp.gmail.com with ESMTPSA id f2sm2631944pgs.83.2019.05.24.10.56.26
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 May 2019 10:56:26 -0700 (PDT)
+Subject: Re: [PATCH v1 1/5] of/platform: Speed up of_find_device_by_node()
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-team@android.com
+References: <20190524010117.225219-1-saravanak@google.com>
+ <20190524010117.225219-2-saravanak@google.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <6f4ca588-106f-93d1-8579-9e8d32c8031d@gmail.com>
+Date:   Fri, 24 May 2019 10:56:25 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190524130817.18920-1-jbrunet@baylibre.com>
-In-Reply-To: <20190524130817.18920-1-jbrunet@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 24 May 2019 19:50:01 +0200
-Message-ID: <CAFBinCCKA-15sFwyXpoxmqw5b4=6j1t-fdrHM7CoAojqN+ZGzQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: add dwmac-3.70a to ethmac compatible list
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190524010117.225219-2-saravanak@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
+Hi Sarvana,
 
-On Fri, May 24, 2019 at 3:08 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> After discussing with Amlogic, the Synopsys GMAC version used by
-> the gx and axg family is the 3.70a. Set this is in DT
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+I'm not reviewing patches 1-5 in any detail, given my reply to patch 0.
 
+But I had already skimmed through this patch before I received the
+email for patch 0, so I want to make one generic comment below,
+to give some feedback as you continue thinking through possible
+implementations to solve the underlying problems.
+
+
+On 5/23/19 6:01 PM, Saravana Kannan wrote:
+> Add a pointer from device tree node to the device created from it.
+> This allows us to find the device corresponding to a device tree node
+> without having to loop through all the platform devices.
+> 
+> However, fallback to looping through the platform devices to handle
+> any devices that might set their own of_node.
+> 
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 > ---
->
->  Hi,
->
->  The same should be true for the meson8 families but I did not test
->  it which is why only the patch only address the 64bits SoC families
-on one of my Meson8m2 boards:
-User ID: 0x11, Synopsys ID: 0x37
--> that matches GXBB/GXL/GXM
+>  drivers/of/platform.c | 20 +++++++++++++++++++-
+>  include/linux/of.h    |  3 +++
+>  2 files changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 04ad312fd85b..1115a8d80a33 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -42,6 +42,8 @@ static int of_dev_node_match(struct device *dev, void *data)
+>  	return dev->of_node == data;
+>  }
+>  
+> +static DEFINE_SPINLOCK(of_dev_lock);
+> +
+>  /**
+>   * of_find_device_by_node - Find the platform_device associated with a node
+>   * @np: Pointer to device tree node
+> @@ -55,7 +57,18 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+>  {
+>  	struct device *dev;
+>  
+> -	dev = bus_find_device(&platform_bus_type, NULL, np, of_dev_node_match);
+> +	/*
+> +	 * Spinlock needed to make sure np->dev doesn't get freed between NULL
+> +	 * check inside and kref count increment inside get_device(). This is
+> +	 * achieved by grabbing the spinlock before setting np->dev = NULL in
+> +	 * of_platform_device_destroy().
+> +	 */
+> +	spin_lock(&of_dev_lock);
+> +	dev = get_device(np->dev);
+> +	spin_unlock(&of_dev_lock);
+> +	if (!dev)
+> +		dev = bus_find_device(&platform_bus_type, NULL, np,
+> +				      of_dev_node_match);
+>  	return dev ? to_platform_device(dev) : NULL;
+>  }
+>  EXPORT_SYMBOL(of_find_device_by_node);
+> @@ -196,6 +209,7 @@ static struct platform_device *of_platform_device_create_pdata(
+>  		platform_device_put(dev);
+>  		goto err_clear_flag;
+>  	}
+> +	np->dev = &dev->dev;
+>  
+>  	return dev;
+>  
+> @@ -556,6 +570,10 @@ int of_platform_device_destroy(struct device *dev, void *data)
+>  	if (of_node_check_flag(dev->of_node, OF_POPULATED_BUS))
+>  		device_for_each_child(dev, NULL, of_platform_device_destroy);
+>  
+> +	/* Spinlock is needed for of_find_device_by_node() to work */
+> +	spin_lock(&of_dev_lock);
+> +	dev->of_node->dev = NULL;
+> +	spin_unlock(&of_dev_lock);
+>  	of_node_clear_flag(dev->of_node, OF_POPULATED);
+>  	of_node_clear_flag(dev->of_node, OF_POPULATED_BUS);
+>  
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 0cf857012f11..f2b4912cbca1 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -48,6 +48,8 @@ struct property {
+>  struct of_irq_controller;
+>  #endif
+>  
+> +struct device;
+> +
+>  struct device_node {
+>  	const char *name;
+>  	phandle phandle;
+> @@ -68,6 +70,7 @@ struct device_node {
+>  	unsigned int unique_id;
+>  	struct of_irq_controller *irq_trans;
+>  #endif
+> +	struct device *dev;		/* Device created from this node */
 
-Odroid-C1 on Kernel CI reports:
-User ID: 0x10, Synopsys ID: 0x37
--> however, the public S805 datasheet mentions that it's a
-"10/100/1000 MAC 3.70a" (page 120)
+We have actively been working on shrinking the size of struct device_node,
+as part of reducing the devicetree memory usage.  As such, we need strong
+justification for adding anything to this struct.  For example, proof that
+there is a performance problem that can only be solved by increasing the
+memory usage.
 
-I don't know about Meson6 or Meson8 (as I don't have boards with these SoCs)
-
-I'll put this on my to do list (adding the "snps,dwmac-3.70a"
-compatible on Meson8b and Meson8m2)
+-Frank
 
 
-Martin
+>  };
+>  
+>  #define MAX_PHANDLE_ARGS 16
+> 
+
