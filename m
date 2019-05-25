@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A40B2A571
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 18:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24A52A5E5
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 19:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727374AbfEYQio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 May 2019 12:38:44 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:52591 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727331AbfEYQif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 12:38:35 -0400
-Received: by mail-wm1-f66.google.com with SMTP id y3so12234473wmm.2;
-        Sat, 25 May 2019 09:38:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kX1q8iX0X4303ErWm6lM+rRst5YhXcgIu4cEhOJHl1c=;
-        b=krobs59/49UbKhHuTP/YivClJTfexdgqOLwxGxG7GrdN9zj5Hh1sdevqbbAozFjouY
-         O4tDua3cJoczqnfx+35v9XOguSH+4JB3LU21g3tBp+yKNIYc5N8I16BaEhhCF7+UOYEH
-         s5HYSKrpiLu1F4z/iG6smjT4555gc0q/CjaFgZTUNtpscNq9F5ukZVO/ItzEegqm32IB
-         LnacyjXEnqjnfhSnTHfUUQAJ03tzRslVmMSjIP39LIu3H6An/RqerVO1P2PzqmMqrsc6
-         x7SRuIDscb7NVByOKxyYEUtHae6KNIe3w4KAbnRkHHE6A1sOsG6ARUnntOOGqAb6uq17
-         zuZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kX1q8iX0X4303ErWm6lM+rRst5YhXcgIu4cEhOJHl1c=;
-        b=QzhfDvC3xEvW5RaUP/qn/SBGj3KSScgjvlI7igjq3STuqQxKdo8G3rHjwDa+H92ZAt
-         5TVRt+m4AD1gp9LTZn/N6Wi4v8TVC0iT3u3XXvHp1/W7NWf7e4sVIm+ym0P0NYMtlYzu
-         IUcX/hysuDtCkUfnpjtFZnaJ1U8wZU22ROVUKOoKRH04Bgv6QEb3LtOiArkmzBeb26mR
-         F5qbuZbgnVEyxCE8hM3Ij3EM3PHdeZveSx+GgK4WEf5AicZ+ZBmxM0yf+LCcSyGyAzvZ
-         15j/Ng5VzY1MQIv3xDjfzYLUsOGqvCv/N6D6YjAnqRZv1iHXEcvKmcAByI0SGl5O5sBu
-         MozA==
-X-Gm-Message-State: APjAAAXqLSwrSqIQCWvavi9gwHevYPV84m1eH6TsLRnlXopaq5F8QpOo
-        tSPyi9euZTfOGaZAPolwvkg=
-X-Google-Smtp-Source: APXvYqwH0lslbsXMD9wwixNplf75D7OjGQDY/HX6QdZZ6L6hQd2DzjzpVOz6N15Sq3zf0VrRJfVI9g==
-X-Received: by 2002:a7b:cb48:: with SMTP id v8mr20897671wmj.108.1558802313160;
-        Sat, 25 May 2019 09:38:33 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id f65sm9306498wmg.45.2019.05.25.09.38.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 25 May 2019 09:38:32 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1726736AbfEYRxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 May 2019 13:53:43 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:42086 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725838AbfEYRxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 13:53:43 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 1A51960C5F; Sat, 25 May 2019 17:53:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1558806822;
+        bh=jzgn7rg3s5o3zpXbF8z5WWZpHYb1TEcoJmOALP8joCg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=BgXEnwqsQtglDsn26d091gsab2jvK9eX60DBAj3Sb35YVk8e20LyNcO17POyPz/qA
+         XeHQKa1D6dg1r+ofxGIWlG12NCCi/1BF6UOnyblc7uq3KDKXxDjCsMJb7KziiEXQVf
+         7C+P2vVgN1x1lDr3xGeUFlHc7QmtsFmhzXtqoBsU=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.101] (unknown [157.45.255.98])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C6CAF601D4;
+        Sat, 25 May 2019 17:53:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1558806821;
+        bh=jzgn7rg3s5o3zpXbF8z5WWZpHYb1TEcoJmOALP8joCg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=AhvQjd1G+fm8dGu6jDuDybm6UFdOcyr5aXzXC+7+TtNTb6dikoxLweF9ECtqAwEd6
+         AY59Ce5O14emuv7Ou2IajldTA0rzRJqbHE0zXer/5aoLX/PIPxx96C2mLD3lylNyOV
+         osSg39oiCXUuZu3J1AQRvVQtRq/leRGMocTXDmyM=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C6CAF601D4
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+Subject: Re: [PATCH v7 2/4] soc: qcom: Add AOSS QMP driver
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Dan Williams <dan.j.williams@intel.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v2 7/7] arm64: defconfig: enable Allwinner DMA drivers
-Date:   Sat, 25 May 2019 18:38:19 +0200
-Message-Id: <20190525163819.21055-8-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190525163819.21055-1-peron.clem@gmail.com>
-References: <20190525163819.21055-1-peron.clem@gmail.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190501043734.26706-1-bjorn.andersson@linaro.org>
+ <20190501043734.26706-3-bjorn.andersson@linaro.org>
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Message-ID: <3d2c61ca-b91b-fdc7-7837-af6a3b71af7e@codeaurora.org>
+Date:   Sat, 25 May 2019 23:23:33 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190501043734.26706-3-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner sun6i DMA drivers is used on A64 and H6 boards.
+On 5/1/2019 10:07 AM, Bjorn Andersson wrote:
+> The Always On Subsystem (AOSS) Qualcomm Messaging Protocol (QMP) driver
+> is used to communicate with the AOSS for certain side-channel requests,
+> that are not available through the RPMh interface.
+> 
+> The communication is a very simple synchronous mechanism of messages
+> being written in message RAM and a doorbell in the AOSS is rung. As the
+> AOSS has processed the message length is cleared and an interrupt is
+> fired by the AOSS as acknowledgment.
+> 
+> The driver exposes the QDSS clock as a clock and the low-power state
+> associated with the remoteprocs in the system as a set of power-domains.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v6:
+> - Squash the pd into the same driver as the communication, to simplify
+>    the interaction.
+> - Representing the QDSS clocks as a clock/power domain turns out to
+>    cascade into a request to make all Coresight drivers have a secondary
+>    compatible to replace the required bus clock with a required power
+>    domain. So in v7 this is exposed as a clock instead.
+> - Some error checking updates, as reported by Doug.
+> 
 
-Enable it as a module.
+Thanks for the patch Bjorn.
+Tested the QDSS functionality on SDM845 based Cheza board with this
+change and it works just fine.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4d583514258c..b535f0f412cc 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -614,6 +614,7 @@ CONFIG_RTC_DRV_IMX_SC=m
- CONFIG_RTC_DRV_XGENE=y
- CONFIG_DMADEVICES=y
- CONFIG_DMA_BCM2835=m
-+CONFIG_DMA_SUN6I=m
- CONFIG_K3_DMA=y
- CONFIG_MV_XOR=y
- CONFIG_MV_XOR_V2=y
 -- 
-2.20.1
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
