@@ -2,66 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F11532A540
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 18:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBED62A568
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 18:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727229AbfEYQXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 May 2019 12:23:42 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:44805 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727223AbfEYQXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 12:23:42 -0400
-Received: by mail-wr1-f68.google.com with SMTP id w13so4443738wru.11;
-        Sat, 25 May 2019 09:23:41 -0700 (PDT)
+        id S1727267AbfEYQi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 May 2019 12:38:28 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:33577 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727125AbfEYQi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 12:38:27 -0400
+Received: by mail-wr1-f67.google.com with SMTP id d9so12841990wrx.0;
+        Sat, 25 May 2019 09:38:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mz71BHS9e6D0Hy+3p0/CgKuWt1VgJzq7zAM5T7mHY2o=;
-        b=jUrGqIVcaMBSQcLPCUQrRz5m5HvJXlyQ468xiszvGOrzlbZiJta79v1MI4OHS9BrJw
-         slJRfaQIZKHfawdD+VE64WDHAPRL8caZPMvUxY+fajXRhXJTwKAflma5EW4AsMaWbWy/
-         cpt652xyVNGp12XtgtneQfp0kk6rTic5HQrz5e4nzEcg6RBBUSY+ml1QHvBDYRVmC0wT
-         3GdZg17rdLHujZf4MJlVc2IGS1SceA3Aibdddsw19d5+Dd70wtQAOCVOteyeTCOaxbpg
-         J+mjNfS1QZ5ksoqvUxq++X25DwHkdiBEra11GEMmjPQWPi8wHwQOPRuz9TWYguyOY4sE
-         DNdg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P1PyjslIuFkdLZ1LECH2oSAMmTt5Um4BAQa4nOZIt94=;
+        b=ZCG5JA+bIRDyleKl2mXDSKEp9k5JUA0n0iBeFRwDKw1Fs5sbHew+pHrqpO+AVaYcDk
+         GbQOzYLEetuN7tzq4YO2itG3MCd0VrWiWvlBNLP94BenthcKgYrio9BbozLM3VDqavWR
+         Lo3Fwl8QSY+FZ9HXd2H4JNg7yUGxpNKQ491HSncL5MczBDs8dD7y9dFezntMKpIq+L51
+         w1KoNwprxk7lGvNIy+iEbrJSSNU3qpKTgUCgSLso/uqyZVSNyiOJc9LXQcUx3+4ZSUAX
+         H0m3RQkTcQ2B2h/17Gf96fzMNShsQRNGONnkY7JcSB0If1UlSrdDXOecxZnumgXMJcEq
+         RWQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mz71BHS9e6D0Hy+3p0/CgKuWt1VgJzq7zAM5T7mHY2o=;
-        b=qWUlQ/CKvqXJyLAiJg69s1nfmQNRxTwcFqkRJ3MmJhPZr7rqrfsQ+Gih8QNK1URSJe
-         AGnPJsOVB6a132EgqVZVUGcYrIbu5YhtyHkx23zilhv38pJyZqA2AyyGeDoUjnI2EUOy
-         +vqNl3eEmAjtHiLsJfxXQh0g/eHnQsLl/C2NEudoK5WD467Smgz3wnRfWWveWazxvo7t
-         QTDzXBx9N4pIGZEVIxl2USUUKzjZVZ9UcAf7l8d2+s3k79W9r194HNXAsZbJzhKI6ddq
-         5gCz+7YPM4oN7z+mRauXP+z75d9BZQgH1X5OrEtPZAroJ7Ar9GAiEpulEQ4IwgttKp+6
-         55BA==
-X-Gm-Message-State: APjAAAWeiN4Yd11IPo2VKTmD0aNaIOVZvk9+1LIzCEHyKW4XEtp1tiWB
-        RxxII6JErywl1PSjPyCeU2w=
-X-Google-Smtp-Source: APXvYqwOH/zwDPb6sFjgA3noRqLyg0IS8DDT4t4lmVfw9uSbTr3HjpeHNuNaUkAdH15jvnlEPnlHJA==
-X-Received: by 2002:adf:f9c5:: with SMTP id w5mr37265578wrr.26.1558801419314;
-        Sat, 25 May 2019 09:23:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P1PyjslIuFkdLZ1LECH2oSAMmTt5Um4BAQa4nOZIt94=;
+        b=Bo+QOThZNsb0D2Be3NXIbRR1vNwoj+9KZblWOQQNpb6MTaAThycfuVEr3cynyPLWdu
+         +sqh695f0eDMTkP7b5gaUrC2SEG7Jd0Z2iCDdOqmJXENlmPJeh4kokq0BiB6aa6LTtQa
+         jW9RA3l9UtCKImuXhqxD5lMHd70qK4iRDd4FDIVcixGMMBNE2zYSRfASGlgwIvEMNLfU
+         J9hDsgsBHAJdBgv981uk+tNo1dfomAU8oRcry6LnrvHrpt3oeCPiK33a1th8cKkraMsd
+         5eagUAoh6y/YtyljHEdXMRVlL4oIIpq6ufFYkB7nQZ0qybf81hsKshpw0MLgsrAkEgeD
+         3ozg==
+X-Gm-Message-State: APjAAAXEp+f2tF7QaC214WZivr7R2qhaNgyRgktehoamY0PCt0FVQdrS
+        gxkSx2J6a6NJ5OkK2u44zew=
+X-Google-Smtp-Source: APXvYqz78k3LlnXP7jY3H0OnrSSVjujSRE2IRywudpy2P67AUT4Fy3Xl69vJWmYaBl5Bg9zioHfo+Q==
+X-Received: by 2002:a5d:6b03:: with SMTP id v3mr7769108wrw.309.1558802305724;
+        Sat, 25 May 2019 09:38:25 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id k184sm13194409wmk.0.2019.05.25.09.23.38
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sat, 25 May 2019 09:23:38 -0700 (PDT)
+        by smtp.gmail.com with ESMTPSA id f65sm9306498wmg.45.2019.05.25.09.38.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 25 May 2019 09:38:25 -0700 (PDT)
 From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Dan Williams <dan.j.williams@intel.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v3 7/7] arm64: defconfig: Enable Sun4i SPDIF module
-Date:   Sat, 25 May 2019 18:23:23 +0200
-Message-Id: <20190525162323.20216-8-peron.clem@gmail.com>
+Subject: [PATCH v2 0/7] Allwinner H6 DMA support
+Date:   Sat, 25 May 2019 18:38:12 +0200
+Message-Id: <20190525163819.21055-1-peron.clem@gmail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190525162323.20216-1-peron.clem@gmail.com>
-References: <20190525162323.20216-1-peron.clem@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,27 +65,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner A64 and H6 use the Sun4i SPDIF driver.
+Hi,
 
-Enable this to allow a proper support.
+This series has been first proposed by Jernej Skrabec[1].
+As this series is mandatory for SPDIF/I2S support and because he is
+busy on Cedrus stuff. I asked him to make the minor change requested
+and repost it.
+Authorship remains to him.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+I have tested this series with SPDIF driver and added a patch to enable
+DMA_SUN6I_CONFIG for arm64.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index b535f0f412cc..de5b65d45311 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -526,6 +526,7 @@ CONFIG_SND_SOC_ROCKCHIP_RT5645=m
- CONFIG_SND_SOC_RK3399_GRU_SOUND=m
- CONFIG_SND_SOC_SAMSUNG=y
- CONFIG_SND_SOC_RCAR=m
-+CONFIG_SND_SUN4I_SPDIF=m
- CONFIG_SND_SOC_AK4613=m
- CONFIG_SND_SOC_ES7134=m
- CONFIG_SND_SOC_ES7241=m
+Original Post:
+"
+DMA engine engine on H6 almost the same as on older SoCs. The biggest
+difference is that it has slightly rearranged bits in registers and
+it needs additional clock, probably due to iommu.
+
+These patches were tested with I2S connected to HDMI. I2S needs
+additional patches which will be sent later.
+
+Please take a look.
+
+Best regards,
+Jernej
+"
+
+Thanks,
+Clément
+
+Changes since v1:
+ - Enable DMA_SUN6I in arm64 defconfig
+ - Change mbus_clk to has_mbus_clk
+ - Collect Rob H. reviewed-by
+
+Clément Péron (1):
+  arm64: defconfig: enable Allwinner DMA drivers
+
+Jernej Skrabec (6):
+  dt-bindings: arm64: allwinner: h6: Add binding for DMA controller
+  dmaengine: sun6i: Add a quirk for additional mbus clock
+  dmaengine: sun6i: Add a quirk for setting DRQ fields
+  dmaengine: sun6i: Add a quirk for setting mode fields
+  dmaengine: sun6i: Add support for H6 DMA
+  arm64: dts: allwinner: h6: Add DMA node
+
+ .../devicetree/bindings/dma/sun6i-dma.txt     |   9 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  12 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/dma/sun6i-dma.c                       | 147 +++++++++++++-----
+ 4 files changed, 132 insertions(+), 37 deletions(-)
+
 -- 
 2.20.1
 
