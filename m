@@ -2,111 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4962A665
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 20:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA4F2A66E
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 20:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727590AbfEYSNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 May 2019 14:13:40 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:36766 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727575AbfEYSNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 14:13:39 -0400
-Received: by mail-pl1-f195.google.com with SMTP id d21so5442408plr.3;
-        Sat, 25 May 2019 11:13:39 -0700 (PDT)
+        id S1727325AbfEYSQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 May 2019 14:16:48 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:43030 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727085AbfEYSQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 14:16:48 -0400
+Received: by mail-pg1-f194.google.com with SMTP id f25so6800850pgv.10
+        for <devicetree@vger.kernel.org>; Sat, 25 May 2019 11:16:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EnB6+3mIR1GUxLAogalYOOntDr+t9u6MSm9vkJ1kPoo=;
-        b=sf1yzaTwgKxt+8JN/8Rimolz5jnu9NNXetAgOkIApDyLNJDdFaArYWTeELrst+ysF6
-         OSYnqiTZkrfnVB3cRFLG1/wpr673pY8FrlPEfzb0E1jSiQ00Tp4GR3TUB70v3povEMVb
-         j7mqnt1fWgFe4kDI/gFfX5/cwTOO7x0syZnVkF05kV4qYXzJ+0RoQndloQT7i8rLlGaS
-         JDR6h3bcHn1uLys10XUTwd95nyEM4NM+bEuMw3l+TMNrxel0VQhsO+Ie3cORtnR4nBeW
-         1M7RLnhQ2jVU97gHKeXAfGqKyYqQPG4j2OqeRb8Xto4qa71HzwBL0KWJYT4mP/lnyyGe
-         F9ig==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=/ii9WpqD7iEAJKDcuy2CpZ/y9+8YtSKEyLsD7jWsNAQ=;
+        b=E3O488YVP8TgapmTW0WHrHr5ag7JIOkw2T6nXC6lEd/a1hMULi+DdyrxSINGbd5xGc
+         sUSAbhzND1I0stBU7o+1u8mSI48Daarvhj55rAbL/1vhpivBXI190VPU+y9L/pcIWJE7
+         bfKWvxY68+2gtByETnQ9w6hEowzfxRrG02eW82rPQv2LvVXCXiPU7lyvE6g0LNSGY7OR
+         kCGHOkkSESFeOZNhP6ieNVyxpo4H2sAbr6pAee6pLlSnvADsydU2iLqzalTMy1kol+f8
+         +yb/AaoYxpNYnw7UkoFrVGy95QbvWwZnwiPtvDT5gCN88MtAHn3HaUy3ya6MRiAyKObS
+         errQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=EnB6+3mIR1GUxLAogalYOOntDr+t9u6MSm9vkJ1kPoo=;
-        b=txOrLSRZ/Y5rWZyMZuzKmar5FEiGe//55eVX+E1bjypagpa28hchji86psFwNU1pbc
-         BFiqxqsAc3bP6UPPu7vtSISisbt8rQN2i1weD+ofxDsUVkLhyeKk59g1U6VftzWmVrOI
-         EHxg+8hvOfBzxq+4X/fdlpH9k8kZADpbhkrhJjEhHLKP4M0YuxHIfuXj/osFARIdSWeT
-         VqeqlAUhbKcUhkz/M8moJVssEfgDDiBb5QgudW64QjaeRDqbUDZ9VaW281M+Hd1biBxr
-         0rtFw26xs0rbxaSnrhjWClGRkJcvQDDkz1/ae/yXbyrsquwRSjWnuCWebyVKQC2KBHyX
-         kApg==
-X-Gm-Message-State: APjAAAWalH8s4de9xMdzu2y+eH4Bf9NMxxZ9EHw0eG4uFrYdOYgQ/613
-        VBrmF9KZqV1TCYDLbXIgHYo=
-X-Google-Smtp-Source: APXvYqzz6527zTMOTWddGiv92U6XysI9bjqHAgREMygNcxWlnY6V/lVUVwTzV9Erzysf5B8LGDBWJQ==
-X-Received: by 2002:a17:902:2983:: with SMTP id h3mr88692846plb.267.1558808019178;
-        Sat, 25 May 2019 11:13:39 -0700 (PDT)
-Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
-        by smtp.gmail.com with ESMTPSA id s66sm18914576pfb.37.2019.05.25.11.13.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/ii9WpqD7iEAJKDcuy2CpZ/y9+8YtSKEyLsD7jWsNAQ=;
+        b=ZwNtY9xa+sMp2JTHCgmYxc4t2m68RR0mx2ybZdB0kPYXR/PlCZ1LxlSKsukmMpblZ2
+         0blCLrD13bSkPO9xhfJTIgY/eIPSkw825xyHKBysTCaXyA4H5sH/m8dnODX3qeA0E8hz
+         hyy+JnIxW6Cz6zKcfWe5ZsiCZkRIHuW0DIENGLXt32A3YEkHhnAUby738RA7eM/DIpTr
+         dlYTTKVfMFbg1ua2w6+3TcN9tJFgiBaS8SjupOnO86Uo5VCxY6vwQ01w5YnKc/3jxQKn
+         R8F3NiZG9GAkMzKUnJS9Y+3FpGF/klFuQkHGjgUeqH3ZgC6nrhFK0YXSrR97eX48zc5A
+         xpGA==
+X-Gm-Message-State: APjAAAWlnhz90ZZPAkMu6Kj29k7UOfq5heuyXAm+Tv8uBDck0Op1Bt86
+        yC0s5hRzfidgvYI0VNtl/4ZATA==
+X-Google-Smtp-Source: APXvYqxBA7lJ3zAgZZL0FnYp4GQtRBbRIxVuoz1SqGkSgJaOy62aJMDPdmEgBEATozTa5f+xEy64mQ==
+X-Received: by 2002:aa7:8dc3:: with SMTP id j3mr123366686pfr.141.1558808207644;
+        Sat, 25 May 2019 11:16:47 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id i101sm6691470pje.9.2019.05.25.11.16.45
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 25 May 2019 11:13:38 -0700 (PDT)
-From:   Yangtao Li <tiny.windzz@gmail.com>
-To:     rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
-        davem@davemloft.net, mchehab+samsung@kernel.org,
-        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
-        nicolas.ferre@microchip.com, paulmck@linux.ibm.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yangtao Li <tiny.windzz@gmail.com>
-Subject: [PATCH v3 3/3] thermal: fix indentation in makefile
-Date:   Sat, 25 May 2019 14:13:29 -0400
-Message-Id: <20190525181329.18657-4-tiny.windzz@gmail.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <20190525181329.18657-1-tiny.windzz@gmail.com>
-References: <20190525181329.18657-1-tiny.windzz@gmail.com>
+        Sat, 25 May 2019 11:16:46 -0700 (PDT)
+Date:   Sat, 25 May 2019 11:17:14 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/4] soc: qcom: Add AOSS QMP driver
+Message-ID: <20190525181714.GI2085@tuxbook-pro>
+References: <20190501043734.26706-1-bjorn.andersson@linaro.org>
+ <20190501043734.26706-3-bjorn.andersson@linaro.org>
+ <3d2c61ca-b91b-fdc7-7837-af6a3b71af7e@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3d2c61ca-b91b-fdc7-7837-af6a3b71af7e@codeaurora.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To unify code style.
+On Sat 25 May 10:53 PDT 2019, Sai Prakash Ranjan wrote:
 
-Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
----
- drivers/thermal/Makefile | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+> On 5/1/2019 10:07 AM, Bjorn Andersson wrote:
+> > The Always On Subsystem (AOSS) Qualcomm Messaging Protocol (QMP) driver
+> > is used to communicate with the AOSS for certain side-channel requests,
+> > that are not available through the RPMh interface.
+> > 
+> > The communication is a very simple synchronous mechanism of messages
+> > being written in message RAM and a doorbell in the AOSS is rung. As the
+> > AOSS has processed the message length is cleared and an interrupt is
+> > fired by the AOSS as acknowledgment.
+> > 
+> > The driver exposes the QDSS clock as a clock and the low-power state
+> > associated with the remoteprocs in the system as a set of power-domains.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> > 
+> > Changes since v6:
+> > - Squash the pd into the same driver as the communication, to simplify
+> >    the interaction.
+> > - Representing the QDSS clocks as a clock/power domain turns out to
+> >    cascade into a request to make all Coresight drivers have a secondary
+> >    compatible to replace the required bus clock with a required power
+> >    domain. So in v7 this is exposed as a clock instead.
+> > - Some error checking updates, as reported by Doug.
+> > 
+> 
+> Thanks for the patch Bjorn.
+> Tested the QDSS functionality on SDM845 based Cheza board with this
+> change and it works just fine.
+> 
+> Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 
-diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-index fa6f8b206281..d7eafb5ef8ef 100644
---- a/drivers/thermal/Makefile
-+++ b/drivers/thermal/Makefile
-@@ -5,7 +5,7 @@
- 
- obj-$(CONFIG_THERMAL)		+= thermal_sys.o
- thermal_sys-y			+= thermal_core.o thermal_sysfs.o \
--					thermal_helpers.o
-+				   thermal_helpers.o
- 
- # interface to/from other layers providing sensors
- thermal_sys-$(CONFIG_THERMAL_HWMON)		+= thermal_hwmon.o
-@@ -25,11 +25,11 @@ thermal_sys-$(CONFIG_CPU_THERMAL)	+= cpu_cooling.o
- thermal_sys-$(CONFIG_CLOCK_THERMAL)	+= clock_cooling.o
- 
- # devfreq cooling
--thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += devfreq_cooling.o
-+thermal_sys-$(CONFIG_DEVFREQ_THERMAL) 	+= devfreq_cooling.o
- 
- # platform thermal drivers
- obj-y				+= broadcom/
--obj-$(CONFIG_THERMAL_MMIO)		+= thermal_mmio.o
-+obj-$(CONFIG_THERMAL_MMIO)	+= thermal_mmio.o
- obj-$(CONFIG_SPEAR_THERMAL)	+= spear_thermal.o
- obj-$(CONFIG_SUN8I_THERMAL)     += sun8i_thermal.o
- obj-$(CONFIG_ROCKCHIP_THERMAL)	+= rockchip_thermal.o
-@@ -50,7 +50,7 @@ obj-$(CONFIG_TI_SOC_THERMAL)	+= ti-soc-thermal/
- obj-y				+= st/
- obj-$(CONFIG_QCOM_TSENS)	+= qcom/
- obj-y				+= tegra/
--obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
-+obj-$(CONFIG_HISI_THERMAL)     	+= hisi_thermal.o
- obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
- obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
- obj-$(CONFIG_ZX2967_THERMAL)	+= zx2967_thermal.o
--- 
-2.17.0
+Thanks for the confirmation Sai!
 
+Regards,
+Bjorn
