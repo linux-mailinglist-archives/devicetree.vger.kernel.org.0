@@ -2,253 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D5E2A235
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 03:00:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C611C2A23F
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 03:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726238AbfEYBAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 May 2019 21:00:09 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:36141 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726129AbfEYBAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 21:00:09 -0400
-Received: by mail-wm1-f65.google.com with SMTP id v22so3507993wml.1
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2019 18:00:07 -0700 (PDT)
+        id S1726300AbfEYB0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 May 2019 21:26:17 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:45939 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726273AbfEYB0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 May 2019 21:26:17 -0400
+Received: by mail-qk1-f195.google.com with SMTP id j1so10075264qkk.12;
+        Fri, 24 May 2019 18:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
-        h=message-id:date:mime-version:content-transfer-encoding:subject:to
-         :from:cc;
-        bh=mOz/uzoZ8Qq/01C38MyE2pll+zK9QQHgk5S4tOoKkeM=;
-        b=I0Go90WH2ayMMN403h5jEjNJssF9yIo9WmYHlS85dA3rNDOu6qzN4V5iBjqwwGq3HS
-         jead8J+QAD2i06izMX5BXqXKHoJAu1mM5XcNsFmxHKUsFvABKIAiL4dPumEsjKLJbqMh
-         XGvj+hN8LzZevfr98yQ8tV9LaX2pY5Y9fGjtEVoFDs6w78hu32wTH5TfjLc6B3+AUph5
-         TXkFxkRam/AE8KCZ23Ru7Q37hbrDu12SYZn3jGW5nevPOg2ip9Tp1F1YF7537fw1A5CM
-         wpv5KQSD50MFYOUJ86n1v+Ek1HaBsvdOLbHURsaGX+TwRzuNofuBo1WNzj9ykbdCB1L+
-         ebCQ==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :user-agent;
+        bh=tWKnOMZxNyMNwzYk45X7EaXGwybTUYTh1qQHOS+4w8A=;
+        b=Qk65FkiK2Q5mWeOxyFhgyouEzc6P0t0hBNf4R9rNIc7dksuqrzSopGOmE3M4R/axHj
+         WZ3Xb6oA9FrdMGDhMQuh+FTTWcQTv7aDluYW9ION7otI8IPR5WWWiyF4kj/LOmbSJaYm
+         wS/oPl9UxScC/6c1fG8Z1Ki0fFZy7jjsee65WpvzXsZaJuZJoeV1W0lcy63X0b2HMWRm
+         e++kgwXKPpOsbgQRLabjemThTY923aoBQrTSlf1vFimBwEB5vr90w5R7mcKfI7r2rdus
+         WhaFMX3V9FZxIewqCZp3M3TBIQhU9BNi+QXPdqeliLwO/zWBczu6g5/cuILOzuQMl6I5
+         bNSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:mime-version
-         :content-transfer-encoding:subject:to:from:cc;
-        bh=mOz/uzoZ8Qq/01C38MyE2pll+zK9QQHgk5S4tOoKkeM=;
-        b=rmHSKq1zA/CbY6vZZYo0HIbkBeLBiESCl7DqL8Bkn7ZZm6YMp2Y1mc8Jh1X+g9jyhe
-         RSxkP2LZswYmT4RdmlIDihQAZz2Cv1SlqfzXglHY1OaRZwWyOFSxjRNR0TZPKUp1lMQe
-         vr1Tboh9TZ9NF1QGLA+0kdogdKi0+oesbZXymGvhmKoxA7O3nf3NR9LOtDcIWzac4Kl2
-         iWtCJsmC0hJtbcHt/UA16yWAmWXvRLUptRb6B/EE+65CqlgtDYQy1a1RfJMpKTM3Uwbv
-         XUe0Mua2sYGRNOQKnsURtr20TQEo/dfsCvh86f25Ckx3k/N49udjivDkNHGZDs0Oi2Bc
-         kQKA==
-X-Gm-Message-State: APjAAAWAIoe6JkxzOI7uJXJ88p13oG+erbbVE/H0tabQxZZj7RITdGqB
-        yV7X+aw3a4pxTGH11yPmoLoVuw==
-X-Google-Smtp-Source: APXvYqz+d5B1uhbeZFmzCKr8tLpKRfnQnchVdM5lugUMtvpcsjrJqEChi+nfW/oijKLRaXuyKzf0EQ==
-X-Received: by 2002:a7b:ca44:: with SMTP id m4mr1572416wml.160.1558746006753;
-        Fri, 24 May 2019 18:00:06 -0700 (PDT)
-Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
-        by smtp.gmail.com with ESMTPSA id h14sm3343469wrt.11.2019.05.24.18.00.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 24 May 2019 18:00:06 -0700 (PDT)
-Message-ID: <5ce89396.1c69fb81.16e3d.2c5c@mx.google.com>
-Date:   Fri, 24 May 2019 18:00:06 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=tWKnOMZxNyMNwzYk45X7EaXGwybTUYTh1qQHOS+4w8A=;
+        b=JivWE1w/QquxMVaOAEPsaAIswe9kUDhKc0jtqsI5UoB2S/LFiQbfGZ6iWAFO+b0JrJ
+         0bTDtsw1ok+vpiaZfrT0WiJDQGTRD90inUHuhu3fPgRo9dMmVHSUyiFbBxyGp6ijTd/T
+         y+3uD7trruq8+oI/awIjKCVOtCuOZ64QqvY4pPWpmqawGZjPXFJUdazxHv23jUu2p9Y4
+         SOP8hlh3oEDzsbFdyrwvMzztDAVpesVYHDfAAD96+MHWdM2v62sxLnDvZ5Byp+qGx7P/
+         0UNyIUqTq8jDN+Td6Won/snRPHc68W9rhBmRhvia6c1pyIqDA67w1YBnOlOoCPfGuMDI
+         8+0w==
+X-Gm-Message-State: APjAAAWrIojeNMBQfJVo7ryWhRB6OyLH1zkuXHxpIuVWyelbRkASdKR3
+        YC6krxk0ytoRvWSh+jQVzwM=
+X-Google-Smtp-Source: APXvYqw9DhZ1ZuGEJFQ3f7WQMR3SVYv51bgucQVPQlBA6Yokn4aEqtmJsDlp0aNsEydxEZgm4vHq7g==
+X-Received: by 2002:a0c:ae0d:: with SMTP id y13mr19569814qvc.114.1558747575906;
+        Fri, 24 May 2019 18:26:15 -0700 (PDT)
+Received: from renatolg ([186.220.0.156])
+        by smtp.gmail.com with ESMTPSA id c16sm1655731qkb.15.2019.05.24.18.26.11
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 24 May 2019 18:26:15 -0700 (PDT)
+Date:   Fri, 24 May 2019 22:26:10 -0300
+From:   Renato Lui Geh <renatogeh@gmail.com>
+To:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        knaack.h@gmx.de, pmeerw@pmeerw.net, gregkh@linuxfoundation.org,
+        stefan.popa@analog.com, alexandru.Ardelean@analog.com,
+        robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     linux-iio@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org, kernel-usp@googlegroups.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] dt-bindings: iio: adc: add ad7780 yaml and
+ MAINTAINERS entry
+Message-ID: <cover.1558746978.git.renatogeh@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Kernelci-Report-Type: bisect
-X-Kernelci-Tree: clk
-X-Kernelci-Lab-Name: lab-baylibre
-X-Kernelci-Branch: clk-next
-X-Kernelci-Kernel: v5.2-rc1-4-gf191a146bcee
-Subject: clk/clk-next boot bisection: v5.2-rc1-4-gf191a146bcee on
- meson-g12a-x96-max
-To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
-        mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
-        matthew.hart@linaro.org, khilman@baylibre.com,
-        enric.balletbo@collabora.com, Jerome Brunet <jbrunet@baylibre.com>
-From:   "kernelci.org bot" <bot@kernelci.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-amlogic@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+This patchset converts the old ad7780 device-tree binding to
+the new YAML format, and adds an entry to MAINTAINERS.
 
-clk/clk-next boot bisection: v5.2-rc1-4-gf191a146bcee on meson-g12a-x96-max
+Renato Lui Geh (2):
+  dt-bindings: iio: adc: add adi,ad7780.yaml binding
+  MAINTAINERS: add entry for ad7780 adc driver
 
-Summary:
-  Start:      f191a146bcee Merge branch 'clk-fixes' into clk-next
-  Details:    https://kernelci.org/boot/id/5ce8391259b514c80a7a362c
-  Plain log:  https://storage.kernelci.org//clk/clk-next/v5.2-rc1-4-gf191a1=
-46bcee/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot-me=
-son-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//clk/clk-next/v5.2-rc1-4-gf191a1=
-46bcee/arm64/defconfig+CONFIG_RANDOMIZE_BASE=3Dy/gcc-8/lab-baylibre/boot-me=
-son-g12a-x96-max.html
-  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
-trollers
+ .../bindings/iio/adc/adi,ad7780.txt           | 48 ----------
+ .../bindings/iio/adc/adi,ad7780.yaml          | 87 +++++++++++++++++++
+ MAINTAINERS                                   |  9 ++
+ 3 files changed, 96 insertions(+), 48 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
 
-Checks:
-  revert:     PASS
-  verify:     PASS
+-- 
+2.21.0
 
-Parameters:
-  Tree:       clk
-  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git
-  Branch:     clk-next
-  Target:     meson-g12a-x96-max
-  CPU arch:   arm64
-  Lab:        lab-baylibre
-  Compiler:   gcc-8
-  Config:     defconfig+CONFIG_RANDOMIZE_BASE=3Dy
-  Test suite: boot
-
-Breaking commit found:
-
----------------------------------------------------------------------------=
-----
-commit 11a7bea17c9e0a36daab934d83e15a760f402147
-Author: Jerome Brunet <jbrunet@baylibre.com>
-Date:   Mon Mar 18 10:58:45 2019 +0100
-
-    arm64: dts: meson: g12a: add pinctrl support controllers
-    =
-
-    Add the peripheral and always-on pinctrl controllers to the g12a soc.
-    =
-
-    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/=
-dts/amlogic/meson-g12a.dtsi
-index abfa167751af..5e07e4ca3f4b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -104,6 +104,29 @@
- 				#address-cells =3D <2>;
- 				#size-cells =3D <2>;
- 				ranges =3D <0x0 0x0 0x0 0x34400 0x0 0x400>;
-+
-+				periphs_pinctrl: pinctrl@40 {
-+					compatible =3D "amlogic,meson-g12a-periphs-pinctrl";
-+					#address-cells =3D <2>;
-+					#size-cells =3D <2>;
-+					ranges;
-+
-+					gpio: bank@40 {
-+						reg =3D <0x0 0x40  0x0 0x4c>,
-+						      <0x0 0xe8  0x0 0x18>,
-+						      <0x0 0x120 0x0 0x18>,
-+						      <0x0 0x2c0 0x0 0x40>,
-+						      <0x0 0x340 0x0 0x1c>;
-+						reg-names =3D "gpio",
-+							    "pull",
-+							    "pull-enable",
-+							    "mux",
-+							    "ds";
-+						gpio-controller;
-+						#gpio-cells =3D <2>;
-+						gpio-ranges =3D <&periphs_pinctrl 0 0 86>;
-+					};
-+				};
- 			};
- =
-
- 			hiu: bus@3c000 {
-@@ -150,6 +173,25 @@
- 					clocks =3D <&xtal>, <&clkc CLKID_CLK81>;
- 					clock-names =3D "xtal", "mpeg-clk";
- 				};
-+
-+				ao_pinctrl: pinctrl@14 {
-+					compatible =3D "amlogic,meson-g12a-aobus-pinctrl";
-+					#address-cells =3D <2>;
-+					#size-cells =3D <2>;
-+					ranges;
-+
-+					gpio_ao: bank@14 {
-+						reg =3D <0x0 0x14 0x0 0x8>,
-+						      <0x0 0x1c 0x0 0x8>,
-+						      <0x0 0x24 0x0 0x14>;
-+						reg-names =3D "mux",
-+							    "ds",
-+							    "gpio";
-+						gpio-controller;
-+						#gpio-cells =3D <2>;
-+						gpio-ranges =3D <&ao_pinctrl 0 0 15>;
-+					};
-+				};
- 			};
- =
-
- 			sec_AO: ao-secure@140 {
----------------------------------------------------------------------------=
-----
-
-
-Git bisection log:
-
----------------------------------------------------------------------------=
-----
-git bisect start
-# good: [62e59c4e69b3cdbad67e3c2d49e4df4cfe1679e3] clk: Remove io.h from cl=
-k-provider.h
-git bisect good 62e59c4e69b3cdbad67e3c2d49e4df4cfe1679e3
-# bad: [f191a146bcee3dfd62a501432d22a55ef67858b4] Merge branch 'clk-fixes' =
-into clk-next
-git bisect bad f191a146bcee3dfd62a501432d22a55ef67858b4
-# good: [e7a1414f9dc3498c4c35b9ca266d539e8bccab53] Merge tag 'media/v5.1-2'=
- of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
-git bisect good e7a1414f9dc3498c4c35b9ca266d539e8bccab53
-# good: [cccd559e98c05b669bdc37b01802f920cff1d6dd] Merge tag 'fbdev-v5.2' o=
-f git://github.com/bzolnier/linux
-git bisect good cccd559e98c05b669bdc37b01802f920cff1d6dd
-# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
-git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
-git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [e8a1d70117116c8d96c266f0b99e931717670eaf] Merge tag 'armsoc-dt' of =
-git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
-git bisect bad e8a1d70117116c8d96c266f0b99e931717670eaf
-# bad: [64f32d9d30063149eb10d7be3a23b5e1f44247c8] Merge tag 'renesas-arm64-=
-dt2-for-v5.2' of https://git.kernel.org/pub/scm/linux/kernel/git/horms/rene=
-sas into arm/dt
-git bisect bad 64f32d9d30063149eb10d7be3a23b5e1f44247c8
-# bad: [da9a4c3d32eb699db68dd8f3e633ec035879d818] Merge tag 'omap-for-v5.2/=
-dt-ti-sysc-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/=
-linux-omap into arm/dt
-git bisect bad da9a4c3d32eb699db68dd8f3e633ec035879d818
-# bad: [bbf7499dc033831ae91125a88a062910cdc62cf2] Merge tag 'aspeed-5.2-dev=
-icetree' of git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed into =
-arm/dt
-git bisect bad bbf7499dc033831ae91125a88a062910cdc62cf2
-# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-=
-dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
-hip into arm/dt
-git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
-# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: A=
-dd CMA reserved memory
-git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
-# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: =
-add pinctrl support controllers
-git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
-# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s9=
-05d-phicomm-n1: add status LED
-git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
-# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a:=
- add efuse
-git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
-# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a:=
- Add AO Clock + Reset Controller support
-git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
-# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: =
-meson: g12a: add pinctrl support controllers
----------------------------------------------------------------------------=
-----
