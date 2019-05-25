@@ -2,233 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A8102A4D4
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 16:18:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1EB92A4FC
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 16:55:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726977AbfEYOSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 May 2019 10:18:37 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:48435 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726126AbfEYOSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 10:18:37 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id E52C620000A;
-        Sat, 25 May 2019 14:18:29 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Wolfram Sang <wsa@the-dreams.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: i2c: mv64xxx: Add YAML schemas
-Date:   Sat, 25 May 2019 16:18:21 +0200
-Message-Id: <20190525141821.20082-2-maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190525141821.20082-1-maxime.ripard@bootlin.com>
-References: <20190525141821.20082-1-maxime.ripard@bootlin.com>
+        id S1727058AbfEYOz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 May 2019 10:55:57 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:51264 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727002AbfEYOz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 10:55:57 -0400
+Received: by mail-wm1-f68.google.com with SMTP id f10so4639038wmb.1
+        for <devicetree@vger.kernel.org>; Sat, 25 May 2019 07:55:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
+        h=message-id:date:mime-version:content-transfer-encoding:subject:to
+         :from:cc;
+        bh=EuYIB6cW2iyL4GLrUb+ErE4HZQ0an8nT6D+WzTs0wj4=;
+        b=arDkbo+ddHrJkuxsGH5jgsnxZX1bB6hh0JtUZoGqILsdaqzNYjFCoEVzZ/BiEJ/cS5
+         DkVVzTIvFux2OYnmgBo2hKGgdftqu1c26sypBZiie2p0G2y7tKoRRtJs4I9brTGz1CFQ
+         soxQGM3PHrSEljL7v2gz8SP0thrvVE4QivtCOwNI7aRS4p27FrjJL8iGCKvB4/U4Ha2M
+         +fv5EY8w6OskUYyZSwKojyo/urWrxq4hRfdG2PHv/Pr2waFzarRncQ8lRzfL5ZSZC3Tp
+         zkm/ysRhVS7MSnyWRjn0U7SkXEyaZl2MgA7yT4PbKdCg+tyBLocdF3oWJS1PbxwBF90R
+         lVIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:mime-version
+         :content-transfer-encoding:subject:to:from:cc;
+        bh=EuYIB6cW2iyL4GLrUb+ErE4HZQ0an8nT6D+WzTs0wj4=;
+        b=VEiP7hkk29w0hzovWMAlQwevqojePa/UGtabE0nGFdlzbTdX+dtXDv3yQZTIyjGvYr
+         nWQ6RqPR+anHyji1T35p18LwXIvSLKYuES/11Gtz3TqB8n930iZCY3R1KKG/IRwp7RO1
+         hwi815cLrCM/LPBKfhQ4dZpJH6Ic6mGzU84BrvwGezFKZc0UFgqMUQitDSWIOJiFiWie
+         T3Tvzn8FJzUnCLIPK6n/qKSUtD+RDU1UVJHOI+TXNbJSMiijieZc36p7Qs3x8qXT9ZIi
+         bFc/w+fyU1rf2r6WqUnEFvdm1iSr4MInqhww86WcnDhyzdUzxFAADwjqrlsjUkqMKRQo
+         /5Pg==
+X-Gm-Message-State: APjAAAX6XSI3Wjqc5KvX5ol5fXC5Mv6pjUn8dR5OteXrlRrRTiBv2+PF
+        h95cwNlVkF3Qc8klMzetYmymtw==
+X-Google-Smtp-Source: APXvYqxXR7WXZZ1TwOzelpEfXavjk8aSfM4cLDNK9nnX/lJskdY6r5plLpg7Y0tmuGpLGMB2tNPVqQ==
+X-Received: by 2002:a1c:1bc9:: with SMTP id b192mr3719972wmb.27.1558796154553;
+        Sat, 25 May 2019 07:55:54 -0700 (PDT)
+Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
+        by smtp.gmail.com with ESMTPSA id p10sm2028727wrw.6.2019.05.25.07.55.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 25 May 2019 07:55:53 -0700 (PDT)
+Message-ID: <5ce95779.1c69fb81.df149.ac4a@mx.google.com>
+Date:   Sat, 25 May 2019 07:55:53 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Kernelci-Report-Type: bisect
+X-Kernelci-Tree: mainline
+X-Kernelci-Lab-Name: lab-baylibre
+X-Kernelci-Branch: master
+X-Kernelci-Kernel: v5.2-rc1-357-g7fbc78e3155a
+Subject: mainline/master boot bisection: v5.2-rc1-357-g7fbc78e3155a on
+ meson-g12a-x96-max
+To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
+        mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
+        matthew.hart@linaro.org, khilman@baylibre.com,
+        enric.balletbo@collabora.com, Jerome Brunet <jbrunet@baylibre.com>
+From:   "kernelci.org bot" <bot@kernelci.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT binding to a YAML schema to enable the DT validation.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- .../devicetree/bindings/i2c/i2c-mv64xxx.txt   |  64 -----------
- .../bindings/i2c/marvell,mv64xxx-i2c.yaml     | 106 ++++++++++++++++++
- 2 files changed, 106 insertions(+), 64 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mv64xxx.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+mainline/master boot bisection: v5.2-rc1-357-g7fbc78e3155a on meson-g12a-x9=
+6-max
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mv64xxx.txt b/Documentation/devicetree/bindings/i2c/i2c-mv64xxx.txt
-deleted file mode 100644
-index 0ffe65a316ae..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-mv64xxx.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--
--* Marvell MV64XXX I2C controller
--
--Required properties :
--
-- - reg             : Offset and length of the register set for the device
-- - compatible      : Should be either:
--                     - "allwinner,sun4i-a10-i2c"
--                     - "allwinner,sun6i-a31-i2c"
--                     - "marvell,mv64xxx-i2c"
--                     - "marvell,mv78230-i2c"
--                     - "marvell,mv78230-a0-i2c"
--                       * Note: Only use "marvell,mv78230-a0-i2c" for a
--                         very rare, initial version of the SoC which
--                         had broken offload support.  Linux
--                         auto-detects this and sets it appropriately.
-- - interrupts      : The interrupt number
--
--Optional properties :
--
-- - clock-frequency : Desired I2C bus clock frequency in Hz. If not set the
--default frequency is 100kHz
--
-- - resets          : phandle to the parent reset controller. Mandatory
--                     whenever you're using the "allwinner,sun6i-a31-i2c"
--                     compatible.
--
-- - clocks:	   : pointers to the reference clocks for this device, the
--		     first one is the one used for the clock on the i2c bus,
--		     the second one is the clock used to acces the registers
--		     of the controller
--
-- - clock-names	   : names of used clocks, mandatory if the second clock is
--		     used, the name must be "core", and "reg" (the latter is
--		     only for Armada 7K/8K).
--
--Examples:
--
--	i2c@11000 {
--		compatible = "marvell,mv64xxx-i2c";
--		reg = <0x11000 0x20>;
--		interrupts = <29>;
--		clock-frequency = <100000>;
--	};
--
--For the Armada XP:
--
--	i2c@11000 {
--		compatible = "marvell,mv78230-i2c", "marvell,mv64xxx-i2c";
--		reg = <0x11000 0x100>;
--		interrupts = <29>;
--		clock-frequency = <100000>;
--	};
--
--For the Armada 7040:
--
--	i2c@701000 {
--		compatible = "marvell,mv78230-i2c";
--		reg = <0x701000 0x20>;
--		interrupts = <29>;
--		clock-frequency = <100000>;
--		clock-names = "core", "reg";
--		clocks = <&core_clock>, <&reg_clock>;
--	};
-diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-new file mode 100644
-index 000000000000..984c01dccc37
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/marvell,mv64xxx-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell MV64XXX I2C Controller Device Tree Bindings
-+
-+maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
-+  - Maxime Ripard <maxime.ripard@bootlin.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: allwinner,sun4i-a10-i2c
-+      - items:
-+          - const: allwinner,sun7i-a20-i2c
-+          - const: allwinner,sun4i-a10-i2c
-+      - const: allwinner,sun6i-a31-i2c
-+      - items:
-+          - const: allwinner,sun8i-a23-i2c
-+          - const: allwinner,sun6i-a31-i2c
-+      - items:
-+          - const: allwinner,sun8i-a83t-i2c
-+          - const: allwinner,sun6i-a31-i2c
-+      - items:
-+          - const: allwinner,sun50i-a64-i2c
-+          - const: allwinner,sun6i-a31-i2c
-+
-+      - const: marvell,mv64xxx-i2c
-+      - const: marvell,mv78230-i2c
-+      - const: marvell,mv78230-a0-i2c
-+
-+    description:
-+      Only use "marvell,mv78230-a0-i2c" for a very rare, initial
-+      version of the SoC which had broken offload support. Linux
-+      auto-detects this and sets it appropriately.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - description: Reference clock for the I2C bus
-+      - description: Bus clock (Only for Armada 7K/8K)
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - const: core
-+      - const: reg
-+    description:
-+      Mandatory if two clocks are used (only for Armada 7k and 8k).
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - allwinner,sun4i-a10-i2c
-+              - allwinner,sun6i-a31-i2c
-+
-+    then:
-+      required:
-+        - clocks
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: allwinner,sun6i-a31-i2c
-+
-+    then:
-+      required:
-+        - resets
-+
-+# FIXME: We should set it, but it would report all the generic
-+# properties as additional properties.
-+# additionalProperties: false
-+
-+examples:
-+  - |
-+    timer {
-+      compatible = "allwinner,sun4i-a10-timer";
-+      reg = <0x01c20c00 0x400>;
-+      interrupts = <22>;
-+      clocks = <&osc>;
-+    };
-+...
--- 
-2.21.0
+Summary:
+  Start:      7fbc78e3155a Merge tag 'for-linus-20190524' of git://git.kern=
+el.dk/linux-block
+  Details:    https://kernelci.org/boot/id/5ce8a65059b51433287a363c
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.2-rc1-357-g7=
+fbc78e3155a/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.2-rc1-357-g7=
+fbc78e3155a/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
+  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
+trollers
 
+Checks:
+  revert:     PASS
+  verify:     PASS
+
+Parameters:
+  Tree:       mainline
+  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
+git
+  Branch:     master
+  Target:     meson-g12a-x96-max
+  CPU arch:   arm64
+  Lab:        lab-baylibre
+  Compiler:   gcc-8
+  Config:     defconfig
+  Test suite: boot
+
+Breaking commit found:
+
+---------------------------------------------------------------------------=
+----
+commit 11a7bea17c9e0a36daab934d83e15a760f402147
+Author: Jerome Brunet <jbrunet@baylibre.com>
+Date:   Mon Mar 18 10:58:45 2019 +0100
+
+    arm64: dts: meson: g12a: add pinctrl support controllers
+    =
+
+    Add the peripheral and always-on pinctrl controllers to the g12a soc.
+    =
+
+    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/=
+dts/amlogic/meson-g12a.dtsi
+index abfa167751af..5e07e4ca3f4b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -104,6 +104,29 @@
+ 				#address-cells =3D <2>;
+ 				#size-cells =3D <2>;
+ 				ranges =3D <0x0 0x0 0x0 0x34400 0x0 0x400>;
++
++				periphs_pinctrl: pinctrl@40 {
++					compatible =3D "amlogic,meson-g12a-periphs-pinctrl";
++					#address-cells =3D <2>;
++					#size-cells =3D <2>;
++					ranges;
++
++					gpio: bank@40 {
++						reg =3D <0x0 0x40  0x0 0x4c>,
++						      <0x0 0xe8  0x0 0x18>,
++						      <0x0 0x120 0x0 0x18>,
++						      <0x0 0x2c0 0x0 0x40>,
++						      <0x0 0x340 0x0 0x1c>;
++						reg-names =3D "gpio",
++							    "pull",
++							    "pull-enable",
++							    "mux",
++							    "ds";
++						gpio-controller;
++						#gpio-cells =3D <2>;
++						gpio-ranges =3D <&periphs_pinctrl 0 0 86>;
++					};
++				};
+ 			};
+ =
+
+ 			hiu: bus@3c000 {
+@@ -150,6 +173,25 @@
+ 					clocks =3D <&xtal>, <&clkc CLKID_CLK81>;
+ 					clock-names =3D "xtal", "mpeg-clk";
+ 				};
++
++				ao_pinctrl: pinctrl@14 {
++					compatible =3D "amlogic,meson-g12a-aobus-pinctrl";
++					#address-cells =3D <2>;
++					#size-cells =3D <2>;
++					ranges;
++
++					gpio_ao: bank@14 {
++						reg =3D <0x0 0x14 0x0 0x8>,
++						      <0x0 0x1c 0x0 0x8>,
++						      <0x0 0x24 0x0 0x14>;
++						reg-names =3D "mux",
++							    "ds",
++							    "gpio";
++						gpio-controller;
++						#gpio-cells =3D <2>;
++						gpio-ranges =3D <&ao_pinctrl 0 0 15>;
++					};
++				};
+ 			};
+ =
+
+ 			sec_AO: ao-secure@140 {
+---------------------------------------------------------------------------=
+----
+
+
+Git bisection log:
+
+---------------------------------------------------------------------------=
+----
+git bisect start
+# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
+git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
+git bisect good a455eda33faafcaac1effb31d682765b14ef868c
+# bad: [7fbc78e3155a0c464bd832efc07fb3c2355fe9bd] Merge tag 'for-linus-2019=
+0524' of git://git.kernel.dk/linux-block
+git bisect bad 7fbc78e3155a0c464bd832efc07fb3c2355fe9bd
+# bad: [311f71281ff4b24f86a39c60c959f485c68a6d36] Merge tag 'for-5.2/dm-cha=
+nges-v2' of git://git.kernel.org/pub/scm/linux/kernel/git/device-mapper/lin=
+ux-dm
+git bisect bad 311f71281ff4b24f86a39c60c959f485c68a6d36
+# bad: [be058ba65d9e43f40d31d9b16b99627f0a20de1b] Merge tag 'imx-dt-5.2' of=
+ git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
+git bisect bad be058ba65d9e43f40d31d9b16b99627f0a20de1b
+# bad: [7996313656b83ba516a1546d51f08f1a0fab4e06] Merge tag 'omap-for-v5.2/=
+dt-am3-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linu=
+x-omap into arm/dt
+git bisect bad 7996313656b83ba516a1546d51f08f1a0fab4e06
+# bad: [2140eaf2f46faf2627ec030d7cabf2dda2cb546b] Merge tag 'stm32-dt-for-v=
+5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32 into =
+arm/dt
+git bisect bad 2140eaf2f46faf2627ec030d7cabf2dda2cb546b
+# bad: [1a88083b9349b8310b25d9a9a96802ee4447e6b9] Merge tag 'v5.2-rockchip-=
+dts64-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
+hip into arm/dt
+git bisect bad 1a88083b9349b8310b25d9a9a96802ee4447e6b9
+# bad: [1c93235a6d92deaab38bbb1cfc764b0757331ebb] Merge tag 'amlogic-dt' of=
+ https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic into=
+ arm/dt
+git bisect bad 1c93235a6d92deaab38bbb1cfc764b0757331ebb
+# bad: [ff4f8b6cab5885ebc2c6b21fd058db8544e2eebb] arm64: dts: meson: g12a: =
+Add UART A, B & C nodes and pins
+git bisect bad ff4f8b6cab5885ebc2c6b21fd058db8544e2eebb
+# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a:=
+ add efuse
+git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
+# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: =
+add pinctrl support controllers
+git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
+# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a:=
+ Add AO Clock + Reset Controller support
+git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
+# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: =
+meson: g12a: add pinctrl support controllers
+---------------------------------------------------------------------------=
+----
