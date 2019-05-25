@@ -2,91 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1CE2A60E
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 20:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8E142A65D
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 20:15:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727405AbfEYSJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 May 2019 14:09:47 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:42528 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727436AbfEYSJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 14:09:41 -0400
-Received: by mail-wr1-f67.google.com with SMTP id l2so12948132wrb.9;
-        Sat, 25 May 2019 11:09:40 -0700 (PDT)
+        id S1727309AbfEYSNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 May 2019 14:13:33 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:46509 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727126AbfEYSNd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 14:13:33 -0400
+Received: by mail-pl1-f195.google.com with SMTP id r18so5426145pls.13;
+        Sat, 25 May 2019 11:13:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9yizlALmBIg1evYOrtygs5bM3nhy80HW6nhBmx8vV5o=;
-        b=KDYkVGwBt9np5vj1gupO3oGNJROg2ll2/dQ5xC7qOaN+72Xlpf/Yq7/luIdkFtPGSs
-         JpEdJGF8duITirL29/8Ephca2g9b0f44crShPsQ0wNHEph5kC7QYCLsT8LLgS4n+7i02
-         XQ1zWo/qcL+W/YRtBTnl1GXtGelJC1wlMvHXEmA4auUeOMAvwwBh2AsG+CW/2APXQVas
-         L4qWWhskb4w8p1bL/Gis9uhGkcwZ+zdujQX26E7usEGSUzpGME5LftpC6PY48M5bZGMv
-         V8E8sotkcfv5h4giRocYQhNZXrBj1DClo0RiHboOOp2KDIXklwyWXgIoOmuw+6tA+ftG
-         Wbbw==
+        h=from:to:cc:subject:date:message-id;
+        bh=HRYu8PaHsPuH7ZyD14nhDXouGF0HQ0zAn0UWWEnt2PY=;
+        b=lYsmCkkVrUO+2GVeYbd8F9i/q2/xfvb5RQaKK7m/KL/+kIXt518Vp9x9T9rPXbou5j
+         CbzxHipr4SspD1HHGyqpABcxJr/VMf/28A3DfaK1PbeeLhARtdml0Wut3luUm92nvkIw
+         cjWtZywhhDlQGNDrW/efMSGGNoPw8pEtxmUvar8w+zrp8oHuvVDjbBQ6FqQRvzpW4V/B
+         YZeqAuddyhDNArChQY2SGnpeUK+RwQ93lhLu0BPQto4WCMzMcJ/tqPCR+fBsTaMECK+X
+         7TpooFstkZ6bfWNtAx6v9hp98L600rHvqcKHuYfhtYC2o6vRnoy0zv/U0PRzLfXB4oBs
+         IblA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9yizlALmBIg1evYOrtygs5bM3nhy80HW6nhBmx8vV5o=;
-        b=D/6O4ACdC0Q3CVmKZ2Qru6E/8GFlhh/VPTgRVAXwkDx8874sKCI112aI8znsD0Askn
-         UuKC5Fbm/wCRQh26aMHwVfreyDFSomOF7EBvUINniEYxLWRH1VWq6Z0aUgMkLqeCNR41
-         8utwXAUTcARYiZ86eZSuqEF9AnIAQtwcgOAO4uhwNrhPq3rlBmBoJMg+3kMnRfP2aSXN
-         a7GxMkmJ9NgMFWpfW0VjkoG+uKnYyev4DYWTqzKyfJ8ALTk1KZTGqZSDBoYVLKyft3mL
-         Eb97Sbm5BgXY1sPNbd5SPjpFVn1/QE57MlgR1NXv4NF7AHxGMqMID2iC71fVtdRoVV/v
-         T1EQ==
-X-Gm-Message-State: APjAAAVMiwZMPezZep0viYNKLTqs7VpkE0PjsogoyZ/xPDpqjBL+IUVW
-        A0+vc2h6YtXFS0/bsVdtBJZ0xOb2/a9yGQ==
-X-Google-Smtp-Source: APXvYqyWiQjD7J1uZmNhayabm7YYW9SJjivZB5GGB/8ZpmUVTwr/SfuQeCNrRyLWukwqD8e9koC8JQ==
-X-Received: by 2002:a5d:680d:: with SMTP id w13mr27749319wru.316.1558807779883;
-        Sat, 25 May 2019 11:09:39 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id s127sm5656914wmf.48.2019.05.25.11.09.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 25 May 2019 11:09:39 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=HRYu8PaHsPuH7ZyD14nhDXouGF0HQ0zAn0UWWEnt2PY=;
+        b=SJ7z51fFCwqbT3Hikpr4OZJEgQ3JsTDqNPLI2dztaJHRYWjLAAeZJiTiFh7Mt68QcX
+         TElLUMc2Q5v3arO6sY+0D8sMvg8gqrfHNhIUkhAo5jWjTX0lPU7p92oLERiU3O1TCh/B
+         pKSbE7yp6SCXeX8Os3nlasspM2ZWMl0GvHjKKBgrW7q0NX78kn9dORzN4m9qFOsH1z8U
+         HJRBGgqPvqB0MJtKSxvvoIcU9/Zw+z7x7GGYPaSfh+qo5VwclrcLXRJr+Qt1+2cscMOa
+         tJd0hqJKC8d1S6mbo6OOP1VlDd09zTufihBrWh3qwauvQ/u2dFZmH6ApFk5CSqasabE9
+         vuPw==
+X-Gm-Message-State: APjAAAWg1BplXiSB3myUslL6qYRTNKNmGTRXvR107tgdi/ItGcEw2ses
+        jsetfXjrX061WawWAqlEPx0=
+X-Google-Smtp-Source: APXvYqwgce5AQBttT/IsT2xQ37eli2VMim3NEhCJnvjdhjhv2dmB0Yci4JaHaLapKWGYuKBBm/Lyqw==
+X-Received: by 2002:a17:902:1029:: with SMTP id b38mr74079371pla.72.1558808012389;
+        Sat, 25 May 2019 11:13:32 -0700 (PDT)
+Received: from localhost (68.168.130.77.16clouds.com. [68.168.130.77])
+        by smtp.gmail.com with ESMTPSA id z125sm8011552pfb.75.2019.05.25.11.13.31
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 25 May 2019 11:13:31 -0700 (PDT)
+From:   Yangtao Li <tiny.windzz@gmail.com>
+To:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
+        davem@davemloft.net, mchehab+samsung@kernel.org,
+        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
+        nicolas.ferre@microchip.com, paulmck@linux.ibm.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH 10/10] arm64: defconfig: enable IR SUNXI option
-Date:   Sat, 25 May 2019 20:09:23 +0200
-Message-Id: <20190525180923.6105-11-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190525180923.6105-1-peron.clem@gmail.com>
-References: <20190525180923.6105-1-peron.clem@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Yangtao Li <tiny.windzz@gmail.com>
+Subject: [PATCH v3 0/3] add thermal driver for h6 
+Date:   Sat, 25 May 2019 14:13:26 -0400
+Message-Id: <20190525181329.18657-1-tiny.windzz@gmail.com>
+X-Mailer: git-send-email 2.17.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CONFIG_IR_SUNXI option for ARM64, so that the Allwinner A64/H6 SoCs
-can use their IR receiver controller.
+This patchset add support for H6 thermal sensor.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
+BWY, do a cleanup in thermal makfile.
+
+Yangtao Li (3):
+  thermal: sun8i: add thermal driver for h6
+  dt-bindings: thermal: add binding document for h6 thermal controller
+  thermal: fix indentation in makefile
+
+ .../bindings/thermal/sun8i-thermal.yaml       |  71 +++
+ MAINTAINERS                                   |   7 +
+ drivers/thermal/Kconfig                       |  14 +
+ drivers/thermal/Makefile                      |   9 +-
+ drivers/thermal/sun8i_thermal.c               | 437 ++++++++++++++++++
+ 5 files changed, 534 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
+ create mode 100644 drivers/thermal/sun8i_thermal.c
+
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4d583514258c..5128029100d2 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -460,6 +460,7 @@ CONFIG_RC_CORE=m
- CONFIG_RC_DECODERS=y
- CONFIG_RC_DEVICES=y
- CONFIG_IR_MESON=m
-+CONFIG_IR_SUNXI=m
- CONFIG_MEDIA_SUPPORT=m
- CONFIG_MEDIA_CAMERA_SUPPORT=y
- CONFIG_MEDIA_ANALOG_TV_SUPPORT=y
--- 
-2.20.1
+v3:
+-Add a sun8i prefix to some function
+-Remove disable callback and rename enable to init
+-Remove clock enable, calibration from init callback
+-Convert driver to interrupt based
+-Convert doc to yaml file
+---
+2.17.0
 
