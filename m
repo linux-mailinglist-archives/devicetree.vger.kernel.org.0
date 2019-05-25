@@ -2,245 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEE612A3C4
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 11:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6072C2A3ED
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2019 13:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726453AbfEYJqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 May 2019 05:46:49 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:43320 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726645AbfEYJqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 May 2019 05:46:45 -0400
-Received: by mail-wr1-f66.google.com with SMTP id l17so3816890wrm.10
-        for <devicetree@vger.kernel.org>; Sat, 25 May 2019 02:46:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kernelci-org.20150623.gappssmtp.com; s=20150623;
-        h=message-id:date:mime-version:content-transfer-encoding:subject:to
-         :from:cc;
-        bh=JFVaWFTizKxVu6fanVeMBrlCZQ2L+1crAF/XGgH035M=;
-        b=F8dfqxxXop9Ed7eMMkJwceBurLEVTN0jU3NtxoiCHZVpdQIKUCqguXEnH6isLnCG1G
-         9ciGqDmiXWSR1PL9omA7ipKps52QQhXyUp4C+iE84+g3Jxdr9nWLtilv+uenls35veL6
-         JvaP6niXiUPBSntnrmMHsbp/Ix8EvumXkqLtH5flyLeNzHvJv0omPXuNJ+wl7mCor4Nv
-         4pDUeJBUdKfzWY5m2AlYqDbbAQFyopP1KJilNE2AQGlpqDeuDgwz6mVXBYyaFhJELH2b
-         enxbvICorGSKyQ4owq+1iN9o/qbhRFGzGdtU2ZUoozBYEJW06EgJ5WF4SkmYRNxNqcoF
-         l9QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:mime-version
-         :content-transfer-encoding:subject:to:from:cc;
-        bh=JFVaWFTizKxVu6fanVeMBrlCZQ2L+1crAF/XGgH035M=;
-        b=P72JsRmBb9Clb79tJuyVWaxeqpG9MvUoMFyCpXZes77R3pkH5tJKkFpBFpm3bA3o38
-         /xIhJmuiyxylH4l8CRx9B/lEvM5iIJAQAK4+ELAZLbSvg9ITaeyOIr+GAyS7yw3HiwX+
-         7l50SlL48ub7PzUvtFxJFpj5j5HYM5lc/BUT0W+H8E2GUuFSJ0yFKONx8bVQJbXMtLcn
-         aLo/1HbVEFccjeAHu4vVZVqqqSlSCCs8CWs0227vRU0I/4mS4EzscwPoAVtoHTnDmEYb
-         oA62gbSsOT3GVb5bDorItS1LzTDeXW1V3lJJF5SXuWDxwuwH+pmABQkR8YxTxT5ieD7P
-         T6Hg==
-X-Gm-Message-State: APjAAAVkTlf4a9lQqpLPVUqnJN5EwJxx5UA5/owiDp6Ly2bD2B69QK3n
-        OarQGgsc6/zsPinMfW56dsYGtw==
-X-Google-Smtp-Source: APXvYqxzZ7WPIRJUtxnk5zye34AUfxSzRe47XZCm0PwhzN4huY6DGIILYY+OhrzuaLV2T/pVrKUS8w==
-X-Received: by 2002:adf:e74b:: with SMTP id c11mr2437546wrn.172.1558777602554;
-        Sat, 25 May 2019 02:46:42 -0700 (PDT)
-Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
-        by smtp.gmail.com with ESMTPSA id f7sm3551980wmc.26.2019.05.25.02.46.41
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 25 May 2019 02:46:41 -0700 (PDT)
-Message-ID: <5ce90f01.1c69fb81.25208.29b0@mx.google.com>
-Date:   Sat, 25 May 2019 02:46:41 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Kernelci-Report-Type: bisect
-X-Kernelci-Tree: mainline
-X-Kernelci-Lab-Name: lab-baylibre
-X-Kernelci-Branch: master
-X-Kernelci-Kernel: v5.2-rc1-320-g86c2f5d65305
-Subject: mainline/master boot bisection: v5.2-rc1-320-g86c2f5d65305 on
- meson-g12a-x96-max
-To:     tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
-        mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
-        matthew.hart@linaro.org, khilman@baylibre.com,
-        enric.balletbo@collabora.com, Jerome Brunet <jbrunet@baylibre.com>
-From:   "kernelci.org bot" <bot@kernelci.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1726541AbfEYLHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 May 2019 07:07:12 -0400
+Received: from mout.gmx.net ([212.227.17.21]:35881 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726484AbfEYLHM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 25 May 2019 07:07:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1558782405;
+        bh=kNx2I0BquY/XNnAelbxVhBdjcdFjqoxAitfuQ0EmmdE=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=NHwZXV9oU8hKMZ2J4APmc4GYG8PSeEaQpu4z4eUGzdGwQn3xv6iD183ueMI5oqigT
+         L31x8zgg3e0tQ/dRY7a9eJ/wGW6NuOHWPDdbbWShC6L8L8fh2z+Jk+on23yn+0kXmX
+         kpL3NxiQYQI41bclDySm3X4a/Itz+ha73HyGkIE8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.166] ([37.4.249.160]) by mail.gmx.com (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mn2WF-1gnyd81FlH-00kAWJ; Sat, 25
+ May 2019 13:06:45 +0200
+Subject: Re: [PATCH] ARM: bcm283x: Enable DMA support for SPI controller
+To:     Lukas Wunner <lukas@wunner.de>, Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Martin Sperl <kernel@martin.sperl.org>,
+        Noralf Tronnes <noralf@tronnes.org>,
+        linux-rpi-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        linux-amlogic@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org
+References: <ab21b59ece7db065ee86f6f0c0a7623144db52b4.1557419583.git.lukas@wunner.de>
+From:   Stefan Wahren <wahrenst@gmx.net>
+Message-ID: <37bdc9e0-3f38-2ec4-4084-9cf46798589e@gmx.net>
+Date:   Sat, 25 May 2019 13:06:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <ab21b59ece7db065ee86f6f0c0a7623144db52b4.1557419583.git.lukas@wunner.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Provags-ID: V03:K1:OX5DXBAJFWGin7Kg8SEWDOAjAjUeeUcbgvrpoPvFmYhZBaN9vql
+ hnLxnDcDVAp/ZAQRq0CXIlzKN0qJRaJOfPLoASMvOKIP89GLRLeycy5+RhtFmyXljHehC8Z
+ erMsSB1UVIaxBouHaruCuMocyvj64rbxhwukjAF5eEqftiIb5AN1JdtvieixAZTAoaZ6BPO
+ NWKM+e74tCaUZYtpSBcKg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:krupXnsuXfM=:gBvNz87b0EzbJLL8HQRDaq
+ kxg+OGsvq3FNV1fjs0BO7uKzo6EWfy2gK3dVJOWrIdC+cHvDs5R6kGTon4S52bgXEmbLciOgE
+ k8XIHBxuspI5XgQqeMUMMa+2PZoueMLnNLzqd9bNyiKSXjMDUguF63/r/OcnSTKm687YW8Pfv
+ A9eaRiysKp04OshPXmDF8WWIWmTe/2Kv7qIe3gQMFWaWJFwdH9S3YnrExq2jTHVLtIJKzoWyG
+ KCPNBS5YZLHEEJ3Ms2PRFgBGH4cRVjjEAEq/gDIYjlXyZ4eORlp/mJhK5Ck+rIOHfkqD62lgv
+ O7oaVcpqTXOdE8QHHtj28efjIqj4kSD+QgQ8W6AP4bdaXDlS2og7lVL3v6VT9MwZqx9YYv8/K
+ Z0i8/ySyGewYz7nnJFPcsLNA6pilgLBN/SOMTmvlfkCS+yHrM+e2XmNggi6uUnErmT3+ymFzK
+ IvOyhW7n6RLHYkfbT+dYXOkSJVRj0BqZb6o5+AidszelodcNi/8SBX90Vh0sJBJl+EGcc1ijC
+ RDLtJlU3rIt0xhDjFXJTszPSMocSlmVvBicGe/8oOqO+fQpEx6QZiWNd3G9DNRtdgzyftHzfs
+ NYqeeXMk87BL0BKgDHsPkJCwKqqnN1igTFpF0ZdJD48F7DCrvus1ytLkMnzPNnA6AucbJeQ6w
+ GkfGbdetg/p24agRJRHhhTS87YNOvczjZDHOP2SdGMjich8Kl6I0uk8xdnLbE21XHGPfBC/e1
+ RBPXb8Ar21cRUYEarrkRiuQfZpFGoDrdmWV4IDiO+RUJB3ZIAiphC5vHF0q2/+1KWlaZPigH6
+ tN3746H8zoxXSKThs+j1m3s0Il8w6J9O0ekQVAoxxZTm9JOUZcS/IQLjIYvL9HNmszu2hMXow
+ o84kT3dIrVSEnChEacvvzd4G2nordg0nT9yjgL4ZSeNuYbDASnP4vTdDva9f3O69MHAw/aTOs
+ wB1x9yQUKz2hX3W7OzuvI09iyTh50EPI6HbGY34hSHyp8bOkyiS08
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-mainline/master boot bisection: v5.2-rc1-320-g86c2f5d65305 on meson-g12a-x9=
-6-max
-
-Summary:
-  Start:      86c2f5d65305 Merge tag 'spdx-5.2-rc2-2' of git://git.kernel.o=
-rg/pub/scm/linux/kernel/git/gregkh/driver-core
-  Details:    https://kernelci.org/boot/id/5ce89c5d59b5142ea77a3629
-  Plain log:  https://storage.kernelci.org//mainline/master/v5.2-rc1-320-g8=
-6c2f5d65305/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//mainline/master/v5.2-rc1-320-g8=
-6c2f5d65305/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
-  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support con=
-trollers
-
-Checks:
-  revert:     PASS
-  verify:     PASS
-
-Parameters:
-  Tree:       mainline
-  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
-git
-  Branch:     master
-  Target:     meson-g12a-x96-max
-  CPU arch:   arm64
-  Lab:        lab-baylibre
-  Compiler:   gcc-8
-  Config:     defconfig
-  Test suite: boot
-
-Breaking commit found:
-
----------------------------------------------------------------------------=
-----
-commit 11a7bea17c9e0a36daab934d83e15a760f402147
-Author: Jerome Brunet <jbrunet@baylibre.com>
-Date:   Mon Mar 18 10:58:45 2019 +0100
-
-    arm64: dts: meson: g12a: add pinctrl support controllers
-    =
-
-    Add the peripheral and always-on pinctrl controllers to the g12a soc.
-    =
-
-    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/=
-dts/amlogic/meson-g12a.dtsi
-index abfa167751af..5e07e4ca3f4b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -104,6 +104,29 @@
- 				#address-cells =3D <2>;
- 				#size-cells =3D <2>;
- 				ranges =3D <0x0 0x0 0x0 0x34400 0x0 0x400>;
-+
-+				periphs_pinctrl: pinctrl@40 {
-+					compatible =3D "amlogic,meson-g12a-periphs-pinctrl";
-+					#address-cells =3D <2>;
-+					#size-cells =3D <2>;
-+					ranges;
-+
-+					gpio: bank@40 {
-+						reg =3D <0x0 0x40  0x0 0x4c>,
-+						      <0x0 0xe8  0x0 0x18>,
-+						      <0x0 0x120 0x0 0x18>,
-+						      <0x0 0x2c0 0x0 0x40>,
-+						      <0x0 0x340 0x0 0x1c>;
-+						reg-names =3D "gpio",
-+							    "pull",
-+							    "pull-enable",
-+							    "mux",
-+							    "ds";
-+						gpio-controller;
-+						#gpio-cells =3D <2>;
-+						gpio-ranges =3D <&periphs_pinctrl 0 0 86>;
-+					};
-+				};
- 			};
- =
-
- 			hiu: bus@3c000 {
-@@ -150,6 +173,25 @@
- 					clocks =3D <&xtal>, <&clkc CLKID_CLK81>;
- 					clock-names =3D "xtal", "mpeg-clk";
- 				};
-+
-+				ao_pinctrl: pinctrl@14 {
-+					compatible =3D "amlogic,meson-g12a-aobus-pinctrl";
-+					#address-cells =3D <2>;
-+					#size-cells =3D <2>;
-+					ranges;
-+
-+					gpio_ao: bank@14 {
-+						reg =3D <0x0 0x14 0x0 0x8>,
-+						      <0x0 0x1c 0x0 0x8>,
-+						      <0x0 0x24 0x0 0x14>;
-+						reg-names =3D "mux",
-+							    "ds",
-+							    "gpio";
-+						gpio-controller;
-+						#gpio-cells =3D <2>;
-+						gpio-ranges =3D <&ao_pinctrl 0 0 15>;
-+					};
-+				};
- 			};
- =
-
- 			sec_AO: ao-secure@140 {
----------------------------------------------------------------------------=
-----
-
-
-Git bisection log:
-
----------------------------------------------------------------------------=
-----
-git bisect start
-# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of =
-git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
-git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [86c2f5d653058798703549e1be39a819fcac0d5d] Merge tag 'spdx-5.2-rc2-2=
-' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core
-git bisect bad 86c2f5d653058798703549e1be39a819fcac0d5d
-# bad: [8122de54602e30f0a73228ab6459a3654e652b92] dt-bindings: Convert vend=
-or prefixes to json-schema
-git bisect bad 8122de54602e30f0a73228ab6459a3654e652b92
-# bad: [b45da609a02460c6a34c395f03f891f1fb2a021a] Merge tag 'imx-bindings-5=
-.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into ar=
-m/dt
-git bisect bad b45da609a02460c6a34c395f03f891f1fb2a021a
-# bad: [a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad] Merge tag 'socfpga_dts_up=
-dates_for_v5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/l=
-inux into arm/dt
-git bisect bad a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad
-# bad: [bbf7499dc033831ae91125a88a062910cdc62cf2] Merge tag 'aspeed-5.2-dev=
-icetree' of git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed into =
-arm/dt
-git bisect bad bbf7499dc033831ae91125a88a062910cdc62cf2
-# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-=
-dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockc=
-hip into arm/dt
-git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
-# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: A=
-dd CMA reserved memory
-git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
-# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: =
-add pinctrl support controllers
-git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
-# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s9=
-05d-phicomm-n1: add status LED
-git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
-# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a:=
- add efuse
-git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
-# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a:=
- Add AO Clock + Reset Controller support
-git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
-# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: =
-meson: g12a: add pinctrl support controllers
----------------------------------------------------------------------------=
-----
+Am 09.05.19 um 19:03 schrieb Lukas Wunner:
+> Without this, the driver for the BCM2835 SPI controller uses interrupt
+> mode instead of DMA mode, incurring a significant performance penalty.
+> The Foundation's device tree has had these attributes for years, but for
+> some reason they were never upstreamed.
+>
+> They were originally contributed by Noralf Tr=C3=B8nnes and Martin Sperl=
+:
+> https://github.com/raspberrypi/linux/commit/25f3e064afc8
+> https://github.com/raspberrypi/linux/commit/e0edb52b47e6
+>
+> The DREQ numbers 6 and 7 are documented in section 4.2.1.3 of:
+> https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.=
+pdf
+>
+> Tested-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> Cc: Martin Sperl <kernel@martin.sperl.org>
+> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+Applied to bcm2835-dt-next
