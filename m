@@ -2,92 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB9D32AC89
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 00:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D9D2ACA0
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 01:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726322AbfEZWZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 May 2019 18:25:57 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36962 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725788AbfEZWZ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 May 2019 18:25:56 -0400
-Received: by mail-wm1-f67.google.com with SMTP id 7so13953453wmo.2;
-        Sun, 26 May 2019 15:25:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ky+CVe/5shquKmn2x9Mkd4t0sluqJy1OgxXU5TLlF8Y=;
-        b=sPUyp9v+8Z9vQEkItY8c65gc4hEJo1CCryJxXjEdBdgRfT2MwtaViFBfAqvbTOfAJA
-         /JfCsjccRQ8bYTwKOTfczCXgDfnCYj21+5+IVPeLjjZkPeezZNCwdoE00b6q9I1MzKhT
-         bp4TYVKCMu+GBI28ErZcklCjb8AS2W7bnrxiRuVT4yGJZKCU8g+QxOhnXTFcBEwmXyPU
-         c26Y6DzSLlLy+MePCkuTLC45BYWSRRsjnXKtqnvcyGwF05vRABib42Fd+DzUfk1u/CZ0
-         IE5YiyYxBy5pkFuAuNo5wHhq25SVIe58MP5Ry62abf1ZZD8BsWwN/S9Dst3L+A/teMPG
-         AMOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ky+CVe/5shquKmn2x9Mkd4t0sluqJy1OgxXU5TLlF8Y=;
-        b=PyQDpC+Zry+B8XWgbSRnouVXKMmrd3NxxqXJIEnvyMIu4nD6yDd62xh5h0fu1jziC6
-         HPD5lSSvlJ8e4png6JUcwPkd/TRH1MRhKxQ6JfPAGe83ocP6JDaM+BgP/8em8FV7XeL5
-         7zl/uTFj84Jn3Pj5gIJZdks5OF9rz4BpE+GCeFSu0dWJZ7JySR1rHBzUDRQ3AJf47fHs
-         8fjjt4X500t6ir2N5voddi7RIJVV6bKTsUwkmJ0rh6+H/4K7GMJ7YsSqXpZKTDmXe0Of
-         4zh4drKnGVXPqKfra4D/BEA9xqEtxiCqTyBJ8Qa8WjemANdw1Iu03ThKzF6RZjOxlXfj
-         VeZg==
-X-Gm-Message-State: APjAAAVeXNxVAiONeo5r5Cpwm74QoPXcf7Q/rQspxo0YGF9Rb343finD
-        mcfBvxjK+bYxvuXkoyK7JkqFyXe0umS4Zg==
-X-Google-Smtp-Source: APXvYqyyd3PZUV8lPG0zWsqVsz5SNpdDjh7xV3aWAQkNiuXXvaMocqOTw1pYCTR4qThphBMnLW2HcQ==
-X-Received: by 2002:a1c:f413:: with SMTP id z19mr2205565wma.145.1558909554617;
-        Sun, 26 May 2019 15:25:54 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id o20sm10368398wro.2.2019.05.26.15.25.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 26 May 2019 15:25:53 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v2 10/10] arm64: defconfig: enable IR SUNXI option
-Date:   Mon, 27 May 2019 00:25:36 +0200
-Message-Id: <20190526222536.10917-11-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190526222536.10917-1-peron.clem@gmail.com>
-References: <20190526222536.10917-1-peron.clem@gmail.com>
+        id S1725846AbfEZXfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 May 2019 19:35:30 -0400
+Received: from gateway24.websitewelcome.com ([192.185.51.172]:33519 "EHLO
+        gateway24.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725838AbfEZXfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 May 2019 19:35:30 -0400
+X-Greylist: delayed 1312 seconds by postgrey-1.27 at vger.kernel.org; Sun, 26 May 2019 19:35:29 EDT
+Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
+        by gateway24.websitewelcome.com (Postfix) with ESMTP id 599AA3E72
+        for <devicetree@vger.kernel.org>; Sun, 26 May 2019 18:13:36 -0500 (CDT)
+Received: from br164.hostgator.com.br ([192.185.176.180])
+        by cmsmtp with SMTP
+        id V2KehaD3rdnCeV2KehFV27; Sun, 26 May 2019 18:13:36 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=CxkfiD4KZYM31MyYyEMRm8MEp37SM1b9k7E3WaUhpIk=; b=xwkq7pijV48c7i+TemwbqEMd/0
+        qZYoc8x5OHRwXRietoDv7B7CCRb0f1LGrOAB0niRk+xIAQZwq2vybBbmD3GCfaJTGhW7QSktyyHHu
+        poe0HtRtJbSuaSMkhwn+uAlMrBDNwPzgA8YUF+lnifmeyBM8X1BX5X3B29I+/1QG1Rmq+dnZHcEa1
+        wLxAsJGayBpvYqse8wbLVamsROkFuJidefqlcW+34N0XVLnD/geLZBkzcktw1wFER9sMS3Dsr7ifV
+        m7hT9uq5oUhcSDhvv7MbeSd09T6N2Y717xFClQfKdsP/R6WyXCpzW5b1y6HGr55iM3cTVVyn+jHTd
+        6RIG0YSQ==;
+Received: from [177.34.20.96] (port=44604 helo=[192.168.0.28])
+        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.91)
+        (envelope-from <matheus@castello.eng.br>)
+        id 1hV2Kd-0021VO-LO; Sun, 26 May 2019 20:13:35 -0300
+Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: Max17040: Add low
+ level SOC alert threshold
+To:     Rob Herring <robh@kernel.org>
+Cc:     sre@kernel.org, krzk@kernel.org, mark.rutland@arm.com,
+        cw00.choi@samsung.com, b.zolnierkie@samsung.com,
+        lee.jones@linaro.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <CAJKOXPfvs=uETF0-xpwCWc5khSpWjpz2zz354Jcx1bVjm9cG2A@mail.gmail.com>
+ <20190415012635.6369-1-matheus@castello.eng.br>
+ <20190415012635.6369-3-matheus@castello.eng.br>
+ <20190429221353.GA25837@bogus>
+From:   Matheus Castello <matheus@castello.eng.br>
+Message-ID: <bca953be-8e9e-b20c-abeb-42f3615c7ddb@castello.eng.br>
+Date:   Sun, 26 May 2019 20:13:31 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190429221353.GA25837@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - castello.eng.br
+X-BWhitelist: no
+X-Source-IP: 177.34.20.96
+X-Source-L: No
+X-Exim-ID: 1hV2Kd-0021VO-LO
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.0.28]) [177.34.20.96]:44604
+X-Source-Auth: matheus@castello.eng.br
+X-Email-Count: 9
+X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CONFIG_IR_SUNXI option for ARM64, so that Allwinner A64/H6 SoCs
-can use their IR receiver controller.
+On 4/29/19 7:13 PM, Rob Herring wrote:
+> On Sun, Apr 14, 2019 at 10:26:33PM -0300, Matheus Castello wrote:
+>> For configure low level state of charge threshold alert signaled from
+>> max17040 we add "maxim,alert-soc-level" property.
+>>
+>> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
+>> ---
+>>   .../power/supply/max17040_battery.txt         | 24 +++++++++++++++++++
+>>   1 file changed, 24 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/supply/max17040_battery.txt b/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+>> new file mode 100644
+>> index 000000000000..9b2cc67d556f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+>> @@ -0,0 +1,24 @@
+>> +max17040_battery
+>> +~~~~~~~~~~~~~~~~
+>> +
+>> +Required properties :
+>> + - compatible : "maxim,max17040" or "maxim,max77836-battery"
+> 
+> This is really a charger, not a battery.
+> 
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+max17040 is a fuel gauge, max77836 MUIC has it integrated. Because of 
+this we use it in the compatible list.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4d583514258c..5128029100d2 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -460,6 +460,7 @@ CONFIG_RC_CORE=m
- CONFIG_RC_DECODERS=y
- CONFIG_RC_DEVICES=y
- CONFIG_IR_MESON=m
-+CONFIG_IR_SUNXI=m
- CONFIG_MEDIA_SUPPORT=m
- CONFIG_MEDIA_CAMERA_SUPPORT=y
- CONFIG_MEDIA_ANALOG_TV_SUPPORT=y
--- 
-2.20.1
+>> +
+>> +Optional properties :
+>> +- maxim,alert-soc-level :	The alert threshold that sets the state of
+>> + 				charge level where an interrupt is generated.
+>> +                          	Can be configured from 1 up to 32. If skipped
+>> +				the power up default value of 4 will be used.
+> 
+> Units? This is a low or high alert? Does a common property make sense
+> here?
+> 
 
+It is a low level alert. I will change the name of the property to 
+"maxim,alert-low-soc-level" to make this clear and I will put the 
+percent unit in the description.
+
+I do not find any common property that I can use here, if I am wrong let 
+me know.
+
+>> +- interrupt-parent : 		The GPIO bank from the interrupt line.
+> 
+> Drop this. interrupt-parent is implied.
+
+Ok, I will do.
+
+> 
+>> +- interrupts : 			Interrupt line see Documentation/devicetree/
+>> +				bindings/interrupt-controller/interrupts.txt
+>> +
+>> +Example:
+>> +
+>> +	battery-charger@36 {
+>> +		compatible = "maxim,max17040";
+>> +		reg = <0x36>;
+>> +		maxim,alert-soc-level = <10>;
+>> +		interrupt-parent = <&gpio7>;
+>> +		interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> 
+> Usually there are battery properties that need to be described too...
+> 
+
+I will fix this for "battery-fuel-gauge@36". I will also add the 
+description for wake-source as optional property.
+
+Thanks.
+
+Best Regards,
+Matheus Castello
+
+>> +	};
+>> -- 
+>> 2.17.0
+>>
