@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A40E32ABCC
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2019 21:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 452402ABD3
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2019 21:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726924AbfEZTMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 May 2019 15:12:49 -0400
-Received: from mail-yb1-f195.google.com ([209.85.219.195]:42255 "EHLO
-        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726163AbfEZTMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 May 2019 15:12:49 -0400
-Received: by mail-yb1-f195.google.com with SMTP id a21so5768315ybg.9;
-        Sun, 26 May 2019 12:12:48 -0700 (PDT)
+        id S1726813AbfEZTQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 May 2019 15:16:05 -0400
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:37312 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726163AbfEZTQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 May 2019 15:16:05 -0400
+Received: by mail-yw1-f66.google.com with SMTP id 186so5815849ywo.4;
+        Sun, 26 May 2019 12:16:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=3qfwkMk3jqUycxqYw8c0sLECnRBzwPP2sK1DjD5g7pM=;
-        b=nkH3ufJ7uMj10iENbT39YlCH+iUTC+YBXyf6Ig5HTiaxvN6alZi1tRnWnVANOxsQVj
-         FnW2AKt0BjYU3eu87fmmDxie6cg4tcd6TPrSYU72zA2Clpov7Tj1YIsEwvu4vE7qROs7
-         UfgXpVAtM0b6mhPJlKS6HOOflmc8rt7Y+K9xF5a89adRMnzrEXJ8Yp6eF6nWOWFiJwxv
-         sIEcSZoLpTKxpkxHajCLwOr2zhw/EDuqc8gPI/rTz9CoyF1GDXp9kMQkKrDUo+7pnwGv
-         CbY0cnX5+rydeOWg3waohBLkFZni4Qzs3Knb98FUu5W7jAJVqnDTlnAfl8kys1zZiNY5
-         s2fw==
+        bh=noskaXJB+lKStgYLNqjD43scq/LOmprbRcl7XPqZyEI=;
+        b=D8JnONzvJVlbSq818NlO2tEUyWIfBoSFmPsh5zvcDyBHWIlsg/7WbzUDiBGXDGAa7t
+         t7q/y9nPrbUqqkKlGdqnb0djhVmy6zqH1f47Z4PDzhqU1x2w7hZNelCNTCOpD13xVL1O
+         ZXbpqJTWIhIkHYxjvmoGoEFYcUfZ7ezMF2AkwVJlNHt4HR36YZKr2zCpBrXoR3LnYP1K
+         PXKJcdeEEjMtuWmQN0LmMdGXR4WGYNss6d30qaK4MmrC9KOQmgn6/n9ZxVEiEa787Ywe
+         ZHeqUNq1DmIrBF1UNo7bLY4/n1OEYs7At07Uz5vFO5lZL7KPf6H57qHjmR7U1zykp5tQ
+         Qptg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3qfwkMk3jqUycxqYw8c0sLECnRBzwPP2sK1DjD5g7pM=;
-        b=Op3DZMgF+PLqT2W7ENjKEoyBvD+/+vAK5Nqqx/K/mo1EixE365gtqEGv1UPXnC2LGX
-         pc0MLoviJHqAqmOMQh1Z3ZsETGmWH8ULyfbTJHaPF+BHjda0XSDj0Ymtipz9fYM1Fe5T
-         zQzCkF+EcYI2j65bhua8f1n1TXSbfXzOZTnwVWujJwKzbu6xPoFf6u0n+O0iDX7TgCEL
-         VfRegTEObW6y++2eSi29bCIksTdyFJxXU5jQoxID5W5B7JdXgQhPikhyvH5/32g8zrAj
-         qtXG3ZYTKjjcZDhj9/8AzY71AwKlgONQHkhFArUVmGS/ikWe89wEkVgpldu2E+aPAwWT
-         o0zg==
-X-Gm-Message-State: APjAAAVr71X8o/hkqaC4adETByeBIwBKu6Ho50Mdy2wUqt8PdCLZqoSq
-        P4KNAGD7Ibt91l3nmuaqSVO+BkfgkS3P+cuQRx0=
-X-Google-Smtp-Source: APXvYqzrtpZcSrZuQRqwCwZ6caVJMS0tu3mLbwnZtrsAf+VmyJuuEGHn5L+hB9h5GZOF5b3IoegKPZ3NkGJPQPxAMYU=
-X-Received: by 2002:a25:cecd:: with SMTP id x196mr6392089ybe.203.1558897967849;
- Sun, 26 May 2019 12:12:47 -0700 (PDT)
+        bh=noskaXJB+lKStgYLNqjD43scq/LOmprbRcl7XPqZyEI=;
+        b=q3OMvuAI+N1vAgBgWFO9dEkDsdTyyRGG4Md5LtGzjhdI7xR4gMIKzhQV3rmx9RNUIq
+         HwKyTo1fGjrMeWYlOC0M79JO5nGKzw3zWX8pBF7PRse3V9sqNZvCd/yLT8DPvADnIwus
+         jKqyIG08VZLJz+mbzdSHbepoEYDHoI0YiUYzT3Ni8UUvegLqhwHH7L5/x4DCGMwFDo+L
+         BJ48zxpBHg2Wk0P0QJKHVAW9bG86KwGkk3aEa3ignIQARtajVSu3Ud/H11Dj+Oejds1B
+         9YyGZP03RT6b3Yf9AMOVRjatSw+GQeNe1AjSCKXKoighZMUzRQxukDDb43abaM2y7rC2
+         bp/g==
+X-Gm-Message-State: APjAAAXGskhURqx+xSrHo+W8SVkGg8cGtIsvUh+C+m0gArds2eisH+Og
+        pWoVypFGMIwq8+B9pbZAm7wMxOuL0fIR6jS7ip8=
+X-Google-Smtp-Source: APXvYqz+VzNt0oKUMWNius14IRSdTfbNvnD/DEiP9e5FvjbEQtR2ABEeJ+6nuk7ooQZFFcE+eOm26NaadqAoXgSQSww=
+X-Received: by 2002:a81:9a4b:: with SMTP id r72mr30838628ywg.422.1558898160019;
+ Sun, 26 May 2019 12:16:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190525163819.21055-1-peron.clem@gmail.com> <20190525163819.21055-6-peron.clem@gmail.com>
- <20190526183425.nbhrk5pa264p7tdy@flea>
-In-Reply-To: <20190526183425.nbhrk5pa264p7tdy@flea>
+References: <20190525180923.6105-1-peron.clem@gmail.com> <20190525180923.6105-5-peron.clem@gmail.com>
+ <20190526190410.ngrvrclp5ge5rdqy@flea>
+In-Reply-To: <20190526190410.ngrvrclp5ge5rdqy@flea>
 From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sun, 26 May 2019 21:12:36 +0200
-Message-ID: <CAJiuCcfe7LHehZTzGvW+0LzqvDRs4dSjmGhRxkDHgbHrD2+MKA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] dmaengine: sun6i: Add support for H6 DMA
+Date:   Sun, 26 May 2019 21:15:49 +0200
+Message-ID: <CAJiuCceHhxYt=BY0Jvfv6+80ekKcMLUSv5UWBorYuvtO-DkOtg@mail.gmail.com>
+Subject: Re: [PATCH 04/10] dt-bindings: media: sunxi-ir: Add A64 compatible
 To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, linux-media@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
@@ -66,143 +65,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Maxime,
 
-On Sun, 26 May 2019 at 20:34, Maxime Ripard <maxime.ripard@bootlin.com> wro=
+On Sun, 26 May 2019 at 21:04, Maxime Ripard <maxime.ripard@bootlin.com> wro=
 te:
 >
-> On Sat, May 25, 2019 at 06:38:17PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> On Sat, May 25, 2019 at 08:09:17PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > There is some minor differences between A31 and A64 driver.
 > >
-> > H6 DMA has more than 32 supported DRQs, which means that configuration
-> > register is slightly rearranged. It also needs additional clock to be
-> > enabled.
+> > But A31 IR driver is compatible with A64.
 > >
-> > Add support for it.
-> >
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
 > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
 > > ---
-> >  drivers/dma/sun6i-dma.c | 44 +++++++++++++++++++++++++++++++++++++++--
-> >  1 file changed, 42 insertions(+), 2 deletions(-)
+> >  Documentation/devicetree/bindings/media/sunxi-ir.txt | 1 +
+> >  1 file changed, 1 insertion(+)
 > >
-> > diff --git a/drivers/dma/sun6i-dma.c b/drivers/dma/sun6i-dma.c
-> > index f5cb5e89bf7b..8d44ddae926a 100644
-> > --- a/drivers/dma/sun6i-dma.c
-> > +++ b/drivers/dma/sun6i-dma.c
-> > @@ -69,14 +69,19 @@
-> >
-> >  #define DMA_CHAN_CUR_CFG     0x0c
-> >  #define DMA_CHAN_MAX_DRQ_A31         0x1f
-> > +#define DMA_CHAN_MAX_DRQ_H6          0x3f
-> >  #define DMA_CHAN_CFG_SRC_DRQ_A31(x)  ((x) & DMA_CHAN_MAX_DRQ_A31)
-> > +#define DMA_CHAN_CFG_SRC_DRQ_H6(x)   ((x) & DMA_CHAN_MAX_DRQ_H6)
-> >  #define DMA_CHAN_CFG_SRC_MODE_A31(x) (((x) & 0x1) << 5)
-> > +#define DMA_CHAN_CFG_SRC_MODE_H6(x)  (((x) & 0x1) << 8)
-> >  #define DMA_CHAN_CFG_SRC_BURST_A31(x)        (((x) & 0x3) << 7)
-> >  #define DMA_CHAN_CFG_SRC_BURST_H3(x) (((x) & 0x3) << 6)
-> >  #define DMA_CHAN_CFG_SRC_WIDTH(x)    (((x) & 0x3) << 9)
-> >
-> >  #define DMA_CHAN_CFG_DST_DRQ_A31(x)  (DMA_CHAN_CFG_SRC_DRQ_A31(x) << 1=
-6)
-> > +#define DMA_CHAN_CFG_DST_DRQ_H6(x)   (DMA_CHAN_CFG_SRC_DRQ_H6(x) << 16=
-)
-> >  #define DMA_CHAN_CFG_DST_MODE_A31(x) (DMA_CHAN_CFG_SRC_MODE_A31(x) << =
-16)
-> > +#define DMA_CHAN_CFG_DST_MODE_H6(x)  (DMA_CHAN_CFG_SRC_MODE_H6(x) << 1=
-6)
-> >  #define DMA_CHAN_CFG_DST_BURST_A31(x)        (DMA_CHAN_CFG_SRC_BURST_A=
-31(x) << 16)
-> >  #define DMA_CHAN_CFG_DST_BURST_H3(x) (DMA_CHAN_CFG_SRC_BURST_H3(x) << =
-16)
-> >  #define DMA_CHAN_CFG_DST_WIDTH(x)    (DMA_CHAN_CFG_SRC_WIDTH(x) << 16)
-> > @@ -319,12 +324,24 @@ static void sun6i_set_drq_a31(u32 *p_cfg, s8 src_=
-drq, s8 dst_drq)
-> >                 DMA_CHAN_CFG_DST_DRQ_A31(dst_drq);
-> >  }
-> >
-> > +static void sun6i_set_drq_h6(u32 *p_cfg, s8 src_drq, s8 dst_drq)
-> > +{
-> > +     *p_cfg |=3D DMA_CHAN_CFG_SRC_DRQ_H6(src_drq) |
-> > +               DMA_CHAN_CFG_DST_DRQ_H6(dst_drq);
-> > +}
-> > +
-> >  static void sun6i_set_mode_a31(u32 *p_cfg, s8 src_mode, s8 dst_mode)
-> >  {
-> >       *p_cfg |=3D DMA_CHAN_CFG_SRC_MODE_A31(src_mode) |
-> >                 DMA_CHAN_CFG_DST_MODE_A31(dst_mode);
-> >  }
-> >
-> > +static void sun6i_set_mode_h6(u32 *p_cfg, s8 src_mode, s8 dst_mode)
-> > +{
-> > +     *p_cfg |=3D DMA_CHAN_CFG_SRC_MODE_H6(src_mode) |
-> > +               DMA_CHAN_CFG_DST_MODE_H6(dst_mode);
-> > +}
-> > +
-> >  static size_t sun6i_get_chan_size(struct sun6i_pchan *pchan)
-> >  {
-> >       struct sun6i_desc *txd =3D pchan->desc;
-> > @@ -1160,6 +1177,28 @@ static struct sun6i_dma_config sun50i_a64_dma_cf=
-g =3D {
-> >                            BIT(DMA_SLAVE_BUSWIDTH_8_BYTES),
-> >  };
-> >
-> > +/*
-> > + * The H6 binding uses the number of dma channels from the
-> > + * device tree node.
-> > + */
-> > +static struct sun6i_dma_config sun50i_h6_dma_cfg =3D {
-> > +     .clock_autogate_enable =3D sun6i_enable_clock_autogate_h3,
-> > +     .set_burst_length =3D sun6i_set_burst_length_h3,
-> > +     .set_drq          =3D sun6i_set_drq_h6,
-> > +     .set_mode         =3D sun6i_set_mode_h6,
-> > +     .src_burst_lengths =3D BIT(1) | BIT(4) | BIT(8) | BIT(16),
-> > +     .dst_burst_lengths =3D BIT(1) | BIT(4) | BIT(8) | BIT(16),
-> > +     .src_addr_widths   =3D BIT(DMA_SLAVE_BUSWIDTH_1_BYTE) |
-> > +                          BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) |
-> > +                          BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) |
-> > +                          BIT(DMA_SLAVE_BUSWIDTH_8_BYTES),
-> > +     .dst_addr_widths   =3D BIT(DMA_SLAVE_BUSWIDTH_1_BYTE) |
-> > +                          BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) |
-> > +                          BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) |
-> > +                          BIT(DMA_SLAVE_BUSWIDTH_8_BYTES),
-> > +     .has_mbus_clk =3D true,
-> > +};
-> > +
-> >  /*
-> >   * The V3s have only 8 physical channels, a maximum DRQ port id of 23,
-> >   * and a total of 24 usable source and destination endpoints.
-> > @@ -1190,6 +1229,7 @@ static const struct of_device_id sun6i_dma_match[=
-] =3D {
-> >       { .compatible =3D "allwinner,sun8i-h3-dma", .data =3D &sun8i_h3_d=
-ma_cfg },
-> >       { .compatible =3D "allwinner,sun8i-v3s-dma", .data =3D &sun8i_v3s=
-_dma_cfg },
-> >       { .compatible =3D "allwinner,sun50i-a64-dma", .data =3D &sun50i_a=
-64_dma_cfg },
-> > +     { .compatible =3D "allwinner,sun50i-h6-dma", .data =3D &sun50i_h6=
-_dma_cfg },
-> >       { /* sentinel */ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, sun6i_dma_match);
-> > @@ -1288,8 +1328,8 @@ static int sun6i_dma_probe(struct platform_device=
- *pdev)
-> >       ret =3D of_property_read_u32(np, "dma-requests", &sdc->max_reques=
-t);
-> >       if (ret && !sdc->max_request) {
-> >               dev_info(&pdev->dev, "Missing dma-requests, using %u.\n",
-> > -                      DMA_CHAN_MAX_DRQ_A31);
-> > -             sdc->max_request =3D DMA_CHAN_MAX_DRQ_A31;
-> > +                      DMA_CHAN_MAX_DRQ_H6);
-> > +             sdc->max_request =3D DMA_CHAN_MAX_DRQ_H6;
+> > diff --git a/Documentation/devicetree/bindings/media/sunxi-ir.txt b/Doc=
+umentation/devicetree/bindings/media/sunxi-ir.txt
+> > index 53e88ebb53fe..da5aeba843de 100644
+> > --- a/Documentation/devicetree/bindings/media/sunxi-ir.txt
+> > +++ b/Documentation/devicetree/bindings/media/sunxi-ir.txt
+> > @@ -5,6 +5,7 @@ Required properties:
+> >       "allwinner,sun4i-a10-ir"
+> >       "allwinner,sun5i-a13-ir"
+> >       "allwinner,sun6i-a31-ir"
+> > +     "allwinner,sun50i-a64-ir", "allwinner,sun6i-a31-ir"
 >
-> This is changing the binding though, since we're changing the
-> default. This should be reflected in the binding, and we should keep
-> the same default in the device tree binding.
+> I guess resets is mandatory for the A31 onwards too, right?
 
-Agree, H6 device-tree will have the "dma-request" property.
-As this modification is not mandatory, we can drop it to avoid
-bindings modification.
-
-What do you think?
+Indeed, I will add this information in the device-tree bindings.
+Ideally, we should also introduce a quirks with a "has_reset" property.
 
 Thanks for your review,
 Cl=C3=A9ment
