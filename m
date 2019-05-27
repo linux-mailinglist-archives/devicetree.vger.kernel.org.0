@@ -2,122 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3738A2B1DA
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 12:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D51E82B23A
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 12:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726747AbfE0KKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 06:10:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56636 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725943AbfE0KKK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 06:10:10 -0400
-Received: from localhost (unknown [171.61.91.186])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0C5A720859;
-        Mon, 27 May 2019 10:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1558951809;
-        bh=NnmgDy5FptWpQILTDsZ4Xve8h2sTF+iS5fFSlh0fjz4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=snA0dl2mB3eN9j8L1PY7p2ImPCLljwBsCVF8fJeqljCDdbesF3LbLdyOe75n8a2z8
-         f32m7VKpFBVs7jddUxx3JqgKvQZZ/buVB4YACB+a1aQTmg9JppJEtRwBHD6Dfy/0jN
-         lcLjftgbaX+k6lMoi03cdD+5IzaPbD/ICHlimVMc=
-Date:   Mon, 27 May 2019 15:40:03 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     yibin.gong@nxp.com, robh@kernel.org, shawnguo@kernel.org,
-        festevam@gmail.com, mark.rutland@arm.com, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 6/7] dmaengine: fsl-edma: add i.mx7ulp edma2 version
- support
-Message-ID: <20190527101003.GI15118@vkoul-mobl>
-References: <20190527085118.40423-1-yibin.gong@nxp.com>
- <20190527085118.40423-7-yibin.gong@nxp.com>
- <20190527090553.lek7tm3lyst3bhrd@pengutronix.de>
+        id S1726114AbfE0Kd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 06:33:58 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:50928 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725858AbfE0Kd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 06:33:58 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 7158D80490; Mon, 27 May 2019 12:33:46 +0200 (CEST)
+Date:   Mon, 27 May 2019 12:33:56 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     jacek.anaszewski@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
+Message-ID: <20190527103355.GA5287@amd>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-2-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
 Content-Disposition: inline
-In-Reply-To: <20190527090553.lek7tm3lyst3bhrd@pengutronix.de>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <20190523190820.29375-2-dmurphy@ti.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-05-19, 11:05, Sascha Hauer wrote:
-> On Mon, May 27, 2019 at 04:51:17PM +0800, yibin.gong@nxp.com wrote:
-> > From: Robin Gong <yibin.gong@nxp.com>
-> > 
-> > +static const struct of_device_id fsl_edma_dt_ids[] = {
-> > +	{ .compatible = "fsl,vf610-edma", .data = (void *)v1 },
-> > +	{ .compatible = "fsl,imx7ulp-edma", .data = (void *)v3 },
-> > +	{ /* sentinel */ }
-> 
-> Please put a struct type behind the .data pointer so that you can
-> configure...
 
-Yeah that was the idea behind the suggestion in previous version.
+--lrZ03NoBR/3+SXJZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Something like 
+On Thu 2019-05-23 14:08:12, Dan Murphy wrote:
+> Add a documentation of LED Multicolor LED class specific
+> sysfs attributes.
+>=20
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>  .../ABI/testing/sysfs-class-led-multicolor    | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor b/Docum=
+entation/ABI/testing/sysfs-class-led-multicolor
+> new file mode 100644
+> index 000000000000..2f102ede258b
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
+> @@ -0,0 +1,57 @@
+> +What:		/sys/class/leds/<led>/colors/sync_enable
+> +Date:		April 2019
 
-struct fsl_edma_driver_data {
-        unsigned int channels;
-        ...
-};
+I believe I suggested more reasonable interface. Why not use that?
 
-and then you have
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
 
-const struct fsl_edma_driver_data v1_data {
-        .channels = 1;
-        ...
-};
+--lrZ03NoBR/3+SXJZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-> 
-> > +};
-> > +MODULE_DEVICE_TABLE(of, fsl_edma_dt_ids);
-> > +
-> > @@ -218,6 +272,22 @@ static int fsl_edma_probe(struct platform_device *pdev)
-> >  	fsl_edma_setup_regs(fsl_edma);
-> >  	regs = &fsl_edma->regs;
-> >  
-> > +	if (fsl_edma->version == v3) {
-> > +		fsl_edma->dmamux_nr = 1;
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-You can store the struct in driver context or store the values, so here
-it becomes
+iEYEARECAAYFAlzrvRIACgkQMOfwapXb+vJdxQCfXnAO1nLU1TIocQz6gagl1XRu
+PSsAn17PTm9eh3T5EcXZOPxosG8n4/3+
+=xsN+
+-----END PGP SIGNATURE-----
 
-        driver->data->channel;
-
-and so on for other data, you can also point function pointers (hint
-edma/2_irq_init)
-
-> 
-> ...things like this...
-> 
-> > @@ -264,7 +334,11 @@ static int fsl_edma_probe(struct platform_device *pdev)
-> >  	}
-> >  
-> >  	edma_writel(fsl_edma, ~0, regs->intl);
-> > -	ret = fsl_edma_irq_init(pdev, fsl_edma);
-> > +
-> > +	if (fsl_edma->version == v3)
-> > +		ret = fsl_edma2_irq_init(pdev, fsl_edma);
-> > +	else
-> > +		ret = fsl_edma_irq_init(pdev, fsl_edma);
-> 
-> ...and this one in that struct rather than littering the code more and
-> more with such version tests.
-> 
-> Sascha
-> 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
--- 
-~Vinod
+--lrZ03NoBR/3+SXJZ--
