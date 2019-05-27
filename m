@@ -2,154 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F722BB02
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA4AA2BB0D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726817AbfE0UAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 16:00:48 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52556 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbfE0UAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:00:48 -0400
-Received: by mail-wm1-f67.google.com with SMTP id y3so511343wmm.2;
-        Mon, 27 May 2019 13:00:46 -0700 (PDT)
+        id S1726839AbfE0UKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 16:10:14 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43827 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726346AbfE0UKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:10:14 -0400
+Received: by mail-wr1-f66.google.com with SMTP id l17so9470663wrm.10;
+        Mon, 27 May 2019 13:10:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qs0hduG7r9ZuCuorXfKiLxTX7AgEzf0fkdnIQ/+Us5w=;
-        b=jKp6Tj6GYHwtJkdSEmERhGmELlQG2xE1zCTdm+gWm+2McCGc1YmqNpVm2267/kbzuW
-         aWASqvy/KZMFsUCuBfchpe1yePkV4rp523HBnDvumPq+iojYq9eEteeTkjCA+AV96l8D
-         M//QMSC2goAgc9eI2Dd9ckCuzyIUe9pVvsKjioyp9tWmogB4Pjb6Ea1ifo0e6sflOvJm
-         AbyLOwRV1wcngpJfSXYKu0NpHTWJZ6cx+Odz4iDqCYzKob5JlaMmDBfYUJ0Iui3Cp2/D
-         54iJbnjZP3nRdJRvbPLUKvuitGKwQaoOUv5dwiKmTtvo1uJnR7PaLXjOn7HeDZnxR7mS
-         9M1g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IDHZvbW5fijbJYqS49AHo5wrH49+8LRhFk5frtH+czs=;
+        b=GZKzgwTsjl8oDnFeiCt7vuI5aKIZrQGAleaeM2RbFDLBcE9pCZz3wszFrErQsWBnev
+         xSbVzEZkH2YIhlzU20dYu8H/77rmwr3ucbJ/J1cuUJlE5C0VAX9rBpt20D39GCFY75wf
+         lYEKs/3NJdkjm+UP7hWIbHgH3wOipDJei5ZPnkCCbmVcVCYIekcFrMo+w26484791vB+
+         7KFRFV3gUpScnOmLUqx2fD8JRCpt3zN9HWJLpQ9sauIyM17VnROccWPEBmyao3iCoWDd
+         sGOip2GMuXO9TSwCmuU+AHhg4P4He2itS162rxpyd9g6ZhUghIQmqJcRDcocS3sgVhqY
+         sA8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=qs0hduG7r9ZuCuorXfKiLxTX7AgEzf0fkdnIQ/+Us5w=;
-        b=VRvEwuA4094KnoIyJIWXp/b5T92+aSiNScBIb8Mz+yFYOK2f5Zk/fYnT0NiYS0Lr5U
-         A9Hp8ezDZwYCYsUvygW+vR8hEH9SWamcFeLUENyLMz0RJPFFN/4zM3BEXjuTFOb5cwwR
-         4ycShLp4a8e7V6KzOlgNZxE8gLr64Lb0UxBRw2JpthO9DXXTkD54/8dvgayW5REImtQf
-         hchev6t/pI9mD1e2QobvJjW2SuG+5xVVi5rjlEJSCrz2nE1tAYHiCUyMWDi3p0ffLqWc
-         VxxaHERBE+cKVqIUO2ZngGOkiusiVqaBrNIvi+zxVaZk+cBL/YHMEAYfcp+DSw4nTZ2k
-         7YUg==
-X-Gm-Message-State: APjAAAUGdn8Zr8Jp4FQgiyDPon1FRgq9KitDWmSXSob/UGziaFD0Mtny
-        t5FiZmdmrN5wQfwq1Mp9CTohdBeM
-X-Google-Smtp-Source: APXvYqwdr28CqJsor9aafRQ5eOruKDuW6LisxlprBS+CBeHT/FESW9Rvn4qI8ioQhs8rwwgYlqEoNA==
-X-Received: by 2002:a1c:c00b:: with SMTP id q11mr456498wmf.4.1558987245546;
-        Mon, 27 May 2019 13:00:45 -0700 (PDT)
-Received: from [192.168.1.17] (bkn17.neoplus.adsl.tpnet.pl. [83.28.181.17])
-        by smtp.gmail.com with ESMTPSA id l190sm636252wml.25.2019.05.27.13.00.43
+        bh=IDHZvbW5fijbJYqS49AHo5wrH49+8LRhFk5frtH+czs=;
+        b=Qr+zelGo6kHXOBtV/ZkdrxqDUj2BJ6LXUdJPn8EkpX4pch+8CSt5u5Uvj+S60EC8Sk
+         P7HqCnW0tMrFPleJP3cFlYWO29ZDS3OyblYnmYbgZ97pDztfXC0tRAvmHFk/9wA7uId5
+         q9yZ14t67ImPo8zf4czL3ucKINu258Hdh6leOrxslOLwgxx8OfGlKdmhbR5HIvdVKrDE
+         DBCn8sixPxL4xxoPUrjFU2Uje8039Z8OL1ebPQ6y0hJbwGdEK0c1EaFBX+WaQtTGEnBr
+         1IKqwsb3Edc6ncwvFtm+4H0cyxK69rn33/+JJgu6Ynq3CwWd/4MMIQ4o19CwWsm8cNhn
+         3gcA==
+X-Gm-Message-State: APjAAAW1RbSf3PTntIlm8u/v+/bSTTkh/92FGAlDqjxzhdrgF1gEiQmh
+        XjjeCmSczXuJQ5XzJXZeQcGwu9N3Ak3BEw==
+X-Google-Smtp-Source: APXvYqyqpFAqUTi8dpMrKnZvZz7bKtAJFVOE03EyjPbv+ISOjv5Cl5nD4sOql4lDIlCwc/mR9Ktrjg==
+X-Received: by 2002:adf:ff88:: with SMTP id j8mr1844331wrr.317.1558987812061;
+        Mon, 27 May 2019 13:10:12 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
+        by smtp.gmail.com with ESMTPSA id s127sm308523wmf.48.2019.05.27.13.10.11
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 May 2019 13:00:44 -0700 (PDT)
-Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
-To:     Dan Murphy <dmurphy@ti.com>, pavel@ucw.cz, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-2-dmurphy@ti.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <f01ac400-efda-80a8-4d63-1e2add5e054a@gmail.com>
-Date:   Mon, 27 May 2019 22:00:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Mon, 27 May 2019 13:10:11 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v4 0/7] Allwinner H6 SPDIF support
+Date:   Mon, 27 May 2019 22:06:20 +0200
+Message-Id: <20190527200627.8635-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190523190820.29375-2-dmurphy@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
+*H6 DMA support IS REQUIRED*
 
-Thank you for the update.
+Allwinner H6 SoC has a SPDIF controller called One Wire Audio (OWA) which
+is different from the previous H3 generation and not compatible.
 
-One thing is missing here - we need to document how legacy brightness
-levels map to the sub-LED color levels, i.e. what you do in
-multicolor_set_brightness().
+Difference are an increase of fifo sizes, some memory mapping are different
+and there is now the possibility to output the master clock on a pin.
 
-Best regards,
-Jacek Anaszewski
+Actually all these features are unused and only a bit for flushing the TX
+fifo is required.
 
-On 5/23/19 9:08 PM, Dan Murphy wrote:
-> Add a documentation of LED Multicolor LED class specific
-> sysfs attributes.
-> 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->   .../ABI/testing/sysfs-class-led-multicolor    | 57 +++++++++++++++++++
->   1 file changed, 57 insertions(+)
->   create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor b/Documentation/ABI/testing/sysfs-class-led-multicolor
-> new file mode 100644
-> index 000000000000..2f102ede258b
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
-> @@ -0,0 +1,57 @@
-> +What:		/sys/class/leds/<led>/colors/sync_enable
-> +Date:		April 2019
-> +KernelVersion:	5.2
-> +Contact:	Dan Murphy <dmurphy@ti.com>
-> +Description:	read/write
-> +		Writing a 1 to this file will enable the synchronization of all
-> +		the defined color LEDs within the LED node.  Brightness values
-> +		for each LED will be stored and written when sync is set to 1.
-> +		Writing a 0 to this file will disable syncing and allow
-> +		individual control of the LEDs brightness settings.
-> +
-> +What:		/sys/class/leds/<led>/colors/sync
-> +Date:		April 2019
-> +KernelVersion:	5.2
-> +Contact:	Dan Murphy <dmurphy@ti.com>
-> +Description:	write only
-> +		Writing a 1 to this file while sync_enable is set to 1 will
-> +		write the current brightness values to all defined LEDs within
-> +		the LED node.  All LEDs defined will be configured based
-> +		on the brightness that has been requested.
-> +
-> +		If sync_enable is set to 0 then writing a 1 to sync has no
-> +		affect on the LEDs.
-> +
-> +What:		/sys/class/leds/<led>/colors/<led_color>/brightness
-> +Date:		April 2019
-> +KernelVersion:	5.2
-> +Contact:	Dan Murphy <dmurphy@ti.com>
-> +Description:	read/write
-> +		The led_color directory is dynamically created based on the
-> +		colors defined by the registrar of the class.
-> +		The led_color can be but not limited to red, green, blue,
-> +		white, amber, yellow and violet.  Drivers can also declare a
-> +		LED color for presentation.  There is one directory per color
-> +		presented.  The brightness file is created under each
-> +		led_color directory and controls the individual LED color
-> +		setting.
-> +
-> +		If sync is enabled then	writing the brightness value of the LED
-> +		is deferred until a 1 is written to
-> +		/sys/class/leds/<led>/color/sync.  If syncing is
-> +		disabled then the LED brightness value will be written
-> +		immediately to the LED driver.
-> +
-> +		The value of the color is from 0 to
-> +		/sys/class/leds/<led>/colors/<led_color>/max_brightness.
-> +
-> +What:		/sys/class/leds/<led>/colors/<led_color>/max_brightness
-> +Date:		April 2019
-> +KernelVersion:	5.2
-> +Contact:	Dan Murphy <dmurphy@ti.com>
-> +Description:	read only
-> +		Maximum brightness level for the LED color, default is
-> +		255 (LED_FULL).
-> +
-> +		If the LED does not support different brightness levels, this
-> +		should be 1.
-> 
+Also this series requires the DMA working on H6, a first version has been
+submitted by Jernej Škrabec[1] but has not been accepted yet.
 
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=89011
+
+Changes since v3:
+ - rename reg_fctl_ftx to val_fctl_ftx
+ - rebase this series on sound-next
+ - fix dt-bindings due to change in sound-next
+ - change node name sound_spdif to sound-spdif
+
+Changes since v2:
+ - Split quirks and H6 support patch
+ - Add specific section for quirks comment
+
+Changes since v1:
+ - Remove H3 compatible
+ - Add TX fifo bit flush quirks
+ - Add H6 bindings in SPDIF driver
+
+Clément Péron (7):
+  dt-bindings: sound: sun4i-spdif: Add Allwinner H6 compatible
+  ASoC: sun4i-spdif: Move quirks to the top
+  ASoC: sun4i-spdif: Add TX fifo bit flush quirks
+  ASoC: sun4i-spdif: Add support for H6 SoC
+  arm64: dts: allwinner: Add SPDIF node for Allwinner H6
+  arm64: dts: allwinner: h6: Enable SPDIF for Beelink GS1
+  arm64: defconfig: Enable Sun4i SPDIF module
+
+ .../sound/allwinner,sun4i-a10-spdif.yaml      |  1 +
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 38 ++++++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ sound/soc/sunxi/sun4i-spdif.c                 | 49 ++++++++++++++++---
+ 5 files changed, 87 insertions(+), 6 deletions(-)
+
+-- 
+2.20.1
 
