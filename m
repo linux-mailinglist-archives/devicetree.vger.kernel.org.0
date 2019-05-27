@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AD312BB3E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96DEF2BB5C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:18:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727435AbfE0UPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 16:15:19 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:42450 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727351AbfE0UPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:15:15 -0400
-Received: by mail-wr1-f66.google.com with SMTP id l2so17878402wrb.9;
-        Mon, 27 May 2019 13:15:14 -0700 (PDT)
+        id S1726772AbfE0USk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 16:18:40 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:44110 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726657AbfE0USk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:18:40 -0400
+Received: by mail-lf1-f67.google.com with SMTP id r15so3394580lfm.11;
+        Mon, 27 May 2019 13:18:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kX1q8iX0X4303ErWm6lM+rRst5YhXcgIu4cEhOJHl1c=;
-        b=FxY8LQQd0PZVApVNIF+eHR5wYvbPUxCZAA5A1YZjzxZ7eM+eWerTJam3mrqVRMSYEe
-         kjQ95H/YeXQ5HdiiMDBshV81jYgwBpgEeL91TdAz4p581fj0KHLbyS8rsxUOT7otLd30
-         e6smxAcZcGyyn7sz48eglWl86Bi/FVXnKEVshr8jJmsrq9IjhRrH72GEjl3QVGs9CWJx
-         ZmjZ0AHJtrC4BLATXmkTn9OSa1I5Tmu1asg90LTaKMM9XR4Jf1ICtMFyaxDhaNYj4asi
-         XWq3Z3bmBcUaryPHRrI7hrdP+mlKPzlZ1YG+/95rZnfrgMQzQjgik4vvFEDar/OPe0Z2
-         HO0g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OvAUbe7K2xMqtGukRvbyAcK37R51pLBjtoeTTYWgxsQ=;
+        b=acnjEkzUONJXr68U3rGDlvPQOpxMYkUluPjF/L2FWCDTrEh/Dqpt4YV4oFmk4NafI2
+         lXPUOzH2bM+2r15A+ZdXatIQisuqB13nUbNfSEtq42zibjT9abroP+iULvcFkxsWTnoh
+         Uhm8t1lNnjQasTeTByWOzTReOlgyTw1h5lDq48cL8ZZ6K9fSKSAU4Yza8Kea/E3TJ/8z
+         tFVrCLO6h8uJuyvFEOquiKzz/0SJLnnLqJSuJuN+J14PV8eeipNJ9OwuVZsKXUgROxMK
+         9j+JgxADQfS0O826RSVWi7YGDp2OIoRiR1SrFszF7BUdO2AwWcPlMoXzTVhC3PhFUM91
+         USeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kX1q8iX0X4303ErWm6lM+rRst5YhXcgIu4cEhOJHl1c=;
-        b=s+F6/2aQfQw1IyM1Tpu2EMQU8v+kp6THj9ok5f3TObH9L5f/lLYimA0roHtgb5x6PB
-         p07JHGuMt5t85rpb6VQNy+BVOurSKPvXFn35AesVMuZuI01uVzxIDMjt3TNBzE6HogYO
-         hho6eCHZOSpG5Bk5eowZp3lsNKJg3Wgd5EO7xwm65MA830OEM4nn9SFplZ8CF4N5TxVa
-         TGntD7m3CIogYVr2zniteJ1h550xWoKxPspmfk57uhp8M4PKFeEE3eYMVb4V23WjbM97
-         MZiyMVUFXsw89ABwQoYCJpfyRGZQNOx0u/WV1bTW+/JCuNoPiJOMLSbMITFeEBd4xMCC
-         21Cw==
-X-Gm-Message-State: APjAAAXbbB3tslpEdPfAZjL8pw393XqayeA3nemIKGXF/+VzigpLYGoj
-        sQHLTep1nczPQOxaVSHwdrY=
-X-Google-Smtp-Source: APXvYqw43Ws45Qhr7xAS6WK8q2QHHFf0KA8NC8Pf9gwKYfj+j7tHTjZkvjaposYHAiD6VDUxbsNV/w==
-X-Received: by 2002:adf:f2c2:: with SMTP id d2mr1885143wrp.153.1558988113583;
-        Mon, 27 May 2019 13:15:13 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id i27sm347146wmb.16.2019.05.27.13.15.12
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 May 2019 13:15:12 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Dan Williams <dan.j.williams@intel.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v3 7/7] arm64: defconfig: enable Allwinner DMA drivers
-Date:   Mon, 27 May 2019 22:14:59 +0200
-Message-Id: <20190527201459.20130-8-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190527201459.20130-1-peron.clem@gmail.com>
-References: <20190527201459.20130-1-peron.clem@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OvAUbe7K2xMqtGukRvbyAcK37R51pLBjtoeTTYWgxsQ=;
+        b=JDwg0QtM3I6ItdkkNwRuuafxhfHi38QtGsxf95DVK1AA+qPTiTSlSpk1cF5ix2m9oq
+         hjrrUNJedBiGUDdFAh+yzxzc69cDLIzH2Cq2m1xG1O8vVXMPQDLSTD01rlpNFWk/iMYI
+         2OFmXuEFPtRCQUPnuL4JSEFZi1oTnb7X8VBUcVfMBmBE1BVyKO0EJ2QaQNvIIjFHkw5S
+         fBZf30I58YBmc6u7wauEsUdzcQo8G3N0OaJ97iaCe57GPbW3pgGQBuHKEKIKvH4pMIXY
+         2sA4t3Pz9hH6mQ7EOIY7McA7a6Bcw4GrBUcugILANgFhlSEEay9U+3OhVyraWTHjgoF6
+         aWiw==
+X-Gm-Message-State: APjAAAXPhmw56lNqkZFz7c8ySBI2Rgh0a8quWgf4zGqDInz99LArYwKx
+        bkTxaHYvv1ncKyUzg9/0szAvT4mPoO62zF7BE9w=
+X-Google-Smtp-Source: APXvYqyxfqbMHT5nTyWym+yreIOwF2hutbzSGK0O2yyJXJBibvYAht3syEewDACi2AN7cwItuMnOUTlhUha/B7aKqI0=
+X-Received: by 2002:ac2:4899:: with SMTP id x25mr5704165lfc.44.1558988318149;
+ Mon, 27 May 2019 13:18:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20190504144027.31920-1-festevam@gmail.com> <20190504144027.31920-6-festevam@gmail.com>
+In-Reply-To: <20190504144027.31920-6-festevam@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 27 May 2019 17:18:44 -0300
+Message-ID: <CAOMZO5AZBQuD8Tdhbf+r4C6M7zZy9VevVQoyb8o4KJY4EkO9WA@mail.gmail.com>
+Subject: Re: [PATCH 1/8] media: dt-bindings: imx7-csi: Document a single CSI clock
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Rui Miguel Silva <rui.silva@linaro.org>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, hverkuil-cisco@xs4all.nl
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner sun6i DMA drivers is used on A64 and H6 boards.
+Hi Rob,
 
-Enable it as a module.
+On Sat, May 4, 2019 at 11:40 AM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> As per the i.MX7D Reference Manual only the MCLK is used for
+> the CSI block, so only document this single clock.
+>
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/media/imx7-csi.txt | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/media/imx7-csi.txt b/Documentation/devicetree/bindings/media/imx7-csi.txt
+> index 3c07bc676bc3..443aef07356e 100644
+> --- a/Documentation/devicetree/bindings/media/imx7-csi.txt
+> +++ b/Documentation/devicetree/bindings/media/imx7-csi.txt
+> @@ -14,8 +14,7 @@ Required properties:
+>  - interrupts    : should contain CSI interrupt;
+>  - clocks        : list of clock specifiers, see
+>          Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
+> -- clock-names   : must contain "axi", "mclk" and "dcic" entries, matching
+> -                 entries in the clock property;
+> +- clock-names   : must contain "mclk";
+>
+>  The device node shall contain one 'port' child node with one child 'endpoint'
+>  node, according to the bindings defined in:
+> @@ -32,10 +31,8 @@ example:
+>                          compatible = "fsl,imx7-csi";
+>                          reg = <0x30710000 0x10000>;
+>                          interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> -                        clocks = <&clks IMX7D_CLK_DUMMY>,
+> -                                        <&clks IMX7D_CSI_MCLK_ROOT_CLK>,
+> -                                        <&clks IMX7D_CLK_DUMMY>;
+> -                        clock-names = "axi", "mclk", "dcic";
+> +                        clocks = <&clks IMX7D_CSI_MCLK_ROOT_CLK>;
+> +                        clock-names = "mclk";
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Any comments, please?
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4d583514258c..b535f0f412cc 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -614,6 +614,7 @@ CONFIG_RTC_DRV_IMX_SC=m
- CONFIG_RTC_DRV_XGENE=y
- CONFIG_DMADEVICES=y
- CONFIG_DMA_BCM2835=m
-+CONFIG_DMA_SUN6I=m
- CONFIG_K3_DMA=y
- CONFIG_MV_XOR=y
- CONFIG_MV_XOR_V2=y
--- 
-2.20.1
-
+Thanks
