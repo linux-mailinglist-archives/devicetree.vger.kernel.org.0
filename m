@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE9672AFA2
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841512AFC6
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbfE0IAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 04:00:08 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:59520 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725869AbfE0IAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 04:00:07 -0400
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 9A6AC3A293C;
-        Mon, 27 May 2019 07:47:56 +0000 (UTC)
-X-Originating-IP: 90.88.147.134
-Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 4DDFCC000B;
-        Mon, 27 May 2019 07:47:46 +0000 (UTC)
-Date:   Mon, 27 May 2019 09:47:45 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 03/10] ARM: dts: sunxi: prefer A31 instead of A13 for
- ir
-Message-ID: <20190527074745.5oyt5tyuoc75ntiq@flea>
-References: <20190526222536.10917-1-peron.clem@gmail.com>
- <20190526222536.10917-4-peron.clem@gmail.com>
+        id S1725940AbfE0IKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 04:10:42 -0400
+Received: from mail.lunchkarty.eu ([80.211.141.150]:43892 "EHLO lunchkarty.eu"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725869AbfE0IKm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 04:10:42 -0400
+Received: by lunchkarty.eu (Postfix, from userid 1001)
+        id 8B5A48787C; Mon, 27 May 2019 10:03:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lunchkarty.eu;
+        s=mail; t=1558944471;
+        bh=y04/UvILG6hvdvz0xWFUXkSyBHS7XsATCTf6B5AH0lg=;
+        h=Date:From:To:Subject:From;
+        b=CF2c0bSrpxur05uOhLCuYih9ewGUg9zE5XY5xghdmfSATCWfu3R6sEUKM89ChDwsK
+         5RS2Wqsk9v0WHjvRaUa7WgN19qJxYZqEDrJ4Oabs3o8Z7YmmrqdY5kdFdy0aPeJUmD
+         XZ4mkkKvIePqzToLATndyj34m/oOszVDhk5QEe0I=
+Received: by mail.lunchkarty.eu for <devicetree@vger.kernel.org>; Mon, 27 May 2019 08:03:01 GMT
+Message-ID: <20190527091500-0.1.1i.2h2l.0.ponuddsmqq@lunchkarty.eu>
+Date:   Mon, 27 May 2019 08:03:01 GMT
+From:   "Radoslav Dobrev" <radoslav.dobrev@lunchkarty.eu>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?=D0=9F=D1=80=D0=B8=D0=B4=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B8_=D0=B7=D0=B0_=D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0?=
+X-Mailer: mail.lunchkarty.eu
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pp6ncxjpttni4i4p"
-Content-Disposition: inline
-In-Reply-To: <20190526222536.10917-4-peron.clem@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+=D0=97=D0=B4=D1=80=D0=B0=D0=B2=D0=B5=D0=B9=D1=82=D0=B5,
 
---pp6ncxjpttni4i4p
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+=D0=9A=D0=B0=D1=82=D0=BE =D1=81=D0=B2=D0=B5=D1=82=D0=BE=D0=B2=D0=B5=D0=BD=
+ =D0=BB=D0=B8=D0=B4=D0=B5=D1=80 =D0=B8 =D0=B2=D0=B5=D1=87=D0=B5 =D0=BD=D0=
+=B0=D0=BB=D0=BE=D0=B6=D0=B8=D0=BB =D1=81=D0=B5 =D0=B5=D0=BA=D1=81=D0=BF=D0=
+=B5=D1=80=D1=82 =D0=BF=D0=BE =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=D0=B8 =D0=
+=B7=D0=B0 =D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0, =D0=BF=D0=
+=BE=D0=B4=D0=B3=D0=BE=D1=82=D0=B2=D0=B8=D1=85=D0=BC=D0=B5 =D0=B7=D0=B0 =D0=
+=92=D0=B0=D1=81 =D1=81=D0=BF=D0=B5=D1=86=D0=B8=D0=B0=D0=BB=D0=BD=D0=B0 =D0=
+=BC=D0=BE=D1=82=D0=B8=D0=B2=D0=B0=D1=86=D0=B8=D0=BE=D0=BD=D0=BD=D0=B0 =D0=
+=BF=D1=80=D0=BE=D0=B3=D1=80=D0=B0=D0=BC=D0=B0 =D0=BF=D0=BE=D0=B4 =D1=84=D0=
+=BE=D1=80=D0=BC=D0=B0=D1=82=D0=B0 =D0=BD=D0=B0 =D1=84=D0=B8=D0=BD=D0=B0=D0=
+=BD=D1=81=D0=B8=D1=80=D0=B0=D0=BD=D0=B5 =D0=BD=D0=B0 =D1=85=D1=80=D0=B0=D0=
+=BD=D0=B0 =D0=B7=D0=B0 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=D0=
+=B8=D1=82=D0=B5.
 
-On Mon, May 27, 2019 at 12:25:29AM +0200, Cl=E9ment P=E9ron wrote:
-> Since A31, memory mapping of the IR driver has changed.
->
-> Prefer the A31 bindings instead of A13.
->
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
-> ---
->  arch/arm/boot/dts/sun6i-a31.dtsi   | 2 +-
->  arch/arm/boot/dts/sun8i-a83t.dtsi  | 2 +-
->  arch/arm/boot/dts/sun9i-a80.dtsi   | 2 +-
->  arch/arm/boot/dts/sunxi-h3-h5.dtsi | 2 +-
+=D0=92=D0=B0=D1=83=D1=87=D0=B5=D1=80=D0=B8=D1=82=D0=B5 =D0=B7=D0=B0 =D1=85=
+=D1=80=D0=B0=D0=BD=D0=B0 =D1=81=D0=B0 =D0=BC=D0=BE=D0=B4=D0=B5=D1=80=D0=B5=
+=D0=BD, =D0=B5=D1=84=D0=B5=D0=BA=D1=82=D0=B8=D0=B2=D0=B5=D0=BD =D0=B8 =D1=
+=80=D0=B5=D0=BD=D1=82=D0=B0=D0=B1=D0=B8=D0=BB=D0=B5=D0=BD =D0=BD=D0=B0=D1=
+=87=D0=B8=D0=BD =D0=B7=D0=B0 =D0=B8=D0=B7=D0=B3=D1=80=D0=B0=D0=B6=D0=B4=D0=
+=B0=D0=BD=D0=B5 =D0=BD=D0=B0 =D0=BB=D0=BE=D1=8F=D0=BB=D0=BD=D0=BE=D1=81=D1=
+=82 =D0=BD=D0=B0 =D0=92=D0=B0=D1=88=D0=B8=D1=8F =D0=BF=D0=B5=D1=80=D1=81=D0=
+=BE=D0=BD=D0=B0=D0=BB. =D0=92=D0=B8=D0=B5, =D0=BA=D0=B0=D1=82=D0=BE =D1=80=
+=D0=B0=D0=B1=D0=BE=D1=82=D0=BE=D0=B4=D0=B0=D1=82=D0=B5=D0=BB, =D0=BF=D0=B5=
+=D1=87=D0=B5=D0=BB=D0=B8=D1=82=D0=B5 =D0=BC=D0=BE=D1=82=D0=B8=D0=B2=D0=B8=
+=D1=80=D0=B0=D0=BD =D0=B7=D0=B0 =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=B0 =D0=B5=
+=D0=BA=D0=B8=D0=BF, =D0=B0 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=
+=D0=B8=D1=82=D0=B5 =D0=92=D0=B8 =D0=BF=D0=BE=D0=BB=D1=83=D1=87=D0=B0=D0=B2=
+=D0=B0=D1=82 =D1=87=D1=80=D0=B5=D0=B7 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=
+=D0=B8=D1=82=D0=B5 =D0=B4=D0=BE=D1=81=D1=82=D1=8A=D0=BF =D0=B4=D0=BE =D0=B8=
+=D0=B7=D0=B1=D1=80=D0=B0=D0=BD=D0=B8 =D0=BE=D1=82 =D1=82=D1=8F=D1=85 =D0=B2=
+=D0=B5=D1=80=D0=B8=D0=B3=D0=B8 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D0=B5=
+=D0=BB=D0=BD=D0=B8 =D0=BC=D0=B0=D0=B3=D0=B0=D0=B7=D0=B8=D0=BD=D0=B8 =D0=B8=
+ =D0=B7=D0=B0=D0=B2=D0=B5=D0=B4=D0=B5=D0=BD=D0=B8=D1=8F =D0=B7=D0=B0 =D1=85=
+=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B5 =D0=BD=D0=B0=D0=B2=D1=81=D1=8F=D0=BA=
+=D1=8A=D0=B4=D0=B5 =D0=B8 =D0=BF=D0=BE =D0=B2=D1=81=D1=8F=D0=BA=D0=BE =D0=
+=B2=D1=80=D0=B5=D0=BC=D0=B5.
 
-Can you split the H3 in a separate patch? this will go through a
-separate branch.
+=D0=A9=D0=B5 =D1=81=D0=B5 =D1=80=D0=B0=D0=B4=D0=B2=D0=B0=D0=BC =D0=B4=D0=B0=
+ =D0=92=D0=B8 =D1=80=D0=B0=D0=B7=D0=BA=D0=B0=D0=B6=D0=B0 =D0=B7=D0=B0 =D0=
+=B2=D1=8A=D0=B7=D0=BC=D0=BE=D0=B6=D0=BD=D0=BE=D1=81=D1=82=D0=B8=D1=82=D0=B5=
+ =D0=BD=D0=B0 =D1=82=D0=B5=D0=B7=D0=B8 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=
+=D0=B8. =D0=9C=D0=BE=D0=BB=D1=8F =D1=83=D0=B2=D0=B5=D0=B4=D0=BE=D0=BC=D0=B5=
+=D1=82=D0=B5 =D0=BC=D0=B5, =D0=B0=D0=BA=D0=BE =D0=B6=D0=B5=D0=BB=D0=B0=D0=
+=B5=D1=82=D0=B5 =D0=B4=D0=B0 =D0=BF=D0=BE=D0=B3=D0=BE=D0=B2=D0=BE=D1=80=D0=
+=B8=D0=BC.
 
-Thanks!
-Maxime
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---pp6ncxjpttni4i4p
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOuWIQAKCRDj7w1vZxhR
-xUx7AQDWMM7bqbWyusgAqBceK1Mm3YxF86z+jSIPo7ooKR2vMgEApTPK5Q9rYvHu
-XiaJRAAZYlSm12fyKBMhDUzo2be/fwE=
-=ZMdg
------END PGP SIGNATURE-----
-
---pp6ncxjpttni4i4p--
+=D0=A0=D0=B0=D0=B4=D0=BE=D1=81=D0=BB=D0=B0=D0=B2 =D0=94=D0=BE=D0=B1=D1=80=
+=D0=B5=D0=B2
+Head of HR Benefit Team
+www.lunchkarty.eu
