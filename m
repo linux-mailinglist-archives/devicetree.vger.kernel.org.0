@@ -2,160 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 911742B33E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 13:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D53E2B359
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 13:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726304AbfE0L2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 07:28:20 -0400
-Received: from mta-01.yadro.com ([89.207.88.251]:45346 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725943AbfE0L2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 07:28:19 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 82E4841911;
-        Mon, 27 May 2019 11:28:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-type:content-type:content-transfer-encoding:mime-version
-        :x-mailer:message-id:date:date:subject:subject:from:from
-        :received:received:received; s=mta-01; t=1558956495; x=
-        1560770896; bh=hXOGDL4taCvP1ithY6ztG6O+TLXxq3fYLx4Y5rx99Wc=; b=I
-        FxJuXuZ3B761O2ZaPsK9sTEUtpSCGEkqp35iClcQ67KEZaJjPncOeUJLHnSnwTI4
-        gcK60qmn8gFJd8h0QB5PYt+qat+QlSHvj7UjX+P+n95cwb78YRkmtaaCK0CzJT/V
-        TSOhH4hY++ZiQXWBFu360g08/WCWv+5U5PmlGMy2Xc=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id mzR7FsWWSxkt; Mon, 27 May 2019 14:28:15 +0300 (MSK)
-Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 8B78A404CB;
-        Mon, 27 May 2019 14:28:13 +0300 (MSK)
-Received: from bbwork.com (172.17.14.115) by T-EXCH-02.corp.yadro.com
- (172.17.10.102) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Mon, 27
- May 2019 14:28:13 +0300
-From:   Alexander Filippov <a.filippov@yadro.com>
-To:     <linux-aspeed@lists.ozlabs.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexander Filippov <a.filippov@yadro.com>
-Subject: [PATCH] ARM: dts: aspeed: g4: add video engine support
-Date:   Mon, 27 May 2019 14:27:53 +0300
-Message-ID: <20190527112753.1681-1-a.filippov@yadro.com>
-X-Mailer: git-send-email 2.20.1
+        id S1726185AbfE0Ljb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 07:39:31 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:44041 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726094AbfE0Lja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 07:39:30 -0400
+Received: by mail-ot1-f66.google.com with SMTP id g18so14506656otj.11;
+        Mon, 27 May 2019 04:39:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=V0OzTK0kT2ddqZaGr86QRO9HD6H6ELQHgY3vn9EoNSY=;
+        b=nxBPaLcOHEMMdpZHLjXHOILUXYM8fTOI5bfBJJzIuPdm5mvL9uczAcDCZzKQcheqrN
+         /sF7iVdTly8QcS37JohIugNQjMN+SdRwmaBlWSF/xXV+G21BU9sSG6IxvMYDy6VXPHka
+         fFkS2JnNuppbI0A+djLSGEumGqTrDD273Rcea3ZL1j3XS8ACje+k2KImh+nLJXhy2qgQ
+         7K+npPDh3CfHY22hHIYqECLOuBYeiWASF3C5kbgwIVMhNRZRDELzyr3e4j0wGdhtd3ch
+         n/RTnCJSfoeoWo1JNkNo4d5wo6AO5aBK5s7Iq7mjEAM5BnDWeIoU1nH0ddDGyz98XP9Q
+         4djg==
+X-Gm-Message-State: APjAAAV89id1kqpUo8Ajpos7Z4do0GkQNSRoWc00IV5DeQI2NoTE3B0V
+        qTmjmzwgYCtu+y4Fq030nQnnVHdu0JHoWMvMO34=
+X-Google-Smtp-Source: APXvYqzRJPkCqJiOx+VOhGWb3xNSagzD3mXtVwSHX6dsr/mX9srOC/7Nko7rnVoMhplnBtrellrsrHboMJ8YmHsuPBA=
+X-Received: by 2002:a9d:1a5:: with SMTP id e34mr44398857ote.59.1558957169445;
+ Mon, 27 May 2019 04:39:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.17.14.115]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-02.corp.yadro.com (172.17.10.102)
+References: <20190521145141.9813-1-paul@crapouillou.net>
+In-Reply-To: <20190521145141.9813-1-paul@crapouillou.net>
+From:   Mathieu Malaterre <malat@debian.org>
+Date:   Mon, 27 May 2019 13:39:18 +0200
+Message-ID: <CA+7wUszagtyMV3oMxAi4VqpDeFcBY5ohXZ3PrXe-X5JV21bjBw@mail.gmail.com>
+Subject: Re: Ingenic Timer/Counter Unit (TCU) patchset v12
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-mips@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-clk@vger.kernel.org, od@zcrc.me
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node to describe the video engine and VGA scratch registers on
-AST2400.
+On Tue, May 21, 2019 at 4:51 PM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+> Hi,
+>
+> Here's the V12 of my patchset to add support for the Timer/Counter Unit
+> (TCU) present on the JZ47xx SoCs from Ingenic.
+>
+> This patchset is much shorter at only 13 patches vs. 27 patches in V11;
+> the remaining patches will be sent in parallel (if applicable) or as a
+> follow-up patchset once this one is merged.
+>
+> In V11 the clocksource maintainers weren't happy with the size of the
+> ingenic-timer driver, which included clocks and irqchip setup code.
+> On the other hand, devicetree maintainers wanted one single node for
+> the TCU hardware since it's effectively just one hardware block.
+>
+> In this patchset the functionality is cut in four different drivers:
+> a MFD one to provide the regmap, probe the children and which provides
+> several API functions; a clocks driver; a irqchip driver; a clocksource
+> driver. All these drivers work with the same regmap, have the same
+> compatible strings, and will probe _with the same devicetree node_.
 
-These changes were copied from aspeed-g5.dtsi
+For the series:
 
-Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
----
- arch/arm/boot/dts/aspeed-g4.dtsi | 62 ++++++++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+Tested-by: Mathieu Malaterre <malat@debian.org>
 
-diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
-index 6011692df15a..adc1804918df 100644
---- a/arch/arm/boot/dts/aspeed-g4.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g4.dtsi
-@@ -168,6 +168,10 @@
- 					compatible = "aspeed,g4-pinctrl";
- 				};
- 
-+				vga_scratch: scratch {
-+					compatible = "aspeed,bmc-misc";
-+				};
+System: MIPS Creator CI20
+
+For reference, here is my local patch:
+
+diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+index 1bfac58da5df..e7b7da32f278 100644
+--- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
++++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+@@ -1,5 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include <dt-bindings/clock/jz4780-cgu.h>
++#include <dt-bindings/clock/ingenic,tcu.h>
+ #include <dt-bindings/dma/jz4780-dma.h>
+
+ / {
+@@ -80,6 +81,15 @@
+
+                interrupt-parent = <&intc>;
+                interrupts = <27 26 25>;
 +
- 				p2a: p2a-control {
- 					compatible = "aspeed,ast2400-p2a-ctrl";
- 					status = "disabled";
-@@ -195,6 +199,16 @@
- 				reg = <0x1e720000 0x8000>;	// 32K
- 			};
- 
-+			video: video@1e700000 {
-+				compatible = "aspeed,ast2400-video-engine";
-+				reg = <0x1e700000 0x1000>;
-+				clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
-+					 <&syscon ASPEED_CLK_GATE_ECLK>;
-+				clock-names = "vclk", "eclk";
-+				interrupts = <7>;
-+				status = "disabled";
-+			};
++               watchdog: watchdog@0 {
++                       compatible = "ingenic,jz4780-watchdog";
++                       reg = <0x0 0xc>;
 +
- 			gpio: gpio@1e780000 {
- 				#gpio-cells = <2>;
- 				gpio-controller;
-@@ -1408,6 +1422,54 @@
- 	};
- };
- 
-+&vga_scratch {
-+	dac_mux {
-+		offset = <0x2c>;
-+		bit-mask = <0x3>;
-+		bit-shift = <16>;
-+	};
-+	vga0 {
-+		offset = <0x50>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga1 {
-+		offset = <0x54>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga2 {
-+		offset = <0x58>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga3 {
-+		offset = <0x5c>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga4 {
-+		offset = <0x60>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga5 {
-+		offset = <0x64>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga6 {
-+		offset = <0x68>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+	vga7 {
-+		offset = <0x6c>;
-+		bit-mask = <0xffffffff>;
-+		bit-shift = <0>;
-+	};
-+};
++                       clocks = <&tcu TCU_CLK_WDT>;
++                       clock-names = "wdt";
++               };
 +
- &sio_regs {
- 	sio_2b {
- 		offset = <0xf0>;
--- 
-2.20.1
+        };
 
+        rtc_dev: rtc@10003000 {
+@@ -287,14 +297,6 @@
+                status = "disabled";
+        };
+
+-       watchdog: watchdog@10002000 {
+-               compatible = "ingenic,jz4780-watchdog";
+-               reg = <0x10002000 0x10>;
+-
+-               clocks = <&cgu JZ4780_CLK_RTCLK>;
+-               clock-names = "rtc";
+-       };
+-
+        nemc: nemc@13410000 {
+                compatible = "ingenic,jz4780-nemc";
+                reg = <0x13410000 0x10000>;
+
+
+
+> Regards,
+> -Paul
+>
+>
