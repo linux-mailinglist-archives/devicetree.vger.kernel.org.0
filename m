@@ -2,88 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3775A2B477
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 14:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869932B4A5
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 14:15:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbfE0MJd convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 May 2019 08:09:33 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:57917 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbfE0MJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 08:09:33 -0400
-Received: from xps13 (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 0EBAC20000F;
-        Mon, 27 May 2019 12:09:28 +0000 (UTC)
-Date:   Mon, 27 May 2019 14:09:28 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>
-Subject: Re: [PATCH] dt-bindings: phy: mvebu-comphy: Update references to
- CP110 nodes
-Message-ID: <20190527140928.5df3f704@xps13>
-In-Reply-To: <CAL_JsqJ=gFK604Wbd0D4NN__L4ZfKDO7+j8OGh_buq06oA6deQ@mail.gmail.com>
-References: <20190521143518.32416-1-miquel.raynal@bootlin.com>
-        <CAL_JsqJ=gFK604Wbd0D4NN__L4ZfKDO7+j8OGh_buq06oA6deQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726438AbfE0MOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 08:14:09 -0400
+Received: from muru.com ([72.249.23.125]:51128 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726063AbfE0MOI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 08:14:08 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 79BD780F3;
+        Mon, 27 May 2019 12:14:27 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     Dave Gerlach <d-gerlach@ti.com>, Faiz Abbas <faiz_abbas@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 00/12] ti-sysc driver changes to drop custom hwmods property
+Date:   Mon, 27 May 2019 05:13:36 -0700
+Message-Id: <20190527121348.45251-1-tony@atomide.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi all,
 
-Rob Herring <robh+dt@kernel.org> wrote on Wed, 22 May 2019 08:15:27
--0500:
+Here are changes to improve ti-sysc driver to the point where we can
+finally drop the custom hwmods property for most cases. This series
+drops hwmods property only for omap4 UART and MMC as those can be
+tested with core retention idle.
 
-> On Tue, May 21, 2019 at 9:35 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> >
-> > From: Grzegorz Jaszczyk <jaz@semihalf.com>
-> >
-> > The CP110 DT nodes references have changed, reflect these changes in
-> > COMPHY documentation.  
-> 
-> This change isn't necessary. The examples are just examples. They
-> don't have to match anything exactly.
+I'll be posting more patches for dropping hwmods properties as they
+get tested.
 
-Ok then, let's drop it.
+Regards,
 
-> 
-> >
-> > Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/phy/phy-mvebu-comphy.txt          | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt b/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
-> > index cf2cd86db267..af2402c18513 100644
-> > --- a/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
-> > +++ b/Documentation/devicetree/bindings/phy/phy-mvebu-comphy.txt
-> > @@ -35,19 +35,19 @@ Required properties (child nodes):
-> >
-> >  Examples:
-> >
-> > -       cpm_comphy: phy@120000 {
-> > +       CP110_LABEL(comphy): phy@120000 {  
-> 
-> Also, as we convert bindings to schema, the examples are compiled and
-> this won't without CP110_LABEL defined.
+Tony
 
-I didn't thought about the YAML schema conversion issue (IIRC there are
-already occurrences of such macro in the bindings).
 
-Thanks,
-Miquèl
+Tony Lindgren (12):
+  bus: ti-sysc: Support 16-bit writes too
+  bus: ti-sysc: Make OCP reset work for sysstatus and sysconfig reset
+    bits
+  bus: ti-sysc: Allow QUIRK_LEGACY_IDLE even if legacy_mode is not set
+  bus: ti-sysc: Enable interconnect target module autoidle bit on enable
+  bus: ti-sysc: Handle clockactivity for enable and disable
+  bus: ti-sysc: Handle swsup idle mode quirks
+  bus: ti-sysc: Set ENAWAKEUP if available
+  bus: ti-sysc: Add support for disabling module without legacy mode
+  bus: ti-sysc: Do rstctrl reset handling in two phases
+  bus: ti-sysc: Detect uarts also on omap34xx
+  ARM: dts: Drop legacy custom hwmods property for omap4 uart
+  ARM: dts: Drop legacy custom hwmods property for omap4 mmc
+
+ arch/arm/boot/dts/omap4-l4.dtsi       |   9 --
+ drivers/bus/ti-sysc.c                 | 182 ++++++++++++++++++++------
+ include/linux/platform_data/ti-sysc.h |   1 +
+ 3 files changed, 140 insertions(+), 52 deletions(-)
+
+-- 
+2.21.0
