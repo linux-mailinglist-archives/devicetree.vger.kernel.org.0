@@ -2,132 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5913F2B65F
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F3E2B6CC
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:46:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726515AbfE0NZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 09:25:53 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:43757 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726388AbfE0NZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:25:53 -0400
-Received: by mail-vs1-f67.google.com with SMTP id d128so10503256vsc.10
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2019 06:25:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TnqAkKZ/K76fAJWhEEPhgphkdIHfqKGIyyQzSf7jGME=;
-        b=BbvtYWZg5ZkOTgXuU5uOKiPR9P+u1cNbjMcHQ0bPb8azbm/FfT4yBlauUVp3em1+1j
-         WZu5L2UC9NKmnUmn7T7BTBAkJkeohU1meVLncwtcXjZrLZoknxGGqRxPxtBjRmJLoFoP
-         i3PW+wuEJ4ShMtK0rWFE0ub1VEasVVK0DhewCXLc3hefACh3/1FYsoXBXrva2Azu8hRm
-         63DpSp63Q2YukGWqGo/GUAUWjYsFjdj0kbxyGZ1jOfCgwHmbAbV9s4XNQJQLVRBKGMUS
-         BpJqJsQk397yx+u6FjnmkEcDWJpZPd2qe7q/l06gW94TTsb9RmCOS5IFXIpZpnE2Sd2F
-         RNjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TnqAkKZ/K76fAJWhEEPhgphkdIHfqKGIyyQzSf7jGME=;
-        b=slhpfN5vKBRT9DxqE09EB8aIFA3w7Xig9Gv/WrPjaLT0b7rLexdKeIo45rJsRi06U6
-         Tfwix6qbPJwytC+0IjxJIfMIjozJsOq5A1upnhryraBq78bEKPhFx/b47v8poLNedbCp
-         mbQXv9dYtWZPt0elK6ZXJvD9Q7q66JpSt5W7I9hJ/wuQE4GIWGrrs1nnyS9E0T41RO7Z
-         WaxtJsA79cKkl1mng1SEp+PzSyshBbWkjFoijayfDaJ9oNyYUoOjZJqZijEEpo+BYxvN
-         VtRwfyjH28MCI/pQ3DqTCvCce1hNe/0nj4WiVZiIxVuMcJmxEqOsOaru4QGm3KjlWj/I
-         ++Tw==
-X-Gm-Message-State: APjAAAX8BTNajXEqyMGcucg6qaBkQeVCETJXyQ6Yqhm49Adk+5botPQ/
-        5MifDo2VTpF8ZckQqsl4b1Nbr1MqLZ98vw4NPE6IJg==
-X-Google-Smtp-Source: APXvYqy4tUwxlDxM4P+E2AZD0QtkW0gxj57YCASYDfSgwOAeG101rQ0S+ov4VOwe/SZeF71qMCMhrXm9O39FqYVPGhM=
-X-Received: by 2002:a67:f057:: with SMTP id q23mr57437576vsm.116.1558963552162;
- Mon, 27 May 2019 06:25:52 -0700 (PDT)
+        id S1726322AbfE0NqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 09:46:01 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:49451 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726302AbfE0NqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:46:01 -0400
+Received: from litschi.hi.pengutronix.de ([2001:67c:670:100:feaa:14ff:fe6a:8db5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <m.tretter@pengutronix.de>)
+        id 1hVFws-0006IY-P3; Mon, 27 May 2019 15:45:58 +0200
+Date:   Mon, 27 May 2019 15:45:57 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, robh+dt@kernel.org, mchehab@kernel.org,
+        tfiga@chromium.org, dshah@xilinx.com
+Subject: Re: [PATCH v6 0/5] Add ZynqMP VCU/Allegro DVT H.264 encoder driver
+Message-ID: <20190527154557.62278063@litschi.hi.pengutronix.de>
+In-Reply-To: <20190522154945.54ac67d7@litschi.hi.pengutronix.de>
+References: <20190513172131.15048-1-m.tretter@pengutronix.de>
+        <23de1fe8-f868-d13d-4217-05bc007fab13@xs4all.nl>
+        <20190522154945.54ac67d7@litschi.hi.pengutronix.de>
+Organization: Pengutronix
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <1558515574-11155-1-git-send-email-sagar.kadam@sifive.com>
- <1558515574-11155-2-git-send-email-sagar.kadam@sifive.com> <20190524204012.GA2580@bogus>
-In-Reply-To: <20190524204012.GA2580@bogus>
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-Date:   Mon, 27 May 2019 18:55:41 +0530
-Message-ID: <CAARK3H=qGkKodSdMe+e9N6A-t1cZoiJLatZfcv+A1G1Zuw5VVQ@mail.gmail.com>
-Subject: Re: [PATCH v7 1/3] dt-bindings: i2c: extend existing opencore bindings.
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, peter@korsgaard.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:feaa:14ff:fe6a:8db5
+X-SA-Exim-Mail-From: m.tretter@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, 22 May 2019 15:49:45 +0200, Michael Tretter wrote:
+> On Wed, 22 May 2019 14:04:23 +0200, Hans Verkuil wrote:
+> > On 5/13/19 7:21 PM, Michael Tretter wrote:  
+> > > This is v6 of the Allegro DVT H.264 encoder driver found in the EV
+> > > family of the Xilinx ZynqMP platform.
+> > > 
+> > > Only minor changes this time. I dropped the implementation of the
+> > > selection api, removed all references mentioning the decoder, and fixed
+> > > a few issues reported by sparse and smatch.
+> > > 
+> > > The v4l2-compliance result using the current vicodec branch is
+> > > 
+> > > v4l2-compliance SHA: c2ad13e4b7aef9ae160303189c67a91e1775f025, 64 bits
+> > > 
+> > > Compliance test for allegro device /dev/video4:  
+> [...]
+> > > I observed that the "MMAP (select)" test occasionally fails, because the
+> > > test did not receive an V4L2_EVENT_EOS when dequeuing a buffer with
+> > > V4L2_BUF_FLAG_LAST being set. The driver always queues the event before
+> > > returning the last buffer and the "MMAP (epoll)" does not fail. Thus, I
+> > > decided to send the series anyway.    
+> > 
+> > Where exactly does v4l2-compliance fail? This is weird, and I believe
+> > this warrants a bit more debugging. I recommend adding a debug
+> > statement in allegro_channel_buf_done() to see when a buffer is marked
+> > LAST.  
+> 
+> v4l2-compliance fails in line 1074
+> 
+> 	fail: v4l2-test-buffers.cpp(1074): !got_eos && !got_source_change
+> 
+> The corresponding code in v4l2-compliance is
+> 
+> 	if (buf.g_flags() & V4L2_BUF_FLAG_LAST) {
+> 		fail_on_test(buf.dqbuf(node) != EPIPE);
+> >		fail_on_test(!got_eos && !got_source_change);  
+> 		if (!count)
+> 			break;
+> 		fail_on_test(node->streamoff(m2m_q.g_type()));
+> 		m2m_q.munmap_bufs(node);
+> 
+> When the test fails, the select/epoll_wait returns with readable data,
+> but without readable events on the last buffer. If the test is
+> successful, data and events are available. This looks like a race
+> between the event and the LAST buffer and if the LAST buffer comes
+> first, the test fails.
+> 
+> As said, the driver always queues the EOS event before calling
+> v4l2_m2m_buf_done() on the LAST buffer. Right now, I don't understand
+> how this can happen, but I will continue debugging.
 
-On Sat, May 25, 2019 at 2:10 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, May 22, 2019 at 02:29:32PM +0530, Sagar Shrikant Kadam wrote:
-> > Reformatted compatibility strings to one valid combination on
-> > each line.
-> > Add FU540-C000 specific device tree bindings to already available
-> > i2-ocores file. This device is available on
-> > HiFive Unleashed Rev A00 board. Move interrupt under optional
-> > property list as this can be optional.
-> >
-> > The FU540-C000 SoC from sifive, has an Opencore's I2C block
-> > reimplementation.
-> >
-> > The DT compatibility string for this IP is present in HDL and available at.
-> > https://github.com/sifive/sifive-blocks/blob/master/src/main/scala/devices/i2c/I2C.scala#L73
-> >
-> > Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-> > ---
-> >  Documentation/devicetree/bindings/i2c/i2c-ocores.txt | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> > index 17bef9a..db96951 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-ocores.txt
-> > @@ -1,9 +1,13 @@
-> >  Device tree configuration for i2c-ocores
-> >
-> >  Required properties:
-> > -- compatible      : "opencores,i2c-ocores" or "aeroflexgaisler,i2cmst"
-> > +- compatible      : "opencores,i2c-ocores",
-> > +                    "aeroflexgaisler,i2cmst",
-> > +                    "sifive,fu540-c000-i2c","sifive,i2c0".
->
-> space needed                                   ^
->
-> And drop the end of line commas and period.
->
->
-> > +                    For Opencore based I2C IP block reimplemented in
-> > +                    FU540-C000 SoC.Please refer sifive-blocks-ip-versioning.txt
->
-> And here too.
->
-> And 'refer to'
-I will incorporate the changes you have suggested.
+There is a race between v4l2_m2m_poll() and allegro_channel_finish_frame().
 
-Thanks,
-Sagar Kadam
->
-> > +                    for additional details.
-> >  - reg             : bus address start and address range size of device
-> > -- interrupts      : interrupt number
-> >  - clocks          : handle to the controller clock; see the note below.
-> >                      Mutually exclusive with opencores,ip-clock-frequency
-> >  - opencores,ip-clock-frequency: frequency of the controller clock in Hz;
-> > @@ -12,6 +16,7 @@ Required properties:
-> >  - #size-cells     : should be <0>
-> >
-> >  Optional properties:
-> > +- interrupts      : interrupt number.
-> >  - clock-frequency : frequency of bus clock in Hz; see the note below.
-> >                      Defaults to 100 KHz when the property is not specified
-> >  - reg-shift       : device register offsets are shifted by this value
-> > --
-> > 1.9.1
-> >
+v4l2_m2m_poll() first calls v4l2_event_pending() to check if events are
+available and afterwards checks if there are buffers on src_q and
+dst_q. If allegro_channel_finish_frame() queues the V4L2_EVENT_EOS
+after v4l2_event_pending() but before the checks on the queues,
+v4l2_m2m_poll() sets EPOLLIN | EPOLLRDNORM for the LAST buffer, but does
+not set EPOLLPRI, because it missed V4L2_EVENT_EOS.
+
+As a fix, the driver must hold the m2m_ctx->q_lock mutex while calling
+v4l2_event_queue_fh() for V4L2_EVENT_EOS to ensure that the event is
+not queued during v4l2_m2m_poll() after the v4l2_event_pending() check.
+
+I'm not completely sure, but it seems to me that other v4l2 mem2mem
+drivers have the same issue.
+
+Michael
+
+> 
+> > 
+> > These tests really should not fail, and it is a strong indication of a
+> > bug somewhere.
+> > 
+> > I don't want to merge a driver that has a FAIL in v4l2-compliance without
+> > at the very least understanding why that happens. Ignoring it defeats the
+> > purpose of v4l2-compliance.  
+> 
+> Totally agreed.
+> 
+> Michael
+> 
+> > 
+> > Regards,
+> > 
+> > 	Hans
+> >   
+> 
