@@ -2,89 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 841512AFC6
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:10:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2FB22AFB0
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:04:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725940AbfE0IKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 04:10:42 -0400
-Received: from mail.lunchkarty.eu ([80.211.141.150]:43892 "EHLO lunchkarty.eu"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725869AbfE0IKm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 04:10:42 -0400
-Received: by lunchkarty.eu (Postfix, from userid 1001)
-        id 8B5A48787C; Mon, 27 May 2019 10:03:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lunchkarty.eu;
-        s=mail; t=1558944471;
-        bh=y04/UvILG6hvdvz0xWFUXkSyBHS7XsATCTf6B5AH0lg=;
-        h=Date:From:To:Subject:From;
-        b=CF2c0bSrpxur05uOhLCuYih9ewGUg9zE5XY5xghdmfSATCWfu3R6sEUKM89ChDwsK
-         5RS2Wqsk9v0WHjvRaUa7WgN19qJxYZqEDrJ4Oabs3o8Z7YmmrqdY5kdFdy0aPeJUmD
-         XZ4mkkKvIePqzToLATndyj34m/oOszVDhk5QEe0I=
-Received: by mail.lunchkarty.eu for <devicetree@vger.kernel.org>; Mon, 27 May 2019 08:03:01 GMT
-Message-ID: <20190527091500-0.1.1i.2h2l.0.ponuddsmqq@lunchkarty.eu>
-Date:   Mon, 27 May 2019 08:03:01 GMT
-From:   "Radoslav Dobrev" <radoslav.dobrev@lunchkarty.eu>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?=D0=9F=D1=80=D0=B8=D0=B4=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B8_=D0=B7=D0=B0_=D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0?=
-X-Mailer: mail.lunchkarty.eu
+        id S1726114AbfE0IEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 04:04:40 -0400
+Received: from mx2.suse.de ([195.135.220.15]:53052 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725940AbfE0IEk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 04:04:40 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 7AE0EAED0;
+        Mon, 27 May 2019 08:04:38 +0000 (UTC)
+From:   Andreas Schwab <schwab@suse.de>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, nicolas.ferre@microchip.com,
+        Palmer Dabbelt <palmer@sifive.com>, aou@eecs.berkeley.edu,
+        ynezz@true.cz, Paul Walmsley <paul.walmsley@sifive.com>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Subject: Re: [PATCH 0/2] net: macb: Add support for SiFive FU540-C000
+References: <1558611952-13295-1-git-send-email-yash.shah@sifive.com>
+        <mvmwoihfi9f.fsf@suse.de>
+        <CAJ2_jOEr5J7_-81MjUE63OSFKL-p9whEZ_FDBihojXP2wvadVg@mail.gmail.com>
+X-Yow:  ..  the MYSTERIANS are in here with my CORDUROY SOAP DISH!!
+Date:   Mon, 27 May 2019 10:04:36 +0200
+In-Reply-To: <CAJ2_jOEr5J7_-81MjUE63OSFKL-p9whEZ_FDBihojXP2wvadVg@mail.gmail.com>
+        (Yash Shah's message of "Fri, 24 May 2019 10:09:58 +0530")
+Message-ID: <mvm36l0fhm3.fsf@suse.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=97=D0=B4=D1=80=D0=B0=D0=B2=D0=B5=D0=B9=D1=82=D0=B5,
+On Mai 24 2019, Yash Shah <yash.shah@sifive.com> wrote:
 
-=D0=9A=D0=B0=D1=82=D0=BE =D1=81=D0=B2=D0=B5=D1=82=D0=BE=D0=B2=D0=B5=D0=BD=
- =D0=BB=D0=B8=D0=B4=D0=B5=D1=80 =D0=B8 =D0=B2=D0=B5=D1=87=D0=B5 =D0=BD=D0=
-=B0=D0=BB=D0=BE=D0=B6=D0=B8=D0=BB =D1=81=D0=B5 =D0=B5=D0=BA=D1=81=D0=BF=D0=
-=B5=D1=80=D1=82 =D0=BF=D0=BE =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=D0=B8 =D0=
-=B7=D0=B0 =D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0, =D0=BF=D0=
-=BE=D0=B4=D0=B3=D0=BE=D1=82=D0=B2=D0=B8=D1=85=D0=BC=D0=B5 =D0=B7=D0=B0 =D0=
-=92=D0=B0=D1=81 =D1=81=D0=BF=D0=B5=D1=86=D0=B8=D0=B0=D0=BB=D0=BD=D0=B0 =D0=
-=BC=D0=BE=D1=82=D0=B8=D0=B2=D0=B0=D1=86=D0=B8=D0=BE=D0=BD=D0=BD=D0=B0 =D0=
-=BF=D1=80=D0=BE=D0=B3=D1=80=D0=B0=D0=BC=D0=B0 =D0=BF=D0=BE=D0=B4 =D1=84=D0=
-=BE=D1=80=D0=BC=D0=B0=D1=82=D0=B0 =D0=BD=D0=B0 =D1=84=D0=B8=D0=BD=D0=B0=D0=
-=BD=D1=81=D0=B8=D1=80=D0=B0=D0=BD=D0=B5 =D0=BD=D0=B0 =D1=85=D1=80=D0=B0=D0=
-=BD=D0=B0 =D0=B7=D0=B0 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=D0=
-=B8=D1=82=D0=B5.
+> Hi Andreas,
+>
+> On Thu, May 23, 2019 at 6:19 PM Andreas Schwab <schwab@suse.de> wrote:
+>>
+>> On Mai 23 2019, Yash Shah <yash.shah@sifive.com> wrote:
+>>
+>> > On FU540, the management IP block is tightly coupled with the Cadence
+>> > MACB IP block. It manages many of the boundary signals from the MACB IP
+>> > This patchset controls the tx_clk input signal to the MACB IP. It
+>> > switches between the local TX clock (125MHz) and PHY TX clocks. This
+>> > is necessary to toggle between 1Gb and 100/10Mb speeds.
+>>
+>> Doesn't work for me:
+>>
+>> [  365.842801] macb: probe of 10090000.ethernet failed with error -17
+>>
+>
+> Make sure you have applied all the patches needed for testing found at
+> dev/yashs/ethernet branch of:
 
-=D0=92=D0=B0=D1=83=D1=87=D0=B5=D1=80=D0=B8=D1=82=D0=B5 =D0=B7=D0=B0 =D1=85=
-=D1=80=D0=B0=D0=BD=D0=B0 =D1=81=D0=B0 =D0=BC=D0=BE=D0=B4=D0=B5=D1=80=D0=B5=
-=D0=BD, =D0=B5=D1=84=D0=B5=D0=BA=D1=82=D0=B8=D0=B2=D0=B5=D0=BD =D0=B8 =D1=
-=80=D0=B5=D0=BD=D1=82=D0=B0=D0=B1=D0=B8=D0=BB=D0=B5=D0=BD =D0=BD=D0=B0=D1=
-=87=D0=B8=D0=BD =D0=B7=D0=B0 =D0=B8=D0=B7=D0=B3=D1=80=D0=B0=D0=B6=D0=B4=D0=
-=B0=D0=BD=D0=B5 =D0=BD=D0=B0 =D0=BB=D0=BE=D1=8F=D0=BB=D0=BD=D0=BE=D1=81=D1=
-=82 =D0=BD=D0=B0 =D0=92=D0=B0=D1=88=D0=B8=D1=8F =D0=BF=D0=B5=D1=80=D1=81=D0=
-=BE=D0=BD=D0=B0=D0=BB. =D0=92=D0=B8=D0=B5, =D0=BA=D0=B0=D1=82=D0=BE =D1=80=
-=D0=B0=D0=B1=D0=BE=D1=82=D0=BE=D0=B4=D0=B0=D1=82=D0=B5=D0=BB, =D0=BF=D0=B5=
-=D1=87=D0=B5=D0=BB=D0=B8=D1=82=D0=B5 =D0=BC=D0=BE=D1=82=D0=B8=D0=B2=D0=B8=
-=D1=80=D0=B0=D0=BD =D0=B7=D0=B0 =D1=80=D0=B0=D0=B1=D0=BE=D1=82=D0=B0 =D0=B5=
-=D0=BA=D0=B8=D0=BF, =D0=B0 =D1=81=D0=BB=D1=83=D0=B6=D0=B8=D1=82=D0=B5=D0=BB=
-=D0=B8=D1=82=D0=B5 =D0=92=D0=B8 =D0=BF=D0=BE=D0=BB=D1=83=D1=87=D0=B0=D0=B2=
-=D0=B0=D1=82 =D1=87=D1=80=D0=B5=D0=B7 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=
-=D0=B8=D1=82=D0=B5 =D0=B4=D0=BE=D1=81=D1=82=D1=8A=D0=BF =D0=B4=D0=BE =D0=B8=
-=D0=B7=D0=B1=D1=80=D0=B0=D0=BD=D0=B8 =D0=BE=D1=82 =D1=82=D1=8F=D1=85 =D0=B2=
-=D0=B5=D1=80=D0=B8=D0=B3=D0=B8 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D0=B5=
-=D0=BB=D0=BD=D0=B8 =D0=BC=D0=B0=D0=B3=D0=B0=D0=B7=D0=B8=D0=BD=D0=B8 =D0=B8=
- =D0=B7=D0=B0=D0=B2=D0=B5=D0=B4=D0=B5=D0=BD=D0=B8=D1=8F =D0=B7=D0=B0 =D1=85=
-=D1=80=D0=B0=D0=BD=D0=B5=D0=BD=D0=B5 =D0=BD=D0=B0=D0=B2=D1=81=D1=8F=D0=BA=
-=D1=8A=D0=B4=D0=B5 =D0=B8 =D0=BF=D0=BE =D0=B2=D1=81=D1=8F=D0=BA=D0=BE =D0=
-=B2=D1=80=D0=B5=D0=BC=D0=B5.
+Nope, try reloading the module.
 
-=D0=A9=D0=B5 =D1=81=D0=B5 =D1=80=D0=B0=D0=B4=D0=B2=D0=B0=D0=BC =D0=B4=D0=B0=
- =D0=92=D0=B8 =D1=80=D0=B0=D0=B7=D0=BA=D0=B0=D0=B6=D0=B0 =D0=B7=D0=B0 =D0=
-=B2=D1=8A=D0=B7=D0=BC=D0=BE=D0=B6=D0=BD=D0=BE=D1=81=D1=82=D0=B8=D1=82=D0=B5=
- =D0=BD=D0=B0 =D1=82=D0=B5=D0=B7=D0=B8 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=
-=D0=B8. =D0=9C=D0=BE=D0=BB=D1=8F =D1=83=D0=B2=D0=B5=D0=B4=D0=BE=D0=BC=D0=B5=
-=D1=82=D0=B5 =D0=BC=D0=B5, =D0=B0=D0=BA=D0=BE =D0=B6=D0=B5=D0=BB=D0=B0=D0=
-=B5=D1=82=D0=B5 =D0=B4=D0=B0 =D0=BF=D0=BE=D0=B3=D0=BE=D0=B2=D0=BE=D1=80=D0=
-=B8=D0=BC.
+Andreas.
 
-
-=D0=A0=D0=B0=D0=B4=D0=BE=D1=81=D0=BB=D0=B0=D0=B2 =D0=94=D0=BE=D0=B1=D1=80=
-=D0=B5=D0=B2
-Head of HR Benefit Team
-www.lunchkarty.eu
+-- 
+Andreas Schwab, SUSE Labs, schwab@suse.de
+GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
+"And now for something completely different."
