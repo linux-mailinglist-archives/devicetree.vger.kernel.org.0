@@ -2,91 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E02362B0AD
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B7FB2B0D8
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 11:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726583AbfE0IuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 04:50:19 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:35986 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726722AbfE0IuQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 04:50:16 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DC2001A0B4A;
-        Mon, 27 May 2019 10:50:13 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 340AF1A0B56;
-        Mon, 27 May 2019 10:50:08 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7EBCD40310;
-        Mon, 27 May 2019 16:49:56 +0800 (SGT)
-From:   yibin.gong@nxp.com
-To:     robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, mark.rutland@arm.com, vkoul@kernel.org,
-        dan.j.williams@intel.com
-Cc:     linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: [PATCH v2 7/7] ARM: dts: imx7ulp: add edma device node
-Date:   Mon, 27 May 2019 16:51:18 +0800
-Message-Id: <20190527085118.40423-8-yibin.gong@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190527085118.40423-1-yibin.gong@nxp.com>
-References: <20190527085118.40423-1-yibin.gong@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725943AbfE0JFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 05:05:07 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:34618 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726071AbfE0JFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 05:05:07 -0400
+X-UUID: 9b45fc4f1566450c808686863345d682-20190527
+X-UUID: 9b45fc4f1566450c808686863345d682-20190527
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <erin.lo@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 2099036367; Mon, 27 May 2019 17:05:01 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 27 May 2019 17:04:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 27 May 2019 17:04:59 +0800
+From:   Erin Lo <erin.lo@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <erin.lo@mediatek.com>,
+        <mars.cheng@mediatek.com>, <eddie.huang@mediatek.com>
+Subject: [PATCH v11 0/6] Add basic node support for Mediatek MT8183 SoC
+Date:   Mon, 27 May 2019 17:04:41 +0800
+Message-ID: <1558947887-31084-1-git-send-email-erin.lo@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: A3A3979E730E1DEDDFD1A2DDEE29397448A5ACC75A9DFEC103545943F1E524CC2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robin Gong <yibin.gong@nxp.com>
+MT8183 is a SoC based on 64bit ARMv8 architecture.
+It contains 4 CA53 and 4 CA73 cores.
+MT8183 share many HW IP with MT65xx series.
+This patchset was tested on MT8183 evaluation board and use correct clock to shell.
 
-Add edma device node in dts.
+Based on v5.2-rc1
 
-Signed-off-by: Robin Gong <yibin.gong@nxp.com>
----
- arch/arm/boot/dts/imx7ulp.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Change in v11:
+New add spi node, efuse node, pinctrl node, auxadc node, and capacity-dmips-mhz field
 
-diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-index d6b7110..b4f7adf 100644
---- a/arch/arm/boot/dts/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/imx7ulp.dtsi
-@@ -100,6 +100,34 @@
- 		reg = <0x40000000 0x800000>;
- 		ranges;
- 
-+		edma1: dma-controller@40080000 {
-+			#dma-cells = <2>;
-+			compatible = "fsl,imx7ulp-edma";
-+			reg = <0x40080000 0x2000>,
-+				<0x40210000 0x1000>;
-+			dma-channels = <32>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "dma", "dmamux0";
-+			clocks = <&pcc2 IMX7ULP_CLK_DMA1>,
-+				 <&pcc2 IMX7ULP_CLK_DMA_MUX1>;
-+		};
-+
- 		lpuart4: serial@402d0000 {
- 			compatible = "fsl,imx7ulp-lpuart";
- 			reg = <0x402d0000 0x1000>;
--- 
-2.7.4
+Change in v10:
+Add the L2 cache node to prevent warning on unable to detect cache
+hierarchy.
+
+Change in v9:
+Remove pio node since binding is not documented yet
+
+Change in v8:
+1. Fix interrupt-parent of pio node
+2. Remove pinfunc.h and spi node patches
+
+Change in v7:
+1. Place all the MMIO peripherals under one or more simple-bus nodes
+2. Make the pinfunc.h and spi node into seperate patch
+3. Modify SPIs pamerater from 4 back to 3
+   and remove patch "support 4 interrupt parameters for sysirq"
+4. Rename intpol-controller to interrupt-controller
+5. Rename pinctrl@1000b000 to pinctrl@10005000
+
+Change in v6:
+1. Remove power and iommu nodes
+2. Fix dtb build warning
+3. Fix pinctrl binding doc
+4. Fix '_' in node names
+
+Change in v5:
+1. Collect all device tree nodes to the last patch
+2. Add PMU
+3. Add Signed-off-by
+4. Remove clock driver code and binding doc
+5. Add pinctrl, iommu, spi, and pwrap nodes
+
+Change in v4:
+1. Correct syntax error in dtsi
+2. Add MT8183 clock support
+
+Change in v3:
+1. Fill out GICC, GICH, GICV regions
+2. Update Copyright to 2018
+
+Change in v2:
+1. Split dt-bindings into different patches
+2. Correct bindings for supported SoCs (mtk-uart.txt)
+
+Ben Ho (1):
+  arm64: dts: Add Mediatek SoC MT8183 and evaluation board dts and
+    Makefile
+
+Erin Lo (1):
+  arm64: dts: mt8183: add spi node
+
+Hsin-Yi, Wang (1):
+  arm64: dts: mt8183: add capacity-dmips-mhz
+
+Michael Mei (1):
+  arm64: dts: mt8183: add efuse and Mediatek Chip id node to read
+
+Zhiyong Tao (2):
+  arm64: dts: mt8183: add pinctrl device node
+  arm64: dts: mt8183: Add auxadc device node
+
+ arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 140 ++++++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 447 ++++++++++++++++++++
+ 3 files changed, 588 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183.dtsi
+
+--
+1.8.1.1.dirty
 
