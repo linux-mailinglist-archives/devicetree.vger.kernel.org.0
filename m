@@ -2,126 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF64B2B309
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 13:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 911742B33E
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 13:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbfE0LQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 07:16:27 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38470 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725814AbfE0LQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 07:16:27 -0400
-Received: by mail-wm1-f66.google.com with SMTP id t5so15458112wmh.3;
-        Mon, 27 May 2019 04:16:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IE0QaynMlWug2qNR46NtnCWHIB0RzkNO84JDp+YXRlk=;
-        b=WWCRBfLXHGOwfH9Bz0XMS3YsDxSjIeSRx8cKi5IRGytXczDcD6hu7oSG1k7q/gaaQ8
-         c65fxwdjDOgK4LGctIEtQYUo30bZ98akHa2NBiF5wdW/bIY7/yLl05YD6CNrmB0hIJ9l
-         8seRZoEkcNICPC0HF0d2WajB8LL/EncHNXbmwarakyJyxlZX1CP5AksSw8eO6mqFVpd6
-         /74D4rntZNZxWh7kUML8nTVtvKPT1G/xsCUPcmNguVGNsXt3uHXOtpOjbad09ZC2ztsq
-         8jsF/5hM85lY21s2hrbTgvCdlLJDcLxKXHNGvR7rZIHamlv4zDwXc3xNsCTnLxWp5XzE
-         hfXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IE0QaynMlWug2qNR46NtnCWHIB0RzkNO84JDp+YXRlk=;
-        b=q1V7f+f9QMWpAtDMkWEkjGbo7Di/h6wXdL4b2yasGWLlFX7DXaoy8hd5ftbh/L+ikA
-         k/tpCVC6G8qBBntT5NT+05CbWTLehC+GUoHKWyj/snlnLfBTR0DMkCHqZQYtfYBrcsr1
-         6yQvooeBOEf0h4v3YC+JqUmzO33EzL2osoU4DK67CRilFfLjqy13YoJaCa2lleTviqEL
-         bN/A7FsilwYSJnmu136DUR2dVdSDmQKF/9oMRmUnPU9VfoBNEEM61LMcP2VLQwK+4Q8O
-         SkwrS2m+oag70PnDcK6ivBWXaksdks1qVK3Qjc4OsizbeQjlozvlfwHuZIoSderEDviI
-         0u3A==
-X-Gm-Message-State: APjAAAV/AIO1JsG8g63FT6iaez9+1fBMsj57M+1APdrmdjNgtEOc5FVk
-        G0tWWsYlTpUdp9gdmkj0ML0=
-X-Google-Smtp-Source: APXvYqxWKajkKGi9hI6uCHALtxhUkAygj/1iJ3HJHI0+7l2OGrYh96kHaJME/r120zdqbRJxGHl71w==
-X-Received: by 2002:a05:600c:22cb:: with SMTP id 11mr9361238wmg.159.1558955785132;
-        Mon, 27 May 2019 04:16:25 -0700 (PDT)
-Received: from localhost.localdomain (131.ip-164-132-48.eu. [164.132.48.131])
-        by smtp.googlemail.com with ESMTPSA id b8sm3781578wrr.88.2019.05.27.04.16.23
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 May 2019 04:16:24 -0700 (PDT)
-From:   Tomasz Maciej Nowak <tmn505@gmail.com>
-To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S1726304AbfE0L2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 07:28:20 -0400
+Received: from mta-01.yadro.com ([89.207.88.251]:45346 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725943AbfE0L2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 07:28:19 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 82E4841911;
+        Mon, 27 May 2019 11:28:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1558956495; x=
+        1560770896; bh=hXOGDL4taCvP1ithY6ztG6O+TLXxq3fYLx4Y5rx99Wc=; b=I
+        FxJuXuZ3B761O2ZaPsK9sTEUtpSCGEkqp35iClcQ67KEZaJjPncOeUJLHnSnwTI4
+        gcK60qmn8gFJd8h0QB5PYt+qat+QlSHvj7UjX+P+n95cwb78YRkmtaaCK0CzJT/V
+        TSOhH4hY++ZiQXWBFu360g08/WCWv+5U5PmlGMy2Xc=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id mzR7FsWWSxkt; Mon, 27 May 2019 14:28:15 +0300 (MSK)
+Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 8B78A404CB;
+        Mon, 27 May 2019 14:28:13 +0300 (MSK)
+Received: from bbwork.com (172.17.14.115) by T-EXCH-02.corp.yadro.com
+ (172.17.10.102) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Mon, 27
+ May 2019 14:28:13 +0300
+From:   Alexander Filippov <a.filippov@yadro.com>
+To:     <linux-aspeed@lists.ozlabs.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Ellie Reeves <ellierevves@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: armada-3720-espressobin: correct spi node
-Date:   Mon, 27 May 2019 13:16:14 +0200
-Message-Id: <20190527111614.3694-1-tmn505@gmail.com>
-X-Mailer: git-send-email 2.21.0
+        <linux-kernel@vger.kernel.org>,
+        Alexander Filippov <a.filippov@yadro.com>
+Subject: [PATCH] ARM: dts: aspeed: g4: add video engine support
+Date:   Mon, 27 May 2019 14:27:53 +0300
+Message-ID: <20190527112753.1681-1-a.filippov@yadro.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.17.14.115]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-02.corp.yadro.com (172.17.10.102)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The manufacturer of this board, ships it with various SPI NOR chips and
-increments U-Boot bootloader version along the time. There is no way to
-tell which is placed on the board since no revision bump takes place.
-This creates two issues.
+Add a node to describe the video engine and VGA scratch registers on
+AST2400.
 
-The first, cosmetic. Since the NOR chip may differ, there's message on
-boot stating that kernel expected w25q32dw and found different one. To
-correct this, remove optional device-specific compatible string. Being
-here lets replace bogus "spi-flash" compatible string with proper one.
+These changes were copied from aspeed-g5.dtsi
 
-The second is linked to partitions layout, it changed after commit:
-81e7251252 ("arm64: mvebu: config: move env to the end of the 4MB boot
-device") in Marvells downstream U-Boot fork [1], shifting environment
-location to the end of boot device. Since the new boards will have U-Boot
-with this change, it'll lead to improper results writing or reading from
-these partitions. We can't tell if users will update bootloader to recent
-version provided on manufacturer website, so lets drop partitons layout.
-
-1. https://github.com/MarvellEmbeddedProcessors/u-boot-marvell.git
-
-Signed-off-by: Tomasz Maciej Nowak <tmn505@gmail.com>
+Signed-off-by: Alexander Filippov <a.filippov@yadro.com>
 ---
- .../dts/marvell/armada-3720-espressobin.dts    | 18 +-----------------
- 1 file changed, 1 insertion(+), 17 deletions(-)
+ arch/arm/boot/dts/aspeed-g4.dtsi | 62 ++++++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
-index 6be019e1888e..fbcf03f86c96 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dts
-@@ -95,25 +95,9 @@
+diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
+index 6011692df15a..adc1804918df 100644
+--- a/arch/arm/boot/dts/aspeed-g4.dtsi
++++ b/arch/arm/boot/dts/aspeed-g4.dtsi
+@@ -168,6 +168,10 @@
+ 					compatible = "aspeed,g4-pinctrl";
+ 				};
  
- 	flash@0 {
- 		reg = <0>;
--		compatible = "winbond,w25q32dw", "jedec,spi-flash";
-+		compatible = "jedec,spi-nor";
- 		spi-max-frequency = <104000000>;
- 		m25p,fast-read;
--
--		partitions {
--			compatible = "fixed-partitions";
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			partition@0 {
--				label = "uboot";
--				reg = <0 0x180000>;
--			};
--
--			partition@180000 {
--				label = "ubootenv";
--				reg = <0x180000 0x10000>;
--			};
--		};
++				vga_scratch: scratch {
++					compatible = "aspeed,bmc-misc";
++				};
++
+ 				p2a: p2a-control {
+ 					compatible = "aspeed,ast2400-p2a-ctrl";
+ 					status = "disabled";
+@@ -195,6 +199,16 @@
+ 				reg = <0x1e720000 0x8000>;	// 32K
+ 			};
+ 
++			video: video@1e700000 {
++				compatible = "aspeed,ast2400-video-engine";
++				reg = <0x1e700000 0x1000>;
++				clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
++					 <&syscon ASPEED_CLK_GATE_ECLK>;
++				clock-names = "vclk", "eclk";
++				interrupts = <7>;
++				status = "disabled";
++			};
++
+ 			gpio: gpio@1e780000 {
+ 				#gpio-cells = <2>;
+ 				gpio-controller;
+@@ -1408,6 +1422,54 @@
  	};
  };
  
++&vga_scratch {
++	dac_mux {
++		offset = <0x2c>;
++		bit-mask = <0x3>;
++		bit-shift = <16>;
++	};
++	vga0 {
++		offset = <0x50>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga1 {
++		offset = <0x54>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga2 {
++		offset = <0x58>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga3 {
++		offset = <0x5c>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga4 {
++		offset = <0x60>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga5 {
++		offset = <0x64>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga6 {
++		offset = <0x68>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++	vga7 {
++		offset = <0x6c>;
++		bit-mask = <0xffffffff>;
++		bit-shift = <0>;
++	};
++};
++
+ &sio_regs {
+ 	sio_2b {
+ 		offset = <0xf0>;
 -- 
-2.21.0
+2.20.1
 
