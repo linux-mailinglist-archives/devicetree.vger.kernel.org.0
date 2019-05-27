@@ -2,226 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 870A72BA8A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 21:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 721282BAA0
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 21:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726817AbfE0TLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 15:11:04 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:42082 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726758AbfE0TLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 15:11:04 -0400
-Received: by mail-pg1-f193.google.com with SMTP id 33so6562605pgv.9;
-        Mon, 27 May 2019 12:11:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GWWobeGYg4EECozO9Qj4YTpVWW3X1i9MJHljQCbCuiE=;
-        b=HFN1ucZoAnnb4drttbW8myp2r9g43uolH/3ESLFMfRO4K/dwAogLoYIDa3xFc065tf
-         xBBOQcc4YTKoGIfQmsntRM7dyHOeTw/QqgMhJA0PMLxcpRlGQv5sid5141zLnOaCtFyJ
-         qRofW9gXOElW6HiJN7Fb3zvMKrIryV7+dXsCu0ow4l4jihobB9JnrI8qFhqe7s43h2qE
-         rehwqClUpCK8hPsJSgFmA69veXSgAiJML2Hkmg8uuRcMh2Lfi+GZ0vXr1p5mH464M+tW
-         Dw7ZPFlXdqx9YmyCgAqArbazxVVV7dAK3k7XXH4HhcaS1iPUDjzrUu3GUtxpocoaPfPR
-         bvYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GWWobeGYg4EECozO9Qj4YTpVWW3X1i9MJHljQCbCuiE=;
-        b=p19MEmiOwxTDSNWZccueP1Yxsd0s96D/QBmxFTati8DY8jPrusPZpxQ8GhTbs9aLbz
-         3X1ex8V/3M9J5NzSn5RxffDn/HEegAhxO+Y6mLVIwH0ggtjSU3kP1m2uNRvZMotudzOc
-         Lq8Ptqa2rd3Y4N7dce457oQuHEVAb53tvJJcgUnnIB2Gyz3bWLpxz8eqNmnXKa+XOX1I
-         +jsnJlWUHP4+mlO+1j+OsohAghcnRgy/i3uyvxWke3Ms3tm/bIMDxElcvsC34xNgUg6d
-         4LL7JyMj+WRWiQ3e5y2tUy1IPR/eHpeUAl6vvpHvnI2A1DhjiG+8Mk5pC1nYunmgc3kN
-         dTJg==
-X-Gm-Message-State: APjAAAWUv6ZcwNiciAaF0ygmWOcoPQEMFrfQ1DMQddgljzrPXdTo+Rd1
-        uLUQiis5xVqYZhHyAuhzfA8=
-X-Google-Smtp-Source: APXvYqyzZB0e/HKCzbmbW891E7cntlRXWCaEkDNDNcB1A+g7Xe+Fw+aaqINqqyOezQVsXb8VlLVmFQ==
-X-Received: by 2002:a17:90a:35c8:: with SMTP id r66mr505097pjb.17.1558984263248;
-        Mon, 27 May 2019 12:11:03 -0700 (PDT)
-Received: from [192.168.1.3] (ip68-101-123-102.oc.oc.cox.net. [68.101.123.102])
-        by smtp.gmail.com with ESMTPSA id s2sm12223753pfe.105.2019.05.27.12.11.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 May 2019 12:11:02 -0700 (PDT)
-Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
-To:     Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "van.freenix@gmail.com" <van.freenix@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190523060437.11059-1-peng.fan@nxp.com>
- <4ba2b243-5622-bb27-6fc3-cd9457430e54@gmail.com>
- <AM0PR04MB4481C44F9B5EFCDD076EF728881D0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Openpgp: preference=signencrypt
-Message-ID: <7aa27228-38fc-d5bf-0cb2-b255176a206a@gmail.com>
-Date:   Mon, 27 May 2019 12:11:01 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <AM0PR04MB4481C44F9B5EFCDD076EF728881D0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
+        id S1727050AbfE0TUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 15:20:06 -0400
+Received: from mail-eopbgr20057.outbound.protection.outlook.com ([40.107.2.57]:43682
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726484AbfE0TUF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 15:20:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ATFdzLuMxJOEBbPBZnb7bOdnaz3hYfrpWu1hA6a3vpY=;
+ b=LjI8ttQq1RhTGcGzCSO1GT//EgZJ74cLYPrJ76h5gVLFjBWV0Q2+p0jzbgxVeljOghkXvcqylQ5f1Rfc0D5RhsDgCJZGbsNeejnb38p5I9hwWIDKdLDt0TyYwUn/Xk4Qn8VvsAesJur7E/k4bt/A57zG7nryZKQzy05TLEi5Sig=
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (20.179.235.152) by
+ VE1PR04MB6685.eurprd04.prod.outlook.com (20.179.235.150) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.18; Mon, 27 May 2019 19:19:58 +0000
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::9e6:e136:4c09:fe67]) by VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::9e6:e136:4c09:fe67%5]) with mapi id 15.20.1922.021; Mon, 27 May 2019
+ 19:19:58 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Andy Tang <andy.tang@nxp.com>
+CC:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor
+ node
+Thread-Topic: [EXT] Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor
+ node
+Thread-Index: AQHVEdA5vBlpwutLvUe9kqG6PS5PHaZ63V2AgAPKYSCAALahcA==
+Date:   Mon, 27 May 2019 19:19:58 +0000
+Message-ID: <VE1PR04MB6687BA478AAFD1DF1FAF170C8F1D0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20190524012151.31840-1-andy.tang@nxp.com>
+ <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
+ <VI1PR04MB4333A3E635CFDBD860D3061DF31D0@VI1PR04MB4333.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB4333A3E635CFDBD860D3061DF31D0@VI1PR04MB4333.eurprd04.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leoyang.li@nxp.com; 
+x-originating-ip: [136.49.234.194]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 94ea61cd-ef93-4fe5-d4e6-08d6e2d84ef2
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VE1PR04MB6685;
+x-ms-traffictypediagnostic: VE1PR04MB6685:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <VE1PR04MB668552615ECA0F6CF3FA5F7D8F1D0@VE1PR04MB6685.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 0050CEFE70
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(346002)(396003)(39860400002)(366004)(376002)(13464003)(189003)(199004)(74316002)(73956011)(33656002)(14454004)(7696005)(229853002)(66066001)(81156014)(186003)(14444005)(256004)(25786009)(26005)(53936002)(6506007)(8936002)(305945005)(76116006)(11346002)(102836004)(53546011)(2906002)(7736002)(76176011)(478600001)(6116002)(5660300002)(3846002)(99286004)(966005)(66476007)(316002)(6246003)(486006)(6436002)(71200400001)(6862004)(9686003)(6306002)(8676002)(81166006)(4326008)(52536014)(66556008)(66446008)(6636002)(64756008)(446003)(66946007)(54906003)(86362001)(476003)(55016002)(71190400001)(68736007);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6685;H:VE1PR04MB6687.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: lfN/+ytIvXxssqNERAk6MTD1O6QN5NA1cJpIjsDCrRuQePF7KUQHrgWjbSPFNA3QYx7guNYccfMoTGCk6DGDJyHRU1s9nQIsQSW1KS8Jg3MZKpqCjrbT2fh1G44sXeU3M4gqgA/zDHuCge5/NhRScUxJ7fIm6sR5rAnnrF9TAWC+sCVP/83Me0EWasZMDCkY0Ys98FNKUqlEto9XnAat9Q07GyolpoOnmw1XK4I0NeWSxQo7vFv5rHWXJbb8IqvnsAvYyb9R4Vw2q58B8DA7NxUiJPyRcIvaBDaba/SCnH0+4yvEvzbWYT03FquZ2N+/Pyq+2c6l8jTI9JdNkOdqYVTh9xWa0VEgIALcYWFsEJTf9FaiRAVnrcpC9FoxDf/+mw/ULZ+OSv1wJdI4sJvO2Iak+iTnCprZjdNJXrGIv8k=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94ea61cd-ef93-4fe5-d4e6-08d6e2d84ef2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 19:19:58.3584
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: leoyang.li@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6685
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/26/2019 10:19 PM, Peng Fan wrote:
-> Hi Florian,
-> 
->> Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
->>
->> Hi,
->>
->> On 5/22/19 10:50 PM, Peng Fan wrote:
->>> This is a modified version from Andre Przywara's patch series
->>>
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.ke
->> rnel.org%2Fpatchwork%2Fcover%2F812997%2F&amp;data=02%7C01%7Cpe
->> ng.fan%40nxp.com%7C010c9ddd5df645c9c66b08d6dfa46cb2%7C686ea1d3b
->> c2b4c6fa92cd99c5c301635%7C0%7C0%7C636942294631442665&amp;sdat
->> a=BbS5ZQtzMANSwaKRDJ62NKrPrAyaED1%2BvymQaT6Qr8E%3D&amp;rese
->> rved=0.
->>> [1] is a draft implementation of i.MX8MM SCMI ATF implementation that
->>> use smc as mailbox, power/clk is included, but only part of clk has
->>> been implemented to work with hardware, power domain only supports get
->>> name for now.
->>>
->>> The traditional Linux mailbox mechanism uses some kind of dedicated
->>> hardware IP to signal a condition to some other processing unit,
->>> typically a dedicated management processor.
->>> This mailbox feature is used for instance by the SCMI protocol to
->>> signal a request for some action to be taken by the management processor.
->>> However some SoCs does not have a dedicated management core to
->> provide
->>> those services. In order to service TEE and to avoid linux shutdown
->>> power and clock that used by TEE, need let firmware to handle power
->>> and clock, the firmware here is ARM Trusted Firmware that could also
->>> run SCMI service.
->>>
->>> The existing SCMI implementation uses a rather flexible shared memory
->>> region to communicate commands and their parameters, it still requires
->>> a mailbox to actually trigger the action.
->>
->> We have had something similar done internally with a couple of minor
->> differences:
->>
->> - a SGI is used to send SCMI notifications/delayed replies to support
->> asynchronism (patches are in the works to actually add that to the Linux SCMI
->> framework). There is no good support for SGI in the kernel right now so we
->> hacked up something from the existing SMP code and adding the ability to
->> register our own IPI handlers (SHAME!). Using a PPI should work and should
->> allow for using request_irq() AFAICT.
-> 
-> So you are also implementing a firmware inside ATF for SCMI usecase, right?
-
-Correct, SCMI is implemented in part within the trusted firmware (it is
-not ATF, something custom), and in part using an external processor for
-specific tasks.
-
-> 
-> Introducing SGI in ATF to notify Linux will introduce complexity, there is
-> no good framework inside ATF for SCMI, and I use synchronization call for
-> simplicity for now.
-
-Sure that's fine, the point we all seem to agree upon is that putting
-provision in the binding document for an optional interrupt is already
-known to be desirable.
-
-> 
->>
->> - the mailbox identifier is indicated as part of the SMC call such that we can
->> have multiple SCMI mailboxes serving both standard protocols and
->> non-standard (in the 0x80 and above) range, also they may have different
->> throughput (in hindsight, these could simply be different channels)
->>
->> Your patch series looks both good and useful to me, I would just put a
->> provision in the binding to support an optional interrupt such that
->> asynchronism gets reasonably easy to plug in when it is available (and
->> desirable).
-> 
-> Ok. Let me think about and add that in new version patch.
-> 
-> Thanks,
-> Peng.
-> 
->>
->>>
->>> This patch series provides a Linux mailbox compatible service which
->>> uses smc calls to invoke firmware code, for instance taking care of SCMI
->> requests.
->>> The actual requests are still communicated using the standard SCMI way
->>> of shared memory regions, but a dedicated mailbox hardware IP can be
->>> replaced via this new driver.
->>>
->>> This simple driver uses the architected SMC calling convention to
->>> trigger firmware services, also allows for using "HVC" calls to call
->>> into hypervisors or firmware layers running in the EL2 exception level.
->>>
->>> Patch 1 contains the device tree binding documentation, patch 2
->>> introduces the actual mailbox driver.
->>>
->>> Please note that this driver just provides a generic mailbox
->>> mechanism, though this is synchronous and one-way only (triggered by
->>> the OS only, without providing an asynchronous way of triggering
->>> request from the firmware).
->>> And while providing SCMI services was the reason for this exercise,
->>> this driver is in no way bound to this use case, but can be used
->>> generically where the OS wants to signal a mailbox condition to
->>> firmware or a hypervisor.
->>> Also the driver is in no way meant to replace any existing firmware
->>> interface, but actually to complement existing interfaces.
->>>
->>> [1]
->>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgith
->>>
->> ub.com%2FMrVan%2Farm-trusted-firmware%2Ftree%2Fscmi&amp;data=02
->> %7C01%7
->>>
->> Cpeng.fan%40nxp.com%7C010c9ddd5df645c9c66b08d6dfa46cb2%7C686ea1
->> d3bc2b4
->>>
->> c6fa92cd99c5c301635%7C0%7C0%7C636942294631442665&amp;sdata=kN
->> 9bEFFcsZA
->>> 1ePeNLLfHmONpVaG6O5ajVQvKMuaBXyk%3D&amp;reserved=0
->>>
->>> Peng Fan (2):
->>>   DT: mailbox: add binding doc for the ARM SMC mailbox
->>>   mailbox: introduce ARM SMC based mailbox
->>>
->>>  .../devicetree/bindings/mailbox/arm-smc.txt        |  96
->> +++++++++++++
->>>  drivers/mailbox/Kconfig                            |   7 +
->>>  drivers/mailbox/Makefile                           |   2 +
->>>  drivers/mailbox/arm-smc-mailbox.c                  | 154
->> +++++++++++++++++++++
->>>  include/linux/mailbox/arm-smc-mailbox.h            |  10 ++
->>>  5 files changed, 269 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/mailbox/arm-smc.txt
->>>  create mode 100644 drivers/mailbox/arm-smc-mailbox.c  create mode
->>> 100644 include/linux/mailbox/arm-smc-mailbox.h
->>>
->>
->>
->> --
->> Florian
-
--- 
-Florian
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5keSBUYW5nDQo+IFNl
+bnQ6IE1vbmRheSwgTWF5IDI3LCAyMDE5IDM6MjcgQU0NCj4gVG86IExlbyBMaSA8bGVveWFuZy5s
+aUBueHAuY29tPg0KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgUm9iIEhl
+cnJpbmcNCj4gPHJvYmgrZHRAa2VybmVsLm9yZz47IE1hcmsgUnV0bGFuZCA8bWFyay5ydXRsYW5k
+QGFybS5jb20+Ow0KPiBtb2RlcmF0ZWQgbGlzdDpBUk0vRlJFRVNDQUxFIElNWCAvIE1YQyBBUk0g
+QVJDSElURUNUVVJFIDxsaW51eC1hcm0tDQo+IGtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnPjsg
+b3BlbiBsaXN0Ok9QRU4gRklSTVdBUkUgQU5EIEZMQVRURU5FRA0KPiBERVZJQ0UgVFJFRSBCSU5E
+SU5HUyA8ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+OyBsa21sIDxsaW51eC0NCj4ga2VybmVs
+QHZnZXIua2VybmVsLm9yZz4NCj4gU3ViamVjdDogUkU6IFtFWFRdIFJlOiBbUEFUQ0hdIGFybTY0
+OiBkdHM6IGxzMTAyOGE6IEFkZCB0ZW1wZXJhdHVyZSBzZW5zb3INCj4gbm9kZQ0KPiANCj4gSGkg
+TGVvLA0KPiANCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IExpIFlh
+bmcgPGxlb3lhbmcubGlAbnhwLmNvbT4NCj4gPiBTZW50OiAyMDE55bm0NeaciDI15pelIDY6MzIN
+Cj4gPiBUbzogQW5keSBUYW5nIDxhbmR5LnRhbmdAbnhwLmNvbT4NCj4gPiBDYzogU2hhd24gR3Vv
+IDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcNCj4gPHJvYmgrZHRAa2VybmVsLm9y
+Zz47DQo+ID4gTWFyayBSdXRsYW5kIDxtYXJrLnJ1dGxhbmRAYXJtLmNvbT47IG1vZGVyYXRlZCBs
+aXN0OkFSTS9GUkVFU0NBTEUNCj4gSU1YDQo+ID4gLyBNWEMgQVJNIEFSQ0hJVEVDVFVSRSA8bGlu
+dXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnPjsNCj4gPiBvcGVuIGxpc3Q6T1BFTiBG
+SVJNV0FSRSBBTkQgRkxBVFRFTkVEIERFVklDRSBUUkVFIEJJTkRJTkdTDQo+ID4gPGRldmljZXRy
+ZWVAdmdlci5rZXJuZWwub3JnPjsgbGttbCA8bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZz4N
+Cj4gPiBTdWJqZWN0OiBbRVhUXSBSZTogW1BBVENIXSBhcm02NDogZHRzOiBsczEwMjhhOiBBZGQg
+dGVtcGVyYXR1cmUgc2Vuc29yDQo+ID4gbm9kZQ0KPiA+DQo+ID4gQ2F1dGlvbjogRVhUIEVtYWls
+DQo+ID4NCj4gPiBPbiBUaHUsIE1heSAyMywgMjAxOSBhdCA4OjMwIFBNIFl1YW50aWFuIFRhbmcg
+PGFuZHkudGFuZ0BueHAuY29tPg0KPiA+IHdyb3RlOg0KPiA+ID4NCj4gPiA+IEFkZCBueHAgc2E1
+NjAwNCBjaGlwIG5vZGUgZm9yIHRlbXBlcmF0dXJlIG1vbml0b3IuDQo+ID4gPg0KPiA+ID4gU2ln
+bmVkLW9mZi1ieTogWXVhbnRpYW4gVGFuZyA8YW5keS50YW5nQG54cC5jb20+DQo+ID4gPiAtLS0N
+Cj4gPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRz
+IHwgNSArKysrKw0KPiA+ID4gYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAy
+OGEtcmRiLmR0cyB8IDUgKysrKysNCj4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlv
+bnMoKykNCj4gPiA+DQo+ID4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
+c2NhbGUvZnNsLWxzMTAyOGEtcWRzLmR0cw0KPiA+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQo+ID4gPiBpbmRleCBiMzU5MDY4ZDk2MDUuLjMx
+ZmQ2MjZkZDM0NCAxMDA2NDQNCj4gPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2ZzbC1sczEwMjhhLXFkcy5kdHMNCj4gPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+ZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXFkcy5kdHMNCj4gPiA+IEBAIC0xMzEsNiArMTMxLDExIEBA
+DQo+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXRt
+ZWwsMjRjNTEyIjsNCj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0g
+PDB4NTc+Ow0KPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiA+ICsNCj4gPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgIHRlbXBANGMgew0KPiA+DQo+ID4gVGhlIHJlY29tbWVu
+ZGVkIG5hbWUgZm9yIHRlbXBlcmF0dXJlIHNlbm9yIGluIGR0cyBzcGVjIGlzDQo+ID4gdGVtcGVy
+YXR1cmUtc2Vuc29yLg0KPiBJIGRpZG4ndCBmaW5kIHRoZSBzcGVjIGZvciB0aGlzIHJlY29tbWVu
+ZGF0aW9uLiBDb3VsZCB5b3UgcGxlYXNlIHByb3ZpZGUgdGhlDQo+IGxpbms/DQoNCllvdSBjYW4g
+ZmluZCB0aGUgc3BlYyBvbiBodHRwczovL3d3dy5kZXZpY2V0cmVlLm9yZy8NCg0KPiBJIGxpa2Ug
+dG8gdXBkYXRlIGl0IHRvIHRlbXAtc2Vuc29yIHRob3VnaC4NCj4gDQo+ID4NCj4gPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJueHAsc2E1NjAwNCI7DQo+
+ID4NCj4gPiBUaGUgYmluZGluZyBzYXlzIHRoZSBmb2xsb3dpbmcgcHJvcGVydHkgaXMgcmVxdWly
+ZWQuICBJZiBpdCBpcyBub3QgdGhlDQo+ID4gY2FzZSwgcHJvYmFibHkgd2Ugc2hvdWxkIHVwZGF0
+ZSB0aGUgYmluZGluZy4NCj4gPiAtIHZjYy1zdXBwbHk6IHZjYyByZWd1bGF0b3IgZm9yIHRoZSBz
+dXBwbHkgdm9sdGFnZS4NCj4gSSB3aWxsIGFkZCB0aGUgdmNjLXN1cHBseSB0byBjb21wbHkgdGhp
+cyByZXF1aXJlbWVudC4NCj4gDQo+IFRoYW5rcywNCj4gQW5keQ0KPiA+DQo+ID4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwweDRjPjsNCj4gPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIH07DQo+ID4gPiAgICAgICAgICAgICAgICAgfTsNCj4gPiA+DQo+ID4gPiAg
+ICAgICAgICAgICAgICAgaTJjQDUgew0KPiA+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9v
+dC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwMjhhLXJkYi5kdHMNCj4gPiA+IGIvYXJjaC9hcm02NC9i
+b290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cw0KPiA+ID4gaW5kZXggZjljMjcy
+ZmIwNzM4Li4wMTJiM2Y4Njk2YjcgMTAwNjQ0DQo+ID4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQo+ID4gPiArKysgYi9hcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQo+ID4gPiBAQCAtMTE5LDYg
+KzExOSwxMSBAQA0KPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRp
+YmxlID0gIm54cCxwY2YyMTI5IjsNCj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgcmVnID0gPDB4NTE+Ow0KPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiA+
+ICsNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHRlbXBANGMgew0KPiA+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm54cCxzYTU2MDA0IjsNCj4g
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4NGM+Ow0KPiA+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiA+ICAgICAgICAgICAgICAgICB9Ow0KPiA+
+ID4gICAgICAgICB9Ow0KPiA+ID4gIH07DQo+ID4gPiAtLQ0KPiA+ID4gMi4xNy4xDQo+ID4gPg0K
