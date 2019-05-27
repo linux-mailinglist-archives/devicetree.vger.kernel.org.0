@@ -2,220 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D84F2BAF3
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 21:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13F722BB02
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:00:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbfE0Txd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 15:53:33 -0400
-Received: from vps.xff.cz ([195.181.215.36]:54828 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726346AbfE0Txd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 15:53:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1558986810; bh=TQm1z7XV9OcXC3zOVs+6uPifYNf994Ug5KfUvl6jkw8=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=MiChMqP4U9HE88aPO9vEKcSp8Jkx39Bk5JYJZZyrLUPRveB4GmNseExAgdpO1fx5y
-         LTYKRGqy2jEcgC8v6Z3aeFiISGWD+syP8+yqb0uHMXdKmXh8dw7gt/kq2CEFqTd1Eu
-         7RqduuUIm5Qw2K+82XUblNp+fMCH0WN6HnaYW3wI=
-Date:   Mon, 27 May 2019 21:53:30 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] Allwinner A64/H6 IR support
-Message-ID: <20190527195330.pugb7ypvnyv32fug@core.my.home>
-Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-References: <20190526222536.10917-1-peron.clem@gmail.com>
- <20190527134805.j7t4ffstrnhdml47@core.my.home>
- <CAJiuCcdnQa0TArduT4yBbUyd+dOaM0cQ1JcRUQLXLR6s_5e8sA@mail.gmail.com>
- <20190527163117.hpealt6cttqzqdxz@core.my.home>
- <20190527172337.5qxh5qeqnul55gsb@core.my.home>
- <CAJiuCccnRCqez2uG-pU8XY4Z=5S8rDwFB3rgsBovPHY1Uxyazw@mail.gmail.com>
- <20190527193016.yxngu5grsqnctx3z@core.my.home>
+        id S1726817AbfE0UAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 16:00:48 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:52556 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726801AbfE0UAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:00:48 -0400
+Received: by mail-wm1-f67.google.com with SMTP id y3so511343wmm.2;
+        Mon, 27 May 2019 13:00:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qs0hduG7r9ZuCuorXfKiLxTX7AgEzf0fkdnIQ/+Us5w=;
+        b=jKp6Tj6GYHwtJkdSEmERhGmELlQG2xE1zCTdm+gWm+2McCGc1YmqNpVm2267/kbzuW
+         aWASqvy/KZMFsUCuBfchpe1yePkV4rp523HBnDvumPq+iojYq9eEteeTkjCA+AV96l8D
+         M//QMSC2goAgc9eI2Dd9ckCuzyIUe9pVvsKjioyp9tWmogB4Pjb6Ea1ifo0e6sflOvJm
+         AbyLOwRV1wcngpJfSXYKu0NpHTWJZ6cx+Odz4iDqCYzKob5JlaMmDBfYUJ0Iui3Cp2/D
+         54iJbnjZP3nRdJRvbPLUKvuitGKwQaoOUv5dwiKmTtvo1uJnR7PaLXjOn7HeDZnxR7mS
+         9M1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qs0hduG7r9ZuCuorXfKiLxTX7AgEzf0fkdnIQ/+Us5w=;
+        b=VRvEwuA4094KnoIyJIWXp/b5T92+aSiNScBIb8Mz+yFYOK2f5Zk/fYnT0NiYS0Lr5U
+         A9Hp8ezDZwYCYsUvygW+vR8hEH9SWamcFeLUENyLMz0RJPFFN/4zM3BEXjuTFOb5cwwR
+         4ycShLp4a8e7V6KzOlgNZxE8gLr64Lb0UxBRw2JpthO9DXXTkD54/8dvgayW5REImtQf
+         hchev6t/pI9mD1e2QobvJjW2SuG+5xVVi5rjlEJSCrz2nE1tAYHiCUyMWDi3p0ffLqWc
+         VxxaHERBE+cKVqIUO2ZngGOkiusiVqaBrNIvi+zxVaZk+cBL/YHMEAYfcp+DSw4nTZ2k
+         7YUg==
+X-Gm-Message-State: APjAAAUGdn8Zr8Jp4FQgiyDPon1FRgq9KitDWmSXSob/UGziaFD0Mtny
+        t5FiZmdmrN5wQfwq1Mp9CTohdBeM
+X-Google-Smtp-Source: APXvYqwdr28CqJsor9aafRQ5eOruKDuW6LisxlprBS+CBeHT/FESW9Rvn4qI8ioQhs8rwwgYlqEoNA==
+X-Received: by 2002:a1c:c00b:: with SMTP id q11mr456498wmf.4.1558987245546;
+        Mon, 27 May 2019 13:00:45 -0700 (PDT)
+Received: from [192.168.1.17] (bkn17.neoplus.adsl.tpnet.pl. [83.28.181.17])
+        by smtp.gmail.com with ESMTPSA id l190sm636252wml.25.2019.05.27.13.00.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 May 2019 13:00:44 -0700 (PDT)
+Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
+To:     Dan Murphy <dmurphy@ti.com>, pavel@ucw.cz, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-2-dmurphy@ti.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <f01ac400-efda-80a8-4d63-1e2add5e054a@gmail.com>
+Date:   Mon, 27 May 2019 22:00:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190527193016.yxngu5grsqnctx3z@core.my.home>
+In-Reply-To: <20190523190820.29375-2-dmurphy@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+Hi Dan,
 
-On Mon, May 27, 2019 at 09:30:16PM +0200, verejna wrote:
-> Hi Clément,
-> 
-> On Mon, May 27, 2019 at 08:49:59PM +0200, Clément Péron wrote:
-> > Hi Ondrej,
-> > 
-> > >
-> > > I'm testing on Orange Pi 3.
-> > >
-> > > With your patches, I get kernel lockup after ~1 minute of use (ssh stops
-> > > responding/serial console stops responding). I don't have RC controller to test
-> > > the CIR. But just enabling the CIR causes kernel to hang shortly after boot.
-> > >
-> > > I tried booting multiple times. Other results:
-> > >
-> > > boot 2:
-> > >
-> > > - ssh hangs even before connecting (ethernet crashes/is reset)
-> > >
-> > > INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > rcu:    0-....: (1 GPs behind) idle=64a/0/0x3 softirq=4091/4091 fqs=2437
-> > > dwmac-sun8i 5020000.ethernet eth0: Reset adapter.
-> > > rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 5696 jiffies s: 81 root: 0x1/.
-> > > rcu: blocking rcu_node structures:
-> > >  rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > rcu:    0-....: (1 GPs behind) idle=64a/0/0x3 softirq=4091/4091 fqs=9714
-> > > rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 21568 jiffies s: 81 root: 0x1/.
-> > > rcu: blocking rcu_node structures:
-> > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > rcu:    0-....: (1 GPs behind) idle=64a/0/0x3 softirq=4091/4091 fqs=17203
-> > >
-> > > above messages appear regularly.
-> > >
-> > > boot 3:
-> > >
-> > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > rcu:    0-....: (9 GPs behind) idle=992/0/0x3 softirq=6123/6123 fqs=2600
-> > >
-> > >
-> > > Sometimes serial console keeps working. Sometimes it locks up too (but not
-> > > frequently). Storage locks up always (any program that was not run before
-> > > the crash can't be started and lock up the kernel hard, programs that
-> > > were executed prior, can be run again).
-> > >
-> > >
-> > > Exactly the same kernel build on H5 seems to work (or at least I was not able to
-> > > trigger the crash). So this seems to be limited to H6 for now.
-> > >
-> > > I suspect that the crash occurs sooner if I vary the light (turn on/off the table
-> > > lamp light).
-> > >
-> > > Without your patches, everything works fine on H6, and I never see
-> > > crashes/lockups.
-> > >
-> > > I tired physically covering the IR receiver, and that helps preventing the
-> > > crash. As soon as I uncover it, the crash happens again in 1s or so:
-> > >
-> > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > rcu:    0-....: (1 GPs behind) idle=4ea/0/0x3 softirq=4483/4484 fqs=2444
-> > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > rcu:    0-....: (1 GPs behind) idle=4ea/0/0x3 softirq=4483/4484 fqs=9777
-> > >
-> > > This time I got the hung task and reboot: (probably not directly related)
-> > >
-> > > INFO: task find:560 blocked for more than 120 seconds.
-> > >       Not tainted 5.2.0-rc2+ #7
-> > > "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-> > > find            D    0   560    551 0x00000000
-> > > Call trace:
-> > >  __switch_to+0x6c/0x90
-> > >  __schedule+0x1f4/0x578
-> > >  schedule+0x28/0xa8
-> > >  io_schedule+0x18/0x38
-> > >  __lock_page+0x12c/0x208
-> > >  pagecache_get_page+0x238/0x2e8
-> > >  __get_node_page+0x6c/0x310
-> > >  f2fs_get_node_page+0x14/0x20
-> > >  f2fs_iget+0x70/0xc60
-> > >  f2fs_lookup+0xcc/0x218
-> > >  __lookup_slow+0x78/0x160
-> > >  lookup_slow+0x3c/0x60
-> > >  walk_component+0x1e4/0x2e0
-> > >  path_lookupat.isra.13+0x5c/0x1e0
-> > >  filename_lookup.part.23+0x6c/0xe8
-> > >  user_path_at_empty+0x4c/0x60
-> > >  vfs_statx+0x78/0xd8
-> > >  __se_sys_newfstatat+0x24/0x48
-> > >  __arm64_sys_newfstatat+0x18/0x20
-> > >  el0_svc_handler+0x9c/0x170
-> > >  el0_svc+0x8/0xc
-> > > Kernel panic - not syncing: hung_task: blocked tasks
-> > > CPU: 1 PID: 34 Comm: khungtaskd Not tainted 5.2.0-rc2+ #7
-> > > Hardware name: OrangePi 3 (DT)
-> > > Call trace:
-> > >  dump_backtrace+0x0/0xf8
-> > >  show_stack+0x14/0x20
-> > >  dump_stack+0xa8/0xcc
-> > >  panic+0x124/0x2dc
-> > >  proc_dohung_task_timeout_secs+0x0/0x40
-> > >  kthread+0x120/0x128
-> > >  ret_from_fork+0x10/0x18
-> > > SMP: stopping secondary CPUs
-> > > Kernel Offset: disabled
-> > > CPU features: 0x0002,20002000
-> > > Memory Limit: none
-> > > Rebooting in 3 seconds..
-> > >
-> > >
-> > > Meanwhile H5 based board now runs for 15 minutes without issues.
-> > >
-> > > So to sum up:
-> > >
-> > > - these crashes are definitely H6 IR related
-> > >   - the same kernel, on H5 works
-> > >   - covering the sensor prevents the crashes on H6
-> > >
-> > > So we should probably hold on with the series, until this is figured out.
-> > 
-> > Thanks for testing, but I think it's more hardware related.
-> > It seems that your IR is flooded or misconfigured for your board.
-> > Could you add a simple print in the "sunxi_ir_irq"
-> 
-> Yes, I get flood of IRQs with status = 0x30. (after I turn on the lamp,
-> but it persists even after I turn it off and cover the IR sensor).
+Thank you for the update.
 
-Interestingly, status also contains RAC, and it's 0 in this case. So the 
-interrupt if firing with "No available data in RX FIFO" repeatedly. Regardless
-of input.
+One thing is missing here - we need to document how legacy brightness
+levels map to the sub-LED color levels, i.e. what you do in
+multicolor_set_brightness().
 
-So there's something else up.
+Best regards,
+Jacek Anaszewski
 
-regards,
-	o.
+On 5/23/19 9:08 PM, Dan Murphy wrote:
+> Add a documentation of LED Multicolor LED class specific
+> sysfs attributes.
+> 
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>   .../ABI/testing/sysfs-class-led-multicolor    | 57 +++++++++++++++++++
+>   1 file changed, 57 insertions(+)
+>   create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor b/Documentation/ABI/testing/sysfs-class-led-multicolor
+> new file mode 100644
+> index 000000000000..2f102ede258b
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
+> @@ -0,0 +1,57 @@
+> +What:		/sys/class/leds/<led>/colors/sync_enable
+> +Date:		April 2019
+> +KernelVersion:	5.2
+> +Contact:	Dan Murphy <dmurphy@ti.com>
+> +Description:	read/write
+> +		Writing a 1 to this file will enable the synchronization of all
+> +		the defined color LEDs within the LED node.  Brightness values
+> +		for each LED will be stored and written when sync is set to 1.
+> +		Writing a 0 to this file will disable syncing and allow
+> +		individual control of the LEDs brightness settings.
+> +
+> +What:		/sys/class/leds/<led>/colors/sync
+> +Date:		April 2019
+> +KernelVersion:	5.2
+> +Contact:	Dan Murphy <dmurphy@ti.com>
+> +Description:	write only
+> +		Writing a 1 to this file while sync_enable is set to 1 will
+> +		write the current brightness values to all defined LEDs within
+> +		the LED node.  All LEDs defined will be configured based
+> +		on the brightness that has been requested.
+> +
+> +		If sync_enable is set to 0 then writing a 1 to sync has no
+> +		affect on the LEDs.
+> +
+> +What:		/sys/class/leds/<led>/colors/<led_color>/brightness
+> +Date:		April 2019
+> +KernelVersion:	5.2
+> +Contact:	Dan Murphy <dmurphy@ti.com>
+> +Description:	read/write
+> +		The led_color directory is dynamically created based on the
+> +		colors defined by the registrar of the class.
+> +		The led_color can be but not limited to red, green, blue,
+> +		white, amber, yellow and violet.  Drivers can also declare a
+> +		LED color for presentation.  There is one directory per color
+> +		presented.  The brightness file is created under each
+> +		led_color directory and controls the individual LED color
+> +		setting.
+> +
+> +		If sync is enabled then	writing the brightness value of the LED
+> +		is deferred until a 1 is written to
+> +		/sys/class/leds/<led>/color/sync.  If syncing is
+> +		disabled then the LED brightness value will be written
+> +		immediately to the LED driver.
+> +
+> +		The value of the color is from 0 to
+> +		/sys/class/leds/<led>/colors/<led_color>/max_brightness.
+> +
+> +What:		/sys/class/leds/<led>/colors/<led_color>/max_brightness
+> +Date:		April 2019
+> +KernelVersion:	5.2
+> +Contact:	Dan Murphy <dmurphy@ti.com>
+> +Description:	read only
+> +		Maximum brightness level for the LED color, default is
+> +		255 (LED_FULL).
+> +
+> +		If the LED does not support different brightness levels, this
+> +		should be 1.
+> 
 
-> That's weird, because on H6 in CIR_RXSTA, bit 5 is undefined but corresponding 
-> bit in CIR_RXINT is DRQ_EN (RX FIFO DMA Enable)
-> 
-> So I'm not sure what it could be flooded with and why IRQs keep being
-> fired, even with no sensor input after the FIFO is read.
-> 
-> regards,
-> 	o.
-> 
-> > If it's confirmed, maybe tweak the threshold configuration or
-> > implement the new active_threshold will help.
-> > 
-> > With my hardware Beelink GS1 and on Jernej's board (A64) there is no issue.
-> > 
-> > I will disable all the other H6 boards until someone test it.
-> > 
-> > Regards,
-> > Clément
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
