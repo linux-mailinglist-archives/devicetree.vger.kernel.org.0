@@ -2,132 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D882B02D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECCB2B041
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726437AbfE0I2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 04:28:12 -0400
-Received: from mail-eopbgr50074.outbound.protection.outlook.com ([40.107.5.74]:61939
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725869AbfE0I2M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 04:28:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zFNKVrfhO5x9hzNK0VbeADDNtMTZ/ZXVhzdsfLYLZZA=;
- b=ZQfLiU9Q0JWIBHNwZJ3brGyK978MmJvhUJ1+8V0oGg4SYAskjcy/1Pm/QKH/w++kIgvs/Pk6j3OvYnjkRtDHlhIrg9sC+rz0uhGB7UGZJTK2AvLGSfZvP1+29iPaNqvpm90lmSj6mQ7X5q/dRrqAMBJm6Krt2EsvD2PuVvG967o=
-Received: from VI1PR04MB4333.eurprd04.prod.outlook.com (52.134.122.155) by
- VI1PR04MB4031.eurprd04.prod.outlook.com (10.171.182.28) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.16; Mon, 27 May 2019 08:27:26 +0000
-Received: from VI1PR04MB4333.eurprd04.prod.outlook.com
- ([fe80::497a:768:c7b1:34e0]) by VI1PR04MB4333.eurprd04.prod.outlook.com
- ([fe80::497a:768:c7b1:34e0%6]) with mapi id 15.20.1922.021; Mon, 27 May 2019
- 08:27:26 +0000
-From:   Andy Tang <andy.tang@nxp.com>
-To:     Leo Li <leoyang.li@nxp.com>
-CC:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor
- node
-Thread-Topic: [EXT] Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor
- node
-Thread-Index: AQHVEdA5Oph4GV2XbECsbmKrZdLVl6Z63V2AgAPKYSA=
-Date:   Mon, 27 May 2019 08:27:26 +0000
-Message-ID: <VI1PR04MB4333A3E635CFDBD860D3061DF31D0@VI1PR04MB4333.eurprd04.prod.outlook.com>
-References: <20190524012151.31840-1-andy.tang@nxp.com>
- <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
-In-Reply-To: <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=andy.tang@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 93c023bf-5c12-47c9-b227-08d6e27d2697
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB4031;
-x-ms-traffictypediagnostic: VI1PR04MB4031:
-x-microsoft-antispam-prvs: <VI1PR04MB4031E9167AD0E7E7598AB0DAF31D0@VI1PR04MB4031.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0050CEFE70
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(396003)(346002)(136003)(366004)(376002)(199004)(189003)(13464003)(4326008)(52536014)(102836004)(2906002)(53546011)(55016002)(5660300002)(6862004)(9686003)(8676002)(81166006)(99286004)(229853002)(3846002)(6116002)(14444005)(256004)(81156014)(316002)(6506007)(74316002)(53936002)(6246003)(7696005)(54906003)(6636002)(25786009)(6436002)(76176011)(33656002)(68736007)(14454004)(66066001)(86362001)(44832011)(71200400001)(7736002)(305945005)(71190400001)(486006)(11346002)(446003)(478600001)(476003)(66946007)(73956011)(66556008)(66476007)(66446008)(64756008)(76116006)(26005)(8936002)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4031;H:VI1PR04MB4333.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 0mOXCrVTSsfkf6zUhJeXkNJUj+2tcJL47Q7Vs6hXLrXoSGj7E6vzwSsiO55mP1KIGMMu8CHCsWWX7L9mABm1SNDxOs8Syf5NtxaPc44jcHkZfujs2VZPB0RCn9S+2yAVvhA4HI54UVA5Ic/xb7eiXU30ujcYam7hXgTdkFn4nfpEYQrfAgjc6J+ZA8tqN2ohEnvqtvBbuEwJmy+qoqj/us5NeRAXl9muj3cbegDiBWkT6w+TJlKuvUBU8z/OE5tkksi1aEiJi478C475Hpu0Tq4f6g0z/OhVhTllt9tKITu0SRx8FctEI5pYzh/m1o4c+7mhAbH/ccY1kCla5ceuT6qUdDUHxL/ZiHSs8FYeorDvUckEbZJBSTxdsC/N+Kt6yEf71mLE0E5ReI0r6D/Mno76kZJ5BOuodFmeT++YNxc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726494AbfE0IcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 04:32:01 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:45145 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725869AbfE0IcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 04:32:01 -0400
+Received: by mail-lf1-f68.google.com with SMTP id n22so3695454lfe.12
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2019 01:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=msBvHSqOeQ2O3HeDL0gyYKRgOofkTAonof6cHzbdty8=;
+        b=K2IsWqj/8uLGAHF3obxLHQ2PBWMMB0g+HBTuoPE3yHpISaNGL2x4S+eXInq84bpouV
+         6Bn6hbgq2cHuBan81zJcyO4+/OcHczmMOZkQJxq1rTk55mu1G9nvjjuRweunv4q0/tZ+
+         mkvm6QclP0nz3vBMyyoXqBuMdBlPNmYCZ69buUOChJdw1xeFjuwVxooB4FKrF/m2PGbZ
+         ni1it83vMFcBH+NqkcSkkI7IW7MJfmLydKANoz33nN1WrJZMAWeXTDLFi05fDpkMh7B5
+         8tPOvKSk2lVhA2zf79I3/dgFBLn1M0DbpMGj2rUJtj9ItaaMvJ/Wi2B3JcPULUUozPVo
+         pa4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=msBvHSqOeQ2O3HeDL0gyYKRgOofkTAonof6cHzbdty8=;
+        b=DlNQdB5ZoP6zXVc8qHcesMLTVP+5iR18WhdU6QRD5yoXJ9EaYS7IzsKYhrWN0mag57
+         HyRcvV636LXneWpGx2Jr/Si4C0XB5l8Ocs0BmWslkLYA7oprhMg9xtrokK2qYYyK1V4V
+         E1OcLmyZDvajLNm7QszYr2/5/ZyvCbICJg0zdbQbyrjEFaddyfpWJGFLc4s6M3kxoZ4/
+         A32MFf2HSmk/5olbo+jOUR/ElUt+B9kSTy9hqQXCsuS/YsMPQurRQEUw2XVzF/8WRvcG
+         YUWF/1uJWKegNUOz5QlyWViwUBOuV5iXfqPyAsx841FPpldHewdyvRgTvfhupke9MV/L
+         gTUw==
+X-Gm-Message-State: APjAAAVLm3ngBYuLmkljKx1ph7+PWh9JyqbO3RxnyIClb4K+O+va1SWr
+        QZtiGAap+DaBKatRZ8O4QGSVvKCQws84ArFUoavBiQ==
+X-Google-Smtp-Source: APXvYqx4ygyGO1WaMH4jV3IUdUZiwm4Skzxy1AGnLF/+B5loX4sz9cx7v9dhzTInXp9sBNJQZLLi1ny3rKvYApSe/u8=
+X-Received: by 2002:ac2:5310:: with SMTP id c16mr1234498lfh.119.1558945917668;
+ Mon, 27 May 2019 01:31:57 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93c023bf-5c12-47c9-b227-08d6e27d2697
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 08:27:26.4439
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: andy.tang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4031
+References: <20190521115958.22504-1-masahisa.kojima@linaro.org>
+ <20190521115958.22504-4-masahisa.kojima@linaro.org> <CAHp75VdJLB6Tqu7z-o++44TfWnY3ghfSn=Kb=nAtxdFggOxBnw@mail.gmail.com>
+In-Reply-To: <CAHp75VdJLB6Tqu7z-o++44TfWnY3ghfSn=Kb=nAtxdFggOxBnw@mail.gmail.com>
+From:   Masahisa Kojima <masahisa.kojima@linaro.org>
+Date:   Mon, 27 May 2019 17:31:44 +0900
+Message-ID: <CADQ0-X_Kws0K8H0GG8NVXmpxj9gx=TfrcKoXFGXX1XvK2hJOCA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] spi: Add spi driver for Socionext Synquacer platform
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Trent Piepho <tpiepho@impinj.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Satoru Okamoto <okamoto.satoru@socionext.com>,
+        Yoshitoyo Osaki <osaki.yoshitoyo@socionext.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTGVvLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IExpIFlhbmcg
-PGxlb3lhbmcubGlAbnhwLmNvbT4NCj4gU2VudDogMjAxOeW5tDXmnIgyNeaXpSA2OjMyDQo+IFRv
-OiBBbmR5IFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1
-b0BrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47DQo+IE1hcmsg
-UnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+OyBtb2RlcmF0ZWQgbGlzdDpBUk0vRlJFRVND
-QUxFDQo+IElNWCAvIE1YQyBBUk0gQVJDSElURUNUVVJFIDxsaW51eC1hcm0ta2VybmVsQGxpc3Rz
-LmluZnJhZGVhZC5vcmc+Ow0KPiBvcGVuIGxpc3Q6T1BFTiBGSVJNV0FSRSBBTkQgRkxBVFRFTkVE
-IERFVklDRSBUUkVFIEJJTkRJTkdTDQo+IDxkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZz47IGxr
-bWwgPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc+DQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBb
-UEFUQ0hdIGFybTY0OiBkdHM6IGxzMTAyOGE6IEFkZCB0ZW1wZXJhdHVyZSBzZW5zb3INCj4gbm9k
-ZQ0KPiANCj4gQ2F1dGlvbjogRVhUIEVtYWlsDQo+IA0KPiBPbiBUaHUsIE1heSAyMywgMjAxOSBh
-dCA4OjMwIFBNIFl1YW50aWFuIFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiB3cm90ZToNCj4g
-Pg0KPiA+IEFkZCBueHAgc2E1NjAwNCBjaGlwIG5vZGUgZm9yIHRlbXBlcmF0dXJlIG1vbml0b3Iu
-DQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZdWFudGlhbiBUYW5nIDxhbmR5LnRhbmdAbnhwLmNv
-bT4NCj4gPiAtLS0NCj4gPiAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAy
-OGEtcWRzLmR0cyB8IDUgKysrKysNCj4gPiBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9m
-c2wtbHMxMDI4YS1yZGIuZHRzIHwgNSArKysrKw0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDEwIGlu
-c2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
-ZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
-ZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQo+ID4gaW5kZXggYjM1OTA2OGQ5NjA1Li4zMWZk
-NjI2ZGQzNDQgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
-ZnNsLWxzMTAyOGEtcWRzLmR0cw0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
-YWxlL2ZzbC1sczEwMjhhLXFkcy5kdHMNCj4gPiBAQCAtMTMxLDYgKzEzMSwxMSBAQA0KPiA+ICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhdG1lbCwyNGM1MTIi
-Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4NTc+Ow0KPiA+
-ICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIHRlbXBANGMgew0KPiANCj4gVGhlIHJlY29tbWVuZGVkIG5hbWUgZm9yIHRlbXBlcmF0
-dXJlIHNlbm9yIGluIGR0cyBzcGVjIGlzDQo+IHRlbXBlcmF0dXJlLXNlbnNvci4NCkkgZGlkbid0
-IGZpbmQgdGhlIHNwZWMgZm9yIHRoaXMgcmVjb21tZW5kYXRpb24uIENvdWxkIHlvdSBwbGVhc2Ug
-cHJvdmlkZSB0aGUgbGluaz8NCkkgbGlrZSB0byB1cGRhdGUgaXQgdG8gdGVtcC1zZW5zb3IgdGhv
-dWdoLg0KDQo+IA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJs
-ZSA9ICJueHAsc2E1NjAwNCI7DQo+IA0KPiBUaGUgYmluZGluZyBzYXlzIHRoZSBmb2xsb3dpbmcg
-cHJvcGVydHkgaXMgcmVxdWlyZWQuICBJZiBpdCBpcyBub3QgdGhlIGNhc2UsDQo+IHByb2JhYmx5
-IHdlIHNob3VsZCB1cGRhdGUgdGhlIGJpbmRpbmcuDQo+IC0gdmNjLXN1cHBseTogdmNjIHJlZ3Vs
-YXRvciBmb3IgdGhlIHN1cHBseSB2b2x0YWdlLg0KSSB3aWxsIGFkZCB0aGUgdmNjLXN1cHBseSB0
-byBjb21wbHkgdGhpcyByZXF1aXJlbWVudC4NCg0KVGhhbmtzLA0KQW5keQ0KPiANCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwweDRjPjsNCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICB9Ow0KPiA+ICAgICAgICAgICAgICAgICB9Ow0KPiA+DQo+ID4gICAgICAg
-ICAgICAgICAgIGkyY0A1IHsNCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9m
-cmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cw0KPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9m
-cmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cw0KPiA+IGluZGV4IGY5YzI3MmZiMDczOC4uMDEy
-YjNmODY5NmI3IDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxl
-L2ZzbC1sczEwMjhhLXJkYi5kdHMNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
-Y2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQo+ID4gQEAgLTExOSw2ICsxMTksMTEgQEANCj4gPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibnhwLHBjZjIxMjki
-Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4NTE+Ow0KPiA+
-ICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIHRlbXBANGMgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29t
-cGF0aWJsZSA9ICJueHAsc2E1NjAwNCI7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICByZWcgPSA8MHg0Yz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiAg
-ICAgICAgICAgICAgICAgfTsNCj4gPiAgICAgICAgIH07DQo+ID4gIH07DQo+ID4gLS0NCj4gPiAy
-LjE3LjENCj4gPg0K
+Thank you for your comments.
+
+On Wed, 22 May 2019 at 01:38, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>
+> On Tue, May 21, 2019 at 3:00 PM Masahisa Kojima
+> <masahisa.kojima@linaro.org> wrote:
+> >
+> > This patch adds support for controller found on synquacer platforms.
+>
+> > +       case 8:
+> > +               {
+> > +               u8 *buf = sspi->rx_buf;
+> > +
+> > +               readsb(sspi->regs + SYNQUACER_HSSPI_REG_RX_FIFO, buf, len);
+> > +               sspi->rx_buf = buf + len;
+> > +               break;
+> > +               }
+>
+> Slightly better style
+> case FOO: {
+>   ...
+> }
+>
+> > +       /* Full Duplex only on 1-bit wide bus */
+> > +       if (xfer->rx_buf && xfer->tx_buf &&
+> > +           (xfer->rx_nbits != 1 || xfer->tx_nbits != 1)) {
+> > +               dev_err(sspi->dev,
+> > +                       "RX and TX bus widths must match for Full-Duplex!\n");
+>
+> The message is not telling full truth. Not only match, but also be equal 1.
+>
+> > +               return -EINVAL;
+> > +       }
+>
+> > +static int synquacer_spi_transfer_one(struct spi_master *master,
+> > +                                     struct spi_device *spi,
+> > +                                     struct spi_transfer *xfer)
+> > +{
+> > +       struct synquacer_spi *sspi = spi_master_get_devdata(master);
+> > +       int ret;
+> > +       int status = 0;
+> > +       unsigned int words;
+> > +       u8 bpw;
+> > +       u32 val;
+> > +
+> > +       val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
+> > +       val |= SYNQUACER_HSSPI_FIFOCFG_RX_FLUSH;
+> > +       val |= SYNQUACER_HSSPI_FIFOCFG_TX_FLUSH;
+> > +       writel_relaxed(val, sspi->regs + SYNQUACER_HSSPI_REG_FIFOCFG);
+> > +
+> > +       /*
+> > +        * See if we can transfer 4-bytes as 1 word
+> > +        * to maximize the FIFO buffer effficiency
+>
+> Typo here, and period is missed.
+>
+> > +        */
+>
+> > +       case 8:
+> > +               words = xfer->len;
+> > +               break;
+> > +       case 16:
+> > +               words = xfer->len / 2;
+> > +               break;
+> > +       default:
+> > +               words = xfer->len / 4;
+> > +               break;
+>
+> Hmm... Shouldn't be rather "less then or equal" comparisons?
+
+As Mark's comment, I will explicitly list the values(8, 16, 24 and 32).
+
+> > +       unsigned int retries = 0xfffff;
+>
+> Hmm... better to use decimal value.
+
+Instead of implementing retry with counter, I will implement
+wait function with checking time_before(jiffies, timeout).
+
+>
+> > +       /* Disable module */
+> > +       writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_MCTRL);
+>
+> > +       while ((readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_MCTRL) &
+> > +               SYNQUACER_HSSPI_MCTRL_MES) && --retries)
+> > +               cpu_relax();
+> > +       if (!retries)
+> > +               return -EBUSY;
+>
+> And here something like
+> do {
+> } while (--retries)
+>
+> would look slightly better due to understanding that we do at least
+> one iteration.
+>
+> Also, can readx_poll_timeout be used here?
+>
+> > +static irqreturn_t sq_spi_tx_handler(int irq, void *priv)
+> > +{
+> > +       uint32_t val;
+> > +       struct synquacer_spi *sspi = priv;
+> > +
+> > +       val = readl_relaxed(sspi->regs + SYNQUACER_HSSPI_REG_TXF);
+> > +
+> > +       if (val & SYNQUACER_HSSPI_TXF_FIFO_EMPTY) {
+> > +               if (sspi->tx_words == 0) {
+> > +                       writel_relaxed(0, sspi->regs + SYNQUACER_HSSPI_REG_TXE);
+> > +                       complete(&sspi->transfer_done);
+>
+> > +                       return 0;
+>
+> irqreturn_t type, please. We have corresponding defines.
+>
+> > +               }
+> > +               write_fifo(sspi);
+> > +       }
+> > +
+> > +       return 0;
+>
+> Ditto.
+>
+> > +}
+>
+> > +static int synquacer_spi_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device_node *np = pdev->dev.of_node;
+> > +       struct spi_master *master;
+> > +       struct synquacer_spi *sspi;
+> > +       struct resource *res;
+> > +       int ret;
+> > +       int rx_irq, tx_irq;
+> > +
+> > +       master = spi_alloc_master(&pdev->dev, sizeof(*sspi));
+> > +       if (!master)
+> > +               return -ENOMEM;
+> > +
+> > +       platform_set_drvdata(pdev, master);
+> > +
+> > +       sspi = spi_master_get_devdata(master);
+> > +       sspi->dev = &pdev->dev;
+> > +
+>
+> > +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +       sspi->regs = devm_ioremap_resource(sspi->dev, res);
+>
+> devm_platform_ioremap_resource()
+>
+> > +       if (IS_ERR(sspi->regs)) {
+> > +               ret = PTR_ERR(sspi->regs);
+> > +               goto put_spi;
+> > +       }
+>
+> > +       } else {
+> > +               dev_err(&pdev->dev, "specified wrong clock source\n");
+> > +               ret = -EINVAL;
+> > +               goto put_spi;
+> > +       }
+>
+> Not an issue for ACPI.
+>
+> > +       if (IS_ERR(sspi->clk)) {
+> > +               dev_err(&pdev->dev, "clock not found\n");
+> > +               ret = PTR_ERR(sspi->clk);
+> > +               goto put_spi;
+> > +       }
+> > +
+> > +       sspi->aces = of_property_read_bool(np, "socionext,set-aces");
+> > +       sspi->rtm = of_property_read_bool(np, "socionext,use-rtm");
+> > +
+> > +       master->num_chipselect = SYNQUACER_HSSPI_NUM_CHIP_SELECT;
+> > +
+> > +       init_completion(&sspi->transfer_done);
+> > +
+> > +       rx_irq = platform_get_irq(pdev, 0);
+> > +       if (rx_irq < 0)
+> > +               dev_err(&pdev->dev, "get rx_irq failed\n");
+> > +
+> > +       tx_irq = platform_get_irq(pdev, 1);
+> > +       if (tx_irq < 0)
+> > +               dev_err(&pdev->dev, "get tx_irq failed\n");
+> > +
+> > +       ret = devm_request_irq(&pdev->dev, rx_irq, sq_spi_rx_handler,
+> > +                               0, "synquacer-spi-rx", sspi);
+> > +       ret = devm_request_irq(&pdev->dev, tx_irq, sq_spi_tx_handler,
+> > +                               0, "synquacer-spi-tx", sspi);
+> > +
+> > +       ret = clk_prepare_enable(sspi->clk);
+> > +       if (ret)
+> > +               goto put_spi;
+> > +
+> > +       master->dev.of_node = np;
+> > +       master->auto_runtime_pm = true;
+> > +       master->bus_num = pdev->id;
+> > +
+> > +       master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_TX_DUAL | SPI_RX_DUAL |
+> > +                           SPI_TX_QUAD | SPI_RX_QUAD;
+> > +       master->bits_per_word_mask = SPI_BPW_MASK(32) | SPI_BPW_MASK(24) |
+> > +                                    SPI_BPW_MASK(16) | SPI_BPW_MASK(8);
+> > +
+> > +       master->max_speed_hz = clk_get_rate(sspi->clk);
+> > +       master->min_speed_hz = master->max_speed_hz / 254;
+> > +
+> > +       master->set_cs = synquacer_spi_set_cs;
+> > +       master->transfer_one = synquacer_spi_transfer_one;
+> > +
+> > +       ret = synquacer_spi_enable(master);
+> > +       if (ret)
+> > +               goto fail_enable;
+> > +
+> > +       pm_runtime_set_active(sspi->dev);
+> > +       pm_runtime_enable(sspi->dev);
+> > +
+> > +       ret = devm_spi_register_master(sspi->dev, master);
+> > +       if (ret)
+> > +               goto disable_pm;
+> > +
+> > +       return 0;
+> > +
+> > +disable_pm:
+> > +       pm_runtime_disable(sspi->dev);
+> > +fail_enable:
+> > +       clk_disable_unprepare(sspi->clk);
+> > +put_spi:
+> > +       spi_master_put(master);
+> > +
+> > +       return ret;
+> > +}
+>
+>
+> > +       if (!pm_runtime_suspended(dev))
+>
+> This is not enough to check.
+
+I checked other drivers, but I could find what is missing.
+Could you kindly share more details?
+
+>
+> > +       if (!pm_runtime_suspended(dev)) {
+>
+> Ditto.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
