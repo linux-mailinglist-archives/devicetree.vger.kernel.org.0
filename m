@@ -2,689 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FFE2B6F3
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41892B6E4
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726628AbfE0Ns0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 09:48:26 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53496 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726619AbfE0Ns0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:48:26 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4RDmD8N012518;
-        Mon, 27 May 2019 08:48:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1558964893;
-        bh=8htxxYwVuVexeT6tGtkINtgVw0R60e9Wid5CiXQrcmU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=W99kAPbEUHTcmmo3fcYvJdkeyC4VN3Zlk5lzESfo/zsvKueF5FJ8qg+O+6tOt55qb
-         k8WFw4/f4O6I3q6RX/K2UL2SaM29AP8zNO+ALjFY9a3rU6Qr/25aikUnqiRFeisCy0
-         /zZ0LKu3ezRD6768PqCkC9DV3zsFS9f/KvnIfXqU=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4RDmDhg055064
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 May 2019 08:48:13 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 27
- May 2019 08:48:13 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 27 May 2019 08:48:13 -0500
-Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4RDlviJ065947;
-        Mon, 27 May 2019 08:48:11 -0500
-From:   Jyri Sarha <jsarha@ti.com>
-To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>
-CC:     <laurent.pinchart@ideasonboard.com>, <tomi.valkeinen@ti.com>,
-        <peter.ujfalusi@ti.com>, <a.hajda@samsung.com>, <robh@kernel.org>
-Subject: [PATCH v8 6/6] drm/bridge: sii902x: Implement HDMI audio support
-Date:   Mon, 27 May 2019 16:47:57 +0300
-Message-ID: <ef6895d016554b1e0c8b388d4993bcd6a3699341.1558964241.git.jsarha@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1558964241.git.jsarha@ti.com>
-References: <cover.1558964241.git.jsarha@ti.com>
+        id S1726452AbfE0NsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 09:48:08 -0400
+Received: from vps.xff.cz ([195.181.215.36]:50564 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726191AbfE0NsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 09:48:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1558964885; bh=ustEk4EO9XCG6FHJLRsAPk5OCbRSi/9z1v7hcR+OOgc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=edC5Jqk9FcWLFnpa3bcokUCDAFQwsb+TpIDCCYGdhgfUh1W7oU5Bn2z9Q0GL+F8Kt
+         42vTLM8E5qQffspMvcPk6PzjMvdtXIcbSRfGRYIdLtoGA+RizEVkzZa4TRt/L3mxxf
+         AJPIdPH7zJyf/4FtMpBuLG2nnV9lRFhnELYl4BC8=
+Date:   Mon, 27 May 2019 15:48:05 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 00/10] Allwinner A64/H6 IR support
+Message-ID: <20190527134805.j7t4ffstrnhdml47@core.my.home>
+Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+References: <20190526222536.10917-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190526222536.10917-1-peron.clem@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement HDMI audio support by using ASoC HDMI codec. The commit
-implements the necessary callbacks and configuration for the HDMI
-codec and registers a virtual platform device for the codec to attach.
+Hi Clément,
 
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
-Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
----
- drivers/gpu/drm/bridge/sii902x.c | 469 ++++++++++++++++++++++++++++++-
- 1 file changed, 463 insertions(+), 6 deletions(-)
+On Mon, May 27, 2019 at 12:25:26AM +0200, Clément Péron wrote:
+> Hi,
+> 
+> A64 IR support series[1] pointed out that an A31 bindings should be
+> introduced.
+> 
+> This series introduce the A31 compatible bindings, then switch it on
+> the already existing board.
+> 
+> Finally introduce A64 and H6 support.
 
-diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-index 19f982a00dba..bc3325c5e5c3 100644
---- a/drivers/gpu/drm/bridge/sii902x.c
-+++ b/drivers/gpu/drm/bridge/sii902x.c
-@@ -27,6 +27,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/regmap.h>
-+#include <linux/clk.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_drv.h>
-@@ -34,6 +35,8 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
-+#include <sound/hdmi-codec.h>
-+
- #define SII902X_TPI_VIDEO_DATA			0x0
- 
- #define SII902X_TPI_PIXEL_REPETITION		0x8
-@@ -75,6 +78,77 @@
- #define SII902X_AVI_POWER_STATE_MSK		GENMASK(1, 0)
- #define SII902X_AVI_POWER_STATE_D(l)		((l) & SII902X_AVI_POWER_STATE_MSK)
- 
-+/* Audio  */
-+#define SII902X_TPI_I2S_ENABLE_MAPPING_REG	0x1f
-+#define SII902X_TPI_I2S_CONFIG_FIFO0			(0 << 0)
-+#define SII902X_TPI_I2S_CONFIG_FIFO1			(1 << 0)
-+#define SII902X_TPI_I2S_CONFIG_FIFO2			(2 << 0)
-+#define SII902X_TPI_I2S_CONFIG_FIFO3			(3 << 0)
-+#define SII902X_TPI_I2S_LEFT_RIGHT_SWAP			(1 << 2)
-+#define SII902X_TPI_I2S_AUTO_DOWNSAMPLE			(1 << 3)
-+#define SII902X_TPI_I2S_SELECT_SD0			(0 << 4)
-+#define SII902X_TPI_I2S_SELECT_SD1			(1 << 4)
-+#define SII902X_TPI_I2S_SELECT_SD2			(2 << 4)
-+#define SII902X_TPI_I2S_SELECT_SD3			(3 << 4)
-+#define SII902X_TPI_I2S_FIFO_ENABLE			(1 << 7)
-+
-+#define SII902X_TPI_I2S_INPUT_CONFIG_REG	0x20
-+#define SII902X_TPI_I2S_FIRST_BIT_SHIFT_YES		(0 << 0)
-+#define SII902X_TPI_I2S_FIRST_BIT_SHIFT_NO		(1 << 0)
-+#define SII902X_TPI_I2S_SD_DIRECTION_MSB_FIRST		(0 << 1)
-+#define SII902X_TPI_I2S_SD_DIRECTION_LSB_FIRST		(1 << 1)
-+#define SII902X_TPI_I2S_SD_JUSTIFY_LEFT			(0 << 2)
-+#define SII902X_TPI_I2S_SD_JUSTIFY_RIGHT		(1 << 2)
-+#define SII902X_TPI_I2S_WS_POLARITY_LOW			(0 << 3)
-+#define SII902X_TPI_I2S_WS_POLARITY_HIGH		(1 << 3)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_128		(0 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_256		(1 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_384		(2 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_512		(3 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_768		(4 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_1024		(5 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_1152		(6 << 4)
-+#define SII902X_TPI_I2S_MCLK_MULTIPLIER_192		(7 << 4)
-+#define SII902X_TPI_I2S_SCK_EDGE_FALLING		(0 << 7)
-+#define SII902X_TPI_I2S_SCK_EDGE_RISING			(1 << 7)
-+
-+#define SII902X_TPI_I2S_STRM_HDR_BASE	0x21
-+#define SII902X_TPI_I2S_STRM_HDR_SIZE	5
-+
-+#define SII902X_TPI_AUDIO_CONFIG_BYTE2_REG	0x26
-+#define SII902X_TPI_AUDIO_CODING_STREAM_HEADER		(0 << 0)
-+#define SII902X_TPI_AUDIO_CODING_PCM			(1 << 0)
-+#define SII902X_TPI_AUDIO_CODING_AC3			(2 << 0)
-+#define SII902X_TPI_AUDIO_CODING_MPEG1			(3 << 0)
-+#define SII902X_TPI_AUDIO_CODING_MP3			(4 << 0)
-+#define SII902X_TPI_AUDIO_CODING_MPEG2			(5 << 0)
-+#define SII902X_TPI_AUDIO_CODING_AAC			(6 << 0)
-+#define SII902X_TPI_AUDIO_CODING_DTS			(7 << 0)
-+#define SII902X_TPI_AUDIO_CODING_ATRAC			(8 << 0)
-+#define SII902X_TPI_AUDIO_MUTE_DISABLE			(0 << 4)
-+#define SII902X_TPI_AUDIO_MUTE_ENABLE			(1 << 4)
-+#define SII902X_TPI_AUDIO_LAYOUT_2_CHANNELS		(0 << 5)
-+#define SII902X_TPI_AUDIO_LAYOUT_8_CHANNELS		(1 << 5)
-+#define SII902X_TPI_AUDIO_INTERFACE_DISABLE		(0 << 6)
-+#define SII902X_TPI_AUDIO_INTERFACE_SPDIF		(1 << 6)
-+#define SII902X_TPI_AUDIO_INTERFACE_I2S			(2 << 6)
-+
-+#define SII902X_TPI_AUDIO_CONFIG_BYTE3_REG	0x27
-+#define SII902X_TPI_AUDIO_FREQ_STREAM			(0 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_32KHZ			(1 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_44KHZ			(2 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_48KHZ			(3 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_88KHZ			(4 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_96KHZ			(5 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_176KHZ			(6 << 3)
-+#define SII902X_TPI_AUDIO_FREQ_192KHZ			(7 << 3)
-+#define SII902X_TPI_AUDIO_SAMPLE_SIZE_STREAM		(0 << 6)
-+#define SII902X_TPI_AUDIO_SAMPLE_SIZE_16		(1 << 6)
-+#define SII902X_TPI_AUDIO_SAMPLE_SIZE_20		(2 << 6)
-+#define SII902X_TPI_AUDIO_SAMPLE_SIZE_24		(3 << 6)
-+
-+#define SII902X_TPI_AUDIO_CONFIG_BYTE4_REG	0x28
-+
- #define SII902X_INT_ENABLE			0x3c
- #define SII902X_INT_STATUS			0x3d
- #define SII902X_HOTPLUG_EVENT			BIT(0)
-@@ -82,6 +156,16 @@
- 
- #define SII902X_REG_TPI_RQB			0xc7
- 
-+/* Indirect internal register access */
-+#define SII902X_IND_SET_PAGE			0xbc
-+#define SII902X_IND_OFFSET			0xbd
-+#define SII902X_IND_VALUE			0xbe
-+
-+#define SII902X_TPI_MISC_INFOFRAME_BASE		0xbf
-+#define SII902X_TPI_MISC_INFOFRAME_END		0xde
-+#define SII902X_TPI_MISC_INFOFRAME_SIZE	\
-+	(SII902X_TPI_MISC_INFOFRAME_END - SII902X_TPI_MISC_INFOFRAME_BASE)
-+
- #define SII902X_I2C_BUS_ACQUISITION_TIMEOUT_MS	500
- 
- struct sii902x {
-@@ -91,6 +175,16 @@ struct sii902x {
- 	struct drm_connector connector;
- 	struct gpio_desc *reset_gpio;
- 	struct i2c_mux_core *i2cmux;
-+	/*
-+	 * Mutex protects audio and video functions from interfering
-+	 * each other, by keeping their i2c command sequences atomic.
-+	 */
-+	struct mutex mutex;
-+	struct sii902x_audio {
-+		struct platform_device *pdev;
-+		struct clk *mclk;
-+		u32 i2s_fifo_sequence[4];
-+	} audio;
- };
- 
- static int sii902x_read_unlocked(struct i2c_client *i2c, u8 reg, u8 *val)
-@@ -162,8 +256,12 @@ sii902x_connector_detect(struct drm_connector *connector, bool force)
- 	struct sii902x *sii902x = connector_to_sii902x(connector);
- 	unsigned int status;
- 
-+	mutex_lock(&sii902x->mutex);
-+
- 	regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
- 
-+	mutex_unlock(&sii902x->mutex);
-+
- 	return (status & SII902X_PLUGGED_STATUS) ?
- 	       connector_status_connected : connector_status_disconnected;
- }
-@@ -185,6 +283,8 @@ static int sii902x_get_modes(struct drm_connector *connector)
- 	struct edid *edid;
- 	int num = 0, ret;
- 
-+	mutex_lock(&sii902x->mutex);
-+
- 	edid = drm_get_edid(connector, sii902x->i2cmux->adapter[0]);
- 	drm_connector_update_edid_property(connector, edid);
- 	if (edid) {
-@@ -198,14 +298,19 @@ static int sii902x_get_modes(struct drm_connector *connector)
- 	ret = drm_display_info_set_bus_formats(&connector->display_info,
- 					       &bus_format, 1);
- 	if (ret)
--		return ret;
-+		goto error_out;
- 
- 	ret = regmap_update_bits(sii902x->regmap, SII902X_SYS_CTRL_DATA,
- 				 SII902X_SYS_CTRL_OUTPUT_MODE, output_mode);
- 	if (ret)
--		return ret;
-+		goto error_out;
-+
-+	ret = num;
-+
-+error_out:
-+	mutex_unlock(&sii902x->mutex);
- 
--	return num;
-+	return ret;
- }
- 
- static enum drm_mode_status sii902x_mode_valid(struct drm_connector *connector,
-@@ -225,20 +330,28 @@ static void sii902x_bridge_disable(struct drm_bridge *bridge)
- {
- 	struct sii902x *sii902x = bridge_to_sii902x(bridge);
- 
-+	mutex_lock(&sii902x->mutex);
-+
- 	regmap_update_bits(sii902x->regmap, SII902X_SYS_CTRL_DATA,
- 			   SII902X_SYS_CTRL_PWR_DWN,
- 			   SII902X_SYS_CTRL_PWR_DWN);
-+
-+	mutex_unlock(&sii902x->mutex);
- }
- 
- static void sii902x_bridge_enable(struct drm_bridge *bridge)
- {
- 	struct sii902x *sii902x = bridge_to_sii902x(bridge);
- 
-+	mutex_lock(&sii902x->mutex);
-+
- 	regmap_update_bits(sii902x->regmap, SII902X_PWR_STATE_CTRL,
- 			   SII902X_AVI_POWER_STATE_MSK,
- 			   SII902X_AVI_POWER_STATE_D(0));
- 	regmap_update_bits(sii902x->regmap, SII902X_SYS_CTRL_DATA,
- 			   SII902X_SYS_CTRL_PWR_DWN, 0);
-+
-+	mutex_unlock(&sii902x->mutex);
- }
- 
- static void sii902x_bridge_mode_set(struct drm_bridge *bridge,
-@@ -265,27 +378,32 @@ static void sii902x_bridge_mode_set(struct drm_bridge *bridge,
- 	buf[9] = SII902X_TPI_AVI_INPUT_RANGE_AUTO |
- 		 SII902X_TPI_AVI_INPUT_COLORSPACE_RGB;
- 
-+	mutex_lock(&sii902x->mutex);
-+
- 	ret = regmap_bulk_write(regmap, SII902X_TPI_VIDEO_DATA, buf, 10);
- 	if (ret)
--		return;
-+		goto out;
- 
- 	ret = drm_hdmi_avi_infoframe_from_display_mode(&frame,
- 						       &sii902x->connector, adj);
- 	if (ret < 0) {
- 		DRM_ERROR("couldn't fill AVI infoframe\n");
--		return;
-+		goto out;
- 	}
- 
- 	ret = hdmi_avi_infoframe_pack(&frame, buf, sizeof(buf));
- 	if (ret < 0) {
- 		DRM_ERROR("failed to pack AVI infoframe: %d\n", ret);
--		return;
-+		goto out;
- 	}
- 
- 	/* Do not send the infoframe header, but keep the CRC field. */
- 	regmap_bulk_write(regmap, SII902X_TPI_AVI_INFOFRAME,
- 			  buf + HDMI_INFOFRAME_HEADER_SIZE - 1,
- 			  HDMI_AVI_INFOFRAME_SIZE + 1);
-+
-+out:
-+	mutex_unlock(&sii902x->mutex);
- }
- 
- static int sii902x_bridge_attach(struct drm_bridge *bridge)
-@@ -326,6 +444,335 @@ static const struct drm_bridge_funcs sii902x_bridge_funcs = {
- 	.enable = sii902x_bridge_enable,
- };
- 
-+static int sii902x_mute(struct sii902x *sii902x, bool mute)
-+{
-+	struct device *dev = &sii902x->i2c->dev;
-+	unsigned int val = mute ? SII902X_TPI_AUDIO_MUTE_ENABLE :
-+		SII902X_TPI_AUDIO_MUTE_DISABLE;
-+
-+	dev_dbg(dev, "%s: %s\n", __func__, mute ? "Muted" : "Unmuted");
-+
-+	return regmap_update_bits(sii902x->regmap,
-+				  SII902X_TPI_AUDIO_CONFIG_BYTE2_REG,
-+				  SII902X_TPI_AUDIO_MUTE_ENABLE, val);
-+}
-+
-+static const int sii902x_mclk_div_table[] = {
-+	128, 256, 384, 512, 768, 1024, 1152, 192 };
-+
-+static int sii902x_select_mclk_div(u8 *i2s_config_reg, unsigned int rate,
-+				   unsigned int mclk)
-+{
-+	int div = mclk / rate;
-+	int distance = 100000;
-+	u8 i, nearest = 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(sii902x_mclk_div_table); i++) {
-+		unsigned int d = abs(div - sii902x_mclk_div_table[i]);
-+
-+		if (d >= distance)
-+			continue;
-+
-+		nearest = i;
-+		distance = d;
-+		if (d == 0)
-+			break;
-+	}
-+
-+	*i2s_config_reg |= nearest << 4;
-+
-+	return sii902x_mclk_div_table[nearest];
-+}
-+
-+static const struct sii902x_sample_freq {
-+	u32 freq;
-+	u8 val;
-+} sii902x_sample_freq[] = {
-+	{ .freq = 32000,	.val = SII902X_TPI_AUDIO_FREQ_32KHZ },
-+	{ .freq = 44000,	.val = SII902X_TPI_AUDIO_FREQ_44KHZ },
-+	{ .freq = 48000,	.val = SII902X_TPI_AUDIO_FREQ_48KHZ },
-+	{ .freq = 88000,	.val = SII902X_TPI_AUDIO_FREQ_88KHZ },
-+	{ .freq = 96000,	.val = SII902X_TPI_AUDIO_FREQ_96KHZ },
-+	{ .freq = 176000,	.val = SII902X_TPI_AUDIO_FREQ_176KHZ },
-+	{ .freq = 192000,	.val = SII902X_TPI_AUDIO_FREQ_192KHZ },
-+};
-+
-+static int sii902x_audio_hw_params(struct device *dev, void *data,
-+				   struct hdmi_codec_daifmt *daifmt,
-+				   struct hdmi_codec_params *params)
-+{
-+	struct sii902x *sii902x = dev_get_drvdata(dev);
-+	u8 i2s_config_reg = SII902X_TPI_I2S_SD_DIRECTION_MSB_FIRST;
-+	u8 config_byte2_reg = (SII902X_TPI_AUDIO_INTERFACE_I2S |
-+			       SII902X_TPI_AUDIO_MUTE_ENABLE |
-+			       SII902X_TPI_AUDIO_CODING_PCM);
-+	u8 config_byte3_reg = 0;
-+	u8 infoframe_buf[HDMI_INFOFRAME_SIZE(AUDIO)];
-+	unsigned long mclk_rate;
-+	int i, ret;
-+
-+	if (daifmt->bit_clk_master || daifmt->frame_clk_master) {
-+		dev_dbg(dev, "%s: I2S master mode not supported\n", __func__);
-+		return -EINVAL;
-+	}
-+
-+	switch (daifmt->fmt) {
-+	case HDMI_I2S:
-+		i2s_config_reg |= SII902X_TPI_I2S_FIRST_BIT_SHIFT_YES |
-+			SII902X_TPI_I2S_SD_JUSTIFY_LEFT;
-+		break;
-+	case HDMI_RIGHT_J:
-+		i2s_config_reg |= SII902X_TPI_I2S_SD_JUSTIFY_RIGHT;
-+		break;
-+	case HDMI_LEFT_J:
-+		i2s_config_reg |= SII902X_TPI_I2S_SD_JUSTIFY_LEFT;
-+		break;
-+	default:
-+		dev_dbg(dev, "%s: Unsupported i2s format %u\n", __func__,
-+			daifmt->fmt);
-+		return -EINVAL;
-+	}
-+
-+	if (daifmt->bit_clk_inv)
-+		i2s_config_reg |= SII902X_TPI_I2S_SCK_EDGE_FALLING;
-+	else
-+		i2s_config_reg |= SII902X_TPI_I2S_SCK_EDGE_RISING;
-+
-+	if (daifmt->frame_clk_inv)
-+		i2s_config_reg |= SII902X_TPI_I2S_WS_POLARITY_LOW;
-+	else
-+		i2s_config_reg |= SII902X_TPI_I2S_WS_POLARITY_HIGH;
-+
-+	if (params->channels > 2)
-+		config_byte2_reg |= SII902X_TPI_AUDIO_LAYOUT_8_CHANNELS;
-+	else
-+		config_byte2_reg |= SII902X_TPI_AUDIO_LAYOUT_2_CHANNELS;
-+
-+	switch (params->sample_width) {
-+	case 16:
-+		config_byte3_reg |= SII902X_TPI_AUDIO_SAMPLE_SIZE_16;
-+		break;
-+	case 20:
-+		config_byte3_reg |= SII902X_TPI_AUDIO_SAMPLE_SIZE_20;
-+		break;
-+	case 24:
-+	case 32:
-+		config_byte3_reg |= SII902X_TPI_AUDIO_SAMPLE_SIZE_24;
-+		break;
-+	default:
-+		dev_err(dev, "%s: Unsupported sample width %u\n", __func__,
-+			params->sample_width);
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(sii902x_sample_freq); i++) {
-+		if (params->sample_rate == sii902x_sample_freq[i].freq) {
-+			config_byte3_reg |= sii902x_sample_freq[i].val;
-+			break;
-+		}
-+	}
-+
-+	ret = clk_prepare_enable(sii902x->audio.mclk);
-+	if (ret) {
-+		dev_err(dev, "Enabling mclk failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mclk_rate = clk_get_rate(sii902x->audio.mclk);
-+
-+	ret = sii902x_select_mclk_div(&i2s_config_reg, params->sample_rate,
-+				      mclk_rate);
-+	if (mclk_rate != ret * params->sample_rate)
-+		dev_dbg(dev, "Inaccurate reference clock (%ld/%d != %u)\n",
-+			mclk_rate, ret, params->sample_rate);
-+
-+	mutex_lock(&sii902x->mutex);
-+
-+	ret = regmap_write(sii902x->regmap,
-+			   SII902X_TPI_AUDIO_CONFIG_BYTE2_REG,
-+			   config_byte2_reg);
-+	if (ret < 0)
-+		goto out;
-+
-+	ret = regmap_write(sii902x->regmap, SII902X_TPI_I2S_INPUT_CONFIG_REG,
-+			   i2s_config_reg);
-+	if (ret)
-+		goto out;
-+
-+	for (i = 0; sii902x->audio.i2s_fifo_sequence[i] &&
-+		     i < ARRAY_SIZE(sii902x->audio.i2s_fifo_sequence); i++)
-+		regmap_write(sii902x->regmap,
-+			     SII902X_TPI_I2S_ENABLE_MAPPING_REG,
-+			     sii902x->audio.i2s_fifo_sequence[i]);
-+
-+	ret = regmap_write(sii902x->regmap, SII902X_TPI_AUDIO_CONFIG_BYTE3_REG,
-+			   config_byte3_reg);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_bulk_write(sii902x->regmap, SII902X_TPI_I2S_STRM_HDR_BASE,
-+				params->iec.status,
-+				min((size_t) SII902X_TPI_I2S_STRM_HDR_SIZE,
-+				    sizeof(params->iec.status)));
-+	if (ret)
-+		goto out;
-+
-+	ret = hdmi_audio_infoframe_pack(&params->cea, infoframe_buf,
-+					sizeof(infoframe_buf));
-+	if (ret < 0) {
-+		dev_err(dev, "%s: Failed to pack audio infoframe: %d\n",
-+			__func__, ret);
-+		goto out;
-+	}
-+
-+	ret = regmap_bulk_write(sii902x->regmap,
-+				SII902X_TPI_MISC_INFOFRAME_BASE,
-+				infoframe_buf,
-+				min(ret, SII902X_TPI_MISC_INFOFRAME_SIZE));
-+	if (ret)
-+		goto out;
-+
-+	/* Decode Level 0 Packets */
-+	ret = regmap_write(sii902x->regmap, SII902X_IND_SET_PAGE, 0x02);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(sii902x->regmap, SII902X_IND_OFFSET, 0x24);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(sii902x->regmap, SII902X_IND_VALUE, 0x02);
-+	if (ret)
-+		goto out;
-+
-+	dev_dbg(dev, "%s: hdmi audio enabled\n", __func__);
-+out:
-+	mutex_unlock(&sii902x->mutex);
-+
-+	if (ret) {
-+		clk_disable_unprepare(sii902x->audio.mclk);
-+		dev_err(dev, "%s: hdmi audio enable failed: %d\n", __func__,
-+			ret);
-+	}
-+
-+	return ret;
-+}
-+
-+static void sii902x_audio_shutdown(struct device *dev, void *data)
-+{
-+	struct sii902x *sii902x = dev_get_drvdata(dev);
-+
-+	mutex_lock(&sii902x->mutex);
-+
-+	regmap_write(sii902x->regmap, SII902X_TPI_AUDIO_CONFIG_BYTE2_REG,
-+		     SII902X_TPI_AUDIO_INTERFACE_DISABLE);
-+
-+	mutex_unlock(&sii902x->mutex);
-+
-+	clk_disable_unprepare(sii902x->audio.mclk);
-+}
-+
-+int sii902x_audio_digital_mute(struct device *dev, void *data, bool enable)
-+{
-+	struct sii902x *sii902x = dev_get_drvdata(dev);
-+
-+	mutex_lock(&sii902x->mutex);
-+
-+	sii902x_mute(sii902x, enable);
-+
-+	mutex_unlock(&sii902x->mutex);
-+
-+	return 0;
-+}
-+
-+static int sii902x_audio_get_eld(struct device *dev, void *data,
-+				 uint8_t *buf, size_t len)
-+{
-+	struct sii902x *sii902x = dev_get_drvdata(dev);
-+
-+	mutex_lock(&sii902x->mutex);
-+
-+	memcpy(buf, sii902x->connector.eld,
-+	       min(sizeof(sii902x->connector.eld), len));
-+
-+	mutex_unlock(&sii902x->mutex);
-+
-+	return 0;
-+}
-+
-+static const struct hdmi_codec_ops sii902x_audio_codec_ops = {
-+	.hw_params = sii902x_audio_hw_params,
-+	.audio_shutdown = sii902x_audio_shutdown,
-+	.digital_mute = sii902x_audio_digital_mute,
-+	.get_eld = sii902x_audio_get_eld,
-+};
-+
-+static int sii902x_audio_codec_init(struct sii902x *sii902x,
-+				    struct device *dev)
-+{
-+	static const u8 audio_fifo_id[] = {
-+		SII902X_TPI_I2S_CONFIG_FIFO0,
-+		SII902X_TPI_I2S_CONFIG_FIFO1,
-+		SII902X_TPI_I2S_CONFIG_FIFO2,
-+		SII902X_TPI_I2S_CONFIG_FIFO3,
-+	};
-+	static const u8 i2s_lane_id[] = {
-+		SII902X_TPI_I2S_SELECT_SD0,
-+		SII902X_TPI_I2S_SELECT_SD1,
-+		SII902X_TPI_I2S_SELECT_SD2,
-+		SII902X_TPI_I2S_SELECT_SD3,
-+	};
-+	struct hdmi_codec_pdata codec_data = {
-+		.ops = &sii902x_audio_codec_ops,
-+		.i2s = 1, /* Only i2s support for now. */
-+		.spdif = 0,
-+		.max_i2s_channels = 0,
-+	};
-+	u8 lanes[4];
-+	u32 num_lanes, i;
-+
-+	if (!of_property_read_bool(dev->of_node, "#sound-dai-cells")) {
-+		dev_dbg(dev, "%s: No \"#sound-dai-cells\", no audio\n",
-+			__func__);
-+		return 0;
-+	}
-+
-+	num_lanes = of_property_read_variable_u8_array(dev->of_node,
-+						       "sil,i2s-data-lanes",
-+						       lanes, 1,
-+						       ARRAY_SIZE(lanes));
-+
-+	if (num_lanes == -EINVAL) {
-+		dev_dbg(dev,
-+			"%s: No \"sil,i2s-data-lanes\", use default <0>\n",
-+			__func__);
-+		num_lanes = 1;
-+		lanes[0] = 0;
-+	} else if (num_lanes < 0) {
-+		dev_err(dev,
-+			"%s: Error gettin \"sil,i2s-data-lanes\": %d\n",
-+			__func__, num_lanes);
-+		return num_lanes;
-+	}
-+	codec_data.max_i2s_channels = 2 * num_lanes;
-+
-+	for (i = 0; i < num_lanes; i++)
-+		sii902x->audio.i2s_fifo_sequence[i] |= audio_fifo_id[i] |
-+			i2s_lane_id[lanes[i]] |	SII902X_TPI_I2S_FIFO_ENABLE;
-+
-+	if (IS_ERR(sii902x->audio.mclk)) {
-+		dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
-+			__func__, PTR_ERR(sii902x->audio.mclk));
-+		return 0;
-+	}
-+
-+	sii902x->audio.pdev = platform_device_register_data(
-+		dev, HDMI_CODEC_DRV_NAME, PLATFORM_DEVID_AUTO,
-+		&codec_data, sizeof(codec_data));
-+
-+	return PTR_ERR_OR_ZERO(sii902x->audio.pdev);
-+}
-+
- static const struct regmap_range sii902x_volatile_ranges[] = {
- 	{ .range_min = 0, .range_max = 0xff },
- };
-@@ -338,6 +785,8 @@ static const struct regmap_access_table sii902x_volatile_table = {
- static const struct regmap_config sii902x_regmap_config = {
- 	.reg_bits = 8,
- 	.val_bits = 8,
-+	.disable_locking = true, /* struct sii902x mutex should be enough */
-+	.max_register = SII902X_TPI_MISC_INFOFRAME_END,
- 	.volatile_table = &sii902x_volatile_table,
- 	.cache_type = REGCACHE_NONE,
- };
-@@ -347,9 +796,13 @@ static irqreturn_t sii902x_interrupt(int irq, void *data)
- 	struct sii902x *sii902x = data;
- 	unsigned int status = 0;
- 
-+	mutex_lock(&sii902x->mutex);
-+
- 	regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
- 	regmap_write(sii902x->regmap, SII902X_INT_STATUS, status);
- 
-+	mutex_unlock(&sii902x->mutex);
-+
- 	if ((status & SII902X_HOTPLUG_EVENT) && sii902x->bridge.dev)
- 		drm_helper_hpd_irq_event(sii902x->bridge.dev);
- 
-@@ -510,6 +963,8 @@ static int sii902x_probe(struct i2c_client *client,
- 		return PTR_ERR(sii902x->reset_gpio);
- 	}
- 
-+	mutex_init(&sii902x->mutex);
-+
- 	sii902x_reset(sii902x);
- 
- 	ret = regmap_write(sii902x->regmap, SII902X_REG_TPI_RQB, 0x0);
-@@ -550,6 +1005,8 @@ static int sii902x_probe(struct i2c_client *client,
- 	sii902x->bridge.timings = &default_sii902x_timings;
- 	drm_bridge_add(&sii902x->bridge);
- 
-+	sii902x_audio_codec_init(sii902x, dev);
-+
- 	i2c_set_clientdata(client, sii902x);
- 
- 	sii902x->i2cmux = i2c_mux_alloc(client->adapter, dev,
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Does H6 support actually work? I don't see any driver changes and last time
+I tried with the exact same bindings, I got RCU stalls shortly after boot.
 
+Enabling/disabling ir node was enough to trigger/stop the RCU stalls on H6.
+
+regards,
+	o.
+
+> Regards,
+> Clément
+> 
+> [1] https://lore.kernel.org/patchwork/patch/1031390/#1221464
+> 
+> Changes since v1:
+>  - Document reset lines as required since A31
+>  - Explain the memory mapping difference in commit log
+>  - Fix misspelling "Allwiner" to "Allwinner"
+> 
+> Clément Péron (8):
+>   dt-bindings: media: sunxi-ir: add A31 compatible
+>   media: rc: sunxi: Add A31 compatible
+>   ARM: dts: sunxi: prefer A31 instead of A13 for ir
+>   dt-bindings: media: sunxi-ir: Add A64 compatible
+>   dt-bindings: media: sunxi-ir: Add H6 compatible
+>   arm64: dts: allwinner: h6: Add IR receiver node
+>   arm64: dts: allwinner: h6: Enable IR on H6 boards
+>   arm64: defconfig: enable IR SUNXI option
+> 
+> Igors Makejevs (1):
+>   arm64: dts: allwinner: a64: Add IR node
+> 
+> Jernej Skrabec (1):
+>   arm64: dts: allwinner: a64: Enable IR on Orange Pi Win
+> 
+>  .../devicetree/bindings/media/sunxi-ir.txt    | 11 +++++++++--
+>  arch/arm/boot/dts/sun6i-a31.dtsi              |  2 +-
+>  arch/arm/boot/dts/sun8i-a83t.dtsi             |  2 +-
+>  arch/arm/boot/dts/sun9i-a80.dtsi              |  2 +-
+>  arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  2 +-
+>  .../dts/allwinner/sun50i-a64-orangepi-win.dts |  4 ++++
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 18 ++++++++++++++++++
+>  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++++
+>  .../dts/allwinner/sun50i-h6-orangepi.dtsi     |  4 ++++
+>  .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  4 ++++
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 19 +++++++++++++++++++
+>  arch/arm64/configs/defconfig                  |  1 +
+>  drivers/media/rc/sunxi-cir.c                  |  1 +
+>  13 files changed, 68 insertions(+), 6 deletions(-)
+> 
+> -- 
+> 2.20.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
