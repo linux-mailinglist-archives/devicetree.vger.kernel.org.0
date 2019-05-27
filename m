@@ -2,131 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1F3E2B6CC
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:46:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B096A2B6D2
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726322AbfE0NqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 09:46:01 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:49451 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbfE0NqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:46:01 -0400
-Received: from litschi.hi.pengutronix.de ([2001:67c:670:100:feaa:14ff:fe6a:8db5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <m.tretter@pengutronix.de>)
-        id 1hVFws-0006IY-P3; Mon, 27 May 2019 15:45:58 +0200
-Date:   Mon, 27 May 2019 15:45:57 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, robh+dt@kernel.org, mchehab@kernel.org,
-        tfiga@chromium.org, dshah@xilinx.com
-Subject: Re: [PATCH v6 0/5] Add ZynqMP VCU/Allegro DVT H.264 encoder driver
-Message-ID: <20190527154557.62278063@litschi.hi.pengutronix.de>
-In-Reply-To: <20190522154945.54ac67d7@litschi.hi.pengutronix.de>
-References: <20190513172131.15048-1-m.tretter@pengutronix.de>
-        <23de1fe8-f868-d13d-4217-05bc007fab13@xs4all.nl>
-        <20190522154945.54ac67d7@litschi.hi.pengutronix.de>
-Organization: Pengutronix
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+        id S1726388AbfE0NqS convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 May 2019 09:46:18 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:35667 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726302AbfE0NqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:46:18 -0400
+X-Originating-IP: 90.88.147.134
+Received: from xps13 (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 00172FF80A;
+        Mon, 27 May 2019 13:46:10 +0000 (UTC)
+Date:   Mon, 27 May 2019 15:46:10 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Linux PM list <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v2 2/4] clk: mvebu: armada-37xx-periph: change
+ suspend/resume time
+Message-ID: <20190527154610.6d4d5eff@xps13>
+In-Reply-To: <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
+References: <20190521130357.20803-1-miquel.raynal@bootlin.com>
+        <20190521130357.20803-3-miquel.raynal@bootlin.com>
+        <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:feaa:14ff:fe6a:8db5
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 May 2019 15:49:45 +0200, Michael Tretter wrote:
-> On Wed, 22 May 2019 14:04:23 +0200, Hans Verkuil wrote:
-> > On 5/13/19 7:21 PM, Michael Tretter wrote:  
-> > > This is v6 of the Allegro DVT H.264 encoder driver found in the EV
-> > > family of the Xilinx ZynqMP platform.
-> > > 
-> > > Only minor changes this time. I dropped the implementation of the
-> > > selection api, removed all references mentioning the decoder, and fixed
-> > > a few issues reported by sparse and smatch.
-> > > 
-> > > The v4l2-compliance result using the current vicodec branch is
-> > > 
-> > > v4l2-compliance SHA: c2ad13e4b7aef9ae160303189c67a91e1775f025, 64 bits
-> > > 
-> > > Compliance test for allegro device /dev/video4:  
-> [...]
-> > > I observed that the "MMAP (select)" test occasionally fails, because the
-> > > test did not receive an V4L2_EVENT_EOS when dequeuing a buffer with
-> > > V4L2_BUF_FLAG_LAST being set. The driver always queues the event before
-> > > returning the last buffer and the "MMAP (epoll)" does not fail. Thus, I
-> > > decided to send the series anyway.    
-> > 
-> > Where exactly does v4l2-compliance fail? This is weird, and I believe
-> > this warrants a bit more debugging. I recommend adding a debug
-> > statement in allegro_channel_buf_done() to see when a buffer is marked
-> > LAST.  
-> 
-> v4l2-compliance fails in line 1074
-> 
-> 	fail: v4l2-test-buffers.cpp(1074): !got_eos && !got_source_change
-> 
-> The corresponding code in v4l2-compliance is
-> 
-> 	if (buf.g_flags() & V4L2_BUF_FLAG_LAST) {
-> 		fail_on_test(buf.dqbuf(node) != EPIPE);
-> >		fail_on_test(!got_eos && !got_source_change);  
-> 		if (!count)
-> 			break;
-> 		fail_on_test(node->streamoff(m2m_q.g_type()));
-> 		m2m_q.munmap_bufs(node);
-> 
-> When the test fails, the select/epoll_wait returns with readable data,
-> but without readable events on the last buffer. If the test is
-> successful, data and events are available. This looks like a race
-> between the event and the LAST buffer and if the LAST buffer comes
-> first, the test fails.
-> 
-> As said, the driver always queues the EOS event before calling
-> v4l2_m2m_buf_done() on the LAST buffer. Right now, I don't understand
-> how this can happen, but I will continue debugging.
+Hi Bjorn,
 
-There is a race between v4l2_m2m_poll() and allegro_channel_finish_frame().
+Thanks for the feedback.
 
-v4l2_m2m_poll() first calls v4l2_event_pending() to check if events are
-available and afterwards checks if there are buffers on src_q and
-dst_q. If allegro_channel_finish_frame() queues the V4L2_EVENT_EOS
-after v4l2_event_pending() but before the checks on the queues,
-v4l2_m2m_poll() sets EPOLLIN | EPOLLRDNORM for the LAST buffer, but does
-not set EPOLLPRI, because it missed V4L2_EVENT_EOS.
+Bjorn Helgaas <bhelgaas@google.com> wrote on Tue, 21 May 2019 17:43:05
+-0500:
 
-As a fix, the driver must hold the m2m_ctx->q_lock mutex while calling
-v4l2_event_queue_fh() for V4L2_EVENT_EOS to ensure that the event is
-not queued during v4l2_m2m_poll() after the v4l2_event_pending() check.
+> From: Miquel Raynal <miquel.raynal@bootlin.com>
+> Date: Tue, May 21, 2019 at 8:04 AM
+> To: Michael Turquette, Stephen Boyd, Rob Herring, Mark Rutland
+> Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>, Thomas
+> Petazzoni, Antoine Tenart, Gregory Clement, Maxime Chevallier, Nadav
+> Haklai, Bjorn Helgaas, Rafael J . Wysocki, <linux-pm@vger.kernel.org>,
+> Miquel Raynal
+> 
+> > Armada 3700 PCIe IP relies on the PCIe clock managed by this
+> > driver. For reasons related to the PCI core's organization when
+> > suspending/resuming, PCI host controller drivers must reconfigure
+> > their register at suspend_noirq()/resume_noirq() which happens after
+> > suspend()/suspend_late() and before resume_early()/resume().
+> 
+> "For reasons related to the PCI core's organization" manages to
+> suggest that this change wouldn't be needed if only the PCI core did
+> something differently, without actually being specific about what it
+> would need to do differently.
+> 
+> Is there something the PCI core could do better to make this easier?
+> Or is it just something like "the PCI core needs to access registers
+> after suspend_late()"?  You mention the host controller, but of course
+> that's not itself a PCI device, so the PCI core doesn't have much to
+> do with it directly.
 
-I'm not completely sure, but it seems to me that other v4l2 mem2mem
-drivers have the same issue.
+Actually, if I understand correctly the below commit [1] and the core
+[2] & [3], PCI device fixups can happen at any time, including at the
+_noirq phase where, obviously, the PCI controller must be already
+setup.
 
-Michael
+I don't think changing this behavior is a viable solution and I would
+not see it as a "PCI core could do better" alternative.
+
+---8<---
+
+[1]
+commit ab14d45ea58eae67c739e4ba01871cae7b6c4586
+Author: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+Date:   Tue Mar 17 15:55:45 2015 +0100
+
+    PCI: mvebu: Add suspend/resume support
+
+    Add suspend/resume support for the mvebu PCIe host driver.  Without
+    this commit, the system will panic at resume time when PCIe devices
+    are connected.
+
+    Note that we have to use the ->suspend_noirq() and ->resume_noirq()
+    hooks, because at resume time, the PCI fixups are done at
+    ->resume_noirq() time, so the PCIe controller has to be ready at
+    this point.
+
+    Signed-off-by: Thomas Petazzoni
+    <thomas.petazzoni@free-electrons.com> Signed-off-by: Bjorn Helgaas
+    <bhelgaas@google.com> Acked-by: Jason Cooper <jason@lakedaemon.net>
+
+[2] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L1181
+[3] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L522
+
+--->8---
 
 > 
-> > 
-> > These tests really should not fail, and it is a strong indication of a
-> > bug somewhere.
-> > 
-> > I don't want to merge a driver that has a FAIL in v4l2-compliance without
-> > at the very least understanding why that happens. Ignoring it defeats the
-> > purpose of v4l2-compliance.  
-> 
-> Totally agreed.
-> 
-> Michael
-> 
-> > 
-> > Regards,
-> > 
-> > 	Hans
-> >   
-> 
+> s/register/registers/ ?
+
+Indeed. I would like to sort out the above technical point before
+sending a v3 with this typo corrected.
+
+
+Thanks,
+Miquèl
