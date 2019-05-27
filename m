@@ -2,262 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 401E92AF13
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 09:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E1C2AF63
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 09:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726321AbfE0HBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 03:01:43 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:50394 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725973AbfE0HBm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 03:01:42 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A55FF200ACF;
-        Mon, 27 May 2019 09:01:40 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3B79F200ADE;
-        Mon, 27 May 2019 09:01:33 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 817B1402B5;
-        Mon, 27 May 2019 15:01:24 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, wim@linux-watchdog.org,
-        linux@roeck-us.net, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, ulf.hansson@linaro.org, peng.fan@nxp.com,
-        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH V4 RESEND 3/3] watchdog: imx_sc: Add pretimeout support
-Date:   Mon, 27 May 2019 15:03:17 +0800
-Message-Id: <20190527070317.16904-3-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190527070317.16904-1-Anson.Huang@nxp.com>
-References: <20190527070317.16904-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726082AbfE0HbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 03:31:08 -0400
+Received: from mail-eopbgr80071.outbound.protection.outlook.com ([40.107.8.71]:3523
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725869AbfE0HbI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 03:31:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=79ZjyipAqebJuZXJXJz7EtcewtV9LhALiwRnr28aT5U=;
+ b=KOFBijN4t3ebtlVA0HuyOLXWruv5+ska5nzSTGyEsm5RpCekX6r7LRqQsh8Hk5J0ygDpks0Wvr+Xzk5WppTpXvsiDGyjf5AcoQXzRH1Xlq2IbDqLZeTKz6tJd5iN6pFMbgq1KuMA5ZHqF8KQuRWcwlNaXdMo/FN46p78w0ErAd8=
+Received: from VI1PR04MB4543.eurprd04.prod.outlook.com (20.177.55.90) by
+ VI1PR04MB3246.eurprd04.prod.outlook.com (10.170.229.33) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.19; Mon, 27 May 2019 07:31:01 +0000
+Received: from VI1PR04MB4543.eurprd04.prod.outlook.com
+ ([fe80::5062:df97:a70b:93f8]) by VI1PR04MB4543.eurprd04.prod.outlook.com
+ ([fe80::5062:df97:a70b:93f8%7]) with mapi id 15.20.1922.021; Mon, 27 May 2019
+ 07:31:01 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     "vkoul@kernel.org" <vkoul@kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v1 4/6] dmaengine: fsl-edma: add i.mx7ulp edma2 version
+ support
+Thread-Topic: [PATCH v1 4/6] dmaengine: fsl-edma: add i.mx7ulp edma2 version
+ support
+Thread-Index: AQHVBxkiWq7ELKRpKk+QnDmvsVTzcqZ+nkiAgACW+IA=
+Date:   Mon, 27 May 2019 07:31:01 +0000
+Message-ID: <1558971291.19282.3.camel@nxp.com>
+References: <1557512248-8440-1-git-send-email-yibin.gong@nxp.com>
+         <1557512248-8440-5-git-send-email-yibin.gong@nxp.com>
+         <20190527063431.GC15118@vkoul-mobl>
+In-Reply-To: <20190527063431.GC15118@vkoul-mobl>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=yibin.gong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 09b42a95-d862-45b3-3036-08d6e27544e9
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB3246;
+x-ms-traffictypediagnostic: VI1PR04MB3246:
+x-microsoft-antispam-prvs: <VI1PR04MB324607F1CDA7C6106DD4B93F891D0@VI1PR04MB3246.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0050CEFE70
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(376002)(136003)(39860400002)(366004)(346002)(396003)(199004)(189003)(6246003)(2906002)(229853002)(5640700003)(81166006)(91956017)(8676002)(7416002)(81156014)(1730700003)(66066001)(53936002)(6116002)(3846002)(36756003)(486006)(14444005)(256004)(4326008)(25786009)(6436002)(6916009)(478600001)(6486002)(6512007)(14454004)(2616005)(476003)(11346002)(64756008)(186003)(54906003)(446003)(26005)(99286004)(68736007)(71190400001)(53546011)(71200400001)(6506007)(102836004)(86362001)(76176011)(305945005)(7736002)(76116006)(2351001)(4744005)(66556008)(103116003)(316002)(66446008)(66946007)(73956011)(66476007)(8936002)(2501003)(50226002)(5660300002)(99106002)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3246;H:VI1PR04MB4543.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: sV2iTP617LRhCsZGbR4LQIRUFeEQ+78B+bWWXATWplo5BjX/5Pyj8ds0InC5msq0IKEHwDx7+jeyXUA/CAK211HzYvX0lmacIKcZ3SgKfkJYcRTr/F+wVRsMpdE9y7/AZv9W7IXP5EnK+wGWCcTqA3D8ct4x9PaesKr4iYdyW8kakrM1dNCFl3fGG+SA9I6zPvZ6/1bqkmPSXnVQzeZHCn6T+X/JMOfCs/jYGMVhtuitqucv62nB3Nixbwh2/pYFsnFdEMUOJRO3j7pU3iQpXGSkFDphOZX3BlS+wiuJPk/tv/4tCjWf4e9QKY44ha5Ln6Hpj75RreoiQY0WvGm6OqiLgPsSK7FMBq2gvgCBpOZz5Fpk6XAh2J5q1Mvwl0b8kgvuaHEF16fJcXbjkDczxu7NKbC4oMmxGkXgYd/uRV4=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <25F6E151E044984DB1AEB174A2075C0B@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09b42a95-d862-45b3-3036-08d6e27544e9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 07:31:01.3618
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yibin.gong@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3246
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
-
-i.MX system controller watchdog can support pretimeout IRQ
-via general SCU MU IRQ, it depends on IMX_SCU and driver MUST
-be probed after SCU IPC ready, then enable corresponding SCU
-IRQ group and register SCU IRQ notifier, when watchdog pretimeout
-IRQ fires, SCU MU IRQ will be handled and watchdog pretimeout
-notifier will be called to handle the event.
-
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
-No change, just rebase the patch to top of linux-next.
----
- drivers/watchdog/Kconfig      |   1 +
- drivers/watchdog/imx_sc_wdt.c | 116 +++++++++++++++++++++++++++++++++++-------
- 2 files changed, 98 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index ffe7545..975e573 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -717,6 +717,7 @@ config IMX2_WDT
- config IMX_SC_WDT
- 	tristate "IMX SC Watchdog"
- 	depends on HAVE_ARM_SMCCC
-+	depends on IMX_SCU
- 	select WATCHDOG_CORE
- 	help
- 	  This is the driver for the system controller watchdog
-diff --git a/drivers/watchdog/imx_sc_wdt.c b/drivers/watchdog/imx_sc_wdt.c
-index 49848b6..6ecc03f 100644
---- a/drivers/watchdog/imx_sc_wdt.c
-+++ b/drivers/watchdog/imx_sc_wdt.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/arm-smccc.h>
-+#include <linux/firmware/imx/sci.h>
- #include <linux/io.h>
- #include <linux/init.h>
- #include <linux/kernel.h>
-@@ -33,11 +34,19 @@
- 
- #define SC_TIMER_WDOG_ACTION_PARTITION	0
- 
-+#define SC_IRQ_WDOG			1
-+#define SC_IRQ_GROUP_WDOG		1
-+
- static bool nowayout = WATCHDOG_NOWAYOUT;
- module_param(nowayout, bool, 0000);
- MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
- 		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
- 
-+struct imx_sc_wdt_device {
-+	struct watchdog_device wdd;
-+	struct notifier_block wdt_notifier;
-+};
-+
- static int imx_sc_wdt_ping(struct watchdog_device *wdog)
- {
- 	struct arm_smccc_res res;
-@@ -85,24 +94,66 @@ static int imx_sc_wdt_set_timeout(struct watchdog_device *wdog,
- 	return res.a0 ? -EACCES : 0;
- }
- 
-+static int imx_sc_wdt_set_pretimeout(struct watchdog_device *wdog,
-+				     unsigned int pretimeout)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_smc(IMX_SIP_TIMER, IMX_SIP_TIMER_SET_PRETIME_WDOG,
-+		      pretimeout * 1000, 0, 0, 0, 0, 0, &res);
-+	if (res.a0)
-+		return -EACCES;
-+
-+	wdog->pretimeout = pretimeout;
-+
-+	return 0;
-+}
-+
-+static int imx_sc_wdt_notify(struct notifier_block *nb,
-+			     unsigned long event, void *group)
-+{
-+	struct imx_sc_wdt_device *imx_sc_wdd =
-+				 container_of(nb,
-+					      struct imx_sc_wdt_device,
-+					      wdt_notifier);
-+
-+	if (event & SC_IRQ_WDOG &&
-+	    *(u8 *)group == SC_IRQ_GROUP_WDOG)
-+		watchdog_notify_pretimeout(&imx_sc_wdd->wdd);
-+
-+	return 0;
-+}
-+
-+static void imx_sc_wdt_action(void *data)
-+{
-+	struct notifier_block *wdt_notifier = data;
-+
-+	imx_scu_irq_unregister_notifier(wdt_notifier);
-+	imx_scu_irq_group_enable(SC_IRQ_GROUP_WDOG,
-+				 SC_IRQ_WDOG,
-+				 false);
-+}
-+
- static const struct watchdog_ops imx_sc_wdt_ops = {
- 	.owner = THIS_MODULE,
- 	.start = imx_sc_wdt_start,
- 	.stop  = imx_sc_wdt_stop,
- 	.ping  = imx_sc_wdt_ping,
- 	.set_timeout = imx_sc_wdt_set_timeout,
-+	.set_pretimeout = imx_sc_wdt_set_pretimeout,
- };
- 
--static const struct watchdog_info imx_sc_wdt_info = {
-+static struct watchdog_info imx_sc_wdt_info = {
- 	.identity	= "i.MX SC watchdog timer",
- 	.options	= WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING |
--			  WDIOF_MAGICCLOSE | WDIOF_PRETIMEOUT,
-+			  WDIOF_MAGICCLOSE,
- };
- 
- static int imx_sc_wdt_probe(struct platform_device *pdev)
- {
-+	struct imx_sc_wdt_device *imx_sc_wdd;
-+	struct watchdog_device *wdog;
- 	struct device *dev = &pdev->dev;
--	struct watchdog_device *imx_sc_wdd;
- 	int ret;
- 
- 	imx_sc_wdd = devm_kzalloc(dev, sizeof(*imx_sc_wdd), GFP_KERNEL);
-@@ -111,42 +162,69 @@ static int imx_sc_wdt_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, imx_sc_wdd);
- 
--	imx_sc_wdd->info = &imx_sc_wdt_info;
--	imx_sc_wdd->ops = &imx_sc_wdt_ops;
--	imx_sc_wdd->min_timeout = 1;
--	imx_sc_wdd->max_timeout = MAX_TIMEOUT;
--	imx_sc_wdd->parent = dev;
--	imx_sc_wdd->timeout = DEFAULT_TIMEOUT;
-+	wdog = &imx_sc_wdd->wdd;
-+	wdog->info = &imx_sc_wdt_info;
-+	wdog->ops = &imx_sc_wdt_ops;
-+	wdog->min_timeout = 1;
-+	wdog->max_timeout = MAX_TIMEOUT;
-+	wdog->parent = dev;
-+	wdog->timeout = DEFAULT_TIMEOUT;
- 
--	watchdog_init_timeout(imx_sc_wdd, 0, dev);
--	watchdog_stop_on_reboot(imx_sc_wdd);
--	watchdog_stop_on_unregister(imx_sc_wdd);
-+	watchdog_init_timeout(wdog, 0, dev);
-+	watchdog_stop_on_reboot(wdog);
-+	watchdog_stop_on_unregister(wdog);
- 
--	ret = devm_watchdog_register_device(dev, imx_sc_wdd);
-+	ret = devm_watchdog_register_device(dev, wdog);
- 	if (ret) {
- 		dev_err(dev, "Failed to register watchdog device\n");
- 		return ret;
- 	}
- 
-+	ret = imx_scu_irq_group_enable(SC_IRQ_GROUP_WDOG,
-+				       SC_IRQ_WDOG,
-+				       true);
-+	if (ret) {
-+		dev_warn(dev, "Enable irq failed, pretimeout NOT supported\n");
-+		return 0;
-+	}
-+
-+	imx_sc_wdd->wdt_notifier.notifier_call = imx_sc_wdt_notify;
-+	ret = imx_scu_irq_register_notifier(&imx_sc_wdd->wdt_notifier);
-+	if (ret) {
-+		imx_scu_irq_group_enable(SC_IRQ_GROUP_WDOG,
-+					 SC_IRQ_WDOG,
-+					 false);
-+		dev_warn(dev,
-+			 "Register irq notifier failed, pretimeout NOT supported\n");
-+		return 0;
-+	}
-+
-+	ret = devm_add_action_or_reset(dev, imx_sc_wdt_action,
-+				       &imx_sc_wdd->wdt_notifier);
-+	if (!ret)
-+		imx_sc_wdt_info.options |= WDIOF_PRETIMEOUT;
-+	else
-+		dev_warn(dev, "Add action failed, pretimeout NOT supported\n");
-+
- 	return 0;
- }
- 
- static int __maybe_unused imx_sc_wdt_suspend(struct device *dev)
- {
--	struct watchdog_device *imx_sc_wdd = dev_get_drvdata(dev);
-+	struct imx_sc_wdt_device *imx_sc_wdd = dev_get_drvdata(dev);
- 
--	if (watchdog_active(imx_sc_wdd))
--		imx_sc_wdt_stop(imx_sc_wdd);
-+	if (watchdog_active(&imx_sc_wdd->wdd))
-+		imx_sc_wdt_stop(&imx_sc_wdd->wdd);
- 
- 	return 0;
- }
- 
- static int __maybe_unused imx_sc_wdt_resume(struct device *dev)
- {
--	struct watchdog_device *imx_sc_wdd = dev_get_drvdata(dev);
-+	struct imx_sc_wdt_device *imx_sc_wdd = dev_get_drvdata(dev);
- 
--	if (watchdog_active(imx_sc_wdd))
--		imx_sc_wdt_start(imx_sc_wdd);
-+	if (watchdog_active(&imx_sc_wdd->wdd))
-+		imx_sc_wdt_start(&imx_sc_wdd->wdd);
- 
- 	return 0;
- }
--- 
-2.7.4
-
+T24gMjAxOS0wNS0yNyBhdCAwNjozNCArMDAwMCwgVmlub2QgS291bCB3cm90ZToNCj4gT24gMTAt
+MDUtMTksIDEwOjE0LCBSb2JpbiBHb25nIHdyb3RlOg0KPiA+IA0KPiA+IMKgDQo+ID4gKwlpZiAo
+b2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobnAsICJmc2wsaW14N3VscC1lZG1hIikpIHsNCj4gPiAr
+CQlmc2xfZWRtYS0+ZG1hbXV4X25yID0gMTsNCj4gPiArCQlmc2xfZWRtYS0+dmVyc2lvbiA9IHYz
+Ow0KPiB3ZWxsIHRoaXMgaXMgbm90IHJlYWxseSBzY2FsYWJsZSwgd2Ugd2lsbCBrZWVwIGFkZGlu
+ZyB2ZXJzaW9ucyBhbmQNCj4gY29tcGF0aWJsZSBhbmQgZXhwYW5kaW5nIHRoaXMgY2hlY2suIFNv
+IGl0IHdvdWxkIG1ha2Ugc2Vuc2UgdG8gY3JlYXRlDQo+IGENCj4gZHJpdmVyIGRhdGEgdGFibGUg
+d2hpY2ggY2FuIGJlIHNldCBmb3IgY29tcGF0aWJsZSBhbmQgd2UgdXNlIHRob3NlDQo+IHZhbHVl
+cyBhbmQgYXZvaWQgdGhlc2UgcnVudGltZSBjaGVja3MgZm9yIGNvbXBhdGlibGUuDQo+IA0KPiBC
+dHcgdGhlIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiBzaG91bGQgcHJlY2VkZSB0aGUgY29kZSB1c2Fn
+ZSwgc28gdGhpcw0KPiBwYXRjaCBzaG91bGQgY29tZSBhZnRlciB0aGF0DQo+IA0KT2theSwgd2ls
+bCB1cGRhdGUgaW4gdjIu
