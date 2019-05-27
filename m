@@ -2,123 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5F242B103
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 11:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B73CA2B110
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 11:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726684AbfE0JI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 05:08:26 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:56583 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726063AbfE0JI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 05:08:26 -0400
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <sha@pengutronix.de>)
-        id 1hVBc7-0004fQ-KN; Mon, 27 May 2019 11:08:15 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <sha@pengutronix.de>)
-        id 1hVBc6-0001ZE-VS; Mon, 27 May 2019 11:08:14 +0200
-Date:   Mon, 27 May 2019 11:08:14 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     yibin.gong@nxp.com
-Cc:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
-        mark.rutland@arm.com, vkoul@kernel.org, dan.j.williams@intel.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v2 4/7] dmaengine: fsl-edma-common: version check for v2
- instead
-Message-ID: <20190527090814.qfjiksqi24x2jrs3@pengutronix.de>
-References: <20190527085118.40423-1-yibin.gong@nxp.com>
- <20190527085118.40423-5-yibin.gong@nxp.com>
+        id S1726679AbfE0JK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 05:10:29 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:36630 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726115AbfE0JK3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 05:10:29 -0400
+Received: by mail-lj1-f196.google.com with SMTP id z1so8564059ljb.3
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2019 02:10:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pEGlKR9cMXvIeUwusBglsYeiQ+SPB2PmHYL6y3sHsr0=;
+        b=FhjjRkkXUEVnfVIt6bTqWSZJb/80sf15Ilad86TcxGXBhK8aK4E1Q8KTgK9nZ7a3Wc
+         L+08R9RZF08RtWFv83jca1VyQfwi7ljQUoGUnI+MLWoxcugHRvse2TEQADWqDxxGDhkv
+         03VruCzQb3H2EC7bW3VH9sYFSU1DSddBsVfvpbfT+VLY9BvT7GtBotmkm3OzN5YNmVAG
+         kO6OSAhPlVJGlX/tgBr5UHCMZEYKdewpzcS9XDXgV/Z2rjnIc5B86w2RLERHCubNoixu
+         uI8Dtj9y6WlZ2f+MIDty1Q5bXXvSPYBMYwABhThGOV8v6RJF3aNCo0+PFKpKf3EFP0+Z
+         kd1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pEGlKR9cMXvIeUwusBglsYeiQ+SPB2PmHYL6y3sHsr0=;
+        b=XINeWYTbzB/G+8mbLr5JoRQFwZJEk6cEaw4lka7B4w3XXExRQ8AlWXzrwLX+MgiCpA
+         +ajbvGseTk5sm/9Tkg2gEL/Yc7NLVg2Zu61mj/zj8c1cVtzxIsfNB+Zijve6pPUMjRhV
+         tf+dmAak6rkOchTnC3ysEUH+WErkMtVy74yHlecVn3o9xlt4nsnKEBJA7CV/xfW8SAE2
+         VfpgYezf90nkEenDa0SmcCcGiBBjOpeW8SeOdldco9nJTR8iVGoxe04LnGwnlt29gHbi
+         Q6ZEh5LqmIXSclyG/fmggaKUme6VPI+130+U0toRo50AQAwdLTIiOBRdKIW8PsLbH6dG
+         5Vbg==
+X-Gm-Message-State: APjAAAUhg+Bx5mWupPQ3r4YTngOum8QLURPcJDrFI2eN/9sv9APxc8Rz
+        hSI+v/RD5hyyNS+rnury15QW26tqQigwKcCw8I9wdw==
+X-Google-Smtp-Source: APXvYqx3PadhULZkWPFoOWBCluXUOl+KRGzn+HWRbMqV3BUzCYyZIRy5UR/oJ53rjISdwLm4eqiipmAdUSlkYMpbwu0=
+X-Received: by 2002:a2e:5c1:: with SMTP id 184mr52626256ljf.94.1558948227212;
+ Mon, 27 May 2019 02:10:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190527085118.40423-5-yibin.gong@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:07:14 up 9 days, 15:25, 72 users,  load average: 0.12, 0.20, 0.16
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20190525204228.8546-1-colin.king@canonical.com>
+In-Reply-To: <20190525204228.8546-1-colin.king@canonical.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 27 May 2019 11:10:15 +0200
+Message-ID: <CACRpkdadikx9MPrVUQxXa6KYsmnuoakjYVTNEcv_HOoW0pCgZg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: fix spelling mistakes in pinctl documentation
+To:     Colin King <colin.king@canonical.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 27, 2019 at 04:51:15PM +0800, yibin.gong@nxp.com wrote:
-> From: Robin Gong <yibin.gong@nxp.com>
-> 
-> The next v3 i.mx7ulp edma is based on v1, so change version
-> check logic for v2 instead.
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> ---
->  drivers/dma/fsl-edma-common.c | 40 ++++++++++++++++++++--------------------
->  1 file changed, 20 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/dma/fsl-edma-common.c b/drivers/dma/fsl-edma-common.c
-> index bb24251..45d70d3 100644
-> --- a/drivers/dma/fsl-edma-common.c
-> +++ b/drivers/dma/fsl-edma-common.c
-> @@ -657,26 +657,26 @@ void fsl_edma_setup_regs(struct fsl_edma_engine *edma)
->  	edma->regs.erql = edma->membase + EDMA_ERQ;
->  	edma->regs.eeil = edma->membase + EDMA_EEI;
->  
-> -	edma->regs.serq = edma->membase + ((edma->version == v1) ?
-> -			EDMA_SERQ : EDMA64_SERQ);
-> -	edma->regs.cerq = edma->membase + ((edma->version == v1) ?
-> -			EDMA_CERQ : EDMA64_CERQ);
-> -	edma->regs.seei = edma->membase + ((edma->version == v1) ?
-> -			EDMA_SEEI : EDMA64_SEEI);
-> -	edma->regs.ceei = edma->membase + ((edma->version == v1) ?
-> -			EDMA_CEEI : EDMA64_CEEI);
-> -	edma->regs.cint = edma->membase + ((edma->version == v1) ?
-> -			EDMA_CINT : EDMA64_CINT);
-> -	edma->regs.cerr = edma->membase + ((edma->version == v1) ?
-> -			EDMA_CERR : EDMA64_CERR);
-> -	edma->regs.ssrt = edma->membase + ((edma->version == v1) ?
-> -			EDMA_SSRT : EDMA64_SSRT);
-> -	edma->regs.cdne = edma->membase + ((edma->version == v1) ?
-> -			EDMA_CDNE : EDMA64_CDNE);
-> -	edma->regs.intl = edma->membase + ((edma->version == v1) ?
-> -			EDMA_INTR : EDMA64_INTL);
-> -	edma->regs.errl = edma->membase + ((edma->version == v1) ?
-> -			EDMA_ERR : EDMA64_ERRL);
-> +	edma->regs.serq = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_SERQ : EDMA_SERQ);
-> +	edma->regs.cerq = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_CERQ : EDMA_CERQ);
-> +	edma->regs.seei = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_SEEI : EDMA_SEEI);
-> +	edma->regs.ceei = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_CEEI : EDMA_CEEI);
-> +	edma->regs.cint = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_CINT : EDMA_CINT);
-> +	edma->regs.cerr = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_CERR : EDMA_CERR);
-> +	edma->regs.ssrt = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_SSRT : EDMA_SSRT);
-> +	edma->regs.cdne = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_CDNE : EDMA_CDNE);
-> +	edma->regs.intl = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_INTL : EDMA_INTR);
-> +	edma->regs.errl = edma->membase + ((edma->version == v2) ?
-> +			EDMA64_ERRL : EDMA_ERR);
+On Sat, May 25, 2019 at 10:42 PM Colin King <colin.king@canonical.com> wrote:
 
-Following to what I have said to 6/7 you can put the register offsets
-into that new struct aswell.
+> From: Colin Ian King <colin.king@canonical.com>
+>
+> The spelling of configured is incorrect in the documentation. Fix it.
+>
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-Sascha
+Patch applied with Bjorn's review tag.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Yours,
+Linus Walleij
