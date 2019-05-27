@@ -2,104 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96DEF2BB5C
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8119D2BB69
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726772AbfE0USk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 16:18:40 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:44110 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726657AbfE0USk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:18:40 -0400
-Received: by mail-lf1-f67.google.com with SMTP id r15so3394580lfm.11;
-        Mon, 27 May 2019 13:18:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OvAUbe7K2xMqtGukRvbyAcK37R51pLBjtoeTTYWgxsQ=;
-        b=acnjEkzUONJXr68U3rGDlvPQOpxMYkUluPjF/L2FWCDTrEh/Dqpt4YV4oFmk4NafI2
-         lXPUOzH2bM+2r15A+ZdXatIQisuqB13nUbNfSEtq42zibjT9abroP+iULvcFkxsWTnoh
-         Uhm8t1lNnjQasTeTByWOzTReOlgyTw1h5lDq48cL8ZZ6K9fSKSAU4Yza8Kea/E3TJ/8z
-         tFVrCLO6h8uJuyvFEOquiKzz/0SJLnnLqJSuJuN+J14PV8eeipNJ9OwuVZsKXUgROxMK
-         9j+JgxADQfS0O826RSVWi7YGDp2OIoRiR1SrFszF7BUdO2AwWcPlMoXzTVhC3PhFUM91
-         USeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OvAUbe7K2xMqtGukRvbyAcK37R51pLBjtoeTTYWgxsQ=;
-        b=JDwg0QtM3I6ItdkkNwRuuafxhfHi38QtGsxf95DVK1AA+qPTiTSlSpk1cF5ix2m9oq
-         hjrrUNJedBiGUDdFAh+yzxzc69cDLIzH2Cq2m1xG1O8vVXMPQDLSTD01rlpNFWk/iMYI
-         2OFmXuEFPtRCQUPnuL4JSEFZi1oTnb7X8VBUcVfMBmBE1BVyKO0EJ2QaQNvIIjFHkw5S
-         fBZf30I58YBmc6u7wauEsUdzcQo8G3N0OaJ97iaCe57GPbW3pgGQBuHKEKIKvH4pMIXY
-         2sA4t3Pz9hH6mQ7EOIY7McA7a6Bcw4GrBUcugILANgFhlSEEay9U+3OhVyraWTHjgoF6
-         aWiw==
-X-Gm-Message-State: APjAAAXPhmw56lNqkZFz7c8ySBI2Rgh0a8quWgf4zGqDInz99LArYwKx
-        bkTxaHYvv1ncKyUzg9/0szAvT4mPoO62zF7BE9w=
-X-Google-Smtp-Source: APXvYqyxfqbMHT5nTyWym+yreIOwF2hutbzSGK0O2yyJXJBibvYAht3syEewDACi2AN7cwItuMnOUTlhUha/B7aKqI0=
-X-Received: by 2002:ac2:4899:: with SMTP id x25mr5704165lfc.44.1558988318149;
- Mon, 27 May 2019 13:18:38 -0700 (PDT)
+        id S1726693AbfE0U3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 16:29:37 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:54410 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726346AbfE0U3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:29:37 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 5422180349;
+        Mon, 27 May 2019 22:29:34 +0200 (CEST)
+Date:   Mon, 27 May 2019 22:29:32 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, od@zcrc.me,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Extend drm_bus_flags? [Was: [PATCH v3 2/3] drm: Add bus flag for
+ Sharp-specific signals]
+Message-ID: <20190527202932.GA28319@ravnborg.org>
+References: <20190425231854.24479-1-paul@crapouillou.net>
+ <20190425231854.24479-2-paul@crapouillou.net>
 MIME-Version: 1.0
-References: <20190504144027.31920-1-festevam@gmail.com> <20190504144027.31920-6-festevam@gmail.com>
-In-Reply-To: <20190504144027.31920-6-festevam@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 27 May 2019 17:18:44 -0300
-Message-ID: <CAOMZO5AZBQuD8Tdhbf+r4C6M7zZy9VevVQoyb8o4KJY4EkO9WA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] media: dt-bindings: imx7-csi: Document a single CSI clock
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Rui Miguel Silva <rui.silva@linaro.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-media <linux-media@vger.kernel.org>,
-        =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        Otavio Salvador <otavio@ossystems.com.br>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, hverkuil-cisco@xs4all.nl
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190425231854.24479-2-paul@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=ER_8r6IbAAAA:8
+        a=e5mUnYsNAAAA:8 a=o6lnpZa0LUvyYah9iqMA:9 a=CjuIK1q_8ugA:10
+        a=9LHmKk7ezEChjTCyhBa9:22 a=Vxmtnl_E_bksehYqCbjh:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi all.
 
-On Sat, May 4, 2019 at 11:40 AM Fabio Estevam <festevam@gmail.com> wrote:
->
-> As per the i.MX7D Reference Manual only the MCLK is used for
-> the CSI block, so only document this single clock.
->
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Please see mail below - is it OK to extend drm_bus_flags to
+represent "SHARP signals"?
+
+Paul (and I) could not find any better way to let the panel tell the
+display driver that it requires the special SHARP signals.
+
+This has been pending almost a month now and it would only be fair
+to either accept the solution or to give Paul guidiance how to move
+forward.
+
+There is a display driver that awaits the resilutions of this issue.
+
+	Sam
+
+On Fri, Apr 26, 2019 at 01:18:53AM +0200, Paul Cercueil wrote:
+> Add the DRM_BUS_FLAG_SHARP_SIGNALS to the drm_bus_flags enum.
+> 
+> This flags can be used when the display must be driven with the
+> Sharp-specific signals SPL, CLS, REV, PS.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
->  Documentation/devicetree/bindings/media/imx7-csi.txt | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/media/imx7-csi.txt b/Documentation/devicetree/bindings/media/imx7-csi.txt
-> index 3c07bc676bc3..443aef07356e 100644
-> --- a/Documentation/devicetree/bindings/media/imx7-csi.txt
-> +++ b/Documentation/devicetree/bindings/media/imx7-csi.txt
-> @@ -14,8 +14,7 @@ Required properties:
->  - interrupts    : should contain CSI interrupt;
->  - clocks        : list of clock specifiers, see
->          Documentation/devicetree/bindings/clock/clock-bindings.txt for details;
-> -- clock-names   : must contain "axi", "mclk" and "dcic" entries, matching
-> -                 entries in the clock property;
-> +- clock-names   : must contain "mclk";
->
->  The device node shall contain one 'port' child node with one child 'endpoint'
->  node, according to the bindings defined in:
-> @@ -32,10 +31,8 @@ example:
->                          compatible = "fsl,imx7-csi";
->                          reg = <0x30710000 0x10000>;
->                          interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> -                        clocks = <&clks IMX7D_CLK_DUMMY>,
-> -                                        <&clks IMX7D_CSI_MCLK_ROOT_CLK>,
-> -                                        <&clks IMX7D_CLK_DUMMY>;
-> -                        clock-names = "axi", "mclk", "dcic";
-> +                        clocks = <&clks IMX7D_CSI_MCLK_ROOT_CLK>;
-> +                        clock-names = "mclk";
-
-Any comments, please?
-
-Thanks
+> 
+> Notes:
+>     v3: New patch
+> 
+>  include/drm/drm_connector.h | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 02a131202add..ac7d58fd1e03 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -323,6 +323,8 @@ enum drm_panel_orientation {
+>   *					edge of the pixel clock
+>   * @DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE:	Sync signals are sampled on the falling
+>   *					edge of the pixel clock
+> + * @DRM_BUS_FLAG_SHARP_SIGNALS:		Set if the Sharp-specific signals
+> + *					(SPL, CLS, PS, REV) must be used
+>   */
+>  enum drm_bus_flags {
+>  	DRM_BUS_FLAG_DE_LOW = BIT(0),
+> @@ -341,6 +343,7 @@ enum drm_bus_flags {
+>  	DRM_BUS_FLAG_SYNC_DRIVE_NEGEDGE = DRM_BUS_FLAG_SYNC_NEGEDGE,
+>  	DRM_BUS_FLAG_SYNC_SAMPLE_POSEDGE = DRM_BUS_FLAG_SYNC_NEGEDGE,
+>  	DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE = DRM_BUS_FLAG_SYNC_POSEDGE,
+> +	DRM_BUS_FLAG_SHARP_SIGNALS = BIT(8),
+>  };
+>  
+>  /**
+> -- 
+> 2.21.0.593.g511ec345e18
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
