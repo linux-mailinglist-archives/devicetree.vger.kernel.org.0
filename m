@@ -2,744 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 783EC2B013
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83D882B02D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:28:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726633AbfE0IXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 04:23:16 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:56018 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726609AbfE0IXQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 04:23:16 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 5E53460A00; Mon, 27 May 2019 08:23:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558945394;
-        bh=fAZ4peue9k6ed3jQSkZK9b3r/RruzJpm1saLRcNr50Y=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HOjTen8fmQzrMj/VyR227Hm75uLHTUFXastPLiN5t77bVXxZwax4l0D2M1Zhd0/vv
-         KNbDP+MZZkluW/mjiL42WGsHWNocZkDJpKcosmf8NAS3Kz8o1rvMkNtjgAhw2B/9CV
-         mfy4d1o0I3xqTf8XUKESp5cBju8Yff/dQ/Dt+qoY=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 22AA760A00;
-        Mon, 27 May 2019 08:23:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1558945392;
-        bh=fAZ4peue9k6ed3jQSkZK9b3r/RruzJpm1saLRcNr50Y=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=WVMOkZeOqo8ZM8tBq9L7KmuPI6UWBglCjsMoXfbYJmkIrSXT2XybGirBp6anjXidp
-         KjPfZ6jV1u9blL2ZY+VdoDv6nVgwLSfAAm4jPmClTXjV3ihoLXTVtqW44GQ2ttDhcC
-         ubq/1O9yu/uQIBgUrQo7dn/eg6RTwHMq3Yw0qIE8=
+        id S1726437AbfE0I2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 04:28:12 -0400
+Received: from mail-eopbgr50074.outbound.protection.outlook.com ([40.107.5.74]:61939
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725869AbfE0I2M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 04:28:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zFNKVrfhO5x9hzNK0VbeADDNtMTZ/ZXVhzdsfLYLZZA=;
+ b=ZQfLiU9Q0JWIBHNwZJ3brGyK978MmJvhUJ1+8V0oGg4SYAskjcy/1Pm/QKH/w++kIgvs/Pk6j3OvYnjkRtDHlhIrg9sC+rz0uhGB7UGZJTK2AvLGSfZvP1+29iPaNqvpm90lmSj6mQ7X5q/dRrqAMBJm6Krt2EsvD2PuVvG967o=
+Received: from VI1PR04MB4333.eurprd04.prod.outlook.com (52.134.122.155) by
+ VI1PR04MB4031.eurprd04.prod.outlook.com (10.171.182.28) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.16; Mon, 27 May 2019 08:27:26 +0000
+Received: from VI1PR04MB4333.eurprd04.prod.outlook.com
+ ([fe80::497a:768:c7b1:34e0]) by VI1PR04MB4333.eurprd04.prod.outlook.com
+ ([fe80::497a:768:c7b1:34e0%6]) with mapi id 15.20.1922.021; Mon, 27 May 2019
+ 08:27:26 +0000
+From:   Andy Tang <andy.tang@nxp.com>
+To:     Leo Li <leoyang.li@nxp.com>
+CC:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor
+ node
+Thread-Topic: [EXT] Re: [PATCH] arm64: dts: ls1028a: Add temperature sensor
+ node
+Thread-Index: AQHVEdA5Oph4GV2XbECsbmKrZdLVl6Z63V2AgAPKYSA=
+Date:   Mon, 27 May 2019 08:27:26 +0000
+Message-ID: <VI1PR04MB4333A3E635CFDBD860D3061DF31D0@VI1PR04MB4333.eurprd04.prod.outlook.com>
+References: <20190524012151.31840-1-andy.tang@nxp.com>
+ <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
+In-Reply-To: <CADRPPNRYwq0NABXobC1jQrT3QMxxm+e6zvoNwoZ-fu6NU9qDMA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=andy.tang@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 93c023bf-5c12-47c9-b227-08d6e27d2697
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB4031;
+x-ms-traffictypediagnostic: VI1PR04MB4031:
+x-microsoft-antispam-prvs: <VI1PR04MB4031E9167AD0E7E7598AB0DAF31D0@VI1PR04MB4031.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0050CEFE70
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(396003)(346002)(136003)(366004)(376002)(199004)(189003)(13464003)(4326008)(52536014)(102836004)(2906002)(53546011)(55016002)(5660300002)(6862004)(9686003)(8676002)(81166006)(99286004)(229853002)(3846002)(6116002)(14444005)(256004)(81156014)(316002)(6506007)(74316002)(53936002)(6246003)(7696005)(54906003)(6636002)(25786009)(6436002)(76176011)(33656002)(68736007)(14454004)(66066001)(86362001)(44832011)(71200400001)(7736002)(305945005)(71190400001)(486006)(11346002)(446003)(478600001)(476003)(66946007)(73956011)(66556008)(66476007)(66446008)(64756008)(76116006)(26005)(8936002)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4031;H:VI1PR04MB4333.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 0mOXCrVTSsfkf6zUhJeXkNJUj+2tcJL47Q7Vs6hXLrXoSGj7E6vzwSsiO55mP1KIGMMu8CHCsWWX7L9mABm1SNDxOs8Syf5NtxaPc44jcHkZfujs2VZPB0RCn9S+2yAVvhA4HI54UVA5Ic/xb7eiXU30ujcYam7hXgTdkFn4nfpEYQrfAgjc6J+ZA8tqN2ohEnvqtvBbuEwJmy+qoqj/us5NeRAXl9muj3cbegDiBWkT6w+TJlKuvUBU8z/OE5tkksi1aEiJi478C475Hpu0Tq4f6g0z/OhVhTllt9tKITu0SRx8FctEI5pYzh/m1o4c+7mhAbH/ccY1kCla5ceuT6qUdDUHxL/ZiHSs8FYeorDvUckEbZJBSTxdsC/N+Kt6yEf71mLE0E5ReI0r6D/Mno76kZJ5BOuodFmeT++YNxc=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Mon, 27 May 2019 13:53:12 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     robh+dt@kernel.org, andy.gross@linaro.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org, nm@ti.com,
-        sboyd@kernel.org, georgi.djakov@linaro.org,
-        bjorn.andersson@linaro.org, david.brown@linaro.org,
-        mark.rutland@arm.com, linux-kernel@vger.kernel.org,
-        linux-arm-msm-owner@vger.kernel.org, devicetree@vger.kernel.org,
-        rnayak@codeaurora.org, linux-pm@vger.kernel.org,
-        evgreen@chromium.org, daidavid1@codeaurora.org,
-        dianders@chromium.org, Saravana Kannan <skannan@codeaurora.org>,
-        linux-kernel-owner@vger.kernel.org
-Subject: Re: [PATCH RFC 3/9] PM / devfreq: Add cpu based scaling support to
- passive_governor
-In-Reply-To: <6e639c37-c231-f0b5-a280-9a69f2211ccc@samsung.com>
-References: <20190328152822.532-1-sibis@codeaurora.org>
- <CGME20190328152906epcas1p15eb7c52740986df90a44ce265bef7d7c@epcas1p1.samsung.com>
- <20190328152822.532-4-sibis@codeaurora.org>
- <6e639c37-c231-f0b5-a280-9a69f2211ccc@samsung.com>
-Message-ID: <3a2ad1bc744f85804c5f0dc9a74b69ff@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93c023bf-5c12-47c9-b227-08d6e27d2697
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 08:27:26.4439
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: andy.tang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4031
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Chanwoo,
-
-Thanks a lot for reviewing the patch. Like I
-had indicated earlier we decided to go with
-a simpler approach instead on qualcomm SoCs.
-I am happy to re-spin this patch with your
-comments addressed if we do find other users
-for this feature.
-
-On 2019-04-12 13:09, Chanwoo Choi wrote:
-> Hi,
-> 
-> I agree this approach absolutely.
-> Just I add some comments. Please check it.
-> 
-> On 19. 3. 29. 오전 12:28, Sibi Sankar wrote:
->> From: Saravana Kannan <skannan@codeaurora.org>
->> 
->> Many CPU architectures have caches that can scale independent of the
->> CPUs. Frequency scaling of the caches is necessary to make sure the 
->> cache
->> is not a performance bottleneck that leads to poor performance and
->> power. The same idea applies for RAM/DDR.
->> 
->> To achieve this, this patch add support for cpu based scaling to the
->> passive governor. This is accomplished by taking the current frequency
->> of each CPU frequency domain and then adjusts the frequency of the 
->> cache
->> (or any devfreq device) based on the frequency of the CPUs. It listens
->> to CPU frequency transition notifiers to keep itself up to date on the
->> current CPU frequency.
->> 
->> To decide the frequency of the device, the governor does one of the
->> following:
->> * Constructs a CPU frequency to device frequency mapping table from
->>   required-opps property of the devfreq device's opp_table
->> 
->> * Scales the device frequency in proportion to the CPU frequency. So, 
->> if
->>   the CPUs are running at their max frequency, the device runs at its
->>   max frequency. If the CPUs are running at their min frequency, the
->>   device runs at its min frequency. It is interpolated for frequencies
->>   in between.
->> 
->> Signed-off-by: Saravana Kannan <skannan@codeaurora.org>
->> [Sibi: Integrated cpu-freqmap governor into passive_governor]
->> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
->> ---
->>  drivers/devfreq/Kconfig            |   4 +
->>  drivers/devfreq/governor_passive.c | 276 
->> ++++++++++++++++++++++++++++-
->>  include/linux/devfreq.h            |  43 ++++-
->>  3 files changed, 315 insertions(+), 8 deletions(-)
->> 
->> diff --git a/drivers/devfreq/Kconfig b/drivers/devfreq/Kconfig
->> index 6a172d338f6d..9a45f464a56b 100644
->> --- a/drivers/devfreq/Kconfig
->> +++ b/drivers/devfreq/Kconfig
->> @@ -72,6 +72,10 @@ config DEVFREQ_GOV_PASSIVE
->>  	  device. This governor does not change the frequency by itself
->>  	  through sysfs entries. The passive governor recommends that
->>  	  devfreq device uses the OPP table to get the frequency/voltage.
->> +	  Alternatively the governor can also be chosen to scale based on
->> +	  the online CPUs current frequency. A CPU frequency to device
->> +	  frequency mapping table(s) is auto-populated by the governor
->> +	  for this purpose.
->> 
->>  comment "DEVFREQ Drivers"
->> 
->> diff --git a/drivers/devfreq/governor_passive.c 
->> b/drivers/devfreq/governor_passive.c
->> index 3bc29acbd54e..2506682b233b 100644
->> --- a/drivers/devfreq/governor_passive.c
->> +++ b/drivers/devfreq/governor_passive.c
->> @@ -11,10 +11,63 @@
->>   */
->> 
->>  #include <linux/module.h>
->> +#include <linux/cpu.h>
->> +#include <linux/cpufreq.h>
->> +#include <linux/cpumask.h>
->>  #include <linux/device.h>
->>  #include <linux/devfreq.h>
->> +#include <linux/of.h>
->> +#include <linux/slab.h>
->>  #include "governor.h"
->> 
->> +static unsigned int xlate_cpufreq_to_devfreq(struct 
->> devfreq_passive_data *data,
->> +					     unsigned int cpu)
->> +{
->> +	unsigned int cpu_min, cpu_max;
->> +	struct devfreq *devfreq = (struct devfreq *)data->this;
->> +	unsigned int dev_min, dev_max, cpu_percent, cpu_freq = 0, freq = 0;
->> +	unsigned long *freq_table = devfreq->profile->freq_table;
->> +	struct device *dev = devfreq->dev.parent;
->> +	struct devfreq_map *map;
->> +	int opp_cnt, i;
->> +
->> +	if (!data->state[cpu] || data->state[cpu]->first_cpu != cpu) {
->> +		freq = 0;
->> +		goto out;
-> 
-> goto out -> return 0;
-> 
->> +	}
->> +
->> +	/* Use Interpolation if map is not available */
->> +	cpu_freq = data->state[cpu]->freq;
->> +	if (!data->map) {
->> +		cpu_min = data->state[cpu]->min_freq;
->> +		cpu_max = data->state[cpu]->max_freq;
->> +		if (freq_table) {
->> +			dev_min = freq_table[0];
->> +			dev_max = freq_table[devfreq->profile->max_state - 1];
-> 
-> Actually, it is not always true. The devfreq recommend the ascending 
-> order for
-> 'freq_table'. But, it is not mandatory. Also, some devfreq device uses 
-> the
-> decending order for 'freq_table'. So, a patch[1] was considering the 
-> order
-> when getting the minimum/maximum frequency from freq_table.
-> 
-> If you want to get the minimum/maximum frequency, you have to consider 
-> the order
-> of 'freq_table' as the patch[1].
-> 
-> [1] df5cf4a36178 ("PM / devfreq: Fix handling of min/max_freq == 0")
-> 
->              /* Get minimum frequency according to sorting order */
-> +               if (freq_table[0] < freq_table[df->profile->max_state - 
-> 1])
-> +                       value = freq_table[0];
-> +               else
-> +                       value = freq_table[df->profile->max_state - 1];
-> 
-> 
->> +		} else {
->> +			if (devfreq->max_freq <= devfreq->min_freq)
->> +				return 0;
->> +			dev_min = devfreq->min_freq;
->> +			dev_max = devfreq->max_freq;
->> +		}
->> +
->> +		cpu_percent = ((cpu_freq - cpu_min) * 100) / cpu_max - cpu_min;
->> +		freq = dev_min + mult_frac(dev_max - dev_min, cpu_percent, 100);
->> +		goto out;
-> 
-> You don't need to jump 'out'. Instead, you better to use the 'else' 
-> statement
-> for if data->map is not NULL. I think that almost case when using this 
-> patch
-> will be available of data->map. In order to skip the likely 'false' 
-> statement,
-> I recommend the following sequence.
-> 
-> 	if (data->map) {
-> 		map = data->map[cpu];
-> 		...
-> 	} else {
-> 		/* Use Interpolation if map is not available */
-> 	}
-> 
-> 
->> +	}
->> +
->> +	map = data->map[cpu];
->> +	opp_cnt = dev_pm_opp_get_opp_count(dev);
->> +	for (i = 0; i < opp_cnt; i++) {
->> +		freq = max(freq, map[i].dev_hz);
->> +		if (map[i].cpu_khz >= cpu_freq)
->> +			break;
->> +	}
->> +out:
->> +	dev_dbg(dev, "CPU%u: %d -> dev: %u\n", cpu, cpu_freq, freq);
-> 
-> IMO, I think it is not necessary. If you want to print log, you better 
-> to print
-> it on device driver instead of governor.
-> 
->> +	return freq;
->> +}
->> +
->>  static int devfreq_passive_get_target_freq(struct devfreq *devfreq,
->>  					unsigned long *freq)
->>  {
->> @@ -23,6 +76,7 @@ static int devfreq_passive_get_target_freq(struct 
->> devfreq *devfreq,
->>  	struct devfreq *parent_devfreq = (struct devfreq *)p_data->parent;
->>  	unsigned long child_freq = ULONG_MAX;
->>  	struct dev_pm_opp *opp;
->> +	unsigned int cpu, tgt_freq = 0;
-> 
-> tgt means 'target'? If right, just use target_freq intead of 'tgt_freq'
-> for the readability.
-> 
->>  	int i, count, ret = 0;
->> 
->>  	/*
->> @@ -35,6 +89,14 @@ static int devfreq_passive_get_target_freq(struct 
->> devfreq *devfreq,
->>  		goto out;
->>  	}
->> 
->> +	if (p_data->cpufreq_type) {
->> +		for_each_possible_cpu(cpu)
->> +			tgt_freq = max(tgt_freq,
->> +				       xlate_cpufreq_to_devfreq(p_data, cpu));
->> +		*freq = tgt_freq;
-> 
-> You better to change from 'tgt_freq' to 'target_freq' for the 
-> readability.
-> 
->> +		goto out;
->> +	}
-> 
-> I think that 'goto out' using is not proper for supporting two case.
-> Instead, you better to split out as following according to the type
-> of parent device (devfreq device or cpufreq device).
-> 
-> 	switch (p_data->parent_type) {
-> 	case DEVFREQ_PARENT_DEV:
-> 		ret = get_target_freq_with_devfreq()
-> 		break;
-> 	case CPUFREQ_PARENT_DEV:
-> 		ret = get_target_freq_with_cpufreq()
-> 		break;
-> 	default:
-> 		dev_err(...)
-> 		ret = -EINVAL;
-> 		goto out;
-> 	}
-> 
-> 	if (ret < 0) {
-> 		/* exception handling for 'ret' value */
-> 	}
-> 
->> +
->>  	/*
->>  	 * If the parent and passive devfreq device uses the OPP table,
->>  	 * get the next frequency by using the OPP table.
->> @@ -149,6 +211,200 @@ static int devfreq_passive_notifier_call(struct 
->> notifier_block *nb,
->>  	return NOTIFY_DONE;
->>  }
->> 
->> +static int cpufreq_passive_notifier_call(struct notifier_block *nb,
->> +					 unsigned long event, void *ptr)
->> +{
->> +	struct devfreq_passive_data *data =
->> +			container_of(nb, struct devfreq_passive_data, nb);
->> +	struct devfreq *devfreq = (struct devfreq *)data->this;
->> +	struct cpufreq_freqs *freq = ptr;
->> +	struct devfreq_cpu_state *state;
-> 
-> nitpick. how about using 'cpu_state' instead of 'state'?
-> in order to get the meaning from just variable name.
-> 
->> +	int ret = 0;
->> +
->> +	if (event != CPUFREQ_POSTCHANGE)
->> +		goto out;
-> 
-> just 'return' is simple instead of 'goto out' because this case
-> don't need to treat the any restoring code. And also, you have
-> to check whether freq is NULL or not as following:
-> 
-> 	if (event != CPUFREQ_POSTCHANGE || !freq || data->state[freq->cpu])
-> 		return ret;
-> 	state = data->state[freq->cpu];
-> 
->> +
->> +	state = data->state[freq->cpu];
->> +	if (!state)
->> +		goto out;
->> +
->> +	if (state->freq != freq->new) {
->> +		state->freq = freq->new;
-> 
-> You have to update the frequency after update_devfreq() is completed
-> without error.
-> 
->> +		mutex_lock(&devfreq->lock);
->> +		ret = update_devfreq(devfreq);
->> +		mutex_unlock(&devfreq->lock);
->> +		if (ret)
->> +			dev_err(&devfreq->dev, "Frequency update failed.\n");
-> 
-> Almost devfreq error used the following format: "Couldn't ..." .
-> If there is no any specific reason to change the format for error log,
-> 	"Couldnt update the frequency.\n"
-> 
->> +	}> +out:
->> +	return ret;
-> 
-> Also, we can reduce the unneeded indentation as following:
-> 
-> 	if (state->freq == freq->new)
-> 		return ret;
-> 
-> 	mutex_lock(&devfreq->lock);
-> 	ret = update_devfreq(devfreq);
-> 	mutex_unlock(&devfreq->lock);
-> 	if (ret) {
-> 		dev_err(&devfreq->dev, "Couldnt update the frequency.\n");
-> 		return ret;
-> 	}
-> 	state->freq = freq->new;
-> 
-> 	return 0;
-> 
->> +}
->> +
->> +static int cpufreq_passive_register(struct devfreq_passive_data 
->> **p_data)
->> +{
->> +	unsigned int cpu;
->> +	struct devfreq_map **cpu_map;
->> +	struct devfreq_map *map, *per_cpu_map;
->> +	struct devfreq_passive_data *data = *p_data;
->> +	struct devfreq *devfreq = (struct devfreq *)data->this;
->> +	int i, count = 0, opp_cnt = 0, ret = 0, iter_val = 0;
->> +	struct device_node *np, *opp_table_np, *cpu_np;
->> +	struct opp_table *opp_table, *cpu_opp_tbl;
->> +	struct device *dev = devfreq->dev.parent;
->> +	struct devfreq_cpu_state *state;
->> +	struct dev_pm_opp *opp, *cpu_opp;
->> +	struct cpufreq_policy *policy;
->> +	struct device *cpu_dev;
->> +	u64 cpu_khz, dev_hz;
->> +
->> +	get_online_cpus();
->> +	data->nb.notifier_call = cpufreq_passive_notifier_call;
->> +	ret = cpufreq_register_notifier(&data->nb,
->> +					CPUFREQ_TRANSITION_NOTIFIER);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* Populate devfreq_cpu_state */
->> +	for_each_online_cpu(cpu) {
->> +		if (data->state[cpu])
->> +			continue;
->> +
->> +		policy = cpufreq_cpu_get(cpu);
->> +		if (policy) {
->> +			state = kzalloc(sizeof(*state), GFP_KERNEL);
->> +			if (!state)
->> +				return -ENOMEM;
->> +
->> +			state->first_cpu = cpumask_first(policy->related_cpus);
->> +			state->freq = policy->cur;
->> +			state->min_freq = policy->cpuinfo.min_freq;
->> +			state->max_freq = policy->cpuinfo.max_freq;
->> +			data->state[cpu] = state;
->> +			cpufreq_cpu_put(policy);
->> +		} else {
->> +			return -EPROBE_DEFER;
->> +		}
->> +	}
->> +
->> +	opp_table_np = dev_pm_opp_of_get_opp_desc_node(dev);
->> +	if (!opp_table_np)
->> +		goto out;
->> +
->> +	opp_cnt = dev_pm_opp_get_opp_count(dev);
->> +	if (opp_cnt <= 0)
->> +		goto put_opp_table;
->> +
->> +	/* Allocate memory for devfreq_map*/
->> +	cpu_map = kcalloc(num_possible_cpus(), sizeof(*cpu_map), 
->> GFP_KERNEL);
->> +	if (!cpu_map)
->> +		return -ENOMEM;
->> +
->> +	for_each_possible_cpu(cpu) {
->> +		per_cpu_map = kcalloc(opp_cnt, sizeof(*per_cpu_map),
->> +				      GFP_KERNEL);
->> +		if (!per_cpu_map)
->> +			return -ENOMEM;
->> +		cpu_map[cpu] = per_cpu_map;
->> +	}
->> +	data->map = cpu_map;
->> +
->> +	/* Populate devfreq_map */
->> +	opp_table = dev_pm_opp_get_opp_table(dev);
->> +	if (!opp_table)
->> +		return -ENOMEM;
->> +
->> +	for_each_available_child_of_node(opp_table_np, np) {
->> +		opp = dev_pm_opp_find_opp_of_np(opp_table, np);
->> +		if (IS_ERR(opp))
->> +			continue;
->> +
->> +		dev_hz = dev_pm_opp_get_freq(opp);
->> +		dev_pm_opp_put(opp);
->> +
->> +		count = of_count_phandle_with_args(np, "required-opps", NULL);
->> +		for (i = 0; i < count; i++) {
->> +			for_each_possible_cpu(cpu) {
->> +				cpu_dev = get_cpu_device(cpu);
->> +				if (!cpu_dev) {
->> +					dev_err(dev, "CPU get device failed.\n");
->> +					continue;
->> +				}
->> +
->> +				cpu_np = of_parse_required_opp(np, i);
->> +				if (!cpu_np) {
->> +					dev_err(dev, "Parsing required opp failed.\n");
->> +					continue;
->> +				}
->> +
->> +				/* Get cpu opp-table */
->> +				cpu_opp_tbl = dev_pm_opp_get_opp_table(cpu_dev);
->> +				if (!cpu_opp_tbl) {
->> +					dev_err(dev, "CPU opp table get failed.\n");
->> +					goto put_cpu_node;
->> +				}
->> +
->> +				/* Match the cpu opp node from required-opp with
->> +				 * the cpu-opp table */
->> +				cpu_opp = dev_pm_opp_find_opp_of_np(cpu_opp_tbl,
->> +								    cpu_np);
->> +				if (!cpu_opp) {
->> +					dev_dbg(dev, "CPU opp get failed.\n");
->> +					goto put_cpu_opp_table;
->> +				}
->> +
->> +				cpu_khz = dev_pm_opp_get_freq(cpu_opp);
->> +				if (cpu_opp && cpu_khz) {
->> +					/* Update freq-map if not already set */
->> +					map = cpu_map[cpu];
->> +					map[iter_val].cpu_khz = cpu_khz / 1000;
->> +					map[iter_val].dev_hz = dev_hz;
->> +				}
->> +				dev_pm_opp_put(cpu_opp);
->> +put_cpu_opp_table:
->> +				dev_pm_opp_put_opp_table(cpu_opp_tbl);
->> +put_cpu_node:
->> +				of_node_put(cpu_np);
->> +			}
->> +		}
->> +		iter_val++;
->> +	}
->> +	dev_pm_opp_put_opp_table(opp_table);
->> +put_opp_table:
->> +	of_node_put(opp_table_np);
->> +out:
->> +	put_online_cpus();
->> +
->> +	/* Update devfreq */
->> +	mutex_lock(&devfreq->lock);
->> +	ret = update_devfreq(devfreq);
->> +	mutex_unlock(&devfreq->lock);
->> +	if (ret)
->> +		dev_err(dev, "Frequency update failed.\n");
->> +
->> +	return ret;
->> +}
->> +
->> +static int cpufreq_passive_unregister(struct devfreq_passive_data 
->> **p_data)
->> +{
->> +	int cpu;
->> +	struct devfreq_passive_data *data = *p_data;
->> +
->> +	cpufreq_unregister_notifier(&data->nb,
->> +				    CPUFREQ_TRANSITION_NOTIFIER);
->> +
->> +	for_each_possible_cpu(cpu) {
->> +		kfree(data->state[cpu]);
->> +		kfree(data->map[cpu]);
->> +		data->state[cpu] = NULL;
->> +		data->map[cpu] = NULL;
->> +	}
->> +
->> +	kfree(data->map);
->> +	data->map = NULL;
->> +
->> +	return 0;
->> +}
->> +
->>  static int devfreq_passive_event_handler(struct devfreq *devfreq,
->>  				unsigned int event, void *data)
->>  {
->> @@ -159,7 +415,7 @@ static int devfreq_passive_event_handler(struct 
->> devfreq *devfreq,
->>  	struct notifier_block *nb = &p_data->nb;
->>  	int ret = 0;
->> 
->> -	if (!parent)
->> +	if (!parent && !p_data->cpufreq_type)
->>  		return -EPROBE_DEFER;
-> 
-> It makes the fault for the existing devfreq devices with passive 
-> governor.
-> Please remove '!p_data->cpufreq_type' condition.
-> 
->> 
->>  	switch (event) {
->> @@ -167,13 +423,21 @@ static int devfreq_passive_event_handler(struct 
->> devfreq *devfreq,
->>  		if (!p_data->this)
->>  			p_data->this = devfreq;
->> 
->> -		nb->notifier_call = devfreq_passive_notifier_call;
->> -		ret = devm_devfreq_register_notifier(dev, parent, nb,
->> -					DEVFREQ_TRANSITION_NOTIFIER);
->> +		if (p_data->cpufreq_type) {
->> +			ret = cpufreq_passive_register(&p_data);
->> +		} else {
->> +			nb->notifier_call = devfreq_passive_notifier_call;
->> +			ret = devm_devfreq_register_notifier(dev, parent, nb,
->> +						DEVFREQ_TRANSITION_NOTIFIER);
->> +		}
-> 
-> I suggested the my opinion aboyt 'cpufreq_type' variable below.
-> You can separte it for more clready with using parent device type.
-> 
-> 		if (p_data->parent_type == DEVFREQ_PARENT_DEV)
-> 			...
-> 		else if (p_data->parent_type == CPUFREQ_PARENT_DEV)
-> 			...
-> 		else
-> 			// error handling
-> 
->>  		break;
->>  	case DEVFREQ_GOV_STOP:
->> -		devm_devfreq_unregister_notifier(dev, parent, nb,
->> -					DEVFREQ_TRANSITION_NOTIFIER);
->> +		if (p_data->cpufreq_type) {
->> +			cpufreq_passive_unregister(&p_data);
->> +		} else {
->> +			devm_devfreq_unregister_notifier(dev, parent, nb,
->> +						DEVFREQ_TRANSITION_NOTIFIER);
->> +		}
-> 
-> ditto.
-> 
->>  		break;
->>  	default:
->>  		break;
->> diff --git a/include/linux/devfreq.h b/include/linux/devfreq.h
->> index fbffa74bfc1b..e8235fbe49e6 100644
->> --- a/include/linux/devfreq.h
->> +++ b/include/linux/devfreq.h
->> @@ -265,6 +265,38 @@ struct devfreq_simple_ondemand_data {
->>  #endif
->> 
->>  #if IS_ENABLED(CONFIG_DEVFREQ_GOV_PASSIVE)
->> +/**
->> + * struct devfreq_cpu_state - holds the per-cpu state
->> + * @freq:	holds the current frequency of the cpu.
->> + * @min_freq:	holds the min frequency of the cpu.
->> + * @max_freq:	holds the max frequency of the cpu.
->> + * @first_cpu:	holds the cpumask of the first cpu of a policy.
->> + *
->> + * This structure stores the required cpu_state of a cpu.
->> + * This is auto-populated by the governor.
->> + */
->> +struct devfreq_cpu_state {
->> +	unsigned int freq;
->> +	unsigned int min_freq;
->> +	unsigned int max_freq;
->> +	unsigned int first_cpu;
->> +};
->> +
->> +/**
->> + * struct devfreq_map - holds mapping from cpu frequency
->> + * to devfreq frequency
->> + * @cpu_khz:	holds the cpu frequency in Khz
->> + * @dev_hz:	holds the devfreq device frequency in Hz
->> + *
->> + * This structure stores the lookup table between cpu
->> + * and the devfreq device. This is auto-populated by the
->> + * governor.
->> + */
->> +struct devfreq_map {
-> 
-> How about changing the structure name as following or others?
-> - devfreq_freq_map or devfreq_cpufreq_map or others.
-> 
-> Because this structure name guessing the meaning of mapping
-> between devfreq frequency and cpufreq frequency.
-> 
->> +	unsigned int cpu_khz;
->> +	unsigned int dev_hz;
->> +};
->> +
->>  /**
->>   * struct devfreq_passive_data - void *data fed to struct devfreq
->>   *	and devfreq_add_device
->> @@ -278,11 +310,13 @@ struct devfreq_simple_ondemand_data {
->>   *			the next frequency, should use this callback.
->>   * @this:	the devfreq instance of own device.
->>   * @nb:		the notifier block for DEVFREQ_TRANSITION_NOTIFIER list
->> + * @state:	holds the state min/max/current frequency of all online 
->> cpu's
-> 
-> As I commented above, how about using 'cpu_state' instead of 'state'?
-> in order to get the meaning from just variable name.
-> 
-> nitpick. Also,  I think that you can skip 'holds' from the description
-> of 'state' variable.
-> 
-> 
->> + * @map:	holds the maps between cpu frequency and device frequency
-> 
-> How about using 'cpufreq_map' instead of 'map' for the readability?
-> IMHO, Because this variable is only used when parent device is cpu.
-> I think that if you add to specify the meaningful prefix about cpu to
-> variable name,
-> it is easy to catch the meaning of variable.
-> - map -> cpufreq_map.
-> 
-> nitpick. Also,  I think that you can skip 'holds' from the description
-> of 'map' variable.
-> 
->>   *
->>   * The devfreq_passive_data have to set the devfreq instance of 
->> parent
->>   * device with governors except for the passive governor. But, don't 
->> need to
->> - * initialize the 'this' and 'nb' field because the devfreq core will 
->> handle
->> - * them.
->> + * initialize the 'this', 'nb', 'state' and 'map' field because the 
->> devfreq
-> 
-> If you agree my opinion above,
-> - state -> cpu_state.
-> - map -> cpufreq_map
-> 
->> + * core will handle them.
->>   */
->>  struct devfreq_passive_data {
->>  	/* Should set the devfreq instance of parent device */
->> @@ -291,9 +325,14 @@ struct devfreq_passive_data {
->>  	/* Optional callback to decide the next frequency of passvice device 
->> */
->>  	int (*get_target_freq)(struct devfreq *this, unsigned long *freq);
->> 
->> +	/* Should be set if the devfreq device wants to be scaled with cpu*/
->> +	u8 cpufreq_type;
-> 
-> The devfreq devices with passive governor have always parent
-> either devfreq device or cpufreq device. So, you better to specify
-> the parent type as following: I think that it is more clear to check
-> the type of parent device.
-> 
-> 	enum devfreq_parent_dev_type {
-> 		DEVFREQ_PARENT_DEV,
-> 		CPUFREQ_PARENT_DEV,
-> 	};
-> 
-> 	enum devfreq_parent_dev_type parent_type;
-> 
->> +
->>  	/* For passive governor's internal use. Don't need to set them */
->>  	struct devfreq *this;
->>  	struct notifier_block nb;
->> +	struct devfreq_cpu_state *state[NR_CPUS];
->> +	struct devfreq_map **map;
-> 
-> ditto.
-> 
->>  };
->>  #endif
->> 
->> 
-
--- 
--- Sibi Sankar --
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+SGkgTGVvLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IExpIFlhbmcg
+PGxlb3lhbmcubGlAbnhwLmNvbT4NCj4gU2VudDogMjAxOeW5tDXmnIgyNeaXpSA2OjMyDQo+IFRv
+OiBBbmR5IFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1
+b0BrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47DQo+IE1hcmsg
+UnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+OyBtb2RlcmF0ZWQgbGlzdDpBUk0vRlJFRVND
+QUxFDQo+IElNWCAvIE1YQyBBUk0gQVJDSElURUNUVVJFIDxsaW51eC1hcm0ta2VybmVsQGxpc3Rz
+LmluZnJhZGVhZC5vcmc+Ow0KPiBvcGVuIGxpc3Q6T1BFTiBGSVJNV0FSRSBBTkQgRkxBVFRFTkVE
+IERFVklDRSBUUkVFIEJJTkRJTkdTDQo+IDxkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZz47IGxr
+bWwgPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc+DQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBb
+UEFUQ0hdIGFybTY0OiBkdHM6IGxzMTAyOGE6IEFkZCB0ZW1wZXJhdHVyZSBzZW5zb3INCj4gbm9k
+ZQ0KPiANCj4gQ2F1dGlvbjogRVhUIEVtYWlsDQo+IA0KPiBPbiBUaHUsIE1heSAyMywgMjAxOSBh
+dCA4OjMwIFBNIFl1YW50aWFuIFRhbmcgPGFuZHkudGFuZ0BueHAuY29tPg0KPiB3cm90ZToNCj4g
+Pg0KPiA+IEFkZCBueHAgc2E1NjAwNCBjaGlwIG5vZGUgZm9yIHRlbXBlcmF0dXJlIG1vbml0b3Iu
+DQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBZdWFudGlhbiBUYW5nIDxhbmR5LnRhbmdAbnhwLmNv
+bT4NCj4gPiAtLS0NCj4gPiAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAy
+OGEtcWRzLmR0cyB8IDUgKysrKysNCj4gPiBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9m
+c2wtbHMxMDI4YS1yZGIuZHRzIHwgNSArKysrKw0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDEwIGlu
+c2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9mc2wtbHMxMDI4YS1xZHMuZHRzDQo+ID4gaW5kZXggYjM1OTA2OGQ5NjA1Li4zMWZk
+NjI2ZGQzNDQgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
+ZnNsLWxzMTAyOGEtcWRzLmR0cw0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2ZzbC1sczEwMjhhLXFkcy5kdHMNCj4gPiBAQCAtMTMxLDYgKzEzMSwxMSBAQA0KPiA+ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhdG1lbCwyNGM1MTIi
+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4NTc+Ow0KPiA+
+ICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgIHRlbXBANGMgew0KPiANCj4gVGhlIHJlY29tbWVuZGVkIG5hbWUgZm9yIHRlbXBlcmF0
+dXJlIHNlbm9yIGluIGR0cyBzcGVjIGlzDQo+IHRlbXBlcmF0dXJlLXNlbnNvci4NCkkgZGlkbid0
+IGZpbmQgdGhlIHNwZWMgZm9yIHRoaXMgcmVjb21tZW5kYXRpb24uIENvdWxkIHlvdSBwbGVhc2Ug
+cHJvdmlkZSB0aGUgbGluaz8NCkkgbGlrZSB0byB1cGRhdGUgaXQgdG8gdGVtcC1zZW5zb3IgdGhv
+dWdoLg0KDQo+IA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJs
+ZSA9ICJueHAsc2E1NjAwNCI7DQo+IA0KPiBUaGUgYmluZGluZyBzYXlzIHRoZSBmb2xsb3dpbmcg
+cHJvcGVydHkgaXMgcmVxdWlyZWQuICBJZiBpdCBpcyBub3QgdGhlIGNhc2UsDQo+IHByb2JhYmx5
+IHdlIHNob3VsZCB1cGRhdGUgdGhlIGJpbmRpbmcuDQo+IC0gdmNjLXN1cHBseTogdmNjIHJlZ3Vs
+YXRvciBmb3IgdGhlIHN1cHBseSB2b2x0YWdlLg0KSSB3aWxsIGFkZCB0aGUgdmNjLXN1cHBseSB0
+byBjb21wbHkgdGhpcyByZXF1aXJlbWVudC4NCg0KVGhhbmtzLA0KQW5keQ0KPiANCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwweDRjPjsNCj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgICB9Ow0KPiA+ICAgICAgICAgICAgICAgICB9Ow0KPiA+DQo+ID4gICAgICAg
+ICAgICAgICAgIGkyY0A1IHsNCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cw0KPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvZnNsLWxzMTAyOGEtcmRiLmR0cw0KPiA+IGluZGV4IGY5YzI3MmZiMDczOC4uMDEy
+YjNmODY5NmI3IDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxl
+L2ZzbC1sczEwMjhhLXJkYi5kdHMNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9mc2wtbHMxMDI4YS1yZGIuZHRzDQo+ID4gQEAgLTExOSw2ICsxMTksMTEgQEANCj4gPiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibnhwLHBjZjIxMjki
+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4NTE+Ow0KPiA+
+ICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgIHRlbXBANGMgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29t
+cGF0aWJsZSA9ICJueHAsc2E1NjAwNCI7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICByZWcgPSA8MHg0Yz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiAg
+ICAgICAgICAgICAgICAgfTsNCj4gPiAgICAgICAgIH07DQo+ID4gIH07DQo+ID4gLS0NCj4gPiAy
+LjE3LjENCj4gPg0K
