@@ -2,79 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD512BB27
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:11:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A62D2BB35
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 22:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727193AbfE0ULs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 16:11:48 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:53164 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726657AbfE0ULs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:11:48 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 4F86B80376;
-        Mon, 27 May 2019 22:11:41 +0200 (CEST)
-Date:   Mon, 27 May 2019 22:11:39 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1727207AbfE0UPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 16:15:07 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:41797 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726839AbfE0UPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 16:15:07 -0400
+Received: by mail-wr1-f65.google.com with SMTP id c2so2681321wrm.8;
+        Mon, 27 May 2019 13:15:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RXahGaBrkqUKt9hjO+RHzxhaODt54utR6Qk5vi9eCaQ=;
+        b=owUyFwlXphbnCdPceA7pSRSRDBr3F1cc+EYPPm79e3Mf5qHXv14oDJt46X6NAUyIRR
+         G8rIbeApWCEHEMmhlRx3sXskvz5BaS8egS4Oe3eTA7Ys+yuNij75fEoMQUizaMmwhxBD
+         t8vJk+fQL+MCUNgL065d067WNqHgghWlYg2ur8Q/sOYgpDjMMkPOTouS7+pZphyN091F
+         AEsIEBlrTAAuj60d8VMJv1XBSDROb2vq/4aMIo8KqsQ1aVp92V7++kk+PL/L39FQJifY
+         hgTsxXS33KvZVSk33Hw64di1otY89d/aw5+eSOpGEVTZFs4aQbB2d+qHXBUr9wnla9jo
+         sP5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RXahGaBrkqUKt9hjO+RHzxhaODt54utR6Qk5vi9eCaQ=;
+        b=rHbJRNzilttVTAwCdxzQvoE1BTcBFascxyrKJUdTofPyn0HC/QZqY3v7Df34HNAmQv
+         pZlvePpFHgJ3/NBofq7GBeumMAUnrNOUGpfYoikqlM6yuEJZ6LHmg3OdoBUx621hcImg
+         Uqk4a0uKoJ+SOcieDDIaEqOARV3wJRkRTijkQTGE+zNHikaRksQosuCiMfcai2yJM3VY
+         2qRzA0rC3njxSJxIoaKdGJkpStG2vhjJdKMpPZ/m/ceVk9ybsTgv4MqL7PXG1HXratYU
+         kgFJg3L4+f0fZDzlUDcTuWKLgKl/vIR8AQQZUiizzjnDFtGtsx0hyESdOLPbtMEIviii
+         wyvw==
+X-Gm-Message-State: APjAAAWeKWXwvVGr/22l6PcR8sz75OWGiC86zRiq16GMtvI4UUXbQhD7
+        r9zepb5aeCEoWKa0/yhq+f8=
+X-Google-Smtp-Source: APXvYqxEJpHEqBC0rATeo4Jp5k5kbxhG9dMgCDzdVg4d/5zHBKkoNf1NUwOJp8BMU3gPMRXlDfRdQg==
+X-Received: by 2002:a5d:5701:: with SMTP id a1mr75764699wrv.52.1558988105323;
+        Mon, 27 May 2019 13:15:05 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
+        by smtp.gmail.com with ESMTPSA id i27sm347146wmb.16.2019.05.27.13.15.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 May 2019 13:15:04 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/6] drm/bridge: extract some Analogix I2C DP common code
-Message-ID: <20190527201139.GA27782@ravnborg.org>
-References: <20190523065013.2719D68B05@newverein.lst.de>
- <20190523065352.8FD7668B05@newverein.lst.de>
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Dan Williams <dan.j.williams@intel.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v3 0/7] Allwinner H6 DMA support
+Date:   Mon, 27 May 2019 22:14:52 +0200
+Message-Id: <20190527201459.20130-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190523065352.8FD7668B05@newverein.lst.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
-        a=1z2v1k-a1PjaIlATdV0A:9 a=CjuIK1q_8ugA:10
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Torsten.
+Hi,
 
-> index 000000000000..9cb30962032e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.c
-> @@ -0,0 +1,169 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright(c) 2017 Icenowy Zheng <icenowy@aosc.io>
-> + *
-> + * Based on analogix-anx78xx.c, which is:
-> + *   Copyright(c) 2016, Analogix Semiconductor. All rights reserved.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <drm/drm.h>
-> +#include <drm/drmP.h>
+This series has been first proposed by Jernej Skrabec[1].
+As this series is mandatory for SPDIF/I2S support and because he is
+busy on Cedrus stuff. I asked him to make the minor change requested
+and repost it.
+Authorship remains to him.
 
-Can we please avoid drmP.h in new files.
-The header file is deprecated and we try to get rid of it.
+I have tested this series with SPDIF driver and added a patch to enable
+DMA_SUN6I_CONFIG for arm64.
 
-	Sam
+Original Post:
+"
+DMA engine engine on H6 almost the same as on older SoCs. The biggest
+difference is that it has slightly rearranged bits in registers and
+it needs additional clock, probably due to iommu.
+
+These patches were tested with I2S connected to HDMI. I2S needs
+additional patches which will be sent later.
+
+Please take a look.
+
+Best regards,
+Jernej
+"
+
+Thanks,
+Clément
+
+Changes since v2:
+ - Drop the change of "dma-request" default value
+
+Changes since v1:
+ - Enable DMA_SUN6I in arm64 defconfig
+ - Change mbus_clk to has_mbus_clk
+ - Collect Rob H. reviewed-by
+
+Clément Péron (1):
+  arm64: defconfig: enable Allwinner DMA drivers
+
+Jernej Skrabec (6):
+  dt-bindings: arm64: allwinner: h6: Add binding for DMA controller
+  dmaengine: sun6i: Add a quirk for additional mbus clock
+  dmaengine: sun6i: Add a quirk for setting DRQ fields
+  dmaengine: sun6i: Add a quirk for setting mode fields
+  dmaengine: sun6i: Add support for H6 DMA
+  arm64: dts: allwinner: h6: Add DMA node
+
+ .../devicetree/bindings/dma/sun6i-dma.txt     |   9 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  12 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/dma/sun6i-dma.c                       | 147 +++++++++++++-----
+ 4 files changed, 132 insertions(+), 37 deletions(-)
+
+-- 
+2.20.1
+
