@@ -2,131 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD912AD0A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 04:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C668E2AD1B
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 05:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725993AbfE0CrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 May 2019 22:47:23 -0400
-Received: from gateway30.websitewelcome.com ([192.185.168.15]:41586 "EHLO
-        gateway30.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725923AbfE0CrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 May 2019 22:47:23 -0400
-X-Greylist: delayed 1441 seconds by postgrey-1.27 at vger.kernel.org; Sun, 26 May 2019 22:47:22 EDT
-Received: from cm14.websitewelcome.com (cm14.websitewelcome.com [100.42.49.7])
-        by gateway30.websitewelcome.com (Postfix) with ESMTP id 86D6F2C0E
-        for <devicetree@vger.kernel.org>; Sun, 26 May 2019 21:23:20 -0500 (CDT)
-Received: from br164.hostgator.com.br ([192.185.176.180])
-        by cmsmtp with SMTP
-        id V5IGhLFa22qH7V5IGhZVwS; Sun, 26 May 2019 21:23:20 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=I4VLnKJzdba2/tICr5vHEXDmUjBljIV86QHf5FlXteA=; b=pBZkokznjDxJn5J0nEp/+icHZt
-        YZukC0iqe8exicoGyoaaPdEHgzTPBSFsvRBwQ89W562CdIfWzRdc7i//G/aHpxbjSyDNfngXNx92V
-        pfKxPUwOuA0QrX8G9IBsO9vUXnw0Yx/E38IDVfhR39v0BWtKG7+FDfLGfBRz8kRPY7fVZ+PxCSdsL
-        e/f4tRW4IjuOOOaXY8YLrzuuOS7nJew6b+4S6Js6+n1X0gtq8zz9oIRBVUYCZCWoUHPGCG2wA3V/J
-        7QtxE1xobhSWBtwmx838KEf0O+VtjqKv2A09qHUhqiG9QU9k/W7YzG+OONtVXCIXDdgh4MKh3km7R
-        XrqP/Utg==;
-Received: from [177.34.20.96] (port=57660 helo=castello.castello.in)
-        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.91)
-        (envelope-from <matheus@castello.eng.br>)
-        id 1hV5IF-003JNX-JQ; Sun, 26 May 2019 23:23:20 -0300
-From:   Matheus Castello <matheus@castello.eng.br>
-To:     sre@kernel.org, krzk@kernel.org, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, cw00.choi@samsung.com,
-        b.zolnierkie@samsung.com, lee.jones@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Matheus Castello <matheus@castello.eng.br>
-Subject: [PATCH v3 5/5] power: supply: max17040: Send uevent in SOC and status change
-Date:   Sun, 26 May 2019 23:22:58 -0300
-Message-Id: <20190527022258.32748-6-matheus@castello.eng.br>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190527022258.32748-1-matheus@castello.eng.br>
-References: <CAJKOXPf=nPrmw6Vzi_=LmO=dVsV4Gvoc-q75XP2FBEgm9Gxv0A@mail.gmail.com>
- <20190527022258.32748-1-matheus@castello.eng.br>
+        id S1726055AbfE0DEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 May 2019 23:04:35 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:40148 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725973AbfE0DEf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 May 2019 23:04:35 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 45A5620002A;
+        Mon, 27 May 2019 05:04:33 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EEAF9200A4C;
+        Mon, 27 May 2019 05:04:27 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 2DBBC402D6;
+        Mon, 27 May 2019 11:04:21 +0800 (SGT)
+From:   Peter Chen <peter.chen@nxp.com>
+To:     balbi@kernel.org, shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, fabio.estevam@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, aisheng.dong@nxp.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, chunfeng.yun@mediatek.com,
+        Peter Chen <peter.chen@nxp.com>
+Subject: [PATCH v3 0/8] Add imx7ulp USBOTG1 support
+Date:   Mon, 27 May 2019 11:06:08 +0800
+Message-Id: <20190527030616.44397-1-peter.chen@nxp.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - castello.eng.br
-X-BWhitelist: no
-X-Source-IP: 177.34.20.96
-X-Source-L: No
-X-Exim-ID: 1hV5IF-003JNX-JQ
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (castello.castello.in) [177.34.20.96]:57660
-X-Source-Auth: matheus@castello.eng.br
-X-Email-Count: 69
-X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
-X-Local-Domain: yes
+Content-Type: text/plain; charset="iso-8859-1"
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Notify core through power_supply_changed() in case of changes in state
-of charge and power supply status. This is useful for user-space to
-efficiently update current battery level.
+Changes for v3:
+- Using readl_poll_timeout to replace private function. [Patch 2/8]
+- Add more commit log for new flag CI_HDRC_PMQOS. [Patch 5/8]
+- Move 'compatible' at the beginning of propeties. [Patch 6/8]
 
-Signed-off-by: Matheus Castello <matheus@castello.eng.br>
----
- drivers/power/supply/max17040_battery.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Changes for v2:
+- Use common 'phys' property [Patch 6/8]
+- Add the last patch that "fsl,usbphy" phandle is not mandatory now
+[Patch 8/8]
+- Add Reviewed-by from Rob.
 
-diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
-index 61e6fcfea8a1..34278845cfe5 100644
---- a/drivers/power/supply/max17040_battery.c
-+++ b/drivers/power/supply/max17040_battery.c
-@@ -176,6 +176,9 @@ static void max17040_get_online(struct i2c_client *client)
- static void max17040_get_status(struct i2c_client *client)
- {
- 	struct max17040_chip *chip = i2c_get_clientdata(client);
-+	int last_status;
-+
-+	last_status = chip->status;
 
- 	if (!chip->pdata || !chip->pdata->charger_online
- 			|| !chip->pdata->charger_enable) {
-@@ -194,6 +197,9 @@ static void max17040_get_status(struct i2c_client *client)
+There is a dual-role USB controller at imx7ulp, we add support for it
+in this patch set, and the dual-role function is tested at imx7ulp-evk
+board.
 
- 	if (chip->soc > MAX17040_BATTERY_FULL)
- 		chip->status = POWER_SUPPLY_STATUS_FULL;
-+
-+	if (last_status != chip->status)
-+		power_supply_changed(chip->battery);
- }
+Thanks.
 
- static void max17040_get_of_data(struct max17040_chip *chip)
-@@ -217,10 +223,18 @@ static void max17040_check_changes(struct i2c_client *client)
- static void max17040_work(struct work_struct *work)
- {
- 	struct max17040_chip *chip;
-+	int last_soc;
+Peter Chen (8):
+  doc: dt-binding: mxs-usb-phy: add compatible for 7ulp
+  usb: phy: phy-mxs-usb: add imx7ulp support
+  doc: dt-binding: ci-hdrc-usb2: add compatible string for imx7ulp
+  doc: dt-binding: usbmisc-imx: add compatible string for imx7ulp
+  usb: chipidea: imx: add imx7ulp support
+  ARM: dts: imx7ulp: add imx7ulp USBOTG1 support
+  ARM: dts: imx7ulp-evk: enable USBOTG1 support
+  usb: chipidea: imx: "fsl,usbphy" phandle is not mandatory now
 
- 	chip = container_of(work, struct max17040_chip, work.work);
-+
-+	/* store SOC for check change */
-+	last_soc = chip->soc;
- 	max17040_check_changes(chip->client);
+ .../devicetree/bindings/phy/mxs-usb-phy.txt        |  1 +
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt       |  1 +
+ .../devicetree/bindings/usb/usbmisc-imx.txt        |  1 +
+ arch/arm/boot/dts/imx7ulp-evk.dts                  | 35 +++++++++++
+ arch/arm/boot/dts/imx7ulp.dtsi                     | 31 ++++++++++
+ drivers/usb/chipidea/ci_hdrc_imx.c                 | 33 ++++++++++-
+ drivers/usb/chipidea/usbmisc_imx.c                 |  4 ++
+ drivers/usb/phy/phy-mxs-usb.c                      | 67 +++++++++++++++++++++-
+ include/linux/usb/chipidea.h                       |  1 +
+ 9 files changed, 170 insertions(+), 4 deletions(-)
 
-+	/* check changes and send uevent */
-+	if (chip->soc >= 0 && last_soc != chip->soc)
-+		power_supply_changed(chip->battery);
-+
- 	queue_delayed_work(system_power_efficient_wq, &chip->work,
- 			   MAX17040_DELAY);
- }
---
-2.20.1
+-- 
+2.14.1
 
