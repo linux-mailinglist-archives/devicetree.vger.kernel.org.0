@@ -2,109 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3162B553
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 14:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E44C2B591
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 14:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727239AbfE0McS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 08:32:18 -0400
-Received: from mail-eopbgr80079.outbound.protection.outlook.com ([40.107.8.79]:31973
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726338AbfE0McS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 08:32:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z1tNCt1Zo2Elml1aZsL4ncYgBz1AR7VKcCef9PzKego=;
- b=dNrHQxEMEgU782kgomGo/Vpdjo+SDLbXhvq9ddT3MZoingEBuNRXQr6WgOeg8xWBz5mbAmx6I3r/Y8PLznZdGiWMTv88FcNNakXSRwHOUXr5AT9BxkOb82uAxokcqzaXzUyz4QQ6JTJeSfXRcBsVJYiwlWZCBJUhOFaChb0w5to=
-Received: from AM6PR04MB5032.eurprd04.prod.outlook.com (20.177.34.92) by
- AM6PR04MB5094.eurprd04.prod.outlook.com (20.177.34.146) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.20; Mon, 27 May 2019 12:32:15 +0000
-Received: from AM6PR04MB5032.eurprd04.prod.outlook.com
- ([fe80::55a3:c244:9ba:6d21]) by AM6PR04MB5032.eurprd04.prod.outlook.com
- ([fe80::55a3:c244:9ba:6d21%4]) with mapi id 15.20.1922.021; Mon, 27 May 2019
- 12:32:15 +0000
-From:   Pramod Kumar <pramod.kumar_1@nxp.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "Michal.Vokac@ysoft.com" <Michal.Vokac@ysoft.com>,
-        Leo Li <leoyang.li@nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: [PATCH v3 3/3] arm64: dts: frwy-ls1046a: add support for micron nor
- flash
-Thread-Topic: [PATCH v3 3/3] arm64: dts: frwy-ls1046a: add support for micron
- nor flash
-Thread-Index: AQHVFIg34aXFnhi0tE2hBO7a9Re2Cw==
-Date:   Mon, 27 May 2019 12:32:15 +0000
-Message-ID: <20190527123404.30858-4-pramod.kumar_1@nxp.com>
-References: <20190527123404.30858-1-pramod.kumar_1@nxp.com>
-In-Reply-To: <20190527123404.30858-1-pramod.kumar_1@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.17.1
-x-clientproxiedby: PN1PR0101CA0055.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c00:d::17) To AM6PR04MB5032.eurprd04.prod.outlook.com
- (2603:10a6:20b:9::28)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pramod.kumar_1@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [92.120.1.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b33d148b-bfc3-42d6-e72b-08d6e29f5982
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM6PR04MB5094;
-x-ms-traffictypediagnostic: AM6PR04MB5094:
-x-microsoft-antispam-prvs: <AM6PR04MB509450DA952BCDD85AC8F43AF61D0@AM6PR04MB5094.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1079;
-x-forefront-prvs: 0050CEFE70
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(396003)(346002)(136003)(376002)(39860400002)(199004)(189003)(68736007)(476003)(2616005)(4326008)(2906002)(86362001)(2201001)(486006)(6512007)(102836004)(6506007)(386003)(76176011)(186003)(52116002)(110136005)(54906003)(26005)(11346002)(446003)(66446008)(53936002)(66946007)(73956011)(64756008)(66556008)(316002)(6486002)(7736002)(6116002)(36756003)(256004)(99286004)(14444005)(25786009)(478600001)(1076003)(4744005)(14454004)(6636002)(8936002)(8676002)(66066001)(5660300002)(50226002)(6436002)(81166006)(81156014)(71200400001)(71190400001)(3846002)(66476007)(305945005)(2501003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB5094;H:AM6PR04MB5032.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: l1yjUCJyoMLeXgkuqJXEUxGfkxnwoYGAP6cjtmddZmW3e+/ahh2wpX/aJbLXCNCZK1Chbr/GzNI/YZXJAQQFGXCmGlf4B75gcYapE8Riq02vGvnRwBQBKJrYylN827kAw1DwBpZC8DevTI2NDwzu7ATWn5/KFd95+MYaTdaDNRvYTTmD3tDvmBBpPH68UII/OPCG6LeBVHQ/LlxRpp5eBQR3B5peiI/BPAuDcb0Y/ZfFshCXaTMr6/O3In8k1wX9daPodJhh0dBtr7xzQXyvBrSBAUGvuOezfDL29B/leQ0DuClwWHjTuqeCRdiA98azj9wDKfyWsRTJHqSAnFLk3CUkdXCU7GOMgm19iZJOzUUB4ZNyHRerHYkBf2kl9cHBzMh9D7bWk3Jew3nzQax5kNjvYBAYAiMLqaDqeETI0ic=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726236AbfE0MnE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 May 2019 08:43:04 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:51783 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726071AbfE0MnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 08:43:03 -0400
+Received: from xps13 (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 7C5A824000B;
+        Mon, 27 May 2019 12:42:51 +0000 (UTC)
+Date:   Mon, 27 May 2019 14:42:50 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     masonccyang@mxic.com.tw
+Cc:     bbrezillon@kernel.org, broonie@kernel.org,
+        christophe.kerello@st.com, computersforpeace@gmail.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org,
+        geert@linux-m68k.org, juliensu@mxic.com.tw, lee.jones@linaro.org,
+        liang.yang@amlogic.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        marcel.ziswiler@toradex.com, marek.vasut@gmail.com,
+        mark.rutland@arm.com, paul.burton@mips.com, richard@nod.at,
+        robh+dt@kernel.org, stefan@agner.ch, zhengxunli@mxic.com.tw
+Subject: Re: [PATCH v3 2/4] mtd: rawnand: Add Macronix MX25F0A NAND
+ controller
+Message-ID: <20190527144250.71908bd9@xps13>
+In-Reply-To: <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
+References: <1555320234-15802-1-git-send-email-masonccyang@mxic.com.tw>
+        <1555320234-15802-3-git-send-email-masonccyang@mxic.com.tw>
+        <20190512151820.4f2dd9da@xps13>
+        <OF074A1F06.5C1A58BE-ON482583FD.0031CD95-482583FD.003437AD@mxic.com.tw>
+        <20190520142333.390091d5@xps13>
+        <OFADC47344.0F9941B2-ON48258403.002336E3-48258403.003141F0@mxic.com.tw>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b33d148b-bfc3-42d6-e72b-08d6e29f5982
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 12:32:15.3229
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pramod.kumar_1@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5094
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-YWRkIG1pY3JvbiBub3IgZmxhc2ggc3VwcG9ydCBmb3IgbHMxMDQ2YSBmcnd5IGJvYXJkLg0KDQpT
-aWduZWQtb2ZmLWJ5OiBBc2hpc2ggS3VtYXIgPGFzaGlzaC5rdW1hckBueHAuY29tPg0KU2lnbmVk
-LW9mZi1ieTogUHJhbW9kIEt1bWFyIDxwcmFtb2Qua3VtYXJfMUBueHAuY29tPg0KLS0tDQogLi4u
-L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQ2YS1mcnd5LmR0cyAgICB8IDE4ICsrKysrKysr
-KysrKysrKysrLQ0KIDEgZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMx
-MDQ2YS1mcnd5LmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwNDZh
-LWZyd3kuZHRzDQppbmRleCBjZGE0OTk4OGQ4YjguLjBmNjI2Yzk4NmE5YSAxMDA2NDQNCi0tLSBh
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwNDZhLWZyd3kuZHRzDQorKysg
-Yi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQ2YS1mcnd5LmR0cw0KQEAg
-LTIsNyArMiw3IEBADQogLyoNCiAgKiBEZXZpY2UgVHJlZSBJbmNsdWRlIGZpbGUgZm9yIEZyZWVz
-Y2FsZSBMYXllcnNjYXBlLTEwNDZBIGZhbWlseSBTb0MuDQogICoNCi0gKiBDb3B5cmlnaHQgMjAx
-OSBOWFAuDQorICogQ29weXJpZ2h0IDIwMTkgTlhQDQogICoNCiAgKi8NCiANCkBAIC0xMTMsNiAr
-MTEzLDIyIEBADQogDQogfTsNCiANCismcXNwaSB7DQorCW51bS1jcyA9IDwxPjsNCisJYnVzLW51
-bSA9IDwwPjsNCisJc3RhdHVzID0gIm9rYXkiOw0KKw0KKwlxZmxhc2gwOiBmbGFzaEAwIHsNCisJ
-CWNvbXBhdGlibGUgPSAiamVkZWMsc3BpLW5vciI7DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsN
-CisJCSNzaXplLWNlbGxzID0gPDE+Ow0KKwkJc3BpLW1heC1mcmVxdWVuY3kgPSA8NTAwMDAwMDA+
-Ow0KKwkJcmVnID0gPDA+Ow0KKwkJc3BpLXJ4LWJ1cy13aWR0aCA9IDw0PjsNCisJCXNwaS10eC1i
-dXMtd2lkdGggPSA8ND47DQorCX07DQorfTsNCisNCiAjaW5jbHVkZSAiZnNsLWxzMTA0Ni1wb3N0
-LmR0c2kiDQogDQogJmZtYW4wIHsNCi0tIA0KMi4xNy4xDQoNCg==
+Hi Mason,
+
+masonccyang@mxic.com.tw wrote on Thu, 23 May 2019 16:58:02 +0800:
+
+> Hi Miquel,
+> 
+> > >   
+> > > > > +
+> > > > > +static void mxic_nand_select_chip(struct nand_chip *chip, int   
+> chipnr) 
+> > > > 
+> > > > _select_target() is preferred now   
+> > > 
+> > > Do you mean I implement mxic_nand_select_target() to control #CS ?
+> > > 
+> > > If so, I need to call mxic_nand_select_target( ) to control #CS ON
+> > > and then #CS OFF in _exec_op() due to nand_select_target()<in   
+> nand_base,c>  
+> > > is still calling chip->legacy.select_chip ?  
+> > 
+> > You must forget about the ->select_chip() callback. Now it should be
+> > handled directly from the controller driver. Please have a look at the
+> > commit pointed against the marvell_nand.c driver.  
+> 
+> I have no Marvell NFC datasheet and have one question.
+> 
+> In marvell_nand.c, there is no xxx_deselect_target() or 
+> something like that doing #CS OFF.
+> marvell_nfc_select_target() seems always to make one of chip or die
+> #CS keep low.
+> 
+> Is it right ?
+
+Yes, AFAIR there is no "de-assert" mechanism in this controller.
+
+> 
+> How to make all #CS keep high for NAND to enter 
+> low-power standby mode if driver don't use "legacy.select_chip()" ?
+
+See commit 02b4a52604a4 ("mtd: rawnand: Make ->select_chip() optional
+when ->exec_op() is implemented") which states:
+
+        "When [->select_chip() is] not implemented, the core is assuming
+	the CS line is automatically asserted/deasserted by the driver
+	->exec_op() implementation."
+
+Of course, the above is right only when the controller driver supports
+the ->exec_op() interface. 
+
+So if you think it is not too time consuming and worth the trouble to
+assert/deassert the CS at each operation, you may do it in your driver.
+
+
+Thanks,
+Miquèl
