@@ -2,81 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D51E82B23A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 12:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F9E2B262
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 12:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726114AbfE0Kd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 06:33:58 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:50928 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725858AbfE0Kd6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 06:33:58 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 7158D80490; Mon, 27 May 2019 12:33:46 +0200 (CEST)
-Date:   Mon, 27 May 2019 12:33:56 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
-Message-ID: <20190527103355.GA5287@amd>
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-2-dmurphy@ti.com>
+        id S1726115AbfE0KpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 06:45:13 -0400
+Received: from mga18.intel.com ([134.134.136.126]:30969 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725943AbfE0KpN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 06:45:13 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 May 2019 03:45:12 -0700
+X-ExtLoop1: 1
+Received: from kuha.fi.intel.com ([10.237.72.189])
+  by fmsmga001.fm.intel.com with SMTP; 27 May 2019 03:45:07 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 27 May 2019 13:45:06 +0300
+Date:   Mon, 27 May 2019 13:45:06 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by node
+Message-ID: <20190527104506.GA7167@kuha.fi.intel.com>
+References: <20190520083601.GE1887@kuha.fi.intel.com>
+ <OSBPR01MB2103C4C8920C40E42BC1B2A9B8060@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+ <20190521095839.GI1887@kuha.fi.intel.com>
+ <OSBPR01MB21032206146152983C8F4E8EB8000@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+ <1558517436.10179.388.camel@mhfsdcap03>
+ <OSBPR01MB21038F2B99EF74831A22727BB8000@OSBPR01MB2103.jpnprd01.prod.outlook.com>
+ <20190522142640.GN1887@kuha.fi.intel.com>
+ <1558606570.10179.403.camel@mhfsdcap03>
+ <20190524114036.GO1887@kuha.fi.intel.com>
+ <1558926443.10179.438.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190523190820.29375-2-dmurphy@ti.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <1558926443.10179.438.camel@mhfsdcap03>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---lrZ03NoBR/3+SXJZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > IMO that case should be handled in USB role switch API initially, not
+> > in the device connection API. If there is another user for it one day,
+> > then we can move it to device connection API, but not before that.
+> Ok
+> > 
+> > How about this on top of the two patches I sent:
+> I just test it, it works well.
+> I'll prepare a patch and put into this series.
+> 
+> > 
+> > diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
+> > index aab795b54c7f..36ac9d181e09 100644
+> > --- a/drivers/usb/roles/class.c
+> > +++ b/drivers/usb/roles/class.c
+> > @@ -114,6 +114,19 @@ static void *usb_role_switch_match(struct device_connection *con, int ep,
+> >         return dev ? to_role_switch(dev) : ERR_PTR(-EPROBE_DEFER);
+> >  }
+> > 
+> > +static struct usb_role_switch *
+> > +usb_role_switch_is_parent(struct fwnode_handle *parent)
+> > +{
+> > +       struct device *dev;
+> > +
+> > +       if (!parent || !fwnode_property_present(parent, "usb-role-switch"))
+> > +               return NULL;
+> > +
+> > +       dev = class_find_device(role_class, NULL, parent, switch_fwnode_match);
+> > +
+> > +       return dev ? to_role_switch(dev) : ERR_PTR(-EPROBE_DEFER);
+> > +}
+> > +
+> >  /**
+> >   * usb_role_switch_get - Find USB role switch linked with the caller
+> >   * @dev: The caller device
+> > @@ -125,6 +138,10 @@ struct usb_role_switch *usb_role_switch_get(struct device *dev)
+> >  {
+> >         struct usb_role_switch *sw;
+> > 
+> > +       sw = usb_role_switch_is_parent(fwnode_get_parent(dev_fwnode(dev)));
+> > +       if (sw)
+> > +               return sw;
+> Do we also need to get parent module before return?
 
-On Thu 2019-05-23 14:08:12, Dan Murphy wrote:
-> Add a documentation of LED Multicolor LED class specific
-> sysfs attributes.
->=20
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->  .../ABI/testing/sysfs-class-led-multicolor    | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor
->=20
-> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor b/Docum=
-entation/ABI/testing/sysfs-class-led-multicolor
-> new file mode 100644
-> index 000000000000..2f102ede258b
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
-> @@ -0,0 +1,57 @@
-> +What:		/sys/class/leds/<led>/colors/sync_enable
-> +Date:		April 2019
+Yes.
 
-I believe I suggested more reasonable interface. Why not use that?
+thanks,
 
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---lrZ03NoBR/3+SXJZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlzrvRIACgkQMOfwapXb+vJdxQCfXnAO1nLU1TIocQz6gagl1XRu
-PSsAn17PTm9eh3T5EcXZOPxosG8n4/3+
-=xsN+
------END PGP SIGNATURE-----
-
---lrZ03NoBR/3+SXJZ--
+-- 
+heikki
