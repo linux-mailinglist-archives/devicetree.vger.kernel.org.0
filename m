@@ -2,119 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D41892B6E4
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B9A2B729
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 16:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726452AbfE0NsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 09:48:08 -0400
-Received: from vps.xff.cz ([195.181.215.36]:50564 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726191AbfE0NsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 09:48:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1558964885; bh=ustEk4EO9XCG6FHJLRsAPk5OCbRSi/9z1v7hcR+OOgc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=edC5Jqk9FcWLFnpa3bcokUCDAFQwsb+TpIDCCYGdhgfUh1W7oU5Bn2z9Q0GL+F8Kt
-         42vTLM8E5qQffspMvcPk6PzjMvdtXIcbSRfGRYIdLtoGA+RizEVkzZa4TRt/L3mxxf
-         AJPIdPH7zJyf/4FtMpBuLG2nnV9lRFhnELYl4BC8=
-Date:   Mon, 27 May 2019 15:48:05 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] Allwinner A64/H6 IR support
-Message-ID: <20190527134805.j7t4ffstrnhdml47@core.my.home>
-Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-References: <20190526222536.10917-1-peron.clem@gmail.com>
+        id S1726545AbfE0OCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 10:02:13 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43505 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726114AbfE0OCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 10:02:13 -0400
+Received: by mail-wr1-f66.google.com with SMTP id l17so8656325wrm.10
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2019 07:02:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=flCBkYYx+PdHsv3XsjTv06FvsWqxIYgVPOMABFKuON0=;
+        b=C3tyRMtkKESDLxtFYlgpiQcewolwEMTiUIVBDr7x3PEKYiuhwu9mydcq7rXOn2Zpj+
+         OsuMTPvCWBndgt6LyHD0GA9FYGZQeIC47jc5XYgtkPzOviz/fiWEo0zQt2lrwinFXRw7
+         AOQywD7O3Vz97NW2v2vgrY16D0cQXyYbwglSDfrHpxFOcRWboS0TlNGFqJTFo22D8jYV
+         wbyfqlGLlr9AaDpY+9idLlBePOMCpeDmzG9oyYN3hWqijW5KY8HYkIsk+VnI/TjhtkxB
+         uhWxJU59bNUzA8PmH5dgVa+CBC3ElbIPx/+MJT47AzpEUlGHGncZEGtkj+UEBoF5OS5n
+         rlLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=flCBkYYx+PdHsv3XsjTv06FvsWqxIYgVPOMABFKuON0=;
+        b=NV6+siXG540igp6vlgCjnZbyRe8tDZTNAGnxKTn8R8XR0ujqXfQY6B+HJ456yYiHt3
+         9C/m5ASNGrucn6anbGnApKrhJoPcd/g2apWFl8nhQyFq5INXsOrmV6U6rb/1SI2+kekE
+         +ZFk9ox0kEmqYUjAM1sDmfosghOhd8rS7ZvAR5QhzazpjzkQSpK2cg0PHtpTAoTjYsYy
+         wk1hv1OGhXGujRJlaizTgTjfq5afUbcapYrJcSu5NozFPfIozs+0PVKL7ffMCvjKJdMs
+         XSkTj6h16D2+t10szbAox1f5Ys8QxcpJA1D/k+k32Y8YyqZPA1/z+zS9POSgklFQuvAs
+         Awzg==
+X-Gm-Message-State: APjAAAXnDmXy5mS7NVq8N8QGjxUBYQZ1Frk2ov0wKvj4Pq2AuuNoyQpP
+        YNmiZV2RxAJVOmDOC+5MFkHEdA==
+X-Google-Smtp-Source: APXvYqzB79oAEKLqaqNxNAfhu1XtKKfKofuiCpo+cHunEcCqE0tpQhb0Z0CVOVDbv88FoAnNyf/Ytw==
+X-Received: by 2002:adf:fc92:: with SMTP id g18mr11215057wrr.174.1558965731559;
+        Mon, 27 May 2019 07:02:11 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id s17sm8231628wmj.15.2019.05.27.07.02.10
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 27 May 2019 07:02:10 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v4 1/3] dt-bindings: arm: amlogic: add G12B bindings
+Date:   Mon, 27 May 2019 16:02:04 +0200
+Message-Id: <20190527140206.30392-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190527140206.30392-1-narmstrong@baylibre.com>
+References: <20190527140206.30392-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190526222536.10917-1-peron.clem@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+Add compatible for the Amlogic G12B SoC, sharing most of the
+features and architecture with the G12A SoC.
 
-On Mon, May 27, 2019 at 12:25:26AM +0200, Clément Péron wrote:
-> Hi,
-> 
-> A64 IR support series[1] pointed out that an A31 bindings should be
-> introduced.
-> 
-> This series introduce the A31 compatible bindings, then switch it on
-> the already existing board.
-> 
-> Finally introduce A64 and H6 support.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Does H6 support actually work? I don't see any driver changes and last time
-I tried with the exact same bindings, I got RCU stalls shortly after boot.
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 6d5bb493db03..28115dd49f96 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -137,4 +137,8 @@ properties:
+               - amlogic,u200
+           - const: amlogic,g12a
+ 
++      - description: Boards with the Amlogic Meson G12B S922X SoC
++        items:
++          - const: amlogic,g12b
++
+ ...
+-- 
+2.21.0
 
-Enabling/disabling ir node was enough to trigger/stop the RCU stalls on H6.
-
-regards,
-	o.
-
-> Regards,
-> Clément
-> 
-> [1] https://lore.kernel.org/patchwork/patch/1031390/#1221464
-> 
-> Changes since v1:
->  - Document reset lines as required since A31
->  - Explain the memory mapping difference in commit log
->  - Fix misspelling "Allwiner" to "Allwinner"
-> 
-> Clément Péron (8):
->   dt-bindings: media: sunxi-ir: add A31 compatible
->   media: rc: sunxi: Add A31 compatible
->   ARM: dts: sunxi: prefer A31 instead of A13 for ir
->   dt-bindings: media: sunxi-ir: Add A64 compatible
->   dt-bindings: media: sunxi-ir: Add H6 compatible
->   arm64: dts: allwinner: h6: Add IR receiver node
->   arm64: dts: allwinner: h6: Enable IR on H6 boards
->   arm64: defconfig: enable IR SUNXI option
-> 
-> Igors Makejevs (1):
->   arm64: dts: allwinner: a64: Add IR node
-> 
-> Jernej Skrabec (1):
->   arm64: dts: allwinner: a64: Enable IR on Orange Pi Win
-> 
->  .../devicetree/bindings/media/sunxi-ir.txt    | 11 +++++++++--
->  arch/arm/boot/dts/sun6i-a31.dtsi              |  2 +-
->  arch/arm/boot/dts/sun8i-a83t.dtsi             |  2 +-
->  arch/arm/boot/dts/sun9i-a80.dtsi              |  2 +-
->  arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  2 +-
->  .../dts/allwinner/sun50i-a64-orangepi-win.dts |  4 ++++
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 18 ++++++++++++++++++
->  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++++
->  .../dts/allwinner/sun50i-h6-orangepi.dtsi     |  4 ++++
->  .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  4 ++++
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 19 +++++++++++++++++++
->  arch/arm64/configs/defconfig                  |  1 +
->  drivers/media/rc/sunxi-cir.c                  |  1 +
->  13 files changed, 68 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.20.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
