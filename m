@@ -2,125 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B096A2B6D2
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BCC72B6EE
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726388AbfE0NqS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 May 2019 09:46:18 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:35667 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726302AbfE0NqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:46:18 -0400
-X-Originating-IP: 90.88.147.134
-Received: from xps13 (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 00172FF80A;
-        Mon, 27 May 2019 13:46:10 +0000 (UTC)
-Date:   Mon, 27 May 2019 15:46:10 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] clk: mvebu: armada-37xx-periph: change
- suspend/resume time
-Message-ID: <20190527154610.6d4d5eff@xps13>
-In-Reply-To: <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
-References: <20190521130357.20803-1-miquel.raynal@bootlin.com>
-        <20190521130357.20803-3-miquel.raynal@bootlin.com>
-        <CAErSpo5i3y4CxZXV7E4tUR66uXaUa3B_-YT2+zfzZUGMmge7Ow@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726191AbfE0NsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 09:48:16 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:53476 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726693AbfE0NsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:48:16 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4RDm3H7012480;
+        Mon, 27 May 2019 08:48:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1558964883;
+        bh=sXYcD4XMlQBXTBpB0CQsMmBf9Lno5Nysqf8Tnwt8Cjk=;
+        h=From:To:CC:Subject:Date;
+        b=m2GaaM/spxeU5LaWXMCB+1hw3hKwko9mDalNCrSwdtKN1xrRhy6VxgMnqd5VaAKBf
+         ibOYXUjCYhJF19tjI+wXHSGo+xkz7QR4Qu0i+vHFGkBIqFger4ftDQzSuAW/9tCxwe
+         Q+kWWkQw1z2GJfCx5L7VCulFTAsfILDyQRxFuML8=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4RDm2bt095715
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 27 May 2019 08:48:02 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 27
+ May 2019 08:48:00 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 27 May 2019 08:48:00 -0500
+Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4RDlviD065947;
+        Mon, 27 May 2019 08:47:58 -0500
+From:   Jyri Sarha <jsarha@ti.com>
+To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>
+CC:     <laurent.pinchart@ideasonboard.com>, <tomi.valkeinen@ti.com>,
+        <peter.ujfalusi@ti.com>, <a.hajda@samsung.com>, <robh@kernel.org>
+Subject: [PATCH v8 0/6] drm/bridge: sii902x: HDMI-audio support and some fixes
+Date:   Mon, 27 May 2019 16:47:51 +0300
+Message-ID: <cover.1558964241.git.jsarha@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+I think these should be ready for applying to drm-misc.
 
-Thanks for the feedback.
+Changes since v7:
+ - Debased on top of the lasts drm-misc-next and tested
+ - "dt-bindings: display: sii902x: Add HDMI audio bindings"
+   - Dropped off "or higher to avoid conflict with video ports"
+     and added "Reviewed-by: Rob Herring <robh@kernel.org>"
 
-Bjorn Helgaas <bhelgaas@google.com> wrote on Tue, 21 May 2019 17:43:05
--0500:
+Ther previous round:
+https://patchwork.kernel.org/cover/10919173/
 
-> From: Miquel Raynal <miquel.raynal@bootlin.com>
-> Date: Tue, May 21, 2019 at 8:04 AM
-> To: Michael Turquette, Stephen Boyd, Rob Herring, Mark Rutland
-> Cc: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>, Thomas
-> Petazzoni, Antoine Tenart, Gregory Clement, Maxime Chevallier, Nadav
-> Haklai, Bjorn Helgaas, Rafael J . Wysocki, <linux-pm@vger.kernel.org>,
-> Miquel Raynal
-> 
-> > Armada 3700 PCIe IP relies on the PCIe clock managed by this
-> > driver. For reasons related to the PCI core's organization when
-> > suspending/resuming, PCI host controller drivers must reconfigure
-> > their register at suspend_noirq()/resume_noirq() which happens after
-> > suspend()/suspend_late() and before resume_early()/resume().
-> 
-> "For reasons related to the PCI core's organization" manages to
-> suggest that this change wouldn't be needed if only the PCI core did
-> something differently, without actually being specific about what it
-> would need to do differently.
-> 
-> Is there something the PCI core could do better to make this easier?
-> Or is it just something like "the PCI core needs to access registers
-> after suspend_late()"?  You mention the host controller, but of course
-> that's not itself a PCI device, so the PCI core doesn't have much to
-> do with it directly.
+Jyri Sarha (5):
+  drm/bridge: sii902x: Set output mode to HDMI or DVI according to EDID
+  drm/bridge: sii902x: pixel clock unit is 10kHz instead of 1kHz
+  dt-bindings: display: sii902x: Remove trailing white space
+  dt-bindings: display: sii902x: Add HDMI audio bindings
+  drm/bridge: sii902x: Implement HDMI audio support
 
-Actually, if I understand correctly the below commit [1] and the core
-[2] & [3], PCI device fixups can happen at any time, including at the
-_noirq phase where, obviously, the PCI controller must be already
-setup.
+Tomi Valkeinen (1):
+  drm/bridge: sii902x: add input_bus_flags
 
-I don't think changing this behavior is a viable solution and I would
-not see it as a "PCI core could do better" alternative.
+ .../bindings/display/bridge/sii902x.txt       |  42 +-
+ drivers/gpu/drm/bridge/sii902x.c              | 488 +++++++++++++++++-
+ 2 files changed, 522 insertions(+), 8 deletions(-)
 
----8<---
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-[1]
-commit ab14d45ea58eae67c739e4ba01871cae7b6c4586
-Author: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-Date:   Tue Mar 17 15:55:45 2015 +0100
-
-    PCI: mvebu: Add suspend/resume support
-
-    Add suspend/resume support for the mvebu PCIe host driver.  Without
-    this commit, the system will panic at resume time when PCIe devices
-    are connected.
-
-    Note that we have to use the ->suspend_noirq() and ->resume_noirq()
-    hooks, because at resume time, the PCI fixups are done at
-    ->resume_noirq() time, so the PCIe controller has to be ready at
-    this point.
-
-    Signed-off-by: Thomas Petazzoni
-    <thomas.petazzoni@free-electrons.com> Signed-off-by: Bjorn Helgaas
-    <bhelgaas@google.com> Acked-by: Jason Cooper <jason@lakedaemon.net>
-
-[2] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L1181
-[3] https://elixir.bootlin.com/linux/v5.2-rc1/source/drivers/pci/pci-driver.c#L522
-
---->8---
-
-> 
-> s/register/registers/ ?
-
-Indeed. I would like to sort out the above technical point before
-sending a v3 with this typo corrected.
-
-
-Thanks,
-Miquèl
