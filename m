@@ -2,53 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1964E2ACDC
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 03:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 348662ACE3
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 04:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725867AbfE0B4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 May 2019 21:56:08 -0400
-Received: from mail-it1-f195.google.com ([209.85.166.195]:40111 "EHLO
-        mail-it1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725864AbfE0B4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 May 2019 21:56:07 -0400
-Received: by mail-it1-f195.google.com with SMTP id h11so21980742itf.5;
-        Sun, 26 May 2019 18:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4riq5WOrC6jxJv+1e3ONXH5F0cl4unP+M0sgitUBG8A=;
-        b=F7B66fV4prSwIRfZawcHCapEbxTOWBuNBaZCIQ6EKpn3pkjpnaU2czUylmkzXzlmxZ
-         HmxRo+aD2j2gvXclYMexnD6hwOLonFPwXDUH+/IixOYGch84mgAAXREsk4msNRwi/h9I
-         HCo090HtDhVHdNDV5Qn6jyyoBpUpTpA49nns51My6WExajf8nG2B+OXvnDSHQTIeyYHS
-         kMpRa18MeLr/EZzs67xhiPD7irU1MA6t6Ulk+YtnhVTm273ovhoACo8b/JD4VfFbxmRH
-         qML6YVc+FTxO2IyD1fWKmkOYXNA3ce5AlwQwyvAnX6ebUtz9iwyHKBLp8bkaC0/wVE0r
-         jygg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4riq5WOrC6jxJv+1e3ONXH5F0cl4unP+M0sgitUBG8A=;
-        b=d/pCWuSETcpk3Y23+IwUemF+niJ7AXy9wKN5xH/Y+lrb6NQQbPQKHmz8ZcT7N0PdIg
-         LG6EYuaBB/rm3whwpyELuzW/mW0PTtHUDk8AzTGmGFpr6HKMTC3Nb7q4Ij7B9CJnTnnC
-         CRBLXS1HCQvuuUaTUzAAhcslgnOIWXvFQ+hdawAoUpbQWN9w3Al1zZ5OiWcSgkKiUcNe
-         +UlZH7+JP2SL01O1jdFd5AFEuZwfpawYp52TlODoYZNbsc97x4bHVhY1fhJZfc8te79o
-         IaDYrmS2ASX7V+9P1vLbV/AdrUnMzycFnDJsuiH6uybKyx33KPs6v06e0IyA/oVdMHHO
-         Tj7w==
-X-Gm-Message-State: APjAAAUYUNdrnAsAfjIO//iVVM5mqaH/6EUUNcjWcefDaEsIUCrYZcmV
-        DahLfy0pCJWgxPPqdapZl8jOPd2c0SUGRo+JMlA=
-X-Google-Smtp-Source: APXvYqywHGWRgscHD3wttrQTCBgSjiAHfAChFkGelESVt8gY5T7nllpYfOpg60tGtOEJ4v9Y/l/47i8eo83/eIeSbt8=
-X-Received: by 2002:a02:7420:: with SMTP id o32mr7347087jac.117.1558922166931;
- Sun, 26 May 2019 18:56:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190523060437.11059-1-peng.fan@nxp.com>
-In-Reply-To: <20190523060437.11059-1-peng.fan@nxp.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Sun, 26 May 2019 20:55:55 -0500
-Message-ID: <CABb+yY0r-njq2OGVP9xAh=-wgib5zk8XbS-vdY1jtz2R=rT4Nw@mail.gmail.com>
-Subject: Re: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        id S1726133AbfE0CGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 May 2019 22:06:48 -0400
+Received: from mail-eopbgr20080.outbound.protection.outlook.com ([40.107.2.80]:1248
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726068AbfE0CGs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 May 2019 22:06:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=126Nm8RIhXX6zkUSjEAWjmImR6xdGMacWsz4U54OXHU=;
+ b=g5KixgI3HmliMM2bZ+/b5+nhBH45xxnTVY5xLu75snhVDMl9ODLt8w/7JKB9DZaR9wuakA2Z/n97pGzrEwpq6GxxWFcr7bxAYlkD/O7Y8QnoBI1DbgoTgtojjjHHpu+vm8qZtI6w6+6hB4diDMowQY8lKq0R6nrilY0e9S80F70=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0SPR01MB013.eurprd04.prod.outlook.com (52.133.41.33) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.15; Mon, 27 May 2019 02:06:44 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::3173:24:d401:2378]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::3173:24:d401:2378%6]) with mapi id 15.20.1922.021; Mon, 27 May 2019
+ 02:06:44 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
         "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
         "kernel@pengutronix.de" <kernel@pengutronix.de>,
@@ -61,18 +39,70 @@ Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         "andre.przywara@arm.com" <andre.przywara@arm.com>,
         "van.freenix@gmail.com" <van.freenix@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: RE: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Topic: [PATCH 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Index: AQHVESt7O8zUR8j7k0mzGFqyu7YBg6Z+PE2AgAAAU9A=
+Date:   Mon, 27 May 2019 02:06:44 +0000
+Message-ID: <AM0PR04MB4481E92EFFD69301432C9D23881D0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <20190523060437.11059-1-peng.fan@nxp.com>
+ <CABb+yY0r-njq2OGVP9xAh=-wgib5zk8XbS-vdY1jtz2R=rT4Nw@mail.gmail.com>
+In-Reply-To: <CABb+yY0r-njq2OGVP9xAh=-wgib5zk8XbS-vdY1jtz2R=rT4Nw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5530f8c4-4d7c-47bc-c9b7-08d6e247f781
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0SPR01MB013;
+x-ms-traffictypediagnostic: AM0SPR01MB013:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <AM0SPR01MB013B2035595233A9120BD70881D0@AM0SPR01MB013.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0050CEFE70
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(396003)(346002)(39860400002)(366004)(199004)(189003)(54906003)(76176011)(7696005)(15650500001)(66066001)(5660300002)(53546011)(102836004)(6506007)(186003)(11346002)(4326008)(256004)(81166006)(1411001)(26005)(7416002)(44832011)(6246003)(71200400001)(71190400001)(8936002)(446003)(99286004)(486006)(53936002)(8676002)(476003)(25786009)(81156014)(55016002)(9686003)(6306002)(6436002)(14454004)(76116006)(73956011)(86362001)(52536014)(229853002)(7736002)(6916009)(68736007)(316002)(305945005)(74316002)(6116002)(3846002)(2906002)(966005)(33656002)(45080400002)(478600001)(64756008)(66476007)(66946007)(66446008)(66556008);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0SPR01MB013;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: rpR/wsKoZQ/ZTUQSCAIrhsg9SRRgPGjXuFRA/HR306opNFAAtVdHB8VPNmAOp9G1CVA+Q4OUJVzFCi8cZVElOZbk6JOFwR2nrA828vCO1Uuq9EIFL1AJiQqATc5XCppgeoktRBNPpGKV83zNFxlhgMK7yi27JnTAGAy9B0yTy0lsqp0UEqpnHw4VAGzC+ZZXw/3gwjPfpU4E+RtGY6yGpRIVMXw4jSb6p7BvjUND0iNZuN9G11k/H0Ie+aFzI+wSLgKuj1B1xwVquJCCX0/VdrDb+WBPxif7ON0ztlewsGMHLarL1zzBU/wJVYDAYn3ay+uLLJtcXsCqoJsFGj9oRSXJDWlqhQ6JPxk2/pPoF+zTbpnamvvT1ALVTQe+8pBE4ZH756HAfsBpaXsZgqWXre9DBqP03wWyylh3nwj6zBs=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5530f8c4-4d7c-47bc-c9b7-08d6e247f781
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 02:06:44.1667
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0SPR01MB013
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 12:50 AM Peng Fan <peng.fan@nxp.com> wrote:
->
-> This is a modified version from Andre Przywara's patch series
-> https://lore.kernel.org/patchwork/cover/812997/.
->
-Can you please specify exact modifications on top of Andre's last
-submission? As in "Changes since v1: ...."
-
-Thanks.
+SGkgSmFzc2ksDQoNCj4gU3ViamVjdDogUmU6IFtQQVRDSCAwLzJdIG1haWxib3g6IGFybTogaW50
+cm9kdWNlIHNtYyB0cmlnZ2VyZWQgbWFpbGJveA0KPiANCj4gT24gVGh1LCBNYXkgMjMsIDIwMTkg
+YXQgMTI6NTAgQU0gUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+IHdyb3RlOg0KPiA+DQo+ID4g
+VGhpcyBpcyBhIG1vZGlmaWVkIHZlcnNpb24gZnJvbSBBbmRyZSBQcnp5d2FyYSdzIHBhdGNoIHNl
+cmllcw0KPiA+DQo+IGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5j
+b20vP3VybD1odHRwcyUzQSUyRiUyRmxvcmUua2UNCj4gcm5lbC5vcmclMkZwYXRjaHdvcmslMkZj
+b3ZlciUyRjgxMjk5NyUyRiZhbXA7ZGF0YT0wMiU3QzAxJTdDcGUNCj4gbmcuZmFuJTQwbnhwLmNv
+bSU3QzQwYmIxNjMyZjk5MjQ4ZjI0ZTEzMDhkNmUyNDY3YzhiJTdDNjg2ZWExZDNiDQo+IGMyYjRj
+NmZhOTJjZDk5YzVjMzAxNjM1JTdDMCU3QzElN0M2MzY5NDUxODk3MDU2MjA3OTYmYW1wO3NkYXQN
+Cj4gYT12Nm1MeURLTE84TmFCTWxYNlhsT0N0T3MyQzQxVHVPRzl5RkRZJTJGN3E4blUlM0QmYW1w
+O3Jlc2VyDQo+IHZlZD0wLg0KPiA+DQo+IENhbiB5b3UgcGxlYXNlIHNwZWNpZnkgZXhhY3QgbW9k
+aWZpY2F0aW9ucyBvbiB0b3Agb2YgQW5kcmUncyBsYXN0IHN1Ym1pc3Npb24/DQo+IEFzIGluICJD
+aGFuZ2VzIHNpbmNlIHYxOiAuLi4uIg0KDQpTaW5jZSBBbmRyZSdzIGxhc3QgdjIgdmVyc2lvbiB3
+YXMgc2VudCBpbiAyMDE3LCBJIHRob3VnaHQgbm8gbmVlZCB0byBhZGQgdGhhdC4NClRoZSBjaGFu
+Z2VzIGFyZSBtb3N0bHkuDQpJbnRyb2R1Y2UgYXJtLG51bS1jaGFucw0KSW50cm9kdWNlIGFybV9z
+bWNjY19tYm94X2NtZA0KdHhkb25lX3BvbGwgYW5kIHR4ZG9uZV9pcnEgYXJlIGJvdGggc2V0IHRv
+IGZhbHNlDQphcm0sZnVuYy1pZHMgYXJlIGtlcHQsIGJ1dCBhcyBhbiBvcHRpb25hbCBwcm9wZXJ0
+eS4NClJld29yZHMgU0NQSSB0byBTQ01JLCBiZWNhdXNlIEkgYW0gdHJ5aW5nIFNDTUkgb3ZlciBT
+TUMsIG5vdCBTQ1BJLg0KDQpJJ2xsIGFkZCB0aGUgY2hhbmdlcyBpbmZvcm1hdGlvbiBhZnRlciBJ
+IGNvbGxlY3QgbW9yZSBjb21tZW50cyBpbiB0aGlzIHBhdGNoc2V0Lg0KDQpUaGFua3MsDQpQZW5n
+Lg0KPiANCj4gVGhhbmtzLg0K
