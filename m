@@ -2,526 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 397A42B25A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 12:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC462B006
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 10:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726106AbfE0KjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 06:39:12 -0400
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:30904 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726280AbfE0KjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 06:39:02 -0400
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
-  Horatiu.Vultur@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Horatiu.Vultur@microchip.com";
-  x-sender="Horatiu.Vultur@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Horatiu.Vultur@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Horatiu.Vultur@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-X-IronPort-AV: E=Sophos;i="5.60,518,1549954800"; 
-   d="scan'208";a="31966454"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 May 2019 03:38:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex01.mchp-main.com (10.10.87.71) with ShadowRedundancy id 15.1.1713.5;
- Mon, 27 May 2019 10:38:55 +0000
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex01.mchp-main.com (10.10.87.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 27 May 2019 01:17:32 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        "Paul Burton" <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
-Subject: [PATCH net-next 2/2] net: mscc: ocelot: Hardware ofload for tc flower filter
-Date:   Mon, 27 May 2019 10:16:36 +0200
-Message-ID: <1558944996-23069-3-git-send-email-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1558944996-23069-1-git-send-email-horatiu.vultur@microchip.com>
-References: <1558944996-23069-1-git-send-email-horatiu.vultur@microchip.com>
+        id S1726411AbfE0IUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 04:20:18 -0400
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:42450 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726185AbfE0IUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 04:20:17 -0400
+Received: by mail-yw1-f66.google.com with SMTP id s5so6346184ywd.9;
+        Mon, 27 May 2019 01:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=dJeEKckc8XozRLSFvJQNZuIEHzNmeUHgfWOIaZszYtA=;
+        b=BLHzncT1kN7FS46Ig7BbAIzeg0htnEqqcE5Uz6kTPKJlFC+nbFVK3SPSdDD0f1NUBl
+         tdYaDl798MdAr6vMuegnctjmteNlLze07H+qB0lg30e5Bxk5nL4UaYUnz/hK1RcxCG/b
+         APNdaNsgxTw0UzIEjiJKuAFyL2ARtKVuqEq5zGaAj9/Kjz2B5co2ZhFeii9qEQc1rpc0
+         70j/VWj60k9lqj07/Add6/yorkdlTSFZYMPYqxQZpwfYVTdKJjPg2/6xfjw9++ofDONa
+         qjgUAPlhQFyYGHzaE9fmOojCnWXiATsuU7Ppvp5KNLH1loqSlFvzB6KkVjVr8zbv2Upq
+         oIfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dJeEKckc8XozRLSFvJQNZuIEHzNmeUHgfWOIaZszYtA=;
+        b=lXEovrT6kcSqmz095IR5akBNoW5WOZrL5PK2k2q5Wa3JSqtTKZ2EHzaHyAtjQvoa1c
+         AvV1bJ4PwknlQgmVWTFuK/TYghRdQq4nMzl9YFD4lJxFXLe6I2duBDH6mfFnb0JIhpqE
+         nV8SOMNpLjVS/UkyZBJioLzpXq5oTXBi2KZiQeQkmRZ17OhYScx5y007KyrsdddAPHQ9
+         uyBHnOuhzj5SSCJtu9vYTrghONtuwmcvDpTEXwlCTukieAIgmQz2Xp50sywsOlEsq57E
+         HZC9bgoPYaz50PYPefMps96C6p85QVjbfCKXr1Z7YkLm6qH3Pha0eVAgAS4oP7KQhCDC
+         DGdA==
+X-Gm-Message-State: APjAAAWXR/TVeuqqSkWYdI8q1g3IrqO8zkn9zZe/j0ldN0ijwt/O4jqJ
+        GwiiRKbCw0MbY7cNspQQQg/tyVxKYkar3hTkXaWURhlJQjg=
+X-Google-Smtp-Source: APXvYqwTVORwEEGE7eSHGWZrthPsgVfPBw0yPd9WJn2AOEH62eCbfODDcTFuaIULYKXYvtqhyQ5lZapfseMXcqGyLZM=
+X-Received: by 2002:a81:59c2:: with SMTP id n185mr53377206ywb.21.1558945216859;
+ Mon, 27 May 2019 01:20:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-To:     unlisted-recipients:; (no To-header on input)
+References: <20190526222536.10917-1-peron.clem@gmail.com> <20190526222536.10917-3-peron.clem@gmail.com>
+ <20190527074700.rvhqua44ixudt52z@flea>
+In-Reply-To: <20190527074700.rvhqua44ixudt52z@flea>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Mon, 27 May 2019 10:20:05 +0200
+Message-ID: <CAJiuCcfknVV5V4sMrfizz_K92BeTQsRYekmQQpWFP_-jhPPaQA@mail.gmail.com>
+Subject: Re: [PATCH v2 02/10] media: rc: sunxi: Add A31 compatible
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>, linux-media@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hardware offload of port filtering are now supported via tc command using
-flower filter. ACL rules are used to enable the hardware offload.
-The following keys are supported:
+Hi Maxime,
 
-vlan_id
-vlan_prio
-dst_mac/src_mac for non IP frames
-dst_ip/src_ip
-dst_port/src_port
+On Mon, 27 May 2019 at 09:47, Maxime Ripard <maxime.ripard@bootlin.com> wro=
+te:
+>
+> Hi,
+>
+> On Mon, May 27, 2019 at 12:25:28AM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Allwiner A31 has a different memory mapping so add the compatible
+> > we will need it later.
+> >
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  drivers/media/rc/sunxi-cir.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/media/rc/sunxi-cir.c b/drivers/media/rc/sunxi-cir.=
+c
+> > index 307e44714ea0..29ac33b68596 100644
+> > --- a/drivers/media/rc/sunxi-cir.c
+> > +++ b/drivers/media/rc/sunxi-cir.c
+> > @@ -319,6 +319,7 @@ static int sunxi_ir_remove(struct platform_device *=
+pdev)
+> >  static const struct of_device_id sunxi_ir_match[] =3D {
+> >       { .compatible =3D "allwinner,sun4i-a10-ir", },
+> >       { .compatible =3D "allwinner,sun5i-a13-ir", },
+> > +     { .compatible =3D "allwinner,sun6i-a31-ir", },
+>
+> We should also move from reset_get_optional to the non optional
+> variant for the A31, and ignore it otherwise.
 
-The following actions are supported:
-trap
-drop
+Should this be done in this series ?
+Thanks,
+Cl=C3=A9ment
 
-These filters are supported only on the ingress schedulare.
-
-Add:
-tc qdisc add dev eth3 ingress
-tc filter ad dev eth3 parent ffff: ip_proto ip flower \
-    ip_proto tcp dst_port 80 action drop
-
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/net/ethernet/mscc/Makefile        |   2 +-
- drivers/net/ethernet/mscc/ocelot_ace.h    |   5 +
- drivers/net/ethernet/mscc/ocelot_flower.c | 345 ++++++++++++++++++++++++++++++
- drivers/net/ethernet/mscc/ocelot_tc.c     |  16 +-
- 4 files changed, 361 insertions(+), 7 deletions(-)
- create mode 100644 drivers/net/ethernet/mscc/ocelot_flower.c
-
-diff --git a/drivers/net/ethernet/mscc/Makefile b/drivers/net/ethernet/mscc/Makefile
-index bf4a710..9a36c26 100644
---- a/drivers/net/ethernet/mscc/Makefile
-+++ b/drivers/net/ethernet/mscc/Makefile
-@@ -1,5 +1,5 @@
- # SPDX-License-Identifier: (GPL-2.0 OR MIT)
- obj-$(CONFIG_MSCC_OCELOT_SWITCH) += mscc_ocelot_common.o
- mscc_ocelot_common-y := ocelot.o ocelot_io.o
--mscc_ocelot_common-y += ocelot_regs.o ocelot_tc.o ocelot_police.o ocelot_ace.o
-+mscc_ocelot_common-y += ocelot_regs.o ocelot_tc.o ocelot_police.o ocelot_ace.o ocelot_flower.o
- obj-$(CONFIG_MSCC_OCELOT_SWITCH_OCELOT) += ocelot_board.o
-diff --git a/drivers/net/ethernet/mscc/ocelot_ace.h b/drivers/net/ethernet/mscc/ocelot_ace.h
-index c84e608..d621683 100644
---- a/drivers/net/ethernet/mscc/ocelot_ace.h
-+++ b/drivers/net/ethernet/mscc/ocelot_ace.h
-@@ -224,4 +224,9 @@ int ocelot_ace_rule_stats_update(struct ocelot_ace_rule *rule);
- int ocelot_ace_init(struct ocelot *ocelot);
- void ocelot_ace_deinit(void);
- 
-+int ocelot_setup_tc_block_flower_bind(struct ocelot_port *port,
-+				      struct tc_block_offload *f);
-+void ocelot_setup_tc_block_flower_unbind(struct ocelot_port *port,
-+					 struct tc_block_offload *f);
-+
- #endif /* _MSCC_OCELOT_ACE_H_ */
-diff --git a/drivers/net/ethernet/mscc/ocelot_flower.c b/drivers/net/ethernet/mscc/ocelot_flower.c
-new file mode 100644
-index 0000000..5ec3031
---- /dev/null
-+++ b/drivers/net/ethernet/mscc/ocelot_flower.c
-@@ -0,0 +1,345 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/* Microsemi Ocelot Switch driver
-+ * Copyright (c) 2019 Microsemi Corporation
-+ */
-+
-+#include <net/pkt_cls.h>
-+#include <net/tc_act/tc_gact.h>
-+
-+#include "ocelot_ace.h"
-+
-+struct ocelot_port_block {
-+	struct ocelot_acl_block *block;
-+	struct ocelot_port *port;
-+};
-+
-+static u16 get_prio(u32 prio)
-+{
-+	/* prio starts from 0x1000 while the ids starts from 0 */
-+	return prio >> 16;
-+}
-+
-+static int ocelot_flower_parse_action(struct tc_cls_flower_offload *f,
-+				      struct ocelot_ace_rule *rule)
-+{
-+	const struct flow_action_entry *a;
-+	int i;
-+
-+	if (f->rule->action.num_entries != 1)
-+		return -EOPNOTSUPP;
-+
-+	flow_action_for_each(i, a, &f->rule->action) {
-+		switch (a->id) {
-+		case FLOW_ACTION_DROP:
-+			rule->action = OCELOT_ACL_ACTION_DROP;
-+			break;
-+		case FLOW_ACTION_TRAP:
-+			rule->action = OCELOT_ACL_ACTION_TRAP;
-+			break;
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int ocelot_flower_parse(struct tc_cls_flower_offload *f,
-+			       struct ocelot_ace_rule *ocelot_rule)
-+{
-+	struct flow_rule *rule = tc_cls_flower_offload_flow_rule(f);
-+	struct flow_dissector *dissector = rule->match.dissector;
-+
-+	if (dissector->used_keys &
-+	    ~(BIT(FLOW_DISSECTOR_KEY_CONTROL) |
-+	      BIT(FLOW_DISSECTOR_KEY_BASIC) |
-+	      BIT(FLOW_DISSECTOR_KEY_PORTS) |
-+	      BIT(FLOW_DISSECTOR_KEY_VLAN) |
-+	      BIT(FLOW_DISSECTOR_KEY_IPV4_ADDRS) |
-+	      BIT(FLOW_DISSECTOR_KEY_IPV6_ADDRS) |
-+	      BIT(FLOW_DISSECTOR_KEY_ETH_ADDRS))) {
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_CONTROL)) {
-+		struct flow_match_control match;
-+
-+		flow_rule_match_control(rule, &match);
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_ETH_ADDRS)) {
-+		struct flow_match_eth_addrs match;
-+		u16 proto = ntohs(f->common.protocol);
-+
-+		/* The hw support mac matches only for MAC_ETYPE key,
-+		 * therefore if other matches(port, tcp flags, etc) are added
-+		 * then just bail out
-+		 */
-+		if ((dissector->used_keys &
-+		    (BIT(FLOW_DISSECTOR_KEY_ETH_ADDRS) |
-+		     BIT(FLOW_DISSECTOR_KEY_BASIC) |
-+		     BIT(FLOW_DISSECTOR_KEY_CONTROL))) !=
-+		    (BIT(FLOW_DISSECTOR_KEY_ETH_ADDRS) |
-+		     BIT(FLOW_DISSECTOR_KEY_BASIC) |
-+		     BIT(FLOW_DISSECTOR_KEY_CONTROL)))
-+			return -EOPNOTSUPP;
-+
-+		if (proto == ETH_P_IP ||
-+		    proto == ETH_P_IPV6 ||
-+		    proto == ETH_P_ARP)
-+			return -EOPNOTSUPP;
-+
-+		flow_rule_match_eth_addrs(rule, &match);
-+		ocelot_rule->type = OCELOT_ACE_TYPE_ETYPE;
-+		ether_addr_copy(ocelot_rule->frame.etype.dmac.value,
-+				match.key->dst);
-+		ether_addr_copy(ocelot_rule->frame.etype.smac.value,
-+				match.key->src);
-+		ether_addr_copy(ocelot_rule->frame.etype.dmac.mask,
-+				match.mask->dst);
-+		ether_addr_copy(ocelot_rule->frame.etype.smac.mask,
-+				match.mask->src);
-+		goto finished_key_parsing;
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_BASIC)) {
-+		struct flow_match_basic match;
-+
-+		flow_rule_match_basic(rule, &match);
-+		if (ntohs(match.key->n_proto) == ETH_P_IP) {
-+			ocelot_rule->type = OCELOT_ACE_TYPE_IPV4;
-+			ocelot_rule->frame.ipv4.proto.value[0] =
-+				match.key->ip_proto;
-+			ocelot_rule->frame.ipv4.proto.mask[0] =
-+				match.mask->ip_proto;
-+		}
-+		if (ntohs(match.key->n_proto) == ETH_P_IPV6) {
-+			ocelot_rule->type = OCELOT_ACE_TYPE_IPV6;
-+			ocelot_rule->frame.ipv6.proto.value[0] =
-+				match.key->ip_proto;
-+			ocelot_rule->frame.ipv6.proto.mask[0] =
-+				match.mask->ip_proto;
-+		}
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_IPV4_ADDRS) &&
-+	    ntohs(f->common.protocol) == ETH_P_IP) {
-+		struct flow_match_ipv4_addrs match;
-+		u8 *tmp;
-+
-+		flow_rule_match_ipv4_addrs(rule, &match);
-+		tmp = &ocelot_rule->frame.ipv4.sip.value.addr[0];
-+		memcpy(tmp, &match.key->src, 4);
-+
-+		tmp = &ocelot_rule->frame.ipv4.sip.mask.addr[0];
-+		memcpy(tmp, &match.mask->src, 4);
-+
-+		tmp = &ocelot_rule->frame.ipv4.dip.value.addr[0];
-+		memcpy(tmp, &match.key->dst, 4);
-+
-+		tmp = &ocelot_rule->frame.ipv4.dip.mask.addr[0];
-+		memcpy(tmp, &match.mask->dst, 4);
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_IPV6_ADDRS) &&
-+	    ntohs(f->common.protocol) == ETH_P_IPV6) {
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_PORTS)) {
-+		struct flow_match_ports match;
-+
-+		flow_rule_match_ports(rule, &match);
-+		ocelot_rule->frame.ipv4.sport.value = ntohs(match.key->src);
-+		ocelot_rule->frame.ipv4.sport.mask = ntohs(match.mask->src);
-+		ocelot_rule->frame.ipv4.dport.value = ntohs(match.key->dst);
-+		ocelot_rule->frame.ipv4.dport.mask = ntohs(match.mask->dst);
-+	}
-+
-+	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_VLAN)) {
-+		struct flow_match_vlan match;
-+
-+		flow_rule_match_vlan(rule, &match);
-+		ocelot_rule->type = OCELOT_ACE_TYPE_ANY;
-+		ocelot_rule->vlan.vid.value = match.key->vlan_id;
-+		ocelot_rule->vlan.vid.mask = match.mask->vlan_id;
-+		ocelot_rule->vlan.pcp.value[0] = match.key->vlan_priority;
-+		ocelot_rule->vlan.pcp.mask[0] = match.mask->vlan_priority;
-+	}
-+
-+finished_key_parsing:
-+	ocelot_rule->prio = get_prio(f->common.prio);
-+	ocelot_rule->id = f->cookie;
-+	return ocelot_flower_parse_action(f, ocelot_rule);
-+}
-+
-+static
-+struct ocelot_ace_rule *ocelot_ace_rule_create(struct tc_cls_flower_offload *f,
-+					       struct ocelot_port_block *block)
-+{
-+	struct ocelot_ace_rule *rule;
-+
-+	rule = kzalloc(sizeof(*rule), GFP_KERNEL);
-+	if (!rule)
-+		return NULL;
-+
-+	rule->port = block->port;
-+	rule->chip_port = block->port->chip_port;
-+	return rule;
-+}
-+
-+static int ocelot_flower_replace(struct tc_cls_flower_offload *f,
-+				 struct ocelot_port_block *port_block)
-+{
-+	struct ocelot_ace_rule *rule;
-+	int ret;
-+
-+	rule = ocelot_ace_rule_create(f, port_block);
-+	if (!rule)
-+		return -ENOMEM;
-+
-+	ret = ocelot_flower_parse(f, rule);
-+	if (ret) {
-+		kfree(rule);
-+		return ret;
-+	}
-+
-+	return ocelot_ace_rule_offload_add(rule);
-+}
-+
-+static int ocelot_flower_destroy(struct tc_cls_flower_offload *f,
-+				 struct ocelot_port_block *port_block)
-+{
-+	struct ocelot_ace_rule rule;
-+
-+	rule.prio = get_prio(f->common.prio);
-+	rule.port = port_block->port;
-+	rule.id = f->cookie;
-+	return ocelot_ace_rule_offload_del(&rule);
-+}
-+
-+static int ocelot_flower_stats_update(struct tc_cls_flower_offload *f,
-+				      struct ocelot_port_block *port_block)
-+{
-+	struct ocelot_ace_rule rule;
-+	int ret;
-+
-+	rule.prio = get_prio(f->common.prio);
-+	rule.port = port_block->port;
-+	rule.id = f->cookie;
-+	ret = ocelot_ace_rule_stats_update(&rule);
-+	if (ret)
-+		return ret;
-+
-+	flow_stats_update(&f->stats, 0x0, rule.stats.pkts, 0x0);
-+	return 0;
-+}
-+
-+static int ocelot_setup_tc_cls_flower(struct tc_cls_flower_offload *f,
-+				      struct ocelot_port_block *port_block)
-+{
-+	switch (f->command) {
-+	case TC_CLSFLOWER_REPLACE:
-+		return ocelot_flower_replace(f, port_block);
-+	case TC_CLSFLOWER_DESTROY:
-+		return ocelot_flower_destroy(f, port_block);
-+	case TC_CLSFLOWER_STATS:
-+		return ocelot_flower_stats_update(f, port_block);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int ocelot_setup_tc_block_cb_flower(enum tc_setup_type type,
-+					   void *type_data, void *cb_priv)
-+{
-+	struct ocelot_port_block *port_block = cb_priv;
-+
-+	if (!tc_cls_can_offload_and_chain0(port_block->port->dev, type_data))
-+		return -EOPNOTSUPP;
-+
-+	switch (type) {
-+	case TC_SETUP_CLSFLOWER:
-+		return ocelot_setup_tc_cls_flower(type_data, cb_priv);
-+	case TC_SETUP_CLSMATCHALL:
-+		return 0;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static struct ocelot_port_block*
-+ocelot_port_block_create(struct ocelot_port *port)
-+{
-+	struct ocelot_port_block *port_block;
-+
-+	port_block = kzalloc(sizeof(*port_block), GFP_KERNEL);
-+	if (!port_block)
-+		return NULL;
-+
-+	port_block->port = port;
-+
-+	return port_block;
-+}
-+
-+static void ocelot_port_block_destroy(struct ocelot_port_block *block)
-+{
-+	kfree(block);
-+}
-+
-+int ocelot_setup_tc_block_flower_bind(struct ocelot_port *port,
-+				      struct tc_block_offload *f)
-+{
-+	struct ocelot_port_block *port_block;
-+	struct tcf_block_cb *block_cb;
-+	int ret;
-+
-+	if (f->binder_type == TCF_BLOCK_BINDER_TYPE_CLSACT_EGRESS)
-+		return -EOPNOTSUPP;
-+
-+	block_cb = tcf_block_cb_lookup(f->block,
-+				       ocelot_setup_tc_block_cb_flower, port);
-+	if (!block_cb) {
-+		port_block = ocelot_port_block_create(port);
-+		if (!port_block)
-+			return -ENOMEM;
-+
-+		block_cb =
-+			__tcf_block_cb_register(f->block,
-+						ocelot_setup_tc_block_cb_flower,
-+						port, port_block, f->extack);
-+		if (IS_ERR(block_cb)) {
-+			ret = PTR_ERR(block_cb);
-+			goto err_cb_register;
-+		}
-+	} else {
-+		port_block = tcf_block_cb_priv(block_cb);
-+	}
-+
-+	tcf_block_cb_incref(block_cb);
-+	return 0;
-+
-+err_cb_register:
-+	ocelot_port_block_destroy(port_block);
-+
-+	return ret;
-+}
-+
-+void ocelot_setup_tc_block_flower_unbind(struct ocelot_port *port,
-+					 struct tc_block_offload *f)
-+{
-+	struct tcf_block_cb *block_cb;
-+	struct ocelot_port_block *port_block;
-+
-+	block_cb = tcf_block_cb_lookup(f->block,
-+				       ocelot_setup_tc_block_cb_flower, port);
-+	if (!block_cb)
-+		return;
-+
-+	port_block = tcf_block_cb_priv(block_cb);
-+	if (!tcf_block_cb_decref(block_cb)) {
-+		tcf_block_cb_unregister(f->block,
-+					ocelot_setup_tc_block_cb_flower, port);
-+		ocelot_port_block_destroy(port_block);
-+	}
-+}
-diff --git a/drivers/net/ethernet/mscc/ocelot_tc.c b/drivers/net/ethernet/mscc/ocelot_tc.c
-index 2412e0d..2bb7b80 100644
---- a/drivers/net/ethernet/mscc/ocelot_tc.c
-+++ b/drivers/net/ethernet/mscc/ocelot_tc.c
-@@ -6,6 +6,7 @@
- 
- #include "ocelot_tc.h"
- #include "ocelot_police.h"
-+#include "ocelot_ace.h"
- #include <net/pkt_cls.h>
- 
- static int ocelot_setup_tc_cls_matchall(struct ocelot_port *port,
-@@ -93,10 +94,7 @@ static int ocelot_setup_tc_block_cb(enum tc_setup_type type,
- 
- 		return ocelot_setup_tc_cls_matchall(port, type_data, ingress);
- 	case TC_SETUP_CLSFLOWER:
--		netdev_dbg(port->dev, "tc_block_cb: TC_SETUP_CLSFLOWER %s\n",
--			   ingress ? "ingress" : "egress");
--
--		return -EOPNOTSUPP;
-+		return 0;
- 	default:
- 		netdev_dbg(port->dev, "tc_block_cb: type %d %s\n",
- 			   type,
-@@ -126,6 +124,7 @@ static int ocelot_setup_tc_block(struct ocelot_port *port,
- 				 struct tc_block_offload *f)
- {
- 	tc_setup_cb_t *cb;
-+	int ret;
- 
- 	netdev_dbg(port->dev, "tc_block command %d, binder_type %d\n",
- 		   f->command, f->binder_type);
-@@ -139,9 +138,14 @@ static int ocelot_setup_tc_block(struct ocelot_port *port,
- 
- 	switch (f->command) {
- 	case TC_BLOCK_BIND:
--		return tcf_block_cb_register(f->block, cb, port,
--					     port, f->extack);
-+		ret = tcf_block_cb_register(f->block, cb, port,
-+					    port, f->extack);
-+		if (ret)
-+			return ret;
-+
-+		return ocelot_setup_tc_block_flower_bind(port, f);
- 	case TC_BLOCK_UNBIND:
-+		ocelot_setup_tc_block_flower_unbind(port, f);
- 		tcf_block_cb_unregister(f->block, cb, port);
- 		return 0;
- 	default:
--- 
-2.7.4
-
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
