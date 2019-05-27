@@ -2,104 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D63F52AEDE
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 08:41:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3C42AF1D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 09:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726225AbfE0Glu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 02:41:50 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:41055 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725973AbfE0Glu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 02:41:50 -0400
-Received: by mail-pg1-f195.google.com with SMTP id z3so3915111pgp.8
-        for <devicetree@vger.kernel.org>; Sun, 26 May 2019 23:41:49 -0700 (PDT)
+        id S1726262AbfE0HC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 03:02:59 -0400
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:42919 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726225AbfE0HC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 03:02:59 -0400
+Received: by mail-qk1-f193.google.com with SMTP id b18so10366211qkc.9
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2019 00:02:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4/HzX52OrCnis302RqBSbBUi/NWy6HP0B3xr1wzhcQ8=;
-        b=CUZnJKYHgsstejCHuJ8ei2HYYKLEj6wUCY30alqN8VUKo/mCmWo3+L7rVbDMh4sw4q
-         v8iwsmxua/Th+KEucyLh5fxqmqztpo0EQxei3XfMhBlVXbzqCzVNGPYjJLVB4+c7WKEJ
-         z9reMbZFOLgaEeSKJskbekD8zNRh5HY2IQVAWPLxAipgNQKYzuRHwtGLe2/OmioVhIsD
-         Wm/3MWjlxOTkHXHqcmidEofzuXn+A+5lMLve8ymG4CCO5s8FzC/SB5oxPu8hOL7eIUuX
-         mejV1fev2pVc6OK2AP2tETcyUAj0YDaJmnetzlZYQLqgLbwDEvkAHz4sJhKAlvsCuUWj
-         Cv9A==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4klAjhyMj3pDesqfbfHy9JnpOrfAt9Rbw9O+NZ+oyR8=;
+        b=YTCdyhEkTTb+XfSmUaF+Wr2ShZygzLKSn0Jl9+GYsEqfyYSG63Pn0xUFU4TVyNJhwm
+         YDDK8Slg8ih74pBO3yczWhVijhKGYnV3YmvxEcG4cVN8P4qxjolS9w4F22KUSmlHAiA9
+         uplCxb9RRIUrPw5oi4Kw4n3TesyQLbBlnsSEg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4/HzX52OrCnis302RqBSbBUi/NWy6HP0B3xr1wzhcQ8=;
-        b=WZqDSOpLDq4F/236/ZMyvTAhNFfQDLoyxIKt+DFHHILh4EFW2VEFXlkHI07IX+cTsT
-         gEd8XAjLbEuBC/a4O1B+BbX+a47xnNujQ3G0iaZQOli0NBzkVBiD2m7EbQn5OIeLmGAO
-         58Qmavzicy2WD/ZaKzrESH8pxDSInzHpGTooSd+OYUfOSnpg+f5UrRZcjLZqgMciHecm
-         KLZodUjQY/kEby4IUQyjqEDo5sqc3S46fez1sbHQLZ0nv3/ZPlSvNx3xo3FwtxdgX9IC
-         G3j00MzfpIZPsbTZvjkf4nLHHcg+v5Y7TAeSUjIPy6KNaozq+arU5KkPWVZ6fIvUzdKm
-         ux2w==
-X-Gm-Message-State: APjAAAU6zCh4EGFHtAAKfBraIycsFLcVM+fqzgPAyhsvCHRvZSokgtlV
-        q3p7+9BkSxOd2u/omGKqFDKBMQ==
-X-Google-Smtp-Source: APXvYqwzSNxf5xyNIrcxftAJlxeN28TQ9hDRBQV13SrKOT5EVHqD+LOv/Ty4GqWv18yx1qqkfLgLKw==
-X-Received: by 2002:aa7:8dd6:: with SMTP id j22mr70066022pfr.192.1558939309070;
-        Sun, 26 May 2019 23:41:49 -0700 (PDT)
-Received: from localhost ([122.172.66.84])
-        by smtp.gmail.com with ESMTPSA id s27sm5379775pfd.18.2019.05.26.23.41.47
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 26 May 2019 23:41:48 -0700 (PDT)
-Date:   Mon, 27 May 2019 12:11:46 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: gpio: Convert Arm PL061 to json-schema
-Message-ID: <20190527064146.5rlm2audk6uojdxn@vireshk-i7>
-References: <20190514005033.15593-1-robh@kernel.org>
- <CACRpkdZabT3_vjkv0PR+GLC0ZXWzpMxfwJU6O9Y+omKJ=6zCaA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4klAjhyMj3pDesqfbfHy9JnpOrfAt9Rbw9O+NZ+oyR8=;
+        b=VjuUsCu7+QJAuKwOm0o1dwSTBdOcSovhAOroy4P3uqw7ZcIM9K8lvtbYUKg8Uu4ONo
+         xh32HFUM7uRI8X0VH72OBq+mB3Wl5/i3TII5J7VqAf6ri/T200dfIwNSc+SOwInoq7bo
+         JV1zl6kdLTG3NA6ZT1D4VR4l+f+cHDl7cRrewcQrY3vi4vmtJkb4wfdAYMPJqlvYVH06
+         FT5hhvRqjwk5GUTo5Lm36+Xlx0yrrgXZ9u0paLBoV2Hv5RMBVm7JYUE+CRFBCu7cIwLg
+         dOCsF/tfXGHv5TIuhzJFQaq00wB2Uki1w2WZLLcdypovM34hGDaCgJ7k2ZGF3UP3/H0S
+         +Xyg==
+X-Gm-Message-State: APjAAAXIvsuUvDrjqaGG17EN/cyiLEtKucf7oMGsFNPyvslBhcHudJ5+
+        C0tL58v9ryPOt6O1Z4P//9jfOhOR4ONf8swkVLFBbg==
+X-Google-Smtp-Source: APXvYqxQpDPZWhNOSnuQJLc9CTe0oWkb+0Cqhm60NUHHGKbieCA+KLJc7eBSXpQumDQqyyWQgQDoEboMrXnk6DvIO6Q=
+X-Received: by 2002:ac8:3f33:: with SMTP id c48mr94820424qtk.347.1558940577990;
+ Mon, 27 May 2019 00:02:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZabT3_vjkv0PR+GLC0ZXWzpMxfwJU6O9Y+omKJ=6zCaA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <1557997725-12178-1-git-send-email-andrew-sh.cheng@mediatek.com> <1557997725-12178-8-git-send-email-andrew-sh.cheng@mediatek.com>
+In-Reply-To: <1557997725-12178-8-git-send-email-andrew-sh.cheng@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Mon, 27 May 2019 15:02:32 +0800
+Message-ID: <CAJMQK-j+J4_j7zwKEzAwUBzzPvZ2Q=G_jw=RsW6ZJM6YjVrVfw@mail.gmail.com>
+Subject: Re: [PATCH 7/8] cpufreq: mediatek: add opp notification for SVS support
+To:     "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        linux-pm@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        fan.chen@mediatek.com, linux-mediatek@lists.infradead.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-05-19, 13:38, Linus Walleij wrote:
-> On Tue, May 14, 2019 at 2:50 AM Rob Herring <robh@kernel.org> wrote:
-> 
-> > Convert the Arm PL061 GPIO controller binding to json-schema format.
-> >
-> > As I'm the author for all but the gpio-ranges line, make the schema dual
-> > GPL/BSD license.
-> >
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > Cc: linux-gpio@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> 
-> Patch applied. As you know I am already a big fan of this scheme.
-> 
-> > This warns on a few platforms missing clocks, interrupt-controller
-> > and/or #interrupt-cells. We could not make those required, but really
-> > they should be IMO. OTOH, it's platforms like Spear and Calxeda which
-> > aren't too active, so I don't know that we want to fix them.
-> 
-> What works for you works for me.
-> 
-> We could add dummy fixed clocks in the DTS files if
-> we wanted I suppose. The #interrupt-cells and interrupt-controller
-> things we can just fix, but I wonder what the maintainers of these
-> platforms are up to? Isn't Calxeda yours, and could Viresh fix
-> up the SPEAr?
+On Thu, May 16, 2019 at 9:08 AM Andrew-sh.Cheng
+<andrew-sh.cheng@mediatek.com> wrote:
+>         bool need_voltage_tracking;
+> +       struct mutex lock; /* avoid notify and policy race condition */
+> +       struct notifier_block opp_nb;
+> +       int opp_cpu;
+> +       unsigned long opp_freq;
+>  };
+>
+>  static LIST_HEAD(dvfs_info_list);
+> @@ -239,6 +243,7 @@ static int mtk_cpufreq_set_target(struct cpufreq_policy *policy,
+>         vproc = dev_pm_opp_get_voltage(opp);
+>         dev_pm_opp_put(opp);
+>
+> +       mutex_lock(&info->lock);
 
-I checked SPEAr and it is missing interrupt-controller at few places and clocks
-everywhere. Missing clocks should be fine as SPEAr doesn't get clocks from DT.
-
-And interrupt-controller can be just added, I don't think there would be any
-platform dependent side-affects ?
-
--- 
-viresh
+Should init mutex, otherwise it'll get lockdep warning:
+[    0.587055] Call trace:
+[    0.587069]  dump_backtrace+0x0/0x168
+[    0.587077]  show_stack+0x20/0x2c
+[    0.587086]  dump_stack+0xe4/0x134
+[    0.587095]  register_lock_class+0x3e8/0x4b0
+[    0.587103]  __lock_acquire+0xac/0x14e8
+[    0.587110]  lock_acquire+0x1d0/0x208
+[    0.587118]  __mutex_lock_common+0xc0/0xb40
+[    0.587126]  mutex_lock_nested+0x40/0x50
+[    0.587135]  mtk_cpufreq_set_target+0xcc/0x2a8
+[    0.587143]  __cpufreq_driver_target+0x438/0x4d8
+[    0.587150]  cpufreq_online+0x5b4/0x6e0
+[    0.587156]  cpufreq_add_dev+0x4c/0x84
+[    0.587164]  subsys_interface_register+0xb8/0x10c
+[    0.587171]  cpufreq_register_driver+0x11c/0x1c0
+[    0.587178]  mtk_cpufreq_probe+0x378/0x4b8
+[    0.587185]  platform_drv_probe+0x80/0xb0
+[    0.587192]  really_probe+0x114/0x28c
+[    0.587198]  driver_probe_device+0x64/0xfc
+[    0.587205]  __device_attach_driver+0xb8/0xd0
+[    0.587211]  bus_for_each_drv+0x88/0xd0
+[    0.587218]  __device_attach+0xb0/0x134
+[    0.587224]  device_initial_probe+0x20/0x2c
+[    0.587230]  bus_probe_device+0x34/0x94
+[    0.587238]  device_add+0x520/0x5b4
+[    0.587245]  platform_device_add+0x17c/0x208
+[    0.587252]  platform_device_register_full+0xc0/0x100
+[    0.587261]  mtk_cpufreq_driver_init+0x8c/0xdc
+[    0.587268]  do_one_initcall+0x1c0/0x3e0
+[    0.587276]  do_initcall_level+0x1f4/0x224
+[    0.587282]  do_basic_setup+0x34/0x4c
+[    0.587288]  kernel_init_freeable+0x10c/0x194
+[    0.587295]  kernel_init+0x14/0x100
+[    0.587302]  ret_from_fork+0x10/0x18
+[    0.587510] cpufreq: cpufreq_online: CPU4: Unlisted initial
+frequency changed to: 1248000 KHz
