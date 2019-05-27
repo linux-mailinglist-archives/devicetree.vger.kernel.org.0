@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4144F2B6E8
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 901112B6EF
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2019 15:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfE0NsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 09:48:15 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:60696 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726191AbfE0NsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:48:15 -0400
+        id S1726706AbfE0NsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 09:48:17 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59770 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726693AbfE0NsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 09:48:16 -0400
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4RDm33o053918;
-        Mon, 27 May 2019 08:48:03 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4RDm68Y073368;
+        Mon, 27 May 2019 08:48:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1558964883;
-        bh=jnO0wQSVfRbEBt1Q0sFOXV/qwgajJK9ldb5h/H7MyV0=;
+        s=ti-com-17Q1; t=1558964886;
+        bh=Hf8IFHndzk4D6oqYha5f5/8yYRj5fgQTA/zOXHmnD2s=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=JaRegP5b4EDwtUe0dmkvmgqI310ehK9utAiYb7nK/8fxfUcA/4Ghe4WVM5gS/6SAs
-         y3MMdFWlm1Gpa3x/YfUI3JcCQiXflYFUg4LHBfp2i/vECKfTqatDUMhI5rTtyflkQ0
-         WHJEYpD1/ZfMtbr0jBmLVSsgy5ApsYDgG3ESabBA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4RDm3LG054707
+        b=GyzUuE8DUCwo1pogTWF8uek1L63iZTVcZKPiu1iQUQ1fWkBeLSW/4r3PW1kL6+Lax
+         iK5y31Ik6dhiV0RVKFqGuiu4NzHynba9GoPc1LiuwzXjR1Ot47ftL4oseyxAAXU8tR
+         WKEE0uAtZp/DYr1soZyH+KIvgAJJ+ZswVP6y9ywA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4RDm6xC054858
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 May 2019 08:48:03 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 27 May 2019 08:48:06 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 27
- May 2019 08:48:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ May 2019 08:48:04 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 27 May 2019 08:48:02 -0500
+ Frontend Transport; Mon, 27 May 2019 08:48:04 -0500
 Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4RDlviE065947;
-        Mon, 27 May 2019 08:48:00 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4RDlviF065947;
+        Mon, 27 May 2019 08:48:02 -0500
 From:   Jyri Sarha <jsarha@ti.com>
 To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
         <dri-devel@lists.freedesktop.org>
 CC:     <laurent.pinchart@ideasonboard.com>, <tomi.valkeinen@ti.com>,
         <peter.ujfalusi@ti.com>, <a.hajda@samsung.com>, <robh@kernel.org>
-Subject: [PATCH v8 1/6] drm/bridge: sii902x: add input_bus_flags
-Date:   Mon, 27 May 2019 16:47:52 +0300
-Message-ID: <deb02a1fd508c514472a4e660092f301e6681361.1558964241.git.jsarha@ti.com>
+Subject: [PATCH v8 2/6] drm/bridge: sii902x: Set output mode to HDMI or DVI according to EDID
+Date:   Mon, 27 May 2019 16:47:53 +0300
+Message-ID: <c42838073b83185a5cf9949caab3c70ee093b791.1558964241.git.jsarha@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1558964241.git.jsarha@ti.com>
 References: <cover.1558964241.git.jsarha@ti.com>
@@ -55,46 +55,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Set output mode to HDMI or DVI according to EDID HDMI signature.
 
-The driver always sets InputBusFmt:EDGE to 0 (falling edge).
-
-Add drm_bridge_timings's input_bus_flags to reflect that the bridge
-samples on falling edges.
-
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 Signed-off-by: Jyri Sarha <jsarha@ti.com>
 Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- drivers/gpu/drm/bridge/sii902x.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/bridge/sii902x.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-index cdb8dfdb2dff..0d3d730b97ff 100644
+index 0d3d730b97ff..128d8fdb4ba6 100644
 --- a/drivers/gpu/drm/bridge/sii902x.c
 +++ b/drivers/gpu/drm/bridge/sii902x.c
-@@ -461,6 +461,12 @@ static int sii902x_i2c_bypass_deselect(struct i2c_mux_core *mux, u32 chan_id)
- 	return 0;
+@@ -181,12 +181,16 @@ static int sii902x_get_modes(struct drm_connector *connector)
+ {
+ 	struct sii902x *sii902x = connector_to_sii902x(connector);
+ 	u32 bus_format = MEDIA_BUS_FMT_RGB888_1X24;
++	u8 output_mode = SII902X_SYS_CTRL_OUTPUT_DVI;
+ 	struct edid *edid;
+ 	int num = 0, ret;
+ 
+ 	edid = drm_get_edid(connector, sii902x->i2cmux->adapter[0]);
+ 	drm_connector_update_edid_property(connector, edid);
+ 	if (edid) {
++	        if (drm_detect_hdmi_monitor(edid))
++			output_mode = SII902X_SYS_CTRL_OUTPUT_HDMI;
++
+ 		num = drm_add_edid_modes(connector, edid);
+ 		kfree(edid);
+ 	}
+@@ -196,6 +200,11 @@ static int sii902x_get_modes(struct drm_connector *connector)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = regmap_update_bits(sii902x->regmap, SII902X_SYS_CTRL_DATA,
++				 SII902X_SYS_CTRL_OUTPUT_MODE, output_mode);
++	if (ret)
++		return ret;
++
+ 	return num;
  }
  
-+static const struct drm_bridge_timings default_sii902x_timings = {
-+	.input_bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE
-+		 | DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE
-+		 | DRM_BUS_FLAG_DE_HIGH,
-+};
-+
- static int sii902x_probe(struct i2c_client *client,
- 			 const struct i2c_device_id *id)
- {
-@@ -531,6 +537,7 @@ static int sii902x_probe(struct i2c_client *client,
- 
- 	sii902x->bridge.funcs = &sii902x_bridge_funcs;
- 	sii902x->bridge.of_node = dev->of_node;
-+	sii902x->bridge.timings = &default_sii902x_timings;
- 	drm_bridge_add(&sii902x->bridge);
- 
- 	i2c_set_clientdata(client, sii902x);
 -- 
 Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
