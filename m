@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B9F82CABA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D26232CABE
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbfE1Pxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 11:53:51 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:38450 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726243AbfE1Pxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 11:53:51 -0400
-Received: by mail-pg1-f193.google.com with SMTP id v11so11244244pgl.5
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 08:53:51 -0700 (PDT)
+        id S1726579AbfE1PzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 11:55:06 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:40809 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726560AbfE1PzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 11:55:06 -0400
+Received: by mail-pf1-f196.google.com with SMTP id u17so11737883pfn.7
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 08:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=message-id:mime-version:content-transfer-encoding:in-reply-to
          :references:subject:from:cc:to:user-agent:date;
-        bh=gZdVe4KYsQOsjAdrlH5pjQLw2I8u7ZqIj2eBsmzs94M=;
-        b=H/tDQsto+r3bnOsQ2Dr3G9DPtN6VFJ21sEuBJ25/pR8vNxEeLnmJnk/0c9YuW8bkDe
-         b5W3NUIWMGHJCKZiVPs+K+9bO3xF+nnc6gxysYXLoxJtPhNQwYf8eD8U9JBxqFz0r8pv
-         GDmox1lVt5VuEkJhsEpbB7no06+vFaqML/62g=
+        bh=ph096faZXzVdBs0AC2/h3o4Rlcsxk1w4xdVivoEx9ik=;
+        b=R3rNeE3EFPAheEu0f9OTGy+8ImI3GH2tAv4HZNBSXj+weZKn6WpjuMnGJVU/550ci2
+         BqdwJ92g6+fUHbMDAaeYXvy5/c5Z0ns7wON9xfv70YFOjQhvuIq52IxP0V9zOsjOV2MG
+         EWBgiHzXSGUeFETN+PgnJ9QT9SHOxXXCTWZ2A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:mime-version
          :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
          :user-agent:date;
-        bh=gZdVe4KYsQOsjAdrlH5pjQLw2I8u7ZqIj2eBsmzs94M=;
-        b=ImcmudDWKYcmDpH/wyClfAjjOrTcDhudComUbHFn8IH6YaBpZ/iTDUKGC/H55Wjb0V
-         fFK0ILQ+oWLC40u0d5m90M7mthacbuWwUHFJTR7Pe6zhWfZ/YfKLmKgepfpkXr2XxRoQ
-         3Y0zz4GPGGPE6GDrCCu72wZtku3k+jG2fb+f1ntyhlR+6Hj/Z3oF9iUSufTdiWExjysE
-         B2MdkP2Dtct4bcXGLJzDEYcDZrKc5WKjVwihy0GtKc5opWp3HDYties0fJtAfkBM6jou
-         HAZ37pAqpsgF7D+fqheM7kPx8D67l4KL8GzSgxTXRfLixeX4JBQioyFCniT6yt05Iexb
-         XCgw==
-X-Gm-Message-State: APjAAAVFJ2z+LeIJ5mghBOsivMKUSU+1onVVPGHeCc17ju+1koq6CExO
-        YE6mY3C4eSVhlymUBIpoSoWH4w==
-X-Google-Smtp-Source: APXvYqw6/Wgo8S4X+4IdRoxCALLE8MCP8dhzdasnJiMxFjFHV3zRdny03KvOcEq5wVUfOwMG+APqMw==
-X-Received: by 2002:a17:90a:17ca:: with SMTP id q68mr6883350pja.104.1559058830791;
-        Tue, 28 May 2019 08:53:50 -0700 (PDT)
+        bh=ph096faZXzVdBs0AC2/h3o4Rlcsxk1w4xdVivoEx9ik=;
+        b=qb9tvVyjLIC9KqtL1ORTfu+MFc7DoslMeoCqLBMJPRCIR9bImhbxjhbvEba/lCksNK
+         cQNQs0Tbb1X9ydurq22/q5IArAqMRrDUKUhSAvHnD96jGUvjITj3y3mta+44UJ7Uu4c4
+         26WJFwPPzG70VDn7cQmweFvrSxYWoZgufX+d56psCAZjK3yEeGxgzYyNTZ2YPQOJeB8J
+         kRlzCgvwGB3rTRMZjnvYnqkXccB7DjLp3H6gaK/gIyIPFCj9fmoQnFo1YBANaPOmRUwz
+         la8Zl36LZGQzGft3U/vfdZTR4cHW5YETyXSvMbTh94c+DEFhxNNVbF75DbNOHKqhbfnb
+         FvMg==
+X-Gm-Message-State: APjAAAW1wKaqxY/ijuwKGX/OLkVZnwqcZ+ZYEFLMQCtYOe86h/MkWOyo
+        yfRyQzjEglwtBqugfIrqQDYt5A==
+X-Google-Smtp-Source: APXvYqyfKz47JLrEjKSbaeCi8/nJyaDNU3BrFSZmaS/tvxlIWn5U0R9ZRrZJBXxc3AQWCJ9jccOIuQ==
+X-Received: by 2002:a17:90a:ac03:: with SMTP id o3mr6908759pjq.114.1559058905466;
+        Tue, 28 May 2019 08:55:05 -0700 (PDT)
 Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id f17sm13153090pgv.16.2019.05.28.08.53.49
+        by smtp.gmail.com with ESMTPSA id g22sm14805937pfo.28.2019.05.28.08.55.04
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 28 May 2019 08:53:49 -0700 (PDT)
-Message-ID: <5ced598d.1c69fb81.dabd8.339d@mx.google.com>
+        Tue, 28 May 2019 08:55:05 -0700 (PDT)
+Message-ID: <5ced59d9.1c69fb81.c3ee5.96d3@mx.google.com>
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190527043336.112854-2-hsinyi@chromium.org>
-References: <20190527043336.112854-1-hsinyi@chromium.org> <20190527043336.112854-2-hsinyi@chromium.org>
-Subject: Re: [PATCH v5 2/3] fdt: add support for rng-seed
+In-Reply-To: <20190527043336.112854-3-hsinyi@chromium.org>
+References: <20190527043336.112854-1-hsinyi@chromium.org> <20190527043336.112854-3-hsinyi@chromium.org>
+Subject: Re: [PATCH v5 3/3] arm64: kexec_file: add rng-seed support
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
@@ -71,17 +71,16 @@ Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
 To:     Hsin-Yi Wang <hsinyi@chromium.org>,
         linux-arm-kernel@lists.infradead.org
 User-Agent: alot/0.8.1
-Date:   Tue, 28 May 2019 08:53:48 -0700
+Date:   Tue, 28 May 2019 08:55:04 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Hsin-Yi Wang (2019-05-26 21:33:35)
-> Introducing a chosen node, rng-seed, which is an entropy that can be
-> passed to kernel called very early to increase initial device
-> randomness. Bootloader should provide this entropy and the value is
-> read from /chosen/rng-seed in DT.
+Quoting Hsin-Yi Wang (2019-05-26 21:33:36)
+> Adding "rng-seed" to dtb. It's fine to add this property if original
+> fdt doesn't contain it. Since original seed will be wiped after
+> read, so use a default size 128 bytes here.
 >=20
 > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
