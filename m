@@ -2,107 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 392042CC87
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 18:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2533C2CC95
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 18:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727307AbfE1Qsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 12:48:37 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:35589 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726830AbfE1Qsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 12:48:37 -0400
-Received: by mail-pg1-f193.google.com with SMTP id t1so11339035pgc.2;
-        Tue, 28 May 2019 09:48:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VyKAAyyKF/StTl6Cc7Bhi0hP4Fbpr1Wnyb227vQxupA=;
-        b=BDz6LEiPv3DbWPxz2q4nGxrvuf/nyreOKnjeVboH01uYK4LNfyhggoZp6K2ruiObxv
-         YAuAXBsTfVJ0boZKnKIkC6UU6d+mWpLDwme//1KEmGzD9lBi4erPBlC0RLWowqzMaBDQ
-         bBh1w+idklGCiKs3Nshy8rmsEEciIFwavafIlX+ImMRbJUusmGGA2j3ShrQ2Yyv8vbBO
-         zSEs8ZE61BbEAHHkxNOMxS1iZ5J2QHK/XBmmBJGUF9yPqiCrLEuG7rDaLS9VM1AXYQqD
-         wBUEWG4L2XxIQHIQCgkt2JlO3jZke23eqatR1WPnLhfwekflViSOgopPAinxrdo8rBQs
-         FCRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VyKAAyyKF/StTl6Cc7Bhi0hP4Fbpr1Wnyb227vQxupA=;
-        b=MH9RdEIX7phwnSlJlc39I9+buo2YFLuM/vwl4aEaN6uJ/EZmc8mikIFSLPHNFPMDl4
-         1TAUH7uo8zyRLS3v3Q4K7FJ3TmEvZCGzDDXK//vbgofo7QJEP2BSQ5W1uVMVrqNRwHbd
-         r1vgWPFTypzZ4y3C5E6zEKv89RqBdEVRvkfKhFdgP0GZ2OL4YeX1A9OXikrXRNQJ5JqM
-         NeGkt17lcj4qQmgKDM3OZ0x6V90ujsdkh/lCNC+riDcidOa5lGfu5ouXxCgbkWWaX1PP
-         balyg2g3+G5CZe+0al/REd+v0YelmACHVvTX4BwkDigiXrNkt+905Ub5bmdB36Pa3vBs
-         2UzQ==
-X-Gm-Message-State: APjAAAVl6Bg+NgVifN9/ZoIPEJIht9+OGkVEdpgI5jhIMrova7feHbwQ
-        GWiX8gK0zRrtOMimycOTRxI=
-X-Google-Smtp-Source: APXvYqyHME0FjSisF3IqfNkzb5R68J3a7YnPvgHLro3k6kdMV1VTMJnenNrsas0+2U+az3DIIcmv+A==
-X-Received: by 2002:a63:2248:: with SMTP id t8mr90644297pgm.358.1559062116816;
-        Tue, 28 May 2019 09:48:36 -0700 (PDT)
-Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id a30sm8916533pje.4.2019.05.28.09.48.35
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 May 2019 09:48:36 -0700 (PDT)
-From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-To:     agross@kernel.org, david.brown@linaro.org,
-        bjorn.andersson@linaro.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, marc.w.gonzalez@free.fr,
-        jcrouse@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8998: Add gpucc node
-Date:   Tue, 28 May 2019 09:48:34 -0700
-Message-Id: <20190528164834.38691-1-jeffrey.l.hugo@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190528164616.38517-1-jeffrey.l.hugo@gmail.com>
-References: <20190528164616.38517-1-jeffrey.l.hugo@gmail.com>
+        id S1726638AbfE1Qth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 12:49:37 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:56012 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726576AbfE1Qtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 12:49:36 -0400
+Received: from pendragon.ideasonboard.com (85-76-139-52-nat.elisa-mobile.fi [85.76.139.52])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AE62ED85;
+        Tue, 28 May 2019 18:49:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1559062174;
+        bh=lEjKHqijMGwDHdIFV6IpbBri4b6BDlrFy94f6LaA38A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nsxe+QaRjPfxPWCTv0FrcyqunWIXMU9NCc2DwkM9vMbXRQYjMAoRz706YMVXjxA+4
+         hi99ceJwx1OhxcxNTArKZkFUI3eUjtLXzNqK+hafc3cJtKpocn8+je55RClVLM5Iqs
+         0RPEFiHFiSH808Ia/TXa3pYzX6WXxvV2HO1z76ts=
+Date:   Tue, 28 May 2019 19:49:16 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>
+Subject: Re: [PATCH v3 04/10] dt-bindings: display: renesas: lvds: Add
+ renesas, companion property
+Message-ID: <20190528164916.GA17874@pendragon.ideasonboard.com>
+References: <20190528141234.15425-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20190528141234.15425-5-laurent.pinchart+renesas@ideasonboard.com>
+ <20190528163730.GA9610@ravnborg.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190528163730.GA9610@ravnborg.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MSM8998 GPU Clock Controller DT node.
+Hi Sam,
 
-Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On Tue, May 28, 2019 at 06:37:30PM +0200, Sam Ravnborg wrote:
+> On Tue, May 28, 2019 at 05:12:28PM +0300, Laurent Pinchart wrote:
+> > Add a new optional renesas,companion property to point to the companion
+> > LVDS encoder. This is used to support dual-link operation where the main
+> > LVDS encoder splits even-numbered and odd-numbered pixels between the
+> > two LVDS encoders.
+> > 
+> > The new property doesn't control the mode of operation, it only
+> > describes the relationship between the master and companion LVDS
+> > encoders.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> > Tested-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > ---
+> > Changes since v2:
+> > 
+> > - Clarify when the companion property is required or not allowed
+> > 
+> > Changes since v1:
+> > 
+> > - Fixed typo
+> > ---
+> >  .../devicetree/bindings/display/bridge/renesas,lvds.txt    | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
+> > index 900a884ad9f5..2d24bd8cbec5 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
+> > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
+> > @@ -45,6 +45,13 @@ OF graph bindings specified in Documentation/devicetree/bindings/graph.txt.
+> >  
+> >  Each port shall have a single endpoint.
+> >  
+> > +Optional properties:
+> > +
+> > +- renesas,companion : phandle to the companion LVDS encoder. This property is
+> > +  mandatory for the first LVDS encoder on D3 and E3 SoCs, and shall point to
+> > +  the second encoder to be used as a companion in dual-link mode. It shall not
+> > +  be set for any other LVDS encoder.
+> 
+> If the D3 and E3 socs do not mandate the use of dual-link, then what to
+> do in the DT? Because according to the above this property must be
+> specified for D3 and E3 SOC's.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 574be78a936e..cf00bfeec6b3 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -3,6 +3,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,gcc-msm8998.h>
-+#include <dt-bindings/clock/qcom,gpucc-msm8998.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -763,6 +764,20 @@
- 			reg = <0x1f40000 0x20000>;
- 		};
- 
-+		gpucc: clock-controller@5065000 {
-+			compatible = "qcom,gpucc-msm8998";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+			reg = <0x05065000 0x9000>;
-+
-+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+				 <&gcc GPLL0_OUT_MAIN>;
-+			clock-names = "xo",
-+				      "gpll0";
-+		};
-+
-+
- 		apcs_glb: mailbox@9820000 {
- 			compatible = "qcom,msm8998-apcs-hmss-global";
- 			reg = <0x17911000 0x1000>;
+This property doesn't enable dual-link mode, it only specifies the
+companion LVDS encoder used for dual-link mode, when enabled (through
+communication between the LVDS encoder and the LVDS receiver at
+runtime).
+
+Jacopo had a similar comment so I suppose this isn't clear. How would
+you word it to make it clear ?
+
+> > +
+> >  
+> >  Example:
+> 
+> Always good with examples, maybe it comes later.
+
+Good point, I'll fix that.
+
 -- 
-2.17.1
+Regards,
 
+Laurent Pinchart
