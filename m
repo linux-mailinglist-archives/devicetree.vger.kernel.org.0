@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F6E2C71B
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5622C726
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727109AbfE1M6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 08:58:04 -0400
-Received: from node.akkea.ca ([192.155.83.177]:43666 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726887AbfE1M6D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 08:58:03 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by node.akkea.ca (Postfix) with ESMTP id B3A2C4E2051;
-        Tue, 28 May 2019 12:58:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1559048282; bh=SfqX2EFJOvWCTClrRDpHw/tV94ED1IxtbtG2u/MWNBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=op+6fb8jQS5e+mg1oamSso31s+ujtaCPmTkfHspqDwTuUlcwBXoZhWZwgmDoMl1pO
-         0pO3qcnyxEJgwubiIobyTb3xx72QeQjdyNU6xJNzaITik+a3e0Sx/c23llgmEsCSQa
-         gdudmLz1lvI6xAx5Q4AWaUOmNJ+HkjNTk6Vu2HfY=
-X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
-Received: from node.akkea.ca ([127.0.0.1])
-        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Wk_ZAWsA6PrL; Tue, 28 May 2019 12:58:02 +0000 (UTC)
-Received: from midas.localdomain (S0106788a2041785e.gv.shawcable.net [70.66.86.75])
-        by node.akkea.ca (Postfix) with ESMTPSA id C19214E2050;
-        Tue, 28 May 2019 12:58:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1559048282; bh=SfqX2EFJOvWCTClrRDpHw/tV94ED1IxtbtG2u/MWNBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=op+6fb8jQS5e+mg1oamSso31s+ujtaCPmTkfHspqDwTuUlcwBXoZhWZwgmDoMl1pO
-         0pO3qcnyxEJgwubiIobyTb3xx72QeQjdyNU6xJNzaITik+a3e0Sx/c23llgmEsCSQa
-         gdudmLz1lvI6xAx5Q4AWaUOmNJ+HkjNTk6Vu2HfY=
-From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
-To:     angus.ainslie@puri.sm
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726925AbfE1M7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 08:59:04 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:34037 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726924AbfE1M7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 08:59:04 -0400
+Received: from aptenodytes (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 7D3D2240011;
+        Tue, 28 May 2019 12:58:58 +0000 (UTC)
+Message-ID: <2b671c1f0734177a6283407f753403473b70f5bc.camel@bootlin.com>
+Subject: Re: [linux-sunxi] [RESEND PATCH] ARM: dts: sun7i: olimex-lime2:
+ Enable ac and power supplies
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     plaes@plaes.org, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Carlo Caione <ccaione@baylibre.com>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v15 3/3] dt-bindings: arm: fsl: Add the imx8mq boards
-Date:   Tue, 28 May 2019 05:57:47 -0700
-Message-Id: <20190528125747.1047-4-angus@akkea.ca>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190528125747.1047-1-angus@akkea.ca>
-References: <20190528125747.1047-1-angus@akkea.ca>
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     linux-sunxi@googlegroups.com
+Date:   Tue, 28 May 2019 14:58:57 +0200
+In-Reply-To: <20190528063544.17408-1-plaes@plaes.org>
+References: <20190528063544.17408-1-plaes@plaes.org>
+Organization: Bootlin
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an entry for imx8mq based boards
+Hi,
 
-Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Tue, 2019-05-28 at 09:35 +0300, Priit Laes wrote:
+> Lime2 has battery connector so enable these supplies.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 407138ebc0d0..41364b127200 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -177,6 +177,13 @@ properties:
-               - fsl,imx8mm-evk            # i.MX8MM EVK Board
-           - const: fsl,imx8mm
- 
-+      - description: i.MX8MQ based Boards
-+        items:
-+          - enum:
-+              - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-+              - purism,librem5-devkit     # Purism Librem5 devkit
-+          - const: fsl,imx8mq
-+
-       - description: i.MX8QXP based Boards
-         items:
-           - enum:
+Out of curiosity, what is reported to userspace when no battery is
+attached?
+
+Looks good otherwise:
+Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+
+Cheers,
+
+Paul
+
+> Signed-off-by: Priit Laes <plaes@plaes.org>
+> ---
+>  arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+> index 9c8eecf4337a..9001b5527615 100644
+> --- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+> +++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+> @@ -206,6 +206,14 @@
+>  
+>  #include "axp209.dtsi"
+>  
+> +&ac_power_supply {
+> +	status = "okay";
+> +};
+> +
+> +&battery_power_supply {
+> +	status = "okay";
+> +};
+> +
+>  &reg_dcdc2 {
+>  	regulator-always-on;
+>  	regulator-min-microvolt = <1000000>;
+> -- 
+> 2.11.0
+> 
 -- 
-2.17.1
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
