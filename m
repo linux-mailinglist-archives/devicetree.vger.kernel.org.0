@@ -2,92 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0EAA2C5E9
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E9082C656
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726592AbfE1LzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 07:55:25 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:10896 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726580AbfE1LzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 07:55:25 -0400
-X-IronPort-AV: E=Sophos;i="5.60,521,1549897200"; 
-   d="scan'208";a="16978920"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 28 May 2019 20:55:22 +0900
-Received: from renesas-VirtualBox.ree.adwin.renesas.com (unknown [10.226.37.56])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id C26734007541;
-        Tue, 28 May 2019 20:55:20 +0900 (JST)
-From:   Gareth Williams <gareth.williams.jx@renesas.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S1726903AbfE1MUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 08:20:32 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:45153 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726580AbfE1MUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 08:20:32 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 6E6FA200017;
+        Tue, 28 May 2019 12:20:26 +0000 (UTC)
+Date:   Tue, 28 May 2019 14:20:25 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: clock: renesas,r9a06g032-sysctrl: Document power Domains
-Date:   Tue, 28 May 2019 12:54:26 +0100
-Message-Id: <1559044467-2639-2-git-send-email-gareth.williams.jx@renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1559044467-2639-1-git-send-email-gareth.williams.jx@renesas.com>
-References: <1559044467-2639-1-git-send-email-gareth.williams.jx@renesas.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 01/10] dt-bindings: rtc: Move trivial RTC over to trivial
+ devices
+Message-ID: <20190528122025.vv4oyt5cwetj2hzp@flea>
+References: <290402405a34506997fd2fab2c4c1486dbe6b7e5.1558958381.git-series.maxime.ripard@bootlin.com>
+ <20190527120626.GM3274@piout.net>
+ <20190527121832.lui2n6vhlemlqy2z@flea>
+ <20190527160657.GN3274@piout.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190527160657.GN3274@piout.net>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver is gaining power domain support, so add the new property
-to the DT binding and update the examples.
+Hi,
 
-Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v4:
- - Added missing HCLK to UART0 example to show the clock added
-   to the driver.
- - Added Geert's Reviewed-by line.
-v3:
- - Added new #power-domain-cells property to the required properties.
- - Added "#power-domain-cells" and "power-domains" lines to examples.
-v2:
- - No changes.
----
- .../devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt        | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+On Mon, May 27, 2019 at 06:06:57PM +0200, Alexandre Belloni wrote:
+> On 27/05/2019 14:18:32+0200, Maxime Ripard wrote:
+> > Hi Alex,
+> >
+> > On Mon, May 27, 2019 at 02:06:26PM +0200, Alexandre Belloni wrote:
+> > > On 27/05/2019 14:00:33+0200, Maxime Ripard wrote:
+> > > > The RTC generic bindings has a bunch of devices that have a pretty simple
+> > > > binding, with just compatible, reg and optional interrupts properties.
+> > > >
+> > >
+> > > This is not true, they all also support the star-year property, this is
+> > > why they are not in the trivial-devices file anymore.
+> >
+> > Ok, I misunderstood the binding then.
+> >
+> > Should we create a separate file for the trivial RTC, on the model of
+> > the trivial-devices but supporting all the RTC properties?
+>
+> I would say that this is the way forward. Note that all the RTCs
+> support start-year but you will have to check for the other
+> properties.
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-index d60b997..30adb4c 100644
---- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-+++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-@@ -13,6 +13,7 @@ Required Properties:
- 	- external (optional) RGMII_REFCLK
-   - clock-names: Must be:
-         clock-names = "mclk", "rtc", "jtag", "rgmii_ref_ext";
-+  - #power-domain-cells : Must be 0
- 
- Examples
- --------
-@@ -27,6 +28,7 @@ Examples
- 		clocks = <&ext_mclk>, <&ext_rtc_clk>,
- 				<&ext_jtag_clk>, <&ext_rgmii_ref>;
- 		clock-names = "mclk", "rtc", "jtag", "rgmii_ref_ext";
-+		#power-domain-cells = <0>;
- 	};
- 
-   - Other nodes can use the clocks provided by SYSCTRL as in:
-@@ -38,6 +40,7 @@ Examples
- 		interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
- 		reg-shift = <2>;
- 		reg-io-width = <4>;
--		clocks = <&sysctrl R9A06G032_CLK_UART0>;
--		clock-names = "baudclk";
-+		clocks = <&sysctrl R9A06G032_CLK_UART0>, <&sysctrl R9A06G032_HCLK_UART0>;
-+		clock-names = "baudclk", "apb_pclk";
-+		power-domains = <&sysctrl>;
- 	};
--- 
-2.7.4
+The way this will work is that it's a two layers thing. Patch 2
+creates a generic RTC binding schema that will match on two things:
+  - Schemas including it directly,
+  - any devicetree node following the node name pattern.
 
+The point of that schema is to validate that every node (or binding),
+if it has those properties, the schemas will make sure that it's the
+proper type, (and if we would have any) ranges, etc.
+
+Then, it's up for the driver schemas to do a more on-point validation,
+with whatever constraints they have. They can choose to restrict the
+set of properties, or not to, it's really up to the device schema.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
