@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D60342C6D3
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01E6D2C705
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:52:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727201AbfE1MnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 08:43:22 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:40078 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727219AbfE1MnV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 08:43:21 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8132B200E6C;
-        Tue, 28 May 2019 14:43:19 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C001B200E6A;
-        Tue, 28 May 2019 14:43:15 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id CC687402C9;
-        Tue, 28 May 2019 20:43:10 +0800 (SGT)
-From:   Chuanhua Han <chuanhua.han@nxp.com>
-To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Chuanhua Han <chuanhua.han@nxp.com>
-Subject: [PATCH v2] arm64: dts: ls1028a: fix watchdog device node
-Date:   Tue, 28 May 2019 20:45:06 +0800
-Message-Id: <20190528124506.9339-1-chuanhua.han@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726908AbfE1MwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 08:52:00 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:32943 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726867AbfE1Mv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 08:51:59 -0400
+Received: from kresse.hi.pengutronix.de ([2001:67c:670:100:1d::2a])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1hVbZz-0003P1-Qv; Tue, 28 May 2019 14:51:47 +0200
+Message-ID: <1559047905.4039.15.camel@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: fsl: imx8mq: enable the svns power key
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     "Angus Ainslie (Purism)" <angus@akkea.ca>, angus.ainslie@puri.sm
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Carlo Caione <ccaione@baylibre.com>,
+        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Date:   Tue, 28 May 2019 14:51:45 +0200
+In-Reply-To: <20190528124406.29730-1-angus@akkea.ca>
+References: <20190528124406.29730-1-angus@akkea.ca>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::2a
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ls1028a platform uses sp805 watchdog, and use 1/16 platform clock as
-timer clock, this patch fix device tree node.
+Hi Angus,
 
-Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
----
-Changes in v2: 
-	- Replace 'wdt' with 'watchdog' as the node name.
-	- Keep nodes sort in unit-address.
+Am Dienstag, den 28.05.2019, 05:44 -0700 schrieb Angus Ainslie (Purism):
+> Add the snvs power key.
+> 
+> > Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 45d10d8efd14..5f93fd9662ae 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/power/imx8mq-power.h>
+>  #include <dt-bindings/reset/imx8mq-reset.h>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include "dt-bindings/input/input.h"
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>  #include "imx8mq-pinfunc.h"
+> @@ -463,6 +464,14 @@
+> >  					interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+> >  						<GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+> >  				};
+> +
+> > +				snvs_pwrkey: snvs-powerkey {
+> > +					compatible = "fsl,sec-v4.0-pwrkey";
+> > +					regmap = <&snvs>;
+> > +					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+> > +					linux,keycode = <KEY_POWER>;
+> +					wakeup-source;
 
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 23 +++++++++++--------
- 1 file changed, 14 insertions(+), 9 deletions(-)
+Not all i.MX8MQ systems will have this functionality wired up at the
+board level, so this node needs to be disabled by default. The existing
+ i.MX6 and i.MX7 DTs seem to get this wrong.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index ceb608d0e622..bb386dd1d1b1 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -306,15 +306,6 @@
- 			#interrupt-cells = <2>;
- 		};
- 
--		wdog0: watchdog@23c0000 {
--			compatible = "fsl,ls1028a-wdt", "fsl,imx21-wdt";
--			reg = <0x0 0x23c0000 0x0 0x10000>;
--			interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clockgen 4 1>;
--			big-endian;
--			status = "disabled";
--		};
--
- 		usb0: usb@3100000 {
- 			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
- 			reg = <0x0 0x3100000 0x0 0x10000>;
-@@ -397,6 +388,20 @@
- 				     <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		cluster1_core0_watchdog: watchdog@c000000 {
-+			compatible = "arm,sp805", "arm,primecell";
-+			reg = <0x0 0xc000000 0x0 0x1000>;
-+			clocks = <&clockgen 4 15>, <&clockgen 4 15>;
-+			clock-names = "apb_pclk", "wdog_clk";
-+		};
-+
-+		cluster1_core1_watchdog: watchdog@c010000 {
-+			compatible = "arm,sp805", "arm,primecell";
-+			reg = <0x0 0xc010000 0x0 0x1000>;
-+			clocks = <&clockgen 4 15>, <&clockgen 4 15>;
-+			clock-names = "apb_pclk", "wdog_clk";
-+		};
-+
- 		sai1: audio-controller@f100000 {
- 			#sound-dai-cells = <0>;
- 			compatible = "fsl,vf610-sai";
--- 
-2.17.1
+Regards,
+Lucas
 
+> +				};
+> >  			};
+>  
+> > >  			clk: clock-controller@30380000 {
