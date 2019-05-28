@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B890C2C67F
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0CD2C6DF
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 14:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbfE1Mat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 08:30:49 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:48018 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726592AbfE1Mat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 08:30:49 -0400
-Received: from pendragon.ideasonboard.com (85-76-65-42-nat.elisa-mobile.fi [85.76.65.42])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D0B87D85;
-        Tue, 28 May 2019 14:30:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1559046647;
-        bh=caHy49s0LS560k5n2Npm3GA1sKEg331DmzayTd0pV+o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o5huZLjIufS0/nMuSSe2H7sPr6XtV5m+CfjGdWMNyK7pdfj3d5WrL8n1aOfD7b7pD
-         ryXyVBot89QGedra0WtjBaZYsgG4jekc1Sw+QBkh9UAYLs3tUsJqewH3pNCZYktBDk
-         FdibpCvuvDvOBHcClOc5YpOXk0FtisfbRKx8+hl4=
-Date:   Tue, 28 May 2019 15:30:26 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 04/10] dt-bindings: display: renesas: lvds: Add
- renesas,companion property
-Message-ID: <20190528123026.GB5916@pendragon.ideasonboard.com>
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
- <20190511210702.18394-5-laurent.pinchart+renesas@ideasonboard.com>
- <20190528092847.kxhhq7hevforddb6@uno.localdomain>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190528092847.kxhhq7hevforddb6@uno.localdomain>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727133AbfE1MoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 08:44:15 -0400
+Received: from node.akkea.ca ([192.155.83.177]:43058 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726999AbfE1MoP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 08:44:15 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by node.akkea.ca (Postfix) with ESMTP id E243F4E204D;
+        Tue, 28 May 2019 12:44:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1559047454; bh=QN+qfKJcn+iv1NFE027lzE+60Gd7OUBp8PBwf368hi8=;
+        h=From:To:Cc:Subject:Date;
+        b=Oy9FRep8jiYbF4jTd69IGkP9IGgMBqpY3UZZJFMP+XDZ3fyJxL955yZWPDnGcdu2M
+         Rg8y7rcdRF/t540YZGn5wCWnQf0T/Gs7dfsrbFmi4QkaIhGAdqGb9AUEdfDr4ctaLT
+         m5vxS/3uQUUiAfvV8+QLEocdB0vHGP4RJpGnGec4=
+X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
+Received: from node.akkea.ca ([127.0.0.1])
+        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id lTtIYmYKCoKZ; Tue, 28 May 2019 12:44:14 +0000 (UTC)
+Received: from midas.localdomain (S0106788a2041785e.gv.shawcable.net [70.66.86.75])
+        by node.akkea.ca (Postfix) with ESMTPSA id EE1D04E204B;
+        Tue, 28 May 2019 12:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1559047454; bh=QN+qfKJcn+iv1NFE027lzE+60Gd7OUBp8PBwf368hi8=;
+        h=From:To:Cc:Subject:Date;
+        b=Oy9FRep8jiYbF4jTd69IGkP9IGgMBqpY3UZZJFMP+XDZ3fyJxL955yZWPDnGcdu2M
+         Rg8y7rcdRF/t540YZGn5wCWnQf0T/Gs7dfsrbFmi4QkaIhGAdqGb9AUEdfDr4ctaLT
+         m5vxS/3uQUUiAfvV8+QLEocdB0vHGP4RJpGnGec4=
+From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
+To:     angus.ainslie@puri.sm
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Carlo Caione <ccaione@baylibre.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: fsl: imx8mq: enable the svns power key
+Date:   Tue, 28 May 2019 05:44:06 -0700
+Message-Id: <20190528124406.29730-1-angus@akkea.ca>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+Add the snvs power key.
 
-On Tue, May 28, 2019 at 11:28:47AM +0200, Jacopo Mondi wrote:
-> On Sun, May 12, 2019 at 12:06:56AM +0300, Laurent Pinchart wrote:
-> > Add a new optional renesas,companion property to point to the companion
-> > LVDS encoder. This is used to support dual-link operation where the main
-> > LVDS encoder splits even-numbered and odd-numbered pixels between the
-> > two LVDS encoders.
-> >
-> > The new property doesn't control the mode of operation, it only
-> > describes the relationship between the master and companion LVDS
-> > encoders.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > ---
-> > Changes since v1:
-> >
-> > - Fixed typo
-> > ---
-> >  .../devicetree/bindings/display/bridge/renesas,lvds.txt     | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-> > index 900a884ad9f5..f2cc01d54cbd 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-> > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-> > @@ -45,6 +45,12 @@ OF graph bindings specified in Documentation/devicetree/bindings/graph.txt.
-> >
-> >  Each port shall have a single endpoint.
-> >
-> > +Optional properties:
-> > +
-> > +- renesas,companion : phandle to the companion LVDS encoder. This property is
-> > +  valid for the first LVDS encoder on D3 and E3 SoCs only, and points to the
-> > +  second encoder to be used as a companion in dual-link mode.
-> > +
-> 
-> If I got this right, the property does not enable dual-link
-> operations by itself, but it needs the next bridge to be operating in
-> dual link mode (ie. has both LVDS0 and LVDS1 output connected to its
-> input ports).
+Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Correct.
-
-> Is it worth describing it here (or at least clarify the the property
-> alone does not enable dual link operations).
-
-How about the following ?
-
-- renesas,companion : phandle to the companion LVDS encoder. This property is
-  mandatory for the first LVDS encoder on D3 and E3 SoCs, and shall point to 
-  the second encoder to be used as a companion in dual-link mode. It shall not 
-  be set for any other LVDS encoder.
-
-> Apart from that
-> Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 45d10d8efd14..5f93fd9662ae 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/power/imx8mq-power.h>
+ #include <dt-bindings/reset/imx8mq-reset.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include "dt-bindings/input/input.h"
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/thermal/thermal.h>
+ #include "imx8mq-pinfunc.h"
+@@ -463,6 +464,14 @@
+ 					interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+ 						<GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 				};
++
++				snvs_pwrkey: snvs-powerkey {
++					compatible = "fsl,sec-v4.0-pwrkey";
++					regmap = <&snvs>;
++					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
++					linux,keycode = <KEY_POWER>;
++					wakeup-source;
++				};
+ 			};
+ 
+ 			clk: clock-controller@30380000 {
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
