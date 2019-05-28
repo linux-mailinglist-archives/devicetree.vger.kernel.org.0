@@ -2,161 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 199FB2C5A7
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8F0E2C5E4
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:55:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726776AbfE1Lq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 07:46:56 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:53115 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726580AbfE1Lq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 07:46:56 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 300A94000A;
-        Tue, 28 May 2019 11:46:48 +0000 (UTC)
-Date:   Tue, 28 May 2019 13:47:58 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-media@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
-Message-ID: <20190528114758.a4oac3zgdy7dkx7k@uno.localdomain>
-References: <20190520201812.7937-1-marex@denx.de>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="sxscfq2uey2wyh53"
-Content-Disposition: inline
-In-Reply-To: <20190520201812.7937-1-marex@denx.de>
-User-Agent: NeoMutt/20180716
+        id S1726921AbfE1LzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 07:55:04 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:56691 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726580AbfE1LzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 07:55:04 -0400
+X-IronPort-AV: E=Sophos;i="5.60,521,1549897200"; 
+   d="scan'208";a="16978896"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 28 May 2019 20:55:01 +0900
+Received: from renesas-VirtualBox.ree.adwin.renesas.com (unknown [10.226.37.56])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id DBC8A4007541;
+        Tue, 28 May 2019 20:54:58 +0900 (JST)
+From:   Gareth Williams <gareth.williams.jx@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] clk: renesas: r9a06g032: Add clock domain support
+Date:   Tue, 28 May 2019 12:54:25 +0100
+Message-Id: <1559044467-2639-1-git-send-email-gareth.williams.jx@renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There are several clocks on the r9a06g032 which are currently not enabled
+in their drivers that can be delegated to clock domain system for power
+management. Therefore add support for clock domain functionality to the
+r9a06g032 clock driver after updating the relevant dt-bindings file.
 
---sxscfq2uey2wyh53
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v4:
+ - Removed unneeded initialisation of "error" in 
+   create_add_module_clock.
+ - Moved declaration of "index" to the start of r9a06g032_attach_dev.
+ - Moved of_node_put(clkspec.np) call to after create_add_module_clock
+   call in r9a06g032_attach_dev.
+ - Added missing HCLK to UART0 example to show the clock added
+   to the driver.
+v3:
+ - "managed" flag integrated into existing bit field.
+ - Removed unneeded initialisation inside D_MODULE.
+ - Removed the use of unneeded r9a06g032_clk_domain variable.
+ - Removed error message prints that cannot occur.
+ - Removed __init and __initconst from attach function and
+   r9a06g032_clocks[].
+ - Reordered r9a06g032_add_clk_domain call to after 
+   devm_add_action_or_reset during probe.
+ - Added clock type check when retrieving clocks from device tree.
+ - Reordered of_node_put call to before error check in
+   create_add_module_clock.
+ - changed r9a06g032_detach_dev to a static function.
+ - Added new #power-domain-cells property to the required properties.
+ - Added "#power-domain-cells" and "power-domains" lines to examples.
+v2:
+ - Rebased onto kernel/git/geert/renesas-drivers.git
 
-Hi Marek,
-   thanks for the patch
+Gareth Williams (2):
+  dt-bindings: clock: renesas,r9a06g032-sysctrl: Document power Domains
+  clk: renesas: r9a06g032: Add clock domain support
 
-On Mon, May 20, 2019 at 10:18:11PM +0200, Marek Vasut wrote:
-> Add bindings for the Intersil ISL7998x BT656-to-MIPI-CSI2 decoder.
->
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-media@vger.kernel.org
-> ---
->  .../bindings/media/i2c/isl7998x.txt           | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/isl7998x.=
-txt
->
-> diff --git a/Documentation/devicetree/bindings/media/i2c/isl7998x.txt b/D=
-ocumentation/devicetree/bindings/media/i2c/isl7998x.txt
-> new file mode 100644
-> index 000000000000..c21703983360
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
-> @@ -0,0 +1,37 @@
-> +Intersil ISL7998x BT656-to-MIPI-CSI2 decoder
-> +
-> +The Intersil ISL7998x is a BT656-to-MIPI-CSI decoder which, capable of
-> +receiving up to four analog stream and multiplexing them into up to four
-> +MIPI CSI2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
-> +
+ .../bindings/clock/renesas,r9a06g032-sysctrl.txt   |   7 +-
+ drivers/clk/renesas/r9a06g032-clocks.c             | 230 ++++++++++++++-------
+ 2 files changed, 166 insertions(+), 71 deletions(-)
 
-The documentation is not public, so I can only read what's reported on
-the website and the short public datasheet at [1]
+-- 
+2.7.4
 
-=46rom my understanding of the product page, both the ISL79987 and
-ILS79988 devices support up to 4 analog inputs, and provide a CSI-2
-output and a BT656 output respectively.
-
-What am I reading wrong ?
-
-[1] https://www.renesas.com/eu/en/products/audio-video/video-decoders-encod=
-ers/video-decoders/device/ISL79987.html
-
-> +Required Properties:
-> +- compatible: value should be "isil,isl79987"
-> +- pd-gpios: a GPIO spec for the Power Down pin (active high)
-> +
-> +Option Properties:
-> +- isil,num-inputs: Number of connected inputs (1, 2 or 4)
-
-Can't you derive this from the number of connected input endpoints
-instead of providing a custom property?
-
-> +
-> +For further reading on port node refer to
-> +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +
-
-I think a description of the supported ports and their intended
-usages is required here. You have up to 4 inputs and 1 output port,
-how do you expect them to be numbered? is port@4 the last input or the
-output one?
-
-> +Example:
-> +
-> +	i2c_master {
-> +		isl7998x_mipi@44 {
-> +			compatible =3D "isil,isl79987";
-> +			reg =3D <0x44>;
-> +			isil,num-inputs =3D <4>;
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&pinctrl_videoadc>;
-> +			pd-gpios =3D <&gpio3 27 GPIO_ACTIVE_HIGH>;
-> +			status =3D "okay";
-> +
-> +			port {
-> +				isl79987_to_mipi_csi2: endpoint {
-> +					remote-endpoint =3D <&mipi_csi2_in>;
-> +					clock-lanes =3D <0>;
-> +					data-lanes =3D <1 2>;
-> +				};
-
-I see from the example you only support one output port? How do you
-model the input ones.
-
-Thanks
-   j
-
-> +			};
-> +		};
-> +	};
-> --
-> 2.20.1
->
-
---sxscfq2uey2wyh53
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIyBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlztH+4ACgkQcjQGjxah
-Vjw+cw/3ex/iCAHHMg+krBaQOQOuLQnDcPPcLJkQaDcDxmX7Kjc/ufmlGPyzGu8O
-+Cv9kdHRCSyuMQTWkqI7C6LmW2J6JT0bDaX9QkZbeuq6fx5B8J8LUFC36aSXro+X
-eju/4laNijDD4Atvc/eULQi1NG7d1Xnn94RfJ2HFrwfbwset6NnuHc1k6d7BfF7D
-kjKs91c6HH4nxP/A7heXnYGULx3bDVrXzWXn1iXJYnbj85zqXxbCyb2TbHi4BNek
-hv6RScO2ONJil2NzIudOxYVbmtqpIuVLdYKeCFC8EBkDVNa1FXRRW9acTza46qD1
-bEjmrs2/4F9BarTjibJ/54kP9gaw9Xs+2utEGe9J7U25ZKPp9+qaPlWghyk6YZVh
-NzqQTMePBwNRquCMU5VHBuQHwl0MmC8HeLHFLnH0waQEYqwZkXTeJEyMfoX2GyYt
-W3sChXGk/O1D2qTTRHN3casQSUFLgCdi0pdBzZppckq//QANRH9iUep4QF4acoG1
-gu2tTrFPJ0x2u1r33lgWxdyTMKjVxmcWX6N4i0pl7OD5oHD7nd/9+GiRRMviRuxx
-Z/VQzGd3kAkmIAlAlpAathr4WsZVgjBDvarvFXqAC3kWds05dqYMDHmHawhPXQ/P
-l6KCzIqjJDqmhjrUZuE5Ght3C55j39R1x57H0JC2CU4RoVA1Ug==
-=cjvk
------END PGP SIGNATURE-----
-
---sxscfq2uey2wyh53--
