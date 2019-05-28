@@ -2,107 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F2052CA6A
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 377C32CA80
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726463AbfE1Pkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 11:40:37 -0400
-Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:47931 "EHLO
-        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726362AbfE1Pkh (ORCPT
+        id S1726894AbfE1PnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 11:43:25 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:39562 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726557AbfE1PnZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 11:40:37 -0400
-Received: from [IPv6:2001:983:e9a7:1:352c:d076:e7aa:19ae] ([IPv6:2001:983:e9a7:1:352c:d076:e7aa:19ae])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id VeDJhjf8vsDWyVeDKheADd; Tue, 28 May 2019 17:40:34 +0200
-Subject: Re: [PATCH v7 0/5] Add ZynqMP VCU/Allegro DVT H.264 encoder driver
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, robh+dt@kernel.org, mchehab@kernel.org,
-        tfiga@chromium.org, dshah@xilinx.com
-References: <20190528130920.4450-1-m.tretter@pengutronix.de>
- <d0f49d4e-d060-1324-5348-eec0f4336601@xs4all.nl>
- <20190528170016.68252586@litschi.hi.pengutronix.de>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <39768904-8e99-93b6-8fcc-1c6ef97e5852@xs4all.nl>
-Date:   Tue, 28 May 2019 17:40:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Tue, 28 May 2019 11:43:25 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x4SFJ5YC003227;
+        Tue, 28 May 2019 10:43:14 -0500
+Authentication-Results: ppops.net;
+        spf=none smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from mail3.cirrus.com ([87.246.76.56])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2sq24q3gny-1;
+        Tue, 28 May 2019 10:43:13 -0500
+Received: from EDIEX01.ad.cirrus.com (ediex01.ad.cirrus.com [198.61.84.80])
+        by mail3.cirrus.com (Postfix) with ESMTP id 987A36131673;
+        Tue, 28 May 2019 10:43:54 -0500 (CDT)
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 28 May
+ 2019 16:43:12 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Tue, 28 May 2019 16:43:12 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 788CC44;
+        Tue, 28 May 2019 16:43:12 +0100 (BST)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <lee.jones@linaro.org>,
+        <rafael@kernel.org>, <gregkh@linuxfoundation.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH 1/6] device property: Add new array helper
+Date:   Tue, 28 May 2019 16:43:07 +0100
+Message-ID: <20190528154312.14435-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-In-Reply-To: <20190528170016.68252586@litschi.hi.pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfO1vqE5XyVil4Y92nUJQZMpZsqc0Hqddi1dAvCJEZy9jASMn/oZ44Gh/SJ/JA53U8ou0xHEAoSRJOwucfTXgYW02D3o71Xblq8SLYQm7oZfpI3/bvT2e
- vK4fXHnLCf431jhHgJQB7j0yFhLoWpCLDEQ3vkW1+AK8D0+2TfHGmF+aeLSqy7JJ8iznw+qeVkOc/k/BulgOtWB+kDBl2CtaHTuC5vd696C6kJ4AzMfoyJRb
- GVRGX7U30tFrQaFma73DpL0UWhM5X8JBzvuXCW1qmVgC5VK4Yn5urPrqay92Nsob3lwigoN0SdXSljNcbMfQe9ArrFwupZU55EK9mzSxgQMJnvG7lu4hAvRU
- ihoxwySg2aGPX9ysNwjZ3dh8Khlx3tjoYS3LWk0/yx2AHAgeCY/QderfxrRybqIYRK1TefJEP6+7WP3Rk50Qs8gVV/MEM77E3OWamDsfx5cur502YVopSeSC
- KbAth+sO72WvPQKhIurJpE7pRK0yYqYsBMQlyg==
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ suspectscore=1 phishscore=0 bulkscore=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
+ definitions=main-1905280099
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/28/19 5:00 PM, Michael Tretter wrote:
-> On Tue, 28 May 2019 15:54:58 +0200, Hans Verkuil wrote:
->> Hi Michael,
->>
->> On 5/28/19 3:09 PM, Michael Tretter wrote:
->>> This is v7 of the Allegro DVT H.264 encoder driver found in the EV
->>> family of the Xilinx ZynqMP platform.
->>>
->>> I moved the driver back to staging, because the v4l2 stateful encoder spec is
->>> not finished, yet. Once the spec is finished, this driver shall be tested
->>> against the final v4l2-compliance and moved to mainline again.
->>>
->>> Further, I converted the allegro vendor prefix to the new json format in
->>> vendor-prefixes.yaml.
->>>
->>> The observed occasional failures in v4l2-compliance in v6 of this series
->>> turned out to be caused by a race condition with v4l2_m2m_poll(). I will send
->>> patches to fix this issue as a separate series.  
->>
->> I'm getting these smatch warnings:
->>
->> drivers/staging/media/allegro-dvt/allegro-core.c:1849:36: warning: constant 0xffffffff00000000 is so big it is unsigned long
-> 
-> The constant is used to calculate an offset, which is used by the
-> hardware as offset for addresses in mailbox messages. The hardware
-> expects a 64 bit value, but the driver calculates the value using a
-> dma_addr_t, which is fine for 64 bit systems (e.g. ZynqMP), but is a
-> problem on 32 bit systems.
-> 
-> I am currently working on improving the handling of frame addresses and
-> make it fit for using the PL-RAM (in the FPGA) instead of the normal
-> system RAM (PS-RAM). I would fix the warning with that patch set, if
-> it is OK.
+It is fairly common to want to read an integer array property
+that is composed of an unknown number of fixed size integer
+groups. For example, say each group consists of three values
+which correspond to the settings for one input on the device
+and the driver supports several chips with different numbers
+of inputs.
 
-Sorry, no. I don't want new drivers creating new warnings. It's OK to
-do a quick workaround and fix it properly later, though.
+Add a new helper function to provide this functionality, it
+differs for the existing helpers in that it allows reading a
+smaller number of values than the full array size and checks
+that the number of values read is a multiple of the group size.
 
-Regards,
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+---
+ drivers/base/property.c  | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/property.h |  2 ++
+ 2 files changed, 50 insertions(+)
 
-	Hans
-
-> 
->> drivers/staging/media/allegro-dvt/nal-h264.c:751: warning: Function parameter or member 'dev' not described in 'nal_h264_write_sps'
->> drivers/staging/media/allegro-dvt/nal-h264.c:792: warning: Function parameter or member 'dev' not described in 'nal_h264_read_sps'
->> drivers/staging/media/allegro-dvt/nal-h264.c:842: warning: Function parameter or member 'dev' not described in 'nal_h264_write_pps'
->> drivers/staging/media/allegro-dvt/nal-h264.c:884: warning: Function parameter or member 'dev' not described in 'nal_h264_read_pps'
->> drivers/staging/media/allegro-dvt/nal-h264.c:926: warning: Function parameter or member 'dev' not described in 'nal_h264_write_filler'
->> drivers/staging/media/allegro-dvt/nal-h264.c:969: warning: Function parameter or member 'dev' not described in 'nal_h264_read_filler'
-> 
-> I didn't describe the "struct device *dev" parameter, because it really
-> doesn't add any value.
-> 
-> Michael
-> 
->>
->> Can you take a look? The nal-h264.c warnings look trivial to fix, the
->> allegro-core.c warnings looks more interesting.
->>
->> Regards,
->>
->> 	Hans
->>
+diff --git a/drivers/base/property.c b/drivers/base/property.c
+index 348b37e64944c..656d21e01a648 100644
+--- a/drivers/base/property.c
++++ b/drivers/base/property.c
+@@ -133,6 +133,54 @@ int device_property_read_u32_array(struct device *dev, const char *propname,
+ EXPORT_SYMBOL_GPL(device_property_read_u32_array);
+ 
+ /**
++ * device_property_read_u32_2darray - return a 2d u32 array property of a device
++ * @dev: Device to get the property of
++ * @propname: Name of the property
++ * @val: The values are stored here or %NULL to return the number of values
++ * @nval: Size of the @val array
++ * @multiple: Number of entries in each block of data
++ *
++ * Function reads an array of u32 properties split up into fixed size
++ * sub-groups, with @propname from the device firmware description and
++ * stores them to @val if found.
++ *
++ * Return: Number of values read
++ *	   %0 if the property was not found,
++ *	   %-EINVAL if given arguments are not valid,
++ *	   %-ENODATA if the property does not have a value,
++ *	   %-EPROTO if the property is not an array of numbers,
++ *	   %-EOVERFLOW if the size of the property is not as expected.
++ *	   %-ENXIO if no suitable firmware interface is present.
++ */
++int device_property_read_u32_2darray(struct device *dev, const char *propname,
++				     u32 *val, size_t nval, int multiple)
++{
++	int n, ret;
++
++	n = device_property_read_u32_array(dev, propname, NULL, 0);
++	if (n == -EINVAL) {
++		return 0;	/* missing, ignore */
++	} else if (n < 0) {
++		dev_warn(dev, "%s malformed (%d)\n", propname, n);
++		return n;
++	} else if ((n % multiple) != 0) {
++		dev_warn(dev, "%s not a multiple of %d entries\n",
++			 propname, multiple);
++		return -EOVERFLOW;
++	}
++
++	if (n > nval)
++		n = nval;
++
++	ret = device_property_read_u32_array(dev, propname, val, n);
++	if (ret < 0)
++		return ret;
++	else
++		return n;
++}
++EXPORT_SYMBOL_GPL(device_property_read_u32_2darray);
++
++/**
+  * device_property_read_u64_array - return a u64 array property of a device
+  * @dev: Device to get the property of
+  * @propname: Name of the property
+diff --git a/include/linux/property.h b/include/linux/property.h
+index a29369c89e6ef..854867f0d139f 100644
+--- a/include/linux/property.h
++++ b/include/linux/property.h
+@@ -43,6 +43,8 @@ int device_property_read_u16_array(struct device *dev, const char *propname,
+ 				   u16 *val, size_t nval);
+ int device_property_read_u32_array(struct device *dev, const char *propname,
+ 				   u32 *val, size_t nval);
++int device_property_read_u32_2darray(struct device *dev, const char *propname,
++				   u32 *val, size_t nval, int multiple);
+ int device_property_read_u64_array(struct device *dev, const char *propname,
+ 				   u64 *val, size_t nval);
+ int device_property_read_string_array(struct device *dev, const char *propname,
+-- 
+2.11.0
 
