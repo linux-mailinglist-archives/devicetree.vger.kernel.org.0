@@ -2,75 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38A9E2CCD6
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 19:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A742CD2E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 19:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726600AbfE1RBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 13:01:50 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:39378 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726236AbfE1RBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 13:01:50 -0400
-Received: by mail-ot1-f67.google.com with SMTP id r7so18446001otn.6
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 10:01:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iXaT/662lKTTFQBCDcS2ZEat9fIaR7M4GYugaqB1Wkg=;
-        b=lDmleI+b1UyBzsslpJy5lhChbKSaa63UAgizRWyIy4fVRC6wSP+8Ret2GDRw4XGPEj
-         BI2hEu6tiyEm6C8vbnua1uMHRr34Ox5M9wjanzgvkY/b60Oa08YbugUBO16xHz+LmzDq
-         pnKojwLT8954Zn2MCoISFwPcCcOiWEDNT4dHnxNwRKfcAeB7lwc585rUPGR2LOT7q2jG
-         LwuNd6V2rGNTQ5inkgtq5RMo2/S645USR0jX2G24Vo13IRy0eqM4DuJ9DkwiP4RzbxCc
-         ypafrCZe0FWqFcUN6i4lvktlPV3fD8xC5C71ASm8/FR1zGyn9VghpUNnsN51/vSJgQ13
-         QnsA==
-X-Gm-Message-State: APjAAAXzsLvdUDqndfIE7hcgxIlLqzNWm2BgrccHlBWi+IOtbDa36hi9
-        BqHouY+cwj3D/rOXUI5GkXjzAs7bI6DkiE43q6o=
-X-Google-Smtp-Source: APXvYqzmGWU8ZNTdJwZ7u85ckVkZqsIKCQQEp9F5em1sf5denOzFAP+GNJ41Bi9X/+eSkm14ZNv7TMXictQhTW/dCBc=
-X-Received: by 2002:a9d:7dd5:: with SMTP id k21mr49049157otn.167.1559062909795;
- Tue, 28 May 2019 10:01:49 -0700 (PDT)
+        id S1726523AbfE1RIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 13:08:50 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:40408 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726452AbfE1RIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 13:08:50 -0400
+Received: from mailhost.synopsys.com (dc8-mailhost1.synopsys.com [10.13.135.209])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id EB9E8C1F2D;
+        Tue, 28 May 2019 17:08:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1559063313; bh=1k8P5Qd46Ycl7mOHtTVI5tAA/ZKzjUkfAL7u1HmV3rs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To:From;
+        b=KSglKfj06MVk+zqhiDdChS7efuF1/uv8QzX4WjP6mjcsPQcGJmkWP15pawzV6d9+v
+         bfKN4NrQOzh3RV2MYcbQcXS3Ui2VyIEFtY/ECgysrkRW0xLt0UgIHLD0zaO70KBtXO
+         w/HreM3vWNT4RY3azsa95zdRG4u0wYGyuBkLrQ76j3EYe/nFoSzrKDo4vKD1EvG/uP
+         EyE74sV9on8QNs+nTQxhkwSOLUheEI6F26SW6+Tdn99bpqwKTgT+WGW2wcSpYj6rQT
+         IETSMyL08/EeZSQNLFhJ43eCsLfHnvY4TTkF3E+C8S4Hm7MD/47EfzRooO6YPMhNKF
+         2oDu6a7iBmziQ==
+Received: from US01WEHTC2.internal.synopsys.com (us01wehtc2.internal.synopsys.com [10.12.239.237])
+        (using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id DBCAFA005D;
+        Tue, 28 May 2019 17:08:48 +0000 (UTC)
+Received: from IN01WEHTCB.internal.synopsys.com (10.144.199.106) by
+ US01WEHTC2.internal.synopsys.com (10.12.239.237) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Tue, 28 May 2019 10:08:48 -0700
+Received: from IN01WEHTCA.internal.synopsys.com (10.144.199.103) by
+ IN01WEHTCB.internal.synopsys.com (10.144.199.105) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Tue, 28 May 2019 22:38:45 +0530
+Received: from [10.13.182.230] (10.13.182.230) by
+ IN01WEHTCA.internal.synopsys.com (10.144.199.243) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Tue, 28 May 2019 22:38:58 +0530
+Subject: Re: [PATCH v3] ARC: [plat-hsdk]: Add support of Vivante GPU
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        <linux-snps-arc@lists.infradead.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        Alexey Brodkin <Alexey.Brodkin@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>
+Newsgroups: gmane.linux.kernel,gmane.linux.kernel.arc,gmane.linux.drivers.devicetree
+References: <20190521175439.15723-1-Eugeniy.Paltsev@synopsys.com>
+From:   Vineet Gupta <Vineet.Gupta1@synopsys.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=vgupta@synopsys.com; keydata=
+ mQINBFEffBMBEADIXSn0fEQcM8GPYFZyvBrY8456hGplRnLLFimPi/BBGFA24IR+B/Vh/EFk
+ B5LAyKuPEEbR3WSVB1x7TovwEErPWKmhHFbyugdCKDv7qWVj7pOB+vqycTG3i16eixB69row
+ lDkZ2RQyy1i/wOtHt8Kr69V9aMOIVIlBNjx5vNOjxfOLux3C0SRl1veA8sdkoSACY3McOqJ8
+ zR8q1mZDRHCfz+aNxgmVIVFN2JY29zBNOeCzNL1b6ndjU73whH/1hd9YMx2Sp149T8MBpkuQ
+ cFYUPYm8Mn0dQ5PHAide+D3iKCHMupX0ux1Y6g7Ym9jhVtxq3OdUI5I5vsED7NgV9c8++baM
+ 7j7ext5v0l8UeulHfj4LglTaJIvwbUrCGgtyS9haKlUHbmey/af1j0sTrGxZs1ky1cTX7yeF
+ nSYs12GRiVZkh/Pf3nRLkjV+kH++ZtR1GZLqwamiYZhAHjo1Vzyl50JT9EuX07/XTyq/Bx6E
+ dcJWr79ZphJ+mR2HrMdvZo3VSpXEgjROpYlD4GKUApFxW6RrZkvMzuR2bqi48FThXKhFXJBd
+ JiTfiO8tpXaHg/yh/V9vNQqdu7KmZIuZ0EdeZHoXe+8lxoNyQPcPSj7LcmE6gONJR8ZqAzyk
+ F5voeRIy005ZmJJ3VOH3Gw6Gz49LVy7Kz72yo1IPHZJNpSV5xwARAQABtCpWaW5lZXQgR3Vw
+ dGEgKGFsaWFzKSA8dmd1cHRhQHN5bm9wc3lzLmNvbT6JAj4EEwECACgCGwMGCwkIBwMCBhUI
+ AgkKCwQWAgMBAh4BAheABQJbBYpwBQkLx0HcAAoJEGnX8d3iisJeChAQAMR2UVbJyydOv3aV
+ jmqP47gVFq4Qml1weP5z6czl1I8n37bIhdW0/lV2Zll+yU1YGpMgdDTHiDqnGWi4pJeu4+c5
+ xsI/VqkH6WWXpfruhDsbJ3IJQ46//jb79ogjm6VVeGlOOYxx/G/RUUXZ12+CMPQo7Bv+Jb+t
+ NJnYXYMND2Dlr2TiRahFeeQo8uFbeEdJGDsSIbkOV0jzrYUAPeBwdN8N0eOB19KUgPqPAC4W
+ HCg2LJ/o6/BImN7bhEFDFu7gTT0nqFVZNXlOw4UcGGpM3dq/qu8ZgRE0turY9SsjKsJYKvg4
+ djAaOh7H9NJK72JOjUhXY/sMBwW5vnNwFyXCB5t4ZcNxStoxrMtyf35synJVinFy6wCzH3eJ
+ XYNfFsv4gjF3l9VYmGEJeI8JG/ljYQVjsQxcrU1lf8lfARuNkleUL8Y3rtxn6eZVtAlJE8q2
+ hBgu/RUj79BKnWEPFmxfKsaj8of+5wubTkP0I5tXh0akKZlVwQ3lbDdHxznejcVCwyjXBSny
+ d0+qKIXX1eMh0/5sDYM06/B34rQyq9HZVVPRHdvsfwCU0s3G+5Fai02mK68okr8TECOzqZtG
+ cuQmkAeegdY70Bpzfbwxo45WWQq8dSRURA7KDeY5LutMphQPIP2syqgIaiEatHgwetyVCOt6
+ tf3ClCidHNaGky9KcNSQ
+Message-ID: <bfe55e41-961f-9824-e613-d3f38301680a@synopsys.com>
+Date:   Tue, 28 May 2019 10:08:34 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190528154312.14435-1-ckeepax@opensource.cirrus.com>
-In-Reply-To: <20190528154312.14435-1-ckeepax@opensource.cirrus.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Tue, 28 May 2019 19:01:38 +0200
-Message-ID: <CAJZ5v0h28OAiT7KP=TLu069hNvYjCLoFndS+zx7_iE+jKfOF2w@mail.gmail.com>
-Subject: Re: [PATCH 1/6] device property: Add new array helper
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        patches@opensource.cirrus.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190521175439.15723-1-Eugeniy.Paltsev@synopsys.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.13.182.230]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 5:43 PM Charles Keepax
-<ckeepax@opensource.cirrus.com> wrote:
->
-> It is fairly common to want to read an integer array property
-> that is composed of an unknown number of fixed size integer
-> groups. For example, say each group consists of three values
-> which correspond to the settings for one input on the device
-> and the driver supports several chips with different numbers
-> of inputs.
->
-> Add a new helper function to provide this functionality, it
-> differs for the existing helpers in that it allows reading a
-> smaller number of values than the full array size and checks
-> that the number of values read is a multiple of the group size.
+On 5/21/19 10:54 AM, Eugeniy Paltsev wrote:
+> HSDK board has built-in Vivante GPU IP which works perfectly fine
+> with Etnaviv driver, so let's use it.
+> 
+> Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
 
-As a rule, you need also CC all of the device property framework
-changes to linux-acpi@vger.kernel.org, so please resend the series
-with that taken into account.
+Added to for-curr.
 
-Thanks!
+Thx,
+-Vineet
