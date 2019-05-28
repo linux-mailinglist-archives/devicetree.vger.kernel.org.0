@@ -2,123 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03D4C2C330
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 11:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3022C391
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 11:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726887AbfE1J1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 05:27:43 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:35819 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726888AbfE1J1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 05:27:43 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 49BAF20010;
-        Tue, 28 May 2019 09:27:38 +0000 (UTC)
-Date:   Tue, 28 May 2019 11:28:47 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 04/10] dt-bindings: display: renesas: lvds: Add
- renesas,companion property
-Message-ID: <20190528092847.kxhhq7hevforddb6@uno.localdomain>
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
- <20190511210702.18394-5-laurent.pinchart+renesas@ideasonboard.com>
+        id S1726400AbfE1JxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 05:53:06 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35936 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726203AbfE1JxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 05:53:06 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4S9r47m076427;
+        Tue, 28 May 2019 04:53:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559037184;
+        bh=4KlLJZMai6Tue5hNTSfEh3SZddxM6vMHjrc4ER6gkbs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ifrXlRFWd/7sFDyJ/dN5TV/3/r5oYSwPEcX6jVbrBnQNEgq74+qucjVLdOX3OQM1e
+         shu1Uw8xKrnAK4vCMX5GFCJ+ijWjIuDZ8GlhYOOiiPXevM4xASx7dng37XHc8QnuVZ
+         Er6XI14LWH9zU2PbL4wm65CGCc9lSPiBvkdv4AHo=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4S9r402086991
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 May 2019 04:53:04 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
+ May 2019 04:53:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 28 May 2019 04:53:04 -0500
+Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4S9r1IY109231;
+        Tue, 28 May 2019 04:53:02 -0500
+Subject: Re: [PATCH v2 3/3] regulator: lp87565: Add 4-phase lp87561 regulator
+ support
+To:     Mark Brown <broonie@kernel.org>, <lee.jones@linaro.org>
+CC:     <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <t-kristo@ti.com>
+References: <20190516043218.8222-1-j-keerthy@ti.com>
+ <20190516043218.8222-4-j-keerthy@ti.com>
+ <20190522153528.GG8582@sirena.org.uk>
+From:   Keerthy <j-keerthy@ti.com>
+Message-ID: <1712197d-7d43-38a8-efde-11b99537eae9@ti.com>
+Date:   Tue, 28 May 2019 15:23:41 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="o263536bpxeaqxlm"
-Content-Disposition: inline
-In-Reply-To: <20190511210702.18394-5-laurent.pinchart+renesas@ideasonboard.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190522153528.GG8582@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---o263536bpxeaqxlm
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 
-Hi Laurent,
+On 22/05/19 9:05 PM, Mark Brown wrote:
+> On Thu, May 16, 2019 at 10:02:18AM +0530, Keerthy wrote:
+>> The LP8756x family has a single output 4-phase regulator
+>> configuration. Add support for the same. The control
+>> lies in the master buck which is buck0 for 4-phase
+>> configuration. Enable/disable/voltage set happen via
+>> buck0 registers.
+> 
+> Acked-by: Mark Brown <broonie@kernel.org>
 
-On Sun, May 12, 2019 at 12:06:56AM +0300, Laurent Pinchart wrote:
-> Add a new optional renesas,companion property to point to the companion
-> LVDS encoder. This is used to support dual-link operation where the main
-> LVDS encoder splits even-numbered and odd-numbered pixels between the
-> two LVDS encoders.
->
-> The new property doesn't control the mode of operation, it only
-> describes the relationship between the master and companion LVDS
-> encoders.
->
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> ---
-> Changes since v1:
->
-> - Fixed typo
-> ---
->  .../devicetree/bindings/display/bridge/renesas,lvds.txt     | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-> index 900a884ad9f5..f2cc01d54cbd 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.txt
-> @@ -45,6 +45,12 @@ OF graph bindings specified in Documentation/devicetree/bindings/graph.txt.
->
->  Each port shall have a single endpoint.
->
-> +Optional properties:
-> +
-> +- renesas,companion : phandle to the companion LVDS encoder. This property is
-> +  valid for the first LVDS encoder on D3 and E3 SoCs only, and points to the
-> +  second encoder to be used as a companion in dual-link mode.
-> +
+Mark/Lee,
 
-If I got this right, the property does not enable dual-link
-operations by itself, but it needs the next bridge to be operating in
-dual link mode (ie. has both LVDS0 and LVDS1 output connected to its
-input ports). Is it worth describing it here (or at least clarify the
-the property alone does not enable dual link operations).
+This patch will come via the mfd branch?
 
-Apart from that
-Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+- Keerthy
 
-Thanks
-   j
-
-
->
->  Example:
->
-> --
-> Regards,
->
-> Laurent Pinchart
->
-
---o263536bpxeaqxlm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlzs/08ACgkQcjQGjxah
-VjwbRg//Xq8IhU73P6ciYEg0LzEj7uZQhWGQW8t5c0/ccUU/Db+fzYvMxaW2UwFl
-wEv8PPxfmBUkObeu5hKRXFi1NoZuOx7fXYQFloMIzkDZTq/6cSfOqO1SHhg+n9QP
-Gms+aJ8bmU9epGw5jHt6PvUvAmO//X7VSgzocvIOG9YnWA15bBw3HkjiH9gsmUTl
-54/YaRKbdTEk9zgEvDvYkal+fz2l27P/askcy9yN35wKkIhxGWeQOTXt3RnoT289
-yP7gOUBnk9PB4bct2IOh3LwMQaH1OIqn5eIfbL/5FotnsGfiYNHu+mbFLcH+K67x
-RWlC++O/j6DjGtQ2k33068GaIfMcgDDhVwgUHGKxt0JNoovsdeUwq8Wy7HZjhrHs
-UzDSPIgtQ5zrq0hyNJYjQ7QbENwTUxplGWX5fd6QAz+A+YHMRCjZvS/kkzqKucb2
-hf3gIkWQDVSgYzxAp7pmZT5xKt61IbHpqhBdJVPduzifjGRLL20NbPXxGr5igWFC
-eHCeVvjohdj9mDAlTmFJ3/Yunbe8T6STHFRrtqEodDComF6XQZSc5nG8ejD6lKTi
-SfpQq+2HCjmN/M9Vfyrg0bfi/vmXDOihxY+4M0PX8Qe37B6iwvogX9cFDOC55Tqu
-eEGJAKW6y+jFDWI//qswELADsN7nqa0Ik5//ZQF2/Y7vgwn1S2s=
-=j2sp
------END PGP SIGNATURE-----
-
---o263536bpxeaqxlm--
+> 
