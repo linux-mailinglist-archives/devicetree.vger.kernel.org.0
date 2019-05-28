@@ -2,82 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C412C2DA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 11:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 804F12C2F2
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 11:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726560AbfE1JNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 05:13:23 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:54957 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726515AbfE1JNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 05:13:23 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 80A60C0034;
-        Tue, 28 May 2019 09:13:16 +0000 (UTC)
-Date:   Tue, 28 May 2019 11:13:15 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 4/7] ASoC: sun4i-spdif: Add support for H6 SoC
-Message-ID: <20190528091315.ysfieiebn5gk53f5@flea>
-References: <20190527200627.8635-1-peron.clem@gmail.com>
- <20190527200627.8635-5-peron.clem@gmail.com>
+        id S1726774AbfE1JSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 05:18:53 -0400
+Received: from foss.arm.com ([217.140.101.70]:53332 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725943AbfE1JSw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 05:18:52 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3E8B3341;
+        Tue, 28 May 2019 02:18:52 -0700 (PDT)
+Received: from [10.1.196.129] (ostrya.cambridge.arm.com [10.1.196.129])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B0993F59C;
+        Tue, 28 May 2019 02:18:48 -0700 (PDT)
+Subject: Re: [PATCH v7 0/7] Add virtio-iommu driver
+To:     "Michael S. Tsirkin" <mst@redhat.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "virtualization@lists.linux-foundation.org" 
+        <virtualization@lists.linux-foundation.org>,
+        "virtio-dev@lists.oasis-open.org" <virtio-dev@lists.oasis-open.org>,
+        "jasowang@redhat.com" <jasowang@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "kvmarm@lists.cs.columbia.edu" <kvmarm@lists.cs.columbia.edu>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "tnowicki@caviumnetworks.com" <tnowicki@caviumnetworks.com>,
+        "kevin.tian@intel.com" <kevin.tian@intel.com>,
+        Marc Zyngier <Marc.Zyngier@arm.com>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Will Deacon <Will.Deacon@arm.com>,
+        Lorenzo Pieralisi <Lorenzo.Pieralisi@arm.com>,
+        "bharat.bhushan@nxp.com" <bharat.bhushan@nxp.com>
+References: <20190115121959.23763-1-jean-philippe.brucker@arm.com>
+ <20190512123022-mutt-send-email-mst@kernel.org>
+ <20190527092604.GB21613@8bytes.org>
+ <20190527111345-mutt-send-email-mst@kernel.org>
+From:   Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Message-ID: <99ff5494-bfdf-f4ef-b2d2-c177add385c6@arm.com>
+Date:   Tue, 28 May 2019 10:18:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="chyxdzlab5sysxo6"
-Content-Disposition: inline
-In-Reply-To: <20190527200627.8635-5-peron.clem@gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190527111345-mutt-send-email-mst@kernel.org>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/05/2019 16:15, Michael S. Tsirkin wrote:
+> On Mon, May 27, 2019 at 11:26:04AM +0200, Joerg Roedel wrote:
+>> On Sun, May 12, 2019 at 12:31:59PM -0400, Michael S. Tsirkin wrote:
+>>> OK this has been in next for a while.
+>>>
+>>> Last time IOMMU maintainers objected. Are objections
+>>> still in force?
+>>>
+>>> If not could we get acks please?
+>>
+>> No objections against the code, I only hesitated because the Spec was
+>> not yet official.
+>>
+>> So for the code:
+>>
+>> 	Acked-by: Joerg Roedel <jroedel@suse.de>
+> 
+> Last spec patch had a bunch of comments not yet addressed.
+> But I do not remember whether comments are just about wording
+> or about the host/guest interface as well.
+> Jean-Philippe could you remind me please?
 
---chyxdzlab5sysxo6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It's mostly wording, but there is a small change in the config space
+layout and two new feature bits. I'll send a new version of the driver
+when possible.
 
-On Mon, May 27, 2019 at 10:06:24PM +0200, Cl=E9ment P=E9ron wrote:
-> Allwinner H6 has a different mapping for the fifo register controller.
->
-> Actually only the fifo TX bit is used in the drivers.
->
-> Use the freshly introduced quirks to make this drivers compatible with
-> the Allwinner H6.
->
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
-
-Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---chyxdzlab5sysxo6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOz7qwAKCRDj7w1vZxhR
-xSIiAP9nmxuaqkOOSRfudhUw4zPITHUHtndI2JThUfrXTighbwEAyJjIFkev8yqr
-i6HikA6T6bWimgGAMVM9UxUwiD1Rdgc=
-=iAGv
------END PGP SIGNATURE-----
-
---chyxdzlab5sysxo6--
+Thanks,
+Jean
