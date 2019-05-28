@@ -2,108 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D33A42BEA7
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 07:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B92A32BEF4
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 08:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727103AbfE1FgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 01:36:12 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:2077 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726269AbfE1FgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 01:36:12 -0400
-X-UUID: 431b29fe870c431c9b09dc0979a77c29-20190528
-X-UUID: 431b29fe870c431c9b09dc0979a77c29-20190528
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1074673266; Tue, 28 May 2019 13:36:00 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 28 May 2019 13:35:59 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 28 May 2019 13:35:59 +0800
-Message-ID: <1559021759.15879.2.camel@mtksdaap41>
-Subject: Re: [PATCH v2 24/25] drm/mediatek: respect page offset for PRIME
- mmap calls
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <yongqiang.niu@mediatek.com>
-CC:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <airlied@linux.ie>,
-        <mark.rutland@arm.com>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <Bibby.Hsieh@mediatek.com>,
-        <yt.shen@mediatek.com>
-Date:   Tue, 28 May 2019 13:35:59 +0800
-In-Reply-To: <1555403634.11519.11.camel@mtksdaap41>
-References: <1553667561-25447-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1553667561-25447-25-git-send-email-yongqiang.niu@mediatek.com>
-         <1555403634.11519.11.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+        id S1726789AbfE1GEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 02:04:53 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55444 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725904AbfE1GEx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 02:04:53 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0B99F1A0D8A;
+        Tue, 28 May 2019 08:04:51 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 586321A0D9D;
+        Tue, 28 May 2019 08:04:38 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id EA14E402C9;
+        Tue, 28 May 2019 14:04:24 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, rui.zhang@intel.com,
+        edubezval@gmail.com, daniel.lezcano@linaro.org,
+        aisheng.dong@nxp.com, ulf.hansson@linaro.org, peng.fan@nxp.com,
+        daniel.baluta@nxp.com, maxime.ripard@bootlin.com, olof@lixom.net,
+        jagan@amarulasolutions.com, horms+renesas@verge.net.au,
+        leonard.crestez@nxp.com, bjorn.andersson@linaro.org,
+        dinguyen@kernel.org, enric.balletbo@collabora.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH RESEND V13 1/5] dt-bindings: fsl: scu: add thermal binding
+Date:   Tue, 28 May 2019 14:06:17 +0800
+Message-Id: <20190528060621.47342-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+From: Anson Huang <Anson.Huang@nxp.com>
 
-On Tue, 2019-04-16 at 16:33 +0800, CK Hu wrote:
-> Hi, Yongqiang:
-> 
-> On Wed, 2019-03-27 at 14:19 +0800, yongqiang.niu@mediatek.com wrote:
-> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > 
-> > Respect page offset for PRIME mmap calls
-> 
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
+system controller, the system controller is in charge of system
+power, clock and thermal sensors etc. management, Linux kernel
+has to communicate with system controller via MU (message unit)
+IPC to get temperature from thermal sensors, this patch adds
+binding doc for i.MX system controller thermal driver.
 
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+No change, just rebase the patch to top of linux-next and based on my watchdog patch:
+https://patchwork.kernel.org/patch/10962183/
+---
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt        | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-This patch looks independent, so I've applied it to
-mediatek-drm-fixes-5.2 [1], thanks.
-
-[1]
-https://github.com/ckhu-mediatek/linux.git-tags/commits/mediatek-drm-fixes-5.2
-
-Regards,
-CK
-
-> 
-> > 
-> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_drm_gem.c | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.c b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-> > index c230237..524e494 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
-> > @@ -144,7 +144,6 @@ static int mtk_drm_gem_object_mmap(struct drm_gem_object *obj,
-> >  	 * VM_PFNMAP flag that was set by drm_gem_mmap_obj()/drm_gem_mmap().
-> >  	 */
-> >  	vma->vm_flags &= ~VM_PFNMAP;
-> > -	vma->vm_pgoff = 0;
-> >  
-> >  	ret = dma_mmap_attrs(priv->dma_dev, vma, mtk_gem->cookie,
-> >  			     mtk_gem->dma_addr, obj->size, mtk_gem->dma_attrs);
-> > @@ -183,6 +182,12 @@ int mtk_drm_gem_mmap(struct file *filp, struct vm_area_struct *vma)
-> >  
-> >  	obj = vma->vm_private_data;
-> >  
-> > +	/*
-> > +	 * Set vm_pgoff (used as a fake buffer offset by DRM) to 0 and map the
-> > +	 * whole buffer from the start.
-> > +	 */
-> > +	vma->vm_pgoff = 0;
-> > +
-> >  	return mtk_drm_gem_object_mmap(obj, vma);
-> >  }
-> >  
-> 
-
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index a575e42..fc3844e 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -155,6 +155,17 @@ Required properties:
+ Optional properties:
+ - timeout-sec: contains the watchdog timeout in seconds.
+ 
++Thermal bindings based on SCU Message Protocol
++------------------------------------------------------------
++
++Required properties:
++- compatible:			Should be :
++				  "fsl,imx8qxp-sc-thermal"
++				followed by "fsl,imx-sc-thermal";
++
++- #thermal-sensor-cells:	See Documentation/devicetree/bindings/thermal/thermal.txt
++				for a description.
++
+ Example (imx8qxp):
+ -------------
+ aliases {
+@@ -222,6 +233,11 @@ firmware {
+ 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
+ 			timeout-sec = <60>;
+ 		};
++
++		tsens: thermal-sensor {
++			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
++			#thermal-sensor-cells = <1>;
++		};
+ 	};
+ };
+ 
+-- 
+2.7.4
 
