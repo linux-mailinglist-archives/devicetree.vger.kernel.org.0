@@ -2,178 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2632C2CE4B
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 20:13:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 686C22CE60
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 20:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727729AbfE1SNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 14:13:49 -0400
-Received: from mail-yb1-f194.google.com ([209.85.219.194]:36204 "EHLO
-        mail-yb1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727766AbfE1SNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 14:13:44 -0400
-Received: by mail-yb1-f194.google.com with SMTP id y2so5431353ybo.3
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 11:13:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=OqpexmVIKfsSkeW7hmtnhVKKfuuGya/sOg3ZfntORRU=;
-        b=VodMu0yhrGnCVbNkgm5tlDgPMsXnAXDomdWv8QS4b9vlsNi7ToWufDvlLlPJz2v8xj
-         IQ/WNbRlith2/cUER8VYTKT9r1p+4sjc1hRNb6bifRXi6jo/AX6guQdLXHVgJhVFtjiH
-         qQYe3EUxB9+WSPSxWEhHN6+jamT0NYHcHUeHA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=OqpexmVIKfsSkeW7hmtnhVKKfuuGya/sOg3ZfntORRU=;
-        b=TYs5QYvmOq8tV5x2uuSx7uT90vp5qra/Mn7GQMhap/L1kVOG8C5nfhITyNBH5UYs3C
-         aYzUwkys931Q3WlRvUxNrq2mbW/UjpxQaFVak7HNUJkSw2NUOuLslIlzAXJFFdyok4cn
-         YY8TyW46uZ+EyoS1K4Vuw5TXLX0F9q/4i5buymp4PEsIIaNgcA9YWO5xKG94pkYlcPFh
-         vz99jbXiAT8uyKzr1k7kPUdAum1brjpSMxVN1mp7KxG05PViJTOFXAf9yx1uFjPfS4rv
-         MbdQmW5hsM8O65wEcNZGYNWJAKnh2SmyBNxgtM/cZ885GsVlAMsV+XNR2rTJZVukFtmb
-         WVvQ==
-X-Gm-Message-State: APjAAAUKi/08gmzundBfoyoPNBPkHEPTA2MDHJvcRpgnXpEmhoTcIP9G
-        SGrJguZ9xLEteHt+JkojAbCgps/s9cs=
-X-Google-Smtp-Source: APXvYqxRh9xGrUpRDu4EE44WQY+lmwou9SXy0fvWLkF65YAuBBnr3MM4dN0VIZxjnPFJF7B+ttuJNQ==
-X-Received: by 2002:a25:bfc3:: with SMTP id q3mr6325731ybm.246.1559067223203;
-        Tue, 28 May 2019 11:13:43 -0700 (PDT)
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com. [209.85.222.178])
-        by smtp.gmail.com with ESMTPSA id 80sm3774128ywh.97.2019.05.28.11.13.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 May 2019 11:13:42 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id b18so18095776qkc.9
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 11:13:41 -0700 (PDT)
-X-Received: by 2002:a05:620a:12d9:: with SMTP id e25mr15891334qkl.279.1559067221416;
- Tue, 28 May 2019 11:13:41 -0700 (PDT)
+        id S1727943AbfE1STS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 14:19:18 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:48044 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727811AbfE1STS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 14:19:18 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4SIJDN0049819;
+        Tue, 28 May 2019 13:19:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559067553;
+        bh=FHBxN25oKeInyBYHIzdz2Mbx2pen9sGOw8A9sYUQEPA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=wyn34Lvv7tRksgPniyeCYM+lRAS6+HPlciStbaJeE2fr7kY1DAYG8FB8csBn/+8Y5
+         QEHRg9bhze1xLHslEfD38Nmp/ZFc7jqFPlW1ICByn7SUJUzncmFos3YhZNp13Hoppk
+         QuwjX1JyFQB+hsfeUVPClUkwcFr7VcUaxW4bZ69k=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4SIJDus038031
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 May 2019 13:19:13 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
+ May 2019 13:19:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 28 May 2019 13:19:12 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4SIJCbT074115;
+        Tue, 28 May 2019 13:19:12 -0500
+Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-2-dmurphy@ti.com>
+ <f01ac400-efda-80a8-4d63-1e2add5e054a@gmail.com>
+ <185abdd6-100c-0a71-2da9-8f556d8ea701@ti.com>
+ <333167d0-4615-2fbe-e933-cbca623998ef@gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <e54d9d29-5daa-fd3a-a5a9-ebd2450882ee@ti.com>
+Date:   Tue, 28 May 2019 13:19:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
- <20190521132712.2818-9-benjamin.tissoires@redhat.com> <CAO-hwJJXGTZq7zRVhcFNwh-kOo0rUhZOsNtFX1yA93Km=L+ynA@mail.gmail.com>
- <00f901d5143f$f5ea8420$e1bf8c60$@emc.com.tw> <20190528012101.GA193221@dtor-ws>
-In-Reply-To: <20190528012101.GA193221@dtor-ws>
-From:   Harry Cutts <hcutts@chromium.org>
-Date:   Tue, 28 May 2019 11:13:30 -0700
-X-Gmail-Original-Message-ID: <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com>
-Message-ID: <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com>
-Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     =?UTF-8?B?5buW5bSH5qau?= <kt.liao@emc.com.tw>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aaron Ma <aaron.ma@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
-        seobrien@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <333167d0-4615-2fbe-e933-cbca623998ef@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 May 2019 at 18:21, Dmitry Torokhov <dmitry.torokhov@gmail.com> w=
-rote:
->
-> Hi Benjamin, KT,
->
-> On Mon, May 27, 2019 at 11:55:01AM +0800, =E5=BB=96=E5=B4=87=E6=A6=AE wro=
-te:
-> > Hi
-> >
-> > -----Original Message-----
-> > From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
-> > Sent: Friday, May 24, 2019 5:37 PM
-> > To: Dmitry Torokhov; KT Liao; Rob Herring; Aaron Ma; Hans de Goede
-> > Cc: open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
-> > Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/heigh=
-t
-> >
-> > On Tue, May 21, 2019 at 3:28 PM Benjamin Tissoires <benjamin.tissoires@=
-redhat.com> wrote:
-> > >
-> > > The width/height is actually in the same unit than X and Y. So we
-> > > should not tamper the data, but just set the proper resolution, so
-> > > that userspace can correctly detect which touch is a palm or a finger=
-.
-> > >
-> > > Signed-off-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> > >
-> > > --
-> > >
-> > > new in v2
-> > > ---
-> > >  drivers/input/mouse/elan_i2c_core.c | 11 ++++-------
-> > >  1 file changed, 4 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/drivers/input/mouse/elan_i2c_core.c
-> > > b/drivers/input/mouse/elan_i2c_core.c
-> > > index 7ff044c6cd11..6f4feedb7765 100644
-> > > --- a/drivers/input/mouse/elan_i2c_core.c
-> > > +++ b/drivers/input/mouse/elan_i2c_core.c
-> > > @@ -45,7 +45,6 @@
-> > >  #define DRIVER_NAME            "elan_i2c"
-> > >  #define ELAN_VENDOR_ID         0x04f3
-> > >  #define ETP_MAX_PRESSURE       255
-> > > -#define ETP_FWIDTH_REDUCE      90
-> > >  #define ETP_FINGER_WIDTH       15
-> > >  #define ETP_RETRY_COUNT                3
-> > >
-> > > @@ -915,12 +914,8 @@ static void elan_report_contact(struct elan_tp_d=
-ata *data,
-> > >                         return;
-> > >                 }
-> > >
-> > > -               /*
-> > > -                * To avoid treating large finger as palm, let's redu=
-ce the
-> > > -                * width x and y per trace.
-> > > -                */
-> > > -               area_x =3D mk_x * (data->width_x - ETP_FWIDTH_REDUCE)=
-;
-> > > -               area_y =3D mk_y * (data->width_y - ETP_FWIDTH_REDUCE)=
-;
-> > > +               area_x =3D mk_x * data->width_x;
-> > > +               area_y =3D mk_y * data->width_y;
-> > >
-> > >                 major =3D max(area_x, area_y);
-> > >                 minor =3D min(area_x, area_y); @@ -1123,8 +1118,10 @@
-> > > static int elan_setup_input_device(struct elan_tp_data *data)
-> > >                              ETP_MAX_PRESSURE, 0, 0);
-> > >         input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0,
-> > >                              ETP_FINGER_WIDTH * max_width, 0, 0);
-> > > +       input_abs_set_res(input, ABS_MT_TOUCH_MAJOR, data->x_res);
-> > >         input_set_abs_params(input, ABS_MT_TOUCH_MINOR, 0,
-> > >                              ETP_FINGER_WIDTH * min_width, 0, 0);
-> > > +       input_abs_set_res(input, ABS_MT_TOUCH_MINOR, data->y_res);
-> >
-> > I had a chat with Peter on Wednesday, and he mentioned that this is dan=
-gerous as Major/Minor are max/min of the width and height. And given that w=
-e might have 2 different resolutions, we would need to do some computation =
-in the kernel to ensure the data is correct with respect to the resolution.
-> >
-> > TL;DR: I don't think we should export the resolution there :(
-> >
-> > KT, should I drop the patch entirely, or is there a strong argument for=
- keeping the ETP_FWIDTH_REDUCE around?
-> > I suggest you apply the patch, I have no idea why ETP_FWIDTH_REDUCE exi=
-sted.
-> > Our FW team know nothing about ETP_FWIDTH_REDUCE ether.
-> >
-> > The only side effect will happen on Chromebook because such computation=
- have stayed in ChromeOS' kernel for four years.
-> > Chrome's finger/palm threshold may be different from other Linux distri=
-bution.
-> > We will discuss it with Google once the patch picked by chrome and caus=
-e something wrong.
->
-> Chrome has logic that contact with maximum major/minor is treated as a
-> palm, so here the driver (which originally came from Chrome OS)
-> artificially reduces the contact size to ensure that palm rejection
-> logic does not trigger.
->
-> I'm adding Harry to confirm whether we are still using this logic and to
-> see if we can adjust it to be something else.
+Jacek
 
-I'm not very familiar with our touchpad code, so adding Sean O'Brien, who i=
-s.
+On 5/28/19 12:44 PM, Jacek Anaszewski wrote:
+> Dan,
+>
+> On 5/28/19 7:32 PM, Dan Murphy wrote:
+>> Jacek
+>>
+>> On 5/27/19 3:00 PM, Jacek Anaszewski wrote:
+>>> Hi Dan,
+>>>
+>>> Thank you for the update.
+>>>
+>>> One thing is missing here - we need to document how legacy brightness
+>>> levels map to the sub-LED color levels, i.e. what you do in
+>>> multicolor_set_brightness().
+>>
+>>
+>> Ok so i will need to document the algorithm that is used to determine 
+>> the color LED brightness.
+>
+> Right, and please send just an update of that single patch.
+>
+
+So you are asking for v4 with only this patch updated.
+
+
+Dan
+
