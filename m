@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D26232CABE
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E512CB3D
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 18:11:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfE1PzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 11:55:06 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:40809 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726560AbfE1PzG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 11:55:06 -0400
-Received: by mail-pf1-f196.google.com with SMTP id u17so11737883pfn.7
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 08:55:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:from:cc:to:user-agent:date;
-        bh=ph096faZXzVdBs0AC2/h3o4Rlcsxk1w4xdVivoEx9ik=;
-        b=R3rNeE3EFPAheEu0f9OTGy+8ImI3GH2tAv4HZNBSXj+weZKn6WpjuMnGJVU/550ci2
-         BqdwJ92g6+fUHbMDAaeYXvy5/c5Z0ns7wON9xfv70YFOjQhvuIq52IxP0V9zOsjOV2MG
-         EWBgiHzXSGUeFETN+PgnJ9QT9SHOxXXCTWZ2A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
-         :user-agent:date;
-        bh=ph096faZXzVdBs0AC2/h3o4Rlcsxk1w4xdVivoEx9ik=;
-        b=qb9tvVyjLIC9KqtL1ORTfu+MFc7DoslMeoCqLBMJPRCIR9bImhbxjhbvEba/lCksNK
-         cQNQs0Tbb1X9ydurq22/q5IArAqMRrDUKUhSAvHnD96jGUvjITj3y3mta+44UJ7Uu4c4
-         26WJFwPPzG70VDn7cQmweFvrSxYWoZgufX+d56psCAZjK3yEeGxgzYyNTZ2YPQOJeB8J
-         kRlzCgvwGB3rTRMZjnvYnqkXccB7DjLp3H6gaK/gIyIPFCj9fmoQnFo1YBANaPOmRUwz
-         la8Zl36LZGQzGft3U/vfdZTR4cHW5YETyXSvMbTh94c+DEFhxNNVbF75DbNOHKqhbfnb
-         FvMg==
-X-Gm-Message-State: APjAAAW1wKaqxY/ijuwKGX/OLkVZnwqcZ+ZYEFLMQCtYOe86h/MkWOyo
-        yfRyQzjEglwtBqugfIrqQDYt5A==
-X-Google-Smtp-Source: APXvYqyfKz47JLrEjKSbaeCi8/nJyaDNU3BrFSZmaS/tvxlIWn5U0R9ZRrZJBXxc3AQWCJ9jccOIuQ==
-X-Received: by 2002:a17:90a:ac03:: with SMTP id o3mr6908759pjq.114.1559058905466;
-        Tue, 28 May 2019 08:55:05 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id g22sm14805937pfo.28.2019.05.28.08.55.04
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 28 May 2019 08:55:05 -0700 (PDT)
-Message-ID: <5ced59d9.1c69fb81.c3ee5.96d3@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190527043336.112854-3-hsinyi@chromium.org>
-References: <20190527043336.112854-1-hsinyi@chromium.org> <20190527043336.112854-3-hsinyi@chromium.org>
-Subject: Re: [PATCH v5 3/3] arm64: kexec_file: add rng-seed support
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
+        id S1726512AbfE1QLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 12:11:16 -0400
+Received: from node.akkea.ca ([192.155.83.177]:49692 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726604AbfE1QLP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 12:11:15 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by node.akkea.ca (Postfix) with ESMTP id CF3004E204E;
+        Tue, 28 May 2019 16:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1559059874; bh=OT6Dn+VZn9tZ3DTf3tjazgTtPicDCyht9awlqDytBXs=;
+        h=From:To:Cc:Subject:Date;
+        b=KX06IYOzL6lGh15W/wG/F0dmzpZQMPv/jl7zW19y7lMeRctceEgRuEEVQf7CpBmYQ
+         hnWdoZp56UJ5vSmpdvK89wbE061fgJ5KBZwHnzn9XWkcaTDEv6hkoIt+0tvChfYE/5
+         frTNKqQl/5sIWCSc2NiYOGDNGkiFfLTI09WOQ8Cc=
+X-Virus-Scanned: Debian amavisd-new at mail.akkea.ca
+Received: from node.akkea.ca ([127.0.0.1])
+        by localhost (mail.akkea.ca [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id BZwGAX36mlMG; Tue, 28 May 2019 16:11:14 +0000 (UTC)
+Received: from midas.localdomain (S0106788a2041785e.gv.shawcable.net [70.66.86.75])
+        by node.akkea.ca (Postfix) with ESMTPSA id C9D244E204B;
+        Tue, 28 May 2019 16:11:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1559059874; bh=OT6Dn+VZn9tZ3DTf3tjazgTtPicDCyht9awlqDytBXs=;
+        h=From:To:Cc:Subject:Date;
+        b=KX06IYOzL6lGh15W/wG/F0dmzpZQMPv/jl7zW19y7lMeRctceEgRuEEVQf7CpBmYQ
+         hnWdoZp56UJ5vSmpdvK89wbE061fgJ5KBZwHnzn9XWkcaTDEv6hkoIt+0tvChfYE/5
+         frTNKqQl/5sIWCSc2NiYOGDNGkiFfLTI09WOQ8Cc=
+From:   "Angus Ainslie (Purism)" <angus@akkea.ca>
+To:     angus.ainslie@puri.sm
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Kees Cook <keescook@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-User-Agent: alot/0.8.1
-Date:   Tue, 28 May 2019 08:55:04 -0700
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Carlo Caione <ccaione@baylibre.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: fsl: imx8mq: add the snvs power key node
+Date:   Tue, 28 May 2019 09:11:01 -0700
+Message-Id: <20190528161101.28919-1-angus@akkea.ca>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Hsin-Yi Wang (2019-05-26 21:33:36)
-> Adding "rng-seed" to dtb. It's fine to add this property if original
-> fdt doesn't contain it. Since original seed will be wiped after
-> read, so use a default size 128 bytes here.
->=20
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
+Add a node for the snvs power key, "disabled" by default.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 45d10d8efd14..85008dc6e663 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/power/imx8mq-power.h>
+ #include <dt-bindings/reset/imx8mq-reset.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include "dt-bindings/input/input.h"
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/thermal/thermal.h>
+ #include "imx8mq-pinfunc.h"
+@@ -463,6 +464,15 @@
+ 					interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+ 						<GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 				};
++
++				snvs_pwrkey: snvs-powerkey {
++					compatible = "fsl,sec-v4.0-pwrkey";
++					regmap = <&snvs>;
++					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
++					linux,keycode = <KEY_POWER>;
++					wakeup-source;
++					status = "disabled";
++				};
+ 			};
+ 
+ 			clk: clock-controller@30380000 {
+-- 
+2.17.1
 
