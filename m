@@ -2,97 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E512C014
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 09:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3EC2C0BE
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 10:01:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727383AbfE1H3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 03:29:09 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:42043 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726816AbfE1H3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 03:29:09 -0400
-Received: by mail-lf1-f65.google.com with SMTP id y13so13706517lfh.9;
-        Tue, 28 May 2019 00:29:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hd2ztrPa+/Jspv+88ZdGM7xjRP1HllQItAwAUGW3LRI=;
-        b=QpLdjelLA3HG8W7J0qqEUAvL8AgpDZNnHOCWfWnGNXyHyRufR58QFfwJAal8V0WOMX
-         GQaHY6ohSIZzqhgVcCr7GnaS7Ngz8rFNoQqyuoyd9WguexeVCZCQRXk79v8NGGMvHE4j
-         pLQjmv1UbV/k4H72vhB/Cl0w3Uyucg/8uxT485fwfhlm7N/Z8KmlPyuSdNQu+rvpxpcw
-         N36kmwGsOtKMH2KEIgrX9mDB23ook0jhsU1E8x3o1C0lTE65Y55aphDNX1TJ0hDEPned
-         XW+W4k7Wgv2UJeR9wK06bpJ4KsCNcpdvljLT3FWfxGmzfUkov4X9Oxc3Wsf8jzTkrbZO
-         hoUg==
-X-Gm-Message-State: APjAAAU/P99heey4X39O5VLmWSIEI7Gf4tpjVsvzqGZqhrLTb/GNKd+b
-        3gnd2Y/e6/6jBzGfbissqpZLCVakL6ok1Dg043w=
-X-Google-Smtp-Source: APXvYqz9vHfVvbiwy5f5TN/g85aWH14wVF+UEIVfXq7XO4eOsFQL7OTr/XH5SoitkvqVhSY+4KVeEqebYEVCJDL32MU=
-X-Received: by 2002:ac2:52a8:: with SMTP id r8mr25092524lfm.20.1559028546947;
- Tue, 28 May 2019 00:29:06 -0700 (PDT)
+        id S1726305AbfE1IBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 04:01:39 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50796 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726203AbfE1IBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 04:01:38 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4S81Qie048278;
+        Tue, 28 May 2019 03:01:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559030486;
+        bh=aitQvQ8mJN5/QEKKXw77CNQIyj8FxmH4Q6Rk0NNv7Y0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=cSFw7XtBGEtL7PubqwFuThoJD1pxhWO19jSTEg7a8aikMaG5zxJwgbCNJ351rms2h
+         13odvuFWuNgCoBrZ49ocJ5UUUaKwFtc8+EQamjTaqlbR/oTpoe+yVKKK46/oVAOmqf
+         /zfT6w9lOokUVlBX3absWSJpPcDQfngjozOQdDcg=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4S81Q76068834
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 May 2019 03:01:26 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
+ May 2019 03:01:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 28 May 2019 03:01:25 -0500
+Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4S81Lh6085829;
+        Tue, 28 May 2019 03:01:22 -0500
+Subject: Re: [PATCHv2 00/13] ti-sysc driver changes to drop custom hwmods
+ property
+To:     Tony Lindgren <tony@atomide.com>, <linux-omap@vger.kernel.org>
+CC:     Dave Gerlach <d-gerlach@ti.com>, Faiz Abbas <faiz_abbas@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Nishanth Menon <nm@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>
+References: <20190528062414.27192-1-tony@atomide.com>
+From:   Keerthy <j-keerthy@ti.com>
+Message-ID: <0ba540b0-ad04-ee56-5874-69921eb4f374@ti.com>
+Date:   Tue, 28 May 2019 13:32:00 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <1558711904-27278-1-git-send-email-gareth.williams.jx@renesas.com> <1558711904-27278-2-git-send-email-gareth.williams.jx@renesas.com>
-In-Reply-To: <1558711904-27278-2-git-send-email-gareth.williams.jx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 28 May 2019 09:28:55 +0200
-Message-ID: <CAMuHMdV2jmY2u1-Z6cRR1OQcfW8U0HM_ac-xn1gO9nPf41iD+A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: renesas,r9a06g032-sysctrl:
- Document power Domains
-To:     Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190528062414.27192-1-tony@atomide.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gareth,
-
-On Fri, May 24, 2019 at 5:32 PM Gareth Williams
-<gareth.williams.jx@renesas.com> wrote:
-> The driver is gaining power domain support, so add the new property
-> to the DT binding and update the examples.
->
-> Signed-off-by: Gareth Williams <gareth.williams.jx@renesas.com>
-
-Thanks for your patch!
-
-> --- a/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-> +++ b/Documentation/devicetree/bindings/clock/renesas,r9a06g032-sysctrl.txt
-@@ -40,4 +42,5 @@ Examples
->                 reg-io-width = <4>;
->                 clocks = <&sysctrl R9A06G032_CLK_UART0>;
->                 clock-names = "baudclk";
-> +               power-domains = <&sysctrl>;
-
-This is an interesting example: according to the driver,
-R9A06G032_CLK_UART0, is not clock used for power management?
-
-Oh, the real uart0 node in arch/arm/boot/dts/r9a06g032.dtsi uses
-
-    clocks = <&sysctrl R9A06G032_CLK_UART0>, <&sysctrl R9A06G032_HCLK_UART0>;
-    clock-names = "baudclk", "apb_pclk";
-
-That does make sense...
-
-With the above fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+On 28/05/19 11:54 AM, Tony Lindgren wrote:
+> Hi all,
+> 
+> Here are changes to improve ti-sysc driver to the point where we can
+> finally drop the custom hwmods property for most cases. This series
+> drops hwmods property only for omap4 UART and MMC as those can be
+> tested with core retention idle.
+> 
+> I'll be posting more patches for dropping hwmods properties as they
+> get tested.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+Added missing dra71/76 patches on linux-next which get them to boot.
+
+Tested for boot on dra71/76.
+Tested for DS0 on AM43/33.
+Tested for RTC+DDR mode on am43.
+
+For the series:
+
+Tested-by: Keerthy <j-keerthy@ti.com>
+
+> 
+> Regards,
+> 
+> Tony
+> 
+> Changes since v1:
+> 
+> - Repost the series against v5.2-rc1 as the first patch in the series
+>    got accidentally left out for patch "bus: ti-sysc: Add support for
+>    missing clockdomain handling"
+> 
+> 
+> Tony Lindgren (13):
+>    bus: ti-sysc: Add support for missing clockdomain handling
+>    bus: ti-sysc: Support 16-bit writes too
+>    bus: ti-sysc: Make OCP reset work for sysstatus and sysconfig reset
+>      bits
+>    bus: ti-sysc: Allow QUIRK_LEGACY_IDLE even if legacy_mode is not set
+>    bus: ti-sysc: Enable interconnect target module autoidle bit on enable
+>    bus: ti-sysc: Handle clockactivity for enable and disable
+>    bus: ti-sysc: Handle swsup idle mode quirks
+>    bus: ti-sysc: Set ENAWAKEUP if available
+>    bus: ti-sysc: Add support for disabling module without legacy mode
+>    bus: ti-sysc: Do rstctrl reset handling in two phases
+>    bus: ti-sysc: Detect uarts also on omap34xx
+>    ARM: dts: Drop legacy custom hwmods property for omap4 uart
+>    ARM: dts: Drop legacy custom hwmods property for omap4 mmc
+> 
+>   arch/arm/boot/dts/omap4-l4.dtsi       |   9 -
+>   arch/arm/mach-omap2/omap_hwmod.c      |  39 +---
+>   arch/arm/mach-omap2/pdata-quirks.c    |  60 +++++
+>   drivers/bus/ti-sysc.c                 | 309 ++++++++++++++++++++------
+>   include/linux/platform_data/ti-sysc.h |   9 +
+>   5 files changed, 314 insertions(+), 112 deletions(-)
+> 
