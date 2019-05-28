@@ -2,269 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AFAC52CE29
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 20:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2632C2CE4B
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 20:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727698AbfE1SEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 14:04:51 -0400
-Received: from vps.xff.cz ([195.181.215.36]:33424 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726576AbfE1SEv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 14:04:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1559066687; bh=jrYCFdmzoXpAcSV1v66XhFDu8JxmclfKA2dzyBEzkfc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hbsU4xRCVvdtHw+aITYgF0C8wZyg2/viIZjcRLlT3vsU/m0NgqBjZIAFUfRoDLT0B
-         j7m2Ie7N/vwMWET1mtgdXUGjNO4Pit71gt8NN5ToAun9PIJ65iM0zZpuZCvJ7SWC/t
-         PXAj1RJ61c/jVuEZPD1gyH/8/XtZVpGX6ryJ+akg=
-Date:   Tue, 28 May 2019 20:04:47 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [linux-sunxi] Re: [PATCH v2 00/10] Allwinner A64/H6 IR support
-Message-ID: <20190528180447.zlrdfmn73fntnf4n@core.my.home>
-Mail-Followup-To: =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media@vger.kernel.org
-References: <20190526222536.10917-1-peron.clem@gmail.com>
- <20190527134805.j7t4ffstrnhdml47@core.my.home>
- <CAJiuCcdnQa0TArduT4yBbUyd+dOaM0cQ1JcRUQLXLR6s_5e8sA@mail.gmail.com>
- <20190527163117.hpealt6cttqzqdxz@core.my.home>
- <20190527172337.5qxh5qeqnul55gsb@core.my.home>
- <CAJiuCccnRCqez2uG-pU8XY4Z=5S8rDwFB3rgsBovPHY1Uxyazw@mail.gmail.com>
- <20190527193016.yxngu5grsqnctx3z@core.my.home>
- <20190527195330.pugb7ypvnyv32fug@core.my.home>
- <CAJiuCccpnEqw_tGXST+WtGmZLbE+=wN1Hn9HKrk1+4WsW-abiA@mail.gmail.com>
+        id S1727729AbfE1SNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 14:13:49 -0400
+Received: from mail-yb1-f194.google.com ([209.85.219.194]:36204 "EHLO
+        mail-yb1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727766AbfE1SNo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 14:13:44 -0400
+Received: by mail-yb1-f194.google.com with SMTP id y2so5431353ybo.3
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 11:13:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=OqpexmVIKfsSkeW7hmtnhVKKfuuGya/sOg3ZfntORRU=;
+        b=VodMu0yhrGnCVbNkgm5tlDgPMsXnAXDomdWv8QS4b9vlsNi7ToWufDvlLlPJz2v8xj
+         IQ/WNbRlith2/cUER8VYTKT9r1p+4sjc1hRNb6bifRXi6jo/AX6guQdLXHVgJhVFtjiH
+         qQYe3EUxB9+WSPSxWEhHN6+jamT0NYHcHUeHA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=OqpexmVIKfsSkeW7hmtnhVKKfuuGya/sOg3ZfntORRU=;
+        b=TYs5QYvmOq8tV5x2uuSx7uT90vp5qra/Mn7GQMhap/L1kVOG8C5nfhITyNBH5UYs3C
+         aYzUwkys931Q3WlRvUxNrq2mbW/UjpxQaFVak7HNUJkSw2NUOuLslIlzAXJFFdyok4cn
+         YY8TyW46uZ+EyoS1K4Vuw5TXLX0F9q/4i5buymp4PEsIIaNgcA9YWO5xKG94pkYlcPFh
+         vz99jbXiAT8uyKzr1k7kPUdAum1brjpSMxVN1mp7KxG05PViJTOFXAf9yx1uFjPfS4rv
+         MbdQmW5hsM8O65wEcNZGYNWJAKnh2SmyBNxgtM/cZ885GsVlAMsV+XNR2rTJZVukFtmb
+         WVvQ==
+X-Gm-Message-State: APjAAAUKi/08gmzundBfoyoPNBPkHEPTA2MDHJvcRpgnXpEmhoTcIP9G
+        SGrJguZ9xLEteHt+JkojAbCgps/s9cs=
+X-Google-Smtp-Source: APXvYqxRh9xGrUpRDu4EE44WQY+lmwou9SXy0fvWLkF65YAuBBnr3MM4dN0VIZxjnPFJF7B+ttuJNQ==
+X-Received: by 2002:a25:bfc3:: with SMTP id q3mr6325731ybm.246.1559067223203;
+        Tue, 28 May 2019 11:13:43 -0700 (PDT)
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com. [209.85.222.178])
+        by smtp.gmail.com with ESMTPSA id 80sm3774128ywh.97.2019.05.28.11.13.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 28 May 2019 11:13:42 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id b18so18095776qkc.9
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 11:13:41 -0700 (PDT)
+X-Received: by 2002:a05:620a:12d9:: with SMTP id e25mr15891334qkl.279.1559067221416;
+ Tue, 28 May 2019 11:13:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJiuCccpnEqw_tGXST+WtGmZLbE+=wN1Hn9HKrk1+4WsW-abiA@mail.gmail.com>
+References: <20190521132712.2818-1-benjamin.tissoires@redhat.com>
+ <20190521132712.2818-9-benjamin.tissoires@redhat.com> <CAO-hwJJXGTZq7zRVhcFNwh-kOo0rUhZOsNtFX1yA93Km=L+ynA@mail.gmail.com>
+ <00f901d5143f$f5ea8420$e1bf8c60$@emc.com.tw> <20190528012101.GA193221@dtor-ws>
+In-Reply-To: <20190528012101.GA193221@dtor-ws>
+From:   Harry Cutts <hcutts@chromium.org>
+Date:   Tue, 28 May 2019 11:13:30 -0700
+X-Gmail-Original-Message-ID: <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com>
+Message-ID: <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com>
+Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     =?UTF-8?B?5buW5bSH5qau?= <kt.liao@emc.com.tw>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aaron Ma <aaron.ma@canonical.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+        seobrien@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Clément,
-
-On Tue, May 28, 2019 at 06:21:19PM +0200, Clément Péron wrote:
-> Hi Ondřej,
-> 
-> On Mon, 27 May 2019 at 21:53, 'Ondřej Jirman' via linux-sunxi
-> <linux-sunxi@googlegroups.com> wrote:
+On Mon, 27 May 2019 at 18:21, Dmitry Torokhov <dmitry.torokhov@gmail.com> w=
+rote:
+>
+> Hi Benjamin, KT,
+>
+> On Mon, May 27, 2019 at 11:55:01AM +0800, =E5=BB=96=E5=B4=87=E6=A6=AE wro=
+te:
+> > Hi
 > >
-> > Hi Clément,
+> > -----Original Message-----
+> > From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
+> > Sent: Friday, May 24, 2019 5:37 PM
+> > To: Dmitry Torokhov; KT Liao; Rob Herring; Aaron Ma; Hans de Goede
+> > Cc: open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
+> > Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/heigh=
+t
 > >
-> > On Mon, May 27, 2019 at 09:30:16PM +0200, verejna wrote:
-> > > Hi Clément,
+> > On Tue, May 21, 2019 at 3:28 PM Benjamin Tissoires <benjamin.tissoires@=
+redhat.com> wrote:
 > > >
-> > > On Mon, May 27, 2019 at 08:49:59PM +0200, Clément Péron wrote:
-> > > > Hi Ondrej,
-> > > >
-> > > > >
-> > > > > I'm testing on Orange Pi 3.
-> > > > >
-> > > > > With your patches, I get kernel lockup after ~1 minute of use (ssh stops
-> > > > > responding/serial console stops responding). I don't have RC controller to test
-> > > > > the CIR. But just enabling the CIR causes kernel to hang shortly after boot.
-> > > > >
-> > > > > I tried booting multiple times. Other results:
-> > > > >
-> > > > > boot 2:
-> > > > >
-> > > > > - ssh hangs even before connecting (ethernet crashes/is reset)
-> > > > >
-> > > > > INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > > > rcu:    0-....: (1 GPs behind) idle=64a/0/0x3 softirq=4091/4091 fqs=2437
-> > > > > dwmac-sun8i 5020000.ethernet eth0: Reset adapter.
-> > > > > rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 5696 jiffies s: 81 root: 0x1/.
-> > > > > rcu: blocking rcu_node structures:
-> > > > >  rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > > > rcu:    0-....: (1 GPs behind) idle=64a/0/0x3 softirq=4091/4091 fqs=9714
-> > > > > rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 0-... } 21568 jiffies s: 81 root: 0x1/.
-> > > > > rcu: blocking rcu_node structures:
-> > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > > > rcu:    0-....: (1 GPs behind) idle=64a/0/0x3 softirq=4091/4091 fqs=17203
-> > > > >
-> > > > > above messages appear regularly.
-> > > > >
-> > > > > boot 3:
-> > > > >
-> > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > > > rcu:    0-....: (9 GPs behind) idle=992/0/0x3 softirq=6123/6123 fqs=2600
-> > > > >
-> > > > >
-> > > > > Sometimes serial console keeps working. Sometimes it locks up too (but not
-> > > > > frequently). Storage locks up always (any program that was not run before
-> > > > > the crash can't be started and lock up the kernel hard, programs that
-> > > > > were executed prior, can be run again).
-> > > > >
-> > > > >
-> > > > > Exactly the same kernel build on H5 seems to work (or at least I was not able to
-> > > > > trigger the crash). So this seems to be limited to H6 for now.
-> > > > >
-> > > > > I suspect that the crash occurs sooner if I vary the light (turn on/off the table
-> > > > > lamp light).
-> > > > >
-> > > > > Without your patches, everything works fine on H6, and I never see
-> > > > > crashes/lockups.
-> > > > >
-> > > > > I tired physically covering the IR receiver, and that helps preventing the
-> > > > > crash. As soon as I uncover it, the crash happens again in 1s or so:
-> > > > >
-> > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > > > rcu:    0-....: (1 GPs behind) idle=4ea/0/0x3 softirq=4483/4484 fqs=2444
-> > > > > rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> > > > > rcu:    0-....: (1 GPs behind) idle=4ea/0/0x3 softirq=4483/4484 fqs=9777
-> > > > >
-> > > > > This time I got the hung task and reboot: (probably not directly related)
-> > > > >
-> > > > > INFO: task find:560 blocked for more than 120 seconds.
-> > > > >       Not tainted 5.2.0-rc2+ #7
-> > > > > "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-> > > > > find            D    0   560    551 0x00000000
-> > > > > Call trace:
-> > > > >  __switch_to+0x6c/0x90
-> > > > >  __schedule+0x1f4/0x578
-> > > > >  schedule+0x28/0xa8
-> > > > >  io_schedule+0x18/0x38
-> > > > >  __lock_page+0x12c/0x208
-> > > > >  pagecache_get_page+0x238/0x2e8
-> > > > >  __get_node_page+0x6c/0x310
-> > > > >  f2fs_get_node_page+0x14/0x20
-> > > > >  f2fs_iget+0x70/0xc60
-> > > > >  f2fs_lookup+0xcc/0x218
-> > > > >  __lookup_slow+0x78/0x160
-> > > > >  lookup_slow+0x3c/0x60
-> > > > >  walk_component+0x1e4/0x2e0
-> > > > >  path_lookupat.isra.13+0x5c/0x1e0
-> > > > >  filename_lookup.part.23+0x6c/0xe8
-> > > > >  user_path_at_empty+0x4c/0x60
-> > > > >  vfs_statx+0x78/0xd8
-> > > > >  __se_sys_newfstatat+0x24/0x48
-> > > > >  __arm64_sys_newfstatat+0x18/0x20
-> > > > >  el0_svc_handler+0x9c/0x170
-> > > > >  el0_svc+0x8/0xc
-> > > > > Kernel panic - not syncing: hung_task: blocked tasks
-> > > > > CPU: 1 PID: 34 Comm: khungtaskd Not tainted 5.2.0-rc2+ #7
-> > > > > Hardware name: OrangePi 3 (DT)
-> > > > > Call trace:
-> > > > >  dump_backtrace+0x0/0xf8
-> > > > >  show_stack+0x14/0x20
-> > > > >  dump_stack+0xa8/0xcc
-> > > > >  panic+0x124/0x2dc
-> > > > >  proc_dohung_task_timeout_secs+0x0/0x40
-> > > > >  kthread+0x120/0x128
-> > > > >  ret_from_fork+0x10/0x18
-> > > > > SMP: stopping secondary CPUs
-> > > > > Kernel Offset: disabled
-> > > > > CPU features: 0x0002,20002000
-> > > > > Memory Limit: none
-> > > > > Rebooting in 3 seconds..
-> > > > >
-> > > > >
-> > > > > Meanwhile H5 based board now runs for 15 minutes without issues.
-> > > > >
-> > > > > So to sum up:
-> > > > >
-> > > > > - these crashes are definitely H6 IR related
-> > > > >   - the same kernel, on H5 works
-> > > > >   - covering the sensor prevents the crashes on H6
-> > > > >
-> > > > > So we should probably hold on with the series, until this is figured out.
-> > > >
-> > > > Thanks for testing, but I think it's more hardware related.
-> > > > It seems that your IR is flooded or misconfigured for your board.
-> > > > Could you add a simple print in the "sunxi_ir_irq"
+> > > The width/height is actually in the same unit than X and Y. So we
+> > > should not tamper the data, but just set the proper resolution, so
+> > > that userspace can correctly detect which touch is a palm or a finger=
+.
 > > >
-> > > Yes, I get flood of IRQs with status = 0x30. (after I turn on the lamp,
-> > > but it persists even after I turn it off and cover the IR sensor).
-> >
-> > Interestingly, status also contains RAC, and it's 0 in this case. So the
-> > interrupt if firing with "No available data in RX FIFO" repeatedly. Regardless
-> > of input.
-> >
-> > So there's something else up.
-> 
-> Really weird indeed...
-> 
-> I have pushed a new version, where I didn't enabled the support for
-> others H6 board and the cover letter include a link to this thread.
-> 
-> It would be great if other sunxi users could test this series, to
-> check if this issue in present in other OPi3 / Pine H64.
-
-I don't know if this is enough. I'd rather prefer if the driver has a way
-of detecting this situation and shutting the module down, at the very least,
-instead of taking down the entire system with IRQ flood.
-
-It may be detectable by checking RAC == 0 when RX FIFO available interrupt
-flag is set.
-
-Otherwise, this will eventually be forgotten (cover letters are not even stored
-in git), and someone will fall into the trap again, after enabling r_ir on
-their board, and end up chasing their tail for a day. I've initially only found
-this is IR driver issue after a long unpleasant debugging session, chasing other
-more obvious ideas (as when this happens there's absolutely nothing in the log
-indicating this is IR issue).
-
-regards,
-	o.
-
-> Regards,
-> Clément
-> >
-> > regards,
-> >         o.
-> >
-> > > That's weird, because on H6 in CIR_RXSTA, bit 5 is undefined but corresponding
-> > > bit in CIR_RXINT is DRQ_EN (RX FIFO DMA Enable)
+> > > Signed-off-by: Benjamin Tissoires <benjamin.tissoires@redhat.com>
 > > >
-> > > So I'm not sure what it could be flooded with and why IRQs keep being
-> > > fired, even with no sensor input after the FIFO is read.
+> > > --
 > > >
-> > > regards,
-> > >       o.
+> > > new in v2
+> > > ---
+> > >  drivers/input/mouse/elan_i2c_core.c | 11 ++++-------
+> > >  1 file changed, 4 insertions(+), 7 deletions(-)
 > > >
-> > > > If it's confirmed, maybe tweak the threshold configuration or
-> > > > implement the new active_threshold will help.
-> > > >
-> > > > With my hardware Beelink GS1 and on Jernej's board (A64) there is no issue.
-> > > >
-> > > > I will disable all the other H6 boards until someone test it.
-> > > >
-> > > > Regards,
-> > > > Clément
+> > > diff --git a/drivers/input/mouse/elan_i2c_core.c
+> > > b/drivers/input/mouse/elan_i2c_core.c
+> > > index 7ff044c6cd11..6f4feedb7765 100644
+> > > --- a/drivers/input/mouse/elan_i2c_core.c
+> > > +++ b/drivers/input/mouse/elan_i2c_core.c
+> > > @@ -45,7 +45,6 @@
+> > >  #define DRIVER_NAME            "elan_i2c"
+> > >  #define ELAN_VENDOR_ID         0x04f3
+> > >  #define ETP_MAX_PRESSURE       255
+> > > -#define ETP_FWIDTH_REDUCE      90
+> > >  #define ETP_FINGER_WIDTH       15
+> > >  #define ETP_RETRY_COUNT                3
 > > >
-> > > _______________________________________________
-> > > linux-arm-kernel mailing list
-> > > linux-arm-kernel@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > > @@ -915,12 +914,8 @@ static void elan_report_contact(struct elan_tp_d=
+ata *data,
+> > >                         return;
+> > >                 }
+> > >
+> > > -               /*
+> > > -                * To avoid treating large finger as palm, let's redu=
+ce the
+> > > -                * width x and y per trace.
+> > > -                */
+> > > -               area_x =3D mk_x * (data->width_x - ETP_FWIDTH_REDUCE)=
+;
+> > > -               area_y =3D mk_y * (data->width_y - ETP_FWIDTH_REDUCE)=
+;
+> > > +               area_x =3D mk_x * data->width_x;
+> > > +               area_y =3D mk_y * data->width_y;
+> > >
+> > >                 major =3D max(area_x, area_y);
+> > >                 minor =3D min(area_x, area_y); @@ -1123,8 +1118,10 @@
+> > > static int elan_setup_input_device(struct elan_tp_data *data)
+> > >                              ETP_MAX_PRESSURE, 0, 0);
+> > >         input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0,
+> > >                              ETP_FINGER_WIDTH * max_width, 0, 0);
+> > > +       input_abs_set_res(input, ABS_MT_TOUCH_MAJOR, data->x_res);
+> > >         input_set_abs_params(input, ABS_MT_TOUCH_MINOR, 0,
+> > >                              ETP_FINGER_WIDTH * min_width, 0, 0);
+> > > +       input_abs_set_res(input, ABS_MT_TOUCH_MINOR, data->y_res);
 > >
-> > --
-> > You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> > To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> > To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190527195330.pugb7ypvnyv32fug%40core.my.home.
-> > For more options, visit https://groups.google.com/d/optout.
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > I had a chat with Peter on Wednesday, and he mentioned that this is dan=
+gerous as Major/Minor are max/min of the width and height. And given that w=
+e might have 2 different resolutions, we would need to do some computation =
+in the kernel to ensure the data is correct with respect to the resolution.
+> >
+> > TL;DR: I don't think we should export the resolution there :(
+> >
+> > KT, should I drop the patch entirely, or is there a strong argument for=
+ keeping the ETP_FWIDTH_REDUCE around?
+> > I suggest you apply the patch, I have no idea why ETP_FWIDTH_REDUCE exi=
+sted.
+> > Our FW team know nothing about ETP_FWIDTH_REDUCE ether.
+> >
+> > The only side effect will happen on Chromebook because such computation=
+ have stayed in ChromeOS' kernel for four years.
+> > Chrome's finger/palm threshold may be different from other Linux distri=
+bution.
+> > We will discuss it with Google once the patch picked by chrome and caus=
+e something wrong.
+>
+> Chrome has logic that contact with maximum major/minor is treated as a
+> palm, so here the driver (which originally came from Chrome OS)
+> artificially reduces the contact size to ensure that palm rejection
+> logic does not trigger.
+>
+> I'm adding Harry to confirm whether we are still using this logic and to
+> see if we can adjust it to be something else.
+
+I'm not very familiar with our touchpad code, so adding Sean O'Brien, who i=
+s.
