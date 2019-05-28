@@ -2,168 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD242CA08
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:14:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD28E2CA50
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726497AbfE1POB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 11:14:01 -0400
-Received: from foss.arm.com ([217.140.101.70]:59276 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727921AbfE1POB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 11:14:01 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4EEB880D;
-        Tue, 28 May 2019 08:14:00 -0700 (PDT)
-Received: from redmoon (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A49ED3F59C;
-        Tue, 28 May 2019 08:13:58 -0700 (PDT)
-Date:   Tue, 28 May 2019 16:13:52 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Stanimir Varbanov <svarbanov@mm-sol.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S1726819AbfE1P0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 11:26:38 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:18037 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726680AbfE1P0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 11:26:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1559057196;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=qK0brR99/X2lpuUysXULzMIa3xw5IAnSWUKrYkjXFlY=;
+        b=ColakrisxGpbwpn7ycYSZk/mWs3MxrQ7LsR8Lm+5O+XWWF+BIhBdB4OuxLlMbZfV7B
+        gLPjh/2oQHTkrKIOsEhbpaXmZPxkmjteEIivudKwoQyX5Xi+6zimtBu/XSP360FgqMRU
+        CepLvT9IPNyPtTjzcXUz+BeIh+XzKtufpaH/lCSulpozKgXeJ+tQfn0fnw/oH5Dw+5s3
+        /iblN4SsVJJkbq1wfT5rJcvRkt0lOZhAXUSDvHR+Ymc9/riiEuKcaEzr9PlCMt1t/v3P
+        tzsNBsKkLvTK/iRMeU1JYNE3C37jH64aCgalfCfewENMJXltQWer52K/hzVJRhgDHnSV
+        yzxw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGH/zvwDCv+Ds="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 44.18 DYNA|AUTH)
+        with ESMTPSA id j04dc1v4SFKPrJe
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Tue, 28 May 2019 17:20:25 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to dts
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+Date:   Tue, 28 May 2019 17:20:25 +0200
+Cc:     Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] PCI: qcom: Use clk_bulk API for 2.4.0 controllers
-Message-ID: <20190528151330.GA28649@redmoon>
-References: <20190502001955.10575-1-bjorn.andersson@linaro.org>
- <20190502001955.10575-2-bjorn.andersson@linaro.org>
- <fcfcd3b4-99d2-7b10-e82d-b92e6bf37a33@mm-sol.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fcfcd3b4-99d2-7b10-e82d-b92e6bf37a33@mm-sol.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        dri-devel@lists.freedesktop.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <BA6E7BE4-E87A-4B0A-A027-BEA7A9ACA670@goldelico.com>
+References: <20190510194229.20628-1-aford173@gmail.com> <af325707-3e42-493d-e858-77878ef06138@ti.com> <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+To:     Adam Ford <aford173@gmail.com>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 16, 2019 at 12:14:04PM +0300, Stanimir Varbanov wrote:
-> Hi Bjorn,
-> 
-> On 5/2/19 3:19 AM, Bjorn Andersson wrote:
-> > Before introducing the QCS404 platform, which uses the same PCIe
-> > controller as IPQ4019, migrate this to use the bulk clock API, in order
-> > to make the error paths slighly cleaner.
-> > 
-> > Acked-by: Stanimir Varbanov <svarbanov@mm-sol.com>
-> > Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> > 
-> > Changes since v2:
-> > - Defined QCOM_PCIE_2_4_0_MAX_CLOCKS
-> > 
-> >  drivers/pci/controller/dwc/pcie-qcom.c | 49 ++++++++------------------
-> >  1 file changed, 14 insertions(+), 35 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 0ed235d560e3..d740cbe0e56d 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -112,10 +112,10 @@ struct qcom_pcie_resources_2_3_2 {
-> >  	struct regulator_bulk_data supplies[QCOM_PCIE_2_3_2_MAX_SUPPLY];
-> >  };
-> >  
-> > +#define QCOM_PCIE_2_4_0_MAX_CLOCKS	3
-> >  struct qcom_pcie_resources_2_4_0 {
-> > -	struct clk *aux_clk;
-> > -	struct clk *master_clk;
-> > -	struct clk *slave_clk;
-> > +	struct clk_bulk_data clks[QCOM_PCIE_2_4_0_MAX_CLOCKS];
-> > +	int num_clks;
-> >  	struct reset_control *axi_m_reset;
-> >  	struct reset_control *axi_s_reset;
-> >  	struct reset_control *pipe_reset;
-> > @@ -638,18 +638,17 @@ static int qcom_pcie_get_resources_2_4_0(struct qcom_pcie *pcie)
-> >  	struct qcom_pcie_resources_2_4_0 *res = &pcie->res.v2_4_0;
-> >  	struct dw_pcie *pci = pcie->pci;
-> >  	struct device *dev = pci->dev;
-> > +	int ret;
-> >  
-> > -	res->aux_clk = devm_clk_get(dev, "aux");
-> > -	if (IS_ERR(res->aux_clk))
-> > -		return PTR_ERR(res->aux_clk);
-> > +	res->clks[0].id = "aux";
-> > +	res->clks[1].id = "master_bus";
-> > +	res->clks[2].id = "slave_bus";
-> >  
-> > -	res->master_clk = devm_clk_get(dev, "master_bus");
-> > -	if (IS_ERR(res->master_clk))
-> > -		return PTR_ERR(res->master_clk);
-> > +	res->num_clks = 3;
-> 
-> Use the new fresh define QCOM_PCIE_2_4_0_MAX_CLOCKS?
-> 
-> >  
-> > -	res->slave_clk = devm_clk_get(dev, "slave_bus");
-> > -	if (IS_ERR(res->slave_clk))
-> > -		return PTR_ERR(res->slave_clk);
-> > +	ret = devm_clk_bulk_get(dev, res->num_clks, res->clks);
-> > +	if (ret < 0)
-> > +		return ret;
-> >  
-> >  	res->axi_m_reset = devm_reset_control_get_exclusive(dev, "axi_m");
-> >  	if (IS_ERR(res->axi_m_reset))
-> > @@ -719,9 +718,7 @@ static void qcom_pcie_deinit_2_4_0(struct qcom_pcie *pcie)
-> >  	reset_control_assert(res->axi_m_sticky_reset);
-> >  	reset_control_assert(res->pwr_reset);
-> >  	reset_control_assert(res->ahb_reset);
-> > -	clk_disable_unprepare(res->aux_clk);
-> > -	clk_disable_unprepare(res->master_clk);
-> > -	clk_disable_unprepare(res->slave_clk);
-> > +	clk_bulk_disable_unprepare(res->num_clks, res->clks);
-> >  }
-> >  
-> >  static int qcom_pcie_init_2_4_0(struct qcom_pcie *pcie)
-> > @@ -850,23 +847,9 @@ static int qcom_pcie_init_2_4_0(struct qcom_pcie *pcie)
-> >  
-> >  	usleep_range(10000, 12000);
-> >  
-> > -	ret = clk_prepare_enable(res->aux_clk);
-> > -	if (ret) {
-> > -		dev_err(dev, "cannot prepare/enable iface clock\n");
-> > +	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
-> > +	if (ret)
-> >  		goto err_clk_aux;
-> 
-> Maybe you have to change the name of the label too?
-> 
-> > -	}
-> > -
-> > -	ret = clk_prepare_enable(res->master_clk);
-> > -	if (ret) {
-> > -		dev_err(dev, "cannot prepare/enable core clock\n");
-> > -		goto err_clk_axi_m;
-> > -	}
-> > -
-> > -	ret = clk_prepare_enable(res->slave_clk);
-> > -	if (ret) {
-> > -		dev_err(dev, "cannot prepare/enable phy clock\n");
-> > -		goto err_clk_axi_s;
-> > -	}
-> >  
-> >  	/* enable PCIe clocks and resets */
-> >  	val = readl(pcie->parf + PCIE20_PARF_PHY_CTRL);
-> > @@ -891,10 +874,6 @@ static int qcom_pcie_init_2_4_0(struct qcom_pcie *pcie)
-> >  
-> >  	return 0;
-> >  
-> > -err_clk_axi_s:
-> > -	clk_disable_unprepare(res->master_clk);
-> > -err_clk_axi_m:
-> > -	clk_disable_unprepare(res->aux_clk);
-> >  err_clk_aux:
-> >  	reset_control_assert(res->ahb_reset);
-> >  err_rst_ahb:
 
-Hi Bjorn, Stanimir,
+> Am 28.05.2019 um 17:09 schrieb Adam Ford <aford173@gmail.com>:
+>=20
+> On Tue, May 28, 2019 at 4:11 AM Tomi Valkeinen <tomi.valkeinen@ti.com> =
+wrote:
+>>=20
+>> Hi,
+>>=20
+>> On 10/05/2019 22:42, Adam Ford wrote:
+>>> Currently the source code is compiled using hard-coded values
+>>> from CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK.  This patch allows this
+>>> clock divider value to be moved to the device tree and be changed
+>>> without having to recompile the kernel.
+>>>=20
+>>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>>=20
+>> I understand why you want to do this, but I'm not sure it's a good =
+idea.
+>> It's really something the driver should figure out, and if we add it =
+to
+>> the DT, it effectively becomes an ABI.
+>>=20
+>> That said... I'm not sure how good of a job the driver could ever do, =
+as
+>> it can't know the future scaling needs of the userspace at the time =
+it
+>> is configuring the clock. And so, I'm not nacking this patch, but I
+>> don't feel very good about this patch...
+>>=20
+>> The setting also affects all outputs (exluding venc), which may not =
+be
+>> what the user wants. Then again, I think this setting is really only
+>> needed on OMAP2 & 3, which have only a single output. But that's the
+>> same with the current kconfig option, of course.
+>>=20
+>> So, the current CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK is an ugly hack, in =
+my
+>> opinion, and moving it to DT makes it a worse hack =3D). But I don't =
+have
+>> any good suggestions either.
+>=20
+> As it stands the Logic PD OMAP35 and AM37/DM37 boards (SOM-LV and
+> Torpedo) require this to be hard coded to 4 or it hangs during start.
+> This is the case for all versions 4.2+.  I haven't tested it with
+> older stuff.  Tony has a DM3730 Torpedo kit and reported the hanging
+> issue to me. I told him to set that value to 4 to make it not hang.
+> He asked that I move it to the DT to avoid custom kernels.  I agree
+> it's a hack, but if it's create a customized defconfig file for 4
+> boards or modify the device tree, it seems like the device tree
+> approach is less intrusive.
 
-can I merge the series as-is or we need a v4 for the requested
-updates ? Please let me know.
+Well, if this boards needs a factor 4 to be defined, it is IMHO
+100 % correct to describe this in the DTS and nowhere else. Like
+minimum and maximum voltage of a regulator which is also very board
+specific.
 
-Thanks,
-Lorenzo
+Unless it can be figured out automatically. If it turns out later
+that it can, I would assume the drivers can simply ignore the hint
+in the DTS?
+
+Just my 2cts without knowing details and having tested anything
+on our DM37 boards.
+
+BR,
+Nikolaus
+
