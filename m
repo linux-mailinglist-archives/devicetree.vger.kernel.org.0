@@ -2,89 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1992A2CA9A
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5CA82CAB6
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 17:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726236AbfE1Psv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 11:48:51 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:43672 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726602AbfE1Psv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 11:48:51 -0400
-Received: by mail-pl1-f195.google.com with SMTP id gn7so8482754plb.10
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 08:48:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:from:cc:to:user-agent:date;
-        bh=2ksREyYQk7jUAmxjj6kKAaOfKzWITL2u9MpABedwwuE=;
-        b=mMTWIHmtpHW/kCfVi7P/cdu0cX26em5nK45r/zhOOcmUvWoS6ny5gdVUjARVj1qqNK
-         4+4OFcJ5R228v+wDVhBxn94cnE44EABCId0UFIwIP5SDEzNR6bv9isp3KRyTQTY/A2As
-         GpyW8tWMC2sAGjRODK86Fqrn7XUvEVXYfts90=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
-         :user-agent:date;
-        bh=2ksREyYQk7jUAmxjj6kKAaOfKzWITL2u9MpABedwwuE=;
-        b=B0MuTPhpQmHe/Mwvw+uSLA4epHzYEdpgA1ubz803r9NVPKd1yOe+DWdhR0zGamVFE/
-         LeowSkdWyQPpf4kLONnkinreRp8hW6DDtqlRDiBmPkghA1xFscIn0W78830tUA/jjT9K
-         jeUd7HEe+APmEO0e6L8iOrm7lfxVSeYnGeKb3A9Z04eHRu3VTTjUKkWPXRu1bKeShu+9
-         kds7Rt743JTxHkRraNHuo1YuT3Z+tv4gBjsQrzFvYqHwZXr3yLuXVPLipXilwRlNRcV8
-         HX/jffB+J/6YB9ZFO7CXE6mMiuHehf0RT9zCnq2F9+c/0ze7nNFE2pOvREx5Eseb1atQ
-         trEQ==
-X-Gm-Message-State: APjAAAXtusUWXpO17Z6/KL8dHOQ/sSWXVxuAgjF+OYKBi7RIFBnu5ggb
-        6c54ATi9ly8Ez8Cm6hLsw/mdQg==
-X-Google-Smtp-Source: APXvYqw9Crknxqe7+aih5W//k5MSZWoQ/ebigbuqf3onineoNwCYYi5TbTQA2Zp87VlgT8TB+Rekmg==
-X-Received: by 2002:a17:902:2aa6:: with SMTP id j35mr55060624plb.189.1559058530522;
-        Tue, 28 May 2019 08:48:50 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id 206sm14582069pfy.90.2019.05.28.08.48.49
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 28 May 2019 08:48:49 -0700 (PDT)
-Message-ID: <5ced5861.1c69fb81.956d8.5fb2@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190527043336.112854-1-hsinyi@chromium.org>
-References: <20190527043336.112854-1-hsinyi@chromium.org>
-Subject: Re: [PATCH v5 1/3] arm64: map FDT as RW for early_init_dt_scan()
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
+        id S1726452AbfE1Pxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 11:53:33 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47812 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726313AbfE1Pxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 11:53:33 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4SFrG9C033264;
+        Tue, 28 May 2019 10:53:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559058796;
+        bh=dbyhM/5u8MgwcqC/5H5+1C0pbVLxubC8LxcCgplQU3s=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=BkLP17KBtfHl8j4s3xLOfNc7vfI0pyEY0m3ajgyj69SgO5Um3JejD0pWLW+66wr4T
+         /u0Soykj5nSiQ1xxpCJsdQ93psmexkmIndoATW1CDbHV5O/d38F8L1w4C/hcn/eam3
+         w7uzCOUGgpMC9L0e3fVLsXE6sQFDYHt3lwv4MASA=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4SFrGK2128483
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 May 2019 10:53:16 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
+ May 2019 10:53:14 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 28 May 2019 10:53:14 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4SFrBCb060219;
+        Tue, 28 May 2019 10:53:12 -0500
+Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
+ dts
+To:     Adam Ford <aford173@gmail.com>
+CC:     Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Kees Cook <keescook@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-User-Agent: alot/0.8.1
-Date:   Tue, 28 May 2019 08:48:48 -0700
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20190510194229.20628-1-aford173@gmail.com>
+ <af325707-3e42-493d-e858-77878ef06138@ti.com>
+ <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <7ada0752-6f65-2906-cb29-a47c9490fd57@ti.com>
+Date:   Tue, 28 May 2019 18:53:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <CAHCN7xLzoCNW6q5yDCsqMHeNvdNegkGhd0N+q9+Gd8JUGbG=_g@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Hsin-Yi Wang (2019-05-26 21:33:34)
-> Currently in arm64, FDT is mapped to RO before it's passed to
-> early_init_dt_scan(). However, there might be some codes
-> (eg. commit "fdt: add support for rng-seed") that need to modify FDT
-> during init. Map FDT to RO after early fixups are done.
->=20
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
+Hi,
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+On 28/05/2019 18:09, Adam Ford wrote:
+> On Tue, May 28, 2019 at 4:11 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+>>
+>> Hi,
+>>
+>> On 10/05/2019 22:42, Adam Ford wrote:
+>>> Currently the source code is compiled using hard-coded values
+>>> from CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK.  This patch allows this
+>>> clock divider value to be moved to the device tree and be changed
+>>> without having to recompile the kernel.
+>>>
+>>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>>
+>> I understand why you want to do this, but I'm not sure it's a good idea.
+>> It's really something the driver should figure out, and if we add it to
+>> the DT, it effectively becomes an ABI.
+>>
+>> That said... I'm not sure how good of a job the driver could ever do, as
+>> it can't know the future scaling needs of the userspace at the time it
+>> is configuring the clock. And so, I'm not nacking this patch, but I
+>> don't feel very good about this patch...
+>>
+>> The setting also affects all outputs (exluding venc), which may not be
+>> what the user wants. Then again, I think this setting is really only
+>> needed on OMAP2 & 3, which have only a single output. But that's the
+>> same with the current kconfig option, of course.
+>>
+>> So, the current CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK is an ugly hack, in my
+>> opinion, and moving it to DT makes it a worse hack =). But I don't have
+>> any good suggestions either.
+> 
+> As it stands the Logic PD OMAP35 and AM37/DM37 boards (SOM-LV and
+> Torpedo) require this to be hard coded to 4 or it hangs during start.
+> This is the case for all versions 4.2+.  I haven't tested it with
+> older stuff.  Tony has a DM3730 Torpedo kit and reported the hanging
+> issue to me. I told him to set that value to 4 to make it not hang.
+> He asked that I move it to the DT to avoid custom kernels.  I agree
+> it's a hack, but if it's create a customized defconfig file for 4
+> boards or modify the device tree, it seems like the device tree
+> approach is less intrusive.
 
+Ok, well, I think that's a separate thing from its intended use. The 
+point of the kconfig option is to ensure that the fclk/pclk ratio stays 
+under a certain number to allow enough scaling range. It should never 
+affect a basic non-scaling use case, unless you set it to a too high 
+value, which prevents finding any pclk.
+
+Has anyone debugged why the hang is happening?
+
+If we can't fix the bug itself, rather than adding a DT option, we could 
+change add a min_fck_per_pck field (as you do), keep the kconfig option, 
+and set the min_fck_per_pck based on the kconfig option, _or_ in case of 
+those affected SoCs, set the min_fck_per_pck even without the kconfig 
+option.
+
+  Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
