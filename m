@@ -2,104 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6C52CD96
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 19:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37DFA2CDA6
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 19:32:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726867AbfE1R0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 13:26:55 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:43185 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726515AbfE1R0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 13:26:55 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id CAF27200009;
-        Tue, 28 May 2019 17:26:49 +0000 (UTC)
-Date:   Tue, 28 May 2019 19:26:49 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Add YAML schemas for the
- generic MMC options
-Message-ID: <20190528172649.6mkdkscnu5d2rybi@flea>
-References: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
- <CAPDyKFrs6f4_Xr=ATay_wDYNPa+-jdZvP4XSB55B-EFMAETN1Q@mail.gmail.com>
+        id S1727204AbfE1Rc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 13:32:27 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52630 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726602AbfE1Rc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 13:32:27 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4SHWLEc125462;
+        Tue, 28 May 2019 12:32:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559064741;
+        bh=+XAh1rn1DmZmFVkCu8Os6B8Nn8qFNsfps9mYhSpW/OU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=BjzA/Baj5LeyaDfxIOsk6yuJaPFhKP7auVMPihrW5GVeZrTjtI4OdylSyEMgWgGlx
+         ayb6HtHqmiM/zUqTd66v/ZihbcRlP6/UiUU4YBkwW0lt/cuK/THxHKKLKsKyPpjSZU
+         KZuS0j9dpa7RJ5OFzFeYIrt3MHaTdJPLuPPOo+Js=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4SHWLeG073786
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 May 2019 12:32:21 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
+ May 2019 12:32:21 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 28 May 2019 12:32:21 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4SHWLho064319;
+        Tue, 28 May 2019 12:32:21 -0500
+Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-2-dmurphy@ti.com>
+ <f01ac400-efda-80a8-4d63-1e2add5e054a@gmail.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <185abdd6-100c-0a71-2da9-8f556d8ea701@ti.com>
+Date:   Tue, 28 May 2019 12:32:21 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFrs6f4_Xr=ATay_wDYNPa+-jdZvP4XSB55B-EFMAETN1Q@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <f01ac400-efda-80a8-4d63-1e2add5e054a@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ulf,
+Jacek
 
-On Tue, May 28, 2019 at 10:40:16AM +0200, Ulf Hansson wrote:
-> > +patternProperties:
-> > +  "^.*@[0-9]+$":
-> > +    properties:
-> > +      reg:
-> > +        items:
-> > +          - minimum: 0
-> > +            maximum: 7
-> > +            description:
-> > +              Must contain the SDIO function number of the function this
-> > +              subnode describes. A value of 0 denotes the memory SD
-> > +              function, values from 1 to 7 denote the SDIO functions.
-> > +
-> > +      broken-hpi:
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +        description:
-> > +          Use this to indicate that the mmc-card has a broken hpi
-> > +          implementation, and that hpi should not be used.
-> > +
-> > +    required:
-> > +      - reg
-> > +
+On 5/27/19 3:00 PM, Jacek Anaszewski wrote:
+> Hi Dan,
 >
-> [...]
+> Thank you for the update.
 >
-> > -Use of Function subnodes
-> > -------------------------
-> > -
-> > -On embedded systems the cards connected to a host may need additional
-> > -properties. These can be specified in subnodes to the host controller node.
-> > -The subnodes are identified by the standard 'reg' property.
-> > -Which information exactly can be specified depends on the bindings for the
-> > -SDIO function driver for the subnode, as specified by the compatible string.
-> > -
-> > -Required host node properties when using function subnodes:
-> > -- #address-cells: should be one. The cell is the slot id.
-> > -- #size-cells: should be zero.
-> > -
-> > -Required function subnode properties:
-> > -- reg: Must contain the SDIO function number of the function this subnode
-> > -       describes. A value of 0 denotes the memory SD function, values from
-> > -       1 to 7 denote the SDIO functions.
-> > -
-> > -Optional function subnode properties:
-> > -- compatible: name of SDIO function following generic names recommended practice
-> > -
+> One thing is missing here - we need to document how legacy brightness
+> levels map to the sub-LED color levels, i.e. what you do in
+> multicolor_set_brightness().
+
+
+Ok so i will need to document the algorithm that is used to determine 
+the color LED brightness.
+
+
+Dan
+
 >
-> I think most of the information of how we use sub(child) nodes
-> disappeared in this conversion - or at least gets harder to
-> understand. Could we perhaps keep some of this?
+> Best regards,
+> Jacek Anaszewski
+>
 
-Sure, what would you like to keep in particular?
+<snip>
 
-Thanks!
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>
