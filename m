@@ -2,109 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7ABC2CEA7
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 20:29:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E21062CF2E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 21:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728074AbfE1S3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 14:29:40 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:35764 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727945AbfE1S3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 14:29:40 -0400
-Received: by mail-lj1-f195.google.com with SMTP id h11so18702125ljb.2;
-        Tue, 28 May 2019 11:29:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ApSQAPYNVrYgxmMbeV7SpyKXmQ3NzOUV65344N4/CnE=;
-        b=mhDr4uaFWIOl1c1lee2gXgfPk8pxOyjT+EhoF89F1baYQ1fmEyzGn2AYIBwLrqO+0B
-         hPCZgZDYW9TUIlqalR4XMnLtK7yVWw3oXE4WBbjs8OvNE3c6nus2cjEOgAlo1ELhrExk
-         +Q6mHKrkSc6e/nXKPB212elX8TEsD1EmRiy+UXjzeEuDzUaMNLexmG3Akg8+x0KmLqpL
-         JcdERCVOWsEt7AN2kqDN+owYbk5Br8xEjs8n1z3LMu6rGBzWeYTDER5/YCQrQfPboj1v
-         ZbWD44lgw6Qhbh7FF5qOq8lEOtbxclOhikil3/eKxScAhh21k710E06560bijSBft6yR
-         G0tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ApSQAPYNVrYgxmMbeV7SpyKXmQ3NzOUV65344N4/CnE=;
-        b=EWOMwQyQAa6emWgVFlvwu552AEGTnVL5eKjzcQhdSdIKzbzXyX609ckMTXgOi2Omdm
-         UpG+owg3EUIL/8GxHYa8yVZlHJ0sDGhqbHlp4CA8hwH6j6KQEBts5TD3Xk3olZXEhQSQ
-         lz4Y45yyVoB3urfjww32dLPB468CAw81BOjga7yCiVi1oPSX47OJ4mZ4EwNg80M2zobM
-         v/FC1j3TNyPR6X2PqUJRFoxqOi6E3e/6RFhRn35iJP7rTQJY4RMwMREV8ftzi2Nn51rk
-         3zSG10nVq0Kb/OzAgspgs5Xq7uV5V/99DZqRQCF/03XbLT48KLHK9N64WOq4EBE+56DJ
-         q5xA==
-X-Gm-Message-State: APjAAAXqSokj9/GfOHFyXOy3hT6xHA9ux0ASI5Qj92wlqiH+zzvXR6aA
-        x7CQYoDzyNPVoYKXLwlcCa+JEzob
-X-Google-Smtp-Source: APXvYqwBVP84sl2b4o1kholgXysCiQIje+AspwOKOeG07Hvt9f++cEkdNQFtQblo1E8pZbqHosTNBg==
-X-Received: by 2002:a2e:5852:: with SMTP id x18mr30961474ljd.81.1559068177786;
-        Tue, 28 May 2019 11:29:37 -0700 (PDT)
-Received: from [192.168.1.17] (cis152.neoplus.adsl.tpnet.pl. [83.31.42.152])
-        by smtp.gmail.com with ESMTPSA id m11sm3000176lfk.82.2019.05.28.11.29.36
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 May 2019 11:29:37 -0700 (PDT)
-Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
-To:     Dan Murphy <dmurphy@ti.com>, pavel@ucw.cz, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-2-dmurphy@ti.com>
- <f01ac400-efda-80a8-4d63-1e2add5e054a@gmail.com>
- <185abdd6-100c-0a71-2da9-8f556d8ea701@ti.com>
- <333167d0-4615-2fbe-e933-cbca623998ef@gmail.com>
- <e54d9d29-5daa-fd3a-a5a9-ebd2450882ee@ti.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <c947d07c-2a8d-b9a8-b2ac-6c249ac54bca@gmail.com>
-Date:   Tue, 28 May 2019 20:29:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <e54d9d29-5daa-fd3a-a5a9-ebd2450882ee@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1727671AbfE1TIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 15:08:41 -0400
+Received: from se14p.web-hosting.com ([198.54.122.234]:58230 "EHLO
+        se14p.web-hosting.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbfE1TIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 15:08:40 -0400
+X-Greylist: delayed 1250 seconds by postgrey-1.27 at vger.kernel.org; Tue, 28 May 2019 15:08:40 EDT
+Received: from [68.65.123.203] (helo=server153.web-hosting.com)
+        by se14.registrar-servers.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89)
+        (envelope-from <akash@openedev.com>)
+        id 1hVh8N-0009x3-QN; Tue, 28 May 2019 11:47:44 -0700
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=openedev.com; s=default; h=Message-Id:Date:Subject:Cc:To:From:Sender:
+        Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=HFvG/LahunJTKLXZcRrXptt2DckpdKXTkifmZXFipgQ=; b=PJiGVMZgVGjIgbDCNwmZ/BYqnX
+        fXKKx7yfLlCHwNukhMHUcNOocKv77y7xf8izZNV6Ppo791w9CKK+Sr1CgT3z0SC1jwKeH60STKItJ
+        kQg+sYfjzMZ5NwY5yCxUQ9UWwcp1g82nQCV3P1YGiBs3JalER9nYivypJdri+6mFX3zPJJ5YEcZ0w
+        PHluyjCLBSBRUuWnh/xep34EGeusUaiX14k/257ZXAdMFBxG7bg2IdlduvFpYXz9fvrGazsiq2tph
+        /L3ZKh3KEhc5nX2oM2RlkEwOYcqXfkI7nhBQfHoAdPB7Yn20dHN6mqxgafZg+N+/ZGFa0+9KHizZa
+        ZWxG4BXg==;
+Received: from [49.36.134.52] (port=58630 helo=localhost.localdomain)
+        by server153.web-hosting.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.91)
+        (envelope-from <akash@openedev.com>)
+        id 1hVh8B-000LWm-RB; Tue, 28 May 2019 14:47:32 -0400
+From:   Akash Gajjar <akash@openedev.com>
+To:     heiko@sntech.de
+Cc:     Akash Gajjar <akash@openedev.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vicente Bergas <vicencb@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: add WiFi+BT support on ROCK Pi4 board
+Date:   Wed, 29 May 2019 00:16:58 +0530
+Message-Id: <20190528184705.5240-1-akash@openedev.com>
+X-Mailer: git-send-email 2.17.1
+X-OutGoing-Spam-Status: No, score=-1.0
+X-Originating-IP: 68.65.123.203
+X-SpamExperts-Domain: nctest.net
+X-SpamExperts-Username: whmcalls3
+Authentication-Results: registrar-servers.com; auth=pass (login) smtp.auth=whmcalls3@nctest.net
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.02)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0fHWENUdqj+4JDN3TQDP3eCpSDasLI4SayDByyq9LIhVZoh+GYOxeKhX
+ 0rYQmz6690TNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3Kk502M/hntTzIKfCMISdhHXTA
+ YTyyIfs1cqM+JexaJLwYntLwFjolRFhTnXQDnB9P2e84PReenR5LSk2iUS2Af528AOBrEuOevXI0
+ ebdgRKCIKg/aUy1+rC+nt9YJr0O6xUx7ZqtwsMDZ69b8b7zqxI+lL5NhqHMWktMqMo9GxlRpzx17
+ fEWeVBQjTCzPj3JfZsHc9iz9sphsbcEfYLbbA/Vq7f6BdqHymHnsz2U1vrjjPk6p1XF7W+y4zutd
+ yrLieQwtaT8LS8s2UvPGuarJq5V04g3+jzRT0rWpGx2J7RisI4GNUZN9o6JCIHO0bcEXRyryw85/
+ rAZb27+VZ3biGpeRn+vXyl2rp3c+WLIsa2xTYi2bf0F0JzgUQ/o6tR7CyoeT9VtB9syzdRQvkcqf
+ 34ZQDkS0DHehuOHWuM7Vjf4BoMdMi3MTHLPLkhmyzwKCoSgrSPwK7H7GiJo2l1dsJpcM7kMJvj0O
+ sEsYG6FZSA0KvSDgkCQq49Bwhmr0QiXBtIgA7rb5Xakftk+kQbpsGMceNxO+7BxamuC10Aq7F6rO
+ /YET258p5gS3Y/tQ+7wViH3SZTmW3KAG173wuvejUvo9EUE9MbHVS3r/mgHJnIRYw1BzDqNFGZrh
+ +TVo3LXlhgkjL4M2T1qqsnPjyphw8gjQbS46n+oec+xQytaJegt1cLqOJqfuEFfuEby07ONb4LOp
+ SgtUXs0lCO/QMtPNbzkjHv8L1XCo8f/lClCdnQGCmomWoKHQTtA/vxRp3BmjRFUZkz7XBxuphczf
+ K2a9sHP9vI3sVqNiY7IcsXSdRq0BIkUL/j1Y48GvmeURQjjE+CVHssiRKJOGVnhkTYtSIth1Taei
+ g8OGCxX9BeyO5Yx635mhoDTZ7tQJkImekwqesW0Fhika04lb89teM7jCHuolsEZDZij6HLxcjD4A
+ kjrzujHpSlY2Fr2WwzhRAoSw64oN2HxlNw5KgUUaTYIpDCz9FipvlGvdczGojXbA7Kmf/z2jyiGR
+ IooMdE2solbjhZES3yaCYnD0cFyGWzVHlRxwEiTVJqDh0qKoKsXx5lloGmtNVzr+QC4y+mGx45d+
+ 3Lqf0a+sK979BKHqhPATJSQCCJdpTZ0kmYMGtdFn1fl+TqEWOdbpokqh9QirvZzP9FuHbI/2PO15
+ wkM9AzOwAoKm7RdD7DhCg+2QoWbS5It/atGmSN6m4V7Gg3S4FvW6J98p+AxeVIeDFBo6QTq+8ulz
+ /zXcOmPBLTmIxb/wPGs8LFudSgPI2QH+nhyrWSrH
+X-Report-Abuse-To: spam@se16.registrar-servers.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/28/19 8:19 PM, Dan Murphy wrote:
-> Jacek
-> 
-> On 5/28/19 12:44 PM, Jacek Anaszewski wrote:
->> Dan,
->>
->> On 5/28/19 7:32 PM, Dan Murphy wrote:
->>> Jacek
->>>
->>> On 5/27/19 3:00 PM, Jacek Anaszewski wrote:
->>>> Hi Dan,
->>>>
->>>> Thank you for the update.
->>>>
->>>> One thing is missing here - we need to document how legacy brightness
->>>> levels map to the sub-LED color levels, i.e. what you do in
->>>> multicolor_set_brightness().
->>>
->>>
->>> Ok so i will need to document the algorithm that is used to determine 
->>> the color LED brightness.
->>
->> Right, and please send just an update of that single patch.
->>
-> 
-> So you are asking for v4 with only this patch updated.
+Rock Pi 4 has a on board AP6256 WiFi/BT Module. enable wifi and bluetooth
+support on Rock Pi 4 board.
 
-Not exactly - I am asking for v4 of this patch. We don't need
-to spam the lists with the rest of unaltered patches from the series.
+Signed-off-by: Akash Gajjar <akash@openedev.com>
+---
+ .../boot/dts/rockchip/rk3399-rock-pi-4.dts    | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
 
-The interface seems to be the most vital part of this patch set,
-and it is possible that it will undergo at least slight modifications.
-
-We will move to discussing the code once we achieve a total consensus.
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+index e030627159c6..55e74f4d5cd0 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+@@ -25,6 +25,15 @@
+ 		#clock-cells = <0>;
+ 	};
+ 
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		clocks = <&rk808 1>;
++		clock-names = "ext_clock";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_enable_h>;
++		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
++	};
++
+ 	vcc12v_dcin: dc-12v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc12v_dcin";
+@@ -451,12 +460,46 @@
+ };
+ 
+ &pinctrl {
++	bt {
++		bt_enable_h: bt-enable-h {
++			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		bt_host_wake_l: bt-host-wake-l {
++			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		bt_wake_l: bt-wake-l {
++			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	pcie {
+ 		pcie_pwr_en: pcie-pwr-en {
+ 			rockchip,pins = <2 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ 
++	sdio0 {
++		sdio0_bus4: sdio0-bus4 {
++			rockchip,pins =
++				<2 20 RK_FUNC_1 &pcfg_pull_up_20ma>,
++				<2 21 RK_FUNC_1 &pcfg_pull_up_20ma>,
++				<2 22 RK_FUNC_1 &pcfg_pull_up_20ma>,
++				<2 23 RK_FUNC_1 &pcfg_pull_up_20ma>;
++		};
++
++		sdio0_cmd: sdio0-cmd {
++			rockchip,pins =
++				<2 24 RK_FUNC_1 &pcfg_pull_up_20ma>;
++		};
++
++		sdio0_clk: sdio0-clk {
++			rockchip,pins =
++				<2 25 RK_FUNC_1 &pcfg_pull_none_20ma>;
++		};
++	};
++
+ 	pmic {
+ 		pmic_int_l: pmic-int-l {
+ 			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
+@@ -482,6 +525,17 @@
+ 			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
++
++	wifi {
++		wifi_enable_h: wifi-enable-h {
++			rockchip,pins =
++				<0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		wifi_host_wake_l: wifi-host-wake-l {
++			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
+ };
+ 
+ &pwm2 {
+@@ -494,6 +548,32 @@
+ 	vref-supply = <&vcc_1v8>;
+ };
+ 
++&sdio0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	bus-width = <4>;
++	clock-frequency = <50000000>;
++	cap-sdio-irq;
++	cap-sd-highspeed;
++	keep-power-in-suspend;
++	mmc-pwrseq = <&sdio_pwrseq>;
++	non-removable;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
++	sd-uhs-sdr104;
++	status = "okay";
++
++	brcmf: wifi@1 {
++		compatible = "brcm,bcm4329-fmac";
++		reg = <1>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupt-names = "host-wake";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_host_wake_l>;
++	};
++};
++
+ &sdmmc {
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+@@ -557,6 +637,23 @@
+ 	};
+ };
+ 
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		clocks = <&rk808 1>;
++		clock-names = "ext_clock";
++		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
++		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
++	};
++};
++
+ &uart2 {
+ 	status = "okay";
+ };
 -- 
-Best regards,
-Jacek Anaszewski
+2.17.1
+
