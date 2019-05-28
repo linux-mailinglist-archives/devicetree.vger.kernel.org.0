@@ -2,73 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 794CD2C838
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 16:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622E12C866
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 16:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727038AbfE1OBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 10:01:13 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:35464 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726925AbfE1OBN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 10:01:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=vKGUIXYi/3OQeBSb715W30qlnj13vd2M6rGmCnI+BJc=; b=WAc6Ce3LLQ1k9uSwYyyYazaZIS
-        lmhWRpykIh61J+oNz0y7A2iaWTEQPSeDQ/e6y9kfIqhw33dqirTq3/Y+13pOc4Pdn6I69IF4lWqJL
-        uSYh7TGyA9Od0NRcD1DNBw9Cl1EF3HivRDR/GH76wx4ZCYmVBghcnsIF6lQePG4TcK94=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hVcf3-0006wh-Pv; Tue, 28 May 2019 16:01:05 +0200
-Date:   Tue, 28 May 2019 16:01:05 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Willem de Bruijn <willemb@google.com>
-Subject: Re: [PATCH V3 net-next 2/6] net: Introduce a new MII time stamping
- interface.
-Message-ID: <20190528140105.GH18059@lunn.ch>
-References: <20190521224723.6116-3-richardcochran@gmail.com>
- <20190522005823.GD6577@lunn.ch>
- <20190528051750.ub4urccdwmkg2u3c@localhost>
+        id S1726540AbfE1ONI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 10:13:08 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:48880 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726527AbfE1ONI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 10:13:08 -0400
+Received: from pendragon.ideasonboard.com (85-76-65-42-nat.elisa-mobile.fi [85.76.65.42])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 67861D85;
+        Tue, 28 May 2019 16:13:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1559052785;
+        bh=/OJ6uuEbh2pjUlDn0QffI7KAufmZ1tyECPU5E9HGb1s=;
+        h=From:To:Cc:Subject:Date:From;
+        b=nkKd2QNeyK2vkCRmMfKjr4TtVLVeGQRY7u/H8RatACav9wsYBpQimsPtLtiWEFX+o
+         sOmc/TtcACAgC6ee5uw9QcVLeFJ0wUq8wwiulM4c8blSDYUWlapX2SJUw906zU+K1c
+         k+WhQaC+RgHNhSqQ3MSnD86DwwGKmgna+RBc27no=
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        devicetree@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>
+Subject: [PATCH v3 00/10] R-Car DU: LVDS dual-link mode support
+Date:   Tue, 28 May 2019 17:12:24 +0300
+Message-Id: <20190528141234.15425-1-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190528051750.ub4urccdwmkg2u3c@localhost>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 27, 2019 at 10:17:50PM -0700, Richard Cochran wrote:
-> On Wed, May 22, 2019 at 02:58:23AM +0200, Andrew Lunn wrote:
-> > > -static int dp83640_hwtstamp(struct phy_device *phydev, struct ifreq *ifr)
-> > > +static int dp83640_hwtstamp(struct mii_timestamper *mii_ts, struct ifreq *ifr)
-> > >  {
-> > > -	struct dp83640_private *dp83640 = phydev->priv;
-> > > +	struct dp83640_private *dp83640 =
-> > > +		container_of(mii_ts, struct dp83640_private, mii_ts);
-> > >  	struct hwtstamp_config cfg;
-> > >  	u16 txcfg0, rxcfg0;
-> > 
-> > Hi Richard
-> > 
-> > David might complain about reverse christmas tree. Maybe define a
-> > macro, to_dp83640() which takes mii_ts?
-> 
-> That is nice idea for another series, I think.  For now this matches
-> the existing 'container_of' usage within the driver.
+Hello everybody,
 
-Well, David might reject it because it is not reverse christmas tree.
+This patch series implements support for LVDS dual-link mode in the
+R-Car DU and R-Car LVDS encoder drivers, and well as in the thc63lvd1024
+LVDS decoder driver.
 
-      Andrew
+LVDS dual-link is a mode of operation where two individual LVDS links
+are operated together to carry even- and odd-numbered pixels separately.
+This doubles the possible bandwidth of the video transmission. Both the
+transmitter and the receiver need to support this mode of operation.
+
+The R-Car D3 and E3 SoCs include two independent LVDS encoders that can
+be grouped together to operate in dual-link mode. When used separately,
+the LVDS encoders are connected to two different CRTCs and transmit
+independent video streams. When used in dual-link mode, the first LVDS
+encoder is connected to the first CRTC, and split even- and odd-numbered
+pixels. It transmits half of the pixels on its LVDS output, and sends
+the other half to the second LVDS encoder for transmittion over the
+second LVDS link. The second LVDS encoder thus operates under control of
+the first one, and isn't connected directly to a CRTC.
+
+On the receiving side, the THC63LVD1024 LVDS-to-parallel bridge has two
+LVDS inputs and two parallel outputs. It can operate in four different
+modes:
+
+- Single-in, single-out: The first LVDS input receives the video stream,
+  and the bridge outputs it on the first parallel output. The second
+  LVDS input and the second parallel output are not used.
+
+- Single-in, dual-out: The first LVDS input receives the video stream,
+  and the bridge splits even- and odd-numbered pixels and outputs them
+  on the first and second parallel outputs. The second LVDS input is not
+  used.
+
+- Dual-in, single-out: The two LVDS inputs are used in dual-link mode,
+  and the bridge combines the even- and odd-numbered pixels and outputs
+  them on the first parallel output. The second parallel output is not
+  used.
+
+- Dual-in, dual-out: The two LVDS inputs are used in dual-link mode,
+  and the bridge outputs the even- and odd-numbered pixels on the first
+  parallel output.
+
+The operating mode is selected by two input pins of the bridge, which
+are connected to DIP switches on the development boards I use. The mode
+is thus fixed from a Linux point of view.
+
+Patch 01/10 adds a new dual_link boolen field to the drm_bridge_timings
+structure to let bridges report their LVDS mode of operation. Patch
+02/10 clarifies the THC63LVD1024 DT bindings to document dual-link
+operation, and patch 03/10 implements dual-link support in the
+thc64lvd1024 bridge driver by setting the drm_bridge_timings dual_link
+field according to the mode selected through DT.
+
+Patch 04/10 extends the R-Car LVDS DT bindings to specify the companion
+LVDS encoder for dual-link operation. Patches 05/10 then performs a
+small cleanup in the LVDS encoder driver. Patch 06/10 implements
+dual-link support in the LVDS encoder driver, which involves retrieving
+the operation mode from the LVDS receiver, locating the companion LVDS
+encoder, and configuring both encoders when dual-link operation is
+desired. The API towards the DU driver is also extended to report the
+mode of operation.
+
+Patch 07/10 implements dual-link mode support in the DU driver. There is
+no specific configuration to be performed there, as dual-link is fully
+implemented in the LVDS encoder driver, but the DU driver has to skip
+creation of the DRM encoder and connector related to the second LVDS
+encoder when dual-link is used, as the second LVDS encoder operates as a
+slave of the first one, transparently from a CRTC (and thus userspace)
+perspective.
+
+Patch 08/10 specifies the companion LVDS encoder in the D3 and E3 DT
+bindings. This by itself doesn't enable dual-link mode, the LVDS0
+encoder is still connected to the HDMI output through LVDS receiver, and
+the LVDS1 encoder is not used. Patches 09/10 and 10/10, not intended to
+be merged, enable dual-link operation for the D3 and E3 boards for
+testing and require flipping DIP switches on the boards.
+
+The patches are based on top of my drm/du/next branch, and are available
+for convenience at
+
+        git://linuxtv.org/pinchartl/media.git drm/du/lvds/dual-link
+
+They have been tested successfully on the D3 Draak board. I expect them
+to work on E3 as well, but I don't have access to an Ebisu board to test
+this.
+
+Laurent Pinchart (10):
+  drm: bridge: Add dual_link field to the drm_bridge_timings structure
+  dt-bindings: display: bridge: thc63lvd1024: Document dual-link
+    operation
+  drm: bridge: thc63: Report input bus mode through bridge timings
+  dt-bindings: display: renesas: lvds: Add renesas,companion property
+  drm: rcar-du: lvds: Remove LVDS double-enable checks
+  drm: rcar-du: lvds: Add support for dual-link mode
+  drm: rcar-du: Skip LVDS1 output on Gen3 when using dual-link LVDS mode
+  arm64: dts: renesas: r8a7799[05]: Point LVDS0 to its companion LVDS1
+  [HACK] arm64: dts: renesas: draak: Enable LVDS dual-link operation
+  [HACK] arm64: dts: renesas: ebisu: Enable LVDS dual-link operation
+
+ .../bindings/display/bridge/renesas,lvds.txt  |   7 +
+ .../display/bridge/thine,thc63lvd1024.txt     |   6 +
+ .../arm64/boot/dts/renesas/r8a77990-ebisu.dts |  24 +++-
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   2 +
+ .../arm64/boot/dts/renesas/r8a77995-draak.dts |  24 +++-
+ arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +
+ drivers/gpu/drm/bridge/thc63lvd1024.c         |  54 ++++++--
+ drivers/gpu/drm/rcar-du/rcar_du_encoder.c     |  12 ++
+ drivers/gpu/drm/rcar-du/rcar_du_kms.c         |   2 +-
+ drivers/gpu/drm/rcar-du/rcar_lvds.c           | 126 +++++++++++++-----
+ drivers/gpu/drm/rcar-du/rcar_lvds.h           |   5 +
+ include/drm/drm_bridge.h                      |   8 ++
+ 12 files changed, 214 insertions(+), 58 deletions(-)
+
+-- 
+Regards,
+
+Laurent Pinchart
+
