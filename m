@@ -2,110 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60AFA2C72E
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 15:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C97DB2C740
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 15:03:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727021AbfE1NAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 09:00:20 -0400
-Received: from node.akkea.ca ([192.155.83.177]:43840 "EHLO node.akkea.ca"
+        id S1727091AbfE1NDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 09:03:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36008 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726870AbfE1NAU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 09:00:20 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id C5BEC4E204B; Tue, 28 May 2019 13:00:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1559048419; bh=DuNG9eraJBekzRo7JMy/lt3azKRg+Ejt3Pynd/LUpQw=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=Gcq2zKVu0wYuEKx1clJT+CFI/Qm8Qg193Gq70Ah2BlMkn2oz/I6TTnc0xhDdkNjT2
-         oVS0ni69EfFkHZcePiIwstfo+zNZOlrY23KjNmj0tM5GctNlBJKiLCFEZVHRwwS7pb
-         2Bh+KPihajSNbxME+mHygXhqiDjAT7m7klszc4Sk=
-To:     Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts: fsl: imx8mq: enable the svns power key
-X-PHP-Originating-Script: 1000:rcube.php
+        id S1726972AbfE1NDX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 09:03:23 -0400
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C7EE82133F;
+        Tue, 28 May 2019 13:03:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559048602;
+        bh=to2yA5jMaWgB/wFrj0Azo3OT7/Y8ggodEnCmIoV0dKw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=F9LGIU7halvFDEIqbcTR8bckXfWSQd+enUAhJx76nZOmjj1gyaf9cPIWD3X3DILOn
+         OKCbnFCvYk5tKGfdBVwzrON5Hb+9Sd+yA+HAbYZGlONZ2g2FBQFRi6Uf72our2b0bK
+         3xE0TF7WmwbRxP1b9ngeE4meBVKQM8eNGbX/wGH4=
+Received: by mail-wr1-f49.google.com with SMTP id c2so4946253wrm.8;
+        Tue, 28 May 2019 06:03:21 -0700 (PDT)
+X-Gm-Message-State: APjAAAUm5V0HH2+mHj0joVk/qdO+RWC5zGXtvbG+ijqE16EmI6FpYvJa
+        6yvzgc9kkWLCrfeELST7puneE8mWJ9HgM8Qx9hg=
+X-Google-Smtp-Source: APXvYqxA+f1nD0R4RwrTP1NJJRgGbpzv3YTyXYDlyDk27gkQGMeCS38Lxu2OIj9vkhWsA4t5wB+BmsLILLrEFRfbV2k=
+X-Received: by 2002:a5d:49d0:: with SMTP id t16mr16026596wrs.324.1559048600302;
+ Tue, 28 May 2019 06:03:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Tue, 28 May 2019 06:00:19 -0700
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     angus.ainslie@puri.sm, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1559047905.4039.15.camel@pengutronix.de>
-References: <20190528124406.29730-1-angus@akkea.ca>
- <1559047905.4039.15.camel@pengutronix.de>
-Message-ID: <9a2361a08a0b8a1be1e2f5921026661f@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
+References: <20190520150637.23557-1-megous@megous.com> <20190520151003.uklhhak5clxi5zpf@core.my.home>
+In-Reply-To: <20190520151003.uklhhak5clxi5zpf@core.my.home>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Tue, 28 May 2019 21:03:06 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64NDYo-yOvUQDpqzRB_A3NUgF3dXJeYbz_57uwB7mXwqQ@mail.gmail.com>
+Message-ID: <CAGb2v64NDYo-yOvUQDpqzRB_A3NUgF3dXJeYbz_57uwB7mXwqQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] ARM: sun8i: a83t: Support Camera Sensor Interface controller
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Ondrej Jirman <megous@megous.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Yong Deng <yong.deng@magewell.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+On Mon, May 20, 2019 at 11:10 PM Ond=C5=99ej Jirman <megous@megous.com> wro=
+te:
+>
+> On Mon, May 20, 2019 at 05:06:34PM +0200, verejna wrote:
+> > From: Ondrej Jirman <megous@megous.com>
+> >
+> > This is a re-send of Chen-Yu's A83T CSI patch series with review tags
+> > applied and removed address/size cells from csi_in port. Already applie=
+d
+> > patches from v1  were dropped.
+> >
+> > The series is ready to be merged:
+> >
+> >   Patch 1 and 2 via sunxi tree
+> >   Patch 3 via media tree
+>
+> Sorry, wrong numbers. 2 is for media tree, 3 is for sunxi, 1 is a dt-bind=
+ings
+> patch, where I'm not sure.
 
-On 2019-05-28 05:51, Lucas Stach wrote:
-> Hi Angus,
-> 
-> Am Dienstag, den 28.05.2019, 05:44 -0700 schrieb Angus Ainslie 
-> (Purism):
->> Add the snvs power key.
->> 
->> > Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
->> ---
->>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi 
->> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> index 45d10d8efd14..5f93fd9662ae 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> @@ -8,6 +8,7 @@
->>  #include <dt-bindings/power/imx8mq-power.h>
->>  #include <dt-bindings/reset/imx8mq-reset.h>
->>  #include <dt-bindings/gpio/gpio.h>
->> +#include "dt-bindings/input/input.h"
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  #include <dt-bindings/thermal/thermal.h>
->>  #include "imx8mq-pinfunc.h"
->> @@ -463,6 +464,14 @@
->> >  					interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
->> >  						<GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
->> >  				};
->> +
->> > +				snvs_pwrkey: snvs-powerkey {
->> > +					compatible = "fsl,sec-v4.0-pwrkey";
->> > +					regmap = <&snvs>;
->> > +					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
->> > +					linux,keycode = <KEY_POWER>;
->> +					wakeup-source;
-> 
-> Not all i.MX8MQ systems will have this functionality wired up at the
-> board level, so this node needs to be disabled by default. The existing
->  i.MX6 and i.MX7 DTs seem to get this wrong.
-> 
+Bindings typically go with the driver.
 
-Ok I'll fix that for the next rev.
+Sakari, this series is and has been ready for some time since before the me=
+rge
+window. Could you please merge patches 1 and 2.
+
 
 Thanks
-Angus
+ChenYu
 
-> Regards,
-> Lucas
-> 
->> +				};
->> >  			};
->>  
->> > >  			clk: clock-controller@30380000 {
 
+>
+> thanks,
+>         Ondrej
+>
+> > v2:
+> > - dropped address/size cells from csi_in port
+> > - added review tags
+> >
+> > Please take a look and merge.
+> >
+> > Thank you,
+> >       Ondrej
+> >
+> > --------------------------
+> > Original description:
+> >
+> > Hi everyone,
+> >
+> > This series adds support for the camera sensor interface controller
+> > found on the Allwinner A83T SoC. The controller is similar to the one
+> > found on  the H3, with the addition of a MIPI CSI-2 interface. However,
+> > this series only supports parallel and BT.656 interfaces, based on the
+> > existing driver.
+> >
+> > Patch 1 adds an undocumented clock parent of the CSI MCLK. This was
+> > found after finding the default value to sometimes work and sometimes
+> > not, and then comparing against BSP code.
+> >
+> > Patch 2 adds a compatible string for the A83T variant.
+> >
+> > Patch 3 adds support for the A83T variant to the existing sun6i-csi
+> > driver.
+> >
+> > Patch 4 adds a device node for the controller, as well as commonly
+> > used pin muxing options.
+> >
+> > Patch 5 adds a pin muxing option for I2C1 on the PE pins, used in
+> > conjunction with the CSI pins.
+> >
+> > Patch 6 provides an example usage of the CSI controller: the Bananapi M=
+3
+> > with its camera module attached.
+> >
+> > Please have a look.
+> >
+> > Regards
+> > ChenYu
+> >
+> > Chen-Yu Tsai (3):
+> >   dt-bindings: media: sun6i-csi: Add compatible string for A83T variant
+> >   media: sun6i: Support A83T variant
+> >   ARM: dts: sun8i: a83t: Add device node for CSI (Camera Sensor
+> >     Interface)
+> >
+> >  .../devicetree/bindings/media/sun6i-csi.txt   |  1 +
+> >  arch/arm/boot/dts/sun8i-a83t.dtsi             | 29 +++++++++++++++++++
+> >  .../platform/sunxi/sun6i-csi/sun6i_csi.c      |  1 +
+> >  3 files changed, 31 insertions(+)
+> >
+> > --
+> > 2.21.0
+> >
+> >
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
