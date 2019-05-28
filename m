@@ -2,121 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A06402BEFA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 08:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22A132BF23
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 08:16:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727641AbfE1GFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 02:05:03 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:55816 "EHLO inva020.nxp.com"
+        id S1726789AbfE1GQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 02:16:19 -0400
+Received: from muru.com ([72.249.23.125]:51332 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727619AbfE1GFC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 02:05:02 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DEF8F1A0D99;
-        Tue, 28 May 2019 08:05:00 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6A6C01A0D8F;
-        Tue, 28 May 2019 08:04:48 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 866A0402F1;
-        Tue, 28 May 2019 14:04:34 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, rui.zhang@intel.com,
-        edubezval@gmail.com, daniel.lezcano@linaro.org,
-        aisheng.dong@nxp.com, ulf.hansson@linaro.org, peng.fan@nxp.com,
-        daniel.baluta@nxp.com, maxime.ripard@bootlin.com, olof@lixom.net,
-        jagan@amarulasolutions.com, horms+renesas@verge.net.au,
-        leonard.crestez@nxp.com, bjorn.andersson@linaro.org,
-        dinguyen@kernel.org, enric.balletbo@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH RESEND V13 5/5] arm64: dts: imx: add i.MX8QXP thermal support
-Date:   Tue, 28 May 2019 14:06:21 +0800
-Message-Id: <20190528060621.47342-5-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190528060621.47342-1-Anson.Huang@nxp.com>
-References: <20190528060621.47342-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726693AbfE1GQT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 02:16:19 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 49DC380F3;
+        Tue, 28 May 2019 06:16:37 +0000 (UTC)
+Date:   Mon, 27 May 2019 23:16:14 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Keerthy <j-keerthy@ti.com>
+Cc:     linux-omap@vger.kernel.org, Dave Gerlach <d-gerlach@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Nishanth Menon <nm@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 00/12] ti-sysc driver changes to drop custom hwmods
+ property
+Message-ID: <20190528061614.GL5447@atomide.com>
+References: <20190527121348.45251-1-tony@atomide.com>
+ <380809b1-7152-faa5-9f43-2243fb4dad19@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <380809b1-7152-faa5-9f43-2243fb4dad19@ti.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+* Keerthy <j-keerthy@ti.com> [190528 00:58]:
+> 
+> 
+> On 27/05/19 5:43 PM, Tony Lindgren wrote:
+> > Hi all,
+> > 
+> > Here are changes to improve ti-sysc driver to the point where we can
+> > finally drop the custom hwmods property for most cases. This series
+> > drops hwmods property only for omap4 UART and MMC as those can be
+> > tested with core retention idle.
+> > 
+> > I'll be posting more patches for dropping hwmods properties as they
+> > get tested.
+> 
+> Tony,
+> 
+> What is the base of this series? It does not apply cleanly neither on
+> linux-next nor on top of 5.2->rc1. If there are dependencies do you have a
+> branch?
 
-Add i.MX8QXP CPU thermal zone support.
+Oh thanks for letting me know. It's against v5.2-rc1 but the first
+patch of the series got accidentally left out. Looks like I used -n
+option with git format-patch with -n 12 instead of -n13. I will
+repost the series.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No change, just rebase the patch to top of linux-next and below my patch:
-https://patchwork.kernel.org/patch/10962185/
----
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 37 ++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Regards,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index 9f52da6..4448c65 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/pads-imx8qxp.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -162,6 +163,11 @@
- 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
- 			timeout-sec = <60>;
- 		};
-+
-+		tsens: thermal-sensor {
-+			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
-+			#thermal-sensor-cells = <1>;
-+		};
- 	};
- 
- 	timer {
-@@ -530,4 +536,35 @@
- 			power-domains = <&pd IMX_SC_R_GPIO_7>;
- 		};
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		cpu-thermal0 {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tsens IMX_SC_R_SYSTEM>;
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <107000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+				cpu_crit0: trip1 {
-+					temperature = <127000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert0>;
-+					cooling-device =
-+						<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+
-+				};
-+			};
-+		};
-+	};
- };
--- 
-2.7.4
-
+Tony
