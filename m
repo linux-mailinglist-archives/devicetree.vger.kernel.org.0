@@ -2,90 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0752D044
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 22:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4312D049
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 22:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726768AbfE1U3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 16:29:49 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:34510 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726614AbfE1U3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 16:29:49 -0400
-Received: by mail-pf1-f195.google.com with SMTP id n19so24027pfa.1
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 13:29:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=CH0uDuCm1IZlUutTSqd9yHCBwqxTh5kY/MOarp++qiU=;
-        b=Ba1Cm97vb6ARxJQgfFXGjdotGsHAP99t/791OfuTEFhQFlnonFvYATsLPtmM952cBb
-         ajhyIOeCIEH27PBz35HtzQmv3gJxOblUx4CDV+xaaHSLjF9wB9h5iRcgoBr1N3KZ0TQ7
-         DALG2D46yz9XpmIQQwMbvthZxrRnlJkstuZII=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CH0uDuCm1IZlUutTSqd9yHCBwqxTh5kY/MOarp++qiU=;
-        b=L37XjTkjAfrrV62gA5r9L7WFaMtUBFMtJtfO0bljHVxeGKZMr1ZDl46MGzSt/F8IzD
-         oBdwDxZvmI1I8bSv3G8/AHI2jpfXw8dv1j0X8K44iYrAXZkH00a/C4cG8BhYtH923m9O
-         M7gfvCyFu2QuzvPQ0FkDLoXG3WJwKz2+OTcxDM8nr9XrZKDFEsQAe7gkOQXZx6rhU3G8
-         wfKFJPJUk68kcstV0dCVB6Xu5YV3K/BBFhGgVg6NQ9V4reQT/Q7Ht/iRN8+sjxm6NgdY
-         /OzkkcXOLRIjCBsfBWx0bP+WR/hIWJfOCWpZn4bjxePDPqg0IIEDtv1trmQkVf8qDJ08
-         8yqA==
-X-Gm-Message-State: APjAAAWXLue0kp509vM9HwXtqHfWIYr1JFtcPl0aj7nUKXo3eojlypWh
-        g34DZOvu/4Tt8DzMRaQDoGUkuQ==
-X-Google-Smtp-Source: APXvYqyJR8ErjR2+NyhyJOJUsta+0OAa1/KNcVcMUt+b3JS9GeD6tSPYwwARr6LFNFDtWBcPhMCA2w==
-X-Received: by 2002:a63:ff23:: with SMTP id k35mr103694764pgi.139.1559075388740;
-        Tue, 28 May 2019 13:29:48 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id f29sm23276944pfq.11.2019.05.28.13.29.47
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 28 May 2019 13:29:47 -0700 (PDT)
-Date:   Tue, 28 May 2019 13:29:47 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, briannorris@chromium.org,
-        ryandcase@chromium.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726722AbfE1Uar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 16:30:47 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:51355 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbfE1Uar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 16:30:47 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 1CFF640005;
+        Tue, 28 May 2019 20:30:42 +0000 (UTC)
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: rockchip: Add pin names for rk3288-veyron jaq,
- mickey, speedy
-Message-ID: <20190528202947.GL40515@google.com>
-References: <20190524233309.45420-1-dianders@chromium.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rtc@vger.kernel.org
+Subject: [PATCH v2 01/11] dt-bindings: rtc: Add YAML schemas for the generic RTC bindings
+Date:   Tue, 28 May 2019 22:30:31 +0200
+Message-Id: <434446bc5541d7dfe5823874355c7db8c7e213fa.1559075389.git-series.maxime.ripard@bootlin.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190524233309.45420-1-dianders@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 24, 2019 at 04:33:09PM -0700, Douglas Anderson wrote:
-> This is like commit 0ca87bd5baa6 ("ARM: dts: rockchip: Add pin names
-> for rk3288-veyron-jerry") and commit ca3516b32cd9 ("ARM: dts:
-> rockchip: Add pin names for rk3288-veyron-minnie") but for 3 more
-> veyron boards.
-> 
-> A few notes:
-> - While there is most certainly duplication between all the veyron
->   boards, it still feels like it is sane to just have each board have
->   a full list of its pin names.  The format of "gpio-line-names" does
->   not lend itself to one-off overriding and besides it seems sane to
->   more fully match schematic names.  Also note that the extra
->   duplication here is only in source code and is unlikely to ever
->   change (since these boards are shipped).  Duplication in the .dtb
->   files is unavoidable.
-> - veyron-jaq and veyron-mighty are very closely related and so I have
->   shared a single list for them both with comments on how they are
->   different.  This is just a typo fix on one of the boards, a possible
->   missing signal on one of the boards (or perhaps I was never given
->   the most recent schematics?) and dealing with the fact that one of
->   the two boards has full sized SD.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+The real time clocks have a bunch of generic properties that are needed in
+a device tree. Add a YAML schemas for those.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+---
+ Documentation/devicetree/bindings/rtc/rtc.txt  | 34 +-------------
+ Documentation/devicetree/bindings/rtc/rtc.yaml | 50 +++++++++++++++++++-
+ 2 files changed, 51 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc.yaml
+
+diff --git a/Documentation/devicetree/bindings/rtc/rtc.txt b/Documentation/devicetree/bindings/rtc/rtc.txt
+index a97fc6a9a75e..4d6f81dccc68 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc.txt
++++ b/Documentation/devicetree/bindings/rtc/rtc.txt
+@@ -1,36 +1,4 @@
+-Generic device tree bindings for Real Time Clock devices
+-========================================================
+-
+-This document describes generic bindings which can be used to describe Real Time
+-Clock devices in a device tree.
+-
+-Required properties
+--------------------
+-
+-- compatible : name of RTC device following generic names recommended practice.
+-
+-For other required properties e.g. to describe register sets,
+-clocks, etc. check the binding documentation of the specific driver.
+-
+-Optional properties
+--------------------
+-
+-- start-year : if provided, the default hardware range supported by the RTC is
+-               shifted so the first usable year is the specified one.
+-
+-The following properties may not be supported by all drivers. However, if a
+-driver wants to support one of the below features, it should adapt the bindings
+-below.
+-- trickle-resistor-ohms :   Selected resistor for trickle charger. Should be given
+-                            if trickle charger should be enabled
+-- trickle-diode-disable :   Do not use internal trickle charger diode Should be
+-                            given if internal trickle charger diode should be
+-                            disabled
+-- wakeup-source :           Enables wake up of host system on alarm
+-- quartz-load-femtofarads : The capacitive load of the quartz(x-tal),
+-                            expressed in femto Farad (fF).
+-                            The default value shall be listed (if optional),
+-                            and likewise all valid values.
++This file has been moved to rtc.yaml.
+ 
+ Trivial RTCs
+ ------------
+diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+new file mode 100644
+index 000000000000..ee237b2ed66a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/rtc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RTC Generic Binding
++
++maintainers:
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++
++description: |
++  This document describes generic bindings which can be used to
++  describe Real Time Clock devices in a device tree.
++
++properties:
++  $nodename:
++    pattern: "^rtc(@.*|-[0-9a-f])*$"
++
++  quartz-load-femtofarads:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The capacitive load of the quartz(x-tal), expressed in femto
++      Farad (fF). The default value shall be listed (if optional),
++      and likewise all valid values.
++
++  start-year:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      If provided, the default hardware range supported by the RTC is
++      shifted so the first usable year is the specified one.
++
++  trickle-diode-disable:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Do not use internal trickle charger diode. Should be given if
++      internal trickle charger diode should be disabled.
++
++  trickle-resistor-ohms:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Selected resistor for trickle charger. Should be given
++      if trickle charger should be enabled.
++
++  wakeup-source:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enables wake up of host system on alarm.
++
++...
+
+base-commit: 531b0a360899269bd99a38ba9852a8ba46852bcd
+-- 
+git-series 0.9.1
