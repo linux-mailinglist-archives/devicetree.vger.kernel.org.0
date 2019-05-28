@@ -2,121 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E012BD8C
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 05:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2382BDC5
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 05:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728009AbfE1DPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 23:15:35 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:57608 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727883AbfE1DPf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 23:15:35 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CA3DF200CFC;
-        Tue, 28 May 2019 05:15:32 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 513BA200CFF;
-        Tue, 28 May 2019 05:15:20 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E108A402D6;
-        Tue, 28 May 2019 11:15:06 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, rui.zhang@intel.com,
-        edubezval@gmail.com, daniel.lezcano@linaro.org,
-        aisheng.dong@nxp.com, ulf.hansson@linaro.org, peng.fan@nxp.com,
-        daniel.baluta@nxp.com, maxime.ripard@bootlin.com, olof@lixom.net,
-        jagan@amarulasolutions.com, horms+renesas@verge.net.au,
-        leonard.crestez@nxp.com, bjorn.andersson@linaro.org,
-        dinguyen@kernel.org, enric.balletbo@collabora.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V13 5/5] arm64: dts: imx: add i.MX8QXP thermal support
-Date:   Tue, 28 May 2019 11:16:54 +0800
-Message-Id: <20190528031654.43801-5-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190528031654.43801-1-Anson.Huang@nxp.com>
-References: <20190528031654.43801-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727547AbfE1Dd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 23:33:58 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:35799 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727320AbfE1Dd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 23:33:58 -0400
+Received: by mail-ed1-f66.google.com with SMTP id p26so29497581edr.2;
+        Mon, 27 May 2019 20:33:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rvzFBTjaElqc0TlPvT5ZP31SDS65m0GKWeHyTHmPU+A=;
+        b=N2uJo0+0Ii43gOjzX7xj7sFeoZBSaX4jAWswKAENhxvrR2b6q3sSb+sq8xvnXLs0VL
+         X675g12Uyw93otWyBK7T9HfYA3mSspVlhvSaiISC2n6Hx3qhJHiyEItvpBw2zfjyEr69
+         NtPRvRMM2MptEnU42LTDAzE66eLCSN14zhNddITpAqSly52s1bd667MI+MKMVt7JZbRg
+         1aqOpNCWV6XE/xw0wPzX5y4sjAp2Rk1zNllnR2l2PV51DtrT1d7MAnH6+yaSNWkXJ9K6
+         Mcuq/v/es4YYXTsGqBLKGvc2jy21s2X/8C9Uroapoe9WpFvLUGjrsi27wrl760AV/ysi
+         SSAw==
+X-Gm-Message-State: APjAAAXjkGM/CxIllF8H+4UT0Wnh7SUpNIEmnJo8wcPWvIf/yIfcgzum
+        Fh3oaCUAz2e4/zqs/rOZ1/3pYu6GqHw=
+X-Google-Smtp-Source: APXvYqyzWVVctV6F0QaK1W+KzJbUU8HVE93by9+ij5ZPONNZBeo02WHp0bZH209F/jzuQ4slbWL5vg==
+X-Received: by 2002:a50:ce06:: with SMTP id y6mr20906771edi.160.1559014436018;
+        Mon, 27 May 2019 20:33:56 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
+        by smtp.gmail.com with ESMTPSA id h25sm2002900ejz.10.2019.05.27.20.33.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 May 2019 20:33:55 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id l2so18510636wrb.9;
+        Mon, 27 May 2019 20:33:55 -0700 (PDT)
+X-Received: by 2002:a5d:49d0:: with SMTP id t16mr14186512wrs.324.1559014435157;
+ Mon, 27 May 2019 20:33:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <290402405a34506997fd2fab2c4c1486dbe6b7e5.1558958381.git-series.maxime.ripard@bootlin.com>
+ <bd3004d8e2d52c96abbc6cc9ca51b8fea510446a.1558958381.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <bd3004d8e2d52c96abbc6cc9ca51b8fea510446a.1558958381.git-series.maxime.ripard@bootlin.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Tue, 28 May 2019 11:33:45 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64qDdrejF_9p0s+S0jXj=JuCx1QpiThniurrPzg3ua6ww@mail.gmail.com>
+Message-ID: <CAGb2v64qDdrejF_9p0s+S0jXj=JuCx1QpiThniurrPzg3ua6ww@mail.gmail.com>
+Subject: Re: [PATCH 03/10] dt-bindings: rtc: Convert Allwinner A10 RTC to a schema
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On Mon, May 27, 2019 at 8:00 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> The older Allwinner SoCs have an embedded RTC supported in Linux, with a
+> matching Device Tree binding.
+>
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for that controller over to a YAML schemas.
+>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-Add i.MX8QXP CPU thermal zone support.
-
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No change, just rebase the patch to top of linux-next and below my patch:
-https://patchwork.kernel.org/patch/10962185/
----
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 37 ++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index 9f52da6..4448c65 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/pads-imx8qxp.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -162,6 +163,11 @@
- 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
- 			timeout-sec = <60>;
- 		};
-+
-+		tsens: thermal-sensor {
-+			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
-+			#thermal-sensor-cells = <1>;
-+		};
- 	};
- 
- 	timer {
-@@ -530,4 +536,35 @@
- 			power-domains = <&pd IMX_SC_R_GPIO_7>;
- 		};
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		cpu-thermal0 {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tsens IMX_SC_R_SYSTEM>;
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <107000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+				cpu_crit0: trip1 {
-+					temperature = <127000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert0>;
-+					cooling-device =
-+						<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+
-+				};
-+			};
-+		};
-+	};
- };
--- 
-2.7.4
-
+Acked-by: Chen-Yu Tsai <wens@csie.org>
