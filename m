@@ -2,86 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A338E2CCCB
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 18:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A9E2CCD6
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 19:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727025AbfE1Q7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 12:59:05 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:37511 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726911AbfE1Q7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 12:59:05 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 3AFF920045;
-        Tue, 28 May 2019 18:59:02 +0200 (CEST)
-Date:   Tue, 28 May 2019 18:59:00 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v3 04/10] dt-bindings: display: renesas: lvds: Add
- renesas, companion property
-Message-ID: <20190528165900.GA10262@ravnborg.org>
-References: <20190528141234.15425-1-laurent.pinchart+renesas@ideasonboard.com>
- <20190528141234.15425-5-laurent.pinchart+renesas@ideasonboard.com>
- <20190528163730.GA9610@ravnborg.org>
- <20190528164916.GA17874@pendragon.ideasonboard.com>
+        id S1726600AbfE1RBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 13:01:50 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:39378 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbfE1RBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 13:01:50 -0400
+Received: by mail-ot1-f67.google.com with SMTP id r7so18446001otn.6
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 10:01:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iXaT/662lKTTFQBCDcS2ZEat9fIaR7M4GYugaqB1Wkg=;
+        b=lDmleI+b1UyBzsslpJy5lhChbKSaa63UAgizRWyIy4fVRC6wSP+8Ret2GDRw4XGPEj
+         BI2hEu6tiyEm6C8vbnua1uMHRr34Ox5M9wjanzgvkY/b60Oa08YbugUBO16xHz+LmzDq
+         pnKojwLT8954Zn2MCoISFwPcCcOiWEDNT4dHnxNwRKfcAeB7lwc585rUPGR2LOT7q2jG
+         LwuNd6V2rGNTQ5inkgtq5RMo2/S645USR0jX2G24Vo13IRy0eqM4DuJ9DkwiP4RzbxCc
+         ypafrCZe0FWqFcUN6i4lvktlPV3fD8xC5C71ASm8/FR1zGyn9VghpUNnsN51/vSJgQ13
+         QnsA==
+X-Gm-Message-State: APjAAAXzsLvdUDqndfIE7hcgxIlLqzNWm2BgrccHlBWi+IOtbDa36hi9
+        BqHouY+cwj3D/rOXUI5GkXjzAs7bI6DkiE43q6o=
+X-Google-Smtp-Source: APXvYqzmGWU8ZNTdJwZ7u85ckVkZqsIKCQQEp9F5em1sf5denOzFAP+GNJ41Bi9X/+eSkm14ZNv7TMXictQhTW/dCBc=
+X-Received: by 2002:a9d:7dd5:: with SMTP id k21mr49049157otn.167.1559062909795;
+ Tue, 28 May 2019 10:01:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190528164916.GA17874@pendragon.ideasonboard.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
-        a=RqNDS8CZelupaJZLNH0A:9 a=CjuIK1q_8ugA:10
+References: <20190528154312.14435-1-ckeepax@opensource.cirrus.com>
+In-Reply-To: <20190528154312.14435-1-ckeepax@opensource.cirrus.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Tue, 28 May 2019 19:01:38 +0200
+Message-ID: <CAJZ5v0h28OAiT7KP=TLu069hNvYjCLoFndS+zx7_iE+jKfOF2w@mail.gmail.com>
+Subject: Re: [PATCH 1/6] device property: Add new array helper
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        patches@opensource.cirrus.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent.
+On Tue, May 28, 2019 at 5:43 PM Charles Keepax
+<ckeepax@opensource.cirrus.com> wrote:
+>
+> It is fairly common to want to read an integer array property
+> that is composed of an unknown number of fixed size integer
+> groups. For example, say each group consists of three values
+> which correspond to the settings for one input on the device
+> and the driver supports several chips with different numbers
+> of inputs.
+>
+> Add a new helper function to provide this functionality, it
+> differs for the existing helpers in that it allows reading a
+> smaller number of values than the full array size and checks
+> that the number of values read is a multiple of the group size.
 
-> > >  
-> > > +Optional properties:
-> > > +
-> > > +- renesas,companion : phandle to the companion LVDS encoder. This property is
-> > > +  mandatory for the first LVDS encoder on D3 and E3 SoCs, and shall point to
-> > > +  the second encoder to be used as a companion in dual-link mode. It shall not
-> > > +  be set for any other LVDS encoder.
-> > 
-> > If the D3 and E3 socs do not mandate the use of dual-link, then what to
-> > do in the DT? Because according to the above this property must be
-> > specified for D3 and E3 SOC's.
-> 
-> This property doesn't enable dual-link mode, it only specifies the
-> companion LVDS encoder used for dual-link mode, when enabled (through
-> communication between the LVDS encoder and the LVDS receiver at
-> runtime).
-> 
-> Jacopo had a similar comment so I suppose this isn't clear. How would
-> you word it to make it clear ?
-Let me try:
+As a rule, you need also CC all of the device property framework
+changes to linux-acpi@vger.kernel.org, so please resend the series
+with that taken into account.
 
-
-- renesas,companion : phandle to the companion LVDS encoder. This property is
-  mandatory for the first LVDS encoder on D3 and E3 SoCs when dual-link mode
-  is supported.
-  The property shall pont to the phandle of the second encoder to be used as a
-  companion in dual-link mode. It shall not be set for any other LVDS encoder.
-
-The main difference is "when dual-link mode is supported".
-As per my understanding this property is only relevant when the actual
-HW supports / uses dual-link mode.
-So for a board that do not even wire up dual-link, then setting the
-property would be confusing.
-
-I hope this better describes my understanding.
-
-	Sam
+Thanks!
