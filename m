@@ -2,109 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C5BF2C578
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 199FB2C5A7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfE1Le4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 07:34:56 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45862 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726305AbfE1Lez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 07:34:55 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4SBYoRP099127;
-        Tue, 28 May 2019 06:34:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559043290;
-        bh=P5KVIiZh3Nun0m+9PqwCu28xvWWa75LyAqbjIU0ZS74=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=QIfoVyy88eGvEv3Y6yfq8GFY/mwrZ/ioUsL0RpdqGiACEPymZ0gcg1WAQyMxEEEWD
-         K8lOu2uDCJ3pbRerxtYkxDloAXJy1fGBij0MCCzQHO1DtHi3R1kOaTvGiQYKLuaVf0
-         LRw+juTFQbFsXU0i3N1WLHZiMrtf/mSwuyVmaUJM=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4SBYnGN124533
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 May 2019 06:34:50 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
- May 2019 06:34:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 28 May 2019 06:34:49 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4SBYmh8069662;
-        Tue, 28 May 2019 06:34:48 -0500
-Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
-From:   Dan Murphy <dmurphy@ti.com>
-To:     Pavel Machek <pavel@ucw.cz>
-CC:     <jacek.anaszewski@gmail.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20190523190820.29375-1-dmurphy@ti.com>
- <20190523190820.29375-2-dmurphy@ti.com> <20190527103355.GA5287@amd>
- <522728b0-147b-3708-fea1-88a895491e05@ti.com>
-Message-ID: <34dbfab0-0dd4-cf9a-ed86-a74363981077@ti.com>
-Date:   Tue, 28 May 2019 06:34:47 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726776AbfE1Lq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 07:46:56 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:53115 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726580AbfE1Lq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 07:46:56 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 300A94000A;
+        Tue, 28 May 2019 11:46:48 +0000 (UTC)
+Date:   Tue, 28 May 2019 13:47:58 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-media@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
+Message-ID: <20190528114758.a4oac3zgdy7dkx7k@uno.localdomain>
+References: <20190520201812.7937-1-marex@denx.de>
 MIME-Version: 1.0
-In-Reply-To: <522728b0-147b-3708-fea1-88a895491e05@ti.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="sxscfq2uey2wyh53"
+Content-Disposition: inline
+In-Reply-To: <20190520201812.7937-1-marex@denx.de>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pavel
 
-On 5/27/19 7:45 PM, Dan Murphy wrote:
-> Pavel
+--sxscfq2uey2wyh53
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Marek,
+   thanks for the patch
+
+On Mon, May 20, 2019 at 10:18:11PM +0200, Marek Vasut wrote:
+> Add bindings for the Intersil ISL7998x BT656-to-MIPI-CSI2 decoder.
 >
-> On 5/27/19 5:33 AM, Pavel Machek wrote:
->> On Thu 2019-05-23 14:08:12, Dan Murphy wrote:
->>> Add a documentation of LED Multicolor LED class specific
->>> sysfs attributes.
->>>
->>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
->>> ---
->>>   .../ABI/testing/sysfs-class-led-multicolor    | 57 
->>> +++++++++++++++++++
->>>   1 file changed, 57 insertions(+)
->>>   create mode 100644 
->>> Documentation/ABI/testing/sysfs-class-led-multicolor
->>>
->>> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor 
->>> b/Documentation/ABI/testing/sysfs-class-led-multicolor
->>> new file mode 100644
->>> index 000000000000..2f102ede258b
->>> --- /dev/null
->>> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
->>> @@ -0,0 +1,57 @@
->>> +What:        /sys/class/leds/<led>/colors/sync_enable
->>> +Date:        April 2019
->> I believe I suggested more reasonable interface. Why not use that?
->>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> To: linux-media@vger.kernel.org
+> ---
+>  .../bindings/media/i2c/isl7998x.txt           | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/isl7998x.=
+txt
 >
-> Can you please provide the reference to your interface?
+> diff --git a/Documentation/devicetree/bindings/media/i2c/isl7998x.txt b/D=
+ocumentation/devicetree/bindings/media/i2c/isl7998x.txt
+> new file mode 100644
+> index 000000000000..c21703983360
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
+> @@ -0,0 +1,37 @@
+> +Intersil ISL7998x BT656-to-MIPI-CSI2 decoder
+> +
+> +The Intersil ISL7998x is a BT656-to-MIPI-CSI decoder which, capable of
+> +receiving up to four analog stream and multiplexing them into up to four
+> +MIPI CSI2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
+> +
+
+The documentation is not public, so I can only read what's reported on
+the website and the short public datasheet at [1]
+
+=46rom my understanding of the product page, both the ISL79987 and
+ILS79988 devices support up to 4 analog inputs, and provide a CSI-2
+output and a BT656 output respectively.
+
+What am I reading wrong ?
+
+[1] https://www.renesas.com/eu/en/products/audio-video/video-decoders-encod=
+ers/video-decoders/device/ISL79987.html
+
+> +Required Properties:
+> +- compatible: value should be "isil,isl79987"
+> +- pd-gpios: a GPIO spec for the Power Down pin (active high)
+> +
+> +Option Properties:
+> +- isil,num-inputs: Number of connected inputs (1, 2 or 4)
+
+Can't you derive this from the number of connected input endpoints
+instead of providing a custom property?
+
+> +
+> +For further reading on port node refer to
+> +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+
+I think a description of the supported ports and their intended
+usages is required here. You have up to 4 inputs and 1 output port,
+how do you expect them to be numbered? is port@4 the last input or the
+output one?
+
+> +Example:
+> +
+> +	i2c_master {
+> +		isl7998x_mipi@44 {
+> +			compatible =3D "isil,isl79987";
+> +			reg =3D <0x44>;
+> +			isil,num-inputs =3D <4>;
+> +			pinctrl-names =3D "default";
+> +			pinctrl-0 =3D <&pinctrl_videoadc>;
+> +			pd-gpios =3D <&gpio3 27 GPIO_ACTIVE_HIGH>;
+> +			status =3D "okay";
+> +
+> +			port {
+> +				isl79987_to_mipi_csi2: endpoint {
+> +					remote-endpoint =3D <&mipi_csi2_in>;
+> +					clock-lanes =3D <0>;
+> +					data-lanes =3D <1 2>;
+> +				};
+
+I see from the example you only support one output port? How do you
+model the input ones.
+
+Thanks
+   j
+
+> +			};
+> +		};
+> +	};
+> --
+> 2.20.1
 >
-I think I found the suggestion [0].  Assuming that was the suggestion it 
-violates the kernel 1 value/file and there was agreement that this 
-interface had value. In testing the interface, it made sense to be able 
-to setup a color after writing each color brightness file and then 
-syncing the color LEDs with the new brightness levels.  It also provides 
-flexibility to be able to set a single LED color without writing sync.  
-The decision to do either or should really be a user space decision.   
-If I have referenced the wrong thread please let me know which thread 
-you are referring to.
 
-[0] https://lore.kernel.org/patchwork/patch/1057044/
+--sxscfq2uey2wyh53
+Content-Type: application/pgp-signature; name="signature.asc"
 
-<snip>
+-----BEGIN PGP SIGNATURE-----
 
-Dan
+iQIyBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlztH+4ACgkQcjQGjxah
+Vjw+cw/3ex/iCAHHMg+krBaQOQOuLQnDcPPcLJkQaDcDxmX7Kjc/ufmlGPyzGu8O
++Cv9kdHRCSyuMQTWkqI7C6LmW2J6JT0bDaX9QkZbeuq6fx5B8J8LUFC36aSXro+X
+eju/4laNijDD4Atvc/eULQi1NG7d1Xnn94RfJ2HFrwfbwset6NnuHc1k6d7BfF7D
+kjKs91c6HH4nxP/A7heXnYGULx3bDVrXzWXn1iXJYnbj85zqXxbCyb2TbHi4BNek
+hv6RScO2ONJil2NzIudOxYVbmtqpIuVLdYKeCFC8EBkDVNa1FXRRW9acTza46qD1
+bEjmrs2/4F9BarTjibJ/54kP9gaw9Xs+2utEGe9J7U25ZKPp9+qaPlWghyk6YZVh
+NzqQTMePBwNRquCMU5VHBuQHwl0MmC8HeLHFLnH0waQEYqwZkXTeJEyMfoX2GyYt
+W3sChXGk/O1D2qTTRHN3casQSUFLgCdi0pdBzZppckq//QANRH9iUep4QF4acoG1
+gu2tTrFPJ0x2u1r33lgWxdyTMKjVxmcWX6N4i0pl7OD5oHD7nd/9+GiRRMviRuxx
+Z/VQzGd3kAkmIAlAlpAathr4WsZVgjBDvarvFXqAC3kWds05dqYMDHmHawhPXQ/P
+l6KCzIqjJDqmhjrUZuE5Ght3C55j39R1x57H0JC2CU4RoVA1Ug==
+=cjvk
+-----END PGP SIGNATURE-----
 
+--sxscfq2uey2wyh53--
