@@ -2,98 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE4E2C52E
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C5BF2C578
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:34:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726418AbfE1LMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 07:12:06 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:53486 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726313AbfE1LMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 07:12:06 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4SBBrF8071878;
-        Tue, 28 May 2019 06:11:53 -0500
+        id S1726579AbfE1Le4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 07:34:56 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45862 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726305AbfE1Lez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 07:34:55 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4SBYoRP099127;
+        Tue, 28 May 2019 06:34:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1559041913;
-        bh=XbgikyC9otiR4YuTt/uxocCuXVecKc1fGa0PD78NL7o=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=VPQcS2VMgEKOda7JpQv+0emh77HzV9Whuj3flfgsA+DAQrZa01jON9U3tCmf2khOg
-         fuw5K1DoHnhNWdOzur4PZNOJX0q0cdLT/bK5zsw6KnctJ5aFcCtwqMPk6Qb1AC39zI
-         lI9LCTS6Hi/6C3uZNTUIZsvumuuOlaTDghM/tqgQ=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4SBBr2P112080
+        s=ti-com-17Q1; t=1559043290;
+        bh=P5KVIiZh3Nun0m+9PqwCu28xvWWa75LyAqbjIU0ZS74=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=QIfoVyy88eGvEv3Y6yfq8GFY/mwrZ/ioUsL0RpdqGiACEPymZ0gcg1WAQyMxEEEWD
+         K8lOu2uDCJ3pbRerxtYkxDloAXJy1fGBij0MCCzQHO1DtHi3R1kOaTvGiQYKLuaVf0
+         LRw+juTFQbFsXU0i3N1WLHZiMrtf/mSwuyVmaUJM=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4SBYnGN124533
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 May 2019 06:11:53 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 28 May 2019 06:34:50 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 28
- May 2019 06:11:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ May 2019 06:34:49 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 28 May 2019 06:11:52 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4SBBoLo088964;
-        Tue, 28 May 2019 06:11:50 -0500
-Subject: Re: [PATCH] drm/omap: Migrate minimum FCK/PCK ratio from Kconfig to
- dts
-To:     Adam Ford <aford173@gmail.com>, <linux-omap@vger.kernel.org>
-CC:     <adam.ford@logicpd.com>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ Frontend Transport; Tue, 28 May 2019 06:34:49 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4SBYmh8069662;
+        Tue, 28 May 2019 06:34:48 -0500
+Subject: Re: [PATCH v3 1/9] leds: multicolor: Add sysfs interface definition
+From:   Dan Murphy <dmurphy@ti.com>
+To:     Pavel Machek <pavel@ucw.cz>
+CC:     <jacek.anaszewski@gmail.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-References: <20190510194229.20628-1-aford173@gmail.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <af325707-3e42-493d-e858-77878ef06138@ti.com>
-Date:   Tue, 28 May 2019 14:11:49 +0300
+References: <20190523190820.29375-1-dmurphy@ti.com>
+ <20190523190820.29375-2-dmurphy@ti.com> <20190527103355.GA5287@amd>
+ <522728b0-147b-3708-fea1-88a895491e05@ti.com>
+Message-ID: <34dbfab0-0dd4-cf9a-ed86-a74363981077@ti.com>
+Date:   Tue, 28 May 2019 06:34:47 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190510194229.20628-1-aford173@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <522728b0-147b-3708-fea1-88a895491e05@ti.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Pavel
 
-On 10/05/2019 22:42, Adam Ford wrote:
-> Currently the source code is compiled using hard-coded values
-> from CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK.  This patch allows this
-> clock divider value to be moved to the device tree and be changed
-> without having to recompile the kernel.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+On 5/27/19 7:45 PM, Dan Murphy wrote:
+> Pavel
+>
+> On 5/27/19 5:33 AM, Pavel Machek wrote:
+>> On Thu 2019-05-23 14:08:12, Dan Murphy wrote:
+>>> Add a documentation of LED Multicolor LED class specific
+>>> sysfs attributes.
+>>>
+>>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>>> ---
+>>>   .../ABI/testing/sysfs-class-led-multicolor    | 57 
+>>> +++++++++++++++++++
+>>>   1 file changed, 57 insertions(+)
+>>>   create mode 100644 
+>>> Documentation/ABI/testing/sysfs-class-led-multicolor
+>>>
+>>> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor 
+>>> b/Documentation/ABI/testing/sysfs-class-led-multicolor
+>>> new file mode 100644
+>>> index 000000000000..2f102ede258b
+>>> --- /dev/null
+>>> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor
+>>> @@ -0,0 +1,57 @@
+>>> +What:        /sys/class/leds/<led>/colors/sync_enable
+>>> +Date:        April 2019
+>> I believe I suggested more reasonable interface. Why not use that?
+>>
+>
+> Can you please provide the reference to your interface?
+>
+I think I found the suggestion [0].  Assuming that was the suggestion it 
+violates the kernel 1 value/file and there was agreement that this 
+interface had value. In testing the interface, it made sense to be able 
+to setup a color after writing each color brightness file and then 
+syncing the color LEDs with the new brightness levels.  It also provides 
+flexibility to be able to set a single LED color without writing sync.  
+The decision to do either or should really be a user space decision.   
+If I have referenced the wrong thread please let me know which thread 
+you are referring to.
 
-I understand why you want to do this, but I'm not sure it's a good idea. 
-It's really something the driver should figure out, and if we add it to 
-the DT, it effectively becomes an ABI.
+[0] https://lore.kernel.org/patchwork/patch/1057044/
 
-That said... I'm not sure how good of a job the driver could ever do, as 
-it can't know the future scaling needs of the userspace at the time it 
-is configuring the clock. And so, I'm not nacking this patch, but I 
-don't feel very good about this patch...
+<snip>
 
-The setting also affects all outputs (exluding venc), which may not be 
-what the user wants. Then again, I think this setting is really only 
-needed on OMAP2 & 3, which have only a single output. But that's the 
-same with the current kconfig option, of course.
+Dan
 
-So, the current CONFIG_OMAP2_DSS_MIN_FCK_PER_PCK is an ugly hack, in my 
-opinion, and moving it to DT makes it a worse hack =). But I don't have 
-any good suggestions either.
-
-  Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
