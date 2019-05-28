@@ -2,116 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 447EF2BD55
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 04:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 139A32BD81
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 05:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727525AbfE1Cep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 22:34:45 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:38578 "EHLO inva020.nxp.com"
+        id S1727562AbfE1DPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 May 2019 23:15:25 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:56726 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727468AbfE1Cep (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 May 2019 22:34:45 -0400
+        id S1727468AbfE1DPZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 May 2019 23:15:25 -0400
 Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5A3C41A020D;
-        Tue, 28 May 2019 04:34:43 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5EAE41A020D;
+        Tue, 28 May 2019 05:15:23 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 99C641A021C;
-        Tue, 28 May 2019 04:34:39 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 1366C402CB;
-        Tue, 28 May 2019 10:34:35 +0800 (SGT)
-From:   Yuantian Tang <andy.tang@nxp.com>
-To:     shawnguo@kernel.org
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH v2] arm64: dts: ls1028a: Add temperature sensor node
-Date:   Tue, 28 May 2019 10:26:33 +0800
-Message-Id: <20190528022633.40124-1-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.14.1
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 756D31A0D4F;
+        Tue, 28 May 2019 05:15:11 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 48040402C9;
+        Tue, 28 May 2019 11:14:57 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, rui.zhang@intel.com,
+        edubezval@gmail.com, daniel.lezcano@linaro.org,
+        aisheng.dong@nxp.com, ulf.hansson@linaro.org, peng.fan@nxp.com,
+        daniel.baluta@nxp.com, maxime.ripard@bootlin.com, olof@lixom.net,
+        jagan@amarulasolutions.com, horms+renesas@verge.net.au,
+        leonard.crestez@nxp.com, bjorn.andersson@linaro.org,
+        dinguyen@kernel.org, enric.balletbo@collabora.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V13 1/5] dt-bindings: fsl: scu: add thermal binding
+Date:   Tue, 28 May 2019 11:16:50 +0800
+Message-Id: <20190528031654.43801-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.17.1
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nxp sa56004 chip node for temperature monitor.
+From: Anson Huang <Anson.Huang@nxp.com>
 
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
+system controller, the system controller is in charge of system
+power, clock and thermal sensors etc. management, Linux kernel
+has to communicate with system controller via MU (message unit)
+IPC to get temperature from thermal sensors, this patch adds
+binding doc for i.MX system controller thermal driver.
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
-v2:
-	- change the node name and add vcc-supply
+No change, just rebase the patch to top of linux-next and based on my watchdog patch:
+https://patchwork.kernel.org/patch/10962183/
+---
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt        | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 15 +++++++++++++++
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 15 +++++++++++++++
- 2 files changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index 6571d0483c7a..f12e4f510d6e 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -47,6 +47,15 @@
- 		regulator-always-on;
- 	};
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index a575e42..fc3844e 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -155,6 +155,17 @@ Required properties:
+ Optional properties:
+ - timeout-sec: contains the watchdog timeout in seconds.
  
-+	sb_3v3: regulator-sb3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3_vbus";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
++Thermal bindings based on SCU Message Protocol
++------------------------------------------------------------
 +
- 	sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,format = "i2s";
-@@ -147,6 +156,12 @@
- 				compatible = "atmel,24c512";
- 				reg = <0x57>;
- 			};
++Required properties:
++- compatible:			Should be :
++				  "fsl,imx8qxp-sc-thermal"
++				followed by "fsl,imx-sc-thermal";
 +
-+			temperature-sensor@4c {
-+				compatible = "nxp,sa56004";
-+				reg = <0x4c>;
-+				vcc-supply = <&sb_3v3>;
-+			};
++- #thermal-sensor-cells:	See Documentation/devicetree/bindings/thermal/thermal.txt
++				for a description.
++
+ Example (imx8qxp):
+ -------------
+ aliases {
+@@ -222,6 +233,11 @@ firmware {
+ 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
+ 			timeout-sec = <60>;
  		};
- 
- 		i2c@5 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index 235ca3a83dc3..e64c28983ec9 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -43,6 +43,15 @@
- 		regulator-always-on;
- 	};
- 
-+	sb_3v3: regulator-sb3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3_vbus";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
 +
- 	sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,format = "i2s";
-@@ -132,6 +141,12 @@
- 				compatible = "nxp,pcf2129";
- 				reg = <0x51>;
- 			};
-+
-+			temperature-sensor@4c {
-+				compatible = "nxp,sa56004";
-+				reg = <0x4c>;
-+				vcc-supply = <&sb_3v3>;
-+			};
- 		};
++		tsens: thermal-sensor {
++			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
++			#thermal-sensor-cells = <1>;
++		};
  	};
  };
+ 
 -- 
-2.17.1
+2.7.4
 
