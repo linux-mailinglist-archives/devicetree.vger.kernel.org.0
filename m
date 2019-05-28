@@ -2,116 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EB3C2C182
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 10:40:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D722C198
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 10:47:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726441AbfE1Ikx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 04:40:53 -0400
-Received: from mail-vk1-f194.google.com ([209.85.221.194]:38964 "EHLO
-        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725943AbfE1Ikx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 04:40:53 -0400
-Received: by mail-vk1-f194.google.com with SMTP id l13so54939vkk.6
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 01:40:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L1gEe0Qo8uUw419whddZefVmtI1Y7WOAQp/Jh1nRbBY=;
-        b=GgRPe8E23Cer8Df2SQau1m/3AEgbXMJIUf9Mzz4H1Om4WYidE64+qFE0cnf2/qjdNf
-         nKzLE1aUuA7hdhVAZe14ZNmicWNfhS1TTTf5mBvhC7KDo66j5v/uS1D8RXfibCDbLeV7
-         tXRUgxh9BcrEvkxi36Qg9Wbw9z+Yw8Px/cW0AQ5a1Dk3rPxG64mXomNtsK7uTlKcWNYt
-         gaBEsdD968TJcWOLIRFic9Kp+v7xkMoS/oHh/8MkM79TkCssqljli4Hl71gkjer7ydLp
-         dLGjYQlGrdurQYJsGv4mLcyblN9hl5NEF0wVIgI9ES+8Gm84uPI6v72NFa4dNnEqocjE
-         t9/g==
+        id S1726418AbfE1IrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 04:47:23 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:45847 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725943AbfE1IrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 04:47:23 -0400
+Received: by mail-lf1-f67.google.com with SMTP id m14so713643lfp.12;
+        Tue, 28 May 2019 01:47:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=L1gEe0Qo8uUw419whddZefVmtI1Y7WOAQp/Jh1nRbBY=;
-        b=aHutVEjOm5Q4BGBVt+cjWqNM79FRtA1V2qYVnrxPyzEmwIkyf/4TwPqpbsrLg88IAr
-         WxsA0nAQswHtYEICNakDbQ3Tg9SAskjXMXUM7BeNHmv76UTCPUtjFWQtIik6m7sOST1E
-         ffVJDMP8EFc/HPo/QtROWvnB9Pm4FHpZcL0Cw1QQv1tpx/Rp0Qnv03p/rHKZ59YpF8cu
-         POtONCCxPGLBJnsH6p76Y027AMJ0QU06zKFzzLmOhVkpY3QjwjjWNGVw7XH96sXGZCx2
-         C84PBjb9pPqMdhRvG9jATYqiG7oX16JgxBBGW1hydafB0OThvLCL2gd66wHErBk12yvK
-         mQIw==
-X-Gm-Message-State: APjAAAVi7zhqm1bDX3WB5u16nAvtys5n1/ukLzd0G56a7F4gVcLeFxHj
-        eMtTGuFlHhf+rZhK9OVTcJeDTmuJ6eQV2dF13wofUg==
-X-Google-Smtp-Source: APXvYqx7LhK72f0luzwT93lolmN9FxjSTp2ZQy1E52COyZc/gaMuKcVA6k4ogJNFhunQ6qfXUyFIxCroR3vUPGJZ9Zw=
-X-Received: by 2002:a1f:bc4b:: with SMTP id m72mr2400696vkf.36.1559032852442;
- Tue, 28 May 2019 01:40:52 -0700 (PDT)
+        bh=0BZhFw5XvENC9DVo6G2yJZFwTXeqFKPCts0weQ9ljkI=;
+        b=HOv8hRa8eKGdWa3ZFhPyXXbuCLMej58nOh0pVUMVa/SzGe0woh1WUiRIXwE0bolYUP
+         C4DvImEMIFXzf4owFZBsf1rePD1+b8kuMgBBQpbXuEbMR+b/iewBO77RtUcwYc59ih70
+         A+2jfgHHg9AdYjZ7ZT6Sn3H/90oZUJJPU0KchrzFD32q1ZVKx9xYiTiZ79zLbItiUgkf
+         qcom/cU88y4Y6CFawTkxA3wX7n9VZPPQ7KpJO8n4GqA8JG9vh0TJsQjuP4TGkz0zbF5R
+         2Ub4JhfW+9gzTfz3x+nu3VUXPxM+OrGr10RGCXq8vUdpRI8jKBL5R4UU1L5Y1l63xq3/
+         mekQ==
+X-Gm-Message-State: APjAAAWIbgyw4CJCQCqBTnfk/NR05K0E9u4STdlfFRuB4pjjKILTTPvR
+        OE3FYbUfy/xF4e+ppy5Q30GbszIRg+F2/zlg/bk=
+X-Google-Smtp-Source: APXvYqz/XHyUYD0KGucZO3XZHqTc09FsYgJppemKQ5vPmF3Z0Q/btUW/O0mFABcdosXXMESX4LvPI0u0MUcKU1B9Gew=
+X-Received: by 2002:ac2:44b1:: with SMTP id c17mr9783021lfm.87.1559033241102;
+ Tue, 28 May 2019 01:47:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 28 May 2019 10:40:16 +0200
-Message-ID: <CAPDyKFrs6f4_Xr=ATay_wDYNPa+-jdZvP4XSB55B-EFMAETN1Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Add YAML schemas for the generic
- MMC options
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
+References: <1557997166-63351-1-git-send-email-biju.das@bp.renesas.com> <1557997166-63351-3-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1557997166-63351-3-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 28 May 2019 10:47:09 +0200
+Message-ID: <CAMuHMdUeRmE0k9EwsObRPjB4whiRokr1OTAWVgv7DBREoO0Etg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a774c0-cat874: Add BT support
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +patternProperties:
-> +  "^.*@[0-9]+$":
-> +    properties:
-> +      reg:
-> +        items:
-> +          - minimum: 0
-> +            maximum: 7
-> +            description:
-> +              Must contain the SDIO function number of the function this
-> +              subnode describes. A value of 0 denotes the memory SD
-> +              function, values from 1 to 7 denote the SDIO functions.
-> +
-> +      broken-hpi:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          Use this to indicate that the mmc-card has a broken hpi
-> +          implementation, and that hpi should not be used.
-> +
-> +    required:
-> +      - reg
-> +
+On Thu, May 16, 2019 at 11:06 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> This patch enables BT support for the CAT874 board.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-[...]
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> -Use of Function subnodes
-> -------------------------
-> -
-> -On embedded systems the cards connected to a host may need additional
-> -properties. These can be specified in subnodes to the host controller node.
-> -The subnodes are identified by the standard 'reg' property.
-> -Which information exactly can be specified depends on the bindings for the
-> -SDIO function driver for the subnode, as specified by the compatible string.
-> -
-> -Required host node properties when using function subnodes:
-> -- #address-cells: should be one. The cell is the slot id.
-> -- #size-cells: should be zero.
-> -
-> -Required function subnode properties:
-> -- reg: Must contain the SDIO function number of the function this subnode
-> -       describes. A value of 0 denotes the memory SD function, values from
-> -       1 to 7 denote the SDIO functions.
-> -
-> -Optional function subnode properties:
-> -- compatible: name of SDIO function following generic names recommended practice
-> -
+Gr{oetje,eeting}s,
 
-I think most of the information of how we use sub(child) nodes
-disappeared in this conversion - or at least gets harder to
-understand. Could we perhaps keep some of this?
+                        Geert
 
-Kind regards
-Uffe
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
