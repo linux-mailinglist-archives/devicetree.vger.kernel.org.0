@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 191B52C520
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA052C529
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 13:10:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726579AbfE1LGc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 28 May 2019 07:06:32 -0400
-Received: from eu-smtp-delivery-151.mimecast.com ([146.101.78.151]:48796 "EHLO
-        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726451AbfE1LGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 07:06:32 -0400
-Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-51-I9st8qMRPWGW6eWon_ML-A-1; Tue, 28 May 2019 12:06:27 +0100
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
- Server (TLS) id 15.0.1347.2; Tue, 28 May 2019 12:06:26 +0100
-Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
- AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000;
- Tue, 28 May 2019 12:06:26 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Tony Lindgren' <tony@atomide.com>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-CC:     Dave Gerlach <d-gerlach@ti.com>, Faiz Abbas <faiz_abbas@ti.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        "Roger Quadros" <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 01/12] bus: ti-sysc: Support 16-bit writes too
-Thread-Topic: [PATCH 01/12] bus: ti-sysc: Support 16-bit writes too
-Thread-Index: AQHVFIXZIpY/mCelSky05+1Jud+wtaaAYYxw
-Date:   Tue, 28 May 2019 11:06:26 +0000
-Message-ID: <5e9a31dfdfd843469c51106fce9ea353@AcuMS.aculab.com>
-References: <20190527121348.45251-1-tony@atomide.com>
- <20190527121348.45251-2-tony@atomide.com>
-In-Reply-To: <20190527121348.45251-2-tony@atomide.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        id S1726345AbfE1LKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 07:10:31 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:36235 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726313AbfE1LKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 07:10:31 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id E67F8E0004;
+        Tue, 28 May 2019 11:10:24 +0000 (UTC)
+Date:   Tue, 28 May 2019 13:10:24 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/7] Allwinner H6 DMA support
+Message-ID: <20190528111024.gj25jh5vstizze74@flea>
+References: <20190527201459.20130-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-X-MC-Unique: I9st8qMRPWGW6eWon_ML-A-1
-X-Mimecast-Spam-Score: 0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="z7ek7mx2fjvua3lu"
+Content-Disposition: inline
+In-Reply-To: <20190527201459.20130-1-peron.clem@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tony Lindgren
-> Sent: 27 May 2019 13:14
-> We need to also support 16-bit writes for i2c in addition to the reads
-> when we start configuring the sysconfig register for reset and idle modes.
-> 
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  drivers/bus/ti-sysc.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
-> --- a/drivers/bus/ti-sysc.c
-> +++ b/drivers/bus/ti-sysc.c
-> @@ -100,6 +100,13 @@ static void sysc_parse_dts_quirks(struct sysc *ddata, struct device_node *np,
-> 
->  static void sysc_write(struct sysc *ddata, int offset, u32 value)
->  {
-> +	if (ddata->cfg.quirks & SYSC_QUIRK_16BIT) {
-> +		writew_relaxed(value & 0xffff, ddata->module_va + offset);
-> +		writew_relaxed(value >> 16, ddata->module_va + offset + 4);
 
-Should that be + 2 ???
+--z7ek7mx2fjvua3lu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +		return;
-> +	}
-> +
->  	writel_relaxed(value, ddata->module_va + offset);
->  }
+On Mon, May 27, 2019 at 10:14:52PM +0200, Cl=E9ment P=E9ron wrote:
+> Hi,
+>
+> This series has been first proposed by Jernej Skrabec[1].
+> As this series is mandatory for SPDIF/I2S support and because he is
+> busy on Cedrus stuff. I asked him to make the minor change requested
+> and repost it.
+> Authorship remains to him.
+>
+> I have tested this series with SPDIF driver and added a patch to enable
+> DMA_SUN6I_CONFIG for arm64.
+>
+> Original Post:
+> "
+> DMA engine engine on H6 almost the same as on older SoCs. The biggest
+> difference is that it has slightly rearranged bits in registers and
+> it needs additional clock, probably due to iommu.
+>
+> These patches were tested with I2S connected to HDMI. I2S needs
+> additional patches which will be sent later.
 
-	David
+For the whole series,
+Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
+Maxime
 
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--z7ek7mx2fjvua3lu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXO0XIAAKCRDj7w1vZxhR
+xVR3AP9YbutRsxD9Y3rwfBC3bguX4JoBWqgLPRSKHszeGDW36QEA+LVEhKb99jvN
+catOGhDyeFdJdmT6r7eRLjjtMuPzCg8=
+=pe/c
+-----END PGP SIGNATURE-----
+
+--z7ek7mx2fjvua3lu--
