@@ -2,233 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7B852D1D3
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 01:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A052D1FB
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 01:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726963AbfE1XCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 19:02:20 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:35044 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727644AbfE1XCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 19:02:20 -0400
-Received: by mail-pf1-f196.google.com with SMTP id d126so263113pfd.2;
-        Tue, 28 May 2019 16:02:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=JrcPDuAFrT0kBFAkL3W3QNhPSv5oCk1/oSUkr2l2aQg=;
-        b=RpbbByeIQSuxpCpW000iv9NexBvHSPXVbUWRIQdw2/m8q/ohtNGBYflUZgy9ZKltGA
-         aJSEwHEHHHgjoysC5gacLMJuTuRqIM3kZZFLq8UaXX9DYIxIUygYz7nmd4G6/WE5YADe
-         ylYnDLrhjaUSft+KuqT8j5xq24UcbqpVnSzI4aIHDqs6IJ5RGp52k+b/+riPV03IWFB2
-         2TjW89G4Io95py93GZie6KCOhZEQRE4NpbOIkq4qR29uYmlQYE77HDCbnijLTX5pFBU8
-         rrBmscbnXEhYI03D8sLzy3gNo9DGooJcoCVB0Z0NuuT5CeKBdhLI6TPLnRew3v730qPH
-         QenA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=JrcPDuAFrT0kBFAkL3W3QNhPSv5oCk1/oSUkr2l2aQg=;
-        b=V+vqdvIrCsnJ7JepgtF9AHRMDezlwfYl+ohxkXQzaug0EtQdvdQGC75Kh1Owf8QBJd
-         4a6zHlYQJAH5OGUlp+S4V+XR7/ADXboZsbNGaIhY9VmgFTpuLJ7H8uDHjOaOfmbX/++Y
-         S8dBeyPwo9hySoDsMI+Kd6UAwqu/MdpbNgRJE4yzIT4WqOdgG9MbAuS6XqW6ZoQWXoTK
-         NsoEYC+uWlvJM8PIgjLHhmiytOG5Fd4Z60zHm1cLbX+qKg4iZZoLYvOQgdDw6U05BhS7
-         ZPh4pz+s0NXMtpV4TVh2ysegdx8lCUNtIqt+ZxPZjjqaV5UeDjKN/iShN93cRSdP0M1G
-         vwqA==
-X-Gm-Message-State: APjAAAXL6sxTmHOV0I1htfqqUQczjQ+YqaxBsGraxcjH1VBV0asiv90C
-        Jb0qywb9KMvm2Tee0cGoiAg=
-X-Google-Smtp-Source: APXvYqzmyQ4N+ykhgfKclIyz83roWdW3COf/TLcBCRdQQyOr7Y0HBhdCu30wnl7INN8Tcu0LC9OpkA==
-X-Received: by 2002:a63:2ad2:: with SMTP id q201mr131357493pgq.94.1559084539511;
-        Tue, 28 May 2019 16:02:19 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id j13sm14369573pfh.13.2019.05.28.16.02.18
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 May 2019 16:02:18 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM IPROC ARM
-        ARCHITECTURE), Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Gregory Fong <gregory.0xf0@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 7/7] ARM: dts: NSP: Fix the bulk of W=1 DTC warnings
-Date:   Tue, 28 May 2019 16:01:34 -0700
-Message-Id: <20190528230134.27007-8-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190528230134.27007-1-f.fainelli@gmail.com>
-References: <20190528230134.27007-1-f.fainelli@gmail.com>
+        id S1727255AbfE1XJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 19:09:01 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:9103 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726876AbfE1XJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 19:09:01 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cedbf8b0000>; Tue, 28 May 2019 16:08:59 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 28 May 2019 16:08:59 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 28 May 2019 16:08:59 -0700
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL108.nvidia.com
+ (172.18.146.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 28 May
+ 2019 23:08:59 +0000
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 28 May
+ 2019 23:08:58 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Tue, 28 May 2019 23:08:58 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.110.103.86]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5cedbf8a0000>; Tue, 28 May 2019 16:08:58 -0700
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
+        <stefan@agner.ch>, <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>, <skomatineni@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH V2 00/12] LP0 entry and exit support for Tegra210
+Date:   Tue, 28 May 2019 16:08:44 -0700
+Message-ID: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
+MIME-Version: 1.0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559084939; bh=2b+AWpz2HgNUfsfdegjeMuOpOlMUMPBF8kt06/8Whxg=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=WmcwXPvawBckbzm/c86tcyg78+pLBn37oIG96jrkb0qfyiLK15R1mGS4NOgHtIOmv
+         1FdH6CEG+YV0q0nmBt55XzpIEGcYVN5vnqXsla97HUSfKCN5BZA5MAlihZhewnyLo1
+         UOtFDNw3Sn8CGaT+RG//2JDbc1anUNJ7oML2SoXVYhgvh4oFX5VMkmxCx2wrQzUJJB
+         0o5ge373yp+KktSfKIJD9QyKdGZbLN/yacasRQ1BIYMaNvGGFdJzMKYfJ35Yzcy+qx
+         TjU2xDGLN8UN7BFHguutxfliOELqr1BThk8kpY0I5j4//BhcYP7TLUiXQAHQt6+QoQ
+         KTFjGc2UczfZA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the bulk of the unit_address_vs_reg warnings and unnecessary
-\#address-cells/#size-cells without "ranges" or child "reg" property
+This patch series includes Tegra210 deepsleep/LP0 support with
+deep sleep exit through RTC alarm wake and power button wake events.
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- arch/arm/boot/dts/bcm-nsp.dtsi     | 9 +++------
- arch/arm/boot/dts/bcm958522er.dts  | 2 +-
- arch/arm/boot/dts/bcm958525er.dts  | 2 +-
- arch/arm/boot/dts/bcm958525xmc.dts | 2 +-
- arch/arm/boot/dts/bcm958622hr.dts  | 2 +-
- arch/arm/boot/dts/bcm958623hr.dts  | 2 +-
- arch/arm/boot/dts/bcm958625hr.dts  | 2 +-
- arch/arm/boot/dts/bcm958625k.dts   | 2 +-
- arch/arm/boot/dts/bcm988312hr.dts  | 2 +-
- 9 files changed, 11 insertions(+), 14 deletions(-)
+Note: Wake on power button is through gpio-keys node in device tree.
 
-diff --git a/arch/arm/boot/dts/bcm-nsp.dtsi b/arch/arm/boot/dts/bcm-nsp.dtsi
-index 6925b30c2253..da6d70f09ef1 100644
---- a/arch/arm/boot/dts/bcm-nsp.dtsi
-+++ b/arch/arm/boot/dts/bcm-nsp.dtsi
-@@ -77,7 +77,7 @@
- 		interrupt-affinity = <&cpu0>, <&cpu1>;
- 	};
- 
--	mpcore {
-+	mpcore@19000000 {
- 		compatible = "simple-bus";
- 		ranges = <0x00000000 0x19000000 0x00023000>;
- 		#address-cells = <1>;
-@@ -122,7 +122,7 @@
- 			      <0x20100 0x100>;
- 		};
- 
--		L2: l2-cache {
-+		L2: l2-cache@22000 {
- 			compatible = "arm,pl310-cache";
- 			reg = <0x22000 0x1000>;
- 			cache-unified;
-@@ -166,7 +166,7 @@
- 		};
- 	};
- 
--	axi {
-+	axi@18000000 {
- 		compatible = "simple-bus";
- 		ranges = <0x00000000 0x18000000 0x0011c40c>;
- 		#address-cells = <1>;
-@@ -415,9 +415,6 @@
- 					  "imp_sleep_timer_p5",
- 					  "imp_sleep_timer_p7",
- 					  "imp_sleep_timer_p8";
--			#address-cells = <1>;
--			#size-cells = <0>;
--
- 			status = "disabled";
- 
- 			/* ports are defined in board DTS */
-diff --git a/arch/arm/boot/dts/bcm958522er.dts b/arch/arm/boot/dts/bcm958522er.dts
-index 21479b4ce823..8c388eb8a08f 100644
---- a/arch/arm/boot/dts/bcm958522er.dts
-+++ b/arch/arm/boot/dts/bcm958522er.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x80000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm958525er.dts b/arch/arm/boot/dts/bcm958525er.dts
-index cda3d790965b..c339771bb22e 100644
---- a/arch/arm/boot/dts/bcm958525er.dts
-+++ b/arch/arm/boot/dts/bcm958525er.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x80000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm958525xmc.dts b/arch/arm/boot/dts/bcm958525xmc.dts
-index f86649812b59..1c72ec8288de 100644
---- a/arch/arm/boot/dts/bcm958525xmc.dts
-+++ b/arch/arm/boot/dts/bcm958525xmc.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x40000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm958622hr.dts b/arch/arm/boot/dts/bcm958622hr.dts
-index df60602b054d..96a021cebd97 100644
---- a/arch/arm/boot/dts/bcm958622hr.dts
-+++ b/arch/arm/boot/dts/bcm958622hr.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x80000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm958623hr.dts b/arch/arm/boot/dts/bcm958623hr.dts
-index 3893e7af343a..b2c7f21d471e 100644
---- a/arch/arm/boot/dts/bcm958623hr.dts
-+++ b/arch/arm/boot/dts/bcm958623hr.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x80000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm958625hr.dts b/arch/arm/boot/dts/bcm958625hr.dts
-index cf226b02141f..a2c9de35ddfb 100644
---- a/arch/arm/boot/dts/bcm958625hr.dts
-+++ b/arch/arm/boot/dts/bcm958625hr.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x20000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm958625k.dts b/arch/arm/boot/dts/bcm958625k.dts
-index 10b3d512bb33..3fcca12d83c2 100644
---- a/arch/arm/boot/dts/bcm958625k.dts
-+++ b/arch/arm/boot/dts/bcm958625k.dts
-@@ -42,7 +42,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x80000000>;
- 	};
-diff --git a/arch/arm/boot/dts/bcm988312hr.dts b/arch/arm/boot/dts/bcm988312hr.dts
-index e39db14d805e..edd0f630e025 100644
---- a/arch/arm/boot/dts/bcm988312hr.dts
-+++ b/arch/arm/boot/dts/bcm988312hr.dts
-@@ -43,7 +43,7 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory {
-+	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x80000000>;
- 	};
+This series also includes save and restore of PLLs, clocks, OSC contexts
+for basic LP0 exit.
+
+This patch series doesn't support 100% suspend/resume to allow fully
+functional state upon resume and we are working on some more drivers suspend
+and resume implementations.
+
+[V2] : V1 feedback fixes
+	Patch 0002: This version still using syscore. Thierry suggest not to
+	use syscore and waiting on suggestion from Linux Walleij for any better
+	way of storing current state of pins before suspend entry and restoring
+	them on resume at very early stage. So left this the same way as V1 and
+	will address once I get more feedback on this.
+	Also need to findout and implement proper way of forcing resume order
+	between pinctrl and gpio driver.
+
+
+Sowjanya Komatineni (12):
+  irqchip: tegra: do not disable COP IRQ during suspend
+  pinctrl: tegra: add suspend and resume support
+  clk: tegra: save and restore PLLs state for system
+  clk: tegra: add support for peripheral clock suspend and resume
+  clk: tegra: add support for OSC clock resume
+  clk: tegra: add suspend resume support for DFLL clock
+  clk: tegra: support for Tegra210 clocks suspend-resume
+  soc/tegra: pmc: allow support for more tegra wake models
+  soc/tegra: pmc: add pmc wake support for tegra210
+  gpio: tegra: implement wake event support for Tegra210 and prior GPIO
+  arm64: tegra: enable wake from deep sleep on RTC alarm.
+  soc/tegra: pmc: configure tegra deep sleep control settings
+
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi |   7 +
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi       |   5 +-
+ drivers/clk/tegra/clk-dfll.c                   |  82 ++++++
+ drivers/clk/tegra/clk-dfll.h                   |   2 +
+ drivers/clk/tegra/clk-divider.c                |  19 ++
+ drivers/clk/tegra/clk-pll-out.c                |  25 ++
+ drivers/clk/tegra/clk-pll.c                    |  99 +++++--
+ drivers/clk/tegra/clk-tegra-fixed.c            |  16 ++
+ drivers/clk/tegra/clk-tegra210.c               | 382 +++++++++++++++++++++++++
+ drivers/clk/tegra/clk.c                        |  74 ++++-
+ drivers/clk/tegra/clk.h                        |  13 +
+ drivers/gpio/gpio-tegra.c                      | 116 +++++++-
+ drivers/irqchip/irq-tegra.c                    |  22 +-
+ drivers/pinctrl/tegra/pinctrl-tegra.c          |  68 ++++-
+ drivers/pinctrl/tegra/pinctrl-tegra.h          |   3 +
+ drivers/pinctrl/tegra/pinctrl-tegra114.c       |   1 +
+ drivers/pinctrl/tegra/pinctrl-tegra124.c       |   1 +
+ drivers/pinctrl/tegra/pinctrl-tegra20.c        |   1 +
+ drivers/pinctrl/tegra/pinctrl-tegra210.c       |   1 +
+ drivers/pinctrl/tegra/pinctrl-tegra30.c        |   1 +
+ drivers/soc/tegra/pmc.c                        | 150 +++++++++-
+ 21 files changed, 1053 insertions(+), 35 deletions(-)
+
 -- 
-2.17.1
+2.7.4
 
