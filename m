@@ -2,67 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5780E2D24E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 01:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40EE92D257
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 01:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbfE1XP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 19:15:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57522 "EHLO mail.kernel.org"
+        id S1726506AbfE1XTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 19:19:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58668 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726600AbfE1XP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 19:15:58 -0400
+        id S1726463AbfE1XTJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 19:19:09 -0400
 Received: from localhost (ip67-88-213-2.z213-88-67.customer.algx.net [67.88.213.2])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 858F720989;
-        Tue, 28 May 2019 23:15:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BC72220989;
+        Tue, 28 May 2019 23:19:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559085357;
-        bh=/c4ol7KgiJXfMCOGnsBf9AXiqdwtZ1LxO0jkVUQ/WmQ=;
+        s=default; t=1559085548;
+        bh=gLXwtqoR2O8l7+c0291IGuJQqUwo3SYoHdpwuxGqWTs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vb8z0WIXDH1wtTC+kZSdaVf9u2rL+abnYjQyiGh6DAKzlG+i5w0SFikCrDS2sYSlV
-         UgQh7hYaM7lqZ7SBoLKgTWRfQ/SI5q8WzR1heucddOzOVzxfgfB3+2J8RwIOE8ZZvH
-         ZO7dMa3E3VoOtjYvuJnCrCbaVxmw8iSqAg5xlUqI=
-Date:   Tue, 28 May 2019 16:15:57 -0700
+        b=KUTdlo6jiZAm0NmzUUqNEqbn0E4XERNR67x5QN+XjxDmnnDOI46uGTSVxlFT72D7m
+         4a5jy8JN+78qGYcwkFP+uLd67Y0qSmvSNcZxbEj/UISWXQGKdzI7LmtXPTdAvAM5AS
+         2Uf76WTHDfIOMx7Ox6enmyyXgF/6NgkOkhf2f3JM=
+Date:   Tue, 28 May 2019 16:19:08 -0700
 From:   Greg KH <gregkh@linuxfoundation.org>
 To:     richard.gong@linux.intel.com
 Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
         atull@kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, sen.li@intel.com,
         Richard Gong <richard.gong@intel.com>
-Subject: Re: [PATCHv4 2/4] firmware: add Intel Stratix10 remote system update
- driver
-Message-ID: <20190528231557.GA28886@kroah.com>
+Subject: Re: [PATCHv4 3/4] firmware: rsu: document sysfs interface
+Message-ID: <20190528231908.GB28886@kroah.com>
 References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
- <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-4-git-send-email-richard.gong@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+In-Reply-To: <1559074833-1325-4-git-send-email-richard.gong@linux.intel.com>
 User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 03:20:31PM -0500, richard.gong@linux.intel.com wrote:
-> From: Richard Gong <richard.gong@intel.com>
-> 
-> The Intel Remote System Update (RSU) driver exposes interfaces access
-> through the Intel Service Layer to user space via sysfs interface.
-> The RSU interfaces report and control some of the optional RSU features
-> on Intel Stratix 10 SoC.
-> 
-> The RSU feature provides a way for customers to update the boot
-> configuration of a Intel Stratix 10 SoC device with significantly reduced
-> risk of corrupting the bitstream storage and bricking the system.
-> 
-> Signed-off-by: Richard Gong <richard.gong@intel.com>
-> Reviewed-by: Alan Tull <atull@kernel.org>
+On Tue, May 28, 2019 at 03:20:32PM -0500, richard.gong@linux.intel.com wrote:
+> +What:		/sys/devices/.../stratix10-rsu.0/driver/fail_image
+> +Date:		May 2019
+> +KernelVersion:	5.3
+> +Contact:	Richard Gong <richard.gong@intel.com>
+> +Description:
+> +		(RO) the version number of RSU firmware.
 
-Is Alan reviewing all of these new versions before you post them
-publicly?  If so, great, if not, don't add tags to new versions when you
-change things around...
+"fail_image" is the version number?  That doesn't match up with what the
+code says :(
+
+What happened to the version sysfs file?
 
 thanks,
 
