@@ -2,29 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B2982BEA1
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 07:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D33A42BEA7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 07:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727174AbfE1Ffi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 01:35:38 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:42827 "EHLO
+        id S1727103AbfE1FgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 01:36:12 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:2077 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726269AbfE1Ffh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 01:35:37 -0400
-X-UUID: be5130a6a2bb477e8ab994be11f10e88-20190528
-X-UUID: be5130a6a2bb477e8ab994be11f10e88-20190528
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        with ESMTP id S1726269AbfE1FgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 01:36:12 -0400
+X-UUID: 431b29fe870c431c9b09dc0979a77c29-20190528
+X-UUID: 431b29fe870c431c9b09dc0979a77c29-20190528
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 649026001; Tue, 28 May 2019 13:35:30 +0800
+        with ESMTP id 1074673266; Tue, 28 May 2019 13:36:00 +0800
 Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 28 May 2019 13:35:29 +0800
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 28 May 2019 13:35:59 +0800
 Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 28 May 2019 13:35:29 +0800
-Message-ID: <1559021729.15879.1.camel@mtksdaap41>
-Subject: Re: [PATCH v2 22/25] drm/mediatek: adjust ddp clock control flow
+ Transport; Tue, 28 May 2019 13:35:59 +0800
+Message-ID: <1559021759.15879.2.camel@mtksdaap41>
+Subject: Re: [PATCH v2 24/25] drm/mediatek: respect page offset for PRIME
+ mmap calls
 From:   CK Hu <ck.hu@mediatek.com>
 To:     <yongqiang.niu@mediatek.com>
 CC:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
@@ -34,11 +35,11 @@ CC:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>, <Bibby.Hsieh@mediatek.com>,
         <yt.shen@mediatek.com>
-Date:   Tue, 28 May 2019 13:35:29 +0800
-In-Reply-To: <1555403090.11519.7.camel@mtksdaap41>
+Date:   Tue, 28 May 2019 13:35:59 +0800
+In-Reply-To: <1555403634.11519.11.camel@mtksdaap41>
 References: <1553667561-25447-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1553667561-25447-23-git-send-email-yongqiang.niu@mediatek.com>
-         <1555403090.11519.7.camel@mtksdaap41>
+         <1553667561-25447-25-git-send-email-yongqiang.niu@mediatek.com>
+         <1555403634.11519.11.camel@mtksdaap41>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
@@ -51,18 +52,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi, Yongqiang:
 
-On Tue, 2019-04-16 at 16:24 +0800, CK Hu wrote:
+On Tue, 2019-04-16 at 16:33 +0800, CK Hu wrote:
 > Hi, Yongqiang:
 > 
 > On Wed, 2019-03-27 at 14:19 +0800, yongqiang.niu@mediatek.com wrote:
 > > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > > 
-> > display hardware clock will not unprepare when
-> > crtc is disable, until crtc is destroyed.
-> > with this patch, hard clock will disable and unprepare
-> > at the same time.
+> > Respect page offset for PRIME mmap calls
 > 
 > Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
 
 This patch looks independent, so I've applied it to
 mediatek-drm-fixes-5.2 [1], thanks.
@@ -72,87 +71,39 @@ https://github.com/ckhu-mediatek/linux.git-tags/commits/mediatek-drm-fixes-5.2
 
 Regards,
 CK
+
 > 
 > > 
 > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > > ---
-> >  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 26 ++++++--------------------
-> >  1 file changed, 6 insertions(+), 20 deletions(-)
+> >  drivers/gpu/drm/mediatek/mtk_drm_gem.c | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
 > > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> > index 0f97ee3..606c6e2 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> > @@ -195,7 +195,7 @@ static int mtk_crtc_ddp_clk_enable(struct mtk_drm_crtc *mtk_crtc)
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.c b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> > index c230237..524e494 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> > @@ -144,7 +144,6 @@ static int mtk_drm_gem_object_mmap(struct drm_gem_object *obj,
+> >  	 * VM_PFNMAP flag that was set by drm_gem_mmap_obj()/drm_gem_mmap().
+> >  	 */
+> >  	vma->vm_flags &= ~VM_PFNMAP;
+> > -	vma->vm_pgoff = 0;
 > >  
-> >  	DRM_DEBUG_DRIVER("%s\n", __func__);
-> >  	for (i = 0; i < mtk_crtc->ddp_comp_nr; i++) {
-> > -		ret = clk_enable(mtk_crtc->ddp_comp[i]->clk);
-> > +		ret = clk_prepare_enable(mtk_crtc->ddp_comp[i]->clk);
-> >  		if (ret) {
-> >  			DRM_ERROR("Failed to enable clock %d: %d\n", i, ret);
-> >  			goto err;
-> > @@ -205,7 +205,7 @@ static int mtk_crtc_ddp_clk_enable(struct mtk_drm_crtc *mtk_crtc)
-> >  	return 0;
-> >  err:
-> >  	while (--i >= 0)
-> > -		clk_disable(mtk_crtc->ddp_comp[i]->clk);
-> > +		clk_disable_unprepare(mtk_crtc->ddp_comp[i]->clk);
-> >  	return ret;
+> >  	ret = dma_mmap_attrs(priv->dma_dev, vma, mtk_gem->cookie,
+> >  			     mtk_gem->dma_addr, obj->size, mtk_gem->dma_attrs);
+> > @@ -183,6 +182,12 @@ int mtk_drm_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+> >  
+> >  	obj = vma->vm_private_data;
+> >  
+> > +	/*
+> > +	 * Set vm_pgoff (used as a fake buffer offset by DRM) to 0 and map the
+> > +	 * whole buffer from the start.
+> > +	 */
+> > +	vma->vm_pgoff = 0;
+> > +
+> >  	return mtk_drm_gem_object_mmap(obj, vma);
 > >  }
 > >  
-> > @@ -215,7 +215,7 @@ static void mtk_crtc_ddp_clk_disable(struct mtk_drm_crtc *mtk_crtc)
-> >  
-> >  	DRM_DEBUG_DRIVER("%s\n", __func__);
-> >  	for (i = 0; i < mtk_crtc->ddp_comp_nr; i++)
-> > -		clk_disable(mtk_crtc->ddp_comp[i]->clk);
-> > +		clk_disable_unprepare(mtk_crtc->ddp_comp[i]->clk);
-> >  }
-> >  
-> >  static int mtk_crtc_ddp_hw_init(struct mtk_drm_crtc *mtk_crtc)
-> > @@ -615,15 +615,7 @@ int mtk_drm_crtc_create(struct drm_device *drm_dev,
-> >  		if (!comp) {
-> >  			dev_err(dev, "Component %pOF not initialized\n", node);
-> >  			ret = -ENODEV;
-> > -			goto unprepare;
-> > -		}
-> > -
-> > -		ret = clk_prepare(comp->clk);
-> > -		if (ret) {
-> > -			dev_err(dev,
-> > -				"Failed to prepare clock for component %pOF: %d\n",
-> > -				node, ret);
-> > -			goto unprepare;
-> > +			return ret;
-> >  		}
-> >  
-> >  		mtk_crtc->ddp_comp[i] = comp;
-> > @@ -649,23 +641,17 @@ int mtk_drm_crtc_create(struct drm_device *drm_dev,
-> >  		ret = mtk_plane_init(drm_dev, &mtk_crtc->planes[zpos],
-> >  				     BIT(pipe), type);
-> >  		if (ret)
-> > -			goto unprepare;
-> > +			return ret;
-> >  	}
-> >  
-> >  	ret = mtk_drm_crtc_init(drm_dev, mtk_crtc, &mtk_crtc->planes[0],
-> >  				mtk_crtc->layer_nr > 1 ? &mtk_crtc->planes[1] :
-> >  				NULL, pipe);
-> >  	if (ret < 0)
-> > -		goto unprepare;
-> > +		return ret;
-> >  	drm_mode_crtc_set_gamma_size(&mtk_crtc->base, MTK_LUT_SIZE);
-> >  	drm_crtc_enable_color_mgmt(&mtk_crtc->base, 0, false, MTK_LUT_SIZE);
-> >  	priv->num_pipes++;
-> >  
-> >  	return 0;
-> > -
-> > -unprepare:
-> > -	while (--i >= 0)
-> > -		clk_unprepare(mtk_crtc->ddp_comp[i]->clk);
-> > -
-> > -	return ret;
-> >  }
 > 
 
 
