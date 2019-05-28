@@ -2,140 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D992C807
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 15:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6D42C829
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 15:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726870AbfE1Nnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 09:43:46 -0400
-Received: from plaes.org ([188.166.43.21]:54830 "EHLO plaes.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727045AbfE1Nnp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 09:43:45 -0400
-Received: from plaes.org (localhost [127.0.0.1])
-        by plaes.org (Postfix) with ESMTPSA id C71B5402DD;
-        Tue, 28 May 2019 13:43:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
-        t=1559051023; bh=f16GXwO0bccw+CqyxghYo/6IH2hKOaqFoaXAUl2gBYY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nsFTjcKaRiqZx+PCgmpPV4uZ/cM9FBuepy2A96v2cnNvGBmmSQLg7/hAyTqSWCbIb
-         XnTU75k8LsJlRz+Kmx6Ry+gKKR3lBa6ZCm80MNo8WlPBbf0cux4PwMlvoqHlBIyRPZ
-         4XC/sNs+shNbpEATraIYAAT2UGxSvrKGxcAw3fPjUgcA2nOFsvP4nLJNkg+rZTE1XO
-         nKgXg8HWyQk1ERo7LO3sHRrqb9nPZQFu2biMrYy5JYUzCf14XoX6OeyOXBLQf0M3Jl
-         jO9GlPYr/8XKFdrmUZx0LXfL0XTxBiMoFdTeZAVXSfYg7u68J8oijIh8CS0O916rZV
-         D/Jp3Frlo70pg==
-Date:   Tue, 28 May 2019 13:43:42 +0000
-From:   Priit Laes <plaes@plaes.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [linux-sunxi] [RESEND PATCH] ARM: dts: sun7i: olimex-lime2:
- Enable ac and power supplies
-Message-ID: <20190528134342.25fep6kpmrr4p7vw@plaes.org>
-References: <20190528063544.17408-1-plaes@plaes.org>
- <2b671c1f0734177a6283407f753403473b70f5bc.camel@bootlin.com>
+        id S1727010AbfE1NzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 09:55:02 -0400
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:50175 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726867AbfE1NzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 09:55:02 -0400
+Received: from [IPv6:2001:983:e9a7:1:352c:d076:e7aa:19ae] ([IPv6:2001:983:e9a7:1:352c:d076:e7aa:19ae])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id VcZ8hizLksDWyVcZ9hdj7f; Tue, 28 May 2019 15:55:00 +0200
+Subject: Re: [PATCH v7 0/5] Add ZynqMP VCU/Allegro DVT H.264 encoder driver
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kernel@pengutronix.de, robh+dt@kernel.org, mchehab@kernel.org,
+        tfiga@chromium.org, dshah@xilinx.com
+References: <20190528130920.4450-1-m.tretter@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <d0f49d4e-d060-1324-5348-eec0f4336601@xs4all.nl>
+Date:   Tue, 28 May 2019 15:54:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2b671c1f0734177a6283407f753403473b70f5bc.camel@bootlin.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190528130920.4450-1-m.tretter@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfDQhOnCR1l2VQrV8/pTVrVX567xUMSObhXn2Yia5AomYyVXviAcPGZBJ+8pv4UPw4dGPe6NBpiggrDRrSc6Z16lQWTtvaFemKTp1W+/PWng8Io4NrbM2
+ 9NEPi1OZIUlPW1WJ8mqY79BW3733t0T8axkXnGfqKOIYQtsBZgYugeJEFstQNGO/zDWlxXvT1IHtAqCCHSSz9Ch5azKLHrM55+o6UjlHlgrjZZU9UZwvg2AN
+ ++lmLZuvL51Ob8ARXuQhLQDXcv020GEBqnWGUDAFVPyLCyRxjp9NokfZSdJuidy3Lv8DZn1HHbC50J51tFqlWAv34FaLT0KDKc+FbilPrXLu1vhDcIiP3jfm
+ 2blsID8RS9dW7go4IctnMou1vYor1cyIA9AZ+Z5hjsG2W1K0zggQgLAzsIRDuqf1B35BlKODltKgYVFWBM0nm6Dicrt+j1jKv02zNfElGzyW13p5xwGlchjZ
+ TUNTRbsJOHJmpq2v6R97b9xzswZTvUXoWg9feA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 28, 2019 at 02:58:57PM +0200, Paul Kocialkowski wrote:
-> Hi,
-> 
-> On Tue, 2019-05-28 at 09:35 +0300, Priit Laes wrote:
-> > Lime2 has battery connector so enable these supplies.
-> 
-> Out of curiosity, what is reported to userspace when no battery is
-> attached?
+Hi Michael,
 
-Data from /sys/class/power_supply/axp20x-battery:
+On 5/28/19 3:09 PM, Michael Tretter wrote:
+> This is v7 of the Allegro DVT H.264 encoder driver found in the EV
+> family of the Xilinx ZynqMP platform.
+> 
+> I moved the driver back to staging, because the v4l2 stateful encoder spec is
+> not finished, yet. Once the spec is finished, this driver shall be tested
+> against the final v4l2-compliance and moved to mainline again.
+> 
+> Further, I converted the allegro vendor prefix to the new json format in
+> vendor-prefixes.yaml.
+> 
+> The observed occasional failures in v4l2-compliance in v6 of this series
+> turned out to be caused by a race condition with v4l2_m2m_poll(). I will send
+> patches to fix this issue as a separate series.
 
-[snip]
-$ for i in $(ls -1); do echo "cat $i"; cat $i; done
+I'm getting these smatch warnings:
 
-cat capacity
-100
-cat constant_charge_current
-1200000
-cat constant_charge_current_max
-1200000
-cat current_now
-0
-cat health
-Good
-cat online
-0
-cat present
-0
-cat status
-Not charging
-cat type
-Battery
-cat uevent
-POWER_SUPPLY_NAME=axp20x-battery
-POWER_SUPPLY_PRESENT=0
-POWER_SUPPLY_ONLINE=0
-POWER_SUPPLY_STATUS=Not charging
-POWEROSUPPLY_VOLTAGE_NOW=0
-POWER_SUPPLY_CURRENT_NOW=0
-POWER_SUPPLY_CON/TANT_CHARGE_CURRENT=1200000
-POWER_SUPPLY_CONSTANT_CHARGE_CURRENT_MAX=1200000
-POWER_SUPPLY_HEALTH=Good
-POWER_SUPPLY_VOLTAGE_MAXODESIGN=4200000
-POWEROSUPPLY_VOLTAGE_MIN_DESIGN=2900000
-POWER_SUPPLY_CAPACITY=100
-cat voltage_max_design
-4200000
-cat voltage_min_design
-2900000
-cat voltage_now
-0
-[/snip]
+drivers/staging/media/allegro-dvt/allegro-core.c:1849:36: warning: constant 0xffffffff00000000 is so big it is unsigned long
+drivers/staging/media/allegro-dvt/nal-h264.c:751: warning: Function parameter or member 'dev' not described in 'nal_h264_write_sps'
+drivers/staging/media/allegro-dvt/nal-h264.c:792: warning: Function parameter or member 'dev' not described in 'nal_h264_read_sps'
+drivers/staging/media/allegro-dvt/nal-h264.c:842: warning: Function parameter or member 'dev' not described in 'nal_h264_write_pps'
+drivers/staging/media/allegro-dvt/nal-h264.c:884: warning: Function parameter or member 'dev' not described in 'nal_h264_read_pps'
+drivers/staging/media/allegro-dvt/nal-h264.c:926: warning: Function parameter or member 'dev' not described in 'nal_h264_write_filler'
+drivers/staging/media/allegro-dvt/nal-h264.c:969: warning: Function parameter or member 'dev' not described in 'nal_h264_read_filler'
 
-> Looks good otherwise:
-> Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> 
-> Cheers,
-> 
-> Paul
-> 
-> > Signed-off-by: Priit Laes <plaes@plaes.org>
-> > ---
-> >  arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-> > index 9c8eecf4337a..9001b5527615 100644
-> > --- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-> > +++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-> > @@ -206,6 +206,14 @@
-> >  
-> >  #include "axp209.dtsi"
-> >  
-> > +&ac_power_supply {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&battery_power_supply {
-> > +	status = "okay";
-> > +};
-> > +
-> >  &reg_dcdc2 {
-> >  	regulator-always-on;
-> >  	regulator-min-microvolt = <1000000>;
-> > -- 
-> > 2.11.0
-> > 
-> -- 
-> Paul Kocialkowski, Bootlin
-> Embedded Linux and kernel engineering
-> https://bootlin.com
-> 
+Can you take a look? The nal-h264.c warnings look trivial to fix, the
+allegro-core.c warnings looks more interesting.
+
+Regards,
+
+	Hans
