@@ -2,198 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A5AC2C420
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 12:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D06F2C4DD
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 12:56:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfE1KTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 06:19:02 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:42371 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726236AbfE1KTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 06:19:02 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 1526E240013;
-        Tue, 28 May 2019 10:18:52 +0000 (UTC)
-Date:   Tue, 28 May 2019 12:20:01 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        devicetree@vger.kernel.org,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v2 00/10] R-Car DU: LVDS dual-link mode support
-Message-ID: <20190528102001.4ga6mib4xem5zuiq@uno.localdomain>
-References: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
+        id S1726574AbfE1K41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 06:56:27 -0400
+Received: from mail-eopbgr770085.outbound.protection.outlook.com ([40.107.77.85]:28807
+        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726282AbfE1K41 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 06:56:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cwV8OShxfwW0qegSCpjAggTC97WmyfImuuoeB/q3850=;
+ b=Sb7eIfOikVaBDV+5E3nOVtc3obYFU09H4waGr0yPskE2ZV8PzI9SG/CzmJGKnLdd3KIwfF9xJpINA3Lo0L0JB+vjZQ2Wur+sodzYQP/XDjUcGh+NYvx7bm0P/AdMGoVmDx1dqbVr6595UGAu6u6TNYgEnAOTcTNOJW+F5UWyrG4=
+Received: from CY1PR03CA0012.namprd03.prod.outlook.com (2603:10b6:600::22) by
+ BL2PR03MB546.namprd03.prod.outlook.com (2a01:111:e400:c24::24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1922.23; Tue, 28 May 2019 10:56:24 +0000
+Received: from CY1NAM02FT031.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e45::205) by CY1PR03CA0012.outlook.office365.com
+ (2603:10b6:600::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1943.16 via Frontend
+ Transport; Tue, 28 May 2019 10:56:24 +0000
+Authentication-Results: spf=pass (sender IP is 137.71.25.55)
+ smtp.mailfrom=analog.com; gmx.de; dkim=none (message not signed)
+ header.d=none;gmx.de; dmarc=bestguesspass action=none header.from=analog.com;
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
+Received: from nwd2mta1.analog.com (137.71.25.55) by
+ CY1NAM02FT031.mail.protection.outlook.com (10.152.75.180) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1922.16
+ via Frontend Transport; Tue, 28 May 2019 10:56:23 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x4SAuMkp004510
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Tue, 28 May 2019 03:56:22 -0700
+Received: from linux.ad.analog.com (10.50.1.179) by NWD2HUBCAS7.ad.analog.com
+ (10.64.69.107) with Microsoft SMTP Server id 14.3.408.0; Tue, 28 May 2019
+ 06:56:22 -0400
+From:   Stefan Popa <stefan.popa@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <knaack.h@gmx.de>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>, <Michael.Hennerich@analog.com>,
+        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <stefan.popa@analog.com>
+Subject: [PATCH v3 2/2] dt-bindings: iio: frequency: Add docs for ADF4371 PLL
+Date:   Tue, 28 May 2019 13:56:08 +0300
+Message-ID: <1559040968-13832-1-git-send-email-stefan.popa@analog.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uxafowhmgmdzm5r4"
-Content-Disposition: inline
-In-Reply-To: <20190511210702.18394-1-laurent.pinchart+renesas@ideasonboard.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(39860400002)(396003)(346002)(136003)(2980300002)(199004)(189003)(7696005)(8936002)(51416003)(426003)(44832011)(336012)(7416002)(6306002)(6666004)(356004)(77096007)(53376002)(107886003)(186003)(478600001)(50226002)(72206003)(4326008)(26005)(966005)(8676002)(48376002)(70586007)(47776003)(36756003)(110136005)(50466002)(16586007)(7636002)(54906003)(305945005)(246002)(486006)(2616005)(476003)(126002)(106002)(5660300002)(316002)(70206006)(2906002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL2PR03MB546;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 54f7bb44-9d3f-41b8-6794-08d6e35b201a
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709054)(1401327)(2017052603328);SRVR:BL2PR03MB546;
+X-MS-TrafficTypeDiagnostic: BL2PR03MB546:
+X-MS-Exchange-PUrlCount: 3
+X-Microsoft-Antispam-PRVS: <BL2PR03MB546177C5988CF82EF6583D59D1E0@BL2PR03MB546.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-Forefront-PRVS: 00514A2FE6
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: 6sB1sfdFqkpb1R8U/0u4qKuzJn2KiE+EN9LernPABm64vHCZzkV5pq7jwurSwbOAUUOngjm+VPqgbwXWNpdT+eMovx6HuMAxe+nm+dmxljP63EPWhAU3jPzlvYaFmURD17UTKRMMGKFNCj36p9A7OU+ohJm0PPu5lcCrZl2qFvGICgGbCcsQp3SIOsT5SonmoHpvsI0LVVdXJdDE1JG9LCXnRhVkTysQxGRfI7pq7eu9qyRQZOGncDWm79/7i5WVy4ni6zDXfQGsw6aOuwmGtK87KT1/bXX0RkHENthFkWuF7ZNJyeJ2ZJBkZ+yZsbIefogFDLOyw01NOzwUbowSkEDzZ64qbnds1EDytjCtpGRxHsq9bugwIoVABgIvCdFTmtB00WqwqGVu5xvUvnxuPeGfUKpnlqgeQKEs99a44qk=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2019 10:56:23.2808
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54f7bb44-9d3f-41b8-6794-08d6e35b201a
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2PR03MB546
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document support for Analog Devices ADF4371 SPI Wideband Synthesizer.
 
---uxafowhmgmdzm5r4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+Changes in v2:
+	- Nothing changed.
+Changes in v3:
+	- Nothing changed.
 
-Hi Laurent,
+ .../devicetree/bindings/iio/frequency/adf4371.yaml | 54 ++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
 
-On Sun, May 12, 2019 at 12:06:52AM +0300, Laurent Pinchart wrote:
-> Hello everybody,
->
-> This patch series implements support for LVDS dual-link mode in the
-> R-Car DU and R-Car LVDS encoder drivers, and well as in the thc63lvd1024
-> LVDS decoder driver.
->
-> LVDS dual-link is a mode of operation where two individual LVDS links
-> are operated together to carry even- and odd-numbered pixels separately.
-> This doubles the possible bandwidth of the video transmission. Both the
-> transmitter and the receiver need to support this mode of operation.
->
-> The R-Car D3 and E3 SoCs include two independent LVDS encoders that can
-> be grouped together to operate in dual-link mode. When used separately,
-> the LVDS encoders are connected to two different CRTCs and transmit
-> independent video streams. When used in dual-link mode, the first LVDS
-> encoder is connected to the first CRTC, and split even- and odd-numbered
-> pixels. It transmits half of the pixels on its LVDS output, and sends
-> the other half to the second LVDS encoder for transmittion over the
-> second LVDS link. The second LVDS encoder thus operates under control of
-> the first one, and isn't connected directly to a CRTC.
->
-> On the receiving side, the THC63LVD1024 LVDS-to-parallel bridge has two
-> LVDS inputs and two parallel outputs. It can operate in four different
-> modes:
->
-> - Single-in, single-out: The first LVDS input receives the video stream,
->   and the bridge outputs it on the first parallel output. The second
->   LVDS input and the second parallel output are not used.
->
-> - Single-in, dual-out: The first LVDS input receives the video stream,
->   and the bridge splits even- and odd-numbered pixels and outputs them
->   on the first and second parallel outputs. The second LVDS input is not
->   used.
->
-> - Dual-in, single-out: The two LVDS inputs are used in dual-link mode,
->   and the bridge combines the even- and odd-numbered pixels and outputs
->   them on the first parallel output. The second parallel output is not
->   used.
->
-> - Dual-in, dual-out: The two LVDS inputs are used in dual-link mode,
->   and the bridge outputs the even- and odd-numbered pixels on the first
->   parallel output.
->
-> The operating mode is selected by two input pins of the bridge, which
-> are connected to DIP switches on the development boards I use. The mode
-> is thus fixed from a Linux point of view.
->
-> Patch 01/10 adds a new dual_link boolen field to the drm_bridge_timings
-> structure to let bridges report their LVDS mode of operation. Patch
-> 02/10 clarifies the THC63LVD1024 DT bindings to document dual-link
-> operation, and patch 03/10 implements dual-link support in the
-> thc64lvd1024 bridge driver by setting the drm_bridge_timings dual_link
-> field according to the mode selected through DT.
->
-> Patch 04/10 extends the R-Car LVDS DT bindings to specify the companion
-> LVDS encoder for dual-link operation. Patches 05/10 then performs a
-> small cleanup in the LVDS encoder driver. Patch 06/10 implements
-> dual-link support in the LVDS encoder driver, which involves retrieving
-> the operation mode from the LVDS receiver, locating the companion LVDS
-> encoder, and configuring both encoders when dual-link operation is
-> desired. The API towards the DU driver is also extended to report the
-> mode of operation.
->
-> Patch 07/10 implements dual-link mode support in the DU driver. There is
-> no specific configuration to be performed there, as dual-link is fully
-> implemented in the LVDS encoder driver, but the DU driver has to skip
-> creation of the DRM encoder and connector related to the second LVDS
-> encoder when dual-link is used, as the second LVDS encoder operates as a
-> slave of the first one, transparently from a CRTC (and thus userspace)
-> perspective.
->
-> Patch 08/10 specifies the companion LVDS encoder in the D3 and E3 DT
-> bindings. This by itself doesn't enable dual-link mode, the LVDS0
-> encoder is still connected to the HDMI output through LVDS receiver, and
-> the LVDS1 encoder is not used. Patches 09/10 and 10/10, not intended to
-> be merged, enable dual-link operation for the D3 and E3 boards for
-> testing and require flipping DIP switches on the boards.
->
-> The patches are based on top of my drm/du/next branch, and are available
-> for convenience at
->
->         git://linuxtv.org/pinchartl/media.git drm/du/lvds/dual-link
->
-> They have been tested successfully on the D3 Draak board. I expect them
-> to work on E3 as well, but I don't have access to an Ebisu board to test
-> this.
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+new file mode 100644
+index 0000000..d7adf074
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/adf4371.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices ADF4371 Wideband Synthesizer
++
++maintainers:
++  - Popa Stefan <stefan.popa@analog.com>
++
++description: |
++  Analog Devices ADF4371 SPI Wideband Synthesizer
++  https://www.analog.com/media/en/technical-documentation/data-sheets/adf4371.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,adf4371
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description:
++      Definition of the external clock (see clock/clock-bindings.txt)
++    maxItems: 1
++
++  clock-names:
++    description:
++      Must be "clkin"
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++examples:
++  - |
++    spi0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        frequency@0 {
++                compatible = "adi,adf4371";
++                reg = <0>;
++                spi-max-frequency = <1000000>;
++                clocks = <&adf4371_clkin>;
++                clock-names = "clkin";
++        };
++    };
++...
+-- 
+2.7.4
 
-I have now tested the series on E3 Ebisu board using kms-tests using
-the HDMI output and I confirm it works as expected.
-
-For the whole series:
-Tested-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-
-Thanks
-  j
-
->
-> Laurent Pinchart (10):
->   drm: bridge: Add dual_link field to the drm_bridge_timings structure
->   dt-bindings: display: bridge: thc63lvd1024: Document dual-link
->     operation
->   drm: bridge: thc63: Report input bus mode through bridge timings
->   dt-bindings: display: renesas: lvds: Add renesas,companion property
->   drm: rcar-du: lvds: Remove LVDS double-enable checks
->   drm: rcar-du: lvds: Add support for dual-link mode
->   drm: rcar-du: Skip LVDS1 output on Gen3 when using dual-link LVDS mode
->   arm64: dts: renesas: r8a7799[05]: Point LVDS0 to its companion LVDS1
->   [HACK] arm64: dts: renesas: draak: Enable LVDS dual-link operation
->   [HACK] arm64: dts: renesas: ebisu: Enable LVDS dual-link operation
->
->  .../bindings/display/bridge/renesas,lvds.txt  |   6 +
->  .../display/bridge/thine,thc63lvd1024.txt     |   6 +
->  .../arm64/boot/dts/renesas/r8a77990-ebisu.dts |  21 ++-
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   2 +
->  .../arm64/boot/dts/renesas/r8a77995-draak.dts |  21 ++-
->  arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +
->  drivers/gpu/drm/bridge/thc63lvd1024.c         |  54 ++++++--
->  drivers/gpu/drm/rcar-du/rcar_du_encoder.c     |  12 ++
->  drivers/gpu/drm/rcar-du/rcar_du_kms.c         |   2 +-
->  drivers/gpu/drm/rcar-du/rcar_lvds.c           | 123 +++++++++++++-----
->  drivers/gpu/drm/rcar-du/rcar_lvds.h           |   5 +
->  include/drm/drm_bridge.h                      |   8 ++
->  12 files changed, 214 insertions(+), 48 deletions(-)
->
-> --
-> Regards,
->
-> Laurent Pinchart
->
-
---uxafowhmgmdzm5r4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAlztC1EACgkQcjQGjxah
-VjwFQQ/9E3PmQPv6P8/nJOR+8OfmH7lS0tYEQQIsXNnXGHSPe3QIZL104LuEfhr9
-t3b4/GPfDQsXlIDs5PaZlRDEndKWxyQ8YKV8YKPHjVvo/mgV1CstkhwUWFjdtYRX
-wZh8jPRcL8KsKVcTYqL0OgvjpqS/nUjF328u0pHHjyoBvEaL3N+1AHHx1lb4q3zc
-Lpz7XuPsXgDgR+M+V7CI+Ge2jDKOqsc3gssGnFO8f0WUoVo2OybKZnl98OVAb0rO
-u78RK3w19Zrv5XtXdE2sfwBYeWgCJ+HLQVR/Oai2cblDeB7eQQyKhP4BeVlJUVC6
-c7ooAxB5Ax61NdQcGp9KfhVsSAuovS2lCwXjUwi7ElAgtU+7qMpDE22MfrYgXe0i
-qalMzxLv94KZrmTkuw++a5VCrDAsY9QxPHCKq7zBF1vA7gyt/DcsTCawNykizAbo
-KdYl8pNH4pxR5X0XdPyqQghtYnMO1sLWBmngCfesC1v4aTD41sVUolXN/gLi3VKh
-c8zyEukzH5Vxz3c9XQ03yE3+ZBqaUAFZ/I0F6qtYOHHx4sKFiC30WZuk2DaNcQLM
-YB2pC6OQHFng46jdw6kr7L4xMfE1GKgEfuti4eU8zzbYR8dkkxNyZCajW51XmROD
-Zc7o15ykc79flm/QstWjI3aNkYN+EvwfGySuZEwRs9mIhHVadKY=
-=gstV
------END PGP SIGNATURE-----
-
---uxafowhmgmdzm5r4--
