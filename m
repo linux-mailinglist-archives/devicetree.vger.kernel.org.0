@@ -2,114 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E79362CF5F
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 21:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1262CF87
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 21:33:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727295AbfE1TYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 15:24:09 -0400
-Received: from mail-eopbgr30057.outbound.protection.outlook.com ([40.107.3.57]:18339
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726787AbfE1TYJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 May 2019 15:24:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ai9jwiNPVbNdbcJ/T84LdDnIB5vxKJDYi8EuBQKg02s=;
- b=cBkcZmNWxtxHIKfhWmHJ1RuLpMdI7Tz2xr6AAOB4w/wkpO2sNnDTKm3IxTnMcizgj52YW3Ws1s/7QerNPWmZOKcBpqzKtny67p+OxaNqDn9h5uJ6ca9KpjdHRRrFKyDmv/1JrDxeU4YOhylGZ4olu2gwqGftr9YfV5ug6uNIm58=
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
- VI1PR04MB4557.eurprd04.prod.outlook.com (20.177.55.215) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.16; Tue, 28 May 2019 19:24:05 +0000
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::9577:379c:2078:19a1]) by VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::9577:379c:2078:19a1%7]) with mapi id 15.20.1922.021; Tue, 28 May 2019
- 19:24:05 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Anson Huang <anson.huang@nxp.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH RESEND 2/5] ARM: dts: imx7d-sdb: Assign corresponding
- power supply for LDOs
-Thread-Topic: [PATCH RESEND 2/5] ARM: dts: imx7d-sdb: Assign corresponding
- power supply for LDOs
-Thread-Index: AQHVCKkZHNdBkg2sXkeS6OCWrMrKwQ==
-Date:   Tue, 28 May 2019 19:24:04 +0000
-Message-ID: <VI1PR04MB5055647612FAC2FE6FBE139FEE1E0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-References: <1557654739-12564-1-git-send-email-Anson.Huang@nxp.com>
- <1557654739-12564-2-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a7eaac96-865a-4e83-fbc3-08d6e3a20c55
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4557;
-x-ms-traffictypediagnostic: VI1PR04MB4557:
-x-microsoft-antispam-prvs: <VI1PR04MB4557DCB8F61FA857AE351E1FEE1E0@VI1PR04MB4557.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-forefront-prvs: 00514A2FE6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39860400002)(376002)(346002)(136003)(366004)(396003)(199004)(189003)(229853002)(446003)(74316002)(9686003)(5660300002)(6436002)(55016002)(6862004)(6246003)(76176011)(6636002)(4326008)(7696005)(54906003)(53936002)(99286004)(66066001)(256004)(71190400001)(71200400001)(478600001)(14454004)(316002)(4744005)(33656002)(3846002)(476003)(6116002)(2906002)(44832011)(486006)(305945005)(186003)(81166006)(52536014)(102836004)(73956011)(66946007)(68736007)(66556008)(81156014)(86362001)(7736002)(64756008)(66446008)(8936002)(66476007)(76116006)(8676002)(25786009)(53546011)(6506007)(26005);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4557;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 0j+DgTF6NH1DBCGTSwBl0+4yMycwEiAvvQ4QXasZWxZxIYXpescSRWXRqyuVaN0tzhlSjL9wWgepDghtc0XRNKCxbOfBP/TMffyfYBhNyHPJnFnHgIpoAUtoNN/g38N0KFPOVxfApM2mSdJagd9Q5NXMq7tWpBkS/M93fFNErwMwsUTJHKa3c8MdyWbOF6gY7nmR2AB7IJ/4K9Yqs0Q000MVcORtfSnqds8CMmFF7t93wlqY630KJAaq3VtK73Pk6rpoHL8KMRO0wafb1om5vRu5uwVyAelOYCVUR4cL8F3K7zTgOuR43SMjiU/VmRx1d/mojE87fNHns6+fGNita8dXa5fo3IB/QhQjL3UMKty8k8UMsYQ8oUHgW3jameE4xPhDCQ/dNPddP27TN+3wqymAZr036kfjCBBIVVbOS6U=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727276AbfE1TdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 15:33:09 -0400
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:46447 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726576AbfE1TdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 15:33:09 -0400
+Received: by mail-vs1-f66.google.com with SMTP id l125so134489vsl.13
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 12:33:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=a/4WAdDHD7o2J6jLaTa03Ods2jMwUYJoiUyhNBxjWQI=;
+        b=dMMWYbArcJceM9L9LmUxOvLkkrX2JOFBhsd3cXHlbV62EkEx3ql6/xwnm6N5ua68wq
+         lfkom4j6oFv/YNmvQUm8B1OQGZ2zulvaZOZ4Vb/2f9dLCgPmMB9Ugey3bU87fOc/WHEw
+         p7Sw2zAKvnev37PmWp+aAzuUJUkQppWVldppFq2B2zoUI2yWw6WtGdGKVjULC+Dn/H6e
+         d3sLokS7BkvYEDy3Hes7bzROVLsETM8bkQAKS2rty6owPH9VPSYb57J7qWuBL1cc+AVg
+         V9jyGJ9CiMd+OVDQN8n0mjfPQP1ssYNAAjmKXpcP/+z1XJBMKFdd+vvMGuzqNeTQcjMe
+         XoSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=a/4WAdDHD7o2J6jLaTa03Ods2jMwUYJoiUyhNBxjWQI=;
+        b=fK77b0Eko0jkO35vyqJ7cizblZfNOHurgRHLjQuK4otpAVSKUzikXUYbBdxqOxLpak
+         L6noNIJgs1jtAqv1eJnZEziR2A9ZQiy9VNAwXL96z/ZH9LkIrpcKIqr89b9x/FKaJHfC
+         ozJRlFs8zUdc7LWJqYTJSVcQ0tvTUHIpFFkOXA8KH5D4Nd1vxSjxG+Jck8TcsGrYFdls
+         uxepr1W5EVr/Pqzcnqtp9UiiZrotjY7We4VNt7tXvZE6ur24NAV9foFtiGnpSDKvFc9Y
+         kLi+1O1z4Sp+mNG/ec31aTaiv6OGDC3MBcgksKnN/SSt63+1QlUF3gvYxtQnUxvvcElS
+         QdNA==
+X-Gm-Message-State: APjAAAWi+khvT+bMHu+390HQHjg1svcGnHUu5JBOlwqTVJ8XpLDwZ1hD
+        3hKVoOhhPyRoHuM0/KtFPU7MNN+9HdgCwVU5LIj1nw==
+X-Google-Smtp-Source: APXvYqwd813q3SqUy11sYCOolIowQZSdilqwamuHYez09q5jBp5bAunxVlKM4u8MuI3TDxKOUo/xgfSsPHni9ARExfo=
+X-Received: by 2002:a67:f485:: with SMTP id o5mr2970694vsn.165.1559071987467;
+ Tue, 28 May 2019 12:33:07 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7eaac96-865a-4e83-fbc3-08d6e3a20c55
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2019 19:24:04.9423
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4557
+References: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
+ <CAPDyKFrs6f4_Xr=ATay_wDYNPa+-jdZvP4XSB55B-EFMAETN1Q@mail.gmail.com> <20190528172649.6mkdkscnu5d2rybi@flea>
+In-Reply-To: <20190528172649.6mkdkscnu5d2rybi@flea>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 28 May 2019 21:32:31 +0200
+Message-ID: <CAPDyKFrTroAOjEyT9GxQALC4UsiDg8739F9Qc216bDC=wgk2mg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Add YAML schemas for the generic
+ MMC options
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.05.2019 12:57, Anson Huang wrote:=0A=
-> On i.MX7D SDB board, sw2 supplies 1p0d/1p2 LDO, this patch assigns=0A=
-> corresponding power supply for 1p0d/1p2 LDO to avoid confusion by=0A=
-> below log:=0A=
-> =0A=
-> vdd1p0d: supplied by regulator-dummy=0A=
-> vdd1p2: supplied by regulator-dummy=0A=
-> =0A=
-> With this patch, the power supply is more accurate:=0A=
-> =0A=
-> vdd1p0d: supplied by SW2=0A=
-> vdd1p2: supplied by SW2=0A=
-> =0A=
-> diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sd=
-b.dts=0A=
->=0A=
-> +&reg_1p0d {=0A=
-> +	vin-supply =3D <&sw2_reg>;=0A=
-> +};=0A=
-> +=0A=
-> +&reg_1p2 {=0A=
-> +	vin-supply =3D <&sw2_reg>;=0A=
-> +};=0A=
-=0A=
-It's not clear why but this patch breaks imx7d-sdb boot. Checked two =0A=
-boards: in a board farm and on my desk.=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+On Tue, 28 May 2019 at 19:26, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi Ulf,
+>
+> On Tue, May 28, 2019 at 10:40:16AM +0200, Ulf Hansson wrote:
+> > > +patternProperties:
+> > > +  "^.*@[0-9]+$":
+> > > +    properties:
+> > > +      reg:
+> > > +        items:
+> > > +          - minimum: 0
+> > > +            maximum: 7
+> > > +            description:
+> > > +              Must contain the SDIO function number of the function this
+> > > +              subnode describes. A value of 0 denotes the memory SD
+> > > +              function, values from 1 to 7 denote the SDIO functions.
+> > > +
+> > > +      broken-hpi:
+> > > +        $ref: /schemas/types.yaml#/definitions/flag
+> > > +        description:
+> > > +          Use this to indicate that the mmc-card has a broken hpi
+> > > +          implementation, and that hpi should not be used.
+> > > +
+> > > +    required:
+> > > +      - reg
+> > > +
+> >
+> > [...]
+> >
+> > > -Use of Function subnodes
+> > > -------------------------
+> > > -
+> > > -On embedded systems the cards connected to a host may need additional
+> > > -properties. These can be specified in subnodes to the host controller node.
+> > > -The subnodes are identified by the standard 'reg' property.
+> > > -Which information exactly can be specified depends on the bindings for the
+> > > -SDIO function driver for the subnode, as specified by the compatible string.
+> > > -
+> > > -Required host node properties when using function subnodes:
+> > > -- #address-cells: should be one. The cell is the slot id.
+> > > -- #size-cells: should be zero.
+> > > -
+> > > -Required function subnode properties:
+> > > -- reg: Must contain the SDIO function number of the function this subnode
+> > > -       describes. A value of 0 denotes the memory SD function, values from
+> > > -       1 to 7 denote the SDIO functions.
+> > > -
+> > > -Optional function subnode properties:
+> > > -- compatible: name of SDIO function following generic names recommended practice
+> > > -
+> >
+> > I think most of the information of how we use sub(child) nodes
+> > disappeared in this conversion - or at least gets harder to
+> > understand. Could we perhaps keep some of this?
+>
+> Sure, what would you like to keep in particular?
+
+Most of it, so we can understand what can be described in sub-nodes.
+
+Additionally, we should also include what is stated in
+Documentation/devicetree/bindings/mmc/mmc-card.txt, as that also
+refers to how subnodes should be used, when it has the "mmc-card"
+compatible.
+
+Or maybe we should simply move all things related to subnodes into a
+separate .yaml?
+
+Kind regards
+Uffe
