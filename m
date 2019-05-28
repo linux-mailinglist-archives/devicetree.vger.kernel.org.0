@@ -2,73 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 605FD2BDEF
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 05:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81DB32BE71
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 06:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727562AbfE1DsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 May 2019 23:48:09 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:33602 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727320AbfE1DsJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 May 2019 23:48:09 -0400
-Received: by mail-ed1-f66.google.com with SMTP id n17so29585700edb.0;
-        Mon, 27 May 2019 20:48:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ykAmZNM3+M0rf6HLjev/b1JXrJdjuyj6wZaqtDFtAlI=;
-        b=bEkzV1RUMSdZmwHyEBsyYMCxvPUsPAllHosugonLRXE2fnLhrw+edjhaEiU+Y2d1hf
-         KrFCxM/EXGvofnspEdRpqy4+SZdFPI0rV7x6/MPLMWyGX0kjRQ+xAu08Rz+jntU/F8LL
-         HZ0uh2TxjUGhHOeH2FIUjwWpEkqwN5SSVErDLIb7meWwTpkejrDHJCVXTvbYkGA6Kg5t
-         DC4aNP04rf42JTsPk+qTRmtzvdZ0QCWyUHjsr4EQgxFneBgr5ZZ0FtOU0KHh4bOK0ZyO
-         0RoEnrCrlwwNER8n9D4CmEJfHx933PWSjV89rq9bHORNnhzcryozsZ6+A47OoZ6OpEFs
-         /epQ==
-X-Gm-Message-State: APjAAAW7p2sGvTvGY0YZVZWLQ1IAEXm/F94tkZqy7wnoSsGQ4IXISWAV
-        1Xd7LqlLU6poSqd0rNmPJy41ZeN7gQk=
-X-Google-Smtp-Source: APXvYqwZX2+i0QwLdk88jJ0CQhF6Fp5mg93Usl/JQnLDrpkhDARo7nzVXcj52Y+t01KYLRSBKsYyFg==
-X-Received: by 2002:a50:fa01:: with SMTP id b1mr118474532edq.199.1559015286970;
-        Mon, 27 May 2019 20:48:06 -0700 (PDT)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
-        by smtp.gmail.com with ESMTPSA id f19sm2057378eje.53.2019.05.27.20.48.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 May 2019 20:48:06 -0700 (PDT)
-Received: by mail-wm1-f48.google.com with SMTP id t5so1149286wmh.3;
-        Mon, 27 May 2019 20:48:06 -0700 (PDT)
-X-Received: by 2002:a1c:e906:: with SMTP id q6mr1327240wmc.47.1559015286157;
- Mon, 27 May 2019 20:48:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <290402405a34506997fd2fab2c4c1486dbe6b7e5.1558958381.git-series.maxime.ripard@bootlin.com>
- <834199999676fdb119f3aa1966eb1b1d1391f347.1558958381.git-series.maxime.ripard@bootlin.com>
-In-Reply-To: <834199999676fdb119f3aa1966eb1b1d1391f347.1558958381.git-series.maxime.ripard@bootlin.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Tue, 28 May 2019 11:47:56 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66bYFdv6=VUeQNvugMqOzg2L0dkgFbje7OE9pQC+FN0Fg@mail.gmail.com>
-Message-ID: <CAGb2v66bYFdv6=VUeQNvugMqOzg2L0dkgFbje7OE9pQC+FN0Fg@mail.gmail.com>
-Subject: Re: [PATCH 10/10] ARM: dts: r40: Change the RTC compatible
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1726721AbfE1E4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 00:56:04 -0400
+Received: from regular1.263xmail.com ([211.150.70.195]:44462 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726284AbfE1E4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 00:56:04 -0400
+X-Greylist: delayed 417 seconds by postgrey-1.27 at vger.kernel.org; Tue, 28 May 2019 00:56:02 EDT
+Received: from jay.xu?rock-chips.com (unknown [192.168.167.229])
+        by regular1.263xmail.com (Postfix) with ESMTP id 09B0F907;
+        Tue, 28 May 2019 12:48:57 +0800 (CST)
+X-263anti-spam: KSV:0;BIG:0;
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-KSVirus-check: 0
+X-ADDR-CHECKED4: 1
+X-ABS-CHECKED: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P6627T140475876996864S1559018932287865_;
+        Tue, 28 May 2019 12:48:56 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <dc6bc3b2d626c351f61daca14b30d2eb>
+X-RL-SENDER: jay.xu@rock-chips.com
+X-SENDER: xjq@rock-chips.com
+X-LOGIN-NAME: jay.xu@rock-chips.com
+X-FST-TO: xjq@rock-chips.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+From:   Jianqun Xu <jay.xu@rock-chips.com>
+To:     jay.xu@rock-chips.com, heiko@sntech.de, mark.rutland@arm.com,
+        robh+dt@kernel.org
+Cc:     zhangzj@rock-chips.com, manivannan.sadhasivam@linaro.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: rockchip: add core dtsi file for RK3399Pro SoCs
+Date:   Tue, 28 May 2019 12:48:50 +0800
+Message-Id: <20190528044850.23703-1-jay.xu@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 27, 2019 at 8:01 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Unlike what's being reported in the device tree so far, the RTC in the R40
-> is quite different from the H3. Indeed it doesn't have the internal
-> oscillator output, and it has only a single interrupt. Let's add a
-> compatible for it.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+This patch adds core dtsi file for Rockchip RK3399Pro SoCs,
+include rk3399.dtsi. Also enable these nodes:
+- dfi/dmc for ddr devfreq
+- pcie/pcie_phy
+- sdhci/sdio/emmc/sdmmc
 
-There's a lot of unnecessary line reordering. Otherwise,
+Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399pro.dtsi | 111 ++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
+new file mode 100644
+index 000000000000..62f67f857c45
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
+@@ -0,0 +1,111 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
++
++#include "rk3399.dtsi"
++
++/ {
++	compatible = "rockchip,rk3399pro";
++
++	xin32k: xin32k {
++		compatible = "fixed-clock";
++		clock-frequency = <32768>;
++		clock-output-names = "xin32k";
++		#clock-cells = <0>;
++	};
++};
++
++&dfi {
++	status = "okay";
++};
++
++&dmc {
++	status = "okay";
++	center-supply = <&vdd_log>;
++	upthreshold = <40>;
++	downdifferential = <20>;
++	system-status-freq = <
++		/*system status         freq(KHz)*/
++		SYS_STATUS_NORMAL       800000
++		SYS_STATUS_REBOOT       528000
++		SYS_STATUS_SUSPEND      200000
++		SYS_STATUS_VIDEO_1080P  200000
++		SYS_STATUS_VIDEO_4K     600000
++		SYS_STATUS_VIDEO_4K_10B 800000
++		SYS_STATUS_PERFORMANCE  800000
++		SYS_STATUS_BOOST        400000
++		SYS_STATUS_DUALVIEW     600000
++		SYS_STATUS_ISP          600000
++	>;
++	vop-pn-msch-readlatency = <
++	/* plane_number  readlatency */
++		0	0
++		4	0x20
++	>;
++	vop-bw-dmc-freq = <
++	/* min_bw(MB/s) max_bw(MB/s) freq(KHz) */
++		0       762      200000
++		763     1893     400000
++		1894    3012     528000
++		3013    99999    800000
++	>;
++	auto-min-freq = <200000>;
++};
++
++&emmc_phy {
++	status = "okay";
++};
++
++&pcie_phy {
++	status = "okay";
++};
++
++&pcie0 {
++	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
++	num-lanes = <4>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie_clkreqn_cpm>;
++	status = "okay";
++};
++
++&sdhci {
++	bus-width = <8>;
++	mmc-hs400-1_8v;
++	supports-emmc;
++	non-removable;
++	keep-power-in-suspend;
++	mmc-hs400-enhanced-strobe;
++	status = "okay";
++};
++
++&sdio0 {
++	clock-frequency = <150000000>;
++	clock-freq-min-max = <200000 150000000>;
++	supports-sdio;
++	bus-width = <4>;
++	disable-wp;
++	cap-sd-highspeed;
++	cap-sdio-irq;
++	keep-power-in-suspend;
++	mmc-pwrseq = <&sdio_pwrseq>;
++	non-removable;
++	num-slots = <1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
++	sd-uhs-sdr104;
++	status = "okay";
++};
++
++&sdmmc {
++	clock-frequency = <150000000>;
++	clock-freq-min-max = <400000 150000000>;
++	supports-sd;
++	bus-width = <4>;
++	cap-mmc-highspeed;
++	cap-sd-highspeed;
++	disable-wp;
++	num-slots = <1>;
++	vqmmc-supply = <&vccio_sd>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
++	status = "okay";
++};
+-- 
+2.17.1
+
+
+
