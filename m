@@ -2,74 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8B832C17F
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 10:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB3C2C182
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 10:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726599AbfE1IjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 04:39:01 -0400
-Received: from mail.lunch4employee.eu ([80.211.219.151]:39828 "EHLO
-        mail.lunch4employee.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726576AbfE1IjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 04:39:01 -0400
-X-Greylist: delayed 510 seconds by postgrey-1.27 at vger.kernel.org; Tue, 28 May 2019 04:39:01 EDT
-Received: by mail.lunch4employee.eu (Postfix, from userid 1001)
-        id DE7C087873; Tue, 28 May 2019 10:30:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lunch4employee.eu;
-        s=mail; t=1559032229;
-        bh=ONuCP8WSrotnQIIUXuF9Z25xGEoxfqhSKmedy3wfW2M=;
-        h=Date:From:To:Subject:From;
-        b=R/bd7G0fV+6dKpS67ftsySLIMA3wS3qEoXWoXX5/f+N0wclLPN2VCBoqtlTbdioN3
-         mzRkeBlKndXvQNg2hVRZiO1DC9MtOORHJIQgjYK/mbXq2OWeqEkHcg7rkHkwfZhfmM
-         AGdgihoPM21hhDKUtUOtlLg7MC1ZXjailnfhqvkI=
-Received: by mail.lunch4employee.eu for <devicetree@vger.kernel.org>; Tue, 28 May 2019 08:30:21 GMT
-Message-ID: <20190528084500-0.1.n.uvo.0.xj0q22zl5n@lunch4employee.eu>
-Date:   Tue, 28 May 2019 08:30:21 GMT
-From:   "Radoslav Dobrev" <radoslav.dobrev@lunch4employee.eu>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?=D0=9F=D1=80=D0=B8=D0=B4=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B8_=D0=B7=D0=B0_=D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB=D0=B0?=
-X-Mailer: mail.lunch4employee.eu
+        id S1726441AbfE1Ikx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 04:40:53 -0400
+Received: from mail-vk1-f194.google.com ([209.85.221.194]:38964 "EHLO
+        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725943AbfE1Ikx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 04:40:53 -0400
+Received: by mail-vk1-f194.google.com with SMTP id l13so54939vkk.6
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 01:40:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=L1gEe0Qo8uUw419whddZefVmtI1Y7WOAQp/Jh1nRbBY=;
+        b=GgRPe8E23Cer8Df2SQau1m/3AEgbXMJIUf9Mzz4H1Om4WYidE64+qFE0cnf2/qjdNf
+         nKzLE1aUuA7hdhVAZe14ZNmicWNfhS1TTTf5mBvhC7KDo66j5v/uS1D8RXfibCDbLeV7
+         tXRUgxh9BcrEvkxi36Qg9Wbw9z+Yw8Px/cW0AQ5a1Dk3rPxG64mXomNtsK7uTlKcWNYt
+         gaBEsdD968TJcWOLIRFic9Kp+v7xkMoS/oHh/8MkM79TkCssqljli4Hl71gkjer7ydLp
+         dLGjYQlGrdurQYJsGv4mLcyblN9hl5NEF0wVIgI9ES+8Gm84uPI6v72NFa4dNnEqocjE
+         t9/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=L1gEe0Qo8uUw419whddZefVmtI1Y7WOAQp/Jh1nRbBY=;
+        b=aHutVEjOm5Q4BGBVt+cjWqNM79FRtA1V2qYVnrxPyzEmwIkyf/4TwPqpbsrLg88IAr
+         WxsA0nAQswHtYEICNakDbQ3Tg9SAskjXMXUM7BeNHmv76UTCPUtjFWQtIik6m7sOST1E
+         ffVJDMP8EFc/HPo/QtROWvnB9Pm4FHpZcL0Cw1QQv1tpx/Rp0Qnv03p/rHKZ59YpF8cu
+         POtONCCxPGLBJnsH6p76Y027AMJ0QU06zKFzzLmOhVkpY3QjwjjWNGVw7XH96sXGZCx2
+         C84PBjb9pPqMdhRvG9jATYqiG7oX16JgxBBGW1hydafB0OThvLCL2gd66wHErBk12yvK
+         mQIw==
+X-Gm-Message-State: APjAAAVi7zhqm1bDX3WB5u16nAvtys5n1/ukLzd0G56a7F4gVcLeFxHj
+        eMtTGuFlHhf+rZhK9OVTcJeDTmuJ6eQV2dF13wofUg==
+X-Google-Smtp-Source: APXvYqx7LhK72f0luzwT93lolmN9FxjSTp2ZQy1E52COyZc/gaMuKcVA6k4ogJNFhunQ6qfXUyFIxCroR3vUPGJZ9Zw=
+X-Received: by 2002:a1f:bc4b:: with SMTP id m72mr2400696vkf.36.1559032852442;
+ Tue, 28 May 2019 01:40:52 -0700 (PDT)
 MIME-Version: 1.0
+References: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
+In-Reply-To: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 28 May 2019 10:40:16 +0200
+Message-ID: <CAPDyKFrs6f4_Xr=ATay_wDYNPa+-jdZvP4XSB55B-EFMAETN1Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Add YAML schemas for the generic
+ MMC options
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=97=D0=B4=D1=80=D0=B0=D0=B2=D0=B5=D0=B9=D1=82=D0=B5,
+> +patternProperties:
+> +  "^.*@[0-9]+$":
+> +    properties:
+> +      reg:
+> +        items:
+> +          - minimum: 0
+> +            maximum: 7
+> +            description:
+> +              Must contain the SDIO function number of the function this
+> +              subnode describes. A value of 0 denotes the memory SD
+> +              function, values from 1 to 7 denote the SDIO functions.
+> +
+> +      broken-hpi:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          Use this to indicate that the mmc-card has a broken hpi
+> +          implementation, and that hpi should not be used.
+> +
+> +    required:
+> +      - reg
+> +
 
-=D0=97=D0=B0=D0=BF=D0=BE=D0=B7=D0=BD=D0=B0=D1=82=D0=B8 =D0=BB=D0=B8 =D1=81=
-=D1=82=D0=B5 =D1=81 =D0=BD=D0=B0=D0=B9-=D0=BD=D0=BE=D0=B2=D0=B0=D1=82=D0=B0=
- =D1=81=D0=BE=D1=86=D0=B8=D0=B0=D0=BB=D0=BD=D0=B0 =D0=BF=D1=80=D0=B8=D0=B4=
-=D0=BE=D0=B1=D0=B8=D0=B2=D0=BA=D0=B0 =E2=80=93 =D0=B2=D0=B0=D1=83=D1=87=D0=
-=B5=D1=80=D0=B8 =D0=B7=D0=B0 =D1=85=D1=80=D0=B0=D0=BD=D0=B0? =D0=90 =D0=BE=
-=D0=B1=D0=BC=D0=B8=D1=81=D0=BB=D1=8F=D0=BB=D0=B8 =D0=BB=D0=B8 =D1=81=D1=82=
-=D0=B5 =D0=B8=D0=B7=D0=BF=D0=BE=D0=BB=D0=B7=D0=B2=D0=B0=D0=BD=D0=B5=D1=82=
-=D0=BE =D0=BD=D0=B0 =D1=82=D0=B0=D0=BA=D0=B8=D0=B2=D0=B0 =D0=B2=D0=B0=D1=83=
-=D1=87=D0=B5=D1=80=D0=B8, =D1=81 =D0=BF=D0=BE=D0=BC=D0=BE=D1=89=D1=82=D0=B0=
- =D0=BD=D0=B0 =D0=BA=D0=BE=D0=B8=D1=82=D0=BE =D0=92=D0=B0=D1=88=D0=B8=D1=8F=
-=D1=82 =D0=BF=D0=B5=D1=80=D1=81=D0=BE=D0=BD=D0=B0=D0=BB =D0=BC=D0=BE=D0=B6=
-=D0=B5 =D0=B4=D0=B0 =D0=BF=D0=B0=D0=B7=D0=B0=D1=80=D1=83=D0=B2=D0=B0 =D0=B2=
- =D1=80=D0=B0=D0=B7=D0=BB=D0=B8=D1=87=D0=BD=D0=B8 =D0=B2=D0=B5=D1=80=D0=B8=
-=D0=B3=D0=B8 =D1=85=D1=80=D0=B0=D0=BD=D0=B8=D1=82=D0=B5=D0=BB=D0=BD=D0=B8=
- =D0=BC=D0=B0=D0=B3=D0=B0=D0=B7=D0=B8=D0=BD=D0=B8 =D0=B8 =D0=B7=D0=B0=D0=B2=
-=D0=B5=D0=B4=D0=B5=D0=BD=D0=B8=D1=8F?
+[...]
 
-=D0=91=D0=B8=D1=85 =D0=BC=D0=BE=D0=B3=D1=8A=D0=BB =D0=B4=D0=B0 =D0=92=D0=B8=
- =D1=81=D0=B5 =D0=BE=D0=B1=D0=B0=D0=B4=D1=8F =D0=BF=D0=BE =D1=82=D0=B5=D0=
-=BB=D0=B5=D1=84=D0=BE=D0=BD=D0=B0 =D0=B8 =D0=B4=D0=B0 =D0=92=D0=B8 =D0=BF=
-=D1=80=D0=B5=D0=B4=D1=81=D1=82=D0=B0=D0=B2=D1=8F =D0=B2=D1=8A=D0=B7=D0=BC=
-=D0=BE=D0=B6=D0=BD=D0=BE=D1=81=D1=82=D0=B8=D1=82=D0=B5 =D0=BD=D0=B0 =D1=82=
-=D0=B5=D0=B7=D0=B8 =D0=B2=D0=B0=D1=83=D1=87=D0=B5=D1=80=D0=B8 =E2=80=93 =D0=
-=BC=D0=BE=D0=BB=D1=8F =D0=BF=D0=BE=D1=81=D0=BE=D1=87=D0=B5=D1=82=D0=B5 =D0=
-=BA=D0=BE=D0=B3=D0=B0 =D1=89=D0=B5 =D0=92=D0=B8 =D0=B1=D1=8A=D0=B4=D0=B5 =
-=D1=83=D0=B4=D0=BE=D0=B1=D0=BD=D0=BE =D0=B4=D0=B0 =D1=80=D0=B0=D0=B7=D0=B3=
-=D0=BE=D0=B2=D0=B0=D1=80=D1=8F=D0=BC=D0=B5.
+> -Use of Function subnodes
+> -------------------------
+> -
+> -On embedded systems the cards connected to a host may need additional
+> -properties. These can be specified in subnodes to the host controller node.
+> -The subnodes are identified by the standard 'reg' property.
+> -Which information exactly can be specified depends on the bindings for the
+> -SDIO function driver for the subnode, as specified by the compatible string.
+> -
+> -Required host node properties when using function subnodes:
+> -- #address-cells: should be one. The cell is the slot id.
+> -- #size-cells: should be zero.
+> -
+> -Required function subnode properties:
+> -- reg: Must contain the SDIO function number of the function this subnode
+> -       describes. A value of 0 denotes the memory SD function, values from
+> -       1 to 7 denote the SDIO functions.
+> -
+> -Optional function subnode properties:
+> -- compatible: name of SDIO function following generic names recommended practice
+> -
 
-=D0=9F=D1=80=D0=B8=D1=8F=D1=82=D0=B5=D0=BD =D0=B4=D0=B5=D0=BD!
+I think most of the information of how we use sub(child) nodes
+disappeared in this conversion - or at least gets harder to
+understand. Could we perhaps keep some of this?
 
-
-=D0=A0=D0=B0=D0=B4=D0=BE=D1=81=D0=BB=D0=B0=D0=B2 =D0=94=D0=BE=D0=B1=D1=80=
-=D0=B5=D0=B2
-Head of HR Benefit Team
-www.lunch4employee.eu
+Kind regards
+Uffe
