@@ -2,113 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9132C2C2A2
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 11:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F9A2C2D7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 11:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726927AbfE1JDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 05:03:21 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:46249 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726896AbfE1JDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 05:03:21 -0400
-Received: from localhost.localdomain (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id BD25320002F;
-        Tue, 28 May 2019 09:03:13 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S1726925AbfE1JNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 05:13:05 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:37709 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726515AbfE1JNF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 05:13:05 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 75A91FF808;
+        Tue, 28 May 2019 09:13:00 +0000 (UTC)
+Date:   Tue, 28 May 2019 11:12:59 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH] arm64: dts: marvell: armada-7040-db: Add USB current regulators
-Date:   Tue, 28 May 2019 11:03:10 +0200
-Message-Id: <20190528090310.31774-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.19.1
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v4 3/7] ASoC: sun4i-spdif: Add TX fifo bit flush quirks
+Message-ID: <20190528091259.qrzegazyilviuy2n@flea>
+References: <20190527200627.8635-1-peron.clem@gmail.com>
+ <20190527200627.8635-4-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zi3crwvz5dqqoqhp"
+Content-Disposition: inline
+In-Reply-To: <20190527200627.8635-4-peron.clem@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Armada 7040-db USB ports deliver 500mA by default while they
-could deliver up to 900mA (usually, for USB3 devices).
 
-The board embeds a GPIO controlled regulator on each port which can be
-configured to deliver each amount of current.
+--zi3crwvz5dqqoqhp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add a vin-supply property to the USB3 Vbus nodes for this purpose. The
-regulator will be automatically 'enabled', ie. set to limit at 900mA
-instead of 500mA.
+On Mon, May 27, 2019 at 10:06:23PM +0200, Cl=E9ment P=E9ron wrote:
+> Allwinner H6 has a different bit to flush the TX FIFO.
+>
+> Add a quirks to prepare introduction of H6 SoC.
+>
+> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
 
-Suggested-by: Alex Leibovich <alexl@marvell.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- .../arm64/boot/dts/marvell/armada-7040-db.dts | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-index d20d84ce7ca8..f34ee87a0f56 100644
---- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-@@ -28,6 +28,32 @@
- 		ethernet2 = &cp0_eth2;
- 	};
- 
-+	cp0_exp_usb3_0_current_regulator: gpio-regulator {
-+		compatible = "regulator-gpio";
-+		regulator-name = "cp0-usb3-0-current-regulator";
-+		regulator-type = "current";
-+		regulator-min-microamp = <500000>;
-+		regulator-max-microamp = <900000>;
-+		gpios = <&expander0 4 GPIO_ACTIVE_HIGH>;
-+		states = <500000 0x0
-+			  900000 0x1>;
-+		enable-active-high;
-+		gpios-states = <0>;
-+	};
-+
-+	cp0_exp_usb3_1_current_regulator: gpio-regulator {
-+		compatible = "regulator-gpio";
-+		regulator-name = "cp0-usb3-1-current-regulator";
-+		regulator-type = "current";
-+		regulator-min-microamp = <500000>;
-+		regulator-max-microamp = <900000>;
-+		gpios = <&expander0 5 GPIO_ACTIVE_HIGH>;
-+		states = <500000 0x0
-+			  900000 0x1>;
-+		enable-active-high;
-+		gpios-states = <0>;
-+	};
-+
- 	cp0_reg_usb3_0_vbus: cp0-usb3-0-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "usb3h0-vbus";
-@@ -35,6 +61,7 @@
- 		regulator-max-microvolt = <5000000>;
- 		enable-active-high;
- 		gpio = <&expander0 0 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&cp0_exp_usb3_0_current_regulator>;
- 	};
- 
- 	cp0_reg_usb3_1_vbus: cp0-usb3-1-vbus {
-@@ -44,6 +71,7 @@
- 		regulator-max-microvolt = <5000000>;
- 		enable-active-high;
- 		gpio = <&expander0 1 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&cp0_exp_usb3_1_current_regulator>;
- 	};
- 
- 	cp0_usb3_0_phy: cp0-usb3-0-phy {
--- 
-2.19.1
+Maxime
 
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--zi3crwvz5dqqoqhp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOz7mwAKCRDj7w1vZxhR
+xYHnAQCF0T/LyvPDLxyjIVgapteJRIIteH2cyprro9XfsXCZKAEA/Jy3TK1gXH37
+KQ0w0ZON8xPR32fd/FxWTsrhVYDGswU=
+=xOqB
+-----END PGP SIGNATURE-----
+
+--zi3crwvz5dqqoqhp--
