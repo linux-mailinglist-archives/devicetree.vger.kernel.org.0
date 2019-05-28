@@ -2,168 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B7F52D203
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 01:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5780E2D24E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 01:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727688AbfE1XJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 19:09:06 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:11197 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727626AbfE1XJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 19:09:05 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5cedbf850002>; Tue, 28 May 2019 16:08:53 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 28 May 2019 16:09:01 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 28 May 2019 16:09:01 -0700
-Received: from HQMAIL106.nvidia.com (172.18.146.12) by HQMAIL108.nvidia.com
- (172.18.146.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 28 May
- 2019 23:09:01 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL106.nvidia.com
- (172.18.146.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 28 May 2019 23:09:01 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.110.103.86]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5cedbf8d0001>; Tue, 28 May 2019 16:09:01 -0700
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
-        <stefan@agner.ch>, <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>, <skomatineni@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH V2 12/12] soc/tegra: pmc: configure tegra deep sleep control settings
-Date:   Tue, 28 May 2019 16:08:56 -0700
-Message-ID: <1559084936-4610-13-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
-References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1726620AbfE1XP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 19:15:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726600AbfE1XP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 19:15:58 -0400
+Received: from localhost (ip67-88-213-2.z213-88-67.customer.algx.net [67.88.213.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 858F720989;
+        Tue, 28 May 2019 23:15:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559085357;
+        bh=/c4ol7KgiJXfMCOGnsBf9AXiqdwtZ1LxO0jkVUQ/WmQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vb8z0WIXDH1wtTC+kZSdaVf9u2rL+abnYjQyiGh6DAKzlG+i5w0SFikCrDS2sYSlV
+         UgQh7hYaM7lqZ7SBoLKgTWRfQ/SI5q8WzR1heucddOzOVzxfgfB3+2J8RwIOE8ZZvH
+         ZO7dMa3E3VoOtjYvuJnCrCbaVxmw8iSqAg5xlUqI=
+Date:   Tue, 28 May 2019 16:15:57 -0700
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     richard.gong@linux.intel.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
+        atull@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sen.li@intel.com,
+        Richard Gong <richard.gong@intel.com>
+Subject: Re: [PATCHv4 2/4] firmware: add Intel Stratix10 remote system update
+ driver
+Message-ID: <20190528231557.GA28886@kroah.com>
+References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1559084933; bh=AXgFaKaMRanL7gj3q6RZdV0zOpoPQUiMedbJEKLsx0Q=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=XTzm6megZhIPYrjJQ0OTfTwKhiyWA+Qq+M53wuFpyVvHTlMNJo/ELpD/CrbCw9kLq
-         jVzQqC67ksnVg2AQ46qt78iCJcmInX7Hto7hUXFb78f5gpNAQcbUd+EuO50jySz8n7
-         WUkiQKft6BBj0kL/UvgZ3JyP6HwaecEsy1Pdlmb+9RhDvj1hCw1JJu1r174D05fr4e
-         rK3Dq1IQWwKW+aZjBlc1w/w90FkrwGPZmMhrjr7ux+fnzKXrDioXjI+BBzYgaXHL4n
-         LgESPathjq/JDigo9cEeb6GO1+vO6W0M+MHMVwjDZB7Vjqu/DKflSrjRQb9pa+qoXb
-         /ZynPU+L7n/xA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra210 and prior Tegra chips have power request signal polarity,
-deep sleep entry and wake related timings which are platform specific
-that should be configured before entering into deep sleep.
+On Tue, May 28, 2019 at 03:20:31PM -0500, richard.gong@linux.intel.com wrote:
+> From: Richard Gong <richard.gong@intel.com>
+> 
+> The Intel Remote System Update (RSU) driver exposes interfaces access
+> through the Intel Service Layer to user space via sysfs interface.
+> The RSU interfaces report and control some of the optional RSU features
+> on Intel Stratix 10 SoC.
+> 
+> The RSU feature provides a way for customers to update the boot
+> configuration of a Intel Stratix 10 SoC device with significantly reduced
+> risk of corrupting the bitstream storage and bricking the system.
+> 
+> Signed-off-by: Richard Gong <richard.gong@intel.com>
+> Reviewed-by: Alan Tull <atull@kernel.org>
 
-Below are the timings specific configurations for deep sleep and wake.
-- Core rail power-on stabilization timer
-- OSC clock stabilization timer after SOC rail power is stabilized.
-- Core power off time is the minimum wake delay to keep the system
-in deep sleep state irrespective of any quick wake event.
+Is Alan reviewing all of these new versions before you post them
+publicly?  If so, great, if not, don't add tags to new versions when you
+change things around...
 
-These values depends on the discharge time of regulators and turn OFF
-time of the PMIC to allow the complete system to finish entering into
-deep sleep state.
+thanks,
 
-These values vary based on the platform design and are specified
-through the device tree.
-
-This patch has implementation to configure these configurations which
-are must to have for deep sleep state.
-
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi |  7 +++++++
- drivers/soc/tegra/pmc.c                        | 18 ++++++++++++++++++
- 2 files changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-index 4dcd0d36189a..7ac5e55a30aa 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
-@@ -266,6 +266,13 @@
- 
- 	pmc@7000e400 {
- 		nvidia,invert-interrupt;
-+		nvidia,suspend-mode = <0>;
-+		nvidia,cpu-pwr-good-time = <0>;
-+		nvidia,cpu-pwr-off-time = <0>;
-+		nvidia,core-pwr-good-time = <4587 3876>;
-+		nvidia,core-pwr-off-time = <39065>;
-+		nvidia,core-power-req-active-high;
-+		nvidia,sys-clock-req-active-high;
- 	};
- 
- 	/* eMMC */
-diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-index 54dc8409e353..d7e0f5057f16 100644
---- a/drivers/soc/tegra/pmc.c
-+++ b/drivers/soc/tegra/pmc.c
-@@ -66,6 +66,7 @@
- #define  PMC_CNTRL_SIDE_EFFECT_LP0	BIT(14) /* LP0 when CPU pwr gated */
- #define  PMC_CNTRL_SYSCLK_OE		BIT(11) /* system clock enable */
- #define  PMC_CNTRL_SYSCLK_POLARITY	BIT(10) /* sys clk polarity */
-+#define  PMC_CNTRL_PWRREQ_POLARITY	BIT(8)
- #define  PMC_CNTRL_MAIN_RST		BIT(4)
- #define  PMC_CNTRL_LATCH_WAKEUPS	BIT(5)
- 
-@@ -98,6 +99,8 @@
- 
- #define PMC_CPUPWRGOOD_TIMER		0xc8
- #define PMC_CPUPWROFF_TIMER		0xcc
-+#define PMC_COREPWRGOOD_TIMER		0x3c
-+#define PMC_COREPWROFF_TIMER		0xe0
- 
- #define PMC_PWR_DET_VALUE		0xe4
- 
-@@ -2285,6 +2288,7 @@ static const struct tegra_pmc_regs tegra20_pmc_regs = {
- static void tegra20_pmc_init(struct tegra_pmc *pmc)
- {
- 	u32 value;
-+	unsigned long osc, pmu, off;
- 
- 	/* Always enable CPU power request */
- 	value = tegra_pmc_readl(pmc, PMC_CNTRL);
-@@ -2298,6 +2302,11 @@ static void tegra20_pmc_init(struct tegra_pmc *pmc)
- 	else
- 		value |= PMC_CNTRL_SYSCLK_POLARITY;
- 
-+	if (pmc->corereq_high)
-+		value &= ~PMC_CNTRL_PWRREQ_POLARITY;
-+	else
-+		value |= PMC_CNTRL_PWRREQ_POLARITY;
-+
- 	/* configure the output polarity while the request is tristated */
- 	tegra_pmc_writel(pmc, value, PMC_CNTRL);
- 
-@@ -2305,6 +2314,15 @@ static void tegra20_pmc_init(struct tegra_pmc *pmc)
- 	value = tegra_pmc_readl(pmc, PMC_CNTRL);
- 	value |= PMC_CNTRL_SYSCLK_OE;
- 	tegra_pmc_writel(pmc, value, PMC_CNTRL);
-+
-+	osc = DIV_ROUND_UP_ULL(pmc->core_osc_time * 8192, 1000000);
-+	pmu = DIV_ROUND_UP_ULL(pmc->core_pmu_time * 32768, 1000000);
-+	off = DIV_ROUND_UP_ULL(pmc->core_off_time * 32768, 1000000);
-+	if (osc && pmu)
-+		tegra_pmc_writel(pmc, ((osc << 8) & 0xff00) | (pmu & 0xff),
-+				 PMC_COREPWRGOOD_TIMER);
-+	if (off)
-+		tegra_pmc_writel(pmc, off, PMC_COREPWROFF_TIMER);
- }
- 
- static void tegra20_pmc_setup_irq_polarity(struct tegra_pmc *pmc,
--- 
-2.7.4
-
+greg k-h
