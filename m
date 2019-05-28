@@ -2,80 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A51272BF78
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 08:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F082BF80
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2019 08:35:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbfE1GeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 02:34:04 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:43389 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725904AbfE1GeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 02:34:04 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id F10C21C0007;
-        Tue, 28 May 2019 06:34:01 +0000 (UTC)
-Date:   Tue, 28 May 2019 08:34:01 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/5] dt-bindings: vendor: Add a bunch of vendors
-Message-ID: <20190528063401.7uikujzahuq4wlxm@flea>
-References: <20190525134140.6220-1-maxime.ripard@bootlin.com>
- <20190525134140.6220-3-maxime.ripard@bootlin.com>
- <20190526160600.GA1399@bogus>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mqpnwsn2vk4qeuus"
-Content-Disposition: inline
-In-Reply-To: <20190526160600.GA1399@bogus>
-User-Agent: NeoMutt/20180716
+        id S1726789AbfE1Gfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 May 2019 02:35:48 -0400
+Received: from plaes.org ([188.166.43.21]:52992 "EHLO plaes.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726305AbfE1Gfs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 May 2019 02:35:48 -0400
+Received: from localhost (unknown [IPv6:2001:bb8:4008:20:21a:64ff:fe97:f60])
+        by plaes.org (Postfix) with ESMTPSA id 5DC37402DD;
+        Tue, 28 May 2019 06:35:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=plaes.org; s=mail;
+        t=1559025346; bh=kd8HHQHYAXLACCGTSACw8a42kGWpfQ/F8JYYcsX/XT8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TEvuUTVh4pdYVKL7ECC0h7Ez7SmZsh0B4YFSfMl45Rbi7nTqCc2Jnzif3X4dc4CoY
+         Tg8dPecXfAaXSevxJfhYMoEhorkYaKojfRIZki/o6HYZDgo6/bhgI2K1qwrodsADDK
+         4MRg5ryjdllptfioOBCNuB+dz07JwUuK0mTchhRF7OnJJaW5BFyFvPpnI3EnTo5iqv
+         WSTelNes6qCy06XKhN2cQ+cs/hyVN5vbzPchFJmLQSN1GUGKfhBb/V80Z3P/dFXBqA
+         o1jiiInXe7Zz2JUM2X7bZiR6yFHk6f1UqNFQZ/k1pjtnfKOmpx6rLkw4DZvPxn6wdv
+         xoBA6jJCBd9Iw==
+From:   Priit Laes <plaes@plaes.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     linux-sunxi@googlegroups.com, Priit Laes <plaes@plaes.org>
+Subject: [RESEND PATCH] ARM: dts: sun7i: olimex-lime2: Enable ac and power supplies
+Date:   Tue, 28 May 2019 09:35:44 +0300
+Message-Id: <20190528063544.17408-1-plaes@plaes.org>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Lime2 has battery connector so enable these supplies.
 
---mqpnwsn2vk4qeuus
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Priit Laes <plaes@plaes.org>
+---
+ arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Hi Rob,
+diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+index 9c8eecf4337a..9001b5527615 100644
+--- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
++++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+@@ -206,6 +206,14 @@
+ 
+ #include "axp209.dtsi"
+ 
++&ac_power_supply {
++	status = "okay";
++};
++
++&battery_power_supply {
++	status = "okay";
++};
++
+ &reg_dcdc2 {
+ 	regulator-always-on;
+ 	regulator-min-microvolt = <1000000>;
+-- 
+2.11.0
 
-On Sun, May 26, 2019 at 11:06:00AM -0500, Rob Herring wrote:
-> On Sat, 25 May 2019 15:41:38 +0200, Maxime Ripard wrote:
-> > Add all the missing vendors used in Allwinner DTS.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/vendor-prefixes.yaml  | 58 +++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >
->
-> Applied, thanks.
-
-While the other patches are in your tree now, this one looks missing.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---mqpnwsn2vk4qeuus
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOzWWQAKCRDj7w1vZxhR
-xQLAAQD6nKGIFIcd43Os6xkOABzRfXLk5hNDNjqwz6+qzA55YAD+Ln1mULNMU9lR
-UWa0T77cSkTVD8BBjCxcUZM5jWxy0gk=
-=Zkd0
------END PGP SIGNATURE-----
-
---mqpnwsn2vk4qeuus--
