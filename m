@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 300BD2DB2E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37BE12DB30
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726888AbfE2K5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:57:09 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:35151 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726880AbfE2K5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:57:09 -0400
-Received: by mail-pf1-f196.google.com with SMTP id d126so1402260pfd.2
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:57:08 -0700 (PDT)
+        id S1726911AbfE2K5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 06:57:13 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:45230 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726038AbfE2K5N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:57:13 -0400
+Received: by mail-pl1-f193.google.com with SMTP id a5so896081pls.12
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:57:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Eyb7BIHD01D0smmXOe136462okq/ItEJbzuGD038kxU=;
-        b=FIQa332or/0Y1ihVrB9DQXuCYYKeiS+pyF7rdfe8C0OzeJp99VOjecrS9ERaWdyVXf
-         7bK/db+J15eGqgaawGHN477aDbYL3WV8yTui0G9QwX/KRSwGN10+p4RYIesJdz97KHNS
-         5f7DEignN1y0LolDRlIT9+q3S4g1+yyh2Z7bY=
+        bh=2ZQ8G0W1S9OmrPavif11lWWMbohgMuBG92FhjQ0hCpY=;
+        b=gdGxlLlLsfXGohWiydB6LjurSsdfuFwPeks8QxffA0jURX8ULCrSOR2YiO7hgtpsji
+         pRmU5gTaS68DtWTDZ+9jgfF86+uStkqc1uiYAY/md8Bxjem8cy01t+D3dbrvS2sRyZYA
+         bx3Xe8a04d+GpRGxmn/E53y2kaBxnnVJcM0zs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Eyb7BIHD01D0smmXOe136462okq/ItEJbzuGD038kxU=;
-        b=OTFyoPr0jJcWTaoh1tT9kC6lpl5ygdJun6rJN4KfFkelU8K9d8DPK6VDrTBpOIgFax
-         W6vtm2yvkRLFoWSeS5Mr4oLQ7Y+l94v/6AHtLIWQcnbWtapUxkXrme+rrf7OpAS/l4KX
-         cX/aOBOvBZbuw2uXITyq+C+U0+aqIlzPo+B5j4K+f7XTyLvY30xP68EM2VZWu+0I2Xp6
-         Pi/N4cP3hBKGjUwm3yBM3TgDU2+yCsghE+WhINw8O6sO64XKPiYFwgs4KIG8klcSYb3G
-         NXkTk6DfnQJF7I6+7CI3ZazcJ9ixWxSRsVez/FLez6ETOEeKDcq42GukblXH6lsqJp+j
-         FjVg==
-X-Gm-Message-State: APjAAAV66d1j15QlqtccV3PdxWYbSWHIP1IeU7TY/eGvye3Ckg15dAbP
-        663cK6mPsNC35z+0CNddSXrgaw==
-X-Google-Smtp-Source: APXvYqysDuO1NSzDIF/g5QolZWZtMoiyhlFCesQaeB1NIziQuIwb/NkDrYa0ajLyvG4RW+9rEWIuPA==
-X-Received: by 2002:a63:c20c:: with SMTP id b12mr1312582pgd.3.1559127428328;
-        Wed, 29 May 2019 03:57:08 -0700 (PDT)
+        bh=2ZQ8G0W1S9OmrPavif11lWWMbohgMuBG92FhjQ0hCpY=;
+        b=Myd2+uN1Qc8rZMaTNPJv+5a2oc1ESYhQllsrKu0luleGZJQce5AYBNNyMsiqPQRrc0
+         8DPD2PTKy5tSvLhCa5ppbFsxl+3vFpkJFUPoaEz82+a/kNwdXbHjARXYqlxF/AWSQrsu
+         sLSEjUJBr9pADz6g1+yiPY7pzVuKGjSKdS0eRZPTYge7rRWeVMEvBf6KqZPpxtC/ZMml
+         5dwZs5WIb79c+ItGhX2m/k8ahn+ipVshHCWK0L7kiJyg19TntK8bFyxDZmzi4CIqyyMD
+         +gqVu8yFbvJMXoRf5Hd6MpRXobK6vvEXTZqGb39dqyUZe8tq/fpbplqhAy3zKde8JjmF
+         x7Rg==
+X-Gm-Message-State: APjAAAXQfoi2bSd5HHcG6RHoo/Innbtf/6C60dlSmcP2NW8kCnynEph2
+        uxaVBMHm83o+Vff+aeI2e1lA4g==
+X-Google-Smtp-Source: APXvYqxJAVroZSxkWNSASs009+W1R6iWdZWK44wcz1sc8TL7INu/U1qlJ65ThlWxirmvQ5tEXda/FA==
+X-Received: by 2002:a17:902:a982:: with SMTP id bh2mr35644829plb.224.1559127432704;
+        Wed, 29 May 2019 03:57:12 -0700 (PDT)
 Received: from localhost.localdomain ([49.206.202.218])
-        by smtp.gmail.com with ESMTPSA id 184sm18974479pfa.48.2019.05.29.03.57.04
+        by smtp.gmail.com with ESMTPSA id 184sm18974479pfa.48.2019.05.29.03.57.08
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 May 2019 03:57:07 -0700 (PDT)
+        Wed, 29 May 2019 03:57:12 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Maxime Ripard <maxime.ripard@bootlin.com>,
         David Airlie <airlied@linux.ie>,
@@ -53,9 +53,9 @@ Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
         Sergey Suloev <ssuloev@orpaltech.com>,
         Ryan Pannell <ryan@osukl.com>, bshah@mykolab.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v9 6/9] arm64: dts: allwinner: a64-amarula-relic: Add Techstar TS8550B MIPI-DSI panel
-Date:   Wed, 29 May 2019 16:26:12 +0530
-Message-Id: <20190529105615.14027-7-jagan@amarulasolutions.com>
+Subject: [DO NOT MERGE] [PATCH v9 7/9] arm64: dts: allwinner: bananapi-m64: Enable Bananapi S070WV20-CT16 DSI panel
+Date:   Wed, 29 May 2019 16:26:13 +0530
+Message-Id: <20190529105615.14027-8-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190529105615.14027-1-jagan@amarulasolutions.com>
 References: <20190529105615.14027-1-jagan@amarulasolutions.com>
@@ -66,70 +66,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amarula A64-Relic board by default bound with Techstar TS8550B
-MIPI-DSI panel, add support for it.
+This patch add support for Bananapi S070WV20-CT16 DSI panel to
+BPI-M64 board.
 
 DSI panel connected via board DSI port with,
 - DLDO1 as VCC-DSI supply
-- DLDO2 as VCC supply
-- DLDO2 as IOVCC supply
-- PD24 gpio for reset pin
-- PD23 gpio for backlight enable pin
+- DCDC1 as VDD supply
+- PD7 gpio for lcd enable pin
+- PD6 gpio for lcd reset pin
+- PD5 gpio for backlight enable pin
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- .../allwinner/sun50i-a64-amarula-relic.dts    | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts
-index 5634245d11db..5109c3258a2f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts
-@@ -9,6 +9,7 @@
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+index c2a6b73b17cf..166b9761ca83 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+@@ -45,6 +45,7 @@
  #include "sun50i-a64.dtsi"
  
  #include <dt-bindings/gpio/gpio.h>
 +#include <dt-bindings/pwm/pwm.h>
  
  / {
- 	model = "Amarula A64-Relic";
-@@ -18,6 +19,14 @@
- 		serial0 = &uart0;
+ 	model = "BananaPi-M64";
+@@ -56,6 +57,14 @@
+ 		serial1 = &uart1;
  	};
  
 +	backlight: backlight {
 +		compatible = "pwm-backlight";
-+		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
++		pwms = <&r_pwm 0 50000 PWM_POLARITY_INVERTED>;
 +		brightness-levels = <1 2 4 8 16 32 64 128 255>;
 +		default-brightness-level = <2>;
-+		enable-gpios = <&pio 3 23 GPIO_ACTIVE_HIGH>; /* LCD-BL-EN: PD23 */
++		enable-gpios = <&pio 3 5 GPIO_ACTIVE_HIGH>; /* LCD-BL-EN: PD5 */
 +	};
 +
  	chosen {
  		stdout-path = "serial0:115200n8";
  	};
-@@ -80,6 +89,28 @@
- 	};
+@@ -116,6 +125,24 @@
+ 	status = "okay";
  };
  
-+&de {
-+	status = "okay";
-+};
-+
 +&dphy {
 +	status = "okay";
 +};
 +
 +&dsi {
-+	vcc-dsi-supply = <&reg_dldo1>;		/* VCC-DSI */
++	vcc-dsi-supply = <&reg_dldo1>;		/* VCC3V3-DSI */
 +	status = "okay";
 +
 +	panel@0 {
-+		compatible = "techstar,ts8550b", "sitronix,st7701";
++		compatible = "bananapi,s070wv20-ct16-icn6211";
 +		reg = <0>;
-+		VCC-supply = <&reg_dldo2>;	/* VCC-MIPI */
-+		IOVCC-supply = <&reg_dldo2>;	/* VCC-MIPI */
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* LCD-RST: PD24 */
++		enable-gpios = <&pio 3 7 GPIO_ACTIVE_HIGH>; /* LCD-PWR-EN: PD7 */
++		reset-gpios = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* LCD-RST: PD6 */
++		vdd-supply = <&reg_dcdc1>;
 +		backlight = <&backlight>;
 +	};
 +};
@@ -137,11 +133,11 @@ index 5634245d11db..5109c3258a2f 100644
  &ehci0 {
  	status = "okay";
  };
-@@ -151,6 +182,10 @@
+@@ -206,6 +233,10 @@
  	status = "okay";
  };
  
-+&pwm {
++&r_pwm {
 +	status = "okay";
 +};
 +
