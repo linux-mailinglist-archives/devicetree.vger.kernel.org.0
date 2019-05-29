@@ -2,122 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A9352E744
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 23:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DB272E725
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 23:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726311AbfE2VQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 17:16:50 -0400
-Received: from esa5.hgst.iphmx.com ([216.71.153.144]:41848 "EHLO
-        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726043AbfE2VQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 17:16:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1559164610; x=1590700610;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=t6/BBRKinUB4rge6hAORapSWWPFH+YEGVDDiNjrTWJA=;
-  b=aViAEm0/NOE5aSc/pPcikzMaIPkw66HZoh8XS2YMaXG3B7iFFGFQqi8E
-   nShjXTMgNucKbUBuiX3XDBV+Wtiord8txg86Wsax92LjMCVT5DYwoU4wV
-   KfpeLIuatx0T3+TaPzbcuTewcH86KShg84Xk66Wter4E0aeP1w8eHXHNQ
-   2bzxsNG5QyHcp4KzMCFr6bJXTDGr/a/xXyuOh9f4xzHKXWmDWJ+5BWvm2
-   H7nvFTNWhabwAukdWMCMcgMOUDRknulAXKc72OHxgePRkriW7c+TTfdE1
-   JtweMznoO42+8B0QRslToAHOY6+rTMJjt8oQN+2D3n4LFRjn9kNghhqu0
-   A==;
-X-IronPort-AV: E=Sophos;i="5.60,527,1549900800"; 
-   d="scan'208";a="110604133"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 30 May 2019 05:16:50 +0800
-IronPort-SDR: t5AQKp2K2oR4CGuuqxiTs4/RSW3qauz23wxW9cj6aGtIGCdcy8id5Hcby/LJTPI5FQx0qz4c0b
- tQwfenFzx9VOcGDt5Mabb47yavzgZkvD8J9MV8XWadoWvOOeZkgdsO6xb2Nq5hE5NQONKVtdca
- FbB/KOQ8DujoilhZDFuS733ETpDmgxSqeieDTIC2COqyMKcS8f2GwY1Mjx4ggokodLadKZpTHo
- oPaAxUSvnTmwS86cXBmBZPz+9f7iQ8Ln/Tazf4THHMreXHXJoCaucF0SPk5ctgIDroyR62W/Se
- wAgjZZrxrbUosXAOw/Ft/ouJ
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP; 29 May 2019 13:52:00 -0700
-IronPort-SDR: AtYWETTfUQbYBogdkAYSQ9pD04Qgx/UBv+7e7JgZLMDSy8je1uswZmLuzGHBuBVOlP9GIKuarN
- EVG63Bzc1dznWiALKhS790djk1hjza3hs0FBXbCFeETWKPPZG8+GdQGKOepq3o9LP1t6kOuit3
- vpcn0jy2WV2CpCwHXQMUcLJRzP4PVH6LZMIbT6KA2P8cn34CJjqc68GQbK6hNBdxKF0uHk0uWB
- cnpyuhVgsdf2EaU3Etyc82a0IK/bY9SCTlHQenWjPwXcU+T/zQQcQgSEzw2dKItxYw0Ba+LMHc
- 3CY=
-Received: from jedi-01.sdcorp.global.sandisk.com (HELO jedi-01.int.fusionio.com) ([10.11.143.218])
-  by uls-op-cesaip02.wdc.com with ESMTP; 29 May 2019 14:16:49 -0700
-From:   Atish Patra <atish.patra@wdc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Juri Lelli <juri.lelli@redhat.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 7/7] MAINTAINERS: Add an entry for generic architecture topology
-Date:   Wed, 29 May 2019 14:13:40 -0700
-Message-Id: <20190529211340.17087-8-atish.patra@wdc.com>
+        id S1726408AbfE2VNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 17:13:55 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51894 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726189AbfE2VNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 17:13:55 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4TLDnc3011365;
+        Wed, 29 May 2019 16:13:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559164429;
+        bh=UtfU/8233aUmiqr/3DAdlqIZFtCoTeyL2Sth6JDKYVY=;
+        h=From:To:CC:Subject:Date;
+        b=hrzvBo3kTOZd3dPKYEcsPSf9u+AYiOc/9/Y8FWHPrfeH775H9jeTU4tTWJ1XA2Gm3
+         bunCbkZ4wRRu115eAwbK+Mh22QoLTkz2QVHy2xLcAmucSi8oyzWfyCgplznAaPd98G
+         AFj+TB6BEHwAaRqT7Q9hvcrIeSxR5MFcJi7LrWJI=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4TLDnDI016010
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 29 May 2019 16:13:49 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 29
+ May 2019 16:13:49 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 29 May 2019 16:13:49 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4TLDnEu015680;
+        Wed, 29 May 2019 16:13:49 -0500
+Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x4TLDnm04056;
+        Wed, 29 May 2019 16:13:49 -0500 (CDT)
+From:   Suman Anna <s-anna@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am65: Add MSMC RAM ranges in interconnect node
+Date:   Wed, 29 May 2019 16:13:44 -0500
+Message-ID: <20190529211344.18014-1-s-anna@ti.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190529211340.17087-1-atish.patra@wdc.com>
-References: <20190529211340.17087-1-atish.patra@wdc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sudeep Holla <sudeep.holla@arm.com>
+From: Roger Quadros <rogerq@ti.com>
 
-arm and arm64 shared lot of CPU topology related code. This was
-consolidated under driver/base/arch_topology.c by Juri. Now RISC-V
-is also started sharing the same code pulling more code from arm64
-into arch_topology.c
+Add the MSCM RAM address space to the ranges property of the cbass_main
+interconnect node so that the addresses can be translated properly.
 
-Since I was involved in the review from the beginning, I would like
-to assume maintenance for the same.
+This fixes the probe failure in the sram driver for the MSMC RAM node.
 
-Cc: Will Deacon <will.deacon@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Acked-by: Juri Lelli <juri.lelli@redhat.com>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+Signed-off-by: Suman Anna <s-anna@ti.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 429c6c624861..f0b72ed51e22 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6583,6 +6583,13 @@ W:	https://linuxtv.org
- S:	Maintained
- F:	drivers/media/radio/radio-gemtek*
- 
-+GENERIC ARCHITECTURE TOPOLOGY
-+M:	Sudeep Holla <sudeep.holla@arm.com>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	drivers/base/arch_topology.c
-+F:	include/linux/arch_topology.h
-+
- GENERIC GPIO I2C DRIVER
- M:	Wolfram Sang <wsa+renesas@sang-engineering.com>
- S:	Supported
+The following error message is seen without this:
+[    0.480261] sram interconnect@100000:sram@70000000: found no memory resource
+[    0.487497] sram: probe of interconnect@100000:sram@70000000 failed with error -22
+
+regards
+Suman
+
+ arch/arm64/boot/dts/ti/k3-am65.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+index 50f4be2047a9..68b3f954f1d1 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+@@ -68,6 +68,7 @@
+ 			 <0x00 0x00900000 0x00 0x00900000 0x00 0x00012000>, /* serdes */
+ 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0af02400>, /* Most peripherals */
+ 			 <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>, /* MAIN NAVSS */
++			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00200000>, /* MSMC SRAM */
+ 			 /* MCUSS Range */
+ 			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+ 			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00900100>,
 -- 
 2.21.0
 
