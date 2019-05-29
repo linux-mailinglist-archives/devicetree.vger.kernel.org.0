@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D36F02DB26
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D48D2DB2B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbfE2K5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:57:00 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:45631 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726518AbfE2K5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:57:00 -0400
-Received: by mail-pf1-f193.google.com with SMTP id s11so1373655pfm.12
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:56:59 -0700 (PDT)
+        id S1726855AbfE2K5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 06:57:04 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:37382 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726823AbfE2K5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:57:04 -0400
+Received: by mail-pg1-f195.google.com with SMTP id 20so276639pgr.4
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:57:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=iSfl8JfPaQ3eWtHD/XH3XcXi2ZhQvwGTja3e/CsvDhE=;
-        b=BqMnNZJPVSyBNKhXZnG6jfq6xiFnuJvAVG5+M7y4c5sF/jqrlNUUSyuZGwy9Ue1GAl
-         /ZCmlEhIuIZTCKvvoYUcUillYwzG0xAmYGy4+fzPByhP8dxCPBpbm0pgxJ2zppZ+Te2Y
-         BZ4uWoRTtZDRHvbsNoPw0gJh6BQWkj2hEe6LM=
+        bh=IKHbkwp0tH0KLf+f56uwsCmAY1kuILa8NoPqQgZh2PQ=;
+        b=GSAv18sBWAsz8YQuoNO/1lpeipPjg1J2Fa0U0jPgNa05sDr21vIDWTvRUnnqx7VvkU
+         IXsuxZfeXOdVCzR1B36mNH3Fa+NvmT+6gMD9vl8dXUq5bzJ+JXt+UnjbHK5bGmiwUUNq
+         qIER4dq4n4aRkLFBSOEGAJDdlBmtwYTIdNnXw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=iSfl8JfPaQ3eWtHD/XH3XcXi2ZhQvwGTja3e/CsvDhE=;
-        b=YO/xtbZP0ewwbzQ7/theRkxXTPCUlodorEdRan0txMmKiVZ/m4dWd7OEQ50aM7EzNG
-         OQmliRx1I2cTozfg9JV1ZTUGykid908XDZKpfk61pV+a/tQNtY4NgmIT5aIzG5jYhE7e
-         rlARLYlT5b8l/3Xbb6rs2hkzcmcQ79/bWf3cGWOZ0LWc9CdY7ShdYrVzNGTS6Meq0RBU
-         sbNMkUUnizt7sLCI5XCQYhRT0VRBNQTGXui9n8hZU5sZbcViWDIgDFU+UFjDqkzlPYr3
-         AR/4miifLai1gF6o5Kd2krYaBUSHLP2l7YVpKZjBjNyTunxotYYeDfPRxmPJL6o6TvrK
-         gsYg==
-X-Gm-Message-State: APjAAAVQqPaxO+mJ7LNI4w2yzk2+3v71dL/6qNnpYt3u/2VYNOakUTuE
-        qAwZbA834O9gjiGYb+hMR8jO3w==
-X-Google-Smtp-Source: APXvYqwjQXmck+YR2a+RbiuBNeM9299Ahq/O4xsRX52B+BRoeJVrH63dlJOqwyKqlbylxBRGMHiCMQ==
-X-Received: by 2002:a17:90a:240c:: with SMTP id h12mr11640162pje.12.1559127419415;
-        Wed, 29 May 2019 03:56:59 -0700 (PDT)
+        bh=IKHbkwp0tH0KLf+f56uwsCmAY1kuILa8NoPqQgZh2PQ=;
+        b=TZZhsaeB/c+MzUvMJctVKblY4n4FBwgvRPlH+yjKP3mnbDgAssLnYHEGflFDR1vS1E
+         knCpoAW6oB2P25hkNNn6HDWREFpW/sbJ1zGNe7pdsebudIWzZnirNFpxHchrKbUqZGnC
+         1biSWCoOmIlOFYRuSaWX4nFyM4hHzu4WgDNgWZ3FPHQ2Rxr8uS2ujJ5wxDmHcDzHf7E3
+         VbnmJiGtb3YlEnHUgVURBLun/BOdZAcJ53ksrEj9yx6QPOjL1Hh2r4NBcuaaD/kX5aNv
+         iIBnOSiRKcr3ayHa0od5pbvi2qoMxDJhCn9vH8NwCcM/XKfNyWKkDfRH93KcE3IdBYDw
+         Mg/g==
+X-Gm-Message-State: APjAAAW4JqTEcsriO0fGigGY2MG46lNOOcEC7RJ/qMr/IBvgFovxev4t
+        DcXFnzTwIIks6x187AYaJjWRTQ==
+X-Google-Smtp-Source: APXvYqxjPNrPdD2m/BZ2CUM9C2X2IqkehigITMfSOTVpr9OktUCY92tODMEwEqCZx/NEktAqBCX2aw==
+X-Received: by 2002:a63:d014:: with SMTP id z20mr131060453pgf.227.1559127423790;
+        Wed, 29 May 2019 03:57:03 -0700 (PDT)
 Received: from localhost.localdomain ([49.206.202.218])
-        by smtp.gmail.com with ESMTPSA id 184sm18974479pfa.48.2019.05.29.03.56.55
+        by smtp.gmail.com with ESMTPSA id 184sm18974479pfa.48.2019.05.29.03.56.59
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 May 2019 03:56:58 -0700 (PDT)
+        Wed, 29 May 2019 03:57:03 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Maxime Ripard <maxime.ripard@bootlin.com>,
         David Airlie <airlied@linux.ie>,
@@ -53,9 +53,9 @@ Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
         Sergey Suloev <ssuloev@orpaltech.com>,
         Ryan Pannell <ryan@osukl.com>, bshah@mykolab.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v9 4/9] drm/sun4i: dsi: Add Allwinner A64 MIPI DSI support
-Date:   Wed, 29 May 2019 16:26:10 +0530
-Message-Id: <20190529105615.14027-5-jagan@amarulasolutions.com>
+Subject: [PATCH v9 5/9] arm64: dts: allwinner: a64: Add MIPI DSI pipeline
+Date:   Wed, 29 May 2019 16:26:11 +0530
+Message-Id: <20190529105615.14027-6-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190529105615.14027-1-jagan@amarulasolutions.com>
 References: <20190529105615.14027-1-jagan@amarulasolutions.com>
@@ -66,40 +66,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MIPI DSI controller in Allwinner A64 is similar to A33.
+Add MIPI DSI pipeline for Allwinner A64.
 
-But unlike A33, A64 doesn't have DSI_SCLK gating so add compatible
-for Allwinner A64 with uninitialized has_mod_clk driver.
+- dsi node, with A64 compatible since it doesn't support
+  DSI_SCLK gating unlike A33
+- dphy node, with A64 compatible with A33 fallback since
+  DPHY on A64 and A33 is similar
+- finally, attach the dsi_in to tcon0 for complete MIPI DSI
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 Tested-by: Merlijn Wajer <merlijn@wizzup.org>
 ---
- drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-index ef878175a79b..dd68fd0888c9 100644
---- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-+++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-@@ -1304,11 +1304,18 @@ static const struct sun6i_dsi_variant sun6i_a31_mipi_dsi = {
- 	.has_mod_clk = true,
- };
- 
-+static const struct sun6i_dsi_variant sun50i_a64_mipi_dsi = {
-+};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index b275c6d35420..44c1c11db423 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -382,6 +382,12 @@
+ 					#address-cells = <1>;
+ 					#size-cells = <0>;
+ 					reg = <1>;
 +
- static const struct of_device_id sun6i_dsi_of_table[] = {
- 	{
- 		.compatible = "allwinner,sun6i-a31-mipi-dsi",
- 		.data = &sun6i_a31_mipi_dsi,
- 	},
-+	{
-+		.compatible = "allwinner,sun50i-a64-mipi-dsi",
-+		.data = &sun50i_a64_mipi_dsi,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, sun6i_dsi_of_table);
++					tcon0_out_dsi: endpoint@1 {
++						reg = <1>;
++						remote-endpoint = <&dsi_in_tcon0>;
++						allwinner,tcon-channel = <1>;
++					};
+ 				};
+ 			};
+ 		};
+@@ -985,6 +991,38 @@
+ 			status = "disabled";
+ 		};
+ 
++		dsi: dsi@1ca0000 {
++			compatible = "allwinner,sun50i-a64-mipi-dsi";
++			reg = <0x01ca0000 0x1000>;
++			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_MIPI_DSI>;
++			clock-names = "bus";
++			resets = <&ccu RST_BUS_MIPI_DSI>;
++			phys = <&dphy>;
++			phy-names = "dphy";
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port {
++				dsi_in_tcon0: endpoint {
++					remote-endpoint = <&tcon0_out_dsi>;
++				};
++			};
++		};
++
++		dphy: d-phy@1ca1000 {
++			compatible = "allwinner,sun50i-a64-mipi-dphy",
++				     "allwinner,sun6i-a31-mipi-dphy";
++			reg = <0x01ca1000 0x1000>;
++			clocks = <&ccu CLK_BUS_MIPI_DSI>,
++				 <&ccu CLK_DSI_DPHY>;
++			clock-names = "bus", "mod";
++			resets = <&ccu RST_BUS_MIPI_DSI>;
++			status = "disabled";
++			#phy-cells = <0>;
++		};
++
+ 		hdmi: hdmi@1ee0000 {
+ 			compatible = "allwinner,sun50i-a64-dw-hdmi",
+ 				     "allwinner,sun8i-a83t-dw-hdmi";
 -- 
 2.18.0.321.gffc6fa0e3
 
