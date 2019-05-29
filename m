@@ -2,139 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FACE2E041
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 16:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E788B2E003
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 16:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfE2OzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 10:55:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38924 "EHLO mail.kernel.org"
+        id S1726125AbfE2On1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 10:43:27 -0400
+Received: from mga18.intel.com ([134.134.136.126]:49062 "EHLO mga18.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726240AbfE2OzB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 10:55:01 -0400
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D2C223B19;
-        Wed, 29 May 2019 14:55:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1559141701;
-        bh=LRmVdjDfCx+iRHnx/tteucrVD9i835WHaCbePlhLWRk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BSnkMURPbHIQyJR6xI3csCIcpEyI0H7IYzYtgDBn9Zs52KbmvZSHYvU0wJ4MwwgVl
-         uthsUtmAVKB7sMufy5GCCjXTz3eD+EN60IwwLDKqltxU1IdlHKuPpnRYT7Y8w51ezP
-         XULafr/o3P7VESNxjkWLx5VHCWjq+yOKyqBbUCoQ=
-Received: by mail-lj1-f180.google.com with SMTP id y15so331554ljd.9;
-        Wed, 29 May 2019 07:55:00 -0700 (PDT)
-X-Gm-Message-State: APjAAAUV5GVAPpvxs0hsFzui9y3UyGDnst1t1vjKuzu2ZGKf2+UeKo6V
-        yeU+QpfJGQiWkTfdRIBz7q94V63131VY0Hu4peQ=
-X-Google-Smtp-Source: APXvYqxLCHSTSKRtNMOeK3w1Vw8PySGLMX5dD0AObBoh6u42Fc0i9Za2sWvtQXUMhZOw5+Z47zy+mzrPzD2fvtbbbaU=
-X-Received: by 2002:a2e:9a9a:: with SMTP id p26mr4207037lji.64.1559141698364;
- Wed, 29 May 2019 07:54:58 -0700 (PDT)
+        id S1726118AbfE2On1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 10:43:27 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 May 2019 07:43:09 -0700
+X-ExtLoop1: 1
+Received: from marshy.an.intel.com (HELO [10.122.105.159]) ([10.122.105.159])
+  by fmsmga004.fm.intel.com with ESMTP; 29 May 2019 07:43:09 -0700
+Subject: Re: [PATCHv4 2/4] firmware: add Intel Stratix10 remote system update
+ driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
+        atull@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sen.li@intel.com,
+        Richard Gong <richard.gong@intel.com>
+References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+ <20190528232224.GA29225@kroah.com>
+From:   Richard Gong <richard.gong@linux.intel.com>
+Message-ID: <1e3b5447-b776-f929-bca6-306f90ac0856@linux.intel.com>
+Date:   Wed, 29 May 2019 09:55:32 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <CAJKOXPf=nPrmw6Vzi_=LmO=dVsV4Gvoc-q75XP2FBEgm9Gxv0A@mail.gmail.com>
- <20190527022258.32748-1-matheus@castello.eng.br> <20190527022258.32748-5-matheus@castello.eng.br>
-In-Reply-To: <20190527022258.32748-5-matheus@castello.eng.br>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 29 May 2019 16:54:47 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcFPwBJ26V2rOS7t5H221B0H-MsDmC4Xb7gGHRX_ETxtQ@mail.gmail.com>
-Message-ID: <CAJKOXPcFPwBJ26V2rOS7t5H221B0H-MsDmC4Xb7gGHRX_ETxtQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] power: supply: max17040: Clear ALRT bit when the
- SOC are above threshold
-To:     Matheus Castello <matheus@castello.eng.br>
-Cc:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, lee.jones@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190528232224.GA29225@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 May 2019 at 04:45, Matheus Castello <matheus@castello.eng.br> wrote:
->
-> In order to not generate duplicate interrupts we clear the ALRT bit when
-> the SOC is in a state that shows that the battery is charged above the set
-> threshold for the SOC low level alert.
 
-I think interrupt/alert bit should be cleared while handling
-interrupt, not later because:
-1. It is logical to clear it when servicing it,
-2. It is simpler - no need for "chip->alert_bit",
-3. The alert threshold is understood as alert/warning so every
-interrupt should generate uevent. I understand you wanted to remove
-"duplicate interrupts" but in fact there are no duplicates. Every next
-interrupt comes from change of SoC while being below the critical
-level. Therefore on each such change user-space should be woken up and
-notified (e.g. to show the message to the user).
+Hi Greg,
 
-I also think this should be squashed with previous patch as it does
-not make sense as standalone commit.
+On 5/28/19 6:22 PM, Greg KH wrote:
+> On Tue, May 28, 2019 at 03:20:31PM -0500, richard.gong@linux.intel.com wrote:
+>> +/**
+>> + * rsu_send_msg() - send a message to Intel service layer
+>> + * @priv: pointer to rsu private data
+>> + * @command: RSU status or update command
+>> + * @arg: the request argument, the bitstream address or notify status
+>> + * @callback: function pointer for the callback (status or update)
+>> + *
+>> + * Start an Intel service layer transaction to perform the SMC call that
+>> + * is necessary to get RSU boot log or set the address of bitstream to
+>> + * boot after reboot.
+>> + *
+>> + * Returns 0 on success or -ETIMEDOUT on error.
+>> + */
+>> +static int rsu_send_msg(struct stratix10_rsu_priv *priv,
+>> +			enum stratix10_svc_command_code command,
+>> +	unsigned long arg,
+>> +	void (*callback)(struct stratix10_svc_client *client,
+>> +			 struct stratix10_svc_cb_data *data))
+>> +{
+>> +	struct stratix10_svc_client_msg msg;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&priv->lock);
+>> +	reinit_completion(&priv->completion);
+>> +	priv->client.receive_cb = callback;
+>> +
+>> +	msg.command = command;
+>> +	if (arg)
+>> +		msg.arg[0] = arg;
+>> +
+>> +	ret = stratix10_svc_send(priv->chan, &msg);
+> 
+> meta-question, can you send messages that are on the stack and not in
+> DMA-able memory?  Or should this be a dynamicly created variable so you
+> know it can work properly with DMA?
+> 
+> And how big is that structure, will it mess with stack sizes?
+> 
 
->
-> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
-> ---
->  drivers/power/supply/max17040_battery.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
-> index 2f4851608cfe..61e6fcfea8a1 100644
-> --- a/drivers/power/supply/max17040_battery.c
-> +++ b/drivers/power/supply/max17040_battery.c
-> @@ -48,6 +48,7 @@ struct max17040_chip {
->         int status;
->         /* Low alert threshold from 32% to 1% of the State of Charge */
->         u32 low_soc_alert_threshold;
-> +       int alert_bit;
->  };
->
->  static int max17040_get_property(struct power_supply *psy,
-> @@ -107,6 +108,7 @@ static void max17040_reset(struct i2c_client *client)
->  static int max17040_set_low_soc_threshold_alert(struct i2c_client *client,
->         u32 level)
->  {
-> +       struct max17040_chip *chip = i2c_get_clientdata(client);
->         int ret;
->         u16 data;
->
-> @@ -118,6 +120,7 @@ static int max17040_set_low_soc_threshold_alert(struct i2c_client *client,
->                 data &= MAX17040_ATHD_MASK;
->                 data |= level;
->                 max17040_write_reg(client, MAX17040_RCOMP, data);
-> +               chip->alert_bit = 0;
->                 ret = 0;
->         } else {
->                 ret = -EINVAL;
-> @@ -144,6 +147,11 @@ static void max17040_get_soc(struct i2c_client *client)
->         soc = max17040_read_reg(client, MAX17040_SOC);
->
->         chip->soc = (soc >> 8);
-> +
-> +       /* check SOC level to clear ALRT bit */
-> +       if (chip->soc > chip->low_soc_alert_threshold && chip->alert_bit)
-> +               max17040_set_low_soc_threshold_alert(client,
-> +                       chip->low_soc_alert_threshold);
->  }
->
->  static void max17040_get_version(struct i2c_client *client)
-> @@ -229,6 +237,9 @@ static irqreturn_t max17040_thread_handler(int id, void *dev)
->         /* send uevent */
->         power_supply_changed(chip->battery);
->
-> +       /* ALRT bit is seted */
+stratix10_svc_send() is a function from Intel Stratix10 service layer 
+driver, which is used by service clients (RSU and FPGA manager drivers 
+as now) to add a message to the service layer driver's queue for being 
+sent to the secure world via SMC call.
 
-s/seted/set/
+It is not DMA related, we send messages via FIFO API.
 
-Best regards,
-Krzysztof
+The size of FIFO is sizeof(struct stratix10_svc_data) * 
+SVC_NUM_DATA_IN_FIFO, SVC_NUM_DATA_IN_FIFO is defined as 32.
 
-> +       chip->alert_bit = 1;
-> +
->         return IRQ_HANDLED;
->  }
->
-> --
-> 2.20.1
->
+fifo_size = sizeof(struct stratix10_svc_data) * 	SVC_NUM_DATA_IN_FIFO;
+ret = kfifo_alloc(&controller->svc_fifo, fifo_size, GFP_KERNEL);
+if (ret) {
+	dev_err(dev, "failed to allocate FIFO\n");
+         return ret;
+}
+spin_lock_init(&controller->svc_fifo_lock);
+
+It will not mess with stack sizes.
+
+> thanks,
+> 
+> greg k-h
+> 
+
+Regards,
+Richard
