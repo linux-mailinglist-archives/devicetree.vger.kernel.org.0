@@ -2,131 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FFC2DC28
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 13:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1382DC82
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 14:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726965AbfE2LtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 07:49:14 -0400
-Received: from mail-eopbgr20042.outbound.protection.outlook.com ([40.107.2.42]:8933
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726101AbfE2LtO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 07:49:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cIiSuFGTVl9m/ZTNoQ/FCHYPKxVgP6vxQTjp2VbdnMU=;
- b=coO59u9dqTCJrfNqWgP4RLmuZEGK0SL58ZBtzn4ByJBkZ4Jveoq7koB4FHKOXkt6S6xwTyjlzUjafw7kW4TPCOeSLFmD/PRgn/0oye18MxIixaUVslBGM34M0op+/L5JF5AVjOBU48tcQPR/3/qhYXoS1FIgEJhg1pglRG0IXXI=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB4065.eurprd04.prod.outlook.com (52.134.90.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.17; Wed, 29 May 2019 11:48:30 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::3173:24:d401:2378]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::3173:24:d401:2378%6]) with mapi id 15.20.1922.021; Wed, 29 May 2019
- 11:48:30 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Peng Fan <peng.fan@nxp.com>,
-        "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-CC:     "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
-Thread-Topic: [RFC 1/2] dt-bindings: imx-ocotp: Add fusable-node property
-Thread-Index: AQHVDrkIcB6j+hDf/kC51b4HJvSviKaCCwCg
-Date:   Wed, 29 May 2019 11:48:29 +0000
-Message-ID: <AM0PR04MB44810069F874677C6A2DE795881F0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <20190520032020.7920-1-peng.fan@nxp.com>
-In-Reply-To: <20190520032020.7920-1-peng.fan@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [180.110.22.24]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7e8061f8-c6bb-4868-b89c-08d6e42b91e4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:AM0PR04MB4065;
-x-ms-traffictypediagnostic: AM0PR04MB4065:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <AM0PR04MB4065767687E27F78D7B9D080881F0@AM0PR04MB4065.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0052308DC6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(376002)(396003)(136003)(39860400002)(346002)(199004)(189003)(4326008)(2201001)(110136005)(54906003)(68736007)(102836004)(76116006)(7416002)(8936002)(71200400001)(256004)(44832011)(6436002)(33656002)(73956011)(66066001)(305945005)(26005)(14444005)(71190400001)(25786009)(53936002)(2501003)(7736002)(52536014)(9686003)(55016002)(186003)(6306002)(14454004)(99286004)(86362001)(6506007)(81166006)(2906002)(81156014)(5660300002)(11346002)(7696005)(76176011)(3846002)(316002)(478600001)(6116002)(229853002)(966005)(64756008)(66556008)(74316002)(8676002)(476003)(446003)(66476007)(66446008)(486006)(6246003)(66946007);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4065;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: yxkVRGT4pg0n6za3JUiANNNdkcEtPnVhRutj6kBt/l+JExpKOfmt7P+jyeAi2HTxL82A8FEY9zabUR6uvqatee26d+NOMW48EajsCqBewzNketENMIF6nVLu1yI2Mr5obew/c8MIPyqDtPv8nZDYugNGsyGyc2/enR8COl8qmdvjsoG2JB6ESDi7J8fpUxsx+h1+LTIUJIT4F1/0exD+I/Xu+UKtuq9G04Z+Ui0nq8hD1c7CkXH449JsvR/6DAamO9DSu7Aw8NeutEPRFSGLPTB8h7JzAsOraEn/zS/kJWeNIAdLMOJrdsZpfexcmvfXsWQBFg+cG/1a7a/FPlvNgjDXj7ayQapTiw/uD556R3Cg266YgxEmMSGD/jzb7udggogoh9jxJ5jSUJBTlI6UX3Y46Cpq8kjLK36wDJ6uV7M=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726780AbfE2MOQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 May 2019 08:14:16 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:54103 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726516AbfE2MOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 08:14:16 -0400
+Received: from xps13 (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 83FC020000B;
+        Wed, 29 May 2019 12:13:57 +0000 (UTC)
+Date:   Wed, 29 May 2019 14:13:56 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Marc Zyngier <marc.zyngier@arm.com>
+Cc:     raymond pang <raymondpangxd@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-ide@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Baruch Siach <baruch@tkos.co.il>
+Subject: Re: [PATCH v4 01/10] ata: libahci: Ensure the host interrupt status
+ bits are cleared
+Message-ID: <20190529141356.1d9f03f3@xps13>
+In-Reply-To: <409ea2c5-c31a-fb6a-22c6-98b45e767809@arm.com>
+References: <20190521143023.31810-1-miquel.raynal@bootlin.com>
+        <20190521143023.31810-2-miquel.raynal@bootlin.com>
+        <CAHG4imNxsdzjzRpFWnL+PuznjdOU4hsp2E-g1bt4WVJeokfT3w@mail.gmail.com>
+        <53ce8c5b-46fc-c969-5168-18e4bcc62cde@arm.com>
+        <20190529120833.29334c70@xps13>
+        <409ea2c5-c31a-fb6a-22c6-98b45e767809@arm.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e8061f8-c6bb-4868-b89c-08d6e42b91e4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2019 11:48:30.1316
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: peng.fan@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4065
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLCBTcmluaXZhcw0KDQo+IFN1YmplY3Q6IFtSRkMgMS8yXSBkdC1iaW5kaW5nczogaW14
-LW9jb3RwOiBBZGQgZnVzYWJsZS1ub2RlIHByb3BlcnR5DQoNCkRvIHlvdSBoYXZlIGFueSBjb21t
-ZW50cyBhYm91dCB0aGlzIHBhdGNoPw0KDQpUaGFua3MsDQpQZW5nLg0KDQo+IA0KPiBJbnRyb2R1
-Y2UgZnVzYWJsZS1ub2RlIHByb3BlcnR5IGZvciBpLk1YIE9DT1RQIGRyaXZlci4NCj4gVGhlIHBy
-b3BlcnR5IHdpbGwgb25seSBiZSB1c2VkIGJ5IEZpcm13YXJlKGVnLiBVLUJvb3QpIHRvIHJ1bnRp
-bWUgZGlzYWJsZSB0aGUNCj4gbm9kZXMuDQo+IA0KPiBUYWtlIGkuTVg2VUxMIGZvciBleGFtcGxl
-LCB0aGVyZSBhcmUgc2V2ZXJhbCBwYXJ0cyB0aGF0IG9ubHkgaGF2ZSBsaW1pdGVkDQo+IG1vZHVs
-ZXMgZW5hYmxlZCBjb250cm9sbGVkIGJ5IE9DT1RQIGZ1c2UuIEl0IGlzIG5vdCBmbGV4aWJsZSB0
-byBwcm92aWRlIHNldmVyYWwNCj4gZHRzIGZvciB0aGUgc2VydmFsIHBhcnRzLCBpbnN0ZWFkIHdl
-IGNvdWxkIHByb3ZpZGUgb25lIGRldmljZSB0cmVlIGFuZCBsZXQNCj4gRmlybXdhcmUgdG8gcnVu
-dGltZSBkaXNhYmxlIHRoZSBkZXZpY2UgdHJlZSBub2RlcyBmb3IgdGhvc2UgbW9kdWxlcyB0aGF0
-IGFyZQ0KPiBkaXNhYmxlKGZ1c2VkKS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFBlbmcgRmFuIDxw
-ZW5nLmZhbkBueHAuY29tPg0KPiAtLS0NCj4gDQo+IEN1cnJlbnRseSBOWFAgdmVuZG9yIHVzZSBV
-LUJvb3QgdG8gc2V0IHN0YXR1cyB0byBkaXNhYmxlZCBmb3IgZGV2aWNlcyB0aGF0DQo+IGNvdWxk
-IG5vdCBmdW5jdGlvbiwNCj4gaHR0cHM6Ly9zb3VyY2UuY29kZWF1cm9yYS5vcmcvZXh0ZXJuYWwv
-aW14L3Vib290LWlteC90cmVlL2FyY2gvYXJtL21hY2gNCj4gLWlteC9teDYvbW9kdWxlX2Z1c2Uu
-Yz9oPWlteF92MjAxOC4wM180LjE0Ljk4XzIuMC4wX2dhI24xNDkNCj4gQnV0IHRoaXMgYXBwcm9h
-Y2ggaXMgd2lsbCBub3Qgd29yayBpZiBrZXJuZWwgZHRzIG5vZGUgcGF0aCBjaGFuZ2VkLg0KPiAN
-Cj4gVGhlcmUgYXJlIHR3byBhcHByb2FjaGVzIHRvIHJlc29sdmU6DQo+IA0KPiAxLiBUaGlzIHBh
-dGNoIGlzIHRvIGFkZCBhIGZ1c2FibGUtbm9kZSBwcm9wZXJ0eSwgYW5kIEZpcm13YXJlIHdpbGwg
-cGFyc2UNCj4gICAgdGhlIHByb3BlcnR5IGFuZCByZWFkIGZ1c2UgdG8gZGVjaWRlIHdoZXRoZXIg
-dG8gZGlzYWJsZSBvciBrZWVlcCBlbmFibGUNCj4gICAgdGhlIG5vZGVzLg0KPiANCj4gMi4gVGhl
-cmUgaXMgYW5vdGhlciBhcHByb2FjaCBpcyB0aGF0IGFkZCBudm1lbS1jZWxscyBmb3IgYWxsIG5v
-ZGVzIHRoYXQNCj4gICAgY291bGQgYmUgZGlzYWJsZWQoZnVzZWQpLiBUaGVuIGluIGVhY2ggbGlu
-dXggZHJpdmVyIHRvIHVzZSBudm1lbQ0KPiAgICBhcGkgdG8gZGV0ZWN0IGZ1c2VkIG9yIG5vdCwg
-b3IgaW4gbGludXggZHJpdmVyIGNvbW1vbiBjb2RlIHRvIGNoZWNrDQo+ICAgIGRldmljZSBmdW5j
-dGlvbmFibGUgb3Igbm90IHdpdGggbnZtZW0gQVBJLg0KPiANCj4gDQo+IFRvIG1ha2UgaXQgZWFz
-eSB0byB3b3JrLCB3ZSBjaG9vc2UgWzFdIGhlcmUuIFBsZWFzZSBhZHZpc2Ugd2hldGhlciBpdCBp
-cw0KPiBhY2NlcHRhYmxlLCBiZWNhdXNlIHRoZSBwcm9wZXJ0eSBpcyBub3QgdXNlZCBieSBsaW51
-eCBkcml2ZXIgaW4gYXBwcm9hY2ggWzFdLg0KPiBPciB5b3UgcHJlZmVyIFsyXSBvciBwbGVhc2Ug
-YWR2aXNlIGlmIGFueSBiZXR0ZXIgc29sdXRpb24uDQo+IA0KPiBUaGFua3MuDQo+IA0KPiAgRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL2lteC1vY290cC50eHQgfCA1ICsr
-KysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0
-IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL2lteC1vY290cC50eHQN
-Cj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vaW14LW9jb3RwLnR4
-dA0KPiBpbmRleCA3YTk5OWExMzVlNTYuLmU5YTk5ODU4OGRiZCAxMDA2NDQNCj4gLS0tIGEvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL2lteC1vY290cC50eHQNCj4gKysr
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL2lteC1vY290cC50eHQN
-Cj4gQEAgLTIxLDYgKzIxLDggQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4gDQo+ICBPcHRpb25h
-bCBwcm9wZXJ0aWVzOg0KPiAgLSByZWFkLW9ubHk6IGRpc2FibGUgd3JpdGUgYWNjZXNzDQo+ICst
-IGZ1c2FibGUtbm9kZTogYXJyYXkgb2YgcGhhbmRsZXMgd2l0aCByZWcgYmFzZSBhbmQgYml0IG9m
-ZnNldCwgdGhpcw0KPiArCQlwcm9wZXJ0eSBpcyB1c2VkIGJ5IEZpcm13YXJlIHRvIHJ1bnRpbWUg
-ZGlzYWJsZSBub2Rlcy4NCj4gDQo+ICBPcHRpb25hbCBDaGlsZCBub2RlczoNCj4gDQo+IEBAIC00
-Miw0ICs0NCw3IEBAIEV4YW1wbGU6DQo+ICAJCXRlbXBtb25fdGVtcF9ncmFkZTogdGVtcC1ncmFk
-ZUAyMCB7DQo+ICAJCQlyZWcgPSA8MHgyMCA0PjsNCj4gIAkJfTsNCj4gKw0KPiArCQlmdXNhYmxl
-LW5vZGUgPSA8JnVzZGhjMSAweDEwIDQNCj4gKwkJCQkmdXNkaGMyIDB4MTAgNT47DQo+ICAJfTsN
-Cj4gLS0NCj4gMi4xNi40DQoNCg==
+Hi Marc,
+
+Marc Zyngier <marc.zyngier@arm.com> wrote on Wed, 29 May 2019 11:37:58
++0100:
+
+> On 29/05/2019 11:08, Miquel Raynal wrote:
+> > Hi Marc & Raymond,
+> > 
+> > Marc Zyngier <marc.zyngier@arm.com> wrote on Thu, 23 May 2019 10:26:01
+> > +0100:
+> >   
+> >> On 23/05/2019 04:11, raymond pang wrote:  
+> >>> Hi Miquel,
+> >>>
+> >>> This patch adds clearing GHC.IS into hot path, could you explain how
+> >>> irq storm is generated? thanks
+> >>> According to AHCI Spec, HBA should not refer to GHC.IS to generate
+> >>> MSI when applying multiple MSIs.    
+> >>
+> >> Well spotted.
+> >>
+> >> I have the ugly feeling that this is because the Marvell AHCI
+> >> implementation is not using MSIs at all, but instead a pair of wired
+> >> interrupts (which are level triggered instead of edge, hence the
+> >> screaming interrupts).
+> >>
+> >> The changes in the following patches abuse the rest of the driver by
+> >> pretending this is a a multi-MSI setup, while it clearly doesn't match
+> >> the expectation of the AHCI spec for MSIs.
+> >>
+> >> It looks like this shouldn't be imposed on other unsuspecting
+> >> implementations which correctly use edge-triggered MSIs and do not
+> >> require such an MMIO access.  
+> > 
+> > I understand your concern, let me add a AHCI_HFLAG_LEVEL_MSI in
+> > hpriv->flags which will be used by the mvebu_ahci.c driver to request
+> > for this MMIO access. This way, the hot path remains the same.  
+> 
+> I'm not convinced that's a good idea, if only because from the PoV of
+> the AHCI device itself, these are not MSIs at all, but wired interrupts.
+> The fact that there is some glue logic in the middle that turns it into
+> a message (and then back into a wire) is a regrettable implementation
+> detail.
+> 
+> I'd rather you stick to the normal interrupt handler, or provide your
+> own, which would solve most problems.
+
+Unless I don't understand your proposal, "stick to the normal interrupt
+handler" is not possible as I need this register write to happen at
+this time, not at any other moment.
+
+However, on the possibility of having a separate interrupt handler, I
+may use the new AHCI_HFALG_LEVEL_MSI flag to change the
+devm_request_irq call here [1] and use my own at this moment. The
+handler will be in libahci.c though.
+
+Would this be a better approach?
+
+
+Thanks,
+Miquèl
+
+[1] https://elixir.bootlin.com/linux/v5.2-rc2/source/drivers/ata/libahci.c#L2557
