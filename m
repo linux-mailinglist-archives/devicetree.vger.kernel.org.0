@@ -2,164 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41ADA2D741
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 10:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE922D748
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 10:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726490AbfE2IGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 04:06:10 -0400
-Received: from mail-eopbgr730060.outbound.protection.outlook.com ([40.107.73.60]:23616
-        "EHLO NAM05-DM3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726099AbfE2IGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 04:06:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=42/K7dw3JIVGV/DGSsFqh5tSSJX4aCbdtdxNrjz1qnw=;
- b=bL3G31AfZXMGJ9UfQVokMAQEUIL5vROj+EhwmTLlcH1WRgSQciCHBTRx5tt1gaSz4O+RUN3m1xZ/5ZCyFgeEhq/8BJaqmXeV2PcneWnJCVRu4S36aqOL8X4fwJyvF03Xht6wRW40sYN5/0iEuyFHI2TmhgAre2s4gio2rYxZMP4=
-Received: from DM5PR03CA0028.namprd03.prod.outlook.com (2603:10b6:4:3b::17) by
- DM2PR03MB559.namprd03.prod.outlook.com (2a01:111:e400:241d::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1922.18; Wed, 29 May
- 2019 08:06:07 +0000
-Received: from SN1NAM02FT024.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::208) by DM5PR03CA0028.outlook.office365.com
- (2603:10b6:4:3b::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1943.17 via Frontend
- Transport; Wed, 29 May 2019 08:06:07 +0000
-Authentication-Results: spf=pass (sender IP is 137.71.25.57)
- smtp.mailfrom=analog.com; gmx.de; dkim=none (message not signed)
- header.d=none;gmx.de; dmarc=bestguesspass action=none header.from=analog.com;
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- SN1NAM02FT024.mail.protection.outlook.com (10.152.72.127) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.1922.16
- via Frontend Transport; Wed, 29 May 2019 08:06:06 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x4T866i1032140
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Wed, 29 May 2019 01:06:06 -0700
-Received: from linux.ad.analog.com (10.32.224.122) by
- NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
- 14.3.408.0; Wed, 29 May 2019 04:06:05 -0400
-From:   Stefan Popa <stefan.popa@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <knaack.h@gmx.de>, <lars@metafoo.de>,
-        <pmeerw@pmeerw.net>, <Michael.Hennerich@analog.com>,
-        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stefan.popa@analog.com>
-Subject: [PATCH v4 2/2] dt-bindings: iio: frequency: Add docs for ADF4371 PLL
-Date:   Wed, 29 May 2019 11:06:01 +0300
-Message-ID: <1559117161-9281-1-git-send-email-stefan.popa@analog.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726055AbfE2IHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 04:07:00 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:48014 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725895AbfE2IHA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 04:07:00 -0400
+Received: from ip5f5a6320.dynamic.kabel-deutschland.de ([95.90.99.32] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hVtbm-0002wf-P7; Wed, 29 May 2019 10:06:50 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Jianqun Xu <jay.xu@rock-chips.com>
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org, zhangzj@rock-chips.com,
+        manivannan.sadhasivam@linaro.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: add core dtsi file for RK3399Pro SoCs
+Date:   Wed, 29 May 2019 10:06:50 +0200
+Message-ID: <5655934.Q7EnKghNLn@diego>
+In-Reply-To: <20190529074752.19388-1-jay.xu@rock-chips.com>
+References: <20190528044850.23703-1-jay.xu@rock-chips.com> <20190529074752.19388-1-jay.xu@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(979002)(346002)(136003)(39860400002)(396003)(376002)(2980300002)(189003)(199004)(316002)(486006)(26005)(966005)(16586007)(8676002)(36756003)(336012)(186003)(72206003)(77096007)(305945005)(70206006)(426003)(70586007)(476003)(246002)(2616005)(126002)(478600001)(8936002)(48376002)(7636002)(50466002)(7416002)(50226002)(2906002)(6306002)(44832011)(53376002)(4326008)(107886003)(106002)(47776003)(7696005)(6666004)(356004)(5660300002)(54906003)(51416003)(110136005)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:DM2PR03MB559;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 087c8afc-033c-42fe-7ac4-08d6e40c80d2
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709054)(1401327)(2017052603328);SRVR:DM2PR03MB559;
-X-MS-TrafficTypeDiagnostic: DM2PR03MB559:
-X-MS-Exchange-PUrlCount: 3
-X-Microsoft-Antispam-PRVS: <DM2PR03MB559A9095984B06741D47E189D1F0@DM2PR03MB559.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
-X-Forefront-PRVS: 0052308DC6
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: IYXk9OqFuRyi4oSwalGA+/RWbxTtytphb3qmh0JDIirDoaRGLCnF84TvPKchriqDz2uR/8/ovFQuZaTUh+Jn71GEpjG7cb/DKA4yIjNRAjOs3pnkcqsg43R5wqIHXQe3TvoAcrPHqilwwZYqz5Yo8pwjF4TX2RwsSvSIWDfgkLm1vRW0G0JSK7Aqtqepo0Sl77esoUQ5VQxLUjYVvY6+mmU15SfO3zpa8hLkPmuNZodWnK8zBH/NYHPYmcujakvUbZAWQjrJQDgLci7Z5LWn8IbskFsOPPYl+Ap2GBOzP5GKOlR0yUO4y5y8e9m4C01MC7iZ07nKo/DBBh15WZbJkkJ7snVqNY4FfsK7aG6fqlLXttsJaAt2bCzyBuZB7MOsURdgpPEi3RubNNmGvKXrEqozzU2Ct2jdNfH3UjyfwCM=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2019 08:06:06.7308
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 087c8afc-033c-42fe-7ac4-08d6e40c80d2
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR03MB559
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for Analog Devices ADF4371 SPI Wideband Synthesizer.
+Hi Jay,
 
-Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes in v2:
-	- Nothing changed.
-Changes in v3:
-	- Nothing changed.
-Changes in v4:
-	- Nothing changed.
+Am Mittwoch, 29. Mai 2019, 09:47:52 CEST schrieb Jianqun Xu:
+> This patch adds core dtsi file for Rockchip RK3399Pro SoCs,
+> include rk3399.dtsi. Also enable these nodes:
+> - pcie/pcie_phy
+> - sdhci/sdio/emmc/sdmmc
+> 
+> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> ---
+> changes since v1:
+> - remove dfi and dmc
+> 
+>  arch/arm64/boot/dts/rockchip/rk3399pro.dtsi | 74 +++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi b/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
+> new file mode 100644
+> index 000000000000..b6d433ffa67d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399pro.dtsi
+> @@ -0,0 +1,74 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
+> +
+> +#include "rk3399.dtsi"
+> +
+> +/ {
+> +	compatible = "rockchip,rk3399pro";
+> +
+> +	xin32k: xin32k {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <32768>;
+> +		clock-output-names = "xin32k";
+> +		#clock-cells = <0>;
+> +	};
 
- .../devicetree/bindings/iio/frequency/adf4371.yaml | 54 ++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+Just to clarify, is the x32k clock really part of the soc itself?
+Like on older SoCs it was always supplied from the pmic
+or a separate rtc chip.
 
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-new file mode 100644
-index 0000000..d7adf074
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/frequency/adf4371.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADF4371 Wideband Synthesizer
-+
-+maintainers:
-+  - Popa Stefan <stefan.popa@analog.com>
-+
-+description: |
-+  Analog Devices ADF4371 SPI Wideband Synthesizer
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/adf4371.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adf4371
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      Definition of the external clock (see clock/clock-bindings.txt)
-+    maxItems: 1
-+
-+  clock-names:
-+    description:
-+      Must be "clkin"
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        frequency@0 {
-+                compatible = "adi,adf4371";
-+                reg = <0>;
-+                spi-max-frequency = <1000000>;
-+                clocks = <&adf4371_clkin>;
-+                clock-names = "clkin";
-+        };
-+    };
-+...
--- 
-2.7.4
+
+> +};
+> +
+> +&emmc_phy {
+> +	status = "okay";
+> +};
+
+Is the emmc used inside the soc? As otherwise emmc / mmc controller
+settings would be more a part of the actual board using the soc.
+
+
+> +&pcie_phy {
+> +	status = "okay";
+> +};
+> +
+> +&pcie0 {
+> +	ep-gpios = <&gpio0 RK_PB4 GPIO_ACTIVE_HIGH>;
+> +	num-lanes = <4>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie_clkreqn_cpm>;
+> +	status = "okay";
+> +};
+
+This is probably needed as it needs to talk the rk1808
+part over pcie, so it's really internal to the soc.
+
+
+> +
+> +&sdhci {
+> +	bus-width = <8>;
+> +	mmc-hs400-1_8v;
+> +	supports-emmc;
+> +	non-removable;
+> +	keep-power-in-suspend;
+> +	mmc-hs400-enhanced-strobe;
+> +	status = "okay";
+> +};
+
+Same comment as for emmc_phy above
+
+> +&sdio0 {
+> +	clock-frequency = <150000000>;
+> +	clock-freq-min-max = <200000 150000000>;
+> +	supports-sdio;
+> +	bus-width = <4>;
+> +	disable-wp;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	keep-power-in-suspend;
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +	non-removable;
+> +	num-slots = <1>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+> +	sd-uhs-sdr104;
+> +	status = "okay";
+> +};
+
+Same comment as for emmc_phy above
+
+> +&sdmmc {
+> +	clock-frequency = <150000000>;
+> +	clock-freq-min-max = <400000 150000000>;
+> +	supports-sd;
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	num-slots = <1>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
+> +	status = "okay";
+> +};
+
+Same comment as for emmc_phy above
+
+
 
