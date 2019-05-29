@@ -2,143 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 567A62DC9C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 14:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FEFF2DD6F
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 14:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726104AbfE2MYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 08:24:51 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:36567 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725914AbfE2MYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 08:24:51 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.89)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1hVxdO-0004Tg-Or; Wed, 29 May 2019 14:24:46 +0200
-Message-ID: <1559132686.3651.8.camel@pengutronix.de>
-Subject: Re: [PATCH v2 4/9] media: hantro: make irq names configurable
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Date:   Wed, 29 May 2019 14:24:46 +0200
-In-Reply-To: <20190529133456.0096a6a4@collabora.com>
-References: <20190529095424.23614-1-p.zabel@pengutronix.de>
-         <20190529095424.23614-5-p.zabel@pengutronix.de>
-         <20190529133456.0096a6a4@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726581AbfE2Mu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 08:50:29 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:44076 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726104AbfE2Mu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 08:50:29 -0400
+Received: by mail-lj1-f195.google.com with SMTP id e13so2287368ljl.11;
+        Wed, 29 May 2019 05:50:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Y/GjW0ggTr+KDX5N1qvSh09429RppJ4FAnZ8i4WBnhY=;
+        b=Fo1s04OMp+eFPrWrP1AbzDVpYhsfTrEJzNw2UnF8XZs4eMkMJ1jXUwBdKd0vdglyH5
+         Cz2SByoPwre6bVExbfWGTwdTLHPQYK9CtIMOzDzbSlZGSq4L3qOASARaA4Jex+uSyrKY
+         zYGwLVO/ClM9QTjLU+2kmN+m9cuBQj4gQcHYni3G5gdJwwFysC2aV6Ptz0JUBrH2zxNO
+         hL7chCs/AP30bnDzOh+pSH66dQ34Xp1x7PazS+ns7Hiqt1UrEvZHrVgaKfok6eQqpGvg
+         JSLuRdnOgPE8OEtC8gOBbRR/351gL5oBJBIWP9IoQ1TP5tknLTg2L0DunfMi6ufJFngV
+         w+jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Y/GjW0ggTr+KDX5N1qvSh09429RppJ4FAnZ8i4WBnhY=;
+        b=UNfnYoNEje8EqLhH8KfmAbqRc52Yo1HlOxu5B59Lc9GgAxig+7lfOliakVbOqVG0eS
+         V0D72qendgzzRXFqVDNrvP23h34iMoUzjjxmPa9J87adoo4LEwUk1JJ54sid/a70bdfr
+         wUjf/VefPxAzW1tEYpE07vGKn6Nfoq0/ayX9mGUlBE2YPuZjNlI8NDSQ6ljPBDv+o7Fu
+         cCrSrrYi7naJ6SGXCgmE1Iam3OasphxfCibZ4+r70o4I5caF9HaEmDw5XjXlo5kvB/uE
+         J52wbfME13KMEQ5eFYg4gRTOm5urzdankhs+MOXM9YUxpIyu8fZ13baYX4r4vbMVl++6
+         LbEw==
+X-Gm-Message-State: APjAAAXGa1a/jgUplCrOpmclDE56bZcFe1dOVNizZQt25tFNCcf9xgVv
+        Q50+0H/rJ2+dD6MkqtDpFZ4=
+X-Google-Smtp-Source: APXvYqwRjJQjY7ixX0sxWEjupCb/IAECR01S9LEOiDFrhg1gvxe+Qd7Qxpq7qkk3ohQI57Gk8nusvw==
+X-Received: by 2002:a2e:89cc:: with SMTP id c12mr60915243ljk.90.1559134226037;
+        Wed, 29 May 2019 05:50:26 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.35.141])
+        by smtp.googlemail.com with ESMTPSA id 20sm3452950ljw.7.2019.05.29.05.50.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 May 2019 05:50:24 -0700 (PDT)
+Subject: Re: [PATCH V4 7/8] clk: tegra: Remove the old emc_mux clock for
+ Tegra210
+To:     Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190529082139.5581-1-josephl@nvidia.com>
+ <20190529082139.5581-8-josephl@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <6651442d-d501-9363-ff95-988e1a4a3982@gmail.com>
+Date:   Wed, 29 May 2019 15:49:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190529082139.5581-8-josephl@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
+29.05.2019 11:21, Joseph Lo пишет:
+> Remove the old emc_mux clock and don't use the common EMC clock
+> definition. This will be replaced by a new clock defined in the
+> EMC driver.
+> 
+> Signed-off-by: Joseph Lo <josephl@nvidia.com>
+> ---
+> v4:
+> - make sure the behavior is compatible with case if the kernel still
+>   uses the older DTB which doesn't have EMC node. And the MC and EMC
+>   clock can still be registered successuflly.
+> v3:
+> - split to 3 patches from the previous version
+> ---
+>  drivers/clk/tegra/clk-tegra210.c | 42 ++++++++++++++++++++------------
+>  1 file changed, 27 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-tegra210.c
+> index 1d52354820ca..8b209e8b5eaf 100644
+> --- a/drivers/clk/tegra/clk-tegra210.c
+> +++ b/drivers/clk/tegra/clk-tegra210.c
+> @@ -28,6 +28,7 @@
+>  #include <dt-bindings/reset/tegra210-car.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/sizes.h>
+> +#include <soc/tegra/emc.h>
+>  #include <soc/tegra/pmc.h>
+>  
+>  #include "clk.h"
+> @@ -324,12 +325,6 @@ static unsigned long tegra210_input_freq[] = {
+>  	[8] = 12000000,
+>  };
+>  
+> -static const char *mux_pllmcp_clkm[] = {
+> -	"pll_m", "pll_c", "pll_p", "clk_m", "pll_m_ud", "pll_mb", "pll_mb",
+> -	"pll_p",
+> -};
+> -#define mux_pllmcp_clkm_idx NULL
+> -
+>  #define PLL_ENABLE			(1 << 30)
+>  
+>  #define PLLCX_MISC1_IDDQ		(1 << 27)
+> @@ -2346,7 +2341,6 @@ static struct tegra_clk tegra210_clks[tegra_clk_max] __initdata = {
+>  	[tegra_clk_i2c2] = { .dt_id = TEGRA210_CLK_I2C2, .present = true },
+>  	[tegra_clk_uartc_8] = { .dt_id = TEGRA210_CLK_UARTC, .present = true },
+>  	[tegra_clk_mipi_cal] = { .dt_id = TEGRA210_CLK_MIPI_CAL, .present = true },
+> -	[tegra_clk_emc] = { .dt_id = TEGRA210_CLK_EMC, .present = true },
+>  	[tegra_clk_usb2] = { .dt_id = TEGRA210_CLK_USB2, .present = true },
+>  	[tegra_clk_bsev] = { .dt_id = TEGRA210_CLK_BSEV, .present = true },
+>  	[tegra_clk_uartd_8] = { .dt_id = TEGRA210_CLK_UARTD, .present = true },
+> @@ -2957,6 +2951,27 @@ static int tegra210_init_pllu(void)
+>  	return 0;
+>  }
+>  
+> +static const struct clk_div_table mc_div_table_tegra210[] = {
+> +	{ .val = 0, .div = 2 },
+> +	{ .val = 1, .div = 4 },
+> +	{ .val = 2, .div = 1 },
+> +	{ .val = 3, .div = 2 },
+> +	{ .val = 0, .div = 0 },
+> +};
+> +
+> +static void tegra210_clk_register_mc(const char *name,
+> +				     const char *parent_name)
+> +{
+> +	struct clk *clk;
+> +
+> +	clk = clk_register_divider_table(NULL, name, parent_name,
+> +					 CLK_IS_CRITICAL,
+> +					 clk_base + CLK_SOURCE_EMC,
+> +					 15, 2, CLK_DIVIDER_READ_ONLY,
+> +					 mc_div_table_tegra210, &emc_lock);
 
-On Wed, 2019-05-29 at 13:34 +0200, Boris Brezillon wrote:
-> On Wed, 29 May 2019 11:54:19 +0200
-> Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> 
-> > The i.MX8MQ bindings will use different IRQ names ("g1" instead of
-> > "vdpu", and "g2"), so make them configurable. This also allows to
-> > register more than two IRQs, which will be required for i.MX8MM support
-> > later (it will add "h1" instead of "vepu").
-> > 
-> > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > ---
-> > Changes since v1 [1]:
-> >  - Rebased onto "[PATCH v6] Add MPEG-2 decoding to Rockchip VPU" series.
-> > 
-> > [1] https://patchwork.linuxtv.org/patch/56285/
-> > ---
-> >  drivers/staging/media/hantro/hantro.h        | 11 ++++---
-> >  drivers/staging/media/hantro/hantro_drv.c    | 31 +++++++-------------
-> >  drivers/staging/media/hantro/rk3288_vpu_hw.c |  5 ++--
-> >  drivers/staging/media/hantro/rk3399_vpu_hw.c |  9 ++++--
-> >  4 files changed, 26 insertions(+), 30 deletions(-)
-> > 
-> > diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> > index 296b9ffad547..6b90fe48bcdf 100644
-> > --- a/drivers/staging/media/hantro/hantro.h
-> > +++ b/drivers/staging/media/hantro/hantro.h
-> > @@ -26,6 +26,7 @@
-> >  #include "hantro_hw.h"
-> >  
-> >  #define HANTRO_MAX_CLOCKS		4
-> > +#define HANTRO_MAX_IRQS			3
-> >  
-> >  #define MPEG2_MB_DIM			16
-> >  #define MPEG2_MB_WIDTH(w)		DIV_ROUND_UP(w, MPEG2_MB_DIM)
-> > @@ -57,8 +58,9 @@ struct hantro_codec_ops;
-> >   * @codec_ops:			Codec ops.
-> >   * @init:			Initialize hardware.
-> >   * @runtime_resume:		reenable hardware after power gating
-> > - * @vepu_irq:			encoder interrupt handler
-> > - * @vdpu_irq:			decoder interrupt handler
-> > + * @irq_handlers:		interrupt handlers, same order as irq names
-> > + * @irq_names:			array of irq names
-> > + * @num_irqs:			number of irqs in the arrays
-> >   * @clk_names:			array of clock names
-> >   * @num_clocks:			number of clocks in the array
-> >   */
-> > @@ -73,8 +75,9 @@ struct hantro_variant {
-> >  	const struct hantro_codec_ops *codec_ops;
-> >  	int (*init)(struct hantro_dev *vpu);
-> >  	int (*runtime_resume)(struct hantro_dev *vpu);
-> > -	irqreturn_t (*vepu_irq)(int irq, void *priv);
-> > -	irqreturn_t (*vdpu_irq)(int irq, void *priv);
-> > +	irqreturn_t (*irq_handlers[HANTRO_MAX_IRQS])(int irq, void *priv);
-> > +	const char *irq_names[HANTRO_MAX_IRQS];
-> 
-> Can we have a struct instead of an array for all handlers and another
-> array for irq names:
-> 
-> 	struct {
-> 		const char *name;
-> 		irqreturn_t (*handler)(int irq, void *priv);
-> 	} irqs[HANTRO_MAX_IRQS];
-> 
-> > +	int num_irqs;
-> 
-> Or we could have the struct defined outside of hantro_variant and get
-> rid of HANTRO_MAX_IRQS (I find it annoying to have to update the MAX
-> value every time a new variant needs more than what was previously
-> defined as MAX):
-> 
-> struct hantro_irq {
-> 	const char *name;
-> 	irqreturn_t (*handler)(int irq, void *priv);
-> };
-> 
-> struct hantro_variant {
-> 	...
-> 	unsigned int num_irqs;
-> 	const struct hantro_irq *irqs;
-> };
-> 
-> static const struct hantro_irq xxxx_irqs[] = {
-> 	{ ... },
-> 	{ ... },
-> 
-> };
-> 
-> static const struct hantro_variant xxxx_variant = {
-> 	.num_irqs = ARRAY_SIZE(xxxx_irqs),
-> 	.irqs = xxxx_irqs,
-> };
+This doesn't look right, you're mixing up the MC divider with the EMC
+divider here. The MC clock is always sourced from EMC and there is only
+one bit for the MC divider, the bit 16 MC_EMC_SAME_FREQ.
 
-Thank you, that looks better. I'll change this for v3.
+When EMC clock is divided down by 2 (bit 15 EMC_CLK_DIV2_EN), then the
+clk-framework will take care of it by calculating the MC rate based on
+the actual parent EMC rate.
 
-regards
-Philipp
+> +	clks[TEGRA210_CLK_MC] = clk;
+> +}
+> +
+>  static const char * const sor1_out_parents[] = {
+>  	/*
+>  	 * Bit 0 of the mux selects sor1_pad_clkout, irrespective of bit 1, so
+> @@ -3040,15 +3055,12 @@ static __init void tegra210_periph_clk_init(void __iomem *clk_base,
+>  			CLK_SOURCE_LA, 0);
+>  	clks[TEGRA210_CLK_LA] = clk;
+>  
+> -	/* emc mux */
+> -	clk = clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
+> -			       ARRAY_SIZE(mux_pllmcp_clkm), 0,
+> -			       clk_base + CLK_SOURCE_EMC,
+> -			       29, 3, 0, &emc_lock);
+> +	/* emc */
+> +	clk = tegra210_clk_register_emc();
+> +	clks[TEGRA210_CLK_EMC] = clk;
+>  
+> -	clk = tegra_clk_register_mc("mc", "emc_mux", clk_base + CLK_SOURCE_EMC,
+> -				    &emc_lock);
+> -	clks[TEGRA210_CLK_MC] = clk;
+> +	/* mc */
+> +	tegra210_clk_register_mc("mc", "emc");
+>  
+>  	/* cml0 */
+>  	clk = clk_register_gate(NULL, "cml0", "pll_e", 0, clk_base + PLLE_AUX,
+> 
+
+You should leave the common tegra_clk_register_mc() usage as-is and only
+s/emc_mux/emc/ in the argument.
+
+-- 
+Dmitry
