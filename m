@@ -2,175 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B31292E122
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 17:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869AA2E0EE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 17:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726275AbfE2PdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 11:33:19 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33565 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725914AbfE2PdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 11:33:19 -0400
-Received: by mail-wm1-f67.google.com with SMTP id v19so4530674wmh.0;
-        Wed, 29 May 2019 08:33:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5W+VfwPfqMxuifytQsznT6sIYsecd+CfEiYRucHLtVw=;
-        b=Fpnbn0HNja35ikeRV50pnLDukXTvZ8yfSsbNwOK438ie6IyOvAPt5PvjCLxjq8MQPH
-         4ZYtaLQWPnexoXzWYmYAf+LDrMCMeB5hFGjSuNA1v4sKE9YbyBTGBXGGefd3ZITHm5F8
-         WrUISOoGcPku4R+wXfliDsxAVY3ZoCWnIuothVksR0yPYWp2Kw0hPCjGMEMjG8Y90UWz
-         fKWp4ZcWytL9/hIN5j+k0m7IgW+kIk+5VtEpQF92UFU2NJ1/lYs2Iwp6hRADpITIGMsB
-         9tjZ4JVWthW+Z2sjBQlKmp1JruLrcs0ok5Tb9xk/ZKaAiBAGyWlPgfaqmKXlDIzyDKAP
-         ZsNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=5W+VfwPfqMxuifytQsznT6sIYsecd+CfEiYRucHLtVw=;
-        b=it5T9wxR5On1WHr4EGg2//i3NnoV2WPDokVZo+s2bL7XTIbRR9gO2NtwMcVm8/1w64
-         VNEkA8hfOx+vtqhim95UBBR5Tj97f96gg3HRkKnSmewPBVyXxtu/9KkxJWqX7nD54MeM
-         9mtxnaMU3fGvkHCnblB/GcwU245683q/zxbW1mX1iBs1jGERVExxWggQOSY73iMMhaTD
-         TV5Or89hLz9foZ61+It0nGO4W+q5SdMzwS0nHvNqqomr0x0DDLoOd8tbAk5fJ7qZcuGP
-         6Y+gtPvznn/evcb0wcCH74/L/UbWc7GBMWbB8LEgtH6S7GXR2mb5xDMp8O49jKoVd65J
-         fobQ==
-X-Gm-Message-State: APjAAAVsVsdGuj+g7SEce+qP37zjRAC6DLeNC7h23Ftrj+jbvRtpOunO
-        k19z06cfMaHcmeeMEn3qgAHXY2gY
-X-Google-Smtp-Source: APXvYqwDY7MrR1G0Ebmbd/oGtnz/upe08lmQ74Ra2glmRchate4lPg8V3/LoNaUcg9HKRwxBBfDugQ==
-X-Received: by 2002:a7b:c8cb:: with SMTP id f11mr2194459wml.54.1559143991698;
-        Wed, 29 May 2019 08:33:11 -0700 (PDT)
-Received: from cizrna.lan ([109.72.12.156])
-        by smtp.gmail.com with ESMTPSA id c14sm19105489wrt.45.2019.05.29.08.33.10
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 29 May 2019 08:33:10 -0700 (PDT)
-From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner
-        sunXi SoC support),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH] arm64: dts: allwinner: Add GPU operating points for H6
-Date:   Wed, 29 May 2019 17:32:55 +0200
-Message-Id: <20190529153255.40038-1-tomeu.vizoso@collabora.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190521161102.29620-1-peron.clem@gmail.com>
-References: <20190521161102.29620-1-peron.clem@gmail.com>
+        id S1726173AbfE2PVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 11:21:05 -0400
+Received: from mga03.intel.com ([134.134.136.65]:29774 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725936AbfE2PVF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 11:21:05 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 May 2019 08:21:04 -0700
+X-ExtLoop1: 1
+Received: from marshy.an.intel.com (HELO [10.122.105.159]) ([10.122.105.159])
+  by fmsmga008.fm.intel.com with ESMTP; 29 May 2019 08:21:03 -0700
+Subject: Re: [PATCHv4 3/4] firmware: rsu: document sysfs interface
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
+        atull@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sen.li@intel.com,
+        Richard Gong <richard.gong@intel.com>
+References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-4-git-send-email-richard.gong@linux.intel.com>
+ <20190528231908.GB28886@kroah.com>
+From:   Richard Gong <richard.gong@linux.intel.com>
+Message-ID: <273db79b-97bb-f40c-3dee-fe48633c3edd@linux.intel.com>
+Date:   Wed, 29 May 2019 10:33:27 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190528231908.GB28886@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GPU driver needs them to change the clock frequency and regulator
-voltage depending on the load.
 
-Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc: Clément Péron <peron.clem@gmail.com>
+Hi Greg,
 
----
+On 5/28/19 6:19 PM, Greg KH wrote:
+> On Tue, May 28, 2019 at 03:20:32PM -0500, richard.gong@linux.intel.com wrote:
+>> +What:		/sys/devices/.../stratix10-rsu.0/driver/fail_image
+>> +Date:		May 2019
+>> +KernelVersion:	5.3
+>> +Contact:	Richard Gong <richard.gong@intel.com>
+>> +Description:
+>> +		(RO) the version number of RSU firmware.
+> 
+> "fail_image" is the version number?  That doesn't match up with what the
+> code says :(
+> 
+> What happened to the version sysfs file?
+> 
 
-Feel free to pick up this patch if you are going to keep pushing this
-series forward.
+Sorry, my typo.
 
-Thanks,
+It should be /sys/devices/.../stratix10-rsu.0/driver/version, (RO) the 
+version number of RSU firmware.
 
-Tomeu
----
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 66 ++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+I will correct that in the next submission.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 6aad06095c40..decf7b56e2df 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -157,6 +157,71 @@
- 			allwinner,sram = <&ve_sram 1>;
- 		};
- 
-+		gpu_opp_table: opp-table2 {
-+			compatible = "operating-points-v2";
-+
-+			opp00 {
-+				opp-hz = /bits/ 64 <756000000>;
-+				opp-microvolt = <1040000>;
-+			};
-+			opp01 {
-+				opp-hz = /bits/ 64 <624000000>;
-+				opp-microvolt = <950000>;
-+			};
-+			opp02 {
-+				opp-hz = /bits/ 64 <576000000>;
-+				opp-microvolt = <930000>;
-+			};
-+			opp03 {
-+				opp-hz = /bits/ 64 <540000000>;
-+				opp-microvolt = <910000>;
-+			};
-+			opp04 {
-+				opp-hz = /bits/ 64 <504000000>;
-+				opp-microvolt = <890000>;
-+			};
-+			opp05 {
-+				opp-hz = /bits/ 64 <456000000>;
-+				opp-microvolt = <870000>;
-+			};
-+			opp06 {
-+				opp-hz = /bits/ 64 <432000000>;
-+				opp-microvolt = <860000>;
-+			};
-+			opp07 {
-+				opp-hz = /bits/ 64 <420000000>;
-+				opp-microvolt = <850000>;
-+			};
-+			opp08 {
-+				opp-hz = /bits/ 64 <408000000>;
-+				opp-microvolt = <840000>;
-+			};
-+			opp09 {
-+				opp-hz = /bits/ 64 <384000000>;
-+				opp-microvolt = <830000>;
-+			};
-+			opp10 {
-+				opp-hz = /bits/ 64 <360000000>;
-+				opp-microvolt = <820000>;
-+			};
-+			opp11 {
-+				opp-hz = /bits/ 64 <336000000>;
-+				opp-microvolt = <810000>;
-+			};
-+			opp12 {
-+				opp-hz = /bits/ 64 <312000000>;
-+				opp-microvolt = <810000>;
-+			};
-+			opp13 {
-+				opp-hz = /bits/ 64 <264000000>;
-+				opp-microvolt = <810000>;
-+			};
-+			opp14 {
-+				opp-hz = /bits/ 64 <216000000>;
-+				opp-microvolt = <810000>;
-+			};
-+		};
-+
- 		gpu: gpu@1800000 {
- 			compatible = "allwinner,sun50i-h6-mali",
- 				     "arm,mali-t720";
-@@ -168,6 +233,7 @@
- 			clocks = <&ccu CLK_GPU>, <&ccu CLK_BUS_GPU>;
- 			clock-names = "core", "bus";
- 			resets = <&ccu RST_BUS_GPU>;
-+			operating-points-v2 = <&gpu_opp_table>;
- 			status = "disabled";
- 		};
- 
--- 
-2.20.1
-
+> thanks,
+> 
+> greg k-h
+> 
+Regards,
+Richard
