@@ -2,130 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C67E82DA46
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:20:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ECD92DA6A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725894AbfE2KUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:20:16 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:40678 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726254AbfE2KUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:20:16 -0400
-Received: by mail-ed1-f68.google.com with SMTP id r18so1882819edo.7
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=P8ka2+bxJnQPHb/IDd/VfordB+PMGKVkIhugicMFKzs=;
-        b=XF+w9RV8bhJ3242HapwUEBakMNiXppxTlsihA2p7lAIRWwmJsCx0hhPZCepOCjFsN1
-         /k9+CAuTYW5fkvDD/AvswXCFo1YqlfRAqMQtGXh90GRGaZVtDThf7+IafnrGPJdXCIMc
-         LC6U3LXPs6sdgBaFPhmsnpQeAegkVOUyqnlwW5KsRlxCJ7mxppAz8d3d8Fof3KKUpQTv
-         YRAm+kTWfBUN9WrixQ1xaQAPGP5ebSLPzY7mUkcFxQ8R1NAfDSHGziSOkFuWA/+X7l8D
-         m+50IZEhJ5i6P130neqYbJ/aZ2HtjIZjB5oSdCJk9ldke/rxepiZHhVD99yN0v3cDJTp
-         K61Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P8ka2+bxJnQPHb/IDd/VfordB+PMGKVkIhugicMFKzs=;
-        b=E2GsNM+DnPiAUGYeJXeZm8RfljxbrPg9nItnViC68fjlfWjtcS86YC99mrgIiK6fIR
-         liXMQ6xEDRk+zLHYClm6PQvewtErN5t4fc92r5NCi3JlW4J/4PSdfD3kqD77gKmCfXBE
-         K2oRndSZRKidPWgbdEAPoKAgvaMLVr9yVg1WQO1qfXdcgTKQOdzMirvcqMVOo4rqwW3/
-         EQUKqPM7jznB9GlJiRK95ZoFvuH0CUQA8rnzGtNyPLFLz35j2zHwaTRr0RaP2obheKIv
-         Gb41rOkZWNmHeuc4MyQphUTUVtLaRM7vWKdhZqV50yAytzN3FhkM2aIy0bOK3GdwiRtC
-         17QQ==
-X-Gm-Message-State: APjAAAUo8SlGiCI3+p8/+dONUBJka/jxZP2NTtNFYAcQAkm5fDLUQhWT
-        G0MzYwvBKb/z2Dbv4xCzrDsktN/btB16kMttAErqlw==
-X-Google-Smtp-Source: APXvYqyyuOSJwMbRE0IpyZJFEqQayTJn6ZPM2g7Hnz25efVf4lIFAuyvYRNa40rcFHDxIOdG/4ZlgZhZziVx5rAJ1jw=
-X-Received: by 2002:a50:8877:: with SMTP id c52mr135002894edc.253.1559125214798;
- Wed, 29 May 2019 03:20:14 -0700 (PDT)
+        id S1726054AbfE2KYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 06:24:41 -0400
+Received: from mga09.intel.com ([134.134.136.24]:11595 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725911AbfE2KYk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 06:24:40 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 May 2019 03:24:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.60,526,1549958400"; 
+   d="scan'208";a="179534587"
+Received: from pipin.fi.intel.com (HELO pipin) ([10.237.72.175])
+  by fmsmga002.fm.intel.com with ESMTP; 29 May 2019 03:24:38 -0700
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list\:DESIGNWARE USB3 DRD IP DRIVER" 
+        <linux-usb@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree\@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH] usb: dwc3: Enable the USB snooping
+In-Reply-To: <AM5PR0402MB2865AB6C2A50851B7EA4E653F11F0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+References: <20171115060459.45375-1-ran.wang_1@nxp.com> <87ineb9b5v.fsf@linux.intel.com> <VI1PR04MB1504776EF3D4D8C374F0C069F1290@VI1PR04MB1504.eurprd04.prod.outlook.com> <87shdfet90.fsf@linux.intel.com> <AM5PR0402MB28654EBE2D431CC2F8061CF8F11E0@AM5PR0402MB2865.eurprd04.prod.outlook.com> <87k1eaanjw.fsf@linux.intel.com> <AM5PR0402MB2865AB6C2A50851B7EA4E653F11F0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
+Date:   Wed, 29 May 2019 13:24:37 +0300
+Message-ID: <874l5dr21m.fsf@linux.intel.com>
 MIME-Version: 1.0
-References: <20190508021902.10358-1-leo.yan@linaro.org> <20190529101445.GC15808@leoy-ThinkPad-X240s>
-In-Reply-To: <20190529101445.GC15808@leoy-ThinkPad-X240s>
-From:   Chunyan Zhang <zhang.chunyan@linaro.org>
-Date:   Wed, 29 May 2019 18:20:03 +0800
-Message-ID: <CAG2=9p94C+1dv2rYNQ++hMM=e8kCz-7QJ6K6USdrnqp-qa9Ucg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] dts: Update DT bindings for CoreSight replicator
- and funnel
-To:     Leo Yan <leo.yan@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, Guodong Xu <guodong.xu@linaro.org>,
-        Zhangfei Gao <zhangfei.gao@linaro.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Chris Healy <cphealy@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Lee Jones <lee.jones@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 May 2019 at 18:14, Leo Yan <leo.yan@linaro.org> wrote:
->
-> On Wed, May 08, 2019 at 10:18:51AM +0800, Leo Yan wrote:
-> > Since the DT bindings consolidatoins for CoreSight replicator and funnel
-> > is ready for kernel v5.2 merge window [1], this patch set is to update
-> > the related CoreSight DT bindings for platforms; IIUC, this patch set
-> > will be safe for merging into kernel v5.2 because the dependency
-> > patches in [1] will be landed into mainline kernel v5.2 cycle.
->
-> [...]
->
-> > Leo Yan (11):
-> >   ARM: dts: hip04: Update coresight DT bindings
-> >   ARM: dts: imx7s: Update coresight DT bindings
-> >   ARM: dts: qcom-apq8064: Update coresight DT bindings
-> >   ARM: dts: ste: Update coresight DT bindings
-> >   ARM: dts: vexpress-v2p-ca15_a7: Update coresight DT bindings
-> >   ARM: dts: qcom-msm8974: Update coresight DT bindings
-> >   arm64: dts: hi6220: Update coresight DT bindings
-> >   arm64: dts: juno: Update coresight DT bindings
-> >   arm64: dts: qcom-msm8916: Update coresight DT bindings
-> >   arm64: dts: sc9836: Update coresight DT bindings
-> >   arm64: dts: sc9860: Update coresight DT bindings
->
-> Gentle ping for maintainers.
->
-> Hi Andy, David,
->
-> Could you pick up patches 03, 06, 09/11 for QCOM DT bindings?
->
-> Hi Sudeep,
->
-> Could you pick up patches 05, 08/11 for Arm DT bindings?
->
-> Hi Chunyan, Orson, Baolin,
->
-> Could you pick up patches 10, 11/11 for Unisoc DT bindings?
 
-Sure, will do.
+Hi,
 
-Thanks,
-Chunyan
+Ran Wang <ran.wang_1@nxp.com> writes:
+>> >> >> c) WHAT does this mean for PCI devices?
+>
+> According to DWC3 data book, I think this (PCI) mean to the case of 'master bus type = Native'
+> The data book describes this feature as 'system bus DMA option for the master bus,
+> which may be configured as AHB, AXI, or Native.' On Table 6-5, it says when MBUS_TYPE
+> is Native, the definition of 4 transfer types control bits [3-0] is 'Same as AXI'.
+>
+> However, as to the code implementation to be generic to both PCI and AXI,
+> I admit I don't have a perfect solution so far, only 2 proposals with concerns:
+>
+> a. Create another module driver like dwc3-exynos.c (arch/arm/boot/dts/wxynos54xx.dtsi)
+>     to contain above programming code. However, it will touch the same reg range of DWC3
+>     I think this is not good.
 
+I'd prefer avoiding another glue :-)
+
+> b. Add #ifdef CONFIG_ARCH_LAYERSCAPE in drivers/usb/dwc3/core.c to constrain hacking code
+>    can only take effect for Layerscape (AXI case). I know it look ugly.
 >
-> Thanks a lot for Shawn and Linus have picked up 02, 04/11 separately.
+> Do you have any better advice on this (besides changed power on default value from HW perspective)?
+
+Maybe we don't need to care, actually. Since this property will only be
+needed for RTL instantiation that didn't configure these defaults
+properly during coreConsultant.
+
+>> >> >> Another question is: Why wasn't this setup properly during
+>> >> >> coreConsultant instantiation of the RTL? Do you have devices on
+>> >> >> the market already that need this or is this some early FPGA model
+>> >> >> or test-only
+>> >> ASIC?
 >
-> Thanks,
-> Leo Yan
+> Several Layerscape platforms like LS1043ARDB, LS1046ARDB, etc. are already on
+> the market and have this issue. So I have to work out a SW patch to fix them.
+
+Thank you, now I'm certain that this is not some temporary solution :-)
+
+Thanks for going through this again. Please refresh the patch so we can
+try to get it merged.
+
+-- 
+balbi
