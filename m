@@ -2,110 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20CFB2D8BC
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 11:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BE782D8EB
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 11:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726008AbfE2JNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 05:13:30 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:37515 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbfE2JN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 05:13:29 -0400
-Received: by mail-lf1-f66.google.com with SMTP id m15so1421036lfh.4
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 02:13:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=turgOZHVZA+slmDkzWItW7JViu4gUnC/Ds0bw1pflBM=;
-        b=uID7+9gJfQmbk7PHo/mOm4BVImm/+DnpkGNixHRs2SGI9/hzszYymxfaSJ49T8BDUW
-         PDJTFfCwkcws2FEhVfx0FheGspexSFRAHXIaLmxpKLBZUUk5SDnkHzKHVb8D1QMa0i+z
-         7OWbyDbxVMBqXIBMGCHUyn2iU0Ulq/kWQtQN3jfDwEn+dmk2dk9pWlYPPnu4VQ1zXs6f
-         DcAAJufsmv2uc4O95FLoilKAylhGijHSsnbcWVPA1y9WBSVA37t2KmIHqZJLjD3Pt1AB
-         6Hz76/Qg7MGnGIQoV5Cdh+fTjjuxX5eQZ+S3Af3rzTj01OKiLFwBc+YQDks9E6jKUYa5
-         En4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=turgOZHVZA+slmDkzWItW7JViu4gUnC/Ds0bw1pflBM=;
-        b=CKOzgqZvsvGOhbdWUErSewnAvNTrx6/bo/1PBb4tNGbwCiuLOnjMy7CeHf3i7qEYnt
-         6DVOcmmJRFcoLV0IGkQ+giGClynRcRuGv5UCw3IEGTW7N2BZ3wji3yy0w6Yp1TRlZ6ZL
-         hbKmXLLYLd9pVci1UMW72fc0nhFnYYWz2ur0iWj78xgglr+p9BoQ6KbBcTXobxNQ2bwj
-         KDY7UmyRzxgNJgjQ543PVAw8o54Cwyo6bNWXT2pC01cJFurqg/tHkHXwQ3oJxolnoDO4
-         BOqMEu6orpSNCEIEK85L+2hWcyYjQZVJI5nqzfjYiqoSVbba/YU8efQg0HqI8ruCh34E
-         Ssbg==
-X-Gm-Message-State: APjAAAXh0ARsjkbMI0YLrtlD6tugFhOpj2XneieD/QWAY0VFBOraO1LL
-        UU6o8EtdC6w/d9eIXD3RtsGOVcd6mBwvhjhnhvABrg==
-X-Google-Smtp-Source: APXvYqwjC5SWPgI46QoTgvlTu/96JE/AEpBn03nwkHGSfPInUIonOiiuZICMnjjTvlc2wpiX7j93x2VmEko+tKdqsYE=
-X-Received: by 2002:ac2:50c4:: with SMTP id h4mr1592103lfm.61.1559121208258;
- Wed, 29 May 2019 02:13:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190516085018.2207-1-masneyb@onstation.org> <20190520142149.D56DA214AE@mail.kernel.org>
-In-Reply-To: <20190520142149.D56DA214AE@mail.kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 29 May 2019 11:13:15 +0200
-Message-ID: <CACRpkdZxu1LfK11OHEx5L_4kyjMZ7qERpvDzFj5u3Pk2kD1qRA@mail.gmail.com>
-Subject: Re: [PATCH RESEND] ARM: dts: qcom: msm8974-hammerhead: add device
- tree bindings for vibrator
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Brian Masney <masneyb@onstation.org>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726173AbfE2JTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 05:19:52 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48898 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725911AbfE2JTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 05:19:49 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4T9JZpG094297;
+        Wed, 29 May 2019 04:19:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1559121575;
+        bh=pD2afg8ofvK0cb0RAbvjzW2bemZQRBl5lxbbNYc8M6A=;
+        h=From:To:CC:Subject:Date;
+        b=dDDtLYSmu2+5NXhWw1v5uwk8764xa6V5fUSx23k+6TLcnEm9X5MwlguJhGd5If2Uy
+         3DdNsNLDtSwtwQZxXifvRQe37A0IrGY8KzVe8qcO9nWBz4JYUZN+L4+5fa25V+s1ii
+         wxEmkiHE0hHQ7EyH5oL9iw6gwfhwqYNpJTkaMK0E=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4T9JZ2G049785
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 29 May 2019 04:19:35 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 29
+ May 2019 04:19:35 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 29 May 2019 04:19:35 -0500
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4T9JVxN079377;
+        Wed, 29 May 2019 04:19:32 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: [PATCH 0/6] AM654: Add PCIe and SERDES DT nodes 
+Date:   Wed, 29 May 2019 14:48:06 +0530
+Message-ID: <20190529091812.20764-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 20, 2019 at 4:21 PM Stephen Boyd <sboyd@kernel.org> wrote:
+Patch series adds PCIe and SERDES DT nodes to k3-am65.dtsi and keeps
+them disabled in k3-am654-base-board.dts since there are no PCIe
+slots in the base board.
 
-> > +       vibrator@fd8c3450 {
-> > +               compatible = "qcom,msm8974-vibrator";
-> > +               reg = <0xfd8c3450 0x400>;
->
-> This is inside the multimedia clk controller. The resource reservation
-> mechanism should be complaining loudly here. Is the driver writing
-> directly into clk controller registers to adjust a duty cycle of the
-> camera's general purpose clk?
->
-> Can you add support for duty cycle to the qcom clk driver's RCGs and
-> then write a generic clk duty cycle vibrator driver that adjusts the
-> duty cycle of the clk? That would be better than reaching into the clk
-> controller registers to do this.
+PCIe slots are actually present in add on boards. Once overlay support
+is merged, I'll add overlay DTS files to enable PCIe.
 
-There is something ontological about this.
+All the driver patches and binding documentation patches for PCIe and
+SERDES are already merged.
 
-A clock with variable duty cycle, isn't that by definition a PWM?
-I don't suppose it is normal for qcom clocks to be able to control
-their duty cycle, but rather default to 50/50 as we could expect?
+Kishon Vijay Abraham I (6):
+  arm64: dts: k3-am6: Add "socionext,synquacer-pre-its" property to
+    gic_its
+  arm64: dts: k3-am6: Add mux-controller DT node required for muxing
+    SERDES
+  arm64: dts: k3-am6: Add SERDES DT node
+  arm64: dts: k3-am6: Add PCIe Root Complex DT node
+  arm64: dts: k3-am6: Add PCIe Endpoint DT node
+  arm64: dts: ti: am654-base-board: Disable SERDES and PCIe
 
-I would rather say that maybe the qcom drivers/clk/qcom/* file
-should be exporting a PWM from the linux side of things
-rather than a clock for this thingie, and adding #pwm-cells
-in the DT node for the clock controller, making it possible
-to obtain PWMs right out of it, if it is a single device node for
-the whole thing.
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 128 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am65.dtsi           |   1 +
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |  24 ++++
+ 3 files changed, 153 insertions(+)
 
-Analogous to how we have GPIOs that are ortogonally interrupt
-providers I don't see any big problem in a clock controller
-being clock and PWM provider at the same time.
+-- 
+2.17.1
 
-There is code in drivers/clk/clk-pwm to use a pwm as a clock
-but that is kind of the reverse use case, if we implement PWMs
-directly in a clock controller driver then these can be turned into
-clocks using clk-pwm.c should it be needed, right?
-
-Part of me start to question whether clk and pwm should even
-be separate subsystems :/ they seem to solve an overlapping
-problem space.
-
-Yours,
-Linus Walleij
