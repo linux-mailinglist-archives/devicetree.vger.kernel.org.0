@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 922302E09E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 17:10:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E3D2E061
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 17:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726304AbfE2PKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 11:10:30 -0400
-Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:47804 "EHLO
-        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725914AbfE2PKa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 11:10:30 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 29A15341;
-        Wed, 29 May 2019 08:10:30 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 77E1D3F5AF;
-        Wed, 29 May 2019 08:10:26 -0700 (PDT)
-Date:   Wed, 29 May 2019 16:10:23 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Andreas Schwab <schwab@suse.de>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFT PATCH v5 4/5] arm: Use common cpu_topology structure and
- functions.
-Message-ID: <20190529151023.GB13155@e107155-lin>
-References: <20190524000653.13005-1-atish.patra@wdc.com>
- <20190524000653.13005-5-atish.patra@wdc.com>
+        id S1726275AbfE2O77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 10:59:59 -0400
+Received: from mga05.intel.com ([192.55.52.43]:42541 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726069AbfE2O77 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 10:59:59 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 May 2019 07:59:58 -0700
+X-ExtLoop1: 1
+Received: from marshy.an.intel.com (HELO [10.122.105.159]) ([10.122.105.159])
+  by fmsmga004.fm.intel.com with ESMTP; 29 May 2019 07:59:58 -0700
+Subject: Re: [PATCHv4 2/4] firmware: add Intel Stratix10 remote system update
+ driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org,
+        atull@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sen.li@intel.com,
+        Richard Gong <richard.gong@intel.com>
+References: <1559074833-1325-1-git-send-email-richard.gong@linux.intel.com>
+ <1559074833-1325-3-git-send-email-richard.gong@linux.intel.com>
+ <20190528232400.GB29225@kroah.com>
+From:   Richard Gong <richard.gong@linux.intel.com>
+Message-ID: <ac379a9a-9613-3f66-78ff-a38c0045764d@linux.intel.com>
+Date:   Wed, 29 May 2019 10:12:22 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190524000653.13005-5-atish.patra@wdc.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190528232400.GB29225@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 05:06:51PM -0700, Atish Patra wrote:
-> Currently, ARM32 and ARM64 uses different data structures to represent
-> their cpu topologies. Since, we are moving the ARM64 topology to common
-> code to be used by other architectures, we can reuse that for ARM32 as
-> well.
+
+Hi Greg,
+
+On 5/28/19 6:24 PM, Greg KH wrote:
+> On Tue, May 28, 2019 at 03:20:31PM -0500, richard.gong@linux.intel.com wrote:
+>> +static int rsu_send_msg(struct stratix10_rsu_priv *priv,
+>> +			enum stratix10_svc_command_code command,
+>> +	unsigned long arg,
+>> +	void (*callback)(struct stratix10_svc_client *client,
+>> +			 struct stratix10_svc_cb_data *data))
 > 
-> Take this opprtunity to remove the redundant functions from ARM32 and
-> reuse the common code instead.
+> Odd indentation for arg, and then callback.
+> 
+> Why isn't callback a typedef to make this simpler to use?
 > 
 
-Tested-by: Sudeep Holla <sudeep.holla@arm.com> (on TC2)
-Reviewed-by : Sudeep Holla <sudeep.holla@arm.com>
+I will make correction in the next submission.
 
---
+> thanks,
+> 
+> greg k-h
+> 
+
 Regards,
-Sudeep
+Richard
