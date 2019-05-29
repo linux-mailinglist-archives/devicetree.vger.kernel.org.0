@@ -2,183 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C78682D44F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 05:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 762FC2D47D
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 06:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725828AbfE2Di1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 May 2019 23:38:27 -0400
-Received: from mail-it1-f193.google.com ([209.85.166.193]:36126 "EHLO
-        mail-it1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726008AbfE2Di0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 May 2019 23:38:26 -0400
-Received: by mail-it1-f193.google.com with SMTP id e184so1325048ite.1
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 20:38:26 -0700 (PDT)
+        id S1725773AbfE2ETj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 00:19:39 -0400
+Received: from mail-qt1-f178.google.com ([209.85.160.178]:42570 "EHLO
+        mail-qt1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725880AbfE2ETi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 00:19:38 -0400
+Received: by mail-qt1-f178.google.com with SMTP id s15so948146qtk.9
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 21:19:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=mIbWrLxXAUE8DdyCUYuINo2mEcBTR51/ocvmSZbFSDw=;
-        b=lcHDc2Op9T8SoWV1TcTU9MzPj1yUXZKCIdo2qqKUeKkLApgMEYjVonwfqLSxyI8jUr
-         dutzBgiBuJt/RUNJqMJHifw/vSAqE9DuDbryE6gSznXK7pHOVR5vgSrMKXYWJPlFOpls
-         VzVfrKJwU1ySbtqwH+I71n0GF+r1wIXnbJxRI=
+        bh=FnqQyLt42DZ9noxJLCU2V14s5enRSAf3rpEHwRX9Kzo=;
+        b=hYOi8BkFEY0SXxqQqLEZF9NnP9Pbvi1wS7yC9BK9JmRFXUan60kY7zFDXyLITqTDUS
+         7ll6TdMYTzb7zrvvduAaFLWu3eONcUAliDarfOiByT5Tx+eF5Mcj8TPYuztHIg075hAh
+         AaICUAmx02EeefvpAqjSqQcUnil3D9/4DGJhU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mIbWrLxXAUE8DdyCUYuINo2mEcBTR51/ocvmSZbFSDw=;
-        b=fPlB5Opeoo8QGmJtshPWW66FveT7Dxr42idDRr6STCIcYEcliVupb7PYper8X8IvJl
-         JuArLZ/et4htJobgRT3s6ztYiPf4PlohDECUBsPR3K8S+vENqBwbnz/YVK1EcGhNkyQZ
-         6a0bR5eGZeUcNJTepGkKdNpeVKVIeUqjAgQBs0xK3eamGI7IR8Y4J+5vuSBgt2CqR92x
-         2ifF/xti0RW4742aZf1xEsYjZWyrMwgwSwJy96JqXzx5PJ4SQ1+s203egRr8x9FR2MgZ
-         ERqRDbT4ICns0ndJpwGcoXx78mPMTj4R/G61DMxDtcaR5I4cEyzWCPFISoWcfevGCL4l
-         GU9w==
-X-Gm-Message-State: APjAAAVek4fPRp1vyztIBlb2NwYtVuwuSdtPkvIYN8UmpVeYEnjwVLjH
-        Phl/uab0djHcD/4XHYY1kLyHG4amvun7SIN5
-X-Google-Smtp-Source: APXvYqyodGT7A2FYTo8CCLy6eyL4M+Zc0izwV0gL9TqALnqxyPAs0FelPSh1pBcCThv0jm8ifUYGFA==
-X-Received: by 2002:a24:4c4e:: with SMTP id a75mr5597552itb.42.1559101105657;
-        Tue, 28 May 2019 20:38:25 -0700 (PDT)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
-        by smtp.gmail.com with ESMTPSA id 199sm510561itk.21.2019.05.28.20.38.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 May 2019 20:38:24 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id k20so574377ios.10
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 20:38:23 -0700 (PDT)
-X-Received: by 2002:a5e:db02:: with SMTP id q2mr308707iop.306.1559101103189;
- Tue, 28 May 2019 20:38:23 -0700 (PDT)
+        bh=FnqQyLt42DZ9noxJLCU2V14s5enRSAf3rpEHwRX9Kzo=;
+        b=FseiRNsCTd6txOgY9JL7D7AV7QeKNoNL+D/1YHZuuFy5FV5SmoGuwTzc7ik28zVRzH
+         qsum4Bcx92BPEmOJOHt2XsF0UWa26vpS5aZNBWiasZSYYJK1bBwUivth4YNsiKDwGGjY
+         4ET8TPYP5pRdMI2YUPRUFemHTJ7LHjuZO0KqWbzzAKw+xRDQnhe5CKn0fGAH0+W27SmT
+         QIIrkdEVejFvr609NQd4L7JewI/uzoBZpk32LsLk1uMQ/bVmu5JhtUZS5WidMVi81J79
+         teNQs8jMAfoiFdAE1ygE57j/5tA9A01nBEX6c4SXXxSZEbGDSx2rnuTZsHgeXxCVee77
+         r3WA==
+X-Gm-Message-State: APjAAAWjq6UeXUxepmwrGueQh+LGKGpuC9A3AypMiwsMyvxIYmnK4SQS
+        /MvzffVmdBad58XMhkX0UgpBZ/RbIz86WiV0JPwlDg==
+X-Google-Smtp-Source: APXvYqxQjVrzoCeL6L4KHpLXuAIIoAai4JlsMWOYefX4hqGGu7mkiavfm3JE86Sp3YUok2L/Ps2IUpK+ghjSMUbbU7I=
+X-Received: by 2002:a0c:b66f:: with SMTP id q47mr23601745qvf.102.1559103577129;
+ Tue, 28 May 2019 21:19:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190417104511.21514-1-frederic.chen@mediatek.com>
- <20190417104511.21514-7-frederic.chen@mediatek.com> <20190509094846.GA65444@google.com>
- <1558466055.15388.342.camel@mtksdccf07> <20190522102514.GA218991@chromium.org>
- <1558619189.7995.27.camel@mtksdccf07>
-In-Reply-To: <1558619189.7995.27.camel@mtksdccf07>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Wed, 29 May 2019 12:38:11 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5BbrfhjGbKaUi4p6fJJNOKvkZb4_47gw-W8n5fEmaf5XQ@mail.gmail.com>
-Message-ID: <CAAFQd5BbrfhjGbKaUi4p6fJJNOKvkZb4_47gw-W8n5fEmaf5XQ@mail.gmail.com>
-Subject: Re: [RFC PATCH V1 6/6] platform: mtk-isp: Add Mediatek DIP driver
-To:     Frederic Chen <frederic.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        yuzhao@chromium.org, zwisler@chromium.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
-        <Sean.Cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
-        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
-        <christie.yu@mediatek.com>,
-        =?UTF-8?B?SG9sbWVzIENoaW91ICjpgrHmjLop?= 
-        <holmes.chiou@mediatek.com>,
-        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
-        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
-        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org, Shik Chen <shik@chromium.org>,
-        suleiman@chromium.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>
+References: <20190519092537.69053-1-jitao.shi@mediatek.com> <20190519092537.69053-2-jitao.shi@mediatek.com>
+In-Reply-To: <20190519092537.69053-2-jitao.shi@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 29 May 2019 12:19:11 +0800
+Message-ID: <CAJMQK-jST7mtoo-1C-8hU+O4x+_gOF0CuwToPwc=HJe86HDRHA@mail.gmail.com>
+Subject: Re: [v3 1/7] drm/mediatek: move mipi_dsi_host_register to probe
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        Kumar Gala <galak@codeaurora.org>, linux-pwm@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
+        dri-devel@lists.freedesktop.org,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
+        CK Hu <ck.hu@mediatek.com>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Inki Dae <inki.dae@samsung.com>,
+        linux-mediatek@lists.infradead.org, yingjoe.chen@mediatek.com,
+        eddie.huang@mediatek.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        srv_heupstream@mediatek.com, lkml <linux-kernel@vger.kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 23, 2019 at 10:46 PM Frederic Chen
-<frederic.chen@mediatek.com> wrote:
->
-> Dear Tomasz,
->
-> Thank you for your comments.
->
->
-> On Wed, 2019-05-22 at 19:25 +0900, Tomasz Figa wrote:
-> > Hi Frederic,
-> >
-> > On Wed, May 22, 2019 at 03:14:15AM +0800, Frederic Chen wrote:
-> > > Dear Tomasz,
-> > >
-> > > I appreciate your comment. It is very helpful for us.
-> > >
-> >
-> > You're welcome. Thanks for replying to all the comments. I'll skip those
-> > resolved in my reply to keep the message shorter.
-> >
-> > >
-> > > On Thu, 2019-05-09 at 18:48 +0900, Tomasz Figa wrote:
-> > > > Hi Frederic,
-> > > >
-> > > > On Wed, Apr 17, 2019 at 7:45 PM Frederic Chen <frederic.chen@mediatek.com> wrote:
-[snip]
-> > > > Also a general note - a work can be queued only once. This means that
-> > > > current code races when two dip_works are attempted to be queued very
-> > > > quickly one after another (or even at the same time from different threads).
-> > > >
-> > > > I can think of two potential options for fixing this:
-> > > >
-> > > > 1) Loop in the work function until there is nothing to queue to the hardware
-> > > >    anymore - but this needs tricky synchronization, because there is still
-> > > >    short time at the end of the work function when a new dip_work could be
-> > > >    added.
-> > > >
-> > > > 2) Change this to a kthread that just keeps running in a loop waiting for
-> > > >    some available dip_work to show up and then sending it to the firmware.
-> > > >    This should be simpler, as the kthread shouldn't have a chance to miss
-> > > >    any dip_work queued.
-> > > >
-> > > > I'm personally in favor of option 2, as it should simplify the
-> > > > synchronization.
-> > > >
-> > >
-> > > I would like to re-design this part with a kthread in the next patch.
-> >
-> > Actually I missed another option. We could have 1 work_struct for 1
-> > request and then we could keep using a workqueue. Perhaps that could be
-> > simpler than a kthread.
-> >
-> > Actually, similar approach could be used for the dip_runner_func.
-> > Instead of having a kthread looping, we could just have another
-> > workqueue and 1 dip_runner_work per 1 request. Then we wouldn't need to
-> > do the waiting loop ourselves anymore.
-> >
-> > Does it make sense?
->
-> Yes, it make sense. Let me summarize the modification about the flow.
->
-> First, we will have two work_struct in mtk_dip_request.
->
-> struct mtk_dip_request {
->         struct media_request request;
->         //...
->         /* Prepare DIP part hardware configurtion */
->         struct mtk_dip_hw_submit_work submit_work;
->         /* Replace dip_running thread jobs*/
->         struct mtk_dip_hw_composing_work composing_work;
->         /* Only for composing error handling */
->         struct mtk_dip_hw_mdpcb_timeout_work timeout_work;
-> };
->
-> Second, the overall flow of handling each request is :
->
-> 1. mtk_dip_hw_enqueue calls queue_work() to put submit_work into its
->    workqueue
-> 2. submit_work sends IMG_IPI_FRAME command to SCP to prepare DIP
->    hardware configuration
-> 3. dip_scp_handler receives the IMG_IPI_FRAME result from SCP
-> 4. dip_scp_handler calls queue_work() to put composing_work (instead
->    of original dip_running thread jobs) into its workqueue
-> 5. composing_work calls dip_mdp_cmdq_send() to finish the mdp part tasks
-> 6. dip_mdp_cb_func() trigged by MDP driver calls vb2_buffer_done to
->    return the buffer (no workqueue required here)
->
+On Sun, May 19, 2019 at 9:25 AM Jitao Shi <jitao.shi@mediatek.com> wrote:
 
-Sounds good to me, but actually then simply making the workqueues
-freezable doesn't solve the suspend/resume problem, because the work
-functions wouldn't wait for the firmware/hardware completion anymore.
-That's also okay, but in this case we need to add some code to suspend
-to wait for any pending operations to complete.
+> @@ -1045,12 +1045,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
+>                 return ret;
+>         }
+>
+> -       ret = mipi_dsi_host_register(&dsi->host);
+> -       if (ret < 0) {
+> -               dev_err(dev, "failed to register DSI host: %d\n", ret);
+> -               goto err_ddp_comp_unregister;
+> -       }
+> -
+>         ret = mtk_dsi_create_conn_enc(drm, dsi);
+>         if (ret) {
+>                 DRM_ERROR("Encoder create failed with %d\n", ret);
+> @@ -1060,8 +1054,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
+>         return 0;
+>
+>  err_unregister:
+> -       mipi_dsi_host_unregister(&dsi->host);
+> -err_ddp_comp_unregister:
+>         mtk_ddp_comp_unregister(drm, &dsi->ddp_comp);
+>         return ret;
+>  }
+> @@ -1097,31 +1089,37 @@ static int mtk_dsi_probe(struct platform_device *pdev)
+>
+>         dsi->host.ops = &mtk_dsi_ops;
+>         dsi->host.dev = dev;
+> +       dsi->dev = dev;
+> +       ret = mipi_dsi_host_register(&dsi->host);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to register DSI host: %d\n", ret);
+> +               return ret;
+> +       }
+>
+Since mipi_dsi_host_register() is moved from .bind to .probe,
+mipi_dsi_host_unregister() should also be moved from .unbind to
+.remove?
 
-Best regards,
-Tomasz
+Thanks
