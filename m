@@ -2,123 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD052D503
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 07:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9072D526
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 07:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725855AbfE2FRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 01:17:51 -0400
-Received: from mail-eopbgr00074.outbound.protection.outlook.com ([40.107.0.74]:35891
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725840AbfE2FRu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 01:17:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hP+y0oxk0+NX3SMiMJrxC8di8BJGijzwjbv+xENaCAc=;
- b=pXG4xW7jKiJivEaZNoFMXuCY8aS4OE9byDJoZXvcyb60+eCUHpZh09orEI/Gr1nF6Shfwxx6Tscif4g7OmtOlxlo01Fv1ceYRpDeOyeLj1dXxluhhfZBzpbZNBhzRJlriXbsy5p2l1F7t9BGbq8r5kq3OodNhx9AEzMw2XnVVVQ=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3929.eurprd04.prod.outlook.com (52.134.70.31) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.20; Wed, 29 May 2019 05:17:47 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::5835:e874:bd94:fec%5]) with mapi id 15.20.1922.021; Wed, 29 May 2019
- 05:17:47 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH RESEND 2/5] ARM: dts: imx7d-sdb: Assign corresponding
- power supply for LDOs
-Thread-Topic: [PATCH RESEND 2/5] ARM: dts: imx7d-sdb: Assign corresponding
- power supply for LDOs
-Thread-Index: AQHVCKkZhfxt7jnKxUqx2zVaOAuHUqaBqaow
-Date:   Wed, 29 May 2019 05:17:47 +0000
-Message-ID: <DB3PR0402MB391628E1B6D27C9AC5B02DB8F51F0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1557654739-12564-1-git-send-email-Anson.Huang@nxp.com>
- <1557654739-12564-2-git-send-email-Anson.Huang@nxp.com>
- <VI1PR04MB5055647612FAC2FE6FBE139FEE1E0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB5055647612FAC2FE6FBE139FEE1E0@VI1PR04MB5055.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8261d2ef-81ee-4fcc-af2b-08d6e3f4fcd9
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB3PR0402MB3929;
-x-ms-traffictypediagnostic: DB3PR0402MB3929:
-x-microsoft-antispam-prvs: <DB3PR0402MB392913E0B0ECD32D3AC94397F51F0@DB3PR0402MB3929.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 0052308DC6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(39860400002)(346002)(376002)(366004)(396003)(199004)(13464003)(189003)(186003)(33656002)(3846002)(6116002)(476003)(6436002)(478600001)(86362001)(26005)(486006)(11346002)(2906002)(446003)(5660300002)(74316002)(44832011)(53936002)(14454004)(68736007)(81166006)(54906003)(55016002)(71190400001)(99286004)(6246003)(229853002)(8936002)(9686003)(316002)(71200400001)(66066001)(8676002)(53546011)(66476007)(4326008)(305945005)(52536014)(6506007)(66946007)(102836004)(25786009)(66556008)(7736002)(76116006)(7696005)(73956011)(6862004)(76176011)(66446008)(6636002)(81156014)(256004)(64756008);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3929;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: fVk+uAnVwKhEZtbp4nKT/7m6QRhl7o7btdgEta5QX1XcbYXIB1tHLC9EvU3YPNxpT1XbZAnLmwH2sJBx/2P3R7uKPt4RGoy3OnmsbJxQbXRc41GRbyvcZ38+Fy8edC5Sv8LjFC1oc4NBJ779MeCxokYSbyigOctdaQefKyjNjhkrQYpO/LTdYhxBo9yH7Y3FhZNDEMyCorH/CSMZuaoggneDp9IEnFN5epN5SypbU5nmMvg1WTgtzo24x/SR0yUVP7iZhYig7yVkk+buScjuYXuBvdaiUsRmW3DK/PH0hiV9XJxSvYAx2VYGfRk0rT4C1s1OOfcK0KtmR7rBmwXLRfIJuLBIr+ByAPsk+dDbKAWlbNY9lz8dSfVfOBqJq9pFn8B5Wt1UFhxEzpu3gyMlSq5FNiT6wPJFT240Prnwrn8=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1725887AbfE2Fmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 01:42:44 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:4302 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725874AbfE2Fmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 01:42:44 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5cee1bd10001>; Tue, 28 May 2019 22:42:41 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Tue, 28 May 2019 22:42:41 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Tue, 28 May 2019 22:42:41 -0700
+Received: from [10.19.108.127] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 29 May
+ 2019 05:42:36 +0000
+Subject: Re: [PATCH V2 09/12] soc/tegra: pmc: add pmc wake support for
+ tegra210
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
+        <stefan@agner.ch>, <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <josephl@nvidia.com>,
+        <talho@nvidia.com>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mperttunen@nvidia.com>,
+        <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com>
+ <1559084936-4610-10-git-send-email-skomatineni@nvidia.com>
+From:   JC Kuo <jckuo@nvidia.com>
+Message-ID: <ddf07eae-a933-9d2e-94f9-3893b4e09db0@nvidia.com>
+Date:   Wed, 29 May 2019 13:42:35 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8261d2ef-81ee-4fcc-af2b-08d6e3f4fcd9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2019 05:17:47.2334
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3929
+In-Reply-To: <1559084936-4610-10-git-send-email-skomatineni@nvidia.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1559108561; bh=7ahERssj3Ya7BbN2GOfMLoQovuYCFnBedCRnhZury04=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=Mi7n4lK36ZH8qYlfUuFIGtM30pPDk1Mfwd3un1JpIalBUYUdWAdCPLy3vGHSgH09L
+         AYe1Z3pVzzCD+zreHWGQZEH67cGXZ8v10HD51Z1yzUOptEf/maRXGq8dOHHBXVP0vY
+         qbdihLtx8qXSxFuivzebwpSRxlq5tMWEQd+jFQJE3VQOqtB/PJhxGwtqn70GtrINT/
+         ZOYuM9GLnkCfh3qnLJrk6CcvdalGW/fC9Y8HY3H2SgKYG+egSUPSU3t0TMe4RlONNh
+         9jc4dGktPlBW9Kfo8Lmp2/FhwcefxvIhG98z6hPfMIFcI3hDx18UpdiHA9/ZKU77Zx
+         OsMpjr+U6FtUw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIExlb25hcmQNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMZW9u
-YXJkIENyZXN0ZXoNCj4gU2VudDogV2VkbmVzZGF5LCBNYXkgMjksIDIwMTkgMzoyNCBBTQ0KPiBU
-bzogQW5zb24gSHVhbmcgPGFuc29uLmh1YW5nQG54cC5jb20+DQo+IENjOiByb2JoK2R0QGtlcm5l
-bC5vcmc7IG1hcmsucnV0bGFuZEBhcm0uY29tOyBzaGF3bmd1b0BrZXJuZWwub3JnOw0KPiBzLmhh
-dWVyQHBlbmd1dHJvbml4LmRlOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWls
-LmNvbTsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJuZWxAbGlz
-dHMuaW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGRsLWxp
-bnV4LWlteCA8bGludXgtaW14QG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggUkVTRU5E
-IDIvNV0gQVJNOiBkdHM6IGlteDdkLXNkYjogQXNzaWduIGNvcnJlc3BvbmRpbmcNCj4gcG93ZXIg
-c3VwcGx5IGZvciBMRE9zDQo+IA0KPiBPbiAxMi4wNS4yMDE5IDEyOjU3LCBBbnNvbiBIdWFuZyB3
-cm90ZToNCj4gPiBPbiBpLk1YN0QgU0RCIGJvYXJkLCBzdzIgc3VwcGxpZXMgMXAwZC8xcDIgTERP
-LCB0aGlzIHBhdGNoIGFzc2lnbnMNCj4gPiBjb3JyZXNwb25kaW5nIHBvd2VyIHN1cHBseSBmb3Ig
-MXAwZC8xcDIgTERPIHRvIGF2b2lkIGNvbmZ1c2lvbiBieQ0KPiA+IGJlbG93IGxvZzoNCj4gPg0K
-PiA+IHZkZDFwMGQ6IHN1cHBsaWVkIGJ5IHJlZ3VsYXRvci1kdW1teQ0KPiA+IHZkZDFwMjogc3Vw
-cGxpZWQgYnkgcmVndWxhdG9yLWR1bW15DQo+ID4NCj4gPiBXaXRoIHRoaXMgcGF0Y2gsIHRoZSBw
-b3dlciBzdXBwbHkgaXMgbW9yZSBhY2N1cmF0ZToNCj4gPg0KPiA+IHZkZDFwMGQ6IHN1cHBsaWVk
-IGJ5IFNXMg0KPiA+IHZkZDFwMjogc3VwcGxpZWQgYnkgU1cyDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
-IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14N2Qtc2RiLmR0cw0KPiA+IGIvYXJjaC9hcm0vYm9vdC9k
-dHMvaW14N2Qtc2RiLmR0cw0KPiA+DQo+ID4gKyZyZWdfMXAwZCB7DQo+ID4gKwl2aW4tc3VwcGx5
-ID0gPCZzdzJfcmVnPjsNCj4gPiArfTsNCj4gPiArDQo+ID4gKyZyZWdfMXAyIHsNCj4gPiArCXZp
-bi1zdXBwbHkgPSA8JnN3Ml9yZWc+Ow0KPiA+ICt9Ow0KPiANCj4gSXQncyBub3QgY2xlYXIgd2h5
-IGJ1dCB0aGlzIHBhdGNoIGJyZWFrcyBpbXg3ZC1zZGIgYm9vdC4gQ2hlY2tlZCB0d28NCj4gYm9h
-cmRzOiBpbiBhIGJvYXJkIGZhcm0gYW5kIG9uIG15IGRlc2suDQoNClRoYW5rcyBmb3IgcmVwb3J0
-aW5nIHRoaXMgaXNzdWUsIEkgY2FuIHJlcHJvZHVjZSBpdCBub3csIGEgcXVpY2sgZGVidWcgc2hv
-d3MNCnRoYXQgd2l0aCB0aGlzIHBhdGNoLCB3aGVuIHNldHRpbmcgcmVnXzFwMGQncyB2b2x0YWdl
-IHRvIDEuMFYsIHRoZSBTVzIncyB2b2x0YWdlDQp3aWxsIGJlIGNoYW5nZWQgdG8gMS41ViwgdGhl
-IGV4cGVjdGVkIHZvbHRhZ2Ugc2hvdWxkIGJlIDEuOFYsIHNvIDEuNVYgY2F1c2UgYm9hcmQNCnJl
-c2V0LiBCZWxvdyBwYXRjaCBjYW4gZml4IHRoaXMgaXNzdWUsIGJ1dCBJIGFtIHN0aWxsIGNoZWNr
-aW5nIGlmIHRoaXMgaXMgdGhlIGJlc3QgZml4LCBvbmNlDQpJIGZpZ3VyZSBvdXQsIEkgd2lsbCBz
-ZW5kIG91dCBhIGZpeCBwYXRjaCBmb3IgcmV2aWV3Og0KDQorKysgYi9hcmNoL2FybS9ib290L2R0
-cy9pbXg3ZC1zZGIuZHRzDQpAQCAtMjY3LDYgKzI2Nyw3IEBADQogICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHJlZ3VsYXRvci1tYXgtbWljcm92b2x0ID0gPDE4NTAwMDA+Ow0KICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICByZWd1bGF0b3ItYm9vdC1vbjsNCiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgcmVndWxhdG9yLWFsd2F5cy1vbjsNCisgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgcmVndWxhdG9yLW1heC1zdGVwLW1pY3Jvdm9sdCA9IDwyNTAwMD47
-DQogICAgICAgICAgICAgICAgICAgICAgICB9Ow0KDQpUaGFua3MsDQpBbnNvbg0KDQo+IA0KPiAt
-LQ0KPiBSZWdhcmRzLA0KPiBMZW9uYXJkDQo=
+Hi Sowjanya,
+
+usleep_range() in tegra210_pmc_irq_set_wake() should be replaced with 
+udelay() because caller irq_set_irq_wake() acquired spinlock and made 
+this context atomic.
+
+Thanks,
+
+JC
+
+On 5/29/19 7:08 AM, Sowjanya Komatineni wrote:
+> This patch implements PMC wakeup sequence for Tegra210 and defines
+> common used wake events of RTC alarm and power key.
+>
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>   drivers/soc/tegra/pmc.c | 113 ++++++++++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 113 insertions(+)
+>
+> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+> index 974b4c9f6ada..54dc8409e353 100644
+> --- a/drivers/soc/tegra/pmc.c
+> +++ b/drivers/soc/tegra/pmc.c
+> @@ -57,6 +57,7 @@
+>   #include <dt-bindings/pinctrl/pinctrl-tegra-io-pad.h>
+>   #include <dt-bindings/gpio/tegra186-gpio.h>
+>   #include <dt-bindings/gpio/tegra194-gpio.h>
+> +#include <dt-bindings/gpio/tegra-gpio.h>
+>   
+>   #define PMC_CNTRL			0x0
+>   #define  PMC_CNTRL_INTR_POLARITY	BIT(17) /* inverts INTR polarity */
+> @@ -66,6 +67,12 @@
+>   #define  PMC_CNTRL_SYSCLK_OE		BIT(11) /* system clock enable */
+>   #define  PMC_CNTRL_SYSCLK_POLARITY	BIT(10) /* sys clk polarity */
+>   #define  PMC_CNTRL_MAIN_RST		BIT(4)
+> +#define  PMC_CNTRL_LATCH_WAKEUPS	BIT(5)
+> +
+> +#define PMC_WAKE_MASK			0x0c
+> +#define PMC_WAKE_LEVEL			0x10
+> +#define PMC_WAKE_STATUS			0x14
+> +#define PMC_SW_WAKE_STATUS		0x18
+>   
+>   #define DPD_SAMPLE			0x020
+>   #define  DPD_SAMPLE_ENABLE		BIT(0)
+> @@ -96,6 +103,11 @@
+>   
+>   #define PMC_SCRATCH41			0x140
+>   
+> +#define PMC_WAKE2_MASK			0x160
+> +#define PMC_WAKE2_LEVEL			0x164
+> +#define PMC_WAKE2_STATUS		0x168
+> +#define PMC_SW_WAKE2_STATUS		0x16c
+> +
+>   #define PMC_SENSOR_CTRL			0x1b0
+>   #define  PMC_SENSOR_CTRL_SCRATCH_WRITE	BIT(2)
+>   #define  PMC_SENSOR_CTRL_ENABLE_RST	BIT(1)
+> @@ -245,6 +257,7 @@ struct tegra_pmc_soc {
+>   
+>   	const struct tegra_wake_event *wake_events;
+>   	unsigned int num_wake_events;
+> +	unsigned int max_supported_wake_events;
+>   };
+>   
+>   static const char * const tegra186_reset_sources[] = {
+> @@ -1917,6 +1930,54 @@ static const struct irq_domain_ops tegra_pmc_irq_domain_ops = {
+>   	.alloc = tegra_pmc_irq_alloc,
+>   };
+>   
+> +static int tegra210_pmc_irq_set_wake(struct irq_data *data, unsigned int on)
+> +{
+> +	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
+> +	unsigned int offset, bit;
+> +	u32 value;
+> +
+> +	if (data->hwirq == ULONG_MAX)
+> +		return 0;
+> +
+> +	offset = data->hwirq / 32;
+> +	bit = data->hwirq % 32;
+> +
+> +	/*
+> +	 * latch wakeups to SW_WAKE_STATUS register to capture events
+> +	 * that would not make it into wakeup event register during LP0 exit.
+> +	 */
+> +	value = tegra_pmc_readl(pmc, PMC_CNTRL);
+> +	value |= PMC_CNTRL_LATCH_WAKEUPS;
+> +	tegra_pmc_writel(pmc, value, PMC_CNTRL);
+> +	usleep_range(110, 120);
+> +
+> +	value &= ~PMC_CNTRL_LATCH_WAKEUPS;
+> +	tegra_pmc_writel(pmc, value, PMC_CNTRL);
+> +	usleep_range(110, 120);
+> +
+> +	tegra_pmc_writel(pmc, 0, PMC_SW_WAKE_STATUS);
+> +	if (pmc->soc->max_supported_wake_events > 32)
+> +		tegra_pmc_writel(pmc, 0, PMC_SW_WAKE2_STATUS);
+> +
+> +	tegra_pmc_writel(pmc, 0, PMC_WAKE_STATUS);
+> +	if (pmc->soc->max_supported_wake_events > 32)
+> +		tegra_pmc_writel(pmc, 0, PMC_WAKE2_STATUS);
+> +
+> +	/* enable PMC wake */
+> +	if (data->hwirq >= 32)
+> +		offset = PMC_WAKE2_MASK;
+> +	else
+> +		offset = PMC_WAKE_MASK;
+> +	value = tegra_pmc_readl(pmc, offset);
+> +	if (on)
+> +		value |= 1 << bit;
+> +	else
+> +		value &= ~(1 << bit);
+> +	tegra_pmc_writel(pmc, value, offset);
+> +
+> +	return 0;
+> +}
+> +
+>   static int tegra186_pmc_irq_set_wake(struct irq_data *data, unsigned int on)
+>   {
+>   	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
+> @@ -1948,6 +2009,48 @@ static int tegra186_pmc_irq_set_wake(struct irq_data *data, unsigned int on)
+>   	return 0;
+>   }
+>   
+> +static int tegra210_pmc_irq_set_type(struct irq_data *data, unsigned int type)
+> +{
+> +	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
+> +	unsigned int offset, bit;
+> +	u32 value;
+> +
+> +	if (data->hwirq == ULONG_MAX)
+> +		return 0;
+> +
+> +	offset = data->hwirq / 32;
+> +	bit = data->hwirq % 32;
+> +
+> +	if (data->hwirq >= 32)
+> +		offset = PMC_WAKE2_LEVEL;
+> +	else
+> +		offset = PMC_WAKE_LEVEL;
+> +	value = tegra_pmc_readl(pmc, offset);
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +		value |= 1 << bit;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		value &= ~(1 << bit);
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING:
+> +		value ^= 1 << bit;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	tegra_pmc_writel(pmc, value, offset);
+> +
+> +	return 0;
+> +}
+> +
+>   static int tegra186_pmc_irq_set_type(struct irq_data *data, unsigned int type)
+>   {
+>   	struct tegra_pmc *pmc = irq_data_get_irq_chip_data(data);
+> @@ -2535,6 +2638,11 @@ static const struct pinctrl_pin_desc tegra210_pin_descs[] = {
+>   	TEGRA210_IO_PAD_TABLE(TEGRA_IO_PIN_DESC)
+>   };
+>   
+> +static const struct tegra_wake_event tegra210_wake_events[] = {
+> +	TEGRA_WAKE_GPIO("power", 24, 0, 189),
+> +	TEGRA_WAKE_IRQ("rtc", 16, 2),
+> +};
+> +
+>   static const struct tegra_pmc_soc tegra210_pmc_soc = {
+>   	.num_powergates = ARRAY_SIZE(tegra210_powergates),
+>   	.powergates = tegra210_powergates,
+> @@ -2552,10 +2660,15 @@ static const struct tegra_pmc_soc tegra210_pmc_soc = {
+>   	.regs = &tegra20_pmc_regs,
+>   	.init = tegra20_pmc_init,
+>   	.setup_irq_polarity = tegra20_pmc_setup_irq_polarity,
+> +	.irq_set_wake = tegra210_pmc_irq_set_wake,
+> +	.irq_set_type = tegra210_pmc_irq_set_type,
+>   	.reset_sources = tegra210_reset_sources,
+>   	.num_reset_sources = ARRAY_SIZE(tegra210_reset_sources),
+>   	.reset_levels = NULL,
+>   	.num_reset_levels = 0,
+> +	.num_wake_events = ARRAY_SIZE(tegra210_wake_events),
+> +	.wake_events = tegra210_wake_events,
+> +	.max_supported_wake_events = 64,
+>   };
+>   
+>   #define TEGRA186_IO_PAD_TABLE(_pad)					     \
