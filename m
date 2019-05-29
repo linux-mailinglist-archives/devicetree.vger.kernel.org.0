@@ -2,188 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FEFF2DD6F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 14:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C902DD8C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 14:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726581AbfE2Mu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 08:50:29 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:44076 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726104AbfE2Mu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 08:50:29 -0400
-Received: by mail-lj1-f195.google.com with SMTP id e13so2287368ljl.11;
-        Wed, 29 May 2019 05:50:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Y/GjW0ggTr+KDX5N1qvSh09429RppJ4FAnZ8i4WBnhY=;
-        b=Fo1s04OMp+eFPrWrP1AbzDVpYhsfTrEJzNw2UnF8XZs4eMkMJ1jXUwBdKd0vdglyH5
-         Cz2SByoPwre6bVExbfWGTwdTLHPQYK9CtIMOzDzbSlZGSq4L3qOASARaA4Jex+uSyrKY
-         zYGwLVO/ClM9QTjLU+2kmN+m9cuBQj4gQcHYni3G5gdJwwFysC2aV6Ptz0JUBrH2zxNO
-         hL7chCs/AP30bnDzOh+pSH66dQ34Xp1x7PazS+ns7Hiqt1UrEvZHrVgaKfok6eQqpGvg
-         JSLuRdnOgPE8OEtC8gOBbRR/351gL5oBJBIWP9IoQ1TP5tknLTg2L0DunfMi6ufJFngV
-         w+jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Y/GjW0ggTr+KDX5N1qvSh09429RppJ4FAnZ8i4WBnhY=;
-        b=UNfnYoNEje8EqLhH8KfmAbqRc52Yo1HlOxu5B59Lc9GgAxig+7lfOliakVbOqVG0eS
-         V0D72qendgzzRXFqVDNrvP23h34iMoUzjjxmPa9J87adoo4LEwUk1JJ54sid/a70bdfr
-         wUjf/VefPxAzW1tEYpE07vGKn6Nfoq0/ayX9mGUlBE2YPuZjNlI8NDSQ6ljPBDv+o7Fu
-         cCrSrrYi7naJ6SGXCgmE1Iam3OasphxfCibZ4+r70o4I5caF9HaEmDw5XjXlo5kvB/uE
-         J52wbfME13KMEQ5eFYg4gRTOm5urzdankhs+MOXM9YUxpIyu8fZ13baYX4r4vbMVl++6
-         LbEw==
-X-Gm-Message-State: APjAAAXGa1a/jgUplCrOpmclDE56bZcFe1dOVNizZQt25tFNCcf9xgVv
-        Q50+0H/rJ2+dD6MkqtDpFZ4=
-X-Google-Smtp-Source: APXvYqwRjJQjY7ixX0sxWEjupCb/IAECR01S9LEOiDFrhg1gvxe+Qd7Qxpq7qkk3ohQI57Gk8nusvw==
-X-Received: by 2002:a2e:89cc:: with SMTP id c12mr60915243ljk.90.1559134226037;
-        Wed, 29 May 2019 05:50:26 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.35.141])
-        by smtp.googlemail.com with ESMTPSA id 20sm3452950ljw.7.2019.05.29.05.50.24
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 May 2019 05:50:24 -0700 (PDT)
-Subject: Re: [PATCH V4 7/8] clk: tegra: Remove the old emc_mux clock for
- Tegra210
-To:     Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190529082139.5581-1-josephl@nvidia.com>
- <20190529082139.5581-8-josephl@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <6651442d-d501-9363-ff95-988e1a4a3982@gmail.com>
-Date:   Wed, 29 May 2019 15:49:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726516AbfE2M4F convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 May 2019 08:56:05 -0400
+Received: from emcscan.emc.com.tw ([192.72.220.5]:56809 "EHLO
+        emcscan.emc.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726029AbfE2M4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 08:56:05 -0400
+X-IronPort-AV: E=Sophos;i="5.56,253,1539619200"; 
+   d="scan'208";a="30800339"
+Received: from unknown (HELO webmail.emc.com.tw) ([192.168.10.1])
+  by emcscan.emc.com.tw with SMTP; 29 May 2019 20:56:01 +0800
+Received: from 192.168.10.23
+        by webmail.emc.com.tw with MailAudit ESMTP Server V5.0(76388:0:AUTH_RELAY)
+        (envelope-from <kt.liao@emc.com.tw>); Wed, 29 May 2019 20:56:02 +0800 (CST)
+Received: from 192.168.33.46
+        by webmail.emc.com.tw with Mail2000 ESMTPA Server V7.00(119321:0:AUTH_LOGIN)
+        (envelope-from <kt.liao@emc.com.tw>); Wed, 29 May 2019 20:56:01 +0800 (CST)
+From:   =?UTF-8?B?5buW5bSH5qau?= <kt.liao@emc.com.tw>
+To:     "'Benjamin Tissoires'" <benjamin.tissoires@redhat.com>,
+        "'Sean O'Brien'" <seobrien@chromium.org>,
+        "'Peter Hutterer'" <peter.hutterer@who-t.net>
+Cc:     "'Harry Cutts'" <hcutts@chromium.org>,
+        "'Dmitry Torokhov'" <dmitry.torokhov@gmail.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Aaron Ma'" <aaron.ma@canonical.com>,
+        "'Hans de Goede'" <hdegoede@redhat.com>,
+        "'open list:HID CORE LAYER'" <linux-input@vger.kernel.org>,
+        "'lkml'" <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190521132712.2818-1-benjamin.tissoires@redhat.com> <20190521132712.2818-9-benjamin.tissoires@redhat.com> <CAO-hwJJXGTZq7zRVhcFNwh-kOo0rUhZOsNtFX1yA93Km=L+ynA@mail.gmail.com> <00f901d5143f$f5ea8420$e1bf8c60$@emc.com.tw> <20190528012101.GA193221@dtor-ws> <CA+jURcsWe=fZ-catnCaH=A85vAhrv1w1E5nSwpJvBAwgCTNYfw@mail.gmail.com> <CAOOzhkq+vD034Q2FKB2ryR7Q9nY=iQjdrREuihkZTaVcg+E_Xg@mail.gmail.com> <CAO-hwJ+9tnmvD-K3_Ksesdvag1aNbLB7eJxb9ZKb7kM24unqQQ@mail.gmail.com>
+In-Reply-To: <CAO-hwJ+9tnmvD-K3_Ksesdvag1aNbLB7eJxb9ZKb7kM24unqQQ@mail.gmail.com>
+Subject: RE: [PATCH v2 08/10] Input: elan_i2c - export true width/height
+Date:   Wed, 29 May 2019 20:55:59 +0800
+Message-ID: <010301d5161d$dd201e70$97605b50$@emc.com.tw>
 MIME-Version: 1.0
-In-Reply-To: <20190529082139.5581-8-josephl@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQMBv+jJqV7WAwqWtnh8gdestIYR9QKF0mzQAgyUPwcBn6xZvAHvf1DVAJRhBqgB1CL43gKA7XSwo8BdoKA=
+Content-Language: zh-tw
+x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcOTIwNzNcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRiYTI5ZTM1Ylxtc2dzXG1zZy0xYTk1ZDkwZS04MjExLTExZTktYjRlZS01YzUxNGY0NmFhNDVcYW1lLXRlc3RcMWE5NWQ5MTAtODIxMS0xMWU5LWI0ZWUtNWM1MTRmNDZhYTQ1Ym9keS50eHQiIHN6PSI3MjE4IiB0PSIxMzIwMzYwODE1OTQwNjE3NDUiIGg9IlVSMzgxRFhOcXdFd3QwNHZXR283U0RhUkJyTT0iIGlkPSIiIGJsPSIwIiBibz0iMSIvPjwvbWV0YT4=
+x-dg-rorf: true
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-29.05.2019 11:21, Joseph Lo пишет:
-> Remove the old emc_mux clock and don't use the common EMC clock
-> definition. This will be replaced by a new clock defined in the
-> EMC driver.
-> 
-> Signed-off-by: Joseph Lo <josephl@nvidia.com>
-> ---
-> v4:
-> - make sure the behavior is compatible with case if the kernel still
->   uses the older DTB which doesn't have EMC node. And the MC and EMC
->   clock can still be registered successuflly.
-> v3:
-> - split to 3 patches from the previous version
-> ---
->  drivers/clk/tegra/clk-tegra210.c | 42 ++++++++++++++++++++------------
->  1 file changed, 27 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-tegra210.c
-> index 1d52354820ca..8b209e8b5eaf 100644
-> --- a/drivers/clk/tegra/clk-tegra210.c
-> +++ b/drivers/clk/tegra/clk-tegra210.c
-> @@ -28,6 +28,7 @@
->  #include <dt-bindings/reset/tegra210-car.h>
->  #include <linux/iopoll.h>
->  #include <linux/sizes.h>
-> +#include <soc/tegra/emc.h>
->  #include <soc/tegra/pmc.h>
->  
->  #include "clk.h"
-> @@ -324,12 +325,6 @@ static unsigned long tegra210_input_freq[] = {
->  	[8] = 12000000,
->  };
->  
-> -static const char *mux_pllmcp_clkm[] = {
-> -	"pll_m", "pll_c", "pll_p", "clk_m", "pll_m_ud", "pll_mb", "pll_mb",
-> -	"pll_p",
-> -};
-> -#define mux_pllmcp_clkm_idx NULL
-> -
->  #define PLL_ENABLE			(1 << 30)
->  
->  #define PLLCX_MISC1_IDDQ		(1 << 27)
-> @@ -2346,7 +2341,6 @@ static struct tegra_clk tegra210_clks[tegra_clk_max] __initdata = {
->  	[tegra_clk_i2c2] = { .dt_id = TEGRA210_CLK_I2C2, .present = true },
->  	[tegra_clk_uartc_8] = { .dt_id = TEGRA210_CLK_UARTC, .present = true },
->  	[tegra_clk_mipi_cal] = { .dt_id = TEGRA210_CLK_MIPI_CAL, .present = true },
-> -	[tegra_clk_emc] = { .dt_id = TEGRA210_CLK_EMC, .present = true },
->  	[tegra_clk_usb2] = { .dt_id = TEGRA210_CLK_USB2, .present = true },
->  	[tegra_clk_bsev] = { .dt_id = TEGRA210_CLK_BSEV, .present = true },
->  	[tegra_clk_uartd_8] = { .dt_id = TEGRA210_CLK_UARTD, .present = true },
-> @@ -2957,6 +2951,27 @@ static int tegra210_init_pllu(void)
->  	return 0;
->  }
->  
-> +static const struct clk_div_table mc_div_table_tegra210[] = {
-> +	{ .val = 0, .div = 2 },
-> +	{ .val = 1, .div = 4 },
-> +	{ .val = 2, .div = 1 },
-> +	{ .val = 3, .div = 2 },
-> +	{ .val = 0, .div = 0 },
-> +};
-> +
-> +static void tegra210_clk_register_mc(const char *name,
-> +				     const char *parent_name)
-> +{
-> +	struct clk *clk;
-> +
-> +	clk = clk_register_divider_table(NULL, name, parent_name,
-> +					 CLK_IS_CRITICAL,
-> +					 clk_base + CLK_SOURCE_EMC,
-> +					 15, 2, CLK_DIVIDER_READ_ONLY,
-> +					 mc_div_table_tegra210, &emc_lock);
 
-This doesn't look right, you're mixing up the MC divider with the EMC
-divider here. The MC clock is always sourced from EMC and there is only
-one bit for the MC divider, the bit 16 MC_EMC_SAME_FREQ.
 
-When EMC clock is divided down by 2 (bit 15 EMC_CLK_DIV2_EN), then the
-clk-framework will take care of it by calculating the MC rate based on
-the actual parent EMC rate.
+-----Original Message-----
+From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com] 
+Sent: Wednesday, May 29, 2019 3:17 PM
+To: Sean O'Brien; Peter Hutterer
+Cc: Harry Cutts; Dmitry Torokhov; 廖崇榮; Rob Herring; Aaron Ma; Hans de Goede; open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true width/height
 
-> +	clks[TEGRA210_CLK_MC] = clk;
-> +}
-> +
->  static const char * const sor1_out_parents[] = {
->  	/*
->  	 * Bit 0 of the mux selects sor1_pad_clkout, irrespective of bit 1, so
-> @@ -3040,15 +3055,12 @@ static __init void tegra210_periph_clk_init(void __iomem *clk_base,
->  			CLK_SOURCE_LA, 0);
->  	clks[TEGRA210_CLK_LA] = clk;
->  
-> -	/* emc mux */
-> -	clk = clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
-> -			       ARRAY_SIZE(mux_pllmcp_clkm), 0,
-> -			       clk_base + CLK_SOURCE_EMC,
-> -			       29, 3, 0, &emc_lock);
-> +	/* emc */
-> +	clk = tegra210_clk_register_emc();
-> +	clks[TEGRA210_CLK_EMC] = clk;
->  
-> -	clk = tegra_clk_register_mc("mc", "emc_mux", clk_base + CLK_SOURCE_EMC,
-> -				    &emc_lock);
-> -	clks[TEGRA210_CLK_MC] = clk;
-> +	/* mc */
-> +	tegra210_clk_register_mc("mc", "emc");
->  
->  	/* cml0 */
->  	clk = clk_register_gate(NULL, "cml0", "pll_e", 0, clk_base + PLLE_AUX,
-> 
+On Wed, May 29, 2019 at 2:12 AM Sean O'Brien <seobrien@chromium.org> wrote:
+>
+> We do still use a maxed out major axis as a signal for a palm in the 
+> touchscreen logic, but I'm not too concerned because if that axis is 
+> maxed out, the contact should probably be treated as a palm anyway...
+>
+> I'm more concerned with this affecting our gesture detection for 
+> touchpad. It looks like this change would cause all contacts to 
+> reported as some percentage bigger than they are currently. Can you 
+> give me an idea of how big that percentage is?
 
-You should leave the common tegra_clk_register_mc() usage as-is and only
-s/emc_mux/emc/ in the argument.
+On the P52, I currently have:
+[  +0.000009] max:    (3045,1731) drivers/input/mouse/elan_i2c_core.c:428
+[  +0.000003] traces: (24,14) drivers/input/mouse/elan_i2c_core.c:429
 
--- 
-Dmitry
+-> with the computation done in the kernel:
+width_ratio: 126
+height_ratio: 123
+
+For my average finger, the reported traces are between 4 and 6:
+With the ETP_FWIDTH_REDUCE:
+Major between 144 to 216
+Minor between 132 to 198
+
+Without:
+Major between 504 to 756
+Minor between 492 to 738
+
+So a rough augmentation of 350%
+
+For the Synaptics devices (over SMBus), they send the raw value of the traces, so you will get a major/minor between 2 to 5. Max on these axes is 15, so we should get the same percentage of value comparing to the range.
+
+Elan's vendor report contains such information, which indicate how many trace are touched by finger/palm
+		mk_x = (finger_data[3] & 0x0f); 
+		mk_y = (finger_data[3] >> 4);
+Do we need to use mk_* for major/minor for keeping it consistent with other vendor?
+But this modification will impact Chromebook's usability and Chrome test suite.
+
+
+
+Which is why libinput has a database of which device reports which pressure/major/minor ranges as otherwise the values are just impossible to understand.
+
+Cheers,
+Benjamin
+
+
+
+>
+> On Tue, May 28, 2019 at 11:13 AM Harry Cutts <hcutts@chromium.org> wrote:
+> >
+> > On Mon, 27 May 2019 at 18:21, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
+> > >
+> > > Hi Benjamin, KT,
+> > >
+> > > On Mon, May 27, 2019 at 11:55:01AM +0800, 廖崇榮 wrote:
+> > > > Hi
+> > > >
+> > > > -----Original Message-----
+> > > > From: Benjamin Tissoires [mailto:benjamin.tissoires@redhat.com]
+> > > > Sent: Friday, May 24, 2019 5:37 PM
+> > > > To: Dmitry Torokhov; KT Liao; Rob Herring; Aaron Ma; Hans de 
+> > > > Goede
+> > > > Cc: open list:HID CORE LAYER; lkml; devicetree@vger.kernel.org
+> > > > Subject: Re: [PATCH v2 08/10] Input: elan_i2c - export true 
+> > > > width/height
+> > > >
+> > > > On Tue, May 21, 2019 at 3:28 PM Benjamin Tissoires <benjamin.tissoires@redhat.com> wrote:
+> > > > >
+> > > > > The width/height is actually in the same unit than X and Y. So 
+> > > > > we should not tamper the data, but just set the proper 
+> > > > > resolution, so that userspace can correctly detect which touch is a palm or a finger.
+> > > > >
+> > > > > Signed-off-by: Benjamin Tissoires 
+> > > > > <benjamin.tissoires@redhat.com>
+> > > > >
+> > > > > --
+> > > > >
+> > > > > new in v2
+> > > > > ---
+> > > > >  drivers/input/mouse/elan_i2c_core.c | 11 ++++-------
+> > > > >  1 file changed, 4 insertions(+), 7 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/input/mouse/elan_i2c_core.c
+> > > > > b/drivers/input/mouse/elan_i2c_core.c
+> > > > > index 7ff044c6cd11..6f4feedb7765 100644
+> > > > > --- a/drivers/input/mouse/elan_i2c_core.c
+> > > > > +++ b/drivers/input/mouse/elan_i2c_core.c
+> > > > > @@ -45,7 +45,6 @@
+> > > > >  #define DRIVER_NAME            "elan_i2c"
+> > > > >  #define ELAN_VENDOR_ID         0x04f3
+> > > > >  #define ETP_MAX_PRESSURE       255
+> > > > > -#define ETP_FWIDTH_REDUCE      90
+> > > > >  #define ETP_FINGER_WIDTH       15
+> > > > >  #define ETP_RETRY_COUNT                3
+> > > > >
+> > > > > @@ -915,12 +914,8 @@ static void elan_report_contact(struct elan_tp_data *data,
+> > > > >                         return;
+> > > > >                 }
+> > > > >
+> > > > > -               /*
+> > > > > -                * To avoid treating large finger as palm, let's reduce the
+> > > > > -                * width x and y per trace.
+> > > > > -                */
+> > > > > -               area_x = mk_x * (data->width_x - ETP_FWIDTH_REDUCE);
+> > > > > -               area_y = mk_y * (data->width_y - ETP_FWIDTH_REDUCE);
+> > > > > +               area_x = mk_x * data->width_x;
+> > > > > +               area_y = mk_y * data->width_y;
+> > > > >
+> > > > >                 major = max(area_x, area_y);
+> > > > >                 minor = min(area_x, area_y); @@ -1123,8 
+> > > > > +1118,10 @@ static int elan_setup_input_device(struct elan_tp_data *data)
+> > > > >                              ETP_MAX_PRESSURE, 0, 0);
+> > > > >         input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0,
+> > > > >                              ETP_FINGER_WIDTH * max_width, 0, 
+> > > > > 0);
+> > > > > +       input_abs_set_res(input, ABS_MT_TOUCH_MAJOR, 
+> > > > > + data->x_res);
+> > > > >         input_set_abs_params(input, ABS_MT_TOUCH_MINOR, 0,
+> > > > >                              ETP_FINGER_WIDTH * min_width, 0, 
+> > > > > 0);
+> > > > > +       input_abs_set_res(input, ABS_MT_TOUCH_MINOR, 
+> > > > > + data->y_res);
+> > > >
+> > > > I had a chat with Peter on Wednesday, and he mentioned that this is dangerous as Major/Minor are max/min of the width and height. And given that we might have 2 different resolutions, we would need to do some computation in the kernel to ensure the data is correct with respect to the resolution.
+> > > >
+> > > > TL;DR: I don't think we should export the resolution there :(
+> > > >
+> > > > KT, should I drop the patch entirely, or is there a strong argument for keeping the ETP_FWIDTH_REDUCE around?
+> > > > I suggest you apply the patch, I have no idea why ETP_FWIDTH_REDUCE existed.
+> > > > Our FW team know nothing about ETP_FWIDTH_REDUCE ether.
+> > > >
+> > > > The only side effect will happen on Chromebook because such computation have stayed in ChromeOS' kernel for four years.
+> > > > Chrome's finger/palm threshold may be different from other Linux distribution.
+> > > > We will discuss it with Google once the patch picked by chrome and cause something wrong.
+> > >
+> > > Chrome has logic that contact with maximum major/minor is treated 
+> > > as a palm, so here the driver (which originally came from Chrome 
+> > > OS) artificially reduces the contact size to ensure that palm 
+> > > rejection logic does not trigger.
+> > >
+> > > I'm adding Harry to confirm whether we are still using this logic 
+> > > and to see if we can adjust it to be something else.
+> >
+> > I'm not very familiar with our touchpad code, so adding Sean 
+> > O'Brien, who is.
+
