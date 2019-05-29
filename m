@@ -2,116 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 762FC2D47D
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 06:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF7502D4AE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 06:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725773AbfE2ETj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 00:19:39 -0400
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:42570 "EHLO
-        mail-qt1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725880AbfE2ETi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 00:19:38 -0400
-Received: by mail-qt1-f178.google.com with SMTP id s15so948146qtk.9
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 21:19:37 -0700 (PDT)
+        id S1725855AbfE2E0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 00:26:41 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:39028 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725832AbfE2E0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 00:26:41 -0400
+Received: by mail-pg1-f196.google.com with SMTP id w22so546091pgi.6
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2019 21:26:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FnqQyLt42DZ9noxJLCU2V14s5enRSAf3rpEHwRX9Kzo=;
-        b=hYOi8BkFEY0SXxqQqLEZF9NnP9Pbvi1wS7yC9BK9JmRFXUan60kY7zFDXyLITqTDUS
-         7ll6TdMYTzb7zrvvduAaFLWu3eONcUAliDarfOiByT5Tx+eF5Mcj8TPYuztHIg075hAh
-         AaICUAmx02EeefvpAqjSqQcUnil3D9/4DGJhU=
+        d=sifive.com; s=google;
+        h=from:to:subject:date:message-id;
+        bh=5JJ5fP/lDTAT9lV7xByh9EU/tkZg+0nZnzbUrujyoZg=;
+        b=kTq5oKCOvb2JCjaJ13ybujn6O92eJItL/ZZRxZzq2f9s59vvAI5lkJSqmOB3CjQ0qD
+         9u8MEgtx6tPOCi9fXdf0/Y4JGYAYxJ+IPb9C78+I2QwQOi0yGpa5pvWqLZ/FORR/RyY6
+         63x5WeSHMoeExX+r6oIGbbIUmVsY9BdH3zSIsm5nO+9MEAncg1hT+CvrebHklrUYoIKm
+         sP2GcxXbyzLkJdGqbOS1TJjrqYtqBNNC6VZPF3ELlMPG1sGxRnHdv4BYVn3rGPs3x+jf
+         YW/3iMocgkhTd1hkEHr8Xky56S8fE1llF5tbygiELsel0yI2uN497rAQW8dpWZm8ACgI
+         4kWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FnqQyLt42DZ9noxJLCU2V14s5enRSAf3rpEHwRX9Kzo=;
-        b=FseiRNsCTd6txOgY9JL7D7AV7QeKNoNL+D/1YHZuuFy5FV5SmoGuwTzc7ik28zVRzH
-         qsum4Bcx92BPEmOJOHt2XsF0UWa26vpS5aZNBWiasZSYYJK1bBwUivth4YNsiKDwGGjY
-         4ET8TPYP5pRdMI2YUPRUFemHTJ7LHjuZO0KqWbzzAKw+xRDQnhe5CKn0fGAH0+W27SmT
-         QIIrkdEVejFvr609NQd4L7JewI/uzoBZpk32LsLk1uMQ/bVmu5JhtUZS5WidMVi81J79
-         teNQs8jMAfoiFdAE1ygE57j/5tA9A01nBEX6c4SXXxSZEbGDSx2rnuTZsHgeXxCVee77
-         r3WA==
-X-Gm-Message-State: APjAAAWjq6UeXUxepmwrGueQh+LGKGpuC9A3AypMiwsMyvxIYmnK4SQS
-        /MvzffVmdBad58XMhkX0UgpBZ/RbIz86WiV0JPwlDg==
-X-Google-Smtp-Source: APXvYqxQjVrzoCeL6L4KHpLXuAIIoAai4JlsMWOYefX4hqGGu7mkiavfm3JE86Sp3YUok2L/Ps2IUpK+ghjSMUbbU7I=
-X-Received: by 2002:a0c:b66f:: with SMTP id q47mr23601745qvf.102.1559103577129;
- Tue, 28 May 2019 21:19:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190519092537.69053-1-jitao.shi@mediatek.com> <20190519092537.69053-2-jitao.shi@mediatek.com>
-In-Reply-To: <20190519092537.69053-2-jitao.shi@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 29 May 2019 12:19:11 +0800
-Message-ID: <CAJMQK-jST7mtoo-1C-8hU+O4x+_gOF0CuwToPwc=HJe86HDRHA@mail.gmail.com>
-Subject: Re: [v3 1/7] drm/mediatek: move mipi_dsi_host_register to probe
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, linux-pwm@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>, stonea168@163.com,
-        dri-devel@lists.freedesktop.org,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
-        CK Hu <ck.hu@mediatek.com>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Inki Dae <inki.dae@samsung.com>,
-        linux-mediatek@lists.infradead.org, yingjoe.chen@mediatek.com,
-        eddie.huang@mediatek.com,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        srv_heupstream@mediatek.com, lkml <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Sean Paul <seanpaul@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=5JJ5fP/lDTAT9lV7xByh9EU/tkZg+0nZnzbUrujyoZg=;
+        b=gCcYSvoV0LL9Qk7KD/X1/FgNc9g0yW6B6k/MJsYXT3uJeqwoo6ExHX7X9HysBg+frn
+         clRZ6rAycfu36tlAp0FY38XyAS9uY74kG2rR5sAAFe/Z4HOKuVWgR5oSjrNvKDmzqCZO
+         7h0/vK+HQUUwqa2iJ+d8XtufmD2/WIFXeWmgwmbPFq9O2fIvOlVi83++qwP9yuFV1FNK
+         1JIfN4qBr/+aV4m8J/87OMAOz9228Cg097KPTo/VAGtxGYRLfgrPs/RSRzypYhsPkAmB
+         fXzBxx9wBZNi5QvfwTzKdCA1Oy7h5wsjQRMX56ju7fkKW1Tyu0f6Qf5n6wkcfceYTtNj
+         5zHw==
+X-Gm-Message-State: APjAAAUvHfs2fwvOTPVdUx7eAZSkUkMVzF+4HD5uh0DnTj/k7KRYzqCk
+        7K7h3HcpnPvE0lkgdKAtdwsNl78vU5yE1Q==
+X-Google-Smtp-Source: APXvYqz8+KopayMYqNIAnYzjwkQi92y0EfTJXP+WbfUiu3G6DyTGAMkJzIynLIfakB8aLVEH3oY7WA==
+X-Received: by 2002:a65:56cc:: with SMTP id w12mr3084328pgs.415.1559104000681;
+        Tue, 28 May 2019 21:26:40 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id 128sm9217350pff.16.2019.05.28.21.26.36
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 28 May 2019 21:26:39 -0700 (PDT)
+From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, peter@korsgaard.com,
+        andrew@lunn.ch, palmer@sifive.com, paul.walmsley@sifive.com,
+        sagar.kadam@sifive.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v8 3/3] i2c-ocores: sifive: add polling mode workaround for FU540-C000 SoC.
+Date:   Wed, 29 May 2019 09:56:18 +0530
+Message-Id: <1559103978-13852-1-git-send-email-sagar.kadam@sifive.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 19, 2019 at 9:25 AM Jitao Shi <jitao.shi@mediatek.com> wrote:
+The i2c-ocore driver already has a polling mode interface.But it needs
+a workaround for FU540 Chipset on HiFive unleashed board (RevA00).
+There is an erratum in FU540 chip that prevents interrupt driven i2c
+transfers from working, and also the I2C controller's interrupt bit
+cannot be cleared if set, due to this the existing i2c polling mode
+interface added in mainline earlier doesn't work, and CPU stall's
+infinitely, when-ever i2c transfer is initiated.
 
-> @@ -1045,12 +1045,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
->                 return ret;
->         }
->
-> -       ret = mipi_dsi_host_register(&dsi->host);
-> -       if (ret < 0) {
-> -               dev_err(dev, "failed to register DSI host: %d\n", ret);
-> -               goto err_ddp_comp_unregister;
-> -       }
-> -
->         ret = mtk_dsi_create_conn_enc(drm, dsi);
->         if (ret) {
->                 DRM_ERROR("Encoder create failed with %d\n", ret);
-> @@ -1060,8 +1054,6 @@ static int mtk_dsi_bind(struct device *dev, struct device *master, void *data)
->         return 0;
->
->  err_unregister:
-> -       mipi_dsi_host_unregister(&dsi->host);
-> -err_ddp_comp_unregister:
->         mtk_ddp_comp_unregister(drm, &dsi->ddp_comp);
->         return ret;
->  }
-> @@ -1097,31 +1089,37 @@ static int mtk_dsi_probe(struct platform_device *pdev)
->
->         dsi->host.ops = &mtk_dsi_ops;
->         dsi->host.dev = dev;
-> +       dsi->dev = dev;
-> +       ret = mipi_dsi_host_register(&dsi->host);
-> +       if (ret < 0) {
-> +               dev_err(dev, "failed to register DSI host: %d\n", ret);
-> +               return ret;
-> +       }
->
-Since mipi_dsi_host_register() is moved from .bind to .probe,
-mipi_dsi_host_unregister() should also be moved from .unbind to
-.remove?
+Ref:
+	commit dd7dbf0eb090 ("i2c: ocores: refactor setup for polling")
 
-Thanks
+The workaround / fix under OCORES_FLAG_BROKEN_IRQ is particularly for
+FU540-COOO SoC.
+
+The polling function identifies a SiFive device based on the device node
+and enables the workaround.
+
+Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+---
+ drivers/i2c/busses/i2c-ocores.c | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/i2c/busses/i2c-ocores.c b/drivers/i2c/busses/i2c-ocores.c
+index b334fa2..4117f1a 100644
+--- a/drivers/i2c/busses/i2c-ocores.c
++++ b/drivers/i2c/busses/i2c-ocores.c
+@@ -35,6 +35,7 @@ struct ocores_i2c {
+ 	int iobase;
+ 	u32 reg_shift;
+ 	u32 reg_io_width;
++	unsigned long flags;
+ 	wait_queue_head_t wait;
+ 	struct i2c_adapter adap;
+ 	struct i2c_msg *msg;
+@@ -84,6 +85,8 @@ struct ocores_i2c {
+ #define TYPE_GRLIB		1
+ #define TYPE_SIFIVE_REV0	2
+ 
++#define OCORES_FLAG_BROKEN_IRQ BIT(1) /* Broken IRQ for FU540-C000 SoC */
++
+ static void oc_setreg_8(struct ocores_i2c *i2c, int reg, u8 value)
+ {
+ 	iowrite8(value, i2c->base + (reg << i2c->reg_shift));
+@@ -236,9 +239,12 @@ static irqreturn_t ocores_isr(int irq, void *dev_id)
+ 	struct ocores_i2c *i2c = dev_id;
+ 	u8 stat = oc_getreg(i2c, OCI2C_STATUS);
+ 
+-	if (!(stat & OCI2C_STAT_IF))
++	if (i2c->flags & OCORES_FLAG_BROKEN_IRQ) {
++		if ((stat & OCI2C_STAT_IF) && !(stat & OCI2C_STAT_BUSY))
++			return IRQ_NONE;
++	} else if (!(stat & OCI2C_STAT_IF)) {
+ 		return IRQ_NONE;
+-
++	}
+ 	ocores_process(i2c, stat);
+ 
+ 	return IRQ_HANDLED;
+@@ -353,6 +359,11 @@ static void ocores_process_polling(struct ocores_i2c *i2c)
+ 		ret = ocores_isr(-1, i2c);
+ 		if (ret == IRQ_NONE)
+ 			break; /* all messages have been transferred */
++		else {
++			if (i2c->flags & OCORES_FLAG_BROKEN_IRQ)
++				if (i2c->state == STATE_DONE)
++					break;
++		}
+ 	}
+ }
+ 
+@@ -595,6 +606,7 @@ static int ocores_i2c_probe(struct platform_device *pdev)
+ {
+ 	struct ocores_i2c *i2c;
+ 	struct ocores_i2c_platform_data *pdata;
++	const struct of_device_id *match;
+ 	struct resource *res;
+ 	int irq;
+ 	int ret;
+@@ -677,6 +689,14 @@ static int ocores_i2c_probe(struct platform_device *pdev)
+ 	irq = platform_get_irq(pdev, 0);
+ 	if (irq == -ENXIO) {
+ 		ocores_algorithm.master_xfer = ocores_xfer_polling;
++
++		/*
++		 * Set in OCORES_FLAG_BROKEN_IRQ to enable workaround for
++		 * FU540-C000 SoC in polling mode.
++		 */
++		match = of_match_node(ocores_i2c_match, pdev->dev.of_node);
++		if (match && (long)match->data == TYPE_SIFIVE_REV0)
++			i2c->flags |= OCORES_FLAG_BROKEN_IRQ;
+ 	} else {
+ 		if (irq < 0)
+ 			return irq;
+-- 
+1.9.1
+
