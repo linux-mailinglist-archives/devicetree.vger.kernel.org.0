@@ -2,194 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0A252E31F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 19:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6002C2E367
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 19:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726018AbfE2RYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 13:24:46 -0400
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:33354 "EHLO
-        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725990AbfE2RYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 13:24:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1559150750; x=1590686750;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=GmwkQjsql+93mksfGBKpKv07dJD3LbLgm/uiMZ0AHPo=;
-  b=r1zdFY4MJ6Ewx3vjpjXzAAU7/hxykRnalg5HAAfOCkjQzup0PvIsw4qO
-   +/RDxKI2Wjogcbrl/JQtJ/5BwoYR1EL9aQ1/Sr1fZx4hi4zQ8aycEjZMf
-   wGSsRuN7PSn/qtXaHmRxtN8K49HgHHX4oBnxliP57k8s9io2rX8z5BYJG
-   c47dsRXCzmEPqK77Wx+stCAZKULECyFOLgPN8Vkbr2k/HHNAx4LCLCyj7
-   t43MJWPNqDqqv4jKnouQrSe4evjkeAfsrpgvwUvUrBr8trmLlHMIUb3bl
-   D7lSbP5vmDQ1n8bW65sSIvSvyEwz3b+fTZ3tQMC4PCDL9P+KUEBSfkWf7
-   A==;
-X-IronPort-AV: E=Sophos;i="5.60,527,1549900800"; 
-   d="scan'208";a="208888300"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 30 May 2019 01:25:50 +0800
-IronPort-SDR: qJjPorv7NLTsDipQ/quAsdkOhmgOQxd3GEQHDCrxv2fjccRPwl2BvfzQ1r/vsIkVi57XGY1iiA
- IsajZazzTKIXLeHAwBQppRCnbM9TGtPNZ5ntWL+8XMyuRxTtDZowYzbaNI7x6hPlTwf0BVevwT
- 88OVgkwuR6SDXq7MQpx8RZWUS0iX1qKywgtouiVnSj7kAHPHfF5V3kKY+jjsGk0Uydqv3KU0kj
- uTWaroTTL1UNAqf2V+nGLr6oH8P05zuSC4jPtRFPcXNx/rih1uv/e5uAc/WYkzfF50Ey/XBOGW
- xsMY6vG/gCghuchMvWHONml5
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP; 29 May 2019 09:59:56 -0700
-IronPort-SDR: qwx1yS5ZHNt0FCMSYqf+WJKfwEZzDe1m1COXuHEaXSEA1gbjcAghTgoZA/pAPmiHYjRRuhMwaS
- 4YU0yZuBBWOR8HMPPKVU5iZV0wOR6jpU6gpjoSofyjnMX+Yj+CLJ54VyieeJDHrICAWbFkwZEE
- 8fiPHmX0AWUyXp5ROGUHIaH1uox4cxYmupRrmw0K0LfN1+pPMJXpEiN7/T4ppYloUEVMdUMMYe
- 0f9cT1yfCL6ZBGsZeJTclAy1epn3qLfhy4lQ1mzKbXDz2qH6YA/AnqpC7lGAh68rWc2HbLUYqk
- pt8=
-Received: from r6220.sdcorp.global.sandisk.com (HELO [192.168.1.6]) ([10.196.157.143])
-  by uls-op-cesaip02.wdc.com with ESMTP; 29 May 2019 10:24:46 -0700
-Subject: Re: [RFT PATCH v5 3/5] cpu-topology: Move cpu topology code to common
- code.
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Jeffrey Hugo <jhugo@codeaurora.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andreas Schwab <schwab@suse.de>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        id S1725956AbfE2Rid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 13:38:33 -0400
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]:50096 "EHLO
+        foss.arm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725917AbfE2Rid (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 13:38:33 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A0CF341;
+        Wed, 29 May 2019 10:38:33 -0700 (PDT)
+Received: from [10.1.196.75] (e110467-lin.cambridge.arm.com [10.1.196.75])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A8DAC3F5AF;
+        Wed, 29 May 2019 10:38:30 -0700 (PDT)
+Subject: Re: [PATCH v6 0/6] Allwinner H6 Mali GPU support
+To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
         Will Deacon <will.deacon@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
+        Joerg Roedel <joro@8bytes.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Steven Price <steven.price@arm.com>,
+        devicetree@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>
-References: <20190524000653.13005-1-atish.patra@wdc.com>
- <20190524000653.13005-4-atish.patra@wdc.com>
- <20190529104801.GA13155@e107155-lin>
-From:   Atish Patra <atish.patra@wdc.com>
-Message-ID: <b291e1da-47a7-32b9-ab36-90f65b2a961a@wdc.com>
-Date:   Wed, 29 May 2019 10:24:44 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
- Gecko/20100101 Thunderbird/60.6.1
+References: <20190521161102.29620-1-peron.clem@gmail.com>
+ <CAAObsKD8bij1ANLqX6y11Y6mDEXiymNjrDkmHmvGWiFLKWu_FA@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <4ff02295-6c34-791b-49f4-6558a92ad7a3@arm.com>
+Date:   Wed, 29 May 2019 18:38:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190529104801.GA13155@e107155-lin>
+In-Reply-To: <CAAObsKD8bij1ANLqX6y11Y6mDEXiymNjrDkmHmvGWiFLKWu_FA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/29/19 3:48 AM, Sudeep Holla wrote:
-> On Thu, May 23, 2019 at 05:06:50PM -0700, Atish Patra wrote:
->> Both RISC-V & ARM64 are using cpu-map device tree to describe
->> their cpu topology. It's better to move the relevant code to
->> a common place instead of duplicate code.
+On 29/05/2019 16:09, Tomeu Vizoso wrote:
+> On Tue, 21 May 2019 at 18:11, Clément Péron <peron.clem@gmail.com> wrote:
 >>
+> [snip]
+>> [  345.204813] panfrost 1800000.gpu: mmu irq status=1
+>> [  345.209617] panfrost 1800000.gpu: Unhandled Page fault in AS0 at VA
+>> 0x0000000002400400
 > 
-> I couldn't test this on any ARM64 server platforms, tested on Juno
-> and other embedded platforms.
+>  From what I can see here, 0x0000000002400400 points to the first byte
+> of the first submitted job descriptor.
 > 
+> So mapping buffers for the GPU doesn't seem to be working at all on
+> 64-bit T-760.
+> 
+> Steven, Robin, do you have any idea of why this could be?
 
-Jeff had tested earlier patch series on ARM64 server platform.
-Since then, the series has changed. Even though, I don't expect it break 
-ARM64, if it can be verified again that would be great.
+I tried rolling back to the old panfrost/nondrm shim, and it works fine 
+with kbase, and I also found that T-820 falls over in the exact same 
+manner, so the fact that it seemed to be common to the smaller 33-bit 
+designs rather than anything to do with the other 
+job_descriptor_size/v4/v5 complication turned out to be telling.
 
-@Jeff: Can you give it a shot if you have some time ?
+[ as an aside, are 64-bit jobs actually known not to work on v4 GPUs, or 
+is it just that nobody's yet observed a 64-bit blob driving one? ]
 
-> Tested-by: Sudeep Holla <sudeep.holla@arm.com>
-> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
-> 
+Long story short, it appears that 'Mali LPAE' is also lacking the start 
+level notion of VMSA, and expects a full 4-level table even for <40 bits 
+when level 0 effectively redundant. Thus walking the 3-level table that 
+io-pgtable comes back with ends up going wildly wrong. The hack below 
+seems to do the job for me; if Clément can confirm (on T-720 you'll 
+still need the userspace hack to force 32-bit jobs as well) then I think 
+I'll cook up a proper refactoring of the allocator to put things right.
 
-Thanks!
-
->> Signed-off-by: Atish Patra <atish.patra@wdc.com>
->> Tested-by: Jeffrey Hugo <jhugo@codeaurora.org>
->> ---
->>   arch/arm64/include/asm/topology.h |  23 ---
->>   arch/arm64/kernel/topology.c      | 303 +-----------------------------
->>   drivers/base/arch_topology.c      | 296 +++++++++++++++++++++++++++++
->>   include/linux/arch_topology.h     |  28 +++
->>   include/linux/topology.h          |   1 +
->>   5 files changed, 329 insertions(+), 322 deletions(-)
->>
-> 
-> [...]
-> 
->> diff --git a/arch/arm64/kernel/topology.c b/arch/arm64/kernel/topology.c
->> index 0825c4a856e3..6b95c91e7d67 100644
->> --- a/arch/arm64/kernel/topology.c
->> +++ b/arch/arm64/kernel/topology.c
->>
-> 
-> [...]
-> 
->> -static int __init parse_cluster(struct device_node *cluster, int depth)
->> -{
->> -	char name[10];
->> -	bool leaf = true;
->> -	bool has_cores = false;
->> -	struct device_node *c;
->> -	static int package_id __initdata;
->> -	int core_id = 0;
-> 
-> [Ultra minor nit]: you seem to have reordered the above declaration when
-> you moved, just noticed as it showed up when comparing.
-> 
-
-Arrgh. Sorry!
-
-I think I was trying to fix a checkpatch or something and forgot to 
-revert. I will update it.
-
->> diff --git a/drivers/base/arch_topology.c b/drivers/base/arch_topology.c
->> index 1739d7e1952a..20a960131bee 100644
->> --- a/drivers/base/arch_topology.c
->> +++ b/drivers/base/arch_topology.c
-> 
-> [...]
-> 
->> +
->> +static int __init parse_cluster(struct device_node *cluster, int depth)
->> +{
->> +	char name[10];
->> +	bool leaf = true;
->> +	bool has_cores = false;
->> +	int core_id = 0;
->> +	static int package_id __initdata;
->> +	struct device_node *c;
->> +	int i, ret;
->> +
-> 
-> [...]
-> 
->> +#if defined(CONFIG_ARM64) || defined(CONFIG_RISCV)
->> +void update_siblings_masks(unsigned int cpu);
->> +#endif
->> +void remove_cpu_topology(unsigned int cpuid);
->> +
-> 
-> Another thing(not a block and we can do it once this is merged) is to
-> remove these #ifdefs
-> 
-
-This #ifdef is removed in patch 4.
-
-But we should remove the other ones around init_cpu_topology, 
-parse_dt_topology and friends in a follow up patch once this is merged.
-
-> --
-> Regards,
-> Sudeep
-> 
+Robin.
 
 
--- 
-Regards,
-Atish
+----->8-----
+diff --git a/drivers/iommu/io-pgtable-arm.c b/drivers/iommu/io-pgtable-arm.c
+index 546968d8a349..f29da6e8dc08 100644
+--- a/drivers/iommu/io-pgtable-arm.c
++++ b/drivers/iommu/io-pgtable-arm.c
+@@ -1023,12 +1023,14 @@ arm_mali_lpae_alloc_pgtable(struct 
+io_pgtable_cfg *cfg, void *cookie)
+  	iop = arm_64_lpae_alloc_pgtable_s1(cfg, cookie);
+  	if (iop) {
+  		u64 mair, ttbr;
++		struct arm_lpae_io_pgtable *data = io_pgtable_ops_to_data(&iop->ops);
+
++		data->levels = 4;
+  		/* Copy values as union fields overlap */
+  		mair = cfg->arm_lpae_s1_cfg.mair[0];
+  		ttbr = cfg->arm_lpae_s1_cfg.ttbr[0];
+
