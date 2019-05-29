@@ -2,149 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 554CC2D7B5
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 10:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FEBD2D7D9
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 10:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725957AbfE2IZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 04:25:14 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:49206 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725914AbfE2IZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 04:25:14 -0400
-X-UUID: 49a926170b95400d8375011865a37b7b-20190529
-X-UUID: 49a926170b95400d8375011865a37b7b-20190529
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <jamesjj.liao@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1050078162; Wed, 29 May 2019 16:25:07 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 29 May 2019 16:25:06 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 29 May 2019 16:25:06 +0800
-From:   James Liao <jamesjj.liao@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        James Liao <jamesjj.liao@mediatek.com>
-Subject: [PATCH] arm64: dts: mt8183: Enable CPU idle-states
-Date:   Wed, 29 May 2019 16:25:03 +0800
-Message-ID: <1559118303-31875-1-git-send-email-jamesjj.liao@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S1726323AbfE2IbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 04:31:13 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:60710 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726752AbfE2IbN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 04:31:13 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8736F200273;
+        Wed, 29 May 2019 10:31:09 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3F2902011C3;
+        Wed, 29 May 2019 10:31:04 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C8C27402FB;
+        Wed, 29 May 2019 16:30:57 +0800 (SGT)
+From:   Chuanhua Han <chuanhua.han@nxp.com>
+To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Chuanhua Han <chuanhua.han@nxp.com>,
+        Zhang Ying-22455 <ying.zhang22455@nxp.com>
+Subject: [PATCH 1/3] gpio: mpc8xxx: Enable port input and interrupt
+Date:   Wed, 29 May 2019 16:32:52 +0800
+Message-Id: <20190529083254.39581-1-chuanhua.han@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable mcdi-cpu and mcdi-cluster on MT8183 CPUs.
+The GPIO Input Buffer Enable register is used to control the input
+enable of each individual GPIO port. When an individual GPIO port's
+direction is set to input (GPIO_GPDIR[DRn=0]), the associated
+input enable must be set (GPIOxGPIE[IEn]=1) to propagate the port
+value to the GPIO Data Register.
 
-Signed-off-by: James Liao <jamesjj.liao@mediatek.com>
+This patch enable port input and interrupt.
+
+Signed-off-by: Zhang Ying-22455 <ying.zhang22455@nxp.com>
+Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
 ---
-This patch bases on v5.1-rc1 and [1], adds idle-states for MT8183 CPUs.
+ drivers/gpio/gpio-mpc8xxx.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-[1] https://patchwork.kernel.org/patch/10962375/
-
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 08274bf..ef4b054 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -56,6 +56,7 @@
- 			compatible = "arm,cortex-a53";
- 			reg = <0x000>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
+diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+index c8673a5d9412..555e0e7957d9 100644
+--- a/drivers/gpio/gpio-mpc8xxx.c
++++ b/drivers/gpio/gpio-mpc8xxx.c
+@@ -373,9 +373,10 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+ 	if (!mpc8xxx_gc->irq)
+ 		return 0;
  
- 		cpu1: cpu@1 {
-@@ -63,6 +64,7 @@
- 			compatible = "arm,cortex-a53";
- 			reg = <0x001>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
+-	/* ack and mask all irqs */
++	/* ack and enable irqs */
+ 	gc->write_reg(mpc8xxx_gc->regs + GPIO_IER, 0xffffffff);
+-	gc->write_reg(mpc8xxx_gc->regs + GPIO_IMR, 0);
++	gc->write_reg(mpc8xxx_gc->regs + GPIO_IMR, 0xffffffff);
++	gc->write_reg(mpc8xxx_gc->regs + GPIO_ICR2, 0xffffffff);
  
- 		cpu2: cpu@2 {
-@@ -70,6 +72,7 @@
- 			compatible = "arm,cortex-a53";
- 			reg = <0x002>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -77,6 +80,7 @@
- 			compatible = "arm,cortex-a53";
- 			reg = <0x003>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
- 
- 		cpu4: cpu@100 {
-@@ -84,6 +88,7 @@
- 			compatible = "arm,cortex-a73";
- 			reg = <0x100>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
- 
- 		cpu5: cpu@101 {
-@@ -91,6 +96,7 @@
- 			compatible = "arm,cortex-a73";
- 			reg = <0x101>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
- 
- 		cpu6: cpu@102 {
-@@ -98,6 +104,7 @@
- 			compatible = "arm,cortex-a73";
- 			reg = <0x102>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
- 		};
- 
- 		cpu7: cpu@103 {
-@@ -105,6 +112,29 @@
- 			compatible = "arm,cortex-a73";
- 			reg = <0x103>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&MCDI_CPU &MCDI_CLUSTER>;
-+		};
-+
-+		idle-states {
-+			entry-method = "arm,psci";
-+
-+			MCDI_CPU: mcdi-cpu {
-+				compatible = "arm,idle-state";
-+				local-timer-stop;
-+				arm,psci-suspend-param = <0x00010001>;
-+				entry-latency-us = <200>;
-+				exit-latency-us = <200>;
-+				min-residency-us = <800>;
-+			};
-+
-+			MCDI_CLUSTER: mcdi-cluster {
-+				compatible = "arm,idle-state";
-+				local-timer-stop;
-+				arm,psci-suspend-param = <0x01010001>;
-+				entry-latency-us = <250>;
-+				exit-latency-us = <400>;
-+				min-residency-us = <1300>;
-+			};
- 		};
- 	};
- 
+ 	irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
+ 					 mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
 -- 
-1.9.1
+2.17.1
 
