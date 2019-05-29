@@ -2,108 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51BD52DB0F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBE182DB19
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725914AbfE2Kya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:54:30 -0400
-Received: from mail-oln040092069023.outbound.protection.outlook.com ([40.92.69.23]:8935
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725894AbfE2Kya (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 May 2019 06:54:30 -0400
-Received: from AM5EUR02FT056.eop-EUR02.prod.protection.outlook.com
- (10.152.8.54) by AM5EUR02HT133.eop-EUR02.prod.protection.outlook.com
- (10.152.9.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1922.16; Wed, 29 May
- 2019 10:54:27 +0000
-Received: from VI1PR03MB4206.eurprd03.prod.outlook.com (10.152.8.60) by
- AM5EUR02FT056.mail.protection.outlook.com (10.152.9.107) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.1922.16 via Frontend Transport; Wed, 29 May 2019 10:54:27 +0000
-Received: from VI1PR03MB4206.eurprd03.prod.outlook.com
- ([fe80::883e:1bd6:cd36:5fb0]) by VI1PR03MB4206.eurprd03.prod.outlook.com
- ([fe80::883e:1bd6:cd36:5fb0%4]) with mapi id 15.20.1922.021; Wed, 29 May 2019
- 10:54:27 +0000
-From:   Jonas Karlman <jonas@kwiboo.se>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-CC:     Jonas Karlman <jonas@kwiboo.se>, Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH] media: dt-bindings: rockchip: Document RK3328 VPU binding
-Thread-Topic: [PATCH] media: dt-bindings: rockchip: Document RK3328 VPU
- binding
-Thread-Index: AQHVFgzihlhmdNUSwkKzxCU6ATy8kQ==
-Date:   Wed, 29 May 2019 10:54:27 +0000
-Message-ID: <VI1PR03MB4206A833FF54A3235571896CAC1F0@VI1PR03MB4206.eurprd03.prod.outlook.com>
-Accept-Language: sv-SE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM6P193CA0088.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:209:88::29) To VI1PR03MB4206.eurprd03.prod.outlook.com
- (2603:10a6:803:51::23)
-x-incomingtopheadermarker: OriginalChecksum:A37DCEC0744D90776D608EE1B853CCB01D945B1C56F5D83F60FBFFE7190CF193;UpperCasedChecksum:BCA00BE91E788EF7747F9C0F3BC2D1C4FB5121767231C16A3BDDE41AA21B026F;SizeAsReceived:7665;Count:48
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-tmn:  [8XddgOlttuYKrvkyvGFKAR8D4EwiBt50]
-x-microsoft-original-message-id: <20190529105409.23451-1-jonas@kwiboo.se>
-x-ms-publictraffictype: Email
-x-incomingheadercount: 48
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);SRVR:AM5EUR02HT133;
-x-ms-traffictypediagnostic: AM5EUR02HT133:
-x-microsoft-antispam-message-info: OpOkS7wTfOIL24rblTBMu0c9zLFBmICSHEM4mTrzlzj0LrmJj4GH9pzyEseBqk2Gk4FpKe3QiyU1WBiIM4Lhb6302/36mJF5Ic9viF4sKGtWk1RsFupY21YvsLb7D2tsy5G89SMDwCaAJttrB+DfQjFiyhTWEeapxTbzr7nc9kSTp3FKN5Iqae9aQygScT03
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726012AbfE2K4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 06:56:42 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:34623 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725894AbfE2K4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:56:42 -0400
+Received: by mail-pf1-f195.google.com with SMTP id n19so1407372pfa.1
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:56:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QlH+bdDvrGkuMtx4C8zLdS+VSlbI3yCzUmJWnWewlAQ=;
+        b=kfGgahWwlz5uJSHrLWZExXhJWc3KlK4MMXhmTTh+sXSy+X+iDvCc5QAhKKrMul3hax
+         A06X6vN8umwMZrLMbJigUxxvoiTdMo+G+G+zXKocEc+mu6DeVbKjcbgn9OkfVFbM7Fmz
+         EhJ6p3maCAEB1pecz9FsYfm3piVA8gqN4OxNs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QlH+bdDvrGkuMtx4C8zLdS+VSlbI3yCzUmJWnWewlAQ=;
+        b=O16ok55Y/QyTsRDM8gAYxIKtcgTzp/uIxuoBNv60gfFRpR/A3mmvA4NZFNDc48wOs/
+         dLzHudAE/HbW4R/DCJe7WxokJM+nKBGNEAoLI767fcgs0mjT6rZ8lK6Il8WxNuXhAPAT
+         6vbRl3k8QpsayObR1/Nr1IR3XmYiqq1URwWtVuhHtwELwxix1mFAU4d26Rmc5oSsmHRl
+         FRVOMoEhf7YIToHdlgm6eAImGWGzBONWYwnGVE/MMjDVafVjhpUEM2euH5q4ro7CZDWv
+         HBncCIRefssftQ0Ex/UJl0JFbcpjZ5uInAy4S9866hoKlGPzzVr3BR65mgbCKq7y2mr3
+         MQjA==
+X-Gm-Message-State: APjAAAW6UtbwXE3UOtZAr9Bz2ocWXjvUH7i/852+oSAftyex+eJivDOF
+        Qn4GbZeYTeHYVNOICF7sLeOuEQ==
+X-Google-Smtp-Source: APXvYqxDCqXNYYDrNO19C8eevIbe90q34Fw+quaxpak9TU0mVV/bwLX0fPihzSEx0Ivy40x8IOR0eQ==
+X-Received: by 2002:a65:5347:: with SMTP id w7mr81611008pgr.375.1559127401755;
+        Wed, 29 May 2019 03:56:41 -0700 (PDT)
+Received: from localhost.localdomain ([49.206.202.218])
+        by smtp.gmail.com with ESMTPSA id 184sm18974479pfa.48.2019.05.29.03.56.37
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 May 2019 03:56:41 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
+        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com,
+        linux-amarula@amarulasolutions.com,
+        Sergey Suloev <ssuloev@orpaltech.com>,
+        Ryan Pannell <ryan@osukl.com>, bshah@mykolab.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v9 0/9] drm/sun4i: Allwinner A64 MIPI-DSI support
+Date:   Wed, 29 May 2019 16:26:06 +0530
+Message-Id: <20190529105615.14027-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 096f17cb-7919-43b3-67ff-08d6e42403fd
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2019 10:54:27.1629
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT133
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VXBkYXRlIGRldmljZXRyZWUgYmluZGluZyBkb2N1bWVudGF0aW9uIGZvciBSb2NrY2hpcCBWUFUg
-b24gUkszMzI4Lg0KDQpTaWduZWQtb2ZmLWJ5OiBKb25hcyBLYXJsbWFuIDxqb25hc0Brd2lib28u
-c2U+DQotLS0NCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9yb2NrY2hpcC12cHUudHh0
-IHwgMTggKysrKysrKysrKysrKysrKy0tDQogMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMo
-KyksIDIgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvbWVkaWEvcm9ja2NoaXAtdnB1LnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9tZWRpYS9yb2NrY2hpcC12cHUudHh0DQppbmRleCAzNWRjNDY0YWQ3Yzgu
-LjMzOTI1MmQ5YzUxNSAxMDA2NDQNCi0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9tZWRpYS9yb2NrY2hpcC12cHUudHh0DQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvbWVkaWEvcm9ja2NoaXAtdnB1LnR4dA0KQEAgLTEsMTQgKzEsMTcgQEANCiBk
-ZXZpY2UtdHJlZSBiaW5kaW5ncyBmb3Igcm9ja2NoaXAgVlBVIGNvZGVjDQogDQogUm9ja2NoaXAg
-KFZpZGVvIFByb2Nlc3NpbmcgVW5pdCkgcHJlc2VudCBpbiB2YXJpb3VzIFJvY2tjaGlwIHBsYXRm
-b3JtcywNCi1zdWNoIGFzIFJLMzI4OCBhbmQgUkszMzk5Lg0KK3N1Y2ggYXMgUkszMjg4LCBSSzMz
-MjggYW5kIFJLMzM5OS4NCiANCiBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KIC0gY29tcGF0aWJsZTog
-dmFsdWUgc2hvdWxkIGJlIG9uZSBvZiB0aGUgZm9sbG93aW5nDQogCQkicm9ja2NoaXAscmszMjg4
-LXZwdSI7DQorCQkicm9ja2NoaXAscmszMzI4LXZwdSI7DQogCQkicm9ja2NoaXAscmszMzk5LXZw
-dSI7DQogLSBpbnRlcnJ1cHRzOiBlbmNvZGluZyBhbmQgZGVjb2RpbmcgaW50ZXJydXB0IHNwZWNp
-ZmllcnMNCi0tIGludGVycnVwdC1uYW1lczogc2hvdWxkIGJlICJ2ZXB1IiBhbmQgInZkcHUiDQor
-LSBpbnRlcnJ1cHQtbmFtZXM6IHNob3VsZCBiZQ0KKwkJInZlcHUiLCAidmRwdSIgb24gUkszMjg4
-IGFuZCBSSzMzOTksDQorCQkidmRwdSIgb24gUkszMzI4Lg0KIC0gY2xvY2tzOiBwaGFuZGxlIHRv
-IFZQVSBhY2xrLCBoY2xrIGNsb2Nrcw0KIC0gY2xvY2stbmFtZXM6IHNob3VsZCBiZSAiYWNsayIg
-YW5kICJoY2xrIg0KIC0gcG93ZXItZG9tYWluczogcGhhbmRsZSB0byBwb3dlciBkb21haW4gbm9k
-ZQ0KQEAgLTI3LDMgKzMwLDE0IEBAIFNvQy1zcGVjaWZpYyBEVCBlbnRyeToNCiAJCXBvd2VyLWRv
-bWFpbnMgPSA8JnBvd2VyIFJLMzI4OF9QRF9WSURFTz47DQogCQlpb21tdXMgPSA8JnZwdV9tbXU+
-Ow0KIAl9Ow0KKw0KKwl2cHU6IHZpZGVvLWNvZGVjQGZmMzUwMDAwIHsNCisJCWNvbXBhdGlibGUg
-PSAicm9ja2NoaXAscmszMzI4LXZwdSI7DQorCQlyZWcgPSA8MHgwIDB4ZmYzNTAwMDAgMHgwIDB4
-ODAwPjsNCisJCWludGVycnVwdHMgPSA8R0lDX1NQSSA5IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0K
-KwkJaW50ZXJydXB0LW5hbWVzID0gInZkcHUiOw0KKwkJY2xvY2tzID0gPCZjcnUgQUNMS19WUFU+
-LCA8JmNydSBIQ0xLX1ZQVT47DQorCQljbG9jay1uYW1lcyA9ICJhY2xrIiwgImhjbGsiOw0KKwkJ
-cG93ZXItZG9tYWlucyA9IDwmcG93ZXIgUkszMzI4X1BEX1ZQVT47DQorCQlpb21tdXMgPSA8JnZw
-dV9tbXU+Ow0KKwl9Ow0KLS0gDQoyLjE3LjENCg0K
+This is v9 version for Allwinner A64 MIPI-DSI support
+and here is the previous version set[1].
+
+This depends on dsi host controller fixes which were
+supported in this series[2].
+
+All these changes are tested in Allwinner A64 with
+2, 4 lanes devices and whose pixel clocks are 27.5 MHz,
+30MHz, 55MHz and 147MHz.
+
+Changes for v9:
+- moved dsi fixes in separate series on top of A33 [2]
+- rebase on linux-next and on top of [2]
+Changes for v8:
+- rebased on drm-misc change along with linux-next
+- reworked video start delay patch
+- tested on 4 different dsi panels
+- reworked commit messages
+Changes for v7:
+- moved vcc-dsi binding to required filed.
+- drop quotes on fallback dphy bindings.
+- drop min_rate clock pll-mipi patches.
+- introduce dclk divider computation as like A64 BSP.
+- add A64 DSI quark patches.
+- fixed A64 DSI pipeline.
+- add proper commit messages.
+- collect Merlijn Wajer Tested-by credits.
+Changes for v6:
+- dropped unneeded changes, patches
+- fixed all burst mode patches as per previous version comments
+- rebase on master
+- update proper commit message
+- dropped unneeded comments
+- order the patches that make review easy
+Changes for v5:
+- collect Rob, Acked-by
+- droped "Fix VBP size calculation" patch
+- updated vblk timing calculation.
+- droped techstar, bananapi dsi panel drivers which may require
+  bridge or other setup. it's under discussion.
+Changes for v4:
+- droppoed untested CCU_FEATURE_FIXED_POSTDIV check code in
+  nkm min, max rate patches
+- create two patches for "Add Allwinner A64 MIPI DSI support"
+  one for has_mod_clk quirk and other one for A64 support
+- use existing driver code construct for hblk computation
+- dropped "Increase hfp packet overhead" patch [2], though BSP added
+  this but we have no issues as of now.
+  (no issues on panel side w/o this change)
+- create separate function for vblk computation 
+- enable vcc-dsi regulator in dsi_runtime_resume
+- collect Rob, Acked-by
+- update MAINTAINERS file for panel drivers
+- cleanup commit messages
+- fixed checkpatch warnings/errors
+
+[1] https://patchwork.freedesktop.org/series/57834/
+[2] https://patchwork.freedesktop.org/series/60847/
+
+Jagan Teki (9):
+  dt-bindings: sun6i-dsi: Add A64 MIPI-DSI compatible
+  dt-bindings: sun6i-dsi: Add A64 DPHY compatible (w/ A31 fallback)
+  drm/sun4i: dsi: Add has_mod_clk quirk
+  drm/sun4i: dsi: Add Allwinner A64 MIPI DSI support
+  arm64: dts: allwinner: a64: Add MIPI DSI pipeline
+  arm64: dts: allwinner: a64-amarula-relic: Add Techstar TS8550B MIPI-DSI panel
+  [DO NOT MERGE] arm64: dts: allwinner: bananapi-m64: Enable Bananapi S070WV20-CT16 DSI panel
+  [DO NOT MERGE] arm64: dts: allwinner: a64-pine64-lts: Enable Feiyang FY07024DI26A30-D DSI panel
+  [DO NOT MERGE] arm64: dts: allwinner: oceanic-5205-5inmfd: Enable Microtech MTF050FHDI-03 panel
+
+ .../bindings/display/sunxi/sun6i-dsi.txt      |  2 +
+ .../allwinner/sun50i-a64-amarula-relic.dts    | 35 +++++++++++++
+ .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 31 ++++++++++++
+ .../sun50i-a64-oceanic-5205-5inmfd.dts        | 49 +++++++++++++++++++
+ .../allwinner/sun50i-a64-sopine-baseboard.dts | 31 ++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 38 ++++++++++++++
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c        | 45 ++++++++++++-----
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h        |  5 ++
+ 8 files changed, 225 insertions(+), 11 deletions(-)
+
+-- 
+2.18.0.321.gffc6fa0e3
+
