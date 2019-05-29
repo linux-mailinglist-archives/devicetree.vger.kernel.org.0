@@ -2,174 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41A152DB38
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 12:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5CF32DB56
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 13:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726968AbfE2K5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 06:57:22 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:43502 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726949AbfE2K5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 06:57:22 -0400
-Received: by mail-pl1-f193.google.com with SMTP id gn7so901282plb.10
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2019 03:57:21 -0700 (PDT)
+        id S1725990AbfE2LES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 07:04:18 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39491 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725894AbfE2LES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 07:04:18 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x4so1442409wrt.6;
+        Wed, 29 May 2019 04:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lMfuNcsK6tuVz7vC7aYS5UVf9NSaVZRFtcoyHVQ3R8M=;
-        b=KwCs5fOwghwsU5zqVfivfYLGzuV2zoFcgXvqpGrFf4v+qrweHmIqI0lJmPNL4epz5f
-         bMMAXr+tuk70/z4UYM5UxW/zi770+a2NqzhFNfecL2Sa4PWCiHz5H6EUHkB0fy4ge9Bq
-         8jK10Q21ii1l1Z/AYeX41oTpqgi372oJT7KSA=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=gt++vSPOQrsI8rRD1ReGmqtIMf7Pkb27MVPRTxaShlw=;
+        b=SklyqoJQFHO12V0SoNzaOB/OGVajFClSPF71TbGLko471WVqStmaqd2rFzvFKNjSrS
+         91V1V1TFpGJGvTDcWklQaEkPQcuWhJhchMGNcR20e0tHqhUDZRwvvb6u8yvBcx4ZbDjA
+         v4+fiCKlnA+dCe4sg0HQgigbijckBv9jZ8IOhXdDYp8yQo4SB4lxmG4RUaO1eyKj4xxC
+         xPHIQE/jZPylEnEqO6sGTPfCdSmcpAEyMzCDlCgNL0ceqSxqFVuq7kup1m2WkzNS9JVA
+         HW/5scrOCMlQvL2WYQ7tYvNKXjykKFyc186OiTNGFLCK/YLUtAbBbX8yJ5PwKjs7f3aL
+         fujw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=lMfuNcsK6tuVz7vC7aYS5UVf9NSaVZRFtcoyHVQ3R8M=;
-        b=rGpJj0Ybz/mBWbKQ3r8UTxGgfKUAF/kwXZAeIora1zorthkylNyQ+FDG1ISv6Cew5C
-         RdSmXE9JlO7u/BMQO3AHHTQEwmg2qIP+lqZfJaPWh0NSW1rnujj4mrbKlnNFHIxBkHG5
-         F+J1MBXORunMDJl0NxHIKOwGPoF3JTLGWfnA7mbg6q9yycJJyESWyQ7AbXxIxqnVd1Tx
-         TtST2v+OxlpkCEX8u0TFQ4ZK7I/8m/oBLpmAYjXsPw6k5angaKvXcxwM7VmQIUqXeIjV
-         XdnhciqM5+BxKuhf3uU40LwvVQHqcjIRg/CQTISYIRzms5HI9dX6fK3kJizqvD7hnK+r
-         Rbig==
-X-Gm-Message-State: APjAAAX/EN1PJGngq/h3EkFEDImTotbvQNXP2CsywsLL1sqPoEmxqe5r
-        IfJsM71ZV+K4tyiy9EcgGMOssQ==
-X-Google-Smtp-Source: APXvYqwXHj5uVm2t/AeGvWcmeixCbqNTC6/9vS/5OT5LWc4yeua8wWhsULIPjXFvzVGVBE3iOaNS5Q==
-X-Received: by 2002:a17:902:b713:: with SMTP id d19mr79658807pls.123.1559127441569;
-        Wed, 29 May 2019 03:57:21 -0700 (PDT)
-Received: from localhost.localdomain ([49.206.202.218])
-        by smtp.gmail.com with ESMTPSA id 184sm18974479pfa.48.2019.05.29.03.57.17
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 May 2019 03:57:21 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
-        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com,
-        linux-amarula@amarulasolutions.com,
-        Sergey Suloev <ssuloev@orpaltech.com>,
-        Ryan Pannell <ryan@osukl.com>, bshah@mykolab.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [DO NOT MERGE] [PATCH v9 9/9] arm64: dts: allwinner: oceanic-5205-5inmfd: Enable Microtech MTF050FHDI-03 panel
-Date:   Wed, 29 May 2019 16:26:15 +0530
-Message-Id: <20190529105615.14027-10-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
-In-Reply-To: <20190529105615.14027-1-jagan@amarulasolutions.com>
-References: <20190529105615.14027-1-jagan@amarulasolutions.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=gt++vSPOQrsI8rRD1ReGmqtIMf7Pkb27MVPRTxaShlw=;
+        b=raVx6xNqn1sQIOfOvyB+gSSmohb6+ZeRCc2jcxEXdOPbP3h0Pok9iLeIaE+TunYxfx
+         7VO0v1JaMikW9gsFjHl6/vNT7SAdVfbVIH/8gxrtcxEH8oN6QmYXUp0jj5hqtbrAlzyl
+         bqkE5Gwv4dz0XVKzysJjUoxouhTX/d3VjwAtG5em3hsywGpzkiEqATuWDjkTibuJSvVG
+         mTJpsi9koiB+lja/imd+Tx+wm57Q+Aknr+3a1W6DjX+wEePVwTPlUMAA6aMsNdcB5gtE
+         4YcLMMJPjzp6ZidEeMOmxH0JIK08jGCIcLiIhnq9SW1Pfye8YEVP1oggHVvE/T5/w2Qh
+         /6zQ==
+X-Gm-Message-State: APjAAAVCCXLED0dLP6b8RLakLCn05kKNb9y755vepkJBPHvi9vQzdVWC
+        mQ5SDWp2Jjj9pr5tfK9VF6OdPNEc
+X-Google-Smtp-Source: APXvYqwVyM2H3bZshhyUaLuJVb6snOO94Mq+v/Jg3YS7x67smdEoAKMumLGBhYxCoJe8m/OPqMUMBg==
+X-Received: by 2002:a5d:6982:: with SMTP id g2mr64616136wru.223.1559127856257;
+        Wed, 29 May 2019 04:04:16 -0700 (PDT)
+Received: from ?IPv6:2a00:23c4:1c64:3600:ef32:9810:b6a2:ebe? ([2a00:23c4:1c64:3600:ef32:9810:b6a2:ebe])
+        by smtp.googlemail.com with ESMTPSA id b10sm33493565wrh.59.2019.05.29.04.04.15
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 May 2019 04:04:15 -0700 (PDT)
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
+To:     Marek Vasut <marex@denx.de>, Jacopo Mondi <jacopo@jmondi.org>
+Cc:     linux-media@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20190520201812.7937-1-marex@denx.de>
+ <20190528114758.a4oac3zgdy7dkx7k@uno.localdomain>
+ <6cd36678-2a2c-2a43-e245-4263c0e0f666@denx.de>
+ <20190528151036.nxsh7tjyqrbpbrhy@uno.localdomain>
+ <08c1a65e-dcc5-e1ae-053a-823931b9ec15@denx.de>
+ <20190529062844.bsdg7u7rgvkcmq6k@uno.localdomain>
+ <e481c8a1-a0c8-f0d9-9df7-e016e5c3bc57@denx.de>
+From:   Ian Arkver <ian.arkver.dev@gmail.com>
+Message-ID: <59881e2a-56c2-3801-2058-d939b25d6259@gmail.com>
+Date:   Wed, 29 May 2019 12:04:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <e481c8a1-a0c8-f0d9-9df7-e016e5c3bc57@denx.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US-large
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Microtech MTF050FHDI-03 is 1080x1920, 4-lane MIPI DSI LCD panel which
-has inbuilt NT35596 IC chip.
+Hi,
 
-DSI panel connected to board via 39-pin FPC port with,
-- DLDO1 as VCC-DSI supply
-- DLDO2 as DVDD supply
-- DC1SW as AVDD supply
-- DC1SW as AVEE supply
-- PD24 gpio for reset pin
-- PH10 gpio for backlight enable pin
+On 29/05/2019 11:41, Marek Vasut wrote:
+> On 5/29/19 8:28 AM, Jacopo Mondi wrote:
+> 
+> [...]
+> 
+>>>>>> [1] https://www.renesas.com/eu/en/products/audio-video/video-decoders-encoders/video-decoders/device/ISL79987.html
+>>>>>>
+>>>>>>> +Required Properties:
+>>>>>>> +- compatible: value should be "isil,isl79987"
+>>>>
+>>>> And here you might want to have 2 different compatibles for 79987 and
+>>>> 79988.
+>>>
+>>> The 79988 is not supported yet, do we want to have it in the binding doc?
+>>>
+>>
+>> I got mislead by the isl7998x naming scheme you used...
+>>
+>> I would say that's up to you, the two chips seems very similar,
+>> and it might make sense to provide bindings that support both. At the
+>> same time, as long as the here defined bindings does not prevent
+>> future expansions to include the ISL79988, its support could be safely
+>> post-poned. In that case please s/isl7998x/isl79987/ in this document
+>> and do not mention BT565 in the description.
+> 
+> Right
+> 
+>>> [...]
+>>>
+>>>>>> I see from the example you only support one output port? How do you
+>>>>>> model the input ones.
+>>>>>
+>>>>> I don't . Do we model analog inputs now somehow ?
+>>>>
+>>>> I really think so, please see:
+>>>> Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+>>>>
+>>>> And as an example of a board device tree using connectors to model
+>>>> analog input see how the cvbs input on Salvator-X is described:
+>>>>
+>>>> 	cvbs-in {
+>>>> 		compatible = "composite-video-connector";
+>>>> 		label = "CVBS IN";
+>>>>
+>>>> 		port {
+>>>> 			cvbs_con: endpoint {
+>>>> 				remote-endpoint = <&adv7482_ain7>;
+>>>> 			};
+>>>> 		};
+>>>> 	};
+>>>>
+>>>> I think you should provide 4 input ports, where to connect input from
+>>>> the analog connectors, and derive the number of enabled inputs from
+>>>> the number of endpoints connected to an active remote.
+>>>
+>>> Deriving the number of active physical inputs from some existing binding
+>>> makes sense.
+>>>
+>>> However unlike the adv7482, the isl79987 does not support remapping the
+>>> physical inputs to ADCs in the chip. It does support some remapping of
+>>> physical inputs to MIPI CSI2 channels, but that's probably not very useful.
+>>>
+>>
+>> I understand, but I will now use against you the argument you have
+>> correctly pointed out here below that DT should describe hardware, and
+>> the hardware has indeed 4 input ports..
+> 
+> My question here is whether it makes sense to describe the ports even if
+> they cannot be muxed to different ADC. Does it ?
 
-Tested-by: Tamas Papp <tamas@osukl.com>
-Signed-off-by: Ryan Pannell <ryan@osukl.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- .../sun50i-a64-oceanic-5205-5inmfd.dts        | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
+Each input port can be either differential CVBS or single ended with a 
+2:1 input select mux. It would be nice to be able to describe this.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-index a4ddc0b9664c..ab9ee10ba6a2 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include "sun50i-a64-sopine.dtsi"
-+#include <dt-bindings/pwm/pwm.h>
- 
- / {
- 	model = "Oceanic 5205 5inMFD";
-@@ -22,6 +23,15 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&r_pwm 0 50000 PWM_POLARITY_INVERTED>;
-+		brightness-levels = <412 512>;
-+		num-interpolated-steps = <100>;
-+		default-brightness-level = <100>;
-+		enable-gpios = <&pio 7 10 GPIO_ACTIVE_HIGH>; /* LCD-BL-EN: PH10 */
-+	};
-+
- 	can_osc: can-osc {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -40,6 +50,29 @@
- 	};
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
-+&dphy {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	vcc-dsi-supply = <&reg_dldo1>;		/* VCC-DSI */
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "microtech,mtf050fhdi-03", "novatek,nt35596";
-+		reg = <0>;
-+		dvdd-supply = <&reg_dldo2>;			/* VCC-MIPI */
-+		avdd-supply = <&reg_dc1sw>;			/* AVDD_5V0 */
-+		avee-supply = <&reg_dc1sw>;			/* AVEE_5V */
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>;	/* LCD-RST: PD24 */
-+		backlight = <&backlight>;
-+	};
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -81,10 +114,26 @@
- 	status = "okay";
- };
- 
-+&r_pwm {
-+	status = "okay";
-+};
-+
- &reg_dc1sw {
- 	regulator-name = "vcc-phy";
- };
- 
-+&reg_dldo1 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-dsi";
-+};
-+
-+&reg_dldo2 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-mipi";
-+};
-+
- &reg_ldo_io0 {
- 	regulator-min-microvolt = <2800000>;
- 	regulator-max-microvolt = <2800000>;
--- 
-2.18.0.321.gffc6fa0e3
+You cannot remap the inputs to different ADCs, but you can remap the 
+ADCs to different VC IDs using the 
+ISL7998x_REG_P5_LI_ENGINE_VC_ASSIGNMENT register. Describing each input 
+would proivde somewhere to specify the vc-id.
 
+Regards,
+Ian
+> 
+> [...]
+> 
