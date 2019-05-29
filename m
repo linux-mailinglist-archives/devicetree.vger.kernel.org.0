@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05F572D9A0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 11:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B510A2D997
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 11:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfE2Jyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 05:54:40 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:55773 "EHLO
+        id S1726610AbfE2Jyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 05:54:36 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:47999 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726674AbfE2Jyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 05:54:39 -0400
+        with ESMTP id S1726024AbfE2Jyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 05:54:36 -0400
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.pengutronix.de.)
         by metis.ext.pengutronix.de with esmtp (Exim 4.89)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1hVvHz-0002DF-4K; Wed, 29 May 2019 11:54:31 +0200
+        id 1hVvHz-0002DF-6a; Wed, 29 May 2019 11:54:31 +0200
 From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     linux-media@vger.kernel.org
 Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -24,9 +24,9 @@ Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Nicolas Dufresne <nicolas@ndufresne.ca>,
         Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
         kernel@pengutronix.de
-Subject: [PATCH v2 2/9] media: hantro: print video device name in addition to device node
-Date:   Wed, 29 May 2019 11:54:17 +0200
-Message-Id: <20190529095424.23614-3-p.zabel@pengutronix.de>
+Subject: [PATCH v2 3/9] media: hantro: add PM runtime resume callback
+Date:   Wed, 29 May 2019 11:54:18 +0200
+Message-Id: <20190529095424.23614-4-p.zabel@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190529095424.23614-1-p.zabel@pengutronix.de>
 References: <20190529095424.23614-1-p.zabel@pengutronix.de>
@@ -41,28 +41,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It can be helpful to know which video device was registered at which
-device node.
+It seems that on i.MX8MQ the power domain controller does not propagate
+resets to the VPU cores on resume. Add a callback to allow implementing
+manual reset of the VPU cores after ungating the power domain.
 
 Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
- drivers/staging/media/hantro/hantro_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/staging/media/hantro/hantro.h     |  2 ++
+ drivers/staging/media/hantro/hantro_drv.c | 13 +++++++++++++
+ 2 files changed, 15 insertions(+)
 
+diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+index 14e685428203..296b9ffad547 100644
+--- a/drivers/staging/media/hantro/hantro.h
++++ b/drivers/staging/media/hantro/hantro.h
+@@ -56,6 +56,7 @@ struct hantro_codec_ops;
+  * @codec:			Supported codecs
+  * @codec_ops:			Codec ops.
+  * @init:			Initialize hardware.
++ * @runtime_resume:		reenable hardware after power gating
+  * @vepu_irq:			encoder interrupt handler
+  * @vdpu_irq:			decoder interrupt handler
+  * @clk_names:			array of clock names
+@@ -71,6 +72,7 @@ struct hantro_variant {
+ 	unsigned int codec;
+ 	const struct hantro_codec_ops *codec_ops;
+ 	int (*init)(struct hantro_dev *vpu);
++	int (*runtime_resume)(struct hantro_dev *vpu);
+ 	irqreturn_t (*vepu_irq)(int irq, void *priv);
+ 	irqreturn_t (*vdpu_irq)(int irq, void *priv);
+ 	const char *clk_names[HANTRO_MAX_CLOCKS];
 diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-index f01d1ed10d4a..e4390aa5c213 100644
+index e4390aa5c213..fb5f140dbaae 100644
 --- a/drivers/staging/media/hantro/hantro_drv.c
 +++ b/drivers/staging/media/hantro/hantro_drv.c
-@@ -606,7 +606,8 @@ static int hantro_add_func(struct hantro_dev *vpu, unsigned int funcid)
- 		goto err_unreg_dev;
- 	}
- 
--	v4l2_info(&vpu->v4l2_dev, "registered as /dev/video%d\n", vfd->num);
-+	v4l2_info(&vpu->v4l2_dev, "registered %s as /dev/video%d\n", vfd->name,
-+		  vfd->num);
- 
+@@ -831,9 +831,22 @@ static int hantro_remove(struct platform_device *pdev)
  	return 0;
+ }
  
++#ifdef CONFIG_PM
++static int hantro_runtime_resume(struct device *dev)
++{
++	struct hantro_dev *vpu = dev_get_drvdata(dev);
++
++	if (vpu->variant->runtime_resume)
++		return vpu->variant->runtime_resume(vpu);
++
++	return 0;
++}
++#endif
++
+ static const struct dev_pm_ops hantro_pm_ops = {
+ 	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+ 				pm_runtime_force_resume)
++	SET_RUNTIME_PM_OPS(NULL, hantro_runtime_resume, NULL)
+ };
+ 
+ static struct platform_driver hantro_driver = {
 -- 
 2.20.1
 
