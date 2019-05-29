@@ -2,141 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 963442D69D
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 09:42:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CECCA2D6AA
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2019 09:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726645AbfE2Hmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 03:42:33 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:34359 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726101AbfE2Hmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 03:42:33 -0400
-X-Originating-IP: 90.88.147.134
-Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr [90.88.147.134])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 5F77DFF816;
-        Wed, 29 May 2019 07:42:29 +0000 (UTC)
-Date:   Wed, 29 May 2019 09:42:28 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Add YAML schemas for the
- generic MMC options
-Message-ID: <20190529074228.viocdc77pdkoqdfi@flea>
-References: <c6b8789d71ce1970be77387c066a262dca0a0dec.1558340089.git-series.maxime.ripard@bootlin.com>
- <CAPDyKFrs6f4_Xr=ATay_wDYNPa+-jdZvP4XSB55B-EFMAETN1Q@mail.gmail.com>
- <20190528172649.6mkdkscnu5d2rybi@flea>
- <CAPDyKFrTroAOjEyT9GxQALC4UsiDg8739F9Qc216bDC=wgk2mg@mail.gmail.com>
+        id S1726543AbfE2HoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 03:44:12 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:60325 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726102AbfE2HoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 03:44:12 -0400
+X-UUID: 9e5f20fd8ee94acbb196ac8a75c68ee1-20190529
+X-UUID: 9e5f20fd8ee94acbb196ac8a75c68ee1-20190529
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 606122557; Wed, 29 May 2019 15:44:05 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 29 May 2019 15:44:03 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 29 May 2019 15:44:02 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yu Chen <chenyu56@huawei.com>
+Subject: [PATCH v6 00/10] add USB Type-B GPIO connector driver
+Date:   Wed, 29 May 2019 15:43:38 +0800
+Message-ID: <1559115828-19146-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gthk2wzch2cu56ho"
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFrTroAOjEyT9GxQALC4UsiDg8739F9Qc216bDC=wgk2mg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Because the USB Connector is introduced and the requirement of
+usb-connector.txt binding, the old way using extcon to support
+USB Dual-Role switch is now deprecated, meanwhile there is no
+available common driver when use Type-B connector, typically
+using an input GPIO to detect USB ID pin.
+This patch series introduce a Type-B GPIO connector driver and try
+to replace the function provided by extcon-usb-gpio driver.
 
---gthk2wzch2cu56ho
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+v6 changes:
+  1. merge [1] and [2] into this series
+  2. don't use graph anymore to find usb-role-switch
+  3. abandon [3] and introduce three patches (6, 7, 8 in this series)
+     to rebuild APIs getting usb-role-switch
 
-Hi!
+  [1]: [v3] dt-binding: usb: add usb-role-switch property
+       https://patchwork.kernel.org/patch/10934835/
+  [2]: [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
+       https://patchwork.kernel.org/patch/10909971/
 
-On Tue, May 28, 2019 at 09:32:31PM +0200, Ulf Hansson wrote:
-> On Tue, 28 May 2019 at 19:26, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > On Tue, May 28, 2019 at 10:40:16AM +0200, Ulf Hansson wrote:
-> > > > +patternProperties:
-> > > > +  "^.*@[0-9]+$":
-> > > > +    properties:
-> > > > +      reg:
-> > > > +        items:
-> > > > +          - minimum: 0
-> > > > +            maximum: 7
-> > > > +            description:
-> > > > +              Must contain the SDIO function number of the function this
-> > > > +              subnode describes. A value of 0 denotes the memory SD
-> > > > +              function, values from 1 to 7 denote the SDIO functions.
-> > > > +
-> > > > +      broken-hpi:
-> > > > +        $ref: /schemas/types.yaml#/definitions/flag
-> > > > +        description:
-> > > > +          Use this to indicate that the mmc-card has a broken hpi
-> > > > +          implementation, and that hpi should not be used.
-> > > > +
-> > > > +    required:
-> > > > +      - reg
-> > > > +
-> > >
-> > > [...]
-> > >
-> > > > -Use of Function subnodes
-> > > > -------------------------
-> > > > -
-> > > > -On embedded systems the cards connected to a host may need additional
-> > > > -properties. These can be specified in subnodes to the host controller node.
-> > > > -The subnodes are identified by the standard 'reg' property.
-> > > > -Which information exactly can be specified depends on the bindings for the
-> > > > -SDIO function driver for the subnode, as specified by the compatible string.
-> > > > -
-> > > > -Required host node properties when using function subnodes:
-> > > > -- #address-cells: should be one. The cell is the slot id.
-> > > > -- #size-cells: should be zero.
-> > > > -
-> > > > -Required function subnode properties:
-> > > > -- reg: Must contain the SDIO function number of the function this subnode
-> > > > -       describes. A value of 0 denotes the memory SD function, values from
-> > > > -       1 to 7 denote the SDIO functions.
-> > > > -
-> > > > -Optional function subnode properties:
-> > > > -- compatible: name of SDIO function following generic names recommended practice
-> > > > -
-> > >
-> > > I think most of the information of how we use sub(child) nodes
-> > > disappeared in this conversion - or at least gets harder to
-> > > understand. Could we perhaps keep some of this?
-> >
-> > Sure, what would you like to keep in particular?
->
-> Most of it, so we can understand what can be described in sub-nodes.
+  [3]: [PATCH v5 4/6] usb: roles: add API to get usb_role_switch by node
 
-I've pushed a new version that keeps everything, I guess.
+v5 changes:
+  1. remove linux/of.h and put usb_role_switch when error happens,
+     suggested by Biju
+  2. treat Type-B connector as USB controller's child, but not as
+     a virtual device, suggested by Rob
+  3. provide and use generic property "usb-role-switch", see [1],
+     suggested by Rob
 
-> Additionally, we should also include what is stated in
-> Documentation/devicetree/bindings/mmc/mmc-card.txt, as that also
-> refers to how subnodes should be used, when it has the "mmc-card"
-> compatible.
->
-> Or maybe we should simply move all things related to subnodes into a
-> separate .yaml?
+  Note: this series still depends on [2]
 
-Yeah, this should be a separate YAML schema.
+  [1]: [v3] dt-binding: usb: add usb-role-switch property
+       https://patchwork.kernel.org/patch/10934835/
+  [2]: [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
+       https://patchwork.kernel.org/patch/10909971/
 
-Maxime
+v4 changes:
+  1. use switch_fwnode_match() to find fwnode suggested by Heikki
+  2. assign fwnode member of usb_role_switch struct suggested by Heikki
+  3. make [4/6] depend on [2]
+  3. remove linux/gpio.h suggested by Linus
+  4. put node when error happens
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+  [4/6] usb: roles: add API to get usb_role_switch by node
+  [2] [v6,08/13] usb: roles: Introduce stubs for the exiting functions in role.h
+    https://patchwork.kernel.org/patch/10909971/
 
---gthk2wzch2cu56ho
-Content-Type: application/pgp-signature; name="signature.asc"
+v3 changes:
+  1. add GPIO direction, and use fixed-regulator for GPIO controlled
+    VBUS regulator suggested by Rob;
+  2. rebuild fwnode_usb_role_switch_get() suggested by Andy and Heikki
+  3. treat the type-B connector as a virtual device;
+  4. change file name of driver again
+  5. select USB_ROLE_SWITCH in mtu3/Kconfig suggested by Heikki
+  6. rename ssusb_mode_manual_switch() to ssusb_mode_switch()
 
------BEGIN PGP SIGNATURE-----
+v2 changes:
+ 1. make binding clear, and add a extra compatible suggested by Hans
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXO435AAKCRDj7w1vZxhR
-xRtjAQDZQ5WUDQGL6pNsOq4VZzVT0hbSS3HIWiYEd8Sna/NefAEA9Zc7OLaRbPzq
-Zm91I4RXRQSyPVpZMbAE7oZ9dRlNdgY=
-=e29h
------END PGP SIGNATURE-----
+Chunfeng Yun (7):
+  dt-binding: usb: add usb-role-switch property
+  dt-bindings: connector: add optional properties for Type-B
+  dt-bindings: usb: add binding for Type-B GPIO connector driver
+  dt-bindings: usb: mtu3: add properties about USB Role Switch
+  usb: roles: get usb-role-switch from parent
+  usb: roles: add USB Type-B GPIO connector driver
+  usb: mtu3: register a USB Role Switch for dual role mode
 
---gthk2wzch2cu56ho--
+Heikki Krogerus (2):
+  device connection: Add fwnode_connection_find_match()
+  usb: roles: Add fwnode_usb_role_switch_get() function
+
+Yu Chen (1):
+  usb: roles: Introduce stubs for the exiting functions in role.h.
+
+ .../bindings/connector/usb-connector.txt      |  14 +
+ .../devicetree/bindings/usb/generic.txt       |   4 +
+ .../devicetree/bindings/usb/mediatek,mtu3.txt |  10 +
+ .../bindings/usb/typeb-conn-gpio.txt          |  30 ++
+ drivers/base/devcon.c                         |  33 +-
+ drivers/usb/mtu3/Kconfig                      |   1 +
+ drivers/usb/mtu3/mtu3.h                       |   5 +
+ drivers/usb/mtu3/mtu3_debugfs.c               |   4 +-
+ drivers/usb/mtu3/mtu3_dr.c                    |  48 ++-
+ drivers/usb/mtu3/mtu3_dr.h                    |   6 +-
+ drivers/usb/mtu3/mtu3_plat.c                  |   3 +-
+ drivers/usb/roles/Kconfig                     |  11 +
+ drivers/usb/roles/Makefile                    |   1 +
+ drivers/usb/roles/class.c                     |  41 ++-
+ drivers/usb/roles/typeb-conn-gpio.c           | 286 ++++++++++++++++++
+ include/linux/device.h                        |  10 +-
+ include/linux/usb/role.h                      |  37 +++
+ 17 files changed, 524 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/typeb-conn-gpio.txt
+ create mode 100644 drivers/usb/roles/typeb-conn-gpio.c
+
+-- 
+2.21.0
+
