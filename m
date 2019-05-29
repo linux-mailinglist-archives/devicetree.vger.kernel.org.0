@@ -2,131 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1B52E929
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 01:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE7DD2E95F
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2019 01:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726927AbfE2XYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 May 2019 19:24:43 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:49248 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726698AbfE2XYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 May 2019 19:24:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
-        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ET29ju1+oMQpwZnUmWoRWQU4cUr3EcBdPbSqKU0nYKk=; b=fQXe3jkDrpW033U8WZIbJZgy2I
-        PR+iZPMvM0wOGqHqnLLEz5jIw0fNwSOla72jq5FhX3TVh9GKakgSJLYugtZbFo4WwFWocJiDpJr6b
-        sCffpE2fe3Ww7+luh9Z297FZtCNbVVsh/zq4GnZCbNBXZD/Uir/eUzCenyciV5Lw7hZpVAB1vqXJ8
-        iDrDysBfq6Pl13JTAS5QdPZ+0bHqM6gsyGktP2ow3XG83AY8DVvvT4bsj1snEDbROw4aHYbEbmPt2
-        BEVnhdIvmoesHk0kvNuCZtSNRRGqiM9XkHO2vZTnjqRp2P3GGKgiJRNo6AVteylXdryJFIncQBQes
-        dQX0805w==;
-Received: from 177.132.232.81.dynamic.adsl.gvt.net.br ([177.132.232.81] helo=bombadil.infradead.org)
-        by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
-        id 1hW7vL-0005Ru-I0; Wed, 29 May 2019 23:23:59 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
-        (envelope-from <mchehab@bombadil.infradead.org>)
-        id 1hW7vI-0007wt-IQ; Wed, 29 May 2019 20:23:56 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Liang Yang <liang.yang@amlogic.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Mans Rullgard <mans@mansr.com>, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH 03/22] dt: fix broken references to nand.txt
-Date:   Wed, 29 May 2019 20:23:34 -0300
-Message-Id: <21356cd8ffb906c77e83220e842d0443a5666aa0.1559171394.git.mchehab+samsung@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1559171394.git.mchehab+samsung@kernel.org>
-References: <cover.1559171394.git.mchehab+samsung@kernel.org>
+        id S1726518AbfE2X2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 May 2019 19:28:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46736 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726240AbfE2X2L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 May 2019 19:28:11 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 14A5224366;
+        Wed, 29 May 2019 23:28:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1559172490;
+        bh=8kdlDPHPJB9SK5OUX6kVhT6RIbf9CHlBwHsoSX6UV6o=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=bLZP9ZV/pnaLDEkb6Fbtff0PTHDRn9b6Voj3YcGTY/tQ1tNF2rGSeBQaB0XHoihS2
+         TMcVcgkYcQf5St5x/266iplFn0U8BGyKco7QXrQCq3EcSeFylbzskaTS6YDmEbn/Ee
+         T2XcGWR3cupx2hA2oTOV9Orc6ECjgp2zfX++VPkc=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1559084936-4610-4-git-send-email-skomatineni@nvidia.com>
+References: <1559084936-4610-1-git-send-email-skomatineni@nvidia.com> <1559084936-4610-4-git-send-email-skomatineni@nvidia.com>
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        skomatineni@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>, jason@lakedaemon.net,
+        jonathanh@nvidia.com, linus.walleij@linaro.org,
+        marc.zyngier@arm.com, mark.rutland@arm.com, stefan@agner.ch,
+        tglx@linutronix.de, thierry.reding@gmail.com
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH V2 03/12] clk: tegra: save and restore PLLs state for system
+User-Agent: alot/0.8.1
+Date:   Wed, 29 May 2019 16:28:09 -0700
+Message-Id: <20190529232810.14A5224366@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Documentation/devicetree/bindings/mtd/nand.txt were both renamed
-and converted to YAML on a single patch, without updating references
-to it. That caused several cross-references to break.
+Quoting Sowjanya Komatineni (2019-05-28 16:08:47)
+> This patch has implementation of saving and restoring PLL's state to
+> support system suspend and resume operations.
 
-Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
+Can you provide some more background on _why_ this patch should exist?
+That's typically what gets written in the commit text.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
----
- Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt | 2 +-
- Documentation/devicetree/bindings/mtd/gpmc-nand.txt          | 2 +-
- Documentation/devicetree/bindings/mtd/marvell-nand.txt       | 2 +-
- Documentation/devicetree/bindings/mtd/tango-nand.txt         | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+>=20
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/clk/tegra/clk-divider.c | 19 ++++++++
+>  drivers/clk/tegra/clk-pll-out.c | 25 +++++++++++
+>  drivers/clk/tegra/clk-pll.c     | 99 ++++++++++++++++++++++++++++++++---=
+------
+>  drivers/clk/tegra/clk.h         |  9 ++++
+>  4 files changed, 132 insertions(+), 20 deletions(-)
+>=20
+> diff --git a/drivers/clk/tegra/clk-divider.c b/drivers/clk/tegra/clk-divi=
+der.c
+> index 2a1822a22740..718694727042 100644
+> --- a/drivers/clk/tegra/clk-divider.c
+> +++ b/drivers/clk/tegra/clk-divider.c
+> @@ -14,6 +14,7 @@
+>   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+>   */
+> =20
+> +#include <linux/clk.h>
+>  #include <linux/kernel.h>
+>  #include <linux/io.h>
+>  #include <linux/err.h>
+> @@ -179,3 +180,21 @@ struct clk *tegra_clk_register_mc(const char *name, =
+const char *parent_name,
+>                                           reg, 16, 1, CLK_DIVIDER_READ_ON=
+LY,
+>                                           mc_div_table, lock);
+>  }
+> +
+> +#if defined(CONFIG_PM_SLEEP)
+> +void tegra_clk_divider_resume(struct clk_hw *hw, unsigned long rate)
+> +{
+> +       struct clk_hw *parent =3D clk_hw_get_parent(hw);
+> +       unsigned long parent_rate;
+> +
+> +       if (IS_ERR(parent)) {
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-index 3983c11e062c..5794ab1147c1 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-@@ -24,7 +24,7 @@ Optional children nodes:
- Children nodes represent the available nand chips.
- 
- Other properties:
--see Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
-+see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
- 
- Example demonstrate on AXG SoC:
- 
-diff --git a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-index c059ab74ed88..44919d48d241 100644
---- a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-@@ -8,7 +8,7 @@ explained in a separate documents - please refer to
- Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
- 
- For NAND specific properties such as ECC modes or bus width, please refer to
--Documentation/devicetree/bindings/mtd/nand.txt
-+Documentation/devicetree/bindings/mtd/nand-controller.yaml
- 
- 
- Required properties:
-diff --git a/Documentation/devicetree/bindings/mtd/marvell-nand.txt b/Documentation/devicetree/bindings/mtd/marvell-nand.txt
-index e0c790706b9b..7eeef1e1ed30 100644
---- a/Documentation/devicetree/bindings/mtd/marvell-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/marvell-nand.txt
-@@ -58,7 +58,7 @@ Optional properties:
-   Step sizes are not completely random for all and follow certain
-   patterns described in AN-379, "Marvell SoC NFC ECC".
- 
--See Documentation/devicetree/bindings/mtd/nand.txt for more details on
-+See Documentation/devicetree/bindings/mtd/nand-controller.yaml for more details on
- generic bindings.
- 
- 
-diff --git a/Documentation/devicetree/bindings/mtd/tango-nand.txt b/Documentation/devicetree/bindings/mtd/tango-nand.txt
-index cd1bf2ac9055..91c8420241af 100644
---- a/Documentation/devicetree/bindings/mtd/tango-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/tango-nand.txt
-@@ -11,7 +11,7 @@ Required properties:
- - #size-cells: <0>
- 
- Children nodes represent the available NAND chips.
--See Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
-+See Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
- 
- Example:
- 
--- 
-2.21.0
+Will this ever happen? Collapse the WARN_ON into the if please:
+
+	if (WARN_ON(IS_ERR(parent)))
+
+> +               WARN_ON(1);
+> +               return;
+> +       }
+> +
+> +       parent_rate =3D clk_hw_get_rate(parent);
+> +
+> +       if (clk_frac_div_set_rate(hw, rate, parent_rate) < 0)
+> +               WARN_ON(1);
+> +}
+> +#endif
+> diff --git a/drivers/clk/tegra/clk.h b/drivers/clk/tegra/clk.h
+> index 09bccbb9640c..e4d124cc5657 100644
+> --- a/drivers/clk/tegra/clk.h
+> +++ b/drivers/clk/tegra/clk.h
+> @@ -841,6 +841,15 @@ int tegra_pll_p_div_to_hw(struct tegra_clk_pll *pll,=
+ u8 p_div);
+>  int div_frac_get(unsigned long rate, unsigned parent_rate, u8 width,
+>                  u8 frac_width, u8 flags);
+> =20
+> +#ifdef CONFIG_PM_SLEEP
+
+Can you remove this ifdef? It just complicates compilation testing.
+
+> +void tegra_clk_pll_resume(struct clk *c, unsigned long rate);
+> +void tegra_clk_divider_resume(struct clk_hw *hw, unsigned long rate);
+> +void tegra_clk_pll_out_resume(struct clk *clk, unsigned long rate);
+> +void tegra_clk_plle_tegra210_resume(struct clk *c);
+> +void tegra_clk_sync_state_pll(struct clk *c);
+> +void tegra_clk_sync_state_pll_out(struct clk *clk);
+
+Do these APIs need to operate on struct clk? Why can't they operate on
+clk_hw or why can't we drive the suspend/resume sequence from the clk
+provider driver itself?
 
